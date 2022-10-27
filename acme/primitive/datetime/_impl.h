@@ -68,34 +68,34 @@
 //
 
 
-
-inline bool duration::timeout(const duration & duration)
-{
-
-   auto now = this->now();
-
-   if (elapsed(now) < duration)
-   {
-
-      return false;
-
-   }
-
-   operator =(now);
-
-   return true;
-
-}
-
-
-::duration duration::remaining(const duration & duration, const ::duration & durationNow)
-{
-
-   auto durationRemaining = duration - elapsed(durationNow);
-   
-   return durationRemaining;
-
-}
-
-
+//
+//inline bool duration::timeout(const duration & duration)
+//{
+//
+//   auto now = this->now();
+//
+//   if (elapsed(now) < duration)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   operator =(now);
+//
+//   return true;
+//
+//}
+//
+//
+//::duration duration::remaining(const duration & duration, const ::duration & durationNow)
+//{
+//
+//   auto durationRemaining = duration - elapsed(durationNow);
+//
+//   return durationRemaining;
+//
+//}
+//
+//
 

@@ -259,3 +259,13 @@ string_base < TYPE_CHAR >::string_base(const ::property & property) :
 
 }
 
+
+
+template < typename TYPE_CHAR >
+string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const ::property & property)
+{
+
+   return append(property);
+
+}
+

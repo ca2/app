@@ -18,7 +18,7 @@ void _debug_debug_string_string()
 }
 
 
-void __assert_particle_ok(const ::matter * pOb, const char * pszFileName, i32 nLine)
+void __assert_particle_ok(const ::particle * pOb, const char * pszFileName, i32 nLine)
 {
 
    if (pOb == nullptr)
@@ -63,15 +63,15 @@ void __assert_particle_ok(const ::matter * pOb, const char * pszFileName, i32 nL
 
    }
 
-   pOb->assert_ok();
+   //pOb->assert_ok();
 
 }
 
 
-CLASS_DECL_ACME void __call(::matter * pmatter)
+CLASS_DECL_ACME void __call(::particle * pparticle)
 {
    
-   pmatter->run();
+   pparticle->run();
    
 }
 

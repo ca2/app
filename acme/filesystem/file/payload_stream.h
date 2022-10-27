@@ -42,17 +42,17 @@
 //template < typename OBJECT >
 //inline void __exchange(::payload_stream& s, ::pointer<OBJECT> pparticle);
 //
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-//inline void __exchange(::payload_stream& stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >& array);
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline void __exchange(::payload_stream& stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >& array);
 //
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-//inline void __exchange(::payload_stream& s, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >& array);
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline void __exchange(::payload_stream& s, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >& array);
 //
-//template < typename TYPE, enum_type t_etypePayload = e_type_element >
-//inline void __exchange(::payload_stream& s, const ::numeric_array < TYPE, t_etypePayload >& array);
+//template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+//inline void __exchange(::payload_stream& s, const ::numeric_array < TYPE, m_etypeContainer >& array);
 //
-//template < typename Type, typename RawType, enum_type t_etypePayload >
-//inline void __exchange(::payload_stream& s, const ::string_array_base < Type, RawType, t_etypePayload >& array);
+//template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+//inline void __exchange(::payload_stream& s, const ::string_array_base < Type, RawType, m_etypeContainer >& array);
 //
 //
 //template < class ARRAY >

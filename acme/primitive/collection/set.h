@@ -165,7 +165,7 @@ public:
    typedef ::map_association < PAYLOAD >           association;
    typedef association                             single;
 
-   using BASE_TYPE = association;
+   using CONTAINER_ITEM_TYPE = association;
 
 
 

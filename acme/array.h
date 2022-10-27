@@ -9,8 +9,8 @@
 //#include "acme/primitive/primitive/payload_array.h"
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
-inline auto & __array_object(::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a, ::index i);
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer = e_type_element >
+inline auto & __array_object(::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a, ::index i);
 
 
 template < typename ARRAY_TYPE, typename T >
@@ -487,8 +487,8 @@ namespace acme
       //template < typename TYPE, typename INITIALIZER >
       //::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const pointer_array < TYPE > & a);
 
-      template < typename Type, typename RawType, enum_type t_etypePayload >
-      ::index add(string_array_base < Type, RawType, t_etypePayload > & array, const Type & psz)
+      template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+      ::index add(string_array_base < Type, RawType, m_etypeContainer > & array, const Type & psz)
       {
 
          auto iIndex = __index(array.m_nSize);
@@ -500,21 +500,21 @@ namespace acme
       }
 
 
-      template < typename Type, typename RawType, enum_type t_etypePayload >
-      ::index add(string_array_base < Type, RawType, t_etypePayload > & array, const ::payload & payload);
+      template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+      ::index add(string_array_base < Type, RawType, m_etypeContainer > & array, const ::payload & payload);
 
 
-      template < typename Type, typename RawType, enum_type t_etypePayload >
-      ::index unfold_add(string_array_base < Type, RawType, t_etypePayload > & array, const ::payload & payload);
+      template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+      ::index unfold_add(string_array_base < Type, RawType, m_etypeContainer > & array, const ::payload & payload);
 
-      template < typename TYPE, enum_type t_etypePayload = e_type_element >
-      ::count ensure_sequence(::numeric_array < TYPE, t_etypePayload > & a, TYPE start, TYPE end, TYPE increment = 1);
+      template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+      ::count ensure_sequence(::numeric_array < TYPE, m_etypeContainer > & a, TYPE start, TYPE end, TYPE increment = 1);
 
-      template < typename TYPE, enum_type t_etypePayload = e_type_element >
-      ::count append_sequence(::numeric_array < TYPE, t_etypePayload > & a, TYPE iterator, TYPE end, TYPE increment = 1);
+      template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+      ::count append_sequence(::numeric_array < TYPE, m_etypeContainer > & a, TYPE iterator, TYPE end, TYPE increment = 1);
 
-      template < typename TYPE, enum_type t_etypePayload = e_type_element >
-      ::count set_sequence(::numeric_array < TYPE, t_etypePayload > & a, TYPE start, TYPE end, TYPE increment = 1);
+      template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+      ::count set_sequence(::numeric_array < TYPE, m_etypeContainer > & a, TYPE start, TYPE end, TYPE increment = 1);
 
       template<class ARRAY>
       bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE));
@@ -679,36 +679,36 @@ namespace acme
    } // namespace array2d
 
 
-   template < typename TYPE, enum_type t_etypePayload = e_type_element >
-   ::count erase_greater_than(::numeric_array < TYPE, t_etypePayload > & a, TYPE hi);
+   template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+   ::count erase_greater_than(::numeric_array < TYPE, m_etypeContainer > & a, TYPE hi);
 
 
-   template < typename TYPE, enum_type t_etypePayload = e_type_element >
-   ::count erase_greater_than_or_equal(::numeric_array < TYPE, t_etypePayload > & a, TYPE hi);
+   template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+   ::count erase_greater_than_or_equal(::numeric_array < TYPE, m_etypeContainer > & a, TYPE hi);
 
 
-   template < typename TYPE, enum_type t_etypePayload = e_type_element >
-   ::count erase_lesser_than(::numeric_array < TYPE, t_etypePayload > & a, TYPE lo);
+   template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+   ::count erase_lesser_than(::numeric_array < TYPE, m_etypeContainer > & a, TYPE lo);
 
 
-   template < typename TYPE, enum_type t_etypePayload = e_type_element >
-   ::count erase_lesser_than_or_equal(::numeric_array < TYPE, t_etypePayload > & a, TYPE lo);
+   template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+   ::count erase_lesser_than_or_equal(::numeric_array < TYPE, m_etypeContainer > & a, TYPE lo);
 
 
-   template < typename TYPE, enum_type t_etypePayload = e_type_element >
-   ::count erase_lesser_than_or_greater_than(::numeric_array < TYPE, t_etypePayload > & a, TYPE lo, TYPE hi);
+   template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+   ::count erase_lesser_than_or_greater_than(::numeric_array < TYPE, m_etypeContainer > & a, TYPE lo, TYPE hi);
 
 
-   template < typename TYPE, enum_type t_etypePayload = e_type_element >
-   ::count erase_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE, t_etypePayload > & a, TYPE lo, TYPE hi);
+   template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+   ::count erase_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE, m_etypeContainer > & a, TYPE lo, TYPE hi);
 
 
-   template < typename TYPE, enum_type t_etypePayload = e_type_element >
-   ::count erase_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE, t_etypePayload > & a, TYPE lo, TYPE hi);
+   template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+   ::count erase_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE, m_etypeContainer > & a, TYPE lo, TYPE hi);
 
 
-   template < typename TYPE, enum_type t_etypePayload = e_type_element >
-   ::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE, t_etypePayload > & a, TYPE lo, TYPE hi);
+   template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+   ::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE, m_etypeContainer > & a, TYPE lo, TYPE hi);
 
 
 }   // namespace acme
@@ -899,8 +899,8 @@ namespace acme
       //}
 
 
-      template < typename Type, typename RawType, enum_type t_etypePayload >
-      ::index add(string_array_base < Type, RawType, t_etypePayload > & array, const ::payload & payload)
+      template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+      ::index add(string_array_base < Type, RawType, m_etypeContainer > & array, const ::payload & payload)
       {
 
          index i = -1;
@@ -915,10 +915,10 @@ namespace acme
             i = ::acme::array::add(array, payload.stra());
 
          }
-         else if (payload.cast < string_array_base < Type, RawType, t_etypePayload > >() != nullptr)
+         else if (payload.cast < string_array_base < Type, RawType, m_etypeContainer > >() != nullptr)
          {
 
-            i = ::acme::array::add(array, *payload.cast < string_array_base < Type, RawType, t_etypePayload > >());
+            i = ::acme::array::add(array, *payload.cast < string_array_base < Type, RawType, m_etypeContainer > >());
 
          }
          else if (payload.get_type() == ::e_type_payload_array)
@@ -1426,13 +1426,13 @@ namespace acme
       //inline ::index add(::file::path_array & patha, const ::file::listing & listing) { return add_array(patha, listing); }
 
 
-      //template < typename TYPE, enum_type t_etypePayload >
-      //::count ensure_sequence(::numeric_array < TYPE, t_etypePayload > & aParam, TYPE start, TYPE end, TYPE increment)
+      //template < typename TYPE, ::enum_type m_etypeContainer >
+      //::count ensure_sequence(::numeric_array < TYPE, m_etypeContainer > & aParam, TYPE start, TYPE end, TYPE increment)
       //{
 
       //   ::count c = 0;
 
-      //   ::numeric_array < TYPE, t_etypePayload > a;
+      //   ::numeric_array < TYPE, m_etypeContainer > a;
 
       //   ::acme::array::set_sequence(a, start, end, increment);
 
@@ -1443,7 +1443,7 @@ namespace acme
 
       //      index iFind = 0;
 
-      //      if (::acme::array::binary_search(a, aParam.element_at(i), iFind, &::numeric_compare < typename ::numeric_array < TYPE, t_etypePayload >::BASE_ARG_TYPE >))
+      //      if (::acme::array::binary_search(a, aParam.element_at(i), iFind, &::numeric_compare < typename ::numeric_array < TYPE, m_etypeContainer >::BASE_ARG_TYPE >))
       //      {
 
       //         a.erase_at(iFind);
@@ -1674,8 +1674,8 @@ namespace acme
       }
 
 
-      template < typename TYPE, enum_type t_etypePayload >
-      ::count append_sequence(::numeric_array < TYPE, t_etypePayload > & a, TYPE iterator, TYPE end, TYPE increment)
+      template < typename TYPE, ::enum_type m_etypeContainer >
+      ::count append_sequence(::numeric_array < TYPE, m_etypeContainer > & a, TYPE iterator, TYPE end, TYPE increment)
       {
          if (increment == 0)
          {
@@ -1706,8 +1706,8 @@ namespace acme
       }
 
 
-      template < typename TYPE, enum_type t_etypePayload >
-      ::count set_sequence(::numeric_array < TYPE, t_etypePayload > & a, TYPE start, TYPE end, TYPE increment)
+      template < typename TYPE, ::enum_type m_etypeContainer >
+      ::count set_sequence(::numeric_array < TYPE, m_etypeContainer > & a, TYPE start, TYPE end, TYPE increment)
       {
          a.erase_all();
          return append_sequence(a, start, end, increment);

@@ -164,30 +164,20 @@ enum enum_type
    //type_block = 1000,
    e_type_bool,
    e_type_pbool,
-   e_type_char,
-   e_type_i8 = e_type_char,
-   e_type_pi8,
    e_type_byte,
    e_type_u8 = e_type_byte,
-   e_type_pu8,
-   e_type_i16,
-   e_type_pi16,
+   e_type_char,
+   e_type_i8 = e_type_char,
    e_type_u16,
-   e_type_pu16,
-   e_type_i32,
-   e_type_pi32,
+   e_type_i16,
    e_type_u32,
-   e_type_pu32,
-   e_type_i64,
-   e_type_pi64,
+   e_type_i32,
    e_type_u64,
-   e_type_pu64,
+   e_type_i64,
 
    // floating point_i32
    e_type_f32 = 2000,
-   e_type_pfloat,
    e_type_f64,
-   e_type_pdouble,
 
    // simple classes
    e_type_string = 4000,
@@ -248,7 +238,21 @@ enum enum_type
    e_type_enum_command = 20000,
    e_type_enum_status,
    e_type_enum_check,
-   e_type_enum_flag
+   e_type_enum_flag,
+
+   e_type_primitive_mask = 65535,
+   e_type_pointer_of = 65536,
+   e_type_pu8 = e_type_u8 | e_type_pointer_of,
+   e_type_pi8 = e_type_i8 | e_type_pointer_of,
+   e_type_pu16 = e_type_u16 | e_type_pointer_of,
+   e_type_pi16 = e_type_i16 | e_type_pointer_of,
+   e_type_pu32 = e_type_u32 | e_type_pointer_of,
+   e_type_pi32 = e_type_i32 | e_type_pointer_of,
+   e_type_pu64 = e_type_u64 | e_type_pointer_of,
+   e_type_pi64 = e_type_i64 | e_type_pointer_of,
+   e_type_pf32= e_type_f32 | e_type_pointer_of,
+   e_type_pf64= e_type_f64 | e_type_pointer_of,
+
 
 
 };

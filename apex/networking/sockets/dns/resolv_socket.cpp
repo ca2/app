@@ -115,14 +115,14 @@ namespace sockets
 
       //}
 
-      acmesystem() = get_system();
-
-      if (!acmesystem())
-      {
-
-         throw ::exception(error_resource);
-
-      }
+//      acmesystem() = get_system();
+//
+//      if (!acmesystem())
+//      {
+//
+//         throw ::exception(error_resource);
+//
+//      }
 
       m_pnetworking = acmesystem()->m_papexsystem->networking();
 
@@ -141,7 +141,7 @@ namespace sockets
    void resolv_socket::destroy()
    {
 
-      acmesystem().release();
+      //acmesystem().release();
 
       m_pnetworking.release();
 

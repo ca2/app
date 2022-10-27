@@ -54,7 +54,7 @@ namespace write_text
 
 
 
-template<typename Type, typename RawType = Type, enum_type t_etypePayload = e_type_element >
+template<typename Type, typename RawType = Type, ::enum_type m_etypeContainer = e_type_element >
 class string_array_base;
 
 
@@ -315,11 +315,11 @@ namespace allocator
 } // namespace allocator
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer = e_type_element >
 class array_base;
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE >, enum_type t_etypePayload = e_type_element >
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE >, ::enum_type m_etypeContainer = e_type_element >
 class array;
 
 template < typename FUNCTION >
@@ -468,7 +468,7 @@ namespace allocator
 
 } // namespace allocator
 
-template < typename TYPE, typename ARG_TYPE = const TYPE &, typename ALLOCATOR = ::allocator::raw < TYPE >, enum_type t_etypePayload = e_type_element >
+template < typename TYPE, typename ARG_TYPE = const TYPE &, typename ALLOCATOR = ::allocator::raw < TYPE >, ::enum_type m_etypeContainer = e_type_element >
 class raw_array;
 
 
@@ -585,11 +585,11 @@ using procedure_list = ::list < ::procedure >;
 
 
 
-template < typename TYPE, enum_type t_etypePayload = e_type_element >
+template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
 class unique_number_sort_array;
 
 
-template < typename TYPE, enum_type t_etypePayload = e_type_element >
+template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
 class numeric_array;
 
 
@@ -655,3 +655,60 @@ namespace draw2d
 
 
 } // namespace draw2d
+
+
+
+template < primitive_number NUMBER1, primitive_number NUMBER2 >
+inline void copy(NUMBER1 * pnumber1, const NUMBER2 * pnumber2)
+{
+
+   *pnumber1 = (NUMBER1) *pnumber2;
+
+}
+
+
+template < primitive_number NUMBER >
+inline void copy(string * pstring, const NUMBER * pnumber)
+{
+
+   *pstring = __string(*pnumber);
+
+}
+
+
+template < primitive_payload PAYLOAD >
+inline void copy(string * pstring, const PAYLOAD * ppayload)
+{
+
+   *pstring = ppayload->get_string();
+
+}
+
+
+
+template < primitive_payload PAYLOAD, primitive_number NUMBER >
+inline void copy(PAYLOAD * ppayload, const NUMBER* pnumber)
+{
+
+   *ppayload = *pnumber;
+
+}
+
+
+template < primitive_payload PAYLOAD >
+inline void copy(PAYLOAD * ppayload, const string * pstring)
+{
+
+   *ppayload = *pstring;
+
+}
+
+
+template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
+inline void copy(PAYLOAD1 * ppayload1, const PAYLOAD2 * ppayload2)
+{
+
+   *ppayload1 = *ppayload2;
+
+}
+

@@ -1,17 +1,17 @@
 #pragma once
 
 
-template < typename TYPE >
+template < typename ITERATOR_TYPE >
 class random_access_iterator
 {
 public:
 
-   typedef TYPE BASE_TYPE;
+   typedef ITERATOR_TYPE ITERATOR_BASE_TYPE;
 
-   TYPE *         m_p;
+   ITERATOR_TYPE *         m_p;
 
 
-   random_access_iterator(TYPE * p)
+   random_access_iterator(ITERATOR_TYPE * p)
    {
 
       m_p = p;
@@ -118,36 +118,36 @@ public:
       return m_p < i.m_p;
    }
 
-   TYPE & operator * ()
+   ITERATOR_TYPE & operator * ()
    {
       return *m_p;
    }
 
-   const TYPE & operator * () const
+   const ITERATOR_TYPE & operator * () const
    {
-      return (const TYPE &)*m_p;
+      return (const ITERATOR_TYPE &)*m_p;
    }
 
 
 };
 
 
-template < typename TYPE >
+template < typename ITERATOR_TYPE >
 class const_random_access_iterator
 {
 public:
 
 
-   const TYPE *            m_p;
+   const ITERATOR_TYPE *            m_p;
 
-   const_random_access_iterator(const TYPE * p)
+   const_random_access_iterator(const ITERATOR_TYPE * p)
    {
       
       m_p = p;
 
    }
 
-   const_random_access_iterator(const random_access_iterator < TYPE > & it)
+   const_random_access_iterator(const random_access_iterator < ITERATOR_TYPE > & it)
    {
 
       operator = (it);
@@ -163,7 +163,7 @@ public:
    }
 
 
-   const_random_access_iterator & operator = (const random_access_iterator < TYPE > & it)
+   const_random_access_iterator & operator = (const random_access_iterator < ITERATOR_TYPE > & it)
    {
 
       m_p = it.m_p;
@@ -263,9 +263,9 @@ public:
 
    }
 
-   const TYPE & operator * ()
+   const ITERATOR_TYPE & operator * ()
    {
-      return *((const TYPE*)m_p);
+      return *((const ITERATOR_TYPE*)m_p);
    }
 
 };

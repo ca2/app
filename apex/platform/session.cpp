@@ -144,7 +144,7 @@ namespace apex
 
       m_pcontext = this;
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       if (psystem != nullptr)
       {

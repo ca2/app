@@ -7,7 +7,7 @@ struct container_iterator
 
    using CONTAINER = CONTAINER_TYPE;
 
-   using TYPE = typename CONTAINER::BASE_TYPE;
+   using CONTAINTER_ITEM_TYPE = typename CONTAINER::CONTAINER_ITEM_TYPE;
 
    CONTAINER * m_pcontainer;
 

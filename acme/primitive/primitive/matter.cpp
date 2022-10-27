@@ -953,13 +953,13 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 
 }
 
-
-::acme::system * matter::get_system() const
-{
-
-   return ((matter*)this)->acmesystem();
-
-}
+//
+//::acme::system * matter::get_system() const
+//{
+//
+//   return ((matter*)this)->acmesystem();
+//
+//}
 
 
 

@@ -5,9 +5,14 @@
 #include "collection_sort.h"
 
 
-template < typename T, enum_type t_etypePayload = e_type_element > class numeric_array;
-typedef numeric_array < index > index_array;
-typedef numeric_array < count > count_array;
+template < typename T, enum_type m_etypeContainer = e_type_element >
+class numeric_array;
+
+using index_array = numeric_array < ::index >;
+using count_array = numeric_array < ::count >;
+
+
+using u32_array = numeric_array < ::u32 >;
 
 
 namespace iter

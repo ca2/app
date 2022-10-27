@@ -88,8 +88,8 @@
 ////inline binary_stream < FILE > & binary_stream < FILE >::operator >> (e_set_loading) { set_loading(); return *this; }
 //
 //
-////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-////binary_stream < FILE > & binary_stream < FILE >::operator << (const array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
+////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+////binary_stream < FILE > & binary_stream < FILE >::operator << (const array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
 ////{
 //
 ////   ::count c = a.get_count();
@@ -103,8 +103,8 @@
 ////}
 //
 //
-////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-////binary_stream < FILE > & binary_stream < FILE >::operator >> (array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
+////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+////binary_stream < FILE > & binary_stream < FILE >::operator >> (array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
 ////{
 //
 ////   ::count c = 0;
@@ -694,29 +694,29 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth:
 //}
 //
 //
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-//inline void __exchange(::binary_stream < FILE > & binary_stream < FILE >, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array)
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline void __exchange(::binary_stream < FILE > & binary_stream < FILE >, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array)
 //{
 //   __exchange_array(binary_stream < FILE >, array);
 //}
 //
 //
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-//inline void __exchange(::binary_stream < FILE > & binary_stream < FILE >, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array)
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline void __exchange(::binary_stream < FILE > & binary_stream < FILE >, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array)
 //{
 //   __exchange_array(binary_stream < FILE >, array);
 //}
 //
 //
-//template < typename TYPE, enum_type t_etypePayload >
-//inline void __exchange(::binary_stream < FILE > & binary_stream < FILE >, ::numeric_array < TYPE, t_etypePayload > & array)
+//template < typename TYPE, ::enum_type m_etypeContainer >
+//inline void __exchange(::binary_stream < FILE > & binary_stream < FILE >, ::numeric_array < TYPE, m_etypeContainer > & array)
 //{
 //   __exchange_array(binary_stream < FILE >, array);
 //}
 //
 //
-//template < typename Type, typename RawType, enum_type t_etypePayload >
-//inline void __exchange(::binary_stream < FILE > & binary_stream < FILE >, ::string_array_base < Type, RawType, t_etypePayload > & array)
+//template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+//inline void __exchange(::binary_stream < FILE > & binary_stream < FILE >, ::string_array_base < Type, RawType, m_etypeContainer > & array)
 //{
 //   __exchange_array(binary_stream < FILE >, array);
 //}

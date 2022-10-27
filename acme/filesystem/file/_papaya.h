@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-//void __io_array(stream & stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array);
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//void __io_array(stream & stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array);
 
 //template < typename ARRAY, typename READER >
 //inline void __load_array(ARRAY & array, READER && reader);

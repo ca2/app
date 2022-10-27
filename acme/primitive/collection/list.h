@@ -183,7 +183,7 @@ public:
 
    };
 
-   using BASE_TYPE = node;
+   using CONTAINER_ITEM_TYPE = node;
 
    __declare_iterator(dereferenced_value_iterator, this->m_pnode->m_value);
    __declare_iterator(value_iterator, &this->m_pnode->m_value);

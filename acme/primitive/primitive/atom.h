@@ -1639,3 +1639,17 @@ string_base < CHAR > & string_base < CHAR >::operator+=(const ::atom & atom)
 }
 
 
+template < typename TYPE_CHAR >
+string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ::atom & atom) const
+{
+
+   string_base < TYPE_CHAR > str(*this);
+
+   str += atom;
+
+   return str;
+
+}
+
+
+

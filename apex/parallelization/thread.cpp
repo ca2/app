@@ -165,8 +165,6 @@ thread::thread()
 
    m_durationHeartBeat.Now();
 
-   defer_create_synchronization();
-
    m_bReady = false;
 
    m_bZipIsDir2 = true;
@@ -2252,6 +2250,8 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
    unset_finishing();
 
    ENSURE(m_htask == (htask_t) nullptr);
+
+   defer_create_synchronization();
 
    //if(m_atom.is_empty())
    //{

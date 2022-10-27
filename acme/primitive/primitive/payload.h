@@ -402,9 +402,18 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    bool is_boolean() const;
    bool is_double() const;
    bool is_duration() const;
+   bool is_text() const;
+   bool is_fairly_convertible_to_text() const;
 
    bool ok() const;
    bool failed() const;
+
+
+   enum_type integer_type() const;
+   enum_type left_hand_integer_type() const;
+
+   enum_type floating_type() const;
+   enum_type left_hand_floating_type() const;
 
 
    payload dereference();
@@ -473,6 +482,17 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    template < primitive_payload PAYLOAD >
    payload & operator /=(const PAYLOAD & payload);
 
+
+   payload addition(const ::payload & payload) const;
+   payload subtraction(const ::payload & payload) const;
+   payload multiplication(const ::payload & payload) const;
+   payload division(const ::payload & payload) const;
+
+   payload & add(const ::payload & payload);
+   payload & subtract(const ::payload & payload);
+   payload & multiply(const ::payload & payload);
+   payload & divide(const ::payload & payload);
+
    bool operator !() const
    {
 
@@ -525,14 +545,30 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::property_set & property_set_reference();
    ::property & property_reference();
 
-
    ::file::path & file_path_reference();
-
 
    ::file_time & file_time_reference();
    ::earth::time & earth_time_reference();
    ::color::color & color_reference();
    ::color::hls & color_hls_reference();
+
+   const ::string_array & string_array_reference() const;
+   const ::i32_array & i32_array_reference() const;
+   const ::i64_array & i64_array_reference() const;
+   const ::payload_array & payload_array_reference() const;
+   const ::duration & duration_reference() const;
+   const ::property_set & property_set_reference() const;
+   const ::property & property_reference() const;
+
+
+
+
+   const ::file::path & file_path_reference() const;
+   const ::file_time & file_time_reference() const;
+   const ::earth::time & earth_time_reference() const;
+   const ::color::color & color_reference() const;
+   const ::color::hls & color_hls_reference() const;
+
 
    //operator ::enum_check &();
 
@@ -1888,5 +1924,115 @@ namespace file
 
 
 } // namespace file
+
+
+
+
+
+template < typename TYPE_CHAR >
+string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const ::payload & payload)
+{
+
+   return append(payload);
+
+}
+
+template < typename TYPE_CHAR >
+string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ::payload & payload) const
+{
+
+   string_base < TYPE_CHAR > ansistr(*this);
+
+   ansistr += payload;
+
+   return ansistr;
+
+}
+
+
+template < typename TYPE_CHAR >
+string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ::property & property) const
+{
+
+   string_base < TYPE_CHAR > ansistr(*this);
+
+   ansistr += property;
+
+   return ansistr;
+
+}
+
+
+template < primitive_payload PAYLOAD >
+payload payload::operator +(const PAYLOAD & payload) const
+{
+
+   return addition(payload);
+
+}
+
+
+template < primitive_payload PAYLOAD >
+payload payload::operator -(const PAYLOAD & payload) const
+{
+
+   return subtraction(payload);
+
+}
+
+
+template < primitive_payload PAYLOAD >
+payload payload::operator *(const PAYLOAD & payload) const
+
+{
+
+   return multiplication(payload);
+
+}
+
+template < primitive_payload PAYLOAD >
+payload payload:: operator /(const PAYLOAD & payload) const
+{
+
+   return division(payload);
+
+}
+
+
+template < primitive_payload PAYLOAD >
+payload & payload::operator +=(const PAYLOAD & payload)
+{
+
+   return add(payload);
+
+}
+
+
+template < primitive_payload PAYLOAD >
+payload & payload::operator -=(const PAYLOAD & payload)
+{
+
+   return subtract(payload);
+
+}
+
+
+template < primitive_payload PAYLOAD >
+payload & payload::operator *=(const PAYLOAD & payload)
+{
+
+   return multiply(payload);
+
+}
+
+
+template < primitive_payload PAYLOAD >
+payload & payload::operator /=(const PAYLOAD & payload)
+{
+
+   return divide(payload);
+
+}
+
 
 

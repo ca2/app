@@ -118,8 +118,8 @@ public:
    //void branch();
 
 
-   ::acme::context * get_context() const { return (::acme::context *) m_pcontext; }
-   ::acme::system * get_system() const;
+   //::acme::context * get_context() const { return (::acme::context *) m_pcontext; }
+   //::acme::system * get_system() const;
 
    inline ::acme::application * get_app() { return _get_app(); }
 

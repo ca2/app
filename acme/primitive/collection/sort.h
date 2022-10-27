@@ -691,8 +691,8 @@ namespace sort
    }
 
 
-   template<typename TYPE, enum_type t_etypePayload = e_type_element>
-   void QuickSortAsc(numeric_array<TYPE, t_etypePayload> &a)
+   template<typename TYPE, ::enum_type m_etypeContainer = e_type_element>
+   void QuickSortAsc(numeric_array<TYPE, m_etypeContainer> &a)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -761,8 +761,8 @@ namespace sort
    }
 
 
-   template<typename TYPE, enum_type t_etypePayload = e_type_element>
-   void QuickSortDesc(numeric_array<TYPE, t_etypePayload> &a)
+   template<typename TYPE, ::enum_type m_etypeContainer = e_type_element>
+   void QuickSortDesc(numeric_array<TYPE, m_etypeContainer> &a)
    {
 
       index_array stackLowerBound;
@@ -2256,9 +2256,9 @@ break_mid_loop:
 
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 template < typename PRED >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::predicate_sort(PRED pred)
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::predicate_sort(PRED pred)
 {
 
    ::sort::array::predicate_sort(*this, pred);
@@ -2266,9 +2266,9 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::predicate_sort(PR
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 template < typename T, typename PRED >
-index array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::predicate_binary_search(const T & t, PRED pred) const
+index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::predicate_binary_search(const T & t, PRED pred) const
 {
 
    return ::sort::array::predicate_binary_search(*this, t, pred);
@@ -2276,8 +2276,8 @@ index array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::predicate_binary
 }
 
 
-template < typename TYPE, enum_type t_etypePayload >
-void numeric_array < TYPE, t_etypePayload >::sort(bool bAsc)
+template < typename TYPE, ::enum_type m_etypeContainer >
+void numeric_array < TYPE, m_etypeContainer >::sort(bool bAsc)
 {
 
    if (bAsc)

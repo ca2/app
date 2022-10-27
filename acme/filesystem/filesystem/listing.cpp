@@ -299,7 +299,7 @@ namespace file
 {
 
 
-   inline string listing::title(index i)
+   string listing::title(index i)
    {
 
       if (i >= 0 && i < m_straTitle.get_count())
@@ -314,7 +314,7 @@ namespace file
    }
 
 
-   inline string listing::name(index i)
+   string listing::name(index i)
    {
 
       if (i >= 0 && i < m_straTitle.get_count())
@@ -329,7 +329,7 @@ namespace file
    }
 
 
-   inline void listing::to_name()
+   void listing::to_name()
    {
 
       for (index i = 0; i < get_size(); i++)
@@ -342,7 +342,7 @@ namespace file
    }
 
 
-   inline listing & listing::operator = (const listing & listing)
+   listing & listing::operator = (const listing & listing)
    {
 
       if (this == &listing)

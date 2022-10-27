@@ -3,6 +3,9 @@
 #pragma once
 
 
+#include "_c_unicode.h"
+
+
 class CLASS_DECL_ACME character
 {
 public:

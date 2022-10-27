@@ -87,6 +87,7 @@
 
 //#define Node (psystem->node())
 
+#include "acme/primitive/primitive/enumeration.h"
 
 
 #include "_forward_declaration.h"
@@ -99,6 +100,10 @@
 
 
 #include "acme/primitive/primitive/estatus.h"
+
+
+inline bool __enum_is_failed(const ::e_status & e);
+
 
 
 //#include "_c.h"
@@ -742,7 +747,6 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 
 #endif
 
-#include "acme/primitive/primitive/enumeration.h"
 
 
 #include "acme/constant/check.h"

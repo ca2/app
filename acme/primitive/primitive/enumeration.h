@@ -4,7 +4,6 @@
 template < typename ENUM >
 inline bool __enum_is_failed(const ENUM & e) { return !(::i64)e; }
 
-inline bool __enum_is_failed(const ::e_status & e);
 
 template < typename ENUM >
 class enumeration
@@ -144,7 +143,7 @@ template < primitive_integral INTEGRAL > \
 inline ENUM operator & (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e & (::u64)i); } \
 template < primitive_integral INTEGRAL > \
 inline ENUM operator & (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i & (::u64)e); } \
-using ENUMERATION = enumeration < ENUM >
+using ENUMERATION = ::enumeration < ENUM >
 
 
 

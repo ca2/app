@@ -24,7 +24,8 @@ namespace message
 
 #include "acme/_start.h"
 #include "acme/platform/object_reference_count_debug.h"
-//#include "acme/constant/_.h"
+#include "acme/primitive/string/string.h"
+#include "acme/_api.h"
 #include "acme/constant/_constant.h"
 #include "acme/include/_forward_declaration.h"
 #include "acme/include/_template_forward_declaration.h"

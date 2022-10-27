@@ -1991,7 +1991,7 @@ inline payload payload:: operator /(const ::payload & payload) const
 
 
 //template < primitive_payload PAYLOAD >
-payload & payload::operator +=(const ::payload & payload)
+inline payload & payload::operator +=(const ::payload & payload)
 {
 
    return add(payload);
@@ -1999,8 +1999,7 @@ payload & payload::operator +=(const ::payload & payload)
 }
 
 
-//template < primitive_payload PAYLOAD >
-payload & payload::operator -=(const ::payload & payload)
+inline payload & payload::operator -=(const ::payload & payload)
 {
 
    return subtract(payload);
@@ -2009,7 +2008,7 @@ payload & payload::operator -=(const ::payload & payload)
 
 
 //template < primitive_payload PAYLOAD >
-payload & payload::operator *=(const ::payload & payload)
+inline payload & payload::operator *=(const ::payload & payload)
 {
 
    return multiply(payload);
@@ -2018,7 +2017,7 @@ payload & payload::operator *=(const ::payload & payload)
 
 
 //template < primitive_payload PAYLOAD >
-payload & payload::operator /=(const ::payload & payload)
+inline payload & payload::operator /=(const ::payload & payload)
 {
 
    return divide(payload);

@@ -2276,24 +2276,3 @@ index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::predicate_bina
 }
 
 
-template < typename TYPE, ::enum_type m_etypeContainer >
-void numeric_array < TYPE, m_etypeContainer >::sort(bool bAsc)
-{
-
-   if (bAsc)
-   {
-
-      sort::QuickSortAsc(*this);
-
-   }
-   else
-   {
-
-      sort::QuickSortDesc(*this);
-
-   }
-
-}
-
-
-

@@ -6,13 +6,6 @@
 
 
 
-inline bool is_null(const void * p, size_t s)
-{
-
-   return ((size_t)p <= s);
-
-}
-
 
 template < a_pointer POINTER >
 inline bool is_null(POINTER p)

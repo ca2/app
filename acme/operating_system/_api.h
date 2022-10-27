@@ -2,9 +2,6 @@
 #pragma once
 
 
-CLASS_DECL_ACME ::string get_command_line();
-
-
 namespace posix
 {
 
@@ -14,6 +11,9 @@ namespace posix
 
 } // namespace posix
 
+
+
+CLASS_DECL_ACME::string get_command_line();
 
 
 

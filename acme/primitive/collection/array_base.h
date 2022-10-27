@@ -2459,3 +2459,43 @@ void  array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::set_all(const 
 
 
 
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(array_base && array) noexcept
+{
+
+   this->m_nGrowBy = array.m_nGrowBy;
+   this->m_pData = array.m_pData;
+   this->m_nSize = array.m_nSize;
+   this->m_nMaxSize = array.m_nMaxSize;
+
+   array.m_pData = nullptr;
+   array.m_nSize = 0;
+   array.m_nMaxSize = 0;
+
+}
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(const array_base & array)
+{
+
+   m_nGrowBy = 0;
+   m_pData = nullptr;
+   m_nSize = 0;
+   m_nMaxSize = 0;
+
+   set_size(array.get_size());
+
+   for (::index i = 0; i < array.get_size(); i++)
+   {
+
+      element_at(i) = array[i];
+
+   }
+
+}
+
+

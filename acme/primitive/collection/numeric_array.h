@@ -1331,3 +1331,26 @@ namespace acme
 } // namespace acme
 
 
+#include "sort.h"
+
+template < typename TYPE, ::enum_type m_etypeContainer >
+void numeric_array < TYPE, m_etypeContainer >::sort(bool bAsc)
+{
+
+   if (bAsc)
+   {
+
+      sort::QuickSortAsc(*this);
+
+   }
+   else
+   {
+
+      sort::QuickSortDesc(*this);
+
+   }
+
+}
+
+
+

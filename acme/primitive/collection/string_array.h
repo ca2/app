@@ -6,6 +6,7 @@
 #include "comparable_array.h"
 #include "acme/primitive/string/string.h"
 #include "acme/primitive/collection/address_array.h"
+//#include "acme/primitive/primitive/payload.h"
 //#include "acme/array.h"
 
 
@@ -432,10 +433,9 @@ public:
 
    //   void XFV001Expand();
 
-   template < primitive_payload PAYLOAD >
-   string_array_base & operator =(const PAYLOAD & payload);
+   //string_array_base & operator =(const ::payload & payload);
 //   string_array_base & operator =(const string_array_base & stra);
-   string_array_base & operator =(const i64_array & ia);
+   //string_array_base & operator =(const i64_array & ia);
 //   string_array_base & operator =(const string_array_base & stra);
    //string_array_base & operator -=(const string_array_base & stra);
    //string_array_base & operator +=(const string_array_base & stra);
@@ -2874,12 +2874,15 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 }
 
 
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-string_array_base < Type, RawType, m_etypeContainer >  & string_array_base < Type, RawType, m_etypeContainer > ::operator =(const i64_array & ia)
-{
-   copy(ia);
-   return *this;
-}
+//template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+//string_array_base < Type, RawType, m_etypeContainer >  & string_array_base < Type, RawType, m_etypeContainer > ::operator =(const i64_array & ia)
+//{
+//   
+//   this->_001CopyContainer(ia);
+//
+//   return *this;
+//
+//}
 
 
 /*::index string_array_base < Type, RawType, m_etypeContainer > ::CountPrefixNoCase(const Type& pcszPrefix)
@@ -5005,40 +5008,39 @@ return get_data()[nIndex];
 
 //#include "acme/primitive/primitive/payload.h"
 
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-template < primitive_payload PAYLOAD >
-string_array_base < Type, RawType, m_etypeContainer >  & string_array_base < Type, RawType, m_etypeContainer > ::operator = (const PAYLOAD & payload)
-{
-
-   this->erase_all();
-
-   if (payload.get_type() == ::e_type_string_array)
-   {
-
-      payload.get_array(*this);
-
-   }
-   else
-   {
-
-      if (payload.get_count() == 1)
-      {
-
-         add((Type)payload.string());
-
-      }
-      else if (payload.get_count() > 1)
-      {
-
-         payload.get_array(*this);
-
-      }
-
-   }
-
-   return *this;
-
-}
+//template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+//string_array_base < Type, RawType, m_etypeContainer >  & string_array_base < Type, RawType, m_etypeContainer > ::operator = (const ::payload & payload)
+//{
+//
+//   this->erase_all();
+//
+//   if (payload.get_type() == ::e_type_string_array)
+//   {
+//
+//      payload.get_array(*this);
+//
+//   }
+//   else
+//   {
+//
+//      if (payload.get_count() == 1)
+//      {
+//
+//         add((Type)payload.string());
+//
+//      }
+//      else if (payload.get_count() > 1)
+//      {
+//
+//         payload.get_array(*this);
+//
+//      }
+//
+//   }
+//
+//   return *this;
+//
+//}
 
 
 //template < typename Type, typename RawType, ::enum_type m_etypeContainer >

@@ -119,9 +119,11 @@ inline string_base < TYPE_CHAR > operator+(const string_base < TYPE_CHAR > & str
 
 
 inline ::string operator+(const char * psz, const ::string & str) { return string(psz) + str; }
-inline ::string operator+(const char * psz, const ::atom & atom) { return string(psz) + string(atom); }
-inline ::string operator+(const char * psz, const ::payload & payload) { return string(psz) + string(payload); }
-inline ::string operator+(const char * psz, const ::property& property) { return string(psz) + string(property); }
+template < primitive_atom ATOM >
+inline ::string operator+(const char * psz, const ATOM & atom) { return string(psz) + string(atom); }
+template < primitive_payload PAYLOAD >
+inline ::string operator+(const char * psz, const PAYLOAD & payload) { return string(psz) + string(payload); }
+//inline ::string operator+(const char * psz, const ::property& property) { return string(psz) + string(property); }
 
 
 //inline ::ansistring CLASS_DECL_ACME operator + (ansichar ansich, const ::ansistring & str2)

@@ -9,6 +9,28 @@
 #include "string_iterator.h"
 
 
+//CLASS_DECL_ACME void copy(::string_base < ::ansichar > * ptarget, const ::payload * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::wd16char > * ptarget, const ::payload * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::wd32char > * ptarget, const ::payload * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::ansichar > * ptarget, const ::property * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::wd16char > * ptarget, const ::property * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::wd32char > * ptarget, const ::property * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::ansichar > * ptarget, const ::atom * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::wd16char > * ptarget, const ::atom * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::wd32char > * ptarget, const ::atom * psource);
+//
+//
+//CLASS_DECL_ACME void append(::string_base < ::ansichar > * ptarget, const ::payload * psource);
+//CLASS_DECL_ACME void append(::string_base < ::wd16char > * ptarget, const ::payload * psource);
+//CLASS_DECL_ACME void append(::string_base < ::wd32char > * ptarget, const ::payload * psource);
+//CLASS_DECL_ACME void append(::string_base < ::ansichar > * ptarget, const ::property * psource);
+//CLASS_DECL_ACME void append(::string_base < ::wd16char > * ptarget, const ::property * psource);
+//CLASS_DECL_ACME void append(::string_base < ::wd32char > * ptarget, const ::property * psource);
+//CLASS_DECL_ACME void append(::string_base < ::ansichar > * ptarget, const ::atom * psource);
+//CLASS_DECL_ACME void append(::string_base < ::wd16char > * ptarget, const ::atom * psource);
+//CLASS_DECL_ACME void append(::string_base < ::wd32char > * ptarget, const ::atom * psource);
+
+
 template < typename TYPE_CHAR >
 class string_base :
    public natural_pointer < string_meta_data < TYPE_CHAR > , string_memory_allocator >
@@ -60,9 +82,12 @@ public:
    //string_base(Object ^ o);
 //#endif
 
-   string_base(const ::payload & payload);
-   string_base(const ::property & property);
-   string_base(const ::atom & atom);
+   template < primitive_payload PAYLOAD >
+   string_base(const PAYLOAD & payload) : string_base(payload.get_string()) {}
+   //template < primitive_property PROPERTY >
+   //string_base(const PROPERTY & property) : string_base(property.get_string()) {}
+   template < primitive_atom ATOM >
+   string_base(const ATOM & atom) : string_base(atom.string()) {}
    //string_base(::payload & payload);
    //string_base(property & property);
    //string_base(atom & atom);
@@ -152,9 +177,11 @@ public:
    string_base & operator += (ansichar ansich);
    string_base & operator += (wd16char wd16ch);
    string_base & operator += (wd32char wd32ch);
-   string_base & operator += (const ::payload & payload);
-   string_base & operator += (const ::property & property);
-   string_base & operator += (const ::atom & atom);
+   template < primitive_payload PAYLOAD >
+   string_base & operator += (const PAYLOAD & payload) { return operator+=(payload.get_string()); }
+   // string_base & operator += (const ::property & property) { ::append(this, &property); return *this; }
+   template < primitive_atom ATOM >
+   string_base & operator += (const ATOM & atom) { return operator+=(payload.string()); }
 
 
 //   template < int t_nSize >
@@ -184,9 +211,15 @@ public:
    string_base operator + (ansichar character)  const;
    string_base operator + (wd16char wd16ch)  const;
    string_base operator + (wd32char wd32ch)  const;
-   string_base operator + (const ::payload & payload) const;
-   string_base operator + (const ::property & property) const;
-   string_base operator + (const ::atom & atom) const;
+   
+
+
+   template < primitive_payload PAYLOAD >
+   string_base operator + (const PAYLOAD & payload) const { return *this + payload.get_string(); }
+
+   template < primitive_atom ATOM >
+   string_base operator + (const ATOM & atom) const { return *this + atom.string(); }
+
 
    template < typename TYPE >
    inline string_base & operator /=(const TYPE & t)

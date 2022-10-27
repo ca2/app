@@ -160,7 +160,7 @@ public:
    bool operator == (const ::std::type_info & typeinfo) const
    {
 
-      ::string strName = ::type(typeinfo).name();
+      ::string strName = ::type(typeinfo);
 
       strName = demangle(strName);
 

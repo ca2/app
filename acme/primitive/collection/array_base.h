@@ -607,12 +607,12 @@ public:
 
 
    template < typename CONTAINER >
-   void copy(const CONTAINER & container)
+   void _001CopyContainer(const CONTAINER & container)
    {
 
       clear();
 
-      append(container);
+      _001AppendContainer(container);
 
    }
 

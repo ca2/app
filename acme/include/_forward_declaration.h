@@ -87,7 +87,7 @@ namespace file
 
    class path;
    class path_object;
-   class file_status;
+   struct file_status;
 
 
 } // namespace file
@@ -106,6 +106,9 @@ namespace data
 
 class memory_base;
 
+struct PAYLOAD_TAG { };
+//struct PROPERTY_TAG { };
+struct ATOM_TAG { };
 
 class handler;
 class manager;

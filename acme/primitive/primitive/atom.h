@@ -229,7 +229,8 @@ int __atom_sgn(T x)
 
 
 
-class CLASS_DECL_ACME atom
+class CLASS_DECL_ACME atom :
+   public ATOM_TAG
 {
 public:
 
@@ -1621,35 +1622,35 @@ inline atom::atom(const ::string& str) :
 }
 
 
-template < typename CHAR >
-inline string_base < CHAR >::string_base(const ::atom & atom) :
-   string_base(atom.string())
-{
+//template < typename CHAR >
+//inline string_base < CHAR >::string_base(const ::atom & atom) :
+//   string_base(atom.string())
+//{
+//
+//
+//}
 
 
-}
-
-
-template < typename CHAR >
-string_base < CHAR > & string_base < CHAR >::operator+=(const ::atom & atom)
-{
-
-   return append(atom);
-
-}
-
-
-template < typename TYPE_CHAR >
-string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ::atom & atom) const
-{
-
-   string_base < TYPE_CHAR > str(*this);
-
-   str += atom;
-
-   return str;
-
-}
+//template < typename CHAR >
+//string_base < CHAR > & string_base < CHAR >::operator+=(const ::atom & atom)
+//{
+//
+//   return append(atom);
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ::atom & atom) const
+//{
+//
+//   string_base < TYPE_CHAR > str(*this);
+//
+//   str += atom;
+//
+//   return str;
+//
+//}
 
 
 

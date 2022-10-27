@@ -7,7 +7,7 @@ struct container_iterator
 
    using CONTAINER = CONTAINER_TYPE;
 
-   using CONTAINTER_ITEM_TYPE = typename CONTAINER::CONTAINER_ITEM_TYPE;
+   using CONTAINER_ITEM_TYPE = typename CONTAINER::CONTAINER_ITEM_TYPE;
 
    CONTAINER * m_pcontainer;
 
@@ -22,24 +22,24 @@ struct container_iterator
    struct iterator_struct : container_iterator < container > \
    { \
       using CONTAINER = typename container_iterator::CONTAINER; \
-      using ITEM_TYPE = item_type; \
+      using ITERATOR_ITEM_TYPE = item_type; \
       using container_iterator::container_iterator; \
-      ITEM_TYPE item_member;  \
-      ITEM_TYPE item_member ## Beg; \
-      ITEM_TYPE item_member ## End;  \
-      ITEM_TYPE & item () const { return ((iterator_struct *)this)->item_member; } \
+      ITERATOR_ITEM_TYPE item_member;  \
+      ITERATOR_ITEM_TYPE item_member ## Beg; \
+      ITERATOR_ITEM_TYPE item_member ## End;  \
+      ITERATOR_ITEM_TYPE & item () const { return ((iterator_struct *)this)->item_member; } \
       template < typename TYPE > \
       inline iterator_struct(const TYPE & t) { item_member = t.item(); m_pcontainer = t.container(); } \
    }; \
    struct const_iterator_struct : container_iterator < container > \
    { \
       using CONTAINER = typename container_iterator::CONTAINER; \
-      using ITEM_TYPE = item_type; \
+      using ITERATOR_ITEM_TYPE = item_type; \
       using container_iterator::container_iterator; \
-      ITEM_TYPE item_member;  \
-      ITEM_TYPE item_member ## Beg; \
-      ITEM_TYPE item_member ## End;  \
-      ITEM_TYPE & item () const { return ((iterator_struct *)this)->item_member; } \
+      ITERATOR_ITEM_TYPE item_member;  \
+      ITERATOR_ITEM_TYPE item_member ## Beg; \
+      ITERATOR_ITEM_TYPE item_member ## End;  \
+      ITERATOR_ITEM_TYPE & item () const { return ((iterator_struct *)this)->item_member; } \
       template < typename TYPE > \
       inline iterator_struct(const TYPE & t) { item_member = t.item(); m_pcontainer = t.container(); } \
    }
@@ -49,13 +49,13 @@ struct container_iterator
    struct iterator_struct : container_iterator < container > \
    { \
       using CONTAINER = typename container_iterator < container >::CONTAINER; \
-      using ITEM_TYPE = item_type; \
+      using ITERATOR_ITEM_TYPE = item_type; \
       using container_iterator < container >::container_iterator; \
-      ITEM_TYPE item_member;  \
-      ITEM_TYPE item_member ## Beg; \
-      ITEM_TYPE item_member ## End; \
-      ITEM_TYPE & item () { return ((iterator_struct *)this)->item_member; } \
-      const ITEM_TYPE & item () const { return ((iterator_struct *)this)->item_member; } \
+      ITERATOR_ITEM_TYPE item_member;  \
+      ITERATOR_ITEM_TYPE item_member ## Beg; \
+      ITERATOR_ITEM_TYPE item_member ## End; \
+      ITERATOR_ITEM_TYPE & item () { return ((iterator_struct *)this)->item_member; } \
+      const ITERATOR_ITEM_TYPE & item () const { return ((iterator_struct *)this)->item_member; } \
       iterator_struct() {} \
       template < typename ITPTR > \
       inline iterator_struct(const ITPTR & t) { item_member = t.item(); this->m_pcontainer = t.container(); } \
@@ -63,13 +63,13 @@ struct container_iterator
    struct const_iterator_struct : container_iterator < container > \
    { \
       using CONTAINER = typename container_iterator < container >::CONTAINER; \
-      using ITEM_TYPE = const item_type; \
+      using ITERATOR_ITEM_TYPE = const item_type; \
       using container_iterator < container >::container_iterator; \
-      ITEM_TYPE item_member;  \
-      ITEM_TYPE item_member ## Beg; \
-      ITEM_TYPE item_member ## End; \
-      ITEM_TYPE & item () { return ((const_iterator_struct *)this)->item_member; } \
-      const ITEM_TYPE & item () const { return ((const_iterator_struct *)this)->item_member; } \
+      ITERATOR_ITEM_TYPE item_member;  \
+      ITERATOR_ITEM_TYPE item_member ## Beg; \
+      ITERATOR_ITEM_TYPE item_member ## End; \
+      ITERATOR_ITEM_TYPE & item () { return ((const_iterator_struct *)this)->item_member; } \
+      const ITERATOR_ITEM_TYPE & item () const { return ((const_iterator_struct *)this)->item_member; } \
       const_iterator_struct() {} \
       template < typename ITPTR > \
       inline const_iterator_struct(const ITPTR & t) { item_member = t.item(); this->m_pcontainer = t.container(); } \
@@ -78,9 +78,9 @@ struct container_iterator
    { \
       using CONTAINER = typename ITERATOR_STRUCT::CONTAINER; \
       bool ok() const { return ok_declaration; } \
-      using ITEM_TYPE = typename ITERATOR_STRUCT::ITEM_TYPE; \
+      using ITERATOR_ITEM_TYPE = typename ITERATOR_STRUCT::ITERATOR_ITEM_TYPE; \
 iterator_common() {} \
-      void erase(ITEM_TYPE p) { this->m_pcontainer->erase(p); } \
+      void erase(ITERATOR_ITEM_TYPE p) { this->m_pcontainer->erase(p); } \
    }
 
 

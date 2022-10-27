@@ -7,6 +7,7 @@
 
 #include "acme/primitive/collection/string_array.h"
 #include "path.h"
+#include "acme/primitive/primitive/atom.h"
 
 
 namespace file

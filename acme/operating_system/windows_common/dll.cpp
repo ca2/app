@@ -193,117 +193,119 @@ CLASS_DECL_ACME void defer_initialize_callstack();
 //#ifdef _UWP
 //[MTAThread]
 //#endif
-int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved, int iLibMainDebugBox, const lib_main_int & intDelayMs)
+//int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved, int iLibMainDebugBox, const lib_main_int & intDelayMs)
+//int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved, int iLibMainDebugBox)
+int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved)
 {
 
    __UNREFERENCED_PARAMETER(pReserved);
 
-   if (iLibMainDebugBox & e_library_main_any)
-   {
+   //if (iLibMainDebugBox & e_library_main_any)
+   //{
 
-      //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain");
+   //   //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain");
 
-   }
+   //}
 
    if (dwReason == DLL_PROCESS_ATTACH)
    {
 
       defer_initialize_callstack();
 
-      if (iLibMainDebugBox & e_library_main_process_attach)
-      {
+      //if (iLibMainDebugBox & e_library_main_process_attach)
+      //{
 
-         //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process attach");
+      //   //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process attach");
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         auto millisecond = intDelayMs.m_durationProcessAttach.integral_millisecond();
+      //   auto millisecond = intDelayMs.m_durationProcessAttach.integral_millisecond();
 
-         if (millisecond > 0_ms)
-         {
+      //   if (millisecond > 0_ms)
+      //   {
 
-            ::preempt(millisecond);
+      //      ::preempt(millisecond);
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 
    if (dwReason == DLL_PROCESS_DETACH)
    {
 
-      if (iLibMainDebugBox & e_library_main_process_attach)
-      {
+      //if (iLibMainDebugBox & e_library_main_process_attach)
+      //{
 
-         //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process detach");
+      //   //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process detach");
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         auto millisecond = intDelayMs.m_durationProcessDetach.integral_millisecond();
+      //   auto millisecond = intDelayMs.m_durationProcessDetach.integral_millisecond();
 
-         if (millisecond > 0_ms)
-         {
+      //   if (millisecond > 0_ms)
+      //   {
 
-            ::preempt(millisecond);
+      //      ::preempt(millisecond);
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 
    if (dwReason == DLL_THREAD_ATTACH)
    {
 
-      if (iLibMainDebugBox & e_library_main_thread_attach)
-      {
+      //if (iLibMainDebugBox & e_library_main_thread_attach)
+      //{
 
-         //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread attach");
+      //   //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread attach");
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         auto millisecond = intDelayMs.m_durationThreadAttach.integral_millisecond();
+      //   auto millisecond = intDelayMs.m_durationThreadAttach.integral_millisecond();
 
-         if (millisecond > 0_ms)
-         {
+      //   if (millisecond > 0_ms)
+      //   {
 
-            ::preempt(millisecond);
+      //      ::preempt(millisecond);
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 
    if (dwReason == DLL_THREAD_DETACH)
    {
 
-      if (iLibMainDebugBox & e_library_main_thread_detach)
-      {
+      //if (iLibMainDebugBox & e_library_main_thread_detach)
+      //{
 
-         //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread detach");
+      //   //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread detach");
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         auto millisecond = intDelayMs.m_durationThreadDetach.integral_millisecond();
+      //   auto millisecond = intDelayMs.m_durationThreadDetach.integral_millisecond();
 
-         if (millisecond > 0_ms)
-         {
+      //   if (millisecond > 0_ms)
+      //   {
 
-            ::preempt(millisecond);
+      //      ::preempt(millisecond);
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 

@@ -10723,3 +10723,39 @@ payload &  payload::divide(const ::payload & payload)
 
 
 
+
+
+
+CLASS_DECL_ACME void copy(string * pstring, const ::payload * ppayload)
+{
+
+   *pstring = ppayload->get_string();
+
+}
+
+
+
+//template < primitive_payload PAYLOAD, primitive_number NUMBER >
+//inline void copy(PAYLOAD * ppayload, const NUMBER * pnumber)
+//{
+//
+//   *ppayload = *pnumber;
+//
+//}
+
+
+void copy(::payload * ppayload, const string * pstring)
+{
+
+   *ppayload = *pstring;
+
+}
+
+
+void copy(::payload * ppayload1, const ::payload * ppayload2)
+{
+
+   *ppayload1 = *ppayload2;
+
+}
+

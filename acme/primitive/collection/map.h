@@ -25,13 +25,21 @@ public:
    typedef typename BASE_SET::association             association;
    typedef typename association::payload              pair;
 
-   
+   //using iterator_struct = BASE_SET::iterator_struct;
+   //using const_iterator_struct = BASE_SET::const_iterator_struct;
+   //using key_iterator = BASE_SET::key_iterator;
+   //using iterator = BASE_SET::iterator;
+   //using const_iterator = BASE_SET::const_iterator;
+   //sing make_iterator = BASE_SET::make_iterator;
 
    __declare_iterator_struct_ok(map, association *, m_passociation, ::is_set(this->m_passociation));
 
 
-   template < typename ITERATOR > struct make_iterator : ITERATOR
+   template < typename ITERATOR > 
+   struct make_iterator : public ITERATOR
    {
+
+
 
       using CONTAINER = typename ITERATOR::CONTAINER;
 
@@ -457,7 +465,7 @@ public:
 
    PAIR & element_at(::index iIndex)
    {
-      return elements().element_at(iIndex);
+      return this->elements().element_at(iIndex);
    }
 
    template < typename PRED >

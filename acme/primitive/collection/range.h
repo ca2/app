@@ -40,7 +40,7 @@ public:
    CONST_ITERATOR end() const { return m_end; }
 
 
-   typename CONST_ITERATOR::ITEM_TYPE & element_at(::index iIndex)
+   typename CONST_ITERATOR::ITERATOR_ITEM_TYPE & element_at(::index iIndex)
    {
 
       CONST_ITERATOR it = begin();
@@ -85,7 +85,7 @@ public:
    ITERATOR begin() const { return m_begin; }
    ITERATOR end() const { return m_end; }
 
-   typename ITERATOR::TYPE & element_at(::index iIndex)
+   decltype(*((typename ITERATOR::ITERATOR_ITEM_TYPE) nullptr)) & element_at(::index iIndex)
    {
 
       ITERATOR it = begin();
@@ -108,7 +108,7 @@ public:
 
          throw_exception(error_bad_argument);
 
-         return *((typename ITERATOR::TYPE *) nullptr);
+         return *((typename ITERATOR::ITERATOR_ITEM_TYPE) nullptr);
 
       }
 

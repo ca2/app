@@ -14,6 +14,9 @@
 
 //constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
 
+template < typename DERIVED, typename BASE >
+concept is_derived_from =
+::std::is_base_of < BASE, DERIVED >::value;
 
 
 template < typename FILE >
@@ -228,9 +231,6 @@ struct base_const_c_string
 
 
 
-template < typename DERIVED, typename BASE >
-concept is_derived_from =
-::std::is_base_of < BASE, DERIVED >::value;
 
 
 class e_status;
@@ -371,9 +371,15 @@ class flags;
 template<class EENUM, EENUM edefault = (EENUM)0>
 class base_enum;
 
-template < typename PAYLOAD >
-concept primitive_payload = (is_derived_from < PAYLOAD, ::payload > || ::std::same_as < PAYLOAD, ::payload >);
 
+template < typename PAYLOAD >
+concept primitive_payload = ::std::is_base_of < ::PAYLOAD_TAG, PAYLOAD >::value;
+
+//template < typename PROPERTY >
+//concept primitive_property = is_derived_from < PROPERTY, ::PROPERTY_TAG >;
+
+template < typename ATOM >
+concept primitive_atom = ::std::is_base_of < ::ATOM_TAG, ATOM >::value;
 
 
 using item_pointer = ::pointer < ::item >;
@@ -676,18 +682,10 @@ inline void copy(string * pstring, const NUMBER * pnumber)
 }
 
 
-template < primitive_payload PAYLOAD >
-inline void copy(string * pstring, const PAYLOAD * ppayload)
-{
+CLASS_DECL_ACME void copy(string * pstring, const ::payload * ppayload);
 
-   *pstring = ppayload->get_string();
-
-}
-
-
-
-template < primitive_payload PAYLOAD, primitive_number NUMBER >
-inline void copy(PAYLOAD * ppayload, const NUMBER* pnumber)
+template < primitive_number NUMBER >
+inline void copy(const ::payload * ppayload, const NUMBER* pnumber)
 {
 
    *ppayload = *pnumber;
@@ -695,20 +693,10 @@ inline void copy(PAYLOAD * ppayload, const NUMBER* pnumber)
 }
 
 
-template < primitive_payload PAYLOAD >
-inline void copy(PAYLOAD * ppayload, const string * pstring)
-{
-
-   *ppayload = *pstring;
-
-}
+CLASS_DECL_ACME void copy(::payload * ppayload, const string * pstring);
 
 
-template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
-inline void copy(PAYLOAD1 * ppayload1, const PAYLOAD2 * ppayload2)
-{
+CLASS_DECL_ACME void copy(::payload * ppayload1, const ::payload * ppayload2);
 
-   *ppayload1 = *ppayload2;
 
-}
 

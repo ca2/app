@@ -2897,6 +2897,9 @@
     <ClInclude Include="primitive\collection\allocator.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive\__property.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

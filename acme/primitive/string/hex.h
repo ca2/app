@@ -25,9 +25,9 @@ namespace hex
 
       return (ch >= 0 && ch <= 9) ? ch - '0' :
       (
-         (ch >= 'a' & ch <= 'f') ? ch - 'a' + 10 :
+         (ch >= 'a' && ch <= 'f') ? ch - 'a' + 10 :
             (
-               (ch >= 'A' & ch <= 'F') ? ch - 'A' + 10 :
+               (ch >= 'A' && ch <= 'F') ? ch - 'A' + 10 :
                   -1
             )
       );

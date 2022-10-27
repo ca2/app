@@ -1719,6 +1719,7 @@
     <ClInclude Include="primitive\primitive\_atom_impl.h" />
     <ClInclude Include="primitive\primitive\_interlocked_count_impl.h" />
     <ClInclude Include="primitive\primitive\_payload_impl.h" />
+    <ClInclude Include="primitive\primitive\__property.h" />
     <ClInclude Include="primitive\promise\signalization.h" />
     <ClInclude Include="primitive\string\bstr.h" />
     <ClInclude Include="primitive\string\from_numeric_type.h" />

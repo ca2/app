@@ -2,6 +2,7 @@
 
 
 #include "property_object.h"
+#include "acme/primitive/primitive/atom.h"
 #include "acme/primitive/collection/atom_map.h"
 #include "acme/primitive/collection/procedure_array.h"
 

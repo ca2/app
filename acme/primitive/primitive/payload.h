@@ -40,9 +40,8 @@ ENUM enum_default()
 }
 
 
-
-
-class CLASS_DECL_ACME payload // : public payload_type < payload >
+class CLASS_DECL_ACME payload : 
+   public PAYLOAD_TAG
 {
 public:
 
@@ -464,23 +463,15 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    payload & operator ++(::i32);
 
-   template < primitive_payload PAYLOAD >
-   payload operator +(const PAYLOAD & payload) const;
-   template < primitive_payload PAYLOAD >
-   payload operator -(const PAYLOAD & payload) const;
-   template < primitive_payload PAYLOAD >
-   payload operator *(const PAYLOAD & payload) const;
-   template < primitive_payload PAYLOAD >
-   payload operator /(const PAYLOAD & payload) const;
+   payload operator +(const ::payload & payload) const;
+   payload operator -(const ::payload & payload) const;
+   payload operator *(const ::payload & payload) const;
+   payload operator /(const ::payload & payload) const;
 
-   template < primitive_payload PAYLOAD >
-   payload & operator +=(const PAYLOAD & payload);
-   template < primitive_payload PAYLOAD >
-   payload & operator -=(const PAYLOAD & payload);
-   template < primitive_payload PAYLOAD >
-   payload & operator *=(const PAYLOAD & payload);
-   template < primitive_payload PAYLOAD >
-   payload & operator /=(const PAYLOAD & payload);
+   payload & operator +=(const ::payload & payload);
+   payload & operator -=(const ::payload & payload);
+   payload & operator *=(const ::payload & payload);
+   payload & operator /=(const ::payload & payload);
 
 
    payload addition(const ::payload & payload) const;
@@ -1523,8 +1514,8 @@ inline ::payload payload::operator * (FLOATING f) const
 #include "__payload_cast.h"
 
 
-template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
-inline ::payload operator - (INTEGRAL i, const PAYLOAD & payload)
+template < primitive_integral INTEGRAL >
+inline ::payload operator - (INTEGRAL i, const ::payload & payload)
 {
    return i - ((INTEGRAL)payload_cast(payload));
 }
@@ -1701,13 +1692,13 @@ inline payload & copy(payload & payload, const integral_second & integralsecond)
 }
 
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const ::payload & payload) :
-   string_base(payload.string())
-{
-
-
-}
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR >::string_base(const ::payload & payload) :
+//   string_base(payload.string())
+//{
+//
+//
+//}
 
 
 template < class T >

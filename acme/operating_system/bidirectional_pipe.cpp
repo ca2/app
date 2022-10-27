@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "bidirectional_pipe.h"
+#include "acme/platform/system.h"
 
 
 namespace operating_system

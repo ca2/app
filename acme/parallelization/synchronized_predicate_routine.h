@@ -1,12 +1,15 @@
 #pragma once
 
 
-namespace promise
+#include "acme/primitive/promise/signalization.h"
+
+
+namespace parallelization
 {
 
 
 
-   class CLASS_DECL_ACME synchronization :
+   class CLASS_DECL_ACME synchronizer :
       virtual public signalization
    {
    public:

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "pipe.h"
 
 
 namespace operating_system

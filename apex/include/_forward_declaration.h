@@ -1,0 +1,8 @@
+//
+// Created by camilo on 25/10/22.
+//
+
+#ifndef BASIS__FORWARD_DECLARATION_H
+#define BASIS__FORWARD_DECLARATION_H
+
+#endif //BASIS__FORWARD_DECLARATION_H

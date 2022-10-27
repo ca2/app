@@ -4,6 +4,10 @@
 #pragma once
 
 
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/primitive/primitive/material_object.h"
+
+
 namespace promise
 {
 

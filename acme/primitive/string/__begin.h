@@ -22,9 +22,18 @@ struct end_of_line_and_next_line
 
 
 inline ::string operator+(const char * psz, const ::string & str);
-inline ::string operator+(const char * psz, const ::atom & atom);
-inline ::string operator+(const char * psz, const ::payload & payload);
-inline ::string operator+(const char * psz, const ::property & property);
+template < primitive_atom ATOM >
+inline ::string operator+(const char * psz, const ATOM & atom);
+//{
+//   return ::string(psz) + atom.string();
+//
+//}
+template < primitive_payload PAYLOAD >
+inline ::string operator+(const char * psz, const PAYLOAD & payload);
+//{
+//   return ::string(psz) + payload.get_string();
+//}
+//inline ::string operator+(const char * psz, const ::property & property);
 
 #include "_c.h"
 

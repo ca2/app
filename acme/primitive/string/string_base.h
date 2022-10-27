@@ -181,7 +181,7 @@ public:
    string_base & operator += (const PAYLOAD & payload) { return operator+=(payload.get_string()); }
    // string_base & operator += (const ::property & property) { ::append(this, &property); return *this; }
    template < primitive_atom ATOM >
-   string_base & operator += (const ATOM & atom) { return operator+=(payload.string()); }
+   string_base & operator += (const ATOM & atom) { return operator+=(atom.string()); }
 
 
 //   template < int t_nSize >

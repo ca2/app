@@ -89,16 +89,6 @@ memory_file::memory_file(const ::block & block) :
 }
 
 
-memory_file::memory_file(::payload & payload, const ::file::e_open & eopen) :
-   memory_container(payload)
-{
-
-   m_eopen = eopen;
-   m_position = 0;
-   m_estatus = ::success;
-
-}
-
 
 memory_file::memory_file(memory_base & memory, const ::file::e_open & eopen) :
    memory_container(memory)

@@ -31,7 +31,8 @@ public:
    memory_file(memory_file && file);
    memory_file(void * pMemory, memsize dwSize);
    memory_file(const ::block & block);
-   memory_file(::payload & payload, const ::file::e_open & eopen = e_null);
+   template < primitive_payload PAYLOAD >
+   memory_file(PAYLOAD & payload, const ::file::e_open & eopen = e_null);
    memory_file(memory_base & memory, const ::file::e_open & eopen = e_null);
    memory_file(memory_base * pmemory, const ::file::e_open & eopen = e_null);
    template < typename MEMORY>
@@ -314,4 +315,16 @@ CLASS_DECL_ACME memory_file_pointer create_memory_file_as_copy(const memory & me
 CLASS_DECL_ACME memory_file_pointer create_memory_file_by_reading(::file::file * pfile);
 
 
+
+
+template < primitive_payload PAYLOAD >
+memory_file::memory_file(PAYLOAD & payload, const ::file::e_open & eopen) :
+   memory_container(payload)
+{
+
+   m_eopen = eopen;
+   m_position = 0;
+   m_estatus = ::success;
+
+}
 

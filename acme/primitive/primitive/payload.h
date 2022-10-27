@@ -1920,78 +1920,78 @@ namespace file
 
 
 
-template < typename TYPE_CHAR >
-string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const ::payload & payload)
+//template < typename TYPE_CHAR >
+//string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const ::payload & payload)
+//{
+//
+//   return append(payload);
+//
+//}
+//
+//template < typename TYPE_CHAR >
+//string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ::payload & payload) const
+//{
+//
+//   string_base < TYPE_CHAR > ansistr(*this);
+//
+//   ansistr += payload;
+//
+//   return ansistr;
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ::property & property) const
+//{
+//
+//   string_base < TYPE_CHAR > ansistr(*this);
+//
+//   ansistr += property;
+//
+//   return ansistr;
+//
+//}
+
+
+//template < primitive_payload PAYLOAD >
+inline payload payload::operator +(const ::payload & payload) const
 {
 
-   return append(payload);
-
-}
-
-template < typename TYPE_CHAR >
-string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ::payload & payload) const
-{
-
-   string_base < TYPE_CHAR > ansistr(*this);
-
-   ansistr += payload;
-
-   return ansistr;
-
-}
-
-
-template < typename TYPE_CHAR >
-string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ::property & property) const
-{
-
-   string_base < TYPE_CHAR > ansistr(*this);
-
-   ansistr += property;
-
-   return ansistr;
-
-}
-
-
-template < primitive_payload PAYLOAD >
-payload payload::operator +(const PAYLOAD & payload) const
-{
-
-   return addition(payload);
-
-}
-
-
-template < primitive_payload PAYLOAD >
-payload payload::operator -(const PAYLOAD & payload) const
-{
-
-   return subtraction(payload);
+   return ::move(addition(payload));
 
 }
 
 
-template < primitive_payload PAYLOAD >
-payload payload::operator *(const PAYLOAD & payload) const
-
+//template < primitive_payload PAYLOAD >
+inline payload payload::operator -(const ::payload & payload) const
 {
 
-   return multiplication(payload);
-
-}
-
-template < primitive_payload PAYLOAD >
-payload payload:: operator /(const PAYLOAD & payload) const
-{
-
-   return division(payload);
+   return ::move(subtraction(payload));
 
 }
 
 
-template < primitive_payload PAYLOAD >
-payload & payload::operator +=(const PAYLOAD & payload)
+//template < primitive_payload PAYLOAD >
+inline payload payload::operator *(const payload & payload) const
+
+{
+
+   return ::move(multiplication(payload));
+
+}
+
+///template < primitive_payload PAYLOAD >
+inline payload payload:: operator /(const ::payload & payload) const
+{
+
+   return ::move(division(payload));
+
+}
+
+
+//template < primitive_payload PAYLOAD >
+payload & payload::operator +=(const ::payload & payload)
 {
 
    return add(payload);
@@ -1999,8 +1999,8 @@ payload & payload::operator +=(const PAYLOAD & payload)
 }
 
 
-template < primitive_payload PAYLOAD >
-payload & payload::operator -=(const PAYLOAD & payload)
+//template < primitive_payload PAYLOAD >
+payload & payload::operator -=(const ::payload & payload)
 {
 
    return subtract(payload);
@@ -2008,8 +2008,8 @@ payload & payload::operator -=(const PAYLOAD & payload)
 }
 
 
-template < primitive_payload PAYLOAD >
-payload & payload::operator *=(const PAYLOAD & payload)
+//template < primitive_payload PAYLOAD >
+payload & payload::operator *=(const ::payload & payload)
 {
 
    return multiply(payload);
@@ -2017,8 +2017,8 @@ payload & payload::operator *=(const PAYLOAD & payload)
 }
 
 
-template < primitive_payload PAYLOAD >
-payload & payload::operator /=(const PAYLOAD & payload)
+//template < primitive_payload PAYLOAD >
+payload & payload::operator /=(const ::payload & payload)
 {
 
    return divide(payload);

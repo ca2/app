@@ -2,11 +2,11 @@
 #pragma once
 
 
-#include "acme/filesystem/filesystem/path.h"
-#include "acme/primitive/collection/numeric_array.h"
-#include "acme/primitive/collection/payload_array.h"
-#include "acme/primitive/collection/string_array.h"
-#include "acme/primitive/primitive/property_set.h"
+//#include "acme/filesystem/filesystem/path.h"
+//#include "acme/primitive/collection/numeric_array.h"
+//#include "acme/primitive/collection/payload_array.h"
+//#include "acme/primitive/collection/string_array.h"
+//#include "acme/primitive/primitive/property_set.h"
 
 
 class CLASS_DECL_ACME payload_cast
@@ -58,22 +58,17 @@ public:
 };
 
 
-
-
-
-
-
-inline payload_cast::operator payload_array () const
-{
-
-   return m_payload.payloada();
-
-}
-
-
-inline payload_cast::operator property_set () const
-{
-
-   return m_payload.propset();
-
-}
+//inline payload_cast::operator payload_array () const
+//{
+//
+//   return m_payload.payloada();
+//
+//}
+//
+//
+//inline payload_cast::operator property_set () const
+//{
+//
+//   return m_payload.propset();
+//
+//}

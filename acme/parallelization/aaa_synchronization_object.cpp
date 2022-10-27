@@ -1,8 +1,11 @@
 #include "framework.h"
 #include "acme/operating_system.h"
+#include "acme/parallelization/synchronization.h"
+#include "acme/platform/system.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
-//synchronization_object::synchronization_object(const char * lpszName)
+//synchronization::synchronization(const char * lpszName)
 //{
 //
 //   m_bOwner = true;
@@ -32,7 +35,7 @@
 //#ifdef WINDOWS
 //
 //
-//synchronization_object::synchronization_object(HSYNC hsyncobject, const char * lpszName) :
+//synchronization::synchronization(HSYNC hsyncobject, const char * lpszName) :
 //   m_hsync(hsyncobject)
 //{
 //
@@ -57,7 +60,7 @@
 //#endif
 
 
-synchronization_object::~synchronization_object()
+synchronization::~synchronization()
 {
 
 #ifdef WINDOWS
@@ -83,7 +86,7 @@ synchronization_object::~synchronization_object()
 }
 
 
-::e_status synchronization_object::lock()
+::e_status synchronization::lock()
 {
 
    return wait();
@@ -91,7 +94,7 @@ synchronization_object::~synchronization_object()
 }
 
 
-::e_status synchronization_object::lock(const class ::wait & wait)
+::e_status synchronization::lock(const class ::wait & wait)
 {
 
    return this->wait(wait);
@@ -99,7 +102,7 @@ synchronization_object::~synchronization_object()
 }
 
 
-void synchronization_object::_lock()
+void synchronization::_lock()
 {
 
    _wait();
@@ -107,7 +110,7 @@ void synchronization_object::_lock()
 }
 
 
-bool synchronization_object::_lock(const class ::wait & wait)
+bool synchronization::_lock(const class ::wait & wait)
 {
 
    return this->_wait(wait);
@@ -115,7 +118,7 @@ bool synchronization_object::_lock(const class ::wait & wait)
 }
 
 
-void synchronization_object::_wait()
+void synchronization::_wait()
 {
 
    _wait(::duration::infinite());
@@ -123,7 +126,7 @@ void synchronization_object::_wait()
 }
 
 
-::e_status synchronization_object::wait()
+::e_status synchronization::wait()
 {
 
    auto ptask = ::get_task();
@@ -168,7 +171,7 @@ void synchronization_object::_wait()
 }
 
 
-::e_status synchronization_object::wait(const class ::wait & wait)
+::e_status synchronization::wait(const class ::wait & wait)
 {
    
    if (wait < 200_ms)
@@ -256,7 +259,7 @@ void synchronization_object::_wait()
 }
 
 
-void synchronization_object::unlock()
+void synchronization::unlock()
 {
 
    ///return false;
@@ -264,7 +267,7 @@ void synchronization_object::unlock()
 }
 
 
-void synchronization_object::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */)
+void synchronization::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */)
 {
 
    //return false;
@@ -272,7 +275,7 @@ void synchronization_object::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nu
 }
 
 
-bool synchronization_object::_wait(const class ::wait & wait)
+bool synchronization::_wait(const class ::wait & wait)
 {
 
 #ifdef WINDOWS
@@ -326,7 +329,7 @@ bool synchronization_object::_wait(const class ::wait & wait)
 
 #ifdef _DEBUG
 
-      auto pmutex = dynamic_cast < ::mutex *> (this);
+      auto pmutex = dynamic_cast < ::pointer< ::mutex >> (this);
 
       if (::is_set(pmutex))
       {
@@ -360,7 +363,7 @@ bool synchronization_object::_wait(const class ::wait & wait)
 }
 
 
-void synchronization_object::acquire_ownership()
+void synchronization::acquire_ownership()
 {
 
    m_bOwner = true;
@@ -368,7 +371,7 @@ void synchronization_object::acquire_ownership()
 }
 
 
-[[maybe_unused]] void synchronization_object::release_ownership()
+[[maybe_unused]] void synchronization::release_ownership()
 {
 
    m_bOwner = false;
@@ -376,7 +379,7 @@ void synchronization_object::acquire_ownership()
 }
 
 
-//void synchronization_object::assert_ok() const
+//void synchronization::assert_ok() const
 //{
 //
 //   matter::assert_ok();
@@ -384,7 +387,7 @@ void synchronization_object::acquire_ownership()
 //}
 
 
-//void synchronization_object::dump(dump_context & dumpcontext) const
+//void synchronization::dump(dump_context & dumpcontext) const
 //{
 //
 //#ifdef WINDOWS
@@ -399,7 +402,7 @@ void synchronization_object::acquire_ownership()
 //}
 
 
-//HSYNC synchronization_object::hsync() const
+//HSYNC synchronization::hsync() const
 //{
 //
 //#ifdef WINDOWS
@@ -408,14 +411,14 @@ void synchronization_object::acquire_ownership()
 //
 //#else
 //
-//   return (synchronization_object *) this;
+//   return (synchronization *) this;
 //
 //#endif
 //
 //}
 
 
-//bool synchronization_object::unlock(::i32 /* lCount */, LPLONG /* pPrevCount=nullptr */)
+//bool synchronization::unlock(::i32 /* lCount */, LPLONG /* pPrevCount=nullptr */)
 //
 //{
 //
@@ -424,7 +427,7 @@ void synchronization_object::acquire_ownership()
 //}
 
 
-//bool synchronization_object::unlock()
+//bool synchronization::unlock()
 //{
 //
 //   return true;
@@ -434,14 +437,14 @@ void synchronization_object::acquire_ownership()
 
 
 
-void synchronization_object::init_wait()
+void synchronization::init_wait()
 {
 
 
 }
 
 
-void synchronization_object::exit_wait()
+void synchronization::exit_wait()
 {
 
 
@@ -450,7 +453,7 @@ void synchronization_object::exit_wait()
 
 
 
-//synchronization_result synchronization_object::wait()
+//synchronization_result synchronization::wait()
 //{
 //
 //   return wait(duration::infinite());
@@ -463,13 +466,13 @@ void synchronization_object::exit_wait()
 //}
 
 
-bool synchronization_object::is_locked() const
+bool synchronization::is_locked() const
 {
 
    // CRITICAL SECTIONS does *NOT* support is locked and timed locks
-   ASSERT(dynamic_cast <critical_section *> (const_cast <synchronization_object *> (this)) == nullptr);
+   ASSERT(dynamic_cast <critical_section *> (const_cast <synchronization *> (this)) == nullptr);
 
-   single_lock synchronouslock(const_cast <synchronization_object *> (this));
+   single_lock synchronouslock(const_cast <synchronization *> (this));
 
    bool bWasLocked = false;
    

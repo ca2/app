@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/primitive/primitive/payload.h"
 
 
 payload_array::payload_array()
@@ -60,7 +61,7 @@ index payload_array::add(const ::payload & payload)
 }
 
 
-::count payload_array::add(const payload_array & payloada)
+::count payload_array::append(const payload_array & payloada)
 {
 
    for(i32 i = 0; i < payloada.get_size(); i++)
@@ -75,7 +76,27 @@ index payload_array::add(const ::payload & payload)
 }
 
 
-::count payload_array::add_unique(const payload_array & payloada)
+index payload_array::append(const std::initializer_list < ::payload > & list)
+{
+
+   ::index i = -1;
+
+   for(auto & payload : list)
+   {
+
+      auto iItem = add(payload);
+
+      if(i < 0) i = iItem;
+
+   }
+
+   return i;
+
+}
+
+
+
+::count payload_array::append_unique(const payload_array & payloada)
 {
 
    ::count c = 0;
@@ -619,7 +640,7 @@ void payload_array::parse_network_payload(const char * & pszJson, const char * p
 
          str += pszJson;
 
-         throw ::exception(error_parsing, str);
+         throw_exception(error_parsing, str);
 
       }
 
@@ -673,7 +694,7 @@ void var_array_skip_network_payload(const char *& pszJson, const char * pszEnd)
          
          str += pszJson;
 
-         throw ::exception(error_parsing, str);
+         throw_exception(error_parsing, str);
 
       }
 

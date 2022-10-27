@@ -1,10 +1,12 @@
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
-#include "apex/filesystem/fs/_fs.h"
-#include "apex/filesystem/filesystem/dir_context.h"
+#include "remote_native.h"
 #include "remote_native_file.h"
+#include "acme/filesystem/filesystem/listing.h"
+#include "acme/networking/url_department.h"
+//#include "apex/networking/sockets/_sockets.h"
+#include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/platform/context.h"
-
+#include "apex/platform/system.h"
 
 
 namespace fs
@@ -208,7 +210,7 @@ namespace fs
 
       }
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 

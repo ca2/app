@@ -1,15 +1,17 @@
 #include "framework.h"
+#include "string_list.h"
+#include "acme/primitive/string/tokenizer.h"
 
 
-stringl::stringl()
+string_list::string_list()
 {
 }
 
-stringl::~stringl()
+string_list::~string_list()
 {
 }
 
-void stringl::implode(string & str, const char * pcszSeparator, index start, ::count count) const
+void string_list::implode(string & str, const char * pcszSeparator, index start, ::count count) const
 
 {
    str.Empty();
@@ -49,7 +51,7 @@ void stringl::implode(string & str, const char * pcszSeparator, index start, ::c
 
 }
 
-string stringl::implode(const char * pcszSeparator, index iStart, index iEnd) const
+string string_list::implode(const char * pcszSeparator, index iStart, index iEnd) const
 
 {
    string str;
@@ -59,7 +61,7 @@ string stringl::implode(const char * pcszSeparator, index iStart, index iEnd) co
 }
 
 
-void stringl::reverse_implode(string & str, const char * pcszSeparator, index start, ::count count) const
+void string_list::reverse_implode(string & str, const char * pcszSeparator, index start, ::count count) const
 
 {
    str.Empty();
@@ -99,7 +101,7 @@ void stringl::reverse_implode(string & str, const char * pcszSeparator, index st
 
 }
 
-string stringl::reverse_implode(const char * pcszSeparator, index iStart, index iEnd) const
+string string_list::reverse_implode(const char * pcszSeparator, index iStart, index iEnd) const
 
 {
    string str;
@@ -108,7 +110,7 @@ string stringl::reverse_implode(const char * pcszSeparator, index iStart, index 
    return str;
 }
 
-void stringl::explode(const char * pcszSeparator, const char * psz)
+void string_list::explode(const char * pcszSeparator, const char * psz)
 
 {
    erase_all();
@@ -117,7 +119,7 @@ void stringl::explode(const char * pcszSeparator, const char * psz)
 }
 
 
-void stringl::add_tail_tokens(const char * pcsz, const char * pcszSeparator, bool bAddEmpty)
+void string_list::add_tail_tokens(const char * pcsz, const char * pcszSeparator, bool bAddEmpty)
 
 {
    ::tokenizer strTokenizer(pcsz);

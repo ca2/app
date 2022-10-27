@@ -1,8 +1,12 @@
 ﻿#pragma once
 
 
-#include "property.h"
-#include "payload_reference.h"
+// Include payload.h
+// Don`t include this file directly
+
+
+#include "__property.h"
+//#include "payload_reference.h"
 
 
 // property set key is case insensitive
@@ -35,7 +39,7 @@ public:
 
    virtual ::matter * source_channel();
 
-   inline ::payload operator()(const atom & atom, const ::payload & varDefault = ::error_not_found) const;
+   ::payload operator()(const atom & atom, const ::payload & varDefault = ::error_not_found) const;
 
    string _001Replace(const ::string & str) const;
 
@@ -85,9 +89,9 @@ public:
 
 #endif
 
-   inline ::payload & topic(const atom & atom);
+   ::payload & topic(const atom & atom);
 
-   inline ::payload_reference reference(const atom & atom) { return topic(atom); }
+   ::payload_reference reference(const atom & atom) { return topic(atom); }
 
    ::payload & set(const atom & atom);
 
@@ -297,6 +301,12 @@ public:
    //virtual string gen_eval(const ::string & str);
 
    //virtual string gen_string(const ::string & str);
+
+
+   string evaluate(const ::string & str) const;
+
+   bool get_evaluation(::string & str, const ::string & strExpression) const;
+
 
    void parse_ini(const ::string & strIni);
    //void parse_ini_file(const ::file::path& path);

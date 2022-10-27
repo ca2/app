@@ -1,6 +1,10 @@
 #pragma once
 
 
+// Include payload.h
+// Don`t include this file directly
+
+
 #include "array.h"
 
 
@@ -23,24 +27,8 @@ public:
 
 
    index add(const ::payload & payload);
-   index add(const payload_array & payloada);
-   index add(const std::initializer_list < ::payload > & list)
-   {
-
-      ::index i = -1;
-
-      for(auto & payload : list)
-      {
-
-         auto iItem = add(payload);
-
-         if(i < 0) i = iItem;
-
-      }
-
-      return i;
-
-   }
+   index append(const payload_array & payloada);
+   index append(const std::initializer_list < ::payload > & list);
 
    inline index add(const ::string & str) { return add((const ::payload &) str); }
    inline index add(const char * psz) { return add((const string &) psz); }
@@ -54,7 +42,7 @@ public:
    inline index add(i64 i) { return add((const ::payload &) i); }
    inline index add(u64 u) { return add((const ::payload &) u); }
 
-   ::count add_unique(const payload_array & payloada);
+   ::count append_unique(const payload_array & payloada);
 
    string implode(const char * pszGlue) const;
 

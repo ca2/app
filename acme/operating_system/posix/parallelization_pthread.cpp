@@ -1,23 +1,23 @@
 #include "framework.h"
+#include "parallelization_pthread.h"
 #include "acme/operating_system/ansi/_ansi.h"
 #include "acme/parallelization/message_queue.h"
-
 #include "acme/operating_system/ansi/_pthread.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/parallelization/task.h"
 #ifdef LINUX
 #include "acme/operating_system/linux/_user.h"
-
-
 #endif
 
 
-#if !defined(WINDOWS)
+#if defined(PARALLELIZATION_PTHREAD)
 
 
 #define MWMO_WAITALL        0x0001
 #define MWMO_ALERTABLE      0x0002
 
 
-#endif
+//#endif
 
 
 #ifdef ANDROID
@@ -39,7 +39,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 //CLASS_DECL_ACME::enum_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
-::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
+::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * pparticle, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
 {
 
    ::duration start;
@@ -83,7 +83,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
             if (pmq.is_set())
             {
 
-               synchronous_lock synchronouslock(pmq->mutex());
+               synchronous_lock synchronouslock(pmq->synchronization());
 
                if (pmq->m_messagea.get_count() > 0)
                {
@@ -100,7 +100,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
                for (j = 0; j < i; j++)
                {
 
-                  synca[j]->unlock();
+                  pparticle[j]->unlock();
 
                }
 
@@ -108,7 +108,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
             }
 
-            if (synca[i]->lock(1_ms))
+            if (pparticle[i]->lock(1_ms))
             {
 
                i++;
@@ -155,7 +155,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
          for (i = 0; comparison::lt(i, dwSize); i++)
          {
 
-            auto psync = synca[i];
+            auto psync = pparticle[i];
 
             if (psync->_wait(0_ms))
             {
@@ -476,12 +476,10 @@ bool on_init_thread()
 
 bool __os_term_thread();
 
-bool on_term_thread()
+void on_term_thread()
 {
 
-   bool bOk1 = __os_term_thread();
-
-   return bOk1;
+   __os_term_thread();
 
 }
 
@@ -790,6 +788,9 @@ namespace parallelization
 
 
 } // namespace parallelization
+
+
+#endif
 
 
 

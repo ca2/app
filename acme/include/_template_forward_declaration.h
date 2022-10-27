@@ -682,10 +682,17 @@ inline void copy(string * pstring, const NUMBER * pnumber)
 }
 
 
-CLASS_DECL_ACME void copy(string * pstring, const ::payload * ppayload);
+template < primitive_payload PAYLOAD >
+CLASS_DECL_ACME void copy(string * pstring, const PAYLOAD * ppayload)
+{
 
-template < primitive_number NUMBER >
-inline void copy(const ::payload * ppayload, const NUMBER* pnumber)
+   *pstring = ppayload->string();
+
+}
+
+
+template < primitive_payload PAYLOAD, primitive_number NUMBER >
+inline void copy(const PAYLOAD * ppayload, const NUMBER* pnumber)
 {
 
    *ppayload = *pnumber;
@@ -693,10 +700,22 @@ inline void copy(const ::payload * ppayload, const NUMBER* pnumber)
 }
 
 
-CLASS_DECL_ACME void copy(::payload * ppayload, const string * pstring);
+template < primitive_payload PAYLOAD >
+CLASS_DECL_ACME void copy(::payload * ppayload, const string * pstring)
+{
+
+   *ppayload = *pstring;
+
+}
 
 
-CLASS_DECL_ACME void copy(::payload * ppayload1, const ::payload * ppayload2);
+template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
+CLASS_DECL_ACME void copy(PAYLOAD1 * ppayload1, const PAYLOAD2 * ppayload2)
+{
+
+   *ppayload1 = *ppayload2;
+
+}
 
 
 

@@ -204,4 +204,12 @@ inline string memory_container::str() const
 }
 
 
+template < primitive_payload PAYLOAD >
+memory_container::memory_container(PAYLOAD & payload)
+{
 
+   m_pmemory = &payload.memory_reference();
+   m_pbyte = m_pmemory->m_memory.m_pdata;
+   m_memsize = m_pmemory->m_memory.m_cbStorage;
+
+}

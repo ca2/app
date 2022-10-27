@@ -33,12 +33,12 @@ namespace datetime
 
 
 
-   void graphical::initialize(::object * pobject)
+   void graphical::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::datetime::calendar::calendar::initialize(pobject);
+      ::datetime::calendar::calendar::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -127,7 +127,7 @@ namespace datetime
             {
                time_t w;   
                
-               auto psystem = m_psystem;
+               auto psystem = acmesystem();
 
                auto pdatetime = psystem->datetime();
 

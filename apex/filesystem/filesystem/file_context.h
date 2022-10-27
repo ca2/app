@@ -2,6 +2,8 @@
 
 
 #include "acme/primitive/primitive/memory.h"
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/collection/string_array.h"
 
 
 class CLASS_DECL_APEX file_context :
@@ -20,7 +22,7 @@ public:
    ~file_context() override;
 
    
-   void initialize(::object * pobject) override;
+   void initialize(::particle * pparticle) override;
 
 
    virtual void init_system();
@@ -443,18 +445,18 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
    try
    {
 
-      //stream outputstream(pobject, FIRST_VERSION);
+      //stream outputstream(pparticle, FIRST_VERSION);
 
-      //if (!prepare_output(pobject, outputstream, pathDownloading, os))
+      //if (!prepare_output(pparticle, outputstream, pathDownloading, os))
       //{
 
       //   return false;
 
       //}
 
-      //stream inputstream(pobject, FIRST_VERSION);
+      //stream inputstream(pparticle, FIRST_VERSION);
 
-      //if (!prepare_input(pobject, inputstream, is))
+      //if (!prepare_input(pparticle, inputstream, is))
       //{
 
       //   return false;
@@ -479,7 +481,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
    //try
    //{
 
-   //   if (!post_output(pobject, os.m_pfile->GetFilePath(), pathDownloading))
+   //   if (!post_output(pparticle, os.m_pfile->GetFilePath(), pathDownloading))
    //   {
 
    //      return false;

@@ -1,10 +1,10 @@
 #pragma once
 
 
-#include "compress.h"
+//#include "compress.h"
 
 
-#include "uncompress.h"
+//#include "uncompress.h"
 
 
 

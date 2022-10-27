@@ -2,6 +2,8 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
 
 class CLASS_DECL_APEX application_exit :
    virtual public object

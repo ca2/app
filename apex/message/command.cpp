@@ -7,14 +7,14 @@ namespace message
 {
 
 
-   command::command(::object * pobject)
+   command::command(::particle * pparticle)
    {
 
       common_construct();
-      if (::is_set(pobject))
+      if (::is_set(pparticle))
       {
 
-         initialize(pobject);
+         initialize(pparticle);
 
       }
 
@@ -93,16 +93,16 @@ namespace message
    //}
 
 
-   //command::command(::object * pobject) :
-   //   ::object(pobject)
+   //command::command(::particle * pparticle) :
+   //   ::object(pparticle)
    //{
 
    //   m_ecommand = command_default;
 
    //}
 
-   //command::command(::object * pobject, enum_command ecommand) :
-   //   ::object(pobject)
+   //command::command(::particle * pparticle, enum_command ecommand) :
+   //   ::object(pparticle)
    //{
 
    //   m_ecommand = ecommand;

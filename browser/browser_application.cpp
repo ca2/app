@@ -5,13 +5,13 @@ namespace browser
 {
 
 
-   application::application(::object * pobject) :
+   application::application(::particle * pparticle) :
       ::object(this),
       ::thread(this),
-      ::aura::application(pobject),
-      ::axis::application(pobject),
-      ::base::application(pobject),
-      ::aura::application(pobject)
+      ::aura::application(pparticle),
+      ::axis::application(pparticle),
+      ::base::application(pparticle),
+      ::aura::application(pparticle)
    {
 
       m_ptemplateHelloBrowserMain = nullptr;
@@ -65,7 +65,7 @@ namespace browser
 
          ::DeleteFileW(szRelative);
 
-                  auto psystem = m_psystem;
+                  auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -231,18 +231,18 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
 
 
 extern "C"
-::acme::library * app_browser_get_new_library(::object * pobject)
+::acme::library * app_browser_get_new_library(::particle * pparticle)
 {
 
-   return memory_new ::apex::single_application_library < ::browser::application > (pobject, "app/browser");
+   return memory_new ::apex::single_application_library < ::browser::application > (pparticle, "app/browser");
 
 }
 
 
-::aura::application * get_acid_app(::object * pobject)
+::aura::application * get_acid_app(::particle * pparticle)
 {
 
-   return memory_new ::browser::application(pobject);
+   return memory_new ::browser::application(pparticle);
 
 }
 

@@ -1,6 +1,9 @@
 #pragma once
 
 
+//#include "acme/primitive/primitive/particle.h"
+
+
 template < typename ARG_TYPE >
 class less_predicate_base :
    virtual public particle

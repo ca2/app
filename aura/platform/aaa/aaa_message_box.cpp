@@ -14,17 +14,17 @@ message_box::~message_box()
 }
 
 
-void message_box::show(::object* pobject)
+void message_box::show(::object* pparticle)
 {
 
-   if (::is_null(pobject))
+   if (::is_null(pparticle))
    {
 
-      pobject = ::get_context_system();
+      pparticle = ::get_context_system();
 
    }
 
-   return pobject->message_box(m_puserprimitive, m_strMessage, m_strTitle, m_emessagebox, m_callback);
+   return pparticle->message_box(m_puserprimitive, m_strMessage, m_strTitle, m_emessagebox, m_callback);
 
 }
 

@@ -2,6 +2,12 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/primitive/object.h"
+
+
 class api_client;
 
 
@@ -36,7 +42,7 @@ public:
    ~api() override;
 
    
-   virtual void initialize_api(::object* pobject, const ::file::path & pathProfile);
+   virtual void initialize_api(::object* pparticle, const ::file::path & pathProfile);
 
 
    virtual void load_profile();

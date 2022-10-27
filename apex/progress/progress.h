@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "real.h"
+
+
 namespace progress
 {
 

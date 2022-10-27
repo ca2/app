@@ -695,7 +695,7 @@ void Screen::draw(NVGcontext * ctx)
 {
 
    
-   synchronous_lock lock(m_puserinteraction->mutex());
+   synchronous_lock lock(m_puserinteraction->synchronization());
 
    //Widget::draw(ctx);
    //return;

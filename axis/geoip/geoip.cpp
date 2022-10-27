@@ -38,7 +38,7 @@ static geoipv6_t IPV6_NULL;
 
 #endif
 
-i32 GeoIP_db_avail(::object * pobject, i32 type);
+i32 GeoIP_db_avail(::particle * pparticle, i32 type);
 char *_get_name_v6 (GeoIP* gi, geoipv6_t ipnum);
 char *_GeoIP_num_to_addr (GeoIP* gi, u32 ipnum);
 

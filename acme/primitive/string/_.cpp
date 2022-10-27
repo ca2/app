@@ -1,17 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
-
-
-
-
-
-
-//CLASS_DECL_ACME string __string(const estatus & estatus)
-//{
-//
-//   return __string((::i64) estatus.m_estatus);
-//
-//}
+#include "acme/primitive/string/string.h"
 
 
 int debug_string_iterator()

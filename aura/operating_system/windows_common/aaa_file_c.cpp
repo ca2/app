@@ -129,7 +129,7 @@ CLASS_DECL_AURA::winrt::Windows::Storage::StorageFolder^ winrt_folder(string& st
 //   try
 //   {
 //
-//      if (         auto psystem = m_psystem;
+//      if (         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -212,7 +212,7 @@ pacmedirectory->is(path))
 //}
 //
 //
-int_bool m_psystem->m_pacmepath->is_file_or_dir(const ::string & path, ::file::enum_type * petype)
+int_bool acmepath()->is_file_or_dir(const ::string & path, ::file::enum_type * petype)
 {
 
    auto dwFileAttributes = windows_get_file_attributes(path);

@@ -246,10 +246,10 @@
 //
 //
 //template < typename T, typename PRED >
-//void fork_then(::object * pobject, ::winrt::Windows::Foundation::IAsyncOperation < T > operation, PRED pred, ::u32 dwMillis = U32_INFINITE_TIMEOUT)
+//void fork_then(::particle * pparticle, ::winrt::Windows::Foundation::IAsyncOperation < T > operation, PRED pred, ::u32 dwMillis = U32_INFINITE_TIMEOUT)
 //{
 //
-//   pobject->fork([=]()
+//   pparticle->fork([=]()
 //   {
 //
 //      auto pwaiter = waiter_for_Windows_Foundation_IAsyncOperation < T >(operation);

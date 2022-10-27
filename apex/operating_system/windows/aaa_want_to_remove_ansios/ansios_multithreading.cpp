@@ -57,7 +57,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 //            if(pmq != nullptr)
 //            {
 //
-//               synchronous_lock synchronouslock(&pmq->m_mutex);
+//               synchronous_lock synchronouslock(&pmq->m_pmutex);
 //
 //               if(pmq->ma.get_count() > 0)
 //               {
@@ -116,7 +116,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 //            if(pmq != nullptr)
 //            {
 //
-//               synchronous_lock synchronouslock(&pmq->m_mutex);
+//               synchronous_lock synchronouslock(&pmq->m_pmutex);
 //
 //               if(pmq->ma.get_count() > 0)
 //               {
@@ -176,18 +176,18 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 }
 
 
-::u32 WaitForSingleObjectEx(sync_object * pobject, ::u32 tickTimeout, int_bool bAlertable)
+::u32 WaitForSingleObjectEx(sync_object * pparticle, ::u32 tickTimeout, int_bool bAlertable)
 {
 
-   return WaitForMultipleObjectsEx(1, &pobject, true, tickTimeout, bAlertable);
+   return WaitForMultipleObjectsEx(1, &pparticle, true, tickTimeout, bAlertable);
 
 }
 
 
-::u32 WaitForSingleObject(sync_object * pobject, ::u32 tickTimeout)
+::u32 WaitForSingleObject(sync_object * pparticle, ::u32 tickTimeout)
 {
 
-   return WaitForSingleObjectEx(pobject, tickTimeout, false);
+   return WaitForSingleObjectEx(pparticle, tickTimeout, false);
 
 }
 
@@ -376,7 +376,7 @@ CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t iThreadId,::u32 Msg,WP
 
    }
 
-   synchronous_lock ml(&pmq->m_mutex);
+   synchronous_lock ml(&pmq->m_pmutex);
 
    MESSAGE msg;
 

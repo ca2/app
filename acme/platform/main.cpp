@@ -2,16 +2,23 @@
 // Created by camilo on 30/10/2021 ~ 00:00 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
+#include "main.h"
 #ifdef LINUX
 #include "acme/operating_system/ansi/binreloc.h"
 #endif
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/acme.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/set_app_id.h"
+#include "acme/platform/system.h"
 #include "acme/platform/system_setup.h"
+#include "acme/primitive/collection/string_array.h"
 #include "_main_hold_base.h"
+
+
+
 
 
 static int g_argc;
@@ -39,14 +46,14 @@ CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp)
 }
 
 
-namespace acme
-{
-
-   
-   void initialize();
-
-
-} // namespace acme
+//namespace acme
+//{
+//
+//
+//   void initialize();
+//
+//
+//} // namespace acme
 
 
 MAIN::MAIN()
@@ -54,7 +61,7 @@ MAIN::MAIN()
 
    __zero(this);
 
-   ::acme::initialize();
+   //::acme::initialize();
 
 }
 
@@ -229,7 +236,8 @@ CLASS_DECL_ACME void set_main_user_thread();
 void __main(::acme::application * pacmeapplication)
 {
 
-   #ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS_DESKTOP
+
    //{
 
    //   auto papp = ::app_factory::new_app();
@@ -244,19 +252,19 @@ void __main(::acme::application * pacmeapplication)
 
    pacmeapplication->m_wenvp = *__p__wenviron();
 
-      //pacmeapplication->m_hinstanceThis = hinstanceThis;
+   //pacmeapplication->m_hinstanceThis = hinstanceThis;
 
-      //pacmeapplication->m_hinstancePrev = hinstancePrev;
+   //pacmeapplication->m_hinstancePrev = hinstancePrev;
 
    pacmeapplication->m_strCommandLine = ::GetCommandLineW();
 
-      //pacmeapplication->m_nCmdShow = nCmdShow;
+   //pacmeapplication->m_nCmdShow = nCmdShow;
 
-      //pacmeapplication->m_bConsole = false;
+   //pacmeapplication->m_bConsole = false;
 
-      //int iExitCode = pacmeapplication->main_loop();
+   //int iExitCode = pacmeapplication->main_loop();
 
-      //return iExitCode;
+   //return iExitCode;
 
 #elif !defined(_UWP)
 
@@ -264,8 +272,9 @@ void __main(::acme::application * pacmeapplication)
 
 #endif
 
-
    set_main_user_thread();
+
+   task_guard taskguard;
 
    ::e_status estatus = error_failed;
 
@@ -882,7 +891,7 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-//void debug_context_object(::object * pobject);
+//void debug_context_object(::particle * pparticle);
 
 
 #ifdef __APPLE__
@@ -978,14 +987,14 @@ void main::system_prep()
 
    m_durationAfterApplicationFirstRequest = m_durationStart;
 
-   if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
+   if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
 
       sleep(10_s);
 
    }
 
-   if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
+   if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
    {
 
       //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
@@ -1033,7 +1042,7 @@ void main::system_init()
 
    //   ::file::path pathModule = get_arg(m_iPathInstallFolderExeArg);
 
-   //   m_psystem->m_pacmedirectory->set_path_install_folder(pathModule.folder(4));
+   //   acmedirectory()->set_path_install_folder(pathModule.folder(4));
 
    //}
 
@@ -1307,11 +1316,11 @@ void main::system_init()
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 //
-  // ::file::path pathOutputDebugString = m_psystem->m_pacmedirectory->system() / strAppId / "output_debug_string.txt" ;
+  // ::file::path pathOutputDebugString = acmedirectory()->system() / strAppId / "output_debug_string.txt" ;
 
-   //::file::path pathGlobalOutputDebugString = m_psystem->m_pacmedirectory->config() / "output_debug_string.txt" ;
+   //::file::path pathGlobalOutputDebugString = acmedirectory()->config() / "output_debug_string.txt" ;
 
-   //::apex::g_bOutputDebugString = m_psystem->m_pacmefile->exists(pathOutputDebugString)||  m_psystem->m_pacmefile->exists(pathGlobalOutputDebugString);
+   //::apex::g_bOutputDebugString = acmefile()->exists(pathOutputDebugString)||  acmefile()->exists(pathGlobalOutputDebugString);
 
    //return true;
 
@@ -1915,23 +1924,10 @@ void main::system_proc()
 //}
 
 
-
-
-void main::initialize_application(::acme::application *papp, ::object * pobject)
+void main::initialize_application(::acme::application * pacmeapplication, ::particle * pparticle)
 {
 
-   //auto estatus = 
-   
-   papp->initialize(pobject);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return ::success;
+   pacmeapplication->initialize(pparticle);
 
 }
 

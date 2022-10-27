@@ -5,6 +5,9 @@
 #pragma once
 
 
+#include "message_box.h"
+
+
 class nano_details_window :
    virtual public nano_message_box
 {

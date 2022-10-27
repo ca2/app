@@ -88,12 +88,12 @@ public:
 
 
    template < typename OBJECT >
-   pointer < T > & add_new(OBJECT * pobject)
+   pointer < T > & add_new(OBJECT * pparticle)
    {
 
       pointer < T > & p = comparable_array < ::pointer<T > >::add_new();
 
-      pobject->__construct(p);
+      pparticle->__construct(p);
 
       return p;
 
@@ -108,7 +108,7 @@ public:
    }
 
    template < typename OBJECT >
-   ::count set_size_create(OBJECT * pobject, ::count nNewSize, ::count nGrowBy = -1);
+   ::count set_size_create(OBJECT * pparticle, ::count nNewSize, ::count nGrowBy = -1);
 
 
    template < class DERIVED >
@@ -1152,9 +1152,9 @@ public:
 //   }
 //
 //
-//   smart_pointer_array2(::matter * pobject):
-//      ::matter(pobject),
-//      comparable_array < ::pointer<T >>pobject)
+//   smart_pointer_array2(::particle * pparticle):
+//      ::matter(pparticle),
+//      comparable_array < ::pointer<T >>pparticle)
 //   {
 //   }
 //
@@ -1780,7 +1780,7 @@ bool pointer_array < T > ::insert_unique_at(::index i, T * p OBJECT_REFERENCE_CO
 
 template < class T >
 template < typename OBJECT >
-::count pointer_array < T > ::set_size_create(OBJECT * pobject, ::count nNewSize, ::count nGrowBy)
+::count pointer_array < T > ::set_size_create(OBJECT * pparticle, ::count nNewSize, ::count nGrowBy)
 {
 
    ::index i = this->get_size();
@@ -1792,7 +1792,7 @@ template < typename OBJECT >
    for (; i < c; i++)
    {
 
-      pobject->__construct(this->element_at(i));
+      pparticle->__construct(this->element_at(i));
 
    }
 

@@ -23,11 +23,11 @@ namespace aqua
    }
 
 
-   void multimedia::initialize_multimedia(::object * pobject)
+   void multimedia::initialize_multimedia(::particle * pparticle)
    {
 
       //auto estatus = 
-      initialize(pobject);
+      initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -75,7 +75,7 @@ namespace aqua
    }
 
 
-   ::pointer<::user::controller>multimedia::defer_create_impact(::object* pobject, const string& strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
+   ::pointer<::user::controller>multimedia::defer_create_impact(::object* pparticle, const string& strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
    {
 
       return nullptr;
@@ -173,7 +173,7 @@ namespace aqua
 //}
 
 
-//CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::object * pobject)
+//CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::particle * pparticle)
 //{
 //
 //   return get_system()->defer_get_multimedia();

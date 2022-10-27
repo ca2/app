@@ -8,6 +8,16 @@ class message_queue;
 #include "apex/handler/source.h"
 #include "apex/handler/context.h"
 #include "apex/message/channel.h"
+#include "acme/parallelization/task.h"
+#include "acme/operating_system/message.h"
+
+
+namespace user
+{
+
+   using primitive_array = ::pointer_array < ::user::primitive >;
+
+} // namespace user
 
 
 ///
@@ -53,8 +63,8 @@ public:
    bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;
    //::e_status                                        m_estatus;
-   ::pointer < user_interaction_array >               m_puserinteractionaThread;
-   ::mutex *                                          m_pmutexThreadUiPtra;
+   ::pointer < ::user::primitive_array >              m_puserprimitiveaThread;
+   ::pointer< ::mutex >                                          m_pmutexThreadUiPtra;
    single_lock *                                      m_pslUser;
    static bool                                        s_bAllocReady;
 
@@ -147,7 +157,8 @@ public:
    void get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
    void post_message(oswindow oswindow, const ::atom & atom, wparam wParam, lparam lParam);
 
-   user_interaction_array & userinteractiona();
+
+   ::user::primitive_array & userprimitivea();
 
 
    void destroy() override;
@@ -237,9 +248,9 @@ public:
 
    virtual void send_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0, const ::duration & durationTimeout = ::duration::infinite());
 
-   virtual void post_element(const ::atom & atom, wparam wParam, ::element * pelement);
+   virtual void post_element(const ::atom & atom, wparam wParam, ::particle * pparticle);
 
-   virtual void send_element(const ::atom & atom, wparam wParam, ::element * pelement, const ::duration & durationTimeout = ::duration::infinite());
+   virtual void send_element(const ::atom & atom, wparam wParam, ::particle * pparticle, const ::duration & durationTimeout = ::duration::infinite());
 
 
    DECLARE_MESSAGE_HANDLER(on_message_branch);
@@ -335,7 +346,7 @@ public:
    //virtual void unregister_from_required_threads();
    //virtual void close_dependent_threads(const ::duration & dur);
 
-   virtual bool pump_sleep(const class ::wait & wait, synchronization_object * psync);
+   virtual bool pump_sleep(const class ::wait & wait, ::particle * pparticleSynchronization = nullptr);
 
    bool do_events() override;
    // virtual bool do_events(const duration& duration);
@@ -385,7 +396,7 @@ public:
    operator htask_t() const;
 
 
-   virtual void initialize(::object * pobject) override;
+   virtual void initialize(::particle * pparticle) override;
 
 
    //virtual void run() override;
@@ -517,8 +528,8 @@ using id_thread_map = atom_map < ::pointer<thread > >;
 
 
 
-//CLASS_DECL_APEX bool apex_task_sleep(const ::duration & duration, synchronization_object* psync = nullptr);
-CLASS_DECL_APEX bool thread_pump_sleep(const class ::wait & wait, synchronization_object* psync = nullptr);
+//CLASS_DECL_APEX bool apex_task_sleep(const ::duration & duration, synchronization* psync = nullptr);
+CLASS_DECL_APEX bool thread_pump_sleep(const class ::wait & wait, ::particle * pparticleSynchronization = nullptr);
 CLASS_DECL_APEX bool app_sleep(::apex::application * papp, const class ::wait & wait);
 
 
@@ -552,7 +563,7 @@ inline void while_predicateicate_Sleep(int iTime, PRED pred)
 }
 
 
-CLASS_DECL_APEX void defer_create_thread(::object * pobject);
+CLASS_DECL_APEX void defer_create_thread(::particle * pparticle);
 
 
 template < typename PRED >
@@ -575,7 +586,7 @@ public:
    virtual ::count get_count_except_current_thread();
    //virtual void finish(::property_object * pcontextobjectFinish = nullptr) override;
    virtual void destroy() override;
-   virtual void wait(const class ::wait & wait, ::synchronous_lock & synchronouslock);
+   virtual void wait(const class ::wait & wait, ::particle & particleSynchronousLock);
 
    thread_ptra & operator = (const thread_ptra & ptra) { pointer_array < thread >::operator =(ptra); return *this; }
    thread_ptra & operator = (thread_ptra && ptra) { pointer_array < thread >::operator =(::move(ptra)); return *this; }

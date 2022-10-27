@@ -20,7 +20,7 @@ namespace apex
       map < atom, atom, string, string >                  m_stringmap;
 
 
-      application_heap(::object * pobject)
+      application_heap(::particle * pparticle)
       {
 
       }

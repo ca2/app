@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "string_map.h"
+
 //template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type  >
 //using strid_map = atom_map < VALUE,ARG_VALUE > ;
 

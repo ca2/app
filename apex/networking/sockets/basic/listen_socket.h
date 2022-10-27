@@ -36,7 +36,7 @@ namespace sockets
 
       virtual ~listen_socket_base();
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
       base_socket * base_socket_composite() override;
 

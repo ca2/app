@@ -306,7 +306,7 @@ namespace universal_windows
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-                  auto psystem = m_psystem;
+                  auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

@@ -36,14 +36,15 @@ void stdio_file::open(const ::file::path & path, const ::file::e_open & eopen)
 
    string str;
 
-   if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
-   {
+//   if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
+//   {
+//
+//      acmedirectory()->create(path.folder());
+//
+//   }
 
-      m_psystem->m_pacmedirectory->create(path.folder());
-
-   }
-
-   if (eopen & ::file::e_open_no_truncate && m_psystem->m_pacmefile->exists(path))
+   //if (eopen & ::file::e_open_no_truncate && acmefile()->exists(path))
+   if (eopen & ::file::e_open_no_truncate)
    {
 
       str += "r";
@@ -145,15 +146,15 @@ void stdio_file::open(const ::file::path & path, const ::string & strAttributes,
          if (estatus == error_file_access_denied)
          {
 
-            if (m_psystem->m_pacmefile->exists(path))
+            if (acmefile()->exists(path))
             {
 
                if (!bTriedSetFileNormal)
                {
 
-                  m_psystem->m_pacmefile->set_file_normal(path);
+                  acmefile()->set_file_normal(path);
 
-                  m_psystem->m_pacmefile->clear_read_only(path);
+                  acmefile()->clear_read_only(path);
 
                   bTriedSetFileNormal = true;
 
@@ -381,7 +382,7 @@ void stdio_file::set_size(filesize dwNewLen)
 filesize stdio_file::get_size() const
 {
 
-   //return m_psystem->m_pacmefile->get_size(m_pfile);
+   //return acmefile()->get_size(m_pfile);
 
    auto position = get_position();
 
@@ -394,18 +395,18 @@ filesize stdio_file::get_size() const
 }
 
 
-void stdio_file::assert_ok() const
-{
-
-}
-
-
-void stdio_file::dump(dump_context & dumpcontext) const
-{
-
-   __UNREFERENCED_PARAMETER(dumpcontext);
-
-}
+//void stdio_file::assert_ok() const
+//{
+//
+//}
+//
+//
+//void stdio_file::dump(dump_context & dumpcontext) const
+//{
+//
+//   __UNREFERENCED_PARAMETER(dumpcontext);
+//
+//}
 
 
 ::file::path stdio_file::get_file_path() const

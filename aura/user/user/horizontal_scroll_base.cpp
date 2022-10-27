@@ -177,7 +177,7 @@ namespace user
    void horizontal_scroll_base::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pscrollbarHorizontal.is_set())
       {

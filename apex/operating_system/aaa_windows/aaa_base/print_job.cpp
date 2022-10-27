@@ -18,10 +18,10 @@ namespace windows
 
    }
 
-   //void print_job::construct_print_job(::object * pobject)
+   //void print_job::construct_print_job(::particle * pparticle)
    //{
 
-   //   construct_user_job(pobject);
+   //   construct_user_job(pparticle);
 
    //}
 

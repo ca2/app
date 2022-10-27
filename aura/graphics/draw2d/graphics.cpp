@@ -51,7 +51,7 @@ namespace draw2d
 
       m_bOutline = false;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_bPat                     = false;
       m_bStoreThumbnails         = true;
@@ -1565,7 +1565,7 @@ namespace draw2d
 //
 //      ASSERT(m_pimageAlphaBlend->is_ok());
 //
-//      single_lock synchronouslock(mutex());
+//      single_lock synchronouslock(this->synchronization());
 //
 //      // "Reference" implementation for TextOutAlphaBlend
 //
@@ -1637,7 +1637,7 @@ namespace draw2d
       if (m_pimageAlphaBlend->is_set())
       {
 
-         single_lock synchronouslock(mutex());
+         single_lock synchronouslock(this->synchronization());
 
          if (block.is_empty())
          {
@@ -5200,17 +5200,17 @@ namespace draw2d
    ::file::path graphics::get_font_path(const ::string & strName, int iWeight, bool bItalic)
    {
 
-      auto penumeration = m_psystem->m_paurasystem->draw2d()->write_text()->fonts()->enumeration();
+      auto penumeration = acmesystem()->m_paurasystem->draw2d()->write_text()->fonts()->enumeration();
 
       penumeration->m_eventReady.wait(30_s);
 
-      critical_section_lock synchronouslock(&m_psystem->m_paurasystem->draw2d()->write_text()->m_csFont);
+      critical_section_lock synchronouslock(&acmesystem()->m_paurasystem->draw2d()->write_text()->m_csFont);
 
       string strFontName(strName);
 
       strFontName.make_lower();
 
-      string strPath = m_psystem->m_paurasystem->draw2d()->write_text()->m_mapFontKeyFaceName[strFontName][iWeight * 10 + (bItalic ? 1 : 0)];
+      string strPath = acmesystem()->m_paurasystem->draw2d()->write_text()->m_mapFontKeyFaceName[strFontName][iWeight * 10 + (bItalic ? 1 : 0)];
 
       return strPath;
 

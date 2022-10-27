@@ -60,7 +60,7 @@ namespace user
    document_manager::document_manager()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -926,7 +926,7 @@ namespace user
 //   //}
 //
 //
-//   //::user::document * application::open_document_file(::object * pobject, const ::string & pszFileName)
+//   //::user::document * application::open_document_file(::particle * pparticle, const ::string & pszFileName)
 //
 //   //{
 //

@@ -173,7 +173,7 @@ namespace aura
 
 //       //auto idle_source = g_idle_source_new();
 
-//       //g_source_set_callback(idle_source, &linux_start_system, (::aura::system *) m_psystem, nullptr);
+//       //g_source_set_callback(idle_source, &linux_start_system, (::aura::system *) acmesystem(), nullptr);
 
 //       //g_source_attach(idle_source, g_main_context_default());
 
@@ -271,7 +271,7 @@ namespace aura
 // //         //
 // //         //      //auto idle_source = g_idle_source_new();
 // //         //
-// //         //      //g_source_set_callback(idle_source, &linux_start_system, (::aura::system *) m_psystem, nullptr);
+// //         //      //g_source_set_callback(idle_source, &linux_start_system, (::aura::system *) acmesystem(), nullptr);
 // //         //
 // //         //      //g_source_attach(idle_source, g_main_context_default());
 // //         //

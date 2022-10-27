@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/block.h"
+
+
 template < typename BLOCK_TYPE >
 struct memory_template
 {

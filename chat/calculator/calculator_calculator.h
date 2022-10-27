@@ -14,7 +14,7 @@ namespace calculator
    public:
 
 
-      calculator(::object * pobject);
+      calculator(::particle * pparticle);
       virtual ~calculator();
 
 

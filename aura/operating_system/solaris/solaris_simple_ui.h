@@ -40,8 +40,8 @@ namespace os
 
       bool                       m_bComposite;
 
-      ::mutex *                    m_pmutexGraphics;
-      ::mutex *                    m_pmutexDisplay;
+      ::pointer< ::mutex >                    m_pmutexGraphics;
+      ::pointer< ::mutex >                    m_pmutexDisplay;
 
       bool                       m_bRunLoop;
 

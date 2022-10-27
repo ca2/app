@@ -28,7 +28,7 @@ namespace aura
       tx::tx()
       {
 
-         //mutex() = memory_new ::mutex(pobject);
+         //mutex() = memory_new ::pointer < ::mutex >(pparticle);
 
       }
 
@@ -44,10 +44,10 @@ namespace aura
          if(m_iQueue >= 0)
             close();
 
-         if(!m_psystem->m_pacmefile->exists(pszChannel))
+         if(!acmefile()->exists(pszChannel))
          {
 
-            m_psystem->m_pacmefile->put_contents(pszChannel, pszChannel);
+            acmefile()->put_contents(pszChannel, pszChannel);
 
          }
 
@@ -212,10 +212,10 @@ namespace aura
 
 
 
-         if(!m_psystem->m_pacmefile->exists(pszChannel))
+         if(!acmefile()->exists(pszChannel))
          {
 
-            m_psystem->m_pacmefile->put_contents(pszChannel, pszChannel);
+            acmefile()->put_contents(pszChannel, pszChannel);
 
          }
 

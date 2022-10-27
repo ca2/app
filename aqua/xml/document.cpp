@@ -59,7 +59,7 @@ namespace xml
    //   
    //   string str;
 
-   //   auto psystem = m_psystem->m_paurasystem;
+   //   auto psystem = acmesystem()->m_paurasystem;
 
    //   str = m_pcontext->m_papexcontext->file().as_string(psz);
 
@@ -94,12 +94,12 @@ namespace xml
    }
 
 
-   void document::initialize(::object * pobject)
+   void document::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      //::object::initialize(pobject);
+      //::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -110,7 +110,7 @@ namespace xml
 
       //estatus = 
       
-      //node::initialize_matter(pobject);
+      //node::initialize_matter(pparticle);
 
       //if (!estatus)
       //{

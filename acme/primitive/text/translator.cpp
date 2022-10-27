@@ -1,15 +1,18 @@
 //Created by camilo on 2021-03-26 00:35 BRT <3ThomasBS_
 #include "framework.h"
-#include "_.h"
+#include "data.h"
+#include "translator.h"
+#include "acme/platform/context.h"
 
 
 namespace text
 {
 
+
    translator::translator()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 

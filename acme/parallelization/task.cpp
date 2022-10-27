@@ -1,5 +1,11 @@
 ﻿#include "framework.h"
+#include "task.h"
+#include "manual_reset_event.h"
 #include "acme/operating_system.h"
+#include "acme/platform/system.h"
+#include "acme/exception/exit.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/exception/interface_only.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -14,7 +20,7 @@
 CLASS_DECL_ACME void clear_message_queue(itask_t idthread);
 
 
-CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
+CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
 
 
 task::task()
@@ -64,10 +70,10 @@ task::~task()
 
 
 
-void task::on_initialize_object()
+void task::on_initialize_particle()
 {
 
-   /*auto estatus =*/ ::object::on_initialize_object();
+   /*auto estatus =*/ ::object::on_initialize_particle();
 
    //if(!estatus)
    //{
@@ -269,7 +275,7 @@ void task::main()
 
    __task_init();
 
-   if(defer_implement(m_psystem))
+   if(defer_implement(acmesystem()))
    {
 
       return;
@@ -298,7 +304,7 @@ void task::main()
    catch(::exception & exception)
    {
 
-      message_box_synchronous(this, exception.m_strMessage, m_psystem->m_strAppId, e_message_box_ok, exception.m_strDetails);
+      message_box_synchronous(this, exception.m_strMessage, acmesystem()->m_strAppId, e_message_box_ok, exception.m_strDetails);
 
    }
    catch(...)
@@ -319,7 +325,7 @@ void task::run()
 
       run_posted_procedures();
 
-      if (defer_implement(m_psystem))
+      if (defer_implement(m_pcontext))
       {
 
          return;
@@ -538,7 +544,7 @@ void* task::s_os_task(void* p)
 
       }
 
-      ::thread_release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(ptask, ""));
+      ::task_release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(ptask, ""));
 
    }
    catch (...)
@@ -554,9 +560,9 @@ void* task::s_os_task(void* p)
 bool task::is_task_registered() const
 {
    
-   auto psystem = m_psystem;
+   auto pcontext = m_pcontext;
 
-   return psystem->get_task_id(this) != 0;
+   return pcontext->acmesystem()->get_task_id(this) != 0;
 
 }
 
@@ -564,9 +570,9 @@ bool task::is_task_registered() const
 void task::register_task()
 {
 
-   auto psystem = m_psystem;
+   auto pcontext = m_pcontext;
 
-   psystem->set_task(m_itask, this);
+   pcontext->acmesystem()->set_task(m_itask, this);
 
 }
 
@@ -574,9 +580,9 @@ void task::register_task()
 void task::unregister_task()
 {
 
-   auto psystem = m_psystem;
+   auto pcontext = m_pcontext;
 
-   psystem->unset_task(m_itask, this);
+   pcontext->acmesystem()->unset_task(m_itask, this);
 
 }
 
@@ -591,7 +597,7 @@ void task::post_procedure(const ::procedure & procedure)
 
    }
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    m_procedurea.add(procedure);
 
@@ -603,7 +609,7 @@ void task::post_procedure(const ::procedure & procedure)
 void task::run_posted_procedures()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if (m_procedurea.has_element())
    {
@@ -631,20 +637,20 @@ void task::run_posted_procedures()
 }
 
 
-//void task::add_notify(::element* pelement)
+//void task::add_notify(::particle * pparticle)
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   notify_array().add_item(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 //
 //}
 //
 //
-//void task::erase_notify(::element* pelement)
+//void task::erase_notify(::particle * pparticle)
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_pnotifya)
 //   {
@@ -743,7 +749,7 @@ void task::term_task()
 
    //}
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    //if (m_pnotifya)
    //{
@@ -801,11 +807,11 @@ void task::term_task()
 //   //while (!m_bSetFinish)
 //   //{
 //
-//   //   ::element* pelement;
+//   //   ::particle * pparticle;
 //
 //   //   {
 //
-//   //      synchronous_lock synchronouslock(mutex());
+//   //      synchronous_lock synchronouslock(this->synchronization());
 //
 //   //      pelement = m_pelement.m_p;
 //
@@ -866,7 +872,7 @@ bool task::has_message() const
 
 
 //void task::branch(
-//   ::element* pelement,
+//   ::particle * pparticle,
 //   ::enum_priority epriority,
 //   u32 nStackSize,
 //   u32 uCreateFlags ARG_SEC_ATTRS)
@@ -1018,7 +1024,7 @@ bool task::has_message() const
       if (::is_null(pobjectParentTask))
       {
 
-         pobjectParentTask = m_psystem;
+         pobjectParentTask = m_pcontext;
 
       }
 
@@ -1161,12 +1167,12 @@ bool task::has_message() const
 //
 //#endif
 //
-   //auto pobject = this;
+   //auto pparticle = this;
 
-   //if (::is_set(pobject) && pobject != this)
+   //if (::is_set(pparticle) && pparticle != this)
    //{
 
-   //   pobject->add_composite(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+   //   pparticle->add_composite(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
    //}
 
@@ -1360,7 +1366,7 @@ bool task::has_message() const
 //      if (::is_null(pobjectParentTask))
 //      {
 //
-//         pobjectParentTask = m_psystem;
+//         pobjectParentTask = acmesystem();
 //
 //      }
 //
@@ -1463,7 +1469,7 @@ bool task::task_sleep(const class ::wait & wait)
 
 }
 
-//void task::branch(::element * pelement, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+//void task::branch(::particle * pparticle, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   auto ptask = __new(task);
@@ -1560,7 +1566,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait)
 
       {
 
-         synchronous_lock synchronouslock(ptask->mutex());
+         synchronous_lock synchronouslock(ptask->synchronization());
 
          if (ptask->m_pevSleep.is_null())
          {
@@ -1602,7 +1608,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync)
+CLASS_DECL_ACME bool __task_sleep(::task* ptask, ::particle * pparticle)
 {
 
    try
@@ -1611,7 +1617,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync)
       while (ptask->task_get_run())
       {
 
-         psync->wait(100_ms);
+         pparticle->_wait(100_ms);
 
       }
 
@@ -1626,7 +1632,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, synchronization_object* psync)
+CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, ::particle * pparticle)
 {
 
    if (wait < 1000_ms)
@@ -1639,7 +1645,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, synchr
 
       }
 
-      psync->_wait(wait);
+      pparticle->_wait(wait);
 
       return ptask->task_get_run();
 
@@ -1844,7 +1850,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //}
 //
 //
-//CLASS_DECL_ACME bool __simple_task_sleep(synchronization_object* psync)
+//CLASS_DECL_ACME bool __simple_task_sleep(synchronization* psync)
 //{
 //
 //   while (task_get_run())
@@ -1864,7 +1870,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //}
 //
 //
-//CLASS_DECL_ACME bool __simple_task_sleep(class ::wait wait, synchronization_object* psync)
+//CLASS_DECL_ACME bool __simple_task_sleep(class ::wait wait, synchronization* psync)
 //{
 //
 //   auto iMillisecond = wait.m_iMillisecond;
@@ -1909,7 +1915,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //}
 //
 
-//CLASS_DECL_ACME bool acme_task_sleep(::duration ::duration, synchronization_object* psync)
+//CLASS_DECL_ACME bool acme_task_sleep(::duration ::duration, synchronization* psync)
 //{
 //
 //   if (::is_null(psync))
@@ -1951,7 +1957,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 
 //PFN_task_sleep g_pfnThreadSleep = acme_task_sleep;
 
-//CLASS_DECL_ACME bool tas_sleep(::duration ::duration, synchronization_object* psync)
+//CLASS_DECL_ACME bool tas_sleep(::duration ::duration, synchronization* psync)
 //{
 //
 //   return g_pfnThreadSleep(::duration, psync);
@@ -1993,9 +1999,6 @@ CLASS_DECL_ACME bool is_main_thread()
    return get_current_itask() == get_main_user_itask();
 
 }
-
-
-
 
 
 CLASS_DECL_ACME bool predicate_Sleep(int iTime, ::function < bool(void) > functionOkToSleep)
@@ -2059,6 +2062,62 @@ tracer trace_log_warning() { return ::get_task()->trace_log_warning(); }
 tracer trace_log_error() { return ::get_task()->trace_log_error(); }
 tracer trace_log_fatal() { return ::get_task()->trace_log_fatal(); }
 
+
+
+
+
+
+thread_local thread_local_particle * task_guard::t_pthreadlocalparticleList = nullptr;
+
+
+
+thread_local_particle::thread_local_particle()
+{
+
+   m_pthreadlocalparticleNext = task_guard::t_pthreadlocalparticleList;
+
+
+   task_guard::t_pthreadlocalparticleList = this;
+
+
+}
+
+
+thread_local_particle::~thread_local_particle()
+{
+
+   //// todo removed
+
+}
+
+
+task_guard::task_guard()
+{
+
+   on_init_thread();
+
+}
+
+
+task_guard::~task_guard()
+{
+
+   auto p = t_pthreadlocalparticleList;
+
+   while(p)
+   {
+
+      auto pNext = t_pthreadlocalparticleList->m_pthreadlocalparticleNext;
+
+      ::release(p);
+
+      p = pNext;
+
+   }
+
+   on_term_thread();
+
+}
 
 
 

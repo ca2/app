@@ -27,7 +27,7 @@ namespace userfs
       ~document() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       ::user::document * get_document();
@@ -35,8 +35,8 @@ namespace userfs
 
       //virtual ::aura::application * get_app() const override;
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool browse(::pointer<::file::item>pitem, const ::action_context & action_context);

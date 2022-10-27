@@ -23,7 +23,7 @@ namespace html
       font(const class font & font);
       
       
-      bool create(::object * pobject);
+      bool create(::particle * pparticle);
 
 
       bool operator == (const font & font) const;

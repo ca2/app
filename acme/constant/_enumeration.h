@@ -194,3 +194,21 @@ enum enum_for_moving
 
 
 
+namespace library
+{
+
+
+   enum enum_state
+   {
+
+      e_state_none = 0,
+      e_state_available = 1,
+      e_state_installed = 2,
+      e_state_installing = 4,
+      e_state_queued = 8,
+
+   };
+
+
+} // namespace library
+

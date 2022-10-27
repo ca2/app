@@ -5,15 +5,15 @@ namespace turboc
 {
 
 
-   application::application(::object * pobject) :
+   application::application(::particle * pparticle) :
       ::object(this),
       ::thread(this),
-      ::aura::application(pobject),
-      ::axis::application(pobject),
-      ::base::application(pobject),
-      ::aura::application(pobject),
-      ::sphere::application(pobject) :
-      m_mutexAiFont(this)
+      ::aura::application(pparticle),
+      ::axis::application(pparticle),
+      ::base::application(pparticle),
+      ::aura::application(pparticle),
+      ::sphere::application(pparticle) :
+      m_pmutexAiFont(this)
    {
 
       m_strAppName            = "turboc";

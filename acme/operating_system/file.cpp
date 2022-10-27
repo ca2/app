@@ -8,6 +8,8 @@
 
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/platform/system.h"
+
 
 void file_put_contents(const char * pszFilePath, const char * psz)
 {

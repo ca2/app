@@ -18,12 +18,12 @@ namespace dynamic_source
    }
 
 
-   void script_composite::initialize(::object * pobject)
+   void script_composite::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      script_interface::initialize(pobject);
+      script_interface::initialize(pparticle);
 
       //if (!estatus)
       //{

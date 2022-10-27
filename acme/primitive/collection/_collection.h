@@ -26,7 +26,7 @@ inline ::count __iterable_count(const ITERABLE & iterable);
 class strid_array;
 
 
-CLASS_DECL_ACME bool safe_destroy_element(matter * pobject);
+CLASS_DECL_ACME bool safe_destroy_element(::particle * pparticle);
 
 CLASS_DECL_ACME bool safe_free_memory(void * ptype);
 
@@ -43,18 +43,6 @@ inline void CopyElements(TYPE * pDest, const TYPE * pSrc, ::count nCount);
 template<class TYPE>
 inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::count nCount);
 
-
-template<class TYPE, class ARG_TYPE>
-bool CompareElements(const TYPE * pElement1, const ARG_TYPE pElement2)
-{
-
-   ENSURE(pElement1 != nullptr && pElement2 != nullptr);
-   ASSERT(__is_valid_address(pElement1, sizeof(TYPE), false));
-   ASSERT(__is_valid_address(pElement2, sizeof(ARG_TYPE), false));
-
-   return *pElement1 == *pElement2;
-
-}
 
 
 #define _TYPELIB_INDEX_LENGTH 10
@@ -243,57 +231,6 @@ using map_string_to_ob = map < string, const string &, matter *, matter * >;
 //#include "string_array_base.h"
 
 
-template < typename TYPE >
-inline string __type_name()
-{
-
-   auto pszType = typeid(TYPE).name();
-
-   string strName = demangle(pszType);
-
-   return strName;
-
-}
-
-
-template < typename TYPE >
-inline string __type_name(const TYPE * p)
-{
-
-   TYPE * pNonConst = (TYPE *) p;
-
-   auto pszType = typeid(*pNonConst).name();
-
-   string strName = demangle(pszType);
-
-   return strName;
-
-}
-
-
-template < typename TYPE >
-inline string __type_name(const ::pointer<TYPE>& pointer)
-{
-
-   return __type_name((const TYPE *) pointer.m_p);
-
-}
-
-
-template < non_pointer NON_POINTER >
-inline string __type_name(const NON_POINTER & t)
-{
-
-   NON_POINTER & tNonConst = (NON_POINTER &) t;
-
-   auto pszType = typeid(tNonConst).name();
-
-   string strName = demangle(pszType);
-
-   return strName;
-
-}
-
 
 
 
@@ -343,7 +280,7 @@ namespace earth
 } // namespace earth
 
 
-#include "stringl.h"
+#include "string_list.h"
 //#include "string_sort_array.h"
 //#include "string_array.h"
 

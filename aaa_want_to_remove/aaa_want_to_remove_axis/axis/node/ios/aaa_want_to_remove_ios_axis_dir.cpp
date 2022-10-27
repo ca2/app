@@ -10,11 +10,11 @@ namespace ios
 
 
       dir::dir(::aura::application *   papp) :
-         ::object(pobject),
-         ::file::system_dir(pobject),
-         ::file::dir::axis::system(pobject),
-         ::ios::dir(pobject),
-         ::file_watcher::file_watcher(pobject)
+         ::object(pparticle),
+         ::file::system_dir(pparticle),
+         ::file::dir::axis::system(pparticle),
+         ::ios::dir(pparticle),
+         ::file_watcher::file_watcher(pparticle)
       {
 
 //      string strCa2Module = ca2module();
@@ -26,7 +26,7 @@ namespace ios
       }
 
 
-      ::file::listing & dir::ls(::object * pobject, ::file::listing & listing)
+      ::file::listing & dir::ls(::particle * pparticle, ::file::listing & listing)
       {
 
 
@@ -53,7 +53,7 @@ namespace ios
       }
 
 
-      bool          auto psystem = m_psystem;
+      bool          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -70,7 +70,7 @@ pacmedirectory->is(const ::file::path & lpcszPath, ::aura::application * papp)
 
       }
 
-      //   bool          auto psystem = m_psystem;
+      //   bool          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -138,7 +138,7 @@ pacmedirectory->is(const ::string & strPath, ::aura::application * papp)
 
          }
 
-         bool bIsDir =          auto psystem = m_psystem;
+         bool bIsDir =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

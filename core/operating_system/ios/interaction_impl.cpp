@@ -2826,7 +2826,7 @@ namespace ios
 //
 ////      ::rectangle_i32 rect32;
 ////
-////      if(m_puserinteraction == get_app()->m_psystem->m_possystemwindow->m_puserinteraction)
+////      if(m_puserinteraction == get_app()->acmesystem()->m_possystemwindow->m_puserinteraction)
 ////      {
 ////
 ////         if(!get_main_screen_rectangle(rect32))
@@ -2865,7 +2865,7 @@ namespace ios
 //
 //      ::rectangle_i32 rect32;
 //
-//      if(m_puserinteraction == get_app()->m_psystem->m_possystemwindow->m_puserinteraction)
+//      if(m_puserinteraction == get_app()->acmesystem()->m_possystemwindow->m_puserinteraction)
 //      {
 //
 //         if(!get_main_screen_rectangle(rect32))

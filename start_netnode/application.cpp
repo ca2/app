@@ -35,7 +35,7 @@ namespace app_app
 
       ::aura::application::init_instance();
 
-      auto poscontext = m_psystem->m_papexsystem->os_context();
+      auto poscontext = acmesystem()->m_papexsystem->os_context();
 
       //::file::path path = "C:\\basis\\operating-system\\tool-windows\\bin\\hstart.exe";
 

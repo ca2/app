@@ -20,7 +20,7 @@ namespace xml
       property_set * m_ppropertyset;
 
 
-      property_set_exchange(::object * pobject);
+      property_set_exchange(::particle * pparticle);
       virtual ~property_set_exchange();
 
 

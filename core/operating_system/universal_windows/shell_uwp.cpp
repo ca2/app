@@ -20,7 +20,7 @@ namespace universal_windows
    shell::shell()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -48,7 +48,7 @@ namespace universal_windows
 //
 //         {
 //
-//            synchronous_lock synchronouslock(mutex());
+//            synchronous_lock synchronouslock(this->synchronization());
 //
 //            if (m_pimagemap->lookup(imagekey, iImage))
 //            {
@@ -123,7 +123,7 @@ namespace universal_windows
 //         if (!b48 && shfi48.hIcon != nullptr)
 //         {
 //            ::DestroyIcon(shfi48.hIcon);
-//         }         synchronous_lock synchronouslock(mutex());
+//         }         synchronous_lock synchronouslock(this->synchronization());
 
       m_imagemap.set_at(imagekey, iImage);
 
@@ -132,22 +132,22 @@ namespace universal_windows
    }
 
 
-   shell::e_folder shell::get_folder_type(::object * pobject, const ::string & lpcsz)
+   shell::e_folder shell::get_folder_type(::particle * pparticle, const ::string & lpcsz)
    {
 
-      return get_folder_type(pobject, utf8_to_unicode(lpcsz));
+      return get_folder_type(pparticle, utf8_to_unicode(lpcsz));
 
    }
 
 
-   shell::e_folder shell::get_folder_type(::object * pobject, const unichar * lpcszPath)
+   shell::e_folder shell::get_folder_type(::particle * pparticle, const unichar * lpcszPath)
    {
 
       string strPath;
 
       unicode_to_utf8(strPath, lpcszPath);
 
-      if (         auto psystem = m_psystem;
+      if (         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

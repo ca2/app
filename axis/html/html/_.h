@@ -1,22 +1,30 @@
 #pragma once
 
 
-typedef string_map < status < ::color::color > > string_to_color;
-class LiteHTMLEntityResolver;
+#include "acme/primitive/collection/string_map.h"
 
-inline status < ::color::color > __indexed_color(::u32 u)
-{ 
-	
-	return status < ::color::color >(u, ::success_color_index);
 
-}
-
+//
+//
+//typedef string_map < status < ::color::color > > string_to_color;
+//class LiteHTMLEntityResolver;
+//
+//inline status < ::color::color > __indexed_color(::u32 u)
+//{
+//
+//	return status < ::color::color >(u, ::success_color_index);
+//
+//}
+//
 
 namespace html
 {
 
 
-	typedef string_to_color named_color;
+   using string_to_color = string_map < status < ::color::color > >;
+
+
+	using named_color = string_to_color;
 
 
 	class core_data;
@@ -42,7 +50,7 @@ namespace html
 class html_document;
 
 
-#include "html.h"
+//#include "html.h"
 
 
 

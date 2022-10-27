@@ -7,7 +7,7 @@ class CLASS_DECL_AURA wait_cursor :
 public:
 
 
-   wait_cursor(::object * pobject);
+   wait_cursor(::particle * pparticle);
    virtual ~wait_cursor();
 
 

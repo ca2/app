@@ -1,7 +1,9 @@
 #include "framework.h"
+#include "acme/primitive/primitive/atom.h"
+#include "acme/primitive/primitive/matter.h"
 
 
-extern ::mutex * g_pmutexChildren;
+extern ::pointer< ::mutex > g_pmutexChildren;
 
 
 void _debug_debug_string_string()
@@ -16,7 +18,7 @@ void _debug_debug_string_string()
 }
 
 
-void __assert_object_ok(const ::matter * pOb, const char * pszFileName, i32 nLine)
+void __assert_particle_ok(const ::matter * pOb, const char * pszFileName, i32 nLine)
 {
 
    if (pOb == nullptr)

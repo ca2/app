@@ -3,13 +3,22 @@
 #include "application_menu.h"
 #include "session.h"
 #include "system.h"
+#include "create.h"
+#include "os_context.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/exception/exit.h"
+#include "acme/exception/interface_only.h"
+#include "acme/exception/not_implemented.h"
+#include "acme/filesystem/file/folder.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/networking/url_department.h"
 #include "acme/parallelization/install_mutex.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/profiler.h"
+#include "acme/primitive/datetime/department.h"
 #include "acme/primitive/text/context.h"
 #include "apex/message/application.h"
 #include "apex/id.h"
@@ -27,7 +36,7 @@
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/networking/application/application.h"
 #include "apex/networking/http/context.h"
-
+#include "apex/user/language_map.h"
 
 
 //void shell_restart();
@@ -105,7 +114,7 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 #elif defined(ANDROID)
 
 //#include "apex/operating_system/ansios/ansios.h"
-#include "apex/operating_system/android/_.h"
+//#include "apex/operating_system/android/_.h"
 
 //#elif defined(WINDOWS_DESKTOP)
 
@@ -121,6 +130,15 @@ CLASS_DECL_APEX int ui_open_url(const ::string & psz);
 
 //extern void * g_pf1;
 
+namespace parallelization
+{
+
+   void initialize();
+
+
+} // namespace parallelization
+
+
 
 namespace apex
 {
@@ -130,6 +148,10 @@ namespace apex
    {
 
       ::factory::add_factory_item < ::apex::system, ::acme::system >();
+//      ::factory::add_factory_item < ::apex::system, ::acme::system >();
+      ::factory::add_factory_item < ::apex::context, ::acme::context >();
+
+      ::parallelization::initialize();
 
    }
 
@@ -259,14 +281,14 @@ namespace apex
 
 
 
-   void application::initialize(::object * pobject)
+   void application::initialize(::particle * pparticle)
    {
 
-      //auto estatus = ::thread::initialize(pobject);
+      //auto estatus = ::thread::initialize(pparticle);
 
-      ::thread::initialize(pobject);
+      ::thread::initialize(pparticle);
 
-      ::acme::application::initialize(pobject);
+      ::acme::application::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -317,7 +339,7 @@ namespace apex
    ::file::path application::local_application_path()
    {
 
-      return m_psystem->m_pacmedirectory->roaming() / "application" / m_strAppName;
+      return acmedirectory()->roaming() / "application" / m_strAppName;
 
 
    }
@@ -337,7 +359,7 @@ namespace apex
 
 #ifdef LINUX
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       if (psystem->m_bGtkApp)
       {
@@ -415,7 +437,7 @@ namespace apex
    //   void application::show_wait_cursor(bool bShow)
    //   {
    //
-   //      auto psystem = m_psystem->m_papexsystem;
+   //      auto psystem = acmesystem()->m_papexsystem;
    //
    //      auto papexnode = psystem->m_papexnode;
    //
@@ -424,32 +446,32 @@ namespace apex
    //   }
 
 
-   void application::assert_ok() const
-   {
-
-      thread::assert_ok();
-
-   }
-
-
-   void application::dump(dump_context & dumpcontext) const
-   {
-
-      thread::dump(dumpcontext);
-
-      //#ifdef WINDOWS
-      //
-      //      dumpcontext << "m_hinstance = " << (void *)m_hinstance;
-      //
-      //#endif
-
-      //dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
-      //dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
-      //dumpcontext << "\nm_bHelpMode = " << m_strAppName;
-
-      //dumpcontext << "\n";
-
-   }
+//   void application::assert_ok() const
+//   {
+//
+//      thread::assert_ok();
+//
+//   }
+//
+//
+//   void application::dump(dump_context & dumpcontext) const
+//   {
+//
+//      thread::dump(dumpcontext);
+//
+//      //#ifdef WINDOWS
+//      //
+//      //      dumpcontext << "m_hinstance = " << (void *)m_hinstance;
+//      //
+//      //#endif
+//
+//      //dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
+//      //dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
+//      //dumpcontext << "\nm_bHelpMode = " << m_strAppName;
+//
+//      //dumpcontext << "\n";
+//
+//   }
 
 
    string application::__get_text(string str)
@@ -520,28 +542,28 @@ namespace apex
    //}
 
 
-   bool application::enable_application_events(::object * pobject, bool bEnable)
+   bool application::enable_application_events(::particle * pparticle, bool bEnable)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (bEnable)
       {
 
-         if (pobject == this)
+         if (pparticle == this)
          {
 
             return true;
 
          }
 
-         m_objectptraEventHook.add_unique(pobject);
+         m_particleaddressaEventHook.add_unique(pparticle);
 
       }
       else
       {
 
-         m_objectptraEventHook.erase(pobject);
+         m_particleaddressaEventHook.erase(pparticle);
 
       }
 
@@ -626,7 +648,7 @@ namespace apex
    ::file::path application::get_app_localconfig_folder()
    {
 
-      ::file::path pathFolder = m_psystem->m_pacmedirectory->roaming() / m_strAppId;
+      ::file::path pathFolder = acmedirectory()->roaming() / m_strAppId;
 
       return pathFolder;
 
@@ -1114,7 +1136,7 @@ namespace apex
 
       }
 
-      synchronous_lock synchronouslock(&m_mutexStr);
+      synchronous_lock synchronouslock(m_pmutexStr);
 
       if (m_stringtableStd.lookup(strTable, pmap))
       {
@@ -1633,7 +1655,7 @@ namespace apex
 
       ::thread::on_pos_run_thread();
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       //try
       //{
@@ -2184,22 +2206,22 @@ namespace apex
 
       string strRoot = m_strAppId.Left(m_strAppId.find('/'));
 
-      //auto pathCreatedShortcut = m_psystem->m_pacmedirectory->roaming() / m_strAppId / "created_shortcut.txt";
+      //auto pathCreatedShortcut = acmedirectory()->roaming() / m_strAppId / "created_shortcut.txt";
 
-      auto pathShortcut = m_psystem->m_pacmedirectory->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
+      auto pathShortcut = acmedirectory()->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
 
-      auto path = m_psystem->m_pacmefile->module();
+      auto path = acmefile()->module();
 
       ::file::path pathTarget;
       ::file::path pathIcon;
       int iIcon = -1;
 
-      //if (!m_psystem->m_pacmefile->exists(pathCreatedShortcut)
-      if (!m_psystem->m_pacmefile->exists(pathShortcut)
-         || !m_psystem->node()->m_papexnode->shell_link_target(pathTarget, pathShortcut)
-         || !m_psystem->m_pacmepath->final_is_same(pathTarget, path)
-         || !m_psystem->node()->m_papexnode->shell_link_icon(pathIcon, iIcon, path)
-         || !m_psystem->m_pacmefile->exists(pathIcon)
+      //if (!acmefile()->exists(pathCreatedShortcut)
+      if (!acmefile()->exists(pathShortcut)
+         || !acmenode()->m_papexnode->shell_link_target(pathTarget, pathShortcut)
+         || !acmepath()->final_is_same(pathTarget, path)
+         || !acmenode()->m_papexnode->shell_link_icon(pathIcon, iIcon, path)
+         || !acmefile()->exists(pathIcon)
          )
       {
 
@@ -2213,7 +2235,7 @@ namespace apex
    void application::create_app_shortcut()
    {
 
-      m_psystem->node()->create_app_shortcut(this);
+      acmenode()->create_app_shortcut(this);
 
    }
 
@@ -2248,7 +2270,7 @@ namespace apex
       //
       //__copy(message, msg);
       //
-      //auto psystem = m_psystem->m_papexsystem;
+      //auto psystem = acmesystem()->m_papexsystem;
       //
       //if (!is_system() && is_true("SessionSynchronizedInput"))
       //{
@@ -2337,9 +2359,9 @@ namespace apex
 
       }
 
-      //auto psystem = m_psystem->m_papexsystem;
+      //auto psystem = acmesystem()->m_papexsystem;
 
-      //      auto psystem = m_psystem;
+      //      auto psystem = acmesystem();
       //
       //      psystem->install_progress_add_up();
 
@@ -2381,7 +2403,7 @@ namespace apex
       try
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          //if (!is_system() && !is_session())
          {
@@ -2652,7 +2674,7 @@ namespace apex
 
          // #ifdef WINDOWS_DESKTOP
 
-         // m_psystem->m_pnode->install_crash_dump_reporting(m_pcontext->m_papexcontext->file().module().name());
+         // acmesystem()->m_pnode->install_crash_dump_reporting(m_pcontext->m_papexcontext->file().module().name());
 
          // #endif
 
@@ -2722,7 +2744,7 @@ namespace apex
       straLocale = payload("locale");
       straSchema = payload("schema");
 
-      ::file::path pathExe = m_psystem->m_pacmefile->module();
+      ::file::path pathExe = acmefile()->module();
 
       straLocale.insert_at(0, strSystemLocale);
       straSchema.insert_at(0, strSystemSchema);
@@ -2737,7 +2759,7 @@ namespace apex
 
          string strSchema = straSchema[i];
 
-         m_psystem->m_papexsystem->m_papexnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
+         acmesystem()->m_papexsystem->m_papexnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
 
       }
 
@@ -3629,7 +3651,7 @@ namespace apex
 
       bool bResourceException = false;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
@@ -3753,7 +3775,7 @@ namespace apex
    bool application::erase_exclusive(const ::string & strId)
    {
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
@@ -3896,7 +3918,7 @@ namespace apex
    string application::get_local_mutex_name()
    {
 
-      return m_psystem->m_pnode->get_local_mutex_name(get_mutex_name_gen());
+      return acmesystem()->m_pnode->get_local_mutex_name(get_mutex_name_gen());
 
    }
 
@@ -3904,7 +3926,7 @@ namespace apex
    string application::get_local_id_mutex_name()
    {
 
-      return m_psystem->m_pnode->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
+      return acmesystem()->m_pnode->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
 
    }
 
@@ -3912,7 +3934,7 @@ namespace apex
    string application::get_global_mutex_name()
    {
 
-      return m_psystem->m_pnode->get_global_mutex_name(get_mutex_name_gen());
+      return acmesystem()->m_pnode->get_global_mutex_name(get_mutex_name_gen());
 
    }
 
@@ -3920,7 +3942,7 @@ namespace apex
    string application::get_global_id_mutex_name()
    {
 
-      return m_psystem->m_pnode->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
+      return acmesystem()->m_pnode->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
 
    }
 
@@ -4612,7 +4634,7 @@ namespace apex
 
       string strMessage;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pdatetime = psystem->m_pdatetime;
 
@@ -4623,7 +4645,7 @@ namespace apex
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_pcontext->m_papexcontext->file().add_contents(m_pcontext->m_papexcontext->dir().appdata() / (m_pcontext->m_papexcontext->file().module().name() + "_log_error.txt"), strMessage);
 
@@ -4739,7 +4761,7 @@ namespace apex
    ::file::path application::get_executable_path()
    {
 
-      return m_psystem->m_pacmedirectory->module() / (get_executable_title() + get_executable_extension());
+      return acmedirectory()->module() / (get_executable_title() + get_executable_extension());
 
 
    }
@@ -4809,7 +4831,7 @@ namespace apex
    void application::install_trace(const ::string & str)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       //::install::trace_file(this, m_strInstallTraceLabel).print(str);
 
@@ -4819,7 +4841,7 @@ namespace apex
    void application::install_trace(double dRate)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
 
@@ -4829,7 +4851,7 @@ namespace apex
    void application::register_application_as_spa_file_type_handler()
    {
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
@@ -4878,7 +4900,7 @@ namespace apex
 
       ::string strPath = wstr.c_str();
 
-      ::string strContents = m_psystem->m_pacmefile->as_string(strPath.c_str());
+      ::string strContents = acmefile()->as_string(strPath.c_str());
 
       throw ::exception(todo, "xml");
 
@@ -5131,21 +5153,21 @@ namespace apex
    }
 
 
-   //::draw2d::icon * application::set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon)
+   //::draw2d::icon * application::set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon)
    //{
 
-   //   ::draw2d::icon * piconOld = get_icon(pobject, bBigIcon);
+   //   ::draw2d::icon * piconOld = get_icon(pparticle, bBigIcon);
 
    //   if (bBigIcon)
    //   {
 
-   //      pobject->payload("big_icon") = (::pointer<object> picon;
+   //      pparticle->payload("big_icon") = (::pointer<object> picon;
 
    //   }
    //   else
    //   {
 
-   //      pobject->payload("small_icon") = (::pointer<object> picon;
+   //      pparticle->payload("small_icon") = (::pointer<object> picon;
 
    //   }
 
@@ -5154,19 +5176,19 @@ namespace apex
    //}
 
 
-   //::draw2d::icon * application::get_icon(object * pobject, bool bBigIcon) const
+   //::draw2d::icon * application::get_icon(object * pparticle, bool bBigIcon) const
    //{
 
    //   if (bBigIcon)
    //   {
 
-   //      return ((object *)pobject)->cast < ::draw2d::icon >("big_icon");
+   //      return ((object *)pparticle)->cast < ::draw2d::icon >("big_icon");
 
    //   }
    //   else
    //   {
 
-   //      return ((object *)pobject)->cast <::draw2d::icon>("small_icon");
+   //      return ((object *)pparticle)->cast <::draw2d::icon>("small_icon");
 
    //   }
 
@@ -5244,32 +5266,32 @@ namespace apex
 
       path2 = m_pcontext->m_papexcontext->defer_process_path(path2Param);
 
-      path1 = m_psystem->m_pacmepath->final(path1);
+      path1 = acmepath()->final(path1);
 
-      path2 = m_psystem->m_pacmepath->final(path2);
+      path2 = acmepath()->final(path2);
 
       return strcmp(path1, path2) == 0;
 
    }
 
 
-   //   void application::on_event(::u64 u, ::object * pobject)
+   //   void application::on_event(::u64 u, ::particle * pparticle)
    //   {
    //
    //      object_ptra ptra;
    //
    //      {
    //
-   //         synchronous_lock synchronouslock(mutex());
+   //         synchronous_lock synchronouslock(this->synchronization());
    //
-   //         ptra = m_objectptraEventHook;
+   //         ptra = m_particleaddressaEventHook;
    //
    //      }
    //
-   //      for(auto & pobject : ptra)
+   //      for(auto & pparticle : ptra)
    //      {
    //
-   //         pobject->on_event(u, pobject);
+   //         pparticle->on_event(u, pparticle);
    //
    //      }
    //
@@ -5280,7 +5302,7 @@ namespace apex
    ::file::path application::appconfig_folder()
    {
 
-      return m_psystem->m_pacmedirectory->config() / m_strAppName;
+      return acmedirectory()->config() / m_strAppName;
 
    }
 
@@ -5434,7 +5456,7 @@ namespace apex
    //void application::record(::create * pcommand)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   get_command()->m_createa.add(pcommand);
 
@@ -5450,7 +5472,7 @@ namespace apex
 
       auto & file = psystem->file();
 
-      string strNetworkPayload = file.safe_get_string(m_psystem->m_pacmedirectory->config() / strAppId / +"http.network_payload");
+      string strNetworkPayload = file.safe_get_string(acmedirectory()->config() / strAppId / +"http.network_payload");
 
       if (strNetworkPayload.has_char())
       {
@@ -5468,7 +5490,7 @@ namespace apex
 
       }
 
-      m_psystem->m_papexsystem->m_papexnode->set_last_run_application_path(strAppId);
+      acmesystem()->m_papexsystem->m_papexnode->set_last_run_application_path(strAppId);
 
       if (!os_on_start_application())
       {
@@ -5536,7 +5558,7 @@ namespace apex
    string application::load_string(const ::atom & atom)
    {
 
-      synchronous_lock synchronouslock(&m_mutexStr);
+      synchronous_lock synchronouslock(m_pmutexStr);
 
       string str;
 
@@ -5642,7 +5664,7 @@ namespace apex
 
    //   }
 
-   //   synchronous_lock synchronouslock(&m_mutexStr);
+   //   synchronous_lock synchronouslock(m_pmutexStr);
 
    //   ::pointer<string_to_string>pmap;
 
@@ -5845,10 +5867,10 @@ namespace apex
 
       string strType = __type_name(this);
 
-      //if(::is_set(m_psystem))
+      //if(::is_set(acmesystem()))
       //{
 
-      //   m_psystem->add_reference(this);
+      //   acmesystem()->add_reference(this);
 
       //}
 
@@ -6229,7 +6251,7 @@ namespace apex
 
    //   }
 
-   //   /*     if (!m_psystem->m_phtml->initialize())
+   //   /*     if (!acmesystem()->m_phtml->initialize())
    //        {
 
    //           return false;
@@ -6382,7 +6404,7 @@ namespace apex
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_straActivationMessage.add(strMessage);
 
@@ -6396,7 +6418,7 @@ namespace apex
    bool application::has_activation_message() const
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       return m_straActivationMessage.has_element();
 
@@ -6406,7 +6428,7 @@ namespace apex
    bool application::defer_process_activation_message()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_bAttendedFirstRequest)
       {
@@ -6523,7 +6545,7 @@ namespace apex
          strUrl = "http://stage-server.ca2.software/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -6606,10 +6628,10 @@ namespace apex
 
       string strRequestUrl;
 
-      if (m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt").has_char())
+      if (acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
       }
 
@@ -6705,7 +6727,7 @@ namespace apex
 
          m_iWaitCursorCount = 0;
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node()->m_papexnode;
 
@@ -6723,7 +6745,7 @@ namespace apex
          if (m_iWaitCursorCount > 0)
          {
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
             auto pnode = psystem->node()->m_papexnode;
 
@@ -6733,7 +6755,7 @@ namespace apex
 
          m_iWaitCursorCount = 0;
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node()->m_papexnode;
 
@@ -6750,7 +6772,7 @@ namespace apex
 
          m_iWaitCursorCount++;
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node()->m_papexnode;
 
@@ -6884,7 +6906,7 @@ namespace apex
 
 
 
-   //::draw2d::icon * application::set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon)
+   //::draw2d::icon * application::set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon)
    //{
 
    //   return nullptr;
@@ -6892,7 +6914,7 @@ namespace apex
    //}
 
 
-   //::draw2d::icon * application::get_icon(object * pobject, bool bBigIcon) const
+   //::draw2d::icon * application::get_icon(object * pparticle, bool bBigIcon) const
    //{
 
    //   return nullptr;
@@ -6956,7 +6978,7 @@ namespace apex
 
       {
 
-         auto pmutex = __new(::install::mutex(this, process_platform_dir_name2()));
+         auto pmutex = acmenode()->get_install_mutex(this, process_platform_dir_name2(), "");
 
          if (pmutex->already_exists())
          {
@@ -6984,11 +7006,11 @@ namespace apex
 
          ::property_set set;
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node();
 
-         return pnode->call_sync(m_psystem->m_pacmedirectory->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmedirectory->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_restored, 2_minute, set);
+         return pnode->call_sync(acmedirectory()->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, acmedirectory()->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_restored, 2_minute, set);
 
 #endif
 
@@ -7250,10 +7272,10 @@ namespace apex
    //}
 
 
-   //void application::initialize(::object * pobject)
+   //void application::initialize(::particle * pparticle)
    //{
 
-   //   auto estatus = ::application::initialize(pobject);
+   //   auto estatus = ::application::initialize(pparticle);
 
    //   if (!estatus)
    //   {
@@ -8911,16 +8933,16 @@ namespace apex
 
 
 
-   /*   property_set & application::propset(object * pobject)
+   /*   property_set & application::propset(object * pparticle)
    {
    single_lock synchronouslock(&m_mapObjectSet, true);
-   return m_mapObjectSet[pobject];
+   return m_mapObjectSet[pparticle];
    }
 
-   property_set * application::existing_propset(object * pobject)
+   property_set * application::existing_propset(object * pparticle)
    {
    single_lock synchronouslock(&m_mapObjectSet, true);
-   auto point = m_mapObjectSet.plookup(pobject);
+   auto point = m_mapObjectSet.plookup(pparticle);
    if(point == nullptr)
    return nullptr;
    return &point->m_value;
@@ -9856,7 +9878,7 @@ namespace apex
    string application::get_visual_studio_build()
    {
 
-      ::file::path path = m_psystem->m_pacmedirectory->config() / "programming/vs_build.txt";
+      ::file::path path = acmedirectory()->config() / "programming/vs_build.txt";
 
       string strBuild = m_pcontext->m_papexcontext->file().as_string(path);
 
@@ -9875,7 +9897,7 @@ namespace apex
       if (path.has_char())
       {
 
-         if (::is_url(path) || m_psystem->m_pacmefile->exists(path))
+         if (::is_url(path) || acmefile()->exists(path))
          {
 
             return file().as_string(path);
@@ -9994,7 +10016,7 @@ namespace apex
    string application::get_version()
    {
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto papex = psystem->m_papexnode;
 
@@ -10006,7 +10028,7 @@ namespace apex
    void application::_001InitializeShellOpen()
    {
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto papex = psystem->m_papexnode;
 

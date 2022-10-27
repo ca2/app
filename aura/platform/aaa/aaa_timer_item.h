@@ -17,7 +17,7 @@
 //      ::u32                    m_uiLastSent;
 //
 //
-//      timer_item(::object * pobject);
+//      timer_item(::particle * pparticle);
 //      virtual ~timer_item();
 //
 //

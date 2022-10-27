@@ -15,6 +15,26 @@ namespace file
 {
 
 
+   path_meta::path_meta(enum_path epath, i64 iSize, i32 iDir, i64 iName, strsize iBasePathLength, enumeration < ::file::enum_flag > eflag)
+   {
+
+      m_epath                             = epath;
+      m_iSize                             = iSize;
+      m_iDir                              = iDir;
+      m_iName                             = (strsize) iName;
+      m_iBasePathLength                   = iBasePathLength;
+      enumeration < ::file::enum_flag >::m_eenum   = eflag.enumeration < ::file::enum_flag >::m_eenum;
+
+   }
+
+
+   path_meta::~path_meta()
+   {
+
+
+   }
+
+
    path::path(const ::payload & payload) :
       path(payload.file_path())
    {
@@ -283,38 +303,6 @@ namespace file
    }
 
 
-   path_array & path::ascendants_path(path_array & straParam, path_array * ppathaRelative) const
-   {
-
-      string_array stra;
-
-      ascendants_name(stra);
-
-      ::file::path str;
-
-      if (stra.get_count() > 0)
-      {
-         str = stra[0];
-         straParam.add(str);
-         if (ppathaRelative != nullptr)
-         {
-            ppathaRelative->add(::file::path(stra.slice(1).implode("/")));
-         }
-      }
-
-      for (i32 i = 1; i < stra.get_size(); i++)
-      {
-         str /= stra[i];
-         straParam.add(str);
-         if (ppathaRelative != nullptr)
-         {
-            ppathaRelative->add(::file::path(stra.slice(i + 1).implode("/")));
-         }
-      }
-
-      return straParam;
-
-   }
 
 
    string path::name(index i) const
@@ -492,21 +480,21 @@ namespace file
    }
 
 
-   path_array path::operator / (const string_array & stra) const
-   {
-
-      path_array patha;
-
-      for (auto str : stra)
-      {
-
-         patha.add(*this / str);
-
-      }
-
-      return patha;
-
-   }
+//   path_array path::operator / (const string_array & stra) const
+//   {
+//
+//      path_array patha;
+//
+//      for (auto str : stra)
+//      {
+//
+//         patha.add(*this / str);
+//
+//      }
+//
+//      return patha;
+//
+//   }
 
 
    path path::operator / (const path & path) const

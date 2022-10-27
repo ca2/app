@@ -1,8 +1,11 @@
 #pragma once
 
 
+//#include "synchronization_object.h"
+
+
 class CLASS_DECL_ACME condition :
-   virtual public synchronization_object
+   virtual public particle
 {
 public:
 
@@ -17,7 +20,7 @@ public:
 
    bool              m_bSignaled;
    int               m_iHold;
-   pthread_mutex_t   m_mutex;
+   pthread_mutex_t   m_pmutex;
    pthread_cond_t    m_cond;
 
 #else
@@ -32,10 +35,10 @@ public:
    ~condition() override;
 
 
-   //using synchronization_object::lock;
+   //using synchronization::lock;
    //virtual bool lock(const class ::wait & wait);
 
-   using synchronization_object::unlock;
+   using particle::unlock;
    virtual void unlock() override;
 
    virtual void * get_os_data() const;

@@ -53,22 +53,22 @@ namespace draw2d_cairo
 #ifdef WINDOWS_DESKTOP
 
 
-   object * graphics_object_allocator(::object * pobject, HANDLE h)
+   object * graphics_object_allocator(::particle * pparticle, HANDLE h)
    {
       /*switch(::GetObjectType(h))
       {
       case OBJ_BITMAP:
-         return dynamic_cast < object * > (memory_new bitmap(pobject));
+         return dynamic_cast < object * > (memory_new bitmap(pparticle));
       case OBJ_REGION:
-         return dynamic_cast < object * > (memory_new region(pobject));
+         return dynamic_cast < object * > (memory_new region(pparticle));
       case OBJ_PEN:
-         return dynamic_cast < object * > (memory_new pen(pobject));
+         return dynamic_cast < object * > (memory_new pen(pparticle));
       case OBJ_BRUSH:
-         return dynamic_cast < object * > (memory_new brush(pobject));
+         return dynamic_cast < object * > (memory_new brush(pparticle));
       case OBJ_PAL:
-         return dynamic_cast < object * > (memory_new palette(pobject));
+         return dynamic_cast < object * > (memory_new palette(pparticle));
       case OBJ_FONT:
-         return dynamic_cast < object * > (memory_new font(pobject));
+         return dynamic_cast < object * > (memory_new font(pparticle));
       }
       return memory_new object();*/
       return nullptr;

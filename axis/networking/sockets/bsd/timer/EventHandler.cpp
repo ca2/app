@@ -41,12 +41,12 @@ namespace sockets
 {
 
 
-   EventHandler::EventHandler(::object * pobject, ::apex::log * plog) :
+   EventHandler::EventHandler(::particle * pparticle, ::apex::log * plog) :
       //socket_handler(plog),
       m_bQuit(false), m_ptcpsocket(nullptr)
    {
 
-      initialize(pobject);
+      initialize(pparticle);
 
    }
 
@@ -302,7 +302,7 @@ namespace sockets
          m_ptcpsocket -> SetReconnect(true);
 #endif
          
-         auto paddress = m_psystem->m_papexsystem->networking()->create_address("127.0.0.1", m_port);
+         auto paddress = acmesystem()->m_papexsystem->networking()->create_address("127.0.0.1", m_port);
 //         m_ptcpsocket -> open(::networking::address("127.0.0.1", m_port));
          
          m_ptcpsocket -> open(paddress);

@@ -1,6 +1,9 @@
 ﻿// Created by camilo on 2022-10-09 21:01 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "subsystem.h"
 #include "acme/platform/library.h"
+#include "acme/exception/exception.h"
+#include "acme/parallelization/task.h"
 
 
 static subsystem * g_psubsystem = nullptr;
@@ -24,13 +27,13 @@ subsystem::subsystem()
 subsystem::~subsystem()
 {
 
-   thread_release();
+   task_release();
 
    {
 
       array<void *> librarya;
 
-      for (auto & plibrary : m_mapLibrary4.values())
+      for (auto & plibrary : m_mapLibrary.values())
       {
 
          if (plibrary)
@@ -46,7 +49,7 @@ subsystem::~subsystem()
 
       }
 
-      m_mapLibrary4.clear();
+      m_mapLibrary.clear();
 
       for (auto & p : librarya)
       {

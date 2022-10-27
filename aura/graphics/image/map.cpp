@@ -18,7 +18,7 @@
    if (pimage->is_null())
    {
 
-      m_psystem->__construct(pimage);
+      acmesystem()->__construct(pimage);
 
       pimage->create(key.m_size);
 
@@ -89,7 +89,7 @@ image_pointer & size_image::get(const concrete < ::size_i32 > & size, bool & bEx
    if (pimage->is_null())
    {
 
-      m_psystem->__construct(pimage);
+      acmesystem()->__construct(pimage);
       
       pimage->create(size);
 

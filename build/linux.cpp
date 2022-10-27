@@ -43,11 +43,11 @@ namespace linux
 
       bool bTimeout = false;
 
-      ::file::path pathBaseDir = m_psystem->m_pacmedirectory->home();
+      ::file::path pathBaseDir = acmedirectory()->home();
 
       ::file::path pathBuildDir = pathBaseDir / "build" / m_strDistro / m_strDesktopEnvironment;
 
-      m_psystem->m_pacmedirectory->create(pathBuildDir);
+      acmedirectory()->create(pathBuildDir);
 
       chdir(pathBuildDir);
 
@@ -55,7 +55,7 @@ namespace linux
 
          string strConfigure = "cmake configure " + pathBaseDir + "/solution/basis";
 
-         m_psystem->m_pacmefile->put_contents("/home/camilo/configure_build.sh", strConfigure);
+         acmefile()->put_contents("/home/camilo/configure_build.sh", strConfigure);
 
          chmod("/home/camilo/configure_build.sh", 0777);
 
@@ -67,7 +67,7 @@ namespace linux
 
          string strCmakeBuild = "cmake --build " + pathBuildDir + " -- -j 8";
 
-         m_psystem->m_pacmefile->put_contents("/home/camilo/cmake_build.sh", strCmakeBuild);
+         acmefile()->put_contents("/home/camilo/cmake_build.sh", strCmakeBuild);
 
          chmod("/home/camilo/cmake_build.sh", 0777);
 

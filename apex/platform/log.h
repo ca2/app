@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/platform/log.h"
+#include "acme/primitive/collection/string_array.h"
+
+
 namespace sockets
 {
 
@@ -24,7 +28,7 @@ namespace apex
 
       bool                                m_bTrace;
       ::pointer<::trace>               m_ptrace;
-      ::mutex                             m_mutexTrace;
+      ::pointer < ::mutex >                             m_pmutexTrace;
       string_array                        m_straSeparator;
       FILE *                              m_pfile;
       bool                                m_bInitialized;

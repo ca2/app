@@ -318,7 +318,7 @@ CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const char * pszTag, cons
 
 
 
-//extern CLASS_DECL_ACME ::mutex * g_pmutexMemoryCounters;
+//extern CLASS_DECL_ACME ::pointer< ::mutex > g_pmutexMemoryCounters;
 
 //CLASS_DECL_ACME bool memory_counter_on();
 

@@ -19,7 +19,7 @@ namespace simpledb
 
       m_durationRemoteTimeout = 10_s;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -58,7 +58,7 @@ namespace simpledb
    bool simpledb::erase(const ::database::key & key)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       class server * pserver = server();
 
@@ -90,7 +90,7 @@ namespace simpledb
    bool simpledb::load(const ::database::key & key, get_memory getmemory)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       class server * pserver = server();
 
@@ -155,7 +155,7 @@ namespace simpledb
 
          auto pdatabase = pserver->get_local_database();
 
-         class synchronization_object * pmutex = pdatabase->mutex();
+         class synchronization * pmutex = pdatabase->synchronization();
 
          synchronous_lock slDatabase(pmutex);
 
@@ -231,7 +231,7 @@ namespace simpledb
 
             strUrl = "https://ca2.software" + strApi + "?key=";
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
             auto purl = psystem->url();
 
@@ -309,7 +309,7 @@ namespace simpledb
    void simpledb::save(const ::database::key & key, block block)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       class server * pserver = server();
 
@@ -370,7 +370,7 @@ namespace simpledb
 
          {
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             pitem = pstorage->m_map.plookup(strKey);
 
@@ -381,7 +381,7 @@ namespace simpledb
          if (pitem != nullptr)
          {
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             if (pitem->element2().m_memory == block)
             {
@@ -415,7 +415,7 @@ namespace simpledb
 
          stritem.m_bData = true;
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          pstorage->m_map.set_at(strKey, stritem);
 
@@ -446,7 +446,7 @@ namespace simpledb
 
          stritem.m_bData = true;
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          pstorage->m_map.set_at(strKey, stritem);
 

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "app_container.h"
 #include "assert_running_task.h"
+#include "acme/exception/exit.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 

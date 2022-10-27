@@ -13,9 +13,9 @@ namespace primitive
    public:
 
 #ifdef WINDOWS
-      shared_file(::object * pobject, ::u32 nGrowBytes = 4096, ::u32 nAllocFlags = GMEM_MOVEABLE);
+      shared_file(::particle * pparticle, ::u32 nGrowBytes = 4096, ::u32 nAllocFlags = GMEM_MOVEABLE);
 #else
-    shared_file(::object * pobject, ::u32 nGrowBytes = 4096, ::u32 nAllocFlags = 0);
+    shared_file(::particle * pparticle, ::u32 nGrowBytes = 4096, ::u32 nAllocFlags = 0);
 #endif
 
       virtual HGLOBAL detach_storage();

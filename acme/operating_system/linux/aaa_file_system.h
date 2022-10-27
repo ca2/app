@@ -15,7 +15,7 @@ namespace linux
       virtual ~file_system();
 
 
-      virtual void initialize(::matter * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       virtual void init_system() override;
 

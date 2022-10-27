@@ -134,8 +134,8 @@ concept primitive_xydim = requires(RECTANGLE rectangle)
 };
 
 
-//using string = string_base < ansichar >;
-//using wstring = string_base < widechar >;
+using string = string_base < ansichar >;
+using wstring = string_base < widechar >;
 
 
 typedef string_array_base < string, string, e_type_string_array > string_array;
@@ -371,8 +371,8 @@ class flags;
 template<class EENUM, EENUM edefault = (EENUM)0>
 class base_enum;
 
-template < typename PAYLOAD_TYPE >
-concept payload_class = (is_derived_from < PAYLOAD_TYPE, ::payload > || ::std::same_as < PAYLOAD_TYPE, ::payload >);
+template < typename PAYLOAD >
+concept primitive_payload = (is_derived_from < PAYLOAD, ::payload > || ::std::same_as < PAYLOAD, ::payload >);
 
 
 
@@ -495,7 +495,7 @@ using element_array = pointer_array < element >;
 
 
 
-#include "acme/primitive/collection/string_map.h"
+//#include "acme/primitive/collection/string_map.h"
 
 
 using regular_expression_pointer = ::pointer<::regular_expression::regular_expression>;
@@ -510,3 +510,148 @@ void std_string_bassign(T & t, const u8 * psz, strsize nsize);
 
 
 
+
+
+typedef address_array < const char * > const_char_ptra;
+
+typedef address_array < void * > void_ptra;
+
+//typedef address_array < matter * > simple_object_ptra;
+
+
+using particle_address_array = address_array < particle * >;
+
+
+
+
+
+
+using file_pointer = ::pointer<::file::file>;
+
+using memory_file_pointer = ::pointer<::memory_file>;
+
+using folder_pointer = ::pointer<::folder>;
+
+
+
+template < typename T >
+class c_number;
+
+
+using wparam = c_number<iptr>;
+
+
+template < typename T >
+concept an_object = !std::is_pointer < T >::value
+                    && !std::is_integral < T >::value
+                    && !std::is_enum < T >::value
+                    && !std::is_floating_point < T >::value;
+
+
+template<typename T>
+inline ::pointer < T > move_transfer(T * p);
+
+
+#define __new(...) ::move_transfer( memory_new __VA_ARGS__ )
+
+
+template < typename SEQUENCE >
+class sequencer;
+
+
+using handler_pointer = ::pointer<handler>;
+using manager_pointer = ::pointer<manager>;
+using context_pointer = ::pointer<context>;
+
+
+using topic_pointer = ::pointer<topic>;
+using extended_topic_pointer = ::pointer<extended_topic>;
+
+template < typename SEQUENCE >
+class sequencer;
+
+template < typename SEQUENCE >
+class sequence;
+
+
+template < typename FUNCTION >
+class function;
+
+using procedure = ::function < void() >;
+
+
+using procedure_list = ::list < ::procedure >;
+
+
+
+
+template < typename TYPE, enum_type t_etypePayload = e_type_element >
+class unique_number_sort_array;
+
+
+template < typename TYPE, enum_type t_etypePayload = e_type_element >
+class numeric_array;
+
+
+using i8_array = numeric_array < i8 >;
+using i16_array = numeric_array < i16 >;
+using i32_array = numeric_array < i32 >;
+using i64_array = numeric_array < i64 >;
+
+using u8_array = numeric_array < u8 >;
+using u16_array = numeric_array < u16 >;
+using u32_array = numeric_array < u32 >;
+using u64_array = numeric_array < u64 >;
+
+using dword_array = u32_array;
+using int_array = i32_array;
+
+
+using unique_i32_sort_array = unique_number_sort_array < i32 >;
+using unique_i64_sort_array = unique_number_sort_array < i64 >;
+
+
+#ifdef OS64BIT
+
+
+using iptr_array = i64_array;
+using uptr_array = u64_array;
+
+using unique_iptr_sort_array = unique_i64_sort_array;
+
+
+#else
+
+
+using iptr_array = i32_array;
+using uptr_array = u32_array;
+
+using unique_iptr_sort_array = unique_i32_sort_array;
+
+
+#endif
+
+using float_array = numeric_array < float  >;
+using double_array = numeric_array < double  >;
+
+using strsize_array = iptr_array;
+
+//using strsize_ptr_array = ptr_array < strsize *  >;
+
+
+using byte_array = u8_array;
+
+using task_pointer = ::pointer < task >;
+
+CLASS_DECL_ACME task_pointer fork(::particle * pparticle, const ::procedure & procedure);
+
+
+
+namespace draw2d
+{
+
+
+   using graphics_pointer = ::pointer<graphics>;
+
+
+} // namespace draw2d

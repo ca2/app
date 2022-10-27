@@ -14,7 +14,7 @@ public:
    using BASE_ARRAY = ARRAY_TYPE;
 
    
-   explicit comparable_eq_array(::matter * pobject = nullptr) : BASE_ARRAY(pobject) { }
+   explicit comparable_eq_array(::particle * pparticle = nullptr) : BASE_ARRAY(pparticle) { }
    comparable_eq_array(::std::initializer_list < TYPE > l) : BASE_ARRAY(l) {   }
    comparable_eq_array(const comparable_eq_array & array) : BASE_ARRAY(array) { }
    comparable_eq_array(comparable_eq_array && array) noexcept : BASE_ARRAY(::move(array)) { }
@@ -434,16 +434,22 @@ operator |= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
    return *this;
 }
 
+
 template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
-::index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
-erase_last(ARG_TYPE t)
+::index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::erase_last(ARG_TYPE t)
 {
+
    ::index find;
+
    if((find = find_last(t)) >= 0)
    {
+
       this->erase_at(find);
+
    }
+
    return find;
+
 }
 
 

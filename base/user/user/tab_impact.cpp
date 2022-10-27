@@ -267,7 +267,7 @@ namespace user
    void tab_impact::_001OnRemoveTab(class tab_pane * ptabpane)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ::user::tab::_001OnRemoveTab(ptabpane);
 
@@ -569,7 +569,7 @@ namespace user
 
             {
 
-               synchronous_lock synchronouslock(mutex());
+               synchronous_lock synchronouslock(this->synchronization());
 
                if (pimpactdata->m_strTitle.has_char())
                {
@@ -952,7 +952,7 @@ namespace user
 
    //         {
 
-   //            synchronous_lock synchronouslock(mutex());
+   //            synchronous_lock synchronouslock(this->synchronization());
 
    //            if (pimpactdata->m_strCreatorDataTitle.has_char() && ppane->m_atom == pimpactdata->m_atom)
    //            {

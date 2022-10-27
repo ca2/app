@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/primitive/mathematics/scalar.h"
 #include "apex/networking/sockets/basic/tcp_socket.h"
 #include "apex/networking/http/request.h"
 #include "apex/networking/http/response.h"
@@ -55,7 +56,7 @@ namespace sockets
       ~http_socket() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       virtual void OnEndChunk();

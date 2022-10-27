@@ -241,12 +241,12 @@ namespace apex
 
       path -= 3;
       
-      auto pacmedirectory = m_psystem->m_pacmedirectory;
+      auto pacmedirectory = acmedirectory();
 
       if(pacmedirectory->is(path))
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
          
@@ -254,10 +254,10 @@ namespace apex
 
          ::file::path path2 = pacmedirectory->localconfig() / "desk/monitor-0/2desk" / strName;
 
-         if(m_psystem->m_pacmefile->exists(path2))
+         if(acmefile()->exists(path2))
          {
 
-            m_psystem->m_pacmefile->erase(path2);
+            acmefile()->erase(path2);
 
          }
 
@@ -265,9 +265,9 @@ namespace apex
 
          pacmedirectory->create(pathFolder2);
 
-         bool bFilePathIsLink = m_psystem->m_pacmepath->is_symbolic_link(path2);
+         bool bFilePathIsLink = acmepath()->is_symbolic_link(path2);
          
-         string strDestination = m_psystem->m_pacmepath->symbolic_link_destination(path2);
+         string strDestination = acmepath()->symbolic_link_destination(path2);
 
          if(!bFilePathIsLink ||  strDestination!= path)
          {

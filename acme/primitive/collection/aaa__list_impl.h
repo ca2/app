@@ -156,7 +156,7 @@ void list<TYPE, ARG_TYPE>::dump(dump_context& dumpcontext) const
 
 
 //template < typename TYPE >
-//inline stream& operator <<(stream& stream, const stringl& list)
+//inline stream& operator <<(stream& stream, const string_list& list)
 //{
 //
 //   stream << list.get_count();
@@ -172,7 +172,7 @@ void list<TYPE, ARG_TYPE>::dump(dump_context& dumpcontext) const
 //
 //
 //template < typename TYPE >
-//inline stream& operator >>(stream& stream, stringl& list)
+//inline stream& operator >>(stream& stream, string_list& list)
 //{
 //
 //   i32 iSize;

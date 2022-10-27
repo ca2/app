@@ -36,12 +36,12 @@ namespace bred
    }
 
 
-   void application::initialize(::object * pobject)
+   void application::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::axis::application::initialize(pobject);
+      ::axis::application::initialize(pparticle);
 
       //if (!estatus)
       //{

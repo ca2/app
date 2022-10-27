@@ -543,12 +543,12 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth:
 //
 //
 ////template < typename BASE_TYPE >
-////void matter::save_to(const ::payload & payloadFile, BASE_TYPE * pobject)
+////void matter::save_to(const ::payload & payloadFile, BASE_TYPE * pparticle)
 ////{
 ////
 ////   auto writer = m_pcontext->m_papexcontext->file().get_writer(payloadFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive);
 ////
-////   __save_object(writer, pobject);
+////   __save_object(writer, pparticle);
 ////
 ////}
 //
@@ -747,11 +747,11 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth:
 //inline ::payload & payload_stream::payload() { return *m_ppayload; }
 //inline const ::payload & payload_stream::payload() const { return *m_ppayload; }
 //
-////void payload_stream::write_object(const ::atom & atom, ::atom & idFactory, ::matter * pobject)
+////void payload_stream::write_object(const ::atom & atom, ::atom & idFactory, ::particle * pparticle)
 ////{
 ////   payload_stream binary_stream < FILE >(memory_new ::payload(&payload()[atom].propset()));
 ////   binary_stream < FILE >.exchange("", idFactory);
-////   pobject->exchange(binary_stream < FILE >);
+////   pparticle->exchange(binary_stream < FILE >);
 ////}
 //
 ////
@@ -760,9 +760,9 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth:
 ////   payload_stream binary_stream < FILE >(memory_new ::payload(&payload()[atom].propset()));
 ////   ::atom idFactory;
 ////   binary_stream < FILE >.exchange("", idFactory);
-////   auto pobject = __id_create<::matter>(idFactory);
-////   pobject->exchange(binary_stream < FILE >);
-////   return pobject;
+////   auto pparticle = __id_create<::matter>(idFactory);
+////   pparticle->exchange(binary_stream < FILE >);
+////   return pparticle;
 ////}
 //
 //

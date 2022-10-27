@@ -206,7 +206,7 @@ namespace account
 
       string strDeferRegistration;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -288,7 +288,7 @@ namespace account
 
       auto puser = pcredentials->m_puser;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 

@@ -26,7 +26,7 @@
                ::draw2d::brush_pointer                m_pbrushTextCaption;
 
 
-               frame_005(::object * pobject);
+               frame_005(::particle * pparticle);
                virtual ~frame_005();
 
 

@@ -80,7 +80,7 @@ void aura_auto_debug_teste()
 
 //   teste_aura_cmp();
 
-//   if(!m_psystem->m_pacmefile->exists("/ca2/debug_test"))
+//   if(!acmefile()->exists("/ca2/debug_test"))
 //   {
 //
 //      return;

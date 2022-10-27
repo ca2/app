@@ -21,7 +21,7 @@ namespace experience_tranquillum
       void update() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
       void get_frame_list(string_array & stra) override;
 

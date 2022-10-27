@@ -37,17 +37,17 @@ namespace experience_nanogui
    }
 
 
-   void style::on_initialize_object()
+   void style::on_initialize_particle()
    {
 
-      ::base::style::on_initialize_object();
+      ::base::style::on_initialize_particle();
 
       if (::is_null(m_pfont))
       {
 
          m_pfont.create(this);
 
-         auto pnode = m_psystem->node();
+         auto pnode = acmenode();
 
          m_pfont->create_point_font(pnode->font_name(e_font_sans_ui), 12, e_font_weight_normal);
 

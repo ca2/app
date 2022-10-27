@@ -65,7 +65,7 @@ namespace experience
    ::base::system * frame::get_system() const 
    {
       
-      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
    
    }
 
@@ -188,7 +188,7 @@ namespace experience
 
       auto pframewindow = m_pframewindow;
 
-      synchronous_lock synchronouslock(pframewindow->mutex());
+      synchronous_lock synchronouslock(pframewindow->synchronization());
 
       ::rectangle_i32 rectangleClient;
 

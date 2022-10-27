@@ -221,7 +221,7 @@ namespace user
       flags < enum_flag >                          m_flags;
       ::pointer<icon_layout>                      m_piconlayout;
       ::pointer<mesh_layout>                      m_pmeshlayout;
-      //::mutex                            m_mutex;
+      //::pointer < ::mutex >                            m_pmutex;
 
 
       index                                        m_iTopDisplayIndex;
@@ -245,7 +245,7 @@ namespace user
 
       //draw_mesh_item *                 m_pdrawmeshitem;
 
-      ::mutex                                      m_mutexData;
+      ::pointer < ::mutex >                                      m_pmutexData;
 
       bool                                         m_bAutoCreateMeshHeader;
       bool                                         m_bAutoCreateMeshData;
@@ -280,7 +280,7 @@ namespace user
 
       inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
       inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
-      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      inline ::core::system* get_system() const { return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; }
 
 
       void install_message_routing(::channel * pchannel) override;

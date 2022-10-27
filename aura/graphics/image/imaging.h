@@ -20,7 +20,7 @@ class CLASS_DECL_AURA imaging :
 public:
 
 
-   ::mutex                             m_mutexWork;
+   ::pointer < ::mutex >                             m_pmutexWork;
 
    ::pointer<image_array>             m_pimageaWork;
 
@@ -29,7 +29,7 @@ public:
    ~imaging() override;
 
 
-   virtual void initialize(::object * pobject) override;
+   virtual void initialize(::particle * pparticle) override;
 
 
    virtual void pixelate_24CC(byte * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, byte * pbSrc, i32 xSrc, i32 ySrc, i32 wSrc, i32 iSize);

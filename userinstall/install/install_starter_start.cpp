@@ -5,8 +5,8 @@ namespace install
 {
 
 
-   starter_start::starter_start(::object * pobject) :
-      ::object(pobject)
+   starter_start::starter_start(::particle * pparticle) :
+      ::object(pparticle)
    {
 
    }
@@ -48,12 +48,12 @@ namespace install
 
 #endif
 
-      if(m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
+      if(acmefile()->exists(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / "config\\plugin\\version.txt"))
-         strVersion = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+         strVersion = acmefile()->as_string(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

@@ -43,7 +43,7 @@ namespace hi5
          virtual ~authorization();
 
 
-         virtual void initialize_twitter_authorization(::object* pobject, const ::string & pszAuthorizationUrl, const ::string & pszForm, bool bAuth, bool bInteractive);
+         virtual void initialize_twitter_authorization(::object* pparticle, const ::string & pszAuthorizationUrl, const ::string & pszForm, bool bAuth, bool bInteractive);
 
          void ensure_main_document();
          void display_main_frame();

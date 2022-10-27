@@ -4,9 +4,9 @@
 
 
 
-window_opengl::window_opengl(::object * pobject) :
-   object(pobject),
-   window_graphics(pobject)
+window_opengl::window_opengl(::particle * pparticle) :
+   object(pparticle),
+   window_graphics(pparticle)
 {
 
 }

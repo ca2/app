@@ -10,14 +10,14 @@ namespace apex
 {
 
 
-   //application::application(::object * pobject) :
-   //   ::object(pobject)
+   //application::application(::particle * pparticle) :
+   //   ::object(pparticle)
    //{
 
    //   m_pthreadimpl.create(this);
    //   m_pthreadimpl->m_pthread = this;
 
-   //   m_psystem = papp->m_psystem;
+   //   acmesystem() = papp->acmesystem();
 
    //   m_atomApp = m_atomSystemTopic = nullptr;
 

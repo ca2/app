@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/matter.h"
+
+
 namespace geometry
 {
 
@@ -27,7 +30,7 @@ namespace geometry
       virtual ~geometry();
 
 
-      //virtual void initialize(::object * pobject) override;
+      //virtual void initialize(::particle * pparticle) override;
       void destroy() override;
 
 

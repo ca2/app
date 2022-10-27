@@ -5,10 +5,10 @@ namespace simpledb
 {
 
 
-   database::database(::object * pobject) :
-      ::object(pobject),
-      m_spfileMeta(pobject),
-      m_xmldocumentMeta(pobject)
+   database::database(::particle * pparticle) :
+      ::object(pparticle),
+      m_spfileMeta(pparticle),
+      m_xmldocumentMeta(pparticle)
    {
 
    }

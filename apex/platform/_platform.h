@@ -3,11 +3,11 @@
 
 //#include "match.h"
 
-#include "history.h"
+//#include "history.h"
 
 //#include "theme.h"
 
-#include "os_history.h"
+//#include "os_history.h"
 
 //#include "strn.h"
 
@@ -168,13 +168,13 @@ namespace dynamic_source
 //#define APP_TYPE ::base::application
 
 //#undef Sys
-//#define Sys(pobject) (*(::apex::get_system(pobject))->cast < SYSTEM_TYPE >())
+//#define Sys(pparticle) (*(::apex::get_system(pparticle))->cast < SYSTEM_TYPE >())
 //
 //#undef Sess
 //#define Sess(pcontextsession) (pcontextsession->cast < SESSION_TYPE >())
 //
 //#undef App
-//#define App(pobject) (*(::get_app(pobject))->cast < APP_TYPE >())
+//#define App(pparticle) (*(::get_app(pparticle))->cast < APP_TYPE >())
 
 
 
@@ -321,9 +321,9 @@ namespace apex
 ////
 
 
-#include "history.h"
+//#include "history.h"
 
-#include "os_history.h"
+//#include "os_history.h"
 
 
 namespace apex

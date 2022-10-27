@@ -90,10 +90,10 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 ////}
 //////
 ////
-////::pointer<regex>pcre_regex::compile(::object* pobject, const string& str)
+////::pointer<regex>pcre_regex::compile(::object* pparticle, const string& str)
 ////{
 ////
-////   ::pointer<pcre_context_impl>pcreContextImpl = pcre_context::create_context(pobject, 0);
+////   ::pointer<pcre_context_impl>pcreContextImpl = pcre_context::create_context(pparticle, 0);
 ////
 ////   auto putil = __new(pcre_util_impl(pcreContextImpl));
 ////

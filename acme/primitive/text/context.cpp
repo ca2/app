@@ -1,8 +1,11 @@
 ﻿#include "framework.h"
 #include "acme/constant/id.h"
+#include "acme/constant/idpool.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/platform/context.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/string/parse.h"
 #include "context.h"
 
 
@@ -175,7 +178,7 @@ namespace text
       m_map.InitHashTable(97);
 
 
-      //defer_create_mutex();
+      //defer_create_synchronization();
 
    }
 
@@ -187,10 +190,10 @@ namespace text
    }
 
 
-   void table::initialize(::object * pobject)
+   void table::initialize(::particle * pparticle)
    {
 
-      /*auto estatus =*/ ::object::initialize(pobject);
+      /*auto estatus =*/ ::object::initialize(pparticle);
 
       m_pschemaEn = &operator[]("en")["en"];
       m_pschemaStd = &operator[]("_std")["_std"];
@@ -219,7 +222,7 @@ namespace text
 
       return true;
 
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      string strMain = pszBaseDir;
 //
@@ -1042,7 +1045,7 @@ end:
    //bool context::match(string_array & stra, const char * psz, ::atom idExpression, ::atom idRoot) const
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   string_array straCandidate;
 

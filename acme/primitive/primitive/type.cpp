@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "type.h"
+#include "acme/primitive/string/string.h"
 
 
 string cxxabi_demangle (const char* name);

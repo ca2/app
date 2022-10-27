@@ -1,5 +1,13 @@
 ﻿#include "framework.h"
+#include "material_object.h"
+#include "acme/primitive/primitive/function.h"
 #include "acme/parallelization/asynchronous.h"
+#include "acme/primitive/primitive/type.h"
+#include "acme/exception/interface_only.h"
+#include "acme/platform/system.h"
+//#include "acme/platform/synchronized_predicate_routine.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 material_object::material_object(const material_object & materialobject) :
@@ -115,7 +123,7 @@ void material_object::send_procedure(const ::procedure & procedure)
 
    }
 
-   m_psystem->__defer_construct_new(m_pmapPropertyProcedure);
+   m_pcontext->__defer_construct_new(m_pmapPropertyProcedure);
 
    return &m_pmapPropertyProcedure->operator[](atom);
 
@@ -146,120 +154,15 @@ void material_object::add_procedure(const ::atom & atom, const ::procedure & pro
 }
 
 
-bool material_object::__get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload)
-{
-
-   auto psynchronization = __new(::promise::synchronization);
-
-   auto function = [functionReturn, &payload, psynchronization]()
-                             {
-
-                                auto statuspayload = functionReturn();
-
-                                synchronous_lock synchronizationlock(psynchronization->mutex());
-
-                                psynchronization->m_evGoingToWrite.SetEvent();
-
-                                psynchronization->m_evResponse.wait();
-
-                                if(!psynchronization->m_bTimeout)
-                                {
-
-                                   payload = statuspayload;
-
-                                   psynchronization->m_estatus = statuspayload;
-
-                                }
-
-                                psynchronization->m_evReady.SetEvent();
-
-                                ::release((::element * &)psynchronization.m_p);
-
-                             };
-
-   functionPost(function);
-
-   if (psynchronization->m_evGoingToWrite.wait(functionReturn.m_waitTimeout).failed())
-   {
-
-      psynchronization->m_bTimeout = true;
-
-      psynchronization->m_evResponse.SetEvent();
-
-      return false;
-
-   }
-
-   psynchronization->m_evResponse.SetEvent();
-
-   psynchronization->m_evReady.wait();
-
-   return true;
-
-}
-
-
-void material_object::__send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedure)
-{
-
-   auto psignalization = __new(::promise::signalization);
-
-   auto function = [procedure, psignalization]()
-   {
-
-      try
-      {
-
-         procedure();
-
-         psignalization->m_estatus = ::success;
-
-      }
-      catch (const ::exception& exception)
-      {
-
-         psignalization->m_estatus = exception.m_estatus;
-
-      }
-      catch(...)
-      {
-
-         psignalization->m_estatus = ::error_exception;
-
-      }
-
-      psignalization->m_evReady.SetEvent();
-
-      psignalization->m_pelementHold.release();
-
-   };
-
-   auto procedurePost = ::procedure(function);
-
-   psignalization->m_pelementHold = procedurePost;
-
-   functionPost(procedurePost);
-
-   auto estatus = psignalization->m_evReady.wait(procedure.timeout());
-
-   if(estatus == error_wait_timeout)
-   {
-
-      procedurePost->set_timed_out();
-
-   }
-
-}
-
-
-
 
 
 ::i64_array & material_object::idarray() const
 {
 
-   m_psystem->__defer_construct_new(((material_object *)this)->m_pia); return *m_pia;
+   m_pcontext->__defer_construct_new(((material_object *)this)->m_pia); return *m_pia;
 
 
 }
+
+
 

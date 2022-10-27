@@ -1,6 +1,6 @@
 #include "framework.h"
 
-::aura::application * get_acid_app(::object * pobject)
+::aura::application * get_acid_app(::particle * pparticle)
 {
 
    return memory_new ::helloworld::application();

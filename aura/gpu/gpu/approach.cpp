@@ -19,10 +19,10 @@ namespace gpu
    }
 
 
-   void approach::initialize(::object * pobject)
+   void approach::initialize(::particle * pparticle)
    {
 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
    }
 

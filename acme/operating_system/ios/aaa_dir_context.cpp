@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_ios.h"
-#include "acme/xml/_.h"
+//#include "acme/xml/_.h"
 
 
 bool _ui_library_dir(char * psz, unsigned int * puiSize);
@@ -171,7 +171,7 @@ namespace ios
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(         auto psystem = m_psystem;
+      if(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -261,7 +261,7 @@ pacmedirectory->is(path))
 
             }
 
-            if(!         auto psystem = m_psystem;
+            if(!         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -445,7 +445,7 @@ pacmedirectory->is(stra[i]))
 //   ::file::path dir::install()
 //   {
 //
-//      single_lock synchronouslock(&m_mutex, true);
+//      single_lock synchronouslock(m_pmutex, true);
 //
 //      return m_strCa2;
 //
@@ -542,10 +542,10 @@ pacmedirectory->is(stra[i]))
 //   }
 
 
-   void dir_context::initialize(::matter * pobject)
+   void dir_context::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::dir_context::initialize(pobject);
+      auto estatus = ::dir_context::initialize(pparticle);
       
       if(!estatus)
       {

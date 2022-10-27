@@ -28,7 +28,7 @@ namespace account
 #endif
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -52,7 +52,7 @@ namespace account
    ::file::path department::system_storage_default_path_prefix()
    {
 
-      return m_psystem->m_pacmedirectory->system() / "credential_storage";
+      return acmedirectory()->system() / "credential_storage";
 
    }
 
@@ -124,7 +124,7 @@ namespace account
    bool department::url_requires_auth(::file::path pathUrl)
    {
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -246,12 +246,12 @@ namespace account
 //   }
 
 
-   void department::initialize(::object * pobject)
+   void department::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::acme::department::initialize(pobject);
+      ::acme::department::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -332,7 +332,7 @@ namespace account
    void department::not_auth(::file::path pathUrl)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto puser = get_user(pathUrl);
 

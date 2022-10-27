@@ -32,7 +32,7 @@ public:
    void **              m_ositema;
    int  *               m_statusa;
    int                  m_iCount;
-   ::acme::system *     m_psystem;
+   ::acme::system *     acmesystem();
 
    menu_shared();
    virtual ~menu_shared();

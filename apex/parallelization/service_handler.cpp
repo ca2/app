@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "service_handler.h"
 #include "service.h"
+#include "acme/exception/interface_only.h"
 #include "apex/platform/application.h"
 
 

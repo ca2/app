@@ -5,9 +5,9 @@ namespace helloworld
 {
 
 
-   main_frame::main_frame(::object * pobject) :
-      object(pobject),
-      simple_frame_window(pobject)
+   main_frame::main_frame(::particle * pparticle) :
+      object(pparticle),
+      simple_frame_window(pparticle)
    {
 
       m_bDefaultCreateToolbar = false;

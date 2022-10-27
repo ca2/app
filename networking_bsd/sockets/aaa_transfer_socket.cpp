@@ -88,7 +88,7 @@ namespace networking_bsd
       //tcp_socket(handler)
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       //defer_initialize_winsock();
 
@@ -291,7 +291,7 @@ namespace networking_bsd
    void read_socket::on_read(const void * pdata, iptr n)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       u8 * pbuf = (u8 *) pdata;
 
@@ -325,7 +325,7 @@ namespace networking_bsd
 
    //      {
 
-   //         synchronous_lock synchronouslock(mutex());
+   //         synchronous_lock synchronouslock(this->synchronization());
 
    //         iRead = m_file.erase_begin(&point[nBytesReceived], nSize - nBytesReceived);
 
@@ -399,7 +399,7 @@ namespace networking_bsd
    void write_socket::OnWrite()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       write(m_file.get_data(), (memsize)m_file.get_size());
 

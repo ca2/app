@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/primitive/string/string.h"
+
 
 //extern thread_pointer < os_thread > t_posthread;
 //extern thread_pointer < htask > t_htask;
@@ -82,7 +84,7 @@ CLASS_DECL_APEX bool __node_apex_pos_term()
 // int get_proc_stat_core_count()
 // {
 
-//    string str = m_psystem->m_pacmefile->as_string("/proc/stat");
+//    string str = acmefile()->as_string("/proc/stat");
 
 //    string_array stra;
 

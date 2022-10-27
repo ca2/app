@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/element.h"
+
+
 class CLASS_DECL_ACME main_hold_base :
    virtual public ::element
 {

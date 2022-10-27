@@ -60,7 +60,7 @@ private:
    class serial::serial::serial_impl :
    virtual public object{
 public:
-      serial_impl (::object * pobject, const string &port,
+      serial_impl (::particle * pparticle, const string &port,
               unsigned long baudrate,
               enum_byte_size ebytesize,
               enum_parity eparity,

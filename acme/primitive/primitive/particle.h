@@ -11,18 +11,43 @@
 class extended_topic;
 
 
+//struct PARTICLE
+//{
+//public:
+//
+//
+//
+//   PARTICLE()
+//   {
+//
+//   }
+//
+//
+//
+//
+//};
+
+
+#include "acme/primitive/primitive/interlocked_count.h"
+
+
+using hsynchronization = void *;
+
+
 struct PARTICLE
 {
-public:
 
 
+   ::acme::context *                   m_pcontext;
    ::e_flag                            m_eflagElement;
-
-
-   PARTICLE()
+   union
    {
+      mutable ::particle *             m_pparticleSynchronization;
+      mutable hsynchronization         m_hsynchronization;
+   };
 
-   }
+
+   PARTICLE() : m_pcontext(nullptr), m_pparticleSynchronization(nullptr) {}
 
 
    [[nodiscard]] inline bool has(enum_flag eflag) const { return (m_eflagElement & eflag) == eflag; }
@@ -54,6 +79,20 @@ public:
    inline void unset_finishing() { clear(e_flag_finishing); }
 
 
+   [[nodiscard]] inline bool is_acquired() const { return has(e_flag_acquired); }
+   inline void set_acquired() { set(e_flag_acquired); }
+   inline void unset_acquired() { clear(e_flag_acquired); }
+
+   [[nodiscard]] inline bool is_own_synchronization() const { return has(e_flag_own_synchronization); }
+   inline void set_own_synchronization(bool bSet = true) { set(e_flag_own_synchronization, bSet); }
+   inline void unset_own_synchronization() { clear(e_flag_own_synchronization); }
+
+
+   [[nodiscard]] inline bool already_exists() const { return has(e_flag_already_exists); }
+   inline void set_already_exists(bool bSet = true) { set(e_flag_already_exists, bSet); }
+   inline void unset_already_exists() { clear(e_flag_already_exists); }
+
+
    // [[nodiscard]] inline bool is_heap_allocated() const { return has(e_flag_heap_allocated); }
    // inline void set_heap_allocated() { set(e_flag_heap_allocated); }
    // inline void unset_heap_allocated() { clear(e_flag_heap_allocated); }
@@ -79,6 +118,137 @@ public:
    inline void set_statically_allocated() { set(e_flag_statically_allocated); }
    inline void set_verbose(bool bVerbose = true) { set(e_flag_verbose, bVerbose); }
    [[nodiscard]] inline bool is_verbose() const { return has(e_flag_verbose); }
+
+
+
+};
+
+
+class CLASS_DECL_ACME particle :
+   virtual public PARTICLE
+{
+public:
+
+
+   ::interlocked_count                 m_countReference;
+
+
+#if OBJECT_REFERENCE_COUNT_DEBUG
+   inline particle() { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference")); }
+#else
+   inline particle() : m_countReference(1) { }
+#endif
+
+
+   virtual ~particle();
+
+
+   virtual void initialize(::particle * pparticle);
+
+
+#ifdef _DEBUG
+
+   virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+   virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+   virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+
+#else
+
+   inline i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+   inline i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+   inline i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+
+#endif
+
+   virtual void delete_this();
+
+
+   inline ::particle * synchronization() const { return ::is_set_ptr(this) ? m_pparticleSynchronization : nullptr; }
+   void set_synchronization(::particle * pparticleSynchronization);
+   void defer_create_synchronization();
+
+
+   virtual enum_type get_payload_type() const;
+
+   virtual void destroy();
+
+   //virtual void initialize(::particle * pparticle);
+   virtual void on_initialize_particle();
+
+
+   virtual ::acme::application * get_context_application();
+
+
+   ::acme_file * acmefile();
+   ::acme_path * acmepath();
+   ::acme_directory * acmedirectory();
+   ::acme::node * acmenode();
+   ::acme::system * acmesystem();
+
+
+   virtual void handle(::topic * ptopic, ::context * pcontext);
+
+
+   virtual ::topic_pointer create_topic(const ::atom & atom);
+   virtual ::extended_topic_pointer create_extended_topic(const ::atom & atom);
+
+
+   virtual void install_message_routing(::channel * pchannel);
+
+
+   virtual void init_task();
+
+   //virtual void initialize_matter(::matter * pmatter);
+   virtual void call_run();
+
+
+   virtual void run();
+   virtual bool step();
+   virtual void on_sequence();
+
+
+   virtual void set_finish();
+
+
+   [[nodiscard]] virtual strsize sz_len() const;
+   virtual void to_sz(char * sz, strsize len) const;
+
+   virtual const char * topic_text() const;
+   virtual const char * class_title() const;
+
+
+
+   // currently expected returned statuses:
+   // ::error_failed
+   // ::error_wait_timeout
+   // ::success
+   virtual ::e_status lock();
+   virtual ::e_status lock(const class ::wait & wait);
+
+   virtual ::e_status wait();
+   virtual ::e_status wait(const class ::wait & wait);
+
+   virtual void _lock();
+   virtual bool _lock(const class ::wait & wait);
+
+   virtual void _wait();
+   virtual bool _wait(const class ::wait & wait);
+
+   virtual bool is_locked() const;
+
+   virtual void unlock();
+   virtual void unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */);
+
+
+   virtual void init_wait();
+   virtual void exit_wait();
+
+
+   virtual void acquire_ownership();
+   virtual void release_ownership();
+
+
+
    //PARTICLE(const class ::atom & atom) :
    //   m_atom(atom)
    //{
@@ -99,74 +269,70 @@ public:
 
    //}
 
+   virtual enum_trace_category trace_category(const ::particle * pparticle) const;
+   virtual enum_trace_category trace_category() const;
+
+
+
+   virtual void trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
+   virtual void trace_log_information_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
+   virtual void trace_log_warning_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
+   virtual void trace_log_error_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
+   virtual void trace_log_fatal_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
+
+
+   virtual void trace_arguments(enum_trace_level etracelevel, const char * pszFormat, va_list & arguments);
+   virtual void trace_log_information_arguments(const char * pszFormat, va_list & arguments);
+   virtual void trace_log_warning_arguments(const char * pszFormat, va_list & arguments);
+   virtual void trace_log_error_arguments(const char * pszFormat, va_list & arguments);
+   virtual void trace_log_fatal_arguments(const char * pszFormat, va_list & arguments);
+
+
+   virtual void trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFormat, ...);
+   virtual void trace_log_information(enum_trace_category etracecategory, const char * pszFormat, ...);
+   virtual void trace_log_warning(enum_trace_category etracecategory, const char * pszFormat, ...);
+   virtual void trace_log_error(enum_trace_category etracecategory, const char * pszFormat, ...);
+   virtual void trace_log_fatal(enum_trace_category etracecategory, const char * pszFormat, ...);
+
+
+   virtual void trace(enum_trace_level etracelevel, const char * pszFormat, ...);
+   virtual void trace_log_information(const char * pszFormat, ...);
+   virtual void trace_log_warning(const char * pszFormat, ...);
+   virtual void trace_log_error(const char * pszFormat, ...);
+   virtual void trace_log_fatal(const char * pszFormat, ...);
+
+
+
 
 };
 
 
-#include "acme/primitive/primitive/interlocked_count.h"
+
+#define OPTIONAL_BASE_BODY                                                          \
+public:                                                                             \
+   void on_initialize_particle() override {}         \
+   void handle(::topic*,::context*) override {}
+
+//   void assert_ok() const override {}                                    \
+//   void dump(dump_context&) const override {}                               \
+   //void on_subject(::topic::topic*, ::context*) override {} \
+
+#define OPTIONAL_INTERACTION_BODY                                                   \
+   OPTIONAL_BASE_BODY                                                               \
+   void install_message_routing(::channel*) override {}                     \
+   void on_layout(::draw2d::graphics_pointer&) {}
 
 
-class CLASS_DECL_ACME particle :
-   virtual public PARTICLE
-{
-public:
+class optional_base1 : virtual public ::particle { OPTIONAL_BASE_BODY };
+class optional_base2 : virtual public ::particle { OPTIONAL_BASE_BODY };
+class optional_base3 : virtual public ::particle { OPTIONAL_BASE_BODY };
+class optional_base4 : virtual public ::particle { OPTIONAL_BASE_BODY };
 
+class optional_interaction1 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
+class optional_interaction2 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
+class optional_interaction3 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
+class optional_interaction4 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
 
-   ::interlocked_count                 m_countReference;
-
-#if OBJECT_REFERENCE_COUNT_DEBUG
-   inline particle() { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference")); }
-#else
-   inline particle() : m_countReference(1) { }
-#endif
-
-
-   virtual ~particle();
-
-
-
-
-#ifdef _DEBUG
-
-   virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-
-#else
-
-   inline i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   inline i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   inline i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-
-#endif
-
-   virtual void delete_this();
-
-
-   virtual enum_type get_payload_type() const;
-
-   virtual void destroy();
-
-   virtual void initialize(::object * pobject);
-   virtual void on_initialize_object();
-
-   virtual void init_task();
-
-   //virtual void initialize_matter(::matter * pmatter);
-   virtual void call_run();
-
-
-   virtual void run();
-   virtual bool step();
-   virtual void on_sequence();
-
-
-   [[nodiscard]] virtual strsize sz_len() const;
-   virtual void to_sz(char * sz, strsize len) const;
-
-
-
-};
 
 
 

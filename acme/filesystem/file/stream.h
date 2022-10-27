@@ -87,9 +87,9 @@ class text_stream;
 
 
 template < typename OBJECT >
-inline void __exchange(::binary_stream < FILE > & s, ::pointer<OBJECT>& pobject)
+inline void __exchange(::binary_stream < FILE > & s, ::pointer<OBJECT>& pparticle)
 {
-   __exchange(s, __typed_defer_create(pobject));
+   __exchange(s, __typed_defer_create(pparticle));
 }
 
 
@@ -355,7 +355,7 @@ public:
 //   void add_exception(const ::exception & e) override;
 //   void on_catch_all_exception() override;
 //
-//   virtual void write_element(const ::atom & atom, ::element * pelement);
+//   virtual void write_element(const ::atom & atom, ::particle * pparticle);
 //
 //   virtual ::pointer<::element>read_element(const ::atom & atom);
 //
@@ -492,7 +492,7 @@ public:
 //   virtual void write(const ::payload & payload);
 //   virtual void write(const property & property);
 //   virtual void write(const ::string & str) ;
-//   virtual void write(const ::matter * pobject);
+//   virtual void write(const ::particle * pparticle);
 //   virtual void write(const ::matter & matter);
 //   virtual void write(const property_set & set);
 //   virtual void write(const block & block);
@@ -538,7 +538,7 @@ public:
 //   virtual void read_var_body(::payload & payload, enum_type etype);
 //   virtual void read(property & property);
 //   virtual void read(string & str);
-//   //virtual void read(::matter * pobject);
+//   //virtual void read(::particle * pparticle);
 //   virtual void read(::matter & matter);
 //   virtual void read(::property_set & set);
 //   virtual void read(block & block);
@@ -581,7 +581,7 @@ public:
 //   virtual void exchange(const ::atom & atom, ::payload & payload);
 //   virtual void exchange(const ::atom & atom, property & property);
 //   virtual void exchange(const ::atom & atom, string & str) ;
-//   virtual void exchange(const ::atom & atom, ::matter * pobject);
+//   virtual void exchange(const ::atom & atom, ::particle * pparticle);
 //   virtual void exchange(const ::atom & atom, ::matter & matter);
 //   virtual void exchange(const ::atom & atom, property_set & set);
 //   virtual void exchange(const ::atom & atom, block & block);
@@ -663,7 +663,7 @@ public:
 //
 //
 //   template < typename BASE_TYPE >
-//   inline binary_stream < FILE > & save_object(const BASE_TYPE * pobject);
+//   inline binary_stream < FILE > & save_object(const BASE_TYPE * pparticle);
 //
 //   template < typename BASE_TYPE >
 //   inline ::pointer<BASE_TYPE>load_object();
@@ -846,7 +846,7 @@ public:
 //
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const property & property) { s.write(property); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::matter * pobject) { s.write(pobject); return s; }
+//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::particle * pparticle) { s.write(pparticle); return s; }
 //
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::matter & matter) { s.write(matter); return s; }
 //

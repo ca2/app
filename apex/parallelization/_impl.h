@@ -49,7 +49,7 @@ _AFXMT_INLINE int_bool critical_section::Init()
    return true;
 }
 
-_AFXMT_INLINE critical_sectioncritical_section() : synchronization_object < HANDLE > (nullptr)
+_AFXMT_INLINE critical_sectioncritical_section() : synchronization < HANDLE > (nullptr)
 {
    int_bool bSuccess;
 
@@ -127,7 +127,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 ////template <class T >
 ////inline synch_index_iterator::synch_index_iterator(synch_ptr_array < T > & ptra,bool bInitialLock):
-////   single_lock(&ptra.m_mutex,true)
+////   single_lock(&ptra.m_pmutex,true)
 ////{
 ////
 ////   m_pptra = &ptra;
@@ -200,7 +200,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //   }
 //
 //
-//   hold(::object * pobject)
+//   hold(::particle * pparticle)
 //   {
 //
 //   }
@@ -468,8 +468,8 @@ auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), 
 //   }
 //
 //
-//   hold(::object * pobject) :
-//      m_pobject(pobject)
+//   hold(::particle * pparticle) :
+//      m_pobject(pparticle)
 //   {
 //
 //   }

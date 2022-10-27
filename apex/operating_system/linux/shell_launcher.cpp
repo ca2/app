@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "shell_launcher.h"
 #include "acme/platform/node.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/primitive/payload.h"
 
 
 namespace ansios
@@ -13,7 +15,7 @@ namespace ansios
       if (m_iMode == 0)
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node();
 

@@ -45,10 +45,10 @@ namespace axis
    }
 
 
-   void application::initialize(::object * pobject)
+   void application::initialize(::particle * pparticle)
    {
 
-      ::aura::application::initialize(pobject);
+      ::aura::application::initialize(pparticle);
 
    }
 
@@ -467,7 +467,7 @@ namespace axis
 
          ////data_pulse_change({ "ca2.savings", true }, nullptr);
 
-         //auto psystem = m_psystem->m_paurasystem;
+         //auto psystem = acmesystem()->m_paurasystem;
 
          //psystem->appa_load_string_table();
 
@@ -723,7 +723,7 @@ namespace axis
          if (!is_session() && !is_system())
          {
 
-            auto psystem = m_psystem->m_paurasystem;
+            auto psystem = acmesystem()->m_paurasystem;
 
             if (psystem != nullptr)
             {
@@ -1394,10 +1394,10 @@ namespace axis
 
          string strType = __type_name(this);
 
-         //if(::is_set(m_psystem))
+         //if(::is_set(acmesystem()))
          //{
 
-         //   m_psystem->add_reference(this);
+         //   acmesystem()->add_reference(this);
 
          //}
 
@@ -1630,7 +1630,7 @@ namespace axis
 
    //   }
 
-   //   /*     if (!m_psystem->m_phtml->initialize())
+   //   /*     if (!acmesystem()->m_phtml->initialize())
    //        {
 
    //           return false;
@@ -1786,10 +1786,10 @@ namespace axis
 
       string strRequestUrl;
 
-      if (m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt").has_char())
+      if (acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 

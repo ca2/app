@@ -26,7 +26,7 @@ namespace user
       print_task();
       virtual ~print_task();
 
-      virtual void     initialize(::object * pobject) override;
+      virtual void     initialize(::particle * pparticle) override;
 
       virtual void     run() override;
 

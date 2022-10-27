@@ -24,7 +24,7 @@ namespace browser
       address_array < ::user::check_box * >           m_checkptraBilbo;
 
 
-      pane_impact(::object * pobject);
+      pane_impact(::particle * pparticle);
       virtual ~pane_impact();
 
 

@@ -134,9 +134,9 @@ bool is_space_key(XIRawEvent *event)
 
 
 // Tutor Exilius Q(t)List streaming contribution
-::mutex * g_pmutexX11Runnable = nullptr;
+::pointer< ::mutex > g_pmutexX11Runnable = nullptr;
 list < ::pointer<::matter >>* g_prunnableptrlX11 = nullptr;
-//::mutex * g_pmutexX11Sync = nullptr;
+//::pointer< ::mutex > g_pmutexX11Sync = nullptr;
 //manual_reset_event * g_peventX11Sync = nullptr;
 //::pointer<::matter>g_prunnableX11Sync;
 Display * g_pdisplayX11= nullptr;
@@ -146,7 +146,7 @@ int g_fdX11[2] = {};
 int_bool _x11_get_cursor_pos(Display * d, POINT32 * ppointCursor);
 
 
-::mutex * g_pmutexX11 = nullptr;
+::pointer< ::mutex > g_pmutexX11 = nullptr;
 
 
 mutex * user_mutex() {return g_pmutexX11;}
@@ -3367,7 +3367,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
                      if(pinteraction->layout().design().display() == ::e_display_iconic)
                      {
 
-                        //m_psystem->m_pacmefile->put_contents("/home/camilo/xxx.txt", "");
+                        //acmefile()->put_contents("/home/camilo/xxx.txt", "");
 
                         // 1111111111111111111111111111111111111111111
 
@@ -4423,23 +4423,23 @@ int_bool os_init_windowing()
 
    pipe(g_fdX11);
 
-   g_pmutexX11 = memory_new ::mutex();
+   g_pmutexX11 = memory_new ::pointer < ::mutex >();
 
-   g_pmutexX11Runnable = memory_new ::mutex();
+   g_pmutexX11Runnable = memory_new ::pointer < ::mutex >();
 
    g_prunnableptrlX11 = memory_new list < ::pointer<::matter >>);
 
-//   g_pmutexX11Sync = memory_new ::mutex();
+//   g_pmutexX11Sync = memory_new ::pointer < ::mutex >();
 
 //   g_peventX11Sync = memory_new manual_reset_event();
 
    oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 
-   oswindow_data::s_pmutex = memory_new ::mutex;
+   oswindow_data::s_pmutex = memory_new ::pointer < ::mutex >;
 
    osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
 
-   osdisplay_data::s_pmutex = memory_new ::mutex;
+   osdisplay_data::s_pmutex = memory_new ::pointer < ::mutex >;
 
    if(!XInitThreads())
    {
@@ -4858,9 +4858,9 @@ void x11_kick_idle()
 }
 
 
-extern ::mutex * g_pmutexX11Runnable;
+extern ::pointer< ::mutex > g_pmutexX11Runnable;
 extern list < ::pointer<::matter >>* g_prunnableptrlX11;
-//extern ::mutex * g_pmutexX11Sync;
+//extern ::pointer< ::mutex > g_pmutexX11Sync;
 //extern manual_reset_event * g_peventX11Sync;
 //extern ::pointer<::matter>g_prunnableX11Sync;
 

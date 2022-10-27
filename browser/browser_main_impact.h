@@ -15,7 +15,7 @@ namespace browser
       impact *                  m_pimpact;
 
 
-      main_impact(::object * pobject);
+      main_impact(::particle * pparticle);
       virtual ~main_impact();
 
 

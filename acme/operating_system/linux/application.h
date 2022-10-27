@@ -16,7 +16,7 @@
 //      WINUSHORT               m_atomSystemTopic;
 //
 //
-//      application(::matter * pobject);
+//      application(::particle * pparticle);
 //      ~application() override;
 //
 //      virtual HINSTANCE GetHinstance();

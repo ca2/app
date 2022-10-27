@@ -32,8 +32,8 @@ struct clipboard_data :
 public:
 
 
-   clipboard_data(::object * pobject, e_clipboard eclipboard) :
-      object(pobject)
+   clipboard_data(::particle * pparticle, e_clipboard eclipboard) :
+      object(pparticle)
    {
 
       m_eclipboard = eclipboard;
@@ -471,10 +471,10 @@ namespace linux
    }
 
 
-   void copydesk::initialize(::object * pobject)
+   void copydesk::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::user::copydesk::initialize(pobject);
+      auto estatus = ::user::copydesk::initialize(pparticle);
 
       if(!estatus)
       {

@@ -17,7 +17,7 @@ bool g_bInitializeCallstack = false;
 #endif
 
 
-extern ::mutex* g_pmutexSymDbgHelp;
+extern ::pointer < ::mutex >* g_pmutexSymDbgHelp;
 
 
 CLASS_DECL_ACME void defer_initialize_callstack()

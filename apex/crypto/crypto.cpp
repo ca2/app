@@ -4,6 +4,8 @@
 #include "hasher_algorithm.h"
 #include "initializer.h"
 #include "rsa.h"
+#include "acme/exception/interface_only.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/string/base64.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -11,7 +13,6 @@
 #include "acme/primitive/string/base64.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
-
 
 
 namespace crypto
@@ -209,7 +210,7 @@ namespace crypto
 
          //auto psystem = get_system()->m_papexsystem;
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pbase64 = psystem->base64();
 
@@ -238,7 +239,7 @@ namespace crypto
 
       //   storageDecrypt.from_string(pszDecrypt);
 
-      //   auto psystem = m_psystem;
+      //   auto psystem = acmesystem();
 
       //   auto pbase64 = psystem->base64();
 
@@ -262,7 +263,7 @@ namespace crypto
 
       //   memory storageKey;
 
-      //   auto psystem = m_psystem;
+      //   auto psystem = acmesystem();
 
       //   auto pbase64 = psystem->base64();
 
@@ -713,7 +714,7 @@ namespace crypto
       ::file::path crypto::get_crypt_key_file_path()
       {
 
-         return m_psystem->m_pacmedirectory->system() / "user" / "databin.bin";
+         return acmedirectory()->system() / "user" / "databin.bin";
 
       }
 

@@ -3,7 +3,9 @@
 //
 // app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "application.h"
 #include "acme/platform/node.h"
+#include "acme/platform/system.h"
 
 
 #if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
@@ -33,11 +35,14 @@ namespace acme
 {
 
 
-   void initialize();
+   //void initialize();
 
 
    application::application()
    {
+
+
+      ::factory::add_factory_item< ::acme::system >();
 
       //if (!g_p)
       //{
@@ -52,7 +57,7 @@ namespace acme
 
       m_pacmeapplicationMain = this;
 
-      ::acme::initialize();
+      //::acme::initialize();
 
 #if defined(WINDOWS)
 
@@ -78,10 +83,10 @@ namespace acme
    }
 
 
-   void application::initialize(::object * pobject)
+   void application::initialize(::particle * pparticle)
    {
 
-      ::task::initialize(pobject);
+      ::task::initialize(pparticle);
 
       {
 
@@ -211,7 +216,7 @@ namespace acme
    void application::init_instance()
    {
 
-      m_psystem->node()->add_application_capability(m_eapplicationcapabilitya);
+      acmenode()->add_application_capability(m_eapplicationcapabilitya);
 
    }
 
@@ -273,7 +278,7 @@ void * application_system(void * pApplication)
 
    auto papp = (::acme::application *)pApplication;
 
-   return papp->m_psystem;
+   return papp->acmesystem();
 
 }
 

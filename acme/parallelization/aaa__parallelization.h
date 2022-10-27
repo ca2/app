@@ -4,28 +4,6 @@
 class task;
 
 
-CLASS_DECL_ACME ::task* get_task();
-
-CLASS_DECL_ACME bool task_get_run();
-
-
-inline void preempt();
-
-
-CLASS_DECL_ACME itask_t get_current_itask();
-
-CLASS_DECL_ACME htask_t get_current_htask();
-
-
-
-CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
-CLASS_DECL_ACME bool is_single_main_user_thread();
-
-
-CLASS_DECL_ACME bool is_main_thread();
-
-
-CLASS_DECL_ACME itask_t get_main_user_itask();
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -74,7 +52,7 @@ CLASS_DECL_ACME itask_t get_main_user_itask();
 #endif
 
 
-class synchronization_object;
+class synchronization;
 class semaphore;
 class event;
 class critical_section;
@@ -82,13 +60,6 @@ class single_lock;
 class multi_lock;
 
 
-CLASS_DECL_ACME void __call(const ::procedure & procedure);
-
-
-CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, ::procedure function);
-
-
-CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure);
 
 
 //namespace parallelization
@@ -105,20 +76,20 @@ CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure);
 //         for (::index i = 0; i < array.get_size(); i++)
 //         {
 //
-//            ::pointer<::matter>pobject;
+//            ::pointer<::matter>pparticle;
 //
-//            pobject = &__typed(array[i]);
+//            pparticle = &__typed(array[i]);
 //
-//            if (pobject && pobject->is_thread())
+//            if (pparticle && pparticle->is_thread())
 //            {
 //
-//               if (pobject->task_get_run())
+//               if (pparticle->task_get_run())
 //               {
 //
-//                  if (pobject->get_tag().compare(pszTag) == 0)
+//                  if (pparticle->get_tag().compare(pszTag) == 0)
 //                  {
 //
-//                     return pobject;
+//                     return pparticle;
 //
 //                  }
 //
@@ -140,12 +111,6 @@ CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure);
 
 
 
-CLASS_DECL_ACME void task_set_name(const char * psz);
-CLASS_DECL_ACME void task_set_name(htask_t htask, const char* pszName);
-
-
-CLASS_DECL_ACME string task_get_name();
-CLASS_DECL_ACME string task_get_name(htask_t htask);
 
 
 
@@ -164,36 +129,6 @@ class thread_tools;
 class thread_startup;
 
 
-namespace parallelization
-{
-
-
-   CLASS_DECL_ACME bool set_priority(enum_priority epriority);
-
-   CLASS_DECL_ACME bool set_priority(htask_t htask, enum_priority epriority);
-
-   CLASS_DECL_ACME enum_priority get_priority();
-
-   CLASS_DECL_ACME enum_priority get_priority(htask_t htask);
-
-
-   //inline i32 get_priority_none()
-   //{
-
-   //   return e_priority_none;
-
-   //}
-
-
-   //inline i32 get_priority_normal()
-   //{
-
-   //   return e_priority_normal;
-
-   //}
-
-
-} // namespace parallelization
 
 
 class sync_interface;
@@ -225,7 +160,7 @@ class _synchronous_lock;
 //#include "acme/platform/predicate_holder.h"
 //
 //
-//#include "synchronization_object.h"
+//#include "synchronization.h"
 //#include "synchronization_array.h"
 //#include "semaphore.h"
 //#include "mutex.h"
@@ -315,24 +250,24 @@ class _synchronous_lock;
 //CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 //
 //
-//CLASS_DECL_ACME::mutex& message_dispatch_mutex();
+//CLASS_DECL_ACME::pointer < ::mutex >& message_dispatch_mutex();
 //
 //
 //
 //#ifdef WINDOWS
 //
-//inline bool wait(synchronization_object* psync, const duration& duration = duration::infinite())
+//inline bool wait(synchronization* psync, const duration& duration = duration::infinite())
 //{
 //   return psync->wait(duration);
 //}
 //
-//void wait(i32 numberOfItems, synchronization_object* psync, const duration& duration = duration::infinite(), bool waitForAll = false);
+//void wait(i32 numberOfItems, synchronization* psync, const duration& duration = duration::infinite(), bool waitForAll = false);
 //
 //#else
 //
-//void wait(synchronization_object* psynchronizationobject, const duration& duration = duration::infinite());
+//void wait(synchronization* psynchronizationobject, const duration& duration = duration::infinite());
 //
-//void wait(size_t numberOfItems, synchronization_object** psynchronizationobject, const duration& duration = duration::infinite(), bool waitForAll = false);
+//void wait(size_t numberOfItems, synchronization** psynchronizationobject, const duration& duration = duration::infinite(), bool waitForAll = false);
 //
 //#endif
 //
@@ -343,11 +278,11 @@ class _synchronous_lock;
 ////
 ////CLASS_DECL_ACME bool __task_sleep(task* ptask, ::duration ::duration);
 ////
-////CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync);
+////CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization* psync);
 ////
-////CLASS_DECL_ACME bool __task_sleep(task* ptask, ::duration ::duration, synchronization_object* psync);
+////CLASS_DECL_ACME bool __task_sleep(task* ptask, ::duration ::duration, synchronization* psync);
 ////
-////CLASS_DECL_ACME bool task_sleep(const ::duration & duration, synchronization_object* psync);
+////CLASS_DECL_ACME bool task_sleep(const ::duration & duration, synchronization* psync);
 //CLASS_DECL_ACME bool task_sleep(const class ::wait & wait);
 //
 //

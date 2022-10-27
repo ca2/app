@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "axis/html/html_lite/_.h"
+//#include "axis/html/html_lite/_.h"
 #endif
 #include "axis/id.h"
 #include "axis/platform/system.h"
@@ -27,12 +27,12 @@ namespace html
    }
 
 
-   void html::initialize(::object * pobject)
+   void html::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::acme::department::initialize(pobject);
+      ::acme::department::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -41,7 +41,7 @@ namespace html
 
       //}
 
-      //__construct_new(this, m_pentitysolver = memory_new LiteHTMLEntityResolver(pobject);
+      //__construct_new(this, m_pentitysolver = memory_new LiteHTMLEntityResolver(pparticle);
       __construct_new(m_pentitysolver);
 
       m_clrInvalid = 0xffffffff;
@@ -384,7 +384,7 @@ namespace html
    }
 
 
-   //void html::initialize(::object * pobject)
+   //void html::initialize(::particle * pparticle)
    //{
 
 
@@ -693,7 +693,7 @@ namespace html
    }
 
 
-   bool html::defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobject, const ::payload & payload)
+   bool html::defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pparticle, const ::payload & payload)
    {
 
       bool bHtml = false;

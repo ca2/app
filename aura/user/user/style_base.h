@@ -18,7 +18,7 @@ namespace user
       ~style_base() override;
 
 
-      void on_initialize_object() override; 
+      void on_initialize_particle() override; 
 
 
       void handle(::topic * ptopic, ::context * pcontext) override;

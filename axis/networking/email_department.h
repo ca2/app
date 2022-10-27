@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/platform/department.h"
+
+
 namespace networking
 {
 
@@ -22,16 +25,10 @@ namespace networking
       virtual bool is_valid_public_address(const string& strEmailAddress);
 
 
-
-      
-
-
    };
 
 
 } // namespace net
-
-
 
 
 

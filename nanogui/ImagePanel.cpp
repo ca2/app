@@ -119,9 +119,9 @@ void ImagePanel::draw(NVGcontext * ctx) {
 
    auto pvscrollpanel = dynamic_cast <VScrollPanel *>(parent());
 
-   auto pobject = get_nano2d_object(ctx);
+   auto pparticle = get_nano2d_object(ctx);
 
-   auto pgraphics = dynamic_cast <::draw2d::graphics *>(pobject);
+   auto pgraphics = dynamic_cast <::draw2d::graphics *>(pparticle);
 
    ___scoped_restore(pgraphics->m_bUseImageMipMapsOrResizedImages);
 

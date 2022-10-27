@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
 
@@ -105,7 +106,7 @@ namespace parallelization
 
    //   auto psystem = get_system()->m_papexsystem;
 
-   //   synchronous_lock synchronouslock(&psystem->m_mutexTask);
+   //   synchronous_lock synchronouslock(&psystem->m_pmutexTask);
 
    //   for (auto & pair : psystem->m_taskidmap)
    //   {
@@ -140,7 +141,7 @@ namespace parallelization
 
       //auto psystem = get_system()->m_papexsystem;
 
-      synchronous_lock synchronouslock(&psystem->m_mutexTask);
+      synchronous_lock synchronouslock(psystem->m_pmutexTask);
 
       for (auto& pair : psystem->m_taskidmap)
       {
@@ -164,7 +165,7 @@ namespace parallelization
    CLASS_DECL_APEX void post_to_all_threads(::apex::system * psystem, const ::atom & atom, wparam wparam, lparam lparam)
    {
 
-      synchronous_lock synchronouslock(&psystem->m_mutexTask);
+      synchronous_lock synchronouslock(psystem->m_pmutexTask);
 
       for (auto& pair : psystem->m_taskidmap)
       {
@@ -326,10 +327,10 @@ namespace parallelization
 //} // namespace parallelization
 //
 //
-//::mutex * s_pmutexMessageDispatch = nullptr;
+//::pointer< ::mutex > s_pmutexMessageDispatch = nullptr;
 //
 //
-//::mutex & message_dispatch_mutex()
+//::pointer < ::mutex > & message_dispatch_mutex()
 //{
 //
 //
@@ -423,18 +424,18 @@ namespace parallelization
 //
 //   }
 //
-//   auto pobject = ptask;
+//   auto pparticle = ptask;
 //
-//   if (!pobject)
+//   if (!pparticle)
 //   {
 //
 //      return get_global_application();
 //
 //   }
 //
-//   auto papp = pobject->get_context();
+//   auto papp = pparticle->get_context();
 //
-//   if (!pobject)
+//   if (!pparticle)
 //   {
 //
 //      return get_global_application();
@@ -852,12 +853,12 @@ namespace apex
    //   try
    //   {
    //
-   //      ::pointer<matter>pobject(e_move_transfer, pobjectTask);
+   //      ::pointer<matter>pparticle(e_move_transfer, pobjectTask);
    //
    //      try
    //      {
    //
-   //         estatus = pobject->call();
+   //         estatus = pparticle->call();
    //
    //      }
    //      catch (...)
@@ -906,7 +907,7 @@ void thread_ptra::destroy()
    try
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       for (index i = 0; i < get_count(); i++)
       {
@@ -960,7 +961,7 @@ void thread_ptra::destroy()
       if (pthreadItem != ptask && pthreadItem != nullptr)
       {
 
-         INFORMATION("thread_ptra::get_count_except_current_thread " << typeid(*pthreadItem).name());
+         FORMATTED_INFORMATION("thread_ptra::get_count_except_current_thread \"%s\"", __type_name(pthreadItem).c_str());
 
          c++;
 
@@ -973,7 +974,7 @@ void thread_ptra::destroy()
 }
 
 
-void thread_ptra::wait(const class ::wait & wait, synchronous_lock& synchronouslock)
+void thread_ptra::wait(const class ::wait & wait, ::particle & particleSynchronization)
 {
 
    auto waitStart = ::wait::now();
@@ -988,13 +989,13 @@ void thread_ptra::wait(const class ::wait & wait, synchronous_lock& synchronousl
       while (cCount > 0 && waitStart.elapsed() < wait)
       {
 
-         synchronouslock.unlock();
+         particleSynchronization.unlock();
 
          cCount = get_count_except_current_thread();
 
          preempt(500_ms);
 
-         synchronouslock.lock();
+         particleSynchronization.lock();
 
       }
 

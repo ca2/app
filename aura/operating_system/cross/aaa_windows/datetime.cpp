@@ -92,7 +92,7 @@ extern "C" int settimeofday (const struct timeval *__tv, const struct timezone *
 static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
 
 
-::mutex * g_pmutexTz = nullptr;
+::pointer< ::mutex > g_pmutexTz = nullptr;
 
 
 #define TICKSPERSEC        10000000

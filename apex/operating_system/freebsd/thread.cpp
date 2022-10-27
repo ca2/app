@@ -8,10 +8,10 @@ namespace linux
 {
 
 
-//   thread::thread(::object * pobject) :
-//      ::object(pobject),
-//      ::ansios::thread_impl(pobject),
-//      ::thread_impl(pobject)
+//   thread::thread(::particle * pparticle) :
+//      ::object(pparticle),
+//      ::ansios::thread_impl(pparticle),
+//      ::thread_impl(pparticle)
 //   {
 //
 //

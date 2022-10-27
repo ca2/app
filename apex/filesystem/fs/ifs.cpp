@@ -1,7 +1,9 @@
 #include "framework.h"
+#include "ifs.h"
 #include "ifs_file.h"
-#include "apex/networking/sockets/_sockets.h"
-#include "apex/filesystem/fs/_fs.h"
+#include "acme/parallelization/synchronous_lock.h"
+//#include "apex/networking/sockets/_sockets.h"
+//#include "apex/filesystem/fs/_fs.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
@@ -26,7 +28,7 @@ ifs::~ifs()
 bool ifs::fast_has_subdir(const ::file::path & path)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    dir_listing & dir = m_map[path];
 
@@ -46,11 +48,11 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 bool ifs::has_subdir(const ::file::path & path)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    dir_listing & dir = m_map[path];
 
-   auto psystem = m_psystem->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    if (dir.m_durationLast.elapsed() < psystem->m_durationFileListingCache)
    {
@@ -95,11 +97,11 @@ bool ifs::has_subdir(const ::file::path & path)
 bool ifs::enumerate(::file::listing & listing)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    auto & dir = m_map[listing.m_pathUser];
 
-   auto psystem = m_psystem->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    if (dir.m_durationLast.elapsed() < psystem->m_durationFileListingCache)
    {
@@ -304,11 +306,11 @@ int ifs::is_dir(const ::file::path & path)
 
    defer_initialize();
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    dir_listing & dir = m_map[path.folder()];
 
-   auto psystem = m_psystem->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    if(dir.m_durationLast.timeout(psystem->m_durationFileListingCache))
    {

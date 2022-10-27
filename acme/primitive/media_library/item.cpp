@@ -1,6 +1,9 @@
-// Created by camilo on 2022-05-28 02:32 <3ThomasBorregaardSørensen
+// Created by camilo on 2022-05-28 02:32 <3ThomasBorregaardSï¿½rensen
 #include "framework.h"
 #include "item.h"
+#include "acme/primitive/string/string.h"
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/exception/exception.h"
 
 
 namespace media_library

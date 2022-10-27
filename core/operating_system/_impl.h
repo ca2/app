@@ -19,13 +19,13 @@
 
 
 
-//CLASS_DECL_CORE inline ::core::user* get_context_user(::object* pobject)
+//CLASS_DECL_CORE inline ::core::user* get_context_user(::object* pparticle)
 //{
 //
-//   if (pobject->get_context_user())
+//   if (pparticle->get_context_user())
 //   {
 //
-//      return (::core::user*) pobject->get_context_user()->m_pObjectThis;
+//      return (::core::user*) pparticle->get_context_user()->m_pObjectThis;
 //
 //   }
 //

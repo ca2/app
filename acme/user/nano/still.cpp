@@ -1,14 +1,16 @@
 // Created by camilo on 2022-02-06 09:28 <3ThomasBorregaardSørensen
 #include "framework.h"
+#include "still.h"
+#include "window.h"
+#include "device.h"
 #include "acme/user/user/mouse.h"
-#include "_nano.h"
 
 
 nano_still::~nano_still()
 {
 
-
 }
+
 
 
 void nano_still::on_draw(nano_device * pnanodevice)

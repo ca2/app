@@ -7,8 +7,8 @@
 //public:
 //
 //
-//   ::procedure_array(::matter * pobject) :
-//      ::matter(pobject)
+//   ::procedure_array(::particle * pparticle) :
+//      ::matter(pparticle)
 //   {
 //
 //   }

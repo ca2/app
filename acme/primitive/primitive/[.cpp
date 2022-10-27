@@ -23,7 +23,7 @@ payload::payload(const char * psz)
 }
 
 
-payload::payload(::element * pelement)
+payload::payload(::particle * pparticle)
 {
 
    m_etype = e_type_new;
@@ -2121,65 +2121,65 @@ bool payload::operator > (bool b) const
    return is_greater(get_bool(), b);
 }
 
-bool payload::strictly_equal(const class ::payload & payload) const
-{
-   return m_etype == payload.m_etype && operator == (payload);
-}
-
-bool payload::strictly_equal(const char * psz) const
-{
-   return m_etype == e_type_string && m_str == psz;
-}
-
-bool payload::strictly_equal(const ::string & str) const
-{
-   return m_etype == e_type_string && m_str == str;
-}
-
-bool payload::strictly_equal(::f64 f64) const
-{
-   return m_etype == e_type_f64 && m_f64 == f64;
-}
-
-bool payload::strictly_equal(::i32 i) const
-{
-   return m_etype == e_type_i32 && m_i32 == i;
-}
-
-bool payload::strictly_equal(bool b) const
-{
-   return m_etype == e_type_bool && is_equivalent(m_b, b);
-}
-
-bool payload::strictly_different(const class ::payload & payload) const
-{
-   return m_etype != payload.m_etype || operator != (payload);
-}
-
-bool payload::strictly_different(const char * psz) const
-{
-   return m_etype != e_type_string || m_str != psz;
-}
-
-bool payload::strictly_different(const ::string & str) const
-{
-   return m_etype != e_type_string || m_str != str;
-}
-
-bool payload::strictly_different(::f64 f64) const
-{
-   return m_etype != e_type_f64 || m_f64 != f64;
-}
-
-bool payload::strictly_different(::i32 i) const
-{
-   return m_etype != e_type_i32 || m_i32 != i;
-}
-
-bool payload::strictly_different(bool b) const
-{
-   return m_etype != e_type_bool || is_different(m_b, b);
-}
+//bool payload::strictly_equal(const class ::payload & payload) const
+//{
+//   return m_etype == payload.m_etype && operator == (payload);
+//}
+//
+//bool payload::strictly_equal(const char * psz) const
+//{
+//   return m_etype == e_type_string && m_str == psz;
+//}
+//
+//bool payload::strictly_equal(const ::string & str) const
+//{
+//   return m_etype == e_type_string && m_str == str;
+//}
+//
+//bool payload::strictly_equal(::f64 f64) const
+//{
+//   return m_etype == e_type_f64 && m_f64 == f64;
+//}
+//
+//bool payload::strictly_equal(::i32 i) const
+//{
+//   return m_etype == e_type_i32 && m_i32 == i;
+//}
+//
+//bool payload::strictly_equal(bool b) const
+//{
+//   return m_etype == e_type_bool && is_equivalent(m_b, b);
+//}
+//
+//bool payload::strictly_different(const class ::payload & payload) const
+//{
+//   return m_etype != payload.m_etype || operator != (payload);
+//}
+//
+//bool payload::strictly_different(const char * psz) const
+//{
+//   return m_etype != e_type_string || m_str != psz;
+//}
+//
+//bool payload::strictly_different(const ::string & str) const
+//{
+//   return m_etype != e_type_string || m_str != str;
+//}
+//
+//bool payload::strictly_different(::f64 f64) const
+//{
+//   return m_etype != e_type_f64 || m_f64 != f64;
+//}
+//
+//bool payload::strictly_different(::i32 i) const
+//{
+//   return m_etype != e_type_i32 || m_i32 != i;
+//}
+//
+//bool payload::strictly_different(bool b) const
+//{
+//   return m_etype != e_type_bool || is_different(m_b, b);
+//}
 
 
 string payload::get_recursive_string() const

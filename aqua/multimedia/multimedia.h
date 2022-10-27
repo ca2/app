@@ -24,7 +24,7 @@ namespace aqua
       ~multimedia() override;
 
 
-      virtual void initialize_multimedia(::object * pobject);
+      virtual void initialize_multimedia(::particle * pparticle);
 
       virtual void on_song_added(const string& strId);
 
@@ -32,7 +32,7 @@ namespace aqua
 
       virtual void on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string2a & str2aTitle);
 
-      virtual ::pointer<::user::controller>defer_create_impact(::object* pobject, const ::string & strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr);
+      virtual ::pointer<::user::controller>defer_create_impact(::object* pparticle, const ::string & strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr);
 
       virtual void exit_application();
 
@@ -68,7 +68,7 @@ extern "C"
 CLASS_DECL_AQUA ::aqua::multimedia * get_get_new_multimedia();
 
 
-CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::object * pobject);
+CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::particle * pparticle);
 
 
 CLASS_DECL_AQUA bool has_multimedia();

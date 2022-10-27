@@ -1,6 +1,6 @@
 #include "framework.h" 
 #include "apex/id.h"
-#include "apex/networking/sockets/_sockets.h"
+//#include "apex/networking/sockets/_sockets.h"
 
 
 #if defined(LINUX) || defined(__APPLE__)
@@ -49,12 +49,12 @@ namespace sockets
    }
 
 
-   void http_socket::on_initialize_object()
+   void http_socket::on_initialize_particle()
    {
 
-      //auto estatus = tcp_socket::on_initialize_object();
+      //auto estatus = tcp_socket::on_initialize_particle();
 
-      tcp_socket::on_initialize_object();
+      tcp_socket::on_initialize_particle();
 
       //if (!estatus)
       //{
@@ -63,9 +63,9 @@ namespace sockets
 
       //}
 
-      m_request.m_psystem = m_psystem;
+      m_request.acmesystem() = acmesystem();
 
-      m_response.m_psystem = m_psystem;
+      m_response.acmesystem() = acmesystem();
 
       //return estatus;
 
@@ -279,7 +279,7 @@ namespace sockets
 
             string strRequestUri = pa.getword();
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
             auto purl = psystem->url();
 

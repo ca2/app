@@ -13,7 +13,7 @@ namespace xlib
    public:
 
 
-      //::mutex                         m_mutexPixmap;
+      //::pointer < ::mutex >                         m_pmutexPixmap;
       //pixmap                        m_pixmap;
       GC                            m_gc;
       //memory                        m_mem;

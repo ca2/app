@@ -17,7 +17,7 @@ namespace html
       style_sheet();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       void parse(html_data * pdocument, const ::string & psz);

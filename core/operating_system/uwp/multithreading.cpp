@@ -18,8 +18,8 @@ using namespace ::winrt::Windows::System::Threading;
 #pragma pop_macro("System")
 
 
-::mutex * g_pmutexThreadIdHandleLock = nullptr;
-::mutex * g_pmutexThreadIdLock = nullptr;
+::pointer< ::mutex > g_pmutexThreadIdHandleLock = nullptr;
+::pointer< ::mutex > g_pmutexThreadIdLock = nullptr;
 
 
 //thread_data::thread_data()

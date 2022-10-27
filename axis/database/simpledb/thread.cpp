@@ -14,7 +14,7 @@ namespace simpledb
    void thread::run()
    {
 
-      single_lock synchronouslock(mutex());
+      single_lock synchronouslock(this->synchronization());
 
       ::pointer<::axis::application>papp = get_app();
 
@@ -114,7 +114,7 @@ namespace simpledb
 
                strUrl = "https://ca2.software/api/account/str_set_save?key=";
 
-               auto psystem = m_psystem->m_papexsystem;
+               auto psystem = acmesystem()->m_papexsystem;
 
                auto purl = psystem->url();
 
@@ -170,7 +170,7 @@ namespace simpledb
    void thread::queue(const ::string & pszKey, block block)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto pitem = __new(queue_item);
 

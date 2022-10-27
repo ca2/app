@@ -292,7 +292,7 @@
 //   //if(bSynch)
 //   //{
 //
-//   //   defer_create_mutex();
+//   //   defer_create_synchronization();
 //
 //   //}
 //

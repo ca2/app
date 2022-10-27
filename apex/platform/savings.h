@@ -1,5 +1,9 @@
 #pragma once
 
+
+#include "acme/primitive/primitive/object.h"
+
+
 enum enum_resource
 {
 
@@ -31,7 +35,7 @@ namespace apex
       savings();
       virtual ~savings();
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       virtual void save(enum_resource eresource);
       virtual void try_to_save(enum_resource eresource);

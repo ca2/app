@@ -48,7 +48,7 @@ namespace opengl
    void context_fbo::_create_offscreen_buffer(const ::size_i32 & size)
    {
 
-      auto pgpu = m_psystem->m_paurasystem->get_gpu();
+      auto pgpu = acmesystem()->m_paurasystem->get_gpu();
 
       ::pointer<opengl>popengl = pgpu;
 

@@ -18,7 +18,7 @@
 //
 //   m_synchronizationa           = synca;
 //
-//   m_baLocked.set_size(m_synchronizationa.synchronization_object_count());
+//   m_baLocked.set_size(m_synchronizationa.synchronization_count());
 //
 //   if (bInitialLock)
 //   {
@@ -136,7 +136,7 @@
 //      if (m_baLocked[i])
 //      {
 //
-//         m_baLocked[i] = !m_synchronizationa.synchronization_object_at(i)->unlock();
+//         m_baLocked[i] = !m_synchronizationa.synchronization_at(i)->unlock();
 //
 //      }
 //
@@ -158,7 +158,7 @@
 //      if (m_baLocked[i])
 //      {
 //
-//         semaphore* pSemaphore = m_synchronizationa.synchronization_object_at(i).cast < semaphore >();
+//         semaphore* pSemaphore = m_synchronizationa.synchronization_at(i).cast < semaphore >();
 //
 //         if (pSemaphore != nullptr)
 //         {

@@ -545,7 +545,7 @@ uptr virtualkey_to_code(::winrt::Windows::System::VirtualKey e)
 //      //if(psystem->is_system())
 //      //{
 //
-//      //   m_psystem->set_finish();
+//      //   acmesystem()->set_finish();
 //
 //      //}
 //
@@ -566,7 +566,7 @@ uptr virtualkey_to_code(::winrt::Windows::System::VirtualKey e)
 //   catch(::exit_exception &)
 //   {
 //
-//      //m_psystem->set_finish();
+//      //acmesystem()->set_finish();
 //
 //   }
 //

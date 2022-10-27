@@ -11,11 +11,15 @@ namespace sockets
 
    class base_socket;
 
+   class base_socket_handler;
+
    using socket_pointer = ::pointer<base_socket>;
 
    class httpd_socket;
    //namespace sockets
    //{
+
+   class socket;
 
    class link_out_socket;
    class link_in_socket;

@@ -11,9 +11,9 @@ namespace introjection
    library::library()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
-      //initialize(pobject);
+      //initialize(pparticle);
 
       __zero(m_filetimeset);
 
@@ -27,12 +27,12 @@ namespace introjection
    }
 
 
-   void library::initialize(::object* pobject)
+   void library::initialize(::particle * pparticle)
    {
 
       //auto estatus =
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{

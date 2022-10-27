@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "apex/operating_system/_c.h"
-#include "apex/operating_system/_.h"
+//#include "apex/operating_system/_.h"
 #ifdef WINDOWS
 #include <io.h>
 #include <stdio.h>
@@ -69,7 +69,7 @@ int_bool file_set_length(const char * lpszName, size_t iSize)
 }
 
 
-int_bool m_psystem->m_pacmefile->exists(const char * path1)
+int_bool acmefile()->exists(const char * path1)
 {
 
    // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -95,7 +95,7 @@ int_bool m_psystem->m_pacmefile->exists(const char * path1)
 }
 
 
-int_bool m_psystem->m_pacmepath->is_file_or_dir(const char * path1, ::file::enum_type * petype)
+int_bool acmepath()->is_file_or_dir(const char * path1, ::file::enum_type * petype)
 {
 
    struct stat st;
@@ -137,12 +137,12 @@ int_bool m_psystem->m_pacmepath->is_file_or_dir(const char * path1, ::file::enum
 }
 
 
-int_bool m_psystem->m_pacmefile->put_contents(const char * path, const char * contents, ::count len)
+int_bool acmefile()->put_contents(const char * path, const char * contents, ::count len)
 {
 
    bool bOk = false;
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -197,7 +197,7 @@ pacmedirectory->create(::file_path_folder(path));
 
 
 
-string m_psystem->m_pacmefile->as_string(const char * path, strsize iReadAtMostByteCount)
+string acmefile()->as_string(const char * path, strsize iReadAtMostByteCount)
 {
 
    string str;

@@ -22,7 +22,7 @@ namespace write_text
       ~fonts() override;
 
 
-      void initialize(::object* pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       virtual void enumerate_fonts();

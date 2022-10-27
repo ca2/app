@@ -42,7 +42,7 @@ CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses
 
 
 //
-//CLASS_DECL_APEX bool _os_resolve_alias(::object * pobject, ::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+//CLASS_DECL_APEX bool _os_resolve_alias(::particle * pparticle, ::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
 //{
 //
 //   return _os_resolve_alias(path, psz, pinteraction, bNoUI, bNoMount);

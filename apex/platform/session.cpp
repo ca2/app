@@ -3,14 +3,23 @@
 #include "system.h"
 #include "application.h"
 #include "node.h"
+#include "os_context.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/networking/url_department.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/system_setup.h"
+#include "acme/primitive/text/context.h"
+#include "apex/filesystem/fs/fs.h"
+#include "apex/filesystem/fs/ifs.h"
+#include "apex/filesystem/fs/link.h"
+#include "apex/filesystem/fs/remote_native.h"
+#include "apex/filesystem/fs/set.h"
 #include "apex/message/channel.h"
+#include "apex/message/command.h"
 #include "apex/message/message.h"
 #include "apex/operating_system.h"
-#include "acme/platform/system_setup.h"
-#include "apex/message/command.h"
-#include "acme/primitive/text/context.h"
+#include "apex/platform/create.h"
 #include "apex/user/primitive.h"
 
 
@@ -102,7 +111,7 @@ namespace apex
    session::~session()
    {
 
-      if(m_psystem->m_etracelevel >= e_trace_level_information)
+      if(acmesystem()->m_etracelevel >= e_trace_level_information)
       {
 
          output_debug_string("apex::session::~session()\n");
@@ -112,11 +121,11 @@ namespace apex
    }
 
 
-   void session::initialize(::object * pobject)
+   void session::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
-      ::thread::initialize(pobject);
+      ::thread::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -934,7 +943,7 @@ namespace apex
 
       }
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -1228,7 +1237,7 @@ namespace apex
    bool session::is_key_pressed(::user::enum_key ekey)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pmapKeyPressed == nullptr)
       {
@@ -1313,7 +1322,7 @@ ret:
    void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pmapKeyPressed == nullptr)
       {
@@ -1673,10 +1682,10 @@ namespace apex
 
 
 
-   //void session::initialize(::object * pobject)
+   //void session::initialize(::particle * pparticle)
    //{
 
-   //   auto estatus = ::apex::session::initialize(pobject);
+   //   auto estatus = ::apex::session::initialize(pparticle);
 
    //   if (!estatus)
    //   {

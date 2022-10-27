@@ -23,7 +23,7 @@ namespace message
    //class sender; -> oet,chnel (targetable!!evenmoreeasilykillble (dissolve "bad" idea/group/team, not person));
    //class receiver; -> oyet
 
-   inline ::u32 translate_to_os_message(const ::atom& atom) { return atom.u32(); }
+   ::u32 translate_to_os_message(const ::atom& atom);
 
 
    bool is_idle_message(::message::message * pmessage);
@@ -38,6 +38,7 @@ namespace message
 #define DECLARE_MESSAGE_HANDLER(function) void function(::message::message * pmessage)
 
 
-
-
 //#include "message.h"
+
+
+

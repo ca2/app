@@ -8,7 +8,7 @@
 #include "oswindow_data.h"
 
 
-::mutex * g_pmutexOsWindowData = nullptr;
+::pointer< ::mutex > g_pmutexOsWindowData = nullptr;
 
 //::user::interaction * get_system_window_interaction(::os_system_window * psystemwindow)
 //{
@@ -413,7 +413,7 @@ oswindow get_active_window()
 void deactivate_window(oswindow window)
 {
 
-   synchronous_lock synchronouslock(g_poswindowdataptra->mutex());
+   synchronous_lock synchronouslock(g_poswindowdataptra->synchronization());
 
    if(window == g_oswindowActive)
    {
@@ -557,7 +557,7 @@ int_bool os_init_windowing()
    
 //   set_DispatchMessage(&axis_DispatchMessage);
    
-   g_pmutexOsWindowData = memory_new ::mutex();
+   g_pmutexOsWindowData = memory_new ::pointer < ::mutex >();
          
    g_poswindowdataptra = memory_new oswindow_dataptra;
    

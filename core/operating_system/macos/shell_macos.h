@@ -32,7 +32,7 @@
 //      delay_thread *                                              m_pdelayRelease;
 //      address_array < image_key * >                                     m_keyptra;
 //      manual_reset_event                                          m_evKey;
-//      ::mutex                                                       m_mutexQueue;
+//      ::pointer < ::mutex >                                                       m_pmutexQueue;
 //      pointer_array < ::thread >                                               m_threadaGetImage;
 //
 //      
@@ -43,7 +43,7 @@
 //      virtual i32 impl_get_file_image(const image_key & imagekey) override;
 //
 //
-//      virtual ::user::shell::e_folder get_folder_type(::object * pobject, const ::string & lpcszPath) override;
+//      virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const ::string & lpcszPath) override;
 //
 //      
 //      i32 get_image(image_key key, const unichar * lpcszExtra, color32_t crBk);

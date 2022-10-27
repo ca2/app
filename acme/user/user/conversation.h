@@ -3,6 +3,7 @@
 
 
 #include "acme/platform/sequence1.h"
+#include "acme/constant/message_box.h"
 
 
 class CLASS_DECL_ACME conversation :

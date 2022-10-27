@@ -41,7 +41,7 @@ namespace android
       delay_thread *                                              m_pdelayRelease;
       address_array < image_key * >                               m_keyptra;
       manual_reset_event                                          m_evKey;
-      ::mutex                                                     m_mutexQueue;
+      ::pointer < ::mutex >                                                     m_pmutexQueue;
       pointer_array < ::thread >                                   m_threadaGetImage;
 
 
@@ -58,8 +58,8 @@ namespace android
       virtual i32 get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
       virtual i32 impl_get_file_image( const image_key& imagekey) override;
 
-      virtual ::user::shell::e_folder get_folder_type(::object * pobject, const widechar * lpcszPath) override;
-      virtual ::user::shell::e_folder get_folder_type(::object * pobject, const char * lpcszPath) override;
+      virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const widechar * lpcszPath) override;
+      virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const char * lpcszPath) override;
 
       //         int add_icon_set(per_fork * pfork, SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, color32_t crBk, bool & bUsedImageList16, bool & bUsedImageList48);
       //
@@ -109,7 +109,7 @@ namespace android
       //         //      string CLASS_DECL_APEX _017FilePathGetParent(const char * pcsz);
       //
       //         HICON CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, i32 cx, i32 cy);
-      //         bool _017HasSubFolder(::object * pobject, LPITEMIDLIST lpiidl, const char * lpcszExtra);
+      //         bool _017HasSubFolder(::particle * pparticle, LPITEMIDLIST lpiidl, const char * lpcszExtra);
       //         //      void CLASS_DECL_APEX GetChildren(string_array & stra, const char * lpcszPath);
       //         LPITEMIDLIST _017ItemIDListGetLast(per_fork * pfork, LPITEMIDLIST lpiidl);
       //         LPITEMIDLIST _017ItemIDListDup(per_fork * pfork, LPITEMIDLIST lpiidl);

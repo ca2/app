@@ -57,7 +57,7 @@ namespace user
       ~tab_data() override;
 
       
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       virtual tab_pane * get_tab_by_id(atom atom);

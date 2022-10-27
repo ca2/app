@@ -1,11 +1,12 @@
 ﻿// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSørensen!!
-// #pragma once
+#pragma once
 
 
 #include "subsystem.h"
 #include "main.h"
 #include "context.h"
-
+#include "plane_system.h"
+#include "acme/primitive/primitive/factory.h"
 
 
 namespace acme
@@ -13,6 +14,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME system :
+      virtual public ::object,
       virtual public ::main,
       virtual public ::acme::context,
       virtual public ::task,
@@ -38,12 +40,12 @@ namespace acme
       ::pointer<::apex::system>                                       m_psystemParent;
 
 
-      ::mutex                                                           m_mutexFactory;
+      ::pointer < ::mutex >                                           m_pmutexFactory;
       //string_map < ::pointer<::factory::factory >>                  m_mapFactory;
       string_map < ::pointer<::factory::factory >>                      m_mapFactory;
 
 
-      ::mutex                                                           m_mutexComponentFactory;
+      ::pointer < ::mutex >                                            m_pmutexComponentFactory;
       string_map < string_map < ::pointer<::factory::factory >>>       m_mapComponentFactory;
 
 
@@ -53,10 +55,10 @@ namespace acme
       void * m_pmmos;
 #endif
 
-      ::mutex                                                           m_mutexTask;
+      ::pointer < ::mutex >                                             m_pmutexTask;
       task_map                                                          m_taskmap;
       task_id_map                                                       m_taskidmap;
-      ::mutex                                                           m_mutexTaskOn;
+      ::pointer < ::mutex >                                             m_pmutexTaskOn;
       map < itask_t, itask_t >                                          m_mapTaskOn;
 
 
@@ -79,9 +81,6 @@ namespace acme
       ::pointer<class ::xml::xml>                                     m_pxml;
 
       ::pointer<class ::acme::node>                                     m_pnode;
-      ::pointer<class ::acme_directory>                               m_pacmedirectory;
-      ::pointer<class ::acme_file>                                    m_pacmefile;
-      ::pointer<class ::acme_path>                                    m_pacmepath;
       ::pointer<geometry::geometry>                                   m_pgeometry;
 
 
@@ -92,6 +91,11 @@ namespace acme
       ::duration                                                        m_durationMainStart;
       ::duration                                                        m_durationAfterApplicationFirstRequest;
       bool                                                              m_bIsReadyForUserInteraction;
+
+
+      ::pointer<class ::acme_directory>                                 m_pacmedirectory;
+      ::pointer<class ::acme_file>                                      m_pacmefile;
+      ::pointer<class ::acme_path>                                      m_pacmepath;
 
 
       system();
@@ -119,9 +123,11 @@ namespace acme
 
       inline ::xml::xml * xml() { return m_pxml.get() ? m_pxml.get() : _xml(); }
 
-      inline acme_directory * acmedir() const { return m_pacmedirectory; }
+      inline ::acme_file * acmefile() const { return m_pacmefile; }
 
-      inline acme_path * acmepath() const { return m_pacmepath; }
+      inline ::acme_directory * acmedirectory() const { return m_pacmedirectory; }
+
+      inline ::acme_path * acmepath() const { return m_pacmepath; }
 
       virtual ::xml::xml * _xml();
 
@@ -184,7 +190,7 @@ namespace acme
 
       virtual ::u32 crc32(::u32 uCrc, const ::block & block);
 
-      void process_exit_status(::object * pobject, const ::e_status & estatus);
+      void process_exit_status(::particle * pparticle, const ::e_status & estatus);
 
 
       virtual ::acme::application * get_main_app();
@@ -497,6 +503,12 @@ namespace acme
 
 
    };
+
+
+   inline ::acme_file * context::acmefile() {return m_pacmesystem->m_pacmefile;}
+   inline ::acme_path * context::acmepath() {return m_pacmesystem->m_pacmepath;}
+   inline ::acme_directory * context::acmedirectory() {return m_pacmesystem->m_pacmedirectory;}
+   inline ::acme::node * context::acmenode() {return m_pacmesystem->node();}
 
 
 } // namespace acme

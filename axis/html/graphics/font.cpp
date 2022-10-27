@@ -23,10 +23,10 @@ namespace html
    }
 
 
-   bool font::create(::object * pobject)
+   bool font::create(::particle * pparticle)
    {
 
-      initialize(pobject);
+      initialize(pparticle);
 
       m_pfont.create(this);
 

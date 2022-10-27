@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/primitive/string/string.h"
+
 
 string get_error_message(::u32 dwError)
 {

@@ -18,8 +18,8 @@ namespace universal_windows
       virtual ~shell();
 
 
-      virtual ::user::shell::e_folder get_folder_type(::matter * pobject, const unichar * lpcszPath) override;
-      virtual ::user::shell::e_folder get_folder_type(::matter * pobject, const char * lpcszPath) override;
+      virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const unichar * lpcszPath) override;
+      virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const char * lpcszPath) override;
 
 
       virtual i32 impl_get_file_image(const image_key & imagekey) override;

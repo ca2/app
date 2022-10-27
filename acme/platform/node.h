@@ -13,6 +13,8 @@
 #include "acme/primitive/primitive/object.h"
 #include "acme/primitive/collection/atom_array.h"
 #include "acme/platform/serial_shared.h"
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/constant/element.h"
 
 
 namespace acme
@@ -117,7 +119,7 @@ namespace acme
 //
 //#endif
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       
       
       virtual ::pointer<::element>create_quit_element(::pointer<::acme::node> & pnode, ::pointer<::acme::system> & psystem);
@@ -141,7 +143,7 @@ namespace acme
   
       virtual void _launch_macos_app_args(const ::string & pszAppFolder, const ::string & pszArgs);
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
       virtual void initialize_memory_counter();
 
@@ -165,8 +167,16 @@ namespace acme
       //virtual ::file::path module_path_origin();
       //::file::path update_module_path();
 
-      
-      
+      virtual ::pointer < ::mutex > create_local_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::string & strName);
+      virtual ::pointer < ::mutex > create_global_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::string & strName);
+
+      virtual ::pointer < ::mutex > open_local_named_mutex(::particle * pparticleContext, const ::string & strName);
+      virtual ::pointer < ::mutex > open_global_named_mutex(::particle * pparticleContext, const ::string & strName);
+
+
+      virtual ::pointer < ::mutex > get_install_mutex(::particle * pparticleContext, const ::string & strPlatform, const ::string & strSuffix);
+
+
       virtual string app_id_to_app_name(const ::string & strAppId);
       virtual string app_id_to_executable_name(const ::string & strAppId);
 
@@ -403,7 +413,7 @@ namespace acme
 
 
 
-      virtual void launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount);
+      virtual void launch_application(::particle * pparticle, const ::string & strAppId, const ::string & strParams, int iBitCount);
 
 
 
@@ -432,7 +442,7 @@ namespace acme
       virtual void create_app_shortcut(::acme::application * papplication);
 
 
-      virtual void report_exception_to_user(::object* pobject, ::exception& exception, const ::string& strMoreDetails);
+      virtual void report_exception_to_user(::object* pparticle, ::exception& exception, const ::string& strMoreDetails);
 
 
       virtual ::pointer<::conversation>create_new_message_box_conversation();

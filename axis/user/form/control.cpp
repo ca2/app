@@ -1217,11 +1217,11 @@ namespace user
    //   //   return false;
    //   //}
 
-   ///*   ::pointer<object>pobject;
+   ///*   ::pointer<object>pparticle;
 
-   //   __id_construct(pobject, pdescriptor->m_type);
+   //   __id_construct(pparticle, pdescriptor->m_type);
 
-   //   if(!pobject)
+   //   if(!pparticle)
    //   {
 
    //      TRACE("form_control::create_interaction: failed to create control, allocation error");
@@ -1230,12 +1230,12 @@ namespace user
 
    //   }
 
-   //   ::pointer<interaction>pinteraction = pobject;
+   //   ::pointer<interaction>pinteraction = pparticle;
 
    //   if(!pinteraction)
    //   {
 
-   //      pobject.release();
+   //      pparticle.release();
 
    //      TRACE("form_control::create_interaction: failed to create control, object is not derived from user::control_descriptor");
 
@@ -1289,7 +1289,7 @@ namespace user
    ::axis::system * form_control::get_system() const 
    {
       
-      return ::is_set(m_psystem) ? m_psystem->m_paxissystem : nullptr; 
+      return ::is_set(acmesystem()) ? acmesystem()->m_paxissystem : nullptr; 
    
    }
 

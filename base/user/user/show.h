@@ -42,12 +42,12 @@ namespace user
       ::base::user* user() const { return ::user::impact::user(); }
 
 
-      virtual void initialize(::object* pobject) override
+      virtual void initialize(::particle * pparticle) override
       {
 
          //auto estatus = 
 
-         ::user::impact::initialize(pobject);
+         ::user::impact::initialize(pparticle);
 
          //if (!estatus)
          //{
@@ -58,7 +58,7 @@ namespace user
 
          //estatus = 
 
-         VIEW::initialize(pobject);
+         VIEW::initialize(pparticle);
 
          //if (!estatus)
          //{

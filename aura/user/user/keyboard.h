@@ -21,7 +21,7 @@ namespace user
       ~keyboard() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
       
       
       virtual ::user::enum_key wparam_to_userkey(wparam wparam);

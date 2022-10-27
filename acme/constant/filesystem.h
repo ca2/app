@@ -12,17 +12,6 @@ enum enum_seek
 };
 
 
-enum enum_path
-{
-
-   e_path_none,
-   e_path_file,
-   e_path_url,
-   e_path_data
-
-};
-
-
 namespace file
 {
 
@@ -67,9 +56,9 @@ namespace file
    };
 
 
+   DECLARE_ENUMERATION(e_open, enum_open);
+   DECLARE_ENUMERATION(e_state, enum_state);
 
 
 } // namespace file
-
-
 

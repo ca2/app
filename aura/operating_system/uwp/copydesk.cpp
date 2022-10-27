@@ -108,10 +108,10 @@ namespace universal_windows
 
    }
 
-   void copydesk::initialize(::object * pobject)
+   void copydesk::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::user::copydesk::initialize(pobject);
+      auto estatus = ::user::copydesk::initialize(pparticle);
 
       if(!estatus)
       {

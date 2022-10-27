@@ -1,7 +1,7 @@
 #pragma once
 
 
-//class string;
+#include "string.h"
 
 
 class CLASS_DECL_ACME wtostring :

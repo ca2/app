@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "tab.h"
 #include "tab_pane.h"
-#include "acme/primitive/text/_.h"
+//#include "acme/primitive/text/_.h"
 #include "aura/graphics/draw2d/graphics_extension.h"
 #include "aura/graphics/draw2d/brush.h"
 
@@ -99,7 +99,7 @@ namespace user
 
       //string strTitle(pszTitle);
 
-      //auto psystem = m_psystem->m_pbasesystem;
+      //auto psystem = acmesystem()->m_pbasesystem;
 
       //auto pxml = psystem->xml();
 

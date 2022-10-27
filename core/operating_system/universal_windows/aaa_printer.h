@@ -19,7 +19,7 @@ namespace universal_windows
          HDC            m_hdc;
 
 
-         document_properties(::object * pobject);
+         document_properties(::particle * pparticle);
          virtual ~document_properties();
 
 
@@ -34,7 +34,7 @@ namespace universal_windows
       document_properties     m_documentproperties;
 
 
-      printer(::object * pobject);
+      printer(::particle * pparticle);
       virtual ~printer();
 
 

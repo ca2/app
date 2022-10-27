@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/update.h"
+#include "acme/platform/system.h"
 #ifdef WINDOWS
 #include <process.h>
 #elif defined(LINUX)
@@ -121,7 +122,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 
 //int g_iMemoryCounters = -1;
 //
-//CLASS_DECL_ACME::mutex * g_pmutexMemoryCounters = nullptr;
+//CLASS_DECL_ACME::pointer< ::mutex > g_pmutexMemoryCounters = nullptr;
 //
 //int g_iMemoryCountersStartable = 0;
 //
@@ -131,7 +132,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 //   if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
 //   {
 //
-//      g_iMemoryCounters = m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
+//      g_iMemoryCounters = acmefile()->exists(         auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -140,7 +141,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 //      if (g_iMemoryCounters)
 //      {
 //
-//         g_pmutexMemoryCounters = memory_new ::mutex(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
+//         g_pmutexMemoryCounters = memory_new ::pointer < ::mutex >(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
 //
 //      }
 //
@@ -164,7 +165,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 //
 //#if defined(_UWP)
 //
-//      string strBasePath =          auto psystem = m_psystem;
+//      string strBasePath =          auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -174,7 +175,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 //
 //      ::file::path strModule = module_path_from_pid(getpid());
 //
-//      string strBasePath =          auto psystem = m_psystem;
+//      string strBasePath =          auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -224,7 +225,7 @@ void simple_log::print(enum_trace_level etracelevel, enum_trace_category etracec
 
    }
 
-   if(etracelevel >= m_psystem->m_etracelevel)
+   if(etracelevel >= acmesystem()->m_etracelevel)
    {
 
       string str;
@@ -260,7 +261,7 @@ CLASS_DECL_ACME const char * e_trace_level_name(enum_trace_level elevel);
 #define SIMPLE_TRACE_FUNCTION_NAME 0
 #define SIMPLE_TRACE_FILE_NAME 0
 
-CLASS_DECL_ACME void __simple_tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * psz)
+CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * psz)
 {
 
 #ifndef DEBUG
@@ -276,7 +277,7 @@ CLASS_DECL_ACME void __simple_tracea(::matter * pobject, enum_trace_level elevel
 
    string strMessage;
 
-   auto pszTopicText = topic_text(pobject);
+   auto pszTopicText = topic_text(pparticle);
 
    if (::is_set(pszTopicText) && *pszTopicText != '\0')
    {
@@ -337,7 +338,7 @@ CLASS_DECL_ACME void __simple_tracea(::matter * pobject, enum_trace_level elevel
 }
 
 
-CLASS_DECL_ACME void __simple_tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * pszFormat, va_list args)
+CLASS_DECL_ACME void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * pszFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)
@@ -353,7 +354,7 @@ CLASS_DECL_ACME void __simple_tracev(::matter * pobject, enum_trace_level elevel
 
    strMessage.format_arguments(pszFormat, args);
 
-   __simple_tracea(pobject, elevel, pszFunction, pszFileName, iLine, strMessage);
+   __simple_tracea(pparticle, elevel, pszFunction, pszFileName, iLine, strMessage);
 
 }
 

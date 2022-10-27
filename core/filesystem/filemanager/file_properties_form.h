@@ -30,7 +30,7 @@ namespace filemanager
       ~file_properties_form() override;
 
       
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       ::pointer<::user::interaction>open(::pointer<::user::interaction>uieParent, ::file::item_array & itema);

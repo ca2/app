@@ -34,7 +34,7 @@
 imaging::imaging()
 {
 
-   defer_create_mutex();
+   defer_create_synchronization();
 
 }
 
@@ -46,12 +46,12 @@ imaging::~imaging()
 }
 
 
-void imaging::initialize(::object * pobject)
+void imaging::initialize(::particle * pparticle)
 {
 
    //auto estatus =
    
-   ::object::initialize(pobject);
+   ::object::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -4936,7 +4936,7 @@ i32 iChannel,i32 iRadius,
 
    }
 
-   auto psystem = m_psystem->m_paurasystem;
+   auto psystem = acmesystem()->m_paurasystem;
 
    auto pdraw2d = psystem->draw2d();
 
@@ -5132,15 +5132,15 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    i32 iRadius2 = iRadius * iRadius;
    i32 r2;
 
-   auto psystem = m_psystem->m_paurasystem;
+   auto psystem = acmesystem()->m_paurasystem;
 
    auto pdraw2d = psystem->draw2d();
 
-   synchronous_lock synchronouslock(pdraw2d->mutex());
+   synchronous_lock synchronouslock(pdraw2d->synchronization());
 
    auto & pmemory = pdraw2d->m_alpha_spread__32CC_filterMap[iRadius];
 
-   m_psystem->__construct_new(pmemory);
+   acmesystem()->__construct_new(pmemory);
 
    if (pmemory->size() != iFilterArea)
    {
@@ -6974,7 +6974,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const
 
 //#ifndef __APPLE__
 //
-// void imaging::_load_image(::context_image * pobject, ::image * pimageParam, const ::payload & payloadFile, bool bSync, bool bCreateHelperMaps)
+// void imaging::_load_image(::context_image * pparticle, ::image * pimageParam, const ::payload & payloadFile, bool bSync, bool bCreateHelperMaps)
 // {
 //
 //   return ::error_failed;
@@ -7038,7 +7038,7 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
 ::image_pointer imaging::get_work_image()
 {
 
-   synchronous_lock synchronouslock(&m_mutexWork);
+   synchronous_lock synchronouslock(m_pmutexWork);
 
    if (m_pimageaWork->has_no_image())
    {
@@ -7075,7 +7075,7 @@ void imaging::free_work_image(::image * pimage)
 
    }
 
-   synchronous_lock synchronouslock(&m_mutexWork);
+   synchronous_lock synchronouslock(m_pmutexWork);
 
    m_pimageaWork->m_imagea.push(pimage);
 

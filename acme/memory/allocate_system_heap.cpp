@@ -10,7 +10,7 @@
 #if MEMDLEAK
 
 
-extern ::mutex * g_pmutgen;
+extern ::pointer< ::mutex > g_pmutgen;
 memdleak_block * s_pmemdleakList;
 extern thread_pointer < memdleak_block > t_plastblock;
 

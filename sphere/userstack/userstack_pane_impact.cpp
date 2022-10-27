@@ -5,11 +5,11 @@ namespace userstack
 {
 
 
-   pane_impact::pane_impact(::object * pobject) :
-      ::object(pobject),
-      ::user::tab_impact(pobject),
-      ::userex::pane_tab_impact(pobject),
-      place_holder_container(pobject)
+   pane_impact::pane_impact(::particle * pparticle) :
+      ::object(pparticle),
+      ::user::tab_impact(pparticle),
+      ::userex::pane_tab_impact(pparticle),
+      place_holder_container(pparticle)
    {
 
       m_iNewArea        = 0;

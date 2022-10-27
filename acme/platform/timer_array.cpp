@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "timer_task.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 namespace acme
@@ -11,7 +12,7 @@ namespace acme
 
       m_bOk = true;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -26,10 +27,10 @@ namespace acme
    }
 
 
-   bool timer_array::create_timer(::object * pobject, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::create_timer(::particle * pparticle, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_bOk)
       {
@@ -42,7 +43,7 @@ namespace acme
 
       auto ptimer = __new(timer_task);
 
-      ptimer->initialize_timer(pobject, this, uEvent, pfnTimer, pvoidData, mutex());
+      ptimer->initialize_timer(pparticle, this, uEvent, pfnTimer, pvoidData, synchronization());
 
       ptimer->m_ptimercallback = this;
 
@@ -82,10 +83,10 @@ namespace acme
    }
 
 
-   bool timer_array::set_timer(::object * pobject, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::set_timer(::particle * pparticle, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
-      if (!create_timer(pobject, uEvent, millisEllapse, pfnTimer, bPeriodic, pvoidData))
+      if (!create_timer(pparticle, uEvent, millisEllapse, pfnTimer, bPeriodic, pvoidData))
       {
 
          return false;
@@ -100,7 +101,7 @@ namespace acme
    bool timer_array::delete_timer(uptr uEvent)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto * ppair = m_map.plookup(uEvent);
 
@@ -125,7 +126,7 @@ namespace acme
    void timer_array::erase_timer(::timer * ptimer)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       try
       {
@@ -229,7 +230,7 @@ namespace acme
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          __keep(m_bOk, false);
 
@@ -243,7 +244,7 @@ namespace acme
             try
             {
 
-               synchronous_lock synchronouslock(ptimer->mutex());
+               synchronous_lock synchronouslock(ptimer->synchronization());
 
                ptimer->clear(e_flag_success);
 
@@ -266,7 +267,7 @@ namespace acme
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          __keep(m_bOk, false);
 

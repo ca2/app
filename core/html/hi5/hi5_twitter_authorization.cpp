@@ -42,12 +42,12 @@ namespace hi5
       }
 
 
-      void authorization::initialize_twitter_authorization(::object* pobject, const ::string & pszAuthorizationUrl, const ::string & pszForm, bool bAuth, bool bInteractive)
+      void authorization::initialize_twitter_authorization(::object* pparticle, const ::string & pszAuthorizationUrl, const ::string & pszForm, bool bAuth, bool bInteractive)
       {
 
          // auto estatus = 
          
-         ::object::initialize(pobject);
+         ::object::initialize(pparticle);
 
          //if (!estatus)
          //{
@@ -104,7 +104,7 @@ namespace hi5
 
          ::pointer<::create>pcreate(e_create, this);
 
-         auto psystem = m_psystem->m_paurasystem;
+         auto psystem = acmesystem()->m_paurasystem;
 
          pcreate->m_bMakeVisible = false;
          pcreate->m_puserprimitiveParent = psystem->cast < ::user::interaction >("top_parent");

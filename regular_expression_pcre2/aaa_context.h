@@ -28,7 +28,7 @@ namespace regular_expression_pcre2
 //      protected:
 //
 //
-//      pcre_context(::object * pobject);
+//      pcre_context(::particle * pparticle);
 
 
    };

@@ -6,10 +6,10 @@ namespace turboc
 {
 
 
-   context::context(::object * pobject):
-      ::object(pobject),
+   context::context(::particle * pparticle):
+      ::object(pparticle),
 
-      m_pimagea(pobject)
+      m_pimagea(pparticle)
    {
       m_pimagea->set_size(16);
       m_rgbset.set_size(256);

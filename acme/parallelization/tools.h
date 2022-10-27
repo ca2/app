@@ -1,6 +1,13 @@
 #pragma once
 
 
+#include "acme/parallelization/task.h"
+#include "synchronization_array.h"
+#include "synchronous_lock.h"
+#include "acme/exception/exception.h"
+#include "acme/platform/system.h"
+
+
 class task_tool;
 
 // item of *task_tool* associated with each *tool_task*
@@ -22,18 +29,18 @@ public:
 
 
    index                            m_iThread;
-   task_group *                   m_pgroup;
-   task_tool *                    m_ptool;
-   task_tool_item *               m_pitem;
-   ::pointer<manual_reset_event>   m_pevStart;
-   ::pointer<manual_reset_event>   m_pevReady;
+   task_group *                     m_pgroup;
+   task_tool *                      m_ptool;
+   task_tool_item *                 m_pitem;
+   ::pointer<manual_reset_event>    m_pevStart;
+   ::pointer<manual_reset_event>    m_pevReady;
    void *                           m_pdata;
    index                            m_cCount;
    index                            m_iIndex;
    ::count                          m_iScan;
    ::count                          m_iCount;
-   ::pointer<::predicate_holder_base>   m_ppred;
-   ::pointer<matter>               m_pholdref;
+   ::procedure                      m_procedure;
+   ::pointer<matter>                m_pholdref;
 
 
    tool_task();
@@ -45,7 +52,7 @@ public:
    virtual void run() override;
 
 
-   bool set_predicate(::predicate_holder_base * ppred);
+   bool set_procedure(const ::procedure & procedure);
 
    void reset();
    void set_ready_to_start();
@@ -127,13 +134,13 @@ public:
    virtual ::e_status wait();
    virtual void process();
 
-   bool add_predicate(::predicate_holder_base * ppred);
+   bool add_procedure(const ::procedure & procedure);
 
 
    void select_tool(task_tool* ptool);
 
    template < typename PRED >
-   inline ::count fork_count_end(::property_object* pobject, ::count iCount, PRED pred, index iStart)
+   inline ::count fork_count_end(::property_object* pparticle, ::count iCount, PRED pred, index iStart)
    {
 
       if (iCount <= 0)
@@ -145,7 +152,7 @@ public:
 
       //auto psystem = ::apex::get_system();
 
-      synchronous_lock slGroup(::get_system()->mutex());
+      synchronous_lock slGroup(::get_system()->synchronization());
 
       ///   auto ptool = ::apex::get_system()->task_tool(op_fork_count);
 
@@ -177,14 +184,16 @@ public:
       for (index iOrder = 0; iOrder < iScan; iOrder++)
       {
 
-         ::pointer<predicate_holder_base>pusermessage = __new(forking_count_predicate < PRED >(pobject, iOrder, iOrder + iStart, iScan, iCount, pred));
+         throw ::exception(todo);
 
-         if (!add_predicate(pusermessage))
-         {
-
-            return -1;
-
-         }
+//         ::pointer<predicate_holder_base>pusermessage = __new(forking_count_predicate < PRED >(pparticle, iOrder, iOrder + iStart, iScan, iCount, pred));
+//
+//         if (!add_predicate(pusermessage))
+//         {
+//
+//            return -1;
+//
+//         }
 
       }
 
@@ -207,7 +216,7 @@ public:
 
 
 template < typename PRED >
-inline ::count fork_count_end(::matter* pobject, ::count iCount, PRED pred, index iStart = 0, ::enum_priority epriority = ::e_priority_none);
+inline ::count fork_count_end(::particle * pparticle, ::count iCount, PRED pred, index iStart = 0, ::enum_priority epriority = ::e_priority_none);
 
 
 

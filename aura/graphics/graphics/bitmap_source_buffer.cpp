@@ -95,7 +95,7 @@ namespace graphics
 
       strMutexName.format(szName, strBitmapSource.c_str());
 
-      m_pmutexBitmapSource = __new(::mutex(this, false, strMutexName));
+      m_pmutexBitmapSource = __new(::pointer < ::mutex >(this, false, strMutexName));
 
       synchronous_lock synchronouslock(m_pmutexBitmapSource);
 

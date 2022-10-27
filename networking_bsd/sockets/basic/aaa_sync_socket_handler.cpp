@@ -7,8 +7,8 @@ namespace networking_bsd
 
 
    sync_socket_handler::sync_socket_handler(::apex::log * plog) //:
-      //::object(pobject),
-      //m_handler(pobject, plog)
+      //::object(pparticle),
+      //m_handler(pparticle, plog)
       //m_handler(plog)
    {
 

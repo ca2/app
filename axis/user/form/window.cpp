@@ -725,7 +725,7 @@ namespace user
    bool form_window::_001GetData(const ::atom & atom, bool &bData)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ::pointer<interaction>pinteraction = get_child_by_id(atom);
 
@@ -844,7 +844,7 @@ namespace user
    //void form_window::_001RemoveControls()
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   //m_controldescriptorset.erase_all();
 
@@ -864,7 +864,7 @@ namespace user
    void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * ptopic)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if(ptopic != nullptr)
       {
@@ -920,7 +920,7 @@ namespace user
    void form_window::_001UpdateFunctionStatic()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto papp = get_app();
 
@@ -1314,7 +1314,7 @@ namespace user
       if(m_bInitialized)
          return true;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       _001InitializeFormPreData();
 

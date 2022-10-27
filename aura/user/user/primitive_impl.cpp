@@ -1025,7 +1025,7 @@ namespace user
 //////
 //////      }
 //////
-//////      synchronous_lock synchronouslock(&((primitive_impl *)this)->m_mutexLongPtr);
+//////      synchronous_lock synchronouslock(&((primitive_impl *)this)->m_pmutexLongPtr);
 //////
 //////      return (LONG_PTR)m_longptr[nIndex];
 ////
@@ -1050,7 +1050,7 @@ namespace user
 ////
 ////      }
 ////
-////      synchronous_lock synchronouslock(&m_mutexLongPtr);
+////      synchronous_lock synchronouslock(m_pmutexLongPtr);
 ////
 ////      m_longptr[nIndex] = lValue;
 ////
@@ -1705,7 +1705,7 @@ namespace user
             if (pinteractionimpl)
             {
 
-               synchronous_lock synchronouslock(pinteractionimpl->mutex());
+               synchronous_lock synchronouslock(pinteractionimpl->synchronization());
 
                pinteractionimpl->m_userinteractionaMouseHover.erase(m_puserinteraction);
 
@@ -1956,7 +1956,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          try
          {
@@ -2091,7 +2091,7 @@ namespace user
    void primitive_impl::on_message_destroy(::message::message * pmessage)
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       //try
       //{
@@ -2478,7 +2478,7 @@ namespace user
    ::aura::system * primitive_impl::get_system() const
    {
 
-      return m_psystem ? m_psystem->m_paurasystem : nullptr;
+      return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
 
    }
 

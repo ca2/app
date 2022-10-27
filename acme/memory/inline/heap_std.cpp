@@ -12,7 +12,7 @@ void * aligned_memory_allocate(memsize size, memsize align)
    if(size < 0)
    {
 
-      throw ::exception(::error_bad_argument, "Bad Argument: Negative amount of memory to allocate");
+      throw_exception(::error_bad_argument, "Bad Argument: Negative amount of memory to allocate");
 
    }
 
@@ -385,7 +385,7 @@ void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, con
    else
    {
 
-      throw ::exception(error_exception);
+      throw_exception(error_exception);
 
    }
 
@@ -411,7 +411,7 @@ void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, con
    else
    {
 
-      throw ::exception(error_exception);
+      throw_exception(error_exception);
 
    }
 

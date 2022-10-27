@@ -10,7 +10,7 @@
 //   public:
 //
 //
-//      thread(::matter * pobject);
+//      thread(::particle * pparticle);
 //      virtual ~thread();
 //
 //

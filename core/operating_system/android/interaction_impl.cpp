@@ -65,8 +65,8 @@ namespace android
    //}
 
 
-   //interaction_impl::interaction_impl(::object * pobject):
-   //   ::object(pobject)
+   //interaction_impl::interaction_impl(::particle * pparticle):
+   //   ::object(pparticle)
    //{
    //   m_bScreenRelativeMouseMessagePosition = true;
    //   //  m_bScreenRelativeMouseMessagePosition = false;

@@ -9,18 +9,18 @@ public:
 
 
    void m_estatus;
-   ::pointer<::aura::system>m_psystem;
+   ::pointer<::aura::system>acmesystem();
 
    void create_system()
    {
 
       //aura_ref();
 
-      m_psystem = ::move_transfer(platform_create_system(nullptr));
+      acmesystem() = ::move_transfer(platform_create_system(nullptr));
 
-      //      m_psystem = __new(::aura::system());
+      //      acmesystem() = __new(::aura::system());
 
-      m_psystem->console_initialize();
+      acmesystem()->console_initialize();
 
 
 
@@ -31,7 +31,7 @@ public:
 
       create_system();
 
-      application_common(m_psystem);
+      application_common(acmesystem());
 
    }
 
@@ -41,7 +41,7 @@ public:
 
       common_construct();
 
-      m_psystem->system_construct(argc, argv);
+      acmesystem()->system_construct(argc, argv);
 
       init();
 
@@ -53,7 +53,7 @@ public:
 
       common_construct();
 
-      m_psystem->system_construct(argc, argv);
+      acmesystem()->system_construct(argc, argv);
 
       init();
 
@@ -63,7 +63,7 @@ public:
    void init()
    {
 
-      m_estatus = (void) m_psystem->inline_init();
+      m_estatus = (void) acmesystem()->inline_init();
 
    }
 
@@ -75,9 +75,9 @@ public:
 
       ::i32 iErrorStatus = m_estatus.error_status();
 
-      m_psystem->inline_term();
+      acmesystem()->inline_term();
 
-      m_psystem.release();
+      acmesystem().release();
 
       return iErrorStatus;
 
@@ -87,7 +87,7 @@ public:
    ~console()
    {
 
-      if (m_psystem)
+      if (acmesystem())
       {
 
          result();

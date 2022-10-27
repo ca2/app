@@ -1,7 +1,9 @@
 #include "framework.h"
 #include "message_queue.h"
 #include "acme/constant/message.h"
+#include "acme/operating_system/message.h"
 #include "acme/operating_system.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -30,7 +32,7 @@ message_queue::message_queue()
 
    //m_bKickIdle = false;
 
-   defer_create_mutex();
+   defer_create_synchronization();
 
 }
 
@@ -85,7 +87,7 @@ void message_queue::post_message(const MESSAGE & message)
 
    }
 
-   _synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    m_messagea.add(message);
 
@@ -99,7 +101,7 @@ void message_queue::post_message(const MESSAGE & message)
 void message_queue::kick_idle()
 {
 
-   //_synchronous_lock synchronouslock(mutex());
+   //_synchronous_lock synchronouslock(this->synchronization());
 
    //m_bKickIdle = true;
 
@@ -120,7 +122,7 @@ void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
 
    }
 
-   _synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    while (true)
    {
@@ -199,7 +201,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFil
 
    }
 
-   _synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    ::count count = m_messagea.get_count();
 

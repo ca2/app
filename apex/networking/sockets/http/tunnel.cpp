@@ -1,6 +1,7 @@
 ﻿#include "framework.h" 
 #include "tunnel.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "apex/constant/idpool.h"
 #include "apex/networking/http/context.h"
 #include "apex/platform/context.h"
 
@@ -30,11 +31,11 @@ namespace sockets
    }
 
 
-   void http_tunnel::initialize(::object * pobject)
+   void http_tunnel::initialize(::particle * pparticle)
    {
 
 
-      http_socket::initialize(pobject);
+      http_socket::initialize(pparticle);
 
       SetLineProtocol();
       m_bOk = false;

@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "translatable.h"
+
+
 namespace file
 {
 

@@ -26,12 +26,12 @@ namespace filemanager
    }
 
 
-   void file_properties_form::initialize(::object * pobject)
+   void file_properties_form::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::user::impact_host::initialize(pobject);
+      ::user::impact_host::initialize(pparticle);
 
       //if (!estatus)
       //{

@@ -55,7 +55,7 @@ namespace html
       }
 
 
-      void image::implement_phase1(html_data * pdata, ::html::element * pelement)
+      void image::implement_phase1(html_data * pdata, ::html::particle * pparticle)
       {
 
          m_bHasChar = true;

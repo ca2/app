@@ -90,7 +90,7 @@ namespace dynamic_source
 //   void script_compiler::prepare_compile_and_link_environment()
 //   {
 //
-//      auto pacmedirectory = m_psystem->m_pacmedirectory;
+//      auto pacmedirectory = acmedirectory();
 //
 //      m_pcontext->m_papexcontext->dir().create(pacmedirectory->system() / "netnodelite/symbols");
 //
@@ -274,7 +274,7 @@ namespace dynamic_source
    void script_compiler::compile(ds_script * pscript)
    {
 
-      synchronous_lock synchronouslock(pscript->mutex());
+      synchronous_lock synchronouslock(pscript->synchronization());
 
       INFORMATION("Compiling script " << pscript->m_strName.c_str());
 
@@ -356,7 +356,7 @@ namespace dynamic_source
 
       ::ansi_zero_pad(strMillis, 3);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdatetime = psystem->datetime();
 
@@ -429,7 +429,7 @@ namespace dynamic_source
 
          ::file::path pathDVP_Folder = pathDVP.folder();
 
-                  auto psystem = m_psystem;
+                  auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -923,7 +923,7 @@ pacmedirectory->create(pathDVP_Folder);
 
          strSymbolName += strRndTitle;
 
-         auto pacmedirectory = m_psystem->m_pacmedirectory;
+         auto pacmedirectory = acmedirectory();
 
          strHmhLctvWildPdbPath = ::file::path(pacmedirectory->system() / "netnodelite\\symbols") / strSymbolName;
 
@@ -1283,7 +1283,7 @@ pacmedirectory->create(pathDVP_Folder);
    void script_compiler::operator()(::file::action * paction)
    {
 
-      synchronous_lock synchronouslock(&m_mutex);
+      synchronous_lock synchronouslock(m_pmutex);
 
       ::file::path path = paction->m_pathFolder / paction->m_pathFile;
 
@@ -1293,7 +1293,7 @@ pacmedirectory->create(pathDVP_Folder);
       if(::str().find_ci("netnode_persistent_ui_str", strTransfer) >= 0)
          return;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       if(m_straSync.get_count() > 1)
       {
@@ -1304,7 +1304,7 @@ pacmedirectory->create(pathDVP_Folder);
 
             auto purl = psystem->url();
 
-            m_pcontext->m_papexcontext->http().get("http://" + m_straSync[i] + "/synchronization_object?src=" +m_straSync[0] + "&url=" + purl->url_encode(strTransfer) + "&pwd=sym123&authnone=1", set);
+            m_pcontext->m_papexcontext->http().get("http://" + m_straSync[i] + "/synchronization?src=" +m_straSync[0] + "&url=" + purl->url_encode(strTransfer) + "&pwd=sym123&authnone=1", set);
 
          }
 
@@ -1344,7 +1344,7 @@ pacmedirectory->create(pathDVP_Folder);
    library & script_compiler::lib(const ::string & pszLibrary)
    {
 
-      single_lock slLibrary(&m_mutexLibrary,true);
+      single_lock slLibrary(m_pmutexLibrary,true);
 
       auto p = m_mapLib.plookup(pszLibrary);
 
@@ -1497,7 +1497,7 @@ pacmedirectory->create(pathDVP_Folder);
       {
          if(l.m_straLibSourcePath[i].final_extension() == "cpp")
          {
-            m_psystem->m_pacmefile->copy(l.m_straLibCppPath[i], l.m_straLibSourcePath[i], false);
+            acmefile()->copy(l.m_straLibCppPath[i], l.m_straLibSourcePath[i], false);
          }
          else
          {
@@ -2732,7 +2732,7 @@ ch_else:
 //      return m_bLastLibraryVersionCheck;
 //   }
 
-//   single_lock slLibrary(&m_mutexLibrary, true);
+//   single_lock slLibrary(m_pmutexLibrary, true);
 
 //   for(i32 i = 0; i < m_straLibSourcePath.get_size(); i++)
 //   {
@@ -2771,7 +2771,7 @@ ch_else:
    void library::load_library()
    {
 
-      single_lock slLibrary(&m_mutex, true);
+      single_lock slLibrary(m_pmutex, true);
 
       m_plibraryLib.create(this);
 
@@ -2805,10 +2805,10 @@ ch_else:
    }
 
 
-   library::library(::object * pobject)
+   library::library(::particle * pparticle)
    {
 
-      initialize(pobject);
+      initialize(pparticle);
 
    }
 
@@ -2821,7 +2821,7 @@ ch_else:
 
    void library::unload_library()
    {
-      single_lock slLibrary(&m_mutex, true);
+      single_lock slLibrary(m_pmutex, true);
       m_plibraryLib->close();
    }
 
@@ -2938,9 +2938,9 @@ ch_else:
    void script_compiler::pstr_set(atom pszTopic,atom idLocale,atom idSchema, const ::string & psz)
    {
 
-      synchronous_lock synchronouslock(m_pmanager->mutex());
+      synchronous_lock synchronouslock(m_pmanager->synchronization());
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       psystem->texttable()->set(pszTopic,idLocale,idSchema,psz);
 

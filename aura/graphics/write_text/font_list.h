@@ -65,7 +65,7 @@ namespace write_text
       ~font_list() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
       //virtual void on_subject(::topic * ptopic) override;
 

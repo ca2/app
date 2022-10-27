@@ -12,8 +12,8 @@ namespace turboc
 {
 
 
-   impact::impact(::object * pobject):
-      ::object(pobject),
+   impact::impact(::particle * pparticle):
+      ::object(pparticle),
       m_pimage1,
       m_pimage2,
 
@@ -271,7 +271,7 @@ namespace turboc
       if(m_bFast || !m_bFirstDone || m_durationLastFast.elapsed() < m_durationFastAnime)
       {
 
-         synchronous_lock slDraw(&m_mutexDraw);
+         synchronous_lock slDraw(m_pmutexDraw);
 
          if(m_bFast || m_pimageFast->is_null())
          {
@@ -314,9 +314,9 @@ namespace turboc
 
       ::image_pointer pimageFast = m_pimageFast;
 
-      synchronous_lock synchronouslock(&m_mutexDraw);
+      synchronous_lock synchronouslock(m_pmutexDraw);
 
-      synchronous_lock slSwap(&m_mutexSwap);
+      synchronous_lock slSwap(m_pmutexSwap);
 
       if(m_bDib1)
       {
@@ -406,7 +406,7 @@ namespace turboc
       if(m_cx <= 0 || m_cy <= 0)
          return;
 
-      synchronous_lock slDraw(&m_mutexDraw);
+      synchronous_lock slDraw(m_pmutexDraw);
 
       ::size_i32 sizeNew = ::size_i32(m_cx,m_cy) + ::size_i32(100,100);
 
@@ -483,7 +483,7 @@ namespace turboc
 
       {
 
-         synchronous_lock synchronouslock(&m_mutexWork);
+         synchronous_lock synchronouslock(m_pmutexWork);
 
 /*         ::image_pointer pimage = m_pimageWork;
 
@@ -505,9 +505,9 @@ namespace turboc
       {
 
          synchronous_lock sl1(m_spmutex);
-         synchronous_lock sl2(&m_mutexWork);
-         synchronous_lock sl3(&m_mutexDraw);
-         synchronous_lock sl4(&m_mutexSwap);
+         synchronous_lock sl2(m_pmutexWork);
+         synchronous_lock sl3(m_pmutexDraw);
+         synchronous_lock sl4(m_pmutexSwap);
 
 /*         bool bNewSize = m_pimage->width() < sizeNew.cx || m_pimage->m_size.cy < sizeNew.cy;
 
@@ -667,7 +667,7 @@ namespace turboc
 
       //_001OnPostProcess(m_pimageWork);
 
-      synchronous_lock slDraw(&m_mutexDraw);
+      synchronous_lock slDraw(m_pmutexDraw);
 
       if(m_bDib1)
       {
@@ -682,7 +682,7 @@ namespace turboc
 
       }
 
-      synchronous_lock slSwap(&m_mutexSwap);
+      synchronous_lock slSwap(m_pmutexSwap);
 
       if(m_bDib1)
       {
@@ -830,7 +830,7 @@ namespace turboc
    string impact::get_turboc()
    {
 
-      synchronous_lock synchronouslock(&m_mutexText);
+      synchronous_lock synchronouslock(m_pmutexText);
 
       if(m_strHelloMultiverse != m_strNewHelloMultiverse)
       {

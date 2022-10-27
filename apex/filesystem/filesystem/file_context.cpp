@@ -2,12 +2,25 @@
 #include "file_context.h"
 #include "file_system.h"
 #include "dir_context.h"
+#include "acme/exception/interface_only.h"
+#include "acme/exception/io.h"
+#include "acme/filesystem/file/exception.h"
+#include "acme/filesystem/file/folder.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/filesystem/file/status.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/listing.h"
+#include "acme/networking/url_department.h"
+#include "acme/networking/url_domain.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/ini.h"
+#include "acme/platform/sequencer.h"
+#include "acme/primitive/datetime/department.h"
 #include "acme/primitive/primitive/read_only_memory.h"
 #include "acme/primitive/string/base64.h"
+#include "acme/user/user/conversation.h"
 #include "apex/operating_system.h"
 #include "apex/crypto/crypto.h"
 #include "apex/crypto/hasher.h"
@@ -17,6 +30,7 @@
 #include "apex/platform/context.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
+#include "apex/platform/os_context.h"
 #include "apex/platform/session.h"
 #include "apex/platform/system.h"
 
@@ -35,7 +49,7 @@
 #define UTF8_BOM "\xef\xbb\xbf"
 
 
-//#include "apex/compress/zip/_.h"
+////#include "apex/compress/zip/_.h"
 #include "acme/constant/id.h"
 
 
@@ -55,7 +69,7 @@
 file_context::file_context()
 {
 
-   defer_create_mutex();
+   defer_create_synchronization();
 
 }
 
@@ -66,10 +80,10 @@ file_context::~file_context()
 }
 
 
-void file_context::initialize(::object * pobject)
+void file_context::initialize(::particle * pparticle)
 {
 
-   /*auto estatus = */ ::object::initialize(pobject);
+   /*auto estatus = */ ::object::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -315,7 +329,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
    auto psystem = get_system()->m_papexsystem;
 
-   synchronous_lock lockMachineEvent(psystem->mutex());
+   synchronous_lock lockMachineEvent(psystem->synchronization());
 
    ::file::path str;
 
@@ -1229,12 +1243,12 @@ void file_context::calculate_main_resource_memory()
 
 #if defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
 
-   if(m_psystem->m_pchar_binary__matter_zip_start && m_psystem->m_pchar_binary__matter_zip_end)
+   if(acmesystem()->m_pchar_binary__matter_zip_start && acmesystem()->m_pchar_binary__matter_zip_end)
    {
 
       return {
-         m_psystem->m_pchar_binary__matter_zip_start,
-         m_psystem->m_pchar_binary__matter_zip_end - m_psystem->m_pchar_binary__matter_zip_start
+         acmesystem()->m_pchar_binary__matter_zip_start,
+         acmesystem()->m_pchar_binary__matter_zip_end - acmesystem()->m_pchar_binary__matter_zip_start
       };
 
    }
@@ -1268,9 +1282,9 @@ void file_context::calculate_main_resource_memory()
    try
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
-      auto & pfactory = m_psystem->folder_factory();
+      auto & pfactory = acmesystem()->folder_factory();
 
       if (m_bFolderResourceCalculated)
       {
@@ -1301,7 +1315,7 @@ void file_context::calculate_main_resource_memory()
 
       auto pfile = __new(::memory_file(pmemory));
 
-      m_psystem->m_pfactoryFolder->__construct(m_pfolderResource);
+      acmesystem()->m_pfactoryFolder->__construct(m_pcontext, m_pfolderResource);
 
       m_pfolderResource->initialize(this);
 
@@ -1334,7 +1348,7 @@ void file_context::calculate_main_resource_memory()
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       pfolder = resource_folder();
 
@@ -1347,7 +1361,7 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   synchronous_lock synchronouslock(pfolder->mutex());
+   synchronous_lock synchronouslock(pfolder->synchronization());
 
    string strPath(path);
 
@@ -1404,7 +1418,7 @@ void file_context::calculate_main_resource_memory()
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       pfolder = resource_folder();
 
@@ -1417,7 +1431,7 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   synchronous_lock synchronouslock(pfolder->mutex());
+   synchronous_lock synchronouslock(pfolder->synchronization());
 
    string strPath(path);
 
@@ -1517,7 +1531,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          }
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pacmefile = psystem->m_pacmefile;
 
@@ -2163,7 +2177,7 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 {
 
 
-   string strTempDir = m_psystem->m_pacmedirectory->sys_temp();
+   string strTempDir = acmedirectory()->sys_temp();
 
    if (!::str().ends(strTempDir, "\\") && !::str().ends(strTempDir, "/"))
    {
@@ -2205,7 +2219,7 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 ::file::path file_context::sys_temp_unique(const ::file::path &lpszName)
 {
 
-   return m_psystem->m_pacmedirectory->sys_temp() / lpszName;
+   return acmedirectory()->sys_temp() / lpszName;
 
 }
 
@@ -2242,7 +2256,7 @@ file_pointer file_context::get(const ::file::path &name)
 
    int i = 0;
 
-   //static ::mutex s_mutex(nullptr);
+   //static ::pointer < ::mutex > s_mutex(nullptr);
 
    //single_lock synchronouslock(&s_mutex, true);
 
@@ -2257,11 +2271,11 @@ file_pointer file_context::get(const ::file::path &name)
    while (true)
    {
 
-      strTime = ::earth::format("%Y\\%m\\%d\\%H\\%M\\%S\\", timeFile);
+      strTime = acmesystem()->datetime()->format("%Y\\%m\\%d\\%H\\%M\\%S\\", timeFile);
 
       strIndex.format("%08x\\", i);
 
-      strTempFile = m_pcontext->m_psystem->m_papexsystem->m_pdirsystem->m_pathUpload / (strTime + strIndex + pathCurrent);
+      strTempFile = m_pcontext->acmesystem()->m_papexsystem->m_pdirsystem->m_pathUpload / (strTime + strIndex + pathCurrent);
 
       if (!exists(strTempFile))
       {
@@ -2272,13 +2286,13 @@ file_pointer file_context::get(const ::file::path &name)
 
       string strMessage;
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto pdatetime = psystem->datetime();
 
       strMessage = pdatetime->international().get_date_time() + " " + strTempFile;
 
-      m_psystem->m_pacmefile->append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
+      acmefile()->append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
 
       i++;
 
@@ -2750,13 +2764,13 @@ void file_context::init_context()
 //bool file_context::prepare_output(::stream & outputstream, path & pathDownloading, const ::stream & os)
 //{
 
-//   Sys(pobject).dir().mk(pathOut.folder());
+//   Sys(pparticle).dir().mk(pathOut.folder());
 
 //   file_pointer fileOut;
 
 //   i64 iTry = 0;
 
-//   ::application * papp = ::get_app(pobject);
+//   ::application * papp = ::get_app(pparticle);
 
 //   while (true)
 //   {
@@ -2792,7 +2806,7 @@ void file_context::init_context()
 //bool file_context::prepare_input(::stream & is, const path & pathIn)
 //{
 
-//   file_pointer fileIn = Sess(pobject).file().get_file(pathIn, ::file::e_open_binary | ::file::e_open_read);
+//   file_pointer fileIn = Sess(pparticle).file().get_file(pathIn, ::file::e_open_binary | ::file::e_open_read);
 
 //   if (fileIn.is_null())
 //   {
@@ -2936,7 +2950,7 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
 
             ::pointer<memory_file>pmemoryfile = __new(memory_file());
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
             auto pbase64 = psystem->base64();
 
@@ -2968,7 +2982,7 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
 folder_pointer file_context::get_folder(::file::file *pfile, const char * pszImplementation, const ::file::e_open &eopen)
 {
 
-   auto & pfactory = m_psystem->folder_factory();
+   auto & pfactory = acmesystem()->folder_factory();
 
    if (!pfactory)
    {
@@ -3035,7 +3049,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
    ::url_domain domain;
 
-   auto psystem = m_psystem;
+   auto psystem = acmesystem();
 
    auto purl = psystem->url();
 
@@ -3101,7 +3115,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
       synchronous_lock synchronouslock(m_pcontext->m_papexcontext->http().m_pmutexDownload);
 
-      if (!(path & ::file::e_flag_bypass_cache) && m_psystem->m_pacmefile->exists(pathCache))
+      if (!(path & ::file::e_flag_bypass_cache) && acmefile()->exists(pathCache))
       {
 
          synchronouslock.unlock();
@@ -3514,7 +3528,7 @@ bool file_context::is_link(string strPath)
 
    ::file::path pathNetworkPayload;
 
-   pathNetworkPayload = m_psystem->m_pacmedirectory->home() / ".dropbox/info" NETWORK_PAYLOAD_DEFAULT_EXTENSION;
+   pathNetworkPayload = acmedirectory()->home() / ".dropbox/info" NETWORK_PAYLOAD_DEFAULT_EXTENSION;
 
    return pathNetworkPayload;
 
@@ -3526,7 +3540,7 @@ bool file_context::is_link(string strPath)
 
    ::file::path pathGlobalIni;
 
-   pathGlobalIni = m_psystem->m_pacmedirectory->ca2roaming() / "OneDrive/settings/Personal/global.ini";
+   pathGlobalIni = acmedirectory()->ca2roaming() / "OneDrive/settings/Personal/global.ini";
 
    return pathGlobalIni;
 
@@ -3538,7 +3552,7 @@ bool file_context::is_link(string strPath)
 
    ::file::path pathGlobalIni = onedrive_global_ini();
 
-   string strIni = m_psystem->m_pacmefile->as_string(pathGlobalIni);
+   string strIni = acmefile()->as_string(pathGlobalIni);
 
    if (strIni.is_empty())
    {
@@ -3555,7 +3569,7 @@ bool file_context::is_link(string strPath)
    
    strCid = set["cid"];
 
-   ::file::path pathIni = m_psystem->m_pacmedirectory->ca2roaming() / "OneDrive/Settings/Personal/" + strCid + ".ini";
+   ::file::path pathIni = acmedirectory()->ca2roaming() / "OneDrive/Settings/Personal/" + strCid + ".ini";
 
    return pathIni;
 
@@ -3623,7 +3637,7 @@ bool file_context::is_link(string strPath)
 
    }
 
-   return m_psystem->m_pacmepath->get_type(path);
+   return acmepath()->get_type(path);
 
 }
 

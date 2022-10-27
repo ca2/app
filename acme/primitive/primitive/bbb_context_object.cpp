@@ -144,10 +144,10 @@ void object::process_exit_status(const ::e_status & estatus)
 
 
    //template < typename BASE_TYPE >
-   //void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
+   //void save_to(const ::payload& payloadFile, BASE_TYPE* pparticle);
 
    
-   void object::initialize(::object * pobject)
+   void object::initialize(::particle * pparticle)
    {
       auto estatus = ::success;
 
@@ -185,28 +185,28 @@ void object::process_exit_status(const ::e_status & estatus)
       if (!get_system())
       {
 
-         m_psystem = pobject->get_system();
+         acmesystem() = pparticle->get_system();
 
       }
 
       if (!m_papp)
       {
 
-         m_papp = pobject->m_papp;
+         m_papp = pparticle->m_papp;
 
       }
 
       if (!m_psession)
       {
 
-         m_psession = pobject->m_psession;
+         m_psession = pparticle->m_psession;
 
       }
 
       //if (!psystem)
       //{
 
-      //   set_context_system(::apex::get_system(pobject) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+      //   set_context_system(::apex::get_system(pparticle) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       //}
 
@@ -225,10 +225,10 @@ void object::process_exit_status(const ::e_status & estatus)
             m_pcontext = m_psession;
 
          }
-         else if (m_psystem)
+         else if (acmesystem())
          {
 
-            m_pcontext = m_psystem;
+            m_pcontext = acmesystem();
 
          }
 
@@ -334,10 +334,10 @@ void object::process_exit_status(const ::e_status & estatus)
 //#endif
 
 
-   // void set_object(::object * pobject) 
+   // void set_object(::particle * pparticle) 
 
 
-   //inline void defer_set_object(::object * pobject);
+   //inline void defer_set_object(::particle * pparticle);
 
        void object::operator()()
     {
@@ -468,13 +468,13 @@ void object::process_exit_status(const ::e_status & estatus)
    //inline void release_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   // void add_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
-   // void add_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
+   // void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
+   // void add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
 
 
-   // void release_composite2(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
-   // void finalize_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
-   // void release_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
+   // void release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
+   // void finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
+   // void release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
 
 
    //template < typename BASE_TYPE >
@@ -562,10 +562,10 @@ void object::delete_this()
 
        }
 
-       if (m_psystem && (::property_object*)m_psystem != (::property_object *) this)
+       if (acmesystem() && (::property_object*)acmesystem() != (::property_object *) this)
        {
 
-          return m_psystem;
+          return acmesystem();
 
        }
 
@@ -756,14 +756,14 @@ void object::delete_this()
 
     }
 
-    bool object::___is_reference(::matter* pobject) const
+    bool object::___is_reference(::particle * pparticle) const
     {
 
        return false;
 
     }
 
-    bool object::__is_composite(::matter* pobject) const
+    bool object::__is_composite(::particle * pparticle) const
     {
 
        return false;

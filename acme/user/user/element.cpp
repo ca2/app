@@ -5,6 +5,7 @@
 #include "check.h"
 #include "text.h"
 #include "element.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace user
@@ -3886,7 +3887,7 @@ namespace user
    //void element::add_thread(::thread * pthread)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   m_threadptra.add(pthread);
 
@@ -3896,7 +3897,7 @@ namespace user
    //void element::erase_thread(::thread * pthread)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   m_threadptra.erase(pthread);
 

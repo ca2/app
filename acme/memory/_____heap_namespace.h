@@ -4,6 +4,15 @@
 #include "memory_management.h"
 
 
+#include "acme/primitive/collection/allocator.h"
+
+
+#include "acme/primitive/collection/array.h"
+
+
+#include "acme/primitive/collection/atom_map.h"
+
+
 #define __HEAP_NAMESPACE_PREFIX(name) __PREFIX_UNDERSCORE(HEAP_NAMESPACE_PREFIX,name)
 #define __HEAP_NAMESPACE_SUFFIX(name) __PREFIX_UNDERSCORE(name,HEAP_NAMESPACE_PREFIX)
 #define HEAP_NAMESPACE __HEAP_NAMESPACE_PREFIX(memory_allocate_heap)

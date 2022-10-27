@@ -34,7 +34,7 @@ namespace sockets_bsd
       listen_socket();
       virtual ~listen_socket();
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       void set_ssl_catalog(const ::string & strCat) override;

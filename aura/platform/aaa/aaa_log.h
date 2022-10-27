@@ -29,7 +29,7 @@ namespace aura
 
       bool                       m_bTrace;
       ::pointer<::aura::trace::trace>m_ptrace;
-      ::mutex                    m_mutexTrace;
+      ::pointer < ::mutex >                    m_pmutexTrace;
       string_array                    m_straSeparator;
       FILE *                     m_pfile;
       bool                       m_bInitialized;
@@ -56,7 +56,7 @@ namespace aura
 
       virtual bool process_init();
 
-      virtual void __tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFileName, i32 iLine, const ::string & psz) override;
+      virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFileName, i32 iLine, const ::string & psz) override;
 
       void set_trace_category(e_trace_category ecategory, enum_trace_level elevelMin);
 

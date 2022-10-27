@@ -21,7 +21,7 @@ namespace universal_windows
 
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual bool update_module_path() override;

@@ -673,7 +673,7 @@ string memory_file::as_string() const
 void memory_file::assert_ok() const
 {
 
-   file::assert_ok();
+   //file::assert_ok();
 
 }
 
@@ -681,7 +681,7 @@ void memory_file::assert_ok() const
 void memory_file::dump(dump_context & dumpcontext) const
 {
 
-   file::dump(dumpcontext);
+   //file::dump(dumpcontext);
 
 }
 

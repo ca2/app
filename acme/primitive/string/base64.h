@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/primitive/matter.h"
 //namespace str
 //{
 
@@ -33,7 +34,7 @@
       virtual ~base64();
 
 
-      ///virtual void initialize(::object * pobject) override;
+      ///virtual void initialize(::particle * pparticle) override;
 
 
       // from arbitrary binary data to Base 64

@@ -1,9 +1,10 @@
 ﻿#include "framework.h"
 #include "websocket_client.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/string/base64.h"
 #include "apex/crypto/crypto.h"
 #include "apex/id.h"
-#include "apex/networking/sockets/_sockets.h"
-#include "acme/primitive/string/base64.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
 
@@ -575,7 +576,7 @@ namespace sockets
 
          generate_random_bytes(m.get_data(), m.get_size());
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pbase64 = psystem->base64();
 
@@ -693,7 +694,7 @@ namespace sockets
 
                memory mem2;
 
-               auto psystem = m_psystem->m_papexsystem;
+               auto psystem = acmesystem()->m_papexsystem;
 
                auto pbase64 = psystem->base64();
 
@@ -737,7 +738,7 @@ namespace sockets
    void websocket_client::write(const void *buf, memsize c)
    {
 
-      synchronous_lock synchronouslock(&m_mutexWebsocketWrite);
+      synchronous_lock synchronouslock(m_pmutexWebsocketWrite);
 
       http_client_socket::write(buf, c);
 

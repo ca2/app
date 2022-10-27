@@ -99,7 +99,7 @@ namespace user
 
          virtual void run() override;
 
-         virtual void finish(::property_object * pobject) override;
+         virtual void finish(::property_object * pparticle) override;
 
 
       };
@@ -127,7 +127,7 @@ namespace user
       index                                              m_iMaxThreadCount;
       index                                              m_iActiveThreadCount;
       index                                              m_iThread;
-      ::mutex                                            m_mutexImage;
+      ::pointer < ::mutex >                                            m_pmutexImage;
       //pointer_array < thread >                            m_threadptra;
       ::duration                                               m_durationLastMax;
       ::u32                                              m_bMax;
@@ -141,7 +141,7 @@ namespace user
 
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       virtual void do_initialize();
 
 
@@ -182,8 +182,8 @@ namespace user
       ::image_list * GetImageListHover(int iSize);
 
 
-      virtual e_folder get_folder_type(::object * pobject, const widechar * pcszPath);
-      virtual e_folder get_folder_type(::object * pobject, const ::string & pcszPath);
+      virtual e_folder get_folder_type(::particle * pparticle, const widechar * pcszPath);
+      virtual e_folder get_folder_type(::particle * pparticle, const ::string & pcszPath);
 
       int add_hover_image(int iSize, int iIndex, ::color::color crBk);
 
@@ -191,7 +191,7 @@ namespace user
       virtual i32 add_icon_path(::file::path path, ::color::color crBk, int iImage);
 
 
-      virtual void finish(::property_object * pobject) override;
+      virtual void finish(::property_object * pparticle) override;
 
 
    };

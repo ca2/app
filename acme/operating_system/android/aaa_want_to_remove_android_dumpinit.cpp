@@ -21,21 +21,21 @@
 
 // //      ::matter * pca = (::matter * ) pvData;
 
-//       ::matter * pobject = nullptr;
+//       ::particle * pparticle = nullptr;
 
-//       if(pobject == nullptr)
+//       if(pparticle == nullptr)
 //       {
 // // xxx            C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "unknown matter at $%p, %u bytes long\n", pvData, nBytes));
 //       }
 //       else if(::acme::get_system()->m_pdumpcontext->GetDepth() > 0)
 //       {
 //          // long form
-//          pobject->dump(*::acme::get_system()->m_pdumpcontext);
+//          pparticle->dump(*::acme::get_system()->m_pdumpcontext);
 //          *::acme::get_system()->m_pdumpcontext << "\n";
 //       }
 //       if(false) // else
 //       {
-//          //::matter & obj = *pobject;
+//          //::matter & obj = *pparticle;
 //          // short form
 // // xxx         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "a %hs matter at $%p, %u bytes long\n", typeid(obj).name(), pvData, nBytes));
 //          *::acme::get_system()->m_pdumpcontext << sz;

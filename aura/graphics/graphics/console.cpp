@@ -179,7 +179,7 @@ namespace graphics
    void console::SetWindowSize(int iHeight, int iWidth)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_sizeWindow.cx = iWidth;
 
@@ -232,7 +232,7 @@ namespace graphics
    {
 
       m_edoscolor = color;
-      //synchronous_lock synchronouslock(&m_mutex);
+      //synchronous_lock synchronouslock(m_pmutex);
 
       //m_pimage->g()->FillSolidRect(0,iLineStart * m_sizeTile.cy,m_pimage->width(),m_pimage->height() - iLineStart * m_sizeTile.cy,console_dos_color(color));
 
@@ -243,7 +243,7 @@ namespace graphics
 
    void console::write(const ::string & strParam)
    {
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto psz = strParam.c_str();
       string str;
@@ -290,7 +290,7 @@ namespace graphics
    void console::update_image()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pimage.nok())
       {

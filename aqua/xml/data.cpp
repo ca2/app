@@ -23,12 +23,12 @@ namespace xml
    }
 
 
-   void data::initialize(::object * pobject)
+   void data::initialize(::particle * pparticle)
    {
 
-      ::data::data::initialize(pobject);
+      ::data::data::initialize(pparticle);
 
-      ::xml::document::initialize(pobject);
+      ::xml::document::initialize(pparticle);
 
 
    }

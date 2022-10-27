@@ -1,14 +1,14 @@
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+//#include "apex/networking/sockets/_sockets.h"
 
 
 namespace sockets
 {
 
 
-   sync_socket_handler::sync_socket_handler(::object * pobject, ::apex::log * plog) :
-      ::object(pobject),
-      m_handler(pobject, plog)
+   sync_socket_handler::sync_socket_handler(::particle * pparticle, ::apex::log * plog) :
+      ::object(pparticle),
+      m_handler(pparticle, plog)
    {
 
       m_psocket            = nullptr;

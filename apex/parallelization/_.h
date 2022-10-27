@@ -4,9 +4,9 @@
 #include "common.h"
 
 
-#ifdef __APPLE__
-#include <semaphore.h>
-#endif
+//#ifdef __APPLE__
+//#include <semaphore.h>
+//#endif
 
 
 
@@ -26,101 +26,101 @@
 //CLASS_DECL_APEX void main_branch(::element * pelementTask, enum_priority epriority);
 
 
-property_set& _thread_property_set();
+//property_set& _thread_property_set();
+//
+//
+//property_set & thread_property_set();
+//
+//
+//#if defined(ANDROID)
+//
+//
+////#define MUTEX_COND_TIMED
+//#undef MUTEX_NAMED_POSIX // as of 2016-11-26
+//// not implemented (err=38) on android-19 (POSIX semaphore)
+//#define MUTEX_NAMED_FD
+//#undef MUTEX_NAMED_VSEM
+//
+//#elif defined(__APPLE__)
+//
+////#define MUTEX_COND_TIMED
+//#undef MUTEX_NAMED_POSIX
+//#define MUTEX_NAMED_FD // File Descriptor "Semaphore"
+//#undef MUTEX_NAMED_VSEM
+//
+//#elif defined(LINUX)
+//
+////#define MUTEX_COND_TIMED
+//#undef MUTEX_NAMED_POSIX
+//#undef MUTEX_NAMED_FD
+//#define MUTEX_NAMED_FD // File Descriptor "Semaphore"
+////#define MUTEX_NAMED_VSEM // psystem V Semaphore
+//#undef MUTEX_NAMED_VSEM
+//
+//#endif
+//
+//
+//
+//class synchronization;
+//class semaphore;
+////class ::pointer < ::mutex >;
+//class event;
+//class critical_section;
+//class single_lock;
+//class multi_lock;
+//
+
+//CLASS_DECL_APEX void __call(::particle * pparticle);
 
 
-property_set & thread_property_set();
-
-
-#if defined(ANDROID)
-
-
-//#define MUTEX_COND_TIMED
-#undef MUTEX_NAMED_POSIX // as of 2016-11-26
-// not implemented (err=38) on android-19 (POSIX semaphore)
-#define MUTEX_NAMED_FD
-#undef MUTEX_NAMED_VSEM
-
-#elif defined(__APPLE__)
-
-//#define MUTEX_COND_TIMED
-#undef MUTEX_NAMED_POSIX
-#define MUTEX_NAMED_FD // File Descriptor "Semaphore"
-#undef MUTEX_NAMED_VSEM
-
-#elif defined(LINUX)
-
-//#define MUTEX_COND_TIMED
-#undef MUTEX_NAMED_POSIX
-#undef MUTEX_NAMED_FD
-#define MUTEX_NAMED_FD // File Descriptor "Semaphore"
-//#define MUTEX_NAMED_VSEM // psystem V Semaphore
-#undef MUTEX_NAMED_VSEM
-
-#endif
-
-
-
-class synchronization_object;
-class semaphore;
-//class ::mutex;
-class event;
-class critical_section;
-class single_lock;
-class multi_lock;
-
-
-//CLASS_DECL_APEX void __call(::matter * pobject);
-
-
-
-namespace parallelization
-{
-
-
-   namespace array
-   {
-
-      template < typename ARRAY >
-      ::pointer<::object>is_running(ARRAY & array, const char * pszTag)
-      {
-
-         for (::index i = 0; i < array.get_size(); i++)
-         {
-
-            ::pointer<::object>pobject;
-
-            pobject = &__typed(array[i]);
-
-            if (pobject && pobject->is_thread())
-            {
-
-               if (pobject->task_get_run())
-               {
-
-                  if (pobject->get_tag().compare(pszTag) == 0)
-                  {
-
-                     return pobject;
-
-                  }
-
-               }
-
-            }
-
-         }
-
-         return nullptr;
-
-      }
-
-
-   }
-
-
-} // namespace parallelization
-
+//
+//namespace parallelization
+//{
+//
+//
+//   namespace array
+//   {
+//
+//      template < typename ARRAY >
+//      ::pointer<::object>is_running(ARRAY & array, const char * pszTag)
+//      {
+//
+//         for (::index i = 0; i < array.get_size(); i++)
+//         {
+//
+//            ::pointer<::object>pparticle;
+//
+//            pparticle = &__typed(array[i]);
+//
+//            if (pparticle && pparticle->is_thread())
+//            {
+//
+//               if (pparticle->task_get_run())
+//               {
+//
+//                  if (pparticle->get_tag().compare(pszTag) == 0)
+//                  {
+//
+//                     return pparticle;
+//
+//                  }
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//         return nullptr;
+//
+//      }
+//
+//
+//   }
+//
+//
+//} // namespace parallelization
+//
 
 
 //CLASS_DECL_APEX bool task_set_name(const char * psz);
@@ -129,7 +129,7 @@ namespace parallelization
 // Use instead of PostQuitMessage in OLE server applications
 //CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
 
-typedef void     (*__THREADPROC)(void *);
+//typedef void     (*__THREADPROC)(void *);
 
 
 //CLASS_DECL_APEX bool do_events();
@@ -155,47 +155,47 @@ namespace user
 
 class thread_startup;
 
+//
+//namespace parallelization
+//{
+//
+//
+//   //CLASS_DECL_APEX bool set_priority(enum_priority epriority);
+//
+//   //CLASS_DECL_APEX i32 priority();
+//
+//
+//   //inline i32 get_priority_none()
+//   //{
+//
+//   //   return e_priority_none;
+//
+//   //}
+//
+//
+//   //inline i32 get_priority_normal()
+//   //{
+//
+//   //   return e_priority_normal;
+//
+//   //}
+//
+//
+//} // namespace parallelization
 
-namespace parallelization
-{
-
-
-   //CLASS_DECL_APEX bool set_priority(enum_priority epriority);
-
-   //CLASS_DECL_APEX i32 priority();
-
-
-   //inline i32 get_priority_none()
-   //{
-
-   //   return e_priority_none;
-
-   //}
-
-
-   //inline i32 get_priority_normal()
-   //{
-
-   //   return e_priority_normal;
-
-   //}
-
-
-} // namespace parallelization
-
-
-class sync_interface;
-class synchronous_lock;
-
+//
+//class sync_interface;
+//class synchronous_lock;
+//
 
 
 
 //#include "predicate_holder.h"
 
-//#include "synchronization_object.h"
+//#include "synchronization.h"
 //#include "synchronization_array.h"
 //#include "semaphore.h"
-//#include "::mutex.h"
+//#include "::pointer < ::mutex >.h"
 //#include "event.h"
 //#include "set_event_on_exit.h"
 //#include "condition.h"
@@ -212,12 +212,12 @@ class synchronous_lock;
 //#include "synch_index_ptr_array.h"
 //#include "synch_index_iterator.h"
 
-
-#ifdef ___ENABLE_INLINES
-#define _AFXMT_INLINE inline
-#include "_impl.h"
-#undef _AFXMT_INLINE
-#endif
+//
+//#ifdef ___ENABLE_INLINES
+//#define _AFXMT_INLINE inline
+//#include "_impl.h"
+//#undef _AFXMT_INLINE
+//#endif
 
 
 //#include "manual_reset_event.h"
@@ -233,8 +233,8 @@ class synchronous_lock;
 //#include "service_status.h"
 //#include "thread_os.h"
 
-
-#include "create_thread.h"
+//
+//#include "create_thread.h"
 
 
 //#include "service/pool.h"

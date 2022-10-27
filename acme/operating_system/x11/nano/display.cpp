@@ -3,7 +3,14 @@
 // Created by camilo on 21/02/2022 23:15 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "_nano.h"
+#include "display.h"
+#include "window.h"
+#include "acme/parallelization/mutex.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/acme.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/user/nano/window.h"
 
 
 #define MAXSTR 1000
@@ -37,7 +44,7 @@ namespace x11
 
       }
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
 
    }
@@ -231,17 +238,17 @@ namespace x11
    }
 
 
-   display * display::get(::object * pobject, bool bBranch, Display * pdisplay)
+   display * display::get(::particle * pparticle, bool bBranch, Display * pdisplay)
    {
 
-      synchronous_lock lock(::acme::get_global_mutex());
+      critical_section_lock lock(::globals_critical_section());
 
       if (g_p == nullptr)
       {
 
          auto p = memory_new display;
 
-         p->initialize(pobject);
+         p->initialize(pparticle);
 
          p->add_listener(p);
 
@@ -270,7 +277,7 @@ namespace x11
    void display::add_listener(event_listener * plistener)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_eventlistenera.add(plistener);
 
@@ -280,7 +287,7 @@ namespace x11
    void display::add_window(nano_window * pwindow)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_windowa.add(pwindow);
 
@@ -290,7 +297,7 @@ namespace x11
    void display::erase_listener(event_listener * plistener)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_eventlistenera.erase(plistener);
 
@@ -300,7 +307,7 @@ namespace x11
    void display::erase_window(nano_window * pwindow)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_windowa.erase(pwindow);
 
@@ -343,7 +350,7 @@ namespace x11
 
       ::index i = 0;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       for (; i < m_eventlistenera.get_count(); i++)
       {
@@ -440,12 +447,12 @@ namespace x11
    void display::init_task()
    {
 
-      if(m_psystem->m_ewindowing == e_windowing_none)
+      if(acmesystem()->m_ewindowing == e_windowing_none)
       {
 
          //set_main_user_thread();
 
-         m_psystem->m_ewindowing = e_windowing_x11;
+         acmesystem()->m_ewindowing = e_windowing_x11;
 
       }
 
@@ -473,7 +480,7 @@ namespace x11
 
       }
 
-               ::rectangle_i32 rectangleMainScreen;
+      ::rectangle_i32 rectangleMainScreen;
 
       auto pscreen = DefaultScreenOfDisplay(m_pdisplay);
 
@@ -598,28 +605,28 @@ namespace x11
 } // namespace x11
 
 
-void * x11_get_display(::object * pobject)
+void * x11_get_display(::particle * pparticle)
 {
 
-   auto pdisplay = ::x11::display::get(pobject, false);
+   auto pdisplay = ::x11::display::get(pparticle, false);
 
    return pdisplay->m_pdisplay;
 
 }
 
 
-void initialize_x11_display(::object * pobject, void * pX11Display)
+void initialize_x11_display(::particle * pparticle, void * pX11Display)
 {
 
-   ::x11::display::get(pobject, false, (Display *) pX11Display);
+   ::x11::display::get(pparticle, false, (Display *) pX11Display);
 
 }
 
 
-void * initialize_x11_display(::object * pobject)
+void * initialize_x11_display(::particle * pparticle)
 {
 
-   auto pdisplay = ::x11::display::get(pobject, false);
+   auto pdisplay = ::x11::display::get(pparticle, false);
 
    return pdisplay->m_pdisplay;
 

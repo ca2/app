@@ -88,7 +88,7 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
 
    }
 
-   synchronous_lock ml(pmq->mutex());
+   synchronous_lock ml(pmq->synchronization());
 
    pmq->m_messagea.predicate_erase([=](MESSAGE & message)
    {

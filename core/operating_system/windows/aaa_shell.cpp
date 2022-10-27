@@ -24,7 +24,7 @@ namespace windows
 
       m_iMaxThreadCount = 1;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_iThread = 0;
 
@@ -422,7 +422,7 @@ namespace windows
 
             string strIcon;
 
-            strIcon =          auto psystem = m_psystem;
+            strIcon =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -463,7 +463,7 @@ pacmedirectory->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + 
 
             HRESULT hrExtract = E_FAIL;
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             auto iaSize = m_iaSize;
 
@@ -798,24 +798,24 @@ pacmedirectory->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + 
    //}
 
 
-   shell::e_folder shell::get_folder_type(::object * pobject, const ::string & pcsz)
+   shell::e_folder shell::get_folder_type(::particle * pparticle, const ::string & pcsz)
 
    {
 
-      return get_folder_type(pobject, utf8_to_unicode(pcsz));
+      return get_folder_type(pparticle, utf8_to_unicode(pcsz));
 
 
    }
 
 
-   shell::e_folder shell::get_folder_type(::object * pobject, const unichar * pcszPath)
+   shell::e_folder shell::get_folder_type(::particle * pparticle, const unichar * pcszPath)
    {
 
       string strPath;
 
       unicode_to_utf8(strPath, pcszPath);
 
-      if (         auto psystem = m_psystem;
+      if (         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1066,7 +1066,7 @@ pacmedirectory->is(strPath))
    //}
 
 
-   void shell::initialize(::object * pobject)
+   void shell::initialize(::particle * pparticle)
    {
 
       if (m_bInitialized)
@@ -1076,7 +1076,7 @@ pacmedirectory->is(strPath))
 
       }
 
-      auto estatus = ::user::shell::initialize(pobject);
+      auto estatus = ::user::shell::initialize(pparticle);
 
       if (!estatus)
       {
@@ -1108,7 +1108,7 @@ pacmedirectory->is(strPath))
    int shell::add_icon_set(SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, color32_t crBk, bool & bUsed16, bool & bUsed48, int iImage)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto iaSize = m_iaSize;
 
@@ -1129,7 +1129,7 @@ pacmedirectory->is(strPath))
    int shell::add_icon_path(::file::path path, color32_t crBk, int iImage)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto iaSize = m_iaSize;
 
@@ -1330,7 +1330,7 @@ pacmedirectory->is(strPath))
       if (reserve_image(imagekeyIco, iImage))
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          auto iaSize = m_iaSize;
 
@@ -1361,10 +1361,10 @@ pacmedirectory->is(strPath))
    }
 
 
-   void shell::finish(::property_object * pobject)
+   void shell::finish(::property_object * pparticle)
    {
 
-      return ::user::shell::finish(pobject);
+      return ::user::shell::finish(pparticle);
 
    }
 

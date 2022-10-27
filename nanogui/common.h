@@ -281,8 +281,8 @@ NANOGUI_EXPORT void pick_single_file(
 
 
 
-NANOGUI_EXPORT ::image_pointer ___load_image(::object * pobject, const char * path);
-NANOGUI_EXPORT void ___save_image(::object * pobject, const char * path, ::image * pimage);
+NANOGUI_EXPORT ::image_pointer ___load_image(::particle * pparticle, const char * path);
+NANOGUI_EXPORT void ___save_image(::particle * pparticle, const char * path, ::image * pimage);
 
 
 /**

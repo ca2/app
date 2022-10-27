@@ -6,9 +6,9 @@ namespace turboc
 {
 
 
-   lite_impact::lite_impact(::object * pobject):
-      ::object(pobject),
-      impact(pobject)
+   lite_impact::lite_impact(::particle * pparticle):
+      ::object(pparticle),
+      impact(pparticle)
    {
 
 

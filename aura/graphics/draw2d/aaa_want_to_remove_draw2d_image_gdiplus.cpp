@@ -104,7 +104,7 @@ bool windows_image_from_bitmap_source(::image * pimage, IWICBitmapSource * piCon
 }
 
 
-bool imaging::load_image(::object * pobject, ::image * pimage, const ::memory & mem)
+bool imaging::load_image(::particle * pparticle, ::image * pimage, const ::memory & mem)
 {
 
    {
@@ -235,7 +235,7 @@ bool imaging::load_image(::object * pobject, ::image * pimage, const ::memory & 
 
       }
 
-      if (!windows_image_from_bitmap_source(pobject, pimage, piConverter, piFactory))
+      if (!windows_image_from_bitmap_source(pparticle, pimage, piConverter, piFactory))
       {
 
          return false;
@@ -398,7 +398,7 @@ bool node_save_image(::file::file * pfile, const ::image * pimage, ::save_image 
    pstream->Seek(l, STREAM_SEEK_SET, nullptr);
 
 
-   memory mem(pobject->get_app());
+   memory mem(pparticle->get_app());
 
    mem.set_size(1024 * 1024);
 

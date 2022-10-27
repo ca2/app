@@ -15,7 +15,7 @@ public:
    PRED m_predicate;
 
 
-   predicate_task(::object * pobject, PRED pred) :
+   predicate_task(::particle * pparticle, PRED pred) :
       m_predicate(pred)
    {
 
@@ -25,7 +25,7 @@ public:
 
       //m_bFork = true;
 
-      initialize(pobject);
+      initialize(pparticle);
 
 
    }
@@ -51,10 +51,10 @@ public:
 
 
 template < typename PRED >
-inline auto new_predicateicate_task(::object * pobject, PRED pred)
+inline auto new_predicateicate_task(::particle * pparticle, PRED pred)
 {
 
-   return __new(predicate_task < PRED > (pobject, pred));
+   return __new(predicate_task < PRED > (pparticle, pred));
 
 }
 
@@ -137,17 +137,17 @@ inline auto new_predicateicate_task(::object * pobject, PRED pred)
 
 
 //template < typename PRED >
-//CLASS_DECL_ACME ::pointer<::task>& branch(::pointer<::task> ptask, ::object * pobject, const ::procedure & procedure);
+//CLASS_DECL_ACME ::pointer<::task>& branch(::pointer<::task> ptask, ::particle * pparticle, const ::procedure & procedure);
 
 
 
 //template < typename PRED >
-//::task * fork(::object * pobject, PRED pred)
+//::task * fork(::particle * pparticle, PRED pred)
 //{
 //
 //   ::task * ptask = nullptr;
 //
-//   return fork(ptask, pobject, pred);
+//   return fork(ptask, pparticle, pred);
 //
 //}
 
@@ -196,10 +196,10 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 
 //
 //template < typename PRED >
-//::pointer<task>fork(::object * pobject, PRED pred)
+//::pointer<task>fork(::particle * pparticle, PRED pred)
 //{
 //
-//   ptask = memory_new predicate_task < PRED >(pobject, pred);
+//   ptask = memory_new predicate_task < PRED >(pparticle, pred);
 //
 //   ptask->begin();
 //
@@ -211,10 +211,10 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //
 
 //template < typename PRED >
-//::task * fork(::object * pobject, PRED pred, const char * pszTag, int iCallStackAddUp = 0, enum_priority epriority = e_priority_normal)
+//::task * fork(::particle * pparticle, PRED pred, const char * pszTag, int iCallStackAddUp = 0, enum_priority epriority = e_priority_normal)
 //{
 //
-//   auto ppredtask = __new(predicate_task < PRED >(pobject, pred));
+//   auto ppredtask = __new(predicate_task < PRED >(pparticle, pred));
 //
 //   string strTag(pszTag);
 //
@@ -247,7 +247,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 
 ///// optimized: forks if not forked
 //template < typename PRED >
-//::task * opt_fork(::object * pobject,  PRED pred)
+//::task * opt_fork(::particle * pparticle,  PRED pred)
 //{
 //
 //   if (::get_task() != nullptr && ::get_task()->m_bFork)
@@ -259,7 +259,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //
 //   }
 //
-//   return fork(pobject, pred);
+//   return fork(pparticle, pred);
 //
 //}
 
@@ -270,9 +270,9 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //
 //   iCallStackAddUp++;
 //
-//   defer_create_mutex();
+//   defer_create_synchronization();
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   ptask = ::fork(ptask, this, pred, pszTag, iCallStackAddUp);
 //
@@ -287,9 +287,9 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //
 //   iCallStackAddUp++;
 //
-//   defer_create_mutex();
+//   defer_create_synchronization();
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   return fork(pred, pszTag, iCallStackAddUp, epriority);
 //
@@ -435,7 +435,7 @@ public:
    ::pointer<object> m_pholdref;
 
 
-   forking_count_task(::object * pobject, ::pointer<object>pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
+   forking_count_task(::particle * pparticle, ::pointer<object>pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
    m_pholdref(pholdref),
    m_predicate(pred),
    m_iOrder(iOrder),
@@ -445,10 +445,10 @@ public:
    m_pobjectTaskEnd(pobjectTaskEnd)
    {
       construct();
-      initialize(pobject);
+      initialize(pparticle);
    }
 
-   forking_count_task(::object * pobject, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
+   forking_count_task(::particle * pparticle, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
    m_predicate(pred),
    m_iOrder(iOrder),
    m_iIndex(iIndex),
@@ -457,7 +457,7 @@ public:
    m_pobjectTaskEnd(pobjectTaskEnd)
    {
       construct();
-      initialize(pobject);
+      initialize(pparticle);
    }
 
    
@@ -608,8 +608,8 @@ void fork_count(::object * pobjectParent, ::count iCount, PRED pred, const ::pro
 //
 //   ::pointer<::object> m_pobjectTaskEnd;
 //
-//   forking_for_task(::object * pobject, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
-//   ::object(pobject),
+//   forking_for_task(::particle * pparticle, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
+//   ::object(pparticle),
 //   m_predicate(pred),
 //   m_iOrder(iOrder),
 //   m_iIndex(iIndex),
@@ -786,7 +786,7 @@ CLASS_DECL_ACME u32 processor_index_generator();
 
 
 template < typename PRED >
-::task * predicate_run(::object * pobject, bool bSync, PRED pred)
+::task * predicate_run(::particle * pparticle, bool bSync, PRED pred)
 {
 
   if (bSync)
@@ -800,7 +800,7 @@ template < typename PRED >
   else
   {
 
-     return pobject->fork(pred);
+     return pparticle->fork(pred);
 
   }
 

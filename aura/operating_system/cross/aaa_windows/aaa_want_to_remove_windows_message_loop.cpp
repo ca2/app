@@ -10,7 +10,7 @@ public:
 
 
    simple_event                     m_event;
-   ::mutex                     m_mutex;
+   ::pointer < ::mutex >                     m_pmutex;
    ::ref_array < MESSAGE >           m_msgptra;
 
 
@@ -28,7 +28,7 @@ public:
 
 int_bool sys_message_queue::GetMessage(MESSAGE * pmsg)
 {
-   single_lock lockMutex(m_mutex, false);
+   single_lock lockMutex(m_pmutex, false);
    while(true)
    {
       lockMutex.lock();
@@ -80,7 +80,7 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 {
 
 
-   single_lock lockMutex(m_mutex, false);
+   single_lock lockMutex(m_pmutex, false);
 
 
    for(i32 i = 0; i < m_threadptra.get_count(); i++)

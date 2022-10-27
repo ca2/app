@@ -1,8 +1,12 @@
 #pragma once
 
 
+#include "acme/primitive/string/string.h"
+//#include "synchronization.h"
+
+
 class CLASS_DECL_ACME semaphore :
-   virtual public synchronization_object
+   virtual public particle
 {
 public:
 

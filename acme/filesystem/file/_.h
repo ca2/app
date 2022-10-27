@@ -98,7 +98,7 @@ typedef CLASS_DECL_ACME numeric_array < u32 > u32_array;
 
 
 //CLASS_DECL_ACME string file_path_title(const char * path);
-//CLASS_DECL_ACME string file_path_name(const char * path);
+CLASS_DECL_ACME const char * file_path_name(const char * path);
 
 
 
@@ -173,6 +173,9 @@ namespace file
    using iostate = ::file::e_iostate;
    using seekdir = ::enum_seek;
 
+
+   class writable;
+   class file;
 
 }
 

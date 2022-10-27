@@ -5,8 +5,8 @@ namespace hellobase
 {
 
 
-   main_frame::main_frame(::object * pobject) :
-      object(pobject)
+   main_frame::main_frame(::particle * pparticle) :
+      object(pparticle)
    {
 
       WfiEnableFullScreen();

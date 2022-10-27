@@ -49,11 +49,11 @@ CLASS_DECL_AURA bool main_initialize();
 CLASS_DECL_AURA bool main_finalize();
 
 /*
-bool os_on_start_application(::object * pobject);
-::file::path app_desktop_file_path(::object * pobject);
-::file::path app_desktop_file_path(::object * pobject, string strAppId);
-bool linux_prepare_app_desktop_file(::object * pobject);
-bool linux_prepare_app_desktop_file(::object * pobject, string strAppId);
+bool os_on_start_application(::particle * pparticle);
+::file::path app_desktop_file_path(::particle * pparticle);
+::file::path app_desktop_file_path(::particle * pparticle, string strAppId);
+bool linux_prepare_app_desktop_file(::particle * pparticle);
+bool linux_prepare_app_desktop_file(::particle * pparticle, string strAppId);
 */
 
 #include "x11.h"

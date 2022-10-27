@@ -27,10 +27,10 @@ namespace user
       }
 
 
-      //edit::edit(::object * pobject) :
-      //   ::object(pobject),
-      //   ::user::picture(pobject),
-      //   ::user::picture_interaction(pobject)
+      //edit::edit(::particle * pparticle) :
+      //   ::object(pparticle),
+      //   ::user::picture(pparticle),
+      //   ::user::picture_interaction(pparticle)
       //{
 
       //}

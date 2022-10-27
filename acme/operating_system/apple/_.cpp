@@ -9,7 +9,7 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include "main.h"
-//aaa_#include "acme/operating_system/_.h"
+//aaa_//#include "acme/operating_system/_.h"
 //#include "acme/operating_system/_os.h"
 #include "acme/update.h"
 //char * ns_realpath(const char * pszPath);
@@ -400,7 +400,7 @@ i64 oswindow_id(oswindow w)
 
 #if defined(ANDROID)
 
-   return m_psystem->m_pacmepath->app_module().folder();
+   return acmepath()->app_module().folder();
 
 #elif defined(_UWP)
 

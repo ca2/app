@@ -51,7 +51,7 @@ public:
    void post_destroy_all();
 
 
-   inline ::duration poll_time() { return m_psystem->get_update_poll_time(m_atom); };
+   ::duration poll_time();
 
 
    static inline bool should_poll(const ::duration & duration)

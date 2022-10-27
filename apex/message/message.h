@@ -3,6 +3,8 @@
 
 #include "acme/primitive/geometry2d/point.h"
 #include "dispatcher.h"
+#include "acme/platform/message.h"
+#include "acme/primitive/primitive/action_context.h"
 
 
 namespace message

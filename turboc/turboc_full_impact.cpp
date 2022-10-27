@@ -6,9 +6,9 @@ namespace turboc
 {
 
 
-   full_impact::full_impact(::object * pobject):
-      ::object(pobject),
-      impact(pobject)
+   full_impact::full_impact(::particle * pparticle):
+      ::object(pparticle),
+      impact(pparticle)
    {
 
       m_bLite = false;
@@ -294,7 +294,7 @@ namespace turboc
       if(papp->m_iErrorAiFont == 0)
       {
 
-         synchronous_lock slAiFont(&papp->m_mutexAiFont);
+         synchronous_lock slAiFont(&papp->m_pmutexAiFont);
 
          FT_Face & face = (FT_Face &)papp->m_faceAi;
 

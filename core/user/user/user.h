@@ -136,7 +136,7 @@ namespace core
 
       inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
       inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
-      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      inline ::core::system* get_system() const { return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; }
 
 
 
@@ -154,12 +154,12 @@ namespace core
       virtual void init() override;
 
 
-      virtual pointer< ::sequence < ::conversation > > dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset);
+      virtual pointer< ::sequence < ::conversation > > dialog_box(::particle * pparticle, const ::string & pszMatter, property_set & propertyset);
 
 
-      virtual pointer< ::sequence < ::conversation > > ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
-      virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok);
-      //virtual void ui_message_box_timeout(::object* pobject, ::user::primitive* puiOwner, ::payload payload, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
+      virtual pointer< ::sequence < ::conversation > > ui_message_box(::particle * pparticle, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+      virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::particle * pparticle, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok);
+      //virtual void ui_message_box_timeout(::object* pparticle, ::user::primitive* puiOwner, ::payload payload, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
@@ -184,9 +184,9 @@ namespace core
       virtual void _001OnFileNew();
 
 
-      ::pointer<::user::list_header>default_create_list_header(::object * pobject);
-      ::pointer<::user::mesh_data>default_create_mesh_data(::object * pobject);
-      ::pointer<::user::list_data>default_create_list_data(::object * pobject);
+      ::pointer<::user::list_header>default_create_list_header(::particle * pparticle);
+      ::pointer<::user::mesh_data>default_create_mesh_data(::particle * pparticle);
+      ::pointer<::user::list_data>default_create_list_data(::particle * pparticle);
 
 
       ::type default_type_mesh_data();
@@ -206,18 +206,18 @@ namespace core
       ::pointer<::user::impact_system>get_template(index index) const;
 
 
-      ::pointer<::form_document>  create_form(::object * pobject, ::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_form(::object * pobject, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_form(::object * pobject, ::pointer<::user::form>impact, ::user::form_callback * pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_child_form(::object * pobject, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_child_form(::object * pobject, ::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_child_form(::object * pobject, ::pointer<::user::form>impact, ::user::form_callback * pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_form(::particle * pparticle, ::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_form(::particle * pparticle, ::pointer<::user::form>impact, ::user::form_callback * pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_child_form(::particle * pparticle, ::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_child_form(::particle * pparticle, ::pointer<::user::form>impact, ::user::form_callback * pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
 
       template < typename FORM >
-      ::pointer<::form_document>  create_child_form(::object * pobject, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument))
+      ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument))
       {
 
-         return create_child_form(pobject, __type(FORM), pimpactdata->m_pplaceholder, payload);
+         return create_child_form(pparticle, __type(FORM), pimpactdata->m_pplaceholder, payload);
 
       }
 
@@ -225,7 +225,7 @@ namespace core
       ::user::document * hold(::pointer<::user::interaction>pinteraction);
 
 
-      virtual void     initialize(::object * pobject) override;
+      virtual void     initialize(::particle * pparticle) override;
 
 
       virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
@@ -257,7 +257,7 @@ namespace core
 
       //virtual bool is_session() const override;
 
-      ////void construct(::object * pobject, int iPhase) override;
+      ////void construct(::particle * pparticle, int iPhase) override;
 
       //virtual void process_init();
 
@@ -323,7 +323,7 @@ namespace core
       //virtual string get_locale_schema_dir() override;
 
 
-      ////virtual void     initialize(::object * pobject) override;
+      ////virtual void     initialize(::particle * pparticle) override;
 
 
       //virtual ::user::interaction * get_session_window();
@@ -362,7 +362,7 @@ namespace core
 
       //virtual bool open_by_file_extension(::create * pcc);
 
-      ////::pointer<::aura::application>get_new_application(::object * pobject, const ::string & pszAppId);
+      ////::pointer<::aura::application>get_new_application(::particle * pparticle, const ::string & pszAppId);
 
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem) override;
 
@@ -493,7 +493,7 @@ namespace core
 
 
 
-      ////virtual void initialize(::object * pobject) override;
+      ////virtual void initialize(::particle * pparticle) override;
 
       //virtual void install_message_routing(::channel* pchannel) override;
 
@@ -548,7 +548,7 @@ namespace core
 
       //virtual void will_use_impact_hint(::atom idImpact);
 
-      ////virtual void on_app_request_bergedge_callback(::object * pobject);
+      ////virtual void on_app_request_bergedge_callback(::particle * pparticle);
 
       //virtual ::write_text::font_list* get_single_column_font_list();
 
@@ -646,7 +646,7 @@ namespace core
       ////virtual ::pointer<::user::impact>                     get_impact();
 
 
-      ////virtual void     initialize(::object * pobject) override;
+      ////virtual void     initialize(::particle * pparticle) override;
 
 
       ////virtual void frame_pre_translate_message(::message::message* pmessage) override;

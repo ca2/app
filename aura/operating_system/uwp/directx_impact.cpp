@@ -235,7 +235,7 @@ namespace universal_windows
 
       set_input_text(text);
       
-      synchronization_object([this, iBeg, iEnd, text]()
+      synchronization([this, iBeg, iEnd, text]()
       {
             
          CoreTextRange sel;
@@ -406,7 +406,7 @@ namespace universal_windows
             pkey->m_lparam = pkey->m_nFlags << 16;
             pkey->m_strText = m_strNewText;
 
-            auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
+            auto puserinteractionHost = __user_interaction(acmesystem()->get_session()->m_puserinteractionHost);
 
             puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
@@ -570,7 +570,7 @@ namespace universal_windows
 
          ::output_debug_string("Deactivated");
 
-         //auto puserinteractionHost = Sess(m_psystem).host();
+         //auto puserinteractionHost = Sess(acmesystem()).host();
 
          //puserinteractionHost->set_need_layout();
 

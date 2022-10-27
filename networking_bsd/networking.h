@@ -77,14 +77,14 @@ namespace networking_bsd
 
       };
 
-      ::mutex                                            m_mutexCache;
-      ::mutex                                            m_mutexReverseCache;
+      ::pointer < ::mutex >                                            m_pmutexCache;
+      ::pointer < ::mutex >                                            m_pmutexReverseCache;
       string_map < dns_cache_item >                      m_mapCache;
       string_map < ::pointer<reverse_cache_item >>      m_mapReverseCache;
       array < ::pointer<reverse_cache_item >>           m_reversecacheaRequest;
       ::task_pointer                                     m_pthreadReverse;
       ::i64                                              m_iListenSocket;
-      /*::mutex m_mutexPool;*/
+      /*::pointer < ::mutex > m_pmutexPool;*/
 
       interlocked_i32                  m_lListenSocket;
 
@@ -97,17 +97,17 @@ namespace networking_bsd
 #endif
 
       ::count                          m_countHttpPostBoundary;
-      ::mutex                          m_mutexHttpPostBoundary;
+      ::pointer < ::mutex >                          m_pmutexHttpPostBoundary;
 
       ::sockets_bsd::resolv_cache_t       m_resolvcache;
       ::sockets_bsd::resolv_timeout_t     m_resolvtimeout;
-      ::mutex                             m_mutexResolvCache;
+      ::pointer < ::mutex >                             m_pmutexResolvCache;
       //::pointer<::sockets::net>         m_pnet;
 #ifdef WINDOWS
       ::net::port_forward_pointer      m_pportforward;
 #endif
 
-      ::mutex                             m_mutexPool;
+      ::pointer < ::mutex >                             m_pmutexPool;
       ::sockets_bsd::socket_map           m_pool; ///< Active sockets map
 
 
@@ -115,7 +115,7 @@ namespace networking_bsd
       ~networking() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       virtual void destroy() override;
 
       virtual bool gudo_set() override;
@@ -197,7 +197,7 @@ namespace networking_bsd
 
       //class ::sockets::net & net();
 
-      //virtual void initialize(::object * pobject) override;
+      //virtual void initialize(::particle * pparticle) override;
 
       //virtual void destroy() override;
 

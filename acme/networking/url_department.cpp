@@ -1,7 +1,11 @@
 ﻿#include "framework.h"
+#include "url_department.h"
 #include "acme/operating_system.h"
 #include "acme/constant/id.h"
-//#include "acme/astr.h"
+#include "acme/constant/idpool.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/platform/system.h"
+
 
 #ifdef WINDOWS_DESKTOP
 #include "idn/idna.h"
@@ -1941,7 +1945,7 @@ namespace url
       if (m_straPublicDomainExtension.is_empty())
       {
 
-         m_psystem->get_public_internet_domain_extension_list(m_straPublicDomainExtension);
+         acmesystem()->get_public_internet_domain_extension_list(m_straPublicDomainExtension);
 
       }
 

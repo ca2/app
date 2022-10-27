@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "system_setup.h"
 #include "library.h"
+#include "acme/primitive/primitive/element.h"
 
 
 ::system_setup * system_setup::s_psetupList = nullptr;
@@ -287,16 +288,16 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const char
 ::pointer<::element>system_setup::create_element()
 {
 
-   auto pobject = _create_element();
+   auto pparticle = _create_element();
 
-   if (::is_set(pobject))
+   if (::is_set(pparticle))
    {
 
-      pobject->set_generic_object_name(m_pszName);
+      pparticle->set_generic_object_name(m_pszName);
 
    }
 
-   return pobject;
+   return pparticle;
 
 }
 

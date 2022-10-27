@@ -57,7 +57,7 @@ int_bool mq_get_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u3
 
 i32 CLASS_DECL_AURA __linux_main(i32 argc, char * argv[]);
 
-//CLASS_DECL_AURA void vfxThrowFileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const ::string & pszFileName = nullptr);
+//CLASS_DECL_AURA void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, ::i32 lOsError, const ::string & pszFileName = nullptr);
 
 CLASS_DECL_AURA void os_shell_initialize();
 

@@ -11,6 +11,9 @@
 #pragma once
 
 
+#include "acme/primitive/collection/array.h"
+#include "acme/primitive/collection/atom_map.h"
+
 
 namespace acme
 {
@@ -28,7 +31,7 @@ namespace acme
    //
    //   };
 
-   CLASS_DECL_ACME critical_section * get_global_critical_section();
+
    CLASS_DECL_ACME bool should_output_debug_string();
    CLASS_DECL_ACME bool add_matter(::matter * pmatter);
 
@@ -51,9 +54,9 @@ namespace acme
 #endif
 
 
-   extern CLASS_DECL_ACME critical_section
-      *
-      g_pcsGlobal;
+   //extern CLASS_DECL_ACME critical_section
+     // *
+      //g_pcsGlobal;
 
 #if OBJECT_TYPE_COUNTER
 
@@ -61,7 +64,7 @@ namespace acme
 
 #endif
 
-   extern ::mutex * g_pmutexChildren;
+   //extern ::pointer< ::mutex > g_pmutexChildren;
 
 #ifdef WINDOWS
 
@@ -70,12 +73,12 @@ namespace acme
 
    //extern DWORD_PTR g_tlsindexLastError;
    extern char * g_pszDemangle;
-   extern critical_section * g_pcsDemangle;
+   //extern critical_section * g_pcsDemangle;
 
 #endif
 
 
-   //extern ::mutex * get_system()->g_mutexLibrary;
+   //extern ::pointer< ::mutex > get_system()->g_mutexLibrary;
 
    //extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -107,16 +110,16 @@ namespace acme
 #endif
 
 
-   extern ::mutex * g_pmutexCred;
+   //extern ::pointer< ::mutex > g_pmutexCred;
 
 
    //extern class ::exception_engine * g_pengine;
 
 
-   extern ::mutex * g_pmutexMessageDispatch;
+   ///extern ::pointer< ::mutex > g_pmutexMessageDispatch;
 
 
-   extern CLASS_DECL_ACME array<matter *>
+   extern CLASS_DECL_ACME ::array<matter *>
       *
       g_paAura;
 
@@ -142,37 +145,37 @@ namespace acme
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
    extern int g_iMemoryCountersStartable;
-   //extern ::mutex * g_pmutexTrait;
-   //extern ::mutex * g_pmutexFactory;
+   //extern ::pointer< ::mutex > g_pmutexTrait;
+   //extern ::pointer< ::mutex > g_pmutexFactory;
 
-   extern ::mutex * g_pmutexUiDestroyed;
+   //extern ::pointer< ::mutex > g_pmutexUiDestroyed;
 
 #ifdef ANDROID
 
-   extern ::mutex * g_pmutexOutputDebugStringA;
+   //extern ::pointer< ::mutex > g_pmutexOutputDebugStringA;
 
 #endif
 
 
    // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-   // extern ::mutex * g_pmutexMq;
+   // extern ::pointer< ::mutex > g_pmutexMq;
 
    // #endif
 
 #if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
 
-      //extern ::mutex * g_pmutexThreadIdHandleLock;
+      //extern ::pointer< ::mutex > g_pmutexThreadIdHandleLock;
 
-   //extern ::mutex * g_pmutexThreadIdLock;
+   //extern ::pointer< ::mutex > g_pmutexThreadIdLock;
 
    //#if !defined(_UWP)
 
-   //extern ::mutex * g_pmutexPendingThreadsLock;
+   //extern ::pointer< ::mutex > g_pmutexPendingThreadsLock;
 
    //#endif
 
-   //extern ::mutex * g_pmutexTlsData;
+   //extern ::pointer< ::mutex > g_pmutexTlsData;
 
 #endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
 
@@ -180,9 +183,9 @@ namespace acme
 #if defined(LINUX) || defined(__APPLE__)
 
 
-   extern ::mutex * g_pmutexTz;
+   //extern ::pointer< ::mutex > g_pmutexTz;
 
-   extern ::mutex * g_pmutexThreadHandleLock;
+   //extern ::pointer< ::mutex > g_pmutexThreadHandleLock;
 
 
 #endif // defined(LINUX) || defined(__APPLE__)
@@ -191,13 +194,11 @@ namespace acme
 #ifdef __APPLE__
 
 
-   extern ::mutex * g_pmutexCvt;
+   //extern ::pointer< ::mutex > g_pmutexCvt;
 
 
 #endif
 
-
-   extern critical_section g_csRefDbg;
 
    CLASS_DECL_ACME void ref();
 
@@ -206,12 +207,11 @@ namespace acme
    public:
 
 
-      bool m_bRef;
+      //bool m_bRef;
 
 
-      critical_section *                                    m_pcriticalsectionFactory;
-      ::pointer<::factory::factory>                         m_pfactory;
-      ::pointer<atom_map < ::pointer<::factory::factory > > > m_pmapFactory;
+      ::pointer<::factory::factory>                               m_pfactory;
+      ::pointer<atom_map < ::pointer<::factory::factory > > >     m_pmapFactory;
 
 
       static acme * g_p;
@@ -248,5 +248,6 @@ namespace acme
 
 
 } // namespace acme
+
 
 

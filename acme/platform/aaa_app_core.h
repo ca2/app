@@ -53,7 +53,7 @@ public:
    PFN_DEFER_TERM                      m_pfnDeferTerm;
    ::duration                          m_durationStart;
    ::duration                          m_durationAfterApplicationFirstRequest;
-   //::apex::system *                  m_psystem;
+   //::apex::system *                  acmesystem();
    //::pointer<apex_main_data>        m_pmaindata;
    ::pointer<::acme::library>         m_plibrary;
    ::e_status                          m_estatusa[APP_CORE_MAXIMUM_STATUS_COUNT];
@@ -93,10 +93,10 @@ public:
    ::pointer<::acme::application>new_app(const char* pszAppId);
 
 
-   //   ::pointer<::apex::application>get_new_application(::object* pobject);
-   //   ::pointer<::apex::application>get_new_application(::object* pobject, const char* pszAppId);
+   //   ::pointer<::apex::application>get_new_application(::object* pparticle);
+   //   ::pointer<::apex::application>get_new_application(::object* pparticle, const char* pszAppId);
 
-   virtual void initialize_application(::acme::application * papp, ::object* pobject);
+   virtual void initialize_application(::acme::application * papp, ::object* pparticle);
 
 
 };

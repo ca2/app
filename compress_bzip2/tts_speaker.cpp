@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aqua/multimedia/_.h"
+//#include "aqua/multimedia/_.h"
 #include "tts_speaker.h"
 
 
@@ -364,7 +364,7 @@ namespace tts_sapi
       speaker::speaker()
       {
 
-         defer_create_mutex();
+         defer_create_synchronization();
 
          m_strDefaultLang = "en";
 
@@ -575,7 +575,7 @@ namespace tts_sapi
 
          //}
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          defer_co_initialize_ex(false);
 
@@ -740,7 +740,7 @@ namespace tts_sapi
 
          }
 
-         auto paudio = m_psystem->m_paquasystem->audio();
+         auto paudio = acmesystem()->m_paquasystem->audio();
 
          paudio->play_audio(pfile, bSync);
 
@@ -778,7 +778,7 @@ namespace tts_sapi
 
          //}
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          defer_co_initialize_ex(false);
 
@@ -943,7 +943,7 @@ namespace tts_sapi
 
          }
 
-         auto paudio = m_psystem->m_paquasystem->audio();
+         auto paudio = acmesystem()->m_paquasystem->audio();
 
          paudio->play_audio(pfile, bSync);
 
@@ -962,7 +962,7 @@ namespace tts_sapi
 
          }
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          if (m_voice[strLang].is_null())
          {

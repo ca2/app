@@ -90,7 +90,7 @@ static double emscripten_last = 0;
 static float emscripten_refresh = 0;
 #endif
 
-std::mutex m_async_mutex;
+std::pointer < ::mutex > m_async_mutex;
 std::vector<::function<void()>> m_async_functions;
 
 //void mainloop(float refresh) {
@@ -110,7 +110,7 @@ std::vector<::function<void()>> m_async_functions;
 //#endif
 //
 //      /* Run async functions */ {
-//         std::lock_guard<std::mutex> guard(m_async_mutex);
+//         std::lock_guard<std::pointer < ::mutex >> guard(m_async_mutex);
 //         for (auto & f : m_async_functions)
 //            f();
 //         m_async_functions.clear();
@@ -208,7 +208,7 @@ std::vector<::function<void()>> m_async_functions;
 //}
 
 //void async(const ::function<void()> & func) {
-//   std::lock_guard<std::mutex> guard(m_async_mutex);
+//   std::lock_guard<std::pointer < ::mutex >> guard(m_async_mutex);
 //   m_async_functions.push_back(func);
 //}
 
@@ -295,9 +295,9 @@ void NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, std::vector<std::pair
 //      const char * fname = ep->d_name;
 //#else
 
-   auto pobject = get_nano2d_object(ctx);
+   auto pparticle = get_nano2d_object(ctx);
 
-   auto pcontext = pobject->m_pcontext->m_papexcontext;
+   auto pcontext = pparticle->m_pcontext->m_papexcontext;
 
    ::file::listing listing;
 
@@ -420,18 +420,18 @@ Object::~Object() { }
 
 
 
-::image_pointer ___load_image(::object * pobject, const char * path)
+::image_pointer ___load_image(::particle * pparticle, const char * path)
 {
 
-   return pobject->m_pcontext->context_image()->path_image(path);
+   return pparticle->m_pcontext->context_image()->path_image(path);
 
 }
 
 
-void ___save_image(::object * pobject, const char * path, ::image * pimage)
+void ___save_image(::particle * pparticle, const char * path, ::image * pimage)
 {
 
-   return pobject->m_pcontext->context_image()->save_image(path, pimage);
+   return pparticle->m_pcontext->context_image()->save_image(path, pimage);
 
 }
 

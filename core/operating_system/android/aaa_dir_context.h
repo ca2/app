@@ -18,7 +18,7 @@ namespace android
       dir_context();
       virtual ~dir_context();
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       virtual void init_system() override;
       virtual void init_context() override;

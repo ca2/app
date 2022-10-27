@@ -45,15 +45,15 @@ namespace userstack
       bool                       m_bDestroy;
       rectangle_i32_array                 m_rectangleaUpdate;
       ::duration                       m_durationLastUpdate;
-      ::mutex                      m_mutexDraw;
+      ::pointer < ::mutex >                      m_pmutexDraw;
 
 
-      impact(::object * pobject);
+      impact(::particle * pparticle);
       virtual ~impact();
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;

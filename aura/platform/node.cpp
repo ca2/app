@@ -31,12 +31,12 @@ namespace aura
    }
 
 
-   void node::on_initialize_object()
+   void node::on_initialize_particle()
    {
 
       //auto estatus =
       
-      ::apex::node::on_initialize_object();
+      ::apex::node::on_initialize_particle();
 
       //if (!estatus)
       //{
@@ -47,7 +47,7 @@ namespace aura
 
       //message_box_factory();
 
-      m_psystem->m_pauranode = this;
+      acmesystem()->m_pauranode = this;
 
       //return estatus;
 

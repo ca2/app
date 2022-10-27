@@ -1,8 +1,11 @@
 ﻿#include "framework.h"
 #include "base_socket.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "apex/constant/idpool.h"
+//#include "apex/networking/sockets/_sockets.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/networking/url_department.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/string/base64.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -211,7 +214,7 @@ namespace sockets
       if (response().m_strFile.has_char())
       {
 
-         response().m_propertysetHeader[__id(content_length)] = m_psystem->m_pacmefile->get_size(response().m_strFile);
+         response().m_propertysetHeader[__id(content_length)] = acmefile()->get_size(response().m_strFile);
 
       }
       else
@@ -343,7 +346,7 @@ namespace sockets
             if (response().m_strFile.has_char())
             {
 
-               m_psystem->compress(pfile, m_pcontext->m_papexcontext->file().get_reader(response().m_strFile), "zlib");
+               acmesystem()->compress(pfile, m_pcontext->m_papexcontext->file().get_reader(response().m_strFile), "zlib");
 
                response().m_strFile.Empty();
 
@@ -353,7 +356,7 @@ namespace sockets
 
                response().file()->seek_to_begin();
 
-               m_psystem->compress(pfile, response().file(), "zlib");
+               acmesystem()->compress(pfile, response().file(), "zlib");
 
             }
 
@@ -410,7 +413,7 @@ namespace sockets
       
       strReferer = inheader("referer");
 
-      string strServer = m_psystem->url()->get_server(strReferer);
+      string strServer = acmesystem()->url()->get_server(strReferer);
 
       string_array straAllowedOrigin;
 
@@ -472,10 +475,10 @@ namespace sockets
 
       }
 
-      if (!m_psystem->m_pacmefile->exists(pcsz))
+      if (!acmefile()->exists(pcsz))
       {
 
-         if (m_psystem->m_pacmedirectory->is(pcsz))
+         if (acmedirectory()->is(pcsz))
          {
             
             outattr(__id(http_status_code)) = 200;
@@ -508,9 +511,9 @@ namespace sockets
 
             auto preader = m_pcontext->m_papexcontext->file().get_reader(pcsz);
 
-            //if (!m_psystem->uncompress(response().file(), preader, "zlib"))
+            //if (!acmesystem()->uncompress(response().file(), preader, "zlib"))
 
-            m_psystem->uncompress(response().file(), preader, "zlib");
+            acmesystem()->uncompress(response().file(), preader, "zlib");
             //{
 
                response().file()->from_begin(preader);
@@ -649,7 +652,7 @@ namespace sockets
                      break;
                }
 
-               auto psystem = m_psystem;
+               auto psystem = acmesystem();
 
                auto pbase64 = psystem->base64();
                

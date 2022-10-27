@@ -19,7 +19,7 @@ namespace ios
       virtual ~dir_context();
       
       
-      virtual void initialize(::matter * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       //virtual void update_module_path();
       virtual void init_context() override;
 
@@ -60,14 +60,14 @@ namespace ios
       virtual ::file::path appdata() override;
       virtual ::file::path commonappdata_root() override;
       
-//      virtual ::file::path usersystemappdata(::matter * pobject, const char * lpcszPrefix);
-//      virtual ::file::path userappdata(::matter * pobject);
-//      virtual ::file::path userdata(::matter * pobject);
-//      //virtual ::file::path userfolder(::matter * pobject);
-//      virtual ::file::path default_os_user_path_prefix(::matter * pobject);
-//      virtual ::file::path default_userappdata(::matter * pobject,const string & lpcszPrefix,const string & lpcszLogin );
-//      virtual ::file::path default_userdata(::matter * pobject,const string & lpcszPrefix,const string & lpcszLogin);
-//      virtual ::file::path default_userfolder(::matter * pobject,const string & lpcszPrefix,const string & lpcszLogin);
+//      virtual ::file::path usersystemappdata(::particle * pparticle, const char * lpcszPrefix);
+//      virtual ::file::path userappdata(::particle * pparticle);
+//      virtual ::file::path userdata(::particle * pparticle);
+//      //virtual ::file::path userfolder(::particle * pparticle);
+//      virtual ::file::path default_os_user_path_prefix(::particle * pparticle);
+//      virtual ::file::path default_userappdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin );
+//      virtual ::file::path default_userdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin);
+//      virtual ::file::path default_userfolder(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin);
       virtual ::file::path userquicklaunch() override;
       virtual ::file::path userprograms() override;
       

@@ -3,17 +3,28 @@
 
 
 #include "acme/parallelization/mutex.h"
-#include "acme/primitive/collection/map.h"
+#include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/primitive/element.h"
+
+
+namespace acme
+{
+
+
+   using library_map = string_map < ::pointer < ::acme::library > >;
+
+
+} // namespace acme
 
 
 class CLASS_DECL_ACME subsystem :
    virtual public ::element
 {
 public:
-   
-   
-   ::mutex                                                           m_mutexLibrary4;
-   ::acme::library_map                                               m_mapLibrary4;
+
+
+   ::critical_section               m_criticalsection;
+   ::acme::library_map              m_mapLibrary;
    
 
    subsystem();

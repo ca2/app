@@ -14,7 +14,7 @@ namespace draw2d
    ::aura::system* object::get_system()
    {
       
-      return ::is_null(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr; 
+      return ::is_null(acmesystem()) ? dynamic_cast <::aura::system*> (acmesystem()) : nullptr; 
    
    }
 

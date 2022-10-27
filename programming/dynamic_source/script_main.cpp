@@ -45,12 +45,12 @@ namespace dynamic_source
 #endif
 
 
-   void script_main::initialize(::object * pobject)
+   void script_main::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::html::file::initialize(pobject);
+      ::html::file::initialize(pparticle);
 
       //if (!estatus)
       //{

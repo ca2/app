@@ -1,5 +1,8 @@
 #include "framework.h"
+#include "language.h"
+#include "acme/exception/parsing.h"
 #include "acme/operating_system.h"
+#include "acme/primitive/collection/string_array.h"
 
 
 #define STR_BOM "\xEF\xBB\xBF"
@@ -33,12 +36,12 @@ namespace user
    }
 
 
-   void language::initialize(::object * pobject)
+   void language::initialize(::particle * pparticle)
    {
 
       //::e_status estatus = 
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -119,13 +122,13 @@ namespace user
 //
 //      string strLang = m_strLanguageCode;
 //      
-//      auto psystem = m_psystem->m_papexsystem;
+//      auto psystem = acmesystem()->m_papexsystem;
 //
 //      ::file::path pathCa2 = psystem->m_pdirsystem->m_pathCa2;
 //
 //      ::file::path path = pathCa2 / "Resources/po" / (strLang + ".po");
 //
-//      return m_psystem->m_pacmefile->as_string(path, bOnlyHeader ? 4096 : -1);
+//      return acmefile()->as_string(path, bOnlyHeader ? 4096 : -1);
 //
 //#else
 //
@@ -135,7 +138,7 @@ namespace user
 //
 //      ::file::path path = pcontext->m_papexsystem->dir().module() / "po" / (strLang + ".po");
 //
-//      return m_psystem->m_pacmefile->as_string(path, bOnlyHeader ? 4096 : -1);
+//      return acmefile()->as_string(path, bOnlyHeader ? 4096 : -1);
 //
 //#endif
 

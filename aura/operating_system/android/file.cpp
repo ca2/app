@@ -73,7 +73,7 @@ CLASS_DECL_AURA void dll_processes(u32_array & dwa, string_array & straProcesses
 // ::file::path dir::bookmark()
 // {
 
-//    return          auto psystem = m_psystem;
+//    return          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

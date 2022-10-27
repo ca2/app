@@ -1,7 +1,10 @@
 ﻿#include "framework.h"
-#include "acme/platform/acme.h"
-//#include "system_impl.h"
 #include "library.h"
+#include "acme/exception/exception.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/acme.h"
+#include "acme/platform/system.h"
+//#include "system_impl.h"
 
 CLASS_DECL_ACME bool is_verbose_log();
 
@@ -15,7 +18,7 @@ namespace acme
 
    const char * psz_empty_app_id = "";
 
-   //::mutex* library::s_pmutexLoading = nullptr;
+   //::pointer < ::mutex >* library::s_pmutexLoading = nullptr;
    //::acme::library* library::s_plibraryLoading = nullptr;
 
 
@@ -138,7 +141,7 @@ namespace acme
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_psubsystem->m_mutexLibrary4);
+      critical_section_lock synchronouslock(&psystem->m_psubsystem->m_criticalsection);
 
       m_strMessage.Empty();
 
@@ -212,14 +215,14 @@ namespace acme
       if(is_verbose_log())
       {
       
-         INFORMATION("acme::library::open success : " << m_strName);
+         FORMATTED_INFORMATION("acme::library::open success : %s", m_strName.c_str());
          
       }
 
       if (m_strName.has_char())
       {
 
-         ::subsystem::get()->m_mapLibrary4[m_strName] = this;
+         ::subsystem::get()->m_mapLibrary[m_strName] = this;
 
       }
 
@@ -241,7 +244,7 @@ namespace acme
 
    //   auto psystem = get_system();
 
-   //   synchronous_lock synchronouslock(&psystem->m_mutexRawLibrary);
+   //   synchronous_lock synchronouslock(&psystem->m_pmutexRawLibrary);
 
    //   if (m_pca2library.is_set())
    //   {
@@ -392,7 +395,7 @@ namespace acme
    //   if (m_strCa2Name.has_char())
    //   {
 
-   //      m_psystem->m_mapLibrary[m_strCa2Name] = this;
+   //      acmesystem()->m_mapLibrary[m_strCa2Name] = this;
 
    //   }
 
@@ -416,7 +419,7 @@ namespace acme
 
 //      auto psystem = get_system();
 //
-//      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+//      synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 //
 //      if(m_pca2library)
 //      {
@@ -471,7 +474,7 @@ namespace acme
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_psubsystem->m_mutexLibrary4);
+      critical_section_lock synchronouslock(&psystem->m_psubsystem->m_criticalsection);
 
       try
       {
@@ -535,7 +538,7 @@ namespace acme
 //
 //      auto psystem = get_system();
 //
-//      synchronous_lock synchronouslock(&psystem->m_mutexRawLibrary);
+//      synchronous_lock synchronouslock(&psystem->m_pmutexRawLibrary);
 //
 //      if (!contains_app(pszAppName))
 //      {
@@ -595,7 +598,7 @@ namespace acme
 //
 //      auto psystem = get_system();
 //
-//      synchronous_lock synchronouslock(&psystem->m_mutexRawLibrary);
+//      synchronous_lock synchronouslock(&psystem->m_pmutexRawLibrary);
 //
 //      string strAppName(pszAppId);
 //
@@ -657,7 +660,7 @@ namespace acme
 
    //   auto psystem = get_system();
 
-   //   synchronous_lock synchronouslock(&psystem->m_mutexRawLibrary);
+   //   synchronous_lock synchronouslock(&psystem->m_pmutexRawLibrary);
 
    //   try
    //   {
@@ -752,7 +755,7 @@ namespace acme
 //
 //      auto psystem = get_system();
 //
-//      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+//      synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 //
 //      if(get_library() != nullptr)
 //      {
@@ -825,7 +828,7 @@ namespace acme
 
    //   auto psystem = get_system();
 
-   //   synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+   //   synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
    //   string_array stra;
 
@@ -841,7 +844,7 @@ namespace acme
 
    //   //auto psystem = get_system();
 
-   //   //synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+   //   //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
    //   //if(m_pca2library)
    //   //{
@@ -860,7 +863,7 @@ namespace acme
 
    //   auto psystem = get_system();
 
-   //   synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+   //   synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
    //   __UNREFERENCED_PARAMETER(ida);
 
@@ -872,7 +875,7 @@ namespace acme
 
       //auto psystem = get_system();
 
-      //synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+      //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
       return m_plibrary != nullptr;
 
@@ -892,7 +895,7 @@ namespace acme
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_psubsystem->m_mutexLibrary4);
+      critical_section_lock synchronouslock(&psystem->m_psubsystem->m_criticalsection);
 
       return __node_library_raw_get(m_plibrary,pszEntryName);
 
@@ -911,7 +914,7 @@ namespace acme
       if (!pfactory)
       {
 
-         INFORMATION("library::create_factory ::factory::get_factory(\""+strName+"\") failed!!");
+         FORMATTED_INFORMATION("library::create_factory ::factory::get_factory(\"%s\") failed!!", strName.c_str());
 
          throw ::exception(error_wrong_state);
 
@@ -934,10 +937,10 @@ namespace acme
          if (::is_null(pfnFactory))
          {
 
-            WARNING("library::create_factory factory function: \"" << strFactoryFunction << "\" doesn't exist!!!");
+            FORMATTED_WARNING("library::create_factory factory function: \"%s\" doesn't exist!!!", strFactoryFunction.c_str());
 
-            WARNING("Is _factory.cpp included in the project \"" << strName << "\"???");
-            WARNING("Does it contain the implementation of factory function \"" << strFactoryFunction << "\"???");
+            FORMATTED_WARNING("Is _factory.cpp included in the project \"%s\"???", strName.c_str());
+            FORMATTED_WARNING("Does it contain the implementation of factory function \"%s\"???", strFactoryFunction.c_str());
 
             string strDetails;
 
@@ -953,7 +956,7 @@ namespace acme
 
       m_pfnFactory(pfactory);
 
-      INFORMATION(strName << "_factory succeeded!");
+      FORMATTED_INFORMATION("%s_factory succeeded!",strName.c_str());
 
       return pfactory;
 

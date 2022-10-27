@@ -78,12 +78,12 @@ namespace user
    }
 
    
-   void tab::on_initialize_object()
+   void tab::on_initialize_particle()
    {
 
       //auto estatus = 
       
-      ::user::interaction::on_initialize_object();
+      ::user::interaction::on_initialize_particle();
 
       //if (!estatus)
       //{
@@ -146,7 +146,7 @@ namespace user
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (iIndex < 0)
       {
@@ -218,7 +218,7 @@ namespace user
       ppane->m_bPermanent        = bPermanent;
       ppane->m_pplaceholder      = pholder;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (atom.is_empty())
       {
@@ -259,7 +259,7 @@ namespace user
       ppane->m_bPermanent = bPermanent;
       ppane->set_title(strName);
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (atom.is_empty())
       {
@@ -352,7 +352,7 @@ namespace user
    void tab::erase_tab(::index iIndex, bool bVisible)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (iIndex < 0 || iIndex >= get_data()->m_tabpanecompositea.get_size())
       {
@@ -415,7 +415,7 @@ namespace user
    void tab::erase_all_tabs()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       get_data()->m_tabpanecompositea.erase_all();
 
@@ -2334,7 +2334,7 @@ namespace user
    void tab::defer_erase_child_pane(::user::interaction * pinteraction)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       index iIndex = find_child_pane(pinteraction);
 
@@ -2403,7 +2403,7 @@ namespace user
       
       auto point = pointParam;
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       ::rectangle_i32 rectangleScroll;
 
@@ -2582,7 +2582,7 @@ namespace user
 
       }
 
-      auto psystem = m_psystem->m_pbasesystem;
+      auto psystem = acmesystem()->m_pbasesystem;
       
       if(psystem->has_property("no_tabs"))
       {
@@ -2697,7 +2697,7 @@ namespace user
       
       output_debug_string("tab::set_current_tab_by_index start\n");
 
-      synchronous_lock lock(get_data()->mutex());
+      synchronous_lock lock(get_data()->synchronization());
 
       get_data()->m_idaSel.erase_all();
 
@@ -2740,7 +2740,7 @@ namespace user
 
       auto pdata = get_data();
 
-      synchronous_lock lock(pdata->mutex());
+      synchronous_lock lock(pdata->synchronization());
 
       return pdata->m_tabpanecompositea.predicate_find_first([ptabpaneFind](auto& ptabpane)
          {
@@ -2764,7 +2764,7 @@ namespace user
 
       auto pdata = get_data();
 
-      synchronous_lock lock(pdata->mutex());
+      synchronous_lock lock(pdata->synchronization());
 
       return pdata->m_tabpanecompositea.predicate_index_index(iVisibleIndex, [](auto & ptabpane)
          {
@@ -2788,7 +2788,7 @@ namespace user
 
       auto pdata = get_data();
 
-      synchronous_lock lock(pdata->mutex());
+      synchronous_lock lock(pdata->synchronization());
 
       return pdata->m_tabpanecompositea.index_predicate_index(iIndex, [](auto& ptabpane)
          {
@@ -2805,7 +2805,7 @@ namespace user
 
       auto pdata = get_data();
 
-      synchronous_lock lock(pdata->mutex());
+      synchronous_lock lock(pdata->synchronization());
 
       return pdata->m_tabpanecompositea.predicate_find_first([atom](auto& ptabpane)
          {
@@ -2823,7 +2823,7 @@ namespace user
 
       auto pdata = get_data();
 
-      synchronous_lock lock(pdata->mutex());
+      synchronous_lock lock(pdata->synchronization());
 
       if (iIndex < 0 || iIndex >= pdata->m_tabpanecompositea.get_count())
       {
@@ -3554,7 +3554,7 @@ namespace user
    void tab::get_child_rect(RECTANGLE_I32 & rectangle)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       rectangle = get_data()->m_rectangleTabClient;
 

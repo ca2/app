@@ -149,7 +149,7 @@ class CLASS_DECL_AURA image_payload :
 public:
 
 
-   image_payload(::object * pobject, const ::payload & payload);
+   image_payload(::particle * pparticle, const ::payload & payload);
 
 
 };
@@ -162,7 +162,7 @@ class CLASS_DECL_AURA icon_payload :
 public:
 
 
-   icon_payload(::object * pobject, const ::payload & payload);
+   icon_payload(::particle * pparticle, const ::payload & payload);
 
 
 };

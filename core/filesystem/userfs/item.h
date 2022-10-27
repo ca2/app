@@ -22,9 +22,9 @@ namespace userfs
       item(::userfs::tree * ptree);
       virtual ~item();
 
-      virtual string data_item_get_text(::object * pobject) const override;
-      virtual index data_item_get_image(::object * pobject) const override;
-      virtual ::image_list * data_item_get_image_list(::object * pobject) const override;
+      virtual string data_item_get_text(::particle * pparticle) const override;
+      virtual index data_item_get_image(::particle * pparticle) const override;
+      virtual ::image_list * data_item_get_image_list(::particle * pparticle) const override;
 
       static index CompareArrangeByName(const ::pointer<::data::tree_item>& pitema, const ::pointer<::data::tree_item> pitemb);
       i32 get_index() const;

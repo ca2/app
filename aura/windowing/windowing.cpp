@@ -164,7 +164,7 @@ namespace windowing
    ::pointer<cursor>windowing::get_cursor(enum_cursor ecursor)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pcursormanager.is_null())
       {
@@ -192,7 +192,7 @@ namespace windowing
    void windowing::set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathDir)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bSettingCursorMatter)
       {
@@ -928,7 +928,7 @@ namespace windowing
    ::aura::system* windowing::get_system() const
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
+      return ::is_set(acmesystem()) ? dynamic_cast <::aura::system*> (acmesystem()) : nullptr;
 
    }
 

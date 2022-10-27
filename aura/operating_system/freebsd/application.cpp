@@ -17,8 +17,8 @@
 namespace aura
 {
 
-//   application::application(::object * pobject) :
-//      ::object(pobject)
+//   application::application(::particle * pparticle) :
+//      ::object(pparticle)
 //   {
 //
 ////      m_pthreadimpl.create(this);
@@ -512,7 +512,7 @@ namespace aura
       try
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node()->m_papexnode;
 
@@ -520,7 +520,7 @@ namespace aura
 
          ::file::path path = pnode->get_desktop_file_path(papp);
 
-         if(path.has_char() && !m_psystem->m_pacmefile->exists(path))
+         if(path.has_char() && !acmefile()->exists(path))
          {
 
             auto pfile = __create_new < ::freedesktop::desktop_file >();

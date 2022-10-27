@@ -39,10 +39,10 @@ namespace macos
    }
 
 
-   void nano_window::on_initialize_object()
+   void nano_window::on_initialize_particle()
    {
 
-      ::object::on_initialize_object();
+      ::object::on_initialize_particle();
 
    }
 
@@ -82,7 +82,7 @@ namespace macos
    bool nano_window::get_dark_mode()
    {
 
-      return m_psystem->node()->dark_mode();
+      return acmenode()->dark_mode();
 
    }
 
@@ -348,7 +348,7 @@ namespace macos
 
       ns_app_run();
 
-      //   auto pmessagebox = pobject->__create_new < nano_message_box >();
+      //   auto pmessagebox = pparticle->__create_new < nano_message_box >();
       //
       //   atom idResult;
       //

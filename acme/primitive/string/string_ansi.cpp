@@ -1,9 +1,6 @@
 ﻿#include "framework.h"
 #include <stdio.h>
-
-
-
-
+#include "string.h"
 
 
 
@@ -3222,9 +3219,9 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 ////#endif
 //
-//bool string::load_string(::matter * pobject,atom atom)
+//bool string::load_string(::particle * pparticle,atom atom)
 //{
-//   return App(pobject).load_string(*this,atom);
+//   return App(pparticle).load_string(*this,atom);
 //}
 //
 //

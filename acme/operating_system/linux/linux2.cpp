@@ -1,6 +1,8 @@
 // Created by camilo on 2021-09-13 00:13 BRT Thomas Month!! <3ThomasBS_!!
 #include "framework.h"
 #include "acme/operating_system.h"
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/exception/exception.h"
 //#define _GNU_SOURCE
 #include <link.h>
 #include <dlfcn.h>
@@ -11,7 +13,7 @@
 
 #if defined(ANDROID)
 
-   return m_psystem->m_pacmepath->app_module().folder();
+   return acmepath()->app_module().folder();
 
 #elif defined(_UWP)
 

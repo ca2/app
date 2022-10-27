@@ -2,6 +2,7 @@
 // Created by camilo on 5/17/22 02:38 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
+#include "acme/primitive/string/string.h"
 #include <cxxabi.h>
 
 

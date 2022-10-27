@@ -28,7 +28,7 @@ namespace userfs
       ~list_data() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       ::userfs::list_item * item(index i);

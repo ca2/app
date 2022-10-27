@@ -79,7 +79,7 @@ void int_progress::on_set_scalar(int_scalar_source * psource,e_scalar escalar,i6
 progress_control::progress_control()
 {
 
-   defer_create_mutex();
+   defer_create_synchronization();
 
 
 }

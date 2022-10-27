@@ -36,7 +36,7 @@ namespace user
       bool                                         m_bHasCommandHandler;
 
 
-      command(::object * pobject = nullptr);
+      command(::particle * pparticle = nullptr);
       command(const ::atom & atom);
 
 

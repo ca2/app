@@ -11,8 +11,8 @@ namespace networking_bsd
    public:
 
 
-      http_buffer(::object * pobject, ::mutex * pmutex = nullptr);
-      http_buffer(::object * pobject, ::memory_file * pmemoryfileIn);
+      http_buffer(::particle * pparticle, ::pointer< ::mutex > pmutex = nullptr);
+      http_buffer(::particle * pparticle, ::memory_file * pmemoryfileIn);
       virtual ~http_buffer();
 
 

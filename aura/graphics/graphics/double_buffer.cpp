@@ -37,11 +37,11 @@ namespace graphics
       //}
 
       __construct(m_imageaBuffer[0]);
-      //m_imageaBuffer[0]->defer_create_mutex();
+      //m_imageaBuffer[0]->defer_create_synchronization();
       m_imageaBuffer[0]->m_atom = 0;
 
       __construct(m_imageaBuffer[1]);
-      //m_imageaBuffer[1]->defer_create_mutex();
+      //m_imageaBuffer[1]->defer_create_synchronization();
       m_imageaBuffer[1]->m_atom = 1;
 
       //return estatus;
@@ -49,7 +49,7 @@ namespace graphics
    }
 
 
-   synchronization_object * double_buffer::get_draw_lock()
+   synchronization * double_buffer::get_draw_lock()
    {
 
       return get_buffer_sync();
@@ -163,10 +163,10 @@ namespace graphics
    }
 
 
-   synchronization_object * double_buffer::get_buffer_sync()
+   synchronization * double_buffer::get_buffer_sync()
    {
 
-      return &m_mutexa[get_buffer_index()];
+      return m_pmutexa[get_buffer_index()];
 
    }
 
@@ -179,10 +179,10 @@ namespace graphics
    }
 
 
-   synchronization_object * double_buffer::get_screen_sync()
+   synchronization * double_buffer::get_screen_sync()
    {
 
-      return &m_mutexa[get_screen_index()];
+      return m_pmutexa[get_screen_index()];
 
    }
 
@@ -300,7 +300,7 @@ namespace graphics
    bool double_buffer::update_screen()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       synchronous_lock slScreen(get_screen_sync());
 

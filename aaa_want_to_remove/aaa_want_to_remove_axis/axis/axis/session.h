@@ -31,13 +31,13 @@ namespace axis
       virtual ~session();
 
 
-      virtual void     initialize(::object * pobject) override;
+      virtual void     initialize(::particle * pparticle) override;
 
       inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
       virtual bool is_session() const override;
 
-      //void construct(::object * pobject, int iPhase) override;
+      //void construct(::particle * pparticle, int iPhase) override;
 
       virtual void process_init() override;
 

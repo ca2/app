@@ -20,7 +20,7 @@ namespace android
       virtual ~file_context();
 
 
-      virtual void initialize(::matter * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual void update_module_path() override;

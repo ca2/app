@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/platform/library.h"
+#include "acme/filesystem/filesystem/path.h"
 #include <dlfcn.h>
 #include <link.h>
 

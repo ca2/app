@@ -97,12 +97,12 @@ namespace account
    }
 
 
-   void login::initialize(::object * pobject)
+   void login::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::user::interaction::initialize(pobject);
+      ::user::interaction::initialize(pparticle);
       
       //if (!estatus)
       //{
@@ -399,7 +399,7 @@ namespace account
          if(!m_bCred)
          {
 
-            auto psystem = m_psystem->m_paurasystem;
+            auto psystem = acmesystem()->m_paurasystem;
 
             strText = psystem->crypto()->nessie(strText);
 

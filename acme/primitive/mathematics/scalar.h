@@ -1,5 +1,9 @@
 #pragma once
 
+
+#include "acme/primitive/string/string.h"
+
+
 template < typename SCALAR >
 inline string get_default_scalar_format()
 {
@@ -37,6 +41,8 @@ inline string get_default_scalar_format < i64 >()
 //
 //} // namespace str
 
+
+#include "acme/primitive/primitive/matter.h"
 
 
 template < typename SCALAR >

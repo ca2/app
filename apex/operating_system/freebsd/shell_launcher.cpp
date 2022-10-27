@@ -12,7 +12,7 @@
 //      if (m_iMode == 0)
 //      {
 //
-//         auto psystem = m_psystem;
+//         auto psystem = acmesystem();
 //
 //         auto pnode = psystem->node();
 //

@@ -112,8 +112,8 @@
 //
 //   //   void PASCAL OsErrorToException(::i32 lOsError);
 //   //   void PASCAL ErrnoToException(i32 nErrno);
-//   //   void PASCAL ThrowOsError(::object * pobject, ::i32 lOsError, const char * lpszFileName = nullptr);
-//   //   void PASCAL ThrowErrno(::object * pobject, i32 nErrno, const char * lpszFileName = nullptr);
+//   //   void PASCAL ThrowOsError(::particle * pparticle, ::i32 lOsError, const char * lpszFileName = nullptr);
+//   //   void PASCAL ThrowErrno(::particle * pparticle, i32 nErrno, const char * lpszFileName = nullptr);
 //
 //
 //   //}  // namespace file_exception

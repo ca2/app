@@ -1,6 +1,8 @@
 // Created by camilo on 2021-11-07 13:37 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "application_handler.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/datetime/department.h"
 
 
 namespace networking
@@ -23,7 +25,7 @@ namespace networking
    ::e_status application_handler::on_html_response(string & strHtml, const ::string& strUrl, const ::property_set& setPost)
    {
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pdatetime = psystem->datetime();
 

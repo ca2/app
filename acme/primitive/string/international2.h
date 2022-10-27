@@ -1,5 +1,7 @@
 #pragma once
 
+#include "acme/exception/exception.h"
+
 //
 //namespace str
 //{

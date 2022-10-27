@@ -494,7 +494,7 @@ string estatus_to_string(::e_status estatus)
 //}
 
 
-CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails)
+CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails)
 {
 
 
@@ -531,7 +531,7 @@ CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exc
 
    }
 
-   message_box_synchronous(pobject, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
+   message_box_synchronous(pparticle, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
 
 }
 

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/primitive/string/string.h"
 
 
 char g_strDebugPuts[1024];
@@ -80,7 +81,7 @@ void acme_auto_debug_teste()
 
 //   teste_acme_cmp();
 
-//   if(!m_psystem->m_pacmefile->exists("/ca2/debug_test"))
+//   if(!acmefile()->exists("/ca2/debug_test"))
 //   {
 //
 //      return;

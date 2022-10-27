@@ -28,12 +28,12 @@ namespace core
    }
 
 
-   void session::initialize(::object * pobject)
+   void session::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::base::session::initialize(pobject);
+      ::base::session::initialize(pparticle);
 
       //if (!estatus)
       //{

@@ -20,20 +20,20 @@ image_array::~image_array()
 }
 
 
-bool image_array::explode(::object * pobject, ::payload payloadFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
+bool image_array::explode(::particle * pparticle, ::payload payloadFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
 {
 
-   return explode(pobject, ::size_i32(-1, -1), payloadFile, cols, rows, bCache, bCreateHelperMaps);
+   return explode(pparticle, ::size_i32(-1, -1), payloadFile, cols, rows, bCache, bCreateHelperMaps);
 
 }
 
 
-bool image_array::explode(::object * pobject, const ::size_i32 & sizeParam, ::payload payloadFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
+bool image_array::explode(::particle * pparticle, const ::size_i32 & sizeParam, ::payload payloadFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
 {
 
    ::size_i32 size(sizeParam);
 
-   auto pcontext = pobject->get_context()->m_pauracontext;
+   auto pcontext = pparticle->get_context()->m_pauracontext;
 
    auto pcontextimage = pcontext->context_image();
 
@@ -75,7 +75,7 @@ bool image_array::explode(::object * pobject, const ::size_i32 & sizeParam, ::pa
       for (int col = 0; col < cols; col++)
       {
 
-         auto pimage = pobject->m_pcontext->m_pauracontext->create_image(size);
+         auto pimage = pparticle->m_pcontext->m_pauracontext->create_image(size);
 
          auto rectangleTarget = pimage->rectangle();
 

@@ -48,24 +48,24 @@ public:
 
    //}
 
-   template < typename OBJECT >
-   inline pointer(enum_create_new, OBJECT * pobject) :
+   template < typename PARTICLE >
+   inline pointer(enum_create_new, PARTICLE * pparticle) :
       m_p(memory_new T),
       m_pparticle(m_p)
    {
 
-      m_p->initialize(pobject);
+      m_p->initialize(pparticle);
 
    }
 
 
-   template < typename OBJECT >
-   inline pointer(enum_create, OBJECT * pobject) :
+   template < typename PARTICLE >
+   inline pointer(enum_create, PARTICLE * pparticle) :
       m_p(nullptr),
       m_pparticle(nullptr)
    {
 
-      create(pobject);
+      create(pparticle);
 
    }
 
@@ -361,34 +361,34 @@ public:
 
 
    template < typename CONTAINER, typename OBJECT, typename ATTRIBUTE >
-   pointer & merge(const CONTAINER & pcontainer, const OBJECT & pobject, const ATTRIBUTE & attribute)
+   pointer & merge(const CONTAINER & pcontainer, const OBJECT & pparticle, const ATTRIBUTE & attribute)
    {
 
       auto pModified = __new(TYPE(*m_p));
 
-      pModified->apply(pobject, attribute);
+      pModified->apply(pparticle, attribute);
 
       return operator =(pcontainer->get_existing(pModified));
 
    }
 
    template < typename OBJECT, typename ATTRIBUTE >
-   pointer & container_merge(const OBJECT & pobject, const ATTRIBUTE & attribute)
+   pointer & container_merge(const OBJECT & pparticle, const ATTRIBUTE & attribute)
    {
 
-      return merge(m_p->m_pcontainer, pobject, attribute);
+      return merge(m_p->m_pcontainer, pparticle, attribute);
 
    }
 
    template < typename CONTAINER, typename OBJECT >
-   pointer & copy(const CONTAINER & pcontainer, const OBJECT & pobject)
+   pointer & copy(const CONTAINER & pcontainer, const OBJECT & pparticle)
    {
 
       auto pobjectParent = m_p;
 
       auto pOld = m_p;
 
-      m_p = memory_new TYPE(*pobject);
+      m_p = memory_new TYPE(*pparticle);
 
       m_pparticle = m_p;
 
@@ -406,10 +406,10 @@ public:
 
 
    template < typename OBJECT >
-   pointer & container_copy(const OBJECT & pobject)
+   pointer & container_copy(const OBJECT & pparticle)
    {
 
-      return copy(m_p->m_pcontainer, pobject);
+      return copy(m_p->m_pcontainer, pparticle);
 
    }
 
@@ -439,10 +439,10 @@ public:
    //inline pointer < T > & create_new();
 
    template < typename OBJECT >
-   inline pointer < T > & defer_create_new(OBJECT * pobject);
+   inline pointer < T > & defer_create_new(OBJECT * pparticle);
 
    template < typename OBJECT >
-   inline pointer < T > & create_new(OBJECT * pobject);
+   inline pointer < T > & create_new(OBJECT * pparticle);
 
    //template < TEMPLATE_TYPE >
    //inline pointer < T > & defer_create(TEMPLATE_ARG);
@@ -451,13 +451,13 @@ public:
    //inline pointer < T > & create(TEMPLATE_ARG);
 
    template < typename OBJECT >
-   inline pointer < T > & defer_create(OBJECT * pobject);
+   inline pointer < T > & defer_create(OBJECT * pparticle);
 
    template < typename OBJECT >
-   inline pointer < T > & create(OBJECT * pobject);
+   inline pointer < T > & create(OBJECT * pparticle);
 
    template < typename OBJECT >
-   inline pointer < T > & create(OBJECT * pobject, bool bCreate);
+   inline pointer < T > & create(OBJECT * pparticle, bool bCreate);
 
    template < typename T2 >
    inline pointer < T > & clone(T2 * p);
@@ -1230,3 +1230,270 @@ inline pointer < T >::pointer(lparam & lparam)
    lparam.m_lparam = 0;
 
 }
+
+
+
+template < class c_derived >
+inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+{
+
+   if (::is_null(pca))
+   {
+
+      return -1;
+
+   }
+
+   return pca->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+}
+
+
+template < class c_derived, typename SOURCE >
+inline i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
+{
+
+   c_derived * pderived = dynamic_cast <c_derived *>((SOURCE *)psource);
+
+   if (::is_null(pderived))
+   {
+
+      throw ::exception(error_wrong_type);
+
+   }
+
+   pca = pderived;
+
+   return increment_reference_count(pca);
+
+}
+
+
+template < class c_derived, typename SOURCE >
+inline i64 increment_reference_count(c_derived *& pderived, const ::pointer<SOURCE>& psource)
+{
+
+   return increment_reference_count(pderived, psource.m_p);
+
+}
+
+
+template < class c_derived >
+inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+{
+
+   c_derived * ptr = pca;
+
+   if (::is_null(ptr))
+   {
+
+      return -1;
+
+   }
+
+#ifdef _DEBUG
+
+//   ::atom atom = p->m_atom;
+   //char * pszType = nullptr;
+   //
+   //try
+   //{
+
+   //   pszType = _strdup(typeid(*p).name());
+
+   //}
+   //catch (...)
+   //{
+
+   //   ::output_debug_string("exception release strdup(typeid(*p).name())\n");
+
+   //}
+
+#endif
+
+   try
+   {
+
+      pca = nullptr;
+
+   }
+   catch (...)
+   {
+
+      //::output_debug_string("exception release pca = nullptr; (" + string(atom) + ")\n");
+      ::output_debug_string("exception release pca = nullptr; \n");
+
+   }
+
+   try
+   {
+
+      return ptr->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+   catch (...)
+   {
+
+      ::output_debug_string("exception release p->release() \n");
+
+   }
+
+   return -1;
+
+}
+
+
+//template < class COMPOSITE >
+//inline i64 release(::pointer<COMPOSITE>& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   return release(pcomposite.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+
+
+template < typename TYPE >
+inline i64 release(::pointer<TYPE>& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+{
+
+   return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+}
+
+
+template < typename TYPE >
+inline i64 __finalize(::pointer<TYPE> pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+{
+
+   if (!pointer) return -1;
+
+   pointer->destroy();
+
+   return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+}
+
+//
+//template < class REFERENCE >
+//inline i64 release(::pointer<REFERENCE>& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   return release(preference.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+
+
+template < class c_derived >
+inline i64 ref_count(c_derived * pca)
+{
+
+   if (pca == nullptr)
+   {
+
+      return -1;
+
+   }
+
+   return pca->get_ref_count();
+
+}
+
+
+class CLASS_DECL_ACME global_particle :
+   virtual public ::particle
+{
+public:
+
+
+   global_particle * m_pglobalparticleNext;
+
+   global_particle();
+   ~global_particle() override;
+
+
+};
+
+
+template < typename TYPE >
+class global_pointer :
+   public ::global_particle,
+   public pointer <TYPE >
+{
+public:
+
+
+   using pointer < TYPE >::pointer;
+
+
+   using pointer < TYPE >::operator = ;
+
+};
+
+
+
+
+
+template < class T >
+template < typename T2 >
+inline pointer < T > & pointer < T >::defer_assign_to(T2 * & p)
+{
+
+   if (!is_null())
+   {
+
+      try
+      {
+
+         p = dynamic_cast < T2 * >(m_p);
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+   return *this;
+
+}
+
+
+
+template < class T >
+template < typename OBJECT >
+inline pointer < T > & pointer < T >::defer_create_new(OBJECT * pparticle)
+{
+
+   if (is_null())
+   {
+
+      create_new < T >(pparticle);
+
+   }
+
+   return *this;
+
+}
+
+
+template < class T >
+template < typename OBJECT >
+inline pointer < T > & pointer < T >::create_new(OBJECT * pparticle)
+{
+
+   auto p = __new(T);
+
+   if (p)
+   {
+
+      p->initialize(pparticle);
+
+   }
+
+   return operator=(p);
+
+}
+
+
+

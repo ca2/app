@@ -34,7 +34,7 @@
 //
 
 //template < class T >
-//bool ::file::system::output(::object * pobject, const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
+//bool ::file::system::output(::particle * pparticle, const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -42,18 +42,18 @@
 //   try
 //   {
 
-//      stream os(pobject, FIRST_VERSION);
+//      stream os(pparticle, FIRST_VERSION);
 
-//      if (!prepare_output(pobject, os, pathDownloading, pathOut, nullptr))
+//      if (!prepare_output(pparticle, os, pathDownloading, pathOut, nullptr))
 //      {
 
 //         return false;
 
 //      }
 
-//      stream is(pobject, FIRST_VERSION);
+//      stream is(pparticle, FIRST_VERSION);
 
-//      if (!prepare_input(pobject, is, pfileIn))
+//      if (!prepare_input(pparticle, is, pfileIn))
 //      {
 
 //         return false;
@@ -80,7 +80,7 @@
 //   try
 //   {
 
-//      if (!post_output(pobject, pathOut, pathDownloading))
+//      if (!post_output(pparticle, pathOut, pathDownloading))
 //      {
 
 //         return false;
@@ -101,7 +101,7 @@
 
 
 //template < class T >
-//bool system::output(::object * pobject, const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
+//bool system::output(::particle * pparticle, const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -109,16 +109,16 @@
 //   try
 //   {
 
-//      stream os(pobject, FIRST_VERSION);
+//      stream os(pparticle, FIRST_VERSION);
 
-//      if (!prepare_output(pobject, os, pathDownloading, pathOut, nullptr))
+//      if (!prepare_output(pparticle, os, pathDownloading, pathOut, nullptr))
 //      {
 
 //         return false;
 
 //      }
 
-//      if (!prepare_input(pobject, is, pfileIn))
+//      if (!prepare_input(pparticle, is, pfileIn))
 //      {
 
 //         return false;
@@ -143,7 +143,7 @@
 //   try
 //   {
 
-//      if (!post_output(pobject, pathOut, pathDownloading))
+//      if (!post_output(pparticle, pathOut, pathDownloading))
 //      {
 
 //         return false;
@@ -163,7 +163,7 @@
 
 
 //template < class T >
-//bool ::file::system::output(::object * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
+//bool ::file::system::output(::particle * pparticle, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -171,18 +171,18 @@
 //   try
 //   {
 
-//      stream os(pobject, FIRST_VERSION);
+//      stream os(pparticle, FIRST_VERSION);
 
-//      if (!prepare_output(pobject, os, pathDownloading, "", pfileOut))
+//      if (!prepare_output(pparticle, os, pathDownloading, "", pfileOut))
 //      {
 
 //         return false;
 
 //      }
 
-//      stream is(pobject, FIRST_VERSION);
+//      stream is(pparticle, FIRST_VERSION);
 
-//      if (!prepare_input(pobject, is, pathIn))
+//      if (!prepare_input(pparticle, is, pathIn))
 //      {
 
 //         return false;
@@ -210,7 +210,7 @@
 
 
 //template < class T >
-//bool ::file::system::output(::object * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
+//bool ::file::system::output(::particle * pparticle, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -218,64 +218,18 @@
 //   try
 //   {
 
-//      stream os(pobject, FIRST_VERSION);
+//      stream os(pparticle, FIRST_VERSION);
 
-//      if (!prepare_output(pobject, os, pathDownloading, "", pfileOut))
+//      if (!prepare_output(pparticle, os, pathDownloading, "", pfileOut))
 //      {
 
 //         return false;
 
 //      }
 
-//      stream is(pobject, FIRST_VERSION);
+//      stream is(pparticle, FIRST_VERSION);
 
-//      if (!prepare_input(pobject, is, pfileIn))
-//      {
-
-//         return false;
-
-//      }
-
-//      if (!(p->*pfnOuput)(&os, &is))
-
-//      {
-
-//         return false;
-
-//      }
-
-//   }
-//   catch (...)
-//   {
-
-//      return false;
-
-//   }
-
-//   return true;
-
-//}
-
-
-//template < class T >
-//bool system::output(::object * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
-//{
-
-//   ::file::path pathDownloading;
-
-//   try
-//   {
-
-//      stream os(pobject, FIRST_VERSION);
-
-//      if (!prepare_output(pobject, os, pathDownloading, "", pfileOut))
-//      {
-
-//         return false;
-
-//      }
-
-//      if (!prepare_input(pobject, is, pfileIn))
+//      if (!prepare_input(pparticle, is, pfileIn))
 //      {
 
 //         return false;
@@ -304,7 +258,7 @@
 
 
 //template < class T >
-//bool ::file::system::output(::object * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
+//bool system::output(::particle * pparticle, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -312,9 +266,55 @@
 //   try
 //   {
 
-//      stream is(pobject, FIRST_VERSION);
+//      stream os(pparticle, FIRST_VERSION);
 
-//      if (!prepare_input(pobject, is, pathIn))
+//      if (!prepare_output(pparticle, os, pathDownloading, "", pfileOut))
+//      {
+
+//         return false;
+
+//      }
+
+//      if (!prepare_input(pparticle, is, pfileIn))
+//      {
+
+//         return false;
+
+//      }
+
+//      if (!(p->*pfnOuput)(&os, &is))
+
+//      {
+
+//         return false;
+
+//      }
+
+//   }
+//   catch (...)
+//   {
+
+//      return false;
+
+//   }
+
+//   return true;
+
+//}
+
+
+//template < class T >
+//bool ::file::system::output(::particle * pparticle, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
+//{
+
+//   ::file::path pathDownloading;
+
+//   try
+//   {
+
+//      stream is(pparticle, FIRST_VERSION);
+
+//      if (!prepare_input(pparticle, is, pathIn))
 //      {
 
 //         return false;
@@ -343,7 +343,7 @@
 
 
 //template < class T >
-//bool ::file::system::output(::object * pobject, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * pfileIn)
+//bool ::file::system::output(::particle * pparticle, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * pfileIn)
 
 //{
 
@@ -352,9 +352,9 @@
 //   try
 //   {
 
-//      stream is(pobject, FIRST_VERSION);
+//      stream is(pparticle, FIRST_VERSION);
 
-//      if (!prepare_input(pobject, is, pfileIn))
+//      if (!prepare_input(pparticle, is, pfileIn))
 //      {
 
 //         return false;
@@ -383,7 +383,7 @@
 
 
 //template < class T >
-//bool system::output(::object * pobject, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * preader)
+//bool system::output(::particle * pparticle, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * preader)
 //{
 
 //   ::file::path pathDownloading;
@@ -393,7 +393,7 @@
 
 //      stream is;
 
-//      if (!prepare_input(pobject, is, preader))
+//      if (!prepare_input(pparticle, is, preader))
 //      {
 
 //         return false;

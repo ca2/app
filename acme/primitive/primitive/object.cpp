@@ -5,17 +5,19 @@
 #if OBJECT_REFERENCE_COUNT_DEBUG
 #include "acme/platform/obj_ref_debug_impl.h"
 #endif
-#include "acme/primitive/text/_.h"
+#include "acme/constant/idpool.h"
+//#include "acme/primitive/text/_.h"
 #include "acme/primitive/primitive/set_bit.h"
+#include "acme/primitive/string/hex.h"
+#include "acme/primitive/text/text.h"
+#include "acme/primitive/collection/atom_map.h"
+#include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronously_keep_bit.h"
-
-
+#include "acme/parallelization/task.h"
+#include "acme/platform/system.h"
 
 
 object::~object() = default;
-
-
-
 
 
 i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
@@ -95,10 +97,10 @@ string object::as_string() const
 }
 
 
-//void object::add_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   _synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   __defer_construct_new(m_pcompositea);
 //
@@ -120,10 +122,10 @@ string object::as_string() const
 //}
 //
 //
-//void object::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   _synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   __defer_construct_new(m_preferencea);
 //
@@ -148,7 +150,7 @@ string object::as_string() const
 //}
 
 
-//void object::release_composite2(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pelement))
@@ -158,7 +160,7 @@ string object::as_string() const
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_pcompositea)
 //   {
@@ -177,7 +179,7 @@ string object::as_string() const
 //}
 //
 //
-//void object::finalize_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pelement))
@@ -187,7 +189,7 @@ string object::as_string() const
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_pcompositea)
 //   {
@@ -219,7 +221,7 @@ string object::as_string() const
 //}
 //
 //
-//void object::release_reference(::element* pelement  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::release_reference(::particle * pparticle  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pelement))
@@ -229,7 +231,7 @@ string object::as_string() const
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_preferencea)
 //   {
@@ -353,41 +355,41 @@ void object::dev_log(string strMessage)
 //}
 
 
-//void object::add_object(::object* pobject)
+//void object::add_object(::object* pparticle)
 //{
 //
 //   {
 //
-//      _synchronous_lock synchronouslock(mutex());
+//      _synchronous_lock synchronouslock(this->synchronization());
 //
 //      __defer_construct_new(m_pobjecta);
 //
-//      m_pobjecta->add_unique(pobject);
+//      m_pobjecta->add_unique(pparticle);
 //
 //   }
 //
 //   {
 //
-//      _synchronous_lock synchronouslock(mutex());
+//      _synchronous_lock synchronouslock(this->synchronization());
 //
-//      __defer_construct_new(pobject->m_pobjecta);
+//      __defer_construct_new(pparticle->m_pobjecta);
 //
-//      pobject->m_pobjecta->add_unique(this);
+//      pparticle->m_pobjecta->add_unique(this);
 //
 //   }
 //
 //}
 //
 //
-//void object::on_delete_object(::object* pobject)
+//void object::on_delete_object(::object* pparticle)
 //{
 //
-//   _synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_pobjecta)
 //   {
 //
-//      m_pobjecta->erase(pobject);
+//      m_pobjecta->erase(pparticle);
 //
 //   }
 //
@@ -545,10 +547,10 @@ void object::call_routine2(const ::procedure & procedure)
 //}
 //
 //
-//void object::initialize(::object* pobject)
+//void object::initialize(::particle * pparticle)
 //{
 //
-//   auto estatus = ::property_object::initialize(pobject);
+//   auto estatus = ::property_object::initialize(pparticle);
 //
 //   if (!estatus)
 //   {
@@ -745,7 +747,7 @@ void object::run()
 //   if (estatus == error_pending)
 //   {
 //
-//      //m_psystem->add_pending_finish(this);
+//      //acmesystem()->add_pending_finish(this);
 //
 //      return estatus;
 //
@@ -844,15 +846,15 @@ void object::run()
 //
 //   //{
 //
-//   //   _synchronous_lock synchronouslock(mutex());
+//   //   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   //   if (m_pobjecta)
 //   //   {
 //
-//   //      for (auto& pobject : *m_pobjecta)
+//   //      for (auto& pparticle : *m_pobjecta)
 //   //      {
 //
-//   //         pobject->on_delete_object(this);
+//   //         pparticle->on_delete_object(this);
 //
 //   //      }
 //
@@ -888,7 +890,7 @@ void object::add_task(::object* pobjectTask)
 
    }
 
-   _synchronous_lock synchronouslockParent1(mutex());
+   _synchronous_lock synchronouslockParent1(synchronization());
 
    if(is_ascendant_task(pobjectTask))
    {
@@ -901,20 +903,20 @@ void object::add_task(::object* pobjectTask)
 
    auto ptaskOldParent = pobjectTask->m_pobjectParentTask;
 
-   _synchronous_lock synchronouslockParent2(ptaskOldParent ? ptaskOldParent->mutex() : nullptr);
+   _synchronous_lock synchronouslockParent2(ptaskOldParent ? ptaskOldParent->synchronization() : nullptr);
 
-   _synchronous_lock synchronouslock(pobjectTask->mutex());
+   _synchronous_lock synchronouslock(pobjectTask->synchronization());
 
    if(ptaskOldParent == this
-   && m_pobjectaChildrenTask 
-   && m_pobjectaChildrenTask->contains(pobjectTask))
+   && m_pparticleaChildrenTask
+   && m_pparticleaChildrenTask->contains(pobjectTask))
    {
 
       return;
 
    }
 
-   __defer_construct_new(m_pobjectaChildrenTask);
+   __defer_construct_new(m_pparticleaChildrenTask);
 
    string strType = __type_name(this);
 
@@ -931,17 +933,17 @@ void object::add_task(::object* pobjectTask)
 
    }
 
-   m_pobjectaChildrenTask->add(pobjectTask);
+   m_pparticleaChildrenTask->add(pobjectTask);
 
    pobjectTask->m_pobjectParentTask = this;
 
    if(::is_set(ptaskOldParent))
    {
 
-      if(::is_set(ptaskOldParent->m_pobjectaChildrenTask))
+      if(::is_set(ptaskOldParent->m_pparticleaChildrenTask))
       {
 
-         ptaskOldParent->m_pobjectaChildrenTask->erase(pobjectTask);
+         ptaskOldParent->m_pparticleaChildrenTask->erase(pobjectTask);
 
       }
 
@@ -953,11 +955,11 @@ void object::add_task(::object* pobjectTask)
 void object::erase_task(::object* pobjectTask)
 {
 
-   _synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(this->synchronization());
 
-   _synchronous_lock synchronouslockObject(pobjectTask->mutex());
+   _synchronous_lock synchronouslockObject(pobjectTask->synchronization());
 
-   if (!m_pobjectaChildrenTask)
+   if (!m_pparticleaChildrenTask)
    {
 
       return;
@@ -984,7 +986,7 @@ void object::erase_task(::object* pobjectTask)
 
    pobjectTask->m_pobjectParentTask = nullptr;
 
-   if (m_pobjectaChildrenTask->erase(pobjectTask) <= 0)
+   if (m_pparticleaChildrenTask->erase(pobjectTask) <= 0)
    {
 
       ::output_debug_string("not a child");
@@ -1015,7 +1017,7 @@ void object::transfer_tasks_from(::object* ptask)
 
    }
 
-   _synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    if(is_ascendant_task(ptask))
    {
@@ -1026,33 +1028,32 @@ void object::transfer_tasks_from(::object* ptask)
 
    }
 
-   _synchronous_lock synchronouslockParent2(ptask->mutex());
+   _synchronous_lock synchronouslockParent2(ptask->synchronization());
 
-   if(!ptask->m_pobjectaChildrenTask
-   || ptask->m_pobjectaChildrenTask->is_empty())
+   if(!ptask->m_pparticleaChildrenTask || ptask->m_pparticleaChildrenTask->is_empty())
    {
 
       return;
 
    }
 
-   __defer_construct_new(m_pobjectaChildrenTask);
+   __defer_construct_new(m_pparticleaChildrenTask);
 
    pointer_array < ::object > objectaChildrenTask;
 
-   objectaChildrenTask = *ptask->m_pobjectaChildrenTask;
+   objectaChildrenTask = *ptask->m_pparticleaChildrenTask;
 
    for (auto pobjectTask : objectaChildrenTask)
    {
 
-      _synchronous_lock synchronouslock(pobjectTask->mutex());
+      _synchronous_lock synchronouslock(pobjectTask->synchronization());
 
       try
       {
 
          pobjectTask->m_pobjectParentTask = this;
 
-         m_pobjectaChildrenTask->add(pobjectTask);
+         m_pparticleaChildrenTask->add(pobjectTask);
 
       }
       catch (...)
@@ -1062,7 +1063,7 @@ void object::transfer_tasks_from(::object* ptask)
 
    }
 
-   ptask->m_pobjectaChildrenTask.release();
+   ptask->m_pparticleaChildrenTask.release();
 
 }
 
@@ -1103,7 +1104,7 @@ bool object::is_ascendant_task(::object * ptaskCandidateAscendant) const
 bool object::check_tasks_finished()
 {
 
-   if (::is_null(m_pobjectaChildrenTask))
+   if (::is_null(m_pparticleaChildrenTask))
    {
 
       return false;
@@ -1113,23 +1114,23 @@ bool object::check_tasks_finished()
    if (m_bCheckingChildrenTask)
    {
 
-      return m_pobjectaChildrenTask->has_element();
+      return m_pparticleaChildrenTask->has_element();
 
    }
 
    if (!is_finishing())
    {
 
-      return m_pobjectaChildrenTask->has_element();
+      return m_pparticleaChildrenTask->has_element();
 
    }
 
-   _synchronous_lock lock(mutex());
+   _synchronous_lock lock(synchronization());
 
    if (m_bCheckingChildrenTask)
    {
 
-      return m_pobjectaChildrenTask->has_element();
+      return m_pparticleaChildrenTask->has_element();
 
    }
 
@@ -1138,10 +1139,10 @@ bool object::check_tasks_finished()
    try
    {
 
-      for (int iChildTask = 0; iChildTask < m_pobjectaChildrenTask->get_size(); iChildTask++)
+      for (int iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); iChildTask++)
       {
 
-         auto & ptaskChild = m_pobjectaChildrenTask->element_at(iChildTask);
+         auto & ptaskChild = m_pparticleaChildrenTask->element_at(iChildTask);
 
          if (ptaskChild)
          {
@@ -1154,15 +1155,15 @@ bool object::check_tasks_finished()
 
       }
 
-      for (int iChildTask = 0; iChildTask < m_pobjectaChildrenTask->get_size(); )
+      for (int iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); )
       {
 
-          auto ptaskChild = m_pobjectaChildrenTask->element_at(iChildTask);
+          auto ptaskChild = m_pparticleaChildrenTask->element_at(iChildTask);
 
           if (!ptaskChild)
           {
 
-             m_pobjectaChildrenTask->erase_at(iChildTask);
+             m_pparticleaChildrenTask->erase_at(iChildTask);
 
           }
           else
@@ -1188,7 +1189,7 @@ bool object::check_tasks_finished()
 
       //          }
 
-      //          m_pobjectaChildrenTask->erase_at(iChildTask);
+      //          m_pparticleaChildrenTask->erase_at(iChildTask);
 
       //       }
       //       else
@@ -1208,7 +1209,7 @@ bool object::check_tasks_finished()
 
    }
 
-   if (m_pobjectaChildrenTask->has_element())
+   if (m_pparticleaChildrenTask->has_element())
    {
 
       return true;
@@ -1322,7 +1323,7 @@ void object::delete_this()
 //
 //   string strTypeName = __type_name(this);
 //
-//   _synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_pcompositea)
 //   {
@@ -1354,7 +1355,7 @@ void object::delete_this()
 //
 //   string strTypeName = __type_name(this);
 //
-//   _synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_preferencea)
 //   {
@@ -1368,11 +1369,11 @@ void object::delete_this()
 //}
 //
 
-CLASS_DECL_ACME::mutex* get_children_mutex();
+CLASS_DECL_ACME::pointer < ::mutex >* get_children_mutex();
 
 
-///// tells if pobject is dependant of this object or of any dependant objects
-//bool object::___is_reference(::element* pelement) const
+///// tells if pparticle is dependant of this object or of any dependant objects
+//bool object::___is_reference(::particle * pparticle) const
 //{
 //
 //   if (::is_null(pelement))
@@ -1403,7 +1404,7 @@ CLASS_DECL_ACME::mutex* get_children_mutex();
 //}
 //
 //
-//bool object::__is_composite(::element* pelement) const
+//bool object::__is_composite(::particle * pparticle) const
 //{
 //
 //   if (::is_null(pelement))
@@ -1432,26 +1433,26 @@ CLASS_DECL_ACME::mutex* get_children_mutex();
 //}
 
 
-bool object::__is_child_task(::object * pobjectTask) const
+bool object::__is_child_task(::particle * pparticleTask) const
 {
 
-   if (::is_null(pobjectTask))
+   if (::is_null(pparticleTask))
    {
 
       return false;
 
    }
 
-   _synchronous_lock lock(mutex());
+   _synchronous_lock lock(synchronization());
 
-   if (!m_pobjectaChildrenTask)
+   if (!m_pparticleaChildrenTask)
    {
 
       return false;
 
    }
 
-   if (!m_pobjectaChildrenTask->contains(pobjectTask))
+   if (!m_pparticleaChildrenTask->contains(pparticleTask))
    {
 
       return false;
@@ -1758,13 +1759,9 @@ void object::top_handle_exception(const ::exception& e)
    if (::is_exit_exception_status(e.estatus()))
    {
 
-      m_psystem->process_exit_status(this, e.estatus());
-
-      //return false;
+      acmesystem()->process_exit_status(this, e.estatus());
 
    }
-
-   //return true;
 
 }
 
@@ -1775,7 +1772,7 @@ void object::top_handle_exception(const ::exception& e)
 //   if (estatus == error_exit_system)
 //   {
 //
-//      m_psystem->finish();
+//      acmesystem()->finish();
 //
 //   }
 //   else if (estatus == error_exit_session)
@@ -1825,7 +1822,7 @@ void object::process_exception(const ::exception& e)
 //::index object::task_add(::task * ptask)
 //{
 //
-//   _synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   return get_meta()->task_add(this, ptask);
 //
@@ -1835,7 +1832,7 @@ void object::process_exception(const ::exception& e)
 void object::task_erase(::task* ptask)
 {
 
-   //_synchronous_lock synchronouslock(mutex());
+   //_synchronous_lock synchronouslock(this->synchronization());
 
    //if (m_pmeta)
    //{
@@ -1855,7 +1852,7 @@ void object::task_erase(::task* ptask)
 
       string strThreadChild = __type_name(ptask);
 
-      _synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (::is_null(ptask))
       {
@@ -1931,7 +1928,7 @@ void object::sleep(const ::duration& duration)
 
       {
 
-         _synchronous_lock synchronouslock(ptask->mutex());
+         _synchronous_lock synchronouslock(ptask->synchronization());
 
          if (ptask->m_pevSleep.is_null())
          {
@@ -1946,7 +1943,7 @@ void object::sleep(const ::duration& duration)
 
       }
 
-      if (m_psystem && m_psystem->is_finishing())
+      if (acmesystem() && acmesystem()->is_finishing())
       {
 
          throw ::exception(error_exit_system);
@@ -1995,7 +1992,7 @@ void object::sleep(const ::duration& duration)
 
       }
 
-      if (m_psystem && m_psystem->is_finishing())
+      if (acmesystem() && acmesystem()->is_finishing())
       {
 
          throw ::exception(error_exit_system);
@@ -2030,7 +2027,7 @@ void object::sleep(const ::duration& duration)
 //void object::task_erase_all()
 //{
 //
-//   /*_synchronous_lock synchronouslock(mutex());
+//   /*_synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_pmeta)
 //   {
@@ -2044,7 +2041,7 @@ void object::sleep(const ::duration& duration)
 //::task_array * object::task_array_get()
 //{
 //
-//   _synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (!m_pmeta)
 //   {
@@ -2061,7 +2058,7 @@ void object::sleep(const ::duration& duration)
 //const ::task_array* object::task_array_get() const
 //{
 //
-//   _synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (!m_pmeta)
 //   {
@@ -2078,7 +2075,7 @@ void object::sleep(const ::duration& duration)
 //bool object::task_is_empty() const
 //{
 //
-//   _synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(this->synchronization());
 //
 //   auto pthreada = task_array_get();
 //
@@ -2108,7 +2105,7 @@ void object::sleep(const ::duration& duration)
 
 
 //::pointer<thread>object::start(
-//   ::element* pelement,
+//   ::particle * pparticle,
 //   ::enum_priority epriority = e_priority_normal,
 //   u32 nStackSize = 0,
 //   u32 dwCreateFlags = 0)
@@ -2158,12 +2155,12 @@ void object::install_message_routing(::channel* pchannel)
 //   //if (m_pcompositea)
 //   //{
 //
-//   //   auto pobject = ::parallelization::array::is_running(*m_pcompositea, pszTag);
+//   //   auto pparticle = ::parallelization::array::is_running(*m_pcompositea, pszTag);
 //
-//   //   if (pobject)
+//   //   if (pparticle)
 //   //   {
 //
-//   //      return pobject;
+//   //      return pparticle;
 //
 //
 //   //   }
@@ -2173,12 +2170,12 @@ void object::install_message_routing(::channel* pchannel)
 //   //if (m_preferencea)
 //   //{
 //
-//   //   auto pobject = ::parallelization::array::is_running(*m_preferencea, pszTag);
+//   //   auto pparticle = ::parallelization::array::is_running(*m_preferencea, pszTag);
 //
-//   //   if (pobject)
+//   //   if (pparticle)
 //   //   {
 //
-//   //      return pobject;
+//   //      return pparticle;
 //
 //   //   }
 //
@@ -2206,24 +2203,24 @@ void object::install_message_routing(::channel* pchannel)
 //}
 
 
-//void object::add_update_notification(const ::atom & atom, ::object * pobject)
+//void object::add_update_notification(const ::atom & atom, ::particle * pparticle)
 //{
 //
-//   if (::is_null(pobject))
+//   if (::is_null(pparticle))
 //   {
 //
 //      return ::error_failed;
 //
 //   }
 //
-//   if (!pobject->m_ppropertyset)
+//   if (!pparticle->m_ppropertyset)
 //   {
 //
 //      return ::error_failed;
 //
 //   }
 //
-//   auto pproperty = pobject->m_ppropertyset->find(atom);
+//   auto pproperty = pparticle->m_ppropertyset->find(atom);
 //
 //   if (!pproperty)
 //   {
@@ -2256,7 +2253,7 @@ void object::install_message_routing(::channel* pchannel)
 //::pointer<::handle::ini>object::appini()
 //{
 //
-//   return __new(::handle::ini(         auto psystem = m_psystem;
+//   return __new(::handle::ini(         auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -2265,12 +2262,6 @@ void object::install_message_routing(::channel* pchannel)
 //}
 
 
-::file_pointer object::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
-{
-
-   return m_pcontext->get_file(payloadFile, eopen);
-
-}
 
 //
 //
@@ -2301,12 +2292,12 @@ struct context_object_test_struct :
 
 };
 
-//void debug_context_object(::object* pobject)
+//void debug_context_object(::object* pparticle)
 //{
 //
-//   auto p1 = __new(struct context_object_test_struct(pobject));
+//   auto p1 = __new(struct context_object_test_struct(pparticle));
 //
-//   auto p2 = __new(struct context_object_test_struct(pobject));
+//   auto p2 = __new(struct context_object_test_struct(pparticle));
 //
 //   p2 = p1;
 //
@@ -2432,7 +2423,7 @@ string object::get_text(const ::payload& payload, const ::atom& atom)
 //pointer< ::extended::sequence < ::conversation > > object::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box& emessagebox)
 //{
 //
-//   auto psystem = m_psystem;
+//   auto psystem = acmesystem();
 //
 //   auto psequence = psystem->message_box(puserinteraction, strMessage, strTitle, emessagebox);
 //
@@ -2670,10 +2661,10 @@ element* object::get_taskpool_container()
 
 
 //template < typename BASE_TYPE >
-//void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
+//void save_to(const ::payload& payloadFile, BASE_TYPE* pparticle);
 
 
-void object::initialize(::object* pobject)
+void object::initialize(::particle * pparticle)
 {
    
    auto estatus = ::success;
@@ -2709,21 +2700,24 @@ void object::initialize(::object* pobject)
    //
    //#endif
 
-   if (!get_system())
-   {
 
-      m_psystem = pobject->get_system();
+   ::property_object::initialize(pparticle);
 
-   }
-
-   if (!m_pcontext)
-   {
-
-      m_pcontext = pobject->m_pcontext;
-
-   }
-
-   /*estatus =*/ on_initialize_object();
+//   if (!get_system())
+//   {
+//
+//      acmesystem() = pparticle->get_system();
+//
+//   }
+//
+//   if (!m_pcontext)
+//   {
+//
+//      m_pcontext = pparticle->m_pcontext;
+//
+//   }
+//
+//   /*estatus =*/ on_initialize_particle();
 
    //if (!estatus)
    //{
@@ -2735,21 +2729,21 @@ void object::initialize(::object* pobject)
    //if (!m_papp)
    //{
 
-   //   m_papp = pobject->m_papp;
+   //   m_papp = pparticle->m_papp;
 
    //}
 
    //if (!m_psession)
    //{
 
-   //   m_psession = pobject->m_psession;
+   //   m_psession = pparticle->m_psession;
 
    //}
 
    //if (!psystem)
    //{
 
-   //   set_context_system(::apex::get_system(pobject) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+   //   set_context_system(::apex::get_system(pparticle) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
    //}
 
@@ -2768,10 +2762,10 @@ void object::initialize(::object* pobject)
    //      m_pcontext = m_psession;
 
    //   }
-   //   else if (m_psystem)
+   //   else if (acmesystem())
    //   {
 
-   //      m_pcontext = m_psystem;
+   //      m_pcontext = acmesystem();
 
    //   }
 
@@ -2782,7 +2776,7 @@ void object::initialize(::object* pobject)
 }
 
 
-//void object::on_initialize_object()
+//void object::on_initialize_particle()
 //{
 //
 //   return ::success;
@@ -2885,10 +2879,10 @@ void object::initialize(::object* pobject)
 //#endif
 
 
-   // void set_object(::object * pobject) 
+   // void set_object(::particle * pparticle) 
 
 
-   //inline void defer_set_object(::object * pobject);
+   //inline void defer_set_object(::particle * pparticle);
 
 void object::call_run()
 {
@@ -3019,13 +3013,13 @@ void object::call_run()
 //inline void release_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-// void add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
-// void add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// void add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 
 
-// void release_composite2(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
-// void finalize_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
-// void release_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// void release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// void finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// void release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 
 
 //template < typename BASE_TYPE >
@@ -3113,10 +3107,10 @@ void object::call_run()
 //
 //   }
 //
-//   if (m_psystem && (::property_object*)m_psystem != (::property_object*)this)
+//   if (acmesystem() && (::property_object*)acmesystem() != (::property_object*)this)
 //   {
 //
-//      return m_psystem;
+//      return acmesystem();
 //
 //   }
 //
@@ -3307,14 +3301,14 @@ void object::call_run()
 //
 //}
 
-//bool object::___is_reference(::element* pobject) const
+//bool object::___is_reference(::particle * pparticle) const
 //{
 //
 //   return false;
 //
 //}
 
-//bool object::__is_composite(::element* pobject) const
+//bool object::__is_composite(::particle * pparticle) const
 //{
 //
 //   return false;
@@ -3640,7 +3634,7 @@ bool object::IsSerializable() const
 //   }
 //
 //
-//    //ptask = __new(predicate_task < PRED >(pobject, pred));
+//    //ptask = __new(predicate_task < PRED >(pparticle, pred));
 ////
 ////   ptask->branch();
 ////
@@ -3654,7 +3648,7 @@ bool object::IsSerializable() const
 ::acme::application * object::get_app() const
 {
 
-   return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication : (m_psystem ? m_psystem->m_pacmeapplicationMain.get() : nullptr);
+   return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication : nullptr;
 
 }
 

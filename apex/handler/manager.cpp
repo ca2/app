@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "manager.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/collection/set.h"
 
 
 critical_section manager::s_criticalsection;
@@ -58,7 +61,7 @@ i64 manager::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 class ::signal * manager::get_signal(const ::atom & atom, const ::action_context& actioncontext)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if (!m_psignalmap)
    {
@@ -78,7 +81,7 @@ class ::signal * manager::get_signal(const ::atom & atom, const ::action_context
 
       psignal->initialize(this);
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       psignal->m_durationSleep = psystem->get_update_poll_time(atom);
 
@@ -353,7 +356,7 @@ void manager::destroy_signal_handling()
 void manager::erase_signal_handler(::matter *pmatter)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    for (auto & psignal : m_psignalmap->values())
    {

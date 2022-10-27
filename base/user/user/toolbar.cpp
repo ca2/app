@@ -17,7 +17,7 @@ class user_toolbar_command : public ::message::command        // class private t
 {
 public: // re-implementations only
 
-   user_toolbar_command(::object * pobject);
+   user_toolbar_command(::particle * pparticle);
    void enable(bool bOn = true, const ::action_context & context = ::e_source_system) override;
    //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
    void _001SetCheck(const e_check & echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
@@ -212,7 +212,7 @@ namespace user
 //      if(!::user::control_bar::create_interaction("ToolbarWindow32",nullptr,uStyle, puiParent,nID))
 //         return false;
 //
-//      // synchronization_object up the sizes
+//      // synchronization up the sizes
 //      SetSizes(m_sizeButton, m_sizeImage);
 //
 //      // Note: Parent must resize itself for control bar to be resized
@@ -1410,7 +1410,7 @@ namespace user
 
       bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -1679,7 +1679,7 @@ namespace user
    void toolbar::assert_ok() const
    {
       // Note: ::user::control_bar::assert_ok is not called because it checks for
-      //  m_nCount and m_pData to be in synchronization_object, which they are not in toolbar.
+      //  m_nCount and m_pData to be in synchronization, which they are not in toolbar.
 
       /*      ASSERT(m_hbmImageWell == nullptr ||
                (afxData.bWin95 || ::GetObjectType(m_hbmImageWell) == OBJ_BITMAP));
@@ -1893,7 +1893,7 @@ namespace user
    void toolbar::load_xml_toolbar(const ::payload & payloadFile)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_pitema->erase_all();
 
@@ -2064,10 +2064,10 @@ namespace user
 
 
 
-user_toolbar_command::user_toolbar_command(::object * pobject)
+user_toolbar_command::user_toolbar_command(::particle * pparticle)
 {
 
-   initialize(pobject);
+   initialize(pparticle);
 
 }
 

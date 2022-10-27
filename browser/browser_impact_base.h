@@ -32,7 +32,7 @@ namespace browser
       e_effect                m_eeffect;
 
 
-      ::mutex                   m_mutexText;
+      ::pointer < ::mutex >                   m_pmutexText;
       string                  m_strNewHelloBrowser;
       string                  m_strHelloBrowser;
 
@@ -50,7 +50,7 @@ namespace browser
 
 
 
-      impact_base(::object * pobject);
+      impact_base(::particle * pparticle);
       virtual ~impact_base();
 
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
@@ -63,8 +63,8 @@ namespace browser
       }
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
       void install_message_routing(::channel * pchannel) override;

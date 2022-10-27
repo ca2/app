@@ -6,7 +6,7 @@
 #include "acme/primitive/collection/pointer_array_process.h"
 #include "acme/primitive/primitive/compare_predicate.h"
 #include "acme/primitive/primitive/payload.h"
-#include "acme/primitive/collection/payload_array.h"
+//#include "acme/primitive/primitive/payload_array.h"
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
@@ -1419,11 +1419,11 @@ namespace acme
       //   Appending ARRAY
       //          to array
 
-      inline ::index add(string_array & stra, const string_array & straSource) { return add_array(stra, straSource); }
+      //inline ::index add(string_array & stra, const string_array & straSource) { return add_array(stra, straSource); }
 
-      inline ::index add(::file::path_array & patha, const string_array & stra) { return add_array(patha, stra); }
-      inline ::index add(::file::path_array & patha, const ::file::path_array & pathaSrc) { return add_array(patha, pathaSrc); }
-      inline ::index add(::file::path_array & patha, const ::file::listing & listing) { return add_array(patha, listing); }
+      //inline ::index add(::file::path_array & patha, const string_array & stra) { return add_array(patha, stra); }
+      //inline ::index add(::file::path_array & patha, const ::file::path_array & pathaSrc) { return add_array(patha, pathaSrc); }
+      //inline ::index add(::file::path_array & patha, const ::file::listing & listing) { return add_array(patha, listing); }
 
 
       //template < typename TYPE, enum_type t_etypePayload >

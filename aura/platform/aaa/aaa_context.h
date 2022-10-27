@@ -88,7 +88,7 @@ public:
 
    virtual bool os_resolve_alias(::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI = false, bool bNoMount = false);
 
-   //CLASS_DECL_AURA bool os_is_folder_alias(::object * pobject, const ::string & psz, bool bNoUI = false, bool bNoMount = false);
+   //CLASS_DECL_AURA bool os_is_folder_alias(::particle * pparticle, const ::string & psz, bool bNoUI = false, bool bNoMount = false);
 
    virtual bool _os_resolve_alias(::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount);
 
@@ -145,14 +145,14 @@ public:
    virtual void add_matter_locator(::aura::application * papp);
 
 
-   virtual void _load_from_file(::matter * pobject, const ::payload& payloadFile, const ::payload& varOptions);
-   virtual void _save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter* pobject);
+   virtual void _load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload& varOptions);
+   virtual void _save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::particle * pparticle);
 
 
-   inline void load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload* pvarOptions);
-   inline void load_from_file(::matter* pobject, const ::payload& payloadFile);
-   inline void save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::matter* pobject);
-   inline void save_to_file(const ::payload& payloadFile, const ::matter* pobject);
+   inline void load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload* pvarOptions);
+   inline void load_from_file(::particle * pparticle, const ::payload& payloadFile);
+   inline void save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::particle * pparticle);
+   inline void save_to_file(const ::payload& payloadFile, const ::particle * pparticle);
 
 
    virtual void destroy() override;

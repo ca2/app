@@ -14,10 +14,10 @@ namespace sockets
    }
 
 
-   void smtp_socket::initialize(::object * pobject)
+   void smtp_socket::initialize(::particle * pparticle)
    {
 
-      tcp_socket::initialize(pobject);
+      tcp_socket::initialize(pparticle);
 
       SetLineProtocol();
 
@@ -70,7 +70,7 @@ namespace sockets
             
             string strWord = pa.getword();
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
             auto pbase64 = psystem->base64();
 
@@ -79,7 +79,7 @@ namespace sockets
             if(::str().find_ci("username", strRequest) >= 0)
             {
 
-               auto psystem = m_psystem;
+               auto psystem = acmesystem();
 
                auto pbase64 = psystem->base64();
 
@@ -89,7 +89,7 @@ namespace sockets
             else if(::str().find_ci("password", strRequest) >= 0)
             {
 
-               auto psystem = m_psystem;
+               auto psystem = acmesystem();
 
                auto pbase64 = psystem->base64();
 
@@ -128,7 +128,7 @@ namespace sockets
 
             m_estate = state_body;
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
             auto pbase64 = psystem->base64();
 

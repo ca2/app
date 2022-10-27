@@ -1,6 +1,11 @@
 ﻿#include "framework.h"
 #include "acme/operating_system.h"
 #include "acme/constant/id.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/task.h"
+#include "acme/primitive/string/string.h"
+#include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/primitive/payload.h"
 
 
 #ifdef LINUX
@@ -101,7 +106,7 @@ namespace parallelization
 
    //   }
 
-   //   synchronous_lock synchronouslock(get_system()->m_mutexThread);
+   //   synchronous_lock synchronouslock(get_system()->m_pmutexThread);
 
    //   for (auto & pair : get_system()->m_threadidmap)
    //   {
@@ -132,7 +137,7 @@ namespace parallelization
    //void post_quit_to_all_threads()
    //{
 
-   //   synchronous_lock synchronouslock(get_system()->m_mutexThread);
+   //   synchronous_lock synchronouslock(get_system()->m_pmutexThread);
 
    //   for (auto& pair : get_system()->m_threadidmap)
    //   {
@@ -383,16 +388,14 @@ namespace parallelization
 } // namespace parallelization
 
 
-::mutex * s_pmutexMessageDispatch = nullptr;
 
-
-::mutex & message_dispatch_mutex()
-{
-
-
-   return *s_pmutexMessageDispatch;
-
-}
+//::pointer < ::mutex > & message_dispatch_mutex()
+//{
+//
+//
+//   return *s_pmutexMessageDispatch;
+//
+//}
 
 
 CLASS_DECL_ACME void call(const ::procedure & procedure)
@@ -699,13 +702,12 @@ CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PA
 }
 
 
-CLASS_DECL_ACME void thread_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+CLASS_DECL_ACME void task_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
    t_ptask.release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
-
 
 
 bool task_get_run()
@@ -766,7 +768,7 @@ thread_local payload t_payloada[e_task_payload_count];
 }
 
 
-CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, ::procedure function)
+CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, const ::procedure & function)
 {
    
    auto pevent = __new(manual_reset_event);

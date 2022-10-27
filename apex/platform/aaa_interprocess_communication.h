@@ -15,7 +15,7 @@ public:
    string                                                      m_strApp;
    ::atom                                                      m_atomApp;
    string_map < ::pointer<::interprocess_channel::caller > >   m_callermap;
-   string_map < ::pointer<::mutex > >                          m_mapAppMutex;
+   string_map < ::pointer< ::mutex > >                          m_mapAppMutex;
    ::pointer<::interprocess_channel::handler>                  m_phandler;
    string_array                                                m_straModule;
 
@@ -33,7 +33,7 @@ public:
    ~interprocess_intercommunication() override;
 
 
-   virtual void initialize_interprocess_communication(::object* pobject, const ::string& strApp);
+   virtual void initialize_interprocess_communication(::object* pparticle, const ::string& strApp);
 
 
    void destroy() override;

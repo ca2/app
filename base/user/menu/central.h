@@ -34,7 +34,7 @@ namespace user
       ::pointer<::image_list>MenuV033GetImageListHueLight();
 
 
-      bool MenuV033AddImageMap(::object * pobject, ::xml::node * pnode);
+      bool MenuV033AddImageMap(::particle * pparticle, ::xml::node * pnode);
       
 
       int command_image(atom atom);

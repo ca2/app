@@ -5,15 +5,15 @@ namespace tc4
 {
 
 
-   application::application(::object * pobject) :
+   application::application(::particle * pparticle) :
       ::object(this),
       ::thread(this),
-      ::aura::application(pobject),
-      ::axis::application(pobject),
-      ::base::application(pobject),
-      ::aura::application(pobject),
-      ::sphere::application(pobject):
-      m_mutexAiFont(this)
+      ::aura::application(pparticle),
+      ::axis::application(pparticle),
+      ::base::application(pparticle),
+      ::aura::application(pparticle),
+      ::sphere::application(pparticle):
+      m_pmutexAiFont(this)
    {
 
       m_strAppName            = "tc4";
@@ -175,10 +175,10 @@ namespace tc4
 
 
 extern "C"
-::acme::library * get_new_library(::object * pobject)
+::acme::library * get_new_library(::particle * pparticle)
 {
 
-   return memory_new ::apex::single_application_library < ::tc4::application > (pobject, "app-core");
+   return memory_new ::apex::single_application_library < ::tc4::application > (pparticle, "app-core");
 
 }
 

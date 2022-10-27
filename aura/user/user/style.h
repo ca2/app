@@ -60,14 +60,14 @@ namespace user
 
 
       style();
-      //style(::object * pobject);
+      //style(::particle * pparticle);
       ~style() override;
 
 
       //inline auto node() const { return m_pnode; }
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       void default_style_construct();

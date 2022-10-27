@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/os/_c.h"
-#include "aura/os/_.h"
+//#include "aura/os/_.h"
 
 
 namespace aura
@@ -22,7 +22,7 @@ namespace aura
 
       ::file::path path = get_last_run_application_path(m_strApp);
 
-      if(m_psystem->m_pacmefile->exists(path))
+      if(acmefile()->exists(path))
       {
 
          return ::move(path);

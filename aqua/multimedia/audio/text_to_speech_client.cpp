@@ -33,7 +33,7 @@ namespace text_to_speech
    void client::initialize_tts_speaker()
    {
 
-      auto psystem = m_psystem->m_paquasystem;
+      auto psystem = acmesystem()->m_paquasystem;
 
       psystem->defer_audio();
 

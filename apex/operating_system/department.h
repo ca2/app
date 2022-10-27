@@ -2,6 +2,7 @@
 
 
 #include "acme/platform/department.h"
+#include "acme/parallelization/manual_reset_event.h"
 #include "apex/parallelization/thread.h"
 
 
@@ -77,7 +78,7 @@ namespace operating_system
       ~department() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       // run process and get output

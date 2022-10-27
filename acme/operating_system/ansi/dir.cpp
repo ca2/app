@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include <unistd.h>
+#include "acme/primitive/string/string.h"
 
 
 string get_current_directory_name()

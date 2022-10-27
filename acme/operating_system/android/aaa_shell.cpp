@@ -22,7 +22,7 @@ namespace android
    shell::shell()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
       //begin();
 
       //SHGetImageList(SHIL_SMALL, IID_IImageList, m_pimagelistSmall);
@@ -354,7 +354,7 @@ namespace android
 //
 //         }
 //
-//         synchronous_lock synchronouslock(mutex());
+//         synchronous_lock synchronouslock(this->synchronization());
 //
 //         if (!m_pimagemap->lookup(imagekey, iImage))
 //         {
@@ -384,7 +384,7 @@ namespace android
 //
 //                     {
 //
-//                        synchronous_lock synchronouslock(mutex());
+//                        synchronous_lock synchronouslock(this->synchronization());
 //
 //                        if (m_pimagemap->lookup(imagekey, iImage))
 //                           return iImage;
@@ -395,7 +395,7 @@ namespace android
 //
 //                     string strIcon;
 //
-//                     strIcon =          auto psystem = m_psystem;
+//                     strIcon =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -410,7 +410,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
 //
 //                     }
 //
-//                     synchronous_lock synchronouslock(mutex());
+//                     synchronous_lock synchronouslock(this->synchronization());
 //
 //                     m_pimagemap->set_at(imagekey, iImage);
 //
@@ -466,7 +466,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
 //                           ::DestroyIcon(shfi48.hIcon);
 //                        }
 //                        //                        iImage = add_icon_set(pfork, nullptr, &shfi48, crBk);
-//                        synchronous_lock synchronouslock(mutex());
+//                        synchronous_lock synchronouslock(this->synchronization());
 //
 //                        m_pimagemap->set_at(imagekey, iImage);
 //
@@ -529,7 +529,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
 //                        ::DestroyIcon(shfi48.hIcon);
 //                     }                     //iImage = add_icon_set(pfork, nullptr, &shfi48, crBk);
 //
-//                     synchronous_lock synchronouslock(mutex());
+//                     synchronous_lock synchronouslock(this->synchronization());
 //
 //                     m_pimagemap->set_at(imagekey, iImage);
 //
@@ -610,7 +610,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
 //                     if (!b48 && shfi48.hIcon != nullptr)
 //                     {
 //                        ::DestroyIcon(shfi48.hIcon);
-//                     }                     synchronous_lock synchronouslock(mutex());
+//                     }                     synchronous_lock synchronouslock(this->synchronization());
 //
 //                     m_pimagemap->set_at(imagekey, iImage);
 //
@@ -624,7 +624,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
 //         }
 //         else
 //         {
-//            synchronous_lock synchronouslock(mutex());
+//            synchronous_lock synchronouslock(this->synchronization());
 //
 //
 //         }
@@ -651,7 +651,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
 //
 //         {
 //
-//            synchronous_lock synchronouslock(mutex());
+//            synchronous_lock synchronouslock(this->synchronization());
 //
 //            if (m_pimagemap->lookup(imagekey, iImage))
 //            {
@@ -726,7 +726,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
 //         if (!b48 && shfi48.hIcon != nullptr)
 //         {
 //            ::DestroyIcon(shfi48.hIcon);
-//         }         synchronous_lock synchronouslock(mutex());
+//         }         synchronous_lock synchronouslock(this->synchronization());
 
       m_imagemap.set_at(imagekey, iImage);
 
@@ -1053,22 +1053,22 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
 //
 
 
-   shell::e_folder shell::get_folder_type(::matter * pobject, const char * lpcsz)
+   shell::e_folder shell::get_folder_type(::particle * pparticle, const char * lpcsz)
    {
 
-      return get_folder_type(pobject, utf8_to_unicode(lpcsz));
+      return get_folder_type(pparticle, utf8_to_unicode(lpcsz));
 
    }
 
 
-   shell::e_folder shell::get_folder_type(::matter * pobject, const widechar * lpcszPath)
+   shell::e_folder shell::get_folder_type(::particle * pparticle, const widechar * lpcszPath)
    {
 
       string strPath;
 
       unicode_to_utf8(strPath, lpcszPath);
 
-      if (         auto psystem = m_psystem;
+      if (         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1125,7 +1125,7 @@ pacmedirectory->is(strPath))
 
    //            {
 
-   //               synchronous_lock synchronouslock(mutex());
+   //               synchronous_lock synchronouslock(this->synchronization());
 
    //               for (auto & folder : m_mapFolder)
    //               {
@@ -1353,9 +1353,9 @@ pacmedirectory->is(strPath))
 
          {
 
-            synchronous_lock sl1(m_pimagelistHover[16]->mutex());
+            synchronous_lock sl1(m_pimagelistHover[16]->synchronization());
 
-            synchronous_lock sl2(m_pimagelist[16]->mutex());
+            synchronous_lock sl2(m_pimagelist[16]->synchronization());
 
             if (android_get_file_image(pimage16, strPath))
             {
@@ -1381,9 +1381,9 @@ pacmedirectory->is(strPath))
 
          }
 
-         synchronous_lock sl1(m_pimagelistHover[48]->mutex());
+         synchronous_lock sl1(m_pimagelistHover[48]->synchronization());
 
-         synchronous_lock sl2(m_pimagelist[48]->mutex());
+         synchronous_lock sl2(m_pimagelist[48]->synchronization());
 
          iImage = m_pimagelist[48]->add_image(pimage48, 0, 0);
 
@@ -1462,7 +1462,7 @@ pacmedirectory->is(strPath))
 
 
 
-      synchronous_lock synchronouslock(&m_mutexQueue);
+      synchronous_lock synchronouslock(m_pmutexQueue);
 
       while (task_get_run())
       {
@@ -1540,7 +1540,7 @@ pacmedirectory->is(strPath))
 
          {
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             if (m_imagemap.lookup(imagekeyFileExtension, iImage))
             {
@@ -1555,7 +1555,7 @@ pacmedirectory->is(strPath))
 
          {
 
-            synchronous_lock synchronouslock(&m_mutexQueue);
+            synchronous_lock synchronouslock(m_pmutexQueue);
 
             m_keyptra.add(pstore);
 
@@ -1567,7 +1567,7 @@ pacmedirectory->is(strPath))
             imagekeyFileExtension.m_eicon,
             imagekeyFileExtension.m_cr);
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -1615,7 +1615,7 @@ pacmedirectory->is(strPath))
 
          {
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             if (m_imagemap.lookup(imagekey, iImage))
             {
@@ -1630,7 +1630,7 @@ pacmedirectory->is(strPath))
 
          iImage = get_image(&f, imagekey, nullptr, crBk);
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_imagemap.set_at(imagekey, iImage);
 

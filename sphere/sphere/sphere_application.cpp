@@ -6,11 +6,11 @@ namespace sphere
 
 
 
-   application::application(::object * pobject) :
-      ::aura::application(pobject),
-      ::axis::application(pobject),
-      ::base::application(pobject),
-      ::aura::application(pobject)
+   application::application(::particle * pparticle) :
+      ::aura::application(pparticle),
+      ::axis::application(pparticle),
+      ::base::application(pparticle),
+      ::aura::application(pparticle)
    {
 
       m_bContextTheme = true;

@@ -74,12 +74,12 @@ namespace filemanager
    }
 
 
-   void data::initialize_filemanager_data(::object * pobject)
+   void data::initialize_filemanager_data(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::data::data::initialize(pobject);
+      ::data::data::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -271,12 +271,12 @@ namespace filemanager
 //   }
 
 
-   string data::get_last_browse_path(::object * pobject, const ::string & pszDefault)
+   string data::get_last_browse_path(::particle * pparticle, const ::string & pszDefault)
    {
 
       string strPath;
 
-      ::pointer<::core::application>papp = pobject->get_app();
+      ::pointer<::core::application>papp = pparticle->get_app();
 
       auto pcontext = m_pcontext;
 
@@ -352,12 +352,12 @@ namespace filemanager
    }
 
 
-   void data::set_last_browse_path(::object * pobject, const ::file::path& path)
+   void data::set_last_browse_path(::particle * pparticle, const ::file::path& path)
    {
 
       string strPath(path);
 
-      ::pointer<::core::application>papp = pobject->get_app();
+      ::pointer<::core::application>papp = pparticle->get_app();
 
       if (::str().begins(path, "uifs://")
          || ::str().begins(path, "fs://"))

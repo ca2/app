@@ -6,11 +6,11 @@ namespace console
 {
 
 
-   prompt_document::prompt_document(::object * pobject) :
-      ::object(pobject),
-      ::data::data_container_base(pobject),
-      ::user::document(pobject),
-      ::user::document(pobject)
+   prompt_document::prompt_document(::particle * pparticle) :
+      ::object(pparticle),
+      ::data::data_container_base(pparticle),
+      ::user::document(pparticle),
+      ::user::document(pparticle)
    {
 
    }

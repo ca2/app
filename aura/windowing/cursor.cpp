@@ -96,7 +96,7 @@ namespace windowing
 
    //   auto path = pathParam;
 
-   //   auto psystem = m_psystem->m_paurasystem;
+   //   auto psystem = acmesystem()->m_paurasystem;
 
    //   if (psystem->m_bImaging)
    //   {

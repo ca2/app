@@ -37,7 +37,7 @@ namespace graphics
       // you may need to repeat much more times to train a biological neural network though....
       // so they learn what is really, actually and simpley and complexly and all good!!
       ::pointer<image_array>          m_pimageaBuffer;
-      pointer_array < ::mutex >         m_mutexa;
+      pointer_array < ::pointer < ::mutex > >         m_pmutexa;
 
 
       multiple_buffer();
@@ -54,15 +54,15 @@ namespace graphics
       using graphics::update_screen;
       virtual bool update_screen() override;
 
-      virtual synchronization_object * get_draw_lock() override;
+      virtual synchronization * get_draw_lock() override;
       virtual ::draw2d::graphics * on_begin_draw() override;
 
-      // synchronous_lock screen synchronization_object first...
-      virtual synchronization_object * get_screen_sync() override;
+      // synchronous_lock screen synchronization first...
+      virtual synchronization * get_screen_sync() override;
       virtual ::image_pointer & get_screen_image() override;
 
-      //virtual ::image_pointer & get_screen_image_and_sync(synchronization_object ** psync, const ::size_i32 & size) override;
-      //virtual synchronization_object * get_screen_sync() override;
+      //virtual ::image_pointer & get_screen_image_and_sync(synchronization ** psync, const ::size_i32 & size) override;
+      //virtual synchronization * get_screen_sync() override;
 
    };
 

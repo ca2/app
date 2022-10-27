@@ -228,7 +228,7 @@ namespace filemanager
          if (bSave)
          {
 
-            if (filemanager_document()->fs_data()->m_psystem->m_pacmefile->exists(strPath))
+            if (filemanager_document()->fs_data()->acmefile()->exists(strPath))
             {
 
                //auto pfuture = __process([this, strPath](const ::payload & payload)
@@ -249,7 +249,7 @@ namespace filemanager
 
                //   });
 
-               auto psequencer = m_psystem->create_message_box_sequencer("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no);
+               auto psequencer = acmesystem()->create_message_box_sequencer("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no);
 
                psequencer->then([this, strPath](auto pconversation)
                      {

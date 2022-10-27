@@ -85,11 +85,11 @@ namespace ios
          //      string         m_strNetSeedFolder;
 
 
-         dir(::object * pobject);
+         dir(::particle * pparticle);
 
 
          //virtual string relpath(const ::string & lpcszSource, const ::string & lpcszRelative, const ::string & lpcsz2 = nullptr);
-         virtual ::file::listing & ls(::object * pobject, ::file::listing & ls);
+         virtual ::file::listing & ls(::particle * pparticle, ::file::listing & ls);
 
          //virtual bool  is(const ::string & pcsz,::aura::application * papp);
          virtual bool  is(const ::file::path & str,::aura::application * papp);
@@ -98,7 +98,7 @@ namespace ios
          //virtual bool  is_inside_time(const ::string & pcsz,::aura::application * papp);
          //virtual void root_ones(string_array & patha,string_array & straTitle,::aura::application * papp);
          //virtual bool mk(const ::string & pcsz,::aura::application * papp);
-         //virtual bool rm(::object * pobject, const ::string & psz,bool bRecursive = true);
+         //virtual bool rm(::particle * pparticle, const ::string & psz,bool bRecursive = true);
 
 
          //virtual string name(const ::string & pcsz);
@@ -129,16 +129,16 @@ namespace ios
          //virtual string commonappdata(const ::string & pcsz = nullptr, const ::string & lpcsz2 = nullptr);
          //virtual string element_commonappdata(const ::string & strElement, const ::string & pcsz = nullptr, const ::string & lpcsz2 = nullptr);
 
-         //virtual string usersystemappdata(::object * pobject, const ::string & lpcszPrefix, const ::string & pcsz = nullptr, const ::string & lpcsz2 = nullptr);
-         //virtual string userappdata(::object * pobject, const ::string & pcsz = nullptr, const ::string & lpcsz2 = nullptr);
-         //virtual string userdata(::object * pobject, const ::string & pcsz = nullptr, const ::string & lpcsz2 = nullptr);
-         //virtual string userfolder(::object * pobject, const ::string & pcsz = nullptr, const ::string & lpcsz2 = nullptr);
-         //virtual string default_os_user_path_prefix(::object * pobject);
-         //virtual string default_userappdata(::object * pobject,const string & lpcszPrefix,const string & lpcszLogin, const ::string & pszRelativePath = nullptr);
-         //virtual string default_userdata(::object * pobject,const string & lpcszPrefix,const string & lpcszLogin, const ::string & pszRelativePath = nullptr);
-         //virtual string default_userfolder(::object * pobject,const string & lpcszPrefix,const string & lpcszLogin, const ::string & pszRelativePath = nullptr);
-         //virtual string userquicklaunch(::object * pobject, const ::string & pszRelativePath = nullptr, const ::string & lpcsz2 = nullptr);
-         //virtual string userprograms(::object * pobject, const ::string & pszRelativePath = nullptr, const ::string & lpcsz2 = nullptr);
+         //virtual string usersystemappdata(::particle * pparticle, const ::string & lpcszPrefix, const ::string & pcsz = nullptr, const ::string & lpcsz2 = nullptr);
+         //virtual string userappdata(::particle * pparticle, const ::string & pcsz = nullptr, const ::string & lpcsz2 = nullptr);
+         //virtual string userdata(::particle * pparticle, const ::string & pcsz = nullptr, const ::string & lpcsz2 = nullptr);
+         //virtual string userfolder(::particle * pparticle, const ::string & pcsz = nullptr, const ::string & lpcsz2 = nullptr);
+         //virtual string default_os_user_path_prefix(::particle * pparticle);
+         //virtual string default_userappdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin, const ::string & pszRelativePath = nullptr);
+         //virtual string default_userdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin, const ::string & pszRelativePath = nullptr);
+         //virtual string default_userfolder(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin, const ::string & pszRelativePath = nullptr);
+         //virtual string userquicklaunch(::particle * pparticle, const ::string & pszRelativePath = nullptr, const ::string & lpcsz2 = nullptr);
+         //virtual string userprograms(::particle * pparticle, const ::string & pszRelativePath = nullptr, const ::string & lpcsz2 = nullptr);
 
          //virtual string commonprograms(const ::string & pszRelativePath = nullptr, const ::string & lpcsz2 = nullptr);
 

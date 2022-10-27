@@ -962,7 +962,7 @@ namespace user
    void list::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       //m_dItemHeight = m_sizeMaximumItem.cy + 1;
 
@@ -1100,7 +1100,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_nItemCount = nCount;
 
@@ -1552,7 +1552,7 @@ namespace user
 
       }
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -3265,7 +3265,7 @@ namespace user
    void list::LayoutHeaderCtrl()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_plistheader == nullptr)
       {
@@ -3306,7 +3306,7 @@ namespace user
       if (pkey->previous()) // give chance to child
          return;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_up ||
             pkey->m_ekey == ::user::e_key_next || pkey->m_ekey == ::user::e_key_prior)
@@ -3419,7 +3419,7 @@ namespace user
 
       screen_to_client()(point);
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bDrag)
       {
@@ -3614,7 +3614,7 @@ namespace user
 
       screen_to_client()(point);
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto psession = get_session();
 
@@ -3974,7 +3974,7 @@ namespace user
 
       KillTimer(224455);
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
 
       if (m_bDrag)
@@ -4171,7 +4171,7 @@ namespace user
 
       screen_to_client()(point);
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!has_keyboard_focus())
       {
@@ -5380,7 +5380,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_pcolumna->erase_all();
 
@@ -5578,7 +5578,7 @@ namespace user
 
       m_strTopText = pcwsz;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -5639,7 +5639,7 @@ namespace user
    void list::cache_hint()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pmeshcache.is_set())
       {
@@ -6413,7 +6413,7 @@ namespace user
 
       //m_pregexFilter1->setPositionMoves(1);
 
-      auto psystem = m_psystem->m_paxissystem;
+      auto psystem = acmesystem()->m_paxissystem;
 
       m_pregexFilter1 = psystem->compile_pcre("/.*" + stra.implode(".*") + ".*/i");
 
@@ -6449,7 +6449,7 @@ namespace user
    void list::_001OnListHeaderItemDblClk(index iHeaderItem)
    {
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -6647,7 +6647,7 @@ namespace user
    void list::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto point = get_context_offset();
 
@@ -7614,7 +7614,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       string strSort(m_pmeshdata ? m_pmeshdata->m_strMeshSort.c_str() : "");
 

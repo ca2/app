@@ -160,7 +160,7 @@ namespace linux
 
       ::file::path path;
 
-      path =          auto psystem = m_psystem;
+      path =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -184,7 +184,7 @@ pacmedirectory->localconfig() / "monitor-0/desk/2desk";
 
       ::file::path path;
 
-      path =          auto psystem = m_psystem;
+      path =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -271,13 +271,13 @@ pacmedirectory->home();
 
       strName.replace(".", "_");
 
-      //pathLaunch =          auto psystem = m_psystem;
+      //pathLaunch =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->home() / ".config/ca2/bin" / (strName + ".sh");
 
-      pathUserBin =          auto psystem = m_psystem;
+      pathUserBin =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -329,7 +329,7 @@ pacmedirectory->home() / "bin" / strName;
 
       strScript += "\n"; */
 
-      //m_psystem->m_pacmefile->put_contents(pathLaunch, strScript);
+      //acmefile()->put_contents(pathLaunch, strScript);
 
       strScript = "#!/bin/bash\n";
 
@@ -346,7 +346,7 @@ pacmedirectory->home() / "bin" / strName;
 
       strScript += "\n";
 
-      m_psystem->m_pacmefile->put_contents(pathUserBin, strScript);
+      acmefile()->put_contents(pathUserBin, strScript);
 
       //chmod(pathLaunch, 0755);
       chmod(pathUserBin, 0600);

@@ -27,7 +27,7 @@ namespace datetime
          graphics();
          virtual ~graphics();
 
-         virtual void initialize(::object * pobject) override;
+         virtual void initialize(::particle * pparticle) override;
 
 
          void GetRect(RECTANGLE_I32 * lprect, enum enum_element eelement);

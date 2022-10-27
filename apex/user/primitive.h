@@ -78,9 +78,9 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      void show_software_keyboard(::user::element* pelement) override;
+      void show_software_keyboard(::user::element * pelement) override;
 
-      void hide_software_keyboard(::user::element* pelement) override;
+      void hide_software_keyboard(::user::element * pelement) override;
 
       void UpdateWindow() override;
       

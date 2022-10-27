@@ -6,8 +6,8 @@ namespace draw2d
 {
 
 
-   font::font(::object * pobject) :
-      ::write_text::font(pobject),
+   font::font(::particle * pparticle) :
+      ::write_text::font(pparticle),
       m_pfont(e_create)
    {
 
@@ -209,7 +209,7 @@ namespace draw2d
    bool font::AddGlyph(::u32 user)
    {
 
-      //   single_lock synchronouslock(&m_mutex);
+      //   single_lock synchronouslock(m_pmutex);
       //   synchronouslock.lock(U32_INFINITE_TIMEOUT);
 
       return true;

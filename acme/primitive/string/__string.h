@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/primitive/string/string.h"
+
+
 template < has_string_getter HAS_STRING_GETTER >
 inline ::string __string(const HAS_STRING_GETTER & has_string_getter)
 {
@@ -66,7 +69,7 @@ CLASS_DECL_ACME ::string __string(const long int & i);
 CLASS_DECL_ACME ::string __string(const ::e_status & estatus);
 
 
-inline ::string __string(const ::particle & particle);
+CLASS_DECL_ACME ::string __string(const ::particle & particle);
 
 
 

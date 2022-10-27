@@ -79,7 +79,7 @@ namespace html
       }
 
 
-      void input_checkbox::implement_phase1(html_data * pdata, ::html::element* pelement)
+      void input_checkbox::implement_phase1(html_data * pdata, ::html::particle * pparticle)
       {
 
          m_bHasChar = true;

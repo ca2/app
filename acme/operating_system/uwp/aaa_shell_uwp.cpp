@@ -21,7 +21,7 @@ namespace universal_windows
    shell::shell()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -49,7 +49,7 @@ namespace universal_windows
 //
 //         {
 //
-//            synchronous_lock synchronouslock(mutex());
+//            synchronous_lock synchronouslock(this->synchronization());
 //
 //            if (m_pimagemap->lookup(imagekey, iImage))
 //            {
@@ -124,7 +124,7 @@ namespace universal_windows
 //         if (!b48 && shfi48.hIcon != nullptr)
 //         {
 //            ::DestroyIcon(shfi48.hIcon);
-//         }         synchronous_lock synchronouslock(mutex());
+//         }         synchronous_lock synchronouslock(this->synchronization());
 
       m_imagemap.set_at(imagekey, iImage);
 
@@ -133,22 +133,22 @@ namespace universal_windows
    }
 
 
-   shell::e_folder shell::get_folder_type(::matter * pobject, const char * lpcsz)
+   shell::e_folder shell::get_folder_type(::particle * pparticle, const char * lpcsz)
    {
 
-      return get_folder_type(pobject, utf8_to_unicode(lpcsz));
+      return get_folder_type(pparticle, utf8_to_unicode(lpcsz));
 
    }
 
 
-   shell::e_folder shell::get_folder_type(::matter * pobject, const unichar * lpcszPath)
+   shell::e_folder shell::get_folder_type(::particle * pparticle, const unichar * lpcszPath)
    {
 
       string strPath;
 
       unicode_to_utf8(strPath, lpcszPath);
 
-      if (         auto psystem = m_psystem;
+      if (         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -349,9 +349,9 @@ pacmedirectory->is(strPath))
 
          {
 
-            synchronous_lock sl1(m_pimagelistHover[16]->mutex());
+            synchronous_lock sl1(m_pimagelistHover[16]->synchronization());
 
-            synchronous_lock sl2(m_pimagelist[16]->mutex());
+            synchronous_lock sl2(m_pimagelist[16]->synchronization());
 
             if (uwp_get_file_image(pimage16, strPath))
             {
@@ -376,9 +376,9 @@ pacmedirectory->is(strPath))
 
          }
 
-         synchronous_lock sl1(m_pimagelistHover[48]->mutex());
+         synchronous_lock sl1(m_pimagelistHover[48]->synchronization());
 
-         synchronous_lock sl2(m_pimagelist[48]->mutex());
+         synchronous_lock sl2(m_pimagelist[48]->synchronization());
 
          iImage = m_pimagelist[48]->add_image(pimage48, 0, 0);
 

@@ -24,8 +24,8 @@ namespace calculator
    }
 
 
-   scanner::scanner(::object * pobject) :
-      ::object(pobject)
+   scanner::scanner(::particle * pparticle) :
+      ::object(pparticle)
    {
       m_ptoken    = nullptr;
       input       = nullptr;

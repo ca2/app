@@ -9,9 +9,9 @@ namespace simpledb
 {
 
 
-   service::service(::object * pobject) :
-      ::object(pobject),
-      plain_service(pobject)
+   service::service(::particle * pparticle) :
+      ::object(pparticle),
+      plain_service(pparticle)
    {
 
    }

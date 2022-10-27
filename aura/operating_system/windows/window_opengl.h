@@ -10,7 +10,7 @@ namespace opengl
    {
 
 
-      buffer(::object * pobject);
+      buffer(::particle * pparticle);
       virtual ~buffer();
 
 
@@ -22,7 +22,7 @@ namespace opengl
       virtual void destroy_buffer() override;
 
 
-      virtual ::draw2d::graphics * on_begin_draw(synchronization_object ** ppsync) override;
+      virtual ::draw2d::graphics * on_begin_draw(synchronization ** ppsync) override;
 
 
       virtual bool update_window() override;

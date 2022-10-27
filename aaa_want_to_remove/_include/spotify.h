@@ -340,26 +340,25 @@ typedef enum sp_scrobbling_state {
 
 
 /**
- * Offline synchronization_object status
+ * Offline synchronization status
  */
 typedef struct sp_offline_sync_status {
   /**
-   * Queued tracks/bytes is things left to synchronization_object in current synchronization_object
-   * operation
+   * Queued tracks/bytes is things left to synchronization in current synchronization   * operation
    */
   int queued_tracks;
   sp_::u3264 queued_bytes;
 
   /**
-   * Done tracks/bytes is things marked for synchronization_object that existed on
-   * device before current synchronization_object operation
+   * Done tracks/bytes is things marked for synchronization that existed on
+   * device before current synchronization operation
    */
   int done_tracks;
   sp_::u3264 done_bytes;
 
   /**
    * Copied tracks/bytes is things that has been copied in
-   * current synchronization_object operation
+   * current synchronization operation
    */
   int copied_tracks;
   sp_::u3264 copied_bytes;
@@ -377,7 +376,7 @@ typedef struct sp_offline_sync_status {
   int error_tracks;
 
   /**
-   * Set if synchronization_object operation is in progress
+   * Set if synchronization operation is in progress
    */
   bool syncing;
 
@@ -1029,8 +1028,7 @@ SP_LIBEXPORT(sp_error) sp_session_preferred_bitrate(sp_session *session, sp_bitr
 
 
 /**
- * Set preferred bitrate for offline synchronization_object
- *
+ * Set preferred bitrate for offline synchronization *
  * @param[in]  session        Session object
  * @param[in]  bitrate        Preferred bitrate, see ::sp_bitrate for possible values
  * @param[in]  allow_resync   Set to true if libspotify should resynchronize already synchronized tracks. Usually you should set this to false.

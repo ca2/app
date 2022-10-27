@@ -65,7 +65,7 @@ namespace sockets_bsd
 {
 
 
-   //::mutex * base_socket::s_pmutex = nullptr;
+   //::pointer< ::mutex > base_socket::s_pmutex = nullptr;
 
 
    base_socket::base_socket() :
@@ -953,7 +953,7 @@ namespace sockets_bsd
    void base_socket::SetSocks4Host(const string & host)
    {
 
-      //auto pnetworking = m_psystem->m_papexsystem->networking();
+      //auto pnetworking = acmesystem()->m_papexsystem->networking();
 
       //paddressdepartment->convert(m_socks4_host, host);
 
@@ -2756,7 +2756,7 @@ namespace sockets_bsd
    string base_socket::get_short_description()
    {
 
-      auto pnetworking = m_psystem->m_papexsystem->networking();
+      auto pnetworking = acmesystem()->m_papexsystem->networking();
 
       return pnetworking->canonical_name(GetRemoteAddress());
 
@@ -2768,7 +2768,7 @@ namespace sockets_bsd
 
 #ifdef BSD_STYLE_SOCKETS
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_psslcontext->m_pclientcontext->get_session() != nullptr)
       {
@@ -2785,7 +2785,7 @@ namespace sockets_bsd
    void base_socket::get_ssl_session()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
 #ifdef BSD_STYLE_SOCKETS
       if (m_psslcontext->m_pclientcontext->m_psslsession == nullptr)

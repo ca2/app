@@ -61,7 +61,7 @@ namespace html
       }
 
 
-      void select::implement_phase1(html_data * pdata, ::html::element * pelement)
+      void select::implement_phase1(html_data * pdata, ::html::particle * pparticle)
       {
 
          m_bHasChar = true;

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+//#include "apex/networking/sockets/_sockets.h"
 #include "apex/constant/idpool.h"
 #include "apex/astr.h"
 #include <time.h>
@@ -46,7 +46,7 @@ namespace http
 
       set["app"] = get_app();
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -223,7 +223,7 @@ namespace http
 
       }
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -466,12 +466,12 @@ namespace http
    }
 
 
-   void context::on_initialize_object()
+   void context::on_initialize_particle()
    {
 
-      //auto estatus = ::object::on_initialize_object();
+      //auto estatus = ::object::on_initialize_particle();
 
-      ::object::on_initialize_object();
+      ::object::on_initialize_particle();
 
       //if (!estatus)
       //{
@@ -585,8 +585,8 @@ namespace http
 
    }
 
-   //context::pac::pac(::object * pobject) :
-   //   ::object(pobject)
+   //context::pac::pac(::particle * pparticle) :
+   //   ::object(pparticle)
    //{
 
    //   throw ::exception(todo, "scripting");
@@ -680,8 +680,8 @@ namespace http
    }
 
 
-   //context::proxy::proxy(::object * pobject) :
-   //   ::object(pobject)
+   //context::proxy::proxy(::particle * pparticle) :
+   //   ::object(pparticle)
    //{
 
    //   m_bDirect = true;
@@ -753,7 +753,7 @@ namespace http
 
       string strHost;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -1108,7 +1108,7 @@ namespace http
       // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto purl = psystem->url();
 
@@ -1124,7 +1124,7 @@ namespace http
 
       property_set setQuery;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -1245,7 +1245,7 @@ namespace http
 
       }
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -1735,7 +1735,7 @@ namespace http
 
       //__keep(ptask->payload("work_url"), pszUrl);
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto purl = psystem->url();
 
@@ -2564,7 +2564,7 @@ namespace http
 
       ::url_domain domain;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -2755,7 +2755,7 @@ namespace http
 
          ::url_domain domain;
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto purl = psystem->url();
 
@@ -2809,7 +2809,7 @@ namespace http
 
       ::url_domain domain;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 

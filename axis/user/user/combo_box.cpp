@@ -454,7 +454,7 @@ namespace user
 //
 //         m_strText = str;
 //
-//         auto psystem = m_psystem->m_paurasystem;
+//         auto psystem = acmesystem()->m_paurasystem;
 //
 //         auto pdraw2d = psystem->draw2d();
 //
@@ -768,7 +768,7 @@ namespace user
 
          psession->on_show_user_input_popup(m_plistbox);
 
-         auto psystem = m_psystem->m_paurasystem;
+         auto psystem = acmesystem()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 
@@ -1456,7 +1456,7 @@ namespace user
    index combo_box::add_string(const ::string & pszString,uptr dwItemData)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ASSERT(m_edatamode == data_mode_opaque);
 

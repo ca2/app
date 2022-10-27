@@ -21,10 +21,10 @@ machine_event::~machine_event()
 }
 
 
-void machine_event::initialize(::object * pobject)
+void machine_event::initialize(::particle * pparticle)
 {
 //   auto estatus = 
-   ::matter::initialize(pobject);
+   ::matter::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -51,9 +51,9 @@ bool machine_event::read(machine_event_data * pdata)
    try
    {
 
-      //pfile = fopen(m_psystem->m_pacmedirectory->machine_event_file_path(), "r", _SH_DENYNO);
+      //pfile = fopen(acmedirectory()->machine_event_file_path(), "r", _SH_DENYNO);
 
-      pfile = fopen(m_psystem->m_pacmedirectory->machine_event_file_path(), "r");
+      pfile = fopen(acmedirectory()->machine_event_file_path(), "r");
 
       if (pfile == nullptr)
       {
@@ -87,10 +87,10 @@ bool machine_event::write(machine_event_data * pdata)
    try
    {
 
-      m_psystem->m_pacmedirectory->create(::file_path_folder(m_psystem->m_pacmedirectory->machine_event_file_path()));
+      acmedirectory()->create(::file_path_folder(acmedirectory()->machine_event_file_path()));
 
-      //pfile = fopen(m_psystem->m_pacmedirectory->machine_event_file_path(), "w", _SH_DENYWR);
-      pfile = fopen(m_psystem->m_pacmedirectory->machine_event_file_path(), "w");
+      //pfile = fopen(acmedirectory()->machine_event_file_path(), "w", _SH_DENYWR);
+      pfile = fopen(acmedirectory()->machine_event_file_path(), "w");
 
       if (pfile == nullptr)
       {

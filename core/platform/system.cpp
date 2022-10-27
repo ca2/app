@@ -45,12 +45,12 @@ namespace core
    }
 
 
-   void system::initialize(::object * pobject)
+   void system::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::base::system::initialize(pobject);
+      ::base::system::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -107,7 +107,7 @@ namespace core
       if (ftpFileStatus.m_timeModification > 0)
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pdatetime = psystem->datetime();
 

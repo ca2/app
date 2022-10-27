@@ -21,21 +21,21 @@
 
 // //      ::object * pca = (::object * ) pvData;
 
-//       ::object * pobject = nullptr;
+//       ::particle * pparticle = nullptr;
 
-//       if(pobject == nullptr)
+//       if(pparticle == nullptr)
 //       {
 // // xxx            C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "unknown object at $%p, %u bytes long\n", pvData, nBytes));
 //       }
 //       else if(::apex::get_system()->m_pdumpcontext->GetDepth() > 0)
 //       {
 //          // long form
-//          pobject->dump(*::apex::get_system()->m_pdumpcontext);
+//          pparticle->dump(*::apex::get_system()->m_pdumpcontext);
 //          *::apex::get_system()->m_pdumpcontext << "\n";
 //       }
 //       if(false) // else
 //       {
-//          //::object & obj = *pobject;
+//          //::object & obj = *pparticle;
 //          // short form
 // // xxx         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "a %hs object at $%p, %u bytes long\n", typeid(obj).name(), pvData, nBytes));
 //          *::apex::get_system()->m_pdumpcontext << sz;

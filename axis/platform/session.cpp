@@ -10,7 +10,7 @@
 #include "aura/platform/system.h"
 
 
-CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object* pobject);
+CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object* pparticle);
 
 
 //#if defined(APPLE_IOS)
@@ -47,7 +47,7 @@ void defer_term_ui();
 //bool is_verbose();
 
 //extern string_map < ::pointer<::acme::library >> g_pmapLibrary;
-//extern ::mutex * psystem->m_mutexLibrary;
+//extern ::pointer< ::mutex > psystem->m_pmutexLibrary;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin);
@@ -83,12 +83,12 @@ namespace axis
    }
 
 
-   void session::initialize(::object * pobject)
+   void session::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::thread::initialize(pobject);
+      ::thread::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -105,7 +105,7 @@ namespace axis
 
       m_pimplPendingFocus2             = nullptr;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       if (psystem != nullptr)
       {
@@ -268,7 +268,7 @@ namespace axis
    //}
 
 
-//   ::pointer<::aura::application>session::get_new_application(::object * pobject, const ::string & pszAppId)
+//   ::pointer<::aura::application>session::get_new_application(::particle * pparticle, const ::string & pszAppId)
 //   {
 //
 //      string strAppId(pszAppId);
@@ -290,7 +290,7 @@ namespace axis
 //
 //            }
 //
-//            auto estatus = papp->initialize(pobject);
+//            auto estatus = papp->initialize(pparticle);
 //
 //            if (!estatus)
 //            {
@@ -305,7 +305,7 @@ namespace axis
 //
 //
 //         }
-//         synchronous_lock synchronouslock(psystem->m_mutexLibrary);
+//         synchronous_lock synchronouslock(psystem->m_pmutexLibrary);
 //
 //         ::pointer<::acme::library>& plibrary = psystem->m_mapLibrary[pszAppId];
 //
@@ -356,7 +356,7 @@ namespace axis
 //                  if (plibrary)
 //                  {
 //
-//                     plibrary->initialize_aura_library(pobject, 0, nullptr);
+//                     plibrary->initialize_aura_library(pparticle, 0, nullptr);
 //
 //                  }
 //                  else
@@ -364,7 +364,7 @@ namespace axis
 //
 //                     plibrary = __new(::acme::library);
 //
-//                     plibrary->initialize_aura_library(pobject, 0, nullptr);
+//                     plibrary->initialize_aura_library(pparticle, 0, nullptr);
 //
 //                     //g_pmapLibrary[string(pszAppId)] = plibrary;
 //
@@ -511,8 +511,8 @@ namespace axis
 //      if (!papp->is_serviceable() || papp->is_user_service())
 //      {
 //
-//         psystem->m_spmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
-//         psystem->m_spmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
+//         psystem->m_spmutexUserAppData = __new(::pointer < ::mutex >(e_create_new, false, "Local\\ca2.UserAppData"));
+//         psystem->m_spmutexSystemAppData = __new(::pointer < ::mutex >(e_create_new, false, "Local\\ca2.SystemAppData"));
 //
 //      }
 //
@@ -766,10 +766,10 @@ namespace axis
 
 
 
-   //void session::initialize(::object * pobject)
+   //void session::initialize(::particle * pparticle)
    //{
 
-   //   auto estatus = ::aura::session::initialize(pobject);
+   //   auto estatus = ::aura::session::initialize(pparticle);
 
    //   if (!estatus)
    //   {

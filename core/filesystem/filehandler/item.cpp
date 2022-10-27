@@ -9,17 +9,17 @@ namespace filehandler
 {
 
 
-   string item::data_item_get_text(object * pobject) const
+   string item::data_item_get_text(object * pparticle) const
    {
 
-      __UNREFERENCED_PARAMETER(pobject);
+      __UNREFERENCED_PARAMETER(pparticle);
 
       return m_strTopic;
 
    }
 
 
-   index item::data_item_get_image(object * pobject) const
+   index item::data_item_get_image(object * pparticle) const
    {
 
       return -1;

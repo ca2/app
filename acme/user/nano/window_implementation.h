@@ -4,13 +4,16 @@
 #pragma once
 
 
+#include "window_interface.h"
+
+
 class CLASS_DECL_ACME nano_window_implementation :
    virtual public nano_window_interface
 {
 public:
 
 
-   ::pointer<nano_window>       m_pinterface;
+   ::pointer < ::nano_window >         m_pinterface;
 
 
    nano_window_implementation();
@@ -21,6 +24,7 @@ public:
 
 
    void draw(nano_device * pnanodevice) override;
+
 
    bool get_dark_mode() override;
    bool is_active() override;

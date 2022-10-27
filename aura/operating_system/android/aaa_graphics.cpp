@@ -214,7 +214,7 @@
 //
 //                        pitem = __new(::write_text::font_enumeration_item);
 //
-//                        if (::m_psystem->m_pacmefile->exists(path))
+//                        if (::acmefile()->exists(path))
 //                        {
 //
 //                           pitem->m_mapFileName[0] = path;
@@ -277,7 +277,7 @@
 //
 //                     path /= strFile;
 //
-//                     if (::m_psystem->m_pacmefile->exists(path))
+//                     if (::acmefile()->exists(path))
 //                     {
 //
 //                        pitem->m_mapFileName[iKey] = path;

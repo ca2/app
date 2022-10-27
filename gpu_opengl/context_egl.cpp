@@ -45,7 +45,7 @@ namespace opengl
    void context_egl::_create_offscreen_buffer(const ::size_i32 & size)
    {
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pgpu = psystem->get_gpu();
 

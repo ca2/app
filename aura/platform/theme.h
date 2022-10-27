@@ -60,7 +60,7 @@ namespace aura
       virtual ~theme();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual void initialize_contextualized_theme();

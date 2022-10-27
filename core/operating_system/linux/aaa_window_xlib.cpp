@@ -39,7 +39,7 @@ namespace xlib
 
       }
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       xdisplay d(m_oswindow->display());
 
@@ -55,7 +55,7 @@ namespace xlib
    void buffer::destroy()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       xdisplay d(m_oswindow->display());
 
@@ -75,7 +75,7 @@ namespace xlib
    bool buffer::create_os_buffer(const ::size & size, int iStrideParam)
    {
 
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      destroy_os_buffer();
 //
@@ -119,7 +119,7 @@ namespace xlib
    void buffer::destroy_os_buffer()
    {
 
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      xdisplay d(m_oswindow->display());
 //
@@ -164,7 +164,7 @@ namespace xlib
 //   bool buffer::create_os_buffer(::image * pimage)
 //   {
 //
-//      //synchronous_lock synchronouslock(mutex());
+//      //synchronous_lock synchronouslock(this->synchronization());
 //
 ////      if(!pimage)
 ////      {

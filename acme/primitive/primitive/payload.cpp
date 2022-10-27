@@ -1,8 +1,15 @@
 ﻿#include "framework.h"
+#include "acme/primitive/string/__string.h"
+#include "payload.h"
 #include "acme/platform/acme.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/operating_system.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/primitive/string/_conv.h"
+#include "acme/primitive/string/from_integer.h"
+#include "acme/primitive/string/network_payload.h"
+#include "acme/exception/not_implemented.h"
+#include "acme/array.h"
 
 
 #if defined(WINDOWS)
@@ -2026,65 +2033,65 @@ bool payload::operator > (bool b) const
    return is_greater(get_bool(), b);
 }
 
-bool payload::strictly_equal(const class ::payload & payload) const
-{
-   return m_etype == payload.m_etype && operator == (payload);
-}
-
-bool payload::strictly_equal(const char * psz) const
-{
-   return m_etype == e_type_string && m_str == psz;
-}
-
-bool payload::strictly_equal(const ::string & str) const
-{
-   return m_etype == e_type_string && m_str == str;
-}
-
-bool payload::strictly_equal(::f64 f64) const
-{
-   return m_etype == e_type_f64 && m_f64 == f64;
-}
-
-bool payload::strictly_equal(::i32 i) const
-{
-   return m_etype == e_type_i32 && m_i32 == i;
-}
-
-bool payload::strictly_equal(bool b) const
-{
-   return m_etype == e_type_bool && is_equivalent(m_b, b);
-}
-
-bool payload::strictly_different(const class ::payload & payload) const
-{
-   return m_etype != payload.m_etype || operator != (payload);
-}
-
-bool payload::strictly_different(const char * psz) const
-{
-   return m_etype != e_type_string || m_str != psz;
-}
-
-bool payload::strictly_different(const ::string & str) const
-{
-   return m_etype != e_type_string || m_str != str;
-}
-
-bool payload::strictly_different(::f64 f64) const
-{
-   return m_etype != e_type_f64 || m_f64 != f64;
-}
-
-bool payload::strictly_different(::i32 i) const
-{
-   return m_etype != e_type_i32 || m_i32 != i;
-}
-
-bool payload::strictly_different(bool b) const
-{
-   return m_etype != e_type_bool || is_different(m_b, b);
-}
+//bool payload::strictly_equal(const class ::payload & payload) const
+//{
+//   return m_etype == payload.m_etype && operator == (payload);
+//}
+//
+//bool payload::strictly_equal(const char * psz) const
+//{
+//   return m_etype == e_type_string && m_str == psz;
+//}
+//
+//bool payload::strictly_equal(const ::string & str) const
+//{
+//   return m_etype == e_type_string && m_str == str;
+//}
+//
+//bool payload::strictly_equal(::f64 f64) const
+//{
+//   return m_etype == e_type_f64 && m_f64 == f64;
+//}
+//
+//bool payload::strictly_equal(::i32 i) const
+//{
+//   return m_etype == e_type_i32 && m_i32 == i;
+//}
+//
+//bool payload::strictly_equal(bool b) const
+//{
+//   return m_etype == e_type_bool && is_equivalent(m_b, b);
+//}
+//
+//bool payload::strictly_different(const class ::payload & payload) const
+//{
+//   return m_etype != payload.m_etype || operator != (payload);
+//}
+//
+//bool payload::strictly_different(const char * psz) const
+//{
+//   return m_etype != e_type_string || m_str != psz;
+//}
+//
+//bool payload::strictly_different(const ::string & str) const
+//{
+//   return m_etype != e_type_string || m_str != str;
+//}
+//
+//bool payload::strictly_different(::f64 f64) const
+//{
+//   return m_etype != e_type_f64 || m_f64 != f64;
+//}
+//
+//bool payload::strictly_different(::i32 i) const
+//{
+//   return m_etype != e_type_i32 || m_i32 != i;
+//}
+//
+//bool payload::strictly_different(bool b) const
+//{
+//   return m_etype != e_type_bool || is_different(m_b, b);
+//}
 
 
 string payload::get_recursive_string() const
@@ -6632,13 +6639,13 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
    else if (get_type() == ::e_type_i32_array)
    {
 
-      return ia().get_network_payload(str, bNewLine);
+      return ::get_network_payload(str, *m_pia, bNewLine);
 
    }
    else if (get_type() == ::e_type_i64_array)
    {
 
-      return i64a().get_network_payload(str, bNewLine);
+      return ::get_network_payload(str, *m_pi64a, bNewLine);
 
    }
    else if (get_type() == ::e_type_payload_array)
@@ -7908,55 +7915,55 @@ return nullptr;
 
 
 
-bool strictly_equal(const char * psz, const class ::payload & payload)
-{
-   return payload.m_etype == ::e_type_string && payload.m_str == psz;
-}
-
-bool strictly_equal(const ::string & str, const class ::payload & payload)
-{
-   return payload.m_etype == ::e_type_string && str == payload.m_str;
-}
-
-bool strictly_equal(double d, const class ::payload & payload)
-{
-   return payload.m_etype == ::e_type_f64 && d == payload.m_f64;
-}
-
-bool strictly_equal(::i32 i, const class ::payload & payload)
-{
-   return payload.m_etype == ::e_type_i32 && i == payload.m_i32;
-}
-
-bool strictly_equal(bool b, const class ::payload & payload)
-{
-   return payload.m_etype == ::e_type_bool && is_equivalent(b, payload.m_b);
-}
-
-bool strictly_different(const char * psz, const class ::payload & payload)
-{
-   return !strictly_equal(psz, payload);
-}
-
-bool strictly_different(const ::string & str, const class ::payload & payload)
-{
-   return !strictly_equal(str, payload);
-}
-
-bool strictly_different(double d, const class ::payload & payload)
-{
-   return !strictly_equal(d, payload);
-}
-
-bool strictly_different(::i32 i, const class ::payload & payload)
-{
-   return !strictly_equal(i, payload);
-}
-
-bool strictly_different(bool b, const class ::payload & payload)
-{
-   return !strictly_equal(b, payload);
-}
+//bool strictly_equal(const char * psz, const class ::payload & payload)
+//{
+//   return payload.m_etype == ::e_type_string && payload.m_str == psz;
+//}
+//
+//bool strictly_equal(const ::string & str, const class ::payload & payload)
+//{
+//   return payload.m_etype == ::e_type_string && str == payload.m_str;
+//}
+//
+//bool strictly_equal(double d, const class ::payload & payload)
+//{
+//   return payload.m_etype == ::e_type_f64 && d == payload.m_f64;
+//}
+//
+//bool strictly_equal(::i32 i, const class ::payload & payload)
+//{
+//   return payload.m_etype == ::e_type_i32 && i == payload.m_i32;
+//}
+//
+//bool strictly_equal(bool b, const class ::payload & payload)
+//{
+//   return payload.m_etype == ::e_type_bool && is_equivalent(b, payload.m_b);
+//}
+//
+//bool strictly_different(const char * psz, const class ::payload & payload)
+//{
+//   return !strictly_equal(psz, payload);
+//}
+//
+//bool strictly_different(const ::string & str, const class ::payload & payload)
+//{
+//   return !strictly_equal(str, payload);
+//}
+//
+//bool strictly_different(double d, const class ::payload & payload)
+//{
+//   return !strictly_equal(d, payload);
+//}
+//
+//bool strictly_different(::i32 i, const class ::payload & payload)
+//{
+//   return !strictly_equal(i, payload);
+//}
+//
+//bool strictly_different(bool b, const class ::payload & payload)
+//{
+//   return !strictly_equal(b, payload);
+//}
 
 
 
@@ -8166,8 +8173,7 @@ bool payload::is_array() const
 //
 
 
-
-template < payload_class PAYLOAD >
+template < primitive_payload PAYLOAD >
 ::payload payload::operator - (const PAYLOAD & payload2) const
 {
 
@@ -8248,7 +8254,7 @@ template < payload_class PAYLOAD >
    return payload;
 }
 
-template < payload_class PAYLOAD >
+template < primitive_payload PAYLOAD >
 ::payload payload::operator + (const PAYLOAD & payload2) const
 {
 
@@ -8383,7 +8389,7 @@ template < payload_class PAYLOAD >
 
 
 
-template < payload_class PAYLOAD >
+template < primitive_payload PAYLOAD >
 ::payload payload::operator / (const PAYLOAD & payload2) const
 {
 
@@ -8447,7 +8453,7 @@ template < payload_class PAYLOAD >
 
 
 
-template < payload_class PAYLOAD >
+template < primitive_payload PAYLOAD >
 ::payload payload:: operator * (const PAYLOAD & payload2) const
 {
 
@@ -8507,7 +8513,7 @@ template < payload_class PAYLOAD >
 
 
 
-template < payload_class PAYLOAD >
+template < primitive_payload PAYLOAD >
 ::payload & payload:: operator -= (const PAYLOAD & payload)
 {
 
@@ -8518,7 +8524,7 @@ template < payload_class PAYLOAD >
 }
 
 
-template < payload_class PAYLOAD >
+template < primitive_payload PAYLOAD >
 ::payload & payload:: operator += (const PAYLOAD & payload)
 {
 
@@ -8529,7 +8535,7 @@ template < payload_class PAYLOAD >
 }
 
 
-template < payload_class PAYLOAD >
+template < primitive_payload PAYLOAD >
 ::payload & payload:: operator /= (const PAYLOAD & payload)
 {
 
@@ -8540,7 +8546,7 @@ template < payload_class PAYLOAD >
 }
 
 
-template < payload_class PAYLOAD >
+template < primitive_payload PAYLOAD >
 ::payload & payload:: operator *= (const PAYLOAD & payload)
 {
 
@@ -8587,7 +8593,7 @@ payload & payload::operator = (const ::file::path & path)
 
 
 
-inline bool succeeded(const ::payload & payload)
+bool succeeded(const ::payload & payload)
 {
 
    if (payload.m_etype == e_type_enum_status)
@@ -8611,3 +8617,9 @@ inline bool succeeded(const ::payload & payload)
 
 }
 
+
+
+//class ::payload & payload::operator -= (const class property & property) { operator -=(property);  return *this; }
+//class ::payload & payload::operator += (const class property & property) { operator +=(property);  return *this; }
+//class ::payload & payload::operator /= (const class property & property) { operator /=(property);  return *this; }
+//class ::payload & payload::operator *= (const class property & property) { operator *=(property);  return *this; }

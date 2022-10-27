@@ -1,17 +1,20 @@
 #pragma once
 
 
+//#include "synchronization_object.h"
+
+
 class CLASS_DECL_ACME single_lock :
-   virtual public synchronization_lock
+   virtual public particle
 {
 public:
 
 
-   synchronization_object *                  m_psync;
-   bool                                      m_bAcquired;
+   //synchronization_object *                  m_psync;
+   //bool                                      m_bAcquired;
 
 
-   explicit single_lock(synchronization_object * pobject, bool bInitialLock = false);
+   explicit single_lock(particle * pparticleSynchronization, bool bInitialLock = false);
    ~single_lock() override;
 
 
@@ -29,16 +32,16 @@ public:
 
 
 class CLASS_DECL_ACME _single_lock :
-   virtual public synchronization_object
+   virtual public particle
 {
 public:
 
 
-   synchronization_object *      m_psync;
-   bool                          m_bAcquired;
+   //synchronization *      m_psync;
+   //bool                          m_bAcquired;
 
 
-   explicit _single_lock(synchronization_object * pobject, bool bInitialLock = false);
+   explicit _single_lock(particle * pparticle, bool bInitialLock = false);
    ~_single_lock();
 
 

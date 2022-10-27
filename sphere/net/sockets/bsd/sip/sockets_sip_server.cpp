@@ -5,9 +5,9 @@
 namespace sockets
 {
 
-   sip_server::sip_server(::object * pobject) :
-      ::object(pobject),
-      thread(pobject)
+   sip_server::sip_server(::particle * pparticle) :
+      ::object(pparticle),
+      thread(pparticle)
    {
    }
 

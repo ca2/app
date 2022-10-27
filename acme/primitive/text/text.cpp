@@ -1,6 +1,8 @@
 //Created by camilo on 2021-03-26 00:10 BRT <3ThomasBS_
 #include "framework.h"
-#include "_.h"
+#include "text.h"
+#include "translator.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 namespace text
@@ -81,7 +83,7 @@ namespace text
       if (m_pdata->m_bPendingUpdate)
       {
 
-         synchronous_lock lock(m_pdata->m_ptranslator->mutex());
+         synchronous_lock lock(m_pdata->m_ptranslator->synchronization());
 
          m_pdata->m_bPendingUpdate = false;
 

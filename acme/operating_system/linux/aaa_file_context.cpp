@@ -26,10 +26,10 @@ namespace linux
    }
 
 
-   void file_context::initialize(::matter * pobject)
+   void file_context::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::matter::initialize(pobject);
+      auto estatus = ::matter::initialize(pparticle);
 
       if(!estatus)
       {
@@ -99,7 +99,7 @@ namespace linux
 
       ::file::path pathNetworkPayload;
 
-      pathNetworkPayload =          auto psystem = m_psystem;
+      pathNetworkPayload =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

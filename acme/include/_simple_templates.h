@@ -61,7 +61,7 @@ class system;
 #include "acme/include/_c.h"
 
 
-class synchronization_object;
+class synchronization;
 class dump_context;
 class task;
 class property_object;

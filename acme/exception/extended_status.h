@@ -147,7 +147,7 @@ CLASS_DECL_ACME const char * status_short_description(const ::e_status & estatus
 template < typename EXCEPTION >
 inline ::pointer<EXCEPTION>__move_throw_exception(EXCEPTION * pexceptionNew);
 
-CLASS_DECL_ACME ::pointer<::exception>__trace_context_move_throw_exception(::matter * pobject, ::exception * pexceptionNew);
+CLASS_DECL_ACME ::pointer<::exception>__trace_context_move_throw_exception(::particle * pparticle, ::exception * pexceptionNew);
 
 
 

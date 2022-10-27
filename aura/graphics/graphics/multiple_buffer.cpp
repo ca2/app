@@ -61,21 +61,21 @@ namespace graphics
 
          __construct(pimage);
 
-         //pimage->defer_create_mutex();
+         //pimage->defer_create_synchronization();
 
       }
 
-      m_mutexa.set_size(m_pimageaBuffer->image_count());
+      m_pmutexa.set_size(m_pimageaBuffer->image_count());
 
       //return estatus;
 
    }
 
 
-   ::synchronization_object * multiple_buffer::get_draw_lock()
+   ::synchronization * multiple_buffer::get_draw_lock()
    {
 
-      return m_mutexa[m_iBuffer];
+      return m_pmutexa[m_iBuffer];
 
    }
 
@@ -116,7 +116,7 @@ namespace graphics
    index multiple_buffer::find_best_buffer(const ::size_i32 & size)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       bool bFoundExact = false;
 
@@ -313,7 +313,7 @@ namespace graphics
    bool multiple_buffer::buffer_lock_round_swap_key_buffers()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_iDone = m_iBuffer;
 
@@ -326,7 +326,7 @@ namespace graphics
    }
 
 
-   synchronization_object * multiple_buffer::get_screen_sync()
+   synchronization * multiple_buffer::get_screen_sync()
    {
 
       auto size = m_pimpl->m_puserinteraction->const_layout().design().size();
@@ -340,7 +340,7 @@ namespace graphics
 
       }
 
-      return m_mutexa[m_iScreen];
+      return m_pmutexa[m_iScreen];
 
    }
 
@@ -357,7 +357,7 @@ namespace graphics
    bool multiple_buffer::update_screen()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto size = m_pimpl->m_puserinteraction->const_layout().design().size();
 

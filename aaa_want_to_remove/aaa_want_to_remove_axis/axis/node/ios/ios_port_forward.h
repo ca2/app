@@ -16,7 +16,7 @@ namespace ios
    public:
 
 
-      port_forward(::object * pobject);
+      port_forward(::particle * pparticle);
       virtual ~port_forward();
 
 

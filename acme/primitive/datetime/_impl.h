@@ -49,20 +49,6 @@
 //}
 
 
-inline duration& duration::operator = (const ::duration & duration)
-{
-
-   if(this != &duration)
-   {
-
-      m_iSecond = duration.m_iSecond;
-      m_iNanosecond = duration.m_iNanosecond;
-
-   }
-
-   return *this;
-
-}
 
 //
 //inline nanosecond operator -(const ::nanosecond& nanosecond, const ::duration & duration)

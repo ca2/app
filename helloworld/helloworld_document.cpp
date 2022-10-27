@@ -5,11 +5,11 @@ namespace helloworld
 {
 
 
-   document::document(::object * pobject) :
-      object(pobject),
-      ::data::data_container_base(pobject),
-      ::user::document(pobject),
-      ::user::document(pobject)
+   document::document(::particle * pparticle) :
+      object(pparticle),
+      ::data::data_container_base(pparticle),
+      ::user::document(pparticle),
+      ::user::document(pparticle)
    {
 
    }
@@ -76,7 +76,7 @@ namespace helloworld
 
          {
 
-            synchronous_lock slText(get_typed_impact < impact >() != nullptr  ? &get_typed_impact < impact >()->m_mutexText : nullptr);
+            synchronous_lock slText(get_typed_impact < impact >() != nullptr  ? &get_typed_impact < impact >()->m_pmutexText : nullptr);
 
             get_typed_impact < impact >()->m_strHelloWorld = "image:" + get_typed_impact < impact >()->m_strImage + "," + get_typed_impact < impact >()->m_strHelloWorld;
 

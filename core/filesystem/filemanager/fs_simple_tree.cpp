@@ -31,12 +31,12 @@ namespace filemanager
          }
 
 
-         void tree::initialize(::object * pobject)
+         void tree::initialize(::particle * pparticle)
          {
 
             //auto estatus = 
             
-            ::user::tree_data::initialize(pobject);
+            ::user::tree_data::initialize(pparticle);
 
             //if (!estatus)
             //{

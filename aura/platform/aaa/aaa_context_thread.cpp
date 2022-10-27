@@ -51,7 +51,7 @@ namespace aura
 
       }
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       return m_createaPending.predicate_contains([&pcreate](auto& p) {return p.get() == pcreate; })
       || m_createaHistory.predicate_contains([&pcreate](auto& p) {return p.get() == pcreate; })
@@ -115,7 +115,7 @@ namespace aura
    void context_thread::add_create(::create* pcreate)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (::is_null(pcreate) || contains(pcreate))
       {
@@ -147,7 +147,7 @@ namespace aura
    create * context_thread::get_create()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_pcreate || !m_pcreate->m_bNew)
       {

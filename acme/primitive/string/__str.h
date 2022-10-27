@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-class synchronization_lock;
+//class synchronization_lock;
 
 
 template < typename TYPE_CHAR >
@@ -111,7 +111,7 @@ public:
       return utf8_replace_with(pszNew, pszOld, psz, iStart);
    }
 
-   string   random_replace(::matter * pmatter, const string_array & straNew, const string_array & straOld, const ::string & psz);
+   string   random_replace(::particle * pparticle, const string_array & straNew, const string_array & straOld, const ::string & psz);
 
    strsize   find_first(const string_array & straSearch, index & iFound, const ::string & str, index iStart = 0);
 
@@ -397,15 +397,15 @@ public:
    void fix_eol(string & str);
 
 
-#include "_str_to.h"
-#include "_str_compare.h"
-#include "_str_trait.h"
-#include "_str_trait_ansi.h"
-#include "_str_trait_wd16.h"
-#include "_str_trait_wd32.h"
+#include "__str_to.h"
+#include "__str_compare.h"
+#include "__str_trait.h"
+#include "__str_trait_ansi.h"
+#include "__str_trait_wd16.h"
+#include "__str_trait_wd32.h"
 
 
-   void get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::synchronization_lock * psynchronizationlock = nullptr, ::file::file * pfileLines = nullptr);
+   void get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLines = nullptr);
 
 
 }; // class str

@@ -2,7 +2,8 @@
 
 
 #include "acme/primitive/primitive/memory.h"
-
+#include "acme/primitive/primitive/payload.h"
+#include "stream.h"
 
 
 template < typename FILE >
@@ -353,7 +354,7 @@ public:
    //binary_stream & operator <<(const ::payload & payload);
    //binary_stream & operator <<(const property & property);
    //binary_stream & operator <<(const ::string & str);
-   ////binary_stream & operator <<(const matter * pobject) ;
+   ////binary_stream & operator <<(const ::particle * pparticle) ;
    ////binary_stream & operator <<(const matter& matter) ;
    ////binary_stream & operator <<(const property_set & set);
    //binary_stream & operator <<(const block & block);
@@ -423,7 +424,7 @@ public:
    // void read_var_body(::payload & payload, enum_type etype);
    //binary_stream & operator >>(property & property);
    //binary_stream & operator >>(string & str);
-   //// void read(matter * pobject);
+   //// void read(::particle * pparticle);
    ////binary_stream & operator >>(matter& matter) ;
    ////binary_stream & operator >>(property_set & set);
    //binary_stream & operator >>(block & block);
@@ -492,7 +493,7 @@ public:
 
 
    //template < typename BASE_TYPE >
-   //inline stream & save_object(const BASE_TYPE * pobject);
+   //inline stream & save_object(const BASE_TYPE * pparticle);
 
    //template < typename BASE_TYPE >
    //inline ::pointer<BASE_TYPE>load_object();
@@ -1060,10 +1061,10 @@ public:
    }
 
 
-   //binary_stream & operator <<(const matter * pobject)
+   //binary_stream & operator <<(const ::particle * pparticle)
    //{
    //
-   //   pobject->write(*this);
+   //   pparticle->write(*this);
    //
    //   return * this;
    //
@@ -1419,21 +1420,21 @@ public:
    //}
 
 
-   //bool write_link(const ::matter * pobject)
+   //bool write_link(const ::particle * pparticle)
    //{
    //
    //   string strLink;
    //
    //   bool bReadOnly;
    //
-   //   if (!get_object_link(pobject, strLink, bReadOnly))
+   //   if (!get_object_link(pparticle, strLink, bReadOnly))
    //   {
    //
    //      return false;
    //
    //   }
    //
-   //   write_link(pobject, strLink, bReadOnly);
+   //   write_link(pparticle, strLink, bReadOnly);
    //
    //   return true;
    //

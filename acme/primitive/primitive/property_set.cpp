@@ -1,10 +1,8 @@
 ﻿#include "framework.h"
+#include "payload.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/platform/acme.h"
-//#include "acme/platform/static_start_internal.h"
-
-
-
+#include "acme/primitive/primitive/payload.h"
 
 
 #ifdef LINUX
@@ -1190,7 +1188,7 @@ void property_set::parse_network_headers(const char * pszHeaders)
 string property_set::_001Replace(const ::string & str) const
 {
 
-   return ::acme::property_set::evaluate(*this, str);
+   return evaluate(str);
 
 }
 
@@ -1555,7 +1553,7 @@ property_set & property_set::merge(const property_set & set)
 
                   }
 
-                  operator[](pproperty->name()).payloada().add_unique(operator[](pproperty->name()).payloada());
+                  operator[](pproperty->name()).payloada().append_unique(operator[](pproperty->name()).payloada());
 
                }
 
@@ -2082,73 +2080,6 @@ string property_set::get_command_line() const
 }
 
 
-namespace handle
-{
-
-
-   ini::ini(const ::string & str)
-   {
-
-      parse_ini(str);
-
-   }
-
-
-   ini::ini(::file::file * pfile)
-   {
-
-      string str;
-
-      pfile->as(str);
-
-      parse_ini(str);
-
-   }
-
-
-   //ini::ini(::acme::application * papp)
-   //{
-
-   //   auto preader = Ctx(papp).file().get_reader(papp->get_app_localconfig_folder());
-
-   //   if (preader)
-   //   {
-
-   //      string str;
-
-   //      preader->full_read_string(str);
-
-   //      parse_ini(str);
-
-   //   }
-
-   //}
-
-
-   //localini::localini(::matter * pobject)
-   //{
-
-   //   auto preader = Ctx(pobject).file().get_reader(         auto psystem = m_psystem;
-
-//         auto pacmedirectory = psystem->m_pacmedirectory;
-//
-//pacmedirectory->localconfig() / "this.ini");
-
-   //   if (preader)
-   //   {
-
-   //      string str;
-
-   //      preader->full_read_string(str);
-
-   //      parse_ini(str);
-
-   //   }
-
-   //}
-
-
-} // namespace handle
 
 
 void property_set::parse_environment_variable(const string_array & straEnvironment)
@@ -2523,3 +2454,151 @@ bool property_set::is_true(atom idName, bool bDefault) const
    return *pproperty;
 
 }
+
+
+
+// ::property_set set;
+//
+// set["var5"] = "searching value";
+//
+// str = "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = '$var5'"
+//
+// real-ization: "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = 'searching value'"
+string property_set::evaluate(const ::string & strSource) const
+{
+
+   string str(strSource);
+
+   strsize iPos;
+
+   char ch;
+
+   char chNext;
+
+   for (iPos = 0; iPos < str.get_length(); iPos++)
+   {
+
+      ch = str[iPos];
+
+      if (iPos + 1 < str.get_length())
+      {
+
+         chNext = str[iPos + 1];
+
+      }
+      else
+      {
+
+         chNext = '\0';
+
+      }
+
+      if (ch == '\\')
+      {
+
+         iPos++;
+
+         continue;
+
+      }
+      else if (ch == '{' && chNext == '$')
+      {
+
+         strsize iEnd = str.find('}', iPos + 1);
+
+         if (iEnd < 0)
+         {
+
+            //error
+
+            break;
+
+         }
+
+         string strKey = str.Mid(iPos + 2, iEnd - iPos - 2);
+
+         string strEval;
+
+         if (get_string(strEval, strKey))
+         {
+
+            str = str.Left(iPos) + strEval + str.Mid(iEnd + 1);
+
+            iPos += strEval.get_length() - 1;
+
+         }
+         else
+         {
+
+            iPos = iEnd;
+
+         }
+
+
+      }
+      else if (ch == '$')
+      {
+
+         if (!(ansi_char_is_alphabetic(chNext) || chNext == '_'))
+         {
+
+            // error
+
+            break;
+
+         }
+
+         strsize iStart = iPos;
+
+         strsize iEnd = iStart + 2;
+
+         for (; iEnd < str.get_length(); iEnd++)
+         {
+
+            ch = str[iEnd];
+
+            if (!(ansi_char_is_alphabetic(ch) || ch == '_' || ansi_char_is_digit(ch)))
+            {
+
+               break;
+
+            }
+
+         }
+
+         string strExpression = str.Mid(iStart, iEnd - iStart);
+
+         string strEval;
+
+         if (get_evaluation(strEval, strExpression))
+         {
+
+            str = str.Left(iPos) + strEval + str.Mid(iEnd);
+
+            iPos += strEval.get_length() - 1;
+
+         }
+         else
+         {
+
+            iPos = iEnd;
+
+         }
+
+      }
+
+   }
+
+   return str;
+
+}
+
+
+bool property_set::get_evaluation(::string & str, const ::string & strExpression) const
+{
+
+   return get_string(str, strExpression);
+
+}
+
+

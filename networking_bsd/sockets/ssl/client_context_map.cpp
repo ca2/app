@@ -10,7 +10,7 @@ namespace sockets_bsd
    ssl_client_context_map::ssl_client_context_map()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 

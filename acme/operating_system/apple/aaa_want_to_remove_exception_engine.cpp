@@ -429,8 +429,8 @@
 
 // // #endif
 
-// //    engine::engine(::matter * pobject) :
-// //       matter(pobject)
+// //    engine::engine(::particle * pparticle) :
+// //       matter(pparticle)
 // // #ifdef WINDOWS_DESKTOP
 // //       ,m_bOk(false)
 // //       ,m_bInit(false)
@@ -1025,7 +1025,7 @@
 // //    bool engine::init()
 // //    {
 
-// //       //if(!::m_psystem->m_pacmefile->exists("C:\\acme\\exception_engine.txt"))
+// //       //if(!::acmefile()->exists("C:\\acme\\exception_engine.txt"))
 // //       //{
 // //       //   return false;
 // //       //}
@@ -1759,7 +1759,7 @@
 //    void engine::backtrace(void ** ppui, int &c)
 //    {
 
-//       synchronous_lock synchronouslock(mutex());
+//       synchronous_lock synchronouslock(this->synchronization());
 
 //       ::u32 maxframes = c;
 

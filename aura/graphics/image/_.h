@@ -51,7 +51,7 @@ namespace draw2d
 
 
    CLASS_DECL_AURA void image_copy(::image * imagethis, ::image * pimage);
-   CLASS_DECL_AURA void image_create(::object * pobject, ::image *& image);
+   CLASS_DECL_AURA void image_create(::particle * pparticle, ::image *& image);
    CLASS_DECL_AURA void image_create_image(::image * pimage, const ::size_i32 & size);
    CLASS_DECL_AURA unsigned int * image_get_data(::image * pimage);
    CLASS_DECL_AURA graphics * image_get_graphics(::image * pimage);

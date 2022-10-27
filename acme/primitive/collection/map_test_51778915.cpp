@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "acme/primitive/collection/map.h"
+#include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/string/string.h"
 
 
 void ___compile_test_map_51778915()

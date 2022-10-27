@@ -65,12 +65,12 @@ namespace opengl
 #endif // WINDOWS_DESKTOP
 
 
-   void opengl::initialize(::object * pobject)
+   void opengl::initialize(::particle * pparticle)
    {
 
       //::e_status estatus =
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{

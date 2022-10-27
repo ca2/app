@@ -1,7 +1,6 @@
 #include "framework.h"
-
-
-
+#include "bit_array.h"
+#include "acme/array.h"
 
 
 bit_array::bit_array()

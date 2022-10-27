@@ -107,7 +107,7 @@ void release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
 //    virtual ::pointer<::matter>running(const char * pszTag) const;
-//    virtual bool running(::matter * pobject) const;
+//    virtual bool running(::particle * pparticle) const;
 
 
 //    friend class matter;

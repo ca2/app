@@ -75,7 +75,7 @@ CLASS_DECL_AURA bool is_shared_library_busy(u32 processid, const string_array & 
 CLASS_DECL_AURA bool is_shared_library_busy(const string_array & stra);
 
 
-CLASS_DECL_AURA bool launch_application(::object * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount);
+CLASS_DECL_AURA bool launch_application(::particle * pparticle, const ::string & strAppId, const ::string & strParams, int iBitCount);
 
 
 

@@ -12,7 +12,7 @@ namespace sphere
    public:
 
 
-      library(::object * pobject);
+      library(::particle * pparticle);
       
 
       virtual void get_app_list(string_array & stra);

@@ -772,7 +772,7 @@ namespace hotplugin
          //   m_pcolorref = (u32 *)get_map_failed();
          //}
 
-                  auto psystem = m_psystem;
+                  auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -937,7 +937,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
 //            throw ::exception(::exception("resource exception"));
 //         }
 
-         m_pmutexBitmap = memory_new ::mutex(e_create_new, false, string("Global\\app_app_nest-") + hex::lower_from((iptr)this));
+         m_pmutexBitmap = memory_new ::pointer < ::mutex >(e_create_new, false, string("Global\\app_app_nest-") + hex::lower_from((iptr)this));
 
       }
 

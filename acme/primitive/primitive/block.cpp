@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "memory_base.h"
 #include "acme/primitive/string/base64.h"
+#include "acme/primitive/string/hex.h"
+
 
 block::block(const atom & atom) :
    ::block(atom.is_text() ? atom.m_str : nullptr, atom.is_text() ? atom.m_str.length() : 0) 

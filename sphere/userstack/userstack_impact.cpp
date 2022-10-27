@@ -6,8 +6,8 @@ namespace userstack
 {
 
 
-   impact::impact(::object * pobject) :
-      ::object(pobject),
+   impact::impact(::particle * pparticle) :
+      ::object(pparticle),
       m_pfont(e_create)
    {
 

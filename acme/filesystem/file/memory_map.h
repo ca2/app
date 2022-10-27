@@ -2,6 +2,7 @@
 
 
 #include "acme/primitive/string/string.h"
+#include "acme/primitive/primitive/matter.h"
 
 
 namespace file
@@ -9,7 +10,7 @@ namespace file
 
 
    class CLASS_DECL_ACME memory_map :
-      virtual public particle
+      virtual public matter
    {
    public:
 

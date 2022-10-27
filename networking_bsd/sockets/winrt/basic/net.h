@@ -114,7 +114,7 @@ namespace sockets
       };
 
 
-      ::mutex                                            m_mutexCache;
+      ::pointer < ::mutex >                                            m_pmutexCache;
       ::string_map < dns_cache_item >                    m_mapCache;
 
 
@@ -122,7 +122,7 @@ namespace sockets
       virtual ~net();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       virtual bool gudo_set();
 

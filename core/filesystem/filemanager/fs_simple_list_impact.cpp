@@ -272,7 +272,7 @@ namespace filemanager
 
             simple_list_impact::handle(ptopic, pcontext);
 
-            //if(::is_null(pobject))
+            //if(::is_null(pparticle))
             {
 
               // _001UpdateColumns();

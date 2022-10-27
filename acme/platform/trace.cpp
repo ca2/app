@@ -1,18 +1,21 @@
 #include "framework.h"
 #include "trace.h"
+#include "log.h"
 #include "acme/constant/message.h"
 #include "acme/operating_system.h"
+#include "acme/parallelization/task.h"
+#include "acme/platform/system.h"
 #include <stdio.h>
 //#include "acme/_defer.h"
 
 
-thread_local ::pointer<logger>t_plogger;
+thread_local ::thread_local_pointer<logger>  t_plogger;
 
 
-void logger::t_construct(::acme::system * psystem)
+void logger::t_construct(::acme::context * pcontext)
 {
 
-   psystem->__construct(t_plogger);
+   pcontext->__construct(t_plogger);
 
 }
 
@@ -29,7 +32,7 @@ void logger::t_release()
 trace::trace()
 {
 
-   //m_pobject = pobject;
+   //m_pobject = pparticle;
 
 }
 
@@ -390,7 +393,7 @@ void tracer::flush()
    if(::is_null(plogger))
    {
 
-      ::logger::t_construct(m_psystem);
+      ::logger::t_construct(m_pcontext);
 
       plogger = t_plogger.m_p;
 

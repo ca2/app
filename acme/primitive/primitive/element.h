@@ -2,7 +2,7 @@
 #pragma once
 
 
-
+#include "acme/handler/handler.h"
 // ATTENTION
 // Shared with:
 // Objective-C++
@@ -14,8 +14,11 @@ class CLASS_DECL_ACME element :
 {
 public:
 
-   
-   element() {};
+
+   ::e_status                          m_estatus;
+
+
+   element() : m_estatus(e_status_none) {};
    ~element() override;
 
 
@@ -51,8 +54,7 @@ public:
 //   // ::error_failed
 //   // ::error_wait_timeout
 //   // ::success
-//   // also see synchronization_object
-//   virtual ::e_status wait();
+//   // also see synchronization//   virtual ::e_status wait();
 //   virtual ::e_status wait(const class ::wait & wait);
 
 
@@ -88,13 +90,13 @@ public:
    //virtual void read(::binary_stream < FILE >& stream);
 
 
-   //virtual void add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   //virtual void add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //virtual void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //virtual void add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   //virtual void release_composite2(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   //virtual void finalize_composite(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   //virtual void release_reference(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //virtual void release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //virtual void finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //virtual void release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
    void destroy() override;

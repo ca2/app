@@ -61,12 +61,12 @@ namespace sockets_bsd
       ~SSLInitializer() override;
 
       
-      void initialize(::object* pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       void DeleteRandFile();
 
-      /** SSL; ::mutex locking function callback. */
+      /** SSL; ::pointer < ::mutex > locking function callback. */
       //static void SSL_locking_function(i32 mode, i32 n, const char *file, i32 line);
 
       /** Return thread atom. */

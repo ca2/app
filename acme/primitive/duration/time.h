@@ -44,7 +44,7 @@ public:
    inline bool operator !() const { return m_d <= 0.; }
 
 
-   DECLARE_COMPARISON_WITH_DURATION
+   DECLARE_COMPARISON_WITH_DURATION(NON_INLINE)
 
 
    inline class ::time operator + (const class ::time & timeduration2) const { return m_d + timeduration2.m_d; }

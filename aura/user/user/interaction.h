@@ -615,7 +615,7 @@ namespace user
       inline bool is_graphical() const { return !m_bMessageWindow && m_ewindowflag & e_window_flag_graphical; }
 
 
-      virtual ::synchronization_object * mutex_draw();
+      virtual ::synchronization * mutex_draw();
 
 
       //virtual bool AddControlBar(::user::control_bar* pcontrolbar);
@@ -1950,9 +1950,9 @@ namespace user
       virtual void check_transparent_mouse_events();
 
 
-      virtual void redraw_add(::object * pobject);
+      virtual void redraw_add(::particle * pparticle);
 
-      virtual void redraw_erase(::object * pobject);
+      virtual void redraw_erase(::particle * pparticle);
 
       virtual bool has_redraw();
 
@@ -2126,8 +2126,8 @@ namespace user
       //virtual bool set(e_font efont = font_default);
 
 
-      virtual void show_software_keyboard(::user::element* pelement) override;
-      virtual void hide_software_keyboard(::user::element* pelement) override;
+      virtual void show_software_keyboard(::user::element * pelement) override;
+      virtual void hide_software_keyboard(::user::element * pelement) override;
 
 
       virtual void set_stock_icon(enum_stock_icon eicon);

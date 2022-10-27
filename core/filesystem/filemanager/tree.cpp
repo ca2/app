@@ -78,7 +78,7 @@ namespace filemanager
 
       m_pdatacontainerbase = pdocument;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_iAnimate = 0;
 
@@ -94,7 +94,7 @@ namespace filemanager
    void tree::_017EnsureVisible(const ::file::path & pathUser, const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr);
+      synchronous_lock synchronouslock(m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr);
 
       string_array stra;
 
@@ -218,7 +218,7 @@ namespace filemanager
    void tree::browse_sync(const ::action_context & context)
    {
 
-      synchronization_object *pm = m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr;
+      synchronization *pm = m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr;
 
       synchronous_lock synchronouslock(pm);
 

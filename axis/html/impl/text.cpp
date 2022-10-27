@@ -43,7 +43,7 @@ namespace html
       }
 
 
-      void text::implement_phase1(html_data * pdata, ::html::element * pelement)
+      void text::implement_phase1(html_data * pdata, ::html::particle * pparticle)
       {
 
          synchronous_lock lock(pdata->m_pcoredata->mutex());

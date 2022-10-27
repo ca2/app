@@ -18,7 +18,7 @@ namespace calculator
       virtual ~calculator();
 
 
-      virtual void initialize(::object * pobject) ;
+      virtual void initialize(::particle * pparticle) ;
 
 
    };

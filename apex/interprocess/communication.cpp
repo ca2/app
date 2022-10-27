@@ -7,6 +7,9 @@
 #include "task.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/networking/url_department.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "apex/constant/method.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -14,6 +17,8 @@
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/launcher.h"
+#include "apex/platform/os_context.h"
+#include "apex/platform/system.h"
 
 
 namespace interprocess
@@ -25,7 +30,7 @@ namespace interprocess
 
       m_atom = "::interprocess::communication";
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
 
    }
@@ -38,10 +43,10 @@ namespace interprocess
    }
 
 
-   void communication::initialize_interprocess_communication(::object * pobject, const ::string & strApp)
+   void communication::initialize_interprocess_communication(::particle * pparticle, const ::string & strApp)
    {
 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -249,13 +254,13 @@ namespace interprocess
       //   }
 
 
-      string strObject = m_psystem->url()->get_server(strUri);
+      string strObject = acmesystem()->url()->get_server(strUri);
 
-      string strMember = m_psystem->url()->get_script(strUri);
+      string strMember = acmesystem()->url()->get_script(strUri);
 
       strMember.trim_left("/");
 
-      string strNetworkArguments = m_psystem->url()->get_query(strUri);
+      string strNetworkArguments = acmesystem()->url()->get_query(strUri);
 
       ::property_set propertyset;
 
@@ -304,14 +309,14 @@ namespace interprocess
    void communication::start(const ::string & strApp)
    {
 
-      synchronous_lock sl1(mutex());
+      synchronous_lock sl1(synchronization());
 
       auto & pmutex = m_mapAppMutex[strApp];
 
       if (pmutex.is_null())
       {
 
-         pmutex = __new(::mutex());
+         __construct(pmutex);
 
       }
 
@@ -479,7 +484,7 @@ namespace interprocess
 
 #if defined(LINUX) || defined(FREEBSD)
 
-      strKey = m_psystem->m_pacmedirectory->system() / "communication" / strApp / __string(idPid);
+      strKey = acmedirectory()->system() / "communication" / strApp / __string(idPid);
 
 #elif defined(__APPLE__)
 
@@ -501,7 +506,7 @@ namespace interprocess
 
 #else
 
-      strKey = m_psystem->m_pacmedirectory->system() / "communication" / strApp / __string(idPid);
+      strKey = acmedirectory()->system() / "communication" / strApp / __string(idPid);
 
 
 #endif
@@ -657,13 +662,13 @@ namespace interprocess
    //   //   }
 
 
-   //   string strObject = m_psystem->url()->get_server(strUrl);
+   //   string strObject = acmesystem()->url()->get_server(strUrl);
 
-   //   string strMember = m_psystem->url()->get_script(strUrl);
+   //   string strMember = acmesystem()->url()->get_script(strUrl);
 
    //   strMember.trim_left("/");
 
-   //   string strNetworkArguments = m_psystem->url()->get_query(strUrl);
+   //   string strNetworkArguments = acmesystem()->url()->get_query(strUrl);
 
    //   ::property_set propertyset;
 
@@ -714,7 +719,7 @@ namespace interprocess
 
       auto pobjectTask = __new(::interprocess::task(pcall, idPid, m_iTaskSeed++));
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -728,7 +733,7 @@ namespace interprocess
    ::pointer<::interprocess::task>communication::get_task(i64 iTask)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       return m_mapTask[iTask];
 
@@ -838,7 +843,7 @@ namespace interprocess
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
@@ -858,11 +863,11 @@ namespace interprocess
 
       ::file::path pathModule;
 
-      pathModule = m_psystem->m_pacmedirectory->system() / "communication";
+      pathModule = acmedirectory()->system() / "communication";
 
       pathModule /= strApp + ".module_list";
 
-      string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
+      string strModuleList = acmefile()->as_string(pathModule);
 
       stra.add_lines(strModuleList);
 
@@ -879,7 +884,7 @@ namespace interprocess
 
       int_array iaPid2;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
@@ -946,7 +951,7 @@ namespace interprocess
    void communication::defer_add_module(const ::string & strModule, const ::atom & idPid)
    {
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
@@ -956,13 +961,13 @@ namespace interprocess
 
       m_straModule.erase_all();
 
-      pathModule = m_psystem->m_pacmedirectory->system() / "communication";
+      pathModule = acmedirectory()->system() / "communication";
 
       pathModule /= m_strApp + ".module_list";
 
       ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.i64());
 
-      string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
+      string strModuleList = acmefile()->as_string(pathModule);
 
       m_straModule.add_lines(strModuleList);
 
@@ -1026,10 +1031,10 @@ namespace interprocess
 
       string_array straUnique;
 
-      forallref(m_straModule)
+      for(auto & strItem : m_straModule)
       {
 
-         straUnique.add_unique_ci(item);
+         straUnique.add_unique_ci(strItem);
 
       }
 

@@ -101,7 +101,7 @@ namespace app_app
 
       ::color::color colorInset;
 
-      if (m_psystem->node()->background_color().get_luminance() < 0.5)
+      if (acmenode()->background_color().get_luminance() < 0.5)
       {
 
          colorInset = __acolor(255, 89, 89, 89);

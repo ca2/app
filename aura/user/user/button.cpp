@@ -191,7 +191,7 @@ namespace user
       if (pgraphics.is_null())
       {
 
-         auto psystem = m_psystem->m_paurasystem;
+         auto psystem = acmesystem()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 
@@ -371,7 +371,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       if (get_translucency(pstyle) >= e_translucency_present)
       {
@@ -1076,7 +1076,7 @@ namespace user
 
       }
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       ::rectangle_i32 rectangle = rectangleClient;
       pgraphics->color_blend_3dRect(rectangle,colorExt1TL,215,colorExt1BR,215);

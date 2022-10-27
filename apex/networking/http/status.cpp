@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/string/string.h"
 
 
 namespace http

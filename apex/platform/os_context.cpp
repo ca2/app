@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "os_context.h"
+#include "acme/exception/interface_only.h"
 #include "acme/platform/node.h"
 #include "apex/platform/context.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -151,7 +153,7 @@
    void os_context::link_open(const string & strUrl, const string & strProfile)
    {
       
-      m_psystem->node()->open_url(strUrl);
+      acmenode()->open_url(strUrl);
 
 //      file_open(strUrl);
       //{
@@ -625,7 +627,7 @@
 
       ::file::path_array pathaRelative;
 
-      pathSource.ascendants_path(patha, &pathaRelative);
+      ascendants_path(pathSource, patha, &pathaRelative);
 
       for (index i = 0; i < patha.get_count(); i++)
       {

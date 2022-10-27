@@ -1,6 +1,10 @@
 ﻿#pragma once
 
 
+#include "map.h"
+#include "acme/primitive/primitive/atom.h"
+
+
 namespace acme
 {
 
@@ -42,10 +46,6 @@ namespace acme
 using procedure_map = ::atom_map < ::procedure_array >;
 
 
-using id_to_id = atom_map < atom >;
-
-
-using id_to_index = atom_map < index >;
 
 
 

@@ -29,7 +29,7 @@ namespace write_text
       ~write_text() override;
 
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
       
       class fonts * fonts();

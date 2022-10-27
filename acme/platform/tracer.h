@@ -3,7 +3,6 @@
 
 
 #include "acme/primitive/string/__string.h"
-#include "acme/primitive/duration/_.h"
 #include "acme/primitive/duration/__string.h"
 
 
@@ -15,7 +14,7 @@ class CLASS_DECL_ACME tracer
 public:
 
 
-   ::acme::system *           m_psystem;
+   ::acme::context *          m_pcontext;
    string                     m_str;
    enum_trace_level           m_etracelevel;
    enum_trace_category        m_etracecategory;
@@ -25,8 +24,8 @@ public:
    logger *                   m_plogger;
 
 
-   tracer(::acme::system * psystem, enum_trace_level etracelevel, enum_trace_category etracecategory = e_trace_category_general, const char * pszFunction = nullptr, const char * pszFile = nullptr, int iLine = -1, logger * plogger = nullptr) :
-      m_psystem(psystem),
+   tracer(::acme::context * pcontext, enum_trace_level etracelevel, enum_trace_category etracecategory = e_trace_category_general, const char * pszFunction = nullptr, const char * pszFile = nullptr, int iLine = -1, logger * plogger = nullptr) :
+      m_pcontext(pcontext),
       m_etracelevel(etracelevel),
       m_etracecategory(etracecategory),
       m_pszFunction(pszFunction),
@@ -56,7 +55,6 @@ public:
       operator << (str);
 
    }
-
 
 
    tracer & format_output(const char * psz, ...)
@@ -94,7 +92,7 @@ public:
    tracer & operator << (const exception & exception);
    tracer & operator << (const e_status & estatus);
    tracer & operator << (const enum_status& estatus);
-   tracer & operator << (const string & str);
+   tracer & operator << (const ansistring & str);
    tracer & operator << (const char * psz);
    tracer & operator << (enum_flush);
    tracer & operator << (const integral_byte & memsize);
@@ -131,10 +129,10 @@ CLASS_DECL_ACME void trace_log_error(const char * psz, ...);
 CLASS_DECL_ACME void trace_log_fatal(const char * psz, ...);
 
 
-inline tracer trace_log_information();
-inline tracer trace_log_warning();
-inline tracer trace_log_error();
-inline tracer trace_log_fatal();
+CLASS_DECL_ACME tracer trace_log_information();
+CLASS_DECL_ACME tracer trace_log_warning();
+CLASS_DECL_ACME tracer trace_log_error();
+CLASS_DECL_ACME tracer trace_log_fatal();
 
 
 

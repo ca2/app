@@ -161,7 +161,7 @@ namespace freedesktoplinux
 
       ::file::path path;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -257,7 +257,7 @@ namespace freedesktoplinux
 
       //pathLaunch = pacmedirectory->home() / ".config/ca2/bin" / (strName + ".sh");
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -309,7 +309,7 @@ namespace freedesktoplinux
 
       strScript += "\n"; */
 
-      //m_psystem->m_pacmefile->put_contents(pathLaunch, strScript);
+      //acmefile()->put_contents(pathLaunch, strScript);
 
       strScript = "#!/bin/bash\n";
 
@@ -326,7 +326,7 @@ namespace freedesktoplinux
 
       strScript += "\n";
 
-      m_psystem->m_pacmefile->put_contents(pathUserBin, strScript);
+      acmefile()->put_contents(pathUserBin, strScript);
 
       //chmod(pathLaunch, 0755);
       chmod(pathUserBin, 0600);

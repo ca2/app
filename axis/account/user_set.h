@@ -14,7 +14,7 @@ namespace account
    public:
 
 
-      user_set(::object * pobject);
+      user_set(::particle * pparticle);
       virtual ~user_set();
 
 

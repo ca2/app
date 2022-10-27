@@ -28,7 +28,7 @@ namespace user
    void list_cache::_001CacheHint(      ::user::mesh * pmesh,      index iItemStart,      index iItemCount)
    {
 
-      single_lock synchronouslock(mutex(), false);
+      single_lock synchronouslock(synchronization(), false);
 
       ::user::list * plist = pmesh->m_plist;
 
@@ -106,7 +106,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto pmap = m_map.plookup(psubitem->m_pitem->m_iItem);
 
@@ -136,7 +136,7 @@ namespace user
    void list_cache::_001Invalidate(::user::mesh * pmesh)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_map.erase_all();
 

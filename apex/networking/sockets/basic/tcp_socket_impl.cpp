@@ -1224,7 +1224,7 @@
 //
 //      SetNonblocking(true);
 //
-//      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_mutex);
+//      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_pmutex);
 //
 //      if (is_true("from_pool"))
 //         return;
@@ -1331,7 +1331,7 @@
 //
 //      SetNonblocking(true);
 //
-//      //synchronous_lock slMap(psystem->sockets().m_servercontextmap.m_mutex);
+//      //synchronous_lock slMap(psystem->sockets().m_servercontextmap.m_pmutex);
 //
 //      //{
 //      //   if(m_psslcontext.is_set()
@@ -1875,7 +1875,7 @@
 ////
 ////
 ////      {
-////         synchronous_lock synchronouslock(mutex());
+////         synchronous_lock synchronouslock(this->synchronization());
 ////         int i;
 ////
 ////         auto psystem = get_system()->m_papexsystem;

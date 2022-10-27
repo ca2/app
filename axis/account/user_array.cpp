@@ -16,7 +16,7 @@ namespace account
    user_array::user_array()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -68,7 +68,7 @@ namespace account
 
       ::pointer<user>puser;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -87,7 +87,7 @@ namespace account
 
          //}
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_map[strHost] = puser;
 
@@ -120,7 +120,7 @@ namespace account
       try
       {
 
-         pcontext->m_papexcontext->file().erase(m_psystem->m_pacmedirectory->appdata()/"license_auth/00001.data");
+         pcontext->m_papexcontext->file().erase(acmedirectory()->appdata()/"license_auth/00001.data");
 
       }
       catch(...)
@@ -131,7 +131,7 @@ namespace account
       try
       {
 
-         pcontext->m_papexcontext->file().erase(m_psystem->m_pacmedirectory->appdata()/"license_auth/00002.data");
+         pcontext->m_papexcontext->file().erase(acmedirectory()->appdata()/"license_auth/00002.data");
 
       }
       catch(...)
@@ -191,7 +191,7 @@ namespace account
    void user_array::cleanup_users()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto map = m_map;
 
@@ -233,7 +233,7 @@ namespace account
 
       }
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -241,7 +241,7 @@ namespace account
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          auto & puser = m_map[strHost];
 
@@ -286,7 +286,7 @@ namespace account
       if(etimer == e_timer_slow)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          auto map = m_map;
 

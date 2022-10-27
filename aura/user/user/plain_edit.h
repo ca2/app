@@ -63,10 +63,10 @@ namespace user
       {
       public:
 
-         virtual synchronization_object * get_mutex()
+         virtual synchronization * get_mutex()
          {
 
-            return mutex();
+            return synchronization();
 
          }
 

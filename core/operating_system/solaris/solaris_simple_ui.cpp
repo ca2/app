@@ -18,8 +18,8 @@ namespace os
    map < oswindow, oswindow, simple_ui *, simple_ui * > m_windowmap;
 
    simple_ui::simple_ui(::pointer<base_application>papp) :
-      ::object(pobject),
-      interaction(pobject)
+      ::object(pparticle),
+      interaction(pparticle)
    {
 
       m_w = 840;
@@ -199,7 +199,7 @@ namespace os
          XStoreName(m_window->display(), m_window->window(), m_strText);
       }
 
-      m_pmutexGraphics = memory_new ::mutex();
+      m_pmutexGraphics = memory_new ::pointer < ::mutex >();
 
       //on_size(width(lpcrect), height(lpcrect));
 

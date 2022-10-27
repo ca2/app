@@ -2,6 +2,8 @@
 
 
 #include "key.h"
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/collection/address_array.h"
 
 
 namespace database

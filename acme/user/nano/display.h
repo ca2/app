@@ -5,6 +5,7 @@
 
 
 #include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/primitive/object.h"
 
 
 namespace nano

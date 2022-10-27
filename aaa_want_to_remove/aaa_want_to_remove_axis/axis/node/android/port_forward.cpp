@@ -9,8 +9,8 @@ namespace android
 {
 
 
-   port_forward::port_forward(::object * pobject) :
-      ::object(pobject)
+   port_forward::port_forward(::particle * pparticle) :
+      ::object(pparticle)
    {
 
    }

@@ -5,14 +5,14 @@ namespace hellobase
 {
 
 
-   application::application(::object * pobject) :
+   application::application(::particle * pparticle) :
       ::object(this),
       ::thread(this),
-      ::aura::application(pobject),
-      ::axis::application(pobject),
-      ::base::application(pobject),
-      ::aura::application(pobject),
-      ::sphere::application(pobject)
+      ::aura::application(pparticle),
+      ::axis::application(pparticle),
+      ::base::application(pparticle),
+      ::aura::application(pparticle),
+      ::sphere::application(pparticle)
    {
 
       m_ptemplateHelloBaseMain = nullptr;
@@ -152,10 +152,10 @@ namespace hellobase
 
 
 extern "C"
-::acme::library * app_hellobase_get_new_library(::object * pobject)
+::acme::library * app_hellobase_get_new_library(::particle * pparticle)
 {
 
-   return memory_new ::apex::single_application_library < ::hellobase::application > (pobject, "app/hellobase");
+   return memory_new ::apex::single_application_library < ::hellobase::application > (pparticle, "app/hellobase");
 
 }
 

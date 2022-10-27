@@ -41,7 +41,7 @@ namespace linux
 
          set_get_file_content_type_function(&core_linux_get_file_content_type);
 
-         defer_create_mutex();
+         defer_create_synchronization();
          //begin();
 
          //SHGetImageList(SHIL_SMALL, IID_IImageList, m_pimagelistSmall);
@@ -108,7 +108,7 @@ namespace linux
 //
 //         {
 //
-//            synchronous_lock synchronouslock(mutex());
+//            synchronous_lock synchronouslock(this->synchronization());
 //
 //            if (m_imagemap.lookup(imagekey, iImage))
 //            {
@@ -183,7 +183,7 @@ namespace linux
 ////         if (!b48 && shfi48.hIcon != nullptr)
 ////         {
 ////            ::DestroyIcon(shfi48.hIcon);
-////         }         synchronous_lock synchronouslock(mutex());
+////         }         synchronous_lock synchronouslock(this->synchronization());
 ////
 ////         m_imagemap.set_at(imagekey, iImage);
 ////
@@ -510,22 +510,22 @@ namespace linux
 //
 
 
-      shell::e_folder shell::get_folder_type(::matter * pobject, const char * lpcsz)
+      shell::e_folder shell::get_folder_type(::particle * pparticle, const char * lpcsz)
       {
 
-         return get_folder_type(pobject, utf8_to_unicode(lpcsz));
+         return get_folder_type(pparticle, utf8_to_unicode(lpcsz));
 
       }
 
 
-      shell::e_folder shell::get_folder_type(::matter * pobject, const widechar * lpcszPath)
+      shell::e_folder shell::get_folder_type(::particle * pparticle, const widechar * lpcszPath)
       {
 
          string strPath;
 
          unicode_to_utf8(strPath, lpcszPath);
 
-         if (         auto psystem = m_psystem;
+         if (         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -548,7 +548,7 @@ pacmedirectory->is(strPath))
       void shell::on_update_sizes_interest()
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_iaSize.erase_all();
 
@@ -798,9 +798,9 @@ pacmedirectory->is(strPath))
 
             pimage->get_graphics()->StretchBlt(0, 0, 48, 48, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height());
 
-            synchronous_lock sl1(m_pimagelistHover[48]->mutex());
+            synchronous_lock sl1(m_pimagelistHover[48]->synchronization());
 
-            synchronous_lock sl2(m_pimagelist[48]->mutex());
+            synchronous_lock sl2(m_pimagelist[48]->synchronization());
 
             iImage = m_pimagelist[16]->add_image(image16, 0, 0);
 
@@ -868,7 +868,7 @@ pacmedirectory->is(strPath))
 //
 //
 //
-//         synchronous_lock synchronouslock(&m_mutexQueue);
+//         synchronous_lock synchronouslock(m_pmutexQueue);
 //
 //         while (task_get_run())
 //         {
@@ -947,7 +947,7 @@ pacmedirectory->is(strPath))
 //
 //            {
 //
-//               synchronous_lock synchronouslock(mutex());
+//               synchronous_lock synchronouslock(this->synchronization());
 //
 //               if (m_imagemap.lookup(imagekey, iImage))
 //               {
@@ -962,7 +962,7 @@ pacmedirectory->is(strPath))
 //
 //            {
 //
-//               synchronous_lock synchronouslock(&m_mutexQueue);
+//               synchronous_lock synchronouslock(m_pmutexQueue);
 //
 //               m_keyptra.add(pstore);
 //
@@ -972,7 +972,7 @@ pacmedirectory->is(strPath))
 //
 //            iImage = get_foo_image(nullptr, oswindow, imagekey, imagekey.m_cr);
 //
-//            synchronous_lock synchronouslock(mutex());
+//            synchronous_lock synchronouslock(this->synchronization());
 //
 //            m_imagemap.set_at(imagekey, iImage);
 //
@@ -1018,7 +1018,7 @@ pacmedirectory->is(strPath))
 
             {
 
-               synchronous_lock synchronouslock(mutex());
+               synchronous_lock synchronouslock(this->synchronization());
 
                if (m_imagemap.lookup(imagekey, iImage))
                {
@@ -1031,7 +1031,7 @@ pacmedirectory->is(strPath))
 
             iImage = get_file_image(imagekey);
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             m_imagemap.set_at(imagekey, iImage);
 

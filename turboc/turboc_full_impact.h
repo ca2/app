@@ -11,7 +11,7 @@ namespace turboc
    public:
 
 
-      full_impact(::object * pobject);
+      full_impact(::particle * pparticle);
       virtual ~full_impact();
 
 

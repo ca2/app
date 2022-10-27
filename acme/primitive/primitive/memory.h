@@ -42,7 +42,7 @@ public:
    bool        m_bAligned;
 
 
-   memory(::matter * pobject = nullptr) { m_memory.m_pprimitivememory = this; m_bAligned = false; }
+   memory(::particle * pparticle = nullptr) { m_memory.m_pprimitivememory = this; m_bAligned = false; }
    memory(enum_create_new, bool bAligned);
    template < primitive_integral INTEGRAL >
    memory(INTEGRAL i, bool bAligned = false) { m_memory.m_pprimitivememory = this; m_bAligned = bAligned; set_size(i); }

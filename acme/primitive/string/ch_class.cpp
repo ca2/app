@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "x/x_charcategory2.h"
 #include "x/x_charcategory_names.h"
+#include "ch_class.h"
+#include "string.h"
 
 
 void * gen_ch_class_reference_tables();

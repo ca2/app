@@ -84,7 +84,7 @@
 //   watch_id os_watcher::add_watch(const ::file::path & directory,  listener * pwatcher, bool bRecursive)
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      i32 wd = inotify_add_watch (mFD, directory, IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
 //
@@ -164,7 +164,7 @@
 //   void os_file_watcher::erase_watch(const string & directory)
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      WatchMap::pair * ppair = m_watchmap.get_start();
 //
@@ -188,7 +188,7 @@
 //   void os_file_watcher::erase_watch(atom watchid)
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      WatchMap::pair * ppair = m_watchmap.plookup(watchid);
 //
@@ -209,7 +209,7 @@
 //   string os_file_watcher::watch_path(atom atom)
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      return m_watchmap[atom]->m_strDirName;
 //
@@ -232,7 +232,7 @@
 //   bool os_file_watcher::select()
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      FD_SET(mFD, (fd_set *) m_pDescriptorSet);
 //

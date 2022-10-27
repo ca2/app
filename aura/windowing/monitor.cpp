@@ -52,7 +52,7 @@ namespace windowing
    void monitor::get_monitor_rectangle(::RECTANGLE_I32 & rectangle)
    {
 
-      auto psession = m_psystem->m_paurasession;
+      auto psession = acmesystem()->m_paurasession;
 
       auto pdesktopenvironment = psession->user()->m_pdesktopenvironment;
 
@@ -66,7 +66,7 @@ namespace windowing
    void monitor::get_workspace_rectangle(::RECTANGLE_I32 & rectangle)
    {
 
-      auto psession = m_psystem->m_paurasession;
+      auto psession = acmesystem()->m_paurasession;
 
       auto pdesktopenvironment = psession->user()->m_pdesktopenvironment;
 

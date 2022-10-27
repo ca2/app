@@ -1,6 +1,10 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/primitive/payload.h"
+
+
 class http_socket;
 
 
@@ -9,7 +13,7 @@ namespace http
 
 
    class CLASS_DECL_APEX cookie :
-      virtual public object
+      virtual public ::object
    {
    public:
 

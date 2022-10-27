@@ -10,7 +10,7 @@ namespace database
    database::database()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 

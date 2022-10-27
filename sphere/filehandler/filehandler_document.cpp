@@ -5,12 +5,12 @@ namespace filehandler
 {
 
 
-   document::document(::object * pobject) :
-      ::object(pobject),
-      ::data::data_container_base(pobject),
-      ::user::document(pobject),
-      ::user::document(pobject),
-      form_document(pobject)
+   document::document(::particle * pparticle) :
+      ::object(pparticle),
+      ::data::data_container_base(pparticle),
+      ::user::document(pparticle),
+      ::user::document(pparticle),
+      form_document(pparticle)
    {
 
    }

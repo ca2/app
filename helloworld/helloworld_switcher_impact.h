@@ -15,7 +15,7 @@ namespace helloworld
       impact *                  m_pimpact;
 
 
-      switcher_impact(::object * pobject);
+      switcher_impact(::particle * pparticle);
       virtual ~switcher_impact();
 
 

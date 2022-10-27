@@ -2,6 +2,8 @@
 
 
 #include "color32.h"
+#include "opacity.h"
+
 
 
 //#define  HLSMAX   100.0 /* H,L, and S vary over 0-HLSMAX */

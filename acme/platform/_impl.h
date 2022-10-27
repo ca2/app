@@ -74,7 +74,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 //
 //
 //   template < class APP >
-//   ::pointer<::acme::application>single_application_library < APP > ::get_new_application(::matter * pobject, const char * pszAppId)
+//   ::pointer<::acme::application>single_application_library < APP > ::get_new_application(::particle * pparticle, const char * pszAppId)
 //   {
 //
 //      if(!contains_app(pszAppId))
@@ -104,7 +104,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 //
 //      }
 //
-//      auto estatus = papp->initialize(pobject);
+//      auto estatus = papp->initialize(pparticle);
 //
 //      if (!estatus)
 //      {
@@ -168,9 +168,9 @@ void memory_counter_increment(T * pthis)
 
       //synchronous_lock synchronouslock(g_pmutexMemoryCounters);
 
-      //int i = atoi(m_psystem->m_pacmefile->as_string(path));
+      //int i = atoi(acmefile()->as_string(path));
 
-      //m_psystem->m_pacmefile->put_contents(path, __string(i + 1));
+      //acmefile()->put_contents(path, __string(i + 1));
    }
 
 }
@@ -187,9 +187,9 @@ void memory_counter_decrement(T * pthis)
 
       _memory_counter_decrement(psz);
 
-      //int i = atoi(m_psystem->m_pacmefile->as_string(path));
+      //int i = atoi(acmefile()->as_string(path));
 
-      //m_psystem->m_pacmefile->put_contents(path, __string(i - 1));
+      //acmefile()->put_contents(path, __string(i - 1));
 
    }
 
@@ -234,24 +234,24 @@ namespace acme
 
 
 template < typename BASE >
-inline ::pointer<BASE>alloc_object(::matter * pobject)
+inline ::pointer<BASE>alloc_object(::particle * pparticle)
 {
 
-   return BASE::g_pallocfactory->alloc_object(pobject);
+   return BASE::g_pallocfactory->alloc_object(pparticle);
 
 }
 
 
 template < typename BASE >
-inline ::pointer<BASE>& alloc_object(::pointer<BASE> p, ::matter * pobject)
+inline ::pointer<BASE>& alloc_object(::pointer<BASE> p, ::particle * pparticle)
 {
 
-   return p = ::alloc_object < BASE > (pobject);
+   return p = ::alloc_object < BASE > (pparticle);
 
 }
 
 //
-//inline class ::synchronization_object * matter::get_mutex()
+//inline class ::synchronization * matter::get_mutex()
 //{
 //
 //   return ::is_null(this) ? nullptr : mutex();
@@ -501,170 +501,6 @@ inline RESULT muldiv(MULTIPLICATOR iMultiplicator, NUMERATOR iNumerator, DENOMIN
 #endif // __cplusplus_winrt
 
 
-template < class c_derived >
-inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   if (::is_null(pca))
-   {
-
-      return -1;
-
-   }
-
-   return pca->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-}
-
-
-template < class c_derived, typename SOURCE >
-inline i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
-{
-
-   c_derived * pderived = dynamic_cast <c_derived *>((SOURCE *)psource);
-
-   if (::is_null(pderived))
-   {
-
-      throw ::exception(error_wrong_type);
-
-   }
-
-   pca = pderived;
-
-   return increment_reference_count(pca);
-
-}
-
-
-template < class c_derived, typename SOURCE >
-inline i64 increment_reference_count(c_derived *& pderived, const ::pointer<SOURCE>& psource)
-{
-
-   return increment_reference_count(pderived, psource.m_p);
-
-}
-
-
-template < class c_derived >
-inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   c_derived * ptr = pca;
-
-   if (::is_null(ptr))
-   {
-
-      return -1;
-
-   }
-
-#ifdef _DEBUG
-
-//   ::atom atom = p->m_atom;
-   //char * pszType = nullptr;
-   //
-   //try
-   //{
-
-   //   pszType = _strdup(typeid(*p).name());
-
-   //}
-   //catch (...)
-   //{
-
-   //   ::output_debug_string("exception release strdup(typeid(*p).name())\n");
-
-   //}
-
-#endif
-
-   try
-   {
-
-      pca = nullptr;
-
-   }
-   catch (...)
-   {
-
-      //::output_debug_string("exception release pca = nullptr; (" + string(atom) + ")\n");
-      ::output_debug_string("exception release pca = nullptr; \n");
-
-   }
-
-   try
-   {
-
-      return ptr->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-   }
-   catch (...)
-   {
-
-      ::output_debug_string("exception release p->release() \n");
-
-   }
-
-   return -1;
-
-}
-
-
-//template < class COMPOSITE >
-//inline i64 release(::pointer<COMPOSITE>& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-//{
-//
-//   return release(pcomposite.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-//
-//}
-
-
-template < typename TYPE >
-inline i64 release(::pointer<TYPE>& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
-
-
-template < typename TYPE >
-inline i64 __finalize(::pointer<TYPE> pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-   
-   if (!pointer) return -1;
-   
-   pointer->destroy();
-   
-   return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
-
-//
-//template < class REFERENCE >
-//inline i64 release(::pointer<REFERENCE>& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-//{
-//
-//   return release(preference.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-//
-//}
-
-
-template < class c_derived >
-inline i64 ref_count(c_derived * pca)
-{
-
-   if (pca == nullptr)
-   {
-
-      return -1;
-
-   }
-
-   return pca->get_ref_count();
-
-}
 
 
 //#ifndef __cplusplus_winrt

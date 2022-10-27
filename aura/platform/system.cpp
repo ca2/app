@@ -1,12 +1,12 @@
 ﻿#include "framework.h"
 
-#include "aura/gpu/gpu/_.h"
+//#include "aura/gpu/gpu/_.h"
 #include "aura/gpu/gpu/_gpu.h"
 #include "acme/platform/system_setup.h"
 #include "acme/primitive/text/context.h"
 #include "apex/platform/history.h"
 #include "apex/crypto/crypto.h"
-#include "aura/gpu/gpu/_.h"
+//#include "aura/gpu/gpu/_.h"
 #include "aura/constant/idpool.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -56,7 +56,7 @@ extern "C"
 //void enum_display_monitors(::aura::system * psystem);
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_AURA ::pointer<::user::interaction>create_system_message_window(::object * pobject);
+CLASS_DECL_AURA ::pointer<::user::interaction>create_system_message_window(::particle * pparticle);
 #endif
 
 
@@ -67,7 +67,7 @@ CLASS_DECL_AURA ::pointer<::user::interaction>create_system_message_window(::obj
 extern string_map < ::pointer<::acme::library >>* g_pmapLibrary;
 
 
-CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
+CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
 
 
 #ifdef WINDOWS
@@ -79,7 +79,7 @@ CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel
 
 void os_post_quit();
 
-//extern ::mutex * m_mutexLibrary;
+//extern ::pointer< ::mutex > m_pmutexLibrary;
 
 
 
@@ -113,9 +113,9 @@ namespace aura
    //class ::atom system::idEmpty;
 
    //system * system::g_p = nullptr;
-   ::mutex * g_pmutexImage = nullptr;
+   ::pointer< ::mutex > g_pmutexImage = nullptr;
 
-   ::mutex * get_image_mutex()
+   ::pointer< ::mutex > get_image_mutex()
    {
 
       return g_pmutexImage;
@@ -180,12 +180,12 @@ namespace aura
    }
 
 
-   void system::initialize(::object * pobject)
+   void system::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::aqua::system::initialize(pobject);
+      ::aqua::system::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -198,7 +198,7 @@ namespace aura
 
       enable_trace_category(e_trace_category_prodevian, false);
     
-      g_pmutexImage = memory_new ::mutex();
+      g_pmutexImage = memory_new ::pointer < ::mutex >();
 
       m_bProdevianMouse = false;
 
@@ -223,9 +223,9 @@ namespace aura
 
       //   bool bGlobalEnableStackTrace = true;
 
-      //   ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedirectory->config() / "system/no_exception_stack_trace.txt";
+      //   ::file::path pathNoExceptionStackTrace = acmedirectory()->config() / "system/no_exception_stack_trace.txt";
 
-      //   if (m_psystem->m_pacmefile->exists(pathNoExceptionStackTrace))
+      //   if (acmefile()->exists(pathNoExceptionStackTrace))
       //   {
 
       //      bGlobalEnableStackTrace = false;
@@ -362,7 +362,7 @@ namespace aura
 //   ::acme::library * system::get_library(const ::string & pszLibrary1, bool bOpenCa2)
 //   {
 //
-//      synchronous_lock synchronouslock(m_mutexLibrary);
+//      synchronous_lock synchronouslock(m_pmutexLibrary);
 //
 //      string strLibrary(pszLibrary1);
 //
@@ -742,12 +742,12 @@ namespace aura
 //
 //         string str;
 //
-//         str = m_psystem->m_pacmedirectory->home() / ".profile";
+//         str = acmedirectory()->home() / ".profile";
 //
-//         if(!m_psystem->m_pacmefile->exists(str))
+//         if(!acmefile()->exists(str))
 //         {
 //
-//            str = m_psystem->m_pacmedirectory->home() / ".bashrc";
+//            str = acmedirectory()->home() / ".bashrc";
 //
 //         }
 //
@@ -858,7 +858,7 @@ namespace aura
 //      //add_factory_item < application_bias >();
 //      add_factory_item < command_line >();
 //      add_factory_item < http::context >();
-//      //add_factory_item < ::mutex >();
+//      //add_factory_item < ::pointer < ::mutex > >();
 //      //add_factory_item < event >();
 //
 //      //if (!::aura::application::process_init())
@@ -882,13 +882,13 @@ namespace aura
 //
 //                  string str("installing or unstalling as root : getuid() %d", uid);
 //
-//                           auto psystem = m_psystem;
+//                           auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
 //pacmedirectory->create("/ca2core");
 //
-//                  m_psystem->m_pacmefile->put_contents("/ca2core/teste.txt", str, str.length());
+//                  acmefile()->put_contents("/ca2core/teste.txt", str, str.length());
 //                  */
 //#endif
 //
@@ -1150,7 +1150,7 @@ namespace aura
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&m_psubsystem->m_mutexLibrary4);
+      synchronous_lock synchronouslock(&m_psubsystem->m_pmutexLibrary4);
 
       ///estatus = 
       
@@ -1175,9 +1175,9 @@ namespace aura
 
       string str;
 
-      ::file::path path = m_psystem->m_pacmedirectory->config() / "system/draw2d.txt";
+      ::file::path path = acmedirectory()->config() / "system/draw2d.txt";
 
-      str = m_psystem->m_pacmefile->as_string(path);
+      str = acmefile()->as_string(path);
 
       if(str.has_char())
       {
@@ -1186,9 +1186,9 @@ namespace aura
 
       }
 
-      path = m_psystem->m_pacmedirectory->appdata() / "draw2d.txt";
+      path = acmedirectory()->appdata() / "draw2d.txt";
 
-      str = m_psystem->m_pacmefile->as_string(path);
+      str = acmefile()->as_string(path);
 
       if(str.has_char())
       {
@@ -1740,11 +1740,11 @@ namespace aura
       //
       //         ::file::path pathLocal = local_get_matter_path("app/_matter/main");
       //
-      //         bool bFileSystemMatter =          auto psystem = m_psystem;
+      //         bool bFileSystemMatter =          auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedirectory->is(pathSide) ||          auto psystem = m_psystem;
+//pacmedirectory->is(pathSide) ||          auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -1964,9 +1964,9 @@ namespace aura
       //try
       //{
 
-      //   auto psystem = m_psystem->m_paurasystem;
+      //   auto psystem = acmesystem()->m_paurasystem;
 
-      //   synchronous_lock synchronouslock(&m_mutexLibrary2);
+      //   synchronous_lock synchronouslock(m_pmutexLibrary2);
 
       //   if (m_mapLibrary["draw2d"].is_set() && m_mapLibrary["draw2d"]->is_opened())
       //   {
@@ -2298,21 +2298,21 @@ namespace aura
    //}
 
 
-//   ::mutex * system::get_openweather_city_mutex()
+//   ::pointer< ::mutex > system::get_openweather_city_mutex()
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (m_spmutexOpenweatherCity.is_null())
 //      {
 //
 //#ifdef _UWP
 //
-//         m_spmutexOpenweatherCity = __new(::mutex());
+//         m_spmutexOpenweatherCity = __new(::pointer < ::mutex >());
 //
 //#else
 //
-//         m_spmutexOpenweatherCity = __new(::mutex(e_create_new, false, "Global\\ca2_weather_city"));
+//         m_spmutexOpenweatherCity = __new(::pointer < ::mutex >(e_create_new, false, "Global\\ca2_weather_city"));
 //
 //#endif
 //
@@ -2323,14 +2323,14 @@ namespace aura
 //   }
 
 
-   //void system::on_allocation_error(const ::string & str, ::object * pobject)
+   //void system::on_allocation_error(const ::string & str, ::particle * pparticle)
    //{
 
    //   string strMessage("Allocation Error!! : ");
 
    //   strMessage += "Type: " + str;
 
-   //   //if (::is_null(pobject))
+   //   //if (::is_null(pparticle))
    //   //{
 
    //   //   strMessage += " : (Parent: (nullptr))";
@@ -2343,7 +2343,7 @@ namespace aura
 
    //   //   try
    //   //   {
-   //   //      strMessage += __type_name(pobject);
+   //   //      strMessage += __type_name(pparticle);
 
    //   //   }
    //   //   catch (...)
@@ -2351,7 +2351,7 @@ namespace aura
 
    //   //   }
 
-   //   //   strMessage += "(0x" + ::hex::lower_from((iptr)pobject) + ") )";
+   //   //   strMessage += "(0x" + ::hex::lower_from((iptr)pparticle) + ") )";
 
    //   //}
 
@@ -2544,7 +2544,7 @@ namespace aura
 //      if(string(pszId).has_char())
 //      {
 //         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(pszAppName, pszId));
-//         ::mutex * pmutex = ::mutex::open_mutex(get_global_id_mutex_name(pszAppName,pszId));
+//         ::pointer< ::mutex > pmutex = ::pointer < ::mutex >::open_mutex(get_global_id_mutex_name(pszAppName,pszId));
 //         if(pmutex == nullptr)
 //         {
 //
@@ -2581,7 +2581,7 @@ namespace aura
 //      else
 //      {
 //         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_mutex_name(pszAppName));
-//         ::mutex * pmutex = ::mutex::open_mutex(get_global_mutex_name(pszAppName));
+//         ::pointer< ::mutex > pmutex = ::pointer < ::mutex >::open_mutex(get_global_mutex_name(pszAppName));
 //         if(pmutex == nullptr)
 //         {
 //            string strApp = pszAppName;
@@ -2620,7 +2620,7 @@ namespace aura
 //      if(strId.has_char())
 //      {
 //         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_id_mutex_name(pszAppName, strId));
-//         ::mutex * pmutex = ::mutex::open_mutex(get_local_id_mutex_name(pszAppName,strId));
+//         ::pointer< ::mutex > pmutex = ::pointer < ::mutex >::open_mutex(get_local_id_mutex_name(pszAppName,strId));
 //         if(pmutex == nullptr)
 //         {
 //            string strApp;
@@ -2656,7 +2656,7 @@ namespace aura
 //      else
 //      {
 //         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_mutex_name(pszAppName));
-//         ::mutex * pmutex = ::mutex::open_mutex(get_local_mutex_name(pszAppName));
+//         ::pointer< ::mutex > pmutex = ::pointer < ::mutex >::open_mutex(get_local_mutex_name(pszAppName));
 //         if(pmutex == nullptr)
 //         {
 //            string strApp;
@@ -2869,7 +2869,7 @@ namespace aura
    //::file::path system::local_get_matter_path()
    //{
 
-   //   return m_psystem->m_pacmedirectory->ca2roaming() / "appmatter";
+   //   return acmedirectory()->ca2roaming() / "appmatter";
 
    //}
 
@@ -2893,7 +2893,7 @@ namespace aura
    //::file::path system::local_get_matter_cache_path()
    //{
 
-   //   return m_psystem->m_pacmedirectory->ca2roaming() / "cache/appmatter";
+   //   return acmedirectory()->ca2roaming() / "cache/appmatter";
 
    //}
 
@@ -3164,7 +3164,7 @@ namespace aura
    //bool system::defer_accumulate_on_open_file(string_array stra, string strExtra)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   m_durationCommandLineLast.Now();
 
@@ -3242,7 +3242,7 @@ namespace aura
    //bool system::on_application_menu_action(const ::string & pszCommand)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   auto psession = get_session();
 
@@ -3553,7 +3553,7 @@ namespace aura
 
 #elif defined(LINUX)
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       return m_rectangleaMonitor.get_count();
 
@@ -3597,7 +3597,7 @@ namespace aura
 //
 //#elif defined(LINUX)
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (iMonitor < 0 || iMonitor >= get_monitor_count())
 //      {
@@ -3743,7 +3743,7 @@ namespace aura
 //
 //#elif defined(LINUX)
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (iWorkspace < 0 || iWorkspace >= get_workspace_count())
 //      {
@@ -3865,13 +3865,13 @@ namespace aura
       if (m_ptrace.is_null())
       {
 
-         __simple_tracea(trace_object(pobject), elevel, pszFunction, pszFile, iLine, psz);
+         __simple_tracea(trace_object(pparticle), elevel, pszFunction, pszFile, iLine, psz);
 
          return;
 
       }
 
-      log().__tracea(trace_object(pobject), elevel, pszFunction, pszFile, iLine, psz);
+      log().__tracea(trace_object(pparticle), elevel, pszFunction, pszFile, iLine, psz);
 
    }*/
 
@@ -3923,7 +3923,7 @@ namespace aura
 //      if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
 //      {
 //
-//         strWeather = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->system() / "browser_weather.txt");
+//         strWeather = pcontext->m_papexcontext->file().as_string(acmedirectory()->system() / "browser_weather.txt");
 //
 //      }
 //
@@ -4169,7 +4169,7 @@ namespace aura
 //
 //      pathDir = path.folder();
 //
-//      ::file::path pathAppDataDir(m_psystem->m_pacmedirectory->ca2roaming());
+//      ::file::path pathAppDataDir(acmedirectory()->ca2roaming());
 //
 //      ::file::path pathProfile;
 //
@@ -4251,7 +4251,7 @@ namespace aura
 //
 //            }
 //
-//            strParam += " " + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+//            strParam += " " + acmefile()->as_string(         auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -4269,7 +4269,7 @@ namespace aura
 //
 //         sa.add("--user-data-dir=" + pathProfile + "");
 //
-//         string strChrome = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+//         string strChrome = acmefile()->as_string(         auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -4298,7 +4298,7 @@ namespace aura
 //
 //         strParam += "--user-data-dir=\"" + pathProfile + "\"";
 //
-//         strParam += " " + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+//         strParam += " " + acmefile()->as_string(         auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -4466,11 +4466,11 @@ namespace aura
 //      if (strBrowser.has_char())
 //      {
 //
-//         pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedirectory->system() / "browser.txt", strBrowser);
+//         pcontext->m_papexcontext->file().put_text_utf8(acmedirectory()->system() / "browser.txt", strBrowser);
 //
-//         pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedirectory->system() / "browser_path.txt", strBrowserPath);
+//         pcontext->m_papexcontext->file().put_text_utf8(acmedirectory()->system() / "browser_path.txt", strBrowserPath);
 //
-//         pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedirectory->system() / "browser_dir.txt", strBrowserDir);
+//         pcontext->m_papexcontext->file().put_text_utf8(acmedirectory()->system() / "browser_dir.txt", strBrowserDir);
 //
 //      }
 //
@@ -4514,7 +4514,7 @@ namespace aura
 //   ::thread* system::get_task(itask_t itask)
 //   {
 //
-//      synchronous_lock synchronouslock(&m_mutexTask);
+//      synchronous_lock synchronouslock(m_pmutexTask);
 //
 //      return m_threadmap[itask];
 //
@@ -4524,7 +4524,7 @@ namespace aura
 //   itask_t system::get_thread_id(::thread* pthread)
 //   {
 //
-//      synchronous_lock synchronouslock(&m_mutexTask);
+//      synchronous_lock synchronouslock(m_pmutexTask);
 //
 //      itask_t itask = null_itask;
 //
@@ -4543,7 +4543,7 @@ namespace aura
 //   void system::set_thread(itask_t itask, ::thread* pthread)
 //   {
 //
-//      synchronous_lock synchronouslock(&m_mutexTask);
+//      synchronous_lock synchronouslock(m_pmutexTask);
 //
 //      m_threadmap[itask].reset(pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(this, "thread::thread_set"));
 //
@@ -4571,7 +4571,7 @@ namespace aura
 //   void system::unset_thread(itask_t itask, ::thread * pthread)
 //   {
 //
-//      synchronous_lock synchronouslock(&m_mutexTask);
+//      synchronous_lock synchronouslock(m_pmutexTask);
 //
 //#if OBJECT_REFERENCE_COUNT_DEBUG
 //
@@ -4646,7 +4646,7 @@ namespace aura
 
    //   }
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   auto & threadgroupa = m_taskgroupmap[epriority];
 
@@ -4667,7 +4667,7 @@ namespace aura
    //::task_tool * system::task_tool(::enum_task_tool etool)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   auto& threadtoola = m_tasktoolmap[etool];
 
@@ -4980,7 +4980,7 @@ namespace aura
 //
 //   path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 //
-//   strBuild = m_psystem->m_pacmefile->as_string(path);
+//   strBuild = acmefile()->as_string(path);
 //
 //   return strBuild.has_char();
 //
@@ -4994,7 +4994,7 @@ namespace aura
 //
 //   path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 //
-//   return m_psystem->m_pacmefile->put_contents(path, pszBuild);
+//   return acmefile()->put_contents(path, pszBuild);
 //
 //}
 //
@@ -5022,7 +5022,7 @@ namespace aura
 //CLASS_DECL_AURA ::file::path get_last_run_application_path_file(string strAppId)
 //{
 //
-//   ::file::path pathFile = m_psystem->m_pacmedirectory->local() / "appdata" / strAppId / "last_run_path.txt";
+//   ::file::path pathFile = acmedirectory()->local() / "appdata" / strAppId / "last_run_path.txt";
 //
 //   return pathFile;
 //
@@ -5034,7 +5034,7 @@ namespace aura
 //
 //   ::file::path pathFile = get_last_run_application_path_file(strAppId);
 //
-//   ::file::path path = ::m_psystem->m_pacmefile->as_string(pathFile);
+//   ::file::path path = ::acmefile()->as_string(pathFile);
 //
 //   return path;
 //
@@ -5044,11 +5044,11 @@ namespace aura
 //CLASS_DECL_AURA bool set_last_run_application_path(string strAppId)
 //{
 //
-//   ::file::path path = m_psystem->m_pacmepath->app_module();
+//   ::file::path path = acmepath()->app_module();
 //
 //   ::file::path pathFile = get_last_run_application_path_file(strAppId);
 //
-//   return m_psystem->m_pacmefile->put_contents(pathFile, path);
+//   return acmefile()->put_contents(pathFile, path);
 //
 //}
 //
@@ -5197,10 +5197,10 @@ namespace aura
      //}
 
 
-  //   void system::initialize_system(::object* pobject, app_core* pappcore)
+  //   void system::initialize_system(::object* pparticle, app_core* pappcore)
   //   {
   //
-  //      auto estatus = ::aura::system::initialize_system(pobject, pappcore);
+  //      auto estatus = ::aura::system::initialize_system(pparticle, pappcore);
   //
   //      if (!estatus)
   //      {
@@ -5209,7 +5209,7 @@ namespace aura
   //
   //      }
   //
-  //      //estatus = ::aura::application::initialize(pobject);
+  //      //estatus = ::aura::application::initialize(pparticle);
   //
   //     //if (!estatus)
   //     //{
@@ -5233,7 +5233,7 @@ namespace aura
   //
   //
   //
-  //            //estatus = ::aura::application::initialize(pobject);
+  //            //estatus = ::aura::application::initialize(pparticle);
   //
   //            //if (!estatus)
   //            //{
@@ -5264,7 +5264,7 @@ namespace aura
   //      //      m_window                                  = nullptr;
   //      //#endif
   //
-  //            //::aura::application * papp = ::get_app(pobject);
+  //            //::aura::application * papp = ::get_app(pparticle);
   //
   //            //if(papp == nullptr)
   //            //{
@@ -5275,7 +5275,7 @@ namespace aura
   //            //else
   //            //{
   //
-  //            //   set("parent_system") = papp->m_psystem;
+  //            //   set("parent_system") = papp->acmesystem();
   //
   //            //}
   //
@@ -5998,7 +5998,7 @@ namespace aura
    //}
 
 
-   void system::on_allocation_error(const ::string& str, ::object* pobject)
+   void system::on_allocation_error(const ::string& str, ::object* pparticle)
    {
 
       string strMessage;
@@ -6318,10 +6318,10 @@ namespace aura
 
 
 //
-//   void system::initialize_system(::object* pobject, ::app_core* pappcore)
+//   void system::initialize_system(::object* pparticle, ::app_core* pappcore)
 //   {
 //
-//      auto estatus = ::aura::system::initialize_system(pobject, pappcore);
+//      auto estatus = ::aura::system::initialize_system(pparticle, pappcore);
 //
 //      if (!estatus)
 //      {
@@ -6330,7 +6330,7 @@ namespace aura
 //
 //      }
 //
-//      //estatus = ::aura::application::initialize(pobject);
+//      //estatus = ::aura::application::initialize(pparticle);
 //
 //      //if (!estatus)
 //      //{
@@ -6780,7 +6780,7 @@ namespace aura
    //   command::command()
    //   {
    //
-   //      defer_create_mutex();
+   //      defer_create_synchronization();
    //
    //   }
 
@@ -6801,7 +6801,7 @@ namespace aura
    //bool system::on_application_menu_action(const ::string & pszCommand)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   auto psession = get_session();
 

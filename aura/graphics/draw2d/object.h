@@ -29,11 +29,11 @@ namespace draw2d
       ~object() override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
       
       
       inline ::aura::system* get_system();

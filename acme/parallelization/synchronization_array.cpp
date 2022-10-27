@@ -1,28 +1,33 @@
 #include "framework.h"
+#include "synchronization_array.h"
 #include "acme/operating_system.h"
+#include "acme/exception/exception.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/operating_system/ansi/_pthread.h"
-
-
-#endif
-
-
-#if !defined(WINDOWS)
-
-
 #define MWMO_WAITALL        0x0001
 
 
-::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
-
-::e_status WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable);
+#include "acme/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/posix/parallelization_pthread.h"
 
 
 #endif
+
+
+//#if defined(WINDOWS)
+//
+//
+//
+//
+////::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
+//
+////::e_status WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable);
+//
+//
+//#endif
 
 
 synchronization_array::synchronization_array()
@@ -98,7 +103,7 @@ bool synchronization_array::is_empty() const
 }
 
 
-bool synchronization_array::add_item(synchronization_object * psync)
+bool synchronization_array::add_item(::particle * pparticle)
 {
 
    if (m_synchronizationa.size() >= MAXIMUM_WAIT_OBJECTS)
@@ -123,7 +128,7 @@ bool synchronization_array::add_item(synchronization_object * psync)
 
 #endif
 
-   m_synchronizationa.add(psync);
+   m_synchronizationa.add(pparticle);
 
    return true;
 
@@ -158,10 +163,10 @@ bool synchronization_array::add(const synchronization_array& synca)
 }
 
 
-void synchronization_array::erase(class synchronization_object * psync)
+void synchronization_array::erase(::particle * pparticle)
 {
 
-   m_synchronizationa.erase(psync);
+   m_synchronizationa.erase(pparticle);
 
 #ifdef WINDOWS
 
@@ -189,9 +194,9 @@ void synchronization_array::erase(index index)
 
    }
 
-   synchronization_object* psync = m_synchronizationa[index];
+   auto pparticle = m_synchronizationa[index];
 
-   erase(psync);
+   erase_synchronization(pparticle);
 
 }
 
@@ -297,14 +302,14 @@ void synchronization_array::erase(index index)
 #define QS_ALLEVENTS 0xffffffffu
 #endif
 
-            estatus = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), wait, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
+            estatus = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_count(), synchronization_data(), wait, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
 
          }
          else
 #endif
          {
 
-            estatus = ::WaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), bWaitForAll, wait, true);
+            estatus = ::WaitForMultipleObjectsEx((::u32) synchronization_count(), synchronization_data(), bWaitForAll, wait, true);
 
          }
 

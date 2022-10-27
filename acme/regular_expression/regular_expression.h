@@ -4,8 +4,14 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/matter.h"
+
+
 namespace regular_expression
 {
+
+
+   class result;
 
 
    class CLASS_DECL_ACME regular_expression :

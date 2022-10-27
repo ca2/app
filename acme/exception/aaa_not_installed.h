@@ -14,7 +14,7 @@
 //    string      m_strSchema;
 
 
-//    not_installed(::matter * pobject = ::get_app_object(), const char * pszAppId, const char * pszPlatform = nullptr, const char * pszConfiguration = nullptr, const char * pszLocale = nullptr, const char * pszSchema = nullptr);
+//    not_installed(::particle * pparticle = ::get_app_object(), const char * pszAppId, const char * pszPlatform = nullptr, const char * pszConfiguration = nullptr, const char * pszLocale = nullptr, const char * pszSchema = nullptr);
 //    not_installed(const not_installed & e);
 //    virtual ~not_installed();
 

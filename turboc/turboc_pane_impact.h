@@ -14,7 +14,7 @@ namespace turboc
       ::turboc::impact *                     m_pflagview;
 
 
-      pane_impact(::object * pobject);
+      pane_impact(::particle * pparticle);
 	   virtual ~pane_impact();
 
       

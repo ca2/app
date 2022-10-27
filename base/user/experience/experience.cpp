@@ -38,7 +38,7 @@ namespace experience
    ::base::system * experience::get_system() const 
    {
       
-      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
    
    }
 

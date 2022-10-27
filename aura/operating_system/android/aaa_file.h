@@ -62,8 +62,8 @@ namespace android
       virtual ~file();
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
       virtual filesize get_position() const override;
@@ -112,8 +112,8 @@ namespace android
 
    //   void PASCAL OsErrorToException(::i32 lOsError);
    //   void PASCAL ErrnoToException(i32 nErrno);
-   //   void PASCAL ThrowOsError(::object * pobject, ::i32 lOsError, const ::string & lpszFileName = nullptr);
-   //   void PASCAL ThrowErrno(::object * pobject, i32 nErrno, const ::string & lpszFileName = nullptr);
+   //   void PASCAL ThrowOsError(::particle * pparticle, ::i32 lOsError, const ::string & lpszFileName = nullptr);
+   //   void PASCAL ThrowErrno(::particle * pparticle, i32 nErrno, const ::string & lpszFileName = nullptr);
 
 
    //}  // namespace file_exception

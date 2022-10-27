@@ -10,9 +10,9 @@ namespace prompt
 {
 
 
-   primary_impact::primary_impact(::object * pobject) :
-      ::object(pobject),
-      ::user::plain_edit(pobject)
+   primary_impact::primary_impact(::particle * pparticle) :
+      ::object(pparticle),
+      ::user::plain_edit(pparticle)
    {
 
       m_iCompromised = 0;

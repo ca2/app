@@ -56,12 +56,12 @@ namespace install
 
 #endif
 
-      if(m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
+      if(acmefile()->exists(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / "config\\plugin\\version.txt"))
-         strVersion = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+         strVersion = acmefile()->as_string(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -72,17 +72,17 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
    }
 
 
-   plugin::plugin(::object * pobject) :
-      ::object(pobject),
-      ::simple_ui::style(pobject),
-      ::aura::session(pobject),
-      ::axis::session(pobject),
-      hotplugin::plugin(pobject),
-      ::aura::ipc::base(pobject),
-      ::aura::ipc::tx(pobject),
-      ::aura::ipc::ipc(pobject),
-      m_canvas(pobject),
-      m_startca2(pobject)
+   plugin::plugin(::particle * pparticle) :
+      ::object(pparticle),
+      ::simple_ui::style(pparticle),
+      ::aura::session(pparticle),
+      ::axis::session(pparticle),
+      hotplugin::plugin(pparticle),
+      ::aura::ipc::base(pparticle),
+      ::aura::ipc::tx(pparticle),
+      ::aura::ipc::ipc(pparticle),
+      m_canvas(pparticle),
+      m_startca2(pparticle)
    {
 
       m_bCa2Login             = false;
@@ -383,9 +383,9 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
    }
 
-   plugin::thread_start_ca2::thread_start_ca2(::object * pobject) :
-      ::object(pobject),
-      thread(pobject)
+   plugin::thread_start_ca2::thread_start_ca2(::particle * pparticle) :
+      ::object(pparticle),
+      thread(pparticle)
    {
 
 //      m_durationRunLock = ::duration(84 + 77);
@@ -782,7 +782,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
          // erase install tag : should be turned into a function dependant of spalib at maximum
 
-         if(!node.load(m_psystem->m_pacmefile->as_string(dir::appdata() / "install.xml")))
+         if(!node.load(acmefile()->as_string(dir::appdata() / "install.xml")))
             goto run_install;
 
 
@@ -818,7 +818,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
          lpnodeType->erase_child(pnode);
 
-         m_psystem->m_pacmefile->put_contents(dir::appdata() / "install.xml", node.get_xml(nullptr));
+         acmefile()->put_contents(dir::appdata() / "install.xml", node.get_xml(nullptr));
 
       }
 
@@ -1667,9 +1667,9 @@ restart:
 
 #if !defined(CUBE) && !defined(ANDROID)
 
-::hotplugin::plugin * new_hotplugin(::object * pobject)
+::hotplugin::plugin * new_hotplugin(::particle * pparticle)
 {
-   return memory_new ::install::plugin(pobject);
+   return memory_new ::install::plugin(pparticle);
 }
 
 #endif

@@ -17,32 +17,35 @@ constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32L
 
 
 
-namespace acme { class system; }
+namespace acme { class system; class context; class library; }
 namespace acme { class application; }
 namespace apex { class application; }
 class thread;
+class task;
 class property_object;
 class task;
 class task_pool;
 class action_context;
 class object;
 class dump_context;
-class synchronization_object;
+//class synchronization;
 class __id;
 class string_exchange;
 class text_stream;
-class string;
-class wstring;
+//class string;
+//class wstring;
 class lparam;
+class timer_callback;
 namespace message { class message; }
 class payload;
 struct block;
 class property_set;
 class particle;
 class element;
-namespace operating_system { class department; }
+class matter;
 class exception_translator;
 class counter;
+class type;
 enum enum_zero_init
 {
 
@@ -58,6 +61,17 @@ namespace networking
 
 } // namespace networking
 
+
+namespace operating_system
+{
+
+   class department;
+
+   class process;
+
+} // namespace operating_system
+
+
 namespace regular_expression
 {
 
@@ -67,14 +81,39 @@ namespace regular_expression
 } // namespace regular_expression
 
 
+namespace file
+{
 
-//namespace topic
-//{
 
-   class topic;
-   class context;
+   class path;
+   class path_object;
+   class file_status;
 
-//} // namespace topic
+
+} // namespace file
+
+
+namespace data
+{
+
+
+   class node;
+   class item;
+
+
+} // namespace data
+
+
+class memory_base;
+
+
+class handler;
+class manager;
+class context;
+class topic;
+class extended_topic;
+
+
 namespace file
 {
 
@@ -135,8 +174,17 @@ namespace user
    class drag;
    class drag_client;
 
+   class primitive;
+   class element;
+   class primitive_impl;
+
+   class object;
+
 
 } // namespace user
+
+
+class conversation;
 
 
 class image;
@@ -223,6 +271,299 @@ inline integral_byte operator ""_gb(unsigned long long i)
 {
    return (memsize) (1024 * 1024 * 1024 * i);
 }
+
+
+
+
+class istring;
+
+
+class property_set;
+
+
+class payload_array;
+
+
+class property;
+
+
+class timer_future;
+
+
+namespace acme
+{
+
+   class Timer;
+
+};
+
+
+class timer;
+class timer_task;
+
+namespace message
+{
+
+
+   class mouse;
+
+
+} // namespace message
+
+
+
+
+
+class form_property_set;
+
+
+namespace acme
+{
+
+
+   //class application;
+   //class system;
+   //class application_message;
+
+   class command;
+
+
+} // namespace acme
+
+
+namespace gpu
+{
+
+   class approach;
+
+} // namespace gpu
+
+
+namespace data
+{
+
+
+   class listener;
+
+
+   class data;
+
+
+   class simple_data;
+
+
+   class data_container_base;
+
+
+} // namespace data
+
+namespace sockets // only usable from base.dll and dependants
+{
+
+   class sockets; // only usable from base.dll and dependants
+
+
+} // namespace sockets // only usable from base.dll and dependants
+
+
+namespace url
+{
+
+   class department; // only usable from base.dll and dependants
+
+
+} // namespace url
+
+
+class compress_department; // only usable from axis.dll and dependants
+
+
+class channel;
+
+
+class dump_context;
+
+
+//class atom_space;
+
+
+class ptra;
+
+
+class factory_item_base;
+
+
+class fixed_alloc_no_sync;
+
+
+class critical_section;
+
+
+class channel;
+
+
+class critical_section;
+
+
+class mutex;
+
+
+class atom;
+
+namespace colorertake5
+{
+
+   class ParserFactory;
+
+
+} // namespace colorertake5
+
+
+//class pixmap;
+
+
+class memory;
+
+
+namespace datetime
+{
+
+
+   class department;
+
+
+   class time;
+
+
+   class time_span;
+
+
+} // namespace datetime
+
+
+
+
+namespace file
+{
+
+   class listing;
+
+
+   class path;
+
+
+   class file;
+
+
+   enum enum_type
+   {
+
+      e_type_unknown = 0,
+      e_type_exists = 1 << 0,
+      e_type_folder = e_type_exists | (1 << 1),
+      e_type_file = e_type_exists | (1 << 2),
+      e_type_file_or_folder = e_type_folder | e_type_file,
+      e_type_element = e_type_exists | (1 << 3),
+      e_type_doesnt_exist = 0x80000000,
+
+   };
+
+
+} // namespace file
+
+
+namespace install
+{
+
+
+   class installer;
+
+
+} // namespace install
+
+//#include "acme/primitive/primitive/move.h"
+
+class task;
+
+
+
+
+class machine_event_data;
+
+namespace hotplugin
+{
+
+   class host;
+
+
+   class plugin;
+
+}
+
+
+namespace html
+{
+
+
+   class html;
+
+
+   class element;
+
+
+} // namespace html
+
+
+namespace audio
+{
+
+
+   class plugin;
+
+
+} // namespace audio
+
+class file_time;
+
+class duration;
+
+namespace earth
+{
+   class date_span;
+
+   class time_span;
+} // namespace earth
+class folder;
+
+class memory_file;
+
+extern "C"
+typedef ::acme::library * NEW_LIBRARY();
+
+typedef NEW_LIBRARY * PFN_NEW_LIBRARY;
+
+
+
+
+namespace draw2d
+{
+
+
+   class graphics;
+
+
+
+} // namespace draw2d
+
+
+namespace handle
+{
+
+
+   class ini;
+
+
+} // namespace handle
 
 
 

@@ -17,7 +17,7 @@
 context_image::context_image()
 {
 
-   defer_create_mutex();
+   defer_create_synchronization();
    m_iImageSeed = 1;
 
 }
@@ -30,12 +30,12 @@ context_image::~context_image()
 }
 
 
-void context_image::initialize(::object * pobject)
+void context_image::initialize(::particle * pparticle)
 {
 
    //auto estatus = 
    
-   ::object::initialize(pobject);
+   ::object::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -60,7 +60,7 @@ void context_image::on_destroy()
 i32 context_image::image_integer(const char * path)
 {
 
-   synchronous_lock  synchronouslock(mutex());
+   synchronous_lock  synchronouslock(this->synchronization());
 
    ::i32 iImage = -1;
    
@@ -105,7 +105,7 @@ i32 context_image::create_image_integer(int w, int h, const color32_t * pcolor, 
 
    strPath.format("image_pointer://%016" PRIxPTR, pimage.m_p);
 
-   synchronous_lock  synchronouslock(mutex());
+   synchronous_lock  synchronouslock(this->synchronization());
 
    auto iImage = m_iImageSeed;
 
@@ -125,7 +125,7 @@ i32 context_image::create_image_integer(int w, int h, const color32_t * pcolor, 
 image_pointer context_image::integer_image(i32 iImage)
 {
 
-   synchronous_lock  synchronouslock(mutex());
+   synchronous_lock  synchronouslock(this->synchronization());
 
    auto strPath = m_mapIntPath[iImage];
 
@@ -139,7 +139,7 @@ image_pointer context_image::integer_image(i32 iImage)
 image_pointer context_image::path_image(const char * path)
 {
 
-   synchronous_lock  synchronouslock(mutex());
+   synchronous_lock  synchronouslock(this->synchronization());
 
    auto & pimage = m_mapPathImage[path];
 
@@ -171,7 +171,7 @@ image_pointer context_image::path_image(const char * path)
 void context_image::_save_to_file(const ::payload & payloadFile, const image * pimage, const ::payload & varOptions)
 {
 
-   auto psystem = m_psystem->m_paurasystem;
+   auto psystem = acmesystem()->m_paurasystem;
 
    auto pdraw2d = psystem->draw2d();
 
@@ -1163,7 +1163,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 
    synchronous_lock synchronouslock(::aura::get_image_mutex());
 
-   auto & pimage = m_psystem->m_paurasystem->m_mapImage[path];
+   auto & pimage = acmesystem()->m_paurasystem->m_mapImage[path];
 
    if (!pimage)
    {
@@ -1179,10 +1179,10 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 }
 
 
-//::image_pointer context_image::get_image(::object * pobject, const ::payload & payloadFile, const ::image::load_options & loadoptions)
+//::image_pointer context_image::get_image(::particle * pparticle, const ::payload & payloadFile, const ::image::load_options & loadoptions)
 //{
 //
-//   auto pimage = get_cache_image(pobject, payloadFile);
+//   auto pimage = get_cache_image(pparticle, payloadFile);
 //
 //   if (!::is_ok(pimage))
 //   {
@@ -1200,7 +1200,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 //}
 //
 //
-//::image_pointer context_image::matter_image(::object * pobject, const ::string & strMatter, const ::image::load_options & loadoptions)
+//::image_pointer context_image::matter_image(::particle * pparticle, const ::string & strMatter, const ::image::load_options & loadoptions)
 //{
 //
 //   string str(strMatter);
@@ -1212,6 +1212,6 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 //
 //   }
 //
-//   return get_image(pobject, str, loadoptions);
+//   return get_image(pparticle, str, loadoptions);
 //
 //}

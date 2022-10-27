@@ -106,16 +106,16 @@ namespace android
 
    }
 
-   //file::file(::object * pobject, i32 hFile) :
-   //   ::object(pobject)
+   //file::file(::particle * pparticle, i32 hFile) :
+   //   ::object(pparticle)
    //{
 
    //   m_iFile = hFile;
 
    //}
 
-   //file::file(::object * pobject, const char * lpszFileName, ::u32 nOpenFlags) :
-   //   ::object(pobject)
+   //file::file(::particle * pparticle, const char * lpszFileName, ::u32 nOpenFlags) :
+   //   ::object(pparticle)
    //{
 
    //   ASSERT(__is_valid_string(lpszFileName));
@@ -329,7 +329,7 @@ namespace android
 
          /*try
          {
-            get_app()->m_psystem->m_spfilesystem.m_p->FullPath(m_wstrFileName, m_wstrFileName);
+            get_app()->acmesystem()->m_spfilesystem.m_p->FullPath(m_wstrFileName, m_wstrFileName);
          }
          catch(...)
          {
@@ -674,13 +674,13 @@ namespace android
 
 
 
-   //void PASCAL ::file::throw_os_error(::object * pobject, ::i32 lOsError, const char * lpszFileName /* = nullptr */)
+   //void PASCAL ::file::throw_os_error(::particle * pparticle, ::i32 lOsError, const char * lpszFileName /* = nullptr */)
    //{
    //   if (lOsError != 0)
    //      vfxThrowFileexception(file_exception::os_error_to_exception(lOsError), lOsError, lpszFileName);
    //}
 
-   //void PASCAL file_exception::ThrowErrno(::object * pobject, i32 nErrno, const char * lpszFileName /* = nullptr */)
+   //void PASCAL file_exception::ThrowErrno(::particle * pparticle, i32 nErrno, const char * lpszFileName /* = nullptr */)
    //{
    //   if (nErrno != 0)
    //      vfxThrowFileexception(file_exception::errno_to_status(nErrno), errno, lpszFileName);
@@ -792,7 +792,7 @@ bool CLASS_DECL_APEX windows_full_path(wstring & wstrFullPath, const wstring & w
 }
 
 //
-//void CLASS_DECL_APEX vfxThrowFileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName /* == nullptr */)
+//void CLASS_DECL_APEX vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName /* == nullptr */)
 //{
 //
 //   throw ::exception(::file::exception(ecause, lOsError, lpszFileName));

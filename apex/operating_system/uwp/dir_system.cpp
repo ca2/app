@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "apex/xml/_.h"
+////#include "apex/xml/_.h"
 
 
 namespace universal_windows
@@ -18,10 +18,10 @@ namespace universal_windows
    }
 
 
-   void dir_system::initialize(::object * pobject)
+   void dir_system::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::dir_system::initialize(pobject);
+      auto estatus = ::dir_system::initialize(pparticle);
 
       if (!estatus)
       {
@@ -125,34 +125,34 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::usersystemappdata(::object * pobject, const ::string & strPrefix)
+   //::file::path dir_system::usersystemappdata(::particle * pparticle, const ::string & strPrefix)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pobject);
+   //   __UNREFERENCED_PARAMETER(pparticle);
 
    //   return appdata() / strPrefix;
 
    //}
 
 
-   //::file::path dir_system::userdata(::object * pobject)
+   //::file::path dir_system::userdata(::particle * pparticle)
    //{
 
-   //   return userfolder(pobject) / "data";
+   //   return userfolder(pparticle) / "data";
 
    //}
 
 
-   //::file::path dir_system::userfolder(::object * pobject)
+   //::file::path dir_system::userfolder(::particle * pparticle)
    //{
 
    //   string str = appdata();
 
    //   string strUserFolderShift;
 
-   //   if(App(pobject).has_property("user_folder_relative_path"))
+   //   if(App(pparticle).has_property("user_folder_relative_path"))
    //   {
-   //      strUserFolderShift = App(pobject).m_varTopicQuery["user_folder_relative_path"].get_string();
+   //      strUserFolderShift = App(pparticle).m_varTopicQuery["user_folder_relative_path"].get_string();
    //   }
 
    //   return str / "ca2" / strUserFolderShift;
@@ -160,41 +160,41 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::default_os_user_path_prefix(::object * pobject)
+   //::file::path dir_system::default_os_user_path_prefix(::particle * pparticle)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pobject);
+   //   __UNREFERENCED_PARAMETER(pparticle);
 
    //   return "CurrentUser";
 
    //}
 
 
-   //::file::path dir_system::default_userappdata(::object * pobject,const string & lpcszPrefix,const string & lpcszLogin)
+   //::file::path dir_system::default_userappdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin)
    //{
 
-   //   return default_userfolder(pobject,lpcszPrefix,lpcszLogin) / "appdata";
+   //   return default_userfolder(pparticle,lpcszPrefix,lpcszLogin) / "appdata";
 
    //}
 
 
-   //::file::path dir_system::default_userdata(::object * pobject,const string & lpcszPrefix,const string & lpcszLogin)
+   //::file::path dir_system::default_userdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin)
    //{
 
-   //   return default_userfolder(pobject,lpcszPrefix,lpcszLogin) / "data";
+   //   return default_userfolder(pparticle,lpcszPrefix,lpcszLogin) / "data";
 
    //}
 
 
-   //::file::path dir_system::default_userfolder(::object * pobject,const ::string & strPrefix,const ::string & strLogin)
+   //::file::path dir_system::default_userfolder(::particle * pparticle,const ::string & strPrefix,const ::string & strLogin)
    //{
 
-   //   return userfolder(pobject) / strPrefix / strLogin;
+   //   return userfolder(pparticle) / strPrefix / strLogin;
 
    //}
 
 
-   //::file::path dir_system::userquicklaunch(::object* pobject)
+   //::file::path dir_system::userquicklaunch(::object* pparticle)
    //{
 
    //   throw ::exception(todo);
@@ -202,7 +202,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::userprograms(::object* pobject)
+   //::file::path dir_system::userprograms(::object* pparticle)
    //{
 
    //   throw ::exception(todo);
@@ -221,7 +221,7 @@ namespace universal_windows
    //bool dir_system::is_inside_time(const ::file::path& pszPath)
    //{
 
-   //   return is_inside(time(), pszPath, pobject);
+   //   return is_inside(time(), pszPath, pparticle);
 
    //}
 
@@ -234,10 +234,10 @@ namespace universal_windows
    //}
 
 
-   //bool dir_system::has_subdir(::object* pobject, const ::file::path& pszDir)
+   //bool dir_system::has_subdir(::object* pparticle, const ::file::path& pszDir)
    //{
 
-   //   return ::file::system_dir::has_subdir(pobject, pszDir);
+   //   return ::file::system_dir::has_subdir(pparticle, pszDir);
 
    //}
 

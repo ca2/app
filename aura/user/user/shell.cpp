@@ -150,7 +150,7 @@ namespace user
    }
 
 
-   void shell::initialize(::object * pobject)
+   void shell::initialize(::particle * pparticle)
    {
 
       if (m_bInitialized)
@@ -164,7 +164,7 @@ namespace user
 
       //auto estatus = 
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -175,7 +175,7 @@ namespace user
 
       branch_synchronously();
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       //return success;
 
@@ -188,7 +188,7 @@ namespace user
 
       ::draw2d::lock lock(this);
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (contains_image(getfileimage.m_imagekey, getfileimage.m_iImage))
       {
@@ -207,7 +207,7 @@ namespace user
    int shell::_reserve_image(const image_key & key)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       int iImage = -1;
 
@@ -230,7 +230,7 @@ namespace user
    bool shell::contains_image(const image_key & imagekey, i32 & iImage)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_imagemap.lookup(imagekey, iImage))
       {
@@ -247,7 +247,7 @@ namespace user
    void shell::add_size_interest(int_array iaSize)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto cAddedCount = m_iaSize.add_unique(iaSize);
 
@@ -266,7 +266,7 @@ namespace user
    void shell::set_size_interest(int_array iaSize)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       iaSize.sort();
 
@@ -365,7 +365,7 @@ namespace user
    void shell::on_update_sizes_interest()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_imagemap.erase_all();
 
@@ -429,7 +429,7 @@ namespace user
 
             m_pevNewImageKey->_wait(500_ms);
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             if (m_imagekeySchedule.has_elements())
             {
@@ -513,7 +513,7 @@ namespace user
       
          processed_path(getfileimage);
 
-         ::file::path pathFinal = m_psystem->m_pacmepath->_final(getfileimage.m_pathProcessed);
+         ::file::path pathFinal = acmepath()->_final(getfileimage.m_pathProcessed);
       
          getfileimage.m_pathFinal = pathFinal;
 
@@ -527,7 +527,7 @@ namespace user
    ::image_list * shell::GetImageList(int iSize)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bPendingUpdate)
       {
@@ -572,7 +572,7 @@ namespace user
    ::image_list * shell::GetImageListHover(int iSize)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bPendingUpdate)
       {
@@ -614,22 +614,22 @@ namespace user
    }
 
 
-   shell::enum_folder shell::get_folder_type(::object * pobject, const ::wstring & wstrPath)
+   shell::enum_folder shell::get_folder_type(::particle * pparticle, const ::wstring & wstrPath)
    {
 
       string str(wstrPath);
 
-      return get_folder_type(pobject, str);
+      return get_folder_type(pparticle, str);
 
    }
 
 
-   shell::enum_folder shell::get_folder_type(::object * pobject, const ::string & strPath)
+   shell::enum_folder shell::get_folder_type(::particle * pparticle, const ::string & strPath)
    {
 
       wstring wstr(strPath);
 
-      return get_folder_type(pobject, wstr);
+      return get_folder_type(pparticle, wstr);
 
    }
 
@@ -651,7 +651,7 @@ namespace user
    i32 shell::get_file_image(const ::file::path & path, const ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       image_key imagekey(path, m_strShellThemePrefix, eattribute, eicon);
 
@@ -663,7 +663,7 @@ namespace user
    i32 shell::get_file_image(const image_key & imagekey)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bPendingUpdate)
       {
@@ -702,7 +702,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_imagekeySchedule.add(imagekey);
 
@@ -718,7 +718,7 @@ namespace user
    void shell::warn_when_ok(const ::file::path & path, const ::user::interaction_array & userinteractionaInterested)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       for(auto & puserinteraction : userinteractionaInterested.m_interactiona)
       {
@@ -733,7 +733,7 @@ namespace user
    void shell::warn_ok(const ::file::path & path)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       for(auto & pair : m_mapInterest)
       {
@@ -901,14 +901,14 @@ namespace user
 //
 //      string strRealPath = m_pcontext->m_papexcontext->defer_process_path(strPath);
 //
-//      string strFinalPath = m_psystem->m_pacmepath->_final(strRealPath);
+//      string strFinalPath = acmepath()->_final(strRealPath);
 //
 //      if(strFinalPath.is_empty())
 //      {
 //
-//         string strProtocol = m_psystem->m_purldepartment->get_protocol(path);
+//         string strProtocol = acmesystem()->m_purldepartment->get_protocol(path);
 //
-//         string strRoot = m_psystem->m_purldepartment->get_root(path);
+//         string strRoot = acmesystem()->m_purldepartment->get_root(path);
 //
 //         if (strProtocol.has_char() && strRoot.has_char())
 //         {
@@ -1074,9 +1074,9 @@ namespace user
       if(pathFinal.is_empty())
       {
 
-         string strProtocol = m_psystem->m_purldepartment->get_protocol(strPath);
+         string strProtocol = acmesystem()->m_purldepartment->get_protocol(strPath);
 
-         string strRoot = m_psystem->m_purldepartment->get_root(strPath);
+         string strRoot = acmesystem()->m_purldepartment->get_root(strPath);
 
          if (strProtocol.has_char() && strRoot.has_char())
          {
@@ -1124,7 +1124,7 @@ namespace user
          if(m_bGetFileImageByFileImage)
          {
             
-            auto pacmepath = m_psystem->m_pacmepath;
+            auto pacmepath = acme_path();
          
             if(pacmepath->has_custom_icon(strPath))
             {
@@ -1209,7 +1209,7 @@ namespace user
       else
       {
 
-         auto psystem = m_psystem->m_paurasystem;
+         auto psystem = acmesystem()->m_paurasystem;
 
          auto pnode = psystem->node();
          
@@ -1364,7 +1364,7 @@ namespace user
 
          {
 
-            synchronous_lock sl1(m_pimagelist[16]->mutex());
+            synchronous_lock sl1(m_pimagelist[16]->synchronization());
 
             image_source imagesource(pimage1, pimage1->rectangle());
 
@@ -1380,7 +1380,7 @@ namespace user
 
          {
 
-            synchronous_lock sl2(m_pimagelist[48]->mutex());
+            synchronous_lock sl2(m_pimagelist[48]->synchronization());
 
             image_source imagesource(image48, image48->rectangle());
 
@@ -1396,7 +1396,7 @@ namespace user
 
          {
 
-            synchronous_lock sl1(m_pimagelistHover[16]->mutex());
+            synchronous_lock sl1(m_pimagelistHover[16]->synchronization());
 
             image_source imagesource(image16, image16->rectangle());
 
@@ -1414,7 +1414,7 @@ namespace user
 
          {
 
-            synchronous_lock sl1(m_pimagelistHover[48]->mutex());
+            synchronous_lock sl1(m_pimagelistHover[48]->synchronization());
 
             image_source imagesource(image48, image48->rectangle());
 
@@ -1443,7 +1443,7 @@ namespace user
    bool shell::defer_get_file_image_by_file_type_image(_get_file_image_ & getfileimage)
    {
    
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
       
       auto pnode = psystem->node();
       
@@ -1573,7 +1573,7 @@ namespace user
    bool shell::defer_get_file_image_by_file_image(_get_file_image_ & getfileimage)
    {
       
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
       
       auto pnode = psystem->node();
       
@@ -1684,7 +1684,7 @@ namespace user
 
             m_pgetfileimage->m_imagekey.m_eicon = eicon;
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             if (m_pgetfileimage->m_iImage & 0x80000000)
             {
@@ -1724,7 +1724,7 @@ namespace user
    void shell::set_icon(int iImage, const ::file::path & pathIcon)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto iaSize = m_iaSize;
 
@@ -1792,9 +1792,9 @@ namespace user
    void shell::set_image(int iImage, int iSize, image_drawing imagedrawing)
    {
 
-      synchronous_lock synchronouslock(m_pimagelist[iSize]->mutex());
+      synchronous_lock synchronouslock(m_pimagelist[iSize]->synchronization());
 
-      synchronous_lock slHover(m_pimagelistHover[iSize]->mutex());
+      synchronous_lock slHover(m_pimagelistHover[iSize]->synchronization());
 
       m_pimagelist[iSize]->set(iImage, imagedrawing);
 
@@ -1866,11 +1866,11 @@ namespace user
 
          auto pcontextimage = pcontext->context_image();
 
-         ::file::path pathFolder = m_psystem->m_pacmedirectory->ca2roaming() / "matter/icon";
+         ::file::path pathFolder = acmedirectory()->ca2roaming() / "matter/icon";
 
          //::file::path pathIco = pathFolder / "ico" / (strIcon + ".ico");
 
-         //if (m_psystem->m_pacmefile->exists(pathIco))
+         //if (acmefile()->exists(pathIco))
          //{
 
          //   set_image_ico()
@@ -1905,7 +1905,7 @@ namespace user
 
             pimage = nullptr;
 
-            if (m_psystem->m_pacmefile->exists(pathImage))
+            if (acmefile()->exists(pathImage))
             {
 
                pimage = pcontextimage->get_image(pathImage);
@@ -1925,7 +1925,7 @@ namespace user
 
                      pathImage = pathFolder / strSize / (strIcon + ".png");
 
-                     if (m_psystem->m_pacmefile->exists(pathImage))
+                     if (acmefile()->exists(pathImage))
                      {
 
                         pimage = pcontextimage->get_image(pathImage);

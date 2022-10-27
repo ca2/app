@@ -3,15 +3,15 @@
 
 
 
-template < typename T >
-inline c_number < T > & c_number < T >::from(const ::string & str)
-{
-
-   ::from_string(m_number, str);
-
-   return *this;
-
-}
+//template < typename T >
+//inline c_number < T > & c_number < T >::from(const ::string & str)
+//{
+//
+//   ::from_string(m_number, str);
+//
+//   return *this;
+//
+//}
 
 
 

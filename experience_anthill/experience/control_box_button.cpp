@@ -208,7 +208,7 @@ namespace experience_anthill
    ::item_pointer control_box_button::on_hit_test(const ::point_i32 & point)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_spregion.is_null())
       {

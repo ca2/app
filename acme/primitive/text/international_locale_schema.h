@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/collection/atom_array.h"
+
+
 namespace text
 {
 
@@ -23,16 +27,16 @@ namespace text
          bool                       m_bSchemaOnly;
          bool                       m_bAddAlternateStyle;
 
-         atom                         m_atomLocale;
-         atom                         m_atomSchema;
+         atom                       m_atomLocale;
+         atom                       m_atomSchema;
 
-         comparable_array < atom >    m_idaLocale;
-         comparable_array < atom >    m_idaSchema;
+         atom_array                 m_idaLocale;
+         atom_array                 m_idaSchema;
 
 
          locale_schema();
          locale_schema(const locale_schema& ls);
-         virtual ~locale_schema();
+         ~locale_schema() override;
 
 
          ::atom localeid(const char* pszLocale, strsize iLen);

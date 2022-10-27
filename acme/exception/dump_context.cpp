@@ -405,10 +405,10 @@ dump_context::~dump_context()
 //}
 //
 //
-//void dump_context::write(const ::matter * pobject)
+//void dump_context::write(const ::particle * pparticle)
 //{
 //
-//   if (pobject == nullptr)
+//   if (pparticle == nullptr)
 //   {
 //
 //      *this << "nullptr";
@@ -417,7 +417,7 @@ dump_context::~dump_context()
 //   else
 //   {
 //
-//      pobject->dump(*this);
+//      pparticle->dump(*this);
 //
 //   }
 //

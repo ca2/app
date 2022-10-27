@@ -15,8 +15,8 @@ namespace app_core_build
       virtual ~main_frame();
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
       virtual ::experience::frame * frame_experience() override;

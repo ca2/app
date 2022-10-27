@@ -2,6 +2,7 @@
 
 
 #include "apex/user/primitive.h"
+#include "acme/primitive/collection/int_map.h"
 
 
 namespace user

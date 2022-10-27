@@ -261,7 +261,7 @@ namespace write_text
    string font::get_font_descriptor_face()
    {
       
-      return m_psystem->m_paurasystem->draw2d()->write_text()->get_font_descriptor_face(m_fontdescriptor);
+      return acmesystem()->m_paurasystem->draw2d()->write_text()->get_font_descriptor_face(m_fontdescriptor);
       
    }
 
@@ -482,7 +482,7 @@ namespace write_text
 //   bool font::AddGlyph(::u32 user)
 //   {
 //
-//      //   single_lock synchronouslock(&m_mutex);
+//      //   single_lock synchronouslock(m_pmutex);
 //      //   synchronouslock.lock(U32_INFINITE_TIMEOUT);
 //
 //      return TRUE;

@@ -58,7 +58,7 @@
 //
 //      psystem->m_bConsole = true;
 //
-//      m_psystem = psystem;
+//      acmesystem() = psystem;
 //
 //   }
 //
@@ -76,7 +76,7 @@
 //
 //      common_construct();
 //
-//      m_psystem->system_construct(argc, argv, envp);
+//      acmesystem()->system_construct(argc, argv, envp);
 //
 //      init();
 //
@@ -88,7 +88,7 @@
 //
 //      common_construct();
 //
-//      m_psystem->system_construct(argc, argv, envp);
+//      acmesystem()->system_construct(argc, argv, envp);
 //
 //      init();
 //
@@ -98,13 +98,13 @@
 //   void init()
 //   {
 //
-//      m_estatus = (void) m_psystem->inline_init();
+//      m_estatus = (void) acmesystem()->inline_init();
 //
-//      auto papp = m_psystem->m_papexsystem->m_pacmeapplicationStartup;
+//      auto papp = acmesystem()->m_papexsystem->m_pacmeapplicationStartup;
 //
-//      __refer(m_psystem->m_papexsystem->m_pacmeapplicationMain, m_psystem->m_papexsystem->m_pacmeapplicationStartup.get());
+//      __refer(acmesystem()->m_papexsystem->m_pacmeapplicationMain, acmesystem()->m_papexsystem->m_pacmeapplicationStartup.get());
 //
-//      __unbind(m_psystem->m_papexsystem, m_pacmeapplicationStartup OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(m_psystem, ""));
+//      __unbind(acmesystem()->m_papexsystem, m_pacmeapplicationStartup OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(acmesystem(), ""));
 //
 //   }
 //
@@ -112,9 +112,9 @@
 //   int result()
 //   {
 //
-//      auto estatus = m_psystem->inline_term();
+//      auto estatus = acmesystem()->inline_term();
 //
-//      ::acme::del(m_psystem);
+//      ::acme::del(acmesystem());
 //
 //      return estatus;
 //
@@ -124,7 +124,7 @@
 //   ~console()
 //   {
 //
-//      if (m_psystem)
+//      if (acmesystem())
 //      {
 //
 //         result();

@@ -73,8 +73,8 @@ namespace file
 
 
 
-   stream_binder::stream_binder(::object * pobject) :
-      ::object(pobject)
+   stream_binder::stream_binder(::particle * pparticle) :
+      ::object(pparticle)
    {
    }
 

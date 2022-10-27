@@ -45,12 +45,12 @@ namespace core
    }
 
 
-   void application::initialize(::object * pobject)
+   void application::initialize(::particle * pparticle)
    {
 
       //auto estatus =
       
-      ::base::application::initialize(pobject);
+      ::base::application::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -154,7 +154,7 @@ namespace core
 
       }
 
-      strOptionsHtml += m_psystem->m_pnode->m_pauranode->system_options_html();
+      strOptionsHtml += acmesystem()->m_pnode->m_pauranode->system_options_html();
 
       strOptionsHtml += "</body>";
       strOptionsHtml += "</html>";

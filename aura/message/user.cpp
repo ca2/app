@@ -38,7 +38,7 @@ namespace message
 
 
 
-   //base::base(::object * pobject) :
+   //base::base(::particle * pparticle) :
    //   ::message::message(psignal)
    //{
 

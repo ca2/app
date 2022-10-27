@@ -12,7 +12,7 @@
 #include <string.h>
 #include "_x11.h"
 
-extern ::mutex * user_mutex();
+extern ::pointer< ::mutex > user_mutex();
 
 Visual * get_32bit_visual(Display * pdisplay);
 

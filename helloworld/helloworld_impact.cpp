@@ -10,9 +10,9 @@ namespace helloworld
 
 
 
-   impact::impact(::object * pobject):
-      object(pobject),
-      impact_base(pobject),
+   impact::impact(::particle * pparticle):
+      object(pparticle),
+      impact_base(pparticle),
       m_pimageColor,
       m_pimageAi1,
       m_pimageAi2
@@ -45,7 +45,7 @@ namespace helloworld
 
       m_prender->m_pimpact = this;
 
-      m_prender->m_pmutexText = &m_mutexText;
+      m_prender->m_pmutexText = m_pmutexText;
 
       m_bOkPending = true;
 
@@ -109,7 +109,7 @@ namespace helloworld
             get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact")->_001SetText(strText,::e_source_initialize);
 
 
-//            m_psystem->m_pacmefile->put_contents("C:\\dennisheazle\\ft.txt", __string((iptr)get_top_level()->get_handle()));
+//            acmefile()->put_contents("C:\\dennisheazle\\ft.txt", __string((iptr)get_top_level()->get_handle()));
 
             //get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact")->_001SetText(__string((iptr)get_top_level()->get_handle()), ::e_source_initialize);
 
@@ -139,11 +139,11 @@ namespace helloworld
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       {
 
-         synchronous_lock slText(&m_mutexText);
+         synchronous_lock slText(m_pmutexText);
 
          if(m_strNewHelloWorld.is_empty())
          {
@@ -295,7 +295,7 @@ namespace helloworld
    string impact::get_processed_helloworld()
    {
 
-      synchronous_lock slText(&m_mutexText);
+      synchronous_lock slText(m_pmutexText);
 
       string str = get_helloworld();
 
@@ -397,7 +397,7 @@ namespace helloworld
    string impact::get_helloworld()
    {
 
-      synchronous_lock synchronouslock(&m_mutexText);
+      synchronous_lock synchronouslock(m_pmutexText);
 
       if(m_strHelloWorld != m_strNewHelloWorld)
       {
@@ -455,7 +455,7 @@ namespace helloworld
       if (m_prender != nullptr)
       {
 
-         synchronous_lock synchronouslock(&m_mutexText);
+         synchronous_lock synchronouslock(m_pmutexText);
 
          if (get_processed_helloworld() != m_prender->m_strHelloWorld)
          {

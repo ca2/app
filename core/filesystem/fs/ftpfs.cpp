@@ -26,12 +26,12 @@ ftpfs::~ftpfs()
 }
 
 
-void ftpfs::initialize_ftpfs(::object * pobject, const ::string & pszRoot)
+void ftpfs::initialize_ftpfs(::particle * pparticle, const ::string & pszRoot)
 {
 
    //auto estatus = 
    
-   ::fs::data::initialize(pobject);
+   ::fs::data::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -51,7 +51,7 @@ void ftpfs::initialize_ftpfs(::object * pobject, const ::string & pszRoot)
 
 
 //
-//void ftpfs::initialize(::object * pobject)
+//void ftpfs::initialize(::particle * pparticle)
 //{
 //
 //   auto estatus = __construct_new(this, m_pftpnet);
@@ -64,13 +64,13 @@ void ftpfs::initialize_ftpfs(::object * pobject, const ::string & pszRoot)
 bool ftpfs::fast_has_subdir(const ::file::path & path)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    //   ::duration tickTimeout;
 
    dir_listing & dir = m_map[path];
 
-   auto psystem = m_psystem->m_pcoresystem;
+   auto psystem = acmesystem()->m_pcoresystem;
 
    if (dir.m_durationLast.elapsed() < psystem->m_durationFileListingCache)
    {
@@ -89,11 +89,11 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       dir_listing & dir = m_map[path];
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       if (dir.m_durationLast.timeout(psystem->m_durationFileListingCache))
       {
@@ -164,11 +164,11 @@ bool ftpfs::enumerate(::file::listing & listing)
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       if (dir.m_durationLast.timeout(psystem->m_durationFileListingCache))
       {
@@ -245,7 +245,7 @@ retry:
 
    string strPath;
 
-   auto psystem = m_psystem->m_paurasystem;
+   auto psystem = acmesystem()->m_paurasystem;
 
    auto purl = psystem->url();
 
@@ -297,7 +297,7 @@ retry:
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -365,11 +365,11 @@ int ftpfs::is_dir(const ::file::path & path)
 
    //::duration tickTimeout;
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    dir_listing & dir = m_map[path.folder()];
 
-   auto psystem = m_psystem->m_pcoresystem;
+   auto psystem = acmesystem()->m_pcoresystem;
 
    if (dir.m_durationLast.elapsed() > psystem->m_durationFileListingCache)
    {
@@ -444,7 +444,7 @@ retry:
 
       ::file::path pathTemp = m_pcontext->m_papexcontext->file().time(m_pcontext->m_papexcontext->dir().time());
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto purl = psystem->url();
 
@@ -521,7 +521,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    auto plogon = __new(::ftp::logon);
 
-   auto psystem = m_psystem->m_pcoresystem;
+   auto psystem = acmesystem()->m_pcoresystem;
 
    auto purl = psystem->url();
 

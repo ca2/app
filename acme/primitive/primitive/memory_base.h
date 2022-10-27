@@ -3,6 +3,7 @@
 
 //#include "acme/filesystem/file/serializable.h"
 #include "acme/primitive/primitive/material_object.h"
+#include "acme/memory/memory.h"
 
 
 template < typename N >

@@ -24,7 +24,7 @@ namespace user
    void list_box::user_combo_list_common_construct()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_bPendingKillFocusHiding = false;
 
@@ -291,7 +291,7 @@ namespace user
    void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE32 psize)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       pgraphics->set_font(this, ::e_element_none);
 

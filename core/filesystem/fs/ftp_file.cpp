@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "core/networking/ftp/_.h"
+//#include "core/networking/ftp/_.h"
 #include "ftp_file.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -66,7 +66,7 @@ retry:
 
    }
 
-   auto psystem = m_psystem->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    auto purl = psystem->url();
 

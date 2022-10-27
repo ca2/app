@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/parallelization/mutex.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include <time.h>
 
 
@@ -19,7 +21,7 @@ throw()
 
 #else
 
-   static ::mutex m;
+   static ::global_pointer < ::pointer < ::mutex > > m;
    synchronous_lock synchronouslock(&m);
    struct tm *tmp;
    tmp = gmtime(timep);

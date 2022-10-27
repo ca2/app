@@ -11,7 +11,7 @@ namespace dynamic_source
    script_cache::script_cache()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -68,7 +68,7 @@ namespace dynamic_source
 
 #endif
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto passoc = m_map.get_association(strName);
 
@@ -97,7 +97,7 @@ namespace dynamic_source
 
 #endif
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       auto ppair = m_map.get_association(strName);
 
@@ -126,7 +126,7 @@ namespace dynamic_source
       if(::str().begins(lpcszName, "netnode://"))
       {
          
-         single_lock synchronouslock(mutex(), true);
+         single_lock synchronouslock(synchronization(), true);
 
          pscript  = get(lpcszName);
 
@@ -160,7 +160,7 @@ namespace dynamic_source
 
       }
 
-      synchronous_lock slScript(pscript->mutex());
+      synchronous_lock slScript(pscript->synchronization());
 
       if(!pscript->m_bNew && pscript->ShouldBuild())
       {
@@ -187,7 +187,7 @@ namespace dynamic_source
    void script_cache::uncache(script * pscript)
    {
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       m_map.erase_key(pscript->m_strName);
 
@@ -227,7 +227,7 @@ namespace dynamic_source
 
       ::file::path pathChanged = str;
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       for (auto & pair : m_map)
       {

@@ -1,18 +1,23 @@
 ﻿#include "framework.h"
+#include "context.h"
+#include "application.h"
+#include "system.h"
+#include "os_context.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/binary_stream.h"
+#include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/ini.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/filesystem/dir_system.h"
 #include "apex/networking/http/context.h"
-#include "apex/platform/application.h"
-#include "apex/platform/context.h"
-#include "apex/platform/system.h"
-
+#include "apex/platform/create.h"
+#include "apex/parallelization/retry.h"
 
 
 namespace apex
@@ -163,16 +168,16 @@ namespace apex
 
       //}
 
-      m_papexsystem = m_psystem->m_papexsystem;
-      m_paurasystem = m_psystem->m_paurasystem;
-      m_pbasesystem = m_psystem->m_pbasesystem;
-      m_pbredsystem = m_psystem->m_pbredsystem;
-      m_pcoresystem = m_psystem->m_pcoresystem;
+      m_papexsystem = acmesystem()->m_papexsystem;
+      m_paurasystem = acmesystem()->m_paurasystem;
+      m_pbasesystem = acmesystem()->m_pbasesystem;
+      m_pbredsystem = acmesystem()->m_pbredsystem;
+      m_pcoresystem = acmesystem()->m_pcoresystem;
 
       if (is_system())
       {
 
-         auto psystem = m_psystem->m_papexsystem;
+         auto psystem = acmesystem()->m_papexsystem;
 
          //m_papexsession->initialize(psystem);
 
@@ -273,31 +278,31 @@ namespace apex
 
       auto & dir = this->dir();
 
-      if (dir.image().has_char() && m_psystem->m_pacmepath->final_begins_eat_ci(str, dir.image()))
+      if (dir.image().has_char() && acmepath()->final_begins_eat_ci(str, dir.image()))
       {
 
          return ::file::path("image://") / str;
 
       }
-      else if (dir.music().has_char() && m_psystem->m_pacmepath->final_begins_eat_ci(str, dir.music()))
+      else if (dir.music().has_char() && acmepath()->final_begins_eat_ci(str, dir.music()))
       {
 
          return ::file::path("music://") / str;
 
       }
-      else if (dir.video().has_char() && m_psystem->m_pacmepath->final_begins_eat_ci(str, dir.video()))
+      else if (dir.video().has_char() && acmepath()->final_begins_eat_ci(str, dir.video()))
       {
 
          return ::file::path("video://") / str;
 
       }
-      else if (dir.document().has_char() && m_psystem->m_pacmepath->final_begins_eat_ci(str, dir.document()))
+      else if (dir.document().has_char() && acmepath()->final_begins_eat_ci(str, dir.document()))
       {
 
          return ::file::path("document://") / str;
 
       }
-      else if (dir.download().has_char() && m_psystem->m_pacmepath->final_begins_eat_ci(str, dir.download()))
+      else if (dir.download().has_char() && acmepath()->final_begins_eat_ci(str, dir.download()))
       {
 
          return ::file::path("download://") / str;
@@ -459,7 +464,7 @@ namespace apex
    bool context::defer_process_media_library_path(::file::path & path)
    {
 
-      return m_psystem->m_pacmedirectory->defer_process_media_library_path(path);
+      return acmedirectory()->defer_process_media_library_path(path);
 
    }
 
@@ -469,7 +474,7 @@ namespace apex
 
       path = defer_process_matter_path(path);
 
-      path = m_psystem->m_pacmepath->defer_process_relative_path(path);
+      path = acmepath()->defer_process_relative_path(path);
 
       if (defer_process_media_library_path(path))
       {
@@ -558,7 +563,7 @@ namespace apex
       else if (::str().begins_eat_ci(path, "usersystem://"))
       {
 
-         path = m_psystem->m_pacmedirectory->system() / path;
+         path = acmedirectory()->system() / path;
 
       }
       else if (::str().begins_eat_ci(path, "desktop://"))
@@ -682,7 +687,7 @@ namespace apex
 
          if ((path & ::file::e_flag_get_local_path)
             || (!(path & ::file::e_flag_bypass_cache)
-               && ::is_file_or_folder(m_psystem->m_pacmepath->get_type(pathCache))))
+               && ::is_file_or_folder(acmepath()->get_type(pathCache))))
          {
 
             return pathCache;
@@ -696,7 +701,7 @@ namespace apex
          if (!(path & ::file::e_flag_bypass_cache))
          {
 
-            string strFirstLine = m_psystem->m_pacmefile->line(pathMeta, 0);
+            string strFirstLine = acmefile()->line(pathMeta, 0);
 
             if (strFirstLine == "itdoesntexist" && !(path & ::file::e_flag_required))
             {
@@ -710,7 +715,7 @@ namespace apex
                if (!retry([this, pathMeta]()
                   {
 
-                     return m_psystem->m_pacmefile->line(pathMeta, 0) != "processing";
+                     return acmefile()->line(pathMeta, 0) != "processing";
 
                   }))
                {
@@ -725,7 +730,7 @@ namespace apex
 
          ::file::path pathSide = side_get_matter_path(path);
 
-         auto etype = m_psystem->m_pacmepath->get_type(pathSide);
+         auto etype = acmepath()->get_type(pathSide);
 
          if (::is_file_or_folder(etype))
          {
@@ -828,7 +833,7 @@ namespace apex
                   if (!retry([&]()
                      {
 
-                        return m_psystem->m_pacmefile->set_line(pathMeta, 0, strFsType);
+                        return acmefile()->set_line(pathMeta, 0, strFsType);
 
                      }))
                   {
@@ -843,7 +848,7 @@ namespace apex
                   retry([&]()
                      {
 
-                        return m_psystem->m_pacmefile->set_line(pathMeta, 0, "itdoesntexist");
+                        return acmefile()->set_line(pathMeta, 0, "itdoesntexist");
 
                      });
                   return "";
@@ -940,7 +945,7 @@ namespace apex
 
          ::file::path_array pathaRelative;
 
-         path.ascendants_path(patha, &pathaRelative);
+         ascendants_path(path, patha, &pathaRelative);
 
          for (index i = 0; i < patha.get_count(); i++)
          {
@@ -1085,7 +1090,7 @@ namespace apex
    ::handle::ini context::local_ini()
    {
 
-      ::file::path pathFolder = m_psystem->m_pacmedirectory->localconfig();
+      ::file::path pathFolder = acmedirectory()->localconfig();
 
       return ini_from_path(pathFolder);
 
@@ -1224,7 +1229,7 @@ namespace apex
    void context::sys_set(string strPath, string strValue)
    {
 
-      file().put_text_utf8(m_psystem->m_pacmedirectory->config() / strPath, strValue);
+      file().put_text_utf8(acmedirectory()->config() / strPath, strValue);
 
    }
 
@@ -1232,7 +1237,7 @@ namespace apex
    string context::sys_get(string strPath, string strDefault)
    {
 
-      string strValue = file().safe_get_string(m_psystem->m_pacmedirectory->config() / strPath);
+      string strValue = file().safe_get_string(acmedirectory()->config() / strPath);
 
       if (strValue.is_empty())
       {
@@ -1297,7 +1302,7 @@ namespace apex
    void context::add_matter_locator(string strApp)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       string strMatterLocator = matter_locator(strApp);
 
@@ -1309,7 +1314,7 @@ namespace apex
    void context::add_matter_locator(::apex::application * papp)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       string strMatterLocator = matter_locator(papp);
 
@@ -1322,7 +1327,7 @@ namespace apex
 
 
 
-   void context::_load_from_file(::matter * pobject, const ::payload & payloadFile, const ::payload & varOptions)
+   void context::_load_from_file(::particle * pparticle, const ::payload & payloadFile, const ::payload & varOptions)
    {
 
       auto reader = __binary_stream(m_pcontext->m_papexcontext->file().get_reader(payloadFile));
@@ -1334,7 +1339,7 @@ namespace apex
    }
 
 
-   void context::_save_to_file(const ::payload & payloadFile, const ::payload & varOptions, const ::matter * pobject)
+   void context::_save_to_file(const ::payload & payloadFile, const ::payload & varOptions, const ::particle * pparticle)
    {
 
       auto writer = __binary_stream(m_pcontext->m_papexcontext->file().get_writer(payloadFile));
@@ -1398,7 +1403,7 @@ namespace apex
 
       }
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       return m_createaPending.predicate_contains([&pcreate](auto & p) {return p.get() == pcreate; })
          || m_createaHistory.predicate_contains([&pcreate](auto & p) {return p.get() == pcreate; })
@@ -1475,7 +1480,7 @@ namespace apex
    void context::add_create(::create * pcreate)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (::is_null(pcreate) || contains(pcreate))
       {
@@ -1507,7 +1512,7 @@ namespace apex
    create * context::get_create()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_pcreate || !m_pcreate->m_bNew)
       {

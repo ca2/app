@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
-//#include "acme/astr.h"
+#include "url_domain.h"
+#include "url_department.h"
+#include "acme/exception/exception.h"
 
 
 url_domain_base::url_domain_base()

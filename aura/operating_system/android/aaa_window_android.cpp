@@ -23,7 +23,7 @@ bool window_android::update_buffer(const ::size_i32 & size,int iStrideParam)
    destroy_buffer();
 
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    //if(m_cairoSource != nullptr)
    //{

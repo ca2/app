@@ -29,9 +29,9 @@ namespace draw2d_cairo
    draw2d::draw2d()
    {
 
-      //defer_create_mutex();
+      //defer_create_synchronization();
 
-      //m_pmutexFont = __new(::mutex);
+      //m_pmutexFont = __new(::pointer < ::mutex >);
 
       //add_factory_item < e_cursor_set >();
 
@@ -45,12 +45,12 @@ namespace draw2d_cairo
    }
 
 
-   void draw2d::initialize(::object * pobject)
+   void draw2d::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::draw2d::draw2d::initialize(pobject);
+      ::draw2d::draw2d::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -93,7 +93,7 @@ namespace draw2d_cairo
 
       //}
 
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (!m_papi->open())
 //      {
@@ -174,7 +174,7 @@ namespace draw2d_cairo
    void draw2d::term()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       try
       {
@@ -334,7 +334,7 @@ namespace draw2d_cairo
 //      i32 iRadius2 = iRadius * iRadius;
 //      i32 r2;
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
 //
@@ -649,7 +649,7 @@ namespace draw2d_cairo
 //      i32 rSquare;
 //
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
 //
@@ -920,7 +920,7 @@ namespace draw2d_cairo
 //
 //      string strSystemFonts = pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
 //
-//            auto psystem = m_psystem->m_paurasystem;
+//            auto psystem = acmesystem()->m_paurasystem;
 
       //auto pxml = psystem->xml();
 
@@ -985,7 +985,7 @@ namespace draw2d_cairo
 //
 //                        pitem = __new(::write_text::font_enumeration_item);
 //
-//                        if (::m_psystem->m_pacmefile->exists(path))
+//                        if (::acmefile()->exists(path))
 //                        {
 //
 //                           pitem->m_strFile = path;
@@ -1202,7 +1202,7 @@ namespace draw2d_cairo
 //      }
 //
 //
-//      synchronous_lock synchronouslock(psystem->m_mutexLibrary);
+//      synchronous_lock synchronouslock(psystem->m_pmutexLibrary);
 //
 //      estatus = __construct(m_pwritetext);
 //
@@ -1458,7 +1458,7 @@ namespace draw2d_cairo
 
       ::file::path path = pcontext->defer_process_path(pathFile);
 
-      auto pmemorypointer = m_psystem->m_paurasystem->draw2d()->write_text()->get_file_memory(pcontext, path);
+      auto pmemorypointer = acmesystem()->m_paurasystem->draw2d()->write_text()->get_file_memory(pcontext, path);
 
       return private_ftface_from_memory(*pmemorypointer, pathFile);
 

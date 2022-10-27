@@ -1,5 +1,8 @@
 ﻿// Created by camilo on 2021-08-01 23:42 Thomas Month!! <3ThomasBS__!!
 #include "framework.h"
+#include "element.h"
+#include "acme/exception/interface_only.h"
+#include "acme/primitive/primitive/payload.h"
 
 
 element::~element()
@@ -18,7 +21,7 @@ void element::call_member(::i64 iId)
 }
 
 
-//void element::handle(enum_message emessage, i64 iData, ::element * pelement)
+//void element::handle(enum_message emessage, i64 iData, ::particle * pparticle)
 //{
 //
 //   return ::success;
@@ -140,7 +143,7 @@ void element::set_library_name(const char* pszLibraryName)
 //}
 
 
-//void element::add_composite(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void element::add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   //throw ::not_implemented();
@@ -154,7 +157,7 @@ void element::set_library_name(const char* pszLibraryName)
 //}
 //
 //
-//void element::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void element::add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   //return ::success_none;
@@ -162,7 +165,7 @@ void element::set_library_name(const char* pszLibraryName)
 //}
 //
 //
-//void element::release_composite2(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void element::release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   //return ::success_none;
@@ -170,7 +173,7 @@ void element::set_library_name(const char* pszLibraryName)
 //}
 //
 //
-//void element::finalize_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void element::finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   //return ::success_none;
@@ -178,7 +181,7 @@ void element::set_library_name(const char* pszLibraryName)
 //}
 //
 //
-//void element::release_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void element::release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   //return ::success_none;
@@ -277,7 +280,7 @@ void element::destroy()
    //if (estatus == error_pending)
    //{
 
-   //   //m_psystem->add_pending_finish(this);
+   //   //acmesystem()->add_pending_finish(this);
 
    //   return estatus;
 
@@ -288,7 +291,7 @@ void element::destroy()
    ////if (estatus == error_pending)
    ////{
 
-   ////   //m_psystem->add_pending_finish(this);
+   ////   //acmesystem()->add_pending_finish(this);
 
    ////   return estatus;
 

@@ -39,9 +39,9 @@ namespace ftp
 
 
 
-//#ifndef m_psystem->m_pcoresystem->InsertTime
+//#ifndef acmesystem()->m_pcoresystem->InsertTime
   
-//#define m_psystem->m_pcoresystem->InsertTime(ftpFileStatus) InsertTime(ftpFileStatus);
+//#define acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus) InsertTime(ftpFileStatus);
 //#endif
 
    const char* file_list_parser::m_Months[12] = {
@@ -271,7 +271,7 @@ namespace ftp
                ftpFileStatus.m_etimeModification = file_status::time_local;
                lTemp = atoi(string(pszLine + i + 1, j - i - 1));
                ftpFileStatus.m_timeModification = m_tmBase + lTemp;
-               m_psystem->m_pcoresystem->InsertTime(ftpFileStatus);
+               acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
                break;
             case ('i'):
                ftpFileStatus.m_eid = file_status::id_full;
@@ -394,7 +394,7 @@ namespace ftp
                   GetLong(pszLine + i + 2, 2, lMinute);
                   ftpFileStatus.m_etimeModification = file_status::time_remote_minute;
                   ftpFileStatus.m_timeModification = m_tmBase + GuessTAI(lMonth, lMDay) + lHour * 3600 + lMinute * 60;
-                  m_psystem->m_pcoresystem->InsertTime(ftpFileStatus);
+                  acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
                }
                else if (j - i == 5 && pszLine[i + 2] == (':'))
                {
@@ -402,14 +402,14 @@ namespace ftp
                   GetLong(pszLine + i + 3, 2, lMinute);
                   ftpFileStatus.m_etimeModification = file_status::time_remote_minute;
                   ftpFileStatus.m_timeModification = m_tmBase + GuessTAI(lMonth, lMDay) + lHour * 3600 + lMinute * 60;
-                  m_psystem->m_pcoresystem->InsertTime(ftpFileStatus);
+                  acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
                }
                else if (j - i >= 4)
                {
                   GetLong(pszLine + i, j - i, lYear);
                   ftpFileStatus.m_etimeModification = file_status::time_remote_day;
                   ftpFileStatus.m_timeModification = m_tmBase + file_list_parser::ToTAI(lYear, lMonth, lMDay);
-                  m_psystem->m_pcoresystem->InsertTime(ftpFileStatus);
+                  acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
                }
                else
                   return false;
@@ -520,7 +520,7 @@ namespace ftp
 
          ftpFileStatus.m_etimeModification = file_status::time_remote_minute;
          ftpFileStatus.m_timeModification = m_tmBase + file_list_parser::ToTAI(lYear, lMonth, lMDay) + lHour * 3600 + lMinute * 60;
-         m_psystem->m_pcoresystem->InsertTime(ftpFileStatus);
+         acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
       }
 
       return true;
@@ -604,7 +604,7 @@ namespace ftp
 
       ftpFileStatus.m_etimeModification = file_status::time_remote_minute;
       ftpFileStatus.m_timeModification = m_tmBase + file_list_parser::ToTAI(lYear, lMonth, lMDay) + lHour * 3600 + lMinute * 60;
-      m_psystem->m_pcoresystem->InsertTime(ftpFileStatus);
+      acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
 
       return true;
    }

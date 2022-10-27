@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/exception/exception.h"
+
 
 #define BYTE_ALIGN (8)
 #define INT_ALIGN (BYTE_ALIGN * sizeof(i32))

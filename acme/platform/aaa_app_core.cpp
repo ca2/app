@@ -78,7 +78,7 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-//void debug_context_object(::object * pobject);
+//void debug_context_object(::particle * pparticle);
 
 
 #ifdef __APPLE__
@@ -199,14 +199,14 @@ void app_core::system_prep()
 
    m_durationAfterApplicationFirstRequest = m_durationStart;
 
-   if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
+   if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
 
       sleep(10_s);
 
    }
 
-   if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
+   if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
    {
 
       //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
@@ -254,7 +254,7 @@ void app_core::system_init()
 
    //   ::file::path pathModule = get_arg(m_iPathInstallFolderExeArg);
 
-   //   m_psystem->m_pacmedirectory->set_path_install_folder(pathModule.folder(4));
+   //   acmedirectory()->set_path_install_folder(pathModule.folder(4));
 
    //}
 
@@ -528,11 +528,11 @@ void app_core::system_init()
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 //
-  // ::file::path pathOutputDebugString = m_psystem->m_pacmedirectory->system() / strAppId / "output_debug_string.txt" ;
+  // ::file::path pathOutputDebugString = acmedirectory()->system() / strAppId / "output_debug_string.txt" ;
 
-   //::file::path pathGlobalOutputDebugString = m_psystem->m_pacmedirectory->config() / "output_debug_string.txt" ;
+   //::file::path pathGlobalOutputDebugString = acmedirectory()->config() / "output_debug_string.txt" ;
 
-   //::apex::g_bOutputDebugString = m_psystem->m_pacmefile->exists(pathOutputDebugString)||  m_psystem->m_pacmefile->exists(pathGlobalOutputDebugString);
+   //::apex::g_bOutputDebugString = acmefile()->exists(pathOutputDebugString)||  acmefile()->exists(pathGlobalOutputDebugString);
 
    //return true;
 
@@ -1138,12 +1138,12 @@ bool app_core::has_apex_application_factory() const
 
 
 
-void app_core::initialize_application(::acme::application *papp, ::object * pobject)
+void app_core::initialize_application(::acme::application *papp, ::particle * pparticle)
 {
 
    //auto estatus = 
    
-   papp->initialize(pobject);
+   papp->initialize(pparticle);
 
    //if (!estatus)
    //{

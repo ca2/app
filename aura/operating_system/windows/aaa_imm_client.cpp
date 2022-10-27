@@ -126,7 +126,7 @@ void imm_client::insert_text(string str, bool bForceNewStep, const ::action_cont
 void imm_client::_001OnIme(::message::message * pmessage)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
 #ifdef WINDOWS_DESKTOP
 

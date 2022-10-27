@@ -1,8 +1,9 @@
 ﻿// Created by camilo on 2021-11-05 16:12 PM <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "api.h"
-#include "apex/crypto/crypto.h"
+#include "acme/exception/interface_only.h"
 #include "acme/primitive/string/base64.h"
+#include "apex/crypto/crypto.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
@@ -25,12 +26,12 @@ api::~api()
 }
 
 
-void api::initialize_api(::object* pobject, const ::file::path & pathProfile)
+void api::initialize_api(::object* pparticle, const ::file::path & pathProfile)
 {
 
    //auto estatus =
    
-   ::object::initialize(pobject);
+   ::object::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -218,7 +219,7 @@ void api::api_download(string strGet, const ::file::path & path, property_set& s
 
       memory mDst;
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto pcrypto = psystem->crypto();
 
@@ -232,7 +233,7 @@ void api::api_download(string strGet, const ::file::path & path, property_set& s
    string api::base64urlencodeNoPadding(memory m)
    {
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pbase64 = psystem->base64();
 

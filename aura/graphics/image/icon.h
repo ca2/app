@@ -39,7 +39,7 @@ namespace draw2d
       ~icon() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       virtual void initialize_with_windowing_icon(::windowing::icon * picon);

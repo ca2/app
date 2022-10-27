@@ -23,7 +23,7 @@ public:
    ~context_image() override;
 
 
-   void initialize(::object * pobject) override;
+   void initialize(::particle * pparticle) override;
 
 
    //virtual void set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;

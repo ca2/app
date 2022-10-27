@@ -77,8 +77,6 @@
 }
 
 
-
-
 ::atom topic::user_element_id() const
 {
 

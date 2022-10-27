@@ -9,9 +9,9 @@ namespace colorertake5
    const i32 StyledRegion::RD_UNDERLINE = 4;
    const i32 StyledRegion::RD_STRIKEOUT = 8;
 
-   StyledHRDMapper::StyledHRDMapper(::object * pobject) :
-      object(pobject),
-      RegionMapperImpl(pobject)
+   StyledHRDMapper::StyledHRDMapper(::particle * pparticle) :
+      object(pparticle),
+      RegionMapperImpl(pparticle)
    {
    }
 

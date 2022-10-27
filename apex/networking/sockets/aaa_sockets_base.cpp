@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+//#include "apex/networking/sockets/_sockets.h"
 
 
 namespace sockets
@@ -22,12 +22,12 @@ namespace sockets
    }
 
 
-   void sockets_base::initialize(::object * pobject)
+   void sockets_base::initialize(::particle * pparticle)
    {
 
-      //auto estatus = object::initialize(pobject);
+      //auto estatus = object::initialize(pparticle);
 
-      object::initialize(pobject);
+      object::initialize(pparticle);
 
       //if (!estatus)
       //{

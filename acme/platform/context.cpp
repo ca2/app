@@ -1,7 +1,11 @@
 ﻿//Created by camilo on 2021-03-26 00:44 BRT <3ThomasBS_
 #include "framework.h"
+#include "context.h"
 #include "acme/filesystem/file/file.h"
-#include "acme/primitive/text/_.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/text/data.h"
+#include "acme/primitive/text/text.h"
+#include "acme/primitive/text/translator.h"
 
 
 namespace acme
@@ -44,9 +48,9 @@ namespace acme
       m_papexnode = nullptr;
       m_pauranode = nullptr;
       
-      m_ptexttranslator = memory_new ::text::translator();
-
-      m_ptexttranslator->m_pcontext = this;
+//      m_ptexttranslator = memory_new ::text::translator();
+//
+//      m_ptexttranslator->m_pcontext = this;
 
    }
 
@@ -54,7 +58,7 @@ namespace acme
    context::~context()
    {
 
-      ::release(m_ptexttranslator);
+      //::release(m_ptexttranslator);
 
    }
 
@@ -62,6 +66,7 @@ namespace acme
    void context::initialize_context()
    {
 
+      __construct_new(m_ptexttranslator);
 
    }
 
@@ -120,18 +125,18 @@ namespace acme
    }
 
 
-   file_pointer context::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
-   {
-
-      auto pfile = __create < ::file::file >();
-
-      auto path = payloadFile.file_path();
-      
-      pfile->open(path, eopen);
-
-      return pfile;
-
-   }
+//   file_pointer context::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
+//   {
+//
+//      auto pfile = __create < ::file::file >();
+//
+//      auto path = payloadFile.file_path();
+//
+//      pfile->open(path, eopen);
+//
+//      return pfile;
+//
+//   }
 
 
    ::file::path context::defer_process_path(::file::path path)

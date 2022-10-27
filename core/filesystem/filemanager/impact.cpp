@@ -118,7 +118,7 @@ namespace filemanager
 
       ::user::split_impact::handle(ptopic, pcontext);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdocumentSubject = ptopic->cast < ::user::document >(id_document);
 
@@ -242,7 +242,7 @@ namespace filemanager
 
                }
 
-               //auto psystem = m_psystem;
+               //auto psystem = acmesystem();
 
                auto pdatetime = psystem->datetime();
 
@@ -297,7 +297,7 @@ namespace filemanager
       //tab_impact * ptabimpact = get_parent_frame()->get_typed_parent < tab_impact >();
       //if (ptabimpact != nullptr)
       //{
-      //   ptabimpact->on_update(this, eupdate, pobject);
+      //   ptabimpact->on_update(this, eupdate, pparticle);
       //}
 
    }

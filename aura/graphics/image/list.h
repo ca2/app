@@ -66,7 +66,7 @@ public:
    // inline i32 add(::windowing::icon * picon) { return set(iItem, picon, x, y); }
 
    //i32 add_file(::payload payloadFile, int iItem = -1);
-   ///i32 add_matter(const ::string & pcsz, ::object * pobject = nullptr, int iItem = -1);
+   ///i32 add_matter(const ::string & pcsz, ::particle * pparticle = nullptr, int iItem = -1);
 
    //i32 add_std_matter(const ::string & pcsz, int iItem = -1);
 

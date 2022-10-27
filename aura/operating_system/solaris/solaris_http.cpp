@@ -31,7 +31,7 @@ bool ms_download_dup(const ::string & pszUrl, const ::string & pszFile, bool bPr
 
    prepare_http();
 
-   if(m_psystem->m_pacmefile->exists(pszFile) && !::unlink(pszFile))
+   if(acmefile()->exists(pszFile) && !::unlink(pszFile))
    {
       //trace("download failed: could not delete file prior to download.");
       vsstring str;
@@ -85,7 +85,7 @@ bool ms_download_dup(const ::string & pszUrl, const ::string & pszFile, bool bPr
 
    tiny_http::http_retcode ret = g_tinyhttp.t_get(&buffer, &len, callback, callback_param);
 
-   m_psystem->m_pacmefile->put_contents(pszFile, buffer, len);
+   acmefile()->put_contents(pszFile, buffer, len);
 
    ca2_free(buffer);
 

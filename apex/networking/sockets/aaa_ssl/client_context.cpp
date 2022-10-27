@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "client_context.h"
-#include "apex/networking/sockets/_sockets.h"
+//#include "apex/networking/sockets/_sockets.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -25,7 +25,7 @@ namespace sockets
    ssl_client_context::ssl_client_context(const SSL_METHOD * pmethod)
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_psslsession = nullptr;
       m_psslcontext = nullptr;

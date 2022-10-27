@@ -5,9 +5,9 @@ namespace calculator
 {
 
 
-   calculator::calculator(::object * pobject) :
-      ::object(pobject),
-      ::acme::department(pobject)
+   calculator::calculator(::particle * pparticle) :
+      ::object(pparticle),
+      ::acme::department(pparticle)
    {
    
    }

@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "apex/xml/_.h"
+////#include "apex/xml/_.h"
 #include "acme/constant/id.h"
 
 
@@ -19,10 +19,10 @@ namespace universal_windows
    }
 
 
-   void dir_context::initialize(::object * pobject)
+   void dir_context::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::dir_context::initialize(pobject);
+      auto estatus = ::dir_context::initialize(pparticle);
 
       if (!estatus)
       {
@@ -103,7 +103,7 @@ namespace universal_windows
 
       mk(m_pdirsystem->m_strTimeFolder / "time");
 
-      m_pdirsystem->m_pathHome =          auto psystem = m_psystem;
+      m_pdirsystem->m_pathHome =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -645,7 +645,7 @@ try1:;
    //::file::path dir_context::usersystemappdata(const ::string & strPrefix)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pobject);
+   //   __UNREFERENCED_PARAMETER(pparticle);
 
    //   return appdata() / strPrefix;
 
@@ -655,7 +655,7 @@ try1:;
    //::file::path dir_context::userdata()
    //{
 
-   //   return userfolder(pobject) / "data";
+   //   return userfolder(pparticle) / "data";
 
    //}
 
@@ -667,9 +667,9 @@ try1:;
 
    //   string strUserFolderShift;
 
-   //   if(App(pobject).has_property("user_folder_relative_path"))
+   //   if(App(pparticle).has_property("user_folder_relative_path"))
    //   {
-   //      strUserFolderShift = App(pobject).m_varTopicQuery["user_folder_relative_path"].get_string();
+   //      strUserFolderShift = App(pparticle).m_varTopicQuery["user_folder_relative_path"].get_string();
    //   }
 
    //   return str / "ca2" / strUserFolderShift;
@@ -680,7 +680,7 @@ try1:;
    //::file::path dir_context::default_os_user_path_prefix()
    //{
 
-   //   __UNREFERENCED_PARAMETER(pobject);
+   //   __UNREFERENCED_PARAMETER(pparticle);
 
    //   return "CurrentUser";
 
@@ -690,7 +690,7 @@ try1:;
    //::file::path dir_context::default_userappdata(const string & lpcszPrefix,const string & lpcszLogin)
    //{
 
-   //   return default_userfolder(pobject,lpcszPrefix,lpcszLogin) / "appdata";
+   //   return default_userfolder(pparticle,lpcszPrefix,lpcszLogin) / "appdata";
 
    //}
 
@@ -698,7 +698,7 @@ try1:;
    //::file::path dir_context::default_userdata(const string & lpcszPrefix,const string & lpcszLogin)
    //{
 
-   //   return default_userfolder(pobject,lpcszPrefix,lpcszLogin) / "data";
+   //   return default_userfolder(pparticle,lpcszPrefix,lpcszLogin) / "data";
 
    //}
 
@@ -706,7 +706,7 @@ try1:;
    //::file::path dir_context::default_userfolder(const ::string & strPrefix,const ::string & strLogin)
    //{
 
-   //   return userfolder(pobject) / strPrefix / strLogin;
+   //   return userfolder(pparticle) / strPrefix / strLogin;
 
    //}
 

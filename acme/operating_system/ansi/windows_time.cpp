@@ -8,6 +8,12 @@
 //
 #include "framework.h"
 #include "windows_time.h"
+#include "acme/parallelization/mutex.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/exception/exception.h"
+
+
+critical_section * tz_critical_section();
 
 
 using WORD = ::u16;
@@ -218,7 +224,7 @@ typedef struct _RTL_TIME_ZONE_INFORMATION
 static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
 
 
-::mutex * g_pmutexTz = nullptr;
+::pointer< ::mutex > g_pmutexTz = nullptr;
 
 
 #define TICKSPERSEC        10000000
@@ -413,7 +419,7 @@ PLARGE_INTEGER Time)
 
    utc = time( nullptr );
 
-   synchronous_lock ml(g_pmutexTz);
+   critical_section_lock ml(tz_critical_section());
 //    RtlEnterCriticalSection( &TIME_tz_section );
    if (utc != last_utc)
    {
@@ -842,7 +848,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
    time_t year_start, year_end, tmp, dlt = 0, iStandard = 0;
    i32 is_dst, current_is_dst;
 
-   synchronous_lock ml(g_pmutexTz);
+   critical_section_lock ml(tz_critical_section());
 //    RtlEnterCriticalSection( &TIME_tz_section );
 
    year_start = time(nullptr);

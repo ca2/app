@@ -87,11 +87,6 @@ struct CLASS_DECL_ACME MAIN // : public ::acme::reference
 //
 //#endif
 
-extern "C"
-typedef ::acme::library * NEW_LIBRARY();
-
-typedef NEW_LIBRARY * PFN_NEW_LIBRARY;
-
 
 #include "acme/primitive/primitive/object.h"
 #include "implementable.h"
@@ -120,7 +115,7 @@ public:
    string                              m_strProgName;
    ::duration                          m_durationStart;
    ::duration                          m_durationAfterApplicationFirstRequest;
-   //::apex::system *                  m_psystem;
+   //::apex::system *                  acmesystem();
    //::pointer<apex_main_data>        m_pmaindata;
    ::pointer<::acme::library>         m_plibrary;
    array < ::e_status >                m_estatusa;
@@ -229,14 +224,14 @@ public:
    //::pointer<::acme::application>new_app(const char* pszAppId);
 
 
-   //   ::pointer<::apex::application>get_new_application(::object* pobject);
-   //   ::pointer<::apex::application>get_new_application(::object* pobject, const char* pszAppId);
+   //   ::pointer<::apex::application>get_new_application(::object* pparticle);
+   //   ::pointer<::apex::application>get_new_application(::object* pparticle, const char* pszAppId);
 
-   virtual void initialize_application(::acme::application * papp, ::object* pobject);
-
+   virtual void initialize_application(::acme::application * pacmeapplication, ::particle * pparticle);
 
 
 };
+
 
 class subsystem;
 

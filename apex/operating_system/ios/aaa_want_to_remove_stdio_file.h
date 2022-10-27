@@ -21,7 +21,7 @@ namespace ios
 
 
 
-      stdio_file(::object * pobject);
+      stdio_file(::particle * pparticle);
       virtual ~stdio_file();
 
       virtual void write_string(const char * lpsz);

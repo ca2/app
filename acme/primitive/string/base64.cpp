@@ -330,10 +330,10 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
    }
 
 
-   //void base64::initialize(::object * pobject)
+   //void base64::initialize(::particle * pparticle)
    //{
 
-   //   auto estatus = ::matter::initialize(pobject);
+   //   auto estatus = ::matter::initialize(pparticle);
 
    //   if (!estatus)
    //   {

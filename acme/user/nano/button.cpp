@@ -1,6 +1,9 @@
 // Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSørensen
 #include "framework.h"
-#include "_nano.h"
+#include "button.h"
+#include "window.h"
+#include "device.h"
+#include "popup_button.h"
 
 
 void nano_button::on_draw(nano_device * pnanodevice)
@@ -62,7 +65,6 @@ bool nano_button::is_focusable() const
    return true;
 
 }
-
 
 
 //void nano_still::resize_to_fit()

@@ -4,6 +4,7 @@
 
 #include "acme/primitive/geometry2d/point.h"
 #include "acme/primitive/geometry2d/size.h"
+#include "acme/constant/element.h"
 
 
 namespace user

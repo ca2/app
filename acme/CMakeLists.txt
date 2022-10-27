@@ -93,7 +93,9 @@ list(APPEND library_source
         constant/_.h
         constant/code_page.h
         constant/earth.h
+        constant/element.h
         constant/idpool.cpp
+        constant/message_box.h
         #context_glx.cpp
         #exception/callstack.cpp
         exception/assert.cpp
@@ -185,6 +187,7 @@ list(APPEND library_source
         handler/topic.cpp
         handler/topic.h
         #include/_.cpp
+        #include/path.h        #primitive/collection/comparable_array.cpp
         memory/alloc.cpp
         memory/allocate_mid_big.cpp
         memory/allocate_processor_cache_oriented.cpp
@@ -253,8 +256,12 @@ list(APPEND library_source
         parallelization/mutex.cpp
         parallelization/pool.cpp
         parallelization/semaphore.cpp
+        parallelization/signalization.cpp
+        parallelization/signalization.h
         parallelization/single_lock.cpp
         parallelization/socket_event.cpp
+        parallelization/synchronizer.cpp
+        parallelization/synchronizer.h
         parallelization/task.cpp
         parallelization/task_flag.h
         parallelization/task_keep.h
@@ -293,6 +300,7 @@ list(APPEND library_source
         platform/hyperlink.cpp
         platform/implementable.cpp
         platform/implementable.h
+        platform/ini.cpp
         platform/library.cpp
         platform/library.h
         platform/log.cpp
@@ -341,14 +349,14 @@ list(APPEND library_source
         primitive/collection/atom_map.h
         primitive/collection/bit_array.cpp
         #primitive/collection/class_sort_array.cpp
-        #primitive/collection/comparable_array.cpp
+        primitive/collection/collection.h
         #primitive/collection/event_map.cpp
         #primitive/collection/id_array.cpp
         #primitive/collection/key_sort_array.cpp
         #primitive/collection/map_misc.cpp
         primitive/collection/map_test_51778915.cpp
         #primitive/collection/numeric_array.cpp
-        primitive/collection/payload_array.cpp
+        primitive/collection/__payload_array.cpp
         #primitive/collection/point_array.cpp
         #primitive/collection/rectangle_array.cpp
         primitive/collection/sort.cpp
@@ -357,7 +365,8 @@ list(APPEND library_source
         #primitive/collection/string_list.cpp
         #primitive/collection/string_list.cpp
         #primitive/collection/string_to_string_map.cpp
-        primitive/collection/stringl.cpp
+        primitive/collection/string_list.cpp
+        primitive/collection/string_list.h
         primitive/comparison/var_strict.cpp
         primitive/data/_.h
         primitive/data/_data.h
@@ -389,6 +398,9 @@ list(APPEND library_source
         primitive/datetime/datetime.cpp
         primitive/datetime/department.cpp
         primitive/datetime/department.h
+        primitive/datetime/earth_gregorian_time.cpp
+        primitive/datetime/earth_gregorian_time.h
+        primitive/datetime/earth_time_shift.h
         primitive/datetime/file_time.cpp
         primitive/datetime/file_time.h
         primitive/datetime/file_time_span.cpp
@@ -410,9 +422,11 @@ list(APPEND library_source
         primitive/duration/duration/duration.h
         primitive/duration/floating/_.h
         primitive/duration/integral/_.h
+        primitive/duration/__string.h
         primitive/duration/_.h
         primitive/duration/_duration.h
-        primitive/duration/_string_format.h
+        primitive/duration/_impl.h
+        primitive/duration/_impl.h
         primitive/duration/_struct.h
         primitive/duration/_unit.h
         primitive/duration/_unit_operator.h
@@ -450,7 +464,7 @@ list(APPEND library_source
         primitive/geometry2d/point.h
         primitive/geometry2d/point_array.h
         primitive/geometry2d/polygon.h
-        #primitive/geometry2d/rectangle.cpp
+        primitive/geometry2d/rectangle.cpp
         primitive/geometry2d/rectangle.h
         primitive/geometry2d/rectangle_array.h
         primitive/geometry2d/shape.cpp
@@ -501,6 +515,7 @@ list(APPEND library_source
         primitive/mathematics/number_integer.cpp
         primitive/mathematics/number_integer.h
         primitive/mathematics/numeric_info.h
+        primitive/mathematics/numeric.h
         primitive/mathematics/objects.h
         primitive/mathematics/random_number_generator.cpp
         primitive/mathematics/random_number_generator.h
@@ -529,7 +544,7 @@ list(APPEND library_source
         primitive/primitive/action_context.cpp
         primitive/primitive/action_context.h
         #primitive/primitive/application_bias.cpp
-        #primitive/primitive/atom.cpp
+        primitive/primitive/atom.cpp
         primitive/primitive/atom.h
         primitive/primitive/atom_space.cpp
         primitive/primitive/atom_space.h
@@ -548,8 +563,8 @@ list(APPEND library_source
         primitive/primitive/element.h
         primitive/primitive/element.h
         #primitive/primitive/element_array.cpp
-        primitive/primitive/element_array.h
-        primitive/primitive/element_array.h
+        #primitive/primitive/element_array.h
+        #primitive/primitive/element_array.h
         primitive/primitive/enum_bitset.h
         primitive/primitive/enumeration.h
         primitive/primitive/enumeration.h
@@ -594,22 +609,23 @@ list(APPEND library_source
         primitive/primitive/object.cpp
         primitive/primitive/object.h
         primitive/primitive/object.h
-        primitive/primitive/papaya.h
+        #primitive/primitive/papaya.h
         primitive/primitive/particle.cpp
         primitive/primitive/particle.h
+        primitive/primitive/particle_factory.h
         primitive/primitive/payload.cpp
         primitive/primitive/payload.h
         primitive/primitive/payload2.h
         primitive/primitive/pointer.h
         primitive/primitive/pointer2.h
         primitive/primitive/property.cpp
-        primitive/primitive/property.h
+        primitive/primitive/__property.h
         primitive/primitive/property_object.cpp
         primitive/primitive/property_object.cpp
         primitive/primitive/property_object.h
         primitive/primitive/property_object.h
         primitive/primitive/property_set.cpp
-        primitive/primitive/property_set.h
+        primitive/primitive/__property_set.h
         #primitive/primitive/property_set_composite.cpp
         #primitive/primitive/property_set_papaya.cpp
         primitive/primitive/property_set_papaya.h
@@ -618,6 +634,7 @@ list(APPEND library_source
         primitive/primitive/request_interface.h
         #primitive/primitive/runnable.cpp
         #primitive/primitive/runnable.h
+        primitive/primitive/scope_stack.h
         #primitive/primitive/shared_memory.cpp
         #primitive/primitive/shared_memory.h
         #primitive/primitive/simple_object.h
@@ -639,11 +656,11 @@ list(APPEND library_source
         primitive/primitive/virtual_memory.h
         primitive/primitive/work.cpp
         primitive/primitive/work.h
-        primitive/promise/signalization.cpp
-        primitive/promise/signalization.h
+        #primitive/promise/signalization.cpp
+        #primitive/promise/signalization.h
         primitive/string/_.cpp
-        primitive/string/_.h
-        primitive/string/_.h
+        #primitive/string/_.h
+        #primitive/string/_.h
         primitive/string/___ch_impl.h
         primitive/string/__c_ansi.h
         primitive/string/__c_ansi_impl.h
@@ -676,7 +693,7 @@ list(APPEND library_source
         primitive/string/_c_trait_wide.h
         primitive/string/_c_trait_wide_impl.h
         primitive/string/_c_unicode.h
-        primitive/string/_str_compare.h
+        primitive/string/__str_compare.h
         primitive/string/_str_compare_impl.h
         primitive/string/_conv.h
         #primitive/string/_conv_ansi.cpp
@@ -724,11 +741,13 @@ list(APPEND library_source
         primitive/string/international.h
         primitive/string/international2.h
         #primitive/string/manager.cpp
+        primitive/string/network_payload.cpp
+        primitive/string/network_payload.h
         primitive/string/parse.cpp
         primitive/string/parse.h
         #primitive/string/simple.cpp
         primitive/string/static_string.h
-        primitive/string/stdstring.h
+        #primitive/string/stdstring.h
         primitive/string/str.cpp
         primitive/string/string.cpp
         primitive/string/string.h
@@ -776,13 +795,6 @@ list(APPEND library_source
         primitive/text/text.h
         primitive/text/translator.cpp
         primitive/text/translator.h
-        process/_.h
-        process/bidirectional_pipe.cpp
-        process/bidirectional_pipe.h
-        process/exit_status.cpp
-        process/exit_status.h
-        process/pipe.cpp
-        process/pipe.h
         promise.cpp
         regular_expression/_regular_expression.h
         regular_expression/context.cpp
@@ -792,7 +804,7 @@ list(APPEND library_source
         regular_expression/result.cpp
         regular_expression/result.h
         user/nano/_nano.cpp
-        user/nano/_nano.h
+        user/nano/_.h
         user/nano/brush.cpp
         user/nano/brush.h
         user/nano/button.cpp
@@ -841,6 +853,7 @@ list(APPEND library_source
         user/user/text.cpp
         user/user/text.h
         user/user/theme_colors.h
+        user/_.h
         update.h)
 
 
@@ -1114,6 +1127,13 @@ list(APPEND library_source
         operating_system/solaris/solaris_solaris.h
         operating_system/solaris/solaris_user_impl.h
         operating_system/solaris/solaris_window_xlib.h
+        operating_system/bidirectional_pipe.cpp
+        operating_system/bidirectional_pipe.h
+        operating_system/exit_status.cpp
+        operating_system/exit_status.h
+        operating_system/main.cpp
+        operating_system/pipe.cpp
+        operating_system/pipe.h
         operating_system/text.h
         operating_system/time.h
         operating_system/user.h
@@ -1197,8 +1217,8 @@ list(APPEND library_source
         parallelization/synchronization_array.cpp
         parallelization/synchronization_array.h
         parallelization/synchronous_lock.h
-        parallelization/synchronization_object.cpp
-        parallelization/synchronization_object.h
+        #parallelization/synchronization_object.cpp
+        #parallelization/synchronization_object.h
         #parallelization/synchronization_result.cpp
         parallelization/synchronization_result.h
         #parallelization/synchronized_process.cpp
@@ -1328,7 +1348,7 @@ list(APPEND library_source
         primitive/collection/base_enum.h
         primitive/collection/bit_array.h
         primitive/collection/bitset.h
-        primitive/collection/common.h
+        primitive/collection/range.h
         primitive/collection/comparable_array.h
         primitive/collection/comparable_eq_array.h
         primitive/collection/comparable_eq_list.h
@@ -1346,7 +1366,7 @@ list(APPEND library_source
         primitive/collection/iterable.h
         primitive/collection/iterator.h
         primitive/collection/list.h
-        primitive/collection/logic_array.h
+        primitive/collection/bool_array.h
         primitive/collection/map.h
         primitive/collection/map_association.h
         primitive/collection/map_to_smart_pointer.h
@@ -1375,11 +1395,11 @@ list(APPEND library_source
         primitive/collection/string_iterable.h
         primitive/collection/string_list.h
         primitive/collection/string_map.h
-        primitive/collection/string_to_string_map.h
-        primitive/collection/stringl.h
+        #primitive/collection/string_to_string_map.h
+        #primitive/collection/stringl.h
         #primitive/collection/template.h
         primitive/collection/unique_array.h
-        primitive/collection/payload_array.h
+        primitive/collection/__payload_array.h
         primitive/comparison/_.h
         primitive/comparison/_c.h
         primitive/comparison/binary.h
@@ -1391,7 +1411,6 @@ list(APPEND library_source
         primitive/comparison/sign.h
         primitive/comparison/var_strict.h
         procedure.h
-        process/main.cpp
         template/list.h
         user/user/_.h
         #user/user/_constant.h
@@ -1676,8 +1695,9 @@ if (LINUX OR FREEBSD)
             operating_system/cairo/nano/_nano.cpp
             operating_system/cairo/nano/device.cpp
             operating_system/cairo/nano/device.h
+            operating_system/x11/nano/_.h
             operating_system/x11/nano/_nano.cpp
-            operating_system/x11/nano/_nano.h
+            operating_system/x11/nano/_.h
             operating_system/x11/nano/display.cpp
             operating_system/x11/nano/display.h
             operating_system/x11/nano/event_listener.h
@@ -1687,7 +1707,7 @@ if (LINUX OR FREEBSD)
             operating_system/x11/_atom.cpp
             operating_system/x11/_atom.h
             operating_system/xcb/nano/_nano.cpp
-            operating_system/xcb/nano/_nano.h
+            operating_system/xcb/nano/_.h
             operating_system/xcb/nano/display.cpp
             operating_system/xcb/nano/display.h
             operating_system/xcb/nano/event_listener.h
@@ -2127,8 +2147,9 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
             operating_system/posix/file_lock.h
             #operating_system/posix/local_memory_map.cpp
             operating_system/posix/process.cpp
-            operating_system/posix/pthread.cpp
             operating_system/posix/parallelization.cpp
+            operating_system/posix/parallelization_pthread.cpp
+            operating_system/posix/parallelization_pthread.h
             operating_system/posix/time.cpp
             #operating_system/posix/timer.cpp
             operating_system/winpr_keycode.cpp
@@ -2161,7 +2182,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} )
+add_library(${PROJECT_NAME} SHARED ${library_source} platform/_critical_section.h)
 
 
 if (NOT DEFINED NO_PRECOMPILED_HEADER)

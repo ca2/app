@@ -49,7 +49,7 @@ namespace programming
       ~compiler() override;
 
 
-      virtual void initialize_programming_compiler(::object* pobject);
+      virtual void initialize_programming_compiler(::object* pparticle);
 
       virtual void prepare_compile_and_link_environment();
 

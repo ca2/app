@@ -86,7 +86,7 @@ namespace userex
    void image_list_impact::update_data(bool bSaveAndValidate)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (bSaveAndValidate)
       {
@@ -97,7 +97,7 @@ namespace userex
       else
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_pimageaThumb->m_imagea.clear();
 
@@ -135,7 +135,7 @@ namespace userex
       fork([this]()
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          int iForkDib = m_iForkAddDib;
 

@@ -91,12 +91,12 @@ namespace aura
    }
 
 
-   void session::on_initialize_object()
+   void session::on_initialize_particle()
    {
 
       //auto estatus = 
       
-      ::aqua::session::on_initialize_object();
+      ::aqua::session::on_initialize_particle();
 
       //if(!estatus)
       //{
@@ -107,7 +107,7 @@ namespace aura
 
       //estatus = 
       
-      ::aura::context::on_initialize_object();
+      ::aura::context::on_initialize_particle();
 
       //if(!estatus)
       //{
@@ -116,7 +116,7 @@ namespace aura
 
       //}
 
-      //estatus = ::user::style_base::on_initialize_object();
+      //estatus = ::user::style_base::on_initialize_particle();
 
       //if(!estatus)
       //{
@@ -130,12 +130,12 @@ namespace aura
    }
 
 
-   void session::initialize(::object * pobject)
+   void session::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::aqua::session::initialize(pobject);
+      ::aqua::session::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -146,7 +146,7 @@ namespace aura
 
       m_pauracontext = this;
 
-      //m_pnode = m_psystem->node();
+      //m_pnode = acmenode();
 
       m_pimplPendingFocus2             = nullptr;
 
@@ -366,7 +366,7 @@ namespace aura
 
       }
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -1363,7 +1363,7 @@ namespace aura
 
    //         {
 
-   //            synchronous_lock synchronouslock(mutex());
+   //            synchronous_lock synchronouslock(this->synchronization());
 
    //            ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -1570,7 +1570,7 @@ namespace aura
 //   bool session::is_key_pressed(::user::enum_key ekey)
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (m_pmapKeyPressed == nullptr)
 //      {
@@ -1645,7 +1645,7 @@ namespace aura
 //   void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (m_pmapKeyPressed == nullptr)
 //      {
@@ -1687,7 +1687,7 @@ namespace aura
    void session::on_show_user_input_popup(::user::interaction * pinteraction)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       try
       {
@@ -2190,10 +2190,10 @@ namespace aura
 
 
 
-   //void session::initialize(::object * pobject)
+   //void session::initialize(::particle * pparticle)
    //{
 
-   //   auto estatus = ::aura::session::initialize(pobject);
+   //   auto estatus = ::aura::session::initialize(pparticle);
 
    //   if (!estatus)
    //   {
@@ -2517,7 +2517,7 @@ namespace aura
    ::aura::system * session::get_system() const
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::aura::system *> (m_psystem) : nullptr;
+      return ::is_set(acmesystem()) ? dynamic_cast <::aura::system *> (acmesystem()) : nullptr;
 
    }
 

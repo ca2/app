@@ -120,11 +120,11 @@ namespace apex
          strLinkTitle.replace_with("_", "\\");
          strLinkTitle.replace_with("_", "-");
 
-         pathLnk = m_psystem->m_pacmedirectory->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
+         pathLnk = acmedirectory()->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 
-         m_psystem->m_pacmedirectory->create(pathLnk.folder());
+         acmedirectory()->create(pathLnk.folder());
 
-         m_psystem->m_papexsystem->m_papexnode->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
+         acmesystem()->m_papexsystem->m_papexnode->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
 
       }
 

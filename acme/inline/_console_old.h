@@ -11,7 +11,7 @@ class CLASS_DECL_ACME console :
 public:
 
    class acme_acme                  m_acme;
-   ::pointer<::acme::system>        m_psystem;
+   ::pointer<::acme::system>        acmesystem();
    //::pointer<::acme::application>   m_pacmeapplication;
 
    console(int argc, wchar_t * argv[]);

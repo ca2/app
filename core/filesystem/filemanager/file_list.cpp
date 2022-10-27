@@ -1125,7 +1125,7 @@ namespace filemanager
 
       {
 
-         synchronization_object * pm = fs_list()->mutex();
+         synchronization * pm = fs_list()->mutex();
 
          synchronous_lock lock(pm);
 

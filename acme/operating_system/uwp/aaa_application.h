@@ -44,7 +44,7 @@
 //      main_init_data *     m_pmaindata;
 //
 //
-//      application(::matter * pobject);
+//      application(::particle * pparticle);
 //      ~application() override;
 //
 //      virtual HINSTANCE GetHinstance();

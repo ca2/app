@@ -20,8 +20,8 @@ namespace user
    }
 
 
-   //interaction_child::interaction_child(::object * pobject) :
-   //   ::object(pobject)
+   //interaction_child::interaction_child(::particle * pparticle) :
+   //   ::object(pparticle)
    //{
 
    //   m_bCreate = false;
@@ -68,7 +68,7 @@ namespace user
 
          m_puserinteraction = pinteraction;
 
-         if (::is_null(m_psystem))
+         if (::is_null(acmesystem()))
          {
 
             initialize(pprimitiveParent);

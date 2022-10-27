@@ -1798,7 +1798,7 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 
    bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
 
-   auto psystem = m_psystem->m_paurasystem;
+   auto psystem = acmesystem()->m_paurasystem;
 
    auto pdraw2d = psystem->draw2d();
 
@@ -1844,7 +1844,7 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index nCount, index nWidth)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    ::count countNewlyWrapped = 0;
 

@@ -227,7 +227,7 @@ namespace aura
 
       m_atom = "::interprocess::communication";
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
 #ifdef _UWP
 
@@ -249,10 +249,10 @@ namespace aura
    }
 
 
-   void inteprocess_channel::initialize(::object * pobject)
+   void inteprocess_channel::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      auto estatus = ::object::initialize(pparticle);
 
       if (!estatus)
       {
@@ -327,7 +327,7 @@ namespace aura
       if(pmutex.is_null())
       {
 
-         pmutex = __new(::mutex());
+         pmutex = __new(::pointer < ::mutex >());
 
       }
 
@@ -489,7 +489,7 @@ started:
 
 #ifdef LINUX
 
-      strKey =          auto psystem = m_psystem;
+      strKey =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -515,7 +515,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
 
 #else
 
-      strKey =          auto psystem = m_psystem;
+      strKey =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -679,7 +679,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
 
       auto pobjectTask = __new(class task(pcall, idPid, atomic_increment(&m_iTaskSeed)));
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -693,7 +693,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
    ::pointer<class inteprocess_channel::task> inteprocess_channel::get_task(i64 iTask)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       return m_mapTask[iTask];
 
@@ -789,7 +789,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
 
       pathModule /= strApp + ".module_list";
 
-      string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
+      string strModuleList = acmefile()->as_string(pathModule);
 
       stra.add_lines(strModuleList);
 
@@ -881,7 +881,7 @@ repeat:
 
       ::file::path pathPid = module_path_from_pid((::u32)idPid.i64());
 
-      string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
+      string strModuleList = acmefile()->as_string(pathModule);
 
       m_straModule.add_lines(strModuleList);
 

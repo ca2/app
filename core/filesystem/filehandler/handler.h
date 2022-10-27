@@ -34,7 +34,7 @@ namespace filehandler
       virtual ~handler();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       string get_text(::pointer<::data::tree>ptree);

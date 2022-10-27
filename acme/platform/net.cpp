@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "net.h"
+#include "acme/primitive/string/hex.h"
 #include "acme/operating_system.h"
 
 
@@ -98,7 +100,7 @@ string url_decode(const char * pszUrl,strsize iLen)
          {
             i++;
             iLen--;
-            *psz = (char)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(pszUrl + 1)));
+            *psz = (char)(uchar)(hex::to_nibble(*pszUrl) << 4 | hex::to_nibble(*(pszUrl + 1)));
 
             psz++;
             pszUrl += 2;
@@ -435,13 +437,13 @@ void openURL(const string &url_str)
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+//   //strUsername = acmefile()->as_string(         auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
 //pacmedirectory->system() / "config\\user.txt");
 ////
-////   //strPassword = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+////   //strPassword = acmefile()->as_string(         auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -1003,13 +1005,13 @@ int ui_open_url(const char* psz);
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+//   //strUsername = acmefile()->as_string(         auto psystem = acmesystem();
 
    /*      auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / "config\\user.txt")*/;
 //
-//   //strPassword = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+//   //strPassword = acmefile()->as_string(         auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

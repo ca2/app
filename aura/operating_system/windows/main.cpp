@@ -109,13 +109,13 @@ CLASS_DECL_AURA i32 ca2_main();
 //         strLinkTitle.replace("\\", "_");
 //         strLinkTitle.replace("-", "_");
 //
-//         pathLnk =          auto psystem = m_psystem;
+//         pathLnk =          auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
 //pacmedirectory->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 //
-//                  auto psystem = m_psystem;
+//                  auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

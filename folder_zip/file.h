@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/filesystem/file/file.h"
+#include "acme/primitive/collection/string_array.h"
+
+
 namespace folder_zip
 {
 
@@ -48,8 +52,8 @@ namespace folder_zip
       ~file() override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
 

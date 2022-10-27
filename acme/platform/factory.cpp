@@ -1,5 +1,7 @@
 #include "framework.h"
-
+#include "factory.h"
+#include "acme/primitive/primitive/factory.h"
+#include "acme/primitive/string/string.h"
 #ifndef WINDOWS
 
 
@@ -55,7 +57,7 @@ namespace factory
 
       //auto psystem = get_system();
 
-      //synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+      //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
       //::matter* p = nullptr;
 
@@ -72,16 +74,16 @@ namespace factory
 
       //}
 
-      //auto pobject = ::move_transfer(p);
+      //auto pparticle = ::move_transfer(p);
 
-      //if (!pobject)
+      //if (!pparticle)
       //{
 
       //   return nullptr;
 
       //}
 
-      //return pobject;
+      //return pparticle;
 
       auto pfactoryinterface = get_factory_item(strType);
 
@@ -102,7 +104,7 @@ namespace factory
 
       //auto psystem = get_system();
 
-      //synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+      //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
       //if (get_library() == nullptr)
       //{

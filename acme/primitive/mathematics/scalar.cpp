@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "scalar.h"
 
 //void double_scalar_source::listener::on_set_scalar(double_scalar_source * psource,e_scalar escalar,double dValue,int iFlags)
 //{

@@ -18,10 +18,10 @@ namespace geometry
    }
 
 
-   //void geometry::initialize(::object * pobject)
+   //void geometry::initialize(::particle * pparticle)
    //{
 
-   //   auto estatus = ::matter::initialize(pobject);
+   //   auto estatus = ::matter::initialize(pparticle);
 
    //   if (!estatus)
    //   {

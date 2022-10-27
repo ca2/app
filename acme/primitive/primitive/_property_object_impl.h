@@ -42,7 +42,7 @@
 //
 //}
 //
-//inline void property_object::defer_propset() { m_psystem->__defer_construct_new(m_ppropertyset); }
+//inline void property_object::defer_propset() { acmesystem()->__defer_construct_new(m_ppropertyset); }
 //
 //
 //
@@ -296,7 +296,7 @@
 //}
 //
 //
-//inline ::i64_array & material_object::idarray() const { m_psystem->__defer_construct_new(((material_object *)this)->m_pia); return *m_pia; }
+//inline ::i64_array & material_object::idarray() const { acmesystem()->__defer_construct_new(((material_object *)this)->m_pia); return *m_pia; }
 //
 //
 //

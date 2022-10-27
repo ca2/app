@@ -526,80 +526,80 @@ inline auto get_normal_dimension(enum_orientation eorientation, X x, Y y)
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 //inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const RECTANGLE_TYPE & rectangle) noexcept : size_type(rectangle.width(), rectangle.height()) {}
 
-
-template < typename UNIT_TYPE >
-inline UNIT_TYPE __conv(const ::string & str)
-{
-
-   return (UNIT_TYPE)str;
-
-}
-
-
-template <  >
-inline ::i32 __conv<::i32>(const ::string & str)
-{
-
-   return (::i32) ::atoi(str);
-
-}
-
-
-template <  >
-inline i64 __conv<i64>(const ::string & str)
-{
-
-   return (::i32) ::atoi(str);
-
-}
-
-
-template <  >
-inline double __conv<double>(const ::string & str)
-{
-
-   return (::i32) ::atoi(str);
-
-}
-
-
-template < typename TYPE >
-inline string __xmlpri()
-{
-
-   return "%";
-
-}
-
-
-template < >
-inline string __xmlpri<::i32>()
-{
-
-   return "%" PRId32;
-
-}
-
-
-template < >
-inline string __xmlpri<i64>()
-{
-
-   return "%" PRId64;
-
-}
-
-
-template < >
-inline string __xmlpri<double>()
-{
-
-   return "%f";
-
-}
-
-
-
+//
+//template < typename UNIT_TYPE >
+//inline UNIT_TYPE __conv(const ::string & str)
+//{
+//
+//   return (UNIT_TYPE)str;
+//
+//}
+//
+//
+//template <  >
+//inline ::i32 __conv<::i32>(const ::string & str)
+//{
+//
+//   return (::i32) ::atoi(str);
+//
+//}
+//
+//
+//template <  >
+//inline i64 __conv<i64>(const ::string & str)
+//{
+//
+//   return (::i32) ::atoi(str);
+//
+//}
+//
+//
+//template <  >
+//inline double __conv<double>(const ::string & str)
+//{
+//
+//   return (::i32) ::atoi(str);
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline string __xmlpri()
+//{
+//
+//   return "%";
+//
+//}
+//
+//
+//template < >
+//inline string __xmlpri<::i32>()
+//{
+//
+//   return "%" PRId32;
+//
+//}
+//
+//
+//template < >
+//inline string __xmlpri<i64>()
+//{
+//
+//   return "%" PRId64;
+//
+//}
+//
+//
+//template < >
+//inline string __xmlpri<double>()
+//{
+//
+//   return "%f";
+//
+//}
+//
+//
+//
 
 
 namespace geometry
@@ -643,22 +643,22 @@ namespace geometry
 } // namespace geometry
 
 
-template < primitive_point POINT >
-inline ::string __string(const POINT & point)
-{
-
-   return __string(point.x) + ", " + __string(point.y);
-
-}
-
-
-template < primitive_size SIZE >
-inline ::string __string(const SIZE & size)
-{
-
-   return __string(size.cx) + ", " + __string(size.cy);
-
-}
+//template < primitive_point POINT >
+//inline ::string __string(const POINT & point)
+//{
+//
+//   return __string(point.x) + ", " + __string(point.y);
+//
+//}
+//
+//
+//template < primitive_size SIZE >
+//inline ::string __string(const SIZE & size)
+//{
+//
+//   return __string(size.cx) + ", " + __string(size.cy);
+//
+//}
 
 
 #include "arc.h"
@@ -670,17 +670,17 @@ inline ::string __string(const SIZE & size)
 #include "ellipse.h"
 
 
-template < primitive_point POINT >
-inline ::string __string(const POINT & point);
-
-
-template < primitive_size SIZE >
-inline ::string __string(const SIZE & size);
-
-
-
-
-
+//template < primitive_point POINT >
+//inline ::string __string(const POINT & point);
+//
+//
+//template < primitive_size SIZE >
+//inline ::string __string(const SIZE & size);
+//
+//
+//
+//
+//
 
 
 

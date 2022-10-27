@@ -10,7 +10,7 @@
 //
 //   ::file::path path = pathFolder / "Resources/po" / (strLang + ".po");
 //
-//   return m_psystem->m_pacmefile->as_string(path, bOnlyHeader ? 4096 : -1);
+//   return acmefile()->as_string(path, bOnlyHeader ? 4096 : -1);
 //
 //}
 

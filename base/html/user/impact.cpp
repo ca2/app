@@ -176,7 +176,7 @@ void html_impact::on_document_complete(const ::string & strUrl)
 //
 //         {
 //
-//            synchronous_lock synchronouslock(mutex());
+//            synchronous_lock synchronouslock(this->synchronization());
 //
 //            if (get_html_data() == nullptr)
 //            {
@@ -215,7 +215,7 @@ void html_impact::handle(::topic * ptopic, ::context * pcontext)
 
          {
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             if (get_html_data() == nullptr)
             {

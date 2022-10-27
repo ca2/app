@@ -21,7 +21,7 @@ namespace axis
       ~session() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual void process_init() override;

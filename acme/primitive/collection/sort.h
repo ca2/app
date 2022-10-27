@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "numeric_array.h"
+#include "acme/primitive/comparison/less.h"
+
+
 template < typename T1, typename T2 >
 inline bool __sort(T1& t1, T2& t2)
 {
@@ -28,18 +32,18 @@ namespace sort
 {
 
 
-   template < typename T1, typename T2 >
-   inline void sort_non_negative(T1 & t1, T2 & t2)
+   template<typename T1, typename T2>
+   inline void sort_non_negative(T1 &t1, T2 &t2)
    {
 
-      if (t1 < ::numeric_info< T1 >::null())
+      if (t1 < ::numeric_info<T1>::null())
       {
 
          return;
 
       }
 
-      if (t2 < ::numeric_info< T2 >::null())
+      if (t2 < ::numeric_info<T2>::null())
       {
 
          return;
@@ -60,8 +64,8 @@ namespace sort
    }
 
 
-   template <class TYPE>
-   static iptr NumericCompare(const TYPE * pointA, const TYPE * pointB);
+   template<class TYPE>
+   static iptr NumericCompare(const TYPE *pointA, const TYPE *pointB);
 
 //    static iptr DWordCompare(const iptr dwA, const iptr dwB);
 
@@ -76,25 +80,27 @@ namespace sort
    //void * pVoidSwapArg);
 
 
-   template <class A> static iptr  CompareTkPosition(const A a1, const A a2);
+   template<class A>
+   static iptr CompareTkPosition(const A a1, const A a2);
 
-   template <class TYPE>
-   iptr NumericCompare(const TYPE * p1, const TYPE * p2)
+   template<class TYPE>
+   iptr NumericCompare(const TYPE *p1, const TYPE *p2)
    {
-      if(*p1 > *p2)
+      if (*p1 > *p2)
          return 1;
-      else if(*p1 < *p2)
+      else if (*p1 < *p2)
          return -1;
       else
          return 0;
    }
 
 
-   template <class A> static iptr  CompareTkPosition(const A a1, const A a2)
+   template<class A>
+   static iptr CompareTkPosition(const A a1, const A a2)
    {
-      if(a1.m_tkPosition > a2.m_tkPosition)
+      if (a1.m_tkPosition > a2.m_tkPosition)
          return 1;
-      else if(a1.m_tkPosition > a2.m_tkPosition)
+      else if (a1.m_tkPosition > a2.m_tkPosition)
          return -1;
       else
          return 0;
@@ -130,16 +136,16 @@ namespace sort
    };*/
 
 
-   template <class TYPE>
+   template<class TYPE>
    iptr CompareAscending(
-   TYPE * pA,
-   TYPE * pB)
+      TYPE *pA,
+      TYPE *pB)
    {
       return *pA - *pB;
    };
 
-   template < class TYPE, class ARG_TYPE, class FIRST>
-   void quick_sort(array < TYPE, ARG_TYPE > & a)
+   template<class TYPE, class ARG_TYPE, class FIRST>
+   void quick_sort(array<TYPE, ARG_TYPE> &a)
    {
       TYPE t;
       index_array stackLowerBound;
@@ -149,24 +155,24 @@ namespace sort
       iptr iLPos, iUPos, iMPos;
       //   u32 t;
 
-      if(a.get_size() >= 2)
+      if (a.get_size() >= 2)
       {
          stackLowerBound.push(0);
          stackUpperBound.push(a.get_size() - 1);
-         while(true)
+         while (true)
          {
             iLowerBound = stackLowerBound.pop();
             iUpperBound = stackUpperBound.pop();
             iLPos = iLowerBound;
             iMPos = iLowerBound;
             iUPos = iUpperBound;
-            while(true)
+            while (true)
             {
-               while(true)
+               while (true)
                {
-                  if(iMPos == iUPos)
+                  if (iMPos == iUPos)
                      break;
-                  if(FIRST::Compare(&a.element_at(iMPos), &a.element_at(iUPos)) <= 0)
+                  if (FIRST::Compare(&a.element_at(iMPos), &a.element_at(iUPos)) <= 0)
                      iUPos--;
                   else
                   {
@@ -176,14 +182,14 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iUPos)
+               if (iMPos == iUPos)
                   break;
                iMPos = iUPos;
-               while(true)
+               while (true)
                {
-                  if(iMPos == iLPos)
+                  if (iMPos == iLPos)
                      break;
-                  if(FIRST::Compare(&a.element_at(iLPos), &a.element_at(iMPos)) <= 0)
+                  if (FIRST::Compare(&a.element_at(iLPos), &a.element_at(iMPos)) <= 0)
                      iLPos++;
                   else
                   {
@@ -193,21 +199,21 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iLPos)
+               if (iMPos == iLPos)
                   break;
                iMPos = iLPos;
             }
-            if(iLowerBound < iMPos - 1)
+            if (iLowerBound < iMPos - 1)
             {
                stackLowerBound.push(iLowerBound);
                stackUpperBound.push(iMPos - 1);
             }
-            if(iMPos + 1 < iUpperBound)
+            if (iMPos + 1 < iUpperBound)
             {
                stackLowerBound.push(iMPos + 1);
                stackUpperBound.push(iUpperBound);
             }
-            if(stackLowerBound.get_size() == 0)
+            if (stackLowerBound.get_size() == 0)
                break;
          }
       }
@@ -215,10 +221,10 @@ namespace sort
    };
 
 
-   template <class TYPE, class ARG_TYPE, typename SWAP>
+   template<class TYPE, class ARG_TYPE, typename SWAP>
    void quick_sort(
-   array<TYPE, ARG_TYPE> & a,
-   SWAP __swap)
+      array<TYPE, ARG_TYPE> &a,
+      SWAP __swap)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -290,15 +296,13 @@ namespace sort
    }
 
 
-
-   template <class TYPE, class ARG_TYPE>
+   template<class TYPE, class ARG_TYPE>
    void quick_sort(
-   array<TYPE, ARG_TYPE> & a,
-   iptr fCompare(const ARG_TYPE, const ARG_TYPE),
-   void __swap(void * pVoidSwapArg, iptr iA, iptr iB),
+      array<TYPE, ARG_TYPE> &a,
+      iptr fCompare(const ARG_TYPE, const ARG_TYPE),
+      void __swap(void *pVoidSwapArg, iptr iA, iptr iB),
 
-   void * pVoidSwapArg)
-
+      void *pVoidSwapArg)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -306,24 +310,24 @@ namespace sort
       iptr iUpperBound;
       iptr iLPos, iUPos, iMPos;
 
-      if(a.get_size() >= 2)
+      if (a.get_size() >= 2)
       {
          stackLowerBound.push(0);
          stackUpperBound.push(a.get_size() - 1);
-         while(true)
+         while (true)
          {
             iLowerBound = stackLowerBound.pop();
             iUpperBound = stackUpperBound.pop();
             iLPos = iLowerBound;
             iMPos = iLowerBound;
             iUPos = iUpperBound;
-            while(true)
+            while (true)
             {
-               while(true)
+               while (true)
                {
-                  if(iMPos == iUPos)
+                  if (iMPos == iUPos)
                      break;
-                  if(fCompare(a.get_at(iMPos), a.get_at(iUPos)) <= 0)
+                  if (fCompare(a.get_at(iMPos), a.get_at(iUPos)) <= 0)
                      iUPos--;
                   else
                   {
@@ -333,14 +337,14 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iUPos)
+               if (iMPos == iUPos)
                   break;
                iMPos = iUPos;
-               while(true)
+               while (true)
                {
-                  if(iMPos == iLPos)
+                  if (iMPos == iLPos)
                      break;
-                  if(fCompare(a.get_at(iLPos), a.get_at(iMPos)) <= 0)
+                  if (fCompare(a.get_at(iLPos), a.get_at(iMPos)) <= 0)
                      iLPos++;
                   else
                   {
@@ -350,21 +354,21 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iLPos)
+               if (iMPos == iLPos)
                   break;
                iMPos = iLPos;
             }
-            if(iLowerBound < iMPos - 1)
+            if (iLowerBound < iMPos - 1)
             {
                stackLowerBound.push(iLowerBound);
                stackUpperBound.push(iMPos - 1);
             }
-            if(iMPos + 1 < iUpperBound)
+            if (iMPos + 1 < iUpperBound)
             {
                stackLowerBound.push(iMPos + 1);
                stackUpperBound.push(iUpperBound);
             }
-            if(stackLowerBound.get_size() == 0)
+            if (stackLowerBound.get_size() == 0)
                break;
          }
       }
@@ -372,22 +376,21 @@ namespace sort
    }
 
 
-   template < class iterator,class COMPARE = ::comparison::less < typename iterator::BASE_TYPE, typename iterator::BASE_ARG_TYPE > >
-   void quick_sort(const iterator& a, const iterator& b);
+   template<class iterator, class COMPARE = ::comparison::less<typename iterator::BASE_TYPE, typename iterator::BASE_ARG_TYPE> >
+   void quick_sort(const iterator &a, const iterator &b);
 
 
-   typedef void (*ARG_SWAP_FUNCTION)(void * pVoidSwapArg, iptr,  iptr);
+   typedef void (*ARG_SWAP_FUNCTION)(void *pVoidSwapArg, iptr, iptr);
 
-   typedef i32 (*ARG_COMPARE_FUNCTION)(void * pVoidCompareArg,  iptr,  iptr);
-
+   typedef i32 (*ARG_COMPARE_FUNCTION)(void *pVoidCompareArg, iptr, iptr);
 
 
    void CLASS_DECL_ACME quick_sort(
-   iptr iSize,
-   array < ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION > & comparefna,
-   array < ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION > & swapfna,
-   void_ptra & comparearga,
-   void_ptra & swaparga);
+      iptr iSize,
+      array<ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION> &comparefna,
+      array<ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION> &swapfna,
+      void_ptra &comparearga,
+      void_ptra &swaparga);
 
 
 
@@ -469,8 +472,8 @@ namespace sort
    //   }
    //}
 
-   template < typename PRED_LE, typename ARRAY>
-   void predicate_array_quick_sort(ARRAY & a, PRED_LE predicate_le)
+   template<typename PRED_LE, typename ARRAY>
+   void predicate_array_quick_sort(ARRAY &a, PRED_LE predicate_le)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -478,24 +481,24 @@ namespace sort
       iptr iUpperBound;
       iptr iLPos, iUPos, iMPos;
 
-      if(a.get_size() >= 2)
+      if (a.get_size() >= 2)
       {
          stackLowerBound.push(0);
          stackUpperBound.push(a.get_size() - 1);
-         while(true)
+         while (true)
          {
             iLowerBound = stackLowerBound.pop();
             iUpperBound = stackUpperBound.pop();
             iLPos = iLowerBound;
             iMPos = iLowerBound;
             iUPos = iUpperBound;
-            while(true)
+            while (true)
             {
-               while(true)
+               while (true)
                {
-                  if(iMPos == iUPos)
+                  if (iMPos == iUPos)
                      break;
-                  if(predicate_le(a.element_at(iMPos), a.element_at(iUPos)))
+                  if (predicate_le(a.element_at(iMPos), a.element_at(iUPos)))
                      iUPos--;
                   else
                   {
@@ -506,14 +509,14 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iUPos)
+               if (iMPos == iUPos)
                   break;
                iMPos = iUPos;
-               while(true)
+               while (true)
                {
-                  if(iMPos == iLPos)
+                  if (iMPos == iLPos)
                      break;
-                  if(predicate_le(a.element_at(iLPos), a.element_at(iMPos)))
+                  if (predicate_le(a.element_at(iLPos), a.element_at(iMPos)))
                      iLPos++;
                   else
                   {
@@ -524,22 +527,22 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iLPos)
+               if (iMPos == iLPos)
                   break;
                iMPos = iLPos;
             }
-            if(iLowerBound < iMPos - 1)
+            if (iLowerBound < iMPos - 1)
             {
                stackLowerBound.push(iLowerBound);
                stackUpperBound.push(iMPos - 1);
             }
-            if(iMPos + 1 < iUpperBound)
+            if (iMPos + 1 < iUpperBound)
             {
                stackLowerBound.push(iMPos + 1);
                stackUpperBound.push(iUpperBound);
             }
 
-            if(stackLowerBound.get_size() == 0)
+            if (stackLowerBound.get_size() == 0)
                break;
 
          }
@@ -549,8 +552,8 @@ namespace sort
    }
 
 
-   template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-   void QuickSortAsc(comparable_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
+   template<class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+   void QuickSortAsc(comparable_array<TYPE, ARG_TYPE, ARRAY_TYPE> &a)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -558,24 +561,24 @@ namespace sort
       iptr iUpperBound;
       iptr iLPos, iUPos, iMPos;
 
-      if(a.get_size() >= 2)
+      if (a.get_size() >= 2)
       {
          stackLowerBound.push(0);
          stackUpperBound.push(a.get_upper_bound());
-         while(true)
+         while (true)
          {
             iLowerBound = stackLowerBound.pop();
             iUpperBound = stackUpperBound.pop();
             iLPos = iLowerBound;
             iMPos = iLowerBound;
             iUPos = iUpperBound;
-            while(true)
+            while (true)
             {
-               while(true)
+               while (true)
                {
-                  if(iMPos == iUPos)
+                  if (iMPos == iUPos)
                      break;
-                  if(a.element_at(iMPos) <= a.element_at(iUPos))
+                  if (a.element_at(iMPos) <= a.element_at(iUPos))
                      iUPos--;
                   else
                   {
@@ -583,14 +586,14 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iUPos)
+               if (iMPos == iUPos)
                   break;
                iMPos = iUPos;
-               while(true)
+               while (true)
                {
-                  if(iMPos == iLPos)
+                  if (iMPos == iLPos)
                      break;
-                  if(a.element_at(iLPos) <= a.element_at(iMPos))
+                  if (a.element_at(iLPos) <= a.element_at(iMPos))
                      iLPos++;
                   else
                   {
@@ -598,28 +601,28 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iLPos)
+               if (iMPos == iLPos)
                   break;
                iMPos = iLPos;
             }
-            if(iLowerBound < iMPos - 1)
+            if (iLowerBound < iMPos - 1)
             {
                stackLowerBound.push(iLowerBound);
                stackUpperBound.push(iMPos - 1);
             }
-            if(iMPos + 1 < iUpperBound)
+            if (iMPos + 1 < iUpperBound)
             {
                stackLowerBound.push(iMPos + 1);
                stackUpperBound.push(iUpperBound);
             }
-            if(stackLowerBound.get_size() == 0)
+            if (stackLowerBound.get_size() == 0)
                break;
          }
       }
    }
 
-   template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-   void QuickSortDesc(comparable_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
+   template<class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+   void QuickSortDesc(comparable_array<TYPE, ARG_TYPE, ARRAY_TYPE> &a)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -627,24 +630,24 @@ namespace sort
       iptr iUpperBound;
       iptr iLPos, iUPos, iMPos;
 
-      if(a.get_size() >= 2)
+      if (a.get_size() >= 2)
       {
          stackLowerBound.push(0);
          stackUpperBound.push(a.get_upper_bound());
-         while(true)
+         while (true)
          {
             iLowerBound = stackLowerBound.pop();
             iUpperBound = stackUpperBound.pop();
             iLPos = iLowerBound;
             iMPos = iLowerBound;
             iUPos = iUpperBound;
-            while(true)
+            while (true)
             {
-               while(true)
+               while (true)
                {
-                  if(iMPos == iUPos)
+                  if (iMPos == iUPos)
                      break;
-                  if(a.element_at(iUPos) <= a.element_at(iMPos))
+                  if (a.element_at(iUPos) <= a.element_at(iMPos))
                      iUPos--;
                   else
                   {
@@ -652,14 +655,14 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iUPos)
+               if (iMPos == iUPos)
                   break;
                iMPos = iUPos;
-               while(true)
+               while (true)
                {
-                  if(iMPos == iLPos)
+                  if (iMPos == iLPos)
                      break;
-                  if(a.element_at(iMPos) <= a.element_at(iLPos))
+                  if (a.element_at(iMPos) <= a.element_at(iLPos))
                      iLPos++;
                   else
                   {
@@ -667,29 +670,29 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iLPos)
+               if (iMPos == iLPos)
                   break;
                iMPos = iLPos;
             }
-            if(iLowerBound < iMPos - 1)
+            if (iLowerBound < iMPos - 1)
             {
                stackLowerBound.push(iLowerBound);
                stackUpperBound.push(iMPos - 1);
             }
-            if(iMPos + 1 < iUpperBound)
+            if (iMPos + 1 < iUpperBound)
             {
                stackLowerBound.push(iMPos + 1);
                stackUpperBound.push(iUpperBound);
             }
-            if(stackLowerBound.get_size() == 0)
+            if (stackLowerBound.get_size() == 0)
                break;
          }
       }
    }
 
 
-   template < typename TYPE, enum_type t_etypePayload = e_type_element >
-   void QuickSortAsc(numeric_array < TYPE, t_etypePayload > & a)
+   template<typename TYPE, enum_type t_etypePayload = e_type_element>
+   void QuickSortAsc(numeric_array<TYPE, t_etypePayload> &a)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -697,24 +700,24 @@ namespace sort
       iptr iUpperBound;
       iptr iLPos, iUPos, iMPos;
 
-      if(a.get_size() >= 2)
+      if (a.get_size() >= 2)
       {
          stackLowerBound.push(0);
          stackUpperBound.push(a.get_upper_bound());
-         while(true)
+         while (true)
          {
             iLowerBound = stackLowerBound.pop();
             iUpperBound = stackUpperBound.pop();
             iLPos = iLowerBound;
             iMPos = iLowerBound;
             iUPos = iUpperBound;
-            while(true)
+            while (true)
             {
-               while(true)
+               while (true)
                {
-                  if(iMPos == iUPos)
+                  if (iMPos == iUPos)
                      break;
-                  if(a.element_at(iMPos) <= a.element_at(iUPos))
+                  if (a.element_at(iMPos) <= a.element_at(iUPos))
                      iUPos--;
                   else
                   {
@@ -722,14 +725,14 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iUPos)
+               if (iMPos == iUPos)
                   break;
                iMPos = iUPos;
-               while(true)
+               while (true)
                {
-                  if(iMPos == iLPos)
+                  if (iMPos == iLPos)
                      break;
-                  if(a.element_at(iLPos) <= a.element_at(iMPos))
+                  if (a.element_at(iLPos) <= a.element_at(iMPos))
                      iLPos++;
                   else
                   {
@@ -737,29 +740,29 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iLPos)
+               if (iMPos == iLPos)
                   break;
                iMPos = iLPos;
             }
-            if(iLowerBound < iMPos - 1)
+            if (iLowerBound < iMPos - 1)
             {
                stackLowerBound.push(iLowerBound);
                stackUpperBound.push(iMPos - 1);
             }
-            if(iMPos + 1 < iUpperBound)
+            if (iMPos + 1 < iUpperBound)
             {
                stackLowerBound.push(iMPos + 1);
                stackUpperBound.push(iUpperBound);
             }
-            if(stackLowerBound.get_size() == 0)
+            if (stackLowerBound.get_size() == 0)
                break;
          }
       }
    }
 
 
-   template < typename TYPE, enum_type t_etypePayload = e_type_element >
-   void QuickSortDesc(numeric_array < TYPE, t_etypePayload > & a)
+   template<typename TYPE, enum_type t_etypePayload = e_type_element>
+   void QuickSortDesc(numeric_array<TYPE, t_etypePayload> &a)
    {
 
       index_array stackLowerBound;
@@ -768,24 +771,24 @@ namespace sort
       iptr iUpperBound;
       iptr iLPos, iUPos, iMPos;
 
-      if(a.get_size() >= 2)
+      if (a.get_size() >= 2)
       {
          stackLowerBound.push(0);
          stackUpperBound.push(a.get_upper_bound());
-         while(true)
+         while (true)
          {
             iLowerBound = stackLowerBound.pop();
             iUpperBound = stackUpperBound.pop();
             iLPos = iLowerBound;
             iMPos = iLowerBound;
             iUPos = iUpperBound;
-            while(true)
+            while (true)
             {
-               while(true)
+               while (true)
                {
-                  if(iMPos == iUPos)
+                  if (iMPos == iUPos)
                      break;
-                  if(a.element_at(iUPos) < a.element_at(iMPos))
+                  if (a.element_at(iUPos) < a.element_at(iMPos))
                      iUPos--;
                   else
                   {
@@ -793,14 +796,14 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iUPos)
+               if (iMPos == iUPos)
                   break;
                iMPos = iUPos;
-               while(true)
+               while (true)
                {
-                  if(iMPos == iLPos)
+                  if (iMPos == iLPos)
                      break;
-                  if(a.element_at(iMPos) < a.element_at(iLPos))
+                  if (a.element_at(iMPos) < a.element_at(iLPos))
                      iLPos++;
                   else
                   {
@@ -808,30 +811,30 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iLPos)
+               if (iMPos == iLPos)
                   break;
                iMPos = iLPos;
             }
-            if(iLowerBound < iMPos - 1)
+            if (iLowerBound < iMPos - 1)
             {
                stackLowerBound.push(iLowerBound);
                stackUpperBound.push(iMPos - 1);
             }
-            if(iMPos + 1 < iUpperBound)
+            if (iMPos + 1 < iUpperBound)
             {
                stackLowerBound.push(iMPos + 1);
                stackUpperBound.push(iUpperBound);
             }
-            if(stackLowerBound.get_size() == 0)
+            if (stackLowerBound.get_size() == 0)
                break;
          }
       }
    }
 
-   template <class KEY, class TYPE, class ARG_TYPE>
+   template<class KEY, class TYPE, class ARG_TYPE>
    void QuickSortByKey(
-   array<TYPE, ARG_TYPE> & a,
-   KEY (TYPE::* fKey)())
+      array<TYPE, ARG_TYPE> &a,
+      KEY (TYPE::* fKey)())
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -840,24 +843,24 @@ namespace sort
       iptr iLPos, iUPos, iMPos;
       TYPE t;
 
-      if(a.get_size() >= 2)
+      if (a.get_size() >= 2)
       {
          stackLowerBound.push(0);
          stackUpperBound.push(a.get_size() - 1);
-         while(true)
+         while (true)
          {
             iLowerBound = stackLowerBound.pop();
             iUpperBound = stackUpperBound.pop();
             iLPos = iLowerBound;
             iMPos = iLowerBound;
             iUPos = iUpperBound;
-            while(true)
+            while (true)
             {
-               while(true)
+               while (true)
                {
-                  if(iMPos == iUPos)
+                  if (iMPos == iUPos)
                      break;
-                  if((a.element_at(iMPos).*fKey)() < (a.element_at(iUPos).*fKey)())
+                  if ((a.element_at(iMPos).*fKey)() < (a.element_at(iUPos).*fKey)())
                      iUPos--;
                   else
                   {
@@ -868,14 +871,14 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iUPos)
+               if (iMPos == iUPos)
                   break;
                iMPos = iUPos;
-               while(true)
+               while (true)
                {
-                  if(iMPos == iLPos)
+                  if (iMPos == iLPos)
                      break;
-                  if((a.element_at(iLPos).*fKey)() < (a.element_at(iMPos).*fKey)())
+                  if ((a.element_at(iLPos).*fKey)() < (a.element_at(iMPos).*fKey)())
                      iLPos++;
                   else
                   {
@@ -886,21 +889,21 @@ namespace sort
                      break;
                   }
                }
-               if(iMPos == iLPos)
+               if (iMPos == iLPos)
                   break;
                iMPos = iLPos;
             }
-            if(iLowerBound < iMPos - 1)
+            if (iLowerBound < iMPos - 1)
             {
                stackLowerBound.push(iLowerBound);
                stackUpperBound.push(iMPos - 1);
             }
-            if(iMPos + 1 < iUpperBound)
+            if (iMPos + 1 < iUpperBound)
             {
                stackLowerBound.push(iMPos + 1);
                stackUpperBound.push(iUpperBound);
             }
-            if(stackLowerBound.get_size() == 0)
+            if (stackLowerBound.get_size() == 0)
                break;
          }
       }
@@ -913,10 +916,10 @@ namespace sort
    }
 
 
-   template <class TYPE, class ARG_TYPE>
-   bool SortFind(array < TYPE, ARG_TYPE > & a, ARG_TYPE t, iptr & iIndex, iptr iStart, iptr iEnd)
+   template<class TYPE, class ARG_TYPE>
+   bool SortFind(array<TYPE, ARG_TYPE> &a, ARG_TYPE t, iptr &iIndex, iptr iStart, iptr iEnd)
    {
-      if(a.get_size() == 0)
+      if (a.get_size() == 0)
       {
          return false;
       }
@@ -925,30 +928,28 @@ namespace sort
       iptr iUpperBound = iMaxBound;
       iptr iCompare;
 
-      while(true)
+      while (true)
       {
          iIndex = (iUpperBound + iLowerBound) / 2;
          iCompare = SortCompare((ARG_TYPE) a.element_at(iIndex), (ARG_TYPE) t);
-         if(iCompare == 0)
+         if (iCompare == 0)
          {
             return true;
-         }
-         else if(iCompare > 0)
+         } else if (iCompare > 0)
          {
             iUpperBound = iIndex - 1;
-            if(iUpperBound < 0)
+            if (iUpperBound < 0)
                break;
-         }
-         else
+         } else
          {
             iLowerBound = iIndex + 1;
-            if(iLowerBound > iMaxBound)
+            if (iLowerBound > iMaxBound)
             {
                iIndex = iLowerBound;
                break;
             }
          }
-         if(iUpperBound < iLowerBound)
+         if (iUpperBound < iLowerBound)
             break;
 
       }
@@ -956,43 +957,41 @@ namespace sort
 
    }
 
-   template < class TYPE, class ARG_TYPE >
-   bool SortFind(array < TYPE, ARG_TYPE > & a, ARG_TYPE t, iptr & iIndex)
+   template<class TYPE, class ARG_TYPE>
+   bool SortFind(array<TYPE, ARG_TYPE> &a, ARG_TYPE t, iptr &iIndex)
    {
       return SortFind(a, t, iIndex, 0, a.get_size() - 1);
    }
 
-   template < class TYPE, class ARG_TYPE >
-   void BubbleSortByLPGetSize(array < TYPE, ARG_TYPE > & a, bool bAsc = true);
+   template<class TYPE, class ARG_TYPE>
+   void BubbleSortByLPGetSize(array<TYPE, ARG_TYPE> &a, bool bAsc = true);
 
-   template < class TYPE, class ARG_TYPE >
-   void BubbleSortByGetSize(array < TYPE, ARG_TYPE > & a, bool bAsc = true);
+   template<class TYPE, class ARG_TYPE>
+   void BubbleSortByGetSize(array<TYPE, ARG_TYPE> &a, bool bAsc = true);
 
-   template < typename TYPE >
+   template<typename TYPE>
    void BubbleSortByPtrAtGetSize(
-   pointer_array < TYPE > & a,
-   bool bAsc = true);
+      pointer_array<TYPE> &a,
+      bool bAsc = true);
 
-   template < class TYPE,class ARG_TYPE = const TYPE &,class DEFCONSTRUCTOR >
+   template<class TYPE, class ARG_TYPE = const TYPE &, class DEFCONSTRUCTOR>
    void quick_sort(
-   array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > & a,
-   iptr (* pfnCompare)(ARG_TYPE, ARG_TYPE));
+      array<TYPE, ARG_TYPE, DEFCONSTRUCTOR> &a,
+      iptr (*pfnCompare)(ARG_TYPE, ARG_TYPE));
 
 
-
-
-   template < class TYPE, class ARG_TYPE >
+   template<class TYPE, class ARG_TYPE>
    void BubbleSortByLPGetSize(
-   array < TYPE, ARG_TYPE > & a,
-   bool bAsc)
+      array<TYPE, ARG_TYPE> &a,
+      bool bAsc)
    {
-      TYPE * t;
-      if(bAsc)
+      TYPE *t;
+      if (bAsc)
       {
-         for(iptr i = 0; i < a.get_size(); i++)
-            for(iptr j = i + 1; j < a.get_size(); j++)
+         for (iptr i = 0; i < a.get_size(); i++)
+            for (iptr j = i + 1; j < a.get_size(); j++)
             {
-               if(a.element_at(i)->get_size() > a.element_at(j)->get_size())
+               if (a.element_at(i)->get_size() > a.element_at(j)->get_size())
                {
                   t = a.element_at(i);
                   set_at(i, a.element_at(j));
@@ -1000,13 +999,12 @@ namespace sort
                }
 
             }
-      }
-      else
+      } else
       {
-         for(iptr i = 0; i < a.get_size(); i++)
-            for(iptr j = i + 1; j < a.get_size(); j++)
+         for (iptr i = 0; i < a.get_size(); i++)
+            for (iptr j = i + 1; j < a.get_size(); j++)
             {
-               if(a.element_at(i)->get_size() < a.element_at(j)->get_size())
+               if (a.element_at(i)->get_size() < a.element_at(j)->get_size())
                {
                   t = a.element_at(i);
                   set_at(i, a.element_at(j));
@@ -1019,18 +1017,18 @@ namespace sort
       return;
    }
 
-   template < class TYPE, class ARG_TYPE >
+   template<class TYPE, class ARG_TYPE>
    void BubbleSortByGetSize(
-   array < TYPE, ARG_TYPE > & a,
-   bool bAsc)
+      array<TYPE, ARG_TYPE> &a,
+      bool bAsc)
    {
       TYPE t;
-      if(bAsc)
+      if (bAsc)
       {
-         for(iptr i = 0; i < a.get_size(); i++)
-            for(iptr j = i + 1; j < a.get_size(); j++)
+         for (iptr i = 0; i < a.get_size(); i++)
+            for (iptr j = i + 1; j < a.get_size(); j++)
             {
-               if(a.element_at(i).get_size() > a.element_at(j).get_size())
+               if (a.element_at(i).get_size() > a.element_at(j).get_size())
                {
                   t = a.element_at(i);
                   set_at(i, a.element_at(j));
@@ -1038,13 +1036,12 @@ namespace sort
                }
 
             }
-      }
-      else
+      } else
       {
-         for(iptr i = 0; i < a.get_size(); i++)
-            for(iptr j = i + 1; j < a.get_size(); j++)
+         for (iptr i = 0; i < a.get_size(); i++)
+            for (iptr j = i + 1; j < a.get_size(); j++)
             {
-               if(a.element_at(i).get_size() < a.element_at(j).get_size())
+               if (a.element_at(i).get_size() < a.element_at(j).get_size())
                {
                   t = a.element_at(i);
                   set_at(i, a.element_at(j));
@@ -1057,31 +1054,30 @@ namespace sort
       return;
    }
 
-   template < class ARRAY >
+   template<class ARRAY>
    void BubbleSortByGetSize(
-   ARRAY & a,
-   bool bAsc)
+      ARRAY &a,
+      bool bAsc)
    {
       typename ARRAY::BASE_TYPE t;
-      if(bAsc)
+      if (bAsc)
       {
-         for(iptr i = 0; i < a.get_size(); i++)
-            for(iptr j = i + 1; j < a.get_size(); j++)
+         for (iptr i = 0; i < a.get_size(); i++)
+            for (iptr j = i + 1; j < a.get_size(); j++)
             {
-               if(a.element_at(i).get_size() > a.element_at(j).get_size())
+               if (a.element_at(i).get_size() > a.element_at(j).get_size())
                {
-                  a.__swap(i,j);
+                  a.__swap(i, j);
                }
             }
-      }
-      else
+      } else
       {
-         for(iptr i = 0; i < a.get_size(); i++)
-            for(iptr j = i + 1; j < a.get_size(); j++)
+         for (iptr i = 0; i < a.get_size(); i++)
+            for (iptr j = i + 1; j < a.get_size(); j++)
             {
-               if(a.element_at(i).get_size() < a.element_at(j).get_size())
+               if (a.element_at(i).get_size() < a.element_at(j).get_size())
                {
-                  a.__swap(i,j);
+                  a.__swap(i, j);
                }
 
             }
@@ -1091,29 +1087,28 @@ namespace sort
    }
 
 
-   template < typename TYPE >
+   template<typename TYPE>
    void BubbleSortByPtrAtGetSize(
-   pointer_array < TYPE > & a,
-   bool bAsc)
+      pointer_array<TYPE> &a,
+      bool bAsc)
    {
       TYPE t;
-      if(bAsc)
+      if (bAsc)
       {
-         for(iptr i = 0; i < a.get_size(); i++)
-            for(iptr j = i + 1; j < a.get_size(); j++)
+         for (iptr i = 0; i < a.get_size(); i++)
+            for (iptr j = i + 1; j < a.get_size(); j++)
             {
-               if(a.element_at(i)->get_size() > a.element_at(j)->get_size())
+               if (a.element_at(i)->get_size() > a.element_at(j)->get_size())
                {
                   a.__swap(i, j);
                }
             }
-      }
-      else
+      } else
       {
-         for(iptr i = 0; i < a.get_size(); i++)
-            for(iptr j = i + 1; j < a.get_size(); j++)
+         for (iptr i = 0; i < a.get_size(); i++)
+            for (iptr j = i + 1; j < a.get_size(); j++)
             {
-               if(a.element_at(i)->get_size() < a.element_at(j)->get_size())
+               if (a.element_at(i)->get_size() < a.element_at(j)->get_size())
                {
                   a.__swap(i, j);
                }
@@ -1123,6 +1118,7 @@ namespace sort
 
       return;
    }
+
 
 
    namespace array
@@ -1764,8 +1760,8 @@ break_mid_loop:
    }
 
 
-   template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename PRED>
-   void predicate_quick_sort(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list, PRED pred)
+   template < typename LIST, typename PRED>
+   void predicate_quick_sort_list(LIST & list, PRED pred)
    {
 
       if (list.get_size() < 2)
@@ -1775,7 +1771,7 @@ break_mid_loop:
 
       }
 
-      typedef typename comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE >::node node;
+      typedef typename LIST::node node;
 
       ::raw_array < node * > stackLowerBound;
 
@@ -1840,36 +1836,33 @@ break_mid_loop:
    }
 
 
-   template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename PRED>
-   void predicate_quick_sort_descending(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list, PRED pred)
+   template < typename LIST, typename PRED >
+   void predicate_quick_sort_list_descending(LIST & list, PRED pred)
    {
 
-      predicate_quick_sort(list, [&](auto & a, auto & b) { return pred(b, a); });
+      predicate_quick_sort_list(list, [&](auto & a, auto & b) { return pred(b, a); });
 
    }
 
 
-   template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-   void quick_sort(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list, bool bAscendent = true)
+   template < typename LIST >
+   void quick_sort_list(LIST & list, bool bAscendent = true)
    {
 
       if (bAscendent)
       {
 
-         predicate_quick_sort(list, [](auto & a, auto & b) { return a < b; });
+         predicate_quick_sort_list(list, [](auto & a, auto & b) { return a < b; });
 
       }
       else
       {
 
-         predicate_quick_sort(list, [](auto & a, auto & b) { return b < a; });
+         predicate_quick_sort_list(list, [](auto & a, auto & b) { return b < a; });
 
       }
 
-
-
    }
-
 
 
    template < class ARRAY >
@@ -2237,14 +2230,14 @@ break_mid_loop:
 
 
 
-template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-void comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-quick_sort(bool bAscendent)
-{
-
-   sort::quick_sort(*this, bAscendent);
-
-}
+//template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+//void comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+//quick_sort(bool bAscendent)
+//{
+//
+//   sort::quick_sort(*this, bAscendent);
+//
+//}
 
 //template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
 //void key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::

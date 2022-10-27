@@ -28,11 +28,11 @@ namespace gpu
    }
 
 
-   void context::initialize(::object * pobject)
+   void context::initialize(::particle * pparticle)
    {
 
       //::e_status estatus = 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -167,7 +167,7 @@ namespace gpu
    void context::create_window_buffer(void * pHwnd)
    {
 
-      ::pointer<::aura::system>psystem = m_psystem;
+      ::pointer<::aura::system>psystem = acmesystem();
 
       auto pgpu = psystem->get_gpu();
 
@@ -214,7 +214,7 @@ namespace gpu
    void context::create_offscreen_buffer(const ::size_i32& size)
    {
 
-      ::pointer<::aura::system>psystem = m_psystem;
+      ::pointer<::aura::system>psystem = acmesystem();
 
       auto pgpu = psystem->get_gpu();
 
@@ -270,7 +270,7 @@ namespace gpu
 
       }
 
-      synchronous_lock synchronouslock(m_pbuffer->mutex());
+      synchronous_lock synchronouslock(m_pbuffer->synchronization());
 
       m_pbuffer->m_pimage->create(size);
 

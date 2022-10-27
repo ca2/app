@@ -5,81 +5,32 @@
 
 
 #include "acme/parallelization/manual_reset_event.h"
-#include "acme/primitive/primitive/material_object.h"
+#include "acme/primitive/primitive/element.h"
 
 
-namespace promise
+namespace parallelization
 {
 
 
    class CLASS_DECL_ACME signalization :
-      virtual public ::material_object
+      virtual public ::element
    {
-      public:
+   public:
 
 
-      manual_reset_event               m_evReady;
-      ::pointer<::element>       m_pelementHold;
+
+      manual_reset_event            m_evReady;
+      ::pointer<::particle>         m_pparticleHold;
 
 
-   //synchronization(PRED pred) : m_predicate(pred) {}
-
-#ifdef _DEBUG
       signalization();
       ~signalization() override;
-#else
-      signalization() {}
-      ~signalization() override {}
-#endif
 
-   //
-   //      virtual void run() override
-   //      {
-   //
-   //         m_predicate();
-   //
-   //         m_ev.SetEvent();
-   //
-   //         return ::success;
-   //
-   //      }
-   //
-
-
-   //      virtual void run() override
-   //      {
-   //
-   //         m_evWriting.SetEvent();
-   //
-   //         return ::success;
-   //
-   //      }
-
-
-   //      synchronization_result sync_wait() override
-   //      {
-   //
-   //         auto result = m_ev.wait();
-   //
-   //         return result;
-   //
-   //      }
-   //
-   //
-   //      synchronization_result sync_wait(const ::duration &duration) override
-   //      {
-   //
-   //         auto result = m_ev.wait();
-   //
-   //         return result;
-   //
-   //      }
-   //
 
    };
 
 
-} // namespace promise
+} // namespace parallelization
 
 
 

@@ -105,7 +105,7 @@ namespace dir
 //
 //   #if defined(ANDROID)
 //
-//      return m_psystem->m_pacmepath->app_module().folder();
+//      return acmepath()->app_module().folder();
 //
 //   #elif defined(_UWP)
 //
@@ -695,7 +695,7 @@ namespace dir
 
             FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, nullptr, dwError, 0, (char *)&pszError, 8, nullptr);
 
-            //TRACE("         auto psystem = m_psystem;
+            //TRACE("         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -731,7 +731,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
       }
 
-      if (m_psystem->m_pacmefile->exists(path))
+      if (acmefile()->exists(path))
       {
 
          if (!file_delete(path))
@@ -1434,7 +1434,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
          strCandidate = ::file::path(stra[i]) / pszTopic;
 
-         if(m_psystem->m_pacmefile->exists(strCandidate))
+         if(acmefile()->exists(strCandidate))
          {
             return strCandidate;
          }
@@ -1474,7 +1474,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 extern "C" int make_path(const char * psz)
 {
 
-   return          auto psystem = m_psystem;
+   return          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

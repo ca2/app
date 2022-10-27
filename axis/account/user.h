@@ -49,7 +49,7 @@ namespace account
       virtual ~user();
       
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual void logon_local(string strAccount);

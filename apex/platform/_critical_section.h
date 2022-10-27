@@ -1,8 +1,13 @@
 //
-// Created by camilo on 26/10/22.
+// Created by camilo on 2022-10-26 20:20 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef BASIS__CRITICAL_SECTION_H
-#define BASIS__CRITICAL_SECTION_H
 
-#endif //BASIS__CRITICAL_SECTION_H
+CLASS_DECL_APEX ::critical_section * channel_critical_section();
+
+
+CLASS_DECL_APEX ::critical_section * message_dispatch_critical_section();
+
+
+

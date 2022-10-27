@@ -5,9 +5,9 @@ namespace console
 {
 
 
-   prompt_frame::prompt_frame(::object * pobject) :
-      ::object(pobject),
-      simple_frame_window(pobject)
+   prompt_frame::prompt_frame(::particle * pparticle) :
+      ::object(pparticle),
+      simple_frame_window(pparticle)
    {
 
       m_pimagelist = nullptr;

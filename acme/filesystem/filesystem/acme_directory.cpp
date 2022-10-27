@@ -28,10 +28,10 @@ acme_directory::~acme_directory()
 }
 
 
-void acme_directory::initialize(::object * pobject)
+void acme_directory::initialize(::particle * pparticle)
 {
 
-   ::matter::initialize(pobject);
+   ::matter::initialize(pparticle);
 
    m_pathInstallFolder = default_install();
 
@@ -223,7 +223,7 @@ string acme_directory::system_short_name()
 ::file::path acme_directory::app_relative()
 {
 
-   ::file::path path = m_psystem->m_pacmefile->module();
+   ::file::path path = acmefile()->module();
 
    path = file_path_folder(path);
 
@@ -233,7 +233,6 @@ string acme_directory::system_short_name()
 
 
 #endif
-
 
 
 ::file::path acme_directory::inplace_install(string strAppId, string strPlatform, string strConfiguration)
@@ -285,7 +284,7 @@ string acme_directory::system_short_name()
 
 #else
 
-   return m_psystem->m_pacmefile->module() - 4;
+   return acmefile()->module() - 4;
 
 #endif
 
@@ -316,7 +315,7 @@ string acme_directory::system_short_name()
 
 #else
 
-   return m_psystem->m_pacmefile->module() - 4;
+   return acmefile()->module() - 4;
 
 #endif
 
@@ -347,7 +346,7 @@ string acme_directory::system_short_name()
 
 #elif defined(__APPLE__)
 
-   return m_psystem->m_pacmefile->module()-3;
+   return acmefile()->module()-3;
 
 #elif defined(_UWP)
 
@@ -355,11 +354,11 @@ string acme_directory::system_short_name()
 
 #elif defined(FREEBSD)
 
-   return m_psystem->m_pacmefile->module() - 2;
+   return acmefile()->module() - 2;
 
 #else
 
-   return m_psystem->m_pacmefile->module() - 4;
+   return acmefile()->module() - 4;
 
 #endif
 
@@ -580,7 +579,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
    if(m_pathModuleFolder.is_empty())
    {
 
-      auto pnode = m_psystem->node();
+      auto pnode = acmenode();
 
       auto pathModule = pnode->module_path_source();
 
@@ -758,7 +757,7 @@ void acme_directory::create(const char * pathParam)
 
    ::file::path_array patha;
 
-   path.ascendants_path(patha);
+   ascendants_path(path, patha);
 
    index i = patha.get_upper_bound();
 
@@ -909,7 +908,7 @@ bool acme_directory::enumerate(::file::listing & listing)
 bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
 {
 
-   synchronous_lock sl(&m_mutexMediaLibrary);
+   synchronous_lock sl(m_pmutexMediaLibrary);
 
    for (auto& pair : m_medialibraryitemmap)
    {
@@ -966,7 +965,7 @@ bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
 ::media_library::item* acme_directory::media_library_item(const ::file::path& path)
 {
 
-   synchronous_lock sl(&m_mutexMediaLibrary);
+   synchronous_lock sl(m_pmutexMediaLibrary);
 
    string strId(path);
 
@@ -1227,7 +1226,7 @@ void acme_directory::change_to_home()
 void acme_directory::add_media_library_item(::media_library::item* pmedialibraryitem)
 {
 
-   synchronous_lock lock(&m_mutexMediaLibrary);
+   synchronous_lock lock(m_pmutexMediaLibrary);
 
    auto emedialibrary = pmedialibraryitem->media_library_type();
 

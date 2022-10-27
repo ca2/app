@@ -12,6 +12,9 @@
 #pragma once
 
 
+#include "event.h"
+
+
 #define DECLARE_REUSABLE(TYPE) \
 TYPE * m_pnext; \
 ::factory_item::reusable_factory_item < TYPE, TYPE > * m_pfactory; \

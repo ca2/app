@@ -30,7 +30,7 @@ namespace draw2d_cairo
       ~draw2d() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       virtual void process_init() override;
 

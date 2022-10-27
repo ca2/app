@@ -236,10 +236,10 @@ public:
 
 
 template < typename T, typename PRED >
-void fork_then(::object * pobject, ::winrt::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, ::u32 dwMillis = U32_INFINITE_TIMEOUT, CallbackContext callbackcontext = CallbackContext::Any)
+void fork_then(::particle * pparticle, ::winrt::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, ::u32 dwMillis = U32_INFINITE_TIMEOUT, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
-   pobject->fork([=]()
+   pparticle->fork([=]()
    {
 
       auto pwaiter = ref memory_new waiter_for_Windows_Foundation_IAsyncOperation < T >(operation, callbackcontext);

@@ -42,20 +42,6 @@ class file_time;
 //#include "acme/primitive/datetime/time_zone.h"
 
 
-CLASS_DECL_ACME void preempt(const ::duration & duration);
-
-
-CLASS_DECL_ACME void preempt(const ::INTEGRAL_SECOND & second);
-CLASS_DECL_ACME void preempt(const ::INTEGRAL_MILLISECOND & millisecond);
-CLASS_DECL_ACME void preempt(const ::INTEGRAL_MICROSECOND & microsecond);
-CLASS_DECL_ACME void preempt(const ::INTEGRAL_NANOSECOND & nanosecond);
-
-
-//inline void preempt(const class ::wait & wait) { preempt(integral_millisecond(wait.m_)); }
-
-
-CLASS_DECL_ACME void precision_wait(const ::duration & duration);
-
 
 //#include "department.h"
 

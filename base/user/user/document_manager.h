@@ -42,8 +42,8 @@ namespace user
       document_manager();
       virtual ~document_manager();
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
       virtual void add_document_template(::user::impact_system * ptemplate);
       virtual void erase_document_template(::user::impact_system * ptemplate);

@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/operating_system/bidirectional_pipe.h"
+#include "acme/primitive/primitive/object.h"
+
+
 namespace operating_system
 {
 

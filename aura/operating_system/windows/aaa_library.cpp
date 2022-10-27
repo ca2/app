@@ -42,7 +42,7 @@
 //
 //   }
 //
-//   if (strPath.find('.') < 0 || !m_psystem->m_pacmefile->exists(strPath))
+//   if (strPath.find('.') < 0 || !acmefile()->exists(strPath))
 //   {
 //
 //      strPath += ".dll";

@@ -57,32 +57,32 @@ public:
    
 
    template < typename OBJECT >
-   inline void exchange(const ::atom & atom, ::pointer<OBJECT>& pobject)
+   inline void exchange(const ::atom & atom, ::pointer<OBJECT>& pparticle)
    {
       if (is_storing())
       {
-         write_object(atom, pobject.m_p);
+         write_object(atom, pparticle.m_p);
       }
       else
       {
-         pobject = read_object(atom);
+         pparticle = read_object(atom);
       }
    }
 
 
-   virtual void write_object(const ::atom & atom, const ::atom & idFactory, ::matter * pobject)
+   virtual void write_object(const ::atom & atom, const ::atom & idFactory, ::particle * pparticle)
    {
       exchange("id", idFactory);
-      exchange("", pobject);
+      exchange("", pparticle);
    }
 
    virtual ::pointer<::matter>read_object(const ::atom & atom)
    {
       ::atom idFactory;
       exchange("id", idFactory);
-      auto pobject = __id_create<::matter>(idFactory);
-      exchange("", pobject);
-      return pobject;
+      auto pparticle = __id_create<::matter>(idFactory);
+      exchange("", pparticle);
+      return pparticle;
    }
 
 
@@ -112,11 +112,11 @@ public:
 
 
 
-   virtual void write_object(const ::atom & atom, const ::atom & idFactory, ::matter * pobject) override
+   virtual void write_object(const ::atom & atom, const ::atom & idFactory, ::particle * pparticle) override
    {
       payload_stream stream(memory_new ::payload(&payload()[atom].propset()));
       stream.exchange("id", idFactory);
-      stream.exchange("", pobject);
+      stream.exchange("", pparticle);
    }
 
    virtual ::pointer<::contex_object>read_object(const ::atom & atom) override
@@ -124,9 +124,9 @@ public:
       payload_stream stream(memory_new ::payload(&payload()[atom].propset()));
       ::atom idFactory;
       stream.exchange("id", idFactory);
-      auto pobject = __id_create<::matter>(idFactory);
-      stream.exchange("", pobject);
-      return pobject;
+      auto pparticle = __id_create<::matter>(idFactory);
+      stream.exchange("", pparticle);
+      return pparticle;
    }
 
 };
@@ -169,7 +169,7 @@ void window::exchange(stream & stream)
    __EXCHANGE(iVisible); // expands... to: stream.exchange("iVisible", m_iVisible);
    __EXCHANGE(strTitle); // expands... to: stream.exchange("strTitle", m_strTitle);
    __EXCHANGE(addr);     // expands... to: stream.exchange("addr", m_addr);
-   __EXCHANGE(pobject);  // expands... to: stream.exchange("pobject", m_pobject);
+   __EXCHANGE(pparticle);  // expands... to: stream.exchange("pparticle", m_pobject);
 
 }
 

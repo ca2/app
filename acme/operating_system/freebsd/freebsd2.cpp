@@ -11,7 +11,7 @@
 
 #if defined(ANDROID)
 
-   return m_psystem->m_pacmepath->app_module().folder();
+   return acmepath()->app_module().folder();
 
 #elif defined(_UWP)
 

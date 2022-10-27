@@ -366,7 +366,7 @@ namespace user
    //   //if(ptopic->m_atom == id_set_edit_file)
    //   //{
 
-   //   //   post_simple_command(e_simple_command_set_edit_file, pobject);
+   //   //   post_simple_command(e_simple_command_set_edit_file, pparticle);
 
    //   //}
 
@@ -764,7 +764,7 @@ namespace user
    ::base::system * impact::get_system() const 
    {
       
-      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
    
    }
 
@@ -1017,16 +1017,16 @@ namespace user
 
    //   //spadata.add(get_document()->m_spdata);
 
-   //   object_spa synchronization_object;
+   //   object_spa synchronization;
 
    //   for (index i = 0; i < spadata.get_count(); i++)
    //   {
 
-   //      synchronization_object.add(spadata[i].data_mutex());
+   //      synchronization.add(spadata[i].data_mutex());
 
    //   }
 
-   //   retry_multi_lock synchronouslock(synchronization_object, ::duration(1), ::duration(1));
+   //   retry_multi_lock synchronouslock(synchronization, ::duration(1), ::duration(1));
 
    //   try
    //   {

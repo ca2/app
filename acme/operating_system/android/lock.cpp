@@ -89,7 +89,7 @@
 //   str.replace("\\", "/");
 //   str.replace("::", "_");
 //
-//            auto psystem = m_psystem;
+//            auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

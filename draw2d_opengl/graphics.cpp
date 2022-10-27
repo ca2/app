@@ -3034,7 +3034,7 @@ namespace draw2d_opengl
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* graphics::GetHalftoneBrush(::object * pobject)
+   ::draw2d::brush* graphics::GetHalftoneBrush(::particle * pparticle)
    {
       /*      ::aura::LockGlobals(CRIT_HALFTONEBRUSH);
             if (gen_HalftoneBrush == nullptr)
@@ -3472,7 +3472,7 @@ namespace draw2d_opengl
 
    }
 
-//   ::draw2d::object* graphics::SelectGdiObject(::object * pobject, HDC hDC, HGDIOBJ h)
+//   ::draw2d::object* graphics::SelectGdiObject(::particle * pparticle, HDC hDC, HGDIOBJ h)
    // {
 //      return ::draw2d_opengl::object::from_handle(papp, ::SelectObject(hDC, h));
    //}
@@ -5294,7 +5294,7 @@ namespace draw2d_opengl
    //plusplus::Pen * graphics::gl2d_pen()
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   if(m_ppen.is_null())
    //   {
@@ -5394,7 +5394,7 @@ namespace draw2d_opengl
    bool graphics::flush()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
 //      m_pgraphics->Flush();
 
@@ -5406,7 +5406,7 @@ namespace draw2d_opengl
    bool graphics::sync_flush()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       //m_pgraphics->Flush(plusplus::FlushIntentionSync);
 
@@ -5445,7 +5445,7 @@ namespace draw2d_opengl
 
       return;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       draw2d_opengl_enum_fonts fonts(itema);
 

@@ -1,5 +1,8 @@
 ﻿#include "framework.h"
 #include "acme/constant/message.h"
+#include "property_object.h"
+#include "payload.h"
+#include "acme/platform/system.h"
 
 
 property_object::~property_object()
@@ -20,10 +23,10 @@ property_object::~property_object()
 //}
 
 
-//void     property_object::initialize(::object * pobject)
+//void     property_object::initialize(::particle * pparticle)
 //{
 //
-//   set_object(pobject);
+//   set_object(pparticle);
 //
 //   return ::success;
 //
@@ -393,16 +396,16 @@ void property_object::on_catch_all_exception()
 linked_property property_object::parent_lookup_property(const atom & atom) const
 {
 
-   auto pobject = parent_property_set_holder();
+   auto pparticle = parent_property_set_holder();
 
-   if (!pobject)
+   if (!pparticle)
    {
 
       return nullptr;
 
    }
 
-   return pobject->on_fetch_property(atom);
+   return pparticle->on_fetch_property(atom);
 
 }
 
@@ -494,7 +497,7 @@ atom property_object::translate_property_id(const ::atom & atom)
 string property_object::property_set_evaluate(const ::string & str) const
 {
 
-   return ::acme::property_set::evaluate(*this, str);
+   return m_ppropertyset ? m_ppropertyset->evaluate(str) : str;
 
 }
 
@@ -747,8 +750,13 @@ bool property_object::contains(const property_set & set) const
 
 }
 
-void property_object::defer_propset() { m_psystem->__defer_construct_new(m_ppropertyset); }
 
+void property_object::defer_propset()
+{
+
+   m_pcontext->__defer_construct_new(m_ppropertyset);
+
+}
 
 
 property * property_object::find_property(const atom & atom) const

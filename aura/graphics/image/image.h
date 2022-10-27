@@ -32,7 +32,7 @@ public:
       bool cache = true;
       bool helper_maps = false;
       bool toy = true;
-      synchronization_object * psync;
+      synchronization * psync;
       ::function < void(image *) > functionLoaded;
 
    };
@@ -48,7 +48,7 @@ public:
    ~image() override;
 
 
-   void on_initialize_object() override;
+   void on_initialize_particle() override;
 
 
    using image_meta::clear;

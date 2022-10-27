@@ -71,22 +71,22 @@ image::image()
 image::~image()
 {
 
-   if (m_psystem)
+   if (acmesystem())
    {
 
-      m_psystem->m_paurasystem->draw2d()->erase_image(this);
+      acmesystem()->m_paurasystem->draw2d()->erase_image(this);
 
    }
 
 }
 
 
-void image::on_initialize_object()
+void image::on_initialize_particle()
 {
 
-   m_psystem->m_paurasystem->draw2d()->add_image(this);
+   acmesystem()->m_paurasystem->draw2d()->add_image(this);
 
-   ::object::on_initialize_object();
+   ::object::on_initialize_particle();
 
 }
 
@@ -1702,15 +1702,15 @@ void image::fork_blend(const ::point_i32& pointDstParam, ::image* pimageSrc, con
 
    }
 
-   ::pointer<::aura::system>psystem = m_psystem;
+   ::pointer<::aura::system>psystem = acmesystem();
 
    auto pgroup = psystem->task_group();
 
-   synchronous_lock slGroup(pgroup->mutex());
+   synchronous_lock slGroup(pgroup->synchronization());
 
    auto ptool = psystem->task_tool(::e_task_tool_draw2d);
 
-   synchronous_lock slTool(ptool->mutex());
+   synchronous_lock slTool(ptool->synchronization());
 
    if (!pgroup || !ptool)
    {
@@ -9329,10 +9329,10 @@ void image_copy(::image* pimagethis, ::image* pimage)
 }
 
 
-//void image_create(::object* pobject, ::image_pointer& pimage)
+//void image_create(::object* pparticle, ::image_pointer& pimage)
 //{
 //
-//   __construct(pimage, pobject);
+//   __construct(pimage, pparticle);
 //
 //}
 
@@ -9507,14 +9507,14 @@ save_image::save_image()
 //save_image::save_image(::matter * pmatter, const ::payload & payloadFile, const ::payload & varOptions)
 //{
 //
-//   ::pointer<::aura::system>psystem = m_psystem;
+//   ::pointer<::aura::system>psystem = acmesystem();
 //
 //   auto eformat = pdraw2d->text_to_format(varOptions["format"]);
 //
 //   if (eformat != ::draw2d::e_format_none)
 //   {
 //
-//      ::pointer<::aura::system>psystem = m_psystem;
+//      ::pointer<::aura::system>psystem = acmesystem();
 //
 //      eformat = pdraw2d->file_extension_to_format(payloadFile.get_file_path());
 //

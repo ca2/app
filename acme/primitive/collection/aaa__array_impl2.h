@@ -371,8 +371,8 @@
 // out-of-line functions
 
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-//array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::array(::matter * pobject, ::count nGrowBy) //:
-//   //::matter(pobject)
+//array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::array(::particle * pparticle, ::count nGrowBy) //:
+//   //::matter(pparticle)
 //{
 ////   this->m_nGrowBy = maximum(0, nGrowBy);
 ////   this->m_pData = nullptr;

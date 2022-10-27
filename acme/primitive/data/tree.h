@@ -1,8 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/data/data.h"
 #include "acme/primitive/data/tree_item.h"
-#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/collection/numeric_array.h"
 
 
 namespace data
@@ -23,7 +24,7 @@ namespace data
 
 
       tree();
-      virtual ~tree();
+      ~tree() override;
 
       virtual void on_insert_tree(tree * ptree);
 

@@ -514,7 +514,7 @@ namespace user
 
                   pimage1 = m_pcontext->m_pauracontext->create_image(rectangle.size());
 
-                  synchronization_object * psync = pimpl->m_pgraphics->get_draw_lock();
+                  synchronization * psync = pimpl->m_pgraphics->get_draw_lock();
 
                   ::draw2d::graphics_pointer pgraphics = pimpl->m_pgraphics->on_begin_draw();
 
@@ -538,7 +538,7 @@ namespace user
 
                   auto pcontextimage = pcontext->context_image();
 
-                  pcontextimage->save_image(m_psystem->m_pacmedirectory->system() / "control_alt_p.png", pimage1);
+                  pcontextimage->save_image(acmedirectory()->system() / "control_alt_p.png", pimage1);
 
                   ::image_pointer pimage2;
 
@@ -582,7 +582,7 @@ namespace user
 
                   }
 
-                  pcontextimage->save_image(m_psystem->m_pacmedirectory->system() / "control_alt_p_w300.png", pimage2);
+                  pcontextimage->save_image(acmedirectory()->system() / "control_alt_p_w300.png", pimage2);
 
                   pkey->m_bRet = true;
 
@@ -1515,7 +1515,7 @@ namespace user
       ////if (bStayActive)
       ////   pTopLevel->m_nFlags |= WF_STAYACTIVE;
 
-      //// synchronization_object floating windows to the memory_new state
+      //// synchronization floating windows to the memory_new state
       //NotifyFloatingWindows(bStayActive ? FS_ACTIVATE : FS_DEACTIVATE);
 
       // get active ::user::impact (use active frame if no active ::user::impact)
@@ -2479,7 +2479,7 @@ namespace user
    ::base::system * frame_window::get_system() const 
    {
       
-      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
    
    }
 

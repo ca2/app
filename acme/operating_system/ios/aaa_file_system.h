@@ -20,7 +20,7 @@ namespace ios
       ~file_system() override;
 
       
-      virtual void initialize(::matter * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       
 
       virtual void update_module_path() override;

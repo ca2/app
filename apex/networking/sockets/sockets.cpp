@@ -44,12 +44,12 @@ namespace sockets
    }
 
 
-   void sockets::initialize(::object * pobject)
+   void sockets::initialize(::particle * pparticle)
    {
 
-      //auto estatus = sockets_base::initialize(pobject);
+      //auto estatus = sockets_base::initialize(pparticle);
 
-      object::initialize(pobject);
+      object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -58,7 +58,7 @@ namespace sockets
 
       //}
 
-//      auto paddressdepartment = pobject->__create<class ::networking::networking>();
+//      auto paddressdepartment = pparticle->__create<class ::networking::networking>();
 //
 //      paddressdepartment->increment_reference_count();
 //
@@ -237,7 +237,7 @@ namespace sockets
 
    //   auto psystem = get_system()->m_papexsystem;
 
-   //   single_lock lock(&m_mutexHttpPostBoundary, true);
+   //   single_lock lock(m_pmutexHttpPostBoundary, true);
 
    //   string strBoundary = "----";
 
@@ -289,12 +289,12 @@ namespace sockets
    //}
 
 
-   //void sockets_base::initialize(::object * pobject)
+   //void sockets_base::initialize(::particle * pparticle)
    //{
 
-   //   //auto estatus = object::initialize(pobject);
+   //   //auto estatus = object::initialize(pparticle);
 
-   //   object::initialize(pobject);
+   //   object::initialize(pparticle);
 
    //   //if (!estatus)
    //   //{

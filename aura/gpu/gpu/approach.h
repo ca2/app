@@ -36,7 +36,7 @@ namespace gpu
       virtual ~approach();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual context * create_context();

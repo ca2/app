@@ -7,7 +7,7 @@
 #define CA2_X11_WINDOW_LONG_STYLE_EX "ca2_ccwarehouse_window_long_style_ex"
 
 osdisplay_dataptra * osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
-::mutex * osdisplay_data::s_pmutex = memory_new ::mutex(nullptr);
+::pointer< ::mutex > osdisplay_data::s_pmutex = memory_new ::pointer < ::mutex >(nullptr);
 
 osdisplay_data::osdisplay_data()
 {

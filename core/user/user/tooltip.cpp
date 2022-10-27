@@ -61,7 +61,7 @@ namespace user
 
       }
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pnode = psystem->node();
 

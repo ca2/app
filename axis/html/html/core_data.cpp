@@ -25,7 +25,7 @@ namespace html
    core_data::image::image()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -47,7 +47,7 @@ namespace html
    core_data::core_data()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_pcoredata = this;
       m_pcookies = nullptr;
@@ -104,7 +104,7 @@ namespace html
    //}
 
 
-   font * core_data::get_font(::html::element* pelement)
+   font * core_data::get_font(::html::particle * pparticle)
    {
 
       i32 iFont = -1;
@@ -142,7 +142,7 @@ namespace html
    }
 
 
-   i32 core_data::create_font(::html::element * pelement)
+   i32 core_data::create_font(::html::particle * pparticle)
    {
 
       string strSubClass;
@@ -264,7 +264,7 @@ namespace html
 
       ::html::reader reader;
 
-      phtmlreader->m_phtml = m_psystem->m_paxissystem->m_phtml;
+      phtmlreader->m_phtml = acmesystem()->m_paxissystem->m_phtml;
 
       phtmlreader->setEventHandler(&reader);
 
@@ -390,7 +390,7 @@ namespace html
    void core_data::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_bImplemented)
       {
@@ -440,7 +440,7 @@ namespace html
 
       }
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_pgraphics = pgraphics;
 
@@ -548,7 +548,7 @@ namespace html
    
       string strUrl(pszUrl);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       if (strUrl.find(":") >= 0)
       {
@@ -562,7 +562,7 @@ namespace html
          ::str().begins(m_strPathName, "https://"))
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto purl = psystem->url();
 
@@ -616,7 +616,7 @@ namespace html
    bool core_data::load_image(image* pimage)
    {
 
-      synchronous_lock lockImage(pimage->mutex());
+      synchronous_lock lockImage(pimage->synchronization());
 
       bool bRet = false;
 

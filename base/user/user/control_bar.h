@@ -88,8 +88,8 @@ namespace user
       virtual ~control_bar();
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
       // for styles specific to ::user::control_bar

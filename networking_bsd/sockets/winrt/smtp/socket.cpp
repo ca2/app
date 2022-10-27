@@ -66,12 +66,12 @@ namespace sockets
             string strResponse;
             if(::str().find_ci("username", strRequest) >= 0)
             {
-               strResponse = ::apex::get_system()->base64().encode(m_psystem->m_pacmefile->as_string("C:\\archive\\root\\x\\sensitive\\sensitive\\seed\\sendmail_user.txt"));
+               strResponse = ::apex::get_system()->base64().encode(acmefile()->as_string("C:\\archive\\root\\x\\sensitive\\sensitive\\seed\\sendmail_user.txt"));
                write(strResponse + "\r\n");
             }
             else if(::str().find_ci("password", strRequest) >= 0)
             {
-               strResponse = ::apex::get_system()->base64().encode(m_psystem->m_pacmefile->as_string("C:\\archive\\root\\x\\sensitive\\sensitive\\seed\\sendmail_pass.txt"));
+               strResponse = ::apex::get_system()->base64().encode(acmefile()->as_string("C:\\archive\\root\\x\\sensitive\\sensitive\\seed\\sendmail_pass.txt"));
                write(strResponse + "\r\n");
             }
          }

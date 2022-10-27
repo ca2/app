@@ -134,7 +134,7 @@ namespace windowing
    ::pointer<cursor>cursor_manager::get_cursor(enum_cursor ecursor)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto & pcursor = m_cursormap[ecursor];
 
@@ -163,7 +163,7 @@ namespace windowing
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          pcursor = get_cursor(ecursor);
 
@@ -171,7 +171,7 @@ namespace windowing
 
       auto path = pathParam;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       if (psystem->m_bImaging)
       {
@@ -607,7 +607,7 @@ namespace windowing
    ::pointer<cursor>cursor_manager::set_system_default_cursor(enum_cursor ecursor)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       cursor * pcursor = get_cursor(ecursor);
 
@@ -649,7 +649,7 @@ namespace windowing
    ::aura::system* cursor_manager::get_system() const
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
+      return ::is_set(acmesystem()) ? dynamic_cast <::aura::system*> (acmesystem()) : nullptr;
 
    }
 

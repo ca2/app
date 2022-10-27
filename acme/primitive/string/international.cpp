@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "acme/primitive/primitive/memory.h"
+#include "string.h"
+#include "international2.h"
+
 
 #ifdef WINDOWS
 

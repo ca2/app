@@ -187,10 +187,10 @@ string module_path_from_pid(unsigned int uiPid)
 //
 //   path1 = get_last_run_application_path_file(psz);
 //
-//   if(m_psystem->m_pacmefile->exists(path1))
+//   if(acmefile()->exists(path1))
 //   {
 //
-//      path1 = m_psystem->m_pacmefile->as_string(path1);
+//      path1 = acmefile()->as_string(path1);
 //
 //   }
 //

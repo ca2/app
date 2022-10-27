@@ -33,12 +33,12 @@ html_form::~html_form()
 }
 
 
-void html_form::initialize(::object * pobject)
+void html_form::initialize(::particle * pparticle)
 {
 
    //auto estatus = 
    
-   ::user::form_window::initialize(pobject);
+   ::user::form_window::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -224,7 +224,7 @@ void html_form::GetClientBox(::rectangle_f32 & box)
 void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if(get_html_data() == nullptr)
    {
@@ -262,7 +262,7 @@ void html_form::on_message_create(::message::message * pmessage)
 
    ::pointer<::message::create>pcreate(pmessage);
 
-   auto psystem = m_psystem->m_paxissystem;
+   auto psystem = acmesystem()->m_paxissystem;
 
    psystem->defer_create_html();
 
@@ -333,7 +333,7 @@ void html_form::on_message_mouse_move(::message::message * pmessage)
 
    screen_to_client()(point);
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if(::is_set(get_html_data()) 
       && ::is_set(get_html_data()->m_pcoredata) 
@@ -342,7 +342,7 @@ void html_form::on_message_mouse_move(::message::message * pmessage)
 
       synchronous_lock synchronouslock(get_html_data()->mutex());
 
-      html::element * pelement = get_html_data()->m_pcoredata->m_pelement->hit_test(get_html_data(), point);
+      html::particle * pparticle = get_html_data()->m_pcoredata->m_pelement->hit_test(get_html_data(), point);
 
       if(pelement != nullptr)
       {
@@ -414,7 +414,7 @@ void html_form::on_message_left_button_up(::message::message * pmessage)
 
    screen_to_client()(point);
 
-   html::element * pelement = nullptr;
+   html::particle * pparticle = nullptr;
 
    if(get_html_data() != nullptr
       && get_html_data()->m_pcoredata != nullptr)
@@ -532,7 +532,7 @@ bool html_form::open_document(const ::payload & payloadFile)
 
    auto path = payloadFile.file_path();
 
-   auto psystem = m_psystem->m_paurasystem;
+   auto psystem = acmesystem()->m_paurasystem;
 
    if (path.is_empty())
    {
@@ -546,7 +546,7 @@ bool html_form::open_document(const ::payload & payloadFile)
       else if (payloadFile.cast < ::file::file >() != nullptr)
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pdatetime = psystem->datetime();
 

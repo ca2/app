@@ -3,6 +3,7 @@
 
 #include "timer.h"
 #include "timer_array.h"
+#include "acme/parallelization/task.h"
 
 
 class CLASS_DECL_ACME timer_task :
@@ -61,7 +62,7 @@ public:
    void impl_term();
 
 
-   virtual void initialize_timer(::object * pobject, ::acme::timer_array * ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, class synchronization_object* pmutex = nullptr);
+   virtual void initialize_timer(::particle * pparticle, ::acme::timer_array * ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, ::particle * pparticleSynchronization = nullptr);
 
    void run() override;
 

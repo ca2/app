@@ -44,12 +44,12 @@ namespace networking_bsd
    }
 
 
-   void networking_bsd::initialize(::object * pobject)
+   void networking_bsd::initialize(::particle * pparticle)
    {
 
-      //auto estatus = sockets_base::initialize(pobject);
+      //auto estatus = sockets_base::initialize(pparticle);
 
-      sockets_base::initialize(pobject);
+      sockets_base::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -58,7 +58,7 @@ namespace networking_bsd
 
       //}
 
-      auto paddressdepartment = pobject->__create_new<class ::networking::address_department>();
+      auto paddressdepartment = pparticle->__create_new<class ::networking::address_department>();
 
       paddressdepartment->increment_reference_count();
 
@@ -237,7 +237,7 @@ namespace networking_bsd
 
       auto psystem = get_system()->m_papexsystem;
 
-      single_lock lock(&m_mutexHttpPostBoundary, true);
+      single_lock lock(m_pmutexHttpPostBoundary, true);
 
       string strBoundary = "----";
 

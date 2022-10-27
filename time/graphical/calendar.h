@@ -38,7 +38,7 @@ namespace datetime
          virtual ~graphical();
 
 
-         virtual void initialize(::object * pobject) override;
+         virtual void initialize(::particle * pparticle) override;
 
 
          virtual void _001GetHtml(::html::file* pfile);

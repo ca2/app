@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "apex/filesystem/fs/_fs.h"
+#include "link.h"
+#include "acme/filesystem/filesystem/listing.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/platform/context.h"
 
@@ -20,11 +21,11 @@ namespace fs
    }
 
 
-   void link::initialize(::object * pobject) 
+   void link::initialize(::particle * pparticle) 
    {
 
       //auto estatus =
-      ::fs::native::initialize(pobject);
+      ::fs::native::initialize(pparticle);
 
       //if (!estatus)
       //{

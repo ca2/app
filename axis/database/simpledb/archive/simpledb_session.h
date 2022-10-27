@@ -14,7 +14,7 @@ namespace simpledb
 
       server *       m_pserver;
 
-      session(::object * pobject);
+      session(::particle * pparticle);
       virtual ~session();
 
 

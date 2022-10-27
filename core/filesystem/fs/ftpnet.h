@@ -16,7 +16,7 @@ public:
    virtual ~ftpnet();
 
 
-   virtual void initialize(::object * pobject) override;
+   virtual void initialize(::particle * pparticle) override;
 
 
 };

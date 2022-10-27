@@ -15,7 +15,7 @@ namespace calculator
       pointer_array < ::calculator::matter >       m_elementa;
 
 
-      parser(::object * pobject);
+      parser(::particle * pparticle);
       virtual ~parser();
 
 

@@ -20,10 +20,10 @@ folder::~folder()
 }
 
 
-void folder::initialize(::object* pobject)
+void folder::initialize(::particle * pparticle)
 {
 
-   ::object::initialize(pobject);
+   ::object::initialize(pparticle);
 
 }
 

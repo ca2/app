@@ -6,7 +6,7 @@
 task_pool::task_pool()
 {
 
-   defer_create_mutex();
+   defer_create_synchronization();
 
    //set_layer(LAYERED_TASK_POOL, this);
 

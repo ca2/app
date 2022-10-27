@@ -103,7 +103,7 @@ namespace multimedia
 
          auto pmultimedia = psystem->multimedia();
 
-         synchronous_lock synchronouslock(pmultimedia->mutex());
+         synchronous_lock synchronouslock(pmultimedia->synchronization());
 
          wstrAttr = pmultimedia->get_media_call_title(strPathOrigin);
 

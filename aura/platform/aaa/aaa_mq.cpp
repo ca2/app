@@ -1,7 +1,7 @@
 #include "framework.h"
 //#include "base/user/user/_component.h"
 #include "aura/os/_c.h"
-#include "aura/os/_.h"
+//#include "aura/os/_.h"
 #include "aura/os/_os.h"
 #include "message_queue.h"
 
@@ -22,7 +22,7 @@ message_queue::message_queue()
 
    m_bKickIdle = false;
 
-   defer_create_mutex();
+   defer_create_synchronization();
 
 }
 
@@ -88,7 +88,7 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMs
 
    }
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    while (true)
    {
@@ -175,7 +175,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 
    }
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    ::count count = m_messagea.get_count();
 
@@ -394,7 +394,7 @@ CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(oswindow oswindow)
 //
 //   }
 //
-//   synchronous_lock ml(&pmq->m_mutex);
+//   synchronous_lock ml(&pmq->m_pmutex);
 //
 //   pmq->m_messagea.predicate_erase([=](MESSAGE & item)
 //   {

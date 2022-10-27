@@ -14,7 +14,7 @@ namespace turboc
       top_impact * m_ptopview;
 
 
-      edit_impact(::object * pobject);
+      edit_impact(::particle * pparticle);
       virtual ~edit_impact();
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);

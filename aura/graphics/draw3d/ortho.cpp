@@ -1,6 +1,6 @@
 #include "framework.h"
 //#include "acme/primitive/geometry2d/point.h"
-#include "acme/primitive/geometry3d/_.h"
+//#include "acme/primitive/geometry3d/_.h"
 #include "ortho.h"
 #include <math.h>
 #include "aura/graphics/draw2d/graphics.h"

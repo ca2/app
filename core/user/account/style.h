@@ -15,7 +15,7 @@ namespace account
       string                        m_strRuri;
 
 
-      style(::object * pobject);
+      style(::particle * pparticle);
 
       virtual ~style();
 

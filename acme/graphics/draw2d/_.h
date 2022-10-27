@@ -57,5 +57,4 @@ using colorref_set = ::set < ::color::color >;
 
 
 
-DECLARE_ENUMERATION(e_draw_text, enum_draw_text);
 

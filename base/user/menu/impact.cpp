@@ -199,7 +199,7 @@ namespace user
 
       m_pfontTitle.create(this);
 
-      auto psystem = m_psystem->m_pbasesystem;
+      auto psystem = acmesystem()->m_pbasesystem;
 
       auto pnode = psystem->node();
 

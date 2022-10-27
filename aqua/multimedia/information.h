@@ -1,8 +1,30 @@
 //
-// Created by camilo on 25/10/22.
+// Created by camilo on 2022-10-25 21:11 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef BASIS_INFORMATION_H
-#define BASIS_INFORMATION_H
 
-#endif //BASIS_INFORMATION_H
+#include "acme/primitive/string/string.h"
+
+
+namespace multimedia
+{
+
+
+   class CLASS_DECL_AQUA information
+   {
+   public:
+
+
+      string      m_strName;
+      string      m_strAlbum;
+      string      m_strArtist;
+
+
+   };
+
+
+} // namespace multimedia
+
+
+

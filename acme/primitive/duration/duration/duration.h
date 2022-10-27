@@ -1123,7 +1123,7 @@ inline class ::wait integral_duration < DURATION >::wait() const
 }
 
 
-DEFINE_COMPARISON_WITH_DURATION(time)
+
 
 
 

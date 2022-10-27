@@ -153,12 +153,12 @@ namespace serial
    }
 
 
-   string usb_sysfs_friendly_name(::matter * pmatter, const string & sys_usb_path)
+   string usb_sysfs_friendly_name(::particle * pparticle, const string & sys_usb_path)
    {
 
       unsigned int device_number = 0;
 
-      auto psystem = pmatter->m_psystem;
+      auto psystem = pparticle->acmesystem();
 
       auto pacmefile = psystem->m_pacmefile;
 

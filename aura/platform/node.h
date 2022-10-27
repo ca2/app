@@ -43,7 +43,7 @@ namespace aura
       ~node() override;
 
 
-      virtual void on_initialize_object() override;
+      virtual void on_initialize_particle() override;
 
       virtual void dpi_os_initialize();
 

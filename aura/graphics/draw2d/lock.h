@@ -27,7 +27,7 @@ namespace draw2d
 ////
 ////#endif
 //
-//      ::acme::system * m_psystem;
+//      ::acme::system * acmesystem();
 //
 //      device_lock(::user::interaction * pinteraction);
 //      ~device_lock();
@@ -43,10 +43,10 @@ namespace draw2d
 
       ::draw2d::draw2d * m_pdraw2d;
 
-      lock(::object * pobject)
+      lock(::particle * pparticle)
       {
 
-         m_pdraw2d = pobject->m_psystem->m_paurasystem->draw2d();
+         m_pdraw2d = pparticle->acmesystem()->m_paurasystem->draw2d();
 
          m_pdraw2d->lock_device();
 

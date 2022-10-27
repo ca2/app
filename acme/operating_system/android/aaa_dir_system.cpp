@@ -18,10 +18,10 @@ namespace android
    }
 
 
-   void dir_system::initialize(::matter * pobject)
+   void dir_system::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::dir_system::initialize(pobject);
+      auto estatus = ::dir_system::initialize(pparticle);
 
       if (!estatus)
       {

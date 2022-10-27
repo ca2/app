@@ -104,7 +104,7 @@ namespace user
    bool form_impact::open_document(const ::payload & payloadFile)
    {
 
-      auto psystem = m_psystem->m_pbasesystem;
+      auto psystem = acmesystem()->m_pbasesystem;
 
       psystem->defer_create_html();
 
@@ -229,7 +229,7 @@ namespace user
    bool form_impact::open_html(const ::string & str)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto pformOld = m_pform;
 

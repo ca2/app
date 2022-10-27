@@ -1,6 +1,13 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/platform/department.h"
+#include "earth_time_shift.h"
+#include "result.h"
+#include "earth_time.h"
+
+
 #define INTERNATIONAL_DATE_HOUR_FORMAT_FOR_FILE "%Y-%m-%d %H"
 #define INTERNATIONAL_DATE_HOUR_FORMAT "%Y-%m-%d %H"
 
@@ -39,7 +46,7 @@ namespace datetime
          international();
 
 
-         virtual void initialize(::object * pobject) override;
+         virtual void initialize(::particle * pparticle) override;
 
 
          void parse_str(const string & str, property_set & set);
@@ -59,8 +66,8 @@ namespace datetime
          //string local_get_date_time_for_file_with_no_spaces();
 
 
-         inline string get_string(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none()) { return get_date_time(strFormat, timeshift);  }
-         inline string get_string(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none()) { return get_date_time(time, strFormat, timeshift); }
+         inline string format(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none()) { return get_date_time(strFormat, timeshift);  }
+         inline string format(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none()) { return get_date_time(time, strFormat, timeshift); }
          
          //inline string local_get(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return local_get_date_time(strFormat); }
          //inline string local_get(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return local_get_date_time(time, strFormat); }
@@ -86,7 +93,7 @@ namespace datetime
 //
 //         str();
 //
-//         void initialize(::object * pobject) override;
+//         void initialize(::particle * pparticle) override;
 //
 //         string get_date_time(const ::earth::time_shift& timeshift = ::earth::time_shift::none());
 //
@@ -106,7 +113,7 @@ namespace datetime
       department();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       void destroy() override;
 
 
@@ -138,8 +145,8 @@ namespace datetime
       inline class  international& international() { return *m_pinternational; }
       //inline class str& str() { return* m_pstr; }
 
-      string strftime(const string & str, const ::earth::time & time, const ::earth::time_shift& timezone = ::earth::time_shift::none());
-      string strftime(const string & str, const ::earth::time_shift& timezone = ::earth::time_shift::none());
+      string format(const string & str, const ::earth::time & time, const ::earth::time_shift& timezone = ::earth::time_shift::none());
+      string format(const string & str, const ::earth::time_shift& timezone = ::earth::time_shift::none());
 
       i32 SWN(i32 y,i32 m,i32 d);
       i32 DP(i32 y,i32 m);

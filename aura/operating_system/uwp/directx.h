@@ -57,8 +57,8 @@ namespace universal_windows
       ::boolean                                    m_bCoreWindowVisible;
 
       bool                             m_b3D;
-      ::aura::system *                 m_psystem;
-      ::mutex                          m_mutexDc;
+      ::aura::system *                 acmesystem();
+      ::pointer < ::mutex >                          m_pmutexDc;
       size_i32                             m_size;
       ::size_i32                           m_sizeBuffer;
       ::universal_windows::interaction_impl *        m_pimpl;
@@ -146,4 +146,4 @@ namespace universal_windows
 
 
 
-//CLASS_DECL_AURA ::mutex & draw2d_mutex();
+//CLASS_DECL_AURA ::pointer < ::mutex > & draw2d_mutex();

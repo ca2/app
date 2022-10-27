@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "native.h"
+#include "acme/filesystem/filesystem/path.h"
+
+
 namespace fs
 {
 
@@ -22,7 +26,7 @@ namespace fs
       link();
       ~link() override;
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       //virtual bool _enumerates(::file::listing & listing) override;
       bool enumerate(::file::listing & listing) override;

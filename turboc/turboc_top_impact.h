@@ -16,7 +16,7 @@ namespace turboc
       impact *                  m_pimpact;
 
 
-      top_impact(::object * pobject);
+      top_impact(::particle * pparticle);
       virtual ~top_impact();
 
 

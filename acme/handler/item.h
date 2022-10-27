@@ -6,41 +6,8 @@
 
 #include "acme/primitive/geometry2d/rectangle.h"
 #include "acme/primitive/geometry2d/point.h"
-
-
-template < typename T >
-class ___stack
-{
-public:
-
-   
-   T & m_reference;
-   T m_tPrevious;
-   
-
-   ___stack(T& reference, const T& tStack) :
-      m_reference(reference)
-   {
-      
-      m_tPrevious = reference;
-      
-      reference = tStack;
-      
-   }
-
-   
-   ~___stack()
-   {
-      
-      m_reference = m_tPrevious;
-
-   }
-   
-
-};
-
-
-#define __stack(xxxx, aaaa) auto stack_at_line ## LINE_NUMBER = ::___stack < ::erase_reference< decltype(xxxx) >::TYPE > (xxxx, aaaa);
+#include "acme/primitive/primitive/matter.h"
+#include "acme/constant/element.h"
 
 
 #pragma pack(push, user_ITEM, 1)

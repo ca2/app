@@ -216,7 +216,7 @@ namespace userex
    void pane_tab_impact::add_pane_tab_impact_handler_library(const ::string & strLibrary)
    {
 
-      auto & pfactory = m_psystem->factory(strLibrary);
+      auto & pfactory = acmesystem()->factory(strLibrary);
 
       auto phandler = pfactory->create <handler>();
 
@@ -540,7 +540,7 @@ namespace userex
 
       ::acme::library * plibrary = nullptr;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
 //      if(pimpactdata->m_atom.is_text() && psystem->m_idmapCreateImpactLibrary.lookup(pimpactdata->m_atom,plibrary) && plibrary != nullptr)
 //      {
@@ -859,9 +859,9 @@ namespace userex
    ::filemanager::document * pane_tab_impact::filemanager_document(const ::atom & atomFileManager)
    {
 
-      auto pobject = m_mapFileManager[atomFileManager];
+      auto pparticle = m_mapFileManager[atomFileManager];
 
-      return  (pobject == nullptr ? nullptr : dynamic_cast < ::filemanager::document * > (pobject.m_p));
+      return  (pparticle == nullptr ? nullptr : dynamic_cast < ::filemanager::document * > (pparticle.m_p));
 
    }
 

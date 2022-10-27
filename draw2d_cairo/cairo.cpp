@@ -3,7 +3,7 @@
 //#include "aura/platform/static_start.h"
 
 
-static ::mutex * s_pmutex = nullptr;
+static ::pointer< ::mutex > s_pmutex = nullptr;
 
 extern string_map < i32_map < FT_Face > > * g_pmapFontFace;
 
@@ -17,13 +17,13 @@ extern string_map < cairo_font_face_t * > * g_pmapCairoFontFace;
 
 #ifdef LINUX
 
-extern ::mutex * g_pmutexFc;
+extern ::pointer< ::mutex > g_pmutexFc;
 
 extern string_to_string *      g_pmapFontPath;
 
 #endif
 
-::mutex * cairo_mutex()
+::pointer< ::mutex > cairo_mutex()
 {
 
    return s_pmutex;
@@ -35,11 +35,11 @@ extern string_to_string *      g_pmapFontPath;
 void init_cairo_mutex()
 {
 
-   s_pmutex = memory_new ::mutex();
+   s_pmutex = memory_new ::pointer < ::mutex >();
 
 #ifdef LINUX
 
-   g_pmutexFc = memory_new ::mutex();
+   g_pmutexFc = memory_new ::pointer < ::mutex >();
 
    g_pmapFontPath = memory_new string_to_string();
 

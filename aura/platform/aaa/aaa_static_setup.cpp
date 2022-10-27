@@ -138,16 +138,16 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const ::s
 ::matter * system_setup::create_new_object()
 {
 
-   auto pobject = new_object();
+   auto pparticle = new_object();
 
-   if (::is_set(pobject))
+   if (::is_set(pparticle))
    {
 
-      pobject->set_generic_object_name(m_pszName);
+      pparticle->set_generic_object_name(m_pszName);
 
    }
 
-   return pobject;
+   return pparticle;
 
 }
 

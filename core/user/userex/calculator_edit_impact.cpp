@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#include "axis/mathematics/calculator/_.h"
+//#include "axis/mathematics/calculator/_.h"
 #include "calculator_edit_impact.h"
 //#include "aura/update.h"
 #include "acme/constant/id.h"
@@ -98,7 +98,7 @@ namespace calculator
 
          {
 
-            synchronous_lock synchronouslock(m_pcallback == nullptr ? nullptr : m_pcallback->mutex());
+            synchronous_lock synchronouslock(m_pcallback == nullptr ? nullptr : m_pcallback->synchronization());
 
             string strExp;
 
@@ -112,7 +112,7 @@ namespace calculator
             e.m_iStart = -1;
             e.m_tick.Now();
 
-            ::calculator::element * pelement = nullptr;
+            ::calculator::particle * pparticle = nullptr;
 
             string strSource;
 

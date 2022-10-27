@@ -31,11 +31,11 @@ namespace aqua
    }
 
 
-   void session::initialize(::object * pobject)
+   void session::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
-      ::apex::session::initialize(pobject);
+      ::apex::session::initialize(pparticle);
 
       //if (!estatus)
       //{

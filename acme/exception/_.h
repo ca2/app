@@ -313,9 +313,9 @@ CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int nLine);
 //CLASS_DECL_ACME void TRACE(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 //CLASS_DECL_ACME void __tracef(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
 //CLASS_DECL_ACME void __tracev(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
-CLASS_DECL_ACME void __assert_object_ok(const ::matter * pOb, const char * pszFileName, i32 nLine);
+CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const char * pszFileName, i32 nLine);
 
-CLASS_DECL_ACME void __dump(const ::matter * pOb);
+CLASS_DECL_ACME void __dump(const ::particle * pparticle);
 
 
 #define THIS_FILE          __FILE__

@@ -5,11 +5,11 @@ namespace browser
 {
 
 
-   document::document(::object * pobject) :
-      object(pobject),
-      ::data::data_container_base(pobject),
-      ::user::document(pobject),
-      ::user::document(pobject)
+   document::document(::particle * pparticle) :
+      object(pparticle),
+      ::data::data_container_base(pparticle),
+      ::user::document(pparticle),
+      ::user::document(pparticle)
    {
 
    }
@@ -87,7 +87,7 @@ namespace browser
 
          {
 
-            synchronous_lock slText(&pimpact->m_mutexText);
+            synchronous_lock slText(&pimpact->m_pmutexText);
 
             pimpact->m_strHelloBrowser = "image:" + pimpact->m_strImage + "," + pimpact->m_strHelloBrowser;
 

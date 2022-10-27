@@ -20,7 +20,7 @@ namespace simpledb
 
       m_iReplaceValue = -1;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 

@@ -148,11 +148,11 @@ bool acme_path::final_begins_eat_ci(string & str, const char * pcszPrefix)
 
       string strFull;
 
-      strFull = m_psystem->m_pacmepath->final(str);
+      strFull = acmepath()->final(str);
 
       string strFullPath;
 
-      strFullPath = m_psystem->m_pacmepath->final(strPath);
+      strFullPath = acmepath()->final(strPath);
 
       if (::str().begins_eat_ci(strFull, strFullPath))
       {
@@ -252,7 +252,7 @@ bool acme_path::has_custom_icon(const char * path)
 
    }
 
-   auto pathFolderCurrent = m_psystem->m_pacmedirectory->get_current();
+   auto pathFolderCurrent = acmedirectory()->get_current();
 
    ::file::path pathAbsolute = pathFolderCurrent / path;
 

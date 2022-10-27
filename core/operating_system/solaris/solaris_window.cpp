@@ -42,7 +42,7 @@ oswindow_data::~oswindow_data()
 #define CA2_X11_WINDOW_LONG_STYLE_EX "ca2_ccwarehouse_fontopu_window_long_style_ex"
 
 oswindow_dataptra * oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
-::mutex * oswindow_data::s_pmutex = memory_new ::mutex(nullptr);
+::pointer< ::mutex > oswindow_data::s_pmutex = memory_new ::pointer < ::mutex >(nullptr);
 
 
 i32 oswindow_find_message_only_window(::user::interaction_impl * pinteraction)
@@ -730,7 +730,7 @@ public:
 
    ::rectangle_i32 m_rectangleDesktop;
 
-   xlib_message_box(::pointer<base_application>papp) : ::object(pobject), ::os::simple_ui(pobject), ::user::interaction(pobject)
+   xlib_message_box(::pointer<base_application>papp) : ::object(pparticle), ::os::simple_ui(pparticle), ::user::interaction(pparticle)
    {
    }
 
@@ -869,7 +869,7 @@ public:
 i32 message_box_show_xlib(base_application * papp, const ::string & lpText, const ::string & lpCaption)
 {
 
-   xlib_message_box box(pobject);
+   xlib_message_box box(pparticle);
 
    return box.show_window(lpText, lpCaption);
 

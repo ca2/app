@@ -23,6 +23,9 @@ TYPE __random();
 //::i32 __random_int(::i32 i1, ::i32 i2);
 
 
+#include "acme/primitive/primitive/matter.h"
+
+
 namespace mathematics
 {
 
@@ -49,7 +52,7 @@ namespace mathematics
       virtual ~mathematics();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       virtual void destroy() override;
 
 

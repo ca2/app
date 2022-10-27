@@ -48,7 +48,7 @@ namespace calculator
    ::calculator::element* parser::parse(const ::string & psz)
    {
       
-      ::calculator::element * pelement = nullptr;
+      ::calculator::particle * pparticle = nullptr;
 
       m_scanner.initialize(psz);
 

@@ -50,8 +50,8 @@ namespace universal_windows
    }
 
 
-   interaction_impl::interaction_impl(::object * pobject):
-      ::object(pobject)
+   interaction_impl::interaction_impl(::particle * pparticle):
+      ::object(pparticle)
    {
 
       m_bScreenRelativeMouseMessagePosition  = false;
@@ -210,7 +210,7 @@ namespace universal_windows
 
       //synchronous_lock slGraphics(m_pgraphics->mutex());
 
-      //::synchronization_object * psync = m_pgraphics->get_draw_lock();
+      //::synchronization * psync = m_pgraphics->get_draw_lock();
 
       //synchronous_lock synchronouslock(psync);
 
@@ -218,7 +218,7 @@ namespace universal_windows
 
       //slGraphics.unlock();
 
-      synchronous_lock synchronouslock(m_puserinteraction->mutex());
+      synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
       m_puserinteraction->place(m_rectangle);
 
@@ -289,7 +289,7 @@ namespace universal_windows
 
    //   //      {
 
-   //   //         synchronous_lock synchronouslock(&m_mutexQueue);
+   //   //         synchronous_lock synchronouslock(m_pmutexQueue);
 
    //   //         if (m_messageaQueue.has_elements())
    //   //         {
@@ -572,7 +572,7 @@ namespace universal_windows
 
    bool interaction_impl::DestroyWindow()
    {
-      //single_lock synchronouslock(m_pthread == nullptr ? nullptr : &m_pthread->m_mutex,true);
+      //single_lock synchronouslock(m_pthread == nullptr ? nullptr : &m_pthread->m_pmutex,true);
       //::user::interaction_impl * pWnd;
       //hwnd_map * pMap;
       //oswindow hWndOrig;
@@ -3585,7 +3585,7 @@ return true;
 
       {
 
-         synchronous_lock synchronouslock(m_puserinteraction->mutex());
+         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
          m_strWindowText = lpszString;
 
@@ -3600,7 +3600,7 @@ return true;
 
          {
 
-            synchronous_lock synchronouslock(m_puserinteraction->mutex());
+            synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
             applicationview->Title = m_strWindowText;
 
@@ -5478,7 +5478,7 @@ lCallNextHook:
 //}
 
 
-//::mutex * afxMutexHwnd()
+//::pointer< ::mutex > afxMutexHwnd()
 //{
 //   try
 //   {
@@ -5930,7 +5930,7 @@ bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
       {
          // class registered successfully, add to registered list
          __MODULE_STATE* pModuleState = __get_module_state();
-         single_lock synchronouslock(&pModuleState->m_mutexRegClassList, true);
+         single_lock synchronouslock(&pModuleState->m_pmutexRegClassList, true);
          if(pModuleState->m_pstrUnregisterList == nullptr)
             pModuleState->m_pstrUnregisterList = memory_new string;
          *pModuleState->m_pstrUnregisterList += lpWndClass->lpszClassName;
@@ -6000,7 +6000,7 @@ namespace universal_windows
 
       }
 
-      synchronous_lock synchronouslock(m_puserinteraction->mutex());
+      synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
       auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
 
@@ -6036,7 +6036,7 @@ namespace universal_windows
 
       //m_puserinteraction->on_after_graphical_update();
 
-      synchronous_lock synchronouslock(m_puserinteraction->mutex());
+      synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
       auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
 
@@ -6166,7 +6166,7 @@ namespace universal_windows
 
          //}
 
-         //synchronous_lock synchronouslock(&m_mutexQueue);
+         //synchronous_lock synchronouslock(m_pmutexQueue);
 
          //m_messageaQueue.add(pusermessage);
 

@@ -37,12 +37,12 @@ namespace bred
    }
 
 
-   void system::initialize(::object * pobject)
+   void system::initialize(::particle * pparticle)
    {
 
       //auto estatus =
       
-      ::apex::system::initialize(pobject);
+      ::apex::system::initialize(pparticle);
 
       //if (!estatus)
       //{

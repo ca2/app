@@ -154,7 +154,7 @@ application_array & application_container::applicationa()
 application_array application_container::get_applicationa()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    return m_applicationa;
 
@@ -171,7 +171,7 @@ application_array application_container::get_applicationa()
 //
 //   }
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (papp == this)
 //   {
@@ -188,7 +188,7 @@ application_array application_container::get_applicationa()
 //void application_container::app_erase(::aura::application * papp)
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_applicationa.is_set())
 //   {
@@ -335,7 +335,7 @@ application_array application_container::get_applicationa()
 
   {
 
-     synchronous_lock synchronouslock(mutex());
+     synchronous_lock synchronouslock(this->synchronization());
 
      papp = m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 
@@ -383,7 +383,7 @@ application_array application_container::get_applicationa()
 
    string strBuild;
 
-   ::file::path pathExe = m_psystem->m_pacmepath->app_module();
+   ::file::path pathExe = acmepath()->app_module();
 
    if (!is_application_installed(pathExe, strApp, strBuild, ::aura::get_system()->get_system_platform(),
       ::aura::get_system()->get_system_configuration(), strLocale, strSchema))

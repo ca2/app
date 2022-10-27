@@ -26,7 +26,7 @@ namespace windowing
 ////
 ////#endif
 //
-//      ::acme::system * m_psystem;
+//      ::acme::system * acmesystem();
 //
 //      device_lock(::user::interaction * pinteraction);
 //      ~device_lock();

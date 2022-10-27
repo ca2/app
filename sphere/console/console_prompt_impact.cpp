@@ -5,8 +5,8 @@ namespace console
 {
 
 
-   prompt_impact::prompt_impact(::object * pobject) :
-      ::object(pobject)
+   prompt_impact::prompt_impact(::particle * pparticle) :
+      ::object(pparticle)
    {
 
       m_durationCaretPeriod   = 500;

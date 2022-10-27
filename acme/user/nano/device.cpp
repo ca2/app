@@ -2,8 +2,8 @@
 // Created by camilo on 31/01/2022 21:27 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "_nano.h"
-
+#include "device.h"
+#include "acme/primitive/collection/string_array.h"
 
 
 nano_device::nano_device()

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "string.h"
+
+
 class CLASS_DECL_ACME stringtow :
    public string
 {

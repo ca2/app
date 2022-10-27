@@ -20,7 +20,7 @@ namespace base
       virtual ~session();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
 

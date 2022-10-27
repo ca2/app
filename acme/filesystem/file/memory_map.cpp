@@ -44,7 +44,7 @@ namespace file
 //      if (::str().begins_eat_ci(str, "Local\\"))
 //      {
 //
-//         path /=          auto psystem = m_psystem;
+//         path /=          auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

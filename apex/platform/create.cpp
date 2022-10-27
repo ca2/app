@@ -1,9 +1,10 @@
 ﻿#include "framework.h"
 #include "apex/user/primitive.h"
-
+#include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
-
+#include "acme/platform/application.h"
+#include "apex/platform/create.h"
 
 
 create::create()
@@ -15,9 +16,7 @@ create::create()
 }
 
 
-
-
-void create::initialize_create(arguments arguments) 
+void create::initialize_create(arguments arguments)
 {
 
    create_common_construct(::e_type_empty_argument, nullptr);
@@ -136,12 +135,12 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
 ::acme::application * create::create_get_app(::acme::application * pappFallback)
 {
 
-   auto pobject = this;
+   auto pparticle = this;
 
-   if (pobject)
+   if (pparticle)
    {
 
-      auto papp = pobject->get_app();
+      auto papp = pparticle->get_app();
 
       if (papp)
       {
@@ -544,10 +543,10 @@ void create::_001ParseCommandLine(const ::string& strCommandLine)
    if (!has_property("build") || payload("build").is_empty())
    {
 
-      if (m_psystem->m_pacmefile->exists(m_psystem->m_pacmedirectory->system() / "config\\plugin\\build.txt"))
+      if (acmefile()->exists(acmedirectory()->system() / "config\\plugin\\build.txt"))
       {
 
-         string str = m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\plugin\\build.txt");
+         string str = acmefile()->as_string(acmedirectory()->system() / "config\\plugin\\build.txt");
 
          payload("build") = str;
 
@@ -566,6 +565,7 @@ void create::_001ParseCommandLineUri(const ::string& strCommandLine)
    throw ::interface_only();
 
 }
+
 
 void create::_001ParseCommandFork(const ::string& strCommandFork)
 {

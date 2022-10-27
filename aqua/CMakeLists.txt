@@ -135,7 +135,7 @@ else()
 endif()
 
 
-add_library(aqua SHARED ${library_source} )
+add_library(aqua SHARED ${library_source} multimedia/information.h)
 
 target_precompile_headers(aqua PRIVATE framework.h)
 

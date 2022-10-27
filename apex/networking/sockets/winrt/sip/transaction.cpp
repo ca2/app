@@ -5,8 +5,8 @@ namespace sip
 {
 
 
-   transaction::transaction(::object * pobject) :
-      ::object(pobject)
+   transaction::transaction(::particle * pparticle) :
+      ::object(pparticle)
    {
 
    }

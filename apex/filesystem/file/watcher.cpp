@@ -19,6 +19,9 @@
 #include "framework.h"
 #include "watcher.h"
 #include "watch.h"
+#include "apex/filesystem/filesystem/file_listener.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 namespace file
@@ -83,7 +86,7 @@ namespace file
 
       }
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ::pointer<watch>pwatch;
 
@@ -147,7 +150,7 @@ namespace file
    void watcher::erase_watch(watch_id watch_id, ::function < void () > functionErased)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       watch_map::pair * ppair = m_watchmap.plookup(watch_id);
 
@@ -196,7 +199,7 @@ namespace file
    void watcher::erase_watch(const ::file::path & pathFolder)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       for (auto & pair : m_watchmap)
       {

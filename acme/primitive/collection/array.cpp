@@ -1,11 +1,12 @@
 #include "framework.h"
+#include "string_array.h"
 
 
-void _123abc_debug_gen_array_randomize(::matter * pobject);
+void _123abc_debug_gen_array_randomize(::particle * pparticle);
 void ___arrayStdSortTest();
 
 /*
-void _123abc_debug_gen_array_randomize(::matter * pobject)
+void _123abc_debug_gen_array_randomize(::particle * pparticle)
 {
    int_array a;
    a.add_unique(1);

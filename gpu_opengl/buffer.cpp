@@ -22,7 +22,7 @@ namespace opengl
    void buffer::gpu_read()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!::is_ok(m_pimage))
       {
@@ -79,7 +79,7 @@ namespace opengl
    void buffer::gpu_write()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!::is_ok(m_pimage))
       {

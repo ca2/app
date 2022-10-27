@@ -363,16 +363,6 @@ public:
       this->bottom = (decltype(this->bottom))(this->bottom - b);
    }
 
-   template < primitive_integral NUMERATOR, primitive_integral DENOMINATOR >
-   rectangle_type muldiv(NUMERATOR numerator, DENOMINATOR denominator) const noexcept
-   {
-      return rectangle_type(
-         ::muldiv(this->left, numerator, denominator),
-         ::muldiv(this->top, numerator, denominator),
-         ::muldiv(this->right, numerator, denominator),
-         ::muldiv(this->bottom, numerator, denominator)
-      );
-   }
 
 
    UNIT_TYPE area() const
@@ -1267,5 +1257,23 @@ inline rectangle_f64 rectangle_f64_dimension(X x, Y y, W w, H h)
 
 }
 
-
-
+//
+//CLASS_DECL_ACME rectangle_i32 & muldiv(rectangle_i32 & rectangle, ::i32 numerator, ::i32 denominator);
+//CLASS_DECL_ACME rectangle_i64 & muldiv(rectangle_i64 & rectangle, ::i64 numerator, ::i64 denominator);
+//
+//
+//
+//CLASS_DECL_ACME rectangle_i32 & muldiv(rectangle_i32 & rectangle, ::i32 numerator, ::i32 denominator);
+//CLASS_DECL_ACME rectangle_i64 & muldiv(rectangle_i64 & rectangle, ::i64 numerator, ::i64 denominator);
+//
+//template < primitive_integral NUMERATOR, primitive_integral DENOMINATOR >
+//rectangle_type muldiv(NUMERATOR numerator, DENOMINATOR denominator) const noexcept
+//{
+//   return rectangle_type(
+//      ::muldiv(this->left, numerator, denominator),
+//      ::muldiv(this->top, numerator, denominator),
+//      ::muldiv(this->right, numerator, denominator),
+//      ::muldiv(this->bottom, numerator, denominator)
+//   );
+//}
+//

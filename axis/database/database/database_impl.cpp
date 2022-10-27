@@ -12,7 +12,7 @@ namespace database
 
       m_bActive = false;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 

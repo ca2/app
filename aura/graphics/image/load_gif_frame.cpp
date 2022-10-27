@@ -267,7 +267,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //      //if (uFrameIndex <= 0)
 //      //{
 //
-//      //   pobject->__construct(pimageCanvas, pframea->m_size);
+//      //   pparticle->__construct(pimageCanvas, pframea->m_size);
 //
 //      //}
 //

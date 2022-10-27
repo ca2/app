@@ -8,6 +8,7 @@
 //
 #include "framework.h"
 #include "windows_unicode.h"
+#include "acme/primitive/string/string.h"
 #include <iconv.h>
 
 

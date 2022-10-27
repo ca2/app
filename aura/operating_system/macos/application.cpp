@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_.h"
-#include "aura/operating_system/_.h"
+//#include "aura/operating_system/_.h"
 #include <mach-o/dyld.h>
 #include <sys/time.h>
 
@@ -10,8 +10,8 @@ namespace aura
 {
 
 
-//   application::application(::object * pobject) :
-//      ::object(pobject)
+//   application::application(::particle * pparticle) :
+//      ::object(pparticle)
 //   {
 ////      m_pthreadimpl.create(this);
 ////      m_pthreadimpl->m_pthread = this;
@@ -314,20 +314,20 @@ namespace aura
 //
 //      path -= 3;
 //      
-//      if(         auto psystem = m_psystem;
+//      if(         auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
 //pacmedirectory->is(path))
 //      {
 //
-//         ::file::path path2 =          auto psystem = m_psystem;
+//         ::file::path path2 =          auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
 //pacmedirectory->localconfig() / "monitor-0/desk/2desk" / path.name();
 //         
-//         if(::m_psystem->m_pacmefile->exists(path2))
+//         if(::acmefile()->exists(path2))
 //         {
 //
 //            ::unlink(path2);
@@ -336,7 +336,7 @@ namespace aura
 //         
 //         auto pathFolder2 = path2.folder();
 //         
-//                  auto psystem = m_psystem;
+//                  auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -344,7 +344,7 @@ namespace aura
 //         
 //         bool bFilePathIsLink = file_path_is_link(path2);
 //         
-//         if(!bFilePathIsLink &&          auto psystem = m_psystem;
+//         if(!bFilePathIsLink &&          auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

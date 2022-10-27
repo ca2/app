@@ -40,7 +40,7 @@ menu_shared::~menu_shared()
 }
 
 
-::pointer<menu_shared>create_menu_shared(::object * pobject, const string_array & straParent, const string_array & straMenu, const string_array & straId)
+::pointer<menu_shared>create_menu_shared(::particle * pparticle, const string_array & straParent, const string_array & straMenu, const string_array & straId)
 {
 
    int iCount = (int) straParent.get_count();
@@ -99,7 +99,7 @@ void * menu_shared::find_item(const char * pszParent, const char * pszId)
 void menu_shared::on_idle_update()
 {
 
-   auto psession = m_psystem->m_paurasession;
+   auto psession = acmesystem()->m_paurasession;
    
    auto puser = psession->user();
    

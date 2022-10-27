@@ -121,7 +121,7 @@ namespace zip
 
       m_bOwnFile = true;
 
-      auto pfile = m_psystem->__create < ::file::file > ();
+      auto pfile = acmesystem()->__create < ::file::file > ();
 
       try
       {

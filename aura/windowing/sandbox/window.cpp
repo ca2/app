@@ -82,7 +82,7 @@ namespace sandbox_windowing
       if (!(pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
       {
 
-         auto psystem = m_psystem->m_papexsystem;
+         auto psystem = acmesystem()->m_papexsystem;
 
          string strApplicationServerName = psystem->get_application_server_name();
 
@@ -90,7 +90,7 @@ namespace sandbox_windowing
 
          //         XClassHint * pupdate = XAllocClassHint();
          //
-         //         auto psystem = m_psystem->m_papexsystem;
+         //         auto psystem = acmesystem()->m_papexsystem;
          //
          //         string strApplicationServerName = psystem->get_application_server_name();
          //
@@ -387,7 +387,7 @@ namespace sandbox_windowing
 
    //      pwindowing->m_bFirstWindowMap = true;
 
-   //      auto psystem = m_psystem->m_papexsystem;
+   //      auto psystem = acmesystem()->m_papexsystem;
 
    //      auto pnode = psystem->node();
 
@@ -442,7 +442,7 @@ namespace sandbox_windowing
    //   oswindow_dataptra *window::s_pdataptra = nullptr;
    //
    //
-   //   ::mutex *window::s_pmutex = nullptr;
+   //   ::pointer< ::mutex >window::s_pmutex = nullptr;
 
 
    //   i32 oswindow_find_message_only_window(::user::interaction_impl *pimpl)
@@ -711,7 +711,7 @@ namespace sandbox_windowing
 
    //   synchronous_lock synchronouslock(user_mutex());
 
-   //   auto psystem = m_psystem->m_papexsystem;
+   //   auto psystem = acmesystem()->m_papexsystem;
 
    //   auto pnode = psystem->node();
 

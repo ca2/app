@@ -1,9 +1,6 @@
 #include "framework.h"
-
-
-
-
-
+#include "string.h"
+#include "_conv.h"
 
 
 ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase)

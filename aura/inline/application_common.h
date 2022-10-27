@@ -72,7 +72,7 @@
 //
 //#ifdef MAIN_STRING
 //
-//   ::pointer<::aura::system>psystem = m_psystem;
+//   ::pointer<::aura::system>psystem = acmesystem();
 //
 //   psystem->m_pszMain = MAIN_STRING;
 //

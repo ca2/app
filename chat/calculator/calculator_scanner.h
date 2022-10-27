@@ -32,7 +32,7 @@ numbers:
       class token * m_ptoken;
 
 
-      scanner(::object * pobject);
+      scanner(::particle * pparticle);
       virtual ~scanner();
 
 

@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "department.h"
+#include "process.h"
 #include "acme/platform/node.h"
+#include "acme/platform/system.h"
 
 
 void install_sigchld_handler();
@@ -22,11 +24,11 @@ namespace operating_system
    }
 
 
-   void department::initialize(::object * pobject)
+   void department::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
-      ::acme::department::initialize(pobject);
+      ::acme::department::initialize(pparticle);
 
       //if(!estatus)
       //{
@@ -37,7 +39,7 @@ namespace operating_system
 
 #ifndef WINDOWS
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
@@ -100,7 +102,7 @@ namespace operating_system
 
 #ifndef _UWP
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 

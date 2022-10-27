@@ -1,8 +1,9 @@
 ﻿#include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
-#include "apex/filesystem/fs/_fs.h"
 #include "ifs_file.h"
+//#include "apex/networking/sockets/_sockets.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/platform/system.h"
+#include "acme/networking/url_department.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
 #include "apex/networking/http/context.h"
@@ -80,7 +81,7 @@ void ifs_file::get_file_data()
 
    string strUrl;
 
-   auto psystem = m_psystem;
+   auto psystem = acmesystem();
 
    auto purl = psystem->url();
 
@@ -105,7 +106,7 @@ void ifs_file::set_file_data()
 
    string strUrl;
 
-   auto psystem = m_psystem;
+   auto psystem = acmesystem();
 
    auto purl = psystem->url();
 

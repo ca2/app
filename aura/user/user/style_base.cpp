@@ -25,12 +25,12 @@ namespace user
 
 
 
-   void style_base::on_initialize_object()
+   void style_base::on_initialize_particle()
    {
 
       //auto estatus = 
       
-      ::manager::on_initialize_object();
+      ::manager::on_initialize_particle();
 
       //if (!estatus)
       //{
@@ -39,7 +39,7 @@ namespace user
 
       //}
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto psignal = psystem->get_signal(id_operating_system_user_color_change);
 
@@ -59,7 +59,7 @@ namespace user
       //if (is_different(m_bDarkMode, bDarkMode))
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node();
 
@@ -70,7 +70,7 @@ namespace user
 
          //m_bDarkMode = bDarkMode;
 
-         //auto psystem = m_psystem;
+         //auto psystem = acmesystem();
 
          //psystem->m_papexsystem->signal(id_user_style_change);
 
@@ -84,7 +84,7 @@ namespace user
 
    //   return
 
-   //   //auto psystem = m_psystem;
+   //   //auto psystem = acmesystem();
 
    //   //auto pnode = psystem->node();
 

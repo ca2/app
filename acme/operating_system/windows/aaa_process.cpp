@@ -147,7 +147,7 @@ struct shell_execute :
    }
 
 
-   bool synchronization_object(const class ::wait & wait)
+   bool synchronization(const class ::wait & wait)
    {
 
       fMask = SEE_MASK_NOASYNC | SEE_MASK_NOCLOSEPROCESS;
@@ -225,7 +225,7 @@ bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration
 
    shell_execute execute(pszFile, pszParams);
 
-   return execute.synchronization_object(durationTimeout);
+   return execute.synchronization(durationTimeout);
 
 }
 
@@ -251,7 +251,7 @@ bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration 
    execute.lpVerb = L"RunAs";
 
 
-   return execute.synchronization_object(durationTimeout);
+   return execute.synchronization(durationTimeout);
 
 }
 

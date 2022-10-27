@@ -20,7 +20,7 @@ public:
    ~html_form() override;
 
    
-   void initialize(::object * pobject) override;
+   void initialize(::particle * pparticle) override;
 
 
    virtual bool has_document() const;

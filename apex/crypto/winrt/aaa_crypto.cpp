@@ -1051,7 +1051,7 @@ namespace crypto
    ::file::path crypto::get_crypt_key_file_path()
    {
 
-      return          auto psystem = m_psystem;
+      return          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

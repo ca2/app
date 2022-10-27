@@ -258,7 +258,7 @@ namespace user
    bool menu::load_xml_menu(const ::payload & payload)
    {
 
-      m_psystem->m_paquasystem->_xml();
+      acmesystem()->m_paquasystem->_xml();
 
       auto pxmldocument = __create_new < ::xml::document >();
 
@@ -440,7 +440,7 @@ namespace user
 
       m_pmaterialCommandHandler = pchannelNotify;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -617,7 +617,7 @@ namespace user
 
       }
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -1154,7 +1154,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             update_command(m_pmenuitem);
 

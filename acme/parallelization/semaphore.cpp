@@ -1,6 +1,9 @@
 #include "framework.h"
+#include "semaphore.h"
 #include "acme/operating_system.h"
+#include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/exception/exception.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -100,7 +103,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
       if(::str().begins_ci(pstrName, "Local\\") || ::str().begins_ci(pstrName, "Local\\"))
       {
 
-         strPath = pacmedirectory->home() / ".ca2/ftok/semaphore/" + string(pstrName);
+         strPath = pacmedirectory->home() / (".ca2/ftok/semaphore/" + string(pstrName));
 
       }
       else
@@ -237,7 +240,7 @@ bool semaphore::_wait(const class ::wait & wait)
 
 #elif defined(__APPLE__)
 
-//::mutex * g_pmutexSemaphore = nullptr;
+//::pointer< ::mutex > g_pmutexSemaphore = nullptr;
 //
 //comparable_array < pthread_t > * g_pthreadaSemaphore = nullptr;
 //

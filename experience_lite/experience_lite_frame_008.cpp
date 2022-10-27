@@ -28,9 +28,9 @@
          {
 
 
-            frame_008::frame_008(::object * pobject) :
-               object(pobject),
-               frame(pobject)
+            frame_008::frame_008(::particle * pparticle) :
+               object(pparticle),
+               frame(pparticle)
             {
 
                m_bHollow = false;

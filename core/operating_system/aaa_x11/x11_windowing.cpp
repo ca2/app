@@ -9,7 +9,7 @@
 
 #include <string.h>
 
-extern ::mutex * user_mutex();
+extern ::pointer< ::mutex > user_mutex();
 
 Visual * get_32bit_visual(Display * pdisplay);
 

@@ -14,10 +14,10 @@
 */
 
 
-bool m_psystem->m_pacmefile->put_contents(const char * path, const memory_base & memory)
+bool acmefile()->put_contents(const char * path, const memory_base & memory)
 {
 
-   return m_psystem->m_pacmefile->put_contents(path, (const char *) memory.get_data(), memory.get_size()) != false;
+   return acmefile()->put_contents(path, (const char *) memory.get_data(), memory.get_size()) != false;
 
 }
 
@@ -107,7 +107,7 @@ CLASS_DECL_APEX int_bool dir_appdata(char * psz,size_t size)
 
 int dir_mk(const char * psz)
 {
-   return          auto psystem = m_psystem;
+   return          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -136,7 +136,7 @@ int_bool is_absolute_path(const char * psz)
 CLASS_DECL_APEX int_bool file_is_true_dup(const char * path)
 {
 
-   return ::str().is_true(::m_psystem->m_pacmefile->as_string(path));
+   return ::str().is_true(::acmefile()->as_string(path));
 
 }
 
@@ -149,7 +149,7 @@ CLASS_DECL_APEX int_bool file_is_true_dup(const char * path)
 CLASS_DECL_APEX bool file_save_stra(const char * lpszName, const string_array & stra)
 {
 
-   return m_psystem->m_pacmefile->put_contents(lpszName, stra.implode("\n"));
+   return acmefile()->put_contents(lpszName, stra.implode("\n"));
 
 }
 
@@ -157,7 +157,7 @@ CLASS_DECL_APEX bool file_save_stra(const char * lpszName, const string_array & 
 CLASS_DECL_APEX bool file_load_stra(const char * lpszName, string_array & stra, bool bAddEmpty)
 {
 
-   stra.add_lines(m_psystem->m_pacmefile->as_string(lpszName), bAddEmpty);
+   stra.add_lines(acmefile()->as_string(lpszName), bAddEmpty);
 
    return true;
 

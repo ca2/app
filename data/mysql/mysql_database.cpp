@@ -55,10 +55,10 @@ namespace mysql
    }
 
 
-   void database::initialize(::object * pobject)
+   void database::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::database::database::initialize(pobject);
+      auto estatus = ::database::database::initialize(pparticle);
 
       if (!estatus)
       {

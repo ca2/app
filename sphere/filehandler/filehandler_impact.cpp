@@ -6,8 +6,8 @@ namespace filehandler
 {
 
 
-   impact::impact(::object * pobject) :
-      ::object(pobject),
+   impact::impact(::particle * pparticle) :
+      ::object(pparticle),
       m_pfont(e_create)
    {
       m_pxmldoc = memory_new xml::document(this);
@@ -105,8 +105,8 @@ namespace filehandler
 
    }
 
-   impact::item::item(::object * pobject) :
-      ::object(pobject)
+   impact::item::item(::particle * pparticle) :
+      ::object(pparticle)
    {
 
    }
@@ -160,8 +160,8 @@ namespace filehandler
    }
 
 
-   impact::list::list(::object * pobject) :
-      ::object(pobject)
+   impact::list::list(::particle * pparticle) :
+      ::object(pparticle)
    {
       m_iItemHeight = 30;
    }

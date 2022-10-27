@@ -17,12 +17,12 @@ namespace calculator
    }
 
 
-   void calculator::initialize(::object * pobject)
+   void calculator::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::acme::department::initialize(pobject);
+      ::acme::department::initialize(pparticle);
 
       //if (!estatus)
       //{

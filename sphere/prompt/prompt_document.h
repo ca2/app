@@ -12,7 +12,7 @@ namespace prompt
 
 
       
-      document(::object * pobject);
+      document(::particle * pparticle);
       virtual ~document();
 
 
@@ -22,8 +22,8 @@ namespace prompt
       virtual bool on_new_document();
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
 

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "container.h"
 
 
 namespace data
@@ -28,10 +29,14 @@ namespace data
       return m_spdata;
    }
 
+
    bool data_container::is_data_locked() const
    {
-      return m_spdata->mutex()->is_locked();
+
+      return m_spdata->synchronization()->is_locked();
+
    }
+
 
    void data_container::on_update_data(i32 iHint)
    {
@@ -131,7 +136,7 @@ namespace data
       for(auto & pdata : m_datamap.values())
       {
 
-         synca.add_item(pdata->mutex());
+         synca.add_item(pdata->synchronization());
 
       }
 

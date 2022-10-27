@@ -1,4 +1,5 @@
 #include "framework.h" // previously apex/user/user.h
+#include "acme/platform/timer_callback.h"
 
 
 void timer_callback::on_timer(timer * ptimer)

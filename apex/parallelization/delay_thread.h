@@ -70,7 +70,7 @@
 //   PRED &      m_predicate;
 //   
 //   
-//   predicate_delay_thread(::object * pobject, PRED pred, ::u32 dwSleep = 1000) :
+//   predicate_delay_thread(::particle * pparticle, PRED pred, ::u32 dwSleep = 1000) :
 //      m_predicate(pred),
 //      delay_thread(dwSleep)
 //   {
@@ -90,10 +90,10 @@
 //
 //
 //template < typename PRED >
-//delay_thread * predicate_delay(::object * pobject, ::duration tickDelay, PRED pred)
+//delay_thread * predicate_delay(::particle * pparticle, ::duration tickDelay, PRED pred)
 //{
 //
-//   auto pthread  = __new(predicate_delay_thread < PRED >(pobject, pred, tickDelay));
+//   auto pthread  = __new(predicate_delay_thread < PRED >(pparticle, pred, tickDelay));
 //
 //   pthread->begin();
 //

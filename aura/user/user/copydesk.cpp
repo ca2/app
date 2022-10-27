@@ -233,7 +233,7 @@ namespace user
 
             ::pointer<::aura::application>papp = get_app();
 
-            auto psystem = m_psystem->m_paurasystem;
+            auto psystem = acmesystem()->m_paurasystem;
 
             auto pcontext = m_pcontext->m_pauracontext;
 
@@ -308,7 +308,7 @@ namespace user
 
                      pcontext->m_papexcontext->file().as_memory(payloadFile, mem);
 
-                     auto psystem = m_psystem;
+                     auto psystem = acmesystem();
 
                      auto pbase64 = psystem->base64();
 

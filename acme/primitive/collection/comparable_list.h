@@ -60,5 +60,17 @@ maximum(TYPE maximum)
 
 
 
+#include "sort.h"
 
 
+
+
+
+template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+void comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+quick_sort(bool bAscendent)
+{
+
+   sort::quick_sort(*this, bAscendent);
+
+}

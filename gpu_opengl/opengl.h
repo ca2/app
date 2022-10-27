@@ -42,7 +42,7 @@ namespace opengl
       virtual ~opengl();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual ::gpu::context* create_context() override;

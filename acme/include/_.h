@@ -95,6 +95,9 @@
 #include "_template_forward_declaration.h"
 
 
+#include "acme/_api.h"
+
+
 #include "acme/primitive/primitive/estatus.h"
 
 
@@ -427,6 +430,9 @@ namespace desktop_environment_xfce
 #endif
 
 
+#include "acme/platform/_critical_section.h"
+
+
 #include "acme/platform/object_reference_count_debug.h"
 
 
@@ -714,7 +720,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 
 
 #define _ASSUME(cond)      do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
-#define ASSERT_VALID(pOb)  ::__assert_object_ok(pOb, __FILE__, __LINE__)
+#define ASSERT_VALID(pOb)  ::__assert_particle_ok(pOb, __FILE__, __LINE__)
 
 
 #else
@@ -745,9 +751,28 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 #include "acme/primitive/primitive/echeck.h"
 
 
+DECLARE_ENUMERATION(e_dock, enum_dock);
+DECLARE_ENUMERATION(e_border, enum_border);
+DECLARE_ENUMERATION(e_grip, enum_grip);
+
+namespace user
+{
+
+   DECLARE_ENUMERATION(e_flag, enum_flag);
+
+} // namespace user
+
 DECLARE_ENUMERATION(e_command, enum_command);
 
+namespace library
+{
 
+   DECLARE_ENUMERATION(e_state, enum_state);
+
+} // namespace library
+
+
+#include "acme/constant/message_box.h"
 
 #include "acme/parallelization/_types.h"
 #include "acme/constant/_enumeration.h"
@@ -1024,16 +1049,16 @@ CLASS_DECL_ACME ::enum_priority get_os_class_scheduling_priority(i32 iCa2Priorit
 
 
 
-CLASS_DECL_ACME void release_on_end(::matter *pmatter);
+CLASS_DECL_ACME void release_on_end(::particle * pparticle);
 
 
 template<typename TYPE>
-TYPE *__release_on_end(TYPE *pmatter)
+TYPE *__release_on_end(TYPE * pparticle)
 {
 
-   release_on_end(pmatter);
+   release_on_end(pparticle);
 
-   return pmatter;
+   return pparticle;
 
 }
 
@@ -1053,9 +1078,9 @@ CLASS_DECL_ACME extern u32 g_tickStartTime;
 //inline ::matter * context_trace_object() { return general_trace_object(); }
 
 
-//CLASS_DECL_ACME void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-//CLASS_DECL_ACME void __tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-//CLASS_DECL_ACME void __tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+//CLASS_DECL_ACME void __tracea(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+//CLASS_DECL_ACME void __tracef(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+//CLASS_DECL_ACME void __tracev(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
 
 
 
@@ -1078,9 +1103,9 @@ inline const ::matter * context_trace_object() { return general_trace_object(); 
 //#include "windows_common.h"
 //#endif
 
-//CLASS_DECL_ACME void __tracea(const ::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-//CLASS_DECL_ACME void __tracef(const ::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-//CLASS_DECL_ACME void __tracev(const ::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+//CLASS_DECL_ACME void __tracea(const ::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+//CLASS_DECL_ACME void __tracef(const ::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+//CLASS_DECL_ACME void __tracev(const ::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
 
 
 //#define __alog(...) __tracef(__VA_ARGS__)
@@ -1162,9 +1187,9 @@ CLASS_DECL_ACME const char *trace_category_name(enum_trace_category ecategory);
 
 CLASS_DECL_ACME const ::matter *trace_object(enum_trace_category ecategory);
 
-CLASS_DECL_ACME const char *topic_text(::matter *pobject);
+CLASS_DECL_ACME const char *topic_text(::particle * pparticle);
 
-CLASS_DECL_ACME enum_trace_category object_trace_category(::matter *pobject);
+CLASS_DECL_ACME enum_trace_category object_trace_category(::particle * pparticle);
 
 
 //
@@ -1547,6 +1572,7 @@ inline u32 u32_hash(ARG_KEY key) { return (u32) (uptr_hash<ARG_KEY>(key)); }
 
 //#endif
 
+#include "acme/primitive/string/_uhash.h"
 
 // #define __base(TYPE, ptarget, psource) for(::pointer<TYPE>ptarget = psource; ptarget.is_set(); ptarget.release())
 // #define __base_reference(TYPE, ptarget, source) for(::pointer<TYPE>ptarget = &source; ptarget.is_set(); ptarget.release())
@@ -1590,7 +1616,7 @@ class trait;
 class create;
 
 
-class synchronization_object;
+//class synchronization;
 
 
 //CLASS_DECL_ACME i32 acme_run_system(::acme::system* psystem);
@@ -1611,10 +1637,52 @@ class synchronization_object;
 
 #include "acme/filesystem/file/_constant.h"
 
-//#include "acme/graphics/draw2d/_const.h"
+#include "acme/primitive/primitive/move.h"
+
+#include "acme/primitive/collection/forward.h"
+
+#include "acme/graphics/draw2d/_constant.h"
+
+#include "acme/primitive/logic/tristate.h"
 
 
+#include "acme/platform/auto.h"
+#include "acme/primitive/comparison/compare.h"
 
+
+#include "acme/primitive/primitive/acme.h"
+
+
+#include "acme/primitive/primitive/logic.h"
+
+
+#include "acme/primitive/mathematics/static_numeric_info.h"
+#include "acme/primitive/mathematics/numeric_info.h"
+
+
+#include "acme/primitive/mathematics/c_number.h"
+
+
+#include "acme/primitive/duration/time.h"
+
+
+#include "acme/parallelization/wait.h"
+
+
+#include "acme/primitive/duration/_.h"
+
+
+#include "acme/primitive/duration/_unit.h"
+
+
+#include "acme/primitive/duration/time_operator.h"
+
+
+//#include "acme/primitive/primitive/particle.h"
+
+#include "acme/platform/display.h"
+
+//#include "acme/primitive/primitive/payload.h"
 
 
 class composite_base;
@@ -1629,30 +1697,10 @@ class composite_base;
 #define REGISTER_GET_NEW_ACME_LIBRARY(X) register_get_new_acme_library(#X, &X##_get_new_library)
 
 
-namespace install
-{
-
-
-   class installer;
-
-
-} // namespace install
-
-#include "acme/primitive/primitive/move.h"
-
-class task;
-
 
 //#include "_forward_declaration.h"
 
 
-using handler_pointer = ::pointer<handler>;
-using manager_pointer = ::pointer<manager>;
-using context_pointer = ::pointer<context>;
-
-
-using topic_pointer = ::pointer<topic>;
-using extended_topic_pointer = ::pointer<extended_topic>;
 
 
 template<typename THREAD_POINTER>
@@ -1816,31 +1864,6 @@ inline INTEGRAL_RESULT __random(INTEGRAL1 i1, INTEGRAL2 i2);
 
 
 
-class istring;
-
-
-class property_set;
-
-
-class payload_array;
-
-
-class property;
-
-
-class timer_future;
-
-
-namespace acme
-{
-
-   class Timer;
-
-};
-
-
-class timer;
-class timer_task;
 
 
 typedef bool FN_TIMER(timer *ptimer);
@@ -1871,178 +1894,8 @@ inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u 
 //using command_line_pointer = ::pointer<command_line>
 
 
-namespace message
-{
-
-
-   class mouse;
-
-
-} // namespace message
-
-
-
-
-
-class form_property_set;
-
-
-namespace acme
-{
-
-
-   //class application;
-   //class system;
-   //class application_message;
-
-   class command;
-
-
-} // namespace acme
-
-
-namespace gpu
-{
-
-   class approach;
-
-} // namespace gpu
-
-
-namespace data
-{
-
-
-   class listener;
-
-
-   class data;
-
-
-   class simple_data;
-
-
-   class data_container_base;
-
-
-} // namespace data
-
-namespace sockets // only usable from base.dll and dependants
-{
-
-   class sockets; // only usable from base.dll and dependants
-
-
-} // namespace sockets // only usable from base.dll and dependants
-
-
-namespace url
-{
-
-   class department; // only usable from base.dll and dependants
-
-
-} // namespace url
-
-
-class compress_department; // only usable from axis.dll and dependants
-
-
-class channel;
-
-
-class dump_context;
-
-
-//class atom_space;
-
-
-class ptra;
-
-
-class factory_item_base;
-
-
-class fixed_alloc_no_sync;
-
-
-class critical_section;
-
-
-class channel;
-
-
-class critical_section;
-
-
-class mutex;
-
-
-class atom;
-
-namespace colorertake5
-{
-
-   class ParserFactory;
-
-
-} // namespace colorertake5
-
-
-//class pixmap;
-
-
-class memory;
-
 
 #define SECOND_NANOS 1000000000
-
-
-namespace datetime
-{
-
-
-   class department;
-
-
-   class time;
-
-
-   class time_span;
-
-
-} // namespace datetime
-
-
-
-
-namespace file
-{
-
-   class listing;
-
-
-   class path;
-
-
-   class file;
-
-
-   enum enum_type
-   {
-
-      e_type_unknown = 0,
-      e_type_exists = 1 << 0,
-      e_type_folder = e_type_exists | (1 << 1),
-      e_type_file = e_type_exists | (1 << 2),
-      e_type_file_or_folder = e_type_folder | e_type_file,
-      e_type_element = e_type_exists | (1 << 3),
-      e_type_doesnt_exist = 0x80000000,
-
-   };
-
-
-} // namespace file
 
 
 inline bool is_file_or_folder(const ::file::enum_type & etype)
@@ -2060,80 +1913,6 @@ inline bool exists(const ::file::enum_type & etype)
 
 }
 
-
-class machine_event_data;
-
-namespace hotplugin
-{
-
-   class host;
-
-
-   class plugin;
-
-}
-
-
-namespace html
-{
-
-
-   class html;
-
-
-   class element;
-
-
-} // namespace html
-
-
-namespace audio
-{
-
-
-   class plugin;
-
-
-} // namespace audio
-
-
-#include "acme/primitive/collection/forward.h"
-
-
-
-#include "acme/primitive/logic/tristate.h"
-
-
-#include "acme/platform/auto.h"
-#include "acme/primitive/comparison/compare.h"
-
-
-#include "acme/primitive/primitive/acme.h"
-
-
-#include "acme/primitive/primitive/logic.h"
-
-
-#include "acme/primitive/mathematics/static_numeric_info.h"
-#include "acme/primitive/mathematics/numeric_info.h"
-
-
-#include "acme/primitive/mathematics/c_number.h"
-
-
-#include "acme/primitive/duration/time.h"
-
-
-#include "acme/parallelization/wait.h"
-
-
-#include "acme/primitive/duration/_.h"
-
-
-#include "acme/primitive/duration/_unit.h"
-
-
-#include "acme/primitive/duration/time_operator.h"
 
 
 template<class t>
@@ -2161,7 +1940,7 @@ inline int type_is_null(const T *p)
 }
 
 
-#include "acme/primitive/string/_uhash.h"
+//#include "acme/primitive/string/_uhash.h"
 
 
 //class allocer;
@@ -2589,11 +2368,6 @@ class thread_parameter;
 //template < typename T >
 //concept not_pointer = !std::is_pointer < T >::value;
 
-template < typename T >
-concept an_object = !std::is_pointer < T >::value 
-&& !std::is_integral < T >::value
-&& !std::is_enum < T >::value
-&& !std::is_floating_point < T >::value;
 
 
 template<typename TYPE>
@@ -2641,8 +2415,6 @@ inline ::i64 __finalize(::pointer<TYPE>& pointer OBJECT_REFERENCE_COUNT_DEBUG_CO
 //inline ::i64 release(::pointer<REFERENCE>& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-template<typename T>
-inline ::pointer < T > move_transfer(T * p);
 
 
 //template < typename T >
@@ -2652,17 +2424,18 @@ inline ::pointer < T > move_transfer(T * p);
 //#define ___new(...) ::set_heap_allocated( memory_new __VA_ARGS__ )
 
 
-#define __new(...) ::move_transfer( memory_new __VA_ARGS__ )
-
 
 //#include "acme/platform/lparam.h"
 
+#include "acme/primitive/primitive/particle.h"
+
 #include "acme/primitive/primitive/pointer.h"
+
+//#include "acme/primitive/primitive/_particle_template.h"
 
 #include "acme/platform/lparam.h"
 
 #include "acme/primitive/primitive/holder.h"
-
 
 template < typename FROM, typename TO_POINTER >
 concept pointer_castable =
@@ -2695,25 +2468,15 @@ namespace message
 } // namespace message
 
 
+
+
+
+
 #include "acme/platform/predicate_function_pointer.h"
 
 
 template<class POINTER_TYPE>
 inline auto &__typed(::pointer<POINTER_TYPE>&p) { return *p; }
-
-
-class duration;
-
-
-class folder;
-
-class memory_file;
-
-using file_pointer = ::pointer<::file::file>;
-
-using memory_file_pointer = ::pointer<::memory_file>;
-
-using folder_pointer = ::pointer<::folder>;
 
 
 
@@ -2732,10 +2495,6 @@ using folder_pointer = ::pointer<::folder>;
 //}
 //
 
-
-using wparam = c_number<iptr>;
-
-
 #include "acme/primitive/mathematics/math_clip.h"
 
 
@@ -2751,7 +2510,7 @@ using wparam = c_number<iptr>;
 #include "acme/primitive/datetime/_.h"
 
 
-#include "acme/primitive/datetime/_string.h"
+//#include "acme/primitive/datetime/_string.h"
 
 
 #include "acme/platform/common.h"
@@ -2848,7 +2607,7 @@ class memory_base;
 #include "acme/primitive/mathematics/cast.h"
 
 
-#include "acme/primitive/primitive/block.h"
+//#include "acme/primitive/primitive/block.h"
 
 
 #include "acme/memory/chunk.h"
@@ -2857,7 +2616,7 @@ class memory_base;
 #include "acme/memory/_memory.h"
 
 
-#include "acme/memory/memory.h"
+//#include "acme/memory/memory.h"
 
 
 #include "acme/memory/malloc.h"
@@ -2883,14 +2642,6 @@ class memory_base;
 
 
 
-namespace file
-{
-
-   DECLARE_ENUMERATION(e_open, enum_open);
-   DECLARE_ENUMERATION(e_state, enum_state);
-
-
-} // namespace file
 class thread;
 
 
@@ -2912,7 +2663,6 @@ class action_context;
 #include "acme/primitive/primitive/eobject.h"
 
 
-DECLARE_ENUMERATION(e_message_box, enum_message_box);
 
 
 namespace user
@@ -2960,12 +2710,12 @@ template < typename SEQUENCE >
 class sequencer;
 
 
-#include "acme/primitive/primitive/particle.h"
-#include "acme/handler/handler.h"
+//#include "acme/primitive/primitive/particle.h"
+//#include "acme/handler/handler.h"
 #include "acme/primitive/primitive/e_flag.h"
-#include "acme/primitive/primitive/element.h"
-#include "acme/primitive/primitive/function.h"
-#include "acme/platform/procedure.h"
+//#include "acme/primitive/primitive/element.h"
+//#include "acme/primitive/primitive/function.h"
+//#include "acme/platform/procedure.h"
 //#include "acme/platform/tracer.h"
 
 
@@ -3013,15 +2763,15 @@ using echeck = ::enumeration<enum_check>;
 typedef void THREAD_ROUTINE(thread_parameter parameter);
 
 
-inline bool succeeded(const ::payload & payload);
+CLASS_DECL_ACME bool succeeded(const ::payload & payload);
 
-inline bool succeeded(const ::property &set);
+//inline bool succeeded(const ::property &set);
 
 
 inline bool failed(const ::payload & payload) { return !::succeeded(payload); }
 
 
-inline bool failed(const ::property &set) { return !::succeeded(set); }
+//inline bool failed(const ::property &set) { return !::succeeded(set); }
 
 
 #define __inner_release(outer, inner) ::release(outer, outer->inner)
@@ -3079,7 +2829,7 @@ inline bool failed(const ::property &set) { return !::succeeded(set); }
 
 class sticker;
 
-inline const ::matter *trace_object(const ::matter *pobject) { return pobject; }
+inline const ::particle *trace_object(const ::particle * pparticle) { return pparticle; }
 
 template<typename POINTER_TYPE>
 class ptr_array;
@@ -3160,7 +2910,7 @@ class task;
 //   using procedure_function::procedure_function;
 //   procedure(const ::procedure & procedure) : procedure_function(procedure) { }
 //   procedure(::procedure && procedure) : procedure_function(::move(procedure)) { }
-//   procedure(::element * pelement) { m_ppredicate = pelement; }
+//   procedure(::particle * pparticle) { m_ppredicate = pelement; }
 //
 //
 //};
@@ -3233,7 +2983,6 @@ namespace file
 
 //#include "acme/primitive/collection/_collection.h"
 
-using procedure_list = ::list < ::procedure >;
 
 
 
@@ -3308,21 +3057,7 @@ CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
 
 
 
-DECLARE_ENUMERATION(e_dock, enum_dock);
-DECLARE_ENUMERATION(e_border, enum_border);
-DECLARE_ENUMERATION(e_grip, enum_grip);
 
-
-namespace draw2d
-{
-
-
-   class graphics;
-
-   using graphics_pointer = ::pointer<graphics>;
-
-
-} // namespace draw2d
 
 
 class context_image;
@@ -3353,9 +3088,10 @@ class context_image;
 
 //class message_box;
 
-CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * pszMessage, const char * pszTitle = nullptr, enum_message_box emessagebox = e_message_box_ok, const char * pszDetails = nullptr);
 
-CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::object * pobject, const char * pszMessage, const char * pszTitle = nullptr, enum_message_box emessagebox = e_message_box_ok, const char * pszDetails = nullptr);
+CLASS_DECL_ACME ::atom message_box_synchronous(::particle * ppartcicle, const char * pszMessage, const char * pszTitle = nullptr, const e_message_box & emessagebox = e_message_box_ok, const char * pszDetails = nullptr);
+
+CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::particle * pparticle, const char * pszMessage, const char * pszTitle = nullptr, const e_message_box & emessagebox = e_message_box_ok, const char * pszDetails = nullptr);
 
 
 #include "acme/memory/counter.h"
@@ -3370,7 +3106,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
 
 
 
-//#include "acme/parallelization/synchronization_object.h"
+//#include "acme/parallelization/synchronization.h"
 
 //#include "acme/xml/exportable.h"
 
@@ -3468,9 +3204,9 @@ inline auto &__typed(::pointer<POINTER_TYPE>*pp) { return *pp->operator POINTER_
 
 
 //#include "acme/filesystem/file/status.h"
-#include "acme/filesystem/file/translatable.h"
-#include "acme/filesystem/file/streamable.h"
-#include "acme/filesystem/file/streamable_composite.h"
+//#include "acme/filesystem/file/translatable.h"
+//#include "acme/filesystem/file/streamable.h"
+//#include "acme/filesystem/file/streamable_composite.h"
 //#include "acme/filesystem/file/file.h"
 //#include "acme/filesystem/file/stream.h"
 //#include "acme/filesystem/file/binary_stream.h"
@@ -3527,8 +3263,6 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 
 #include "acme/constant/source.h"
 
-
-DECLARE_ENUMERATION(e_source, enum_source);
 
 
 
@@ -3622,7 +3356,7 @@ namespace acme
 
 
 
-#include "acme/platform/timer_callback.h"
+//#include "acme/platform/timer_callback.h"
 
 
 #include "acme/platform/procedure_array.h"
@@ -3677,19 +3411,22 @@ namespace file
 //#include "acme/platform/department.h"
 
 
-#include "acme/primitive/datetime/_datetime.h"
+#include "acme/primitive/datetime/_.h"
 
 
-struct lib_main_int
-{
+//#include "acme/primitive/datetime/_datetime.h"
 
-   int               m_iAny = 0;
-   ::duration        m_durationProcessAttach;
-   ::duration        m_durationProcessDetach;
-   ::duration        m_durationThreadAttach;
-   ::duration        m_durationThreadDetach;
 
-};
+//struct lib_main_int
+//{
+//
+//   int               m_iAny = 0;
+//   ::duration        m_durationProcessAttach;
+//   ::duration        m_durationProcessDetach;
+//   ::duration        m_durationThreadAttach;
+//   ::duration        m_durationThreadDetach;
+//
+//};
 
 
 #include "acme/networking/_.h"
@@ -3760,9 +3497,9 @@ struct lib_main_int
 
 //#include "acme/platform/regex.h"
 
-#include "acme/process/_.h"
+//#include "acme/process/_.h"
 
-#include "acme/operating_system/process.h"
+//#include "acme/operating_system/process.h"
 
 
 
@@ -3772,7 +3509,7 @@ struct lib_main_int
 //#include "acme/platform/exclusive.h"
 
 
-#include "acme/process/_.h"
+//#include "acme/process/_.h"
 
 
 //#include "acme/platform/hyperlink.h"
@@ -3865,13 +3602,13 @@ namespace _std
 }
 
 
-template<typename T>
-inline string &to_network_payload(string &str, const T &value, bool bNewLine)
-{
-
-   return str = __string(value);
-
-}
+//template<typename T>
+//inline string &to_network_payload(string &str, const T &value, bool bNewLine)
+//{
+//
+//   return str = __string(value);
+//
+//}
 
 
 //#include "acme/platform/error.h"
@@ -3906,13 +3643,11 @@ namespace draw2d
 class wcsdup_array;
 
 
-DECLARE_ENUMERATION(e_element, enum_element);
-
 
 #include "acme/graphics/draw2d/_.h"
 
 
-#include "acme/user/user/_.h"
+#include "acme/user/_.h"
 
 
 #include "acme/user/user/ewindowflag.h"
@@ -3960,20 +3695,6 @@ CLASS_DECL_ACME string library_filter(const ::string& str);
 ///#include "acme/platform/log.h"
 
 
-namespace user
-{
-
-
-   class primitive;
-   class element;
-   class primitive_impl;
-
-
-   DECLARE_ENUMERATION(e_flag, enum_flag);
-
-
-} // namespace user
-
 
 
 
@@ -4010,7 +3731,7 @@ namespace acme
    class library;
 
 
-   using library_map = string_map < ::pointer<::acme::library >>;
+//   using library_map = string_map < ::pointer<::acme::library >>;
 
 } // namespace acme
 
@@ -4027,7 +3748,7 @@ class task_tool;
 
 
 
-#include "acme/platform/plane_system.h"
+//#include "acme/platform/plane_system.h"
 
 
 
@@ -4044,6 +3765,12 @@ class task_tool;
 //
 //
 //#include "acme/parallelization/_impl.h"
+
+
+
+#include "acme/primitive/duration/_impl.h"
+
+
 //
 //
 //#include "acme/platform/_impl.h"
@@ -4081,15 +3808,15 @@ class task_tool;
 //
 //
 //#include "acme/primitive/primitive/_factory_impl.h"
-//
-//
-//#include "acme/primitive/mathematics/_impl.h"
-//
-//
+
+
+#include "acme/primitive/mathematics/_impl.h"
+
+
 ////#include "acme/primitive/collection/_string_array_impl.h"
 //
 //
-//#include "acme/primitive/primitive/_impl.h"
+#include "acme/primitive/primitive/_impl.h"
 //
 //
 //#include "acme/primitive/primitive/_papaya_impl.h"
@@ -4152,11 +3879,11 @@ class task_tool;
 //
 //
 //#include "acme/primitive/primitive/_interlocked_count_impl.h"
-//
-//
-//#include "acme/memory/_impl.h"
-//
-//
+
+
+#include "acme/memory/_impl.h"
+
+
 //#include "acme/exception/_impl.h"
 //
 //
@@ -4164,6 +3891,9 @@ class task_tool;
 //
 //
 //#include "acme/filesystem/file/_defer.h"
-//
-//
-//#include "acme/__defer.h"
+
+
+#include "acme/primitive/string/_c_inline.h"
+
+
+

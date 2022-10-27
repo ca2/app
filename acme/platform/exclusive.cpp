@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/primitive/object.h"
 #include "exclusive.h"
 
 
@@ -18,7 +20,7 @@ namespace acme
 #ifdef WINDOWS
 
 
-   exclusive::exclusive(::object * pobject, string strId ARG_SEC_ATTRS)
+   exclusive::exclusive(::particle * pparticle, string strId ARG_SEC_ATTRS)
    {
 
       m_strId = strId;
@@ -28,7 +30,7 @@ namespace acme
       try
       {
 
-         m_pmutex = __new(::mutex(pobject, false, strId ADD_PARAM_SEC_ATTRS));
+         m_pmutex = __new(::pointer < ::mutex >(pparticle, false, strId ADD_PARAM_SEC_ATTRS));
 
          m_dwLastError = ::GetLastError();
 
@@ -39,7 +41,7 @@ namespace acme
          try
          {
 
-            m_pmutex = __new(::mutex(pobject, false, strId));
+            m_pmutex = __new(::pointer < ::mutex >(pparticle, false, strId));
 
             m_dwLastError = ::GetLastError();
 
@@ -59,10 +61,10 @@ namespace acme
 #else
 
 
-   exclusive::exclusive(::object * pobject, string strId ARG_SEC_ATTRS)
+   exclusive::exclusive(::particle * pparticle, string strId ARG_SEC_ATTRS)
    {
 
-      initialize(pobject);
+      initialize(pparticle);
 
       m_strId = strId;
 
@@ -71,7 +73,7 @@ namespace acme
       if(strId.begins_ci("Local\\"))
       {
 
-         path = pobject->m_psystem->m_pacmedirectory->home() / ".config/acme";
+         path = pparticle->acmedirectory()->home() / ".config/acme";
 
       }
       else
@@ -83,7 +85,7 @@ namespace acme
 
       path /= strId;
 
-      m_psystem->m_pacmedirectory->create(path.folder());
+      acmedirectory()->create(path.folder());
 
       m_iFile = open(path, O_WRONLY | O_CREAT, 0777);
 

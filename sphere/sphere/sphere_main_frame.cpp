@@ -5,10 +5,10 @@ namespace sphere
 {
 
 
-   main_frame::main_frame(::object * pobject) :
-      ::object(pobject),
-      simple_frame_window(pobject),
-      simple_main_frame(pobject)
+   main_frame::main_frame(::particle * pparticle) :
+      ::object(pparticle),
+      simple_frame_window(pparticle),
+      simple_main_frame(pparticle)
    {
 
       window_enable_full_screen();

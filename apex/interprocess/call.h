@@ -2,8 +2,17 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/collection/atom_array.h"
+#include "acme/primitive/collection/atom_map.h"
+#include "acme/parallelization/synchronization_array.h"
+
+
 namespace interprocess
 {
+
+
+   using task_map = atom_map < ::pointer< task > >;
 
 
    class CLASS_DECL_APEX call :

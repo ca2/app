@@ -46,12 +46,12 @@ namespace base
    }
 
 
-   void user::initialize(::object * pobject)
+   void user::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::axis::user::initialize(pobject);
+      ::axis::user::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -62,7 +62,7 @@ namespace base
 
       //estatus = 
       
-      ::user::document_manager_container::initialize(pobject);
+      ::user::document_manager_container::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -204,7 +204,7 @@ namespace base
 
       //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
 
-      auto psystem = m_psystem->m_pbasesystem;
+      auto psystem = acmesystem()->m_pbasesystem;
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -337,7 +337,7 @@ namespace base
 
          ::pointer<::base::application>pappItem = pappApex;
 
-         synchronous_lock synchronouslock(&pappItem->m_mutexFrame);
+         synchronous_lock synchronouslock(&pappItem->m_pmutexFrame);
 
          ::pointer<::user::interaction>pinteraction;
 
@@ -360,7 +360,7 @@ namespace base
    }
 
 
-//   ::user::front_end_schema * GetUfeSchema(::object * pobject)
+//   ::user::front_end_schema * GetUfeSchema(::particle * pparticle)
 //   {
 //
 //      if (papp == nullptr)
@@ -389,7 +389,7 @@ namespace base
 //   }
 //
 //
-//   ::user::front_end * GetUfe(::object * pobject)
+//   ::user::front_end * GetUfe(::particle * pparticle)
 //   {
 //
 //      return Sess(papp).user()->GetUfe();
@@ -465,10 +465,10 @@ namespace base
 #ifdef WINDOWS_DESKTOP
 
 
-   CLASS_DECL_BASE ::pointer<::user::interaction>create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
+   CLASS_DECL_BASE ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
 
 
-   CLASS_DECL_BASE ::pointer<::user::interaction>create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
+   CLASS_DECL_BASE ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
    {
 
       __UNREFERENCED_PARAMETER(dwExStyle);
@@ -685,13 +685,13 @@ namespace base
    //}
 
 
-//   void session::on_app_request_bergedge_callback(::object * pobject)
+//   void session::on_app_request_bergedge_callback(::particle * pparticle)
 //   {
 //
-//      if (&App(pobject) != nullptr)
+//      if (&App(pparticle) != nullptr)
 //      {
 //
-//         psession->m_pappCurrent = &App(pobject);
+//         psession->m_pappCurrent = &App(pparticle);
 //
 //      }
 //

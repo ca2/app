@@ -5,28 +5,28 @@ CLASS_DECL_ACME i64 strtoi(const char * psz);
 CLASS_DECL_ACME i64 strtoi(const widechar * psz);
 
 
-const ansistring __string_base(const ansichar * psz)
-{
-
-   return psz;
-
-}
-
-
-const wd16string __string_base(const wd16char * psz)
-{
-
-   return psz;
-
-}
-
-
-const wd32string __string_base(const wd32char * psz)
-{
-
-   return psz;
-
-}
+//const ansistring __string_base(const ansichar * psz)
+//{
+//
+//   return psz;
+//
+//}
+//
+//
+//const wd16string __string_base(const wd16char * psz)
+//{
+//
+//   return psz;
+//
+//}
+//
+//
+//const wd32string __string_base(const wd32char * psz)
+//{
+//
+//   return psz;
+//
+//}
 
 
 namespace file

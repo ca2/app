@@ -29,10 +29,10 @@ namespace android
    }
 
 
-   void file_system::initialize(::matter * pobject)
+   void file_system::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::file_system::initialize(pobject);
+      auto estatus = ::file_system::initialize(pparticle);
 
       if (!estatus)
       {
@@ -49,7 +49,7 @@ namespace android
    void file_system::update_module_path()
    {
 
-      m_pathModule = m_psystem->m_pacmepath->app_module();
+      m_pathModule = acmepath()->app_module();
 
       //m_pathCa2Module = m_pathModule;
 

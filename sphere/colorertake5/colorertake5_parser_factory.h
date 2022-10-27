@@ -42,7 +42,7 @@ namespace colorertake5
           * Searches for catalog.xml in the set of predefined locations
           * @throw ::exception( ParserFactoryException If can't find catalog at any of standard locations.
           */
-         ParserFactory(::object * pobject);
+         ParserFactory(::particle * pparticle);
 
          /**
           * ParserFactory Constructor with explicit catalog path.
@@ -50,7 +50,7 @@ namespace colorertake5
           *        standard search method is used.
           * @throw ::exception( ParserFactoryException If can't load specified catalog.
           */
-         ParserFactory(::object * pobject, string catalogPath);
+         ParserFactory(::particle * pparticle, string catalogPath);
          virtual ~ParserFactory();
 
          static const char *getVersion();

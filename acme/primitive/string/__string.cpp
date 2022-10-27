@@ -1,5 +1,9 @@
 ﻿// Created by camilo on 2022-04-24 04:50 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "string.h"
+#include "from_integer.h"
+//#include "acme/primitive/primitive/particle.h"
+
 
 // Sort of Canonical to serve as example and general correct solution
 // Developers can created local versions or inline/template libraries for optmized instantiation
@@ -221,6 +225,23 @@ CLASS_DECL_ACME::string __string(const double & d)
 //
 //}
 
+
+CLASS_DECL_ACME ::string __string(const particle & particle)
+{
+
+   ::string str;
+
+   auto len = particle.sz_len();
+
+   auto psz = str.get_string_buffer(len);
+
+   particle.to_sz(psz, len);
+
+   str.release_string_buffer();
+
+   return ::move(str);
+
+}
 
 
 

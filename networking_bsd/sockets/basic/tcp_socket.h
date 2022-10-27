@@ -65,7 +65,7 @@ namespace sockets_bsd
       ::file::circular_file ibuf; ///< Circular input buffer
       string m_strUrl;
 
-      ::mutex *        m_pmutexSslCtx;
+      ::pointer< ::mutex >        m_pmutexSslCtx;
       //
       bool m_b_input_buffer_disabled;
       u64 m_bytes_sent;
@@ -107,7 +107,7 @@ namespace sockets_bsd
       virtual ~tcp_socket();
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       //using ::sockets::stream_socket::open;

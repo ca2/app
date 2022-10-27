@@ -190,7 +190,7 @@ struct android_app
    // -------------------------------------------------
    // Below are "private" implementation of the glue code.
 
-   pthread_mutex_t ::mutex;
+   pthread_mutex_t ::pointer < ::mutex >;
    pthread_cond_t cond;
 
    int msgread;

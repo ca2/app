@@ -6,10 +6,10 @@
 //{
 //
 //
-//   thread::thread(::object * pobject) :
-//      ::object(pobject),
-//      ::thread_impl(pobject),
-//      ::ansios::thread_impl(pobject)
+//   thread::thread(::particle * pparticle) :
+//      ::object(pparticle),
+//      ::thread_impl(pparticle),
+//      ::ansios::thread_impl(pparticle)
 //   {
 //
 //   }

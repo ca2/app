@@ -13,6 +13,10 @@
 #include "polygon.h"
 
 
+#include "acme/primitive/primitive/element.h"
+#include "acme/exception/interface_only.h"
+
+
 template < typename HOLDEE >
 class ___shape :
    virtual public element

@@ -6,9 +6,9 @@ namespace android
 {
 
 
-   file_set::file_set(::object * pobject) :
-      ::object(pobject),
-	   m_listing(pobject)
+   file_set::file_set(::particle * pparticle) :
+      ::object(pparticle),
+	   m_listing(pparticle)
    {
 
    }

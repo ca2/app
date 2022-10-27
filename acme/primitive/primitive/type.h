@@ -119,7 +119,7 @@ public:
 
    }
 
-   type(const ::element * pelement);
+   type(const ::particle * pparticle);
 
    template < typename BASE >
    type(const ::pointer<BASE>& point);
@@ -203,20 +203,21 @@ public:
    }
 
 
-   bool operator == (const ::element * pelement) const
+   bool operator == (const ::particle * pparticle) const
    {
 
-      return operator ==(::type(pelement));
+      return operator ==(::type(pparticle));
 
    }
 
 
-   bool operator != (const ::element * pelement) const
+   bool operator != (const ::particle * pparticle) const
    {
 
-      return !operator==(pelement);
+      return !operator==(pparticle);
 
    }
+
 
    inline operator bool() const { return ::atom::has_char(); }
 
@@ -245,6 +246,76 @@ template < typename TYPE >
 //#define __type(TYPE)  ___type<TYPE>()
 
 #define __type(TYPE)  ___type<TYPE>()
+
+
+template < typename TYPE >
+inline string __type_name()
+{
+
+   auto pszType = typeid(TYPE).name();
+
+   string strName = demangle(pszType);
+
+   return strName;
+
+}
+
+
+template < typename TYPE >
+inline string __type_name(const TYPE * p)
+{
+
+   TYPE * pNonConst = (TYPE *) p;
+
+   auto pszType = typeid(*pNonConst).name();
+
+   string strName = demangle(pszType);
+
+   return strName;
+
+}
+
+
+template < typename TYPE >
+inline string __type_name(const ::pointer<TYPE>& pointer)
+{
+
+   return __type_name((const TYPE *) pointer.m_p);
+
+}
+
+
+template < non_pointer NON_POINTER >
+inline string __type_name(const NON_POINTER & t)
+{
+
+   NON_POINTER & tNonConst = (NON_POINTER &) t;
+
+   auto pszType = typeid(tNonConst).name();
+
+   string strName = demangle(pszType);
+
+   return strName;
+
+}
+
+
+template < >
+inline uptr uptr_hash < const type & >(const ::type & type)
+{
+
+   return uptr_hash < const ::atom & > (type);
+
+}
+
+
+
+inline bool type::operator == (const ::atom& atom) const
+{
+
+   return ::atom::operator ==(atom);
+
+}
 
 
 

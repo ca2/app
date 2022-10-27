@@ -16,8 +16,8 @@
 //   {
 //
 //
-//      base::base(::matter * pobject) :
-//         matter(pobject)
+//      base::base(::particle * pparticle) :
+//         matter(pparticle)
 //      {
 //
 //         m_iSerial = 1;
@@ -40,9 +40,9 @@
 //      }
 //
 //
-//      tx::tx(::matter * pobject):
-//         matter(pobject),
-//         base(pobject)
+//      tx::tx(::particle * pparticle):
+//         matter(pparticle),
+//         base(pparticle)
 //      {
 //
 //
@@ -146,9 +146,9 @@
 //
 //
 //
-//      rx::rx(::matter * pobject) :
-//         matter(pobject),
-//         base(pobject)
+//      rx::rx(::particle * pparticle) :
+//         matter(pparticle),
+//         base(pparticle)
 //      {
 //
 //         m_preceiver    = nullptr;
@@ -460,11 +460,11 @@
 //
 //      }
 //
-//      ipc::ipc(::matter * pobject):
-//         matter(pobject),
-//         base(pobject),
-//         tx(pobject),
-//         m_rx(pobject)
+//      ipc::ipc(::particle * pparticle):
+//         matter(pparticle),
+//         base(pparticle),
+//         tx(pparticle),
+//         m_rx(pparticle)
 //      {
 //
 //         m_durationTimeout = (5000) * 11;

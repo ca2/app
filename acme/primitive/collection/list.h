@@ -1,9 +1,13 @@
 #pragma once
 
 
+//#include "acme/primitive/primitive/particle.h"
+#include "_iterator.h"
+
+
 template < class TYPE, class ARG_TYPE >
 class list :
-   public ::matter
+   public ::particle
 {
 public:
 
@@ -179,6 +183,7 @@ public:
 
    };
 
+   using BASE_TYPE = node;
 
    __declare_iterator(dereferenced_value_iterator, this->m_pnode->m_value);
    __declare_iterator(value_iterator, &this->m_pnode->m_value);
@@ -192,10 +197,12 @@ public:
    ::count        m_count;
 
 
+
+
    list();
    list(const list & l);
    list(class list && l);
-   virtual ~list();
+   ~list() override;
 
    //inline list();
    //inline list(const class list < TYPE, ARG_TYPE > & l);
@@ -297,10 +304,20 @@ public:
    template < typename ITERATOR > inline ITERATOR erase(ITERATOR it) { return ::acme::iterator::erase(*this, it); }
 
    template < typename ITERATOR >
-   inline void erase(const ITERATOR & begin, const ITERATOR & last) { ::erase(*this, begin, last); }
+   inline void erase(const ITERATOR & begin, const ITERATOR & last)
+   {
 
-   void assert_ok() const override;
-   void dump(dump_context & dumpcontext) const override;
+      for (auto it = begin; it != last; it++)
+      {
+
+         erase(it);
+
+      }
+
+   }
+
+//   void assert_ok() const override;
+//   void dump(dump_context & dumpcontext) const override;
 
 
 
@@ -653,7 +670,7 @@ template<class TYPE, class ARG_TYPE>
 void list<TYPE, ARG_TYPE>::erase_all()
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
 
    node * pnode;
@@ -1643,7 +1660,7 @@ template<class TYPE, class ARG_TYPE>
 typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::index_iterator(index index)
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
    if (index >= this->m_count || index < 0)
    {
@@ -1703,7 +1720,7 @@ template<class TYPE, class ARG_TYPE>
 inline typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE >::reverse_index_iterator(index index)
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
    if (index >= m_count || index < 0)
    {
@@ -1728,31 +1745,31 @@ inline typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE >::rever
 }
 
 
-template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::assert_ok() const
-{
-
-   matter::assert_ok();
-
-   if (this->m_count == 0)
-   {
-
-      // is_empty list
-
-      ASSERT(this->m_phead == nullptr);
-      ASSERT(this->m_ptail == nullptr);
-
-   }
-   else
-   {
-
-      // non-is_empty list
-      ASSERT(::is_set(this->m_phead));
-      ASSERT(::is_set(this->m_ptail));
-
-   }
-
-}
+//template<class TYPE, class ARG_TYPE>
+//void list<TYPE, ARG_TYPE>::assert_ok() const
+//{
+//
+//   matter::assert_ok();
+//
+//   if (this->m_count == 0)
+//   {
+//
+//      // is_empty list
+//
+//      ASSERT(this->m_phead == nullptr);
+//      ASSERT(this->m_ptail == nullptr);
+//
+//   }
+//   else
+//   {
+//
+//      // non-is_empty list
+//      ASSERT(::is_set(this->m_phead));
+//      ASSERT(::is_set(this->m_ptail));
+//
+//   }
+//
+//}
 
 
 template<class TYPE, class ARG_TYPE>
@@ -1827,10 +1844,11 @@ typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::add_head(ARG_TYPE ne
 
 }
 
+
 template<class TYPE, class ARG_TYPE>
 typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::add_tail(ARG_TYPE newElement)
 {
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
    auto pnodeNew = memory_new typename list < TYPE, ARG_TYPE >::node(newElement, this->m_ptail, nullptr);
 
@@ -1929,39 +1947,39 @@ typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::insert_after(typenam
 //}
 
 
-template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::dump(dump_context& dumpcontext) const
-{
-
-   matter::dump(dumpcontext);
-
-   //dumpcontext << "with " << this->m_count << " elements";
-
-   //if (dumpcontext.GetDepth() > 0)
-   //{
-
-   //   auto pnode = this->get_head();
-
-   //   while (::is_set(pnode))
-   //   {
-
-   //      dumpcontext << "\n";
-
-   //      dump_elements(dumpcontext, &pnode->m_value, 1);
-
-   //      pnode = pnode->m_pnext;
-
-   //   }
-
-   //}
-
-   //dumpcontext << "\n";
-
-}
+//template<class TYPE, class ARG_TYPE>
+//void list<TYPE, ARG_TYPE>::dump(dump_context& dumpcontext) const
+//{
+//
+//   matter::dump(dumpcontext);
+//
+//   //dumpcontext << "with " << this->m_count << " elements";
+//
+//   //if (dumpcontext.GetDepth() > 0)
+//   //{
+//
+//   //   auto pnode = this->get_head();
+//
+//   //   while (::is_set(pnode))
+//   //   {
+//
+//   //      dumpcontext << "\n";
+//
+//   //      dump_elements(dumpcontext, &pnode->m_value, 1);
+//
+//   //      pnode = pnode->m_pnext;
+//
+//   //   }
+//
+//   //}
+//
+//   //dumpcontext << "\n";
+//
+//}
 
 
 //template < typename TYPE >
-//inline stream& operator <<(stream& stream, const stringl& list)
+//inline stream& operator <<(stream& stream, const string_list& list)
 //{
 //
 //   stream << list.get_count();
@@ -1977,7 +1995,7 @@ void list<TYPE, ARG_TYPE>::dump(dump_context& dumpcontext) const
 //
 //
 //template < typename TYPE >
-//inline stream& operator >>(stream& stream, stringl& list)
+//inline stream& operator >>(stream& stream, string_list& list)
 //{
 //
 //   i32 iSize;

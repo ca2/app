@@ -1,13 +1,17 @@
 #pragma once
 
 
+//#include "synchronization_object.h"
+#include "acme/primitive/collection/pointer_array.h"
+
+
 #ifdef WINDOWS
 using hsync_array = ::address_array < hsync >;
 #endif
 
 
 class CLASS_DECL_ACME synchronization_array :
-   virtual public ::synchronization_object
+   virtual public ::particle
 {
 public:
 
@@ -22,7 +26,7 @@ public:
 #endif
 
 
-   DECLARE_ARRAY_CONTAINER_OF(synchronization_array, synchronization_object, m_synchronizationa, synchronization_object);
+   DECLARE_ARRAY_CONTAINER_OF(synchronization_array, synchronization, m_synchronizationa, particle);
 
 
    synchronization_array();
@@ -36,13 +40,13 @@ public:
 
    bool is_empty() const;
 
-   bool add_item(class synchronization_object * psync);
+   bool add_item(::particle * pparticle);
 
-   inline bool add(class synchronization_object* psync) { return add_item(psync); }
+   inline bool add(::particle * pparticle) { return add_item(pparticle); }
 
    bool add(const synchronization_array & waitablea);
 
-   void erase(class synchronization_object * psync);
+   void erase(::particle * pparticle);
 
    void erase(index index);
 

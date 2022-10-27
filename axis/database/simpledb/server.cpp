@@ -22,12 +22,12 @@ namespace simpledb
    }
 
 
-   void server::initialize_simpledb_server(::object * pobject, const ::string & pszDatabase)
+   void server::initialize_simpledb_server(::particle * pparticle, const ::string & pszDatabase)
    {
 
       //auto estatus =
       
-      ::database::server::initialize(pobject);
+      ::database::server::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -58,7 +58,7 @@ namespace simpledb
 
       //}
 
-      auto & pfactoryDatabase = m_psystem->factory("database", "sqlite3");
+      auto & pfactoryDatabase = acmesystem()->factory("database", "sqlite3");
 
       //if(!pfactoryDatabase)
       //{
@@ -78,7 +78,7 @@ namespace simpledb
 
       //}
 
-      synchronous_lock synchronouslock(m_pdatabaseLocal->mutex());
+      synchronous_lock synchronouslock(m_pdatabaseLocal->synchronization());
 
       //estatus = pdatabase->set_finish(this);
 
@@ -230,7 +230,7 @@ namespace simpledb
       try
       {
 
-         synchronous_lock synchronouslock(pdatabase->mutex());
+         synchronous_lock synchronouslock(pdatabase->synchronization());
 
          ::payload item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
 

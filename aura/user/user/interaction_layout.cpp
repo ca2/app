@@ -79,7 +79,7 @@ namespace user
    void interaction_layout::destroy_state()
    {
 
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 
       //if (::is_set(m_pstate))
       //{

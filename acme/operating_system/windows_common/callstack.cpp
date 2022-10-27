@@ -1,4 +1,4 @@
-// With get_callstatck from windows to windows_common by camilo on 2022-03-11 13:59 <3ThomasBorregaardSørensen!!
+// With get_callstatck from windows to windows_common by camilo on 2022-03-11 13:59 <3ThomasBorregaardSï¿½rensen!!
 #include "framework.h"
 //#include <dbghelp.h>
 //#pragma comment(lib, "dbghelp.lib")
@@ -13,7 +13,7 @@ bool g_bInitializeCallstack = false;
 #endif
 
 
-extern ::mutex * g_pmutexSymDbgHelp;
+extern ::pointer< ::mutex > g_pmutexSymDbgHelp;
 
 
 CLASS_DECL_ACME void defer_initialize_callstack()

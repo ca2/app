@@ -2,9 +2,14 @@
 // Created by camilo on 31/01/2022 15:37 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "_nano.h"
-#include "acme/platform/node.h"
+#include "window.h"
+#include "display.h"
+#include "acme/operating_system/cairo/nano/device.h"
 #include "acme/user/user/mouse.h"
+#include "acme/user/nano/child.h"
+#include "acme/user/nano/window.h"
+#include "acme/platform/node.h"
+#include "acme/platform/system.h"
 #include <xkbcommon/xkbcommon.h>
 #include <X11/XKBlib.h>
 #include <cairo-xcb.h>
@@ -112,10 +117,10 @@ namespace xcb
    }
 
 
-   void nano_window::on_initialize_object()
+   void nano_window::on_initialize_particle()
    {
 
-      ::object::on_initialize_object();
+      ::object::on_initialize_particle();
 
    }
 
@@ -129,7 +134,6 @@ namespace xcb
          m_pinterface->on_char(iChar);
 
       });
-
 
    }
 
@@ -161,7 +165,7 @@ namespace xcb
    bool nano_window::get_dark_mode()
    {
 
-      return m_psystem->node()->dark_mode();
+      return acmenode()->dark_mode();
 
    }
 
@@ -908,7 +912,7 @@ void nano_window::_update_window()
 //   while(message_loop_step())
 //   {
 //
-//      m_psystem->m_pnode->run_posted_routines();
+//      acmesystem()->m_pnode->run_posted_routines();
 //
 //   }
 //

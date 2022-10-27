@@ -15,7 +15,7 @@ namespace write_text
    fonts::fonts()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -26,12 +26,12 @@ namespace write_text
    }
 
 
-   void fonts::initialize(::object* pobject)
+   void fonts::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::acme::department::initialize(pobject);
+      ::acme::department::initialize(pparticle);
 
       //if (!estatus)
       //{

@@ -7,8 +7,8 @@
 // 08/12/06 (mv)
 
 #include "framework.h"
-
-
+#include "acme/primitive/collection/string_array.h"
+#include "acme/exception/exception.h"
 //wchar_t* _argv[_MAX_CMD_LINE_ARGS + 1];
 //static wchar_t* _rawCmd = 0;
 

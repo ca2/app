@@ -5,8 +5,8 @@ namespace simpledb
 {
 
 
-   session::session(::object * pobject) :
-      ::object(pobject)
+   session::session(::particle * pparticle) :
+      ::object(pparticle)
    {
 
       m_pserver = nullptr;

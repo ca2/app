@@ -11,7 +11,7 @@ interprocess_intercommunication::interprocess::communication()
 
    m_atom = "::interprocess::communication";
 
-   defer_create_mutex();
+   defer_create_synchronization();
 
 
 }
@@ -24,10 +24,10 @@ interprocess_intercommunication::~interprocess_intercommunication()
 }
 
 
-void interprocess_intercommunication::initialize_interprocess_communication(::object * pobject, const ::string & strApp)
+void interprocess_intercommunication::initialize_interprocess_communication(::particle * pparticle, const ::string & strApp)
 {
 
-   ::object::initialize(pobject);
+   ::object::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -119,7 +119,7 @@ void interprocess_intercommunication::start(const ::string & strApp)
    if(pmutex.is_null())
    {
 
-      pmutex = __new(::mutex());
+      pmutex = __new(::pointer < ::mutex >());
 
    }
 
@@ -287,7 +287,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 
 #if defined(LINUX) || defined(FREEBSD)
 
-   strKey = m_psystem->m_pacmedirectory->system() / "interprocess_intercommunication" / strApp / __string(idPid);
+   strKey = acmedirectory()->system() / "interprocess_intercommunication" / strApp / __string(idPid);
 
 #elif defined(__APPLE__)
 
@@ -309,7 +309,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 
 #else
 
-   strKey = m_psystem->m_pacmedirectory->system() / "interprocess_intercommunication" / strApp / __string(idPid);
+   strKey = acmedirectory()->system() / "interprocess_intercommunication" / strApp / __string(idPid);
 
 
 #endif
@@ -465,13 +465,13 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 //   }
    
    
-   string strObject = m_psystem->url()->get_server(strUrl);
+   string strObject = acmesystem()->url()->get_server(strUrl);
    
-   string strMember = m_psystem->url()->get_script(strUrl);
+   string strMember = acmesystem()->url()->get_script(strUrl);
    
    strMember.trim_left("/");
    
-   string strNetworkArguments = m_psystem->url()->get_query(strUrl);
+   string strNetworkArguments = acmesystem()->url()->get_query(strUrl);
    
    ::property_set propertyset;
    
@@ -522,7 +522,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 
    auto pobjectTask = __new(::interprocess::task(pcall, idPid, m_iTaskSeed++));
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -536,7 +536,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 ::pointer<::interprocess::task>interprocess_intercommunication::get_task(i64 iTask)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    return m_mapTask[iTask];
 
@@ -632,7 +632,7 @@ atom_array interprocess_intercommunication::get_pid(const ::string & strApp)
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
 
-   auto psystem = m_psystem;
+   auto psystem = acmesystem();
    
    auto pnode = psystem->node();
    
@@ -652,11 +652,11 @@ atom_array interprocess_intercommunication::get_pid(const ::string & strApp)
 
    ::file::path pathModule;
 
-   pathModule = m_psystem->m_pacmedirectory->system() / "interprocess_intercommunication";
+   pathModule = acmedirectory()->system() / "interprocess_intercommunication";
 
    pathModule /= strApp + ".module_list";
 
-   string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
+   string strModuleList = acmefile()->as_string(pathModule);
 
    stra.add_lines(strModuleList);
 
@@ -673,7 +673,7 @@ repeat:
 
    int_array iaPid2;
 
-   auto psystem = m_psystem;
+   auto psystem = acmesystem();
 
    auto pnode = psystem->node();
 
@@ -740,7 +740,7 @@ repeat:
 void interprocess_intercommunication::defer_add_module(const ::string & strModule, const ::atom & idPid)
 {
    
-   auto psystem = m_psystem;
+   auto psystem = acmesystem();
    
    auto pnode = psystem->node();
 
@@ -750,13 +750,13 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
 
    m_straModule.erase_all();
 
-   pathModule = m_psystem->m_pacmedirectory->system() / "interprocess_intercommunication";
+   pathModule = acmedirectory()->system() / "interprocess_intercommunication";
 
    pathModule /= m_strApp + ".module_list";
    
    ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.i64());
 
-   string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
+   string strModuleList = acmefile()->as_string(pathModule);
 
    m_straModule.add_lines(strModuleList);
 

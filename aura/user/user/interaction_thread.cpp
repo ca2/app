@@ -335,7 +335,7 @@ namespace user
 
       //{
 
-      //   synchronous_lock synchronouslock(mutex());
+      //   synchronous_lock synchronouslock(this->synchronization());
 
       //   if (m_messagebasea.has_elements())
       //   {
@@ -1122,7 +1122,7 @@ namespace user
    void thread::destroy()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pimpl)
       {
@@ -1178,7 +1178,7 @@ namespace user
          INFORMATION("notify_icon");
       }
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_pimpl.release();
 

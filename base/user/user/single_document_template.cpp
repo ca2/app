@@ -14,7 +14,7 @@ namespace user
       ::user::impact_system(pszMatter, pDocClass, pFrameClass, pImpactClass)
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_pdocument = nullptr;
 
@@ -178,7 +178,7 @@ namespace user
 
          pdocument->m_bAutoDelete = bAutoDelete;
 
-         //auto psystem = m_psystem->m_pbasesystem;
+         //auto psystem = acmesystem()->m_pbasesystem;
 
          if (!pFrame)
          {

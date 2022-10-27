@@ -46,7 +46,7 @@ namespace user
 ::aura::system* form::get_system() const
 {
    
-   return ::is_set(m_psystem) ? m_psystem->m_paurasystem : nullptr;
+   return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
    
 
 
@@ -126,12 +126,12 @@ namespace user
 //   }
 
 
-   void form::initialize(::object * pobject)
+   void form::initialize(::particle * pparticle)
    {
 
       //auto estatus =
       
-      ::user::interaction::initialize(pobject);
+      ::user::interaction::initialize(pparticle);
 
       /*if (!estatus)
       {

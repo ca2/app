@@ -11,6 +11,9 @@
 //#endif
 
 
+#include "acme/primitive/primitive/element.h"
+
+
 namespace networking
 {
 
@@ -27,7 +30,7 @@ namespace networking
       //address(const address& address);
       ////address(i32 family, ::networking::port_t port = 0);
       //address(const ::string & strAddress, ::networking::port_t port = 0);
-      //address(::object * pobject, const ::string & strAddress, const ::string & strServiceName);
+      //address(::particle * pparticle, const ::string & strAddress, const ::string & strServiceName);
 //#if defined(BSD_STYLE_SOCKETS)
 //      address(const in_addr & a, ::networking::port_t port = 0);
 //      address(const in6_addr & a, ::networking::port_t port = 0);

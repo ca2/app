@@ -22,7 +22,7 @@ namespace draw2d
    object::~object()
    {
 
-      m_psystem->m_paurasystem->draw2d()->erase_object(this);
+      acmesystem()->m_paurasystem->draw2d()->erase_object(this);
 
    }
 
@@ -45,13 +45,13 @@ namespace draw2d
    }
 
 
-   void object::on_initialize_object()
+   void object::on_initialize_particle()
    {
 
-      if (m_psystem)
+      if (acmesystem())
       {
 
-         m_psystem->m_paurasystem->draw2d()->add_object(this);
+         acmesystem()->m_paurasystem->draw2d()->add_object(this);
 
       }
 

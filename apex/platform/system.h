@@ -2,6 +2,9 @@
 
 
 #include "session.h"
+#include "context.h"
+#include "acme/platform/system.h"
+#include "apex/parallelization/threading.h"
 
 
 namespace apex
@@ -33,10 +36,10 @@ namespace apex
 
       ::pointer<class machine_event_central>           m_pmachineeventcentral;
 
-      ::pointer<::mutex>                                m_pmutexUserAppData;
-      ::pointer<::mutex>                                m_pmutexSystemAppData;
+      ::pointer < ::mutex >                                m_pmutexUserAppData;
+      ::pointer < ::mutex >                                m_pmutexSystemAppData;
 
-      ::pointer<::mutex>                                m_pmutexMatter;
+      ::pointer < ::mutex >                                m_pmutexMatter;
 
       ::pointer<::operating_system::department>       m_poperatingsystem;
 
@@ -82,7 +85,7 @@ namespace apex
 #endif
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
       void install_message_routing(::channel * pchannel) override;
 
@@ -171,7 +174,7 @@ namespace apex
       virtual void destroy() override;
 
 
-      virtual void process_exit_status(::object* pobject, const ::e_status & estatus);
+      virtual void process_exit_status(::object* pparticle, const ::e_status & estatus);
 
 
       virtual void hist_hist(const ::string & psz);
@@ -445,7 +448,7 @@ namespace apex
    };
 
 
-   //CLASS_DECL_APEX ::mutex * get_image_mutex();
+   //CLASS_DECL_APEX ::pointer< ::mutex > get_image_mutex();
 
 } // namespace apex
 

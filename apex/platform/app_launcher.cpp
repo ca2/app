@@ -7,6 +7,7 @@
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "acme/platform/node.h"
+#include "acme/platform/system.h"
 #include "apex/operating_system.h"
 #include "apex/platform/context.h"
 
@@ -22,12 +23,12 @@ namespace apex
    }
 
 
-   void app_launcher::initialize_app_launcher(::object * pobject, string strPlatform, string strApp)
+   void app_launcher::initialize_app_launcher(::particle * pparticle, string strPlatform, string strApp)
    {
 
-      //auto estatus = ::object::initialize(pobject);
+      //auto estatus = ::object::initialize(pparticle);
 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -48,13 +49,13 @@ namespace apex
    string app_launcher::get_executable_path()
    {
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
       ::file::path path = pnode->get_last_run_application_path(m_strApp);
 
-      if(m_psystem->m_pacmefile->exists(path))
+      if(acmefile()->exists(path))
       {
 
          return ::move(path);
@@ -84,7 +85,7 @@ namespace apex
 
       }
 
-      return m_psystem->m_pacmedirectory->app_app(m_strPlatform, process_configuration_dir_name());
+      return acmedirectory()->app_app(m_strPlatform, process_configuration_dir_name());
 
    }
 
@@ -156,7 +157,7 @@ namespace apex
 
       ::file::path path = get_executable_path();
       
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
       
       auto pnode = psystem->node();
 
@@ -212,7 +213,7 @@ namespace apex
 //
 //      string strParams = get_params();
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 

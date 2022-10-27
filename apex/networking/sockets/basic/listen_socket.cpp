@@ -421,10 +421,10 @@ namespace sockets
    //}
 
 
-   void listen_socket_base::initialize(::object * pobject)
+   void listen_socket_base::initialize(::particle * pparticle)
    {
 
-      socket::initialize(pobject);
+      socket::initialize(pparticle);
 
       __construct(m_pcomposite);
 

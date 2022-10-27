@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "set.h"
 #include "apex/platform/context.h"
+#include "apex/platform/os_context.h"
 
 
 namespace file
@@ -10,7 +11,7 @@ namespace file
    set::set()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -21,11 +22,11 @@ namespace file
    }
 
 
-   void set::on_initialize_object()
+   void set::on_initialize_particle()
    {
 
-      //auto estatus = ::object::on_initialize_object();
-      ::object::on_initialize_object();
+      //auto estatus = ::object::on_initialize_particle();
+      ::object::on_initialize_particle();
 
       //if (!estatus)
       //{

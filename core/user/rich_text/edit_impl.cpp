@@ -182,7 +182,7 @@ namespace user
 
          auto psession = get_session();
 
-         m_pdata->set_mutex(mutex());
+         m_pdata->set_mutex(synchronization());
 
          fork([this]()
             {
@@ -796,7 +796,7 @@ namespace user
       void edit_impl::draw_impl(::draw2d::graphics_pointer & pgraphics)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          //pgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
 
@@ -1015,7 +1015,7 @@ namespace user
       void edit_impl::on_message_key_down(::message::message * pmessage)
       {
 
-         //synchronous_lock synchronouslock(mutex());
+         //synchronous_lock synchronouslock(this->synchronization());
 
          {
 
@@ -1461,7 +1461,7 @@ namespace user
 
             {
 
-               synchronous_lock synchronouslock(mutex());
+               synchronous_lock synchronouslock(this->synchronization());
 
                bool bControl = psession->is_key_pressed(::user::e_key_control);
 

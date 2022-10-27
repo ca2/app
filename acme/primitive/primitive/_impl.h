@@ -2,6 +2,7 @@
 
 
 #include "acme/primitive/comparison/equals.h"
+//#include "particle_factory.h"
 
 
 inline bool __enum_is_failed(const ::e_status & e)
@@ -92,34 +93,34 @@ inline pointer < T > & pointer < T > ::operator = (ptr < T2 > && t)
 }
 
 
-inline type::type(const ::element * pelement)
-{
+//inline type::type(const ::particle * pparticle)
+//{
+//
+//   auto name = typeid(*(element *)pelement).name();
+//
+//   ::atom::operator = (demangle(name));
+//
+//}
+//
+//
+//template < typename BASE >
+//inline type::type(const ::pointer<BASE>& point)
+//{
+//
+//   auto name = typeid(*((BASE *)point.m_p)).name();
+//
+//   ::atom::operator = (demangle(name));
+//
+//}
 
-   auto name = typeid(*(element *)pelement).name();
 
-   ::atom::operator = (demangle(name));
-
-}
-
-
-template < typename BASE >
-inline type::type(const ::pointer<BASE>& point)
-{
-
-   auto name = typeid(*((BASE *)point.m_p)).name();
-
-   ::atom::operator = (demangle(name));
-
-}
-
-
-template < >
-inline uptr uptr_hash < const type & >(const ::type & type)
-{
-
-   return uptr_hash < const ::atom & > (type);
-
-}
+//template < >
+//inline uptr uptr_hash < const type & >(const ::type & type)
+//{
+//
+//   return uptr_hash < const ::atom & > (type);
+//
+//}
 
 
 //inline stream & operator << (stream & stream, const ::type & type)
@@ -426,40 +427,6 @@ inline bool succeeded(const ::property & property)
 //
 //}
 
-
-template < class T >
-template < typename OBJECT >
-inline pointer < T > & pointer < T >::create(OBJECT * pobject)
-{
-
-  auto p = pobject->template __create < T >();
-
-  return operator =(p);
-
-}
-
-
-template < class T >
-template < typename OBJECT >
-inline pointer < T > & pointer < T >::create(OBJECT * pobject, bool bCreate)
-{
-
-  if (bCreate)
-  {
-
-     defer_create(pobject);
-
-  }
-  else
-  {
-
-     release();
-
-  }
-
-  return *this;
-
-}
 
 
 //template < typename BASE_TYPE >
@@ -823,7 +790,7 @@ inline pointer < T > & pointer < T >::create(OBJECT * pobject, bool bCreate)
 //   if (pcomposite)
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (m_pcompositea)
 //      {
@@ -853,7 +820,7 @@ inline pointer < T > & pointer < T >::create(OBJECT * pobject, bool bCreate)
 //   if (preference)
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (m_preferencea)
 //      {
@@ -961,18 +928,18 @@ inline pointer < T > & pointer < T >::create(OBJECT * pobject, bool bCreate)
 //inline void matter::add_reference(SOURCE * psource)
 //{
 //
-//   ::pointer<::matter>pobject;
+//   ::pointer<::matter>pparticle;
 //
-//   pobject = (SOURCE *) psource;
+//   pparticle = (SOURCE *) psource;
 //
-//   if (!pobject)
+//   if (!pparticle)
 //   {
 //
 //      return error_wrong_type;
 //
 //   }
 //
-//   return add_reference((::matter *) pobject.m_p);
+//   return add_reference((::matter *) pparticle.m_p);
 //
 //}
 //
@@ -1032,14 +999,14 @@ TYPE & operator -=(TYPE & o, enum_object eobject)
 //
 
 template < typename T >
-template < typename OBJECT >
-inline pointer < T > & pointer<T> ::defer_create(OBJECT * pobject)
+template < typename PARTICLE >
+inline pointer < T > & pointer<T> ::defer_create(PARTICLE * pparticle)
 {
 
    if (is_null())
    {
 
-      operator=(pobject->template __create < T >());
+      operator=(pparticle->template __create < T >());
 
    }
 
@@ -1070,56 +1037,56 @@ inline pointer < T > & pointer<T> ::defer_create(OBJECT * pobject)
 //}
 //
 
-//inline void context::load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload* pvarOptions)
+//inline void context::load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload* pvarOptions)
 //{
 //
 //   if (pvarOptions)
 //   {
 //
-//      return _load_from_file(pobject, payloadFile, *pvarOptions);
+//      return _load_from_file(pparticle, payloadFile, *pvarOptions);
 //
 //   }
 //   else
 //   {
 //
-//      return _load_from_file(pobject, payloadFile, e_type_empty_argument);
+//      return _load_from_file(pparticle, payloadFile, e_type_empty_argument);
 //
 //   }
 //
 //}
 //
 //
-//inline void context::load_from_file(::matter* pobject, const ::payload& payloadFile)
+//inline void context::load_from_file(::particle * pparticle, const ::payload& payloadFile)
 //{
 //
-//   return _load_from_file(pobject, payloadFile, e_type_empty_argument);
+//   return _load_from_file(pparticle, payloadFile, e_type_empty_argument);
 //
 //}
 //
 //
-//inline void context::save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::matter * pobject)
+//inline void context::save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::particle * pparticle)
 //{
 //
 //   if (pvarOptions)
 //   {
 //
-//      return _save_to_file(payloadFile, *pvarOptions, pobject);
+//      return _save_to_file(payloadFile, *pvarOptions, pparticle);
 //
 //   }
 //   else
 //   {
 //
-//      return _save_to_file(payloadFile, e_type_empty_argument, pobject);
+//      return _save_to_file(payloadFile, e_type_empty_argument, pparticle);
 //
 //   }
 //
 //}
 //
 //
-//inline void context::save_to_file(const ::payload& payloadFile, const ::matter* pobject)
+//inline void context::save_to_file(const ::payload& payloadFile, const ::particle * pparticle)
 //{
 //
-//   return _save_to_file(payloadFile, e_type_empty_argument, pobject);
+//   return _save_to_file(payloadFile, e_type_empty_argument, pparticle);
 //
 //}
 //
@@ -1324,12 +1291,12 @@ inline pointer < T > & pointer<T> ::defer_create(OBJECT * pobject)
 //}
 
 
-inline bool type::operator == (const ::atom& atom) const
-{
-
-   return ::atom::operator ==(atom);
-
-}
+//inline bool type::operator == (const ::atom& atom) const
+//{
+//
+//   return ::atom::operator ==(atom);
+//
+//}
 
 
 //template < typename TYPE_CHAR >
@@ -1340,27 +1307,27 @@ inline bool type::operator == (const ::atom& atom) const
 //
 //}
 
-//
+
 //template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const property& property) :
+//string_base < TYPE_CHAR >::string_base(const property& property) :
 //   string_base(property.to_string())
 //{
 //
 //
 //}
 
-//
+
 //template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const atom& atom) :
+//string_base < TYPE_CHAR >::string_base(const atom& atom) :
 //   string_base(atom.to_string())
 //{
 //
 //
 //}
 
-//
+
 //template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(::payload & payload) :
+//string_base < TYPE_CHAR >::string_base(::payload & payload) :
 //   string_base(payload.to_string())
 //{
 //
@@ -1426,7 +1393,7 @@ inline bool type::operator == (const ::atom& atom) const
 
 //
 //template < typename PRED >
-//inline ::count fork_count_end(::element* pobject, ::count iCount, PRED pred, index iStart, ::enum_priority epriority)
+//inline ::count fork_count_end(::particle * pparticle, ::count iCount, PRED pred, index iStart, ::enum_priority epriority)
 //{
 //
 //   if (iCount <= 0)
@@ -1569,51 +1536,6 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 
 //inline bool ::duration::done(const ::duration & duration) const { return elapsed(::duration).m_i >= 0; }
 //inline bool ::duration::done() const { return elapsed().m_i >= 0; }
-
-
-template < >
-inline uptr uptr_hash < block >(block b)
-{
-
-   if (::is_null(b.get_data()) || b.is_empty())
-   {
-
-      return 0;
-
-   }
-
-   auto psz = (const char *)b.get_data();
-
-   u32 uHash = 0;
-
-   strsize i = 1;
-
-   for (; i < b.get_size(); i++)
-   {
-
-      if (i % 4 == 3)
-      {
-
-         uHash = (uHash << 5) + ((u32 *)psz)[i >> 2];
-
-      }
-
-   }
-
-   psz += i;
-
-   i %= 4;
-
-   if (i > 0)
-   {
-
-      while (i-- >= 0) uHash = (uHash << 5) + *(--psz);
-
-   }
-
-   return uHash;
-
-}
 
 
 
@@ -2054,8 +1976,8 @@ inline uptr uptr_hash < block >(block b)
 
 
 //template < class T >
-//template < typename OBJECT >
-//inline pointer < T > ::pointer(enum_create, OBJECT * p) :
+//template < typename PARTICLE >
+//inline pointer < T > ::pointer(enum_create, PARTICLE * p) :
 //   m_p(nullptr),
 //   m_pparticle(nullptr)
 //{

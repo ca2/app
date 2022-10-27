@@ -176,7 +176,7 @@
 //      m_pschemaEn    = &operator[]("en")["en"];
 //      m_pschemaStd   = &operator[]("_std")["_std"];
 //
-//      //defer_create_mutex();
+//      //defer_create_synchronization();
 //
 //   }
 //
@@ -188,10 +188,10 @@
 //   }
 //
 //
-//   void ::str().initialize(::object * pobject)
+//   void ::str().initialize(::particle * pparticle)
 //   {
 //
-//      auto estatus = ::object::initialize(pobject);
+//      auto estatus = ::object::initialize(pparticle);
 //
 //      if (!estatus)
 //      {
@@ -225,7 +225,7 @@
 //
 //      return true;
 //
-////      synchronous_lock synchronouslock(mutex());
+////      synchronous_lock synchronouslock(this->synchronization());
 ////
 ////      string strMain = pszBaseDir;
 ////
@@ -1042,7 +1042,7 @@
 //   bool str_context::match(string_array & stra, const ::string & psz, atom idExpression, atom idRoot) const
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      string_array straCandidate;
 //

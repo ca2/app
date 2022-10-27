@@ -11,10 +11,10 @@ namespace userpresence
 {
 
 
-   presence::presence(::object * pobject)
+   presence::presence(::particle * pparticle)
    {
 
-      initialize(pobject);
+      initialize(pparticle);
 
       m_iShortStatusWayTag = status_online;
 
@@ -84,7 +84,7 @@ namespace userpresence
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 

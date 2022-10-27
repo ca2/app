@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "app/draw2d_direct2d/_.h"
+//#include "app/draw2d_direct2d/_.h"
 #include "_uwp.h"
 
 
@@ -246,7 +246,7 @@ namespace universal_windows
       {
          OnChangeDpi(dpi);
 
-         //         ::acme::get_system()->m_psystem->m_possystemwindow->m_bWindowSizeChange = true;
+         //         ::acme::get_system()->acmesystem()->m_possystemwindow->m_bWindowSizeChange = true;
 
       }));
 
@@ -302,10 +302,10 @@ namespace universal_windows
          if (m_size.area() > 0)
          {
 
-            ::fork(m_psystem, [this]()
+            ::fork(acmesystem(), [this]()
             {
 
-               m_psystem->on_graphics_ready();
+               acmesystem()->on_graphics_ready();
 
             });
 
@@ -778,7 +778,7 @@ namespace universal_windows
 
    //   dc->attach((ID2D1DeviceContext *) m_pd2d1devicecontext.Get());
 
-   //   auto pimpl = m_psystem->get_session()->m_puserinteractionHost->m_pimpl;
+   //   auto pimpl = acmesystem()->get_session()->m_puserinteractionHost->m_pimpl;
 
    //   //throw_todo();
 

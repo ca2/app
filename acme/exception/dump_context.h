@@ -36,7 +36,7 @@ public:
 //   void write(const ::string & str) override ;
 //   void write(const void * p);
 //          
-//   void write(const ::matter * pobject) override;
+//   void write(const ::particle * pparticle) override;
 //   void write(const ::matter & matter) override;
 //   void write(char i) override;
 //   void write(uchar u)  override;

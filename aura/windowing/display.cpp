@@ -29,7 +29,7 @@ namespace windowing
       m_iMainMonitor = 0;
       m_iMainWorkspace = 0;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -57,7 +57,7 @@ namespace windowing
 
       //}
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       if (psystem != nullptr)
       {
@@ -239,7 +239,7 @@ namespace windowing
 //
 //#elif defined(LINUX)
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      return m_rectangleaMonitor.get_count();
 //
@@ -538,7 +538,7 @@ namespace windowing
    monitor * display::get_monitor(index iMonitor)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (iMonitor < 0 || iMonitor >= m_monitora.get_count())
       {
@@ -606,7 +606,7 @@ namespace windowing
 
       ::e_display edisplayPrevious = *pedisplay;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       double dMargin = psystem->m_paurasystem->m_dDpi;
 

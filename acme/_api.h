@@ -45,7 +45,6 @@ inline bool is_set(POINTER p)
 }
 
 
-
 template<typename TYPE>
 inline bool is_ref_set(const TYPE & t)
 {

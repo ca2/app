@@ -124,32 +124,32 @@
 //} //namespace acme
 
 
-namespace acme
-{
-
-   CLASS_DECL_ACME::atom atom(const char* psz);
-
-} // namespace acme
-
-
-inline atom::atom(const char* psz)
-{
-
-   m_etype = e_type_text;
-
-   ::new(&m_str) ::string(psz);
-
-}
+//namespace acme
+//{
+//
+//   CLASS_DECL_ACME::atom atom(const char* psz);
+//
+//} // namespace acme
 
 
-inline atom::atom(const ::string& str)
-{
+//inline atom::atom(const char* psz)
+//{
+//
+//   m_etype = e_type_text;
+//
+//   ::new(&m_str) ::string(psz);
+//
+//}
 
-   m_etype = e_type_text;
 
-   ::new(&m_str) ::string(str);
-
-}
+//inline atom::atom(const ::string& str)
+//{
+//
+//   m_etype = e_type_text;
+//
+//   ::new(&m_str) ::string(str);
+//
+//}
 
 
 //inline atom::atom(const type& type) :

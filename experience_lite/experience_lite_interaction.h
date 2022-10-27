@@ -22,7 +22,7 @@
 
 
 
-            experience(::object * pobject);
+            experience(::particle * pparticle);
             virtual ~experience();
 
             virtual void update();

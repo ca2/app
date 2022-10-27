@@ -61,7 +61,7 @@
 //
 //         void m_estatus;
 //
-//         ::pointer<::apex::system>m_psystem;
+//         ::pointer<::apex::system>acmesystem();
 //
 //         void create_system()
 //         {
@@ -70,15 +70,15 @@
 //
 //            string strAppId = executable_get_app_id();
 //
-//            m_psystem = ::move_transfer(platform_create_system(strAppId));
+//            acmesystem() = ::move_transfer(platform_create_system(strAppId));
 //
-////            auto pappStartup = m_psystem->new_application(strAppId);
+////            auto pappStartup = acmesystem()->new_application(strAppId);
 ////
-////            m_psystem->__refer(m_psystem->m_pacmeapplicationStartup, pappStartup);
+////            acmesystem()->__refer(m_pcontext->m_pacmeapplicationStartup, pappStartup);
 ////
-////            m_psystem->set_main_struct(*m_psystem->m_pacmeapplicationStartup);
+////            acmesystem()->set_main_struct(*m_pcontext->m_pacmeapplicationStartup);
 //
-//            m_psystem->m_bConsole = true;
+//            acmesystem()->m_bConsole = true;
 //
 //         }
 //
@@ -88,7 +88,7 @@
 //
 //            create_system();
 //
-//            application_common(m_psystem);
+//            application_common(acmesystem());
 //
 //         }
 //
@@ -98,7 +98,7 @@
 //
 //            common_construct();
 //
-//            m_psystem->system_construct(argc, argv, envp);
+//            acmesystem()->system_construct(argc, argv, envp);
 //
 //            init();
 //
@@ -110,7 +110,7 @@
 //
 //            common_construct();
 //
-//            m_psystem->system_construct(argc, argv, envp);
+//            acmesystem()->system_construct(argc, argv, envp);
 //
 //            init();
 //
@@ -120,7 +120,7 @@
 //         void init()
 //         {
 //
-//            m_estatus = (void) m_psystem->inline_init();
+//            m_estatus = (void) acmesystem()->inline_init();
 //
 //         }
 //
@@ -128,13 +128,13 @@
 //         int result()
 //         {
 //
-//            m_estatus = m_psystem->m_pacmeapplicationStartup->m_estatus;
+//            m_estatus = m_pcontext->m_pacmeapplicationStartup->m_estatus;
 //
 //            ::i32 iErrorStatus = m_estatus.error_status();
 //
-//            m_psystem->inline_term();
+//            acmesystem()->inline_term();
 //
-//            m_psystem.release();
+//            acmesystem().release();
 //
 //            return iErrorStatus;
 //
@@ -144,7 +144,7 @@
 //         ~console()
 //         {
 //
-//            if (m_psystem)
+//            if (acmesystem())
 //            {
 //
 //               result();

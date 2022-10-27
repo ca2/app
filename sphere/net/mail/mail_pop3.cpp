@@ -9,11 +9,11 @@ namespace mail
 {
 
 
-   pop3::pop3(::object * pobject) :
-      ::object(pobject)
+   pop3::pop3(::particle * pparticle) :
+      ::object(pparticle)
    {
 
-      m_phandler = __new(::sockets::socket_handler(pobject));
+      m_phandler = __new(::sockets::socket_handler(pparticle));
 
    }
 

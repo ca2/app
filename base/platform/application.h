@@ -39,11 +39,11 @@ namespace base
       ~application() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
       ::base::system* get_system() const;
@@ -211,9 +211,9 @@ namespace base
 //      virtual ::aura::printer * get_printer(const ::string & pszDeviceName);
 //
 //
-//      virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);
+//      virtual ::draw2d::icon * set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon);
 //
-//      virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
+//      virtual ::draw2d::icon * get_icon(object * pparticle, bool bBigIcon) const;
 //
 //      virtual void on_service_request(::create * pcreate);
 //
@@ -263,7 +263,7 @@ namespace base
 //      //virtual string get_locale_schema_dir();
 //
 //
-//      //virtual void initialize(::object * pobject) override;
+//      //virtual void initialize(::particle * pparticle) override;
 //
 //
 //      application_menu & applicationmenu();
@@ -334,7 +334,7 @@ namespace base
 //
 //      //virtual void record(::create * pcommand);
 //
-//      //virtual void on_event(::u64 u, ::object * pobject) override;
+//      //virtual void on_event(::u64 u, ::particle * pparticle) override;
 //      //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool);
 //
 //
@@ -364,7 +364,7 @@ namespace base
 //      virtual bool set_keyboard_layout(const ::string & pszPath, const ::action_context & action_context);
 //
 //
-//      virtual bool enable_application_events(::object * pobject, bool bEnable);
+//      virtual bool enable_application_events(::particle * pparticle, bool bEnable);
 //
 //      virtual bool is_equal_file_path(const ::file::path & path1, const ::file::path & path2);
 //
@@ -537,8 +537,8 @@ namespace base
 //      virtual string get_local_mutex_id();
 //      virtual string get_global_mutex_id();
 //
-//      //virtual ::mutex * get_local_mutex();
-//      //virtual ::mutex * get_global_mutex();
+//      //virtual ::pointer< ::mutex > get_local_mutex();
+//      //virtual ::pointer< ::mutex > get_global_mutex();
 //
 //      virtual string get_local_mutex_name();
 //      virtual string get_local_id_mutex_name();
@@ -708,9 +708,9 @@ namespace base
 //      virtual bool post_message(const ::atom & atom, WPARAM wParam = 0, lparam lParam = 0) override;
 //
 //
-//      //virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);
+//      //virtual ::draw2d::icon * set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon);
 //
-//      //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
+//      //virtual ::draw2d::icon * get_icon(object * pparticle, bool bBigIcon) const;
 //
 //      //virtual void handle(::topic * ptopic, ::context * pcontext);
 //
@@ -744,7 +744,7 @@ namespace base
 //      virtual void HideApplication();
 //
 //
-//      //virtual void initialize(::object * pobject) override;
+//      //virtual void initialize(::particle * pparticle) override;
 //
 //      //virtual void process_init() override;
 //
@@ -1187,7 +1187,7 @@ namespace base
 //virtual void data_on_after_change(::database::client* pclient, const ::database::key& atom, const ::payload & payload, ::update* pupdate) override;
 //
 //
-//virtual ::user::document* open_document_file(::object* pobject, const ::string & pszFileName);
+//virtual ::user::document* open_document_file(::object* pparticle, const ::string & pszFileName);
 //
 //
 //
@@ -1235,7 +1235,7 @@ virtual void on_change_cur_sel(::user::tab* ptab);
 ////~application() override;
 //
 //
-////virtual void     initialize(::object * pobject) override;
+////virtual void     initialize(::particle * pparticle) override;
 //
 //
 ////void install_message_routing(::channel * pchannel) override;
@@ -1282,9 +1282,9 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
 //
 ////virtual void SetCurrentHandles() override;
 //
-////virtual ::draw2d::icon* set_icon(object* pobject, ::draw2d::icon* picon, bool bBigIcon) override;
+////virtual ::draw2d::icon* set_icon(object* pparticle, ::draw2d::icon* picon, bool bBigIcon) override;
 //
-////virtual ::draw2d::icon* get_icon(object* pobject, bool bBigIcon) const override;
+////virtual ::draw2d::icon* get_icon(object* pparticle, bool bBigIcon) const override;
 //
 ////virtual void handle(::topic * ptopic, ::context * pcontext) override;
 //

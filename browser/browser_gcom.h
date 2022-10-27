@@ -15,12 +15,12 @@ namespace browser
       ::image_pointer        m_pimageBk;
 
 
-      gcom(::object * pobject);
+      gcom(::particle * pparticle);
       virtual ~gcom();
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
       void install_message_routing(::channel * pchannel) override;

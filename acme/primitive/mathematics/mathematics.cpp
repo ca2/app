@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
+#include "acme/platform/system.h"
 #include <time.h>
 //#include "apex/primitive/mathematics/prime100k.h"
 #ifdef LINUX
@@ -286,10 +287,10 @@ namespace mathematics
    }
 
 
-   void mathematics::initialize(::object * pobject)
+   void mathematics::initialize(::particle * pparticle)
    {
 
-      /*auto estatus =*/ ::matter::initialize(pobject);
+      /*auto estatus =*/ ::matter::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -298,7 +299,7 @@ namespace mathematics
 
       //}
 
-      m_posdata = m_psystem->__create_new < math_os_data>();
+      m_posdata = m_pcontext->__create_new < math_os_data>();
 
       //if (!estatus)
       //{

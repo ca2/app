@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "acme/constant/id.h"
 #include "international_locale_schema.h"
+#include "acme/primitive/collection/atom_map.h"
 
 
 namespace text

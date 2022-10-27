@@ -38,7 +38,7 @@ namespace user
    void list_box::user_combo_list_common_construct()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_bClickDefaultMouseHandling = true;
 
@@ -124,7 +124,7 @@ namespace user
             if (pimpl)
             {
 
-               synchronous_lock synchronouslock(pimpl->mutex());
+               synchronous_lock synchronouslock(pimpl->synchronization());
 
                pimpl->m_userinteractionaHideOnConfigurationChange.add_unique_interaction(this);
 
@@ -287,7 +287,7 @@ namespace user
    void list_box::reset_content()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_straList.erase_all();
 
@@ -351,7 +351,7 @@ namespace user
             if (pimpl)
             {
 
-               synchronous_lock synchronouslock(pimpl->mutex());
+               synchronous_lock synchronouslock(pimpl->synchronization());
 
                pimpl->m_userinteractionaHideOnConfigurationChange.erase_interaction(this);
 
@@ -546,7 +546,7 @@ namespace user
    void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, SIZE_I32 * psize)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -1345,7 +1345,7 @@ namespace user
 
                auto psession = get_session();
 
-               synchronous_lock synchronouslock(psession->mutex());
+               synchronous_lock synchronouslock(psession->synchronization());
 
                auto pinteraction = __create_new < ::user::interaction >();
 
@@ -1365,7 +1365,7 @@ namespace user
 
                auto psession = get_session();
 
-               synchronous_lock synchronouslock(psession->mutex());
+               synchronous_lock synchronouslock(psession->synchronization());
 
                auto puser = psession->user();
 

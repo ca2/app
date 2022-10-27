@@ -82,7 +82,7 @@ namespace user
 
          ::pointer<::user::font_list>pfontlist = m_plistbox;
 
-         synchronous_lock synchronouslock(pfontlist->mutex());
+         synchronous_lock synchronouslock(pfontlist->synchronization());
 
          auto pfontenumerationitema = pfontlist->m_pfontlist->m_pfontenumerationitema;
 

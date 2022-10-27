@@ -28,12 +28,12 @@ namespace base
    }
 
 
-   void application::initialize(::object * pobject)
+   void application::initialize(::particle * pparticle)
    {
 
-      ::axis::application::initialize(pobject);
+      ::axis::application::initialize(pparticle);
 
-      ::user::document_manager_container::initialize(pobject);
+      ::user::document_manager_container::initialize(pparticle);
 
    }
 
@@ -173,7 +173,7 @@ namespace base
    ::base::system * application::get_system() const
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::base::system *> (m_psystem) : nullptr;
+      return ::is_set(acmesystem()) ? dynamic_cast <::base::system *> (acmesystem()) : nullptr;
 
    }
 
@@ -189,7 +189,7 @@ namespace base
    ::base::system * session::get_system() const
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::base::system *> (m_psystem) : nullptr;
+      return ::is_set(acmesystem()) ? dynamic_cast <::base::system *> (acmesystem()) : nullptr;
 
    }
 

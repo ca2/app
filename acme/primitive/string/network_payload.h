@@ -1,15 +1,68 @@
 //
-// Created by camilo on 24/10/22.
+// Created by camilo on 2022-10-24 16:10 <3ThomasBorregaardSorensen!!
 //
+#pragma once
+#include "string.h"
+#include "acme/primitive/collection/numeric_array.h"
 
-#ifndef BASIS_NETWORK_PAYLOAD_H
-#define BASIS_NETWORK_PAYLOAD_H
 
-
-class network_payload
+template < primitive_number NUMBER >
+string & get_network_payload(::string & str, const NUMBER & number, bool bNewLine = true)
 {
 
-};
+   str = __string(number);
+
+   return str;
+
+}
 
 
-#endif //BASIS_NETWORK_PAYLOAD_H
+template < primitive_array ARRAY >
+string & get_network_payload(::string & str, const ARRAY & a, bool bNewLine = true)
+{
+
+   str += "[";
+
+   if(a.has_element())
+   {
+
+      get_network_payload(str, a.first(), bNewLine);
+
+   }
+
+   for (::index i = 1; i < a.get_count(); i++)
+   {
+
+      if (bNewLine)
+      {
+
+         str += ", \r\n";
+
+      }
+      else
+      {
+
+         str += ", ";
+
+      }
+
+      get_network_payload(str, a[i], bNewLine);
+
+   }
+
+   if (bNewLine)
+   {
+
+      str += "\r\n";
+
+   }
+
+   str += "]";
+
+   return str;
+
+}
+
+
+
+

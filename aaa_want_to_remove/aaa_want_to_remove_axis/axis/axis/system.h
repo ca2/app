@@ -15,7 +15,7 @@ namespace axis
       virtual ~system();
 
 
-      virtual void  initialize_system(::object * pobject, app_core * pappcore) override;
+      virtual void  initialize_system(::particle * pparticle, app_core * pappcore) override;
 
       virtual void init() override;
       //virtual void init_instance() override;
@@ -110,7 +110,7 @@ namespace axis
 
 
 
-      //virtual string dir_appmatter_locator(::object * pobject);
+      //virtual string dir_appmatter_locator(::particle * pparticle);
 
 
       virtual void hist_hist(const ::string & psz);

@@ -7,8 +7,8 @@ namespace browser
 {
 
 
-   impact_base::impact_base(::object * pobject):
-      object(pobject),
+   impact_base::impact_base(::particle * pparticle):
+      object(pparticle),
 
       m_pfontDrawStatus(e_create)
    {
@@ -232,7 +232,7 @@ auto m_durationRoll = ::duration::now();
 
       //d->get_graphics()->BitBlt(rectangleClient, pimage->g());
 
-      //d.save_to_file(         auto psystem = m_psystem;
+      //d.save_to_file(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

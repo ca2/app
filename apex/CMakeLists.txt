@@ -110,7 +110,7 @@ list(APPEND apex_source
         filesystem/filesystem/file_listener.h
         #filesystem/filesystem/path.h
         filesystem/fs/_.h
-        filesystem/fs/_fs.h
+        #filesystem/fs/_fs.h
         filesystem/fs/data.cpp
         filesystem/fs/data.h
         filesystem/fs/fs.cpp
@@ -123,13 +123,13 @@ list(APPEND apex_source
         filesystem/fs/item_array.h
         filesystem/fs/link.cpp
         filesystem/fs/link.h
-        filesystem/fs/native_fs.cpp
-        filesystem/fs/native_fs.h
+        filesystem/fs/native.cpp
+        filesystem/fs/native.h
         filesystem/fs/net.h
         filesystem/fs/remote_native_file.cpp
         filesystem/fs/remote_native_file.h
-        filesystem/fs/remote_native_fs.cpp
-        filesystem/fs/remote_native_fs.h
+        filesystem/fs/remote_native.cpp
+        filesystem/fs/remote_native.h
         filesystem/fs/set.cpp
         filesystem/fs/set.h
         filesystem/_impl.h
@@ -881,7 +881,7 @@ if (LINUX)
             operating_system/linux/shell_launcher.cpp
             operating_system/linux/shell_launcher.h
             operating_system/linux/simple_app.cpp
-            operating_system/linux/standard_exception.cpp
+            #operating_system/linux/standard_exception.cpp
             operating_system/linux/thread.cpp
             operating_system/linux/time.cpp
             operating_system/linux/trace.cpp
@@ -1398,7 +1398,7 @@ else ()
 endif ()
 
 
-add_library(apex SHARED ${apex_source} message/_constant.h)
+add_library(apex SHARED ${apex_source} message/_constant.h include/_forward_declaration.h filesystem/file/action.h platform/_critical_section.h)
 
 target_precompile_headers(apex PRIVATE framework.h)
 

@@ -32,11 +32,11 @@ namespace write_text
    }
 
 
-   void font_enumeration::initialize(::object * pobject)
+   void font_enumeration::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -62,7 +62,7 @@ namespace write_text
       else if (ptopic->m_atom == id_operating_system_font_list_change)
       {
 
-         ::pointer<::aura::system>psystem = m_psystem;
+         ::pointer<::aura::system>psystem = acmesystem();
 
          psystem->signal(id_operating_system_font_list_change);
 
@@ -78,7 +78,7 @@ namespace write_text
    bool font_enumeration::has_font_name(const string& str)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       for (auto& m_pfontenumerationitema : *m_pfontenumerationitema)
       {
@@ -100,13 +100,13 @@ namespace write_text
    ::pointer<::write_text::font_enumeration_item>font_enumeration::similar_font(const ::string & psz)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ::pointer<::write_text::font_enumeration_item>pitemFound;
 
       double dMaxSimilarity = 0.2;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto * pdraw2d = psystem->draw2d();
 
@@ -165,7 +165,7 @@ namespace write_text
       else
       {
 
-         auto psystem = m_psystem->m_paurasystem;
+         auto psystem = acmesystem()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 
@@ -191,7 +191,7 @@ namespace write_text
 
       pitema = __new(::write_text::font_enumeration_item_array);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -234,7 +234,7 @@ namespace write_text
 
       pitema = __new(::write_text::font_enumeration_item_array);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 

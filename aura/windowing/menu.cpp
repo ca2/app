@@ -36,7 +36,7 @@ namespace windowing
    }
 
 
-   // ::pointer<menu_shared>create_menu_shared(::object * pobject, const string_array & straParent, const string_array & straMenu, const string_array & straId)
+   // ::pointer<menu_shared>create_menu_shared(::particle * pparticle, const string_array & straParent, const string_array & straMenu, const string_array & straId)
    // {
 
    //    int iCount = (int)straParent.get_count();
@@ -50,12 +50,12 @@ namespace windowing
 
    //    }
 
-   //    auto pmenu = pobject->__create < menu >();
+   //    auto pmenu = pparticle->__create < menu >();
 
    //    for (int i = 0; i < straParent.get_count(); i++)
    //    {
 
-   //       auto pitem = pobject->__create < menu_item >();
+   //       auto pitem = pparticle->__create < menu_item >();
 
    //       pitem->m_strParent = straParent[i];
    //       pitem->m_strMenu = straMenu[i];

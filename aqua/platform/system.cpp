@@ -43,12 +43,12 @@ namespace aqua
    }
 
 
-   void system::initialize(::object * pobject)
+   void system::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::apex::system::initialize(pobject);
+      ::apex::system::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -206,7 +206,7 @@ namespace aqua
 
       }
 
-      synchronous_lock synchronouslock(&m_psubsystem->m_mutexLibrary4);
+      synchronous_lock synchronouslock(&m_psubsystem->m_pmutexLibrary4);
 
       try
       {

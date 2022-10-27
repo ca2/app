@@ -13,10 +13,11 @@
 #include "acme/exception/interface_only.h"
 #include "acme/exception/io.h"
 #include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/datetime/earth_time.h"
 #include <stdio.h>
 
 
-CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
+CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
 
 void trace_last_error()
 {
@@ -118,7 +119,7 @@ void acme_file::overwrite_if_different(const char* pathTarget, const char* pathS
    if (m_pathExecutable.is_empty())
    {
 
-      auto pnode = m_psystem->node();
+      auto pnode = acmenode();
 
       auto pathModule = pnode->module_path_source();
 
@@ -135,7 +136,7 @@ void acme_file::overwrite_if_different(const char* pathTarget, const char* pathS
 file_pointer acme_file::open(const ::file::path & pathParam, const ::file::e_open & eopen)
 {
 
-   auto pfile = m_psystem->__create < ::file::file >();
+   auto pfile = m_pcontext->__create < ::file::file >();
 
    if(!pfile)
    {
@@ -144,7 +145,7 @@ file_pointer acme_file::open(const ::file::path & pathParam, const ::file::e_ope
 
    }
 
-   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
    pfile->open(path, eopen);
 
@@ -156,7 +157,7 @@ file_pointer acme_file::open(const ::file::path & pathParam, const ::file::e_ope
 file_pointer acme_file::stdio_open(const char * pathParam, const char * attrs, int iShare)
 {
 
-   auto pfile = m_psystem->__create_new < ::stdio_file >();
+   auto pfile = m_pcontext->__create_new < ::stdio_file >();
 
    if (!pfile)
    {
@@ -165,7 +166,7 @@ file_pointer acme_file::stdio_open(const char * pathParam, const char * attrs, i
 
    }
 
-   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
    pfile->open(path, attrs, iShare);
 
@@ -187,7 +188,7 @@ memory acme_file::as_memory(const char * path, strsize iReadAtMostByteCount)
 string acme_file::as_string(const char * pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
-   auto pfile = m_psystem->__create_new < stdio_file >();
+   auto pfile = m_pcontext->__create_new < stdio_file >();
 
    if (bNoExceptionIfNotFound)
    {
@@ -196,7 +197,7 @@ string acme_file::as_string(const char * pathParam, strsize iReadAtMostByteCount
 
    }
 
-   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
    pfile->open(path, "r", _SH_DENYNO);
 
@@ -263,7 +264,7 @@ memsize acme_file::as_memory(const char * pathParam, void * p, memsize s)
 
    stdio_file file;
 
-   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
    file.open(path, "r", _SH_DENYNO);
 
@@ -301,7 +302,7 @@ void acme_file::as_memory(memory_base & memory, const char * pathParam, memsize 
 
    stdio_file file;
 
-   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
    file.open(path, "r", _SH_DENYNO);
 
@@ -587,7 +588,7 @@ bool acme_file::exists(const char * pathParam)
 
    }
 
-   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
    auto bExists = _exists(path);
 
@@ -728,7 +729,7 @@ void acme_file::erase(const char * pathParam)
 
    }
 
-   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
     _erase(path);
 
@@ -975,7 +976,7 @@ string acme_file::line(const char * pathParam, index iLine)
 
    string str;
 
-   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
 #ifdef WINDOWS
 
@@ -1050,7 +1051,7 @@ string acme_file::line(const char * pathParam, index iLine)
 string_array acme_file::lines(const char * pathParam)
 {
 
-   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
    try
    {
@@ -1100,7 +1101,7 @@ void acme_file::set_line(const char * pathParam, index iLine, const char * pszLi
 
    string str;
 
-   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
    m_pacmedirectory->create(path.folder());
 

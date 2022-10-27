@@ -2,6 +2,9 @@
 
 
 #include "apex/parallelization/thread.h"
+#include "acme/platform/context.h"
+#include "acme/filesystem/filesystem/enumerator.h"
+#include "acme/primitive/collection/string_map.h"
 
 
 namespace apex
@@ -188,14 +191,14 @@ namespace apex
       virtual void add_matter_locator(::apex::application* papp);
 
 
-      virtual void _load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions);
-      virtual void _save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter* pobject);
+      virtual void _load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload& varOptions);
+      virtual void _save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::particle * pparticle);
 
 
-      inline void load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload* pvarOptions);
-      inline void load_from_file(::matter* pobject, const ::payload& payloadFile);
-      inline void save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::matter* pobject);
-      inline void save_to_file(const ::payload& payloadFile, const ::matter* pobject);
+      inline void load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload* pvarOptions);
+      inline void load_from_file(::particle * pparticle, const ::payload& payloadFile);
+      inline void save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::particle * pparticle);
+      inline void save_to_file(const ::payload& payloadFile, const ::particle * pparticle);
 
 
       //virtual void destroy() override;

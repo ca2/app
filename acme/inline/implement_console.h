@@ -25,7 +25,10 @@ CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp);
 #endif
 
 
-void implement(::acme::system * psystem);
+#include "acme/platform/acme.h"
+
+
+void implement(::acme::context * pcontext);
 
 
 namespace acme
@@ -45,6 +48,8 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
+
+   ::acme::acme acme;
 
    subsystem subsystem;
 

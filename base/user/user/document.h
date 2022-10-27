@@ -97,7 +97,7 @@ namespace user
       template < class T >
       ::count get_typed_impact_count() const
       {
-         synchronous_lock synchronouslock(((document *)this)->mutex());
+         synchronous_lock synchronouslock(((document *) this)->synchronization());
          ::count count = 0;
          for (index index = 0; index < m_impacta.get_count(); index++)
          {
@@ -116,7 +116,7 @@ namespace user
       pointer < T > get_typed_impact(index indexFind = 0) const
       {
 
-         synchronous_lock synchronouslock(((document *)this)->mutex());
+         synchronous_lock synchronouslock(((document *) this)->synchronization());
 
          if (indexFind < 0 || indexFind >= m_impacta.get_count())
          {
@@ -168,7 +168,7 @@ namespace user
       pointer < T > get_typed_impact_with_id(atom atom) const
       {
 
-         synchronous_lock synchronouslock(((document *)this)->mutex());
+         synchronous_lock synchronouslock(((document *) this)->synchronization());
 
          ::count count = 0;
 

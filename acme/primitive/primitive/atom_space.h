@@ -13,7 +13,7 @@
 //}
 
 
-//class ::mutex;
+//class ::pointer < ::mutex >;
 
 //
 //class CLASS_DECL_ACME atom_space

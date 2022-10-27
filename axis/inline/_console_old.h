@@ -11,7 +11,7 @@ class CLASS_DECL_AXIS console :
 public:
 
    class aura_aura                  m_aura;
-   ::pointer<::aura::system>        m_psystem;
+   ::pointer<::aura::system>        acmesystem();
    //::pointer<::aura::application>   m_pacmeapplication;
 
    console(int argc, wchar_t * argv[]);

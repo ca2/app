@@ -50,7 +50,7 @@ namespace programming
 
          bool bNew = true;
 
-         ::pointer<::acme::library>lib = pcompiler->compile(         auto psystem = m_psystem;
+         ::pointer<::acme::library>lib = pcompiler->compile(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -81,7 +81,7 @@ pacmedirectory->system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp
    string application::get_visual_studio_build()
    {
 
-      ::file::path path =          auto psystem = m_psystem;
+      ::file::path path =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

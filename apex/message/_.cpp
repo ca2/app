@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system/message.h"
 #include "apex/operating_system.h"
 #include "apex/message.h"
 #include "apex/message/_constant.h"

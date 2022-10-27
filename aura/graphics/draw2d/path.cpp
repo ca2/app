@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "path.h"
-#include "aura/graphics/write_text/_.h"
+//#include "aura/graphics/write_text/_.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "acme/primitive/geometry2d/_collection_enhanced.h"
 #include "acme/primitive/geometry2d/shape_array.h"

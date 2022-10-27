@@ -122,12 +122,12 @@ simple_frame_window::~simple_frame_window()
 }
 
 
-void simple_frame_window::initialize(::object * pobject)
+void simple_frame_window::initialize(::particle * pparticle)
 {
 
    //auto estatus = 
 
-   ::experience::frame_window::initialize(pobject);
+   ::experience::frame_window::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -336,7 +336,7 @@ void simple_frame_window::task_intensive_save_window_placement()
 void simple_frame_window::defer_save_window_placement()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if (!should_save_window_rect())
    {
@@ -521,12 +521,12 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       try
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node();
 
@@ -737,7 +737,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
          }
 
-         //if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+         //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
          //{
 
          //   m_bWindowFrame = false;
@@ -750,7 +750,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
    //else
    //{
 
-   //   m_bWindowFrame = m_psystem->m_papexsystem->m_bExperienceMainFrame;
+   //   m_bWindowFrame = acmesystem()->m_papexsystem->m_bExperienceMainFrame;
 
    //}
 
@@ -811,7 +811,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
-   //if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+   //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
    //{
 
    //   m_bWindowFrame = false;
@@ -974,7 +974,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
       if (m_bDefaultNotifyIcon)
       {
 
-         //auto psystem = m_psystem->m_papexsystem;
+         //auto psystem = acmesystem()->m_papexsystem;
 
          //auto estatus = 
 
@@ -1733,7 +1733,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 #ifdef LINUX
       //if(is_window_visible())
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto pnode = psystem->node();
 
@@ -2216,7 +2216,7 @@ void simple_frame_window::on_frame_position()
 //bool simple_frame_window::_001FancyInitialFramePlacement(bool bForceRestore)
 //{
 //
-//   //if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+//   //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
 //   //{
 //
 //   //   set_need_layout();
@@ -2386,7 +2386,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pprimitiveimpl->m_puserinteraction == nullptr)
       {
@@ -2611,7 +2611,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       //printf("simplefrmwnd : " + __type_name(this) + " : blur_background");
 
-      //auto psystem = m_psystem->m_pbasesystem;
+      //auto psystem = acmesystem()->m_pbasesystem;
 
 //      class imaging & imaging = psystem->imaging();
 
@@ -3383,7 +3383,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   uia = m_uiptraChild;
 

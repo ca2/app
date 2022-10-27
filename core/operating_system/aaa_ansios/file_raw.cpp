@@ -140,7 +140,7 @@
 //
 //
 //
-//string m_psystem->m_pacmefile->line(const ::string & path, index iLine)
+//string acmefile()->line(const ::string & path, index iLine)
 //{
 //
 //   string str;
@@ -221,7 +221,7 @@
 //
 //   ::file::path path(pszPath);
 //
-//            auto psystem = m_psystem;
+//            auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

@@ -4,6 +4,8 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/matter.h"
+
 
 class CLASS_DECL_ACME nano_object :
    virtual public ::matter

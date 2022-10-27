@@ -10,7 +10,7 @@ public:
    shell_open();
    virtual ~shell_open();
 
-   virtual void initialize(::object * pobject) override;
+   virtual void initialize(::particle * pparticle) override;
 
 
    virtual void initialize_shell_open();

@@ -281,10 +281,10 @@ namespace mathematics
 
    }
 
-   void math::initialize(::object * pobject)
+   void math::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::acme::department::initialize(pobject);
+      auto estatus = ::acme::department::initialize(pparticle);
 
       if (!estatus)
       {

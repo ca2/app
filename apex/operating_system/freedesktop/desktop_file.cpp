@@ -2,6 +2,7 @@
 #include "desktop_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/platform/system.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
@@ -181,7 +182,7 @@ namespace freedesktop
 
       ::file::path path;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -291,7 +292,7 @@ namespace freedesktop
 
       //pathLaunch = pacmedirectory->home() / ".config/ca2/bin" / (strName + ".sh");
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -299,9 +300,9 @@ namespace freedesktop
 
       //::file::path pathIcon = pcontext->m_papexcontext->dir().matter("main/icon-256.png");
 
-      ::file::path pathModuleIcon256 = m_psystem->m_pacmedirectory->module() / (strName + "-256.png");
+      ::file::path pathModuleIcon256 = acmedirectory()->module() / (strName + "-256.png");
 
-      if(!m_psystem->m_pacmefile->exists(pathModuleIcon256))
+      if(!acmefile()->exists(pathModuleIcon256))
       {
 
          auto pfileMainIcon256 = pcontext->m_papexcontext->file().get_file("matter://main/icon-256.png",
@@ -349,7 +350,7 @@ namespace freedesktop
 
       strScript += "\n"; */
 
-      //m_psystem->m_pacmefile->put_contents(pathLaunch, strScript);
+      //acmefile()->put_contents(pathLaunch, strScript);
 
       strScript = "#!/bin/bash\n";
 
@@ -366,7 +367,7 @@ namespace freedesktop
 
       strScript += "\n";
 
-      m_psystem->m_pacmefile->put_contents(pathUserBin, strScript);
+      acmefile()->put_contents(pathUserBin, strScript);
 
       //chmod(pathLaunch, 0755);
       chmod(pathUserBin, 0600);

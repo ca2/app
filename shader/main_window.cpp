@@ -220,7 +220,7 @@ namespace app_shader
 
                     psaveimage->m_eformat = ::draw2d::e_format_png;
 
-                    auto psystem = m_psystem->m_paurasystem;
+                    auto psystem = acmesystem()->m_paurasystem;
 
                     auto pdatetime = psystem->m_pdatetime;
 
@@ -313,7 +313,7 @@ namespace app_shader
 
          {
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             m_maprender[strShaderPath] = prender;
 

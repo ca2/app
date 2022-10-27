@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "_netserver.h"
 #include "apex/id.h"
+#include "acme/networking/url_department.h"
+#include "acme/networking/url_domain.h"
+#include "acme/platform/system.h"
 
 
 namespace netserver
@@ -126,7 +129,7 @@ namespace netserver
       if (key == __id(location) && straValue.get_count() >= 1)
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto purl = psystem->url();
 

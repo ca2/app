@@ -93,8 +93,8 @@ namespace universal_windows
 
    //   void OsErrorToException(::i32 lOsError);
    //   void ErrnoToException(int nErrno);
-   //   void ThrowOsError(::matter * pobject, ::i32 lOsError, const char * lpszFileName = nullptr);
-   //   void ThrowErrno(::matter * pobject, int nErrno, const char * lpszFileName = nullptr);
+   //   void ThrowOsError(::particle * pparticle, ::i32 lOsError, const char * lpszFileName = nullptr);
+   //   void ThrowErrno(::particle * pparticle, int nErrno, const char * lpszFileName = nullptr);
 
    //}
 

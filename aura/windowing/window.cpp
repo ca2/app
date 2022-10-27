@@ -37,10 +37,10 @@ namespace windowing
    }
 
 
-   void window::on_initialize_object()
+   void window::on_initialize_particle()
    {
 
-      ::channel::on_initialize_object();
+      ::channel::on_initialize_particle();
 
       auto psession = get_session();
 
@@ -78,9 +78,9 @@ namespace windowing
       if(pmessage->m_atom == e_message_post_user)
       {
 
-         auto pobject = pmessage->m_union.m_pobject;
+         auto pparticle = pmessage->m_union.m_pobject;
 
-         ::pointer<::message::message>pmessagePost = pobject->m_pelement;
+         ::pointer<::message::message>pmessagePost = pparticle->m_pelement;
 
          if (::is_null(pmessagePost))
          {
@@ -1342,7 +1342,7 @@ namespace windowing
    ::aura::system* window::get_system() const
    {
 
-      return m_psystem ? m_psystem->m_paurasystem : nullptr;
+      return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
 
    }
 

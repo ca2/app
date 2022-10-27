@@ -105,11 +105,11 @@ timespec_from_ms (const ::u32 ::duration)
   return time;
 }
 
-serial::serial_impl::serial_impl (::object * pobject, const string &port, unsigned long baudrate,
+serial::serial_impl::serial_impl (::particle * pparticle, const string &port, unsigned long baudrate,
                                 enum_byte_size ebytesize,
                                 enum_parity eparity, enum_stop_bit estopbit,
                                 enum_flow_control eflowcontrol)
-  : object(pobject), port_ (port), fd_ (-1), is_open_ (false), xonxoff_ (false), rtscts_ (false),
+  : object(pparticle), port_ (port), fd_ (-1), is_open_ (false), xonxoff_ (false), rtscts_ (false),
     baudrate_ (baudrate), eparity_ (eparity),
     ebytesize_ (ebytesize), estopbit_ (estopbit), eflowcontrol_ (eflowcontrol)
 {

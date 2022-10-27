@@ -7,7 +7,7 @@ namespace hi5
 {
 
 
-   string prepare_basic_authentication(::object * pobject, const ::string & inParam1, const ::string & inParam2 );
+   string prepare_basic_authentication(::particle * pparticle, const ::string & inParam1, const ::string & inParam2 );
 
 
    namespace oAuthTwitterApiUrls
@@ -39,8 +39,8 @@ namespace hi5
    * @output: none
    *
    *--*/
-   twit::twit(::object * pobject, simple_log * psimplelog, index iLogTarget) :
-      object(pobject),
+   twit::twit(::particle * pparticle, simple_log * psimplelog, index iLogTarget) :
+      object(pparticle),
       simple_log(psimplelog, iLogTarget),
       /* Constants */
       TWIT_COLON(":"),
@@ -113,7 +113,7 @@ namespace hi5
       TWIT_TRENDSCURRENT_URL("http://api.twitter.com/1/trends/current.network_payload"),
       TWIT_TRENDSWEEKLY_URL("http://api.twitter.com/1/trends/weekly.network_payload"),
       TWIT_TRENDSAVAILABLE_URL("http://api.twitter.com/1/trends/available.network_payload"),
-      m_oauth(pobject, psimplelog, iLogTarget)
+      m_oauth(pparticle, psimplelog, iLogTarget)
    {
 
       m_setHttp["raw_http"] = true;

@@ -6,11 +6,11 @@ namespace sip
 {
 
 
-   request::request(::object * pobject) :
-      ::object(pobject),
-      transaction(pobject),
-      m_file(pobject),
-      m_form(pobject)
+   request::request(::particle * pparticle) :
+      ::object(pparticle),
+      transaction(pparticle),
+      m_file(pparticle),
+      m_form(pparticle)
    {
 
    }

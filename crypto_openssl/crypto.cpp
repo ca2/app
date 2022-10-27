@@ -5,6 +5,7 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "acme/primitive/primitive/memory.h"
+#include "apex/crypto/initializer.h"
 #include "apex/platform/context.h"
 
 
@@ -557,7 +558,7 @@ namespace crypto_openssl
 
    //   //auto psystem = get_system()->m_papexsystem;
 
-   //   auto psystem = m_psystem;
+   //   auto psystem = acmesystem();
 
    //   auto pbase64 = psystem->base64();
 
@@ -578,7 +579,7 @@ namespace crypto_openssl
    //   }
    //   storageDecrypt.from_string(pszDecrypt);
 
-   //   auto psystem = m_psystem;
+   //   auto psystem = acmesystem();
 
    //   auto pbase64 = psystem->base64();
 
@@ -602,7 +603,7 @@ namespace crypto_openssl
 
    //   memory storageKey;
 
-   //   auto psystem = m_psystem;
+   //   auto psystem = acmesystem();
 
    //   auto pbase64 = psystem->base64();
 
@@ -1006,7 +1007,7 @@ namespace crypto_openssl
       //::file::path crypto::get_crypt_key_file_path()
       //{
 
-      //   return m_psystem->m_pacmedirectory->system() / "user" / "databin.bin";
+      //   return acmedirectory()->system() / "user" / "databin.bin";
 
       //}
 
@@ -1430,7 +1431,7 @@ namespace crypto_openssl
    ::pointer<::crypto::rsa>crypto::read_priv_pem(const string& strFile)
    {
 
-      auto memory = m_psystem->m_pacmefile->as_memory(strFile);
+      auto memory = acmefile()->as_memory(strFile);
 
       if (memory.is_empty())
       {
@@ -1469,7 +1470,7 @@ namespace crypto_openssl
    ::pointer<::crypto::rsa>crypto::read_pub_pem(const string& strFile)
    {
 
-      auto memory = m_psystem->m_pacmefile->as_memory(strFile);
+      auto memory = acmefile()->as_memory(strFile);
 
       if (memory.is_empty())
       {

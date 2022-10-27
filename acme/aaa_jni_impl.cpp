@@ -13,10 +13,10 @@ thread_local JNIEnv * t_pjnienv;
 
 
 
-::mutex * g_pmutexOs;
+::pointer< ::mutex > g_pmutexOs;
 
 
-::mutex * osmutex()
+::pointer< ::mutex > osmutex()
 {
 
    return g_pmutexOs;

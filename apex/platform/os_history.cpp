@@ -1,9 +1,11 @@
 #include "framework.h"
+#include "os_history.h"
 #include "shell_launcher.h"
 
-os_history::os_history(::object * pobject) //:
+
+os_history::os_history(::particle * pparticle) //:
 //   ::object(pbojectContext)//,
-   //::apex::history(pobject)
+   //::apex::history(pparticle)
 {
 }
 

@@ -19,7 +19,7 @@ namespace gpu
    }
 
 
-   void program::create_program(::object * pobject, const string& strVertex, const string& strFragment, const string& strGeometry)
+   void program::create_program(::particle * pparticle, const string& strVertex, const string& strFragment, const string& strGeometry)
    {
 
       m_strProjection = strVertex;
@@ -27,7 +27,7 @@ namespace gpu
       m_strGeometry = strGeometry;
 
       //::e_status estatus = 
-      pobject->__construct_new(m_pshader);
+      pparticle->__construct_new(m_pshader);
 
       //if (!estatus)
       //{

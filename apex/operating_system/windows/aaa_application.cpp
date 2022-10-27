@@ -18,20 +18,20 @@
 //   virtual public object
 //{
 //protected:
-//   ::mutex    m_mutex;
+//   ::pointer < ::mutex >    m_pmutex;
 //   bool     m_bBlocked;
 //public:
-//   block_input(::object * pobject, int iSleep = 200);
+//   block_input(::particle * pparticle, int iSleep = 200);
 //
 //
 //   virtual ~block_input();
 //
 //};
-//block_input::block_input(::object * pobject, int iSleep) :
-//   ::object(pobject),
-//   m_mutex(e_create_new, "Global\\ca2_input")
+//block_input::block_input(::particle * pparticle, int iSleep) :
+//   ::object(pparticle),
+//   m_pmutex(e_create_new, "Global\\ca2_input")
 //{
-//   m_mutex.lock();
+//   m_pmutex.lock();
 //   //   repeat:
 //   m_bBlocked = ::BlockInput(true) != false;
 //   //{
@@ -58,7 +58,7 @@
 //   {
 //      ::BlockInput(false);
 //   }
-//   m_mutex.unlock();
+//   m_pmutex.unlock();
 //
 //}
 //
@@ -882,7 +882,7 @@
 ////
 ////   App(pbapp).message_box_timeout(nullptr, "Sending URL to browser...", seconds(3), MB_ICONASTERISK);
 ////
-////   block_input blockinput(pobject);
+////   block_input blockinput(pparticle);
 ////
 ////   if (!display(chrome, SW_SHOWNORMAL))
 ////      return 0;

@@ -30,14 +30,14 @@ namespace ios
 
 
       interaction_impl();
-      interaction_impl(::object * pobject);
+      interaction_impl(::particle * pparticle);
       virtual ~interaction_impl();
 
 
       virtual void construct(oswindow hwnd);
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
       virtual bool round_window_become_first_responder() override;
 

@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "string.h"
+#include "acme/exception/exception.h"
+
 
 /* --------------------------------------------------------------------- */
 

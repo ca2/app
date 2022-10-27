@@ -19,7 +19,7 @@ namespace experience_nanogui
       ~style() override;
 
       
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
 
       bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab) override;

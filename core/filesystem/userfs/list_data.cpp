@@ -102,7 +102,7 @@ namespace userfs
 
       m_iSelectionSubItem = -1;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -113,10 +113,10 @@ namespace userfs
    }
 
 
-   void list_data::initialize(::object * pobject)
+   void list_data::initialize(::particle * pparticle)
    {
 
-      ::user::list_data::initialize(pobject);
+      ::user::list_data::initialize(pparticle);
 
       __construct_new(m_pitema);
 
@@ -134,7 +134,7 @@ namespace userfs
    void list_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
 //      if(is_locked())
 //         return;
@@ -292,7 +292,7 @@ namespace userfs
    void list_data::_001GetSubItemImage(::user::mesh_subitem * psubitem)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if(psubitem->m_iSubItem == m_iNameSubItemText)
       {

@@ -2,6 +2,8 @@
 
 
 typedef CLASS_DECL_ACME pointer_array < ::matter > object_array;
+#include "acme/primitive/collection/atom_map.h"
+#include "acme/primitive/primitive/object.h"
 
 
 namespace data

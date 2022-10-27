@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/net/ftp/_.h"
+//#include "core/net/ftp/_.h"
 
 
 namespace axis
@@ -21,10 +21,10 @@ namespace axis
    }
 
 
-   void     system::initialize_system(::object * pobject, app_core * pappcore)
+   void     system::initialize_system(::particle * pparticle, app_core * pappcore)
    {
 
-      auto estatus = ::aura::system::initialize_system(pobject, pappcore);
+      auto estatus = ::aura::system::initialize_system(pparticle, pappcore);
 
       if (!estatus)
       {
@@ -33,7 +33,7 @@ namespace axis
 
       }
 
-      //estatus = ::axis::application::initialize(pobject);
+      //estatus = ::axis::application::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -46,7 +46,7 @@ namespace axis
       //add_factory_item < ::file::axis::system_dir, ::file::system_dir >();
       //add_factory_item < ::file::axis::system_file, ::file::system_file >();
 
-      //::aura::application * papp = ::get_app(pobject);
+      //::aura::application * papp = ::get_app(pparticle);
 
       //m_XstrAppId = "axis_system";
       //m_strAppName = "axis_system";
@@ -112,7 +112,7 @@ namespace axis
 
       auto estatus = create_html();
 
-      //if (m_psystem->m_phtml == nullptr)
+      //if (acmesystem()->m_phtml == nullptr)
       //{
 
       if (!estatus)
@@ -124,7 +124,7 @@ namespace axis
 
       }
 
-      //m_psystem->m_phtml->construct(get_app());
+      //acmesystem()->m_phtml->construct(get_app());
 
    //}
 

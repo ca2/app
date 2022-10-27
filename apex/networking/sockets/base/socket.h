@@ -2,6 +2,10 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/filesystem/file/streamable.h"
+
+
 namespace sockets
 {
 
@@ -53,7 +57,7 @@ namespace sockets
       //::pointer<base_socket_handler>  m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
       //socket_id                  m_socket; ///< File descriptor
 //
-//      static ::mutex *        s_pmutex;
+//      static ::pointer< ::mutex >        s_pmutex;
 //
       //::networking::address_pointer          m_paddressRemote; ///< Remote end ::networking::address
       //::networking::address_pointer          m_paddressRemoteClient; ///< Address of last connect()
@@ -745,8 +749,8 @@ virtual string GetSocks4Host();
       virtual void run() override;
       virtual bool step() override;
 
-      //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
-      //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);
 
       virtual string get_short_description();
 

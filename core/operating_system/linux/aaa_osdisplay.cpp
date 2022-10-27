@@ -17,7 +17,7 @@ void windowing_output_debug_string(const ::string & pszDebugString);
 
 
 osdisplay_dataptra * osdisplay_data::s_pdataptra = nullptr;
-::mutex * osdisplay_data::s_pmutex = nullptr;
+::pointer< ::mutex > osdisplay_data::s_pmutex = nullptr;
 
 osdisplay_data * g_posdisplaydataMain = nullptr;
 
@@ -40,7 +40,7 @@ osdisplay_data::osdisplay_data()
    m_atomNetWmState        = None;
    m_atomLongStyleEx       = 0;
    m_countReference        = 1;
-//   m_pmutexInput           = memory_new ::mutex();
+//   m_pmutexInput           = memory_new ::pointer < ::mutex >();
 
 }
 

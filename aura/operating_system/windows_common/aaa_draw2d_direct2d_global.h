@@ -73,7 +73,7 @@ namespace draw2d_direct2d
 
       D3D_FEATURE_LEVEL m_featurelevel;
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       static IDWriteFactory * dwrite_factory(bool bCreate = true);

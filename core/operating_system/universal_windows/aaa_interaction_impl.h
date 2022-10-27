@@ -31,21 +31,21 @@ namespace universal_windows
       ::user::interaction* m_pguieCapture;
 
       iptr_to_iptr                        m_mapLong;
-      ::mutex                                     m_mutexQueue;
+      ::pointer < ::mutex >                                     m_pmutexQueue;
       manual_reset_event                        m_evQueue;
       pointer_array < ::user::message >                      m_messageaQueue;
 
 
       interaction_impl();
-      interaction_impl(::object * pobject);
+      interaction_impl(::particle * pparticle);
       virtual ~interaction_impl();
 
 
       virtual void construct(oswindow hwnd);
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool has_pending_graphical_update();

@@ -8,7 +8,7 @@
 
 
 class CLASS_DECL_ACME nano_device :
-   virtual public ::matter
+   virtual public ::particle
 {
 public:
 

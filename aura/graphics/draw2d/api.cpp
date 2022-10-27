@@ -266,11 +266,11 @@ namespace draw2d
    }
 
 
-   void api::initialize(::object * pobject)
+   void api::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{

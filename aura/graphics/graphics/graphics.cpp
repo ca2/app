@@ -13,7 +13,7 @@ namespace graphics
    graphics::graphics()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_uptrBuffer = 0;
 
@@ -128,10 +128,10 @@ namespace graphics
    }
 
 
-   ::synchronization_object * graphics::get_draw_lock()
+   ::synchronization * graphics::get_draw_lock()
    {
 
-      return mutex();
+      return synchronization();
 
    }
 
@@ -219,10 +219,10 @@ namespace graphics
    }
 
 
-   synchronization_object * graphics::get_buffer_sync()
+   synchronization * graphics::get_buffer_sync()
    {
 
-      return mutex();
+      return synchronization();
 
    }
 
@@ -237,10 +237,10 @@ namespace graphics
    }
 
 
-   synchronization_object * graphics::get_screen_sync()
+   synchronization * graphics::get_screen_sync()
    {
 
-      return mutex();
+      return synchronization();
 
    }
 

@@ -2019,7 +2019,7 @@ namespace experience
 
          }
 
-         auto psystem = m_psystem->m_pbasesystem;
+         auto psystem = acmesystem()->m_pbasesystem;
 
          double dMargin = psystem->m_dDpi * 0.75 * (1.0 - sqrt((double) rectangle.area() / (double) rectangleWorkspace.area()));
 

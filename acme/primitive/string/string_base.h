@@ -60,9 +60,9 @@ public:
    //string_base(Object ^ o);
 //#endif
 
-   //string_base(const ::payload & payload);
-   //string_base(const ::property & property);
-   //string_base(const ::atom & atom);
+   string_base(const ::payload & payload);
+   string_base(const ::property & property);
+   string_base(const ::atom & atom);
    //string_base(::payload & payload);
    //string_base(property & property);
    //string_base(atom & atom);
@@ -152,6 +152,9 @@ public:
    string_base & operator += (ansichar ansich);
    string_base & operator += (wd16char wd16ch);
    string_base & operator += (wd32char wd32ch);
+   string_base & operator += (const ::payload & payload);
+   string_base & operator += (const ::property & property);
+   string_base & operator += (const ::atom & atom);
 
 
 //   template < int t_nSize >
@@ -175,14 +178,15 @@ public:
    string_base operator + (const ansichar * pszSrc) const;
    string_base operator + (const wd16char * pszSrc) const;
    string_base operator + (const wd32char * pszSrc) const;
-   string_base operator + (const string & str) const;
-   string_base operator + (const wstring & wstr) const;
    string_base operator + (const ansistring & ansistr) const;
    string_base operator + (const wd16string & wd16str)  const;
    string_base operator + (const wd32string & wd32str)  const;
    string_base operator + (ansichar character)  const;
    string_base operator + (wd16char wd16ch)  const;
    string_base operator + (wd32char wd32ch)  const;
+   string_base operator + (const ::payload & payload) const;
+   string_base operator + (const ::property & property) const;
+   string_base operator + (const ::atom & atom) const;
 
    template < typename TYPE >
    inline string_base & operator /=(const TYPE & t)
@@ -953,7 +957,7 @@ public:
    //bool xxxgetenv(const CHAR_TYPE* pszVar);
 
    // Load the string_base from resource 'nID'
-   //bool load_string(::matter* pobject, atom atom);
+   //bool load_string(::particle * pparticle, atom atom);
 
    // Load the string_base from resource 'nID' in module 'hInstance'
    /*    bool load_string(HINSTANCE hInstance,strsize nID )

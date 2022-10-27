@@ -5,8 +5,8 @@ namespace turboc
 {
 
 
-   main::main(::object * pobject) :
-      ::thread(pobject)
+   main::main(::particle * pparticle) :
+      ::thread(pparticle)
    {
 
       m_pfnMain = NULL;

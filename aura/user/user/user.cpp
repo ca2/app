@@ -24,7 +24,7 @@
 #include "aura/platform/node.h"
 
 
-::mutex * g_pmutexUser = nullptr;
+::pointer< ::mutex > g_pmutexUser = nullptr;
 
 
 CLASS_DECL_AURA void initialize_user_mutex();
@@ -63,12 +63,12 @@ namespace user
    }
 
 
-   void user::initialize(::object * pobject)
+   void user::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::acme::department::initialize(pobject);
+      ::acme::department::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -139,7 +139,7 @@ namespace user
 
       //}
 
-      m_psystem->m_pnode->fetch_user_color();
+      acmesystem()->m_pnode->fetch_user_color();
 
       m_puserstyle->default_style_construct();
 
@@ -492,7 +492,7 @@ namespace user
 
       //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -644,7 +644,7 @@ namespace user
    void user::set_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_pmousefocusLButtonDown = pmousefocus;
 
@@ -654,7 +654,7 @@ namespace user
    void user::defer_erase_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pmousefocusLButtonDown == pmousefocus)
       {
@@ -692,7 +692,7 @@ namespace user
 
          ::pointer<::aura::application>pappAura = papp;
 
-         synchronous_lock synchronouslock(&pappAura->m_mutexFrame);
+         synchronous_lock synchronouslock(&pappAura->m_pmutexFrame);
 
          ::pointer<::user::interaction>pinteraction;
 
@@ -715,7 +715,7 @@ namespace user
    }
 
 
-//   ::user::front_end_schema * GetUfeSchema(::object * pobject)
+//   ::user::front_end_schema * GetUfeSchema(::particle * pparticle)
 //   {
 //
 //      if (papp == nullptr)
@@ -744,7 +744,7 @@ namespace user
 //   }
 //
 //
-//   ::user::front_end * GetUfe(::object * pobject)
+//   ::user::front_end * GetUfe(::particle * pparticle)
 //   {
 //
 //      return Sess(papp).user()->GetUfe();
@@ -808,14 +808,14 @@ namespace user
 //   }
 
 
-   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam);
+   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam);
 
 
-   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam)
-   CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::object * pobject, ::user::interaction * pinteractionParent)
+   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam)
+   CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::user::interaction * pinteractionParent)
    {
 
-      auto pinteraction = pobject->__create_new < ::user::interaction >();
+      auto pinteraction = pparticle->__create_new < ::user::interaction >();
 
       pinteraction->create_child(pinteractionParent);
 
@@ -904,7 +904,7 @@ namespace aura
          try
          {
 
-            auto psystem = m_psystem->m_paurasystem;
+            auto psystem = acmesystem()->m_paurasystem;
 
             if (psystem)
             {
@@ -1005,13 +1005,13 @@ namespace aura
    }
 
 
-//   void session::on_app_request_bergedge_callback(::object * pobject)
+//   void session::on_app_request_bergedge_callback(::particle * pparticle)
 //   {
 //
-//      if (&App(pobject) != nullptr)
+//      if (&App(pparticle) != nullptr)
 //      {
 //
-//         psession->m_pappCurrent = &App(pobject);
+//         psession->m_pappCurrent = &App(pparticle);
 //
 //      }
 //
@@ -1366,7 +1366,7 @@ namespace user
 
             {
 
-               synchronous_lock synchronouslock(mutex());
+               synchronous_lock synchronouslock(this->synchronization());
 
                ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -1413,7 +1413,7 @@ namespace user
 
       __construct(m_pdesktopenvironment);
 
-      m_pdesktopenvironment->m_bUnhook = m_psystem->m_pauranode->m_bUnhookX;
+      m_pdesktopenvironment->m_bUnhook = acmesystem()->m_pauranode->m_bUnhookX;
 
       __construct(m_pwindowing);
 
@@ -1433,7 +1433,7 @@ namespace user
 //
 //#ifdef LINUX
 //
-//         auto psystem = m_psystem;
+//         auto psystem = acmesystem();
 //
 //         auto edesktop = psystem->get_edesktop();
 //
@@ -1465,7 +1465,7 @@ namespace user
 //
 //#elif defined(WINDOWS_DESKTOP)
 //
-//         auto psystem = m_psystem->m_paurasystem;
+//         auto psystem = acmesystem()->m_paurasystem;
 //
 //         estatus = psystem->([a-z0-9_]+)_factory("windowing", "win32");
 //
@@ -1501,7 +1501,7 @@ namespace user
 
       //}
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pnode = psystem->node();
 
@@ -1517,7 +1517,7 @@ namespace user
 
       bool bDoneALotOfThings = false;
 
-      synchronous_lock synchronouslock(&m_mutexRunnable);
+      synchronous_lock synchronouslock(m_pmutexRunnable);
 
       while (m_listRunnable.has_elements() && ::task_get_run())
       {
@@ -1561,7 +1561,7 @@ namespace user
    ::aura::system * user::get_system()
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::aura::system *> (m_psystem) : nullptr;
+      return ::is_set(acmesystem()) ? dynamic_cast <::aura::system *> (acmesystem()) : nullptr;
 
    }
 
@@ -1578,7 +1578,7 @@ namespace user
 } // namespace user
 
 
-CLASS_DECL_AURA ::mutex * user_mutex()
+CLASS_DECL_AURA ::pointer< ::mutex > user_mutex()
 {
 
    return g_pmutexUser;

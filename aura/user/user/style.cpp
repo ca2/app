@@ -23,7 +23,7 @@ namespace user
    }
 
 
-   //style::style(::object * pobject) :
+   //style::style(::particle * pparticle) :
    //{
 
    //   m_puserstyle = this;
@@ -49,12 +49,12 @@ namespace user
    }
 
 
-   void style::initialize(::object * pobject)
+   void style::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      style_base::initialize(pobject);
+      style_base::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -1087,7 +1087,7 @@ namespace user
          if (is_dark_mode())
          {
 
-            crBk = m_psystem->node()->background_color();
+            crBk = acmenode()->background_color();
 
             //crBk = argb(255, 0x40, 0x40, 0x40);
 
@@ -1095,7 +1095,7 @@ namespace user
          else
          {
 
-            crBk = m_psystem->node()->background_color();
+            crBk = acmenode()->background_color();
             //crBk = argb(255, 255, 255, 255);
 
          }

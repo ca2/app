@@ -40,7 +40,7 @@
 //
 //
 //template < typename OBJECT >
-//inline void __exchange(::payload_stream& s, ::pointer<OBJECT> pobject);
+//inline void __exchange(::payload_stream& s, ::pointer<OBJECT> pparticle);
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 //inline void __exchange(::payload_stream& stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >& array);
@@ -92,7 +92,7 @@
 //   template < typename TYPE >
 //   void var_exchange(const ::atom & atom, TYPE & t);
 //
-//   //virtual void write_object(const ::atom & atom, ::matter * pobject) ;
+//   //virtual void write_object(const ::atom & atom, ::particle * pparticle) ;
 //   //virtual ::pointer<::matter>read_object(const ::atom & atom) ;
 //
 //

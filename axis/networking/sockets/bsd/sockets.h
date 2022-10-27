@@ -25,15 +25,15 @@ namespace sockets
       AjpBaseSocket::Initializer *                 m_pajpaxissocketinit;
 
       ::count m_countHttpPostBoundary;
-      ::mutex                                        m_mutexHttpPostBoundary;
+      ::pointer < ::mutex >                                        m_pmutexHttpPostBoundary;
 
       resolv_socket::cache_t                       m_resolvcache;
       resolv_socket::timeout_t                     m_resolvtimeout;
-      ::mutex                                        m_mutexResolvCache;
+      ::pointer < ::mutex >                                        m_pmutexResolvCache;
       ::pointer<::sockets::net>                          m_spnet;
       ::net::port_forward_pointer                       m_spportforward;
 
-      ::mutex                                        m_mutexPool;
+      ::pointer < ::mutex >                                        m_pmutexPool;
       socket_map                                   m_pool; ///< Active sockets map
 
 
@@ -42,7 +42,7 @@ namespace sockets
 
       class ::sockets::net                         & net();
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       virtual void destroy() override;
 

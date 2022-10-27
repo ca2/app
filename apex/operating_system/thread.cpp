@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/parallelization/task.h"
+#include "acme/primitive/string/string.h"
 #include "apex/operating_system.h"
 
 

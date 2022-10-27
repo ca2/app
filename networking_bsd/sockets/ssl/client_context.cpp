@@ -9,7 +9,7 @@ namespace sockets_bsd
    ssl_client_context::ssl_client_context(const SSL_METHOD * pmethod)
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_psslsession = nullptr;
       m_psslcontext = nullptr;

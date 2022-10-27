@@ -36,7 +36,7 @@ namespace account
       ~department() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       class ::pointer<class authenticator> authenticator();

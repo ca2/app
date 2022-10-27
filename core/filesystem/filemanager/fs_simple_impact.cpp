@@ -172,7 +172,7 @@ namespace filemanager
 
             string strUrl;
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
             auto purl = psystem->url();
             

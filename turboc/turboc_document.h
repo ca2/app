@@ -11,7 +11,7 @@ namespace turboc
    public:
 
 
-      document(::object * pobject);
+      document(::particle * pparticle);
 	   virtual ~document();
 
       

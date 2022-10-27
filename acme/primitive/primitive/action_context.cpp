@@ -2,27 +2,29 @@
 // Created by camilo on 2022-10-22 19:05 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
+#include "action_context.h"
+#include "acme/primitive/collection/pointer_array.h"
 
 
-void action_context::add(const matter * pobject)
+void action_context::add(const ::particle * pparticle)
 {
 
-   if (!m_pobjecta) m_pobjecta = __new(pointer_array < ::matter >); m_pobjecta->add((::matter *)pobject);
+   if (!m_pparticlea) m_pparticlea = __new(pointer_array < ::matter >); m_pparticlea->add((::particle *)pparticle);
 
 }
 
 
-index action_context::find(const matter * pobject) const
+index action_context::find(const ::particle * pparticle) const
 {
 
-   return !m_pobjecta ? -1 : m_pobjecta->find_first(pobject);
+   return !m_pparticlea ? -1 : m_pparticlea->find_first(pparticle);
 
 }
 
 
-bool action_context::contains(const matter * pobject) const
+bool action_context::contains(const ::particle * pparticle) const
 {
 
-   return !m_pobjecta ? false : m_pobjecta->contains(pobject);
+   return !m_pparticlea ? false : m_pparticlea->contains(pparticle);
 
 }

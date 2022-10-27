@@ -45,7 +45,7 @@ namespace dynamic_source
 
 
 
-      library_class(::object * pobject);
+      library_class(::particle * pparticle);
       ~library_class();
 
 

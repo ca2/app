@@ -716,7 +716,7 @@ inline const wd32char * wd32_find_char_reverse(const wd32char * psz, wd32char ch
 inline void wd32_from_u64_base(wd32char * sz, u64 u, i32 iBase)
 {
 
-   u64towd32(u, sz, iBase);
+   __u64towd32(u, sz, iBase);
 
 }
 
@@ -724,7 +724,7 @@ inline void wd32_from_u64_base(wd32char * sz, u64 u, i32 iBase)
 inline void wd32_from_i64_base(wd32char * sz, i64 i, i32 iBase)
 {
 
-   i64towd32(i, sz, iBase);
+   __i64towd32(i, sz, iBase);
 
 }
 

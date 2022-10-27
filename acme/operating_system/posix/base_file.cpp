@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/exception/exception.h"
 //#include "acme/operating_system.h"
 //#ifdef WINDOWS
 //#include <io.h>
@@ -68,7 +69,7 @@
 //}
 //
 //
-//int_bool m_psystem->m_pacmefile->exists(const char * path1)
+//int_bool acmefile()->exists(const char * path1)
 //{
 //
 //   // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -94,7 +95,7 @@
 //}
 //
 //
-//int_bool m_psystem->m_pacmepath->is_file_or_dir(const char * path1, ::file::enum_type * petype)
+//int_bool acmepath()->is_file_or_dir(const char * path1, ::file::enum_type * petype)
 //{
 //
 //   struct stat st;
@@ -136,12 +137,12 @@
 //}
 //
 //
-//int_bool m_psystem->m_pacmefile->put_contents(const char * path, const char * contents, ::count len)
+//int_bool acmefile()->put_contents(const char * path, const char * contents, ::count len)
 //{
 //
 //   bool bOk = false;
 //
-//            auto psystem = m_psystem;
+//            auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -196,7 +197,7 @@
 //
 //
 //
-//string m_psystem->m_pacmefile->as_string(const char * path, strsize iReadAtMostByteCount)
+//string acmefile()->as_string(const char * path, strsize iReadAtMostByteCount)
 //{
 //
 //   string str;
@@ -231,7 +232,7 @@
 //string_array file_as_lines(const char * path, strsize iReadAtMostByteCount)
 //{
 //
-//   string str = m_psystem->m_pacmefile->as_string(path, iReadAtMostByteCount);
+//   string str = acmefile()->as_string(path, iReadAtMostByteCount);
 //
 //   string_array stra;
 //

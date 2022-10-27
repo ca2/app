@@ -11,12 +11,12 @@ namespace calculator
       virtual public ::user::impact
    {
    public:
-      impact(::object * pobject);
+      impact(::particle * pparticle);
       virtual ~impact();
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
       virtual ::pointer<::user::interaction>backimpact_GetWnd();

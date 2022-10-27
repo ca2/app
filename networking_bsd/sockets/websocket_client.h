@@ -44,7 +44,7 @@ namespace networking_bsd
       int         m_i;
       byte        m_maskingkey[4];
       int         m_iLastPos;
-      ::mutex       m_mutexWebsocketWrite;
+      ::pointer < ::mutex >       m_pmutexWebsocketWrite;
       string            m_strOrigin;
 
 

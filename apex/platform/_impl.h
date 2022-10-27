@@ -36,7 +36,7 @@
 //
 //      }
 //
-////      auto estatus = papp->initialize(pobject);
+////      auto estatus = papp->initialize(pparticle);
 ////
 ////      if (!estatus)
 ////      {

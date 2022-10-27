@@ -10,9 +10,9 @@ namespace hellobase
 
 
 
-   impact::impact(::object * pobject):
-      object(pobject),
-      impact_base(pobject),
+   impact::impact(::particle * pparticle):
+      object(pparticle),
+      impact_base(pparticle),
       m_pimageColor,
       m_pimageAi1,
       m_pimageAi2
@@ -45,7 +45,7 @@ namespace hellobase
 
       m_prender->m_pimpact = this;
 
-      m_prender->m_pmutexText = &m_mutexText;
+      m_prender->m_pmutexText = m_pmutexText;
 
       m_bOkPending = true;
 
@@ -122,11 +122,11 @@ namespace hellobase
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       {
 
-         synchronous_lock slText(&m_mutexText);
+         synchronous_lock slText(m_pmutexText);
 
          if(m_strNewHelloBase.is_empty())
          {
@@ -239,7 +239,7 @@ namespace hellobase
    string impact::get_processed_hellobase()
    {
 
-      synchronous_lock slText(&m_mutexText);
+      synchronous_lock slText(m_pmutexText);
 
       string str = get_hellobase();
 
@@ -340,7 +340,7 @@ namespace hellobase
    string impact::get_hellobase()
    {
 
-      synchronous_lock synchronouslock(&m_mutexText);
+      synchronous_lock synchronouslock(m_pmutexText);
 
       if(m_strHelloBase != m_strNewHelloBase)
       {
@@ -398,7 +398,7 @@ namespace hellobase
       if (m_prender != nullptr)
       {
 
-         synchronous_lock synchronouslock(&m_mutexText);
+         synchronous_lock synchronouslock(m_pmutexText);
 
          if (get_processed_hellobase() != m_prender->m_strHelloBase)
          {

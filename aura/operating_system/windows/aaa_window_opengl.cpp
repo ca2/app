@@ -43,7 +43,7 @@ namespace opengl
    }
 
 
-   synchronization_object * buffer::get_draw_lock()
+   synchronization * buffer::get_draw_lock()
    {
 
       return mutex();

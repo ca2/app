@@ -59,7 +59,7 @@ namespace x11
       Window window_from_name(char const *name, int iOffset, int depth = 1);
 
 
-      static display * get(::object * pobject, bool bBranch = true, Display * pdisplay = nullptr);
+      static display * get(::particle * pparticle, bool bBranch = true, Display * pdisplay = nullptr);
 
       bool message_loop_step();
       void message_loop();

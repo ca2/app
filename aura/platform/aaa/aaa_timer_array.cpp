@@ -10,7 +10,7 @@ namespace aura
 
       m_bOk = true;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -39,7 +39,7 @@ namespace aura
 
       }
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_bOk)
       {
@@ -110,7 +110,7 @@ namespace aura
    bool timer_array::delete_timer(uptr uEvent)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto * ppair = m_map.plookup(uEvent);
 
@@ -135,7 +135,7 @@ namespace aura
    bool timer_array::erase_timer(::timer * ptimer)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       try
       {
@@ -237,7 +237,7 @@ namespace aura
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          __keep(m_bOk, false);
 
@@ -276,7 +276,7 @@ namespace aura
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          __keep(m_bOk, false);
 

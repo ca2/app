@@ -33,7 +33,7 @@ namespace dynamic_source
 
       m_bNew = true;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -45,12 +45,12 @@ namespace dynamic_source
 
 
 
-   void script::on_initialize_object()
+   void script::on_initialize_particle()
    {
 
       //auto estatus = 
       
-      ::object::on_initialize_object();
+      ::object::on_initialize_particle();
 
       //if(!estatus)
       //{
@@ -134,7 +134,7 @@ namespace dynamic_source
 
       m_durationLastVersionCheck.Now();
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       bool bMatches = false;
 
@@ -149,7 +149,7 @@ namespace dynamic_source
    bool ds_script::ShouldBuild()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bHasFatalError)
       {
@@ -180,7 +180,7 @@ namespace dynamic_source
    void ds_script::on_start_build()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_bShouldCalcTempError     = true;
 
@@ -198,14 +198,14 @@ namespace dynamic_source
 
    bool ds_script::HasTimedOutLastBuild()
    {
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
       return (m_durationLastBuildTime.elapsed()) >
          INTEGRAL_SECOND{ m_pmanager->m_iBuildTimeWindow + __random(0, m_pmanager->m_iBuildTimeRandomWindow) };
    }
 
    bool ds_script::HasCompileOrLinkError()
    {
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       string str;
 
@@ -235,7 +235,7 @@ namespace dynamic_source
 
    bool ds_script::HasTempError()
    {
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
       // if m_strError is empty, sure there is a error... at least the
       // successfull compilation/linking message ("error message" => m_strError) should exist
       // If it is empty, it is considered a temporary error (due locks or race conditions...)
@@ -250,7 +250,7 @@ namespace dynamic_source
    bool ds_script::CalcHasTempError()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bHasTempOsError)
          return true;
@@ -327,7 +327,7 @@ namespace dynamic_source
    void ds_script::Load()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto pcontext = get_context();
 
@@ -360,7 +360,7 @@ namespace dynamic_source
 
          string strStagePath = m_pmanager->get_full_stage_path(m_strScriptPath);
 
-         m_psystem->m_pacmefile->copy(strStagePath, m_strScriptPath, true);
+         acmefile()->copy(strStagePath, m_strScriptPath, true);
 
          m_plibrary->open(strStagePath);
 
@@ -432,7 +432,7 @@ namespace dynamic_source
 
       m_evCreationEnabled.ResetEvent();
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if(m_plibrary != nullptr && m_plibrary->is_opened())
       {
@@ -457,7 +457,7 @@ namespace dynamic_source
 
       synchronous_lock slCompiler(&papp->m_semCompiler);
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       defer_build();
 
@@ -504,7 +504,7 @@ namespace dynamic_source
    void ds_script::defer_build()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_plibrary.is_set() && !m_plibrary->is_closed())
       {
@@ -603,7 +603,7 @@ namespace dynamic_source
 
       {
 
-         synchronous_lock synchronouslock(&m_pmanager->m_mutexShouldBuild);
+         synchronous_lock synchronouslock(&m_pmanager->m_pmutexShouldBuild);
 
          m_pmanager->m_mapShouldBuild[m_strSourcePath] = false;
 

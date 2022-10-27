@@ -254,9 +254,9 @@
 //// out-of-line functions
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-//raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::raw_array(::matter * pobject)
+//raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::raw_array(::particle * pparticle)
 //   //:
-//   //::matter(pobject)
+//   //::matter(pparticle)
 //{
 //
 //}

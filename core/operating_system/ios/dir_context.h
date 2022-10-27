@@ -19,7 +19,7 @@ namespace ios
       virtual ~dir_context();
       
       
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       //virtual void update_module_path();
       virtual void init_context() override;
 
@@ -60,14 +60,14 @@ namespace ios
       virtual ::file::path appdata() override;
       virtual ::file::path commonappdata_root() override;
       
-//      virtual ::file::path usersystemappdata(::object * pobject, const ::string & lpcszPrefix);
-//      virtual ::file::path userappdata(::object * pobject);
-//      virtual ::file::path userdata(::object * pobject);
-//      //virtual ::file::path userfolder(::object * pobject);
-//      virtual ::file::path default_os_user_path_prefix(::object * pobject);
-//      virtual ::file::path default_userappdata(::object * pobject,const string & lpcszPrefix,const string & lpcszLogin );
-//      virtual ::file::path default_userdata(::object * pobject,const string & lpcszPrefix,const string & lpcszLogin);
-//      virtual ::file::path default_userfolder(::object * pobject,const string & lpcszPrefix,const string & lpcszLogin);
+//      virtual ::file::path usersystemappdata(::particle * pparticle, const ::string & lpcszPrefix);
+//      virtual ::file::path userappdata(::particle * pparticle);
+//      virtual ::file::path userdata(::particle * pparticle);
+//      //virtual ::file::path userfolder(::particle * pparticle);
+//      virtual ::file::path default_os_user_path_prefix(::particle * pparticle);
+//      virtual ::file::path default_userappdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin );
+//      virtual ::file::path default_userdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin);
+//      virtual ::file::path default_userfolder(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin);
       virtual ::file::path userquicklaunch() override;
       virtual ::file::path userprograms() override;
       

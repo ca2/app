@@ -103,8 +103,8 @@ namespace linux
    }
 
 
-   interaction_impl::interaction_impl(::matter * pobject) :
-      ::matter(pobject)
+   interaction_impl::interaction_impl(::particle * pparticle) :
+      ::matter(pparticle)
    {
 
       linux_interaction_impl_common_construct();
@@ -960,7 +960,7 @@ namespace linux
 
       {
 
-         single_lock synchronouslock(get_app() == nullptr ? nullptr : get_app()->mutex(), true);
+         single_lock synchronouslock(get_app() == nullptr ? nullptr : get_app()->synchronization(), true);
 
          ::thread* pThread = ::get_task();
 
@@ -2398,8 +2398,8 @@ namespace linux
 //      oswindow m_hwnd;
 //      HDC m_hdc;
 //
-//      print_window(::matter * pobject, oswindow hwnd, HDC hdc, ::u32 tickTimeout) :
-//         ::matter(pobject)
+//      print_window(::particle * pparticle, oswindow hwnd, HDC hdc, ::u32 tickTimeout) :
+//         ::matter(pparticle)
 //      {
 //         m_event.ResetEvent();
 //         m_hwnd = hwnd;

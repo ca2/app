@@ -38,7 +38,7 @@ namespace user
 
       m_bEmbedded = false;        // default to file-based document
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -105,7 +105,7 @@ namespace user
    ::base::system * document::get_system() const 
    {
       
-      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
    
    }
 
@@ -137,7 +137,7 @@ namespace user
    ::user::interaction_array document::get_top_level_windows()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ::user::interaction_array uia;
 
@@ -503,7 +503,7 @@ namespace user
    void document::disconnect_impacts()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       for (index index = 0; index < m_impacta.get_count(); index++)
       {
@@ -551,7 +551,7 @@ namespace user
    ::pointer<::user::impact>document::get_impact(index index) const
    {
 
-      synchronous_lock synchronouslock(((document *)this)->mutex());
+      synchronous_lock synchronouslock(((document *) this)->synchronization());
 
       if (index < 0 || index >= m_impacta.get_count())
       {
@@ -603,7 +603,7 @@ namespace user
    ::pointer<::user::impact>document::get_typed_impact(::type info, index indexFind)
    {
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       ::count countImpact = get_impact_count();
 
@@ -643,7 +643,7 @@ namespace user
 
    ::pointer<::user::impact>document::get_typed_impact_with_id(::type info, atom atom)
    {
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
       ::count countImpact = get_impact_count();
       ::count countFind = 0;
       ::pointer<::user::impact>pimpact;
@@ -760,7 +760,7 @@ namespace user
       else if (payloadFile.cast < ::file::file>() != nullptr)
       {
 
-         auto psystem = m_psystem->m_pbasesystem;
+         auto psystem = acmesystem()->m_pbasesystem;
 
          auto pdatetime = psystem->datetime();
 
@@ -1124,7 +1124,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          for (auto & pimpact : m_impacta.ptra())
          {
@@ -1155,7 +1155,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_impacta.erase_all();
 
@@ -1171,7 +1171,7 @@ namespace user
 
       ::pointer<::object>pthis = this;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto viewptra = m_impacta;
 
@@ -1362,7 +1362,7 @@ namespace user
    //  (at least one of our views must be in this frame)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ASSERT_VALID(pframeParam);
 
@@ -1795,7 +1795,7 @@ namespace user
    void document::add_impact(::user::impact * pimpact)
    {
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       ASSERT_VALID(pimpact);
 
@@ -1825,7 +1825,7 @@ namespace user
    void document::erase_impact(::user::impact * pimpact)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ASSERT_VALID(pimpact);
 

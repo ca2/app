@@ -1,8 +1,10 @@
 #include "framework.h"
-#include "apex/networking/sockets/_.h"
-//#include "apex/platform/app_core.h"
+#include "log.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/trace.h"
+#include "acme/primitive/primitive/payload.h"
 
 
 //CLASS_DECL_APEX string task_get_name();
@@ -44,7 +46,7 @@ namespace apex
 
 #else
 
-      defer_create_mutex();
+      defer_create_synchronization();
       
 #endif
       
@@ -134,7 +136,7 @@ namespace apex
       //set_trace_category(trace_category_socket, "category_Socket", e_trace_level_warning);       // socket traces
 
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bInitialized)
       {
@@ -148,14 +150,14 @@ namespace apex
       m_bInitialized = true;
 
 
-      ::file::path pathTrace = m_psystem->m_pacmedirectory->system() / "trace.txt";
+      ::file::path pathTrace = acmedirectory()->system() / "trace.txt";
 
 #ifdef __DEBUG
 
-      if (!m_psystem->m_pacmefile->exists(pathTrace))
+      if (!acmefile()->exists(pathTrace))
       {
 
-         m_psystem->m_pacmefile->put_contents(pathTrace, "yes");
+         acmefile()->put_contents(pathTrace, "yes");
 
       }
 
@@ -177,7 +179,7 @@ namespace apex
 
 #endif
 
-      if (m_psystem->m_pacmefile->is_true(m_psystem->m_pacmedirectory->system() / "log.txt"))
+      if (acmefile()->is_true(acmedirectory()->system() / "log.txt"))
       {
 
          m_bLog = true;
@@ -308,9 +310,9 @@ namespace apex
 //   void log::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) const
 //   {
 //
-//      //const char * pszTopicText = ::is_set(pobject) ? pobject->topic_text() : nullptr;
+//      //const char * pszTopicText = ::is_set(pparticle) ? pparticle->topic_text() : nullptr;
 //
-//      //synchronous_lock sl2(&m_mutexTrace);
+//      //synchronous_lock sl2(m_pmutexTrace);
 //
 ////      synchronous_lock sl2(mutex());
 ////
@@ -472,12 +474,12 @@ namespace apex
 ////
 ////         strIndex.format("%d-%05d", get_current_process_id(), iRetry);
 ////
-////         m_strLogPath = m_psystem->m_pacmedirectory->appdata() / string(m_atom) / strDatetime + "-" + strIndex + ".ca2log";
+////         m_strLogPath = acmedirectory()->appdata() / string(m_atom) / strDatetime + "-" + strIndex + ".ca2log";
 ////
 ////         try
 ////         {
 ////
-////                     auto psystem = m_psystem;
+////                     auto psystem = acmesystem();
 //
 ////         auto pacmedirectory = psystem->m_pacmedirectory;
 ////
@@ -556,7 +558,7 @@ namespace apex
 ////
 ////                  sleep(1_s);
 ////
-////                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && m_psystem->m_pacmefile->exists(m_psystem->m_pacmedirectory->system() / "logviewer.txt"))
+////                  if (!acmepath()->app_module().contains_ci("logviewer") && acmefile()->exists(acmedirectory()->system() / "logviewer.txt"))
 ////                  {
 ////
 ////                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", e_display_restored, false);
@@ -723,7 +725,7 @@ namespace apex
    void log::destroy()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bInitialized)
       {

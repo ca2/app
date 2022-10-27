@@ -17,12 +17,12 @@ namespace html
    }
 
 
-   void style_sheet::initialize(::object * pobject)
+   void style_sheet::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{

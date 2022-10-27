@@ -51,7 +51,7 @@ namespace gpu
       virtual void lock_context();
       virtual void unlock_context();
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       virtual string _001GetIntroProjection();
       virtual string _001GetIntroFragment();

@@ -1,7 +1,8 @@
 #include "framework.h"
 #include "value.h"
 #include "number.h"
-
+#include "acme/primitive/collection/address_array.h"
+#include "acme/exception/not_implemented.h"
 #if defined(LINUX)
 #include <ctype.h>
 #endif

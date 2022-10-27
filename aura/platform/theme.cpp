@@ -26,12 +26,12 @@ namespace aura
    }
 
 
-   void theme::initialize(::object * pobject)
+   void theme::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -186,7 +186,7 @@ namespace aura
 
 #endif
 
-      ::file::path pathWeatherState = m_psystem->m_pacmedirectory->config() / "weather_state.txt";
+      ::file::path pathWeatherState = acmedirectory()->config() / "weather_state.txt";
 
       auto pcontext = get_context();
 
@@ -315,7 +315,7 @@ namespace aura
    void theme::on_change_weather_state()
    {
 
-      ::file::path pathWeatherState = m_psystem->m_pacmedirectory->config() / "weather_state.txt";
+      ::file::path pathWeatherState = acmedirectory()->config() / "weather_state.txt";
 
       auto pcontext = get_context();
 
@@ -479,7 +479,7 @@ namespace aura
 
       sync_with_stored_theme();
 
-      m_watchidWeather = pcontext->m_papexcontext->dir().watcher().add_watch(m_psystem->m_pacmedirectory->config(), { e_as, this }, false);
+      m_watchidWeather = pcontext->m_papexcontext->dir().watcher().add_watch(acmedirectory()->config(), { e_as, this }, false);
       
       on_change_theme();
 

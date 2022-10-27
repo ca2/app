@@ -11,7 +11,7 @@ namespace calculator
    public:
 
 
-      document(::object * pobject);   
+      document(::particle * pparticle);   
       virtual ~document();
 
 
@@ -22,8 +22,8 @@ namespace calculator
    
       
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
       bool on_open_document(const ::payload & payloadFile) override;

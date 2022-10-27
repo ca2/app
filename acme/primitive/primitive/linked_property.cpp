@@ -1,5 +1,6 @@
 #include "framework.h"
-
+#include "linked_property.h"
+#include "acme/primitive/primitive/property_object.h"
 
 
 void linked_property::notify_property_changed(const ::action_context & actioncontext) const

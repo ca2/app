@@ -57,6 +57,9 @@ enum enum_flag : u64
    e_flag_storing = 1 << 22,
    e_flag_alertable_wait = 1 << 23,
    e_flag_verbose = 1 << 24,
+   e_flag_acquired = 1 << 25,
+   e_flag_own_synchronization = 1 << 26,
+   e_flag_already_exists = 1 << 27,
 
 
 };

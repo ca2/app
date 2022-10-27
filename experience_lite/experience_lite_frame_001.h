@@ -22,7 +22,7 @@
             public:
 
 
-               frame_001(::object * pobject);
+               frame_001(::particle * pparticle);
                virtual ~frame_001();
 
                virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;

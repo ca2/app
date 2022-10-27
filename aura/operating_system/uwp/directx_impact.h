@@ -15,7 +15,7 @@ namespace universal_windows
       ::pointer<::universal_windows::interaction_impl>                      m_pimpl;
 
       template < typename PRED >
-      void synchronization_object(PRED pred)
+      void synchronization(PRED pred)
       {
 
          ::winrt::Windows::UI::Core::CoreDispatcher ^ pdispatcher = nullptr;
@@ -71,7 +71,7 @@ namespace universal_windows
       bool                                                     m_bTextCompositionActive;
       //widestring                                               m_strText;
       widestring                                               m_strNewText;
-      ::aura::system *                                         m_psystem;
+      ::aura::system *                                         acmesystem();
 
       Agile < ::winrt::Windows::UI::Core::CoreWindowResizeManager >   m_resizemanager;
 
@@ -110,7 +110,7 @@ namespace universal_windows
       impact();
 
 
-      //inline ::user::interaction* host() { return Sess(m_psystem->get_session())->host(); }
+      //inline ::user::interaction* host() { return Sess(acmesystem()->get_session())->host(); }
       //inline ::user::interaction * host() { return m_puserinteraction->get_host_window(); }
       inline ::user::interaction * host() { return m_puserinteraction; }
 

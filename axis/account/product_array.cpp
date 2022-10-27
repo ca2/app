@@ -11,7 +11,7 @@ namespace account
    product_array::product_array()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -109,7 +109,7 @@ namespace account
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_map[strAppId] = __new(::account::product);
 

@@ -200,10 +200,10 @@ namespace async
 
 
       template < class COMPLETION_CALLBACK >
-      void set_completion_callback(COMPLETION_CALLBACK * pobject, void (COMPLETION_CALLBACK :: *pfncompletioncallback)(task < T > & task, const ::e_status & estatus))
+      void set_completion_callback(COMPLETION_CALLBACK * pparticle, void (COMPLETION_CALLBACK :: *pfncompletioncallback)(task < T > & task, const ::e_status & estatus))
       {
 
-         m_pcompletioncallback      = static_cast < completion_callback * > (pobject);
+         m_pcompletioncallback      = static_cast < completion_callback * > (pparticle);
 
          m_pfncompletioncallback    = static_cast < completion_callback * > (pfncompletioncallback);
 

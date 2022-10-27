@@ -254,7 +254,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && !::__assert_failed_line(__FILE__, __LINE__) && (::debug_break(), 0)) || (!is_debugger_attached() && (throw_assert_exception(__FILE__, __LINE__), 0))))
 ////#define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
-////#define ASSERT_VALID(pOb)  ::__assert_object_ok(pOb, __FILE__, __LINE__)
+////#define ASSERT_VALID(pOb)  ::__assert_particle_ok(pOb, __FILE__, __LINE__)
 ////
 ////
 ////#else
@@ -584,17 +584,17 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////inline ::matter * context_trace_object() { return general_trace_object(); }
 ////
 ////
-////CLASS_DECL_AURA void __tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz);
-////CLASS_DECL_AURA void __tracef(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz, ...);
-////CLASS_DECL_AURA void __tracev(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz, va_list vargs);
+////CLASS_DECL_AURA void __tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz);
+////CLASS_DECL_AURA void __tracef(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz, ...);
+////CLASS_DECL_AURA void __tracev(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz, va_list vargs);
 ////CLASS_DECL_AURA const char * trace_category_name(e_trace_category ecategory);
 ////
 ////
 ////CLASS_DECL_AURA ::matter * trace_object(e_trace_category ecategory);
 ////
-////const char * topic_text(::matter * pobject);
+////const char * topic_text(::particle * pparticle);
 ////
-////e_trace_category object_trace_category(::matter * pobject);
+////e_trace_category object_trace_category(::particle * pparticle);
 ////
 ////
 ////
@@ -871,7 +871,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////class trait;
 ////class create;
-////class synchronization_object;
+////class synchronization;
 ////
 ////
 //////CLASS_DECL_AURA i32 aura_run_system(::aura::system* psystem);
@@ -1343,7 +1343,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //////CLASS_DECL_AURA void register_aura_library(const ::string & psz, ::acme::library* plibrary);
 //////
 //////CLASS_DECL_AURA ::context * get_context();
-//////CLASS_DECL_AURA inline ::context * get_context(::object * pobject);
+//////CLASS_DECL_AURA inline ::context * get_context(::particle * pparticle);
 //////CLASS_DECL_AURA inline ::context * get_context(::context * pcontext);
 ////
 ////
@@ -1352,17 +1352,17 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////
 ////CLASS_DECL_AURA ::aura::application * get_app();
-////CLASS_DECL_AURA inline ::aura::application * get_app(::object * pobject);
+////CLASS_DECL_AURA inline ::aura::application * get_app(::particle * pparticle);
 ////CLASS_DECL_AURA inline ::aura::application * get_app(::aura::application * papp);
 ////CLASS_DECL_AURA inline ::aura::application * get_app() { return get_app(); }
 ////
 ////
 ////CLASS_DECL_AURA::aura::session * get_session();
-////CLASS_DECL_AURA inline ::aura::session * get_session(::object * pobject);
+////CLASS_DECL_AURA inline ::aura::session * get_session(::particle * pparticle);
 ////CLASS_DECL_AURA inline ::aura::session * get_session(::aura::session * psession);
 ////
 ////CLASS_DECL_AURA::aura::system * get_context_system();
-////CLASS_DECL_AURA inline ::aura::system * get_context_system(::object * pobject);
+////CLASS_DECL_AURA inline ::aura::system * get_context_system(::particle * pparticle);
 ////CLASS_DECL_AURA inline ::aura::system * get_context_system(::aura::system * psystem);
 ////
 ////
@@ -1792,7 +1792,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////class sticker;
 ////
 ////
-////inline ::matter * trace_object(::matter * pobject) { return pobject; }
+////inline ::matter * trace_object(::particle * pparticle) { return pparticle; }
 ////
 ////template < typename POINTER_TYPE >
 ////class ptr_array;

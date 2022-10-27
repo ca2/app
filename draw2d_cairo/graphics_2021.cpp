@@ -43,7 +43,7 @@ double g_dPi = atan(1.0) * 4.0;
 
 #include <pango/pangocairo.h>
 
-::mutex * g_pmutexFc = nullptr;
+::pointer< ::mutex > g_pmutexFc = nullptr;
 
 FcBool g_fcResult;
 
@@ -236,12 +236,12 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::initialize(::object * pobject)
+   void graphics::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
 
-      ::draw2d::graphics::initialize(pobject);
+      ::draw2d::graphics::initialize(pparticle);
 
       //if(!estatus)
       //{
@@ -250,7 +250,7 @@ namespace draw2d_cairo
 
       //}
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
@@ -3170,7 +3170,7 @@ namespace draw2d_cairo
 // special graphics drawing primitives/helpers
 
 
-//::draw2d::brush * PASCAL graphics::GetHalftoneBrush(::object * pobject)
+//::draw2d::brush * PASCAL graphics::GetHalftoneBrush(::particle * pparticle)
 //{
 //
 //    return nullptr;

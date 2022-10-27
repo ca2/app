@@ -5,11 +5,11 @@ namespace browser
 {
 
 
-   main_impact::main_impact(::object * pobject):
-      object(pobject),
-      ::user::split_layout(pobject),
-      ::user::split_impact(pobject),
-      place_holder_container(pobject)
+   main_impact::main_impact(::particle * pparticle):
+      object(pparticle),
+      ::user::split_layout(pparticle),
+      ::user::split_impact(pparticle),
+      place_holder_container(pparticle)
    {
 
       m_ptopview = nullptr;

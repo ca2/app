@@ -582,12 +582,12 @@ namespace filemanager
    }
 
 
-   void operation::initialize(::object * pobject)
+   void operation::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{

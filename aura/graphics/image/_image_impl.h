@@ -203,7 +203,7 @@
 ////}
 //
 //
-//// inline ::image_pointer __create_image(::object * pobject)
+//// inline ::image_pointer __create_image(::particle * pparticle)
 //// {
 //
 ////    auto ptype = __create_new_image();
@@ -215,7 +215,7 @@
 //
 ////    }
 //
-////    auto estatus = ptype->initialize(pobject);
+////    auto estatus = ptype->initialize(pparticle);
 //
 ////    if (!estatus)
 ////    {

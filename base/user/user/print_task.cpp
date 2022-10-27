@@ -18,12 +18,12 @@ namespace user
    }
 
 
-   void print_task::initialize(::object * pobject)
+   void print_task::initialize(::particle * pparticle)
    {
 
       //auto estatus =
       
-      ::task::initialize(pobject);
+      ::task::initialize(pparticle);
 
       //if (!estatus)
       //{

@@ -18,9 +18,9 @@ namespace user
    }
 
 
-   bool image_manager::Initialize(::object * pobject, ::u32 uaMenuV003Map [][2])
+   bool image_manager::Initialize(::particle * pparticle, ::u32 uaMenuV003Map [][2])
    {
-      __UNREFERENCED_PARAMETER(pobject);
+      __UNREFERENCED_PARAMETER(pparticle);
       __UNREFERENCED_PARAMETER(uaMenuV003Map);
       throw ::interface_only();
 

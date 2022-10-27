@@ -276,7 +276,7 @@ namespace hotplugin
 
       {
 
-         ::mutex pmutex = __new(::mutex(e_create_new, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
+         ::pointer < ::mutex > pmutex = __new(::pointer < ::mutex >(e_create_new, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
 
          if(::get_last_error() == ERROR_ALREADY_EXISTS)
          {
@@ -380,7 +380,7 @@ namespace hotplugin
 
       throw ::exception(todo);
 
-      //::install::starter_start * pstart    = memory_new ::install::starter_start(pobject);
+      //::install::starter_start * pstart    = memory_new ::install::starter_start(pparticle);
 
       //pstart->m_phost               = phost;
 
@@ -413,7 +413,7 @@ namespace hotplugin
 
       throw ::exception(todo);
 
-      //::install::starter_start * pstart = memory_new ::install::starter_start(pobject);
+      //::install::starter_start * pstart = memory_new ::install::starter_start(pparticle);
 
       //pstart->m_phost               = phost;
 

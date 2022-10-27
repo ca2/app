@@ -120,7 +120,7 @@
 //   try
 //   {
 //
-//      if (         auto psystem = m_psystem;
+//      if (         auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -203,7 +203,7 @@
 //}
 
 
-//CLASS_DECL_APEX int_bool m_psystem->m_pacmepath->is_file_or_dir(const char* path, ::file::enum_type* petype)
+//CLASS_DECL_APEX int_bool acmepath()->is_file_or_dir(const char* path, ::file::enum_type* petype)
 //{
 //
 //   auto dwFileAttributes = windows_get_file_attributes(path);

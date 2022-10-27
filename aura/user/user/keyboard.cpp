@@ -34,7 +34,7 @@ namespace user
    keyboard::keyboard()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -45,12 +45,12 @@ namespace user
    }
 
 
-   void keyboard::initialize(::object * pobject)
+   void keyboard::initialize(::particle * pparticle)
    {
 
       // auto estatus =
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -59,7 +59,7 @@ namespace user
 
       //}
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
 //      SET_ENUM_TEXT(e_key_0);
 //      SET_ENUM_TEXT(e_key_1);
@@ -270,7 +270,7 @@ namespace user
    ::user::enum_key keyboard::wparam_to_userkey(wparam wparam)
    {
       
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
    
       auto psession = psystem->get_session();
       
@@ -289,7 +289,7 @@ namespace user
    bool keyboard::load_os_layout(const ::file::path & pszPath)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       //i32 iCode;
 
@@ -559,7 +559,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//      string strOverride = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+//      string strOverride = acmefile()->as_string(         auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -728,7 +728,7 @@ namespace user
    void keyboard::translate_os_key_message(key * pkey)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if(pkey->m_ekey == ::user::e_key_refer_to_text_member
          && pkey->m_strText.has_char())

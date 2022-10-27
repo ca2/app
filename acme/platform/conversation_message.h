@@ -5,8 +5,10 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 01/Oct/22. 00:59
 //  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
 //
-
 #pragma once
+
+
+#include "acme/user/user/conversation.h"
 
 
 class CLASS_DECL_ACME conversation_message :

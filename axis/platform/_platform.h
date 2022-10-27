@@ -12,13 +12,13 @@
 #define APP_TYPE ::axis::application
 //
 //#undef Sys
-//#define Sys(pobject) (*(::get_context_system(pobject))->cast < SYSTEM_TYPE >())
+//#define Sys(pparticle) (*(::get_context_system(pparticle))->cast < SYSTEM_TYPE >())
 //
 //#undef Sess
-//#define Sess(pobject) (*(::get_session(pobject))->cast < SESSION_TYPE >())
+//#define Sess(pparticle) (*(::get_session(pparticle))->cast < SESSION_TYPE >())
 //
 //#undef App
-//#define App(pobject) (*(::get_app(pobject))->cast < APP_TYPE >())
+//#define App(pparticle) (*(::get_app(pparticle))->cast < APP_TYPE >())
 //
 
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "acme/xml/_.h"
+////#include "acme/xml/_.h"
 #include "acme/constant/id.h"
 #include "_linux.h"
 #undef USE_MISC
@@ -32,7 +32,7 @@ inline bool linux_dir_myspace(char ch)
 
    path = pathHome / ".config/user-dirs.dirs";
 
-   string strDirs = m_psystem->m_pacmefile->as_string(path);
+   string strDirs = acmefile()->as_string(path);
 
    string_array stra;
 
@@ -80,10 +80,10 @@ namespace linux
    }
 
 
-   void dir_context::initialize(::matter * pobject)
+   void dir_context::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::matter::initialize(pobject);
+      auto estatus = ::matter::initialize(pparticle);
 
       if (!estatus)
       {
@@ -363,7 +363,7 @@ namespace linux
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(         auto psystem = m_psystem;
+      if(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -693,7 +693,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::userquicklaunch(::matter * pobject)
+   ::file::path dir_context::userquicklaunch(::particle * pparticle)
    {
 
       ::file::path path;
@@ -705,7 +705,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::userprograms(::matter * pobject)
+   ::file::path dir_context::userprograms(::particle * pparticle)
    {
 
       ::file::path path;

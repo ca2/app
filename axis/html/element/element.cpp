@@ -980,7 +980,7 @@ namespace html
                     ::str().begins(m_pdata->m_pcoredata->m_strPathName,"https://"))
             {
 
-               auto psystem = m_psystem->m_paurasystem;
+               auto psystem = acmesystem()->m_paurasystem;
 
                auto purl = psystem->url();
 

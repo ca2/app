@@ -56,12 +56,12 @@ namespace account
    }
 
 
-   void user::initialize(::object * pobject)
+   void user::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{

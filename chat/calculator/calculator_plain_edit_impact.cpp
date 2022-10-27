@@ -5,10 +5,10 @@ namespace calculator
 {
 
 
-   plain_edit_impact::plain_edit_impact(::object * pobject):
-      object(pobject),
-      ::user::interaction(pobject),
-      ::user::plain_edit(pobject)
+   plain_edit_impact::plain_edit_impact(::particle * pparticle):
+      object(pparticle),
+      ::user::interaction(pparticle),
+      ::user::plain_edit(pparticle)
    {
 
       m_pcallback = nullptr;

@@ -28,10 +28,10 @@ namespace sockets_bsd
    }
 
 
-   void listen_socket::initialize(::object * pobject)
+   void listen_socket::initialize(::particle * pparticle)
    {
 
-      socket::initialize(pobject);
+      socket::initialize(pparticle);
 
    }
 
@@ -119,7 +119,7 @@ namespace sockets_bsd
    i32 listen_socket::Bind(const string & intf,::networking::port_t port,i32 depth)
    {
       
-      auto paddress = __SystemNetworking(m_psystem)->create_address(intf, port);
+      auto paddress = __SystemNetworking(acmesystem())->create_address(intf, port);
 
       if (paddress->is_valid())
       {
@@ -143,7 +143,7 @@ namespace sockets_bsd
    i32 listen_socket::Bind(const string & intf,::networking::port_t port,const string & protocol,i32 depth)
    {
 
-      auto paddress = __SystemNetworking(m_psystem)->create_address(intf, port);
+      auto paddress = __SystemNetworking(acmesystem())->create_address(intf, port);
 
       if (paddress->is_valid())
       {
@@ -487,7 +487,7 @@ namespace sockets_bsd
    }
 
 
-   //void listen_socket::initialize(::object * pobject)
+   //void listen_socket::initialize(::particle * pparticle)
    //{
 
 

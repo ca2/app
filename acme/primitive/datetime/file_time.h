@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "file_time_span.h"
+
+
 class CLASS_DECL_ACME file_time
 {
 public:

@@ -18,7 +18,7 @@ public:
    void read(machine_event_data * pdata);
    void write(machine_event_data * pdata);
 
-   virtual void initialize(::object * pobject) override;
+   virtual void initialize(::particle * pparticle) override;
    virtual void     run() override;
 
    bool is_close_application();

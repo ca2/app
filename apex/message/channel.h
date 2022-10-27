@@ -3,6 +3,7 @@
 
 #include "dispatcher.h"
 #include "acme/primitive/collection/atom_array.h"
+#include "acme/primitive/primitive/object.h"
 
 
 class CLASS_DECL_APEX channel :
@@ -11,11 +12,11 @@ class CLASS_DECL_APEX channel :
 public:
 
 
-   static ::pointer<::mutex>                      s_pmutexChannel;
-   ::pointer<::channel>                           m_pchannel;
-   atom_array                                        m_atomaHandledCommands;
-   ::message::dispatcher_map                       m_dispatchermap;
-   //::procedure_map                                 m_proceduremap;
+   //static critical_section                            s_criticalsectionChannel;
+   ::pointer<::channel>                               m_pchannel;
+   atom_array                                         m_atomaHandledCommands;
+   ::message::dispatcher_map                          m_dispatchermap;
+   //::procedure_map                                  m_proceduremap;
 
 
    channel();
@@ -27,8 +28,6 @@ public:
    
    virtual void install_message_routing(::channel* pchannel) override;
 
-
-   static inline ::mutex * channel_mutex() { return s_pmutexChannel; }
 
    virtual void destroy() override;
 

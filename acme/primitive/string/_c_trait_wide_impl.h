@@ -15,7 +15,7 @@
 
 
 
-inline widechar * overlap_safe_w32ncpy(widechar * pszDst, const widechar * pszSrc, strsize srclen)
+inline widechar * overlap_safe_widecpy(widechar * pszDst, const widechar * pszSrc, strsize srclen)
 {
    return CONCAT_MID_WIDECHARTYPE(overlap_safe_ , ncpy);
 }

@@ -173,7 +173,7 @@ ___keep < TYPE > keep(TYPE& kept, const TYPE_KEEP& keepValue, const TYPE_KEEP_AW
 
 #define __task_guard_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(mutex()); \
+synchronous_lock synchronouslock(this->synchronization()); \
  \
 if (flag) \
 { \
@@ -191,7 +191,7 @@ synchronouslock.unlock()
 
 #define __guard_wait_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(mutex()); \
+synchronous_lock synchronouslock(this->synchronization()); \
  \
 while (flag) \
 { \
@@ -378,7 +378,7 @@ inline ___keep_flag_on < FLAG > keep_flag_on(enumeration < FLAG >& eflagVariable
 
 #define __task_guard_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(mutex()); \
+synchronous_lock synchronouslock(this->synchronization()); \
  \
 if (flag) \
 { \
@@ -396,7 +396,7 @@ synchronouslock.unlock()
 
 #define __guard_wait_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(mutex()); \
+synchronous_lock synchronouslock(this->synchronization()); \
  \
 while (flag) \
 { \
@@ -797,7 +797,7 @@ synchronouslock.unlock()
 
 #define __task_guard_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(mutex()); \
+synchronous_lock synchronouslock(this->synchronization()); \
  \
 if (flag) \
 { \
@@ -815,7 +815,7 @@ synchronouslock.unlock()
 
 #define __guard_wait_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(mutex()); \
+synchronous_lock synchronouslock(this->synchronization()); \
  \
 while (flag) \
 { \
@@ -849,7 +849,7 @@ synchronouslock.unlock()
 
 #define __task_guard_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(mutex()); \
+synchronous_lock synchronouslock(this->synchronization()); \
  \
 if (flag) \
 { \
@@ -867,7 +867,7 @@ synchronouslock.unlock()
 
 #define __guard_wait_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(mutex()); \
+synchronous_lock synchronouslock(this->synchronization()); \
  \
 while (flag) \
 { \
@@ -903,7 +903,7 @@ synchronouslock.unlock()
 
 #define __task_guard_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(mutex()); \
+synchronous_lock synchronouslock(this->synchronization()); \
  \
 if (flag) \
 { \
@@ -921,7 +921,7 @@ synchronouslock.unlock()
 
 #define __guard_wait_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(mutex()); \
+synchronous_lock synchronouslock(this->synchronization()); \
  \
 while (flag) \
 { \
@@ -953,7 +953,7 @@ synchronouslock.unlock()
 
 #define __guard_wait_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(mutex()); \
+synchronous_lock synchronouslock(this->synchronization()); \
  \
 while (flag) \
 { \

@@ -13,10 +13,10 @@ namespace axis
    }
 
 
-   void application::initialize(::object * pobject)
+   void application::initialize(::particle * pparticle)
    {
 
-      auto estatus = aura::application::initialize(pobject);
+      auto estatus = aura::application::initialize(pparticle);
 
       if (!estatus)
       {
@@ -34,7 +34,7 @@ namespace axis
 
       m_bInitializeDataCentral = true;
 
-      //if (m_psystem != nullptr)
+      //if (acmesystem() != nullptr)
       //{
 
       //   m_bInitializeDataCentral = psystem->m_bInitializeDataCentral;
@@ -89,7 +89,7 @@ namespace axis
    string application::load_string(const ::atom & atom)
    {
 
-      synchronous_lock synchronouslock(&m_mutexStr);
+      synchronous_lock synchronouslock(m_pmutexStr);
 
       string str;
 
@@ -194,7 +194,7 @@ namespace axis
 
       }
 
-      synchronous_lock synchronouslock(&m_mutexStr);
+      synchronous_lock synchronouslock(m_pmutexStr);
 
       ::pointer<string_to_string>pmap;
 
@@ -358,10 +358,10 @@ namespace axis
 
       string strType = __type_name(this);
 
-      //if(::is_set(m_psystem))
+      //if(::is_set(acmesystem()))
       //{
 
-      //   m_psystem->add_reference(this);
+      //   acmesystem()->add_reference(this);
 
       //}
 
@@ -720,7 +720,7 @@ resume_on_exception:
 
       }
 
- /*     if (!m_psystem->m_phtml->initialize())
+ /*     if (!acmesystem()->m_phtml->initialize())
       {
 
          return false;
@@ -1120,14 +1120,14 @@ m_durationHeartBeat.Now();
 
       string strRequestUrl;
 
-      if(m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+      if(acmefile()->as_string(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+         strRequestUrl = "https://" + acmefile()->as_string(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1355,7 +1355,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
 
 
 
-   ::draw2d::icon * application::set_icon(object * pobject,::draw2d::icon * picon,bool bBigIcon)
+   ::draw2d::icon * application::set_icon(object * pparticle,::draw2d::icon * picon,bool bBigIcon)
    {
 
       return nullptr;
@@ -1363,7 +1363,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
    }
 
 
-   ::draw2d::icon * application::get_icon(object * pobject,bool bBigIcon) const
+   ::draw2d::icon * application::get_icon(object * pparticle,bool bBigIcon) const
    {
 
       return nullptr;
@@ -1470,7 +1470,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
 
       {
 
-         ::install::mutex mutex(process_platform_dir_name2());
+         ::install::pointer < ::mutex > mutex(process_platform_dir_name2());
 
          if (mutex.already_exists())
          {

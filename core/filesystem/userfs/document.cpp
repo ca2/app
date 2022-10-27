@@ -20,12 +20,12 @@ namespace userfs
    }
 
 
-   void document::initialize(::object * pobject)
+   void document::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::user::document::initialize(pobject);
+      ::user::document::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -79,7 +79,7 @@ namespace userfs
 
       {
 
-         synchronous_lock synchronouslock(fs_data()->mutex());
+         synchronous_lock synchronouslock(fs_data()->synchronization());
 
          m_pathFolder = pitem->user_path();
 
@@ -94,7 +94,7 @@ namespace userfs
 
          {
 
-            synchronous_lock synchronouslock(fs_data()->mutex());
+            synchronous_lock synchronouslock(fs_data()->synchronization());
 
             m_listingRoot = listing;
 
@@ -266,7 +266,7 @@ namespace userfs
 
       {
 
-         synchronous_lock synchronouslock(fs_data()->mutex());
+         synchronous_lock synchronouslock(fs_data()->synchronization());
 
          m_listingUser2 = listingUser;
 

@@ -1,7 +1,11 @@
 ﻿#include "framework.h"
 #include "client_socket.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/networking/url_department.h"
+#include "acme/primitive/string/hex.h"
+#include "apex/constant/idpool.h"
 #include "apex/platform/application.h"
+#include "apex/platform/system.h"
 
 
 #define HEAVY_HTTP_LOG 0
@@ -215,7 +219,7 @@ namespace sockets
       if (m_host.is_empty())
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto purl = psystem->url();
 
@@ -359,7 +363,7 @@ namespace sockets
 
          m_pmemoryfile->seek_to_begin();
 
-         m_psystem->uncompress(pmemoryfile, m_pmemoryfile, "zlib");
+         acmesystem()->uncompress(pmemoryfile, m_pmemoryfile, "zlib");
 
          m_pmemoryfile = pmemoryfile;
 
@@ -587,7 +591,7 @@ namespace sockets
 
       m_request.attr("url") = url;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -841,8 +845,8 @@ namespace http
 {
 
    session::session()
-      //::object * pobject) :
-      //m_handler(pobject)
+      //::particle * pparticle) :
+      //m_handler(pparticle)
    {
 
       //m_handler.EnablePool();

@@ -13,7 +13,7 @@ inline i32 __wd32charisspace(i32 ch) { return ch == '\r' || ch == '\n' || ch == 
 
 
 
-inline wd32char * overlap_safe_w32ncpy(wd32char * pszDst, const wd32char * pszSrc, strsize srclen)
+inline wd32char * overlap_safe_wd32ncpy(wd32char * pszDst, const wd32char * pszSrc, strsize srclen)
 {
 
    if (pszDst != pszSrc)

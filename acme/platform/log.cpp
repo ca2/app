@@ -1,5 +1,6 @@
 // Created by camilo on 2021-07-17 23:30 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "log.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
@@ -23,10 +24,10 @@ log::~log()
 }
 
 
-void log::initialize(::object* pobject)
+void log::initialize(::particle * pparticle)
 {
 
-   ::logger::initialize(pobject);
+   ::logger::initialize(pparticle);
 
    ::file::path pathHome;
 
@@ -47,7 +48,7 @@ void log::initialize(::object* pobject)
 
    }
 
-   //if (m_psystem->m_pacmefile->is_true(m_psystem->m_pacmedirectory->system() / "log.txt"))
+   //if (acmefile()->is_true(acmedirectory()->system() / "log.txt"))
    //{
 
    //   m_bLog = true;

@@ -38,8 +38,8 @@ namespace linux
    }
 
 
-//   file::file(::object * pobject, int iFile) :
-//      ::object(pobject)
+//   file::file(::particle * pparticle, int iFile) :
+//      ::object(pparticle)
 //   {
 //
 //      m_iFile = iFile;
@@ -47,8 +47,8 @@ namespace linux
 //   }
 //
 //
-//   file::file(::object * pobject, const ::file::path & pszFileName, const cflag < ::file::e_open > & eopen) :
-//      ::object(pobject)
+//   file::file(::particle * pparticle, const ::file::path & pszFileName, const cflag < ::file::e_open > & eopen) :
+//      ::object(pparticle)
 //   {
 //
 //      m_iFile = INVALID_FILE;

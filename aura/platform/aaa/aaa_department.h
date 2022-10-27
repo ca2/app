@@ -15,7 +15,7 @@ namespace aura
       virtual ~department();
 
 
-      virtual void initialize(::object * pobject);
+      virtual void initialize(::particle * pparticle);
 
 
       virtual void connect_to_application_signal();

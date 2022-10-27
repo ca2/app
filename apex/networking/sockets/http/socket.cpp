@@ -1,6 +1,11 @@
 ﻿#include "framework.h" 
 #include "socket.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/networking/url_department.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/string/hex.h"
+#include "acme/primitive/string/parse.h"
+#include "apex/constant/idpool.h"
 #define HEAVY_HTTP_LOG 0
 
 
@@ -39,10 +44,10 @@ namespace sockets
    }
 
 
-   void http_socket::initialize(::object * pobject)
+   void http_socket::initialize(::particle * pparticle)
    {
 
-      tcp_socket::initialize(pobject);
+      tcp_socket::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -55,9 +60,9 @@ namespace sockets
       SetLineProtocol();
       DisableInputBuffer();
 
-      m_request.m_psystem = m_psystem;
+      m_request.initialize(this);
 
-      m_response.m_psystem = m_psystem;
+      m_response.initialize(this);
 
       //return estatus;
 
@@ -271,7 +276,7 @@ namespace sockets
 
             string strRequestUri = pa.getword();
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
             auto purl = psystem->url();
 

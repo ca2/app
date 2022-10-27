@@ -14,6 +14,28 @@
 CLASS_DECL_APEX string __apex_get_text(string str);
 
 
+static critical_section g_criticalsectionChannel;
+
+
+CLASS_DECL_APEX ::critical_section * channel_critical_section()
+{
+
+   return &g_criticalsectionChannel;
+
+}
+
+
+static critical_section g_criticalsectionMessageDispatch;
+
+
+CLASS_DECL_APEX ::critical_section * message_dispatch_critical_section()
+{
+
+   return &g_criticalsectionMessageDispatch;
+
+}
+
+
 namespace parallelization
 {
 
@@ -26,7 +48,7 @@ namespace parallelization
 
 void on_term_thread();
 
-//extern ::mutex * g_pmutexThreadDeferredCreation;
+//extern ::pointer< ::mutex > g_pmutexThreadDeferredCreation;
 //extern ::array < ::pointer<thread >> g_pthreadaDeferredCreate;
 
 
@@ -66,732 +88,725 @@ void on_term_thread();
 
 
 
-namespace parallelization
-{
 
-   void initialize();
 
-
-} // namespace parallelization
-
-
-namespace apex
-{
-
-
-   bool g_bApex;
-
-
-   CLASS_DECL_APEX critical_section* g_pcsFont = nullptr;
-
-
-   CLASS_DECL_APEX string_to_string * g_pmapFontFaceName = nullptr;
-
-
-   ::mutex * g_pmutexChildren;
-
-#if !defined(WINDOWS)
-
-   char* g_pszDemangle;
-   critical_section* g_pcsDemangle;
-
-#endif
-
-
-   //::mutex * psystem->g_mutexLibrary;
-
-   //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
-
-   //::mutex * get_globals_mutex();
-
-   //critical_section* g_pcsGlobal;
-
-   //bool g_bOutputDebugString;
-
-
-//#ifdef __APPLE__
-//
-//   // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
-//   // http://stackoverflow.com/users/346736/jbenet
-//
-//   //#include <mach/clock.h>
-//   //#include <mach/mach.h>
-//#include <mach/mach_time.h>
-//
-////clock_serv_t   g_cclock;
-//   double g_machtime_conversion_factor;
-//   //   clock_get_time(cclock, &mts);
-//
-//#endif
-
-
-   ::mutex * g_pmutexCred;
-
-
-   //class ::exception_engine* g_pexceptionengine;
-
-   ::mutex * g_pmutexMessageDispatch;
-
-
-   array < matter* >* g_paAura;
-
-#ifdef WINDOWS
-
-   LARGE_INTEGER g_largeintegerFrequency;
-
-#endif
-
-   i64 g_iFirstNano;
-
-   //plex_heap_alloc_array * g_pplexheapallocarray;
-
-   int g_iMemoryCountersStartable;
-   //::mutex * g_pmutexTrait;
-   //::mutex * g_pmutexFactory;
-
-   ::mutex * g_pmutexUiDestroyed;
-
-#ifdef ANDROID
-
-   ::mutex * g_pmutexOutputDebugStringA;
-
-#endif
-
-   //CLASS_DECL_APEX apex_str_pool* g_papexstrpool;
-
-   // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-
-   // ::mutex * g_pmutexMq;
-
-   // #endif
-
-#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
-
-//::mutex * g_pmutexThreadIdHandleLock;
-
-//::mutex * g_pmutexThreadIdLock;
-
-//#if !defined(_UWP)
-
-//::mutex * g_pmutexPendingThreadsLock;
-
-//#endif
-
-//::mutex * g_pmutexTlsData;
-
-#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
-
-
-#if defined(LINUX) || defined(__APPLE__)
-
-
-   ::mutex * g_pmutexTz;
-
-   ::mutex * g_pmutexThreadHandleLock;
-
-
-#endif // defined(LINUX) || defined(__APPLE__)
-
-
-#ifdef __APPLE__
-
-
-   ::mutex * g_pmutexCvt;
-
-
-#endif
-
-
-   critical_section g_csRefDbg;
-
-
-
-//   void static_start::construct()
-//   {
-//
-//      //::set_thread_get_run(&apex_thread_get_run);
-//      //::set_task_sleep(&acme_task_sleep);
-//
-//      g_bApex = 0;
-//
-//#if OBJECT_TYPE_COUNTER
-//
-//      g_pmapObjTypCtr = nullptr;
-//
-//#endif
-//
-//      g_bApex = false;
-//
-//#if OBJECT_TYPE_COUNTER
-//
-//      g_iObjTypCtrInit = 0;
-//
-//#endif
-//
-//      g_pmutexChildren = nullptr;
-//
-//#if !defined(WINDOWS)
-//
-////      g_tlsindexLastError = 0;
-//
-//      g_pszDemangle = nullptr;
-//
-//      g_pcsDemangle = nullptr;
-//
-//#endif
-//
-//      //g_main_deferred_run = nullptr;
-//
-//      //get_globals_mutex() = nullptr;
-//
-//      //g_pcsGlobal = nullptr;
-//
-//      //g_bOutputDebugString = true;
-//
-//      //g_pcsTrace = nullptr;
-//
-//      //g_ptrace = nullptr;
-//
-//      //g_psimpletrace = nullptr;
-//
-//
-//      g_pexceptionengine = nullptr;
-//      g_pmutexMessageDispatch = nullptr;
-//
-//      g_paAura = nullptr;
-//
-//#ifdef WINDOWS
-//
-//      g_largeintegerFrequency = {};
-//
-//#endif
-//
-//      g_iFirstNano = 0;
-//
-//      //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
-//
-//      g_iMemoryCountersStartable = 0;
-//      //::mutex * g_pmutexTrait;
-//      //::mutex * g_pmutexFactory;
-//
-//      g_pmutexUiDestroyed = 0;
-//
-//#ifdef ANDROID
-//
-//      g_pmutexOutputDebugStringA = 0;
-//
-//#endif
-//
-//      //g_papexstrpool = nullptr;
-//
-//      // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-//
-//      // ::mutex * g_pmutexMq;
-//
-//      // #endif
-//
-//#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
-//
-////::mutex * g_pmutexThreadIdHandleLock;
-//
-////::mutex * g_pmutexThreadIdLock;
-//
-////#if !defined(_UWP)
-//
-////::mutex * g_pmutexPendingThreadsLock;
-//
-////#endif
-//
-////::mutex * g_pmutexTlsData;
-//
-//#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
-//
-//#if defined(LINUX) || defined(__APPLE__)
-//
-//      g_pmutexTz = nullptr;
-//
-//      g_pmutexThreadHandleLock = nullptr;
-//
-//#endif // defined(LINUX) || defined(__APPLE__)
-//
-//
-//#ifdef __APPLE__
-//
-//
-//      g_pmutexCvt = nullptr;
-//
-//
-//#endif
-//
-//      //g_pcsFont = nullptr;
-//
-//      //g_pmapFontFaceName = nullptr;
-//
-//      //add_factory_item < ::apex::idpool >();
-//
-//
-//
-//   }
-//
-
-   void initialize_system()
-   {
-
-      //m_bRef = false;
-
-      //construct();
-
-//
-//#ifndef WINDOWS
-//
-//      g_pcsDemangle = memory_new critical_section;
-//
-//#endif
-
-
-
-//#ifdef BSD_STYLE_SOCKETS
-//
-//      ::sockets::base_socket::s_pmutex = memory_new ::mutex();
-//
-//#endif
-
-
-#ifdef __APPLE__
-
-      g_pmutexCvt = memory_new ::mutex();
-
-#endif
-
-#if MEMDLEAK
-
-      memdleak_init();
-
-#endif
-
-      g_paAura = memory_new array < matter * >;
-
-      g_pmutexUiDestroyed = memory_new ::mutex();
-
-      g_pmutexMessageDispatch = memory_new ::mutex();
-
-      g_pmutexCred = memory_new ::mutex();
-
-#if defined(LINUX) || defined(__APPLE__)
-
-      g_pmutexTz = memory_new ::mutex();
-
-#endif // defined(LINUX) || defined(__APPLE__)
-
-
-#ifdef MACOS
-
-      //mach_port_deallocate(mach_task_self(), g_cclock);
-
-#endif
-
-#ifdef PRIMITIVE_DEBUG
-
-      apex_auto_debug_teste();
-
-#endif
-
-#ifdef MEMORY_COUNTERS
-
-      g_iMemoryCountersStartable = 1;
-
-#else
-
-      g_iMemoryCountersStartable = 0;
-
-#endif
-
-      ::channel::s_pmutexChannel = __new(mutex);
-
-      //g_papexstrpool = memory_new apex_str_pool();
-
-      //::user::init_windowing();
-
-      //g_pcsRefDbg = memory_new critical_section();
-
-      g_bApex = true;
-
-      //::thread::g_pmutex = memory_new mutex();
-
-      //::thread::g_pthreadmap = memory_new ::thread_map();
-
-      ::factory::add_factory_item < ::apex::system, ::acme::system >();
-      ::factory::add_factory_item < ::apex::context, ::acme::context >();
-
-
-#if OBJECT_TYPE_COUNTER
-      g_iObjTypCtrInit = 1;
-#endif
-
-      g_pcsFont = memory_new critical_section();
-
-      g_pmapFontFaceName = memory_new string_to_string();
-
-      //g_pmutexThreadDeferredCreation = memory_new ::mutex;
-
-      //g_pthreadaDeferredCreate = memory_new ::array < ::pointer<thread >>);
-
-
-//      void static_start::init()
-//xxxxxx init();
-      {
-
-         ::parallelization::initialize();
-
-      }
-
-   }
-
-
-   void finalize_system()
-   {
-
-//      void static_start::term()
-//xxxxxx term();
-      {
-
-         //::parallelization::wait_threads(1_min);
-
-         //if (g_axisontermthread)
-         //{
-
-         //   g_axisontermthread();
-
-         //}
-
-         on_term_thread();
-
-         ::parallelization::destroy();
-
-         //__node_apex_pre_term();
-
-//#ifdef WINDOWS
-//
-//      set_simple_output_debug_string_a();
-//
-//      set_simple_output_debug_string_w();
-//
-//#endif
-
-         processor_cache_oriented_destroy_all_memory_pools();
-
-         //__node_apex_pos_term();
-
-         //::apex::static_start::term();
-
-         //return true;
-
-         //return ::success;
-//
-      }
-
-//      ::acme::del(g_pthreadaDeferredCreate);
-
-//      ::acme::del(g_pmutexThreadDeferredCreation);
-
-      ::acme::del(g_pmapFontFaceName);
-
-      ::acme::del(g_pcsFont);
-
-#if OBJECT_TYPE_COUNTER
-      g_iObjTypCtrInit = 0;
-#endif
-
-      //::release(t_pthread);
-
-      // if(g_pmapAura)
-      // {
-
-      //    try
-      //    {
-
-      //       g_pmapAura->erase_all();
-
-      //    }
-      //    catch(...)
-      //    {
-
-      //    }
-
-      // }
-
-      //try
-      //{
-
-      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
-
-      //   g_pmapLibCall->erase_all();
-
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
-      //try
-      //{
-
-      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
-
-      //   psystem->g_mapLibrary.erase_all();
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
-      //if(g_pmapRTL)
-      //{
-
-      //   try
-      //   {
-
-      //      g_pmapRTL->erase_all();
-
-      //   }
-      //   catch(...)
-      //   {
-
-      //   }
-
-      //}
-
-      //if(g_pmapRTL)
-      //{
-
-      //   try
-      //   {
-
-      //      g_pmapRTL->erase_all();
-
-      //   }
-      //   catch(...)
-      //   {
-
-      //   }
-
-      //}
-
-      //::acme::del(::thread::g_pmutex);
-
-      //::acme::del(::thread::g_pthreadmap);
-
-      //::user::term_windowing();
-
-      g_bApex = 0;
-
-      //::acme::del(g_papexstrpool);
-
-      ::channel::s_pmutexChannel.release();
-
-      //::acme::del(g_pmapRTL);
-
-#if defined(LINUX) || defined(__APPLE__)
-
-      ::acme::del(g_pmutexTz);
-
-#endif // defined(LINUX) || defined(__APPLE__)
-
-      ::acme::del(g_pmutexCred);
-
-      ::acme::del(g_pmutexMessageDispatch);
-
-      ::acme::del(g_pmutexUiDestroyed);
-
-      //del(g_pmapAura);
-
-      if (g_paAura != nullptr)
-      {
-
-         for (auto* po : *g_paAura)
-         {
-
-            try
-            {
-
-               ::acme::del(po);
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
-         ::acme::del(g_paAura);
-
-      }
-
-#if OBJECT_TYPE_COUNTER
-
-      ::acme::del(g_pmapObjTypCtr);
-
-#endif
-
-#if MEMDLEAK
-
-      memdleak_term();
-
-#endif
-
-      //::acme::del(g_pmutexSystemHeap);
-
-      //del(g_pmutexThreadOn);
-
-      //del(g_pmapThreadOn);
-
-#ifdef __APPLE__
-
-      ::acme::del(g_pmutexCvt);
-
-#endif
-
-//#ifdef BSD_STYLE_SOCKETS
-//
-//      ::acme::del(::sockets::base_socket::s_pmutex);
+//namespace apex
+//{
 //
-//#endif
-
-      //::acme::del(g_psimpletrace);
-
-      //::acme::del(g_pcsTrace);
-
-//#ifdef ANDROID
 //
-//      del(g_pmutexOutputDebugStringA);
-//
-//#endif
-
-////#if !defined(__MCRTDBG) && !MEMDLEAK
+////   bool g_bApex;
 ////
-////      auto pheap = g_pheap;
+//
+////   CLASS_DECL_APEX critical_section* g_pcsFont = nullptr;
 ////
-////      g_pheap = nullptr;
 ////
-////      ::acme::del(pheap);
+////   CLASS_DECL_APEX string_to_string * g_pmapFontFaceName = nullptr;
+////
+//
+////   ::pointer< ::mutex > g_pmutexChildren;
+//
+////#if !defined(WINDOWS)
+////
+////   char* g_pszDemangle;
+////   critical_section* g_pcsDemangle;
 ////
 ////#endif
-
-      //::acme::del(g_pcsGlobal);
-
-      //::acme::del(g_pmutexChildren);
-
-      //::acme::del(get_globals_mutex());
-
-#if MEMDLEAK
-
-      ::set_thread(nullptr);
-
-#ifdef __USE_BFD
-
-      init_resolve_addr_file_func_line();
-
-#endif
-
-      memdleak_dump();
-
-#endif
-
-#ifndef WINDOWS
-
-      ::acme::free(g_pszDemangle);
-
-#endif
-
-#ifndef WINDOWS
-
-      ::acme::del(g_pcsDemangle);
-
-#endif
-
-//#ifdef WINDOWS
-//      _free_locale(g_localeC);
-//#elif defined(ANDROID)
-//      //_freelocale(g_localeC);
-//#else
-//      freelocale(g_localeC);
-//#endif
-
-   }
-
-
-//   void static_start::this_ref()
-//   {
 //
-//      m_bRef = true;
-//      //printf()
 //
-//   }
-
-
-   //::apex::system * apex_create_system(app_core * pappcore)
-   //{
-
-   //   auto psystem = memory_new ::apex::system();
-
-   //   psystem->initialize(nullptr);
-
-   //   return psystem;
-
-   //}
-
-
+//   //::pointer< ::mutex > psystem->g_mutexLibrary;
 //
-//   void static_start::init()
-//   {
+//   //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 //
-//      //::apex::static_start::init();
+//   //::pointer< ::mutex > get_globals_mutex();
 //
-//      //if (!__node_apex_pre_init())
-//      //{
+//   //critical_section* g_pcsGlobal;
 //
-//      //   return ::error_failed;
+//   //bool g_bOutputDebugString;
 //
-//      //}
 //
-//      ::parallelization::initialize();
+////#ifdef __APPLE__
+////
+////   // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
+////   // http://stackoverflow.com/users/346736/jbenet
+////
+////   //#include <mach/clock.h>
+////   //#include <mach/mach.h>
+////#include <mach/mach_time.h>
+////
+//////clock_serv_t   g_cclock;
+////   double g_machtime_conversion_factor;
+////   //   clock_get_time(cclock, &mts);
+////
+////#endif
 //
-//      //if (!__node_apex_pos_init())
-//      //{
 //
-//      //   return ::error_failed;
+//   //::pointer< ::mutex > g_pmutexCred;
 //
-//      //}
 //
+//   //class ::exception_engine* g_pexceptionengine;
+//
+////   ::pointer< ::mutex > g_pmutexMessageDispatch;
+//
+//
+////   array < matter* >* g_paAura;
+////
 ////#ifdef WINDOWS
 ////
-////      set_extended_output_debug_string_a();
-////
-////      set_extended_output_debug_string_w();
+////   LARGE_INTEGER g_largeintegerFrequency;
 ////
 ////#endif
 //
-//      //g_pfn_create_system = &apex_create_apex_system;
+////   i64 g_iFirstNano;
 //
-//      //return true;
+//   //plex_heap_alloc_array * g_pplexheapallocarray;
 //
-//   }
-
-
-
-
-//} // namespace static_start
-
-
-} // namespace apex
-
-
-//static ::mutex * s_pmutexDraw2d = nullptr;
+////   int g_iMemoryCountersStartable;
+////   //::pointer< ::mutex > g_pmutexTrait;
+////   //::pointer< ::mutex > g_pmutexFactory;
+////
+////   ::pointer< ::mutex > g_pmutexUiDestroyed;
 //
-//CLASS_DECL_APEX ::mutex * draw2d_mutex()
+////#ifdef ANDROID
+////
+////   ::pointer< ::mutex > g_pmutexOutputDebugStringA;
+////
+////#endif
+//
+//   //CLASS_DECL_APEX apex_str_pool* g_papexstrpool;
+//
+//   // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//
+//   // ::pointer< ::mutex > g_pmutexMq;
+//
+//   // #endif
+////
+////#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+////
+//////::pointer< ::mutex > g_pmutexThreadIdHandleLock;
+////
+//////::pointer< ::mutex > g_pmutexThreadIdLock;
+////
+//////#if !defined(_UWP)
+////
+//////::pointer< ::mutex > g_pmutexPendingThreadsLock;
+////
+//////#endif
+////
+//////::pointer< ::mutex > g_pmutexTlsData;
+////
+////#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
+////
+////
+//////#if defined(LINUX) || defined(__APPLE__)
+////
+////
+////   ::pointer< ::mutex > g_pmutexTz;
+////
+////   ::pointer< ::mutex > g_pmutexThreadHandleLock;
+////
+////
+////#endif // defined(LINUX) || defined(__APPLE__)
+//
+//
+////#ifdef __APPLE__
+////
+////
+////   ::pointer< ::mutex > g_pmutexCvt;
+////
+////
+////#endif
+//
+//
+//   //critical_section g_csRefDbg;
+//
+//
+//
+////   void static_start::construct()
+////   {
+////
+////      //::set_thread_get_run(&apex_thread_get_run);
+////      //::set_task_sleep(&acme_task_sleep);
+////
+////      g_bApex = 0;
+////
+////#if OBJECT_TYPE_COUNTER
+////
+////      g_pmapObjTypCtr = nullptr;
+////
+////#endif
+////
+////      g_bApex = false;
+////
+////#if OBJECT_TYPE_COUNTER
+////
+////      g_iObjTypCtrInit = 0;
+////
+////#endif
+////
+////      g_pmutexChildren = nullptr;
+////
+////#if !defined(WINDOWS)
+////
+//////      g_tlsindexLastError = 0;
+////
+////      g_pszDemangle = nullptr;
+////
+////      g_pcsDemangle = nullptr;
+////
+////#endif
+////
+////      //g_main_deferred_run = nullptr;
+////
+////      //get_globals_mutex() = nullptr;
+////
+////      //g_pcsGlobal = nullptr;
+////
+////      //g_bOutputDebugString = true;
+////
+////      //g_pcsTrace = nullptr;
+////
+////      //g_ptrace = nullptr;
+////
+////      //g_psimpletrace = nullptr;
+////
+////
+////      g_pexceptionengine = nullptr;
+////      g_pmutexMessageDispatch = nullptr;
+////
+////      g_paAura = nullptr;
+////
+////#ifdef WINDOWS
+////
+////      g_largeintegerFrequency = {};
+////
+////#endif
+////
+////      g_iFirstNano = 0;
+////
+////      //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
+////
+////      g_iMemoryCountersStartable = 0;
+////      //::pointer< ::mutex > g_pmutexTrait;
+////      //::pointer< ::mutex > g_pmutexFactory;
+////
+////      g_pmutexUiDestroyed = 0;
+////
+////#ifdef ANDROID
+////
+////      g_pmutexOutputDebugStringA = 0;
+////
+////#endif
+////
+////      //g_papexstrpool = nullptr;
+////
+////      // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+////
+////      // ::pointer< ::mutex > g_pmutexMq;
+////
+////      // #endif
+////
+////#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+////
+//////::pointer< ::mutex > g_pmutexThreadIdHandleLock;
+////
+//////::pointer< ::mutex > g_pmutexThreadIdLock;
+////
+//////#if !defined(_UWP)
+////
+//////::pointer< ::mutex > g_pmutexPendingThreadsLock;
+////
+//////#endif
+////
+//////::pointer< ::mutex > g_pmutexTlsData;
+////
+////#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
+////
+////#if defined(LINUX) || defined(__APPLE__)
+////
+////      g_pmutexTz = nullptr;
+////
+////      g_pmutexThreadHandleLock = nullptr;
+////
+////#endif // defined(LINUX) || defined(__APPLE__)
+////
+////
+////#ifdef __APPLE__
+////
+////
+////      g_pmutexCvt = nullptr;
+////
+////
+////#endif
+////
+////      //g_pcsFont = nullptr;
+////
+////      //g_pmapFontFaceName = nullptr;
+////
+////      //add_factory_item < ::apex::idpool >();
+////
+////
+////
+////   }
+////
+//
+////   void initialize_system()
+////   {
+////
+////      //m_bRef = false;
+////
+////      //construct();
+////
+//////
+//////#ifndef WINDOWS
+//////
+//////      g_pcsDemangle = memory_new critical_section;
+//////
+//////#endif
+////
+////
+////
+//////#ifdef BSD_STYLE_SOCKETS
+//////
+//////      ::sockets::base_socket::s_pmutex = memory_new ::pointer < ::mutex >();
+//////
+//////#endif
+////
+////
+//////#ifdef __APPLE__
+//////
+//////      g_pmutexCvt = memory_new ::pointer < ::mutex >();
+//////
+//////#endif
+////
+//////#if MEMDLEAK
+//////
+//////      memdleak_init();
+//////
+//////#endif
+////
+//////      g_paAura = memory_new array < matter * >;
+//////
+//////      g_pmutexUiDestroyed = memory_new ::pointer < ::mutex >();
+//////
+//////      g_pmutexMessageDispatch = memory_new ::pointer < ::mutex >();
+//////
+//////      g_pmutexCred = memory_new ::pointer < ::mutex >();
+//////
+//////#if defined(LINUX) || defined(__APPLE__)
+//////
+//////      g_pmutexTz = memory_new ::pointer < ::mutex >();
+//////
+//////#endif // defined(LINUX) || defined(__APPLE__)
+////
+////
+//////#ifdef MACOS
+//////
+//////      //mach_port_deallocate(mach_task_self(), g_cclock);
+//////
+//////#endif
+////
+//////#ifdef PRIMITIVE_DEBUG
+//////
+//////      apex_auto_debug_teste();
+//////
+//////#endif
+////
+//////#ifdef MEMORY_COUNTERS
+//////
+//////      g_iMemoryCountersStartable = 1;
+//////
+//////#else
+//////
+//////      g_iMemoryCountersStartable = 0;
+//////
+//////#endif
+////
+////      //::channel::s_pmutexChannel = __new(mutex);
+////
+////      //g_papexstrpool = memory_new apex_str_pool();
+////
+////      //::user::init_windowing();
+////
+////      //g_pcsRefDbg = memory_new critical_section();
+////
+////      //g_bApex = true;
+////
+////      //::thread::g_pmutex = memory_new mutex();
+////
+////      //::thread::g_pthreadmap = memory_new ::thread_map();
+////
+//////      ::factory::add_factory_item < ::apex::system, ::acme::system >();
+//////      ::factory::add_factory_item < ::apex::context, ::acme::context >();
+////
+////
+//////#if OBJECT_TYPE_COUNTER
+//////      g_iObjTypCtrInit = 1;
+//////#endif
+//////
+//////      g_pcsFont = memory_new critical_section();
+//////
+//////      g_pmapFontFaceName = memory_new string_to_string();
+////
+////      //g_pmutexThreadDeferredCreation = memory_new ::pointer < ::mutex >;
+////
+////      //g_pthreadaDeferredCreate = memory_new ::array < ::pointer<thread >>);
+////
+////
+//////      void static_start::init()
+//////xxxxxx init();
+////      {
+////
+////         ::parallelization::initialize();
+////
+////      }
+////
+////   }
+//
+//
+////   void finalize_system()
+////   {
+////
+//////      void static_start::term()
+//////xxxxxx term();
+////      {
+////
+////         //::parallelization::wait_threads(1_min);
+////
+////         //if (g_axisontermthread)
+////         //{
+////
+////         //   g_axisontermthread();
+////
+////         //}
+////
+//////         on_term_thread();
+//////
+//////         ::parallelization::destroy();
+////
+////         //__node_apex_pre_term();
+////
+//////#ifdef WINDOWS
+//////
+//////      set_simple_output_debug_string_a();
+//////
+//////      set_simple_output_debug_string_w();
+//////
+//////#endif
+////
+//////         processor_cache_oriented_destroy_all_memory_pools();
+////
+////         //__node_apex_pos_term();
+////
+////         //::apex::static_start::term();
+////
+////         //return true;
+////
+////         //return ::success;
+//////
+////      }
+////
+//////      ::acme::del(g_pthreadaDeferredCreate);
+////
+//////      ::acme::del(g_pmutexThreadDeferredCreation);
+////
+//////      ::acme::del(g_pmapFontFaceName);
+//////
+//////      ::acme::del(g_pcsFont);
+////
+////////#if OBJECT_TYPE_COUNTER
+//////      g_iObjTypCtrInit = 0;
+//////#endif
+//////
+//////      //::release(t_pthread);
+////
+////      // if(g_pmapAura)
+////      // {
+////
+////      //    try
+////      //    {
+////
+////      //       g_pmapAura->erase_all();
+////
+////      //    }
+////      //    catch(...)
+////      //    {
+////
+////      //    }
+////
+////      // }
+////
+////      //try
+////      //{
+////
+////      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
+////
+////      //   g_pmapLibCall->erase_all();
+////
+////
+////      //}
+////      //catch (...)
+////      //{
+////
+////      //}
+////
+////      //try
+////      //{
+////
+////      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
+////
+////      //   psystem->g_mapLibrary.erase_all();
+////
+////      //}
+////      //catch (...)
+////      //{
+////
+////      //}
+////
+////      //if(g_pmapRTL)
+////      //{
+////
+////      //   try
+////      //   {
+////
+////      //      g_pmapRTL->erase_all();
+////
+////      //   }
+////      //   catch(...)
+////      //   {
+////
+////      //   }
+////
+////      //}
+////
+////      //if(g_pmapRTL)
+////      //{
+////
+////      //   try
+////      //   {
+////
+////      //      g_pmapRTL->erase_all();
+////
+////      //   }
+////      //   catch(...)
+////      //   {
+////
+////      //   }
+////
+////      //}
+////
+////      //::acme::del(::thread::g_pmutex);
+////
+////      //::acme::del(::thread::g_pthreadmap);
+////
+////      //::user::term_windowing();
+////
+////      //g_bApex = 0;
+////
+////      //::acme::del(g_papexstrpool);
+////
+////      //::channel::s_pmutexChannel.release();
+////
+////      //::acme::del(g_pmapRTL);
+//////
+//////#if defined(LINUX) || defined(__APPLE__)
+//////
+//////      ::acme::del(g_pmutexTz);
+//////
+//////#endif // defined(LINUX) || defined(__APPLE__)
+//////
+//////      ::acme::del(g_pmutexCred);
+//////
+//////      ::acme::del(g_pmutexMessageDispatch);
+//////
+//////      ::acme::del(g_pmutexUiDestroyed);
+////
+////      //del(g_pmapAura);
+////
+//////      if (g_paAura != nullptr)
+//////      {
+//////
+//////         for (auto* po : *g_paAura)
+//////         {
+//////
+//////            try
+//////            {
+//////
+//////               ::acme::del(po);
+//////
+//////            }
+//////            catch (...)
+//////            {
+//////
+//////            }
+//////
+//////         }
+//////
+//////         ::acme::del(g_paAura);
+//////
+//////      }
+////
+//////#if OBJECT_TYPE_COUNTER
+//////
+//////      ::acme::del(g_pmapObjTypCtr);
+//////
+//////#endif
+////
+//////#if MEMDLEAK
+//////
+//////      memdleak_term();
+//////
+//////#endif
+////
+////      //::acme::del(g_pmutexSystemHeap);
+////
+////      //del(g_pmutexThreadOn);
+////
+////      //del(g_pmapThreadOn);
+//////
+//////#ifdef __APPLE__
+//////
+//////      ::acme::del(g_pmutexCvt);
+//////
+//////#endif
+////
+//////#ifdef BSD_STYLE_SOCKETS
+//////
+//////      ::acme::del(::sockets::base_socket::s_pmutex);
+//////
+//////#endif
+////
+////      //::acme::del(g_psimpletrace);
+////
+////      //::acme::del(g_pcsTrace);
+////
+//////#ifdef ANDROID
+//////
+//////      del(g_pmutexOutputDebugStringA);
+//////
+//////#endif
+////
+////////#if !defined(__MCRTDBG) && !MEMDLEAK
+////////
+////////      auto pheap = g_pheap;
+////////
+////////      g_pheap = nullptr;
+////////
+////////      ::acme::del(pheap);
+////////
+////////#endif
+////
+////      //::acme::del(g_pcsGlobal);
+////
+////      //::acme::del(g_pmutexChildren);
+////
+////      //::acme::del(get_globals_mutex());
+////
+//////#if MEMDLEAK
+//////
+//////      ::set_thread(nullptr);
+//////
+//////#ifdef __USE_BFD
+//////
+//////      init_resolve_addr_file_func_line();
+//////
+//////#endif
+//////
+//////      memdleak_dump();
+//////
+//////#endif
+//////
+//////#ifndef WINDOWS
+//////
+//////      ::acme::free(g_pszDemangle);
+//////
+//////#endif
+//////
+//////#ifndef WINDOWS
+//////
+//////      ::acme::del(g_pcsDemangle);
+//////
+//////#endif
+////
+//////#ifdef WINDOWS
+//////      _free_locale(g_localeC);
+//////#elif defined(ANDROID)
+//////      //_freelocale(g_localeC);
+//////#else
+//////      freelocale(g_localeC);
+//////#endif
+////
+////   }
+//
+//
+////   void static_start::this_ref()
+////   {
+////
+////      m_bRef = true;
+////      //printf()
+////
+////   }
+//
+//
+//   //::apex::system * apex_create_system(app_core * pappcore)
+//   //{
+//
+//   //   auto psystem = memory_new ::apex::system();
+//
+//   //   psystem->initialize(nullptr);
+//
+//   //   return psystem;
+//
+//   //}
+//
+//
+////
+////   void static_start::init()
+////   {
+////
+////      //::apex::static_start::init();
+////
+////      //if (!__node_apex_pre_init())
+////      //{
+////
+////      //   return ::error_failed;
+////
+////      //}
+////
+////      ::parallelization::initialize();
+////
+////      //if (!__node_apex_pos_init())
+////      //{
+////
+////      //   return ::error_failed;
+////
+////      //}
+////
+//////#ifdef WINDOWS
+//////
+//////      set_extended_output_debug_string_a();
+//////
+//////      set_extended_output_debug_string_w();
+//////
+//////#endif
+////
+////      //g_pfn_create_system = &apex_create_apex_system;
+////
+////      //return true;
+////
+////   }
+//
+//
+//
+//
+////} // namespace static_start
+//
+//
+//} // namespace apex
+//
+
+//static ::pointer< ::mutex > s_pmutexDraw2d = nullptr;
+//
+//CLASS_DECL_APEX ::pointer< ::mutex > draw2d_mutex()
 //{
 //
 //   return s_pmutexDraw2d;
@@ -802,7 +817,7 @@ namespace apex
 //CLASS_DECL_APEX void init_draw2d_mutex()
 //{
 //
-//   s_pmutexDraw2d = memory_new ::mutex();
+//   s_pmutexDraw2d = memory_new ::pointer < ::mutex >();
 //
 //}
 
@@ -816,7 +831,7 @@ namespace apex
 
 
 //
-//CLASS_DECL_APEX ::mutex * get_cred_mutex()
+//CLASS_DECL_APEX ::pointer< ::mutex > get_cred_mutex()
 //{
 //
 //   return ::apex::g_pmutexCred;
@@ -889,11 +904,11 @@ namespace apex
 //         //
 //         //         oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 //         //
-//         //         oswindow_data::s_pmutex = memory_new ::mutex;
+//         //         oswindow_data::s_pmutex = memory_new ::pointer < ::mutex >;
 //         //
 //         //         osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
 //         //
-//         //         osdisplay_data::s_pmutex = memory_new ::mutex;
+//         //         osdisplay_data::s_pmutex = memory_new ::pointer < ::mutex >;
 //
 //#endif // defined(LINUX)
 //
@@ -1024,7 +1039,7 @@ namespace apex
 ////         //
 ////         //         //oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 ////         //
-////         //         //oswindow_data::s_pmutex = memory_new ::mutex;
+////         //         //oswindow_data::s_pmutex = memory_new ::pointer < ::mutex >;
 ////         //
 ////         //#endif
 ////
@@ -1032,7 +1047,7 @@ namespace apex
 ////         //
 ////         //         g_poswindowdataptra = memory_new oswindow_dataptra;
 ////         //
-////         //         g_poswindowdataptra->defer_create_mutex();
+////         //         g_poswindowdataptra->defer_create_synchronization();
 ////         //
 ////         //#endif // defined(__APPLE__)
 ////

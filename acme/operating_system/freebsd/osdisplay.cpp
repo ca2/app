@@ -6,7 +6,7 @@
 
 Display * x11_get_display();
 
-::mutex * user_mutex();
+::pointer< ::mutex > user_mutex();
 
 #define CA2_X11_WINDOW_LONG "ca2_ccwarehouse_window_long"
 #define CA2_X11_WINDOW_LONG_STYLE "ca2_ccwarehouse_window_long_style"
@@ -17,7 +17,7 @@ void windowing_output_debug_string(const char * pszDebugString);
 
 
 osdisplay_dataptra * osdisplay_data::s_pdataptra = nullptr;
-::mutex * osdisplay_data::s_pmutex = nullptr;
+::pointer< ::mutex > osdisplay_data::s_pmutex = nullptr;
 
 osdisplay_data * g_posdisplaydataMain = nullptr;
 
@@ -40,7 +40,7 @@ osdisplay_data::osdisplay_data()
    m_atomNetWmState        = None;
    m_atomLongStyleEx       = 0;
    m_countReference        = 1;
-//   m_pmutexInput           = memory_new ::mutex();
+//   m_pmutexInput           = memory_new ::pointer < ::mutex >();
 
 }
 

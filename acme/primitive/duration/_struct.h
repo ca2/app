@@ -12,22 +12,25 @@ constexpr FREQUENCY operator "" _Hz(long double d) { return { (double) d }; }
 class duration;
 
 
-#define DECLARE_COMPARISON_WITH_DURATION \
-inline bool operator == (const ::duration & duration) const; \
-inline bool operator < (const ::duration & duration) const; \
-inline bool operator <= (const ::duration & duration) const; \
-inline bool operator > (const ::duration & duration) const; \
-inline bool operator >= (const ::duration & duration) const; \
-inline bool operator != (const ::duration & duration)  const;
+#define DECLARE_COMPARISON_WITH_DURATION(EXPORT_CLAUSE_DECL) \
+EXPORT_CLAUSE_DECL bool operator == (const ::duration & duration) const; \
+EXPORT_CLAUSE_DECL bool operator < (const ::duration & duration) const; \
+EXPORT_CLAUSE_DECL bool operator <= (const ::duration & duration) const; \
+EXPORT_CLAUSE_DECL bool operator > (const ::duration & duration) const; \
+EXPORT_CLAUSE_DECL bool operator >= (const ::duration & duration) const; \
+EXPORT_CLAUSE_DECL bool operator != (const ::duration & duration)  const;
 
 
-#define DEFINE_COMPARISON_WITH_DURATION(TYPE) \
-inline bool TYPE::operator == (const ::duration & duration) const { return ::duration(*this) == duration; } \
-inline bool TYPE::operator < (const ::duration & duration) const { return ::duration(*this) < duration; } \
-inline bool TYPE::operator <= (const ::duration & duration) const { return ::duration(*this) <= duration; } \
-inline bool TYPE::operator > (const ::duration & duration) const { return ::duration(*this) > duration; } \
-inline bool TYPE::operator >= (const ::duration & duration) const { return ::duration(*this) >= duration; } \
-inline bool TYPE::operator != (const ::duration & duration) const { return ::duration(*this) != duration; } 
+#define DEFINE_COMPARISON_WITH_DURATION(EXPORT_CLAUSE_DECL, TYPE) \
+EXPORT_CLAUSE_DECL bool TYPE::operator == (const ::duration & duration) const { return ::duration(*this) == duration; } \
+EXPORT_CLAUSE_DECL bool TYPE::operator < (const ::duration & duration) const { return ::duration(*this) < duration; } \
+EXPORT_CLAUSE_DECL bool TYPE::operator <= (const ::duration & duration) const { return ::duration(*this) <= duration; } \
+EXPORT_CLAUSE_DECL bool TYPE::operator > (const ::duration & duration) const { return ::duration(*this) > duration; } \
+EXPORT_CLAUSE_DECL bool TYPE::operator >= (const ::duration & duration) const { return ::duration(*this) >= duration; } \
+EXPORT_CLAUSE_DECL bool TYPE::operator != (const ::duration & duration) const { return ::duration(*this) != duration; }
+
+
+#define NON_INLINE
 
 
 //#define DECLARE_COMPARISON_WITH_DURATION \
@@ -61,12 +64,9 @@ struct unit                                                                   \
    constexpr unit(type t):member(t){}                                         \
                                                                               \
    bool operator == (const unit & u) const { return member == u.member; }     \
-   DECLARE_COMPARISON_WITH_DURATION                                           \
+   DECLARE_COMPARISON_WITH_DURATION(inline)                                   \
                                                                               \
 };
-
-
-
 
 
 DURATION_UNIT(INTEGRAL_NANOSECOND   , ::i64, m_i);

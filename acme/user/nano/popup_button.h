@@ -1,7 +1,10 @@
 //
-// Created by camilo on 2022-02-16 22:38 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-02-16 22:38 <3ThomasBorregaardSï¿½rensen!!
 //
 #pragma once
+
+
+#include "window.h"
 
 
 class popup_button :

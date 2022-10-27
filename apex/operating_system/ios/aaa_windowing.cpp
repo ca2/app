@@ -8,7 +8,7 @@
 //#include "oswindow_data.h"
 
 //
-//::mutex * g_pmutexOsWindowData = nullptr;
+//::pointer< ::mutex > g_pmutexOsWindowData = nullptr;
 //
 ////::user::interaction * get_system_window_interaction(::os_system_window * psystemwindow)
 ////{
@@ -557,7 +557,7 @@
 //   
 ////   set_DispatchMessage(&axis_DispatchMessage);
 //   
-//   g_pmutexOsWindowData = memory_new ::mutex();
+//   g_pmutexOsWindowData = memory_new ::pointer < ::mutex >();
 //         
 //   g_poswindowdataptra = memory_new oswindow_dataptra;
 //   

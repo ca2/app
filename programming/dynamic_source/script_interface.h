@@ -37,7 +37,7 @@ namespace dynamic_source
 
       virtual const char* debug_note() const override;
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       virtual void init1();
 
       //void destroy() override;

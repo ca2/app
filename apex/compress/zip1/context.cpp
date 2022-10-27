@@ -46,10 +46,10 @@ namespace str
 //{
 
 
-   zip_context::zip_context(::object * pobject) 
+   zip_context::zip_context(::particle * pparticle) 
    {
 
-      initialize(pobject);
+      initialize(pparticle);
 
    }
 

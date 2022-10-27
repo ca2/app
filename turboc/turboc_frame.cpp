@@ -6,9 +6,9 @@ namespace turboc
 {
 
 
-   frame::frame(::object * pobject) :
-      ::object(pobject),
-      simple_frame_window(pobject)
+   frame::frame(::particle * pparticle) :
+      ::object(pparticle),
+      simple_frame_window(pparticle)
    {
 
       m_dataid = "::aura::turboc::frame";

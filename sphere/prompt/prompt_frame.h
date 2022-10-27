@@ -24,7 +24,7 @@ namespace prompt
       bool                    m_bMoveDrag;
       bool                    m_bLControl;
 
-      frame(::object * pobject);
+      frame(::particle * pparticle);
       virtual ~frame();
 
       void install_message_routing(::channel * pchannel) override;
@@ -32,8 +32,8 @@ namespace prompt
       void ShowControlBars(bool bShow);
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
       bool m_bHoverMouse;

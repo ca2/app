@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/exception/exception.h"
 
 
 CLASS_DECL_ACME int is_surrogated(u32 character)

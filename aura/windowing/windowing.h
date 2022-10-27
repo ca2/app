@@ -24,9 +24,9 @@ namespace windowing
 
       display_map                               m_displaymap;
 
-      ::mutex                                   m_mutexDisplay;
-      ::mutex                                   m_mutexWindow;
-      ::mutex                                   m_mutexMonitor;
+      ::pointer < ::mutex >                                   m_pmutexDisplay;
+      ::pointer < ::mutex >                                   m_pmutexWindow;
+      ::pointer < ::mutex >                                   m_pmutexMonitor;
 
 
       bool                                      m_bSettingCursorMatter;

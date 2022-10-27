@@ -28,7 +28,7 @@ namespace graphics
    bool buffer::update_screen()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto bOk = update_screen(m_pimageBuffer);
 
@@ -119,18 +119,18 @@ namespace graphics
    }
 
 
-   synchronization_object * buffer::get_screen_sync()
+   synchronization * buffer::get_screen_sync()
    {
 
-      return mutex();
+      return synchronization();
 
    }
 
 
-   ::synchronization_object * buffer::get_draw_lock()
+   ::synchronization * buffer::get_draw_lock()
    {
 
-      return mutex();
+      return synchronization();
 
    }
 

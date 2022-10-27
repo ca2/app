@@ -7,7 +7,7 @@
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/platform/application.h"
 #ifdef WINDOWS_DESKTOP
-#include "acme_windows/_.h"
+//#include "acme_windows/_.h"
 #include "acme_windows/registry.h"
 #endif
 
@@ -19,7 +19,7 @@ namespace programming
    compiler::compiler()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -31,12 +31,12 @@ namespace programming
    }
 
 
-   void compiler::initialize_programming_compiler(::object* pobject)
+   void compiler::initialize_programming_compiler(::object* pparticle)
    {
 
       //auto estatus = 
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -49,7 +49,7 @@ namespace programming
 
       {
 
-         auto pacmedirectory = m_psystem->m_pacmedirectory;
+         auto pacmedirectory = acmedirectory();
 
          ::file::path path;
 
@@ -135,7 +135,7 @@ namespace programming
    void compiler::prepare_compile_and_link_environment()
    {
 
-      auto pacmedirectory = m_psystem->m_pacmedirectory;
+      auto pacmedirectory = acmedirectory();
 
       m_pcontext->m_papexcontext->dir().create(pacmedirectory->system() / "netnodelite/symbols");
 
@@ -364,21 +364,21 @@ namespace programming
 
       ::file::path pathEnvTxt;
 
-      auto pacmedirectory = m_psystem->m_pacmedirectory;
+      auto pacmedirectory = acmedirectory();
 
       pathEnvTxt = pacmedirectory->system() / "env.txt";
 
-      m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
+      acmefile()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
 
-      m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
+      acmefile()->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
       pnode->run_silent(pacmedirectory->system() / "env1.bat", "");
 
-      strLog = m_psystem->m_pacmefile->as_string(pacmedirectory->system() / "env.txt");
+      strLog = acmefile()->as_string(pacmedirectory->system() / "env.txt");
 
       stra.add_lines(strLog);
 
@@ -458,12 +458,12 @@ namespace programming
       //   ::process::process_pointer process(e_create);
       //
       //
-      //   m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
+      //   acmefile()->put_contents(pacmedirectory->system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
       //
       //   set_thread_priority(::e_priority_highest);
       //   process->prop("inherit") = false;
       //
-      //   ::file::path pathCommand =          auto psystem = m_psystem;
+      //   ::file::path pathCommand =          auto psystem = acmesystem();
 
       //         auto pacmedirectory = psystem->m_pacmedirectory;
       //
@@ -582,7 +582,7 @@ namespace programming
       //
       stra.add_lines(strLog);
 
-      //string strEnv = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+      //string strEnv = acmefile()->as_string(         auto psystem = acmesystem();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //

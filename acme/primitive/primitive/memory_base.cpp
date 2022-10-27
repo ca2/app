@@ -1,9 +1,10 @@
 ﻿#include "framework.h"
 #include "acme/operating_system.h"
 #include "acme/filesystem/file/file.h"
-#include "acme/primitive/string/base64.h"
 #include "acme/primitive/primitive/memory.h"
-
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/string/hex.h"
+#include "acme/primitive/string/base64.h"
 
 
 #ifdef WINDOWS
@@ -1285,7 +1286,7 @@ strsize memory_base::from_hex(const char * psz, strsize nCount)
       try
       {
 
-         ch = ::hex::to(psz[i]);
+         ch = ::hex::to_nibble(psz[i]);
 
       }
       catch (...)
@@ -1303,7 +1304,7 @@ strsize memory_base::from_hex(const char * psz, strsize nCount)
          try
          {
 
-            ch2 = ::hex::to(psz[i]);
+            ch2 = ::hex::to_nibble(psz[i]);
 
          }
          catch (...)

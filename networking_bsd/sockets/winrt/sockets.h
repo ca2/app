@@ -24,11 +24,11 @@ namespace sockets
 #endif
 
       count                                     m_countHttpPostBoundary;
-      ::mutex                                   m_mutexHttpPostBoundary;
+      ::pointer < ::mutex >                                   m_pmutexHttpPostBoundary;
 
       resolv_socket::cache_t                    m_resolvcache;
       resolv_socket::timeout_t                  m_resolvtimeout;
-      ::mutex                                   m_mutexResolvCache;
+      ::pointer < ::mutex >                                   m_pmutexResolvCache;
 
       ::pointer<::sockets::net>                m_spnet;
 
@@ -40,7 +40,7 @@ namespace sockets
       class ::sockets::net& net();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       virtual void destroy() override;
 
 //      virtual void http_config_proxy(const char * pszUrl, http_tunnel * psocket);

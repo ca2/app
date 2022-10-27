@@ -43,9 +43,10 @@ namespace acme
       ::apex::node *                                  m_papexnode;
       ::aura::node *                                  m_pauranode;
 
-      ::pointer<::text::translator>                  m_ptexttranslator;
+      ::pointer<::text::translator>                   m_ptexttranslator;
 
-      ::pointer<::context_image>                   m_pcontextimage;
+      ::pointer<::context_image>                      m_pcontextimage;
+
 
 
       context();
@@ -63,10 +64,18 @@ namespace acme
       virtual ::text::text __text(const ::atom& atom) override;
 
 
+      inline ::acme_file * acmefile();
+      inline ::acme_path * acmepath();
+      inline ::acme_directory * acmedirectory();
+      inline ::acme::node * acmenode();
+      inline ::acme::system * acmesystem() { return m_pacmesystem; }
+
+
+
       virtual ::payload file_payload(const ::payload & payloadFile);
 
 
-      ::file_pointer get_file(const ::payload& payloadFile, const ::file::e_open& eopen) override;
+      //::file_pointer get_file(const ::payload& payloadFile, const ::file::e_open& eopen) override;
 
 
       virtual ::file::path defer_process_path(::file::path path);

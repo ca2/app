@@ -9,7 +9,7 @@
 //} // namespace str
 
 
-//CLASS_DECL_APEX wstring windows_register_window_class(::object * pobject, ::u32 nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
+//CLASS_DECL_APEX wstring windows_register_window_class(::particle * pparticle, ::u32 nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 //CLASS_DECL_APEX bool windows_register_class(WNDCLASSEXW* puserinteractionclass);
 
 // CLASS_DECL_APEX wstring windows_calc_icon_window_class(::user::interaction * pinteraction, u32 dwDefaultStyle, const char * pszMatter);

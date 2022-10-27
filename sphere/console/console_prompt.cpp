@@ -5,8 +5,8 @@ namespace console
 {
 
 
-   prompt::prompt(::object * pobject) :
-      ::object(pobject)
+   prompt::prompt(::particle * pparticle) :
+      ::object(pparticle)
    {
 
 

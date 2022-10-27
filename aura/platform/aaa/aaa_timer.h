@@ -161,7 +161,7 @@ public:
 
 
 
-   timer(::aura::timer_array * ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void * pvoidData = nullptr, class synchronization_object * pmutex = nullptr);
+   timer(::aura::timer_array * ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void * pvoidData = nullptr, class synchronization * pmutex = nullptr);
    virtual ~timer();
 
 

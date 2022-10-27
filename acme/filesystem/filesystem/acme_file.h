@@ -12,11 +12,11 @@ class CLASS_DECL_ACME acme_file :
 public:
 
 
-   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::acme_file *    m_pplatformfile;
-   acme_directory *                                   m_pacmedirectory;
-   acme_path *                                  m_pacmepath;
+   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::acme_file *       m_pplatformfile;
+   ::acme_directory *                                             m_pacmedirectory;
+   ::acme_path *                                                  m_pacmepath;
 
-   ::file::path                                 m_pathExecutable;
+   ::file::path                                                   m_pathExecutable;
 
 
    acme_file();

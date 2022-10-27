@@ -11,7 +11,7 @@
 #include <string.h>
 
 
-extern ::mutex * user_mutex();
+extern ::pointer< ::mutex > user_mutex();
 
 
 

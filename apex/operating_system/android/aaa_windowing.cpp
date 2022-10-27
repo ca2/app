@@ -77,7 +77,7 @@ oswindow_data::~oswindow_data()
 #define CA2_X11_WINDOW_LONG_STYLE_EX "ca2_ccwarehouse_fontopu_window_long_style_ex"
 
 //oswindow_dataptra * oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
-//::mutex * oswindow_data::s_pmutex = memory_new ::mutex;
+//::pointer< ::mutex > oswindow_data::s_pmutex = memory_new ::pointer < ::mutex >;
 
 
 i32 oswindow_find_message_only_window(::user::interaction_impl * pimpl)
@@ -311,7 +311,7 @@ bool oswindow_erase_message_only_window(::user::interaction_impl * pinteraction)
 i32 oswindow_data::store_name(const char * psz)
 {
 
-   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->synchronization());
 
    synchronous_lock slOsWindow(s_pmutex);
 
@@ -331,7 +331,7 @@ i32 oswindow_data::store_name(const char * psz)
 i32 oswindow_data::select_input(i32 iInput)
 {
 
-   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->synchronization());
 
    synchronous_lock slOsWindow(s_pmutex);
 
@@ -493,7 +493,7 @@ void oswindow_data::set_impl(::user::interaction_impl * pimpl)
 bool oswindow_data::is_child(::oswindow oswindow)
 {
 
-   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->synchronization());
 
    synchronous_lock slOsWindow(s_pmutex);
 
@@ -529,7 +529,7 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 bool oswindow_data::show_window(::e_display edisplay)
 {
 
-   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->synchronization());
 
    synchronous_lock slOsWindow(s_pmutex);
 
@@ -601,7 +601,7 @@ bool oswindow_data::is_iconic()
 bool oswindow_data::is_window_visible()
 {
 
-   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->synchronization());
 
    if (m_pimpl == nullptr)
    {
@@ -831,7 +831,7 @@ oswindow set_active_window(oswindow oswindow)
 oswindow get_window(oswindow windowParam, int iParentHood)
 {
 
-   synchronous_lock synchronouslock(windowParam == nullptr ? nullptr : (windowParam->m_pimpl == nullptr || windowParam->m_pimpl->m_puserinteraction == nullptr ? nullptr : windowParam->m_pimpl->m_puserinteraction->mutex()));
+   synchronous_lock synchronouslock(windowParam == nullptr ? nullptr : (windowParam->m_pimpl == nullptr || windowParam->m_pimpl->m_puserinteraction == nullptr ? nullptr : windowParam->m_pimpl->m_puserinteraction->synchronization()));
 
    oswindow interaction_impl = windowParam;
 
@@ -851,7 +851,7 @@ oswindow get_window(oswindow windowParam, int iParentHood)
 int_bool destroy_window(oswindow w)
 {
 
-   synchronous_lock synchronouslock(w == nullptr || w->m_pimpl == nullptr || w->m_pimpl->m_puserinteraction == nullptr ? nullptr : w->m_pimpl->m_puserinteraction->mutex());
+   synchronous_lock synchronouslock(w == nullptr || w->m_pimpl == nullptr || w->m_pimpl->m_puserinteraction == nullptr ? nullptr : w->m_pimpl->m_puserinteraction->synchronization());
 
    if (!is_window(w))
    {
@@ -1415,7 +1415,7 @@ CLASS_DECL_APEX ::user::interaction_impl * oswindow_get(oswindow oswindow)
 
 }
 
-::mutex * oswindow_data::s_pmutex = nullptr;
+::pointer< ::mutex > oswindow_data::s_pmutex = nullptr;
 
 oswindow_dataptra * oswindow_data::s_pdataptra = nullptr;
 
@@ -1428,7 +1428,7 @@ int_bool os_init_windowing()
 
    oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 
-   oswindow_data::s_pmutex = memory_new ::mutex;
+   oswindow_data::s_pmutex = memory_new ::pointer < ::mutex >;
 
    return true;
 

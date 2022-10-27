@@ -82,7 +82,7 @@ CLASS_DECL_AURA void __node_aura_pos_term()
 // int get_proc_stat_core_count()
 // {
 
-//    string str = m_psystem->m_pacmefile->as_string("/proc/stat");
+//    string str = acmefile()->as_string("/proc/stat");
 
 //    string_array stra;
 

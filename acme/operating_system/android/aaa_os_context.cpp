@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_android.h"
 #include "acme/platform/static_start.h"
-#include "acme/xml/_.h"
+//#include "acme/xml/_.h"
 #include "acme/graphics/draw2d/ttf_util.h"
 
 
@@ -382,7 +382,7 @@ namespace android
                   keyPlugin.SetValue("Path", ::acme::get_system()->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-                  keyPlugin.SetValue("Version", papp->m_psystem->m_pacmefile->as_string(m_pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
+                  keyPlugin.SetValue("Version", papp->acmefile()->as_string(m_pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
                   registry::Key keyApplicationca2;
 
@@ -662,7 +662,7 @@ namespace android
 
       string strSystemFonts = m_pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
 
-            auto psystem = m_psystem->m_paurasystem;
+            auto psystem = acmesystem()->m_paurasystem;
 
       auto pxml = psystem->xml();
 
@@ -727,7 +727,7 @@ namespace android
 
                         pitem = __new(::write_text::font_enumeration_item);
 
-                        if (::m_psystem->m_pacmefile->exists(path))
+                        if (::acmefile()->exists(path))
                         {
 
                            pitem->m_strFile = path;

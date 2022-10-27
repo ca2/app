@@ -38,7 +38,7 @@ void ___compile_test_sort_array_21304528734();
 void enum_display_monitors(::aura::system * psystem);
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object * pobject);
+CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::particle * pparticle);
 #endif
 
 
@@ -49,7 +49,7 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object * po
 extern string_map < ::pointer<::acme::library >>* g_pmapLibrary;
 
 
-CLASS_DECL_AXIS void __simple_tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
+CLASS_DECL_AXIS void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
 
 
 #ifdef WINDOWS
@@ -61,7 +61,7 @@ CLASS_DECL_AXIS void __simple_tracea(::matter * pobject, enum_trace_level elevel
 
 void os_post_quit();
 
-//extern ::mutex * psystem->m_mutexLibrary;
+//extern ::pointer< ::mutex > psystem->m_pmutexLibrary;
 
 
 
@@ -82,9 +82,9 @@ namespace axis
 
 
 
-   ::mutex * g_pmutexImage = nullptr;
+   ::pointer< ::mutex > g_pmutexImage = nullptr;
 
-   ::mutex * get_image_mutex()
+   ::pointer< ::mutex > get_image_mutex()
    {
 
       return g_pmutexImage;
@@ -133,12 +133,12 @@ namespace axis
    }
 
 
-   void system::initialize(::object * pobject)
+   void system::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::aura::system::initialize(pobject);
+      ::aura::system::initialize(pparticle);
 
       //if (!estatus)
       //{

@@ -25,7 +25,7 @@ namespace user
       ~box() override;
 
       
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       void install_message_routing(::channel * pchannel) override;

@@ -6,6 +6,7 @@
 
 
 #include "acme/primitive/collection/string_array.h"
+#include "path.h"
 
 
 namespace file
@@ -27,7 +28,7 @@ namespace file
 
    };
 
-   inline path_array path::ascendants_path() const { path_array patha; return ascendants_path(patha); }
+//   inline path_array path::ascendants_path() const { path_array patha; return ascendants_path(patha); }
 
 
 
@@ -35,6 +36,11 @@ namespace file
 
 
 //inline void __exchange(::payload_stream & stream, ::file::path_array & array);
+
+
+CLASS_DECL_ACME ::file::path_array operator / (const ::file::path & pathBase, const string_array & straRelativeItems);
+CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & pathBase, ::file::path_array & pathaFolder, ::file::path_array * ppathaRelative = nullptr);
+CLASS_DECL_ACME ::file::path_array ascendants_path(const ::file::path & pathBase);
 
 
 

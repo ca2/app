@@ -29,7 +29,7 @@ namespace filehandler
          ::rectangle_i32         m_rectangleStatusImage;
          ::rectangle_i32         m_rectangleName;
 
-         item(::object * pobject);
+         item(::particle * pparticle);
 
          void parse(const ::string & pszApp);
 
@@ -44,7 +44,7 @@ namespace filehandler
 
          i32 m_iItemHeight;
 
-         list(::object * pobject);
+         list(::particle * pparticle);
 
 
          void parse(::filehandler::handler * phandler, const ::string & pszTopic);
@@ -62,7 +62,7 @@ namespace filehandler
       ::write_text::font_pointer       m_pfont;
 
 
-      impact(::object * pobject);
+      impact(::particle * pparticle);
       virtual ~impact();
 
 

@@ -9,6 +9,7 @@
 
 
 #include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/primitive/element.h"
 
 
 namespace user

@@ -56,7 +56,7 @@ namespace draw2d
    {
    public:
 
-      static ::mutex * g_pmutex;
+      static ::pointer< ::mutex > g_pmutex;
 
       lock() :
          synchronous_lock(g_pmutex)

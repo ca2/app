@@ -1,6 +1,8 @@
 #include "framework.h"
-#include "apex/filesystem/fs/_fs.h"
+#include "set.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/filesystem/listing.h"
 #include "apex/platform/context.h"
 
 
@@ -68,7 +70,7 @@ namespace fs
    ::file::listing & set::root_ones(::file::listing & listing)
    {
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       m_fsdatamap.erase_all();
 
@@ -108,7 +110,7 @@ namespace fs
    ::pointer<data>set::path_data(const ::file::path & psz)
    {
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       auto p = m_fsdatamap.begin();
 

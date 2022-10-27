@@ -27,11 +27,11 @@ namespace hellobase
       bool                    m_b001LayoutIgnoreEmpty;
 
 
-      impact(::object * pobject);
+      impact(::particle * pparticle);
       virtual ~impact();
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
       {

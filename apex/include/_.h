@@ -70,9 +70,8 @@
 //  ca2/C++/C/Assembly/Huffman Machine/Hardware/Universe/Multiverse stack
 //
 //
-
-
 #pragma once
+
 
 #undef LAYER_NAMESPACE
 #define LAYER_NAMESPACE apex
@@ -107,6 +106,7 @@ namespace apex
 CLASS_DECL_APEX void apex_ref();
 
 
+#include "_forward_declaration.h"
 
 
 
@@ -334,7 +334,10 @@ namespace core
 #include "apex/handler/_.h"
 
 
-#include "acme/platform/library.h"
+#include "apex/platform/_critical_section.h"
+
+
+//#include "acme/platform/library.h"
 
 
 #include "apex/filesystem/_.h"
@@ -631,7 +634,7 @@ namespace html
 
 
 //#undef Ctx
-//#define Ctx(pobject) (*(::get_context(pobject)))
+//#define Ctx(pparticle) (*(::get_context(pparticle)))
 //#define Context (Ctx(this))
 
 
@@ -696,7 +699,7 @@ namespace aura
 //CLASS_DECL_APEX void register_apex_library(const char* psz, ::acme::library* plibrary);
 
 //CLASS_DECL_APEX ::context * get_context();
-//CLASS_DECL_APEX ::context * get_context(::object * pobject);
+//CLASS_DECL_APEX ::context * get_context(::particle * pparticle);
 //CLASS_DECL_APEX inline ::context * get_context(::context * pcontext);
 
 
@@ -708,17 +711,17 @@ namespace aura
 
 
 //CLASS_DECL_APEX ::application * get_app();
-//CLASS_DECL_APEX ::application * get_app(::object * pobject);
+//CLASS_DECL_APEX ::application * get_app(::particle * pparticle);
 //CLASS_DECL_APEX inline ::application * get_app(::apex::application * papp);
 //CLASS_DECL_APEX inline ::application * get_app() { return get_app(); }
 
 
 //CLASS_DECL_APEX ::apex::session * get_session();
-//CLASS_DECL_APEX ::apex::session * get_session(::object * pobject);
+//CLASS_DECL_APEX ::apex::session * get_session(::particle * pparticle);
 //CLASS_DECL_APEX inline ::apex::session * get_session(::apex::session * psession);
 
 
-//CLASS_DECL_APEX ::apex::system * ::apex::get_system(::object * pobject);
+//CLASS_DECL_APEX ::apex::system * ::apex::get_system(::particle * pparticle);
 
 
 #define BAD_WCHAR ((widechar)(-1))
@@ -850,7 +853,7 @@ namespace core
 
 //#include "acme/primitive/primitive/object_meta.h"
 
-#include "app/acme/platform/trace.h"
+//#include "app/acme/platform/trace.h"
 
 #include "apex/platform/display.h"
 
@@ -864,7 +867,7 @@ namespace core
 #include "apex/filesystem/filesystem.h"
 
 
-#include "apex/progress/_.h"
+//#include "apex/progress/_.h"
 
 
 #include "apex/parallelization/_.h"
@@ -928,7 +931,7 @@ namespace core
 //#include "apex/platform/department.h"
 
 
-#include "apex/parallelization/threading.h"
+//#include "apex/parallelization/threading.h"
 
 
 class message_queue;
@@ -974,7 +977,7 @@ class service_handler;
 //#include "apex/parallelization/thread_impl.h"
 
 
-#include "apex/platform/log.h"
+//#include "apex/platform/log.h"
 
 
 namespace user
@@ -1028,7 +1031,7 @@ namespace file
 
 //#include "apex/platform/command_line.h"
 
-#include "apex/platform/create.h"
+//#include "apex/platform/create.h"
 
 
 namespace zip
@@ -1043,11 +1046,11 @@ namespace zip
 
 //#include "apex/operating_system/text.h"
 
-#include "source/app/apex/operating_system/process.h"
+//#include "apex/operating_system/process.h"
 
-#include "apex/filesystem/filesystem/file_listener.h"
+//#include "apex/filesystem/filesystem/file_listener.h"
 
-#include "apex/platform/os_context.h"
+//#include "apex/platform/os_context.h"
 
 //#include "apex/crypto/crypto.h"
 
@@ -1126,7 +1129,7 @@ namespace user
 } // namespace user
 
 
-#include "apex/filesystem/fs/_fs.h"
+#include "apex/filesystem/fs/_.h"
 
 #include "apex/_.h"
 
@@ -1140,7 +1143,7 @@ namespace user
 
 #include "apex/message/_.h"
 
-
+#include "apex/progress/_.h"
 //#include "apex/platform/context_thread.h"
 
 
@@ -1152,7 +1155,7 @@ namespace user
 
 //#include "apex/platform/session.h"
 
-#include "apex/parallelization/retry.h"
+//#include "apex/parallelization/retry.h"
 
 
 //CLASS_DECL_APEX::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
@@ -1215,7 +1218,7 @@ namespace xml
 //#include "apex/operating_system/_.h"
 
 
-#include "apex/parallelization/data.h"
+//#include "apex/parallelization/data.h"
 
 
 //#include "apex/platform/shell_launcher.h"
@@ -1247,7 +1250,7 @@ namespace mathematics
 #include "apex/compress/_.h"
 
 
-#include "apex/platform/app_consumer.h"
+//#include "apex/platform/app_consumer.h"
 
 
 //#include "apex/platform/async.h"
@@ -1259,7 +1262,7 @@ namespace mathematics
 #include "apex/user/_.h"
 
 
-#include "apex/platform/message_box.h"
+//#include "apex/platform/message_box.h"
 
 
 //#include "apex/platform/console_application.h"

@@ -10,7 +10,7 @@ namespace user
    mesh_cache_interface::mesh_cache_interface()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 

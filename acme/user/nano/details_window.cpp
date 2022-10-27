@@ -2,8 +2,10 @@
 // Created by camilo on 06/02/2022 12:17 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
+#include "details_window.h"
+#include "window_implementation.h"
+#include "acme/primitive/geometry2d/size.h"
 #include "acme/operating_system.h"
-#include "_nano.h"
 
 
 nano_details_window::nano_details_window()

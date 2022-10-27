@@ -2,6 +2,7 @@
 
 
 #include "acme/primitive/primitive/bits.h"
+#include "synchronization_array.h"
 
 
 class CLASS_DECL_ACME multiple_lock

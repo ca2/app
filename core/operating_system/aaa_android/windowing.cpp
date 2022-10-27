@@ -77,7 +77,7 @@ oswindow_data::~oswindow_data()
 #define CA2_X11_WINDOW_LONG_STYLE_EX "ca2_ccwarehouse_fontopu_window_long_style_ex"
 
 //oswindow_dataptra * oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
-//::mutex * oswindow_data::s_pmutex = memory_new ::mutex;
+//::pointer< ::mutex > oswindow_data::s_pmutex = memory_new ::pointer < ::mutex >;
 
 
 i32 oswindow_find_message_only_window(::user::interaction_impl * pimpl)
@@ -1415,7 +1415,7 @@ CLASS_DECL_CORE ::user::interaction_impl * oswindow_get(oswindow oswindow)
 
 }
 
-::mutex * oswindow_data::s_pmutex = nullptr;
+::pointer< ::mutex > oswindow_data::s_pmutex = nullptr;
 
 oswindow_dataptra * oswindow_data::s_pdataptra = nullptr;
 
@@ -1428,7 +1428,7 @@ int_bool os_init_windowing()
 
    oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 
-   oswindow_data::s_pmutex = memory_new ::mutex;
+   oswindow_data::s_pmutex = memory_new ::pointer < ::mutex >;
 
    return true;
 

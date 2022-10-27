@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/matter.h"
+
+
 class CLASS_DECL_ACME hyperlink :
    virtual public ::matter
 {

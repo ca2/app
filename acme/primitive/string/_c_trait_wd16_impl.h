@@ -12,7 +12,7 @@ inline i32 __wd16charisalphanumeric(i32 i) { return wd16_char_is_alphabetic(i) |
 inline i32 __wd16charisspace(i32 ch) { return ch == '\r' || ch == '\n' || ch == '\t' || ch == ' '; }
 
 
-inline wd16char * overlap_safe_w16ncpy(wd16char * pszDst, const wd16char * pszSrc, strsize srclen)
+inline wd16char * overlap_safe_wd16ncpy(wd16char * pszDst, const wd16char * pszSrc, strsize srclen)
 {
 
    if (pszDst != pszSrc)

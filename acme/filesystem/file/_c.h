@@ -16,7 +16,7 @@
 
 //CLASS_DECL_ACME int_bool file_path_is_relative(const char * psz);
 
-//CLASS_DECL_ACME int_bool m_psystem->m_pacmefile->exists(const char * path);
+//CLASS_DECL_ACME int_bool acmefile()->exists(const char * path);
 
 
 //CLASS_DECL_ACME int_bool is_file_ok(const char * path1, const char * pszTemplate);

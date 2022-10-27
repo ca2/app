@@ -2,6 +2,7 @@
 #pragma once
 
 
+#include "acme/primitive/string/_uhash.h"
 #include "acme/primitive/string/string.h"
 
 
@@ -525,8 +526,8 @@ public:
 #ifndef NO_TEMPLATE
 
 
-   inline void as(::string & str) const;
-   inline ::string string() const;
+   void as(::string & str) const;
+   ::string string() const;
    //inline string __string() const;
 
 #endif
@@ -1558,17 +1559,6 @@ inline bool atom::begins_ci(const char * pszCandidatePrefix) const
 
 
 
-inline string::string(const ::atom & atom) :
-   ansistring(atom.string())
-{
-
-
-}
-
-
-
-
-
 #ifndef NO_TEMPLATE
 
 
@@ -1601,5 +1591,51 @@ inline void from_string(::atom & atom, const ansichar * psz)
 }
 
 
+inline atom::atom(const char * psz) :
+   m_str(psz)
+{
+
+   m_etype = e_type_text;
+
+   //m_str.::string::string(psz);
+
+}
+
+
+inline atom::atom(const ::lparam & lparam)
+{
+
+   m_etype = e_type_integer;
+
+   m_u = lparam.m_lparam;
+
+}
+
+
+inline atom::atom(const ::string& str) :
+   m_str(str)
+{
+
+   m_etype = e_type_text;
+
+}
+
+
+template < typename CHAR >
+inline string_base < CHAR >::string_base(const ::atom & atom) :
+   string_base(atom.string())
+{
+
+
+}
+
+
+template < typename CHAR >
+string_base < CHAR > & string_base < CHAR >::operator+=(const ::atom & atom)
+{
+
+   return append(atom);
+
+}
 
 

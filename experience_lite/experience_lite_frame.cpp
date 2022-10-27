@@ -16,10 +16,10 @@
          {
 
 
-            frame::frame(::object * pobject) :
-               object(pobject),
-               ::experience::frame(pobject),
-               //m_schema(pobject),
+            frame::frame(::particle * pparticle) :
+               object(pparticle),
+               ::experience::frame(pparticle),
+               //m_schema(pparticle),
                m_ppenText1(e_create),
                m_ppenFace1(e_create),
                m_ppenHilight1(e_create),

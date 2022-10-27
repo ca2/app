@@ -521,10 +521,10 @@ i16 GeoIP_update_database (char * license_key, i32 verbose, void (*f)( char * ))
 //
 //}
 
-i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * license_key,char *data_axis_type, i32 verbose,char ** client_ipaddr, void (*f)( char *));
+i16 GeoIP_update_database_general (::particle * pparticle, char * user_id,char * license_key,char *data_axis_type, i32 verbose,char ** client_ipaddr, void (*f)( char *));
 
 
-//i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * license_key,char *data_axis_type, i32 verbose,char ** client_ipaddr, void (*f)( char *)) {
+//i16 GeoIP_update_database_general (::particle * pparticle, char * user_id,char * license_key,char *data_axis_type, i32 verbose,char ** client_ipaddr, void (*f)( char *)) {
 //
 //#ifdef BSD_STYLE_SOCKETS
 //   struct hostent *hostlist;
@@ -1021,7 +1021,7 @@ i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * lic
 //
 //#else
 //
-//   throw ::exception(todo(pobject));
+//   throw ::exception(todo(pparticle));
 //
 //#endif
 //

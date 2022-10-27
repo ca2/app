@@ -17,16 +17,16 @@ i32 create_process(const ::string & pszCommandLine, i32 * pprocessId);
 #include <unistd.h>
 #endif
 
-string vs_build(::object * pobject)
+string vs_build(::particle * pparticle)
 {
 
    ::file::path path;
 
-   auto pacmedirectory = pobject->m_psystem->m_pacmedirectory;
+   auto pacmedirectory = pparticle->acmedirectory();
 
    path = pacmedirectory->config() / "programming/vs_build.txt";
 
-   string strVsBuild = pobject->m_psystem->m_pacmefile->as_string(path);
+   string strVsBuild = pparticle->acmefile()->as_string(path);
 
    strVsBuild.trim();
 
@@ -50,7 +50,7 @@ namespace introjection
    compiler::compiler()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
 
    }
@@ -62,12 +62,12 @@ namespace introjection
    }
 
 
-   void compiler::initialize_introjection_compiler(::object * pobject, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName)
+   void compiler::initialize_introjection_compiler(::particle * pparticle, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName)
    {
 
       //auto estatus =
       
-      initialize_programming_compiler(pobject);
+      initialize_programming_compiler(pparticle);
 
       //if (!estatus)
       //{
@@ -83,7 +83,7 @@ namespace introjection
 //
 //         ::file::path path;
 //
-//         auto pacmedirectory = m_psystem->m_pacmedirectory;
+//         auto pacmedirectory = acmedirectory();
 //
 //         path = pacmedirectory->config() / "programming/vs.txt";
 //
@@ -192,7 +192,7 @@ namespace introjection
 //
 //      auto pcontext = get_context();
 //
-//      auto pacmedirectory = m_psystem->m_pacmedirectory;
+//      auto pacmedirectory = acmedirectory();
 //
 //      pcontext->m_papexcontext->dir().create(pacmedirectory->system() / "introjection\\symbols");
 //
@@ -377,7 +377,7 @@ namespace introjection
 //      //
 //      //#endif
 //
-//      auto psystem = m_psystem->m_paurasystem;
+//      auto psystem = acmesystem()->m_paurasystem;
 //
 //#ifdef _UWP
 //
@@ -406,7 +406,7 @@ namespace introjection
 //      strItem = pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / m_strStagePlatform / "introjection\\library";
 //      str = str + strItem + ";";
 //
-//      //auto psystem = m_psystem;
+//      //auto psystem = acmesystem();
 //
 //      auto pnode = psystem->node();
 //
@@ -459,15 +459,15 @@ namespace introjection
 //
 //      ::file::path pathEnvTxt;
 //
-//      auto pacmedirectory = m_psystem->m_pacmedirectory;
+//      auto pacmedirectory = acmedirectory();
 //
 //      pathEnvTxt = pacmedirectory->system() / "env.txt";
 //
-//      m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
+//      acmefile()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
 //
-//      m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
+//      acmefile()->put_contents(pacmedirectory->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
 //
-//      auto psystem = m_psystem;
+//      auto psystem = acmesystem();
 //
 //      auto pnode = psystem->node();
 //
@@ -475,7 +475,7 @@ namespace introjection
 //
 //      string strLog;
 //
-//      strLog = m_psystem->m_pacmefile->as_string(pacmedirectory->system() / "env.txt");
+//      strLog = acmefile()->as_string(pacmedirectory->system() / "env.txt");
 //
 //      string_array stra;
 //
@@ -577,7 +577,7 @@ namespace introjection
 
          plibrary = __create_new < library > ();
 
-         plibrary->defer_create_mutex();
+         plibrary->defer_create_synchronization();
 
       }
       else if(!bNew)
@@ -590,7 +590,7 @@ namespace introjection
 
       }
 
-      single_lock synchronouslock(plibrary->mutex());
+      single_lock synchronouslock(plibrary->synchronization());
 
       if (!synchronouslock.lock(0_s))
       {
@@ -695,7 +695,7 @@ namespace introjection
 
       }
 
-               auto psystem = m_psystem;
+               auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1063,7 +1063,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       strRndTitle.release_string_buffer();
 
-      auto pacmedirectory = m_psystem->m_pacmedirectory;
+      auto pacmedirectory = acmedirectory();
 
       strHmhLctvWildPdbPath = ::file::path(pacmedirectory->system() / "netnodelite\\symbols") / strRndTitle;
       strHmhLctvWildPdbPath.find_replace("\\","/");
@@ -1118,7 +1118,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
 #ifdef LINUX
 
-      m_psystem->m_pacmefile->put_contents("/tmp/introj.bash", str);
+      acmefile()->put_contents("/tmp/introj.bash", str);
 
       chmod("/tmp/introj.bash", S_IRWXU | S_IRWXG | S_IRWXO);
 
@@ -1166,7 +1166,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       }
 
-      strLog= m_psystem->m_pacmefile->as_string(strClog);
+      strLog= acmefile()->as_string(strClog);
 
 #else
 auto tickStart = ::duration::now();
@@ -1303,7 +1303,7 @@ auto tickStart = ::duration::now();
 
 #ifdef LINUX
 
-         m_psystem->m_pacmefile->put_contents("/tmp/introl.bash", str);
+         acmefile()->put_contents("/tmp/introl.bash", str);
 
          chmod("/tmp/introl.bash", S_IRWXU | S_IRWXG | S_IRWXO);
 
@@ -1377,7 +1377,7 @@ auto tickStart = ::duration::now();
 
 #ifdef MACOS
 
-         strLog= m_psystem->m_pacmefile->as_string(strLlog);
+         strLog= acmefile()->as_string(strLlog);
 
 #else
 

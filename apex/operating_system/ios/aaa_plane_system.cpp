@@ -31,11 +31,11 @@
 //plane_system::plane_system()
 //{
 //
-//   m_psystem = ::apex::get_system();
+//   acmesystem() = ::apex::get_system();
 //
-//   m_psystem->m_pplanesystem = this;
+//   acmesystem()->m_pplanesystem = this;
 //
-//   m_psystem->initialize_native_window1();
+//   acmesystem()->initialize_native_window1();
 //
 //}
 
@@ -50,9 +50,9 @@
 //   initialize.m_rectangle.right = rectangle.origin.x + rectangle.size.width;
 //   initialize.m_rectangle.bottom = rectangle.origin.x + rectangle.size.height;
 //
-//   m_psystem->m_possystemwindow->m_puserinteraction->initialize_native_window(&initialize);
+//   acmesystem()->m_possystemwindow->m_puserinteraction->initialize_native_window(&initialize);
 //
-//   ::ios::interaction_impl * pimpl = m_psystem->m_possystemwindow->m_puserinteraction->m_pimpl.cast < ::ios::interaction_impl > ();
+//   ::ios::interaction_impl * pimpl = acmesystem()->m_possystemwindow->m_puserinteraction->m_pimpl.cast < ::ios::interaction_impl > ();
 //
 //   UIWindow * window = new_round_window(pimpl, rectangle);
 //
@@ -126,11 +126,11 @@
 //void plane_system::plane_system_begin()
 //{
 //
-////   m_psystem->m_XstrAppId = m_pmaindata->m_pmaindata->m_XstrAppId;
+////   acmesystem()->m_XstrAppId = m_pmaindata->m_pmaindata->m_XstrAppId;
 ////
-////   m_psystem->startup_command(m_pmaindata->m_pmaindata);
+////   acmesystem()->startup_command(m_pmaindata->m_pmaindata);
 ////
-////   if (!m_psystem->pre_run())
+////   if (!acmesystem()->pre_run())
 ////   {
 ////
 ////      return;
@@ -138,7 +138,7 @@
 ////   }
 ////
 ////
-//   if (!m_psystem->request(m_psystem->m_pcommand))
+//   if (!acmesystem()->request(acmesystem()->m_pcommand))
 //   {
 //
 //      return;

@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/platform/department.h"
+#include "acme/primitive/collection/string_array.h"
+
+
 namespace url
 {
 
@@ -11,12 +15,12 @@ namespace url
    public:
 
 
-      string_array                 m_straPublicDomainExtension;
-      critical_section        m_csPublicDomainExtension;
+      string_array                  m_straPublicDomainExtension;
+      critical_section              m_csPublicDomainExtension;
 
 
       department();
-      virtual ~department();
+      ~department() override;
 
 
       // Example: http://veriwell.com.br:443/page?id=1

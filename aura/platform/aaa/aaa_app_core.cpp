@@ -10,7 +10,7 @@
 
 //extern string_map < ::pointer<::acme::library >> g_pmapLibrary ;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
-//extern ::mutex* ::aura::get_system()->m_mutexLibrary;
+//extern ::pointer < ::mutex >* ::aura::get_system()->m_pmutexLibrary;
 
 
 #ifdef RASPBIAN
@@ -66,7 +66,7 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-void debug_context_object(::object * pobject);
+void debug_context_object(::particle * pparticle);
 
 
 #ifdef __APPLE__
@@ -197,14 +197,14 @@ void app_core::system_prep()
 
    m_durationAfterApplicationFirstRequest = m_durationStart;
 
-   if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
+   if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
 
       sleep(10000_ms);
 
    }
 
-   if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
+   if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
    {
 
       //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
@@ -518,19 +518,19 @@ void app_core::system_init()
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 
-   ::file::path pathOutputDebugString =          auto psystem = m_psystem;
+   ::file::path pathOutputDebugString =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / strAppId / "output_debug_string.txt" ;
 
-   ::file::path pathGlobalOutputDebugString =          auto psystem = m_psystem;
+   ::file::path pathGlobalOutputDebugString =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->config() / "output_debug_string.txt" ;
 
-   ::aura::g_bOutputDebugString = m_psystem->m_pacmefile->exists(pathOutputDebugString)||  m_psystem->m_pacmefile->exists(pathGlobalOutputDebugString);
+   ::aura::g_bOutputDebugString = acmefile()->exists(pathOutputDebugString)||  acmefile()->exists(pathGlobalOutputDebugString);
 
    return true;
 
@@ -550,7 +550,7 @@ void app_core::set_command_line(const ::string & psz)
 
    m_strCommandLine = psz;
 
-   ::file::path pathFolder =          auto psystem = m_psystem;
+   ::file::path pathFolder =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -565,7 +565,7 @@ pacmedirectory->ca2roaming() / "program";
 
       ::file::path path = pathFolder / "last_command_line.txt";
 
-      m_psystem->m_pacmefile->put_contents(path, get_command_line());
+      acmefile()->put_contents(path, get_command_line());
 
       ::file::path pathExecutable = consume_param(psz, nullptr);
 
@@ -576,7 +576,7 @@ pacmedirectory->ca2roaming() / "program";
       if (file_is_equal_path_dup(pathExecutable.title(), strAppTitle))
       {
 
-         m_psystem->m_pacmefile->put_contents(path, pathExecutable);
+         acmefile()->put_contents(path, pathExecutable);
 
       }
 
@@ -1786,7 +1786,7 @@ bool app_core::has_aura_application_factory() const
 #endif
 
 
-::pointer<::aura::application>app_core::get_new_application(::object* pobject)
+::pointer<::aura::application>app_core::get_new_application(::object* pparticle)
 {
 
    if (!m_pfnNewAuraApplication)
@@ -1807,7 +1807,7 @@ bool app_core::has_aura_application_factory() const
 
    }
 
-   auto estatus = papp->initialize(pobject);
+   auto estatus = papp->initialize(pparticle);
 
    if (!estatus)
    {
@@ -1821,14 +1821,14 @@ bool app_core::has_aura_application_factory() const
 }
 
 
-::pointer<::aura::application>app_core::get_new_application(::object* pobject, const ::string & pszAppId)
+::pointer<::aura::application>app_core::get_new_application(::object* pparticle, const ::string & pszAppId)
 {
 
    ::pointer<::aura::application>papp;
 
    string strAppId = pszAppId;
 
-   synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+   synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
    ::pointer<::acme::library> plibrary = ::aura::get_system()->m_mapLibrary[strAppId];
 
@@ -1891,7 +1891,7 @@ bool app_core::has_aura_application_factory() const
          if (plibrary)
          {
 
-            plibrary->initialize_aura_library(pobject, 0, nullptr);
+            plibrary->initialize_aura_library(pparticle, 0, nullptr);
 
          }
          else
@@ -1899,7 +1899,7 @@ bool app_core::has_aura_application_factory() const
 
             //plibrary = __new(::acme::library);
 
-            //plibrary->initialize_aura_library(pobject, 0, nullptr);
+            //plibrary->initialize_aura_library(pparticle, 0, nullptr);
 
             string strLibrary = strAppId;
 
@@ -2050,8 +2050,8 @@ bool app_core::has_aura_application_factory() const
    if (!papp->is_serviceable() || papp->is_user_service())
    {
 
-      ::aura::get_system()->m_spmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
-      ::aura::get_system()->m_spmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
+      ::aura::get_system()->m_spmutexUserAppData = __new(::pointer < ::mutex >(e_create_new, false, "Local\\ca2.UserAppData"));
+      ::aura::get_system()->m_spmutexSystemAppData = __new(::pointer < ::mutex >(e_create_new, false, "Local\\ca2.SystemAppData"));
 
    }
 

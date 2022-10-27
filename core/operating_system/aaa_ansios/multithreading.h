@@ -8,13 +8,12 @@ void set_defer_process_x_message(bool (* pfn)(htask_t htask,LPMESSAGE pMsg,oswin
 
 #ifdef __cplusplus
 
-//#undef synchronization_object
-//class synchronization_object;
+//#undef synchronization//class synchronization;
 //
 //#ifdef WINDOWS
 //using HSYNC = HANDLE;
 //#else
-//using HSYNC = synchronization_object *;
+//using HSYNC = synchronization *;
 //#endif
 
 #ifdef _UWP

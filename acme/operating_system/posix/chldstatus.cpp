@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/primitive/collection/map.h"
+#include "acme/primitive/collection/int_map.h"
 #include <sys/types.h>
 #include <sys/wait.h>
 

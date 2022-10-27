@@ -847,7 +847,7 @@ plex_heap * plex_heap::create(plex_heap * & pheapHead, uptr nMax, uptr cbElement
    if (nMax == 0 || cbElement == 0)
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 

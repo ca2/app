@@ -1,10 +1,14 @@
 #include "framework.h"
 #include "channel.h"
+#include "acme/operating_system/message.h"
+#include "acme/platform/message.h"
+#include "acme/parallelization/mutex.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/message.h"
 #include "apex/message/command.h"
 
 
-::pointer<::mutex>channel::s_pmutexChannel;
+//::pointer < ::mutex >channel::s_pmutexChannel;
 
 
 channel::channel()
@@ -34,7 +38,7 @@ void channel::install_message_routing(::channel* pchannel)
 void channel::erase_handler(::matter * pmatter)
 {
 
-   synchronous_lock synchronouslock(channel_mutex());
+   critical_section_lock synchronouslock(channel_critical_section());
 
    for (auto & dispatchera : m_dispatchermap.values())
    {
@@ -61,7 +65,7 @@ void channel::erase_handler(::matter * pmatter)
 void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::matter * pmatter)
 {
 
-   synchronous_lock synchronouslock(channel_mutex());
+   critical_section_lock synchronouslock(channel_critical_section());
 
    for (auto & pair : m_dispatchermap)
    {
@@ -129,7 +133,7 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::matt
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronous_lock synchronouslock(channel_mutex()); pmessage->m_pdispatchera = m_dispatchermap.pget(pmessage->m_atom); } if(pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
+   if (::is_null(pmessage)) { ASSERT(false); return; } { critical_section_lock synchronouslock(channel_critical_section()); pmessage->m_pdispatchera = m_dispatchermap.pget(pmessage->m_atom); } if(pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
 
    for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_pdispatchera->get_upper_bound(); pmessage->m_pdispatchera && pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
@@ -232,7 +236,7 @@ void channel::erase_all_routes()
    try
    {
 
-      _synchronous_lock synchronouslock(channel_mutex());
+      critical_section_lock synchronouslock(channel_critical_section());
 
       // if(m_bNewChannel)
       // {
@@ -441,7 +445,7 @@ void channel::command_handler(::message::command * pcommand)
 bool channel::has_command_handler(::message::command * pcommand)
 {
 
-   synchronous_lock synchronouslock(channel_mutex());
+   critical_section_lock synchronouslock(channel_critical_section());
 
    ___scoped_restore(pcommand->m_atom.m_etype);
 

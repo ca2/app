@@ -1,7 +1,14 @@
 #include "framework.h" // from "base/apex/.h"
+#include "department.h"
 #include <time.h>
-#include "acme/primitive/datetime/_string.h"
+#include "acme/primitive/datetime/__string.h"
 #include "acme/primitive/text/context.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/platform/system.h"
+#include "acme/exception/exception.h"
+#include "acme/exception/not_implemented.h"
+#include "acme/regular_expression/regular_expression.h"
+#include "acme/regular_expression/result.h"
 
 
 namespace datetime
@@ -31,15 +38,15 @@ namespace datetime
    department::department()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
 
-   void department::initialize(::object * pobject)
+   void department::initialize(::particle * pparticle)
    {
     
-      /*auto estatus = */ ::acme::department::initialize(pobject);
+      /*auto estatus = */ ::acme::department::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -73,10 +80,10 @@ namespace datetime
    }
 
 
-   void department::international::initialize(::object * pobject)
+   void department::international::initialize(::particle * pparticle)
    {
 
-      /*auto estatus = */ ::object::initialize(pobject);
+      /*auto estatus = */ ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -90,10 +97,10 @@ namespace datetime
    }
 
 
-//   void department::str().initialize(::object * pobject)
+//   void department::str().initialize(::particle * pparticle)
 //   {
 //
-//      /* auto estatus = */ ::object::initialize(pobject);
+//      /* auto estatus = */ ::object::initialize(pparticle);
 //
 //      //if (!estatus)
 //      //{
@@ -556,9 +563,7 @@ namespace datetime
    string department::get_week_day_str(const ::text::context * pcontext, i32 iWeekDay) // 1 - domingo
    {
       
-      auto psystem = m_psystem;
-
-      return psystem->texttable()->get(pcontext, "datetimestr_weekday_long[" + __string(iWeekDay - 1) + "]");
+      return acmesystem()->texttable()->get(pcontext, "datetimestr_weekday_long[" + __string(iWeekDay - 1) + "]");
 
    }
 
@@ -566,9 +571,7 @@ namespace datetime
    string department::get_tiny_week_day_str(const ::text::context * pcontext, i32 iWeekDay) // 1 - domingo
    {
 
-      auto psystem = m_psystem;
-
-      return psystem->texttable()->get(pcontext, "datetimestr_weekday_tiny[" + __string(iWeekDay - 1) + "]");
+      return acmesystem()->texttable()->get(pcontext, "datetimestr_weekday_tiny[" + __string(iWeekDay - 1) + "]");
 
    }
 
@@ -576,9 +579,7 @@ namespace datetime
    string department::get_month_str(const ::text::context * pcontext, i32 iMonth)
    {
    
-      auto psystem = m_psystem;
-
-      return psystem->texttable()->get(pcontext, "datetimestr_month[" + __string(iMonth - 1) + "]");
+      return acmesystem()->texttable()->get(pcontext, "datetimestr_month[" + __string(iMonth - 1) + "]");
 
    }
 
@@ -586,9 +587,7 @@ namespace datetime
    string department::get_short_month_str(const ::text::context * pcontext, i32 iMonth)
    {
 
-      auto psystem = m_psystem;
-
-      return psystem->texttable()->get(pcontext, "datetimestr_month_short[" + __string(iMonth - 1) + "]");
+      return acmesystem()->texttable()->get(pcontext, "datetimestr_month_short[" + __string(iMonth - 1) + "]");
 
    }
 
@@ -792,7 +791,7 @@ namespace datetime
    }
 
 
-   string department::strftime(const string & strFormatParam, const ::earth::time & time, const ::earth::time_shift & timeshift)
+   string department::format(const string & strFormatParam, const ::earth::time & time, const ::earth::time_shift & timeshift)
    {
 
       string strFormat(strFormatParam);
@@ -819,10 +818,10 @@ namespace datetime
    }
 
 
-   string department::strftime(const string & str, const ::earth::time_shift& timeshift)
+   string department::format(const string & str, const ::earth::time_shift& timeshift)
    {
 
-      return strftime(str, ::earth::time::now(), timeshift);
+      return format(str, ::earth::time::now(), timeshift);
 
    }
 
@@ -1437,9 +1436,7 @@ namespace datetime
 
             bBaseTime = true;
             
-            auto psystem = m_psystem;
-
-            auto pdatetime = m_psystem->datetime();
+            auto pdatetime = acmesystem()->datetime();
 
             pdatetime->international().parse_str(str, set);
 
@@ -1490,9 +1487,7 @@ namespace datetime
          {
             bBaseTime = true;
 
-            auto psystem = m_psystem;
-
-            auto pdatetime = m_psystem->datetime();
+            auto pdatetime = acmesystem()->datetime();
 
             pdatetime->international().parse_str(str, set);
 
@@ -1564,11 +1559,9 @@ namespace datetime
 
       string_array stra;
 
-      auto psystem = m_psystem;
+      auto pdatetime = acmesystem()->datetime();
 
-      auto pdatetime = m_psystem->datetime();
-
-      auto pcre1 = psystem->compile_pcre("^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
+      auto pcre1 = acmesystem()->compile_pcre("^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
 
       auto presult = pcre1->run(str);
 

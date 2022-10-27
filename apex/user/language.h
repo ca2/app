@@ -4,11 +4,15 @@
 #define BEGIN_PRIVATE_LANGUAGE_MAP
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/collection/string_map.h"
+
+
 namespace user
 {
 
 
-   class language :
+   class CLASS_DECL_APEX language :
       virtual public ::object
    {
    public:
@@ -28,10 +32,10 @@ namespace user
 
 
       language();
-      virtual ~language();
+      ~language() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual bool defer_load_resource_pofile(bool bOnlyHeader = false);

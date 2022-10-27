@@ -3,6 +3,7 @@
 #include "api.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/platform/context.h"
+#include "apex/platform/system.h"
 
 
 api_client::api_client()
@@ -93,7 +94,7 @@ void api_client::create_api(const ::string& strImplementation)
    if (!m_papi)
    {
 
-      auto & pfactory = m_psystem->factory("api", strImplementation);
+      auto & pfactory = acmesystem()->factory("api", strImplementation);
 
       if (!pfactory)
       {

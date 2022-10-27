@@ -47,7 +47,7 @@ namespace experience_anthill
 
       __defer_construct(m_pfont);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pnode = psystem->node();
 

@@ -1,5 +1,9 @@
 #include "framework.h"
 #include "acme/constant/id.h"
+#include "acme/primitive/string/string.h"
+#include "acme/primitive/primitive/atom.h"
+
+
 //extern thread_pointer < os_thread > t_posthread;
 //extern thread_pointer < htask > t_htask;
 

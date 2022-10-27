@@ -6,11 +6,11 @@ namespace colorertake5
 {
 
 
-   HRCParserImpl::HRCParserImpl(::object * pobject) :
-      object(pobject),
-      fileTypeHash(pobject),
-      schemeHash(pobject),
-      regionNamesHash(pobject)
+   HRCParserImpl::HRCParserImpl(::particle * pparticle) :
+      object(pparticle),
+      fileTypeHash(pparticle),
+      schemeHash(pparticle),
+      regionNamesHash(pparticle)
    {
       regionNamesVector.allocate(0, 203);
       fileTypeVector.allocate(0, 203);

@@ -39,7 +39,7 @@ public:
    ~simple_frame_window() override;
 
 
-   virtual void initialize(::object * pobject) override;
+   virtual void initialize(::particle * pparticle) override;
    
    
    ::user::notify_icon * notify_icon() override;

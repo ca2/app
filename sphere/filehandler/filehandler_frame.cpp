@@ -5,9 +5,9 @@ namespace filehandler
 {
 
 
-   frame::frame(::object * pobject) :
-      ::object(pobject),
-      simple_frame_window(pobject)
+   frame::frame(::particle * pparticle) :
+      ::object(pparticle),
+      simple_frame_window(pparticle)
    {
 
       window_enable_full_screen();

@@ -2,9 +2,11 @@
 
 
 #include "acme/primitive/primitive/object.h"
-#include "synchronization_object.h"
+//#include "synchronization_object.h"
 #include "acme/platform/implementable.h"
 
+typedef string GET_THREAD_NAME(::thread* pthread);
+using LPFN_GET_THREAD_NAME = GET_THREAD_NAME*;
 
 typedef pointer_array < ::matter > object_array;
 typedef map < itask_t, ::pointer<task >>task_map;
@@ -13,7 +15,7 @@ typedef map < task *, itask_t > task_id_map;
 
 class CLASS_DECL_ACME task :
    virtual public object,
-   virtual public synchronization_object,
+   //virtual public synchronization_object,
    virtual public acme::implementable
 {
 public:
@@ -71,7 +73,7 @@ public:
    ~task() override;
 
 
-   void on_initialize_object() override;
+   void on_initialize_particle() override;
 
    
    virtual void on_pre_run_task();
@@ -212,7 +214,6 @@ public:
 
    bool is_branch_current() const override;
 
-
 };
 
 
@@ -226,8 +227,145 @@ using task_array = pointer_array < task >;
 inline ::payload & task_property(const ::atom & atom) { return ::get_task()->payload(atom); }
 
 
-inline tracer trace_log_information();
-inline tracer trace_log_warning();
-inline tracer trace_log_error();
-inline tracer trace_log_fatal();
+
+
+
+CLASS_DECL_ACME string get_task_name(htask_t htask);
+
+CLASS_DECL_ACME void set_get_thread_name(LPFN_GET_THREAD_NAME);
+
+CLASS_DECL_ACME string get_task_name(::task * ptask);
+
+CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
+
+CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
+
+CLASS_DECL_ACME bool is_single_main_user_thread();
+
+CLASS_DECL_ACME bool is_main_thread();
+
+CLASS_DECL_ACME itask_t get_main_user_itask();
+
+
+
+
+CLASS_DECL_ACME void task_set_name(const char * psz);
+CLASS_DECL_ACME void task_set_name(htask_t htask, const char* pszName);
+
+
+CLASS_DECL_ACME string task_get_name();
+CLASS_DECL_ACME string task_get_name(htask_t htask);
+
+
+
+
+CLASS_DECL_ACME ::task* get_task();
+
+CLASS_DECL_ACME bool task_get_run();
+
+//CLASS_DECL_ACME::task* get_task();
+CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+
+
+CLASS_DECL_ACME void preempt();
+
+
+CLASS_DECL_ACME itask_t get_current_itask();
+
+CLASS_DECL_ACME htask_t get_current_htask();
+
+
+CLASS_DECL_ACME bool task_sleep(const class ::wait & wait);
+
+CLASS_DECL_ACME void task_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+
+
+
+namespace parallelization
+{
+
+
+   CLASS_DECL_ACME bool set_priority(enum_priority epriority);
+
+   CLASS_DECL_ACME bool set_priority(htask_t htask, enum_priority epriority);
+
+   CLASS_DECL_ACME enum_priority get_priority();
+
+   CLASS_DECL_ACME enum_priority get_priority(htask_t htask);
+
+
+   //inline i32 get_priority_none()
+   //{
+
+   //   return e_priority_none;
+
+   //}
+
+
+   //inline i32 get_priority_normal()
+   //{
+
+   //   return e_priority_normal;
+
+   //}
+
+
+} // namespace parallelization
+
+
+class CLASS_DECL_ACME thread_local_particle :
+   virtual public ::particle
+{
+public:
+
+
+   thread_local_particle * m_pthreadlocalparticleNext;
+
+
+   thread_local_particle();
+   ~thread_local_particle() override;
+
+
+};
+
+
+template < typename TYPE >
+class thread_local_pointer :
+   public ::thread_local_particle,
+   public pointer <TYPE >
+{
+public:
+
+
+   using pointer < TYPE >::pointer;
+
+
+   using pointer < TYPE >::operator = ;
+
+
+};
+
+
+
+
+bool on_init_thread();
+
+void on_term_thread();
+
+
+class task_guard
+{
+public:
+
+
+   static thread_local thread_local_particle * t_pthreadlocalparticleList;
+
+
+   task_guard();
+
+   ~task_guard();
+
+
+};
+
 

@@ -5,9 +5,9 @@ namespace ios
 {
 
 
-   crypto::crypto(::object * pobject) :
-      ::object(pobject),
-      ::crypto::crypto(pobject)
+   crypto::crypto(::particle * pparticle) :
+      ::object(pparticle),
+      ::crypto::crypto(pparticle)
    {
    }
 

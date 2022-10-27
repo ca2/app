@@ -11,7 +11,7 @@ namespace dynamic_source
    public:
 
 
-      ::mutex                                     m_mutex;
+      ::pointer < ::mutex >                                     m_pmutex;
       string                                    m_strError;
       ::string_stream                               m_memfileError;
       ::string_stream                               m_memfileLibError;
@@ -33,7 +33,7 @@ namespace dynamic_source
       raw_array < __time_t >                    m_ftaLibModified;
 
       
-      library(::object* pobject);
+      library(::object* pparticle);
       ~library() override;
 
 

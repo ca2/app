@@ -25,18 +25,9 @@ namespace file
       ::pointer<::matter>       m_pmatterOsPath;
 
 
-      path_meta(enum_path epath = e_path_none, i64 iSize = -1, i32 iDir = -1, i64 iName = -1, strsize iBasePathLength = -1, enumeration < ::file::enum_flag > eflag = ::file::e_flag_none)
-      {
+      path_meta(enum_path epath = e_path_none, i64 iSize = -1, i32 iDir = -1, i64 iName = -1, strsize iBasePathLength = -1, enumeration < ::file::enum_flag > eflag = ::file::e_flag_none);
 
-         m_epath                             = epath;
-         m_iSize                             = iSize;
-         m_iDir                              = iDir;
-         m_iName                             = (strsize) iName;
-         m_iBasePathLength                   = iBasePathLength;
-         enumeration < ::file::enum_flag >::m_eenum   = eflag.enumeration < ::file::enum_flag >::m_eenum;
-
-      }
-
+      ~path_meta();
 
       using enumeration < ::file::enum_flag >::operator -=;
 
@@ -218,7 +209,6 @@ namespace file
       path operator / (const char * psz) const;
       path operator / (const ::payload & payload) const;
       path operator / (const property & property) const;
-      path_array operator / (const string_array & path) const;
 
       path & operator /= (const path & path);
       path & operator /= (const ::ansistring & str);
@@ -307,9 +297,7 @@ namespace file
       void split(string_array & patha) const;
       bool is_relative();
 
-      path_array & ascendants_path(path_array & pathaFolder, path_array * ppathaRelative = nullptr) const;
       string_array & ascendants_name(string_array & namea) const;
-      path_array ascendants_path() const;
       string_array ascendants_name() const;
 
       path relative() const;

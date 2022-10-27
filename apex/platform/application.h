@@ -3,9 +3,14 @@
 
 
 #include "context.h"
-#include "apex/database/client.h"
 #include "application_exit.h"
+#include "apex/database/client.h"
 #include "apex/networking/application/application_handler.h"
+#include "acme/parallelization/semaphore.h"
+#include "acme/platform/application.h"
+#include "acme/primitive/mathematics/scalar.h"
+#include "acme/primitive/text/text.h"
+#include "apex/progress/real.h"
 
 
 namespace apex
@@ -68,7 +73,7 @@ namespace apex
       bool                                         m_bAppHasInstallerChangedProtected;
       ::pointer<::install::installer>              m_pinstaller;
 
-      reference_addressa                           m_objectptraEventHook;
+      particle_address_array                       m_particleaddressaEventHook;
 
       bool                                         m_bAttendedFirstRequest;
 
@@ -83,7 +88,7 @@ namespace apex
       //::pointer<service>                         m_pservice;
 
       // apex commented
-      //::mutex                                         m_mutexFrame;
+      //::pointer < ::mutex >                                         m_pmutexFrame;
       //::pointer<::user::interaction_pointer_array> m_puiptraFrame;
 
       enum_thread_context                          m_ethreadcontextClose;
@@ -96,9 +101,9 @@ namespace apex
 
       //::user::interaction *                      m_puiMainContainer;
 
-      ::mutex                                      m_mutexMatterLocator;
+      ::pointer < ::mutex >                                      m_pmutexMatterLocator;
 
-      ::mutex                                      m_mutexStr;
+      ::pointer < ::mutex >                                      m_pmutexStr;
       string_table                                 m_stringtable;
       string_table                                 m_stringtableStd;
       atom_map < string >                            m_stringmap;
@@ -162,11 +167,11 @@ namespace apex
       ~application() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+      //void assert_ok() const override;
+      //void dump(dump_context & dumpcontext) const override;
 
 
       virtual string __get_text(string str);
@@ -430,7 +435,7 @@ namespace apex
 
       //virtual void record(::create * pcommand);
 
-      //virtual void on_event(::u64 u, ::object * pobject) override;
+      //virtual void on_event(::u64 u, ::particle * pparticle) override;
       //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool);
 
 
@@ -460,7 +465,7 @@ namespace apex
       //virtual bool set_keyboard_layout(const ::string & pszPath, const ::action_context & action_context);
 
 
-      virtual bool enable_application_events(::object * pobject, bool bEnable);
+      virtual bool enable_application_events(::particle * pparticle, bool bEnable);
 
       virtual bool is_equal_file_path(const ::file::path & path1, const ::file::path & path2);
 
@@ -618,8 +623,8 @@ namespace apex
       virtual string get_local_mutex_id();
       virtual string get_global_mutex_id();
 
-      //virtual ::mutex * get_local_mutex();
-      //virtual ::mutex * get_global_mutex();
+      //virtual ::pointer< ::mutex > get_local_mutex();
+      //virtual ::pointer< ::mutex > get_global_mutex();
 
       virtual string get_local_mutex_name();
       virtual string get_local_id_mutex_name();
@@ -797,9 +802,9 @@ namespace apex
       virtual void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0) override;
 
 
-      //virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);
+      //virtual ::draw2d::icon * set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon);
 
-      //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
+      //virtual ::draw2d::icon * get_icon(object * pparticle, bool bBigIcon) const;
 
       //virtual void handle(::topic * ptopic, ::context * pcontext);
 
@@ -835,7 +840,7 @@ namespace apex
       virtual void HideApplication();
 
 
-      //virtual void initialize(::object * pobject) override;
+      //virtual void initialize(::particle * pparticle) override;
 
       //virtual void process_init() override;
 

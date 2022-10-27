@@ -13,7 +13,7 @@ namespace helloaxis
    public:
 
 
-      application(::object * pobject);
+      application(::particle * pparticle);
       ~application() override;
 
       virtual void init_instance() override;

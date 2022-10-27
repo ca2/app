@@ -14,7 +14,7 @@ namespace filemanager
       iconoverlayer();
       virtual ~iconoverlayer();
 
-      virtual void initialize(::object * pobject) = 0;
+      virtual void initialize(::particle * pparticle) = 0;
       virtual void destroy() = 0;
 
 

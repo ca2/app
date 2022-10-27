@@ -81,7 +81,7 @@ namespace sockets_bsd
       base_socket_handler();
       ~base_socket_handler() override;
 
-      ///** get ::mutex object for threadsafe operations. */
+      ///** get ::pointer < ::mutex > object for threadsafe operations. */
       //virtual clasync & GetMutex() const = 0;
 
       void set_logger(::apex::log * plog) override;

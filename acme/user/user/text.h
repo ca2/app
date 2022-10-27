@@ -2,6 +2,9 @@
 
 
 #include "acme/primitive/geometry2d/_basic.h"
+#include "acme/primitive/primitive/action_context.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/primitive/object.h"
 
 
 namespace user
@@ -9,7 +12,7 @@ namespace user
 
 
    class CLASS_DECL_ACME text :
-      virtual public object
+      virtual public ::object
    {
    public:
 

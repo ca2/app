@@ -29,7 +29,7 @@ namespace core
 
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       ::pointer<::progress::real>show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount) override;
 
 

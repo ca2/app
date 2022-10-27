@@ -19,12 +19,12 @@ namespace net
    }
 
 
-   void email::initialize(::object * pobject)
+   void email::initialize(::particle * pparticle)
    {
 
-      //auto estatus = ::object::initialize(pobject);
+      //auto estatus = ::object::initialize(pparticle);
 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -41,7 +41,7 @@ namespace net
    void email::prepare_headers()
    {
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pbase64 = psystem->base64();
 

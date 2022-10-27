@@ -14,7 +14,7 @@ namespace user
       ::user::impact_system(pszMatter, pDocClass, pFrameClass, pImpactClass)
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       ASSERT(m_docptra.is_empty());
 

@@ -1,5 +1,6 @@
 #include "framework.h" 
 #include "session.h"
+#include "apex/constant/idpool.h"
 
 
 //#ifdef LINUX

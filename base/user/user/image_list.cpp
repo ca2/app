@@ -78,7 +78,7 @@ namespace user
    ::image * image_list::get_current_image()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_iaSel.get_count() != 1)
       {
@@ -750,7 +750,7 @@ namespace user
    ::item_pointer image_list::current_item()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_iaSel.get_count() == 1)
       {
@@ -767,7 +767,7 @@ namespace user
    index_array image_list::_001GetSelection()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       return m_iaSel;
 
@@ -777,7 +777,7 @@ namespace user
    void image_list::set_current_item(index iFind, const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_iaSel.erase_all();
 
@@ -789,7 +789,7 @@ namespace user
    void image_list::_001SetSelection(const index_array & ia, const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!::papaya::array::equals_non_unique_unordered(ia, m_iaSel))
       {

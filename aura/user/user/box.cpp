@@ -30,10 +30,10 @@ namespace user
    }
 
 
-   void box::initialize(::object * pobject)
+   void box::initialize(::particle * pparticle)
    {
 
-      interaction::initialize(pobject);
+      interaction::initialize(pparticle);
 
       if (m_atom.is_empty())
       {
@@ -730,7 +730,7 @@ namespace user
    string box::calc_display()
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       string strDisplay;
 
@@ -755,7 +755,7 @@ namespace user
    bool box::does_display_match()
    {
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       if (m_strDisplay.is_empty())
          return false;
@@ -768,7 +768,7 @@ namespace user
    void box::defer_update_display()
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       m_strDisplay = calc_display();
 

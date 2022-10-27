@@ -85,7 +85,7 @@ namespace html
    }
 
 
-   bool style::get_dimension(bool bParent, atom idName, const ::string & strSubClass, html_data * pdata, ::html::element* pelement, float & f)
+   bool style::get_dimension(bool bParent, atom idName, const ::string & strSubClass, html_data * pdata, ::html::particle * pparticle, float & f)
    {
 
       f = 0.f;
@@ -134,7 +134,7 @@ namespace html
    }
 
 
-   bool style::get_surround_box(atom idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, ::rectangle_f32 & rectangle)
+   bool style::get_surround_box(atom idName, const ::string & strSubClass, html_data * pdata, ::html::particle * pparticle, ::rectangle_f32 & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -291,7 +291,7 @@ namespace html
    }
 
 
-   bool style::get_border_box(atom idName, const ::string & strSubClass, html_data * pdata, ::html::element* pelement, border & rectangle)
+   bool style::get_border_box(atom idName, const ::string & strSubClass, html_data * pdata, ::html::particle * pparticle, border & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -463,7 +463,7 @@ namespace html
    }
 
 
-   bool style::get_border_color(atom idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, border & rectangle)
+   bool style::get_border_color(atom idName, const ::string & strSubClass, html_data * pdata, ::html::particle * pparticle, border & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -636,7 +636,7 @@ namespace html
    }
 
 
-   bool style::get_color(atom idName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, ::color::color & color32)
+   bool style::get_color(atom idName, const ::string & strSubClass, html_data * pdata, const ::html::particle * pparticle, ::color::color & color32)
    {
 
       e_tag etag = pelement->m_etag;
@@ -668,7 +668,7 @@ namespace html
    }
 
 
-   bool style::get_text(atom idName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, string & str)
+   bool style::get_text(atom idName, const ::string & strSubClass, html_data * pdata, const ::html::particle * pparticle, string & str)
    {
 
       e_tag etag = pelement->m_etag;
@@ -699,7 +699,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  auto psystem = m_psystem->m_paurasystem;
+                  auto psystem = acmesystem()->m_paurasystem;
                   auto pnode = psystem->node();
                   str = pnode->font_name(e_font_serif);
                   return true;
@@ -723,7 +723,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  auto psystem = m_psystem->m_paurasystem;
+                  auto psystem = acmesystem()->m_paurasystem;
                   auto pnode = psystem->node();
 
                   str = pnode->font_name(e_font_serif);
@@ -748,7 +748,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  auto psystem = m_psystem->m_paurasystem;
+                  auto psystem = acmesystem()->m_paurasystem;
                   auto pnode = psystem->node();
 
                   str = pnode->font_name(e_font_serif);
@@ -773,7 +773,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  auto psystem = m_psystem->m_paurasystem;
+                  auto psystem = acmesystem()->m_paurasystem;
                   auto pnode = psystem->node();
 
                   str = pnode->font_name(e_font_serif);
@@ -841,7 +841,7 @@ namespace html
    }
 
 
-   bool style::get_alpha(const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, double & d)
+   bool style::get_alpha(const ::string & strSubClass, html_data * pdata, const ::html::particle * pparticle, double & d)
    {
 
       const char* idName = "opacity";

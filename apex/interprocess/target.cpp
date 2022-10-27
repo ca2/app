@@ -23,7 +23,7 @@ namespace interprocess
    }
 
 
-   void target::on_initialize_object()
+   void target::on_initialize_particle()
    {
 
       //fork([this]()
@@ -214,13 +214,13 @@ namespace interprocess
    //   //   }
 
 
-   //   string strObject = m_psystem->url()->get_server(strUri);
+   //   string strObject = acmesystem()->url()->get_server(strUri);
 
-   //   string strMember = m_psystem->url()->get_script(strUri);
+   //   string strMember = acmesystem()->url()->get_script(strUri);
 
    //   strMember.trim_left("/");
 
-   //   string strNetworkArguments = m_psystem->url()->get_query(strUri);
+   //   string strNetworkArguments = acmesystem()->url()->get_query(strUri);
 
    //   ::property_set propertyset;
 
@@ -384,7 +384,7 @@ namespace interprocess
    //void target::dispatch_item(::pointer<class dispatch_item> && pdispatchitem)
    //{
 
-   //   synchronous_lock synchronouslock(&m_mutexDispatch);
+   //   synchronous_lock synchronouslock(m_pmutexDispatch);
 
    //   bool bWasEmpty = m_dispatchitema.is_empty();
 
@@ -405,7 +405,7 @@ namespace interprocess
 
    //   auto ptask = ::get_task();
 
-   //   single_lock singlelock(&m_mutexDispatch);
+   //   single_lock singlelock(m_pmutexDispatch);
 
    //   while (ptask->task_get_run())
    //   {

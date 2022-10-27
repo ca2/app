@@ -28,7 +28,7 @@
 //}
 //
 //
-//void binary_stream < FILE >::write_element(const ::atom & atom, ::element * pelement)
+//void binary_stream < FILE >::write_element(const ::atom & atom, ::particle * pparticle)
 //{
 //
 //   auto strId = factory_id_to_text(__type_name(pelement));
@@ -47,11 +47,11 @@
 //
 //   exchange(e_property_id, strId);
 //
-//   auto pobject = create_object_from_text(strId);
+//   auto pparticle = create_object_from_text(strId);
 //
-//   pobject->exchange(*this);
+//   pparticle->exchange(*this);
 //
-//   return pobject;
+//   return pparticle;
 //
 //}
 //
@@ -521,10 +521,10 @@
 //}
 //
 //
-//void stream::write(const ::matter * pobject)
+//void stream::write(const ::particle * pparticle)
 //{
 //
-//   pobject->write(*this);
+//   pparticle->write(*this);
 //
 //}
 //
@@ -587,21 +587,21 @@
 ////}
 ////
 ////
-////bool stream::write_link(const ::matter * pobject)
+////bool stream::write_link(const ::particle * pparticle)
 ////{
 ////
 ////   string strLink;
 ////
 ////   bool bReadOnly;
 ////
-////   if (!get_object_link(pobject, strLink, bReadOnly))
+////   if (!get_object_link(pparticle, strLink, bReadOnly))
 ////   {
 ////
 ////      return false;
 ////
 ////   }
 ////
-////   write_link(pobject, strLink, bReadOnly);
+////   write_link(pparticle, strLink, bReadOnly);
 ////
 ////   return true;
 ////
@@ -1020,10 +1020,10 @@
 //}
 //
 //
-//void stream::exchange(const ::atom & atom, ::matter * pobject)
+//void stream::exchange(const ::atom & atom, ::particle * pparticle)
 //{
 //
-//   pobject->exchange(*this);
+//   pparticle->exchange(*this);
 //
 //}
 //

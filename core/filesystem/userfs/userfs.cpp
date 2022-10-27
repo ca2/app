@@ -23,12 +23,12 @@ namespace userfs
    }
 
    
-   void userfs::initialize(::object * pobject)
+   void userfs::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::acme::department::initialize(pobject);
+      ::acme::department::initialize(pparticle);
 
       //if (!estatus)
       //{

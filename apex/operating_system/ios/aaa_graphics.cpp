@@ -8,12 +8,12 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 bool ios1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
 {
 
-   static ::mutex * pmutex = nullptr;
+   static ::pointer< ::mutex > pmutex = nullptr;
 
    if(pmutex == nullptr)
    {
 
-      pmutex = memory_new ::mutex();
+      pmutex = memory_new ::pointer < ::mutex >();
 
    }
 

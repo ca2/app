@@ -78,7 +78,7 @@ namespace user
       ~tab() override;
 
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
 
       void install_message_routing(::channel * pchannel) override;

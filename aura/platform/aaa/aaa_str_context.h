@@ -95,7 +95,7 @@
 //      }
 //
 //
-//      virtual void initialize(::object * pobject) override;
+//      virtual void initialize(::particle * pparticle) override;
 //
 //
 //      inline auto& operator[](const ::atom& atom) { return m_map[atom]; }

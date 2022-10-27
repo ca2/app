@@ -9,11 +9,11 @@
 //   {
 //
 //
-//      out::out(::object * pobject) :
-//         ::object(pobject)
+//      out::out(::particle * pparticle) :
+//         ::object(pparticle)
 //      {
 //
-//         defer_create_mutex();
+//         defer_create_synchronization();
 //
 //      }
 //
@@ -28,7 +28,7 @@
 //      bool out::out_push_packet(WAVE_OUT_PACKET * ppacket)
 //      {
 //
-//         single_lock synchronouslock(mutex());
+//         single_lock synchronouslock(this->synchronization());
 //
 //         auto & a = m_mapPacket[ppacket->m_chChannel];
 //
@@ -43,7 +43,7 @@
 //      WAVE_OUT_PACKET * out::out_pop_packet(char chChannel)
 //      {
 //
-//         single_lock synchronouslock(mutex());
+//         single_lock synchronouslock(this->synchronization());
 //
 //         auto & a = m_mapPacket[chChannel];
 //

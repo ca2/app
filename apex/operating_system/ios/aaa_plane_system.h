@@ -25,7 +25,7 @@ typedef ::apex::system * apex_system_ptr;
 struct plane_system
 {
    
-   apex_system_ptr    m_psystem;
+   apex_system_ptr    acmesystem();
    
    plane_system();
    

@@ -56,7 +56,7 @@ namespace datetime
 {
 //
 //
-//   value span_strtotime(::matter * pobject, const ::text::context * pcontext, const char * pszSpanExpression)
+//   value span_strtotime(::particle * pparticle, const ::text::context * pcontext, const char * pszSpanExpression)
 //   {
 //
 //      static atom idCalendarDay("calendar:day");
@@ -68,7 +68,7 @@ namespace datetime
 //      static atom idCalendarHour("calendar:hour");
 //      static atom idCalendarHours("calendar:hours");
 //      static atom idCalendarNow("calendar:now");
-//      __UNREFERENCED_PARAMETER(pobject);
+//      __UNREFERENCED_PARAMETER(pparticle);
 //      value time;
 //      time.m_bSpan = true;
 //      string str(pszSpanExpression);
@@ -264,7 +264,7 @@ namespace datetime
 //   }
 //
 //
-//   value strtotime(::matter * pobject, const ::text::context * pcontext,const char * psz,i32 & iPath,i32 & iPathCount,bool bUTC)
+//   value strtotime(::particle * pparticle, const ::text::context * pcontext,const char * psz,i32 & iPath,i32 & iPathCount,bool bUTC)
 //   {
 //      ::earth::time time;
 //      string str(psz);
@@ -285,7 +285,7 @@ namespace datetime
 //               && str.Mid(13,1) == ":")
 //         {
 //            bBaseTime = true;
-//            Sys(pobject).datetime().international().parse_str(str,set);
+//            Sys(pparticle).datetime().international().parse_str(str,set);
 //            string strWord = str.Mid(19);
 //            strWord.trim_left();
 //            strWord = ::str().get_word(strWord," ");
@@ -330,7 +330,7 @@ namespace datetime
 //               && str.Mid(7,1) == "-")
 //         {
 //            bBaseTime = true;
-//            Sys(pobject).datetime().international().parse_str(str,set);
+//            Sys(pparticle).datetime().international().parse_str(str,set);
 //            time = ::earth::time(
 //                   set["year"],
 //                   set["month"],
@@ -411,14 +411,14 @@ namespace datetime
 //         if(i1 != i2
 //               && i1 >= 1 && i1 <= 12
 //               && i2 >= 1 && i2 <=
-//               Sys(pobject).datetime().get_month_day_count(time.GetYear(),i1))
+//               Sys(pparticle).datetime().get_month_day_count(time.GetYear(),i1))
 //         {
 //            bFirst = true;
 //            iCount++;
 //         }
 //         if(i2 >= 1 && i2 <= 12
 //               && i1 >= 1 && i1 <=
-//               Sys(pobject).datetime().get_month_day_count(time.GetYear(),i2))
+//               Sys(pparticle).datetime().get_month_day_count(time.GetYear(),i2))
 //         {
 //            iCount++;
 //         }
@@ -454,20 +454,20 @@ namespace datetime
 //
 //         }
 //
-//         return value(time) + span_strtotime(pobject,pcontext,str.Mid(iStart));
+//         return value(time) + span_strtotime(pparticle,pcontext,str.Mid(iStart));
 //
 //      }
 //      else
 //      {
 //
-//         return span_strtotime(pobject,pcontext,str.Mid(iStart));
+//         return span_strtotime(pparticle,pcontext,str.Mid(iStart));
 //
 //      }
 //
 //   }
 //
 //
-//   string to_string(::matter * pobject, const ::text::context * pcontext,const ::datetime::result & value)
+//   string to_string(::particle * pparticle, const ::text::context * pcontext,const ::datetime::result & value)
 //   {
 //      string str;
 //      if(value.m_bSpan)
@@ -563,20 +563,20 @@ namespace datetime
 //            if(time.GetHour() == 0 && time.GetMinute() == 0)
 //            {
 //               str = time.Format("%Y-");
-//               Sys(pobject).datetime().get_month_str(pcontext,time.GetMonth());
+//               Sys(pparticle).datetime().get_month_str(pcontext,time.GetMonth());
 //               str += time.Format("-%d");
 //            }
 //            else
 //            {
 //               str = time.Format("%Y-");
-//               str += Sys(pobject).datetime().get_month_str(pcontext,time.GetMonth());
+//               str += Sys(pparticle).datetime().get_month_str(pcontext,time.GetMonth());
 //               str += time.Format("-%d %H:%M");
 //            }
 //         }
 //         else
 //         {
 //            str = time.Format("%Y-");
-//            str += Sys(pobject).datetime().get_month_str(pcontext,time.GetMonth());
+//            str += Sys(pparticle).datetime().get_month_str(pcontext,time.GetMonth());
 //            str += time.Format("-%d %H:%M:%S");
 //         }
 //      }

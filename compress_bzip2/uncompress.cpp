@@ -21,11 +21,11 @@ namespace compress_bzip2
    }
 
 
-   void uncompress::initialize(::object* pobject)
+   void uncompress::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
     /*  if (!estatus)
       {

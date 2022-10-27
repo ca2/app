@@ -12,7 +12,7 @@ namespace gpu
    buffer::buffer()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 

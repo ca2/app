@@ -36,7 +36,7 @@ namespace axis
 
       void common_construct();
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       virtual void on_add_session(::apex::session * papexsession) override;
 

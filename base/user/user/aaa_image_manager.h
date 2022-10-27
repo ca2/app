@@ -25,7 +25,7 @@
 //      //void LoadToolbar(simple_toolbar & toolbar, ::u32 * user);
 //      image_list & GetImageList();
 //      image_list & GetImageListDisable();
-//      bool Initialize(::object * pobject, ::u32 uaMenuV003Map[][2]);
+//      bool Initialize(::particle * pparticle, ::u32 uaMenuV003Map[][2]);
 //
 //
 //   };

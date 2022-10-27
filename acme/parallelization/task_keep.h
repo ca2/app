@@ -15,7 +15,7 @@ inline ::task* default_keep_value < ::task* >()
 
 #define __task_guard_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(mutex()); \
+synchronous_lock synchronouslock(this->synchronization()); \
  \
 if (flag) \
 { \
@@ -33,7 +33,7 @@ synchronouslock.unlock()
 
 #define __guard_wait_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(mutex()); \
+synchronous_lock synchronouslock(this->synchronization()); \
  \
 while (flag) \
 { \

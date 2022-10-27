@@ -70,8 +70,8 @@ namespace filemanager
       DECLARE_MESSAGE_HANDLER(_001OnCancelMode);
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
 

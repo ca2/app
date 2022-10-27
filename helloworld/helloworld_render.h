@@ -43,11 +43,11 @@ namespace helloworld
 
       //bool                             m_bImageEnable;
 
-      //::mutex                            m_mutexWork;
-      //::mutex                            m_mutexDraw;
-      //::mutex                            m_mutexSwap;
-      //::mutex                            m_mutexDib;
-      //::mutex                            m_mutexDib23;
+      //::pointer < ::mutex >                            m_pmutexWork;
+      //::pointer < ::mutex >                            m_pmutexDraw;
+      //::pointer < ::mutex >                            m_pmutexSwap;
+      //::pointer < ::mutex >                            m_pmutexDib;
+      //::pointer < ::mutex >                            m_pmutexDib23;
 
       //bool                             m_bNewLayout;
       //bool                             m_bHelloRender;
@@ -81,7 +81,7 @@ namespace helloworld
       //::rectangle_i32                           m_rectangleClient;
 
 
-      //::mutex *                          m_pmutexText;
+      //::pointer< ::mutex >                          m_pmutexText;
 
       //impact *                           m_pimpact;
 
@@ -109,7 +109,7 @@ namespace helloworld
       //bool                             m_bFastOnEmpty;
 
 
-      render(::object * pobject);
+      render(::particle * pparticle);
       virtual ~render();
 
 

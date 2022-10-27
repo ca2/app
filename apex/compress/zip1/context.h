@@ -7,7 +7,7 @@ class CLASS_DECL_APEX zip_context :
 public:
 
 
-   zip_context(::object * pobject);
+   zip_context(::particle * pparticle);
    virtual ~zip_context();
 
 

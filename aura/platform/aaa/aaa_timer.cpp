@@ -4,7 +4,7 @@
 #define THREADED_TIMER
 
 
-timer::timer(::aura::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void * pvoidData, class synchronization_object * pmutex) :
+timer::timer(::aura::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void * pvoidData, class synchronization * pmutex) :
    ::object(ptimera)
 {
 
@@ -51,7 +51,7 @@ timer::~timer()
 bool timer::start(int ::duration, bool bPeriodic)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if (::is_set(m_pcallback) && !m_pcallback->e_timer_is_ok())
    {
@@ -101,7 +101,7 @@ bool timer::start(int ::duration, bool bPeriodic)
 void timer::call_on_timer()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    __keep_true(m_bHandling);
 
@@ -299,7 +299,7 @@ void timer::term_thread()
 
    {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    try
    {
@@ -327,7 +327,7 @@ void timer::term_thread()
 //
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //  //    if(m_bPeriodic)
 //      //{

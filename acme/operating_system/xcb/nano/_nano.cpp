@@ -2,7 +2,10 @@
 // Created by camilo on 31/01/2022 16:09 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "_nano.h"
+#include "window.h"
+#include "display.h"
+#include "acme/platform/system.h"
+#include "acme/operating_system/cairo/nano/device.h"
 
 
 void operating_system_initialize_xcb_nano(::factory::factory * pfactory)
@@ -12,7 +15,7 @@ void operating_system_initialize_xcb_nano(::factory::factory * pfactory)
 
    pfactory->add_factory_item<::xcb::nano_window, ::nano_window_implementation>();
 
-   ::xcb::display::get(pfactory->m_psystem);
+   ::xcb::display::get(pfactory);
 
 }
 

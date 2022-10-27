@@ -52,7 +52,7 @@ class CLASS_DECL_AURA db_str_set_core:
 public:
 
 
-   ::mutex                                        m_mutex;
+   ::pointer < ::mutex >                                        m_pmutex;
    sockets::socket_handler                      m_handler;
    sockets::http_session *                      m_phttpsession;
    string_map < db_str_set_item >               m_map;
@@ -93,7 +93,7 @@ class CLASS_DECL_AURA db_str_sync_queue:
 {
 public:
 
-   ::mutex                                              m_mutex;
+   ::pointer < ::mutex >                                              m_pmutex;
    db_str_set *                                       m_ppropertyset;
    sockets::socket_handler                            m_handler;
    sockets::http_session *                            m_phttpsession;
@@ -101,11 +101,11 @@ public:
    pointer_array < db_str_set_queue_item >      m_itema;
 
 
-   db_str_sync_queue(::object * pobject):
-      ::object(pobject),
-      thread(pobject),
-      ::thread(pobject),
-      m_handler(pobject),
+   db_str_sync_queue(::particle * pparticle):
+      ::object(pparticle),
+      thread(pparticle),
+      ::thread(pparticle),
+      m_handler(pparticle),
       
       m_phttpsession(nullptr)
    { }
@@ -127,7 +127,7 @@ public:
 i32 db_str_sync_queue::run()
 {
 
-   single_lock synchronouslock(&m_mutex, false);
+   single_lock synchronouslock(m_pmutex, false);
 
    m_bRun = true;
 
@@ -225,7 +225,7 @@ repeat:;
 void db_str_sync_queue::queue(const ::string & pszKey, const ::string & psz)
 {
 
-   single_lock synchronouslock(&m_mutex, true);
+   single_lock synchronouslock(m_pmutex, true);
 
    ::pointer<db_str_set_queue_item>item(memory_new db_str_set_queue_item);
 
@@ -239,7 +239,7 @@ void db_str_sync_queue::queue(const ::string & pszKey, const ::string & psz)
 
 db_str_set::db_str_set(db_server * pserver):
 matter(pserver->get_app()),
-m_mutex(pserver->get_app())
+m_pmutex(pserver->get_app())
 {
 
    m_pcore = memory_new db_str_set_core(pserver);
@@ -274,7 +274,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
 
       papp->assert_user_logged_in();
 
-      synchronous_lock synchronouslock(&m_mutex);
+      synchronous_lock synchronouslock(m_pmutex);
 
       if(m_pcore->m_phttpsession == nullptr)
       {

@@ -7,6 +7,7 @@
 #include "comparable_raw_array.h"
 #include "acme/primitive/primitive/compare_predicate.h"
 #include "acme/primitive/string/string.h"
+#include "acme/primitive/mathematics/numeric.h"
 
 
 template < typename ARG_TYPE >
@@ -35,7 +36,7 @@ class numeric_array :
 public:
 
 
-   explicit numeric_array(::matter * pobject = nullptr) : comparable_raw_array < TYPE, TYPE, ::allocator::nodef < TYPE >, t_etypePayload >(pobject) {}
+   explicit numeric_array(::particle * pparticle = nullptr) : comparable_raw_array < TYPE, TYPE, ::allocator::nodef < TYPE >, t_etypePayload >(pparticle) {}
 
 
    numeric_array(std::initializer_list < TYPE >  l):
@@ -168,9 +169,6 @@ public:
 
 
 
-   string & get_network_payload(string & str, bool bNewLine = true) const;
-
-
    int compare(const numeric_array < TYPE, t_etypePayload > & a) const
    {
 
@@ -179,7 +177,7 @@ public:
       if (iCompare != 0)
       {
 
-         return ::acme::sgn(iCompare);
+         return ::numeric::sgn(iCompare);
 
       }
 
@@ -192,7 +190,7 @@ public:
          if (t != 0)
          {
 
-            return ::acme::sgn(t);
+            return ::numeric::sgn(t);
 
          }
 
@@ -334,56 +332,56 @@ public:
 
 
 
-template < typename T >
-string & to_network_payload(string & str, const T & t, bool bNewLine);
+//template < typename T >
+//string & to_network_payload(string & str, const T & t, bool bNewLine);
 
 
-template < typename TYPE, enum_type t_etypePayload >
-string & numeric_array < TYPE, t_etypePayload >::get_network_payload(string & str, bool bNewLine) const
-{
-
-
-   str += "[";
-
-   if(this->get_count() > 0)
-   {
-
-      to_network_payload(str, this->element_at(0), bNewLine);
-
-   }
-
-   for (index i = 1; i < this->get_count(); i++)
-   {
-
-      if (bNewLine)
-      {
-
-         str += ", \r\n";
-
-      }
-      else
-      {
-
-         str += ", ";
-
-      }
-
-      to_network_payload(str, this->element_at(i), bNewLine);
-
-   }
-
-   if (bNewLine)
-   {
-
-      str += "\r\n";
-
-   }
-
-   str += "]";
-
-   return str;
-
-}
+//template < typename TYPE, enum_type t_etypePayload >
+//string & numeric_array < TYPE, t_etypePayload >::get_network_payload(string & str, bool bNewLine) const
+//{
+//
+//
+//   str += "[";
+//
+//   if(this->get_count() > 0)
+//   {
+//
+//      to_network_payload(str, this->element_at(0), bNewLine);
+//
+//   }
+//
+//   for (index i = 1; i < this->get_count(); i++)
+//   {
+//
+//      if (bNewLine)
+//      {
+//
+//         str += ", \r\n";
+//
+//      }
+//      else
+//      {
+//
+//         str += ", ";
+//
+//      }
+//
+//      to_network_payload(str, this->element_at(i), bNewLine);
+//
+//   }
+//
+//   if (bNewLine)
+//   {
+//
+//      str += "\r\n";
+//
+//   }
+//
+//   str += "]";
+//
+//   return str;
+//
+//}
 
 
 template < typename TYPE, enum_type t_etypePayload >

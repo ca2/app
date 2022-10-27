@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/primitive/duration/time.h"
+
+
 #ifdef wait
 #undef wait
 #endif // wait

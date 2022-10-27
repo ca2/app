@@ -26,7 +26,7 @@
  */
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "axis/html/html_lite/_.h"
+//#include "axis/html/html_lite/_.h"
 #endif
 #include "entity_resolver.h"
 

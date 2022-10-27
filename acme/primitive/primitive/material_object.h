@@ -72,9 +72,6 @@ public:
 
    //virtual void __send_procedure(::matter * pposting, POSTING_PROCEDURE * posting_method, const ::procedure & procedure);
 
-   virtual bool __get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload);
-
-   virtual void __send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedure);
 
 
 

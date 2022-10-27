@@ -31,7 +31,7 @@ public:
 
 
    object() : m_pmeta(nullptr) { }
-   //object(::object * pobject);
+   //object(::particle * pparticle);
    object(enum_default_initialization) : ::object() {};
    virtual ~object();
 
@@ -69,7 +69,7 @@ public:
    virtual void process_exit_status(const ::e_status & estatus);
 
    //inline ::object* this const { return this; }
-   //virtual void set_object(::object* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void set_object(::object* pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
    //inline ::application* application() { return m_pacmeapplication; }
 
@@ -110,9 +110,9 @@ public:
 
 
    template < typename BASE_TYPE >
-   void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
+   void save_to(const ::payload& payloadFile, BASE_TYPE* pparticle);
 
-   virtual void initialize(::object * pobject) override;
+   virtual void initialize(::particle * pparticle) override;
    virtual void destroy() override;
 
    inline const char* topic_text();
@@ -162,10 +162,10 @@ public:
 #endif
 
 
-   //virtual void set_object(::object * pobject) override;
+   //virtual void set_object(::particle * pparticle) override;
 
 
-   //inline void defer_set_object(::object * pobject);
+   //inline void defer_set_object(::particle * pparticle);
 
    virtual void operator()() override;
 
@@ -280,13 +280,13 @@ public:
    inline void __release(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   virtual void add_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   virtual void add_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual void add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
-   virtual void release_composite2(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   virtual void finalize_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   virtual void release_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual void release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual void finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual void release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
    template < typename BASE_TYPE >
@@ -382,11 +382,11 @@ public:
 
    virtual ::pointer<::matter>running(const char* pszTag) const;
 
-   virtual bool ___is_reference(::matter* pobject) const;
+   virtual bool ___is_reference(::particle * pparticle) const;
 
-   virtual bool __is_composite(::matter* pobject) const;
+   virtual bool __is_composite(::particle * pparticle) const;
 
-   virtual bool __is_child_task(::task* ptask) const;
+   virtual bool __is_child_task(::particle * ptask) const;
 
    virtual void on_finalize();
 

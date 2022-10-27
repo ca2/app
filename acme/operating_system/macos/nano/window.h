@@ -44,7 +44,7 @@ namespace macos
       ~nano_window() override;
 
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
       void create() override;
 

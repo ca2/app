@@ -4,9 +4,10 @@
 //#define memory_new ACME_NEW
 
 #include "_iterator.h"
-
+#include "single.h"
 #include "map_association.h"
 #include "range.h"
+//#include "acme/primitive/primitive/particle.h"
 
 
 template < typename PAYLOAD, const int DEFAULT_HASH_TABLE_SIZE = 17 >
@@ -442,7 +443,17 @@ public:
    inline ITERATOR erase(ITERATOR it) { return ::acme::iterator::erase(*this, it); }
 
    template < typename ITERATOR >
-   inline void erase(const ITERATOR & begin, const ITERATOR & last) { ::erase(*this, begin, last); }
+   inline void erase(const ITERATOR & begin, const ITERATOR & last)
+   {
+
+      for(auto it = begin; it != last; it++)
+      {
+
+         erase(it);
+
+      }
+
+   }
 
    void erase_all();
    void clear();

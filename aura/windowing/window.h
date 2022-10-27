@@ -42,11 +42,11 @@ namespace windowing
       void user_common_construct();
 
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      void assert_ok() const override;
+//      void dump(dump_context & dumpcontext) const override;
 
 
       ::aura::application* get_app() const;

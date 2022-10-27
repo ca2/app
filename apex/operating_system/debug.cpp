@@ -3,8 +3,8 @@
 
 //CLASS_DECL_APEX void __simple_tracev(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 //CLASS_DECL_APEX void __simple_tracea(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz);
-//CLASS_DECL_APEX void __simple_tracev(matter* pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
-//CLASS_DECL_APEX void __simple_tracea(matter* pobject, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz);
+//CLASS_DECL_APEX void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+//CLASS_DECL_APEX void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz);
 
 
 
@@ -28,23 +28,23 @@
 
 
 
-//CLASS_DECL_APEX void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+//CLASS_DECL_APEX void __tracea(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
 //{
 //
 //   if (::is_null(::psystem))
 //   {
 //
-//      __simple_tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+//      __simple_tracea(pparticle, elevel, pszFunction, pszFile, iLine, psz);
 //
 //      return;
 //
 //   }
 //
-//   psystem->__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+//   psystem->__tracea(pparticle, elevel, pszFunction, pszFile, iLine, psz);
 //
 //}
 //
-//CLASS_DECL_APEX void __tracef(::matter* pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
+//CLASS_DECL_APEX void __tracef(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
 //{
 //
 //   va_list list;
@@ -54,7 +54,7 @@
 //   try
 //   {
 //
-//      __tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, list);
+//      __tracev(pparticle, elevel, pszFunction, pszFile, iLine, pszFormat, list);
 //
 //   }
 //   catch (...)
@@ -67,19 +67,19 @@
 //}
 //
 //
-//CLASS_DECL_APEX void __tracev(::matter* pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
+//CLASS_DECL_APEX void __tracev(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
 //{
 //
 //   if (::is_null(::psystem))
 //   {
 //
-//      __simple_tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
+//      __simple_tracev(pparticle, elevel, pszFunction, pszFile, iLine, pszFormat, args);
 //
 //      return;
 //
 //   }
 //
-//   psystem->__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
+//   psystem->__tracev(pparticle, elevel, pszFunction, pszFile, iLine, pszFormat, args);
 //
 //}
 //

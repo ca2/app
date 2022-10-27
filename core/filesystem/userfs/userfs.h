@@ -14,7 +14,7 @@ namespace userfs
       userfs();
       virtual ~userfs();
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       virtual void init1() override;
 

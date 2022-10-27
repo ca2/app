@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/primitive/mathematics/numeric.h"
 
 
 void duration::normalize()
@@ -8,9 +9,9 @@ void duration::normalize()
 
    m_iNanosecond %= SECOND_NANOS;
 
-   int iSecondSign = ::acme::sgn(m_iSecond);
+   int iSecondSign = ::numeric::sgn(m_iSecond);
 
-   int iNanosecondSign = ::acme::sgn(m_iNanosecond);
+   int iNanosecondSign = ::numeric::sgn(m_iNanosecond);
 
    if (iSecondSign == -iNanosecondSign && iSecondSign != 0)
    {
@@ -79,7 +80,7 @@ void duration::set(i64 i, enum_unit eunit)
       raw_set(i * 60 * 60, 0);
       break;
    default:
-      throw ::exception(error_bad_argument, "Unknown time duration unit");
+      throw_exception(error_bad_argument, "Unknown time duration unit");
 
    };
 
@@ -109,7 +110,7 @@ void duration::set(long double d, enum_unit eunit)
       fset(d * 60.0 * 60.0, 0.0);
       break;
    default:
-      throw ::exception(error_bad_argument, "Unknown time duration unit");
+      throw_exception(error_bad_argument, "Unknown time duration unit");
 
    };
 }

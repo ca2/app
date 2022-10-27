@@ -80,12 +80,12 @@ namespace user
    }
 
 
-   void form_list_impact::initialize(::object * pobject)
+   void form_list_impact::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::user::form_list::initialize(pobject);
+      ::user::form_list::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -96,7 +96,7 @@ namespace user
 
       //estatus =
       
-      ::user::form_impact::initialize(pobject);
+      ::user::form_impact::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -107,7 +107,7 @@ namespace user
 
       //estatus = 
       
-      ::user::list_impact::initialize(pobject);
+      ::user::list_impact::initialize(pparticle);
 
       //if (!estatus)
       //{

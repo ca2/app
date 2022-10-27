@@ -4,7 +4,7 @@
 
 
 //static string * m_pstrOutputDebugStringA = nullptr;
-::mutex * g_pmutexOutputDebugStringA = nullptr;
+::pointer< ::mutex > g_pmutexOutputDebugStringA = nullptr;
 
 void output_debug_string(const char * lpOutputString)
 {

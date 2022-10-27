@@ -230,7 +230,7 @@
 //
 //CLASS_DECL_ACME void command_system(string & strOutput, string & strError, int & iExitCode, const char * psz, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite());
 //
-//CLASS_DECL_ACME::atom message_box_synchronous(::object * pobject, const char * pszMessage, const char * pszTitle = nullptr, enum_message_box emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+//CLASS_DECL_ACME::atom message_box_synchronous(::particle * pparticle, const char * pszMessage, const char * pszTitle = nullptr, enum_message_box emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 //
 //#include "_c.h"
 //

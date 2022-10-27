@@ -3,6 +3,7 @@
 
 
 #include "application_handler.h"
+#include "acme/primitive/collection/string_map.h"
 
 
 namespace networking
@@ -28,7 +29,7 @@ namespace networking
       ~application() override;
 
 
-      void initialize(::object* pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       void create_networking_application();

@@ -25,10 +25,10 @@ namespace acme
 
 #endif
 
-      ::pointer<::mutex>     m_pmutex;
+      ::pointer < ::mutex >     m_pmutex;
 
 
-      exclusive(::object * pobject, string str ARG_SEC_ATTRS_DEF);
+      exclusive(::particle * pparticle, string str ARG_SEC_ATTRS_DEF);
       ~exclusive() override;
 
 

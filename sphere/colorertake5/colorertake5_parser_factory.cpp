@@ -114,8 +114,8 @@ namespace colorertake5
 
    }
 
-   ParserFactory::ParserFactory(::object * pobject) :
-      object(pobject)
+   ParserFactory::ParserFactory(::particle * pparticle) :
+      object(pparticle)
    {
 
       fileErrorHandler = nullptr;
@@ -128,8 +128,8 @@ namespace colorertake5
 
    }
 
-   ParserFactory::ParserFactory(::object * pobject, string catalogPath) :
-      object(pobject)
+   ParserFactory::ParserFactory(::particle * pparticle, string catalogPath) :
+      object(pparticle)
    {
 
       fileErrorHandler = nullptr;

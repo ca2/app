@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "selection.h"
+#include "selection_item.h"
 
 
 namespace database

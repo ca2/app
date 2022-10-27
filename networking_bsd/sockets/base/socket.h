@@ -56,7 +56,7 @@ namespace sockets_bsd
       ::pointer<::sockets::base_socket_handler>  m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
       SOCKET                  m_socket; ///< File descriptor
 
-      static ::mutex *        s_pmutex;
+      static ::pointer< ::mutex >        s_pmutex;
 
       ::pointer<::networking::address>   m_paddressRemote; ///< Remote end ::networking::address
       ::pointer<::networking::address>   m_paddressRemoteClient; ///< Address of last connect()
@@ -749,8 +749,8 @@ namespace sockets_bsd
       void run() override;
       bool step() override;
 
-      //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
-      //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);
 
       string get_short_description() override;
 

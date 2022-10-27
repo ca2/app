@@ -46,7 +46,7 @@ class CLASS_DECL_AURA db_long_set_core:
 public:
 
 
-   ::mutex                                     m_mutex;
+   ::pointer < ::mutex >                                     m_pmutex;
    sockets::socket_handler                   m_handler;
    sockets::http_session *                   m_phttpsession;
 
@@ -85,18 +85,18 @@ class CLASS_DECL_AURA db_long_sync_queue:
 public:
 
 
-   ::mutex                                                    m_mutex;
+   ::pointer < ::mutex >                                                    m_pmutex;
    db_long_set *                                            m_ppropertyset;
    sockets::socket_handler                                  m_handler;
    sockets::http_session *                                  m_phttpsession;
 
    pointer_array < db_long_set_queue_item >           m_itema;
 
-   db_long_sync_queue(::object * pobject):
-      ::object(pobject),
-      thread(pobject),
-      ::thread(pobject),
-      m_handler(pobject),
+   db_long_sync_queue(::particle * pparticle):
+      ::object(pparticle),
+      thread(pparticle),
+      ::thread(pparticle),
+      m_handler(pparticle),
       
       m_phttpsession(nullptr)
    {}
@@ -123,7 +123,7 @@ repeat:;
 
        {
 
-          single_lock synchronouslock(&m_mutex);
+          single_lock synchronouslock(m_pmutex);
 
           if(m_itema.get_size() <= 0)
           {
@@ -177,7 +177,7 @@ repeat:;
 void db_long_sync_queue::queue(const ::string & pszKey,i64 l)
 {
 
-   single_lock synchronouslock(&m_mutex, true);
+   single_lock synchronouslock(m_pmutex, true);
 
    db_long_set_queue_item item;
 

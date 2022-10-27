@@ -359,7 +359,7 @@ namespace imaging_freeimage
    else if (bGif)
       {
 
-      //m_psystem->m_pacmefile->put_contents("/home/camilo/a.gif", memory);
+      //acmefile()->put_contents("/home/camilo/a.gif", memory);
 
          _load_multi_frame_image(pimage, memory);
 

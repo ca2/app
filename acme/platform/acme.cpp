@@ -1,26 +1,161 @@
 ﻿#include "framework.h"
-#include "acme/operating_system.h"
 #include "acme.h"
-//#include "static_start_internal.h"
-//#include "acme/memory/plex_heap1.h"
-//#include "acme/memory/plex_heap_impl1.h"
+#include "acme/operating_system.h"
+#include "system.h"
+#include "sequencer.h"
+#include "simple_log.h"
+#include "library.h"
+#include "acme/parallelization/mutex.h"
 #include "acme/primitive/primitive/malloc.h"
-//#include "acme/astr.h"
-#include "acme/platform/simple_log.h"
-#include "acme/platform/library.h"
+#include "acme/user/user/theme_colors.h"
+
+
+#if defined(LINUX) || defined(__APPLE__)
+
+
+static ::critical_section g_criticalsectionTz;
+
+::critical_section * tz_critical_section() { return &g_criticalsectionTz; }
+
+static ::critical_section g_criticalsectionThreadHandleLock;
+
+::critical_section * thread_handle_lock_critical_section() { return &g_criticalsectionThreadHandleLock; }
+
+
+#endif // defined(LINUX) || defined(__APPLE__)
+
+
+static ::critical_section g_criticalsectionGlobals;
+
+
+critical_section * globals_critical_section() { return &g_criticalsectionGlobals; }
+
+
+static ::critical_section g_criticalsectionRefDbg;
+
+
+critical_section * ref_dbg_critical_section() { return &g_criticalsectionRefDbg; }
+
+
+static ::critical_section g_criticalsectionFactory;
+
+
+critical_section * factory_critical_section() { return &g_criticalsectionFactory; }
+
+
+
+::critical_section g_criticalsectionChildren;
+
+::critical_section * children_critical_section() { return &g_criticalsectionChildren; }
+
+
+#if !defined(WINDOWS)
+
+critical_section g_criticalsectionDemangle;
+
+::critical_section * demangle_critical_section() { return &g_criticalsectionDemangle; }
+
+
+#endif
+
+
+#ifdef WINDOWS
+
+
+::critical_section g_criticalsectionSymDbgHelp;
+
+
+::critical_section * sym_dbg_help_critical_section() { return &g_criticalsectionSymDbgHelp; }
+
+
+#endif
+
+
+::critical_section g_criticalsectionMessageDispatch;
+
+
+::critical_section * message_dispatch_critical_section() { return &g_criticalsectionMessageDispatch; }
+
+
+::critical_section g_criticalsectionUiDestroyed;
+
+
+::critical_section * ui_destroyed_critical_section() { return &g_criticalsectionUiDestroyed; }
+
+
+
+#ifdef ANDROID
+
+::critical_section g_criticalsectionOutputDebugStringA;
+
+::critical_section * output_debug_string_a_critical_section() { return &g_criticalsectionOutputDebugStringA; }
+
+#endif
+
+
+#ifdef __APPLE__
+
+
+::critical_section g_criticalsectionCvt;
+
+
+::critical_section * cvt_critical_section() { return &g_criticalsectionCvt; }
+
+#endif
+
+global_particle * g_pglobalParticle = nullptr;
+
+
+global_particle::global_particle()
+{
+
+   critical_section_lock criticalsectionlock(&g_criticalsectionGlobals);
+
+   m_pglobalparticleNext = g_pglobalParticle;
+
+   g_pglobalParticle = this;
+
+}
+
+
+global_particle::~global_particle()
+{
+
+
+}
+
+
+static void erase_all_global_particles()
+{
+
+   auto pglobalparticle = g_pglobalParticle;
+
+   while(pglobalparticle)
+   {
+
+      auto pglobalparticleNext = pglobalparticle->m_pglobalparticleNext;
+
+      if(pglobalparticleNext)
+      {
+
+         ::release(pglobalparticleNext);
+
+      }
+
+      pglobalparticle = pglobalparticleNext;
+
+   }
+
+   g_pglobalParticle = nullptr;
+
+}
+
 
 
 void initialize_memory_management();
 void finalize_memory_management();
 
 #define ThomasBS_Acme this
-#ifdef WINDOWS
-
-
-::mutex* g_pmutexSymDbgHelp;
-
-
-#endif
 
 
 //namespace main_memory_allocate_heap
@@ -164,6 +299,9 @@ namespace acme
 {
 
 
+   acme * acme::g_p = nullptr;
+
+
    static pointer_array < ::matter > * g_pelementaddraReleaseOnEnd;
 
 
@@ -183,41 +321,30 @@ namespace acme
 
 #endif
 
-   ::mutex * g_pmutexChildren;
-
-#if !defined(WINDOWS)
-
-   char* g_pszDemangle;
-   critical_section* g_pcsDemangle;
-
-#endif
 
 
-   //::mutex * get_system()->g_mutexLibrary;
+   //::critical_section get_system()->g_mutexLibrary;
 
    //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
-   ::mutex * g_pmutexGlobals;
+//   critical_section get_global_critical_section()
+//   {
+//
+//      return &g_criticalsectionGlobal;
+//
+//   }
 
-
-   mutex * get_global_mutex()
-   {
-
-      return g_pmutexGlobals;
-
-   }
-
-   critical_section* g_pcsGlobal;
+   //critical_section g_criticalsectionGlobal;
 
    bool g_bOutputDebugString;
 
-   //critical_section * g_pcsTrace;
+   //criticalsection g_criticalsectionTrace;
 
    //::matter * g_ptrace;
 
    //simple_trace * g_psimpletrace;
 
-   //critical_section* g_pcsTrace;
+   //critical_section* g_criticalsectionTrace;
 
    // acme commented
    //::matter* g_ptrace;
@@ -241,23 +368,20 @@ namespace acme
 #endif
 
 
-   //::mutex * g_pmutexCred;
+   //::critical_section g_criticalsectionCred;
 
 
    //class ::exception_engine* g_pengine;
 
 
-   ::mutex * g_pmutexMessageDispatch;
-
-
-   array < matter* >* g_paAura;
+   ::array < matter* >* g_paAura;
 
 
    //::map < ::atom, const ::atom&, ::atom, const ::atom& >* g_pmapRTL;
 
    //plex_heap_alloc_array* g_pheap;
 
-   // critical_section* g_pmutexSystemHeap;
+   // critical_section* g_criticalsectionSystemHeap;
 
 #if defined(WINDOWS)
 
@@ -269,6 +393,16 @@ namespace acme
 
 #endif
 
+
+#if !defined(WINDOWS)
+
+
+   char* g_pszDemangle;
+
+
+#endif
+
+
    //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 
@@ -278,64 +412,44 @@ namespace acme
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
    int g_iMemoryCountersStartable;
-   //::mutex * g_pmutexTrait;
-   //::mutex * g_pmutexFactory;
+   //::critical_section g_criticalsectionTrait;
+   //::critical_section g_criticalsectionFactory;
 
-   ::mutex * g_pmutexUiDestroyed;
 
-#ifdef ANDROID
 
-   ::mutex * g_pmutexOutputDebugStringA;
-
-#endif
 
    //CLASS_DECL_ACME acme_str_pool* g_pacmestrpool;
 
    // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-   // ::mutex * g_pmutexMq;
+   // ::critical_section g_criticalsectionMq;
 
    // #endif
 
 #if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
 
-//::mutex * g_pmutexThreadIdHandleLock;
+//::critical_section g_criticalsectionThreadIdHandleLock;
 
-//::mutex * g_pmutexThreadIdLock;
+//::critical_section g_criticalsectionThreadIdLock;
 
 //#if !defined(_UWP)
 
-//::mutex * g_pmutexPendingThreadsLock;
+//::critical_section g_criticalsectionPendingThreadsLock;
 
 //#endif
 
-//::mutex * g_pmutexTlsData;
+//::critical_section g_criticalsectionTlsData;
 
 #endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
 
 
-#if defined(LINUX) || defined(__APPLE__)
 
 
-   ::mutex * g_pmutexTz;
-
-   ::mutex * g_pmutexThreadHandleLock;
-
-
-#endif // defined(LINUX) || defined(__APPLE__)
-
-
-#ifdef __APPLE__
-
-
-   ::mutex * g_pmutexCvt;
-
-
-#endif
-
-
-   critical_section g_csRefDbg;
-
+//
+//
+//
+//   critical_section g_csRefDbg;
+//
 
 
    void acme::construct()
@@ -359,9 +473,9 @@ namespace acme
 
 #endif
 
-      g_pmutexChildren = nullptr;
+      //g_criticalsectionChildren = nullptr;
 
-      //g_pmutexThreadWaitClose = nullptr;
+      //g_criticalsectionThreadWaitClose = nullptr;
 
 #if !defined(WINDOWS)
 
@@ -369,25 +483,25 @@ namespace acme
 
       g_pszDemangle = nullptr;
 
-      g_pcsDemangle = nullptr;
+      //g_criticalsectionDemangle = nullptr;
 
 #endif
 
       //g_main_deferred_run = nullptr;
 
-      g_pmutexGlobals = nullptr;
+      //g_criticalsectionGlobals = nullptr;
 
-      g_pcsGlobal = nullptr;
+      //g_criticalsectionGlobal = nullptr;
 
       g_bOutputDebugString = true;
 
-      //g_pcsTrace = nullptr;
+      //g_criticalsectionTrace = nullptr;
 
       //g_ptrace = nullptr;
 
       //g_psimpletrace = nullptr;
 
-      //g_pcsTrace = nullptr;
+      //g_criticalsectionTrace = nullptr;
 
       // acme commented
       //g_ptrace = nullptr;
@@ -410,10 +524,10 @@ namespace acme
 
 #endif
 
-      //g_pmutexCred = nullptr;
+      //g_criticalsectionCred = nullptr;
 
       //g_pengine = nullptr;
-      g_pmutexMessageDispatch = nullptr;
+      //g_criticalsectionMessageDispatch = nullptr;
 
       g_paAura = nullptr;
 
@@ -436,14 +550,14 @@ namespace acme
       //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
 
       g_iMemoryCountersStartable = 0;
-      //::mutex * g_pmutexTrait;
-      //::mutex * g_pmutexFactory;
+      //::critical_section g_criticalsectionTrait;
+      //::critical_section g_criticalsectionFactory;
 
-      g_pmutexUiDestroyed = 0;
+      //g_criticalsectionUiDestroyed = 0;
 
 #ifdef ANDROID
 
-      g_pmutexOutputDebugStringA = 0;
+      //g_criticalsectionOutputDebugStringA = 0;
 
 #endif
 
@@ -451,31 +565,31 @@ namespace acme
 
       // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-      // ::mutex * g_pmutexMq;
+      // ::critical_section g_criticalsectionMq;
 
       // #endif
 
 #if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
 
-//::mutex * g_pmutexThreadIdHandleLock;
+//::critical_section g_criticalsectionThreadIdHandleLock;
 
-//::mutex * g_pmutexThreadIdLock;
+//::critical_section g_criticalsectionThreadIdLock;
 
 //#if !defined(_UWP)
 
-//::mutex * g_pmutexPendingThreadsLock;
+//::critical_section g_criticalsectionPendingThreadsLock;
 
 //#endif
 
-//::mutex * g_pmutexTlsData;
+//::critical_section g_criticalsectionTlsData;
 
 #endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
 
 #if defined(LINUX) || defined(__APPLE__)
 
-      g_pmutexTz = nullptr;
+      //g_criticalsectionTz = nullptr;
 
-      g_pmutexThreadHandleLock = nullptr;
+      //g_criticalsectionThreadHandleLock = nullptr;
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
@@ -483,7 +597,7 @@ namespace acme
 #ifdef __APPLE__
 
 
-      g_pmutexCvt = nullptr;
+      //g_criticalsectionCvt = nullptr;
 
 
 #endif
@@ -491,7 +605,7 @@ namespace acme
 #ifdef WINDOWS
 
 
-      g_pmutexSymDbgHelp = nullptr;
+      //g_criticalsectionSymDbgHelp = nullptr;
 
 
 #endif
@@ -521,11 +635,11 @@ namespace acme
 
       //::g_pwd32stringNil = &s_wd32stringNil;
 
-      m_bRef = false;
+      //m_bRef = false;
 
       construct();
 
-      //g_pcsRefDbg = nullptr;
+      //g_criticalsectionRefDbg = nullptr;
 
 
 #if defined(WINDOWS)
@@ -542,13 +656,13 @@ namespace acme
 
 #endif
 
-      m_pcriticalsectionFactory = memory_new critical_section;
+      //m_criticalsectionFactory = memory_new critical_section;
 
-#ifndef WINDOWS
-
-      g_pcsDemangle = memory_new critical_section;
-
-#endif
+//#ifndef WINDOWS
+//
+//      //g_criticalsectionDemangle = memory_new critical_section;
+//
+//#endif
 
 #ifdef WINDOWS
 
@@ -584,15 +698,15 @@ namespace acme
 
       //g_pengine = memory_new ::OPERATING_SYSTEM_NAMESPACE::exception_engine();
 
-      g_pmutexGlobals = memory_new ::mutex();
+      //g_criticalsectionGlobals = memory_new ::critical_section();
 
-      g_pmutexChildren = memory_new ::mutex();
+      //g_criticalsectionChildren = memory_new ::critical_section();
 
-      g_pcsGlobal = memory_new critical_section();
+      //g_criticalsectionGlobal = memory_new critical_section();
 
       ::initialize_sequence_critical_section();
 
-      //::update::g_pcs = memory_new critical_section();
+      //::update::g_criticalsection = memory_new critical_section();
 
 #ifndef __MCRTDBG
 
@@ -612,12 +726,12 @@ namespace acme
 
       initialize_global_message_queue();
 
-
-#ifdef ANDROID
-
-      g_pmutexOutputDebugStringA = memory_new ::mutex();
-
-#endif
+//
+//#ifdef ANDROID
+//
+//      g_criticalsectionOutputDebugStringA = memory_new ::critical_section();
+//
+//#endif
 
 #if OBJECT_TYPE_COUNTER
 
@@ -626,7 +740,7 @@ namespace acme
 #endif
 
 
-      //g_pcsTrace = memory_new critical_section;
+      //g_criticalsectionTrace = memory_new critical_section;
 
       //g_psimpletrace = memory_new simple_trace;
 
@@ -641,24 +755,24 @@ namespace acme
       //acme commented
 //#ifdef BSD_STYLE_SOCKETS
 //
-//      ::sockets::base_socket::s_pmutex = memory_new ::mutex();
+//      ::sockets::base_socket::s_criticalsection = memory_new ::critical_section();
 //
 //#endif
 
 
-#ifdef __APPLE__
+//#ifdef __APPLE__
+//
+//      g_criticalsectionCvt = memory_new ::critical_section();
+//
+//#endif
 
-      g_pmutexCvt = memory_new ::mutex();
+      //g_criticalsectionThreadWaitClose = memory_new ::critical_section();
 
-#endif
-
-      //g_pmutexThreadWaitClose = memory_new ::mutex();
-
-      //g_pmutexThreadOn = memory_new ::mutex();
+      //g_criticalsectionThreadOn = memory_new ::critical_section();
 
       //g_pmapThreadOn = memory_new ::map < itask_t, itask_t, itask_t, itask_t >;
 
-      //g_pmutexSystemHeap = memory_new critical_section();
+      //g_criticalsectionSystemHeap = memory_new critical_section();
 
 #if MEMDLEAK
 
@@ -668,19 +782,19 @@ namespace acme
 
       factory_init();
 
-      g_paAura = memory_new array < matter * >;
+      g_paAura = memory_new ::array < matter * >;
 
       //g_pmapAura =memory_new ::map < void *,void *,::acme::application *,::acme::application * >;
 
-      g_pmutexUiDestroyed = memory_new ::mutex();
+      //g_criticalsectionUiDestroyed = memory_new ::critical_section();
 
-      g_pmutexMessageDispatch = memory_new ::mutex();
+      //g_criticalsectionMessageDispatch = memory_new ::critical_section();
 
-      //g_pmutexCred = memory_new ::mutex();
+      //g_criticalsectionCred = memory_new ::critical_section();
 
 #if defined(LINUX) || defined(__APPLE__)
 
-      g_pmutexTz = memory_new ::mutex();
+      //g_criticalsectionTz = memory_new ::critical_section();
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
@@ -721,11 +835,11 @@ namespace acme
       //acme commented
       //::user::init_windowing();
 
-      //g_pcsRefDbg = memory_new critical_section();
+      //g_criticalsectionRefDbg = memory_new critical_section();
 
       g_bAcme = 1;
 
-      //::thread::g_pmutex = memory_new mutex();
+      //::thread::g_criticalsection = memory_new mutex();
 
       //::thread::g_pthreadmap = memory_new ::thread_map();
 
@@ -747,15 +861,15 @@ namespace acme
 #endif
 
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
+//
+//
+//      g_criticalsectionSymDbgHelp = memory_new ::critical_section();
+//
+//
+//#endif
 
-
-      g_pmutexSymDbgHelp = memory_new ::mutex();
-
-
-#endif
-
-      //::acme::library::s_pmutexLoading = memory_new ::mutex();
+      //::acme::library::s_criticalsectionLoading = memory_new ::critical_section();
 
       init();
 
@@ -769,7 +883,7 @@ namespace acme
 
       term();
 
-      //::acme::del(::acme::library::s_pmutexLoading);
+      //::acme::del(::acme::library::s_criticalsectionLoading);
 
       ::user::os_term_theme_colors();
 
@@ -863,7 +977,7 @@ namespace acme
       //}
 
 
-      //::acme::del(::thread::g_pmutex);
+      //::acme::del(::thread::g_criticalsection);
 
       //::acme::del(::thread::g_pthreadmap);
 
@@ -885,15 +999,15 @@ namespace acme
 
 #if defined(LINUX) || defined(__APPLE__)
 
-      ::acme::del(g_pmutexTz);
+      //::acme::del(g_criticalsectionTz);
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
-      //::acme::del(g_pmutexCred);
+      //::acme::del(g_criticalsectionCred);
 
-      ::acme::del(g_pmutexMessageDispatch);
+      //::acme::del(g_criticalsectionMessageDispatch);
 
-      ::acme::del(g_pmutexUiDestroyed);
+      //::acme::del(g_criticalsectionUiDestroyed);
 
       //del(g_pmapAura);
 
@@ -943,41 +1057,41 @@ namespace acme
 
 #endif
 
-      //::acme::del(g_pmutexSystemHeap);
+      //::acme::del(g_criticalsectionSystemHeap);
 
-      //::acme::del(g_pmutexThreadOn);
+      //::acme::del(g_criticalsectionThreadOn);
 
       //::acme::del(g_pmapThreadOn);
 
-      //::acme::del(g_pmutexThreadWaitClose);
+      //::acme::del(g_criticalsectionThreadWaitClose);
 
 #ifdef __APPLE__
 
-      ::acme::del(g_pmutexCvt);
+      //::acme::del(g_criticalsectionCvt);
 
 #endif
 
       //acme commented
 //#ifdef BSD_STYLE_SOCKETS
 //
-//      del(::sockets::base_socket::s_pmutex);
+//      del(::sockets::base_socket::s_criticalsection);
 //
 //#endif
 
       // acme commented
       //::acme::del(g_psimpletrace);
 
-      //::acme::del(g_pcsTrace);
+      //::acme::del(g_criticalsectionTrace);
       
       //::acme::del(g_psimpletrace);
 
-      //::acme::del(g_pcsTrace);
+      //::acme::del(g_criticalsectionTrace);
 
       //trace_category_static_term();
 
 #ifdef ANDROID
 
-      del(g_pmutexOutputDebugStringA);
+      //del(g_criticalsectionOutputDebugStringA);
 
 #endif
 
@@ -1008,7 +1122,7 @@ namespace acme
 #ifdef WINDOWS
 
 
-      ::acme::del(g_pmutexSymDbgHelp);
+      //::acme::del(g_criticalsectionSymDbgHelp);
 
 
 #endif
@@ -1018,11 +1132,11 @@ namespace acme
 
       ::finalize_sequence_critical_section();
 
-      ::acme::del(g_pcsGlobal);
+      //::acme::del(g_criticalsectionGlobal);
 
-      ::acme::del(g_pmutexChildren);
+      //::acme::del(g_criticalsectionChildren);
 
-      ::acme::del(g_pmutexGlobals);
+      //::acme::del(g_criticalsectionGlobals);
 
 #if MEMDLEAK
 
@@ -1046,11 +1160,11 @@ namespace acme
 
 #ifndef WINDOWS
 
-      ::acme::del(g_pcsDemangle);
+      //::acme::del(g_criticalsectionDemangle);
 
 #endif
 
-      ::acme::del(m_pcriticalsectionFactory);
+      //::acme::del(m_pcriticalsectionFactory);
 
 #ifdef WINDOWS
       _free_locale(g_localeC);
@@ -1068,7 +1182,7 @@ namespace acme
    void acme::this_ref()
    {
 
-      m_bRef = true;
+      //m_bRef = true;
       //printf()
 
    }
@@ -1125,13 +1239,17 @@ namespace acme
 
       //return true;
 
-      ::factory::add_factory_item < ::acme::system >();
+      //::factory::add_factory_item < ::acme::system >();
 
    }
 
 
    void acme::term()
    {
+
+
+      erase_all_global_particles();
+
 
       //::parallelization::wait_threads(1_min);
 
@@ -1175,12 +1293,12 @@ namespace acme
 
 //} // namespace static_start
 
-   critical_section * get_global_critical_section()
-   {
-
-      return g_pcsGlobal;
-
-   }
+//   criticalsection get_global_critical_section()
+//   {
+//
+//      return g_criticalsectionGlobal;
+//
+//   }
 
 
    bool should_output_debug_string()
@@ -1248,7 +1366,7 @@ namespace acme
    void acme::factory_close()
    {
 
-      critical_section_lock synchronouslock(m_pcriticalsectionFactory);
+      critical_section_lock synchronouslock(factory_critical_section());
 
       m_pfactory->erase_all();
 
@@ -1262,7 +1380,7 @@ namespace acme
    void acme::factory_term()
    {
 
-      critical_section_lock synchronouslock(m_pcriticalsectionFactory);
+      critical_section_lock synchronouslock(factory_critical_section());
 
       m_pfactory.release();
 
@@ -1276,12 +1394,12 @@ namespace acme
 } // namespace acme
 
 
-//static ::mutex * s_pmutexDraw2d = nullptr;
+//static ::critical_section s_criticalsectionDraw2d = nullptr;
 //
-//CLASS_DECL_ACME ::mutex * draw2d_mutex()
+//CLASS_DECL_ACME ::critical_section draw2d_mutex()
 //{
 //
-//   return s_pmutexDraw2d;
+//   return s_criticalsectionDraw2d;
 //
 //}
 
@@ -1289,7 +1407,7 @@ namespace acme
 //CLASS_DECL_ACME void init_draw2d_mutex()
 //{
 //
-//   s_pmutexDraw2d = memory_new ::mutex();
+//   s_criticalsectionDraw2d = memory_new ::critical_section();
 //
 //}
 
@@ -1297,16 +1415,16 @@ namespace acme
 //CLASS_DECL_ACME void terg_draw2d_mutex()
 //{
 //
-//   ::acme::del(s_pmutexDraw2d);
+//   ::acme::del(s_criticalsectionDraw2d);
 //
 //}
 
 
 
-//CLASS_DECL_ACME ::mutex * get_cred_mutex()
+//CLASS_DECL_ACME ::critical_section get_cred_mutex()
 //{
 //
-//   return ::acme::g_pmutexCred;
+//   return ::acme::g_criticalsectionCred;
 //
 //}
 
@@ -1378,11 +1496,11 @@ CLASS_DECL_ACME ::e_status get_last_status()
 //         //
 //         //         oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 //         //
-//         //         oswindow_data::s_pmutex = memory_new ::mutex;
+//         //         oswindow_data::s_criticalsection = memory_new ::critical_section;
 //         //
 //         //         osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
 //         //
-//         //         osdisplay_data::s_pmutex = memory_new ::mutex;
+//         //         osdisplay_data::s_criticalsection = memory_new ::critical_section;
 //
 //#endif // defined(LINUX)
 //
@@ -1440,17 +1558,17 @@ CLASS_DECL_ACME ::e_status get_last_status()
 //
 //         //#if defined(LINUX)
 //         //
-//         //         delete osdisplay_data::s_pmutex;
+//         //         delete osdisplay_data::s_criticalsection;
 //         //
-//         //         osdisplay_data::s_pmutex = nullptr;
+//         //         osdisplay_data::s_criticalsection = nullptr;
 //         //
 //         //         delete osdisplay_data::s_pdataptra;
 //         //
 //         //         osdisplay_data::s_pdataptra = nullptr;
 //         //
-//         //         delete oswindow_data::s_pmutex;
+//         //         delete oswindow_data::s_criticalsection;
 //         //
-//         //         oswindow_data::s_pmutex = nullptr;
+//         //         oswindow_data::s_criticalsection = nullptr;
 //         //
 //         //         delete oswindow_data::s_pdataptra;
 //         //
@@ -1487,38 +1605,36 @@ locale_t get_c_locale()
 }
 
 
-void acme_ref()
+//void acme_ref()
+//{
+//
+//   ::acme::acme::g_p->this_ref();
+//
+//}
+
+
+//CLASS_DECL_ACME ::critical_section * get_globals_critical_section()
+//{
+//
+//   return &g_criticalsectionGlobals;
+//
+//}
+//
+//
+//CLASS_DECL_ACME ::critical_section * get_children_mutex()
+//{
+//
+//   return &::acme::g_criticalsectionChildren;
+//
+//}
+
+
+CLASS_DECL_ACME void release_on_end(::particle * pparticle)
 {
 
-   ::acme::acme::g_p->this_ref();
+   auto ppointer = new global_pointer<particle>();
 
-}
-
-
-CLASS_DECL_ACME ::mutex * get_globals_mutex()
-{
-
-   return ::acme::g_pmutexGlobals;
-
-}
-
-
-
-
-CLASS_DECL_ACME ::mutex* get_children_mutex()
-{
-
-   return ::acme::g_pmutexChildren;
-
-}
-
-
-CLASS_DECL_ACME void release_on_end(::matter* pmatter)
-{
-
-   critical_section_lock l(::acme::g_pcsGlobal);
-
-   ::acme::g_pelementaddraReleaseOnEnd->add(pmatter);
+   *ppointer = pparticle;
 
 }
 
@@ -1526,7 +1642,7 @@ CLASS_DECL_ACME void release_on_end(::matter* pmatter)
 void delete_all_release_on_end()
 {
 
-   critical_section_lock l(::acme::g_pcsGlobal);
+   critical_section_lock criticalsectionlock(&g_criticalsectionGlobals);
 
    ::acme::g_pelementaddraReleaseOnEnd->erase_all();
 
@@ -1552,7 +1668,7 @@ void delete_all_release_on_end()
 void add_release_on_end(::matter * pmatter)
 {
 
-   critical_section_lock l(::acme::g_pcsGlobal);
+   critical_section_lock criticalsectionlock(&::g_criticalsectionGlobals);
 
 //   if (::is_null(::acme::g_pelementaddraReleaseOnEnd))
 //   {
@@ -1574,81 +1690,81 @@ void add_release_on_end(::matter * pmatter)
 }
 
 
-namespace acme
-{
-
-
-   acme * acme::g_p = nullptr;
-   int g_iReference = 0;
-//critical_section g_cs;
-
-   void increment_reference_count()
-   {
-
-//      critical_section_lock lock(&g_cs);
-
-      g_iReference++;
-
-      if(g_iReference == 1)
-      {
-
-         memory_new acme();
-
-      }
-
-   }
-
-
-   void decrement_reference_count()
-   {
-
-      //critical_section_lock lock(&g_cs);
-
-      g_iReference--;
-
-      if(g_iReference == 0)
-      {
-
-         ::acme::del(acme::g_p);
-
-      }
-
-   }
-
-
-   class reference
-   {
-   public:
-
-
-      reference() { increment_reference_count(); }
-      ~reference() { decrement_reference_count(); }
-
-
-   };
-
-
-   reference g_reference;
-
-   void initialize()
-   {
-
-      increment_reference_count();
-
-   }
-
-
-
-   void finalize()
-   {
-
-
-
-   }
-
-
-
-} // namespace acme
+//namespace acme
+//{
+//
+//
+////   acme * acme::g_p = nullptr;
+////   int g_iReference = 0;
+//////critical_section g_cs;
+////
+////   void increment_reference_count()
+////   {
+////
+//////      critical_section_lock lock(&g_cs);
+////
+////      g_iReference++;
+////
+////      if(g_iReference == 1)
+////      {
+////
+////         memory_new acme();
+////
+////      }
+////
+////   }
+////
+////
+////   void decrement_reference_count()
+////   {
+////
+////      //critical_section_lock lock(&g_cs);
+////
+////      g_iReference--;
+////
+////      if(g_iReference == 0)
+////      {
+////
+////         ::acme::del(acme::g_p);
+////
+////      }
+////
+////   }
+//
+//
+////   class reference
+////   {
+////   public:
+////
+////
+////      reference() { increment_reference_count(); }
+////      ~reference() { decrement_reference_count(); }
+////
+////
+////   };
+//
+//
+////   reference g_reference;
+//
+////   void initialize()
+////   {
+////
+////      increment_reference_count();
+////
+////   }
+////
+////
+////
+////   void finalize()
+////   {
+////
+////
+////
+////   }
+//
+//
+//
+//} // namespace acme
 
 
 //#pragma comment (linker, "/export:_g_acme")
@@ -1700,12 +1816,16 @@ namespace acme
 
 
 iptr g_iMonitor = 0;
+
+
 CLASS_DECL_ACME void monitor_pointer(void * p)
 {
 
    g_iMonitor = (iptr)p;
 
 }
+
+
 
 
 

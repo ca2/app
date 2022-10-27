@@ -62,7 +62,7 @@ namespace filemanager
    }
 
 
-   string create_manager_id(::object * pobject)
+   string create_manager_id(::particle * pparticle)
    {
 
       memory mem;
@@ -204,12 +204,12 @@ namespace filemanager
    }
 
 
-   void component::initialize_filemanager_component(::object * pobject)
+   void component::initialize_filemanager_component(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -252,7 +252,7 @@ namespace filemanager
 
       //auto pshell = user.shell();
 
-      //estatus = pshell->initialize(pobject);
+      //estatus = pshell->initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -444,7 +444,7 @@ namespace filemanager
                || pathFilemanagerProject.final_extension().compare_ci("component") != 0)
          {
 
-            m_pathFilemanagerProject = m_psystem->m_pacmedirectory->localconfig() / "user.component";
+            m_pathFilemanagerProject = acmedirectory()->localconfig() / "user.component";
 
          }
          else
@@ -458,7 +458,7 @@ namespace filemanager
 
          {
 
-            ::mutex m(e_create_new, "Local\\ca2-filemanagers");
+            ::pointer < ::mutex > m(e_create_new, "Local\\ca2-filemanagers");
 
             synchronous_lock synchronouslock(&m);
 
@@ -618,7 +618,7 @@ namespace filemanager
 
       //{
 
-      //   ::mutex m(e_create_new, "Local\\ca2-filemanagers");
+      //   ::pointer < ::mutex > m(e_create_new, "Local\\ca2-filemanagers");
 
       //   synchronous_lock synchronouslock(&m);
 

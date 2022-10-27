@@ -192,7 +192,7 @@ namespace aqua
 //}
 
 
-//CLASS_DECL_AQUA ::aqua::audio * get_context_audio(::object * pobject)
+//CLASS_DECL_AQUA ::aqua::audio * get_context_audio(::particle * pparticle)
 //{
 //
 //   return get_system()->defer_get_audio();

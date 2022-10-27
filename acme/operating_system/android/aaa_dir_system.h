@@ -25,7 +25,7 @@ namespace android
       virtual ~dir_system();
 
 
-      virtual void initialize(::matter * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
 

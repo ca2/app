@@ -6,15 +6,14 @@
 #include "signalization.h"
 
 
-namespace promise
+namespace parallelization
 {
-
-
-#ifdef _DEBUG
 
 
    signalization::signalization()
    {
+
+      defer_create_synchronization();
 
    }
 
@@ -27,10 +26,7 @@ namespace promise
    }
 
 
-#endif
-
-
-} // namespace promise
+} // namespace parallelization
 
 
 

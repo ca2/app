@@ -29,7 +29,7 @@
 //
 //#define System (psystem->m_pbasesystem)
 //#define Sess(pcontextsession) (pcontextsession->m_pbasesession)
-//#define App(pobject) (*pobject->get_app()->m_pbaseapplication)
+//#define App(pparticle) (*pparticle->get_app()->m_pbaseapplication)
 
 
 #define __spin_namespace base // back bone / four-letter "spin*" namespace name

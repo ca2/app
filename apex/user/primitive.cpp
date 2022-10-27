@@ -2,6 +2,8 @@
 #include "primitive.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/single_lock.h"
 #include "apex/message/simple_command.h"
 #include "apex/platform/application.h"
 #include "apex/platform/session.h"
@@ -4042,7 +4044,7 @@ namespace user
    //void primitive::add_thread(::thread * pthread)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   m_threadptra.add(pthread);
 
@@ -4052,7 +4054,7 @@ namespace user
    //void primitive::erase_thread(::thread * pthread)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   m_threadptra.erase(pthread);
 
@@ -4250,7 +4252,7 @@ namespace user
 
      }
 
-     single_lock(puiThis->get_app()->mutex(), true);
+     single_lock(puiThis->get_app()->synchronization(), true);
 
      ::pointer<primitive>pprimitive;
 

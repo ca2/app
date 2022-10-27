@@ -21,7 +21,7 @@ namespace android
          string      m_strca2;
 
 
-         dir(::object * pobject);
+         dir(::particle * pparticle);
 
 
          //         virtual bool  ls_pattern(::aura::application *  papp, const ::string & lpcsz, const ::string & lpcszPattern, string_array * pstraPath = nullptr, string_array * pstraTitle = nullptr, bool_array * pbaIsDir = nullptr, i64_array * piaSize = nullptr);

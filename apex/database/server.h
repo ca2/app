@@ -26,7 +26,7 @@ namespace database
       ~server() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual bool _data_server_load(client * pclient, const key & key, get_memory getmemory, ::topic * ptopic = nullptr);

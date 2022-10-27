@@ -2,7 +2,7 @@
 
 
 #include "acme/memory/memory_allocator.h"
-
+#include "acme/primitive/primitive/interlocked_count.h"
 
 template < typename NATURAL_DATA >
 NATURAL_DATA* __nil() { return nullptr; }

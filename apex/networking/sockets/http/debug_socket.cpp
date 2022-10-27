@@ -1,5 +1,6 @@
 #include "framework.h" 
 #include "debug_socket.h"
+#include "apex/constant/idpool.h"
 
 
 namespace sockets

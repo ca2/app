@@ -25,12 +25,12 @@ namespace base
    }
 
 
-   void session::initialize(::object * pobject)
+   void session::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::axis::session::initialize(pobject);
+      ::axis::session::initialize(pparticle);
 
       //if (!estatus)
       //{

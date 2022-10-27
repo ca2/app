@@ -553,7 +553,7 @@ namespace user
       if(!bCallOnCreateImpact)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          return m_impactdatamap[atom];
 

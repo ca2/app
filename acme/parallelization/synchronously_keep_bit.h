@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/parallelization/synchronous_lock.h"
+
+
 template < typename TYPE >
 class ___synchronously_keep_bit :
    public set_bit < TYPE >
@@ -46,7 +49,7 @@ public:
 
       m_bKept = true;
 
-      _synchronous_lock synchronouslock(m_pmatterLock->mutex());
+      _synchronous_lock synchronouslock(m_pmatterLock->synchronization());
 
       this->set(m_bKeepValue);
 
@@ -65,7 +68,7 @@ public:
 
       m_bKept = false;
 
-      _synchronous_lock synchronouslock(m_pmatterLock->mutex());
+      _synchronous_lock synchronouslock(m_pmatterLock->synchronization());
 
       this->set(m_bKeepAwayValue);
 

@@ -27,7 +27,7 @@ namespace macos
    public:
       
       
-      ip_enum(::object * pobject);
+      ip_enum(::particle * pparticle);
       virtual ~ip_enum();
       
       

@@ -273,7 +273,7 @@ namespace interprocess_channel
    }
 
 
-   void handler::on_initialize_object()
+   void handler::on_initialize_particle()
    {
 
       //fork([this]()
@@ -423,7 +423,7 @@ namespace interprocess_channel
    //void handler::dispatch_item(::pointer<class dispatch_item> && pdispatchitem)
    //{
 
-   //   synchronous_lock synchronouslock(&m_mutexDispatch);
+   //   synchronous_lock synchronouslock(m_pmutexDispatch);
 
    //   bool bWasEmpty = m_dispatchitema.is_empty();
 
@@ -444,7 +444,7 @@ namespace interprocess_channel
 
    //   auto ptask = ::get_task();
 
-   //   single_lock singlelock(&m_mutexDispatch);
+   //   single_lock singlelock(m_pmutexDispatch);
 
    //   while (ptask->task_get_run())
    //   {

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "file_time_span.h"
 
 
 file_time_span::file_time_span() noexcept:

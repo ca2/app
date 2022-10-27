@@ -16,8 +16,11 @@
  wrapper class for _set_standard_translator API
  maps Win32 exceptions (C structured exceptions) into C++ typed exceptions.
 */
-
 #pragma once
+
+
+#include "exception.h"
+
 
 #if defined(ANDROID)
 
@@ -216,7 +219,7 @@ typedef struct _sig_ucontext
 #endif
 #endif
 //         ::exception(),
-         //       ::standard_exception(pobject, signal, psiginfo, pc)
+         //       ::standard_exception(pparticle, signal, psiginfo, pc)
       {
 
       }
@@ -357,7 +360,7 @@ private:
 {
    friend class translator;
 protected:
-   standard_sigsegv (siginfo_t * psiginfo, void * pc) : ::matter(pobject), standard_exception(psiginfo, pc) {}
+   standard_sigsegv (siginfo_t * psiginfo, void * pc) : ::matter(pparticle), standard_exception(psiginfo, pc) {}
 public:
    //bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
    //uptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -367,7 +370,7 @@ public:
 {
    friend class translator;
 protected:
-   standard_sigfpe (siginfo_t * psiginfo, void * pc) : ::matter(pobject), standard_exception(psiginfo, pc) {}
+   standard_sigfpe (siginfo_t * psiginfo, void * pc) : ::matter(pparticle), standard_exception(psiginfo, pc) {}
 public:
 //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
   // uptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }

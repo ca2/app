@@ -27,68 +27,6 @@
 //
 //} // namespace primitive
 
-template < class T >
-template < typename T2 >
-inline pointer < T > & pointer < T >::defer_assign_to(T2 * & p)
-{
-
-   if (!is_null())
-   {
-
-      try
-      {
-
-         p = dynamic_cast < T2 * >(m_p);
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
-
-   return *this;
-
-}
-
-
-
-template < class T >
-template < typename OBJECT >
-inline pointer < T > & pointer < T >::defer_create_new(OBJECT * pobject)
-{
-
-   if (is_null())
-   {
-
-      create_new < T >(pobject);
-
-   }
-
-   return *this;
-
-}
-
-
-template < class T >
-template < typename OBJECT >
-inline pointer < T > & pointer < T >::create_new(OBJECT * pobject)
-{
-
-   auto p = __new(T);
-
-   if (p)
-   {
-
-      p->initialize(pobject);
-
-   }
-
-   return operator=(p);
-
-}
-
 
 namespace acme
 {

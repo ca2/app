@@ -43,7 +43,7 @@ namespace user
          ~format_tool() override;
 
          
-         void initialize(::object * pobject)override;
+         void initialize(::particle * pparticle)override;
       
          void install_message_routing(::channel * psender) override;
 

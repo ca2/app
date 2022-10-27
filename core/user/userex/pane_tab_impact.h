@@ -57,7 +57,7 @@ namespace userex
 
       inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
       inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
-      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      inline ::core::system* get_system() const { return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; }
 
       
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -123,12 +123,12 @@ public:
    }
 
 
-   void initialize(::object* pobject) override
+   void initialize(::particle * pparticle) override
    {
 
       //auto estatus =
       
-      BASE1::initialize(pobject);
+      BASE1::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -139,7 +139,7 @@ public:
 
       //estatus =
       
-      BASE2::initialize(pobject);
+      BASE2::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -150,7 +150,7 @@ public:
 
       //estatus =
       
-      BASE3::initialize(pobject);
+      BASE3::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -161,7 +161,7 @@ public:
 
       //estatus = 
       
-      BASE4::initialize(pobject);
+      BASE4::initialize(pparticle);
 
       //if (!estatus)
       //{

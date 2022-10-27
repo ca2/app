@@ -164,9 +164,9 @@ namespace user
       virtual string get_title();
 
 
-      virtual void show_software_keyboard(::user::element* pelement);
+      virtual void show_software_keyboard(::user::element * pelement);
 
-      virtual void hide_software_keyboard(::user::element* pelement);
+      virtual void hide_software_keyboard(::user::element * pelement);
 
       virtual void UpdateWindow();
       

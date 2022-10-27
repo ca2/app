@@ -5,8 +5,8 @@ namespace prompt
 {
 
 
-   department::department(::object * pobject) :
-      ::acme::department(pobject)
+   department::department(::particle * pparticle) :
+      ::acme::department(pparticle)
    {
 
    }

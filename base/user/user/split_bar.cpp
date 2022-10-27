@@ -132,7 +132,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_pparent->m_iIndex = m_iIndex;
 
@@ -158,7 +158,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if(m_pparent->m_iIndex == m_iIndex)
       {
@@ -181,7 +181,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto point = pmouse->m_point+ m_pparent->screen_to_client();
 

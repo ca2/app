@@ -332,7 +332,7 @@ namespace account
 
          float fMargin = (height(rectangleClient) * ((1.0f - 0.7f) / 2.0f));*/
 
-         auto psystem = m_psystem->m_paurasystem;
+         auto psystem = acmesystem()->m_paurasystem;
 
          auto pnode = psystem->node();
 
@@ -384,7 +384,7 @@ namespace account
 
             m_peditPassword->_001GetText(strText);
 
-            auto psystem = m_psystem->m_paurasystem;
+            auto psystem = acmesystem()->m_paurasystem;
 
             strText = psystem->crypto()->nessie(strText);
 
@@ -558,7 +558,7 @@ namespace account
 
       pcredentials->m_estatus = error_credentials;
 
-      synchronous_lock synchronouslock(&m_mutexResponse);
+      synchronous_lock synchronouslock(m_pmutexResponse);
 
       m_strRequestUrl = pcredentials->m_puser->m_pathUrl;
 

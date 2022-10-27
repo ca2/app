@@ -738,7 +738,7 @@ namespace ios
    void interaction_impl::post_non_client_destroy()
    {
 
-      single_lock synchronouslock(get_app() == nullptr ? nullptr : get_app()->mutex(), true);
+      single_lock synchronouslock(get_app() == nullptr ? nullptr : get_app()->synchronization(), true);
 
       //pmessage->m_bRet = true;
 
@@ -897,7 +897,7 @@ namespace ios
    bool interaction_impl::DestroyWindow()
    {
 
-      single_lock synchronouslock(get_app() == nullptr ? nullptr : get_app()->mutex(), true);
+      single_lock synchronouslock(get_app() == nullptr ? nullptr : get_app()->synchronization(), true);
 
       if(get_handle() == nullptr)
          return false;
@@ -2784,7 +2784,7 @@ namespace ios
 //
 ////      ::rectangle_i32 rect32;
 ////
-////      if(m_puserinteraction == get_app()->m_psystem->m_possystemwindow->m_puserinteraction)
+////      if(m_puserinteraction == get_app()->acmesystem()->m_possystemwindow->m_puserinteraction)
 ////      {
 ////
 ////         if(!get_main_screen_rectangle(rect32))
@@ -2823,7 +2823,7 @@ namespace ios
 //
 //      ::rectangle_i32 rect32;
 //
-//      if(m_puserinteraction == get_app()->m_psystem->m_possystemwindow->m_puserinteraction)
+//      if(m_puserinteraction == get_app()->acmesystem()->m_possystemwindow->m_puserinteraction)
 //      {
 //
 //         if(!get_main_screen_rectangle(rect32))
@@ -5012,7 +5012,7 @@ namespace ios
 
       {
 
-         single_lock synchronouslock(m_puserinteraction->mutex(), true);
+         single_lock synchronouslock(m_puserinteraction->synchronization(), true);
 
          double sh = status_bar_height();
          
@@ -5641,7 +5641,7 @@ namespace ios
 
       {
 
-         synchronous_lock synchronouslock(m_puserinteraction->mutex());
+         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
          m_puserinteraction->m_stateRequest2.m_point = pointMove;
 
@@ -5699,7 +5699,7 @@ namespace ios
 
       }
 
-      synchronous_lock synchronouslock(m_puserinteraction->mutex());
+      synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
       for (auto p : m_puserinteraction->m_uiptraChild)
       {

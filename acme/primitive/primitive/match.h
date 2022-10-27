@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/collection/array.h"
+#include "acme/primitive/collection/pointer_array.h"
+
+
 namespace match
 {
 
@@ -12,7 +17,7 @@ namespace match
 
 
       item() {}
-      virtual ~item() {}
+      ~item() override {}
 
 
       virtual bool matches(const ::payload & payload) const = 0;

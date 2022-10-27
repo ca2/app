@@ -1,9 +1,8 @@
 #include "framework.h"
+#include "fixed_alloc.h"
+#include "fixed_alloc_impl.h"
 #define HEAP_NAMESPACE_PREFIX main
 #include "acme/memory/_____heap_namespace.h"
-
-
-
 
 
 fixed_alloc_no_sync::fixed_alloc_no_sync(::u32 nAllocSize, ::u32 nBlockSize)
@@ -335,7 +334,7 @@ void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNe
 
 fixed_alloc * fixed_alloc_array::find(size_t nAllocSize)
 {
-   //synchronous_lock lock(&m_mutex, true);
+   //synchronous_lock lock(m_pmutex, true);
    size_t nFoundSize = UINT_MAX;
    i32 iFound = -1;
    for(i32 i = 0; i < this->get_count(); i++)

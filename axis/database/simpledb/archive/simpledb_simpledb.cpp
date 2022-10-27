@@ -5,9 +5,9 @@ namespace simpledb
 {
 
 
-   simpledb::simpledb(::object * pobject) :
-      ::object(pobject),
-      ::acme::department(pobject)
+   simpledb::simpledb(::particle * pparticle) :
+      ::object(pparticle),
+      ::acme::department(pparticle)
    {
 
       m_pserver         = nullptr;
@@ -27,7 +27,7 @@ namespace simpledb
    bool simpledb::InitializeDataCentral()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bInitialized)
       {
@@ -106,7 +106,7 @@ namespace simpledb
    bool simpledb::FinalizeDataCentral()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_bInitialized)
       {

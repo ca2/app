@@ -22,7 +22,7 @@ int gdb_check();
 i32 __node_is_debugger_attached()
 {
 
-   critical_section_lock lock(::acme::g_pcsGlobal);
+   critical_section_lock lock(globals_critical_section());
 
    if(g_durationLastDebuggerAttachedCheck.elapsed() > 300_ms)
    {

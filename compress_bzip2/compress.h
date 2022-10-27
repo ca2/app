@@ -69,7 +69,7 @@ namespace compress_bzip2
       ~compress() override;
 
 
-      void initialize(::object* pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       void set_bzip2_parameters(int iBlockSize, int iVerbosity, int iWorkFactor);

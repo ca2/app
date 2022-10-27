@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "context_glx.h"
 #include "opengl.h"
-#include "aura_posix/_.h"
+//#include "aura_posix/_.h"
 //#include "aura_posix/_library.h"
 #include "aura_posix/x11/display_lock.h"
 #include "aura/platform/system.h"
@@ -43,7 +43,7 @@ namespace opengl
    void context_glx::_create_offscreen_buffer(const ::size_i32 & size)
    {
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pgpu = psystem->get_gpu();
 
@@ -85,7 +85,7 @@ namespace opengl
 
       auto pwindowing = puser->windowing1();
 
-      auto pnode = (::aura_posix::node *) m_psystem->node()->m_pAuraPosix;
+      auto pnode = (::aura_posix::node *) acmenode()->m_pAuraPosix;
 
       auto pdisplay = (Display *) pnode->_get_Display();
 
@@ -196,7 +196,7 @@ namespace opengl
 
       auto pwindowing = puser->windowing1();
 
-      auto pnode = (::aura_posix::node *) m_psystem->node()->m_pAuraPosix;
+      auto pnode = (::aura_posix::node *) acmenode()->m_pAuraPosix;
 
       auto pdisplay = (Display *) pnode->_get_Display();
 
@@ -253,7 +253,7 @@ namespace opengl
 
       synchronous_lock synchronouslock(user_mutex());
 
-      auto pnode = (::aura_posix::node *) m_psystem->node()->m_pAuraPosix;
+      auto pnode = (::aura_posix::node *) acmenode()->m_pAuraPosix;
 
       auto pdisplay = (Display *) pnode->_get_Display();
 

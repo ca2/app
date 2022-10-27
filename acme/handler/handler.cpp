@@ -8,6 +8,7 @@
 #include "framework.h"
 #include "acme/handler/topic.h"
 #include "acme/handler/extended_topic.h"
+#include "acme/platform/system.h"
 
 
 handler::~handler()
@@ -42,7 +43,7 @@ CLASS_DECL_ACME void __call(handler * phandler, const ::atom & atom, i64 wParam,
    else
    {
 
-      auto pextendedtopic = pmatter->m_psystem->create_extended_topic(atom);
+      auto pextendedtopic = pmatter->create_extended_topic(atom);
 
       if(wParam != 0 || lParam != 0)
       {

@@ -18,39 +18,8 @@ namespace file
    typedef ::array < watch_id > file_watch_array;
 
 
-   /// Actions to listen for. Rename will send two events, one for
-   /// the deletion of the old file, and one for the creation of the
-   /// memory_new file.
-   enum enum_action
-   {
 
 
-      e_action_none = 0,
-      /// Sent when a file is created or renamed
-      e_action_add = 1,
-      /// Sent when a file is deleted or renamed
-      e_action_delete = 2,
-      /// Sent when a file is modified
-      e_action_modify = 4
-
-
-   };
-
-
-   // by CAMILO <3tbs
-   class CLASS_DECL_APEX action
-   {
-   public:
-
-
-      watch * m_pwatch;
-      watch_id                         m_atom;
-      ::file::path                     m_pathFolder;
-      ::file::path                     m_pathFile;
-      enumeration < enum_action >      m_eaction;
-
-
-   };
 
 
    //using listener_function = ::function < void(::file::action *) >;

@@ -4,6 +4,7 @@
 //#define memory_new ACME_NEW
 
 #include "set.h"
+#include "acme/primitive/comparison/equals.h"
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
@@ -293,7 +294,17 @@ public:
    inline ITERATOR erase(ITERATOR it) { return ::acme::iterator::erase(*this, it); }
 
    template < typename ITERATOR >
-   inline void erase(const ITERATOR & begin, const ITERATOR & last) { ::erase(*this, begin, last); }
+   inline void erase(const ITERATOR & begin, const ITERATOR & last)
+   {
+
+      for(auto it = begin; it != last; it++)
+      {
+
+         erase(it);
+
+      }
+
+   }
 
    void erase_all();
    void clear();
@@ -1302,11 +1313,4 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::InitHashTable(
 
 
 
-using int_ptr_to_string = map < iptr, iptr, string, const string & >;
-
-using int_ptr_to_int_ptr_to_string = map < iptr, iptr, int_ptr_to_string, const int_ptr_to_string & >;
-
-using index_string = map < index, string >;
-
-using index_to_index_to_string = map < index, index_string >;
 

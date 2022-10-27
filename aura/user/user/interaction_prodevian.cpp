@@ -398,7 +398,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(m_puserinteraction->mutex());
+         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
          if (strType.contains_ci("filemanager"))
          {
@@ -1007,7 +1007,7 @@ namespace user
       try
       {
 
-         synchronous_lock synchronouslock(m_puserinteraction->mutex());
+         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
          if(!m_puserinteraction)
          {

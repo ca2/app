@@ -13,7 +13,7 @@ namespace database
    {
 
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -24,10 +24,10 @@ namespace database
    }
 
 
-   void server::initialize(::object * pobject)
+   void server::initialize(::particle * pparticle)
    {
 
-      /*auto estatus = */ ::object::initialize(pobject);
+      /*auto estatus = */ ::object::initialize(pparticle);
 
       //if (!estatus)
       //{

@@ -1,14 +1,19 @@
 ﻿#include "framework.h"
-#include "apex/message.h"
+#include "acme/platform/log.h"
 #include "acme/update.h"
+#include "acme/parallelization/counter.h"
 #include "acme/parallelization/message_queue.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/platform/node.h"
 #include "apex/user/primitive.h"
 #include "acme/parallelization/tools.h"
 #include "acme/parallelization/pool.h"
+#include "apex/message.h"
 #include "apex/platform/application.h"
+#include "apex/platform/create.h"
 #include "apex/platform/session.h"
 #include "apex/platform/system.h"
+
 
 #ifdef WINDOWS_DESKTOP
 #include "apex/operating_system.h"
@@ -21,7 +26,7 @@ CLASS_DECL_ACME void TRACELASTERROR();
 bool on_init_thread();
 
 
-bool on_term_thread();
+void on_term_thread();
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -69,14 +74,14 @@ struct send_thread_message :
 
    manual_reset_event      m_ev;
 
-   send_thread_message(::object * pobject);
+   send_thread_message(::particle * pparticle);
 
    virtual ~send_thread_message();
 
 };
 
 
-send_thread_message::send_thread_message(::object * pobject)
+send_thread_message::send_thread_message(::particle * pparticle)
 {
 
    __zero(m_message);
@@ -150,7 +155,7 @@ thread::thread()
 
    m_pmutexThreadUiPtra = nullptr;
 
-   m_puiptraThread = nullptr;
+   //m_puiptraThread = nullptr;
 
    m_bThreadToolsForIncreasedFps = false;
 
@@ -160,7 +165,7 @@ thread::thread()
 
    m_durationHeartBeat.Now();
 
-   defer_create_mutex();
+   defer_create_synchronization();
 
    m_bReady = false;
 
@@ -222,9 +227,11 @@ thread::~thread()
 
    memory_counter_decrement(this);
 
-   ::acme::del(m_puiptraThread);
+   m_pmutexThreadUiPtra.release();
 
-   ::acme::del(m_pmutexThreadUiPtra);
+   //::acme::del(m_puiptraThread);
+
+   ///::acme::del(m_pmutexThreadUiPtra);
 
 }
 
@@ -378,7 +385,7 @@ void thread::term_task()
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       for (auto & pmanualresetevent : m_eventaWait)
       {
@@ -414,7 +421,7 @@ void thread::task_osterm()
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pevSleep.is_set())
       {
@@ -442,7 +449,7 @@ void thread::task_osterm()
 
    __set_thread_off();
 
-   //m_psystem->m_papexsystem->m_papexnode->thread_finalize(this);
+   //acmesystem()->m_papexsystem->m_papexnode->thread_finalize(this);
 
    //::e_status estatus = m_result.m_estatus;
 
@@ -737,7 +744,7 @@ void thread::on_message_branch(::message::message* pmessage)
 //
 //   }
 //
-//   //synchronous_lock synchronouslock(mutex());
+//   //synchronous_lock synchronouslock(this->synchronization());
 //
 //   //for(auto & pcomposite : *m_pcompositea)
 //   //{
@@ -1286,7 +1293,7 @@ void thread::post_quit()
    // {
 
    //    /// this is quite dangerous
-   //    synchronous_lock synchronouslock(mutex());
+   //    synchronous_lock synchronouslock(this->synchronization());
 
    //    ::pointer<manual_reset_event>pev = m_pevSync;
 
@@ -1307,7 +1314,7 @@ void thread::post_quit()
    {
 
       /// this is quite dangerous
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ::pointer<manual_reset_event>pev = m_pevSleep;
 
@@ -1379,7 +1386,7 @@ bool thread::post_quit_message(int nExitCode)
 //
 //      }
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (ptask == this)
 //      {
@@ -1438,7 +1445,7 @@ void thread::task_erase(::task * ptask)
 
       string strThreadChild = __type_name(ptask);
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (::is_null(ptask))
       {
@@ -1571,14 +1578,14 @@ void thread::destroy()
 
    ::channel::destroy();
 
-   //auto pobject = this;
+   //auto pparticle = this;
 
-   //if(pobject)
+   //if(pparticle)
    //{
 
-   //   //auto estatus = pobject->release_composite2(this);
+   //   //auto estatus = pparticle->release_composite2(this);
 
-   //   pobject->release_composite2(this);
+   //   pparticle->release_composite2(this);
 
    //   //if(!estatus)
    //   //{
@@ -1702,12 +1709,12 @@ bool thread::is_system() const
 u32 __thread_entry(void * p);
 
 
-void thread::initialize(::object * pobject)
+void thread::initialize(::particle * pparticle)
 {
 
-   //auto estatus = ::channel::initialize(pobject);
+   //auto estatus = ::channel::initialize(pparticle);
 
-   ::channel::initialize(pobject);
+   ::channel::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -1716,10 +1723,10 @@ void thread::initialize(::object * pobject)
 
    //}
 
-   //if (::is_set(pobject))
+   //if (::is_set(pparticle))
    //{
 
-   //   auto pthreadContext = dynamic_cast<::thread *>(pobject);
+   //   auto pthreadContext = dynamic_cast<::thread *>(pparticle);
 
    //   if (pthreadContext)
    //   {
@@ -1779,10 +1786,10 @@ void thread::main()
 
          }
 
-         if (defer_implement(m_psystem))
+         if (defer_implement(m_pcontext))
          {
 
-            //estatus = m_psystem->m_estatus;
+            //estatus = acmesystem()->m_estatus;
 
          }
          else
@@ -2198,8 +2205,8 @@ void thread::process_message_filter(i32 code,::message::message * pmessage)
 
 
 
-//thread_startup::thread_startup(::object * pobject) :
-//   ::object(pobject)
+//thread_startup::thread_startup(::particle * pparticle) :
+//   ::object(pparticle)
 //{
 //
 //}
@@ -2305,12 +2312,12 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //
 //#endif
 //
-   //auto pobject = this;
+   //auto pparticle = this;
 
-   //if (::is_set(pobject) && pobject != this)
+   //if (::is_set(pparticle) && pparticle != this)
    //{
 
-   //   pobject->add_composite(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+   //   pparticle->add_composite(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
    //}
 
@@ -2583,7 +2590,7 @@ void thread::__os_initialize()
 //
 //#endif
 
-   //m_psystem->m_papexsystem->m_papexnode->node_thread_initialize(this);
+   //acmesystem()->m_papexsystem->m_papexnode->node_thread_initialize(this);
 
 }
 
@@ -2591,7 +2598,7 @@ void thread::__os_initialize()
 void thread::__os_finalize()
 {
 
-   //m_psystem->m_papexsystem->m_papexnode->node_thread_finalize(this);
+   //acmesystem()->m_papexsystem->m_papexnode->node_thread_finalize(this);
 
 }
 
@@ -2686,7 +2693,7 @@ void thread::task_osinit()
 
       processor_cache_oriented_set_thread_memory_pool(0); // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
 
-      //m_psystem->m_papexsystem->m_papexnode->parallelization_initialize();
+      //acmesystem()->m_papexsystem->m_papexnode->parallelization_initialize();
 
    }
 
@@ -2864,7 +2871,7 @@ namespace apex
 
       //}
 
-//      auto psystem = m_psystem->m_papexsystem;
+//      auto psystem = acmesystem()->m_papexsystem;
 //
 //      psystem->m_papexsystem->post_to_all_threads(atom, wparam, lparam);
 
@@ -2884,7 +2891,7 @@ namespace apex
 //
 //   }
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   m_procedurea.add(routine);
 //
@@ -2905,10 +2912,10 @@ namespace apex
 //}
 
 
-void thread::post_element(const ::atom & atom, wparam wparam, ::element * pelement)
+void thread::post_element(const ::atom & atom, wparam wparam, ::particle * pparticle)
 {
 
-   post_message(atom, wparam, pelement);
+   post_message(atom, wparam, pparticle);
 
 }
 
@@ -3014,7 +3021,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 }
 
 
-void thread::send_element(const ::atom & atom, wparam wparam, ::element * pelement, const ::duration & duration)
+void thread::send_element(const ::atom & atom, wparam wparam, ::particle * pparticle, const ::duration & duration)
 {
 
    if (!atom.is_message())
@@ -3046,7 +3053,7 @@ void thread::send_element(const ::atom & atom, wparam wparam, ::element * peleme
 
    }
 
-   send_message(atom, wparam, pelement, duration);
+   send_message(atom, wparam, pparticle, duration);
 
    //return true;
 
@@ -3292,7 +3299,7 @@ void thread::on_task_init()
 message_queue* thread::_get_message_queue()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if(is_finishing() || m_bThreadClosed)
    {
@@ -3605,7 +3612,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 //
 //   ::e_status estatus = ::success;
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   string strTypeName = __type_name(this);
 //
@@ -3877,10 +3884,10 @@ void thread::on_task_term()
 
       synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
 
-      if (::is_set(m_puiptraThread))
+      if (::is_set(m_puserprimitiveaThread))
       {
 
-         m_puiptraThread->erase_all();
+         m_puserprimitiveaThread->erase_all();
 
       }
 
@@ -3975,7 +3982,7 @@ bool thread::initialize_message_queue()
    //}
 
 
-   //single_lock synchronouslock(&m_sptimera->m_mutex,true);
+   //single_lock synchronouslock(&m_sptimera->m_pmutex,true);
 
    //i32 iMin = 100;
 
@@ -4045,7 +4052,7 @@ bool thread::process_message()
          //if(msg.lParam)
          {
 
-            //auto psystem = m_psystem->m_papexsystem;
+            //auto psystem = acmesystem()->m_papexsystem;
 
             //auto ptopic = psystem->new_subject(message);
 
@@ -4415,17 +4422,17 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 }
 
 
-user_interaction_ptr_array & thread::uiptra()
+::user::primitive_array & thread::userprimitivea()
 {
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pmutexThreadUiPtra == nullptr)
       {
 
-         m_pmutexThreadUiPtra = memory_new ::mutex();
+         __construct(m_pmutexThreadUiPtra);
 
       }
 
@@ -4433,20 +4440,16 @@ user_interaction_ptr_array & thread::uiptra()
 
    synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
 
-   if (m_puiptraThread == nullptr)
+   if (m_puserprimitiveaThread == nullptr)
    {
 
-      m_puiptraThread = memory_new ::user_interaction_ptr_array();
+      m_puserprimitiveaThread = memory_new ::user::primitive_array ();
 
    }
 
-   return *m_puiptraThread;
+   return *m_puserprimitiveaThread;
 
 }
-
-
-
-
 
 
 u32 g_uiRandomProcessorIndexGenerator = -1;
@@ -4478,7 +4481,7 @@ thread_ptra::~thread_ptra()
 }
 
 
-bool thread::pump_sleep(const class ::wait & wait, synchronization_object * psync)
+bool thread::pump_sleep(const class ::wait & wait, ::particle * pparticleSynchronization)
 {
 
    auto start = wait::now();
@@ -4515,10 +4518,10 @@ bool thread::pump_sleep(const class ::wait & wait, synchronization_object * psyn
 
       }
 
-      if (::is_set(psync))
+      if (::is_set(pparticleSynchronization))
       {
 
-         synchronous_lock synchronouslock(psync);
+         synchronous_lock synchronouslock(pparticleSynchronization);
 
          synchronouslock.wait(waitNow);
 
@@ -4555,13 +4558,13 @@ bool thread::pump_sleep(const class ::wait & wait, synchronization_object * psyn
 }
 
 
-//::mutex * g_pmutexThreadDeferredCreation = nullptr;
+//::pointer< ::mutex > g_pmutexThreadDeferredCreation = nullptr;
 //
 //
 //::array < ::pointer<thread >>* g_pthreadaDeferredCreate = nullptr;
 //
 //
-//CLASS_DECL_APEX void defer_create_thread(::object * pobject)
+//CLASS_DECL_APEX void defer_create_thread(::particle * pparticle)
 //{
 //
 //   auto pthread = ::get_task();
@@ -4569,9 +4572,9 @@ bool thread::pump_sleep(const class ::wait & wait, synchronization_object * psyn
 //   if (::is_null(pthread))
 //   {
 //
-//      auto pthreadNew = __object(pobject)->__create_new < ::thread > ();
+//      auto pthreadNew = __object(pparticle)->__create_new < ::thread > ();
 //
-//      pthreadNew->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(pobject, nullptr));
+//      pthreadNew->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(pparticle, nullptr));
 //
 //      pthreadNew->clear_finish_bit();
 //
@@ -4596,7 +4599,7 @@ void thread::add_waiting_event(event * pevent)
 
    }
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    m_eventaWait.add(pevent);
 
@@ -4606,7 +4609,7 @@ void thread::add_waiting_event(event * pevent)
 void thread::erase_waiting_event(event * pevent)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    m_eventaWait.erase(pevent);
 

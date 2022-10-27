@@ -6,6 +6,7 @@
 
 #include "acme/primitive/geometry2d/shift.h"
 #include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/primitive/object.h"
 
 
 class CLASS_DECL_ACME nano_window_interface :
@@ -14,7 +15,7 @@ class CLASS_DECL_ACME nano_window_interface :
 public:
 
 
-   void on_initialize_object() override;
+   void on_initialize_particle() override;
 
    virtual void create();
 

@@ -9,6 +9,9 @@ namespace filemanager
 
 
    class data;
+   class callback;
+
+
    class document;
    class file_list;
    class file_list_callback;

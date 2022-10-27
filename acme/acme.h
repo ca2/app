@@ -17,18 +17,18 @@ template < typename ITERATOR >
 void delete_erase(ITERATOR & iterator);
 
 
-template < typename CONTAINER, typename ITERATOR >
-inline void erase(CONTAINER & container, const ITERATOR & begin, const ITERATOR & last)
-{
+// template < typename CONTAINER, typename ITERATOR >
+// inline void erase(CONTAINER & container, const ITERATOR & begin, const ITERATOR & last)
+// {
 
-   if (begin)
-   {
+//    if (begin)
+//    {
 
-      container.erase(begin.item(), last.item());
+//       container.erase(begin.item(), last.item());
 
-   }
+//    }
 
-}
+// }
 
 
 template < typename TYPE >

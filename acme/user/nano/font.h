@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "object.h"
+
+
 class CLASS_DECL_ACME nano_font :
    virtual public ::nano_object
 {

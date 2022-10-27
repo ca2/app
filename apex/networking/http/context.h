@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/primitive/object.h"
+
+
 namespace http
 {
 
@@ -24,7 +29,7 @@ namespace http
          ::duration           m_durationLastChecked;
 
 
-         //pac(::object * pobject);
+         //pac(::particle * pparticle);
          pac();
          virtual ~pac();
 
@@ -45,7 +50,7 @@ namespace http
          ::duration m_durationLastChecked;
 
 
-         //proxy(::object * pobject);
+         //proxy(::particle * pparticle);
          proxy();
 
 
@@ -53,24 +58,24 @@ namespace http
 
       ::property_set                         m_setHttp;
 
-      ::mutex *                              m_pmutexPac;
-      string_map < ::pointer<pac >>       m_mapPac;
-      ::mutex *                              m_pmutexProxy;
-      string_map < ::pointer<proxy >>     m_mapProxy;
+      ::pointer < ::mutex >                  m_pmutexPac;
+      string_map < ::pointer<pac >>          m_mapPac;
+      ::pointer < ::mutex >                  m_pmutexProxy;
+      string_map < ::pointer<proxy >>        m_mapProxy;
 
-      ::mutex *                              m_pmutexDownload;
+      ::pointer < ::mutex >                  m_pmutexDownload;
       string_array                           m_straDownloading;
       string_array                           m_straExists;
       //::sockets::socket_handler *          m_phandler;
 
 
 
-      //context(::object * pobject);
+      //context(::particle * pparticle);
       context();
       ~context();
 
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
 
       void http_system_destruct();

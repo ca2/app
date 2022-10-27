@@ -19,6 +19,7 @@
 #include "framework.h"
 #include "watch.h"
 #include "watcher.h"
+#include "apex/filesystem/filesystem/file_listener.h"
 
 
 namespace file

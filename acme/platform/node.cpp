@@ -2,17 +2,22 @@
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "framework.h"
+#include "node.h"
+#include "sequencer.h"
+#include "system.h"
 #include "acme/constant/id.h"
-#include "acme/platform/node.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/parallelization/install_mutex.h"
-#include "acme/user/nano/_nano.h"
 #include "acme/parallelization/asynchronous.h"
+#include "acme/exception/interface_only.h"
+#include "acme/primitive/collection/array.h"
+#include "acme/primitive/collection/string_array.h"
+#include "acme/user/nano/message_box.h"
 
 
-CLASS_DECL_ACME void exception_message_box(::object* pobject, ::exception& exception, const ::string& strMoreDetails);
+CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& exception, const ::string& strMoreDetails);
 
 
 //CLASS_DECL_ACME void operating_system_open_url(const char* pszUrl);
@@ -121,10 +126,10 @@ namespace acme
    }
   
 
-   void node::initialize(::object * pobject)
+   void node::initialize(::particle * pparticle)
    {
 
-      /*auto estatus = */ ::object::initialize(pobject);
+      /*auto estatus = */ ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -257,10 +262,10 @@ namespace acme
 
 
 
-   void node::on_initialize_object()
+   void node::on_initialize_particle()
    {
 
-      /*auto estatus = */ ::object::on_initialize_object();
+      /*auto estatus = */ ::object::on_initialize_particle();
 
       //if (!estatus)
       //{
@@ -269,7 +274,7 @@ namespace acme
 
       //}
 
-      m_psystem->m_pacmenode = this;
+      m_pcontext->m_pacmenode = this;
 
       //return estatus;
 
@@ -287,7 +292,7 @@ namespace acme
    void node::system_main()
    {
 
-      /* auto estatus =*/ m_psystem->main();
+      /* auto estatus =*/ acmesystem()->main();
 
       //g_psystem->m_bIsReadyForUserInteraction = true;
       //if(!estatus)
@@ -323,7 +328,7 @@ namespace acme
 //   void node::implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> psystem)
 //   {
 //
-//      //      auto psystem = m_psystem;
+//      //      auto psystem = acmesystem();
 //      //
 //      //      auto estatus = psystem->main();
 //      //
@@ -428,6 +433,50 @@ namespace acme
    }
 
 
+   //__new(::pointer < ::mutex >(this, false, "Local\\ca2-appmatter")
+
+   ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::string & strName)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::pointer < ::mutex > node::create_global_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::string & strName)
+   {
+
+      return nullptr;
+
+   }
+
+   ::pointer < ::mutex > node::open_local_named_mutex(::particle * pparticleContext, const ::string & strName)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::pointer < ::mutex > node::open_global_named_mutex(::particle * pparticleContext, const ::string & strName)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::pointer < ::mutex > node::get_install_mutex(::particle *pparticleContext, const ::string &strPlatform, const ::string & strSuffix)
+   {
+
+      string strName = "::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix;
+
+      return open_global_named_mutex(pparticleContext, strName);
+
+   //__new(::install::pointer < ::mutex >(this, process_platform_dir_name2())
+
+   }
+
    string node::app_id_to_app_name(const ::string & strAppId)
    {
 
@@ -473,7 +522,7 @@ namespace acme
 
       path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 
-      strBuild = m_psystem->m_pacmefile->as_string(path);
+      strBuild = acmefile()->as_string(path);
 
       return strBuild.has_char();
 
@@ -487,7 +536,7 @@ namespace acme
 
       path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 
-      m_psystem->m_pacmefile->put_contents(path, pszBuild);
+      acmefile()->put_contents(path, pszBuild);
 
    }
 
@@ -499,7 +548,7 @@ namespace acme
 
       strFolder.replace_with("", ":");
 
-      return m_psystem->m_pacmedirectory->ca2roaming() / "appdata" / strFolder / strAppId / pszPlatform / pszConfiguration / pszLocale / pszSchema;
+      return acmedirectory()->ca2roaming() / "appdata" / strFolder / strAppId / pszPlatform / pszConfiguration / pszLocale / pszSchema;
 
    }
 
@@ -509,7 +558,7 @@ namespace acme
 
       auto pathLastRun = get_last_run_application_path(strAppId);
 
-      if (pathLastRun.has_char() && m_psystem->m_pacmefile->exists(pathLastRun))
+      if (pathLastRun.has_char() && acmefile()->exists(pathLastRun))
       {
 
          return pathLastRun;
@@ -518,7 +567,7 @@ namespace acme
 
       ::file::path pathFolder;
 
-      pathFolder = m_psystem->m_pacmedirectory->stage(strAppId, pszPlatform, pszConfiguration);
+      pathFolder = acmedirectory()->stage(strAppId, pszPlatform, pszConfiguration);
 
       string strName;
 
@@ -561,7 +610,7 @@ namespace acme
 
       }
 
-      ::file::path pathFile = m_psystem->m_pacmedirectory->local() / "appdata" / strAppId / "last_run_path.txt";
+      ::file::path pathFile = acmedirectory()->local() / "appdata" / strAppId / "last_run_path.txt";
 
       const char * pszPathFile = pathFile;
 
@@ -577,11 +626,7 @@ namespace acme
 
       ::file::path pathFile = get_last_run_application_path_file(strAppId);
 
-      auto psystem = m_psystem;
-
-      auto pfile = psystem->m_pacmefile;
-
-      ::file::path path = pfile->as_string(pathFile);
+      ::file::path path = acmefile()->as_string(pathFile);
 
       return path;
 
@@ -591,15 +636,13 @@ namespace acme
    void node::set_last_run_application_path(const ::string & strAppId)
    {
 
-      ::file::path path = m_psystem->m_pacmefile->module();
+      ::file::path path = acmefile()->module();
 
       ::file::path pathFile = get_last_run_application_path_file(strAppId);
 
-      const char * pszPath = path;
-
       INFORMATION("node::set_last_run_application_path_file path:" << path);
 
-      return m_psystem->m_pacmefile->put_contents(pathFile, path);
+      return acmefile()->put_contents(pathFile, path);
 
    }
 
@@ -860,9 +903,9 @@ namespace acme
    void node::node_post(const ::procedure & procedure)
    {
 
-//      defer_create_mutex();
+//      defer_create_synchronization();
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      m_routineaPost.add(routine);
 
@@ -1183,11 +1226,7 @@ namespace acme
    string node::file_memory_map_path_from_name(const string& strName)
    {
 
-      auto psystem = m_psystem;
-
-      auto pacmedirectory = psystem->acmedir();
-
-      auto pathFolder =  pacmedirectory->get_memory_map_base_folder_path();
+      auto pathFolder = acmedirectory()->get_memory_map_base_folder_path();
 
       auto path = pathFolder / (strName + ".filememorymap");
 
@@ -1489,7 +1528,7 @@ namespace acme
 #if !defined(_UWP)
 
 
-   array <::serial::port_info> node::list_serial_ports()
+   ::array <::serial::port_info> node::list_serial_ports()
    {
 
       //throw ::interface_only();
@@ -1533,9 +1572,13 @@ namespace acme
    bool node::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
    {
 
-      ::install::admin_mutex smutex(this, strPlatform);
+      throw ::exception(todo);
 
-      return smutex.already_exists();
+//      ::install::admin_mutex smutex(this, strPlatform);
+//
+//      return smutex.already_exists();
+
+return false;
 
    }
 
@@ -1606,7 +1649,7 @@ namespace acme
 
          path /= pszCommand;
 
-         if (m_psystem->m_pacmefile->exists(path))
+         if (acmefile()->exists(path))
          {
 
             return path;
@@ -1622,7 +1665,7 @@ namespace acme
    }
 
 
-   void node::launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount)
+   void node::launch_application(::particle * pparticle, const ::string & strAppId, const ::string & strParams, int iBitCount)
    {
 
       //throw ::interface_only();
@@ -1715,7 +1758,7 @@ namespace acme
    }
 
 
-   void node::report_exception_to_user(::object* pobject, ::exception& exception, const ::string& strMoreDetails)
+   void node::report_exception_to_user(::object* pparticle, ::exception& exception, const ::string& strMoreDetails)
    {
 
       exception_message_box(this, exception, strMoreDetails);

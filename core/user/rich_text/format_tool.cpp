@@ -31,12 +31,12 @@ namespace user
    }
 
 
-   void format_tool::initialize(::object * pobject)
+   void format_tool::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::user::tool_window::initialize(pobject);
+      ::user::tool_window::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -621,7 +621,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(m_pformata->first()->mutex());
+      synchronous_lock synchronouslock(m_pformata->first()->synchronization());
 
       if (bSaveAndValidate)
       {

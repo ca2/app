@@ -28,9 +28,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-//#include "apex/networking/sockets/_sockets.h"
+////#include "apex/networking/sockets/_sockets.h"
 #include "socket.h"
 #include "socket_handler.h"
+#include "acme/exception/interface_only.h"
 //#ifdef _WIN32
 //#elif defined(LINUX)
 //#include <netdb.h>
@@ -60,7 +61,7 @@ namespace sockets
 {
 
 
-   //::mutex * base_socket::s_pmutex = nullptr;
+   //::pointer< ::mutex > base_socket::s_pmutex = nullptr;
 
 
    base_socket::base_socket() //:
@@ -3053,7 +3054,7 @@ namespace sockets
 
 //#ifdef BSD_STYLE_SOCKETS
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (m_psslcontext->m_pclientcontext->get_session() != nullptr)
 //      {
@@ -3070,7 +3071,7 @@ namespace sockets
    void base_socket::get_ssl_session()
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       base_socket_composite()->get_ssl_session();
 

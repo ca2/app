@@ -22,7 +22,7 @@ namespace html
       virtual ~html();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       string special_chars(const ::string & psz);
@@ -38,7 +38,7 @@ namespace html
       edisplay tag_to_display(e_tag etag);
       atom concat(atom id1,atom id2);
 
-      virtual bool defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobject, const ::payload & payload);
+      virtual bool defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pparticle, const ::payload & payload);
 
       static bool tag_visible(e_tag etag);
 

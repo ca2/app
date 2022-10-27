@@ -32,18 +32,18 @@ void dump(dump_context & dumpcontext) const override                            
 }                                                                                      \
                                                                                        \
                                                                                        \
-void on_initialize_object() override                                             \
+void on_initialize_particle() override                                             \
 {                                                                                      \
                                                                                        \
    m_papplicationForConsumer = m_pcontext ? m_pcontext->m_pacmeapplication : nullptr;             \
                                                                                        \
-   BASE1::on_initialize_object();                                      \
+   BASE1::on_initialize_particle();                                      \
                                                                        \
-   BASE2::on_initialize_object();                                      \
+   BASE2::on_initialize_particle();                                      \
                                                                        \
-   BASE3::on_initialize_object();                                      \
+   BASE3::on_initialize_particle();                                      \
                                                                        \
-   BASE4::on_initialize_object();                                      \
+   BASE4::on_initialize_particle();                                      \
                                                                                        \
        \
                                                                                        \
@@ -79,7 +79,7 @@ void handle(::topic * ptopic, ::context * pcontext) override \
 
 template <  typename APP, typename BASE1 = optional_base1, typename BASE2 = optional_base2, typename BASE3 = optional_base3, typename BASE4 = optional_base4 >
 class app_consumer :
-   virtual public ::object,
+   virtual public ::particle,
    virtual public BASE1,
    virtual public BASE2,
    virtual public BASE3,
@@ -127,12 +127,12 @@ public:
    }
 
 
-   void initialize(::object* pobject) override
+   void initialize(::particle * pparticle) override
    {
 
       //auto estatus = 
       
-      BASE1::initialize(pobject);
+      BASE1::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -143,7 +143,7 @@ public:
 
       //estatus = 
       
-      BASE2::initialize(pobject);
+      BASE2::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -154,7 +154,7 @@ public:
 
       //estatus = 
       
-      BASE3::initialize(pobject);
+      BASE3::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -165,7 +165,7 @@ public:
 
       //estatus =
       
-      BASE4::initialize(pobject);
+      BASE4::initialize(pparticle);
 
       //if (!estatus)
       //{

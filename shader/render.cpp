@@ -443,7 +443,7 @@ namespace app_shader
 
             pfont.create(this);
 
-            auto pnode = m_psystem->m_paurasystem->node();
+            auto pnode = acmesystem()->m_paurasystem->node();
 
             auto strFontName = pnode->font_name(e_font_sans_ui);
 
@@ -571,7 +571,7 @@ namespace app_shader
 
             pfont.create(this);
 
-            auto pnode = m_psystem->m_paurasystem->node();
+            auto pnode = acmesystem()->m_paurasystem->node();
 
             auto strFontName = pnode->font_name(e_font_sans_ui);
 

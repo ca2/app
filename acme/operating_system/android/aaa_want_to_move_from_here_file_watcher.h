@@ -38,7 +38,7 @@
 //   ////public:
 //   //   ///
 //   //   ///
-//   //   os_watch(::matter * pobject);
+//   //   os_watch(::particle * pparticle);
 //
 //   //   ///
 //   //   ///

@@ -1,5 +1,7 @@
 // Created by camilo on 2022-04-24 05:22 <3ThomasBorregaardSørensen!! (Thomas likes number 5!!)
 #include "framework.h"
+#include "acme/primitive/string/string.h"
+#include "acme/exception/exception.h"
 
 
 const char* wildcard_next_stop(const char* pszCriteria)

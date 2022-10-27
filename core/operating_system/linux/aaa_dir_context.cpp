@@ -33,7 +33,7 @@ inline bool linux_dir_myspace(char ch)
 
    path = pathHome / ".config/user-dirs.dirs";
 
-   string strDirs = m_psystem->m_pacmefile->as_string(path);
+   string strDirs = acmefile()->as_string(path);
 
    string_array stra;
 
@@ -81,10 +81,10 @@ namespace linux
    }
 
 
-   void dir_context::initialize(::object * pobject)
+   void dir_context::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      auto estatus = ::object::initialize(pparticle);
 
       if (!estatus)
       {
@@ -118,7 +118,7 @@ namespace linux
 
       m_pdirsystem->m_pathCa2 = pathCa2;
 
-            auto psystem = m_psystem->m_paurasystem;
+            auto psystem = acmesystem()->m_paurasystem;
 
       auto pxml = psystem->xml();
 
@@ -368,7 +368,7 @@ namespace linux
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(         auto psystem = m_psystem;
+      if(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -700,7 +700,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::userquicklaunch(::object * pobject)
+   ::file::path dir_context::userquicklaunch(::particle * pparticle)
    {
 
       ::file::path path;
@@ -712,7 +712,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::userprograms(::object * pobject)
+   ::file::path dir_context::userprograms(::particle * pparticle)
    {
 
       ::file::path path;

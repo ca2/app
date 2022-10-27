@@ -2,6 +2,7 @@
 // Created by camilo on 31/01/2022.
 //
 #include "framework.h"
+#include "acme/primitive/primitive/factory.h"
 
 
 void operating_system_initialize_nano(::factory::factory * pfactory);

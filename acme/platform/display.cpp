@@ -77,3 +77,14 @@ CLASS_DECL_ACME string __string(enum_display edisplay)
    };
 
 }
+
+
+string __string(const ::e_display & edisplay) 
+{
+   
+   return __string((::enum_display)edisplay); 
+
+}
+
+
+

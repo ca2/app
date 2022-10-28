@@ -841,6 +841,7 @@
     <ClInclude Include="constant\_mathematics.h" />
     <ClInclude Include="exception\bad_file_format.h" />
     <ClInclude Include="exception\aaa_file_open.h" />
+    <ClInclude Include="exception\debug.h" />
     <ClInclude Include="exception\interface_only.h" />
     <ClInclude Include="exception\io.h" />
     <ClInclude Include="exception\library_not_loaded.h" />

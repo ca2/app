@@ -13,15 +13,15 @@
       {
          CodePageShiftJIS = 932,
          CodePageLatin1 = 1252,
-#ifdef WINDOWS
-         CodePageUtf8 = CP_UTF8,
-         CodePageAnsi = CP_ACP,
-         CodePageOem = CP_OEMCP,
-#else
+//#ifdef WINDOWS
+//         CodePageUtf8 = CP_UTF8,
+//         CodePageAnsi = CP_ACP,
+//         CodePageOem = CP_OEMCP,
+//#else
          CodePageUtf8 = 65001,
          CodePageAnsi = 10,
          CodePageOem = 11
-#endif
+///#endif
       };
 
 

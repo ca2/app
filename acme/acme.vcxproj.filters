@@ -2903,6 +2903,9 @@
     <ClInclude Include="primitive\primitive\_uhash.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="exception\debug.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

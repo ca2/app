@@ -37,6 +37,7 @@ namespace message
 #include "acme/constant/_enumeration.h"
 #include "acme/include/_forward_declaration.h"
 #include "acme/include/_template_forward_declaration.h"
+#include "acme/primitive/mathematics/_.h"
 #include "acme/primitive/primitive/enumeration.h"
 #include "acme/primitive/primitive/estatus.h"
 #include "acme/constant/id.h"

@@ -422,4 +422,3 @@ inline string string_from_strdup(const char * psz);
 
 
 
-inline string __string(const ::e_display & edisplay) { return __string((::enum_display) edisplay); }

@@ -2,6 +2,7 @@
 
 #include "_main_hold.h"
 #include "acme/_api.h"
+#include "acme/operating_system/process.h"
 #include APPLICATION_INCLUDE
 
 //void stage();

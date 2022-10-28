@@ -2150,9 +2150,6 @@
     <ClInclude Include="operating_system\_operating_system.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\_user.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system\aaa_c2.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
@@ -2898,6 +2895,12 @@
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\__property.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\debug.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\_uhash.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
   </ItemGroup>

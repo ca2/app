@@ -2,6 +2,7 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/_uhash.h"
 #include "acme/primitive/string/_uhash.h"
 #include "acme/primitive/string/string.h"
 

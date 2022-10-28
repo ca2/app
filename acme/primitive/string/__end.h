@@ -1,5 +1,6 @@
 #pragma once
 
+#include "_unicode.h"
 
 #include "__str.h"
 

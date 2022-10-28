@@ -217,9 +217,9 @@ typedef CLASS_DECL_ACME numeric_array < count > count_array;
 
 
 
-#ifdef LINUX
-#include <initializer_list>
-#endif
+//#ifdef LINUX
+//#include <initializer_list>
+//#endif
 
 
 

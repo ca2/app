@@ -97,6 +97,8 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 #if defined(__cplusplus)
 
 #include <atomic>
+#include <initializer_list>
+#include <typeinfo>
 
 #endif
 

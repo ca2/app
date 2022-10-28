@@ -1564,17 +1564,7 @@ struct block;
 
 class machine_event_central;
 
-
-template<typename ARG_KEY>
-inline uptr uptr_hash(ARG_KEY key) { return (uptr) ((uptr) key); }
-
-
-//#if OSBIT == 64
-
-template<typename ARG_KEY>
-inline u32 u32_hash(ARG_KEY key) { return (u32) (uptr_hash<ARG_KEY>(key)); }
-
-//#endif
+#include "acme/primitive/primitive/_uhash.h"
 
 #include "acme/primitive/string/_uhash.h"
 

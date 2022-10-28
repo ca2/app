@@ -12,12 +12,25 @@ public:
 
    using ENUM_TYPE = ENUM;
 
+
    ENUM  m_eenum;
 
 
    enumeration() { m_eenum = (ENUM) 0; }
    enumeration(enum_null) { m_eenum = (ENUM)0; }
-   enumeration(const std::initializer_list < ENUM > & list ) { m_eenum = (ENUM) 0; for (auto & e : list) add(e); }
+   enumeration(const ::std::initializer_list < ENUM > & list ) 
+   {
+
+      m_eenum = (ENUM) 0; 
+      
+      for (auto & e : list)
+      {
+
+         add(e);
+
+      }
+   
+   }
    enumeration(ENUM e) { m_eenum = e; }
    //enumeration(::i64 i) { m_eenum = (ENUM) i; }
    enumeration(const enumeration & e) { m_eenum = e.m_eenum; }

@@ -4,6 +4,7 @@
 #include "callstack.h"
 #include "acme/primitive/string/__string.h"
 #include "acme/filesystem/file/exception.h"
+#include "acme/operating_system/process.h"
 #include "acme/primitive/primitive/atom.h"
 #include "_api.h"
 #include <stdio.h>

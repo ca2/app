@@ -24,11 +24,21 @@ namespace message
 
 #include "acme/_start.h"
 #include "acme/platform/object_reference_count_debug.h"
-//#include "acme/primitive/string/string.h"
+
+  
+  // C-includes
 #include "acme/_c.h"
+#include "acme/memory/memory_allocate.h"
+#include "acme/memory/secondary_memory_allocate.h"
+#include "acme/memory/heap_c.h"
+
+
 #include "acme/constant/_constant.h"
+#include "acme/constant/_enumeration.h"
 #include "acme/include/_forward_declaration.h"
 #include "acme/include/_template_forward_declaration.h"
+#include "acme/primitive/primitive/enumeration.h"
+#include "acme/primitive/primitive/estatus.h"
 #include "acme/constant/id.h"
 #include "acme/constant/filesystem.h"
 #include "acme/primitive/mathematics/index.h"
@@ -43,6 +53,8 @@ namespace message
 #include "acme/primitive/primitive/element.h"
 #include "acme/filesystem/file/translatable.h"
 #include "acme/filesystem/file/streamable.h"
+#include "acme/primitive/string/string.h"
+#include "acme/_api.h"
 
 
 

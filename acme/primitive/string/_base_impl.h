@@ -5504,4 +5504,20 @@ inline bool string_ends_eat(STRING & ansistr, const STRING & strSuffix)
 
 }
 
-
+//
+//
+//
+//inline ::string operator+(const char * psz, const ::string & str);
+//template < primitive_atom ATOM >
+//inline ::string operator+(const char * psz, const ATOM & atom);
+////{
+////   return ::string(psz) + atom.string();
+////
+////}
+//template < primitive_payload PAYLOAD >
+//inline ::string operator+(const char * psz, const PAYLOAD & payload);
+////{
+////   return ::string(psz) + payload.get_string();
+////}
+////inline ::string operator+(const char * psz, const ::property & property);
+//

@@ -2,6 +2,7 @@
 
 
 #include "acme/operating_system/windows/_windows.h"
+#include "acme/operating_system/message.h"
 
 
 inline void copy(MESSAGE * pmessage, const MSG * pmsg)

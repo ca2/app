@@ -281,7 +281,7 @@ class thread_startup;
 //#endif
 
 
-string get_task_name(htask_t htask);
+CLASS_DECL_ACME string get_task_name(htask_t htask);
 
 
 // Use instead of PostQuitMessage in OLE server applications

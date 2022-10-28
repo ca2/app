@@ -21,27 +21,12 @@ struct end_of_line_and_next_line
 };
 
 
-inline ::string operator+(const char * psz, const ::string & str);
-template < primitive_atom ATOM >
-inline ::string operator+(const char * psz, const ATOM & atom);
-//{
-//   return ::string(psz) + atom.string();
-//
-//}
-template < primitive_payload PAYLOAD >
-inline ::string operator+(const char * psz, const PAYLOAD & payload);
-//{
-//   return ::string(psz) + payload.get_string();
-//}
-//inline ::string operator+(const char * psz, const ::property & property);
-
 #include "_c.h"
 
 //#include "acme/primitive/string/x/x_charcategory.h"
 #include "acme/primitive/primitive/bit.h"
 #include "acme/primitive/collection/bit_array.h"
 #include "ch.h"
-#include "_unicode.h"
 
 
 // template < typename TYPE >

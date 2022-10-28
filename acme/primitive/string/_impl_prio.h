@@ -59,7 +59,8 @@ inline T FormatArgument(T value) noexcept
 inline ::u32 _gen_GetConversionACP()
 {
 
-   return CP_UTF8;
+   //return CP_UTF8;
+   return CodePageUtf8;
 
 }
 #endif

@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "acme/exception/debug.h"
+
+
 inline ::string operator+(const char * pszLeft, const ::string & strRight);
 
 

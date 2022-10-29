@@ -33,24 +33,24 @@ namespace data
    }
 
    
-   void data::assert_ok() const
-   {
-
-      ::matter::assert_ok();
-
-   }
-
-
-   void data::dump(dump_context & dumpcontext) const
-   {
-
-      ::matter::dump(dumpcontext);
-
-      //dumpcontext << "m_strTitle = " << m_strTitle;
-      //dumpcontext << "\nm_path = " << m_path;
-      //dumpcontext << "\nm_bModified = " << m_bModified;
-
-   }
+//   void data::assert_ok() const
+//   {
+//
+//      ::matter::assert_ok();
+//
+//   }
+//
+//
+//   void data::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::matter::dump(dumpcontext);
+//
+//      //dumpcontext << "m_strTitle = " << m_strTitle;
+//      //dumpcontext << "\nm_path = " << m_path;
+//      //dumpcontext << "\nm_bModified = " << m_bModified;
+//
+//   }
 
 
    void data::initialize_data(::data::data_container_base * pdatacontainerbase)

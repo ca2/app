@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "context.h"
 #include "acme/filesystem/file/file.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/text/data.h"
 #include "acme/primitive/text/text.h"
@@ -63,6 +64,59 @@ namespace acme
    }
 
 
+   void context::initialize(::particle * pparticle)
+   {
+
+      ::task::initialize(pparticle);
+
+
+      if(!m_pacmesystem)
+      {
+
+         m_pacmesystem = pparticle->m_pcontext->m_pacmesystem;
+         m_papexsystem = pparticle->m_pcontext->m_papexsystem;
+         m_paquasystem = pparticle->m_pcontext->m_paquasystem;
+         m_paurasystem = pparticle->m_pcontext->m_paurasystem;
+         m_paxissystem = pparticle->m_pcontext->m_paxissystem;
+         m_pbasesystem = pparticle->m_pcontext->m_pbasesystem;
+         m_pbredsystem = pparticle->m_pcontext->m_pbredsystem;
+         m_pcoresystem = pparticle->m_pcontext->m_pcoresystem;
+
+      }
+
+      if(!m_papexsession)
+      {
+
+         m_papexsession = pparticle->m_pcontext->m_papexsession;
+         m_paquasession = pparticle->m_pcontext->m_paquasession;
+         m_paurasession = pparticle->m_pcontext->m_paurasession;
+         m_paxissession = pparticle->m_pcontext->m_paxissession;
+         m_pbasesession = pparticle->m_pcontext->m_pbasesession;
+         m_pbredsession = pparticle->m_pcontext->m_pbredsession;
+         m_pcoresession = pparticle->m_pcontext->m_pcoresession;
+
+      }
+
+      if(!m_pacmeapplication)
+      {
+
+         m_pacmeapplication = pparticle->m_pcontext->m_pacmeapplication;
+         m_papexapplication = pparticle->m_pcontext->m_papexapplication;
+         m_paquaapplication = pparticle->m_pcontext->m_paquaapplication;
+         m_pauraapplication = pparticle->m_pcontext->m_pauraapplication;
+         m_paxisapplication = pparticle->m_pcontext->m_paxisapplication;
+         m_pbaseapplication = pparticle->m_pcontext->m_pbaseapplication;
+         m_pbredapplication = pparticle->m_pcontext->m_pbredapplication;
+         m_pcoreapplication = pparticle->m_pcontext->m_pcoreapplication;
+
+      }
+
+      m_pcontext = this;
+
+
+   }
+
+
    void context::initialize_context()
    {
 
@@ -77,7 +131,23 @@ namespace acme
 
    }
 
-   
+
+   ::dir_system * context::dirsystem()
+   {
+
+      return m_pacmesystem->m_pdirsystem;
+
+   }
+
+
+   ::file_system * context::filesystem()
+   {
+
+      return m_pacmesystem->m_pfilesystem;
+
+   }
+
+
    void context::translate_text_data(::text::data * ptextdata)
    {
 

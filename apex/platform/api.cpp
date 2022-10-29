@@ -52,7 +52,7 @@ void api::initialize_api(::object* pparticle, const ::file::path & pathProfile)
 void api::load_profile()
 {
 
-   auto strNetworkPayload = m_pcontext->m_papexcontext->file().safe_get_string(m_pathProfile);
+   auto strNetworkPayload = file()->safe_get_string(m_pathProfile);
 
    try
    {
@@ -123,7 +123,7 @@ void api::save_profile()
 
    auto strNetworkPayload = m_setConfig.get_network_payload();
 
-   m_pcontext->m_papexcontext->file().put_text(m_pathProfile, strNetworkPayload);
+   file()->put_text(m_pathProfile, strNetworkPayload);
 
    //return ::success;
 

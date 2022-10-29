@@ -125,23 +125,23 @@ pacmedirectory->system() / "database.sqlite";
    if (papp->is_system())
    {
 
-      str = pcontext->m_papexcontext->dir().appdata() / "system.sqlite";
+      str = pcontext->m_papexcontext->dir()->appdata() / "system.sqlite";
 
    }
    else if (papp->is_session())
    {
 
-      str = pcontext->m_papexcontext->dir().appdata() / "session.sqlite";
+      str = pcontext->m_papexcontext->dir()->appdata() / "session.sqlite";
 
    }
    else
    {
 
-      str = pcontext->m_papexcontext->dir().appdata() / "app.sqlite";
+      str = pcontext->m_papexcontext->dir()->appdata() / "app.sqlite";
 
    }
 
-   if(!pcontext->m_papexcontext->dir().create(str.folder()))
+   if(!pcontext->m_papexcontext->dir()->create(str.folder()))
    {
 
       return false;

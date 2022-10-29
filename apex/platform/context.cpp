@@ -38,6 +38,18 @@ namespace apex
    }
 
 
+   void context::initialize(::particle * pparticle)
+   {
+
+      ::thread::initialize(pparticle);
+
+      ::acme::context::initialize(pparticle);
+
+      ::file::enumerator::initialize(pparticle);
+
+   }
+
+
    string context::get_latest_build_number(const char * pszConfiguration, const char * pszAppId)
    {
 
@@ -276,33 +288,31 @@ namespace apex
 
       }
 
-      auto & dir = this->dir();
-
-      if (dir.image().has_char() && acmepath()->final_begins_eat_ci(str, dir.image()))
+      if (dir()->image().has_char() && acmepath()->final_begins_eat_ci(str, dir()->image()))
       {
 
          return ::file::path("image://") / str;
 
       }
-      else if (dir.music().has_char() && acmepath()->final_begins_eat_ci(str, dir.music()))
+      else if (dir()->music().has_char() && acmepath()->final_begins_eat_ci(str, dir()->music()))
       {
 
          return ::file::path("music://") / str;
 
       }
-      else if (dir.video().has_char() && acmepath()->final_begins_eat_ci(str, dir.video()))
+      else if (dir()->video().has_char() && acmepath()->final_begins_eat_ci(str, dir()->video()))
       {
 
          return ::file::path("video://") / str;
 
       }
-      else if (dir.document().has_char() && acmepath()->final_begins_eat_ci(str, dir.document()))
+      else if (dir()->document().has_char() && acmepath()->final_begins_eat_ci(str, dir()->document()))
       {
 
          return ::file::path("document://") / str;
 
       }
-      else if (dir.download().has_char() && acmepath()->final_begins_eat_ci(str, dir.download()))
+      else if (dir()->download().has_char() && acmepath()->final_begins_eat_ci(str, dir()->download()))
       {
 
          return ::file::path("download://") / str;
@@ -330,51 +340,49 @@ namespace apex
 
       ::file::path path = defer_process_path(strParam);
 
-      auto & dir = this->dir();
-
-      if (dir.image().has_char() && path.compare_ci(dir.image()) == 0)
+      if (dir()->image().has_char() && path.compare_ci(dir()->image()) == 0)
       {
 
          return "Image";
 
       }
-      else if (dir.music().has_char() && path.compare_ci(dir.music()) == 0)
+      else if (dir()->music().has_char() && path.compare_ci(dir()->music()) == 0)
       {
 
          return "Music";
 
       }
-      else if (dir.video().has_char() && path.compare_ci(dir.video()) == 0)
+      else if (dir()->video().has_char() && path.compare_ci(dir()->video()) == 0)
       {
 
          return "Video";
 
       }
-      else if (dir.document().has_char() && path.compare_ci(dir.document()) == 0)
+      else if (dir()->document().has_char() && path.compare_ci(dir()->document()) == 0)
       {
 
          return "Document";
 
       }
-      else if (dir.download().has_char() && path.compare_ci(dir.download()) == 0)
+      else if (dir()->download().has_char() && path.compare_ci(dir()->download()) == 0)
       {
 
          return "Download";
 
       }
-      else if (dir.desktop().has_char() && path.compare_ci(dir.desktop()) == 0)
+      else if (dir()->desktop().has_char() && path.compare_ci(dir()->desktop()) == 0)
       {
 
          return "Desktop";
 
       }
-      else if (dir.bookmark().has_char() && path.compare_ci(dir.bookmark()) == 0)
+      else if (dir()->bookmark().has_char() && path.compare_ci(dir()->bookmark()) == 0)
       {
 
          return "Bookmark";
 
       }
-      else if (dir.bookmark().has_char() && path.compare("/") == 0)
+      else if (dir()->bookmark().has_char() && path.compare("/") == 0)
       {
 
          return "File System";
@@ -500,37 +508,37 @@ namespace apex
       if (::str().begins_eat_ci(path, "music://"))
       {
 
-         path = dir().music() / path;
+         path = dir()->music() / path;
 
       }
       else if (::str().begins_eat_ci(path, "video://"))
       {
 
-         path = dir().video() / path;
+         path = dir()->video() / path;
 
       }
       else if (::str().begins_eat_ci(path, "image://"))
       {
 
-         path = dir().image() / path;
+         path = dir()->image() / path;
 
       }
       else if (::str().begins_eat_ci(path, "document://"))
       {
 
-         path = dir().document() / path;
+         path = dir()->document() / path;
 
       }
       else if (::str().begins_eat_ci(path, "dropbox://"))
       {
 
-         path = dir().dropbox() / path;
+         path = dir()->dropbox() / path;
 
       }
       else if (::str().begins_eat_ci(path, "dropbox-app://"))
       {
 
-         auto papplication = get_context_application();
+         auto papplication = acmeapplication();
 
          if (!papplication || papplication->m_strAppId.is_empty())
          {
@@ -539,13 +547,13 @@ namespace apex
 
          }
 
-         path = dir().dropbox_app() / path;
+         path = dir()->dropbox_app() / path;
 
       }
       else if (::str().begins_eat_ci(path, "onedrive://"))
       {
 
-         path = dir().onedrive() / path;
+         path = dir()->onedrive() / path;
 
       }
       else if (::str().begins_eat_ci(path, "appconfig://"))
@@ -557,7 +565,7 @@ namespace apex
       else if (::str().begins_eat_ci(path, "download://"))
       {
 
-         path = dir().download() / path;
+         path = dir()->download() / path;
 
       }
       else if (::str().begins_eat_ci(path, "usersystem://"))
@@ -569,13 +577,13 @@ namespace apex
       else if (::str().begins_eat_ci(path, "desktop://"))
       {
 
-         path = dir().desktop() / path;
+         path = dir()->desktop() / path;
 
       }
       else if (::str().begins_eat_ci(path, "bookmark://"))
       {
 
-         path = dir().bookmark() / path;
+         path = dir()->bookmark() / path;
 
       }
       else
@@ -611,15 +619,15 @@ namespace apex
       if (::str().begins_ci(path, "matter://"))
       {
 
-         path = dir().matter(path);
+         path = dir()->matter(path);
 
       }
 
       if (path.begins_ci("appmatter://"))
       {
 
-         //path = dir().appmatter(path, false);
-         path = dir().appmatter(path);
+         //path = dir()->appmatter(path, false);
+         path = dir()->appmatter(path);
 
       }
 
@@ -628,7 +636,7 @@ namespace apex
 
          path += ".ico";
 
-         path = dir().matter(path);
+         path = dir()->matter(path);
 
       }
 
@@ -646,7 +654,7 @@ namespace apex
       if (::str().begins_eat_ci(strMatter, "appmatter://"))
       {
 
-         return dir().install() / strMatter;
+         return dir()->install() / strMatter;
 
       }
 
@@ -738,13 +746,13 @@ namespace apex
             if (etype == ::file::e_type_file)
             {
 
-               file().copy(pathCache, pathSide, true);
+               file()->copy(pathCache, pathSide, true);
 
             }
             else if (etype == ::file::e_type_folder)
             {
 
-               dir().create(pathCache);
+               dir()->create(pathCache);
 
             }
 
@@ -765,7 +773,7 @@ namespace apex
 
          path = "https://ca2.software/matter" / path;
 
-         //if (file().exists(path, this))
+         //if (file()->exists(path, this))
          {
 
 
@@ -801,7 +809,7 @@ namespace apex
                      if (!retry([&]()
                         {
 
-                           return dir().create(pathCache);
+                           return dir()->create(pathCache);
 
                         }))
                      {
@@ -819,7 +827,7 @@ namespace apex
                      if (!retry([&]()
                         {
 
-                           return file().copy(pathCache, pfile, false);
+                           return file()->copy(pathCache, pfile, false);
 
                         }))
                      {
@@ -857,7 +865,7 @@ namespace apex
 
 
          }
-         //         else if (dir().is(path, this))
+         //         else if (dir()->is(path, this))
          //         {
          //
          //            if (!retry([&]()
@@ -897,7 +905,7 @@ namespace apex
       try
       {
 
-         return file().get_file(payloadFile, eopen);
+         return file()->get_file(payloadFile, eopen);
 
       }
       catch (::file::exception & e)
@@ -1020,7 +1028,7 @@ namespace apex
    bool context::enumerate(::file::listing & listing)
    {
 
-      return dir().enumerate(listing);
+      return dir()->enumerate(listing);
 
    }
 
@@ -1028,7 +1036,7 @@ namespace apex
    /*bool context::perform_file_relative_name_listing(::file::listing & listing)
    {
 
-      return dir().ls_relative_name(listing);
+      return dir()->ls_relative_name(listing);
 
    }*/
 
@@ -1051,10 +1059,10 @@ namespace apex
 
       ::file_pointer pfile;
 
-      if (dir().is(path))
+      if (dir()->is(path))
       {
 
-         pfile = file().get_reader(path / "this.ini");
+         pfile = file()->get_reader(path / "this.ini");
 
          //string str;
 
@@ -1063,11 +1071,11 @@ namespace apex
          //ini.parse_ini(str);
 
       }
-      else if (file().exists(path))
+      else if (file()->exists(path))
       {
 
-         pfile = file().get_reader(path);
-         //ini.parse_ini_file(file().get_file());
+         pfile = file()->get_reader(path);
+         //ini.parse_ini_file(file()->get_file());
 
       }
 
@@ -1229,7 +1237,7 @@ namespace apex
    void context::sys_set(string strPath, string strValue)
    {
 
-      file().put_text_utf8(acmedirectory()->config() / strPath, strValue);
+      file()->put_text_utf8(acmedirectory()->config() / strPath, strValue);
 
    }
 
@@ -1237,7 +1245,7 @@ namespace apex
    string context::sys_get(string strPath, string strDefault)
    {
 
-      string strValue = file().safe_get_string(acmedirectory()->config() / strPath);
+      string strValue = file()->safe_get_string(acmedirectory()->config() / strPath);
 
       if (strValue.is_empty())
       {
@@ -1330,7 +1338,7 @@ namespace apex
    void context::_load_from_file(::particle * pparticle, const ::payload & payloadFile, const ::payload & varOptions)
    {
 
-      auto reader = __binary_stream(m_pcontext->m_papexcontext->file().get_reader(payloadFile));
+      auto reader = __binary_stream(file()->get_reader(payloadFile));
 
       //read(reader);
 
@@ -1342,7 +1350,7 @@ namespace apex
    void context::_save_to_file(const ::payload & payloadFile, const ::payload & varOptions, const ::particle * pparticle)
    {
 
-      auto writer = __binary_stream(m_pcontext->m_papexcontext->file().get_writer(payloadFile));
+      auto writer = __binary_stream(file()->get_writer(payloadFile));
 
       //write(writer);
 
@@ -1364,7 +1372,7 @@ namespace apex
    file_pointer context::get_file(const ::payload & payloadFile, const ::file::e_open & eopen)
    {
 
-      auto pfile = m_papexcontext->file().get_file(payloadFile, eopen);
+      auto pfile = m_papexcontext->file()->get_file(payloadFile, eopen);
 
       return pfile;
 

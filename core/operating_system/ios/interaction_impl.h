@@ -36,7 +36,7 @@ namespace ios
 
       virtual void construct(oswindow hwnd);
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
       virtual bool round_window_become_first_responder() override;

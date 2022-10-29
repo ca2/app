@@ -14,7 +14,7 @@ namespace turboc
       lite_impact(::particle * pparticle);
       virtual ~lite_impact();
 
-      void assert_ok() const override;
+      // void assert_ok() const override;
 
       void dump(dump_context & dumpcontext) const override;
 

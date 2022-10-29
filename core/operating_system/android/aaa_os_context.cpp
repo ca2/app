@@ -382,7 +382,7 @@ namespace android
                   keyPlugin.SetValue("Path", psystem->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-                  keyPlugin.SetValue("Version", papp->acmefile()->as_string(pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
+                  keyPlugin.SetValue("Version", papp->acmefile()->as_string(pcontext->m_papexcontext->dir()->ca2("appdata/x86/ca2_build.txt")));
 
                   registry::Key keyApplicationca2;
 
@@ -660,7 +660,7 @@ namespace android
 
       double dAndroid = 4.4;
 
-      string strSystemFonts = pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
+      string strSystemFonts = pcontext->m_papexcontext->file()->as_string("/system/etc/system_fonts.xml");
 
             auto psystem = acmesystem()->m_paurasystem;
 

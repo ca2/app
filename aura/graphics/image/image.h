@@ -32,7 +32,7 @@ public:
       bool cache = true;
       bool helper_maps = false;
       bool toy = true;
-      synchronization * psync;
+      ::particle * pparticleSync = nullptr;
       ::function < void(image *) > functionLoaded;
 
    };

@@ -293,7 +293,7 @@ namespace fs
       {
          try
          {
-            m_pcontext->m_papexcontext->file().copy(pszDst, pszSrc);
+            file()->copy(pszDst, pszSrc);
          }
          catch(...)
          {

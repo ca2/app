@@ -2,6 +2,7 @@
 
 
 #include "aura/graphics/image/source.h"
+#include "acme/primitive/collection/int_map.h"
 
 
 using hicon = void *;

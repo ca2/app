@@ -90,7 +90,7 @@ namespace user
       void common_construct();
 
 
-      void assert_ok() const override;
+      // void assert_ok() const override;
       virtual void dump(dump_context & dc) const override;
 
       

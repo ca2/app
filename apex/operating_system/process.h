@@ -3,6 +3,7 @@
 
 #include "acme/operating_system/bidirectional_pipe.h"
 #include "acme/primitive/primitive/object.h"
+#include "acme/operating_system/exit_status.h"
 
 
 namespace operating_system

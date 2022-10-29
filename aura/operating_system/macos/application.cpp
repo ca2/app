@@ -310,7 +310,7 @@ namespace aura
 //   bool application::os_on_start_application()
 //   {
 //
-//      ::file::path path = pcontext->m_papexcontext->file().module();
+//      ::file::path path = pcontext->m_papexcontext->file()->module();
 //
 //      path -= 3;
 //      

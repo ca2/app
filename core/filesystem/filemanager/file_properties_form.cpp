@@ -105,7 +105,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      ::file::path path = pcontext->m_papexcontext->dir().matter("filemanager/file_properties.html");
+      ::file::path path = pcontext->m_papexcontext->dir()->matter("filemanager/file_properties.html");
 
       if(!m_pdocGeneral->on_open_document(path))
       {

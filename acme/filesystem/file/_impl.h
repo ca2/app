@@ -546,7 +546,7 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth:
 ////void matter::save_to(const ::payload & payloadFile, BASE_TYPE * pparticle)
 ////{
 ////
-////   auto writer = m_pcontext->m_papexcontext->file().get_writer(payloadFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive);
+////   auto writer = file()->get_writer(payloadFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive);
 ////
 ////   __save_object(writer, pparticle);
 ////

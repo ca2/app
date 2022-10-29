@@ -1514,7 +1514,7 @@ namespace acme
 
       //         ::file::path pathPublicDomainExtensionList = "https://server.ca2.software/public_internet_domain_extension_list.txt";
 
-      //    m_pcontext->m_papexcontext->file().load_lines(stra, pathPublicDomainExtensionList);
+      //    file()->load_lines(stra, pathPublicDomainExtensionList);
 
       auto psz = g_pszTopLevelDomainList;
 

@@ -647,19 +647,19 @@ resume_on_exception:
          if (is_system())
          {
 
-            pathDatabase = pcontext->m_papexcontext->dir().appdata() / "system.sqlite";
+            pathDatabase = pcontext->m_papexcontext->dir()->appdata() / "system.sqlite";
 
          }
          else if (is_session())
          {
 
-            pathDatabase = pcontext->m_papexcontext->dir().appdata() / "session.sqlite";
+            pathDatabase = pcontext->m_papexcontext->dir()->appdata() / "session.sqlite";
 
          }
          else
          {
 
-            pathDatabase = pcontext->m_papexcontext->dir().appdata() / "app.sqlite";
+            pathDatabase = pcontext->m_papexcontext->dir()->appdata() / "app.sqlite";
 
          }
 
@@ -1029,7 +1029,7 @@ m_durationHeartBeat.Now();
       string strSchema;
       FORMATTED_TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)",pszRoot.c_str(),pszRelative.c_str(),pszLocale.c_str(),pszStyle.c_str());
       ::file::path strRelative = ::file::path(pszRoot) / "appmatter" / pszRelative  / get_locale_schema_dir(pszLocale,pszStyle) + ".zip";
-      ::file::path strFile = pcontext->m_papexcontext->dir().install() / strRelative;
+      ::file::path strFile = pcontext->m_papexcontext->dir()->install() / strRelative;
       ::file::path strUrl(::file::path_url);
 
       if(framework_is_basis())
@@ -1172,24 +1172,24 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
 
       payloadFile["disable_ca2_sessid"] = true;
 
-      string strMatter = pcontext->m_papexcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
+      string strMatter = pcontext->m_papexcontext->dir()->matter(::file::path(pszMatter) / pszMatter2);
 
       payloadFile["url"] = strMatter;
 
-      return pcontext->m_papexcontext->file().as_string(payloadFile);
+      return pcontext->m_papexcontext->file()->as_string(payloadFile);
 
    }
 
-   //string application::dir().matter(const ::string & pszMatter, const ::string & pszMatter2)
+   //string application::dir()->matter(const ::string & pszMatter, const ::string & pszMatter2)
    //{
 
-   //   return dir().matter(pszMatter,pszMatter2);
+   //   return dir()->matter(pszMatter,pszMatter2);
 
    //}
 
    //bool application::is_inside_time_dir(const ::string & pszPath)
    //{
-   //   return dir().is_inside_time(pszPath);
+   //   return dir()->is_inside_time(pszPath);
    //}
 
 
@@ -1197,7 +1197,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
    //{
 
    //   return false;
-   //   //return file().is_read_only(pszPath);
+   //   //return file()->is_read_only(pszPath);
 
    //}
 
@@ -1470,7 +1470,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
 
       {
 
-         ::install::pointer < ::mutex > mutex(process_platform_dir_name2());
+         ::install::pointer < ::mutex > mutex(process_platform_name());
 
          if (mutex.already_exists())
          {
@@ -1496,7 +1496,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
 
          ::property_set set;
 
-         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_name()),pszCommandLine,::path::app_app(process_platform_dir_name2(), process_configuration_name()),e_display_restored, 2_min, set);
+         return ::call_sync(::path::app_app(process_platform_name(), process_configuration_name()),pszCommandLine,::path::app_app(process_platform_name(), process_configuration_name()),e_display_restored, 2_min, set);
 
 #endif
 

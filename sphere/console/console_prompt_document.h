@@ -23,7 +23,7 @@ namespace console
       virtual bool on_new_document();
 
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
 

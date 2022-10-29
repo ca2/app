@@ -82,7 +82,7 @@ namespace user
 
 
       void dump(dump_context &) const override;
-      void assert_ok() const override;
+      // void assert_ok() const override;
 
 
       virtual void load_template();

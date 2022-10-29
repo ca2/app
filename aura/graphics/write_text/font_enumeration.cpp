@@ -3,6 +3,8 @@
 #include "font_enumeration_item.h"
 #include "font.h"
 #include "acme/constant/id.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/write_text/fonts.h"
 
@@ -199,7 +201,7 @@ namespace write_text
 
       sort_fonts();
 
-      if (m_pfontenumerationitema.is_set() && ::papaya::array::are_all_elements_equal(*pitema, *m_pfontenumerationitema))
+      if (m_pfontenumerationitema.is_set() && ::acme::array::is_equal(*pitema, *m_pfontenumerationitema))
       {
 
          m_bUpdating = false;
@@ -294,7 +296,7 @@ namespace write_text
    void font_enumeration::sort_fonts()
    {
 
-      ::sort::array::predicate_sort(*m_pfontenumerationitema, [&](auto& a, auto& b)
+      ::acme::array::predicate_sort(*m_pfontenumerationitema, [&](auto& a, auto& b)
       {
 
          return a->m_strName < b->m_strName;

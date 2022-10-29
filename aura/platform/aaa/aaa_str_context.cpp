@@ -206,7 +206,7 @@
 //
 //#endif
 //
-//      auto strMain = pcontext->m_papexcontext->dir().install() / "app/_appmatter/main";
+//      auto strMain = pcontext->m_papexcontext->dir()->install() / "app/_appmatter/main";
 //
 //      if (!load(strMain))
 //      {
@@ -635,7 +635,7 @@
 //
 //      memory mem;
 //
-//      pcontext->m_papexcontext->file().as_memory(pszFilePath,mem);
+//      pcontext->m_papexcontext->file()->as_memory(pszFilePath,mem);
 //
 //
 //      strsize len;

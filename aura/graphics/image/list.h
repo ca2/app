@@ -1,7 +1,9 @@
 #pragma once
 
 
-//#include "drawing.h"
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/primitive/object.h"
 
 
 class CLASS_DECL_AURA image_list :
@@ -24,12 +26,12 @@ public:
    size_i32                         m_size;
    i32                              m_iSize;
    i32                              m_iGrow;
-   ::pointer<::image>            m_pimage;
+   ::pointer<::image>               m_pimage;
 
 
-   ::pointer<::image>            m_pimageWork;
-   ::pointer<::image>            m_pimageWork2;
-   ::pointer<::image>            m_pimageWork3;
+   ::pointer<::image>               m_pimageWork;
+   ::pointer<::image>               m_pimageWork2;
+   ::pointer<::image>               m_pimageWork3;
 
 
    image_list();

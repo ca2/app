@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "shared_command.h"
 #include "shared.h"
+#include "acme/primitive/primitive/action_context.h"
 
 
 menu_shared_command::menu_shared_command(int* pestatus) :

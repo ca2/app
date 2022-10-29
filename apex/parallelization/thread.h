@@ -139,7 +139,7 @@ public:
    
 
 
-   void assert_ok() const override;
+   // void assert_ok() const override;
    void dump(dump_context & dumpcontext) const override;
 
    
@@ -396,7 +396,7 @@ public:
    operator htask_t() const;
 
 
-   virtual void initialize(::particle * pparticle) override;
+   void initialize(::particle * pparticle) override;
 
 
    //virtual void run() override;

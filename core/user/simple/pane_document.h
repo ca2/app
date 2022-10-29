@@ -17,7 +17,7 @@ public:
    ~simple_pane_document() override;
 
 
-   void assert_ok() const override;
+   // void assert_ok() const override;
    void dump(dump_context & dumpcontext) const override;
 
    bool on_new_document() override;

@@ -1,5 +1,9 @@
-// Created by camilo on 2022-06-23 20:13 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-06-23 20:13 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
+
+
+#include "acme/primitive/primitive/element.h"
+#include "acme/primitive/collection/int_map.h"
 
 
 namespace draw2d
@@ -30,6 +34,7 @@ namespace draw2d
       ::write_text::font_pointer       m_fonta[8];
 
    };
+
 
    class CLASS_DECL_AURA holdee :
       virtual public element

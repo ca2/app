@@ -224,9 +224,9 @@ namespace sockets
    //   0x9 CPong Reply
 
       // check content length
-      if (!m_response.ContentLength() && m_response.file().get_length())
+      if (!m_response.ContentLength() && m_response.file()->get_length())
       {
-         m_response.SetContentLength((long) m_response.file().get_length() );
+         m_response.SetContentLength((long) m_response.file()->get_length() );
       }
 
       // Send Headers
@@ -299,7 +299,7 @@ namespace sockets
       msg[1] = 'B';
 
       // Send Body Chunk
-      memsize n = m_response.file().read(msg + 7,  8100);
+      memsize n = m_response.file()->read(msg + 7,  8100);
       while (n > 0)
       {
          int ptr = 4;
@@ -318,7 +318,7 @@ namespace sockets
          }
 
          //
-         n = m_response.file().read(msg + 7, 8100);
+         n = m_response.file()->read(msg + 7, 8100);
       }
       if (!GetOutputLength()) // all body data sent and no data in output buffer - send end response
       {

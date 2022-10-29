@@ -3,6 +3,7 @@
 
 
 #include "command_update_target.h"
+#include "conversation.h"
 
 
 namespace user
@@ -19,7 +20,8 @@ namespace user
 
 
    class CLASS_DECL_ACME element :
-      virtual public ::user::command_update_target
+      virtual public ::user::command_update_target,
+      virtual public ::conversation
    {
    public:
 

@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 class true_type_font_utilities :
    virtual public ::object
 {
@@ -12,7 +15,7 @@ public:
    ~true_type_font_utilities() override;
 
 
-   string GetFontNameFromFile(::file::path lpszFilePath);
+   string GetFontNameFromFile(const ::file::path & path);
 
 
 };

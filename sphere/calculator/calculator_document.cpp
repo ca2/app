@@ -71,7 +71,7 @@ namespace calculator
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      string str = pcontext->m_papexcontext->file().as_string(payloadFile);
+      string str = pcontext->m_papexcontext->file()->as_string(payloadFile);
 
       update_all_impacts(nullptr, OPEN_DOCUMENT_UPDATE);
 

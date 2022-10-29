@@ -2,6 +2,7 @@
 
 
 #include "interaction.h"
+#include "acme/primitive/mathematics/scalar.h"
 
 
 namespace user
@@ -21,10 +22,10 @@ namespace user
 
 
       progress();
-      virtual ~progress();
+      ~progress() override;
 
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
       void install_message_routing(::channel * pchannel) override;

@@ -216,7 +216,7 @@ void html_form_impact::handle(::topic * ptopic, ::context * pcontext)
 
             auto pcontext = get_context();
 
-            matter = pcontext->m_papexcontext->dir().matter(ptopic->payload(id_form));
+            matter = pcontext->m_papexcontext->dir()->matter(ptopic->payload(id_form));
 
             if (get_document()->on_open_document(matter))
             {

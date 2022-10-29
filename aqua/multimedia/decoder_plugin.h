@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 extern "C"
 typedef ::multimedia::decoder * MULTIMEDIA_NEW_DECODER();
 

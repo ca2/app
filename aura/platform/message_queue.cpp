@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/platform/message_queue.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/windowing/window.h"

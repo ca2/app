@@ -1,7 +1,13 @@
 ﻿#include "framework.h"
 #include <math.h>
 #include "font_list.h"
+#include "acme/constant/id.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/fork.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/handler/item.h"
+#include "acme/platform/node.h"
+#include "apex/platform/application.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/fonts.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
@@ -1143,11 +1149,11 @@ namespace write_text
 
          };
 
-         fork_count(this, pfontlistdata->get_count(), procedure3, procedure4);
+         ::fork_count(this, pfontlistdata->get_count(), procedure3, procedure4);
 
       };
 
-      fork_count(this, pfontlistdata->get_count(), procedure1, procedure2);
+      ::fork_count(this, pfontlistdata->get_count(), procedure1, procedure2);
 
    }
 

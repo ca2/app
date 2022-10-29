@@ -30,7 +30,7 @@ namespace user
       inline ::core::system* get_system() const { return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; }
 
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
       virtual bool pre_create_window(::user::system * pusersystem) override;

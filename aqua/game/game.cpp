@@ -44,7 +44,7 @@ namespace aqua
    
       string strFileName = string(psz) + string(".wav");
 
-      string strFilePath = m_pcontext->m_papexcontext->dir().matter(strFileName);
+      string strFilePath = dir()->matter(strFileName);
 
       return strFilePath;
 

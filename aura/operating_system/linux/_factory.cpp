@@ -2,8 +2,8 @@
 //#include "acme/operating_system/_const_console.h"
 //#include "acme/operating_system/console.h"
 //#include "console.h"
-#include "_linux.h"
-#include "aura/operating_system/_node.h"
+//#include "_linux.h"
+//#include "aura/operating_system/_node.h"
 #include "acme/operating_system.h"
 //#include "copydesk.h"
 

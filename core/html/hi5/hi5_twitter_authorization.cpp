@@ -184,7 +184,7 @@ namespace hi5
 
          }
 
-         if(!m_pformdocumentAuth->on_open_document(pcontext->m_papexcontext->dir().matter(m_strForm)))
+         if(!m_pformdocumentAuth->on_open_document(pcontext->m_papexcontext->dir()->matter(m_strForm)))
          {
 
             return;
@@ -250,7 +250,7 @@ namespace hi5
 
          auto pcontext = get_context();
 
-         m_pformdocumentAuth->on_open_document(pcontext->m_papexcontext->dir().matter(pszMatter));
+         m_pformdocumentAuth->on_open_document(pcontext->m_papexcontext->dir()->matter(pszMatter));
          display_main_frame();
          //m_ptabimpact->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 

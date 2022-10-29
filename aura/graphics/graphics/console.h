@@ -1,6 +1,14 @@
 ﻿#pragma once
 
 
+#include "acme/filesystem/file/text_file.h"
+#include "acme/filesystem/file/text_stream.h"
+#include "acme/operating_system/console.h"
+#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/collection/string_array.h"
+
+
 namespace graphics
 {
 
@@ -38,7 +46,7 @@ namespace graphics
       ~console() override;
 
 
-      void assert_ok() const override;
+      // void assert_ok() const override;
       virtual void dump(dump_context & dump) const override;
 
 

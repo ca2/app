@@ -46,6 +46,8 @@ namespace acme
       ::pointer<::text::translator>                   m_ptexttranslator;
 
       ::pointer<::context_image>                      m_pcontextimage;
+      ::pointer<::dir_context>                        m_pdir;
+      ::pointer<::file_context>                       m_pfile;
 
 
 
@@ -53,12 +55,16 @@ namespace acme
       ~context() override;
 
 
-      inline ::context_image* context_image() { return m_pcontextimage; }
-
+      void initialize(::particle * pparticle) override;
 
       virtual void initialize_context();
 
       virtual void initialize_context_1();
+
+
+      inline ::context_image* context_image() { return m_pcontextimage; }
+
+
 
       virtual void translate_text_data(::text::data * ptextdata);
       virtual ::text::text __text(const ::atom& atom) override;
@@ -69,6 +75,12 @@ namespace acme
       inline ::acme_directory * acmedirectory();
       inline ::acme::node * acmenode();
       inline ::acme::system * acmesystem() { return m_pacmesystem; }
+
+      inline ::dir_context * dir() { return m_pdir; }
+      inline ::file_context * file() { return m_pfile; }
+      ::dir_system * dirsystem();
+      ::file_system * filesystem();
+
 
 
 

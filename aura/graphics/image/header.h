@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/size.h"
+
+
 #pragma pack(push, image_header, 1)
 
 

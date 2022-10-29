@@ -998,7 +998,7 @@ namespace html
 
             auto pcontext = get_context();
 
-            pstylesheet->parse(phtmldata, pcontext->m_papexcontext->file().as_string(strUrl));
+            pstylesheet->parse(phtmldata, pcontext->m_papexcontext->file()->as_string(strUrl));
             phtmldata->m_pcoredata->m_stylesheeta.add(pstylesheet);
          }
          for (i32 i = 0; i < ptag->baseptra().get_size(); i++)
@@ -1033,7 +1033,7 @@ namespace html
 
             auto pcontext = get_context();
 
-            pstylesheet->parse(phtmldata, pcontext->m_papexcontext->file().as_string(m_pparent->get_tag()->get_attr_value("href")));
+            pstylesheet->parse(phtmldata, pcontext->m_papexcontext->file()->as_string(m_pparent->get_tag()->get_attr_value("href")));
 
             phtmldata->m_pcoredata->m_stylesheeta.add(pstylesheet);
 

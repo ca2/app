@@ -48,7 +48,7 @@ namespace filemanager
 
             void set_request_interface(::object * prequestinterface);
 
-            void assert_ok() const override;
+            // void assert_ok() const override;
             void dump(dump_context & dumpcontext) const override;
 
             DECLARE_MESSAGE_HANDLER(on_request_response);

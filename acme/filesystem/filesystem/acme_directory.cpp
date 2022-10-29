@@ -648,7 +648,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 
       strCandidate = patha[i] / pszTopic;
 
-      //if (m_pcontext->m_papexcontext->file().exists(strCandidate))
+      //if (file()->exists(strCandidate))
       if (m_pacmefile->exists(strCandidate))
       {
          

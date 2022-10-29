@@ -120,7 +120,7 @@ namespace account
       try
       {
 
-         pcontext->m_papexcontext->file().erase(acmedirectory()->appdata()/"license_auth/00001.data");
+         pcontext->m_papexcontext->file()->erase(acmedirectory()->appdata()/"license_auth/00001.data");
 
       }
       catch(...)
@@ -131,7 +131,7 @@ namespace account
       try
       {
 
-         pcontext->m_papexcontext->file().erase(acmedirectory()->appdata()/"license_auth/00002.data");
+         pcontext->m_papexcontext->file()->erase(acmedirectory()->appdata()/"license_auth/00002.data");
 
       }
       catch(...)

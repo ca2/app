@@ -3,11 +3,10 @@
 
 #include "scroll_base.h"
 #include "text_composition_composite.h"
+#include "acme/primitive/data/listener.h"
 
 
 class element_2d;
-
-
 
 
 namespace colorertake5
@@ -62,13 +61,6 @@ namespace user
          virtual public ::object
       {
       public:
-
-         virtual synchronization * get_mutex()
-         {
-
-            return synchronization();
-
-         }
 
          virtual void set_expression(const ::string & pszExp)
          {

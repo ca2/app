@@ -2,17 +2,19 @@
 // Created by camilo on 29/01/2021.  02:05 BRT <3ThomasBS_!!
 //
 #include "framework.h"
-
-#include "aura/graphics/draw2d/graphics.h"
-#include "aura/windowing/windowing.h"
-#include "aura/windowing/display.h"
 #include "message_box.h"
 #include "button.h"
 #include "still.h"
-#include "aura/message/user.h"
 #include "interaction_scaler.h"
 #include "user.h"
 #include "style.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/platform/sequencer.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/display.h"
+#include "aura/message/user.h"
 #include "aura/platform/session.h"
 
 

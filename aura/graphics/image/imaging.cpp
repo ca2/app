@@ -4,6 +4,7 @@
 #include "fastblur.h"
 #include "context_image.h"
 #include "array.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"

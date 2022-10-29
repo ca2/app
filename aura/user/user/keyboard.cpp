@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "user.h"
 #include "key.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/keyboard.h"
@@ -171,23 +172,23 @@ namespace user
 //
 //#ifdef MACOS
 //
-//      strFile = pcontext->m_papexcontext->dir().matter("keyboard/windows/default.xml");
+//      strFile = pcontext->m_papexcontext->dir()->matter("keyboard/windows/default.xml");
 //
 //#elif defined( LINUX)
 //
 //    return true;
 //
-//      strFile = pcontext->m_papexcontext->dir().matter("keyboard/linux/default.xml");
+//      strFile = pcontext->m_papexcontext->dir()->matter("keyboard/linux/default.xml");
 //
 //#elif defined(__APPLE__)
 //
-//      strFile = pcontext->m_papexcontext->dir().matter("keyboard/macos/default.xml");
+//      strFile = pcontext->m_papexcontext->dir()->matter("keyboard/macos/default.xml");
 //
 //#elif defined(ANDROID)
 //
-//      //strPath = pcontext->m_papexcontext->dir().matter("keyboard/android/default.xml");
+//      //strPath = pcontext->m_papexcontext->dir()->matter("keyboard/android/default.xml");
 //
-//      strFile = pcontext->m_papexcontext->dir().matter("keyboard/windows/default.xml");
+//      strFile = pcontext->m_papexcontext->dir()->matter("keyboard/windows/default.xml");
 //
 //#else
 //
@@ -235,9 +236,9 @@ namespace user
 //
 //      string str = __string(w);
 //
-//      //strFile = pcontext->m_papexcontext->dir().matter("keyboard/windows/" + str + ".xml");
+//      //strFile = pcontext->m_papexcontext->dir()->matter("keyboard/windows/" + str + ".xml");
 //
-//      //if(pcontext->m_papexcontext->file().exists(strFile))
+//      //if(pcontext->m_papexcontext->file()->exists(strFile))
 //      //{
 //
 //      //   if (load_os_layout(strFile))
@@ -251,7 +252,7 @@ namespace user
 //
 //#endif
 //
-//      strFile = pcontext->m_papexcontext->dir().matter("keyboard/windows/default.xml");
+//      strFile = pcontext->m_papexcontext->dir()->matter("keyboard/windows/default.xml");
 //
 //#endif
 //
@@ -301,7 +302,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      string str = pcontext->m_papexcontext->file().as_string(pszPath);
+      string str = pcontext->m_papexcontext->file()->as_string(pszPath);
 
 
       output_debug_string(pszPath);
@@ -536,7 +537,7 @@ namespace user
 //
 //      ::file::path_array patha;
 //
-//      pcontext->m_papexcontext->dir().matter_ls_file("keyboard layout", patha);
+//      pcontext->m_papexcontext->dir()->matter_ls_file("keyboard layout", patha);
 //
 //      for(i32 i = 0; i < patha.get_count(); i++)
 //      {
@@ -570,9 +571,9 @@ namespace user
 //
 //         string strTest;
 //
-//         string strPath = pcontext->m_papexcontext->dir().matter("keyboard layout/" + strOverride + ".xml");
+//         string strPath = pcontext->m_papexcontext->dir()->matter("keyboard layout/" + strOverride + ".xml");
 //
-//         strTest = pcontext->m_papexcontext->file().as_string(strPath);
+//         strTest = pcontext->m_papexcontext->file()->as_string(strPath);
 //
 //         if(strTest.has_char())
 //         {
@@ -633,9 +634,9 @@ namespace user
 //
 //      {
 //
-//         string strPath = pcontext->m_papexcontext->dir().matter("keyboard layout/br_abnt2.xml");
+//         string strPath = pcontext->m_papexcontext->dir()->matter("keyboard layout/br_abnt2.xml");
 //
-//         if(pcontext->m_papexcontext->file().exists(strPath))
+//         if(pcontext->m_papexcontext->file()->exists(strPath))
 //         {
 //
 //            return strPath;
@@ -648,9 +649,9 @@ namespace user
 //
 //#endif
 //
-//      string strPath = pcontext->m_papexcontext->dir().matter("keyboard layout/en_us_international.xml");
+//      string strPath = pcontext->m_papexcontext->dir()->matter("keyboard layout/en_us_international.xml");
 //
-//      if(pcontext->m_papexcontext->file().exists(strPath))
+//      if(pcontext->m_papexcontext->file()->exists(strPath))
 //      {
 //
 //         return strPath;
@@ -665,10 +666,10 @@ namespace user
 //   bool keyboard::initialize(keyboard_layout_id * playoutid, const ::string & pszPath)
 //   {
 //
-//      if(!pcontext->m_papexcontext->file().exists(pszPath))
+//      if(!pcontext->m_papexcontext->file()->exists(pszPath))
 //         return false;
 //
-//      string str = pcontext->m_papexcontext->file().as_string(pszPath);
+//      string str = pcontext->m_papexcontext->file()->as_string(pszPath);
 //
 //      if(str.is_empty())
 //         return false;

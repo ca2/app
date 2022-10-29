@@ -4714,7 +4714,13 @@ void string_base < TYPE_CHAR >::append_format_arguments(const CHAR_TYPE * pszFor
 
    strsize nCurrentLength = get_length();
 
-   strsize nAppendLength = ::str().get_formatted_length(pszFormat, args);
+   va_list argsForCount;
+
+   va_copy(argsForCount, args);
+
+   strsize nAppendLength = ::str().get_formatted_length(pszFormat, argsForCount);
+
+   va_end(argsForCount);
 
    CHAR_TYPE * pszBuffer = get_string_buffer(nCurrentLength + nAppendLength);
 

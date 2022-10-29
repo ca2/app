@@ -3,6 +3,7 @@
 
 #include "node.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/primitive/collection/string_map.h"
 
 
 namespace xml

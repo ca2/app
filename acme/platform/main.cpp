@@ -6,7 +6,6 @@
 #ifdef LINUX
 #include "acme/operating_system/ansi/binreloc.h"
 #endif
-#include "acme/operating_system/process.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/acme.h"
@@ -15,7 +14,7 @@
 #include "acme/platform/set_app_id.h"
 #include "acme/platform/system.h"
 #include "acme/platform/system_setup.h"
-#include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/string/command_line.h"
 #include "_main_hold_base.h"
 
 

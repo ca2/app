@@ -8,6 +8,7 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/networking/url_department.h"
+#include "acme/operating_system/process.h"
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
@@ -69,7 +70,7 @@ namespace interprocess
 
       run_property("on_create");
 
-      call_routines_with_id(CREATE_ROUTINE);
+      //call_routines_with_id(CREATE_ROUTINE);
 
       /*estatus = */ __construct(m_ptarget);
 
@@ -82,7 +83,7 @@ namespace interprocess
 
       int iPid = m_pcontext->m_papexcontext->os_context()->get_pid();
 
-      //defer_add_module(m_pcontext->m_papexcontext->file().module(), iPid);
+      //defer_add_module(file()->module(), iPid);
 
    //      ::file::path path;
    //
@@ -342,7 +343,7 @@ namespace interprocess
 
       auto plauncher = __new(::apex::app_launcher);
 
-      plauncher->initialize_app_launcher(this, process_platform_dir_name2(), strApp);
+      plauncher->initialize_app_launcher(this, process_platform_name(), strApp);
 
       atom idPid = -1;
 
@@ -1040,7 +1041,7 @@ namespace interprocess
 
       m_straModule = straUnique;
 
-      ::file::path pathThisModule = m_pcontext->m_papexcontext->file().module();
+      ::file::path pathThisModule = file()->module();
 
       string strItem;
 
@@ -1061,7 +1062,7 @@ namespace interprocess
 
       strModuleList = m_straModule.implode("\n");
 
-      m_pcontext->m_papexcontext->file().put_text(pathModule, strModuleList);
+      file()->put_text(pathModule, strModuleList);
 
 #endif
 

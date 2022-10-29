@@ -53,7 +53,7 @@ namespace sip
    void response::clear()
    {
       transaction::clear();
-      file().Truncate(0);
+      file()->Truncate(0);
    //   m_file = ::pointer<IFile>e>(memory_new MemFile);
    }
 

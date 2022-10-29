@@ -41,7 +41,7 @@ namespace user
 
       //virtual bool get_rect(::item & item) override;
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
       virtual bool _001GetItemText(string & str, index iItem);
@@ -99,7 +99,7 @@ namespace user
       ~image_list_impact() override;
 
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
 #ifdef _DEBUG

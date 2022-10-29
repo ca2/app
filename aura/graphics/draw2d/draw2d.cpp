@@ -90,22 +90,22 @@ namespace draw2d
    }
 
 
-   void draw2d::add_object(::draw2d::particle * pparticle)
+   void draw2d::add_object(::draw2d::object * pobject)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
 
-      m_objecta.add(pparticle);
+      m_objecta.add(pobject);
 
    }
 
 
-   void draw2d::erase_object(::draw2d::particle * pparticle)
+   void draw2d::erase_object(::draw2d::object * pobject)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
 
-      m_objecta.erase(pparticle);
+      m_objecta.erase(pobject);
 
    }
 

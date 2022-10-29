@@ -113,7 +113,7 @@ namespace str
 
       }
 
-      auto pfile = m_pcontext->m_papexcontext->file().get_reader(pathZip);
+      auto pfile = file()->get_reader(pathZip);
 
       if (!pfile)
       {
@@ -274,7 +274,7 @@ namespace str
 
       }
 
-      auto pfile = m_pcontext->m_papexcontext->file().get_reader(pathZip);
+      auto pfile = file()->get_reader(pathZip);
 
       if (!pfile)
       {
@@ -341,7 +341,7 @@ namespace str
    bool zip_context::extract_all(const char * pszDir,::payload payloadFile, ::file::path_array * ppatha, string_array * pstraFilter, bool_array * pbaBeginsFilterEat)
    {
 
-      auto pfile = m_pcontext->m_papexcontext->file().get_file(payloadFile,::file::e_open_binary | ::file::e_open_read);
+      auto pfile = file()->get_file(payloadFile,::file::e_open_binary | ::file::e_open_read);
 
       if (!pfile)
       {
@@ -398,7 +398,7 @@ namespace str
 
                ::file::path path = ::file::path(pszDir) / strRelative;
 
-               file_pointer spfile = m_pcontext->m_papexcontext->file().get_file(
+               file_pointer spfile = file()->get_file(
                                 path,
                                 ::file::e_open_create | ::file::e_open_write | ::file::e_open_defer_create_directory);
 
@@ -448,7 +448,7 @@ namespace str
          
       }
       
-      auto pfile = m_pcontext->m_papexcontext->file().get_reader(pszFileName);
+      auto pfile = file()->get_reader(pszFileName);
       
       if(!pfile)
       {

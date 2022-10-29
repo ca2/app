@@ -149,7 +149,7 @@ int_bool _x11_get_cursor_pos(Display * d, POINT32 * ppointCursor);
 ::pointer< ::mutex > g_pmutexX11 = nullptr;
 
 
-mutex * user_mutex() {return g_pmutexX11;}
+mutex * user_synchronization() {return g_pmutexX11;}
 
 //int get_best_ordered_monitor(::user::interaction * pinteraction, int & l, int & t, int & cx, int & cy);
 //int get_best_monitor(::user::interaction * pinteraction, int & l, int & t, int & cx, int & cy);

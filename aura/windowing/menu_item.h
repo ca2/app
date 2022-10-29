@@ -7,12 +7,15 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/matter.h"
+
+
 namespace windowing
 {
 
 
    class CLASS_DECL_AURA menu_item :
-      virtual public material_object
+      virtual public matter
    {
    public:
 

@@ -3,6 +3,12 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/primitive/collection/osdata_array.h"
+#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/primitive/matter.h"
+
+
 namespace windowing
 {
 
@@ -16,7 +22,7 @@ namespace windowing
 
       enum_cursor                         m_ecursor;
       ::size_i32                          m_szHotspotOffset;
-      ::pointer<::draw2d::cursor>   m_pcursor;
+      ::pointer<::draw2d::cursor>         m_pcursor;
       image_pointer                       m_pimage;
       ::file::path                        m_path;
       //bool                                m_bLoadSystemDefaultCursorHint;

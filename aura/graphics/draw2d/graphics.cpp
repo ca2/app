@@ -10,6 +10,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/write_text/fonts.h"
+#include "acme/parallelization/single_lock.h"
 #include "acme/primitive/geometry2d/_enhanced.h"
 #include "acme/primitive/geometry2d/_collection_enhanced.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
@@ -2558,22 +2559,22 @@ namespace draw2d
    }
 
 
-      void graphics::assert_ok() const
-   {
-
-
-
-   }
-
-
-   void graphics::dump(dump_context & dumpcontext) const
-   {
-
-      __UNREFERENCED_PARAMETER(dumpcontext);
-
-
-
-   }
+//      void graphics::assert_ok() const
+//   {
+//
+//
+//
+//   }
+//
+//
+//   void graphics::dump(dump_context & dumpcontext) const
+//   {
+//
+//      __UNREFERENCED_PARAMETER(dumpcontext);
+//
+//
+//
+//   }
 
 
    void graphics::destroy()

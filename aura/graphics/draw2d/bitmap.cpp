@@ -1,8 +1,9 @@
 #include "framework.h"
 #include "bitmap.h"
 #include "graphics.h"
-#include "aura/graphics/image/pixmap.h"
+#include "acme/exception/interface_only.h"
 #include "acme/primitive/primitive/memory.h"
+#include "aura/graphics/image/pixmap.h"
 
 
 namespace draw2d

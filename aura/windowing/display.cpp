@@ -1,6 +1,7 @@
 ﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/rectangle_array.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/windowing.h"

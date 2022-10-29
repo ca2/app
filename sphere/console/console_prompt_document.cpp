@@ -64,7 +64,7 @@ namespace console
    bool prompt_document::on_open_document(const ::payload & payloadFile)
    {
 
-      string str = pcontext->m_papexcontext->file().as_string(payloadFile);
+      string str = pcontext->m_papexcontext->file()->as_string(payloadFile);
       //  m_prompt_document.load(str);
 
 

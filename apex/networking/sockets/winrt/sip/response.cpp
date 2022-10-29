@@ -51,7 +51,7 @@ namespace sip
    void response::clear()
    {
       transaction::clear();
-      file().Truncate(0);
+      file()->Truncate(0);
    //   m_file = std::auto_ptr<IFile>(memory_new MemFile);
    }
 

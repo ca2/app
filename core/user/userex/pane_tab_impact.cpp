@@ -356,9 +356,9 @@ namespace userex
 
             ::file::path path;
             
-            path = pcontext->dir().appdata() / "debug_ca2/menu_impact" / (get_app()->m_strAppId + ".html");
+            path = pcontext->dir()->appdata() / "debug_ca2/menu_impact" / (get_app()->m_strAppId + ".html");
 
-            pcontext->file().put_memory(path, strOptionsImpact);
+            pcontext->file()->put_memory(path, strOptionsImpact);
 
 #endif
 

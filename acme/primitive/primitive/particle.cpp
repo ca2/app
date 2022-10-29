@@ -249,7 +249,7 @@ void particle::on_initialize_particle()
 //}
 
 
-::acme::application * particle::get_context_application()
+::acme::application * particle::acmeapplication()
 {
 
    if (acmesystem()->m_pacmeapplicationMain)
@@ -309,6 +309,47 @@ void particle::on_initialize_particle()
    return m_pcontext->acmesystem();
 
 }
+
+
+::apex::application * particle::apexapplication()
+{
+
+   return m_pcontext->m_papexapplication;
+
+}
+
+
+::dir_context * particle::dir()
+{
+
+   return m_pcontext->dir();
+
+}
+
+
+::dir_system * particle::dirsystem()
+{
+
+   return m_pcontext->dirsystem();
+
+}
+
+
+::file_context * particle::file()
+{
+
+   return m_pcontext->file();
+
+}
+
+
+::file_system * particle::filesystem()
+{
+
+   return m_pcontext->filesystem();
+
+}
+
 
 
 void particle::handle(::topic * ptopic, ::context * pcontext)

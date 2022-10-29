@@ -660,20 +660,20 @@ string memory_file::as_string() const
 }
 
 
-void memory_file::assert_ok() const
-{
-
-   //file::assert_ok();
-
-}
-
-
-void memory_file::dump(dump_context & dumpcontext) const
-{
-
-   //file::dump(dumpcontext);
-
-}
+//void memory_file::assert_ok() const
+//{
+//
+//   //file::assert_ok();
+//
+//}
+//
+//
+//void memory_file::dump(dump_context & dumpcontext) const
+//{
+//
+//   //file::dump(dumpcontext);
+//
+//}
 
 
 //void memory_file::full_load(::payload payloadFile)
@@ -681,7 +681,7 @@ void memory_file::dump(dump_context & dumpcontext) const
 //
 //   ASSERT(is_valid());
 //
-//   auto pfile = m_pcontext->m_papexcontext->file().get_file(payloadFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
+//   auto pfile = file()->get_file(payloadFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
 //
 //   if (!pfile)
 //   {

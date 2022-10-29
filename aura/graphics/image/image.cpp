@@ -7,7 +7,7 @@
 #include "drawing.h"
 #include "save_image.h"
 #include "context_image.h"
-//#include "acme/primitive/geometry2d/_concept.h"
+#include "acme/exception/interface_only.h"
 #include "acme/operating_system.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "acme/primitive/mathematics/mathematics.h"
@@ -9571,7 +9571,7 @@ save_image::save_image()
 //
 //      path = strMatter;
 //
-//      path = pcontext->m_papexcontext->dir().matter(path / strIcon);
+//      path = pcontext->m_papexcontext->dir()->matter(path / strIcon);
 //
 //      if (load_image(path))
 //      {

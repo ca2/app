@@ -38,7 +38,7 @@ namespace universal_windows
       native_buffer(StorageFile ^ file);
       virtual ~native_buffer();
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
       operator StorageFile ^ () const;

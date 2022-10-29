@@ -138,7 +138,7 @@ namespace fs
 
          string strMd5Here;
 
-         strMd5Here = m_pcontext->m_papexcontext->file().md5(m_payloadFile["xml"].cast < ::memory_file >());
+         strMd5Here = ::particle::file()->md5(m_payloadFile["xml"].cast < ::memory_file >());
 
          string strMd5There;
          

@@ -312,7 +312,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
                   m_phost->m_strBitmapChannel = str;
 
-                  ::hotplugin::container_launcher launcher(process_platform_dir_name2(), str);
+                  ::hotplugin::container_launcher launcher(process_platform_name(), str);
 
                   launcher.m_iStart = 1; // only one attempt to start, as we repeatealy and accordingly make this process of
                   // reopening channel as needed. Repetdely trying to open channel using default m_iStart = 11, make
@@ -421,7 +421,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
       set.parse_network_arguments(m_straLinesNativeLaunch[1]);
 
-      string strPath = ::path::acme::application(process_platform_dir_name2());
+      string strPath = ::path::acme::application(process_platform_name());
 
       string strCommandLine;
 
@@ -1183,7 +1183,7 @@ run_install:
 
       ::u32 dwRead;
 
-      HANDLE hfile = ::create_file(::path::install_log(process_platform_dir_name2()), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+      HANDLE hfile = ::create_file(::path::install_log(process_platform_name()), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 
       double dRate = 0.0;
 

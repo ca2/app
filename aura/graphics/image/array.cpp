@@ -33,9 +33,7 @@ bool image_array::explode(::particle * pparticle, const ::size_i32 & sizeParam, 
 
    ::size_i32 size(sizeParam);
 
-   auto pcontext = pparticle->get_context()->m_pauracontext;
-
-   auto pcontextimage = pcontext->context_image();
+   auto pcontextimage = m_pcontext->context_image();
 
    auto pimageSource = pcontextimage->get_image(payloadFile);
 

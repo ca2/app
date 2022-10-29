@@ -43,7 +43,7 @@ namespace user
 
 
       void dump(dump_context &) const override;
-      void assert_ok() const override;
+      // void assert_ok() const override;
 
 
       ::base::application * get_app() const;

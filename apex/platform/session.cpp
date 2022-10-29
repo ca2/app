@@ -70,18 +70,8 @@ namespace apex
    session::session()
    {
 
-      //m_bOnInitializeWindowObject = false;
       m_papexsession = this;
-      ::object::m_pcontext = this;
-      m_pcontext = this;
 
-      m_paquasession = nullptr;
-      m_paurasession = nullptr;
-      m_paxissession = nullptr;
-      m_pbasesession = nullptr;
-      m_pbredsession = nullptr;
-      m_pcoresession = nullptr;
-      //m_psession = this;
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
@@ -127,6 +117,8 @@ namespace apex
       //auto estatus = 
       ::thread::initialize(pparticle);
 
+      ::apex::context::initialize(pparticle);
+
       //if (!estatus)
       //{
 
@@ -142,7 +134,6 @@ namespace apex
 
       //set_context_session(this);
 
-      m_pcontext = this;
 
       auto psystem = acmesystem()->m_papexsystem;
 

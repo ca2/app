@@ -3,6 +3,9 @@
 //
 #include "framework.h"
 #include "node.h"
+#include "acme/exception/interface_only.h"
+#include "acme/platform/system.h"
+
 
 #ifdef LINUX
 #include "aura/operating_system/linux/x11.h"

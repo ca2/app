@@ -1,7 +1,10 @@
 #pragma once
 
 
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/synchronization_array.h"
 #include "acme/platform/nanosecond_timer.h"
+#include "apex/parallelization/thread.h"
 
 
 namespace user

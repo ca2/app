@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/platform/department.h"
+
+
 #define XFM_LOAD_IMAGE 12
 #define XFM_RETURN_LOADED_IMAGE 13
 

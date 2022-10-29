@@ -8,10 +8,10 @@
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/windowing/icon.h"
-
 
 
 context_image::context_image()
@@ -319,10 +319,10 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 
    //}
 
-   if (loadoptions.psync)
+   if (loadoptions.pparticleSync)
    {
 
-      pimage->set_mutex(loadoptions.psync);
+      pimage->set_synchronization(loadoptions.pparticleSync);
 
    }
 
@@ -590,7 +590,7 @@ void context_image::_load_matter_image(image * pimage, const ::string & strMatte
 
    auto pcontext = get_context();
 
-   ::file::path path = pcontext->m_papexcontext->dir().matter(strMatter);
+   ::file::path path = pcontext->m_papexcontext->dir()->matter(strMatter);
 
    //auto estatus = 
    _load_image(pimage, path, loadoptions);
@@ -619,7 +619,7 @@ void context_image::_load_matter_icon(image * pimage, string_array & straMatter,
 
       path = strMatter;
 
-      path = pcontext->m_papexcontext->dir().matter(path / strIcon);
+      path = pcontext->m_papexcontext->dir()->matter(path / strIcon);
 
       //auto estatus = 
       
@@ -722,7 +722,7 @@ void context_image::_load_dib(image * pimage, const ::file::path & pathDib)
 
       auto pcontext = get_context();
 
-      auto pfile = pcontext->m_papexcontext->file().get_file(pathDib, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      auto pfile = pcontext->m_papexcontext->file()->get_file(pathDib, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       //if (!pfile)
       //{
@@ -775,7 +775,7 @@ void context_image::save_image(const ::payload & payloadFile, const image * pima
 
    auto pcontext = get_context();
 
-   pcontext->m_papexcontext->file().put_memory(payloadFile, mem);
+   pcontext->m_papexcontext->file()->put_memory(payloadFile, mem);
 
 }
 
@@ -809,7 +809,7 @@ void context_image::save_dib(const ::file::path & pathDib, const image * pimage)
 
       auto pcontext = get_context();
 
-      auto pfile = pcontext->m_papexcontext->file().get_file(pathDib, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
+      auto pfile = pcontext->m_papexcontext->file()->get_file(pathDib, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
 
       if (pfile)
       {
@@ -1035,7 +1035,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    auto t1 = ::duration::now();
 
-   m_pcontext->m_papexcontext->file().safe_get_memory(payload, memory);
+   file()->safe_get_memory(payload, memory);
 
    auto t2 = ::duration::now();
 

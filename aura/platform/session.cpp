@@ -1,6 +1,11 @@
 ﻿#include "framework.h"
-
+#include "acme/filesystem/file/item_array.h"
+#include "acme/networking/url_department.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system_setup.h"
+#include "apex/platform/create.h"
+#include "apex/platform/os_context.h"
+#include "apex/platform/savings.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/user/user/user.h"

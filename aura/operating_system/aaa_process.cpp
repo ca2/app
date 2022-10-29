@@ -329,21 +329,6 @@ CLASS_DECL_AURA string process_platform_name()
 
 #if defined(_M_IX86)
 
-   return "Win32";
-
-#else
-
-   return "x64";
-
-#endif
-
-}
-
-CLASS_DECL_AURA string process_platform_dir_name2()
-{
-
-#if defined(_M_IX86)
-
    return "x86";
 
 #else
@@ -353,6 +338,21 @@ CLASS_DECL_AURA string process_platform_dir_name2()
 #endif
 
 }
+
+//CLASS_DECL_AURA string process_platform_name()
+//{
+//
+//#if defined(_M_IX86)
+//
+//   return "x86";
+//
+//#else
+//
+//   return "x64";
+//
+//#endif
+//
+//}
 
 
 CLASS_DECL_AURA string process_version_dir_name()

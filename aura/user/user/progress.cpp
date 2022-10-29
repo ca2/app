@@ -1,5 +1,4 @@
 #include "framework.h"
-
 #include "progress.h"
 #include "aura/graphics/draw2d/graphics.h"
 
@@ -27,20 +26,20 @@ namespace user
    }
 
 
-   void progress::assert_ok() const
-   {
-
-      ::user::interaction::assert_ok();
-
-   }
-
-
-   void progress::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::interaction::dump(dumpcontext);
-
-   }
+//   void progress::assert_ok() const
+//   {
+//
+//      ::user::interaction::assert_ok();
+//
+//   }
+//
+//
+//   void progress::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::interaction::dump(dumpcontext);
+//
+//   }
 
 
 

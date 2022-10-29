@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "graphics.h"
 #include "brush.h"
+#include "acme/exception/interface_only.h"
 #include "aura/graphics/image/image.h"
 
 

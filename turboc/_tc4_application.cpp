@@ -162,7 +162,7 @@ namespace tc4
 
       pimpact->m_iErrorAiFont = -1;
 
-      //pimpact->m_iErrorAiFont = FT_New_Face((FT_Library)Sys(pimpact->get_app()).ftlibrary(),Sess(pimpact->get_app()).dir().matter_file("font/truetype/arialuni.ttf"),0,(FT_Face *)&pimpact->m_faceAi);
+      //pimpact->m_iErrorAiFont = FT_New_Face((FT_Library)Sys(pimpact->get_app()).ftlibrary(),Sess(pimpact->get_app()).dir()->matter_file("font/truetype/arialuni.ttf"),0,(FT_Face *)&pimpact->m_faceAi);
 
       return pimpact->m_iErrorAiFont;
 

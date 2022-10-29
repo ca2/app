@@ -63,7 +63,10 @@ class acme_file;
 class acme_path;
 class acme_directory;
 
-
+class dir_context;
+class dir_system;
+class file_context;
+class file_system;
 
 enum enum_zero_init
 {
@@ -87,6 +90,8 @@ namespace operating_system
    class department;
 
    class process;
+
+   class exit_status;
 
 } // namespace operating_system
 

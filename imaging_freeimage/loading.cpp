@@ -267,13 +267,13 @@ namespace imaging_freeimage
 
       ::file::path pathProcess = m_pcontext->m_papexcontext->defer_process_path(path);
 
-      m_pcontext->m_papexcontext->file().as_memory(payloadFile, memory);
+      file()->as_memory(payloadFile, memory);
 
       auto p1 = memory.get_data();
 
       auto s1 = memory.get_size();
 
-      //m_pcontext->m_papexcontext->file().non_empty_memory(payloadFile, *pmemory);
+      //file()->non_empty_memory(payloadFile, *pmemory);
 
       const char * psz = (const char *)memory.get_data();
 

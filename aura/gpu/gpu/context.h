@@ -4,6 +4,7 @@
 #include "aura/graphics/draw3d/matrix.h"
 #include "acme/primitive/geometry2d/size.h"
 #include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/primitive/object.h"
 
 
 namespace gpu

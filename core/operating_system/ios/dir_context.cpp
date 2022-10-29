@@ -634,7 +634,7 @@ pacmedirectory->is(stra[i]))
       string strPath = appdata() / "configuration/directory.xml";
 
       
-      string strDocument = pcontext->m_papexcontext->file().as_string(strPath);
+      string strDocument = pcontext->m_papexcontext->file()->as_string(strPath);
 
       if(doc.load(strDocument))
       {

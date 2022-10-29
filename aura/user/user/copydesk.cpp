@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "copydesk.h"
+#include "acme/exception/interface_only.h"
 #include "acme/primitive/string/base64.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -85,7 +86,7 @@ namespace user
       for (auto & strPath : stra)
       {
 
-         if (strPath.has_char() && (pcontext->m_papexcontext->dir().is(strPath) || pcontext->m_papexcontext->file().exists(strPath)))
+         if (strPath.has_char() && (pcontext->m_papexcontext->dir()->is(strPath) || pcontext->m_papexcontext->file()->exists(strPath)))
          {
 
             if (ppatha == nullptr)
@@ -306,7 +307,7 @@ namespace user
 
                      auto pcontext = get_context();
 
-                     pcontext->m_papexcontext->file().as_memory(payloadFile, mem);
+                     pcontext->m_papexcontext->file()->as_memory(payloadFile, mem);
 
                      auto psystem = acmesystem();
 
@@ -419,7 +420,7 @@ namespace user
 
                auto pcontext = get_context();
 
-               pcontext->m_papexcontext->file().as_memory(payloadFile, *pmemory);
+               pcontext->m_papexcontext->file()->as_memory(payloadFile, *pmemory);
 
             }
 

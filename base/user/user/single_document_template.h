@@ -28,7 +28,7 @@ namespace user
       virtual void set_default_title(::user::document * pdocument) override;
 
       virtual void dump(dump_context &) const override;
-      void assert_ok() const override;
+      // void assert_ok() const override;
 
 
    };

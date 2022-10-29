@@ -471,7 +471,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 
       ::str().begins_eat_ci(listing.m_pathFinal, "zipresource://");
 
-      auto pfolder = m_pcontext->m_papexcontext->file().resource_folder();
+      auto pfolder = file()->resource_folder();
 
       if (pfolder->enumerate(listing))
       {
@@ -836,7 +836,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 
       ::file::path pathTarget;
 
-      m_pcontext->m_papexcontext->file().resolve_link(pathTarget, path);
+      file()->resolve_link(pathTarget, path);
       //{
 
       bIs = is(pathTarget);
@@ -961,7 +961,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
    //
    //            string strParams;
    //
-   //            if (m_pcontext->m_papexcontext->file().resolve_link(strTarget, strFolder, strParams, pcszPath))
+   //            if (file()->resolve_link(strTarget, strFolder, strParams, pcszPath))
 
    //            {
    //
@@ -1878,7 +1878,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       set["raw_http"] = true;
 
-      ::file::path strFile = m_pcontext->m_papexcontext->dir().cache() / strMatter / "list_dir.list_dir";
+      ::file::path strFile = dir()->cache() / strMatter / "list_dir.list_dir";
 
       strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1895,10 +1895,10 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       ::file::path strLs;
 
-      if (m_pcontext->m_papexcontext->file().exists(strFile))
+      if (file()->exists(strFile))
       {
 
-         strLs = m_pcontext->m_papexcontext->file().as_string(strFile);
+         strLs = file()->as_string(strFile);
 
       }
       else
@@ -1914,7 +1914,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          strLs = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
-         m_pcontext->m_papexcontext->file().put_text(strFile, strLs);
+         file()->put_text(strFile, strLs);
 
       }
 
@@ -1945,7 +1945,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
    else if (psystem->m_pdirsystem->m_bMatterFromResource)
    {
 
-      auto pfolder = m_pcontext->m_papexcontext->file().resource_folder();
+      auto pfolder = file()->resource_folder();
 
       string strPrefix(strDir);
 
@@ -1975,7 +1975,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       listing.set_listing(strDir);
 
-      m_pcontext->m_papexcontext->dir().enumerate(listing);
+      dir()->enumerate(listing);
 
    }
 
@@ -1998,7 +1998,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 //
 //      set["raw_http"] = true;
 //
-//      string strFile = m_pcontext->m_papexcontext->dir().cache() / strDir / "list_dir.list_dir";
+//      string strFile = dir()->cache() / strDir / "list_dir.list_dir";
 //
 //      strsize iFind = strFile.find(DIR_SEPARATOR);
 //
@@ -2014,10 +2014,10 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 //
 //      string strLs;
 //
-//      if (m_pcontext->m_papexcontext->file().exists(strFile))
+//      if (file()->exists(strFile))
 //      {
 //
-//         strLs = m_pcontext->m_papexcontext->file().as_string(strFile);
+//         strLs = file()->as_string(strFile);
 //
 //      }
 //
@@ -2047,7 +2047,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 //   else
 //   {
 //
-//      m_pcontext->m_papexcontext->dir().ls(stra, strDir);
+//      dir()->ls(stra, strDir);
 //
 //   }
 //
@@ -2102,7 +2102,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          INFORMATION("cache map path: " << pathCache);
 
-         path = m_pcontext->m_papexcontext->file().as_string(pathCache);
+         path = file()->as_string(pathCache);
 
          if (::str().begins_eat_ci(path, "itdoesntexist."))
          {
@@ -2305,7 +2305,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
             strMatter.replace_with("/", "\\");
 
-            auto etype = acmesystem()->m_papexsystem->file().resource_get_type(strMatter);
+            auto etype = file()->resource_get_type(strMatter);
 
             if (::is_file_or_folder(etype))
             {
@@ -2375,7 +2375,7 @@ ret:
 
       }
 
-      m_pcontext->m_papexcontext->file().put_text(pathCache, strPath);
+      file()->put_text(pathCache, strPath);
 
       //::file::path pathCache2 = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
@@ -2391,13 +2391,11 @@ ret:
 
       ::str().begins_eat_ci(strMatter, "appmatter://");
 
-      auto psystem = get_system()->m_papexsystem;
-
-      ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter;
+      ::file::path pathCache = dirsystem()->m_pathLocalAppMatterFolder / strMatter;
 
       ::file::path pathMeta = pathCache + ".meta_information";
 
-      psystem->file().erase(pathMeta);
+      file()->erase(pathMeta);
 
       ((enumeration < ::file::enum_flag >&)path) = patha[0];
 
@@ -2852,7 +2850,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 //
 //      strCandidate = stra[i] / pszTopic;
 //
-//      if (m_pcontext->m_papexcontext->file().exists(strCandidate))
+//      if (file()->exists(strCandidate))
 //      {
 //         return strCandidate;
 //      }
@@ -2970,16 +2968,16 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 
    }
 
-   ::file::path pathNetworkPayload = m_pcontext->m_papexcontext->file().dropbox_info_network_payload();
+   ::file::path pathNetworkPayload = file()->dropbox_info_network_payload();
 
-   if (!m_pcontext->m_papexcontext->file().exists(pathNetworkPayload))
+   if (!file()->exists(pathNetworkPayload))
    {
 
-      auto pathHome = m_pcontext->m_papexcontext->dir().home();
+      auto pathHome = dir()->home();
 
       auto pathTxt = pathHome / "dropbox.txt";
 
-      string strPath = m_pcontext->m_papexcontext->file().safe_get_string(pathTxt);
+      string strPath = file()->safe_get_string(pathTxt);
 
       strPath.trim();
 
@@ -2991,7 +2989,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 
    }
 
-   string strNetworkPayload = m_pcontext->m_papexcontext->file().as_string(pathNetworkPayload);
+   string strNetworkPayload = file()->as_string(pathNetworkPayload);
 
    ::property_set set;
 
@@ -3009,9 +3007,9 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 ::file::path dir_context::onedrive()
 {
 
-   ::file::path pathIni = m_pcontext->m_papexcontext->file().onedrive_cid_ini();
+   ::file::path pathIni = file()->onedrive_cid_ini();
 
-   string strIni = m_pcontext->m_papexcontext->file().safe_get_string(pathIni);
+   string strIni = file()->safe_get_string(pathIni);
 
    if (strIni.is_empty())
    {
@@ -3051,7 +3049,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 
    }
 
-   auto papplication = get_context_application();
+   auto papplication = acmeapplication();
 
    if (papplication)
    {

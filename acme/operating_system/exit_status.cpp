@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "exit_status.h"
 
 
 namespace operating_system

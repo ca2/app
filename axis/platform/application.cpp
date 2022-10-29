@@ -909,7 +909,7 @@ namespace axis
 
             auto pcontext = get_context();
 
-            ::file::path pathFolder = pcontext->m_papexcontext->dir().appdata(m_strDatabaseAppId);
+            ::file::path pathFolder = pcontext->m_papexcontext->dir()->appdata(m_strDatabaseAppId);
 
             if (is_system())
             {

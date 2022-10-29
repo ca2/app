@@ -115,7 +115,7 @@ namespace aura
 
 
       //virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2);
-      //virtual string dir().matter(const ::string & pszMatter, const ::string & pszMatter2);
+      //virtual string dir()->matter(const ::string & pszMatter, const ::string & pszMatter2);
 
       //virtual bool is_inside_time_dir(const ::string & pszPath);
       //virtual bool file_is_read_only(const ::string & pszPath);

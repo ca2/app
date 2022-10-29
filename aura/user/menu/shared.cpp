@@ -6,6 +6,7 @@
 //
 #include "framework.h"
 #include "shared.h"
+#include "acme/platform/system.h"
 #include "aura/platform/session.h"
 #include "aura/user/user/user.h"
 #include "aura/windowing/windowing.h"

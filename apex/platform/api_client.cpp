@@ -41,7 +41,7 @@ void api_client::defer_api()
 
          ::file::path pathProfile;
 
-         pathProfile = m_pcontext->m_papexcontext->dir().appdata() / "api" / m_strImplementation / (m_strProfileStore + ".network_payload");
+         pathProfile = dir()->appdata() / "api" / m_strImplementation / (m_strProfileStore + ".network_payload");
 
          try
          {

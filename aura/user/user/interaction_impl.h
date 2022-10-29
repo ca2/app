@@ -4,6 +4,7 @@
 #include "primitive_impl.h"
 #include "window_util.h"
 #include "interaction.h"
+#include "acme/primitive/collection/list.h"
 
 
 #ifdef __DEBUG
@@ -112,7 +113,7 @@ namespace user
       double                                    m_dOutputFps;
       point_i32                                 m_pointMouseMove;
       ::size_i32                                m_sizeDrawn;
-      reference_addressa                        m_ptraRedraw;
+      particle_address_array                    m_ptraRedraw;
 
       //::rectangle_i32                           m_rectangleUpdateBuffer;
       ::thread_pointer                          m_pthreadMouseLeave;
@@ -168,7 +169,7 @@ namespace user
 
       
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
       virtual void set_prodevian_fps(double dProdevianFps);

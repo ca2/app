@@ -20277,6 +20277,14 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
+   ::aura::context * interaction::context() const
+   {
+
+      return m_pcontext ? m_pcontext->m_pauracontext:nullptr;
+
+   }
+
+
    double interaction::screen_scaler() const
    {
 

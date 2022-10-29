@@ -3,6 +3,7 @@
 #include "lock.h"
 #include "device_lock.h"
 #include "draw2d.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace draw2d
@@ -27,22 +28,22 @@ namespace draw2d
    }
 
 
-   void object::dump(dump_context& dumpcontext) const
-   {
-
-      __UNREFERENCED_PARAMETER(dumpcontext);
-
-      throw ::interface_only();
-
-   }
-
-
-   void object::assert_ok() const
-   {
-
-      throw ::interface_only();
-
-   }
+//   void object::dump(dump_context& dumpcontext) const
+//   {
+//
+//      __UNREFERENCED_PARAMETER(dumpcontext);
+//
+//      throw ::interface_only();
+//
+//   }
+//
+//
+//   void object::assert_ok() const
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    void object::on_initialize_particle()

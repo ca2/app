@@ -258,7 +258,7 @@ namespace sockets
             if (response().m_strFile.has_char())
             {
 
-               compress.gz(pfile, pcontext->m_papexcontext->file().get_reader(response().m_strFile));
+               compress.gz(pfile, pcontext->m_papexcontext->file()->get_reader(response().m_strFile));
 
                response().m_strFile.Empty();
 

@@ -1,8 +1,9 @@
 #include "framework.h"
-#include "aura/platform/application.h"
-//#include "_linux.h"
-#include "aura/operating_system/linux/_linux.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/platform/system.h"
+#include "apex/platform/node.h"
+#include "aura/platform/application.h"
+//#include "aura/operating_system/linux/_linux.h"
 #include "app/apex/operating_system/freedesktop/desktop_file.h"
 
 

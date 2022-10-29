@@ -25,9 +25,13 @@ public:
    void free();
    void zero();
    void set_at_grow(::i32 iIndex, const TYPE& t);
-   
+   void erase_at(::i32 iIndex);
+   void push(const TYPE & t) { set_at_grow(count(), t);}
+   TYPE pop() { TYPE t = element_at(count() - 1); erase_at(count() -1); return t;   }
+   ::count count() const {return m_iCount;}
 
    TYPE& element_at_grow(::i32 iIndex);
+   TYPE& element_at(::i32 iIndex) { return m_p[iIndex];}
 
 
 };
@@ -128,6 +132,33 @@ void tiny_array < TYPE > ::set_at_grow(::i32 iIndex, const TYPE& t)
 {
 
    element_at_grow(iIndex) = t;
+
+}
+
+
+template < typename TYPE >
+void tiny_array < TYPE > ::erase_at(::i32 iIndex)
+{
+
+   if(iIndex < 0 || iIndex >= m_iCount)
+   {
+
+      throw_exception(error_index_out_of_bounds);
+
+   }
+
+   auto iNext = iIndex + 1;
+
+   auto countMove = m_iCount - iNext;
+
+   if(countMove > 0)
+   {
+
+      ::memmove(m_p + iIndex, m_p + iNext, countMove * sizeof(TYPE));
+
+   }
+
+   m_iCount--;
 
 }
 

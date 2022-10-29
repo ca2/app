@@ -49,8 +49,6 @@ namespace apex
       bool                                            m_bFinalizeIfNoSessionSetting;
       bool                                            m_bFinalizeIfNoSession;
 
-      ::pointer<::dir_system>                         m_pdirsystem;
-      ::pointer<::file_system>                        m_pfilesystem;
 
 
       string_array                                       m_straCommandLineAccumul;
@@ -409,7 +407,7 @@ namespace apex
 
 
 
-      void assert_ok() const override;
+      // void assert_ok() const override;
       void dump(dump_context& action_context) const override;
 
 

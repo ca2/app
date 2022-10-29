@@ -7,7 +7,9 @@
 #include "prodevian.h"
 #include "drawable.h"
 #include "acme/user/user/drag_client.h"
+#include "acme/primitive/collection/string_map.h"
 #include "acme/platform/timer_callback.h"
+#include "acme/platform/flags.h"
 
 
 namespace user
@@ -18,7 +20,6 @@ namespace user
       virtual public ::user::primitive,
       virtual public ::user::drawable,
       virtual public ::timer_callback,
-      virtual public ::conversation,
       virtual public ::user::drag_client
    {
    public:
@@ -224,7 +225,7 @@ namespace user
       ewindowflag                                  m_ewindowflag;
 
       // <3ThomasBorreggardSørensen_!!
-      ::pointer<::material_object>                m_pmaterialCommandHandler;
+      ::pointer<::matter>                          m_pmatterCommandHandler;
 
       ::user::interaction::enum_updown             m_eupdown;
 
@@ -398,7 +399,7 @@ namespace user
       ::aura::application * get_app() const;
       ::aura::session * get_session() const;
       ::aura::system * get_system() const;
-      inline ::aura::context * context() const { return m_pcontext ? m_pcontext->m_pauracontext:nullptr; }
+      inline ::aura::context * context() const;
 
       bool _001CanEnterScreenSaver() override;
 
@@ -616,7 +617,7 @@ namespace user
       inline bool is_graphical() const { return !m_bMessageWindow && m_ewindowflag & e_window_flag_graphical; }
 
 
-      virtual ::synchronization * mutex_draw();
+      virtual ::particle * mutex_draw();
 
 
       //virtual bool AddControlBar(::user::control_bar* pcontrolbar);
@@ -2135,11 +2136,11 @@ namespace user
       virtual enum_stock_icon get_stock_icon();
 
 
-      virtual void post_procedure(const ::procedure & procedure) override;
+      //virtual void post_procedure(const ::procedure & procedure) override;
       virtual void prodevian_post_procedure(const ::procedure & procedure);
 
 
-      void send_procedure(const ::procedure & procedure) override;
+      //void send_procedure(const ::procedure & procedure) override;
 
 
    /*   template < typename PRED >

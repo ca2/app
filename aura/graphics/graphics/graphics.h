@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/primitive/object.h"
 
 
 namespace graphics
@@ -49,7 +50,7 @@ namespace graphics
 
       virtual i64 _001GetTopLeftWeightedOpaqueArea(const ::rectangle_i32 &rect);
 
-      virtual synchronization * get_draw_lock();
+      virtual ::particle * get_draw_lock();
       virtual ::draw2d::graphics * on_begin_draw();
 
       virtual void on_end_draw();
@@ -66,9 +67,9 @@ namespace graphics
 
 
       virtual ::image_pointer & get_buffer_image();
-      virtual synchronization * get_buffer_sync();
+      virtual ::particle * get_buffer_sync();
       virtual ::image_pointer & get_screen_image();
-      virtual synchronization * get_screen_sync();
+      virtual ::particle * get_screen_sync();
 
 
 

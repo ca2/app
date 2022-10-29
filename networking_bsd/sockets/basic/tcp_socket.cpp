@@ -2261,7 +2261,7 @@ namespace sockets_bsd
          if (keyfile.ends_ci(".cat"))
          {
 
-            strCert = m_pcontext->m_papexcontext->file().as_string(keyfile);
+            strCert = file()->as_string(keyfile);
 
          }
          else

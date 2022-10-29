@@ -71,7 +71,7 @@ namespace universal_windows
 
       auto pdocument= pxml->create_document();
 
-      pdocument->load(m_pcontext->m_papexcontext->file().as_string(appdata() / "configuration\\directory.xml"));
+      pdocument->load(file()->as_string(appdata() / "configuration\\directory.xml"));
 
       if (pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
       {
@@ -386,7 +386,7 @@ pacmedirectory->roaming() / "home";
 
    ::file::path dir_context::warehouse()
    {
-      return m_pcontext->m_papexcontext->dir().ca2module();
+      return dir()->ca2module();
    }
 
    ::file::path dir_context::time()
@@ -494,7 +494,7 @@ pacmedirectory->roaming() / "home";
                try
                {
 
-                  m_pcontext->m_papexcontext->file().del(str);
+                  file()->del(str);
 
                }
                catch (...)
@@ -509,7 +509,7 @@ pacmedirectory->roaming() / "home";
                try
                {
 
-                  m_pcontext->m_papexcontext->file().del(str);
+                  file()->del(str);
 
                }
                catch (...)

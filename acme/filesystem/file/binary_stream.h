@@ -1215,7 +1215,7 @@ public:
    //
    //   nOpenFlags = ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive;
    //
-   //   stream.m_pfile = m_pfilecontext->m_pfileapexcontext->file().get_file(path, nOpenFlags);
+   //   stream.m_pfile = m_pfilecontext->m_pfileapexcontext->file()->get_file(path, nOpenFlags);
    //
    //   matter.write(*this);
    //
@@ -1236,7 +1236,7 @@ public:
    //
    //   ::stream stream(e_create_new, this, FIRST_VERSION);
    //
-   //   stream.m_pfile = m_pfilecontext->m_pfileapexcontext->file().get_reader(path, ::file::e_open_share_deny_write);
+   //   stream.m_pfile = m_pfilecontext->m_pfileapexcontext->file()->get_reader(path, ::file::e_open_share_deny_write);
    //
    //   matter.read(*this);
    //

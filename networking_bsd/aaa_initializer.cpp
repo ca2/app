@@ -136,7 +136,7 @@ namespace crypto
       if (m_rand_file.get_length())
       {
 
-         m_pcontext->m_papexcontext->file().del(m_rand_file);
+         file()->del(m_rand_file);
 
       }
 

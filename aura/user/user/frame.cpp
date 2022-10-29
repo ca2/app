@@ -1,14 +1,16 @@
 #include "framework.h"
-
-#include "aura/graphics/image/icon.h"
-#include "acme/parallelization/pool.h"
-#include "aura/windowing/windowing.h"
 #include "frame.h"
 #include "key.h"
 #include "style.h"
 #include "user.h"
+#include "acme/constant/id.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/pool.h"
+#include "acme/constant/message.h"
+#include "aura/graphics/image/icon.h"
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
+#include "aura/windowing/windowing.h"
 
 
 namespace user

@@ -2,6 +2,10 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/primitive/object.h"
+
+
 namespace appearance
 {
 

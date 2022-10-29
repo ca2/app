@@ -3,6 +3,7 @@
 
 #include "image.h"
 #include "frame.h"
+#include "acme/graphics/draw2d/colorref_array.h"
 
 
 class CLASS_DECL_AURA image_frame_array :

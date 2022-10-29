@@ -20,7 +20,7 @@ namespace simpledb
 
       string strMetaPath;
 
-      strMetaPath = pcontext->m_papexcontext->dir().install() / "database" / m_pdatabase->getDatabase() / m_strName/ "meta.xml";
+      strMetaPath = pcontext->m_papexcontext->dir()->install() / "database" / m_pdatabase->getDatabase() / m_strName/ "meta.xml";
 
       if(!m_spfileMeta->open(strMetaPath, ::file::e_open_binary | ::file::e_open_read_write | ::file::e_open_share_exclusive))
          throw ::exception(::exception("integer_exception 1"));
@@ -44,7 +44,7 @@ namespace simpledb
 
       string strFixedPath = m_xmldocumentMeta.get_root()->attr("fixed_path");
       if(strFixedPath.is_empty())
-         strFixedPath = strMetaPath = pcontext->m_papexcontext->dir().install() / "database" / m_pdatabase->getDatabase() /  m_strName/"fixed.txt";
+         strFixedPath = strMetaPath = pcontext->m_papexcontext->dir()->install() / "database" / m_pdatabase->getDatabase() /  m_strName/"fixed.txt";
 
       if(!m_spfileFixed->open(strMetaPath, ::file::e_open_create | ::file::e_open_no_truncate | ::file::e_open_binary | ::file::e_open_read_write | ::file::e_open_share_exclusive |
                               ::file::e_open_defer_create_directory))

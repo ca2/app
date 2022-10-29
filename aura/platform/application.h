@@ -3,6 +3,7 @@
 
 #include "context.h"
 #include "aqua/platform/application.h"
+#include "aura/filesystem/filemanager/callback.h"
 
 
 namespace aura
@@ -67,7 +68,7 @@ namespace aura
       //bool                                            m_bAppHasInstallerChangedProtected;
       //::install::installer *                          m_pinstaller;
 
-      reference_addressa                              m_particleaddressaEventHook;
+      particle_address_array                         m_particleaddressaEventHook;
 
       ::pointer < ::mutex >                                           m_pmutexFrame;
       ::pointer<::user::interaction_array>           m_puserinteractiona;
@@ -153,7 +154,7 @@ namespace aura
       virtual void initialize(::particle * pparticle) override;
 
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
 
@@ -384,7 +385,7 @@ namespace aura
       //virtual ::file::path appconfig_folder() override;
 
 
-      //void assert_ok() const override;
+      //// void assert_ok() const override;
       //void dump(dump_context & dumpcontext) const override;
 
 

@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/string/string.h"
+#include "acme/primitive/collection/array.h"
+
+
 namespace xml
 {
 

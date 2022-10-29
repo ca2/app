@@ -1,11 +1,15 @@
 #pragma once
 
 
+#include "acme/primitive/collection/array.h"
+
+
 namespace user
 {
 
 
    class range;
+
 
    class CLASS_DECL_AURA list_item_range
    {

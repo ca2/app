@@ -1,13 +1,15 @@
 ﻿#include "framework.h"
-
-//#include "acme/constant/id.h"
 #include "interaction_thread.h"
-#include "call_message_handler_task.h"
-//#include "acme/operating_system/_user.h"
-#include "acme/platform/timer_array.h"
 #include "primitive_impl.h"
 #include "interaction.h"
 #include "interaction_impl.h"
+#include "call_message_handler_task.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/context.h"
+#include "acme/platform/system.h"
+#include "acme/platform/timer_array.h"
 #include "aura/message/user.h"
 
 
@@ -1944,7 +1946,7 @@ namespace user
 
       }
 
-      m_puserinteraction->post_procedure(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
+      m_puserinteraction->interaction_post(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
 
    }
 
@@ -2067,7 +2069,7 @@ namespace user
 //
 //      fflush(stdout);
 
-      m_puserinteraction->call_routines_with_id(CREATE_ROUTINE);
+      //m_puserinteraction->call_routines_with_id(CREATE_ROUTINE);
 
 //      if(::is_null(m_puserinteraction->m_pwindow))
 //      {
@@ -2481,6 +2483,7 @@ namespace user
       return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
 
    }
+
 
 } // namespace user
 

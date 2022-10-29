@@ -5,6 +5,7 @@
 #include "disp_option.h"
 #include "parse_info.h"
 #include "document.h"
+#include "acme/platform/system.h"
 
 
 namespace xml
@@ -149,7 +150,7 @@ namespace xml
       if (opt == nullptr)
       {
 
-         opt = get_system()->xml()->m_poptionDefault;
+         opt = acmesystem()->xml()->m_poptionDefault;
 
       }
 

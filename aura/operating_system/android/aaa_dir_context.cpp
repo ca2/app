@@ -258,7 +258,7 @@ namespace android
    //         for(index i = iStart; i < pstraRelative->get_size(); i++)
    //         {
 
-   //            pstraRelative->element_at(i) = pcontext->m_papexcontext->dir_context().path(pcontext->m_papexcontext->file().name_(strDir), pstraRelative->element_at(i));
+   //            pstraRelative->element_at(i) = pcontext->m_papexcontext->dir_context().path(pcontext->m_papexcontext->file()->name_(strDir), pstraRelative->element_at(i));
 
    //         }
 
@@ -894,7 +894,7 @@ namespace android
                   str.trim_right("\\/");
                   try
                   {
-                     pcontext->m_papexcontext->file().del(str);
+                     pcontext->m_papexcontext->file()->del(str);
                   }
                   catch (...)
                   {
@@ -903,7 +903,7 @@ namespace android
                   str.trim_right("\\/");
                   try
                   {
-                     pcontext->m_papexcontext->file().del(str);
+                     pcontext->m_papexcontext->file()->del(str);
                   }
                   catch (...)
                   {
@@ -993,7 +993,7 @@ namespace android
 
       xml::document doc;
 
-      doc.load(pcontext->m_papexcontext->file().as_string(appdata() / "configuration\\directory.xml"));
+      doc.load(pcontext->m_papexcontext->file()->as_string(appdata() / "configuration\\directory.xml"));
 
       ::file::path pathInstall = ::aura::get_system()->m_pathCacheDir;
 

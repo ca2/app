@@ -543,7 +543,7 @@ public:
    association * get_association_at(ARG_KEY, ::u32&, ::u32&) const;
 
 
-   //void assert_ok() const override;
+   //// void assert_ok() const override;
    //void dump(dump_context & dumpcontext) const override;
 
 

@@ -24,7 +24,7 @@ namespace filehandler
       DECLARE_MESSAGE_HANDLER(_001OnMenuMessage);
       virtual ~pane_impact();
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

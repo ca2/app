@@ -119,7 +119,7 @@ namespace linux
 
 //      auto pdocument = create_xml_document();
 //
-//      pdocument->load(pcontext->m_papexcontext->file().as_string(appdata() /"configuration\\directory.xml"));
+//      pdocument->load(pcontext->m_papexcontext->file()->as_string(appdata() /"configuration\\directory.xml"));
 //
 //      if(pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
 //      {
@@ -549,7 +549,7 @@ pacmedirectory->is(path))
                try
                {
 
-                  pcontext->m_papexcontext->file().del(str);
+                  pcontext->m_papexcontext->file()->del(str);
 
                }
                catch(...)
@@ -564,7 +564,7 @@ pacmedirectory->is(path))
                try
                {
 
-                  pcontext->m_papexcontext->file().del(str);
+                  pcontext->m_papexcontext->file()->del(str);
 
                }
                catch(...)

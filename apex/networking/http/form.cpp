@@ -259,7 +259,7 @@ namespace http
 
                      //string strIndex;
 
-                     auto pfileUpload = pcontext->file().get_temporary_upload_file(current_filename);
+                     auto pfileUpload = pcontext->file()->get_temporary_upload_file(current_filename);
 
                      if(::is_ok(pfileUpload))
                      {

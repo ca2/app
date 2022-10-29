@@ -160,7 +160,7 @@ namespace fs
 
       m_plisting->clear_results();
 
-      m_pcontext->m_papexcontext->dir().enumerate(*m_plisting);
+      dir()->enumerate(*m_plisting);
 
    }
 

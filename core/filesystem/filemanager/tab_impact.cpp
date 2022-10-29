@@ -228,7 +228,7 @@ namespace filemanager
             try
             {
 
-               bPathIsDir = pathFolder.has_char() && pcontext->m_papexcontext->dir().is(pathFolder);
+               bPathIsDir = pathFolder.has_char() && pcontext->m_papexcontext->dir()->is(pathFolder);
 
             }
             catch (...)

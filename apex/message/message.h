@@ -22,7 +22,7 @@ namespace message
 
    class key;
    class mouse;
-   class object;
+   class particle;
    class context_menu;
 
 
@@ -30,7 +30,7 @@ namespace message
    {
      
       void *                        m_p;
-      ::message::object *           m_pobject;
+      ::message::particle *         m_pparticle;
       ::message::key *              m_pkey;
       ::message::mouse *            m_pmouse;
       ::message::context_menu *     m_pcontextmenu;

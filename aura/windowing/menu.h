@@ -8,6 +8,7 @@
 
 
 #include "menu_item.h"
+#include "acme/primitive/collection/pointer_array.h"
 
 
 namespace windowing
@@ -20,13 +21,13 @@ namespace windowing
    public:
 
 
-      string                             m_strParent;
-      string                             m_strMenu;
+      string                              m_strParent;
+      string                              m_strMenu;
       pointer_array < menu_item >         m_itema;
 
 
       menu();
-      virtual ~menu();
+      ~menu() override;
 
 
       menu_item * find_item(const ::string & pszParent, const ::string & pszId);

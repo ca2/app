@@ -1,11 +1,12 @@
 #include "framework.h"
 #include "write_text.h"
 #include "fonts.h"
-//#include "aqua/xml/_.h"
 #include "true_type_font_utilities.h"
+#include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/platform/system.h"
 
 
@@ -164,7 +165,7 @@ namespace write_text
 
       __construct_new(pmemory);
 
-      *pmemory = pcontext->m_papexcontext->file().as_memory(path);
+      *pmemory = pcontext->m_papexcontext->file()->as_memory(path);
 
       return pmemory;
 
@@ -202,7 +203,7 @@ namespace write_text
 
    //   double dAndroid = 4.4;
 
-   //   string strSystemFonts = m_pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
+   //   string strSystemFonts = file()->as_string("/system/etc/system_fonts.xml");
 
    //   auto psystem = acmesystem()->m_paurasystem;
 

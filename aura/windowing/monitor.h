@@ -2,6 +2,10 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/primitive/matter.h"
+
+
 namespace windowing
 {
 

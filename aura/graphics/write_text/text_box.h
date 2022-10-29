@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/size.h"
+
+
 namespace write_text
 {
 

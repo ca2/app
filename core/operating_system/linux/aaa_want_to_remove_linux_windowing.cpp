@@ -17,7 +17,7 @@ CLASS_DECL_CORE void update_application_session_cursor(void * pvoidApp, const po
 
 
 // Tutor Exilius Q(t)List streaming contribution
-::pointer< ::mutex > user_mutex() = nullptr;
+::pointer< ::mutex > user_synchronization() = nullptr;
 list < sp(object) > * g_pobjectTaskptrlX11 = nullptr;
 
 int_bool _x11_get_cursor_pos(Display * d, POINT32 * ppointCursor);
@@ -1185,7 +1185,7 @@ int_bool destroy_window(oswindow window)
 
    synchronous_lock synchronouslock(g_pmutexX);
 
-   //single_lock synchronouslock(&user_mutex(), true);
+   //single_lock synchronouslock(&user_synchronization(), true);
 
    if(!is_window(window))
       return false;

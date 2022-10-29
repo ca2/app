@@ -114,7 +114,7 @@ namespace userex
 
             m_plisting->set_pattern_file_listing(m_pathFolder, get_ls_pattern_stra());
 
-            pcontext->m_papexcontext->dir().enumerate(*m_plisting);
+            pcontext->m_papexcontext->dir()->enumerate(*m_plisting);
 
          }
 

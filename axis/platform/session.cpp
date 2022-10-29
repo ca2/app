@@ -1251,7 +1251,7 @@ namespace axis
       //if(puser->m_strPathPrefix.is_empty())
       //{
 
-      //   puser->m_strPathPrefix = pcontext->m_papexcontext->dir().default_os_user_path_prefix();
+      //   puser->m_strPathPrefix = pcontext->m_papexcontext->dir()->default_os_user_path_prefix();
 
       //}
 
@@ -1266,9 +1266,9 @@ namespace axis
 
       auto pcontext = get_context();
 
-      puser->m_pathFolder = pcontext->m_papexcontext->dir().appdata() / "profile" / puser->m_strLogin;
+      puser->m_pathFolder = pcontext->m_papexcontext->dir()->appdata() / "profile" / puser->m_strLogin;
 
-      pcontext->m_papexcontext->dir().create(puser->m_pathFolder);
+      pcontext->m_papexcontext->dir()->create(puser->m_pathFolder);
 
       for (auto& papp : m_applicationa)
       {

@@ -163,7 +163,7 @@ namespace windows
       //if (strFileParam.compare_ci(::dir::bookmark()) == 0)
       //{
 
-      //   strIconLocation = pcontext->m_papexcontext->dir().matter("aura.ico");
+      //   strIconLocation = pcontext->m_papexcontext->dir()->matter("aura.ico");
 
       //   output_debug_string("aura.ico");
 
@@ -349,13 +349,13 @@ namespace windows
 
       if (((FAILED(hrIconLocation) && FAILED(hrGetLocation))
             || imagekey.m_iIcon == 0x80000000
-            || !pcontext->m_papexcontext->file().exists(strIconLocation))
+            || !pcontext->m_papexcontext->file()->exists(strIconLocation))
             && ::str().ends_ci(strFileParam, ".lnk"))
       {
 
-         pcontext->m_papexcontext->file().resolve_link(pathTarget, strFileParam);
+         pcontext->m_papexcontext->file()->resolve_link(pathTarget, strFileParam);
 
-         if (!pcontext->m_papexcontext->file().exists(pathTarget) && !pcontext->m_papexcontext->dir().is(pathTarget))
+         if (!pcontext->m_papexcontext->file()->exists(pathTarget) && !pcontext->m_papexcontext->dir()->is(pathTarget))
          {
 
             if (pathTarget.ends_ci(".exe"))
@@ -428,7 +428,7 @@ namespace windows
 
 pacmedirectory->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + strExtension + ".ico";
 
-            if (pcontext->m_papexcontext->file().exists(strIcon))
+            if (pcontext->m_papexcontext->file()->exists(strIcon))
             {
 
                if (reserve_image(imagekeyTheme, iImage))
@@ -868,7 +868,7 @@ pacmedirectory->is(strPath))
          if (reserve_image(imagekey, iImage))
          {
 
-            ::file::path path = pcontext->m_papexcontext->dir().matter("cloud.ico");
+            ::file::path path = pcontext->m_papexcontext->dir()->matter("cloud.ico");
 
             add_icon_path(path, crBk, iImage);
 
@@ -883,7 +883,7 @@ pacmedirectory->is(strPath))
          if (reserve_image(imagekey, iImage))
          {
 
-            ::file::path path = pcontext->m_papexcontext->dir().matter("remote.ico");
+            ::file::path path = pcontext->m_papexcontext->dir()->matter("remote.ico");
 
             add_icon_path(path, crBk, iImage);
 
@@ -898,7 +898,7 @@ pacmedirectory->is(strPath))
          if (reserve_image(imagekey, iImage))
          {
 
-            ::file::path path = pcontext->m_papexcontext->dir().matter("ftp.ico");
+            ::file::path path = pcontext->m_papexcontext->dir()->matter("ftp.ico");
 
             add_icon_path(path, crBk, iImage);
 
@@ -911,7 +911,7 @@ pacmedirectory->is(strPath))
       if (::str().ends_ci(imagekey.m_strPath, ".aura"))
       {
 
-         string str = pcontext->m_papexcontext->file().as_string(imagekey.m_strPath);
+         string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
 
          if (::str().begins_eat_ci(str, "ca2prompt\r\n"))
          {

@@ -474,12 +474,12 @@ namespace acme
 
       return open_global_named_mutex(pparticleContext, strName);
 
-   //__new(::install::pointer < ::mutex >(this, process_platform_dir_name2())
+   //__new(::install::pointer < ::mutex >(this, process_platform_name())
 
    }
 
 
-   ::pointer < ::acme::exclusive > node::get_exclusive(::particle * pparticleContext, const ::string & strName)
+   ::pointer < ::acme::exclusive > node::get_exclusive(::particle * pparticleContext, const ::string & strName ARG_SEC_ATTRS)
    {
 
       return nullptr;

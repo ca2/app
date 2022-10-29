@@ -69,8 +69,8 @@ namespace draw2d
 
    protected:
       friend class ::draw2d::object;
-      void add_object(::draw2d::particle * pparticle);
-      void erase_object(::draw2d::particle * pparticle);
+      void add_object(::draw2d::object * pobject);
+      void erase_object(::draw2d::object * pobject);
       friend class ::image;
       void add_image(::image * pimage);
       void erase_image(::image * pimage);

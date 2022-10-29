@@ -224,7 +224,7 @@ namespace app_core_build
 
       string_array straLine;
 
-      m_pcontext->m_papexcontext->file().get_lines(straLine, acmedirectory()->home() /"build.log");
+      file()->get_lines(straLine, acmedirectory()->home() /"build.log");
 
       ::point_i32 p;
 

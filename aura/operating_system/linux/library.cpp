@@ -1,6 +1,10 @@
 #include "framework.h"
+#include "acme/platform/library.h"
+#include "acme/primitive/string/string.h"
+#include "acme/filesystem/filesystem/path.h"
 #include <dlfcn.h>
 #include <link.h>
+
 
 struct query_loaded_library
 {

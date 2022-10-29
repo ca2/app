@@ -154,7 +154,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->dir().watcher().erase_watch(m_filewatchid);
+         pcontext->m_papexcontext->dir()->watcher().erase_watch(m_filewatchid);
 
       }
 
@@ -984,7 +984,7 @@ namespace filemanager
    void document::_001OnEditPaste(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      //pcontext->m_papexcontext->file().paste(pfilemanagerdata->filemanager_item().m_strPath, psystem->m_strCopy);
+      //pcontext->m_papexcontext->file()->paste(pfilemanagerdata->filemanager_item().m_strPath, psystem->m_strCopy);
       //update_all_impacts(nullptr, 123, nullptr);
       //pmessage->m_bRet = true;
    }

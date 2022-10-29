@@ -213,7 +213,7 @@ namespace userfs
             if (path.m_iDir < 0)
             {
 
-               (*m_pitema)[psubitem->m_pitem->m_iItem]->set_final_path_dir(pcontext->m_papexcontext->dir().is(path) ? 1 : 0);
+               (*m_pitema)[psubitem->m_pitem->m_iItem]->set_final_path_dir(pcontext->m_papexcontext->dir()->is(path) ? 1 : 0);
 
             }
 
@@ -229,7 +229,7 @@ namespace userfs
                if (path.m_iSize < 0)
                {
 
-                  path.m_iSize = pcontext->m_papexcontext->file().length(path);
+                  path.m_iSize = pcontext->m_papexcontext->file()->length(path);
 
                }
 

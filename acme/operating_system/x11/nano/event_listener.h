@@ -5,6 +5,7 @@
 
 
 #include <X11/Xlib.h>
+#include "acme/primitive/primitive/element.h"
 
 
 namespace x11

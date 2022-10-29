@@ -18,11 +18,13 @@
 #include "acme/filesystem/file/memory_file.h"
 #include "apex/id.h"
 #include "acme/networking/url_department.h"
+#include "acme/operating_system/process.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/datetime/department.h"
+#include "acme/primitive/string/command_line.h"
 #include "apex/crypto/crypto.h"
 #include "apex/message/message.h"
 #include "apex/operating_system.h"
@@ -1244,7 +1246,7 @@ pacmedirectory->create("/ca2core");
 
       bool bMatterFromResource = false;
 
-      auto pfile = m_papexsystem->file().create_resource_file("app/_matter/main/_std/_std/thomasborregaardsorensen.txt");
+      auto pfile = m_papexsystem->file()->create_resource_file("app/_matter/main/_std/_std/thomasborregaardsorensen.txt");
 
       if (pfile)
       {
@@ -1379,7 +1381,7 @@ pacmedirectory->create("/ca2core");
 //
 //#endif
 
-      auto strMain = m_pcontext->m_papexcontext->dir().install() / "app/_appmatter/main";
+      auto strMain = dir()->install() / "app/_appmatter/main";
 
       if (!m_ptexttable->load(strMain))
       {
@@ -2527,7 +2529,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_restored);
+            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, strParameters, nullptr, e_display_restored);
 
             plauncher->launch();
 
@@ -2562,7 +2564,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, nullptr, nullptr, e_display_restored);
+            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, nullptr, nullptr, e_display_restored);
 
             plauncher->launch();
 
@@ -2602,7 +2604,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_restored);
+            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, strParameters, nullptr, e_display_restored);
 
             plauncher->launch();
 
@@ -2636,7 +2638,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_restored);
+            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, strParameters, nullptr, e_display_restored);
 
             plauncher->launch();
 
@@ -2883,7 +2885,7 @@ pacmedirectory->create("/ca2core");
 ////      if(has_property("install"))
 ////         return true;
 ////
-////      file_pointer pfile = m_pcontext->m_papexcontext->file().get_file(m_pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
+////      file_pointer pfile = file()->get_file(dir()->appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
 ////
 ////      if(!pfile)
 ////         return false;
@@ -2916,7 +2918,7 @@ pacmedirectory->create("/ca2core");
 ////
 ////      ::file::listing straTitle(this);
 ////
-////      ::file::path pathCa2Module = m_pcontext->m_papexcontext->dir().ca2module();
+////      ::file::path pathCa2Module = dir()->ca2module();
 ////
 ////      ::output_debug_string("\n\n::apex::system::find_applications_to_cache\n\n");
 ////
@@ -2959,7 +2961,7 @@ pacmedirectory->create("/ca2core");
 ////      try
 ////      {
 ////
-////         file = psession->file().get_file(m_pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
+////         file = psession->file()->get_file(dir()->appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
 ////
 ////      }
 ////      catch(::exception &)
@@ -3513,7 +3515,7 @@ pacmedirectory->create("/ca2core");
    string system::standalone_setting(string str)
    {
 
-      return acmefile()->as_string(m_pcontext->m_papexcontext->dir().standalone() / (str + ".txt"));
+      return acmefile()->as_string(dir()->standalone() / (str + ".txt"));
 
    }
 
@@ -3521,7 +3523,7 @@ pacmedirectory->create("/ca2core");
    void system::set_standalone_setting(string str, string strSetting)
    {
 
-      acmefile()->put_contents(m_pcontext->m_papexcontext->dir().standalone() / (str + ".txt"), strSetting);
+      acmefile()->put_contents(dir()->standalone() / (str + ".txt"), strSetting);
 
    }
 
@@ -3749,7 +3751,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
       if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
       {
 
-         strWeather = m_pcontext->m_papexcontext->file().as_string(acmedirectory()->system() / "browser_weather.txt");
+         strWeather = file()->as_string(acmedirectory()->system() / "browser_weather.txt");
 
       }
 
@@ -4199,7 +4201,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
 #else
 
-      if (m_pcontext->m_papexcontext->dir().is(pathProfile))
+      if (dir()->is(pathProfile))
       {
 
          return;
@@ -4214,7 +4216,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
       pathProfileDir = pathProfile.folder();
 
-      m_pcontext->m_papexcontext->dir().create(pathProfileDir);
+      dir()->create(pathProfileDir);
 
       string strParam = "-no-remote -CreateProfile \"" + strProfileName + " " + pathProfile + "\"";
 
@@ -4269,7 +4271,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
       //}
 
-      if (!m_pcontext->m_papexcontext->file().exists(strBrowserPath) || !m_pcontext->m_papexcontext->dir().is(strBrowserDir))
+      if (!file()->exists(strBrowserPath) || !dir()->is(strBrowserDir))
       {
 
          throw ::exception(error_not_found);
@@ -4302,11 +4304,11 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
       if (strBrowser.has_char())
       {
 
-         m_pcontext->m_papexcontext->file().put_text_utf8(acmedirectory()->system() / "browser.txt", strBrowser);
+         file()->put_text_utf8(acmedirectory()->system() / "browser.txt", strBrowser);
 
-         m_pcontext->m_papexcontext->file().put_text_utf8(acmedirectory()->system() / "browser_path.txt", strBrowserPath);
+         file()->put_text_utf8(acmedirectory()->system() / "browser_path.txt", strBrowserPath);
 
-         m_pcontext->m_papexcontext->file().put_text_utf8(acmedirectory()->system() / "browser_dir.txt", strBrowserDir);
+         file()->put_text_utf8(acmedirectory()->system() / "browser_dir.txt", strBrowserDir);
 
       }
 
@@ -4730,7 +4732,7 @@ namespace apex
 
    {
 
-      string filename = m_pcontext->m_papexcontext->file().time_square();
+      string filename = file()->time_square();
 
       property_set set;
 
@@ -4759,13 +4761,13 @@ namespace apex
 
          set["cookies"] = pcookies;
 
-         m_pcontext->m_papexcontext->file().erase(filename);
+         file()->erase(filename);
 
          return m_pcontext->m_papexcontext->http().download(str, strLocation, set);
 
       }
 
-      str = m_pcontext->m_papexcontext->file().as_string(filename);
+      str = file()->as_string(filename);
 
       return true;
 

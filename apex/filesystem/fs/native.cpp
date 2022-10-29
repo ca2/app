@@ -29,7 +29,7 @@ namespace fs
    bool native::has_subdir(const ::file::path & path)
    {
 
-      return m_pcontext->m_papexcontext->dir().has_subdir(path);
+      return dir()->has_subdir(path);
 
    }
 
@@ -37,7 +37,7 @@ namespace fs
    bool native::enumerate(::file::listing & listing)
    {
 
-      return m_pcontext->m_papexcontext->dir().enumerate(listing);
+      return dir()->enumerate(listing);
 
    }
 
@@ -68,7 +68,7 @@ namespace fs
    /*::file::listing & native::ls_relative_name(::file::listing & listing)
    {
 
-      m_pcontext->m_papexcontext->dir().ls_relative_name(listing);
+      dir()->ls_relative_name(listing);
 
       return listing;
 
@@ -79,7 +79,7 @@ namespace fs
    int native::is_dir(const ::file::path & path)
    {
 
-      return m_pcontext->m_papexcontext->dir().is(path) ? 1 : 0;
+      return dir()->is(path) ? 1 : 0;
 
    }
 
@@ -87,11 +87,11 @@ namespace fs
    ::file::listing & native::root_ones(::file::listing & listing)
    {
 
-      m_pcontext->m_papexcontext->dir().root_ones(listing);
+      dir()->root_ones(listing);
 
       ::file::path pathDropbox = m_pcontext->m_papexcontext->defer_process_path("dropbox://");
 
-      if(pathDropbox.has_char() && m_pcontext->m_papexcontext->dir().is(pathDropbox))
+      if(pathDropbox.has_char() && dir()->is(pathDropbox))
       {
 
          ::file::path & path = listing.insert_at(0, "dropbox://");
@@ -104,7 +104,7 @@ namespace fs
 
       ::file::path pathDropboxApp = m_pcontext->m_papexcontext->defer_process_path("dropbox-app://");
 
-      if(pathDropboxApp.has_char() && m_pcontext->m_papexcontext->dir().is(pathDropboxApp))
+      if(pathDropboxApp.has_char() && dir()->is(pathDropboxApp))
       {
 
          ::file::path & path = listing.insert_at(0, "dropbox-app://");
@@ -117,7 +117,7 @@ namespace fs
 
       ::file::path pathOneDrive = m_pcontext->m_papexcontext->defer_process_path("onedrive://");
       
-      if(pathOneDrive.has_char() && m_pcontext->m_papexcontext->dir().is(pathOneDrive))
+      if(pathOneDrive.has_char() && dir()->is(pathOneDrive))
       {
          
          ::file::path & path = listing.insert_at(0, "onedrive://");
@@ -213,7 +213,7 @@ namespace fs
    //void native::get_ascendants_path(const ::file::path & pszPath,::file::path_array & stra)
    //{
 
-   //   return m_pcontext->m_papexcontext->file().get_ascendants_path(pszPath, stra);
+   //   return file()->get_ascendants_path(pszPath, stra);
 
    //}
 
@@ -222,7 +222,7 @@ namespace fs
 
    //{
 
-   //   return m_pcontext->m_papexcontext->file().get_ascendants_name(pcsz, straParam);
+   //   return file()->get_ascendants_name(pcsz, straParam);
 
 
    //}
@@ -236,7 +236,7 @@ namespace fs
    //   while(iCount > 0)
    //   {
 
-   //      strPath = m_pcontext->m_papexcontext->dir().name(strPath);
+   //      strPath = dir()->name(strPath);
 
    //      iCount--;
 
@@ -250,7 +250,7 @@ namespace fs
    //string native::file_name(const char * pszPath)
    //{
 
-   //   return m_pcontext->m_papexcontext->file().name_(pszPath);
+   //   return file()->name_(pszPath);
 
    //}
 
@@ -266,7 +266,7 @@ namespace fs
    bool native::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
    {
 
-      m_pcontext->m_papexcontext->file().move(pszDst, pszSrc);
+      file()->move(pszDst, pszSrc);
 
       return true;
 
@@ -309,7 +309,7 @@ namespace fs
    bool native::file_exists(const ::file::path & path)
    {
 
-      return m_pcontext->m_papexcontext->file().exists(path);
+      return file()->exists(path);
 
    }
 

@@ -63,7 +63,7 @@ void interprocess_intercommunication::initialize_interprocess_communication(::pa
 
    int iPid = m_pcontext->m_papexcontext->os_context()->get_pid();
 
-   //defer_add_module(m_pcontext->m_papexcontext->file().module(), iPid);
+   //defer_add_module(file()->module(), iPid);
 
 //      ::file::path path;
 //
@@ -145,7 +145,7 @@ void interprocess_intercommunication::start(const ::string & strApp)
 
    auto plauncher = __new(::apex::app_launcher);
    
-   plauncher->initialize_app_launcher(this, process_platform_dir_name2(), strApp);
+   plauncher->initialize_app_launcher(this, process_platform_name(), strApp);
 
    atom idPid = -1;
 
@@ -829,7 +829,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
 
    m_straModule = straUnique;
 
-   ::file::path pathThisModule = m_pcontext->m_papexcontext->file().module();
+   ::file::path pathThisModule = file()->module();
 
    string strItem;
 
@@ -850,7 +850,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
 
    strModuleList = m_straModule.implode("\n");
 
-   m_pcontext->m_papexcontext->file().put_text(pathModule,strModuleList);
+   file()->put_text(pathModule,strModuleList);
 
 #endif
 

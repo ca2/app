@@ -59,12 +59,12 @@ namespace sockets
    void http_put_socket::SetFile(const string & file)
    {
 
-      if(m_pcontext->m_papexcontext->file().exists(file))
+      if(::particle::file()->exists(file))
       {
 
          m_filename = file;
 
-         m_content_length = m_pcontext->m_papexcontext->file().length(file);
+         m_content_length = ::particle::file()->length(file);
 
       }
       else

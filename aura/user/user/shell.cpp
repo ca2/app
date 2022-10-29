@@ -1,6 +1,9 @@
 ﻿#include "framework.h"
 #include "window_util.h"
 #include "interaction.h"
+#include "acme/networking/url_department.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -181,6 +184,28 @@ namespace user
 
    }
 
+   ::aura::application * shell::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pauraapplication : nullptr;
+
+   }
+
+
+   ::aura::session *shell:: get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
+
+   }
+
+
+   ::aura::system * shell::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
+
+   }
 
 
    bool shell::reserve_image(_get_file_image_ & getfileimage)
@@ -782,7 +807,7 @@ namespace user
 //
 //         auto pcontext = m_pcontext;
 //
-//         ::file::path path = pcontext->m_papexcontext->dir().matter("cloud.ico");
+//         ::file::path path = pcontext->m_papexcontext->dir()->matter("cloud.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -808,7 +833,7 @@ namespace user
 //
 //         auto pcontext = m_pcontext;
 //
-//         ::file::path path = pcontext->m_papexcontext->dir().matter("remote.ico");
+//         ::file::path path = pcontext->m_papexcontext->dir()->matter("remote.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -834,7 +859,7 @@ namespace user
 //
 //         auto pcontext = m_pcontext;
 //
-//         ::file::path path = pcontext->m_papexcontext->dir().matter("ftp.ico");
+//         ::file::path path = pcontext->m_papexcontext->dir()->matter("ftp.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -861,14 +886,14 @@ namespace user
 //
 //         auto pcontext = m_pcontext;
 //
-//         string str = pcontext->m_papexcontext->file().as_string(getfileimage.m_imagekey.m_strPath);
+//         string str = pcontext->m_papexcontext->file()->as_string(getfileimage.m_imagekey.m_strPath);
 //
 //         if (::str().begins_eat_ci(str, "ca2prompt\r\n"))
 //         {
 //
 //            str.trim();
-//            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-//            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+//            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+//            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
 //            synchronous_lock sl1(m_pil48Hover->mutex());
 //            synchronous_lock sl2(m_pil48->mutex());
 //            iImage = m_pil16->add_icon_os_data(hicon16);
@@ -954,7 +979,7 @@ namespace user
 
          auto pcontext = m_pcontext;
 
-         ::file::path path = pcontext->m_papexcontext->dir().matter("cloud.ico");
+         ::file::path path = pcontext->m_papexcontext->dir()->matter("cloud.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -966,7 +991,7 @@ namespace user
 //
 //            }
 
-         single_lock synchronouslock(mutex(), true);
+         single_lock synchronouslock(synchronization(), true);
 
          m_imagemap.set_at(getfileimage.m_imagekey, getfileimage.m_iImage);
 
@@ -980,7 +1005,7 @@ namespace user
 
          auto pcontext = m_pcontext;
 
-         ::file::path path = pcontext->m_papexcontext->dir().matter("remote.ico");
+         ::file::path path = pcontext->m_papexcontext->dir()->matter("remote.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -992,7 +1017,7 @@ namespace user
 //
 //            }
 
-         single_lock synchronouslock(mutex(), true);
+         single_lock synchronouslock(synchronization(), true);
 
          m_imagemap.set_at(getfileimage.m_imagekey, getfileimage.m_iImage);
 
@@ -1006,7 +1031,7 @@ namespace user
 
          auto pcontext = m_pcontext;
 
-         ::file::path path = pcontext->m_papexcontext->dir().matter("ftp.ico");
+         ::file::path path = pcontext->m_papexcontext->dir()->matter("ftp.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1018,7 +1043,7 @@ namespace user
 //
 //            }
 
-         single_lock synchronouslock(mutex(), true);
+         single_lock synchronouslock(synchronization(), true);
 
          m_imagemap.set_at(getfileimage.m_imagekey, getfileimage.m_iImage);
 
@@ -1033,14 +1058,14 @@ namespace user
 
          auto pcontext = m_pcontext;
 
-         string str = pcontext->m_papexcontext->file().as_string(strPath);
+         string str = pcontext->m_papexcontext->file()->as_string(strPath);
 
          if (::str().begins_eat_ci(str, "ca2prompt\r\n"))
          {
 
             str.trim();
-            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
             synchronous_lock sl1(m_pil48Hover->mutex());
             synchronous_lock sl2(m_pil48->mutex());
             iImage = m_pil16->add_icon_os_data(hicon16);
@@ -1124,7 +1149,7 @@ namespace user
          if(m_bGetFileImageByFileImage)
          {
             
-            auto pacmepath = acme_path();
+            auto pacmepath = acmepath();
          
             if(pacmepath->has_custom_icon(strPath))
             {
@@ -1166,6 +1191,8 @@ namespace user
    }
 
 
+
+
    bool shell::defer_get_file_image_by_icon_path(_get_file_image_ & getfileimage)
    {
 
@@ -1180,7 +1207,7 @@ namespace user
 
          auto pcontext = m_pcontext;
 
-         string str = pcontext->m_papexcontext->file().as_string(getfileimage.m_imagekey.m_strPath);
+         string str = pcontext->m_papexcontext->file()->as_string(getfileimage.m_imagekey.m_strPath);
 
          string_array stra;
 

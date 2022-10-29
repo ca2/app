@@ -6,6 +6,7 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "apex/operating_system.h"
@@ -76,9 +77,9 @@ namespace apex
 
       auto pcontext = get_context();
 
-      ::file::path pathCandidate = m_pcontext->m_papexcontext->dir().module() / strExe;
+      ::file::path pathCandidate = dir()->module() / strExe;
 
-      if (m_pcontext->m_papexcontext->file().exists(pathCandidate))
+      if (file()->exists(pathCandidate))
       {
 
          return ::move(pathCandidate);

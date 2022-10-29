@@ -2,6 +2,7 @@
 
 
 #include "graphics.h"
+#include "acme/filesystem/file/memory_map.h"
 
 
 namespace graphics

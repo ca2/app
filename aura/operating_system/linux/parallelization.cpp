@@ -1,5 +1,10 @@
 #include "framework.h"
-#include "_linux.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/platform/node.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/primitive/object.h"
+
+
 //#include "gnome_gnome.h"
 
 

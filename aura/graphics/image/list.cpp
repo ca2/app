@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "list.h"
 #include "image.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/drawing.h"
@@ -441,7 +442,7 @@ i32 image_list::reserve_image(int iItem)
 //
 //   auto pcontext = get_context();
 //
-//   return add_icon(pcontext->m_papexcontext->dir().matter(pszMatter));
+//   return add_icon(pcontext->m_papexcontext->dir()->matter(pszMatter));
 //
 //}
 //
@@ -622,7 +623,7 @@ i32 image_list::set(int iItem, const image_drawing & imagedrawing)
 //
 //   auto pcontext = get_context();
 //
-//   return add_file(pcontext->m_papexcontext->dir().matter(pcsz), iItem);
+//   return add_file(pcontext->m_papexcontext->dir()->matter(pcsz), iItem);
 //
 //}
 

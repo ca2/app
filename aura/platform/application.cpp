@@ -65,7 +65,7 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 #undef _GNU_SOURCE
 
 //#include "aura/node/ansios/ansios.h"
-#include "aura/operating_system/linux/_linux.h"
+//#include "aura/operating_system/linux/_linux.h"
 
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
@@ -1895,7 +1895,7 @@ retry_license:
 
 //          auto psystem = get_system()->m_paurasystem;
 
-//          string strModuleName = psystem->file().module();
+//          string strModuleName = psystem->file()->module();
 
 //          acmesystem()->m_pnode->install_crash_dump_reporting(strModuleName);
 
@@ -2906,7 +2906,7 @@ retry_license:
 //
 //         synchronous_lock synchronouslock(this->synchronization());
 //
-//         file().add_contents(dir().appdata() / (file().module().name() + "_log_error.txt"), strMessage);
+//         file()->add_contents(dir()->appdata() / (file()->module().name() + "_log_error.txt"), strMessage);
 //
 //      }
 //
@@ -2938,7 +2938,7 @@ retry_license:
 //
 //      static int g_iCount = 0;
 //
-//      string strFile = dir().appdata() / (file().module().name() + "_log_error.txt");
+//      string strFile = dir()->appdata() / (file()->module().name() + "_log_error.txt");
 //
 //      g_iCount++;
 //
@@ -4785,7 +4785,7 @@ retry_license:
 
       auto pcontext = get_context();
 
-      ::file::path strFile = dir().install() / strRelative;
+      ::file::path strFile = dir()->install() / strRelative;
 
       ::file::path strUrl(::e_path_url);
 
@@ -4845,7 +4845,7 @@ retry_license:
 
 //         zip_context zip(this);
 
-         auto pfolder = m_pcontext->m_papexcontext->file().get_folder(&file, "zip", ::file::e_open_read);
+         auto pfolder = file()->get_folder(&file, "zip", ::file::e_open_read);
 
          string strDir = strFile;
 
@@ -4931,24 +4931,24 @@ retry_license:
 
       auto pcontext = get_context();
 
-      string strMatter = dir().matter(::file::path(pszMatter) / pszMatter2);
+      string strMatter = dir()->matter(::file::path(pszMatter) / pszMatter2);
 
       payloadFile["url"] = strMatter;
 
-      return file().as_string(payloadFile);
+      return file()->as_string(payloadFile);
 
    }
 
-   //string application::dir().matter(const ::string & pszMatter, const ::string & pszMatter2)
+   //string application::dir()->matter(const ::string & pszMatter, const ::string & pszMatter2)
    //{
 
-   //   return dir().matter(pszMatter,pszMatter2);
+   //   return dir()->matter(pszMatter,pszMatter2);
 
    //}
 
    //bool application::is_inside_time_dir(const ::string & pszPath)
    //{
-   //   return dir().is_inside_time(pszPath);
+   //   return dir()->is_inside_time(pszPath);
    //}
 
 
@@ -4956,7 +4956,7 @@ retry_license:
    //{
 
    //   return false;
-   //   //return file().is_read_only(pszPath);
+   //   //return file()->is_read_only(pszPath);
 
    //}
 
@@ -5221,7 +5221,7 @@ retry_license:
 //
 //      {
 //
-//         ::installpointer< class ::pointer < ::mutex > > ::pointer < ::mutex >(process_platform_dir_name2());
+//         ::installpointer< class ::pointer < ::mutex > > ::pointer < ::mutex >(process_platform_name());
 //
 //         if (::pointer < ::mutex >.already_exists())
 //         {
@@ -5247,7 +5247,7 @@ retry_license:
 //
 //         ::property_set set;
 //
-//         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_name()), pszCommandLine, ::path::app_app(process_platform_dir_name2(), process_configuration_name()), e_display_restored, 2_min, set);
+//         return ::call_sync(::path::app_app(process_platform_name(), process_configuration_name()), pszCommandLine, ::path::app_app(process_platform_name(), process_configuration_name()), e_display_restored, 2_min, set);
 //
 //#endif
 //
@@ -7414,7 +7414,7 @@ namespace aura
 //      throw ::exception(todo);
 //      /*#elif defined(LINUX)
 //
-//      //      synchronous_lock synchronouslock(&user_mutex());
+//      //      synchronous_lock synchronouslock(&user_synchronization());
 //
 //      xdisplay pdisplay.
 //      pdisplay.open(nullptr) = x11_get_display();
@@ -7629,7 +7629,7 @@ namespace aura
 ////      // i16 file name so we need to use the i16 file name.
 ////      string strShortName;
 ////
-////      strShortName = file().module();
+////      strShortName = file()->module();
 ////
 ////      // strip out path
 ////      //string strFileName = ::PathFindFileName(strShortName);
@@ -8826,7 +8826,7 @@ namespace aura
 
       ::file::path path = acmedirectory()->config() / "programming/vs_build.txt";
 
-      string strBuild = file().as_string(path);
+      string strBuild = file()->as_string(path);
 
       strBuild.trim();
 
@@ -8840,7 +8840,7 @@ namespace aura
 
       string strFileName = string(psz) + string(".wav");
 
-      string strFilePath = dir().matter(strFileName);
+      string strFilePath = dir()->matter(strFileName);
 
       return strFilePath;
 

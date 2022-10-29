@@ -319,7 +319,7 @@ int ifs::is_dir(const ::file::path & path)
 
       listing.set_listing(path.folder());
 
-      m_pcontext->m_papexcontext->dir().enumerate(listing);
+      ::particle::dir()->enumerate(listing);
 
    }
 

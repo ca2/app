@@ -249,6 +249,10 @@ inline vector4 Reflect(const vector4 & Incident,const vector4 & Normal)
 #endif // VECTOR3_SSE
 
 
+#include "acme/primitive/collection/numeric_array.h"
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/geometry2d/size.h"
+
 
 namespace draw2d
 {
@@ -282,16 +286,16 @@ namespace draw2d
 
 #endif // VECTOR3_SSE
 
-      ::size_i32            m_size;
-      i32               m_iRadius;
-      byte_array        m_uchaR;
-      byte_array        m_uchaG;
-      byte_array        m_uchaB;
-      byte_array        m_uchaA;
-      byte_array        m_uchaDiv;
-      u32_array        m_uia;
-      i64_array       m_iaVmin;
-      i64_array       m_iaVmax;
+      ::size_i32           m_size;
+      i32                  m_iRadius;
+      byte_array           m_uchaR;
+      byte_array           m_uchaG;
+      byte_array           m_uchaB;
+      byte_array           m_uchaA;
+      byte_array           m_uchaDiv;
+      u32_array            m_uia;
+      i64_array            m_iaVmin;
+      i64_array            m_iaVmax;
 
 
       fastblur();

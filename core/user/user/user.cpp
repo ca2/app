@@ -334,7 +334,7 @@ namespace core
 //
 //      auto pcontext = get_context();
 //
-//      string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "langstyle_settings.xml");
+//      string strUser = pcontext->m_papexcontext->file()->as_string(pcontext->m_papexcontext->dir()->appdata() / "langstyle_settings.xml");
 //
 //      string strLangUser;
 //

@@ -97,7 +97,13 @@ public:
    virtual void operator()(const ::payload & payload);
 
 
-
+    //// <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
+   virtual void handle_command(const ::atom & atom);
+//{
+//
+//   //return ::success_none;
+//
+//}
 
    inline bool has_error() const {return m_uError != 0;}
 

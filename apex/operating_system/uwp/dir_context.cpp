@@ -67,7 +67,7 @@ namespace universal_windows
 
       //auto pdocument = create_xml_document();
 
-      //pdocument->load(pcontext->m_papexcontext->file().as_string(appdata() / "configuration\\directory.xml"));
+      //pdocument->load(pcontext->m_papexcontext->file()->as_string(appdata() / "configuration\\directory.xml"));
 
       //if (pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
       //{
@@ -189,7 +189,7 @@ pacmedirectory->ca2roaming() / "home";
 
                }
 
-               get_app()->dir().ls(listing);
+               get_app()->dir()->ls(listing);
 
             }
 
@@ -382,7 +382,7 @@ pacmedirectory->ca2roaming() / "home";
 
    ::file::path dir_context::warehouse()
    {
-      return pcontext->m_papexcontext->dir().ca2module();
+      return pcontext->m_papexcontext->dir()->ca2module();
    }
 
    ::file::path dir_context::time()
@@ -490,7 +490,7 @@ pacmedirectory->ca2roaming() / "home";
                try
                {
 
-                  pcontext->m_papexcontext->file().del(str);
+                  pcontext->m_papexcontext->file()->del(str);
 
                }
                catch (...)
@@ -505,7 +505,7 @@ pacmedirectory->ca2roaming() / "home";
                try
                {
 
-                  pcontext->m_papexcontext->file().del(str);
+                  pcontext->m_papexcontext->file()->del(str);
 
                }
                catch (...)

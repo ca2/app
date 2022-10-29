@@ -13,7 +13,23 @@
 #include "acme/primitive/geometry2d/size.h"
 
 
+#include "acme/constant/character_set.h"
+
+
+#include "acme/primitive/collection/comparable_eq_array.h"
+#include "acme/primitive/collection/comparable_array.h"
+
+
+#include "acme/primitive/collection/string_map.h"
+
+
+#include "acme/filesystem/filesystem/path.h"
+
+
 #include "font_descriptor.h"
+
+
+#include "_constant.h"
 
 
 namespace write_text

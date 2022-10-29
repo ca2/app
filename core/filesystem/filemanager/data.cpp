@@ -301,9 +301,9 @@ namespace filemanager
 
          }
 
-         //pcontext->m_papexcontext->dir().create(strPath);
+         //pcontext->m_papexcontext->dir()->create(strPath);
 
-         if (pcontext->m_papexcontext->dir().is(strPath))
+         if (pcontext->m_papexcontext->dir()->is(strPath))
          {
 
             return strPath;
@@ -321,7 +321,7 @@ namespace filemanager
       else
       {
 
-         strPath = pcontext->m_papexcontext->dir().desktop();
+         strPath = pcontext->m_papexcontext->dir()->desktop();
 
       }*/
 

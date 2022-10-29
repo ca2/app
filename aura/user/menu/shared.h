@@ -7,7 +7,11 @@
 #pragma once
 
 
-class system;
+
+#include "acme/primitive/primitive/element.h"
+
+
+//class system;
 
 
 class CLASS_DECL_AURA menu_shared :

@@ -21,7 +21,7 @@ namespace user
 
 
       void dump(dump_context&) const override;
-      void assert_ok() const override;
+      // void assert_ok() const override;
 
 
       virtual ::user::interaction* impact_at(::index iImpact) const;

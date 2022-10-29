@@ -306,7 +306,7 @@ namespace sockets
 
    void sip_base_client_socket::SendResponseBody()
    {
-      //SendBuf((const char *) response().file().get_data(), response().file().get_size());
+      //SendBuf((const char *) response().file()->get_data(), response().file()->get_size());
    }
 
 

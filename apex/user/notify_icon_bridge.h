@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/element.h"
+
+
 struct user_notify_icon_bridge :
    virtual public ::element
 {

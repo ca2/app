@@ -41,7 +41,7 @@
 //
 //CLASS_DECL_APEX string time_binary_platform(string strPlatform);
 //CLASS_DECL_APEX string process_platform_name();
-//CLASS_DECL_APEX string process_platform_dir_name2();
+//CLASS_DECL_APEX string process_platform_name();
 //CLASS_DECL_APEX string process_version_dir_name();
 //
 //CLASS_DECL_APEX ::file::path core_app_path(string strApp);

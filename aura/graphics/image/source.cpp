@@ -6,7 +6,7 @@
 #include "context_image.h"
 #include "image.h"
 #include "icon.h"
-
+#include "acme/platform/context.h"
 
 
 image_payload::image_payload(::particle * pparticle, const ::payload & payload):

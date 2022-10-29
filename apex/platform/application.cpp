@@ -15,10 +15,12 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/networking/url_department.h"
+#include "acme/operating_system/process.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/profiler.h"
 #include "acme/primitive/datetime/department.h"
+#include "acme/primitive/string/command_line.h"
 #include "acme/primitive/text/context.h"
 #include "apex/message/application.h"
 #include "apex/id.h"
@@ -632,7 +634,7 @@ namespace apex
 
       }
 
-      return m_pcontext->m_papexcontext->file().module().title();
+      return file()->module().title();
 
    }
 
@@ -662,7 +664,7 @@ namespace apex
 
       auto pathIni = pathFolder / "this.ini";
 
-      auto pini = m_pcontext->m_papexcontext->file().get_ini(pathIni);
+      auto pini = file()->get_ini(pathIni);
 
       return pini;
 
@@ -1812,7 +1814,7 @@ namespace apex
       if (m_pinterprocesscommunication)
       {
 
-         auto pathModule = m_pcontext->m_papexcontext->file().module();
+         auto pathModule = file()->module();
 
          auto processId = m_pcontext->m_papexcontext->os_context()->get_pid();
 
@@ -1828,7 +1830,7 @@ namespace apex
 
       //   ::file::path pathDatabase;
 
-      //   ::file::path pathFolder = m_pcontext->m_papexcontext->dir().appdata();
+      //   ::file::path pathFolder = dir()->appdata();
 
       //   if (is_system())
       //   {
@@ -2674,7 +2676,7 @@ namespace apex
 
          // #ifdef WINDOWS_DESKTOP
 
-         // acmesystem()->m_pnode->install_crash_dump_reporting(m_pcontext->m_papexcontext->file().module().name());
+         // acmesystem()->m_pnode->install_crash_dump_reporting(file()->module().name());
 
          // #endif
 
@@ -2741,8 +2743,8 @@ namespace apex
       string_array straLocale;
       string_array straSchema;
 
-      straLocale = payload("locale");
-      straSchema = payload("schema");
+      straLocale = payload("locale").stra();
+      straSchema = payload("schema").stra();
 
       ::file::path pathExe = acmefile()->module();
 
@@ -3576,7 +3578,7 @@ namespace apex
       if (!pexclusive)
       {
 
-         auto pexclusiveNew = __new(::acme::exclusive(this, strId ADD_PARAM_SEC_ATTRS));
+         auto pexclusiveNew = acmenode()->get_exclusive(this, strId ADD_PARAM_SEC_ATTRS);
 
          pexclusive = pexclusiveNew;
 
@@ -3983,7 +3985,7 @@ namespace apex
 
             auto pcall = m_pinterprocesscommunication->create_call("application", "on_additional_local_instance");
 
-            (*pcall)["module"] = m_pcontext->m_papexcontext->file().module();
+            (*pcall)["module"] = file()->module();
 
             (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->get_pid();
 
@@ -4042,7 +4044,7 @@ namespace apex
 
             auto pcall = m_pinterprocesscommunication->create_call("application", "on_additional_local_instance");
 
-            (*pcall)["module"] = m_pcontext->m_papexcontext->file().module();
+            (*pcall)["module"] = file()->module();
 
             (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->get_pid();
 
@@ -4647,7 +4649,7 @@ namespace apex
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         m_pcontext->m_papexcontext->file().add_contents(m_pcontext->m_papexcontext->dir().appdata() / (m_pcontext->m_papexcontext->file().module().name() + "_log_error.txt"), strMessage);
+         file()->add_contents(dir()->appdata() / (file()->module().name() + "_log_error.txt"), strMessage);
 
       }
 
@@ -4679,7 +4681,7 @@ namespace apex
 
       static int g_iCount = 0;
 
-      string strFile = m_pcontext->m_papexcontext->dir().appdata() / (m_pcontext->m_papexcontext->file().module().name() + "_log_error.txt");
+      string strFile = dir()->appdata() / (file()->module().name() + "_log_error.txt");
 
       g_iCount++;
 
@@ -5470,9 +5472,7 @@ namespace apex
 
       auto psystem = get_system()->m_papexsystem;
 
-      auto & file = psystem->file();
-
-      string strNetworkPayload = file.safe_get_string(acmedirectory()->config() / strAppId / +"http.network_payload");
+      string strNetworkPayload = file()->safe_get_string(acmedirectory()->config() / strAppId / +"http.network_payload");
 
       if (strNetworkPayload.has_char())
       {
@@ -6176,19 +6176,19 @@ namespace apex
    //      if (is_system())
    //      {
 
-   //         pathDatabase = m_pcontext->m_papexcontext->dir().appdata() / "system.sqlite";
+   //         pathDatabase = dir()->appdata() / "system.sqlite";
 
    //      }
    //      else if (is_session())
    //      {
 
-   //         pathDatabase = m_pcontext->m_papexcontext->dir().appdata() / "session.sqlite";
+   //         pathDatabase = dir()->appdata() / "session.sqlite";
 
    //      }
    //      else
    //      {
 
-   //         pathDatabase = m_pcontext->m_papexcontext->dir().appdata() / "app.sqlite";
+   //         pathDatabase = dir()->appdata() / "app.sqlite";
 
    //      }
 
@@ -6533,7 +6533,7 @@ namespace apex
       string strSchema;
       INFORMATION("update_appmatter(root=" << pszRoot << ", relative=" << pszRelative << ", locale=" << pszLocale << ", style=" << pszStyle << ")");
       ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
-      ::file::path strFile = m_pcontext->m_papexcontext->dir().install() / strRelative;
+      ::file::path strFile = dir()->install() / strRelative;
       ::file::path strUrl(::e_path_url);
 
       if (framework_is_basis())
@@ -6590,7 +6590,7 @@ namespace apex
 
          //zip_context zip(this);
 
-         auto pfolder = m_pcontext->m_papexcontext->file().get_folder(&file, "zip", ::file::e_open_read);
+         auto pfolder = ::particle::file()->get_folder(&file, "zip", ::file::e_open_read);
 
          string strDir = strFile;
 
@@ -6670,24 +6670,24 @@ namespace apex
 
       payloadFile["disable_ca2_sessid"] = true;
 
-      string strMatter = m_pcontext->m_papexcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
+      string strMatter = dir()->matter(::file::path(pszMatter) / pszMatter2);
 
       payloadFile["url"] = strMatter;
 
-      return m_pcontext->m_papexcontext->file().as_string(payloadFile);
+      return file()->as_string(payloadFile);
 
    }
 
-   //string application::dir().matter(const ::string & pszMatter,const ::string & pszMatter2)
+   //string application::dir()->matter(const ::string & pszMatter,const ::string & pszMatter2)
    //{
 
-   //   return dir().matter(pszMatter,pszMatter2);
+   //   return dir()->matter(pszMatter,pszMatter2);
 
    //}
 
    //bool application::is_inside_time_dir(const ::string & pszPath)
    //{
-   //   return dir().is_inside_time(pszPath);
+   //   return dir()->is_inside_time(pszPath);
    //}
 
 
@@ -6695,7 +6695,7 @@ namespace apex
    //{
 
    //   return false;
-   //   //return file().is_read_only(pszPath);
+   //   //return file()->is_read_only(pszPath);
 
    //}
 
@@ -6978,7 +6978,7 @@ namespace apex
 
       {
 
-         auto pmutex = acmenode()->get_install_mutex(this, process_platform_dir_name2(), "");
+         auto pmutex = acmenode()->get_install_mutex(this, process_platform_name(), "");
 
          if (pmutex->already_exists())
          {
@@ -7010,7 +7010,7 @@ namespace apex
 
          auto pnode = psystem->node();
 
-         return pnode->call_sync(acmedirectory()->app_app(process_platform_dir_name2(), process_configuration_name()), pszCommandLine, acmedirectory()->app_app(process_platform_dir_name2(), process_configuration_name()), e_display_restored, 2_minute, set);
+         return pnode->call_sync(acmedirectory()->app_app(process_platform_name(), process_configuration_name()), pszCommandLine, acmedirectory()->app_app(process_platform_name(), process_configuration_name()), e_display_restored, 2_minute, set);
 
 #endif
 
@@ -9116,7 +9116,7 @@ namespace apex
    //      throw ::exception(todo);
    //      /*#elif defined(LINUX)
    //
-   //      //      synchronous_lock synchronouslock(&user_mutex());
+   //      //      synchronous_lock synchronouslock(&user_synchronization());
    //
    //      xdisplay pdisplay.
    //      pdisplay.open(nullptr) = x11_get_display();
@@ -9278,7 +9278,7 @@ namespace apex
    ////      // i16 file name so we need to use the i16 file name.
    ////      string strShortName;
    ////
-   ////      strShortName = m_pcontext->m_papexcontext->file().module();
+   ////      strShortName = file()->module();
    ////
    ////      // strip out path
    ////      //string strFileName = ::PathFindFileName(strShortName);
@@ -9880,7 +9880,7 @@ namespace apex
 
       ::file::path path = acmedirectory()->config() / "programming/vs_build.txt";
 
-      string strBuild = m_pcontext->m_papexcontext->file().as_string(path);
+      string strBuild = file()->as_string(path);
 
       strBuild.trim();
 
@@ -9900,7 +9900,7 @@ namespace apex
          if (::is_url(path) || acmefile()->exists(path))
          {
 
-            return file().as_string(path);
+            return file()->as_string(path);
 
          }
 
@@ -9916,7 +9916,7 @@ namespace apex
 
       string strFileName = string(psz) + string(".wav");
 
-      string strFilePath = dir().matter(strFileName);
+      string strFilePath = dir()->matter(strFileName);
 
       return strFilePath;
 

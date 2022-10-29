@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "map.h"
 #include "image.h"
+#include "acme/platform/system.h"
 
 
 ::image * image_descriptor_map::operator[](const image_header & key)

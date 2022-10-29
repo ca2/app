@@ -684,7 +684,7 @@ namespace sphere
             {
                if(::str().ends_ci(pcreate->m_payloadFile, ".ca2"))
                {
-                  string strCommand = pcontext->m_papexcontext->file().as_string(pcreate->m_payloadFile);
+                  string strCommand = pcontext->m_papexcontext->file()->as_string(pcreate->m_payloadFile);
                   if(::str().begins_eat(strCommand, "ca2prompt\r")
                   || ::str().begins_eat(strCommand, "ca2prompt\n"))
                   {
@@ -802,7 +802,7 @@ namespace sphere
 
    //   string strSentinelPath;
 
-   //   strSentinelPath = pcontext->m_papexcontext->dir().install() / "stage/x86/app.sentinel.exe";
+   //   strSentinelPath = pcontext->m_papexcontext->dir()->install() / "stage/x86/app.sentinel.exe";
 
    //   pcontext->m_papexcontext->os().local_machine_set_run("ca2 app.sentinel", "\"" + strSentinelPath + "\"", true);
 

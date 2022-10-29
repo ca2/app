@@ -1,6 +1,13 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/collection/string_map.h"
+#include "apex/filesystem/filesystem/file_listener.h"
+
+
 namespace aura
 {
 
@@ -39,25 +46,25 @@ namespace aura
       };
 
 
-      //::pointer<runner>       m_prunnerChangeWeatherState;
-      ::file::watch_id           m_watchidWeather;
+      //::pointer<runner>                    m_prunnerChangeWeatherState;
+      ::file::watch_id                       m_watchidWeather;
 
 
-      string_array                    m_straTheme;
-      string                     m_strTheme;
-      ::file::path               m_pathTheme;
-      string_map < ::pointer<colors >> m_mapColors;
-      ::pointer<colors>                m_pcolors;
-      pointer_array < theme_listener >        m_listenera;
+      string_array                           m_straTheme;
+      string                                 m_strTheme;
+      ::file::path                           m_pathTheme;
+      string_map < ::pointer < colors > >    m_mapColors;
+      ::pointer < colors >                   m_pcolors;
+      pointer_array < theme_listener >       m_listenera;
 
 
-      string                     m_strWeatherState;
-      string                     m_strDayNight;
-      string                     m_strDayNightTheme;
+      string                                 m_strWeatherState;
+      string                                 m_strDayNight;
+      string                                 m_strDayNightTheme;
 
 
       theme();
-      virtual ~theme();
+      ~theme() override;
 
 
       virtual void initialize(::particle * pparticle) override;

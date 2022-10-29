@@ -63,7 +63,7 @@ namespace networking
 
       m_psocketthread->m_strIp = "127.0.0.1";
 
-      auto pfolder = acmesystem()->m_papexsystem->file().resource_folder();
+      auto pfolder = file()->resource_folder();
 
       //if (pfolder)
       //{

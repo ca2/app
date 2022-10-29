@@ -71,12 +71,12 @@
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = pcontext->m_papexcontext->file()->as_string("/system/etc/system_fonts.xml");
 //
 //      if (strSystemFonts.is_empty())
 //      {
 //
-//         strSystemFonts = pcontext->m_papexcontext->file().as_string("/system/etc/fonts.xml");
+//         strSystemFonts = pcontext->m_papexcontext->file()->as_string("/system/etc/fonts.xml");
 //
 //      }
 //

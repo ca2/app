@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/collection/tiny_array.h"
+#include "tiny_array.h"
 
 
 class CLASS_DECL_ACME osdata_array

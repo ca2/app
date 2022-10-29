@@ -196,7 +196,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
          //}
 
-         //auto pfile = m_pcontext->m_papexcontext->file().get_reader(pathZip);
+         //auto pfile = file()->get_reader(pathZip);
 
          //zip_context zip(this);
 
@@ -311,14 +311,14 @@ bool file_context::exists(const ::file::path &pathParam)
 ::file::path file_context::time_square(const string &pszPrefix, const string &pszSuffix)
 {
 
-   return time(m_pcontext->m_papexcontext->dir().time_square(), 25, pszPrefix, pszSuffix);
+   return time(dir()->time_square(), 25, pszPrefix, pszSuffix);
 
 }
 
 
 ::file::path file_context::time_log(const string &pszId)
 {
-   return time(m_pcontext->m_papexcontext->dir().time_log(pszId), 9);
+   return time(dir()->time_log(pszId), 9);
 }
 
 
@@ -345,7 +345,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
    str = psz;
 
-   m_pcontext->m_papexcontext->dir().create(str);
+   dir()->create(str);
 
    ::file::listing listing;
 
@@ -356,9 +356,9 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
    for (i32 i = 1; i <= iMaxLevel;)
    {
 
-      m_pcontext->m_papexcontext->dir().create(str);
+      dir()->create(str);
 
-      if (!m_pcontext->m_papexcontext->dir().is(str))
+      if (!dir()->is(str))
       {
 
          throw ::exception(error_path_not_found, "time square dir does not exist");
@@ -367,7 +367,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
       listing.set_listing(str);
 
-      m_pcontext->m_papexcontext->dir().enumerate(listing);
+      dir()->enumerate(listing);
 
       if (i < iMaxLevel)
       {
@@ -379,7 +379,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
             str /= "00";
 
-            m_pcontext->m_papexcontext->dir().create(str);
+            dir()->create(str);
 
          }
          else if (iMax == 99)
@@ -407,7 +407,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
             if (i == iIncLevel)
             {
 
-               m_pcontext->m_papexcontext->dir().create(str);
+               dir()->create(str);
 
             }
 
@@ -421,7 +421,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
          listing.set_listing(str);
 
-         m_pcontext->m_papexcontext->dir().enumerate(listing);
+         dir()->enumerate(listing);
 
          i32 iMax = bTryDelete ? 0 : filterex_time_square(pszPrefix, listing);
 
@@ -550,7 +550,7 @@ i32 file_context::filterex_time_square(const char *pszPrefix, ::file::path_array
 bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 {
 
-   if (m_pcontext->m_papexcontext->file().exists(path))
+   if (file()->exists(path))
    {
 
       if (!bTryDelete)
@@ -560,9 +560,9 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
       }
 
-      m_pcontext->m_papexcontext->file().erase(path);
+      file()->erase(path);
 
-      if (m_pcontext->m_papexcontext->file().exists(path))
+      if (file()->exists(path))
       {
 
          return false;
@@ -1461,7 +1461,7 @@ void file_context::calculate_main_resource_memory()
 void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, e_extract eextract)
 {
 
-   if (m_pcontext->m_papexcontext->dir().is(varSource.file_path()) &&
+   if (dir()->is(varSource.file_path()) &&
        (eextract == extract_first || eextract == extract_all || !(::str().ends_ci(varSource.file_path(), ".zip"))))
    {
 
@@ -1469,7 +1469,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       listing.set_listing(varSource, e_depth_recursively);
 
-      m_pcontext->m_papexcontext->dir().enumerate(listing);
+      dir()->enumerate(listing);
 
       ::file::path strDst;
       ::file::path strSrc;
@@ -1494,7 +1494,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          strDst = strDirDst / strDst;
 
-         if (m_pcontext->m_papexcontext->dir().is(strSrc))
+         if (dir()->is(strSrc))
          {
 
             if ((eextract == extract_first || eextract == extract_none) &&
@@ -1503,14 +1503,14 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             }
             else
             {
-               m_pcontext->m_papexcontext->dir().create(strDst);
+               dir()->create(strDst);
             }
          }
          else
          {
-            if (!m_pcontext->m_papexcontext->dir().is(strDst.folder()))
+            if (!dir()->is(strDst.folder()))
             {
-               m_pcontext->m_papexcontext->dir().create(strDst.folder());
+               dir()->create(strDst.folder());
             }
             copy(strDst, strSrc, bFailIfExists, eextract == extract_all ? extract_all : extract_none);
 
@@ -1524,10 +1524,10 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
       if (varTarget.file_path().has_char() && varSource.file_path().has_char())
       {
 
-         if (!m_pcontext->m_papexcontext->dir().is(varTarget.file_path().folder()))
+         if (!dir()->is(varTarget.file_path().folder()))
          {
 
-            m_pcontext->m_papexcontext->dir().create(varTarget.file_path().folder());
+            dir()->create(varTarget.file_path().folder());
 
          }
 
@@ -1564,7 +1564,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       ::payload varNew;
 
-      if (m_pcontext->m_papexcontext->dir().is(varTarget) && varSource.file_path().name().has_char())
+      if (dir()->is(varTarget) && varSource.file_path().name().has_char())
       {
 
          varNew = ::file::path(varTarget) / varSource.file_path().name();
@@ -1608,7 +1608,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             throw ::exception(::error_io, strError);
          }
 
-         m_pcontext->m_papexcontext->file().transfer(pfileOutput, pfileInput);
+         file()->transfer(pfileOutput, pfileInput);
 
          bool bStatusFail = false;
 
@@ -1898,7 +1898,7 @@ void file_context::erase(const ::file::path & path)
 {
    string strCopy("copy");
    string strNew;
-   if (m_pcontext->m_papexcontext->dir().is(psz))
+   if (dir()->is(psz))
    {
       i32 i = 1;
       while (i <= 100)
@@ -1967,9 +1967,9 @@ void file_context::erase(const ::file::path & path)
 void file_context::trash_that_is_not_trash(const ::file::path &psz)
 {
 
-   ::file::path strDir = m_pcontext->m_papexcontext->dir().trash_that_is_not_trash(psz);
+   ::file::path strDir = dir()->trash_that_is_not_trash(psz);
 
-   m_pcontext->m_papexcontext->dir().create(strDir);
+   dir()->create(strDir);
 
    move(strDir / psz.name(), psz);
 
@@ -1987,9 +1987,9 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 
    }
 
-   ::file::path strDir = m_pcontext->m_papexcontext->dir().trash_that_is_not_trash(stra[0]);
+   ::file::path strDir = dir()->trash_that_is_not_trash(stra[0]);
 
-   m_pcontext->m_papexcontext->dir().create(strDir);
+   dir()->create(strDir);
 
    for (i32 i = 0; i < stra.get_size(); i++)
    {
@@ -2004,7 +2004,7 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 ::pointer<::handle::ini>file_context::get_ini(const ::payload& payloadFile)
 {
 
-   auto preader = m_pcontext->m_papexcontext->file().get_reader(payloadFile, ::file::e_open_share_deny_none);
+   auto preader = file()->get_reader(payloadFile, ::file::e_open_share_deny_none);
 
    if (!::is_ok(preader))
    {
@@ -2070,7 +2070,7 @@ void file_context::replace_with(const ::file::path & pathContext, const string &
 
    listing.set_listing(pathContext);
 
-   m_pcontext->m_papexcontext->dir().enumerate(listing);
+   dir()->enumerate(listing);
 
    for (i32 i = 0; i < listing.get_size(); i++)
    {
@@ -2235,7 +2235,7 @@ file_pointer file_context::time_square_file(const string &pszPrefix, const strin
 file_pointer file_context::get(const ::file::path &name)
 {
 
-   m_pcontext->m_papexcontext->dir().create(name.name());
+   dir()->create(name.name());
 
    file_pointer fileOut = get_file(name, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 
@@ -2404,7 +2404,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   ::file::listing ls;
 //
-//   m_pcontext->m_papexcontext->dir().rls(ls, pszDir);
+//   dir()->rls(ls, pszDir);
 //
 //   dtf(pszFile, ls);
 //
@@ -2452,7 +2452,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //      if (::str().ends_ci(stra[i], ".zip"))
 //      {
 //      }
-//      else if (m_pcontext->m_papexcontext->dir().is(stra[i]))
+//      else if (dir()->is(stra[i]))
 //         continue;
 //      write_n_number(pfile, nullptr, 1);
 //      iPos = pfile->get_position();
@@ -2518,7 +2518,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //         MD5_Init(&ctx);
 //         read_gen_string(pfile, &ctx, strRelative);
 //         ::file::path strPath = ::file::path(pszDir) / strRelative;
-//         m_pcontext->m_papexcontext->dir().create(strPath.folder());
+//         dir()->create(strPath.folder());
 //         if (pfile2->open(strPath, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write).failed())
 //            throw ::exception(::exception("failed"));
 //         read_n_number(pfile, &ctx, iLen);
@@ -2764,7 +2764,7 @@ void file_context::init_context()
 //bool file_context::prepare_output(::stream & outputstream, path & pathDownloading, const ::stream & os)
 //{
 
-//   Sys(pparticle).dir().mk(pathOut.folder());
+//   Sys(pparticle).dir()->mk(pathOut.folder());
 
 //   file_pointer fileOut;
 
@@ -2777,7 +2777,7 @@ void file_context::init_context()
 
 //      pathDownloading = pathOut + ".downloading." + ::str().zero_pad(__string(iTry), 20);
 
-//      fileOut = papp->file().get_file(pathDownloading, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
+//      fileOut = papp->file()->get_file(pathDownloading, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 
 //      if (fileOut.is_set())
 //      {
@@ -2806,7 +2806,7 @@ void file_context::init_context()
 //bool file_context::prepare_input(::stream & is, const path & pathIn)
 //{
 
-//   file_pointer fileIn = Sess(pparticle).file().get_file(pathIn, ::file::e_open_binary | ::file::e_open_read);
+//   file_pointer fileIn = Sess(pparticle).file()->get_file(pathIn, ::file::e_open_binary | ::file::e_open_read);
 
 //   if (fileIn.is_null())
 //   {
@@ -3092,7 +3092,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 #else
       pathCache.replace_with("_/", "://");
 #endif
-      pathCache = m_pcontext->m_papexcontext->dir().cache() / (pathCache + ".cache");
+      pathCache = dir()->cache() / (pathCache + ".cache");
 
    }
 
@@ -3168,7 +3168,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
          pmemoryfile->seek_to_begin();
 
-         auto pfileOut = m_pcontext->m_papexcontext->file().get_writer(pathCache);
+         auto pfileOut = file()->get_writer(pathCache);
 
          transfer(pfileOut, pmemoryfile);
 
@@ -3837,7 +3837,7 @@ bool file_context::is_link(string strPath)
 //::file_pointer file_context::get_file(const ::payload & payloadFile, ::u32 nOpenFlags)
 //{
 //
-//   return m_pcontext->m_papexcontext->file().get_file(get_app(), payloadFile, nOpenFlags);
+//   return file()->get_file(get_app(), payloadFile, nOpenFlags);
 //
 //}
 
@@ -3921,7 +3921,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pathOut, pszSource);
+//   return file()->transfer(get_app(), pathOut, pszSource);
 
 
 //}
@@ -3930,7 +3930,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(const path & pathOut, ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pathOut, pfileIn);
+//   return file()->transfer(get_app(), pathOut, pfileIn);
 
 //}
 
@@ -3938,7 +3938,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(const path & pathOut, ::file::file & reader)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pathOut, reader);
+//   return file()->transfer(get_app(), pathOut, reader);
 
 //}
 
@@ -3946,7 +3946,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(::file::file * pfileOut, ::file::file * pfileIn)
 //{
 //
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pfileOut, pfileIn);
+//   return file()->transfer(get_app(), pfileOut, pfileIn);
 //
 //}
 
@@ -3954,7 +3954,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(file * pfileOut, ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pfileOut, pfileIn);
+//   return file()->transfer(get_app(), pfileOut, pfileIn);
 
 //}
 
@@ -3962,7 +3962,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(file * pfileOut, ::file::file & is)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), *pfileOut, is);
+//   return file()->transfer(get_app(), *pfileOut, is);
 
 //}
 
@@ -3970,7 +3970,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(::file::file & os, const path & pszSource)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), os, pszSource);
+//   return file()->transfer(get_app(), os, pszSource);
 
 //}
 
@@ -3978,7 +3978,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(::file::file & os, ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), os, pfileIn);
+//   return file()->transfer(get_app(), os, pfileIn);
 
 //}
 
@@ -3986,7 +3986,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(::file::file & os, ::file::file & is)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), os, is);
+//   return file()->transfer(get_app(), os, is);
 
 //}
 

@@ -2,6 +2,8 @@
 
 
 #include "image.h"
+#include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/collection/string_map.h"
 
 
 class save_image;

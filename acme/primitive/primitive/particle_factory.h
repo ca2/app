@@ -122,6 +122,21 @@ inline void __construct(::particle * pparticle, ::pointer<TYPE> & p)
 
 
 template < typename TYPE >
+inline void __defer_construct(::particle * pparticle, ::pointer<TYPE> & p)
+{
+
+   if(!p)
+   {
+
+      __construct(pparticle, p);
+
+   }
+
+
+}
+
+
+template < typename TYPE >
 inline void __construct_new(::particle * pparticle, ::pointer<TYPE> & p)
 {
 

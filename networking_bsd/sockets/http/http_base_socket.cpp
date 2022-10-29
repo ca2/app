@@ -338,7 +338,7 @@ namespace sockets
             if (response().m_strFile.has_char())
             {
 
-               acmesystem()->compress(pfile, m_pcontext->m_papexcontext->file().get_reader(response().m_strFile), "zlib");
+               acmesystem()->compress(pfile, file()->get_reader(response().m_strFile), "zlib");
 
                response().m_strFile.Empty();
 
@@ -501,7 +501,7 @@ namespace sockets
          if (::str().begins_ci(strContentType, "audio/"))
          {
 
-            auto preader = m_pcontext->m_papexcontext->file().get_reader(pcsz);
+            auto preader = file()->get_reader(pcsz);
 
             //if (!acmesystem()->uncompress(response().file(), preader, "zlib"))
 
@@ -519,7 +519,7 @@ namespace sockets
             if (bMd5Request)
             {
 
-               response().print(m_pcontext->m_papexcontext->file().md5(pcsz));
+               response().print(file()->md5(pcsz));
 
                return true;
 
@@ -538,7 +538,7 @@ namespace sockets
             else
             {
 
-               auto preader = m_pcontext->m_papexcontext->file().shared_reader(pcsz);
+               auto preader = file()->shared_reader(pcsz);
 
                if (!preader)
                {
@@ -557,7 +557,7 @@ namespace sockets
       else
       {
 
-         auto preader = m_pcontext->m_papexcontext->file().shared_reader(pcsz);
+         auto preader = file()->shared_reader(pcsz);
 
          if (!preader)
          {
@@ -770,7 +770,7 @@ namespace sockets
 
       string_array stra;
 
-      m_pcontext->m_papexcontext->file().get_lines(stra, payloadFile);
+      file()->get_lines(stra, payloadFile);
 
       str = stra.implode("\n");
 

@@ -824,7 +824,7 @@ namespace user
       ASSERT_VALID(this);
 
       // set the document_interface title based on path name
-      string strTitle = pcontext->m_papexcontext->file().title_(m_strPathName);
+      string strTitle = pcontext->m_papexcontext->file()->title_(m_strPathName);
       set_title(strTitle);
 
 
@@ -1004,7 +1004,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      auto preader = pcontext->m_papexcontext->file().get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      auto preader = pcontext->m_papexcontext->file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       if (!::is_ok(preader))
       {
@@ -1057,7 +1057,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      auto pwriter = pcontext->m_papexcontext->file().get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive | ::file::e_open_no_exception_on_open);
+      auto pwriter = pcontext->m_papexcontext->file()->get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive | ::file::e_open_no_exception_on_open);
 
       if(!::is_ok(pwriter))
       {
@@ -1594,7 +1594,7 @@ namespace user
             try
             {
 
-               pcontext->m_papexcontext->file().erase(newName);
+               pcontext->m_papexcontext->file()->erase(newName);
 
             }
             catch(const ::exception &)
@@ -1621,7 +1621,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      if (is_new_document() || pcontext->m_papexcontext->file().is_read_only(m_path))
+      if (is_new_document() || pcontext->m_papexcontext->file()->is_read_only(m_path))
       {
 
          // we do not have read-write access or the file does not (now) exist

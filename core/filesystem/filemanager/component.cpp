@@ -440,7 +440,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         if (pathFilemanagerProject.is_empty() || pcontext->m_papexcontext->dir().is(pathFilemanagerProject)
+         if (pathFilemanagerProject.is_empty() || pcontext->m_papexcontext->dir()->is(pathFilemanagerProject)
                || pathFilemanagerProject.final_extension().compare_ci("component") != 0)
          {
 
@@ -462,11 +462,11 @@ namespace filemanager
 
             synchronous_lock synchronouslock(&m);
 
-            stra.add_lines(pcontext->m_papexcontext->file().as_string(m_pathFilemanagerProject), true);
+            stra.add_lines(pcontext->m_papexcontext->file()->as_string(m_pathFilemanagerProject), true);
 
          }
 
-         if (pcontext->m_papexcontext->dir().is(pathFilemanagerProject))
+         if (pcontext->m_papexcontext->dir()->is(pathFilemanagerProject))
          {
 
             stra.add(create_manager_id(this) + ":" + pathFilemanagerProject);
@@ -622,7 +622,7 @@ namespace filemanager
 
       //   synchronous_lock synchronouslock(&m);
 
-      //   pcontext->m_papexcontext->file().put_contents(m_pathFilemanagerProject, stra.implode("\r\n"));
+      //   pcontext->m_papexcontext->file()->put_contents(m_pathFilemanagerProject, stra.implode("\r\n"));
 
       //}
 
@@ -848,7 +848,7 @@ namespace filemanager
 
 //      pathFolder = pcreate->m_payloadFile;
 
-//      if (pcontext->m_papexcontext->dir().is(pathFolder))
+//      if (pcontext->m_papexcontext->dir()->is(pathFolder))
 //      {
 
 //         pathFolder.m_iDir = 1;
@@ -979,7 +979,7 @@ namespace filemanager
 
 //      pathFolder = pcreate->m_payloadFile;
 
-//      if (pcontext->m_papexcontext->dir().is(pathFolder))
+//      if (pcontext->m_papexcontext->dir()->is(pathFolder))
 //      {
 
 //         pathFolder.m_iDir = 1;

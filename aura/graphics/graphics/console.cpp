@@ -1,8 +1,9 @@
 ﻿#include "framework.h"
-
+#include "console.h"
+#include "acme/exception/not_implemented.h"
 #include "acme/operating_system/_const_console.h"
 #include "acme/operating_system/console.h"
-#include "console.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/context_image.h"

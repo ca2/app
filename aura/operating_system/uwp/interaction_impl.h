@@ -49,7 +49,7 @@ namespace universal_windows
       virtual void construct(oswindow hwnd);
 
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
 

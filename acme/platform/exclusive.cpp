@@ -7,11 +7,11 @@
 #include "exclusive.h"
 
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
-#endif
+//#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+//#include <sys/stat.h>
+//#include <fcntl.h>
+//#include <unistd.h>
+//#endif
 
 
 namespace acme

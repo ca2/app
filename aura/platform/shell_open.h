@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 class CLASS_DECL_AURA shell_open :
    virtual public ::object
 {

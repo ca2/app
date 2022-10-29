@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "fonts.h"
 #include "font.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 #define FONTFACENAME_MENU pnode->font_name(e_font_sans)

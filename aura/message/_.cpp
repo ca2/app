@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "aura/message.h"
+#include "apex/message/channel.h"
 
 
 namespace message

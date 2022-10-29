@@ -148,7 +148,7 @@ namespace file
          //else
          //{
 
-         //   m_pcontext->m_papexcontext->dir().ls_file_pattern(m_listing, pathFolder, m_straFilter);
+         //   dir()->ls_file_pattern(m_listing, pathFolder, m_straFilter);
 
          //}
 

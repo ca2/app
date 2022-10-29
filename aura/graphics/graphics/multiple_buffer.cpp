@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "multiple_buffer.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/graphics/multiple_buffer.h"
 #include "aura/graphics/image/image.h"
 #include "aura/user/user/interaction.h"
@@ -65,17 +66,17 @@ namespace graphics
 
       }
 
-      m_pmutexa.set_size(m_pimageaBuffer->image_count());
+      m_mutexa.set_size(m_pimageaBuffer->image_count());
 
       //return estatus;
 
    }
 
 
-   ::synchronization * multiple_buffer::get_draw_lock()
+   ::particle * multiple_buffer::get_draw_lock()
    {
 
-      return m_pmutexa[m_iBuffer];
+      return m_mutexa[m_iBuffer];
 
    }
 
@@ -326,7 +327,7 @@ namespace graphics
    }
 
 
-   synchronization * multiple_buffer::get_screen_sync()
+   ::particle * multiple_buffer::get_screen_sync()
    {
 
       auto size = m_pimpl->m_puserinteraction->const_layout().design().size();
@@ -340,7 +341,7 @@ namespace graphics
 
       }
 
-      return m_pmutexa[m_iScreen];
+      return m_mutexa[m_iScreen];
 
    }
 

@@ -59,7 +59,7 @@ namespace userstack
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
 

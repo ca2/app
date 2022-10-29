@@ -1,6 +1,9 @@
 #include "framework.h"
-#include "_.h"
-#include "_gpu.h"
+#include "program.h"
+#include "shader.h"
+#include "acme/primitive/primitive/particle_factory.h"
+//#include "_.h"
+//#include "_gpu.h"
 
 
 namespace gpu
@@ -27,7 +30,7 @@ namespace gpu
       m_strGeometry = strGeometry;
 
       //::e_status estatus = 
-      pparticle->__construct_new(m_pshader);
+      ::__construct_new(pparticle, m_pshader);
 
       //if (!estatus)
       //{

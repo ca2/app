@@ -377,43 +377,43 @@ string context::defer_get_file_title(string strParam)
    if (::str().begins_eat_ci(path, "music://"))
    {
 
-      path = dir().music() / path;
+      path = dir()->music() / path;
 
    }
    else if (::str().begins_eat_ci(path, "video://"))
    {
 
-      path = dir().video() / path;
+      path = dir()->video() / path;
 
    }
    else if (::str().begins_eat_ci(path, "image://"))
    {
 
-      path = dir().image() / path;
+      path = dir()->image() / path;
 
    }
    else if (::str().begins_eat_ci(path, "document://"))
    {
 
-      path = dir().document() / path;
+      path = dir()->document() / path;
 
    }
    else if (::str().begins_eat_ci(path, "dropbox://"))
    {
 
-      path = dir().dropbox() / path;
+      path = dir()->dropbox() / path;
 
    }
    else if (::str().begins_eat_ci(path, "dropbox-app://"))
    {
 
-      path = dir().dropbox_app() / path;
+      path = dir()->dropbox_app() / path;
 
    }
    else if (::str().begins_eat_ci(path, "onedrive://"))
    {
 
-      path = dir().onedrive() / path;
+      path = dir()->onedrive() / path;
 
    }
    else if (::str().begins_eat_ci(path, "appconfig://"))
@@ -425,7 +425,7 @@ string context::defer_get_file_title(string strParam)
    else if (::str().begins_eat_ci(path, "download://"))
    {
 
-      path = dir().download() / path;
+      path = dir()->download() / path;
 
    }
    else if (::str().begins_eat_ci(path, "usersystem://"))
@@ -441,13 +441,13 @@ pacmedirectory->system() / path;
    else if (::str().begins_eat_ci(path, "desktop://"))
    {
 
-      path = dir().desktop() / path;
+      path = dir()->desktop() / path;
 
    }
    else if (::str().begins_eat_ci(path, "bookmark://"))
    {
 
-      path = dir().bookmark() / path;
+      path = dir()->bookmark() / path;
 
    }
 
@@ -477,7 +477,7 @@ pacmedirectory->system() / path;
    if (::str().begins_ci(path, "matter://"))
    {
 
-      path = dir().matter(path, false);
+      path = dir()->matter(path, false);
 
    }
 
@@ -498,7 +498,7 @@ pacmedirectory->system() / path;
    if (::str().begins_eat_ci(strMatter, "appmatter://"))
    {
 
-      return dir().install() / strMatter;
+      return dir()->install() / strMatter;
 
    }
 
@@ -585,13 +585,13 @@ pacmedirectory->system() / path;
          if (etype == ::file::e_type_file)
          {
 
-            file().copy(pathCache, pathSide, true);
+            file()->copy(pathCache, pathSide, true);
 
          }
          else if (etype == ::file::e_type_folder)
          {
 
-            dir().mk(pathCache);
+            dir()->mk(pathCache);
 
          }
 
@@ -610,7 +610,7 @@ pacmedirectory->system() / path;
 
       path = string(g_pszServerCa2Cc) + "matter" / path;
 
-      //if (file().exists(path, this))
+      //if (file()->exists(path, this))
       {
 
 
@@ -645,7 +645,7 @@ pacmedirectory->system() / path;
                   if (!retry([&]()
                      {
 
-                        return dir().mk(pathCache);
+                        return dir()->mk(pathCache);
 
                      }))
                   {
@@ -663,7 +663,7 @@ pacmedirectory->system() / path;
                   if (!retry([&]()
                      {
 
-                        return file().copy(pathCache, pfile, false);
+                        return file()->copy(pathCache, pfile, false);
 
                      }))
                   {
@@ -701,7 +701,7 @@ pacmedirectory->system() / path;
 
 
       }
-      //         else if (dir().is(path, this))
+      //         else if (dir()->is(path, this))
       //         {
       //
       //            if (!retry([&]()
@@ -741,7 +741,7 @@ file_pointer context::friendly_get_file(::payload payloadFile, ::u32 nOpenFlags)
    try
    {
 
-      return file().get_file(payloadFile, nOpenFlags);
+      return file()->get_file(payloadFile, nOpenFlags);
 
    }
    catch (::file::exception& e)
@@ -760,7 +760,7 @@ file_pointer context::friendly_get_file(::payload payloadFile, ::u32 nOpenFlags)
 ::file::listing & context::perform_file_listing(::file::listing & listing)
 {
 
-   return dir().ls(listing);
+   return dir()->ls(listing);
 
 }
 
@@ -768,7 +768,7 @@ file_pointer context::friendly_get_file(::payload payloadFile, ::u32 nOpenFlags)
 ::file::listing & context::perform_file_relative_name_listing(::file::listing & listing)
 {
 
-   return dir().ls_relative_name(listing);
+   return dir()->ls_relative_name(listing);
 
 }
 
@@ -791,10 +791,10 @@ string context::http_get(const ::string & strUrl, ::property_set & set)
 
    ::file_pointer pfile;
 
-   if (dir().is(path))
+   if (dir()->is(path))
    {
 
-      pfile = file().get_reader(path / "this.ini");
+      pfile = file()->get_reader(path / "this.ini");
 
       //string str;
 
@@ -803,11 +803,11 @@ string context::http_get(const ::string & strUrl, ::property_set & set)
       //ini.parse_ini(str);
 
    }
-   else if (file().exists(path))
+   else if (file()->exists(path))
    {
 
-      pfile = file().get_reader(path);
-      //ini.parse_ini_file(file().get_file());
+      pfile = file()->get_reader(path);
+      //ini.parse_ini_file(file()->get_file());
 
    }
 
@@ -957,7 +957,7 @@ string context::http_get(const ::string & pszUrl)
 bool context::sys_set(string strPath, string strValue)
 {
 
-   return file().put_text_utf8(         auto psystem = acmesystem();
+   return file()->put_text_utf8(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -969,7 +969,7 @@ pacmedirectory->config() / strPath, strValue);
 string context::sys_get(string strPath, string strDefault)
 {
 
-   string strValue = file().as_string(         auto psystem = acmesystem();
+   string strValue = file()->as_string(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1082,7 +1082,7 @@ void context::add_matter_locator(::aura::application * papp)
 void context::_load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload& varOptions)
 {
 
-   binary_stream < FILE > reader(pcontext->m_papexcontext->file().get_reader(payloadFile));
+   binary_stream < FILE > reader(pcontext->m_papexcontext->file()->get_reader(payloadFile));
 
    read(reader);
 
@@ -1094,7 +1094,7 @@ void context::_load_from_file(::particle * pparticle, const ::payload& payloadFi
 void context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::particle * pparticle)
 {
 
-   binary_stream < FILE > writer(pcontext->m_papexcontext->file().get_writer(payloadFile));
+   binary_stream < FILE > writer(pcontext->m_papexcontext->file()->get_writer(payloadFile));
 
    write(writer);
 

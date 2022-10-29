@@ -8,6 +8,7 @@
 #include "parse_info.h"
 #include "disp_option.h"
 #include "exception.h"
+#include "acme/platform/system.h"
 
 
 // https://www.codeproject.com/Articles/3426/XMLite-simple-XML-parser
@@ -280,7 +281,7 @@ namespace xml
    const char * node::LoadDocType( const char * pszXml, parse_info * pparseinfo)
    {
 
-      auto pxml = get_system()->xml();
+      auto pxml = acmesystem()->xml();
 
       if (pparseinfo == nullptr)
       {
@@ -349,12 +350,13 @@ namespace xml
                }
                if(entity_value.has_char())
                {
-                  defer_clone(m_pdocument->m_pentitiesHash);
+                  ::__construct(m_pdocument, m_pdocument->m_pentitiesHash);
+                  ::__defer_construct(m_pdocument, m_pdocument->m_pentitiesHash);
                   m_pdocument->m_pentitiesHash->set_at(entity_name, entity_value);
                }
                if(ext_entity_value.has_char())
                {
-                  defer_clone(m_pdocument->m_pentitiesExtHash);
+                  ::__defer_construct(m_pdocument, m_pdocument->m_pentitiesExtHash);
                   m_pdocument->m_pentitiesExtHash->set_at(entity_name, ext_entity_value);
                }
             }

@@ -331,7 +331,7 @@ namespace dynamic_source
 
       auto pcontext = get_context();
 
-      if(!pcontext->m_papexcontext->file().exists(m_strScriptPath))
+      if(!pcontext->m_papexcontext->file()->exists(m_strScriptPath))
       {
 
          if(HasTempError())

@@ -850,7 +850,7 @@ namespace user
    void tab_impact::prepare_impact_menu(::user::menu * pmenu)
    {
 
-      auto strXml = get_app()->file().as_string("matter://impact.menu");
+      auto strXml = get_app()->file()->as_string("matter://impact.menu");
 
       if (pmenu->load_xml_menu(strXml))
       {

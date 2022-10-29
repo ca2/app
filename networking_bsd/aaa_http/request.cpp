@@ -115,7 +115,7 @@ namespace http
       //   m_file = ::pointer<IFile>e>(nullptr);
       m_form.clear();
       m_cookies.erase_all();
-      file().set_size(0);
+      file()->set_size(0);
    }
 
 

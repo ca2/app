@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
-
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
 #include "aura/platform/draw_context2.h"

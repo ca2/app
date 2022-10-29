@@ -4,6 +4,7 @@
 
 #include "acme/primitive/geometry2d/rectangle.h"
 #include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/primitive/matter.h"
 
 
 template < typename IMAGE_SOURCE_POINTER >

@@ -1,9 +1,11 @@
 ﻿#include "framework.h"
-
 #include "form.h"
-#include "aura/message/user.h"
 #include "form_callback.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
+#include "aura/message/user.h"
 #include "aura/platform/session.h"
+#include "acme/platform/system.h"
 
 
 namespace user
@@ -43,6 +45,8 @@ namespace user
    
    
 }
+
+
 ::aura::system* form::get_system() const
 {
    
@@ -51,6 +55,8 @@ namespace user
 
 
 }
+
+
 ::user::user * form::user() const
 {
    

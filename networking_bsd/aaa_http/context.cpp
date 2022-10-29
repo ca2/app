@@ -182,14 +182,14 @@ namespace http
 
       strFile.replace_with("%19", "?");
 
-      strFile = m_pcontext->m_papexcontext->dir().cache() / strFile + ".meta_information";
+      strFile = dir()->cache() / strFile + ".meta_information";
 
       string strCache;
 
       if (!set["nocache"].get_bool())
       {
 
-         m_pcontext->m_papexcontext->file().as_string(strFile);
+         file()->as_string(strFile);
 
          if (strCache.has_char())
          {
@@ -261,7 +261,7 @@ namespace http
 
       }
 
-      m_pcontext->m_papexcontext->file().put_text(strFile, strCache);
+      file()->put_text(strFile, strCache);
 
       return etype;
 
@@ -289,7 +289,7 @@ namespace http
       
       strFile.replace_with("%19", "?");
 
-      strFile = m_pcontext->m_papexcontext->dir().cache() / strFile + ".length_question";
+      strFile = dir()->cache() / strFile + ".length_question";
 
       bool bNoCache = set["nocache"].get_bool();
 
@@ -298,7 +298,7 @@ namespace http
       if (!bNoCache)
       {
 
-         strCache = m_pcontext->m_papexcontext->file().as_string(strFile);
+         strCache = file()->as_string(strFile);
 
          if (strCache.has_char())
          {
@@ -335,7 +335,7 @@ namespace http
 
       }
 
-      m_pcontext->m_papexcontext->file().put_text(strFile, strCache);
+      file()->put_text(strFile, strCache);
 
       return len;
 
@@ -515,16 +515,16 @@ namespace http
       //      else if(i == 1)
       //      {
       //         // telmico: no proxy
-      //         string str = m_pcontext->m_papexcontext->file().as_string(m_pcontext->m_papexcontext->dir().appdata() / "machine/proxy.xml");
+      //         string str = file()->as_string(dir()->appdata() / "machine/proxy.xml");
       //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
       //         {
-      //            m_pcontext->m_papexcontext->file().copy(m_pcontext->m_papexcontext->dir().appdata()/ "proxy_original.xml", m_pcontext->m_papexcontext->dir().install()/ "proxy.xml", false);
+      //            file()->copy(dir()->appdata()/ "proxy_original.xml", dir()->install()/ "proxy.xml", false);
       //         }
-      //         if(m_pcontext->m_papexcontext->file().exists(m_pcontext->m_papexcontext->dir().appdata()/ "proxy.xml"))
+      //         if(file()->exists(dir()->appdata()/ "proxy.xml"))
       //         {
       //            try
       //            {
-      //               m_pcontext->m_papexcontext->file().del(m_pcontext->m_papexcontext->dir().appdata()/ "proxy.xml");
+      //               file()->del(dir()->appdata()/ "proxy.xml");
       //            }
       //            catch(...)
       //            {
@@ -534,20 +534,20 @@ namespace http
       //      else if(i == 2)
       //      {
       //         // telmico: original proxy configuration
-      //         if(m_pcontext->m_papexcontext->file().exists(m_pcontext->m_papexcontext->dir().appdata()/ "proxy_original.xml"))
+      //         if(file()->exists(dir()->appdata()/ "proxy_original.xml"))
       //         {
-      //            m_pcontext->m_papexcontext->file().copy(m_pcontext->m_papexcontext->dir().appdata()/ "proxy.xml", m_pcontext->m_papexcontext->dir().appdata()/"proxy_original.xml", false);
+      //            file()->copy(dir()->appdata()/ "proxy.xml", dir()->appdata()/"proxy_original.xml", false);
       //         }
       //      }
       //      else
       //      {
       //         // telmico: simple default proxy configuration : hostname=>proxy - try etc/hosts port=>80  - assume HTTP proxy
-      //         string str = m_pcontext->m_papexcontext->file().as_string(m_pcontext->m_papexcontext->dir().appdata()/"proxy.xml");
+      //         string str = file()->as_string(dir()->appdata()/"proxy.xml");
       //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
       //         {
-      //            m_pcontext->m_papexcontext->file().copy(m_pcontext->m_papexcontext->dir().appdata()/"proxy_original.xml", m_pcontext->m_papexcontext->dir().appdata()/"proxy.xml", false);
+      //            file()->copy(dir()->appdata()/"proxy_original.xml", dir()->appdata()/"proxy.xml", false);
       //         }
-      //         m_pcontext->m_papexcontext->file().put_contents(m_pcontext->m_papexcontext->dir().appdata()/"proxy.xml", "proxy");
+      //         file()->put_contents(dir()->appdata()/"proxy.xml", "proxy");
       //      }
    }
 
@@ -555,7 +555,7 @@ namespace http
    void context::defer_auto_initialize_proxy_configuration()
    {
 
-      string strHost = m_pcontext->m_papexcontext->file().as_string(m_pcontext->m_papexcontext->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
+      string strHost = file()->as_string(dir()->appdata() / "database\\text\\last_good_known_account_com.txt");
 
       string_array straRequestingServer;
 
@@ -647,7 +647,7 @@ namespace http
          payloadFile["disable_ca2_sessid"] = true;
          payloadFile["no_proxy_config"] = true;
 
-         ppac->m_strAutoConfigScript = m_pcontext->m_papexcontext->file().as_string(payloadFile);
+         ppac->m_strAutoConfigScript = file()->as_string(payloadFile);
 
 
          m_mapPac.set_at(pszUrl, ppac);
@@ -838,9 +838,9 @@ namespace http
 
       //xml::document doc;
 
-      //::file::path pathProxyXml = m_pcontext->m_papexcontext->dir().appdata() / "proxy.xml";
+      //::file::path pathProxyXml = dir()->appdata() / "proxy.xml";
 
-      //if (!m_pcontext->m_papexcontext->file().exists(pathProxyXml))
+      //if (!file()->exists(pathProxyXml))
       //{
 
       //   pproxy->m_bDirect = true;
@@ -849,7 +849,7 @@ namespace http
 
       //}
 
-      //string str = m_pcontext->m_papexcontext->file().as_string(pathProxyXml);
+      //string str = file()->as_string(pathProxyXml);
 
       //if (str.has_char() && str.find("<") < 0 && str.find(">") < 0)
       //{
@@ -2659,7 +2659,7 @@ namespace http
    bool context::download(::pointer<::sockets::http_session>& psession, const char * pszRequest, ::payload payloadFile, property_set & set)
    {
 
-      file_pointer spfile = m_pcontext->m_papexcontext->file().get_file(payloadFile,
+      file_pointer spfile = file()->get_file(payloadFile,
          ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
       set["file"] = spfile;
@@ -2684,7 +2684,7 @@ namespace http
 
       {
 
-         auto rfile = m_pcontext->m_papexcontext->file().get_file(payloadFile,
+         auto rfile = file()->get_file(payloadFile,
             ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
          if (!rfile)
@@ -2908,9 +2908,9 @@ namespace http
 
    //   strSection.format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
-   //   strUserNameFile = m_pcontext->m_papexcontext->dir().appdata() / strSection + "_1";
+   //   strUserNameFile = dir()->appdata() / strSection + "_1";
 
-   //   strPasswordFile = m_pcontext->m_papexcontext->dir().appdata() / strSection + "_2";
+   //   strPasswordFile = dir()->appdata() / strSection + "_2";
 
    //   bool bOk = true;
 
@@ -2964,9 +2964,9 @@ namespace http
 
    //   strSection.format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
-   //   m_pcontext->m_papexcontext->file().del(m_pcontext->m_papexcontext->dir().appdata() / strSection + "_1");
+   //   file()->del(dir()->appdata() / strSection + "_1");
 
-   //   m_pcontext->m_papexcontext->file().del(m_pcontext->m_papexcontext->dir().appdata() / strSection + "_2");
+   //   file()->del(dir()->appdata() / strSection + "_2");
 
    //}
 

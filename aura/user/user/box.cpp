@@ -1,6 +1,8 @@
 ﻿#include "framework.h"
 #include "box.h"
+#include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
+#include "acme/parallelization/single_lock.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
 #include "aura/platform/application.h"
@@ -551,7 +553,7 @@ namespace user
          if(m_ewindowflag & e_window_flag_window_created)
          {
             
-            send_procedure(functionGoodRestore);
+            interaction_send(functionGoodRestore);
             
          }
          else

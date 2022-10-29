@@ -2397,7 +2397,7 @@ string object::get_text(const ::payload& payload, const ::atom& atom)
 
    return "";
 
-   //string str = m_pcontext->m_papexcontext->file().as_string(payload);
+   //string str = file()->as_string(payload);
 
    //if (str.has_char())
    //{

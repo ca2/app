@@ -1,7 +1,5 @@
 ﻿#include "framework.h"
-//#include "acme/operating_system.h"
-
-//#include "acme/operating_system/_user.h"
+#include "acme/exception/interface_only.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "scroll_data.h"
 #include "scroll.h"
@@ -250,7 +248,6 @@ namespace user
       throw ::interface_only();
 
    }
-
 
 
    void scroll_base::defer_draw_scroll_gap(::draw2d::graphics_pointer & pgraphics)

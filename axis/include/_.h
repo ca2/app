@@ -36,7 +36,7 @@ namespace axis
 
 #include "axis/networking/_.h"
 
-#include "axis/platform/openweather_city.h"
+//#include "axis/platform/openweather_city.h"
 
 #include "axis/mathematics/_.h"
 

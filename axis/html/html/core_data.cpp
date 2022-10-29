@@ -789,7 +789,7 @@ namespace html
 
       auto pcontext = get_context();
 
-      str = pcontext->m_papexcontext->file().as_string(payloadFile);
+      str = pcontext->m_papexcontext->file()->as_string(payloadFile);
 
       //if (!payloadFile["http_set"]["get_headers"].propset()["Location"].is_empty())
       //{
@@ -818,7 +818,7 @@ namespace html
       if (str.is_empty())
       {
          string strCandidate = m_strPathName / payloadFile.file_path();
-         str = pcontext->m_papexcontext->file().as_string(strCandidate);
+         str = pcontext->m_papexcontext->file()->as_string(strCandidate);
          if (str.is_empty())
          {
 

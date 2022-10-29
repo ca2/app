@@ -615,6 +615,13 @@ using dword_array = u32_array;
 using int_array = i32_array;
 
 
+using index_array = numeric_array < ::index >;
+using count_array = numeric_array < ::count >;
+
+
+using u32_array = numeric_array < ::u32 >;
+
+
 using unique_i32_sort_array = unique_number_sort_array < i32 >;
 using unique_i64_sort_array = unique_number_sort_array < i64 >;
 
@@ -827,3 +834,4 @@ void __swap(A & a, B & b)
 
 
 
+typedef pointer_array < ::particle > particle_array;

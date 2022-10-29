@@ -1899,7 +1899,7 @@ namespace user
 
       auto pxmldocument = __create_new < ::xml::document >();
 
-      auto strXml = m_pcontext->m_papexcontext->file().as_string(payloadFile);
+      auto strXml = file()->as_string(payloadFile);
 
       //try
       //{

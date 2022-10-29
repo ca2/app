@@ -343,7 +343,7 @@ namespace sandbox_windowing
    //void window::set_wm_class(const char * psz)
    //{
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   m_strWMClass = psz;
 
@@ -365,7 +365,7 @@ namespace sandbox_windowing
 
    //   int i = 0;
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   {
 
@@ -411,7 +411,7 @@ namespace sandbox_windowing
    //i32 window::unmap_window(bool bWithdraw)
    //{
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   windowing_output_debug_string("\nwindow::unmap_window");
 
@@ -709,7 +709,7 @@ namespace sandbox_windowing
    //bool window::bamf_set_icon()
    //{
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   auto psystem = acmesystem()->m_papexsystem;
 
@@ -869,7 +869,7 @@ namespace sandbox_windowing
 //
 //      windowing_output_debug_string("\nwindow::set_icon");
 //
-//      //synchronous_lock synchronouslock(user_mutex());
+//      //synchronous_lock synchronouslock(user_synchronization());
 //
 //      //display_lock displaylock(x11_display()->Display());
 //
@@ -987,7 +987,7 @@ namespace sandbox_windowing
 
    //   windowing_output_debug_string("\nwindow::store_name");
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   display_lock displaylock(x11_display()->Display());
 
@@ -1005,7 +1005,7 @@ namespace sandbox_windowing
 
    //   windowing_output_debug_string("\nwindow::select_input");
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   display_lock displaylock(x11_display()->Display());
 
@@ -1023,7 +1023,7 @@ namespace sandbox_windowing
 
    //   windowing_output_debug_string("\nwindow::select_all_input");
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   display_lock displaylock(x11_display()->Display());
 
@@ -1173,7 +1173,7 @@ namespace sandbox_windowing
 
       }
 
-      //synchronous_lock synchronouslock(user_mutex());
+      //synchronous_lock synchronouslock(user_synchronization());
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -1227,7 +1227,7 @@ namespace sandbox_windowing
 //   void window::mapped_net_state_raw(bool add, int iScreen, Atom state1, Atom state2)
 //   {
 //
-//      synchronous_lock synchronouslock(user_mutex());
+//      synchronous_lock synchronouslock(user_synchronization());
 //
 //      XClientMessageEvent xclient;
 //
@@ -1255,7 +1255,7 @@ namespace sandbox_windowing
 //   void window::unmapped_net_state_raw(Atom atom1, ...)
 //   {
 //
-//      synchronous_lock synchronouslock(user_mutex());
+//      synchronous_lock synchronouslock(user_synchronization());
 //
 //      XEvent xevent;
 //
@@ -1317,7 +1317,7 @@ namespace sandbox_windowing
    //
    //            windowing_output_debug_string("\n::window::show_window 1");
    //
-   //            synchronous_lock synchronouslock(user_mutex());
+   //            synchronous_lock synchronouslock(user_synchronization());
    //
    //            display_lock displaylock(x11_display()->Display());
    //
@@ -1400,7 +1400,7 @@ namespace sandbox_windowing
    //
    //      windowing_output_debug_string("\n::window::full_screen 1");
    //
-   //      synchronous_lock synchronouslock(user_mutex());
+   //      synchronous_lock synchronouslock(user_synchronization());
    //
    //      display_lock displaylock(x11_display()->Display());
    //
@@ -1469,7 +1469,7 @@ namespace sandbox_windowing
    void window::exit_iconify()
    {
 
-      //synchronous_lock synchronouslock(user_mutex());
+      //synchronous_lock synchronouslock(user_synchronization());
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -1501,7 +1501,7 @@ namespace sandbox_windowing
    void window::exit_full_screen()
    {
 
-      //synchronous_lock synchronouslock(user_mutex());
+      //synchronous_lock synchronouslock(user_synchronization());
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -1533,7 +1533,7 @@ namespace sandbox_windowing
    void window::exit_zoomed()
    {
 
-      //synchronous_lock sl(user_mutex());
+      //synchronous_lock sl(user_synchronization());
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -1619,7 +1619,7 @@ namespace sandbox_windowing
 
    //   windowing_output_debug_string("\n::window::get_state 1");
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   display_lock displaylock(x11_display()->Display());
 
@@ -1707,7 +1707,7 @@ namespace sandbox_windowing
 
       //windowing_output_debug_string("\n::window::is_window_visible 1");
 
-      //synchronous_lock synchronouslock(user_mutex());
+      //synchronous_lock synchronouslock(user_synchronization());
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -2061,7 +2061,7 @@ namespace sandbox_windowing
    bool window::set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    {
 
-      //synchronous_lock sl(user_mutex());
+      //synchronous_lock sl(user_synchronization());
 
       windowing_output_debug_string("\n::window::set_window_pos 1");
 
@@ -2361,7 +2361,7 @@ namespace sandbox_windowing
    void window::set_mouse_cursor2(::windowing::cursor* pcursor)
    {
 
-      //synchronous_lock synchronouslock(user_mutex());
+      //synchronous_lock synchronouslock(user_synchronization());
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -2446,7 +2446,7 @@ namespace sandbox_windowing
       //m_pwindowing->windowing_post([this, pcursorx11]()
       //   {
 
-      //      synchronous_lock sl(user_mutex());
+      //      synchronous_lock sl(user_synchronization());
 
       //      windowing_output_debug_string("\n::SetCursor 1");
 
@@ -2506,7 +2506,7 @@ namespace sandbox_windowing
 //   void window::upper_window_rects(rectangle_i32_array & ra)
 //   {
 //
-//      synchronous_lock synchronouslock(user_mutex());
+//      synchronous_lock synchronouslock(user_synchronization());
 //
 //      ra.erase_all();
 //
@@ -2574,7 +2574,7 @@ namespace sandbox_windowing
 
    }
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   {
 
@@ -2735,7 +2735,7 @@ namespace sandbox_windowing
    //::windowing::window * window::get_window(enum_relative erelative)
    //{
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   ::Window window = 0;
 
@@ -2918,7 +2918,7 @@ namespace sandbox_windowing
       //      x11_fork([window]()
       //               {
 
-      //synchronous_lock synchronouslock(user_mutex());
+      //synchronous_lock synchronouslock(user_synchronization());
 
       //Display *Display() = Display();
 
@@ -2970,7 +2970,7 @@ namespace sandbox_windowing
 
    //   comparable_array < Atom >atoma;
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   if (atomList == None)
    //   {
@@ -3007,7 +3007,7 @@ namespace sandbox_windowing
    //int window::wm_test_list_raw(Atom atomList, Atom atomFlag)
    //{
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   Atom actual_type;
 
@@ -3034,7 +3034,7 @@ namespace sandbox_windowing
    //int window::wm_test_state_raw(const char * pszNetStateFlag)
    //{
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   Atom atomFlag = x11_display()->intern_atom(pszNetStateFlag, 1);
 
@@ -3066,7 +3066,7 @@ namespace sandbox_windowing
    //int window::wm_test_state(const char * pszNetStateFlag)
    //{
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   windowing_output_debug_string("\n::wm_test_state 1");
 
@@ -3093,7 +3093,7 @@ namespace sandbox_windowing
    //bool window::wm_add_remove_list_raw(Atom atomList, Atom atomFlag, bool bSet)
    //{
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   if (atomFlag == None)
    //   {
@@ -3177,7 +3177,7 @@ namespace sandbox_windowing
    void window::set_foreground_window()
    {
 
-      //synchronous_lock synchronouslock(user_mutex());
+      //synchronous_lock synchronouslock(user_synchronization());
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -3290,7 +3290,7 @@ namespace sandbox_windowing
    //::e_status window::x11_store_name(const char * pszName)
    //{
 
-   //   synchronous_lock synchronouslock(user_mutex());
+   //   synchronous_lock synchronouslock(user_synchronization());
 
    //   display_lock displaylock(x11_display()->Display());
 
@@ -3362,7 +3362,7 @@ namespace sandbox_windowing
    //   int_bool window::get_client_rect(RECTANGLE_I32 *prectangle)
    //   {
    //
-   //      synchronous_lock synchronouslock(user_mutex());
+   //      synchronous_lock synchronouslock(user_synchronization());
    //
    //      display_lock displaylock(x11_display()->Display());
    //
@@ -3755,7 +3755,7 @@ namespace sandbox_windowing
    void window::bring_to_front()
    {
 
-      //synchronous_lock synchronouslock(user_mutex());
+      //synchronous_lock synchronouslock(user_synchronization());
 
       //if (Window() == 0)
       //{

@@ -87,7 +87,7 @@ void handler_manager::handle_synchronously(const ::procedure & procedure)
    if (m_bUseDedicatedThread)
    {
 
-      __material_send_procedure(this, this, &handler_manager::handle_asynchronously, procedure);
+      __matter_send_procedure(this, this, &handler_manager::handle_asynchronously, procedure);
 
    }
    else

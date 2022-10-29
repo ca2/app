@@ -77,7 +77,7 @@ namespace simpledb
          }
          manager().handle(this);
       }
-      if(!outheaders().has_property("content-type") && response().file().get_length() > 0)
+      if(!outheaders().has_property("content-type") && response().file()->get_length() > 0)
       {
          outheader(__id(content_type)) = "text/html; charset=UTF-8";
       }
@@ -256,7 +256,7 @@ namespace simpledb
       }
       else
       {
-         i32 iLen = pcontext->m_papexcontext->file().length(lpcsz);
+         i32 iLen = pcontext->m_papexcontext->file()->length(lpcsz);
          if(prangea->get_count() > 1)
          {
             memsize uTotal = 0;
@@ -347,7 +347,7 @@ namespace simpledb
                   uTotal += uRead;
                   if(uRead == 0)
                      break;
-                  response().file().write(mem.get_data(), uRead);
+                  response().file()->write(mem.get_data(), uRead);
                   iPos += uRead;
                   if(iPos >= spfile->get_length())
                      break;

@@ -3,6 +3,13 @@
 #pragma once
 
 
+#include "apex/message/channel.h"
+#include "acme/primitive/collection/osdata_array.h"
+#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/size.h"
+
+
 namespace windowing
 {
 
@@ -45,7 +52,7 @@ namespace windowing
       void on_initialize_particle() override;
 
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
 

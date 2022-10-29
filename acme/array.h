@@ -338,32 +338,6 @@ namespace acme
       }
 
 
-      template < typename T >
-      inline bool are_all_elements_equal(const pointer_array < T > & a1, const pointer_array < T > & a2)
-      {
-
-         if (a1.get_count() != a2.get_count())
-         {
-
-            return false;
-
-         }
-
-         for (int i = 0; i < a1.get_count(); i++)
-         {
-
-            if (a1.at(i) != a2.at(i))
-            {
-
-               return false;
-
-            }
-
-         }
-
-         return true;
-
-      }
 
 
 

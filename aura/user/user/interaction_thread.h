@@ -1,7 +1,8 @@
 ﻿#pragma once
 
 
-//#include "acme/operating_system.h"
+#include "apex/parallelization/thread.h"
+#include "acme/parallelization/manual_reset_event.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -44,12 +45,12 @@ namespace user
 
 #endif
 
-      ::pointer<interaction_impl>                 m_pimpl;
-      //::pointer<prodevian>                m_pprodevian;
+      ::pointer<interaction_impl>                  m_pimpl;
+      //::pointer<prodevian>                       m_pprodevian;
       oswindow                                     m_oswindow;
 
       manual_reset_event                           m_evApplyVisual;
-      ::pointer<::windowing::windowing>        m_pwindowing;
+      ::pointer<::windowing::windowing>            m_pwindowing;
 
 
       thread();

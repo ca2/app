@@ -5,7 +5,7 @@
 ////#include "sn/sn.h"
 
 
-//extern ::pointer< ::mutex > user_mutex();
+//extern ::particle * user_synchronization();
 
 
 int g_iIgnoreXDisplayError = 0;

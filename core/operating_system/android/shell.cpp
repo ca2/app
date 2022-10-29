@@ -206,8 +206,8 @@ namespace android
 //
 //                     string strParams;
 //
-//                     //if(pcontext->m_papexcontext->file().resolve_link(strTarget, strFilePath, psystem->ui_from_handle))
-//                     if (pcontext->m_papexcontext->file().resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
+//                     //if(pcontext->m_papexcontext->file()->resolve_link(strTarget, strFilePath, psystem->ui_from_handle))
+//                     if (pcontext->m_papexcontext->file()->resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 //                     {
 //
 //                        if (m_straThemeableIconName.get_count() > 0)
@@ -340,7 +340,7 @@ namespace android
 //
 //            string strParams;
 //
-//            if (pcontext->m_papexcontext->file().resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
+//            if (pcontext->m_papexcontext->file()->resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 //            {
 //
 //               wstring wstr = utf8_to_unicode(strTarget);
@@ -844,7 +844,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
    //         }
    //      }
    //   }
-   //   if (pcontext->m_papexcontext->dir().is(unicode_to_utf8(szFilePath)))
+   //   if (pcontext->m_papexcontext->dir()->is(unicode_to_utf8(szFilePath)))
    //   {
    //      if (imagekey.m_iIcon == 0x80000000)
    //      {
@@ -1202,7 +1202,7 @@ pacmedirectory->is(strPath))
       if (::str().begins_ci(imagekey.m_strPath, "uifs:"))
       {
 
-         ::file::path path = pcontext->m_papexcontext->dir().matter("cloud.ico");
+         ::file::path path = pcontext->m_papexcontext->dir()->matter("cloud.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1224,7 +1224,7 @@ pacmedirectory->is(strPath))
       else if (::str().begins_ci(imagekey.m_strPath, "fs:"))
       {
 
-         ::file::path path = pcontext->m_papexcontext->dir().matter("remote.ico");
+         ::file::path path = pcontext->m_papexcontext->dir()->matter("remote.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1246,7 +1246,7 @@ pacmedirectory->is(strPath))
       else if (::str().begins_ci(imagekey.m_strPath, "ftp:"))
       {
 
-         ::file::path path = pcontext->m_papexcontext->dir().matter("ftp.ico");
+         ::file::path path = pcontext->m_papexcontext->dir()->matter("ftp.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1269,12 +1269,12 @@ pacmedirectory->is(strPath))
 
       if (::str().ends_ci(imagekey.m_strPath, ".aura"))
       {
-         string str = pcontext->m_papexcontext->file().as_string(imagekey.m_strPath);
+         string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
          if (::str().begins_eat_ci(str, "ca2prompt\r\n"))
          {
             str.trim();
-            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
             synchronous_lock sl1(m_pil48Hover->mutex());
             synchronous_lock sl2(m_pil48->mutex());
             iImage = m_pil16->add_icon_os_data(hicon16);

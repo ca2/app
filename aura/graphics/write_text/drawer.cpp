@@ -5,6 +5,9 @@
 #include "text_out_array.h"
 #include "text_metric.h"
 #include "font.h"
+#include "acme/exception/interface_only.h"
+#include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 namespace write_text

@@ -97,6 +97,9 @@ namespace acme
       ::pointer<class ::acme_file>                                      m_pacmefile;
       ::pointer<class ::acme_path>                                      m_pacmepath;
 
+      ::pointer<::dir_system>                                           m_pdirsystem;
+      ::pointer<::file_system>                                          m_pfilesystem;
+
 
       system();
       ~system() override;

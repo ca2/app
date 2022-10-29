@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "acme/constant/element.h"
+
+
 #include "aura/platform/draw_context2.h"
 
 
@@ -124,7 +127,7 @@ namespace draw2d
       ~graphics() override;
 
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
       
       

@@ -102,27 +102,27 @@ namespace geo
 
             }
 
-            //pcontext->m_papexcontext->file().to_array(m_straCity,          auto psystem = acmesystem();
+            //pcontext->m_papexcontext->file()->to_array(m_straCity,          auto psystem = acmesystem();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-cit.bin");
-            //pcontext->m_papexcontext->file().to_array(m_straCityLo,          auto psystem = acmesystem();
+            //pcontext->m_papexcontext->file()->to_array(m_straCityLo,          auto psystem = acmesystem();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-cil.bin");
-            //pcontext->m_papexcontext->file().to_array(m_iaIds,          auto psystem = acmesystem();
+            //pcontext->m_papexcontext->file()->to_array(m_iaIds,          auto psystem = acmesystem();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-ids.bin");
-            //pcontext->m_papexcontext->file().to_array(m_daLon,          auto psystem = acmesystem();
+            //pcontext->m_papexcontext->file()->to_array(m_daLon,          auto psystem = acmesystem();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-lon.bin");
-            //pcontext->m_papexcontext->file().to_array(m_daLat,          auto psystem = acmesystem();
+            //pcontext->m_papexcontext->file()->to_array(m_daLat,          auto psystem = acmesystem();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
@@ -755,7 +755,7 @@ namespace geo
       //
       //         ::file::path path = acmedirectory()->public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
       //
-      //         auto & file = pcontext->m_papexcontext->file().friendly_get_file(path, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
+      //         auto & file = pcontext->m_papexcontext->file()->friendly_get_file(path, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
       //
       //         stream os(file);
       //
@@ -1333,7 +1333,7 @@ namespace geo
          try
          {
 
-            auto pfile = m_pcontext->m_papexcontext->file().get_reader(path);
+            auto pfile = file()->get_reader(path);
 
             if (::is_ok(pfile))
             {
@@ -1413,7 +1413,7 @@ namespace geo
          try
          {
 
-            auto pfile = m_pcontext->m_papexcontext->file().get_reader(path);
+            auto pfile = file()->get_reader(path);
 
             if (pfile)
             {
@@ -1545,7 +1545,7 @@ namespace geo
          try
          {
 
-            auto file = m_pcontext->m_papexcontext->file().get_reader(path);
+            auto file = file()->get_reader(path);
 
             auto reader = __binary_stream(file);
 
@@ -1834,7 +1834,7 @@ namespace geo
       try
       {
 
-         auto pfile = m_pcontext->m_papexcontext->file().get_writer(path);
+         auto pfile = file()->get_writer(path);
 
          if (pfile)
          {
@@ -1864,7 +1864,7 @@ namespace geo
       try
       {
 
-         auto pfile = m_pcontext->m_papexcontext->file().get_writer(path);
+         auto pfile = file()->get_writer(path);
 
          if (pfile)
          {
@@ -1894,7 +1894,7 @@ namespace geo
       try
       {
 
-         auto file = m_pcontext->m_papexcontext->file().get_writer(path);
+         auto file = file()->get_writer(path);
 
          auto writer = __binary_stream(file);
 

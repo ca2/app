@@ -44,7 +44,7 @@ namespace universal_windows
       virtual ~file();
 
 
-      void assert_ok() const override;
+      // void assert_ok() const override;
       virtual void dump(dump_context& dumpcontext) const override;
 
 

@@ -1,16 +1,20 @@
 ﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/asynchronous.h"
+#include "acme/platform/system.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/icon.h"
 #include "aura/user/user/user.h"
 #include "aura/message/user.h"
+#include "aura/platform/application.h"
+#include "aura/platform/session.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/user/user/interaction.h"
-#include "aura/platform/session.h"
-#include "acme/parallelization/asynchronous.h"
 
 
 namespace windowing
@@ -51,18 +55,18 @@ namespace windowing
    }
 
 
-   void window::assert_ok() const
-   {
-
-
-   }
-
-
-   void window::dump(dump_context & dumpcontext) const
-   {
-
-
-   }
+//   void window::assert_ok() const
+//   {
+//
+//
+//   }
+//
+//
+//   void window::dump(dump_context & dumpcontext) const
+//   {
+//
+//
+//   }
 
 
    void window::install_message_routing(channel * pchannel)
@@ -78,9 +82,9 @@ namespace windowing
       if(pmessage->m_atom == e_message_post_user)
       {
 
-         auto pparticle = pmessage->m_union.m_pobject;
+         auto pparticle = pmessage->m_union.m_pparticle;
 
-         ::pointer<::message::message>pmessagePost = pparticle->m_pelement;
+         ::pointer<::message::message>pmessagePost = pparticle->m_pparticle;
 
          if (::is_null(pmessagePost))
          {
@@ -1179,7 +1183,7 @@ namespace windowing
    void window::window_send(const ::procedure & procedure)
    {
 
-      __material_send_procedure(this, this, &window::window_post, procedure);
+      __matter_send_procedure(this, this, &window::window_post, procedure);
 
    }
 

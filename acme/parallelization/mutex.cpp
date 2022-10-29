@@ -592,10 +592,12 @@
 ////
 
 
-//mutex::mutex()
-//{
-//
-//}
+mutex::mutex()
+{
+
+
+}
+
 
 mutex::~mutex()
 {

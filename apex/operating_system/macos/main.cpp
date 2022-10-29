@@ -237,7 +237,7 @@ namespace apex
 
       auto pcontext = m_pcontext;
 
-      ::file::path path = pcontext->m_papexcontext->file().module();
+      ::file::path path = pcontext->m_papexcontext->file()->module();
 
       path -= 3;
       

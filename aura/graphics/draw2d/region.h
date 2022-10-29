@@ -3,6 +3,9 @@
 
 #include "object.h"
 #include "acme/primitive/geometry2d/polygon.h"
+#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/collection/pointer_array.h"
+#include "acme/primitive/collection/string_array.h"
 
 
 template < primitive_rectangle RECTANGLE >

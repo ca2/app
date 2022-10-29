@@ -2,6 +2,7 @@
 #include "frame.h"
 #include "frame_array.h"
 #include "image.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 image_frame::image_frame()

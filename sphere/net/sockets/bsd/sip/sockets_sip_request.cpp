@@ -119,7 +119,7 @@ namespace sip
       //   m_file = ::pointer<IFile>e>(nullptr);
       m_form.clear();
       m_cookies.erase_all();
-      file().Truncate(0);
+      file()->Truncate(0);
    }
 
 } // namespace sip

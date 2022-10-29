@@ -48,7 +48,7 @@ namespace simpledb
       ::file::path pathDatabase(pszDatabase);
 
       //if (!
-      m_pcontext->m_papexcontext->dir().create(pathDatabase.folder());
+      dir()->create(pathDatabase.folder());
 
       //{
 

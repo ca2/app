@@ -2,6 +2,7 @@
 #include "document.h"
 #include "xml.h"
 #include "exception.h"
+#include "acme/exception/interface_only.h"
 #include "apex/platform/context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 
@@ -61,7 +62,7 @@ namespace xml
 
    //   auto psystem = acmesystem()->m_paurasystem;
 
-   //   str = m_pcontext->m_papexcontext->file().as_string(psz);
+   //   str = file()->as_string(psz);
 
    //   load(str);
 
@@ -414,7 +415,7 @@ namespace xml
 
          pszXmlParam = pszXml;
 
-         return pacmecontext->m_papexcontext->file().as_string(m_pathLocation.sibling(extEnt));
+         return pacmecontext->m_papexcontext->file()->as_string(m_pathLocation.sibling(extEnt));
 
       }
 

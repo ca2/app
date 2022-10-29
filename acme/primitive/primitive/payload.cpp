@@ -15,15 +15,15 @@
 #include "acme/array.h"
 
 
-void copy(payload * pp, const system_time_t * ps)
-{
-   ::earth::gregorian::time t;
-   t.set(ps);
-   ::earth::time time;
-   time = t;
-
-   *pp = time;
-}
+//void copy(payload * pp, const system_time_t * ps)
+//{
+//   ::earth::gregorian::time t;
+//   t.set(ps);
+//   ::earth::time time;
+//   time = t;
+//
+//   *pp = time;
+//}
 
 
 void copy(::payload * ppayload, const string * pstring)

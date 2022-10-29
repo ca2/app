@@ -30,7 +30,7 @@ namespace user
 
       
       void dump(dump_context&) const override;
-      void assert_ok() const override;
+      // void assert_ok() const override;
 
 
 
@@ -211,7 +211,7 @@ namespace user
       //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       //      virtual void dump(dump_context &) const;
-      //    void assert_ok() const override;
+      //    // void assert_ok() const override;
 
 
 

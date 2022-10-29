@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "acme/primitive/collection/pointer_array.h"
+#include "acme/primitive/string/string.h"
 #include "apex/user/notify_icon_bridge.h"
 
 
@@ -15,7 +17,7 @@ namespace user
 
 
       class CLASS_DECL_AURA item :
-         virtual public object
+         virtual public ::particle
       {
       public:
 

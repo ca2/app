@@ -64,7 +64,7 @@ namespace draw2d
    void cursor_alloc(::particle * pparticle,cursor_pointer & pcursor,int xHotspot,int yHotspot)
    {
 
-      pparticle->__construct(pcursor);
+      __construct(pparticle, pcursor);
 
       pcursor->m_szHotspotOffset.cx = xHotspot;
 

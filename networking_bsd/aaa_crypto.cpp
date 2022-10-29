@@ -847,7 +847,7 @@ namespace crypto_openssl
 
    //   }
 
-   //   if (!m_pcontext->m_papexcontext->file().put_contents(payloadFile, memoryEncrypt))
+   //   if (!file()->put_contents(payloadFile, memoryEncrypt))
    //   {
 
    //      return false;
@@ -864,13 +864,13 @@ namespace crypto_openssl
 
    //   memory memoryEncrypt;
 
-   //   if (!m_pcontext->m_papexcontext->file().exists(payloadFile))
+   //   if (!file()->exists(payloadFile))
    //   {
    //      str.Empty();
    //      return success_not_found;
    //   }
 
-   //   if (!m_pcontext->m_papexcontext->file().as_memory(payloadFile, memoryEncrypt))
+   //   if (!file()->as_memory(payloadFile, memoryEncrypt))
    //   {
    //      return error_file;
    //   }
@@ -1013,7 +1013,7 @@ namespace crypto_openssl
 
       //   string strPath = get_crypt_key_file_path();
 
-      //   string str = m_pcontext->m_papexcontext->file().as_string(strPath);
+      //   string str = file()->as_string(strPath);
 
       //   if (str.has_char())
       //   {
@@ -1026,7 +1026,7 @@ namespace crypto_openssl
 
       //   generate_random_alphanumeric(str.get_string_buffer(iLength), iLength);
 
-      //   m_pcontext->m_papexcontext->file().put_contents(strPath, str);
+      //   file()->put_contents(strPath, str);
 
       //   return str;
 
@@ -1134,7 +1134,7 @@ namespace crypto_openssl
 
       X509* signer = nullptr;
       {
-         string strSigner = m_pcontext->m_papexcontext->file().as_string(strSignerPath);
+         string strSigner = file()->as_string(strSignerPath);
          BIO* pbio = BIO_new_mem_buf((void*)(const char*)strSigner, (i32)strSigner.get_length());
          //signer = PEM_read_bio_X509_AUX(pbio, nullptr, 0, nullptr);
          signer = PEM_read_bio_X509(pbio, nullptr, 0, nullptr);
@@ -1143,7 +1143,7 @@ namespace crypto_openssl
 
       EVP_PKEY* pkey;
       {
-         string strKey = m_pcontext->m_papexcontext->file().as_string(strKeyPath);
+         string strKey = file()->as_string(strKeyPath);
          BIO* pbio = BIO_new_mem_buf((void*)(const char*)strKey, (i32)strKey.get_length());
          pkey = PEM_read_bio_PrivateKey(pbio, nullptr, nullptr, nullptr);
          BIO_free(pbio);
@@ -1152,7 +1152,7 @@ namespace crypto_openssl
 
       stack_st_X509* pstack509 = nullptr;
       {
-         string strOthers = m_pcontext->m_papexcontext->file().as_string(strOthersPath);
+         string strOthers = file()->as_string(strOthersPath);
          address_array < X509* > xptra;
          strsize iStart = 0;
          strsize iFind;
@@ -1204,7 +1204,7 @@ namespace crypto_openssl
       char* pchData = nullptr;
       long count = BIO_get_mem_data(output, &pchData);
 
-      m_pcontext->m_papexcontext->file().put_memory(strDir / "META-INF/zigbert.rsa", { pchData, count });
+      file()->put_memory(strDir / "META-INF/zigbert.rsa", { pchData, count });
 
       BIO_free(output);
       PKCS7_free(pkcs7);

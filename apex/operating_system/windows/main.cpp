@@ -110,7 +110,7 @@ namespace apex
 
          ::file::path pathLnk;
 
-         pathObj = m_pcontext->m_papexcontext->file().module();
+         pathObj = file()->module();
 
          string strLinkTitle;
 

@@ -442,7 +442,7 @@ retry:
 
       }
 
-      ::file::path pathTemp = m_pcontext->m_papexcontext->file().time(m_pcontext->m_papexcontext->dir().time());
+      ::file::path pathTemp = file()->time(dir()->time());
 
       auto psystem = acmesystem()->m_papexsystem;
 
@@ -468,7 +468,7 @@ retry:
 
       }
 
-      return m_pcontext->m_papexcontext->file().get_file(pathTemp, eopen);
+      return file()->get_file(pathTemp, eopen);
 
    }
    else

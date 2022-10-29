@@ -715,7 +715,7 @@ namespace aura
 //#endif
 
 
-      void assert_ok() const override;
+      // void assert_ok() const override;
       void dump(dump_context& action_context) const override;
 
 

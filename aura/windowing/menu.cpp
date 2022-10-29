@@ -7,6 +7,7 @@
 #include "framework.h"
 #include "menu.h"
 #include "menu_command.h"
+#include "apex/message/channel.h"
 ////#include "aura/user/menu/_component.h"
 
 

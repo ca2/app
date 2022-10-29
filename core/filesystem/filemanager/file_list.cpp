@@ -165,7 +165,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      pcontext->m_papexcontext->file().rename(filepathNew, filepath);
+      pcontext->m_papexcontext->file()->rename(filepathNew, filepath);
 
       browse_sync(context);
 
@@ -624,7 +624,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      pcontext->m_papexcontext->file().trash_that_is_not_trash(patha);
+      pcontext->m_papexcontext->file()->trash_that_is_not_trash(patha);
 
       _001Refresh();
 
@@ -829,19 +829,19 @@ namespace filemanager
    //   for (i32 i = 0; i < itema.get_size(); i++)
    //   {
 
-   //      if (pcontext->m_papexcontext->dir().is(itema[i]->m_filepathFinal) && strcmp(itema[i]->m_filepathFinal.name(), ".svn"))
+   //      if (pcontext->m_papexcontext->dir()->is(itema[i]->m_filepathFinal) && strcmp(itema[i]->m_filepathFinal.name(), ".svn"))
    //      {
 
    //         straSub.rls(itema[i]->m_filepathFinal);
 
    //         for (i32 j = 0; j < straSub.get_size(); j++)
    //         {
-   //            if (!pcontext->m_papexcontext->dir().is(straSub[j]) && straSub[j].find(".svn") < 0)
+   //            if (!pcontext->m_papexcontext->dir()->is(straSub[j]) && straSub[j].find(".svn") < 0)
    //            {
    //               strFileList += straSub[j] + "\n";
    //               strFileCheck += straSub[j] + ",";
-   //               strFileCheck += pcontext->m_papexcontext->file().length(straSub[j]).get_string() + ",";
-   //               strFileCheck += pcontext->m_papexcontext->file().md5(straSub[j]) + "\n";
+   //               strFileCheck += pcontext->m_papexcontext->file()->length(straSub[j]).get_string() + ",";
+   //               strFileCheck += pcontext->m_papexcontext->file()->md5(straSub[j]) + "\n";
    //            }
    //         }
    //      }
@@ -849,8 +849,8 @@ namespace filemanager
    //      {
    //         strFileList += itema[i]->m_filepathUser + "\n";
    //         strFileCheck += itema[i]->m_filepathUser + ",";
-   //         strFileCheck += pcontext->m_papexcontext->file().length(itema[i]->m_filepathFinal).get_string() + ",";
-   //         strFileCheck += pcontext->m_papexcontext->file().md5(itema[i]->m_filepathFinal) + "\n";
+   //         strFileCheck += pcontext->m_papexcontext->file()->length(itema[i]->m_filepathFinal).get_string() + ",";
+   //         strFileCheck += pcontext->m_papexcontext->file()->md5(itema[i]->m_filepathFinal) + "\n";
    //      }
    //   }
 
@@ -871,8 +871,8 @@ namespace filemanager
    //   string strCheck = strBase + "check_" + strTime + ".txt";
 
 
-   //   pcontext->m_papexcontext->file().put_contents(strList, strFileList);
-   //   pcontext->m_papexcontext->file().put_contents(strCheck, strFileCheck);
+   //   pcontext->m_papexcontext->file()->put_contents(strList, strFileList);
+   //   pcontext->m_papexcontext->file()->put_contents(strCheck, strFileCheck);
 
    //}
 
@@ -915,15 +915,15 @@ namespace filemanager
 
    //            string strExtension = straSub[j].extension();
 
-   //            if (!pcontext->m_papexcontext->dir().is(straSub[j])
+   //            if (!pcontext->m_papexcontext->dir()->is(straSub[j])
    //                  && (strExtension == "exe" || strExtension == "dll" || strExtension == "dll.manifest"
    //                      || strExtension == "exe.manifest"))
    //            {
 
    //               strFileList += straSub[j] + "\n";
    //               strFileCheck += straSub[j] + ",";
-   //               strFileCheck += pcontext->m_papexcontext->file().length(straSub[j]).get_string() + ",";
-   //               strFileCheck += pcontext->m_papexcontext->file().md5(straSub[j]) + "\n";
+   //               strFileCheck += pcontext->m_papexcontext->file()->length(straSub[j]).get_string() + ",";
+   //               strFileCheck += pcontext->m_papexcontext->file()->md5(straSub[j]) + "\n";
 
    //            }
 
@@ -940,8 +940,8 @@ namespace filemanager
 
    //            strFileList += pdata->item(i)->m_filepathUser + "\n";
    //            strFileCheck += pdata->item(i)->m_filepathUser + ",";
-   //            strFileCheck += pcontext->m_papexcontext->file().length(pdata->item(i)->m_filepathFinal).get_string() + ",";
-   //            strFileCheck += pcontext->m_papexcontext->file().md5(pdata->item(i)->m_filepathFinal) + "\n";
+   //            strFileCheck += pcontext->m_papexcontext->file()->length(pdata->item(i)->m_filepathFinal).get_string() + ",";
+   //            strFileCheck += pcontext->m_papexcontext->file()->md5(pdata->item(i)->m_filepathFinal) + "\n";
 
    //         }
 
@@ -966,9 +966,9 @@ namespace filemanager
 
    //   string strCheck = strBase + "check_" + strTime + ".txt";
 
-   //   pcontext->m_papexcontext->file().put_contents(strList, strFileList);
+   //   pcontext->m_papexcontext->file()->put_contents(strList, strFileList);
 
-   //   pcontext->m_papexcontext->file().put_contents(strCheck, strFileCheck);
+   //   pcontext->m_papexcontext->file()->put_contents(strCheck, strFileCheck);
 
    //}
 
@@ -1049,7 +1049,7 @@ namespace filemanager
 
             ::file::path pathItem = stra[i];
 
-            if (pcontext->m_papexcontext->dir().is(pathItem))
+            if (pcontext->m_papexcontext->dir()->is(pathItem))
             {
 
                item.m_flags.add(::file::e_flag_folder);
@@ -1800,7 +1800,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      if (pcontext->m_papexcontext->dir().is(pathFinal))
+      if (pcontext->m_papexcontext->dir()->is(pathFinal))
       {
 
          item.m_flags.add(::file::e_flag_folder);
@@ -1934,7 +1934,7 @@ namespace filemanager
 
          string strName = strPath.name();
 
-         pcontext->m_papexcontext->file().move(fs_list_item(strict)->final_path(), strPath);
+         pcontext->m_papexcontext->file()->move(fs_list_item(strict)->final_path(), strPath);
 
       }
       else
@@ -2188,7 +2188,7 @@ namespace filemanager
 
                ::file::path pathFolder = filemanager_item()->user_path();
 
-               pcontext->m_papexcontext->file().replace_with(pathFolder, ptopic->payload(id_replace), ptopic->payload(id_find));
+               pcontext->m_papexcontext->file()->replace_with(pathFolder, ptopic->payload(id_replace), ptopic->payload(id_find));
 
             }
 
@@ -2203,7 +2203,7 @@ namespace filemanager
 
                auto pcontext = get_context();
 
-               pcontext->m_papexcontext->dir().create(pathFolder);
+               pcontext->m_papexcontext->dir()->create(pathFolder);
 
                ptopic->m_bRet = true;
 

@@ -344,6 +344,8 @@ list(APPEND library_source
         platform/tracer.h
         platform/trace_category.cpp
         platform/version.cpp
+        primitive/collection/__payload_array.cpp
+        primitive/collection/__property_set.h
         #primitive/collection/2d_array.cpp
         primitive/collection/array.cpp
         primitive/collection/atom_array.h
@@ -357,7 +359,6 @@ list(APPEND library_source
         #primitive/collection/map_misc.cpp
         primitive/collection/map_test_51778915.cpp
         #primitive/collection/numeric_array.cpp
-        primitive/collection/__payload_array.cpp
         #primitive/collection/point_array.cpp
         #primitive/collection/rectangle_array.cpp
         primitive/collection/sort.cpp
@@ -547,8 +548,8 @@ list(APPEND library_source
         #primitive/primitive/application_bias.cpp
         primitive/primitive/atom.cpp
         primitive/primitive/atom.h
-        primitive/primitive/atom_space.cpp
-        primitive/primitive/atom_space.h
+        #primitive/primitive/atom_space.cpp
+        #primitive/primitive/atom_space.h
         primitive/primitive/atomic.h
         primitive/primitive/bit.cpp
         primitive/primitive/bit.h
@@ -626,7 +627,6 @@ list(APPEND library_source
         primitive/primitive/property_object.h
         primitive/primitive/property_object.h
         primitive/primitive/property_set.cpp
-        primitive/primitive/__property_set.h
         #primitive/primitive/property_set_composite.cpp
         #primitive/primitive/property_set_papaya.cpp
         primitive/primitive/property_set_papaya.h
@@ -732,6 +732,7 @@ list(APPEND library_source
         primitive/string/ch_class.cpp
         primitive/string/ch_class.h
         primitive/string/command_line.cpp
+        primitive/string/command_line.h
         primitive/string/composite.h
         #primitive/string/dup.cpp
         primitive/string/from_integer.cpp
@@ -1133,7 +1134,8 @@ list(APPEND library_source
         operating_system/bidirectional_pipe.h
         operating_system/exit_status.cpp
         operating_system/exit_status.h
-        operating_system/main.cpp
+        #operating_system/main.cpp
+        operating_system/process.cpp
         operating_system/pipe.cpp
         operating_system/pipe.h
         operating_system/text.h
@@ -2184,7 +2186,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} )
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 if (NOT DEFINED NO_PRECOMPILED_HEADER)

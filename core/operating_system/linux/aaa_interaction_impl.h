@@ -41,7 +41,7 @@ namespace linux
       void linux_interaction_impl_common_construct();
 
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
 

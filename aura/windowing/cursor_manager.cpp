@@ -1,6 +1,8 @@
 #include "framework.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/application.h"
 #include "aura/windowing/cursor_manager.h"
 #include "aura/windowing/cursor.h"
 #include "aura/platform/system.h"
@@ -203,7 +205,7 @@ namespace windowing
 
       auto pcontext = get_context();
 
-      parse_hotspot_text(pcontext->m_papexcontext->file().as_string(pathDir / "hotspot.txt"));
+      parse_hotspot_text(pcontext->m_papexcontext->file()->as_string(pathDir / "hotspot.txt"));
 
    }
 
@@ -263,7 +265,7 @@ namespace windowing
 
       auto pcontext = pobjectContext->m_pcontext;
 
-      ::file::path pathArrow = pcontext->m_papexcontext->dir().matter(pathMatter / "arrow.png");
+      ::file::path pathArrow = pcontext->m_papexcontext->dir()->matter(pathMatter / "arrow.png");
       
       if(pathArrow.is_empty())
       {

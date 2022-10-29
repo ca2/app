@@ -144,7 +144,7 @@ namespace filemanager
 
       listing.set_listing(strParent);
 
-      pcontext->m_papexcontext->dir().enumerate(listing);
+      pcontext->m_papexcontext->dir()->enumerate(listing);
 
       for (i32 i = 0; i < listing.get_count(); i++)
       {

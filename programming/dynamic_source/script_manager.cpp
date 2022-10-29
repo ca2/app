@@ -245,7 +245,7 @@ namespace dynamic_source
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->dir().watcher().add_watch(m_strNetseedDsCa2Path, { e_as, pwatcher }, true);
+         pcontext->m_papexcontext->dir()->watcher().add_watch(m_strNetseedDsCa2Path, { e_as, pwatcher }, true);
 
       }
 
@@ -255,7 +255,7 @@ namespace dynamic_source
 
       listing.set_listing(m_strNetnodePath);
          
-      pcontext->m_papexcontext->dir().enumerate(listing);
+      pcontext->m_papexcontext->dir()->enumerate(listing);
 
       forallref(listing)
       {
@@ -267,7 +267,7 @@ namespace dynamic_source
 
             pwatcher->m_pmanager = this;
 
-            pcontext->m_papexcontext->dir().watcher().add_watch(item, { e_as, pwatcher }, true);
+            pcontext->m_papexcontext->dir()->watcher().add_watch(item, { e_as, pwatcher }, true);
 
          }
 
@@ -762,12 +762,12 @@ namespace dynamic_source
 
 
       ::file::path str;
-      str = pcontext->m_papexcontext->dir().module();
+      str = pcontext->m_papexcontext->dir()->module();
       str.ascend(2);
       str = str/ "stage\\basis";
       str = ";" + str;
       ::file::path str2;
-      str2 = pcontext->m_papexcontext->dir().module();
+      str2 = pcontext->m_papexcontext->dir()->module();
       str2.ascend(2);
       str2 = str2/ "netnode\\library\\include";
       str2 = ";" + str2;
@@ -973,7 +973,7 @@ namespace dynamic_source
 
       }
 
-      bool bFileExists = pcontext->m_papexcontext->file().exists(strPath);
+      bool bFileExists = pcontext->m_papexcontext->file()->exists(strPath);
       
       m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
 
@@ -1002,7 +1002,7 @@ namespace dynamic_source
          return ppair->element2();
       }
 
-      bool bIsDir = pcontext->m_papexcontext->dir().is(strPath);
+      bool bIsDir = pcontext->m_papexcontext->dir()->is(strPath);
          m_mapIncludeMatchesIsDir.set_at(strPath, bIsDir);
          return bIsDir;
    }
@@ -1026,7 +1026,7 @@ namespace dynamic_source
 
          // roughly detect this way: by finding the <?
 
-         bool bHasScript = pcontext->m_papexcontext->file().safe_get_string(strPath).find("<?") >= 0;
+         bool bHasScript = pcontext->m_papexcontext->file()->safe_get_string(strPath).find("<?") >= 0;
 
          m_mapIncludeHasScript.set_at(strPath, bHasScript);
 
@@ -1536,7 +1536,7 @@ namespace dynamic_source
 
       auto pcontext = get_context();
 
-      auto pfile = pcontext->m_papexcontext->file().get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_no_exception_on_open);
+      auto pfile = pcontext->m_papexcontext->file()->get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_no_exception_on_open);
 
       if(!pfile || ::failed(pfile->m_estatus))
       {
@@ -1694,11 +1694,11 @@ namespace dynamic_source
 
 #ifdef WINDOWS
 
-      return pcontext->m_papexcontext->dir().install()/m_pcompiler->m_strDynamicSourceStage /m_pcompiler->m_strStagePlatform /m_pcompiler->m_strDynamicSourceConfiguration/"dynamic_source" /strTransformName.folder()/strScript + strModifier + ".dll";
+      return pcontext->m_papexcontext->dir()->install()/m_pcompiler->m_strDynamicSourceStage /m_pcompiler->m_strStagePlatform /m_pcompiler->m_strDynamicSourceConfiguration/"dynamic_source" /strTransformName.folder()/strScript + strModifier + ".dll";
 
 #else
 
-      return pcontext->m_papexcontext->dir().install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
+      return pcontext->m_papexcontext->dir()->install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
 
 #endif
 

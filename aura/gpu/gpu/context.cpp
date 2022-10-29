@@ -3,6 +3,8 @@
 #include "buffer.h"
 //#include "_.h"
 //#include "_gpu.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/platform/system.h"
 ////#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/image.h"
@@ -360,11 +362,7 @@ namespace gpu
 
       ::file::path path(pszPath);
 
-      auto pcontext = get_context();
-
-      auto & file = pcontext->m_papexcontext->file();
-
-      string strFragment = file.as_string(path);
+      string strFragment = file()->as_string(path);
 
       string strExtension = path.all_extensions();
 

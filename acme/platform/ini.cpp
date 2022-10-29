@@ -33,7 +33,7 @@ namespace handle
    //ini::ini(::acme::application * papp)
    //{
 
-   //   auto preader = Ctx(papp).file().get_reader(papp->get_app_localconfig_folder());
+   //   auto preader = Ctx(papp).file()->get_reader(papp->get_app_localconfig_folder());
 
    //   if (preader)
    //   {
@@ -52,7 +52,7 @@ namespace handle
    //localini::localini(::particle * pparticle)
    //{
 
-   //   auto preader = Ctx(pparticle).file().get_reader(         auto psystem = acmesystem();
+   //   auto preader = Ctx(pparticle).file()->get_reader(         auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

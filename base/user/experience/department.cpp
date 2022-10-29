@@ -112,7 +112,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().safe_get_string(acmedirectory()->config() / papp->m_papexapplication->m_strAppName / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file()->safe_get_string(acmedirectory()->config() / papp->m_papexapplication->m_strAppName / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -120,7 +120,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().safe_get_string(acmedirectory()->config() / ::file::path(papp->m_papexapplication->m_strAppName).folder() / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file()->safe_get_string(acmedirectory()->config() / ::file::path(papp->m_papexapplication->m_strAppName).folder() / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -128,7 +128,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().safe_get_string(acmedirectory()->config() / ::file::path(papp->m_papexapplication->m_strAppName).name() / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file()->safe_get_string(acmedirectory()->config() / ::file::path(papp->m_papexapplication->m_strAppName).name() / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -136,7 +136,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().safe_get_string(acmedirectory()->config() / "system/experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file()->safe_get_string(acmedirectory()->config() / "system/experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -144,7 +144,7 @@ namespace experience
 
                {
 
-                  string strExperience = pcontext->m_papexcontext->file().safe_get_string(acmedirectory()->config() / "system/experience.txt");
+                  string strExperience = pcontext->m_papexcontext->file()->safe_get_string(acmedirectory()->config() / "system/experience.txt");
 
                   straExperience.add(strExperience);
 

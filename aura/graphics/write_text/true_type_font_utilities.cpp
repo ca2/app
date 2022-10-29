@@ -1,9 +1,11 @@
 // Brought back on 2022-03-01 22:57 <3ThomasBorregaardS~rensen!!
 #include "framework.h"
 #include "true_type_font_utilities.h"
+#include "acme/filesystem/file/file.h"
 #include "acme/include/_c_swap.h"
+#include "acme/platform/context.h"
 #include "apex/filesystem/filesystem/file_context.h"
-
+#include "apex/platform/context.h"
 
 
 // https://www.codeproject.com/Articles/2293/Retrieving-Font-Name-from-TTF-File
@@ -63,12 +65,12 @@ true_type_font_utilities::~true_type_font_utilities()
 }
 
 
-string true_type_font_utilities::GetFontNameFromFile(::file::path lpszFilePath)
+string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
 {
 
    auto pcontext = m_pcontext;
 
-   file_pointer f = pcontext->m_papexcontext->file().get_file(lpszFilePath, ::file::e_open_read | ::file::e_open_share_deny_write);
+   file_pointer f = pcontext->m_papexcontext->file()->get_file(path, ::file::e_open_read | ::file::e_open_share_deny_write);
 
    string csRetVal;
 

@@ -1,6 +1,13 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/parallelization/task.h"
+#include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/collection/numeric_array.h"
+#include "acme/primitive/collection/string_array.h"
+
+
 namespace user
 {
 
@@ -167,9 +174,9 @@ namespace user
       virtual ::file::path & processed_path(_get_file_image_ & getfileimage);
       virtual ::file::path & final_path(_get_file_image_ & getfileimage);
 
-      inline ::aura::application * get_app() { return m_pcontext ? m_pcontext->m_pauraapplication : nullptr; }
-      inline ::aura::session * get_session() { return m_pcontext ? m_pcontext->m_paurasession : nullptr; }
-      inline ::aura::system * get_system() { return acmesystem() ? acmesystem()->m_paurasystem : nullptr; }
+      ::aura::application * get_app();
+      ::aura::session * get_session();
+      ::aura::system * get_system();
 
 
       //virtual void add_thread();

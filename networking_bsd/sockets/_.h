@@ -3,6 +3,7 @@
 
 
 #include "config.h"
+#include "acme/primitive/collection/string_map.h"
 
 
 #define INVALID_SOCKET_ID (-1)

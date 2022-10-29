@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "audio.h"
+#include "acme/exception/interface_only.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
@@ -33,7 +34,6 @@ namespace aqua
    }
 
 
-
    string audio::text_to_speech_implementation()
    {
 
@@ -47,9 +47,9 @@ namespace aqua
 
             ::file::path pathImplementation;
 
-            pathImplementation = m_pcontext->m_papexcontext->dir().config() / "config/system/text_to_speech.txt";
+            pathImplementation = dir()->config() / "config/system/text_to_speech.txt";
 
-            m_strTtsImplementation = m_pcontext->m_papexcontext->file().safe_get_string(pathImplementation);
+            m_strTtsImplementation = file()->safe_get_string(pathImplementation);
 
          }
 
@@ -72,11 +72,11 @@ namespace aqua
 
       ::file::path pathImplementation;
 
-      pathImplementation = m_pcontext->m_papexcontext->dir().config() / "config/system/text_to_speech.txt";
+      pathImplementation = dir()->config() / "config/system/text_to_speech.txt";
 
-      m_pcontext->m_papexcontext->file().put_text(pathImplementation, strTtsImplementation);
+      file()->put_text(pathImplementation, strTtsImplementation);
 
-      m_strTtsImplementation = m_pcontext->m_papexcontext->file().as_string(pathImplementation);
+      m_strTtsImplementation = file()->as_string(pathImplementation);
 
       //return ::success;
 

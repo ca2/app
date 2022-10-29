@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/primitive/object.h"
+
+
 class CLASS_DECL_AURA image_frame :
    virtual public object
 {

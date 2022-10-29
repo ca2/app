@@ -1,7 +1,8 @@
 ﻿#include "framework.h"
-#include "_.h"
-#include "_gpu.h"
+#include "buffer.h"
 #include "aura/graphics/image/image.h"
+//#include "_.h"
+//#include "_gpu.h"
 //#include "_defer.h"
 
 

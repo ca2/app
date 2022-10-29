@@ -3,6 +3,7 @@
 #include "application.h"
 #include "session.h"
 #include "acme/parallelization/pool.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system_setup.h"
 #include "aqua/constant/idpool.h"
 #include "aqua/multimedia/audio/audio.h"
@@ -206,7 +207,7 @@ namespace aqua
 
       }
 
-      synchronous_lock synchronouslock(&m_psubsystem->m_pmutexLibrary4);
+      critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
 
       try
       {

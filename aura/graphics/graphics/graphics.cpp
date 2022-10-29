@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
 #include "graphics.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/windowing/window.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction.h"
@@ -128,7 +130,7 @@ namespace graphics
    }
 
 
-   ::synchronization * graphics::get_draw_lock()
+   ::particle * graphics::get_draw_lock()
    {
 
       return synchronization();
@@ -219,7 +221,7 @@ namespace graphics
    }
 
 
-   synchronization * graphics::get_buffer_sync()
+   ::particle * graphics::get_buffer_sync()
    {
 
       return synchronization();
@@ -237,7 +239,7 @@ namespace graphics
    }
 
 
-   synchronization * graphics::get_screen_sync()
+   ::particle * graphics::get_screen_sync()
    {
 
       return synchronization();

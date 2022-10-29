@@ -2,6 +2,7 @@
 
 
 #include "font_enumeration.h"
+#include "acme/platform/department.h"
 
 
 namespace write_text

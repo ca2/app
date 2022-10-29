@@ -140,7 +140,7 @@ namespace app_shader
 
          }
 
-         pcontext->dir().enumerate(listing);
+         pcontext->dir()->enumerate(listing);
 
          if (listing.has_elements() || bUseOwnResources)
          {

@@ -136,7 +136,7 @@ namespace user
 //
 //      auto pcontext = m_pcontext;
 //
-//      ::file::path path = pcontext->m_papexsystem->dir().module() / "po" / (strLang + ".po");
+//      ::file::path path = pcontext->m_papexsystem->dir()->module() / "po" / (strLang + ".po");
 //
 //      return acmefile()->as_string(path, bOnlyHeader ? 4096 : -1);
 //

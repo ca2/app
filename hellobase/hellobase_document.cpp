@@ -86,8 +86,8 @@ namespace hellobase
 
       }
       else if(get_typed_impact < ::user::plain_edit_impact >() != nullptr
-              && pcontext->m_papexcontext->file().exists(payloadFile)
-              && (str = pcontext->m_papexcontext->file().as_string(payloadFile)).has_char())
+              && pcontext->m_papexcontext->file()->exists(payloadFile)
+              && (str = pcontext->m_papexcontext->file()->as_string(payloadFile)).has_char())
       {
 
          get_typed_impact < ::user::plain_edit_impact >()->_001SetText(str.Left(84),::e_source_user);

@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "apex/handler/manager.h"
+#include "acme/parallelization/manual_reset_event.h"
+
+
 namespace write_text
 {
 

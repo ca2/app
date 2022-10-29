@@ -44,7 +44,7 @@ CLASS_DECL_ACME string process_configuration_name();
 
 CLASS_DECL_ACME string time_binary_platform(string strPlatform);
 CLASS_DECL_ACME string process_platform_name();
-CLASS_DECL_ACME string process_platform_dir_name2();
+CLASS_DECL_ACME string process_platform_name();
 CLASS_DECL_ACME string process_version_dir_name();
 
 //CLASS_DECL_ACME int_bool is_process_running(::u32 pid);

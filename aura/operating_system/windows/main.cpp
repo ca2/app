@@ -99,7 +99,7 @@ CLASS_DECL_AURA i32 ca2_main();
 //
 //         ::file::path pathLnk;
 //
-//         pathObj = pcontext->m_papexcontext->file().module();
+//         pathObj = pcontext->m_papexcontext->file()->module();
 //
 //         string strLinkTitle;
 //

@@ -129,7 +129,7 @@ namespace core
    string application::prepare_impact_options_main_body()
    {
 
-      auto strMenuImpactPartialHtml = file().safe_get_string("matter://options.partial.html");
+      auto strMenuImpactPartialHtml = file()->safe_get_string("matter://options.partial.html");
 
       return strMenuImpactPartialHtml;
 

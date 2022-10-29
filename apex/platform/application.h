@@ -170,7 +170,7 @@ namespace apex
       virtual void initialize(::particle * pparticle) override;
 
 
-      //void assert_ok() const override;
+      //// void assert_ok() const override;
       //void dump(dump_context & dumpcontext) const override;
 
 
@@ -372,7 +372,7 @@ namespace apex
       virtual ::file::path appconfig_folder();
 
 
-      //void assert_ok() const override;
+      //// void assert_ok() const override;
       //void dump(dump_context & dumpcontext) const override;
 
 

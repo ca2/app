@@ -1,16 +1,16 @@
 ﻿#include "framework.h"
-
-////#include "aura/message.h"
-#include "acme/operating_system.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
-#include "aura/windowing/window.h"
-#include "aura/windowing/windowing.h"
 #include "interaction_impl.h"
 #include "interaction.h"
 #include "user.h"
 #include "system.h"
 #include "message.h"
+#include "acme/constant/message.h"
+#include "acme/operating_system.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
 #include "aura/platform/session.h"
 
 

@@ -1,14 +1,14 @@
 ﻿#include "framework.h"
-
-//#include "acme/message.h"
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
-#include "acme/parallelization/message_queue.h"
-//#include "acme/operating_system/_user.h"
-#include "aura/graphics/draw2d/graphics.h"
-#include "aura/windowing/window.h"
 #include "interaction_impl.h"
 #include "interaction.h"
+#include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/parallelization/message_queue.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/windowing/window.h"
+
 
 #if !defined(WINDOWS_DESKTOP)
 #define PM_NOREMOVE 0

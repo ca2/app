@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "pen.h"
 #include "brush.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace draw2d

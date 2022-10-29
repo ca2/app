@@ -11,8 +11,12 @@
 // any later version.
 //
 // $Id: XKeyboard.h 29 2008-04-09 21:37:44Z jay $
+#pragma once
+
 
 #include "aura/user/user/keyboard.h"
+#include "acme/primitive/collection/string_array.h"
+
 
 namespace windowing
 {

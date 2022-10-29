@@ -42,7 +42,7 @@ namespace base
       virtual void initialize(::particle * pparticle) override;
 
 
-//      void assert_ok() const override;
+//      // void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 
 
@@ -272,7 +272,7 @@ namespace base
 //      virtual ::file::path appconfig_folder();
 //
 //
-//      //void assert_ok() const override;
+//      //// void assert_ok() const override;
 //      //void dump(dump_context & dumpcontext) const override;
 //
 //
@@ -1092,7 +1092,7 @@ namespace base
 //      //virtual ::aura::printer* get_printer(const ::string & pszDeviceName) override;
 //
 //
-//      //void assert_ok() const override;
+//      //// void assert_ok() const override;
 //      //virtual void dump(dump_context& dumpcontext) const override;
 //
 //
@@ -1145,7 +1145,7 @@ namespace base
 //
 //
 //
-////void assert_ok() const override;
+////// void assert_ok() const override;
 ////virtual void dump(dump_context & action_context) const;
 //
 //

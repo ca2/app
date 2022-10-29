@@ -2,6 +2,7 @@
 #include "decoder.h"
 #include "multimedia.h"
 #include "acme/constant/id.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aqua/platform/system.h"
 
 
@@ -225,7 +226,7 @@ namespace multimedia
    bool decoder::multimedia_get_attribute(::enum_id eattribute, ::payload & payload)
    {
 
-      synchronous_lock lock(mutex());
+      synchronous_lock lock(synchronization());
 
       if (eattribute == id_title)
       {

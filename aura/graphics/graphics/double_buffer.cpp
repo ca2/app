@@ -1,6 +1,8 @@
 #include "framework.h"
-#include "_.h"
-#include "_graphics.h"
+#include "double_buffer.h"
+//#include "_.h"
+//#include "_graphics.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/image.h"
 
 
@@ -49,7 +51,7 @@ namespace graphics
    }
 
 
-   synchronization * double_buffer::get_draw_lock()
+   ::particle * double_buffer::get_draw_lock()
    {
 
       return get_buffer_sync();
@@ -163,10 +165,10 @@ namespace graphics
    }
 
 
-   synchronization * double_buffer::get_buffer_sync()
+   ::particle * double_buffer::get_buffer_sync()
    {
 
-      return m_pmutexa[get_buffer_index()];
+      return m_mutexa[get_buffer_index()];
 
    }
 
@@ -179,10 +181,10 @@ namespace graphics
    }
 
 
-   synchronization * double_buffer::get_screen_sync()
+   ::particle * double_buffer::get_screen_sync()
    {
 
-      return m_pmutexa[get_screen_index()];
+      return m_mutexa[get_screen_index()];
 
    }
 

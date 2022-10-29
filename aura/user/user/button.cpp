@@ -1,6 +1,8 @@
 ﻿#include "framework.h"
 #include "button.h"
 #include "style.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"

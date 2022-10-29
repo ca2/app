@@ -10,7 +10,7 @@
 #include "aura_posix/node.h"
 
 
-mutex * user_mutex();
+mutex * user_synchronization();
 
 
 namespace opengl
@@ -77,7 +77,7 @@ namespace opengl
 
       };
 
-      synchronous_lock synchronouslock(user_mutex());
+      synchronous_lock synchronouslock(user_synchronization());
 
       auto psession = get_session()->m_paurasession;
 
@@ -188,7 +188,7 @@ namespace opengl
 
       ::e_status estatus = ::success;
 
-      synchronous_lock synchronouslock(user_mutex());
+      synchronous_lock synchronouslock(user_synchronization());
 
       auto psession = get_session()->m_paurasession;
 
@@ -251,7 +251,7 @@ namespace opengl
 
       };
 
-      synchronous_lock synchronouslock(user_mutex());
+      synchronous_lock synchronouslock(user_synchronization());
 
       auto pnode = (::aura_posix::node *) acmenode()->m_pAuraPosix;
 

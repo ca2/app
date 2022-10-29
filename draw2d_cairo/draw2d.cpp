@@ -918,7 +918,7 @@ namespace draw2d_cairo
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = pcontext->m_papexcontext->file()->as_string("/system/etc/system_fonts.xml");
 //
 //            auto psystem = acmesystem()->m_paurasystem;
 

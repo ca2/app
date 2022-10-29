@@ -83,7 +83,7 @@ namespace sockets
 
                auto pbase64 = psystem->base64();
 
-               strResponse = pbase64->encode(m_pcontext->m_papexcontext->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
+               strResponse = pbase64->encode(file()->as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
                print(strResponse + "\r\n");
             }
             else if(::str().find_ci("password", strRequest) >= 0)
@@ -93,7 +93,7 @@ namespace sockets
 
                auto pbase64 = psystem->base64();
 
-               strResponse = pbase64->encode(m_pcontext->m_papexcontext->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_pass.txt"));
+               strResponse = pbase64->encode(file()->as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_pass.txt"));
 
                print(strResponse + "\r\n");
 

@@ -176,7 +176,7 @@ public:
    virtual void on_initialize_particle();
 
 
-   virtual ::acme::application * get_context_application();
+   ::acme::application * acmeapplication();
 
 
    ::acme_file * acmefile();
@@ -184,6 +184,16 @@ public:
    ::acme_directory * acmedirectory();
    ::acme::node * acmenode();
    ::acme::system * acmesystem();
+
+
+   ::apex::application * apexapplication();
+
+
+   ::dir_context * dir();
+   ::dir_system * dirsystem();
+   ::file_context * file();
+   ::file_system * filesystem();
+
 
 
    virtual void handle(::topic * ptopic, ::context * pcontext);

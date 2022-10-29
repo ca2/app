@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "still.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "aura/graphics/write_text/text_out.h"
 #include "aura/graphics/write_text/text_out_array.h"

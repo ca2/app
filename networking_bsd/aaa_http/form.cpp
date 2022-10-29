@@ -268,7 +268,7 @@ namespace http
 
                         strTempFile = "C:\\upload\\" + strTime + strIndex + current_filename;
 
-                        if (!m_pcontext->m_papexcontext->file().exists(strTempFile))
+                        if (!file()->exists(strTempFile))
                         {
 
                            break;
@@ -289,7 +289,7 @@ namespace http
 
                      }
 
-                     file_pointer spfile(m_pcontext->m_papexcontext->file().get_file(strTempFile, ::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write));
+                     file_pointer spfile(file()->get_file(strTempFile, ::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write));
 
                      //synchronouslock.unlock();
 

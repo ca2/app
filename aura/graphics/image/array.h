@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "acme/primitive/collection/array_base.h"
+#include "acme/primitive/collection/pointer_array.h"
+#include "acme/primitive/primitive/matter.h"
 
 
 class CLASS_DECL_AURA image_array :

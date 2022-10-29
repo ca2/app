@@ -276,7 +276,7 @@ namespace aura
 
       int iPid = pcontext->m_papexcontext->os().get_pid();
 
-      //defer_add_module(pcontext->m_papexcontext->file().module(), iPid);
+      //defer_add_module(pcontext->m_papexcontext->file()->module(), iPid);
 
 //      ::file::path path;
 //
@@ -344,7 +344,7 @@ namespace aura
 
       }
 
-      ::aura::app_launcher launcher(process_platform_dir_name2(), strApp);
+      ::aura::app_launcher launcher(process_platform_name(), strApp);
 
       atom idPid = -1;
 
@@ -954,7 +954,7 @@ repeat:
 
       m_straModule = straUnique;
 
-      ::file::path pathThisModule = pcontext->m_papexcontext->file().module();
+      ::file::path pathThisModule = pcontext->m_papexcontext->file()->module();
 
       string strItem;
 
@@ -975,7 +975,7 @@ repeat:
 
       strModuleList = m_straModule.implode("\n");
 
-      pcontext->m_papexcontext->file().put_contents(pathModule,strModuleList);
+      pcontext->m_papexcontext->file()->put_contents(pathModule,strModuleList);
 
 #endif
 

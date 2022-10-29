@@ -303,7 +303,7 @@ void NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, std::vector<std::pair
 
    listing.set_file_listing(path.c_str());
 
-   pcontext->dir().enumerate(listing);
+   pcontext->dir()->enumerate(listing);
 
    for (auto & path : listing)
    {

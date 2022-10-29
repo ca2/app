@@ -10,6 +10,7 @@
 namespace apex
 {
 
+
    class context_thread;
 
 
@@ -24,10 +25,8 @@ namespace apex
       string                              m_strStoreServerBaseUrl;
 
       string_to_string                    m_mapCachedLatestBuild;
-      ::pointer<::http::context>       m_phttp;
-      ::pointer<::dir_context>         m_pdir;
-      ::pointer<::file_context>        m_pfile;
-      ::pointer<::os_context>          m_poscontext;
+      ::pointer<::http::context>          m_phttp;
+      ::pointer<::os_context>             m_poscontext;
 
 
       string                              m_strLocale;
@@ -45,6 +44,9 @@ namespace apex
 
       context();
       ~context() override;
+
+
+      void initialize(::particle * pparticle) override;
 
 
       virtual void on_command_create(::create* pcreate);
@@ -79,9 +81,14 @@ namespace apex
 
 
       inline ::http::context& http() { return *m_phttp; }
-      inline ::dir_context& dir() { return *m_pdir; }
-      inline ::file_context& file() { return *m_pfile; }
       inline ::os_context * os_context() { return m_poscontext; };
+
+
+      //::dir_context * dir() override;
+      //::dir_system * dirsystem() override;
+      //::file_context * file() override;
+      //::file_system * filesystem() override;
+
 
       ::handle::ini ini_from_path(::file::path& path);
 

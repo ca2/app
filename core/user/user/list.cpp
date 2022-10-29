@@ -4050,7 +4050,7 @@ namespace user
 
                         auto pcontext = get_context();
 
-                        pcontext->m_papexcontext->file().put_text(strSort, stra.implode("\n"));
+                        pcontext->m_papexcontext->file()->put_text(strSort, stra.implode("\n"));
 
                         synchronouslock.unlock();
 
@@ -7627,7 +7627,7 @@ namespace user
 
          auto pcontext = get_context();
 
-         string str = pcontext->m_papexcontext->file().safe_get_string(strSort);
+         string str = pcontext->m_papexcontext->file()->safe_get_string(strSort);
          string_array stra;
          stra.add_lines(str);
          for (index a = 0; a < stra.get_size(); a++)

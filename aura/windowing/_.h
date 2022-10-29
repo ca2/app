@@ -51,9 +51,6 @@ namespace windowing
    DECLARE_ENUMERATION(e_status, enum_status);
 
    
-   //using display_map = iptr_map < ::pointer<display > >;
-
-
    class menu_item;
 
 

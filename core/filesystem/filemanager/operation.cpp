@@ -199,16 +199,16 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      if(pcontext->m_papexcontext->dir().is(pszSrc) && !::str().ends_ci(pszSrc,".zip"))
+      if(pcontext->m_papexcontext->dir()->is(pszSrc) && !::str().ends_ci(pszSrc,".zip"))
       {
 
-         pcontext->m_papexcontext->dir().create(strDst.folder());
+         pcontext->m_papexcontext->dir()->create(strDst.folder());
 
          return false;
 
       }
 
-      m_fileSrc = pcontext->m_papexcontext->file().get_file(pszSrc,::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_write);
+      m_fileSrc = pcontext->m_papexcontext->file()->get_file(pszSrc,::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_write);
 
       if(m_fileSrc.is_null())
       {
@@ -222,7 +222,7 @@ namespace filemanager
       if(!m_bReplaceAll)
       {
 
-         //if(pcontext->m_papexcontext->file().exists(pszDst))
+         //if(pcontext->m_papexcontext->file()->exists(pszDst))
          //{
          //   property_set propertyset;
          //   propertyset["srcfile"].get_value().set_string(pszSrc);
@@ -231,7 +231,7 @@ namespace filemanager
          //   return false;
          //}
 
-         if(pcontext->m_papexcontext->file().exists(strDst) || pcontext->m_papexcontext->dir().is(strDst))
+         if(pcontext->m_papexcontext->file()->exists(strDst) || pcontext->m_papexcontext->dir()->is(strDst))
          {
 
             //auto function = function_arg([](::payload& varRet, const ::payload& varVal)
@@ -276,9 +276,9 @@ namespace filemanager
 
       }
 
-      pcontext->m_papexcontext->dir().create(strDst.folder());
+      pcontext->m_papexcontext->dir()->create(strDst.folder());
 
-      m_fileDst = pcontext->m_papexcontext->file().get_file(strDst,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
+      m_fileDst = pcontext->m_papexcontext->file()->get_file(strDst,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
 
       auto papp = get_app();
 
@@ -455,7 +455,7 @@ namespace filemanager
 
             }
             m_iFile++;
-            while(m_iFile < m_stra.get_size() && pcontext->m_papexcontext->dir().is(m_stra[m_iFile]) && !::str().ends_ci(m_stra[m_iFile],".zip"))
+            while(m_iFile < m_stra.get_size() && pcontext->m_papexcontext->dir()->is(m_stra[m_iFile]) && !::str().ends_ci(m_stra[m_iFile],".zip"))
             {
                m_iFile++;
             }
@@ -490,7 +490,7 @@ namespace filemanager
 
          }
 
-         pcontext->m_papexcontext->file().erase(m_stra[m_iFile]);
+         pcontext->m_papexcontext->file()->erase(m_stra[m_iFile]);
 
          m_iFile++;
 
@@ -521,7 +521,7 @@ namespace filemanager
 
             m_fileDst->close();
 
-            pcontext->m_papexcontext->file().erase(m_stra[m_iFile]);
+            pcontext->m_papexcontext->file()->erase(m_stra[m_iFile]);
 
             m_iFile++;
 
@@ -605,7 +605,7 @@ namespace filemanager
       for(i32 i = 0; i < m_stra.get_size(); i++)
       {
 
-         if(pcontext->m_papexcontext->dir().is(m_stra[i]) && !::str().ends_ci(m_stra[i],".zip"))
+         if(pcontext->m_papexcontext->dir()->is(m_stra[i]) && !::str().ends_ci(m_stra[i],".zip"))
          {
 
             m_daSize.add(0.0);
@@ -616,7 +616,7 @@ namespace filemanager
          else
          {
 
-            varLen = pcontext->m_papexcontext->file().length(m_stra[i]);
+            varLen = pcontext->m_papexcontext->file()->length(m_stra[i]);
 
             if(varLen.is_null())
             {
@@ -901,7 +901,7 @@ namespace filemanager
          {
             strFormat = set_number_value(strName, iValue + i);
             str = strDir /strFormat + strExtension;
-            if(!pcontext->m_papexcontext->file().exists(str))
+            if(!pcontext->m_papexcontext->file()->exists(str))
                return true;
          }
       }
@@ -913,7 +913,7 @@ namespace filemanager
          {
             strFormat.format("-Copy-%03d",i);
             str = strDir /strName + strFormat + strExtension;
-            if(!pcontext->m_papexcontext->file().exists(str))
+            if(!pcontext->m_papexcontext->file()->exists(str))
                return true;
          }
       }
@@ -933,12 +933,12 @@ namespace filemanager
       for(i32 i = 0; i < pathaExpand.get_size(); i++)
       {
 
-         if(pcontext->m_papexcontext->dir().is(pathaExpand[i]) && !::str().ends_ci(pathaExpand[i],".zip"))
+         if(pcontext->m_papexcontext->dir()->is(pathaExpand[i]) && !::str().ends_ci(pathaExpand[i],".zip"))
          {
 
             listingExpanded.set_listing(pathaExpand[i]);
 
-            pcontext->m_papexcontext->dir().enumerate(listingExpanded);
+            pcontext->m_papexcontext->dir()->enumerate(listingExpanded);
 
          }
          else

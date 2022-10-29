@@ -679,7 +679,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      string strXml = pcontext->m_papexcontext->file().as_string(payloadFile);
+      string strXml = pcontext->m_papexcontext->file()->as_string(payloadFile);
 
       try
       {

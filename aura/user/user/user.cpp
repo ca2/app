@@ -456,7 +456,7 @@ namespace user
 
       //xml::document docUser;
 
-      //string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata()/"langstyle_settings.xml");
+      //string strUser = pcontext->m_papexcontext->file()->as_string(pcontext->m_papexcontext->dir()->appdata()/"langstyle_settings.xml");
 
       //string strLangUser;
 
@@ -1578,7 +1578,7 @@ namespace user
 } // namespace user
 
 
-CLASS_DECL_AURA ::pointer< ::mutex > user_mutex()
+CLASS_DECL_AURA ::pointer< ::mutex > user_synchronization()
 {
 
    return g_pmutexUser;

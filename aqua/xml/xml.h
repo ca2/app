@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/platform/department.h"
+#include "acme/primitive/collection/string_map.h"
+
+
 namespace xml
 {
 

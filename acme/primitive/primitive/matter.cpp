@@ -86,7 +86,13 @@ void matter::operator()(const ::payload & payload)
 }
 
 
-
+//// <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
+void matter::handle_command(const ::atom & atom)
+{
+//
+//   //return ::success_none;
+//
+}
 
 //void matter::set_object(::object* pparticle)
 //{

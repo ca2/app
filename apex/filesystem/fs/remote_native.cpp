@@ -235,7 +235,7 @@ namespace fs
 
             listing.set_listing(path);
 
-            m_pcontext->m_papexcontext->dir().enumerate(listing);
+            dir()->enumerate(listing);
             
          }
          else
@@ -257,7 +257,7 @@ namespace fs
 
             listing.set_listing(path);
 
-            m_pcontext->m_papexcontext->dir().enumerate(listing);
+            dir()->enumerate(listing);
 
          }
          else

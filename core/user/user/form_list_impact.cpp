@@ -47,7 +47,7 @@ namespace user
             if(!ptopic->payload(id_form).is_empty())
             {
 
-               string strMatter = m_pcontext->m_papexcontext->dir().matter(ptopic->payload(id_form));
+               string strMatter = dir()->matter(ptopic->payload(id_form));
 
                if(get_document()->on_open_document(strMatter))
                {

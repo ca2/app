@@ -3,6 +3,9 @@
 #include "horizontal_scroll_base.h"
 #include "scroll_data.h"
 #include "scroll_bar.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/message/user.h"
 
 

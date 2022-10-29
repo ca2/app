@@ -91,7 +91,7 @@ namespace operating_system
 
    class process;
 
-   class exit_status;
+   struct exit_status;
 
 } // namespace operating_system
 

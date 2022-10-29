@@ -306,7 +306,7 @@ public:
 
 
 
-   inline void Empty() noexcept
+   void Empty() 
    {
 
       ASSERT(this->metadata()->m_countReference >= 1);

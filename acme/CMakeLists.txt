@@ -270,6 +270,7 @@ list(APPEND library_source
         #parallelization/thread_os.cpp
         #parallelization/waitable.cpp
         platform/_.cpp
+        platform/_critical_section.h
         platform/_main_hold_base.cpp
         platform/acme.cpp
         platform/acme.h
@@ -369,7 +370,7 @@ list(APPEND library_source
         primitive/collection/string_list.h
         primitive/comparison/var_strict.cpp
         primitive/data/_.h
-        primitive/data/_data.h
+        #primitive/data/_data.h
         primitive/data/_impl.h
         primitive/data/_tree.h
         primitive/data/container.cpp
@@ -739,6 +740,7 @@ list(APPEND library_source
         primitive/string/hex.h
         primitive/string/international.cpp
         primitive/string/international.h
+        primitive/string/international2.cpp
         primitive/string/international2.h
         #primitive/string/manager.cpp
         primitive/string/network_payload.cpp
@@ -2182,7 +2184,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} platform/_critical_section.h)
+add_library(${PROJECT_NAME} SHARED ${library_source} )
 
 
 if (NOT DEFINED NO_PRECOMPILED_HEADER)

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "acme/exception/exception.h"
+//#include "acme/exception/exception.h"
 
 //
 //namespace str
@@ -64,36 +64,23 @@
       }*/
 
 
-      inline bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz)
-      {
-
-#ifdef WINDOWS
-
-         return multibyte_to_multibyte(CP_UTF8, str, uCodePageSrc, pcsz);
-
-#else
-
-         throw ::exception(todo, "multibyte");
-
-#endif
-
-      }
+CLASS_DECL_ACME bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz);
 
 
-      inline bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz, strsize nCount)
-      {
-
-#ifdef WINDOWS
-
-         return multibyte_to_multibyte(CP_UTF8, str, uCodePageSrc, pcsz, nCount);
-
-#else
-
-         throw ::exception(todo, "multibyte");
-
-#endif
-
-      }
+CLASS_DECL_ACME bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz, strsize nCount);
+//      {
+//
+//#ifdef WINDOWS
+//
+//         return multibyte_to_multibyte(CP_UTF8, str, uCodePageSrc, pcsz, nCount);
+//
+//#else
+//
+//         throw ::exception(todo, "multibyte");
+//
+//#endif
+//
+//      }
 
 
       //inline bool OemToUtf8(memory & str, const char * pcsz)
@@ -110,19 +97,19 @@
 
       //}
 
-      inline bool utf8_to_multibyte(::u32 uCodePage, memory & str, const char * pcsz)
+CLASS_DECL_ACME bool utf8_to_multibyte(::u32 uCodePage, memory & str, const char * pcsz);
+//
+//      {
+//         return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, pcsz);
+//
+//      }
 
-      {
-         return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, pcsz);
-
-      }
-
-      inline bool utf8_to_multibyte(::u32 uCodePage, memory & str, const char * pcsz, strsize nCount)
-
-      {
-         return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, pcsz, nCount);
-
-      }
+      CLASS_DECL_ACME bool utf8_to_multibyte(::u32 uCodePage, memory & str, const char * pcsz, strsize nCount);
+//
+//      {
+//         return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, pcsz, nCount);
+//
+//      }
 
 //
 //   } // namespace international

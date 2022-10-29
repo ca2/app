@@ -7,6 +7,7 @@
 #include "prodevian.h"
 #include "drawable.h"
 #include "acme/user/user/drag_client.h"
+#include "acme/platform/timer_callback.h"
 
 
 namespace user

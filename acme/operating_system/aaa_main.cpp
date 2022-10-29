@@ -343,7 +343,7 @@ CLASS_DECL_ACME string process_platform_name()
 
 }
 
-CLASS_DECL_ACME string process_platform_dir_name2()
+CLASS_DECL_ACME string process_platform_name()
 {
 
 #if defined(_M_IX86)

@@ -99,9 +99,9 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
 
 #ifdef WINDOWS_DESKTOP
 
-   m_hsync = ::CreateEventW((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, bManualReset, bInitiallyOwn, pstrName ? nullptr : wstring(pstrName).c_str());
+   m_hsynchronization = ::CreateEventW((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, bManualReset, bInitiallyOwn, pstrName ? nullptr : wstring(pstrName).c_str());
 
-   if (m_hsync == NULL)
+   if (m_hsynchronization == NULL)
    {
 
       throw ::exception(error_resource);
@@ -126,9 +126,9 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
 
    }
 
-   m_hsync = ::CreateEventEx((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, pstrName ? nullptr : wstring(pstrName).c_str(), dwFlags, DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
+   m_hsynchronization = ::CreateEventEx((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, pstrName ? nullptr : wstring(pstrName).c_str(), dwFlags, DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
 
-   if (m_hsync == nullptr)
+   if (m_hsynchronization == nullptr)
    {
 
       throw ::exception(error_resource);
@@ -265,7 +265,7 @@ bool event::SetEvent()
 
 #ifdef WINDOWS
 
-   if (m_hsync == nullptr)
+   if (m_hsynchronization == nullptr)
    {
 
       ASSERT(false);
@@ -277,7 +277,7 @@ bool event::SetEvent()
    try
    {
 
-      return ::SetEvent((HANDLE)m_hsync) != false;
+      return ::SetEvent((HANDLE)m_hsynchronization) != false;
 
    }
    catch(...)
@@ -353,9 +353,9 @@ bool event::SetEvent()
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   ASSERT(m_hsync != nullptr);
+//   ASSERT(m_hsynchronization != nullptr);
 //
-//   return ::PulseEvent(m_hsync) != false;
+//   return ::PulseEvent(m_hsynchronization) != false;
 //
 //#else
 //
@@ -365,7 +365,7 @@ bool event::SetEvent()
 //   sb.sem_num  = 0;
 //   sb.sem_flg  = SEM_UNDO;
 //
-//   return semop((i32) m_hsync, &sb, 1) == 0;
+//   return semop((i32) m_hsynchronization, &sb, 1) == 0;
 //
 //#endif
 //
@@ -381,7 +381,7 @@ bool event::ResetEvent()
    try
    {
 
-      if(m_hsync == NULL)
+      if(m_hsynchronization == NULL)
       {
 
          ::output_debug_string(L"error reset event (1)");
@@ -390,7 +390,7 @@ bool event::ResetEvent()
 
       }
 
-      return ::ResetEvent((HANDLE)m_hsync) != false;
+      return ::ResetEvent((HANDLE)m_hsynchronization) != false;
 
    }
    catch(...)
@@ -582,9 +582,9 @@ bool event::_wait (const class ::wait & wait)
 
 #ifdef WINDOWS
 
-   auto hsync = this->hsync();
+   //auto hsync = this->hsync();
 
-   DWORD dwResult = ::WaitForSingleObjectEx(hsync, wait, false);
+   DWORD dwResult = ::WaitForSingleObjectEx(m_hsynchronization, wait, false);
 
    estatus = windows_wait_result_to_status(dwResult);
 
@@ -868,7 +868,7 @@ bool event::is_signaled() const
 
 #ifdef WINDOWS
 
-   return WAIT_OBJECT_0 == ::WaitForSingleObjectEx((HANDLE)m_hsync,0,false);
+   return WAIT_OBJECT_0 == ::WaitForSingleObjectEx((HANDLE)m_hsynchronization,0,false);
 
 #elif defined(ANDROID)
 
@@ -943,7 +943,7 @@ bool event::is_signaled() const
 //
 ////#ifdef WINDOWS
 ////
-////   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsync,durationTimeout.u32_millis(),false);
+////   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsynchronization,durationTimeout.u32_millis(),false);
 ////
 ////   if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
 ////      return true;
@@ -1020,7 +1020,7 @@ bool event::is_signaled() const
 ////         sb.sem_num  = 0;
 ////         sb.sem_flg  = IPC_NOWAIT;
 ////
-////         i32 ret = semop((i32) m_hsync, &sb, 1);
+////         i32 ret = semop((i32) m_hsynchronization, &sb, 1);
 ////
 ////         if(ret < 0)
 ////         {
@@ -1062,7 +1062,7 @@ void event::unlock()
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//   return m_hsync;
+//   return m_hsynchronization;
 //
 //#else
 //

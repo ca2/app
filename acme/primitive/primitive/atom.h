@@ -6,7 +6,6 @@
 #include "acme/primitive/string/_uhash.h"
 #include "acme/primitive/string/string.h"
 
-
 #include "acme/primitive/comparison/equals.h"
 #include "acme/primitive/comparison/hash.h"
 //#include "acme/constant/thread.h"
@@ -1613,7 +1612,7 @@ inline atom::atom(const ::lparam & lparam)
 
 }
 
-
+#ifndef NO_TEMPLATE
 inline atom::atom(const ::string& str) :
    m_str(str)
 {
@@ -1621,7 +1620,7 @@ inline atom::atom(const ::string& str) :
    m_etype = e_type_text;
 
 }
-
+#endif
 
 //template < typename CHAR >
 //inline string_base < CHAR >::string_base(const ::atom & atom) :

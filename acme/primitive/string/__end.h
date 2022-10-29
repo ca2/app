@@ -20,6 +20,7 @@
 
 #include "_c_impl.h"
 
+#include "acme/memory/malloc.h"
 
 template < typename POINTER >
 inline ::string __string(const ::acme::memory_allocate < POINTER > & memoryallocpointer)

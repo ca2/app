@@ -17,8 +17,19 @@ constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32L
 
 
 
-namespace acme { class system; class context; class library; }
-namespace acme { class application; }
+namespace acme 
+{ 
+   
+   class system; 
+   class context; 
+   class library;
+   class node; 
+   class application;
+   class exclusive;
+
+} // namespace acme
+
+
 namespace apex { class application; }
 class thread;
 class task;
@@ -35,6 +46,7 @@ class text_stream;
 //class string;
 //class wstring;
 class lparam;
+class wait;
 class timer_callback;
 namespace message { class message; }
 class payload;
@@ -46,6 +58,13 @@ class matter;
 class exception_translator;
 class counter;
 class type;
+
+class acme_file;
+class acme_path;
+class acme_directory;
+
+
+
 enum enum_zero_init
 {
 
@@ -109,6 +128,7 @@ class memory_base;
 struct PAYLOAD_TAG { };
 //struct PROPERTY_TAG { };
 struct ATOM_TAG { };
+struct STRING_TAG { };
 
 class handler;
 class manager;
@@ -567,6 +587,10 @@ namespace handle
 
 
 } // namespace handle
+
+
+struct system_time_t;
+
 
 
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#include "synchronization_object.h"
+#include "condition_variable.h"
 
 
 class CLASS_DECL_ACME condition :

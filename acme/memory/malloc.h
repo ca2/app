@@ -4,8 +4,11 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 26/11/17. tbs in <3
 //
-
 #pragma once
+
+
+#include "del.h"
+
 
 namespace acme
 {

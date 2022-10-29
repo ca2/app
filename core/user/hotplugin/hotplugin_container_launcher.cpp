@@ -19,7 +19,7 @@ namespace hotplugin
    string container_launcher::get_executable_path()
    {
 
-      return ::path::app_app_nest(m_strPlatform, process_configuration_dir_name());
+      return ::path::app_app_nest(m_strPlatform, process_configuration_name());
 
    }
 

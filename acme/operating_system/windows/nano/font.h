@@ -4,6 +4,10 @@
 #pragma once
 
 
+#include "acme/user/nano/font.h"
+#include "object.h"
+
+
 namespace windows
 {
 

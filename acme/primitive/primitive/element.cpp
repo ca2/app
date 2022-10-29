@@ -13,12 +13,6 @@ element::~element()
 
 
 
-void element::call_member(::i64 iId)
-{
-
-   //return ::success_none;
-
-}
 
 
 //void element::handle(enum_message emessage, i64 iData, ::particle * pparticle)

@@ -1,8 +1,13 @@
 // Created by camilo on 2021-01-21 05:05 PM <3ThomasBorregaardSørensen
 // Renamed to _nano by camilo on 2021-02-01 13:44 <3ThomasBorregaardSørensen!!
 #include "framework.h"
-#include "acme/user/nano/_nano.h"
-#include "_nano.h"
+//#include "acme/user/nano/_nano.h"
+#include "window.h"
+#include "brush.h"
+#include "font.h"
+#include "pen.h"
+#include "device.h"
+//#include "_nano.h"
 
 
 void operating_system_initialize_nano(::factory::factory * pfactory)

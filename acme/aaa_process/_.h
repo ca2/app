@@ -30,20 +30,20 @@ CLASS_DECL_ACME i32 get_current_process_affinity_order();
 //CLASS_DECL_ACME string ca2_command_line();
 
 
-CLASS_DECL_ACME string consume_param(const char * pszCommandLine, const char ** pszEndPtr);
-CLASS_DECL_ACME bool is_command_line_param_true(string& strValue, const char* pszCommandLine, const char* pszParam, bool bDefault = false);
-CLASS_DECL_ACME bool get_command_line_param(string & strValue, const char * pszCommandLine, const char * pszParam);
-CLASS_DECL_ACME bool get_command_line_param(string & strValue, const char * pszCommandLine, const char * pszParam, const char * pszDefault);
-CLASS_DECL_ACME string get_command_line_param(const char * pszCommandLine,const char * pszParam);
+CLASS_DECL_ACME string consume_command_line_parameter(const char * pszCommandLine, const char ** pszEndPtr);
+CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const char* pszCommandLine, const char* pszParam, bool bDefault = false);
+CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const char * pszCommandLine, const char * pszParam);
+CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const char * pszCommandLine, const char * pszParam, const char * pszDefault);
+CLASS_DECL_ACME string get_command_line_parameter(const char * pszCommandLine,const char * pszParam);
 
 
 //CLASS_DECL_ACME bool launch_command(::acme::system * psystem, const char * const pszCommand);
 
 
-CLASS_DECL_ACME string process_configuration_dir_name();
+CLASS_DECL_ACME string process_configuration_name();
 
 CLASS_DECL_ACME string time_binary_platform(string strPlatform);
-CLASS_DECL_ACME string process_platform_dir_name();
+CLASS_DECL_ACME string process_platform_name();
 CLASS_DECL_ACME string process_platform_dir_name2();
 CLASS_DECL_ACME string process_version_dir_name();
 

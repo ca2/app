@@ -2,7 +2,7 @@
 #include "acme/platform/version.h"
 
 
-string consume_param(const ::string & pszCommandLine, const ::string &* pszEndPtr)
+string consume_command_line_parameter(const ::string & pszCommandLine, const ::string &* pszEndPtr)
 {
 
    if(pszCommandLine == nullptr)
@@ -44,19 +44,19 @@ string consume_param(const ::string & pszCommandLine, const ::string &* pszEndPt
 
 
 
-//string get_command_line_param(const ::string & pszCommandLine, const ::string & pszParam, const ::string & pszIfParamValue, const ::string & pszReplaceParam)
+//string get_command_line_parameter(const ::string & pszCommandLine, const ::string & pszParam, const ::string & pszIfParamValue, const ::string & pszReplaceParam)
 //{
 //
 //   string strValue;
 //
-//   get_command_line_param(strValue, pszCommandLine,pszParam);
+//   get_command_line_parameter(strValue, pszCommandLine,pszParam);
 //
 //   if(strValue == pszIfParamValue)
 //   {
 //
 //      string strReplace;
 //
-//      if(get_command_line_param(strReplace,pszCommandLine,pszReplaceParam) && strReplace.has_char())
+//      if(get_command_line_parameter(strReplace,pszCommandLine,pszReplaceParam) && strReplace.has_char())
 //      {
 //
 //         strValue = strReplace;
@@ -71,7 +71,7 @@ string consume_param(const ::string & pszCommandLine, const ::string &* pszEndPt
 //
 //}
 
-//string get_command_line_param(const ::string & pszCommandLine, const ::string & pszParam)
+//string get_command_line_parameter(const ::string & pszCommandLine, const ::string & pszParam)
 //{
 //
 //   string strParam(pszParam);
@@ -125,10 +125,10 @@ string consume_param(const ::string & pszCommandLine, const ::string &* pszEndPt
 //}
 
 
-bool get_command_line_param(string & strValue, const ::string & pszCommandLine, const ::string & pszParam, const ::string & pszDefault)
+bool get_command_line_parameter(string & strValue, const ::string & pszCommandLine, const ::string & pszParam, const ::string & pszDefault)
 {
 
-   if (!get_command_line_param(strValue, pszCommandLine, pszParam))
+   if (!get_command_line_parameter(strValue, pszCommandLine, pszParam))
    {
 
       strValue = pszDefault;
@@ -142,12 +142,12 @@ bool get_command_line_param(string & strValue, const ::string & pszCommandLine, 
 }
 
 
-string get_command_line_param(const ::string & psz, const ::string & pszParam)
+string get_command_line_parameter(const ::string & psz, const ::string & pszParam)
 {
 
    string str;
 
-   if(!get_command_line_param(str,psz,pszParam))
+   if(!get_command_line_parameter(str,psz,pszParam))
    {
 
       return "";
@@ -159,10 +159,10 @@ string get_command_line_param(const ::string & psz, const ::string & pszParam)
 }
 
 
-CLASS_DECL_AURA bool is_command_line_param_true(string& strValue, const ::string & pszCommandLine, const ::string & pszParam, bool bDefault)
+CLASS_DECL_AURA bool is_command_line_parameter_true(string& strValue, const ::string & pszCommandLine, const ::string & pszParam, bool bDefault)
 {
 
-   if (!get_command_line_param(strValue, pszCommandLine, pszParam))
+   if (!get_command_line_parameter(strValue, pszCommandLine, pszParam))
    {
 
       return bDefault;
@@ -209,7 +209,7 @@ CLASS_DECL_AURA bool is_command_line_param_true(string& strValue, const ::string
 }
 
 
-bool get_command_line_param(string & wstrValue, const ::string & psz, const ::string & pszParam)
+bool get_command_line_parameter(string & wstrValue, const ::string & psz, const ::string & pszParam)
 {
 
    string wstr(psz);
@@ -308,7 +308,7 @@ string time_binary_platform(string strPlatform)
 
 }
 
-string process_configuration_dir_name()
+string process_configuration_name()
 {
 
 #ifdef __DEBUG
@@ -324,7 +324,7 @@ string process_configuration_dir_name()
 }
 
 
-CLASS_DECL_AURA string process_platform_dir_name()
+CLASS_DECL_AURA string process_platform_name()
 {
 
 #if defined(_M_IX86)

@@ -37,7 +37,7 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
    if (block.get_size() < get_size())
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 

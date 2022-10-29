@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "fixed_alloc.h"
 #include "fixed_alloc_impl.h"
+#include "acme/operating_system/process.h"
 #define HEAP_NAMESPACE_PREFIX main
 #include "acme/memory/_____heap_namespace.h"
 

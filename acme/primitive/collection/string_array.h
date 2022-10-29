@@ -425,7 +425,7 @@ public:
    Type surround_and_implode(const Type& strSeparator = nullptr,const Type& pszPrefix = nullptr,const Type& pszSuffix = nullptr,::index iStart = 0,::count iCount = -1);
 
 
-   comparable_array < atom > get_comparable_ida() const;
+   //comparable_array < atom > get_comparable_ida() const;
 
    ::count explode_command_line(const Type & str, address_array < char * > * argv = nullptr);
 
@@ -4229,21 +4229,6 @@ void string_array_base < Type, RawType, m_etypeContainer > ::make_upper()
 
 
 
-
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-comparable_array < atom > string_array_base < Type, RawType, m_etypeContainer > ::get_comparable_ida() const
-{
-
-   comparable_array < atom > ida;
-
-   for(::index i = 0; i < get_count(); i++)
-   {
-      ida.add(element_at(i));
-   }
-
-   return ida;
-
-}
 
 
 

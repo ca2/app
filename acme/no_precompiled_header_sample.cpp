@@ -33,8 +33,16 @@ namespace message
 #include "acme/memory/heap_c.h"
 
 
+#include "acme/constant/_.h"
 #include "acme/constant/_constant.h"
 #include "acme/constant/_enumeration.h"
+
+
+#include "acme/constant/thread.h"
+#include "acme/constant/message.h"
+#include "acme/constant/impact.h"
+
+
 #include "acme/include/_forward_declaration.h"
 #include "acme/include/_template_forward_declaration.h"
 #include "acme/primitive/mathematics/_.h"
@@ -47,6 +55,8 @@ namespace message
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/primitive/primitive/interlocked_count.h"
 #include "acme/primitive/primitive/estatus.h"
+#include "acme/primitive/primitive/ptr.h"
+#include "acme/platform/lparam.h"
 #include "acme/primitive/primitive/atom.h"
 #include "acme/primitive/primitive/particle.h"
 #include "acme/handler/handler.h"

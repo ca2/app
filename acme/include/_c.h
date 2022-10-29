@@ -69,8 +69,6 @@ typedef u64 file_time_t;
 #endif
 
 
-inline bool is_set_ptr(const void * p) { return (uptr)p > 65536; }
-
 #include "acme/_c.h"
 #include "acme/constant/_constant.h"
 #include "acme/constant/_enumeration.h"

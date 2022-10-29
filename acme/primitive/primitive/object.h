@@ -1,7 +1,8 @@
 ﻿#pragma once
 
 
-#include "material_object.h"
+//#include "material_object.h"
+#include "property_object.h"
 #include "acme/primitive/collection/pointer_array.h"
 #include "acme/primitive/primitive/function.h"
 
@@ -46,7 +47,8 @@ namespace aura
 
 
 class CLASS_DECL_ACME object :
-   virtual public material_object
+   //virtual public material_object
+   virtual public property_object
 {
 protected:
 
@@ -142,63 +144,63 @@ public:
 
    //virtual array < ::procedure >* routinea(const ::atom& idRoutine);
 
-   template < typename ROUTINE_RUNNER_OBJECT, typename ROUTINE_RUNNER_METHOD >
-   void for_routines_with_id(const ::atom & atom, ROUTINE_RUNNER_OBJECT proutinerunner, ROUTINE_RUNNER_METHOD routine_runner_method)
-   {
+   //template < typename ROUTINE_RUNNER_OBJECT, typename ROUTINE_RUNNER_METHOD >
+   //void for_routines_with_id(const ::atom & atom, ROUTINE_RUNNER_OBJECT proutinerunner, ROUTINE_RUNNER_METHOD routine_runner_method)
+   //{
 
-      if (::is_null(m_pmapPropertyProcedure))
-      {
+   //   if (::is_null(m_pmapPropertyProcedure))
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      auto pprocedurea = this->procedure_array(atom);
+   //   auto pprocedurea = this->procedure_array(atom);
 
-      if (::is_null(pprocedurea))
-      {
+   //   if (::is_null(pprocedurea))
+   //   {
 
-         //throw_exception(error_not_found);
+   //      //throw_exception(error_not_found);
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      for (auto routine : *pprocedurea)
-      {
+   //   for (auto routine : *pprocedurea)
+   //   {
 
-         (proutinerunner->*routine_runner_method)(routine);
+   //      (proutinerunner->*routine_runner_method)(routine);
 
-      }
+   //   }
 
-   }
+   //}
 
    
-   virtual void call_routine2(const ::procedure & procedure);
+   //virtual void call_routine2(const ::procedure & procedure);
 
 
-   inline void call_routines_with_id(const ::atom & atom)
-   {
+   //inline void call_routines_with_id(const ::atom & atom)
+   //{
 
-      return for_routines_with_id(atom, this, &object::call_routine2);
+   //   return for_routines_with_id(atom, this, &object::call_routine2);
 
-   }
-
-
-   inline void post_routines_with_id(const ::atom & atom)
-   {
-
-      return for_routines_with_id(atom, this, &object::post_procedure);
-
-   }
+   //}
 
 
-   inline void send_routines_with_id(const ::atom & atom)
-   {
+   //inline void post_routines_with_id(const ::atom & atom)
+   //{
 
-      return for_routines_with_id(atom, this, &object::send_procedure);
+   //   return for_routines_with_id(atom, this, &object::post_procedure);
 
-   }
+   //}
+
+
+   //inline void send_routines_with_id(const ::atom & atom)
+   //{
+
+   //   return for_routines_with_id(atom, this, &object::send_procedure);
+
+   //}
 
 
 
@@ -498,8 +500,8 @@ public:
 
    //using property_object::branch;
 
-   void branch(const ::procedure_array& routinea);
-   void branch_each(const ::procedure_array& routinea);
+   //void branch(const ::procedure_array& routinea);
+   //void branch_each(const ::procedure_array& routinea);
 
    //using property_object::defer_branch;
 
@@ -860,7 +862,7 @@ public:
    //static u32 s_thread_proc(void* p);
 
 
-   string as_string() const override;
+   virtual string as_string() const;
 
 
    // for composition (ownership)
@@ -1289,7 +1291,7 @@ public:
 #define __defer_branch(procedure) defer_branch(m_p ## procedure, [this](){procedure();})
 
 
-CLASS_DECL_ACME void call_sync(const ::procedure_array& routinea);
+//CLASS_DECL_ACME void call_sync(const ::procedure_array& routinea);
 
 
 

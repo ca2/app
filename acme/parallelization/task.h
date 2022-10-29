@@ -1,9 +1,11 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/function.h"
 #include "acme/primitive/primitive/object.h"
-//#include "synchronization_object.h"
+#include "acme/primitive/collection/procedure_array.h"
 #include "acme/platform/implementable.h"
+
 
 typedef string GET_THREAD_NAME(::thread* pthread);
 using LPFN_GET_THREAD_NAME = GET_THREAD_NAME*;
@@ -111,7 +113,7 @@ public:
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);
 
-   void post_procedure(const ::procedure & procedure) override;
+   virtual void post_procedure(const ::procedure & procedure);
    
 
    virtual void run_posted_procedures();

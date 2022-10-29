@@ -126,9 +126,6 @@
     <Filter Include="Header Files\process">
       <UniqueIdentifier>{0c4f9178-4c9b-4b9f-993c-d99fda73a182}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\process">
-      <UniqueIdentifier>{e6ab6d3c-a0cd-454c-9787-8cf79460e0fe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\logic">
       <UniqueIdentifier>{e97a5ec9-2fa7-4178-8eec-69ba27417691}</UniqueIdentifier>
     </Filter>
@@ -161,9 +158,6 @@
     </Filter>
     <Filter Include="Header Files\exception">
       <UniqueIdentifier>{f5755d06-f5af-4ec2-bd4e-63cecdfc66a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\promise">
-      <UniqueIdentifier>{fc3edfe5-7239-41ce-bf2f-27609e6afdcf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive\promise">
       <UniqueIdentifier>{ca282869-7285-4060-9314-2dcb61f30654}</UniqueIdentifier>
@@ -1553,7 +1547,7 @@
     <ClInclude Include="primitive\data\_.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\_data.h">
+    <ClInclude Include="primitive\data\aaa_data.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
     <ClInclude Include="primitive\data\_impl.h">
@@ -2906,6 +2900,12 @@
     <ClInclude Include="exception\debug.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
+    <ClInclude Include="memory\del.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\earth_gregorian_time.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -3073,12 +3073,6 @@
     <ClCompile Include="primitive\collection\sort.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\stringl.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\payload_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\_.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
@@ -3123,9 +3117,6 @@
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\geometry.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\string_array_base.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
     <ClCompile Include="memory\allocate_mid_big.cpp">
       <Filter>Source Files\memory</Filter>
@@ -3334,15 +3325,6 @@
     <ClCompile Include="parallelization\task.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="process\bidirectional_pipe.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="process\pipe.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="process\exit_status.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\estatus.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
@@ -3377,9 +3359,6 @@
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\multiple_lock.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\synchronization_object.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\synchronization_array.cpp">
@@ -3423,9 +3402,6 @@
     </ClCompile>
     <ClCompile Include="primitive\mathematics\value.cpp">
       <Filter>Source Files\primitive\mathematics</Filter>
-    </ClCompile>
-    <ClCompile Include="process\main.cpp">
-      <Filter>Source Files\process</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\message_queue_global.cpp">
       <Filter>Source Files\parallelization</Filter>
@@ -3531,9 +3507,6 @@
     </ClCompile>
     <ClCompile Include="exception\extended_status.cpp">
       <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\promise\signalization.cpp">
-      <Filter>Source Files\primitive\promise</Filter>
     </ClCompile>
     <ClCompile Include="regular_expression\context.cpp">
       <Filter>Source Files\regular_expression</Filter>
@@ -3963,6 +3936,33 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive\read_only_memory.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\bidirectional_pipe.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\pipe.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\assert.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\process.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\__payload_array.cpp">
+      <Filter>Source Files\primitive\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\thread.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\signalization.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\synchronizer.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\earth_gregorian_time.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -14,6 +14,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/primitive/collection/array.h"
 #include "acme/primitive/collection/string_array.h"
+#include "acme/user/nano/button.h"
 #include "acme/user/nano/message_box.h"
 
 
@@ -477,6 +478,15 @@ namespace acme
 
    }
 
+
+   ::pointer < ::acme::exclusive > node::get_exclusive(::particle * pparticleContext, const ::string & strName)
+   {
+
+      return nullptr;
+
+   }
+
+
    string node::app_id_to_app_name(const ::string & strAppId)
    {
 
@@ -915,7 +925,7 @@ namespace acme
    void node::node_send(const ::procedure & procedure)
    {
 
-      __material_send_procedure(this, this, &node::node_post, procedure);
+      __matter_send_procedure(this, this, &node::node_post, procedure);
 
    }
 

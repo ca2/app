@@ -1,5 +1,6 @@
 // Created by camilo on 2022-09-26 18:33 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "acme/primitive/string/string.h"
 #include "_api.h"
 
 

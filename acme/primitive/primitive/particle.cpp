@@ -949,87 +949,87 @@ void particle::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */)
 bool particle::_wait(const class ::wait & wait)
 {
 
-#ifdef WINDOWS
-
-   if (!m_hsync)
-   {
-
-      return true;
-
-   }
-
-   //auto milliseconds = wait.operator u32();
-   //unsigned int ui;
-   //if (wait.m_d <= 0.)
-   //{
-   //   ui = 0;
-
-   //}
-   //else if (wait.m_d >= 0xffffffffu)
-   //{
-
-   //   ui = 0xffffffffu;
-   //}
-   //else
-   //{
-
-   //   ui = (::u32) (wait.m_d * 1'000.0);
-
-   //}
-
-   ////return (::u32)m_d <= 0. ? 0 : (m_d >= 0xffffffffu ? 0xffffffffu : (::u32)(m_d * 1'000.0));
-   //if (milliseconds < 1'000'000'000)
-   //{
-
-   //   output_debug_string("milliseconds < 1'000'000'000");
-
-   //}
-
-   auto windowsWaitResult = ::WaitForSingleObjectEx(m_hsync, wait, false);
-
-   auto estatus = windows_wait_result_to_status(windowsWaitResult);
-
-   if (estatus == error_wait_timeout)
-   {
-
-      return false;
-
-   }
-   else if (estatus == signaled_base)
-   {
-
-#ifdef _DEBUG
-
-      auto pmutex = dynamic_cast < ::pointer< ::mutex >> (this);
-
-      if (::is_set(pmutex))
-      {
-
-         pmutex->m_strThread = ::task_get_name();
-         pmutex->m_itask = ::get_current_itask();
-         ::output_debug_string("");
-
-      }
-
-#endif
-
-      return true;
-
-   }
-   else
-   {
-
-      throw ::exception(estatus);
-
-      return false;
-
-   }
-
-#endif
-
-   throw ::exception(error_interface_only);
-
-   return false;
+//#ifdef WINDOWS
+//
+//   if (!m_hsynchronization)
+//   {
+//
+//      return true;
+//
+//   }
+//
+//   //auto milliseconds = wait.operator u32();
+//   //unsigned int ui;
+//   //if (wait.m_d <= 0.)
+//   //{
+//   //   ui = 0;
+//
+//   //}
+//   //else if (wait.m_d >= 0xffffffffu)
+//   //{
+//
+//   //   ui = 0xffffffffu;
+//   //}
+//   //else
+//   //{
+//
+//   //   ui = (::u32) (wait.m_d * 1'000.0);
+//
+//   //}
+//
+//   ////return (::u32)m_d <= 0. ? 0 : (m_d >= 0xffffffffu ? 0xffffffffu : (::u32)(m_d * 1'000.0));
+//   //if (milliseconds < 1'000'000'000)
+//   //{
+//
+//   //   output_debug_string("milliseconds < 1'000'000'000");
+//
+//   //}
+//
+//   auto windowsWaitResult = ::WaitForSingleObjectEx(m_hsync, wait, false);
+//
+//   auto estatus = windows_wait_result_to_status(windowsWaitResult);
+//
+//   if (estatus == error_wait_timeout)
+//   {
+//
+//      return false;
+//
+//   }
+//   else if (estatus == signaled_base)
+//   {
+//
+//#ifdef _DEBUG
+//
+//      auto pmutex = dynamic_cast < ::pointer< ::mutex >> (this);
+//
+//      if (::is_set(pmutex))
+//      {
+//
+//         pmutex->m_strThread = ::task_get_name();
+//         pmutex->m_itask = ::get_current_itask();
+//         ::output_debug_string("");
+//
+//      }
+//
+//#endif
+//
+//      return true;
+//
+//   }
+//   else
+//   {
+//
+//      throw ::exception(estatus);
+//
+//      return false;
+//
+//   }
+//
+//#endif
+//
+//   throw ::exception(error_interface_only);
+//
+   return true;
 
 }
 
@@ -1192,4 +1192,28 @@ void particle::set_finish()
 }
 
 
+::particle * particle::clone() const
+{
 
+   return nullptr;
+
+}
+
+
+
+void particle::call_member(::i64 iId)
+{
+
+   //return ::success_none;
+
+}
+
+
+
+
+bool particle::is_branch_current() const
+{
+
+   return true;
+
+}

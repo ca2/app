@@ -61,7 +61,7 @@ namespace nano
 
       auto bIsCurrentBranch = is_branch_current();
 
-      __material_send_procedure(this, this, &display::display_post, procedure);
+      __matter_send_procedure(this, this, &display::display_post, procedure);
 
    }
 

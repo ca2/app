@@ -28,12 +28,6 @@ public:
    //void route(::topic * ptopic, ::context * pcontext) override;
    //void post_process(::topic * ptopic, ::context * pcontext) override;
 
-   // <3TBS_!! handle -> call_member <3TBS_!!
-   virtual void call_member(::i64 i64);
-   // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
-   //void handle(const  emessage, i64 iData = 0, ::matter * pmatter = nullptr) override;
-   //void handle(::topic * ptopic, ::context * pcontext) override;
-   //void handle(::message::message * pmessage) override;
 
 
 //   void run() override; 

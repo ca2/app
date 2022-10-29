@@ -4,6 +4,7 @@
 //#include "acme/filesystem/file/serializable.h"
 #include "acme/primitive/primitive/material_object.h"
 #include "acme/memory/memory.h"
+#include "acme/primitive/string/string.h"
 
 
 template < typename N >
@@ -82,7 +83,7 @@ MUTABLE * __mutable(const MUTABLE * pmutable) { return (MUTABLE *)pmutable; }
 
 
 class CLASS_DECL_ACME memory_base :
-   virtual public ::material_object
+   virtual public ::particle
 {
 public:
 
@@ -107,7 +108,7 @@ public:
    ~memory_base() override;
 
 
-   using ::material_object::clear;
+   using ::particle::clear;
 
 
    virtual string as_utf8() const;
@@ -166,7 +167,7 @@ public:
    void allocate_add_up(memsize iAddUp);
 
 
-   ::element * clone() const override;
+   ::particle * clone() const override;
 
 
    inline byte *           internal_get_data() const;
@@ -217,7 +218,7 @@ public:
    void append_from_string(const ::payload & payload);
    void append_byte(byte b){ append(&b, 1);}
    //::string __string(memsize iStart = 0, memsize uiSize = -1) const;
-   string as_string() const override;
+   virtual string as_string() const;
    virtual string as_string(memsize iStart, memsize uiSize = -1) const;
 
    void delete_begin(memsize iSize);

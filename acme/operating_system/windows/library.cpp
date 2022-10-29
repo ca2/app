@@ -3,6 +3,8 @@
 //#include "acme/operating_system/windows_common/_.h"
 #include "_.h"
 #include "acme/exception/library_not_loaded.h"
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/platform/tracer.h"
 
 
 void * __node_library_open(const char * pszPath, string & strMessage)

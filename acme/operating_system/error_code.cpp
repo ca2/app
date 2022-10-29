@@ -8,6 +8,7 @@
 #include "framework.h"
 #include "acme/filesystem/file/text_stream.h"
 #include "error_code.h"
+#include "debug.h"
 #include "_api.h"
 
 

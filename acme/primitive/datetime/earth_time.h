@@ -25,6 +25,12 @@ enum _CTIMESPANFORMATSTEP
 namespace earth
 {
 
+   namespace gregorian
+   {
+
+      class time;
+
+   }
 
    // it is in UTC by default?
    class CLASS_DECL_ACME time :
@@ -46,6 +52,8 @@ namespace earth
 
       time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec,
            const time_shift &timeshift = time_shift::none());
+      time(const ::earth::gregorian::time & gregoriantime, 
+         const time_shift & timeshift = time_shift::none());
 
       time(const file_time &ft);
 

@@ -7,6 +7,7 @@
 #include "_c_unicode.h"
 #include "character.h"
 #include "string_iterator.h"
+#include "acme/exception/debug.h"
 
 
 //CLASS_DECL_ACME void copy(::string_base < ::ansichar > * ptarget, const ::payload * psource);
@@ -33,7 +34,8 @@
 
 template < typename TYPE_CHAR >
 class string_base :
-   public natural_pointer < string_meta_data < TYPE_CHAR > , string_memory_allocator >
+   public natural_pointer < string_meta_data < TYPE_CHAR > , string_memory_allocator >,
+   public STRING_TAG
 {
 public:
 

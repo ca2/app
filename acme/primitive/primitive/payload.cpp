@@ -4,12 +4,43 @@
 #include "acme/platform/acme.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/operating_system.h"
+#include "acme/primitive/datetime/system_time.h"
+#include "acme/primitive/datetime/earth_gregorian_time.h"
+#include "acme/primitive/datetime/earth_time.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/string/_conv.h"
 #include "acme/primitive/string/from_integer.h"
 #include "acme/primitive/string/network_payload.h"
 #include "acme/exception/not_implemented.h"
 #include "acme/array.h"
+
+
+void copy(payload * pp, const system_time_t * ps)
+{
+   ::earth::gregorian::time t;
+   t.set(ps);
+   ::earth::time time;
+   time = t;
+
+   *pp = time;
+}
+
+
+void copy(::payload * ppayload, const string * pstring)
+{
+
+   *ppayload = *pstring;
+
+}
+
+
+void copy(::payload * ppayload1, const ::payload * ppayload2)
+{
+
+   *ppayload1 = *ppayload2;
+
+}
+
 
 
 #if defined(WINDOWS)
@@ -10742,20 +10773,4 @@ CLASS_DECL_ACME void copy(string * pstring, const ::payload * ppayload)
 //   *ppayload = *pnumber;
 //
 //}
-
-
-void copy(::payload * ppayload, const string * pstring)
-{
-
-   *ppayload = *pstring;
-
-}
-
-
-void copy(::payload * ppayload1, const ::payload * ppayload2)
-{
-
-   *ppayload1 = *ppayload2;
-
-}
 

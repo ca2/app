@@ -2,6 +2,7 @@
 /* Copyright 2012 William Woodall and John Harrison */
 #include "acme/platform/serial.h"
 #include "acme/operating_system.h"
+#include "acme/primitive/primitive/function.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/collection/string_array.h"
 

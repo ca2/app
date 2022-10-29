@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/operating_system/parallelization.h"
 #include "acme/operating_system.h"
+#include "acme/filesystem/filesystem/path.h"
 #include <Shlobj.h>
 #include <Shellapi.h>
 

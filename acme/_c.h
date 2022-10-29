@@ -15,3 +15,5 @@ inline int c_is_set(const void * p) { return !c_is_null(p); }
 
 
 CLASS_DECL_ACME strsize safe_strlen(void * p, strsize n);
+inline bool is_set_ptr(const void * p) { return (uptr)p > 65536; }
+

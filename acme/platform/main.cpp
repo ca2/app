@@ -1136,7 +1136,7 @@ void main::system_init()
 //
 //   string strUid;
 //
-//   get_command_line_param(strUid, strCommandLine, "uid");
+//   get_command_line_parameter(strUid, strCommandLine, "uid");
 //
 //   if (strUid.has_char())
 //   {
@@ -1174,7 +1174,7 @@ void main::system_init()
 
       string strShowApplicationInformation;
 
-      if (is_command_line_param_true(strShowApplicationInformation, m_strCommandLine, "show_application_information"))
+      if (is_command_line_parameter_true(strShowApplicationInformation, m_strCommandLine, "show_application_information"))
       {
 
          m_bShowApplicationInformation = true;
@@ -1185,7 +1185,7 @@ void main::system_init()
 
    //string strNoDock;
 
-   //get_command_line_param(strAppId, strCommandLine, "app");
+   //get_command_line_parameter(strAppId, strCommandLine, "app");
 
    //if (strAppId.has_char())
    //{
@@ -1214,7 +1214,7 @@ void main::system_init()
 
    //string strDerivedApplication;
 
-   //get_command_line_param(strDerivedApplication, strCommandLine, "derived_application");
+   //get_command_line_parameter(strDerivedApplication, strCommandLine, "derived_application");
 
    //g_iDerivedApplication = atoi(strDerivedApplication);
 

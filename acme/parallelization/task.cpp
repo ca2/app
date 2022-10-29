@@ -4,8 +4,9 @@
 #include "acme/operating_system.h"
 #include "acme/platform/system.h"
 #include "acme/exception/exit.h"
-#include "acme/parallelization/synchronous_lock.h"
 #include "acme/exception/interface_only.h"
+#include "acme/exception/translator.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD

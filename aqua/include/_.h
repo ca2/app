@@ -90,7 +90,7 @@ namespace multimedia
 //#include "aqua/platform/session.h"
 
 
-//#include "aqua/platform/system.h"
+#include "aqua/user/_.h"
 
 
 #include "aqua/platform/_impl.h"

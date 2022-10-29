@@ -2,6 +2,7 @@
 #include "earth_time.h"
 #include "file_time.h"
 #include "date_span.h"
+#include "earth_gregorian_time.h"
 #include "acme/operating_system.h"
 #include <time.h>
 #include "acme/primitive/datetime/__string.h"
@@ -73,6 +74,20 @@ namespace earth
          throw_exception(error_bad_argument);
 
       }
+
+   }
+
+   time::time(const ::earth::gregorian::time & gregoriantime, const time_shift & timeshift) :
+      time(gregoriantime.m_iYear,
+         gregoriantime.m_iMonth,
+         gregoriantime.m_iDay,
+         gregoriantime.m_iHour,
+         gregoriantime.m_iMinute,
+         gregoriantime.m_iSecond,
+         timeshift
+         )
+   {
+
 
    }
 

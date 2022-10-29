@@ -50,7 +50,7 @@ namespace aura
 
       }
 
-      return ::path::app_app(m_strPlatform, process_configuration_dir_name());
+      return ::path::app_app(m_strPlatform, process_configuration_name());
 
    }
 

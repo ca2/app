@@ -2,8 +2,9 @@
 // Created by camilo on 31/01/2022 16:06 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "acme/user/nano/_nano.h"
-#include "_nano.h"
+#include "font.h"
+#include "device.h"
+//#include "_nano.h"
 
 
 namespace windows

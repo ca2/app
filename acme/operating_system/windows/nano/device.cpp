@@ -2,8 +2,12 @@
 // Created by camilo on 31/01/2022.
 //
 #include "framework.h"
-#include "acme/user/nano/_nano.h"
-#include "_nano.h"
+#include "device.h"
+#include "brush.h"
+#include "font.h"
+#include "pen.h"
+//#include "acme/user/nano/_nano.h"
+//#include "_nano.h"
 
 
 int align_to_windows_draw_text_align(enum_align ealign);

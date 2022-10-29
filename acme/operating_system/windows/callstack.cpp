@@ -1,5 +1,8 @@
 // Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "acme/parallelization/mutex.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/primitive/function.h"
 #include "acme/primitive/primitive/memory.h"
 #include <dbghelp.h>
 #pragma comment(lib, "dbghelp.lib")
@@ -17,13 +20,13 @@ bool g_bInitializeCallstack = false;
 #endif
 
 
-extern ::pointer < ::mutex >* g_pmutexSymDbgHelp;
+//extern ::pointer < ::mutex > g_pmutexSymDbgHelp;
 
 
 CLASS_DECL_ACME void defer_initialize_callstack()
 {
 
-   synchronous_lock synchronouslock(g_pmutexSymDbgHelp);
+   critical_section_lock synchronouslock(sym_dbg_help_critical_section());
 
    auto process = GetCurrentProcess();
 
@@ -50,7 +53,7 @@ CLASS_DECL_ACME void defer_initialize_callstack()
 string get_callstack(const char* pszFormat, i32 iSkip, void * caller_address, int iCount)
 {
 
-   synchronous_lock synchronouslock(g_pmutexSymDbgHelp);
+   critical_section_lock synchronouslock(sym_dbg_help_critical_section());
 
    string strCallstack;
 

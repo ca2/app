@@ -36,9 +36,9 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
 #ifdef WINDOWS
 
-   m_hsync = ::CreateSemaphoreExW((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, lInitialCount, lMaxCount, pstrName == nullptr ? nullptr : (const wchar_t *)  utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
+   m_hsynchronization = ::CreateSemaphoreExW((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, lInitialCount, lMaxCount, pstrName == nullptr ? nullptr : (const wchar_t *)  utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
 
-   if (m_hsync == nullptr)
+   if (m_hsynchronization == nullptr)
    {
 
       throw ::exception(error_resource);
@@ -365,7 +365,7 @@ void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
 
 #ifdef WINDOWS
 
-   /*return */ ::ReleaseSemaphore(m_hsync, lCount, (LPLONG)pPrevCount) /*  != false */;
+   /*return */ ::ReleaseSemaphore(m_hsynchronization, lCount, (LPLONG)pPrevCount) /*  != false */;
 
 #elif defined(ANDROID)
 

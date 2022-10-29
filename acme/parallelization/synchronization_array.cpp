@@ -115,14 +115,14 @@ bool synchronization_array::add_item(::particle * pparticle)
 
 #ifdef WINDOWS
 
-   auto hsync = psync->hsync();
+   auto hsynchronization = pparticle->m_hsynchronization;
 
-   if (hsync != nullptr)
+   if (hsynchronization != nullptr)
    {
 
       m_byteaSyncIndex[m_hsyncaCache.get_size()] = (byte) m_synchronizationa.get_size();
 
-      m_hsyncaCache.add(hsync);
+      m_hsyncaCache.add(hsynchronization);
 
    }
 
@@ -133,8 +133,6 @@ bool synchronization_array::add_item(::particle * pparticle)
    return true;
 
 }
-
-
 
 
 bool synchronization_array::add(const synchronization_array& synca)
@@ -170,12 +168,14 @@ void synchronization_array::erase(::particle * pparticle)
 
 #ifdef WINDOWS
 
-   auto hsync = psync->hsync();
+   auto hsynchronization = pparticle->m_hsynchronization;
 
-   if (hsync != nullptr)
+   if (hsynchronization != nullptr)
    {
 
-      m_hsyncaCache.erase(hsync);
+      auto iIndex = m_hsyncaCache.erase(hsynchronization);
+
+      ::memmove(&m_byteaSyncIndex[iIndex], &m_byteaSyncIndex[iIndex + 1], m_hsyncaCache.get_count() - 1);
 
    }
 

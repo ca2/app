@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "string.h"
+#include "acme/primitive/collection/string_array.h"
 
 
 // CLASS_DECL_ACME const char g_ptrailingBytesForUTF8[256] =
@@ -46,6 +48,7 @@
       return false;
 
    }
+
 
    bool whole_word_find(string_array & stra, string str)
    {

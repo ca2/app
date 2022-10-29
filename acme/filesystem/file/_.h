@@ -9,6 +9,12 @@
 
 //#include "stdio_file.h"
 
+inline bool IsDirSep(widechar ch)
+{
+
+   return (ch == '\\' || ch == '/');
+
+}
 
 
 

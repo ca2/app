@@ -5,6 +5,7 @@
 #include "display.h"
 #include "window_implementation.h"
 #include "window.h"
+#include "button.h"
 #include "acme/constant/id.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/node.h"

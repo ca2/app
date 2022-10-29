@@ -13,22 +13,23 @@ namespace acme
 
       string                  m_strId;
 
-#ifdef WINDOWS
+// #ifdef WINDOWS
 
-      ::u32                   m_dwLastError;
-      bool                    m_bResourceException;
+//       ::u32                   m_dwLastError;
+//       bool                    m_bResourceException;
 
-#else
+// #else
 
-      int                     m_iFile;
-      int                     m_iLock;
+//       int                     m_iFile;
+//       int                     m_iLock;
 
-#endif
+// #endif
 
-      ::pointer < ::mutex >     m_pmutex;
+      // ::pointer < ::mutex >     m_pmutex;
 
 
-      exclusive(::particle * pparticle, string str ARG_SEC_ATTRS_DEF);
+      //exclusive(::particle * pparticle, string str ARG_SEC_ATTRS_DEF);
+      exclusive();
       ~exclusive() override;
 
 

@@ -1,10 +1,7 @@
 // Created by camilo on 2022-03-11 10:54 PM <3ThomasBorregaardS�rensen!!
 #include "framework.h"
-
-
 #include "acme/operating_system.h"
-
-
+#include "acme/platform/application.h"
 #include "acme/platform/system_setup.h"
 
 

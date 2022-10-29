@@ -82,7 +82,7 @@ public:
 
 
 class CLASS_DECL_ACME task_tool :
-   virtual public ::material_object
+   virtual public ::matter
 {
 public:
 
@@ -94,7 +94,7 @@ public:
    HAVE_ARRAY_OF(item, m_itema, task_tool_item);
 
    task_tool();
-   virtual ~task_tool();
+   ~task_tool() override;
 
 };
 

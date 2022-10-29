@@ -4,8 +4,9 @@
 #include "framework.h"
 #include "details_window.h"
 #include "window_implementation.h"
+#include "button.h"
 #include "acme/primitive/geometry2d/size.h"
-#include "acme/operating_system.h"
+//#include "acme/operating_system.h"
 
 
 nano_details_window::nano_details_window()

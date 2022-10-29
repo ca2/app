@@ -176,6 +176,8 @@ namespace acme
 
       virtual ::pointer < ::mutex > get_install_mutex(::particle * pparticleContext, const ::string & strPlatform, const ::string & strSuffix);
 
+      virtual ::pointer < ::acme::exclusive > get_exclusive(::particle * pparticleContext, const ::string & strName);
+
 
       virtual string app_id_to_app_name(const ::string & strAppId);
       virtual string app_id_to_executable_name(const ::string & strAppId);

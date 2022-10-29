@@ -6993,7 +6993,7 @@ namespace apex
 
       string strValue;
 
-      if (get_command_line_param(strValue, pszCommandLine, "enable_desktop_launch"))
+      if (get_command_line_parameter(strValue, pszCommandLine, "enable_desktop_launch"))
       {
 
 #ifdef _UWP
@@ -7010,7 +7010,7 @@ namespace apex
 
          auto pnode = psystem->node();
 
-         return pnode->call_sync(acmedirectory()->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, acmedirectory()->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_restored, 2_minute, set);
+         return pnode->call_sync(acmedirectory()->app_app(process_platform_dir_name2(), process_configuration_name()), pszCommandLine, acmedirectory()->app_app(process_platform_dir_name2(), process_configuration_name()), e_display_restored, 2_minute, set);
 
 #endif
 

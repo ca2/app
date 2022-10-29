@@ -1,8 +1,10 @@
 // Recreated by camilo on 2021-12-16 19:41 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "acme/exception/exception.h"
 #include "acme/operating_system.h"
-
-
+#include "acme/operating_system/process.h"
+#include "acme/parallelization/single_lock.h"
+#include "acme/primitive/collection/string_array.h"
 
 
 CLASS_DECL_ACME::u64 translate_processor_affinity(int iOrder)
@@ -103,7 +105,7 @@ bool set_process_priority(::enum_priority epriority)
 }
 
 
-CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout, ::synchronization* psynchronizationobject, ::file::file* pfileLines)
+CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout, ::particle * pparticleSynchronization, ::file::file* pfileLines)
 {
 
    straOutput.clear();
@@ -244,7 +246,7 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
 
    string strOutput;
 
-   single_lock sl(psynchronizationobject);
+   single_lock sl(pparticleSynchronization);
 
    while (true)
    {

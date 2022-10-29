@@ -210,6 +210,18 @@ public:
    virtual void set_finish();
 
 
+   // <3TBS_!! handle -> call_member <3TBS_!!
+   virtual void call_member(::i64 i64);
+   // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
+   //void handle(const  emessage, i64 iData = 0, ::matter * pmatter = nullptr) override;
+   //void handle(::topic * ptopic, ::context * pcontext) override;
+   //void handle(::message::message * pmessage) override;
+
+
+   virtual bool is_branch_current() const;
+
+
+
    [[nodiscard]] virtual strsize sz_len() const;
    virtual void to_sz(char * sz, strsize len) const;
 
@@ -302,7 +314,7 @@ public:
    virtual void trace_log_fatal(const char * pszFormat, ...);
 
 
-
+   virtual ::particle * clone() const;
 
 };
 

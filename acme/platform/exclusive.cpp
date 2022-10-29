@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/primitive/object.h"
 #include "exclusive.h"
@@ -17,85 +18,90 @@ namespace acme
 {
 
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
+//
 
-
-   exclusive::exclusive(::particle * pparticle, string strId ARG_SEC_ATTRS)
+   //exclusive::exclusive(::particle * pparticle, string strId ARG_SEC_ATTRS)
+   exclusive::exclusive()
    {
 
-      m_strId = strId;
+      //m_strId = strId;
 
-      m_bResourceException = false;
+      //m_bResourceException = false;
 
-      try
-      {
+      //try
+      //{
 
-         m_pmutex = __new(::pointer < ::mutex >(pparticle, false, strId ADD_PARAM_SEC_ATTRS));
+      //   m_pmutex = pparticle->acmenode()->create_global_named_mutex(pparticle, false, strId);
 
-         m_dwLastError = ::GetLastError();
+      //   //m_pmutex = //__new(::pointer < ::mutex >(pparticle, false, strId ADD_PARAM_SEC_ATTRS));
 
-      }
-      catch (const ::exception &)
-      {
+      //   //m_dwLastError = ::GetLastError();
 
-         try
-         {
+      //}
+      //catch (const ::exception &)
+      //{
 
-            m_pmutex = __new(::pointer < ::mutex >(pparticle, false, strId));
+      //   m_bResourceException = true;
 
-            m_dwLastError = ::GetLastError();
+      //   //try
+      //   //{
 
-         }
-         catch (const ::exception &)
-         {
+      //   //   m_pmutex = __new(::pointer < ::mutex >(pparticle, false, strId));
 
-            m_bResourceException = true;
+      //   //   m_dwLastError = ::GetLastError();
 
-         }
+      //   //}
+      //   //catch (const ::exception &)
+      //   //{
 
-      }
+      //   //   m_bResourceException = true;
+
+      //   //}
+
+      //}
 
    }
 
 
-#else
-
-
-   exclusive::exclusive(::particle * pparticle, string strId ARG_SEC_ATTRS)
-   {
-
-      initialize(pparticle);
-
-      m_strId = strId;
-
-      ::file::path path;
-
-      if(strId.begins_ci("Local\\"))
-      {
-
-         path = pparticle->acmedirectory()->home() / ".config/acme";
-
-      }
-      else
-      {
-
-         path = "/var/tmp/acme";
-
-      }
-
-      path /= strId;
-
-      acmedirectory()->create(path.folder());
-
-      m_iFile = open(path, O_WRONLY | O_CREAT, 0777);
-
-      m_iLock = lockf(m_iFile, F_TLOCK, 0);
-
-   }
-
-
-#endif
-
+//#else
+//
+//
+//   exclusive::exclusive(::particle * pparticle, string strId ARG_SEC_ATTRS)
+//   {
+//
+//      initialize(pparticle);
+//
+//      m_strId = strId;
+//
+//      ::file::path path;
+//
+//      if(strId.begins_ci("Local\\"))
+//      {
+//
+//         path = pparticle->acmedirectory()->home() / ".config/acme";
+//
+//      }
+//      else
+//      {
+//
+//         path = "/var/tmp/acme";
+//
+//      }
+//
+//      path /= strId;
+//
+//      acmedirectory()->create(path.folder());
+//
+//      m_iFile = open(path, O_WRONLY | O_CREAT, 0777);
+//
+//      m_iLock = lockf(m_iFile, F_TLOCK, 0);
+//
+//   }
+//
+//
+//#endif
+//
 
    exclusive::~exclusive()
    {
@@ -106,15 +112,19 @@ namespace acme
    bool exclusive::exclusive_fails() const
    {
 
-#ifdef WINDOWS
+      //return m_pmutex->already_exists();
 
-      return m_dwLastError == ERROR_ALREADY_EXISTS || m_bResourceException;
+      return false;
 
-#else
-
-      return m_iLock < 0;
-
-#endif
+//#ifdef WINDOWS
+//
+//      return m_dwLastError == ERROR_ALREADY_EXISTS || m_bResourceException;
+//
+//#else
+//
+//      return m_iLock < 0;
+//
+//#endif
 
    }
 

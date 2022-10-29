@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "condition_variable.h"
 #include "acme/operating_system.h"
 
 

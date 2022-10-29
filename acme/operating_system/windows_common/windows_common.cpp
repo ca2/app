@@ -2,6 +2,7 @@
 #include "acme/operating_system.h"
 #include "acme/operating_system/error_code.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/primitive/primitive/function.h"
 
 
 int __node_is_debugger_attached()
@@ -10,7 +11,6 @@ int __node_is_debugger_attached()
    return ::IsDebuggerPresent();
 
 }
-
 
 
 #ifdef WINDOWS
@@ -344,7 +344,7 @@ CLASS_DECL_ACME void TRACELASTERROR()
 void CLASS_DECL_ACME __cdecl _ca2_purecall()
 {
 
-   throw ::exception(error_pure_call);
+   throw_exception(error_pure_call);
 
 }
 
@@ -436,7 +436,7 @@ CLASS_DECL_ACME void __throw_last_error(DWORD dwLastError)
 
    auto estatus = last_error_to_status(dwLastError);
 
-   throw ::exception(estatus);
+   throw_exception(estatus);
 
 }
 

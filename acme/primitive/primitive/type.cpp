@@ -3,6 +3,28 @@
 #include "acme/primitive/string/string.h"
 
 
+
+
+type::type(const ::particle * pparticle)
+{
+
+   auto name = typeid(*(::particle *)pparticle).name();
+
+   ::atom::operator = (demangle(name));
+
+}
+
+//
+//template < typename BASE >
+//inline type::type(const ::pointer<BASE>& point)
+//{
+//
+//   auto name = typeid(*((BASE *)point.m_p)).name();
+//
+//   ::atom::operator = (demangle(name));
+//
+//}
+
 string cxxabi_demangle (const char* name);
 
 

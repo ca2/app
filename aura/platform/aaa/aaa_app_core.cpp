@@ -333,7 +333,7 @@ void app_core::system_init()
 
    string strUid;
 
-   get_command_line_param(strUid, strCommandLine, "uid");
+   get_command_line_parameter(strUid, strCommandLine, "uid");
 
    if (strUid.has_char())
    {
@@ -370,7 +370,7 @@ void app_core::system_init()
 
       string strShowApplicationInformation;
 
-      if (is_command_line_param_true(strShowApplicationInformation, strCommandLine, "show_application_information"))
+      if (is_command_line_parameter_true(strShowApplicationInformation, strCommandLine, "show_application_information"))
       {
 
          m_bShowApplicationInformation = true;
@@ -381,7 +381,7 @@ void app_core::system_init()
 
    string strNoDock;
 
-   get_command_line_param(strAppId, strCommandLine, "app");
+   get_command_line_parameter(strAppId, strCommandLine, "app");
 
    if (strAppId.has_char())
    {
@@ -411,7 +411,7 @@ void app_core::system_init()
 
    string strDerivedApplication;
 
-   get_command_line_param(strDerivedApplication, strCommandLine, "derived_application");
+   get_command_line_parameter(strDerivedApplication, strCommandLine, "derived_application");
 
    //g_iDerivedApplication = atoi(strDerivedApplication);
 
@@ -556,7 +556,7 @@ void app_core::set_command_line(const ::string & psz)
 
 pacmedirectory->ca2roaming() / "program";
 
-   string strAppId = get_command_line_param(psz, "app");
+   string strAppId = get_command_line_parameter(psz, "app");
 
    if (strAppId.has_char())
    {
@@ -567,7 +567,7 @@ pacmedirectory->ca2roaming() / "program";
 
       acmefile()->put_contents(path, get_command_line());
 
-      ::file::path pathExecutable = consume_param(psz, nullptr);
+      ::file::path pathExecutable = consume_command_line_parameter(psz, nullptr);
 
       string strAppTitle = executable_title_from_appid(strAppId);
 

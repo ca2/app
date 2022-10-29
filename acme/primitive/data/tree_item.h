@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/collection/pointer_array.h"
+
+
 class image_list;
 
 
@@ -211,7 +214,7 @@ namespace data
 
 
    class CLASS_DECL_ACME tree_item :
-      virtual public matter
+      virtual public particle
    {
    public:
 
@@ -251,14 +254,14 @@ namespace data
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
       {
 
-         return ::matter::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       }
 
       virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
       {
 
-         return ::matter::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       }
 

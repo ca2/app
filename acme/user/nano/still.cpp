@@ -3,6 +3,7 @@
 #include "still.h"
 #include "window.h"
 #include "device.h"
+#include "button.h"
 #include "acme/user/user/mouse.h"
 
 

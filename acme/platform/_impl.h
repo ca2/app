@@ -119,12 +119,6 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 //} // namespace acme
 
 
-inline bool IsDirSep(widechar ch)
-{
-
-   return (ch == '\\' || ch == '/');
-
-}
 
 
 //#define memory_new ACME_NEW

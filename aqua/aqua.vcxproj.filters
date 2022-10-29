@@ -297,6 +297,9 @@
     <ClInclude Include="exception.h">
       <Filter>Header Files\xml</Filter>
     </ClInclude>
+    <ClInclude Include="user\_.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

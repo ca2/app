@@ -381,6 +381,8 @@ concept primitive_payload = ::std::is_base_of < ::PAYLOAD_TAG, PAYLOAD >::value;
 template < typename ATOM >
 concept primitive_atom = ::std::is_base_of < ::ATOM_TAG, ATOM >::value;
 
+template < typename STRING >
+concept primitive_string = ::std::is_base_of < ::STRING_TAG, STRING >::value;
 
 using item_pointer = ::pointer < ::item >;
 
@@ -673,17 +675,25 @@ inline void copy(NUMBER1 * pnumber1, const NUMBER2 * pnumber2)
 }
 
 
-template < primitive_number NUMBER >
-inline void copy(string * pstring, const NUMBER * pnumber)
+template < primitive_string STRING, primitive_integral INTEGRAL >
+inline void copy(STRING * pstring, const INTEGRAL * pnumber)
 {
 
-   *pstring = __string(*pnumber);
+   pstring->format("%lld", (::i64) *pnumber);
+
+}
+
+template < primitive_string STRING, primitive_floating FLOATING >
+inline void copy(STRING * pstring, const FLOATING * pnumber)
+{
+
+   pstring->format("%f", (::f64)*pnumber);
 
 }
 
 
 template < primitive_payload PAYLOAD >
-CLASS_DECL_ACME void copy(string * pstring, const PAYLOAD * ppayload)
+inline void copy(string * pstring, const PAYLOAD * ppayload)
 {
 
    *pstring = ppayload->string();
@@ -692,7 +702,7 @@ CLASS_DECL_ACME void copy(string * pstring, const PAYLOAD * ppayload)
 
 
 template < primitive_payload PAYLOAD, primitive_number NUMBER >
-inline void copy(const PAYLOAD * ppayload, const NUMBER* pnumber)
+inline void copy(PAYLOAD * ppayload, const NUMBER* pnumber)
 {
 
    *ppayload = *pnumber;
@@ -700,8 +710,8 @@ inline void copy(const PAYLOAD * ppayload, const NUMBER* pnumber)
 }
 
 
-template < primitive_payload PAYLOAD >
-CLASS_DECL_ACME void copy(::payload * ppayload, const string * pstring)
+template < primitive_payload PAYLOAD, primitive_string STRING >
+inline void copy(PAYLOAD * ppayload, const STRING * pstring)
 {
 
    *ppayload = *pstring;
@@ -710,7 +720,7 @@ CLASS_DECL_ACME void copy(::payload * ppayload, const string * pstring)
 
 
 template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
-CLASS_DECL_ACME void copy(PAYLOAD1 * ppayload1, const PAYLOAD2 * ppayload2)
+inline void copy(PAYLOAD1 * ppayload1, const PAYLOAD2 * ppayload2)
 {
 
    *ppayload1 = *ppayload2;

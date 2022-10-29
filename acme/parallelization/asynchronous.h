@@ -2,8 +2,11 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/matter.h"
+
+
 template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
-bool __material_get_posted_payload_synchronously(material_object * phandler, POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class ::wait & wait)
+bool __matter_get_posted_payload_synchronously(matter * phandler, POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class ::wait & wait)
 {
 
    if(pposting->is_branch_current())
@@ -39,7 +42,7 @@ bool __material_get_posted_payload_synchronously(material_object * phandler, POS
 
 
 template < typename POSTING_OBJECT, typename POSTING_METHOD >
-void __material_send_procedure(material_object * phandler, POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure)
+void __matter_send_procedure(matter * phandler, POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure)
 {
 
    if(pposting->is_branch_current())

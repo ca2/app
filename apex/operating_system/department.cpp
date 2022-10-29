@@ -98,7 +98,7 @@ namespace operating_system
 
       const char * pszEnd = nullptr;
 
-      string strBin = consume_param(pszCmdLine,&pszEnd);
+      string strBin = consume_command_line_parameter(pszCmdLine,&pszEnd);
 
 #ifndef _UWP
 

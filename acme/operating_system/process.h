@@ -24,11 +24,11 @@ CLASS_DECL_ACME::string get_command_line();
 
 
 
-CLASS_DECL_ACME string consume_param(const char * pszCommandLine, const char ** pszEndPtr);
-CLASS_DECL_ACME bool is_command_line_param_true(string & strValue, const char * pszCommandLine, const char * pszParam, bool bDefault = false);
-CLASS_DECL_ACME bool get_command_line_param(string & strValue, const char * pszCommandLine, const char * pszParam);
-CLASS_DECL_ACME bool get_command_line_param(string & strValue, const char * pszCommandLine, const char * pszParam, const char * pszDefault);
-CLASS_DECL_ACME string get_command_line_param(const char * pszCommandLine, const char * pszParam);
+CLASS_DECL_ACME string consume_command_line_parameter(const char * pszCommandLine, const char ** pszEndPtr);
+CLASS_DECL_ACME bool is_command_line_parameter_true(string & strValue, const char * pszCommandLine, const char * pszParam, bool bDefault = false);
+CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const char * pszCommandLine, const char * pszParam);
+CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const char * pszCommandLine, const char * pszParam, const char * pszDefault);
+CLASS_DECL_ACME string get_command_line_parameter(const char * pszCommandLine, const char * pszParam);
 
 
 

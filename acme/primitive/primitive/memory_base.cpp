@@ -1953,7 +1953,7 @@ memsize memory_base::length() const
 }
 
 
-::element * memory_base::clone() const
+::particle * memory_base::clone() const
 {
 
    auto pmemory = memory_new memory();

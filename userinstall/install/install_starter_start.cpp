@@ -61,7 +61,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
       ::set_thread(m_pplugin);
 
-      string strId = get_command_line_param(m_strCommandLine, "app", "session", "session_start").trimmed();
+      string strId = get_command_line_parameter(m_strCommandLine, "app", "session", "session_start").trimmed();
 
       string strType;
 
@@ -69,13 +69,13 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
       string strSchema;
 
-      get_command_line_param(strType, m_strCommandLine, "app_type");
+      get_command_line_parameter(strType, m_strCommandLine, "app_type");
 
-      get_command_line_param(strLocale, m_strCommandLine, "locale");
+      get_command_line_parameter(strLocale, m_strCommandLine, "locale");
 
-      get_command_line_param(strSchema, m_strCommandLine, "schema");
+      get_command_line_parameter(strSchema, m_strCommandLine, "schema");
 
-      get_command_line_param(strVersion,m_strCommandLine,"version");
+      get_command_line_parameter(strVersion,m_strCommandLine,"version");
 
       if (strId.is_empty())
          return -1;

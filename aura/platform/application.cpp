@@ -3113,7 +3113,7 @@ retry_license:
 //      wstring desc = L"spafile";          // file type description
 //      wstring content_type = L"application/x-spa";
 //
-//      wstring app(acmedirectory()->stage(m_XstrAppId, process_platform_dir_name(), process_configuration_dir_name()));
+//      wstring app(acmedirectory()->stage(m_XstrAppId, process_platform_name(), process_configuration_name()));
 //
 //      wstring icon(app);
 //
@@ -3160,7 +3160,7 @@ retry_license:
 //      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
 //      RegCloseKey(hkey);
 //
-//      wstring wstr(acmedirectory()->stage(m_XstrAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
+//      wstring wstr(acmedirectory()->stage(m_XstrAppId, process_platform_name(), process_configuration_name()) / "spa_register.txt");
 //
 //      int iRetry = 9;
 //
@@ -5236,7 +5236,7 @@ retry_license:
 //
 //      string strValue;
 //
-//      if (get_command_line_param(strValue, pszCommandLine, "enable_desktop_launch"))
+//      if (get_command_line_parameter(strValue, pszCommandLine, "enable_desktop_launch"))
 //      {
 //
 //#ifdef _UWP
@@ -5247,7 +5247,7 @@ retry_license:
 //
 //         ::property_set set;
 //
-//         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, ::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_restored, 2_min, set);
+//         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_name()), pszCommandLine, ::path::app_app(process_platform_dir_name2(), process_configuration_name()), e_display_restored, 2_min, set);
 //
 //#endif
 //

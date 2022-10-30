@@ -28,7 +28,7 @@ public:
    void erase_at(::i32 iIndex);
    void push(const TYPE & t) { set_at_grow(count(), t);}
    TYPE pop() { TYPE t = element_at(count() - 1); erase_at(count() -1); return t;   }
-   ::count count() const {return m_iCount;}
+   ::i32 count() const {return m_iCount;}
 
    TYPE& element_at_grow(::i32 iIndex);
    TYPE& element_at(::i32 iIndex) { return m_p[iIndex];}
@@ -50,7 +50,7 @@ void tiny_array < TYPE > ::allocate(::i32 iCount)
    if (iCount < 0)
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
       return;
 
@@ -170,7 +170,7 @@ TYPE & tiny_array < TYPE > ::element_at_grow(::i32 iIndex)
    if (iIndex < 0)
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 

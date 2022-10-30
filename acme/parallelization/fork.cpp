@@ -1,4 +1,9 @@
 #include "framework.h"
+#include "fork.h"
+#include "acme/operating_system/process.h"
+#include "acme/parallelization/counter.h"
+#include "acme/platform/context.h"
+#include "acme/primitive/primitive/function.h"
 
 
 //::pointer<::task> & branch(::pointer<::task> & ptask, ::particle * pparticle, const ::procedure & procedure)
@@ -13,7 +18,8 @@
 //}
 
 
-CLASS_DECL_ACME ::task * predicate_run(::particle * pparticle, bool bSync, const ::procedure & procedure)
+
+CLASS_DECL_ACME::task * predicate_run(::particle * pparticle, bool bSync, const ::procedure & procedure)
 {
 
    if (bSync)
@@ -35,26 +41,26 @@ CLASS_DECL_ACME ::task * predicate_run(::particle * pparticle, bool bSync, const
 
 
 
-forking_count_task::forking_count_task(::particle * pparticle, ::pointer<object>pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, const ::function < void(index, index, index, index) > & function, ::object * pobjectTaskEnd = nullptr) :
-m_pholdref(pholdref),
-m_function(function),
-m_iOrder(iOrder),
-m_iIndex(iIndex),
-m_iScan(iScan),
-m_iCount(iCount),
-m_pobjectTaskEnd(pobjectTaskEnd)
+forking_count_task::forking_count_task(::particle * pparticle, ::pointer<object>pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, const ::function < void(index, index, index, index) > & function, ::object * pobjectTaskEnd) :
+   m_pholdref(pholdref),
+   m_function(function),
+   m_iOrder(iOrder),
+   m_iIndex(iIndex),
+   m_iScan(iScan),
+   m_iCount(iCount),
+   m_pobjectTaskEnd(pobjectTaskEnd)
 {
    construct();
    initialize(pparticle);
 }
 
-forking_count_task::forking_count_task(::particle * pparticle, index iOrder, index iIndex, ::count iScan, ::count iCount, cosnt ::function < void(index, index, index, index) > & function, ::object * pobjectTaskEnd = nullptr) :
-m_function(function),
-m_iOrder(iOrder),
-m_iIndex(iIndex),
-m_iScan(iScan),
-m_iCount(iCount),
-m_pobjectTaskEnd(pobjectTaskEnd)
+forking_count_task::forking_count_task(::particle * pparticle, index iOrder, index iIndex, ::count iScan, ::count iCount, const ::function < void(index, index, index, index) > & function, ::object * pobjectTaskEnd) :
+   m_function(function),
+   m_iOrder(iOrder),
+   m_iIndex(iIndex),
+   m_iScan(iScan),
+   m_iCount(iCount),
+   m_pobjectTaskEnd(pobjectTaskEnd)
 {
    construct();
    initialize(pparticle);
@@ -64,7 +70,7 @@ m_pobjectTaskEnd(pobjectTaskEnd)
 void forking_count_task::construct()
 {
 
-   m_uThreadAffinityMask = (::uptr) translate_processor_affinity((int) m_iOrder);
+   m_uThreadAffinityMask = (::uptr)translate_processor_affinity((int)m_iOrder);
 
 }
 
@@ -74,47 +80,47 @@ forking_count_task::~forking_count_task()
 
 }
 
-void forking_count_task::run() override
+void forking_count_task::run()
 {
 
-try
-{
+   try
+   {
 
-m_function(m_iOrder, m_iIndex, m_iCount, m_iScan);
+      m_function(m_iOrder, m_iIndex, m_iCount, m_iScan);
+
+   }
+   catch (...)
+   {
+
+   }
+
+   if (m_pobjectTaskEnd.is_set())
+   {
+
+      if (m_pobjectTaskEnd->get_ref_count() == 1)
+      {
+
+         m_pobjectTaskEnd->run();
+
+      }
+
+      m_pobjectTaskEnd.release();
+
+   }
+
+   if (m_pcounter.is_set())
+   {
+
+      (*m_pcounter)++;
+
+   }
+
+   //return ::success;
 
 }
-catch (...)
-{
-
-}
-
-if (m_pobjectTaskEnd.is_set())
-{
-
-if (m_pobjectTaskEnd->get_ref_count() == 1)
-{
-
-m_pobjectTaskEnd->run();
-
-}
-
-m_pobjectTaskEnd.release();
-
-}
-
-if (m_pcounter.is_set())
-{
-
-(*m_pcounter)++;
-
-}
-
-//return ::success;
-
-}
 
 
-CLASS_DECL_ACME void fork_count(::particle * pobjectParent, ::count iCount, const ::function < void(index, index, index, index) > & function, const ::procedure & procedureCompletion, index iStart = 0)
+CLASS_DECL_ACME void fork_count(::particle * pparticleParent, ::count iCount, const ::function < void(index, index, index, index) > & function, const ::procedure & procedureCompletion, index iStart)
 {
 
    int iAffinityOrder = get_current_process_affinity_order();
@@ -135,7 +141,7 @@ CLASS_DECL_ACME void fork_count(::particle * pobjectParent, ::count iCount, cons
    for (index iOrder = 0; iOrder < cScan; iOrder++)
    {
 
-      auto ppredtask = __new(forking_count_task < PRED >(pparticleParent, iOrder, iOrder + iStart, cScan, iCount, pred));
+      auto ppredtask = __new(forking_count_task(pparticleParent, iOrder, iOrder + iStart, cScan, iCount, function));
 
       //if (::is_set(ptask))
       //{

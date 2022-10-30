@@ -12,7 +12,7 @@
 
 class item;
 
-class os_theme_colors;
+struct os_theme_colors;
 
 
 namespace user

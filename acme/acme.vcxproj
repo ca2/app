@@ -1825,7 +1825,6 @@
     <ClCompile Include="primitive\geometry3d\location.cpp" />
     <ClCompile Include="primitive\primitive\bit.cpp" />
     <ClCompile Include="primitive\primitive\factory.cpp" />
-    <ClCompile Include="primitive\primitive\atom_space.cpp" />
     <ClCompile Include="primitive\primitive\interlocked_long.cpp" />
     <ClCompile Include="primitive\primitive\memory.cpp" />
     <ClCompile Include="primitive\primitive\memory_base.cpp" />

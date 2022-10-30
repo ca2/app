@@ -9,10 +9,10 @@
 using tiny_index_array = tiny_array <::index>;
 
 template < typename P1, typename P2 >
-inline void copy(::pointer < P1 > * p1, const ::pointer < P2 > * p2)
+inline void copy(::pointer < P1 > & p1, const ::pointer < P2 > & p2)
 {
 
-   *p1 = *p2;
+   p1 = p2;
 
 }
 
@@ -602,7 +602,7 @@ public:
 
          TYPE t {};
 
-         ::copy(&t, &item);
+         ::copy(t, item);
 
          add(t);
 

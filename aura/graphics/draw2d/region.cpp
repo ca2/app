@@ -380,7 +380,7 @@ namespace draw2d
 
       max_bounding_box(rectangleMaxBounding);
 
-      copy(&rectangle, &rectangleMaxBounding);
+      copy(rectangle, rectangleMaxBounding);
 
    }
 

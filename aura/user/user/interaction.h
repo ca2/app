@@ -793,7 +793,7 @@ namespace user
       virtual ::rectangle_i32 get_client_rect();
 
 
-      virtual void get_window_rect(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_design) { copy(&rect, &get_window_rect(elayout)); }
+      virtual void get_window_rect(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_design) { copy(rect, get_window_rect(elayout)); }
       virtual ::rectangle_i32 get_window_rect(enum_layout elayout = e_layout_design);
 
 

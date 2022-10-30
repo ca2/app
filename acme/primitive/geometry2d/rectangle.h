@@ -237,7 +237,7 @@ public:
    rectangle_type get_union(const rectangle_type & rect1) const noexcept { rectangle_type rectangle(*this); rectangle.unite(rect1); return *this; }
 
    template < primitive_rectangle RECTANGLE >
-   rectangle_type & operator=(const RECTANGLE & rectangle) noexcept { ::copy(this, &rectangle); return *this; }
+   rectangle_type & operator=(const RECTANGLE & rectangle) noexcept { ::copy(*this, rectangle); return *this; }
 
    bool operator==(const rectangle_type & rectangle) const noexcept { return ::is_equal(*this, rectangle); }
    bool operator!=(const rectangle_type & rectangle) const noexcept { return !operator ==(rectangle); }

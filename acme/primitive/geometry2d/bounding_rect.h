@@ -83,11 +83,12 @@ inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const line & l
 //
 //}
 
+
 template < primitive_rectangle RECTANGLE >
 inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const ellipse & ellipse)
 {
 
-   copy(&rectangleBounding, &ellipse);
+   copy(rectangleBounding, ellipse);
 
    return true;
 
@@ -140,6 +141,7 @@ void get_bounding_rectangle(RECTANGLE_BASE_TYPE & rect, const POINT_BASE_TYPE * 
    }
    else
    {
+
       rect.left = lppoint[0].x;
       rect.top = lppoint[0].y;
       rect.right = lppoint[0].x;
@@ -166,7 +168,7 @@ template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
 inline bool get_bounding_rectangle(RECTANGLE1 & rectangleBounding, const RECTANGLE2 & rectangle)
 {
 
-   copy(&rectangleBounding, &rectangle);
+   copy(rectangleBounding, rectangle);
 
    return true;
 

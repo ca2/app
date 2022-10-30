@@ -3839,7 +3839,7 @@ namespace user
 
             get_client_rect(rectangleDraw);
 
-            copy(&pgraphics->m_rectangleDraw, &rectangleDraw);
+            copy(pgraphics->m_rectangleDraw, rectangleDraw);
 
             _001OnDraw(pgraphics);
 

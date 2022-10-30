@@ -1512,7 +1512,7 @@ RECT_TYPE1 & unite(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
       else
       {
 
-         copy(&rect1, &rect2);
+         copy(rect1, rect2);
 
       }
 

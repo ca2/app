@@ -161,19 +161,19 @@ namespace graphics
    }
 
 
-   void console::assert_ok() const
-   {
-
-
-   }
-
-
-
-   void console::dump(dump_context& dump) const
-   {
-
-
-   }
+//   void console::assert_ok() const
+//   {
+//
+//
+//   }
+//
+//
+//
+//   void console::dump(dump_context& dump) const
+//   {
+//
+//
+//   }
 
 
 

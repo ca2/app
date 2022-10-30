@@ -10,7 +10,7 @@
 #include "aura_posix/node.h"
 
 
-mutex * user_synchronization();
+::particle * user_synchronization();
 
 
 namespace opengl

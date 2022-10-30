@@ -716,7 +716,7 @@ namespace aura
 
 
       // void assert_ok() const override;
-      void dump(dump_context& action_context) const override;
+      //void dump(dump_context& action_context) const override;
 
 
       virtual void     main() override;

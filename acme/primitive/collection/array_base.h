@@ -8,6 +8,13 @@
 
 using tiny_index_array = tiny_array <::index>;
 
+template < typename P1, typename P2 >
+inline void copy(::pointer < P1 > * p1, const ::pointer < P2 > * p2)
+{
+
+   *p1 = *p2;
+
+}
 
 #define __default_array_array_base(TYPE) ::array_base < TYPE, const TYPE &, ::allocator::def < TYPE > >
 

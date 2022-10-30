@@ -6270,20 +6270,20 @@ namespace aura
    //}
 
 
-   void system::assert_ok() const
-   {
-
-      ::thread::assert_ok();
-
-   }
-
-
-   void system::dump(dump_context& context) const
-   {
-
-      ::thread::dump(context);
-
-   }
+//   void system::assert_ok() const
+//   {
+//
+//      ::thread::assert_ok();
+//
+//   }
+//
+//
+//   void system::dump(dump_context& context) const
+//   {
+//
+//      ::thread::dump(context);
+//
+//   }
 
 
    void     system::main()

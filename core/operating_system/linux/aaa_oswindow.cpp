@@ -6,7 +6,7 @@
 
 
 extern SnLauncheeContext* g_psncontext;
-mutex * user_synchronization();
+::particle * user_synchronization();
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)

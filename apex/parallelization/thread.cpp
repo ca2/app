@@ -3845,20 +3845,20 @@ void thread::post_message(oswindow oswindow, const ::atom & atom, wparam wparam,
 }
 
 
-void thread::assert_ok() const
-{
-
-   channel::assert_ok();
-
-}
-
-
-void thread::dump(dump_context & dumpcontext) const
-{
-
-   channel::dump(dumpcontext);
-
-}
+//void thread::assert_ok() const
+//{
+//
+//   channel::assert_ok();
+//
+//}
+//
+//
+//void thread::dump(dump_context & dumpcontext) const
+//{
+//
+//   channel::dump(dumpcontext);
+//
+//}
 
 
 void thread::add_task(::object* pobjectTask)

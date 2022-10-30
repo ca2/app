@@ -37,16 +37,16 @@ matter::~matter()
 }
 
 
-void matter::assert_ok() const
-{
-
-}
-
-
-void matter::dump(dump_context & dumpcontext) const
-{
-
-}
+//void matter::assert_ok() const
+//{
+//
+//}
+//
+//
+//void matter::dump(dump_context & dumpcontext) const
+//{
+//
+//}
 
 
 //void matter::initialize_matter(::matter* pmatter)

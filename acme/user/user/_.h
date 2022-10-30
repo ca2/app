@@ -12,6 +12,8 @@
 
 class item;
 
+class os_theme_colors;
+
 
 namespace user
 {

@@ -193,14 +193,14 @@ namespace draw2d
    }
 
 
-   void ::draw2d::bitmap::dump(dump_context & dumpcontext) const
-   {
-
-      __UNREFERENCED_PARAMETER(dumpcontext);
-
-      throw ::interface_only();
-
-   }
+//   void ::draw2d::bitmap::dump(dump_context & dumpcontext) const
+//   {
+//
+//      __UNREFERENCED_PARAMETER(dumpcontext);
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    //const ::size_i32 & size bitmap::SetBitmapDimension(i32 nWidth,i32 nHeight)

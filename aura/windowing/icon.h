@@ -3,6 +3,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 namespace windowing
 {
 
@@ -19,7 +22,7 @@ namespace windowing
 
 
       icon();
-      virtual ~icon();
+      ~icon() override;
 
 
       virtual string get_tray_icon_name() const;

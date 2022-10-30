@@ -4,7 +4,8 @@
 namespace data
 {
 
-   
+
+   class tree_item;
    class tree_item_ptr_array;
 
 

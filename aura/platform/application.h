@@ -324,9 +324,9 @@ namespace aura
       virtual ::draw2d::printer * get_printer(const ::string & pszDeviceName);
 
 
-      virtual ::draw2d::icon * set_icon(::particle * pparticle, ::draw2d::icon * picon, bool bBigIcon);
+      virtual ::draw2d::icon * set_icon(::object * pobject, ::draw2d::icon * picon, bool bBigIcon);
 
-      virtual ::draw2d::icon * get_icon(::particle * pparticle, bool bBigIcon) const;
+      virtual ::draw2d::icon * get_icon(::object * pobject, bool bBigIcon) const;
 
       //virtual void on_service_request(::create * pcreate) override;
 

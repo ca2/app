@@ -8,9 +8,7 @@
 // any later version.
 //
 // $Id: XKeyboard.h 29 2008-04-09 21:37:44Z jay $
-
-#ifndef XKEYBOARD_H_1C79861A_49B3_4A95_88D6_455C22FEB222
-#define XKEYBOARD_H_1C79861A_49B3_4A95_88D6_455C22FEB222
+#pragma once
 
 //!!!#include <X11/Xlib.h>
 
@@ -18,7 +16,7 @@
 void x11_keyboard_get_current_group_info(string & strGroupName, string & strGroupSymbol);
 string x11_keyboard_get_current_group_name();
 string x11_keyboard_get_current_group_symbol();
-
+#include "acme/primitive/collection/string_array.h"
 
 typedef string_array StringVector;
 
@@ -84,7 +82,6 @@ int compareNoCase(const string& s1, const string& s2);
 // std::ostream& operator<<(std::ostream& os, const XKeyboard& xkb);
 // std::ostream& operator<<(std::ostream& os, const StringVector& v);
 
-#endif // XKEYBOARD_H_1C79861A_49B3_4A95_88D6_455C22FEB222
 
 // Local Variables:
 // mode: c++

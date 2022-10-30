@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "bitmap_source_buffer.h"
+#include "acme/parallelization/mutex.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"

@@ -16,16 +16,16 @@ namespace fs
    }
 
 
-   void data::assert_ok() const
-   {
-
-   }
-
-
-   void data::dump(dump_context& dumpcontext) const
-   {
-
-   }
+//   void data::assert_ok() const
+//   {
+//
+//   }
+//
+//
+//   void data::dump(dump_context& dumpcontext) const
+//   {
+//
+//   }
 
 
    bool data::has_subdir(const ::file::path & pszPath)

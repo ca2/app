@@ -58,14 +58,14 @@ namespace draw2d
    }
 
 
-   void brush::dump(dump_context & dumpcontext) const
-   {
-
-      __UNREFERENCED_PARAMETER(dumpcontext);
-
-      throw ::interface_only();
-
-   }
+//   void brush::dump(dump_context & dumpcontext) const
+//   {
+//
+//      __UNREFERENCED_PARAMETER(dumpcontext);
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    bool brush::create_null()

@@ -11,14 +11,13 @@
 #include "user.h"
 #include "frame.h"
 #include "form.h"
-#ifdef WINDOWS_DESKTOP
-#include "apex/operating_system.h"
-#endif
+#include "acme/constant/message.h"
 #include "aura/message/timer.h"
 #include "acme/constant/simple_command.h"
 #include "acme/handler/item.h"
 #include "acme/user/user/drag.h"
 #include "apex/message/simple_command.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/timer.h"
@@ -42,7 +41,9 @@
 #include "aura/graphics/user/control_box_button.h"
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
-
+#ifdef WINDOWS_DESKTOP
+#include "apex/operating_system.h"
+#endif
 
 
 #define INFO_LAYOUT_DISPLAY
@@ -1598,10 +1599,10 @@ namespace user
       if (m_pthreadUserInteraction)
       {
 
-         if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+         if (::is_set(m_pthreadUserInteraction->m_puserprimitiveaThread))
          {
 
-            m_pthreadUserInteraction->m_puiptraThread->erase(this);
+            m_pthreadUserInteraction->m_puserprimitiveaThread->erase(this);
 
          }
 
@@ -1682,7 +1683,7 @@ namespace user
 
          ::rectangle_i32 rectangleWindow;
 
-         auto pparent = puserinteractionParent->cast<::user::interaction>();
+         ::pointer < ::user::interaction > pparent = puserinteractionParent;
 
          if (pparent)
          {
@@ -2752,7 +2753,7 @@ namespace user
          else
          {
 
-            post_procedure([this]()
+            interaction_post([this]()
                {
 
                   if (get_app() != nullptr && get_app()->get_session() != nullptr &&

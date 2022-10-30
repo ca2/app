@@ -47,7 +47,7 @@ namespace graphics
 
 
       // void assert_ok() const override;
-      virtual void dump(dump_context & dump) const override;
+      // virtual void dump(dump_context & dump) const override;
 
 
       ::string_stream & cout() override;

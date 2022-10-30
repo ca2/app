@@ -1,23 +1,31 @@
 ﻿#include "framework.h"
 #include "application.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
+#include "acme/filesystem/file/folder.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/networking/url_department.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/primitive/string/base64.h"
 #include "aura/constant/idpool.h"
 #include "acme/platform/version.h"
 #include "acme/platform/profiler.h"
 #include "acme/primitive/text/context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/platform/node.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/interprocess/communication.h"
 #include "apex/interprocess/target.h"
+#include "apex/networking/http/context.h"
+#include "apex/platform/os_context.h"
 #include "aura/graphics/image/icon.h"
-#include "acme/primitive/string/base64.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aqua/game/game.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/create.h"
 #include "apex/platform/node.h"
 #include "aura/user/user/window_util.h"
 #include "aura/user/user/interaction.h"
@@ -413,24 +421,24 @@ namespace aura
    //}
 
 
-   void application::assert_ok() const
-   {
-
-      ::aqua::application::assert_ok();
-
-   }
-
-
-   void application::dump(dump_context & dumpcontext) const
-   {
-
-      ::aqua::application::dump(dumpcontext);
-
-      //dumpcontext << "\nm_bHelpMode = " << m_strAppName;
-
-      //dumpcontext << "\n";
-
-   }
+//   void application::assert_ok() const
+//   {
+//
+//      ::aqua::application::assert_ok();
+//
+//   }
+//
+//
+//   void application::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::aqua::application::dump(dumpcontext);
+//
+//      //dumpcontext << "\nm_bHelpMode = " << m_strAppName;
+//
+//      //dumpcontext << "\n";
+//
+//   }
 
 
    void application::install_message_routing(::channel * pchannel)
@@ -4845,7 +4853,7 @@ retry_license:
 
 //         zip_context zip(this);
 
-         auto pfolder = file()->get_folder(&file, "zip", ::file::e_open_read);
+         auto pfolder = ::particle::file()->get_folder(&file, "zip", ::file::e_open_read);
 
          string strDir = strFile;
 
@@ -5548,7 +5556,7 @@ namespace aura
          if(pinteraction)
          {
 
-            pinteraction->post_procedure([pinteraction, idCommand]()
+            pinteraction->interaction_post([pinteraction, idCommand]()
             {
 
                ::message::command command(idCommand);
@@ -8357,14 +8365,14 @@ namespace aura
          if (ptopic->m_atom == ::id_initialize_control)
          {
 
-            auto puserinteraction = ptopic->m_puserelement->cast<::user::interaction>();
+            ::pointer < ::user::interaction > puserinteraction = ptopic->m_puserelement;
 
             if (puserinteraction->m_atom == __id(user_auto_start_checkbox))
             {
 
                try
                {
-                  ::pointer<::user::check>pcheck = puserinteraction;
+                  ::pointer<::user::check> pcheck = puserinteraction;
 
                   if (pcheck.is_set())
                   {
@@ -8375,7 +8383,7 @@ namespace aura
                         os_context()->is_user_auto_start(get_executable_appid()),
                         ::e_source_initialize);
 
-                     auto puserinteractionCheck = pcheck->cast <::user::interaction>();
+                     ::pointer < ::user::interaction > puserinteractionCheck = pcheck;
 
                      if (puserinteractionCheck)
                      {
@@ -8732,21 +8740,21 @@ namespace aura
    //}
 
 
-   ::draw2d::icon* application::set_icon(object* pparticle, ::draw2d::icon* picon, bool bBigIcon)
+   ::draw2d::icon* application::set_icon(::object * pobject, ::draw2d::icon* picon, bool bBigIcon)
    {
 
-      ::draw2d::icon* piconOld = get_icon(pparticle, bBigIcon);
+      ::draw2d::icon* piconOld = get_icon(pobject, bBigIcon);
 
       if (bBigIcon)
       {
 
-         pparticle->payload("big_icon") = picon;
+         pobject->payload("big_icon") = picon;
 
       }
       else
       {
 
-         pparticle->payload("small_icon") = picon;
+         pobject->payload("small_icon") = picon;
 
       }
 
@@ -8755,19 +8763,19 @@ namespace aura
    }
 
 
-   ::draw2d::icon* application::get_icon(object* pparticle, bool bBigIcon) const
+   ::draw2d::icon* application::get_icon(object* pobject, bool bBigIcon) const
    {
 
       if (bBigIcon)
       {
 
-         return const_cast <object*> (pparticle)->cast < ::draw2d::icon >("big_icon");
+         return const_cast <object*> (pobject)->cast < ::draw2d::icon >("big_icon");
 
       }
       else
       {
 
-         return const_cast <object*> (pparticle)->cast < ::draw2d::icon >("small_icon");
+         return const_cast <object*> (pobject)->cast < ::draw2d::icon >("small_icon");
 
       }
 

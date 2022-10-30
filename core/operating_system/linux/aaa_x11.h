@@ -33,7 +33,7 @@ void x11_fork(PRED pred)
 }
 
 
-mutex * user_synchronization();
+::particle * user_synchronization();
 
 
 template < typename PRED >

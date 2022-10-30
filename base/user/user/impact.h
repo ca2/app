@@ -29,7 +29,7 @@ namespace user
       ~impact() override;
 
       
-      void dump(dump_context&) const override;
+      // void dump(dump_context&) const override;
       // void assert_ok() const override;
 
 

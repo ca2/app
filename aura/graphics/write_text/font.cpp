@@ -40,14 +40,14 @@ namespace write_text
    }
 
 
-   void font::dump(dump_context & dumpcontext) const
-   {
-
-      __UNREFERENCED_PARAMETER(dumpcontext);
-
-      throw ::interface_only();
-
-   }
+//   void font::dump(dump_context & dumpcontext) const
+//   {
+//
+//      __UNREFERENCED_PARAMETER(dumpcontext);
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    void font::create_text_metrics(::draw2d::graphics * pgraphics)

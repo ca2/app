@@ -35,20 +35,20 @@ namespace user
    }
 
 
-   void controller::dump(dump_context&dumpcontext) const
-   {
-
-      channel::dump(dumpcontext);
-
-   }
-
-
-   void controller::assert_ok() const
-   {
-
-      channel::assert_ok();
-
-   }
+//   void controller::dump(dump_context&dumpcontext) const
+//   {
+//
+//      channel::dump(dumpcontext);
+//
+//   }
+//
+//
+//   void controller::assert_ok() const
+//   {
+//
+//      channel::assert_ok();
+//
+//   }
 
 
 

@@ -1,23 +1,25 @@
 #include "framework.h"
-
-#include "acme/platform/system_setup.h"
-#include "acme/constant/simple_command.h"
-#include "apex/message/simple_command.h"
-#include "shell.h"
-#include "aura/windowing/windowing.h"
-#include "aura/windowing/window.h"
-#include "aura/windowing/desktop_environment.h"
 #include "user.h"
+#include "shell.h"
 #include "style.h"
 #include "interaction_impl.h"
 #include "interaction.h"
-#include "aura/graphics/write_text/font_list.h"
-#include "aura/message/user.h"
 #include "plain_edit.h"
 #include "still.h"
 #include "check_box.h"
 #include "button.h"
 #include "progress.h"
+#include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/system_setup.h"
+#include "acme/constant/simple_command.h"
+#include "apex/message/simple_command.h"
+#include "apex/platform/create.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/desktop_environment.h"
+#include "aura/graphics/write_text/font_list.h"
+#include "aura/message/user.h"
 #include "aura/platform/system.h"
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
@@ -692,7 +694,7 @@ namespace user
 
          ::pointer<::aura::application>pappAura = papp;
 
-         synchronous_lock synchronouslock(&pappAura->m_pmutexFrame);
+         synchronous_lock synchronouslock(pappAura->m_pmutexFrame);
 
          ::pointer<::user::interaction>pinteraction;
 
@@ -815,7 +817,7 @@ namespace user
    CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::user::interaction * pinteractionParent)
    {
 
-      auto pinteraction = pparticle->__create_new < ::user::interaction >();
+      auto pinteraction = __create_new < ::user::interaction >(pparticle);
 
       pinteraction->create_child(pinteractionParent);
 
@@ -1368,7 +1370,7 @@ namespace user
 
                synchronous_lock synchronouslock(this->synchronization());
 
-               ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
+               uiptraToolWindow._001CopyContainer(m_uiptraToolWindow);
 
             }
 
@@ -1578,7 +1580,7 @@ namespace user
 } // namespace user
 
 
-CLASS_DECL_AURA ::pointer< ::mutex > user_synchronization()
+CLASS_DECL_AURA ::particle * user_synchronization()
 {
 
    return g_pmutexUser;

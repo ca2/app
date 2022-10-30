@@ -16,6 +16,7 @@
 #include "acme/constant/simple_command.h"
 #include "acme/handler/item.h"
 #include "acme/user/user/drag.h"
+#include "apex/message/_constant.h"
 #include "apex/message/simple_command.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/asynchronous.h"
@@ -3952,7 +3953,7 @@ namespace user
    }
 
 
-   synchronization * interaction::pointer < ::mutex >_draw()
+   ::particle * interaction::mutex_draw()
    {
 
       auto puserinteraction = get_wnd();
@@ -5038,7 +5039,7 @@ namespace user
       break;
       case ::message::PrototypeObject:
       {
-         pmessage = __new(::message::object);
+         pmessage = __new(::message::particle);
       }
       break;
       default:

@@ -78,7 +78,7 @@ public:
 
 
    template < typename TYPE >
-   type(enum_data_structure_type, TYPE) :
+   type(enum_data_structure_type, const TYPE &) :
 #ifdef WINDOWS
    atom(c_demangle(typeid(TYPE).name()))
 #else

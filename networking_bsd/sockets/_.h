@@ -35,7 +35,7 @@ namespace sockets_bsd
    using socket_pointer = ::pointer<base_socket>;
 
 
-   typedef comparable_list < socket_pointer > socket_pointer_list;
+   //typedef comparable_list < socket_pointer > socket_pointer_list;
 
 
 } // namespace sockets_bsd

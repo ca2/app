@@ -116,7 +116,7 @@ namespace draw2d
 
       }
 
-      copy(rectangle, r);
+      copy(&rectangle, &r);
 
       return true;
 

@@ -11,9 +11,10 @@
 #include "user.h"
 #include "frame.h"
 #include "form.h"
+#include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "aura/message/timer.h"
 #include "acme/constant/simple_command.h"
+#include "aura/message/timer.h"
 #include "acme/handler/item.h"
 #include "acme/user/user/drag.h"
 #include "apex/message/_constant.h"
@@ -3838,7 +3839,7 @@ namespace user
 
             get_client_rect(rectangleDraw);
 
-            copy(pgraphics->m_rectangleDraw, rectangleDraw);
+            copy(&pgraphics->m_rectangleDraw, &rectangleDraw);
 
             _001OnDraw(pgraphics);
 

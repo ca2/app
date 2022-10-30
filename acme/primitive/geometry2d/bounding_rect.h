@@ -87,7 +87,7 @@ template < primitive_rectangle RECTANGLE >
 inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const ellipse & ellipse)
 {
 
-   copy(rectangleBounding, ellipse);
+   copy(&rectangleBounding, &ellipse);
 
    return true;
 
@@ -166,7 +166,7 @@ template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
 inline bool get_bounding_rectangle(RECTANGLE1 & rectangleBounding, const RECTANGLE2 & rectangle)
 {
 
-   copy(rectangleBounding, rectangle);
+   copy(&rectangleBounding, &rectangle);
 
    return true;
 

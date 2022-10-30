@@ -36,7 +36,7 @@ namespace acme
       ~exclusive() override;
 
 
-      bool exclusive_fails() const;
+      virtual bool exclusive_fails() const;
 
 
    };

@@ -855,10 +855,10 @@ template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
 void copy(RECT_TYPE1 * prect1, const RECT_TYPE2 * prect2)
 {
 
-   prect1->eft = (decltype(RECT_TYPE1::left))prect2->left;
-   prect1->op = (decltype(RECT_TYPE1::top))prect2->top;
-   prect1->ight = (decltype(RECT_TYPE1::right))prect2->right;
-   prect1->ottom = (decltype(RECT_TYPE1::bottom))prect2->bottom;
+   prect1->left = (decltype(RECT_TYPE1::left))prect2->left;
+   prect1->top = (decltype(RECT_TYPE1::top))prect2->top;
+   prect1->right = (decltype(RECT_TYPE1::right))prect2->right;
+   prect1->bottom = (decltype(RECT_TYPE1::bottom))prect2->bottom;
 
 }
 

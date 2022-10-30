@@ -5150,7 +5150,7 @@ namespace user
    element * interaction::keyboard_set_focus_next(bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
    {
 
-      ::particle * pparticle = keyboard_get_next_focusable(nullptr, bSkipChild, bSkipSiblings, bSkipParent);
+      element * pelement = keyboard_get_next_focusable(nullptr, bSkipChild, bSkipSiblings, bSkipParent);
 
       auto psession = get_session();
 
@@ -5319,7 +5319,7 @@ namespace user
    void interaction::interaction_send(const ::procedure & procedure)
    {
 
-      __material_send_procedure(this, this, &interaction::interaction_post, procedure);
+      __matter_send_procedure(this, this, &interaction::interaction_post, procedure);
 
    }
 

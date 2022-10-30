@@ -24,7 +24,7 @@ namespace console
 
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
 

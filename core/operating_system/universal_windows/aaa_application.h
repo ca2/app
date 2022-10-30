@@ -175,7 +175,7 @@
 //      virtual ::user::interaction* GetMainWnd();
 //
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 //      virtual void CommonConstruct();
 //      virtual void Delete();
 //         // 'delete this' only if m_bAutoDelete == true

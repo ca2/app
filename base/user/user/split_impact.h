@@ -22,7 +22,7 @@ namespace user
 
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
       void install_message_routing(::channel * pchannel) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;

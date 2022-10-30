@@ -26,7 +26,7 @@ namespace filemanager
 
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
       void on_create_split_impact() override;
 

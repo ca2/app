@@ -39,7 +39,7 @@ namespace universal_windows
       virtual ~native_buffer();
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
       operator StorageFile ^ () const;
 

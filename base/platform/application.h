@@ -43,7 +43,7 @@ namespace base
 
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       ::base::system* get_system() const;
@@ -273,7 +273,7 @@ namespace base
 //
 //
 //      //// void assert_ok() const override;
-//      //void dump(dump_context & dumpcontext) const override;
+//      //// void dump(dump_context & dumpcontext) const override;
 //
 //
 //      virtual ::file::path get_app_localconfig_folder();

@@ -193,7 +193,7 @@ public:
 
 
    // void assert_ok() const override;
-   void dump(dump_context & dumpcontext) const override;
+   // void dump(dump_context & dumpcontext) const override;
 
 
    void OnHScroll(::u32 nSBCode, ::u32 nPos, ::user::scroll_bar* pScrollBar);

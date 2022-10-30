@@ -155,7 +155,7 @@ namespace aura
 
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       virtual void enumerate_composite(matter_array& a);
@@ -386,7 +386,7 @@ namespace aura
 
 
       //// void assert_ok() const override;
-      //void dump(dump_context & dumpcontext) const override;
+      //// void dump(dump_context & dumpcontext) const override;
 
 
       //virtual ::file::path get_app_localconfig_folder() override;

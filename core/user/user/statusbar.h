@@ -91,7 +91,7 @@ namespace user
       virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle) override;
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
       void EnableDocking(u32 dwDockStyle);
 
 

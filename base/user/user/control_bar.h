@@ -89,7 +89,7 @@ namespace user
 
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       // for styles specific to ::user::control_bar

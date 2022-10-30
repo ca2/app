@@ -44,7 +44,7 @@ namespace userstack
       virtual ~frame();
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       virtual void pre_translate_message(::message::message * pmessage);

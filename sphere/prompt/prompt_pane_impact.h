@@ -38,7 +38,7 @@ namespace prompt
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

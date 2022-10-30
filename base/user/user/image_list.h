@@ -42,7 +42,7 @@ namespace user
       //virtual bool get_rect(::item & item) override;
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
       virtual bool _001GetItemText(string & str, index iItem);
 
@@ -100,7 +100,7 @@ namespace user
 
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 #ifdef _DEBUG
       i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override

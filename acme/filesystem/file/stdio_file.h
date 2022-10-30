@@ -33,7 +33,7 @@ public:
 
 
    //// void assert_ok() const override;
-   //void dump(dump_context & dumpcontext) const override;
+   //// void dump(dump_context & dumpcontext) const override;
 
 
    filesize get_position() const override;

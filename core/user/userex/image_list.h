@@ -26,7 +26,7 @@ namespace userex
 
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
       virtual string_array get_ls_pattern_stra() const;
 

@@ -19,7 +19,7 @@ namespace browser
 
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       using ::simple_main_frame::get_translucency;

@@ -50,7 +50,7 @@ namespace axis
 
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       //virtual bool app_data_get(const ::atom & atom, stream & os) override;

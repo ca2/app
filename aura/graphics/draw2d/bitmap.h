@@ -31,7 +31,7 @@ namespace draw2d
       ~bitmap() override;
 
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
 
 
       template < typename POINTER >

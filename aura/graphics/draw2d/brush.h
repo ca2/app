@@ -36,7 +36,7 @@ namespace draw2d
       virtual void destroy() override;
 
       
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool create_null();

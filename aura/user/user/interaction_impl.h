@@ -170,7 +170,7 @@ namespace user
       
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
       virtual void set_prodevian_fps(double dProdevianFps);
       virtual void set_nominal_fps(double dNominalFps);

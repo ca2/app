@@ -45,7 +45,7 @@ namespace universal_windows
 
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool has_pending_graphical_update();

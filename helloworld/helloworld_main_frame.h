@@ -19,7 +19,7 @@ namespace helloworld
 
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       using ::simple_frame_window::get_translucency;

@@ -28,7 +28,7 @@ namespace draw2d_opengl
       bool operator==(const ::draw2d::object& obj) const;
       bool operator!=(const ::draw2d::object& obj) const;
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
       // void assert_ok() const override;
 
    };

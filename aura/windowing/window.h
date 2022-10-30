@@ -53,7 +53,7 @@ namespace windowing
 
 
 //      // void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       ::aura::application* get_app() const;

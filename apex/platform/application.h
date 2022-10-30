@@ -171,7 +171,7 @@ namespace apex
 
 
       //// void assert_ok() const override;
-      //void dump(dump_context & dumpcontext) const override;
+      //// void dump(dump_context & dumpcontext) const override;
 
 
       virtual string __get_text(string str);
@@ -373,7 +373,7 @@ namespace apex
 
 
       //// void assert_ok() const override;
-      //void dump(dump_context & dumpcontext) const override;
+      //// void dump(dump_context & dumpcontext) const override;
 
 
       virtual ::file::path get_app_localconfig_folder();

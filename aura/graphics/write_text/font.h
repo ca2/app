@@ -87,7 +87,7 @@ namespace write_text
       ~font() override;
 
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
       
       virtual void create_text_metrics(::draw2d::graphics * pgraphics);
 

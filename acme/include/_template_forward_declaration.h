@@ -674,63 +674,63 @@ namespace draw2d
 
 
 template < primitive_number NUMBER1, primitive_number NUMBER2 >
-inline void copy(NUMBER1 * pnumber1, const NUMBER2 * pnumber2)
+inline void copy(NUMBER1 & number1, const NUMBER2 & number2)
 {
 
-   *pnumber1 = (NUMBER1) *pnumber2;
+   number1 = (NUMBER1) number2;
 
 }
 
 
 template < primitive_string STRING, primitive_integral INTEGRAL >
-inline void copy(STRING * pstring, const INTEGRAL * pnumber)
+inline void copy(STRING & string, const INTEGRAL & number)
 {
 
-   pstring->format("%lld", (::i64) *pnumber);
+   string.format("%lld", (::i64) number);
 
 }
 
 template < primitive_string STRING, primitive_floating FLOATING >
-inline void copy(STRING * pstring, const FLOATING * pnumber)
+inline void copy(STRING & string, const FLOATING & number)
 {
 
-   pstring->format("%f", (::f64)*pnumber);
+   string.format("%f", (::f64)number);
 
 }
 
 
 template < primitive_payload PAYLOAD >
-inline void copy(string * pstring, const PAYLOAD * ppayload)
+inline void copy(string & string, const PAYLOAD & payload)
 {
 
-   *pstring = ppayload->string();
+   string = payload.string();
 
 }
 
 
 template < primitive_payload PAYLOAD, primitive_number NUMBER >
-inline void copy(PAYLOAD * ppayload, const NUMBER* pnumber)
+inline void copy(PAYLOAD & payload, const NUMBER & number)
 {
 
-   *ppayload = *pnumber;
+   payload = number;
 
 }
 
 
 template < primitive_payload PAYLOAD, primitive_string STRING >
-inline void copy(PAYLOAD * ppayload, const STRING * pstring)
+inline void copy(PAYLOAD & payload, const STRING & string)
 {
 
-   *ppayload = *pstring;
+   payload = string;
 
 }
 
 
 template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
-inline void copy(PAYLOAD1 * ppayload1, const PAYLOAD2 * ppayload2)
+inline void copy(PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
 {
 
-   *ppayload1 = *ppayload2;
+   payload1 = payload2;
 
 }
 

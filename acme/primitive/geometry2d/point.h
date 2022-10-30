@@ -27,10 +27,10 @@ public:
    //point_type(const ::u64 u) noexcept : point_type((UNIT_TYPE)__u64x(u), (UNIT_TYPE)__u64y(u)) {}
    //point_type(const SIZE_TYPE & size) noexcept : point_type(size.cx, size.cy) {}
    template < primitive_point POINT >
-   point_type(const POINT & point) noexcept { ::copy(this, &point); }
+   point_type(const POINT & point) noexcept { ::copy(*this, point); }
 
    template < primitive_size SIZE >
-   point_type(const SIZE & size) noexcept { ::copy(this, &size); }
+   point_type(const SIZE & size) noexcept { ::copy(*this, size); }
 
 #ifdef WINDOWS
    //rectangle_type(const Gdiplus::Rect& t) noexcept : { ::copy(this, &t); }

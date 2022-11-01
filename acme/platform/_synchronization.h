@@ -36,7 +36,7 @@ CLASS_DECL_ACME ::critical_section * sym_dbg_help_critical_section();
 CLASS_DECL_ACME ::critical_section * message_dispatch_critical_section();
 
 
-CLASS_DECL_ACME ::critical_section * ui_destroyed_critical_section();
+CLASS_DECL_ACME ::particle * ui_destroyed_synchronization();
 
 
 #ifdef ANDROID

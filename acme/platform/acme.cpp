@@ -73,10 +73,10 @@ critical_section g_criticalsectionDemangle;
 ::critical_section * message_dispatch_critical_section() { return &g_criticalsectionMessageDispatch; }
 
 
-::critical_section g_criticalsectionUiDestroyed;
+::global_pointer < ::mutex > g_pmutexUiDestroyed;
 
 
-::critical_section * ui_destroyed_critical_section() { return &g_criticalsectionUiDestroyed; }
+::particle * ui_destroyed_synchronization() { return g_pmutexUiDestroyed; }
 
 
 

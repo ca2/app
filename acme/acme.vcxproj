@@ -1489,6 +1489,7 @@
     <ClInclude Include="platform\uint64_utilities.h" />
     <ClInclude Include="platform\user_parent.h" />
     <ClInclude Include="platform\version.h" />
+    <ClInclude Include="platform\_synchronization.h" />
     <ClInclude Include="platform\_features.h" />
     <ClInclude Include="platform\_generic_object_constructor_impl.h" />
     <ClInclude Include="include\objc.h" />

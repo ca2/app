@@ -436,7 +436,7 @@ namespace desktop_environment_xfce
 #endif
 
 
-#include "acme/platform/_critical_section.h"
+#include "acme/platform/_synchronization.h"
 
 
 #include "acme/platform/object_reference_count_debug.h"

@@ -2906,6 +2906,9 @@
     <ClInclude Include="primitive\datetime\earth_gregorian_time.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
+    <ClInclude Include="platform\_synchronization.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

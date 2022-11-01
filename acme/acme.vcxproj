@@ -1732,6 +1732,7 @@
     <ClInclude Include="primitive\string\bstr.h" />
     <ClInclude Include="primitive\string\from_numeric_type.h" />
     <ClInclude Include="primitive\string\from_string.h" />
+    <ClInclude Include="primitive\string\wstring_adaptor.h" />
     <ClInclude Include="primitive\string\string.h" />
     <ClInclude Include="primitive\string\string_base.h" />
     <ClInclude Include="primitive\string\string_block.h" />
@@ -1848,7 +1849,6 @@
     <ClCompile Include="primitive\string\stringtow.cpp" />
     <ClCompile Include="primitive\string\string_ansi.cpp" />
     <ClCompile Include="primitive\string\string_wide.cpp" />
-    <ClCompile Include="primitive\string\string_wide_conversion.cpp" />
     <ClCompile Include="primitive\string\strw.cpp" />
     <ClCompile Include="primitive\string\strx.cpp" />
     <ClCompile Include="primitive\string\sz.cpp" />
@@ -2046,7 +2046,6 @@
     <ClInclude Include="primitive\string\_base_impl.h" />
     <ClInclude Include="primitive\string\string_buffer.h" />
     <ClInclude Include="primitive\string\string_inst.h" />
-    <ClInclude Include="primitive\string\string_wide_conversion.h" />
     <ClInclude Include="primitive\string\_c_impl.h" />
     <ClInclude Include="primitive\string\_c_trait_ansi.h" />
     <ClInclude Include="primitive\string\_c_trait_ansi_impl.h" />

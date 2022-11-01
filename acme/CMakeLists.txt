@@ -272,8 +272,8 @@ list(APPEND library_source
         #parallelization/thread_os.cpp
         #parallelization/waitable.cpp
         platform/_.cpp
-        platform/_critical_section.h
         platform/_main_hold_base.cpp
+        platform/_synchronization.h
         platform/acme.cpp
         platform/acme.h
         #platform/acme_main_struct.cpp
@@ -503,7 +503,7 @@ list(APPEND library_source
         primitive/mathematics/index.h
         primitive/mathematics/int_biunique.cpp
         primitive/mathematics/math_clip.h
-        primitive/mathematics/math_int_biunique.h
+        primitive/mathematics/int_biunique.h
         primitive/mathematics/mathematics.cpp
         primitive/mathematics/mathematics.h
         primitive/mathematics/mkint_c.cpp
@@ -760,8 +760,7 @@ list(APPEND library_source
         #primitive/string/string_buffer.h
         primitive/string/string_inst.h
         primitive/string/string_wide.cpp
-        primitive/string/string_wide_conversion.cpp
-        primitive/string/string_wide_conversion.h
+        #primitive/string/string_wide_conversion.cpp
         primitive/string/stringtow.cpp
         primitive/string/stringtow.h
         primitive/string/strw.cpp
@@ -780,6 +779,7 @@ list(APPEND library_source
         primitive/string/character.cpp
         primitive/string/character.h
         primitive/string/wildcard.cpp
+        primitive/string/wstring_adaptor.h
         #primitive/string/x.cpp
         #primitive/string/x.h
         primitive/string/x/x_charcategory.h

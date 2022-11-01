@@ -65,9 +65,9 @@ namespace windowing
       
 
 
-      ::aura::application* get_app() const;
-      ::aura::session* get_session() const;
-      ::aura::system* get_system() const;
+      ::aura::application* get_app();
+      ::aura::session* get_session();
+      ::aura::system* get_system();
 
 
       virtual void _initialize_windowing();

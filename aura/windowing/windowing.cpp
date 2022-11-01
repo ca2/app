@@ -928,7 +928,7 @@ namespace windowing
    }
 
 
-   ::aura::system* windowing::get_system() const
+   ::aura::system* windowing::get_system()
    {
 
       return ::is_set(acmesystem()) ? dynamic_cast <::aura::system*> (acmesystem()) : nullptr;

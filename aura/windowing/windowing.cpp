@@ -912,7 +912,7 @@ namespace windowing
    }
 
 
-   ::aura::application* windowing::get_app() const
+   ::aura::application* windowing::get_app()
    {
 
       return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
@@ -920,7 +920,7 @@ namespace windowing
    }
 
 
-   ::aura::session* windowing::get_session() const
+   ::aura::session* windowing::get_session()
    {
 
       return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;

@@ -5,7 +5,7 @@
 
 
 template < typename STRING_CATCHER >
-class CLASS_DECL_ACME wstring_adaptor :
+class wstring_adaptor :
    public wstring
 {
 public:

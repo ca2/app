@@ -10,27 +10,6 @@
 #include "acme/exception/debug.h"
 
 
-//CLASS_DECL_ACME void copy(::string_base < ::ansichar > * ptarget, const ::payload * psource);
-//CLASS_DECL_ACME void copy(::string_base < ::wd16char > * ptarget, const ::payload * psource);
-//CLASS_DECL_ACME void copy(::string_base < ::wd32char > * ptarget, const ::payload * psource);
-//CLASS_DECL_ACME void copy(::string_base < ::ansichar > * ptarget, const ::property * psource);
-//CLASS_DECL_ACME void copy(::string_base < ::wd16char > * ptarget, const ::property * psource);
-//CLASS_DECL_ACME void copy(::string_base < ::wd32char > * ptarget, const ::property * psource);
-//CLASS_DECL_ACME void copy(::string_base < ::ansichar > * ptarget, const ::atom * psource);
-//CLASS_DECL_ACME void copy(::string_base < ::wd16char > * ptarget, const ::atom * psource);
-//CLASS_DECL_ACME void copy(::string_base < ::wd32char > * ptarget, const ::atom * psource);
-//
-//
-//CLASS_DECL_ACME void append(::string_base < ::ansichar > * ptarget, const ::payload * psource);
-//CLASS_DECL_ACME void append(::string_base < ::wd16char > * ptarget, const ::payload * psource);
-//CLASS_DECL_ACME void append(::string_base < ::wd32char > * ptarget, const ::payload * psource);
-//CLASS_DECL_ACME void append(::string_base < ::ansichar > * ptarget, const ::property * psource);
-//CLASS_DECL_ACME void append(::string_base < ::wd16char > * ptarget, const ::property * psource);
-//CLASS_DECL_ACME void append(::string_base < ::wd32char > * ptarget, const ::property * psource);
-//CLASS_DECL_ACME void append(::string_base < ::ansichar > * ptarget, const ::atom * psource);
-//CLASS_DECL_ACME void append(::string_base < ::wd16char > * ptarget, const ::atom * psource);
-//CLASS_DECL_ACME void append(::string_base < ::wd32char > * ptarget, const ::atom * psource);
-
 
 template < typename TYPE_CHAR >
 class string_base :
@@ -75,6 +54,7 @@ public:
    string_base(wd32char wd32ch, strsize repeat = 1);
    string_base(const character & character, strsize repeat = 1) :string_base(character.m_wd32char) {}
 
+   ~string_base() {}
    //template < non_pointer TYPE >
    //string_base(const TYPE & t);
 

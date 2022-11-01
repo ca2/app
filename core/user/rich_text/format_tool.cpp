@@ -1,7 +1,9 @@
 #include "framework.h"
 #include "format_tool.h"
 #include "format.h"
+#include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font_list.h"
@@ -84,9 +86,7 @@ namespace user
    }
 
 
-
-
-   ::user::enum_translucency format_tool::get_translucency(::user::style* pstyle) const
+   ::user::enum_translucency format_tool::get_translucency(::user::style* pstyle)
    {
 
       return ::user::e_translucency_present;

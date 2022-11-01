@@ -77,9 +77,9 @@ namespace user
 
          bool set_text_editable(bool bEditable = true) override;
 
-         bool is_text_editable() const override;
+         bool is_text_editable() override;
 
-         bool is_text_editor() const override;
+         bool is_text_editor() override;
 
          void _001OnDeleteText() override;
 

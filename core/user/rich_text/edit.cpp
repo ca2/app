@@ -4,6 +4,7 @@
 #include "format_tool.h"
 #include "document.h"
 #include "span.h"
+#include "acme/constant/id.h"
 #include "acme/platform/timer.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
@@ -390,7 +391,7 @@ namespace user
       }
 
 
-      bool edit::is_text_editable() const
+      bool edit::is_text_editable()
       {
 
          return is_window_enabled();
@@ -398,7 +399,7 @@ namespace user
       }
 
 
-      bool edit::is_text_editor() const
+      bool edit::is_text_editor()
       {
 
          return true;
@@ -486,7 +487,7 @@ namespace user
       }
 
 
-      bool edit::keyboard_focus_is_focusable() const
+      bool edit::keyboard_focus_is_focusable()
       {
 
          return is_window_visible() && is_text_editable();
@@ -813,7 +814,7 @@ namespace user
       }
 
 
-      strsize edit::_001GetTextLength() const
+      strsize edit::_001GetTextLength()
       {
 
          return 0;
@@ -821,7 +822,7 @@ namespace user
       }
 
 
-      void edit::_001GetSel(strsize & iBeg, strsize & iEnd) const
+      void edit::_001GetSel(strsize & iBeg, strsize & iEnd)
       {
 
       }

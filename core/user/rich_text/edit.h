@@ -67,9 +67,9 @@ namespace user
 
          virtual bool set_text_editable(bool bEditable = true) override;
 
-         virtual bool is_text_editable() const override;
+         bool is_text_editable() override;
 
-         virtual bool is_text_editor() const override;
+         bool is_text_editor() override;
 
          virtual void _001OnDeleteText();
 

@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "toolbar.h"
 #include "menu_bar.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "aura/message/user.h"
 #include "base/user/menu/menu.h"

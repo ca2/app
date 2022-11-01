@@ -3,6 +3,7 @@
 
 #include "aura/graphics/image/icon.h"
 #include "acme/primitive/text/text.h"
+#include "apex/database/key.h"
 
 
 namespace user
@@ -66,7 +67,6 @@ namespace user
       bool                                   m_bEditOnSecondClick;
       //index                                m_iControl;
       ::database::key                        m_datakey;
-
 
 
       list_column();

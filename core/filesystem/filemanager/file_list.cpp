@@ -4,6 +4,7 @@
 #include "document.h"
 #include "file_list.h"
 #include "acme/constant/message.h"
+#include "acme/filesystem/file/item_array.h"
 #include "acme/handler/item.h"
 #include "acme/platform/timer.h"
 #include "acme/primitive/collection/_array_binary_stream.h"

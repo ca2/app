@@ -1,8 +1,11 @@
 ﻿#include "framework.h"
 #include "form_mesh.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
-#include "core/user/user/mesh_item.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/message/user.h"
+#include "core/user/user/mesh_item.h"
 
 
 namespace user

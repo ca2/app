@@ -828,12 +828,10 @@ namespace user
       }
 
 
-      void edit::_001GetSelLineText(string & strText) const
+      void edit::_001GetSelLineText(string & strText)
       {
 
       }
-
-
 
 
       void edit::update_placement()

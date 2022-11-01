@@ -609,7 +609,7 @@ namespace handle
 
 struct system_time_t;
 
-
+class scalar_base;
 
 
 

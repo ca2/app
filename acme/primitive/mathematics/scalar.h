@@ -90,7 +90,8 @@ public:
 
 
 
-class CLASS_DECL_ACME scalar_base
+class CLASS_DECL_ACME scalar_base :
+   virtual public ::particle
 {
 public:
 

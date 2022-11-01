@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
 #include "toolbar.h"
+#include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/draw2d/pen.h"

@@ -431,7 +431,7 @@ namespace filemanager
 
       ::pointer<::message::command>pcommand(pmessage);
 
-      synchronous_lock synchronouslock(fs_list()->mutex());
+      synchronous_lock synchronouslock(fs_list()->synchronization());
 
       ::file::item_array itema;
 

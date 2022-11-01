@@ -7919,7 +7919,7 @@ namespace user
    void plain_edit::set_root(plain_text_tree * pdata, bool bOwnData)
    {
 
-      synchronous_lock lockRoot(mutex());
+      synchronous_lock lockRoot(synchronization());
 
       if (m_ptree != nullptr && m_bOwnData)
       {

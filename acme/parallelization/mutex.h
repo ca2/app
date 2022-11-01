@@ -81,9 +81,8 @@ public:
 //
 //#endif
 
-   using particle::unlock;
-   virtual void unlock() override = 0;
-
+   using particle::_wait;
+   bool _wait(const class ::wait & wait) override = 0;
 
    //virtual bool already_exists();
 

@@ -479,6 +479,11 @@ namespace acme
 
       
       virtual ::string get_callstack();
+
+
+      virtual bool stdin_has_input_events();
+      virtual void flush_stdin_input_events();
+      virtual void flush_stdin();
       
 
    };

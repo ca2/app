@@ -21,7 +21,6 @@ public:
    using TAG = STRING_TAG;
    using CHAR_TYPE = TYPE_CHAR;
    typedef natural_pointer < string_meta_data < TYPE_CHAR >, string_memory_allocator >     POINTER;
-   //typedef string_array_base < string_base, string_base, e_type_string_array > STRINGA;
 
 
    string_base() { }
@@ -40,9 +39,6 @@ public:
    string_base(const wd32char * pwd32char);
    string_base(const wd32char * pwd32char, strsize len);
    string_base(const wd32char * pwd32char, strsize len, strsize pos) : string_base(pwd32char + pos, len) { }
-//#ifdef WINDOWS
-//   explicit string_base(const USHORT * pszSrc) : string_base((const wd16char * )pszSrc) {}
-//#endif
    string_base(const ansistring & wd32str);
    string_base(const wd16string & wd16str);
    string_base(const wd32string & wd32str);
@@ -53,26 +49,12 @@ public:
    string_base(wd16char wd16ch, strsize repeat = 1);
    string_base(wd32char wd32ch, strsize repeat = 1);
    string_base(const character & character, strsize repeat = 1) :string_base(character.m_wd32char) {}
-
-   ~string_base() {}
-   //template < non_pointer TYPE >
-   //string_base(const TYPE & t);
-
-
-//#ifdef _UWP
-   //string_base(Array <byte > ^ a);
-   //string_base(Object ^ o);
-//#endif
-
    template < primitive_payload PAYLOAD >
    string_base(const PAYLOAD & payload) : string_base(payload.get_string()) {}
-   //template < primitive_property PROPERTY >
-   //string_base(const PROPERTY & property) : string_base(property.get_string()) {}
    template < primitive_atom ATOM >
    string_base(const ATOM & atom) : string_base(atom.string()) {}
-   //string_base(::payload & payload);
-   //string_base(property & property);
-   //string_base(atom & atom);
+   inline ~string_base() {}
+
 
 
    inline const string_base & to_string() const { return *this; }
@@ -286,7 +268,7 @@ public:
 
 
 
-   void Empty() 
+   inline void Empty() 
    {
 
       ASSERT(this->metadata()->m_countReference >= 1);
@@ -301,7 +283,7 @@ public:
    }
 
 
-   CHAR_TYPE* get_string_buffer()
+   inline CHAR_TYPE* get_string_buffer()
    {
 
       auto p = this->metadata();
@@ -320,7 +302,7 @@ public:
    }
 
 
-   CHAR_TYPE * get_string_buffer(strsize size)
+   inline CHAR_TYPE * get_string_buffer(strsize size)
    {
 
       auto p = this->metadata();
@@ -345,7 +327,7 @@ public:
    }
 
 
-   CHAR_TYPE* defer_get_string_buffer(strsize size, const CHAR_TYPE * psz)
+   inline CHAR_TYPE* defer_get_string_buffer(strsize size, const CHAR_TYPE * psz)
    {
 
       auto p = this->metadata();

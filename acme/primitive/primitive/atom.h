@@ -229,11 +229,12 @@ int __atom_sgn(T x)
 
 
 
-class CLASS_DECL_ACME atom :
-   public ATOM_TAG
+class CLASS_DECL_ACME atom
 {
 public:
 
+
+   using TAG = ATOM_TAG;
 
    enum enum_type : ::iptr
    {

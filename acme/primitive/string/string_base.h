@@ -34,12 +34,12 @@
 
 template < typename TYPE_CHAR >
 class string_base :
-   public natural_pointer < string_meta_data < TYPE_CHAR > , string_memory_allocator >,
-   public STRING_TAG
+   public natural_pointer < string_meta_data < TYPE_CHAR > , string_memory_allocator >
 {
 public:
 
 
+   using TAG = STRING_TAG;
    using CHAR_TYPE = TYPE_CHAR;
    typedef natural_pointer < string_meta_data < TYPE_CHAR >, string_memory_allocator >     POINTER;
    //typedef string_array_base < string_base, string_base, e_type_string_array > STRINGA;

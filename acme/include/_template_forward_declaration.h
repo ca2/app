@@ -373,16 +373,16 @@ class base_enum;
 
 
 template < typename PAYLOAD >
-concept primitive_payload = ::std::is_base_of < ::PAYLOAD_TAG, PAYLOAD >::value;
+concept primitive_payload = ::std::is_same < typename PAYLOAD::TAG, PAYLOAD_TAG >::value;
 
 //template < typename PROPERTY >
 //concept primitive_property = is_derived_from < PROPERTY, ::PROPERTY_TAG >;
 
 template < typename ATOM >
-concept primitive_atom = ::std::is_base_of < ::ATOM_TAG, ATOM >::value;
+concept primitive_atom = ::std::is_same < typename ATOM::TAG, ATOM_TAG >::value;
 
 template < typename STRING >
-concept primitive_string = ::std::is_base_of < ::STRING_TAG, STRING >::value;
+concept primitive_string = ::std::is_same < typename STRING::TAG, STRING_TAG >::value;
 
 using item_pointer = ::pointer < ::item >;
 

@@ -40,11 +40,12 @@ ENUM enum_default()
 }
 
 
-class CLASS_DECL_ACME payload : 
-   public PAYLOAD_TAG
+class CLASS_DECL_ACME payload
 {
 public:
 
+
+   using TAG = PAYLOAD_TAG;
 
    enum_type                        m_etype;
 

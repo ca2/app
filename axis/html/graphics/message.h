@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/message/message.h"
+
+
 class form_document;
 
 

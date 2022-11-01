@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "keep.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 cairo_keep::cairo_keep(cairo_t * pgraphics, bool bSave)

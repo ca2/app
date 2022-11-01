@@ -25,9 +25,9 @@ namespace user
       virtual void initialize(::particle * pparticle) override;
 
 
-      inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
-      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
-      inline ::core::system* get_system() const { return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; }
+      ::core::application* get_app();
+      ::core::session* get_session();
+      ::core::system* get_system();
 
 
 //      // void assert_ok() const override;

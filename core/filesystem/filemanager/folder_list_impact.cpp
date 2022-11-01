@@ -2,6 +2,7 @@
 #include "folder_list_impact.h"
 #include "folder_list_data.h"
 #include "data.h"
+#include "acme/platform/context.h"
 #include "acme/handler/item.h"
 #include "aura/user/user/check_box.h"
 #include "core/user/user/list_column.h"

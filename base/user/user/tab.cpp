@@ -3,9 +3,14 @@
 #include "tab_pane_array.h"
 #include "tab_pane.h"
 #include "tab_data.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/constant/timer.h"
+#include "acme/exception/exit.h"
 #include "acme/handler/item.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_concept.h"
+#include "apex/platform/create.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context_image.h"
@@ -134,7 +139,7 @@ namespace user
    }*/
 
 
-   enum_element tab::get_default_element() const
+   enum_element tab::get_default_element()
    {
 
       return e_element_tab;

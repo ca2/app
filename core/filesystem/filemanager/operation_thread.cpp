@@ -2,7 +2,7 @@
 #include "operation_thread.h"
 #include "operation.h"
 #include "operation_impact.h"
-
+#include "acme/constant/message.h"
 
 
 namespace filemanager

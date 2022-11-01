@@ -2,6 +2,7 @@
 #include "list_window.h"
 #include "item.h"
 #include "item_ptra.h"
+#include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
 
 

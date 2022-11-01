@@ -1514,8 +1514,8 @@ inline ::payload payload::operator * (FLOATING f) const
 #include "__payload_cast.h"
 
 
-template < primitive_integral INTEGRAL >
-inline ::payload operator - (INTEGRAL i, const ::payload & payload)
+template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
+inline ::payload operator - (INTEGRAL i, const PAYLOAD & payload)
 {
    return i - ((INTEGRAL)payload_cast(payload));
 }

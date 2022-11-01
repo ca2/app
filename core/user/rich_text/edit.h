@@ -84,8 +84,8 @@ namespace user
          ::pointer<format_tool>get_format_tool(bool bCreate);
 
          using ::user::interaction::_001GetText;
-         virtual void _001GetText(string & str) const override;
-         virtual void _001GetLayoutText(string & str) const;
+         void _001GetText(string & str) override;
+         virtual void _001GetLayoutText(string & str);
 
          virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -112,31 +112,31 @@ namespace user
 
          virtual void on_kill_keyboard_focus() override;
 
-         virtual bool keyboard_focus_is_focusable() const override;
+         bool keyboard_focus_is_focusable() override;
 
 
-         virtual void keyboard_focus_OnChar(::message::message * pmessage) override;
+         void keyboard_focus_OnChar(::message::message * pmessage) override;
 
 
-         virtual void handle(::topic * ptopic, ::context * pcontext) override;
+         void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-         virtual strsize _001GetTextLength() const override;
+         strsize _001GetTextLength() override;
 
          //void write(::binary_stream < FILE > & stream) const override;
          //void read(::binary_stream < FILE > & stream) override;
 
-         virtual void _001GetSel(strsize & iBeg, strsize & iEnd) const override;
-         virtual void _001GetSelLineText(string & str) const;
+         void _001GetSel(strsize & iBeg, strsize & iEnd) override;
+         virtual void _001GetSelLineText(string & str);
 
 
-         virtual void get_text_composition_area(::rectangle_i32 & r) override;
-         virtual void on_text_composition(string str) override;
-         virtual void on_text_composition_done() override;
-         virtual bool edit_undo() override;
+         void get_text_composition_area(::rectangle_i32 & r) override;
+         void on_text_composition(string str) override;
+         void on_text_composition_done() override;
+         bool edit_undo() override;
 
 
-         virtual bool has_text_input() override;
+         bool has_text_input() override;
 
 
       };

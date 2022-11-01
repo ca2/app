@@ -2,6 +2,8 @@
 #include "socket_handler.h"
 #include "tcp_socket.h"
 #include "networking_bsd/networking.h"
+#include "acme/acme.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/platform/system.h"
 #include <time.h>
 
@@ -1485,7 +1487,7 @@ end_processing_adding:
 
                         auto psystem = get_system()->m_papexsystem;
 
-                        synchronous_lock synchronouslock(&__SystemNetworking(psystem)->m_pmutexPool);
+                        synchronous_lock synchronouslock(__SystemNetworking(psystem)->m_pmutexPool);
 
                         auto ppoolsocket = __new(pool_socket(psocket));
 
@@ -1966,7 +1968,7 @@ end_processing_adding:
 
       auto pnetworking2 = __SystemNetworking(acmesystem());
 
-      synchronous_lock synchronouslock(&pnetworking2->m_pmutexPool);
+      synchronous_lock synchronouslock(pnetworking2->m_pmutexPool);
 
       auto p = pnetworking2->m_pool.begin();
 

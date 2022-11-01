@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "math_int_biunique.h"
+#include "int_biunique.h"
 #include "acme/primitive/collection/numeric_array.h"
 
 

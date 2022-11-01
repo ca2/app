@@ -429,7 +429,7 @@ public:
    //::stream & read(::stream & stream) override;
 
    
-   ::element * clone() const override;
+   ::particle * clone() const override;
 
 
    //inline int line(int line);

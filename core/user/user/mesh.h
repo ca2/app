@@ -3,6 +3,7 @@
 
 #include "aura/user/user/scroll.h"
 #include "aura/user/user/range.h"
+#include "acme/primitive/mathematics/int_biunique.h"
 
 
 namespace user
@@ -80,7 +81,7 @@ namespace user
 
 
          mesh_layout();
-         virtual ~mesh_layout();
+         ~mesh_layout() override;
 
 
          index_array       m_iaDisplayToStrict;
@@ -278,9 +279,9 @@ namespace user
       //i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont,index iItem,index iSubItem);
 
 
-      inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
-      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
-      inline ::core::system* get_system() const { return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; }
+      ::core::application* get_app();
+      ::core::session* get_session();
+      ::core::system* get_system();
 
 
       void install_message_routing(::channel * pchannel) override;
@@ -563,7 +564,7 @@ namespace user
 
       virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool keyboard_focus_is_focusable() const override;
+      bool keyboard_focus_is_focusable() override;
 
 
       virtual void  _thread_data_update_visible_subitem();

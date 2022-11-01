@@ -1,13 +1,15 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/graphics.h"
-#include "aura/graphics/draw2d/brush.h"
-#include "aura/graphics/draw2d/pen.h"
-////#include "aura/graphics/draw2d/_component.h"
 #include "interaction.h"
 #include "item.h"
 #include "menu.h"
-#include "base/user/user/style.h"
+#include "acme/constant/message.h"
+#include "acme/platform/context.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/pen.h"
 #include "aura/message/user.h"
+#include "aura/user/user/calc_size.h"
+#include "base/user/user/style.h"
 
 
 namespace user
@@ -229,7 +231,6 @@ namespace user
    }
 
 
-
    ::base::session * menu_interaction::get_session() const
    {
 
@@ -238,5 +239,7 @@ namespace user
    }
 
 
-
 } // namespace user
+
+
+

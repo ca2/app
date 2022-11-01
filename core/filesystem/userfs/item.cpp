@@ -1,12 +1,13 @@
 ﻿#include "framework.h"
 #include "item.h"
+#include "tree.h"
+#include "acme/constant/message.h"
 #include "acme/primitive/data/tree_item.h"
 #include "aura/user/user/shell.h"
-#include "tree.h"
+#include "aura/user/user/window_util.h"
+#include "base/user/user/user.h"
 #include "core/user/user/tree.h"
 #include "core/platform/session.h"
-#include "base/user/user/user.h"
-#include "aura/user/user/window_util.h"
 
 
 namespace userfs
@@ -58,7 +59,7 @@ namespace userfs
 
 
 
-   string item::data_item_get_text(object * pparticle) const
+   string item::data_item_get_text(::particle * pparticle) const
    {
 
       __UNREFERENCED_PARAMETER(pparticle);
@@ -68,7 +69,7 @@ namespace userfs
    }
 
 
-   index item::data_item_get_image(object * pparticle) const
+   index item::data_item_get_image(::particle * pparticle) const
    {
 
       ::user::shell::enum_file_attribute efileattribute;

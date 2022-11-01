@@ -2132,7 +2132,7 @@ void object::_001OnUpdate(::message::message* pmessage)
 
    //::topic topic(this, (::iptr)pmessage->m_wparam);
 
-   //topic.m_payload = (::element*)(::iptr)pmessage->m_lparam;
+   //topic.m_payload = (::particle*)(::iptr)pmessage->m_lparam;
 
    //process(&topic);
 
@@ -2149,7 +2149,7 @@ void object::install_message_routing(::channel* pchannel)
 }
 
 
-//::pointer<::element>object::running(const ::string & pszTag) const
+//::pointer<::particle>object::running(const ::string & pszTag) const
 //{
 //
 //   //if (m_pcompositea)
@@ -2277,7 +2277,7 @@ struct context_object_test_struct :
    virtual public object
 {
 
-   context_object_test_struct(::element* p)
+   context_object_test_struct(::particle* p)
    {
 
 
@@ -2502,7 +2502,7 @@ string object::get_text(const ::payload& payload, const ::atom& atom)
 #endif
 
 
-element* object::get_taskpool_container()
+::particle * object::get_taskpool_container()
 {
 
    //return m_pthread;
@@ -3674,7 +3674,7 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
 }
 
 
-::pointer<task>object::fork(const ::procedure & procedure, const ::element_array & elementaHold, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+::pointer<task>object::fork(const ::procedure & procedure, const ::particle_array & elementaHold, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    auto ptask = this->branch_procedure(procedure, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
@@ -3689,7 +3689,7 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
    if (elementaHold.has_element())
    {
 
-      ptask->m_elementaHold.append(elementaHold);
+      ptask->m_particleaHold.append(elementaHold);
 
    }
 

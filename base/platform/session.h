@@ -27,10 +27,10 @@ namespace base
       virtual void on_instantiate_application(::apex::application* papp) override;
 
 
-      ::base::user* user() const;
+      ::base::user* user();
 
 
-      ::base::system* get_system() const;
+      ::base::system* get_system();
 
 
    };

@@ -5,6 +5,8 @@
 #include "apex/networking/sockets/base/socket.h"
 #include "networking_bsd/sockets/ssl/context.h"
 #include "networking_bsd/sockets/_collection.h"
+#include "acme/primitive/collection/comparable_eq_list.h"
+#include "acme/primitive/collection/comparable_list.h"
 
 
 namespace sockets_bsd

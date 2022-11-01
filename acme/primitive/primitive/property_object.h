@@ -9,6 +9,7 @@
 
 #include "matter.h"
 #include "linked_property.h"
+#include "payload.h"
 
 
 class object;
@@ -25,7 +26,7 @@ public:
 
 
    property_object() { }
-   property_object(const property_object & propertyobject);
+   //property_object(const property_object & propertyobject);
    ~property_object() override;
 
 
@@ -206,4 +207,23 @@ using reference_pointer = ::pointer<::property_object>;
 //   return dynamic_cast <TYPE *> (p); 
 //
 //}
+
+
+
+template < typename TYPE > inline ::pointer<TYPE>property_object::cast(const ::atom & atom) const
+{
+
+   auto pproperty = find_property(atom);
+
+   if (!pproperty)
+   {
+
+      return nullptr;
+
+   }
+
+   return pproperty->cast < TYPE >();
+
+}
+
 

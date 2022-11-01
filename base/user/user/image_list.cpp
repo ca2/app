@@ -1,5 +1,8 @@
 ﻿#include "framework.h"
 #include "image_list.h"
+#include "acme/array.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/array.h"
@@ -59,20 +62,20 @@ namespace user
    }
 
 
-   void image_list::assert_ok() const
-   {
-
-      ::user::box::assert_ok();
-
-   }
-
-
-   void image_list::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::box::dump(dumpcontext);
-
-   }
+//   void image_list::assert_ok() const
+//   {
+//
+//      ::user::box::assert_ok();
+//
+//   }
+//
+//
+//   void image_list::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::box::dump(dumpcontext);
+//
+//   }
 
 
    ::image * image_list::get_current_image()
@@ -678,20 +681,20 @@ namespace user
    }
 
 
-   void image_list_impact::assert_ok() const
-   {
-
-      ::user::image_list::assert_ok();
-
-   }
-
-
-   void image_list_impact::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::image_list::dump(dumpcontext);
-
-   }
+//   void image_list_impact::assert_ok() const
+//   {
+//
+//      ::user::image_list::assert_ok();
+//
+//   }
+//
+//
+//   void image_list_impact::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::image_list::dump(dumpcontext);
+//
+//   }
 
 
    void image_list_impact::install_message_routing(::channel * pchannel)
@@ -791,7 +794,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (!::papaya::array::equals_non_unique_unordered(ia, m_iaSel))
+      if (!::acme::array::equals_non_unique_unordered(ia, m_iaSel))
       {
 
          m_iaSel = ia;

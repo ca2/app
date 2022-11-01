@@ -2,6 +2,9 @@
 
 
 #include "aura/platform/draw_context2.h"
+#include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/string/string.h"
 
 
 namespace user
@@ -23,7 +26,7 @@ namespace user
    class draw_list_group;
 
    class CLASS_DECL_CORE mesh_subitem :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 
@@ -103,7 +106,7 @@ namespace user
 
 
    class CLASS_DECL_CORE mesh_item :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 
@@ -192,7 +195,7 @@ namespace user
 
 
    class CLASS_DECL_CORE mesh_group :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

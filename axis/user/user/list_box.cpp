@@ -2,7 +2,10 @@
 #include "list_box.h"
 #include "combo_box.h"
 #include "acme/handler/item.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/constant/timer.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -139,7 +142,7 @@ namespace user
    }
 
 
-   bool list_box::_001GetListText(index iSel, string& str) const
+   bool list_box::_001GetListText(index iSel, string& str)
    {
 
       str.Empty();
@@ -161,7 +164,7 @@ namespace user
    }
 
 
-   index list_box::_001FindListText(const string& str) const
+   index list_box::_001FindListText(const string& str)
    {
 
 
@@ -214,7 +217,7 @@ namespace user
    }
 
 
-   index list_box::_001GetListCount() const
+   index list_box::_001GetListCount()
    {
 
       return m_straList.get_count();
@@ -521,7 +524,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer list_box::get_font(style *pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer list_box::get_font(style *pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
       if (m_pcombo)
@@ -703,7 +706,7 @@ namespace user
    }
 
 
-   bool list_box::keyboard_focus_is_focusable() const
+   bool list_box::keyboard_focus_is_focusable()
    {
 
       return true;

@@ -249,7 +249,7 @@ public:
 
 
    class predicate_base :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 
@@ -377,7 +377,7 @@ public:
 
 
    class base :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 
@@ -512,7 +512,7 @@ public:
 
 
    class base :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

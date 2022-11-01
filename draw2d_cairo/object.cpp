@@ -78,23 +78,23 @@ namespace draw2d_cairo
 #endif
 
 
-   void object::dump(dump_context & dumpcontext) const
-   {
-
-      ::draw2d::object::dump(dumpcontext);
-
-      /*dumpcontext << "get_handle() = " << 0;
-      dumpcontext << "\n";*/
-
-   }
-
-
-   void object::assert_ok() const
-   {
-
-      ::draw2d::object::assert_ok();
-
-   }
+//   void object::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::draw2d::object::dump(dumpcontext);
+//
+//      /*dumpcontext << "get_handle() = " << 0;
+//      dumpcontext << "\n";*/
+//
+//   }
+//
+//
+//   void object::assert_ok() const
+//   {
+//
+//      ::draw2d::object::assert_ok();
+//
+//   }
 
 
 //   bool object::delete_object()

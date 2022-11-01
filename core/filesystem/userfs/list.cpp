@@ -4,7 +4,10 @@
 #include "list_data.h"
 #include "list_item_array.h"
 #include "list_item.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/filesystem/file/item_array.h"
+#include "apex/filesystem/fs/set.h"
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/shell.h"
 #include "core/user/user/list_column.h"
@@ -162,20 +165,20 @@ namespace userfs
    }
 
 
-   void list::assert_ok() const
-   {
-
-      ::user::form_list_impact::assert_ok();
-
-   }
-
-
-   void list::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::form_list_impact::dump(dumpcontext);
-
-   }
+//   void list::assert_ok() const
+//   {
+//
+//      ::user::form_list_impact::assert_ok();
+//
+//   }
+//
+//
+//   void list::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::form_list_impact::dump(dumpcontext);
+//
+//   }
 
 
    void list::handle(::topic * ptopic, ::context * pcontext)

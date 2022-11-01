@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "multiple_buffer.h"
+#include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/graphics/multiple_buffer.h"
 #include "aura/graphics/image/image.h"

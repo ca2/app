@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "tab_drop_target_window.h"
 #include "tab.h"
+#include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 

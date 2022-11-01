@@ -4,6 +4,8 @@
 #include "format.h"
 #include "line.h"
 #include "box.h"
+#include "acme/constant/id.h"
+#include "acme/parallelization/mutex.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/image.h"
@@ -93,10 +95,10 @@ namespace user
       data::~data()
       {
 
-         if (mutex() == m_pedit->synchronization())
+         if (synchronization() == m_pedit->synchronization())
          {
 
-            set_mutex(nullptr);
+            set_synchronization(nullptr);
 
          }
 

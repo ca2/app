@@ -1,12 +1,15 @@
 #pragma once
 
 
+#include "ifft.h"
+
+
 namespace kissfft
 {
 
 
    class CLASS_DECL_AXIS fftd :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
 
@@ -16,7 +19,7 @@ namespace kissfft
 
 
       fftd(i32 iSize);
-      virtual ~fftd();
+      ~fftd() override;
 
       void fft(double * pIn, COMPLEXD * pOut);
 

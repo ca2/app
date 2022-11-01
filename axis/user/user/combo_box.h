@@ -57,7 +57,7 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
+      ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
 
 
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -65,7 +65,7 @@ namespace user
       virtual void _001OnDrawCombo(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawStaticText(::draw2d::graphics_pointer & pgraphics);
 
-      virtual enum_input_type preferred_input_type() const override;
+      virtual enum_input_type preferred_input_type() override;
 
       virtual void get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa) override;
 
@@ -74,7 +74,7 @@ namespace user
 
 
 
-      virtual void _001GetText(string & str) const override;
+      virtual void _001GetText(string & str) override;
       virtual void _001SetText(const ::string & str, const ::action_context & action_context) override;
 
 
@@ -216,7 +216,7 @@ namespace user
 
 
 
-      virtual bool keyboard_focus_is_focusable() const override;
+      bool keyboard_focus_is_focusable() override;
 
 
       //virtual void handle(::topic * ptopic, ::context * pcontext) override;

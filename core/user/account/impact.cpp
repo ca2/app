@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "impact.h"
+#include "acme/constant/message.h"
 #include "acme/operating_system.h"
 #include "apex/crypto/crypto.h"
 #include "aura/graphics/image/image.h"

@@ -6,7 +6,7 @@
 
 
 class CLASS_DECL_ACME main_hold_base :
-   virtual public ::element
+   virtual public ::particle
 {
 public:
 

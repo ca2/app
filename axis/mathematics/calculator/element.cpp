@@ -1,5 +1,7 @@
 #include "framework.h"
-
+#include "element.h"
+#include "result.h"
+#include "token.h"
 
 
 namespace calculator

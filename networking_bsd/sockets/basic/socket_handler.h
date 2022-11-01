@@ -3,6 +3,9 @@
 
 #include "networking_bsd/sockets/base/socket_handler.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
+#include "acme/primitive/collection/list.h"
+#include "acme/primitive/collection/comparable_eq_list.h"
+#include "acme/primitive/collection/comparable_list.h"
 
 
 namespace sockets_bsd
@@ -11,6 +14,8 @@ namespace sockets_bsd
 
    class base_socket;
    class resolv_server;
+
+   typedef comparable_list < socket_pointer > socket_pointer_list;
 
 
    class CLASS_DECL_NETWORKING_BSD socket_handler :

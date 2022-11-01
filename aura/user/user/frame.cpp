@@ -248,7 +248,7 @@ namespace user
    }
 
 
-   ::user::interaction* frame::get_active_impact() const
+   ::user::interaction* frame::get_active_impact()
    {
 
       return nullptr;
@@ -288,7 +288,7 @@ namespace user
    }
 
 
-   string frame::get_frame_title() const
+   string frame::get_frame_title()
    {
 
       return m_strFrameTitle;

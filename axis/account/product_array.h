@@ -1,22 +1,25 @@
 #pragma once
 
 
+#include "acme/primitive/collection/string_map.h"
+
+
 namespace account
 {
 
 
    class CLASS_DECL_AXIS product_array :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
 
       
       department *                                 m_pdepartment;
-      string_map < ::pointer<product >>           m_map;
+      string_map < ::pointer<product >>            m_map;
       
 
       product_array();
-      virtual ~product_array();
+      ~product_array() override;
 
 
       virtual void initialize_product_array(department* pdepartment);

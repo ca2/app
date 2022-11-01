@@ -37,7 +37,7 @@ namespace experience_tranquillum
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      bool keyboard_focus_is_focusable() const override;
+      bool keyboard_focus_is_focusable() override;
 
 
    };

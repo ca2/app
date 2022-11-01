@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/parallelization/manual_reset_event.h"
 #include "base/user/user/impact.h"
 
 

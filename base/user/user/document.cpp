@@ -3,8 +3,13 @@
 #include "frame_window.h"
 #include "impact.h"
 #include "impact_system.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
+#include "acme/filesystem/file/file.h"
+#include "acme/primitive/datetime/department.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/create.h"
 #include "aura/user/user/wait_cursor.h"
 #include "aura/user/user/window_util.h"
 #include "base/platform/application.h"
@@ -73,20 +78,20 @@ namespace user
    }
 
 
-   void document::assert_ok() const
-   {
-      ::object::assert_ok();
+//   void document::assert_ok() const
+//   {
+//      ::object::assert_ok();
+//
+//      ::count count = get_impact_count();
+//      for (index index = 0; index < count; index++)
+//      {
+//         ::pointer<::user::impact>pimpact = get_impact(index);
+//         ASSERT_VALID(pimpact);
+//      }
+//   }
 
-      ::count count = get_impact_count();
-      for (index index = 0; index < count; index++)
-      {
-         ::pointer<::user::impact>pimpact = get_impact(index);
-         ASSERT_VALID(pimpact);
-      }
-   }
 
-
-   ::base::application * document::get_app() const 
+   ::base::application * document::get_app()
    {
       
       return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
@@ -94,7 +99,7 @@ namespace user
    }
 
 
-   ::base::session * document::get_session() const 
+   ::base::session * document::get_session()
    {
       
       return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
@@ -102,7 +107,7 @@ namespace user
    }
 
 
-   ::base::system * document::get_system() const 
+   ::base::system * document::get_system()
    {
       
       return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
@@ -110,7 +115,7 @@ namespace user
    }
 
 
-   ::base::user * document::user() const 
+   ::base::user * document::user()
    {
       
       return get_session() ? get_session()->user() : nullptr; 
@@ -118,7 +123,7 @@ namespace user
    }
 
 
-   ::user::interaction* document::impact_at(::index iImpact) const
+   ::user::interaction* document::impact_at(::index iImpact)
    {
 
       return m_impacta[iImpact];
@@ -126,7 +131,7 @@ namespace user
    }
 
 
-   ::count document::impact_count() const
+   ::count document::impact_count()
    {
 
       return m_impacta.get_count();
@@ -231,29 +236,29 @@ namespace user
    }
 
 
-   void document::dump(dump_context & dumpcontext) const
-   {
-      ::object::dump(dumpcontext);
-
-      //dumpcontext << "\nm_pDocTemplate = " << (void *)m_pimpactsystem;
-
-      //if (dumpcontext.GetDepth() > 0)
-      //{
-      //   ::count count = get_impact_count();
-      //   for (index index = 0; index < count; index++)
-      //   {
-      //      ::pointer<::user::impact>pimpact = get_impact(index);
-      //      dumpcontext << "\nwith ::user::impact " << (void *)pimpact;
-      //   }
-      //}
-
-      //dumpcontext << "m_strTitle = " << m_strTitle;
-      //dumpcontext << "\nm_path = " << m_path;
-      //dumpcontext << "\nm_bModified = " << m_bModified;
-      //dumpcontext << "\n";
-
-
-   }
+//   void document::dump(dump_context & dumpcontext) const
+//   {
+//      ::object::dump(dumpcontext);
+//
+//      //dumpcontext << "\nm_pDocTemplate = " << (void *)m_pimpactsystem;
+//
+//      //if (dumpcontext.GetDepth() > 0)
+//      //{
+//      //   ::count count = get_impact_count();
+//      //   for (index index = 0; index < count; index++)
+//      //   {
+//      //      ::pointer<::user::impact>pimpact = get_impact(index);
+//      //      dumpcontext << "\nwith ::user::impact " << (void *)pimpact;
+//      //   }
+//      //}
+//
+//      //dumpcontext << "m_strTitle = " << m_strTitle;
+//      //dumpcontext << "\nm_path = " << m_path;
+//      //dumpcontext << "\nm_bModified = " << m_bModified;
+//      //dumpcontext << "\n";
+//
+//
+//   }
 
 
    //void document::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
@@ -422,7 +427,9 @@ namespace user
 
       run_property("on_create");
 
-      call_routines_with_id(CREATE_ROUTINE);
+      //throw_todo();
+
+      //call_routines_with_id(CREATE_ROUTINE);
 
       //::database::client::initialize_data_client(papp->dataserver());
 
@@ -725,7 +732,9 @@ namespace user
 
       ASSERT(::is_set(this));
 
-      return m_bModified || has(e_object_property_set_modified);
+      //return m_bModified || has(e_flag_is_modified);
+
+      return m_bModified;
 
    }
 

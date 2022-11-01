@@ -2,6 +2,7 @@
 
 
 #include "apex/filesystem/file/set.h"
+#include "apex/database/client.h"
 
 
 namespace simpledb

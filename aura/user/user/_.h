@@ -10,7 +10,7 @@
 //s#include "_struct.h"
 
 
-class calc_size;
+CLASS_DECL_ACME ::critical_section * children_critical_section();
 
 
 namespace aura
@@ -109,6 +109,7 @@ namespace user
    class tooltip;
 
 
+   class calc_size;
 
    class copydesk;
    //class system;

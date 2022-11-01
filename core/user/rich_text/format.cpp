@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "format.h"
+#include "acme/platform/flags.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/platform/system.h"

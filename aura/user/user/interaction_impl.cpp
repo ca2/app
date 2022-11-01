@@ -1,15 +1,20 @@
 ﻿#include "framework.h"
-#ifdef WINDOWS_DESKTOP
-#include "apex/operating_system.h"
-#endif
-#include "aura/platform/message_queue.h"
-#include "aura/user/user/_constant.h"
+#include "interaction_impl.h"
+#include "interaction.h"
+#include "interaction_scaler.h"
+#include "system.h"
+#include "user.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
 //#include "aura/operating_system/_node.h"
 //#include "acme/operating_system/_user.h"
 //#include "aura/graphics/graphics/_.h"
 //#include "aura/graphics/graphics/_graphics.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/mutex.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/text_editor_interface.h"
@@ -18,15 +23,15 @@
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/display.h"
-#include "interaction_impl.h"
-#include "interaction.h"
-#include "system.h"
-#include "user.h"
 #include "aura/message/user.h"
-#include "interaction_scaler.h"
+#include "aura/platform/message_queue.h"
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
 
+
+#ifdef WINDOWS_DESKTOP
+#include "apex/operating_system.h"
+#endif
 
 point_i32 g_pointLastBottomRight;
 
@@ -141,7 +146,7 @@ namespace user
       if (m_pmutexDraw == nullptr)
       {
 
-         m_pmutexDraw = __new(::pointer < ::mutex >());
+         __construct(m_pmutexDraw);
 
       }
 
@@ -1753,20 +1758,20 @@ namespace user
 
 
 
-   void interaction_impl::assert_ok() const
-   {
-
-      ::user::primitive_impl::assert_ok();
-
-   }
-
-
-   void interaction_impl::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::primitive_impl::dump(dumpcontext);
-
-   }
+//   void interaction_impl::assert_ok() const
+//   {
+//
+//      ::user::primitive_impl::assert_ok();
+//
+//   }
+//
+//
+//   void interaction_impl::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::primitive_impl::dump(dumpcontext);
+//
+//   }
 
 
    void interaction_impl::destroy_impl_only()
@@ -3173,7 +3178,7 @@ namespace user
    //}
 
 
-   bool interaction_impl::_is_window() const
+   bool interaction_impl::_is_window()
    {
 
       throw ::interface_only();
@@ -4894,9 +4899,9 @@ namespace user
          //}
          _synchronous_lock slGraphics(m_pgraphics->synchronization());
 
-         ::synchronization * psync = m_pgraphics->get_buffer_sync();
+         auto pparticleSynchronization = m_pgraphics->get_buffer_sync();
 
-         _synchronous_lock synchronouslock(psync);
+         _synchronous_lock synchronouslock(pparticleSynchronization);
 
          //windowing::graphics_lock graphicslock(m_pwindow);
 
@@ -4947,7 +4952,9 @@ namespace user
 
             pgraphics->m_pimage->m_rectangleTag.Null();
 
-            sizeDrawn = pgraphics->m_pimage->m_size;
+            //sizeDrawn = pgraphics->m_pimage->m_size;
+
+            sizeDrawn = m_puserinteraction->const_layout().design().size();
 
          }
 
@@ -4956,15 +4963,15 @@ namespace user
          if (strBitmapSource.has_char())
          {
 
-            auto pbitmapsourcebuffer = pgraphics->cast < ::graphics::bitmap_source_buffer >();
-
-            if(pbitmapsourcebuffer)
-            {
-
-
-
-
-            }
+//            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+//
+//            if(pbitmapsourcebuffer)
+//            {
+//
+//
+//
+//
+//            }
 
          }
 
@@ -5429,7 +5436,7 @@ namespace user
    }
 
 
-   void interaction_impl::set_finish(::object * pcontextobjectFinish)
+   void interaction_impl::set_finish(::particle * pparticleContextFinish)
    {
 
       if(!is_destroying())
@@ -5440,9 +5447,9 @@ namespace user
 
             _synchronous_lock slGraphics(m_pgraphics->synchronization());
 
-            ::synchronization * psync = m_pgraphics->get_draw_lock();
+            auto pparticleSynchronization = m_pgraphics->get_draw_lock();
 
-            _synchronous_lock synchronouslock(psync);
+            _synchronous_lock synchronouslock(pparticleSynchronization);
 
             slGraphics.unlock();
 
@@ -5471,9 +5478,9 @@ namespace user
 
             _synchronous_lock slGraphics(m_pgraphics->synchronization());
 
-            ::synchronization * psyncDraw = m_pgraphics->get_draw_lock();
+            auto pparticleSynchronization = m_pgraphics->get_draw_lock();
 
-            _synchronous_lock slDraw(psyncDraw);
+            _synchronous_lock slDraw(pparticleSynchronization);
 
             slGraphics.unlock();
 
@@ -6175,22 +6182,22 @@ namespace user
 
 
 
-   void interaction_impl::redraw_add(::object * p)
+   void interaction_impl::redraw_add(::particle * pparticle)
    {
 
       _synchronous_lock synchronouslock(mutex_redraw());
 
-      m_ptraRedraw.add(p);
+      m_particleaRedraw.add(pparticle);
 
    }
 
 
-   void interaction_impl::redraw_erase(::object * p)
+   void interaction_impl::redraw_erase(::particle * pparticle)
    {
 
       _synchronous_lock synchronouslock(mutex_redraw());
 
-      m_ptraRedraw.erase(p);
+      m_particleaRedraw.erase(pparticle);
 
    }
 
@@ -6200,18 +6207,18 @@ namespace user
 
       _synchronous_lock synchronouslock(mutex_redraw());
 
-      return m_ptraRedraw.has_elements();
+      return m_particleaRedraw.has_elements();
 
    }
 
 
-   ::pointer< ::mutex > interaction_impl::pointer < ::mutex >_redraw()
+   ::particle * interaction_impl::mutex_redraw()
    {
 
       if (m_pmutexRedraw == nullptr)
       {
 
-         m_pmutexRedraw = __new(::pointer < ::mutex >());
+         __construct(m_pmutexRedraw);
 
       }
 
@@ -6227,7 +6234,7 @@ namespace user
 
          _synchronous_lock synchronouslock(this->synchronization());
 
-         if (m_ptraRedraw.has_elements())
+         if (m_particleaRedraw.has_elements())
          {
 
             return true;
@@ -6518,13 +6525,28 @@ namespace user
 
 //#if !defined(_UWP) && !defined(ANDROID)
 
-         bHasSetWindowPosition = m_pwindow->on_set_window_position(
-             zorderNew, 
-             pointOutput.x, 
-             pointOutput.y,
-             sizeOutput.cx, 
-             sizeOutput.cy,
-             uFlags);
+         if(sizeOutput != m_sizeDrawn)
+         {
+
+            m_puserinteraction->set_need_redraw();
+
+            m_puserinteraction->post_redraw();
+
+         }
+         else
+         {
+
+            bHasSetWindowPosition = m_pwindow->on_set_window_position(
+               zorderNew,
+               pointOutput.x,
+               pointOutput.y,
+               sizeOutput.cx,
+               sizeOutput.cy,
+               uFlags);
+
+            m_sizeSetWindowSizeRequest = sizeOutput;
+
+         }
 
          //::SetWindowPos(get_handle(), oswindowInsertAfter,
          //   pointOutput.x, pointOutput.y,

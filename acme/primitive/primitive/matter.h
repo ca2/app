@@ -4,13 +4,13 @@
 #include "atom.h"
 #include "element.h"
 #include "eobject.h"
-#include "particle_factory.h"
+#include "factory.h"
 #include "acme/platform/tracer.h"
 #include "acme/constant/message_box.h"
 
 
 class CLASS_DECL_ACME matter :
-   virtual public element
+   virtual public particle
 {
 public:
 
@@ -36,7 +36,7 @@ public:
 
 
    class ::atom                        m_atom;
-   ::eobject                           m_eobject;
+   //::eobject                           m_eobject;
 
 
 
@@ -113,8 +113,6 @@ public:
    inline ::count reference_count() const { return m_countReference; }
    
    
-   inline bool is_shared2() const { return m_eobject & e_object_shared; }
-   inline void set_shared(bool bSet = true) { m_eobject.set(e_object_shared, bSet); }
 
 
    virtual bool is_ready_to_quit() const;
@@ -184,21 +182,21 @@ public:
 
 
    virtual const char* debug_note() const;
-   ::element * clone() const override;
+   ::particle * clone() const override;
 
 
-   using element::has;
-   using element::set;
-   using element::clear;
+   using particle::has;
+   using particle::set;
+   using particle::clear;
 
 
-   inline bool has(const ::eobject& eobject) const { return m_eobject.has(eobject); }
-   inline void set(const ::eobject& eobject, bool bSet) { if (bSet) set(eobject); else clear(eobject); }
-   inline void set(const ::eobject & eobject) { m_eobject |= eobject; }
-   inline void clear(const ::eobject& eobject) { m_eobject -= eobject; }
+//   inline bool has(const ::eobject& eobject) const { return m_eobject.has(eobject); }
+//   inline void set(const ::eobject& eobject, bool bSet) { if (bSet) set(eobject); else clear(eobject); }
+//   inline void set(const ::eobject & eobject) { m_eobject |= eobject; }
+//   inline void clear(const ::eobject& eobject) { m_eobject -= eobject; }
 
 
-   inline ::u64 get_object_flag() { return m_eobject; }
+   //inline ::u64 get_object_flag() { return m_eobject; }
 
 
    //inline bool is(enum_matter ematter) const { return (m_ematter & ematter) == ematter; }
@@ -241,7 +239,7 @@ public:
 
 
 
-   inline const ::element * context_trace_object() const { return this; }
+   inline const ::particle * context_trace_object() const { return this; }
 
 
    //virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const;
@@ -270,11 +268,11 @@ public:
    inline tracer trace_log_fatal() { return tracer(m_pcontext, e_trace_level_fatal, trace_category()); }
 
 
-   using element::trace;
-   using element::trace_log_information;
-   using element::trace_log_warning;
-   using element::trace_log_error;
-   using element::trace_log_fatal;
+   using particle::trace;
+   using particle::trace_log_information;
+   using particle::trace_log_warning;
+   using particle::trace_log_error;
+   using particle::trace_log_fatal;
 
 
    virtual void trace_last_status();
@@ -322,39 +320,34 @@ public:
 
 
    template < typename BASE_TYPE >
-   inline ::pointer<BASE_TYPE>__create();
+   inline ::pointer<BASE_TYPE>__create(::factory::factory * pfactory = ::factory::get_factory());
 
    template < typename BASE_TYPE >
-   inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom);
+   inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom, ::factory::factory * pfactory = ::factory::get_factory());
 
    template < typename TYPE >
    inline ::pointer<TYPE>__create_new();
 
-   template < typename BASE_TYPE >
-   inline void __raw_construct(::pointer<BASE_TYPE> & p);
+   //template < typename BASE_TYPE >
+   //inline void __raw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory = ::factory::get_factory());
 
    template < typename BASE_TYPE >
-   inline void __defer_construct(::pointer<BASE_TYPE> &  ptype);
+   inline void __defer_construct(::pointer<BASE_TYPE> &  ptype, ::factory::factory * pfactory = ::factory::get_factory());
 
    template < typename TYPE >
    inline void __defer_construct_new(::pointer<TYPE> & ptype);
 
-
-
    template < typename BASE_TYPE >
-   inline void __construct(::pointer<BASE_TYPE> & ptype);
-
+   inline void __construct(::pointer<BASE_TYPE> & ptype, ::factory::factory * pfactory = ::factory::get_factory());
 
    template < typename BASE_TYPE, typename TYPE >
    inline void __construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p);
 
-
    template < typename BASE_TYPE, typename TYPE >
    inline void __construct(::pointer<BASE_TYPE> & ptype, TYPE * p);
 
-
    template < typename BASE_TYPE >
-   inline void __id_construct(::pointer<BASE_TYPE> & ptype, const ::atom& atom);
+   inline void __id_construct(::pointer<BASE_TYPE> & ptype, const ::atom& atom, ::factory::factory * pfactory = ::factory::get_factory());
 
    template < typename TYPE >
    inline void __construct_new(::pointer<TYPE> & ptype);
@@ -403,10 +396,10 @@ inline void __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 
 template < typename TYPE >
-inline ::pointer<TYPE>matter::__create()
+inline ::pointer<TYPE>matter::__create(::factory::factory * pfactory)
 {
 
-   return ::__create<TYPE>(this);
+   return ::__create<TYPE>(this, pfactory);
 
 }
 
@@ -414,19 +407,19 @@ inline ::pointer<TYPE>matter::__create()
 
 
 template < typename TYPE >
-inline ::pointer<TYPE>matter::__id_create(const ::atom & atom)
+inline ::pointer<TYPE>matter::__id_create(const ::atom & atom, ::factory::factory * pfactory)
 {
 
-   auto pfactory = ::factory::get_factory_item(atom);
+   auto pfactoryitem = pfactory->get_factory_item(atom);
 
-   if (!pfactory)
+   if (!pfactoryitem)
    {
 
       throw_exception(error_no_factory);
 
    }
 
-   auto ptypeNew = pfactory->create_element();
+   auto ptypeNew = pfactoryitem->create_element();
 
    if (!ptypeNew)
    {
@@ -474,69 +467,64 @@ inline ::pointer<TYPE>matter::__create_new()
 
 
 
-template < typename BASE_TYPE >
-inline void matter::__raw_construct(::pointer<BASE_TYPE> & p)
-{
-
-   //if (!p)
-   //{
-
-   auto & pfactory = ::factory::get_factory_item < BASE_TYPE >();
-
-   if (!pfactory)
-   {
-
-      throw_exception(::error_no_factory);
-
-   }
-
-   auto pelement = pfactory->create_element();
-
-   if (!pelement)
-   {
-
-      throw_exception(::error_no_memory);
-
-   }
-
-   p = pelement;
-
-   if (!p)
-   {
-
-      throw_exception(error_wrong_type);
-
-   }
-
-   ///*auto estatus = */ add_composite(pusermessage);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
+//template < typename BASE_TYPE >
+//inline void matter::__raw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory)
+//{
+//
+//   ::__raw_construct(this, p, pfactory);
+////   //{
+////
+////   auto & pfactory = ::factory::get_factory_item < BASE_TYPE >();
+////
+////   if (!pfactory)
+////   {
+////
+////      throw_exception(::error_no_factory);
+////
+////   }
+////
+////   auto pelement = pfactory->create_element();
+////
+////   if (!pelement)
+////   {
+////
+////      throw_exception(::error_no_memory);
+////
+////   }
+////
+////   p = pelement;
+////
+////   if (!p)
+////   {
+////
+////      throw_exception(error_wrong_type);
+////
+////   }
+////
+////   ///*auto estatus = */ add_composite(pusermessage);
+////
+////   //if (!estatus)
+////   //{
+////
+////   //   return estatus;
+////
+////   //}
+////
+//////}
+////
+//////return ::success;
+//
 //}
-
-//return ::success;
-
-}
-
-
-
-
-
 
 
 template < typename TYPE >
-inline void matter::__defer_construct(::pointer<TYPE> & p)
+inline void matter::__defer_construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
 {
 
    if (::is_null(p))
    {
 
-      __construct(p);
+      __construct(p, pfactory);
 
    }
 
@@ -558,10 +546,10 @@ inline void matter::__defer_construct_new(::pointer<TYPE> & p)
 
 
 template < typename TYPE >
-inline void matter::__construct(::pointer<TYPE> & p)
+inline void matter::__construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
 {
 
-   ::__construct(this, p);
+   ::__construct(this, p, pfactory);
 
 }
 
@@ -598,10 +586,10 @@ inline void matter::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
 
 
 template < typename TYPE >
-inline void matter::__id_construct(::pointer<TYPE> & p, const ::atom & atom)
+inline void matter::__id_construct(::pointer<TYPE> & p, const ::atom & atom, ::factory::factory * pfactory)
 {
 
-   ::__id_construct(this, p, atom);
+   ::__id_construct(this, p, atom, pfactory);
 
 }
 

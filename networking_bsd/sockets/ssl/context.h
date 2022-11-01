@@ -7,6 +7,7 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
 //typedef struct ssl_st SSL;
 //typedef struct ssl_ctx_st SSL_CTX;
 //typedef struct ssl_method_st SSL_METHOD;

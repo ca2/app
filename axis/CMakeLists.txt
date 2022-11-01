@@ -287,7 +287,7 @@ list(APPEND library_source
         networking/sockets/_sockets.h
         networking/_.h
         networking/_impl.h
-        networking/_networking.h
+        #networking/_networking.h
         networking/email_department.cpp
         networking/email_department.h
         #platform/_.cpp
@@ -359,7 +359,7 @@ list(APPEND library_source
         framework_c.h
         id.h
         library.h
-        message.h
+        #message.h
         procedure.h
         update.h)
 

@@ -6,7 +6,7 @@
 
 template < typename SEQUENCE >
 class sequence :
-   virtual public ::element
+   virtual public ::particle
 {
 public:
 

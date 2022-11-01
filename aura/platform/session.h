@@ -69,7 +69,7 @@ namespace aura
 
 #endif
 
-      inline ::aura::system* get_system() const;
+      inline ::aura::system* get_system();
 
       //virtual void finish(::property_object * pcontextobjectFinish = nullptr) override;
       void destroy() override;

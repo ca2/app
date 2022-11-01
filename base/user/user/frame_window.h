@@ -81,17 +81,17 @@ namespace user
       ~frame_window() override;
 
 
-      ::base::application * get_app() const;
-      ::base::session * get_session() const;
-      ::base::system * get_system() const;
-      ::base::user * user() const;
+      ::base::application * get_app();
+      ::base::session * get_session();
+      ::base::system * get_system();
+      ::base::user * user();
 
 
       void common_construct();
 
 
       // void assert_ok() const override;
-      virtual void dump(dump_context & dc) const override;
+//      virtual void dump(dump_context & dc) const override;
 
       
       virtual bool create_bars();
@@ -195,7 +195,7 @@ namespace user
 //      }
 
 
-      ::user::interaction * get_active_impact() const override;           // active ::user::impact or nullptr
+      ::user::interaction * get_active_impact() override;           // active ::user::impact or nullptr
       void set_active_impact(::user::impact * pImpactNew, bool bNotify = true) override;
       // active ::user::impact or nullptr, bNotify == false if focus should not be set
 

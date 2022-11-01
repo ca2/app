@@ -15,7 +15,7 @@
 
 
 class CLASS_DECL_AURA menu_shared :
-   virtual public ::element
+   virtual public ::particle
 {
 public:
 
@@ -36,10 +36,10 @@ public:
    void **              m_ositema;
    int  *               m_statusa;
    int                  m_iCount;
-   ::acme::system *     acmesystem();
+   //::acme::system *     acmesystem();
 
    menu_shared();
-   virtual ~menu_shared();
+   ~menu_shared() override;
    
    
    void * find_item(const char * pszParent, const char * pszId);

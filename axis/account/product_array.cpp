@@ -2,6 +2,7 @@
 #include "product_array.h"
 #include "department.h"
 #include "product.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 namespace account
@@ -28,7 +29,7 @@ namespace account
 
       //auto estatus = 
       
-      ::object::initialize(pdepartment);
+      ::particle::initialize(pdepartment);
 
       //if (!estatus)
       //{

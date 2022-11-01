@@ -36,7 +36,7 @@ namespace html
       table * table_row::get_table()
       {
 
-         ::html::particle * pparticle = m_pelemental;
+         ::html::element * pelement = m_pelemental;
 
          while(true)
          {
@@ -56,7 +56,7 @@ namespace html
       }
 
 
-      void table_row::implement_phase1(html_data * pdata, ::html::particle * pparticle)
+      void table_row::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
          m_bHasChar = true;

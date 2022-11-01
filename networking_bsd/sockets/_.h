@@ -3,7 +3,7 @@
 
 
 #include "config.h"
-#include "acme/primitive/collection/string_map.h"
+//#include "acme/primitive/collection/string_map.h"
 
 
 #define INVALID_SOCKET_ID (-1)
@@ -17,10 +17,10 @@ namespace sockets_bsd
    class ssl_client_context;
 
    /* type, host, result */
-   typedef string_map < ::string_to_string >       resolv_cache_t;
+//   typedef string_map < ::string_to_string >       resolv_cache_t;
 
    /* type, host, time */
-   typedef string_map < string_map < time_t > >    resolv_timeout_t;
+//   typedef string_map < string_map < time_t > >    resolv_timeout_t;
 
 
 

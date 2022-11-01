@@ -30,7 +30,7 @@ namespace account
 
       //auto estatus = 
       
-      ::object::initialize(pstorage);
+      ::particle::initialize(pstorage);
 
       //if (!estatus)
       //{

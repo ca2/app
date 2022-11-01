@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "acme/primitive/primitive/property_object.h"
+#include "acme/primitive/primitive/matter.h"
 #include "path.h"
 
 
@@ -10,7 +10,7 @@ namespace file
 
 
    class CLASS_DECL_ACME path_object :
-      virtual public property_object,
+      virtual public matter,
       virtual public path
    {
    public:

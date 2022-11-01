@@ -6,7 +6,7 @@ namespace html
 
 
    class CLASS_DECL_AXIS font :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
       

@@ -14,6 +14,7 @@
 #include "Screen.h"
 #include "Window.h"
 #include "VScrollPanel.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "nano2d/context.h"
 #include "nano2d/draw2d_context.h"
 #include "aura/user/user/interaction.h"

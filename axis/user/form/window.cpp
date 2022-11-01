@@ -1,10 +1,13 @@
 ﻿#include "framework.h"
 #include "window.h"
-#include "apex/database/selection.h"
-#include "axis/user/user/validate.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/include/_c_swap.h"
-#include "aura/message/user.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "apex/database/selection.h"
 #include "axis/platform/application.h"
+#include "axis/user/user/validate.h"
+#include "aura/message/user.h"
 
 
 namespace user
@@ -376,17 +379,19 @@ namespace user
       if(pinteraction->has_function(e_control_function_vms_data_edit))
       {
 
-         ::database::selection selection;
-
-         _001GetSelection(pinteraction->m_datakey, selection);
-
-         //auto ptask = new_task();
-
-         //ptask->set_handled_by(this);
-
          throw_todo();
 
-         //_data_set(selection, payload, &update);
+//         ::database::selection selection;
+//
+//         _001GetSelection(pinteraction->m_datakey, selection);
+//
+//         //auto ptask = new_task();
+//
+//         //ptask->set_handled_by(this);
+//
+//         throw_todo();
+//
+//         //_data_set(selection, payload, &update);
 
       }
 
@@ -634,45 +639,45 @@ namespace user
 
       if(pinteraction->has_function(e_control_function_vms_data_edit))
       {
-
-         ::payload payload;
-         ::database::selection selection;
-         _001GetSelection(pinteraction->m_datakey, selection);
-         if(selection.get_item_count() > 0)
-         {
-
-            if(!pinteraction)
-            {
-
-               return;
-
-            }
-
-            //if(datastream()->get(pinteraction->m_datakey + item.m_datakey, payload))
-            //{
-
-            //   switch(payload.get_type())
-            //   {
-            //   case ::e_type_string:
-            //   {
-            //      string str;
-            //      str = payload.m_str;
-            //      pinteraction->_001SetText(str, ::e_source_database);
-            //   }
-            //   break;
-            //   case ::e_type_i32:
-            //   {
-            //      string str;
-            //      str.format("%d", payload.i32());
-            //      pinteraction->_001SetText(str, ::e_source_database);
-            //   }
-            //   break;
-            //   default:
-            //      ASSERT(false);
-            //      break;
-            //   }
-            //}
-         }
+throw_todo();
+//         ::payload payload;
+//         ::database::selection selection;
+//         _001GetSelection(pinteraction->m_datakey, selection);
+//         if(selection.get_item_count() > 0)
+//         {
+//
+//            if(!pinteraction)
+//            {
+//
+//               return;
+//
+//            }
+//
+//            //if(datastream()->get(pinteraction->m_datakey + item.m_datakey, payload))
+//            //{
+//
+//            //   switch(payload.get_type())
+//            //   {
+//            //   case ::e_type_string:
+//            //   {
+//            //      string str;
+//            //      str = payload.m_str;
+//            //      pinteraction->_001SetText(str, ::e_source_database);
+//            //   }
+//            //   break;
+//            //   case ::e_type_i32:
+//            //   {
+//            //      string str;
+//            //      str.format("%d", payload.i32());
+//            //      pinteraction->_001SetText(str, ::e_source_database);
+//            //   }
+//            //   break;
+//            //   default:
+//            //      ASSERT(false);
+//            //      break;
+//            //   }
+//            //}
+//         }
       }
    }
 

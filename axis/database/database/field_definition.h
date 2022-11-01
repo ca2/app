@@ -1,12 +1,16 @@
 #pragma once
 
 
+#include "acme/primitive/string/string.h"
+#include "acme/primitive/collection/array.h"
+
+
 namespace database
 {
 
    
    class CLASS_DECL_AXIS field_definition_item : 
-      virtual public ::object
+      virtual public ::particle
    {
    public:
 

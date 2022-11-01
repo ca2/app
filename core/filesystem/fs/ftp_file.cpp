@@ -1,14 +1,15 @@
 ﻿#include "framework.h"
-//#include "core/networking/ftp/_.h"
 #include "ftp_file.h"
+#include "ftpfs.h"
+#include "acme/platform/system.h"
+#include "acme/networking/url_department.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/system.h"
 #include "core/networking/ftp/client_socket.h"
-#include "ftpfs.h"
 
 
-
-ftpfs_file::ftpfs_file(::ftpfs * pftp, ::ftp::client_socket * pclient) 
+ftpfs_file::ftpfs_file(::ftpfs * pftp, ::ftp::client_socket * pclient)
 {
 
    m_pftp = pftp;

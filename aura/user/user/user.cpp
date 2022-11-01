@@ -33,12 +33,18 @@ CLASS_DECL_AURA void initialize_user_mutex();
 CLASS_DECL_AURA void finalize_user_mutex();
 
 
+::critical_section g_criticalsectionChildren;
+
+::critical_section * children_critical_section() { return &g_criticalsectionChildren; }
+
+
+
 namespace user
 {
 
 
-   void initialize_children_mutex();
-   void finalize_children_mutex();
+   //void initialize_children_mutex();
+   //void finalize_children_mutex();
 
 
    user::user()
@@ -48,8 +54,8 @@ namespace user
       m_pbaseuser = nullptr;
       m_pbreduser = nullptr;
       m_pcoreuser = nullptr;
-      ::initialize_user_mutex();
-      initialize_children_mutex();
+      //::initialize_user_mutex();
+      //initialize_children_mutex();
 
       m_bOnInitializeWindowObject = false;
 
@@ -59,7 +65,7 @@ namespace user
    user::~user()
    {
 
-      finalize_children_mutex();
+      //finalize_children_mutex();
       ::finalize_user_mutex();
 
    }

@@ -1,12 +1,18 @@
 ﻿#include "framework.h"
 #include "frame_window.h"
+#include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/constant/id.h"
 #include "acme/parallelization/pool.h"
+#include "acme/platform/system.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/database/change_event.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/application_menu.h"
+#include "apex/platform/create.h"
+#include "apex/platform/node.h"
+#include "apex/platform/savings.h"
+#include "apex/platform/system.h"
 #include "aqua/xml/document.h"
 #include "aura/user/user/window_util.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -149,7 +155,7 @@ void simple_frame_window::initialize(::particle * pparticle)
 }
 
 
-::user::enum_translucency simple_frame_window::get_translucency(::user::style * pstyle) const
+::user::enum_translucency simple_frame_window::get_translucency(::user::style * pstyle)
 {
 
    if (m_etranslucencyFrame != ::user::e_translucency_undefined)
@@ -481,20 +487,20 @@ bool simple_frame_window::_001OnBeforeAppearance()
 }
 
 
-void simple_frame_window::assert_ok() const
-{
-
-   ::user::frame_window::assert_ok();
-
-}
-
-
-void simple_frame_window::dump(dump_context & dumpcontext) const
-{
-
-   ::user::frame_window::dump(dumpcontext);
-
-}
+//void simple_frame_window::assert_ok() const
+//{
+//
+//   ::user::frame_window::assert_ok();
+//
+//}
+//
+//
+//void simple_frame_window::dump(dump_context & dumpcontext) const
+//{
+//
+//   ::user::frame_window::dump(dumpcontext);
+//
+//}
 
 
 ::pointer<::user::interaction>simple_frame_window::WindowDataGetWnd()
@@ -3404,7 +3410,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
             for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
             {
 
-               auto pcontrolbox = pinteraction->cast < ::experience::control_box >();
+               ::pointer < ::experience::control_box > pcontrolbox = pinteraction;
 
                if (!pcontrolbox)
                {
@@ -3871,12 +3877,13 @@ class ::mini_dock_frame_window * simple_frame_window::CreateFloatingFrame(u32 uS
 //}
 
 
-bool simple_frame_window::keyboard_focus_is_focusable() const
+bool simple_frame_window::keyboard_focus_is_focusable()
 {
 
    return false;
 
 }
+
 
 bool simple_frame_window::create_bars()
 {
@@ -4190,7 +4197,7 @@ void simple_frame_window::call_notification_area_action(const ::string & pszId)
 
    ::atom atom(pszId);
 
-   post_procedure([this, atom]()
+   interaction_post([this, atom]()
       {
 
          handle_command(atom);

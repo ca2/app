@@ -119,7 +119,7 @@ list(APPEND library_source
         #graphics/graphics/asset/control_box_icon.cpp
         graphics/graphics/graphics/_.h
         graphics/graphics/_.h
-        graphics/graphics/_graphics.h
+        #graphics/graphics/_graphics.h
         graphics/graphics/_impl.h
         graphics/graphics/bitmap_source_buffer.cpp
         graphics/graphics/bitmap_source_buffer.h
@@ -145,6 +145,7 @@ list(APPEND library_source
         graphics/graphics/window_buffer.h
         graphics/graphics/window_dc.h
         #graphics/image/_image.h
+        graphics/image/_.cpp
         graphics/image/_image_impl.h
         graphics/image/context_image.cpp
         graphics/image/context_image.h
@@ -261,7 +262,7 @@ list(APPEND library_source
         message/user.cpp
         message/user.h
         operating_system/_.h
-        operating_system/_node.h
+        #operating_system/_node.h
         operating_system/serial.h
         operating_system/ansi/_.h
         operating_system/ansi/_ansi.h
@@ -742,7 +743,7 @@ if (LINUX)
 
     list(APPEND library_source
             operating_system/linux/_.h
-            operating_system/linux/_linux.h
+            #operating_system/linux/_linux.h
             operating_system/linux/application.cpp
             operating_system/linux/application.h
             #operating_system/linux/console.cpp
@@ -759,7 +760,7 @@ if (LINUX)
             operating_system/linux/_.h
             operating_system/linux/_c.h
             operating_system/linux/_glib.h
-            operating_system/linux/_linux.h
+            #operating_system/linux/_linux.h
             operating_system/linux/_user.h
             operating_system/linux/appindicator.cpp
             operating_system/linux/appindicator.h

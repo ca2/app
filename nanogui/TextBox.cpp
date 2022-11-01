@@ -14,10 +14,10 @@
 #include "framework.h"
 #include "TextBox.h"
 #include <regex>
+#include "acme/constant/message.h"
 #include "aura/platform/session.h"
 #include "aura/windowing/window.h"
 #include "aura/user/user/copydesk.h"
-
 
 
 NAMESPACE_BEGIN(nanogui)

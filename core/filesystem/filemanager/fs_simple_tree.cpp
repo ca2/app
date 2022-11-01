@@ -71,20 +71,20 @@ namespace filemanager
          }
 
 
-         void tree::assert_ok() const
-         {
-
-            ::data::tree::assert_ok();
-
-         }
-
-
-         void tree::dump(dump_context & dumpcontext) const
-         {
-
-            ::data::tree::dump(dumpcontext);
-
-         }
+//         void tree::assert_ok() const
+//         {
+//
+//            ::data::tree::assert_ok();
+//
+//         }
+//
+//
+//         void tree::dump(dump_context & dumpcontext) const
+//         {
+//
+//            ::data::tree::dump(dumpcontext);
+//
+//         }
 
 
          void tree::parse(const ::string & pszSource)

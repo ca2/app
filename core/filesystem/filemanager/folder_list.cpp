@@ -2,8 +2,11 @@
 #include "data.h"
 #include "document.h"
 #include "folder_list.h"
+#include "acme/constant/message.h"
+#include "acme/filesystem/file/item.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/context.h"
 #include "aura/graphics/image/list.h"
 #include "aura/message/user.h"
 #include "core/user/user/list_column.h"
@@ -42,20 +45,20 @@ namespace filemanager
    }
 
 
-   void folder_list::assert_ok() const
-   {
-
-      ::user::impact::assert_ok();
-
-   }
-
-
-   void folder_list::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::impact::dump(dumpcontext);
-
-   }
+//   void folder_list::assert_ok() const
+//   {
+//
+//      ::user::impact::assert_ok();
+//
+//   }
+//
+//
+//   void folder_list::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::impact::dump(dumpcontext);
+//
+//   }
 
 
 
@@ -82,6 +85,7 @@ namespace filemanager
       }
 
    }
+
 
    void folder_list::_001OnCancelMode(::message::message * pmessage)
    {

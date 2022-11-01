@@ -25,9 +25,9 @@
  *   me to keep updating it.
  */
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-//#include "axis/html/html_lite/_.h"
-#endif
+//#if !BROAD_PRECOMPILED_HEADER
+////#include "axis/html/html_lite/_.h"
+//#endif
 #include "entity_resolver.h"
 
 

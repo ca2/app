@@ -2,6 +2,10 @@
 #include "core_data.h"
 #include "data.h"
 #include "axis/id.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/networking/url_department.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/context_image.h"
 #include "acme/platform/hyperlink.h"
@@ -104,7 +108,7 @@ namespace html
    //}
 
 
-   font * core_data::get_font(::html::particle * pparticle)
+   font * core_data::get_font(::html::element * pelement)
    {
 
       i32 iFont = -1;
@@ -142,7 +146,7 @@ namespace html
    }
 
 
-   i32 core_data::create_font(::html::particle * pparticle)
+   i32 core_data::create_font(::html::element * pelement)
    {
 
       string strSubClass;
@@ -205,7 +209,7 @@ namespace html
    void core_data::delete_contents()
    {
 
-      synchronous_lock lock(mutex());
+      synchronous_lock lock(synchronization());
 
       destroy();
 
@@ -723,7 +727,7 @@ namespace html
 
       //i32 iRetry = 0;
 
-      synchronous_lock lock(mutex());
+      synchronous_lock lock(synchronization());
 
    //restart:
 
@@ -955,7 +959,7 @@ namespace html
 
       }*/
 
-      synchronous_lock lock(mutex());
+      synchronous_lock lock(synchronization());
 
       m_puserinteraction = pform;
 
@@ -1008,7 +1012,7 @@ namespace html
 
       //}
 
-      synchronous_lock lock(mutex());
+      synchronous_lock lock(synchronization());
 
       m_puserinteraction = pform;
 
@@ -1050,7 +1054,7 @@ namespace html
 
       //}
 
-      synchronous_lock lock(mutex());
+      synchronous_lock lock(synchronization());
 
       m_puserinteraction = pform;
 

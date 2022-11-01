@@ -19,7 +19,7 @@ namespace user
    }
 
 
-   void text::_001GetText(string & str) const
+   void text::_001GetText(string & str)
    {
 
       if (m_linkedpropertyText)
@@ -48,7 +48,7 @@ namespace user
    }
 
 
-   strsize text::_001GetTextLength() const
+   strsize text::_001GetTextLength()
    {
 
       string str;
@@ -60,7 +60,7 @@ namespace user
    }
 
 
-   void text::_001GetText(char * psz, strsize len) const
+   void text::_001GetText(char * psz, strsize len)
    {
 
       string str;
@@ -72,7 +72,7 @@ namespace user
    }
 
 
-   void text::_001GetText(string & str, strsize iBeg, strsize iEnd) const
+   void text::_001GetText(string & str, strsize iBeg, strsize iEnd)
    {
 
       // default implementation, probably inefficient
@@ -98,7 +98,7 @@ namespace user
    }
 
 
-   void text::_001GetSel(strsize & iBeg, strsize & iEnd) const
+   void text::_001GetSel(strsize & iBeg, strsize & iEnd)
    {
 
       __UNREFERENCED_PARAMETER(iBeg);
@@ -117,7 +117,7 @@ namespace user
    }
 
 
-   void text::_001GetImpactSel(strsize & iBeg, strsize & iEnd) const
+   void text::_001GetImpactSel(strsize & iBeg, strsize & iEnd)
    {
 
       __UNREFERENCED_PARAMETER(iBeg);
@@ -134,7 +134,7 @@ namespace user
    }
 
 
-   void text::_001GetSelText(string & str) const
+   void text::_001GetSelText(string & str)
    {
 
       index iBeg, iEnd;

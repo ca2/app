@@ -18,7 +18,7 @@ namespace acme
 
 
 class CLASS_DECL_ACME subsystem :
-   virtual public ::element
+   virtual public ::particle
 {
 public:
 

@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
 #include "element.h"
+#include "acme/networking/url_department.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_collection_basic.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "axis/id.h"
@@ -22,6 +24,7 @@
 #include "axis/html/graphics/value.h"
 #include "axis/html/user/form.h"
 #include "axis/html/graphics/font.h"
+#include "axis/html/html/html.h"
 #include "aura/platform/system.h"
 
 
@@ -86,7 +89,7 @@ namespace html
 
       m_pdata = phtmldata;
 
-      synchronous_lock lock(phtmldata->mutex());
+      synchronous_lock lock(phtmldata->synchronization());
 
       implement_phase1(phtmldata);
 
@@ -937,7 +940,7 @@ namespace html
 
       }
 
-      synchronous_lock lock(phtmldata->m_pcoredata->mutex());
+      synchronous_lock lock(phtmldata->m_pcoredata->synchronization());
 
       m_pbase = pusermessage;
 

@@ -45,7 +45,7 @@ public:
    ::user::notify_icon * notify_icon() override;
 
 
-   virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
+   ::user::enum_translucency get_translucency(::user::style* pstyle) override;
 
 
    virtual void task_save_window_placement();
@@ -57,7 +57,7 @@ public:
    virtual bool would_display_notify_icon();
 
 
-   bool keyboard_focus_is_focusable() const override;
+   bool keyboard_focus_is_focusable() override;
 
    bool create_bars() override;
    void on_create_bars() override;

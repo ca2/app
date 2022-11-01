@@ -2,9 +2,16 @@
 #include "save_as_name_impact.h"
 #include "data.h"
 #include "document.h"
+#include "acme/constant/id.h"
+#include "acme/platform/context.h"
+#include "acme/filesystem/file/item.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/platform/sequencer.h"
+#include "acme/platform/system.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/filesystem/fs/data.h"
+#include "apex/platform/context.h"
 #include "aura/user/user/frame.h"
 
 

@@ -84,7 +84,7 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      enum_element get_default_element() const override;
+      enum_element get_default_element() override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);

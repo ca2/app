@@ -227,6 +227,30 @@ namespace userex
    }
 
 
+   ::core::application* pane_tab_impact::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+   }
+
+
+   ::core::session* pane_tab_impact::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
+
+
+   ::core::system* pane_tab_impact::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+
+   }
+
+
    void pane_tab_impact::on_message_create(::message::message * pmessage)
    {
 

@@ -2,6 +2,7 @@
 
 
 #include "core/user/user/tree_data.h"
+#include "apex/message/channel.h"
 
 
 namespace userfs
@@ -30,9 +31,9 @@ namespace userfs
 
 
 
-      inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
-      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
-      inline ::core::system* get_system() const { return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; }
+      ::core::application* get_app();
+      ::core::session* get_session();
+      ::core::system* get_system();
 
 
 #ifdef _DEBUG

@@ -37,12 +37,14 @@ namespace graphics
 
       //}
 
+      m_mutexa.set_size(2);
+
       __construct(m_imageaBuffer[0]);
-      //m_imageaBuffer[0]->defer_create_synchronization();
+      __construct(m_mutexa[0]);
       m_imageaBuffer[0]->m_atom = 0;
 
       __construct(m_imageaBuffer[1]);
-      //m_imageaBuffer[1]->defer_create_synchronization();
+      __construct(m_mutexa[1]);
       m_imageaBuffer[1]->m_atom = 1;
 
       //return estatus;

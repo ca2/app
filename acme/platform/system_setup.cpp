@@ -285,7 +285,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const char
 //}
 
 
-::pointer<::element>system_setup::create_element()
+::pointer<::particle>system_setup::create_element()
 {
 
    auto pparticle = _create_element();
@@ -302,7 +302,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const char
 }
 
 
-::pointer<::element>system_setup::create_application_as_element()
+::pointer<::particle>system_setup::create_application_as_element()
 {
 
    auto papp = _create_application_as_element();
@@ -337,7 +337,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const char
 
 
 
-::pointer<::element>system_setup::_create_element()
+::pointer<::particle>system_setup::_create_element()
 {
 
    return nullptr;
@@ -345,7 +345,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const char
 }
 
 
-::pointer<::element>system_setup::_create_application_as_element()
+::pointer<::particle>system_setup::_create_application_as_element()
 {
 
    return nullptr;

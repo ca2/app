@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/exception/exception.h"
+
+
 class CLASS_DECL_AXIS numeric_parsing_exception:
    public ::exception
 {

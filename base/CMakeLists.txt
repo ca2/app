@@ -232,7 +232,7 @@ list(APPEND library_source
     #framework_c.h
     id.h
     library.h
-    message.h
+    #message.h
     procedure.h
     #timer.mm
     #update.h

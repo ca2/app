@@ -1,8 +1,6 @@
 #include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "_filehandler.h"
-//#endif
 #include "library.h"
+#include "acme/primitive/collection/string_array.h"
 
 
 namespace filehandler
@@ -34,6 +32,7 @@ namespace filehandler
       return true;
 
    }
+
 
    bool library::handles_mime_type(const ::string & pszMimeType)
    {

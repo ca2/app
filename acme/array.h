@@ -1018,7 +1018,7 @@ namespace acme
          for (auto & item : container)
          {
 
-            if (equals(item, t))
+            if (item == t)
             {
 
                return true;

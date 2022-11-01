@@ -16,7 +16,8 @@
 // 3. This notice may not be removed or altered from any source distribution.
 //
 #include "framework.h"
-
+#include "acme/exception/not_implemented.h"
+#include "nano2d/draw2d_context.h"
 //#include "aura/graphics/draw2d/_component.h"
 
 //#include <stdlib.h>
@@ -35,7 +36,7 @@
 
 	auto pcontext = ((::nano2d::context *)(ctx)->p);
 
-	auto pdraw2dcontext = dynamic_cast <::nano2d::draw2d_context *>(pcontext);
+	::pointer < ::nano2d::draw2d_context > pdraw2dcontext = pcontext;
 
 	if (pdraw2dcontext)
 	{

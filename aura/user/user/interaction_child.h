@@ -95,7 +95,7 @@ namespace user
 
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
 
-      virtual bool _is_window() const override;
+      bool _is_window() override;
 
       virtual void VirtualOnSize();
 
@@ -113,7 +113,7 @@ namespace user
       void RedrawWindow(const ::rectangle_i32& rectangleUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
 
       ::user::primitive * set_owner(::user::primitive * pinteraction) override;
-      virtual ::user::interaction * get_owner() const override;
+      ::user::interaction * get_owner() override;
 
       //bool _get_client_rect(RECTANGLE_I64 * prectangle) override;
       //bool _get_window_rect(RECTANGLE_I64 * prectangle) override;

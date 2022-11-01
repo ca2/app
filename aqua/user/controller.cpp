@@ -19,7 +19,7 @@ namespace user
    }
 
 
-   ::user::interaction* controller::impact_at(::index iImpact) const
+   ::user::interaction* controller::impact_at(::index iImpact)
    {
 
       return nullptr;
@@ -27,7 +27,7 @@ namespace user
    }
 
 
-   ::count controller::impact_count() const
+   ::count controller::impact_count()
    {
 
       return 0;
@@ -49,7 +49,6 @@ namespace user
 //      channel::assert_ok();
 //
 //   }
-
 
 
 } // namespace user

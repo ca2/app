@@ -37,7 +37,7 @@ namespace simpledb
 
       //auto estatus = 
       
-      ::object::initialize(pserver);
+      ::matter::initialize(pserver);
 
       //if (!estatus)
       //{

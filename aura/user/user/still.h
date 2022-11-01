@@ -35,23 +35,23 @@ namespace user
       ~still() override;
 
 
-      virtual ::appearance::appearance * get_appearance() override;
+      ::appearance::appearance * get_appearance() override;
 
       //virtual bool should_hover();
 
-      virtual bool has_link() const override;
+      bool has_link() override;
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent) override;
 
-      virtual ::write_text::font_pointer get_font(style * pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
+      ::write_text::font_pointer get_font(style * pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
 
-      virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
+      void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
 
       void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnDrawImage(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _002OnDraw(::draw2d::graphics_pointer & pgraphics);
 
       void _001SetCheck(const ::e_check & check, const ::action_context & action_context) override;
@@ -77,7 +77,7 @@ namespace user
 
       virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool keyboard_focus_is_focusable() const override;
+      bool keyboard_focus_is_focusable() override;
 
       // virtual bool has_action_hover() override;
 

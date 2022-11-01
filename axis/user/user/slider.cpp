@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "slider.h"
+#include "acme/constant/message.h"
 #include "aura/message/user.h"
 #include "aura/graphics/draw2d/graphics.h"
 

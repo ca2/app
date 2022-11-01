@@ -25,6 +25,8 @@ namespace networking
    class email;
    class networking;
 
+   class email_address;
+
 
 } // namespace networking
 

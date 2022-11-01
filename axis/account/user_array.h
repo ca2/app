@@ -1,12 +1,17 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/primitive/matter.h"
+
+
 namespace account
 {
 
 
    class CLASS_DECL_AXIS user_array :
-      virtual public ::object
+      virtual public ::matter
    {
    public:
 
@@ -16,7 +21,7 @@ namespace account
 
 
       user_array();
-      virtual ~user_array();
+      ~user_array() override;
 
 
       virtual void initialize_user_array(department* pdepartment);
@@ -28,15 +33,15 @@ namespace account
       virtual void logout();
 
       
-      virtual user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
+      virtual user * get_user(const ::file::path & pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
 //      virtual user * interactive_get_user(::file::path pathUrl = nullptr);
 //      virtual user * noninteractive_get_user(::file::path pathUrl = nullptr);
       
       
-      virtual void _get_user(::file::path pathUrl, bool bInteractive);
+      virtual void _get_user(const ::file::path & pathUrl, bool bInteractive);
       
       
-      virtual bool is_authenticated(::file::path pathUrl, bool bInteractive);
+      virtual bool is_authenticated(const ::file::path & pathUrl, bool bInteractive);
       
       //virtual ::file::path get_default_url();
 

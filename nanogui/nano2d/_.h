@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-19 01:46 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-03-19 01:46 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -24,11 +24,11 @@ inline NANO2D_COLOR __nano2d_color(const ::color::color & color)
 }
 
 
-#include "font_sink.h"
+//#include "font_sink.h"
 
 
-#include "context.h"
-#include "draw2d_context.h"
+//#include "context.h"
+//#include "draw2d_context.h"
 
 
 

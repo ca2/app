@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/primitive/object.h"
+
+
 //#ifdef WINDOWS_DESKTOP
 //
 //#include <ShlObj.h>
@@ -27,7 +31,7 @@ namespace filemanager
 
 
       context_menu();
-      virtual ~context_menu();
+      ~context_menu() override;
 
 
       void OnCommand(::u32 uId);

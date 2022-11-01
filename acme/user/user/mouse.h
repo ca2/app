@@ -17,7 +17,7 @@ namespace user
 
 
    class CLASS_DECL_ACME mouse :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

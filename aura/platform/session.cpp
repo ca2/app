@@ -2519,10 +2519,10 @@ namespace aura
    }
 
 
-   ::aura::system * session::get_system() const
+   ::aura::system * session::get_system()
    {
 
-      return ::is_set(acmesystem()) ? dynamic_cast <::aura::system *> (acmesystem()) : nullptr;
+      return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
 
    }
 

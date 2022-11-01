@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "place_holder.h"
+#include "acme/constant/message.h"
 #include "aura/user/user/window_util.h"
 
 

@@ -249,6 +249,8 @@ list(APPEND library_source
         parallelization/condition_variable.h
         parallelization/critical_section.cpp
         parallelization/event.cpp
+        parallelization/fork.cpp
+        parallelization/fork.h
         parallelization/install_mutex.cpp
         parallelization/manual_reset_event.cpp
         parallelization/multiple_lock.cpp
@@ -530,6 +532,8 @@ list(APPEND library_source
         primitive/mathematics/value.h
         primitive/media_library/item.cpp
         primitive/media_library/item.h
+        primitive/primitive/__particle_factory.h
+        primitive/primitive/__property.h
         primitive/primitive/_.cpp
         primitive/primitive/_.h
         primitive/primitive/_atom_impl.h
@@ -614,14 +618,12 @@ list(APPEND library_source
         #primitive/primitive/papaya.h
         primitive/primitive/particle.cpp
         primitive/primitive/particle.h
-        primitive/primitive/particle_factory.h
         primitive/primitive/payload.cpp
         primitive/primitive/payload.h
         primitive/primitive/payload2.h
         primitive/primitive/pointer.h
         primitive/primitive/pointer2.h
         primitive/primitive/property.cpp
-        primitive/primitive/__property.h
         primitive/primitive/property_object.cpp
         primitive/primitive/property_object.cpp
         primitive/primitive/property_object.h
@@ -856,6 +858,8 @@ list(APPEND library_source
         user/user/text.cpp
         user/user/text.h
         user/user/theme_colors.h
+        user/user/tool_item.cpp
+        user/user/tool_item.h
         user/_.h
         update.h)
 

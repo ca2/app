@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "context_image.h"
 
 
 //namespace imaging_freeimage

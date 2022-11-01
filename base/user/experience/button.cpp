@@ -3,7 +3,9 @@
 #include "control_box.h"
 #include "frame_window.h"
 #include "dock_manager.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/message/user.h"
 #include "aura/graphics/draw2d/region.h"
 #include "aura/graphics/write_text/font.h"
@@ -211,7 +213,7 @@ namespace experience
    }
 
 
-   bool button::keyboard_focus_is_focusable() const
+   bool button::keyboard_focus_is_focusable()
    {
 
       return false;

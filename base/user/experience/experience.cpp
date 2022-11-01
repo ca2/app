@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "experience.h"
+#include "acme/platform/system.h"
 #include "base/platform/session.h"
 
 
@@ -19,7 +20,7 @@ namespace experience
    }
 
 
-   ::base::application * experience::get_app() const
+   ::base::application * experience::get_app()
    {
       
       return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
@@ -27,7 +28,7 @@ namespace experience
    }
 
 
-   ::base::session * experience::get_session() const 
+   ::base::session * experience::get_session()
    {
       
       return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
@@ -35,7 +36,7 @@ namespace experience
    }
 
 
-   ::base::system * experience::get_system() const 
+   ::base::system * experience::get_system()
    {
       
       return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
@@ -43,7 +44,7 @@ namespace experience
    }
 
 
-   ::base::user * experience::user() const 
+   ::base::user * experience::user()
    {
       
       return get_session() ? get_session()->user() : nullptr; 

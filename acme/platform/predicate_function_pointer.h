@@ -40,7 +40,7 @@
 //};
 
 //
-using function_pointer = ::element_pointer;
+using function_pointer = ::particle_pointer;
 //
 //
 

@@ -11,7 +11,7 @@ namespace interprocess
 
 
    class CLASS_DECL_APEX task :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

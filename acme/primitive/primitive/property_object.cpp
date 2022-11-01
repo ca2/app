@@ -709,15 +709,14 @@ void property_object::run_property(const ::atom& atom)
 
 
 
-property_object::property_object(const property_object & propertyobject) :
-   ::PARTICLE(propertyobject),
-   ::particle(propertyobject),
-   ::element(propertyobject),
-   ::matter(propertyobject),
-   m_ppropertyset(propertyobject.m_ppropertyset)
-{
-
-}
+//property_object::property_object(const property_object & propertyobject) :
+//   ::PARTICLE(propertyobject),
+//   ::particle(propertyobject),
+//   ::matter(propertyobject),
+//   m_ppropertyset(propertyobject.m_ppropertyset)
+//{
+//
+//}
 
 
 
@@ -854,21 +853,21 @@ template < typename TYPE > TYPE & property_object::get_cast(const ::atom & atom,
 }
 
 
-template < typename TYPE > ::pointer<TYPE>property_object::cast(const ::atom & atom) const
-{
-
-   auto pproperty = find_property(atom);
-
-   if (!pproperty)
-   {
-
-      return nullptr;
-
-   }
-
-   return pproperty->cast < TYPE >();
-
-}
+//template < typename TYPE > ::pointer<TYPE>property_object::cast(const ::atom & atom) const
+//{
+//
+//   auto pproperty = find_property(atom);
+//
+//   if (!pproperty)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return pproperty->cast < TYPE >();
+//
+//}
 
 
 ::payload & property_object::payload(const atom & atom)

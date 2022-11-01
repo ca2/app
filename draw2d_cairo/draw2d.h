@@ -15,7 +15,7 @@ namespace draw2d_cairo
 
 
       class private_font :
-         virtual public ::element
+         virtual public ::particle
       {
       public:
 

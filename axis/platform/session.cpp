@@ -1,8 +1,10 @@
 ﻿#include "framework.h"
 #include "session.h"
 #include "acme/constant/id.h"
+#include "acme/parallelization/manual_reset_event.h"
 #include "acme/platform/system_setup.h"
 #include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/platform/application.h"
 #include "axis/account/department.h"
 #include "axis/account/credentials.h"
 #include "axis/account/user.h"
@@ -88,7 +90,7 @@ namespace axis
 
       //auto estatus = 
       
-      ::thread::initialize(pparticle);
+      ::aura::session::initialize(pparticle);
 
       //if (!estatus)
       //{

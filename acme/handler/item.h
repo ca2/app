@@ -48,7 +48,7 @@ struct ITEM_DATA_ADDITIONS
    ::point_i32                   m_pointHitTest;
    ::rectangle_i32               m_rectangle;
    u64                           m_uFlags;
-   ::pointer<::element>         m_pelement;
+   ::pointer<::particle>         m_pparticle;
    ::enum_item                   m_eitem;
    union // small 1 bedroom ap
    {
@@ -74,7 +74,7 @@ struct ITEM_DATA_ADDITIONS
       m_pointHitTest = itemdataadditions.m_pointHitTest;
       m_rectangle = itemdataadditions.m_rectangle;
       m_uFlags = itemdataadditions.m_uFlags;
-      m_pelement = itemdataadditions.m_pelement;
+      m_pparticle = itemdataadditions.m_pparticle;
 
       return *this;
       

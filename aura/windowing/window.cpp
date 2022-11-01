@@ -1327,7 +1327,7 @@ namespace windowing
    }
 
 
-   ::aura::application* window::get_app() const
+   ::aura::application* window::get_app()
    {
 
       return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
@@ -1335,7 +1335,7 @@ namespace windowing
    }
 
 
-   ::aura::session* window::get_session() const
+   ::aura::session* window::get_session()
    {
 
       return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
@@ -1343,14 +1343,12 @@ namespace windowing
    }
 
 
-   ::aura::system* window::get_system() const
+   ::aura::system* window::get_system()
    {
 
       return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
 
    }
-
-
 
 
 } // namespace windowing

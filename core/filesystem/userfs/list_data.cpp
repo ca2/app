@@ -1,14 +1,15 @@
 ﻿#include "framework.h"
-#include "aura/user/user/shell.h"
 #include "list_data.h"
 #include "list_item_array.h"
 #include "list_item.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "aura/user/user/shell.h"
+#include "aura/user/user/window_util.h"
+#include "base/user/user/user.h"
 #include "core/user/user/mesh.h"
 #include "core/platform/session.h"
-#include "base/user/user/user.h"
-#include "aura/user/user/window_util.h"
 
 
 string _001FileSizeText(i64 i)

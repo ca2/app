@@ -47,7 +47,7 @@ namespace user
       
          void install_message_routing(::channel * psender) override;
 
-         ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
+         ::user::enum_translucency get_translucency(::user::style* pstyle) override;
 
          DECLARE_MESSAGE_HANDLER(on_message_create);
 

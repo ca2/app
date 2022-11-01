@@ -59,7 +59,7 @@ namespace apex
       virtual void set_application_menu(application_menu * pmenu, ::apex::application * papp);
 
 
-      virtual ::file::path get_desktop_file_path(::apex::application * papp) const;
+      virtual ::file::path get_desktop_file_path(::apex::application * papp);
 
 
       virtual void defer_notify_startup_complete();

@@ -54,10 +54,10 @@ namespace user
       //virtual bool is_os_host() const override;
 
       using box::get_style;
-      virtual style * get_style() const override;
+      virtual style * get_style() const;
 
       virtual void set_frame_title(const string& strFrameTitle);
-      virtual string get_frame_title() const;
+      virtual string get_frame_title();
 
      
       //::windowing::icon* get_windowing_icon() override;
@@ -109,7 +109,7 @@ namespace user
 
 
 
-      virtual ::user::interaction * get_active_impact() const;
+      virtual ::user::interaction * get_active_impact();
       virtual void set_active_impact(::user::impact * pImpactNew, bool bNotify = true);
 
       virtual void ActivateFrame(::e_display edisplay = e_display_undefined);

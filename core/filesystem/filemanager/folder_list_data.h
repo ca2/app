@@ -2,6 +2,7 @@
 
 
 #include "core/user/user/list_data.h"
+#include "apex/database/client.h"
 
 
 namespace filemanager
@@ -16,7 +17,7 @@ namespace filemanager
 
 
       folder_list_data();
-      virtual ~folder_list_data();
+      ~folder_list_data() override;
 
 
 //      // void assert_ok() const override;

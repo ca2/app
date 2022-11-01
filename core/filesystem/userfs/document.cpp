@@ -1,7 +1,11 @@
 ﻿#include "framework.h"
-#include "acme/constant/id.h"
-#include "apex/filesystem/filesystem/dir_context.h"
 #include "document.h"
+#include "acme/constant/id.h"
+#include "acme/filesystem/file/item.h"
+#include "acme/platform/context.h"
+#include "apex/filesystem/fs/set.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/platform/context.h"
 
 
 namespace userfs
@@ -58,20 +62,20 @@ namespace userfs
    //}
 
 
-   void document::assert_ok() const
-   {
-
-      ::user::document::assert_ok();
-
-   }
-
-
-   void document::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::document::dump(dumpcontext);
-
-   }
+//   void document::assert_ok() const
+//   {
+//
+//      ::user::document::assert_ok();
+//
+//   }
+//
+//
+//   void document::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::document::dump(dumpcontext);
+//
+//   }
 
 
    bool document::browse(::pointer<::file::item>pitem, const ::action_context & context)

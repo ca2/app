@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/primitive/data/data.h"
+#include "acme/primitive/collection/atom_array.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 #include "aura/graphics/draw2d/graphics_extension.h"
 #include "aura/graphics/draw2d/holder.h"
 #include "acme/primitive/primitive/match.h"
@@ -38,11 +41,11 @@ namespace user
       ::rectangle_i32                     m_rectangleTab;
       ::rectangle_i32                     m_rectangleTabClient;
       draw2d::graphics_extension          m_dcextension;
-      atom_array                            m_idaSel;
+      atom_array                          m_idaSel;
       ::rectangle_i32                     m_rectangleBorder;
       ::rectangle_i32                     m_rectangleMargin;
       ::rectangle_i32                     m_rectangleTextMargin;
-      ::pointer<::image_list>            m_pimagelist;
+      ::pointer<::image_list>             m_pimagelist;
       tab_callback *                      m_pcallback;
       ::index                             m_iClickTab;
       bool                                m_bDrag;

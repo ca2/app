@@ -4,6 +4,11 @@
 #include "image.h"
 #include "region.h"
 #include "font.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
+#include "acme/platform/restore.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/collection/int_map.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -13,7 +18,6 @@
 #include "acme/primitive/geometry2d/_shape.h"
 #include "aura/user/user/interaction.h"
 #include <math.h>
-#include "acme/platform/restore.h"
 
 
 
@@ -193,22 +197,22 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::assert_ok() const
-   {
-
-      object::assert_ok();
-
-   }
-
-
-   void graphics::dump(dump_context & dumpcontext) const
-   {
-
-      object::dump(dumpcontext);
-
-      //dumpcontext << "\n";
-
-   }
+//   void graphics::assert_ok() const
+//   {
+//
+//      object::assert_ok();
+//
+//   }
+//
+//
+//   void graphics::dump(dump_context & dumpcontext) const
+//   {
+//
+//      object::dump(dumpcontext);
+//
+//      //dumpcontext << "\n";
+//
+//   }
 
 
    graphics::~graphics()

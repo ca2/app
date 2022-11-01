@@ -22,6 +22,30 @@ namespace user
    }
 
 
+   ::core::application* form_list_impact::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+   }
+
+
+   ::core::session* form_list_impact::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
+
+
+   ::core::system* form_list_impact::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+
+   }
+
+
    void form_list_impact::install_message_routing(::channel * pchannel)
    {
 

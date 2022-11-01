@@ -135,8 +135,10 @@ namespace aura
       m_pauraapplication = this;
 #if defined(LINUX) || defined(FREEBSD)
       m_bSnLauncheeSetup = false;
+      m_bGtkApp = false;
 #endif
 
+      m_bConsole = false;
       m_pappParent = nullptr;
 
       m_bSimpleMessageLoop = false;

@@ -632,7 +632,7 @@ namespace windowing
    }
 
 
-   ::aura::application* cursor_manager::get_app() const
+   ::aura::application* cursor_manager::get_app()
    {
 
       return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
@@ -640,7 +640,7 @@ namespace windowing
    }
 
 
-   ::aura::session* cursor_manager::get_session() const
+   ::aura::session* cursor_manager::get_session()
    {
 
       return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
@@ -648,10 +648,10 @@ namespace windowing
    }
 
 
-   ::aura::system* cursor_manager::get_system() const
+   ::aura::system* cursor_manager::get_system()
    {
 
-      return ::is_set(acmesystem()) ? dynamic_cast <::aura::system*> (acmesystem()) : nullptr;
+      return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
 
    }
 

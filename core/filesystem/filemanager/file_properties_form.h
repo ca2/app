@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/filesystem/file/item_array.h"
 #include "aura/user/user/form_callback.h"
 #include "base/user/user/impact_host.h"
 #include "base/user/form/impact.h"
@@ -21,9 +22,9 @@ namespace filemanager
 
       ::pointer<::user::single_document_template>     m_ptemplatePane;
       ::pointer<::user::document>                     m_pdocGeneral;
-      ::pointer<::user::form_impact>                    m_pviewGeneral;
-      ::pointer<::userex::pane_tab_impact>              m_ptabimpact;
-      ::file::item_array                          m_itema;
+      ::pointer<::user::form_impact>                  m_pviewGeneral;
+      ::pointer<::userex::pane_tab_impact>            m_ptabimpact;
+      ::file::item_array                              m_itema;
 
 
       file_properties_form();

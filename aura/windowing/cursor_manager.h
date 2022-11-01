@@ -24,9 +24,9 @@ namespace windowing
       virtual ~cursor_manager();
 
 
-      inline ::aura::application* get_app() const;
-      inline ::aura::session* get_session() const;
-      inline ::aura::system* get_system() const;
+      inline ::aura::application* get_app();
+      inline ::aura::session* get_session();
+      inline ::aura::system* get_system();
 
 
       void load_hotspot(const ::file::path & pszDir);

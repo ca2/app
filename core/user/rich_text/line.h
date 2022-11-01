@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/collection/pointer_array.h"
+
+
 namespace user
 {
 

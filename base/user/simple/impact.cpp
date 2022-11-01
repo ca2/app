@@ -22,20 +22,20 @@ void simple_impact::install_message_routing(::channel * pchannel)
 }
 
 
-void simple_impact::assert_ok() const
-{
-
-   ::user::impact::assert_ok();
-
-}
-
-
-void simple_impact::dump(dump_context & dumpcontext) const
-{
-
-   ::user::impact::dump(dumpcontext);
-
-}
+//void simple_impact::assert_ok() const
+//{
+//
+//   ::user::impact::assert_ok();
+//
+//}
+//
+//
+//void simple_impact::dump(dump_context & dumpcontext) const
+//{
+//
+//   ::user::impact::dump(dumpcontext);
+//
+//}
 
 
 void simple_impact::handle(::topic * ptopic, ::context * pcontext)

@@ -30,11 +30,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
+#include "event_time.h"
+
+
 #ifdef _WIN32
 #else
 //#include <sys/select.h>
 #endif
-
 
 
 namespace sockets

@@ -140,7 +140,7 @@ namespace message
    //}
 
 
-   ::element * create::get_impact_data()
+   ::particle * create::get_impact_data()
    {
 
       auto pusersystem = get_user_create();

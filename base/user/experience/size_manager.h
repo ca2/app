@@ -1,6 +1,12 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/size.h"
+
+
 namespace experience
 {
 

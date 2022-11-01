@@ -197,7 +197,7 @@ namespace apex
    }
 
 
-   ::file::path node::get_desktop_file_path(::apex::application * papp) const
+   ::file::path node::get_desktop_file_path(::apex::application * papp)
    {
 
       return "";

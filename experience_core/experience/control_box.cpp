@@ -1,7 +1,7 @@
 #include "framework.h"
-
-#include "aura/graphics/draw2d/graphics.h"
 #include "control_box.h"
+#include "acme/constant/message.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/user/user/frame.h"
 
 

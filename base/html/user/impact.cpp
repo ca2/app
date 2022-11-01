@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "impact.h"
 #include "document.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "axis/html/html/data.h"
 
 
@@ -33,20 +35,20 @@ void html_impact::install_message_routing(::channel * pchannel)
 }
 
 
-void html_impact::assert_ok() const
-{
-
-   ::user::impact::assert_ok();
-
-}
-
-
-void html_impact::dump(dump_context & dumpcontext) const
-{
-
-   ::user::impact::dump(dumpcontext);
-
-}
+//void html_impact::assert_ok() const
+//{
+//
+//   ::user::impact::assert_ok();
+//
+//}
+//
+//
+//void html_impact::dump(dump_context & dumpcontext) const
+//{
+//
+//   ::user::impact::dump(dumpcontext);
+//
+//}
 
 
 bool html_impact::pre_create_window(::user::system * pusersystem)
@@ -246,14 +248,14 @@ void html_impact::on_form_implemented()
 
    ::html_form::on_form_implemented();
 
-   auto pdocument = get_document();
-
-   if (::is_set(pdocument))
-   {
-
-      pdocument->call_routines_with_id("load");
-
-   }
+//   auto pdocument = get_document();
+//
+//   if (::is_set(pdocument))
+//   {
+//
+//      pdocument->call_routines_with_id("load");
+//
+//   }
 
 }
 

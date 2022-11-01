@@ -9,7 +9,7 @@
 
 
 class plane_system :
-   virtual public ::element
+   virtual public ::particle
 {
 public:
    

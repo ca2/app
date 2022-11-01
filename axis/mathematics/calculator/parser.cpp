@@ -2,6 +2,8 @@
  * This code can be freely copied and modified.
  */
 #include "framework.h"
+#include "parser.h"
+#include "parser_exception.h"
 
 
 namespace calculator
@@ -48,7 +50,7 @@ namespace calculator
    ::calculator::element* parser::parse(const ::string & psz)
    {
       
-      ::calculator::particle * pparticle = nullptr;
+      ::calculator::element * pelement = nullptr;
 
       m_scanner.initialize(psz);
 

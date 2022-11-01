@@ -7,8 +7,6 @@
 #include "acme/platform/implementable.h"
 
 
-typedef string GET_THREAD_NAME(::thread* pthread);
-using LPFN_GET_THREAD_NAME = GET_THREAD_NAME*;
 
 typedef pointer_array < ::matter > object_array;
 typedef map < itask_t, ::pointer<task >>task_map;
@@ -52,7 +50,7 @@ public:
    string                                          m_strTaskName;
    string                                          m_strTaskTag;
 
-   ::element_array                                 m_elementaHold;
+   ::particle_array                                 m_particleaHold;
    ::pointer<manual_reset_event>                  m_peventInitialization;
 
    ::procedure                                     m_procedure;
@@ -230,89 +228,6 @@ inline ::payload & task_property(const ::atom & atom) { return ::get_task()->pay
 
 
 
-
-
-CLASS_DECL_ACME string get_task_name(htask_t htask);
-
-CLASS_DECL_ACME void set_get_thread_name(LPFN_GET_THREAD_NAME);
-
-CLASS_DECL_ACME string get_task_name(::task * ptask);
-
-CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
-
-CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
-
-CLASS_DECL_ACME bool is_single_main_user_thread();
-
-CLASS_DECL_ACME bool is_main_thread();
-
-CLASS_DECL_ACME itask_t get_main_user_itask();
-
-
-
-
-CLASS_DECL_ACME void task_set_name(const char * psz);
-CLASS_DECL_ACME void task_set_name(htask_t htask, const char* pszName);
-
-
-CLASS_DECL_ACME string task_get_name();
-CLASS_DECL_ACME string task_get_name(htask_t htask);
-
-
-
-
-CLASS_DECL_ACME ::task* get_task();
-
-CLASS_DECL_ACME bool task_get_run();
-
-//CLASS_DECL_ACME::task* get_task();
-CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-
-
-CLASS_DECL_ACME void preempt();
-
-
-CLASS_DECL_ACME itask_t get_current_itask();
-
-CLASS_DECL_ACME htask_t get_current_htask();
-
-
-CLASS_DECL_ACME bool task_sleep(const class ::wait & wait);
-
-CLASS_DECL_ACME void task_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-
-
-
-namespace parallelization
-{
-
-
-   CLASS_DECL_ACME bool set_priority(enum_priority epriority);
-
-   CLASS_DECL_ACME bool set_priority(htask_t htask, enum_priority epriority);
-
-   CLASS_DECL_ACME enum_priority get_priority();
-
-   CLASS_DECL_ACME enum_priority get_priority(htask_t htask);
-
-
-   //inline i32 get_priority_none()
-   //{
-
-   //   return e_priority_none;
-
-   //}
-
-
-   //inline i32 get_priority_normal()
-   //{
-
-   //   return e_priority_normal;
-
-   //}
-
-
-} // namespace parallelization
 
 
 class CLASS_DECL_ACME thread_local_particle :

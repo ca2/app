@@ -599,7 +599,7 @@ namespace user
    //}
 
 
-   ::write_text::font_pointer still::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer still::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
       if(m_pfont)
@@ -788,7 +788,7 @@ namespace user
    }
 
 
-   bool still::keyboard_focus_is_focusable() const
+   bool still::keyboard_focus_is_focusable()
    {
 
       //return is_window_enabled() && is_window_visible();
@@ -1125,7 +1125,7 @@ namespace user
    }
 
 
-   bool still::has_link() const
+   bool still::has_link()
    {
 
       return m_strLink.has_char();

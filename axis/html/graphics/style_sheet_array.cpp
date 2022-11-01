@@ -1,6 +1,6 @@
 #include "framework.h"
-
 #include "style_sheet_array.h"
+#include "acme/primitive/primitive/payload.h"
 
 
 namespace html
@@ -13,7 +13,7 @@ namespace html
    }
 
 
-   style * style_sheet_array::rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName)
+   style * style_sheet_array::rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName)
    {
 
       style * pstyle = nullptr;
@@ -37,7 +37,7 @@ namespace html
    }
 
 
-   style * style_sheet_array::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName, float & f)
+   style * style_sheet_array::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName, float & f)
    {
 
       style * pstyle = nullptr;
@@ -61,7 +61,7 @@ namespace html
    }
 
 
-   style * style_sheet_array::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName, ::color::color & color32)
+   style * style_sheet_array::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName, ::color::color & color32)
    {
 
       style * pstyle = nullptr;
@@ -166,7 +166,6 @@ namespace html
             pstyleRet   = pstyle2;
 
             iRet        = i2;
-
 
             varRet      = var2;
 

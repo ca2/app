@@ -2,15 +2,17 @@
 #include "application.h"
 #include "session.h"
 #include "system.h"
-#include "apex/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/user/language_map.h"
+#include "apex/networking/application/application.h"
+#include "axis/database/simpledb/server.h"
 #include "axis/user/user/combo_box.h"
 #include "aura/user/user/button.h"
 #include "aura/user/user/still.h"
 #include "aura/user/user/check_box.h"
-#include "axis/database/simpledb/server.h"
-
 
 
 namespace axis
@@ -34,7 +36,7 @@ namespace axis
       m_paxisapplication = this;
       m_bInitializeDataCentral = true;
 
-      ::factory::add_factory_item < ::networking_application >();
+      ::factory::add_factory_item < ::networking::application >();
 
    }
 
@@ -53,32 +55,32 @@ namespace axis
    }
 
 
-   void application::assert_ok() const
-   {
-
-      thread::assert_ok();
-
-   }
-
-
-   void application::dump(dump_context & dumpcontext) const
-   {
-
-      thread::dump(dumpcontext);
-
-//#ifdef WINDOWS
+//   void application::assert_ok() const
+//   {
 //
-//      dumpcontext << "m_hinstance = " << (void *)m_hinstance;
+//      thread::assert_ok();
 //
-//#endif
-
-      ////dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
-      ////dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
-      //dumpcontext << "\nm_bHelpMode = " << m_strAppName;
-
-      //dumpcontext << "\n";
-
-   }
+//   }
+//
+//
+//   void application::dump(dump_context & dumpcontext) const
+//   {
+//
+//      thread::dump(dumpcontext);
+//
+////#ifdef WINDOWS
+////
+////      dumpcontext << "m_hinstance = " << (void *)m_hinstance;
+////
+////#endif
+//
+//      ////dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
+//      ////dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
+//      //dumpcontext << "\nm_bHelpMode = " << m_strAppName;
+//
+//      //dumpcontext << "\n";
+//
+//   }
 
 
    string application::__get_text(string str)

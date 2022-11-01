@@ -46,7 +46,7 @@ namespace draw2d
 
 
       class CLASS_DECL_AURA item :
-         virtual public ::element
+         virtual public ::particle
       {
       public:
 

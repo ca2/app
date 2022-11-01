@@ -39,7 +39,7 @@
 #endif
 
 
-::pointer< ::mutex > cairo_mutex();
+::particle * cairo_mutex();
 void init_cairo_mutex();
 void destroy_cairo_mutex();
 
@@ -108,7 +108,7 @@ namespace draw2d_cairo
 
 
 
-::pointer< ::mutex > cairo_mutex();
+::particle * cairo_mutex();
 void init_cairo_mutex();
 void destroy_cairo_mutex();
 

@@ -2,6 +2,7 @@
 
 
 #include "apex/handler/source.h"
+#include "aura/user/user/form_callback.h"
 
 
 namespace user
@@ -13,6 +14,9 @@ namespace user
    {
    public:
 
+
+      form_callback();
+      ~form_callback() override;
 
       virtual void _001OnInitializeForm();
       virtual void _001OnInitializeControl(interaction * pinteraction);

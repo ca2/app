@@ -36,6 +36,7 @@
 #include "attributes.h"
 #include "tag.h"
 #include "reader.h"
+#include "axis/html/html/html.h"
 
 
 void ILiteHTMLReaderEvents::BeginParse(uptr dwAppData, bool &bAbort)

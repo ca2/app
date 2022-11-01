@@ -4,6 +4,11 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/12/18.
 //
+#pragma once
+
+
+#include "acme/primitive/string/string.h"
+#include "acme/primitive/primitive/matter.h"
 
 
 namespace account
@@ -11,7 +16,7 @@ namespace account
    
    
    class CLASS_DECL_AXIS storage_client :
-      virtual public ::object
+      virtual public ::matter
    {
    public:
       

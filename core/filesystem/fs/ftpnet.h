@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/primitive/object.h"
+
+
 class ftpnet :
    virtual public object
 {

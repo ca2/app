@@ -1,6 +1,6 @@
 #include "framework.h"
-
 #include "input_checkbox.h"
+#include "acme/constant/id.h"
 #include "aura/user/user/check_box.h"
 #include "axis/html/element/element.h"
 #include "axis/html/graphics/base.h"
@@ -79,7 +79,7 @@ namespace html
       }
 
 
-      void input_checkbox::implement_phase1(html_data * pdata, ::html::particle * pparticle)
+      void input_checkbox::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
          m_bHasChar = true;

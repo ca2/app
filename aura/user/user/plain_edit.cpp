@@ -1,37 +1,40 @@
 ﻿#include "framework.h"
-#include "acme/filesystem/file/memory_file.h"
-#include "aura/platform/application.h"
-#include "apex/filesystem/file/edit_file.h"
+#include "plain_edit.h"
+#include "scroll_data.h"
+#include "style.h"
+#include "user.h"
+#include "copydesk.h"
+#include "interaction_style.h"
+#include "text_composition_client.h"
 #include "plain_text_tree.h"
+#include "plain_edit_style.h"
+#include "control_style.h"
 #ifdef WINDOWS_DESKTOP
 #include "apex/operating_system.h"
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
 #include "aura/user/windows_tsf/edit_window.h"
 #endif
 #endif
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/constant/timer.h"
+#include "acme/filesystem/file/memory_file.h"
 #include "acme/handler/item.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/string/base64.h"
+#include "acme/primitive/string/_string.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "acme/platform/timer.h"
+#include "apex/filesystem/file/edit_file.h"
 #include "aura/windowing/text_editor_interface.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
-#include "scroll_data.h"
-#include "plain_edit.h"
-#include "style.h"
-#include "plain_edit_style.h"
 #include "aura/message/user.h"
-#include "user.h"
-#include "copydesk.h"
-#include "interaction_style.h"
-#include "text_composition_client.h"
+#include "aura/platform/application.h"
 #include "aura/platform/session.h"
-#include "plain_edit_style.h"
-#include "control_style.h"
 
 
 namespace aura
@@ -1179,7 +1182,7 @@ namespace user
    }
 
 
-   status < ::rectangle_f64 > plain_edit::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   status < ::rectangle_f64 > plain_edit::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
       return ::user::interaction::get_margin(pstyle, eelement, estate);
@@ -1294,7 +1297,7 @@ namespace user
    //}
 
 
-   strsize plain_edit::_001GetTextLength() const
+   strsize plain_edit::_001GetTextLength()
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -1305,7 +1308,7 @@ namespace user
    }
 
 
-   strsize plain_edit::_001_get_text_length() const
+   strsize plain_edit::_001_get_text_length()
    {
 
       auto ptree = m_ptree;
@@ -1331,7 +1334,7 @@ namespace user
    }
 
 
-   void plain_edit::_001GetText(string & str) const
+   void plain_edit::_001GetText(string & str)
    {
 
       plain_edit_get_text(str);
@@ -1339,7 +1342,7 @@ namespace user
    }
 
 
-   void plain_edit::plain_edit_get_text(string & str) const
+   void plain_edit::plain_edit_get_text(string & str)
    {
 
       if (m_ptree == nullptr)
@@ -1375,7 +1378,7 @@ namespace user
    }
 
 
-   void plain_edit::_001GetSelText(string & str) const
+   void plain_edit::_001GetSelText(string & str)
    {
 
       _001GetText(str, m_ptree->m_iSelBeg, m_ptree->m_iSelEnd);
@@ -1383,7 +1386,7 @@ namespace user
    }
 
 
-   void plain_edit::_001GetText(string & str, index iBegParam, index iEndParam) const
+   void plain_edit::_001GetText(string & str, index iBegParam, index iEndParam)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -4181,7 +4184,7 @@ namespace user
 
 
 
-   void plain_edit::_001GetImpactSel(strsize & iSelBeg, strsize & iSelEnd) const
+   void plain_edit::_001GetImpactSel(strsize & iSelBeg, strsize & iSelEnd)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -4192,7 +4195,7 @@ namespace user
 
 
 
-   void plain_edit::_001_get_impact_sel(strsize & iSelBeg, strsize & iSelEnd) const
+   void plain_edit::_001_get_impact_sel(strsize & iSelBeg, strsize & iSelEnd)
    {
 
       if (m_ptree == nullptr)
@@ -4241,7 +4244,7 @@ namespace user
    }
 
 
-   void plain_edit::_001GetSel(strsize & iBeg, strsize & iEnd) const
+   void plain_edit::_001GetSel(strsize & iBeg, strsize & iEnd)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -4253,7 +4256,7 @@ namespace user
    }
 
 
-   void plain_edit::_001GetSel(strsize & iSelStart, strsize & iSelEnd, strsize & iComposingStart, strsize & iComposingEnd) const
+   void plain_edit::_001GetSel(strsize & iSelStart, strsize & iSelEnd, strsize & iComposingStart, strsize & iComposingEnd)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -7773,7 +7776,7 @@ namespace user
    //}
 
 
-   enum_input_type plain_edit::preferred_input_type() const
+   enum_input_type plain_edit::preferred_input_type()
    {
 
       return e_input_type_text;
@@ -7781,7 +7784,7 @@ namespace user
    }
 
 
-   bool plain_edit::keyboard_focus_is_focusable() const
+   bool plain_edit::keyboard_focus_is_focusable()
    {
 
       return is_window_visible();

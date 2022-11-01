@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "acme/constant/id.h"
+#include "axis/networking/email_department.h"
+#include "axis/platform/geo_department.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
 #include "axis/constant/idpool.h"
@@ -565,20 +567,20 @@ namespace axis
    }
 
 
-   void system::assert_ok() const
-   {
-
-      ::thread::assert_ok();
-
-   }
-
-
-   void system::dump(dump_context& context) const
-   {
-
-      ::thread::dump(context);
-
-   }
+//   void system::assert_ok() const
+//   {
+//
+//      ::thread::assert_ok();
+//
+//   }
+//
+//
+//   void system::dump(dump_context& context) const
+//   {
+//
+//      ::thread::dump(context);
+//
+//   }
 
 
 

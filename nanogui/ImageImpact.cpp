@@ -11,6 +11,9 @@
 #include "framework.h"
 #include "ImageImpact.h"
 #include "Screen.h"
+#include "nano2d/context.h"
+#include "acme/constant/message.h"
+#include "aura/graphics/image/image.h"
 
 
 #define __NANO2D_CONTEXT(ctx) ((::nano2d::context *) (ctx)->p)

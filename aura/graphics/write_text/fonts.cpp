@@ -49,7 +49,7 @@ namespace write_text
    font_enumeration* fonts::enumeration()
    {
 
-      synchronous_lock syncronouslock(mutex());
+      synchronous_lock syncronouslock(synchronization());
 
       if (!m_pfontenumeration)
       {
@@ -66,7 +66,7 @@ namespace write_text
    void fonts::enumerate_fonts()
    {
 
-      synchronous_lock syncronouslock(mutex());
+      synchronous_lock syncronouslock(synchronization());
 
       auto pfontenumeration = __create < ::write_text::font_enumeration >();
 
@@ -89,7 +89,7 @@ namespace write_text
 
          pfontenumeration->enumerate_fonts();
 
-         synchronous_lock syncronouslock(mutex());
+         synchronous_lock syncronouslock(synchronization());
 
          m_pfontenumeration = pfontenumeration;
 

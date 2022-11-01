@@ -1,10 +1,11 @@
 ﻿#include "framework.h"
-#include "acme/constant/timer.h"
 #include "user.h"
-#include "axis/platform/session.h"
 #include "department.h"
 #include "credentials.h"
 #include "authenticator.h"
+#include "acme/constant/timer.h"
+#include "apex/networking/http/cookie.h"
+#include "axis/platform/session.h"
 
 
 string chunk_split(const string & body,i32 chunklen,const string & end)
@@ -61,7 +62,7 @@ namespace account
 
       //auto estatus = 
       
-      ::object::initialize(pparticle);
+      ::particle::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -254,7 +255,7 @@ namespace account
 
       }
 
-      ::pointer<::axis::session>psession = get_session();
+      ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
 
       psession->account()->on_user_logon(this);
 
@@ -272,7 +273,7 @@ namespace account
 
       ::pointer<credentials>pcredentials = __new(credentials);
 
-      ::pointer<::axis::session>psession = get_session();
+      ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
 
       pcredentials->initialize_account_credentials(this, psession->account()->storage());
 
@@ -479,7 +480,7 @@ namespace account
 
             auto authenticationElapsed = minimum(authenticationRequestElapsed, authenticationDoneElapsed);
 
-            ::pointer<::axis::session>psession = get_session();
+            ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
 
             auto authenticationTimeout = psession->account()->get_session_timeout();
 

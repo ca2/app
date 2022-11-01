@@ -1,13 +1,20 @@
 ﻿#include "framework.h"
-////#include "base/user/simple/_component.h"
-#include "aura/windowing/window.h"
+#include "user.h"
+#include "impact_creator.h"
+#include "style.h"
+#include "split_impact.h"
+#include "tab_impact.h"
+#include "split_bar.h"
+#include "acme/exception/exit.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system_setup.h"
+#include "aura/graphics/image/image.h"
+#include "aura/message/user.h"
+#include "aura/windowing/window.h"
 #include "base/platform/application.h"
 #include "base/platform/session.h"
 #include "base/platform/system.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "aura/graphics/image/image.h"
-#include "user.h"
 #include "base/user/experience/department.h"
 #include "base/user/experience/experience.h"
 #include "base/user/simple/impact.h"
@@ -20,12 +27,6 @@
 #include "base/user/menu/item.h"
 #include "base/user/menu/central.h"
 #include "base/user/form/impact.h"
-#include "impact_creator.h"
-#include "style.h"
-#include "split_impact.h"
-#include "tab_impact.h"
-#include "split_bar.h"
-#include "aura/message/user.h"
 
 
 namespace base
@@ -74,6 +75,30 @@ namespace base
 
 
       //return estatus;
+
+   }
+
+
+   ::base::application* user::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr;
+
+   }
+
+
+   ::base::session* user::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr;
+
+   }
+
+
+   ::base::system* user::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr;
 
    }
 
@@ -337,7 +362,7 @@ namespace base
 
          ::pointer<::base::application>pappItem = pappApex;
 
-         synchronous_lock synchronouslock(&pappItem->m_pmutexFrame);
+         synchronous_lock synchronouslock(pappItem->m_pmutexFrame);
 
          ::pointer<::user::interaction>pinteraction;
 
@@ -1235,7 +1260,7 @@ namespace base
 
       ::user::style_pointer pstyle;
 
-      pexperience->m_pfactory->__construct(pstyle);
+      pexperience->m_pfactory->__construct(papp, pstyle);
 
       if (!pstyle)
       {

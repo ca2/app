@@ -2,6 +2,7 @@
 
 
 #include "base/user/form/document.h"
+#include "acme/filesystem/filesystem/listing.h"
 
 
 namespace userfs
@@ -15,7 +16,7 @@ namespace userfs
 
 
       ::file::path                              m_pathFolder;
-      ::pointer<::fs::set>                   m_pfsset;
+      ::pointer<::fs::set>                      m_pfsset;
       ::file::listing                           m_listingRoot;
       ::file::listing                           m_listingUser2;
       ::file::listing                           m_listingFinal2;

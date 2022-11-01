@@ -76,7 +76,7 @@ namespace user
    }
 
 
-   ::element * button::clone() const
+   ::particle * button::clone() const
    {
 
       auto pcheckbox = memory_new ::user::button;
@@ -86,7 +86,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer button::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer button::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
       if (pstyle)
@@ -113,7 +113,7 @@ namespace user
    }
 
 
-   enum_translucency button::get_translucency(style * pstyle) const
+   enum_translucency button::get_translucency(style * pstyle)
    {
 
       if (pstyle)
@@ -471,11 +471,10 @@ namespace user
    }
 
 
-   bool button::keyboard_focus_is_focusable() const
+   bool button::keyboard_focus_is_focusable()
    {
 
-      return is_window_enabled() && is_window_visible(::user::e_layout_sketch)
-      && !windowing()->is_sandboxed();
+      return is_window_enabled() && is_window_visible(::user::e_layout_sketch) && !windowing()->is_sandboxed();
 
    }
 

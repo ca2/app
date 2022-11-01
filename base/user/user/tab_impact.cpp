@@ -2,15 +2,17 @@
 #include "tab_impact.h"
 #include "tab_pane.h"
 #include "tab_data.h"
+#include "frame_window.h"
+#include "split_impact.h"
+#include "document.h"
+#include "tab_drop_target_window.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/user/user/window_util.h"
-#include "frame_window.h"
 #include "aura/message/user.h"
-#include "split_impact.h"
-#include "tab_drop_target_window.h"
 #include "base/platform/application.h"
 #include "base/user/menu/menu.h"
-#include "document.h"
 #include "base/user/menu/list_impact.h"
 #include "base/user/user/tab_drop_target_window.h"
 
@@ -39,20 +41,20 @@ namespace user
    }
 
 
-   void tab_impact::assert_ok() const
-   {
-
-      impact::assert_ok();
-
-   }
-
-
-   void tab_impact::dump(dump_context & dumpcontext) const
-   {
-
-      impact::dump(dumpcontext);
-
-   }
+//   void tab_impact::assert_ok() const
+//   {
+//
+//      impact::assert_ok();
+//
+//   }
+//
+//
+//   void tab_impact::dump(dump_context & dumpcontext) const
+//   {
+//
+//      impact::dump(dumpcontext);
+//
+//   }
 
 
    void tab_impact::on_message_create(::message::message * pmessage)

@@ -65,7 +65,7 @@ public:
 
 
 
-   virtual void _001GetText(string & str) const override;
+   virtual void _001GetText(string & str) override;
    virtual void _001SetText(const ::string & str, const ::action_context & action_context) override;
 
 

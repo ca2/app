@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "apex/message.h"
+#include "simple_command.h"
+#include "acme/constant/message.h"
+#include "acme/constant/simple_command.h"
 
 
 namespace message

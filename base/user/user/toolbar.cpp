@@ -1,10 +1,13 @@
 ﻿#include "framework.h"
+#include "toolbar.h"
+#include "acme/constant/message.h"
+#include "acme/constant/id.h"
 #include "acme/user/user/tool_item.h"
 #include "acme/operating_system.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aqua/xml/document.h"
 #include "aura/operating_system/_user.h"
-#include "toolbar.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context_image.h"
@@ -1676,54 +1679,54 @@ namespace user
    // toolbar diagnostics
 
 
-   void toolbar::assert_ok() const
-   {
-      // Note: ::user::control_bar::assert_ok is not called because it checks for
-      //  m_nCount and m_pData to be in synchronization, which they are not in toolbar.
-
-      /*      ASSERT(m_hbmImageWell == nullptr ||
-               (afxData.bWin95 || ::GetObjectType(m_hbmImageWell) == OBJ_BITMAP));
-
-            if (m_hInstImageWell != nullptr && m_hbmImageWell != nullptr)
-               ASSERT(m_hRsrcImageWell != nullptr);*/
-   }
-
-   void toolbar::dump(dump_context & dumpcontext) const
-   {
-      ::user::control_bar::dump(dumpcontext);
-
-      ////      dumpcontext << "m_hbmImageWell = " << (::u32)m_hbmImageWell;
-      ////      dumpcontext << "\nm_hInstImageWell = " << (::u32)m_hInstImageWell;
-      ////      dumpcontext << "\nm_hRsrcImageWell = " << (::u32)m_hRsrcImageWell;
-      //dumpcontext << "\nm_sizeButton = " << m_sizeButton;
-      //dumpcontext << "\nm_sizeImage = " << m_sizeImage;
-
-      ////      if (dumpcontext.GetDepth() > 0)
-      ////      {
-      ////#ifdef WINDOWS_DESKTOP
-      ////         toolbar* pBar = (toolbar*)this;
-      ////         LRESULT nCount = pBar->default_window_procedure(TB_BUTTONCOUNT, 0, 0);
-      ////         for (index i = 0; i < nCount; i++)
-      ////         {
-      ////            TBBUTTON button;
-      ////            _GetButton(i, &button);
-      ////            dumpcontext << "\ntoolbar button[" << i << "] = {";
-      ////            dumpcontext << "\n\tnID = " << button.idCommand;
-      ////            dumpcontext << "\n\tnStyle = " << MAKELONG(button.fsStyle, button.fsState);
-      ////            if (button.fsStyle & TBSTYLE_SEP)
-      ////               dumpcontext << "\n\tiImage (separator width) = " << button.iBitmap;
-      ////            else
-      ////               dumpcontext <<"\n\tiImage (bitmap image index) = " << button.iBitmap;
-      ////            dumpcontext << "\n}";
-      ////         }
-      ////#else
-      ////         throw ::exception(todo);
-      ////
-      ////#endif
-      ////      }
-
-      //dumpcontext << "\n";
-   }
+//   void toolbar::assert_ok() const
+//   {
+//      // Note: ::user::control_bar::assert_ok is not called because it checks for
+//      //  m_nCount and m_pData to be in synchronization, which they are not in toolbar.
+//
+//      /*      ASSERT(m_hbmImageWell == nullptr ||
+//               (afxData.bWin95 || ::GetObjectType(m_hbmImageWell) == OBJ_BITMAP));
+//
+//            if (m_hInstImageWell != nullptr && m_hbmImageWell != nullptr)
+//               ASSERT(m_hRsrcImageWell != nullptr);*/
+//   }
+//
+//   void toolbar::dump(dump_context & dumpcontext) const
+//   {
+//      ::user::control_bar::dump(dumpcontext);
+//
+//      ////      dumpcontext << "m_hbmImageWell = " << (::u32)m_hbmImageWell;
+//      ////      dumpcontext << "\nm_hInstImageWell = " << (::u32)m_hInstImageWell;
+//      ////      dumpcontext << "\nm_hRsrcImageWell = " << (::u32)m_hRsrcImageWell;
+//      //dumpcontext << "\nm_sizeButton = " << m_sizeButton;
+//      //dumpcontext << "\nm_sizeImage = " << m_sizeImage;
+//
+//      ////      if (dumpcontext.GetDepth() > 0)
+//      ////      {
+//      ////#ifdef WINDOWS_DESKTOP
+//      ////         toolbar* pBar = (toolbar*)this;
+//      ////         LRESULT nCount = pBar->default_window_procedure(TB_BUTTONCOUNT, 0, 0);
+//      ////         for (index i = 0; i < nCount; i++)
+//      ////         {
+//      ////            TBBUTTON button;
+//      ////            _GetButton(i, &button);
+//      ////            dumpcontext << "\ntoolbar button[" << i << "] = {";
+//      ////            dumpcontext << "\n\tnID = " << button.idCommand;
+//      ////            dumpcontext << "\n\tnStyle = " << MAKELONG(button.fsStyle, button.fsState);
+//      ////            if (button.fsStyle & TBSTYLE_SEP)
+//      ////               dumpcontext << "\n\tiImage (separator width) = " << button.iBitmap;
+//      ////            else
+//      ////               dumpcontext <<"\n\tiImage (bitmap image index) = " << button.iBitmap;
+//      ////            dumpcontext << "\n}";
+//      ////         }
+//      ////#else
+//      ////         throw ::exception(todo);
+//      ////
+//      ////#endif
+//      ////      }
+//
+//      //dumpcontext << "\n";
+//   }
 
 
    // IMPLEMENT_DYNAMIC(toolbar, ::user::control_bar)

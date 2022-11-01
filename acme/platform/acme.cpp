@@ -44,10 +44,6 @@ critical_section * factory_critical_section() { return &g_criticalsectionFactory
 
 
 
-::critical_section g_criticalsectionChildren;
-
-::critical_section * children_critical_section() { return &g_criticalsectionChildren; }
-
 
 #if !defined(WINDOWS)
 

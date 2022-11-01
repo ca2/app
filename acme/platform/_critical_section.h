@@ -21,8 +21,6 @@ CLASS_DECL_ACME ::critical_section * ref_dbg_critical_section();
 
 CLASS_DECL_ACME ::critical_section * factory_critical_section();
 
-CLASS_DECL_ACME ::critical_section * children_critical_section();
-
 CLASS_DECL_ACME ::critical_section * demangle_critical_section();
 
 

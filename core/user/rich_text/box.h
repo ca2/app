@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/rectangle.h"
 #include "span.h"
 
 

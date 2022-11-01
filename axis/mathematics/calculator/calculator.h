@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/platform/department.h"
+
+
 namespace calculator
 {
 
@@ -15,7 +18,7 @@ namespace calculator
 
 
       calculator();
-      virtual ~calculator();
+      ~calculator() override;
 
 
       virtual void initialize(::particle * pparticle) ;

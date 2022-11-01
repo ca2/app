@@ -14,9 +14,13 @@
 #include "Screen.h"
 #include "Window.h"
 #include "Popup.h"
+#include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/user/user/interaction.h"
 #include "aura/platform/context.h"
+#include "nano2d/draw2d_context.h"
+
 
 //
 //#if defined(EMSCRIPTEN)

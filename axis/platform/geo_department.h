@@ -80,7 +80,7 @@ namespace geo
       double_array                                       m_daLon;
       double_array                                       m_daLat;
 
-      string_map < ::pointer<openweather_city >>        m_mapCity;
+      string_map < openweather_city * >                  m_mapCity;
 
 
       department();

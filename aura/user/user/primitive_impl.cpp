@@ -619,7 +619,7 @@ namespace user
    }
 
 
-   bool primitive_impl::_is_window() const
+   bool primitive_impl::_is_window()
    {
 
       return false;
@@ -1195,7 +1195,7 @@ namespace user
    }
 
 
-   bool primitive_impl::is_ascendant(const ::user::primitive * puiIsAscendant, bool bIncludeSelf) const
+   bool primitive_impl::is_ascendant(::user::element * puiIsAscendant, bool bIncludeSelf)
    {
 
       if (::is_null(puiIsAscendant))
@@ -1210,7 +1210,7 @@ namespace user
    }
 
 
-   bool primitive_impl::is_parent(const ::user::primitive * puiIsParent) const
+   bool primitive_impl::is_parent(::user::element * puiIsParent)
    {
 
       if (puiIsParent == nullptr)
@@ -1225,7 +1225,7 @@ namespace user
    }
 
 
-   bool primitive_impl::is_child(const ::user::primitive * puiIsChild) const
+   bool primitive_impl::is_child(::user::element * puiIsChild)
    {
 
       if (puiIsChild == nullptr)
@@ -1242,10 +1242,10 @@ namespace user
    }
 
 
-   bool primitive_impl::is_descendant(const ::user::primitive * puiIsDescendant, bool bIncludeSelf) const
+   bool primitive_impl::is_descendant(::user::element * puiIsDescendant, bool bIncludeSelf)
    {
 
-      const ::user::primitive * puiProbe;
+      ::user::element * puiProbe;
 
       if (bIncludeSelf)
       {
@@ -1286,7 +1286,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::get_wnd() const
+   ::user::interaction * primitive_impl::get_wnd()
    {
 
       if (!m_puserinteraction)
@@ -1301,7 +1301,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::get_wnd(::u32 nCmd) const
+   ::user::interaction * primitive_impl::get_wnd(::u32 nCmd)
    {
 
       if (!m_puserinteraction)
@@ -1333,7 +1333,7 @@ namespace user
    //}
 
 
-   ::user::interaction * primitive_impl::get_parent() const
+   ::user::interaction * primitive_impl::get_parent()
    {
 
       if (!m_puserinteraction)
@@ -1348,7 +1348,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::get_owner() const
+   ::user::interaction * primitive_impl::get_owner()
    {
 
       if (!m_puserinteraction)
@@ -1363,7 +1363,7 @@ namespace user
    }
 
 
-   ::user::frame * primitive_impl::frame() const
+   ::user::frame * primitive_impl::frame()
    {
 
       if (!m_puserinteraction)
@@ -1393,7 +1393,7 @@ namespace user
    //}
 
 
-   ::user::interaction * primitive_impl::get_parent_owner() const
+   ::user::interaction * primitive_impl::get_parent_owner()
    {
 
       if (!m_puserinteraction)
@@ -1408,7 +1408,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::get_parent_or_owner() const
+   ::user::interaction * primitive_impl::get_parent_or_owner()
    {
 
       if (!m_puserinteraction)
@@ -1423,7 +1423,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::get_top_level_owner() const
+   ::user::interaction * primitive_impl::get_top_level_owner()
    {
 
       if (!m_puserinteraction)
@@ -1438,7 +1438,7 @@ namespace user
    }
 
 
-   ::user::frame * primitive_impl::top_level_frame() const
+   ::user::frame * primitive_impl::top_level_frame()
    {
 
       if (!m_puserinteraction)
@@ -2172,13 +2172,13 @@ namespace user
    }
 
 
-   void primitive_impl::redraw_add(::object * point_i32)
+   void primitive_impl::redraw_add(::particle * pparticle)
    {
 
    }
 
 
-   void primitive_impl::redraw_erase(::object * point_i32)
+   void primitive_impl::redraw_erase(::particle * pparticle)
    {
 
    }
@@ -2437,7 +2437,7 @@ namespace user
 #endif
 
 
-   ::user::interaction * primitive_impl::top_level() const
+   ::user::interaction * primitive_impl::top_level()
    {
       
       return m_puserinteraction->m_puserinteractionTopLevel;
@@ -2445,7 +2445,7 @@ namespace user
    }
 
 
-   ::user::frame * primitive_impl::parent_frame() const
+   ::user::frame * primitive_impl::parent_frame()
    {
       
       return m_puserinteraction->m_puserframeParent;
@@ -2461,7 +2461,7 @@ namespace user
    }
 
 
-   ::aura::application * primitive_impl::get_app() const
+   ::aura::application * primitive_impl::get_app()
    {
 
       return m_pcontext ? m_pcontext->m_pauraapplication : nullptr;
@@ -2469,7 +2469,7 @@ namespace user
    }
 
 
-   ::aura::session * primitive_impl::get_session() const
+   ::aura::session * primitive_impl::get_session()
    {
 
       return m_pcontext ? m_pcontext->m_paurasession : nullptr;
@@ -2477,7 +2477,7 @@ namespace user
    }
 
 
-   ::aura::system * primitive_impl::get_system() const
+   ::aura::system * primitive_impl::get_system()
    {
 
       return acmesystem() ? acmesystem()->m_paurasystem : nullptr;

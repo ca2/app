@@ -55,9 +55,9 @@ namespace user
       ~list() override;
 
 
-      inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
-      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
-      inline ::core::system* get_system() const { return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; }
+      ::core::application* get_app();
+      ::core::session* get_session();
+      ::core::system* get_system();
 
 
 
@@ -379,7 +379,7 @@ namespace user
 
       virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool keyboard_focus_is_focusable() const override;
+      virtual bool keyboard_focus_is_focusable() override;
 
       DECLARE_MESSAGE_HANDLER(_001OnVScroll);
       DECLARE_MESSAGE_HANDLER(_001OnHScroll);

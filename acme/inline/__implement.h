@@ -2,8 +2,11 @@
 //#include "__apps.inl"
 
 
+
 #include "acme/operating_system.h"
 #include "acme/platform/system_setup.h"
+
+#include "acme/platform/acme.h"
 
 #ifdef CUBE
 #include "operating_system/appconfig.h"
@@ -86,9 +89,17 @@ int main(int argc, char * argv[], char * envp[])
 #endif
 {
 
-   auto psubsystem = __new(subsystem);
+//   acme::acme acme;
+//
+//   auto psubsystem = __new(subsystem);
+//
+//   auto pmainhold = __new(main_hold);
 
-   auto pmainhold = __new(main_hold);
+   ::acme::acme acme;
+
+   subsystem subsystem;
+
+   main_hold mainhold;
 
    #ifdef WINDOWS
 

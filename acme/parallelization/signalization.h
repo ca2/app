@@ -13,7 +13,7 @@ namespace parallelization
 
 
    class CLASS_DECL_ACME signalization :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

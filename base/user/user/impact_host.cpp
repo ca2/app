@@ -2,6 +2,8 @@
 #include "frame_window.h"
 #include "impact.h"
 #include "impact_host.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
 #include "base/platform/application.h"
 #include "place_holder.h"
 #include "document.h"
@@ -352,7 +354,7 @@ namespace user
 
       auto papp = get_app();
 
-      auto pimpactcreator = papp->cast< ::user::impact_creator>();
+      ::pointer < ::user::impact_creator > pimpactcreator = papp;
 
       if (pimpactcreator->impact_creator_create_impact(pimpactdata))
       {

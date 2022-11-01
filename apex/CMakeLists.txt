@@ -590,7 +590,7 @@ list(APPEND apex_source
         future.h
         id.h
         library.h
-        message.h
+        #message.h
         procedure.h
         #update.h
         user.h)

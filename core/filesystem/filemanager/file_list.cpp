@@ -3,6 +3,7 @@
 #include "data.h"
 #include "document.h"
 #include "file_list.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/platform/timer.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
@@ -91,20 +92,20 @@ namespace filemanager
    }
 
 
-   void file_list::assert_ok() const
-   {
-
-      ::user::impact::assert_ok();
-
-   }
-
-
-   void file_list::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::impact::dump(dumpcontext);
-
-   }
+//   void file_list::assert_ok() const
+////   {
+////
+////      ::user::impact::assert_ok();
+////
+////   }
+////
+////
+////   void file_list::dump(dump_context & dumpcontext) const
+////   {
+////
+////      ::user::impact::dump(dumpcontext);
+////
+////   }
 
 
    bool file_list::on_click(::item * pitem)
@@ -157,7 +158,7 @@ namespace filemanager
    void file_list::RenameFile(i32 iLine, string &wstrNameNew, const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(fs_list()->mutex());
+      synchronous_lock synchronouslock(fs_list()->synchronization());
 
       ::file::path filepath = fs_list_item(iLine)->final_path();
 
@@ -177,7 +178,7 @@ namespace filemanager
 
       ::pointer<::message::mouse>pcontextmenu(pmessage);
 
-      synchronous_lock synchronouslock(fs_list()->mutex());
+      synchronous_lock synchronouslock(fs_list()->synchronization());
 
       index iItem;
 
@@ -329,7 +330,7 @@ namespace filemanager
       if (ptimer->m_uEvent == 888888)
       {
 
-         auto psession = get_session();
+         auto psession = ::user::list::get_session();
 
          if (filemanager_data()->m_bSetBergedgeTopicFile)
          {

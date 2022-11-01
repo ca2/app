@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
 #include "frame_window.h"
+#include "acme/constant/message.h"
+#include "acme/constant/id.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/display.h"
@@ -1368,7 +1370,7 @@ namespace experience
    }
 
 
-   bool frame_window::is_full_screen_enabled() const
+   bool frame_window::is_full_screen_enabled()
    {
 
       return m_bFullScreenEnable;
@@ -1485,7 +1487,7 @@ namespace experience
             INFORMATION("e_message_mouse_move during window move ignored!!");
 
          }
-         else if (pmouse->m_eflagMessage & ::message::flag_synthesized)
+         else if (pmouse->m_eflagMessage & ::message::e_flag_synthesized)
          {
 
             INFORMATION("synthesized e_message_mouse_move ignored!!");

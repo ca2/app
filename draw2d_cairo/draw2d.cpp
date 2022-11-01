@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "draw2d.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/primitive/memory.h"
 
 

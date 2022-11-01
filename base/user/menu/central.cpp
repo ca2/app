@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "central.h"
-#include "base/platform/system.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/platform/node.h"
 #include "aqua/xml/document.h"
 #include "aura/graphics/write_text/font.h"
@@ -8,6 +8,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/imaging.h"
+#include "base/platform/system.h"
 
 
 namespace user

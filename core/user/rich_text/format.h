@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 namespace user
 {
 
@@ -10,7 +13,7 @@ namespace user
 
 
       class CLASS_DECL_CORE format :
-         virtual public object
+         virtual public ::object
       {
       public:
 

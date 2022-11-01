@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/platform/library.h"
+
+
 namespace filehandler
 {
 
@@ -12,7 +15,7 @@ namespace filehandler
 
 
       library();
-      virtual ~library();
+      ~library() override;
 
 
       virtual bool handles_extension(const ::string & pszExtension);

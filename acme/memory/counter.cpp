@@ -5,7 +5,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/primitive/particle_factory.h"
+#include "acme/primitive/primitive/factory.h"
 
 
 int g_iMemoryCounters = -1;
@@ -23,7 +23,6 @@ bool memory_counter_on()
    return g_iMemoryCountersStartable && g_iMemoryCounters;
 
 }
-
 
 
 bool initialize_memory_counter(::particle * pparticle)
@@ -49,7 +48,6 @@ bool initialize_memory_counter(::particle * pparticle)
    return true;
 
 }
-
 
 
 //::file::path memory_counter_base_path(::matter* pmatter)

@@ -323,31 +323,31 @@ enum enum_trace_level
 };
 
 
-enum enum_object : i64
-{
-
-
-   e_object_none,
-   aaa_want_to_erase_object_locked = 1 << 10,
-   aaa_want_to_erase_object_shared = 1 << 11,
-   aaa_want_to_erase_object_read_only_link = 1 << 12,
-   e_object_log_disable = 1 << 13,
-   e_object_property_set_modified = 1 << 14,
-   e_object_default_io_exchange = 1 << 15,
-   //e_object_alertable_wait = 1 << 16,
-   e_object_any_hook = 1 << 17,
-   //e_object_any_hook = 1 << 17,
-   //e_object_any_update = (1 << 18) | e_object_any_hook,
-   //e_object_composite = 1 << 19,
-#if OBJECT_TYPE_COUNTER
-   e_object_object_type_counter = 1 << 20,
-#endif
-   e_object_synchronous = 1 << 21,
-   e_object_shared = 1 << 22,
-
-
-};
-
+//enum enum_object : i64
+//{
+//
+//
+//   e_object_none,
+//   aaa_want_to_erase_object_locked = 1 << 10,
+//   aaa_want_to_erase_object_shared = 1 << 11,
+//   aaa_want_to_erase_object_read_only_link = 1 << 12,
+//   e_object_log_disable = 1 << 13,
+//   e_object_property_set_modified = 1 << 14,
+//   e_object_default_io_exchange = 1 << 15,
+//   //e_object_alertable_wait = 1 << 16,
+//   e_object_any_hook = 1 << 17,
+//   //e_object_any_hook = 1 << 17,
+//   //e_object_any_update = (1 << 18) | e_object_any_hook,
+//   //e_object_composite = 1 << 19,
+//#if OBJECT_TYPE_COUNTER
+//   e_object_object_type_counter = 1 << 20,
+//#endif
+//   e_object_synchronous = 1 << 21,
+//   e_object_shared = 1 << 22,
+//
+//
+//};
+//
 
 #define ALOG_CATEGORY trace_category_general
 

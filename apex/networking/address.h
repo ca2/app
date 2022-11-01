@@ -19,7 +19,7 @@ namespace networking
 
 
    class CLASS_DECL_APEX address :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

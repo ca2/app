@@ -1,9 +1,8 @@
 #include "framework.h"
-
+#include "control_box_button.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "control_box_button.h"
 #include "aura/user/user/frame.h"
 #include "base/user/experience/control_box.h"
 
@@ -215,7 +214,7 @@ namespace experience_core
 
 
 
-   bool control_box_button::keyboard_focus_is_focusable() const
+   bool control_box_button::keyboard_focus_is_focusable()
    {
 
       return false;

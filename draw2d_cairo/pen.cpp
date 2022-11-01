@@ -20,12 +20,12 @@ namespace draw2d_cairo
    }
 
 
-   void pen::dump(dump_context & dumpcontext) const
-   {
-
-      object::dump(dumpcontext);
-
-   }
+//   void pen::dump(dump_context & dumpcontext) const
+//   {
+//
+//      object::dump(dumpcontext);
+//
+//   }
 
 
    bool pen::create(::draw2d::graphics * pgraphics)

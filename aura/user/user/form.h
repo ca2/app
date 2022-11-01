@@ -27,10 +27,10 @@ namespace user
       ~form() override;
 
 
-      ::aura::application* get_app() const;
-      ::aura::session* get_session() const;
-      ::aura::system* get_system() const;
-      ::user::user * user() const;
+      ::aura::application* get_app();
+      ::aura::session* get_session();
+      ::aura::system* get_system();
+      ::user::user * user();
 
 
       virtual void initialize(::particle * pparticle) override;

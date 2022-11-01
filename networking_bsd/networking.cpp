@@ -2,7 +2,11 @@
 #include "framework.h"
 #include "networking.h"
 #include "sockets/ssl/initializer.h"
+#include "acme/array.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/duration/_binary_stream.h"
+#include "acme/primitive/string/parse.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
 #define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
@@ -1026,7 +1030,7 @@ namespace networking_bsd
          }
          if (addra.is_empty())
             return false;
-         ::memcpy_dup(&sa, &::papaya::array::pick_random(addra)->sin6_addr, sizeof(sa));
+         ::memcpy_dup(&sa, &::acme::array::pick_random(addra)->sin6_addr, sizeof(sa));
          freeaddrinfo(res);
          return true;
       }

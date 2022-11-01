@@ -3,9 +3,10 @@
 #include "operation_document.h"
 #include "operation_thread.h"
 #include "operation_list_impact.h"
-#include "base/user/user/split_layout.h"
 #include "operation_info_impact.h"
+#include "acme/constant/message.h"
 #include "aura/message/user.h"
+#include "base/user/user/split_layout.h"
 
 
 namespace filemanager

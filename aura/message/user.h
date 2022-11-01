@@ -35,7 +35,7 @@ namespace message
 
       ::user::system * get_user_create();
 
-      ::element * get_impact_data();
+      ::particle * get_impact_data();
 
 
    };

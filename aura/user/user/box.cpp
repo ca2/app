@@ -90,7 +90,7 @@ namespace user
    }
 
 
-   ::e_display box::window_stored_display() const
+   ::e_display box::window_stored_display()
    {
 
       auto edisplayStored = m_windowrectangle.m_edisplay;
@@ -100,7 +100,7 @@ namespace user
    }
 
 
-   ::e_display box::window_previous_display() const
+   ::e_display box::window_previous_display()
    {
 
       auto edisplayPrevious = m_windowrectangle.m_edisplayPrevious;

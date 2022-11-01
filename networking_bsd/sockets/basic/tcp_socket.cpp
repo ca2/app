@@ -3,6 +3,7 @@
 #include "networking_bsd/address.h"
 #include "networking_bsd/networking.h"
 #include "socket_handler.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/crypto/crypto.h"
 #include "apex/platform/system.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -1153,7 +1154,9 @@ namespace sockets_bsd
       // if all blocks are sent, reset m_wfds
 
       bool repeat = false;
+
       memsize sz = m_transfer_limit ? GetOutputLength() : 0;
+
       do
       {
          
@@ -1182,7 +1185,7 @@ namespace sockets_bsd
             if(!left)
             {
 
-               erase(it);
+               m_obuf.erase(it);
 
                if(!m_obuf.get_size())
                {
@@ -2238,7 +2241,7 @@ namespace sockets_bsd
 
          m_psslcontext->m_pclientcontext = __new (ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method()));
 
-         m_psslcontext->m_pclientcontext->initialize(get_app());
+         m_psslcontext->m_pclientcontext->initialize(m_pcontext);
 
       }
 

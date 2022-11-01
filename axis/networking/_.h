@@ -5,4 +5,14 @@
 //#include "email_department.h"
 
 
+namespace networking
+{
+
+
+   class email_department;
+
+
+} // namespace networking
+
+
 

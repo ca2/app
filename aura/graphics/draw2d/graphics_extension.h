@@ -2,6 +2,7 @@
 
 
 #include "acme/primitive/geometry2d/size_array.h"
+#include "acme/primitive/primitive/object.h"
 
 
 namespace draw2d

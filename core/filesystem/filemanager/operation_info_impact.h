@@ -22,7 +22,7 @@ namespace filemanager
       operation_info_impact();
 
       // void assert_ok() const override;
-      void dump(dump_context & action_context) const override;
+      //void dump(dump_context & action_context) const override;
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

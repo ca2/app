@@ -61,6 +61,23 @@ enum enum_flag : u64
    e_flag_own_synchronization = 1 << 26,
    e_flag_already_exists = 1 << 27,
 
+   //e_object_none,
+   //aaa_want_to_erase_object_locked = 1 << 10,
+   //aaa_want_to_erase_object_shared = 1 << 11,
+   //aaa_want_to_erase_object_read_only_link = 1 << 12,
+   e_flag_log_disable = 1 << 28,
+   e_flag_property_set_modified = 1 << 29,
+   e_flag_default_io_exchange = 1 << 30,
+   //e_object_alertable_wait = 1 << 16,
+   e_flag_any_hook = 1ll << 31,
+   //e_object_any_hook = 1 << 17,
+   //e_object_any_update = (1 << 18) | e_object_any_hook,
+   //e_object_composite = 1 << 19,
+#if OBJECT_TYPE_COUNTER
+   e_flag_object_type_counter = 1ll << 32,
+#endif
+   e_flag_synchronous = 1ll <<33 ,
+   e_flag_shared = 1ll << 34,
 
 };
 

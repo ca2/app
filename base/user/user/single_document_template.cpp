@@ -1,9 +1,12 @@
 ﻿#include "framework.h"
-#include "aura/user/user/wait_cursor.h"
 #include "single_document_template.h"
 #include "document.h"
 #include "impact.h"
 #include "frame_window.h"
+#include "acme/constant/id.h"
+#include "apex/platform/application.h"
+#include "apex/platform/create.h"
+#include "aura/user/user/wait_cursor.h"
 
 
 namespace user
@@ -354,35 +357,35 @@ namespace user
    }
 
 
-   void single_document_template::dump(dump_context & dumpcontext) const
-   {
-
-      impact_system::dump(dumpcontext);
-
-      //if (m_pdocument)
-      //{
-
-      //   dumpcontext << "with ::user::document: " << (void*)m_pdocument;
-
-      //}
-      //else
-      //{
-
-      //   dumpcontext << "with no ::user::document";
-
-      //}
-
-      //dumpcontext << "\n";
-
-   }
-
-
-   void single_document_template::assert_ok() const
-   {
-
-      impact_system::assert_ok();
-
-   }
+//   void single_document_template::dump(dump_context & dumpcontext) const
+//   {
+//
+//      impact_system::dump(dumpcontext);
+//
+//      //if (m_pdocument)
+//      //{
+//
+//      //   dumpcontext << "with ::user::document: " << (void*)m_pdocument;
+//
+//      //}
+//      //else
+//      //{
+//
+//      //   dumpcontext << "with no ::user::document";
+//
+//      //}
+//
+//      //dumpcontext << "\n";
+//
+//   }
+//
+//
+//   void single_document_template::assert_ok() const
+//   {
+//
+//      impact_system::assert_ok();
+//
+//   }
 
 
 } // namespace user

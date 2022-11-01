@@ -146,7 +146,7 @@ namespace acme
    }
 
 
-   ::pointer<::element>node::create_quit_element(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
+   ::pointer<::particle>node::create_quit_element(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
    {
       
       return nullptr;
@@ -157,7 +157,7 @@ namespace acme
    void node::implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem)
    {
       
-      m_pelementQuit = create_quit_element(pnode, psystem);
+      m_pparticleQuit = create_quit_element(pnode, psystem);
 
       if(psystem->m_pfnImplement)
       {

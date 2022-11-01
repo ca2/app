@@ -2,7 +2,11 @@
 #include "server.h"
 #include "storage.h"
 #include "simpledb.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/context.h"
+#include "acme/platform/system.h"
 #include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/platform/context.h"
 #include "axis/database/database/database.h"
 
 
@@ -69,7 +73,7 @@ namespace simpledb
 
       //}
 
-      pfactoryDatabase->__construct(m_pdatabaseLocal);
+      pfactoryDatabase->__construct(this, m_pdatabaseLocal);
 
       //if (!estatus)
       //{

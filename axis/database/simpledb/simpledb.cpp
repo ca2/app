@@ -5,6 +5,12 @@
 #include "storage.h"
 #include "thread.h"
 #include "thread_localdatabase.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/networking/url_department.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/datetime/department.h"
+#include "apex/networking/http/context.h"
+#include "apex/platform/session.h"
 #include "axis/database/database/database.h"
 #include "axis/database/database/database.h"
 #include "axis/platform/application.h"
@@ -155,9 +161,9 @@ namespace simpledb
 
          auto pdatabase = pserver->get_local_database();
 
-         class synchronization * pmutex = pdatabase->synchronization();
+         auto pparticleSynchronization = pdatabase->synchronization();
 
-         synchronous_lock slDatabase(pmutex);
+         synchronous_lock slDatabase(pparticleSynchronization);
 
       //retry_statement:
 

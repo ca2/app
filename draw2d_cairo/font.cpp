@@ -2,6 +2,7 @@
 #include "font.h"
 #include "draw2d.h"
 #include "graphics.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/host.h"
 
 
@@ -155,12 +156,12 @@ namespace draw2d_cairo
    }
 
 
-   void font::dump(dump_context & dumpcontext) const
-   {
-
-      ::write_text::font::dump(dumpcontext);
-
-   }
+//   void font::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::write_text::font::dump(dumpcontext);
+//
+//   }
 
 
    void font::create(::draw2d::graphics * pgraphics, i8 iCreate)

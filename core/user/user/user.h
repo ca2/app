@@ -3,6 +3,7 @@
 
 #include "base/user/user/user.h"
 #include "base/user/user/impact_data.h"
+#include "core/filesystem/filemanager/component.h"
 
 
 namespace core
@@ -131,16 +132,16 @@ namespace core
 
 
       user();
-      virtual ~user();
+      ~user() override;
 
 
-      inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
-      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
-      inline ::core::system* get_system() const { return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; }
+      ::core::application* get_app();
+      ::core::session* get_session();
+      ::core::system* get_system();
 
 
 
-      virtual void destroy() override;
+      void destroy() override;
 
 
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style* pstyle, ::user::menu_item* pitem) override;

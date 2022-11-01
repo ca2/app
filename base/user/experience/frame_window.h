@@ -68,7 +68,7 @@ namespace experience
       void defer_save_window_placement() override;
 
       virtual void window_enable_full_screen(bool bEnable = true);
-      bool is_full_screen_enabled() const override;
+      bool is_full_screen_enabled() override;
 
 
       bool sketch_on_display() override;

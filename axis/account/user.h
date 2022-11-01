@@ -1,12 +1,19 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/primitive/string/string.h"
+#include "acme/primitive/datetime/earth_time.h"
+#include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/primitive/matter.h"
+
+
 namespace account
 {
 
 
    class CLASS_DECL_AXIS user :
-      virtual public object
+      virtual public ::matter
    {
    public:
 
@@ -31,7 +38,7 @@ namespace account
       i32                                       m_iImpact;
       string                                    m_strForm;
       bool                                      m_bDeferRegistration;
-      string_array                                   m_straSiblingServers;
+      string_array                              m_straSiblingServers;
       
       string                                    m_strHost;
       ::file::path                              m_pathUrl;
@@ -42,11 +49,9 @@ namespace account
 
       string                                    m_strSalt;
       
-      
-
 
       user();
-      virtual ~user();
+      ~user() override;
       
 
       virtual void initialize(::particle * pparticle) override;

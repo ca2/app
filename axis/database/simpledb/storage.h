@@ -2,6 +2,8 @@
 
 
 #include "item.h"
+#include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/primitive/property_object.h"
 
 
 namespace simpledb
@@ -12,7 +14,7 @@ namespace simpledb
 
 
    class CLASS_DECL_AXIS storage :
-      virtual public ::object
+      virtual public ::property_object
    {
    public:
 
@@ -31,7 +33,7 @@ namespace simpledb
 
 
       storage();
-      ~storage();
+      ~storage() override;
 
 
       virtual void initialize_simpledb_storage(server * pserver);

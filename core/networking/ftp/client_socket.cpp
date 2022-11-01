@@ -51,9 +51,12 @@
 #include "output_stream.h"
 #include "file.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/error.h"
 #include "apex/networking/sockets/basic/listen_socket.h"
 #include "apex/networking/sockets/transfer_socket.h"
 #include "apex/networking/sockets/base/socket_handler.h"
+#include "apex/platform/system.h"
 #include <openssl/x509.h>
 
 

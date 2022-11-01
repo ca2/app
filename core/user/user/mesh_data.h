@@ -3,6 +3,7 @@
 
 #include "mesh_item.h"
 #include "aura/user/user/range.h"
+#include "acme/primitive/data/data.h"
 
 
 namespace user
@@ -13,7 +14,7 @@ namespace user
 
 
    class CLASS_DECL_CORE mesh_data :
-      public ::data::data
+      virtual public ::data::data
    {
    public:
 

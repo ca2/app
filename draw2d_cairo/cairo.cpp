@@ -1,6 +1,9 @@
 #include "framework.h"
+#include "acme/parallelization/mutex.h"
+#include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/primitive/factory.h"
 #include "aura/graphics/draw2d/matrix.h"
-//#include "aura/platform/static_start.h"
 
 
 static ::pointer< ::mutex > s_pmutex = nullptr;
@@ -23,7 +26,7 @@ extern string_to_string *      g_pmapFontPath;
 
 #endif
 
-::pointer< ::mutex > cairo_mutex()
+::particle * cairo_mutex()
 {
 
    return s_pmutex;
@@ -35,11 +38,11 @@ extern string_to_string *      g_pmapFontPath;
 void init_cairo_mutex()
 {
 
-   s_pmutex = memory_new ::pointer < ::mutex >();
+   __raw_construct(s_pmutex);
 
 #ifdef LINUX
 
-   g_pmutexFc = memory_new ::pointer < ::mutex >();
+   __raw_construct(g_pmutexFc);
 
    g_pmapFontPath = memory_new string_to_string();
 
@@ -71,11 +74,11 @@ void term_cairo_mutex()
 
    ::acme::del(g_pmapFontPath);
 
-   ::acme::del(g_pmutexFc);
+   ::release(g_pmutexFc);
 
 #endif
 
-   ::acme::del(s_pmutex);
+   ::release(s_pmutex);
 
 }
 

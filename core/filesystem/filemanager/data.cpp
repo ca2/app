@@ -4,6 +4,7 @@
 #include "apex/database/_binary_stream.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/create.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/user/user/interaction.h"
@@ -60,18 +61,18 @@ namespace filemanager
    }
 
 
-   void data::assert_ok() const
-   {
-
-
-   }
-
-
-   void data::dump(dump_context& dumpcontext) const
-   {
-
-
-   }
+//   void data::assert_ok() const
+//   {
+//
+//
+//   }
+//
+//
+//   void data::dump(dump_context& dumpcontext) const
+//   {
+//
+//
+//   }
 
 
    void data::initialize_filemanager_data(::particle * pparticle)
@@ -276,7 +277,7 @@ namespace filemanager
 
       string strPath;
 
-      ::pointer<::core::application>papp = pparticle->get_app();
+      ::pointer<::core::application>papp = pparticle->acmeapplication();
 
       auto pcontext = m_pcontext;
 
@@ -357,7 +358,7 @@ namespace filemanager
 
       string strPath(path);
 
-      ::pointer<::core::application>papp = pparticle->get_app();
+      ::pointer<::core::application>papp = pparticle->acmeapplication();
 
       if (::str().begins(path, "uifs://")
          || ::str().begins(path, "fs://"))

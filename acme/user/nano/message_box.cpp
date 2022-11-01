@@ -422,7 +422,7 @@ public:
 };
 
 
-CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::particle * pparticle, const char * pszMessage, const char * pszTitle, enum_message_box emessagebox, const char * pszDetails)
+CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::particle * pparticle, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const char * pszDetails)
 {
 
    auto pmessagebox = __new(message_box);

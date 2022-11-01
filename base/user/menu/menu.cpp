@@ -1,17 +1,20 @@
 ﻿#include "framework.h"
 #include "menu.h"
 #include "item.h"
-//#include "acme/constant/id.h"
 #include "aqua/xml/document.h"
 #include "aqua/xml/xml.h"
+#include "acme/constant/id.h"
 #include "acme/constant/timer.h"
-//#include "aura/astr.h"
+#include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/draw2d.h"
+#include "acme/platform/sequencer.h"
 #include "acme/platform/timer.h"
 #include "aura/platform/application.h"
 #include "aura/message/user.h"
 #include "aura/user/menu/command.h"
 #include "aura/user/user/button.h"
+#include "aura/user/user/calc_size.h"
 #include "base/user/user/style.h"
 #include "base/platform/session.h"
 #include "base/user/user/user.h"
@@ -297,12 +300,12 @@ namespace user
          if (m_puserinteractionParent)
          {
 
-            post_procedure([this]()
+            interaction_post([this]()
             {
 
                set_foreground_window();
 
-               post_procedure([this]()
+               interaction_post([this]()
                   {
 
                      set_active_window();
@@ -438,7 +441,7 @@ namespace user
 
       m_pchannelNotify = pchannelNotify;
 
-      m_pmaterialCommandHandler = pchannelNotify;
+      m_pmatterCommandHandler = pchannelNotify;
 
       auto psystem = acmesystem()->m_paurasystem;
 
@@ -1585,7 +1588,7 @@ namespace user
 
       //}
 
-      pinteraction->m_pmaterialCommandHandler = this;
+      pinteraction->m_pmatterCommandHandler = this;
       
       pinteraction->add_handler(this);
 
@@ -1622,14 +1625,14 @@ namespace user
    void menu::handle_command(const ::atom& atom)
    {
 
-      if (m_pmaterialCommandHandler)
+      if (m_pmatterCommandHandler)
       {
 
          defer_close();
 
          //auto estatus = 
          
-         m_pmaterialCommandHandler->handle_command(atom);
+         m_pmatterCommandHandler->handle_command(atom);
 
          //if (!estatus)
          //{
@@ -1647,11 +1650,7 @@ namespace user
    }
 
 
-
 } // namespace user
-
-
-
 
 
 

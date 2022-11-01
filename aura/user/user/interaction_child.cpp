@@ -656,7 +656,7 @@ namespace user
    }
 
 
-   bool interaction_child::_is_window() const
+   bool interaction_child::_is_window()
    {
 
       //if (!m_bUserElementOk)
@@ -830,7 +830,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_child::get_owner() const
+   ::user::interaction * interaction_child::get_owner()
    {
 
       if (m_puserprimitiveOwner != nullptr)

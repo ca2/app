@@ -1,9 +1,9 @@
 ﻿#include "framework.h"
+#include "image.h"
+#include "acme/parallelization/single_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
-
-#include "image.h"
 #include "axis/html/html/data.h"
 #include "axis/html/html/core_data.h"
 #include "axis/html/element/element.h"
@@ -55,7 +55,7 @@ namespace html
       }
 
 
-      void image::implement_phase1(html_data * pdata, ::html::particle * pparticle)
+      void image::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
          m_bHasChar = true;
@@ -102,7 +102,7 @@ namespace html
          if (m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
 
-            single_lock lockImage(mutex());
+            single_lock lockImage(synchronization());
 
             if (lockImage.lock(0_s))
             {
@@ -150,7 +150,7 @@ namespace html
          if (m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
             
-            single_lock lockImage(mutex());
+            single_lock lockImage(synchronization());
 
             if (lockImage.lock(duration::zero()))
             {

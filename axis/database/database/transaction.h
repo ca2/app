@@ -6,7 +6,7 @@ namespace database
 
 
    class CLASS_DECL_AXIS transaction :
-      virtual public object
+      virtual public ::particle
    {
    public:
 
@@ -16,7 +16,7 @@ namespace database
 
 
       transaction(database* pdatabase);
-      virtual ~transaction();
+      ~transaction() override;
 
 
       virtual void rollback();

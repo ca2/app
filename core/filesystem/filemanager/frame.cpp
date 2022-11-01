@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "frame.h"
 #include "tab_impact.h"
+#include "acme/constant/message.h"
 
 
 namespace filemanager

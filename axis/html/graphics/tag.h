@@ -3,6 +3,7 @@
 
 #include "attribute.h"
 #include "base.h"
+#include "acme/primitive/collection/address_array.h"
 
 
 namespace html

@@ -53,7 +53,7 @@ class payload;
 struct block;
 class property_set;
 class particle;
-class element;
+//class element;
 class matter;
 class exception_translator;
 class counter;
@@ -117,6 +117,19 @@ namespace file
 } // namespace file
 
 
+namespace factory
+{
+
+
+   class factory;
+
+   CLASS_DECL_ACME ::factory::factory * get_factory();
+
+
+} // namespace factory
+
+
+
 namespace data
 {
 
@@ -135,7 +148,7 @@ struct PAYLOAD_TAG { };
 struct ATOM_TAG { };
 struct STRING_TAG { };
 
-class handler;
+//class handler;
 class manager;
 class context;
 class topic;
@@ -206,7 +219,7 @@ namespace user
    class element;
    class primitive_impl;
 
-   class object;
+   //class object;
 
 
 } // namespace user
@@ -595,6 +608,7 @@ namespace handle
 
 
 struct system_time_t;
+
 
 
 

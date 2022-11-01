@@ -79,10 +79,12 @@ public:
 
 
    //object() : m_pmeta(nullptr) { }
-   object() { m_pobjectParentTask = nullptr; m_pcontext = nullptr; }
+   object() { m_pobjectParentTask = nullptr;
+   //   m_pcontext = nullptr;
+   }
    //object(::particle * pparticle);
    //object(const ::atom & atom):property_object(atom){ m_pobjectParentTask = nullptr; m_pcontext = nullptr; }
-   object(enum_default_initialization) : ::object() {  };
+   //object(enum_default_initialization) : ::object() {  };
    ~object() override;
 
 
@@ -560,7 +562,7 @@ public:
 
 
    ::pointer<task>fork(const ::procedure & procedure,
-      const ::element_array & elementaHold = {},
+      const ::particle_array & elementaHold = {},
       ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
@@ -700,7 +702,7 @@ public:
 
    ::task_pointer defer_branch(const ::atom& atom, const ::procedure & procedure, enum_priority epriority = e_priority_normal);
 
-   virtual element* get_taskpool_container() override;
+   virtual ::particle * get_taskpool_container() override;
 
    //object() : m_pmeta(nullptr) { }
    //object(::particle * pparticle);

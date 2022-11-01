@@ -7,12 +7,15 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/matter.h"
+
+
 namespace account
 {
    
    
    class CLASS_DECL_AXIS storage :
-      virtual public ::object
+      virtual public ::matter
    {
    public:
       

@@ -1,6 +1,8 @@
 ﻿#include "framework.h"
 #include "control_box_button.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/user/user/frame.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -231,7 +233,7 @@ namespace experience_tranquillum
    }
 
 
-   bool control_box_button::keyboard_focus_is_focusable() const
+   bool control_box_button::keyboard_focus_is_focusable()
    {
 
       //return false && ::user::button::keyboard_focus_is_focusable();

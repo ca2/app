@@ -1,9 +1,10 @@
 ﻿#include "framework.h"
 #include "folder_list_data.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "apex/database/_binary_stream.h"
+#include "apex/platform/application.h"
 #include "core/user/user/list.h"
-
 
 
 namespace filemanager
@@ -20,20 +21,6 @@ namespace filemanager
 
    folder_list_data::~folder_list_data()
    {
-
-   }
-
-
-   void folder_list_data::assert_ok() const
-   {
-
-
-   }
-
-
-   void folder_list_data::dump(dump_context& dumpcontext) const
-   {
-
 
    }
 

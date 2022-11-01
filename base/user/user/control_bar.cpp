@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 //#include "acme/operating_system.h"
 //#include "aura/operating_system/_user.h"
+#include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -1170,26 +1171,26 @@ namespace user
    // control_bar diagnostics
 
 
-   void control_bar::assert_ok() const
-   {
-      ::user::interaction::assert_ok();
-
-      ASSERT((m_dwStyle & CBRS_ALL) == m_dwStyle);
-   }
-
-   void control_bar::dump(dump_context & dumpcontext) const
-   {
-      ::user::interaction::dump(dumpcontext);
-
-      //dumpcontext << "\nm_cxLeftBorder = " << m_rectangleBorder.left;
-      //dumpcontext << "\nm_cxRightBorder = " << m_rectangleBorder.right;
-      //dumpcontext << "\nm_cyTopBorder = " << m_rectangleBorder.top;
-      //dumpcontext << "\nm_cyBottomBorder = " << m_rectangleBorder.bottom;
-      //dumpcontext << "\nm_cxDefaultGap = " << m_cxDefaultGap;
-      //dumpcontext << "\nm_bAutoDelete = " << m_bAutoDelete;
-
-      //dumpcontext << "\n";
-   }
+//   void control_bar::assert_ok() const
+//   {
+//      ::user::interaction::assert_ok();
+//
+//      ASSERT((m_dwStyle & CBRS_ALL) == m_dwStyle);
+//   }
+//
+//   void control_bar::dump(dump_context & dumpcontext) const
+//   {
+//      ::user::interaction::dump(dumpcontext);
+//
+//      //dumpcontext << "\nm_cxLeftBorder = " << m_rectangleBorder.left;
+//      //dumpcontext << "\nm_cxRightBorder = " << m_rectangleBorder.right;
+//      //dumpcontext << "\nm_cyTopBorder = " << m_rectangleBorder.top;
+//      //dumpcontext << "\nm_cyBottomBorder = " << m_rectangleBorder.bottom;
+//      //dumpcontext << "\nm_cxDefaultGap = " << m_cxDefaultGap;
+//      //dumpcontext << "\nm_bAutoDelete = " << m_bAutoDelete;
+//
+//      //dumpcontext << "\n";
+//   }
 
 
 

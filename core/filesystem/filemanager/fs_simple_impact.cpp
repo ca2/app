@@ -3,6 +3,13 @@
 #include "fs_simple_list_impact.h"
 #include "fs_simple_tree.h"
 #include "acme/handler/item.h"
+#include "acme/constant/message.h"
+#include "acme/networking/url_department.h"
+#include "acme/platform/context.h"
+#include "acme/platform/system.h"
+#include "apex/networking/http/context.h"
+#include "apex/networking/http/signal.h"
+#include "apex/platform/context.h"
 #include "core/user/user/tree.h"
 
 
@@ -45,15 +52,15 @@ namespace filemanager
 
 
 
-         void impact::assert_ok() const
-         {
-            ::user::split_impact::assert_ok();
-         }
-
-         void impact::dump(dump_context & dumpcontext) const
-         {
-            ::user::split_impact::dump(dumpcontext);
-         }
+//         void impact::assert_ok() const
+//         {
+//            ::user::split_impact::assert_ok();
+//         }
+//
+//         void impact::dump(dump_context & dumpcontext) const
+//         {
+//            ::user::split_impact::dump(dumpcontext);
+//         }
 
 
          void impact::on_message_destroy(::message::message * pmessage)

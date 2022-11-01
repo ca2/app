@@ -9,6 +9,9 @@ namespace data
    class tree_item_ptr_array;
 
 
+   class tree;
+
+
 } // namespace data
 
 

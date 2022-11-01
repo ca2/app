@@ -16,7 +16,7 @@ namespace user
 
 
    class CLASS_DECL_ACME drag :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

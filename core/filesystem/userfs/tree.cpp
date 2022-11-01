@@ -1,8 +1,12 @@
 #include "framework.h"
 #include "tree.h"
-#include "acme/platform/timer.h"
 #include "document.h"
 #include "item.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/platform/timer.h"
+#include "acme/platform/context.h"
+#include "acme/platform/system.h"
 #include "aura/user/user/interaction.h"
 
 
@@ -22,6 +26,31 @@ namespace userfs
    {
 
    }
+
+
+   ::core::application* tree::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+   }
+
+
+   ::core::session* tree::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
+
+
+   ::core::system* tree::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+
+   }
+
 
 
 #ifdef _DEBUG
@@ -83,15 +112,15 @@ namespace userfs
 #endif
 
 
-   void tree::assert_ok() const
-   {
-
-   }
-
-
-   void tree::dump(dump_context &) const
-   {
-   }
+//   void tree::assert_ok() const
+//   {
+//
+//   }
+//
+//
+//   void tree::dump(dump_context &) const
+//   {
+//   }
 
 
 

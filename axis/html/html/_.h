@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/collection/string_map.h"
+//#include "acme/primitive/collection/string_map.h"
 
 
 //
@@ -9,22 +9,15 @@
 //typedef string_map < status < ::color::color > > string_to_color;
 //class LiteHTMLEntityResolver;
 //
-//inline status < ::color::color > __indexed_color(::u32 u)
-//{
-//
-//	return status < ::color::color >(u, ::success_color_index);
-//
-//}
-//
 
 namespace html
 {
 
 
-   using string_to_color = string_map < status < ::color::color > >;
+   //using string_to_color = string_map < status < ::color::color > >;
 
 
-	using named_color = string_to_color;
+	//using named_color = string_to_color;
 
 
 	class core_data;

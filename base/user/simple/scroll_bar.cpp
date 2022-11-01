@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "scroll_bar.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"

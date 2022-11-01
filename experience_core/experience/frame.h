@@ -2,6 +2,7 @@
 
 
 #include "base/user/experience/frame.h"
+#include "acme/primitive/geometry2d/size.h"
 
 
 namespace experience_core
@@ -14,17 +15,17 @@ namespace experience_core
    public:
 
       //e_style                           m_pframewindow->m_estyle;
-      status < ::color::color >    m_colorFrameBorder;
-      status < ::color::color >    m_colorMoveableBorderHilight;
-      status < ::color::color >    m_colorMoveableBorderDkShadow;
-      status < ::color::color >    m_colorCaptionTextBk;
-      status < ::color::color >    m_colorCaptionText;
+      status < ::color::color >           m_colorFrameBorder;
+      status < ::color::color >           m_colorMoveableBorderHilight;
+      status < ::color::color >           m_colorMoveableBorderDkShadow;
+      status < ::color::color >           m_colorCaptionTextBk;
+      status < ::color::color >           m_colorCaptionText;
       ::draw2d::pen_pointer               m_ppenText1;
       ::draw2d::pen_pointer               m_ppenFace1;
       ::draw2d::pen_pointer               m_ppenHilight1;
       ::draw2d::pen_pointer               m_ppenShadow1;
       ::draw2d::pen_pointer               m_ppenDkShadow1;
-      status < ::color::color >    m_colorDkShadow;
+      status < ::color::color >           m_colorDkShadow;
       size_i32                            m_minSize;
 
       ::draw2d::pen_pointer               m_ppenHollow0;

@@ -4,6 +4,7 @@
 #include "axis/html/element/element.h"
 #include "axis/html/html/data.h"
 #include "axis/html/html/core_data.h"
+#include "axis/html/html/html.h"
 #include "axis/id.h"
 #include "axis/platform/session.h"
 #include "axis/user/user/user.h"
@@ -85,7 +86,7 @@ namespace html
    }
 
 
-   bool style::get_dimension(bool bParent, atom idName, const ::string & strSubClass, html_data * pdata, ::html::particle * pparticle, float & f)
+   bool style::get_dimension(bool bParent, atom idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, float & f)
    {
 
       f = 0.f;
@@ -134,7 +135,7 @@ namespace html
    }
 
 
-   bool style::get_surround_box(atom idName, const ::string & strSubClass, html_data * pdata, ::html::particle * pparticle, ::rectangle_f32 & rectangle)
+   bool style::get_surround_box(atom idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, ::rectangle_f32 & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -161,7 +162,7 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
 
-      ::pointer<::axis::session>psession = get_session();
+      ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
 
       auto puser = psession->user();
 
@@ -291,7 +292,7 @@ namespace html
    }
 
 
-   bool style::get_border_box(atom idName, const ::string & strSubClass, html_data * pdata, ::html::particle * pparticle, border & rectangle)
+   bool style::get_border_box(atom idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, border & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -336,7 +337,7 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
 
-      ::pointer<::axis::session>psession = get_session();
+      ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
 
       auto puser = psession->user();
 
@@ -463,7 +464,7 @@ namespace html
    }
 
 
-   bool style::get_border_color(atom idName, const ::string & strSubClass, html_data * pdata, ::html::particle * pparticle, border & rectangle)
+   bool style::get_border_color(atom idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, border & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -508,7 +509,7 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
 
-      ::pointer<::axis::session>psession = get_session();
+      ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
 
       auto puser = psession->user();
 
@@ -636,7 +637,7 @@ namespace html
    }
 
 
-   bool style::get_color(atom idName, const ::string & strSubClass, html_data * pdata, const ::html::particle * pparticle, ::color::color & color32)
+   bool style::get_color(atom idName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, ::color::color & color32)
    {
 
       e_tag etag = pelement->m_etag;
@@ -668,7 +669,7 @@ namespace html
    }
 
 
-   bool style::get_text(atom idName, const ::string & strSubClass, html_data * pdata, const ::html::particle * pparticle, string & str)
+   bool style::get_text(atom idName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, string & str)
    {
 
       e_tag etag = pelement->m_etag;
@@ -841,7 +842,7 @@ namespace html
    }
 
 
-   bool style::get_alpha(const ::string & strSubClass, html_data * pdata, const ::html::particle * pparticle, double & d)
+   bool style::get_alpha(const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, double & d)
    {
 
       const char* idName = "opacity";
@@ -1296,7 +1297,7 @@ namespace html
    void style::initialize_style(e_tag etag)
    {
 
-      ::pointer<::axis::session>psession = get_session();
+      ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
 
       auto puser = psession->user();
 

@@ -10,13 +10,17 @@
 */
 #include "framework.h"
 #include "Object.h"
+#include "acme/platform/context.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/listing.h"
+#include "apex/platform/context.h"
 #include "aura/graphics/image/context_image.h"
 
 
 void CLASS_DECL_NANOGUI file_dialog_from_platform(
    void * poswindow,
    const std::vector<std::pair<std::string, std::string>> & filetypes,
-   ::std::function < void(const std::vector<std::string> & ) > function, 
+   const ::function < void(const std::vector<std::string> & ) > & function,
    bool save, 
    bool multiple);
 
@@ -90,7 +94,7 @@ static double emscripten_last = 0;
 static float emscripten_refresh = 0;
 #endif
 
-std::pointer < ::mutex > m_async_mutex;
+::pointer < ::mutex > m_async_mutex;
 std::vector<::function<void()>> m_async_functions;
 
 //void mainloop(float refresh) {
@@ -352,7 +356,7 @@ void NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, std::vector<std::pair
 void pick_single_file(
    void * poswindow, 
    const std::vector<std::pair<std::string, std::string>> & filetypes, 
-   ::std::function < void(const ::std::string &) > function,
+   const ::function < void(const ::std::string &) > & function,
    bool save)
 {
    
@@ -385,7 +389,7 @@ void pick_single_file(
 void pick_multiple_file(
    void * poswindow,
    const std::vector<std::pair<std::string, std::string>> & filetypes,
-   std::function < void(const ::std::vector<::std::string> &) > function)
+   const ::function < void(const ::std::vector<::std::string> &) > & function)
 {
 
    file_dialog_from_platform(

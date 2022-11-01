@@ -83,7 +83,7 @@ namespace user
    //}
 
 
-   point_i32 scroll_bar::get_ascendant_context_offset() const
+   point_i32 scroll_bar::get_ascendant_context_offset()
    {
 
       if (get_parent() == nullptr)
@@ -98,7 +98,7 @@ namespace user
    }
 
 
-   point_i32 scroll_bar::get_parent_context_offset() const
+   point_i32 scroll_bar::get_parent_context_offset()
    {
 
       return nullptr;

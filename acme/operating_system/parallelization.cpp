@@ -92,27 +92,30 @@ property_set& thread_property_set()
 
 
 
-LPFN_GET_THREAD_NAME g_pfnGetThreadName = nullptr;
+LPFN_GET_TASK_NAME g_pfnGetTaskName = nullptr;
 
 
-void set_get_thread_name(LPFN_GET_THREAD_NAME pfnGetThreadName)
+void set_get_thread_name(LPFN_GET_TASK_NAME pfnGetTaskName)
 {
 
-   g_pfnGetThreadName = pfnGetThreadName;
+   g_pfnGetTaskName = pfnGetTaskName;
 
 }
 
 
-string get_task_name(::thread* pthread)
+string get_task_name(::task * ptask)
 {
 
-   if (!g_pfnGetThreadName)
+   if (!g_pfnGetTaskName)
    {
 
       return "";
 
    }
 
-   return g_pfnGetThreadName(pthread);
+   return g_pfnGetTaskName(ptask);
 
 }
+
+
+

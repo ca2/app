@@ -22,6 +22,8 @@ namespace nanogui
 {
 
 
+   class Screen;
+
 
 } // namespace nanogui
 

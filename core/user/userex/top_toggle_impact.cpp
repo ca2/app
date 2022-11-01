@@ -38,7 +38,7 @@ namespace userex
    }
 
 
-   bool top_toggle_impact::keyboard_focus_is_focusable() const
+   bool top_toggle_impact::keyboard_focus_is_focusable()
    {
 
       return ::user::button::keyboard_focus_is_focusable();

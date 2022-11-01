@@ -1,12 +1,17 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/size.h"
+
+
 namespace user
 {
 
 
    class CLASS_DECL_BASE split_pane :
-      virtual public object
+      virtual public ::object
    {
    public:
 

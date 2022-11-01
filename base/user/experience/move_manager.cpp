@@ -2,6 +2,7 @@
 #include "move_manager.h"
 #include "frame_window.h"
 #include "frame.h"
+#include "acme/constant/message.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
 

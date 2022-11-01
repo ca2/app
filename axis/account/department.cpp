@@ -5,16 +5,20 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/12/18.
 //
 #include "framework.h"
+#include "department.h"
+#include "user_array.h"
+#include "product_array.h"
+#include "user.h"
 #include "system_storage.h"
 #include "network_authenticator.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/constant/timer.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/networking/url_department.h"
+#include "acme/networking/url_domain.h"
 #include "acme/parallelization/pool.h"
-#include "department.h"
-#include "user_array.h"
-#include "product_array.h"
-#include "user.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/system.h"
 #include "axis/platform/session.h"
 
 

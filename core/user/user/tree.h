@@ -2,6 +2,7 @@
 
 
 #include "aura/user/user/scroll_base.h"
+#include "acme/parallelization/manual_reset_event.h"
 
 
 class image_list;
@@ -50,8 +51,8 @@ namespace user
 
 
       bool                                      m_bHoverStart;
-      ::duration                                    m_durationHoverStart;
-      ::duration                                    m_durationHoverEnd;
+      ::duration                                m_durationHoverStart;
+      ::duration                                m_durationHoverEnd;
       byte                                      m_uchHoverAlpha;
       byte                                      m_uchHoverAlphaInit;
       manual_reset_event                        m_evExpand;
@@ -62,13 +63,12 @@ namespace user
 
 
       tree();
-      virtual ~tree();
+      ~tree() override;
 
 
-
-      inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
-      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
-      inline ::core::system* get_system() const { return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; }
+      ::core::application* get_app();
+      ::core::session* get_session();
+      ::core::system* get_system();
 
 
       void user_tree_common_construct();
@@ -183,11 +183,11 @@ namespace user
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
-      virtual bool keyboard_focus_is_focusable() const override;
+      bool keyboard_focus_is_focusable() override;
 
       //virtual ::size_f64 get_total_size() override;
 
-      virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
+      void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
 
    };

@@ -318,4 +318,15 @@ inline bool type::operator == (const ::atom& atom) const
 }
 
 
+template < typename BASE >
+inline type::type(const ::pointer<BASE>& point)
+{
+
+   auto name = typeid(*((BASE *)point.m_p)).name();
+
+   ::atom::operator = (demangle(name));
+
+}
+
+
 

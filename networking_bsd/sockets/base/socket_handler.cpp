@@ -1,5 +1,6 @@
 #include "framework.h" 
 #include "socket_handler.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace sockets_bsd

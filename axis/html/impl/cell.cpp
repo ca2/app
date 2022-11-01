@@ -40,7 +40,7 @@ namespace html
       table * cell::get_table()
       {
 
-         ::html::particle * pparticle = m_pelemental;
+         ::html::element * pelement = m_pelemental;
 
          while(true)
          {
@@ -63,7 +63,7 @@ namespace html
       table_row * cell::get_row()
       {
 
-         ::html::particle * pparticle = m_pelemental;
+         ::html::element * pelement = m_pelemental;
 
          while(true)
          {
@@ -83,7 +83,7 @@ namespace html
       }
 
 
-      void cell::implement_phase1(html_data * pdata, ::html::particle * pparticle)
+      void cell::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
          m_bHasChar = true;
@@ -552,7 +552,7 @@ namespace html
             for(i32 i = 0; i < prow->m_pelemental->m_elementalptra.get_count(); i++)
             {
 
-               ::html::particle * pparticle = prow->m_pelemental->m_elementalptra[i];
+               ::html::element * pelement = prow->m_pelemental->m_elementalptra[i];
 
                if(pelement == m_pelemental)
                   break;

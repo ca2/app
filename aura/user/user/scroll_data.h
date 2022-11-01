@@ -12,7 +12,7 @@ namespace user
 
 
    class CLASS_DECL_AURA scroll_data :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

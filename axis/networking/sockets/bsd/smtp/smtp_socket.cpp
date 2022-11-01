@@ -1,7 +1,11 @@
 #include "framework.h"
+#include "smtp_socket.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/string/base64.h"
-#include "axis/networking/_networking.h"
+#include "acme/primitive/string/parse.h"
+#include "apex/networking/email.h"
+//#include "axis/networking/_networking.h"
 
 
 namespace sockets

@@ -12,7 +12,7 @@ namespace xcb
 
 
    class event_listener :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

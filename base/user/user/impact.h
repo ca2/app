@@ -34,10 +34,10 @@ namespace user
 
 
 
-      ::base::application * get_app() const;
-      ::base::session * get_session() const;
-      ::base::system * get_system() const;
-      ::base::user * user() const;
+      ::base::application * get_app();
+      ::base::session * get_session();
+      ::base::system * get_system();
+      ::base::user * user();
 
 
       virtual void set_notify_user_interaction(::user::interaction* puserinteractionNotify);

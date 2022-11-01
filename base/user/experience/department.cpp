@@ -2,8 +2,10 @@
 #include "department.h"
 #include "experience.h"
 #include "frame.h"
+#include "acme/exception/exit.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/application.h"
 #include "axis/platform/session.h"
 #include "base/platform/system.h"
 #include "base/user/user/user.h"
@@ -88,7 +90,7 @@ namespace experience
 
          {
 
-            auto papp = pparticle->get_app();
+            auto papp = pparticle->acmeapplication();
 
             {
 

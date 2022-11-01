@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "ifftd.h"
+#include "ifft.h"
 
 
 namespace kissfft

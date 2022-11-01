@@ -18,7 +18,7 @@ namespace user
       m_econtroltype = e_control_type_form;
 
       m_pform = this;
-      
+
       //m_bEatsDoubleClick = false;
 
    }
@@ -31,40 +31,41 @@ namespace user
    }
 
 
-::aura::application* form::get_app() const
-{
-   
-   return ::is_set(m_pcontext) ? m_pcontext->m_pauraapplication : nullptr;
-   
-   
-}
-::aura::session* form::get_session() const
-{
-   
-   return ::is_set(m_pcontext) ? m_pcontext->m_paurasession : nullptr;
-   
-   
-}
+   ::aura::application *form::get_app()
+   {
+
+      return ::is_set(m_pcontext) ? m_pcontext->m_pauraapplication : nullptr;
 
 
-::aura::system* form::get_system() const
-{
-   
-   return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
-   
+   }
 
 
-}
+   ::aura::session *form::get_session()
+   {
+
+      return ::is_set(m_pcontext) ? m_pcontext->m_paurasession : nullptr;
 
 
-::user::user * form::user() const
-{
-   
-   
-   return get_session() ? get_session()->user() : nullptr;
-   
-   
-}
+   }
+
+
+   ::aura::system *form::get_system()
+   {
+
+      return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
+
+
+   }
+
+
+   ::user::user *form::user()
+   {
+
+
+      return get_session() ? get_session()->user() : nullptr;
+
+
+   }
 
 
    //enum_control_type form::get_control_type() const
@@ -91,7 +92,7 @@ namespace user
    //}
 
 
-   bool form::open_document(const ::payload& payloadFile)
+   bool form::open_document(const ::payload &payloadFile)
    {
 
       throw ::interface_only();
@@ -101,7 +102,7 @@ namespace user
    }
 
 
-   bool form::open_html(const ::string& str)
+   bool form::open_html(const ::string &str)
    {
 
       throw ::interface_only();
@@ -132,11 +133,11 @@ namespace user
 //   }
 
 
-   void form::initialize(::particle * pparticle)
+   void form::initialize(::particle *pparticle)
    {
 
       //auto estatus =
-      
+
       ::user::interaction::initialize(pparticle);
 
       /*if (!estatus)
@@ -151,7 +152,7 @@ namespace user
    }
 
 
-   void form::install_message_routing(::channel * pchannel)
+   void form::install_message_routing(::channel *pchannel)
    {
 
       ::user::interaction::install_message_routing(pchannel);
@@ -160,40 +161,39 @@ namespace user
 
    }
 
-   
-   void form::on_message_create(::message::message * pmessage)
+
+   void form::on_message_create(::message::message *pmessage)
    {
 
-      ::pointer<::message::create>pcreate(pmessage);
+      ::pointer<::message::create> pcreate(pmessage);
 
       pcreate->previous();
-      
+
       add_handler(this);
 
    }
 
 
-
-   void form::set_form_callback(::user::form_callback* pcallback)
+   void form::set_form_callback(::user::form_callback *pcallback)
    {
 
       //auto estatus = 
-      
+
       m_pcallback = pcallback;
 
- /*     if (!estatus)
-      {
+      /*     if (!estatus)
+           {
 
-         return estatus;
+              return estatus;
 
-      }
+           }
 
-      return estatus;*/
+           return estatus;*/
 
    }
 
 
-   void form::set_parent_form(::user::form* pform)
+   void form::set_parent_form(::user::form *pform)
    {
 
       //auto estatus =
@@ -210,7 +210,7 @@ namespace user
 
    }
 
-   ::user::form_callback* form::get_form_callback()
+   ::user::form_callback *form::get_form_callback()
    {
 
       return m_pcallback.get();
@@ -226,7 +226,7 @@ namespace user
    //}
 
 
-   ::user::form * form::get_parent_form()
+   ::user::form *form::get_parent_form()
    {
 
       return m_pformParent.get();
@@ -234,7 +234,7 @@ namespace user
    }
 
 
-   bool form::_001AddControl(::user::interaction * pinteraction)
+   bool form::_001AddControl(::user::interaction *pinteraction)
    {
 
       return false;

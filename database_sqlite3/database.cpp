@@ -1,6 +1,9 @@
 ﻿#include "framework.h"
 #include "database.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/application.h"
+#include "apex/platform/context.h"
 #include "axis/database/database/result_set.h"
 #include "axis/database/database/exception.h"
 #include "axis/database/database/field.h"
@@ -725,7 +728,7 @@ namespace sqlite
 
          string str;
 
-         synchronous_lock slDatabase(mutex());
+         synchronous_lock slDatabase(synchronization());
 
          {
 

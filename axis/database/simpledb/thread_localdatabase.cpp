@@ -3,6 +3,7 @@
 #include "storage.h"
 #include "queue_item.h"
 #include "server.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "axis/database/database/database.h"
 
 

@@ -1,7 +1,10 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/data/container.h"
 #include "aqua/user/controller.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/collection/procedure_array.h"
 
 
 namespace user
@@ -42,18 +45,18 @@ namespace user
       ~document() override;
 
 
-      void dump(dump_context &) const override;
+      //void dump(dump_context &) const override;
       // void assert_ok() const override;
 
 
-      ::base::application * get_app() const;
-      ::base::session * get_session() const;
-      ::base::system * get_system() const;
-      ::base::user * user() const;
+      ::base::application * get_app();
+      ::base::session * get_session();
+      ::base::system * get_system();
+      ::base::user * user();
 
 
-      ::user::interaction* impact_at(::index iImpact) const override;
-      ::count impact_count() const override;
+      ::user::interaction* impact_at(::index iImpact) override;
+      ::count impact_count() override;
 
       ::user::interaction_array get_top_level_windows();
 

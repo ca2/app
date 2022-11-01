@@ -169,6 +169,10 @@ namespace factory
       template < typename ORIGIN_TYPE >
       inline ::pointer<::factory::factory_item_interface>& get_factory_item(const ::atom& atom);
 
+      template < typename BASE_TYPE >
+      inline void __defer_construct(::particle * pparticle, ::pointer<BASE_TYPE> &  ptype);
+
+
       //template < typename ORIGIN_TYPE >
       //inline ::pointer<::factory::factory_item_interface>& get_factory_item_from(const ::atom & atomSource);
 
@@ -768,6 +772,25 @@ namespace factory
    //   return stream;
 
    //}
+
+
+} // namespace factory
+
+
+#include "__particle_factory.h"
+
+
+namespace factory
+{
+
+
+   template < typename BASE_TYPE >
+   inline void factory::__defer_construct(::particle * pparticle, ::pointer<BASE_TYPE> & ptype)
+   {
+
+      ::__defer_construct(pparticle, ptype, this);
+
+   }
 
 
 } // namespace factory

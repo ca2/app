@@ -113,7 +113,8 @@ namespace user
       double                                    m_dOutputFps;
       point_i32                                 m_pointMouseMove;
       ::size_i32                                m_sizeDrawn;
-      particle_address_array                    m_ptraRedraw;
+      ::size_i32                                m_sizeSetWindowSizeRequest;
+      particle_array                            m_particleaRedraw;
 
       //::rectangle_i32                           m_rectangleUpdateBuffer;
       ::thread_pointer                          m_pthreadMouseLeave;
@@ -133,8 +134,8 @@ namespace user
 
       ::pointer<::graphics::graphics>        m_pgraphics;
 
-      ::pointer < ::mutex >                       m_pmutexDraw;
-      ::pointer < ::mutex >                       m_pmutexRedraw;
+      ::pointer < ::mutex >                     m_pmutexDraw;
+      ::pointer < ::mutex >                     m_pmutexRedraw;
 
       ::user::interaction_ptra                  m_userinteractionaMouseHover;
 
@@ -386,7 +387,7 @@ namespace user
 
 
 
-      virtual bool _is_window() const override;
+      bool _is_window() override;
 
 #if(WINVER >= 0x0500)
 
@@ -762,10 +763,10 @@ namespace user
       //virtual void impl_erase_keyboard_focus(::user::primitive * pprimitive) override;
       //virtual void impl_clear_keyboard_focus() override;
 
-      virtual void redraw_add(::object * point_i32) override;
-      virtual void redraw_erase(::object * point_i32) override;
+      virtual void redraw_add(::particle * pparticle) override;
+      virtual void redraw_erase(::particle * pparticle) override;
       virtual bool has_redraw() override;
-      virtual ::pointer< ::mutex > mutex_redraw();
+      virtual ::particle * mutex_redraw();
 
       virtual void _001OnTriggerMouseInside() override;
 

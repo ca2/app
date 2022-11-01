@@ -276,7 +276,7 @@ class Window;
 NANOGUI_EXPORT void pick_single_file(
     void * poswindow,
     const std::vector<std::pair<std::string, std::string>> & filetypes,
-    ::std::function < void(const::std::string &) > promisseFile, 
+    const ::function < void(const::std::string &) > & promisseFile,
     bool save);
 
 

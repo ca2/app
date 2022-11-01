@@ -62,7 +62,7 @@ namespace acme
       :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::node *  m_pAuraPlatform;
       
       
-      ::pointer<::element>                                 m_pelementQuit;
+      ::pointer<::particle>                                 m_pparticleQuit;
       
 
       //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
@@ -122,7 +122,7 @@ namespace acme
       virtual void initialize(::particle * pparticle) override;
       
       
-      virtual ::pointer<::element>create_quit_element(::pointer<::acme::node> & pnode, ::pointer<::acme::system> & psystem);
+      virtual ::pointer<::particle>create_quit_element(::pointer<::acme::node> & pnode, ::pointer<::acme::system> & psystem);
       
       
       virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem);

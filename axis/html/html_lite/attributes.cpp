@@ -33,6 +33,7 @@
 #include "axis/platform/system.h"
 #include "attributes.h"
 #include "reader.h"
+#include "axis/html/html/html.h"
 
 
 /**
@@ -358,7 +359,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & p
 
    string strChar;
 
-   ::pointer<::axis::system>psystem = preader->get_system();
+   ::pointer<::axis::system>psystem = preader->acmesystem();
 
    do
    {

@@ -13,6 +13,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 */
 
 #include "framework.h"
+#include "ifft.h"
+#include "fft_guts.h"
 #include <stdio.h>
 
 struct kiss_fftr_state{

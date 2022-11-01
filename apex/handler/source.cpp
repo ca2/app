@@ -4,6 +4,21 @@
 #include "acme/handler/topic.h"
 
 
+source::source()
+{
+
+
+}
+
+
+source::~source()
+{
+
+
+
+}
+
+
 void source::add_handler(::matter * pmatter, bool bPriority)
 {
 

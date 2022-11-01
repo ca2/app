@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/message.h"
+//#include "apex/message.h"
 #include <stdio.h>
 
 CLASS_DECL_APEX int_bool defer_apex_init();

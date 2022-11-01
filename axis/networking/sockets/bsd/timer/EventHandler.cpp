@@ -32,9 +32,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "event_time.h"
 #include "event.h"
 #include "ievent_owner.h"
+#include "acme/platform/system.h"
 #include "apex/networking/sockets/basic/tcp_socket.h"
 #include "apex/networking/sockets/basic/listen_socket.h"
 #include "apex/networking/networking.h"
+#include "apex/platform/system.h"
 
 
 namespace sockets
@@ -264,15 +266,15 @@ namespace sockets
    void EventHandler::RemoveEvent(IEventOwner * pownerFrom, long lEid)
    {
 
-      auto pevent = ::deref(m_eventplist.begin());
+      auto pevent = m_eventplist.begin();
 
       for(; pevent; pevent++)
       {
 
-         if(pownerFrom == pevent->GetFrom() && lEid == pevent->GetID())
+         if(pownerFrom == (*pevent)->GetFrom() && lEid == (*pevent)->GetID())
          {
 
-            ::delete_erase(pevent);
+            delete (*pevent);
 
             break;
 

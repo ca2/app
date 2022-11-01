@@ -60,12 +60,12 @@ public:
 
 
    template < typename PARTICLE >
-   inline pointer(enum_create, PARTICLE * pparticle) :
+   inline pointer(enum_create, PARTICLE * pparticle, ::factory::factory * pfactory = ::factory::get_factory()) :
       m_p(nullptr),
       m_pparticle(nullptr)
    {
 
-      create(pparticle);
+      create(pparticle, pfactory);
 
    }
 
@@ -451,13 +451,13 @@ public:
    //inline pointer < T > & create(TEMPLATE_ARG);
 
    template < typename OBJECT >
-   inline pointer < T > & defer_create(OBJECT * pparticle);
+   inline pointer < T > & defer_create(OBJECT * pparticle, ::factory::factory * pfactory = ::factory::get_factory());
 
    template < typename OBJECT >
-   inline pointer < T > & create(OBJECT * pparticle);
+   inline pointer < T > & create(OBJECT * pparticle, ::factory::factory * pfactory = ::factory::get_factory());
 
-   template < typename OBJECT >
-   inline pointer < T > & create(OBJECT * pparticle, bool bCreate);
+//   template < typename OBJECT >
+//   inline pointer < T > & create(OBJECT * pparticle, bool bCreate, ::factory::factory * pfactory = ::factory::get_factory());
 
    template < typename T2 >
    inline pointer < T > & clone(T2 * p);

@@ -565,7 +565,7 @@ public:
 
 
 class matter;
-class element;
+//class element;
 //class stream;
 //class payload_stream;
 
@@ -782,7 +782,7 @@ class backing;
 class manager;
 class topic;
 class context;
-class handler;
+//class handler;
 //template < typename RESULT > class process;
 class extended_topic;
 
@@ -2193,7 +2193,7 @@ template < typename FROM >
 concept non_matter_pointer_castable = !pointer_castable < FROM, ::matter >;
 
 
-using element_pointer = ::pointer<::element>;
+using particle_pointer = ::pointer<::particle>;
 
 
 using matter_pointer = ::pointer<::matter>;

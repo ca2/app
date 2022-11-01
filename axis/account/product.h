@@ -4,6 +4,11 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 11/12/18.
 //
+#pragma once
+
+
+#include "acme/primitive/primitive/object.h"
+
 
 namespace account
 {

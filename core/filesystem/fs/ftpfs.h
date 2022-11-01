@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/listing.h"
+#include "acme/primitive/collection/string_map.h"
+#include "apex/filesystem/fs/data.h"
+
+
 // ifs - implementation of file system interface - file.ca2.software
 
 class ftpnet;

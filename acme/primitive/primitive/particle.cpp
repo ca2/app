@@ -1,11 +1,14 @@
 ﻿// Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "type.h"
+#include "factory.h"
+#include "acme/exception/interface_only.h"
+#include "acme/handler/extended_topic.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/context.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/primitive/particle_factory.h"
+#include "acme/primitive/primitive/payload.h"
 
 
 particle::~particle()
@@ -196,11 +199,11 @@ enum_type particle::get_payload_type() const
 }
 
 
-void particle::destroy()
-{
-
-
-}
+//void particle::destroy()
+//{
+//
+//
+//}
 
 
 void particle::delete_this()
@@ -1233,12 +1236,12 @@ void particle::set_finish()
 }
 
 
-::particle * particle::clone() const
-{
-
-   return nullptr;
-
-}
+//::particle * particle::clone() const
+//{
+//
+//   return nullptr;
+//
+//}
 
 
 
@@ -1258,3 +1261,439 @@ bool particle::is_branch_current() const
    return true;
 
 }
+
+
+
+
+CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wParam, i64 lParam, ::matter * pmatter)
+{
+
+   if (::is_null(pmatter))
+   {
+
+      auto psystem = ::get_system();
+
+      auto ptopic = psystem->create_topic(atom);
+
+      if(wParam != 0 || lParam != 0)
+      {
+
+         ptopic->payload("wparam") = wParam;
+         ptopic->payload("lparam") = lParam;
+
+      }
+
+      pparticle->handle(ptopic, nullptr);
+
+   }
+   else
+   {
+
+      auto pextendedtopic = pmatter->create_extended_topic(atom);
+
+      if(wParam != 0 || lParam != 0)
+      {
+
+         pextendedtopic->payload("wparam") = wParam;
+         pextendedtopic->payload("lparam") = lParam;
+
+      }
+
+      pextendedtopic->m_pmatter = pmatter;
+
+      pparticle->handle(pextendedtopic, nullptr);
+
+   }
+
+}
+
+
+
+//
+//
+//void handler::call(enum_message emessage, i64 iData, ::matter * pmatter)
+//{
+//
+//   return __call(this, emessage, iData, pmatter);
+//
+//}
+//
+//
+//void handler::call(enum_id eid, i64 iData, ::matter * pmatter)
+//{
+//
+//   return __call(this, eid, iData, pmatter);
+//
+//}
+//
+
+
+void particle::call(const ::atom & atom, i64 wParam, i64 lParam, ::matter * pmatter)
+{
+
+   return __call(this, atom, wParam, lParam, pmatter);
+
+}
+//
+//
+//void particle::handle(::topic * ptopic, ::context * pcontext)
+//{
+//
+//
+//}
+
+
+void particle::handle(::message::message * pmessage)
+{
+
+
+}
+
+
+bool particle::_handle_uri(const block & blockUri)
+{
+
+   return false;
+
+}
+
+
+bool particle::_handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset)
+{
+
+   return false;
+
+}
+
+
+//bool handler::_handle_call(::payload & payload, const ::block & blockMember, ::property_set & propertyset)
+//{
+//
+//   return false;
+//
+//}
+
+//bool handler::handle_text_command(const ::block & blockTextCommand)
+//{
+//
+//   return false;
+//
+//}
+
+
+//
+//void handler::call(enum_id eid, i64 iData, ::matter * pmatter)
+//{
+//
+//   return __call(this, eid, iData, pmatter);
+//
+//}
+
+
+//bool handler::on_interprocess_handle(::interprocess::target * ptarget, const ::block & blockUri)
+//{
+//
+//   return handle_uri(blockUri);
+//
+//}
+
+
+
+
+
+::duration particle::timeout() const
+{
+
+   return 1_min;
+
+}
+
+
+void particle::set_timeout(const ::duration & durationTimeout)
+{
+
+   throw interface_only();
+
+}
+
+
+
+::payload particle::realize()
+{
+
+   //return ::success;
+   return ::success;
+
+}
+
+
+//void particle::call_run()
+//{
+//
+//   //::e_status estatus;
+//
+//   //try
+//   //{
+//
+//   /*estatus =*/ run();
+//
+//   //}
+//   //catch (...)
+//   //{
+//
+//   //   estatus = ::error_exception;
+//
+//   //}
+//
+//   //return estatus;
+//
+//}
+
+
+::particle * particle::clone() const
+{
+
+   throw interface_only();
+
+   return nullptr;
+
+}
+
+
+void particle::set_generic_object_name(const char* pszName)
+{
+
+   //return ::success_none;
+
+}
+
+
+void particle::set_application_id(const char* pszApplicationId)
+{
+
+   //return error_none;
+
+}
+
+
+void particle::set_library_name(const char* pszLibraryName)
+{
+
+   //return error_none;
+
+}
+
+
+//::e_status particle::wait()
+//{
+//
+//   return ::success;
+//
+//}
+//
+//
+//::e_status particle::wait(const class ::wait & wait)
+//{
+//
+//   return ::success;
+//
+//}
+
+
+//void particle::add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   //throw ::not_implemented();
+//
+//   pelement->increment_reference_count();
+//
+//   //return ::success;
+//
+//   //return ::error_not_implemented;
+//
+//}
+//
+//
+//void particle::add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   //return ::success_none;
+//
+//}
+//
+//
+//void particle::release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   //return ::success_none;
+//
+//}
+//
+//
+//void particle::finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   //return ::success_none;
+//
+//}
+//
+//
+//void particle::release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   //return ::success_none;
+//
+//}
+
+
+::particle* particle::get_taskpool_container()
+{
+
+   return nullptr;
+
+}
+
+
+
+::task_pool* particle::taskpool()
+{
+
+   auto pcontainer = get_taskpool_container();
+
+   if (pcontainer)
+   {
+
+      auto ptaskpool = pcontainer->taskpool();
+
+      if (ptaskpool)
+      {
+
+         return ptaskpool;
+
+      }
+
+   }
+
+   return nullptr;
+
+}
+
+
+
+
+
+
+
+
+bool particle::should_run_async() const
+{
+
+   return false;
+
+}
+
+
+//::enum_type particle::get_payload_type() const
+//{
+//
+//   return e_type_element;
+//
+//}
+
+
+//void particle::exchange(stream& s)
+//{
+//
+//}
+//
+//
+//void particle::exchange(payload_stream& s)
+//{
+//
+//}
+
+//stream & particle::write(stream& s) const
+//{
+//
+//   return s;
+//
+//}
+//
+//
+//stream& particle::read(stream& s)
+//{
+//
+//   return s;
+//
+//}
+
+
+//void matter::finish(::property_object * pcontextobjectFinish)
+void particle::destroy()
+{
+
+   //auto estatus = set_finish();
+
+   //if (estatus == error_pending)
+   //{
+
+   //   //acmesystem()->add_pending_finish(this);
+
+   //   return estatus;
+
+   //}
+
+   ////estatus = on_finish();
+
+   ////if (estatus == error_pending)
+   ////{
+
+   ////   //acmesystem()->add_pending_finish(this);
+
+   ////   return estatus;
+
+   ////}
+
+   //return estatus;
+
+   //return ::success;
+
+
+}
+
+
+void particle::destroy_impl_data()
+{
+
+
+}
+
+
+void particle::destroy_os_data()
+{
+
+
+}
+
+
+
+
+
+
+//void particle::write(::binary_stream < FILE > & stream) const
+//{
+//
+//   throw interface_only();
+//
+//}
+//
+//
+//void particle::read(::binary_stream < FILE > & stream)
+//{
+//
+//   throw interface_only();
+//
+//}
+
+
+

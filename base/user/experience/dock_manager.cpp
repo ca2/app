@@ -429,7 +429,7 @@ namespace experience
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      if (pmouse->m_eflagMessage & ::message::flag_synthesized)
+      if (pmouse->m_eflagMessage & ::message::e_flag_synthesized)
       {
 
          return;

@@ -2,6 +2,7 @@
 #include "image.h"
 #include "bitmap.h"
 #include "graphics.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/drawing.h"
 #include <math.h>
 

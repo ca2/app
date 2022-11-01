@@ -4,6 +4,9 @@
 #include "department.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/constant/timer.h"
+#include "acme/networking/url_department.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/system.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "axis/platform/session.h"
 #include "axis/platform/application.h"
@@ -34,7 +37,7 @@ namespace account
 
       //auto estatus = 
       
-      ::object::initialize(pdepartment);
+      ::matter::initialize(pdepartment);
 
       //if(!estatus)
       //{
@@ -48,6 +51,7 @@ namespace account
       ///return estatus;
 
    }
+
 
    void user_array::cleanup_networking()
    {
@@ -63,7 +67,7 @@ namespace account
    }
 
 
-   void user_array::_get_user(::file::path pathUrl, bool bInteractive)
+   void user_array::_get_user(const ::file::path & pathUrl, bool bInteractive)
    {
 
       ::pointer<user>puser;
@@ -115,7 +119,7 @@ namespace account
 
       }
 
-      auto pcontext = get_context();
+      auto pcontext = m_pcontext;
 
       try
       {
@@ -197,7 +201,7 @@ namespace account
 
       synchronouslock.unlock();
 
-      ::pointer<::axis::session>psession = get_session();
+      ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
 
       for(auto & pair : map)
       {
@@ -221,10 +225,10 @@ namespace account
 
 
 
-   user * user_array::get_user(::file::path pathUrl, bool bFetch, bool bInteractive)
+   user * user_array::get_user(const ::file::path & pathUrl, bool bFetch, bool bInteractive)
    {
 
-      ::pointer<axis::session>psession = get_session();
+      ::pointer<axis::session>psession = m_pcontext->m_paxissession;
 
       if(pathUrl.is_empty())
       {
@@ -261,10 +265,10 @@ namespace account
    }
 
 
-   bool user_array::is_authenticated(::file::path pathUrl, bool bInteractive)
+   bool user_array::is_authenticated(const ::file::path & pathUrl, bool bInteractive)
    {
 
-      ::pointer<::axis::application>papp = get_app();
+      ::pointer<::axis::application>papp = m_pcontext->m_paxisapplication;
 
       auto puser = papp->get_user(pathUrl, true, bInteractive);
 

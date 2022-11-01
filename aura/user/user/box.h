@@ -43,8 +43,8 @@ namespace user
       void design_iconic() override;
       
 
-      virtual::e_display window_stored_display() const override;
-      virtual::e_display window_previous_display() const override;
+      virtual::e_display window_stored_display() override;
+      virtual::e_display window_previous_display() override;
 
 
       virtual void on_visual_applied() override;

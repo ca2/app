@@ -1,7 +1,10 @@
 /* (C) Copyright 2008 Nick Mudge <mudgen@gmail.com>
  * This code can be freely copied and modified.
  */
-#include  "framework.h"
+#include "framework.h"
+#include "token.h"
+#include "scanner.h"
+#include "acme/exception/exception.h"
 
 /* conversas dos Js Jefferson Dalavechia e Joice sobre calculadora científica, financeira e com pilha
 mais típico de calculadora no "command" */

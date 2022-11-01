@@ -1,6 +1,8 @@
 #include "framework.h"
+#include "acme/constant/message.h"
+#include "acme/primitive/string/string.h"
 #include "apex/operating_system.h"
-#include "apex/message.h"
+//#include "apex/message.h"
 
 
 #define __msg_entry(x) if(uMessage == (x)) { str = (#x); }

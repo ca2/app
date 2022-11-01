@@ -60,7 +60,7 @@ namespace interprocess
    bool target::_handle_uri(const ::block & blockUri)
    {
 
-      for (auto & phandler : m_handlera)
+      for (auto & phandler : m_particleaHandler)
       {
 
          try
@@ -453,10 +453,10 @@ namespace interprocess
    //}
 
 
-   void target::add_handler(::handler * phandler)
+   void target::add_handler(::particle * pparticle)
    {
 
-      m_handlera.add_unique(phandler);
+      m_particleaHandler.add_unique(pparticle);
 
    }
 

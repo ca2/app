@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "result.h"
+#include "acme/primitive/string/string.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 

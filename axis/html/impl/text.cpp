@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "text.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/text_metric.h"
 #include "acme/primitive/geometry2d/_enhanced.h"
@@ -43,10 +44,10 @@ namespace html
       }
 
 
-      void text::implement_phase1(html_data * pdata, ::html::particle * pparticle)
+      void text::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
-         synchronous_lock lock(pdata->m_pcoredata->mutex());
+         synchronous_lock lock(pdata->m_pcoredata->synchronization());
 
          ::html::impl::element::implement_phase1(pdata, pelement);
 
@@ -143,7 +144,7 @@ namespace html
       void text::layout_phase0(html_data * pdata)
       {
 
-         synchronous_lock lock(pdata->m_pcoredata->mutex());
+         synchronous_lock lock(pdata->m_pcoredata->synchronization());
 
          ::html::impl::element::layout_phase0(pdata);
 

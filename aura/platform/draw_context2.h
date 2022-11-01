@@ -18,7 +18,7 @@ namespace aura
 
    template < typename TYPE >
    class simple_chain :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

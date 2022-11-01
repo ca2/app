@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/platform/department.h"
+
+
 namespace userfs
 {
 
@@ -12,7 +15,7 @@ namespace userfs
 
 
       userfs();
-      virtual ~userfs();
+      ~userfs() override;
 
       virtual void initialize(::particle * pparticle) override;
 

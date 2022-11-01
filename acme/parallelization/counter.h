@@ -5,7 +5,7 @@
 
 
 class counter :
-   virtual public ::element
+   virtual public ::particle
 {
 protected:
 

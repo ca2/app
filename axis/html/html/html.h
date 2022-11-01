@@ -1,8 +1,28 @@
 #pragma once
 
 
+#include "acme/platform/department.h"
+#include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/string/string.h"
+
+
+inline status < ::color::color > __indexed_color(::u32 u)
+{
+
+	return status < ::color::color >(u, ::success_color_index);
+
+}
+
+
+
 namespace html
 {
+
+
+   using string_to_color = string_map < status < ::color::color > >;
+
+
+   using named_color = string_to_color;
 
 
    class CLASS_DECL_AXIS html:
@@ -12,14 +32,14 @@ namespace html
 
 
 
-      ::color::color                              m_clrInvalid;   // an invalid color
+      ::color::color                         m_clrInvalid;   // an invalid color
       u16                                    m_percentMax;   // maximum allowable percentage value
       named_color                            m_namedcolor;   // collection of named colors
-      ::pointer<LiteHTMLEntityResolver>   m_pentitysolver;
+      ::pointer<LiteHTMLEntityResolver>      m_pentitysolver;
 
 
       html();
-      virtual ~html();
+      ~html() override;
 
 
       virtual void initialize(::particle * pparticle) override;

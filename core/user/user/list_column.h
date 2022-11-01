@@ -2,6 +2,7 @@
 
 
 #include "aura/graphics/image/icon.h"
+#include "acme/primitive/text/text.h"
 
 
 namespace user
@@ -9,7 +10,7 @@ namespace user
 
 
    class CLASS_DECL_CORE draw_list_column :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

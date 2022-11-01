@@ -8,6 +8,11 @@
 #include "network_authenticator.h"
 #include "credentials.h"
 #include "user.h"
+#include "acme/exception/exception.h"
+#include "acme/networking/url_department.h"
+#include "acme/platform/system.h"
+#include "apex/networking/http/context.h"
+#include "apex/platform/context.h"
 
 
 namespace account
@@ -253,9 +258,7 @@ namespace account
 
       auto tickTimeProfile1 = ::duration::now();
 
-      auto pcontext = get_context();
-
-      auto strResponse = pcontext->m_papexcontext->http().get(strAuthUrl, set);
+      auto strResponse = m_pcontext->m_papexcontext->http().get(strAuthUrl, set);
 
       pcredentials->m_strResponse = strResponse;
 
@@ -298,7 +301,7 @@ namespace account
 
       strGetFontopus = "https://ca2.software/get_account_login";
 
-      auto pcontext = get_context();
+      auto pcontext = m_pcontext;
 
       purl->set_param(strGetFontopus,strGetFontopus,"lang",pcontext->m_papexcontext->get_locale());
 

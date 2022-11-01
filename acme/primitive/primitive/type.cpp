@@ -14,16 +14,7 @@ type::type(const ::particle * pparticle)
 
 }
 
-//
-//template < typename BASE >
-//inline type::type(const ::pointer<BASE>& point)
-//{
-//
-//   auto name = typeid(*((BASE *)point.m_p)).name();
-//
-//   ::atom::operator = (demangle(name));
-//
-//}
+
 
 string cxxabi_demangle (const char* name);
 

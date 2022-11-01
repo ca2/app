@@ -141,23 +141,6 @@
 //}
 //
 //
-//template < typename TYPE > inline ::pointer<TYPE>property_object::cast(const ::atom & atom) const
-//{
-//
-//   auto pproperty = find_property(atom);
-//
-//   if (!pproperty)
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   return pproperty->cast < TYPE >();
-//
-//}
-//
-//
 //inline ::payload & property_object::payload(const atom & atom)
 //{
 //

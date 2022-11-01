@@ -35,6 +35,30 @@ namespace user
    }
 
 
+   ::core::application* get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+   }
+
+
+   ::core::session* form_list::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
+
+
+   ::core::system* form_list::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+
+   }
+
+
    void form_list::_001GetSelection(::database::key & key, ::database::selection & selection)
    {
 

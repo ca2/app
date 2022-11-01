@@ -3,6 +3,9 @@
 #include "document.h"
 #include "impact.h"
 #include "impact_system.h"
+#include "acme/exception/interface_only.h"
+#include "apex/platform/create.h"
+#include "apex/platform/session.h"
 #include "aura/user/user/frame.h"
 
 
@@ -715,43 +718,43 @@ namespace user
    }
 
 
-   void document_manager::assert_ok() const
-   {
-
-      object::assert_ok();
-
-      ::count count = m_templateptra.get_count();
-
-      for(index index = 0; index < count; index++)
-      {
-
-         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
-
-         ASSERT_VALID(ptemplate);
-
-      }
-
-   }
-
-
-   void document_manager::dump(dump_context & dumpcontext) const
-   {
-      object::dump(dumpcontext);
-
-      //if (dumpcontext.GetDepth() != 0)
-      //{
-      //   dumpcontext << "\nm_templateList[] = {";
-      //   ::count count = m_templateptra.get_count();
-      //   for(index index = 0; index < count; index++)
-      //   {
-      //      ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
-      //      dumpcontext << "\ntemplate " << ::hex::lower_from((::iptr)ptemplate.m_p);
-      //   }
-      //   dumpcontext << "}";
-      //}
-
-      //dumpcontext << "\n";
-   }
+//   void document_manager::assert_ok() const
+//   {
+//
+//      object::assert_ok();
+//
+//      ::count count = m_templateptra.get_count();
+//
+//      for(index index = 0; index < count; index++)
+//      {
+//
+//         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
+//
+//         ASSERT_VALID(ptemplate);
+//
+//      }
+//
+//   }
+//
+//
+//   void document_manager::dump(dump_context & dumpcontext) const
+//   {
+//      object::dump(dumpcontext);
+//
+//      //if (dumpcontext.GetDepth() != 0)
+//      //{
+//      //   dumpcontext << "\nm_templateList[] = {";
+//      //   ::count count = m_templateptra.get_count();
+//      //   for(index index = 0; index < count; index++)
+//      //   {
+//      //      ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
+//      //      dumpcontext << "\ntemplate " << ::hex::lower_from((::iptr)ptemplate.m_p);
+//      //   }
+//      //   dumpcontext << "}";
+//      //}
+//
+//      //dumpcontext << "\n";
+//   }
 
 
 

@@ -10,7 +10,7 @@ namespace gpu
 
 
    class CLASS_DECL_AURA object :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

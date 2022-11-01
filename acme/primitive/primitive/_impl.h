@@ -929,37 +929,37 @@ template < typename T >
 inline ::pointer < T > move_transfer(T* p) { return { e_move_transfer, p }; }
 
 
-template < typename TYPE >
-TYPE & operator |=(TYPE & o, enum_object eobject)
-{
-
-   o.set(eobject);
-
-   return o;
-
-}
-
-
-template < typename TYPE >
-TYPE & operator +=(TYPE & o, enum_object eobject)
-{
-
-   o.set(eobject);
-
-   return o;
-
-}
-
-
-template < typename TYPE >
-TYPE & operator -=(TYPE & o, enum_object eobject)
-{
-
-   o.clear(eobject);
-
-   return o;
-
-}
+//template < typename TYPE >
+//TYPE & operator |=(TYPE & o, enum_object eobject)
+//{
+//
+//   o.set(eobject);
+//
+//   return o;
+//
+//}
+//
+//
+//template < typename TYPE >
+//TYPE & operator +=(TYPE & o, enum_object eobject)
+//{
+//
+//   o.set(eobject);
+//
+//   return o;
+//
+//}
+//
+//
+//template < typename TYPE >
+//TYPE & operator -=(TYPE & o, enum_object eobject)
+//{
+//
+//   o.clear(eobject);
+//
+//   return o;
+//
+//}
 
 
 //template < typename T >
@@ -979,9 +979,10 @@ TYPE & operator -=(TYPE & o, enum_object eobject)
 //}
 //
 
+
 template < typename T >
 template < typename PARTICLE >
-inline pointer < T > & pointer<T> ::defer_create(PARTICLE * pparticle)
+inline pointer < T > & pointer<T> ::defer_create(PARTICLE * pparticle, ::factory::factory * pfactory)
 {
 
    if (is_null())

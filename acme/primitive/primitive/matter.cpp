@@ -26,13 +26,13 @@ matter::~matter()
    ::defer_delete(m_pobjrefdbg);
 
 #endif
-
-   if (m_eobject & e_object_any_hook && m_pcontext)
-   {
-
-      acmesystem()->erase_from_any_hook(this);
-
-   }
+//
+//   if (m_eobject & e_object_any_hook && m_pcontext)
+//   {
+//
+//      acmesystem()->erase_from_any_hook(this);
+//
+//   }
 
 }
 
@@ -191,7 +191,7 @@ const char* matter::debug_note() const
 }
 
 
-::element * matter::clone() const
+::particle * matter::clone() const
 {
 
    throw ::interface_only();
@@ -873,7 +873,7 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 
       psynchronizer->m_evReady.SetEvent();
 
-      ::release((::element * &)psynchronizer.m_p);
+      ::release((::particle * &)psynchronizer.m_p);
 
    };
 

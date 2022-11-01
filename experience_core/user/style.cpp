@@ -1,8 +1,8 @@
 ﻿#include "framework.h"
 #include "style.h"
 #include "acme/handler/item.h"
-#include "base/user/simple/scroll_bar.h"
-#include "base/user/user/tab_pane.h"
+#include "acme/platform/node.h"
+#include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
@@ -10,8 +10,10 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/brush.h"
+#include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab.h"
 #include "base/user/user/tab_data.h"
+#include "base/user/user/tab_pane.h"
 #include "base/platform/session.h"
 
 
@@ -1863,7 +1865,7 @@ namespace experience_core
 
       ::color::color colorBorder = pscrollbar->scrollbar_border_color(this, ::e_element_scrollbar_trackbar);
 
-      auto pbar = pscrollbar->cast < ::simple_scroll_bar >();
+      ::pointer < ::simple_scroll_bar > pbar = pscrollbar;
 
       auto ppenDraw = __create < ::draw2d::pen >();
 

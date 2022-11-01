@@ -1295,7 +1295,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::_001RemoveIndex
    // sort
    //::sort::quick_sort(ia,true);
 
-   ia.quick_sort();
+   ia.sort();
 
    ::index i = ia.get_upper_bound();
 

@@ -5,12 +5,12 @@
 #include "document.h"
 #include "span.h"
 #include "acme/platform/timer.h"
+#include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/platform/session.h"
-
 
 
 namespace user
@@ -63,20 +63,20 @@ namespace user
       }
 
 
-      void edit::assert_ok() const
-      {
-
-         ::user::interaction::assert_ok();
-
-      }
-
-
-      void edit::dump(dump_context & dumpcontext) const
-      {
-
-         ::user::interaction::dump(dumpcontext);
-
-      }
+//      void edit::assert_ok() const
+//      {
+//
+//         ::user::interaction::assert_ok();
+//
+//      }
+//
+//
+//      void edit::dump(dump_context & dumpcontext) const
+//      {
+//
+//         ::user::interaction::dump(dumpcontext);
+//
+//      }
 
 
       void edit::install_message_routing(::channel * pchannel)
@@ -348,7 +348,7 @@ namespace user
       }
 
 
-      void edit::_001GetText(string & str) const
+      void edit::_001GetText(string & str)
       {
 
          ::user::interaction::_001GetText(str);
@@ -356,7 +356,7 @@ namespace user
       }
 
 
-      void edit::_001GetLayoutText(string & str) const
+      void edit::_001GetLayoutText(string & str)
       {
 
       }

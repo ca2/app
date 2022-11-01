@@ -9,7 +9,7 @@ namespace file
 
 
    class CLASS_DECL_ACME translatable :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

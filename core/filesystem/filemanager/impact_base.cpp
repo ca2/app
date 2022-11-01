@@ -5,10 +5,13 @@
 #include "data.h"
 #include "operation_document.h"
 #include "operation_thread.h"
+#include "acme/constant/id.h"
+#include "acme/filesystem/file/item.h"
+#include "acme/platform/system.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/message/user.h"
-#include "core/platform/application.h"
 #include "aura/user/user/frame.h"
+#include "core/platform/application.h"
 
 
 filemanager_impact_base::filemanager_impact_base()
@@ -23,6 +26,38 @@ filemanager_impact_base::filemanager_impact_base()
 
 filemanager_impact_base::~filemanager_impact_base()
 {
+
+}
+
+
+::core::application* filemanager_impact_base::get_app()
+{
+
+   return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+}
+
+
+::core::session* filemanager_impact_base::get_session()
+{
+
+   return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+}
+
+
+::core::system* filemanager_impact_base::get_system()
+{
+
+   return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+
+}
+
+
+::filemanager::document * filemanager_impact_base::get_document()
+{
+
+   return ::filemanager_impact_base::get_document();
 
 }
 

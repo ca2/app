@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "orto_button.h"
+#include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/handler/item.h"
 #include "acme/platform/timer.h"

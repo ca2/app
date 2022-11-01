@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "format_tool.h"
 #include "format.h"
+#include "acme/constant/message.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font_list.h"

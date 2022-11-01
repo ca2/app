@@ -1,14 +1,21 @@
 ﻿#include "framework.h"
-#include "aura/graphics/image/icon.h"
-#include "apex/filesystem/filesystem/dir_context.h"
-#include "source/app/apex/filesystem/file/file_watcher.h"
-#include "base/user/user/tab_pane.h"
 #include "document.h"
+#include "impact.h"
 #include "tab_impact.h"
 #include "data.h"
 #include "child_frame.h"
+#include "acme/constant/id.h"
+#include "acme/filesystem/file/item.h"
+#include "acme/filesystem/file/item_array.h"
+#include "acme/platform/system.h"
+#include "apex/filesystem/file/action.h"
+#include "apex/filesystem/file/watcher.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/fs/set.h"
+#include "apex/platform/create.h"
+#include "aura/graphics/image/icon.h"
+#include "base/user/user/tab_pane.h"
 #include "core/user/user/user.h"
-#include "impact.h"
 #include "core/platform/session.h"
 #include "core/platform/application.h"
 
@@ -56,6 +63,31 @@ namespace filemanager
    {
 
    }
+
+
+   ::core::application* document::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+   }
+
+
+   ::core::session* document::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
+
+
+   ::core::system* document::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+
+   }
+
 
    bool document::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocumentOther)
    {
@@ -163,9 +195,9 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         auto& dir = pcontext->m_papexcontext->dir();
+         auto pdir = pcontext->m_papexcontext->dir();
 
-         auto& watcher = dir.watcher();
+         auto& watcher = pdir->watcher();
 
          m_filewatchid = watcher.add_watch(m_pitem->final_path(), {e_as, this}, false);
 
@@ -650,15 +682,15 @@ namespace filemanager
    }
 
 
-   void document::assert_ok() const
-   {
-      ::user::document::assert_ok();
-   }
-
-   void document::dump(dump_context & dumpcontext) const
-   {
-      ::user::document::dump(dumpcontext);
-   }
+//   void document::assert_ok() const
+//   {
+//      ::user::document::assert_ok();
+//   }
+//
+//   void document::dump(dump_context & dumpcontext) const
+//   {
+//      ::user::document::dump(dumpcontext);
+//   }
 
 
    void document::start_full_browse(::pointer<::file::item>pitem, const ::action_context & context)

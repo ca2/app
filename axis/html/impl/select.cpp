@@ -61,19 +61,19 @@ namespace html
       }
 
 
-      void select::implement_phase1(html_data * pdata, ::html::particle * pparticle)
+      void select::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
          m_bHasChar = true;
 
          element::implement_phase1(pdata, pelement);
+
          if (pelement->m_pbase->get_type() != ::html::base::type_tag)
          {
 
             return;
 
          }
-
 
          if(pelement->m_pbase->get_type() == ::html::base::type_tag && (!m_pcombo || !m_pcombo->is_window()))
          {
@@ -82,7 +82,6 @@ namespace html
 
             m_pcombo->m_bMultiLine = false;
 
-            
             m_pcombo->create_child(pdata->m_pcoredata->m_puserinteraction);
             
             pdata->on_create_interaction(m_pcombo);

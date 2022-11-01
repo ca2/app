@@ -36,10 +36,10 @@ namespace user
       }
 
 
-      ::base::application* get_app() const { return ::user::impact::get_app(); }
-      ::base::session* get_session() const { return ::user::impact::get_session(); }
-      ::base::system* get_system() const { return ::user::impact::get_system(); }
-      ::base::user* user() const { return ::user::impact::user(); }
+      ::base::application* get_app() { return ::user::impact::get_app(); }
+      ::base::session* get_session() { return ::user::impact::get_session(); }
+      ::base::system* get_system() { return ::user::impact::get_system(); }
+      ::base::user* user() { return ::user::impact::user(); }
 
 
       virtual void initialize(::particle * pparticle) override
@@ -72,17 +72,17 @@ namespace user
       }
 
 
-      virtual void assert_ok() const override
-      {
-         impact::assert_ok();
-         VIEW::assert_ok();
-
-      }
-      virtual void dump(dump_context& dumpcontext) const override
-      {
-         impact::dump(dumpcontext);
-         VIEW::dump(dumpcontext);
-      }
+//      virtual void assert_ok() const override
+//      {
+//         impact::assert_ok();
+//         VIEW::assert_ok();
+//
+//      }
+//      virtual void dump(dump_context& dumpcontext) const override
+//      {
+//         impact::dump(dumpcontext);
+//         VIEW::dump(dumpcontext);
+//      }
 
 
       virtual void install_message_routing(::channel* pchannel) override

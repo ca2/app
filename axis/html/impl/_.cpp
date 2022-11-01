@@ -1,11 +1,12 @@
 #include "framework.h"
-
-
+#include "acme/primitive/string/string.h"
 
 
 void trim001(string & str)
 {
+
    uchar uch;
+
    while (str.get_length() > 0)
    {
       uch = str[0];

@@ -1,12 +1,18 @@
 #pragma once
 
 
+#include "binary_stream.h"
+#include "acme/platform/system.h"
+
+inline auto get_app() { return ::get_system()->acmeapplication(); }
+
+
 namespace file
 {
 
 
-   class CLASS_DECL_ACME file_stream:
-      virtual public stream
+   class CLASS_DECL_ACME file_stream :
+      virtual public binary_stream<::file::file>
    {
    public:
 
@@ -14,9 +20,9 @@ namespace file
       file_stream();
       file_stream(const char * pszFileName,u32 nOpenFlags,::acme::application * papp = ::get_app());
 
-      file_stream(file * preader);
+      file_stream(::file::file * preader);
 //      file_stream(const file_stream & preader);
-      virtual ~file_stream();
+      ~file_stream() override;
 
 
       void open(const ::file::path & pszFileName,u32 nOpenFlags,::acme::application * papp = ::get_app());

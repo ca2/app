@@ -43,7 +43,7 @@ namespace user
    picture::picture()
    {
 
-      set(e_object_default_io_exchange);
+      set(e_flag_default_io_exchange);
 
       reset_cursor_rect();
 
@@ -79,7 +79,7 @@ namespace user
    picture::picture_impl::picture_impl()
    {
 
-      set(e_object_default_io_exchange);
+      set(e_flag_default_io_exchange);
 
       m_dZoom = 1.0;
       m_pointDrag2.x = 0.0;

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "document.h"
 #include "impact.h"
+#include "apex/platform/create.h"
 
 
 form_document::form_document()

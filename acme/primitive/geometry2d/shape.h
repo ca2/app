@@ -19,7 +19,7 @@
 
 template < typename HOLDEE >
 class ___shape :
-   virtual public element
+virtual public ::particle
 {
 protected:
 
@@ -73,7 +73,7 @@ public:
 
    begin_clip_shape():___shape< HOLDEE>(e_shape_begin_clip) {}
 
-   ::element * clone() const override
+   ::particle * clone() const override
    {
 
       return memory_new begin_clip_shape();
@@ -93,7 +93,7 @@ public:
    intersect_clip_shape():___shape< HOLDEE>(e_shape_intersect_clip) {}
 
 
-   ::element * clone() const override
+   ::particle * clone() const override
    {
 
       return memory_new intersect_clip_shape();
@@ -111,7 +111,7 @@ public:
 
    begin_figure_shape() :___shape< HOLDEE>(e_shape_begin_figure) {}
 
-   ::element * clone() const override
+   ::particle * clone() const override
    {
 
       return memory_new begin_figure_shape();
@@ -129,7 +129,7 @@ public:
 
    close_figure_shape() :___shape< HOLDEE>(e_shape_close_figure) {}
 
-   ::element * clone() const override
+   ::particle * clone() const override
    {
 
       return memory_new close_figure_shape();
@@ -147,7 +147,7 @@ public:
 
    end_figure_shape() :___shape< HOLDEE>(e_shape_end_figure) {}
 
-   ::element * clone() const override
+   ::particle * clone() const override
    {
 
       return memory_new end_figure_shape();
@@ -202,7 +202,7 @@ public:
    bool contains(const ::POINT_F64 & point) const override;
 
 
-   ::element * clone() const override
+   ::particle * clone() const override
    {
 
       return memory_new _shape(m_shape);

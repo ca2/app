@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-enum enum_simple_command : ::iptr
+enum enum_simple_command : ::i32
 {
 
    e_simple_command_none,

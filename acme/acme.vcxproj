@@ -867,6 +867,7 @@
     <ClInclude Include="include\_c_swap.h" />
     <ClInclude Include="include\_enumeration.h" />
     <ClInclude Include="include\_forward_declaration.h" />
+    <ClInclude Include="include\_functions.h" />
     <ClInclude Include="include\_structures.h" />
     <ClInclude Include="include\_template_forward_declaration.h" />
     <ClInclude Include="inline\application\windows.h" />

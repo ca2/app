@@ -26,13 +26,13 @@ namespace message
    ::u32 translate_to_os_message(const ::atom& atom);
 
 
-   bool is_idle_message(::message::message * pmessage);
+   CLASS_DECL_APEX bool is_idle_message(::message::message * pmessage);
 
 
-   bool is_idle_message(MESSAGE* pMsg);
+   CLASS_DECL_APEX bool is_idle_message(MESSAGE* pmessage);
 
 
-} // namespace message
+} // namespace messagse
 
 
 #define DECLARE_MESSAGE_HANDLER(function) void function(::message::message * pmessage)

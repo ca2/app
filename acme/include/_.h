@@ -103,6 +103,9 @@
 #include "_enumeration.h"
 
 
+#include "_functions.h"
+
+
 #include "acme/_api.h"
 
 

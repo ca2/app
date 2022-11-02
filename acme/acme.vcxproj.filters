@@ -2903,6 +2903,9 @@
     <ClInclude Include="include\_structures.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
+    <ClInclude Include="include\_functions.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

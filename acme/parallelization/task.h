@@ -132,20 +132,10 @@ public:
 
    virtual bool has_message() const;
 
+   ::pointer<::task>branch(const create_task_attributes & createthreadattributes = nullptr) override;
 
-   
+   ::pointer<::task>branch_synchronously(const create_task_attributes & createthreadattributes = nullptr) override;
 
-   ::pointer<::task>branch(
-      ::enum_priority epriority = ::e_priority_normal,
-      ::u32 nStackSize = 0,
-      u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
-
-   ::pointer<::task>branch_synchronously(
-      ::enum_priority epriority = ::e_priority_normal,
-      ::u32 nStackSize = 0,
-      u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
-
-   
    virtual bool task_sleep(const class ::wait & wait);
 
    //template < typename METHOD >

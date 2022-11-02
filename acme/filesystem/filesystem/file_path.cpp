@@ -2,10 +2,8 @@
 // From acme_windows/acme_file.cpp
 // 04:38 BRT <3ThomasBorregaardSørensen
 #include "framework.h"
-#include "acme/operating_system.h"
 #include "acme_file.h"
 #include "acme/primitive/collection/numeric_array.h"
-#include <stdio.h>
 
 
 void copy_character_per_character(char * pszTarget, const char * pszSource)

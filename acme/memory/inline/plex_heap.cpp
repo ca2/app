@@ -1,21 +1,5 @@
 #include "framework.h"
-#include "acme/operating_system.h"
  
-//#include "plex_heap1.h"
-
-//#include "plex_heap_impl1.h"
-
-//#include "align_byte_count.h"
-//#include "acme/platform/static_start_internal.h"
-
-
-//#if !defined(MCHECK) && !defined(_VLD) && !defined(__MCRTDBG) && !MEMDLEAK
-//
-//#include "heap_memory.h"
-//
-//#endif
-
-
 
 #include "acme/platform/acme.h"
 

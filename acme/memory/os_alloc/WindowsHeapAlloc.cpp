@@ -1,14 +1,15 @@
+#include "acme/_operating_system.h"
 
 
-
+extern HANDLE g_handleSystemHeap;
 
 
 void * os_impl_alloc(size_t size)
 {
 
-   critical_section_lock csl(g_pmutexSystemHeap);
+   critical_section_lock csl(system_heap_critical_section());
 
-   return ::HeapAlloc(g_system_heap(), 0, size);
+   return ::HeapAlloc(g_handleSystemHeap, 0, size);
 
 }
 
@@ -18,7 +19,7 @@ void * os_impl_realloc(void * p, size_t size)
 
    critical_section_lock lock(g_pmutexSystemHeap);
 
-   return ::HeapReAlloc(g_system_heap(), 0, p, size);
+   return ::HeapReAlloc(g_handleSystemHeap, 0, p, size);
 
 }
 
@@ -28,7 +29,7 @@ void os_impl_free(void * p)
 
    critical_section_lock lock(g_pmutexSystemHeap);
 
-   if (!::HeapFree(g_system_heap(), 0, p))
+   if (!::HeapFree(g_handleSystemHeap, 0, p))
    {
 
       DWORD dwError = ::GetLastError();
@@ -44,7 +45,7 @@ size_t os_impl_size(void * p)
 
    critical_section_lock lock(g_pmutexSystemHeap);
 
-   SIZE_T s = ::HeapSize(g_system_heap(), 0, p);
+   SIZE_T s = ::HeapSize(g_handleSystemHeap, 0, p);
 
    if(s == (SIZE_T) -1)
    {

@@ -1828,3 +1828,12 @@ using i64_spreadset = spreadset < i64, i64, i64, i64, unique_i64_sort_array, uni
 
 
 
+
+
+
+DECLARE_ENUMERATION(e_message_box, enum_message_box);
+DECLARE_ENUMERATION(e_dock, enum_dock);
+DECLARE_ENUMERATION(e_border, enum_border);
+DECLARE_ENUMERATION(e_grip, enum_grip);
+
+

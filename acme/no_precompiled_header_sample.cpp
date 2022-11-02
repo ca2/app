@@ -34,8 +34,6 @@ namespace message
 
 
 #include "acme/constant/_.h"
-#include "acme/constant/_constant.h"
-#include "acme/constant/_enumeration.h"
 
 
 #include "acme/constant/thread.h"

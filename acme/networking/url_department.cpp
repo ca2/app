@@ -1,6 +1,5 @@
 ﻿#include "framework.h"
 #include "url_department.h"
-#include "acme/operating_system.h"
 #include "acme/constant/id.h"
 #include "acme/constant/idpool.h"
 #include "acme/primitive/primitive/payload.h"
@@ -8,7 +7,7 @@
 
 
 #ifdef WINDOWS_DESKTOP
-#include "idn/idna.h"
+//#include "acme/_operating_system.h"
 #elif defined(ANDROID)
 #include "idn/idna.h"
 #elif defined(__APPLE__)

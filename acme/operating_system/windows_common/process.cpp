@@ -2,12 +2,12 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME::u32 get_current_process_id()
-{
-
-   return ::GetCurrentProcessId();
-
-}
-
+//CLASS_DECL_ACME::u32 get_current_process_id()
+//{
+//
+//   return ::GetCurrentProcessId();
+//
+//}
+//
 
 

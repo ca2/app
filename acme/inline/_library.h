@@ -1,4 +1,4 @@
-#include "acme/operating_system.h"
+#include "acme/_operating_system.h"
 
 
 #ifndef CUBE
@@ -19,6 +19,9 @@
 //#define LIBRARY_MAIN_INT_DELAY_MS {}
 //
 //#endif
+
+
+int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved);
 
 
 BOOL WINAPI DllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved)

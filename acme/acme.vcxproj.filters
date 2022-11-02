@@ -1133,7 +1133,7 @@
     <ClInclude Include="primitive\datetime\_datetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system.h">
+    <ClInclude Include="_operating_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\condition_variable.h">
@@ -2138,9 +2138,6 @@
     <ClInclude Include="operating_system\_impl.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\_operating_system.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system\aaa_c2.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
@@ -2195,31 +2192,7 @@
     <ClInclude Include="operating_system\windows_common\_.h">
       <Filter>Header Files\operating_system\windows_common</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\windows_common\_c.h">
-      <Filter>Header Files\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows_common\_windows_common.h">
-      <Filter>Header Files\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows_common\api.h">
-      <Filter>Header Files\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows_common\arg_sec_attrs.h">
-      <Filter>Header Files\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows_common\parallelization.h">
-      <Filter>Header Files\operating_system\windows_common</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system\windows\_.h">
-      <Filter>Header Files\operating_system\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\_c.h">
-      <Filter>Header Files\operating_system\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\_windows.h">
-      <Filter>Header Files\operating_system\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\process.h">
       <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\windows\nano\_nano.h">
@@ -2768,9 +2741,6 @@
     <ClInclude Include="_api.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\windows\_api.h">
-      <Filter>Header Files\operating_system\windows</Filter>
-    </ClInclude>
     <ClInclude Include="constant\data.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
@@ -2908,6 +2878,18 @@
     </ClInclude>
     <ClInclude Include="primitive\string\wstring_adaptor.h">
       <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_c.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\_c.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\create_task_attributes.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\security_attributes.h">
+      <Filter>Header Files\operating_system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3682,7 +3664,7 @@
     <ClCompile Include="operating_system\windows\windows.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows_common\api.cpp">
+    <ClCompile Include="operating_system\windows_common\library.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\dll.cpp">
@@ -3826,9 +3808,6 @@
     <ClCompile Include="primitive\datetime\file_time_span.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\_main.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
     <ClCompile Include="handler\extended_topic.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
@@ -3898,7 +3877,7 @@
     <ClCompile Include="operating_system\console_client.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\_api.cpp">
+    <ClCompile Include="operating_system\windows\debug.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
     <ClCompile Include="platform\conversation_message.cpp">
@@ -3960,6 +3939,15 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\earth_gregorian_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\memory.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\create_task_attributes.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\security_attributes.cpp">
+      <Filter>Source Files\operating_system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

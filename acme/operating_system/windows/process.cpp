@@ -1,10 +1,11 @@
 // Recreated by camilo on 2021-12-16 19:41 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "acme/exception/exception.h"
-#include "acme/operating_system.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/primitive/collection/string_array.h"
+#include "acme/_operating_system.h"
+
 
 
 CLASS_DECL_ACME::u64 translate_processor_affinity(int iOrder)

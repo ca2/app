@@ -10,11 +10,12 @@
 #pragma once
 
 
+#include "acme/constant/element.h"
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/operating_system/security_attributes.h"
+#include "acme/platform/serial_shared.h"
 #include "acme/primitive/primitive/object.h"
 #include "acme/primitive/collection/atom_array.h"
-#include "acme/platform/serial_shared.h"
-#include "acme/filesystem/filesystem/path.h"
-#include "acme/constant/element.h"
 
 
 namespace acme
@@ -176,7 +177,7 @@ namespace acme
 
       virtual ::pointer < ::mutex > get_install_mutex(::particle * pparticleContext, const ::string & strPlatform, const ::string & strSuffix);
 
-      virtual ::pointer < ::acme::exclusive > get_exclusive(::particle * pparticleContext, const ::string & strName ARG_SEC_ATTRS_DEF);
+      virtual ::pointer < ::acme::exclusive > get_exclusive(::particle * pparticleContext, const ::string & strName, const ::security_attributes & securityattributes = nullptr);
 
 
       virtual string app_id_to_app_name(const ::string & strAppId);
@@ -481,10 +482,20 @@ namespace acme
       virtual ::string get_callstack();
 
 
+      virtual ::i64 get_current_process_id();
+
+
       virtual bool stdin_has_input_events();
       virtual void flush_stdin_input_events();
       virtual void flush_stdin();
+
+
+      virtual void defer_initialize_callstack();
+      virtual string get_callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount);
       
+
+      virtual ::string get_command_line();
+
 
    };
 

@@ -2,19 +2,17 @@
 // From acme_windows/acme_file.cpp
 // 04:38 BRT <3ThomasBorregaardSørensen
 #include "framework.h"
-#include "acme_directory.h"
 #include "acme_file.h"
+#include "acme_directory.h"
 #include "acme_path.h"
 #include "acme/filesystem/file/stdio_file.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/primitive/memory.h"
-#include "acme/operating_system.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/io.h"
 #include "acme/primitive/collection/string_array.h"
 #include "acme/primitive/datetime/earth_time.h"
-#include <stdio.h>
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
@@ -349,60 +347,9 @@ void acme_file::as_memory(memory_base & memory, const char * pathParam, memsize 
 string acme_file::get_temporary_file_name(const char * lpszName, const char * pszExtension)
 {
 
-#ifdef WINDOWS
+   throw interface_only();
 
-   WCHAR pPathBuffer[MAX_PATH * 16];
-
-   ::u32 dwRetVal = GetTempPathW(sizeof(pPathBuffer) / sizeof(WCHAR), pPathBuffer);
-
-   if (dwRetVal > sizeof(pPathBuffer) || (dwRetVal == 0))
-   {
-
-      DWORD dwLastError = ::GetLastError();
-
-      //debug_print("GetTempPath failed (%d)\n", ::GetLastError());
-
-      auto estatus = last_error_to_status(dwLastError);
-
-      throw ::exception(estatus);
-
-   }
-
-#else
-#define MAX_PATH_HERE 300
-   char pPathBuffer[MAX_PATH_HERE * 16];
-
-   strcpy(pPathBuffer, "/tmp/");
-
-#endif
-
-   ::file::path pathFolder(pPathBuffer);
-
-   for (int i = 0; i < 1000; i++)
-   {
-
-      ::file::path path;
-
-      path = pathFolder;
-
-      path /= lpszName;
-
-      path /= __string(i);
-
-      path /= (string(lpszName) + "." + string(pszExtension));
-
-      if (!this->exists(path))
-      {
-
-         return ::move(path);
-         
-      }
-
-   }
-   
-   throw ::exception(error_not_found);
-
-   return string();
+   return {};
 
 }
 
@@ -410,95 +357,8 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
 void acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten)
 {
 
-#if OSBIT > 32
-
-   memsize pos = 0;
-
-   ::u32 dw = 0;
-
-   ::u32 dwWrite;
-
-   memsize uiWrittenTotal = 0;
-
-   while (pos < nCount)
-   {
-
-      dwWrite = (::u32)minimum(nCount - uiWrittenTotal, 0xffffffffu);
-
-      dw = (::u32)(fwrite(&((u8 *)pdata)[pos], 1, dwWrite, file));
-
-
-      if (dw != dwWrite)
-      {
-
-         uiWrittenTotal += dw;
-
-         if (puiWritten != nullptr)
-         {
-
-            *puiWritten = uiWrittenTotal;
-
-         }
-
-         throw ::exception(error_io);
-
-      }
-
-      uiWrittenTotal += dw;
-
-      if (dw != dwWrite)
-      {
-
-         break;
-
-      }
-
-      pos += dw;
-
-   }
-
-   if (puiWritten != nullptr)
-   {
-
-      *puiWritten = uiWrittenTotal;
-
-   }
-
-   if (uiWrittenTotal != nCount)
-   {
-
-      throw ::exception(error_failed);
-
-   }
-
-   // return ::success;
-
-#else
-
-   ::u32 dw = 0;
-
-   dw = ::fwrite(pdata, 1, (size_t)nCount, file);
-
-   int_bool bOk = dw == nCount;
-
-   if (puiWritten != nullptr)
-   {
-
-      *puiWritten = dw;
-
-   }
-
-   if (!bOk)
-   {
-
-      throw ::exception(error_failed);
-
-   }
-
-   // return success;
-
-#endif
-
+   throw interface_only();
+   
 }
 
 

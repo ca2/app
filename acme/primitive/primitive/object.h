@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 
-//#include "material_object.h"
 #include "property_object.h"
+#include "acme/parallelization/create_task_attributes.h"
 #include "acme/primitive/collection/pointer_array.h"
 #include "acme/primitive/primitive/function.h"
 
@@ -563,9 +563,7 @@ public:
 
    ::pointer<task>fork(const ::procedure & procedure,
       const ::particle_array & elementaHold = {},
-      ::enum_priority epriority = e_priority_normal,
-      ::u32 nStackSize = 0,
-      ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+      const create_task_attributes & createtaskattributes = nullptr);
 
 
    //inline ::task_pointer launch(const ::procedure & procedure);
@@ -605,30 +603,17 @@ public:
    //}
 
 
-   virtual ::pointer<::task>branch_procedure(const ::procedure & procedure,
-      ::enum_priority epriority = e_priority_normal,
-      ::u32 nStackSize = 0,
-      ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+   virtual ::pointer<::task>branch_procedure(const ::procedure & procedure, const create_task_attributes & createthreadattributes = nullptr);
 
-
-   virtual ::pointer<::task>branch_procedure_synchronously(const ::procedure & procedure,
-                                    ::enum_priority epriority = e_priority_normal,
-                                    ::u32 nStackSize = 0,
-                                    ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+   virtual ::pointer<::task>branch_procedure_synchronously(const ::procedure & procedure, const create_task_attributes & createthreadattributes = nullptr);
 
    virtual ::task_pointer run_procedure(bool bSyncronously, const ::procedure & procedure);
 
    //using property_object::branch;
 
-   virtual ::pointer<::task>branch(
-      ::enum_priority epriority = ::e_priority_normal,
-      ::u32 nStackSize = 0,
-      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+   virtual ::pointer<::task> branch(const create_task_attributes & createthreadattributes = nullptr);
 
-   virtual ::pointer<::task>branch_synchronously(
-      ::enum_priority epriority = ::e_priority_normal,
-      ::u32 nStackSize = 0,
-      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+   virtual ::pointer<::task> branch_synchronously(const create_task_attributes & createthreadattributes = nullptr);
 
    //::task_pointer defer_fork(string strThread = "");
 

@@ -45,7 +45,5 @@ enum enum_message_box
 };
 
 
-DECLARE_ENUMERATION(e_message_box, enum_message_box);
-
 
 

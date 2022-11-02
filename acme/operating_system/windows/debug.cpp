@@ -1,32 +1,24 @@
 // Created by camilo on 2022-09-26 18:33 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/primitive/string/string.h"
-#include "_api.h"
-
-
-CLASS_DECL_ACME ::string get_command_line()
-{
-
-   return ::GetCommandLineW();
-
-}
+#include "debug.h"
 
 
 namespace windows
 {
 
 
-   CLASS_DECL_ACME string get_last_error_string()
+   CLASS_DECL_ACME string last_error_message()
    {
 
       DWORD dwLastError = ::GetLastError();
 
-      return get_error_string(dwLastError);
+      return last_error_message(dwLastError);
 
    }
 
 
-   CLASS_DECL_ACME string get_error_string(DWORD dwError)
+   CLASS_DECL_ACME string last_error_message(::u32 dwError)
    {
 
       wchar_t * pszError;

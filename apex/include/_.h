@@ -1262,15 +1262,6 @@ namespace mathematics
 #include "apex/user/_.h"
 
 
-//#include "apex/platform/message_box.h"
-
-
-//#include "apex/platform/console_application.h"
-
-
-//#include "apex/platform/application.h"
-
-
 #include "apex/parallelization/_impl.h"
 
 

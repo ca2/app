@@ -1,10 +1,10 @@
 #include "framework.h"
+#include "parallelization.h"
+#include "api.h"
 #include "acme/exception/exception.h"
-#include "acme/operating_system.h"
 #include "acme/parallelization/task.h"
 #include "acme/primitive/string/string.h"
-#include "api.h"
-#include "parallelization.h"
+#include "acme/_operating_system.h"
 
 
 typedef HRESULT WINAPI FN_GetThreadDescription(HANDLE htask, PWSTR* ppszThreadDescription);
@@ -25,7 +25,7 @@ string get_task_name(htask_t htask)
 
    hr = E_FAIL;
 
-   static auto pfn_get_thread_description = ::windows::api < FN_GetThreadDescription* >::get_address("Kernel32.dll", "GetThreadDescription");
+   static auto pfn_get_thread_description = ::oe::api < FN_GetThreadDescription* >::get_address("Kernel32.dll", "GetThreadDescription");
 
    if (pfn_get_thread_description)
    {

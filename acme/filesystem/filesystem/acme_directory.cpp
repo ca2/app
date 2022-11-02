@@ -1,13 +1,12 @@
 // Create on 2021-03-20 23:59 <3ThomasBS_
 #include "framework.h"
-#include "acme/operating_system.h"
-#include "acme/operating_system/process.h"
 #include "acme_directory.h"
 #include "acme_file.h"
 #include "acme_path.h"
 #include "path_array.h"
 #include "listing.h"
 #include "acme/exception/interface_only.h"
+#include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -373,89 +372,6 @@ string acme_directory::system_short_name()
 
 }
 
-
-#ifdef WINDOWS_DESKTOP
-
-
-#include <Shlobj.h>
-
-
-::file::path acme_directory::program_files_x86()
-{
-
-   wstring wstrModuleFolder(e_get_buffer, sizeof(unichar) * 8);
-
-   wstring wstrModuleFilePath(e_get_buffer, sizeof(unichar) * 8);
-
-   wcscpy(wstrModuleFilePath, _wgetenv(L"PROGRAMFILES(X86)"));
-
-   if (wcslen(wstrModuleFilePath) == 0)
-   {
-
-      SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, false);
-
-   }
-
-   wstrModuleFilePath.trim_right(L"\\/");
-
-   wcscpy(wstrModuleFolder, wstrModuleFilePath);
-
-   return string(wstrModuleFolder);
-
-}
-
-
-::file::path acme_directory::program_files()
-{
-
-   wstring wstrModuleFolder(e_get_buffer, sizeof(unichar) * 8);
-
-   wstring wstrModuleFilePath(e_get_buffer, sizeof(unichar) * 8);
-
-   wcscpy(wstrModuleFilePath, _wgetenv(L"PROGRAMW6432"));
-
-   if (wcslen(wstrModuleFilePath) == 0)
-   {
-
-      SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, false);
-
-   }
-
-   wstrModuleFilePath.trim_right(L"\\/");
-
-   wstrModuleFolder = wstrModuleFilePath;
-
-   return string(wstrModuleFolder);
-
-
-
-}
-
-
-#else
-
-
-::file::path acme_directory::program_files_x86()
-{
-
-   ::file::path path("/opt/ca2");
-
-   return path;
-
-}
-
-
-::file::path acme_directory::program_files()
-{
-
-   ::file::path path("/opt/ca2");
-
-   return path;
-
-}
-
-
-#endif
 
 
 ::file::path acme_directory::stage(string strAppId, string strPlatform, string strConfiguration)

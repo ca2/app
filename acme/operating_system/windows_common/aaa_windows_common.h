@@ -28,7 +28,7 @@ wstring CLASS_DECL_ACME windows_get_root(const wstring & wstrPath);
 CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, u64 iSize);
 
 
-#include "api.h"
+#include "library.h"
 
 
 

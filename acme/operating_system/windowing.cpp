@@ -1,8 +1,5 @@
 #include "framework.h"
-#include "acme/operating_system.h"
 #include "acme/primitive/string/string.h"
-#include <stdio.h>
-//#include "os/cross/windows/_windows.h"
 
 
 #undef ALOG_CONTEXT

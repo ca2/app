@@ -612,4 +612,9 @@ struct system_time_t;
 class scalar_base;
 
 
+CLASS_DECL_ACME int __node_is_debugger_attached();
+
+class create_task_attributes;
+class security_attributes;
+
 

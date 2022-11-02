@@ -1957,6 +1957,60 @@ return false;
    }
 
 
+   ::i64 node::get_current_process_id()
+   {
+
+      return -1;
+
+   }
+   
+   
+   bool node::stdin_has_input_events()
+   {
+
+      return false;
+
+   }
+
+
+   void node::flush_stdin_input_events()
+   {
+
+
+   }
+
+
+   void node::flush_stdin()
+   {
+
+
+   }
+
+
+   void node::defer_initialize_callstack()
+   {
+
+
+   }
+
+
+   string node::get_callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount)
+   {
+
+
+      return {};
+
+   }
+
+
+   ::string node::get_command_line()
+   {
+
+      return {};
+
+   }
+
+
 } // namespace acme
 
 

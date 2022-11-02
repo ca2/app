@@ -9,8 +9,6 @@
 
 #include "acme/platform/object_type_counter.h"
 
-//#include "acme/constant/_constant.h"
-
 #include "acme/memory/memory_allocate.h"
 
 #include "acme/memory/heap_c.h"

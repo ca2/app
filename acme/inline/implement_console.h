@@ -247,7 +247,7 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 #if defined(WINDOWS)
 
 
-#include "acme/library.h"
+#include "acme/_library.h"
 
 
 #endif

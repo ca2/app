@@ -496,7 +496,7 @@ struct INT_STRING
 };
 
 
-#include "acme/operating_system/windows_common/arg_sec_attrs.h"
+//#include "acme/operating_system/windows_common/arg_sec_attrs.h"
 
 
 template < typename CONCRETE >
@@ -676,10 +676,6 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)
 #include "acme/primitive/primitive/echeck.h"
 
 
-DECLARE_ENUMERATION(e_dock, enum_dock);
-DECLARE_ENUMERATION(e_border, enum_border);
-DECLARE_ENUMERATION(e_grip, enum_grip);
-
 namespace user
 {
 
@@ -696,8 +692,6 @@ namespace library
 
 } // namespace library
 
-
-#include "acme/constant/message_box.h"
 
 #include "acme/parallelization/_types.h"
 #include "acme/constant/_enumeration.h"
@@ -1789,12 +1783,7 @@ typedef FN_TIMER *PFN_TIMER;
 #define OK_IMAGE (::e_flag_success)
 #define DEFAULT_CREATE_IMAGE_FLAG (::e_flag_success)
 
-//#include "acme/constant/_constant.h"
-
 #include "acme/primitive/primitive/tuple.h"
-
-
-//#include "acme/primitive/primitive/_memory.h"
 
 
 inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 1000; }
@@ -3059,7 +3048,7 @@ namespace mathematics
 
 
 
-#include "acme/operating_system/_.h"
+//#include "acme/operating_system/_.h"
 
 
 

@@ -38,7 +38,7 @@
 #include "_new_impl.h"
 
 
-#include "acme/library.h"
+#include "acme/_library.h"
 
 
 #endif

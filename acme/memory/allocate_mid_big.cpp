@@ -4,8 +4,7 @@ Igor Pavlov
 Public domain */
 // from 7-zip on 2010-12-19
 #include "framework.h"
-#include "acme/operating_system.h"
-
+#include "acme/_operating_system.h"
 ////#include "Alloc.h"
 
 /* #define _SZ_ALLOC_DEBUG */
@@ -56,7 +55,9 @@ void MyFree(void * address)
    free(address);
 }
 
+
 #if defined(_WIN32) && !defined(_UWP)
+
 
 void * MidAlloc(size_t size)
 {
@@ -67,6 +68,7 @@ void * MidAlloc(size_t size)
 #endif
    return VirtualAlloc(0, size, MEM_COMMIT, PAGE_READWRITE);
 }
+
 
 void * MidRealloc(void * address, size_t sizeOld, size_t sizeNew)
 {

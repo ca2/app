@@ -6,7 +6,6 @@
 #include "eobject.h"
 #include "factory.h"
 #include "acme/platform/tracer.h"
-#include "acme/constant/message_box.h"
 
 
 class CLASS_DECL_ACME matter :

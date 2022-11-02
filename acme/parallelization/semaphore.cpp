@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "semaphore.h"
-#include "acme/operating_system.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/exception/exception.h"
+#include "acme/_operating_system.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -28,7 +28,7 @@
 #endif
 
 
-semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName ARG_SEC_ATTRS)
+semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName, const security_attributes & securityattributes)
 {
 
    ASSERT(lMaxCount > 0);
@@ -36,7 +36,13 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
 #ifdef WINDOWS
 
-   m_hsynchronization = ::CreateSemaphoreExW((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, lInitialCount, lMaxCount, pstrName == nullptr ? nullptr : (const wchar_t *)  utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
+   m_hsynchronization = ::CreateSemaphoreExW(
+      (LPSECURITY_ATTRIBUTES)securityattributes.m_pOsSecurityAttributes,
+      lInitialCount,
+      lMaxCount,
+      pstrName == nullptr ? nullptr : (const wchar_t *)  utf8_to_unicode(pstrName), 
+      0,
+      SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
 
    if (m_hsynchronization == nullptr)
    {

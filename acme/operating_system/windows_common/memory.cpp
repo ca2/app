@@ -1,12 +1,19 @@
 #include "framework.h"
+#include "acme/_operating_system.h"
 
 
-HANDLE get_system_heap()
+HANDLE g_handleSystemHeap = nullptr;
+
+
+void defer_initialize_system_heap()
 {
 
-   static HANDLE s_hSystemHeap = HeapCreate(0, 0, 0);
+   if (!g_handleSystemHeap)
+   {
 
-   return s_hSystemHeap;
+      g_handleSystemHeap = HeapCreate(0, 0, 0);
+
+   }
 
 }
 

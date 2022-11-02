@@ -1,163 +1,163 @@
 #include "framework.h"
 #include "acme/constant/message.h"
 #include "acme/primitive/string/string.h"
-#include "apex/operating_system.h"
+#include "acme/_operating_system.h"
 //#include "apex/message.h"
 
 
-#define __msg_entry(x) if(uMessage == (x)) { str = (#x); }
-
-CLASS_DECL_APEX string get_message_text(::u32 uMessage, bool bWithNumbers)
-{
-   string str;
-   if (uMessage == -1)
-   {
-      str = "-1";
-   }
-   else __msg_entry(e_message_null)
-else __msg_entry(e_message_create)
-else __msg_entry(e_message_destroy)
-else __msg_entry(e_message_move)
-else __msg_entry(e_message_size)
-else __msg_entry(e_message_activate)
-else __msg_entry(e_message_set_focus)
-else __msg_entry(e_message_kill_focus)
-else __msg_entry(e_message_enable)
-else __msg_entry(e_message_paint)
-else __msg_entry(e_message_close)
-else __msg_entry(e_message_quit)
-else __msg_entry(e_message_erase_background)
-else __msg_entry(e_message_show_window)
-else __msg_entry(e_message_set_cursor)
-else __msg_entry(e_message_mouse_activate)
-else __msg_entry(e_message_paint)
-else __msg_entry(e_message_measure_item)
-else __msg_entry(e_message_window_position_changing)
-else __msg_entry(e_message_window_position_changed)
-else __msg_entry(e_message_context_menu)
-else __msg_entry(e_message_display_change)
-else __msg_entry(e_message_non_client_create)
-else __msg_entry(e_message_non_client_destroy)
-else __msg_entry(e_message_non_client_calcsize)
-else __msg_entry(e_message_non_client_hittest)
-else __msg_entry(e_message_non_client_paint)
-else __msg_entry(e_message_non_client_activate)
-else __msg_entry(e_message_non_client_mouse_move)//)//      0x00A0
-else __msg_entry(e_message_non_client_left_button_down)//)//      0x00A1
-else __msg_entry(e_message_non_client_left_button_up)//)//      0x00A2
-else __msg_entry(e_message_key_first)      //            0x0100
-else __msg_entry(e_message_key_down)      //            0x0100
-else __msg_entry(e_message_key_up)      //            0x0101
-else __msg_entry(e_message_char)      //            0x0102
-else __msg_entry(e_message_dead_char)      //            0x0103
-else __msg_entry(e_message_sys_key_down)      //            0x0104
-else __msg_entry(e_message_sys_key_up)      //            0x0105
-else __msg_entry(e_message_sys_char)      //            0x0106
-else __msg_entry(e_message_sys_dead_char)      //            0x0107
-else __msg_entry(e_message_uni_char)      //            0x0109
-else __msg_entry(e_message_key_last)      //            0x0109
-else __msg_entry(e_message_command)      //             0x0111
-else __msg_entry(e_message_timer)      //             0x0113
-else __msg_entry(e_message_hscroll)      //             0x0114
-else __msg_entry(e_message_vscroll)      //             0x0115
-else __msg_entry(e_message_initialize_menu_popup)      //             0x0117
-#ifdef WINDOWS
-   else __msg_entry(WM_SETREDRAW)
-   else __msg_entry(WM_SETTEXT)
-   else __msg_entry(WM_GETTEXT)
-   else __msg_entry(WM_GETTEXTLENGTH)
-   else __msg_entry(WM_QUERYENDSESSION)
-   else __msg_entry(WM_QUERYOPEN)
-   else __msg_entry(WM_ENDSESSION)
-   else __msg_entry(WM_SYSCOLORCHANGE)
-   else __msg_entry(WM_WININICHANGE)
-   else __msg_entry(WM_SETTINGCHANGE)
-   else __msg_entry(WM_DEVMODECHANGE)
-   else __msg_entry(WM_ACTIVATEAPP)
-   else __msg_entry(WM_FONTCHANGE)
-   else __msg_entry(WM_TIMECHANGE)
-   else __msg_entry(WM_CANCELMODE)
-   else __msg_entry(WM_CHILDACTIVATE)
-   else __msg_entry(WM_QUEUESYNC)
-   else __msg_entry(WM_GETMINMAXINFO)
-   else __msg_entry(WM_ICONERASEBKGND)
-   else __msg_entry(WM_NEXTDLGCTL)
-   else __msg_entry(WM_SPOOLERSTATUS)
-   else __msg_entry(WM_DRAWITEM)
-   else __msg_entry(WM_DELETEITEM)
-   else __msg_entry(WM_VKEYTOITEM)
-   else __msg_entry(WM_CHARTOITEM)
-   else __msg_entry(WM_SETFONT)
-   else __msg_entry(WM_GETFONT)
-   else __msg_entry(WM_SETHOTKEY)
-   else __msg_entry(WM_GETHOTKEY)
-   else __msg_entry(WM_QUERYDRAGICON)
-   else __msg_entry(WM_COMPAREITEM)
-   else __msg_entry(WM_GETOBJECT) // 0x003D 61
-   else __msg_entry(WM_COMPACTING)
-   else __msg_entry(WM_COMMNOTIFY)
-   else __msg_entry(WM_POWER)// 0x0048
-   else __msg_entry(WM_COPYDATA)//                     0x004A
-   else __msg_entry(WM_CANCELJOURNAL) //                0x004B
-   else __msg_entry(WM_NOTIFY)//    0x004E
-   else __msg_entry(WM_INPUTLANGCHANGEREQUEST)//    0x0050
-   else __msg_entry(WM_INPUTLANGCHANGE)//    0x0051
-   else __msg_entry(WM_TCARD)//    0x0052
-   else __msg_entry(WM_HELP)//    0x0053
-   else __msg_entry(WM_USERCHANGED)//    0x0054
-   else __msg_entry(WM_NOTIFYFORMAT)//    0x0055
-   else __msg_entry(WM_STYLECHANGING)
-   else __msg_entry(WM_STYLECHANGED)
-   else __msg_entry(WM_GETICON)
-   else __msg_entry(WM_SETICON)
-   else __msg_entry(WM_GETDLGCODE)
-   else __msg_entry(WM_SYNCPAINT)//)//      0x0088
-   else __msg_entry(WM_NCLBUTTONDBLCLK)//)//      0x00A3
-   else __msg_entry(WM_NCRBUTTONDOWN)//)//      0x00A4
-   else __msg_entry(WM_NCRBUTTONUP)//           0x00A5
-   else __msg_entry(WM_NCRBUTTONDBLCLK)//           0x00A6
-   else __msg_entry(WM_NCMBUTTONDOWN)//           0x00A7
-   else __msg_entry(WM_NCMBUTTONUP)//           0x00A8
-   else __msg_entry(WM_NCMBUTTONDBLCLK)      //           0x00A9
-   else __msg_entry(WM_INITDIALOG)      //             0x0110
-   else __msg_entry(WM_SYSCOMMAND)      //             0x0112
-   else __msg_entry(WM_INITMENU)      //             0x0116
-   else __msg_entry(WM_IME_SETCONTEXT) //)//  0x281
-   else __msg_entry(WM_IME_NOTIFY)
-   else __msg_entry(WM_IME_CONTROL)
-   else __msg_entry(WM_IME_COMPOSITIONFULL)
-   else __msg_entry(WM_IME_SELECT)
-   else __msg_entry(WM_IME_CHAR)
-   else __msg_entry(WM_IME_REQUEST) // 0x0288
-   else __msg_entry(WM_IME_KEYDOWN) // 0x290
-   else __msg_entry(WM_IME_KEYUP)
-   else __msg_entry(WM_DWMCOMPOSITIONCHANGED) //        0x031E
-   else __msg_entry(WM_DWMNCRENDERINGCHANGED)   //     0x031F
-   else __msg_entry(WM_DWMCOLORIZATIONCOLORCHANGED) //  0x0320
-   else __msg_entry(WM_DWMWINDOWMAXIMIZEDCHANGE)  //   0x0321
-#endif
-else
-{
-str.format("message 0x%04x (%d)", uMessage, uMessage);
-
-return str;
-
- }
- str.trim();
-
- if (!bWithNumbers)
- {
-    return str;
-
- }
-
- string strNumbers;
-
- strNumbers.format("%s 0x%04x (%d)", str.c_str(), uMessage, uMessage);
-
- return strNumbers;
-
-}
+//#define __msg_entry(x) if(uMessage == (x)) { str = (#x); }
+//
+//CLASS_DECL_APEX string get_message_text(::u32 uMessage, bool bWithNumbers)
+//{
+//   string str;
+//   if (uMessage == -1)
+//   {
+//      str = "-1";
+//   }
+//   else __msg_entry(e_message_null)
+//else __msg_entry(e_message_create)
+//else __msg_entry(e_message_destroy)
+//else __msg_entry(e_message_move)
+//else __msg_entry(e_message_size)
+//else __msg_entry(e_message_activate)
+//else __msg_entry(e_message_set_focus)
+//else __msg_entry(e_message_kill_focus)
+//else __msg_entry(e_message_enable)
+//else __msg_entry(e_message_paint)
+//else __msg_entry(e_message_close)
+//else __msg_entry(e_message_quit)
+//else __msg_entry(e_message_erase_background)
+//else __msg_entry(e_message_show_window)
+//else __msg_entry(e_message_set_cursor)
+//else __msg_entry(e_message_mouse_activate)
+//else __msg_entry(e_message_paint)
+//else __msg_entry(e_message_measure_item)
+//else __msg_entry(e_message_window_position_changing)
+//else __msg_entry(e_message_window_position_changed)
+//else __msg_entry(e_message_context_menu)
+//else __msg_entry(e_message_display_change)
+//else __msg_entry(e_message_non_client_create)
+//else __msg_entry(e_message_non_client_destroy)
+//else __msg_entry(e_message_non_client_calcsize)
+//else __msg_entry(e_message_non_client_hittest)
+//else __msg_entry(e_message_non_client_paint)
+//else __msg_entry(e_message_non_client_activate)
+//else __msg_entry(e_message_non_client_mouse_move)//)//      0x00A0
+//else __msg_entry(e_message_non_client_left_button_down)//)//      0x00A1
+//else __msg_entry(e_message_non_client_left_button_up)//)//      0x00A2
+//else __msg_entry(e_message_key_first)      //            0x0100
+//else __msg_entry(e_message_key_down)      //            0x0100
+//else __msg_entry(e_message_key_up)      //            0x0101
+//else __msg_entry(e_message_char)      //            0x0102
+//else __msg_entry(e_message_dead_char)      //            0x0103
+//else __msg_entry(e_message_sys_key_down)      //            0x0104
+//else __msg_entry(e_message_sys_key_up)      //            0x0105
+//else __msg_entry(e_message_sys_char)      //            0x0106
+//else __msg_entry(e_message_sys_dead_char)      //            0x0107
+//else __msg_entry(e_message_uni_char)      //            0x0109
+//else __msg_entry(e_message_key_last)      //            0x0109
+//else __msg_entry(e_message_command)      //             0x0111
+//else __msg_entry(e_message_timer)      //             0x0113
+//else __msg_entry(e_message_hscroll)      //             0x0114
+//else __msg_entry(e_message_vscroll)      //             0x0115
+//else __msg_entry(e_message_initialize_menu_popup)      //             0x0117
+//#ifdef WINDOWS
+//   else __msg_entry(WM_SETREDRAW)
+//   else __msg_entry(WM_SETTEXT)
+//   else __msg_entry(WM_GETTEXT)
+//   else __msg_entry(WM_GETTEXTLENGTH)
+//   else __msg_entry(WM_QUERYENDSESSION)
+//   else __msg_entry(WM_QUERYOPEN)
+//   else __msg_entry(WM_ENDSESSION)
+//   else __msg_entry(WM_SYSCOLORCHANGE)
+//   else __msg_entry(WM_WININICHANGE)
+//   else __msg_entry(WM_SETTINGCHANGE)
+//   else __msg_entry(WM_DEVMODECHANGE)
+//   else __msg_entry(WM_ACTIVATEAPP)
+//   else __msg_entry(WM_FONTCHANGE)
+//   else __msg_entry(WM_TIMECHANGE)
+//   else __msg_entry(WM_CANCELMODE)
+//   else __msg_entry(WM_CHILDACTIVATE)
+//   else __msg_entry(WM_QUEUESYNC)
+//   else __msg_entry(WM_GETMINMAXINFO)
+//   else __msg_entry(WM_ICONERASEBKGND)
+//   else __msg_entry(WM_NEXTDLGCTL)
+//   else __msg_entry(WM_SPOOLERSTATUS)
+//   else __msg_entry(WM_DRAWITEM)
+//   else __msg_entry(WM_DELETEITEM)
+//   else __msg_entry(WM_VKEYTOITEM)
+//   else __msg_entry(WM_CHARTOITEM)
+//   else __msg_entry(WM_SETFONT)
+//   else __msg_entry(WM_GETFONT)
+//   else __msg_entry(WM_SETHOTKEY)
+//   else __msg_entry(WM_GETHOTKEY)
+//   else __msg_entry(WM_QUERYDRAGICON)
+//   else __msg_entry(WM_COMPAREITEM)
+//   else __msg_entry(WM_GETOBJECT) // 0x003D 61
+//   else __msg_entry(WM_COMPACTING)
+//   else __msg_entry(WM_COMMNOTIFY)
+//   else __msg_entry(WM_POWER)// 0x0048
+//   else __msg_entry(WM_COPYDATA)//                     0x004A
+//   else __msg_entry(WM_CANCELJOURNAL) //                0x004B
+//   else __msg_entry(WM_NOTIFY)//    0x004E
+//   else __msg_entry(WM_INPUTLANGCHANGEREQUEST)//    0x0050
+//   else __msg_entry(WM_INPUTLANGCHANGE)//    0x0051
+//   else __msg_entry(WM_TCARD)//    0x0052
+//   else __msg_entry(WM_HELP)//    0x0053
+//   else __msg_entry(WM_USERCHANGED)//    0x0054
+//   else __msg_entry(WM_NOTIFYFORMAT)//    0x0055
+//   else __msg_entry(WM_STYLECHANGING)
+//   else __msg_entry(WM_STYLECHANGED)
+//   else __msg_entry(WM_GETICON)
+//   else __msg_entry(WM_SETICON)
+//   else __msg_entry(WM_GETDLGCODE)
+//   else __msg_entry(WM_SYNCPAINT)//)//      0x0088
+//   else __msg_entry(WM_NCLBUTTONDBLCLK)//)//      0x00A3
+//   else __msg_entry(WM_NCRBUTTONDOWN)//)//      0x00A4
+//   else __msg_entry(WM_NCRBUTTONUP)//           0x00A5
+//   else __msg_entry(WM_NCRBUTTONDBLCLK)//           0x00A6
+//   else __msg_entry(WM_NCMBUTTONDOWN)//           0x00A7
+//   else __msg_entry(WM_NCMBUTTONUP)//           0x00A8
+//   else __msg_entry(WM_NCMBUTTONDBLCLK)      //           0x00A9
+//   else __msg_entry(WM_INITDIALOG)      //             0x0110
+//   else __msg_entry(WM_SYSCOMMAND)      //             0x0112
+//   else __msg_entry(WM_INITMENU)      //             0x0116
+//   else __msg_entry(WM_IME_SETCONTEXT) //)//  0x281
+//   else __msg_entry(WM_IME_NOTIFY)
+//   else __msg_entry(WM_IME_CONTROL)
+//   else __msg_entry(WM_IME_COMPOSITIONFULL)
+//   else __msg_entry(WM_IME_SELECT)
+//   else __msg_entry(WM_IME_CHAR)
+//   else __msg_entry(WM_IME_REQUEST) // 0x0288
+//   else __msg_entry(WM_IME_KEYDOWN) // 0x290
+//   else __msg_entry(WM_IME_KEYUP)
+//   else __msg_entry(WM_DWMCOMPOSITIONCHANGED) //        0x031E
+//   else __msg_entry(WM_DWMNCRENDERINGCHANGED)   //     0x031F
+//   else __msg_entry(WM_DWMCOLORIZATIONCOLORCHANGED) //  0x0320
+//   else __msg_entry(WM_DWMWINDOWMAXIMIZEDCHANGE)  //   0x0321
+//#endif
+//else
+//{
+//str.format("message 0x%04x (%d)", uMessage, uMessage);
+//
+//return str;
+//
+// }
+// str.trim();
+//
+// if (!bWithNumbers)
+// {
+//    return str;
+//
+// }
+//
+// string strNumbers;
+//
+// strNumbers.format("%s 0x%04x (%d)", str.c_str(), uMessage, uMessage);
+//
+// return strNumbers;
+//
+//}
 
 ::u32 g_puiaMessageMouseMove[] =
 {

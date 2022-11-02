@@ -88,13 +88,19 @@
 //#define Node (psystem->node())
 
 
-#include "acme/primitive/primitive/enumeration.h"
+#include "acme/constant/_.h"
 
 
 #include "_forward_declaration.h"
 
 
+#include "_structures.h"
+
+
 #include "_template_forward_declaration.h"
+
+
+#include "_enumeration.h"
 
 
 #include "acme/_api.h"
@@ -395,11 +401,6 @@ namespace desktop_environment_xfce
 #include "acme/exception/_c.h"
 
 
-#include "acme/constant/_.h"
-
-
-#include "acme/constant/exception.h"
-
 
 #ifdef WINDOWS_DESKTOP
 
@@ -675,22 +676,6 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)
 
 #include "acme/primitive/primitive/echeck.h"
 
-
-namespace user
-{
-
-   DECLARE_ENUMERATION(e_flag, enum_flag);
-
-} // namespace user
-
-DECLARE_ENUMERATION(e_command, enum_command);
-
-namespace library
-{
-
-   DECLARE_ENUMERATION(e_state, enum_state);
-
-} // namespace library
 
 
 #include "acme/parallelization/_types.h"

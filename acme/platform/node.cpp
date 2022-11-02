@@ -479,7 +479,7 @@ namespace acme
    }
 
 
-   ::pointer < ::acme::exclusive > node::get_exclusive(::particle * pparticleContext, const ::string & strName ARG_SEC_ATTRS)
+   ::pointer < ::acme::exclusive > node::get_exclusive(::particle * pparticleContext, const ::string & strName, const security_attributes & securityattributes)
    {
 
       return nullptr;
@@ -1949,12 +1949,12 @@ return false;
     }
 
 
-   ::string node::get_callstack()
-   {
-      
-      return {};
-      
-   }
+   //::string node::get_callstack()
+   //{
+   //   
+   //   return {};
+   //   
+   //}
 
 
    ::i64 node::get_current_process_id()

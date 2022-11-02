@@ -1,6 +1,5 @@
 ﻿#include "framework.h"
 #include "acme.h"
-#include "acme/operating_system.h"
 #include "system.h"
 #include "sequencer.h"
 #include "simple_log.h"
@@ -8,96 +7,9 @@
 #include "acme/parallelization/mutex.h"
 #include "acme/primitive/primitive/malloc.h"
 #include "acme/user/user/theme_colors.h"
+#include "acme/_operating_system.h"
 
 
-#if defined(LINUX) || defined(__APPLE__)
-
-
-static ::critical_section g_criticalsectionTz;
-
-::critical_section * tz_critical_section() { return &g_criticalsectionTz; }
-
-static ::critical_section g_criticalsectionThreadHandleLock;
-
-::critical_section * thread_handle_lock_critical_section() { return &g_criticalsectionThreadHandleLock; }
-
-
-#endif // defined(LINUX) || defined(__APPLE__)
-
-
-static ::critical_section g_criticalsectionGlobals;
-
-
-critical_section * globals_critical_section() { return &g_criticalsectionGlobals; }
-
-
-static ::critical_section g_criticalsectionRefDbg;
-
-
-critical_section * ref_dbg_critical_section() { return &g_criticalsectionRefDbg; }
-
-
-static ::critical_section g_criticalsectionFactory;
-
-
-critical_section * factory_critical_section() { return &g_criticalsectionFactory; }
-
-
-
-
-#if !defined(WINDOWS)
-
-critical_section g_criticalsectionDemangle;
-
-::critical_section * demangle_critical_section() { return &g_criticalsectionDemangle; }
-
-
-#endif
-
-
-#ifdef WINDOWS
-
-
-::critical_section g_criticalsectionSymDbgHelp;
-
-
-::critical_section * sym_dbg_help_critical_section() { return &g_criticalsectionSymDbgHelp; }
-
-
-#endif
-
-
-::critical_section g_criticalsectionMessageDispatch;
-
-
-::critical_section * message_dispatch_critical_section() { return &g_criticalsectionMessageDispatch; }
-
-
-::global_pointer < ::mutex > g_pmutexUiDestroyed;
-
-
-::particle * ui_destroyed_synchronization() { return g_pmutexUiDestroyed; }
-
-
-
-#ifdef ANDROID
-
-::critical_section g_criticalsectionOutputDebugStringA;
-
-::critical_section * output_debug_string_a_critical_section() { return &g_criticalsectionOutputDebugStringA; }
-
-#endif
-
-
-#ifdef __APPLE__
-
-
-::critical_section g_criticalsectionCvt;
-
-
-::critical_section * cvt_critical_section() { return &g_criticalsectionCvt; }
-
-#endif
 
 global_particle * g_pglobalParticle = nullptr;
 
@@ -105,7 +17,7 @@ global_particle * g_pglobalParticle = nullptr;
 global_particle::global_particle()
 {
 
-   critical_section_lock criticalsectionlock(&g_criticalsectionGlobals);
+   critical_section_lock criticalsectionlock(globals_critical_section());
 
    m_pglobalparticleNext = g_pglobalParticle;
 
@@ -123,6 +35,8 @@ global_particle::~global_particle()
 
 static void erase_all_global_particles()
 {
+
+   critical_section_lock criticalsectionlock(globals_critical_section());
 
    auto pglobalparticle = g_pglobalParticle;
 
@@ -194,6 +108,8 @@ void finalize_memory_management();
 #ifdef WINDOWS
 
 LARGE_INTEGER g_largeintegerFrequency;
+
+void defer_initialize_system_heap();
 
 
 #endif
@@ -448,8 +364,198 @@ namespace acme
 //
 
 
-   void acme::construct()
+//   void acme::construct()
+//   {
+//
+//      __seed_srand();
+//
+//      g_bAcme = 0;
+//
+//#if OBJECT_TYPE_COUNTER
+//
+//      g_pmapObjTypCtr = nullptr;
+//
+//#endif
+//
+//      g_bAcme = false;
+//
+//#if OBJECT_TYPE_COUNTER
+//
+//      g_iObjTypCtrInit = 0;
+//
+//#endif
+//
+//      //g_criticalsectionChildren = nullptr;
+//
+//      //g_criticalsectionThreadWaitClose = nullptr;
+//
+//#if !defined(WINDOWS)
+//
+//      //g_tlsindexLastError = 0;
+//
+//      g_pszDemangle = nullptr;
+//
+//      //g_criticalsectionDemangle = nullptr;
+//
+//#endif
+//
+//      //g_main_deferred_run = nullptr;
+//
+//      //g_criticalsectionGlobals = nullptr;
+//
+//      //g_criticalsectionGlobal = nullptr;
+//
+//      g_bOutputDebugString = true;
+//
+//      //g_criticalsectionTrace = nullptr;
+//
+//      //g_ptrace = nullptr;
+//
+//      //g_psimpletrace = nullptr;
+//
+//      //g_criticalsectionTrace = nullptr;
+//
+//      // acme commented
+//      //g_ptrace = nullptr;
+//
+//      // acme commented
+//      //g_psimpletrace = nullptr;
+//
+//#ifdef __APPLE__
+//
+//      // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
+//      // http://stackoverflow.com/users/346736/jbenet
+//
+//      //#include <mach/clock.h>
+//      //#include <mach/mach.h>
+//#include <mach/mach_time.h>
+//
+////clock_serv_t   g_cclock;
+//      g_machtime_conversion_factor = 0.0;
+//      //   clock_get_time(cclock, &mts);
+//
+//#endif
+//
+//      //g_criticalsectionCred = nullptr;
+//
+//      //g_pengine = nullptr;
+//      //g_criticalsectionMessageDispatch = nullptr;
+//
+//      g_paAura = nullptr;
+//
+//#if defined(WINDOWS)
+//
+//      g_localeC = 0;
+//
+//#else
+//
+//      g_localeC = 0;
+//
+//#endif
+//
+//#ifdef WINDOWS
+//
+//      g_largeintegerFrequency = {};
+//
+//#endif
+//
+//      //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
+//
+//      g_iMemoryCountersStartable = 0;
+//      //::critical_section g_criticalsectionTrait;
+//      //::critical_section g_criticalsectionFactory;
+//
+//      //g_criticalsectionUiDestroyed = 0;
+//
+//#ifdef ANDROID
+//
+//      //g_criticalsectionOutputDebugStringA = 0;
+//
+//#endif
+//
+//      //g_pacmestrpool = nullptr;
+//
+//      // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//
+//      // ::critical_section g_criticalsectionMq;
+//
+//      // #endif
+//
+//#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+//
+////::critical_section g_criticalsectionThreadIdHandleLock;
+//
+////::critical_section g_criticalsectionThreadIdLock;
+//
+////#if !defined(_UWP)
+//
+////::critical_section g_criticalsectionPendingThreadsLock;
+//
+////#endif
+//
+////::critical_section g_criticalsectionTlsData;
+//
+//#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
+//
+//#if defined(LINUX) || defined(__APPLE__)
+//
+//      //g_criticalsectionTz = nullptr;
+//
+//      //g_criticalsectionThreadHandleLock = nullptr;
+//
+//#endif // defined(LINUX) || defined(__APPLE__)
+//
+//
+//#ifdef __APPLE__
+//
+//
+//      //g_criticalsectionCvt = nullptr;
+//
+//
+//#endif
+//
+//#ifdef WINDOWS
+//
+//
+//      //g_criticalsectionSymDbgHelp = nullptr;
+//
+//
+//#endif
+//
+//
+//   }
+
+
+   acme::acme()
    {
+
+      g_p = ThomasBS_Acme;
+
+      g_nanosecondFirst.Now();
+
+#ifdef WINDOWS
+
+      defer_initialize_system_heap();
+
+#endif
+
+      initialize_memory_management();
+
+      //static natural_meta_data < string_meta_data < ansichar > > s_ansistringNil;
+
+      //static natural_meta_data < string_meta_data < wd16char > > s_wd16stringNil;
+
+      //static natural_meta_data < string_meta_data < wd32char > > s_wd32stringNil;
+
+      //::g_pansistringNil = &s_ansistringNil;
+
+      //::g_pwd16stringNil = &s_wd16stringNil;
+
+      //::g_pwd32stringNil = &s_wd32stringNil;
+
+      //m_bRef = false;
+
+      //construct();
 
       __seed_srand();
 
@@ -606,34 +712,6 @@ namespace acme
 
 #endif
 
-
-   }
-
-
-   acme::acme()
-   {
-
-      g_p = ThomasBS_Acme;
-
-      g_nanosecondFirst.Now();
-
-      initialize_memory_management();
-
-      //static natural_meta_data < string_meta_data < ansichar > > s_ansistringNil;
-
-      //static natural_meta_data < string_meta_data < wd16char > > s_wd16stringNil;
-
-      //static natural_meta_data < string_meta_data < wd32char > > s_wd32stringNil;
-
-      //::g_pansistringNil = &s_ansistringNil;
-
-      //::g_pwd16stringNil = &s_wd16stringNil;
-
-      //::g_pwd32stringNil = &s_wd32stringNil;
-
-      //m_bRef = false;
-
-      construct();
 
       //g_criticalsectionRefDbg = nullptr;
 
@@ -867,7 +945,44 @@ namespace acme
 
       //::acme::library::s_criticalsectionLoading = memory_new ::critical_section();
 
-      init();
+      //init();
+
+            //::acme::acme::init();
+
+      //if (!__node_acme_pre_init())
+      __node_acme_pre_init();
+      //{
+
+      //   throw ::exception(error_failed);
+
+      //}
+
+      // acme commented for apex
+      //::parallelization::init_multitasking();
+
+      //if (!__node_acme_pos_init())
+      __node_acme_pos_init();
+      //{
+
+      //   throw ::exception(error_failed);
+
+      //}
+
+//#ifdef WINDOWS
+//
+//      set_extended_output_debug_string_a();
+//
+//      set_extended_output_debug_string_w();
+//
+//#endif
+
+      //add_factory_item < ::stdio_file >();
+
+      //([a-z0-9_]+)_factory(::factory_item::get_factory());
+
+      //return true;
+
+      //::factory::add_factory_item < ::acme::system >();
 
 
    }
@@ -877,7 +992,50 @@ namespace acme
    {
 
 
-      term();
+      //term();
+
+
+      erase_all_global_particles();
+
+
+      //::parallelization::wait_threads(1_min);
+
+      //if (g_axisontermthread)
+      //{
+
+      //   g_axisontermthread();
+
+      //}
+
+      // acme commented for apex
+      //on_term_thread();
+
+      // acme commented for apex
+      //::parallelization::term_multitasking();
+
+      __node_acme_pre_term();
+
+      //#ifdef WINDOWS
+      //
+      //      set_simple_output_debug_string_a();
+      //
+      //      set_simple_output_debug_string_w();
+      //
+      //#endif
+
+      processor_cache_oriented_destroy_all_memory_pools();
+
+
+
+      __node_acme_pos_term();
+
+      //::acme::acme::term();
+
+      //return true;
+
+      //return ::success;
+
+
 
       //::acme::del(::acme::library::s_criticalsectionLoading);
 
@@ -1196,95 +1354,95 @@ namespace acme
    //}
 
 
-
-   void acme::init()
-   {
-
-      //::acme::acme::init();
-
-      //if (!__node_acme_pre_init())
-      __node_acme_pre_init();
-      //{
-
-      //   throw ::exception(error_failed);
-
-      //}
-
-      // acme commented for apex
-      //::parallelization::init_multitasking();
-
-      //if (!__node_acme_pos_init())
-      __node_acme_pos_init();
-      //{
-
-      //   throw ::exception(error_failed);
-
-      //}
-
-//#ifdef WINDOWS
 //
-//      set_extended_output_debug_string_a();
+//   void acme::init()
+//   {
 //
-//      set_extended_output_debug_string_w();
+//      //::acme::acme::init();
 //
-//#endif
-
-      //add_factory_item < ::stdio_file >();
-
-      //([a-z0-9_]+)_factory(::factory_item::get_factory());
-
-      //return true;
-
-      //::factory::add_factory_item < ::acme::system >();
-
-   }
-
-
-   void acme::term()
-   {
-
-
-      erase_all_global_particles();
-
-
-      //::parallelization::wait_threads(1_min);
-
-      //if (g_axisontermthread)
-      //{
-
-      //   g_axisontermthread();
-
-      //}
-
-      // acme commented for apex
-      //on_term_thread();
-
-      // acme commented for apex
-      //::parallelization::term_multitasking();
-
-      __node_acme_pre_term();
-
-//#ifdef WINDOWS
+//      //if (!__node_acme_pre_init())
+//      __node_acme_pre_init();
+//      //{
 //
-//      set_simple_output_debug_string_a();
+//      //   throw ::exception(error_failed);
 //
-//      set_simple_output_debug_string_w();
+//      //}
 //
-//#endif
+//      // acme commented for apex
+//      //::parallelization::init_multitasking();
+//
+//      //if (!__node_acme_pos_init())
+//      __node_acme_pos_init();
+//      //{
+//
+//      //   throw ::exception(error_failed);
+//
+//      //}
+//
+////#ifdef WINDOWS
+////
+////      set_extended_output_debug_string_a();
+////
+////      set_extended_output_debug_string_w();
+////
+////#endif
+//
+//      //add_factory_item < ::stdio_file >();
+//
+//      //([a-z0-9_]+)_factory(::factory_item::get_factory());
+//
+//      //return true;
+//
+//      //::factory::add_factory_item < ::acme::system >();
+//
+//   }
+//
 
-      processor_cache_oriented_destroy_all_memory_pools();
-
-
-
-      __node_acme_pos_term();
-
-      //::acme::acme::term();
-
-      //return true;
-
-      //return ::success;
-
-   }
+//   void acme::term()
+//   {
+//
+//
+//      erase_all_global_particles();
+//
+//
+//      //::parallelization::wait_threads(1_min);
+//
+//      //if (g_axisontermthread)
+//      //{
+//
+//      //   g_axisontermthread();
+//
+//      //}
+//
+//      // acme commented for apex
+//      //on_term_thread();
+//
+//      // acme commented for apex
+//      //::parallelization::term_multitasking();
+//
+//      __node_acme_pre_term();
+//
+////#ifdef WINDOWS
+////
+////      set_simple_output_debug_string_a();
+////
+////      set_simple_output_debug_string_w();
+////
+////#endif
+//
+//      processor_cache_oriented_destroy_all_memory_pools();
+//
+//
+//
+//      __node_acme_pos_term();
+//
+//      //::acme::acme::term();
+//
+//      //return true;
+//
+//      //return ::success;
+//
+//   }
 
 
 //} // namespace static_start
@@ -1638,7 +1796,7 @@ CLASS_DECL_ACME void release_on_end(::particle * pparticle)
 void delete_all_release_on_end()
 {
 
-   critical_section_lock criticalsectionlock(&g_criticalsectionGlobals);
+   critical_section_lock criticalsectionlock(globals_critical_section());
 
    ::acme::g_pelementaddraReleaseOnEnd->erase_all();
 
@@ -1664,7 +1822,7 @@ void delete_all_release_on_end()
 void add_release_on_end(::matter * pmatter)
 {
 
-   critical_section_lock criticalsectionlock(&::g_criticalsectionGlobals);
+   critical_section_lock criticalsectionlock(globals_critical_section());
 
 //   if (::is_null(::acme::g_pelementaddraReleaseOnEnd))
 //   {

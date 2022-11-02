@@ -1627,7 +1627,7 @@ bool object::__is_child_task(::particle * pparticleTask) const
 }
 
 
-::pointer<task>object::branch_procedure(const ::procedure & procedure, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+::pointer<task>object::branch_procedure(const ::procedure & procedure, const create_task_attributes & createtaskattributes)
 {
 
    if (::is_reference_null(procedure))
@@ -1650,7 +1650,7 @@ bool object::__is_child_task(::particle * pparticleTask) const
 
    ptask->m_atom = typeid(*procedure.m_p).name();
 
-   ptask->branch(epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   ptask->branch(createtaskattributes);
 
    return ptask;
 
@@ -1658,10 +1658,7 @@ bool object::__is_child_task(::particle * pparticleTask) const
 
 
 ::pointer<::task>object::branch_procedure_synchronously(
-   const ::procedure & procedure, 
-   ::enum_priority epriority, 
-   ::u32 nStackSize,
-   ::u32 dwCreateFlags ARG_SEC_ATTRS)
+   const ::procedure & procedure, const create_task_attributes & createtaskattributes)
 {
 
    if (::is_reference_null(procedure))
@@ -1684,27 +1681,27 @@ bool object::__is_child_task(::particle * pparticleTask) const
 
    ptask->m_atom = typeid(*procedure.m_p).name();
 
-   ptask->branch_synchronously(epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   ptask->branch_synchronously(createtaskattributes);
 
    return ptask;
 
 }
 
 
-::pointer<task>object::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+::pointer<task>object::branch(const create_task_attributes & createthreadattributes)
 {
 
-   auto ptask = branch_procedure(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = branch_procedure(this, createthreadattributes);
 
    return ptask;
 
 }
 
 
-::pointer<task>object::branch_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 dwCreateFlags ARG_SEC_ATTRS)
+::pointer<task>object::branch_synchronously(const create_task_attributes & createthreadattributes)
 {
 
-   auto ptask = branch_procedure_synchronously(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = branch_procedure_synchronously(this, createthreadattributes);
 
    return ptask;
 
@@ -3674,10 +3671,10 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
 }
 
 
-::pointer<task>object::fork(const ::procedure & procedure, const ::particle_array & elementaHold, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+::pointer<task>object::fork(const ::procedure & procedure, const ::particle_array & elementaHold, const create_task_attributes & createthreadattributes)
 {
 
-   auto ptask = this->branch_procedure(procedure, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = this->branch_procedure(procedure, createthreadattributes);
 
    if (!ptask)
    {

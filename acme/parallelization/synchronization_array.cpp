@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "synchronization_array.h"
-#include "acme/operating_system.h"
 #include "acme/exception/exception.h"
+#include "acme/_operating_system.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -245,7 +245,7 @@ void synchronization_array::erase(index index)
 
    }
 
-   auto estatus = windows_wait_result_to_status(windowsWaitResult);
+   auto estatus = ::windows::wait_result_status(windowsWaitResult);
 
 #else
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "condition.h"
-#include "acme/operating_system.h"
 #include "acme/exception/exception.h"
+#include "acme/_operating_system.h"
 
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
@@ -240,7 +240,7 @@ bool condition::pulse()
 
       }
 
-      auto estatus = last_error_to_status(dwLastError);
+      auto estatus = ::windows::last_error_status(dwLastError);
 
       return error_failed;
 

@@ -71,16 +71,16 @@ namespace acme
 
       virtual bool is_service() const;
       virtual bool is_user_service() const;
-
-#ifdef WINDOWS
-
-      void get_arguments_from_command_line();
-
-#else
-
-      void set_args(int argc, char * argv[], char * envp[]);
-
-#endif
+//
+//#ifdef WINDOWS
+//
+//      void get_arguments_from_command_line();
+//
+//#else
+//
+//      void set_args(int argc, char * argv[], char * envp[]);
+//
+//#endif
 
       virtual int __implement();
 

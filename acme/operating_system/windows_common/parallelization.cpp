@@ -1,12 +1,12 @@
 #include "framework.h"
-#include "parallelization.h"
-#include "api.h"
+//#include "parallelization.h"
+//#include "api.h"
 #include "acme/exception/exception.h"
 #include "acme/parallelization/task.h"
 #include "acme/primitive/string/string.h"
 #include "acme/_operating_system.h"
 
-
+int_bool SetThreadName(::u32 dwThreadID, const char * threadName);
 typedef HRESULT WINAPI FN_GetThreadDescription(HANDLE htask, PWSTR* ppszThreadDescription);
 
 
@@ -25,7 +25,7 @@ string get_task_name(htask_t htask)
 
    hr = E_FAIL;
 
-   static auto pfn_get_thread_description = ::oe::api < FN_GetThreadDescription* >::get_address("Kernel32.dll", "GetThreadDescription");
+   static auto pfn_get_thread_description = ::windows::function < FN_GetThreadDescription* >::get_address("Kernel32.dll", "GetThreadDescription");
 
    if (pfn_get_thread_description)
    {
@@ -79,7 +79,7 @@ CLASS_DECL_ACME void task_set_name(htask_t htask, const char* pszName)
 
 #else
 
-   static auto pfn_set_thread_description = ::windows::api < FN_SetThreadDescription* >::get_address("kernel32.dll", "SetThreadDescription");
+   static auto pfn_set_thread_description = ::windows::function < FN_SetThreadDescription* >::get_address("kernel32.dll", "SetThreadDescription");
 
    if (pfn_set_thread_description)
    {
@@ -315,6 +315,8 @@ typedef struct tagTHREADNAME_INFO
    ::u32 dwFlags; // Reserved for future use, must be zero.
 } THREADNAME_INFO;
 #pragma pack(pop)
+
+
 
 int_bool SetThreadName(::u32 dwThreadID, const char* threadName)
 {

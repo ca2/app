@@ -2,7 +2,7 @@
 
 
 #include "acme/primitive/string/string.h"
-//#include "synchronization.h"
+#include "acme/operating_system/security_attributes.h"
 
 
 class CLASS_DECL_ACME semaphore :
@@ -24,7 +24,7 @@ public:
 
 #endif
 
-   semaphore(::i32 lInitialCount = 1, ::i32 lMaxCount = 1, const char * pstrName=nullptr ARG_SEC_ATTRS_DEF);
+   semaphore(::i32 lInitialCount = 1, ::i32 lMaxCount = 1, const char * pstrName=nullptr, const security_attributes & securityattributes = nullptr);
    ~semaphore() override;
 
 

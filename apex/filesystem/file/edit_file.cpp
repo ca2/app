@@ -4,6 +4,7 @@
 #include "acme/filesystem/file/buffered_file.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/data/listener.h"
 
 
 #define MAX_STOP (::numeric_info < filesize >::get_maximum_value())

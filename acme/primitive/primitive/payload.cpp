@@ -3,7 +3,6 @@
 #include "payload.h"
 #include "acme/platform/acme.h"
 #include "acme/filesystem/file/file.h"
-#include "acme/operating_system.h"
 #include "acme/primitive/datetime/system_time.h"
 #include "acme/primitive/datetime/earth_gregorian_time.h"
 #include "acme/primitive/datetime/earth_time.h"
@@ -13,6 +12,7 @@
 #include "acme/primitive/string/network_payload.h"
 #include "acme/exception/not_implemented.h"
 #include "acme/array.h"
+#include "acme/_operating_system.h"
 
 
 //void copy(payload * pp, const system_time_t * ps)

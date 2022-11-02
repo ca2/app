@@ -603,17 +603,17 @@ public:
    //}
 
 
-   virtual ::pointer<::task>branch_procedure(const ::procedure & procedure, const create_task_attributes & createthreadattributes = nullptr);
+   virtual ::pointer<::task>branch_procedure(const ::procedure & procedure, const create_task_attributes & createtaskattributes = nullptr);
 
-   virtual ::pointer<::task>branch_procedure_synchronously(const ::procedure & procedure, const create_task_attributes & createthreadattributes = nullptr);
+   virtual ::pointer<::task>branch_procedure_synchronously(const ::procedure & procedure, const create_task_attributes & createtaskattributes = nullptr);
 
    virtual ::task_pointer run_procedure(bool bSyncronously, const ::procedure & procedure);
 
    //using property_object::branch;
 
-   virtual ::pointer<::task> branch(const create_task_attributes & createthreadattributes = nullptr);
+   virtual ::pointer<::task> branch(const create_task_attributes & createtaskattributes = nullptr);
 
-   virtual ::pointer<::task> branch_synchronously(const create_task_attributes & createthreadattributes = nullptr);
+   virtual ::pointer<::task> branch_synchronously(const create_task_attributes & createtaskattributes = nullptr);
 
    //::task_pointer defer_fork(string strThread = "");
 

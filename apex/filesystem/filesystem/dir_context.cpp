@@ -10,6 +10,7 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/networking/url_department.h"
+#include "acme/parallelization/event.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/string/_string.h"
 #include "apex/platform/application.h"

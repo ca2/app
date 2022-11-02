@@ -1195,9 +1195,6 @@
     <ClCompile Include="platform\shell_launcher.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\file_watcher.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
     <ClCompile Include="platform\os_context.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -1527,6 +1524,12 @@
     </ClCompile>
     <ClCompile Include="interprocess\task.cpp">
       <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\watch.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\watcher.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

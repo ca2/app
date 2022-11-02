@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "acme/operating_system.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -17,6 +16,10 @@ void critical_section::unlock() { ::pthread_mutex_unlock((pthread_mutex_t*)align
 
 
 #else
+
+
+#include "acme/_operating_system.h"
+
 
 critical_section::critical_section() { ::InitializeCriticalSection((CRITICAL_SECTION *)aligned_this()); }
 critical_section::~critical_section() { ::DeleteCriticalSection((CRITICAL_SECTION *)aligned_this()); }

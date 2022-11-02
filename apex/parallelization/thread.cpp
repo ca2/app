@@ -3765,7 +3765,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
          ::output_debug_string("Last Error : " + __string(lastError) + "\n");
 
-         auto estatus = last_error_to_status(lastError);
+         auto estatus = ::windows::last_error_status(lastError);
 
          throw ::exception(estatus);
 

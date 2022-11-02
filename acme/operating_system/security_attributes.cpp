@@ -3,7 +3,7 @@
 #include "security_attributes.h"
 
 
-security_attributes::security_attributes(void * pOsCreateTaskAttributes)
+security_attributes::security_attributes(void * pOsSecurityAttributes)
 {
 
    m_pOsSecurityAttributes = pOsSecurityAttributes;

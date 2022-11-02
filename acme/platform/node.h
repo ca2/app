@@ -479,7 +479,7 @@ namespace acme
       virtual string get_global_id_mutex_name(const ::string & strAppId, const ::string & strId);
 
       
-      virtual ::string get_callstack();
+//      virtual ::string get_callstack();
 
 
       virtual ::i64 get_current_process_id();
@@ -491,10 +491,17 @@ namespace acme
 
 
       virtual void defer_initialize_callstack();
-      virtual string get_callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount);
-      
+#if defined(ANDROID)
+      virtual string unwind_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+#else
+      virtual string get_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
+#endif
+
+
+
 
       virtual ::string get_command_line();
+
 
 
    };

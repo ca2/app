@@ -3,6 +3,7 @@
 
 
 #include "acme/user/nano/window_implementation.h"
+#include "acme/_operating_system.h"
 
 
 namespace windows

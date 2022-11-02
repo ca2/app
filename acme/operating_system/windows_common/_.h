@@ -17,11 +17,11 @@ namespace windows
    inline ::e_status hresult_status(HRESULT hresult) { return _hresult_status(hresult); }
 
 
-   CLASS_DECL_ACME void * get_library_symbol_addrress(const char * pszLibrary, const char * lpszSymbolName);
+   CLASS_DECL_ACME void * get_library_symbol_address(const char * pszLibrary, const char * lpszSymbolName);
 
 
    template < typename PFN >
-   class library
+   class function
    {
    public:
 
@@ -29,13 +29,21 @@ namespace windows
       inline static PFN get_address(const char * pszModule, const char * lpszName)
       {
 
-         return (PFN) get_library_symbol_addrress(pszModule, lpszName);
+         return (PFN) get_library_symbol_address(pszModule, lpszName);
 
       }
 
 
    };
 
+
+   CLASS_DECL_ACME ::e_status wait_result_status(int iResult);
+
+
+   CLASS_DECL_ACME wstring get_file_path_root(const wstring & wstrPath);
+
+
+   CLASS_DECL_ACME DWORD get_file_attributes(const char * path);
 
 } // namespace windows
 

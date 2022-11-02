@@ -2,8 +2,8 @@
 #include "message_queue.h"
 #include "acme/constant/message.h"
 #include "acme/operating_system/message.h"
-#include "acme/operating_system.h"
 #include "acme/parallelization/synchronous_lock.h"
+//#include "acme/_operating_system.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD

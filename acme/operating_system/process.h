@@ -69,7 +69,7 @@ CLASS_DECL_ACME::string get_command_line();
 
 
 
-CLASS_DECL_ACME::u32 get_current_process_id();
+//CLASS_DECL_ACME::u32 get_current_process_id();
 
 
 // it was extracted from macOS code base
@@ -234,7 +234,7 @@ CLASS_DECL_ACME bool root_execute_sync(const ::string & pszFile, const ::string 
 CLASS_DECL_ACME string executable_title_from_appid(string str);
 
 
-CLASS_DECL_ACME ::u32 get_current_process_id();
+//CLASS_DECL_ACME ::u32 get_current_process_id();
 
 
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 /* Copyright 2012 William Woodall and John Harrison */
 #include "acme/platform/serial.h"
-#include "acme/operating_system.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/primitive/function.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/collection/string_array.h"
@@ -45,12 +45,17 @@ namespace serial
 
    timeout timeout::simpleTimeout(const ::duration & duration)
    {
-#ifdef WINDOWS
-      return struct timeout(::duration::infinite(), duration, MAXDWORD, duration, 0);
-#else
-      return ::serial::timeout(::duration::infinite(), duration, 0, duration, 0);
-#endif
+
+      return 0;
+
    }
+
+//#ifdef WINDOWS
+//      return struct timeout(::duration::infinite(), duration, MAXDWORD, duration, 0);
+//#else
+//      return ::serial::timeout(::duration::infinite(), duration, 0, duration, 0);
+//#endif
+//   }
 
 
    void serial::open()
@@ -120,7 +125,7 @@ namespace serial
    size_t serial::read(u8* buffer, size_t size)
    {
       
-      scoped_read_lock lock(this);
+      synchronous_lock lock(read_synchronization());
 
       return _read(buffer, size);
 
@@ -132,7 +137,7 @@ namespace serial
    size_t serial::read(memory& buffer, size_t size)
    {
 
-      scoped_read_lock lock(this);
+      synchronous_lock lock(read_synchronization());
 
       memory bufferRead;
 
@@ -150,7 +155,7 @@ namespace serial
    size_t serial::read(string& buffer, size_t size)
    {
 
-      scoped_read_lock lock(this);
+      synchronous_lock lock(read_synchronization());
 
       memory mem;
       
@@ -181,36 +186,9 @@ namespace serial
 
    size_t serial::readline(string& buffer, size_t size, string eol)
    {
-#ifdef WINDOWS
+
       return 0;
-      //return _readline(buffer, size, eol);
-#else
-      scoped_read_lock lock(this);
-      size_t eol_len = eol.length();
-      u8* buffer_ = static_cast<u8*>
-         (alloca(size * sizeof(u8)));
-      size_t read_so_far = 0;
-      while (true)
-      {
-         size_t bytes_read = this->_read(buffer_ + read_so_far, 1);
-         read_so_far += bytes_read;
-         if (bytes_read == 0)
-         {
-            break; // timeout occured on reading 1 byte
-         }
-         if (string(reinterpret_cast<const char*>
-            (buffer_ + read_so_far - eol_len), eol_len) == eol)
-         {
-            break; // EOL found
-         }
-         if (read_so_far == size)
-         {
-            break; // Reached the maximum read length
-         }
-      }
-      buffer.append(reinterpret_cast<const char*> (buffer_), read_so_far);
-      return read_so_far;
-#endif
+
    }
 
 
@@ -229,7 +207,7 @@ namespace serial
    string_array serial::readlines(size_t size, string eol)
    {
 
-      scoped_read_lock lock(this);
+      synchronous_lock lock(read_synchronization());
 
       string_array lines;
 
@@ -296,7 +274,7 @@ namespace serial
    size_t serial::write(const string& data)
    {
 
-      scoped_write_lock lock(this);
+      synchronous_lock lock(write_synchronization());
 
       return _write(reinterpret_cast<const u8*>(data.c_str()), (size_t)data.length());
 
@@ -306,7 +284,7 @@ namespace serial
    size_t serial::write(const memory& data)
    {
 
-      scoped_write_lock lock(this);
+      synchronous_lock lock(write_synchronization());
 
       return _write(data.get_data(), (size_t)data.size());
 
@@ -316,7 +294,7 @@ namespace serial
    size_t serial::write(const u8* data, size_t size)
    {
       
-      scoped_write_lock lock(this);
+      synchronous_lock lock(write_synchronization());
 
       return _write(data, size);
 
@@ -334,9 +312,9 @@ namespace serial
    void serial::setPort(const string& port)
    {
 
-      scoped_read_lock rlock(this);
+      synchronous_lock readlock(read_synchronization());
 
-      scoped_write_lock wlock(this);
+      synchronous_lock writelock(write_synchronization());
 
       bool was_open = isOpen();
       
@@ -479,9 +457,9 @@ namespace serial
    void serial::flush()
    {
    
-      scoped_read_lock rlock(this);
+      synchronous_lock readlock(read_synchronization());
 
-      scoped_write_lock wlock(this);
+      synchronous_lock writelock(write_synchronization());
 
       _flush();
 
@@ -491,7 +469,7 @@ namespace serial
    void serial::flushInput()
    {
       
-      scoped_read_lock lock(this);
+      synchronous_lock readlock(read_synchronization());
 
       _flushInput();
 
@@ -501,7 +479,7 @@ namespace serial
    void serial::flushOutput()
    {
 
-      scoped_write_lock lock(this);
+      synchronous_lock writelock(write_synchronization());
 
       _flushOutput();
 
@@ -590,27 +568,31 @@ namespace serial
    }
 
 
-   void serial::readLock()
+   ::particle * serial::read_synchronization()
    {
+
+      return nullptr;
 
    }
 
 
-   void serial::readUnlock()
+   ::particle * serial::write_synchronization()
    {
+
+      return nullptr;
 
    }
 
-   void serial::writeLock()
-   {
+   //void serial::writeLock()
+   //{
 
-   }
+   //}
 
 
-   void serial::writeUnlock()
-   {
+   //void serial::writeUnlock()
+   //{
 
-   }
+   //}
 
 
 

@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "multiple_lock.h"
 #include "semaphore.h"
-#include "acme/operating_system.h"
 #include "acme/parallelization/synchronization_array.h"
 #include "acme/exception/exception.h"
+#include "acme/_operating_system.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD

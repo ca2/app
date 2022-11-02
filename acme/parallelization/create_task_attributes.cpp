@@ -3,13 +3,13 @@
 #include "create_task_attributes.h"
 
 
-create_task_attributes::create_task_attributes(::enum_priority epriority, ::u32 uStackSize, ::u32 uCreateFlags, void * pOsCreateTaskAttributes)
+create_task_attributes::create_task_attributes(::enum_priority epriority, ::u32 uStackSize, ::u32 uCreateFlags, const security_attributes & security_attributes) :
+   m_securityattributes(security_attributes)
 {
    
    m_epriority = epriority;
    m_uStackSize = uStackSize;
    m_uCreateFlags = uCreateFlags;
-   m_pOsCreateTaskAttributes = pOsCreateTaskAttributes;
 
 }
 
@@ -21,13 +21,13 @@ create_task_attributes::create_task_attributes(nullptr_t) :
 }
 
 
-create_task_attributes::create_task_attributes(const create_task_attributes & createtaskattributes)
+create_task_attributes::create_task_attributes(const create_task_attributes & createtaskattributes) :
+   m_securityattributes(createtaskattributes.m_securityattributes)
 {
 
-   m_epriority = create_task_attributes.m_epriority;
-   m_uStackSize = create_task_attributes.m_uStackSize;
-   m_uCreateFlags = create_task_attributes.m_uCreateFlags;
-   m_pOsCreateTaskAttributes = create_task_attributes.m_pOsCreateTaskAttributes;
+   m_epriority = createtaskattributes.m_epriority;
+   m_uStackSize = createtaskattributes.m_uStackSize;
+   m_uCreateFlags = createtaskattributes.m_uCreateFlags;
 
 }
 

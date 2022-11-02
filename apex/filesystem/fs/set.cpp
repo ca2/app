@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "set.h"
+#include "acme/parallelization/event.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/listing.h"

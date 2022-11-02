@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/constant/flag.h"
+
+
 inline bool __enum_is_ok(const ::enum_flag& e) { return (e & e_flag_success) != 0; }
 inline bool __enum_is_failed(const ::enum_flag& e) { return (e & e_flag_failure) != 0 || (e & e_flag_timeout) != 0; }
 

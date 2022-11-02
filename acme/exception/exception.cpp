@@ -5,6 +5,8 @@
 #include "acme/primitive/string/__string.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/operating_system/process.h"
+#include "acme/platform/node.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/primitive/atom.h"
 #include "_api.h"
 #include <stdio.h>
@@ -102,7 +104,7 @@ exception::exception(const ::e_status & estatus, const char * pszMessage, const 
 
 #else
       
-      m_strCallstack = get_callstack(callstack_default_format(), iSkip, caller_address);
+      m_strCallstack = ::get_system()->acmenode()->get_callstack(callstack_default_format(), iSkip, caller_address);
 
 #endif
 
@@ -515,7 +517,7 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
    strDetails += strMessage + "\n";
    strDetails += exception.m_strDetails + "\n\n";
    strDetails += "\n";
-   strDetails += "PID: " + __string(::get_current_process_id()) + "\n";
+   strDetails += "PID: " + __string(pparticle->acmenode()->get_current_process_id()) + "\n";
    //strDetails += "Working Directory: " + string(GetCurrentDirectory()) + "\n\n";
    
    if (strMoreDetails.has_char())
@@ -565,4 +567,13 @@ CLASS_DECL_ACME void throw_todo()
 }
 
 
+
+
+
+CLASS_DECL_ACME::string callstack_default_format()
+{ 
+   
+   return "%f(%l) %s\n"; 
+
+}
 

@@ -10,9 +10,9 @@
 #include "acme/user/nano/details_window.h"
 #include "acme/user/nano/popup_button.h"
 #include "acme/user/user/mouse.h"
-#include "acme/operating_system.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
+#include "acme/_operating_system.h"
 
 
 bool is_ui_possible();

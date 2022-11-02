@@ -138,7 +138,7 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
       // log error
       DWORD dwLastError = GetLastError();
 
-      auto estatus = last_error_to_status(dwLastError);
+      auto estatus = ::windows::last_error_status(dwLastError);
 
       throw ::exception(estatus);
 
@@ -154,7 +154,7 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
       // log error
       DWORD dwLastError = GetLastError();
 
-      auto estatus = last_error_to_status(dwLastError);
+      auto estatus = ::windows::last_error_status(dwLastError);
 
       throw ::exception(estatus);
 
@@ -174,7 +174,7 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
       // log error
       DWORD dwLastError = GetLastError();
 
-      auto estatus = last_error_to_status(dwLastError);
+      auto estatus = ::windows::last_error_status(dwLastError);
 
       throw ::exception(estatus);
 
@@ -193,7 +193,7 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
       // log error
       DWORD dwLastError = GetLastError();
 
-      auto estatus = last_error_to_status(dwLastError);
+      auto estatus = ::windows::last_error_status(dwLastError);
 
       throw ::exception(estatus);
 
@@ -233,7 +233,7 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
 
       DWORD dwLastError = ::GetLastError();
 
-      auto estatus = last_error_to_status(dwLastError);
+      auto estatus = ::windows::last_error_status(dwLastError);
 
       throw ::exception(estatus);
 

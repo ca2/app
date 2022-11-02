@@ -1730,7 +1730,7 @@ namespace acme
 
          string strPid;
 
-         strPid = __string(get_current_process_id());
+         strPid = __string(acmenode()->get_current_process_id());
 
          strModifier = strDate + "_" + strPid;
 
@@ -2279,17 +2279,17 @@ namespace acme
 
       }
 
-#ifdef WINDOWS_DESKTOP
-
-      WCHAR wsz[1024];
-
-      DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
-
-      GetUserNameW(wsz, &dwSize);
-
-      string strUserName = wsz;
-
-#endif // WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//      WCHAR wsz[1024];
+//
+//      DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+//
+//      GetUserNameW(wsz, &dwSize);
+//
+//      string strUserName = wsz;
+//
+//#endif // WINDOWS_DESKTOP
 
       //   if (is_verbose())
       //   {

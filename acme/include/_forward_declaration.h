@@ -618,3 +618,15 @@ class create_task_attributes;
 class security_attributes;
 
 
+namespace operating_system
+{
+
+
+   CLASS_DECL_ACME const char * get_message_text(enum_message emessage);
+
+
+} // namespace operating_system
+
+
+
+

@@ -7,7 +7,7 @@
 #endif
 
 
-//#include "synchronization_object.h"
+#include "acme/operating_system/security_attributes.h"
 
 
 class CLASS_DECL_ACME event :
@@ -37,8 +37,7 @@ public:
 #endif
 
 
-   event(char * sz = nullptr,bool bInitiallyOwn = false, bool bManualReset = false, const char * pszNAme = nullptr ARG_SEC_ATTRS_DEF);
-
+   event(char * sz = nullptr,bool bInitiallyOwn = false, bool bManualReset = false, const char * pszNAme = nullptr, const security_attributes & securityattributes = nullptr);
    ~event() override;
 
    // using event_base::lock;

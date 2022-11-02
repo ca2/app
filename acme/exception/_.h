@@ -36,6 +36,9 @@ inline ::e_status errno_to_status(i32 nErrno) { return _errno_to_status(nErrno);
 inline ::e_status failed_errno_to_status(i32 nErrno) { return _failed_errno_to_status(nErrno); }
 
 
+CLASS_DECL_ACME ::string callstack_default_format();
+
+
 
 
 

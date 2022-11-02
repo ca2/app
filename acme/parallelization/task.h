@@ -132,9 +132,9 @@ public:
 
    virtual bool has_message() const;
 
-   ::pointer<::task>branch(const create_task_attributes & createthreadattributes = nullptr) override;
+   ::pointer<::task>branch(const create_task_attributes & createtaskattributes = nullptr) override;
 
-   ::pointer<::task>branch_synchronously(const create_task_attributes & createthreadattributes = nullptr) override;
+   ::pointer<::task>branch_synchronously(const create_task_attributes & createtaskattributes = nullptr) override;
 
    virtual bool task_sleep(const class ::wait & wait);
 

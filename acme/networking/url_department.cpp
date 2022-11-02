@@ -6,21 +6,8 @@
 #include "acme/platform/system.h"
 
 
-#ifdef WINDOWS_DESKTOP
-//#include "acme/_operating_system.h"
-#elif defined(ANDROID)
-#include "idn/idna.h"
-#elif defined(__APPLE__)
-#include "idn/idna.h"
-#elif defined(LINUX)
-// apt install libidn11-dev
-// dnf install libidn-devel
-#include <idna.h>
-#elif defined(FREEBSD)
-// apt install libidn11-dev
-// dnf install libidn-devel
-#include <idna.h>
-#endif
+::string idn_to_punycode(const ::string & str);
+::string idn_from_punycode(const ::string & str);
 
 
 namespace url
@@ -1824,106 +1811,14 @@ namespace url
    string department::to_punycode(const ::string & str)
    {
 
-#ifdef WINDOWS
-
-      wstring wstr(str);
-
-      int iSize = IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int) wstr.get_length(), nullptr, 0);
-
-      wstring wstrTarget;
-
-      WCHAR * pwszTarget = wstrTarget.get_string_buffer(iSize);
-
-      IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int) wstr.get_length(), pwszTarget, iSize);
-
-      wstrTarget.release_string_buffer();
-
-      string strTarget = wstrTarget;
-
-      return strTarget;
-
-#else
-
-      char * psz = nullptr;
-
-      Idna_rc rc = (Idna_rc) idna_to_ascii_8z(str, &psz, IDNA_ALLOW_UNASSIGNED);
-
-      if (rc != IDNA_SUCCESS)
-      {
-
-         throw ::exception(idna_strerror(rc));
-
-      }
-
-      string strReturn(psz);
-
-      free(psz);
-
-      return strReturn;
-
-#endif
+      return ::idn_to_punycode(str);
 
    }
 
    string department::from_punycode(const ::string & str)
    {
 
-#ifdef WINDOWS
-
-      wstring wstrSource(str);
-
-      int iSize = IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (int)wstrSource.get_length(), nullptr, 0);
-
-      wstring wstrTarget;
-
-      auto pwszTarget = wstrTarget.get_string_buffer(iSize);
-
-      IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (int)wstrSource.get_length(), pwszTarget, iSize);
-
-      wstrTarget.release_string_buffer(iSize);
-
-      string strTarget = wstrTarget;
-
-      return strTarget;
-
-#else
-
-      if(str.is_empty())
-      {
-
-         return "";
-
-      }
-
-      string strTrimmed(str);
-
-      strTrimmed.trim();
-
-      if(strTrimmed.is_empty())
-      {
-
-         return "";
-
-      }
-
-      char * psz = nullptr;
-
-      Idna_rc rc = (Idna_rc)idna_to_unicode_8z8z(strTrimmed, &psz, IDNA_ALLOW_UNASSIGNED);
-
-      if (rc != IDNA_SUCCESS)
-      {
-
-         throw ::exception(idna_strerror(rc));
-
-      }
-
-      string strReturn(psz);
-
-      free(psz);
-
-      return strReturn;
-
-#endif
+      return ::idn_from_punycode(str);
 
    }
 

@@ -419,9 +419,9 @@ namespace apex
       virtual string get_theme();
 
 
-      virtual bool exclusive_fails(string str ARG_SEC_ATTRS_DEF);
+      virtual bool exclusive_fails(string str, const security_attributes & securitattributes = nullptr);
 
-      virtual bool exclusive_erase(string str ARG_SEC_ATTRS_DEF);
+      virtual bool exclusive_erase(string str, const security_attributes & securitattributes = nullptr);
 
 
       virtual bool start_application(bool bSynch, ::create * pcreate);

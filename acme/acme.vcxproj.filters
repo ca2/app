@@ -1772,9 +1772,6 @@
     <ClInclude Include="exception\file.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="include\_no_templates.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
     <ClInclude Include="include\_c.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
@@ -2891,6 +2888,21 @@
     <ClInclude Include="operating_system\security_attributes.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
+    <ClInclude Include="constant\flag.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_enumeration.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tuple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_structures.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -3877,9 +3889,6 @@
     <ClCompile Include="operating_system\console_client.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\debug.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
     <ClCompile Include="platform\conversation_message.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3947,6 +3956,18 @@
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\security_attributes.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\_synchronization.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\idn.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\debug.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\message.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
   </ItemGroup>

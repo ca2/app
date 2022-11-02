@@ -121,7 +121,7 @@ namespace serial
        *
        * \return timeout struct that represents this simple timeout provided.
        */
-      static timeout simpleTimeout(const ::duration & duration);
+      virtual timeout simpleTimeout(const ::duration & duration);
 
       /*! Number of ::durations between bytes received to timeout on. */
       ::duration m_durationInterByteTimeout;
@@ -236,13 +236,15 @@ namespace serial
       isOpen () const;
 
       /*! Closes the serial port. */
-      virtual void
-      close ();
+      virtual void close ();
 
-      virtual void readLock();
-      virtual void readUnlock();
-      virtual void writeLock();
-      virtual void writeUnlock();
+      //virtual void readLock();
+      //virtual void readUnlock();
+      //virtual void writeLock();
+      //virtual void writeUnlock();
+
+      virtual ::particle * read_synchronization();
+      virtual ::particle * write_synchronization();
 
       /*! Return the number of characters in the buffer. */
       virtual size_t
@@ -803,57 +805,57 @@ namespace serial
 
 
 
-   class scoped_read_lock
-   {
-   public:
+   //class scoped_read_lock
+   //{
+   //public:
 
 
-      serial * m_pserial;
+   //   serial * m_pserial;
 
 
-      scoped_read_lock(serial * pserial) : 
-         m_pserial(pserial)
-      {
+   //   scoped_read_lock(serial * pserial) : 
+   //      m_pserial(pserial)
+   //   {
 
-         m_pserial->readLock();
+   //      m_pserial->readLock();
 
-      }
-
-
-      ~scoped_read_lock()
-      {
-
-         m_pserial->readUnlock();
-
-      }
-
-   };
+   //   }
 
 
-   class scoped_write_lock
-   {
-   public:
+   //   ~scoped_read_lock()
+   //   {
 
-      serial* m_pserial;
+   //      m_pserial->readUnlock();
 
+   //   }
 
-      scoped_write_lock(serial * pserial) :
-         m_pserial(pserial)
-      {
-         
-         m_pserial->writeLock();
-
-      }
+   //};
 
 
-      ~scoped_write_lock()
-      {
+   //class scoped_write_lock
+   //{
+   //public:
 
-         m_pserial->writeUnlock();
+   //   serial* m_pserial;
 
-      }
 
-   };
+   //   scoped_write_lock(serial * pserial) :
+   //      m_pserial(pserial)
+   //   {
+   //      
+   //      m_pserial->writeLock();
+
+   //   }
+
+
+   //   ~scoped_write_lock()
+   //   {
+
+   //      m_pserial->writeUnlock();
+
+   //   }
+
+   //};
 
 
 } // namespace serial

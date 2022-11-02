@@ -8,27 +8,27 @@
 #include "acme/platform/system.h"
 
 
-#if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
-static const char * g_p1;
-static const char * g_p2;
-void set_res(const char * p1, const char * p2)
-{
-
-   g_p1 = p1;
-   g_p2 = p2;
-}
-#endif
-#ifdef WINDOWS
-static HINSTANCE g_hinstanceThis;
-static HINSTANCE g_hinstancePrev;
-static int g_nCmdShow;
-CLASS_DECL_ACME void set_winmain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, int nCmdShow)
-{
-   g_hinstanceThis = hinstanceThis;
-   g_hinstancePrev = hinstancePrev;
-   g_nCmdShow = nCmdShow;
-}
-#endif
+//#if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
+//static const char * g_p1;
+//static const char * g_p2;
+//void set_res(const char * p1, const char * p2)
+//{
+//
+//   g_p1 = p1;
+//   g_p2 = p2;
+//}
+//#endif
+//#ifdef WINDOWS
+//static HINSTANCE g_hinstanceThis;
+//static HINSTANCE g_hinstancePrev;
+//static int g_nCmdShow;
+//CLASS_DECL_ACME void set_winmain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, int nCmdShow)
+//{
+//   g_hinstanceThis = hinstanceThis;
+//   g_hinstancePrev = hinstancePrev;
+//   g_nCmdShow = nCmdShow;
+//}
+//#endif
 
 
 namespace acme
@@ -59,18 +59,18 @@ namespace acme
 
       //::acme::initialize();
 
-#if defined(WINDOWS)
-
-      m_hinstanceThis = g_hinstanceThis;
-      m_hinstancePrev = g_hinstancePrev;
-      m_nCmdShow = g_nCmdShow;
-
-#elif defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
-
-      m_pchar_binary__matter_zip_start = g_p1;
-      m_pchar_binary__matter_zip_end = g_p2;
-
-#endif
+//#if defined(WINDOWS)
+//
+//      m_hinstanceThis = g_hinstanceThis;
+//      m_hinstancePrev = g_hinstancePrev;
+//      m_nCmdShow = g_nCmdShow;
+//
+//#elif defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
+//
+//      m_pchar_binary__matter_zip_start = g_p1;
+//      m_pchar_binary__matter_zip_end = g_p2;
+//
+//#endif
 
    }
 
@@ -146,43 +146,43 @@ namespace acme
    }
 
 
-#ifdef WINDOWS
-
-
-   void application::get_arguments_from_command_line()
-   {
-
-      m_argc = __argc;
-
-      m_argv = __argv;
-
-      m_envp = *__p__environ();
-
-      m_wargv = __wargv;
-
-      m_wenvp = *__p__wenviron();
-
-      m_strCommandLine = ::GetCommandLineW();
-
-   }
-
-
-#else
-
-
-   void application::set_args(int argc, char * argv[], char * envp[])
-   {
-
-      m_argc = argc;
-
-      m_argv = argv;
-
-      m_envp = envp;
-
-   }
-
-
-#endif
+//#ifdef WINDOWS
+//
+//
+//   void application::get_arguments_from_command_line()
+//   {
+//
+//      m_argc = __argc;
+//
+//      m_argv = __argv;
+//
+//      m_envp = *__p__environ();
+//
+//      m_wargv = __wargv;
+//
+//      m_wenvp = *__p__wenviron();
+//
+//      m_strCommandLine = ::GetCommandLineW();
+//
+//   }
+//
+//
+//#else
+//
+//
+//   void application::set_args(int argc, char * argv[], char * envp[])
+//   {
+//
+//      m_argc = argc;
+//
+//      m_argv = argv;
+//
+//      m_envp = envp;
+//
+//   }
+//
+//
+//#endif
 
 
    int application::__implement()

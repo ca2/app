@@ -409,15 +409,9 @@ public:
    void task_osterm() override;
 
 
-   ::pointer<::task>branch(
-      ::enum_priority epriority = ::e_priority_normal,
-      ::u32 nStackSize = 0,
-      u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
+   ::pointer<::task>branch(const create_task_attributes & createtaskattributes = nullptr) override;
 
-   ::pointer<::task>branch_synchronously(
-   ::enum_priority epriority = ::e_priority_normal,
-   ::u32 nStackSize = 0,
-   u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
+   ::pointer<::task>branch_synchronously(const create_task_attributes & createtaskattributes = nullptr) override;
 
 
    virtual void inline_init();

@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "file_time.h"
 #include "acme/primitive/primitive/payload.h"
-#include "acme/operating_system.h"
 #include "acme/operating_system/time.h"
+#include "acme/_operating_system.h"
 
 
 file_time file_time::get_current_time() noexcept
@@ -14,7 +14,7 @@ file_time file_time::get_current_time() noexcept
 
    GetSystemTimeAsFileTime(&file_time);
 
-   return __file_time(file_time);
+   return *(const ::file_time *) &file_time;
 
 #else
 

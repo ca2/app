@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "set.h"
+#include "acme/parallelization/event.h"
 #include "apex/platform/context.h"
 #include "apex/platform/os_context.h"
 

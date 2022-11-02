@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "event.h"
 #include "acme/primitive/string/string.h"
-#include "acme/operating_system.h"
 #include "acme/exception/exception.h"
+#include "acme/_operating_system.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -94,12 +94,15 @@ void clock_getrealtime(struct timespec * pts)
 //CLASS_DECL_ACME::layered* get_layered_thread();
 
 
-event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstrName ARG_SEC_ATTRS)
+event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstrName, const security_attributes & securityattributes)
 {
 
 #ifdef WINDOWS_DESKTOP
 
-   m_hsynchronization = ::CreateEventW((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, bManualReset, bInitiallyOwn, pstrName ? nullptr : wstring(pstrName).c_str());
+   m_hsynchronization = ::CreateEventW(
+      (LPSECURITY_ATTRIBUTES)securityattributes.m_pOsSecurityAttributes,
+      bManualReset, 
+      bInitiallyOwn, pstrName ? nullptr : wstring(pstrName).c_str());
 
    if (m_hsynchronization == NULL)
    {
@@ -582,11 +585,9 @@ bool event::_wait (const class ::wait & wait)
 
 #ifdef WINDOWS
 
-   //auto hsync = this->hsync();
-
    DWORD dwResult = ::WaitForSingleObjectEx(m_hsynchronization, wait, false);
 
-   estatus = windows_wait_result_to_status(dwResult);
+   estatus = ::windows::wait_result_status(dwResult);
 
    if (estatus == error_wait_timeout)
    {

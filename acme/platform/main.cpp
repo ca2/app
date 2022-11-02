@@ -16,7 +16,7 @@
 #include "acme/platform/system_setup.h"
 #include "acme/primitive/string/command_line.h"
 #include "_main_hold_base.h"
-
+#include "acme/_operating_system.h"
 
 
 
@@ -405,7 +405,7 @@ char * embed_resource::get_end()
 
 
 
-#include "acme/operating_system.h"
+//#include "acme/_operating_system.h"
 
 
 //#ifdef ANDROID

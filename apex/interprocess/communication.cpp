@@ -64,7 +64,7 @@ namespace interprocess
 
 #else
 
-      m_atomApp = (::i64) ::get_current_process_id();
+      m_atomApp = (::i64) acmenode()->get_current_process_id();
 
 #endif
 

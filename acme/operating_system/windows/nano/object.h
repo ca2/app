@@ -5,6 +5,7 @@
 
 
 #include "acme/user/nano/object.h"
+#include "acme/_operating_system.h"
 
 
 namespace windows

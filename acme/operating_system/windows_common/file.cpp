@@ -5,56 +5,64 @@
 #include <io.h>
 
 
-CLASS_DECL_ACME bool windows_get_alternate_path(wstring& wstr)
+namespace windows
 {
 
-   if (wstr.begins_ci(::str().windows_bbqb(wstr)))
+
+   CLASS_DECL_ACME bool get_alternate_path(wstring & wstr)
    {
 
-      return false;
-
-   }
-
-   if (wstr.begins_ci(::str().windows_bb(wstr)))
-   {
-
-      wstr = ::str().windows_bbqbunc(wstr) + wstr.Mid(1);
-
-   }
-   else
-   {
-
-      wstr = ::str().windows_bbqb(wstr) + wstr;
-
-   }
-
-   return true;
-
-}
-
-
-CLASS_DECL_ACME::u32 windows_get_file_attributes(const char* path)
-{
-
-   wstring wstr(path);
-
-   u32 dwFileAttributes = ::GetFileAttributesW(wstr);
-
-   if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
-   {
-
-      if (windows_get_alternate_path(wstr))
+      if (wstr.begins_ci(::str().windows_bbqb(wstr)))
       {
 
-         dwFileAttributes = GetFileAttributesW(wstr);
+         return false;
 
       }
 
+      if (wstr.begins_ci(::str().windows_bb(wstr)))
+      {
+
+         wstr = ::str().windows_bbqbunc(wstr) + wstr.Mid(1);
+
+      }
+      else
+      {
+
+         wstr = ::str().windows_bbqb(wstr) + wstr;
+
+      }
+
+      return true;
+
    }
 
-   return dwFileAttributes;
 
-}
+   CLASS_DECL_ACME DWORD get_file_attributes(const char * path)
+   {
+
+      wstring wstr(path);
+
+      DWORD dwFileAttributes = ::GetFileAttributesW(wstr);
+
+      if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
+      {
+
+         if (::windows::get_alternate_path(wstr))
+         {
+
+            dwFileAttributes = GetFileAttributesW(wstr);
+
+         }
+
+      }
+
+      return dwFileAttributes;
+
+   }
+
+
+} // namespace windows
+
 
 
 void delete_file(const char* path)
@@ -67,7 +75,7 @@ void delete_file(const char* path)
 
       auto dwLastError = ::GetLastError();
 
-      auto estatus = last_error_to_status(dwLastError);
+      auto estatus = ::windows::last_error_status(dwLastError);
 
       throw ::exception(estatus);
 
@@ -81,7 +89,7 @@ void delete_file(const char* path)
 bool file_exists(const char* path)
 {
 
-   auto attributes = windows_get_file_attributes(path);
+   auto attributes = ::windows::get_file_attributes(path);
 
    if (attributes == INVALID_FILE_ATTRIBUTES)
    {
@@ -258,7 +266,7 @@ void create_directory(const char* path)
 
       }
 
-      if (windows_get_alternate_path(wstr))
+      if (::windows::get_alternate_path(wstr))
       {
 
          if (!::CreateDirectoryW(wstr, nullptr))
@@ -273,7 +281,7 @@ void create_directory(const char* path)
 
             }
 
-            auto estatus = last_error_to_status(lastError);
+            auto estatus = ::windows::last_error_status(lastError);
 
             string strDetails;
 
@@ -287,7 +295,7 @@ void create_directory(const char* path)
       else
       {
 
-         auto estatus = last_error_to_status(lastError);
+         auto estatus = ::windows::last_error_status(lastError);
 
          string strDetails;
 
@@ -329,7 +337,7 @@ void erase_directory(const char* path)
 
       auto lastError = ::GetLastError();
 
-      auto estatus = last_error_to_status(lastError);
+      auto estatus = ::windows::last_error_status(lastError);
 
       throw ::exception(estatus);
 
@@ -339,166 +347,107 @@ void erase_directory(const char* path)
 
 
 
-void CLASS_DECL_ACME windows_get_root(wstring & wstrRoot, const wstring & wstrPath)
-{
-   //   ASSERT(pszPath != nullptr);
-
-   // determine the root name of the volume
-   wstrRoot = wstrPath;
-
-   unichar * pszRoot = wstrRoot.get_string_buffer((wstrPath.get_length() + MAX_PATH) * 2);
-
-   unichar * psz;
-
-   for (psz = pszRoot; *psz != L'\0'; psz = _wcsinc(psz))
-
-   {
-      // find first double slash and stop
-      if (IsDirSep(psz[0]) && IsDirSep(psz[1]))
-
-         break;
-   }
-   if (*psz != '\0')
-
-   {
-      // it is a UNC name, find second slash past '\\'
-      ASSERT(IsDirSep(psz[0]));
-
-      ASSERT(IsDirSep(psz[1]));
-
-      psz += 2;
-
-      while (*psz != '\0' && (!IsDirSep(*psz)))
-
-         psz = _wcsinc(psz);
-
-      if (*psz != '\0')
-
-         psz = _wcsinc(psz);
-
-      while (*psz != '\0' && (!IsDirSep(*psz)))
-
-         psz = _wcsinc(psz);
-
-      // terminate it just after the UNC root (ie. '\\server\share\')
-      if (*psz != '\0')
-
-         psz[1] = '\0';
-
-   }
-   else
-   {
-      // not a UNC, look for just the first slash
-      psz = pszRoot;
-
-      while (*psz != '\0' && (!IsDirSep(*psz)))
-
-         psz = _wcsinc(psz);
-
-      // terminate it just after root (ie. 'x:\')
-      if (*psz != '\0')
-
-         psz[1] = '\0';
-
-   }
-   
-   wstrRoot.release_string_buffer();
-
-}
 
 
-wstring CLASS_DECL_ACME windows_get_root(const wstring & wstrPath)
+namespace windows
 {
 
-   wstring wstrRoot;
 
-   auto iLength = wstrPath.get_length();
-
-   unichar * pszRoot = wstrRoot.get_string_buffer(iLength);
-
-   wcsncpy(pszRoot, wstrPath.c_str(), iLength + 1);
-
-   unichar * psz = pszRoot;
-
-   for (; *psz != '\0'; psz = _wcsinc(psz))
+   wstring CLASS_DECL_ACME get_file_path_root(const wstring & wstrPath)
    {
 
-      // find first double slash and stop
-      if (IsDirSep(psz[0]) && IsDirSep(psz[1]))
+      wstring wstrRoot;
+
+      auto iLength = wstrPath.get_length();
+
+      unichar * pszRoot = wstrRoot.get_string_buffer(iLength);
+
+      wcsncpy(pszRoot, wstrPath.c_str(), iLength + 1);
+
+      unichar * psz = pszRoot;
+
+      for (; *psz != '\0'; psz = _wcsinc(psz))
       {
 
-         break;
+         // find first double slash and stop
+         if (IsDirSep(psz[0]) && IsDirSep(psz[1]))
+         {
 
-      }
+            break;
 
-   }
-
-   if (*psz != '\0')
-   {
-
-      // it is a UNC name, find second slash past '\\'
-      ASSERT(IsDirSep(psz[0]));
-
-      ASSERT(IsDirSep(psz[1]));
-
-      psz += 2;
-
-      while (*psz != '\0' && (!IsDirSep(*psz)))
-      {
-
-         psz = _wcsinc(psz);
+         }
 
       }
 
       if (*psz != '\0')
       {
 
-         psz = _wcsinc(psz);
+         // it is a UNC name, find second slash past '\\'
+         ASSERT(IsDirSep(psz[0]));
+
+         ASSERT(IsDirSep(psz[1]));
+
+         psz += 2;
+
+         while (*psz != '\0' && (!IsDirSep(*psz)))
+         {
+
+            psz = _wcsinc(psz);
+
+         }
+
+         if (*psz != '\0')
+         {
+
+            psz = _wcsinc(psz);
+
+         }
+
+         while (*psz != '\0' && (!IsDirSep(*psz)))
+         {
+
+            psz = _wcsinc(psz);
+
+         }
+
+         // terminate it just after the UNC root (ie. '\\server\share\')
+         if (*psz != '\0')
+         {
+
+            psz[1] = '\0';
+
+         }
 
       }
-
-      while (*psz != '\0' && (!IsDirSep(*psz)))
+      else
       {
 
-         psz = _wcsinc(psz);
+         // not a UNC, look for just the first slash
+         psz = pszRoot;
+
+         while (*psz != '\0' && (!IsDirSep(*psz)))
+         {
+
+            psz = _wcsinc(psz);
+
+         }
+
+         // terminate it just after root (ie. 'x:\')
+         if (*psz != '\0')
+         {
+
+            psz[1] = '\0';
+
+         }
 
       }
 
-      // terminate it just after the UNC root (ie. '\\server\share\')
-      if (*psz != '\0')
-      {
-
-         psz[1] = '\0';
-
-      }
+      return ::move(wstrRoot);
 
    }
-   else
-   {
 
-      // not a UNC, look for just the first slash
-      psz = pszRoot;
 
-      while (*psz != '\0' && (!IsDirSep(*psz)))
-      {
-
-         psz = _wcsinc(psz);
-
-      }
-
-      // terminate it just after root (ie. 'x:\')
-      if (*psz != '\0')
-      {
-
-         psz[1] = '\0';
-
-      }
-
-   }
-
-   return ::move(wstrRoot);
-
-}
+} // namespace windows
 
 
 CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, u64 iSize)

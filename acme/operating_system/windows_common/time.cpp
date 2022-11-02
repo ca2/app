@@ -327,7 +327,7 @@ void datetime_to_filetime(::file_time_t * pfiletime, const ::earth::time & time)
 
       DWORD dwLastError = ::GetLastError();
 
-      auto estatus = last_error_to_status(dwLastError);
+      auto estatus = ::windows::last_error_status(dwLastError);
 
       throw ::exception(estatus);
 
@@ -339,7 +339,7 @@ void datetime_to_filetime(::file_time_t * pfiletime, const ::earth::time & time)
 
       DWORD dwLastError = ::GetLastError();
 
-      auto estatus = last_error_to_status(dwLastError);
+      auto estatus = ::windows::last_error_status(dwLastError);
 
       throw ::exception(estatus);
 

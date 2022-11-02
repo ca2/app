@@ -579,6 +579,22 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
+::file::path acme_directory::program_files_x86()
+{
+
+   return {};
+
+}
+
+
+
+::file::path acme_directory::program_files()
+{
+
+   return {};
+
+}
+
 ::file::path acme_directory::get_memory_map_base_folder_path()
 {
 

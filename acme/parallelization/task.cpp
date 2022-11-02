@@ -1,12 +1,12 @@
 ﻿#include "framework.h"
 #include "task.h"
 #include "manual_reset_event.h"
-#include "acme/operating_system.h"
 #include "acme/platform/system.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/translator.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/_operating_system.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -888,7 +888,7 @@ bool task::has_message() const
 //}
 
 
-::pointer<::task>task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+::pointer<::task>task::branch(const ::create_task_attributes & createtaskattributes)
 {
 
    if (m_atom.is_empty())
@@ -1053,7 +1053,13 @@ bool task::has_message() const
 
    DWORD dwThread = 0;
 
-   m_htask = ::CreateThread((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, nStackSize, (LPTHREAD_START_ROUTINE) &::task::s_os_task, (LPVOID)(task*)this, uCreateFlags, &dwThread);
+   m_htask = ::CreateThread(
+      (LPSECURITY_ATTRIBUTES)createtaskattributes.m_securityattributes.m_pOsSecurityAttributes,
+      createtaskattributes.m_uStackSize, 
+      (LPTHREAD_START_ROUTINE) & ::task::s_os_task, 
+      (LPVOID)(task *)this,
+      createtaskattributes.m_uCreateFlags,
+      &dwThread);
 
    m_itask = dwThread;
 
@@ -1102,7 +1108,7 @@ bool task::has_message() const
 }
 
 
-::pointer<::task>task::branch_synchronously(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+::pointer<::task>task::branch_synchronously(const ::create_task_attributes & createtaskattributes)
 {
 
    unset_finishing();
@@ -1186,7 +1192,7 @@ bool task::has_message() const
 
    //auto estatus = branch(epriority, nStackSize, uiCreateFlags);
 
-   branch(epriority, nStackSize, uCreateFlags);
+   branch(createtaskattributes);
 
    if (m_htask == 0)
    {

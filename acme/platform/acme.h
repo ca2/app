@@ -226,12 +226,12 @@ namespace acme
       void this_ref();
 
 
-      void construct();
+      //void construct();
 
 
-      void init();
+      //void init();
 
-      void term();
+      //void term();
 
 
       //void init_windowing();

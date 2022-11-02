@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "apex/networking/netserver/socket_handler.h"
 #include "apex/networking/sockets/basic/listen_socket.h"
 #include "apex/parallelization/thread.h"
 
@@ -26,6 +27,7 @@ namespace netserver
       //SOCKET                                       m_hsocket;
       string                                       m_strCat;
       string                                       m_strCipherList;
+
 
       ::pointer<::netserver::socket_handler>      m_psockethandler;
       ::pointer<::sockets::listen_socket_base>    m_plistensocket;

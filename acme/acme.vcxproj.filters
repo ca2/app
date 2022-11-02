@@ -102,9 +102,6 @@
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{0700aa41-3b42-4581-ab4a-a8dc6683d8a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\memory\os_alloc">
-      <UniqueIdentifier>{f1d64368-6958-4b0f-a00d-2213b49194d9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{7ab1ad1c-4556-49dc-9f10-9f160a23fd40}</UniqueIdentifier>
     </Filter>
@@ -272,6 +269,12 @@
     </Filter>
     <Filter Include="Header Files\primitive\media_library">
       <UniqueIdentifier>{2ba9cca5-9984-4952-8198-7e129e4ab6e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\memory\os_impl">
+      <UniqueIdentifier>{f1d64368-6958-4b0f-a00d-2213b49194d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\memory\bounds_check">
+      <UniqueIdentifier>{da169a7f-9cd8-41a0-992c-0752b49fc552}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1808,7 +1811,7 @@
     <ClInclude Include="memory\memory_management.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="memory\_.h">
+    <ClInclude Include="memory\_config.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\acme_file.h">
@@ -2906,6 +2909,9 @@
     <ClInclude Include="include\_functions.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
+    <ClInclude Include="constant\message_prototype.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -3208,20 +3214,8 @@
     <ClCompile Include="primitive\primitive\block.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="memory\alloc.cpp">
+    <ClCompile Include="memory\os_alloc.cpp">
       <Filter>Source Files\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc\bounds_check.cpp">
-      <Filter>Source Files\memory\os_alloc</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc\malloc.cpp">
-      <Filter>Source Files\memory\os_alloc</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc\no_bounds_check.cpp">
-      <Filter>Source Files\memory\os_alloc</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc\WindowsHeapAlloc.cpp">
-      <Filter>Source Files\memory\os_alloc</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
@@ -3972,6 +3966,24 @@
     </ClCompile>
     <ClCompile Include="operating_system\message.cpp">
       <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_impl\_select.cpp">
+      <Filter>Source Files\memory\os_impl</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_impl\malloc.cpp">
+      <Filter>Source Files\memory\os_impl</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_impl\WindowsHeapAlloc.cpp">
+      <Filter>Source Files\memory\os_impl</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\bounds_check\_select.cpp">
+      <Filter>Source Files\memory\bounds_check</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\bounds_check\off.cpp">
+      <Filter>Source Files\memory\bounds_check</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\bounds_check\on.cpp">
+      <Filter>Source Files\memory\bounds_check</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

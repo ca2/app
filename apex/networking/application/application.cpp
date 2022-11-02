@@ -5,8 +5,7 @@
 #include "acme/networking/url_department.h"
 #include "acme/primitive/datetime/department.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "apex/networking/_networking.h"
-#include "apex/networking/netserver/_netserver.h"
+#include "apex/networking/netserver/socket_thread.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
 
@@ -50,68 +49,13 @@ namespace networking
    void application::create_networking_application()
    {
 
-      //auto estatus =
-
       __construct(m_psocketthread, __new(::netserver::socket_thread < ::networking::application_socket >()));
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
 
       m_psocketthread->m_strIp = "127.0.0.1";
 
       auto pfolder = file()->resource_folder();
 
-      //if (pfolder)
-      //{
-
-      //   auto pfile = pfolder->get_file("sensitive/sensitive/api/localwebserver.cat");
-
-      //   if (pfile)
-      //   {
-
-      //      string strCat;
-
-      //      pfile->full_read_string(strCat);
-
-      //      if (strCat)
-      //      {
-
-      //         m_psocketthread->m_strCat = "cat://"+strCat;
-      //         m_psocketthread->m_strCipherList = "ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RSA:SHA:3DES:!aNULL:!eNULL:!EXP:!LOW:!MD5:@STRENGTH";
-      //         m_psocketthread->m_iSsl = 1;
-
-      //      }
-
-
-      //   }
-
-      //}
-
-
-      //      m_psocketthread->m_strCat = "cat://"+acmefile()->as_string("C:\\sensitive\\sensitive\\certificate\\localwebserver.app\\localwebserver.cat");
-        //    m_psocketthread->m_strCipherList = "ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RSA:SHA:3DES:!aNULL:!eNULL:!EXP:!LOW:!MD5:@STRENGTH";
-          //  m_psocketthread->m_iSsl = 1;
-
-      //if (!
-
       m_psocketthread->branch();
-
-      //{
-
-      //   return ::error_failed;
-
-      //}
-
-      //fork([this]()
-        // {
-
-            //::hyperlink::open_link("http://" + m_psocketthread->m_strIp + ":" + __string(m_psocketthread->m_iPort) + "/");
-
-      //return estatus;
 
    }
 

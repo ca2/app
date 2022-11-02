@@ -15,9 +15,9 @@ namespace message
 
 
 
-   enum e_prototype : int;
+   enum enum_prototype : int;
 
-   CLASS_DECL_APEX e_prototype get_message_prototype(::enum_message emessage, ::u32 uCode);
+   CLASS_DECL_APEX enum_prototype get_message_prototype(::enum_message emessage, ::u32 uCode);
 
    class message;
    //class sender; -> oet,chnel (targetable!!evenmoreeasilykillble (dissolve "bad" idea/group/team, not person));

@@ -1,8 +1,12 @@
 #include "framework.h"
-#include "apex/operating_system.h"
+#include "port_forward.h"
+#include "acme/platform/system.h"
 
 
 #ifdef WINDOWS
+
+
+#include "acme/_operating_system.h"
 
 
 namespace networking
@@ -21,7 +25,7 @@ namespace networking
    }
 
 
-   HRESULT port_forward::StopListeningForUpnpChanges( )
+   HRESULT port_forward::StopListeningForUpnpChanges()
    {
 	   // Stops listenting for UPnP machine events on the router and deletes any
 	   // port_forward_change_callbacks-derived objects that are currently being held

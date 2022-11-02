@@ -1,9 +1,6 @@
 #include "framework.h"
 
 
-
-
-
 void os_alloc_check_bounds(u8 * point_i32)
 {
 
@@ -85,8 +82,6 @@ void os_free(void * pParam)
 	os_impl_free(point);
 
 }
-
-
 
 
 

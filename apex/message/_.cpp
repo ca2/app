@@ -1,8 +1,7 @@
 #include "framework.h"
 #include "acme/constant/message.h"
+#include "acme/constant/message_prototype.h"
 #include "acme/operating_system/message.h"
-//#include "apex/operating_system.h"
-#include "apex/message/_constant.h"
 #include "apex/message/message.h"
 
 
@@ -106,39 +105,38 @@ namespace message
 //   }
 
 
-   e_prototype get_message_prototype(enum_message emessage, ::u32 uCode)
+   enum_prototype get_message_prototype(enum_message emessage, ::u32 uCode)
    {
+
       switch (emessage)
       {
       case e_message_size:
-         return PrototypeSize;
+         return e_prototype_size;
       case e_message_hscroll:
       case e_message_vscroll:
-         return PrototypeScroll;
+         return e_prototype_scroll;
       case e_message_create:
       case e_message_non_client_create:
-         return PrototypeCreate;
+         return e_prototype_create;
       case e_message_move:
-         return PrototypeMove;
+         return e_prototype_move;
       case e_message_activate:
-         return PrototypeActivate;
+         return e_prototype_activate;
       case e_message_mouse_activate:
-         return PrototypeMouseActivate;
+         return e_prototype_mouse_activate;
       case e_message_measure_item:
-         return PrototypeMeasureItem;
-#ifdef WINDOWS
-      case WM_NOTIFY:
-         return PrototypeNotify;
-#endif
+         return e_prototype_measure_item;
+      case e_message_wm_notify:
+         return e_prototype_notify;
       case e_message_command:
-         return PrototypeCommand;
+         return e_prototype_command;
          //{
-         //switch (uiCode)
+         //switch (uicode)
          //{
-         //case CN_UPDATE_::message::command:
-         //    return PrototypeUpdateCommandUserInterface;
+         //case cn_update_::message::command:
+         //    return e_prototype_updatecommanduserinterface;
          //default:
-         //return PrototypeCommand;
+         //return e_prototype_command;
          //}
          //}
       case e_message_mouse_move:
@@ -154,13 +152,13 @@ namespace message
       case e_message_non_client_mouse_move:
       case e_message_non_client_left_button_down:
       case e_message_non_client_left_button_up:
-         return PrototypeMouse;
+         return e_prototype_mouse;
       case e_message_mouse_wheel:
-         return PrototypeMouseWheel;
+         return e_prototype_mouse_swheel;
       case e_message_non_client_activate:
-         return PrototypeNcActivate;
+         return e_prototype_non_client_activate;
       case e_message_timer:
-         return PrototypeTimer;
+         return e_prototype_timer;
       case e_message_key_down:
       case e_message_key_up:
       case e_message_char:
@@ -169,49 +167,49 @@ namespace message
       case e_message_sys_key_up:
       case e_message_sys_char:
       case e_message_sys_dead_char:
-#if(_WIN32_WINNT >= 0x0501)
       case e_message_uni_char:
-#endif
-         return PrototypeKey;
-      case e_message_non_client_hittest:
-         return PrototypeNcHitTest;
+         return e_prototype_key;
+      case e_message_non_client_hit_test:
+         return e_prototype_non_client_hit_test;
       case e_message_set_cursor:
-         return PrototypeSetCursor;
+         return e_prototype_set_cursor;
       case e_message_erase_background:
-         return PrototypeEraseBkgnd;
+         return e_prototype_erase_background;
       case e_message_show_window:
-         return PrototypeShowWindow;
+         return e_prototype_show_window;
       case e_message_initialize_menu_popup:
-         return PrototypeInitMenuPopup;
+         return e_prototype_init_menu_popup;
       case e_message_enable:
-         return PrototypeEnable;
-         /*#ifdef WINDOWS
-         case WM_CTLCOLOR:
+         return e_prototype_enable;
+         /*#ifdef windows
+         case wm_ctlcolor:
          if(pba)
-         return PrototypeCtlColor;
-         case WM_CTLCOLOR + WM_REFLECT_AXIS:
-         return PrototypeCtlColorReflect;
+         return e_prototype_ctlcolor;
+         case wm_ctlcolor + wm_reflect_axis:
+         return e_prototype_ctlcolorreflect;
          #endif*/
       case e_message_kill_focus:
-         return PrototypeKillFocus;
+         return e_prototype_kill_focus;
       case e_message_set_focus:
-         return PrototypeSetFocus;
+         return e_prototype_set_focus;
       case e_message_window_position_changing:
       case e_message_window_position_changed:
-         return PrototypeWindowPos;
-      case e_message_non_client_calcsize:
-         return PrototypeNcCalcSize;
+         return e_prototype_window_pos;
+      case e_message_non_client_calc_size:
+         return e_prototype_non_client_calc_size;
       case e_message_simple_command:
-         return PrototypeSimpleCommand;
+         return e_prototype_simple_command;
       case e_message_post_user:
-         return PrototypeObject;
+         return e_prototype_object;
       case e_message_paint:
-         return PrototypeNone;
+         return e_prototype_none;
       default:
-         return PrototypeNone;
+         return e_prototype_none;
       }
    }
 
 
 } // namespace message
+
+
 

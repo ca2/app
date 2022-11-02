@@ -31,7 +31,7 @@ enum enum_message : ::i32
    e_message_mouse_activate = 33, // 0x0021
 
    e_message_get_min_max_info = 36, // 0x0024
-
+   e_message_wm_notify = 78, // 0x004E
    e_message_context_menu = 0x007B,
 
    e_message_key_first = 256,
@@ -51,8 +51,8 @@ enum enum_message : ::i32
 
    e_message_non_client_create    =                 0x0081,
    e_message_non_client_destroy    =                0x0082,
-   e_message_non_client_calcsize   =                0x0083,
-   e_message_non_client_hittest     =               0x0084,
+   e_message_non_client_calc_size   =                0x0083,
+   e_message_non_client_hit_test     =               0x0084,
    e_message_non_client_paint      =                0x0085,
    e_message_non_client_activate   =                0x0086,
 

@@ -164,7 +164,7 @@
 
    e_message_mouse_move,
    e_message_set_cursor,
-   e_message_non_client_hittest,
+   e_message_non_client_hit_test,
    e_message_non_client_mouse_move,
    (::u32)-1
 };
@@ -206,7 +206,7 @@
    // Viagem da Mummi... : Yakissoba delicioso!!
    // 2019-06-27-22-36
    e_message_non_client_create,
-   e_message_non_client_calcsize,
+   e_message_non_client_calc_size,
    e_message_create,
    e_message_size,
    e_message_move,

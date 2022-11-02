@@ -4,6 +4,9 @@
 #ifdef WINDOWS
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 namespace networking
 {
 
@@ -15,7 +18,7 @@ namespace networking
 
 
       port_forward_change_callbacks();
-      virtual ~port_forward_change_callbacks();
+      ~port_forward_change_callbacks() override;
 
 
       virtual HRESULT OnNewNumberOfEntries( i32 lNewNumberOfEntries );

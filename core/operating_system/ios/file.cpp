@@ -211,7 +211,7 @@ namespace ios
 
 
             //            vfxThrowFileexception(::macos::file_exception::os_error_to_exception(dwLastError), dwLastError, m_strFileName);
-            return { __new(::file::exception(::file::errno_to_status(iErrNo), -1, -1, path, eopen)) };
+            return { __new(::file::exception(::file::errno_status(iErrNo), -1, -1, path, eopen)) };
 
             //}
 
@@ -250,7 +250,7 @@ namespace ios
 
             //            vfxThrowFileexception(::macos::file_exception::os_error_to_exception(dwLastError), dwLastError, m_strFileName);
 
-            return { __new(::file::exception(::file::errno_to_status(iErrNo), -1, -1, path, eopen)) };
+            return { __new(::file::exception(::file::errno_status(iErrNo), -1, -1, path, eopen)) };
 
             //}
 

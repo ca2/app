@@ -246,7 +246,7 @@ namespace networking_bsd
 
          char c = m_countHttpPostBoundary++ % 128;
 
-         while (!ansi_char_is_alphanumeric((unsigned char)c))
+         while (!ansi_char_is_alnum((unsigned char)c))
          {
 
             c = m_countHttpPostBoundary++ % 128;

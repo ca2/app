@@ -306,9 +306,9 @@ namespace colorertake5
             {
                if (!node->worddiv)
                {
-                  if (gx && (::str::ch().is_letter_or_digit(&((const ::string &)str)[gx-1]) || ((const ::string &)str)[gx-1] == '_')) badbound = true;
+                  if (gx && (unicode_is_letter_or_digit(&((const ::string &)str)[gx-1]) || ((const ::string &)str)[gx-1] == '_')) badbound = true;
                   if (gx + kwlen < lowlen &&
-                        (::str::ch().is_letter_or_digit(&((const ::string &)str)[gx + kwlen]) || ((const ::string &)str)[gx + kwlen] == '_')) badbound = true;
+                        (unicode_is_letter_or_digit(&((const ::string &)str)[gx + kwlen]) || ((const ::string &)str)[gx + kwlen] == '_')) badbound = true;
                }
                else
                {

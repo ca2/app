@@ -744,7 +744,7 @@ bool is_directory(const char * path)
 
       }
 
-      auto estatus = errno_to_status(iErrNo);
+      auto estatus = errno_status(iErrNo);
 
       if(estatus == error_file_not_found)
       {
@@ -781,7 +781,7 @@ bool file_exists(const char * path)
    if (::stat(path, &stat))
    {
 
-      auto estatus = errno_to_status(errno);
+      auto estatus = errno_status(errno);
 
       if(estatus == error_file_not_found)
       {
@@ -884,7 +884,7 @@ void create_directory(const char * path)
       
       int iErrorNumber = errno;
 
-      auto estatus = errno_to_status(errno);
+      auto estatus = errno_status(errno);
       
       if(estatus == error_already_exists)
       {
@@ -913,7 +913,7 @@ void erase_directory(const char * path)
    if (::rmdir(path) != 0)
    {
 
-      auto estatus =  errno_to_status(errno);
+      auto estatus =  errno_status(errno);
 
       throw ::exception(estatus);
 
@@ -929,7 +929,7 @@ void file_delete(const char * path)
    if (::unlink(path) == -1)
    {
 
-      auto estatus = errno_to_status(errno);
+      auto estatus = errno_status(errno);
 
       throw ::exception(estatus);
 

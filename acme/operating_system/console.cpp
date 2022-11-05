@@ -113,7 +113,7 @@ int safe_get_char(FILE * pfile, const ::duration & duration)
 
       iSafeChar = getc(pfile);
 
-      if (!ansi_char_is_space(iSafeChar) && millisStart.elapsed() > duration)
+      if (!ansi_char_isspace(iSafeChar) && millisStart.elapsed() > duration)
       {
 
          break;
@@ -180,19 +180,19 @@ CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, con
 
    if (edefaultbutton == e_message_box_default_button_1 && str.get_length() >= 1)
    {
-      str.set_at(0, ansi_char_uppered(str[0]));
+      str.set_at(0, ansi_char_toupper(str[0]));
       edialogresultDefault = e_dialog_result_yes;
       bDefault = true;
    }
    else if (edefaultbutton == e_message_box_default_button_2 && str.get_length() >= 3)
    {
-      str.set_at(2, ansi_char_uppered(str[2]));
+      str.set_at(2, ansi_char_toupper(str[2]));
       edialogresultDefault = e_dialog_result_no;
       bDefault = true;
    }
    else if (edefaultbutton == e_message_box_default_button_3 && str.get_length() >= 5)
    {
-      str.set_at(4, ansi_char_uppered(str[4]));
+      str.set_at(4, ansi_char_toupper(str[4]));
       edialogresultDefault = e_dialog_result_cancel;
       bDefault = true;
    }

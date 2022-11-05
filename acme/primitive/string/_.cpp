@@ -15,7 +15,7 @@ int debug_string_iterator()
    for(auto character : str)
    {
 
-      if (wide_char_is_alphabetic(character)
+      if (character_isalpha(character)
           || character == L'.'
           || character == L'/'
           || character == L'?'
@@ -89,3 +89,16 @@ CLASS_DECL_ACME inline strsize safe_strlen(void * p, strsize n)
    return i;
 
 }
+
+
+
+CLASS_DECL_ACME string demangle(const char * psz);
+
+CLASS_DECL_ACME void copy(::string & str, const particle & particle)
+{
+
+   str = demangle(typeid((::particle &)particle).name());
+
+}
+
+

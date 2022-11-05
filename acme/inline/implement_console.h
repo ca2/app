@@ -1,7 +1,7 @@
 ﻿
 
 #include "_main_hold.h"
-#include "acme/_api.h"
+//#include "acme/_api.h"
 #include "acme/operating_system/process.h"
 #include APPLICATION_INCLUDE
 
@@ -17,7 +17,7 @@ void acme_system_term();
 #include "acme/operating_system/console.inl"
 
 #endif
-#include "acme/platform/subsystem.h"
+#include "acme/platform/sub_system.h"
 
 #ifdef WINDOWS
 CLASS_DECL_ACME void set_argc_argv_envp(int argc, wchar_t ** argv, wchar_t ** envp);
@@ -52,7 +52,9 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
    ::acme::acme acme;
 
-   subsystem subsystem;
+   sub_system subsystem;
+
+   acme.m_psubsystem = &subsystem;
 
    main_hold mainhold;
 
@@ -121,8 +123,8 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
          strReport += "Exception has occurred:\n";
          strReport += exception.m_strMessage + ";\n";
-         strReport += "Command Line:\n";
-         strReport += get_command_line() + ";\n";
+         //strReport += "Command Line:\n";
+         //strReport += acmenode()->get_command_line() + ";\n";
          strReport += exception.m_strDetails;
          strReport += "Callstack:\n";
          strReport += exception.m_strCallstack;

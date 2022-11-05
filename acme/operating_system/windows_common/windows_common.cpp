@@ -117,18 +117,12 @@ CLASS_DECL_ACME void TRACELASTERROR()
 }
 
 
-
 void CLASS_DECL_ACME __cdecl _ca2_purecall()
 {
 
    throw_exception(error_pure_call);
 
 }
-
-
-
-
-
 
 
 namespace color
@@ -146,90 +140,71 @@ namespace color
 } // namespace color
 
 
-
-
-::enum_status _hresult_to_status(HRESULT hr)
-{
-
-   if (SUCCEEDED(hr))
-   {
-
-      return ::success;
-
-   }
-   else
-   {
-
-      return error_failed;
-
-   }
-
-}
-
-
-string last_error_message(u32 dwError)
-{
-   
-   wstring wstr;
-   
-   unichar* p = nullptr;
-   
-   ::u32 dw = FormatMessageW(
-      FORMAT_MESSAGE_FROM_SYSTEM 
-      | FORMAT_MESSAGE_ALLOCATE_BUFFER,
-      nullptr,
-      dwError,
-      0,
-      (LPWSTR) & p,
-      64,
-      nullptr);
-
-   wstr = p;
-
-   ::LocalFree(p);
-   
-   string str(wstr);
-
-   return str;
-
-}
-
-
-CLASS_DECL_ACME error_code __last_error()
-{
-
-   return __last_error(::GetLastError());
-
-}
-
-
-
-
-
-
-
-CLASS_DECL_ACME void __throw_last_error(DWORD dwLastError)
-{
-
-   auto estatus = ::windows::last_error_status(dwLastError);
-
-   throw_exception(estatus);
-
-}
-
-
-CLASS_DECL_ACME void __throw_last_error()
-{
-
-   auto lastError = ::GetLastError();
-
-   __throw_last_error(lastError);
-
-}
-
-
 namespace windows
 {
+
+
+   ::enum_status _hresult_status(HRESULT hr)
+   {
+
+      if (SUCCEEDED(hr))
+      {
+
+         return ::success;
+
+      }
+      else
+      {
+
+         return ::error_failed;
+
+      }
+
+   }
+
+
+   string last_error_message(u32 dwError)
+   {
+   
+      wstring wstr;
+   
+      unichar* p = nullptr;
+   
+      ::u32 dw = FormatMessageW(
+         FORMAT_MESSAGE_FROM_SYSTEM 
+         | FORMAT_MESSAGE_ALLOCATE_BUFFER,
+         nullptr,
+         dwError,
+         0,
+         (LPWSTR) & p,
+         64,
+         nullptr);
+
+      wstr = p;
+
+      ::LocalFree(p);
+   
+      string str(wstr);
+
+      return str;
+
+   }
+
+
+   CLASS_DECL_ACME error_code last_error_error_code(DWORD dwLastError)
+   {
+
+      return { e_error_code_type_last_error, dwLastError };
+
+   }
+
+
+   CLASS_DECL_ACME error_code last_error_error_code()
+   {
+
+      return last_error_error_code(::GetLastError());
+
+   }
 
 
    CLASS_DECL_ACME::e_status wait_result_status(int iResult)

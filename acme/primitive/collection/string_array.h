@@ -391,7 +391,7 @@ public:
    string_array_base & _001Explode(const Type & str);
 
    // csstidy: Same as explode, but not within a Type
-   string_array_base & csstidy_explode_ws(char sep,const Type& psz);
+   //string_array_base & csstidy_explode_ws(char sep,const Type& psz);
 
 
    //template < typename PRED >
@@ -427,7 +427,7 @@ public:
 
    //comparable_array < atom > get_comparable_ida() const;
 
-   ::count explode_command_line(const Type & str, address_array < char * > * argv = nullptr);
+   //::count explode_command_line(const Type & str, address_array < char * > * argv = nullptr);
 
 
 
@@ -497,7 +497,7 @@ public:
 
    // c_get
    ::array < const ansichar * > c_ansi_get(bool bMemoryAlloc = false) const;
-   ::array < const widechar * > c_wide_get(bool bMemoryAlloc = false) const;
+   //::array < const widechar * > c_wide_get(bool bMemoryAlloc = false) const;
    void c_add(char ** ppsz, ::count iCount, bool bMemoryAlloc = false);
    void c_add(char ** ppsz, bool bMemoryAlloc = false);
    void c_add(wchar_t ** ppsz, ::count iCount, bool bMemoryAlloc = false);
@@ -559,25 +559,6 @@ public:
       return intersect(a);
 
    }
-
-
-   inline void from_strdup(ansichar ** ppParam)
-   {
-
-      ansichar ** ppsz = ppParam;
-
-      string_array stra;
-
-      while(*ppsz != nullptr)
-      {
-         add(::string_from_strdup(*ppsz));
-         ppsz++;
-      }
-
-      free(ppParam);
-
-   }
-
 
 
 };
@@ -2075,7 +2056,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::prefix_find_first_ci(const Type& pcszTopic,::index iFind,::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::prefix_find_first_ci(const Type& strTopic,::index iFind,::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2084,7 +2065,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (::str().begins_ci(pcszTopic, this->element_at(iFind)))
+         if (strTopic.begins_ci(this->element_at(iFind)))
          {
 
             return iFind;
@@ -2101,7 +2082,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::prefix_find_first(const Type& pcszTopic, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::prefix_find_first(const Type& strTopic, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2110,7 +2091,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (::str().begins(pcszTopic, this->element_at(iFind)))
+         if (strTopic.begins(this->element_at(iFind)))
          {
 
             return iFind;
@@ -2408,7 +2389,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
    for (; iFind <= iLast; iFind++)
    {
 
-      if (::str().begins(this->element_at(iFind), strPrefix))
+      if (this->element_at(iFind).begins(strPrefix))
       {
 
          return iFind;
@@ -2429,7 +2410,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
    for (; iFind <= iLast; iFind++)
    {
 
-      if (::str().begins_ci(this->element_at(iFind), strPrefix))
+      if (this->element_at(iFind).begins_ci(strPrefix))
       {
 
          return iFind;
@@ -3108,56 +3089,6 @@ string_array_base < Type, RawType, m_etypeContainer >  & string_array_base < Typ
 
 
 
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-string_array_base < Type, RawType, m_etypeContainer >  & string_array_base < Type, RawType, m_etypeContainer > ::csstidy_explode_ws(char sep,const Type& psz)
-{
-
-   Type istring(psz);
-
-   // 1 = st // 2 = str
-   ::index status = 1;
-   char to = '\0';
-
-   add("");
-   strsize num = 0;
-   strsize len = istring.length();
-   for(strsize i = 0; i < len; i++)
-   {
-
-      switch(status)
-      {
-      case 1:
-         if(istring[i] == sep && !::str().simple_escaped(istring,i))
-         {
-            ++num;
-            add("");
-         }
-         else if((istring[i] == '"' || istring[i] == '\'' || istring[i] == '(') && !::str().simple_escaped(istring,i))
-         {
-            status = 2;
-            to = (istring[i] == '(') ? ')' : istring[i];
-            element_at(num) += (Type)RawType(istring[i]);
-         }
-         else
-         {
-            element_at(num) += (Type)RawType(istring[i]);
-         }
-         break;
-
-      case 2:
-         if(istring[i] == to && !::str().simple_escaped(istring,i))
-         {
-            status = 1;
-         }
-         element_at(num) += (Type)RawType(istring[i]);
-         break;
-      }
-
-   }
-
-   return *this;
-
-}
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
@@ -3211,39 +3142,6 @@ void string_array_base < Type, RawType, m_etypeContainer > ::replace_with(const 
 }
 
 
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::count string_array_base < Type, RawType, m_etypeContainer > ::explode_command_line(const Type & str, address_array < char * > * argv)
-{
-
-   Type strParse(str);
-
-   while(strParse.has_char())
-   {
-
-      add((Type)::str().consume_command_line_argument(strParse));
-
-   }
-
-   if(argv != nullptr)
-   {
-
-      for(::index i = 0; i < get_count(); i++)
-      {
-
-         char * pch = (char *)(const char *)element_at(i);
-
-         argv->add(pch);
-
-      }
-
-      argv->add(nullptr);
-
-   }
-
-   return get_count();
-
-
-}
 
 
 
@@ -4617,38 +4515,38 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 }
 
 
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::array < const widechar * > string_array_base < Type, RawType, m_etypeContainer > ::c_wide_get(bool bMemoryAlloc) const
-{
-
-   ::array < const widechar * > psza;
-
-   for (::index i = 0; i < get_size(); i++)
-   {
-
-      widechar * pwsz = nullptr;
-      
-      if(bMemoryAlloc)
-      {
-         
-         pwsz = wide_duplicate(wstring(element_at(i)));
-         
-      }
-      else
-      {
-       
-         pwsz = wcsdup(wstring(element_at(i)));
-
-         
-      }
-
-      psza.add(pwsz);
-
-   }
-
-   return psza;
-
-}
+//template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+//::array < const widechar * > string_array_base < Type, RawType, m_etypeContainer > ::c_wide_get(bool bMemoryAlloc) const
+//{
+//
+//   ::array < const widechar * > psza;
+//
+//   for (::index i = 0; i < get_size(); i++)
+//   {
+//
+//      widechar * pwsz = nullptr;
+//      
+//      if(bMemoryAlloc)
+//      {
+//         
+//         pwsz = wide_duplicate(wstring(element_at(i)));
+//         
+//      }
+//      else
+//      {
+//       
+//         pwsz = wcsdup(wstring(element_at(i)));
+//
+//         
+//      }
+//
+//      psza.add(pwsz);
+//
+//   }
+//
+//   return psza;
+//
+//}
 
 
 /// expect strings allocated with malloc (sic, not memory_allocate) or strdup and array allocated with malloc (sic, not memory_allocate)
@@ -5208,7 +5106,7 @@ inline void string_array_base < Type, RawType, m_etypeContainer > ::debug_output
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::suffix_find_first_ci(const Type& pcszTopic, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::suffix_find_first_ci(const Type& strTopic, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -5217,7 +5115,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (::str().ends_ci(pcszTopic, this->element_at(iFind)))
+         if (strTopic.ends_ci(this->element_at(iFind)))
          {
 
             return iFind;
@@ -5237,7 +5135,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::suffix_find_first(const Type& pcszTopic, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::suffix_find_first(const Type& strTopic, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -5246,7 +5144,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (::str().ends(pcszTopic, this->element_at(iFind)))
+         if (strTopic.ends(this->element_at(iFind)))
          {
 
             return iFind;
@@ -5271,7 +5169,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
    for (; iFind < iLast; iFind++)
    {
 
-      if (::str().ends(this->element_at(iFind), strSuffix))
+      if (this->element_at(iFind).ends(strSuffix))
       {
 
          return iFind;
@@ -5292,7 +5190,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
    for (; iFind < iLast; iFind++)
    {
 
-      if (::str().ends_ci(this->element_at(iFind), strSuffix))
+      if (this->element_at(iFind).ends_ci(strSuffix))
       {
 
          return iFind;

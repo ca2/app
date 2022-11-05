@@ -1651,7 +1651,7 @@ auto tickStart = ::duration::now();
             }
             else
             {
-               if (!ansi_char_is_digit(it))
+               if (!ansi_char_isdigit(it))
                   return false;
                strIpAddress += it;
             }
@@ -1665,7 +1665,7 @@ auto tickStart = ::duration::now();
             }
             else
             {
-               if (!ansi_char_is_digit(it))
+               if (!ansi_char_isdigit(it))
                   return false;
                strPort += it;
             }
@@ -1679,7 +1679,7 @@ auto tickStart = ::duration::now();
             }
             else
             {
-               if (!ansi_char_is_digit(it))
+               if (!ansi_char_isdigit(it))
                   return false;
                strPort += it;
             }

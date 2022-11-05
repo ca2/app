@@ -78,7 +78,7 @@ int gdb_check()
 
    for (const char* characterPtr = tracer_pid_ptr + sizeof(tracerPidString) - 1; characterPtr <= buf + num_read; ++characterPtr)
    {
-      if (::isspace(*characterPtr))
+      if (::character_isspace(*characterPtr))
          continue;
       else
       {

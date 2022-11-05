@@ -30,7 +30,7 @@ i32 chars_to_i32(const CHAR_TYPE * psz, const CHAR_TYPE ** pszEnd, i32 iBase)
          while (true)
          {
 
-            CHAR_TYPE ch = ::str().tolower(*psz);
+            CHAR_TYPE ch = character_tolower(*psz);
 
             if (ch == '\0')
             {
@@ -38,13 +38,13 @@ i32 chars_to_i32(const CHAR_TYPE * psz, const CHAR_TYPE ** pszEnd, i32 iBase)
                break;
 
             }
-            else if(::str().isdigit(ch) && (iDigit = ch - '0') < iBase)
+            else if(character_isdigit(ch) && (iDigit = ch - '0') < iBase)
             {
 
                iResult = iResult * iBase + iDigit;
 
             }
-            else if(::str().isalpha(ch) && (iDigit = ch - 'a') < iBase)
+            else if(character_isalpha(ch) && (iDigit = ch - 'a') < iBase)
             {
 
                iResult = iResult * iBase + iDigit;
@@ -94,7 +94,7 @@ u32 chars_to_u32(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, i32 iBase)
          while (true)
          {
 
-            wd32char ch = wd32_char_lowered(*psz);
+            wd32char ch = wd32_char_tolower(*psz);
 
             if (ch == '\0')
             {
@@ -102,13 +102,13 @@ u32 chars_to_u32(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, i32 iBase)
                break;
 
             }
-            else if(wd32_char_is_digit(ch) && (iDigit = ch - '0') < iBase)
+            else if(wd32_char_isdigit(ch) && (iDigit = ch - '0') < iBase)
             {
 
                iResult = iResult * iBase + iDigit;
 
             }
-            else if(wd32_char_is_alphabetic(ch) && (iDigit = ch - 'a') < iBase)
+            else if(wd32_char_isalpha(ch) && (iDigit = ch - 'a') < iBase)
             {
 
                iResult = iResult * iBase + iDigit;
@@ -169,7 +169,7 @@ i64 chars_to_i64(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, i32 iBase)
          while (true)
          {
 
-            wd32char ch = wd32_char_lowered(*psz);
+            wd32char ch = wd32_char_tolower(*psz);
 
             if (ch == '\0')
             {
@@ -177,13 +177,13 @@ i64 chars_to_i64(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, i32 iBase)
                break;
 
             }
-            else if(wd32_char_is_digit(ch) && (iDigit = ch - '0') < iBase)
+            else if(wd32_char_isdigit(ch) && (iDigit = ch - '0') < iBase)
             {
 
                iResult = iResult * iBase + iDigit;
 
             }
-            else if(wd32_char_is_alphabetic(ch) && (iDigit = ch - 'a') < iBase)
+            else if(wd32_char_isalpha(ch) && (iDigit = ch - 'a') < iBase)
             {
 
                iResult = iResult * iBase + iDigit;
@@ -233,7 +233,7 @@ u64 chars_to_u64(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, i32 iBase)
          while (true)
          {
 
-            CHAR_TYPE ch = wd32_char_lowered(*psz);
+            CHAR_TYPE ch = wd32_char_tolower(*psz);
 
             if (ch == '\0')
             {
@@ -241,13 +241,13 @@ u64 chars_to_u64(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, i32 iBase)
                break;
 
             }
-            else if(wd32_char_is_digit(ch) && (iDigit = ch - '0') < iBase)
+            else if(wd32_char_isdigit(ch) && (iDigit = ch - '0') < iBase)
             {
 
                iResult = iResult * iBase + iDigit;
 
             }
-            else if(wd32_char_is_alphabetic(ch) && (iDigit = ch - 'a') < iBase)
+            else if(wd32_char_isalpha(ch) && (iDigit = ch - 'a') < iBase)
             {
 
                iResult = iResult * iBase + iDigit;

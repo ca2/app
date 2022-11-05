@@ -2,6 +2,9 @@
 #include "framework.h"
 #include "context.h"
 #include "acme/filesystem/file/file.h"
+#include "acme/parallelization/counter.h"
+#include "acme/parallelization/fork.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/text/data.h"
@@ -156,7 +159,7 @@ namespace acme
       if (ptextdata->m_atom.is_text())
       {
 
-         if (::str().begins(ptextdata->m_atom.m_str, "text://"))
+         if (ptextdata->m_atom.m_str.begins("text://"))
          {
 
             auto psz = ansi_rchr(ptextdata->m_atom.m_str.c_str() + 7, '/');
@@ -213,6 +216,47 @@ namespace acme
    {
 
       return path;
+
+   }
+
+
+   void context::fork_count(::count iCount, const ::function < void(index, index, index, index) > & function, const ::procedure & procedureCompletion, index iStart)
+   {
+
+      int iAffinityOrder = acmenode()->get_current_process_affinity_order();
+
+      if (::get_task() != nullptr && ::get_task()->m_bAvoidProcedureFork)
+      {
+
+         iAffinityOrder = 1;
+
+      }
+
+      ::count cScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
+
+      auto pcounter = __new(::counter(cScan, procedureCompletion));
+
+      auto ptask = ::get_task();
+
+      for (index iOrder = 0; iOrder < cScan; iOrder++)
+      {
+
+         auto ppredtask = __new(forking_count_task(this, iOrder, iOrder + iStart, cScan, iCount, function));
+
+         //if (::is_set(ptask))
+         //{
+
+         //   ptask->add_reference(ppredtask);
+
+         //}
+
+         ppredtask->m_pcounter = pcounter;
+
+         ppredtask->branch();
+
+      }
+
+      //return pcounter;
 
    }
 

@@ -4,15 +4,17 @@
 
 
 
-inline ansichar ansi_char_lowered(i32 i) { return __ansitolower(i); }
-inline ansichar ansi_char_uppered(i32 i) { return __ansitoupper(i); }
+inline ansichar ansi_char_tolower(i32 i) { return __ansitolower(i); }
+inline ansichar ansi_char_toupper(i32 i) { return __ansitoupper(i); }
 
 
-inline i32 ansi_char_is_digit(i32 i) { return __ansicharisdigit(i); }
+inline i32 ansi_char_isdigit(i32 i) { return __ansicharisdigit(i); }
+inline i32 ansi_char_isalpha(i32 i) { return __ansicharisalpha(i); }
+inline i32 ansi_char_isalnum(i32 i) { return __ansicharisalnum(i); }
+inline i32 ansi_char_isspace(i32 i) { return __ansicharisspace(i); }
+
+
 inline i32 ansi_char_is_hexadecimal(i32 i) { return __ansicharishexadecimal(i); }
-inline i32 ansi_char_is_alphabetic(i32 i) { return __ansicharisalphabetic(i); }
-inline i32 ansi_char_is_alphanumeric(i32 i) { return __ansicharisalphanumeric(i); }
-inline i32 ansi_char_is_space(i32 i) { return __ansicharisspace(i); }
 
 
 inline const ansichar * ansi_const_last_char(const ansichar * psz)
@@ -764,7 +766,7 @@ inline i64 ansi_count_to_i64(const ansichar * psz, const ansichar ** ppszEnd, i3
    if (srclen < len)
    {
 
-      if (!ansi_char_is_digit(*(psz + len - 1)))
+      if (!ansi_char_isdigit(*(psz + len - 1)))
       {
 
          auto pszDup = ansi_count_duplicate(psz, srclen);
@@ -883,7 +885,7 @@ inline i32 ansi_count_to_i32(const ansichar * psz, const ansichar ** ppszEnd, i3
    if (srclen < len)
    {
 
-      if (!ansi_char_is_digit(*(psz + len - 1)))
+      if (!ansi_char_isdigit(*(psz + len - 1)))
       {
 
          auto pszDup = ansi_count_duplicate(psz, srclen);
@@ -957,7 +959,7 @@ inline ansichar * ansi_lower(ansichar * pch)
    while (*p != '\0')
    {
 
-      *p = ansi_char_lowered(*p);
+      *p = ansi_char_tolower(*p);
 
       p++;
 
@@ -976,7 +978,7 @@ inline ansichar * ansi_upper(ansichar * pch)
    while (*p != '\0')
    {
 
-      *p = ansi_char_uppered(*p);
+      *p = ansi_char_toupper(*p);
 
       p++;
 

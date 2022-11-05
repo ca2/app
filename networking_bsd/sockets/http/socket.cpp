@@ -342,12 +342,12 @@ namespace sockets
          strKey = line.Left(iFind);
          strKey.trim();
          iFind++;
-         while(isspace((unsigned char) line[iFind]) && iFind < line.get_length())
+         while(character_isspace((unsigned char) line[iFind]) && iFind < line.get_length())
          {
             iFind++;
          }
          strsize iLen = line.get_length();
-         while(iLen >= iFind && isspace((unsigned char ) line[iLen - 1]))
+         while(iLen >= iFind && character_isspace((unsigned char ) line[iLen - 1]))
          {
             iLen--;
          }

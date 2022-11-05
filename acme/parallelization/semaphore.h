@@ -10,7 +10,9 @@ class CLASS_DECL_ACME semaphore :
 {
 public:
 
+
    string            m_strName;
+
 
 #if defined(ANDROID)
 
@@ -24,7 +26,7 @@ public:
 
 #endif
 
-   semaphore(::i32 lInitialCount = 1, ::i32 lMaxCount = 1, const char * pstrName=nullptr, const security_attributes & securityattributes = nullptr);
+   semaphore(::i32 lInitialCount = 1, ::i32 lMaxCount = 1, const char * pstrName=nullptr, security_attributes * psecurityattributes = nullptr);
    ~semaphore() override;
 
 

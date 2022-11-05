@@ -140,7 +140,6 @@ concept primitive_xydim = requires(RECTANGLE rectangle)
 using string = string_base < ansichar >;
 using wstring = string_base < widechar >;
 
-
 typedef string_array_base < string, string, e_type_string_array > string_array;
 
 template < typename TYPE_CHAR >
@@ -184,6 +183,8 @@ concept raw_pointer_castable =
 
 template < typename T >
 concept primitive_character =
+std::is_same < T, char >::value ||
+std::is_same < T, wchar_t >::value ||
 std::is_same < T, ::ansichar >::value ||
 std::is_same < T, ::wd16char >::value ||
 std::is_same < T, ::wd32char >::value;
@@ -352,6 +353,7 @@ template < typename T, typename ARG_T = typename argument_of < T >::type >
 class single;
 
 
+
 template < class KEY, class ARG_KEY = typename argument_of < KEY >::type, class PAYLOAD = single < KEY, ARG_KEY > >
 class set;
 
@@ -370,6 +372,8 @@ class flags;
 
 template<class EENUM, EENUM edefault = (EENUM)0>
 class base_enum;
+
+
 
 
 template < typename PAYLOAD >
@@ -395,6 +399,15 @@ concept container_type = requires(CONTAINER container)
 {
 
    {container.this_is_a_container()} -> std::same_as<void>;
+
+};
+
+
+template < typename HAS_COPY_TO_STRING >
+concept has_copy_to_string = requires(const HAS_COPY_TO_STRING & t, ::string & str)
+{
+
+   {::copy(str, t)} -> std::same_as<::string&>;
 
 };
 
@@ -509,13 +522,13 @@ using particle_array = pointer_array < particle >;
 using regular_expression_pointer = ::pointer<::regular_expression::regular_expression>;
 
 
-template < class T, typename C >
-void std_string_assign(T & t, const C * psz);
-
-
-template < class T >
-void std_string_bassign(T & t, const u8 * psz, strsize nsize);
-
+//template < class T, typename C >
+//void std_string_assign(T & t, const C * psz);
+//
+//
+//template < class T >
+//void std_string_bassign(T & t, const u8 * psz, strsize nsize);
+//
 
 
 
@@ -658,8 +671,8 @@ using byte_array = u8_array;
 
 using task_pointer = ::pointer < task >;
 
-CLASS_DECL_ACME task_pointer fork(::particle * pparticle, const ::procedure & procedure);
 
+CLASS_DECL_ACME task_pointer fork(::particle * pparticle, const ::procedure & procedure);
 
 
 namespace draw2d
@@ -683,27 +696,88 @@ inline void copy(NUMBER1 & number1, const NUMBER2 & number2)
 
 
 template < primitive_string STRING, primitive_integral INTEGRAL >
-inline void copy(STRING & string, const INTEGRAL & number)
+inline STRING & copy(STRING & string, const INTEGRAL & number)
 {
 
-   string.format("%lld", (::i64) number);
+   string.append_format("%lld", (::i64) number);
+
+   return string;
 
 }
 
+
+template < primitive_signed SIGNED, primitive_string STRING >
+inline void copy(SIGNED & s, const STRING & string)
+{
+
+   s = (SIGNED) string_to_signed(string);
+
+}
+
+
+template < primitive_natural NATURAL, primitive_string STRING >
+inline void copy(NATURAL & n, const STRING & string)
+{
+
+   n = (NATURAL) string_to_natural(string);
+
+}
+
+
+template < primitive_floating FLOATING, primitive_string STRING >
+inline void copy(FLOATING & f, const STRING & string)
+{
+
+   f = (FLOATING)string_to_floating(string);
+
+}
+
+
 template < primitive_string STRING, primitive_floating FLOATING >
-inline void copy(STRING & string, const FLOATING & number)
+inline STRING & copy(STRING & string, const FLOATING & number)
 {
 
    string.format("%f", (::f64)number);
+
+   return string;
 
 }
 
 
 template < primitive_payload PAYLOAD >
-inline void copy(string & string, const PAYLOAD & payload)
+inline ::string & copy(string & string, const PAYLOAD & payload)
 {
 
    string = payload.string();
+
+   return string;
+
+}
+
+
+template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
+inline void copy(INTEGRAL & integral, const PAYLOAD & payload)
+{
+
+   integral = (INTEGRAL) payload.i64();
+
+}
+
+
+template < primitive_payload PAYLOAD >
+inline void copy(f32 & f, const PAYLOAD & payload)
+{
+
+   f = payload.f32();
+
+}
+
+
+template < primitive_payload PAYLOAD >
+inline void copy(::f64 & f, const PAYLOAD & payload)
+{
+
+   f = payload.f64();
 
 }
 
@@ -718,10 +792,12 @@ inline void copy(PAYLOAD & payload, const NUMBER & number)
 
 
 template < primitive_payload PAYLOAD, primitive_string STRING >
-inline void copy(PAYLOAD & payload, const STRING & string)
+inline PAYLOAD & copy(PAYLOAD & payload, const STRING & string)
 {
 
    payload = string;
+
+   return payload;
 
 }
 
@@ -969,6 +1045,33 @@ void copy(SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 
    size1.cx = (decltype(SIZE_TYPE1::cx))size2.cx;
    size1.cy = (decltype(SIZE_TYPE1::cy))size2.cy;
+
+}
+
+
+template < typename CHAR_TYPE1, typename CHAR_TYPE2 >
+void copy(::string_base < CHAR_TYPE1 > & str1, const ::string_base < CHAR_TYPE2 > & str2)
+{
+
+   str1 = str2;
+
+}
+
+
+template < typename CHAR_TYPE1, primitive_character CHARACTER, std::size_t N >
+void copy(::string_base < CHAR_TYPE1 > & str1, const CHARACTER sz[N])
+{
+
+   str1 = sz;
+
+}
+
+
+template < typename CHAR_TYPE1, primitive_character CHARACTER >
+void copy(::string_base < CHAR_TYPE1 > & str1, const CHARACTER * psz)
+{
+
+   str1 = psz;
 
 }
 
@@ -1824,6 +1927,36 @@ class spreadset;
 using i32_spreadset = spreadset < i32, i32, i32, i32, unique_i32_sort_array, unique_i32_sort_array >;
 
 using i64_spreadset = spreadset < i64, i64, i64, i64, unique_i64_sort_array, unique_i64_sort_array >;
+
+
+#include "acme/primitive/duration/__string.h"
+
+
+template < primitive_integral INTEGRAL >
+inline ::string __string(const INTEGRAL & integral, const char * pszFormat)
+{
+
+   ::string str;
+
+   str.format(pszFormat, integral);
+
+   return ::move(str);
+
+}
+
+
+template < has_copy_to_string HAS_COPY_TO_STRING >
+inline ::string __string(const HAS_COPY_TO_STRING & hascopytostring)
+{
+
+   ::string str;
+
+   ::copy(str, hascopytostring);
+
+   return ::move(str);
+
+}
+
 
 
 

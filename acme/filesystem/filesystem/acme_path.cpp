@@ -34,7 +34,7 @@ string acme_path::from(string str)
    for (index i = 0; i < str.length(); i++)
    {
 
-      if (ansi_char_is_alphanumeric(str[i]))
+      if (character_isalnum(str[i]))
       {
 
          strFsSafe += str[i];
@@ -137,7 +137,7 @@ bool acme_path::final_begins_eat_ci(string & str, const char * pcszPrefix)
       return true;
 
    }
-   else if (::str().begins_eat_ci(str, strPath))
+   else if (str.begins_eat_ci(strPath))
    {
 
       return true;
@@ -154,7 +154,7 @@ bool acme_path::final_begins_eat_ci(string & str, const char * pcszPrefix)
 
       strFullPath = acmepath()->final(strPath);
 
-      if (::str().begins_eat_ci(strFull, strFullPath))
+      if (strFull.begins_eat_ci(strFullPath))
       {
 
          str = strFull;

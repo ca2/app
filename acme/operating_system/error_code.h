@@ -27,26 +27,12 @@ public:
 };
 
 
-inline error_code __errno(int iErrNo)
+inline error_code errno_error_code(int iErrNo)
 {
  
    return { e_error_code_type_errno, iErrNo };
    
 }
-
-
-inline error_code __last_error(::u32 uLastError)
-{
-
-   return { e_error_code_type_last_error, uLastError };
-
-}
-
-#ifdef WINDOWS
-CLASS_DECL_ACME error_code __last_error();
-#endif
-
-
 
 
 

@@ -55,7 +55,7 @@ public:
    virtual void append_wait(const char * pszFile, const block & block, const ::duration & duration);
    virtual void append(const char * pszFile, const block & block);
 
-   virtual bool exists(const char * path);
+   virtual bool exists(const ::file::path & path);
 
    virtual void put_contents(const char * path, const char * contents, strsize len);
    virtual filesize get_size(const char * path);

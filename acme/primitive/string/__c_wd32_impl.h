@@ -1,19 +1,17 @@
 #pragma once
 
 
+inline wd32char wd32_char_tolower(i32 i) { return __wd32tolower(i); }
+inline wd32char wd32_char_toupper(i32 i) { return __wd32toupper(i); }
 
 
+inline i32 wd32_char_isdigit(i32 i) { return __wd32charisdigit(i); }
+inline i32 wd32_char_isalpha(i32 i) { return __wd32charisalpha(i); }
+inline i32 wd32_char_isalnum(i32 i) { return __wd32charisalnum(i); }
+inline i32 wd32_char_isspace(i32 i) { return __wd32charisspace(i); }
 
-inline wd32char wd32_char_lowered(i32 i) { return __wd32tolower(i); }
-inline wd32char wd32_char_uppered(i32 i) { return __wd32toupper(i); }
 
-
-inline i32 wd32_char_is_digit(i32 i) { return __wd32charisdigit(i); }
 inline i32 wd32_char_is_hexadecimal(i32 i) { return __wd32charishexadecimal(i); }
-inline i32 wd32_char_is_alphabetic(i32 i) { return __wd32charisalphabetic(i); }
-inline i32 wd32_char_is_alphanumeric(i32 i) { return __wd32charisalphanumeric(i); }
-inline i32 wd32_char_is_space(i32 i) { return __wd32charisspace(i); }
-
 
 
 inline const wd32char * wd32_const_last_char(const wd32char * psz)
@@ -901,7 +899,7 @@ inline wd32char * wd32_lower(wd32char * pch)
    while (*p != '\0')
    {
 
-      *p = wd32_char_lowered(*p);
+      *p = wd32_char_tolower(*p);
 
       p++;
 
@@ -920,7 +918,7 @@ inline wd32char * wd32_upper(wd32char * pch)
    while (*p != '\0')
    {
 
-      *p = wd32_char_uppered(*p);
+      *p = wd32_char_toupper(*p);
 
       p++;
 

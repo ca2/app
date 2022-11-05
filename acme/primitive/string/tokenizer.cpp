@@ -344,7 +344,7 @@
       while(psz < pszEnd)
       {
 
-         if(::str::ch().is_whitespace(psz))
+         if(unicode_is_whitespace(psz))
          {
 
             if(pszStart != nullptr)
@@ -406,7 +406,7 @@
             
          }
 
-         ::str().increment(psz);
+         unicode_increment(psz);
 
       }
 

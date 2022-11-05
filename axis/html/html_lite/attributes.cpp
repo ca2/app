@@ -59,7 +59,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
    //   char   ch = 0;
 
    // skip leading white-space characters
-   while(::isspace((uchar) *pszBegin))
+   while(::character_isspace((uchar) *pszBegin))
 
       pszBegin++;
 
@@ -75,7 +75,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
    {
       // attribute name may contain letters (a-z, A-Z), digits (0-9),
       // underscores '_', hyphen '-', colons ':', and periods '.'
-      if ( (!::ansi_char_is_alphanumeric((uchar) *pszEnd)) &&
+      if ( (!::ansi_char_is_alnum((uchar) *pszEnd)) &&
 
             (*pszEnd != '-') && (*pszEnd != ':') &&
 
@@ -89,7 +89,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
          // equal-sign, a greater-than symbol, or a forward-slash
          // can act as the separator between an attribute and its
          // value
-         if (*pszEnd =='\0' || ::isspace((uchar) *pszEnd) ||
+         if (*pszEnd =='\0' || ::character_isspace((uchar) *pszEnd) ||
 
                *pszEnd == '=' ||
 
@@ -112,7 +112,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
 
 
    // skip leading white-space characters
-   while (::isspace((uchar)*pszEnd))
+   while (::character_isspace((uchar)*pszEnd))
 
       pszEnd++;
 
@@ -135,7 +135,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
          pszEnd++;
 
       }
-      while (::isspace((uchar) *pszEnd));
+      while (::character_isspace((uchar) *pszEnd));
 
 
       pszBegin = pszEnd;
@@ -182,7 +182,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
          // loop until we find a tag ending delimeter or any
          // white-space character, or until we reach at the
          // end of the string buffer
-         while (*pszEnd != '\0' && !::isspace((uchar) *pszEnd) &&
+         while (*pszEnd != '\0' && !::character_isspace((uchar) *pszEnd) &&
 
                 *pszEnd != '/' && *pszEnd != '>');
 

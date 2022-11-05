@@ -129,7 +129,7 @@ namespace sockets
       string dst;
       for (i32 i = 0; i < src.get_length(); i++)
       {
-         if (ansi_char_is_alphanumeric((uchar) src[i]))
+         if (ansi_char_is_alnum((uchar) src[i]))
          {
             dst += src[i];
          }

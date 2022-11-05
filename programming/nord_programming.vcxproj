@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="basis|ARM">
-      <Configuration>basis</Configuration>
+    <ProjectConfiguration Include="debug|ARM">
+      <Configuration>debug</Configuration>
       <Platform>ARM</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="basis|x86">
-      <Configuration>basis</Configuration>
+    <ProjectConfiguration Include="debug|x86">
+      <Configuration>debug</Configuration>
       <Platform>x86</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="stage|ARM">
-      <Configuration>stage</Configuration>
+    <ProjectConfiguration Include="release|ARM">
+      <Configuration>release</Configuration>
       <Platform>ARM</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="stage|x86">
-      <Configuration>stage</Configuration>
+    <ProjectConfiguration Include="release|x86">
+      <Configuration>release</Configuration>
       <Platform>x86</Platform>
     </ProjectConfiguration>
   </ItemGroup>
@@ -63,14 +63,14 @@
     <RootNamespace>programming</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
     <AndroidAPILevel>android-19</AndroidAPILevel>
     <UseOfStl>gnustl_shared</UseOfStl>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
@@ -78,14 +78,14 @@
     <ThumbMode>Disabled</ThumbMode>
     <AndroidAPILevel>android-19</AndroidAPILevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
     <AndroidAPILevel>android-19</AndroidAPILevel>
     <UseOfStl>gnustl_shared</UseOfStl>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
@@ -96,27 +96,27 @@
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x86'">
     <OutDir>$(TimeDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|ARM'">
     <OutDir>$(TimeDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|ARM'">
     <OutDir>$(TimeDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>false</UseMultiToolTask>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x86'">
     <OutDir>$(TimeDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x86'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/port/include;$(SolutionDir)../../../source/port;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CA2_PROGRAMMING_DLL</PreprocessorDefinitions>
@@ -138,7 +138,7 @@
       <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-android\third\library\$(Platform)\$(Configuration)\;$(__operating_system)storage-android\library\$(Platform)\$(Configuration)\;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|ARM'">
     <ClCompile>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition </AdditionalOptions>
       <AdditionalIncludeDirectories>$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/port/include;$(SolutionDir)../../../source/port;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -156,7 +156,7 @@
       <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-android\third\library\$(Platform)\$(Configuration)\;$(__operating_system)storage-android\library\$(Platform)\$(Configuration)\;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|ARM'">
     <Link>
       <LibraryDependencies>aurapcre;aura;$(StlLibraryName);log;android</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-android\third\library\$(Platform)\$(Configuration)\;$(__operating_system)storage-android\library\$(Platform)\$(Configuration)\;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -177,7 +177,7 @@
       <Optimization>Disabled</Optimization>
     </ClCompile>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x86'">
     <Link>
       <LibraryDependencies>aurapcre;aura;$(StlLibraryName);log;android</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-android\third\library\$(Platform)\$(Configuration)\;$(__operating_system)storage-android\library\$(Platform)\$(Configuration)\;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

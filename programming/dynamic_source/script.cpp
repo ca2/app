@@ -387,7 +387,7 @@ namespace dynamic_source
 
             FORMATTED_TRACE("Error Message Id: %d\n", dwMessageId);
 
-            string strError = last_error_message(dwMessageId);
+            string strError = ::windows::last_error_message(dwMessageId);
 
             string str;
 

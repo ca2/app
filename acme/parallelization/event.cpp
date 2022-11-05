@@ -94,13 +94,13 @@ void clock_getrealtime(struct timespec * pts)
 //CLASS_DECL_ACME::layered* get_layered_thread();
 
 
-event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstrName, const security_attributes & securityattributes)
+event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstrName, security_attributes * psecurityattributes)
 {
 
 #ifdef WINDOWS_DESKTOP
 
    m_hsynchronization = ::CreateEventW(
-      (LPSECURITY_ATTRIBUTES)securityattributes.m_pOsSecurityAttributes,
+      (LPSECURITY_ATTRIBUTES)(psecurityattributes ? psecurityattributes->get_os_security_attributes() : nullptr),
       bManualReset, 
       bInitiallyOwn, pstrName ? nullptr : wstring(pstrName).c_str());
 

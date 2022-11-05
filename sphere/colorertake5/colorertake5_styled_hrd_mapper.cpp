@@ -55,9 +55,9 @@ namespace colorertake5
                continue;
 
 
-            bool bfore = ansi_char_is_digit(curel->attr("fore").first()) != false;
+            bool bfore = ansi_char_isdigit(curel->attr("fore").first()) != false;
             i32 fore = atoi((curel)->attr("fore"));
-            bool bback = ansi_char_is_digit((curel)->attr("back").last()) != false;
+            bool bback = ansi_char_isdigit((curel)->attr("back").last()) != false;
             i32 back = atoi((curel)->attr("back"));
             i32 style = atoi((curel)->attr("style"));
             RegionDefine *rdef = memory_new StyledRegion(bfore, bback, fore, back, style);

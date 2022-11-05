@@ -1713,7 +1713,7 @@ namespace user
 
                         const char * end = &psz[m_pdata->m_iSelEnd];
 
-                        const char * inc = ::str().next(end);
+                        const char * inc = unicode_next(end);
 
                         m_pdata->m_iSelEnd += inc - end;
 
@@ -1769,7 +1769,7 @@ namespace user
 
                      const char * end = &psz[m_pdata->m_iSelEnd];
 
-                     const char * dec = ::str().prior(end, psz);
+                     const char * dec = unicode_prior(end, psz);
 
                      m_pdata->m_iSelEnd -= end - dec;
 

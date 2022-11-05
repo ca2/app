@@ -3,6 +3,7 @@
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/counter.h"
 #include "acme/platform/context.h"
+#include "acme/platform/node.h"
 #include "acme/primitive/primitive/function.h"
 
 
@@ -70,7 +71,7 @@ forking_count_task::forking_count_task(::particle * pparticle, index iOrder, ind
 void forking_count_task::construct()
 {
 
-   m_uThreadAffinityMask = (::uptr)translate_processor_affinity((int)m_iOrder);
+   m_uThreadAffinityMask = (::uptr)acmenode()->translate_processor_affinity((int)m_iOrder);
 
 }
 
@@ -120,42 +121,3 @@ void forking_count_task::run()
 }
 
 
-CLASS_DECL_ACME void fork_count(::particle * pparticleParent, ::count iCount, const ::function < void(index, index, index, index) > & function, const ::procedure & procedureCompletion, index iStart)
-{
-
-   int iAffinityOrder = get_current_process_affinity_order();
-
-   if (::get_task() != nullptr && ::get_task()->m_bAvoidProcedureFork)
-   {
-
-      iAffinityOrder = 1;
-
-   }
-
-   ::count cScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
-
-   auto pcounter = __new(::counter(cScan, procedureCompletion));
-
-   auto ptask = ::get_task();
-
-   for (index iOrder = 0; iOrder < cScan; iOrder++)
-   {
-
-      auto ppredtask = __new(forking_count_task(pparticleParent, iOrder, iOrder + iStart, cScan, iCount, function));
-
-      //if (::is_set(ptask))
-      //{
-
-      //   ptask->add_reference(ppredtask);
-
-      //}
-
-      ppredtask->m_pcounter = pcounter;
-
-      ppredtask->branch();
-
-   }
-
-   //return pcounter;
-
-}

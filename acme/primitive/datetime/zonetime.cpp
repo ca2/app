@@ -6,6 +6,7 @@
 #include <time.h>
 #endif
 #include "acme/exception/exception.h"
+#include "acme/primitive/string/str.h"
 
 
 namespace earth

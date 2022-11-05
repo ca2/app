@@ -106,7 +106,7 @@
 #include "_functions.h"
 
 
-#include "acme/_api.h"
+//#include "acme/_api.h"
 
 
 #include "acme/primitive/primitive/estatus.h"
@@ -2812,7 +2812,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * ppartcicle, const ch
 CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::particle * pparticle, const char * pszMessage, const char * pszTitle = nullptr, const e_message_box & emessagebox = e_message_box_ok, const char * pszDetails = nullptr);
 
 
-#include "acme/memory/counter.h"
+//#include "acme/memory/counter.h"
 
 #include "acme/platform/debug.h"
 

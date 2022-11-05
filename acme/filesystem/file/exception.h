@@ -56,7 +56,7 @@ namespace file
 //
 //#endif
 
-   //CLASS_DECL_ACME void throw ::file::exception(errno_to_status(errno), (int iErrNo, const ::file::path& path = nullptr);
+   //CLASS_DECL_ACME void throw ::file::exception(errno_status(errno), (int iErrNo, const ::file::path& path = nullptr);
 
    CLASS_DECL_ACME int dos_to_os_error(int lDosErr);
 

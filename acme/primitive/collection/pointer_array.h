@@ -167,6 +167,7 @@ public:
 
    }
 
+
    inline ::index add_item(pointer < T > && p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
@@ -195,6 +196,7 @@ public:
    //   return this->add_item(p);
 
    //}
+
 
    ::index add(const pointer < T > & p)
    {

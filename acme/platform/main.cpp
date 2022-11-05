@@ -139,86 +139,6 @@ main::~main()
 
 
 
-string main::_get_argv(int iArgument) const
-{
-
-   if (iArgument < 0 || iArgument >= _get_argc())
-   {
-
-      return "";
-
-   }
-
-   if (m_wargv && m_wargv[iArgument])
-   {
-
-      return m_wargv[iArgument];
-
-   }
-   else if (m_argv && m_argv[iArgument])
-   {
-
-      return m_argv[iArgument];
-
-   }
-
-   return "";
-
-}
-
-
-string main::get_executable() const
-{
-
-   return _get_argv(0);
-
-}
-
-
-string_array main::get_arguments()
-{
-
-   string_array stra;
-
-   for (::index i = 0; i < m_argc; i++)
-   {
-
-      string strArgument;
-
-      if (m_wargv && m_wargv[i])
-      {
-
-      strArgument = m_wargv[i];
-
-      }
-      else if (m_argv && m_argv[i])
-      {
-
-         strArgument = m_argv[i];
-
-      }
-      else
-      {
-
-         break;
-
-      }
-
-      stra.add(strArgument);
-
-   }
-
-   return ::move(stra);
-
-}
-
-
-string main::get_argument1(int iArgument) const
-{
-
-   return _get_argv(iArgument + 1);
-
-}
 
 
 CLASS_DECL_ACME void set_main_user_thread();
@@ -242,15 +162,15 @@ void __main(::acme::application * pacmeapplication)
 
    //   auto papp = ::app_factory::new_app();
 
-   pacmeapplication->m_argc = __argc;
+   //pacmeapplication->m_argc = __argc;
 
-   pacmeapplication->m_argv = __argv;
+   //pacmeapplication->m_argv = __argv;
 
-   pacmeapplication->m_wargv = __wargv;
+   //pacmeapplication->m_wargv = __wargv;
 
-   pacmeapplication->m_envp = *__p__environ();
+   //pacmeapplication->m_envp = *__p__environ();
 
-   pacmeapplication->m_wenvp = *__p__wenviron();
+   //pacmeapplication->m_wenvp = *__p__wenviron();
 
    //pacmeapplication->m_hinstanceThis = hinstanceThis;
 
@@ -482,21 +402,21 @@ void main::system_construct(const ::main * pmain)
 
 #ifdef WINDOWS_DESKTOP
 
-   if (!m_hinstanceThis)
-   {
+   //if (!subsystem.m_hinstanceThis)
+   //{
 
-      m_hinstanceThis = ::GetModuleHandle(nullptr);
+   //   subsystem.m_hinstanceThis = ::GetModuleHandle(nullptr);
 
-   }
+   //}
 
    //m_hPrevInstance = nullptr;
 
-   if (m_nCmdShow == -1000)
-   {
+   //if (m_nCmdShow == -1000)
+   //{
 
-      m_nCmdShow = SW_SHOWDEFAULT;
+   //   m_nCmdShow = SW_SHOWDEFAULT;
 
-   }
+   //}
 
 #elif defined(LINUX)
 
@@ -721,83 +641,7 @@ void main::system_construct(const char * pszCommandLine, const ::e_display & edi
 //}
 
 
-string main::get_arg(int i) const
-{
 
-   if (m_wargv)
-   {
-
-      return string(m_wargv[i]);
-
-   }
-   else if (m_argv)
-   {
-
-      return string(m_argv[i]);
-
-   }
-
-   return "";
-
-
-}
-
-
-string main::get_env(const char * pszVariableName) const
-{
-
-   if (m_wenvp)
-   {
-
-      wstring wstrPrefix(pszVariableName);
-
-      wstrPrefix += "=";
-
-      for(auto p = m_wenvp; p != nullptr; p++)
-      {
-
-         wstring wstr(*p);
-
-         if(wstr.begins_eat_ci(wstrPrefix))
-         {
-
-            return wstr;
-
-         }
-
-      }
-
-      return "";
-
-   }
-   else if (m_envp)
-   {
-
-      string strPrefix(pszVariableName);
-
-      strPrefix += "=";
-
-      for(auto p = m_envp; p != nullptr; p++)
-      {
-
-         string str(*p);
-
-         if(str.begins_eat_ci(strPrefix))
-         {
-
-            return str;
-
-         }
-
-      }
-
-      return "";
-
-   }
-
-   return "";
-
-}
 
 
 bool main::is_console_app() const

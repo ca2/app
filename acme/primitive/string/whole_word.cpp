@@ -29,10 +29,10 @@
       {
 
          bool bLowerBound1 = iFind == 0;
-         bool bLowerBound = bLowerBound1 || !ansi_char_is_alphabetic(str[iFind - 1]);
+         bool bLowerBound = bLowerBound1 || !ansi_char_isalpha(str[iFind - 1]);
          strsize iUpperBound = iFind + strFind.get_length();
          bool bUpperBound1 = iUpperBound == str.get_length();
-         bool bUpperBound = bUpperBound1 || !ansi_char_is_alphabetic(str[iUpperBound]);
+         bool bUpperBound = bUpperBound1 || !ansi_char_isalpha(str[iUpperBound]);
 
          if (bLowerBound && bUpperBound)
          {
@@ -79,7 +79,7 @@
       while ((iFind = str.find_ci(strFind, iFind)) >= 0)
       {
 
-         if (iFind == 0 || !ansi_char_is_alphabetic(str[iFind - 1]))
+         if (iFind == 0 || !ansi_char_isalpha(str[iFind - 1]))
          {
 
             str = str.Left(iFind) + str.Mid(iFind + strFind.get_length());

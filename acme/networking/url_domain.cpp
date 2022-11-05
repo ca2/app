@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "url_domain.h"
 #include "url_department.h"
+#include "acme/primitive/string/str.h"
 #include "acme/exception/exception.h"
 
 

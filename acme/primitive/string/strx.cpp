@@ -165,7 +165,7 @@ void ansi_to_wd16(wd16char * pwsz, const char * psz)
 
       ::i32 len;
 
-      auto iWd32 = ::str::ch().uni_index_len(psz, len);
+      auto iWd32 = unicode_index_len(psz, len);
 
       if (iWd32 < 0 || psz == nullptr)
       {
@@ -202,7 +202,7 @@ void ansi_to_wd16_len(wd16char * pwsz, const char * psz, strsize srclen)
 
       ::i32 len;
 
-      auto iWd32 = ::str::ch().uni_index_len(psz, len);
+      auto iWd32 = unicode_index_len(psz, len);
 
       if (iWd32)
       {

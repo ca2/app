@@ -136,8 +136,8 @@ vsstring url_encode(const char * psz)
    while(*psz != '\0')
    {
       unsigned char uch = *psz;
-      if(ansi_char_is_digit(uch)
-            || ansi_char_is_alphabetic(uch)
+      if(ansi_char_isdigit(uch)
+            || ansi_char_isalpha(uch)
             || uch == '.'
             || uch == '-'
             || uch== '_')

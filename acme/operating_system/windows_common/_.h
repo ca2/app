@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/operating_system/error_code.h"
+
+
 CLASS_DECL_ACME void TRACELASTERROR();
 
 
@@ -47,6 +50,19 @@ namespace windows
 
 
    CLASS_DECL_ACME DWORD get_file_attributes(const char * path);
+
+
+   CLASS_DECL_ACME error_code last_error_error_code(DWORD dwLastError);
+
+
+   CLASS_DECL_ACME error_code last_error_error_code();
+
+
+   CLASS_DECL_ACME void throw_last_error(DWORD dwLastError);
+
+
+   CLASS_DECL_ACME void throw_last_error();
+
 
 } // namespace windows
 

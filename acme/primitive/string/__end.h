@@ -1,10 +1,14 @@
 #pragma once
 
-#include "_unicode.h"
+#include "__sz.h"
 
-#include "__str.h"
+#include "__unicode.h"
 
-#include "international.h"
+#include "__unicode_character.h"
+
+//#include "__str.h"
+
+//#include "international.h"
 
 #include "_base_impl.h"
 
@@ -12,9 +16,13 @@
 
 #include "_impl_prio.h"
 
-#include "_str_impl.h"
+//#include "_str_impl.h"
 
-#include "_unicode_impl.h"
+#include "_refactor_impl.h"
+
+#include "__sz_impl.h"
+
+#include "__unicode_impl.h"
 
 #include "_impl.h"
 

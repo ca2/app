@@ -63,7 +63,7 @@ void * __node_library_open(const char * pszPath, string & strMessage)
 
       DWORD dwLastError = ::GetLastError();
 
-      string strLastError = last_error_message(dwLastError);
+      string strLastError = ::windows::last_error_message(dwLastError);
 
       ::output_debug_string(strLastError);
 

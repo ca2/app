@@ -144,14 +144,14 @@ namespace xml
       if(trim)
       {
 
-         while(psz < end && isspace(*psz))
+         while(psz < end && character_isspace(*psz))
          {
 
             psz++;
 
          }
 
-         while((end - 1) && psz < (end - 1) && isspace(*(end - 1)))
+         while((end - 1) && psz < (end - 1) && character_isspace(*(end - 1)))
          {
 
             end--;
@@ -193,14 +193,14 @@ namespace xml
       if(trim)
       {
 
-         while(psz < end && isspace(*psz))
+         while(psz < end && character_isspace(*psz))
          {
 
             psz++;
 
          }
 
-         while((end - 1) && psz < (end - 1) && isspace(*(end - 1)))
+         while((end - 1) && psz < (end - 1) && character_isspace(*(end - 1)))
          {
 
             end--;
@@ -233,7 +233,7 @@ namespace xml
 namespace xml
 {
 
-//   inline i32 ch_ansi_char_is_space(uchar uch)
+//   inline i32 ch_ansi_char_isspace(uchar uch)
 //   {
 //      return uch == ' ' || uch == '\t' || uch == '\r' || uch == '\n';
 //   }
@@ -271,7 +271,7 @@ namespace xml
    inline char * _tcsskip(const char * psz)
    {
 
-      while(ansi_char_is_space((uchar)*psz)) psz++;
+      while(ansi_char_isspace((uchar)*psz)) psz++;
 
       return (char *)psz;
 

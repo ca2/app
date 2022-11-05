@@ -13,7 +13,7 @@ namespace windows
 
       DWORD dwLastError = ::GetLastError();
 
-      return last_error_message(dwLastError);
+      return ::windows::last_error_message(dwLastError);
 
    }
 

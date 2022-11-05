@@ -168,7 +168,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
       return (0);
 
    // skip leading white-space characters
-   while (::isspace(*pszBegin))
+   while (::character_isspace(*pszBegin))
 
       pszBegin++;
 

@@ -158,7 +158,7 @@ text_stream & text_stream::operator <<(u16 u)
 text_stream & text_stream::operator <<(unichar wch)
 {
 
-   raw_print(::str().uni_to_utf8(wch));
+   raw_print(unicode_to_utf8(wch));
 
    return *this;
 

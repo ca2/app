@@ -4,15 +4,15 @@
 
 
 
-inline wd16char               wd16_char_lowered(i32 ch);
-inline wd16char               wd16_char_uppered(i32 ch);
-inline i32                    wd16_char_is_digit(i32 ch);
+inline wd16char               wd16_char_tolower(i32 ch);
+inline wd16char               wd16_char_toupper(i32 ch);
+inline i32                    wd16_char_isdigit(i32 ch);
+inline i32                    wd16_char_isalpha(i32 ch);
+inline i32                    wd16_char_isalnum(i32 ch);
+inline i32                    wd16_char_isspace(i32 ch);
+
+
 inline i32                    wd16_char_is_hexadecimal(i32 ch);
-inline i32                    wd16_char_is_alphabetic(i32 ch);
-inline i32                    wd16_char_is_alphanumeric(i32 ch);
-inline i32                    wd16_char_is_space(i32 ch);
-
-
 
 inline wd16char *             wd16_last_char(wd16char * psz);
 inline const wd16char *       wd16_const_last_char(const wd16char * psz);

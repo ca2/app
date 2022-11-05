@@ -14,116 +14,116 @@
    //template < typename TYPE_TARGET, typename TYPE_SOURCE >
    //inline strsize utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource, strsize srclen);
 
-   inline strsize utf_to_utf_length(const ansichar *, const ansichar * psource, strsize srclen);
+   //inline strsize utf_to_utf_length(const ansichar *, const ansichar * psource, strsize srclen);
 
-   inline strsize utf_to_utf_length(const wd16char *, const wd16char * psource, strsize srclen);
+   //inline strsize utf_to_utf_length(const wd16char *, const wd16char * psource, strsize srclen);
 
-   inline strsize utf_to_utf_length(const wd16char *, const wd32char * psource, strsize srclen);
+   //inline strsize utf_to_utf_length(const wd16char *, const wd32char * psource, strsize srclen);
 
-   inline strsize utf_to_utf_length(const wd32char *, const wd32char * psource, strsize srclen);
+   //inline strsize utf_to_utf_length(const wd32char *, const wd32char * psource, strsize srclen);
 
-   inline strsize utf_to_utf_length(const wd32char *, const wd16char * psource, strsize srclen);
+   //inline strsize utf_to_utf_length(const wd32char *, const wd16char * psource, strsize srclen);
 
-   inline strsize utf_to_utf_length(const ansichar *, const wd16char * psource, strsize srclen);
+   //inline strsize utf_to_utf_length(const ansichar *, const wd16char * psource, strsize srclen);
 
-   inline strsize utf_to_utf_length(const ansichar *, const wd32char * psource, strsize srclen);
+   //inline strsize utf_to_utf_length(const ansichar *, const wd32char * psource, strsize srclen);
 
-   inline strsize utf_to_utf_length(const wd16char *, const ansichar * psource, strsize srclen);
+   //inline strsize utf_to_utf_length(const wd16char *, const ansichar * psource, strsize srclen);
 
-   inline strsize utf_to_utf_length(const wd32char *, const ansichar * psource, strsize srclen);
+   //inline strsize utf_to_utf_length(const wd32char *, const ansichar * psource, strsize srclen);
 
-   //template < typename TYPE_TARGET, typename TYPE_SOURCE >
-   //inline void utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource, strsize srclen);
+   ////template < typename TYPE_TARGET, typename TYPE_SOURCE >
+   ////inline void utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource, strsize srclen);
 
-   //template <  >
-   inline void utf_to_utf(ansichar * ptarget, const ansichar * psource, strsize srclen);
+   ////template <  >
+   //inline void utf_to_utf(ansichar * ptarget, const ansichar * psource, strsize srclen);
 
-   //template <  >
-   inline void utf_to_utf(wd16char * ptarget, const wd16char * psource, strsize srclen);
+   ////template <  >
+   //inline void utf_to_utf(wd16char * ptarget, const wd16char * psource, strsize srclen);
 
-   //template <  >
-   inline void utf_to_utf(wd16char * ptarget, const wd32char * psource, strsize srclen);
+   ////template <  >
+   //inline void utf_to_utf(wd16char * ptarget, const wd32char * psource, strsize srclen);
 
-   //template <  >
-   inline void utf_to_utf(wd32char * ptarget, const wd32char * psource, strsize srclen);
+   ////template <  >
+   //inline void utf_to_utf(wd32char * ptarget, const wd32char * psource, strsize srclen);
 
-   //template <  >
-   inline void utf_to_utf(wd32char * ptarget, const wd16char * psource, strsize srclen);
+   ////template <  >
+   //inline void utf_to_utf(wd32char * ptarget, const wd16char * psource, strsize srclen);
 
-   //template <  >
-   inline void utf_to_utf(ansichar * ptarget, const wd16char * psource, strsize srclen);
+   ////template <  >
+   //inline void utf_to_utf(ansichar * ptarget, const wd16char * psource, strsize srclen);
 
-   //inline void utf_to_utf(::string & str, const wd16char * psource, strsize srclen);
+   ////inline void utf_to_utf(::string & str, const wd16char * psource, strsize srclen);
 
-   //template <  >
-   inline void utf_to_utf(ansichar * ptarget, const wd32char * psource, strsize srclen);
+   ////template <  >
+   //inline void utf_to_utf(ansichar * ptarget, const wd32char * psource, strsize srclen);
 
-   //template <  >
-   inline void utf_to_utf(wd16char * ptarget, const ansichar * psource, strsize srclen);
+   ////template <  >
+   //inline void utf_to_utf(wd16char * ptarget, const ansichar * psource, strsize srclen);
 
-   //template <  >
-   inline void utf_to_utf(wd32char * ptarget, const ansichar * psource, strsize srclen);
+   ////template <  >
+   //inline void utf_to_utf(wd32char * ptarget, const ansichar * psource, strsize srclen);
 
-   //template < typename TYPE_TARGET, typename TYPE_SOURCE >
-   //inline strsize utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource);
+   ////template < typename TYPE_TARGET, typename TYPE_SOURCE >
+   ////inline strsize utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource);
 
-   //template <  >
-   inline strsize utf_to_utf_length(const ansichar *, const ansichar * psource);
+   ////template <  >
+   //inline strsize utf_to_utf_length(const ansichar *, const ansichar * psource);
 
-   //template <  >
-   inline strsize utf_to_utf_length(const wd16char *, const wd16char * psource);
+   ////template <  >
+   //inline strsize utf_to_utf_length(const wd16char *, const wd16char * psource);
 
-   //template <  >
-   inline strsize utf_to_utf_length(const wd16char *, const wd32char * psource);
+   ////template <  >
+   //inline strsize utf_to_utf_length(const wd16char *, const wd32char * psource);
 
-   //template <  >
-   inline strsize utf_to_utf_length(const wd32char *, const wd32char * psource);
+   ////template <  >
+   //inline strsize utf_to_utf_length(const wd32char *, const wd32char * psource);
 
-   //template <  >
-   inline strsize utf_to_utf_length(const wd32char *, const wd16char * psource);
+   ////template <  >
+   //inline strsize utf_to_utf_length(const wd32char *, const wd16char * psource);
 
 
-   //template <  >
-   inline strsize utf_to_utf_length(const ansichar *, const wd16char * psource);
+   ////template <  >
+   //inline strsize utf_to_utf_length(const ansichar *, const wd16char * psource);
 
-   //template <  >
-   inline strsize utf_to_utf_length(const ansichar *, const wd32char * psource);
+   ////template <  >
+   //inline strsize utf_to_utf_length(const ansichar *, const wd32char * psource);
 
-   //template <  >
-   inline strsize utf_to_utf_length(const wd16char *, const ansichar * psource);
+   ////template <  >
+   //inline strsize utf_to_utf_length(const wd16char *, const ansichar * psource);
 
-   //template <  >
-   inline strsize utf_to_utf_length(const wd32char *, const ansichar * psource);
+   ////template <  >
+   //inline strsize utf_to_utf_length(const wd32char *, const ansichar * psource);
 
-   //template < typename TYPE_TARGET, typename TYPE_SOURCE >
-   //inline void utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource);
+   ////template < typename TYPE_TARGET, typename TYPE_SOURCE >
+   ////inline void utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource);
 
-   //template <  >
-   inline void utf_to_utf(ansichar * ptarget, const ansichar * psource);
+   ////template <  >
+   //inline void utf_to_utf(ansichar * ptarget, const ansichar * psource);
 
-   //template <  >
-   inline void utf_to_utf(wd16char * ptarget, const wd16char * psource);
+   ////template <  >
+   //inline void utf_to_utf(wd16char * ptarget, const wd16char * psource);
 
-   //template <  >
-   inline void utf_to_utf(wd16char * ptarget, const wd32char * psource);
+   ////template <  >
+   //inline void utf_to_utf(wd16char * ptarget, const wd32char * psource);
 
-   //template <  >
-   inline void utf_to_utf(wd32char * ptarget, const wd32char * psource);
+   ////template <  >
+   //inline void utf_to_utf(wd32char * ptarget, const wd32char * psource);
 
-   //template <  >
-   inline void utf_to_utf(wd32char * ptarget, const wd16char * psource);
+   ////template <  >
+   //inline void utf_to_utf(wd32char * ptarget, const wd16char * psource);
 
-   //template <  >
-   inline void utf_to_utf(ansichar * ptarget, const wd16char * psource);
+   ////template <  >
+   //inline void utf_to_utf(ansichar * ptarget, const wd16char * psource);
 
-   //template <  >
-   inline void utf_to_utf(ansichar * ptarget, const wd32char * psource);
+   ////template <  >
+   //inline void utf_to_utf(ansichar * ptarget, const wd32char * psource);
 
-   //template <  >
-   inline void utf_to_utf(wd16char * ptarget, const ansichar * psource);
+   ////template <  >
+   //inline void utf_to_utf(wd16char * ptarget, const ansichar * psource);
 
-   //template <  >
-   inline void utf_to_utf(wd32char * ptarget, const ansichar * psource);
+   ////template <  >
+   //inline void utf_to_utf(wd32char * ptarget, const ansichar * psource);
 
 
 
@@ -182,80 +182,80 @@
    template < typename TYPE_CHAR >
    inline string_base < TYPE_CHAR > & assign(string_base < TYPE_CHAR > & strDst, const TYPE_CHAR * pszSrc);
 
-   inline wd16string & assign(wd16string & wstrDst, const natural_ansistring & strSrc);
+   //inline wd16string & assign(wd16string & wstrDst, const natural_ansistring & strSrc);
 
-   inline wd16string & assign(wd16string & wstrDst, const ansistring & strSrc);
+   //inline wd16string & assign(wd16string & wstrDst, const ansistring & strSrc);
 
-   inline wd32string & assign(wd32string & wstrDst, const natural_ansistring & strSrc);
+   //inline wd32string & assign(wd32string & wstrDst, const natural_ansistring & strSrc);
 
-   inline wd32string & assign(wd32string & wstrDst, const ansistring& strSrc);
+   //inline wd32string & assign(wd32string & wstrDst, const ansistring& strSrc);
 
-   inline ansistring & assign(ansistring & ansistrSrc, const natural_wd16string & widestrSrc);
+   //inline ansistring & assign(ansistring & ansistrSrc, const natural_wd16string & widestrSrc);
 
-   inline ansistring & assign(ansistring & strDst, const wd16string & wstrSrc);
+   //inline ansistring & assign(ansistring & strDst, const wd16string & wstrSrc);
 
-   inline ansistring & assign(ansistring & ansistrSrc, const natural_wd32string & widestrSrc);
+   //inline ansistring & assign(ansistring & ansistrSrc, const natural_wd32string & widestrSrc);
 
-   inline ansistring & assign(ansistring & strDst, const wd32string& wstrSrc);
+   //inline ansistring & assign(ansistring & strDst, const wd32string& wstrSrc);
 
-   inline ansistring & assign(ansistring & ansistrDst, const atom & atom);
+   //inline ansistring & assign(ansistring & ansistrDst, const atom & atom);
 
-   inline wd16string & assign(wd16string & widestrDst, const atom & atom);
+   //inline wd16string & assign(wd16string & widestrDst, const atom & atom);
 
-   inline wd32string & assign(wd32string & widestrDst, const atom & atom);
+   //inline wd32string & assign(wd32string & widestrDst, const atom & atom);
 
-   inline ansistring & assign(ansistring & ansistrDst, ansichar ansich);
+   //inline ansistring & assign(ansistring & ansistrDst, ansichar ansich);
 
-   inline wd16string & assign(wd16string & widestrDst, ansichar ansich);
+   //inline wd16string & assign(wd16string & widestrDst, ansichar ansich);
 
-   inline wd32string & assign(wd32string & widestrDst, ansichar ansich);
+   //inline wd32string & assign(wd32string & widestrDst, ansichar ansich);
 
-   inline ansistring & assign(ansistring & ansistrDst, wd16char wd16ch);
+   //inline ansistring & assign(ansistring & ansistrDst, wd16char wd16ch);
 
-   inline wd16string & assign(wd16string & widestrDst, wd16char wd16ch);
+   //inline wd16string & assign(wd16string & widestrDst, wd16char wd16ch);
 
-   inline wd32string & assign(wd32string & widestrDst, wd16char wd16ch);
+   //inline wd32string & assign(wd32string & widestrDst, wd16char wd16ch);
 
-   inline ansistring & assign(ansistring & ansistrDst, wd32char wd32ch);
+   //inline ansistring & assign(ansistring & ansistrDst, wd32char wd32ch);
 
-   inline wd16string & assign(wd16string & widestrDst, wd32char wd32ch);
+   //inline wd16string & assign(wd16string & widestrDst, wd32char wd32ch);
 
-   inline wd32string & assign(wd32string & widestrDst, wd32char wd32ch);
+   //inline wd32string & assign(wd32string & widestrDst, wd32char wd32ch);
 
-   inline ansistring & assign(ansistring & ansistrDst, const ::payload & payload);
+   //inline ansistring & assign(ansistring & ansistrDst, const ::payload & payload);
 
-   inline wd16string & assign(wd16string & widestrDst, const ::payload & payload);
+   //inline wd16string & assign(wd16string & widestrDst, const ::payload & payload);
 
-   inline wd32string & assign(wd32string & widestrDst, const ::payload & payload);
+   //inline wd32string & assign(wd32string & widestrDst, const ::payload & payload);
 
-   inline ansistring & assign(ansistring & ansistrDst, const property & property);
+   //inline ansistring & assign(ansistring & ansistrDst, const property & property);
 
-   inline wd16string & assign(wd16string & widestrDst, const property & property);
+   //inline wd16string & assign(wd16string & widestrDst, const property & property);
 
-   inline wd32string & assign(wd32string & widestrDst, const property & property);
+   //inline wd32string & assign(wd32string & widestrDst, const property & property);
 
-   inline ansistring & assign(ansistring & ansistrDst, const wd16char * pwidesz);
+   //inline ansistring & assign(ansistring & ansistrDst, const wd16char * pwidesz);
 
-   inline ansistring & assign(ansistring & ansistrDst, const wd32char* pwidesz);
+   //inline ansistring & assign(ansistring & ansistrDst, const wd32char* pwidesz);
 
-   inline wd16string & assign(wd16string & widestrDst, const ansichar * pansisz);
+   //inline wd16string & assign(wd16string & widestrDst, const ansichar * pansisz);
 
-   inline wd16string & assign(wd16string & widestrDst, const wd16char* pansisz);
+   //inline wd16string & assign(wd16string & widestrDst, const wd16char* pansisz);
 
-   inline wd16string & assign(wd16string & widestrDst, const wd32char* pansisz);
+   //inline wd16string & assign(wd16string & widestrDst, const wd32char* pansisz);
 
-   inline wd32string & assign(wd32string & widestrDst, const ansichar* pansisz);
+   //inline wd32string & assign(wd32string & widestrDst, const ansichar* pansisz);
 
-   inline wd32string & assign(wd32string & widestrDst, const wd16char* pansisz);
+   //inline wd32string & assign(wd32string & widestrDst, const wd16char* pansisz);
 
-   inline wd32string & assign(wd32string & widestrDst, const wd32char* pansisz);
+   //inline wd32string & assign(wd32string & widestrDst, const wd32char* pansisz);
 
 
-   inline ansistring & assign(ansistring & ansistrDst, const ::type & type);
+   //inline ansistring & assign(ansistring & ansistrDst, const ::type & type);
 
-   inline wd16string & assign(wd16string & widestrDst, const ::type & type);
+   //inline wd16string & assign(wd16string & widestrDst, const ::type & type);
 
-   inline wd32string & assign(wd32string & widestrDst, const type & type);
+   //inline wd32string & assign(wd32string & widestrDst, const type & type);
 
 
 //} // namespace str

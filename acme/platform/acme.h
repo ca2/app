@@ -213,7 +213,7 @@ namespace acme
       ::pointer<::factory::factory>                               m_pfactory;
       ::pointer<atom_map < ::pointer<::factory::factory > > >     m_pmapFactory;
 
-
+      ::sub_system * m_psubsystem;
       static acme * g_p;
 
 

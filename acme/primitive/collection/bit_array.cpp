@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "bit_array.h"
+#include "acme/primitive/primitive/bit.h"
 #include "acme/array.h"
 
 

@@ -63,6 +63,10 @@ class acme_file;
 class acme_path;
 class acme_directory;
 
+
+class sub_system;
+
+
 class dir_context;
 class dir_system;
 class file_context;
@@ -143,8 +147,8 @@ namespace data
 
 class memory_base;
 
+struct HAS_STRING_LABEL_TAG { };
 struct PAYLOAD_TAG { };
-//struct PROPERTY_TAG { };
 struct ATOM_TAG { };
 struct STRING_TAG { };
 

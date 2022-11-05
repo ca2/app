@@ -1,11 +1,11 @@
 #pragma once
 
 
-#include "acme/primitive/string/_c_str_impl.h"
-#include "acme/primitive/string/_c_trait_ansi_impl.h"
-#include "acme/primitive/string/_c_trait_wd16_impl.h"
-#include "acme/primitive/string/_c_trait_wd32_impl.h"
-#include "acme/primitive/string/_c_trait_impl.h"
+//#include "acme/primitive/string/_c_str_impl.h"
+#include "acme/primitive/string/_ancient_ansi_impl.h"
+#include "acme/primitive/string/_ancient_wd16_impl.h"
+#include "acme/primitive/string/_ancient_wd32_impl.h"
+//#include "acme/primitive/string/_ancient_impl.h"
 
 
 #include "acme/primitive/string/_c_inline.h"

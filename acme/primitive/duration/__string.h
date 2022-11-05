@@ -8,60 +8,22 @@
 #pragma once
 
 
-inline ::string __string(const INTEGRAL_NANOSECOND & integral)
-{
-
-   return __string_format("%" PRId64 "ns", integral.m_i);
-
-}
-
-
-inline ::string __string(const INTEGRAL_MICROSECOND & integral)
-{
-
-   return __string_format("%" PRId64 "µs", integral.m_i);
-
-}
+struct INTEGRAL_NANOSECOND;
+struct INTEGRAL_MICROSECOND;
+struct INTEGRAL_MILLISECOND;
+struct INTEGRAL_SECOND;
+struct INTEGRAL_MINUTE;
+struct INTEGRAL_HOUR;
+struct INTEGRAL_DAY;
 
 
-inline ::string __string(const INTEGRAL_MILLISECOND & integral)
-{
-
-   return __string_format("%" PRId64 "ms", integral.m_i);
-
-}
-
-
-inline ::string __string(const INTEGRAL_SECOND & integral)
-{
-
-   return __string_format("%" PRId64 "s", integral.m_i);
-
-}
-
-
-inline ::string __string(const INTEGRAL_MINUTE & integral)
-{
-
-   return __string_format("%" PRId64 "minute(s)", integral.m_i);
-
-}
-
-
-inline ::string __string(const INTEGRAL_HOUR & integral)
-{
-
-   return __string_format("%" PRId64 "hour(s)", integral.m_i);
-
-}
-
-
-inline ::string __string(const INTEGRAL_DAY & integral)
-{
-
-   return __string_format("%" PRId64 "day(s)", integral.m_i);
-
-}
+CLASS_DECL_ACME ::string & copy(::string & str, const INTEGRAL_NANOSECOND & integral);
+CLASS_DECL_ACME ::string & copy(::string & str, const INTEGRAL_MICROSECOND & integral);
+CLASS_DECL_ACME ::string & copy(::string & str, const INTEGRAL_MILLISECOND & integral);
+CLASS_DECL_ACME ::string & copy(::string & str, const INTEGRAL_SECOND & integral);
+CLASS_DECL_ACME ::string & copy(::string & str, const INTEGRAL_MINUTE & integral);
+CLASS_DECL_ACME ::string & copy(::string & str, const INTEGRAL_HOUR & integral);
+CLASS_DECL_ACME ::string & copy(::string & str, const INTEGRAL_DAY & integral);
 
 
 

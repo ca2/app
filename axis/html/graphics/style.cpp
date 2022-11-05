@@ -1177,7 +1177,7 @@ namespace html
          f = (float) strtod(&str[iFindDigit], nullptr);
          return true;
       }
-      while(i < str.get_length() && i < isspace(str[i]))
+      while(i < str.get_length() && i < character_isspace(str[i]))
       {
          i++;
       }
@@ -1191,7 +1191,7 @@ namespace html
       if(::str().begins_ci(str, "::point_f32"))
       {
          str.trim();
-         if(str.get_length() == 2 || isspace(str[3]))
+         if(str.get_length() == 2 || character_isspace(str[3]))
          {
             f = f * 96.f / 72.f;
          }

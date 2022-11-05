@@ -8025,7 +8025,7 @@ namespace user
 
             string strUtf8Character = ::str().get_utf8_char(psz);
 
-            auto iCharacter = ::str::ch().uni_index(strUtf8Character);
+            auto iCharacter = unicode_uni_index(strUtf8Character);
 
             m_pappearance->on_character(iCharacter);
 
@@ -18720,7 +18720,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          string strCharacter = ::str().get_utf8_char(psz);
 
-         int iCharacter = ::str::ch().uni_index(strCharacter);
+         int iCharacter = unicode_uni_index(strCharacter);
 
          if (m_pappearance)
          {

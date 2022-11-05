@@ -18,7 +18,7 @@ namespace sz
       while((*psz != 0) && (strchr(pszTrimmer,*psz) != nullptr))
       {
          
-         ::str().increment(psz);
+         unicode_increment(psz);
 
       }
 

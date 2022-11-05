@@ -718,7 +718,7 @@ namespace filemanager
       for(index i= 0; i < strName.get_length(); i++)
       {
 
-         if(::ansi_char_is_digit(strName[i]))
+         if(::ansi_char_isdigit(strName[i]))
          {
 
             return true;
@@ -742,7 +742,7 @@ namespace filemanager
       for(index i= 0; i < strName.get_length(); i++)
       {
 
-         if(::ansi_char_is_digit(strName[i]))
+         if(::ansi_char_isdigit(strName[i]))
          {
 
             if(bFirst)

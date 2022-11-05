@@ -21,7 +21,7 @@ void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array *
    while (*psz)
    {
 
-      pszNext = ::str().next(psz);
+      pszNext = unicode_next(psz);
 
       if (*psz == '\t')
       {

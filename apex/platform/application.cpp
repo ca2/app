@@ -16,6 +16,7 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/networking/url_department.h"
 #include "acme/operating_system/process.h"
+#include "acme/parallelization/event.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/profiler.h"
@@ -267,20 +268,18 @@ namespace apex
 
       //m_durationGcomBackgroundUpdate = 30_s;
 
-      m_pappimpl = memory_new application_impl;
+      //m_pappimpl = memory_new application_impl;
 
 
    }
-
 
 
    application::~application()
    {
 
-      acme::del(m_pappimpl);
+      //acme::del(m_pappimpl);
 
    }
-
 
 
    void application::initialize(::particle * pparticle)
@@ -299,7 +298,7 @@ namespace apex
       //
       //}
 
-      m_pappimpl->initialize(this);
+      //m_pappimpl->initialize(this);
       ///initialize(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       //set_context_app(this);
@@ -3570,76 +3569,76 @@ namespace apex
    }
 
 
-   ::pointer<::acme::exclusive>application_impl::get_exclusive(string strId ARG_SEC_ATTRS)
-   {
+   //::pointer<::acme::exclusive>application_impl::get_exclusive(string strId ARG_SEC_ATTRS)
+   //{
 
-      auto & pexclusive = m_mapExclusive[strId];
+   //   auto & pexclusive = m_mapExclusive[strId];
 
-      if (!pexclusive)
-      {
+   //   if (!pexclusive)
+   //   {
 
-         auto pexclusiveNew = acmenode()->get_exclusive(this, strId ADD_PARAM_SEC_ATTRS);
+   //      auto pexclusiveNew = acmenode()->get_exclusive(this, strId ADD_PARAM_SEC_ATTRS);
 
-         pexclusive = pexclusiveNew;
+   //      pexclusive = pexclusiveNew;
 
-      }
+   //   }
 
-      return pexclusive;
+   //   return pexclusive;
 
-   }
-
-
-   bool application_impl::erase_exclusive(string strId ARG_SEC_ATTRS)
-   {
-
-      auto & pexclusive = m_mapExclusive[strId];
-
-      if (!pexclusive)
-      {
-
-         return true;
-
-      }
-
-      pexclusive.release();
-
-      m_mapExclusive.erase_key(strId);
-
-      return true;
-
-   }
+   //}
 
 
-   bool application::exclusive_fails(string strId ARG_SEC_ATTRS)
-   {
+   //bool application_impl::erase_exclusive(string strId ARG_SEC_ATTRS)
+   //{
 
-      auto pexclusive = m_pappimpl->get_exclusive(strId ADD_PARAM_SEC_ATTRS);
+   //   auto & pexclusive = m_mapExclusive[strId];
 
-      if (!pexclusive)
-      {
+   //   if (!pexclusive)
+   //   {
 
-         return false;
+   //      return true;
 
-      }
+   //   }
 
-      return pexclusive->exclusive_fails();
+   //   pexclusive.release();
 
-   }
+   //   m_mapExclusive.erase_key(strId);
+
+   //   return true;
+
+   //}
 
 
-   bool application::exclusive_erase(string strId ARG_SEC_ATTRS)
-   {
+   //bool application::exclusive_fails(string strId ARG_SEC_ATTRS)
+   //{
 
-      if (!m_pappimpl->erase_exclusive(strId ADD_PARAM_SEC_ATTRS))
-      {
+   //   auto pexclusive = m_pappimpl->get_exclusive(strId ADD_PARAM_SEC_ATTRS);
 
-         return false;
+   //   if (!pexclusive)
+   //   {
 
-      }
+   //      return false;
 
-      return true;
+   //   }
 
-   }
+   //   return pexclusive->exclusive_fails();
+
+   //}
+
+
+   //bool application::exclusive_erase(string strId ARG_SEC_ATTRS)
+   //{
+
+   //   if (!m_pappimpl->erase_exclusive(strId ADD_PARAM_SEC_ATTRS))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
+   //}
 
 
    bool application::check_exclusive(bool & bHandled)
@@ -3659,24 +3658,91 @@ namespace apex
 
       memory memorySecurityAttributes;
 
-      bool bSetOk = pnode->get_application_exclusivity_security_attributes(memorySecurityAttributes);
+      auto psecurityattributes = pnode->get_application_exclusivity_security_attributes();
 
-      void * psaSecurityAttributes = memorySecurityAttributes.get_data();
+      bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name(), psecurityattributes);
 
-      if (bSetOk)
+      if (bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
       {
 
-         bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() INSERT_PARAM_SEC_ATTRS(psaSecurityAttributes));
+         INFORMATION("A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this memory_new instance.");
 
-         if (bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
+         try
          {
 
-            INFORMATION("A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this memory_new instance.");
+            on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobal, "");
+            //{
+
+            //   return false;
+
+            //}
+
+         }
+         catch (...)
+         {
+
+            return false;
+
+         }
+
+      }
+
+      if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
+      {
+
+         bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name(), psecurityattributes);
+
+         if (bGlobalIdExclusiveFail)
+         {
+
+            INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this memory_new instance.");
 
             try
             {
 
-               on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobal, "");
+               on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobalId, get_global_mutex_id());
+
+            }
+            catch (...)
+            {
+
+               return false;
+
+            }
+
+         }
+
+      }
+
+      bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name(), psecurityattributes);
+
+      if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
+      {
+
+         INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this memory_new instance.");
+
+         on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, "");
+
+         return false;
+
+      }
+
+      if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
+      {
+
+         bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name(), psecurityattributes);
+
+         if (bLocalIdExclusiveFail)
+         {
+
+            try
+            {
+
+               // Should in some way activate the other instance
+               INFORMATION("A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this memory_new instance.");
+
+               on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id());
+               //if(!)
                //{
 
                //   return false;
@@ -3693,80 +3759,6 @@ namespace apex
 
          }
 
-         if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
-         {
-
-            bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() INSERT_PARAM_SEC_ATTRS(psaSecurityAttributes));
-
-            if (bGlobalIdExclusiveFail)
-            {
-
-               INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this memory_new instance.");
-
-               try
-               {
-
-                  on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobalId, get_global_mutex_id());
-
-               }
-               catch (...)
-               {
-
-                  return false;
-
-               }
-
-            }
-
-         }
-
-         bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  INSERT_PARAM_SEC_ATTRS(psaSecurityAttributes));
-
-         if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
-         {
-
-            INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this memory_new instance.");
-
-            on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, "");
-
-            return false;
-
-         }
-
-         if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
-         {
-
-            bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() INSERT_PARAM_SEC_ATTRS(psaSecurityAttributes));
-
-            if (bLocalIdExclusiveFail)
-            {
-
-               try
-               {
-
-                  // Should in some way activate the other instance
-                  INFORMATION("A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this memory_new instance.");
-
-                  on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id());
-                  //if(!)
-                  //{
-
-                  //   return false;
-
-                  //}
-
-               }
-               catch (...)
-               {
-
-                  return false;
-
-               }
-
-            }
-
-         }
-
       }
 
       return true;
@@ -3777,27 +3769,9 @@ namespace apex
    bool application::erase_exclusive(const ::string & strId)
    {
 
-      auto psystem = acmesystem();
+      auto psecurityattributes = acmenode()->get_application_exclusivity_security_attributes();
 
-      auto pnode = psystem->node();
-
-      memory memorySecurityAttributes;
-
-      bool bSetOk = pnode->get_application_exclusivity_security_attributes(memorySecurityAttributes);
-
-      void * psaSecurityAttributes = memorySecurityAttributes.get_data();
-
-      bool bErased = exclusive_erase(strId  INSERT_PARAM_SEC_ATTRS(psaSecurityAttributes));
-
-      return true;
-
-   }
-
-
-   bool application::release_exclusive()
-   {
-
-      m_pappimpl->m_mapExclusive.erase_all();
+      bool bErased = exclusive_erase(strId, psecurityattributes);
 
       return true;
 

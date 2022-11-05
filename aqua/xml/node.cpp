@@ -508,7 +508,7 @@ namespace xml
 //                           else
 //                           {
 //
-//                              ::str().increment(psz);
+//                              unicode_increment(psz);
 //
 //                           }
 //
@@ -585,7 +585,7 @@ namespace xml
       if(end == nullptr)
          return nullptr;
 
-      while(*end != '\0' && isspace(*end))
+      while(*end != '\0' && character_isspace(*end))
          end++;
 
       if(*end == '\0')
@@ -1153,7 +1153,7 @@ namespace xml
                   //   ////   }
                   //   ////   else
                   //   ////   {
-                  //   ::str().increment(pszEnd);
+                  //   unicode_increment(pszEnd);
                   //   //   }
                   //}
                   _SetString(xml, pszEnd, &pnode->m_strValue, trim, escape);

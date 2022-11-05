@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "payload.h"
-////#include "acme/xml/_.h"
+#include "acme/primitive/string/str.h"
 
 
 void prop_id_debug(::particle * pparticle);

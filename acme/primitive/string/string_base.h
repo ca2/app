@@ -79,9 +79,9 @@ public:
 
    inline const CHAR_TYPE & operator [](index i) const { return this->m_pdata[i]; }
 
-#if OSBIT == 64
-   inline const CHAR_TYPE & operator [](int i) const { return this->m_pdata[i]; }
-#endif
+//#if OSBIT == 64
+//   inline const CHAR_TYPE & operator [](int i) const { return this->m_pdata[i]; }
+//#endif
 
    inline CHAR_TYPE get_at(strsize i) const { return this->m_pdata[i]; }
 
@@ -228,12 +228,14 @@ public:
    //inline string_base & assign(ansichar ansich);
    //inline string_base & assign(wd16char wd16ch);
    //inline string_base & assign(wd32char wd32ch);
-   inline string_base& assign(const ansistring& ansistr, strsize pos, strsize n);
-   inline string_base& assign(const wd16string& wd16str, strsize pos, strsize n);
-   inline string_base& assign(const wd32string& wd32str, strsize pos, strsize n);
-   inline string_base& assign(const ansichar* pansiszSrc, strsize len);
-   inline string_base& assign(const wd16char* pwd16szSrc, strsize len);
-   inline string_base& assign(const wd32char* pwd32szSrc, strsize len);
+   template < typename CHAR_TYPE2 >
+   inline string_base& assign(const string_base < CHAR_TYPE2 > & ansistr, strsize pos, strsize n);
+   //inline string_base& assign(const wd16string& wd16str, strsize pos, strsize n);
+   //inline string_base& assign(const wd32string& wd32str, strsize pos, strsize n);
+   template < typename CHAR_TYPE2 >
+   inline string_base& assign(const CHAR_TYPE2 * pansiszSrc, strsize len = -1);
+   //inline string_base& assign(const wd16char* pwd16szSrc, strsize len);
+   //inline string_base& assign(const wd32char* pwd32szSrc, strsize len);
    inline string_base & assign(ansichar ansich, strsize repeat);
    inline string_base & assign(wd16char wd16ch, strsize repeat);
    inline string_base & assign(wd32char wd32ch, strsize repeat);
@@ -753,23 +755,26 @@ public:
 
    }
 
-   inline bool begins(const CHAR_TYPE* psz) const;
-   inline bool ends(const CHAR_TYPE* psz) const;
+   inline strsize begins(const CHAR_TYPE* psz) const;
+   inline strsize ends(const CHAR_TYPE* psz) const;
 
-   inline bool begins_ci(const CHAR_TYPE* psz) const;
-   inline bool ends_ci(const CHAR_TYPE* psz) const;
+   inline strsize begins_ci(const CHAR_TYPE* psz) const;
+   inline strsize ends_ci(const CHAR_TYPE* psz) const;
 
-   inline bool begins_eat(const CHAR_TYPE* psz);
-   inline bool ends_eat(const CHAR_TYPE* psz);
+   inline strsize begins_eat(const CHAR_TYPE* psz);
+   inline strsize ends_eat(const CHAR_TYPE* psz);
 
-   inline bool begins_eat_ci(const CHAR_TYPE* psz);
-   inline bool ends_eat_ci(const CHAR_TYPE* psz);
+   inline strsize begins_eat_ci(const CHAR_TYPE* psz);
+   inline strsize ends_eat_ci(const CHAR_TYPE* psz);
 
-   inline bool begins_eaten(string_base & strEaten, const CHAR_TYPE * psz);
-   inline bool ends_eaten(string_base & strEaten, const CHAR_TYPE * psz);
+   inline strsize begins_eat(string_base & strBitten, const CHAR_TYPE * psz) const;
+   inline strsize ends_eat(string_base & strBitten, const CHAR_TYPE * psz) const;
 
-   inline bool begins_eaten_ci(string_base & strEaten, const CHAR_TYPE * psz);
-   inline bool ends_eaten_ci(string_base & strEaten, const CHAR_TYPE * psz);
+   inline strsize begins_eat_ci(string_base & strBitten, const CHAR_TYPE * psz) const;
+   inline strsize ends_eat_ci(string_base & strBitten, const CHAR_TYPE * psz) const;
+
+   inline strsize begins_eaten_ci(string_base & strEaten, const CHAR_TYPE * psz) const;
+   inline strsize ends_eaten_ci(string_base & strEaten, const CHAR_TYPE * psz) const;
 
    inline string_base& ensure_begins(const CHAR_TYPE* psz);
    inline string_base& ensure_begins_ci(const CHAR_TYPE* psz);
@@ -1041,4 +1046,7 @@ public:
 
 
 };
+
+
+
 

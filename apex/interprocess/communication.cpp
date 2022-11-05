@@ -343,7 +343,7 @@ namespace interprocess
 
       auto plauncher = __new(::apex::app_launcher);
 
-      plauncher->initialize_app_launcher(this, process_platform_name(), strApp);
+      plauncher->initialize_app_launcher(this, acmenode()->process_platform_name(), strApp);
 
       atom idPid = -1;
 
@@ -767,7 +767,7 @@ namespace interprocess
       if (strObject == "application")
       {
 
-         if (::str().begins_ci(strMember, "reply."))
+         if (strMember.begins_ci("reply."))
          {
 
             ::i64 iTask = propertyset["protocol:call_id"];

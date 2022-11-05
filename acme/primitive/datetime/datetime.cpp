@@ -80,10 +80,10 @@ namespace datetime
 //      const char * psz = str;
 //      string strNumber;
 //      string strText1;
-//      for(i32 i = 0; *psz; ::str().increment(psz))
+//      for(i32 i = 0; *psz; unicode_increment(psz))
 //      {
 //         string strChar = ::str().get_utf8_char(psz);
-//         if(::str::ch().is_whitespace(psz))
+//         if(unicode_is_whitespace(psz))
 //         {
 //            i++;
 //            //if(strNumber.has_char() && strText.has_char())
@@ -185,11 +185,11 @@ namespace datetime
 //            bMinus = true;
 //            strNumber.Empty();
 //         }
-//         else if(::str::ch().is_digit(psz))
+//         else if(unicode_is_digit(psz))
 //         {
 //            strNumber += strChar;
 //         }
-//         else if(::str::ch().is_letter(psz))
+//         else if(unicode_is_letter(psz))
 //         {
 //            strText1 += strChar;
 //         }

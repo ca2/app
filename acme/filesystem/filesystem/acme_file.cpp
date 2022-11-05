@@ -431,17 +431,10 @@ void acme_file::append(const char * strFile, const block & block)
 }
 
 
-bool acme_file::exists(const char * pathParam)
+bool acme_file::exists(const ::file::path & pathParam)
 {
 
-   if(::is_null(pathParam))
-   {
-
-      throw ::exception(error_null_pointer);
-
-   }
-
-   if(*pathParam == '\0')
+   if(pathParam.is_empty())
    {
 
       throw ::exception(error_bad_argument);
@@ -793,7 +786,7 @@ void acme_file::put_contents(const char * path, const memory_base & memory)
 void acme_file::put_contents(const char * path, const char * contents)
 {
 
-   put_contents(path, contents, ::str().string_safe_length(contents));
+   put_contents(path, contents, string_safe_length(contents));
 
   
 }

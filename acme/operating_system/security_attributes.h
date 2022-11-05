@@ -1,19 +1,19 @@
 // Created by camilo on 2022-11-01 22:45 <3ThomasBorregaardSorensen!!
 #pragma once
-#pragma once
 
 
-class CLASS_DECL_ACME security_attributes
+class CLASS_DECL_ACME security_attributes :
+   virtual public ::particle
 {
 public:
 
 
-   void *         m_pOsSecurityAttributes;
+   security_attributes();
+   ~security_attributes() override;
 
-
-   security_attributes(void * pOsSecurityAttributes = nullptr);
-   security_attributes(nullptr_t);
-   security_attributes(const security_attributes & createtaskattributes);
+   
+   virtual void * _get_os_security_attributes();
+   inline void * get_os_security_attributes() { return ::is_set(this) ? _get_os_security_attributes() : nullptr; }
 
 
 };

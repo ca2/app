@@ -368,7 +368,7 @@ namespace file
 
       }
 
-      bool bWin1 = ::str().begins_eat_ci(strPath, "\\\\?\\");
+      bool bWin1 = strPath.begins_eat("\\\\?\\");
 
       index iFind = 0;
       while (true)

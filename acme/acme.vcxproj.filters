@@ -383,7 +383,7 @@
     <ClInclude Include="primitive\string\bstring.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\ch.h">
+    <ClInclude Include="primitive\string\___ch.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\ch_class.h">
@@ -437,19 +437,13 @@
     <ClInclude Include="primitive\string\_c_unicode.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_compare.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__string.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\string\_string_wide.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_uhash.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_unicode.h">
+    <ClInclude Include="primitive\string\__unicode.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\static_string.h">
@@ -467,25 +461,19 @@
     <ClInclude Include="primitive\string\__str.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_str.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_str_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\string\_str_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_international.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_ansi.h">
+    <ClInclude Include="primitive\string\_ancient_ansi.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_ansi_impl.h">
+    <ClInclude Include="primitive\string\_ancient_ansi_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait_ansi_impl.h">
+    <ClInclude Include="primitive\string\_sz_ansi_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_c_impl.h">
@@ -494,7 +482,7 @@
     <ClInclude Include="primitive\primitive\_memory.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_unicode_impl.h">
+    <ClInclude Include="primitive\string\__unicode_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_impl.h">
@@ -524,7 +512,7 @@
     <ClInclude Include="primitive\string\_impl_prio.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait_ansi.h">
+    <ClInclude Include="primitive\string\_sz_ansi.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\natural.h">
@@ -671,37 +659,37 @@
     <ClInclude Include="primitive\primitive\_.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait_wd16_impl.h">
+    <ClInclude Include="primitive\string\_sz_wd16_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait_wd16.h">
+    <ClInclude Include="primitive\string\_sz_wd16.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait_wd32.h">
+    <ClInclude Include="primitive\string\_sz_wd32.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait_wd32_impl.h">
+    <ClInclude Include="primitive\string\_sz_wd32_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_trait_CHAR_TYPE.template">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd16.h">
+    <ClInclude Include="primitive\string\_ancient_wd16.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd16_impl.h">
+    <ClInclude Include="primitive\string\_ancient_wd16_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd32_impl.h">
+    <ClInclude Include="primitive\string\_ancient_wd32_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd32.h">
+    <ClInclude Include="primitive\string\_ancient_wd32.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait.h">
+    <ClInclude Include="primitive\string\_refactor.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_impl.h">
+    <ClInclude Include="primitive\string\_refactor_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\_defer.h">
@@ -788,10 +776,10 @@
     <ClInclude Include="primitive\string\__c_wd32_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\__c_wide.h">
+    <ClInclude Include="primitive\string\aaa__c_wide.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\__c_wide_impl.h">
+    <ClInclude Include="primitive\string\aaa__c_wide_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\___ch_impl.h">
@@ -2393,16 +2381,16 @@
     <ClInclude Include="primitive\string\character.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_ch.h">
+    <ClInclude Include="primitive\string\__unicode_character.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_ch_wd16_impl.h">
+    <ClInclude Include="primitive\string\aaa_str_ch_wd16_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_ch_wd32_impl.h">
+    <ClInclude Include="primitive\string\aaa_str_ch_wd32_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_ch_ansi_impl.h">
+    <ClInclude Include="primitive\string\aaa_str_ch_ansi_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_ch_impl.h">
@@ -2411,19 +2399,16 @@
     <ClInclude Include="primitive\string\_str_to_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wide.h">
+    <ClInclude Include="primitive\string\aaa_ancient_wide.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wide_impl.h">
+    <ClInclude Include="primitive\string\aaa_ancient_wide_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_conv.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_conv_ansi_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\bstr.h">
@@ -2738,7 +2723,7 @@
     <ClInclude Include="operating_system\_api.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
-    <ClInclude Include="_api.h">
+    <ClInclude Include="aaa_api.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="constant\data.h">
@@ -2780,7 +2765,7 @@
     <ClInclude Include="primitive\primitive\echeck.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="platform\subsystem.h">
+    <ClInclude Include="platform\sub_system.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\string_type.h">
@@ -2911,6 +2896,66 @@
     </ClInclude>
     <ClInclude Include="constant\message_prototype.h">
       <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\process1.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\counter.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\exit_status.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\error_code.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\last_error_exception.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\str.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\str_array.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\__sz.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\unicode_data.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\__unicode_data.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\encoding_exception.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\aaa_unicode.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\__sz_impl.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\unicode_data.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\__unicode_data.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\__str_trait_ansi.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\__str_trait_wd16.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\__str_trait_wd32.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\__str_trait.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\__string.h">
+      <Filter>Header Files\primitive\duration</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3667,9 +3712,6 @@
     <ClCompile Include="operating_system\windows\parallelization.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\process.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\windows\windows.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
@@ -3829,9 +3871,6 @@
     <ClCompile Include="handler\topic.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows_common\process.cpp">
-      <Filter>Source Files\operating_system\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="exception\bad_file_format.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -3904,7 +3943,7 @@
     <ClCompile Include="primitive\primitive\atom.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="platform\subsystem.cpp">
+    <ClCompile Include="platform\sub_system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\tracer.cpp">
@@ -3927,9 +3966,6 @@
     </ClCompile>
     <ClCompile Include="exception\assert.cpp">
       <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\process.cpp">
-      <Filter>Source Files\operating_system</Filter>
     </ClCompile>
     <ClCompile Include="primitive\collection\__payload_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
@@ -3984,6 +4020,33 @@
     </ClCompile>
     <ClCompile Include="memory\bounds_check\on.cpp">
       <Filter>Source Files\memory\bounds_check</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\exit_status.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\process.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\last_error_exception.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\str_array.cpp">
+      <Filter>Source Files\primitive\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\encoding_exception.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\_sz_ansi.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\_sz_wd16.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\_sz_wd32.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\__string.cpp">
+      <Filter>Source Files\primitive\duration</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

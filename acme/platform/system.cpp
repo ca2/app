@@ -48,9 +48,7 @@ namespace acme
 
    system::system()
    {
-
-      m_psubsystem = ::subsystem::get();
-
+      m_psubsystem = ::acme::acme::g_p->m_psubsystem;
 #ifdef PARALLELIZATION_PTHREAD
 #if defined(__APPLE__)
       m_bJoinable = true;
@@ -1756,7 +1754,7 @@ namespace acme
 
          ::file::path pathExecutable = acmefile()->module();
 
-         string strAppTitle = executable_title_from_appid(strAppId);
+         string strAppTitle = acmenode()->executable_title_from_appid(strAppId);
 
          path = pathFolder / (strModifier + "_executable.txt");
 
@@ -1835,10 +1833,10 @@ namespace acme
       if (etracelevel > e_trace_level_information)
       {
 
-         for (int i = 0; i < papplication->get_argument_count1(); i++)
+         for (int i = 0; i < m_psubsystem->get_argument_count1(); i++)
          {
 
-            string strArg = papplication->get_argument1(i);
+            string strArg = m_psubsystem->get_argument1(i);
 
             if (strArg == "verbose")
             {

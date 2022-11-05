@@ -1,12 +1,13 @@
 #include "framework.h" // from "base/apex/.h"
 #include "department.h"
 #include <time.h>
-#include "acme/primitive/datetime/__string.h"
-#include "acme/primitive/text/context.h"
-#include "acme/primitive/primitive/payload.h"
-#include "acme/platform/system.h"
 #include "acme/exception/exception.h"
 #include "acme/exception/not_implemented.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/datetime/__string.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/string/str.h"
+#include "acme/primitive/text/context.h"
 #include "acme/regular_expression/regular_expression.h"
 #include "acme/regular_expression/result.h"
 
@@ -1224,8 +1225,8 @@ namespace datetime
       string strChar;
       for (i32 i = 0; *psz; psz += strChar.length())
       {
-         strChar = ::str().get_utf8_char(psz);
-         if (::str::ch().is_whitespace(psz))
+         strChar = get_utf8_char(psz);
+         if (unicode_is_whitespace(psz))
          {
             i++;
             //if(strNumber.has_char() && strText.has_char())
@@ -1333,11 +1334,11 @@ namespace datetime
             bMinus = true;
             strNumber.Empty();
          }
-         else if (::str::ch().is_digit(psz))
+         else if (unicode_is_digit(psz))
          {
             strNumber += strChar;
          }
-         else if (::str::ch().is_letter(psz))
+         else if (unicode_is_letter(psz))
          {
             strText1 += strChar;
          }

@@ -85,7 +85,7 @@ public:
 
       string str = read_string();
 
-      ::from_string(t, str);
+      ::copy(t, str);
 
    }
 

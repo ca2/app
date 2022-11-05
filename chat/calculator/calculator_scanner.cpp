@@ -65,17 +65,17 @@ namespace calculator
       token = memory_new class token;
       if(token == nullptr)
          throw ::exception(error_no_memory);
-      while(::str::ch().is_space_char(input))
-         ::str().increment(input);
+      while(unicode_is_space_char(input))
+         unicode_increment(input);
       if(*input == '\0')
       {
          token->m_etype = token::type_end;
          return token;
       }
-      const char * nextinput = ::str().next(input);
+      const char * nextinput = unicode_next(input);
 
       if((*input == 'j' || *input == 'i') &&
-         ::str::ch().is_digit(nextinput))
+         unicode_is_digit(nextinput))
       {
          token->m_etype = token::type_imaginary;
          char * endptr;
@@ -84,14 +84,14 @@ namespace calculator
          input = endptr;
          return token;
       }
-      else if(::str::ch().is_digit(input))
+      else if(unicode_is_digit(input))
       {
          token->m_etype = token::type_number;
          char * endptr;
          strtod(input, &endptr);
          token->m_str = string(input, endptr - input);
          if((*endptr == 'i' || *endptr == 'j')
-            && !(ansi_char_is_digit(*(endptr + 1)) || ansi_char_is_alphabetic(*(endptr + 1))))
+            && !(ansi_char_isdigit(*(endptr + 1)) || ansi_char_isalpha(*(endptr + 1))))
          {
             token->m_etype = token::type_imaginary;
             endptr++;
@@ -144,8 +144,8 @@ namespace calculator
       else
       {
          token->m_str = ::str().consume_nc_name(input);
-         while(::str::ch().is_space_char(input))
-            ::str().increment(input);
+         while(unicode_is_space_char(input))
+            unicode_increment(input);
          if(*input == '(')
          {
             token->m_etype = token::type_function;

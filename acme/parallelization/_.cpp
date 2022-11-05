@@ -465,7 +465,7 @@ string _001OnlyAlnumString(const char * psz)
    while (*psz)
    {
 
-      if (ansi_char_is_alphanumeric(*psz))
+      if (character_isalnum(*psz))
       {
 
          strOnlyAlnum += *psz;
@@ -489,7 +489,7 @@ string _001OnlyAlnumNonVowelString(const char * psz)
    while (*psz)
    {
 
-      if (ansi_char_is_alphanumeric(*psz))
+      if (character_isalnum(*psz))
       {
 
          if (!isvowel_dup(*psz))

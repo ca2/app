@@ -249,7 +249,7 @@ namespace acme
       //      else if (ch == '$')
       //      {
 
-      //         if (!(ansi_char_is_alphabetic(chNext) || chNext == '_'))
+      //         if (!(ansi_char_isalpha(chNext) || chNext == '_'))
       //         {
 
       //            // error
@@ -267,7 +267,7 @@ namespace acme
 
       //            ch = str[iEnd];
 
-      //            if (!(ansi_char_is_alphabetic(ch) || ch == '_' || ansi_char_is_digit(ch)))
+      //            if (!(ansi_char_isalpha(ch) || ch == '_' || ansi_char_isdigit(ch)))
       //            {
 
       //               break;

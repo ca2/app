@@ -182,7 +182,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\stage\source\app\acme\platform\procedure_array.cpp" />
+    <ClCompile Include="..\..\..\..\release\source\app\acme\platform\procedure_array.cpp" />
     <ClCompile Include="compress\compress.cpp" />
     <ClCompile Include="compress\uncompress.cpp" />
     <ClCompile Include="constant\idpool.cpp" />

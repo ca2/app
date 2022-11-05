@@ -146,7 +146,7 @@ strsize ansi_to_wd32_len(const char* psz, strsize srclen)
          
       }
 
-      len = __uni_len(psz);
+      len = unicode_len(psz);
 
       if (srclen > 0 && len > srclen)
       {
@@ -179,7 +179,7 @@ strsize ansi_to_wd32(wd32char* pwsz, const char* psz, strsize srclen)
    while (srclen != 0 && psz != nullptr && *psz != '\0')
    {
 
-      auto iWd32 = ::str::ch().uni_index_len(psz, len);
+      auto iWd32 = unicode_index_len(psz, len);
 
       if (iWd32 < 0)
       {
@@ -250,27 +250,6 @@ string wd32_to_ansi_str(const wd32char * pwszUni32, strsize iUni32Len)
 }
 
 
-const wd32char * unicode_next(const wd32char * psz)
-{
-
-   return psz + 1;
-
-}
-
-
-const wd32char * unicode_prior(const wd32char * psz, const wd32char * pszBeg)
-{
-
-   if (psz <= pszBeg)
-   {
-
-      return nullptr;
-
-   }
-
-   return psz - 1;
-
-}
 
 
 

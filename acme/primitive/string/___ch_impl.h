@@ -132,7 +132,7 @@
 //      //
 //      //inline ::i32 to_lower_case(::i32 i)
 //      //{
-//      //   if (!::str::ch().is_legal_uni_index(i))
+//      //   if (!unicode_is_legal_uni_index(i))
 //      //      return -1;
 //      //   ::u32 c1 = CHAR_PROP(i);
 //      //   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return (wd32char)i;
@@ -143,7 +143,7 @@
 //
 //      //inline ::i32 to_upper_case(::i32 i)
 //      //{
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return -1;
 //      //   u32 c1 = CHAR_PROP(i);
 //      //   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return wd32char(i);
@@ -153,7 +153,7 @@
 //
 //      //inline ::i32 to_title_case(::i32 i)
 //      //{
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return -1;
 //      //   u32 c1 = CHAR_PROP(i);
 //      //   if (TITLE_CASE(c1))  // titlecase exists
@@ -171,7 +171,7 @@
 //
 //      //inline i32 to_numeric_value(i32 i, float * f)
 //      //{
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return false;
 //      //   u32 c1 = CHAR_PROP(i);
 //      //   if (!NUMBER(c1)) return false;
@@ -182,7 +182,7 @@
 //
 //      //inline bool is_lower_case(::i32 i)
 //      //{
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return false;
 //      //   return CHAR_CATEGORY(CHAR_PROP(i)) == CHAR_CATEGORY_Ll;
 //      //}
@@ -190,7 +190,7 @@
 //
 //      //inline bool is_upper_case(::i32 i)
 //      //{
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return false;
 //      //   return CHAR_CATEGORY(CHAR_PROP(i)) == CHAR_CATEGORY_Lu;
 //      //}
@@ -198,7 +198,7 @@
 //
 //      //inline bool is_title_case(::i32 i)
 //      //{
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return false;
 //      //   return CHAR_CATEGORY(CHAR_PROP(i)) == CHAR_CATEGORY_Lt;
 //      //}
@@ -206,7 +206,7 @@
 //
 //      //inline bool is_letter(::i32 i)
 //      //{
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return false;
 //      //   u32 c1 = CHAR_CATEGORY(CHAR_PROP(i));
 //      //   return ((((1 << CHAR_CATEGORY_Lu) |
@@ -220,7 +220,7 @@
 //
 //      //inline bool is_letter_or_digit(::i32 i)
 //      //{
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return false;
 //      //   u32 c1 = CHAR_CATEGORY(CHAR_PROP(i));
 //      //   return ((((1 << CHAR_CATEGORY_Lu) |
@@ -236,7 +236,7 @@
 //      //inline bool is_digit(i32 i)
 //      //{
 //
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return false;
 //
 //      //   return CHAR_CATEGORY(CHAR_PROP(i)) == CHAR_CATEGORY_Nd;
@@ -246,7 +246,7 @@
 //
 //      //inline bool is_assigned(i32 i)
 //      //{
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return false;
 //      //   return CHAR_CATEGORY(CHAR_PROP(i)) != CHAR_CATEGORY_Cn;
 //      //}
@@ -254,7 +254,7 @@
 //
 //      //inline bool is_space_char(i32 i)
 //      //{
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return false;
 //      //   return  ((((1 << CHAR_CATEGORY_Zs) |
 //      //      (1 << CHAR_CATEGORY_Zl) |
@@ -265,7 +265,7 @@
 //
 //      //inline bool is_whitespace(i32 i)
 //      //{
-//      //   if(!is_legal_uni_index(i))
+//      //   if(!is_legal_unicode_index(i))
 //      //      return false;
 //      //   return  (i == 0x20)
 //      //           ||
@@ -284,7 +284,7 @@
 //
 //      //inline bool is_number(i32 i)
 //      //{
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return false;
 //      //   return NUMBER(CHAR_PROP(i)) != 0;
 //      //}
@@ -292,7 +292,7 @@
 //
 //      //inline ECharCategory get_category(i32 i)
 //      //{
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return CHAR_CATEGORY_LAST;
 //      //   return ECharCategory(CHAR_CATEGORY(CHAR_PROP(i)));
 //      //}
@@ -300,7 +300,7 @@
 //
 //      //inline i32 get_combining_class(i32 i)
 //      //{
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return false;
 //      //   return COMBINING_CLASS(CHAR_PROP(i));
 //      //}
@@ -309,7 +309,7 @@
 //      //inline bool is_mirrored(i32 i)
 //      //{
 //
-//      //   if (!is_legal_uni_index(i))
+//      //   if (!is_legal_unicode_index(i))
 //      //      return false;
 //
 //      //   return MIRRORED(CHAR_PROP(i)) != 0;

@@ -1305,7 +1305,7 @@ pacmedirectory->is(strPath))
          string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
          i32 i = 0;
 
-         while (i < strProtocol.get_length() && ansi_char_is_alphanumeric(strProtocol[i]))
+         while (i < strProtocol.get_length() && ansi_char_is_alnum(strProtocol[i]))
          {
 
             i++;

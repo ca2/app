@@ -212,7 +212,7 @@ namespace write_text
 
          auto pszLast = pszEnd;
 
-         bool bWhitespaceNow = ::str::ch().is_whitespace(pszEnd);
+         bool bWhitespaceNow = unicode_is_whitespace(pszEnd);
 
          if (bWhitespaceNow && !bWhitespace)
          {
@@ -229,7 +229,7 @@ namespace write_text
 
          bWhitespace = bWhitespaceNow;
 
-         ::str().increment(pszEnd);
+         unicode_increment(pszEnd);
 
          if (::is_null(pszEnd))
          {
@@ -334,7 +334,7 @@ namespace write_text
 
          auto pszLast = pszEnd;
 
-         ::str().increment(pszEnd);
+         unicode_increment(pszEnd);
 
          string strNow = string(pszStart, pszEnd - pszStart);
          

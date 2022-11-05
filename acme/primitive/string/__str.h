@@ -1,7 +1,27 @@
 ﻿#pragma once
 
 
+#include "__sz.h"
+
+
+#include "__unicode.h"
+
+
+#include "string.h"
+//#include "_str_ch.h"
+
+
 //class synchronization_lock;
+
+
+struct end_of_line_and_next_line
+{
+
+   const char * end_of_line;
+   const char * next_line;
+
+};
+
 
 
 template < typename TYPE_CHAR >
@@ -59,7 +79,8 @@ public:
 
 
 
-#include "_str_ch.h"
+///#include "_____str_ch.h"
+
 
 
    //inline  i32 compare_ignore_case(const ::string & left, const ::string & right, size_t len = 0);
@@ -145,106 +166,7 @@ public:
    string block(ansichar ch, i32 iSize);
    void fill(string & str, ansichar ch);
 
-   inline const ansichar * next(const ansichar * psz) { return unicode_next(psz); }
-   inline const wd16char * next(const wd16char * psz) { return unicode_next(psz); }
-   inline const wd32char * next(const wd32char * psz) { return unicode_next(psz); }
 
-   inline ansichar * next(ansichar * psz) { return (ansichar *)next((const ansichar *)psz); }
-   inline wd16char * next(wd16char * psz) { return (wd16char *)next((const wd16char *)psz); }
-   inline wd32char * next(wd32char * psz) { return (wd32char *)next((const wd32char *)psz); }
-
-
-   inline const ansichar * increment(const ansichar *& psz) { return psz = next(psz); }
-   inline const wd16char * increment(const wd16char *& psz) { return psz = next(psz); }
-   inline const wd32char * increment(const wd32char *& psz) { return psz = next(psz); }
-
-
-   ansichar * increment(ansichar *& psz)
-   {
-
-      return (ansichar *)increment((const ansichar *&)psz);
-
-   }
-
-
-   wd16char * increment(wd16char *& psz)
-   {
-
-      return (wd16char *)increment((const wd16char *&)psz);
-
-   }
-
-
-   wd32char * increment(wd32char *& psz)
-   {
-
-      return (wd32char *)increment((const wd32char *&)psz);
-
-   }
-
-
-   const ::index prior_index(::index i, const ansichar * pszBeg) { auto p = unicode_prior(&pszBeg[i], pszBeg); return ::is_null(p) ? -1 : p - pszBeg; }
-   const ::index prior_index(::index i, const wd16char * pszBeg) { auto p = unicode_prior(&pszBeg[i], pszBeg); return ::is_null(p) ? -1 : p - pszBeg; }
-   const ::index prior_index(::index i, const wd32char * pszBeg) { auto p = unicode_prior(&pszBeg[i], pszBeg); return ::is_null(p) ? -1 : p - pszBeg; }
-
-
-   const ansichar * prior(const ansichar * psz, const ansichar * pszBeg) { return unicode_prior(psz, pszBeg); }
-   const wd16char * prior(const wd16char * psz, const wd16char * pszBeg) { return unicode_prior(psz, pszBeg); }
-   const wd32char * prior(const wd32char * psz, const wd32char * pszBeg) { return unicode_prior(psz, pszBeg); }
-
-
-   ansichar * prior(ansichar * psz, const ansichar * pszBeg) { return (ansichar *)prior((const ansichar *&)psz, pszBeg); }
-   wd16char * prior(wd16char * psz, const wd16char * pszBeg) { return (wd16char *)prior((const wd16char *&)psz, pszBeg); }
-   wd32char * prior(wd32char * psz, const wd32char * pszBeg) { return (wd32char *)prior((const wd32char *&)psz, pszBeg); }
-
-
-   const strsize decrement(strsize & i, const ansichar * pszBeg) { return i = prior_index(i, pszBeg); }
-   const strsize decrement(strsize & i, const wd16char * pszBeg) { return i = prior_index(i, pszBeg); }
-   const strsize decrement(strsize & i, const wd32char * pszBeg) { return i = prior_index(i, pszBeg); }
-
-
-   const ansichar * decrement(const ansichar *& psz, const ansichar * pszBeg) { return psz = prior(psz, pszBeg); }
-   const wd16char * decrement(const wd16char *& psz, const wd16char * pszBeg) { return psz = prior(psz, pszBeg); }
-   const wd32char * decrement(const wd32char *& psz, const wd32char * pszBeg) { return psz = prior(psz, pszBeg); }
-
-
-   ansichar * decrement(ansichar *& psz, const ansichar * pszBeg = nullptr)
-   {
-
-      return (ansichar *)decrement((const ansichar *&)psz, pszBeg);
-
-   }
-
-
-   wd16char * decrement(wd16char *& psz, const wd16char * pszBeg = nullptr)
-   {
-
-      return (wd16char *)decrement((const wd16char *&)psz, pszBeg);
-
-   }
-
-
-   wd32char * decrement(wd32char *& psz, const wd32char * pszBeg = nullptr)
-   {
-
-      return (wd32char *)decrement((const wd32char *&)psz, pszBeg);
-
-   }
-
-
-   string         get_utf8_char(const ansichar * psz);
-   int            get_utf8_char_length(const ansichar * psz);
-   string         get_utf8_char(const ansichar * psz, const ansichar * pszEnd);
-   bool           get_utf8_char(string & strChar, const char *& psz, const char * pszEnd);
-   string         get_utf8_char(const ansichar * pszBeg, const ansichar * psz, strsize i);
-   string         utf8_next_char(const ansichar * pszBeg, const ansichar * psz, strsize i = 0);
-   string         utf8_previous_char(const ansichar * pszBeg, const ansichar * psz, strsize i = 0);
-   string         uni_to_utf8(i64 ch);
-   i32            uni_to_utf8_2_or_more(ansichar * dest, i32 ch);
-
-
-   //const ansichar * utf8_dec(const ::character & character, const ansichar * pszBeg, const ansichar * psz);
-   const ansichar * utf8_dec(const ansichar * pszBeg, const ansichar * psz);
 
 
    inline  bool begins_ci_skip(const char *& psz, const char * pszPrefix);

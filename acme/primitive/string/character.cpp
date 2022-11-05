@@ -19,7 +19,7 @@ wd32char character::parse_utf8(const char * pszUtf8)
 
    ::i32 iLen;
 
-   return ::str::ch().uni_index_len(pszUtf8, iLen);
+   return unicode_index_len(pszUtf8, iLen);
 
 }
 

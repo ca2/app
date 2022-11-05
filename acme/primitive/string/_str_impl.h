@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "__string.h"
+//#include "__string.h"
 
 template < typename CHAR_TYPE >
 inline string_base < CHAR_TYPE > str::repeat(const CHAR_TYPE * psz, strsize c)
@@ -23,7 +23,20 @@ inline string_base < CHAR_TYPE > str::repeat(const CHAR_TYPE * psz, strsize c)
       while (c > 0)
       {
 
-         memcpy(p, psz, itemByteCount);
+         auto psource = psz;
+         
+         auto ptarget = psz;
+         
+         auto copyLength = itemLen;
+         
+         while (copyLength > 0)
+         {
+
+            *ptarget++ = *psource++;
+
+            copyLength--;
+
+         }
 
          p += itemLen;
 
@@ -106,7 +119,7 @@ inline bool str::trimmed_is_empty(const ::string & str)
 
       }
 
-      if (!isspace(*psz))
+      if (!character_isspace(*psz))
       {
 
          return false;
@@ -442,52 +455,52 @@ inline void from_string(i64 & i, const wd32char * psz)
 }
 
 
-inline void from_string(i32 & i, i32 iBase, const widechar * psz)
-{
-
-   i = wide_to_i32(psz, nullptr, iBase);
-
-}
-
-
-inline void from_string(i64 & i, i32 iBase, const widechar * psz)
-{
-
-   i = wide_to_i64(psz, nullptr, iBase);
-
-}
-
-
-inline void from_string(u32 & u, const widechar * psz)
-{
-
-   u = wide_to_u32(psz, nullptr, 10);
-
-}
-
-
-inline void from_string(u64 & u, const widechar * psz)
-{
-
-   u = wide_to_u64(psz, nullptr, 10);
-
-}
-
-
-inline void from_string(u32 & u, i32 iBase, const widechar * psz)
-{
-
-   u = wide_to_u32(psz, nullptr, iBase);
-
-}
-
-
-inline void from_string(u64 & u, i32 iBase, const widechar * psz)
-{
-
-   u = wide_to_u64(psz, nullptr, iBase);
-
-}
+//inline void from_string(i32 & i, i32 iBase, const widechar * psz)
+//{
+//
+//   i = wide_to_i32(psz, nullptr, iBase);
+//
+//}
+//
+//
+//inline void from_string(i64 & i, i32 iBase, const widechar * psz)
+//{
+//
+//   i = wide_to_i64(psz, nullptr, iBase);
+//
+//}
+//
+//
+//inline void from_string(u32 & u, const widechar * psz)
+//{
+//
+//   u = wide_to_u32(psz, nullptr, 10);
+//
+//}
+//
+//
+//inline void from_string(u64 & u, const widechar * psz)
+//{
+//
+//   u = wide_to_u64(psz, nullptr, 10);
+//
+//}
+//
+//
+//inline void from_string(u32 & u, i32 iBase, const widechar * psz)
+//{
+//
+//   u = wide_to_u32(psz, nullptr, iBase);
+//
+//}
+//
+//
+//inline void from_string(u64 & u, i32 iBase, const widechar * psz)
+//{
+//
+//   u = wide_to_u64(psz, nullptr, iBase);
+//
+//}
 
 
 inline void from_string(float & f, const ansichar * psz)
@@ -525,7 +538,7 @@ inline void from_string(ansichar & ch, const ansichar* psz)
 inline void from_string(widechar & wch, const ansichar* psz)
 {
 
-   str().utf_to_utf(&wch, psz, unicode_next(psz) - psz);
+   utf_to_utf(&wch, psz, unicode_next(psz) - psz);
 
 }
 
@@ -533,7 +546,7 @@ inline void from_string(widechar & wch, const ansichar* psz)
 inline void from_string(wd16char * sz, const ansichar * psz)
 {
 
-   str().utf_to_utf(sz, psz);
+   utf_to_utf(sz, psz);
 
 }
 
@@ -541,7 +554,7 @@ inline void from_string(wd16char * sz, const ansichar * psz)
 inline void from_string(wd32char * sz, const ansichar * psz)
 {
 
-   str().utf_to_utf(sz, psz);
+   utf_to_utf(sz, psz);
 
 }
 
@@ -573,7 +586,7 @@ inline void from_string(wd16char sz[n], const ansichar * psz)
 
    }
 
-   str().utf_to_utf(sz, psz);
+   utf_to_utf(sz, psz);
 
 }
 
@@ -589,7 +602,7 @@ inline void from_string(wd32char sz[n], const ansichar * psz)
 
    }
 
-   str().utf_to_utf(sz, psz);
+   utf_to_utf(sz, psz);
 
 }
 
@@ -964,35 +977,6 @@ typedef iptr int_ptr_atomic;
 
 
 
-template < >
-inline void std_string_assign(string& t, const ansichar* psz)
-{
-   t.assign(psz);
-}
-
-template < >
-inline void std_string_assign(string& t, const widechar* psz)
-{
-   t = unicode_to_utf8(psz);
-}
-
-template < >
-inline void std_string_bassign(string& t, const u8* psz, strsize nsize)
-{
-   t = (const ansichar*)string((const ansichar*)psz, minimum(nsize, strlen_s_dup((const ansichar*)psz, nsize)));
-}
-
-template < >
-inline void std_string_assign(string& t, const string* pstr)
-{
-   t = *pstr;
-}
-
-template < >
-inline void std_string_assign(string& t, const wstring* pwstr)
-{
-   t = unicode_to_utf8(*pwstr);
-}
 
 //template < >
 //inline void std_string_assign(string & t,const bstring * pbstr)
@@ -1016,17 +1000,17 @@ inline void std_string_assign(string& t, const wstring* pwstr)
 //}
 
 
-template < >
-inline void std_string_bassign(wstring& t, const u8* psz, strsize nsize)
-{
-   t = utf8_to_unicode(string((const ansichar*)psz, minimum(nsize, strlen_s_dup((const ansichar*)psz, nsize))));
-}
-
-template < >
-inline void std_string_assign(wstring& t, const string* pstr)
-{
-   t = utf8_to_unicode(*pstr);
-}
+//template < >
+//inline void std_string_bassign(wstring& t, const u8* psz, strsize nsize)
+//{
+//   t = utf8_to_unicode(string((const ansichar*)psz, minimum(nsize, strlen_s_dup((const ansichar*)psz, nsize))));
+//}
+//
+//template < >
+//inline void std_string_assign(wstring& t, const string* pstr)
+//{
+//   t = utf8_to_unicode(*pstr);
+//}
 
 //template < >
 //inline void std_string_assign(wstring & t,const string * pstr)
@@ -1034,11 +1018,11 @@ inline void std_string_assign(wstring& t, const string* pstr)
 //   t = utf8_to_unicode(*pstr);
 //}
 
-template < >
-inline void std_string_assign(wstring& t, const wstring* pwstr)
-{
-   t = *pwstr;
-}
+//template < >
+//inline void std_string_assign(wstring& t, const wstring* pwstr)
+//{
+//   t = *pwstr;
+//}
 
 //template < >
 //inline void std_string_assign(wstring & t,const bstring * pbstr)
@@ -1311,7 +1295,7 @@ inline string string_from_strdup(const ansichar* psz)
    inline strsize str::utf8_dec_len(const ansichar* pszBeg, const ansichar* psz)
    {
 
-      const ansichar* pszDec = prior(pszBeg, psz);
+      const ansichar* pszDec = unicode_prior(pszBeg, psz);
 
       if (pszDec == nullptr)
       {
@@ -1386,176 +1370,8 @@ inline string string_from_strdup(const ansichar* psz)
 //} // namespace str
 //
 
-template < typename TYPE_CHAR >
-inline bool string_base < TYPE_CHAR >::equals(const CHAR_TYPE* psz) const
-{
-
-   return compare(psz) == 0;
-
-}
 
 
-template < typename TYPE_CHAR >
-inline bool string_base < TYPE_CHAR >::equals_ci(const CHAR_TYPE* psz) const
-{
-
-   return compare_ci(psz) == 0;
-
-}
-
-
-//// find the first occurrence of character 'ch', starting at strsize 'iStart'
-//inline strsize string::find(ansichar ch) const RELEASENOTHROW
-//{
-//
-//   const ansichar * psz = strchr(m_psz, ch);
-//
-//   return psz == nullptr ? -1 : psz - m_psz;
-//
-//}
-//
-
-//// find the first occurrence of character 'ch', starting at strsize 'iStart'
-//inline strsize string::find(ansichar ch, strsize iStart) const RELEASENOTHROW
-//{
-//
-//   const ansichar * psz = strchr(&m_psz[iStart], ch);
-//
-//   return psz == nullptr ? -1 : psz - m_psz;
-//
-//}
-
-
-int get_mem_free_available_kb();
-
-
-template < typename TYPE_CHAR >
-inline void string_meta_data < TYPE_CHAR > ::set_length(::strsize strsize)
-{
-
-   if (this->natural_is_shared())
-   {
-
-      throw_exception(error_wrong_state, "invalid state");
-
-   }
-
-   auto strsizeStorage = this->memsize_in_chars();
-
-   if (strsize >= strsizeStorage)
-   {
-
-      throw_exception(error_bad_argument);
-
-   }
-
-   this->m_datasize = strsize;
-
-   this->get_data()[strsize] = (TYPE_CHAR)0;
-
-   this->get_data()[strsizeStorage - 1] = (TYPE_CHAR)0;
-
-}
-
-
-
-inline int str::get_utf8_char_length(const char * psz)
-{
-
-   int len = ch_uni_len(*psz);
-   if (len == 0) return 0;
-   if (*psz++ == 0)
-   {
-      return -1;
-   }
-   if (len == 1) return 1;
-   if (*psz++ == 0)
-   {
-      return -1;
-   }
-   if (len == 2) return 2;
-   if (*psz++ == 0)
-   {
-      return -1;
-   }
-   if (len == 3) return 3;
-   if (*psz++ == 0)
-   {
-      return -1;
-   }
-   if (len == 4) return 4;
-   if (*psz++ == 0)
-   {
-      return -1;
-   }
-   if (len == 5) return 5;
-   if (*psz++ == 0)
-   {
-      return -1;
-   }
-   if (len == 6) return 6;
-
-   {
-      return -1;
-   }
-   return -1;
-}
-
-
-
-
-
-
-template < typename TYPE1, typename TYPE2 >
-inline i32 str::compare(const TYPE1 & str1, const TYPE2 & str2)
-{
-
-   return str::string_compare(str1, str2);
-
-}
-
-
-template < typename TYPE1, typename TYPE2 >
-inline i32 str::compare_ci(const TYPE1 & str1, const TYPE2 & str2)
-{
-
-   return str::string_compare_ci(str1, str2);
-
-}
-
-template < typename TYPE1, typename TYPE2 >
-inline bool str::equals(const TYPE1 & str1, const TYPE2 & str2)
-{
-
-   return !compare(str1, str2);
-
-}
-
-
-template < typename TYPE1, typename TYPE2 >
-inline bool str::equals_ci(const TYPE1 & str1, const TYPE2 & str2)
-{
-
-   return !compare_ci(str1, str2);
-
-}
-
-template < typename TYPE1, typename TYPE2 >
-inline TYPE1 str::equals_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 & strOnEqual, const TYPE1 & strOnDifferent)
-{
-
-   return equals(str1, str2) ? strOnEqual : strOnDifferent;
-
-}
-
-
-template < typename TYPE1, typename TYPE2 >
-inline TYPE1 str::equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 & strOnEqual, const TYPE1 & strOnDifferent)
-{
-
-   return equals_ci(str1, str2) ? strOnEqual : strOnDifferent;
-
-}
 
 
 template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
@@ -1570,7 +1386,7 @@ inline bool str::begins(const TOPIC_STRING & topic_string, const PREFIX_STRING &
 
    auto prefix = (prefix_type)prefix_string;
 
-   auto prefix_length = str::string_safe_length(prefix);
+   auto prefix_length = string_safe_length(prefix);
 
    if (prefix_length <= 0)
    {
@@ -1581,7 +1397,7 @@ inline bool str::begins(const TOPIC_STRING & topic_string, const PREFIX_STRING &
 
    auto topic = (topic_type)topic_string;
 
-   auto topic_length = str::string_safe_length(topic);
+   auto topic_length = string_safe_length(topic);
 
    if (topic_length < prefix_length)
    {
@@ -1590,7 +1406,7 @@ inline bool str::begins(const TOPIC_STRING & topic_string, const PREFIX_STRING &
 
    }
 
-   return !str::string_n_compare(topic, prefix, prefix_length);
+   return !string_count_compare(topic, prefix, prefix_length);
 
 }
 
@@ -1607,7 +1423,7 @@ inline bool str::begins_ci(const TOPIC_STRING & topic_string, const PREFIX_STRIN
 
    auto prefix = (prefix_type)prefix_string;
 
-   auto prefix_length = str::string_safe_length(prefix);
+   auto prefix_length = string_safe_length(prefix);
 
    if (prefix_length <= 0)
    {
@@ -1618,7 +1434,7 @@ inline bool str::begins_ci(const TOPIC_STRING & topic_string, const PREFIX_STRIN
 
    auto topic = (topic_type)topic_string;
 
-   auto topic_length = str::string_safe_length(topic);
+   auto topic_length = string_safe_length(topic);
 
    if (topic_length < prefix_length)
    {
@@ -1627,7 +1443,7 @@ inline bool str::begins_ci(const TOPIC_STRING & topic_string, const PREFIX_STRIN
 
    }
 
-   return !str::string_n_compare_ci(topic, prefix, prefix_length);
+   return !string_count_compare_ci(topic, prefix, prefix_length);
 
 }
 
@@ -1636,7 +1452,7 @@ inline bool str::begins_ci(const TOPIC_STRING & topic_string, const PREFIX_STRIN
 //   inline bool begins_ci(const TYPE & str, const PREFIX & strPrefix)
 //   {
 //
-//      return !str::string_n_compare_ci(str, strPrefix, str::string_safe_length(strPrefix));
+//      return !str::string_count_compare_ci(str, strPrefix, string_safe_length(strPrefix));
 //
 //   }
 
@@ -1662,9 +1478,9 @@ template < typename TYPE, typename PREFIX >
 inline bool str::begins_eat(TYPE & str, const PREFIX & strPrefix)
 {
 
-   auto len = str::string_safe_length(strPrefix);
+   auto len = string_safe_length(strPrefix);
 
-   if (str::string_n_compare(str, strPrefix, len))
+   if (string_count_compare(str, strPrefix, len))
    {
 
       return false;
@@ -1682,9 +1498,9 @@ template < typename TYPE, typename PREFIX >
 inline bool str::begins_eat_ci(TYPE & str, const PREFIX & strPrefix)
 {
 
-   auto len = str::string_safe_length(strPrefix);
+   auto len = string_safe_length(strPrefix);
 
-   if (str::string_n_compare_ci(str, strPrefix, len))
+   if (string_count_compare_ci(str, strPrefix, len))
    {
 
       return false;
@@ -1713,7 +1529,7 @@ inline bool str::ends(const TOPIC_STRING & topic_string, const SUFFIX_STRING & s
 
    auto suffix = (suffix_type)suffix_string;
 
-   auto suffix_length = str::string_safe_length(suffix);
+   auto suffix_length = string_safe_length(suffix);
 
    if (suffix_length <= 0)
    {
@@ -1724,7 +1540,7 @@ inline bool str::ends(const TOPIC_STRING & topic_string, const SUFFIX_STRING & s
 
    auto topic = (topic_type)topic_string;
 
-   auto topic_length = str::string_safe_length(topic);
+   auto topic_length = string_safe_length(topic);
 
    if (topic_length < suffix_length)
    {
@@ -1737,7 +1553,7 @@ inline bool str::ends(const TOPIC_STRING & topic_string, const SUFFIX_STRING & s
 
    auto end = topic + end_index;
 
-   return !str::string_n_compare(end, suffix, suffix_length);
+   return !string_count_compare(end, suffix, suffix_length);
 
 }
 
@@ -1754,7 +1570,7 @@ inline bool str::ends_ci(const TOPIC_STRING & topic_string, const SUFFIX_STRING 
 
    auto suffix = (suffix_type)suffix_string;
 
-   auto suffix_length = str::string_safe_length(suffix);
+   auto suffix_length = string_safe_length(suffix);
 
    if (suffix_length <= 0)
    {
@@ -1765,7 +1581,7 @@ inline bool str::ends_ci(const TOPIC_STRING & topic_string, const SUFFIX_STRING 
 
    auto topic = (topic_type)topic_string;
 
-   auto topic_length = str::string_safe_length(topic);
+   auto topic_length = string_safe_length(topic);
 
    if (topic_length < suffix_length)
    {
@@ -1778,7 +1594,7 @@ inline bool str::ends_ci(const TOPIC_STRING & topic_string, const SUFFIX_STRING 
 
    auto end = topic + end_index;
 
-   return !str::string_n_compare_ci(end, suffix, suffix_length);
+   return !string_count_compare_ci(end, suffix, suffix_length);
 
 }
 
@@ -1788,11 +1604,11 @@ template < typename TYPE, typename SUFFIX >
 inline bool str::ends_eat(TYPE & str, const SUFFIX & strSuffix)
 {
 
-   auto len = str::string_safe_length(strSuffix);
+   auto len = string_safe_length(strSuffix);
 
-   auto end = str::string_safe_length(str) - len;
+   auto end = string_safe_length(str) - len;
 
-   if (str::string_n_compare(&str[end], strSuffix, len))
+   if (string_count_compare(&str[end], strSuffix, len))
    {
 
       return false;
@@ -1810,11 +1626,11 @@ template < typename TYPE, typename SUFFIX >
 inline bool str::ends_eat_ci(TYPE & str, const SUFFIX & strSuffix)
 {
 
-   auto len = str::string_safe_length(strSuffix);
+   auto len = string_safe_length(strSuffix);
 
-   auto end = str::string_safe_length(str) - len;
+   auto end = string_safe_length(str) - len;
 
-   if (str::string_n_compare_ci(&str[end], strSuffix, len))
+   if (string_count_compare_ci(&str[end], strSuffix, len))
    {
 
       return false;
@@ -1853,377 +1669,7 @@ inline bool str::ends_eat_ci(TYPE & str, const SUFFIX & strSuffix)
 
 
 //   template <  >
-inline strsize str::utf_to_utf_length(const ansichar *, const ansichar * psource, strsize srclen)
-{
 
-   return srclen;
-
-}
-
-
-// template <  >
-inline strsize str::utf_to_utf_length(const wd16char *, const wd16char * psource, strsize srclen)
-{
-
-   return srclen;
-
-}
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const wd16char *, const wd32char * psource, strsize srclen)
-{
-
-   return wd32_to_wd16_len(psource, srclen);
-
-}
-
-//template <  >
-inline strsize str::utf_to_utf_length(const wd32char *, const wd32char * psource, strsize srclen)
-{
-
-   return srclen;
-
-}
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const wd32char *, const wd16char * psource, strsize srclen)
-{
-
-   return wd16_to_wd32_len(psource, srclen);
-
-}
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const ansichar *, const wd16char * psource, strsize srclen)
-{
-
-   return wd16_to_ansi_len(psource, srclen);
-
-}
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const wd16char *, const ansichar * psource, strsize srclen)
-{
-
-   return ansi_to_wd16_len(psource, srclen);
-
-}
-
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const ansichar *, const wd32char * psource, strsize srclen)
-{
-
-   return wd32_to_ansi_len(psource, srclen);
-
-}
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const wd32char *, const ansichar * psource, strsize srclen)
-{
-
-   return ansi_to_wd32_len(psource, srclen);
-
-}
-
-
-//   template < typename TYPE_TARGET, typename TYPE_SOURCE >
-//   inline strsize str::utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource)
-//   {
-//
-//      throw ::interface_only();
-//
-//      return 0;
-//
-//   }
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const ansichar *, const ansichar * psource)
-{
-
-   return strlen(psource);
-
-}
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const wd16char *, const wd16char * psource)
-{
-
-   return wd16_len(psource);
-
-}
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const wd16char *, const wd32char * psource)
-{
-
-   return wd32_to_wd16_len(psource);
-
-}
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const wd32char *, const wd32char * psource)
-{
-
-   return wd32_len(psource);
-
-}
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const wd32char *, const wd16char * psource)
-{
-
-   return wd16_to_wd32_len(psource);
-
-}
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const ansichar *, const wd16char * psource)
-{
-
-   return wd16_to_ansi_len(psource);
-
-}
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const ansichar *, const wd32char * psource)
-{
-
-   return wd32_to_ansi_len(psource);
-
-}
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const wd16char *, const ansichar * psource)
-{
-
-   return ansi_to_wd16_len(psource);
-
-}
-
-
-//template <  >
-inline strsize str::utf_to_utf_length(const wd32char *, const ansichar * psource)
-{
-
-   return ansi_to_wd32_len(psource);
-
-}
-
-
-//   template < typename TYPE_TARGET, typename TYPE_SOURCE >
-//   inline void str::utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource, strsize srclen)
-//   {
-//
-//      throw ::interface_only();
-//
-//   }
-
-
-//   inline void str::utf_to_utf(::string & str, const wd16char * psource, strsize srclen)
-//   {
-//
-//      char * psz = nullptr;
-//
-//      auto dstlen = utf_to_utf_length(psz, psource, srclen);
-//
-//      psz = str.get_string_buffer(dstlen);
-//
-//      utf_to_utf(psz, psource, srclen);
-//
-//      psz[dstlen]='\0';
-//
-//   }
-
-
-//template <  >
-inline void str::utf_to_utf(ansichar * ptarget, const ansichar * psource, strsize srclen)
-{
-
-   overlap_safe_ansincpy(ptarget, psource, srclen);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(wd16char * ptarget, const wd16char * psource, strsize srclen)
-{
-
-   overlap_safe_wd16ncpy(ptarget, psource, srclen);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(wd16char * ptarget, const wd32char * psource, strsize srclen)
-{
-
-   wd32_to_wd16(ptarget, psource, srclen);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(wd32char * ptarget, const wd32char * psource, strsize srclen)
-{
-
-   overlap_safe_wd32ncpy(ptarget, psource, srclen);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(wd32char * ptarget, const wd16char * psource, strsize srclen)
-{
-
-   wd16_to_wd32(ptarget, psource, srclen);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(ansichar * ptarget, const wd16char * psource, strsize srclen)
-{
-
-   wd16_to_ansi(ptarget, psource, srclen);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(ansichar * ptarget, const wd32char * psource, strsize srclen)
-{
-
-   wd32_to_ansi(ptarget, psource, srclen);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(wd16char * ptarget, const ansichar * psource, strsize srclen)
-{
-
-   ansi_to_wd16(ptarget, psource, srclen);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(wd32char * ptarget, const ansichar * psource, strsize srclen)
-{
-
-   ansi_to_wd32(ptarget, psource, srclen);
-
-}
-
-
-//   template < typename TYPE_TARGET, typename TYPE_SOURCE >
-//   inline void str::utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource)
-//   {
-//
-//      throw ::interface_only();
-//
-//   }
-
-
-//template <  >
-inline void str::utf_to_utf(ansichar * ptarget, const ansichar * psource)
-{
-
-   strcpy(ptarget, psource);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(wd16char * ptarget, const wd16char * psource)
-{
-
-   wd16_cpy(ptarget, psource);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(wd32char * ptarget, const wd16char * psource)
-{
-
-   wd16_to_wd32(ptarget, psource);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(wd32char * ptarget, const wd32char * psource)
-{
-
-   wd32_cpy(ptarget, psource);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(wd16char * ptarget, const wd32char * psource)
-{
-
-   wd32_to_wd16(ptarget, psource);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(ansichar * ptarget, const wd16char * psource)
-{
-
-   wd16_to_ansi(ptarget, psource);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(ansichar * ptarget, const wd32char * psource)
-{
-
-   wd32_to_ansi(ptarget, psource);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(wd16char * ptarget, const ansichar * psource)
-{
-
-   ansi_to_wd16(ptarget, psource);
-
-}
-
-
-//template <  >
-inline void str::utf_to_utf(wd32char * ptarget, const ansichar * psource)
-{
-
-   ansi_to_wd32(ptarget, psource);
-
-}
-
-
-inline i32 str::uni_index(const ansichar *& pszChar, strsize * psrclen) { return ::__uni_index(pszChar, psrclen); }
-inline i32 str::uni_index(const wd16char *& pszChar, strsize * psrclen) { return ::__uni_index(pszChar, psrclen); }
-inline i32 str::uni_index(const wd32char *& pszChar, strsize * psrclen) { return ::__uni_index(pszChar, psrclen); }
 
 
 inline const ansichar * str::windows_bbqbunc(const ansistring &) { return "\\\\?\\UNC"; }
@@ -2234,9 +1680,6 @@ inline const widechar * str::windows_bbqbunc(const widestring &) { return L"\\\\
 inline const widechar * str::windows_bbqb(const widestring &) { return L"\\\\?\\"; }
 inline const widechar * str::windows_bb(const widestring &) { return L"\\\\"; }
 
-inline strsize str::unichar_count(const ansichar * pstr) { return ansi_to_wd32_len(pstr); }
-inline strsize str::unichar_count(const wd16char * pstr) { return wd16_to_wd32_len(pstr); }
-inline strsize str::unichar_count(const wd32char * pstr) { return __wd32len(pstr); }
 
 
 inline strsize str::copy_string_len(wd16char * pszDst, const ansichar * pszSrc, strsize srclen) { return utf_to_utf_length(pszDst, pszSrc, srclen); }
@@ -2390,380 +1833,380 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > & str::assign(string_base < TYPE_CHAR > & ansistrSrc, const TYPE_CHAR * pszSrc)
 {
 
-   return assign(ansistrSrc, pszSrc, str::string_safe_length(pszSrc));
+   return assign(ansistrSrc, pszSrc, string_safe_length(pszSrc));
 
 }
 
 
-inline wd16string & str::assign(wd16string & wstrDst, const ansistring & strSrc)
-{
-
-   auto dstlen = copy_string_len(wstrDst.m_pdata, strSrc.m_pdata, strSrc.get_length());
-
-   if (dstlen <= 0)
-   {
-
-      wstrDst.Empty();
-
-   }
-   else
-   {
-
-      auto pch = wstrDst.get_string_buffer(dstlen);
-
-      copy_string(pch, strSrc.m_pdata, strSrc.get_length());
-
-      wstrDst.release_string_buffer();
-
-   }
-
-   return wstrDst;
-
-}
-
-
-inline wd32string & str::assign(wd32string & wstrDst, const ansistring & strSrc)
-{
-
-   auto dstlen = copy_string_len(wstrDst.m_pdata, strSrc.m_pdata, strSrc.get_length());
-
-   if (dstlen <= 0)
-   {
-
-      wstrDst.Empty();
-
-   }
-   else
-   {
-
-      auto pch = wstrDst.get_string_buffer(dstlen);
-
-      copy_string(pch, strSrc.m_pdata, strSrc.get_length());
-
-      wstrDst.release_string_buffer();
-
-   }
-
-   return wstrDst;
-
-}
-
-
-inline wd16string & str::assign(wd16string & wstrDst, const natural_ansistring & strSrc)
-{
-
-   auto srclen = str::string_safe_length(strSrc.m_pdata);
-
-   auto len = copy_string_len(wstrDst.m_pdata, strSrc.m_pdata, srclen);
-
-   auto pch = wstrDst.get_string_buffer(len);
-
-   copy_string(pch, strSrc.m_pdata, srclen);
-
-   return wstrDst;
-
-}
-
-
-inline wd32string & str::assign(wd32string & wstrDst, const natural_ansistring & strSrc)
-{
-
-   auto srclen = str::string_safe_length(strSrc.m_pdata);
-
-   auto len = copy_string_len(wstrDst.m_pdata, strSrc.m_pdata, srclen);
-
-   auto pch = wstrDst.get_string_buffer(len);
-
-   copy_string(pch, strSrc.m_pdata, srclen);
-
-   return wstrDst;
-
-}
-
-
-
-inline ansistring & str::assign(ansistring & ansistrSrc, const wd16string & widestrSrc)
-{
-
-   auto len = copy_string_len(ansistrSrc.m_pdata, widestrSrc.m_pdata, widestrSrc.get_length());
-
-   auto pch = ansistrSrc.get_string_buffer(len);
-
-   copy_string(pch, widestrSrc.m_pdata, widestrSrc.get_length());
-
-   return ansistrSrc;
-
-}
-
-inline ansistring & str::assign(ansistring & ansistrSrc, const wd32string & widestrSrc)
-{
-
-   auto len = copy_string_len(ansistrSrc.m_pdata, widestrSrc.m_pdata, widestrSrc.get_length());
-
-   auto pch = ansistrSrc.get_string_buffer(len);
-
-   copy_string(pch, widestrSrc.m_pdata, widestrSrc.get_length());
-
-   return ansistrSrc;
-
-}
-
-
-inline ansistring & str::assign(ansistring & ansistrSrc, const natural_wd16string & widestrSrc)
-{
-
-   auto srclen = str::string_safe_length(widestrSrc.m_pdata);
-
-   auto len = copy_string_len(ansistrSrc.m_pdata, widestrSrc.m_pdata, srclen);
-
-   auto pch = ansistrSrc.get_string_buffer(len);
-
-   copy_string(pch, widestrSrc.m_pdata, srclen);
-
-   return ansistrSrc;
-
-}
-
-inline ansistring & str::assign(ansistring & ansistrSrc, const natural_wd32string & widestrSrc)
-{
-
-   auto srclen = str::string_safe_length(widestrSrc.m_pdata);
-
-   auto len = copy_string_len(ansistrSrc.m_pdata, widestrSrc.m_pdata, srclen);
-
-   auto pch = ansistrSrc.get_string_buffer(len);
-
-   copy_string(pch, widestrSrc.m_pdata, srclen);
-
-   return ansistrSrc;
-
-}
-
-
-
-
-inline ansistring & str::assign(ansistring & ansistrDst, ansichar ansich)
-{
-
-   ansistrDst.assign(&ansich, 1);
-
-   return ansistrDst;
-
-}
-
-
-inline wd16string & str::assign(wd16string & widestrDst, ansichar ansich)
-{
-
-   widestrDst.assign(&ansich, 1);
-
-   return widestrDst;
-
-}
-
-inline wd32string & str::assign(wd32string & widestrDst, ansichar ansich)
-{
-
-   widestrDst.assign(&ansich, 1);
-
-   return widestrDst;
-
-}
-
-inline ansistring & str::assign(ansistring & ansistrDst, wd16char widech)
-{
-
-   ansistrDst.assign(&widech, 1);
-
-   return ansistrDst;
-
-}
-
-
-inline wd16string & str::assign(wd16string & widestrDst, wd16char widech)
-{
-
-   widestrDst.assign(&widech, 1);
-
-   return widestrDst;
-
-}
-
-inline wd32string & str::assign(wd32string & widestrDst, wd16char widech)
-{
-
-   widestrDst.assign(&widech, 1);
-
-   return widestrDst;
-
-}
-
-inline ansistring & str::assign(ansistring & ansistrDst, wd32char widech)
-{
-
-   ansistrDst.assign(&widech, 1);
-
-   return ansistrDst;
-
-}
-
-
-inline wd16string & str::assign(wd16string & widestrDst, wd32char widech)
-{
-
-   widestrDst.assign(&widech, 1);
-
-   return widestrDst;
-
-}
-
-inline wd32string & str::assign(wd32string & widestrDst, wd32char widech)
-{
-
-   widestrDst.assign(&widech, 1);
-
-   return widestrDst;
-
-}
-
-
-
-inline ansistring & str::assign(ansistring & strDst, const wd16char * psrcsz)
-{
-
-   auto srclen = str::string_safe_length(psrcsz);
-
-   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
-
-   auto pdstsz = strDst.get_string_buffer(dstlen);
-
-   utf_to_utf(pdstsz, psrcsz, srclen);
-
-   strDst.metadata()->set_length(dstlen);
-
-   return strDst;
-
-}
-
-
-inline ansistring & str::assign(ansistring & strDst, const wd32char * psrcsz)
-{
-
-   auto srclen = str::string_safe_length(psrcsz);
-
-   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
-
-   auto pdstsz = strDst.get_string_buffer(dstlen);
-
-   utf_to_utf(pdstsz, psrcsz, srclen);
-
-   strDst.metadata()->set_length(dstlen);
-
-   return strDst;
-
-}
-
-inline wd16string & str::assign(wd16string & strDst, const ansichar * psrcsz)
-{
-
-   auto srclen = str::string_safe_length(psrcsz);
-
-   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
-
-   auto pwidesz = strDst.get_string_buffer(dstlen);
-
-   utf_to_utf(pwidesz, psrcsz, srclen);
-
-   return strDst;
-
-}
-
-
-inline wd16string & str::assign(wd16string & strDst, const wd16char * psrcsz)
-{
-
-   auto srclen = str::string_safe_length(psrcsz);
-
-   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
-
-   auto pwidesz = strDst.get_string_buffer(dstlen);
-
-   utf_to_utf(pwidesz, psrcsz, srclen);
-
-   return strDst;
-
-}
-
-
-inline wd16string & str::assign(wd16string & strDst, const wd32char * psrcsz)
-{
-
-   auto srclen = str::string_safe_length(psrcsz);
-
-   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
-
-   auto pwidesz = strDst.get_string_buffer(dstlen);
-
-   utf_to_utf(pwidesz, psrcsz, srclen);
-
-   return strDst;
-
-}
-
-
-inline wd32string & str::assign(wd32string & strDst, const ansichar * psrcsz)
-{
-
-   auto srclen = str::string_safe_length(psrcsz);
-
-   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
-
-   auto pwidesz = strDst.get_string_buffer(dstlen);
-
-   utf_to_utf(pwidesz, psrcsz, srclen);
-
-   return strDst;
-
-}
-
-
-inline wd32string & str::assign(wd32string & strDst, const wd16char * psrcsz)
-{
-
-   auto srclen = str::string_safe_length(psrcsz);
-
-   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
-
-   auto pwidesz = strDst.get_string_buffer(dstlen);
-
-   utf_to_utf(pwidesz, psrcsz, srclen);
-
-   return strDst;
-
-}
-
-
-inline wd32string & str::assign(wd32string & strDst, const wd32char * psrcsz)
-{
-
-   auto srclen = str::string_safe_length(psrcsz);
-
-   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
-
-   auto pwidesz = strDst.get_string_buffer(dstlen);
-
-   utf_to_utf(pwidesz, psrcsz, srclen);
-
-   return strDst;
-
-}
+//inline wd16string & str::assign(wd16string & wstrDst, const ansistring & strSrc)
+//{
+//
+//   auto dstlen = copy_string_len(wstrDst.m_pdata, strSrc.m_pdata, strSrc.get_length());
+//
+//   if (dstlen <= 0)
+//   {
+//
+//      wstrDst.Empty();
+//
+//   }
+//   else
+//   {
+//
+//      auto pch = wstrDst.get_string_buffer(dstlen);
+//
+//      copy_string(pch, strSrc.m_pdata, strSrc.get_length());
+//
+//      wstrDst.release_string_buffer();
+//
+//   }
+//
+//   return wstrDst;
+//
+//}
+//
+//
+//inline wd32string & str::assign(wd32string & wstrDst, const ansistring & strSrc)
+//{
+//
+//   auto dstlen = copy_string_len(wstrDst.m_pdata, strSrc.m_pdata, strSrc.get_length());
+//
+//   if (dstlen <= 0)
+//   {
+//
+//      wstrDst.Empty();
+//
+//   }
+//   else
+//   {
+//
+//      auto pch = wstrDst.get_string_buffer(dstlen);
+//
+//      copy_string(pch, strSrc.m_pdata, strSrc.get_length());
+//
+//      wstrDst.release_string_buffer();
+//
+//   }
+//
+//   return wstrDst;
+//
+//}
+
+
+//inline wd16string & str::assign(wd16string & wstrDst, const natural_ansistring & strSrc)
+//{
+//
+//   auto srclen = string_safe_length(strSrc.m_pdata);
+//
+//   auto len = copy_string_len(wstrDst.m_pdata, strSrc.m_pdata, srclen);
+//
+//   auto pch = wstrDst.get_string_buffer(len);
+//
+//   copy_string(pch, strSrc.m_pdata, srclen);
+//
+//   return wstrDst;
+//
+//}
+//
+//
+//inline wd32string & str::assign(wd32string & wstrDst, const natural_ansistring & strSrc)
+//{
+//
+//   auto srclen = string_safe_length(strSrc.m_pdata);
+//
+//   auto len = copy_string_len(wstrDst.m_pdata, strSrc.m_pdata, srclen);
+//
+//   auto pch = wstrDst.get_string_buffer(len);
+//
+//   copy_string(pch, strSrc.m_pdata, srclen);
+//
+//   return wstrDst;
+//
+//}
+//
+//
+//
+//inline ansistring & str::assign(ansistring & ansistrSrc, const wd16string & widestrSrc)
+//{
+//
+//   auto len = copy_string_len(ansistrSrc.m_pdata, widestrSrc.m_pdata, widestrSrc.get_length());
+//
+//   auto pch = ansistrSrc.get_string_buffer(len);
+//
+//   copy_string(pch, widestrSrc.m_pdata, widestrSrc.get_length());
+//
+//   return ansistrSrc;
+//
+//}
+//
+//inline ansistring & str::assign(ansistring & ansistrSrc, const wd32string & widestrSrc)
+//{
+//
+//   auto len = copy_string_len(ansistrSrc.m_pdata, widestrSrc.m_pdata, widestrSrc.get_length());
+//
+//   auto pch = ansistrSrc.get_string_buffer(len);
+//
+//   copy_string(pch, widestrSrc.m_pdata, widestrSrc.get_length());
+//
+//   return ansistrSrc;
+//
+//}
+//
+//
+//inline ansistring & str::assign(ansistring & ansistrSrc, const natural_wd16string & widestrSrc)
+//{
+//
+//   auto srclen = string_safe_length(widestrSrc.m_pdata);
+//
+//   auto len = copy_string_len(ansistrSrc.m_pdata, widestrSrc.m_pdata, srclen);
+//
+//   auto pch = ansistrSrc.get_string_buffer(len);
+//
+//   copy_string(pch, widestrSrc.m_pdata, srclen);
+//
+//   return ansistrSrc;
+//
+//}
+//
+//inline ansistring & str::assign(ansistring & ansistrSrc, const natural_wd32string & widestrSrc)
+//{
+//
+//   auto srclen = string_safe_length(widestrSrc.m_pdata);
+//
+//   auto len = copy_string_len(ansistrSrc.m_pdata, widestrSrc.m_pdata, srclen);
+//
+//   auto pch = ansistrSrc.get_string_buffer(len);
+//
+//   copy_string(pch, widestrSrc.m_pdata, srclen);
+//
+//   return ansistrSrc;
+//
+//}
 
 
 
 //
-//} // namespace str
+//inline ansistring & str::assign(ansistring & ansistrDst, ansichar ansich)
+//{
 //
-
+//   ansistrDst.assign(&ansich, 1);
+//
+//   return ansistrDst;
+//
+//}
+//
+//
+//inline wd16string & str::assign(wd16string & widestrDst, ansichar ansich)
+//{
+//
+//   widestrDst.assign(&ansich, 1);
+//
+//   return widestrDst;
+//
+//}
+//
+//inline wd32string & str::assign(wd32string & widestrDst, ansichar ansich)
+//{
+//
+//   widestrDst.assign(&ansich, 1);
+//
+//   return widestrDst;
+//
+//}
+//
+//inline ansistring & str::assign(ansistring & ansistrDst, wd16char widech)
+//{
+//
+//   ansistrDst.assign(&widech, 1);
+//
+//   return ansistrDst;
+//
+//}
+//
+//
+//inline wd16string & str::assign(wd16string & widestrDst, wd16char widech)
+//{
+//
+//   widestrDst.assign(&widech, 1);
+//
+//   return widestrDst;
+//
+//}
+//
+//inline wd32string & str::assign(wd32string & widestrDst, wd16char widech)
+//{
+//
+//   widestrDst.assign(&widech, 1);
+//
+//   return widestrDst;
+//
+//}
+//
+//inline ansistring & str::assign(ansistring & ansistrDst, wd32char widech)
+//{
+//
+//   ansistrDst.assign(&widech, 1);
+//
+//   return ansistrDst;
+//
+//}
+//
+//
+//inline wd16string & str::assign(wd16string & widestrDst, wd32char widech)
+//{
+//
+//   widestrDst.assign(&widech, 1);
+//
+//   return widestrDst;
+//
+//}
+//
+//inline wd32string & str::assign(wd32string & widestrDst, wd32char widech)
+//{
+//
+//   widestrDst.assign(&widech, 1);
+//
+//   return widestrDst;
+//
+//}
+//
+//
+//
+//inline ansistring & str::assign(ansistring & strDst, const wd16char * psrcsz)
+//{
+//
+//   auto srclen = string_safe_length(psrcsz);
+//
+//   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+//
+//   auto pdstsz = strDst.get_string_buffer(dstlen);
+//
+//   utf_to_utf(pdstsz, psrcsz, srclen);
+//
+//   strDst.metadata()->set_length(dstlen);
+//
+//   return strDst;
+//
+//}
+//
+//
+//inline ansistring & str::assign(ansistring & strDst, const wd32char * psrcsz)
+//{
+//
+//   auto srclen = string_safe_length(psrcsz);
+//
+//   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+//
+//   auto pdstsz = strDst.get_string_buffer(dstlen);
+//
+//   utf_to_utf(pdstsz, psrcsz, srclen);
+//
+//   strDst.metadata()->set_length(dstlen);
+//
+//   return strDst;
+//
+//}
+//
+//inline wd16string & str::assign(wd16string & strDst, const ansichar * psrcsz)
+//{
+//
+//   auto srclen = string_safe_length(psrcsz);
+//
+//   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+//
+//   auto pwidesz = strDst.get_string_buffer(dstlen);
+//
+//   utf_to_utf(pwidesz, psrcsz, srclen);
+//
+//   return strDst;
+//
+//}
+//
+//
+//inline wd16string & str::assign(wd16string & strDst, const wd16char * psrcsz)
+//{
+//
+//   auto srclen = string_safe_length(psrcsz);
+//
+//   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+//
+//   auto pwidesz = strDst.get_string_buffer(dstlen);
+//
+//   utf_to_utf(pwidesz, psrcsz, srclen);
+//
+//   return strDst;
+//
+//}
+//
+//
+//inline wd16string & str::assign(wd16string & strDst, const wd32char * psrcsz)
+//{
+//
+//   auto srclen = string_safe_length(psrcsz);
+//
+//   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+//
+//   auto pwidesz = strDst.get_string_buffer(dstlen);
+//
+//   utf_to_utf(pwidesz, psrcsz, srclen);
+//
+//   return strDst;
+//
+//}
+//
+//
+//inline wd32string & str::assign(wd32string & strDst, const ansichar * psrcsz)
+//{
+//
+//   auto srclen = string_safe_length(psrcsz);
+//
+//   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+//
+//   auto pwidesz = strDst.get_string_buffer(dstlen);
+//
+//   utf_to_utf(pwidesz, psrcsz, srclen);
+//
+//   return strDst;
+//
+//}
+//
+//
+//inline wd32string & str::assign(wd32string & strDst, const wd16char * psrcsz)
+//{
+//
+//   auto srclen = string_safe_length(psrcsz);
+//
+//   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+//
+//   auto pwidesz = strDst.get_string_buffer(dstlen);
+//
+//   utf_to_utf(pwidesz, psrcsz, srclen);
+//
+//   return strDst;
+//
+//}
+//
+//
+//inline wd32string & str::assign(wd32string & strDst, const wd32char * psrcsz)
+//{
+//
+//   auto srclen = string_safe_length(psrcsz);
+//
+//   auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+//
+//   auto pwidesz = strDst.get_string_buffer(dstlen);
+//
+//   utf_to_utf(pwidesz, psrcsz, srclen);
+//
+//   return strDst;
+//
+//}
+//
+//
+//
+////
+////} // namespace str
+////
+//
 
 
 
@@ -2816,6 +2259,14 @@ inline struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const c
    return pair;
 
 }
+
+
+
+
+
+
+
+
 
 
 

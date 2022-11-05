@@ -28,7 +28,7 @@
 #endif
 
 
-semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName, const security_attributes & securityattributes)
+semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName, security_attributes * psecurityattributes)
 {
 
    ASSERT(lMaxCount > 0);
@@ -36,11 +36,13 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
 #ifdef WINDOWS
 
+   wstring wstrName(pstrName);
+
    m_hsynchronization = ::CreateSemaphoreExW(
-      (LPSECURITY_ATTRIBUTES)securityattributes.m_pOsSecurityAttributes,
+      (LPSECURITY_ATTRIBUTES)(psecurityattributes ? psecurityattributes->get_os_security_attributes() : nullptr),
       lInitialCount,
       lMaxCount,
-      pstrName == nullptr ? nullptr : (const wchar_t *)  utf8_to_unicode(pstrName), 
+      pstrName == nullptr ? nullptr : (const wchar_t *)  wstrName, 
       0,
       SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
 

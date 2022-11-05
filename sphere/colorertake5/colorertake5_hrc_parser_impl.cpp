@@ -794,9 +794,9 @@ namespace colorertake5
                next->kwList->firstChar->add_char(::str().get_utf8_char(param));
                if (!isCase)
                {
-                  next->kwList->firstChar->add_char(::str::ch().to_lower_case(param));
-                  next->kwList->firstChar->add_char(::str::ch().to_upper_case(param));
-                  next->kwList->firstChar->add_char(::str::ch().to_title_case(param));
+                  next->kwList->firstChar->add_char(unicode_to_lower_case(param));
+                  next->kwList->firstChar->add_char(unicode_to_upper_case(param));
+                  next->kwList->firstChar->add_char(unicode_to_title_case(param));
                };
                next->kwList->num++;
                if (next->kwList->minKeywordLength > pIDs[pos].keyword.get_length())

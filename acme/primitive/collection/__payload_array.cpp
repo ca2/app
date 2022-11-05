@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/string/str.h"
 
 
 payload_array::payload_array()

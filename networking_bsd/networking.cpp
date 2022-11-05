@@ -351,7 +351,7 @@ namespace networking_bsd
       string dst;
       for (i32 i = 0; i < src.get_length(); i++)
       {
-         if (ansi_char_is_alphanumeric((uchar)src[i]))
+         if (ansi_char_is_alnum((uchar)src[i]))
          {
             dst += src[i];
          }
@@ -1715,7 +1715,7 @@ namespace networking_bsd
    //   for (i32 i = 0; i < src.get_length(); i++)
    //   {
 
-   //      if (ansi_char_is_alphanumeric((uchar)src[i]))
+   //      if (ansi_char_is_alnum((uchar)src[i]))
    //      {
 
    //         dst += src[i];
@@ -3219,7 +3219,7 @@ namespace networking_bsd
 
          char c = m_countHttpPostBoundary++ % 128;
 
-         while (!ansi_char_is_alphanumeric((unsigned char)c))
+         while (!ansi_char_is_alnum((unsigned char)c))
          {
 
             c = m_countHttpPostBoundary++ % 128;

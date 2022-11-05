@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "file_application.h"
 #include "audio/audio.h"
+#include "acme/primitive/string/str.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aqua/platform/system.h"
 
@@ -40,7 +41,7 @@ namespace multimedia
 
 #ifndef _UWP
 
-      if (::str().begins_ci(strPath, "rtp://") || ::str().begins_ci(strPath, "rtprx://"))
+      if (strPath.begins_ci("rtp://") || strPath.begins_ci("rtprx://"))
       {
 
          auto psystem = get_system()->m_paquasystem;

@@ -982,7 +982,7 @@ namespace user
 
       }
 
-      // ::str().next(str.c_str()) - str.c_str(); // at least one char is the longest pline
+      // unicode_next(str.c_str()) - str.c_str(); // at least one char is the longest pline
 
       // find phrase with greatest word count that fits the x, right constraints
       ::count longest_pline(string & strSlice, double & d, string_array & straWords, double * pdaPosition, double dPositionLeft, int cx)
@@ -1390,11 +1390,11 @@ namespace user
 
             cWords = (int) longest_pline(strSlice, dPosition, straWords, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int) rectangleClient.right - x);
 
-            if (ansi_char_is_space(straWords.last().last_char())
+            if (ansi_char_isspace(straWords.last().last_char())
                || (iSpan + 1 < m_spana.get_count()
                   && (m_spana[iSpan + 1]->is_new_line()
                      || (m_spana[iSpan + 1]->m_str.has_char()
-                        && ansi_char_is_space(m_spana[iSpan + 1]->m_str[0]))))
+                        && ansi_char_isspace(m_spana[iSpan + 1]->m_str[0]))))
                || cWords < straWords.get_count())
             {
 

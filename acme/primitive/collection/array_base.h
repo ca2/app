@@ -592,7 +592,7 @@ public:
 
 
    template < typename CONTAINER >
-   ::count _001AppendContainer(const CONTAINER & container)
+   ::count append_container(const CONTAINER & container)
    {
 
       ::count c = 0;
@@ -600,11 +600,7 @@ public:
       for(auto & item : container)
       {
 
-         TYPE t {};
-
-         ::copy(t, item);
-
-         add(t);
+         ::copy(add_new(), item);
 
          c++;
 
@@ -616,12 +612,12 @@ public:
 
 
    template < typename CONTAINER >
-   void _001CopyContainer(const CONTAINER & container)
+   void copy_container(const CONTAINER & container)
    {
 
       clear();
 
-      _001AppendContainer(container);
+      append_container(container);
 
    }
 

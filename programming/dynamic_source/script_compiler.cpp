@@ -1954,7 +1954,7 @@ auto tickStart = ::duration::now();
                bNewLine = true;
                i++;
             }
-            else if(isspace(ch))
+            else if(character_isspace(ch))
             {
                i++;
                continue;
@@ -1981,7 +1981,7 @@ auto tickStart = ::duration::now();
                bNewLine = true;
                i++;
             }
-            else if(isspace(ch))
+            else if(character_isspace(ch))
             {
                i++;
                continue;
@@ -2019,7 +2019,7 @@ auto tickStart = ::duration::now();
                while(i < iLen)
                {
                   ch = str[i];
-                  if(isspace(ch))
+                  if(character_isspace(ch))
                      i++;
                   else if(bWaitQuote && (ch == '\'' || ch=='\"'))
                   {
@@ -2117,7 +2117,7 @@ auto tickStart = ::duration::now();
          }
          else if(bInVar)
          {
-            if(ansi_char_is_digit(ch) || ansi_char_is_alphabetic(ch) || ch == '_')
+            if(ansi_char_isdigit(ch) || ansi_char_isalpha(ch) || ch == '_')
             {
                if(bLow)
                {
@@ -2165,7 +2165,7 @@ auto tickStart = ::duration::now();
                }
                else
                {
-                  while(ansi_char_is_space(str[i]) && i < iLen)
+                  while(ansi_char_isspace(str[i]) && i < iLen)
                   {
                      i++;
                   }
@@ -2179,13 +2179,13 @@ auto tickStart = ::duration::now();
                   else if(ch == '-' && chNext == '>')
                   {
                      i+=2;
-                     while(ansi_char_is_space(str[i]) && i < iLen)
+                     while(ansi_char_isspace(str[i]) && i < iLen)
                      {
                         i++;
                      }
                      ch = str[i];
                      string strToken;
-                     if(ansi_char_is_alphabetic(ch) || ch == '_')
+                     if(ansi_char_isalpha(ch) || ch == '_')
                      {
                         strToken += ch;
                         i++;
@@ -2196,14 +2196,14 @@ auto tickStart = ::duration::now();
                         return strResult;
                      }
                      ch = str[i];
-                     while(ansi_char_is_digit(ch) || ansi_char_is_alphabetic(ch) || ch == '_')
+                     while(ansi_char_isdigit(ch) || ansi_char_isalpha(ch) || ch == '_')
                      {
                         strToken += ch;
                         i++;
                         ch = str[i];
                      }
                      ch = str[i];
-                     while(ansi_char_is_space(ch))
+                     while(ansi_char_isspace(ch))
                      {
                         i++;
                         ch = str[i];
@@ -2215,7 +2215,7 @@ auto tickStart = ::duration::now();
                         iaFunctionParen.add(iOpenParen);
                         iOpenParen++;
                         straFunction.add(strToken);
-                        while(ansi_char_is_space(ch))
+                        while(ansi_char_isspace(ch))
                         {
                            i++;
                            ch = str[i];
@@ -2260,7 +2260,7 @@ auto tickStart = ::duration::now();
             }
             else
             {
-               if(ch == '$' && (ansi_char_is_alphabetic(chNext) || chNext == '_'))
+               if(ch == '$' && (ansi_char_isalpha(chNext) || chNext == '_'))
                {
                   bInVar = true;
                   //strResult += "\") + glowstr(\"";
@@ -2331,7 +2331,7 @@ auto tickStart = ::duration::now();
             strResult += "'";
 
          }
-         else if(ch == '$' && (ansi_char_is_alphabetic(chNext) || chNext == '_'))
+         else if(ch == '$' && (ansi_char_isalpha(chNext) || chNext == '_'))
          {
             if(bInVar)
             {
@@ -2506,7 +2506,7 @@ ch_else:
                   bNewLine = true;
 
                }
-               else if(isspace((int) (unsigned char) ch))
+               else if(character_isspace((int) (unsigned char) ch))
                {
                }
                else
@@ -2557,7 +2557,7 @@ ch_else:
 
       const char * psz = strParam;
 
-      while(*psz != '\0' && isspace(*psz))
+      while(*psz != '\0' && character_isspace(*psz))
       {
          psz++;
       }

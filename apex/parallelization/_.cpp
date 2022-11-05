@@ -678,7 +678,7 @@ namespace apex
    //   while (*psz)
    //   {
    //
-   //      if (ansi_char_is_alphanumeric(*psz))
+   //      if (ansi_char_is_alnum(*psz))
    //      {
    //
    //         strOnlyAlnum += *psz;
@@ -702,7 +702,7 @@ namespace apex
    //   while (*psz)
    //   {
    //
-   //      if (ansi_char_is_alphanumeric(*psz))
+   //      if (ansi_char_is_alnum(*psz))
    //      {
    //
    //         if (!isvowel_dup(*psz))

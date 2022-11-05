@@ -119,10 +119,10 @@ HANDLE duplicate_handle(HANDLE h)
       wcscat(wstrModuleFilePath, L"\\ca2\\");
 
 #ifdef X86
-      wcscat(wstrModuleFilePath,L"stage\\x86\\");
+      wstrModuleFilePath += L"/stage/x86/";
 
 #else
-      wide_concatenate(wstrModuleFilePath, L"stage\\x64\\");
+      wstrModuleFilePath += L"/stage/x64/";
 
 #endif
 
@@ -286,10 +286,10 @@ found:
 
 #ifdef X86
 
-      wcscat(wstrModuleFilePath, L"stage\\x86\\");
+      wstrModuleFilePath += L"/stage/x86/";
 
 #else
-      wide_concatenate(wstrModuleFilePath, L"stage\\x64\\");
+      wstrModuleFilePath += L"/stage/x64/";
 
 #endif
 

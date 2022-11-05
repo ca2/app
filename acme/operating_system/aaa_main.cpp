@@ -14,7 +14,7 @@ string consume_command_line_parameter(const char * pszCommandLine, const char **
 
    const char * psz = pszCommandLine;
 
-   while(*psz && ansi_char_is_space(*psz))
+   while(*psz && ansi_char_isspace(*psz))
       psz++;
 
    const char * pszStart;
@@ -31,7 +31,7 @@ string consume_command_line_parameter(const char * pszCommandLine, const char **
    else
    {
       pszStart = psz;
-      while(*psz != '\0' &&!ansi_char_is_space(*psz))
+      while(*psz != '\0' &&!ansi_char_isspace(*psz))
          psz++;
    }
 
@@ -400,7 +400,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          if(*psz == ' ')
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
          }
          else if(*psz == '\"')
@@ -408,7 +408,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             quote = '\"';
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             argv[argc++] =(char *) psz;
 
@@ -420,7 +420,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             quote = '\'';
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             argv[argc++] = (char *) psz;
 
@@ -432,7 +432,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             argv[argc++] = (char *) psz;
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             e = state_non_space;
 
@@ -447,13 +447,13 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             __memmov(psz, psz + 1, strlen(psz));
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
          }
          else if(*psz == quote)
          {
 
-            p = ::str().next(psz);
+            p = unicode_next(psz);
 
             *psz = '\0';
 
@@ -465,7 +465,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          else
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
          }
 
@@ -476,7 +476,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          if(*psz == ' ')
          {
 
-            p = ::str().next(psz);
+            p = unicode_next(psz);
 
             *psz = '\0';
 
@@ -488,7 +488,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          else
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
          }
 
@@ -584,10 +584,10 @@ CLASS_DECL_ACME string executable_title_from_appid(string str)
 //
 //         const char* pszValueStart = psz;
 //
-//         while (!::str::ch().is_whitespace(psz))
+//         while (!unicode_is_whitespace(psz))
 //         {
 //
-//            ::str().increment(psz);
+//            unicode_increment(psz);
 //
 //            if (psz >= pszEnd)
 //            {
@@ -706,10 +706,10 @@ string_array get_c_args_from_c(const char* psz)
 
          const char* pszValueStart = psz;
 
-         while (!::str::ch().is_whitespace(psz))
+         while (!unicode_is_whitespace(psz))
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             if (psz >= pszEnd)
             {
@@ -821,10 +821,10 @@ string_array get_c_args_for_c(const char* psz)
 
          const char* pszValueStart = psz;
 
-         while (!::str::ch().is_whitespace(psz))
+         while (!unicode_is_whitespace(psz))
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             if (psz >= pszEnd)
             {
@@ -953,7 +953,7 @@ string transform_to_c_arg(const char* psz)
          if (*pszParse == '\\')
          {
 
-            ::str().increment(pszParse);
+            unicode_increment(pszParse);
 
          }
          else if (*pszParse == chQuote)
@@ -976,8 +976,8 @@ string transform_to_c_arg(const char* psz)
          chQuote = '\"';
 
       }
-      else if (::str::ch().is_whitespace(pszParse)
-         || isspace((unsigned char)*pszParse)
+      else if (unicode_is_whitespace(pszParse)
+         || character_isspace((unsigned char)*pszParse)
          || *pszParse == ':')
       {
 
@@ -987,7 +987,7 @@ string transform_to_c_arg(const char* psz)
 
       }
 
-      ::str().increment(pszParse);
+      unicode_increment(pszParse);
 
    }
 

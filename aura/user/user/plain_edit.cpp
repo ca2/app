@@ -53,7 +53,7 @@ namespace aura
 
          iData = str.find("data:", iData + 1);
 
-         if (iData < 0 || !(iData == 0 || !ansi_char_is_alphanumeric(str[iData - 1])))
+         if (iData < 0 || !(iData == 0 || !ansi_char_is_alnum(str[iData - 1])))
          {
 
             break;
@@ -2299,7 +2299,7 @@ namespace user
       //      while (*pszNext != '\0')
       //      {
 
-      //         pszNext = ::str().next(psz);
+      //         pszNext = unicode_next(psz);
 
       //         iLen = pszNext - psz;
 
@@ -2766,7 +2766,7 @@ namespace user
       //            while (*pszNext != '\0')
       //            {
       //
-      //               pszNext = ::str().next(psz);
+      //               pszNext = unicode_next(psz);
       //
       //               if (pszNext == nullptr)
       //               {
@@ -3162,7 +3162,7 @@ namespace user
       //      while (*pszNext != '\0')
       //      {
 
-      //         pszNext = ::str().next(psz);
+      //         pszNext = unicode_next(psz);
 
       //         iLen = pszNext - psz;
 
@@ -3528,7 +3528,7 @@ namespace user
             while (::has_char(pszNext))
             {
 
-               pszNext = ::str().next(psz);
+               pszNext = unicode_next(psz);
 
                iLen = pszNext - psz;
 
@@ -4113,7 +4113,7 @@ namespace user
 
          pszPrevious = pszEnd;
 
-         ::str().increment(pszEnd);
+         unicode_increment(pszEnd);
 
          if (pszEnd == nullptr)
             break;
@@ -4661,7 +4661,7 @@ namespace user
 
       //      ::pointer<::user::message>pusermessage(pmessage);
       //
-      //      if (::str::ch().is_legal_uni_index(pusermessage->m_wparam))
+      //      if (unicode_is_legal_uni_index(pusermessage->m_wparam))
       //      {
       //
       //#ifdef WINDOWS_DESKTOP
@@ -4723,7 +4723,7 @@ namespace user
             for (strsize i = 0; i < afterLength; i++)
             {
 
-               auto pszNew = ::str().next(psz);
+               auto pszNew = unicode_next(psz);
 
                if (::is_empty(pszNew))
                {
@@ -4930,7 +4930,7 @@ namespace user
 
             m_ptree->m_peditfile->read(buf, sizeof(buf));
 
-            const char * psz = ::str().next(buf);
+            const char * psz = unicode_next(buf);
 
             strsize iMultiByteUtf8DeleteCount = psz - buf;
 
@@ -5704,7 +5704,7 @@ namespace user
                         else
                         {
 
-                           psz = ::str().prior(&buf[iCur], buf);
+                           psz = unicode_prior(&buf[iCur], buf);
 
                            if (psz == nullptr)
                            {
@@ -5922,7 +5922,7 @@ namespace user
                   }
                   else
                   {
-                     m_ptree->m_iSelEnd += ::str().next(buf) - buf;
+                     m_ptree->m_iSelEnd += unicode_next(buf) - buf;
                   }
                   _001SetSelEnd(m_ptree->m_iSelEnd);
                   if (!bShift)
@@ -5968,7 +5968,7 @@ namespace user
                      }
                      else
                      {
-                        m_ptree->m_iSelEnd -= psz - ::str().prior(psz, buf);
+                        m_ptree->m_iSelEnd -= psz - unicode_prior(psz, buf);
                      }
                   }
                   else
@@ -6952,7 +6952,7 @@ namespace user
                strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
                m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
                m_ptree->m_peditfile->read(buf, sizeof(buf));
-               const char * psz = ::str().prior(&buf[iCur], buf);
+               const char * psz = unicode_prior(&buf[iCur], buf);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
                m_ptree->m_peditfile->Delete((memsize)(iMultiByteUtf8DeleteCount));

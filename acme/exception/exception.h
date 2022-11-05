@@ -19,33 +19,26 @@ public:
    bool                       m_bContinue;
    string                     m_strMessage; // Message for the user
    string                     m_strDetails; // Details about exception (if available/applicable)
-   //string                     m_strException;
+   //string                   m_strException;
 
    // A exception class is meant to be a small utility/tool class.
    // m_bLog -> too much managing (micro-managing and also big-managing)
    // from utility/tool small class of the Logging get_system()->
    // General-ever Log can be done by final handlers at Main Loop and crash handlers
    // Log can be supressed or translated at optional middle-stack handlers.
-   // bool        m_bLog;
+   // bool                    m_bLog;
    string                     m_strLink;
    string                     m_strFile;
    int                        m_iLine;
    array < error_code >       m_errorcodea;
-//   int                        m_iErrNo;
-//#ifdef WINDOWS
-  // HRESULT                    m_hresult;
-   //::u32                      m_uLastError;
-//#endif
-
-
    static bool                s_bEnableCallStackBackTrace;
 
 
    exception();
 #ifdef ANDROID
-   exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
+   exception(const ::e_status & estatus, const ::string & strMessage = nullptr, const ::string & strDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
 #else
-   exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+   exception(const ::e_status & estatus, const ::string & strMessage = nullptr, const ::string & strDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
 #endif
    virtual ~exception();
 
@@ -85,29 +78,6 @@ public:
 
 #endif
 
-
-#ifdef WINDOWS
-
-
-class CLASS_DECL_ACME win32_exception :
-   public ::exception
-{
-public:
-
-
-   win32_exception(::u32 uLastError) :
-      exception(error_win32)
-   {
-
-      m_errorcodea.add(__last_error(uLastError));
-
-   }
-
-
-};
-
-
-#endif
 
 
 
@@ -156,6 +126,15 @@ public:
 
    
 };
+
+
+template < typename CHAR_TYPE1 >
+void copy(::string_base < CHAR_TYPE1 > & str1, const ::exception & exception)
+{
+
+   str1 = exception.m_strMessage;
+
+}
 
 
 

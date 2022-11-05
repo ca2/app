@@ -4,15 +4,15 @@
 
 
 
-inline wd32char               wd32_char_lowered(i32 ch);
-inline wd32char               wd32_char_uppered(i32 ch);
-inline i32                    wd32_char_is_digit(i32 ch);
+inline wd32char               wd32_char_tolower(i32 ch);
+inline wd32char               wd32_char_toupper(i32 ch);
+inline i32                    wd32_char_isdigit(i32 ch);
+inline i32                    wd32_char_isalpha(i32 ch);
+inline i32                    wd32_char_isalnum(i32 ch);
+inline i32                    wd32_char_isspace(i32 ch);
+
+
 inline i32                    wd32_char_is_hexadecimal(i32 ch);
-inline i32                    wd32_char_is_alphabetic(i32 ch);
-inline i32                    wd32_char_is_alphanumeric(i32 ch);
-inline i32                    wd32_char_is_space(i32 ch);
-
-
 
 inline wd32char *             wd32_last_char(wd32char * psz);
 inline const wd32char *       wd32_const_last_char(const wd32char * psz);

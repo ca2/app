@@ -66,9 +66,6 @@
     <Filter Include="Source Files\message">
       <UniqueIdentifier>{48da4faa-4f0b-434e-9dba-afad51502203}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\process">
-      <UniqueIdentifier>{256720b0-24fa-42db-8d3e-f10366e15770}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\crypto">
       <UniqueIdentifier>{44dfb090-5638-4f6d-b068-483ce83356e0}</UniqueIdentifier>
     </Filter>
@@ -86,9 +83,6 @@
     </Filter>
     <Filter Include="Header Files\compress">
       <UniqueIdentifier>{1851dfe9-1a38-4dbf-87df-d815c0ddf7ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\process">
-      <UniqueIdentifier>{24ecb5b1-6825-4abe-a10e-2b0f916bc71a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\message">
       <UniqueIdentifier>{72a8e348-e895-499d-ba3f-cc827b1debd8}</UniqueIdentifier>
@@ -553,15 +547,6 @@
     </ClInclude>
     <ClInclude Include="database\stringhelper.h">
       <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="process\_.h">
-      <Filter>Header Files\process</Filter>
-    </ClInclude>
-    <ClInclude Include="process\department.h">
-      <Filter>Header Files\process</Filter>
-    </ClInclude>
-    <ClInclude Include="process\process.h">
-      <Filter>Header Files\process</Filter>
     </ClInclude>
     <ClInclude Include="user\language.h">
       <Filter>Header Files\user</Filter>
@@ -1236,12 +1221,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\edit_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="process\process.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="process\department.cpp">
-      <Filter>Source Files\process</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto.cpp">
       <Filter>Source Files\crypto</Filter>

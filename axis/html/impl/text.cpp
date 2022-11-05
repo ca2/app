@@ -214,7 +214,7 @@ namespace html
 
                uch = (uchar)str[i];
 
-               if (!isspace(uch))
+               if (!character_isspace(uch))
                   break;
 
                iSpace++;
@@ -251,7 +251,7 @@ namespace html
 
                uch = (uchar)str[i];
 
-               if (isspace(uch))
+               if (character_isspace(uch))
                   break;
 
                strLine += str[i];
@@ -278,7 +278,7 @@ namespace html
 
             uch = (uchar)m_straWordSpace[i][0];
 
-            if (!isspace(uch))
+            if (!character_isspace(uch))
             {
 
                size = pgraphics->get_text_extent(m_straWordSpace[i]);
@@ -416,7 +416,7 @@ namespace html
 
                uch = (uchar)str[i];
 
-               if (!isspace(uch))
+               if (!character_isspace(uch))
                   break;
 
                iSpace++;
@@ -444,7 +444,7 @@ namespace html
 
                uch = (uchar)str[i];
 
-               if (isspace(uch))
+               if (character_isspace(uch))
                   break;
 
                strLine += str[i];
@@ -1224,7 +1224,7 @@ namespace html
 
                   }
 
-                  ::str().increment(pszEnd);
+                  unicode_increment(pszEnd);
 
                   iChar++;
                }

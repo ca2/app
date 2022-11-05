@@ -6,7 +6,12 @@
 #include "acme/primitive/datetime/__string.h"
 #include "acme/operating_system/time.h"
 #include "acme/exception/not_implemented.h"
+#include "acme/primitive/string/str.h"
+
+
 #include "acme/_operating_system.h"
+
+
 #include <time.h>
 
 
@@ -884,14 +889,12 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
 //}
 
 
-CLASS_DECL_ACME FILETIME __FILETIME(const ::earth::time & time)
+CLASS_DECL_ACME FILETIME & copy(FILETIME & filetime, const ::earth::time & time)
 {
 
    SYSTEMTIME systemtime = __SYSTEMTIME(time);
 
-   FILETIME file_time = {};
-
-   if (!SystemTimeToFileTime(&systemtime, &file_time))
+   if (!SystemTimeToFileTime(&systemtime, &filetime))
    {
 
 #ifdef WINDOWS
@@ -902,11 +905,11 @@ CLASS_DECL_ACME FILETIME __FILETIME(const ::earth::time & time)
 
       //TRACELASTERROR();
 
-      __zero(file_time);
+      __zero(filetime);
 
    }
 
-   return file_time;
+   return filetime;
 
 }
 

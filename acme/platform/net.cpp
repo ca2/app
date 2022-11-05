@@ -257,8 +257,8 @@ string url_encode(const char * psz)
 
       char ch = *psz;
 
-      if(ansi_char_is_digit(ch)
-            || ansi_char_is_alphabetic(ch)
+      if(ansi_char_isdigit(ch)
+            || ansi_char_isalpha(ch)
             || ch == '.'
             || ch == '-'
             || ch == '_')
@@ -321,8 +321,8 @@ string url_encode(const char * psz)
 //while (*psz != '\0')
 //{
 //
-//   if (ansi_char_is_digit(*psz)
-//      || ansi_char_is_alphabetic(*psz)
+//   if (ansi_char_isdigit(*psz)
+//      || ansi_char_isalpha(*psz)
 //      || *psz == '.'
 //      || *psz == '-'
 //      || *psz == '_')
@@ -808,8 +808,8 @@ CLASS_DECL_ACME string url_decode(const char* psz)
 //
 //      char uch = *psz;
 //
-//      if (ansi_char_is_digit(uch)
-//         || ansi_char_is_alphabetic(uch)
+//      if (ansi_char_isdigit(uch)
+//         || ansi_char_isalpha(uch)
 //         || uch == '.'
 //         || uch == '-'
 //         || uch == '_')
@@ -872,8 +872,8 @@ CLASS_DECL_ACME string url_decode(const char* psz)
 //while (*psz != '\0')
 //{
 //
-//   if (ansi_char_is_digit(*psz)
-//      || ansi_char_is_alphabetic(*psz)
+//   if (ansi_char_isdigit(*psz)
+//      || ansi_char_isalpha(*psz)
 //      || *psz == '.'
 //      || *psz == '-'
 //      || *psz == '_')

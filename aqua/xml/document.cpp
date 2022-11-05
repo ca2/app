@@ -373,7 +373,7 @@ namespace xml
 
          strName += *pszXml;
 
-         ::str().increment(pszXml);
+         unicode_increment(pszXml);
 
       }
 

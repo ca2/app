@@ -679,7 +679,7 @@ void object::defer_update_object_id()
 
    string strType = __type_name(this);
 
-   ::str().begins_eat_ci(strType, "class ");
+   strType.begins_eat_ci("class ");
 
    return strType;
 

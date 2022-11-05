@@ -162,4 +162,9 @@ inline ::e_status operator & (enum_status e1, e_status e2) { return((enum_status
 inline ::e_status operator & (e_status e1, e_status e2) { return((enum_status)e1) & ((enum_status)e2); }
 
 
+inline ::e_status errno_status(i32 nErrno) { return _errno_status(nErrno); }
+
+inline ::e_status failed_errno_to_status(i32 nErrno) { return _failed_errno_status(nErrno); }
+
+
 

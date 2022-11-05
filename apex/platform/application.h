@@ -34,7 +34,7 @@ namespace apex
       void *                                       m_pnativeapp;
 
 
-      class application_impl *                     m_pappimpl;
+      //class application_impl *                     m_pappimpl;
 
       // 2020-01-25: removing from ::apex::system, placing here (at ::context)
       // 2020-07-23: now at ::application
@@ -419,9 +419,9 @@ namespace apex
       virtual string get_theme();
 
 
-      virtual bool exclusive_fails(string str, const security_attributes & securitattributes = nullptr);
+      virtual bool exclusive_fails(string str, security_attributes * psecurityattributes = nullptr);
 
-      virtual bool exclusive_erase(string str, const security_attributes & securitattributes = nullptr);
+      virtual bool exclusive_erase(string str, security_attributes * psecurityattributes = nullptr);
 
 
       virtual bool start_application(bool bSynch, ::create * pcreate);

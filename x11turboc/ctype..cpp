@@ -58,7 +58,7 @@ isxdigitTurbo (int c)
 int
 isspaceTurbo (int c)
 {
-  return (isspace (c));
+  return (character_isspace (c));
 }
 
 int

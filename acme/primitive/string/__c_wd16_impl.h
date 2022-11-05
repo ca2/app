@@ -4,17 +4,17 @@
 
 
 
-inline wd16char wd16_char_lowered(i32 i) { return __wd16tolower(i); }
-inline wd16char wd16_char_uppered(i32 i) { return __wd16toupper(i); }
+inline wd16char wd16_char_tolower(i32 i) { return __wd16tolower(i); }
+inline wd16char wd16_char_toupper(i32 i) { return __wd16toupper(i); }
 
 
-inline i32 wd16_char_is_digit(i32 i) { return __wd16charisdigit(i); }
+inline i32 wd16_char_isdigit(i32 i) { return __wd16charisdigit(i); }
+inline i32 wd16_char_isalpha(i32 i) { return __wd16charisalpha(i); }
+inline i32 wd16_char_isalnum(i32 i) { return __wd16charisalnum(i); }
+inline i32 wd16_char_isspace(i32 i) { return __wd16charisspace(i); }
+
+
 inline i32 wd16_char_is_hexadecimal(i32 i) { return __wd16charishexadecimal(i); }
-inline i32 wd16_char_is_alphabetic(i32 i) { return __wd16charisalphabetic(i); }
-inline i32 wd16_char_is_alphanumeric(i32 i) { return __wd16charisalphanumeric(i); }
-inline i32 wd16_char_is_space(i32 i) { return __wd16charisspace(i); }
-
-
 
 
 
@@ -857,7 +857,7 @@ inline wd16char * wd16_lower(wd16char * pch)
    while (*p != '\0')
    {
 
-      *p = wd16_char_lowered(*p);
+      *p = wd16_char_tolower(*p);
 
       p++;
 
@@ -876,7 +876,7 @@ inline wd16char * wd16_upper(wd16char * pch)
    while (*p != '\0')
    {
 
-      *p = wd16_char_uppered(*p);
+      *p = wd16_char_toupper(*p);
 
       p++;
 
@@ -1104,7 +1104,7 @@ inline const wd16char * wd16_concatenate_and_duplicate(const wd16char * psz1, co
 //inline unichar * wd16_concatenate(unichar * dest, const unichar * cat);
 //inline unichar * wd16_copy(unichar * dest, const unichar * src);
 //inline unichar * wd16_count_copy(unichar * dest, const unichar * src, strsize n);
-//inline i32 wd16_char_is_alphanumeric(i32 wch);
+//inline i32 wd16_char_is_alnum(i32 wch);
 //inline count wd16_length(const unichar * pwsz);
 //inline count wd16_32len_dup(const wchar_t * pwsz);
 //inline unichar * wd16_find_char(const unichar * sz, unichar ch);
@@ -1128,9 +1128,9 @@ inline const wd16char * wd16_concatenate_and_duplicate(const wd16char * psz1, co
 //inline errno_t wd16_lower(unichar * sz, strsize size);
 //inline errno_t wd16_upper(unichar * sz, strsize size);
 
-//inline i32 wd16_char_is_alphabetic(i32 ch);
-//inline i32 wd16_char_is_digit(i32 ch);
-//inline i32 wd16_char_is_space(i32 ch);
+//inline i32 wd16_char_isalpha(i32 ch);
+//inline i32 wd16_char_isdigit(i32 ch);
+//inline i32 wd16_char_isspace(i32 ch);
 
 
 //inline void __cdecl wparse_cmdline(WCHAR *cmdstart, WCHAR **argv, WCHAR *args, i32 * numargs, i32 * numchars);
@@ -1148,7 +1148,7 @@ inline const wd16char * wd16_concatenate_and_duplicate(const wd16char * psz1, co
 //   {
 
 //
-//      inline i32 ::str::ch().parse_unicode(const wd16char *& input)
+//      inline i32 unicode_parse_unicode(const wd16char *& input)
 //      {
 //
 //         if (input[0] == 0)
@@ -1199,7 +1199,7 @@ inline const wd16char * wd16_concatenate_and_duplicate(const wd16char * psz1, co
 //      }
 //
 //
-//      inline i32 ::str::ch().uni_index_len(const wd16char * input, i32 & len)
+//      inline i32 unicode_index_len(const wd16char * input, i32 & len)
 //      {
 //
 //         if (input[0] == 0)

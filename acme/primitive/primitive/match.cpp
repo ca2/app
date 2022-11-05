@@ -53,7 +53,7 @@ namespace match
    bool prefix::matches(const ::payload & payload) const
    {
 
-      return ::str().begins(payload.string(), m_str);
+      return payload.string().begins(m_str);
 
    }
 
@@ -65,7 +65,7 @@ namespace match
 
    bool ci_prefix::matches(const ::payload & payload) const
    {
-      return ::str().begins_ci(payload.string(), m_str);
+      return payload.string().begins_ci(m_str);
    }
 
    suffix::suffix(const char* psz) :
@@ -75,7 +75,7 @@ namespace match
 
    bool suffix::matches(const ::payload & payload) const
    {
-      return ::str().ends(payload.string(), m_str);
+      return payload.string().ends(m_str);
    }
 
    ci_suffix::ci_suffix(const char* psz) :
@@ -85,7 +85,7 @@ namespace match
 
    bool ci_suffix::matches(const ::payload & payload) const
    {
-      return ::str().ends_ci(payload.string(), m_str);
+      return payload.string().ends_ci(m_str);
    }
 
    bool any::matches(const ::payload & payload) const

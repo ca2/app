@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/primitive/primitive/bit.h"
 #include "acme/exception/exception.h"
 
 

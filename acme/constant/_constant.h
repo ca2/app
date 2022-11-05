@@ -782,3 +782,34 @@ enum enum_item : ::i64
 
 #include "message_box.h"
 
+
+
+enum enum_command_system
+{
+
+   e_command_system_none = 0,
+   e_command_system_inline_log = 1,
+
+};
+
+
+enum ECodePage
+{
+   CodePageShiftJIS = 932,
+   CodePageLatin1 = 1252,
+   //#ifdef WINDOWS
+   //         CodePageUtf8 = CP_UTF8,
+   //         CodePageAnsi = CP_ACP,
+   //         CodePageOem = CP_OEMCP,
+   //#else
+   CodePageUtf8 = 65001,
+   CodePageAnsi = 10,
+   CodePageOem = 11
+   ///#endif
+};
+
+
+
+
+
+

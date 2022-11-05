@@ -93,7 +93,7 @@ bool is_only_digits(const ::string & strParam)
       return false;
    while(true)
    {
-      if(!ansi_char_is_digit(*psz))
+      if(!ansi_char_isdigit(*psz))
          return false;
       psz++;
       if(*psz == '\0')

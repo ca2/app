@@ -284,9 +284,9 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 
       string strTopic(pszTopicText);
 
-      ::str().begins_eat_ci(strTopic, "class ");
+      strTopic.begins_eat_ci("class ");
 
-      ::str().begins_eat_ci(strTopic, "struct ");
+      strTopic.begins_eat_ci("struct ");
 
       strMessage.format("%c:%s> %s", trace_level_char(elevel), strTopic.c_str(), psz);
 

@@ -97,11 +97,38 @@ int main(int argc, char * argv[], char * envp[])
 
    ::acme::acme acme;
 
-   subsystem subsystem;
+   ::sub_system subsystem;
+
+   acme.m_psubsystem = &subsystem;
 
    main_hold mainhold;
 
    #ifdef WINDOWS
+
+#ifdef WINDOWS_DESKTOP
+
+   //if (!m_hinstanceThis)
+   //{
+
+   subsystem.m_hinstanceThis = ::GetModuleHandle(nullptr);
+
+   //}
+
+   //m_hPrevInstance = nullptr;
+
+   if (subsystem.m_nCmdShow == -1000)
+   {
+
+      subsystem.m_nCmdShow = SW_SHOWDEFAULT;
+
+   }
+
+#elif defined(LINUX)
+
+   m_bGtkApp = false;
+
+#endif
+
 
       set_winmain(hinstanceThis, hinstancePrev, nCmdShow);
    

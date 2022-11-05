@@ -1054,7 +1054,7 @@ bool task::has_message() const
    DWORD dwThread = 0;
 
    m_htask = ::CreateThread(
-      (LPSECURITY_ATTRIBUTES)createtaskattributes.m_securityattributes.m_pOsSecurityAttributes,
+      (LPSECURITY_ATTRIBUTES)(createtaskattributes.m_psecurityattributes ? createtaskattributes.m_psecurityattributes->get_os_security_attributes() : nullptr),
       createtaskattributes.m_uStackSize, 
       (LPTHREAD_START_ROUTINE) & ::task::s_os_task, 
       (LPVOID)(task *)this,

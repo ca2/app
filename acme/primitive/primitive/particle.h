@@ -197,6 +197,7 @@ public:
    ::acme_directory * acmedirectory();
    ::acme::node * acmenode();
    ::acme::system * acmesystem();
+   ::sub_system * subsystem();
 
 
    ::apex::application * apexapplication();

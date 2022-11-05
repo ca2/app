@@ -8,6 +8,8 @@
 
 #include "framework.h"
 #include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/string/str.h"
+//#include "acme/primitive/string/ch12.h"
 #include "acme/exception/exception.h"
 //wchar_t* _argv[_MAX_CMD_LINE_ARGS + 1];
 //static wchar_t* _rawCmd = 0;
@@ -72,10 +74,10 @@ string_array get_c_args_from_string(const char * psz)
 
          const char * pszValueStart = psz;
 
-         while (!::str::ch().is_whitespace(psz))
+         while (!unicode_is_whitespace(psz))
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             if (::is_empty(psz))
             {
@@ -196,10 +198,10 @@ string_array no_escape_get_c_args_from_string(const char * psz)
 
          char chQuote = '\0';
 
-         while (!::str::ch().is_whitespace(psz))
+         while (!unicode_is_whitespace(psz))
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             if (psz >= pszEnd)
             {
@@ -332,7 +334,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
    while(*psz != '\0')
    {
 
-      strChar = ::str().get_utf8_char(psz);
+      strChar = get_utf8_char(psz);
 
       if(strChar.is_empty())
       {
@@ -349,7 +351,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
          while(*psz != '\0')
          {
 
-            strChar = ::str().get_utf8_char(psz);
+            strChar = get_utf8_char(psz);
 
             if(strChar.is_empty())
             {
@@ -370,7 +372,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
             if(strChar == "\\")
             {
 
-               strChar = ::str().get_utf8_char(psz);
+               strChar = get_utf8_char(psz);
 
                if(strChar.is_empty())
                {
@@ -420,7 +422,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
       else if(strChar == "\\")
       {
 
-         strChar = ::str().get_utf8_char(psz);
+         strChar = get_utf8_char(psz);
 
          if(strChar.is_empty())
          {

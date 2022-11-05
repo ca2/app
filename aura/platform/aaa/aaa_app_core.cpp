@@ -1074,10 +1074,10 @@ string_array get_c_args_from_string(const ::string & psz)
 
          const char * pszValueStart = psz;
 
-         while (!::str::ch().is_whitespace(psz))
+         while (!unicode_is_whitespace(psz))
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             if (psz >= pszEnd)
             {
@@ -1196,10 +1196,10 @@ string_array get_c_args_from_c(const ::string & psz)
 
          const char * pszValueStart = psz;
 
-         while (!::str::ch().is_whitespace(psz))
+         while (!unicode_is_whitespace(psz))
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             if (psz >= pszEnd)
             {
@@ -1311,10 +1311,10 @@ string_array get_c_args_for_c(const ::string & psz)
 
          const char * pszValueStart = psz;
 
-         while(!::str::ch().is_whitespace(psz))
+         while(!unicode_is_whitespace(psz))
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             if(psz >= pszEnd)
             {
@@ -1449,7 +1449,7 @@ string transform_to_c_arg(const ::string & psz)
          if(*pszParse == '\\')
          {
 
-            ::str().increment(pszParse);
+            unicode_increment(pszParse);
 
          }
          else if(*pszParse == chQuote)
@@ -1472,8 +1472,8 @@ string transform_to_c_arg(const ::string & psz)
          chQuote = '\"';
 
       }
-      else if(::str::ch().is_whitespace(pszParse)
-         || isspace((unsigned char) *pszParse)
+      else if(unicode_is_whitespace(pszParse)
+         || character_isspace((unsigned char) *pszParse)
               || *pszParse == ':')
       {
 
@@ -1483,7 +1483,7 @@ string transform_to_c_arg(const ::string & psz)
 
       }
 
-      ::str().increment(pszParse);
+      unicode_increment(pszParse);
 
    }
 

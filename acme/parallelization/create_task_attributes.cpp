@@ -3,8 +3,8 @@
 #include "create_task_attributes.h"
 
 
-create_task_attributes::create_task_attributes(::enum_priority epriority, ::u32 uStackSize, ::u32 uCreateFlags, const security_attributes & security_attributes) :
-   m_securityattributes(security_attributes)
+create_task_attributes::create_task_attributes(::enum_priority epriority, ::u32 uStackSize, ::u32 uCreateFlags, security_attributes * psecurityattributes) :
+   m_psecurityattributes(psecurityattributes)
 {
    
    m_epriority = epriority;
@@ -22,7 +22,7 @@ create_task_attributes::create_task_attributes(nullptr_t) :
 
 
 create_task_attributes::create_task_attributes(const create_task_attributes & createtaskattributes) :
-   m_securityattributes(createtaskattributes.m_securityattributes)
+   m_psecurityattributes(createtaskattributes.m_psecurityattributes)
 {
 
    m_epriority = createtaskattributes.m_epriority;

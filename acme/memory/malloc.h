@@ -302,3 +302,6 @@ inline ::string __string(const ::acme::memory_allocate < POINTER > & memoryalloc
 
 
 
+
+
+

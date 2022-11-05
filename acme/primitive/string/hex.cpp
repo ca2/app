@@ -107,7 +107,7 @@ namespace hex
       for (index i = 0; i < 4; i++)
       {
          psz = pszNext;
-         pszNext = ::str().next(psz);
+         pszNext = unicode_next(psz);
          if (pszNext > pszEnd)
          {
             throw ::exception(error_parsing, "hexadecimal digit expected, premature end");

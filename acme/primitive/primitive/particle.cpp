@@ -314,6 +314,15 @@ void particle::on_initialize_particle()
 }
 
 
+
+::sub_system * particle::subsystem()
+{
+
+   return m_pcontext->acmesystem()->m_psubsystem;
+
+}
+
+
 ::apex::application * particle::apexapplication()
 {
 

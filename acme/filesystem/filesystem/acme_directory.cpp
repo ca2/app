@@ -200,7 +200,7 @@ string acme_directory::system_short_name()
 
    path.replace_with("", ":");
 
-   ::str().ends_eat_ci(path, ".exe");
+   path.ends_ci(".exe");
 
    return path;
 
@@ -377,7 +377,12 @@ string acme_directory::system_short_name()
 ::file::path acme_directory::stage(string strAppId, string strPlatform, string strConfiguration)
 {
 
-   return inplace_install(strAppId, strPlatform, strConfiguration) / "time" / time_binary_platform(strPlatform) / strConfiguration;
+   return 
+      inplace_install(
+         strAppId,
+         strPlatform,
+         strConfiguration) 
+      / "time" / acmenode()->time_binary_platform(strPlatform) / strConfiguration;
 
 }
 

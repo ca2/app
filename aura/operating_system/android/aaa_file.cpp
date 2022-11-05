@@ -684,7 +684,7 @@ namespace android
    //void PASCAL file_exception::ThrowErrno(::particle * pparticle, i32 nErrno, const ::string & lpszFileName /* = nullptr */)
    //{
    //   if (nErrno != 0)
-   //      vfxThrowFileexception(file_exception::errno_to_status(nErrno), errno, lpszFileName);
+   //      vfxThrowFileexception(file_exception::errno_status(nErrno), errno, lpszFileName);
    //}
 
 

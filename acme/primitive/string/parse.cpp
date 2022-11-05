@@ -479,7 +479,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       start = m_iPos;
 
       while(m_iPos < m_iLen && m_psz[m_iPos] != '\r' && m_psz[m_iPos] != '\n')
-         m_iPos+=ch_uni_len(m_psz[m_iPos]);
+         m_iPos+=ch_unicode_len(m_psz[m_iPos]);
 
       end = m_iPos;
 

@@ -6,6 +6,7 @@
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/collection/string_array.h"
 #include "acme/primitive/string/parse.h"
+#include "acme/primitive/string/str.h"
 #include "context.h"
 
 
@@ -695,7 +696,7 @@ namespace text
 
          pszEnd = psz + rstr.m_iSize;
 
-         while(::str::ch().is_whitespace(psz))
+         while(unicode_is_whitespace(psz))
          {
             
             psz += str_uni_len(psz);
@@ -730,7 +731,7 @@ namespace text
          strRoot.assign(s, psz - s);
          psz++;
 
-         while(::str::ch().is_whitespace(psz))
+         while(unicode_is_whitespace(psz))
          {
             psz += str_uni_len(psz);
             if(psz >= pszEnd)
@@ -742,7 +743,7 @@ namespace text
 
          psz++;
 
-         while(::str::ch().is_whitespace(psz))
+         while(unicode_is_whitespace(psz))
          {
             psz += str_uni_len(psz);
             if(psz >= pszEnd)

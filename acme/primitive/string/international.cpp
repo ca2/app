@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "international.h"
 #include "string.h"
 #include "international2.h"
 #include "acme/primitive/primitive/memory.h"
@@ -52,7 +53,7 @@
       bool unicode_to_multibyte(::u32 uCodePage, string &str, const widechar * pcsz)
       {
 
-         auto srclen = ::str().string_safe_length(pcsz);
+         auto srclen = string_safe_length(pcsz);
 
          if (srclen <= 0)
          {
@@ -146,7 +147,7 @@
       strsize unicode_to_multibyte_count(::u32 uCodePage, const widechar * pcsz)
       {
 
-         return unicode_to_multibyte_count(uCodePage, pcsz, ::str().string_safe_length(pcsz));
+         return unicode_to_multibyte_count(uCodePage, pcsz, string_safe_length(pcsz));
 
       }
 

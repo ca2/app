@@ -352,7 +352,7 @@ bool lite_html_reader::getEventNotify(u32 dwEvent) const
 
 bool lite_html_reader::isWhiteSpace(char ch) const
 {
-   return ::isspace(static_cast < unsigned char > (ch)) ? true : false;
+   return ::character_isspace(static_cast < unsigned char > (ch)) ? true : false;
 }
 
 
@@ -492,7 +492,7 @@ bool lite_html_reader::parseComment(string &rComment)
    // skip white-space characters after comment ending delimeter '--'
    pszEnd += (sizeof(char) * 2);
 
-   while (::isspace(*pszEnd))
+   while (::character_isspace(*pszEnd))
 
       pszEnd++;
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/_c.h"
+//#include "acme/_c.h"
 
 
 // return UTF8 offset
@@ -75,7 +75,7 @@ CLASS_DECL_ACME wd16char* wd32_to_wd16_dup(const wd16char* pcwsz, strsize input_
 
 CLASS_DECL_ACME strsize utf16_len(const wd16char* psz);
 CLASS_DECL_ACME const wd16char * unicode_next(const wd16char* psz);
-CLASS_DECL_ACME const wd16char * unicode_prior(const wd16char * psz, const wd16char * pszBeg);
+inline const wd16char * unicode_prior(const wd16char * psz, const wd16char * pszBeg);
 
 
 CLASS_DECL_ACME strsize ansi_to_wd16_len(const char* psz, strsize srclen = -1);
@@ -94,8 +94,8 @@ CLASS_DECL_ACME char * wd16_to_ansi_dup(const wd16char * input, strsize input_si
 
 
 CLASS_DECL_ACME strsize utf32_len(const wd32char* psz);
-CLASS_DECL_ACME const wd32char * unicode_next(const wd32char* psz);
-CLASS_DECL_ACME const wd32char * unicode_prior(const wd32char * psz, const wd32char * pszBeg);
+inline const wd32char * unicode_next(const wd32char* psz);
+inline const wd32char * unicode_prior(const wd32char * psz, const wd32char * pszBeg);
 
 CLASS_DECL_ACME strsize ansi_to_wd32_len(const char* psz, strsize srclen = -1);
 CLASS_DECL_ACME strsize ansi_to_wd32(wd32char* pwsz, const char* psz, strsize srclen = -1);

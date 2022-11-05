@@ -441,7 +441,7 @@ CLASS_DECL_NETWORKING_BSD::string __string_inet_ntop(int iFamily, const void * p
 
       int iErrNo = errno;
 
-      auto estatus = errno_to_status(iErrNo);
+      auto estatus = errno_status(iErrNo);
 
       throw ::exception(estatus, "Failed to convert IP4 Address to text");
 

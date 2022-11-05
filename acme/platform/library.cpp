@@ -222,7 +222,7 @@ namespace acme
       if (m_strName.has_char())
       {
 
-         ::subsystem::get()->m_mapLibrary[m_strName] = this;
+         subsystem()->m_mapLibrary[m_strName] = this;
 
       }
 

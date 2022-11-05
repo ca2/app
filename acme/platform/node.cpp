@@ -9,6 +9,8 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/memory/counter.h"
+#include "acme/platform/exclusive.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/exception/interface_only.h"
@@ -117,7 +119,7 @@ namespace acme
    }
 
 
-   void node::call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+   void node::call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set, int * piExitCode)
    {
 
       throw ::interface_only();
@@ -436,7 +438,7 @@ namespace acme
 
    //__new(::pointer < ::mutex >(this, false, "Local\\ca2-appmatter")
 
-   ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::string & strName)
+   ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::string & strName, security_attributes * psecurityattributes)
    {
 
       return nullptr;
@@ -444,12 +446,13 @@ namespace acme
    }
 
 
-   ::pointer < ::mutex > node::create_global_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::string & strName)
+   ::pointer < ::mutex > node::create_global_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::string & strName, security_attributes * psecurityattributes)
    {
 
       return nullptr;
 
    }
+
 
    ::pointer < ::mutex > node::open_local_named_mutex(::particle * pparticleContext, const ::string & strName)
    {
@@ -479,10 +482,67 @@ namespace acme
    }
 
 
-   ::pointer < ::acme::exclusive > node::get_exclusive(::particle * pparticleContext, const ::string & strName, const security_attributes & securityattributes)
+   ::pointer < ::acme::exclusive > node::_get_exclusive(::particle * pparticleContext, const ::string & strName, security_attributes * psecurityattributes)
    {
 
       return nullptr;
+
+   }
+
+
+   ::pointer < ::acme::exclusive > node::get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes)
+   {
+
+      auto & pexclusive = m_mapExclusive[strName];
+
+      if (!pexclusive)
+      {
+
+         auto pexclusiveNew = _get_exclusive(pparticleContext, strName, psecurityattributes);
+
+         pexclusive = pexclusiveNew;
+
+      }
+
+      return pexclusive;
+
+   }
+
+
+   bool node::erase_exclusive(const ::string & strName)
+   {
+
+      auto & pexclusive = m_mapExclusive[strName];
+
+      if (!pexclusive)
+      {
+
+         return true;
+
+      }
+
+      pexclusive.release();
+
+      m_mapExclusive.erase_key(strName);
+
+      return true;
+
+   }
+
+
+   bool node::exclusive_fails(::particle * pparticleContext, const ::string & strName, security_attributes * psecurityattributes)
+   {
+
+      auto pexclusive = get_exclusive(pparticleContext, strName, psecurityattributes);
+
+      if (!pexclusive)
+      {
+
+         return false;
+
+      }
+
+      return pexclusive->exclusive_fails();
 
    }
 
@@ -1559,10 +1619,10 @@ namespace acme
    }
 
 
-   bool node::get_application_exclusivity_security_attributes(memory & memory)
+   ::pointer < security_attributes > node::get_application_exclusivity_security_attributes()
    {
 
-      return true;
+      return nullptr;
 
    }
 
@@ -1705,7 +1765,7 @@ return false;
    }
 
 
-   void node::aaa_shell_execute_async(const char * pszFile, const char * pszParams)
+   void node::shell_execute_async(const char * pszFile, const char * pszParams)
    {
 
       //throw ::interface_only();
@@ -1717,7 +1777,7 @@ return false;
    }
 
 
-   void node::aaa_shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+   void node::shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
    {
 
       //throw ::interface_only();
@@ -2007,6 +2067,379 @@ return false;
    {
 
       return {};
+
+   }
+
+
+   string node::process_version_dir_name()
+   {
+
+      return is_release_build() ? "release" : "debug";
+
+   }
+
+
+   int node::is_debug_build()
+   {
+
+#ifdef _DEBUG
+
+      return true;
+
+#else
+
+      return false;
+
+#endif
+
+
+   }
+
+
+   int node::is_release_build()
+   {
+
+#ifdef _DEBUG
+
+      return false;
+
+#else
+
+      return true;
+
+#endif
+
+   }
+
+
+   ::file::path node::core_app_path(string strAppId)
+   {
+
+      ::file::path path = get_last_run_application_path(strAppId);
+
+      if (path.has_char())
+      {
+
+         return path;
+
+      }
+
+      strAppId.find_replace("-", "_");
+
+      strAppId.find_replace("/", "_");
+
+      path = "C:\\acme\\time\\x64\\basis\\" + strAppId + ".exe";
+
+      return path;
+
+   }
+   
+   
+   bool node::shell_execute_async(const ::string & pszFile, const ::string & pszParams)
+   {
+
+      return false;
+
+   }
+
+
+   bool node::shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const ::duration & durationTimeout)
+   {
+
+      return false;
+
+   }
+
+   
+   bool node::root_execute_async(const ::string & pszFile, const ::string & pszParams)
+   {
+
+      return false;
+
+   }
+
+
+   bool node::root_execute_sync(const ::string & pszFile, const ::string & pszParams, const ::duration & durationTimeout)
+   {
+
+      return false;
+
+   }
+
+
+   string node::executable_title_from_appid(const string & strParam)
+   {
+
+      string str(strParam);
+
+#ifdef WINDOWS
+
+#ifdef CUBE
+
+      str = "static_" + str;
+
+#else
+
+      str = "shared_" + str;
+
+#endif
+
+#endif
+
+      str.replace_with("_", "-");
+
+      str.replace_with("_", "/");
+
+      return str;
+
+   }
+
+
+   void node::prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
+   {
+
+      char * pPtr = nullptr;
+
+      char * p;
+
+      char * psz = cmd_line;
+
+      enum enum_state
+      {
+
+         e_state_initial,
+
+         state_quote,
+
+         state_non_space,
+
+      };
+
+      enum_state e = e_state_initial;
+
+      char quote = '\0';
+
+      while (psz != nullptr && *psz != '\0')
+      {
+
+         if (e == e_state_initial)
+         {
+
+            if (*psz == ' ')
+            {
+
+               unicode_increment(psz);
+
+            }
+            else if (*psz == '\"')
+            {
+
+               quote = '\"';
+
+               unicode_increment(psz);
+
+               argv[argc++] = (char *)psz;
+
+               e = state_quote;
+
+            }
+            else if (*psz == '\'')
+            {
+
+               quote = '\'';
+
+               unicode_increment(psz);
+
+               argv[argc++] = (char *)psz;
+
+               e = state_quote;
+
+            }
+            else
+            {
+
+               argv[argc++] = (char *)psz;
+
+               unicode_increment(psz);
+
+               e = state_non_space;
+
+            }
+
+         }
+         else if (e == state_quote)
+         {
+
+            if (*psz == '\\')
+            {
+
+               __memmov(psz, psz + 1, strlen(psz));
+
+               unicode_increment(psz);
+
+            }
+            else if (*psz == quote)
+            {
+
+               p = unicode_next(psz);
+
+               *psz = '\0';
+
+               psz = p;
+
+               e = e_state_initial;
+
+            }
+            else
+            {
+
+               unicode_increment(psz);
+
+            }
+
+         }
+         else
+         {
+
+            if (*psz == ' ')
+            {
+
+               p = unicode_next(psz);
+
+               *psz = '\0';
+
+               psz = p;
+
+               e = e_state_initial;
+
+            }
+            else
+            {
+
+               unicode_increment(psz);
+
+            }
+
+         }
+
+      }
+
+      argv[argc] = nullptr;
+
+   }
+
+
+
+   string node::process_platform_name()
+   {
+
+#if defined(_M_IX86)
+
+      return "Win32";
+
+#else
+
+      return "x64";
+
+#endif
+
+   }
+
+
+
+   string node::time_binary_platform(const ::string & strPlatformParam)
+   {
+
+      ::string strPlatform(strPlatformParam);
+
+      strPlatform.make_lower();
+
+      if (strPlatform == "x86" || strPlatform == "win32")
+      {
+
+         return "Win32";
+
+      }
+      else if (strPlatform == "x64" || strPlatform == "amd64")
+      {
+
+         return "x64";
+
+      }
+      else
+      {
+
+         return strPlatform;
+
+      }
+
+   }
+
+
+
+   string node::process_configuration_name()
+   {
+
+#ifdef __DEBUG
+
+      return "debug";
+
+#else
+
+      return "release";
+
+#endif
+
+   }
+
+
+   int node::get_current_process_affinity_order()
+   {
+
+      return -1;
+
+   }
+
+
+   int node::get_current_process_maximum_affinity()
+   {
+
+      return -1;
+
+   }
+
+   ::u64 node::translate_processor_affinity(::i32 i)
+   {
+
+      return 0;
+
+   }
+
+
+   ::i32 node::get_current_processor_index()
+   {
+
+      return -1;
+
+   }
+
+
+   bool node::set_process_priority(::enum_priority epriority)
+   {
+
+      
+      throw interface_only();
+      
+      return false;
+
+
+   }
+
+
+   void node::command_system(string_array & straOutput, int & iExitCode, const char * psz, enum_command_system ecommandsystem, const ::duration & durationTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLines)
+   {
+
+      throw interface_only();
 
    }
 

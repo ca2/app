@@ -8,7 +8,7 @@ BSTR CLASS_DECL_AURA bstring::sys_alloc_string_byte_len(const ::string & psz, st
 
    BSTR bstr = nullptr;
 
-   auto dstlen = ::str().utf_to_utf_length(bstr, psz, srclen);
+   auto dstlen = utf_to_utf_length(bstr, psz, srclen);
 
    bstr = ::SysAllocStringLen(nullptr, (::u32) dstlen);
 
@@ -19,7 +19,7 @@ BSTR CLASS_DECL_AURA bstring::sys_alloc_string_byte_len(const ::string & psz, st
 
    }
 
-   ::str().utf_to_utf(bstr, psz, srclen);
+   ::utf_to_utf(bstr, psz, srclen);
 
    return bstr;
 

@@ -21,6 +21,7 @@
 #include "acme/primitive/datetime/department.h"
 #include "acme/primitive/primitive/read_only_memory.h"
 #include "acme/primitive/string/base64.h"
+#include "acme/primitive/string/str.h"
 #include "acme/user/user/conversation.h"
 #include "apex/crypto/crypto.h"
 #include "apex/crypto/hasher.h"
@@ -143,7 +144,7 @@ bool file_context::exists(const ::file::path &pathParam)
 ::file::enum_type file_context::get_type(const ::file::path &path, ::payload *pvarQuery)
 {
 
-   if (::str().begins(path, "http://") || ::str().begins(path, "https://"))
+   if (path.begins("http://") || path.begins("https://"))
    {
 
       property_set set;
@@ -3342,7 +3343,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
       else
       {
 
-         throw file::exception(::error_file_not_found, __errno(ENOENT), path, "defer_process_path returns empty path");
+         throw file::exception(::error_file_not_found, errno_error_code(ENOENT), path, "defer_process_path returns empty path");
 
       }
       

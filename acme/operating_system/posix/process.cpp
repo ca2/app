@@ -31,7 +31,7 @@ void command_system(string_array & straOutput, int& iExitCode, const char* psz, 
 
       int iErrNo = errno;
 
-      estatus = errno_to_status(iErrNo);
+      estatus = errno_status(iErrNo);
 
       throw ::exception(estatus);
 
@@ -46,7 +46,7 @@ void command_system(string_array & straOutput, int& iExitCode, const char* psz, 
 
       int iErrNo = errno;
 
-      estatus = errno_to_status(iErrNo);
+      estatus = errno_status(iErrNo);
 
       throw ::exception(estatus);
 

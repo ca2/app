@@ -161,7 +161,7 @@ string strNow)
 
    iSelEnd = iBeg + strInsert.get_length();
 
-   const char * psz = ::str().next(strInsert);
+   const char * psz = unicode_next(strInsert);
 
    if(psz == nullptr || *psz == '\0')
    {

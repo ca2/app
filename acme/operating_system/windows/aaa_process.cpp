@@ -427,69 +427,6 @@ void call_sync(const char * pszPath, const char * pszParam, const char * pszDir,
 }
 
 
-i32 get_current_processor_index()
-{
-
-
-   return ::GetCurrentProcessorNumber();
-
-
-}
-
-i32 get_current_process_maximum_affinity()
-{
-
-   DWORD_PTR dwProcessAffinityMask;
-   DWORD_PTR dwSystemAffinityMask;
-   if (!GetProcessAffinityMask(::GetCurrentProcess(), &dwProcessAffinityMask, &dwSystemAffinityMask))
-   {
-      return 0;
-   }
-   i32 iMax = -1;
-   uptr dwMask = 1;
-   for (i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
-   {
-      if ((dwMask & dwProcessAffinityMask) != 0)
-      {
-         iMax = i;
-      }
-      dwMask = dwMask << 1;
-   }
-
-   return iMax;
-
-}
-
-i32 get_current_process_affinity_order()
-{
-
-
-   DWORD_PTR dwProcessAffinityMask;
-   DWORD_PTR dwSystemAffinityMask;
-
-   if (!GetProcessAffinityMask(::GetCurrentProcess(), &dwProcessAffinityMask, &dwSystemAffinityMask))
-   {
-
-      return 0;
-
-   }
-
-   i32 iCount = 0;
-   uptr dwMask = 1;
-   for (i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
-   {
-      if ((dwMask & dwProcessAffinityMask) != 0)
-      {
-         iCount++;
-      }
-      dwMask = dwMask << 1;
-   }
-
-   return iCount;
-
-
-}
-
 
 
 

@@ -3487,7 +3487,7 @@ namespace draw2d
       while (*psz && iRange < iStart + iCount)
       {
 
-         const char * pszNext = ::str().next(psz);
+         const char * pszNext = unicode_next(psz);
 
          if (pszNext == nullptr)
          {
@@ -4328,7 +4328,7 @@ namespace draw2d
             while (true)
             {
 
-               ::str().increment(psz);
+               unicode_increment(psz);
 
                strSample = string(pszStart, psz - pszStart) + "...";
 
@@ -4591,7 +4591,7 @@ namespace draw2d
 
       const char * pszEnd = pszSource + len;
 
-      const char * pszStart = ::str().next(pszSource);
+      const char * pszStart = unicode_next(pszSource);
 
       size_i32 sz;
 
@@ -4667,7 +4667,7 @@ namespace draw2d
 
          }
 
-         if(::str::ch().is_space_char(pszPrevious))
+         if(unicode_is_space_char(pszPrevious))
          {
 
             pszSpaceStart       = pszPrevious;
@@ -4677,7 +4677,7 @@ namespace draw2d
 
                pszSpaceEnd      = psz;
 
-               if(!::str::ch().is_space_char(psz))
+               if(!unicode_is_space_char(psz))
                {
 
                   break;
@@ -4686,7 +4686,7 @@ namespace draw2d
 
                pszPrevious      = psz;
 
-               ::str().increment(psz);
+               unicode_increment(psz);
 
             }
             while(psz != nullptr);
@@ -4715,7 +4715,7 @@ namespace draw2d
                break;
             }
 
-            ::str().decrement(psz, pszSource);
+            unicode_decrement(psz, pszSource);
 
             pszEnd = psz;
 
@@ -4725,7 +4725,7 @@ namespace draw2d
 
          pszPrevious = psz;
 
-         ::str().increment(psz);
+         unicode_increment(psz);
 
          if(bEnd)
          {

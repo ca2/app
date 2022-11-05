@@ -3,6 +3,7 @@
 #include "command_line.h"
 #include "string.h"
 #include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/string/str.h"
 
 
 #define NULCHAR     '\0'
@@ -202,7 +203,7 @@ string consume_command_line_parameter(const char * pszCommandLine, const char **
 
    const char * psz = pszCommandLine;
 
-   while(*psz && ansi_char_is_space(*psz))
+   while(*psz && ansi_char_isspace(*psz))
       psz++;
 
    const char * pszStart;
@@ -219,7 +220,7 @@ string consume_command_line_parameter(const char * pszCommandLine, const char **
    else
    {
       pszStart = psz;
-      while(*psz != '\0' &&!ansi_char_is_space(*psz))
+      while(*psz != '\0' &&!ansi_char_isspace(*psz))
          psz++;
    }
 
@@ -474,62 +475,9 @@ bool get_command_line_parameter(string & wstrValue,const char * psz,const char *
 
 }
 
-string time_binary_platform(string strPlatform)
-{
-
-   strPlatform.make_lower();
-
-   if(strPlatform == "x86" || strPlatform == "win32")
-   {
-
-      return "Win32";
-
-   }
-   else if(strPlatform == "x64" || strPlatform == "amd64")
-   {
-
-      return "x64";
-
-   }
-   else
-   {
-
-      return strPlatform;
-
-   }
-
-}
-
-string process_configuration_name()
-{
-
-#ifdef __DEBUG
-
-   return "basis";
-
-#else
-
-   return "stage";
-
-#endif
-
-}
 
 
-CLASS_DECL_ACME string process_platform_name()
-{
 
-#if defined(_M_IX86)
-
-   return "Win32";
-
-#else
-
-   return "x64";
-
-#endif
-
-}
 
 //CLASS_DECL_ACME string process_platform_name()
 //{
@@ -547,166 +495,6 @@ CLASS_DECL_ACME string process_platform_name()
 //}
 
 
-
-
-void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
-{
-
-   char * pPtr = nullptr;
-
-   char * p;
-
-   char * psz = cmd_line;
-
-   enum enum_state
-   {
-
-      e_state_initial,
-
-      state_quote,
-
-      state_non_space,
-
-   };
-
-   enum_state e = e_state_initial;
-
-   char quote = '\0';
-
-   while(psz != nullptr && *psz != '\0')
-   {
-
-      if(e == e_state_initial)
-      {
-
-         if(*psz == ' ')
-         {
-
-            ::str().increment(psz);
-
-         }
-         else if(*psz == '\"')
-         {
-
-            quote = '\"';
-
-            ::str().increment(psz);
-
-            argv[argc++] =(char *) psz;
-
-            e = state_quote;
-
-         }
-         else if(*psz == '\'')
-         {
-
-            quote = '\'';
-
-            ::str().increment(psz);
-
-            argv[argc++] = (char *) psz;
-
-            e = state_quote;
-
-         }
-         else
-         {
-
-            argv[argc++] = (char *) psz;
-
-            ::str().increment(psz);
-
-            e = state_non_space;
-
-         }
-
-      }
-      else if(e == state_quote)
-      {
-
-         if(*psz == '\\')
-         {
-
-            __memmov(psz, psz + 1, strlen(psz));
-
-            ::str().increment(psz);
-
-         }
-         else if(*psz == quote)
-         {
-
-            p = ::str().next(psz);
-
-            *psz = '\0';
-
-            psz = p;
-
-            e = e_state_initial;
-
-         }
-         else
-         {
-
-            ::str().increment(psz);
-
-         }
-
-      }
-      else
-      {
-
-         if(*psz == ' ')
-         {
-
-            p = ::str().next(psz);
-
-            *psz = '\0';
-
-            psz = p;
-
-            e = e_state_initial;
-
-         }
-         else
-         {
-
-            ::str().increment(psz);
-
-         }
-
-      }
-
-   }
-
-   argv[argc] = nullptr;
-
-}
-
-
-CLASS_DECL_ACME string executable_title_from_appid(string str)
-{
-
-#ifdef WINDOWS
-
-   #ifdef CUBE
-
-   str = "static_" + str;
-
-#else
-
-   str = "shared_" + str;
-
-#endif
-
-#endif
-
-   str.replace_with("_", "-");
-
-   str.replace_with("_", "/");
-
-   return str;
-
-}
 
 
 
@@ -766,10 +554,10 @@ CLASS_DECL_ACME string executable_title_from_appid(string str)
 //
 //         const char* pszValueStart = psz;
 //
-//         while (!::str::ch().is_whitespace(psz))
+//         while (!unicode_is_whitespace(psz))
 //         {
 //
-//            ::str().increment(psz);
+//            unicode_increment(psz);
 //
 //            if (psz >= pszEnd)
 //            {
@@ -888,10 +676,10 @@ string_array get_c_args_from_c(const char* psz)
 
          const char* pszValueStart = psz;
 
-         while (!::str::ch().is_whitespace(psz))
+         while (!unicode_is_whitespace(psz))
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             if (psz >= pszEnd)
             {
@@ -1003,10 +791,10 @@ string_array get_c_args_for_c(const char* psz)
 
          const char* pszValueStart = psz;
 
-         while (!::str::ch().is_whitespace(psz))
+         while (!unicode_is_whitespace(psz))
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             if (psz >= pszEnd)
             {
@@ -1135,7 +923,7 @@ string transform_to_c_arg(const char* psz)
          if (*pszParse == '\\')
          {
 
-            ::str().increment(pszParse);
+            unicode_increment(pszParse);
 
          }
          else if (*pszParse == chQuote)
@@ -1158,9 +946,7 @@ string transform_to_c_arg(const char* psz)
          chQuote = '\"';
 
       }
-      else if (::str::ch().is_whitespace(pszParse)
-               || isspace((unsigned char)*pszParse)
-               || *pszParse == ':')
+      else if (unicode_is_whitespace(pszParse) || *pszParse == ':')
       {
 
          bNeedQuote = true;
@@ -1169,7 +955,7 @@ string transform_to_c_arg(const char* psz)
 
       }
 
-      ::str().increment(pszParse);
+      unicode_increment(pszParse);
 
    }
 
@@ -1331,73 +1117,4 @@ CLASS_DECL_ACME i32 get_current_process_affinity_order()
 
 
 #endif
-
-
-int g_iProcessStatus = 0;
-
-
-CLASS_DECL_ACME int process_get_status()
-{
-
-   return g_iProcessStatus;
-
-}
-
-
-CLASS_DECL_ACME void process_set_status(int iStatus)
-{
-
-   g_iProcessStatus = iStatus;
-
-}
-
-
-int g_argc = 0;
-
-
-platform_char ** g_argv = nullptr;
-
-
-CLASS_DECL_ACME void process_set_args(int argc, platform_char ** argv)
-{
-
-   g_argc = argc;
-
-   g_argv = argv;
-
-}
-
-
-CLASS_DECL_ACME int * process_get_pargc()
-{
-
-   return &g_argc;
-
-}
-
-
-CLASS_DECL_ACME int process_get_argc()
-{
-
-   return *process_get_pargc();
-
-}
-
-
-CLASS_DECL_ACME platform_char *** process_get_pargv()
-{
-
-   return &g_argv;
-
-}
-
-
-CLASS_DECL_ACME platform_char ** process_get_argv()
-{
-
-   return *process_get_pargv();
-
-}
-
-
 

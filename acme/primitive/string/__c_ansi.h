@@ -4,13 +4,15 @@
 
 
 
-inline ansichar               ansi_char_lowered(i32 i);
-inline ansichar               ansi_char_uppered(i32 i);
-inline i32                    ansi_char_is_digit(i32 i);
+inline ansichar               ansi_char_tolower(i32 i);
+inline ansichar               ansi_char_toupper(i32 i);
+inline i32                    ansi_char_isdigit(i32 i);
+inline i32                    ansi_char_isalpha(i32 i);
+inline i32                    ansi_char_isalnum(i32 i);
+inline i32                    ansi_char_isspace(i32 i);
+
+
 inline i32                    ansi_char_is_hexadecimal(i32 i);
-inline i32                    ansi_char_is_alphabetic(i32 i);
-inline i32                    ansi_char_is_alphanumeric(i32 i);
-inline i32                    ansi_char_is_space(i32 i);
 
 
 inline ansichar *             ansi_last_char(ansichar * psz);

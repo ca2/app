@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "networking.h"
 #include "acme/primitive/string/parse.h"
+#include "acme/primitive/string/str.h"
 
 
 //#define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
@@ -141,7 +142,7 @@ namespace networking
       string dst;
       for (i32 i = 0; i < src.get_length(); i++)
       {
-         if (ansi_char_is_alphanumeric((uchar)src[i]))
+         if (character_isalnum(src[i]))
          {
             dst += src[i];
          }

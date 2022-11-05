@@ -607,7 +607,7 @@ namespace sockets
 //
 //#elif defined(WINDOWS)
 //
-//           INFORMATION("sockets::socket_handler select error : "<< last_error_message(iError) <<" ("<< iError <<")");
+//           INFORMATION("sockets::socket_handler select error : "<< ::windows::last_error_message(iError) <<" ("<< iError <<")");
 //
 //#endif
 //

@@ -1052,7 +1052,7 @@ namespace html
    {
       const char * psz = pszParam;
       // skip white space
-      while (*psz != '\0' && isspace(*psz))
+      while (*psz != '\0' && character_isspace(*psz))
          psz++;
       if (*psz != '<')
       {
@@ -1063,11 +1063,11 @@ namespace html
       }
       psz++;
       // skip white space
-      while (*psz != '\0' && isspace(*psz))
+      while (*psz != '\0' && character_isspace(*psz))
          psz++;
       const char * pszTag = psz;
       // skip valid char
-      while (*psz != '\0' && !isspace(*psz) && *psz != '>')
+      while (*psz != '\0' && !character_isspace(*psz) && *psz != '>')
          psz++;
       string strTag(pszTag, psz - pszTag);
       if (strTag[0] == '/')
@@ -1082,12 +1082,12 @@ namespace html
       else
       {
          // skip white space
-         while (*psz != '\0' && isspace(*psz))
+         while (*psz != '\0' && character_isspace(*psz))
             psz++;
          // Parse Attributes
          parse_attributes(phtmldata, psz);
          // skip white space
-         while (*psz != '\0' && isspace(*psz))
+         while (*psz != '\0' && character_isspace(*psz))
             psz++;
          if (*psz != '/' && *psz != '>')
          {
@@ -1096,7 +1096,7 @@ namespace html
          if (*psz == '/')
          {
             // skip white space
-            while (*psz != '\0' && isspace(*psz))
+            while (*psz != '\0' && character_isspace(*psz))
                psz++;
             if (*psz != '>')
             {
@@ -1143,7 +1143,7 @@ namespace html
          return true;
 
       // skip white space
-      while (*psz != '\0' && isspace(*psz))
+      while (*psz != '\0' && character_isspace(*psz))
          psz++;
       if (*psz != '<')
       {
@@ -1151,11 +1151,11 @@ namespace html
       }
       psz++;
       // skip white space
-      while (*psz != '\0' && isspace(*psz))
+      while (*psz != '\0' && character_isspace(*psz))
          psz++;
       const char * pszCloseTag = psz;
       // skip valid char
-      while (*psz != '\0' && !isspace(*psz) && *psz != '>')
+      while (*psz != '\0' && !character_isspace(*psz) && *psz != '>')
          psz++;
 
       if (pszCloseTag[0] == '/' && ansi_count_compare_ci(m_atomTagName.m_str, pszCloseTag + 1, psz - pszCloseTag - 1) == 0)
@@ -1177,7 +1177,7 @@ namespace html
       while (*psz != '\0' && *psz != '/' && *psz != '>')
       {
          // skip white space
-         while (*psz != '\0' && isspace(*psz) && *psz != '/' && *psz != '>')
+         while (*psz != '\0' && character_isspace(*psz) && *psz != '/' && *psz != '>')
             psz++;
          if (*psz != '/' && *psz != '>')
          {
@@ -1186,7 +1186,7 @@ namespace html
          }
          const char * pszKey = psz;
          // skip valid char
-         while (*psz != '\0' && !isspace(*psz) && *psz != '=' && *psz != '/' && *psz != '>')
+         while (*psz != '\0' && !character_isspace(*psz) && *psz != '=' && *psz != '/' && *psz != '>')
             psz++;
          string strKey(pszKey, psz - pszKey);
 
@@ -1196,7 +1196,7 @@ namespace html
             return;
          }
          // skip valid char
-         while (*psz != '\0' && isspace(*psz) && *psz != '=' && *psz != '/' && *psz != '>')
+         while (*psz != '\0' && character_isspace(*psz) && *psz != '=' && *psz != '/' && *psz != '>')
             psz++;
 
          if (*psz == '/' || *psz == '>')
@@ -1210,7 +1210,7 @@ namespace html
             continue;
          }
          // skip space
-         while (*psz != '\0' && isspace(*psz))
+         while (*psz != '\0' && character_isspace(*psz))
             psz++;
 
          const char * pszValue;
@@ -1227,7 +1227,7 @@ namespace html
          {
             pszValue = psz;
             // skip space
-            while (*psz != '\0' && isspace(*psz) && *psz != '/' && *psz != '>')
+            while (*psz != '\0' && character_isspace(*psz) && *psz != '/' && *psz != '>')
                psz++;
          }
 

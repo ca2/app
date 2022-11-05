@@ -10,7 +10,7 @@ string consume_command_line_parameter(const ::string & pszCommandLine, const ::s
 
    const char * psz = pszCommandLine;
 
-   while(*psz && ansi_char_is_space(*psz))
+   while(*psz && ansi_char_isspace(*psz))
       psz++;
 
    const char * pszStart;
@@ -27,7 +27,7 @@ string consume_command_line_parameter(const ::string & pszCommandLine, const ::s
    else
    {
       pszStart = psz;
-      while(*psz != '\0' &&!ansi_char_is_space(*psz))
+      while(*psz != '\0' &&!ansi_char_isspace(*psz))
          psz++;
    }
 
@@ -425,7 +425,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          if(*psz == ' ')
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
          }
          else if(*psz == '\"')
@@ -433,7 +433,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             quote = '\"';
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             argv[argc++] =(char *) psz;
 
@@ -445,7 +445,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             quote = '\'';
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             argv[argc++] = (char *) psz;
 
@@ -457,7 +457,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             argv[argc++] = (char *) psz;
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
             e = state_non_space;
 
@@ -472,13 +472,13 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             __memmov(psz, psz + 1, strlen(psz));
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
          }
          else if(*psz == quote)
          {
 
-            point = (char *) ::str().next(psz);
+            point = (char *) unicode_next(psz);
 
             *psz = '\0';
 
@@ -490,7 +490,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          else
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
          }
 
@@ -501,7 +501,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          if(*psz == ' ')
          {
 
-            point = (char *) ::str().next(psz);
+            point = (char *) unicode_next(psz);
 
             *psz = '\0';
 
@@ -513,7 +513,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          else
          {
 
-            ::str().increment(psz);
+            unicode_increment(psz);
 
          }
 

@@ -2,75 +2,18 @@
 #include "framework.h"
 #include "exception.h"
 #include "callstack.h"
-#include "acme/primitive/string/__string.h"
+//#include "acme/primitive/string/__string.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/primitive/atom.h"
-#include "_api.h"
+//#include "_api.h"
 #include <stdio.h>
 
 
-//const char * strcatdup(const char * psz1, const char * psz2)
-//{
-//   
-//   if(::is_null(psz1))
-//   {
-//      
-//      if(::is_null(psz2))
-//      {
-//         
-//         return nullptr;
-//         
-//      }
-//      else
-//      {
-//         
-//         return strdup(psz2);
-//      
-//      }
-//      
-//   }
-//   else if(::is_null(psz2))
-//   {
-//      
-//      return strdup(psz1);
-//      
-//   }
-//   else
-//   {
-//
-//      char * pszNew = (char *) malloc(strlen(psz1) + strlen(psz2) + 1);
-//
-//      strcpy(pszNew, psz1);
-//   
-//      strcat(pszNew, psz2);
-//   
-//      return pszNew;
-//
-//   }
-//   
-//}
-
-
-//#if defined(APPLE_IOS)
-//
-//bool ::exception::s_bEnableCallStackBackTrace = false;
-//
-//#elif defined(ANDROID)
-//
-//bool ::exception::s_bEnableCallStackBackTrace = true;
-//
-//#elif defined(MACOS)
-//
-//bool ::exception::s_bEnableCallStackBackTrace = false;
-//
-//#else
-
 bool ::exception::s_bEnableCallStackBackTrace = true;
 
-//#endif
 
 exception::exception()
 {
@@ -80,9 +23,9 @@ exception::exception()
 
 
 #ifdef ANDROID
-exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip)
+exception::exception(const ::e_status & estatus, const ::string & strMessage, const ::string & strDetails, i32 iSkip)
 #else
-exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address)
+exception::exception(const ::e_status & estatus, const ::string & strMessage, const ::string & strDetails, i32 iSkip, void * caller_address)
 #endif
 {
 
@@ -122,9 +65,9 @@ exception::exception(const ::e_status & estatus, const char * pszMessage, const 
 
    m_bContinue = true;
 
-   m_strMessage = pszMessage;
+   m_strMessage = strMessage;
 
-   m_strDetails = pszDetails;
+   m_strDetails = strDetails;
 
 }
 

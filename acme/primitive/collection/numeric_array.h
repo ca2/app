@@ -406,7 +406,9 @@ void numeric_array < TYPE, m_etypeContainer >::implode(string & str, const char 
       string strSeparator(pcszSeparator);
 
       ::index i = start;
-      str == __string(this->element_at(i));
+      
+      ::copy(str, this->element_at(i));
+
       i++;
       for(; i <= last; i++)
       {

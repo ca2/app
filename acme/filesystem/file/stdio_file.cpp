@@ -125,7 +125,7 @@ void stdio_file::open(const ::file::path & path, const ::string & strAttributes,
 
       int iErrNo = errno;
 
-      auto estatus = errno_to_status(iErrNo);
+      auto estatus = errno_status(iErrNo);
 
       if (!estatus)
       {
@@ -200,9 +200,13 @@ filesize stdio_file::translate(filesize offset, ::enum_seek eseek)
    if (fseek(m_pfile, (long)offset, nFrom))
    {
 
-      // error;
+      auto iErrNo = errno;
 
-      throw ::file::exception(error_file, __last_error(), errno, m_path);
+      auto estatus = errno_status(iErrNo);
+
+      auto errorcode = errno_error_code(iErrNo);
+
+      throw ::file::exception(estatus, errorcode, m_path, "fseek != 0", m_eopen);
 
       return -1;
 
@@ -218,9 +222,9 @@ filesize stdio_file::translate(filesize offset, ::enum_seek eseek)
 
       i32 iErrNo = errno;
       
-      auto errorcode = __errno(iErrNo);
+      auto errorcode = errno_error_code(iErrNo);
       
-      auto estatus = errno_to_status(iErrNo);
+      auto estatus = errno_status(iErrNo);
       
       throw ::file::exception(estatus, errorcode, m_path, "fseek != 0");
 
@@ -276,9 +280,9 @@ memsize stdio_file::read(void * pdata, memsize nCount)
 
          i32 iErrNo = errno;
          
-         auto errorcode = __errno(iErrNo);
+         auto errorcode = errno_error_code(iErrNo);
          
-         auto estatus = errno_to_status(iErrNo);
+         auto estatus = errno_status(iErrNo);
          
          throw ::file::exception(estatus, errorcode, m_path, "fread: !feof and ferror");
 

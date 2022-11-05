@@ -7,26 +7,26 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_simple_shader", "simple
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		basis|x64 = basis|x64
-		basis|x86 = basis|x86
+		debug|x64 = debug|x64
+		debug|x86 = debug|x86
 		cover|x64 = cover|x64
 		cover|x86 = cover|x86
-		stage|x64 = stage|x64
-		stage|x86 = stage|x86
+		release|x64 = release|x64
+		release|x86 = release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.basis|x64.ActiveCfg = basis|x64
-		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.basis|x64.Build.0 = basis|x64
-		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.basis|x86.ActiveCfg = basis|Win32
-		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.basis|x86.Build.0 = basis|Win32
+		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.debug|x64.ActiveCfg = debug|x64
+		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.debug|x64.Build.0 = debug|x64
+		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.debug|x86.ActiveCfg = debug|Win32
+		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.debug|x86.Build.0 = debug|Win32
 		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.cover|x64.ActiveCfg = cover|x64
 		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.cover|x64.Build.0 = cover|x64
 		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.cover|x86.ActiveCfg = cover|Win32
 		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.cover|x86.Build.0 = cover|Win32
-		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.stage|x64.ActiveCfg = stage|x64
-		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.stage|x64.Build.0 = stage|x64
-		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.stage|x86.ActiveCfg = stage|Win32
-		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.stage|x86.Build.0 = stage|Win32
+		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.release|x64.ActiveCfg = release|x64
+		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.release|x64.Build.0 = release|x64
+		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.release|x86.ActiveCfg = release|Win32
+		{3F1119CF-6041-4AE9-970E-4DDAB57C5E48}.release|x86.Build.0 = release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

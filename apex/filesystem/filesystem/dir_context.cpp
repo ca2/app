@@ -13,6 +13,7 @@
 #include "acme/parallelization/event.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/string/_string.h"
+#include "acme/primitive/string/str.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/session.h"
@@ -457,7 +458,7 @@ bool dir_context::_enumerate(::file::listing& listing)
    if (listing.m_pathFinal.begins_ci("matter://"))
    {
 
-      ::str().begins_eat_ci(listing.m_pathFinal, "matter://");
+      listing.m_pathFinal.begins_eat_ci("matter://");
 
       if (matter_enumerate(listing.m_pathFinal, listing))
       {
@@ -470,7 +471,7 @@ bool dir_context::_enumerate(::file::listing& listing)
    else if (listing.m_pathFinal.begins_ci("zipresource://"))
    {
 
-      ::str().begins_eat_ci(listing.m_pathFinal, "zipresource://");
+      listing.m_pathFinal.begins_eat_ci("zipresource://");
 
       auto pfolder = file()->resource_folder();
 
@@ -499,7 +500,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 
    }
 
-   if (::str().begins_ci(listing.m_pathFinal, "http://") || ::str().begins_ci(listing.m_pathFinal, "https://"))
+   if (listing.m_pathFinal.begins_ci("http://") || listing.m_pathFinal.begins_ci("https://"))
    {
 
       property_set set;
@@ -511,7 +512,7 @@ bool dir_context::_enumerate(::file::listing& listing)
       return true;
 
    }
-   else if (task_flag().is_set(e_task_flag_compress_is_dir) && (::str().ends_ci(listing.m_pathFinal, ".zip") || ::str().find_file_extension("zip:", listing.m_pathFinal) >= 0))
+   else if (task_flag().is_set(e_task_flag_compress_is_dir) && (listing.m_pathFinal.ends_ci(".zip") || ::str().find_file_extension("zip:", listing.m_pathFinal) >= 0))
    {
 
       auto& pfactory = acmesystem()->folder_factory();

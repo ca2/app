@@ -312,7 +312,7 @@ namespace mail
          }
          else
          {
-            if(isspace(strLine[0]))
+            if(character_isspace(strLine[0]))
             {
                m_strValue += strLine;
             }

@@ -492,7 +492,7 @@ namespace browser
 
       strsize iFind = str.find("image:");
 
-      if(iFind >= 0 && (iFind == 0 || !ansi_char_is_alphanumeric(str[iFind-1])))
+      if(iFind >= 0 && (iFind == 0 || !ansi_char_is_alnum(str[iFind-1])))
       {
 
          bool bData = str.Mid(iFind + strlen("image:")).begins_ci("data:");

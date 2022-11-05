@@ -532,7 +532,7 @@ namespace ftp
    /// 04-14-00  03:47PM                  589 readme.htm
    bool file_list_parser::IsMSDOSListing(const char * pszLine)
    {
-      return pszLine && ansi_char_is_digit(pszLine[0]);
+      return pszLine && ansi_char_isdigit(pszLine[0]);
    }
 
    bool file_list_parser::ParseMSDOSListing(file_status& ftpFileStatus, const char * pszLine, int iLength)

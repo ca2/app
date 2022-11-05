@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "subsystem.h"
+#include "sub_system.h"
 #include "main.h"
 #include "context.h"
 #include "plane_system.h"
@@ -23,7 +23,7 @@ namespace acme
    public:
 
 
-      subsystem *                                                       m_psubsystem;
+      sub_system *                                                      m_psubsystem;
 
 
       //::pointer<main_hold_base>                                         m_pmainholdbase;

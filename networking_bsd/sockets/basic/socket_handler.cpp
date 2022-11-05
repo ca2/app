@@ -788,7 +788,7 @@ end_processing_adding:
 
 #elif defined(WINDOWS)
 
-            INFORMATION("networking_bsd::socket_handler select error : "<< last_error_message(iError) <<" ("<< iError <<")");
+            INFORMATION("networking_bsd::socket_handler select error : "<< ::windows::last_error_message(iError) <<" ("<< iError <<")");
 
 #endif
 

@@ -1085,7 +1085,6 @@
     <ClCompile Include="operating_system\winpr_scancode.cpp" />
     <ClCompile Include="operating_system\_.cpp" />
     <ClCompile Include="operating_system\_api.cpp" />
-    <ClCompile Include="operating_system\_synchronization.cpp" />
     <ClCompile Include="parallelization\condition.cpp" />
     <ClCompile Include="parallelization\condition_variable.cpp" />
     <ClCompile Include="parallelization\create_task_attributes.cpp" />
@@ -1158,6 +1157,7 @@
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\_main_hold_base.cpp" />
+    <ClCompile Include="platform\_synchronization.cpp" />
     <ClCompile Include="primitive\collection\strdup_array.cpp" />
     <ClCompile Include="primitive\collection\string_array.cpp" />
     <ClCompile Include="primitive\collection\str_array.cpp" />

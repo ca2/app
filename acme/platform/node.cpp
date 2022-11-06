@@ -2439,6 +2439,9 @@ return false;
    }
 
 
+#if !defined(WINDOWS)
+
+
    string_array node::cmdline_from_pid(unsigned int pid)
    {
 
@@ -2457,6 +2460,10 @@ return false;
       return {};
 
    }
+
+
+#endif
+
 
 } // namespace acme
 

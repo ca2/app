@@ -96,45 +96,45 @@ CLASS_DECL_APEX i32 ca2_main();
 //}
 
 
-namespace apex
-{
+// // // namespace apex
+// // // {
 
 
-   bool application::os_on_start_application()
-   {
+// // //    bool application::os_on_start_application()
+// // //    {
 
-      //if (!::is_debugger_attached())
-      {
+// // //       //if (!::is_debugger_attached())
+// // //       {
 
-         ::file::path pathObj;
+// // //          ::file::path pathObj;
 
-         ::file::path pathLnk;
+// // //          ::file::path pathLnk;
 
-         pathObj = file()->module();
+// // //          pathObj = file()->module();
 
-         string strLinkTitle;
+// // //          string strLinkTitle;
 
-         strLinkTitle = m_strAppName;
+// // //          strLinkTitle = m_strAppName;
 
-         strLinkTitle.replace_with("_", "/");
-         strLinkTitle.replace_with("_", "\\");
-         strLinkTitle.replace_with("_", "-");
+// // //          strLinkTitle.replace_with("_", "/");
+// // //          strLinkTitle.replace_with("_", "\\");
+// // //          strLinkTitle.replace_with("_", "-");
 
-         pathLnk = acmedirectory()->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
+// // //          pathLnk = acmedirectory()->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 
-         acmedirectory()->create(pathLnk.folder());
+// // //          acmedirectory()->create(pathLnk.folder());
 
-         acmesystem()->m_papexsystem->m_papexnode->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
+// // //          acmesystem()->m_papexsystem->m_papexnode->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
 
-      }
+// // //       }
 
-      return true;
+// // //       return true;
 
-   }
+// // //    }
 
 
 
-} // namespace apex
+// // // } // namespace apex
 
 
 

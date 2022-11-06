@@ -17,7 +17,7 @@ string get_current_directory_name()
 
 #else
 
-    strCurrentDirName = ::string_from_strdup(get_current_dir_name());
+   strCurrentDirName = ::string_from_strdup(get_current_dir_name());
 
 #endif
 

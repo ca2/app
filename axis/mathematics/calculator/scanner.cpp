@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "token.h"
 #include "scanner.h"
+#include "acme/primitive/string/str.h"
 #include "acme/exception/exception.h"
 
 /* conversas dos Js Jefferson Dalavechia e Joice sobre calculadora científica, financeira e com pilha

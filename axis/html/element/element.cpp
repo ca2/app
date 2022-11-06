@@ -3,6 +3,7 @@
 #include "acme/networking/url_department.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_collection_basic.h"
+#include "acme/primitive/string/str.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "axis/id.h"
 #include "axis/html/html/data.h"
@@ -979,8 +980,8 @@ namespace html
             {
 
             }
-            else if(::str().begins(m_pdata->m_pcoredata->m_strPathName,"http://") ||
-                    ::str().begins(m_pdata->m_pcoredata->m_strPathName,"https://"))
+            else if(m_pdata->m_pcoredata->m_strPathName.begins_ci("http://") ||
+                    m_pdata->m_pcoredata->m_strPathName.begins_ci("https://"))
             {
 
                auto psystem = acmesystem()->m_paurasystem;

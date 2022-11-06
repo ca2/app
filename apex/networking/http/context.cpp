@@ -6,6 +6,7 @@
 #include "acme/networking/url_department.h"
 #include "acme/networking/url_domain.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/string/str.h"
 #include "apex/constant/idpool.h"
 #include "apex/networking/networking.h"
 #include "apex/networking/sockets/http/tunnel.h"
@@ -755,7 +756,7 @@ namespace http
 
       string strUrl(pszScriptUrl);
 
-      if (::str().begins(pszUrl, strUrl))
+      if (string_begins(pszUrl, strUrl))
       {
          pproxy->m_bDirect = true;
          return true;
@@ -797,7 +798,7 @@ namespace http
          pproxy->m_bDirect = true;
 
       }
-      else if (::str().begins_eat_ci(payload, "PROXY"))
+      else if (payload.begins_eat_ci("PROXY"))
       {
          payload.trim();
          string_array stra;
@@ -1621,7 +1622,7 @@ namespace http
 //               
 //               strCa2Realm = psession->outheader("ca2realm-x");
 //
-//               if (::str().begins_ci(strCa2Realm, "n7ot licensed: "))
+//               if (string_begins_ci(strCa2Realm, "n7ot licensed: "))
 //               {
 //
 //                  INFORMATION("Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
@@ -2448,7 +2449,7 @@ namespace http
          
          strCa2Realm = psocket->outheader("ca2realm-x");
 
-         if (::str().begins_ci(strCa2Realm, "not licensed: "))
+         if (string_begins_ci(strCa2Realm, "not licensed: "))
          {
 
             auto tick2 = ::duration::now();
@@ -2606,7 +2607,7 @@ namespace http
 
       domain.create(purl->get_server(pmessageMessage->m_strUrl));
 
-      if (domain.m_strRadix == "ca2" && ::str().begins(purl->get_object(pmessageMessage->m_strUrl), "/matter/"))
+      if (domain.m_strRadix == "ca2" && string_begins(purl->get_object(pmessageMessage->m_strUrl), "/matter/"))
       {
 
          string strUrl(pmessageMessage->m_strUrl);
@@ -2804,7 +2805,7 @@ namespace http
 
          domain.create(purl->get_server(pszUrl));
 
-         if (::str().begins(purl->get_object(pszUrl), "/matter/"))
+         if (string_begins(purl->get_object(pszUrl), "/matter/"))
          {
 
             set["raw_http"] = true;
@@ -2858,7 +2859,7 @@ namespace http
 
       domain.create(purl->get_server(pszUrl));
 
-      if (::str().begins(purl->get_object(pszUrl), "/matter/"))
+      if (string_begins(purl->get_object(pszUrl), "/matter/"))
       {
 
          set["disable_ca2_sessid"] = true;

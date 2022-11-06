@@ -80,7 +80,7 @@ namespace sockets
       
       strHost = m_request.header("host");
 
-      if (::str().ends_eat_ci(strHost, ".test.ca2.software"))
+      if (strHost.ends_eat_ci(".test.ca2.software"))
       {
 
          m_request.header("host") = strHost + ".ca2.software";
@@ -101,7 +101,7 @@ namespace sockets
 
       string strTest(strHost);
 
-      if (::str().ends_eat_ci(strTest, ".ca2.software"))
+      if (strTest.ends_eat_ci(".ca2.software"))
       {
 
          if (strTest.find('.') > 0)
@@ -178,7 +178,7 @@ namespace sockets
       //FORMATTED_TRACE("http version: %s\n", m_request.attr("http_version").string());
       //FORMATTED_TRACE("connection: %s\n", m_request.header("connection").string());
       //FORMATTED_TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
-      /*   if(::str().ends(m_request.attr("http_version").string(), "/1.1")
+      /*   if(string_ends(m_request.attr("http_version").string(), "/1.1")
             && m_request.header("connection").string().compare_ci("close") != 0)
          {
             m_b_keepalive = true;
@@ -374,7 +374,7 @@ namespace sockets
 
       ::file::path pcsz(pcszParam);
 
-      bool bMd5Request = ::str().ends_eat_ci(pcsz, ".md5");
+      bool bMd5Request = pcsz.ends_eat_ci(".md5");
 
       string strExtension = pcsz.final_extension();
 
@@ -386,7 +386,7 @@ namespace sockets
 
 
 
-//      if (::str().ends_ci(strName, "03 Coisa De Acender - Se..... - Djavan.mp3"))
+//      if (string_ends_ci(strName, "03 Coisa De Acender - Se..... - Djavan.mp3"))
   //    {
     //     debug_print("%s", strName.c_str());
       //}
@@ -506,7 +506,7 @@ namespace sockets
       if (prangea == nullptr || prangea->get_count() == 0)
       {
 
-         if (::str().begins_ci(strContentType, "audio/"))
+         if (strContentType.begins_ci("audio/"))
          {
 
             auto preader = file()->get_reader(pcsz);

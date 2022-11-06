@@ -137,7 +137,7 @@ namespace interprocess
       INFORMATION("::interprocess::communication::on_interprocess_handle " << strUri);
 
 
-      //   if(!::str().begins_eat(strMessage, "call "))
+      //   if(!strMessage.begins_eat("call "))
       //   {
       //
       //      return;
@@ -146,7 +146,7 @@ namespace interprocess
       //
       //   ::i64 iCall = ::str().consume_natural(strMessage);
       //
-      //   if(!::str().begins_eat(strMessage, " from "))
+      //   if(!strMessage.begins_eat(" from "))
       //   {
       //
       //      return;
@@ -394,7 +394,7 @@ namespace interprocess
 
       }
 
-      string strKey = strApp + ":" + __string(idPid);
+      string strKey = strApp + ":" + idPid;
 
       if (m_callermap[strKey].is_null())
       {
@@ -411,7 +411,7 @@ namespace interprocess
    void communication::connect(const ::string & strApp, const ::atom & idPid)
    {
 
-      string strKey = strApp + ":" + __string(idPid);
+      string strKey = strApp + ":" + idPid;
 
       if (m_callermap[strKey].is_null())
       {
@@ -435,7 +435,7 @@ namespace interprocess
    ::interprocess::caller & communication::caller(const ::string & strApp, const ::atom & iPid)
    {
 
-      string strKey = strApp + ":" + __string(iPid);
+      string strKey = strApp + ":" + iPid;
 
       if (m_callermap[strKey].is_null())
       {
@@ -485,7 +485,7 @@ namespace interprocess
 
 #if defined(LINUX) || defined(FREEBSD)
 
-      strKey = acmedirectory()->system() / "communication" / strApp / __string(idPid);
+      strKey = acmedirectory()->system() / "communication" / strApp / idPid;
 
 #elif defined(__APPLE__)
 
@@ -545,7 +545,7 @@ namespace interprocess
 
    //   string strUrl = strMessage;
 
-   //   //   if(!::str().begins_eat(strMessage, "call "))
+   //   //   if(!strMessage.begins_eat("call "))
    //   //   {
    //   //
    //   //      return;
@@ -554,7 +554,7 @@ namespace interprocess
    //   //
    //   //   ::i64 iCall = ::str().consume_natural(strMessage);
    //   //
-   //   //   if(!::str().begins_eat(strMessage, " from "))
+   //   //   if(!strMessage.begins_eat(" from "))
    //   //   {
    //   //
    //   //      return;
@@ -1048,13 +1048,13 @@ namespace interprocess
       if (pathPid.has_char())
       {
 
-         strItem = pathPid + "|" + __string(idPid);
+         strItem = pathPid + "|" + idPid;
 
       }
       else
       {
 
-         strItem = strModule + "|" + __string(idPid);
+         strItem = strModule + "|" + idPid;
       }
 
 

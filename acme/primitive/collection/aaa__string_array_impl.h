@@ -308,7 +308,7 @@
 //      for (; iFind <= iLast; iFind++)
 //      {
 //
-//         if (::str().ends_ci(pcszTopic, this->element_at(iFind)))
+//         if (string_ends_ci(pcszTopic, this->element_at(iFind)))
 //         {
 //
 //            return iFind;
@@ -337,7 +337,7 @@
 //      for (; iFind <= iLast; iFind++)
 //      {
 //
-//         if (::str().ends(pcszTopic, this->element_at(iFind)))
+//         if (string_ends(pcszTopic, this->element_at(iFind)))
 //         {
 //
 //            return iFind;
@@ -362,7 +362,7 @@
 //   for (; iFind < iLast; iFind++)
 //   {
 //
-//      if (::str().ends(this->element_at(iFind), strSuffix))
+//      if (string_ends(this->element_at(iFind), strSuffix))
 //      {
 //
 //         return iFind;
@@ -383,7 +383,7 @@
 //   for (; iFind < iLast; iFind++)
 //   {
 //
-//      if (::str().ends_ci(this->element_at(iFind), strSuffix))
+//      if (string_ends_ci(this->element_at(iFind), strSuffix))
 //      {
 //
 //         return iFind;

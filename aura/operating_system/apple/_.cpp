@@ -153,7 +153,7 @@
 //      if(::str().begins_eat_ci(stra[i], "file://"))
 //      {
 //
-//         if(!::str().begins(stra[i], "/"))
+//         if(!string_begins(stra[i], "/"))
 //         {
 //
 //            stra[i] = "/" + stra[i];

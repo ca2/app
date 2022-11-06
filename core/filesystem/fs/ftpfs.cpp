@@ -347,10 +347,10 @@ int ftpfs::is_dir(const ::file::path & path)
 
    string strPath = path;
 
-   if (::str().begins_eat_ci(strPath, "ftp://"))
+   if (strPath.begins_eat_ci("ftp://"))
    {
 
-      ::str().ends_eat(strPath, "/");
+      strPath.ends_eat("/");
 
       if(m_straFtpServer.contains_ci(strPath))
       {

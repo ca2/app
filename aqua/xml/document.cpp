@@ -3,6 +3,7 @@
 #include "xml.h"
 #include "exception.h"
 #include "acme/exception/interface_only.h"
+#include "acme/primitive/string/str.h"
 #include "apex/platform/context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 
@@ -421,7 +422,7 @@ namespace xml
 
       string strEntityReference(pszXmlParam, pszXml - pszXmlParam);
 
-      if(::str().begins_eat_ci(strEntityReference, "&#"))
+      if(strEntityReference.begins_eat_ci("&#"))
       {
 
          int i = atoi(strEntityReference);

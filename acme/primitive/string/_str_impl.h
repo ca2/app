@@ -579,7 +579,7 @@ template < size_t n >
 inline void from_string(wd16char sz[n], const ansichar * psz)
 {
 
-   if (str().utf_to_utf_length(sz, psz) >= n)
+   if (utf_to_utf_length(sz, psz) >= n)
    {
 
       throw_exception(error_would_reach_buffer_limit);
@@ -595,7 +595,7 @@ template < size_t n >
 inline void from_string(wd32char sz[n], const ansichar * psz)
 {
 
-   if (str().utf_to_utf_length(sz, psz) >= n)
+   if (utf_to_utf_length(sz, psz) >= n)
    {
 
       throw_exception(error_would_reach_buffer_limit);
@@ -1249,43 +1249,6 @@ CLASS_DECL_ACME void to_string(string& str, const double & d);
 
 //=======
 //>>>>>>> origin/basis
-inline string string_from_strdup(const ansichar* psz)
-{
-
-   if (psz == nullptr)
-   {
-
-      return "";
-
-   }
-
-   string str;
-
-   try
-   {
-
-      str = psz;
-
-   }
-   catch (...)
-   {
-
-   }
-
-   try
-   {
-
-      ::free((void*)psz);
-
-   }
-   catch (...)
-   {
-
-   }
-
-   return str;
-
-}
 
 //
 //namespace str
@@ -1334,7 +1297,7 @@ inline string string_from_strdup(const ansichar* psz)
 
       }
 
-      if (str::begins(psz, string(pszNamespace) + pszSeparator))
+      if (string_begins(psz, string(pszNamespace) + pszSeparator))
       {
 
          return true;
@@ -1374,78 +1337,78 @@ inline string string_from_strdup(const ansichar* psz)
 
 
 
-template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
-inline bool str::begins(const TOPIC_STRING & topic_string, const PREFIX_STRING & prefix_string)
-{
+//template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
+//inline bool str::begins(const TOPIC_STRING & topic_string, const PREFIX_STRING & prefix_string)
+//{
+//
+//   using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
+//
+//   using prefix_type = typename base_const_c_string < PREFIX_STRING >::type;
+//
+//   static_assert(::std::same_as < topic_type, prefix_type >);
+//
+//   auto prefix = (prefix_type)prefix_string;
+//
+//   auto prefix_length = string_safe_length(prefix);
+//
+//   if (prefix_length <= 0)
+//   {
+//
+//      return true;
+//
+//   }
+//
+//   auto topic = (topic_type)topic_string;
+//
+//   auto topic_length = string_safe_length(topic);
+//
+//   if (topic_length < prefix_length)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return !string_count_compare(topic, prefix, prefix_length);
+//
+//}
 
-   using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
 
-   using prefix_type = typename base_const_c_string < PREFIX_STRING >::type;
-
-   static_assert(::std::same_as < topic_type, prefix_type >);
-
-   auto prefix = (prefix_type)prefix_string;
-
-   auto prefix_length = string_safe_length(prefix);
-
-   if (prefix_length <= 0)
-   {
-
-      return true;
-
-   }
-
-   auto topic = (topic_type)topic_string;
-
-   auto topic_length = string_safe_length(topic);
-
-   if (topic_length < prefix_length)
-   {
-
-      return false;
-
-   }
-
-   return !string_count_compare(topic, prefix, prefix_length);
-
-}
-
-
-template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
-inline bool str::begins_ci(const TOPIC_STRING & topic_string, const PREFIX_STRING & prefix_string)
-{
-
-   using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
-
-   using prefix_type = typename base_const_c_string < PREFIX_STRING >::type;
-
-   static_assert(::std::same_as < topic_type, prefix_type >);
-
-   auto prefix = (prefix_type)prefix_string;
-
-   auto prefix_length = string_safe_length(prefix);
-
-   if (prefix_length <= 0)
-   {
-
-      return true;
-
-   }
-
-   auto topic = (topic_type)topic_string;
-
-   auto topic_length = string_safe_length(topic);
-
-   if (topic_length < prefix_length)
-   {
-
-      return false;
-
-   }
-
-   return !string_count_compare_ci(topic, prefix, prefix_length);
-
-}
+//template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
+//inline bool str::begins_ci(const TOPIC_STRING & topic_string, const PREFIX_STRING & prefix_string)
+//{
+//
+//   using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
+//
+//   using prefix_type = typename base_const_c_string < PREFIX_STRING >::type;
+//
+//   static_assert(::std::same_as < topic_type, prefix_type >);
+//
+//   auto prefix = (prefix_type)prefix_string;
+//
+//   auto prefix_length = string_safe_length(prefix);
+//
+//   if (prefix_length <= 0)
+//   {
+//
+//      return true;
+//
+//   }
+//
+//   auto topic = (topic_type)topic_string;
+//
+//   auto topic_length = string_safe_length(topic);
+//
+//   if (topic_length < prefix_length)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return !string_count_compare_ci(topic, prefix, prefix_length);
+//
+//}
 
 
 //   template < typename TYPE, typename PREFIX >
@@ -1457,192 +1420,192 @@ inline bool str::begins_ci(const TOPIC_STRING & topic_string, const PREFIX_STRIN
 //   }
 
 
-template < typename TYPE, typename FED, typename PREFIX >
-inline bool str::begins_ci(const TYPE & str, FED & strFed, const PREFIX & strPrefix)
-{
-
-   if (!begins_ci(str, strPrefix))
-   {
-
-      return false;
-
-   }
-
-   strFed = strPrefix;
-
-   return true;
-
-}
-
-template < typename TYPE, typename PREFIX >
-inline bool str::begins_eat(TYPE & str, const PREFIX & strPrefix)
-{
-
-   auto len = string_safe_length(strPrefix);
-
-   if (string_count_compare(str, strPrefix, len))
-   {
-
-      return false;
-
-   }
-
-   str = str.c_str() + len;
-
-   return true;
-
-}
-
-
-template < typename TYPE, typename PREFIX >
-inline bool str::begins_eat_ci(TYPE & str, const PREFIX & strPrefix)
-{
-
-   auto len = string_safe_length(strPrefix);
-
-   if (string_count_compare_ci(str, strPrefix, len))
-   {
-
-      return false;
-
-   }
-
-   str = &str[len];
-
-   return true;
-
-}
-
-
-
-
-
-template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
-inline bool str::ends(const TOPIC_STRING & topic_string, const SUFFIX_STRING & suffix_string)
-{
-
-   using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
-
-   using suffix_type = typename base_const_c_string < SUFFIX_STRING >::type;
-
-   static_assert(::std::same_as < topic_type, suffix_type >);
-
-   auto suffix = (suffix_type)suffix_string;
-
-   auto suffix_length = string_safe_length(suffix);
-
-   if (suffix_length <= 0)
-   {
-
-      return true;
-
-   }
-
-   auto topic = (topic_type)topic_string;
-
-   auto topic_length = string_safe_length(topic);
-
-   if (topic_length < suffix_length)
-   {
-
-      return false;
-
-   }
-
-   auto end_index = (topic_length - suffix_length);
-
-   auto end = topic + end_index;
-
-   return !string_count_compare(end, suffix, suffix_length);
-
-}
-
-
-template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
-inline bool str::ends_ci(const TOPIC_STRING & topic_string, const SUFFIX_STRING & suffix_string)
-{
-
-   using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
-
-   using suffix_type = typename base_const_c_string < SUFFIX_STRING >::type;
-
-   static_assert(::std::same_as < topic_type, suffix_type >);
-
-   auto suffix = (suffix_type)suffix_string;
-
-   auto suffix_length = string_safe_length(suffix);
-
-   if (suffix_length <= 0)
-   {
-
-      return true;
-
-   }
-
-   auto topic = (topic_type)topic_string;
-
-   auto topic_length = string_safe_length(topic);
-
-   if (topic_length < suffix_length)
-   {
-
-      return false;
-
-   }
-
-   auto end_index = (topic_length - suffix_length);
-
-   auto end = topic + end_index;
-
-   return !string_count_compare_ci(end, suffix, suffix_length);
-
-}
-
-
-
-template < typename TYPE, typename SUFFIX >
-inline bool str::ends_eat(TYPE & str, const SUFFIX & strSuffix)
-{
-
-   auto len = string_safe_length(strSuffix);
-
-   auto end = string_safe_length(str) - len;
-
-   if (string_count_compare(&str[end], strSuffix, len))
-   {
-
-      return false;
-
-   }
-
-   str.truncate(end);
-
-   return true;
-
-}
-
-
-template < typename TYPE, typename SUFFIX >
-inline bool str::ends_eat_ci(TYPE & str, const SUFFIX & strSuffix)
-{
-
-   auto len = string_safe_length(strSuffix);
-
-   auto end = string_safe_length(str) - len;
-
-   if (string_count_compare_ci(&str[end], strSuffix, len))
-   {
-
-      return false;
-
-   }
-
-   str.truncate(end);
-
-   return true;
-
-}
-
+//template < typename TYPE, typename FED, typename PREFIX >
+//inline bool str::begins_ci(const TYPE & str, FED & strFed, const PREFIX & strPrefix)
+//{
+//
+//   if (!begins_ci(str, strPrefix))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   strFed = strPrefix;
+//
+//   return true;
+//
+//}
+//
+//template < typename TYPE, typename PREFIX >
+//inline bool str::begins_eat(TYPE & str, const PREFIX & strPrefix)
+//{
+//
+//   auto len = string_safe_length(strPrefix);
+//
+//   if (string_count_compare(str, strPrefix, len))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   str = str.c_str() + len;
+//
+//   return true;
+//
+//}
+
+
+//template < typename TYPE, typename PREFIX >
+//inline bool str::begins_eat_ci(TYPE & str, const PREFIX & strPrefix)
+//{
+//
+//   auto len = string_safe_length(strPrefix);
+//
+//   if (string_count_compare_ci(str, strPrefix, len))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   str = &str[len];
+//
+//   return true;
+//
+//}
+//
+//
+//
+//
+//
+//template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
+//inline bool str::ends(const TOPIC_STRING & topic_string, const SUFFIX_STRING & suffix_string)
+//{
+//
+//   using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
+//
+//   using suffix_type = typename base_const_c_string < SUFFIX_STRING >::type;
+//
+//   static_assert(::std::same_as < topic_type, suffix_type >);
+//
+//   auto suffix = (suffix_type)suffix_string;
+//
+//   auto suffix_length = string_safe_length(suffix);
+//
+//   if (suffix_length <= 0)
+//   {
+//
+//      return true;
+//
+//   }
+//
+//   auto topic = (topic_type)topic_string;
+//
+//   auto topic_length = string_safe_length(topic);
+//
+//   if (topic_length < suffix_length)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   auto end_index = (topic_length - suffix_length);
+//
+//   auto end = topic + end_index;
+//
+//   return !string_count_compare(end, suffix, suffix_length);
+//
+//}
+//
+//
+//template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
+//inline bool str::ends_ci(const TOPIC_STRING & topic_string, const SUFFIX_STRING & suffix_string)
+//{
+//
+//   using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
+//
+//   using suffix_type = typename base_const_c_string < SUFFIX_STRING >::type;
+//
+//   static_assert(::std::same_as < topic_type, suffix_type >);
+//
+//   auto suffix = (suffix_type)suffix_string;
+//
+//   auto suffix_length = string_safe_length(suffix);
+//
+//   if (suffix_length <= 0)
+//   {
+//
+//      return true;
+//
+//   }
+//
+//   auto topic = (topic_type)topic_string;
+//
+//   auto topic_length = string_safe_length(topic);
+//
+//   if (topic_length < suffix_length)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   auto end_index = (topic_length - suffix_length);
+//
+//   auto end = topic + end_index;
+//
+//   return !string_count_compare_ci(end, suffix, suffix_length);
+//
+//}
+//
+//
+//
+//template < typename TYPE, typename SUFFIX >
+//inline bool str::ends_eat(TYPE & str, const SUFFIX & strSuffix)
+//{
+//
+//   auto len = string_safe_length(strSuffix);
+//
+//   auto end = string_safe_length(str) - len;
+//
+//   if (string_count_compare(&str[end], strSuffix, len))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   str.truncate(end);
+//
+//   return true;
+//
+//}
+//
+//
+//template < typename TYPE, typename SUFFIX >
+//inline bool str::ends_eat_ci(TYPE & str, const SUFFIX & strSuffix)
+//{
+//
+//   auto len = string_safe_length(strSuffix);
+//
+//   auto end = string_safe_length(str) - len;
+//
+//   if (string_count_compare_ci(&str[end], strSuffix, len))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   str.truncate(end);
+//
+//   return true;
+//
+//}
+//
 
 //} // namespace str
 //
@@ -1723,7 +1686,7 @@ inline string_base < TYPE_CHAR1 > & str::assign(string_base < TYPE_CHAR1 > & str
    if (srclen < 0)
    {
 
-      srclen = str::string_get_length(pszSrc) + srclen + 1;
+      srclen = string_get_length(pszSrc) + srclen + 1;
 
    }
 
@@ -1756,7 +1719,7 @@ inline string_base < TYPE_CHAR1 > & str::assign(string_base < TYPE_CHAR1 > & str
 
       }
 
-      str::utf_to_utf(strDst.m_pdata, pszSrc, dstlen);
+      utf_to_utf(strDst.m_pdata, pszSrc, dstlen);
 
       strDst.release_string_buffer(dstlen);
 
@@ -1774,7 +1737,7 @@ inline string_base < TYPE_CHAR1 > & str::assign(string_base < TYPE_CHAR1 > & str
    if (srclen < 0)
    {
 
-      srclen = str::string_get_length(pszSrc) + srclen + 1;
+      srclen = string_get_length(pszSrc) + srclen + 1;
 
    }
 
@@ -1791,7 +1754,7 @@ inline string_base < TYPE_CHAR1 > & str::assign(string_base < TYPE_CHAR1 > & str
 
       auto pszDst = strDst.get_string_buffer(dstlen);
 
-      str::utf_to_utf(pszDst, pszSrc, srclen);
+      utf_to_utf(pszDst, pszSrc, srclen);
 
       strDst.release_string_buffer(dstlen);
 
@@ -1819,7 +1782,7 @@ inline string_base < TYPE_CHAR1 > & str::assign(string_base < TYPE_CHAR1 > & str
 
       auto pszDst = strDst.get_string_buffer(dstlen);
 
-      str::utf_to_utf(pszDst, pszSrc);
+      utf_to_utf(pszDst, pszSrc);
 
       strDst.release_string_buffer(dstlen);
 
@@ -1828,6 +1791,7 @@ inline string_base < TYPE_CHAR1 > & str::assign(string_base < TYPE_CHAR1 > & str
    return strDst;
 
 }
+
 
 template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > & str::assign(string_base < TYPE_CHAR > & ansistrSrc, const TYPE_CHAR * pszSrc)

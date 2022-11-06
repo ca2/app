@@ -26,7 +26,7 @@ namespace message
       e_prototype_show_window,
       e_prototype_set_cursor,
       e_prototype_timer,
-      e_prototype_mouse_swheel,
+      e_prototype_mouse_wheel,
       e_prototype_init_menu_popup,
       e_prototype_enable,
       e_prototype_non_client_hit_test,

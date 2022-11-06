@@ -76,7 +76,7 @@ namespace sockets
       if(key == __id(content_length))
          m_content_length = atoi(value);
 
-      print(__string(key) + ": " + value + "\n");
+      print(key.string() + ": " + value + "\n");
    }
 
 

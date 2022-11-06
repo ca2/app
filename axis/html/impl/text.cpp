@@ -196,7 +196,7 @@ namespace html
 
          strsize iLastSpace = 0;
 
-         uchar uch;
+         char ch;
 
          i32 iSpace = 0;
 
@@ -207,14 +207,14 @@ namespace html
 
             iSpace = 0;
 
-            uch = (uchar)str[i];
+            ch = str[i];
 
             while (i < str.get_length())
             {
 
-               uch = (uchar)str[i];
+               ch = str[i];
 
-               if (!character_isspace(uch))
+               if (!character_isspace(ch))
                   break;
 
                iSpace++;
@@ -249,9 +249,9 @@ namespace html
             while (i < str.get_length())
             {
 
-               uch = (uchar)str[i];
+               ch = str[i];
 
-               if (character_isspace(uch))
+               if (character_isspace(ch))
                   break;
 
                strLine += str[i];
@@ -276,9 +276,9 @@ namespace html
          for (i32 i = 0; i < m_straWordSpace.get_size(); i++)
          {
 
-            uch = (uchar)m_straWordSpace[i][0];
+            ch = m_straWordSpace[i][0];
 
-            if (!character_isspace(uch))
+            if (!character_isspace(ch))
             {
 
                size = pgraphics->get_text_extent(m_straWordSpace[i]);
@@ -388,7 +388,7 @@ namespace html
 
          string strLine;
 
-         uchar uch;
+         char ch;
 
          strsize iLastSpace = 0;
 
@@ -409,14 +409,14 @@ namespace html
 
             iSpace = 0;
 
-            uch = (uchar)str[i];
+            ch = str[i];
 
             while (i < str.get_length())
             {
 
-               uch = (uchar)str[i];
+               ch = str[i];
 
-               if (!character_isspace(uch))
+               if (!character_isspace(ch))
                   break;
 
                iSpace++;
@@ -442,9 +442,9 @@ namespace html
             while (i < str.get_length())
             {
 
-               uch = (uchar)str[i];
+               ch = str[i];
 
-               if (character_isspace(uch))
+               if (character_isspace(ch))
                   break;
 
                strLine += str[i];

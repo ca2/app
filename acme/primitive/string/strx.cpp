@@ -36,24 +36,25 @@ static const u32 offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL
                                            };
 
 
-const char * unicode_next(const char * psz)
-{
-   char len =  1 + trailingBytesForUTF8(*psz);
-   if(len == 0)      return nullptr;
-   if(*psz++ == 0)   return nullptr;
-   if(len == 1)      return psz;
-   if(*psz++ == 0)   return nullptr;
-   if(len == 2)      return psz;
-   if(*psz++ == 0)   return nullptr;
-   if(len == 3)      return psz;
-   if(*psz++ == 0)   return nullptr;
-   if(len == 4)      return psz;
-   if(*psz++ == 0)   return nullptr;
-   if(len == 5)      return psz;
-   if(*psz++ == 0)   return nullptr;
-   if(len == 6)      return psz;
-   return nullptr;
-}
+//const char * unicode_next(const char * psz)
+//{
+//
+//   char len =  1 + trailingBytesForUTF8(*psz);
+//   if(len == 0)      return nullptr;
+//   if(*psz++ == 0)   return nullptr;
+//   if(len == 1)      return psz;
+//   if(*psz++ == 0)   return nullptr;
+//   if(len == 2)      return psz;
+//   if(*psz++ == 0)   return nullptr;
+//   if(len == 3)      return psz;
+//   if(*psz++ == 0)   return nullptr;
+//   if(len == 4)      return psz;
+//   if(*psz++ == 0)   return nullptr;
+//   if(len == 5)      return psz;
+//   if(*psz++ == 0)   return nullptr;
+//   if(len == 6)      return psz;
+//   return nullptr;
+//}
 
 
 

@@ -9,6 +9,7 @@
 #include "disp_option.h"
 #include "exception.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/string/str.h"
 
 
 // https://www.codeproject.com/Articles/3426/XMLite-simple-XML-parser
@@ -891,7 +892,7 @@ namespace xml
          if (m_enode == ::data::e_node_xml_document)
          {
             // is DOCTYPE
-            if(::str().begins(xml, "<!DOCTYPE"))
+            if(string_begins(xml, "<!DOCTYPE"))
             {
                // processing instrunction parse
                // return pointer is next node of pparseinfo

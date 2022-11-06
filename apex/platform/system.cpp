@@ -27,7 +27,7 @@
 #include "acme/primitive/string/command_line.h"
 #include "apex/crypto/crypto.h"
 #include "apex/message/message.h"
-#include "apex/operating_system.h"
+//#include "apex/operating_system.h"
 #include "apex/networking/http/context.h"
 #include "apex/networking/networking.h"
 #include "apex/operating_system/department.h"
@@ -150,7 +150,7 @@ namespace apex
 
       //::factory::add_factory_item<::apex::idpool, ::acme::idpool >();
 
-      m_edisplay = e_display_default;
+      //m_edisplay = e_display_default;
 
       //set_layer(LAYERED_APEX, this);
 
@@ -731,7 +731,7 @@ namespace apex
 
          int iPid;
 
-         iPid = ::get_current_process_id();
+         iPid = acmenode()->get_current_process_id();
 
          printf("%s", ("Process PID: " + __string(iPid) + "\n").c_str());
          output_debug_string("Process PID: " + __string(iPid) + "\n");
@@ -1039,7 +1039,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      auto pid = get_current_process_id();
+      auto pid = acmenode()->get_current_process_id();
 
       string strPid = __string(pid);
 
@@ -1055,14 +1055,14 @@ pacmedirectory->create("/ca2core");
 
       {
 
-         string strExecutable = get_executable();
+         string strExecutable = subsystem()->get_executable();
 
          string_array straArguments;
 
-         for (int i = 0; i < get_argument_count1(); i++)
+         for (int i = 0; i < subsystem()->get_argument_count1(); i++)
          {
 
-            string strArgument = get_argument1(i);
+            string strArgument = subsystem()->get_argument1(i);
 
             straArguments.add(strArgument);
 
@@ -1084,10 +1084,10 @@ pacmedirectory->create("/ca2core");
 
          string_array straEnv;
 
-         if (m_wenvp)
+         if (subsystem()->m_wenvp)
          {
 
-            for (auto wenv = m_wenvp; *wenv != 0; wenv++)
+            for (auto wenv = subsystem()->m_wenvp; *wenv != 0; wenv++)
             {
 
                auto thisEnv = *wenv;
@@ -1097,10 +1097,10 @@ pacmedirectory->create("/ca2core");
             }
 
          }
-         else if (m_envp)
+         else if (subsystem()->m_envp)
          {
 
-            for (auto env = m_envp; *env != 0; env++)
+            for (auto env = subsystem()->m_envp; *env != 0; env++)
             {
 
                auto thisEnv = *env;
@@ -1741,7 +1741,7 @@ pacmedirectory->create("/ca2core");
 
       //pcreate->m_pcommandline = __create_new < command_line >();
 
-      auto straArguments = get_arguments();
+      auto straArguments = subsystem()->get_arguments();
 
       if (straArguments.has_element())
       {
@@ -2934,13 +2934,13 @@ pacmedirectory->create("/ca2core");
 ////         strLibraryId = straTitle[i];
 ////
 ////
-////         if(::str().ends_eat_ci(strLibraryId,".dll")
-////               || ::str().ends_eat_ci(strLibraryId,".so")
-////               || ::str().ends_eat_ci(strLibraryId,".dylib"))
+////         if(strLibraryId.ends_eat_ci(".dll")
+////               || strLibraryId.ends_eat_ci(".so")
+////               || strLibraryId.ends_eat_ci(".dylib"))
 ////         {
 ////
-////            if(::str().begins_ci(strLibraryId,"libdraw2d_")
-////                  || ::str().begins_ci(strLibraryId,"libbase"))
+////            if(string_begins_ci(strLibraryId,"libdraw2d_")
+////                  || string_begins_ci(strLibraryId,"libbase"))
 ////            {
 ////               continue;
 ////            }
@@ -3054,10 +3054,10 @@ pacmedirectory->create("/ca2core");
 //         strLibrary = "base";
 //
 //      }
-//      else if(!::str().begins_eat(strLibrary,"libbase"))
+//      else if(!strLibrary.begins_eat("libbase"))
 //      {
 //
-//         ::str().begins_eat(strLibrary,"lib");
+//         strLibrary.begins_eat("lib");
 //
 //      }
 //
@@ -3069,7 +3069,7 @@ pacmedirectory->create("/ca2core");
 //
 //      strPrefix.replace("/","_");
 //
-//      ::str().begins_eat_ci(strLibrary,strPrefix);
+//      strLibrary.begins_eat_ci(strPrefix);
 //
 //      strRoot += strLibrary;
 //
@@ -3546,7 +3546,7 @@ pacmedirectory->create("/ca2core");
 
          string strAppId = purl->get_script(str);
 
-         ::str().begins_eat(strAppId, "/");
+         strAppId.begins_eat("/");
 
          string strQuery = purl->get_query(str);
 
@@ -3587,7 +3587,7 @@ pacmedirectory->create("/ca2core");
 
          string strScheme = purl->get_script(str);
 
-         ::str().begins_eat(strScheme, "/");
+         strScheme.begins_eat("/");
 
          if(strBase == "scheme")
          {
@@ -4226,7 +4226,9 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
       auto pnode = psystem->node();
 
-      pnode->call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_minute, set);
+      ::i32 iExitCode = 0;
+
+      pnode->call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_minute, set, &iExitCode);
 
 #endif
 

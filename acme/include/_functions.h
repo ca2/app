@@ -88,4 +88,7 @@ inline int_bool address_overlaps(const void * pszDst, const void * pszSrc, strsi
 }
 
 
+CLASS_DECL_ACME void throw_encoding_exception(const char * pszMessage);
+
+
 

@@ -460,6 +460,11 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    bool begins_ci(const ::string & strPrefix) const { return get_string().begins_ci(strPrefix); }
    bool ends_ci(const ::string & strSuffix) const { return get_string().ends_ci(strSuffix); }
 
+   bool begins_eat(const ::string & strPrefix);
+   bool ends_eat(const ::string & strSuffix);
+   bool begins_eat_ci(const ::string & strPrefix);
+   bool ends_eat_ci(const ::string & strSuffix);
+
    payload get_topic(const ::atom & atom) const;
    //payload defer_get(const ::atom & atom) const;
 

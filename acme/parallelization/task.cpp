@@ -1069,10 +1069,10 @@ bool task::has_message() const
 
    pthread_attr_init(&taskAttr);
 
-   if (nStackSize > 0)
+   if (createtaskattributes.m_uStackSize > 0)
    {
 
-      pthread_attr_setstacksize(&taskAttr, nStackSize); // Set the stack size of the task
+      pthread_attr_setstacksize(&taskAttr, createtaskattributes.m_uStackSize); // Set the stack size of the task
 
    }
 

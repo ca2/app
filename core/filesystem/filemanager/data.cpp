@@ -360,8 +360,8 @@ namespace filemanager
 
       ::pointer<::core::application>papp = pparticle->acmeapplication();
 
-      if (::str().begins(path, "uifs://")
-         || ::str().begins(path, "fs://"))
+      if (string_begins(path, "uifs://")
+         || string_begins(path, "fs://"))
       {
 
          papp->datastream()->set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey +".last_browse_folder" }, strPath);

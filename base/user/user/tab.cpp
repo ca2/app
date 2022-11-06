@@ -3975,10 +3975,10 @@ namespace user
 
          strPath = ppane->m_atom;
 
-         if(strPrefix.is_empty() || ::str().begins_ci(strPath, strPrefix))
+         if(strPrefix.is_empty() || strPath.begins_ci(strPrefix))
          {
 
-            if(strSuffix.is_empty() || ::str().ends_ci(strPath, strSuffix))
+            if(strSuffix.is_empty() || strPath.ends_ci(strSuffix))
             {
 
                stra.add(strPath);
@@ -4026,10 +4026,10 @@ namespace user
 
          strPath = ppane->m_atom;
 
-         if(strPrefix.is_empty() || ::str().begins_ci(strPath, strPrefix))
+         if(strPrefix.is_empty() || strPath.begins_ci(strPrefix))
          {
 
-            if(strSuffix.is_empty() || ::str().ends_ci(strPath, strSuffix))
+            if(strSuffix.is_empty() || strPath.ends_ci(strSuffix))
             {
 
                stra.add(strPath);

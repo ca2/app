@@ -1,7 +1,10 @@
 ﻿// Extracted from device_lock, Changed and Organized by camilo on 2021-09-04 05:46 BRT <3ThomasBS__!!
 #include "framework.h"
-#include "acme/operating_system.h"
 #include "lock.h"
+
+
+
+//#include "acme/_operating_system.h"
 
 
 namespace draw2d

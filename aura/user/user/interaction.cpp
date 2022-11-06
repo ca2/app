@@ -13,11 +13,12 @@
 #include "form.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/constant/message_prototype.h"
 #include "acme/constant/simple_command.h"
 #include "aura/message/timer.h"
 #include "acme/handler/item.h"
 #include "acme/user/user/drag.h"
-#include "apex/message/_constant.h"
+//#include "apex/message/_constant.h"
 #include "apex/message/simple_command.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/asynchronous.h"
@@ -31,6 +32,7 @@
 #include "acme/primitive/geometry2d/_enhanced.h"
 #include "acme/primitive/geometry2d/_collection_enhanced.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
+#include "acme/primitive/string/international.h"
 #include "apex/message/simple_command.h"
 #include "aqua/user/controller.h"
 #include "aura/user/appearance/appearance.h"
@@ -2080,7 +2082,7 @@ namespace user
          MESSAGE_LINK(e_message_close, pchannel, this, &interaction::on_message_close);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction::on_message_size);
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction::on_message_move);
-         MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this,
+         MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this,
             &interaction::on_message_non_client_calculate_size);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::on_message_show_window);
          MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::on_message_display_change);
@@ -4921,34 +4923,34 @@ namespace user
 
       switch (eprototype)
       {
-      case ::message::PrototypeNone:
+      case ::message::e_prototype_none:
       {
 
          pmessage = __new(::user::message);
 
       }
       break;
-      case ::message::PrototypeCreate:
+      case ::message::e_prototype_create:
       {
          pmessage = __new(::message::create);
       }
       break;
-      case ::message::PrototypeEnable:
+      case ::message::e_prototype_enable:
       {
          pmessage = __new(::message::enable);
       }
       break;
-      case ::message::PrototypeNcActivate:
+      case ::message::e_prototype_non_client_activate:
       {
          pmessage = __new(::message::nc_activate);
       }
       break;
-      case ::message::PrototypeKey:
+      case ::message::e_prototype_key:
       {
          pmessage = __new(::message::key);
       }
       break;
-      case ::message::PrototypeTimer:
+      case ::message::e_prototype_timer:
       {
 
          //throw ::exception(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
@@ -4957,42 +4959,42 @@ namespace user
 
       }
       break;
-      case ::message::PrototypeShowWindow:
+      case ::message::e_prototype_show_window:
       {
          pmessage = __new(::message::show_window);
       }
       break;
-      case ::message::PrototypeSetCursor:
+      case ::message::e_prototype_set_cursor:
       {
          pmessage = __new(::message::set_cursor);
       }
       break;
-      case ::message::PrototypeNcHitTest:
+      case ::message::e_prototype_non_client_hit_test:
       {
          pmessage = __new(::message::nc_hit_test);
       }
       break;
-      case ::message::PrototypeMove:
+      case ::message::e_prototype_move:
       {
          pmessage = __new(::message::move);
       }
       break;
-      case ::message::PrototypeEraseBkgnd:
+      case ::message::e_prototype_erase_background:
       {
          pmessage = __new(::message::erase_bkgnd);
       }
       break;
-      case ::message::PrototypeScroll:
+      case ::message::e_prototype_scroll:
       {
          pmessage = __new(::message::scroll);
       }
       break;
-      case ::message::PrototypeSetFocus:
+      case ::message::e_prototype_set_focus:
       {
          pmessage = __new(::message::set_keyboard_focus);
       }
       break;
-      case ::message::PrototypeKillFocus:
+      case ::message::e_prototype_kill_focus:
       {
          pmessage = __new(::message::kill_keyboard_focus);
       }
@@ -5009,37 +5011,37 @@ namespace user
       }
       break;
 #endif
-      case ::message::PrototypeMouse:
+      case ::message::e_prototype_mouse:
       {
          pmessage = __new(::message::mouse);
       }
       break;
-      case ::message::PrototypeMouseWheel:
+      case ::message::e_prototype_mouse_wheel:
       {
          pmessage = __new(::message::mouse_wheel);
       }
       break;
-      case ::message::PrototypeSize:
+      case ::message::e_prototype_size:
       {
          pmessage = __new(::message::size);
       }
       break;
-      case ::message::PrototypeActivate:
+      case ::message::e_prototype_activate:
       {
          pmessage = __new(::message::activate);
       }
       break;
-      case ::message::PrototypeMouseActivate:
+      case ::message::e_prototype_mouse_activate:
       {
          pmessage = __new(::message::mouse_activate);
       }
       break;
-      case ::message::PrototypeSimpleCommand:
+      case ::message::e_prototype_simple_command:
       {
          pmessage = __new(::message::simple_command);
       }
       break;
-      case ::message::PrototypeObject:
+      case ::message::e_prototype_object:
       {
          pmessage = __new(::message::particle);
       }
@@ -8023,9 +8025,9 @@ namespace user
          while (*psz)
          {
 
-            string strUtf8Character = ::str().get_utf8_char(psz);
+            string strUtf8Character = get_utf8_char(psz);
 
-            auto iCharacter = unicode_uni_index(strUtf8Character);
+            auto iCharacter = unicode_index(strUtf8Character);
 
             m_pappearance->on_character(iCharacter);
 
@@ -18718,9 +18720,9 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       while (*psz)
       {
 
-         string strCharacter = ::str().get_utf8_char(psz);
+         string strCharacter = get_utf8_char(psz);
 
-         int iCharacter = unicode_uni_index(strCharacter);
+         int iCharacter = unicode_index(strCharacter);
 
          if (m_pappearance)
          {
@@ -19867,13 +19869,13 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
    //         string str = argument.get_string();
 
-   //         if (::str().begins_eat_ci(str, "class="))
+   //         if (str.begins_eat_ci("class="))
    //         {
 
    //            m_strClass = str;
 
    //         }
-   //         else if (::str().begins_eat_ci(str, "style="))
+   //         else if (str.begins_eat_ci("style="))
    //         {
 
    //            m_strStyle = str;

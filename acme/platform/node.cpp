@@ -512,20 +512,15 @@ namespace acme
    bool node::erase_exclusive(const ::string & strName)
    {
 
-      auto & pexclusive = m_mapExclusive[strName];
+      return m_mapExclusive.erase_key(strName);
 
-      if (!pexclusive)
-      {
+   }
 
-         return true;
 
-      }
+   void node::release_exclusive()
+   {
 
-      pexclusive.release();
-
-      m_mapExclusive.erase_key(strName);
-
-      return true;
+      m_mapExclusive.release();
 
    }
 
@@ -2443,6 +2438,25 @@ return false;
 
    }
 
+
+   string_array node::cmdline_from_pid(unsigned int pid)
+   {
+
+      throw interface_only();
+
+      return {};
+
+   }
+
+
+   atom_array  node::app_get_pid(const ::string & strApp)
+   {
+
+      throw interface_only();
+
+      return {};
+
+   }
 
 } // namespace acme
 

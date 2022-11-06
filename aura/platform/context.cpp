@@ -266,67 +266,67 @@ namespace aura
 //
 //      path = defer_process_matter_path(path);
 //
-//      if (::str().begins_eat_ci(path, "music://"))
+//      if (path.begins_eat_ci("music://"))
 //      {
 //
 //         path = dir()->music() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "video://"))
+//      else if (path.begins_eat_ci("video://"))
 //      {
 //
 //         path = dir()->video() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "image://"))
+//      else if (path.begins_eat_ci("image://"))
 //      {
 //
 //         path = dir()->image() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "document://"))
+//      else if (path.begins_eat_ci("document://"))
 //      {
 //
 //         path = dir()->document() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "dropbox://"))
+//      else if (path.begins_eat_ci("dropbox://"))
 //      {
 //
 //         path = dir()->dropbox() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "onedrive://"))
+//      else if (path.begins_eat_ci("onedrive://"))
 //      {
 //
 //         path = dir()->onedrive() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "appconfig://"))
+//      else if (path.begins_eat_ci("appconfig://"))
 //      {
 //
 //         path = get_app()->appconfig_folder() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "download://"))
+//      else if (path.begins_eat_ci("download://"))
 //      {
 //
 //         path = dir()->download() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "usersystem://"))
+//      else if (path.begins_eat_ci("usersystem://"))
 //      {
 //
 //         path = acmedirectory()->system() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "desktop://"))
+//      else if (path.begins_eat_ci("desktop://"))
 //      {
 //
 //         path = dir()->desktop() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "bookmark://"))
+//      else if (path.begins_eat_ci("bookmark://"))
 //      {
 //
 //         path = dir()->bookmark() / path;
@@ -356,7 +356,7 @@ namespace aura
 //   ::file::path context::defer_process_matter_path(::file::path path)
 //   {
 //
-//      if (::str().begins_ci(path, "matter://"))
+//      if (string_begins_ci(path, "matter://"))
 //      {
 //
 //         path = dir()->matter(path, false);
@@ -377,7 +377,7 @@ namespace aura
 //   ::file::path context::get_matter_path(string strMatter)
 //   {
 //
-//      if (::str().begins_eat_ci(strMatter, "appmatter://"))
+//      if (strMatter.begins_eat_ci("appmatter://"))
 //      {
 //
 //         return dir()->install() / strMatter;
@@ -494,7 +494,7 @@ namespace aura
 //
 //         }
 //
-//         ::str().begins_eat_ci(path, "appmatter://");
+//         path.begins_eat_ci("appmatter://");
 //
 //         path = string(get_server_ca2_cc()) + "matter" / path;
 //

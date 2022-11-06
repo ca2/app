@@ -4581,7 +4581,7 @@ namespace draw2d_cairo
 
          cairo_font_extents_t e;
 
-         if (::str().begins(str, unitext("バーチャルマシン")))
+         if (string_begins(str, unitext("バーチャルマシン")))
          {
 
             TRACE("Likely to fail in certain circumstances");

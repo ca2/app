@@ -802,7 +802,7 @@ namespace user
 ////
 ////         i32 iImage = 0x80000000;
 //
-//      if (::str().begins_ci(getfileimage.m_imagekey.m_strPath, "uifs:"))
+//      if (string_begins_ci(getfileimage.m_imagekey.m_strPath, "uifs:"))
 //      {
 //
 //         auto pcontext = m_pcontext;
@@ -828,7 +828,7 @@ namespace user
 //         return;
 //
 //      }
-//      else if (::str().begins_ci(getfileimage.m_imagekey.m_strPath, "fs:"))
+//      else if (string_begins_ci(getfileimage.m_imagekey.m_strPath, "fs:"))
 //      {
 //
 //         auto pcontext = m_pcontext;
@@ -854,7 +854,7 @@ namespace user
 //         return;
 //
 //      }
-//      else if (::str().begins_ci(getfileimage.m_imagekey.m_strPath, "ftp:"))
+//      else if (string_begins_ci(getfileimage.m_imagekey.m_strPath, "ftp:"))
 //      {
 //
 //         auto pcontext = m_pcontext;
@@ -881,14 +881,14 @@ namespace user
 //
 //      }
 //
-//      if (::str().ends_ci(getfileimage.m_imagekey.m_strPath, ".aura"))
+//      if (string_ends_ci(getfileimage.m_imagekey.m_strPath, ".aura"))
 //      {
 //
 //         auto pcontext = m_pcontext;
 //
 //         string str = pcontext->m_papexcontext->file()->as_string(getfileimage.m_imagekey.m_strPath);
 //
-//         if (::str().begins_eat_ci(str, "ca2prompt\r\n"))
+//         if (str.begins_eat_ci("ca2prompt\r\n"))
 //         {
 //
 //            str.trim();
@@ -958,7 +958,7 @@ namespace user
 //
 //      string strExtension;
 //
-//      if (::str().ends_ci(getfileimage.m_imagekey.m_strPath, ".sln"))
+//      if (string_ends_ci(getfileimage.m_imagekey.m_strPath, ".sln"))
 //      {
 //
 //         // output_debug_string("test .sln");
@@ -974,7 +974,7 @@ namespace user
 //
 //         i32 iImage = 0x80000000;
 
-      if (::str().begins_ci(strPath, "uifs:"))
+      if (strPath.begins_ci("uifs:"))
       {
 
          auto pcontext = m_pcontext;
@@ -1000,7 +1000,7 @@ namespace user
          return true;
 
       }
-      else if (::str().begins_ci(strPath, "fs:"))
+      else if (strPath.begins_ci("fs:"))
       {
 
          auto pcontext = m_pcontext;
@@ -1026,7 +1026,7 @@ namespace user
          return true;
 
       }
-      else if (::str().begins_ci(strPath, "ftp:"))
+      else if (strPath.begins_ci("ftp:"))
       {
 
          auto pcontext = m_pcontext;
@@ -1053,14 +1053,14 @@ namespace user
 
       }
 
-      if (::str().ends_ci(strPath, ".aura"))
+      if (strPath.ends_ci(".aura"))
       {
 
          auto pcontext = m_pcontext;
 
          string str = pcontext->m_papexcontext->file()->as_string(strPath);
 
-         if (::str().begins_eat_ci(str, "ca2prompt\r\n"))
+         if (str.begins_eat_ci("ca2prompt\r\n"))
          {
 
             str.trim();
@@ -1202,7 +1202,7 @@ namespace user
 
       string strIcon16;
 
-      if (::str().ends_ci(getfileimage.m_imagekey.m_strPath, ".desktop"))
+      if (getfileimage.m_imagekey.m_strPath.ends_ci(".desktop"))
       {
 
          auto pcontext = m_pcontext;
@@ -1226,7 +1226,7 @@ namespace user
 
          string strIcon = stra[0];
 
-         ::str().begins_eat_ci(strIcon, "icon=");
+         strIcon.begins_eat_ci("icon=");
 
          strIcon48 = strIcon;
 

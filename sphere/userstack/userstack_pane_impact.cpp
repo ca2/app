@@ -96,7 +96,7 @@ namespace userstack
       ::userex::pane_tab_impact::on_change_cur_sel();
 //      ::pointer<frame>pframe =  (get_parent_frame());
       string strId = get_impact_id();
-      if(::str().begins_eat(strId, "app:"))
+      if(strId.begins_eat("app:"))
       {
 
          ::pointer<::aura::application>pappTab;
@@ -169,7 +169,7 @@ namespace userstack
 
       string strId = pimpactdata->m_atom;
 
-      if(::str().begins_eat(strId, "app:"))
+      if(strId.begins_eat("app:"))
       {
 
          ::pointer<::aura::application>pappTab;
@@ -351,7 +351,7 @@ namespace userstack
 
          psystem->m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
 
-         if(::str().begins_eat(strApp, "application:"))
+         if(strApp.begins_eat("application:"))
          {
 
             pcontext->m_papexcontext->file()->put_contents(strDir / strApp + ".ca2", "ca2prompt\r\n"+ strApp);

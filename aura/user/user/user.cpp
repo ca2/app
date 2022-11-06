@@ -1376,7 +1376,7 @@ namespace user
 
                synchronous_lock synchronouslock(this->synchronization());
 
-               uiptraToolWindow._001CopyContainer(m_uiptraToolWindow);
+               uiptraToolWindow.copy_container(m_uiptraToolWindow);
 
             }
 

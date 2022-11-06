@@ -285,7 +285,7 @@ namespace ios
 //         for(i32 i = 0; i < stra.get_size(); i++)
 //         {
 //            string str = stra[i];
-//            if(::str().begins_eat_ci(str, pszPrefix))
+//            if(str.begins_eat_ci(pszPrefix))
 //            {
 //               if(str.get_length() < 2)
 //               {
@@ -350,16 +350,16 @@ namespace ios
 //               if(!infile.dump(&memfile))
 //                  return "";
 //            }
-//            else if(::str().begins_eat_ci(strFilePath, "file:///"))
+//            else if(strFilePath.begins_eat_ci("file:///"))
 //            {
 //               as_memory(strFilePath, storage, papp);
 //            }
-//            else if(::str().begins_eat_ci(strFilePath, "file:\\\\\\"))
+//            else if(strFilePath.begins_eat_ci("file:\\\\\\"))
 //            {
 //               as_memory(strFilePath, storage, papp);
 //            }
-//            else if(::str().begins_ci(strFilePath, "http://")
-//                    || ::str().begins_ci(strFilePath, "https://"))
+//            else if(string_begins_ci(strFilePath, "http://")
+//                    || string_begins_ci(strFilePath, "https://"))
 //            {
 //
 //               if(varQuery.has_property("in_headers"))
@@ -449,7 +449,7 @@ namespace ios
 //
 //            strPath.trim("\"'");
 //
-//            if((::str().begins(strPath, "http://") || ::str().begins(strPath, "https://")))
+//            if((string_begins(strPath, "http://") || string_begins(strPath, "https://")))
 //            {
 //
 //               property_set set;
@@ -607,9 +607,9 @@ namespace ios
 //
 //         string str(path);
 //
-//         while(::str().ends_eat(str, "\\"));
+//         while(str.ends_eat("\\"));
 //
-//         while(::str().ends_eat(str, "/"));
+//         while(str.ends_eat("/"));
 //
 //         strsize iPos;
 //
@@ -686,7 +686,7 @@ namespace ios
 //            if(exists(pszNew, papp))
 //               throw ::exception(::exception("Failed to copy file"));
 //         }
-//         if(pcontext->m_papexcontext->dir()->is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str().ends_ci(psz, ".zip"))))
+//         if(pcontext->m_papexcontext->dir()->is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(string_ends_ci(psz, ".zip"))))
 //         {
 //            string_array straPath;
 //            pcontext->m_papexcontext->dir()->rls(papp, psz, &straPath);
@@ -694,7 +694,7 @@ namespace ios
 //            string strSrc;
 //            string strDirSrc(psz);
 //            string strDirDst(pszNew);
-//            if(papp->m_bZipIsDir && (::str().ends(strDirSrc, ".zip")))
+//            if(papp->m_bZipIsDir && (string_ends(strDirSrc, ".zip")))
 //            {
 //               strDirSrc += ":";
 //            }
@@ -702,11 +702,11 @@ namespace ios
 //            {
 //               strSrc = straPath[i];
 //               strDst = strSrc;
-//               ::str().begins_eat_ci(strDst, strDirSrc);
+//               strDst.begins_eat_ci(strDirSrc);
 //               strDst = pcontext->m_papexcontext->dir()->path(strDirDst, strDst);
 //               if(pcontext->m_papexcontext->dir()->is(strSrc, papp))
 //               {
-//                  if((eextract == extract_first || eextract == extract_none) && (::str().ends_ci(psz, ".zip")))
+//                  if((eextract == extract_first || eextract == extract_none) && (string_ends_ci(psz, ".zip")))
 //                  {
 //                  }
 //                  else
@@ -1171,7 +1171,7 @@ namespace ios
 //
 //         string strTempDir = get_sys_temp_path();
 //
-//         if(!::str().ends(strTempDir, "\\") && !::str().ends(strTempDir, "/"))
+//         if(!string_ends(strTempDir, "\\") && !string_ends(strTempDir, "/"))
 //         {
 //
 //            strTempDir += "\\";

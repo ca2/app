@@ -86,6 +86,7 @@ list(APPEND apex_source
         #filesystem/file/_.h
         filesystem/file/_data.h
         filesystem/file/_file.h
+        filesystem/file/action.h
         filesystem/file/edit_file.cpp
         filesystem/file/edit_file.h
         filesystem/file/html_file.cpp
@@ -153,6 +154,7 @@ list(APPEND apex_source
         include/_include.h
         include/_simple_templates.h
         include/_setup.h
+        include/_forward_declaration.h
         include/objc.h
         include/objcpp.h
         include/winrt.h
@@ -177,7 +179,7 @@ list(APPEND apex_source
         inline/application_common.h
         inline/console.h
         inline/console_common.h
-        inline/library.h
+        #inline/library.h
         interprocess/base.cpp
         interprocess/base.h
         interprocess/call.cpp
@@ -192,6 +194,7 @@ list(APPEND apex_source
         interprocess/task.h
         message/_.cpp
         message/_.h
+        #message/_constant.h
         #message/_impl.h
         message/_message.h
         message/application.cpp
@@ -348,8 +351,8 @@ list(APPEND apex_source
         networking/sockets/websocket_client.h
         #networking/_.cpp
         networking/_.h
-        networking/_impl.h
-        networking/_networking_impl.h
+        #networking/_impl.h
+        #networking/_networking_impl.h
         networking/address.cpp
         networking/address.h
         #networking/address_department.cpp
@@ -376,46 +379,46 @@ list(APPEND apex_source
         networking/sockets.cpp
         #operating_system/_.h
         #operating_system/_node.h
-        operating_system/ansi/_.h
-        operating_system/ansi/_ansi.h
+        #operating_system/ansi/_.h
+        #operating_system/ansi/_ansi.h
         #operating_system/ansios/_c.h
-        operating_system/ansi/ansi_file.h
+        #operating_system/ansi/ansi_file.h
         #operating_system/ansi/base.cpp
         # operating_system/ansios/callstack.h
         #operating_system/ansios/datetime.cpp
         #operating_system/ansios/datetime_c.h
         # operating_system/ansios/exception_engine.cpp
         # operating_system/ansios/exception_engine.h
-        operating_system/ansi/file.cpp
-        operating_system/ansi/file.h
+        #operating_system/ansi/file.cpp
+        #operating_system/ansi/file.h
         #operating_system/ansios/file_c.h
         #operating_system/ansi/language.cpp
-        operating_system/ansi/parallelization.h
+        #operating_system/ansi/parallelization.h
         #operating_system/ansios/process.cpp
         #operating_system/ansi/win.cpp
-        operating_system/_.h
-        operating_system/_application.cpp
-        operating_system/_application.h
+        #operating_system/_.h
+        #operating_system/_application.cpp
+        #operating_system/_application.h
         #operating_system/_c2.h
-        operating_system/_impl.h
-        operating_system/_operating_system.h
-        operating_system/apex.h
+        #operating_system/_impl.h
+        #operating_system/_operating_system.h
+        #operating_system/apex.h
         #operating_system/argcargv.cpp
-        operating_system/binreloc.h
-        operating_system/cross.h
-        operating_system/debug.cpp
-        operating_system/file.h
-        operating_system/graphics.h
-        operating_system/http.cpp
+        #operating_system/binreloc.h
+        #operating_system/cross.h
+        #operating_system/debug.cpp
+        #operating_system/file.h
+        #operating_system/graphics.h
+        #operating_system/http.cpp
         #operating_system/openssl_crypt.cpp
         #operating_system/operating_system.h
-        operating_system/operating_system.cpp
+        #operating_system/operating_system.cpp#
         #operating_system/os_windowing2.h
         #operating_system/process.h
-        operating_system/text.h
-        operating_system/thread.cpp
-        operating_system/thread.h
-        operating_system/windowing.h
+        #operating_system/text.h
+        #operating_system/thread.cpp
+        #operating_system/thread.h
+        #operating_system/windowing.h
         parallelization/_.cpp
         parallelization/_.h
         parallelization/_impl.h
@@ -440,6 +443,7 @@ list(APPEND apex_source
         parallelization/threading.h
         platform/_.cpp
         platform/_application_service.cpp
+        platform/_critical_section.h
         platform/_impl.h
         platform/_platform.h
         #platform/_system_id_impl.h
@@ -548,8 +552,8 @@ list(APPEND apex_source
         #process/_.h
         operating_system/department.cpp
         operating_system/department.h
-        operating_system/process.cpp
-        operating_system/process.h
+        #operating_system/process.cpp
+        #operating_system/process.h
         progress/integer.cpp
         progress/integer.h
         progress/listener.cpp
@@ -589,7 +593,7 @@ list(APPEND apex_source
         framework_c.h
         future.h
         id.h
-        library.h
+        #library.h
         #message.h
         procedure.h
         #update.h
@@ -662,10 +666,10 @@ if (WIN32)
 else ()
 
     list(APPEND apex_source
-            operating_system/cross/windows/windows_thread.h
-            operating_system/cross/windows/windows_thread_impl.h
-            operating_system/cross/cross.h
-            operating_system/winpr_input.h
+            #operating_system/cross/windows/windows_thread.h
+            #operating_system/cross/windows/windows_thread_impl.h
+            #operating_system/cross/cross.h
+            #operating_system/winpr_input.h
             #operating_system/winpr_keycode.cpp
             #operating_system/winpr_scancode.cpp
             )
@@ -754,77 +758,79 @@ if (UWP)
             net/sockets/winrt/include.cpp
             net/sockets/winrt/sockets.cpp
             net/sockets/winrt/sockets.h
-            operating_system/universal_windows/net/net_address.h
-            operating_system/universal_windows/_.h
-            operating_system/universal_windows/_aaa_want_to_remove_node_metrowin.cpp
-            operating_system/universal_windows/_uwp.h
-            operating_system/universal_windows/app_core.cpp
-            operating_system/universal_windows/application.cpp
-            operating_system/universal_windows/application.h
-            operating_system/universal_windows/command.cpp
-            operating_system/universal_windows/dir_context.cpp
-            operating_system/universal_windows/dir_context.h
-            operating_system/universal_windows/dir_system.cpp
-            operating_system/universal_windows/dir_system.h
-            operating_system/universal_windows/directx.cpp
-            operating_system/universal_windows/directx_application.cpp
-            operating_system/universal_windows/directx_impact.cpp
-            operating_system/universal_windows/directx_interaction.cpp
-            operating_system/universal_windows/error.cpp
-            operating_system/universal_windows/_factory.cpp
-            operating_system/universal_windows/
-            operating_system/universal_windows/file_context.cpp
-            operating_system/universal_windows/file_context.h
-            operating_system/universal_windows/file_find.cpp
-            operating_system/universal_windows/file_system.cpp
-            operating_system/universal_windows/file_system.h
-            operating_system/universal_windows/file_watcher.cpp
-            operating_system/universal_windows/file_watcher.h
-            operating_system/universal_windows/folder_watch.cpp
-            operating_system/universal_windows/graphics_buffer.cpp
-            operating_system/universal_windows/native_buffer.cpp
-            operating_system/universal_windows/os_context.cpp
-            operating_system/universal_windows/os_context.h
-            operating_system/universal_windows/registry.cpp
-            operating_system/universal_windows/shell.cpp
-            operating_system/universal_windows/shell_uwp.cpp
-            operating_system/universal_windows/thread.cpp
-            operating_system/universal_windows/thread.h
-            operating_system/universal_windows/timer.cpp
-            operating_system/universal_windows/trace.cpp
-            operating_system/universal_windows/tts_speaker.cpp
-            operating_system/universal_windows/uac_tools.cpp
-            operating_system/universal_windows/util.cpp
-            operating_system/universal_windows/_.h
-            operating_system/universal_windows/_uwp.h
-            operating_system/universal_windows/_winrt.h
-            operating_system/universal_windows/apex.cpp
-            operating_system/universal_windows/application_system_run.cpp
-            operating_system/universal_windows/base_file.h
-            operating_system/universal_windows/direct2d_tls.cpp
-            operating_system/universal_windows/dummy_ipc.cpp
-            operating_system/universal_windows/gdi_winrt.h
-            operating_system/universal_windows/host_interaction.h
-            operating_system/universal_windows/language.cpp
-            operating_system/universal_windows/launcher.cpp
-            operating_system/universal_windows/library.cpp
-            operating_system/universal_windows/lock.cpp
-            operating_system/universal_windows/main.cpp
-            operating_system/universal_windows/menu.cpp
-            operating_system/universal_windows/metrowin_metrowin.h
-            operating_system/universal_windows/parallelization.cpp
-            operating_system/universal_windows/parallelization.h
-            #operating_system/universal_windows/process.cpp
-            #operating_system/universal_windows/process.h
-            operating_system/universal_windows/simple_app.cpp
-            operating_system/universal_windows/simple_hold_handle.h
-            operating_system/universal_windows/simple_shell_launcher.cpp
-            operating_system/universal_windows/simple_ui.h
-            operating_system/universal_windows/small_ipca_channel.cpp
-            operating_system/universal_windows/sockets.cpp
-            operating_system/universal_windows/sockets.h
-            operating_system/universal_windows/time.cpp
-            operating_system/universal_windows/user.cpp)
+#            operating_system/universal_windows/net/net_address.h
+#            operating_system/universal_windows/_.h
+#            operating_system/universal_windows/_aaa_want_to_remove_node_metrowin.cpp
+#            operating_system/universal_windows/_uwp.h
+#            operating_system/universal_windows/app_core.cpp
+#            operating_system/universal_windows/application.cpp
+#            operating_system/universal_windows/application.h
+#            operating_system/universal_windows/command.cpp
+#            operating_system/universal_windows/dir_context.cpp
+#            operating_system/universal_windows/dir_context.h
+#            operating_system/universal_windows/dir_system.cpp
+#            operating_system/universal_windows/dir_system.h
+#            operating_system/universal_windows/directx.cpp
+#            operating_system/universal_windows/directx_application.cpp
+#            operating_system/universal_windows/directx_impact.cpp
+#            operating_system/universal_windows/directx_interaction.cpp
+#            operating_system/universal_windows/error.cpp
+#            operating_system/universal_windows/_factory.cpp
+#            operating_system/universal_windows/
+#            operating_system/universal_windows/file_context.cpp
+#            operating_system/universal_windows/file_context.h
+#            operating_system/universal_windows/file_find.cpp
+#            operating_system/universal_windows/file_system.cpp
+#            operating_system/universal_windows/file_system.h
+#            operating_system/universal_windows/file_watcher.cpp
+#            operating_system/universal_windows/file_watcher.h
+#            operating_system/universal_windows/folder_watch.cpp
+#            operating_system/universal_windows/graphics_buffer.cpp
+#            operating_system/universal_windows/native_buffer.cpp
+#            operating_system/universal_windows/os_context.cpp
+#            operating_system/universal_windows/os_context.h
+#            operating_system/universal_windows/registry.cpp
+#            operating_system/universal_windows/shell.cpp
+#            operating_system/universal_windows/shell_uwp.cpp
+#            operating_system/universal_windows/thread.cpp
+#            operating_system/universal_windows/thread.h
+#            operating_system/universal_windows/timer.cpp
+#            operating_system/universal_windows/trace.cpp
+#            operating_system/universal_windows/tts_speaker.cpp
+#            operating_system/universal_windows/uac_tools.cpp
+#            operating_system/universal_windows/util.cpp
+#            operating_system/universal_windows/_.h
+#            operating_system/universal_windows/_uwp.h
+#            operating_system/universal_windows/_winrt.h
+#            operating_system/universal_windows/apex.cpp
+#            operating_system/universal_windows/application_system_run.cpp
+#            operating_system/universal_windows/base_file.h
+#            operating_system/universal_windows/direct2d_tls.cpp
+#            operating_system/universal_windows/dummy_ipc.cpp
+#            operating_system/universal_windows/gdi_winrt.h
+#            operating_system/universal_windows/host_interaction.h
+#            operating_system/universal_windows/language.cpp
+#            operating_system/universal_windows/launcher.cpp
+#            operating_system/universal_windows/library.cpp
+#            operating_system/universal_windows/lock.cpp
+#            operating_system/universal_windows/main.cpp
+#            operating_system/universal_windows/menu.cpp
+#            operating_system/universal_windows/metrowin_metrowin.h
+#            operating_system/universal_windows/parallelization.cpp
+#            operating_system/universal_windows/parallelization.h
+#            #operating_system/universal_windows/process.cpp
+#            #operating_system/universal_windows/process.h
+#            operating_system/universal_windows/simple_app.cpp
+#            operating_system/universal_windows/simple_hold_handle.h
+#            operating_system/universal_windows/simple_shell_launcher.cpp
+#            operating_system/universal_windows/simple_ui.h
+#            operating_system/universal_windows/small_ipca_channel.cpp
+#            operating_system/universal_windows/sockets.cpp
+#            operating_system/universal_windows/sockets.h
+#            operating_system/universal_windows/time.cpp
+#            operating_system/universal_windows/user.cpp
+#
+            )
 
 else ()
 
@@ -839,59 +845,59 @@ endif ()
 if (LINUX)
 
     list(APPEND apex_source
-            operating_system/linux/
-            operating_system/linux/_.h
-            operating_system/linux/_.h
-            operating_system/linux/_c.h
-            operating_system/linux/_factory.cpp
-            operating_system/linux/_linux.h
-            operating_system/linux/_linux.h
-            operating_system/linux/_user.h
-            operating_system/linux/apex.cpp
-            operating_system/linux/application.cpp
-            operating_system/linux/application.h
-            operating_system/linux/application_system_run.cpp
-            operating_system/linux/callstack.cpp
-            operating_system/linux/cross_win_file.cpp
-            operating_system/linux/cross_win_file.h
-            operating_system/linux/cross_win_gdi.cpp
-            operating_system/linux/cross_win_gdi.h
-            operating_system/linux/cross_win_gdi_internal.h
-            operating_system/linux/debug.cpp
-            operating_system/linux/debug.h
-            operating_system/linux/dumpinit.cpp
-            operating_system/linux/error.cpp
-            operating_system/linux/exception.cpp
-            operating_system/linux/file.cpp
-            operating_system/linux/file.h
-            operating_system/linux/graphics.cpp
-            operating_system/linux/graphics.h
-            operating_system/linux/graphics2.h
-            operating_system/linux/internal.h
-            #operating_system/linux/language.cpp
-            operating_system/linux/linux.cpp
-            operating_system/linux/linux_linux.h
-            operating_system/linux/menu.cpp
-            operating_system/linux/message_loop.cpp
-            operating_system/linux/os.cpp
-            operating_system/linux/parallelization.cpp
-            operating_system/linux/parallelization.h
-            operating_system/linux/root_tools.cpp
-            operating_system/linux/root_tools.h
-            operating_system/linux/shell_launcher.cpp
-            operating_system/linux/shell_launcher.h
-            operating_system/linux/simple_app.cpp
-            #operating_system/linux/standard_exception.cpp
-            operating_system/linux/thread.cpp
-            operating_system/linux/time.cpp
-            operating_system/linux/trace.cpp
-            operating_system/linux/user.cpp
-            operating_system/linux/user.h
-            operating_system/linux/user_private.h
-            operating_system/linux/util.cpp
-            operating_system/linux/win_base.cpp
-            operating_system/posix/_.h
-            operating_system/posix/_posix.h
+#            operating_system/linux/
+#            operating_system/linux/_.h
+#            operating_system/linux/_.h
+#            operating_system/linux/_c.h
+#            operating_system/linux/_factory.cpp
+#            operating_system/linux/_linux.h
+#            operating_system/linux/_linux.h
+#            operating_system/linux/_user.h
+#            operating_system/linux/apex.cpp
+#            operating_system/linux/application.cpp
+#            operating_system/linux/application.h
+#            operating_system/linux/application_system_run.cpp
+#            operating_system/linux/callstack.cpp
+#            operating_system/linux/cross_win_file.cpp
+#            operating_system/linux/cross_win_file.h
+#            operating_system/linux/cross_win_gdi.cpp
+#            operating_system/linux/cross_win_gdi.h
+#            operating_system/linux/cross_win_gdi_internal.h
+#            operating_system/linux/debug.cpp
+#            operating_system/linux/debug.h
+#            operating_system/linux/dumpinit.cpp
+#            operating_system/linux/error.cpp
+#            operating_system/linux/exception.cpp
+#            operating_system/linux/file.cpp
+#            operating_system/linux/file.h
+#            operating_system/linux/graphics.cpp
+#            operating_system/linux/graphics.h
+#            operating_system/linux/graphics2.h
+#            operating_system/linux/internal.h
+#            #operating_system/linux/language.cpp
+#            operating_system/linux/linux.cpp
+#            operating_system/linux/linux_linux.h
+#            operating_system/linux/menu.cpp
+#            operating_system/linux/message_loop.cpp
+#            operating_system/linux/os.cpp
+#            operating_system/linux/parallelization.cpp
+#            operating_system/linux/parallelization.h
+#            operating_system/linux/root_tools.cpp
+#            operating_system/linux/root_tools.h
+#            operating_system/linux/shell_launcher.cpp
+#            operating_system/linux/shell_launcher.h
+#            operating_system/linux/simple_app.cpp
+#            #operating_system/linux/standard_exception.cpp
+#            operating_system/linux/thread.cpp
+#            operating_system/linux/time.cpp
+#            operating_system/linux/trace.cpp
+#            operating_system/linux/user.cpp
+#            operating_system/linux/user.h
+#            operating_system/linux/user_private.h
+#            operating_system/linux/util.cpp
+#            operating_system/linux/win_base.cpp
+#            operating_system/posix/_.h
+#            operating_system/posix/_posix.h
             )
 endif ()
 
@@ -1003,8 +1009,8 @@ endif ()
 if (LINUX OR FREEBSD OR MACOS)
 
     list(APPEND apex_source
-            operating_system/freedesktop/desktop_file.cpp
-            operating_system/freedesktop/desktop_file.h
+           operating_system/freedesktop/desktop_file.cpp
+           operating_system/freedesktop/desktop_file.h
             )
 
 endif ()
@@ -1014,194 +1020,195 @@ if (IOS)
     list(APPEND apex_source
             ios_aura/ios_aura.h
             ios_aura/ios_aura.m
-            operating_system/ios/_.h
-            operating_system/ios/_ios.h
-            operating_system/ios/_m.h
-            operating_system/ios/_mm.h
-            operating_system/ios/application.cpp
-            operating_system/ios/application.h
-            operating_system/ios/dir_context.cpp
-            operating_system/ios/dir_context.h
-            operating_system/ios/dir_system.cpp
-            operating_system/ios/dir_system.h
-            operating_system/ios/exception.cpp
-            operating_system/ios/_factory.cpp
-            operating_system/ios/
-            operating_system/ios/file.cpp
-            operating_system/ios/file.h
-            operating_system/ios/file_context.cpp
-            operating_system/ios/file_context.h
-            operating_system/ios/file_os_watcher.cpp
-            operating_system/ios/file_os_watcher.h
-            operating_system/ios/file_system.cpp
-            operating_system/ios/file_system.h
-            operating_system/ios/host_interaction.cpp
-            operating_system/ios/implementation.h
-            operating_system/ios/internal.h
-            operating_system/ios/ios.cpp
-            operating_system/ios/ip_enum.cpp
-            operating_system/ios/ip_enum.h
-            operating_system/ios/main.cpp
-            operating_system/ios/os_context.cpp
-            operating_system/ios/os_context.h
-            operating_system/ios/plane_system.cpp
-            operating_system/ios/plane_system.h
-            operating_system/ios/round_window.mm
-            operating_system/ios/RoundCaretImpact.h
-            operating_system/ios/RoundWindow.mm
-            operating_system/ios/RoundWindowApp.h
-            operating_system/ios/RoundWindowApp.mm
-            operating_system/ios/state.h
-            operating_system/ios/thread.cpp
-            operating_system/ios/thread.h
-            operating_system/ios/trace.cpp
-            operating_system/ios/util.cpp
-            operating_system/ios/_.h
-            operating_system/ios/_c.h
-            operating_system/ios/_ios.h
-            operating_system/ios/_m.h
-            operating_system/ios/_mm.h
-            operating_system/ios/application_system_run.cpp
-            operating_system/ios/aura.cpp
-            operating_system/ios/base_internal.h
-            operating_system/ios/base_user.cpp
-            operating_system/ios/cross_win.cpp
-            operating_system/ios/cross_win_file.cpp
-            operating_system/ios/cross_win_gdi.h
-            operating_system/ios/crypt.cpp
-            operating_system/ios/debug.cpp
-            operating_system/ios/error.cpp
-            operating_system/ios/exception_engine.cpp
-            operating_system/ios/exception_engine.h
-            operating_system/ios/file.cpp
-            operating_system/ios/fontopus.cpp
-            operating_system/ios/gen_1.h
-            operating_system/ios/graphics.cpp
-            operating_system/ios/implementation.h
-            operating_system/ios/internal.h
-            operating_system/ios/language.cpp
-            operating_system/ios/launcher.cpp
-            operating_system/ios/library.cpp
-            operating_system/ios/lock.cpp
-            operating_system/ios/MessageBoxA_W.mm
-            operating_system/ios/mm.mm
-            operating_system/ios/mm_cross_gdi.mm
-            operating_system/ios/mm_graphics.h
-            operating_system/ios/mm_oswindow.h
-            operating_system/ios/mm_thread.mm
-            operating_system/ios/mm_user.mm
-            operating_system/ios/parallelization.cpp
-            operating_system/ios/parallelization.h
-            operating_system/ios/oswindow_data.cpp
-            operating_system/ios/oswindow_data.h
-            #operating_system/ios/process.cpp
-            #operating_system/ios/process.h
-            #operating_system/ios/process_pid.cpp
-            operating_system/ios/simple_shell_launcher.cpp
-            operating_system/ios/small_ipca_channel.cpp
-            operating_system/ios/time.cpp
-            operating_system/ios/user.cpp
-            operating_system/ios/win_base.cpp
-            operating_system/ios/window.cpp
-            operating_system/ios/window.h
-            "operating_system/ios/window_boot 2.h"
-            operating_system/ios/window_boot.h
-            operating_system/ios/window_impl.h
-            operating_system/ios/windowing.cpp
-            operating_system/ios/windowing.h)
+#            operating_system/ios/_.h
+#            operating_system/ios/_ios.h
+#            operating_system/ios/_m.h
+#            operating_system/ios/_mm.h
+#            operating_system/ios/application.cpp
+#            operating_system/ios/application.h
+#            operating_system/ios/dir_context.cpp
+#            operating_system/ios/dir_context.h
+#            operating_system/ios/dir_system.cpp
+#            operating_system/ios/dir_system.h
+#            operating_system/ios/exception.cpp
+#            operating_system/ios/_factory.cpp
+#            operating_system/ios/
+#            operating_system/ios/file.cpp
+#            operating_system/ios/file.h
+#            operating_system/ios/file_context.cpp
+#            operating_system/ios/file_context.h
+#            operating_system/ios/file_os_watcher.cpp
+#            operating_system/ios/file_os_watcher.h
+#            operating_system/ios/file_system.cpp
+#            operating_system/ios/file_system.h
+#            operating_system/ios/host_interaction.cpp
+#            operating_system/ios/implementation.h
+#            operating_system/ios/internal.h
+#            operating_system/ios/ios.cpp
+#            operating_system/ios/ip_enum.cpp
+#            operating_system/ios/ip_enum.h
+#            operating_system/ios/main.cpp
+#            operating_system/ios/os_context.cpp
+#            operating_system/ios/os_context.h
+#            operating_system/ios/plane_system.cpp
+#            operating_system/ios/plane_system.h
+#            operating_system/ios/round_window.mm
+#            operating_system/ios/RoundCaretImpact.h
+#            operating_system/ios/RoundWindow.mm
+#            operating_system/ios/RoundWindowApp.h
+#            operating_system/ios/RoundWindowApp.mm
+#            operating_system/ios/state.h
+#            operating_system/ios/thread.cpp
+#            operating_system/ios/thread.h
+#            operating_system/ios/trace.cpp
+#            operating_system/ios/util.cpp
+#            operating_system/ios/_.h
+#            operating_system/ios/_c.h
+#            operating_system/ios/_ios.h
+#            operating_system/ios/_m.h
+#            operating_system/ios/_mm.h
+#            operating_system/ios/application_system_run.cpp
+#            operating_system/ios/aura.cpp
+#            operating_system/ios/base_internal.h
+#            operating_system/ios/base_user.cpp
+#            operating_system/ios/cross_win.cpp
+#            operating_system/ios/cross_win_file.cpp
+#            operating_system/ios/cross_win_gdi.h
+#            operating_system/ios/crypt.cpp
+#            operating_system/ios/debug.cpp
+#            operating_system/ios/error.cpp
+#            operating_system/ios/exception_engine.cpp
+#            operating_system/ios/exception_engine.h
+#            operating_system/ios/file.cpp
+#            operating_system/ios/fontopus.cpp
+#            operating_system/ios/gen_1.h
+#            operating_system/ios/graphics.cpp
+#            operating_system/ios/implementation.h
+#            operating_system/ios/internal.h
+#            operating_system/ios/language.cpp
+#            operating_system/ios/launcher.cpp
+#            operating_system/ios/library.cpp
+#            operating_system/ios/lock.cpp
+#            operating_system/ios/MessageBoxA_W.mm
+#            operating_system/ios/mm.mm
+#            operating_system/ios/mm_cross_gdi.mm
+#            operating_system/ios/mm_graphics.h
+#            operating_system/ios/mm_oswindow.h
+#            operating_system/ios/mm_thread.mm
+#            operating_system/ios/mm_user.mm
+#            operating_system/ios/parallelization.cpp
+#            operating_system/ios/parallelization.h
+#            operating_system/ios/oswindow_data.cpp
+#            operating_system/ios/oswindow_data.h
+#            #operating_system/ios/process.cpp
+#            #operating_system/ios/process.h
+#            #operating_system/ios/process_pid.cpp
+#            operating_system/ios/simple_shell_launcher.cpp
+#            operating_system/ios/small_ipca_channel.cpp
+#            operating_system/ios/time.cpp
+#            operating_system/ios/user.cpp
+#            operating_system/ios/win_base.cpp
+#            operating_system/ios/window.cpp
+#            operating_system/ios/window.h
+#            "operating_system/ios/window_boot 2.h"
+#            operating_system/ios/window_boot.h
+#            operating_system/ios/window_impl.h
+#            operating_system/ios/windowing.cpp
+#            operating_system/ios/windowing.h
+            )
 
 endif ()
 
 
 if (ANDROID)
     list(APPEND apex_source
-            operating_system/android/Kerr/kerr.h
-            operating_system/android/Kerr/LocalMemory.h
-            operating_system/android/_.h
-            operating_system/android/_android.h
-            operating_system/android/android.cpp
-            operating_system/android/android1.cpp
-            operating_system/android/android1.h
-            operating_system/android/application.cpp
-            operating_system/android/application.h
-            operating_system/android/buffer.cpp
-            operating_system/android/buffer.h
-            operating_system/android/dir_context.cpp
-            operating_system/android/dir_context.h
-            operating_system/android/dir_system.cpp
-            operating_system/android/dir_system.h
-            operating_system/android/error.cpp
-            operating_system/android/exception.cpp
-            operating_system/android/_factory.cpp
-            operating_system/android/
-            operating_system/android/file.cpp
-            operating_system/android/file.h
-            operating_system/android/file_context.cpp
-            operating_system/android/file_context.h
-            operating_system/android/file_system.cpp
-            operating_system/android/file_system.h
-            operating_system/android/host_interaction.cpp
-            operating_system/android/host_interaction.h
-            operating_system/android/implementation.h
-            operating_system/android/internal.h
-            operating_system/android/main.cpp
-            operating_system/android/os_context.cpp
-            operating_system/android/os_context.h
-            operating_system/android/process.cpp
-            operating_system/android/shell.cpp
-            operating_system/android/shell.h
-            operating_system/android/thread.cpp
-            operating_system/android/thread.h
-            operating_system/android/trace.cpp
-            operating_system/android/util.cpp
-            operating_system/android/_.h
-            operating_system/android/_android.h
-            operating_system/android/_bind_app.cpp
-            operating_system/android/_bind_impact.cpp
-            operating_system/android/_c.h
-            operating_system/android/_os_android.cpp
-            operating_system/android/_os_impl.cpp
-            operating_system/android/_os_impl.h
-            operating_system/android/_os_object.cpp
-            operating_system/android/_os_object.h
-            operating_system/android/_os_remote.h
-            operating_system/android/application_system_run.cpp
-            operating_system/android/aura.cpp
-            operating_system/android/c.cpp
-            operating_system/android/cairo_keep.h
-            operating_system/android/cross_win_file.h
-            operating_system/android/cross_win_gdi.h
-            operating_system/android/cross_win_gdi_internal.h
-            operating_system/android/debug.cpp
-            operating_system/android/dir.cpp
-            operating_system/android/exception_engine.cpp
-            operating_system/android/exception_engine.h
-            operating_system/android/file.cpp
-            operating_system/android/file.h
-            operating_system/android/graphics.cpp
-            operating_system/android/graphics.h
-            operating_system/android/internal.h
-            operating_system/android/jni_launcher.cpp
-            operating_system/android/language.cpp
-            operating_system/android/launcher.cpp
-            operating_system/android/library.cpp
-            operating_system/android/locale.cpp
-            operating_system/android/lock.cpp
-            operating_system/android/main_android.cpp
-            operating_system/android/message_loop.cpp
-            operating_system/android/parallelization.cpp
-            #operating_system/android/process.cpp
-            #operating_system/android/process.h
-            #operating_system/android/process_pid.cpp
-            operating_system/android/simple_shell_launcher.cpp
-            operating_system/android/small_ipca_channel.cpp
-            operating_system/android/impact_bitmap.h
-            operating_system/android/win_base.cpp
-            operating_system/android/window_android.cpp
-            operating_system/android/window_android.h
-            operating_system/android/window_impl.cpp
-            operating_system/android/windowing.cpp
-            operating_system/android/windowing.h
+#            operating_system/android/Kerr/kerr.h
+#            operating_system/android/Kerr/LocalMemory.h
+#            operating_system/android/_.h
+#            operating_system/android/_android.h
+#            operating_system/android/android.cpp
+#            operating_system/android/android1.cpp
+#            operating_system/android/android1.h
+#            operating_system/android/application.cpp
+#            operating_system/android/application.h
+#            operating_system/android/buffer.cpp
+#            operating_system/android/buffer.h
+#            operating_system/android/dir_context.cpp
+#            operating_system/android/dir_context.h
+#            operating_system/android/dir_system.cpp
+#            operating_system/android/dir_system.h
+#            operating_system/android/error.cpp
+#            operating_system/android/exception.cpp
+#            operating_system/android/_factory.cpp
+#            operating_system/android/
+#            operating_system/android/file.cpp
+#            operating_system/android/file.h
+#            operating_system/android/file_context.cpp
+#            operating_system/android/file_context.h
+#            operating_system/android/file_system.cpp
+#            operating_system/android/file_system.h
+#            operating_system/android/host_interaction.cpp
+#            operating_system/android/host_interaction.h
+#            operating_system/android/implementation.h
+#            operating_system/android/internal.h
+#            operating_system/android/main.cpp
+#            operating_system/android/os_context.cpp
+#            operating_system/android/os_context.h
+#            operating_system/android/process.cpp
+#            operating_system/android/shell.cpp
+#            operating_system/android/shell.h
+#            operating_system/android/thread.cpp
+#            operating_system/android/thread.h
+#            operating_system/android/trace.cpp
+#            operating_system/android/util.cpp
+#            operating_system/android/_.h
+#            operating_system/android/_android.h
+#            operating_system/android/_bind_app.cpp
+#            operating_system/android/_bind_impact.cpp
+#            operating_system/android/_c.h
+#            operating_system/android/_os_android.cpp
+#            operating_system/android/_os_impl.cpp
+#            operating_system/android/_os_impl.h
+#            operating_system/android/_os_object.cpp
+#            operating_system/android/_os_object.h
+#            operating_system/android/_os_remote.h
+#            operating_system/android/application_system_run.cpp
+#            operating_system/android/aura.cpp
+#            operating_system/android/c.cpp
+#            operating_system/android/cairo_keep.h
+#            operating_system/android/cross_win_file.h
+#            operating_system/android/cross_win_gdi.h
+#            operating_system/android/cross_win_gdi_internal.h
+#            operating_system/android/debug.cpp
+#            operating_system/android/dir.cpp
+#            operating_system/android/exception_engine.cpp
+#            operating_system/android/exception_engine.h
+#            operating_system/android/file.cpp
+#            operating_system/android/file.h
+#            operating_system/android/graphics.cpp
+#            operating_system/android/graphics.h
+#            operating_system/android/internal.h
+#            operating_system/android/jni_launcher.cpp
+#            operating_system/android/language.cpp
+#            operating_system/android/launcher.cpp
+#            operating_system/android/library.cpp
+#            operating_system/android/locale.cpp
+#            operating_system/android/lock.cpp
+#            operating_system/android/main_android.cpp
+#            operating_system/android/message_loop.cpp
+#            operating_system/android/parallelization.cpp
+#            #operating_system/android/process.cpp
+#            #operating_system/android/process.h
+#            #operating_system/android/process_pid.cpp
+#            operating_system/android/simple_shell_launcher.cpp
+#            operating_system/android/small_ipca_channel.cpp
+#            operating_system/android/impact_bitmap.h
+#            operating_system/android/win_base.cpp
+#            operating_system/android/window_android.cpp
+#            operating_system/android/window_android.h
+#            operating_system/android/window_impl.cpp
+#            operating_system/android/windowing.cpp
+#            operating_system/android/windowing.h
             )
 
 endif ()
@@ -1210,82 +1217,83 @@ endif ()
 if (FREEBSD)
 
     list(APPEND apex_source
-            operating_system/freebsd/_.h
-            operating_system/freebsd/_freebsd.h
-            operating_system/freebsd/application.cpp
-            operating_system/freebsd/application.h
-            #operating_system/freebsd/dir_context.cpp
-            #operating_system/freebsd/dir_context.h
-            #operating_system/freebsd/dir_system.cpp
-            #operating_system/freebsd/dir_system.h
-            operating_system/freebsd/dumpinit.cpp
-            operating_system/freebsd/error.cpp
-            operating_system/freebsd/exception.cpp
-            operating_system/freebsd/_factory.cpp
-            operating_system/freebsd/
-            #operating_system/freebsd/file_context.cpp
-            #operating_system/freebsd/file_context.h
-            #operating_system/freebsd/file_system.cpp
-            #operating_system/freebsd/file_system.h
-            #operating_system/freebsd/frame_window.cpp
-            operating_system/freebsd/internal.h
-            operating_system/freebsd/freebsd.cpp
-            #operating_system/freebsd/os_context.cpp
-            #operating_system/freebsd/os_context.h
-            #operating_system/freebsd/process.cpp
-            #operating_system/freebsd/process.h
-            operating_system/freebsd/root_tools.cpp
-            operating_system/freebsd/root_tools.h
-            operating_system/freebsd/thread.cpp
-            operating_system/freebsd/parallelization.h
-            operating_system/freebsd/trace.cpp
-            operating_system/freebsd/util.cpp
-            #operating_system/posix/file_os_watcher.cpp
-            #operating_system/posix/file_os_watcher.cpp
-            operating_system/posix/_posix.h
-            operating_system/posix/_.h
-            operating_system/freebsd/_.h
-            operating_system/freebsd/_c.h
-            operating_system/freebsd/_freebsd.h
-            operating_system/freebsd/_user.h
-            operating_system/freebsd/apex.cpp
-            operating_system/freebsd/application_system_run.cpp
-            operating_system/freebsd/callstack.cpp
-            operating_system/freebsd/cross_win_file.cpp
-            operating_system/freebsd/cross_win_file.h
-            operating_system/freebsd/cross_win_gdi.cpp
-            operating_system/freebsd/cross_win_gdi.h
-            operating_system/freebsd/cross_win_gdi_internal.h
-            operating_system/freebsd/debug.cpp
-            operating_system/freebsd/debug.h
-            # operating_system/freebsd/exception_engine.cpp
-            # operating_system/freebsd/exception_engine.h
-            operating_system/freebsd/file.cpp
-            operating_system/freebsd/file.h
-            operating_system/freebsd/graphics.cpp
-            operating_system/freebsd/graphics.h
-            operating_system/freebsd/graphics2.h
-            #operating_system/freebsd/language.cpp
-            #operating_system/freebsd/library.cpp
-            operating_system/freebsd/freebsd_freebsd.h
-            #operating_system/freebsd/lock.cpp
-            operating_system/freebsd/menu.cpp
-            operating_system/freebsd/message_loop.cpp
-            operating_system/freebsd/parallelization.cpp
-            operating_system/freebsd/os.cpp
-            #operating_system/freebsd/process.cpp
-            #operating_system/freebsd/process.h
-            #operating_system/freebsd/process_pid.cpp
-            operating_system/freebsd/simple_app.cpp
-            operating_system/freebsd/shell_launcher.cpp
-            operating_system/freebsd/shell_launcher.h
-            operating_system/freebsd/standard_exception.cpp
-            #operating_system/freebsd/interprocess_communication.cpp
-            operating_system/freebsd/time.cpp
-            operating_system/freebsd/user.cpp
-            operating_system/freebsd/user.h
-            operating_system/freebsd/user_private.h
-            operating_system/freebsd/win_base.cpp)
+#            operating_system/freebsd/_.h
+#            operating_system/freebsd/_freebsd.h
+#            operating_system/freebsd/application.cpp
+#            operating_system/freebsd/application.h
+#            #operating_system/freebsd/dir_context.cpp
+#            #operating_system/freebsd/dir_context.h
+#            #operating_system/freebsd/dir_system.cpp
+#            #operating_system/freebsd/dir_system.h
+#            operating_system/freebsd/dumpinit.cpp
+#            operating_system/freebsd/error.cpp
+#            operating_system/freebsd/exception.cpp
+#            operating_system/freebsd/_factory.cpp
+#            operating_system/freebsd/
+#            #operating_system/freebsd/file_context.cpp
+#            #operating_system/freebsd/file_context.h
+#            #operating_system/freebsd/file_system.cpp
+#            #operating_system/freebsd/file_system.h
+#            #operating_system/freebsd/frame_window.cpp
+#            operating_system/freebsd/internal.h
+#            operating_system/freebsd/freebsd.cpp
+#            #operating_system/freebsd/os_context.cpp
+#            #operating_system/freebsd/os_context.h
+#            #operating_system/freebsd/process.cpp
+#            #operating_system/freebsd/process.h
+#            operating_system/freebsd/root_tools.cpp
+#            operating_system/freebsd/root_tools.h
+#            operating_system/freebsd/thread.cpp
+#            operating_system/freebsd/parallelization.h
+#            operating_system/freebsd/trace.cpp
+#            operating_system/freebsd/util.cpp
+#            #operating_system/posix/file_os_watcher.cpp
+#            #operating_system/posix/file_os_watcher.cpp
+#            operating_system/posix/_posix.h
+#            operating_system/posix/_.h
+#            operating_system/freebsd/_.h
+#            operating_system/freebsd/_c.h
+#            operating_system/freebsd/_freebsd.h
+#            operating_system/freebsd/_user.h
+#            operating_system/freebsd/apex.cpp
+#            operating_system/freebsd/application_system_run.cpp
+#            operating_system/freebsd/callstack.cpp
+#            operating_system/freebsd/cross_win_file.cpp
+#            operating_system/freebsd/cross_win_file.h
+#            operating_system/freebsd/cross_win_gdi.cpp
+#            operating_system/freebsd/cross_win_gdi.h
+#            operating_system/freebsd/cross_win_gdi_internal.h
+#            operating_system/freebsd/debug.cpp
+#            operating_system/freebsd/debug.h
+#            # operating_system/freebsd/exception_engine.cpp
+#            # operating_system/freebsd/exception_engine.h
+#            operating_system/freebsd/file.cpp
+#            operating_system/freebsd/file.h
+#            operating_system/freebsd/graphics.cpp
+#            operating_system/freebsd/graphics.h
+#            operating_system/freebsd/graphics2.h
+#            #operating_system/freebsd/language.cpp
+#            #operating_system/freebsd/library.cpp
+#            operating_system/freebsd/freebsd_freebsd.h
+#            #operating_system/freebsd/lock.cpp
+#            operating_system/freebsd/menu.cpp
+#            operating_system/freebsd/message_loop.cpp
+#            operating_system/freebsd/parallelization.cpp
+#            operating_system/freebsd/os.cpp
+#            #operating_system/freebsd/process.cpp
+#            #operating_system/freebsd/process.h
+#            #operating_system/freebsd/process_pid.cpp
+#            operating_system/freebsd/simple_app.cpp
+#            operating_system/freebsd/shell_launcher.cpp
+#            operating_system/freebsd/shell_launcher.h
+#            operating_system/freebsd/standard_exception.cpp
+#            #operating_system/freebsd/interprocess_communication.cpp
+#            operating_system/freebsd/time.cpp
+#            operating_system/freebsd/user.cpp
+#            operating_system/freebsd/user.h
+#            operating_system/freebsd/user_private.h
+#            operating_system/freebsd/win_base.cpp
+            )
 endif ()
 
 
@@ -1337,46 +1345,46 @@ endif ()
 
 if (SOLARIS)
     list(APPEND apex_source
-            operating_system/solaris/linux_internal.h
-            operating_system/solaris/solaris.cpp
-            operating_system/solaris/solaris.h
-            operating_system/solaris/solaris_cairo_keep.cpp
-            operating_system/solaris/solaris_cairo_keep.h
-            operating_system/solaris/solaris_cross_win_file.cpp
-            operating_system/solaris/solaris_cross_win_file.h
-            operating_system/solaris/solaris_cross_win_gdi.cpp
-            operating_system/solaris/solaris_cross_win_gdi.h
-            operating_system/solaris/solaris_cross_win_gdi_internal.h
-            operating_system/solaris/solaris_debug.h
-            operating_system/solaris/solaris_display.cpp
-            operating_system/solaris/solaris_file.cpp
-            operating_system/solaris/solaris_file.h
-            operating_system/solaris/solaris_file_watcher.cpp
-            operating_system/solaris/solaris_file_watcher.h
-            operating_system/solaris/solaris_graphics.h
-            operating_system/solaris/solaris_http.cpp
-            operating_system/solaris/solaris_http.h
-            operating_system/solaris/solaris_http_lib.cpp
-            operating_system/solaris/solaris_http_lib.h
-            operating_system/solaris/solaris_internal.h
-            operating_system/solaris/solaris_launcher.cpp
-            operating_system/solaris/solaris_library.cpp
-            operating_system/solaris/solaris_lock.cpp
-            operating_system/solaris/solaris_message_loop.cpp
-            #operating_system/solaris/solaris_process.cpp
-            #operating_system/solaris/solaris_process.h
-            #operating_system/solaris/solaris_process_pid.cpp
-            operating_system/solaris/solaris_simple_shell_launcher.cpp
-            operating_system/solaris/solaris_simple_ui.cpp
-            operating_system/solaris/solaris_simple_ui.h
-            operating_system/solaris/solaris_small_ipca_channel.cpp
-            operating_system/solaris/solaris_solaris.h
-            operating_system/solaris/solaris_thread.cpp
-            operating_system/solaris/solaris_user_impl.h
-            operating_system/solaris/solaris_win_base.cpp
-            operating_system/solaris/solaris_window.cpp
-            operating_system/solaris/solaris_window_xlib.cpp
-            operating_system/solaris/solaris_window_xlib.h
+#            operating_system/solaris/linux_internal.h
+#            operating_system/solaris/solaris.cpp
+#            operating_system/solaris/solaris.h
+#            operating_system/solaris/solaris_cairo_keep.cpp
+#            operating_system/solaris/solaris_cairo_keep.h
+#            operating_system/solaris/solaris_cross_win_file.cpp
+#            operating_system/solaris/solaris_cross_win_file.h
+#            operating_system/solaris/solaris_cross_win_gdi.cpp
+#            operating_system/solaris/solaris_cross_win_gdi.h
+#            operating_system/solaris/solaris_cross_win_gdi_internal.h
+#            operating_system/solaris/solaris_debug.h
+#            operating_system/solaris/solaris_display.cpp
+#            operating_system/solaris/solaris_file.cpp
+#            operating_system/solaris/solaris_file.h
+#            operating_system/solaris/solaris_file_watcher.cpp
+#            operating_system/solaris/solaris_file_watcher.h
+#            operating_system/solaris/solaris_graphics.h
+#            operating_system/solaris/solaris_http.cpp
+#            operating_system/solaris/solaris_http.h
+#            operating_system/solaris/solaris_http_lib.cpp
+#            operating_system/solaris/solaris_http_lib.h
+#            operating_system/solaris/solaris_internal.h
+#            operating_system/solaris/solaris_launcher.cpp
+#            operating_system/solaris/solaris_library.cpp
+#            operating_system/solaris/solaris_lock.cpp
+#            operating_system/solaris/solaris_message_loop.cpp
+#            #operating_system/solaris/solaris_process.cpp
+#            #operating_system/solaris/solaris_process.h
+#            #operating_system/solaris/solaris_process_pid.cpp
+#            operating_system/solaris/solaris_simple_shell_launcher.cpp
+#            operating_system/solaris/solaris_simple_ui.cpp
+#            operating_system/solaris/solaris_simple_ui.h
+#            operating_system/solaris/solaris_small_ipca_channel.cpp
+#            operating_system/solaris/solaris_solaris.h
+#            operating_system/solaris/solaris_thread.cpp
+#            operating_system/solaris/solaris_user_impl.h
+#            operating_system/solaris/solaris_win_base.cpp
+#            operating_system/solaris/solaris_window.cpp
+#            operating_system/solaris/solaris_window_xlib.cpp
+#            operating_system/solaris/solaris_window_xlib.h
             )
 
 endif ()
@@ -1398,7 +1406,7 @@ else ()
 endif ()
 
 
-add_library(apex SHARED ${apex_source} message/_constant.h include/_forward_declaration.h filesystem/file/action.h platform/_critical_section.h)
+add_library(apex SHARED ${apex_source})
 
 target_precompile_headers(apex PRIVATE framework.h)
 

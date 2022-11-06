@@ -131,7 +131,7 @@ namespace fs
             if (pdata.is_set())
             {
 
-               if (::str().begins_ci(psz, strRoot))
+               if (psz.begins_ci(strRoot))
                {
 
                   return pdata;

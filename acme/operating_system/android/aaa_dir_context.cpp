@@ -164,7 +164,7 @@ namespace android
 
             ::file::path strPath = stra[i];
 
-            if (!::str().begins(strPath, listing.m_pathFinal))
+            if (!string_begins(strPath, listing.m_pathFinal))
                continue;
 
             bool bIsDir;
@@ -268,7 +268,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str().ends(strDir, "/"))
+   //   if(!string_ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -286,7 +286,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str().begins_eat(strName, strDir))
+   //      if(!strName.begins_eat(strDir))
    //         continue;
 
    //      if(!matches_wildcard_criteria(pszPattern, strName))
@@ -370,7 +370,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str().ends(strDir, "/"))
+   //   if(!string_ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -385,7 +385,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str().begins_eat(strName, strDir))
+   //      if(!strName.begins_eat(strDir))
    //         continue;
 
    //      if(!get_context()->dir_context().is(strPath))
@@ -458,7 +458,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str().ends(strDir, "/"))
+   //   if(!string_ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -473,7 +473,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str().begins_eat(strName, strDir))
+   //      if(!strName.begins_eat(strDir))
    //         continue;
 
    //      if(!get_context()->dir_context().is(strPath))
@@ -516,7 +516,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str().ends(strDir, "/"))
+   //   if(!string_ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -531,7 +531,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str().begins_eat(strName, strDir))
+   //      if(!strName.begins_eat(strDir))
    //         continue;
 
    //      if(get_context()->dir_context().is(strPath))
@@ -577,7 +577,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str().ends(strDir, "/"))
+   //   if(!string_ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -592,7 +592,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str().begins_eat(strName, strDir))
+   //      if(!strName.begins_eat(strDir))
    //         continue;
 
    //      if(pstraPath != nullptr)
@@ -666,7 +666,7 @@ namespace android
       if (strPath.get_length() >= MAX_PATH)
       {
 
-         if (::str().begins(strPath, "\\\\"))
+         if (string_begins(strPath, "\\\\"))
          {
 
             strPath = "\\\\?\\UNC" + strPath.Mid(1);
@@ -720,7 +720,7 @@ namespace android
    //   wstrPath = utf8_to_unicode(strPath);
    //   if(wstrPath.get_length() >= MAX_PATH)
    //   {
-   //      if(::str().begins(wstrPath, L"\\\\"))
+   //      if(string_begins(wstrPath, L"\\\\"))
    //      {
    //         ::str().begin(wstrPath, L"\\\\?\\UNC");
    //      }
@@ -1297,7 +1297,7 @@ pacmedirectory->system() / ".ca2/app/appdata";
    bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return ::str().begins_ci(pszDir, pszPath);
+      return string_begins_ci(pszDir, pszPath);
 
    }
 

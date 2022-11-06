@@ -1,8 +1,9 @@
 ﻿#include "framework.h"
-#include "acme/operating_system.h"
-
 #include "cursor.h"
 #include "image.h"
+
+
+//#include "acme/operating_system.h"
 
 
 namespace draw2d

@@ -352,9 +352,9 @@ namespace apex
 ////               if (strTopicText.has_char())
 ////               {
 ////
-////                  ::str().begins_eat_ci(strTopicText, "class ");
+////                  strTopicText.begins_eat_ci("class ");
 ////
-////                  ::str().begins_eat_ci(strTopicText, "struct ");
+////                  strTopicText.begins_eat_ci("struct ");
 ////
 ////                  str += strTopicText;
 ////

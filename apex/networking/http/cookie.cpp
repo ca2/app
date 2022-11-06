@@ -351,7 +351,7 @@ namespace http
       class cookie ca;
       while(true)
       {
-         while(*pszParam != '\0' && character_isspace((uchar ) *pszParam))
+         while(*pszParam != '\0' && character_isspace(*pszParam))
          {
             pszParam++;
          }

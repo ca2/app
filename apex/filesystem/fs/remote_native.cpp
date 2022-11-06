@@ -310,7 +310,7 @@ namespace fs
 
    //   string strPath(pszPath);
 
-   //   if(!::str().begins_eat_ci(strPath, "fs://"))
+   //   if(!strPath.begins_eat_ci("fs://"))
    //   {
    //      return "";
    //   }

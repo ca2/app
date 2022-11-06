@@ -431,8 +431,6 @@ inline bool _str_safe_precmp(int & i, const ansichar * pszA, const ansichar * ps
 }
 
 
-
-
 template < typename TYPE1, typename TYPE2 >
 inline i32 compare(const TYPE1 & str1, const TYPE2 & str2);
 
@@ -442,11 +440,11 @@ inline i32 compare_ci(const TYPE1 & str1, const TYPE2 & str2);
 
 
 template < typename TYPE1, typename TYPE2 >
-inline bool equals(const TYPE1 & str1, const TYPE2 & str2);
+inline bool equals(const TYPE1 & str1, const TYPE2 & str2) { return !compare(str1, str2); }
 
 
 template < typename TYPE1, typename TYPE2 >
-inline bool equals_ci(const TYPE1 & str1, const TYPE2 & str2);
+inline bool equals_ci(const TYPE1 & str1, const TYPE2 & str2) { return !compare_ci(str1, str2); }
 
 
 template < typename TYPE1, typename TYPE2 >
@@ -457,6 +455,8 @@ template < typename TYPE1, typename TYPE2 >
 inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 & strOnEqual, const TYPE1 & strOnDifferent);
 
 
+
+
 template < typename TYPE_CHAR >
 inline strsize string_begins(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszPrefix, strsize lenPrefix);
 template < typename TYPE_CHAR >
@@ -465,6 +465,38 @@ template < typename TYPE_CHAR >
 inline strsize string_begins_ci(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszPrefix, strsize lenPrefix);
 template < typename TYPE_CHAR >
 inline strsize string_ends_ci(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszSuffix, strsize lenSuffix);
+
+
+inline strsize string_begins(const ansichar * psz, const ansichar * pszPrefix)
+{   return string_begins(psz, string_safe_length(psz), pszPrefix, string_safe_length(pszPrefix)); }
+inline strsize string_begins(const wd16char * psz, const wd16char * pszPrefix)
+{   return string_begins(psz, string_safe_length(psz), pszPrefix, string_safe_length(pszPrefix)); }
+inline strsize string_begins(const wd32char * psz, const wd32char * pszPrefix)
+{   return string_begins(psz, string_safe_length(psz), pszPrefix, string_safe_length(pszPrefix)); }
+
+
+inline strsize string_ends(const ansichar * psz, const ansichar * pszSuffix)
+{   return string_ends(psz, string_safe_length(psz), pszSuffix, string_safe_length(pszSuffix)); }
+inline strsize string_ends(const wd16char * psz, const wd16char * pszSuffix)
+{   return string_ends(psz, string_safe_length(psz), pszSuffix, string_safe_length(pszSuffix)); }
+inline strsize string_ends(const wd32char * psz, const wd32char * pszSuffix)
+{   return string_ends(psz, string_safe_length(psz), pszSuffix, string_safe_length(pszSuffix)); }
+
+
+inline strsize string_begins_ci(const ansichar * psz, const ansichar * pszPrefix)
+{   return string_begins_ci(psz, string_safe_length(psz), pszPrefix, string_safe_length(pszPrefix)); }
+inline strsize string_begins_ci(const wd16char * psz, const wd16char * pszPrefix)
+{   return string_begins_ci(psz, string_safe_length(psz), pszPrefix, string_safe_length(pszPrefix)); }
+inline strsize string_begins_ci(const wd32char * psz, const wd32char * pszPrefix)
+{   return string_begins_ci(psz, string_safe_length(psz), pszPrefix, string_safe_length(pszPrefix)); }
+
+
+inline strsize string_ends_ci(const ansichar * psz, const ansichar * pszSuffix)
+{   return string_ends_ci(psz, string_safe_length(psz), pszSuffix, string_safe_length(pszSuffix)); }
+inline strsize string_ends_ci(const wd16char * psz, const wd16char * pszSuffix)
+{   return string_ends_ci(psz, string_safe_length(psz), pszSuffix, string_safe_length(pszSuffix)); }
+inline strsize string_ends_ci(const wd32char * psz, const wd32char * pszSuffix)
+{   return string_ends_ci(psz, string_safe_length(psz), pszSuffix, string_safe_length(pszSuffix)); }
 
 
 template < typename CHAR_TYPE >

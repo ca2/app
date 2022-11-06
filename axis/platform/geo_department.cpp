@@ -14,6 +14,8 @@
 #include "acme/primitive/datetime/_binary_stream.h"
 #include "acme/primitive/mathematics/number_double.h"
 #include "acme/filesystem/file/binary_stream.h"
+#include "acme/primitive/string/international.h"
+#include "acme/primitive/string/str.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/networking/open_weather_city.h"
 #include "apex/networking/http/context.h"

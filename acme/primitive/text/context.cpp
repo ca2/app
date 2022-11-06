@@ -922,7 +922,7 @@ end:
          {
 
             table = (*pcontext->m_pschema)[atom];
-            if(table.has_char() && ::str().begins_ci(pszTopic, table))
+            if(table.has_char() && string_begins_ci(pszTopic, table))
                return true;
 
          }
@@ -930,7 +930,7 @@ end:
          if(pcontext->m_pschemaLocale != nullptr)
          {
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(table.has_char() && ::str().begins_ci(pszTopic, table))
+            if(table.has_char() && string_begins_ci(pszTopic, table))
                return true;
          }
 
@@ -938,7 +938,7 @@ end:
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
-            if(table.has_char() && ::str().begins_ci(pszTopic, table))
+            if(table.has_char() && string_begins_ci(pszTopic, table))
                return true;
 
          }
@@ -949,20 +949,20 @@ end:
       {
 
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-         if(table.has_char() && ::str().begins_ci(pszTopic, table))
+         if(table.has_char() && string_begins_ci(pszTopic, table))
             return true;
 
       }
 
       table = (*m_pschemaEn)[atom]; // lang=en style=en
-      if(table.has_char() && ::str().begins_ci(pszTopic, table))
+      if(table.has_char() && string_begins_ci(pszTopic, table))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-         if(table.has_char() && ::str().begins_ci(pszTopic, table))
+         if(table.has_char() && string_begins_ci(pszTopic, table))
             return true;
 
       }
@@ -999,7 +999,7 @@ end:
          if(pcontext->m_pschemaLocale != nullptr)
          {
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(table.has_char() && ::str().begins_eat_ci(strTopic, table))
+            if(table.has_char() && strTopic.begins_eat_ci(table))
                return true;
          }
 
@@ -1007,7 +1007,7 @@ end:
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
-            if(table.has_char() && ::str().begins_eat_ci(strTopic, table))
+            if(table.has_char() && strTopic.begins_eat_ci(table))
                return true;
 
          }
@@ -1018,20 +1018,20 @@ end:
       {
 
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-         if(table.has_char() && ::str().begins_eat_ci(strTopic, table))
+         if(table.has_char() && strTopic.begins_eat_ci(table))
             return true;
 
       }
 
       table = (*m_pschemaEn)[atom]; // lang=en style=en
-      if(table.has_char() && ::str().begins_eat_ci(strTopic, table))
+      if(table.has_char() && strTopic.begins_eat_ci(table))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-         if(table.has_char() && ::str().begins_eat_ci(strTopic, table))
+         if(table.has_char() && strTopic.begins_eat_ci(table))
             return true;
 
       }

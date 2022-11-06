@@ -207,7 +207,7 @@ namespace apple
 
 #endif
 
-      if(::str().begins_ci(strFallback, "/Users/"))
+      if(string_begins_ci(strFallback, "/Users/"))
       {
 
          index i = 0;
@@ -430,7 +430,7 @@ namespace apple
 
          string strFolder = path.folder();
 
-         if(::str().ends_eat_ci(strFolder, path.folder()/"Contents"/ "MacOS"))
+         if(strFolder.ends_eat_ci(path.folder()/"Contents"/ "MacOS"))
          {
 
             strFallback = strFolder;
@@ -449,7 +449,7 @@ namespace apple
 
       string strCurrent = getenv("DYLD_FALLBACK_LIBRARY_PATH");
 
-      if(strCurrent == strFallback || ::str().ends(strCurrent, ":" + strFallback) || ::str().begins(strCurrent, strFallback + ":") || strCurrent.contains(":"+strFallback +":"))
+      if(strCurrent == strFallback || string_ends(strCurrent, ":" + strFallback) || string_begins(strCurrent, strFallback + ":") || strCurrent.contains(":"+strFallback +":"))
       {
 
          strFallback = strCurrent;
@@ -671,7 +671,7 @@ auto tickStart = ::duration::now();
 //               if(bNewLine)
 //               {
 //                  string strLine = szBuffer;
-//                  if(::str().begins_eat_ci(strLine, "application_pid="))
+//                  if(strLine.begins_eat_ci("application_pid="))
 //                  {
 //                     m_iPid = atoi(strLine);
 //                     break;

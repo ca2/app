@@ -1,10 +1,11 @@
 ﻿#include "framework.h"
 #include "acme/constant/message.h"
-#include "acme/platform/log.h"
-#include "acme/update.h"
+#include "acme/memory/counter.h"
 #include "acme/parallelization/counter.h"
 #include "acme/parallelization/message_queue.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/log.h"
+#include "acme/update.h"
 #include "apex/platform/node.h"
 #include "apex/user/primitive.h"
 #include "acme/parallelization/tools.h"
@@ -948,7 +949,7 @@ bool thread::raw_pump_message()
       if (!get_message())
       {
 
-         if(::str().begins(strType, "multimedia::"))
+         if(strType.begins("multimedia::"))
          {
 
             if(strType.contains("wave_player"))
@@ -1504,7 +1505,7 @@ void thread::destroy()
 
    }
 
-   if (::str().begins(strType, "user::"))
+   if (strType.begins("user::"))
    {
 
       if (strType.contains("shell_thread"))
@@ -1515,7 +1516,7 @@ void thread::destroy()
       }
 
    }
-   else if (::str().begins(strType, "multimedia::"))
+   else if (strType.begins("multimedia::"))
    {
 
       if (strType.contains("wave_player"))
@@ -2245,7 +2246,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //}
 
 
-::pointer<::task>thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+::pointer<::task>thread::branch(const ::create_task_attributes & createtaskattributes)
 {
 
    unset_finishing();
@@ -2322,7 +2323,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 
    //}
 
-   auto ptask = ::task::branch(epriority, nStackSize, uiCreateFlags);
+   auto ptask = ::task::branch(createtaskattributes);
 
 //   if(m_htask == 0)
 //   {
@@ -2396,10 +2397,10 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //}
 
 
-::pointer<::task>thread::branch_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+::pointer<::task>thread::branch_synchronously(const create_task_attributes & createtaskattributes)
 {
 
-   auto ptask = ::task::branch_synchronously(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
+   auto ptask = ::task::branch_synchronously(createtaskattributes);
 
    return ptask;
 

@@ -5925,6 +5925,84 @@ bool payload::is_property_false(const ::atom & atom) const
 
 }
 
+
+
+bool payload::begins_eat(const ::string & strPrefix)
+{
+
+   ::string str = this->string();
+
+   if(!str.begins_eat(strPrefix))
+   {
+
+      return false;
+
+   }
+
+   operator =(str);
+
+   return true;
+
+}
+
+
+bool payload::ends_eat(const ::string & strSuffix)
+{
+
+   ::string str = this->string();
+
+   if(!str.ends_eat(strSuffix))
+   {
+
+      return false;
+
+   }
+
+   operator =(str);
+
+   return true;
+
+}
+
+
+bool payload::begins_eat_ci(const ::string & strPrefix)
+{
+
+   ::string str = this->string();
+
+   if(!str.begins_eat_ci(strPrefix))
+   {
+
+      return false;
+
+   }
+
+   operator =(str);
+
+   return true;
+
+}
+
+
+bool payload::ends_eat_ci(const ::string & strSuffix)
+{
+
+   ::string str = this->string();
+
+   if(!str.ends_eat_ci(strSuffix))
+   {
+
+      return false;
+
+   }
+
+   operator =(str);
+
+   return true;
+
+}
+
+
 //::block payload::block () const
 //{
 //

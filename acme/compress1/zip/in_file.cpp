@@ -63,7 +63,7 @@ namespace zip
 
       }
 
-      if(::str().ends_ci(pszFileName,".zip"))
+      if(string_ends_ci(pszFileName,".zip"))
 
       {
 
@@ -127,7 +127,7 @@ namespace zip
 
       }
 
-      if(::str().ends(strFile,":"))
+      if(string_ends(strFile,":"))
       {
 
          return true;
@@ -138,9 +138,9 @@ namespace zip
 
       strFile = strFile.Mid(iFind + 1);
 
-      ::str().begins_eat(strFile,"/");
+      strFile.begins_eat("/");
 
-      ::str().begins_eat(strFile,"\\");
+      strFile.begins_eat("\\");
 
       return true;
 
@@ -219,9 +219,9 @@ namespace zip
 
       strFile = strFile.Mid(iFind + 1);
 
-      ::str().begins_eat(strFile,"/");
+      strFile.begins_eat("/");
 
-      ::str().begins_eat(strFile,"\\");
+      strFile.begins_eat("\\");
 
       if (locate(strFile))
       {
@@ -709,7 +709,7 @@ namespace zip
 
                listing.add(::file::path(strTitle));
 
-               listing.last().m_iDir = ::str().ends(szTitle,"/") || ::str().ends(szTitle,"\\") || ::str().ends(szTitle,".zip");
+               listing.last().m_iDir = string_ends(szTitle,"/") || string_ends(szTitle,"\\") || string_ends(szTitle,".zip");
 
                listing.last().m_iSize = fi.uncompressed_size;
 
@@ -768,7 +768,7 @@ namespace zip
 
                listing.add(::file::path(strTitle));
 
-               listing.last().m_iDir = ::str().ends(szTitle, "/") || ::str().ends(szTitle, "\\") || ::str().ends(szTitle, ".zip");
+               listing.last().m_iDir = string_ends(szTitle, "/") || string_ends(szTitle, "\\") || string_ends(szTitle, ".zip");
 
                listing.last().m_iSize = fi.uncompressed_size;
 

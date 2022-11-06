@@ -188,6 +188,8 @@ namespace acme
 
       virtual bool erase_exclusive(const string & strName);
 
+      virtual void release_exclusive();
+
       virtual bool exclusive_fails(::particle * pparticleContext, const string & strName, security_attributes * psecurityattributes = nullptr);
     
 

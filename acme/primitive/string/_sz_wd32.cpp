@@ -17,7 +17,7 @@ CLASS_DECL_ACME::i64 string_to_signed(const wd32char * pwsz)
 
 #else
 
-   return wtoll(pwsz);
+   return wcstoll(pwsz, nullptr, 10);
 
 #endif
 
@@ -53,7 +53,7 @@ CLASS_DECL_ACME ::f64 string_to_floating(const wd32char * pwsz)
 
 #else
 
-   return wcstoull(pwsz, nullptr, 10);
+   return wcstod(pwsz, nullptr);
 
 #endif
 

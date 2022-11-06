@@ -4,6 +4,7 @@
 #include "acme/platform/system.h"
 #include "acme/primitive/string/base64.h"
 #include "acme/primitive/string/parse.h"
+#include "acme/primitive/string/str.h"
 #include "apex/networking/email.h"
 //#include "axis/networking/_networking.h"
 

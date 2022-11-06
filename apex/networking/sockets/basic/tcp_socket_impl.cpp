@@ -1724,7 +1724,7 @@
 ////
 ////            strCert = keyfile;
 ////
-////            ::str().begins_eat_ci(strCert, "cat://");
+////            strCert.begins_eat_ci("cat://");
 ////
 ////         }
 ////
@@ -2393,7 +2393,7 @@
 ////
 ////               string str = data;
 ////
-////               if(::str().begins_eat(str,"*."))
+////               if(str.begins_eat("*."))
 ////               {
 ////
 ////                  string strCommon = common_name;
@@ -2483,7 +2483,7 @@
 ////
 ////                        string str = strDnsName;
 ////
-////                        if (::str().begins_eat(str, "*."))
+////                        if (str.begins_eat("*."))
 ////                        {
 ////
 ////                           string strCommon = common_name;

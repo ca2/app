@@ -18,6 +18,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/ini.h"
 #include "acme/platform/sequencer.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/datetime/department.h"
 #include "acme/primitive/primitive/read_only_memory.h"
 #include "acme/primitive/string/base64.h"
@@ -504,7 +505,7 @@ i32 file_context::filterex_time_square(const char *pszPrefix, ::file::path_array
 
       string str = stra[i].name();
 
-      if (::str().begins_eat_ci(str, pszPrefix))
+      if (str.begins_eat_ci(pszPrefix))
       {
 
          if (str.get_length() < 2)
@@ -1244,12 +1245,12 @@ void file_context::calculate_main_resource_memory()
 
 #if defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
 
-   if(acmesystem()->m_pchar_binary__matter_zip_start && acmesystem()->m_pchar_binary__matter_zip_end)
+   if(subsystem()->m_pchar_binary__matter_zip_start && subsystem()->m_pchar_binary__matter_zip_end)
    {
 
       return {
-         acmesystem()->m_pchar_binary__matter_zip_start,
-         acmesystem()->m_pchar_binary__matter_zip_end - acmesystem()->m_pchar_binary__matter_zip_start
+         subsystem()->m_pchar_binary__matter_zip_start,
+         subsystem()->m_pchar_binary__matter_zip_end - subsystem()->m_pchar_binary__matter_zip_start
       };
 
    }
@@ -1463,7 +1464,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 {
 
    if (dir()->is(varSource.file_path()) &&
-       (eextract == extract_first || eextract == extract_all || !(::str().ends_ci(varSource.file_path(), ".zip"))))
+       (eextract == extract_first || eextract == extract_all || !(string_ends_ci(varSource.file_path(), ".zip"))))
    {
 
       ::file::listing listing;
@@ -1477,7 +1478,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
       ::file::path strDirSrc(varSource.file_path());
       ::file::path strDirDst(varTarget.file_path());
 
-      if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().ends(strDirSrc, ".zip")))
+      if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends(strDirSrc, ".zip")))
       {
 
          strDirSrc += ":";
@@ -1491,7 +1492,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          strDst = strSrc;
 
-         ::str().begins_eat_ci(strDst, strDirSrc);
+         strDst.begins_eat_ci(strDirSrc);
 
          strDst = strDirDst / strDst;
 
@@ -1499,7 +1500,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
          {
 
             if ((eextract == extract_first || eextract == extract_none) &&
-                (::str().ends_ci(varSource.file_path(), ".zip")))
+                (string_ends_ci(varSource.file_path(), ".zip")))
             {
             }
             else
@@ -2180,7 +2181,7 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 
    string strTempDir = acmedirectory()->sys_temp();
 
-   if (!::str().ends(strTempDir, "\\") && !::str().ends(strTempDir, "/"))
+   if (!string_ends(strTempDir, "\\") && !string_ends(strTempDir, "/"))
    {
 
       strTempDir += "\\";
@@ -2450,7 +2451,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   for (i32 i = 0; i < stra.get_size(); i++)
 //   {
-//      if (::str().ends_ci(stra[i], ".zip"))
+//      if (string_ends_ci(stra[i], ".zip"))
 //      {
 //      }
 //      else if (dir()->is(stra[i]))
@@ -3056,7 +3057,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
    domain.create(purl->get_server(path));
 
-   bool bSaveCache = domain.m_strRadix != "ca2" || !::str().begins(purl->get_object(path), "/matter/");
+   bool bSaveCache = domain.m_strRadix != "ca2" || !string_begins(purl->get_object(path), "/matter/");
 
    ::file::path pathCache;
 
@@ -3065,21 +3066,21 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
       pathCache = path;
 
-      if (::str().ends(pathCache, "en_us_international.xml"))
+      if (string_ends(pathCache, "en_us_international.xml"))
       {
          
          INFORMATION("Debug Here");
 
       }
 
-      if (::str().ends(pathCache, "text_select.xml"))
+      if (string_ends(pathCache, "text_select.xml"))
       {
 
          INFORMATION("Debug Here");
 
       }
 
-      if (::str().ends(pathCache, "arialuni.ttf"))
+      if (string_ends(pathCache, "arialuni.ttf"))
       {
 
          INFORMATION("Debug Here : arialuni.ttf");
@@ -3365,25 +3366,25 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
       return nullptr;
 
    }
-   else if (::str().begins_eat(path, "file:///") || ::str().begins_eat(path, "file:\\\\\\"))
+   else if (path.begins_eat("file:///") || path.begins_eat("file:\\\\\\"))
    {
 
       return get_file(path, eopen);
 
    }
-   else if (::str().begins_eat(path, "resource://") || ::str().begins_eat(path, "resource:\\\\"))
+   else if (path.begins_eat("resource://") || path.begins_eat("resource:\\\\"))
    {
 
       return resource_get_file(path);
 
    }
-   else if (::str().begins(path, "http://") || ::str().begins(path, "https://"))
+   else if (string_begins(path, "http://") || string_begins(path, "https://"))
    {
 
       return http_get_file(payloadFile, eopen);
 
    }
-   else if (::str().begins_eat(path, "zipresource://"))
+   else if (path.begins_eat("zipresource://"))
    {
 
       return create_resource_file(path);

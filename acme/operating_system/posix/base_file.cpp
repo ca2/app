@@ -221,7 +221,7 @@
 //
 //   str.release_string_buffer(iRead);
 //
-//   ::str().begins_eat_ci(str, "\xef\xbb\xbf");
+//   str.begins_eat_ci("\xef\xbb\xbf");
 //
 //   fclose(f);
 //

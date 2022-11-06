@@ -51,7 +51,7 @@ inline bool linux_dir_myspace(char ch)
 
    path = stra[0];
 
-   ::str().begins_eat_ci(path, strPrefix);
+   path.begins_eat_ci(strPrefix);
 
    path.replace("$HOME", pathHome);
 
@@ -310,7 +310,7 @@ namespace linux
 
             auto & strPath = stra[i];
 
-            if(!::str().begins(strPath, listing.m_pathFinal))
+            if(!string_begins(strPath, listing.m_pathFinal))
                continue;
 
             bool bIsDir;
@@ -740,7 +740,7 @@ pacmedirectory->is(path))
    bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return ::str().begins_ci(pszDir, pszPath);
+      return string_begins_ci(pszDir, pszPath);
 
    }
 

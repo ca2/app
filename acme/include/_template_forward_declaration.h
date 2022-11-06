@@ -403,13 +403,13 @@ concept container_type = requires(CONTAINER container)
 };
 
 
-template < typename HAS_COPY_TO_STRING >
-concept has_copy_to_string = requires(const HAS_COPY_TO_STRING & t, ::string & str)
-{
-
-   {::copy(str, t)} -> std::same_as<::string&>;
-
-};
+//template < typename HAS_COPY_TO_STRING >
+//concept has_copy_to_string = requires(const HAS_COPY_TO_STRING & t, ::string & str)
+//{
+//
+//   {::copy(str, t)} -> std::same_as<::string&>;
+//
+//};
 
 
 template < container_type CONTAINERX, container_type CONTAINERY >
@@ -1932,31 +1932,7 @@ using i64_spreadset = spreadset < i64, i64, i64, i64, unique_i64_sort_array, uni
 #include "acme/primitive/duration/__string.h"
 
 
-template < primitive_integral INTEGRAL >
-inline ::string __string(const INTEGRAL & integral, const char * pszFormat)
-{
-
-   ::string str;
-
-   str.format(pszFormat, integral);
-
-   return ::move(str);
-
-}
-
-
-template < has_copy_to_string HAS_COPY_TO_STRING >
-inline ::string __string(const HAS_COPY_TO_STRING & hascopytostring)
-{
-
-   ::string str;
-
-   ::copy(str, hascopytostring);
-
-   return ::move(str);
-
-}
-
+::string & copy(::string & str, const integral_byte & memsize);
 
 
 

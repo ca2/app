@@ -310,7 +310,7 @@ namespace interprocess_channel
    bool handler::on_interprocess_receive(const ::string & strMessage)
    {
 
-      //if (::str().begins_ci(strMessage, "synch_"))
+      //if (string_begins_ci(strMessage, "synch_"))
       //{
 
       //   if (m_preceiver != nullptr)

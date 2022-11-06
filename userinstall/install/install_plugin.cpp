@@ -1222,7 +1222,7 @@ run_install:
                bFirst = false;
                iSkip = 0;
                strLine.trim();
-               if(::str().begins_eat(strLine, "#----------"))
+               if(strLine.begins_eat("#----------"))
                {
                   m_strStatus = "Thank you";
                   bStatus = true;
@@ -1231,17 +1231,17 @@ run_install:
                   dRate = 0.0;
                   bRate = true;
                }
-               else if(!bRate && ::str().begins_eat(strLine, "|||"))
+               else if(!bRate && strLine.begins_eat("|||"))
                {
                   bRate = true;
                   dRate = ((double) ansi_to_i32(strLine)) / (1000.0 * 1000.0 * 1000.0 );
                }
-               else if (!bStatus2 && ::str().begins_eat(strLine, "***"))
+               else if (!bStatus2 && strLine.begins_eat("***"))
                {
                   bStatus2 = true;
                   m_strStatus2 = strLine;
                }
-               else if (!bStatus && ::str().begins_eat(strLine, ":::"))
+               else if (!bStatus && strLine.begins_eat(":::"))
                {
                   bStatus = true;
                   m_strStatus = strLine;
@@ -1438,7 +1438,7 @@ retry_get_prompt:
 
          string strPrompt(strData);
 
-         if(::str().begins_eat_ci(strPrompt,"ca2prompt"))
+         if(strPrompt.begins_eat_ci("ca2prompt"))
          {
 
             strPrompt.trim();
@@ -1446,7 +1446,7 @@ retry_get_prompt:
             strApp = purl->get_script(strPrompt);
 
          }
-         else if(::str().begins_eat_ci(strPrompt,"native_desktop_launcher"))
+         else if(strPrompt.begins_eat_ci("native_desktop_launcher"))
          {
 
             strPrompt.trim();

@@ -361,7 +361,7 @@ namespace datetime
 //         }
 //      }
 //      if(!bBaseTime && (
-//            ::str().begins_eat(str,"today") ||
+//            str.begins_eat("today") ||
 //            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:today"))))
 //      {
 //         time = ::earth::time::now();
@@ -369,7 +369,7 @@ namespace datetime
 //         bBaseTime = true;
 //      }
 //      if(!bBaseTime && (
-//            ::str().begins_eat(str,"tomorrow") ||
+//            str.begins_eat("tomorrow") ||
 //            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:tomorrow"))))
 //      {
 //         time = ::earth::time::now();
@@ -378,7 +378,7 @@ namespace datetime
 //         bBaseTime = true;
 //      }
 //      if(!bBaseTime && (
-//            ::str().begins_eat(str,"yesterday") ||
+//            str.begins_eat("yesterday") ||
 //            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:yesterday"))))
 //      {
 //         time = ::earth::time::now();
@@ -387,7 +387,7 @@ namespace datetime
 //         bBaseTime = true;
 //      }
 //      if(!bBaseTime && (
-//            ::str().begins_eat(str,"now") ||
+//            str.begins_eat("now") ||
 //            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:now"))))
 //      {
 //         

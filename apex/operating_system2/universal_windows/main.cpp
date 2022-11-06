@@ -257,10 +257,10 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 
 //    }
 
-//    if (!::str().begins_eat_ci(strAppId, "com."))
+//    if (!strAppId.begins_eat_ci("com."))
 //    {
 
-//       ::str().begins_eat_ci(strAppId, "com.ca2.");
+//       strAppId.begins_eat_ci("com.ca2.");
 
 //    }
 

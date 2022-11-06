@@ -179,7 +179,7 @@ namespace axis
 //
 //      string str = ::str().get_window_text_timeout(hwnd, 1000);
 //
-//      if (::str().ends_ci(str, penum->m_strWindowEnd))
+//      if (string_ends_ci(str, penum->m_strWindowEnd))
 //      {
 //
 //         penum->m_hwnd = hwnd;
@@ -200,7 +200,7 @@ namespace axis
 //
 //      string str = ::str().get_window_text_timeout(hwnd);
 //
-//      if (::str().ends_ci(str, penum->m_strTopic))
+//      if (string_ends_ci(str, penum->m_strTopic))
 //      {
 //
 //         penum->m_hwndaTopic.add(hwnd);
@@ -220,7 +220,7 @@ namespace axis
 //
 //      string str = ::str().get_window_text_timeout(hwnd, 1000);
 //
-//      if (::str().ends_ci(str, penum->m_strCounterTopic))
+//      if (string_ends_ci(str, penum->m_strCounterTopic))
 //      {
 //
 //         penum->m_hwndaCounterTopic.add(hwnd);

@@ -450,14 +450,10 @@
    bool os_context::resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory, string * pstrParams, string * pstrIcon, int * piIcon)
    {
 
-      if(::str().ends_ci(strSource, ".desktop"))
+      if(strSource.ends_ci(".desktop"))
       {
 
-         string str = file()->as_string(strSource);
-
-         string_array stra;
-
-         stra.add_lines(str);
+         auto stra = file()->lines(strSource);
 
          stra.filter_begins_ci("exec=");
 

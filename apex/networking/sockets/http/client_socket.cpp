@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "client_socket.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/memory/counter.h"
 #include "acme/networking/url_department.h"
 #include "acme/primitive/string/hex.h"
 #include "apex/constant/idpool.h"
@@ -281,7 +282,7 @@ namespace sockets
       FORMATTED_TRACE("OnHeader %s: %s", (const char*)key, (const char*)value);
 #endif
 
-      m_content += __string(key) + ": " + value + "\r\n";
+      m_content += key + ": " + value + "\r\n";
       m_response.m_propertysetHeader[key] = value;
       if (key == __id(content_length))
       {

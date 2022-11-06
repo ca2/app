@@ -562,8 +562,8 @@ namespace html
       {
 
       }
-      else if (::str().begins(m_strPathName, "http://") ||
-         ::str().begins(m_strPathName, "https://"))
+      else if (m_strPathName.begins("http://") ||
+         m_strPathName.begins("https://"))
       {
 
          auto psystem = acmesystem();
@@ -677,7 +677,7 @@ namespace html
 
       string strPath(pszPath);
 
-      if (::str().begins_eat(strPath, "ext://"))
+      if (strPath.begins_eat("ext://"))
       {
 
          auto phyperlink =__create_new < hyperlink>();

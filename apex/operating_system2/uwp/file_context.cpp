@@ -25,14 +25,14 @@ namespace universal_windows
       /*      if(::file::system::FullPath(str, pszFileIn))
 
       return true;*/
-      if (::str().begins_ci(pszFileIn, "http://"))
+      if (string_begins_ci(pszFileIn, "http://"))
 
       {
          str = pszFileIn;
 
          return true;
       }
-      else if (::str().begins_ci(pszFileIn, "https://"))
+      else if (string_begins_ci(pszFileIn, "https://"))
 
       {
          str = pszFileIn;
@@ -59,12 +59,12 @@ namespace universal_windows
       //if(::file::system::FullPath(wstrFullPath, wstrPath))
       // return true;
 
-      if (::str().begins_ci(wstrPath, L"http://"))
+      if (string_begins_ci(wstrPath, L"http://"))
       {
          wstrFullPath = wstrPath;
          return true;
       }
-      else if (::str().begins_ci(wstrPath, L"https://"))
+      else if (string_begins_ci(wstrPath, L"https://"))
       {
          wstrFullPath = wstrPath;
          return true;

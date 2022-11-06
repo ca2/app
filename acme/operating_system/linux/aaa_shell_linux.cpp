@@ -568,7 +568,7 @@ pacmedirectory->is(strPath))
 
          i32 iImage = 0x80000000;
 
-         if (::str().begins_ci(imagekey.m_strPath, "uifs:"))
+         if (string_begins_ci(imagekey.m_strPath, "uifs:"))
          {
 
             ::file::path path = pcontext->m_papexcontext->dir()->matter("cloud.ico");
@@ -590,7 +590,7 @@ pacmedirectory->is(strPath))
             return iImage;
 
          }
-         else if (::str().begins_ci(imagekey.m_strPath, "fs:"))
+         else if (string_begins_ci(imagekey.m_strPath, "fs:"))
          {
 
             ::file::path path = pcontext->m_papexcontext->dir()->matter("remote.ico");
@@ -612,7 +612,7 @@ pacmedirectory->is(strPath))
             return iImage;
 
          }
-         else if (::str().begins_ci(imagekey.m_strPath, "ftp:"))
+         else if (string_begins_ci(imagekey.m_strPath, "ftp:"))
          {
 
             ::file::path path = pcontext->m_papexcontext->dir()->matter("ftp.ico");
@@ -639,10 +639,10 @@ pacmedirectory->is(strPath))
 
 
 
-         if (::str().ends_ci(imagekey.m_strPath, ".acme"))
+         if (string_ends_ci(imagekey.m_strPath, ".acme"))
          {
             string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
-            if (::str().begins_eat_ci(str, "ca2prompt\r\n"))
+            if (str.begins_eat_ci("ca2prompt\r\n"))
             {
                str.trim();
                /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
@@ -703,7 +703,7 @@ pacmedirectory->is(strPath))
 
          string strExtension;
 
-         if (::str().ends_ci(imagekey.m_strPath, ".sln"))
+         if (string_ends_ci(imagekey.m_strPath, ".sln"))
          {
             
             // output_debug_string("test .sln");
@@ -715,7 +715,7 @@ pacmedirectory->is(strPath))
 
          string strIcon16;
 
-         if (::str().ends_ci(imagekey.m_strPath, ".desktop"))
+         if (string_ends_ci(imagekey.m_strPath, ".desktop"))
          {
 
             string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
@@ -735,7 +735,7 @@ pacmedirectory->is(strPath))
 
             string strIcon = stra[0];
 
-            ::str().begins_eat_ci(strIcon, "icon=");
+            strIcon.begins_eat_ci("icon=");
 
             strIcon48 = strIcon;
 

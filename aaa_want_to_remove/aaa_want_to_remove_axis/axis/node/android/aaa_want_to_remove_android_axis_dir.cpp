@@ -161,11 +161,11 @@ namespace android
       //   const char * pszRequest;
       //   if(::url::is_url(lpcszSource, &pszRequest))
       //   {
-      //      if(::str().begins(lpcszRelative, "/"))
+      //      if(string_begins(lpcszRelative, "/"))
       //      {
       //         return path((const ::string &) string(lpcszSource, pszRequest - lpcszSource), lpcszRelative);
       //      }
-      //      else if(*pszRequest == '\0' || ::str().ends(lpcszSource, "/"))
+      //      else if(*pszRequest == '\0' || string_ends(lpcszSource, "/"))
       //      {
       //         return path(lpcszSource, lpcszRelative, psz2);
       //      }
@@ -176,7 +176,7 @@ namespace android
       //   }
       //   else
       //   {
-      //      if(::str().ends(lpcszSource, "\\") || ::str().ends(lpcszSource, "/"))
+      //      if(string_ends(lpcszSource, "\\") || string_ends(lpcszSource, "/"))
       //      {
       //         return path(lpcszSource, lpcszRelative, psz2);
       //      }

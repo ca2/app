@@ -187,7 +187,7 @@ namespace sockets
 
          ::parse pa(line);
          string str = pa.getword();
-         if (str.get_length() > 4 &&  ::str().begins_ci(str, "http/")) // response
+         if (str.get_length() > 4 &&  string_begins_ci(str, "http/")) // response
          {
             m_request.attr("http_version") = str;
             m_request.attr("http_status_code") = pa.getword();
@@ -209,7 +209,7 @@ namespace sockets
             m_request.attr("http_method") = str;
             m_request.attr("request_uri") = pa.getword();
             m_request.attr("http_version") = pa.getword();
-            m_b_http_1_1 = ::str().ends(m_request.attr("http_version"), "/1.1");
+            m_b_http_1_1 = string_ends(m_request.attr("http_version"), "/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest = true;
          }
@@ -244,7 +244,7 @@ namespace sockets
       {
          if (m_b_http_1_1)
          {
-            if(::str().equals_ci(value, "close"))
+            if(equals_ci(value, "close"))
             {
                m_b_keepalive = false;
             }
@@ -255,7 +255,7 @@ namespace sockets
          }
          else
          {
-            if(::str().equals_ci(value, "keep-alive"))
+            if(equals_ci(value, "keep-alive"))
             {
                m_b_keepalive = true;
             }
@@ -265,7 +265,7 @@ namespace sockets
             }
          }
       }
-      if (::str().equals_ci(key, "transfer-encoding") && ::str().ends_ci(value, "chunked"))
+      if (equals_ci(key, "transfer-encoding") && string_ends_ci(value, "chunked"))
       {
          m_b_chunked = true;
       }

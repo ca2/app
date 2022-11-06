@@ -301,7 +301,7 @@ void * gen_ch_class_reference_tables()
    {
       for(size_t pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
       {
-         if(::str().begins(cat, char_category_names[pos]))
+         if(string_begins(cat, char_category_names[pos]))
          {
             add_category(ECharCategory(pos));
          }

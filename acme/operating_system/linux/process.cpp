@@ -567,7 +567,7 @@
 //
 //               string strTitle = path.title();
 //
-//               ::str().ends_eat_ci(strTitle, " (deleted)");
+//               strTitle.ends_eat_ci(" (deleted)");
 //
 //               if (strTitle == strApp ||
 //                   strTitle == strApp2)

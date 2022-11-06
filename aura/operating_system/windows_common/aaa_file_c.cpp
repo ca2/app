@@ -237,7 +237,7 @@ int_bool acmepath()->is_file_or_dir(const ::string & path, ::file::enum_type * p
 
          strPrefix.replace("/", "\\");
 
-         ::str().begins_eat_ci(strRelative, strPrefix);
+         strRelative.begins_eat_ci(strPrefix);
 
          strRelative.trim("/\\");
 
@@ -358,7 +358,7 @@ CLASS_DECL_AURA bool _os_may_have_alias(const ::string & psz)
 bool context::os_is_alias(const ::string & psz)
 {
 
-   return ::str().ends_ci(psz, ".lnk");
+   return string_ends_ci(psz, ".lnk");
 
 }
 

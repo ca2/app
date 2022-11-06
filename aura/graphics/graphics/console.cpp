@@ -4,6 +4,7 @@
 #include "acme/operating_system/_const_console.h"
 #include "acme/operating_system/console.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/string/international.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/context_image.h"

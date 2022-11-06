@@ -57,19 +57,19 @@ namespace sphere
    /*   ::pointer<::aura::application>library::get_new_app(const ::string & pszAppId)
       {
 
-         if(::str().equals_ci(pszAppId, "calculator"))
+         if(equals_ci(pszAppId, "calculator"))
          {
             return memory_new ::calculator::application();
          }
-         else if(::str().equals_ci(pszAppId, "command"))
+         else if(equals_ci(pszAppId, "command"))
          {
             return memory_new ::command::application();
          }
-         else if(::str().equals_ci(pszAppId, "userstack"))
+         else if(equals_ci(pszAppId, "userstack"))
          {
             return memory_new ::userstack::application();
          }
-         else if(::str().equals_ci(pszAppId, "default_file_handler"))
+         else if(equals_ci(pszAppId, "default_file_handler"))
          {
             return memory_new ::filehandler::application();
          }

@@ -1236,9 +1236,9 @@ namespace aura
          //if (strDraw2d.has_char())
          //{
 
-         //   ::str().begins_eat_ci(strDraw2d, "draw2d_");
+         //   strDraw2d.begins_eat_ci("draw2d_");
 
-         //   ::str().begins_eat_ci(strDraw2d, "draw2d");
+         //   strDraw2d.begins_eat_ci("draw2d");
 
          //   strLibrary = "draw2d_" + strDraw2d;
 
@@ -1387,13 +1387,13 @@ namespace aura
          if (strImaging.has_char())
          {
 
-            ::str().ends_eat_ci(strImaging, "_imaging");
+            strImaging.ends_eat_ci("_imaging");
 
-            ::str().ends_eat_ci(strImaging, "imaging");
+            strImaging.ends_eat_ci("imaging");
 
-            ::str().begins_eat_ci(strImaging, "imaging_");
+            strImaging.begins_eat_ci("imaging_");
 
-            ::str().begins_eat_ci(strImaging, "imaging");
+            strImaging.begins_eat_ci("imaging");
 
          }
 
@@ -2968,13 +2968,13 @@ namespace aura
 ////         strLibraryId = straTitle[i];
 ////
 ////
-////         if(::str().ends_eat_ci(strLibraryId,".dll")
-////               || ::str().ends_eat_ci(strLibraryId,".so")
-////               || ::str().ends_eat_ci(strLibraryId,".dylib"))
+////         if(strLibraryId.ends_eat_ci(".dll")
+////               || strLibraryId.ends_eat_ci(".so")
+////               || strLibraryId.ends_eat_ci(".dylib"))
 ////         {
 ////
-////            if(::str().begins_ci(strLibraryId,"libdraw2d_")
-////                  || ::str().begins_ci(strLibraryId,"libbase"))
+////            if(string_begins_ci(strLibraryId,"libdraw2d_")
+////                  || string_begins_ci(strLibraryId,"libbase"))
 ////            {
 ////               continue;
 ////            }
@@ -3088,10 +3088,10 @@ namespace aura
 //         strLibrary = "base";
 //
 //      }
-//      else if(!::str().begins_eat(strLibrary,"libbase"))
+//      else if(!strLibrary.begins_eat("libbase"))
 //      {
 //
-//         ::str().begins_eat(strLibrary,"lib");
+//         strLibrary.begins_eat("lib");
 //
 //      }
 //
@@ -3103,7 +3103,7 @@ namespace aura
 //
 //      strPrefix.replace("/","_");
 //
-//      ::str().begins_eat_ci(strLibrary,strPrefix);
+//      strLibrary.begins_eat_ci(strPrefix);
 //
 //      strRoot += strLibrary;
 //

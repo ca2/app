@@ -254,10 +254,10 @@ void CLASS_DECL_APEX __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 
 //    }
 
-//    if (!::str().begins_eat_ci(strAppId, "com."))
+//    if (!strAppId.begins_eat_ci("com."))
 //    {
 
-//       ::str().begins_eat_ci(strAppId, "com.ca2.");
+//       strAppId.begins_eat_ci("com.ca2.");
 
 //    }
 

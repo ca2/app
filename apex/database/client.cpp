@@ -519,7 +519,7 @@ namespace database
 
       defer_update_object_id();
 
-      key.m_strDataKey += "/" + __string(m_atom);
+      key.m_strDataKey += "/" + m_atom.string();
 
       return key;
 

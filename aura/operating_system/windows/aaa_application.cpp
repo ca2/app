@@ -890,7 +890,7 @@ int SendCtrlShiftQToChrome(oswindow w, ::duration millisSleep, ::aura::applicati
 //   while (psz != nullptr && *psz != '\0')
 //   {
 //
-//      int iIndex = unicode_uni_index(psz);
+//      int iIndex = unicode_index(psz);
 //
 //      send_input_unicode(iIndex, iSleep);
 //

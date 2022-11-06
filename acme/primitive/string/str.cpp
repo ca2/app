@@ -113,7 +113,7 @@ u32 decode_utf16_pair(u16 * units)
 //
 //}
 
-
+//
 //template < >
 //bool str::equals_ci(const char * psz1, const char * psz2)
 //{
@@ -430,82 +430,82 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 
 
 
-bool str::eat_before(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound)
-{
-
-   ASSERT(&wstr != &wstrBefore);
-
-   if (&wstr == &wstrBefore)
-   {
-
-      return false;
-
-   }
-
-   index iFind = wstr.find(wstrSeparator);
-
-   if (iFind < 0)
-   {
-
-      if (bEatEverythingIfNotFound)
-      {
-
-         wstrBefore = wstr;
-
-         wstr.Empty();
-
-      }
-
-      return false;
-
-   }
-
-   wstrBefore = wstr.Left(iFind);
-
-   wstr = wstr.Mid(iFind + wstrSeparator.length());
-
-   return true;
-
-}
-
-
-bool str::eat_before_let_separator(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound)
-{
-
-   ASSERT(&wstr != &wstrBefore);
-
-   if (&wstr == &wstrBefore)
-   {
-
-      return false;
-
-   }
-
-   index iFind = wstr.find(wstrSeparator);
-
-   if (iFind < 0)
-   {
-
-      if (bEatEverythingIfNotFound)
-      {
-
-         wstrBefore = wstr;
-
-         wstr = wstrSeparator;
-
-      }
-
-      return false;
-
-   }
-
-   wstrBefore = wstr.Left(iFind);
-
-   wstr = wstr.Mid(iFind);
-
-   return true;
-
-}
+//bool str::eat_before(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound)
+//{
+//
+//   ASSERT(&wstr != &wstrBefore);
+//
+//   if (&wstr == &wstrBefore)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   index iFind = wstr.find(wstrSeparator);
+//
+//   if (iFind < 0)
+//   {
+//
+//      if (bEatEverythingIfNotFound)
+//      {
+//
+//         wstrBefore = wstr;
+//
+//         wstr.Empty();
+//
+//      }
+//
+//      return false;
+//
+//   }
+//
+//   wstrBefore = wstr.Left(iFind);
+//
+//   wstr = wstr.Mid(iFind + wstrSeparator.length());
+//
+//   return true;
+//
+//}
+//
+//
+//bool str::eat_before_let_separator(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound)
+//{
+//
+//   ASSERT(&wstr != &wstrBefore);
+//
+//   if (&wstr == &wstrBefore)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   index iFind = wstr.find(wstrSeparator);
+//
+//   if (iFind < 0)
+//   {
+//
+//      if (bEatEverythingIfNotFound)
+//      {
+//
+//         wstrBefore = wstr;
+//
+//         wstr = wstrSeparator;
+//
+//      }
+//
+//      return false;
+//
+//   }
+//
+//   wstrBefore = wstr.Left(iFind);
+//
+//   wstr = wstr.Mid(iFind);
+//
+//   return true;
+//
+//}
 
 
 //   bool begins_eat(string & str, const char * pcszPrefix)
@@ -2675,7 +2675,7 @@ bool str::is_integer(const ::string & strParam)
 
    str.trim();
 
-   if (::str().begins_eat_ci(str, "-") || ::str().begins_eat_ci(str, "+"))
+   if (str.begins_eat_ci("-") || str.begins_eat_ci("+"))
    {
 
       return is_natural(str);
@@ -5278,58 +5278,58 @@ public:
    template < int n > class get_char_type < char[n] > { public: using CHAR_TYPE = char; };
 
 
-bool str::begins_eat(::payload & payload, const ::string & strPrefix)
-{
-
-   string str = payload.string();
-
-   if (!begins_eat(str, strPrefix))
-   {
-
-      return false;
-
-   }
-
-   payload = str;
-
-   return true;
-
-}
-
-
-bool str::begins_eat_ci(::payload & payload, const ::string & strPrefix)
-{
-
-   string str = payload.string();
-
-   if (!begins_eat_ci(str, strPrefix))
-   {
-
-      return false;
-
-   }
-
-   payload = str;
-
-   return true;
-
-}
-
-
-bool str::begins_eat(property & property, const ::string & strPrefix)
-{
-
-   return begins_eat((::payload &)property, strPrefix);
-
-}
-
-
-bool str::begins_eat_ci(property & property, const ::string & strPrefix)
-{
-
-   return begins_eat_ci((::payload &)property, strPrefix);
-
-}
+//bool str::begins_eat(::payload & payload, const ::string & strPrefix)
+//{
+//
+//   string str = payload.string();
+//
+//   if (!begins_eat(str, strPrefix))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   payload = str;
+//
+//   return true;
+//
+//}
+//
+//
+//bool str::begins_eat_ci(::payload & payload, const ::string & strPrefix)
+//{
+//
+//   string str = payload.string();
+//
+//   if (!begins_eat_ci(str, strPrefix))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   payload = str;
+//
+//   return true;
+//
+//}
+//
+//
+//bool str::begins_eat(property & property, const ::string & strPrefix)
+//{
+//
+//   return begins_eat((::payload &)property, strPrefix);
+//
+//}
+//
+//
+//bool str::begins_eat_ci(property & property, const ::string & strPrefix)
+//{
+//
+//   return begins_eat_ci((::payload &)property, strPrefix);
+//
+//}
 
 
 //ansistring & str::assign(ansistring & ansistrDst, const atom & atom)

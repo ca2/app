@@ -22,7 +22,9 @@
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/string/base64.h"
+#include "acme/primitive/string/international.h"
 #include "acme/primitive/string/_string.h"
+#include "acme/primitive/string/str.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -53,7 +55,7 @@ namespace aura
 
          iData = str.find("data:", iData + 1);
 
-         if (iData < 0 || !(iData == 0 || !ansi_char_is_alnum(str[iData - 1])))
+         if (iData < 0 || !(iData == 0 || !character_isalnum(str[iData - 1])))
          {
 
             break;
@@ -4787,7 +4789,7 @@ namespace user
             for (strsize i = 0; i < beforeLength; i++)
             {
 
-               auto pdataNew = ::str().utf8_dec(str.c_str(), pdata);
+               auto pdataNew = utf8_dec(str.c_str(), pdata);
 
                if (::is_empty(pdataNew))
                {

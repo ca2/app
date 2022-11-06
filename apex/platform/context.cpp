@@ -12,6 +12,7 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/ini.h"
+#include "acme/primitive/string/str.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/filesystem/dir_system.h"
@@ -505,37 +506,37 @@ namespace apex
    bool context::defer_process_known_folder_path(::file::path & path)
    {
 
-      if (::str().begins_eat_ci(path, "music://"))
+      if (path.begins_eat_ci("music://"))
       {
 
          path = dir()->music() / path;
 
       }
-      else if (::str().begins_eat_ci(path, "video://"))
+      else if (path.begins_eat_ci("video://"))
       {
 
          path = dir()->video() / path;
 
       }
-      else if (::str().begins_eat_ci(path, "image://"))
+      else if (path.begins_eat_ci("image://"))
       {
 
          path = dir()->image() / path;
 
       }
-      else if (::str().begins_eat_ci(path, "document://"))
+      else if (path.begins_eat_ci("document://"))
       {
 
          path = dir()->document() / path;
 
       }
-      else if (::str().begins_eat_ci(path, "dropbox://"))
+      else if (path.begins_eat_ci("dropbox://"))
       {
 
          path = dir()->dropbox() / path;
 
       }
-      else if (::str().begins_eat_ci(path, "dropbox-app://"))
+      else if (path.begins_eat_ci("dropbox-app://"))
       {
 
          auto papplication = acmeapplication();
@@ -550,37 +551,37 @@ namespace apex
          path = dir()->dropbox_app() / path;
 
       }
-      else if (::str().begins_eat_ci(path, "onedrive://"))
+      else if (path.begins_eat_ci("onedrive://"))
       {
 
          path = dir()->onedrive() / path;
 
       }
-      else if (::str().begins_eat_ci(path, "appconfig://"))
+      else if (path.begins_eat_ci("appconfig://"))
       {
 
          path = get_app()->m_papexapplication->appconfig_folder() / path;
 
       }
-      else if (::str().begins_eat_ci(path, "download://"))
+      else if (path.begins_eat_ci("download://"))
       {
 
          path = dir()->download() / path;
 
       }
-      else if (::str().begins_eat_ci(path, "usersystem://"))
+      else if (path.begins_eat_ci("usersystem://"))
       {
 
          path = acmedirectory()->system() / path;
 
       }
-      else if (::str().begins_eat_ci(path, "desktop://"))
+      else if (path.begins_eat_ci("desktop://"))
       {
 
          path = dir()->desktop() / path;
 
       }
-      else if (::str().begins_eat_ci(path, "bookmark://"))
+      else if (path.begins_eat_ci("bookmark://"))
       {
 
          path = dir()->bookmark() / path;
@@ -616,7 +617,7 @@ namespace apex
    ::file::path context::defer_process_matter_path(::file::path path)
    {
 
-      if (::str().begins_ci(path, "matter://"))
+      if (string_begins_ci(path, "matter://"))
       {
 
          path = dir()->matter(path);
@@ -651,7 +652,7 @@ namespace apex
    ::file::path context::get_matter_path(string strMatter)
    {
 
-      if (::str().begins_eat_ci(strMatter, "appmatter://"))
+      if (strMatter.begins_eat_ci("appmatter://"))
       {
 
          return dir()->install() / strMatter;
@@ -686,7 +687,7 @@ namespace apex
    ::file::path context::get_matter_cache_path(::file::path path)
    {
 
-      if (::str().begins_eat_ci((string &)path, "appmatter://"))
+      if (path.begins_eat_ci("appmatter://"))
       {
 
          auto psystem = get_system()->m_papexsystem;
@@ -769,7 +770,7 @@ namespace apex
 
          }
 
-         ::str().begins_eat_ci(path, "appmatter://");
+         path.begins_eat_ci("appmatter://");
 
          path = "https://ca2.software/matter" / path;
 
@@ -1018,7 +1019,7 @@ namespace apex
 
       return os_context()->is_alias(psz);
 
-      //return ::str().ends_ci(psz, ".lnk");
+      //return string_ends_ci(psz, ".lnk");
 
    }
 

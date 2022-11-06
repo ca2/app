@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "style.h"
 #include "acme/primitive/geometry2d/_collection_basic.h"
+#include "acme/primitive/string/str.h"
 #include "axis/html/element/element.h"
 #include "axis/html/html/data.h"
 #include "axis/html/html/core_data.h"
@@ -1028,12 +1029,12 @@ namespace html
       string str(pszParam);
 
       str.trim();
-      if(::str().ends_eat_ci(str, "px"))
+      if(str.ends_eat_ci("px"))
       {
          str.trim();
          return (float) strtod(str, nullptr);
       }
-      else if(::str().ends_eat_ci(str, "::point_f32"))
+      else if(str.ends_eat_ci("::point_f32"))
       {
          str.trim();
          return (float) (strtod(str, nullptr) * 96.0 / 72.0);
@@ -1188,7 +1189,7 @@ namespace html
       }
       f = (float) strtod(&str[iFindDigit], nullptr);
       str = str.Mid(i);
-      if(::str().begins_ci(str, "::point_f32"))
+      if(string_begins_ci(str, "::point_f32"))
       {
          str.trim();
          if(str.get_length() == 2 || character_isspace(str[3]))

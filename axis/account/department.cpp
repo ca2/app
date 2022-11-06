@@ -19,6 +19,7 @@
 #include "acme/parallelization/pool.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/string/str.h"
 #include "axis/platform/session.h"
 
 
@@ -218,7 +219,7 @@ namespace account
 //
 //      string strGetFontopus;
 //
-//      if(::str().ends(strRequestingServer,".ca2.software"))
+//      if(string_ends(strRequestingServer,".ca2.software"))
 //      {
 //         strGetFontopus = "https://ca2.software/get_account_login";
 //      }

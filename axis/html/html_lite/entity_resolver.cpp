@@ -28,6 +28,7 @@
 //#if !BROAD_PRECOMPILED_HEADER
 ////#include "axis/html/html_lite/_.h"
 //#endif
+//#include "acme/primitive/string/str.h"
 #include "entity_resolver.h"
 
 
@@ -205,7 +206,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
 
          u32  ulNum = (u32) ::strtoul(pszBegin, nullptr, aura);
 
-         strChar = ::str().uni_to_utf8(ulNum);
+         strChar = unicode_to_utf8(ulNum);
          return (i32) (pszEnd - pszEntity + 1);
 
       }

@@ -206,12 +206,14 @@ namespace file
       using path_meta::operator+=;
       path operator / (const path & path) const;
       path operator / (const ::ansistring & str) const;
+      path operator / (const ::atom & atom) const;
       path operator / (const char * psz) const;
       path operator / (const ::payload & payload) const;
       path operator / (const property & property) const;
 
       path & operator /= (const path & path);
       path & operator /= (const ::ansistring & str);
+      path & operator /= (const ::atom & atom);
       path & operator /= (const char * psz);
 
 

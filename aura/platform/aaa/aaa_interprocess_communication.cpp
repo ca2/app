@@ -550,7 +550,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
 
       FORMATTED_INFORMATION("interprocess_intercommunication::on_receive %s", pszMessage);
 
-      if(!::str().begins_eat(str, "call "))
+      if(!str.begins_eat("call "))
       {
 
          return;
@@ -559,7 +559,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
 
       ::i64 iCall = ::str().consume_natural(str);
 
-      if(!::str().begins_eat(str, " from "))
+      if(!str.begins_eat(" from "))
       {
 
          return;
@@ -722,7 +722,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
       if(strObject == "application")
       {
 
-         if(::str().begins_ci(strMember, "reply."))
+         if(string_begins_ci(strMember, "reply."))
          {
 
             ::i64 iTask = payloada[0].i64();

@@ -290,7 +290,7 @@ pacmedirectory->ca2roaming() / "home";
 
       if(strPath.get_length() >= MAX_PATH)
       {
-         if(::str().begins(strPath,"\\\\"))
+         if(string_begins(strPath,"\\\\"))
          {
             strPath = "\\\\?\\UNC" + strPath.Mid(1);
          }
@@ -363,7 +363,7 @@ pacmedirectory->ca2roaming() / "home";
 
       if(strPath.get_length() >= MAX_PATH)
       {
-         if(::str().begins(strPath,"\\\\"))
+         if(string_begins(strPath,"\\\\"))
          {
             //::str().begin(strPath,"\\\\?\\UNC");
          }
@@ -746,7 +746,7 @@ try1:;
    bool dir_context::is_inside(const ::file::path & pszDir,const ::file::path & strPath)
    {
 
-      return ::str().begins_ci(pszDir,strPath);
+      return string_begins_ci(pszDir,strPath);
 
    }
 

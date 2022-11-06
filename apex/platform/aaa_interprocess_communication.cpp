@@ -347,7 +347,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
    
    string strUrl = strMessage;
 
-//   if(!::str().begins_eat(strMessage, "call "))
+//   if(!strMessage.begins_eat("call "))
 //   {
 //
 //      return;
@@ -356,7 +356,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 //
 //   ::i64 iCall = ::str().consume_natural(strMessage);
 //
-//   if(!::str().begins_eat(strMessage, " from "))
+//   if(!strMessage.begins_eat(" from "))
 //   {
 //
 //      return;
@@ -565,7 +565,7 @@ bool interprocess_intercommunication::on_interprocess_call(::payload & payload, 
    if(strObject == "application")
    {
 
-      if(::str().begins_ci(strMember, "reply."))
+      if(string_begins_ci(strMember, "reply."))
       {
 
          ::i64 iTask = propertyset["protocol:call_id"];

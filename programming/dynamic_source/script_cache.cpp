@@ -123,7 +123,7 @@ namespace dynamic_source
 
       pscript = nullptr;
 
-      if(::str().begins(lpcszName, "netnode://"))
+      if(string_begins(lpcszName, "netnode://"))
       {
          
          single_lock synchronouslock(synchronization(), true);

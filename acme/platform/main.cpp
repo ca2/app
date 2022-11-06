@@ -188,7 +188,7 @@ void __main(::acme::application * pacmeapplication)
 
 #elif !defined(_UWP)
 
-   pacmeapplication->set_args(g_argc, g_argv, g_envp);
+   //pacmeapplication->set_args(g_argc, g_argv, g_envp);
 
 #endif
 
@@ -368,19 +368,19 @@ void main::system_construct(const ::main * pmain)
 
       m_pfnImplement = pmain->m_pfnImplement;
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
-
-      if (!m_pchar_binary__matter_zip_start && !m_pchar_binary__matter_zip_end
-         && pmain->m_pchar_binary__matter_zip_start && pmain->m_pchar_binary__matter_zip_end)
-      {
-
-         m_pchar_binary__matter_zip_start = pmain->m_pchar_binary__matter_zip_start;
-
-         m_pchar_binary__matter_zip_end = pmain->m_pchar_binary__matter_zip_end;
-
-      }
-
-#endif
+//#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+//
+//      if (!m_pchar_binary__matter_zip_start && !m_pchar_binary__matter_zip_end
+//         && pmain->m_pchar_binary__matter_zip_start && pmain->m_pchar_binary__matter_zip_end)
+//      {
+//
+//         m_pchar_binary__matter_zip_start = pmain->m_pchar_binary__matter_zip_start;
+//
+//         m_pchar_binary__matter_zip_end = pmain->m_pchar_binary__matter_zip_end;
+//
+//      }
+//
+//#endif
 
       if (!m_pacmeapplicationStartup && pmain->m_pacmeapplicationStartup)
       {
@@ -817,7 +817,7 @@ void main::system_prep()
 //
 //    string str = apple_get_bundle_identifier();
 //
-//    ::str().begins_eat_ci(str, "com.ca2.");
+//    str.begins_eat_ci("com.ca2.");
 //
 //    str.replace(".", "/");
 //

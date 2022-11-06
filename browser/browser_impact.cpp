@@ -537,10 +537,10 @@ namespace browser
          if (m_prender->m_pimageImage)
          {
 
-            if (::str().begins_eat_ci(str, m_strImage))
+            if (str.begins_eat_ci(m_strImage))
             {
 
-               ::str().begins_eat_ci(str, ",");
+               str.begins_eat_ci(",");
 
             }
 
@@ -563,7 +563,7 @@ namespace browser
 
       }
 
-      if(::str().begins_eat_ci(str, "crt:"))
+      if(str.begins_eat_ci("crt:"))
       {
 
          m_eeffect = effect_crt;

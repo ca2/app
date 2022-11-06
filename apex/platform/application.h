@@ -419,11 +419,6 @@ namespace apex
       virtual string get_theme();
 
 
-      virtual bool exclusive_fails(string str, security_attributes * psecurityattributes = nullptr);
-
-      virtual bool exclusive_erase(string str, security_attributes * psecurityattributes = nullptr);
-
-
       virtual bool start_application(bool bSynch, ::create * pcreate);
 
 
@@ -634,7 +629,11 @@ namespace apex
       virtual bool check_exclusive(bool & bHandled);
       virtual bool erase_exclusive(const ::string & strId);
 
-      virtual bool release_exclusive();
+      virtual bool exclusive_fails(const ::string & str, security_attributes * psecurityattributes = nullptr);
+
+      virtual bool exclusive_erase(const ::string & str);
+
+      virtual void release_exclusive();
 
       virtual void on_set_scalar(e_scalar escalar, i64 iValue, int iFlags) override;
       virtual void get_scalar_minimum(e_scalar escalar, i64 & i) override;

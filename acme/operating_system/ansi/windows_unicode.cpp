@@ -372,14 +372,14 @@ int_bool *  pUsedDefaultChar)
 }
 
 
-CLASS_DECL_ACME string ::windows::last_error_message(u32 dwError)
-{
-
-   string str;
-
-   return str;
-
-}
+//CLASS_DECL_ACME string ::windows::last_error_message(u32 dwError)
+//{
+//
+//   string str;
+//
+//   return str;
+//
+//}
 
 
 #endif

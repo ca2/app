@@ -97,7 +97,7 @@ string salt(::ca::application * papp, const ::string & pszSourceSalt, string_arr
          GetModuleFileName(pmodulea[dw], strModule.get_string_buffer(4096), 4096); 
          strModule.ReleaseBuffer(); 
          fs->FullPath(strModule, strModule);
-         if(gen::str().begins_ci(strModule, strModuleFolder)) 
+         if(genstring_begins_ci(strModule, strModuleFolder))
          { 
             if(!straSourceSalt.contains_ci(strModule)) 
             {

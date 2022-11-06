@@ -143,4 +143,4 @@ namespace acme
 //
 //CLASS_DECL_ACME string __string(const ::e_status & estatus);
 
-CLASS_DECL_ACME ::string __string(const ::e_status & estatus);
+//CLASS_DECL_ACME ::string __string(const ::e_status & estatus);

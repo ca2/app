@@ -509,18 +509,18 @@ namespace aura
 
          }
 
-         if (::str().begins_ci(str, m_pinterprocesscommunication->m_ptarget->m_strBaseChannel + "://"))
+         if (str.begins_ci(m_pinterprocesscommunication->m_ptarget->m_strBaseChannel + "://"))
          {
 
             m_pinterprocesscommunication->_handle_uri(str);
 
-            //   if (::str().begins_eat_ci(str, "send?message="))
+            //   if (str.begins_eat_ci("send?message="))
             //   {
 
             //      m_pinterprocesscommunication->_handle_call(m_pinterprocesscommunication->m_prx, purl->url_decode(str));
 
             //   }
-            //   else if (::str().begins_eat_ci(str, "send?messagebin="))
+            //   else if (str.begins_eat_ci("send?messagebin="))
             //   {
 
             //      strsize iFind = str.find(',');
@@ -1063,7 +1063,7 @@ namespace aura
 //
 //      string str = ::str().get_window_text_timeout(hwnd, 1000);
 //
-//      if (::str().ends_ci(str, penum->m_strWindowEnd))
+//      if (string_ends_ci(str, penum->m_strWindowEnd))
 //      {
 //
 //         penum->m_hwnd = hwnd;
@@ -1084,7 +1084,7 @@ namespace aura
 //
 //      string str = ::str().get_window_text_timeout(hwnd);
 //
-//      if (::str().ends_ci(str, penum->m_strTopic))
+//      if (string_ends_ci(str, penum->m_strTopic))
 //      {
 //
 //         penum->m_hwndaTopic.add(hwnd);
@@ -1104,7 +1104,7 @@ namespace aura
 //
 //      string str = ::str().get_window_text_timeout(hwnd, 1000);
 //
-//      if (::str().ends_ci(str, penum->m_strCounterTopic))
+//      if (string_ends_ci(str, penum->m_strCounterTopic))
 //      {
 //
 //         penum->m_hwndaCounterTopic.add(hwnd);
@@ -4799,7 +4799,7 @@ retry_license:
 
       ::file::path strUrl(::e_path_url);
 
-      if (framework_is_basis())
+      if (acmenode()->is_debug_build())
       {
          strUrl = "http://basis-server.ca2.software/api/spaignition/download?authnone&configuration=basis&stage=";
       }
@@ -4859,7 +4859,7 @@ retry_license:
 
          string strDir = strFile;
 
-         ::str().ends_eat_ci(strDir, ".zip");
+         strDir.ends_eat_ci(".zip");
 
          //try
          //{
@@ -8587,7 +8587,7 @@ namespace aura
 
          string strIgnitionServer = acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt");
 
-         if(::str().ends_ci(strIgnitionServer,".ca2.software"))
+         if(string_ends_ci(strIgnitionServer,".ca2.software"))
          {
 
             strRequestUrl = "https://" + strIgnitionServer + "/";

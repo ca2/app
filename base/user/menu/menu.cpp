@@ -100,7 +100,7 @@ namespace user
       MESSAGE_LINK(e_message_create, pchannel, this, &menu::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::on_message_destroy);
       MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &menu::_001OnNcActivate);
-      MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this, &menu::on_message_non_client_calculate_size);
+      MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &menu::on_message_non_client_calculate_size);
       MESSAGE_LINK(e_message_enable, pchannel, this, &menu::_001OnEnable);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &menu::on_message_show_window);
       MESSAGE_LINK(e_message_close, pchannel, this, &menu::on_message_close);

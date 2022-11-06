@@ -184,7 +184,7 @@
 //      strName.replace(":", "_");
 //      strName.replace("/", "_");
 //
-//      if(::str().begins_ci(pstrName, "Global"))
+//      if(string_begins_ci(pstrName, "Global"))
 //      {
 //
 //#ifdef ANDROID
@@ -267,7 +267,7 @@
 //
 //      ::file::path path;
 //
-//      if(::str().begins_ci(pstrName, "Global"))
+//      if(string_begins_ci(pstrName, "Global"))
 //      {
 //
 //#ifdef ANDROID
@@ -348,7 +348,7 @@
 //
 //      ::file::path path;
 //
-//      if(::str().begins_ci(pstrName, "Global"))
+//      if(string_begins_ci(pstrName, "Global"))
 //      {
 //
 //         path = "/::payload/lock/ca2/mutex/named";
@@ -1636,7 +1636,7 @@ mutex::~mutex()
 //
 //   ::file::path path;
 //
-//   if (::str().begins_ci(lpszName, "Global"))
+//   if (string_begins_ci(lpszName, "Global"))
 //   {
 //
 //      path = "/payload/tmp/ca2/lock/mutex/named";

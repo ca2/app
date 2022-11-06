@@ -185,7 +185,7 @@ void app_core::system_prep()
 //
 //    string str = apple_get_bundle_identifier();
 //
-//    ::str().begins_eat_ci(str, "com.ca2.");
+//    str.begins_eat_ci("com.ca2.");
 //
 //    str.replace(".", "/");
 //

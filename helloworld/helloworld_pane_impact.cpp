@@ -389,7 +389,7 @@ namespace helloworld
             string strCheck = ptopic->user_element_id();
 
 
-            if (::str().begins_eat_ci(strCheck, "bilbo"))
+            if (strCheck.begins_eat_ci("bilbo"))
             {
 
                if (ptopic->user_interaction() != nullptr && !ptopic->m_context.is_source(::e_source_initialize)

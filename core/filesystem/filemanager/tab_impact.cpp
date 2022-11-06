@@ -183,7 +183,7 @@ namespace filemanager
 
          string str = pimpactdata->m_atom;
 
-         ::str().begins_eat_ci(str, "verifile://");
+         str.begins_eat_ci("verifile://");
 
          ::file::path pathFolder = str;
 

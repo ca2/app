@@ -2,6 +2,8 @@
 #pragma once
 
 
+///#include "encoding_exception.h"
+
 
 inline int get_utf8_char_length(const char * psz)
 {
@@ -485,9 +487,101 @@ inline i32 unicode_size_of_tables()
    return sizeof(arr_idxCharInfo) + sizeof(arr_CharInfo) + sizeof(arr_idxCharInfo2) + sizeof(arr_CharInfo2);
 }
 
+inline const ansichar * unicode_next(const ansichar * psz)
+{
+
+   if (psz == nullptr)
+   {
+
+      return nullptr;
+
+   }
+
+   if (*psz == '\0')
+   {
+
+      return psz;
+
+   }
+
+   char len = 1 + trailingBytesForUTF8(*psz);
+
+   if (len == 0) return psz;
+
+   if (*psz++ == 0)
+   {
+
+      throw_encoding_exception("premature end of utf8 encoded string (1)");
+
+      return nullptr;
+
+   }
+
+   if (len == 1) return psz;
+
+   if (*psz++ == 0)
+   {
+
+      throw_encoding_exception("premature end of utf8 encoded string (2)");
+
+      return nullptr;
+
+   }
+
+   if (len == 2) return psz;
+
+   if (*psz++ == 0)
+   {
+
+      throw_encoding_exception("premature end of utf8 encoded string (3)");
+
+      return nullptr;
+
+   }
+
+   if (len == 3) return psz;
+
+   if (*psz++ == 0)
+   {
+
+      throw_encoding_exception("premature end of utf8 encoded string (4)");
+
+      return nullptr;
+
+   }
+
+   if (len == 4) return psz;
+
+   if (*psz++ == 0)
+   {
+
+      throw_encoding_exception("premature end of utf8 encoded string (5)");
+
+      return nullptr;
+
+   }
+
+   if (len == 5) return psz;
+
+   if (*psz++ == 0)
+   {
+
+      throw_encoding_exception("premature end of utf8 encoded string (6)");
+
+      return nullptr;
+
+   }
+
+   if (len == 6) return psz;
+
+   throw_encoding_exception("premature end of utf8 encoded string (7)");
+
+   return nullptr;
+
+}
 
 
-inline const char * unicode_next(const char * psz, int * piError)
+inline const ansichar * unicode_next(const ansichar * psz, int * piError)
 {
 
    if (psz == nullptr)
@@ -1257,22 +1351,22 @@ inline i32 compare_ci(const TYPE1 & str1, const TYPE2 & str2)
 }
 
 
-template < typename TYPE1, typename TYPE2 >
-inline bool equals(const TYPE1 & str1, const TYPE2 & str2)
-{
-
-   return !compare(str1, str2);
-
-}
-
-
-template < typename TYPE1, typename TYPE2 >
-inline bool equals_ci(const TYPE1 & str1, const TYPE2 & str2)
-{
-
-   return !compare_ci(str1, str2);
-
-}
+//template < typename TYPE1, typename TYPE2 >
+//inline bool equals(const TYPE1 & str1, const TYPE2 & str2)
+//{
+//
+//   return !compare(str1, str2);
+//
+//}
+//
+//
+//template < typename TYPE1, typename TYPE2 >
+//inline bool equals_ci(const TYPE1 & str1, const TYPE2 & str2)
+//{
+//
+//   return !compare_ci(str1, str2);
+//
+//}
 
 
 template < typename TYPE1, typename TYPE2 >

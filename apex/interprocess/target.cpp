@@ -96,7 +96,7 @@ namespace interprocess
    //   INFORMATION("::interprocess::target::on_interprocess_handle " << strUri);
 
 
-   //   //   if(!::str().begins_eat(strMessage, "call "))
+   //   //   if(!strMessage.begins_eat("call "))
    //   //   {
    //   //
    //   //      return;
@@ -105,7 +105,7 @@ namespace interprocess
    //   //
    //   //   ::i64 iCall = ::str().consume_natural(strMessage);
    //   //
-   //   //   if(!::str().begins_eat(strMessage, " from "))
+   //   //   if(!strMessage.begins_eat(" from "))
    //   //   {
    //   //
    //   //      return;
@@ -269,7 +269,7 @@ namespace interprocess
    //bool target::on_interprocess_handle(const ::block & blockUri)
    //{
 
-   //   //if (::str().begins_ci(strMessage, "synch_"))
+   //   //if (string_begins_ci(strMessage, "synch_"))
    //   //{
 
    //   //   if (m_phandler != nullptr)

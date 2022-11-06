@@ -1230,9 +1230,9 @@ namespace acme
 
    //   }
 
-   //   ::str().begins_eat_ci(strImplementation, strComponent + "_");
+   //   strImplementation.begins_eat_ci(strComponent + "_");
 
-   //   ::str().begins_eat_ci(strImplementation, strComponent);
+   //   strImplementation.begins_eat_ci(strComponent);
 
    //   auto psystem = get_system();
 
@@ -1319,9 +1319,9 @@ namespace acme
    //
    //      string strImplementation(pszImplementation);
    //
-   //      ::str().begins_eat_ci(strImplementation, strComponent + "_");
+   //      strImplementation.begins_eat_ci(strComponent + "_");
    //
-   //      ::str().begins_eat_ci(strImplementation, strComponent);
+   //      strImplementation.begins_eat_ci(strComponent);
    //
    //   //#ifdef CUBE
    //

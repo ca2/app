@@ -18,7 +18,7 @@
 #include "apex/message/channel.h"
 #include "apex/message/command.h"
 #include "apex/message/message.h"
-#include "apex/operating_system.h"
+//#include "apex/operating_system.h"
 #include "apex/platform/create.h"
 #include "apex/user/primitive.h"
 
@@ -929,7 +929,7 @@ namespace apex
 
       }
 
-      if (::str().ends_ci(strPathName, ".ca2"))
+      if (strPathName.ends_ci(".ca2"))
       {
 
       }
@@ -947,7 +947,7 @@ namespace apex
 
          string str = purl->get_object(strPathName);
 
-         ::str().begins_eat(str, "/");
+         str.begins_eat("/");
 
          pcreate->m_payloadFile = str;
 
@@ -2215,7 +2215,7 @@ namespace apex
       //for (string str : straSource)
       //{
 
-      //   if (::str().begins_eat_ci(str, "file://"))
+      //   if (str.begins_eat_ci("file://"))
       //   {
 
       //      str = purl->url_decode(str);

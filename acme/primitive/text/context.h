@@ -209,7 +209,7 @@ namespace text
       inline bool begins(const ::atom & atom, const char * psz) const
       {
 
-         return m_ptable->begins(this, __string(atom), psz);
+         return m_ptable->begins(this, atom.string(), psz);
 
       }
 

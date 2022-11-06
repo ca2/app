@@ -9,7 +9,7 @@
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "apex/operating_system.h"
+//#include "apex/operating_system.h"
 #include "apex/platform/context.h"
 
 
@@ -86,7 +86,7 @@ namespace apex
 
       }
 
-      return acmedirectory()->app_app(m_strPlatform, process_configuration_name());
+      return acmedirectory()->app_app(m_strPlatform, acmenode()->process_configuration_name());
 
    }
 
@@ -101,7 +101,7 @@ namespace apex
       
 #ifdef WINDOWS_DESKTOP
       
-      if (::str().ends_ci(get_executable_path(), "\\app.exe"))
+      if (string_ends_ci(get_executable_path(), "\\app.exe"))
          
 #endif
          

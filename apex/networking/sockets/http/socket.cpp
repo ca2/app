@@ -5,6 +5,7 @@
 #include "acme/platform/system.h"
 #include "acme/primitive/string/hex.h"
 #include "acme/primitive/string/parse.h"
+#include "acme/primitive/string/str.h"
 #include "apex/constant/idpool.h"
 #define HEAVY_HTTP_LOG 0
 
@@ -245,7 +246,7 @@ namespace sockets
 
          string str = pa.getword();
 
-         if (str.get_length() > 4 &&  ::str().begins_ci(str, "http/")) // response
+         if (str.get_length() > 4 && str.begins_ci("http/")) // response
          {
 
             //m_response.attr(__id(remote_addr)) = GetRemoteAddress().get_display_number();
@@ -287,7 +288,7 @@ namespace sockets
             m_request.m_strRequestUri = purl->url_decode(strScript) + ::str().has_char(strQuery, "?");
             m_request.attr(__id(request_uri)) = m_request.m_strRequestUri;
             m_request.attr(__id(http_version)) = pa.getword();
-            m_b_http_1_1 = ::str().ends(m_request.attr(__id(http_version)).string(), "/1.1");
+            m_b_http_1_1 = string_ends(m_request.attr(__id(http_version)).string(), "/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest     = true;
             m_bResponse    = false;
@@ -339,12 +340,12 @@ namespace sockets
          strKey = line.Left(iFind);
          strKey.trim();
          iFind++;
-         while(character_isspace((unsigned char) line[iFind]) && iFind < line.get_length())
+         while(character_isspace(line[iFind]) && iFind < line.get_length())
          {
             iFind++;
          }
          strsize iLen = line.get_length();
-         while(iLen >= iFind && character_isspace((unsigned char ) line[iLen - 1]))
+         while(iLen >= iFind && character_isspace(line[iLen - 1]))
          {
             iLen--;
          }
@@ -379,7 +380,7 @@ namespace sockets
          if (m_b_http_1_1)
          {
 
-            if(::str().equals_ci(value,"close"))
+            if(equals_ci(value,"close"))
             {
 
                m_b_keepalive = false;
@@ -396,7 +397,7 @@ namespace sockets
          else
          {
 
-            if(::str().equals_ci(value, "keep-alive"))
+            if(equals_ci(value, "keep-alive"))
             {
 
                m_b_keepalive = true;
@@ -412,7 +413,7 @@ namespace sockets
          }
 
       }
-      if (::str().equals_ci(key, "transfer-encoding") && ::str().ends_ci(value, "chunked"))
+      if (equals_ci(key, "transfer-encoding") && string_ends_ci(value, "chunked"))
       {
          m_bChunked = true;
       }

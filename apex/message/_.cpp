@@ -154,7 +154,7 @@ namespace message
       case e_message_non_client_left_button_up:
          return e_prototype_mouse;
       case e_message_mouse_wheel:
-         return e_prototype_mouse_swheel;
+         return e_prototype_mouse_wheel;
       case e_message_non_client_activate:
          return e_prototype_non_client_activate;
       case e_message_timer:

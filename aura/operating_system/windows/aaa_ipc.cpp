@@ -309,7 +309,7 @@ namespace aura
 
          string strMessage(pszMessage);
 
-         if (::str().begins_ci(strMessage, "synch_"))
+         if (string_begins_ci(strMessage, "synch_"))
          {
 
             if (m_preceiver != nullptr)

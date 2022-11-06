@@ -1,5 +1,6 @@
 // Created by camilo on 2022-11-04 18:37 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "string.h"
 #include <wchar.h>
 
 
@@ -14,7 +15,7 @@ CLASS_DECL_ACME::i64 string_to_signed(const wd16char * pwsz)
 
    wd32string wstr(pwsz);
 
-   return wtoll(wstr);
+   return wcstoll(wstr, nullptr, 10);
 
 #endif
 
@@ -39,9 +40,7 @@ CLASS_DECL_ACME::u64 string_to_natural(const wd16char * pwsz)
 }
 
 
-
-
-CLASS_DECL_ACME ::f64 string_to_floating(const wd16char * psz)
+CLASS_DECL_ACME ::f64 string_to_floating(const wd16char * pwsz)
 {
 
 #ifdef WINDOWS
@@ -52,7 +51,7 @@ CLASS_DECL_ACME ::f64 string_to_floating(const wd16char * psz)
 
    wd32string wstr(pwsz);
 
-   return wcstoull(wstr, nullptr, 10);
+   return wcstod(wstr, nullptr);
 
 #endif
 

@@ -57,10 +57,10 @@ int __atom_sgn(T x)
 //#define __atom_safe_stricmp(a, b) ::str().compare_ci(a, b)
 //
 //
-//#define __atom_str_begins(a, b) ::str().begins(a, b)
+//#define __atom_str_begins(a, b) string_begins(a, b)
 //
 //
-//#define __atom_str_begins_ci(a, b) ::str().begins_ci(a, b)
+//#define __atom_str_begins_ci(a, b) string_begins_ci(a, b)
 
 
 #else

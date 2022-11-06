@@ -110,7 +110,7 @@ namespace filehandler
 
       string strFile = pimpactdata->m_atom;
 
-      if(::str().begins_eat_ci(strFile, "default_file_handler://"))
+      if(strFile.begins_eat_ci("default_file_handler://"))
       {
 
          ::pointer<::filehandler::impact>pimpact = create_impact < ::filehandler::impact > (pimpactdata);

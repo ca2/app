@@ -2,8 +2,9 @@
 // Created by camilo on 22/10/22 21:02 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
+#include "string.h"
 //#include "acme/primitive/comparison/compare_elements.hh"
-//#include "string.h"
+
 
 
 //template <  >
@@ -75,3 +76,45 @@
 //   return ansistr;
 //
 //}
+
+
+CLASS_DECL_ACME string string_from_strdup(const ansichar* psz)
+{
+
+   if (psz == nullptr)
+   {
+
+      return "";
+
+   }
+
+   string str;
+
+   try
+   {
+
+      str = psz;
+
+   }
+   catch (...)
+   {
+
+   }
+
+   try
+   {
+
+      ::free((void*)psz);
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return str;
+
+}
+
+
+

@@ -12,7 +12,7 @@ CLASS_DECL_ACME string get_command_line_parameter(const char * pszCommandLine, c
 
 
 CLASS_DECL_ACME string_array command_arguments_from_command_line(const ::string & strCommandLine);
-CLASS_DECL_ACME string executable_title_from_appid(string str);
+//CLASS_DECL_ACME string executable_title_from_appid(string str);
 
 
 

@@ -9,13 +9,15 @@
 #include "acme/platform/restore.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/geometry2d/_shape.h"
+#include "acme/primitive/string/international.h"
+#include "acme/primitive/string/str.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/write_text/text_out.h"
 #include "aura/graphics/write_text/draw_text.h"
-#include "acme/primitive/geometry2d/_shape.h"
 #include "aura/user/user/interaction.h"
 #include <math.h>
 
@@ -4534,7 +4536,7 @@ namespace draw2d_cairo
 
          cairo_font_extents_t e;
 
-         if (::str().begins(str, unitext("バーチャルマシン")))
+         if (string_begins(str, unitext("バーチャルマシン")))
          {
 
             TRACE("Likely to fail in certain circumstances");

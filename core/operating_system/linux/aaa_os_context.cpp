@@ -42,7 +42,7 @@ bool linux_can_exec(const ::string &file)
 
    string str(file);
 
-   if(::str().begins_eat_ci(str, "\""))
+   if(str.begins_eat_ci("\""))
    {
 
       strsize iFind = str.find("\"");
@@ -57,7 +57,7 @@ bool linux_can_exec(const ::string &file)
       str = str.Left(iFind);
 
    }
-   else if(::str().begins_eat_ci(str, "\'"))
+   else if(str.begins_eat_ci("\'"))
    {
 
       strsize iFind = str.find("\'");

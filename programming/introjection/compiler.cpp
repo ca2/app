@@ -509,7 +509,7 @@ namespace introjection
 //      ::file::path strFolder;
 //
 //      strFolder = pcontext->m_papexcontext->dir()->install();
-//      if(!::str().ends(strFolder,"/") && !::str().ends(strFolder,"\\"))
+//      if(!string_ends(strFolder,"/") && !string_ends(strFolder,"\\"))
 //         strFolder += "/";
 //      string strTemplate;
 //      string strSource = "platform/time/dynamic_source/";
@@ -537,7 +537,7 @@ namespace introjection
 //
 //      string strV(pcontext->m_papexcontext->dir()->install());
 //      strV.find_replace("\\","/");
-//      if(!::str().ends(strV,"/") && !::str().ends(strV,"\\"))
+//      if(!string_ends(strV,"/") && !string_ends(strV,"\\"))
 //         strV += "/";
 //      str.find_replace("%CA2_ROOT%",strV);
 //      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
@@ -643,7 +643,7 @@ namespace introjection
 
          strTransformName.find_replace(":","");
 
-         ::str().ends_eat_ci(strTransformName,".cpp");
+         strTransformName.ends_eat_ci(".cpp");
 
       }
       else
@@ -1099,14 +1099,14 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 #ifdef LINUX
 
       string strTargetPath =  pcontext->m_papexcontext->dir()->install() /"time" / m_strPlatform / m_strDynamicSourceConfiguration / plibrary->m_pathScript.title();
-      ::str().ends_eat_ci(strTargetPath,".cpp");
-      ::str().ends_eat_ci(strTargetPath,".so");
+      strTargetPath.ends_eat_ci(".cpp");
+      strTargetPath.ends_eat_ci(".so");
 
 #else
 
       string strTargetPath = pcontext->m_papexcontext->dir()->install() / "time-windows" / m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
-      ::str().ends_eat_ci(strTargetPath, ".cpp");
-      ::str().ends_eat_ci(strTargetPath,".dll");
+      strTargetPath.ends_eat_ci(".cpp");
+      strTargetPath.ends_eat_ci(".dll");
 
 #endif
 
@@ -1278,11 +1278,11 @@ auto tickStart = ::duration::now();
          //string strTargetPath = lib->m_pathScript;
          //strTargetPath.find_replace("\\",".");
          //strTargetPath.find_replace("/",".");
-         //::str().ends_eat_ci(strTargetPath,".cpp");
+         //strTargetPath.ends_eat_ci(".cpp");
          //#ifdef LINUX
-         //         ::str().ends_eat_ci(strTargetPath,".so");
+         //         strTargetPath.ends_eat_ci(".so");
          //#else
-         //         ::str().ends_eat_ci(strTargetPath,".dll");
+         //         strTargetPath.ends_eat_ci(".dll");
          //#endif
          //         strTargetPath = pcontext->m_papexcontext->dir()->install() /
          str.find_replace("%TARGET_PATH%",strTargetPath);
@@ -1353,7 +1353,7 @@ auto tickStart = ::duration::now();
             //::system(strLCmd + "2");
             ::system(str2);
 
-            if(!::str().begins_ci(pcontext->m_papexcontext->dir()->module(), "/Applications/"))
+            if(!string_begins_ci(pcontext->m_papexcontext->dir()->module(), "/Applications/"))
             {
                string str2 = pcontext->m_papexcontext->file()->as_string(strDCmd);
                str2.find_replace("%TARGET_PATH%", strTargetPath);

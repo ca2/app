@@ -682,11 +682,11 @@ namespace sphere
             alt1:
             if(pcreate->m_payloadFile.get_type() == ::e_type_string)
             {
-               if(::str().ends_ci(pcreate->m_payloadFile, ".ca2"))
+               if(string_ends_ci(pcreate->m_payloadFile, ".ca2"))
                {
                   string strCommand = pcontext->m_papexcontext->file()->as_string(pcreate->m_payloadFile);
-                  if(::str().begins_eat(strCommand, "ca2prompt\r")
-                  || ::str().begins_eat(strCommand, "ca2prompt\n"))
+                  if(strCommand.begins_eat("ca2prompt\r")
+                  || strCommand.begins_eat("ca2prompt\n"))
                   {
                      strCommand.trim();
                      add_fork_uri(strCommand);

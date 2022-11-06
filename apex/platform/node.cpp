@@ -405,12 +405,11 @@ namespace apex
 //   }
 
 
+   void node::on_start_application(::apex::application *papplication)
+   {
 
 
-
-
-
-
+   }
 
 
 } // namespace apex

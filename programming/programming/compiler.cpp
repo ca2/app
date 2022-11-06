@@ -404,7 +404,7 @@ namespace programming
 
       //   ::file::path strFolder;
       //   strFolder = dir()->install();
-      //   if (!::str().ends(strFolder, "/") && !::str().ends(strFolder, "\\"))
+      //   if (!string_ends(strFolder, "/") && !string_ends(strFolder, "\\"))
       //      strFolder += "/";
       //   string strTemplate;
       //   string strSource = "platform/time-" OPERATING_SYSTEM_NAME"/dynamic_source/";
@@ -432,7 +432,7 @@ namespace programming
       //
       //   string strV(dir()->install());
       //   strV.replace("\\", "/");
-      //   if (!::str().ends(strV, "/") && !::str().ends(strV, "\\"))
+      //   if (!string_ends(strV, "/") && !string_ends(strV, "\\"))
       //      strV += "/";
       //   str.replace("%CA2_ROOT%", strV);
       //   str.replace("%PROJECT_DIR%", m_pathProjectDir);
@@ -590,7 +590,7 @@ namespace programming
 
       ::file::path strFolder;
       strFolder = dir()->install();
-      if (!::str().ends(strFolder, "/") && !::str().ends(strFolder, "\\"))
+      if (!string_ends(strFolder, "/") && !string_ends(strFolder, "\\"))
          strFolder += "/";
       string strTemplate;
       string strSource = "operating-system/operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/";
@@ -598,7 +598,7 @@ namespace programming
 
       //   string strN = m_pmanager->m_strNetnodePath;
             //strN.replace("\\","/");
-            //if(!::str().ends(strN,"/") && !::str().ends(strN,"\\"))
+            //if(!string_ends(strN,"/") && !string_ends(strN,"\\"))
             // strN += "/";
 
             //#ifdef _DEBUG
@@ -616,7 +616,7 @@ namespace programming
 
       string strV(dir()->install());
       strV.find_replace("\\", "/");
-      if (!::str().ends(strV, "/") && !::str().ends(strV, "\\"))
+      if (!string_ends(strV, "/") && !string_ends(strV, "\\"))
          strV += "/";
       str.find_replace("%CA2_ROOT%", strV);
       str.find_replace("%PROJECT_DIR%", m_pathProjectDir);

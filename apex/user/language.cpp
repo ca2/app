@@ -1,8 +1,9 @@
 #include "framework.h"
 #include "language.h"
 #include "acme/exception/parsing.h"
-#include "acme/operating_system.h"
+//#include "acme/operating_system.h"
 #include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/string/str.h"
 
 
 #define STR_BOM "\xEF\xBB\xBF"
@@ -171,7 +172,7 @@ namespace user
 
       string strPo = strPoData;
 
-      ::str().begins_eat_ci(strPo, STR_BOM);
+      strPo.begins_eat_ci(STR_BOM);
 
       string_array stra;
 

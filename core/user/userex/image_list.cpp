@@ -71,7 +71,7 @@ namespace userex
    ::file::path image_list_impact::get_link_path(string strLink)
    {
 
-      if (::str().begins_eat_ci(strLink, get_link_prefix()))
+      if (strLink.begins_eat_ci(get_link_prefix()))
       {
 
          return m_pathFolder / strLink;

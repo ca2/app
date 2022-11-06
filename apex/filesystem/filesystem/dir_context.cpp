@@ -154,8 +154,8 @@ inline bool myspace(char ch)
 //      while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderEnd]))
 //         iFolderEnd--;
 //      //better than following 2 together
-//      //::str().ends_eat(strFolder, "\\");
-//      //::str().ends_eat(strFolder, "/");
+//      //strFolder.ends_eat("\\");
+//      //strFolder.ends_eat("/");
 //      while(iFolderBeg <= iFolderEnd && (strFolder[iFolderEnd] == '/' || strFolder[iFolderEnd] == '\\'))
 //         iFolderEnd--;
 //   }
@@ -174,8 +174,8 @@ inline bool myspace(char ch)
 //      while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeEnd]))
 //         iFolderEnd--;
 //      //better than following 2 together
-//      //::str().ends_eat(strFolder, "\\");
-//      //::str().ends_eat(strFolder, "/");
+//      //strFolder.ends_eat("\\");
+//      //strFolder.ends_eat("/");
 //      while(iRelativeBeg <= iRelativeEnd && (strRelative[iRelativeBeg] == '/' || strRelative[iRelativeBeg] == '\\'))
 //         iRelativeBeg++;
 //   }
@@ -252,8 +252,8 @@ inline bool myspace(char ch)
 //      while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderEnd]))
 //         iFolderEnd--;
 //      //better than following 2 together
-//      //::str().ends_eat(strFolder, "\\");
-//      //::str().ends_eat(strFolder, "/");
+//      //strFolder.ends_eat("\\");
+//      //strFolder.ends_eat("/");
 //      while(iFolderBeg <= iFolderEnd && (strFolder[iFolderEnd] == '/' || strFolder[iFolderEnd] == '\\'))
 //         iFolderEnd--;
 //   }
@@ -272,8 +272,8 @@ inline bool myspace(char ch)
 //      while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeEnd]))
 //         iFolderEnd--;
 //      //better than following 2 together
-//      //::str().ends_eat(strFolder, "\\");
-//      //::str().ends_eat(strFolder, "/");
+//      //strFolder.ends_eat("\\");
+//      //strFolder.ends_eat("/");
 //      while(iRelativeBeg <= iRelativeEnd && (strRelative[iRelativeBeg] == '/' || strRelative[iRelativeBeg] == '\\'))
 //         iRelativeBeg++;
 //   }
@@ -293,8 +293,8 @@ inline bool myspace(char ch)
 //      while(iBeg2 <= iEnd2 && myspace(str2.m_pszData[iEnd2]))
 //         iEnd2--;
 //      //better than following 2 together
-//      //::str().ends_eat(strFolder, "\\");
-//      //::str().ends_eat(strFolder, "/");
+//      //strFolder.ends_eat("\\");
+//      //strFolder.ends_eat("/");
 //      while(iBeg2 <= iEnd2 && (str2[iBeg2] == '/' || str2[iBeg2] == '\\'))
 //         iBeg2++;
 //   }
@@ -578,7 +578,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 //
 //   }
 //
-//   if (::str().begins_ci(listing.m_pathUser, "http://") || ::str().begins_ci(listing.m_pathUser, "https://"))
+//   if (string_begins_ci(listing.m_pathUser, "http://") || string_begins_ci(listing.m_pathUser, "https://"))
 //   {
 //
 //      property_set set;
@@ -590,7 +590,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 //      return true;
 //
 //   }
-//   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().ends_ci(listing.m_pathUser, ".zip") || ::str().find_file_extension("zip:", listing.m_pathUser) >= 0))
+//   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(listing.m_pathUser, ".zip") || ::str().find_file_extension("zip:", listing.m_pathUser) >= 0))
 //   {
 //
 //      auto & pfactory = acmesystem()->folder_factory();
@@ -832,7 +832,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 
 #ifdef WINDOWS_DESKTOP
 #ifdef WINDOWS_DESKTOP
-   if (::str().ends_ci(path, ".lnk"))
+   if (string_ends_ci(path, ".lnk"))
    {
 #endif
 
@@ -854,7 +854,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 
    //bIs = false;
 
-   //if (::str().begins_ci(pcszPath, "http://") || ::str().begins_ci(lpcszPath, "https://"))
+   //if (string_begins_ci(pcszPath, "http://") || string_begins_ci(lpcszPath, "https://"))
 
    //{
 
@@ -867,7 +867,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 
    //}
 
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().ends_ci(path, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(path, ".zip")))
    {
 
       bIs = true;
@@ -952,7 +952,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 
    //#ifdef WINDOWS_DESKTOP
    //#ifdef WINDOWS_DESKTOP
-   //         if (::str().ends_ci(pcszPath, ".lnk"))
+   //         if (string_ends_ci(pcszPath, ".lnk"))
 
    //         {
    //#endif
@@ -1063,7 +1063,7 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
 
    }
 
-   if (::str().begins_ci(path, "http://") || ::str().begins_ci(path, "https://"))
+   if (string_begins_ci(path, "http://") || string_begins_ci(path, "https://"))
    {
 
       property_set set;
@@ -1081,7 +1081,7 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
 
    }
 
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().ends_ci(path, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(path, ".zip")))
    {
 
       bDir = true;
@@ -1160,7 +1160,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 {
 
    //output_debug_string(strPath);
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().ends_ci(strPath, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(strPath, ".zip")))
    {
       //            m_isdirmap.set(strPath, true, 0);
       return true;
@@ -1852,7 +1852,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       string strMatter = strDir;
 
-      if (::str().begins_eat_ci(strMatter, "appmatter://"))
+      if (strMatter.begins_eat_ci("appmatter://"))
       {
 
          strMatter = "/matter/" + strMatter;
@@ -2037,7 +2037,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 //      for (index i = 0; i < straLocaleSchema.get_count(); i++)
 //      {
 //
-//         if (!::str().ends(straLocaleSchema[i], "/"))
+//         if (!string_ends(straLocaleSchema[i], "/"))
 //         {
 //            ::file::path strPath = strDir / straLocaleSchema[i];
 //            stra.add(strPath);
@@ -2106,7 +2106,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          path = file()->as_string(pathCache);
 
-         if (::str().begins_eat_ci(path, "itdoesntexist."))
+         if (path.begins_eat_ci("itdoesntexist."))
          {
 
             ::duration t = INTEGRAL_MILLISECOND(ansi_to_i64(path));
@@ -2391,7 +2391,7 @@ ret:
 
       string strMatter(path);
 
-      ::str().begins_eat_ci(strMatter, "appmatter://");
+      strMatter.begins_eat_ci("appmatter://");
 
       ::file::path pathCache = dirsystem()->m_pathLocalAppMatterFolder / strMatter;
 
@@ -2496,25 +2496,25 @@ ret:
 
       strApp.replace_with("_", "\\");
 
-      if (::str().begins_eat_ci(strApp, "app_veriwell_"))
+      if (strApp.begins_eat_ci("app_veriwell_"))
       {
 
          strRepo = "app-veriwell";
 
       }
-      else if (::str().begins_eat_ci(strApp, "app_core_"))
+      else if (strApp.begins_eat_ci("app_core_"))
       {
 
          strRepo = "app-core";
 
       }
-      else if (::str().begins_eat_ci(strApp, "app_cidadedecuritiba_"))
+      else if (strApp.begins_eat_ci("app_cidadedecuritiba_"))
       {
 
          strRepo = "app-cidadedecuritiba";
 
       }
-      else if (::str().begins_eat_ci(strApp, "app_"))
+      else if (strApp.begins_eat_ci("app_"))
       {
 
          strRepo = "app";

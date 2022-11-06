@@ -39,14 +39,14 @@ string __node_library_is_loaded(const char * pszPath)
 
    q.m_strPathIn = pszPath;
 
-   if(!::str().ends_ci(q.m_strPathIn, ".so"))
+   if(!q.m_strPathIn.ends_ci(".so"))
    {
 
       q.m_strPathIn += ".so";
 
    }
 
-   if(!::str().begins_ci(q.m_strPathIn, "/") && !::str().begins_ci(q.m_strPathIn, "lib"))
+   if(!q.m_strPathIn.begins_ci("/") && !q.m_strPathIn.begins_ci("lib"))
    {
 
       q.m_strPathIn = "lib" + q.m_strPathIn;
@@ -56,6 +56,7 @@ string __node_library_is_loaded(const char * pszPath)
    dl_iterate_phdr(__node_library_is_loaded_callback, &q);
 
    return q.m_strPathOut;
+
 }
 
 
@@ -95,10 +96,18 @@ CLASS_DECL_ACME void * __node_library_open(const char * pszPath, string & strMes
    }
 
    if(ansi_find_string(strPath, ".") == nullptr)
+   {
+
       strPath += ".so";
 
+   }
+
    if(strstr((const char *) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
+   {
+
       strPath = "lib" + strPath;
+
+   }
 
    void * plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | RTLD_NODELETE);
    //void * plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_NODELETE);

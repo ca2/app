@@ -8,11 +8,13 @@
 #include "save_image.h"
 #include "context_image.h"
 #include "acme/exception/interface_only.h"
-#include "acme/operating_system.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/task_tool.h"
 #include "aura/graphics/draw2d/draw2d.h"
+
+
+//#include "acme/_operating_system.h"
 
 
 double get_default_screen_dpi()

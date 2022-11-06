@@ -260,7 +260,7 @@ namespace dynamic_source
       forallref(listing)
       {
 
-         if(::str().begins_ci(item.title(),"net-"))
+         if(string_begins_ci(item.title(),"net-"))
          {
 
             auto pwatcher = __new(clear_include_matches_file_watcher(this));
@@ -1663,7 +1663,7 @@ namespace dynamic_source
 #ifdef WINDOWS
       return ::file::path("C:\\netnode")/ m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / strPath;
 #else
-      ::str().begins_eat(strPath,".");
+      strPath.begins_eat(".");
       //return "/ca2/stage/"+m_pcompiler->m_strStagePlatform+"/","lib" + strPath);
       return ::file::path("/ca2") / m_pcompiler->m_strDynamicSourceStage /  "x86" / "lib" + strPath;
 #endif

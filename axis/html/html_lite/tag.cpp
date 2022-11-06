@@ -125,7 +125,7 @@ lite_html_tag::~lite_html_tag()
    {
       // tag name may contain letters (a-z, A-Z), digits (0-9),
       // underscores '_', hyphen '-', colons ':', and periods '.'
-      if ((!(*pszEnd >= 0 && ::ansi_char_is_alnum(*pszEnd))) &&
+      if ((!(*pszEnd >= 0 && ::character_isalnum(*pszEnd))) &&
 
             (*pszEnd != '-') && (*pszEnd != ':') &&
 
@@ -235,7 +235,7 @@ lite_html_tag::~lite_html_tag()
 
 
          // skip white-space after attribute/value pairs
-         while (::character_isspace((uchar) *pszEnd))
+         while (::character_isspace(*pszEnd))
 
             pszEnd++;
 

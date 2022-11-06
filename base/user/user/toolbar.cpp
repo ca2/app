@@ -3,7 +3,6 @@
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
 #include "acme/user/user/tool_item.h"
-#include "acme/operating_system.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aqua/xml/document.h"
@@ -14,6 +13,9 @@
 #include "acme/timer.h"
 #include "aura/user/user/frame.h"
 #include "aura/message/user.h"
+
+
+#include "acme/_operating_system.h"
 
 
 class user_toolbar_command : public ::message::command        // class private to this file !
@@ -75,8 +77,8 @@ namespace user
 
       ::user::control_bar::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_non_client_hittest, pchannel, this, &toolbar::_001OnNcHitTest);
-      MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this, &toolbar::on_message_non_client_calculate_size);
+      MESSAGE_LINK(e_message_non_client_hit_test, pchannel, this, &toolbar::_001OnNcHitTest);
+      MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &toolbar::on_message_non_client_calculate_size);
       MESSAGE_LINK(e_message_create, pchannel, this, &toolbar::on_message_create);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &toolbar::on_message_left_button_double_click);
       //#ifdef WINDOWS_DESKTOP

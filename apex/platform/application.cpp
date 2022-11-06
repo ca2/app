@@ -22,6 +22,7 @@
 #include "acme/platform/profiler.h"
 #include "acme/primitive/datetime/department.h"
 #include "acme/primitive/string/command_line.h"
+#include "acme/primitive/string/str.h"
 #include "acme/primitive/text/context.h"
 #include "apex/message/application.h"
 #include "apex/id.h"
@@ -102,7 +103,7 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 #undef _GNU_SOURCE
 
 //#include "apex/operating_system/ansios/ansios.h"
-#include "apex/operating_system/linux/_linux.h"
+//#include "apex/operating_system/linux/_linux.h"
 
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
@@ -761,19 +762,19 @@ namespace apex
 
       //   }*/
 
-      //   if (::str().begins_eat_ci(str, m_pinterprocesscommunication->m_prx->m_strBaseChannel))
+      //   if (str.begins_eat_ci(m_pinterprocesscommunication->m_prx->m_strBaseChannel))
       //   {
 
-      //      if (::str().begins_eat_ci(str, ":///"))
+      //      if (str.begins_eat_ci(":///"))
       //      {
 
-      //         if (::str().begins_eat_ci(str, "send?message="))
+      //         if (str.begins_eat_ci("send?message="))
       //         {
 
       //            m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, purl->url_decode(str));
 
       //         }
-      //         else if (::str().begins_eat_ci(str, "send?messagebin="))
+      //         else if (str.begins_eat_ci("send?messagebin="))
       //         {
 
       //            strsize iFind = str.find(',');
@@ -2176,7 +2177,7 @@ namespace apex
       }
       //return true;
 
-
+      acmenode()->m_papexnode->on_start_application(this);
 
    }
 
@@ -3771,7 +3772,7 @@ namespace apex
 
       auto psecurityattributes = acmenode()->get_application_exclusivity_security_attributes();
 
-      bool bErased = exclusive_erase(strId, psecurityattributes);
+      bool bErased = exclusive_erase(strId);
 
       return true;
 
@@ -4762,7 +4763,7 @@ namespace apex
    string application::get_executable_title()
    {
 
-      return executable_title_from_appid(get_executable_appid());
+      return acmenode()->executable_title_from_appid(get_executable_appid());
 
    }
 
@@ -6510,7 +6511,7 @@ namespace apex
       ::file::path strFile = dir()->install() / strRelative;
       ::file::path strUrl(::e_path_url);
 
-      if (framework_is_basis())
+      if (acmenode()->is_debug_build())
       {
          strUrl = "http://basis-server.ca2.software/api/spaignition/download?authnone&configuration=basis&stage=";
       }
@@ -6568,7 +6569,7 @@ namespace apex
 
          string strDir = strFile;
 
-         ::str().ends_eat_ci(strDir, ".zip");
+         strDir.ends_eat_ci(".zip");
 
          //try
          //{
@@ -6952,7 +6953,7 @@ namespace apex
 
       {
 
-         auto pmutex = acmenode()->get_install_mutex(this, process_platform_name(), "");
+         auto pmutex = acmenode()->get_install_mutex(this, acmenode()->process_platform_name(), "");
 
          if (pmutex->already_exists())
          {
@@ -6984,7 +6985,25 @@ namespace apex
 
          auto pnode = psystem->node();
 
-         return pnode->call_sync(acmedirectory()->app_app(process_platform_name(), process_configuration_name()), pszCommandLine, acmedirectory()->app_app(process_platform_name(), process_configuration_name()), e_display_restored, 2_minute, set);
+         ::file::path pathApp;
+
+         ::file::path pathFolder;
+
+         string strPlatformName;
+
+         strPlatformName = acmenode()->process_platform_name();
+
+         string strConfigurationName;
+
+         strConfigurationName = acmenode()->process_configuration_name();
+
+         pathFolder = acmedirectory()->app_app(strPlatformName, strConfigurationName);
+
+         pathApp = pathFolder;
+
+         int iExitCode = 0;
+
+         return pnode->call_sync(pathApp, pszCommandLine, pathFolder, e_display_restored, 2_minute, set, &iExitCode);
 
 #endif
 
@@ -10135,6 +10154,30 @@ namespace apex
    //   m_prx->on_interprocess_receive();
    //   
    //}
+
+
+   bool application::exclusive_fails(const ::string & strName, security_attributes * psecurityattributes)
+   {
+
+      return acmenode()->m_papexnode->exclusive_fails(this, strName, psecurityattributes);
+
+   }
+
+
+   bool application::exclusive_erase(const ::string & strName)
+   {
+
+      return acmenode()->m_papexnode->erase_exclusive(strName);
+
+   }
+
+
+   void application::release_exclusive()
+   {
+
+      acmenode()->m_papexnode->release_exclusive();
+
+   }
 
 
 } // namespace apex

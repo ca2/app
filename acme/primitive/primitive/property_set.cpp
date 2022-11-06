@@ -875,7 +875,7 @@ void property_set::parse_ini(const ::string & strIni)
 
       }
 
-      if(::str().begins_eat(strLine, "["))
+      if(strLine.begins_eat("["))
       {
 
          strLine.trim_right("]");

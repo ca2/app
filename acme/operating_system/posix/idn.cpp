@@ -1,7 +1,10 @@
 // Created by camilo on 2022-11-01 23:04 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "acme/exception/exception.h"
+#include "acme/primitive/string/string.h"
 
-#elif defined(ANDROID)
+
+#if defined(ANDROID)
 #include "idn/idna.h"
 #elif defined(__APPLE__)
 #include "idn/idna.h"
@@ -16,7 +19,7 @@
 #endif
 
 
-string idn_to_punycode(strong::string & str)
+string idn_to_punycode(const ::string & str)
 {
 
    char * psz = nullptr;
@@ -38,7 +41,8 @@ string idn_to_punycode(strong::string & str)
 
 }
 
-string idn_from_punycode(strong ::string & str)
+
+string idn_from_punycode(const ::string & str)
 {
 if (str.is_empty())
 {

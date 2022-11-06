@@ -42,7 +42,7 @@ void url_domain_base::create(const char * pszServerName)
       psz++;
    }
    psz = m_strOriginalName;
-   m_bHasWww = ::str().begins(pszServerName, "www.");
+   m_bHasWww = string_begins(pszServerName, "www.");
    if(m_bHasWww)
    {
       psz += 4;

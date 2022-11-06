@@ -1038,7 +1038,7 @@ public:
    binary_stream & operator <<(const ansichar * psz)
    {
 
-      auto len = ::str().string_safe_length(psz);
+      auto len = string_safe_length(psz);
 
       write_buffer_length(len);
 

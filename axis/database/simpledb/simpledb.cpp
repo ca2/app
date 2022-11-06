@@ -9,9 +9,9 @@
 #include "acme/networking/url_department.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/datetime/department.h"
+#include "acme/primitive/string/str.h"
 #include "apex/networking/http/context.h"
 #include "apex/platform/session.h"
-#include "axis/database/database/database.h"
 #include "axis/database/database/database.h"
 #include "axis/platform/application.h"
 
@@ -254,7 +254,7 @@ namespace simpledb
 
             string strFirstLine = ::str().line(strValue);
 
-            if (!::str().begins_eat_ci(strFirstLine, strApi + ":"))
+            if (!strFirstLine.begins_eat_ci(strApi + ":"))
             {
 
                return false;

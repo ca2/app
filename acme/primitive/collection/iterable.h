@@ -1780,7 +1780,7 @@ end:
       for (; first < count; find++)
       {
 
-         if (::str().begins(iterable.element_at(first), pcsz))
+         if (string_begins(iterable.element_at(first), pcsz))
          {
 
             return first;
@@ -1802,7 +1802,7 @@ end:
       for (; first < count; find++)
       {
 
-         if (::str().begins_ci(iterable.element_at(first), pcsz))
+         if (string_begins_ci(iterable.element_at(first), pcsz))
          {
 
             return first;
@@ -1914,7 +1914,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str().ends(*first, pcsz))
+         if (string_ends(*first, pcsz))
          {
 
             return first;
@@ -1936,7 +1936,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str().ends_ci(*first, pcsz))
+         if (string_ends_ci(*first, pcsz))
          {
 
             return first;
@@ -1994,7 +1994,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (::str().begins(iterable.element_at(find), pcsz))
+         if (string_begins(iterable.element_at(find), pcsz))
             return find;
       }
       return -1;
@@ -2010,7 +2010,7 @@ end:
       for(; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str().begins_ci(*first, pcsz))
+         if (string_begins_ci(*first, pcsz))
             return first;
 
       }
@@ -2063,7 +2063,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (::str().ends(lpcszIdSuffixed, iterable.element_at(find)))
+         if (string_ends(lpcszIdSuffixed, iterable.element_at(find)))
             return find;
       }
       return -1;
@@ -2079,7 +2079,7 @@ end:
       for (; iterable.valid_iter(find, last); find++)
       {
 
-         if (::str().ends_ci(lpcszIdSuffixed, *find))
+         if (string_ends_ci(lpcszIdSuffixed, *find))
          {
 
             return find;
@@ -2103,7 +2103,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (::str().begins(lpcszIdPrefixed, iterable.element_at(find)))
+         if (string_begins(lpcszIdPrefixed, iterable.element_at(find)))
             return find;
       }
       return -1;
@@ -2120,7 +2120,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (::str().begins_ci(lpcszIdPrefixed, iterable.element_at(find)))
+         if (string_begins_ci(lpcszIdPrefixed, iterable.element_at(find)))
             return find;
       }
       return -1;
@@ -2136,7 +2136,7 @@ end:
       for (; find < count; find++)
       {
 
-         if (::str().begins(iterable.element_at(find), pcsz))
+         if (string_begins(iterable.element_at(find), pcsz))
          {
 
             return find;
@@ -2158,7 +2158,7 @@ end:
       for (; find < count; find++)
       {
 
-         if (::str().begins_ci(iterable.element_at(find), pcsz))
+         if (string_begins_ci(iterable.element_at(find), pcsz))
          {
 
             return find;
@@ -2253,7 +2253,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (::str().ends(iterable.element_at(find), pcsz))
+         if (string_ends(iterable.element_at(find), pcsz))
             return find;
       }
       return -1;
@@ -2268,7 +2268,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (::str().ends_ci(iterable.element_at(find), pcsz))
+         if (string_ends_ci(iterable.element_at(find), pcsz))
             return find;
       }
       return -1;
@@ -2319,7 +2319,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (::str().begins(iterable.element_at(find), pcsz))
+         if (string_begins(iterable.element_at(find), pcsz))
             return find;
       }
       return -1;
@@ -2335,7 +2335,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str().begins_ci(*first, pcsz))
+         if (string_begins_ci(*first, pcsz))
             return first;
 
       }
@@ -2387,7 +2387,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str().ends(lpcszIsSuffixed, *first))
+         if (string_ends(lpcszIsSuffixed, *first))
          {
 
             return first;
@@ -2410,7 +2410,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str().ends_ci(lpcszIsSuffixed, *first))
+         if (string_ends_ci(lpcszIsSuffixed, *first))
          {
 
             return first;
@@ -2433,7 +2433,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str().begins(lpcszIsPrefixed, *first))
+         if (string_begins(lpcszIsPrefixed, *first))
          {
 
             return first;
@@ -2456,7 +2456,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str().begins_ci(lpcszIsPrefixed, *first))
+         if (string_begins_ci(lpcszIsPrefixed, *first))
          {
 
             return first;

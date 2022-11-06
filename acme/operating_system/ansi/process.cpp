@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/operating_system.h"
+#include "acme/_operating_system.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -14,9 +14,11 @@
 #ifndef WINDOWS
 
 
+#include <signal.h>
+
+
 CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 {
-
 
    int i = kill(pid, 0);
 

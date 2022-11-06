@@ -25,7 +25,12 @@ inline ::strsize string_meta_data < TYPE_CHAR>:: memsize_in_chars() const
 
 
 template < typename TYPE_CHAR >
-inline ::memsize string_meta_data < TYPE_CHAR>::length_in_bytes() const { return ::str().char_length_to_byte_length(&this->get_data()[0], this->m_datasize); }
+inline ::memsize string_meta_data < TYPE_CHAR>::length_in_bytes() const
+{
+
+   return char_length_to_byte_length(&this->get_data()[0], this->m_datasize);
+
+}
 
 
 

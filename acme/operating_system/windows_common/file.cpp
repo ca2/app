@@ -156,7 +156,7 @@ bool is_directory(const char* path)
    //
    //               strPrefix.replace("/", "\\");
    //
-   //               ::str().begins_eat_ci(strRelative, strPrefix);
+   //               strRelative.begins_eat_ci(strPrefix);
    //
    //               strRelative.trim("/\\");
    //

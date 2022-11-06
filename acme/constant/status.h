@@ -128,6 +128,7 @@ enum enum_status : ::int64_t
    error_library_not_loaded,
    error_debug_testing,
    error_xml_parsing,
+   error_encoding,
 
 
 error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),

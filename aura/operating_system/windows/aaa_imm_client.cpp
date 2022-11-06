@@ -104,7 +104,7 @@ void imm_client::_011OnChar(::message::message * pmessage)
 
       strChar = wsz;
 
-      //if (!::str().begins_eat_ci(m_strImeComposition, strChar))
+      //if (!m_strImeComposition.begins_eat_ci(strChar))
       //{
 
       insert_text(strChar, false, e_source_user);

@@ -194,7 +194,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_display_change, pchannel, this, &simple_frame_window::on_message_display_change);
    MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_frame_window::on_message_show_window);
    MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &simple_frame_window::_001OnMouseActivate);
-   MESSAGE_LINK(e_message_non_client_hittest, pchannel, this, &simple_frame_window::_001OnNcHitTest);
+   MESSAGE_LINK(e_message_non_client_hit_test, pchannel, this, &simple_frame_window::_001OnNcHitTest);
 
    MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_frame_window::_001OnKey);
    MESSAGE_LINK(e_message_sys_key_down, pchannel, this, &simple_frame_window::_001OnKey);
@@ -1686,7 +1686,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       auto papp = get_app();
 
-      if (::str().ends_eat_ci(strImpact, "::frame"))
+      if (strImpact.ends_eat_ci("::frame"))
       {
 
          papp->datastream()->set("frame::" + strImpact + ".visible", bShow);

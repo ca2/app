@@ -40,14 +40,14 @@ string __node_library_is_loaded(const ::string & pszPath)
 
    q.m_strPathIn = pszPath;
 
-   if(!::str().ends_ci(q.m_strPathIn, ".so"))
+   if(!q.m_strPathIn.ends_ci(".so"))
    {
 
       q.m_strPathIn += ".so";
 
    }
 
-   if(!::str().begins_ci(q.m_strPathIn, "/") && !::str().begins_ci(q.m_strPathIn, "lib"))
+   if(!q.m_strPathIn.begins("/") && !q.m_strPathIn.begins_ci("lib"))
    {
 
       q.m_strPathIn = "lib" + q.m_strPathIn;
@@ -57,6 +57,7 @@ string __node_library_is_loaded(const ::string & pszPath)
    dl_iterate_phdr(__node_library_is_loaded_callback, &q);
 
    return q.m_strPathOut;
+
 }
 
 

@@ -188,7 +188,7 @@ list(APPEND library_source
         handler/topic.h
         #include/_.cpp
         #include/path.h        #primitive/collection/comparable_array.cpp
-        memory/alloc.cpp
+        #memory/alloc.cpp
         memory/allocate_mid_big.cpp
         memory/allocate_processor_cache_oriented.cpp
         memory/allocate_system_heap.cpp
@@ -202,6 +202,8 @@ list(APPEND library_source
         memory/memory_management.cpp
         memory/memory_management.h
         memory/new.cpp
+        memory/os_alloc.cpp
+        memory/os_alloc.h
         memory/property_memory_allocate.cpp
         memory/property_memory_allocate.h
         memory/secondary_memory_allocate.cpp
@@ -247,6 +249,8 @@ list(APPEND library_source
         parallelization/condition.h
         parallelization/condition_variable.cpp
         parallelization/condition_variable.h
+        parallelization/create_task_attributes.cpp
+        parallelization/create_task_attributes.h
         parallelization/critical_section.cpp
         parallelization/event.cpp
         parallelization/fork.cpp
@@ -273,6 +277,7 @@ list(APPEND library_source
         #parallelization/waitable.cpp
         platform/_.cpp
         platform/_main_hold_base.cpp
+        platform/_synchronization.cpp
         platform/_synchronization.h
         platform/acme.cpp
         platform/acme.h
@@ -328,8 +333,8 @@ list(APPEND library_source
         platform/procedure.cpp
         platform/procedure.h
         platform/serial.cpp
-        platform/subsystem.cpp
-        platform/subsystem.h
+        platform/sub_system.cpp
+        platform/sub_system.h
         platform/system.cpp
         platform/system_setup.cpp
         platform/system_setup.h
@@ -426,6 +431,7 @@ list(APPEND library_source
         primitive/duration/duration/duration.h
         primitive/duration/floating/_.h
         primitive/duration/integral/_.h
+        primitive/duration/__string.cpp
         primitive/duration/__string.h
         primitive/duration/_.h
         primitive/duration/_duration.h
@@ -584,6 +590,7 @@ list(APPEND library_source
         primitive/primitive/get_memory.h
         #primitive/primitive/handler.cpp
         #primitive/primitive/id_array.cpp
+        primitive/primitive/integral_byte.cpp
         primitive/primitive/interlocked.h
         primitive/primitive/interlocked_count.h
         #primitive/primitive/interlocked_long_pulse.cpp
@@ -671,8 +678,8 @@ list(APPEND library_source
         primitive/string/__c_wd16_impl.h
         primitive/string/__c_wd32.h
         primitive/string/__c_wd32_impl.h
-        primitive/string/__c_wide.h
-        primitive/string/__c_wide_impl.h
+        #primitive/string/__c_wide.h
+        #primitive/string/__c_wide_impl.h
         #primitive/string/_base.h
         #primitive/string/_base.h
         primitive/string/_base_impl.h
@@ -681,23 +688,23 @@ list(APPEND library_source
         primitive/string/_c.h
         primitive/string/_c_impl.h
         primitive/string/_c_inline.h
-        primitive/string/_c_str.h
-        primitive/string/_c_str_impl.h
-        primitive/string/_c_trait.h
+        #primitive/string/_c_str.h
+        #primitive/string/_c_str_impl.h
+        #primitive/string/_c_trait.h
         primitive/string/_c_trait_ansi.cpp
-        primitive/string/_c_trait_ansi.h
-        primitive/string/_c_trait_ansi_impl.h
-        primitive/string/_c_trait_impl.h
-        primitive/string/_c_trait_wd16.h
-        primitive/string/_c_trait_wd16_impl.h
-        primitive/string/_c_trait_wd32.h
-        primitive/string/_c_trait_wd32_impl.h
-        primitive/string/_c_trait_wide.cpp
-        primitive/string/_c_trait_wide.h
-        primitive/string/_c_trait_wide_impl.h
-        primitive/string/_c_unicode.h
+        #primitive/string/_c_trait_ansi.h
+        #primitive/string/_c_trait_ansi_impl.h
+        #primitive/string/_c_trait_impl.h
+        #primitive/string/_c_trait_wd16.h
+        #primitive/string/_c_trait_wd16_impl.h
+        #primitive/string/_c_trait_wd32.h
+        #primitive/string/_c_trait_wd32_impl.h
+        #primitive/string/_c_trait_wide.cpp
+        #primitive/string/_c_trait_wide.h
+        #primitive/string/_c_trait_wide_impl.h
+        #primitive/string/_c_unicode.h
         primitive/string/__str_compare.h
-        primitive/string/_str_compare_impl.h
+        #primitive/string/_str_compare_impl.h
         primitive/string/_conv.h
         #primitive/string/_conv_ansi.cpp
         #primitive/string/_conv_ansi.h
@@ -711,8 +718,11 @@ list(APPEND library_source
         primitive/string/_string.cpp
         primitive/string/_str_impl.h
         primitive/string/_string_wide.h
+        primitive/string/_sz_ansi.cpp
+        primitive/string/_sz_wd16.cpp
+        primitive/string/_sz_wd32.cpp
         primitive/string/__string.cpp
-        primitive/string/__string.h
+        #primitive/string/__string.h
         #primitive/string/_trait.h
         #primitive/string/_trait_ansi.h
         #primitive/string/_trait_ansi_impl.h
@@ -722,21 +732,23 @@ list(APPEND library_source
         #primitive/string/_trait_wd32.h
         #primitive/string/_trait_wd32_impl.h
         primitive/string/_uhash.h
-        primitive/string/_unicode.h
-        primitive/string/_unicode_impl.h
+        #primitive/string/_unicode.h
+        #primitive/string/_unicode_impl.h
         primitive/string/base64.cpp
         primitive/string/base64.h
         primitive/string/bstr.h
         #primitive/string/bstring.cpp
         primitive/string/bstring.h
         primitive/string/ch.cpp
-        primitive/string/ch.h
+        #primitive/string/ch.h
         primitive/string/ch_class.cpp
         primitive/string/ch_class.h
         primitive/string/command_line.cpp
         primitive/string/command_line.h
         primitive/string/composite.h
         #primitive/string/dup.cpp
+        primitive/string/encoding_exception.cpp
+        primitive/string/encoding_exception.h
         primitive/string/from_integer.cpp
         primitive/string/from_integer.h
         primitive/string/hex.cpp
@@ -779,7 +791,7 @@ list(APPEND library_source
         primitive/string/character.cpp
         primitive/string/character.h
         primitive/string/wildcard.cpp
-        primitive/string/wstring_adaptor.h
+        #primitive/string/wstring_adaptor.h
         #primitive/string/x.cpp
         #primitive/string/x.h
         primitive/string/x/x_charcategory.h
@@ -1051,13 +1063,14 @@ list(APPEND library_source
         inline/application_common.h
         inline/console.h
         inline/console_common.h
-        inline/library.h
+        #inline/library.h
         ios_aura/ios_aura.h
-        library.h
+        #library.h
         memory/_heap.h
         memory/align_byte_count.h
         memory/allocate.h
         memory/allocate_processor_cache_oriented.h
+        memory/allocate_system_heap.cpp
         memory/allocation.h
         memory/heap_.h
         memory/heap_c.h
@@ -1090,7 +1103,7 @@ list(APPEND library_source
         operating_system/_.h
         operating_system/_application.h
         operating_system/_impl.h
-        operating_system/_operating_system.h
+        #operating_system/_operating_system.h
         operating_system/_api.cpp
         #operating_system/_user.h
         operating_system/ansi/_.h
@@ -1162,7 +1175,7 @@ list(APPEND library_source
         operating_system/universal_windows/sockets.h
         operating_system/windows/_.h
         #operating_system/windows/_c.h
-        operating_system/windows/_windows.h
+        #operating_system/windows/_windows.h
         #operating_system/windows/_windows_impl.h
         #operating_system/windows/api.h
         #operating_system/windows/callstack.h
@@ -2153,6 +2166,7 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
             operating_system/posix/desktop.cpp
             operating_system/posix/file_lock.cpp
             operating_system/posix/file_lock.h
+            operating_system/posix/idn.cpp
             #operating_system/posix/local_memory_map.cpp
             operating_system/posix/process.cpp
             operating_system/posix/parallelization.cpp

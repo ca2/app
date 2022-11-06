@@ -1885,7 +1885,7 @@ namespace user
 
    //   __UNREFERENCED_PARAMETER(pdata);
    //   string strUrl(payloadFile);
-   //   if(::str().begins_eat(strUrl,"ext://"))
+   //   if(strUrl.begins_eat("ext://"))
    //   {
    //      papp->open_link(strUrl,"", pszTargetFrameName);
 
@@ -1895,7 +1895,7 @@ namespace user
    //      *pbCancel = true;
    //      return;
    //   }
-   //   if(::str().begins_eat(strUrl,"hist://"))
+   //   if(strUrl.begins_eat("hist://"))
    //   {
    //      psystem->hist_hist(strUrl);
    //      *pbCancel = true;

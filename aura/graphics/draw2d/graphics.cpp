@@ -14,6 +14,7 @@
 #include "acme/primitive/geometry2d/_enhanced.h"
 #include "acme/primitive/geometry2d/_collection_enhanced.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
+#include "acme/primitive/string/str.h"
 #include "aura/user/user/interaction.h"
 #include "nanosvg/nanosvg.h"
 
@@ -4390,7 +4391,7 @@ namespace draw2d
                if ((int) sz.cx > rectangleClip.width())
                {
 
-                  i = ::str().prior_index(i, str);
+                  i = unicode_prior_index(i, str);
 
                   if (i <= 0)
                   {

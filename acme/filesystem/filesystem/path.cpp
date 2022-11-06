@@ -554,6 +554,14 @@ namespace file
    }
 
 
+   path path::operator / (const ::atom & atom) const
+   {
+
+      return operator /(::file::path(atom));
+
+   }
+
+
    path path::operator / (const char * psz) const
    {
 
@@ -607,6 +615,13 @@ namespace file
 
    }
 
+   path & path::operator /= (const ::atom & atom)
+   {
+
+      return operator /=(::file::path(atom));
+
+   }
+
    path & path::operator /= (const char * psz)
    {
 
@@ -620,15 +635,15 @@ namespace file
 
    //   string strNewExtension(pszNewExtension);
 
-   //   ::str().begins_eat_ci(strNewExtension, ".");
+   //   strNewExtension.begins_eat_ci(".");
 
    //   string strOldExtension(pszOldExtension);
 
-   //   ::str().begins_eat_ci(strOldExtension, ".");
+   //   strOldExtension.begins_eat_ci(".");
 
    //   ::file::path path(*this);
 
-   //   ::str().ends_eat_ci(path, strOldExtension);
+   //   path.ends_eat_ci(strOldExtension);
 
    //   path += strNewExtension;
 

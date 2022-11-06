@@ -350,7 +350,7 @@ namespace windows
       if (((FAILED(hrIconLocation) && FAILED(hrGetLocation))
             || imagekey.m_iIcon == 0x80000000
             || !pcontext->m_papexcontext->file()->exists(strIconLocation))
-            && ::str().ends_ci(strFileParam, ".lnk"))
+            && string_ends_ci(strFileParam, ".lnk"))
       {
 
          pcontext->m_papexcontext->file()->resolve_link(pathTarget, strFileParam);
@@ -862,7 +862,7 @@ pacmedirectory->is(strPath))
 
       i32 iImage = 0x80000000;
 
-      if (::str().begins_ci(imagekey.m_strPath, "uifs:"))
+      if (string_begins_ci(imagekey.m_strPath, "uifs:"))
       {
 
          if (reserve_image(imagekey, iImage))
@@ -877,7 +877,7 @@ pacmedirectory->is(strPath))
          return iImage;
 
       }
-      else if (::str().begins_ci(imagekey.m_strPath, "fs:"))
+      else if (string_begins_ci(imagekey.m_strPath, "fs:"))
       {
 
          if (reserve_image(imagekey, iImage))
@@ -892,7 +892,7 @@ pacmedirectory->is(strPath))
          return iImage;
 
       }
-      else if (::str().begins_ci(imagekey.m_strPath, "ftp:"))
+      else if (string_begins_ci(imagekey.m_strPath, "ftp:"))
       {
 
          if (reserve_image(imagekey, iImage))
@@ -908,12 +908,12 @@ pacmedirectory->is(strPath))
 
       }
 
-      if (::str().ends_ci(imagekey.m_strPath, ".aura"))
+      if (string_ends_ci(imagekey.m_strPath, ".aura"))
       {
 
          string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
 
-         if (::str().begins_eat_ci(str, "ca2prompt\r\n"))
+         if (str.begins_eat_ci("ca2prompt\r\n"))
          {
 
             str.trim();
@@ -967,7 +967,7 @@ pacmedirectory->is(strPath))
 
       string strExtension;
 
-      if (::str().ends_ci(imagekey.m_strPath, ".sln"))
+      if (string_ends_ci(imagekey.m_strPath, ".sln"))
       {
 
          //output_debug_string("test .sln");
@@ -983,7 +983,7 @@ pacmedirectory->is(strPath))
 
       }
 
-      if (::str().begins_eat(str, "foo."))
+      if (str.begins_eat("foo."))
       {
 
          return get_image_by_file_extension(imagekey);

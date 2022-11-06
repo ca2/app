@@ -13,6 +13,9 @@
 #include "acme/user/nano/window.h"
 
 
+#include "acme/operating_system/x11/_.h"
+
+
 #define MAXSTR 1000
 
 

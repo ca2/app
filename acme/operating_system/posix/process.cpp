@@ -6,6 +6,7 @@
 #include "acme/parallelization/single_lock.h"
 #include "acme/exception/exception.h"
 #include "acme/platform/acme.h"
+#include "acme/primitive/string/str.h"
 #include <sys/wait.h>
 #include <unistd.h>
 #include <wordexp.h>

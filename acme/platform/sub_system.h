@@ -45,12 +45,9 @@ public:
    hinstance         m_hinstancePrev = nullptr;
    int               m_nCmdShow = -1000;
 
-#elif defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
-
-   const char * m_pchar_binary__matter_zip_start = nullptr;
-   const char * m_pchar_binary__matter_zip_end = nullptr;
-
 #endif
+
+   ::block                          m_blockMatter;
 
    ::critical_section               m_criticalsection;
    ::acme::library_map              m_mapLibrary;
@@ -91,6 +88,9 @@ public:
 
    int get_status();
    void set_status(int iStatus);
+
+
+   virtual void set_resource_block(const char * pstart, const char * pend);
 
 
 };

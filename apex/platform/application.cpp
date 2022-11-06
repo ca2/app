@@ -5467,12 +5467,14 @@ namespace apex
 
       acmesystem()->m_papexsystem->m_papexnode->set_last_run_application_path(strAppId);
 
-      if (!os_on_start_application())
-      {
+      acmenode()->m_papexnode->on_start_application(this);
 
-         return false;
-
-      }
+//      if (!os_on_start_application())
+//      {
+//
+//         return false;
+//
+//      }
 
       on_create_app_shortcut();
 

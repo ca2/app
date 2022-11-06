@@ -301,4 +301,12 @@ void sub_system::set_status(int iStatus)
 }
 
 
+void sub_system::set_resource_block(const char * pstart, const char * pend)
+{
+
+   m_blockMatter = ::block(pstart, pend - pstart);
+
+}
+
+
 

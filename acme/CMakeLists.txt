@@ -369,6 +369,7 @@ list(APPEND library_source
         #primitive/collection/point_array.cpp
         #primitive/collection/rectangle_array.cpp
         primitive/collection/sort.cpp
+        primitive/collection/str_array.cpp
         primitive/collection/string_array.cpp
         #primitive/collection/string_array_base.cpp
         #primitive/collection/string_list.cpp

@@ -448,7 +448,7 @@ public:
 };
 
 
-CLASS_DECL_ACME void fork_count(::particle * pobjectParent, ::count iCount, const ::function < void(index, index, index, index) > & function, const ::procedure & procedureCompletion, index iStart = 0);
+//CLASS_DECL_ACME void fork_count(::particle * pobjectParent, ::count iCount, const ::function < void(index, index, index, index) > & function, const ::procedure & procedureCompletion, index iStart = 0);
 
 
 //template < typename PRED, typename PRED_END >

@@ -698,7 +698,11 @@ namespace apex
 
       virtual bool on_start_application();
 
+#if !defined(LINUX)
+
       virtual bool os_on_start_application();
+
+#endif
 
       DECLARE_MESSAGE_HANDLER(on_message_app_exit);
       DECLARE_MESSAGE_HANDLER(on_message_close);

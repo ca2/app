@@ -271,7 +271,6 @@ namespace acme
 
       virtual void * get_os_xcb_connection();
 
-
       virtual void node_post(const ::procedure & procedure);
 
 

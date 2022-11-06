@@ -1243,19 +1243,12 @@ void file_context::calculate_main_resource_memory()
 ::block file_context::get_main_resource_block()
 {
 
-#if defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
-
-   if(subsystem()->m_pchar_binary__matter_zip_start && subsystem()->m_pchar_binary__matter_zip_end)
+   if(subsystem()->m_blockMatter)
    {
 
-      return {
-         subsystem()->m_pchar_binary__matter_zip_start,
-         subsystem()->m_pchar_binary__matter_zip_end - subsystem()->m_pchar_binary__matter_zip_start
-      };
+      return subsystem()->m_blockMatter;
 
    }
-
-#endif
 
    if (!m_bMainResourceMemoryCalculated)
    {

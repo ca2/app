@@ -961,9 +961,7 @@ namespace apex
 
             ::file::path pathAlias = patha[i];
 
-#ifndef LINUX
             if (os_is_alias(pathAlias))
-#endif
             {
 
                ::file::path pathTargetFolder;
@@ -1563,6 +1561,14 @@ namespace apex
    {
 
       return m_strStoreServerBaseUrl;
+
+   }
+
+
+   bool context::os_is_alias(const char *psz)
+   {
+
+      return false;
 
    }
 

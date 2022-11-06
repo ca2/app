@@ -3,7 +3,7 @@
 
 
 
-#include "acme/operating_system.h"
+//#include "acme/operating_system.h"
 #include "acme/platform/system_setup.h"
 
 #include "acme/platform/acme.h"
@@ -67,11 +67,11 @@ CLASS_DECL_ACME void set_winmain(HINSTANCE hinstanceThis, HINSTANCE hinstancePre
 
 #else
 
-   #if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
-
-   void set_res(const char * p1, const char * p2);
-
-#endif
+//   #if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
+//
+//   void set_res(const char * p1, const char * p2);
+//
+//#endif
 
 void set_argc_argv_envp(int argc, char ** argv, char ** envp);
 
@@ -138,7 +138,7 @@ int main(int argc, char * argv[], char * envp[])
 
       #if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN)
    
-         set_res(_binary__matter_zip_start, _binary__matter_zip_end);
+         subsystem.set_res(_binary__matter_zip_start, _binary__matter_zip_end);
    
       #elif defined(ANDROID)
    

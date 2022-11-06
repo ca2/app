@@ -1041,7 +1041,7 @@ namespace aura
       string get_default_playlist_path() override;
 
       
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(FREEBSD)
 
       bool os_on_start_application() override;
 

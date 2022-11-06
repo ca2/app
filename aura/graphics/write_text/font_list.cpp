@@ -1149,11 +1149,11 @@ namespace write_text
 
          };
 
-         ::fork_count(this, pfontlistdata->get_count(), procedure3, procedure4);
+         m_pcontext->fork_count(pfontlistdata->get_count(), procedure3, procedure4);
 
       };
 
-      ::fork_count(this, pfontlistdata->get_count(), procedure1, procedure2);
+      m_pcontext->fork_count(pfontlistdata->get_count(), procedure1, procedure2);
 
    }
 

@@ -1,8 +1,40 @@
+// get_mem_info2 from debug.h by camilo on 2022-11-07 01:53 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 #include "acme/operating_system/error_code.h"
 
+
+#include "acme/primitive/comparison/compare.h"
+
+
+#ifdef MEMDLEAK
+
+
+//CLASS_DECL_ACME string get_mem_info_report1();
+//CLASS_DECL_ACME::count get_mem_info(i32 ** ppiUse, const char *** ppszFile, const char *** pszCallStack, u32 ** ppuiLine, size_t ** ppsize);
+#ifdef WINDOWS
+CLASS_DECL_ACME::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize);
+#endif
+
+
+#endif
+
+//template < >
+//inline bool gt(DWORD dw, ::i32 i)
+//{
+//   return i < 0 ? true : dw >((DWORD)i);
+//}
+
+//template < >
+//inline bool gt(count i,u64 u)
+//{
+
+//   return i < 0 ? false : ((u64)i) > u;
+
+//}
+
+//#endif
 
 CLASS_DECL_ACME void TRACELASTERROR();
 

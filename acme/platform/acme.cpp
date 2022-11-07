@@ -1337,13 +1337,13 @@ namespace acme
    }
 
 
-   void acme::this_ref()
-   {
+   //void acme::this_ref()
+   //{
 
-      //m_bRef = true;
-      //printf()
+   //   //m_bRef = true;
+   //   //printf()
 
-   }
+   //}
 
 
    //::acme::system * acme_create_system(app_core * pappcore)

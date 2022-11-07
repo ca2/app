@@ -1,13 +1,16 @@
 ﻿#pragma once
 
 
-#include "__sz.h"
-
-
-#include "__unicode.h"
-
-
 #include "string.h"
+
+
+
+//#include "__sz.h"
+//
+//
+//#include "__unicode.h"
+//
+
 //#include "_str_ch.h"
 
 

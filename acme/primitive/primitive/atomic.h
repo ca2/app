@@ -15,8 +15,12 @@
 #include <intrin.h>
 
 
-//#pragma intrinsic (_InterlockedIncrement)
-//#pragma intrinsic (_InterlockedDecrement)
+#pragma intrinsic (_InterlockedIncrement)
+#pragma intrinsic (_InterlockedDecrement)
+#pragma intrinsic (_interlockedincrement64)
+#pragma intrinsic (_interlockeddecrement64)
+#pragma intrinsic (_interlockedadd64)
+#pragma intrinsic (_interlockedadd)
 
 
 #endif

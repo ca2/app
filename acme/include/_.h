@@ -119,9 +119,6 @@ inline bool __enum_is_failed(const ::e_status & e);
 //#include "_c.h"
 
 
-#include <tuple>
-
-
 class object;
 class thread;
 //class object;
@@ -565,7 +562,6 @@ public:
 //#define __creatable(type) _creatable(____creatable(type))
 
 
-#include <type_traits>
 
 
 class matter;
@@ -836,13 +832,10 @@ enum enum_optional
 
 };
 
-#ifdef WINDOWS
-#include <intsafe.h>
-#else
 
 //#include "acme/operating_system/cross/windows/_include.h"
 
-#endif
+//#endif
 
 
 
@@ -925,7 +918,7 @@ enum e_image_type
 
 #include "acme/primitive/primitive/_c_memory.h"
 
-#include "acme/primitive/string/_c.h"
+//#include "acme/primitive/string/_c.h"
 
 #include "acme/primitive/datetime/_c.h"
 
@@ -3456,6 +3449,14 @@ namespace acme
 class task_group;
 class task_tool;
 
+//
+//#ifdef WINDOWS
+//
+//// Still I need to include this here?
+//
+#include "acme/primitive/string/string.h"
+//
+//#endif
 
 
 //#include "acme/platform/app_core.h"
@@ -3611,7 +3612,7 @@ class task_tool;
 //#include "acme/filesystem/file/_defer.h"
 
 
-#include "acme/primitive/string/_c_inline.h"
+//#include "acme/primitive/string/_c_inline.h"
 
 
 

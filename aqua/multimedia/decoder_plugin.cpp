@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "decoder_plugin.h"
 #include "decoder.h"
+#include "acme/parallelization/event.h"
 #include "aqua/platform/system.h"
 
 

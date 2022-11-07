@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "data.h"
 #include "edit.h"
+#include "acme/primitive/data/listener.h"
 
 
 namespace xml

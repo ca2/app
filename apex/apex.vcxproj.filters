@@ -1096,13 +1096,13 @@
     <ClCompile Include="filesystem\fs\link.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\fs\native_fs.cpp">
+    <ClCompile Include="filesystem\fs\native.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\remote_native_file.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\fs\remote_native_fs.cpp">
+    <ClCompile Include="filesystem\fs\remote_native.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\set.cpp">
@@ -1313,9 +1313,6 @@
       <Filter>Source Files\networking\sockets\http</Filter>
     </ClCompile>
     <ClCompile Include="networking\sockets\http\base_socket.cpp">
-      <Filter>Source Files\networking\sockets\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\http\listener.cpp">
       <Filter>Source Files\networking\sockets\http</Filter>
     </ClCompile>
     <ClCompile Include="networking\sockets\http\post_socket.cpp">

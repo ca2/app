@@ -2,7 +2,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox);
+CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox, const char * pszDetails = nullptr);
 
 
 inline ::u64 make64_from32(::u32 l, ::u32 h)

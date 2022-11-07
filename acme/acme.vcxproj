@@ -1176,9 +1176,9 @@
     <ClCompile Include="primitive\datetime\file_time_span.cpp" />
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp" />
     <ClCompile Include="primitive\datetime\result.cpp" />
-    <ClCompile Include="primitive\datetime\__string.cpp" />
     <ClCompile Include="primitive\duration\duration\duration.cpp" />
     <ClCompile Include="primitive\duration\time.cpp" />
+    <ClCompile Include="primitive\duration\__string.cpp" />
     <ClCompile Include="primitive\geometry2d\shape.cpp" />
     <ClCompile Include="primitive\geometry2d\_shape.cpp" />
     <ClCompile Include="primitive\mathematics\binary_operation.cpp" />
@@ -1214,6 +1214,7 @@
     <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\string\encoding_exception.cpp" />
     <ClCompile Include="primitive\string\command_line.cpp" />
+    <ClCompile Include="primitive\string\string.cpp" />
     <ClCompile Include="primitive\string\str_to.cpp" />
     <ClCompile Include="primitive\string\_sz_ansi.cpp" />
     <ClCompile Include="primitive\string\_sz_wd16.cpp" />

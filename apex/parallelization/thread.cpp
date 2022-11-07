@@ -17,11 +17,11 @@
 #include "apex/platform/system.h"
 
 
-#ifdef WINDOWS_DESKTOP
-#include "apex/operating_system.h"
-#endif
+//#ifdef WINDOWS_DESKTOP
+//#include "apex/operating_system.h"
+//#endif
 
-//HANDLE duplicate_handle(HANDLE h);
+
 CLASS_DECL_ACME void TRACELASTERROR();
 
 
@@ -35,6 +35,18 @@ void on_term_thread();
 
 
 #include "acme/operating_system/ansi/_pthread.h"
+
+
+#endif
+
+
+#ifdef WINDOWS
+
+
+#include "acme/_operating_system.h"
+
+
+HANDLE duplicate_handle(HANDLE h);
 
 
 #endif
@@ -387,17 +399,22 @@ void thread::term_task()
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      for (auto & pmanualresetevent : m_eventaWait)
+      if (m_peventaWait)
       {
 
-         try
+         for (auto & pmanualresetevent : *m_peventaWait)
          {
 
-            pmanualresetevent->set_event();
+            try
+            {
 
-         }
-         catch (...)
-         {
+               pmanualresetevent->set_event();
+
+            }
+            catch (...)
+            {
+
+            }
 
          }
 
@@ -3384,7 +3401,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 
       }
 
-      copy(pMsg, &msg);
+      ::copy(*pMsg, msg);
 
    }
 
@@ -3792,7 +3809,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
       }
 
-      copy(pMsg, &msg);
+      copy(*pMsg, msg);
 
    }
 
@@ -4036,7 +4053,7 @@ bool thread::process_message()
 
          MSG msg;
 
-         copy(&msg, &message);
+         copy(msg, message);
 
          ::TranslateMessage(&msg);
 
@@ -4603,7 +4620,9 @@ void thread::add_waiting_event(event * pevent)
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   m_eventaWait.add(pevent);
+   __defer_construct_new(m_peventaWait);
+
+   m_peventaWait->add(pevent);
 
 }
 
@@ -4613,7 +4632,12 @@ void thread::erase_waiting_event(event * pevent)
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   m_eventaWait.erase(pevent);
+   if (m_peventaWait)
+   {
+
+      m_peventaWait->erase(pevent);
+
+   }
 
 }
 

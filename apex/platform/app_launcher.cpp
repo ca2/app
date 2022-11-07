@@ -47,6 +47,14 @@ namespace apex
    }
 
 
+   string app_launcher::get_executable_extension()
+   {
+
+      return {};
+
+   }
+
+
    string app_launcher::get_executable_path()
    {
 
@@ -69,11 +77,7 @@ namespace apex
 
       strExe.replace_with("_", "/");
 
-#ifdef WINDOWS
-
-      strExe += ".exe";
-
-#endif
+      strExe += get_executable_extension();
 
       auto pcontext = get_context();
 
@@ -94,26 +98,28 @@ namespace apex
    string app_launcher::get_params()
    {
 
-      string strParameters;
+      return {};
 
-#if !defined(MACOS)
-
-      
-#ifdef WINDOWS_DESKTOP
-      
-      if (string_ends_ci(get_executable_path(), "\\app.exe"))
-         
-#endif
-         
-      {
-
-         strParameters = " : app=" + m_strApp;
-
-      }
-
-#endif
-
-      return strParameters;
+//      string strParameters;
+//
+//#if !defined(MACOS)
+//
+//      
+//#ifdef WINDOWS_DESKTOP
+//      
+//      if (string_ends_ci(get_executable_path(), "\\app.exe"))
+//         
+//#endif
+//         
+//      {
+//
+//         strParameters = " : app=" + m_strApp;
+//
+//      }
+//
+//#endif
+//
+//      return strParameters;
 
    }
 
@@ -121,117 +127,117 @@ namespace apex
    void app_launcher::run()
    {
 
-#ifdef _UWP
-
-      //return false;
-
-      return;
-
-#elif defined(WINDOWS)
-
-      wstring wstrApp(get_executable_path());
-
-      wstring wstrDir(::file_path_folder(string(wstrApp)));
-
-      wstring wstrParams = get_params();
-
-      STARTUPINFOW si;
-      
-      __memset(&si,0,sizeof(si));
-      si.cb = sizeof(si);
-      si.dwFlags = STARTF_USESHOWWINDOW;
-      si.wShowWindow = SW_SHOWNORMAL;
-      PROCESS_INFORMATION pi;
-      __memset(&pi,0,sizeof(pi));
-
-      wstring wstrCmdLine = L"\"" + wstrApp + L"\"" + wstrParams;
-
-      if (::CreateProcessW((unichar*)wstrApp.c_str(), (unichar*)wstrCmdLine.c_str(),
-         nullptr, nullptr, false, 0, nullptr, wstrDir,
-         &si, &pi))
-      {
-         return;
-
-      }
-
-#elif defined(MACOS)
-
-      ::file::path path = get_executable_path();
-      
-      auto psystem = acmesystem();
-      
-      auto pnode = psystem->node();
-
-      if(path.find_ci(".app//") >= 0)
-      {
-
-         path -= 3;
-
-         string strParams = get_params();
-         
-         if(strParams.is_empty())
-         {
-
-            pnode->_launch_macos_app(path);
-
-         }
-         else
-         {
-
-            pnode->_launch_macos_app_args(path, strParams);
-
-         }
-            
-      }
-      else
-      {
-         
-         pnode->call_async(path, "", "", e_display_none, false);
-         
-         //auto estatus = pnode->call_async(path, "", "", e_display_none, false);
-
-//         if (::succeeded(estatus))
-//         {
+//#ifdef _UWP
 //
-//            return true;
+//      //return false;
 //
-//         }
-         
-      }
-
-#else
-
-      if(m_strApp == "app-core/clockverse")
-      {
-
-         ::output_debug_string("app-core/clockverse");
-
-      }
-
-//      string strPath = get_executable_path();
+//      return;
 //
-//      string strDir = ::file_path_folder(strPath);
+//#elif defined(WINDOWS)
 //
-//      string strParams = get_params();
-
-      auto psystem = acmesystem();
-
-      auto pnode = psystem->node();
-
-      pnode->shell_launch(m_strApp);
-
-      //pnode->call_async(strPath, strParams, strDir, e_display_none, false);
-
-//      if (::succeeded(pnode->call_async(strPath, strParams, strDir, e_display_none, false)))
+//      wstring wstrApp(get_executable_path());
+//
+//      wstring wstrDir(::file_path_folder(string(wstrApp)));
+//
+//      wstring wstrParams = get_params();
+//
+//      STARTUPINFOW si;
+//      
+//      __memset(&si,0,sizeof(si));
+//      si.cb = sizeof(si);
+//      si.dwFlags = STARTF_USESHOWWINDOW;
+//      si.wShowWindow = SW_SHOWNORMAL;
+//      PROCESS_INFORMATION pi;
+//      __memset(&pi,0,sizeof(pi));
+//
+//      wstring wstrCmdLine = L"\"" + wstrApp + L"\"" + wstrParams;
+//
+//      if (::CreateProcessW((unichar*)wstrApp.c_str(), (unichar*)wstrCmdLine.c_str(),
+//         nullptr, nullptr, false, 0, nullptr, wstrDir,
+//         &si, &pi))
 //      {
-//
-//         return true;
+//         return;
 //
 //      }
-
-#endif
-
-      //return false;
+//
+//#elif defined(MACOS)
+//
+//      ::file::path path = get_executable_path();
+//      
+//      auto psystem = acmesystem();
+//      
+//      auto pnode = psystem->node();
+//
+//      if(path.find_ci(".app//") >= 0)
+//      {
+//
+//         path -= 3;
+//
+//         string strParams = get_params();
+//         
+//         if(strParams.is_empty())
+//         {
+//
+//            pnode->_launch_macos_app(path);
+//
+//         }
+//         else
+//         {
+//
+//            pnode->_launch_macos_app_args(path, strParams);
+//
+//         }
+//            
+//      }
+//      else
+//      {
+//         
+//         pnode->call_async(path, "", "", e_display_none, false);
+//         
+//         //auto estatus = pnode->call_async(path, "", "", e_display_none, false);
+//
+////         if (::succeeded(estatus))
+////         {
+////
+////            return true;
+////
+////         }
+//         
+//      }
+//
+//#else
+//
+//      if(m_strApp == "app-core/clockverse")
+//      {
+//
+//         ::output_debug_string("app-core/clockverse");
+//
+//      }
+//
+////      string strPath = get_executable_path();
+////
+////      string strDir = ::file_path_folder(strPath);
+////
+////      string strParams = get_params();
+//
+//      auto psystem = acmesystem();
+//
+//      auto pnode = psystem->node();
+//
+//      pnode->shell_launch(m_strApp);
+//
+//      //pnode->call_async(strPath, strParams, strDir, e_display_none, false);
+//
+////      if (::succeeded(pnode->call_async(strPath, strParams, strDir, e_display_none, false)))
+////      {
+////
+////         return true;
+////
+////      }
+//
+//#endif
+//
+//      //return false;
 
    }
 

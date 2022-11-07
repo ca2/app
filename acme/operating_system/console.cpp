@@ -134,7 +134,7 @@ int safe_get_char(FILE * pfile, const ::duration & duration)
 }
 
 
-CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::enum_message_box & emessagebox, const char * pszDetails)
+CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox, const char * pszDetails)
 {
 
    string strLine;

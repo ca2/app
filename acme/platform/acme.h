@@ -19,8 +19,8 @@ namespace acme
 {
 
 
-   void initialize_system();
-   void finalize_system();
+   //void initialize_system();
+   //void finalize_system();
 
    //   class CLASS_DECL_ACME acme
    //   {
@@ -200,9 +200,9 @@ namespace acme
 #endif
 
 
-   CLASS_DECL_ACME void ref();
+   //CLASS_DECL_ACME void ref();
 
-   class acme
+   class CLASS_DECL_ACME acme
    {
    public:
 
@@ -223,7 +223,7 @@ namespace acme
 
       //static static_start g_staticstart;
 
-      void this_ref();
+      //void this_ref();
 
 
       //void construct();

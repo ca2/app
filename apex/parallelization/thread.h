@@ -128,7 +128,7 @@ public:
 
 #endif
 
-   pointer_array < event >                             m_eventaWait;
+   ::pointer < pointer_array < event > >              m_peventaWait;
 
 public:
 

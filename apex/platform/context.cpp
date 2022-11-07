@@ -1009,9 +1009,9 @@ namespace apex
 
    }
 
-
-#ifdef WINDOWS
-
+//
+//#ifdef WINDOWS
+//
    bool context::os_is_alias(const char * psz)
    {
 
@@ -1020,9 +1020,9 @@ namespace apex
       //return string_ends_ci(psz, ".lnk");
 
    }
-
-#endif
-
+//
+//#endif
+//
 
    bool context::enumerate(::file::listing & listing)
    {
@@ -1565,12 +1565,12 @@ namespace apex
    }
 
 
-   bool context::os_is_alias(const char *psz)
-   {
+   //bool context::os_is_alias(const char *psz)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
 } // namespace apex

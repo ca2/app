@@ -829,7 +829,6 @@
     <ClCompile Include="networking\sockets\http\debug_socket.cpp" />
     <ClCompile Include="networking\sockets\http\get_socket.cpp" />
     <ClCompile Include="networking\sockets\http\base_socket.cpp" />
-    <ClCompile Include="networking\sockets\http\listener.cpp" />
     <ClCompile Include="networking\sockets\http\post_socket.cpp" />
     <ClCompile Include="networking\sockets\http\put_socket.cpp" />
     <ClCompile Include="networking\sockets\http\session.cpp" />
@@ -1132,9 +1131,9 @@
     <ClCompile Include="filesystem\fs\ifs.cpp" />
     <ClCompile Include="filesystem\fs\ifs_file.cpp" />
     <ClCompile Include="filesystem\fs\link.cpp" />
-    <ClCompile Include="filesystem\fs\native_fs.cpp" />
+    <ClCompile Include="filesystem\fs\native.cpp" />
     <ClCompile Include="filesystem\fs\remote_native_file.cpp" />
-    <ClCompile Include="filesystem\fs\remote_native_fs.cpp" />
+    <ClCompile Include="filesystem\fs\remote_native.cpp" />
     <ClCompile Include="filesystem\fs\set.cpp" />
     <ClInclude Include="const\id.h" />
     <ClInclude Include="const\idpool.h" />

@@ -57,7 +57,7 @@ public:
    ::pointer<manual_reset_event>                  m_pevSleep;
 
 #ifdef WINDOWS
-   HRESULT                                         m_hresultCoInitialize;
+   error_code                                      m_errorcodeHresultCoInitialize;
 #endif
 
 #ifdef __DEBUG

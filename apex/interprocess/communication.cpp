@@ -477,7 +477,7 @@ namespace interprocess
 
 #else
 
-      strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + __string(idPid);
+      strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + idPid;
 
 #endif
 

@@ -45,7 +45,7 @@ CLASS_DECL_ACME ::f64 string_to_floating(const wd16char * pwsz)
 
 #ifdef WINDOWS
 
-   return wcstod(psz, nullptr);
+   return wcstod(pwsz, nullptr);
 
 #else
 

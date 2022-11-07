@@ -7,6 +7,21 @@
 #include <Tlhelp32.h>
 
 
+inline HWND __hwnd(oswindow oswindow)
+{
+
+   return (HWND)oswindow;
+
+}
+
+
+inline oswindow __oswindow(HWND hwnd)
+{
+
+   return (oswindow)hwnd;
+
+}
+
 
 CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 
@@ -129,6 +144,40 @@ namespace windows
 
 
 
+
+
+
+#include "acme/operating_system/message.h"
+
+
+inline void copy(MESSAGE & message, const MSG & msg)
+{
+
+   message.oswindow = (oswindow)(msg.hwnd);
+   message.m_atom = (enum_message)msg.message;
+   message.wParam = msg.wParam;
+   message.lParam = msg.lParam;
+   message.pt.x = msg.pt.x;
+   message.pt.y = msg.pt.y;
+   message.time = msg.time;
+
+
+}
+
+
+inline void copy(MSG & msg, const MESSAGE & message)
+{
+
+   msg.hwnd = (HWND)(message.oswindow);
+   msg.message = (UINT)message.m_atom.i64();
+   msg.wParam = message.wParam;
+   msg.lParam = message.lParam;
+   msg.pt.x = message.pt.x;
+   msg.pt.y = message.pt.y;
+   msg.time = (DWORD)message.time;
+
+
+}
 
 
 

@@ -44,7 +44,7 @@ inline bool __QPDecode(
             szBuf[2] = '\0';
             char * tmp = nullptr;
             ASSERT(szDest < szDestEnd);
-            *szDest++ = (BYTE)strtoul(szBuf, &tmp, 16);
+            *szDest++ = (byte)strtoul(szBuf, &tmp, 16);
             nWritten++;
             nRead += 2;
             continue;

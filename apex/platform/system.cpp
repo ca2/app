@@ -115,25 +115,25 @@ void unit_test_primitive_var_apex_block();
 void dappy(const ::string & psz);
 
 
-#ifdef WINDOWS_DESKTOP
-
-#include <Lmcons.h>
-
-string get_user_name()
-{
-   
-   WCHAR wsz[UNLEN * 2];
-
-   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
-
-   ::GetUserNameW(wsz,&dwSize);
-
-   return string(wsz);
-
-}
-
-//#include "acme/operating_system/windows/_c.h"
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//#include <Lmcons.h>
+//
+//string get_user_name()
+//{
+//   
+//   WCHAR wsz[UNLEN * 2];
+//
+//   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+//
+//   ::GetUserNameW(wsz,&dwSize);
+//
+//   return string(wsz);
+//
+//}
+//
+////#include "acme/operating_system/windows/_c.h"
+//#endif
 
 
 
@@ -807,34 +807,34 @@ namespace apex
       //
       //#endif
 
-      {
-
-         {
-
-#ifdef WINDOWS_DESKTOP
-
-            {
-
-               ASSERT(m_hinstancePrev == nullptr);
-
-               HINSTANCE hinstance = (HINSTANCE)m_hinstanceThis;
-
-               //auto edisplay = m_edisplay;
-
-               // handle critical errors and avoid Windows message boxes
-               SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
-
-               //m_edisplay = edisplay;
-
-               //SetCurrentHandles();
-
-            }
-
-#endif
-
-         }
-
-      }
+//      {
+//
+//         {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//            {
+//
+//               ASSERT(m_hinstancePrev == nullptr);
+//
+//               HINSTANCE hinstance = (HINSTANCE)m_hinstanceThis;
+//
+//               //auto edisplay = m_edisplay;
+//
+//               // handle critical errors and avoid Windows message boxes
+//               SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
+//
+//               //m_edisplay = edisplay;
+//
+//               //SetCurrentHandles();
+//
+//            }
+//
+//#endif
+//
+//         }
+//
+//      }
 
       //estatus = __construct_new(m_pxml);
 

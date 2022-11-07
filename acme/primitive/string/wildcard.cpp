@@ -86,7 +86,9 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const char* pszCriteriaPa
 
          if (pszStop == nullptr)
          {
-            return string_ends(pszValue, pszFind + 1);
+            
+            return string_ends(pszValue, pszFind + 1) != 0;
+
          }
 
          iLen = pszStop - (pszFind + 1);

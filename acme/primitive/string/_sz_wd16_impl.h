@@ -368,14 +368,14 @@ inline void flood_characters(wd16char * pwsz, wd16char wch, strsize len) noexcep
 
 
 
-inline wd16char character_tolower(wd16char ch) noexcept { return wd16_char_isalpha(ch); }
-inline wd16char character_toupper(wd16char ch) noexcept { return wd16_char_isalpha(ch); }
+inline wd16char character_tolower(wd16char ch) noexcept { return wd16_char_tolower(ch); }
+inline wd16char character_toupper(wd16char ch) noexcept { return wd16_char_toupper(ch); }
 
 
-inline bool character_isdigit(wd16char ch) noexcept { return wd16_char_isalpha(ch); }
+inline bool character_isdigit(wd16char ch) noexcept { return wd16_char_isdigit(ch); }
 inline bool character_isalpha(wd16char ch) noexcept { return wd16_char_isalpha(ch); }
-inline bool character_isalnum(wd16char ch) noexcept { return wd16_char_isalpha(ch); }
-inline bool character_isspace(wd16char ch) noexcept { return wd16_char_isalpha(ch); }
+inline bool character_isalnum(wd16char ch) noexcept { return wd16_char_isalnum(ch); }
+inline bool character_isspace(wd16char ch) noexcept { return wd16_char_isspace(ch); }
 
 
 inline strsize string_span_including(const wd16char * pszBlock, const wd16char * pszSet) noexcept

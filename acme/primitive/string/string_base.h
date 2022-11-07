@@ -29,33 +29,40 @@ public:
    string_base(enum_for_moving) { }
    string_base(enum_get_buffer, strsize len) { get_string_buffer(len); }
    string_base(string_base && s) noexcept : POINTER(e_no_initialize) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
-   string_base(const ansichar * pansichar);
-   string_base(const ansichar * pansichar, strsize len);
-   string_base(const ansichar * pansichar, strsize len, strsize pos) : string_base(pansichar + pos, len) { }
+   template < primitive_character CHARACTER2 >
+   string_base(const CHARACTER2 * pszSource, strsize start = 0, strsize len = -1);
+//   string_base(const ansichar * pansichar, strsize len);
+//   string_base(const ansichar * pansichar, strsize len, strsize pos) : string_base(pansichar + pos, len) { }
    string_base(const block & block);
-   string_base(const wd16char * pwd16char);
-   string_base(const wd16char * pwd16char, strsize len);
-   string_base(const wd16char * pwd16char, strsize len, strsize pos) : string_base(pwd16char + pos, len) { }
-   string_base(const wd32char * pwd32char);
-   string_base(const wd32char * pwd32char, strsize len);
-   string_base(const wd32char * pwd32char, strsize len, strsize pos) : string_base(pwd32char + pos, len) { }
-   string_base(const ansistring & wd32str);
-   string_base(const wd16string & wd16str);
-   string_base(const wd32string & wd32str);
+   //string_base(const wd16char * pwd16char);
+//   string_base(const wd16char * pwd16char, strsize len);
+//   string_base(const wd16char * pwd16char, strsize len, strsize pos) : string_base(pwd16char + pos, len) { }
+   //string_base(const wd32char * pwd32char);
+//   string_base(const wd32char * pwd32char, strsize len);
+//   string_base(const wd32char * pwd32char, strsize len, strsize pos) : string_base(pwd32char + pos, len) { }
+   //template < primitive_character CHARACTER2 >
+   string_base(const string_base & str, strsize start = 0, strsize len = -1);
+   template < primitive_character CHARACTER2 >
+   string_base(const string_base < CHARACTER2 > & strSource, strsize start = 0, strsize len = -1);
+   //string_base(const ansistring & wd32str);
+   //string_base(const wd16string & wd16str);
+   //string_base(const wd32string & wd32str);
    string_base(const natural_ansistring& ansistr);
    string_base(const natural_wd16string& wd16str);
    string_base(const natural_wd32string& wd32str);
-   string_base(ansichar ansich, strsize repeat = 1);
-   string_base(wd16char wd16ch, strsize repeat = 1);
-   string_base(wd32char wd32ch, strsize repeat = 1);
-   string_base(const character & character, strsize repeat = 1) :string_base(character.m_wd32char) {}
+   template < primitive_character CHARACTER2 >
+   string_base(CHARACTER2 chSrc, strsize repeat = 1);
+//   string_base(ansichar ansich, strsize repeat = 1);
+//   string_base(wd16char wd16ch, strsize repeat = 1);
+//   string_base(wd32char wd32ch, strsize repeat = 1);
+   string_base(const character & character, strsize repeat = 1) :string_base(character.m_wd32char, repeat) {}
    template < primitive_payload PAYLOAD >
    string_base(const PAYLOAD & payload) : string_base(payload.get_string()) {}
    template < primitive_atom ATOM >
    string_base(const ATOM & atom) : string_base(atom.string()) {}
    inline ~string_base() {}
 
-
+   void start_count(strsize & start, strsize & count, strsize len);
 
    inline const string_base & to_string() const { return *this; }
 
@@ -228,17 +235,21 @@ public:
    //inline string_base & assign(ansichar ansich);
    //inline string_base & assign(wd16char wd16ch);
    //inline string_base & assign(wd32char wd32ch);
-   template < typename CHAR_TYPE2 >
-   inline string_base& assign(const string_base < CHAR_TYPE2 > & ansistr, strsize pos, strsize n);
+   template < primitive_character CHARACTER2 >
+   inline string_base & assign(const string_base < CHARACTER2 > & strSrc, strsize start = 0, strsize len = -1);
    //inline string_base& assign(const wd16string& wd16str, strsize pos, strsize n);
    //inline string_base& assign(const wd32string& wd32str, strsize pos, strsize n);
-   template < typename CHAR_TYPE2 >
-   inline string_base& assign(const CHAR_TYPE2 * pansiszSrc, strsize len = -1);
+   template < primitive_character CHARACTER2 >
+   inline string_base& assign(const CHARACTER2 * pszSrc, strsize start = 0, strsize len = -1);
+   template < primitive_character CHARACTER2 >
+   inline string_base& _assign(const CHARACTER2 * pszSrc, strsize start = 0, strsize len = -1);
    //inline string_base& assign(const wd16char* pwd16szSrc, strsize len);
    //inline string_base& assign(const wd32char* pwd32szSrc, strsize len);
-   inline string_base & assign(ansichar ansich, strsize repeat);
-   inline string_base & assign(wd16char wd16ch, strsize repeat);
-   inline string_base & assign(wd32char wd32ch, strsize repeat);
+   template < primitive_character CHARACTER2 >
+   inline string_base & assign(CHARACTER2 chSrc, strsize repeat);
+//   inline string_base & assign(ansichar ansich, strsize repeat);
+//   inline string_base & assign(wd16char wd16ch, strsize repeat);
+//   inline string_base & assign(wd32char wd32ch, strsize repeat);
 
    template <class InputIterator>
    inline string_base & assign(InputIterator first, InputIterator last);
@@ -378,6 +389,7 @@ public:
 
    CHAR_TYPE * fork_string(strsize strsize);
 
+   CHAR_TYPE * create_string(strsize strsize);
 
    void prepare_write(strsize nLength)
    {
@@ -546,18 +558,22 @@ public:
    strsize replace_with(CHAR_TYPE charNew, CHAR_TYPE charOld, strsize iStart = 0);
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
-   strsize replace_with(PCHARNEW pcharNew, PCHAROLD pcharOld, strsize iStart = 0);
+   //template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
 
-   template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
-   strsize replace_with_ci(PCHARNEW pcharNew, PCHAROLD pcharOld, strsize iStart = 0);
+   strsize replace_with(const string_base & strNew, const string_base & strOld, strsize iStart = 0);
+
+   //template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
+
+   strsize replace_with_ci(const string_base & strNew, const string_base & strOld, strsize iStart = 0);
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
-   ::count replace_with_count(PCHARNEW pcharNew, PCHAROLD pcharOld, strsize iStart = 0);
+   //template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
 
-   template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
-   ::count replace_with_ci_count(PCHARNEW pcharNew, PCHAROLD pcharOld, strsize iStart = 0);
+   ::count replace_with_count(const string_base & strNew, const string_base & strOld, strsize iStart = 0);
+
+   //template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
+
+   ::count replace_with_ci_count(const string_base & strNew, const string_base & strOld, strsize iStart = 0);
 
    // replace all occurrences of character 'chOld' with character 'chNew'
    strsize find_replace(CHAR_TYPE charOld, CHAR_TYPE charNew, strsize iStart = 0)
@@ -566,29 +582,29 @@ public:
    }
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
-   strsize find_replace(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0)
+   //template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
+   strsize find_replace(const string_base & strOld, const string_base & strNew, strsize iStart = 0)
    {
-      return replace_with(pcharNew, pcharOld, iStart);
+      return replace_with(strNew, strOld, iStart);
    }
 
-   template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
-   strsize find_replace_ci(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0)
+   //template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
+   strsize find_replace_ci(const string_base & strOld, const string_base & strNew, strsize iStart = 0)
    {
-      return replace_with_ci(pcharNew, pcharOld, iStart);
+      return replace_with_ci(strNew, strOld, iStart);
    }
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
-   ::count find_replace_count(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0)
+   //template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
+   ::count find_replace_count(const string_base & strOld, const string_base & strNew, strsize iStart = 0)
    {
-      return replace_with_count(pcharNew, pcharOld, iStart);
+      return replace_with_count(strNew, strOld, iStart);
    }
 
-   template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
-   ::count find_replace_ci_count(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0)
+   //template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
+   ::count find_replace_ci_count(const string_base & strOld, const string_base & strNew, strsize iStart = 0)
    {
-      return replace_with_ci_count(pcharNew, pcharOld, iStart);
+      return replace_with_ci_count(strNew, strOld, iStart);
    }
 
 
@@ -767,11 +783,11 @@ public:
    inline strsize begins_eat_ci(const CHAR_TYPE* psz);
    inline strsize ends_eat_ci(const CHAR_TYPE* psz);
 
-   inline strsize begins_eat(string_base & strBitten, const CHAR_TYPE * psz) const;
-   inline strsize ends_eat(string_base & strBitten, const CHAR_TYPE * psz) const;
+   inline strsize begins_eat(string_base & strRest, const CHAR_TYPE * psz) const;
+   inline strsize ends_eat(string_base & strRest, const CHAR_TYPE * psz) const;
 
-   inline strsize begins_eat_ci(string_base & strBitten, const CHAR_TYPE * psz) const;
-   inline strsize ends_eat_ci(string_base & strBitten, const CHAR_TYPE * psz) const;
+   inline strsize begins_eat_ci(string_base & strRest, const CHAR_TYPE * psz) const;
+   inline strsize ends_eat_ci(string_base & strRest, const CHAR_TYPE * psz) const;
 
    inline strsize begins_eaten_ci(string_base & strEaten, const CHAR_TYPE * psz) const;
    inline strsize ends_eaten_ci(string_base & strEaten, const CHAR_TYPE * psz) const;

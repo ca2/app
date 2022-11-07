@@ -493,14 +493,14 @@ inline void  flood_characters(ansichar * psz, ansichar ch, strsize len) noexcept
 }
 
 
-inline ansichar character_tolower(ansichar ch) noexcept { return ansi_char_isalpha(ch); }
-inline ansichar character_toupper(ansichar ch) noexcept { return ansi_char_isalpha(ch); }
+inline ansichar character_tolower(ansichar ch) noexcept { return ansi_char_tolower(ch); }
+inline ansichar character_toupper(ansichar ch) noexcept { return ansi_char_toupper(ch); }
 
 
-inline bool character_isdigit(ansichar ch) noexcept { return ansi_char_isalpha(ch); }
+inline bool character_isdigit(ansichar ch) noexcept { return ansi_char_isdigit(ch); }
 inline bool character_isalpha(ansichar ch) noexcept { return ansi_char_isalpha(ch); }
-inline bool character_isalnum(ansichar ch) noexcept { return ansi_char_isalpha(ch); }
-inline bool character_isspace(ansichar ch) noexcept { return ansi_char_isalpha(ch); }
+inline bool character_isalnum(ansichar ch) noexcept { return ansi_char_isalnum(ch); }
+inline bool character_isspace(ansichar ch) noexcept { return ansi_char_isspace(ch); }
 
 
 // From STRSPN(3) - Linux Programmer's Manual

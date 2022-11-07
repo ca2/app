@@ -119,11 +119,17 @@ inline string_base < TYPE_CHAR > operator+(const string_base < TYPE_CHAR > & str
 }
 
 
-inline ::string operator+(const char * psz, const ::string & str) { return string(psz) + str; }
+//inline ::string operator+(const char * psz, const ::string & str) { return string(psz) + str; }
+
+
 template < primitive_atom ATOM >
 inline ::string operator+(const char * psz, const ATOM & atom) { return string(psz) + string(atom); }
+
+
 template < primitive_payload PAYLOAD >
 inline ::string operator+(const char * psz, const PAYLOAD & payload) { return string(psz) + string(payload); }
+
+
 //inline ::string operator+(const char * psz, const ::property& property) { return string(psz) + string(property); }
 
 
@@ -157,16 +163,62 @@ inline ::string operator+(const char * psz, const PAYLOAD & payload) { return st
 //}
 
 
-inline ::wstring operator+(const widechar* pszLeft, const ::wstring & wstringableRight)
+template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+inline ::string_base < CHARACTER2 > operator +(const CHARACTER * pszLeft, const ::string_base < CHARACTER2 > & strRight)
 {
 
-   ::wstring wstrLeft(pszLeft);
+   ::wstring strLeft(pszLeft);
 
-   ::wstring wstrRight(wstringableRight);
-
-   return wstrLeft + wstrRight;
+   return strLeft + strRight;
 
 }
+
+
+
+
+template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+inline ::string_base < CHARACTER2 > operator +(const CHARACTER chLeft, const ::string_base < CHARACTER2 > & strRight)
+{
+
+   ::string_base < CHARACTER2 > strLeft(&chLeft, 1);
+
+   return strLeft + strRight;
+
+}
+
+
+
+
+
+
+//inline ::ansistring operator + (ansichar ch, const ::ansistring & strRight)
+//{
+//
+//   ansistring str(&ch, 1);
+//
+//   return str + strRight;
+//
+//}
+//
+//
+//inline ::wd16string operator + (wd16char wch, const ::wd16string & wstrRight)
+//{
+//
+//   wd16string wstr(&wch, 1);
+//
+//   return wstr + wstrRight;
+//
+//}
+//
+//
+//inline ::wd32string operator + (wd32char wch, const ::wd32string & wstrRight)
+//{
+//
+//   wd32string wstr(&wch, 1);
+//
+//   return wstr + wstrRight;
+//
+//}
 
 
 //inline wstring operator+(const widechar * pwsz1, const wstring & wstr2)

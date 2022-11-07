@@ -46,9 +46,23 @@ exception::exception(const ::e_status & estatus, const ::string & strMessage, co
       m_strCallstack = unwind_callstack(callstack_default_format(), iSkip);
 
 #else
-      
-      m_strCallstack = ::get_system()->acmenode()->get_callstack(callstack_default_format(), iSkip, caller_address);
 
+      auto psystem = ::get_system();
+
+      if(psystem)
+      {
+
+         auto pnode = psystem->acmenode();
+
+         if(pnode)
+         {
+
+            m_strCallstack = pnode->get_callstack(callstack_default_format(), iSkip, caller_address);
+
+         }
+
+      }
+      
 #endif
 
    }

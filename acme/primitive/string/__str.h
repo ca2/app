@@ -339,7 +339,7 @@ CLASS_DECL_ACME  string normalize_wildcard_criteria(const ::string & strPattern)
 inline string _001Concatenate(const ::string & str1, const ::string & strMid, const ::string & str2);
 
 
-inline string string_from_strdup(const char * psz);
+CLASS_DECL_ACME string string_from_strdup(const char * psz);
 
 
 

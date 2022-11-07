@@ -968,7 +968,7 @@ inline i32 ansichar_unicode_len(wd32char i)
 inline strsize utf_to_utf_length(const ansichar *, const ansichar * psource, strsize srclen)
 {
 
-   return srclen;
+   return srclen >= 0 ? srclen : string_safe_length(psource) + srclen + 1;
 
 }
 
@@ -977,7 +977,7 @@ inline strsize utf_to_utf_length(const ansichar *, const ansichar * psource, str
 inline strsize utf_to_utf_length(const wd16char *, const wd16char * psource, strsize srclen)
 {
 
-   return srclen;
+   return srclen >= 0 ? srclen : string_safe_length(psource) + srclen + 1;
 
 }
 
@@ -995,7 +995,7 @@ inline strsize utf_to_utf_length(const wd16char *, const wd32char * psource, str
 inline strsize utf_to_utf_length(const wd32char *, const wd32char * psource, strsize srclen)
 {
 
-   return srclen;
+   return srclen >= 0 ? srclen : string_safe_length(psource) + srclen + 1;
 
 }
 
@@ -1419,7 +1419,7 @@ inline strsize string_ends(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR *
 
    auto pszCompare = psz + offset;
 
-   return string_count_compare(psz, pszSuffix, lenSuffix) == 0 ? lenSuffix : 0;
+   return string_count_compare(pszCompare, pszSuffix, lenSuffix) == 0 ? lenSuffix : 0;
 
 }
 
@@ -1455,7 +1455,7 @@ inline strsize string_ends_ci(const TYPE_CHAR * psz, strsize len, const TYPE_CHA
 
    auto pszCompare = psz + offset;
 
-   return string_count_compare_ci(psz, pszSuffix, lenSuffix) == 0 ? lenSuffix : 0;
+   return string_count_compare_ci(pszCompare, pszSuffix, lenSuffix) == 0 ? lenSuffix : 0;
 
 }
 

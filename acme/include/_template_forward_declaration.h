@@ -334,17 +334,17 @@ class argument_of
 {
 public:
 
-   using type = typename smaller_type < ARGUMENT, const ARGUMENT & >::type;
+   using type = const ARGUMENT &;
 
 };
 
 
-template < >
-class argument_of < ::string >
+template < primitive_number NUMBER >
+class argument_of < NUMBER >
 {
 public:
 
-   using type = ::block;
+   using type = NUMBER;
 
 };
 

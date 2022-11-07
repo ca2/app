@@ -32,6 +32,7 @@ inline const wd32char * string_find_char(const wd32char * pszBlock, wd32char chM
 inline const wd32char * string_find_string_reverse(const wd32char * psz, const wd32char * pszFind, strsize iStart) noexcept;
 inline const wd32char * string_find_char_reverse(const wd32char * psz, wd32char ch, strsize iStart) noexcept;
 inline const wd32char * string_find_string(const wd32char * pszBlock, const wd32char * pszMatch) noexcept;
+inline const wd32char * string_find_string_ci(const wd32char * pszBlock, const wd32char * pszMatch) noexcept;
 
 
 inline wd32char character_tolower(wd32char wd32ch) noexcept;

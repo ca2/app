@@ -192,6 +192,17 @@ public:
 
    }
 
+
+   void create_assign_natural_meta_data(natural_meta_data < BASE_META_DATA > * pNew)
+   {
+
+      auto i = pNew->natural_add_ref();
+
+      this->m_pdata = pNew->get_data();
+
+   }
+
+
    void assign_natural_meta_data(natural_meta_data < BASE_META_DATA > * pNew)
    {
 

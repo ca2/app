@@ -477,14 +477,14 @@ inline void  flood_characters(wd32char * pwsz, wd32char wch, strsize len) noexce
 //}
 
 
-inline wd32char character_tolower(wd32char ch) noexcept { return wd32_char_isalpha(ch); }
-inline wd32char character_toupper(wd32char ch) noexcept { return wd32_char_isalpha(ch); }
+inline wd32char character_tolower(wd32char ch) noexcept { return wd32_char_tolower(ch); }
+inline wd32char character_toupper(wd32char ch) noexcept { return wd32_char_toupper(ch); }
 
 
-inline bool character_isdigit(wd32char ch) noexcept { return wd32_char_isalpha(ch); }
+inline bool character_isdigit(wd32char ch) noexcept { return wd32_char_isdigit(ch); }
 inline bool character_isalpha(wd32char ch) noexcept { return wd32_char_isalpha(ch); }
-inline bool character_isalnum(wd32char ch) noexcept { return wd32_char_isalpha(ch); }
-inline bool character_isspace(wd32char ch) noexcept { return wd32_char_isalpha(ch); }
+inline bool character_isalnum(wd32char ch) noexcept { return wd32_char_isalnum(ch); }
+inline bool character_isspace(wd32char ch) noexcept { return wd32_char_isspace(ch); }
 
 
 

@@ -90,10 +90,10 @@ namespace user
    }
 
 
-   void text::_001SetText(const ::string & psz, strsize iLen, const ::action_context & context)
+   void text::_001SetText(const ::string & str, strsize iLen, const ::action_context & context)
    {
 
-      _001SetText(string(psz, iLen),context);
+      _001SetText(string(str, 0, iLen),context);
 
    }
 

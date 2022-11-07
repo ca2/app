@@ -9,7 +9,10 @@
 #include "string_iterator.h"
 #include "acme/exception/debug.h"
 
-
+enum enum_canonical
+{
+   e_canonical,
+};
 
 template < typename TYPE_CHAR >
 class string_base :
@@ -30,7 +33,11 @@ public:
    string_base(enum_get_buffer, strsize len) { get_string_buffer(len); }
    string_base(string_base && s) noexcept : POINTER(e_no_initialize) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
    template < primitive_character CHARACTER2 >
-   string_base(const CHARACTER2 * pszSource, strsize start = 0, strsize len = -1);
+   string_base(const CHARACTER2 * pszSource) : string_base(pszSource, 0, string_safe_length(pszSource)) {}
+   template < primitive_character CHARACTER2 >
+   string_base(const CHARACTER2 * pszSource, strsize len) : string_base(pszSource, 0, len) {}
+   template < primitive_character CHARACTER2 >
+   string_base(const CHARACTER2 * pszSource, strsize start, strsize len);
 //   string_base(const ansichar * pansichar, strsize len);
 //   string_base(const ansichar * pansichar, strsize len, strsize pos) : string_base(pansichar + pos, len) { }
    string_base(const block & block);
@@ -41,9 +48,15 @@ public:
 //   string_base(const wd32char * pwd32char, strsize len);
 //   string_base(const wd32char * pwd32char, strsize len, strsize pos) : string_base(pwd32char + pos, len) { }
    //template < primitive_character CHARACTER2 >
-   string_base(const string_base & str, strsize start = 0, strsize len = -1);
+   string_base(const string_base & str) : string_base(str, 0, str.get_length()) { }
+   string_base(const string_base & str, strsize len) : string_base(str, 0, len) { }
+   string_base(const string_base & str, strsize start, strsize len);
    template < primitive_character CHARACTER2 >
-   string_base(const string_base < CHARACTER2 > & strSource, strsize start = 0, strsize len = -1);
+   string_base(const string_base < CHARACTER2 > & strSource) : string_base(strSource, 0, strSource.get_length()) {}
+   template < primitive_character CHARACTER2 >
+   string_base(const string_base < CHARACTER2 > & strSource, strsize len) : string_base(strSource, 0, len) {}
+   template < primitive_character CHARACTER2 >
+   string_base(const string_base < CHARACTER2 > & strSource, strsize start, strsize len);
    //string_base(const ansistring & wd32str);
    //string_base(const wd16string & wd16str);
    //string_base(const wd32string & wd32str);

@@ -19,6 +19,10 @@ CLASS_DECL_ACME int trailingBytesForUTF8(ansichar ch);
 //#include "acme/primitive/collection/bit_array.h"
 #include "___ch.h"
 
+#include "__sz.h"
+
+#include "__unicode.h"
+
 
 
 

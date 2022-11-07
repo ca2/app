@@ -48,7 +48,11 @@ namespace acme
 
    system::system()
    {
+
       m_psubsystem = ::acme::acme::g_p->m_psubsystem;
+
+      m_psubsystem->m_pcontext = this;
+
 #ifdef PARALLELIZATION_PTHREAD
 #if defined(__APPLE__)
       m_bJoinable = true;
@@ -931,7 +935,7 @@ namespace acme
 
 #else
 
-      auto plibrary = __new(::acme::library);
+      auto plibrary = __create_new < ::acme::library >();
 
       //plibrary->initialize_matter(this);
 

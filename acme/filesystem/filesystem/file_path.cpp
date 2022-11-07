@@ -565,38 +565,113 @@ CLASS_DECL_ACME string defer_solve_relative(const char * pszRelative, const char
 
 //CLASS_DECL_ACME bool read_resource_as_file(const char * pszFile,HINSTANCE hinst,::u32 nID,LPCTSTR pcszType);
 
+const char * string_reverse_span_excluding(const char * psz, const char * pszBegin, const char * pszExcluding)
+{
 
+   while (psz >= pszBegin)
+   {
+
+      auto pszCheck = pszExcluding;
+
+      while(*pszCheck)
+      {
+
+         if (*psz == *pszCheck)
+         {
+
+            return psz;
+
+         }
+
+         pszCheck++;
+
+      }
+
+      psz--;
+
+   }
+
+   return nullptr;
+
+}
+
+
+const char * string_reverse_span_including(const char * psz, const char * pszBegin, const char * pszIncluding)
+{
+
+   while (psz >= pszBegin)
+   {
+
+      auto pszCheck = pszIncluding;
+
+      bool bIncludesAny = false;
+
+      while(*pszCheck)
+      {
+
+         if (*psz == *pszCheck)
+         {
+
+            bIncludesAny = true;
+
+         }
+
+         pszCheck++;
+
+      }
+
+      if(!bIncludesAny)
+      {
+
+         return psz;
+
+      }
+
+      psz--;
+
+   }
+
+   return nullptr;
+
+}
+
+
+// 1. /folder/name
+// 2. /name
 string file_path_folder(const char * path1)
 {
 
-   const char * psz = path1 + strlen(path1) - 1;
-   while (psz >= path1)
+   const char * psz = path1 + string_safe_length(path1) - 1;
+
+   auto pszSeparator = string_reverse_span_excluding(psz, path1, "\\/:");
+
+// 1. /folder/
+// 2. /
+
+   if(!pszSeparator)
    {
-      if (*psz != '\\' && *psz != '/' && *psz != ':')
-         break;
-      psz--;
-   }
-   while (psz >= path1)
-   {
-      if (*psz == '\\' || *psz == '/' || *psz == ':')
-         break;
-      psz--;
-   }
-   if (psz >= path1) // strChar == "\\" || strChar == "/"
-   {
-      const char * pszEnd = psz;
-      /*while(psz >= path1)
-       {
-       if(*psz != '\\' && *psz != '/' && *psz != ':')
-       break;
-       psz--;
-       }*/
-      return string(path1, pszEnd - path1);
-   }
-   else
-   {
+
       return "";
+
    }
+
+   auto pszLastFolderCharacter = string_reverse_span_including(pszSeparator, path1, "\\/:");
+
+// 1. /folder
+// 2. nullptr
+
+   if(pszLastFolderCharacter)
+   {
+
+      pszSeparator = pszLastFolderCharacter + 1;
+
+   }
+
+// 1. /folder/
+// 2. /
+
+   return string(path1, pszSeparator - path1);
+
 }
 
 

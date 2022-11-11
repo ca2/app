@@ -6,6 +6,7 @@
 #include "acme/user/user/check.h"
 #include "acme/user/user/text.h"
 #include "acme/user/user/command_update_target.h"
+#include "message.h"
 
 
 namespace message
@@ -18,11 +19,11 @@ namespace message
    public:
 
 
-      ::pointer<::channel>                       m_pcommandtargetSource;
-      atom                                           m_atomControl;     // menu item or other index
+      ::pointer<::channel>                         m_pcommandtargetSource;
+      atom                                         m_atomControl;     // menu item or other index
       index                                        m_iIndex;
       ::count                                      m_iCount;        // last + 1 for iterating m_iIndex
-      pointer_array < ::channel >                   m_commandtargetptraHandle;
+      pointer_array < ::channel >                  m_commandtargetptraHandle;
 
       bool                                         m_bEnable;
       enum_check                                   m_echeck; // m_bCheckChanged is similar to m_echeck != undefined
@@ -43,7 +44,7 @@ namespace message
       bool                                         m_bHasCommandHandler;
 
 
-      command(::object * pobject = nullptr);
+      command(::particle * pparticle = nullptr);
       command(const ::atom & atom);
 
 

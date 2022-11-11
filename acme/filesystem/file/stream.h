@@ -1,11 +1,14 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+
+
 //#define __EXCHANGE(xxx) binary_stream < FILE >.stream_exchange(__STRING(xxx), m_##xxx)
 //#define __TYPE_EXCHANGE(xxx) binary_stream < FILE >.stream_exchange(__STRING(xxx), t.m_##xxx)
 
 //class payload_stream;
-class text_stream;
+
 
 // Use cases:
 // - Entry point_i32 convenience syntax sugar
@@ -84,9 +87,9 @@ class text_stream;
 
 
 template < typename OBJECT >
-inline void __exchange(::binary_stream < FILE > & s, ::pointer<OBJECT>& pobject)
+inline void __exchange(::binary_stream < FILE > & s, ::pointer<OBJECT>& pparticle)
 {
-   __exchange(s, __typed_defer_create(pobject));
+   __exchange(s, __typed_defer_create(pparticle));
 }
 
 
@@ -99,17 +102,17 @@ inline void __exchange_array(::binary_stream < FILE > & s, const ARRAY & array) 
 
 inline void __exchange(::binary_stream < FILE > & s, const ::file::path_array & patha) { __exchange_array(s, patha); }
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-inline void __exchange(::binary_stream < FILE > & s, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array) { __exchange_array(s, (::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > &)array); }
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void __exchange(::binary_stream < FILE > & s, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array) { __exchange_array(s, (::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > &)array); }
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-inline void __exchange(::binary_stream < FILE > & s, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array) { __exchange_array(s, (::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > &)array); }
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void __exchange(::binary_stream < FILE > & s, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array) { __exchange_array(s, (::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > &)array); }
 
-template < typename TYPE, enum_type t_etypePayload = e_type_element >
-inline void __exchange(::binary_stream < FILE > & s, const ::numeric_array < TYPE, t_etypePayload > & array) { __exchange_array(s, (::numeric_array < TYPE, t_etypePayload > &) array); }
+template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+inline void __exchange(::binary_stream < FILE > & s, const ::numeric_array < TYPE, m_etypeContainer > & array) { __exchange_array(s, (::numeric_array < TYPE, m_etypeContainer > &) array); }
 
-template < typename Type, typename RawType, enum_type t_etypePayload >
-inline void __exchange(::binary_stream < FILE > & s, const ::string_array_base < Type, RawType, t_etypePayload > & array) { __exchange_array(s, (::string_array_base < Type, RawType, t_etypePayload > &) array); }
+template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+inline void __exchange(::binary_stream < FILE > & s, const ::string_array_base < Type, RawType, m_etypeContainer > & array) { __exchange_array(s, (::string_array_base < Type, RawType, m_etypeContainer > &) array); }
 
 template < typename ARRAY >
 inline void __exchange_save_array(::binary_stream < FILE > & s, ARRAY & array);
@@ -117,17 +120,17 @@ inline void __exchange_save_array(::binary_stream < FILE > & s, ARRAY & array);
 template < typename ARRAY >
 inline void __exchange_load_array(::binary_stream < FILE > & s, ARRAY & array);
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-inline void __exchange(::binary_stream < FILE > & s, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array);
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void __exchange(::binary_stream < FILE > & s, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array);
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-inline void __exchange(::binary_stream < FILE > & s, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array);
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void __exchange(::binary_stream < FILE > & s, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array);
 
-template < typename TYPE, enum_type t_etypePayload = e_type_element >
-inline void __exchange(::binary_stream < FILE > & s, ::numeric_array < TYPE, t_etypePayload > & array);
+template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
+inline void __exchange(::binary_stream < FILE > & s, ::numeric_array < TYPE, m_etypeContainer > & array);
 
-template < typename Type, typename RawType, enum_type t_etypePayload >
-inline void __exchange(::binary_stream < FILE > & s, ::string_array_base < Type, RawType, t_etypePayload > & array);*/
+template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+inline void __exchange(::binary_stream < FILE > & s, ::string_array_base < Type, RawType, m_etypeContainer > & array);*/
 
 
 #define FIRST_VERSION 0
@@ -149,19 +152,73 @@ enum e_set_loading
 };
 
 
+#pragma pack(push, print_formatting, 1)
 
 
-class CLASS_DECL_ACME stream_base :
-   virtual public ::object
+class print_formatting
+{
+public:
+
+
+   ::file::fmtflags           m_fmtflags;
+   ::i8                       m_width;
+   ::i8                       m_precision;
+
+
+   print_formatting & operator <<(::file::fmtflags e)
+   {
+
+      m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) | ((::i32)e));
+
+      return *this;
+
+   }
+
+
+   filesize precision() const { return m_precision; }
+
+   filesize precision(i8 prec) { return m_precision = prec; }
+
+   filesize width() const { return m_width; }
+
+   filesize width(i8 wide) { return m_width = wide; }
+
+
+   ::file::fmtflags setf(::file::fmtflags flagsAdd)
+   {
+
+      m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) | ((::i32)flagsAdd));
+
+   }
+
+
+   ::file::fmtflags setf(::file::fmtflags flagsAdd, ::file::fmtflags flagsRemove)
+   {
+
+      setf(flagsAdd);
+
+      m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) & (~(::i32)flagsAdd));
+
+   }
+
+
+
+};
+
+
+#pragma pack(pop, print_formatting)
+
+
+class stream_base :
+   public FLAGS,
+   public print_formatting
+//class CLASS_DECL_ACME stream_base
 {
 public:
 
 
    e_str_flag                 m_estrflag;
    ::file::e_iostate          m_iostate;
-   ::file::fmtflags           m_fmtflags;
-   filesize                   m_width;
-   filesize                   m_precision;
    memsize                    m_gcount;
 
 
@@ -176,11 +233,11 @@ public:
       //m_iVersion = FIRST_VERSION;
 
    }
-   stream_base(const ::stream_base & meta) = default;
-   stream_base(::stream_base && meta) = default;
+   stream_base(const ::stream_base & meta) = delete;
+   stream_base(::stream_base && meta) = delete;
 
 
-   virtual ::file::file * get_file() = 0;
+   //virtual ::file::file * get_file() = 0;
 
 
    //bool bad() const
@@ -234,18 +291,6 @@ public:
    //   return fail();
 
    //}
-
-   filesize precision() const;
-
-   filesize precision(filesize prec);
-
-   filesize width() const;
-
-   filesize width(filesize wide);
-
-
-   ::file::fmtflags setf(::file::fmtflags flagsAdd);
-   ::file::fmtflags setf(::file::fmtflags flagsAdd, ::file::fmtflags flagsRemove);
 
 };
 
@@ -352,7 +397,7 @@ public:
 //   void add_exception(const ::exception & e) override;
 //   void on_catch_all_exception() override;
 //
-//   virtual void write_element(const ::atom & atom, ::element * pelement);
+//   virtual void write_element(const ::atom & atom, ::particle * pparticle);
 //
 //   virtual ::pointer<::element>read_element(const ::atom & atom);
 //
@@ -489,7 +534,7 @@ public:
 //   virtual void write(const ::payload & payload);
 //   virtual void write(const property & property);
 //   virtual void write(const ::string & str) ;
-//   virtual void write(const ::matter * pobject);
+//   virtual void write(const ::particle * pparticle);
 //   virtual void write(const ::matter & matter);
 //   virtual void write(const property_set & set);
 //   virtual void write(const block & block);
@@ -535,7 +580,7 @@ public:
 //   virtual void read_var_body(::payload & payload, enum_type etype);
 //   virtual void read(property & property);
 //   virtual void read(string & str);
-//   //virtual void read(::matter * pobject);
+//   //virtual void read(::particle * pparticle);
 //   virtual void read(::matter & matter);
 //   virtual void read(::property_set & set);
 //   virtual void read(block & block);
@@ -578,7 +623,7 @@ public:
 //   virtual void exchange(const ::atom & atom, ::payload & payload);
 //   virtual void exchange(const ::atom & atom, property & property);
 //   virtual void exchange(const ::atom & atom, string & str) ;
-//   virtual void exchange(const ::atom & atom, ::matter * pobject);
+//   virtual void exchange(const ::atom & atom, ::particle * pparticle);
 //   virtual void exchange(const ::atom & atom, ::matter & matter);
 //   virtual void exchange(const ::atom & atom, property_set & set);
 //   virtual void exchange(const ::atom & atom, block & block);
@@ -660,7 +705,7 @@ public:
 //
 //
 //   template < typename BASE_TYPE >
-//   inline binary_stream < FILE > & save_object(const BASE_TYPE * pobject);
+//   inline binary_stream < FILE > & save_object(const BASE_TYPE * pparticle);
 //
 //   template < typename BASE_TYPE >
 //   inline ::pointer<BASE_TYPE>load_object();
@@ -843,7 +888,7 @@ public:
 //
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const property & property) { s.write(property); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::matter * pobject) { s.write(pobject); return s; }
+//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::particle * pparticle) { s.write(pparticle); return s; }
 //
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::matter & matter) { s.write(matter); return s; }
 //

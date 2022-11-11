@@ -3,6 +3,7 @@
 
 
 #include "address.h"
+#include "acme/primitive/primitive/object.h"
 
 
 namespace networking
@@ -79,8 +80,8 @@ namespace networking
 
       //};
 
-      //::mutex                                            m_mutexCache;
-      //::mutex                                            m_mutexReverseCache;
+      //::pointer < ::mutex >                                            m_pmutexCache;
+      //::pointer < ::mutex >                                            m_pmutexReverseCache;
       //string_map < dns_cache_item >                      m_mapCache;
       //string_map < ::pointer<reverse_cache_item >>      m_mapReverseCache;
       //array < ::pointer<reverse_cache_item >>           m_reversecacheaRequest;
@@ -90,7 +91,7 @@ namespace networking
       ~networking() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       virtual void destroy() override;
 
 

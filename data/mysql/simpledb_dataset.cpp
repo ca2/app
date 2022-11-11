@@ -313,7 +313,7 @@ namespace simpledb
       if(straTable.get_count() == 1)
       {
          string strTable = straTable[0];
-         if(::str().begins_eat_ci(strTable, "table:"))
+         if(strTable.begins_eat_ci("table:"))
          {
             ::simpledb::table table(dynamic_cast < ::simpledb::base * > (db), strTable);
             ::simpledb::record_row recrow;
@@ -434,7 +434,7 @@ namespace simpledb
       string str;
       while(true)
       {
-         ::str().increment(psz);
+         unicode_increment(psz);
          string qc2 = ::str().get_utf8_char(psz);
          //string str = utf8_to_unicode(qc2);
          if(qc2.is_empty())
@@ -445,7 +445,7 @@ namespace simpledb
             break;
          str += qc2;
       }
-      ::str().increment(psz);
+      unicode_increment(psz);
       pszXml = psz;
       return str;
    }

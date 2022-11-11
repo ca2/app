@@ -1,8 +1,10 @@
 #include "framework.h"
 #include "dir_system.h"
 #include "file_system.h"
-#include "file_watcher.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/parallelization/event.h"
+#include "acme/primitive/string/_string.h"
+#include "apex/filesystem/file/watcher.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/session.h"
@@ -11,6 +13,8 @@
 
 dir_system::dir_system()
 {
+
+   m_pathUpload = "C:\\upload";
 
 }
 
@@ -21,10 +25,10 @@ dir_system::~dir_system()
 }
 
 
-void dir_system::initialize(::object * pobject)
+void dir_system::initialize(::particle * pparticle)
 {
 
-   /*auto estatus = */ ::object::initialize(pobject);
+   /*auto estatus = */ ::object::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -33,7 +37,7 @@ void dir_system::initialize(::object * pobject)
 
    //}
 
-   auto psystem = m_psystem;
+   auto psystem = acmesystem();
 
    m_pathModule = psystem->m_pacmedirectory->module();
 
@@ -52,7 +56,7 @@ void dir_system::init_system()
 //
 //   }
 //
-   m_pathInstall = m_psystem->m_pacmedirectory->install();
+   m_pathInstall = acmedirectory()->install();
 
    auto psystem = get_system()->m_papexsystem;
 
@@ -96,7 +100,7 @@ void dir_system::init_system()
 
    m_pfilewatcher.create(this);
 
-   pacmedirectory->create(m_psystem->m_pacmedirectory->bookmark());
+   pacmedirectory->create(acmedirectory()->bookmark());
 
    //if (!update_module_path())
    //{
@@ -112,7 +116,7 @@ void dir_system::init_system()
 
    //}
 
-   string strRelative = m_psystem->m_pacmedirectory->app_relative();
+   string strRelative = acmedirectory()->app_relative();
 
    m_pathDefaultAppData = compute_default_app_data_path();
 
@@ -182,7 +186,7 @@ void dir_system::init_system()
 ::file::path dir_system::compute_default_app_data_path()
 {
 
-   return m_psystem->m_pacmedirectory->home() / "application";
+   return acmedirectory()->home() / "application";
 
 }
 

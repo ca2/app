@@ -3,17 +3,17 @@
 
 //template < class T >
 //template < typename OBJECT >
-//inline pointer < T > & pointer < T >::alloc(OBJECT * pobject)
+//inline pointer < T > & pointer < T >::alloc(OBJECT * pparticle)
 //{
 //
-//   return ::alloc(*this, pobject);
+//   return ::alloc(*this, pparticle);
 //
 //}
 //
 
 //template < class T >
 //template < typename OBJECT >
-//inline pointer < T > & pointer < T >::defer_alloc(OBJECT * pobject)
+//inline pointer < T > & pointer < T >::defer_alloc(OBJECT * pparticle)
 //{
 //
 //   if (is_set())
@@ -23,7 +23,7 @@
 //
 //   }
 //
-//   return ::alloc(*this, pobject);
+//   return ::alloc(*this, pparticle);
 //
 //}
 

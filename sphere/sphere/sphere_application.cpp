@@ -6,11 +6,11 @@ namespace sphere
 
 
 
-   application::application(::object * pobject) :
-      ::aura::application(pobject),
-      ::axis::application(pobject),
-      ::base::application(pobject),
-      ::aura::application(pobject)
+   application::application(::particle * pparticle) :
+      ::aura::application(pparticle),
+      ::axis::application(pparticle),
+      ::base::application(pparticle),
+      ::aura::application(pparticle)
    {
 
       m_bContextTheme = true;
@@ -682,11 +682,11 @@ namespace sphere
             alt1:
             if(pcreate->m_payloadFile.get_type() == ::e_type_string)
             {
-               if(::str().ends_ci(pcreate->m_payloadFile, ".ca2"))
+               if(string_ends_ci(pcreate->m_payloadFile, ".ca2"))
                {
-                  string strCommand = pcontext->m_papexcontext->file().as_string(pcreate->m_payloadFile);
-                  if(::str().begins_eat(strCommand, "ca2prompt\r")
-                  || ::str().begins_eat(strCommand, "ca2prompt\n"))
+                  string strCommand = pcontext->m_papexcontext->file()->as_string(pcreate->m_payloadFile);
+                  if(strCommand.begins_eat("ca2prompt\r")
+                  || strCommand.begins_eat("ca2prompt\n"))
                   {
                      strCommand.trim();
                      add_fork_uri(strCommand);
@@ -802,7 +802,7 @@ namespace sphere
 
    //   string strSentinelPath;
 
-   //   strSentinelPath = pcontext->m_papexcontext->dir().install() / "stage/x86/app.sentinel.exe";
+   //   strSentinelPath = pcontext->m_papexcontext->dir()->install() / "stage/x86/app.sentinel.exe";
 
    //   pcontext->m_papexcontext->os().local_machine_set_run("ca2 app.sentinel", "\"" + strSentinelPath + "\"", true);
 

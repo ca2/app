@@ -33,7 +33,7 @@ inline bool linux_dir_myspace(char ch)
 
    path = pathHome / ".config/user-dirs.dirs";
 
-   string strDirs = m_psystem->m_pacmefile->as_string(path);
+   string strDirs = acmefile()->as_string(path);
 
    string_array stra;
 
@@ -52,7 +52,7 @@ inline bool linux_dir_myspace(char ch)
 
    path = stra[0];
 
-   ::str().begins_eat_ci(path, strPrefix);
+   path.begins_eat_ci(strPrefix);
 
    path.replace("$HOME", pathHome);
 
@@ -81,10 +81,10 @@ namespace linux
    }
 
 
-   void dir_context::initialize(::object * pobject)
+   void dir_context::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      auto estatus = ::object::initialize(pparticle);
 
       if (!estatus)
       {
@@ -118,13 +118,13 @@ namespace linux
 
       m_pdirsystem->m_pathCa2 = pathCa2;
 
-            auto psystem = m_psystem->m_paurasystem;
+            auto psystem = acmesystem()->m_paurasystem;
 
       auto pxml = psystem->xml();
 
       auto pdocument= pxml->create_document();
 
-      pdocument->load(pcontext->m_papexcontext->file().as_string(appdata() /"configuration\\directory.xml"));
+      pdocument->load(pcontext->m_papexcontext->file()->as_string(appdata() /"configuration\\directory.xml"));
 
       if(pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
       {
@@ -248,7 +248,7 @@ namespace linux
 
             ::file::listing straDir;
 
-            pcontext->m_papexcontext->dir().ls_dir(straDir, listing.m_pathFinal);
+            pcontext->m_papexcontext->dir()->ls_dir(straDir, listing.m_pathFinal);
 
             for(i32 i = 0; i < straDir.get_count(); i++)
             {
@@ -277,7 +277,7 @@ namespace linux
 
                listing.m_pathFinal = strDir;
 
-               pcontext->m_papexcontext->dir().ls(listing);
+               pcontext->m_papexcontext->dir()->ls(listing);
 
 
             }
@@ -291,7 +291,7 @@ namespace linux
 
             listing.m_bRecursive = false;
 
-            pcontext->m_papexcontext->dir().ls_file(listing, listing.m_pathFinal);
+            pcontext->m_papexcontext->dir()->ls_file(listing, listing.m_pathFinal);
 
          }
 
@@ -315,7 +315,7 @@ namespace linux
 
             auto & strPath = stra[i];
 
-            if(!::str().begins(strPath, listing.m_pathFinal))
+            if(!string_begins(strPath, listing.m_pathFinal))
                continue;
 
             bool bIsDir;
@@ -368,7 +368,7 @@ namespace linux
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(         auto psystem = m_psystem;
+      if(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -554,7 +554,7 @@ pacmedirectory->is(path))
                try
                {
 
-                  pcontext->m_papexcontext->file().del(str);
+                  pcontext->m_papexcontext->file()->del(str);
 
                }
                catch(...)
@@ -569,7 +569,7 @@ pacmedirectory->is(path))
                try
                {
 
-                  pcontext->m_papexcontext->file().del(str);
+                  pcontext->m_papexcontext->file()->del(str);
 
                }
                catch(...)
@@ -700,7 +700,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::userquicklaunch(::object * pobject)
+   ::file::path dir_context::userquicklaunch(::particle * pparticle)
    {
 
       ::file::path path;
@@ -712,7 +712,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::userprograms(::object * pobject)
+   ::file::path dir_context::userprograms(::particle * pparticle)
    {
 
       ::file::path path;
@@ -747,7 +747,7 @@ pacmedirectory->is(path))
    bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return ::str().begins_ci(pszDir, pszPath);
+      return string_begins_ci(pszDir, pszPath);
 
    }
 

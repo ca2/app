@@ -4,11 +4,19 @@
 #pragma once
 
 
+#include "acme/platform/department.h"
+#include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+
+
 CLASS_DECL_AURA ::user::interaction_impl * __interaction_impl(::windowing::window * pwindow);
 
 
 namespace windowing
 {
+
+
+   using display_map = iptr_map < ::pointer<display > >;
 
 
    class CLASS_DECL_AURA windowing :
@@ -24,9 +32,9 @@ namespace windowing
 
       display_map                               m_displaymap;
 
-      ::mutex                                   m_mutexDisplay;
-      ::mutex                                   m_mutexWindow;
-      ::mutex                                   m_mutexMonitor;
+      ::pointer < ::mutex >                                   m_pmutexDisplay;
+      ::pointer < ::mutex >                                   m_pmutexWindow;
+      ::pointer < ::mutex >                                   m_pmutexMonitor;
 
 
       bool                                      m_bSettingCursorMatter;
@@ -57,9 +65,9 @@ namespace windowing
       
 
 
-      ::aura::application* get_app() const;
-      ::aura::session* get_session() const;
-      ::aura::system* get_system() const;
+      ::aura::application* get_app();
+      ::aura::session* get_session();
+      ::aura::system* get_system();
 
 
       virtual void _initialize_windowing();
@@ -206,7 +214,7 @@ namespace windowing
       void windowing_get_posted_payload_synchronously(OBJECT_POINTER preturning, OBJECT_METHOD returning_method, PAYLOAD_POINTER ppayload)
       {
 
-         return ::material_object::__get_posted_payload_synchronously(this, &windowing::windowing_post, preturning, returning_method, ppayload);
+         return ::matter::__get_posted_payload_synchronously(this, &windowing::windowing_post, preturning, returning_method, ppayload);
 
       }
 

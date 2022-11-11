@@ -2,6 +2,10 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+
+
 class nano_window;
 
 

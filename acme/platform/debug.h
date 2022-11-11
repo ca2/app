@@ -253,16 +253,6 @@ typedef struct _MEMORY_STATE
 //CLASS_DECL_ACME string FormatMessageFromSystem(u32 dwError);
 
 
-#ifdef MEMDLEAK
-
-CLASS_DECL_ACME string get_mem_info_report1();
-CLASS_DECL_ACME ::count get_mem_info(i32 ** ppiUse, const char *** ppszFile, const char *** pszCallStack, u32 ** ppuiLine, size_t ** ppsize);
-#ifdef WINDOWS
-CLASS_DECL_ACME ::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize);
-#endif
-
-
-#endif
 
 
 
@@ -318,7 +308,7 @@ CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const char * pszTag, cons
 
 
 
-//extern CLASS_DECL_ACME ::mutex * g_pmutexMemoryCounters;
+//extern CLASS_DECL_ACME ::pointer< ::mutex > g_pmutexMemoryCounters;
 
 //CLASS_DECL_ACME bool memory_counter_on();
 
@@ -326,7 +316,7 @@ CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const char * pszTag, cons
 
 
 
-namespace papaya
+namespace acme
 {
    template < typename T >
    T constraint(T t, T tMin, T tMax)
@@ -342,7 +332,7 @@ namespace papaya
 //inline enum_trace_level trace_level_constraint(enum_trace_level elevel)
 //{
 //
-//   return ::papaya::constraint(elevel, e_trace_level_none, e_trace_level_count);
+//   return ::acme::constraint(elevel, e_trace_level_none, e_trace_level_count);
 //
 //}
 

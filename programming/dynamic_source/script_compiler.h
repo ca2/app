@@ -59,9 +59,9 @@ namespace dynamic_source
       //::file::path                              m_strTime;
 
 
-      ::mutex                                     m_mutex;
+      ::pointer < ::mutex >                                     m_pmutex;
 
-      ::mutex                                     m_mutexLibrary;
+      ::pointer < ::mutex >                                     m_pmutexLibrary;
 
 
       script_compiler();

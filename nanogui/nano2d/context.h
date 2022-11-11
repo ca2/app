@@ -10,6 +10,7 @@ namespace nano2d
 
 
    class NANOGUI_EXPORT context :
+      virtual public ::particle,
 		public NANO2D_CONTEXT
 	{
 	public:

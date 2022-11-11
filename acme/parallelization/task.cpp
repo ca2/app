@@ -1,5 +1,21 @@
 ﻿#include "framework.h"
-#include "acme/operating_system.h"
+#include "task.h"
+#include "manual_reset_event.h"
+#include "acme/exception/exception.h"
+#include "acme/platform/system.h"
+#include "acme/exception/exit.h"
+#include "acme/exception/interface_only.h"
+#include "acme/exception/translator.h"
+#include "acme/parallelization/synchronous_lock.h"
+
+
+#include "acme/exception/_text_stream.h"
+#include "acme/_operating_system.h"
+
+
+bool on_init_thread();
+
+void on_term_thread();
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -14,7 +30,7 @@
 CLASS_DECL_ACME void clear_message_queue(itask_t idthread);
 
 
-CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
+CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
 
 
 task::task()
@@ -64,10 +80,10 @@ task::~task()
 
 
 
-void task::on_initialize_object()
+void task::on_initialize_particle()
 {
 
-   /*auto estatus =*/ ::object::on_initialize_object();
+   /*auto estatus =*/ ::object::on_initialize_particle();
 
    //if(!estatus)
    //{
@@ -193,7 +209,7 @@ bool task::task_set_name(const char* pszTaskName)
 bool task::task_get_run() const
 {
 
-   return !is_finishing();
+   return !has_finishing_flag();
 
 }
 
@@ -229,7 +245,7 @@ bool task::check_tasks_finished()
 
    auto b = ::object::check_tasks_finished();
 
-   if (is_finishing())
+   if (has_finishing_flag())
    {
 
       update_task_ready_to_quit();
@@ -264,12 +280,35 @@ void task::on_pre_run_task()
 }
 
 
+bool task::on_init_task()
+{
+
+   if (!::on_init_thread())
+   {
+
+      return false;
+    
+   }
+
+   return true;
+
+}
+
+
+void task::on_term_task()
+{
+
+   ::on_term_thread();
+
+}
+
+
 void task::main()
 {
 
    __task_init();
 
-   if(defer_implement(m_psystem))
+   if(defer_implement(acmesystem()))
    {
 
       return;
@@ -298,7 +337,7 @@ void task::main()
    catch(::exception & exception)
    {
 
-      message_box_synchronous(this, exception.m_strMessage, m_psystem->m_strAppId, e_message_box_ok, exception.m_strDetails);
+      message_box_synchronous(this, exception.m_strMessage, acmesystem()->m_strAppId, e_message_box_ok, exception.m_strDetails);
 
    }
    catch(...)
@@ -319,7 +358,7 @@ void task::run()
 
       run_posted_procedures();
 
-      if (defer_implement(m_psystem))
+      if (defer_implement(m_pcontext))
       {
 
          return;
@@ -482,7 +521,7 @@ void* task::s_os_task(void* p)
 
       clear_message_queue(ptask->m_itask);
 
-      ptask->set(e_flag_task_terminated);
+      ptask->set_flag(e_flag_task_terminated);
 
       ptask->destroy();
 
@@ -538,7 +577,7 @@ void* task::s_os_task(void* p)
 
       }
 
-      ::thread_release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(ptask, ""));
+      ::task_release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(ptask, ""));
 
    }
    catch (...)
@@ -554,9 +593,9 @@ void* task::s_os_task(void* p)
 bool task::is_task_registered() const
 {
    
-   auto psystem = m_psystem;
+   auto pcontext = m_pcontext;
 
-   return psystem->get_task_id(this) != 0;
+   return pcontext->acmesystem()->get_task_id(this) != 0;
 
 }
 
@@ -564,9 +603,9 @@ bool task::is_task_registered() const
 void task::register_task()
 {
 
-   auto psystem = m_psystem;
+   auto pcontext = m_pcontext;
 
-   psystem->set_task(m_itask, this);
+   pcontext->acmesystem()->set_task(m_itask, this);
 
 }
 
@@ -574,9 +613,9 @@ void task::register_task()
 void task::unregister_task()
 {
 
-   auto psystem = m_psystem;
+   auto pcontext = m_pcontext;
 
-   psystem->unset_task(m_itask, this);
+   pcontext->acmesystem()->unset_task(m_itask, this);
 
 }
 
@@ -591,7 +630,7 @@ void task::post_procedure(const ::procedure & procedure)
 
    }
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    m_procedurea.add(procedure);
 
@@ -603,7 +642,7 @@ void task::post_procedure(const ::procedure & procedure)
 void task::run_posted_procedures()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if (m_procedurea.has_element())
    {
@@ -631,20 +670,20 @@ void task::run_posted_procedures()
 }
 
 
-//void task::add_notify(::element* pelement)
+//void task::add_notify(::particle * pparticle)
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   notify_array().add_item(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 //
 //}
 //
 //
-//void task::erase_notify(::element* pelement)
+//void task::erase_notify(::particle * pparticle)
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   if (m_pnotifya)
 //   {
@@ -743,7 +782,7 @@ void task::term_task()
 
    //}
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    //if (m_pnotifya)
    //{
@@ -801,11 +840,11 @@ void task::term_task()
 //   //while (!m_bSetFinish)
 //   //{
 //
-//   //   ::element* pelement;
+//   //   ::particle * pparticle;
 //
 //   //   {
 //
-//   //      synchronous_lock synchronouslock(mutex());
+//   //      synchronous_lock synchronouslock(this->synchronization());
 //
 //   //      pelement = m_pelement.m_p;
 //
@@ -866,7 +905,7 @@ bool task::has_message() const
 
 
 //void task::branch(
-//   ::element* pelement,
+//   ::particle * pparticle,
 //   ::enum_priority epriority,
 //   u32 nStackSize,
 //   u32 uCreateFlags ARG_SEC_ATTRS)
@@ -881,7 +920,7 @@ bool task::has_message() const
 //}
 
 
-::pointer<::task>task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+::pointer<::task>task::branch(const ::create_task_attributes & createtaskattributes)
 {
 
    if (m_atom.is_empty())
@@ -1001,7 +1040,7 @@ bool task::has_message() const
 
    m_bIsRunning = true;
 
-   set(e_flag_task_started);
+   set_flag(e_flag_task_started);
 
    if (::is_null(m_pobjectParentTask))
    {
@@ -1018,7 +1057,7 @@ bool task::has_message() const
       if (::is_null(pobjectParentTask))
       {
 
-         pobjectParentTask = m_psystem;
+         pobjectParentTask = m_pcontext;
 
       }
 
@@ -1046,7 +1085,13 @@ bool task::has_message() const
 
    DWORD dwThread = 0;
 
-   m_htask = ::CreateThread((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, nStackSize, (LPTHREAD_START_ROUTINE) &::task::s_os_task, (LPVOID)(task*)this, uCreateFlags, &dwThread);
+   m_htask = ::CreateThread(
+      (LPSECURITY_ATTRIBUTES)(createtaskattributes.m_psecurityattributes ? createtaskattributes.m_psecurityattributes->get_os_security_attributes() : nullptr),
+      createtaskattributes.m_uStackSize, 
+      (LPTHREAD_START_ROUTINE) & ::task::s_os_task, 
+      (LPVOID)(task *)this,
+      createtaskattributes.m_uCreateFlags,
+      &dwThread);
 
    m_itask = dwThread;
 
@@ -1056,10 +1101,10 @@ bool task::has_message() const
 
    pthread_attr_init(&taskAttr);
 
-   if (nStackSize > 0)
+   if (createtaskattributes.m_uStackSize > 0)
    {
 
-      pthread_attr_setstacksize(&taskAttr, nStackSize); // Set the stack size of the task
+      pthread_attr_setstacksize(&taskAttr, createtaskattributes.m_uStackSize); // Set the stack size of the task
 
    }
 
@@ -1095,10 +1140,10 @@ bool task::has_message() const
 }
 
 
-::pointer<::task>task::branch_synchronously(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+::pointer<::task>task::branch_synchronously(const ::create_task_attributes & createtaskattributes)
 {
 
-   unset_finishing();
+   clear_finishing_flag();
 
    ENSURE(m_htask == (htask_t) nullptr);
 
@@ -1161,12 +1206,12 @@ bool task::has_message() const
 //
 //#endif
 //
-   //auto pobject = this;
+   //auto pparticle = this;
 
-   //if (::is_set(pobject) && pobject != this)
+   //if (::is_set(pparticle) && pparticle != this)
    //{
 
-   //   pobject->add_composite(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+   //   pparticle->add_composite(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
    //}
 
@@ -1179,7 +1224,7 @@ bool task::has_message() const
 
    //auto estatus = branch(epriority, nStackSize, uiCreateFlags);
 
-   branch(epriority, nStackSize, uCreateFlags);
+   branch(createtaskattributes);
 
    if (m_htask == 0)
    {
@@ -1360,7 +1405,7 @@ bool task::has_message() const
 //      if (::is_null(pobjectParentTask))
 //      {
 //
-//         pobjectParentTask = m_psystem;
+//         pobjectParentTask = acmesystem();
 //
 //      }
 //
@@ -1463,7 +1508,7 @@ bool task::task_sleep(const class ::wait & wait)
 
 }
 
-//void task::branch(::element * pelement, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+//void task::branch(::particle * pparticle, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   auto ptask = __new(task);
@@ -1560,7 +1605,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait)
 
       {
 
-         synchronous_lock synchronouslock(ptask->mutex());
+         synchronous_lock synchronouslock(ptask->synchronization());
 
          if (ptask->m_pevSleep.is_null())
          {
@@ -1602,7 +1647,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync)
+CLASS_DECL_ACME bool __task_sleep(::task* ptask, ::particle * pparticle)
 {
 
    try
@@ -1611,7 +1656,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync)
       while (ptask->task_get_run())
       {
 
-         psync->wait(100_ms);
+         pparticle->_wait(100_ms);
 
       }
 
@@ -1626,7 +1671,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, synchronization_object* psync)
+CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, ::particle * pparticle)
 {
 
    if (wait < 1000_ms)
@@ -1639,7 +1684,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, synchr
 
       }
 
-      psync->_wait(wait);
+      pparticle->_wait(wait);
 
       return ptask->task_get_run();
 
@@ -1844,7 +1889,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //}
 //
 //
-//CLASS_DECL_ACME bool __simple_task_sleep(synchronization_object* psync)
+//CLASS_DECL_ACME bool __simple_task_sleep(synchronization* psync)
 //{
 //
 //   while (task_get_run())
@@ -1864,7 +1909,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //}
 //
 //
-//CLASS_DECL_ACME bool __simple_task_sleep(class ::wait wait, synchronization_object* psync)
+//CLASS_DECL_ACME bool __simple_task_sleep(class ::wait wait, synchronization* psync)
 //{
 //
 //   auto iMillisecond = wait.m_iMillisecond;
@@ -1909,7 +1954,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //}
 //
 
-//CLASS_DECL_ACME bool acme_task_sleep(::duration ::duration, synchronization_object* psync)
+//CLASS_DECL_ACME bool acme_task_sleep(::duration ::duration, synchronization* psync)
 //{
 //
 //   if (::is_null(psync))
@@ -1951,7 +1996,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 
 //PFN_task_sleep g_pfnThreadSleep = acme_task_sleep;
 
-//CLASS_DECL_ACME bool tas_sleep(::duration ::duration, synchronization_object* psync)
+//CLASS_DECL_ACME bool tas_sleep(::duration ::duration, synchronization* psync)
 //{
 //
 //   return g_pfnThreadSleep(::duration, psync);
@@ -1991,6 +2036,125 @@ CLASS_DECL_ACME bool is_main_thread()
 {
 
    return get_current_itask() == get_main_user_itask();
+
+}
+
+
+CLASS_DECL_ACME bool predicate_Sleep(int iTime, ::function < bool(void) > functionOkToSleep)
+{
+
+   if (iTime < 100)
+   {
+
+      preempt(100_ms);
+
+   }
+   else
+   {
+
+      iTime += 99;
+
+      iTime /= 100;
+
+      for (index i = 0; i < iTime; i++)
+      {
+
+         preempt(100_ms);
+
+         if (!::task_get_run() || !functionOkToSleep())
+         {
+
+            break;
+
+         }
+
+      }
+
+   }
+
+   return ::task_get_run();
+
+}
+
+
+
+
+
+
+void preempt()
+{
+
+   if (!::task_get_run())
+   {
+
+      auto ptask = ::get_task();
+
+      throw ::exit_exception(ptask);
+
+   }
+
+}
+
+
+tracer trace_log_information() { return ::get_task()->trace_log_information(); }
+tracer trace_log_warning() { return ::get_task()->trace_log_warning(); }
+tracer trace_log_error() { return ::get_task()->trace_log_error(); }
+tracer trace_log_fatal() { return ::get_task()->trace_log_fatal(); }
+
+
+
+
+
+
+//thread_local thread_local_particle * task_guard::t_pthreadlocalparticleList = nullptr;
+//
+//
+//
+//thread_local_particle::thread_local_particle()
+//{
+//
+//   m_pthreadlocalparticleNext = task_guard::t_pthreadlocalparticleList;
+//
+//
+//   task_guard::t_pthreadlocalparticleList = this;
+//
+//
+//}
+//
+//
+//thread_local_particle::~thread_local_particle()
+//{
+//
+//   //// todo removed
+//
+//}
+
+
+task_guard::task_guard()
+{
+
+   on_init_thread();
+
+}
+
+
+task_guard::~task_guard()
+{
+
+   //auto p = t_pthreadlocalparticleList;
+
+   //while(p)
+   //{
+
+   //   auto pNext = t_pthreadlocalparticleList->m_pthreadlocalparticleNext;
+
+   //   ::release(p);
+
+   //   p = pNext;
+
+   //}
+
+   on_term_thread();
 
 }
 

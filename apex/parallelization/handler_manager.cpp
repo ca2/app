@@ -1,6 +1,9 @@
 ﻿#include "framework.h"
 #include "handler_manager.h"
 #include "acme/parallelization/asynchronous.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/parallelization/task.h"
 
 
 //handler_manager::handler_manager(const string& strThreadName, bool bSingleThread, int iAliveCount) :
@@ -12,7 +15,7 @@
 //   m_bUseDedicatedThread(false)
 //{
 //
-//   defer_create_mutex();
+//   defer_create_synchronization();
 //
 //}
 //
@@ -21,7 +24,7 @@
 handler_manager::handler_manager()
 {
    
-   defer_create_mutex();
+   defer_create_synchronization();
    
 }
    
@@ -33,12 +36,12 @@ handler_manager::~handler_manager()
 }
 
 
-//void handler_manager::initialize_handler_manager(::object * pobject, const string & strThreadName, bool bSingleThread, int iAliveCount)
-void handler_manager::initialize_handler_manager(::object * pobject, const string & strThreadName, int iAliveCount)
+//void handler_manager::initialize_handler_manager(::particle * pparticle, const string & strThreadName, bool bSingleThread, int iAliveCount)
+void handler_manager::initialize_handler_manager(::particle * pparticle, const string & strThreadName, int iAliveCount)
 {
 
-   //auto estatus = initialize(pobject);
-   initialize(pobject);
+   //auto estatus = initialize(pparticle);
+   initialize(pparticle);
 
    /*if (!estatus)
    {
@@ -84,7 +87,7 @@ void handler_manager::handle_synchronously(const ::procedure & procedure)
    if (m_bUseDedicatedThread)
    {
 
-      __material_send_procedure(this, this, &handler_manager::handle_asynchronously, procedure);
+      __matter_send_procedure(this, this, &handler_manager::handle_asynchronously, procedure);
 
    }
    else
@@ -125,7 +128,7 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_procedurea.add(procedure);
 
@@ -157,7 +160,7 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
 ::procedure handler_manager::pick_new_task()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if (m_procedurea.is_empty())
    {
@@ -202,7 +205,7 @@ void handler_manager::on_start_loop()
 //   if (m_bSingleThread)
 //   {
 //
-//      auto psystem = m_psystem;
+//      auto psystem = acmesystem();
 //
 //      auto pnode = psystem->node();
 //

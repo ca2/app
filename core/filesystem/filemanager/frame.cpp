@@ -1,9 +1,7 @@
 #include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
 #include "frame.h"
 #include "tab_impact.h"
+#include "acme/constant/message.h"
 
 
 namespace filemanager

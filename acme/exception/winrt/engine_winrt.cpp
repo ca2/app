@@ -48,8 +48,8 @@ namespace exception
    static PReadProcessMemoryRoutine s_readMemoryFunction = nullptr;
    static LPVOID s_readMemoryFunction_UserData = nullptr;
 
-   engine::engine(::matter * pobject) :
-      matter(pobject)
+   engine::engine(::particle * pparticle) :
+      matter(pparticle)
    {
 
    }

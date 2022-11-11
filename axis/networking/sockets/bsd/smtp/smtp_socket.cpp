@@ -1,7 +1,12 @@
 #include "framework.h"
+#include "smtp_socket.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/string/base64.h"
-#include "axis/networking/_networking.h"
+#include "acme/primitive/string/parse.h"
+#include "acme/primitive/string/str.h"
+#include "apex/networking/email.h"
+//#include "axis/networking/_networking.h"
 
 
 namespace sockets
@@ -14,10 +19,10 @@ namespace sockets
    }
 
 
-   void smtp_socket::initialize(::object * pobject)
+   void smtp_socket::initialize(::particle * pparticle)
    {
 
-      tcp_socket::initialize(pobject);
+      tcp_socket::initialize(pparticle);
 
       SetLineProtocol();
 
@@ -70,7 +75,7 @@ namespace sockets
             
             string strWord = pa.getword();
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
             auto pbase64 = psystem->base64();
 
@@ -79,21 +84,21 @@ namespace sockets
             if(::str().find_ci("username", strRequest) >= 0)
             {
 
-               auto psystem = m_psystem;
+               auto psystem = acmesystem();
 
                auto pbase64 = psystem->base64();
 
-               strResponse = pbase64->encode(m_pcontext->m_papexcontext->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
+               strResponse = pbase64->encode(file()->as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
                print(strResponse + "\r\n");
             }
             else if(::str().find_ci("password", strRequest) >= 0)
             {
 
-               auto psystem = m_psystem;
+               auto psystem = acmesystem();
 
                auto pbase64 = psystem->base64();
 
-               strResponse = pbase64->encode(m_pcontext->m_papexcontext->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_pass.txt"));
+               strResponse = pbase64->encode(file()->as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_pass.txt"));
 
                print(strResponse + "\r\n");
 
@@ -128,7 +133,7 @@ namespace sockets
 
             m_estate = state_body;
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
             auto pbase64 = psystem->base64();
 

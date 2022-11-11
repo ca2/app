@@ -1,7 +1,8 @@
 #include "framework.h"
-
-
+#include "acme/primitive/primitive/function.h"
 #include "acme/operating_system.h"
+
+
 #include <vector>
 
 void __wide_append(memory & memory, const char * psz);
@@ -22,7 +23,7 @@ void __wide_append_null(memory & memory);
 void file_dialog_from_platform(
    void * poswindow,
    const std::vector<std::pair<std::string, std::string>> & filetypesParam,
-   ::std::function < void(const std::vector<std::string> &) > function,
+   const ::function < void(const std::vector<std::string> &) > & function,
    bool save, bool multiple)
 {
 

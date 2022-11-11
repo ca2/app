@@ -1,8 +1,8 @@
 #include "framework.h" // previously aura/user/user.h
 
 
-ErrorHandlerWriter::ErrorHandlerWriter(::object * pobject) :
-   object(pobject)
+ErrorHandlerWriter::ErrorHandlerWriter(::particle * pparticle) :
+   object(pparticle)
 {
 }
 

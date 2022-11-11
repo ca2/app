@@ -6,6 +6,7 @@
 //
 #include "framework.h"
 #include "authenticator.h"
+#include "acme/exception/exception.h"
 
 
 namespace account

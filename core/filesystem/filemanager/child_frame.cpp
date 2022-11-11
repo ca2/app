@@ -1,11 +1,11 @@
-#include "framework.h"
-#include "aura/graphics/image/icon.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
+﻿#include "framework.h"
 #include "child_frame.h"
 #include "file_list.h"
 #include "document.h"
+#include "acme/constant/message.h"
+#include "acme/filesystem/file/item_array.h"
+#include "acme/handler/item.h"
+#include "aura/graphics/image/icon.h"
 
 
 namespace filemanager

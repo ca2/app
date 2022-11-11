@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "edit.h"
 #include "document.h"
+#include "acme/exception/exception.h"
 
 
 namespace xml

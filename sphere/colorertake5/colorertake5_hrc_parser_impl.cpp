@@ -6,11 +6,11 @@ namespace colorertake5
 {
 
 
-   HRCParserImpl::HRCParserImpl(::object * pobject) :
-      object(pobject),
-      fileTypeHash(pobject),
-      schemeHash(pobject),
-      regionNamesHash(pobject)
+   HRCParserImpl::HRCParserImpl(::particle * pparticle) :
+      object(pparticle),
+      fileTypeHash(pparticle),
+      schemeHash(pparticle),
+      regionNamesHash(pparticle)
    {
       regionNamesVector.allocate(0, 203);
       fileTypeVector.allocate(0, 203);
@@ -60,7 +60,7 @@ namespace colorertake5
       }
       thisType->inputSourceLoading = true;
 
-      thisType->m_strSource = pcontext->m_papexcontext->file().as_string(thisType->m_strSourceLocation);
+      thisType->m_strSource = pcontext->m_papexcontext->file()->as_string(thisType->m_strSourceLocation);
 
       try
       {
@@ -296,7 +296,7 @@ namespace colorertake5
             };
             type->m_strSourceLocation = m_strCurrentSourceLocation.sibling(locationLink);
             /*type->m_strSource =
-            pcontext->m_papexcontext->file().as_string(
+            pcontext->m_papexcontext->file()->as_string(
             type->m_strSourceLocation);*/
 
          };
@@ -794,9 +794,9 @@ namespace colorertake5
                next->kwList->firstChar->add_char(::str().get_utf8_char(param));
                if (!isCase)
                {
-                  next->kwList->firstChar->add_char(::str::ch().to_lower_case(param));
-                  next->kwList->firstChar->add_char(::str::ch().to_upper_case(param));
-                  next->kwList->firstChar->add_char(::str::ch().to_title_case(param));
+                  next->kwList->firstChar->add_char(unicode_to_lower_case(param));
+                  next->kwList->firstChar->add_char(unicode_to_upper_case(param));
+                  next->kwList->firstChar->add_char(unicode_to_title_case(param));
                };
                next->kwList->num++;
                if (next->kwList->minKeywordLength > pIDs[pos].keyword.get_length())

@@ -11,7 +11,7 @@ namespace sip
    public:
 
 
-      response(::object * pobject, const string & version = "HTTP/1.0");
+      response(::particle * pparticle, const string & version = "HTTP/1.0");
       response(const response& src);
       ~response();
 

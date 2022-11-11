@@ -110,16 +110,16 @@ timespec_from_ms(const u32 ::duration)
    return time;
 }
 
-serial::serial_impl::serial_impl(::object * pobject, const string & port, unsigned long baudrate,
+serial::serial_impl::serial_impl(::particle * pparticle, const string & port, unsigned long baudrate,
    enum_byte_size ebytesize,
    enum_parity eparity, enum_stop_bit estopbit,
    enum_flow_control eflowcontrol)
-   : object(pobject), m_strPort(port), m_iFd(-1), m_bOpened(false), m_bXonXoff(false), m_bRtsCts(false),
+   : object(pparticle), m_strPort(port), m_iFd(-1), m_bOpened(false), m_bXonXoff(false), m_bRtsCts(false),
    m_ulBaudrate(baudrate), m_eparity(eparity),
    m_ebytesize(ebytesize), m_estopbit(estopbit), m_eflowcontrol(eflowcontrol)
 {
-   pthread_mutex_init(&this->m_mutexRead, nullptr);
-   pthread_mutex_init(&this->m_mutexWrite, nullptr);
+   pthread_mutex_init(&this->m_pmutexRead, nullptr);
+   pthread_mutex_init(&this->m_pmutexWrite, nullptr);
    if (m_strPort.empty() == false)
       open();
 }
@@ -127,8 +127,8 @@ serial::serial_impl::serial_impl(::object * pobject, const string & port, unsign
 serial::serial_impl::~serial_impl()
 {
    close();
-   pthread_mutex_destroy(&this->m_mutexRead);
-   pthread_mutex_destroy(&this->m_mutexWrite);
+   pthread_mutex_destroy(&this->m_pmutexRead);
+   pthread_mutex_destroy(&this->m_pmutexWrite);
 }
 
 void
@@ -1112,7 +1112,7 @@ serial::serial_impl::getCD()
 void
 serial::serial_impl::readLock()
 {
-   int result = pthread_mutex_lock(&this->m_mutexRead);
+   int result = pthread_mutex_lock(&this->m_pmutexRead);
    if (result)
    {
       THROW(io_exception, result);
@@ -1122,7 +1122,7 @@ serial::serial_impl::readLock()
 void
 serial::serial_impl::readUnlock()
 {
-   int result = pthread_mutex_unlock(&this->m_mutexRead);
+   int result = pthread_mutex_unlock(&this->m_pmutexRead);
    if (result)
    {
       THROW(io_exception, result);
@@ -1132,7 +1132,7 @@ serial::serial_impl::readUnlock()
 void
 serial::serial_impl::writeLock()
 {
-   int result = pthread_mutex_lock(&this->m_mutexWrite);
+   int result = pthread_mutex_lock(&this->m_pmutexWrite);
    if (result)
    {
       THROW(io_exception, result);
@@ -1142,7 +1142,7 @@ serial::serial_impl::writeLock()
 void
 serial::serial_impl::writeUnlock()
 {
-   int result = pthread_mutex_unlock(&this->m_mutexWrite);
+   int result = pthread_mutex_unlock(&this->m_pmutexWrite);
    if (result)
    {
       THROW(io_exception, result);

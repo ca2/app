@@ -1,6 +1,13 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/filesystem/filesystem/path.h"
+
+
+class string2a;
+
+
 namespace multimedia
 {
 
@@ -15,7 +22,7 @@ namespace multimedia
 
 
       ::file::path                  m_pathOrigin;
-      ::pointer<decoder_plugin>    m_pplugin;
+      ::pointer<decoder_plugin>     m_pplugin;
       bool                          m_bDecoderDecode;
 
 

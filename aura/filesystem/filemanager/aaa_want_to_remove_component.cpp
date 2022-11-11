@@ -25,14 +25,14 @@ namespace filemanager
    }
 
 
-   string create_manager_id(::object* pobject)
+   string create_manager_id(::object* pparticle)
    {
 
       memory mem;
 
       mem.set_size(get_manager_id_byte_len());
 
-      Sys(pobject).math().random_bytes(mem.get_data(), mem.get_size());
+      Sys(pparticle).math().random_bytes(mem.get_data(), mem.get_size());
 
       return mem.to_hex().uppered();
 
@@ -162,10 +162,10 @@ namespace filemanager
    }
 
 
-   void component::initialize_filemanager_component(::object * pobject)
+   void component::initialize_filemanager_component(::particle * pparticle)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      auto estatus = ::object::initialize(pparticle);
 
       if (!estatus)
       {
@@ -385,11 +385,11 @@ namespace filemanager
 
          __keep(m_bRestoring);
 
-         if (pathFilemanagerProject.is_empty() || pcontext->m_papexcontext->dir().is(pathFilemanagerProject)
+         if (pathFilemanagerProject.is_empty() || pcontext->m_papexcontext->dir()->is(pathFilemanagerProject)
                || pathFilemanagerProject.extension().compare_ci("component") != 0)
          {
 
-            m_pathFilemanagerProject =          auto psystem = m_psystem;
+            m_pathFilemanagerProject =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -407,16 +407,16 @@ pacmedirectory->localconfig() / "user.component";
 
          {
 
-            ::mutex m(e_create_new, "Local\\ca2-filemanagers");
+            ::pointer < ::mutex > m(e_create_new, "Local\\ca2-filemanagers");
 
             synchronous_lock synchronouslock(&m);
 
-            stra.add_lines(pcontext->m_papexcontext->file().as_string(m_pathFilemanagerProject), true);
+            stra.add_lines(pcontext->m_papexcontext->file()->as_string(m_pathFilemanagerProject), true);
 
          }
 
 
-         if (pcontext->m_papexcontext->dir().is(pathFilemanagerProject))
+         if (pcontext->m_papexcontext->dir()->is(pathFilemanagerProject))
          {
 
             stra.add(create_manager_id(this) + ":" + pathFilemanagerProject);
@@ -568,11 +568,11 @@ pacmedirectory->localconfig() / "user.component";
 
       //{
 
-      //   ::mutex m(e_create_new, "Local\\ca2-filemanagers");
+      //   ::pointer < ::mutex > m(e_create_new, "Local\\ca2-filemanagers");
 
       //   synchronous_lock synchronouslock(&m);
 
-      //   pcontext->m_papexcontext->file().put_contents(m_pathFilemanagerProject, stra.implode("\r\n"));
+      //   pcontext->m_papexcontext->file()->put_contents(m_pathFilemanagerProject, stra.implode("\r\n"));
 
       //}
 
@@ -800,7 +800,7 @@ pacmedirectory->localconfig() / "user.component";
 
 //      pathFolder = pcreate->m_payloadFile;
 
-//      if (pcontext->m_papexcontext->dir().is(pathFolder))
+//      if (pcontext->m_papexcontext->dir()->is(pathFolder))
 //      {
 
 //         pathFolder.m_iDir = 1;
@@ -931,7 +931,7 @@ pacmedirectory->localconfig() / "user.component";
 
 //      pathFolder = pcreate->m_payloadFile;
 
-//      if (pcontext->m_papexcontext->dir().is(pathFolder))
+//      if (pcontext->m_papexcontext->dir()->is(pathFolder))
 //      {
 
 //         pathFolder.m_iDir = 1;

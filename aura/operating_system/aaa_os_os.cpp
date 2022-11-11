@@ -31,7 +31,7 @@ CLASS_DECL_AURA void set_command_line_dup(const ::string & psz)
 
    ::file::path pathFolder = ::dir::program_data();
 
-   string strAppId = get_command_line_param(psz, "app");
+   string strAppId = get_command_line_parameter(psz, "app");
 
    if (strAppId.has_char())
    {
@@ -40,9 +40,9 @@ CLASS_DECL_AURA void set_command_line_dup(const ::string & psz)
 
       ::file::path path = pathFolder / "last_command_line.txt";
 
-      m_psystem->m_pacmefile->put_contents(path, get_command_line_string());
+      acmefile()->put_contents(path, get_command_line_string());
 
-      ::file::path pathExecutable = consume_param(psz, nullptr);
+      ::file::path pathExecutable = consume_command_line_parameter(psz, nullptr);
 
       string strAppTitle = executable_title_from_appid(strAppId);
 
@@ -51,7 +51,7 @@ CLASS_DECL_AURA void set_command_line_dup(const ::string & psz)
       if (file_is_equal_path_dup(pathExecutable.title(), strAppTitle))
       {
 
-         m_psystem->m_pacmefile->put_contents(path, pathExecutable);
+         acmefile()->put_contents(path, pathExecutable);
 
       }
 

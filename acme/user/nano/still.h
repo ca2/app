@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "child.h"
+
+
 class nano_device;
 
 

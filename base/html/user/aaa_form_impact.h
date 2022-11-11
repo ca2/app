@@ -18,8 +18,8 @@ public:
    ~html_form_impact() override;
 
 
-   void assert_ok() const override;
-   void dump(dump_context & dumpcontext) const override;
+   // void assert_ok() const override;
+   // void dump(dump_context & dumpcontext) const override;
 
    string GetLocationURL();
    bool Refresh2(i32 i);

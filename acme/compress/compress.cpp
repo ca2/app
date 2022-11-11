@@ -1,7 +1,7 @@
 // Created by camilo from gz on 2021-11-10 10:0743 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
-#include "acme/filesystem/file/transfer.h"
 #include "compress.h"
+#include "acme/exception/interface_only.h"
 
 
 compress::compress()
@@ -31,7 +31,6 @@ void compress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
    throw ::interface_only();
 
 }
-
 
 
 ::u32 compress::crc32(::u32 uCrc, const ::block& block)

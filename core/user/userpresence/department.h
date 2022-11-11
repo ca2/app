@@ -24,7 +24,7 @@ namespace userpresence
       ~department() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
       void destroy() override;
 
 

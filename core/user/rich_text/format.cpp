@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "format.h"
+#include "acme/platform/flags.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/platform/system.h"
@@ -17,7 +18,7 @@ namespace user
       format::format()
       {
 
-         defer_create_mutex();
+         defer_create_synchronization();
          
          m_bBold = false;
          m_bItalic = false;
@@ -37,7 +38,7 @@ namespace user
       //{
 
 
-      //   defer_create_mutex();
+      //   defer_create_synchronization();
 
       //   m_bBold = false;
       //   m_bItalic = false;
@@ -60,7 +61,7 @@ namespace user
 
       //   initialize_user_rich_text_format(format.m_pcontainer);
 
-      //   defer_create_mutex();
+      //   defer_create_synchronization();
 
       //   operator = (format);
 
@@ -79,7 +80,7 @@ namespace user
 
          m_pcontainer = pcontainer;
 
-         auto psystem = m_psystem->m_paurasystem;
+         auto psystem = acmesystem()->m_paurasystem;
 
          auto pnode = psystem->node();
 

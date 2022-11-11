@@ -1,4 +1,8 @@
 ﻿#include "framework.h"
+#include "acme/exception/interface_only.h"
+#include "acme/primitive/string/string.h"
+
+
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 #include <arpa/inet.h>
 #endif
@@ -437,7 +441,7 @@ CLASS_DECL_NETWORKING_BSD::string __string_inet_ntop(int iFamily, const void * p
 
       int iErrNo = errno;
 
-      auto estatus = errno_to_status(iErrNo);
+      auto estatus = errno_status(iErrNo);
 
       throw ::exception(estatus, "Failed to convert IP4 Address to text");
 

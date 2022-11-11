@@ -41,7 +41,7 @@ inline  void           from_string(wd32char sz[n], const ansichar * psz);
 
 inline  void           from_string(::atom & atom, const ansichar * psz);
 
-inline void from_string(::element & element, const ansichar * psz);
+inline void from_string(::particle & element, const ansichar * psz);
 
 
 

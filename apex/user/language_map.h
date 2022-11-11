@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/collection/string_array.h"
+
+
 namespace user
 {
 
@@ -11,22 +16,22 @@ namespace user
    public:
 
 
-      INT_STRING *                                 m_pintstring;
-      string_map < ::pointer<::user::language >>  m_languagemap;
-      string_array                                 m_straLang;
-      string                                       m_strLang;
-      string_to_string *                           m_pstringmap;
-      ::pointer<::user::language>                 m_planguage;
+      ::i32_sz *                                      m_pintstring;
+      string_map < ::pointer<::user::language >>      m_languagemap;
+      string_array                                    m_straLang;
+      string                                          m_strLang;
+      string_to_string *                              m_pstringmap;
+      ::pointer<::user::language>                     m_planguage;
 
 
       language_map();
-      virtual ~language_map();
+      ~language_map() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
-      virtual bool set_language_resource_map(INT_STRING * pstringintLanguageResourceMap);
+      virtual bool set_language_resource_map(::i32_sz * pstringintLanguageResourceMap);
 
       virtual string load_podata(string strLang, bool bOnlyHeader = false);
 

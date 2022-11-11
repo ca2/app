@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 class CLASS_DECL_ACME task_pool :
    virtual public object
 {
@@ -13,7 +16,7 @@ protected:
 public:
 
 
-   id_map < ::pointer<::task >>  m_map;
+   atom_map < ::pointer<::task >>  m_map;
 
 
    task_pool();

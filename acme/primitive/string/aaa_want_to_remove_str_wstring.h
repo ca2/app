@@ -19,7 +19,7 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const char * psz);
 //
 //
 //   friend class wstring;
-//   friend class wtostring;
+//   friend class wstring_adaptor;
 //
 //
 //   static unichar * get_nil();
@@ -102,7 +102,7 @@ public:
 
 
 //
-//   friend class wtostring;
+//   friend class wstring_adaptor;
 //
 //   // it is and should be really a pointer to the m_pwsz of a wstring_data alloced in heap
 //   // better always use wstring_data::alloc and wstring_data::free

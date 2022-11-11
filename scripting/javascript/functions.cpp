@@ -24,10 +24,10 @@
  */
 
 #include "framework.h"
-//#include "aura/net/sockets/_.h"
+////#include "aura/net/sockets/_.h"
 //
 //
-//#include "net/_.h"
+////#include "net/_.h"
 
 
 //#ifdef __DEBUG
@@ -93,7 +93,7 @@ bool is_only_digits(const ::string & strParam)
       return false;
    while(true)
    {
-      if(!ansi_char_is_digit(*psz))
+      if(!ansi_char_isdigit(*psz))
          return false;
       psz++;
       if(*psz == '\0')

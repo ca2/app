@@ -4,8 +4,10 @@
 #pragma once
 
 
-#include "acme/user/nano/_nano.h"
-
+#include "acme/user/nano/window_implementation.h"
+#include "event_listener.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include <cairo.h>
 
 
 namespace xcb
@@ -48,7 +50,7 @@ namespace xcb
       ::nano::display * get_display() override;
 
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
       void create() override;
 

@@ -29,12 +29,12 @@ namespace datetime
       }
 
 
-      void calendar::initialize(::object * pobject)
+      void calendar::initialize(::particle * pparticle)
       {
 
          //auto estatus = 
          
-         ::object::initialize(pobject);
+         ::object::initialize(pparticle);
 
          //if (!estatus)
          //{
@@ -153,7 +153,7 @@ namespace datetime
       string calendar::GetWeekDay(const ::text::context* pcontext, int32_t iWeekDay) // 1 - domingo
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pdatetime = psystem->datetime();
 
@@ -165,7 +165,7 @@ namespace datetime
       string calendar::GetTinyWeekDay(const ::text::context* pcontext, int32_t iWeekDay) // 1 - domingo
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pdatetime = psystem->datetime();
 
@@ -177,7 +177,7 @@ namespace datetime
       string calendar::GetMonth(const ::text::context* pcontext, int32_t iMonth)
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pdatetime = psystem->datetime();
 

@@ -1,6 +1,12 @@
 ﻿#include "framework.h"
-
+#include "acme/exception/exception.h"
+#include "acme/filesystem/file/item_array.h"
+#include "acme/networking/url_department.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system_setup.h"
+#include "apex/platform/create.h"
+#include "apex/platform/os_context.h"
+#include "apex/platform/savings.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/user/user/user.h"
@@ -91,12 +97,12 @@ namespace aura
    }
 
 
-   void session::on_initialize_object()
+   void session::on_initialize_particle()
    {
 
       //auto estatus = 
       
-      ::aqua::session::on_initialize_object();
+      ::aqua::session::on_initialize_particle();
 
       //if(!estatus)
       //{
@@ -107,7 +113,7 @@ namespace aura
 
       //estatus = 
       
-      ::aura::context::on_initialize_object();
+      ::aura::context::on_initialize_particle();
 
       //if(!estatus)
       //{
@@ -116,7 +122,7 @@ namespace aura
 
       //}
 
-      //estatus = ::user::style_base::on_initialize_object();
+      //estatus = ::user::style_base::on_initialize_particle();
 
       //if(!estatus)
       //{
@@ -130,12 +136,12 @@ namespace aura
    }
 
 
-   void session::initialize(::object * pobject)
+   void session::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::aqua::session::initialize(pobject);
+      ::aqua::session::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -146,7 +152,7 @@ namespace aura
 
       m_pauracontext = this;
 
-      //m_pnode = m_psystem->node();
+      //m_pnode = acmenode();
 
       m_pimplPendingFocus2             = nullptr;
 
@@ -361,12 +367,12 @@ namespace aura
 
       }
 
-      if (::str().ends_ci(strPathName, ".ca2"))
+      if (strPathName.ends_ci(".ca2"))
       {
 
       }
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -379,7 +385,7 @@ namespace aura
 
          string str = purl->get_object(strPathName);
 
-         ::str().begins_eat(str, "/");
+         str.begins_eat("/");
 
          pcreate->m_payloadFile = str;
 
@@ -1363,7 +1369,7 @@ namespace aura
 
    //         {
 
-   //            synchronous_lock synchronouslock(mutex());
+   //            synchronous_lock synchronouslock(this->synchronization());
 
    //            ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -1570,7 +1576,7 @@ namespace aura
 //   bool session::is_key_pressed(::user::enum_key ekey)
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (m_pmapKeyPressed == nullptr)
 //      {
@@ -1645,7 +1651,7 @@ namespace aura
 //   void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (m_pmapKeyPressed == nullptr)
 //      {
@@ -1687,7 +1693,7 @@ namespace aura
    void session::on_show_user_input_popup(::user::interaction * pinteraction)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       try
       {
@@ -2190,10 +2196,10 @@ namespace aura
 
 
 
-   //void session::initialize(::object * pobject)
+   //void session::initialize(::particle * pparticle)
    //{
 
-   //   auto estatus = ::aura::session::initialize(pobject);
+   //   auto estatus = ::aura::session::initialize(pparticle);
 
    //   if (!estatus)
    //   {
@@ -2461,7 +2467,7 @@ namespace aura
    //   for (string str : straSource)
    //   {
 
-   //      if (::str().begins_eat_ci(str, "file://"))
+   //      if (str.begins_eat_ci("file://"))
    //      {
 
    //         str = purl->url_decode(str);
@@ -2514,10 +2520,10 @@ namespace aura
    }
 
 
-   ::aura::system * session::get_system() const
+   ::aura::system * session::get_system()
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::aura::system *> (m_psystem) : nullptr;
+      return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
 
    }
 

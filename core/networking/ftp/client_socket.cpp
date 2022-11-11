@@ -51,9 +51,12 @@
 #include "output_stream.h"
 #include "file.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/error.h"
 #include "apex/networking/sockets/basic/listen_socket.h"
 #include "apex/networking/sockets/transfer_socket.h"
 #include "apex/networking/sockets/base/socket_handler.h"
+#include "apex/platform/system.h"
 #include <openssl/x509.h>
 
 
@@ -105,7 +108,7 @@ namespace ftp
 
       m_econnectiontype = connection_type_plain;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_estate = e_state_initial;
 
@@ -741,7 +744,7 @@ namespace ftp
 
       }
 
-      auto paddress = SourceFtpServer.m_psystem->m_papexsystem->networking()->create_ip4_address((i32)ulIP, ushSock);
+      auto paddress = SourceFtpServer.acmesystem()->m_papexsystem->networking()->create_ip4_address((i32)ulIP, ushSock);
 
       // transmit the socket (ip ::networking::address + port) of the first FTP server to the
       // second server
@@ -1024,7 +1027,7 @@ namespace ftp
       }
 
       ::networking::address_pointer paddressTemp;
-      //auto paddress = m_psystem->m_papexsystem->networking()->create_address((i32)ulIP, ushSock);
+      //auto paddress = acmesystem()->m_papexsystem->networking()->create_address((i32)ulIP, ushSock);
       //::networking::address csaAddressTemp(INADDR_ANY, 0);
       paddressTemp = sckDataConnection.get_socket_address();
       ushLocalSock = paddressTemp->get_service_number();
@@ -1177,7 +1180,7 @@ auto tickStart = ::duration::now();
 
             {
 
-               synchronous_lock synchronouslock(sckDataConnection.mutex());
+               synchronous_lock synchronouslock(sckDataConnection.synchronization());
 
                sckDataConnection.write(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
 
@@ -1268,7 +1271,7 @@ auto tickStart = ::duration::now();
 
             {
 
-               synchronous_lock synchronouslock(mutex());
+               synchronous_lock synchronouslock(this->synchronization());
 
                iNumRead = sckDataConnection.m_pmemoryfile->erase_begin(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
 
@@ -1423,7 +1426,7 @@ auto tickStart = ::duration::now();
    void client_socket::OnLine(const ::string & strLine)
    {
 
-      single_lock synchronouslock(mutex());
+      single_lock synchronouslock(this->synchronization());
 
       m_qResponseBuffer.add_tail(strLine);
 
@@ -1450,7 +1453,7 @@ auto tickStart = ::duration::now();
 
             {
 
-               single_lock synchronouslock(mutex());
+               single_lock synchronouslock(this->synchronization());
 
                if (m_qResponseBuffer.has_elements())
                {
@@ -1526,7 +1529,7 @@ auto tickStart = ::duration::now();
          // get first response-line from buffer
          {
 
-            single_lock synchronouslock(mutex());
+            single_lock synchronouslock(this->synchronization());
 
             strResponse = m_qResponseBuffer.pick_head();
 
@@ -1648,7 +1651,7 @@ auto tickStart = ::duration::now();
             }
             else
             {
-               if (!ansi_char_is_digit(it))
+               if (!ansi_char_isdigit(it))
                   return false;
                strIpAddress += it;
             }
@@ -1662,7 +1665,7 @@ auto tickStart = ::duration::now();
             }
             else
             {
-               if (!ansi_char_is_digit(it))
+               if (!ansi_char_isdigit(it))
                   return false;
                strPort += it;
             }
@@ -1676,7 +1679,7 @@ auto tickStart = ::duration::now();
             }
             else
             {
-               if (!ansi_char_is_digit(it))
+               if (!ansi_char_isdigit(it))
                   return false;
                strPort += it;
             }

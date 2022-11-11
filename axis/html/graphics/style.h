@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/string/string.h"
+#include "acme/primitive/primitive/payload.h"
+
 
 namespace html
 {
@@ -17,7 +20,7 @@ namespace html
 
 
    class CLASS_DECL_AXIS style :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
 

@@ -27,7 +27,7 @@ namespace datetime
          virtual ~calendar();
 
 
-         virtual void initialize(::object * pobject) override;
+         virtual void initialize(::particle * pparticle) override;
 
          virtual void GetRectDay(::earth::time& time, RECTANGLE_I32 * lprect);
          virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, RECTANGLE_I32 * lprect);

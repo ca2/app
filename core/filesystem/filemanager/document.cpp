@@ -1,16 +1,21 @@
 ﻿#include "framework.h"
-#include "aura/graphics/image/icon.h"
-#include "apex/filesystem/filesystem/file_watcher.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
-#include "base/user/user/tab_pane.h"
 #include "document.h"
+#include "impact.h"
 #include "tab_impact.h"
 #include "data.h"
 #include "child_frame.h"
+#include "acme/constant/id.h"
+#include "acme/filesystem/file/item.h"
+#include "acme/filesystem/file/item_array.h"
+#include "acme/platform/system.h"
+#include "apex/filesystem/file/action.h"
+#include "apex/filesystem/file/watcher.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/fs/set.h"
+#include "apex/platform/create.h"
+#include "aura/graphics/image/icon.h"
+#include "base/user/user/tab_pane.h"
 #include "core/user/user/user.h"
-#include "impact.h"
 #include "core/platform/session.h"
 #include "core/platform/application.h"
 
@@ -32,24 +37,24 @@ namespace filemanager
 
       //command_signalid atom;
 
-      add_command_prober("levelup", this, &document::_001OnUpdateLevelUp);
-      add_command_handler("levelup", this, &document::_001OnLevelUp);
-      add_command_prober("add_location", this, &document::_001OnUpdateAddLocation);
-      add_command_handler("add_location", this, &document::_001OnAddLocation);
-      add_command_prober("replace_text_in_file_system", this, &document::_001OnUpdateReplaceText);
-      add_command_handler("replace_text_in_file_system", this, &document::_001OnReplaceText);
-      add_command_prober("edit_paste", this, &document::_001OnUpdateEditPaste);
-      add_command_handler("edit_paste", this, &document::_001OnEditPaste);
-      add_command_prober("file_save", this, &document::_001OnUpdateFileSaveAs);
-      add_command_handler("file_save", this, &document::_001OnFileSaveAs);
-      add_command_prober("cancel", this, &document::_001OnUpdateEditPaste);
-      add_command_handler("cancel", this, &document::_001OnEditPaste);
-      add_command_prober("new_manager", this, &document::_001OnUpdateNewManager);
-      add_command_handler("new_manager", this, &document::_001OnNewManager);
-      add_command_prober("del_manager", this, &document::_001OnUpdateDelManager);
-      add_command_handler("del_manager", this, &document::_001OnDelManager);
-      add_command_prober("new_folder", this, &document::_001OnUpdateNewFolder);
-      add_command_handler("new_folder", this, &document::_001OnNewFolder);
+      add_command_prober("levelup", { this,  &document::_001OnUpdateLevelUp });
+      add_command_handler("levelup", { this,  &document::_001OnLevelUp });
+      add_command_prober("add_location", { this,  &document::_001OnUpdateAddLocation });
+      add_command_handler("add_location", { this,  &document::_001OnAddLocation });
+      add_command_prober("replace_text_in_file_system", { this,  &document::_001OnUpdateReplaceText });
+      add_command_handler("replace_text_in_file_system", { this,  &document::_001OnReplaceText });
+      add_command_prober("edit_paste", { this,  &document::_001OnUpdateEditPaste });
+      add_command_handler("edit_paste", { this,  &document::_001OnEditPaste });
+      add_command_prober("file_save", { this,  &document::_001OnUpdateFileSaveAs });
+      add_command_handler("file_save", { this,  &document::_001OnFileSaveAs });
+      add_command_prober("cancel", { this,  &document::_001OnUpdateEditPaste });
+      add_command_handler("cancel", { this,  &document::_001OnEditPaste });
+      add_command_prober("new_manager", { this,  &document::_001OnUpdateNewManager });
+      add_command_handler("new_manager", { this,  &document::_001OnNewManager });
+      add_command_prober("del_manager", { this,  &document::_001OnUpdateDelManager });
+      add_command_handler("del_manager", { this,  &document::_001OnDelManager });
+      add_command_prober("new_folder", { this,  &document::_001OnUpdateNewFolder });
+      add_command_handler("new_folder", { this,  &document::_001OnNewFolder });
 
    }
 
@@ -58,6 +63,31 @@ namespace filemanager
    {
 
    }
+
+
+   ::core::application* document::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+   }
+
+
+   ::core::session* document::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
+
+
+   ::core::system* document::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+
+   }
+
 
    bool document::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocumentOther)
    {
@@ -156,7 +186,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->dir().watcher().erase_watch(m_filewatchid);
+         pcontext->m_papexcontext->dir()->watcher().erase_watch(m_filewatchid);
 
       }
 
@@ -165,9 +195,9 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         auto& dir = pcontext->m_papexcontext->dir();
+         auto pdir = pcontext->m_papexcontext->dir();
 
-         auto& watcher = dir.watcher();
+         auto& watcher = pdir->watcher();
 
          m_filewatchid = watcher.add_watch(m_pitem->final_path(), {e_as, this}, false);
 
@@ -652,15 +682,15 @@ namespace filemanager
    }
 
 
-   void document::assert_ok() const
-   {
-      ::user::document::assert_ok();
-   }
-
-   void document::dump(dump_context & dumpcontext) const
-   {
-      ::user::document::dump(dumpcontext);
-   }
+//   void document::assert_ok() const
+//   {
+//      ::user::document::assert_ok();
+//   }
+//
+//   void document::dump(dump_context & dumpcontext) const
+//   {
+//      ::user::document::dump(dumpcontext);
+//   }
 
 
    void document::start_full_browse(::pointer<::file::item>pitem, const ::action_context & context)
@@ -986,7 +1016,7 @@ namespace filemanager
    void document::_001OnEditPaste(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      //pcontext->m_papexcontext->file().paste(pfilemanagerdata->filemanager_item().m_strPath, psystem->m_strCopy);
+      //pcontext->m_papexcontext->file()->paste(pfilemanagerdata->filemanager_item().m_strPath, psystem->m_strCopy);
       //update_all_impacts(nullptr, 123, nullptr);
       //pmessage->m_bRet = true;
    }

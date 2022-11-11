@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/collection/pointer_array.h"
+
+
 namespace apex
 {
 
@@ -11,7 +14,7 @@ namespace apex
    public:
 
 
-      //application_array(::object * pobject);
+      //application_array(::particle * pparticle);
       application_array();
       application_array(const application_array & a);
       application_array(application_array && a);

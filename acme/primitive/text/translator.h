@@ -2,6 +2,10 @@
 #pragma once
 
 
+#include "acme/primitive/collection/address_array.h"
+#include "acme/primitive/primitive/object.h"
+
+
 namespace text
 {
 
@@ -12,11 +16,11 @@ namespace text
    public:
 
 
-      address_array < data * >       m_dataaddressa;
+      address_array < data * >         m_dataaddressa;
 
 
       translator();
-      virtual ~translator();
+      ~translator() override;
 
 
       void translate_text_data(data* ptextdata);

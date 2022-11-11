@@ -6,7 +6,7 @@ class CLASS_DECL_AURA machine_event
 public:
 
 
-   ::mutex      m_mutex;
+   ::pointer < ::mutex >      m_pmutex;
    bool              m_bInitialized;
 
 

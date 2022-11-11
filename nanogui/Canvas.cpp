@@ -14,6 +14,8 @@
 #include "framework.h"
 #include "Canvas.h"
 #include "Screen.h"
+#include "nano2d/context.h"
+#include "aura/graphics/image/image.h"
 #include "aura/user/user/interaction.h"
 
 

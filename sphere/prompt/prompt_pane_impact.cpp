@@ -6,11 +6,11 @@ namespace prompt
 {
 
 
-   pane_impact::pane_impact(::object * pobject) :
-      ::object(pobject),
-      ::user::tab_impact(pobject),
-      ::userex::pane_tab_impact(pobject),
-      place_holder_container(pobject)
+   pane_impact::pane_impact(::particle * pparticle) :
+      ::object(pparticle),
+      ::user::tab_impact(pparticle),
+      ::userex::pane_tab_impact(pparticle),
+      place_holder_container(pparticle)
    {
 
 
@@ -81,7 +81,7 @@ namespace prompt
       else if(get_impact_id() == CONTEXT_MENU_IMPACT)
       {
          ::pointer<::filemanager::document>pdocument =  (get_impact_uie());
-         pdocument->browse(pcontext->m_papexcontext->dir().appdata()/ "command/menu", ::e_source_system);
+         pdocument->browse(pcontext->m_papexcontext->dir()->appdata()/ "command/menu", ::e_source_system);
       }
       else
       {
@@ -123,7 +123,7 @@ namespace prompt
          pdata->m_pcallback = this;
          pdata->m_strXmlPopup = "matter://filemanager\\file_popup.xml";
 
-         bool bOk = pdata->open(get_app(), pcontext->m_papexcontext->dir().appdata() / "command/menu", ::e_source_system);
+         bool bOk = pdata->open(get_app(), pcontext->m_papexcontext->dir()->appdata() / "command/menu", ::e_source_system);
 
          if(bOk && ::is_set(pdata->m_pdocument))
          {
@@ -203,8 +203,8 @@ namespace prompt
          pdata->m_pcallback = this;
          //pdata->m_strFilePopup = "filemanager\\file_popup.xml";
 
-         //auto pdocument = pdata->browse(pcontext->m_papexcontext->dir().appdata() / "co
-         pdata->open(get_app(), pcontext->m_papexcontext->dir().appdata() / "command\\3-action-launch", ::e_source_system);
+         //auto pdocument = pdata->browse(pcontext->m_papexcontext->dir()->appdata() / "co
+         pdata->open(get_app(), pcontext->m_papexcontext->dir()->appdata() / "command\\3-action-launch", ::e_source_system);
 
          if(::is_set(pdata->m_pdocument))
          {

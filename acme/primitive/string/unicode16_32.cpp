@@ -1,11 +1,5 @@
 #include "framework.h"
-
-
-
-
-
-
-
+#include "acme/exception/exception.h"
 
 
 wd32char* wd16_to_wd32_dup(const wd16char* input, strsize input_size)

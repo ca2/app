@@ -3,6 +3,8 @@
 // Fish with Lemon, Tofu with premium soy sauce, grind ginger and chive, 
 // japanese rice, fried egg-plant, some see weed leafs and cola extra coffee.
 #include "framework.h"
+#include "enumerator.h"
+#include "listing.h"
 
 
 namespace file

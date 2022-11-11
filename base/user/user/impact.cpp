@@ -1,16 +1,20 @@
 ﻿#include "framework.h"
 #include "impact.h"
-#include "aura/message/user.h"
-#include "aura/user/user/system.h"
 #include "document.h"
 #include "frame_window.h"
 #include "impact_system.h"
 #include "toolbar.h"
-#include "base/platform/session.h"
 #include "impact_data.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/platform/system.h"
+#include "apex/platform/create.h"
+#include "aura/message/user.h"
+#include "aura/user/user/system.h"
+#include "aura/user/user/window_util.h"
+#include "base/platform/session.h"
 #include "base/user/user/place_holder.h"
 #include "base/user/user/user.h"
-#include "aura/user/user/window_util.h"
 
 
 namespace user
@@ -366,7 +370,7 @@ namespace user
    //   //if(ptopic->m_atom == id_set_edit_file)
    //   //{
 
-   //   //   post_simple_command(e_simple_command_set_edit_file, pobject);
+   //   //   post_simple_command(e_simple_command_set_edit_file, pparticle);
 
    //   //}
 
@@ -723,29 +727,29 @@ namespace user
 
 
 
-   /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact diagnostics
+//   /////////////////////////////////////////////////////////////////////////////
+//   // ::user::impact diagnostics
+//
+//   void impact::dump(dump_context & dumpcontext) const
+//   {
+//      ::user::interaction::dump(dumpcontext);
+//
+//      //if (((impact *) this)->::user::impact::get_document() != nullptr)
+//      //   dumpcontext << "with ::user::document: ";
+//      //else
+//      //   dumpcontext << "with no ::user::document\n";
+//   }
+//
+//
+//   void impact::assert_ok() const
+//   {
+//
+//      ::user::interaction::assert_ok();
+//
+//   }
 
-   void impact::dump(dump_context & dumpcontext) const
-   {
-      ::user::interaction::dump(dumpcontext);
 
-      //if (((impact *) this)->::user::impact::get_document() != nullptr)
-      //   dumpcontext << "with ::user::document: ";
-      //else
-      //   dumpcontext << "with no ::user::document\n";
-   }
-
-
-   void impact::assert_ok() const
-   {
-      
-      ::user::interaction::assert_ok();
-
-   }
-
-
-   ::base::application * impact::get_app() const 
+   ::base::application * impact::get_app()
    {
       
       return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
@@ -753,7 +757,7 @@ namespace user
    }
 
 
-   ::base::session * impact::get_session() const 
+   ::base::session * impact::get_session()
    {
       
       return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
@@ -761,15 +765,15 @@ namespace user
    }
 
 
-   ::base::system * impact::get_system() const 
+   ::base::system * impact::get_system()
    {
       
-      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
    
    }
 
 
-   ::base::user * impact::user() const 
+   ::base::user * impact::user()
    {
       
       return get_session() ? get_session()->user() : nullptr; 
@@ -1017,16 +1021,16 @@ namespace user
 
    //   //spadata.add(get_document()->m_spdata);
 
-   //   object_spa synchronization_object;
+   //   object_spa synchronization;
 
    //   for (index i = 0; i < spadata.get_count(); i++)
    //   {
 
-   //      synchronization_object.add(spadata[i].data_mutex());
+   //      synchronization.add(spadata[i].data_mutex());
 
    //   }
 
-   //   retry_multi_lock synchronouslock(synchronization_object, ::duration(1), ::duration(1));
+   //   retry_multi_lock synchronouslock(synchronization, ::duration(1), ::duration(1));
 
    //   try
    //   {

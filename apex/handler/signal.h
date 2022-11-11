@@ -2,6 +2,18 @@
 #pragma once
 
 
+
+#include "acme/handler/extended_topic.h"
+#include "acme/primitive/collection/map.h"
+#include "context.h"
+
+
+class context;
+
+using particle_context = map < ::pointer < ::particle >, ::pointer < ::context > >;
+
+
+
 class CLASS_DECL_APEX signal :
    virtual public ::extended_topic
 {
@@ -9,7 +21,7 @@ public:
 
 
    ::manager *                            m_pmanager;
-   ::matter_context                       m_mattercontext;
+   ::particle_context                     m_particlecontext;
 
 
    signal(const ::atom & atom, ::manager * pmanager = nullptr);
@@ -32,9 +44,9 @@ public:
 
    virtual void notify();
 
-   virtual void add_handler(::matter * pmatter);
+   virtual void add_handler(::particle* pparticle);
 
-   virtual void erase_handler(::matter * pmatter);
+   virtual void erase_handler(::particle * pparticle);
 
    virtual void set_modified();
 
@@ -42,12 +54,12 @@ public:
 
    virtual bool is_modified() const;
 
-   virtual ::context * listener_context(::matter * pmatter);
+   virtual ::context * listener_context(::particle * pparticle);
 
    void post_destroy_all();
 
 
-   inline ::duration poll_time() { return m_psystem->get_update_poll_time(m_atom); };
+   ::duration poll_time();
 
 
    static inline bool should_poll(const ::duration & duration)
@@ -83,7 +95,7 @@ public:
 };
 
 
-using signal_map = ::id_map < ::pointer<class ::signal>>;
+using signal_map = ::atom_map < ::pointer<class ::signal>>;
 
 
 

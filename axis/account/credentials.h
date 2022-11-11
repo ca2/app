@@ -9,6 +9,7 @@
 
 #include "storage_client.h"
 #include "user.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 namespace account
@@ -21,7 +22,7 @@ namespace account
    public:
 
 
-      ::pointer<user>                          m_puser;
+      ::pointer<user>                           m_puser;
       interactive *                             m_pinteractive;
       bool                                      m_bInteractive;
       ::e_status                                m_estatusHttp;

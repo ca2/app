@@ -2,6 +2,7 @@
 
 
 #include "object.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace draw2d
@@ -35,7 +36,7 @@ namespace draw2d
       virtual void destroy() override;
 
       
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool create_null();
@@ -97,14 +98,14 @@ namespace draw2d
 
    //   /*
    //         // CreateHatchBrush
-   //         brush_pointer(::object * pobject, i32 nIndex, ::color::color crColor) :
-   //            ::pointer<brush>(pobject)
+   //         brush_pointer(::particle * pparticle, i32 nIndex, ::color::color crColor) :
+   //            ::pointer<brush>(pparticle)
    //         {
    //            m_p->construct(nIndex, crColor);
    //         }
    //         // CreatePatternBrush
-   //         brush_pointer(::object * pobject, bitmap * pbitmap) :
-   //            ::pointer<brush>(pobject)
+   //         brush_pointer(::particle * pparticle, bitmap * pbitmap) :
+   //            ::pointer<brush>(pparticle)
    //         {
    //            m_p->construct(pbitmap);
    //         }

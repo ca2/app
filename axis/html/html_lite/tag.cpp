@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "axis/html/html_lite/_.h"
+//#include "axis/html/html_lite/_.h"
 #endif
 #include "common.h"
 #include "attributes.h"
@@ -79,7 +79,7 @@ lite_html_tag::~lite_html_tag()
 
 
    // skip leading white-space characters
-   while (::isspace(*pszBegin))
+   while (::character_isspace(*pszBegin))
 
       pszBegin++;
 
@@ -106,7 +106,7 @@ lite_html_tag::~lite_html_tag()
    }
 
    // tag names always begin with an alphabet
-   if (!::ansi_char_is_alphabetic(*pszBegin))
+   if (!::ansi_char_isalpha(*pszBegin))
 
    {
       bClosingTag = (*pszBegin == '/');
@@ -125,7 +125,7 @@ lite_html_tag::~lite_html_tag()
    {
       // tag name may contain letters (a-z, A-Z), digits (0-9),
       // underscores '_', hyphen '-', colons ':', and periods '.'
-      if ((!(*pszEnd >= 0 && ::ansi_char_is_alphanumeric(*pszEnd))) &&
+      if ((!(*pszEnd >= 0 && ::character_isalnum(*pszEnd))) &&
 
             (*pszEnd != '-') && (*pszEnd != ':') &&
 
@@ -140,7 +140,7 @@ lite_html_tag::~lite_html_tag()
          // only white-space characters, a nullptr-character, a
          // greater-than symbol, or a forward-slash can break
          // a tag name
-         if (*pszEnd == '\0' || ::isspace(*pszEnd) ||
+         if (*pszEnd == '\0' || ::character_isspace(*pszEnd) ||
 
                *pszEnd == '>' ||
 
@@ -183,7 +183,7 @@ lite_html_tag::~lite_html_tag()
       goto LUpdateAndExit;
    }
 
-   while (::isspace(*pszEnd))
+   while (::character_isspace(*pszEnd))
 
       pszEnd++;
 
@@ -235,7 +235,7 @@ lite_html_tag::~lite_html_tag()
 
 
          // skip white-space after attribute/value pairs
-         while (::isspace((uchar) *pszEnd))
+         while (::character_isspace(*pszEnd))
 
             pszEnd++;
 

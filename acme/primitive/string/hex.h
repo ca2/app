@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "acme/primitive/string/string.h"
+
 
 CLASS_DECL_ACME bool ishexdigit(char ch);
 
@@ -18,7 +20,19 @@ namespace hex
 
    CLASS_DECL_ACME u32 to_u32(const ::string & str);
 
-   inline CLASS_DECL_ACME i32 to(char ch);
+   inline CLASS_DECL_ACME i32 to_nibble(char ch)
+   {
+
+      return (ch >= 0 && ch <= 9) ? ch - '0' :
+      (
+         (ch >= 'a' && ch <= 'f') ? ch - 'a' + 10 :
+            (
+               (ch >= 'A' && ch <= 'F') ? ch - 'A' + 10 :
+                  -1
+            )
+      );
+
+   }
 
 
    inline CLASS_DECL_ACME char nibble_lower_from(byte b)
@@ -170,6 +184,30 @@ namespace hex
    inline uptr to_uptr(const ::string & str) { uptr u; to(u,str); return u; }
 
    u16 parse_u16_exc(const char *& psz, const char * pszEnd);
+
+
+} // namespace hex
+
+
+
+
+inline bool ishexdigit(char ch)
+{
+   return (ch >= '0' && ch <= '9')
+      || (ch >= 'a' && ch <= 'f')
+      || (ch >= 'A' && ch <= 'F');
+      //   return true;
+      //return false;
+}
+
+
+namespace hex
+{
+
+
+   CLASS_DECL_ACME string lower_from(const block & block);
+
+   CLASS_DECL_ACME string upper_from(const block & block);
 
 
 } // namespace hex

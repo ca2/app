@@ -1,5 +1,7 @@
 #include "framework.h"
+#include "department.h"
 #include "acme/constant/id.h"
+#include "acme/exception/exception.h"
 //#include "apex/message/application.h"
 
 
@@ -23,10 +25,10 @@ namespace acme
    // not contain advanced initialization as the
    // papp application pointer may be incompletely
    // initialized specially its virtual functions.
-   void department::initialize(::object * pobject)
+   void department::initialize(::particle * pparticle)
    {
 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
    }
 

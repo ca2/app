@@ -205,7 +205,7 @@ public:
 inline millis operator * (double d, const millis & millis) { return (::i64)(d * millis.m_i); }
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -231,7 +231,7 @@ namespace papaya
    } // namespace chill
 
 
-} // namespace papaya
+} // namespace acme
 
 
 #define PRtick PRId64

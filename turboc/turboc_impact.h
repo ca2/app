@@ -26,10 +26,10 @@ namespace turboc
       //main_impact *             m_pmainimpact;
 
       string                  m_strServer;
-      ::mutex                   m_mutexWork;
-      ::mutex                   m_mutexDraw;
-      ::mutex                   m_mutexSwap;
-      ::mutex                   m_mutexText;
+      ::pointer < ::mutex >                   m_pmutexWork;
+      ::pointer < ::mutex >                   m_pmutexDraw;
+      ::pointer < ::mutex >                   m_pmutexSwap;
+      ::pointer < ::mutex >                   m_pmutexText;
       ::image_pointer        m_pimageAi1;
       ::image_pointer        m_pimageAi2;
 
@@ -76,11 +76,11 @@ namespace turboc
       bool                    m_bAlternate;
 
 
-      impact(::object * pobject);
+      impact(::particle * pparticle);
       virtual ~impact();
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       virtual void install_message_handling(::message::dispatch * pdispatch);

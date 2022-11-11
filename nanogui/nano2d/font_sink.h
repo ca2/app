@@ -5,6 +5,11 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 06/04/22 05:05
 //  <3 Thomas likes number 5!!
 //
+#pragma once
+
+
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/collection/string_map.h"
 
 
 namespace nano2d

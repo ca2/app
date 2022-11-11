@@ -1,19 +1,22 @@
-#include "framework.h"
-#include "core/networking/ftp/_.h"
+﻿#include "framework.h"
 #include "ftp_file.h"
-#include "core/networking/ftp/client_socket.h"
 #include "ftpfs.h"
+#include "acme/platform/system.h"
+#include "acme/networking/url_department.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/system.h"
+#include "core/networking/ftp/client_socket.h"
 
 
-
-ftpfs_file::ftpfs_file(::ftpfs * pftp, ::ftp::client_socket * pclient) 
+ftpfs_file::ftpfs_file(::ftpfs * pftp, ::ftp::client_socket * pclient)
 {
 
    m_pftp = pftp;
 
    m_pclient = pclient;
 
-   m_payloadFile = m_pclient->m_pcontext->m_papexcontext->file().time(m_pclient->m_pcontext->m_papexcontext->dir().time());
+   m_payloadFile = m_pclient->file()->time(m_pclient->dir()->time());
 
 }
 
@@ -64,7 +67,7 @@ retry:
 
    }
 
-   auto psystem = m_psystem->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    auto purl = psystem->url();
 

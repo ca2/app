@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-enum enum_message : ::iptr
+enum enum_message : ::i32
 {
 
    e_message_undefined = -1,
@@ -31,7 +31,7 @@ enum enum_message : ::iptr
    e_message_mouse_activate = 33, // 0x0021
 
    e_message_get_min_max_info = 36, // 0x0024
-
+   e_message_wm_notify = 78, // 0x004E
    e_message_context_menu = 0x007B,
 
    e_message_key_first = 256,
@@ -51,8 +51,8 @@ enum enum_message : ::iptr
 
    e_message_non_client_create    =                 0x0081,
    e_message_non_client_destroy    =                0x0082,
-   e_message_non_client_calcsize   =                0x0083,
-   e_message_non_client_hittest     =               0x0084,
+   e_message_non_client_calc_size   =                0x0083,
+   e_message_non_client_hit_test     =               0x0084,
    e_message_non_client_paint      =                0x0085,
    e_message_non_client_activate   =                0x0086,
 
@@ -207,14 +207,14 @@ e_message_queue_sentinel =    0x0379,
 //#define WM_FORWARDMSG      0x037F
    e_message_forward_message = 0x037F,
 //#define WM_APPEXIT         WM_APP + 1444
+   e_message_wm_app = 0x8000,
+   e_message_ole_dragenter  = e_message_wm_app + 324,
+   e_message_ole_dragover   = e_message_wm_app + 325,
+   e_message_ole_dragleave  = e_message_wm_app + 326,
+   e_message_ole_dragdrop  = e_message_wm_app + 327,
 
-   e_message_ole_dragenter  =     WM_APP + 324,
-   e_message_ole_dragover   =  WM_APP + 325,
-   e_message_ole_dragleave  =     WM_APP + 326,
-   e_message_ole_dragdrop  =   WM_APP + 327,
 
-
-   e_message_system = WM_APP + 1024,
+   e_message_system = e_message_wm_app + 1024,
    e_message_branch,
    e_message_system_command,
    e_message_system_command_probe,
@@ -292,8 +292,8 @@ e_message_queue_sentinel =    0x0379,
 
    e_message_wave_in_data,
 
-
-   e_message_main_post = WM_USER + 23,
+e_message_wm_user = 0x0400,
+   e_message_main_post = e_message_wm_user + 23,
    e_message_image_loaded,
 
 

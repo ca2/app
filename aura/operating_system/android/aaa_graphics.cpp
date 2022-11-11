@@ -71,12 +71,12 @@
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = pcontext->m_papexcontext->file()->as_string("/system/etc/system_fonts.xml");
 //
 //      if (strSystemFonts.is_empty())
 //      {
 //
-//         strSystemFonts = pcontext->m_papexcontext->file().as_string("/system/etc/fonts.xml");
+//         strSystemFonts = pcontext->m_papexcontext->file()->as_string("/system/etc/fonts.xml");
 //
 //      }
 //
@@ -214,7 +214,7 @@
 //
 //                        pitem = __new(::write_text::font_enumeration_item);
 //
-//                        if (::m_psystem->m_pacmefile->exists(path))
+//                        if (::acmefile()->exists(path))
 //                        {
 //
 //                           pitem->m_mapFileName[0] = path;
@@ -277,7 +277,7 @@
 //
 //                     path /= strFile;
 //
-//                     if (::m_psystem->m_pacmefile->exists(path))
+//                     if (::acmefile()->exists(path))
 //                     {
 //
 //                        pitem->m_mapFileName[iKey] = path;

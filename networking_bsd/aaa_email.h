@@ -24,7 +24,7 @@ namespace net
       virtual ~email();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       void prepare_headers();

@@ -31,7 +31,7 @@ namespace linux
       virtual bool read_string(string & rString) override;
 
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
       virtual filesize get_position() const override;
       virtual ::extended::status open(const ::file::path & pszFileName, const cflag < ::file::e_open > & eopen) override;
 

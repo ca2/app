@@ -4,6 +4,9 @@
 CLASS_DECL_ACME i32 random_context_entropy(i32 iLevel= 3);
 
 
+#include "acme/primitive/collection/numeric_array.h"
+
+
 namespace mathematics
 {
 

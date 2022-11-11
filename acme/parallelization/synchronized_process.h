@@ -9,8 +9,7 @@
 //
 //
 //class CLASS_DECL_ACME sync_future : 
-//   virtual public ::synchronization_object
-//{
+//   virtual public ::synchronization//{
 //protected:
 //
 //   friend ::pointer<sync_future>__sync_future();

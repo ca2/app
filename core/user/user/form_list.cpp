@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-////#include "core/user/user/_component.h"
+#include "acme/handler/item.h"
 #include "axis/user/user/validate.h"
 #include "acme/constant/id.h"
 #include "form_list.h"
@@ -31,6 +31,30 @@ namespace user
 
    form_list::~form_list()
    {
+
+   }
+
+
+   ::core::application* get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+   }
+
+
+   ::core::session* form_list::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
+
+
+   ::core::system* form_list::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
 
    }
 
@@ -351,7 +375,7 @@ namespace user
    interaction * form_list::_001GetControl(index iItem, index iSubItem)
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       ::user::list_column * pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
@@ -372,7 +396,7 @@ namespace user
    interaction * form_list::_001GetControl(draw_list_subitem * psubitem)
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       ::user::list_column * pcolumn = psubitem->m_pcolumn;
 
@@ -1300,7 +1324,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          for (index i = 0; i < m_pcolumna->get_size(); i++)
          {
@@ -1341,7 +1365,7 @@ namespace user
 
    //   void form_list::_000OnMouse(::message::mouse * pmouse)
    //   {
-   //      // must lock ::user::mutex_children() at top stack chain
+   //      // must lock ::user::pointer < ::mutex >_children() at top stack chain
    //// and only at top stack chain.
    //
    //      auto point = pmouse->m_point;

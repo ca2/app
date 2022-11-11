@@ -161,7 +161,7 @@ namespace freedesktoplinux
 
       ::file::path path;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -224,9 +224,9 @@ namespace freedesktoplinux
 
       auto pcontext = m_pcontext;
 
-      ::file::path path = pcontext->m_papexcontext->dir().matter("app.desktop");
+      ::file::path path = pcontext->m_papexcontext->dir()->matter("app.desktop");
 
-      pcontext->m_papexcontext->file().lines(m_straLine, path);
+      pcontext->m_papexcontext->file()->lines(m_straLine, path);
 
       if(m_straLine.is_empty())
       {
@@ -257,17 +257,17 @@ namespace freedesktoplinux
 
       //pathLaunch = pacmedirectory->home() / ".config/ca2/bin" / (strName + ".sh");
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pacmedirectory = psystem->m_pacmedirectory;
 
       pathUserBin = pacmedirectory->home() / "bin" / strName;
 
-      ::file::path pathIcon = pcontext->m_papexcontext->dir().matter("main/icon-256.png");
+      ::file::path pathIcon = pcontext->m_papexcontext->dir()->matter("main/icon-256.png");
 
       {
 
-         pcontext->m_papexcontext->file().get_file(pathIcon, ::file::e_open_read);
+         pcontext->m_papexcontext->file()->get_file(pathIcon, ::file::e_open_read);
 
       }
 
@@ -285,17 +285,17 @@ namespace freedesktoplinux
 
       strScript += "\n";
 
-      strScript += "   cd " + string(pcontext->m_papexcontext->file().module().folder()) + "/\n";
+      strScript += "   cd " + string(pcontext->m_papexcontext->file()->module().folder()) + "/\n";
 
       strScript += "\n";
 
-      strScript += "   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(pcontext->m_papexcontext->file().module().folder()) + "\n";
+      strScript += "   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(pcontext->m_papexcontext->file()->module().folder()) + "\n";
 
       */
 
       //strScript += "\n";
 
-      //strScript += "   /bin/bash -i -c \"" + string(pcontext->m_papexcontext->file().module()) + "\" ${@:1:99}\n";
+      //strScript += "   /bin/bash -i -c \"" + string(pcontext->m_papexcontext->file()->module()) + "\" ${@:1:99}\n";
 
       /*
 
@@ -309,40 +309,40 @@ namespace freedesktoplinux
 
       strScript += "\n"; */
 
-      //m_psystem->m_pacmefile->put_contents(pathLaunch, strScript);
+      //acmefile()->put_contents(pathLaunch, strScript);
 
       strScript = "#!/bin/bash\n";
 
       strScript += "\n";
 
-//      strScript += "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(pcontext->m_papexcontext->file().module().folder()) + "\n";
+//      strScript += "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(pcontext->m_papexcontext->file()->module().folder()) + "\n";
 //
 //      strScript += "\n";
 //
 
-      //strScript += "/bin/bash -l -c " + string(pcontext->m_papexcontext->file().module()) + " ${@:1:99}\n";
+      //strScript += "/bin/bash -l -c " + string(pcontext->m_papexcontext->file()->module()) + " ${@:1:99}\n";
 
-      strScript += string(pcontext->m_papexcontext->file().module()) + " ${@:1:99}\n";
+      strScript += string(pcontext->m_papexcontext->file()->module()) + " ${@:1:99}\n";
 
       strScript += "\n";
 
-      m_psystem->m_pacmefile->put_contents(pathUserBin, strScript);
+      acmefile()->put_contents(pathUserBin, strScript);
 
       //chmod(pathLaunch, 0755);
       chmod(pathUserBin, 0600);
 
-      string strModule = pcontext->m_papexcontext->file().module();
+      string strModule = pcontext->m_papexcontext->file()->module();
 
       straLine._007SetLine("[Desktop Entry]", "GenericName", strTitle);
       straLine._007SetLine("[Desktop Entry]", "Name", strTitle);
       straLine._007SetLine("[Desktop Entry]", "Comment", strTitle + " Comment");
       //straLine._007SetLine("[Desktop Entry]", "Exec", pathLaunch + " %U");
       //straLine._007SetLine("[Desktop Entry]", "Exec", strName + " %U");
-      //straLine._007SetLine("[Desktop Entry]", "Exec", string(pcontext->m_papexcontext->file().module()) + " %U");
+      //straLine._007SetLine("[Desktop Entry]", "Exec", string(pcontext->m_papexcontext->file()->module()) + " %U");
       straLine._007SetLine("[Desktop Entry]", "Exec", strModule + " %U");
-      //straLine._007SetLine("Path", string(pcontext->m_papexcontext->file().module().folder()));
+      //straLine._007SetLine("Path", string(pcontext->m_papexcontext->file()->module().folder()));
 
-      if(pcontext->m_papexcontext->file().exists(pathIcon))
+      if(pcontext->m_papexcontext->file()->exists(pathIcon))
       {
 
          straLine._007SetLine("[Desktop Entry]", "Icon", pathIcon);
@@ -376,7 +376,7 @@ namespace freedesktoplinux
       // //straLine._007SetLine("[Desktop Action transparent-frame]", "StartupWMClass", "com." + strPrgName);
       // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", pathLaunch + " : post transparent_frame");
       // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strName + " : post transparent_frame");
-      // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", string(pcontext->m_papexcontext->file().module()) + " : post transparent_frame");
+      // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", string(pcontext->m_papexcontext->file()->module()) + " : post transparent_frame");
       // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strName + " : post transparent_frame");
       // straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strModule + " : post transparent_frame");
 
@@ -397,13 +397,13 @@ namespace freedesktoplinux
 
       auto pcontext = m_pcontext;
 
-      pcontext->m_papexcontext->file().put_lines(path, m_straLine);
+      pcontext->m_papexcontext->file()->put_lines(path, m_straLine);
 
       chmod(path, S_IRUSR | S_IWUSR | S_IXUSR);
 
       path = get_board_path();
 
-      pcontext->m_papexcontext->file().put_lines(path, m_straLine);
+      pcontext->m_papexcontext->file()->put_lines(path, m_straLine);
 
       chmod(path, S_IRUSR | S_IWUSR | S_IXUSR);
 

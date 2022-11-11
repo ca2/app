@@ -1,8 +1,6 @@
 ﻿#include "framework.h"
-//
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "base/user/user/tab_pane.h"
 #include "core/user/user/font_list.h"
 #include "core/user/user/user.h"
@@ -161,8 +159,8 @@ namespace userex
 
       MESSAGE_LINK(e_message_create, pchannel, this, &pane_tab_impact::on_message_create);
 
-      add_command_handler("file_save_as", this, &pane_tab_impact::_001OnFileSaveAs);
-      add_command_prober("file_save_as", this, &pane_tab_impact::_001OnUpdateFileSaveAs);
+      add_command_handler("file_save_as", { this,  &pane_tab_impact::_001OnFileSaveAs });
+      add_command_prober("file_save_as", { this,  &pane_tab_impact::_001OnUpdateFileSaveAs });
 
    }
 
@@ -218,13 +216,37 @@ namespace userex
    void pane_tab_impact::add_pane_tab_impact_handler_library(const ::string & strLibrary)
    {
 
-      auto & pfactory = m_psystem->factory(strLibrary);
+      auto & pfactory = acmesystem()->factory(strLibrary);
 
       auto phandler = pfactory->create <handler>();
 
       phandler->initialize(this);
 
       m_handlera.add(phandler);
+
+   }
+
+
+   ::core::application* pane_tab_impact::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+   }
+
+
+   ::core::session* pane_tab_impact::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
+
+
+   ::core::system* pane_tab_impact::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
 
    }
 
@@ -358,9 +380,9 @@ namespace userex
 
             ::file::path path;
             
-            path = pcontext->dir().appdata() / "debug_ca2/menu_impact" / (get_app()->m_strAppId + ".html");
+            path = pcontext->dir()->appdata() / "debug_ca2/menu_impact" / (get_app()->m_strAppId + ".html");
 
-            pcontext->file().put_memory(path, strOptionsImpact);
+            pcontext->file()->put_memory(path, strOptionsImpact);
 
 #endif
 
@@ -542,7 +564,7 @@ namespace userex
 
       ::acme::library * plibrary = nullptr;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
 //      if(pimpactdata->m_atom.is_text() && psystem->m_idmapCreateImpactLibrary.lookup(pimpactdata->m_atom,plibrary) && plibrary != nullptr)
 //      {
@@ -823,7 +845,7 @@ namespace userex
       else if (pimpactdata->m_atom.is_text())
       {
 
-         if (::str().begins_ci(pimpactdata->m_atom.m_str, "form_"))
+         if (string_begins_ci(pimpactdata->m_atom.m_str, "form_"))
          {
 
             auto pcontext = m_pcontext;
@@ -861,9 +883,9 @@ namespace userex
    ::filemanager::document * pane_tab_impact::filemanager_document(const ::atom & atomFileManager)
    {
 
-      auto pobject = m_mapFileManager[atomFileManager];
+      auto pparticle = m_mapFileManager[atomFileManager];
 
-      return  (pobject == nullptr ? nullptr : dynamic_cast < ::filemanager::document * > (pobject.m_p));
+      return  (pparticle == nullptr ? nullptr : dynamic_cast < ::filemanager::document * > (pparticle.m_p));
 
    }
 

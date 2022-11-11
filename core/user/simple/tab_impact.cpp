@@ -17,16 +17,16 @@ simple_tab_impact::~simple_tab_impact()
 // simple_tab_impact diagnostics
 
 
-void simple_tab_impact::assert_ok() const
-{
-   ::user::impact::assert_ok();
-}
-
-
-void simple_tab_impact::dump(dump_context & dumpcontext) const
-{
-   ::user::impact::dump(dumpcontext);
-}
+//void simple_tab_impact::assert_ok() const
+//{
+//   ::user::impact::assert_ok();
+//}
+//
+//
+//void simple_tab_impact::dump(dump_context & dumpcontext) const
+//{
+//   ::user::impact::dump(dumpcontext);
+//}
 
 
 void simple_tab_impact::on_layout(::draw2d::graphics_pointer & pgraphics)

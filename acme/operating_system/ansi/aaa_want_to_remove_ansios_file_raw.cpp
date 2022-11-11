@@ -140,7 +140,7 @@ u64 file_length_raw(const char * path)
 
 
 
-string m_psystem->m_pacmefile->line(const char * path, index iLine)
+string acmefile()->line(const char * path, index iLine)
 {
 
    string str;
@@ -221,7 +221,7 @@ bool file_set_line_dup(const char * pszPath, index iLine, const char * pszLine)
 
    ::file::path path(pszPath);
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

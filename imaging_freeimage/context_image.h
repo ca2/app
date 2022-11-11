@@ -4,6 +4,9 @@
 #include "aura/graphics/image/context_image.h"
 
 
+#include <FreeImage.h>
+
+
 namespace imaging_freeimage
 {
 
@@ -24,10 +27,14 @@ namespace imaging_freeimage
       virtual void save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage) override;
       //void load_svg(::image * pimage, memory & memory) override;
 
-      //virtual void _load_image(::object * pobject, image_frame_array * pimageframea, const ::memory & memory);
+      //virtual void _load_image(::particle * pparticle, image_frame_array * pimageframea, const ::memory & memory);
 
 
    };
+
+
+   CLASS_DECL_IMAGING_FREEIMAGE FIBITMAP * freeimage_from_image(const ::image * pimage);
+   CLASS_DECL_IMAGING_FREEIMAGE bool image_from_freeimage(::image * pimage, FIBITMAP * pfibitmap);
 
 
 } // namespace imaging_freeimage

@@ -11,7 +11,7 @@ namespace ios
    public:
 
 
-      copydesk(::object * pobject);
+      copydesk(::particle * pparticle);
       virtual ~copydesk();
 
 

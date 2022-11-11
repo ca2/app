@@ -1,7 +1,9 @@
 #pragma once
 
 
-#include "acme/primitive/collection/array_base.h"
+#include "acme/primitive/collection/pointer_array.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/matter.h"
 
 
 class CLASS_DECL_AURA image_array :
@@ -18,9 +20,9 @@ public:
 
 
 
-   virtual bool explode(::object * pobject, ::payload payloadFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
+   virtual bool explode(::particle * pparticle, ::payload payloadFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
 
-   virtual bool explode(::object * pobject, const ::size_i32 & size, ::payload payloadFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
+   virtual bool explode(::particle * pparticle, const ::size_i32 & size, ::payload payloadFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
 
 
 };

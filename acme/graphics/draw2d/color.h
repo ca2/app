@@ -2,6 +2,8 @@
 
 
 #include "color32.h"
+#include "opacity.h"
+
 
 
 //#define  HLSMAX   100.0 /* H,L, and S vary over 0-HLSMAX */
@@ -14,24 +16,6 @@
 #define UNDEFINED_HUE (HLSMAX*2.0/3.0)
 
 
-inline string hex_color(const COLOR32 & c)
-{
-
-   string str;
-
-   str.format("%02x%02x%02x", c.red, c.green, c.blue);
-
-   return str;
-
-}
-
-
-inline string _hex_color(const COLOR32 & c)
-{
-
-   return "#" + hex_color(c);
-
-}
 
 
 auto inline red(::color32_t rgba) { return ((byte)(rgba & 0xff)); }
@@ -62,7 +46,7 @@ namespace color
  
 
       hls() {}
-      hls(e_zero_init) : HLS{ 0.0,0.0, 0.0 } {}
+      hls(enum_zero_init) : HLS{ 0.0,0.0, 0.0 } {}
       hls(double dH, double dL = 0.5, double dS = 1.0) :HLS{ dH, dL, dS } {}
 
       hls & operator =(const ::payload & payload);
@@ -88,7 +72,7 @@ namespace color
 
 
       color() {}
-      color(e_zero_init) { red = green = blue = alpha = 0; }
+      color(enum_zero_init) { red = green = blue = alpha = 0; }
       template < typename R, typename G, typename B >
       color(R r, G g, B b) { set_red(r); set_green(g); set_blue(b); }
       template < typename R, typename G, typename B, typename A >
@@ -259,20 +243,6 @@ namespace color
       bool operator != (const hls & hls) const { return !operator == (hls); }
 
 
-      string _hex_color()
-      {
-
-         return ::_hex_color(*this);
-
-      }
-
-
-      string hex_color()
-      {
-
-         return ::hex_color(*this);
-
-      }
 
 
       void blend(const ::color::color & color, double dRate)
@@ -418,4 +388,22 @@ inline auto alpha(const ::opacity & opacity, const ::color::color& rgb) { return
 auto inline opaque(const ::color::color& color) { return alpha(255, color); }
 
 CLASS_DECL_ACME::color::color _020GetColor(::index i);
+
+
+inline ::color::color argb_color(::i32 a, ::i32 r, ::i32 g, ::i32 b)
+{
+
+   return ::color::color(r, g, b, a);
+
+}
+
+
+inline ::color::color argb_color(double a, double r, double g, double b)
+{
+
+   return ::color::color(r, g, b, a);
+
+}
+
+
 

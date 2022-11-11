@@ -12,6 +12,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 class CLASS_DECL_APEX service :
    virtual public ::object
 {

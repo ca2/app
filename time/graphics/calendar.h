@@ -31,7 +31,7 @@ namespace datetime
          virtual ~graphics();
 
 
-         virtual void initialize(::object * pobject) override;
+         virtual void initialize(::particle * pparticle) override;
 
 
          virtual void GetRectDay(::earth::time& time, RECTANGLE_I32 * lprect);

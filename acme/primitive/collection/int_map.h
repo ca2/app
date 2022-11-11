@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "map.h"
+
+
 template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
 using i32_map = map < i32, VALUE, typename argument_of < i32 >::type, ARG_VALUE >;
 

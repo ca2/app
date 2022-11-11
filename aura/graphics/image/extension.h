@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 class image_frame_array;
 class image_map;
 class size_image;

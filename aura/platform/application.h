@@ -2,6 +2,8 @@
 
 
 #include "context.h"
+#include "aqua/platform/application.h"
+#include "aura/filesystem/filemanager/callback.h"
 
 
 namespace aura
@@ -66,9 +68,9 @@ namespace aura
       //bool                                            m_bAppHasInstallerChangedProtected;
       //::install::installer *                          m_pinstaller;
 
-      reference_addressa                              m_objectptraEventHook;
+      particle_address_array                         m_particleaddressaEventHook;
 
-      ::mutex                                           m_mutexFrame;
+      ::pointer < ::mutex >                                           m_pmutexFrame;
       ::pointer<::user::interaction_array>           m_puserinteractiona;
       ::pointer<::user::interaction_array>           m_puserinteractionaFrame;
 
@@ -84,14 +86,14 @@ namespace aura
 
       ::user::interaction *                              m_puiMainContainer;
 
-      ::mutex                                           m_mutexMatterLocator;
+      ::pointer < ::mutex >                                           m_pmutexMatterLocator;
 
-      //::mutex                                         m_mutexStr;
+      //::pointer < ::mutex >                                         m_pmutexStr;
       //string_table                                    m_stringtable;
       //string_table                                    m_stringtableStd;
       //map < atom, atom, string, string >                  m_stringmap;
 
-      //id_map < ::pointer<::channel >>                m_mapNotify;
+      //atom_map < ::pointer<::channel >>                m_mapNotify;
 
       //::pointer<context_image>                       m_pcontextimage;
 
@@ -149,11 +151,11 @@ namespace aura
       ~application() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       virtual void enumerate_composite(matter_array& a);
@@ -200,8 +202,8 @@ namespace aura
       virtual void verb() override;
 
 
-      inline ::aura::session* get_session() { return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr; }
-      inline ::aura::system* get_system();
+      ::aura::session* get_session();
+      ::aura::system* get_system();
 
 
 
@@ -374,7 +376,7 @@ namespace aura
       //virtual string get_locale_schema_dir();
 
 
-      //virtual void initialize(::object * pobject) override;
+      //virtual void initialize(::particle * pparticle) override;
 
 
       //::application_menu & applicationmenu();
@@ -383,8 +385,8 @@ namespace aura
       //virtual ::file::path appconfig_folder() override;
 
 
-      //void assert_ok() const override;
-      //void dump(dump_context & dumpcontext) const override;
+      //// void assert_ok() const override;
+      //// void dump(dump_context & dumpcontext) const override;
 
 
       //virtual ::file::path get_app_localconfig_folder() override;
@@ -445,7 +447,7 @@ namespace aura
 
       //virtual void record(::create * pcommand);
 
-      //virtual void on_event(::u64 u, ::object * pobject) override;
+      //virtual void on_event(::u64 u, ::particle * pparticle) override;
       //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool);
 
 
@@ -475,7 +477,7 @@ namespace aura
       //virtual bool set_keyboard_layout(const ::string & pszPath, const ::action_context & action_context);
 
 
-      //virtual bool enable_application_events(::object * pobject, bool bEnable) override;
+      //virtual bool enable_application_events(::particle * pparticle, bool bEnable) override;
 
       //virtual bool is_equal_file_path(const ::file::path & path1, const ::file::path & path2) override;
 
@@ -648,8 +650,8 @@ namespace aura
       //virtual string get_local_mutex_id() override;
       //virtual string get_global_mutex_id() override;
 
-      //virtual ::mutex * get_local_mutex();
-      //virtual ::mutex * get_global_mutex();
+      //virtual ::pointer< ::mutex > get_local_mutex();
+      //virtual ::pointer< ::mutex > get_global_mutex();
 
       //virtual string get_local_mutex_name() override;
       //virtual string get_local_id_mutex_name() override;
@@ -821,9 +823,9 @@ namespace aura
       virtual void post_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
 
 
-      //virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);
+      //virtual ::draw2d::icon * set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon);
 
-      //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
+      //virtual ::draw2d::icon * get_icon(object * pparticle, bool bBigIcon) const;
 
       //virtual void handle(::topic * ptopic, ::context * pcontext);
 
@@ -857,7 +859,7 @@ namespace aura
       virtual void HideApplication() override;
 
 
-      //virtual void initialize(::object * pobject) override;
+      //virtual void initialize(::particle * pparticle) override;
 
       //virtual void process_init() override;
 
@@ -1039,7 +1041,7 @@ namespace aura
       string get_default_playlist_path() override;
 
       
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(FREEBSD)
 
       bool os_on_start_application() override;
 

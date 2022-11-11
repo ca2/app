@@ -35,7 +35,7 @@ void load_image::run()
 
    }
 
-   if (::is_ok(pimage))
+   if (pimage->is_ok())
    {
 
       //return pimage->m_estatus;

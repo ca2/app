@@ -1,5 +1,6 @@
 ﻿#include "framework.h" 
 #include "put_socket.h"
+#include "apex/constant/idpool.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
 
@@ -58,12 +59,12 @@ namespace sockets
    void http_put_socket::SetFile(const string & file)
    {
 
-      if(m_pcontext->m_papexcontext->file().exists(file))
+      if(::particle::file()->exists(file))
       {
 
          m_filename = file;
 
-         m_content_length = m_pcontext->m_papexcontext->file().length(file);
+         m_content_length = ::particle::file()->length(file);
 
       }
       else
@@ -98,19 +99,19 @@ namespace sockets
 
       }
 
-      m_request.attr(__id(http_method))    = "PUT";
+      m_request.attr("http_method")    = "PUT";
 
-      m_request.attr(__id(http_version))   = "HTTP/1.1";
+      m_request.attr("http_version")   = "HTTP/1.1";
 
-      //inheader(__id(host))                = GetUrlHost();
+      //inheader("host")                = GetUrlHost();
 
       if(m_content_type.has_char())
       {
-         outheader(__id(content_type))     = m_content_type;
+         outheader("content_type")     = m_content_type;
       }
-      inheader(__id(content_length))      = (i64) m_content_length;
-      inheader(__id(user_agent))          = MyUseragent();
-      inheader(__id(connection))          = "close";
+      inheader("content_length")      = (i64) m_content_length;
+      inheader("user_agent")          = MyUseragent();
+      inheader("connection")          = "close";
       SendRequest();
 
       if(m_file.is_set())

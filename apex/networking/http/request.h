@@ -3,6 +3,7 @@
 
 #include "form.h"
 #include "transaction.h"
+#include "acme/filesystem/file/binary_stream.h"
 
 
 namespace http
@@ -22,7 +23,7 @@ namespace http
       string                           m_strHttpHost;
       atom                             m_atomHttpMethod;
       memory_file_pointer              m_pmemfileBody;
-      ::text_stream                    m_ostream;
+      ::binary_stream < ::file::file > m_ostream;
       string                           m_null;
       http::form                       m_form;
 
@@ -44,11 +45,11 @@ namespace http
       /** No more writing */
       void CloseBody();
 
-      void ParseBody();
+      void ParseBody(::apex::context * pcontextUploadFile);
 
       http::form & form();
 
-      ::text_stream & ostream()  { return m_ostream; }
+      ::binary_stream < ::file::file > & ostream()  { return m_ostream; }
       ::memory_file * file()      { return m_pmemfileBody; }
 
       virtual void clear();

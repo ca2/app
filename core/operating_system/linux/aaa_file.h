@@ -50,15 +50,15 @@ namespace linux
 
 
       file();
-      //file(::object * pobject);
-      //file(::object * pobject, int hFile);
-      //file(::object * pobject, const ::file::path & pszFileName, const cflag < ::file::e_open > & eflag);
+      //file(::particle * pparticle);
+      //file(::particle * pparticle, int hFile);
+      //file(::particle * pparticle, const ::file::path & pszFileName, const cflag < ::file::e_open > & eflag);
 
       virtual ~file();
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
       virtual filesize get_position() const override;
 

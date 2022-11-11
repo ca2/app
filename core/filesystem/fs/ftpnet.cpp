@@ -16,12 +16,12 @@ ftpnet::~ftpnet()
 }
 
 
-void ftpnet::initialize(::object * pobject)
+void ftpnet::initialize(::particle * pparticle)
 {
 
    //auto estatus = 
    
-   ::object::initialize(pobject);
+   ::object::initialize(pparticle);
 
    //if (!estatus)
    //{

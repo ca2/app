@@ -1,5 +1,13 @@
 ﻿#include "framework.h"
-//#include "acme/primitive/string/_str.h"
+#include "hex.h"
+#include "international.h"
+#include "acme/exception/exception.h"
+#include "acme/filesystem/file/file.h"
+#include "acme/filesystem/file/text_stream.h"
+#include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/string/str.h"
+#include "string.h"
 #include <stdio.h>
 
 
@@ -106,7 +114,7 @@ u32 decode_utf16_pair(u16 * units)
 //
 //}
 
-
+//
 //template < >
 //bool str::equals_ci(const char * psz1, const char * psz2)
 //{
@@ -362,7 +370,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 
    auto pcsz = str.c_str();
 
-   while (*pcsz && ansi_char_is_space(*pcsz))
+   while (*pcsz && ansi_char_isspace(*pcsz))
 
       pcsz++;
 
@@ -375,7 +383,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 
    auto pcszPrefix = strPrefix.c_str();
 
-   while (ansi_char_lowered(*pcsz) == ansi_char_lowered(*pcszPrefix))
+   while (ansi_char_tolower(*pcsz) == ansi_char_tolower(*pcszPrefix))
    {
 
       pcsz++;
@@ -422,160 +430,83 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //}
 
 
-bool str::eat_before(string & strBefore, const string & strSeparator, string & str, bool bEatEverythingIfNotFound)
-{
 
-   ASSERT(&str != &strBefore);
-
-   if (&str == &strBefore)
-   {
-
-      return false;
-
-   }
-
-   index iFind = str.find(strSeparator);
-
-   if (iFind < 0)
-   {
-
-      if (bEatEverythingIfNotFound)
-      {
-
-         strBefore = str;
-
-         str.Empty();
-
-      }
-
-      return false;
-
-   }
-
-   strBefore = str.Left(iFind);
-
-   str = str.Mid(iFind + strSeparator.length());
-
-   return true;
-
-}
-
-
-bool str::eat_before_let_separator(string & strBefore, string strSeparator, string & str, bool bEatEverythingIfNotFound)
-{
-
-   ASSERT(&str != &strBefore);
-
-   if (&str == &strBefore)
-   {
-
-      return false;
-
-   }
-
-   index iFind = str.find(strSeparator);
-
-   if (iFind < 0)
-   {
-
-      if (bEatEverythingIfNotFound)
-      {
-
-         strBefore = str;
-
-         str = strSeparator;
-
-      }
-
-      return false;
-
-   }
-
-   strBefore = str.Left(iFind);
-
-   str = str.Mid(iFind);
-
-   return true;
-
-}
-
-
-bool str::eat_before(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound)
-{
-
-   ASSERT(&wstr != &wstrBefore);
-
-   if (&wstr == &wstrBefore)
-   {
-
-      return false;
-
-   }
-
-   index iFind = wstr.find(wstrSeparator);
-
-   if (iFind < 0)
-   {
-
-      if (bEatEverythingIfNotFound)
-      {
-
-         wstrBefore = wstr;
-
-         wstr.Empty();
-
-      }
-
-      return false;
-
-   }
-
-   wstrBefore = wstr.Left(iFind);
-
-   wstr = wstr.Mid(iFind + wstrSeparator.length());
-
-   return true;
-
-}
-
-
-bool str::eat_before_let_separator(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound)
-{
-
-   ASSERT(&wstr != &wstrBefore);
-
-   if (&wstr == &wstrBefore)
-   {
-
-      return false;
-
-   }
-
-   index iFind = wstr.find(wstrSeparator);
-
-   if (iFind < 0)
-   {
-
-      if (bEatEverythingIfNotFound)
-      {
-
-         wstrBefore = wstr;
-
-         wstr = wstrSeparator;
-
-      }
-
-      return false;
-
-   }
-
-   wstrBefore = wstr.Left(iFind);
-
-   wstr = wstr.Mid(iFind);
-
-   return true;
-
-}
+//bool str::eat_before(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound)
+//{
+//
+//   ASSERT(&wstr != &wstrBefore);
+//
+//   if (&wstr == &wstrBefore)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   index iFind = wstr.find(wstrSeparator);
+//
+//   if (iFind < 0)
+//   {
+//
+//      if (bEatEverythingIfNotFound)
+//      {
+//
+//         wstrBefore = wstr;
+//
+//         wstr.Empty();
+//
+//      }
+//
+//      return false;
+//
+//   }
+//
+//   wstrBefore = wstr.Left(iFind);
+//
+//   wstr = wstr.Mid(iFind + wstrSeparator.length());
+//
+//   return true;
+//
+//}
+//
+//
+//bool str::eat_before_let_separator(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound)
+//{
+//
+//   ASSERT(&wstr != &wstrBefore);
+//
+//   if (&wstr == &wstrBefore)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   index iFind = wstr.find(wstrSeparator);
+//
+//   if (iFind < 0)
+//   {
+//
+//      if (bEatEverythingIfNotFound)
+//      {
+//
+//         wstrBefore = wstr;
+//
+//         wstr = wstrSeparator;
+//
+//      }
+//
+//      return false;
+//
+//   }
+//
+//   wstrBefore = wstr.Left(iFind);
+//
+//   wstr = wstr.Mid(iFind);
+//
+//   return true;
+//
+//}
 
 
 //   bool begins_eat(string & str, const char * pcszPrefix)
@@ -874,7 +805,7 @@ index  str::find_first(const string_array & straSearch, index & iFound, const ::
 }
 
 
-string str::random_replace(::matter * pobject, const string_array & straNew, const string_array & straOld, const ::string & strParam)
+string str::random_replace(::particle * pparticle, const string_array & straNew, const string_array & straOld, const ::string & strParam)
 {
 
    string str(strParam);
@@ -1444,7 +1375,7 @@ index str::find_file_extension(const ::string & strOld, const ::string & str, in
       if (*psz1 != '.')
       {
 
-         len1 = str_uni_len(psz1);
+         len1 = utf8_unicode_length(*psz1);
 
          psz1 += len1;
 
@@ -1474,7 +1405,7 @@ index str::find_file_extension(const ::string & strOld, const ::string & str, in
          while (true)
          {
 
-            if (ch().to_lower_case(ch().uni_index_len(pszC1, len1)) == ch().to_lower_case(ch().uni_index_len(pszC2, len2)))
+            if (unicode_to_lower_case(unicode_index_length(pszC1, len1)) == unicode_to_lower_case(unicode_index_length(pszC2, len2)))
             {
 
                pszC1 += len1;
@@ -1501,7 +1432,7 @@ index str::find_file_extension(const ::string & strOld, const ::string & str, in
             else
             {
 
-               ch().uni_index_len(psz1, len1);
+               unicode_index_length(psz1, len1);
 
                psz1 += len1;
 
@@ -1554,7 +1485,7 @@ index str::utf8_find(const ::string & strOld, const ::string & str, index iStart
 
     pSrc = psz;
 
-    while(ch().uni_index_len(pSrc, lenSrc) == ch().uni_index_len(pFin, lenFin) && lenSrc == lenFin)
+    while(unicode_index_length(pSrc, lenSrc) == unicode_index_length(pFin, lenFin) && lenSrc == lenFin)
     {
 
        pSrc+=lenSrc;
@@ -1749,7 +1680,7 @@ strsize str::find_ww(const ::string & strOld, const ::string & strParam, index i
    {
 
       if (strFind == string(pszIter, strFind.get_length())
-         && (strlen(pszIter) == (size_t)strFind.get_length() || !ch().is_letter_or_digit(pszIter + strFind.get_length())))
+         && (strlen(pszIter) == (size_t)strFind.get_length() || !unicode_is_letter_or_digit(pszIter + strFind.get_length())))
       {
 
          return pszIter - psz;
@@ -1759,9 +1690,9 @@ strsize str::find_ww(const ::string & strOld, const ::string & strParam, index i
       do
       {
 
-         increment(pszIter);
+         unicode_increment(pszIter);
 
-      } while (*pszIter != '\0' && ch().is_letter_or_digit(pszIter));
+      } while (*pszIter != '\0' && unicode_is_letter_or_digit(pszIter));
 
    }
 
@@ -1797,7 +1728,7 @@ strsize str::find_aww(const ::string & strOld, const ::string & strParam, index 
    {
 
       if (strFind == string(pszIter, strFind.get_length())
-         && (strlen(pszIter) == (size_t)strFind.get_length() || !ch().is_letter(pszIter + strFind.get_length())))
+         && (strlen(pszIter) == (size_t)strFind.get_length() || !unicode_is_letter(pszIter + strFind.get_length())))
       {
 
          return pszIter - psz;
@@ -1807,9 +1738,9 @@ strsize str::find_aww(const ::string & strOld, const ::string & strParam, index 
       do
       {
 
-         increment(pszIter);
+         unicode_increment(pszIter);
 
-      } while (*pszIter != '\0' && ch().is_letter(pszIter));
+      } while (*pszIter != '\0' && unicode_is_letter(pszIter));
 
    }
 
@@ -1931,17 +1862,23 @@ void str::calc_v1(const ::string & strParam, bool & bHasUpper, bool & bHasLower,
          break;
 
       }
-      else if (ch().is_digit(strUtf8Char))
+      else if (unicode_is_digit(strUtf8Char))
       {
+         
          bHasDigit = true;
+
       }
-      else if (ch().is_lower_case(strUtf8Char))
+      else if (unicode_is_lower_case(strUtf8Char))
       {
+         
          bHasLower = true;
+
       }
-      else if (ch().is_upper_case(strUtf8Char))
+      else if (unicode_is_upper_case(strUtf8Char))
       {
+
          bHasUpper = true;
+
       }
       if (bHasUpper && bHasDigit && bHasLower)
       {
@@ -1949,7 +1886,7 @@ void str::calc_v1(const ::string & strParam, bool & bHasUpper, bool & bHasLower,
          break;
       }
       
-      increment(psz);
+      unicode_increment(psz);
 
    }
 
@@ -2068,135 +2005,86 @@ string str::get_word(const ::string & str, const ::string & strSeparator, bool b
 
 }
 
-string str::uni_to_utf8(i64 w)
+// GitHub MightyPork / utf8_encode.c
+
+utf8_character unicode_to_utf8(::i64 i)
 {
 
-   string str;
-
-   if (w < 0x0080)
-   {
-
-      str += (char)w;
-
+   utf8_character utf8character;
+   auto & out = utf8character.m_sz;
+   if (i <= 0x7F) {
+      // Plain ASCII
+      out[0] = (char)i;
+      out[1] = 0;
+      utf8character.m_iLength =  1;
    }
-   else if (w < 0x0800)
+   else if (i <= 0x07FF) {
+      // 2-byte unicode
+      out[0] = (char)(((i >> 6) & 0x1F) | 0xC0);
+      out[1] = (char)(((i >> 0) & 0x3F) | 0x80);
+      out[2] = 0;
+      utf8character.m_iLength = 2;
+   }
+   else if (i <= 0xFFFF) {
+      // 3-byte unicode
+      out[0] = (char)(((i >> 12) & 0x0F) | 0xE0);
+      out[1] = (char)(((i >> 6) & 0x3F) | 0x80);
+      out[2] = (char)(((i >> 0) & 0x3F) | 0x80);
+      out[3] = 0;
+      utf8character.m_iLength = 3;
+   }
+   else if (i <= 0x10FFFF) {
+      // 4-byte unicode
+      out[0] = (char)(((i >> 18) & 0x07) | 0xF0);
+      out[1] = (char)(((i >> 12) & 0x3F) | 0x80);
+      out[2] = (char)(((i >> 6) & 0x3F) | 0x80);
+      out[3] = (char)(((i >> 0) & 0x3F) | 0x80);
+      out[4] = 0;
+      utf8character.m_iLength = 4;
+   }
+   else {
+      // error - use replacement character
+      out[0] = (char)0xEF;
+      out[1] = (char)0xBF;
+      out[2] = (char)0xBD;
+      out[3] = 0;
+      utf8character.m_iLength = 3;
+   }
+
+   return utf8character;
+
+}
+
+
+strsize unicode_to_utf8_length(::i64 i)
+{
+   if (i <0)
    {
-
-      str = (char)(0xc0 | ((w) >> 6));
-
-      str += (char)(0x80 | ((w) & 0x3f));
-
+      return -1;
+   }
+   else if (i <= 0x7F)
+   {
+      return 1;
+   }
+   else if (i <= 0x07FF)
+   {
+      return 2;
+   }
+   else if (i <= 0xFFFF) 
+   {
+      return 3;
+   }
+   else if (i <= 0x10FFFF) 
+   {
+      return 4;
    }
    else
    {
-
-      str = (char)(0xe0 | ((w) >> 12));
-
-      str += (char)(0x80 | (((w) >> 6) & 0x3f));
-
-      str += (char)(0x80 | ((w) & 0x3f));
-
+      return -1;
    }
-
-   return str;
-
 }
 
 
-const char * unicode_next(const char * psz, int * piError)
-{
-
-   if (psz == nullptr)
-   {
-
-      return nullptr;
-
-   }
-
-   if (*psz == '\0')
-   {
-
-      return psz;
-
-   }
-
-   *piError = 0;
-
-   char len = 1 + trailingBytesForUTF8(*psz);
-   
-   if (len == 0) return psz;
-   
-   if (*psz++ == 0)
-   {
-
-      *piError = 1;
-
-      return nullptr;
-
-   }
-
-   if (len == 1) return psz;
-   
-   if (*psz++ == 0)
-   {
-
-      *piError = 2;
-
-      return nullptr;
-
-   }
-
-   if (len == 2) return psz;
-
-   if (*psz++ == 0)
-   {
-
-      *piError = 3;
-
-      return nullptr;
-
-   }
-
-   if (len == 3) return psz;
-
-   if (*psz++ == 0)
-   {
-
-      *piError = 4;
-
-      return nullptr;
-
-   }
-   
-   if (len == 4) return psz;
-
-   if (*psz++ == 0)
-   {
-
-      *piError = 5;
-
-      return nullptr;
-
-   }
-   
-   if (len == 5) return psz;
-
-   if (*psz++ == 0)
-   {
-      
-      *piError = 6;
-      
-      return nullptr;
-
-   }
-
-   if (len == 6) return psz;
-
-   *piError = 7;
-      
-   return nullptr;
-
-}
 
 
 //const char * str::utf8_next_add_length(strsize * paddlength, const char * psz)
@@ -2430,7 +2318,7 @@ const char * unicode_next(const char * psz, int * piError)
 //}
 
 
-const char * str::utf8_dec(const char * pszBeg, const char * psz)
+const char * utf8_dec(const char * pszBeg, const char * psz)
 {
 
    if (psz <= pszBeg)
@@ -2531,12 +2419,12 @@ const char * str::utf8_dec(const char * pszBeg, const char * psz)
 }
 
 
-string str::get_utf8_char(const char * psz)
+string get_utf8_char(const char * psz)
 {
 
    i32 iLength;
    
-   auto iIndex = ch().uni_index_len(psz, iLength);
+   auto iIndex = unicode_index_length(psz, iLength);
 
    if (iLength < 0)
    {
@@ -2550,10 +2438,10 @@ string str::get_utf8_char(const char * psz)
 }
 
 
-string str::get_utf8_char(const char * psz, const char * pszEnd)
+string get_utf8_char(const char * psz, const char * pszEnd)
 {
 
-   const char * pszNext = next(psz);
+   const char * pszNext = unicode_next(psz);
 
    if (pszNext > pszEnd)
    {
@@ -2567,10 +2455,10 @@ string str::get_utf8_char(const char * psz, const char * pszEnd)
 }
 
 
-bool str::get_utf8_char(string & strChar, const char *& psz, const char * pszEnd)
+bool get_utf8_char(string & strChar, const char *& psz, const char * pszEnd)
 {
 
-   const char * pszNext = next(psz);
+   const char * pszNext = unicode_next(psz);
 
    if (pszNext > pszEnd)
    {
@@ -2588,7 +2476,7 @@ bool str::get_utf8_char(string & strChar, const char *& psz, const char * pszEnd
 }
 
 
-string str::get_utf8_char(const char * pszBeg, const char * psz, index i)
+string get_utf8_char(const char * pszBeg, const char * psz, index i)
 {
 
    if (i > 0)
@@ -2597,7 +2485,7 @@ string str::get_utf8_char(const char * pszBeg, const char * psz, index i)
       while (i != 0)
       {
 
-         increment(psz);
+         unicode_increment(psz);
 
          if (*psz == '\0')
          {
@@ -2619,7 +2507,7 @@ string str::get_utf8_char(const char * pszBeg, const char * psz, index i)
       while (i != 0)
       {
 
-         psz = prior(pszBeg, psz);
+         psz = unicode_prior(pszBeg, psz);
 
          if (psz == nullptr)
          {
@@ -2645,7 +2533,7 @@ string str::get_utf8_char(const char * pszBeg, const char * psz, index i)
 }
 
 
-string str::utf8_next_char(const char * pszBeg, const char * psz, index i)
+string utf8_next_char(const char * pszBeg, const char * psz, index i)
 {
 
    return get_utf8_char(pszBeg, psz, i + 1);
@@ -2653,7 +2541,7 @@ string str::utf8_next_char(const char * pszBeg, const char * psz, index i)
 }
 
 
-string str::utf8_previous_char(const char * pszBeg, const char * psz, index i)
+string utf8_previous_char(const char * pszBeg, const char * psz, index i)
 {
 
    return utf8_next_char(pszBeg, psz, -i);
@@ -2738,7 +2626,7 @@ bool str::get_curly_content(const char * psz, string & str)
 
    const char * pszChar;
 
-   for (pszChar = next(psz); pszChar != nullptr; increment(pszChar))
+   for (pszChar = unicode_next(psz); pszChar != nullptr; unicode_increment(pszChar))
    {
 
       if (*pszChar == '}')
@@ -2785,14 +2673,14 @@ bool str::is_simple_natural(const char * pszCandidate, strsize iCount)
    while (*psz != '\0' && iCount != 0)
    {
 
-      if (!ch().is_digit(psz))
+      if (!unicode_is_digit(psz))
       {
 
          return false;
 
       }
 
-      increment(psz);
+      unicode_increment(psz);
 
       iCount--;
 
@@ -2813,7 +2701,7 @@ bool str::is_natural(const ::string & strParam)
    for (index i = 0; i < str.get_length(); i++)
    {
 
-      if (!ansi_char_is_digit(str[i]))
+      if (!ansi_char_isdigit(str[i]))
       {
 
          return false;
@@ -2834,7 +2722,7 @@ bool str::is_integer(const ::string & strParam)
 
    str.trim();
 
-   if (::str().begins_eat_ci(str, "-") || ::str().begins_eat_ci(str, "+"))
+   if (str.begins_eat_ci("-") || str.begins_eat_ci("+"))
    {
 
       return is_natural(str);
@@ -2954,10 +2842,10 @@ void str::consume_spaces(const char *& pszParse, ::count iMinimumCount)
 
    i32 i = 0;
 
-   while (ch().is_whitespace(psz))
+   while (unicode_is_whitespace(psz))
    {
 
-      increment(psz);
+      unicode_increment(psz);
 
       i++;
 
@@ -3005,10 +2893,10 @@ u64 str::consume_natural(const char *& pszParse, u64 uMax, u64 uMin)
 
    u64 u;
 
-   while (ch().is_digit(psz))
+   while (unicode_is_digit(psz))
    {
 
-      increment(psz);
+      unicode_increment(psz);
 
       i++;
 
@@ -3050,10 +2938,10 @@ void str::consume_spaces(const char *& pszParse, ::count iMinimumCount, const ch
 
    i32 i = 0;
 
-   while (ch().is_whitespace(psz))
+   while (unicode_is_whitespace(psz))
    {
 
-      increment(psz);
+      unicode_increment(psz);
 
       if (psz > pszEnd)
       {
@@ -3093,10 +2981,10 @@ string str::consume_non_spaces(const ansichar *& pszParse, const char * pszEnd)
 
    auto psz = pszParse;
 
-   while (!ch().is_whitespace(psz))
+   while (!unicode_is_whitespace(psz))
    {
       
-      increment(psz);
+      unicode_increment(psz);
 
       if (psz >= pszEnd)
       {
@@ -3123,12 +3011,12 @@ string str::consume_hex(const char *& pszParse)
    while (*psz != '\0')
    {
       
-      i64 i = ch().uni_index(pszParse);
+      i64 i = unicode_index(pszParse);
 
       if ((i >= '0' && i <= '9') || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
       {
 
-         increment(psz);
+         unicode_increment(psz);
 
       }
 
@@ -3155,7 +3043,7 @@ string str::consume_nc_name(const char *& pszParse)
       // first char
       if (start)
       {
-         if (!ch().is_letter(ca) || *ca == '\0')
+         if (!unicode_is_letter(ca) || *ca == '\0')
          {
             throw ::exception(error_parsing, "NCName required here");
             return "";
@@ -3164,11 +3052,11 @@ string str::consume_nc_name(const char *& pszParse)
       }
       else
       {
-         if (!ch().is_letter_or_digit(ca) && *ca != '_' && *ca != '-')
+         if (!unicode_is_letter_or_digit(ca) && *ca != '_' && *ca != '-')
          {
             break;
          }
-         increment(psz);
+         unicode_increment(psz);
       }
    }
    string str(pszParse, psz - pszParse);
@@ -3242,7 +3130,7 @@ string str::consume_quoted_value(const char *& pszParse, const char * pszEnd)
 
    skip:
 
-      increment(psz);
+      unicode_increment(psz);
 
       if (psz > pszEnd || *psz == '\0')
       {
@@ -3256,7 +3144,7 @@ string str::consume_quoted_value(const char *& pszParse, const char * pszEnd)
       if (*psz == '\\')
       {
 
-         increment(psz);
+         unicode_increment(psz);
 
          if (psz > pszEnd)
          {
@@ -3337,7 +3225,7 @@ void str::no_escape_consume_quoted_value(const char *& pszParse, const char * ps
    while (*psz != qc)
    {
 
-      increment(psz);
+      unicode_increment(psz);
 
       if (psz > pszEnd)
       {
@@ -3395,7 +3283,7 @@ string str::no_escape_consume_quoted_value(const char *& pszParse, const char * 
    while (*psz != qc)
    {
 
-      increment(psz);
+      unicode_increment(psz);
 
       if (psz > pszEnd)
       {
@@ -3442,7 +3330,7 @@ void str::skip_quoted_value_ex2(const char *& pszParse, const char * pszEnd)
    while (*psz != qc)
    {
 
-      increment(psz);
+      unicode_increment(psz);
 
       if (psz > pszEnd)
       {
@@ -3592,7 +3480,7 @@ string str::consume_quoted_value_ex(const char *& pszParse, const char * pszEnd)
    string str;
    while (true)
    {
-      pszNext = next(psz);
+      pszNext = unicode_next(psz);
       if (pszNext > pszEnd)
       {
          throw ::exception(error_parsing, "Quote character is required here, premature end");
@@ -3611,7 +3499,7 @@ string str::consume_quoted_value_ex(const char *& pszParse, const char * pszEnd)
       else if (*psz == '\\')
       {
          psz = pszNext;
-         pszNext = next(psz);
+         pszNext = unicode_next(psz);
          if (pszNext > pszEnd)
          {
             throw ::exception(error_parsing, "Quote character is required here, premature end");
@@ -3715,7 +3603,7 @@ void str::skip_quoted_value_ex(const char *& pszParse, const char * pszEnd)
    const char * pszNext = psz;
    while (true)
    {
-      pszNext = next(psz);
+      pszNext = unicode_next(psz);
       if (pszNext > pszEnd)
       {
          throw ::exception(error_parsing, "Quote character is required here, premature end");
@@ -3734,7 +3622,7 @@ void str::skip_quoted_value_ex(const char *& pszParse, const char * pszEnd)
       else if (*psz == '\\')
       {
          psz = pszNext;
-         pszNext = next(psz);
+         pszNext = unicode_next(psz);
          if (pszNext > pszEnd)
          {
             throw ::exception(error_parsing, "Quote character is required here, premature end");
@@ -3755,7 +3643,7 @@ void str::skip_quoted_value_ex(const char *& pszParse, const char * pszEnd)
             for (index i = 0; i < 4; i++)
             {
                psz = pszNext;
-               pszNext = next(psz);
+               pszNext = unicode_next(psz);
                if (pszNext > pszEnd)
                {
                   throw ::exception(error_parsing, "Quote character is required here, premature end");
@@ -3799,7 +3687,7 @@ string str::consume_spaced_value(string & str)
 
    strsize i = 0;
 
-   while (i < str.length() && ansi_char_is_space(str[i]))
+   while (i < str.length() && ansi_char_isspace(str[i]))
    {
 
       i++;
@@ -3817,7 +3705,7 @@ string str::consume_spaced_value(string & str)
 
    strsize iStart = i;
 
-   while (i < str.length() && !ansi_char_is_space(str[i]))
+   while (i < str.length() && !ansi_char_isspace(str[i]))
    {
       i++;
    }
@@ -3886,7 +3774,7 @@ string str::consume_command_line_argument(string & str)
 
       strsize i = 0;
 
-      while (i < iFind && ansi_char_is_space(str[i]))
+      while (i < iFind && ansi_char_isspace(str[i]))
       {
          i++;
       }
@@ -3896,7 +3784,7 @@ string str::consume_command_line_argument(string & str)
 
          strsize iStart = i;
 
-         while (i < iFind && !ansi_char_is_space(str[i]))
+         while (i < iFind && !ansi_char_isspace(str[i]))
          {
             i++;
          }
@@ -3920,7 +3808,7 @@ string str::consume_command_line_argument(string & str)
 
             i = iStart;
 
-            while (i < str.length() && !ansi_char_is_space(str[i]))
+            while (i < str.length() && !ansi_char_isspace(str[i]))
             {
                i++;
             }
@@ -4011,7 +3899,7 @@ string str::consume_c_quoted_value(const char *& pszParse, const char * pszEnd)
    while (psz < pszEnd)
    {
 
-      increment(psz);
+      unicode_increment(psz);
 
       strPreviousChar = strCurrentChar;
 
@@ -4056,7 +3944,7 @@ string str::consume_c_quoted_value(const char *& pszParse, const char * pszEnd)
 
    }
 
-   increment(psz);
+   unicode_increment(psz);
 
    pszParse = psz;
 
@@ -4210,7 +4098,7 @@ string str::xml_consume_comment(const char *& pszParse)
 
       str += *pszParse;
 
-      increment(pszParse);
+      unicode_increment(pszParse);
 
    }
 
@@ -4361,7 +4249,7 @@ i64 str::to_i64(const ::string & str)
 
    i32 i = 0;
 
-   for (; i < str.get_length() && isspace(str[i]); i++);
+   for (; i < str.get_length() && character_isspace(str[i]); i++);
 
    bool bNegative = str[i] == '-';
 
@@ -4402,7 +4290,7 @@ i64 str::to_i64(const ::string & str)
 
 //   i32 i = 0;
 
-//   for (; *psz != '\0' && i < 30 && ansi_char_is_space(*psz); i++, psz++);
+//   for (; *psz != '\0' && i < 30 && ansi_char_isspace(*psz); i++, psz++);
 
 //   bool bNegative = *psz == '-';
 
@@ -4411,7 +4299,7 @@ i64 str::to_i64(const ::string & str)
 
 //   u64 u = 0;
 
-//   for(; *psz != '\0' && i < 30 && ansi_char_is_digit(*psz); psz++, i++)
+//   for(; *psz != '\0' && i < 30 && ansi_char_isdigit(*psz); psz++, i++)
 //   {
 //      u = u * 10 + *psz - 48;
 //   }
@@ -4428,7 +4316,7 @@ u64 str::to_u64(const ::string & str)
 
    i32 i = 0;
 
-   for (; i < str.get_length() && isspace(str[i]); i++);
+   for (; i < str.get_length() && character_isspace(str[i]); i++);
 
    u64 u = 0;
 
@@ -4446,7 +4334,7 @@ u64 str::to_u64(const ::string & str)
 
 //   i32 i = 0;
 
-//   for (; *psz != '\0' && i < 30 && isspace(*psz); i++, psz++);
+//   for (; *psz != '\0' && i < 30 && character_isspace(*psz); i++, psz++);
 
 //   u64 u = 0;
 
@@ -5110,7 +4998,7 @@ bool str::is_true(string str)
       {
 
       }
-      else if (!ansi_char_is_digit(str[i]))
+      else if (!ansi_char_isdigit(str[i]))
       {
 
          return false;
@@ -5259,7 +5147,7 @@ string str::zero_padded(const ::string & strSrc, strsize lenPad)
 }
 
 
-void str::get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::synchronization_lock * psynchronizationlock, ::file::file * pfileLog)
+void str::get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::particle * pparticleSynchronization, ::file::file * pfileLog)
 {
 
    auto iLimit = str.reverse_find("\n");
@@ -5333,23 +5221,23 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 
       strPrefixedLine = strPrefix + strLine;
 
-      if (::is_set(psynchronizationlock))
+      if (::is_set(pparticleSynchronization))
       {
 
-         psynchronizationlock->_lock();
+         pparticleSynchronization->_lock();
 
       }
 
       stra.add(strPrefixedLine.c_str());
 
-      if(::is_set(psynchronizationlock))
+      if(::is_set(pparticleSynchronization))
       {
 
-         psynchronizationlock->unlock();
+         pparticleSynchronization->unlock();
 
       }
 
-      if(::is_ok(pfileLog))
+      if(::is_set(pfileLog) && pfileLog->has_ok_flag())
       {
 
          try
@@ -5388,20 +5276,223 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 }
 
 
-::string __string(const ::string_stream & strstream)
+//::string __string(const ::string_stream & strstream)
+//{
+//
+//   return strstream.as_string();
+//
+//}
+
+
+//template < typename FILE >
+//::string __string(const ::text_stream < FILE > & strstream)
+//{
+//
+//   return strstream.as_string();
+//
+//}
+
+
+//ansistring & str::assign(ansistring & ansistrDst, const property & property)
+//{
+//
+//   ansistrDst.assign(property.string());
+//
+//   return ansistrDst;
+//
+//}
+//
+//
+//
+//
+//
+
+
+//namespace str
+//{
+
+template < typename TYPE >
+class get_char_type
 {
+public:
 
-   return strstream.as_string();
+   using CHAR_TYPE = typename TYPE::CHAR_TYPE;
 
-}
+};
 
-
-::string __string(const ::text_stream & strstream)
-{
-
-   return strstream.as_string();
-
-}
+   template < > class get_char_type < const char * > { public: using CHAR_TYPE = char; };
+   template < > class get_char_type < char * > { public: using CHAR_TYPE = char; };
+   template < int n > class get_char_type < const char[n] > { public: using CHAR_TYPE = char; };
+   template < int n > class get_char_type < char[n] > { public: using CHAR_TYPE = char; };
 
 
+//bool str::begins_eat(::payload & payload, const ::string & strPrefix)
+//{
+//
+//   string str = payload.string();
+//
+//   if (!begins_eat(str, strPrefix))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   payload = str;
+//
+//   return true;
+//
+//}
+//
+//
+//bool str::begins_eat_ci(::payload & payload, const ::string & strPrefix)
+//{
+//
+//   string str = payload.string();
+//
+//   if (!begins_eat_ci(str, strPrefix))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   payload = str;
+//
+//   return true;
+//
+//}
+//
+//
+//bool str::begins_eat(property & property, const ::string & strPrefix)
+//{
+//
+//   return begins_eat((::payload &)property, strPrefix);
+//
+//}
+//
+//
+//bool str::begins_eat_ci(property & property, const ::string & strPrefix)
+//{
+//
+//   return begins_eat_ci((::payload &)property, strPrefix);
+//
+//}
+
+
+//ansistring & str::assign(ansistring & ansistrDst, const atom & atom)
+//{
+//
+//   ansistrDst.assign(atom);
+//
+//   return ansistrDst;
+//
+//}
+//
+//
+//wd16string & str::assign(wd16string & widestrDst, const atom & atom)
+//{
+//
+//   widestrDst.assign(atom);
+//
+//   return widestrDst;
+//
+//}
+//
+//
+//wd32string & str::assign(wd32string & widestrDst, const atom & atom)
+//{
+//
+//   widestrDst.assign(atom);
+//
+//   return widestrDst;
+//
+//}
+//
+//
+//
+//
+//
+//ansistring & str::assign(ansistring & ansistrDst, const ::payload & payload)
+//{
+//
+//   ansistrDst.assign(payload);
+//
+//   return ansistrDst;
+//
+//}
+//
+//
+//wd16string & str::assign(wd16string & widestrDst, const property & property)
+//{
+//
+//   widestrDst.assign(property.string());
+//
+//   return widestrDst;
+//
+//}
+//
+//
+//wd32string & str::assign(wd32string & widestrDst, const property & property)
+//{
+//
+//   widestrDst.assign(property.string());
+//
+//   return widestrDst;
+//
+//}
+//
+//
+//
+//
+//wd16string & str::assign(wd16string & widestrDst, const ::payload & payload)
+//{
+//
+//   widestrDst.assign(payload.string());
+//
+//   return widestrDst;
+//
+//}
+//
+//
+//wd32string & str::assign(wd32string & widestrDst, const ::payload & payload)
+//{
+//
+//   widestrDst.assign(payload.string());
+//
+//   return widestrDst;
+//
+//}
+//
+//
+//ansistring & str::assign(ansistring & ansistrDst, const type & type)
+//{
+//
+//   ansistrDst.assign(type);
+//
+//   return ansistrDst;
+//
+//}
+//
+//
+//wd16string & str::assign(wd16string & widestrDst, const type & type)
+//{
+//
+//   widestrDst.assign(type);
+//
+//   return widestrDst;
+//
+//}
+//
+//
+//wd32string & str::assign(wd32string & widestrDst, const type & type)
+//{
+//
+//   widestrDst.assign(type);
+//
+//   return widestrDst;
+//
+//}
+//
+//
 

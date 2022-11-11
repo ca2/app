@@ -315,7 +315,7 @@
 //
 //
 //
-//extern CLASS_DECL_AURA ::mutex * g_pmutexMemoryCounters;
+//extern CLASS_DECL_AURA ::pointer< ::mutex > g_pmutexMemoryCounters;
 //
 //CLASS_DECL_AURA bool memory_counter_on();
 //

@@ -4,49 +4,17 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/rectangle.h"
-#include "acme/primitive/geometry2d/point.h"
-
-
-template < typename T >
-class ___stack
-{
-public:
-
-   
-   T & m_reference;
-   T m_tPrevious;
-   
-
-   ___stack(T& reference, const T& tStack) :
-      m_reference(reference)
-   {
-      
-      m_tPrevious = reference;
-      
-      reference = tStack;
-      
-   }
-
-   
-   ~___stack()
-   {
-      
-      m_reference = m_tPrevious;
-
-   }
-   
-
-};
-
-
-#define __stack(xxxx, aaaa) auto stack_at_line ## LINE_NUMBER = ::___stack < ::erase_reference< decltype(xxxx) >::TYPE > (xxxx, aaaa);
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/particle.h"
+#include "acme/constant/element.h"
 
 
 #pragma pack(push, user_ITEM, 1)
 
 
-struct ITEM_BASE_ADDITIONS
+struct CLASS_DECL_ACME ITEM_BASE_ADDITIONS
 {
    
 
@@ -71,7 +39,7 @@ struct ITEM_BASE_ADDITIONS
 };
 
 
-struct ITEM_DATA_ADDITIONS
+struct CLASS_DECL_ACME ITEM_DATA_ADDITIONS
 {
 
    
@@ -81,7 +49,7 @@ struct ITEM_DATA_ADDITIONS
    ::point_i32                   m_pointHitTest;
    ::rectangle_i32               m_rectangle;
    u64                           m_uFlags;
-   ::pointer<::element>         m_pelement;
+   ::pointer < ::particle >      m_pparticle;
    ::enum_item                   m_eitem;
    union // small 1 bedroom ap
    {
@@ -96,7 +64,21 @@ struct ITEM_DATA_ADDITIONS
          // journalists could teach to cook... and... universities to build... police muscles for night club entertenament... justice for history... policits for some directions and religion for interpreting the universe... because there are billions of galaxies... because sci-fi is not science, it is a religion of pretending to be better than rich people by knowning some physics... and rich people turn rich on flesh but they are later invited to trampolin to finance the circus above on the shoulders of slaves with some controlled youtube and macdonalds and starbucks...
       };
    };
+
+
+   ITEM_DATA_ADDITIONS()
+   {
+
+
+   }
    
+
+   ~ITEM_DATA_ADDITIONS()
+   {
+
+      
+   }
+
 
    ITEM_DATA_ADDITIONS & operator = (const ITEM_DATA_ADDITIONS & itemdataadditions)
    { 
@@ -107,7 +89,7 @@ struct ITEM_DATA_ADDITIONS
       m_pointHitTest = itemdataadditions.m_pointHitTest;
       m_rectangle = itemdataadditions.m_rectangle;
       m_uFlags = itemdataadditions.m_uFlags;
-      m_pelement = itemdataadditions.m_pelement;
+      m_pparticle = itemdataadditions.m_pparticle;
 
       return *this;
       
@@ -117,7 +99,7 @@ struct ITEM_DATA_ADDITIONS
 };
 
 
-struct ITEM_BASE :
+struct CLASS_DECL_ACME ITEM_BASE :
    public PARTICLE,
    public ITEM_BASE_ADDITIONS
 {
@@ -126,7 +108,7 @@ struct ITEM_BASE :
 };
 
 
-struct ITEM_DATA :
+struct CLASS_DECL_ACME ITEM_DATA :
    public PARTICLE,
    public ITEM_BASE_ADDITIONS,
    public ITEM_DATA_ADDITIONS

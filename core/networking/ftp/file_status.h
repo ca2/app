@@ -12,8 +12,10 @@
 // and with no claim as to its suitability for any purpose.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
 #pragma once
+
+
+#include "acme/primitive/primitive/object.h"
 
 
 namespace ftp
@@ -72,7 +74,7 @@ namespace ftp
       virtual ~file_status();
 
 
-      virtual void     initialize(::object * pobject) override;
+      virtual void     initialize(::particle * pparticle) override;
 
 
       file_status& operator=(const file_status& rhs);

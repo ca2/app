@@ -34,11 +34,11 @@ namespace axis
       ~application() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
       virtual bool assert_user_logged_in() override;
 
       virtual string __get_text(string str) override;

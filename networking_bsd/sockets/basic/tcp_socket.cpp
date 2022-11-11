@@ -3,6 +3,7 @@
 #include "networking_bsd/address.h"
 #include "networking_bsd/networking.h"
 #include "socket_handler.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/crypto/crypto.h"
 #include "apex/platform/system.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -74,13 +75,13 @@ void SSL_set_app_data2(SSL *ssl, void *arg)
 static int current_session_key(::sockets_bsd::tcp_socket * c, ssl_ticket_key *key)
 {
    int result = false;
-   synchronous_lock synchronouslock(c->mutex());
+   synchronous_lock synchronouslock(c->synchronization());
    if (c->m_ticketkeya.has_elements())
    {
       *key = c->m_ticketkeya.first();
       result = true;
    }
-   //apr_thread_rwlock_unlock(c->::mutex);
+   //apr_thread_rwlock_unlock(c->::pointer < ::mutex >);
    return result;
 }
 
@@ -89,7 +90,7 @@ static int find_session_key(::sockets_bsd::tcp_socket *c, unsigned char key_name
 {
 
    int result = false;
-   synchronous_lock synchronouslock(c->mutex());
+   synchronous_lock synchronouslock(c->synchronization());
    for (auto & ticketkey : c->m_ticketkeya)
    {
       // Check if we have a match for tickets.
@@ -314,10 +315,10 @@ namespace sockets_bsd
    }
 
 
-   void tcp_socket::initialize(::object * pobject)
+   void tcp_socket::initialize(::particle * pparticle)
    {
 
-      stream_socket::initialize(pobject);
+      stream_socket::initialize(pparticle);
 
    }
 
@@ -456,7 +457,7 @@ namespace sockets_bsd
       if(!skip_socks && addrSocks4.has_char() && GetSocks4Port())
       {
          
-         auto paddressSocks4 = __SystemNetworking(m_psystem)->create_address(addrSocks4);
+         auto paddressSocks4 = __SystemNetworking(acmesystem())->create_address(addrSocks4);
 
          //::networking::address sa(GetSocks4Host(),GetSocks4Port());
 
@@ -549,7 +550,7 @@ namespace sockets_bsd
 
       SetCloseAndDelete(false);
 
-      auto pnetworking2 = __SystemNetworking(m_psystem);
+      auto pnetworking2 = __SystemNetworking(acmesystem());
 
       ::networking::address_pointer paddress;
 
@@ -1153,7 +1154,9 @@ namespace sockets_bsd
       // if all blocks are sent, reset m_wfds
 
       bool repeat = false;
+
       memsize sz = m_transfer_limit ? GetOutputLength() : 0;
+
       do
       {
          
@@ -1182,7 +1185,7 @@ namespace sockets_bsd
             if(!left)
             {
 
-               erase(it);
+               m_obuf.erase(it);
 
                if(!m_obuf.get_size())
                {
@@ -1612,7 +1615,7 @@ namespace sockets_bsd
 
       SetNonblocking(true);
 
-      //synchronous_lock slMap(pnetworking2->m_clientcontextmap.m_mutex);
+      //synchronous_lock slMap(pnetworking2->m_clientcontextmap.m_pmutex);
 
       if (is_true("from_pool"))
          return;
@@ -1719,7 +1722,7 @@ namespace sockets_bsd
 
       SetNonblocking(true);
 
-      //synchronous_lock slMap(pnetworking2->m_servercontextmap.m_mutex);
+      //synchronous_lock slMap(pnetworking2->m_servercontextmap.m_pmutex);
 
       {
          if(m_psslcontext.is_set()
@@ -2068,7 +2071,7 @@ namespace sockets_bsd
 
       string strId = m_strCat;
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       if (strId.begins_ci("cat://"))
       {
@@ -2210,7 +2213,7 @@ namespace sockets_bsd
    void tcp_socket::InitializeContext(const string & context, const SSL_METHOD * pmethod)
    {
 
-      auto pnetworking2 = __SystemNetworking(m_psystem);
+      auto pnetworking2 = __SystemNetworking(acmesystem());
 
       ssl_client_context_map & clientcontextmap = pnetworking2->m_clientcontextmap;
 
@@ -2238,7 +2241,7 @@ namespace sockets_bsd
 
          m_psslcontext->m_pclientcontext = __new (ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method()));
 
-         m_psslcontext->m_pclientcontext->initialize(get_app());
+         m_psslcontext->m_pclientcontext->initialize(m_pcontext);
 
       }
 
@@ -2261,7 +2264,7 @@ namespace sockets_bsd
          if (keyfile.ends_ci(".cat"))
          {
 
-            strCert = m_pcontext->m_papexcontext->file().as_string(keyfile);
+            strCert = file()->as_string(keyfile);
 
          }
          else
@@ -2269,7 +2272,7 @@ namespace sockets_bsd
 
             strCert = keyfile;
 
-            ::str().begins_eat_ci(strCert, "cat://");
+            strCert.begins_eat_ci("cat://");
 
          }
 
@@ -2420,12 +2423,12 @@ namespace sockets_bsd
 
 
       {
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
          int i;
 
          //auto psystem = get_system()->m_papexsystem;
 
-         auto pnetworking2 = __SystemNetworking(m_psystem);
+         auto pnetworking2 = __SystemNetworking(acmesystem());
 
 
          int cnt = sizeof(pnetworking2->m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
@@ -2950,7 +2953,7 @@ namespace sockets_bsd
 
                string str = data;
 
-               if(::str().begins_eat(str,"*."))
+               if(str.begins_eat("*."))
                {
 
                   string strCommon = common_name;
@@ -3040,7 +3043,7 @@ namespace sockets_bsd
 
                         string str = strDnsName;
 
-                        if (::str().begins_eat(str, "*."))
+                        if (str.begins_eat("*."))
                         {
 
                            string strCommon = common_name;

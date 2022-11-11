@@ -4,7 +4,8 @@
 #pragma once
 
 
-//#include "image_drawing.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/matter.h"
 
 
 class CLASS_DECL_AURA image_drawer :

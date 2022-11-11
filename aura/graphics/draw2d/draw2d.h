@@ -65,7 +65,7 @@ namespace draw2d
       ~draw2d() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
    protected:
       friend class ::draw2d::object;
@@ -77,9 +77,9 @@ namespace draw2d
       friend class graphics;
       void add_graphics(graphics * pimage);
       void erase_graphics(graphics * pimage);
-      //::mutex * get_object_list_mutex();
-      //::mutex * get_image_list_mutex();
-      //::mutex * get_graphics_context_list_mutex();
+      //::pointer< ::mutex > get_object_list_mutex();
+      //::pointer< ::mutex > get_image_list_mutex();
+      //::pointer< ::mutex > get_graphics_context_list_mutex();
 
    public:
 

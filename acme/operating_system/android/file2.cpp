@@ -73,7 +73,7 @@ i64 fd_get_file_size(i32 fd)
 //// ::file::path dir::bookmark()
 //// {
 //
-////    return          auto psystem = m_psystem;
+////    return          auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

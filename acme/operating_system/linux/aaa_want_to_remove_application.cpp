@@ -11,8 +11,8 @@
 namespace acme
 {
 
-//   application::application(::matter * pobject) :
-//      ::matter(pobject)
+//   application::application(::particle * pparticle) :
+//      ::matter(pparticle)
 //   {
 //
 ////      m_pthreadimpl.create(this);

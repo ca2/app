@@ -1,7 +1,6 @@
 #include "framework.h"
 #include "path.h"
 #include "path_simple_optimization.h"
-#include "aura/graphics/write_text/_.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "acme/primitive/geometry2d/_enhanced.h"
 #include "acme/primitive/geometry2d/_collection_enhanced.h"

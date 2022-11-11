@@ -2,8 +2,11 @@
 // Created by camilo on 2020-11-19. <3Thomas Boregaard SørensenCamilo SasukeThomas Boregaard Sørensen!! DOMAS_16-09-0.1989
 //
 #include "framework.h"
-
-
+#include "acme/operating_system/process.h"
+#include "acme/parallelization/single_lock.h"
+#include "acme/exception/exception.h"
+#include "acme/platform/acme.h"
+#include "acme/primitive/string/str.h"
 #include <sys/wait.h>
 #include <unistd.h>
 #include <wordexp.h>
@@ -13,10 +16,10 @@
 #if !defined(APPLE_IOS)
 
 
-void command_system(string_array & straOutput, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout, ::synchronization_object * psynchronizationobject, ::file::file * pfileLog)
+void command_system(string_array & straOutput, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLog)
 {
 
-   single_lock singlelock(psynchronizationobject);
+   single_lock singlelock(pparticleSynchronization);
 
    ::e_status estatus = success;
 
@@ -29,7 +32,7 @@ void command_system(string_array & straOutput, int& iExitCode, const char* psz, 
 
       int iErrNo = errno;
 
-      estatus = errno_to_status(iErrNo);
+      estatus = errno_status(iErrNo);
 
       throw ::exception(estatus);
 
@@ -44,7 +47,7 @@ void command_system(string_array & straOutput, int& iExitCode, const char* psz, 
 
       int iErrNo = errno;
 
-      estatus = errno_to_status(iErrNo);
+      estatus = errno_status(iErrNo);
 
       throw ::exception(estatus);
 
@@ -285,7 +288,7 @@ namespace acme
 critical_section * get_pid_cs()
 {
 
-   critical_section_lock cs(::acme::g_pcsGlobal);
+   critical_section_lock cs(::globals_critical_section());
 
    if(g_pcsPid2 == nullptr)
    {

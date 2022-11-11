@@ -1,6 +1,8 @@
 ﻿#include "framework.h"
 #include "acme/constant/timer.h"
+#include "acme/handler/item.h"
 #include "acme/platform/timer.h"
+#include "apex/database/selection.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -135,6 +137,31 @@ namespace user
    }
 
 
+
+   ::core::application* mesh::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+   }
+
+
+   ::core::session* mesh::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
+
+
+   ::core::system* mesh::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+
+   }
+
+
    void mesh::install_message_routing(::channel * pchannel)
    {
 
@@ -163,9 +190,9 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this,&mesh::on_message_create);
 
-      add_command_handler("mesh_impact_auto_arrange", this, &mesh::_001OnMeshImpactAutoArrange);
+      add_command_handler("mesh_impact_auto_arrange", { this,  &mesh::_001OnMeshImpactAutoArrange });
 
-      add_command_prober("mesh_impact_auto_arrange", this, &mesh::_001OnUpdateMeshImpactAutoArrange);
+      add_command_prober("mesh_impact_auto_arrange", { this,  &mesh::_001OnUpdateMeshImpactAutoArrange });
 
    }
 
@@ -937,7 +964,7 @@ namespace user
    void mesh::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       _001CalculateItemHeight(pgraphics);
 
@@ -1042,7 +1069,7 @@ namespace user
    bool mesh::_001OnUpdateItemCount(u32 dwFlags)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       __UNREFERENCED_PARAMETER(dwFlags);
 
@@ -1118,7 +1145,7 @@ namespace user
 
       cache_hint();
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -1304,7 +1331,7 @@ namespace user
 
       return;
 
-//      synchronous_lock synchronouslock(&m_mutexData);
+//      synchronous_lock synchronouslock(m_pmutexData);
 
 //      index iColumn;
 
@@ -2792,7 +2819,7 @@ namespace user
 
       pmouse->previous(); // give chance to child control
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto psession = get_session();
 
@@ -4105,7 +4132,7 @@ namespace user
 
       m_strTopText = pcwsz;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -4658,7 +4685,7 @@ namespace user
 
       m_efilterstate = FilterStateFilter;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -4711,7 +4738,7 @@ namespace user
 
       }
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -4859,7 +4886,7 @@ namespace user
 
       m_efilterstate = FilterStateFilter;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -4902,7 +4929,7 @@ namespace user
 
       //m_pregexFilter1->setPositionMoves(1);
 
-      auto psystem = m_psystem->m_paxissystem;
+      auto psystem = acmesystem()->m_paxissystem;
 
       m_pregexFilter1 = psystem->compile_pcre("/.*" + stra.implode(".*") + ".*/i");
 
@@ -4930,7 +4957,7 @@ namespace user
    void mesh::_001OnMeshHeaderItemDblClk(index iHeaderItem)
    {
       
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -5441,7 +5468,7 @@ namespace user
 
       pmessage->previous();
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if(m_eview == impact_grid)
       {
@@ -5460,7 +5487,7 @@ namespace user
 
                m_nItemCount = minimum(m_nGridItemCount,m_nItemCount + (::count)(sizePage.cy / m_dItemHeight));
 
-               auto psystem = m_psystem->m_paurasystem;
+               auto psystem = acmesystem()->m_paurasystem;
 
                auto pdraw2d = psystem->draw2d();
 
@@ -5502,7 +5529,7 @@ namespace user
 /// 
                m_nColumnCount = m_nGridColumnCount;
 
-               auto psystem = m_psystem->m_paurasystem;
+               auto psystem = acmesystem()->m_paurasystem;
 
                auto pdraw2d = psystem->draw2d();
 
@@ -6006,7 +6033,7 @@ namespace user
 
             //::aura::application * get_app() = m_pmesh->get_app();
 
-            auto psystem = m_pitem->m_pmesh->m_psystem->m_paurasystem;
+            auto psystem = m_pitem->m_pmesh->acmesystem()->m_paurasystem;
 
             psystem->imaging().channel_spread_set_color(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,2,argb(192,192,192,192));
             pimage1->fill(0,0,0,0);

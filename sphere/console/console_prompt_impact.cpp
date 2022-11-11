@@ -5,8 +5,8 @@ namespace console
 {
 
 
-   prompt_impact::prompt_impact(::object * pobject) :
-      ::object(pobject)
+   prompt_impact::prompt_impact(::particle * pparticle) :
+      ::object(pparticle)
    {
 
       m_durationCaretPeriod   = 500;
@@ -173,7 +173,7 @@ namespace console
 
          const char * lpsz = &m_strCommand[m_iCursor];
 
-         const char * lpszInc = ::str().next(lpsz);
+         const char * lpszInc = unicode_next(lpsz);
 
          if(lpszInc - lpsz > 0)
          {

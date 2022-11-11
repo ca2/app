@@ -3,7 +3,9 @@
 #include "tree.h"
 #include "user.h"
 #include "font_combo_box.h"
+#include "acme/handler/item.h"
 #include "apex/database/_binary_stream.h"
+#include "apex/database/change_event.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/write_text/fonts.h"
@@ -89,7 +91,7 @@
 ////
 //#endif
 
-CLASS_DECL_CORE ::mutex * get_cred_mutex();
+CLASS_DECL_CORE ::pointer< ::mutex > get_cred_mutex();
 
 
 namespace core
@@ -129,12 +131,37 @@ namespace core
    }
 
 
-   void user::initialize(::object * pobject)
+
+   ::core::application* user::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+   }
+
+
+   ::core::session* user::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
+
+
+   ::core::system* user::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+
+   }
+
+
+   void user::initialize(::particle * pparticle)
    {
 
       //auto estatus =
       
-      ::base::user::initialize(pobject);
+      ::base::user::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -247,7 +274,7 @@ namespace core
       ::factory::add_factory_item <menu_frame >();
       ::factory::add_factory_item <menu_impact >();
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto typeinfo = psystem->get_simple_frame_window_type_info();
 
@@ -332,7 +359,7 @@ namespace core
 //
 //      auto pcontext = get_context();
 //
-//      string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "langstyle_settings.xml");
+//      string strUser = pcontext->m_papexcontext->file()->as_string(pcontext->m_papexcontext->dir()->appdata() / "langstyle_settings.xml");
 //
 //      string strLangUser;
 //
@@ -510,7 +537,7 @@ namespace core
 
 
 
-   ::pointer<::form_document>user::create_form(::object * pobject, ::type type, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_form(::particle * pparticle, ::type type, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       if (!type)
@@ -537,19 +564,19 @@ namespace core
 
       }
 
-      if (pobject == nullptr)
+      if (pparticle == nullptr)
       {
 
          if (puserinteractionParent.is_set())
          {
 
-            pobject = puserinteractionParent;
+            pparticle = puserinteractionParent;
 
          }
          else
          {
 
-            pobject = this;
+            pparticle = this;
 
          }
 
@@ -588,11 +615,11 @@ namespace core
    }
 
 
-   pointer< ::sequence < ::conversation > > user::dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset)
+   pointer< ::sequence < ::conversation > > user::dialog_box(::particle * pparticle, const ::string & pszMatter, property_set & propertyset)
    {
 
       return nullptr;
-      //auto pbox = pobject->__create_new < class ::userex::message_box >();
+      //auto pbox = pparticle->__create_new < class ::userex::message_box >();
 
       ////auto pfuture = pbox->::extended::asynchronous< ::future<::conversation > >::future();
 
@@ -619,12 +646,12 @@ namespace core
    }
 
 
-   pointer< ::sequence < ::conversation > > user::ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
    {
 
       return nullptr;
 
-      //auto pbox = pobject->__create_new < ::userex::message_box >();
+      //auto pbox = pparticle->__create_new < ::userex::message_box >();
 
       //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 
@@ -636,7 +663,7 @@ namespace core
 
       //auto psession = get_session();
 
-      //auto papp = pobject->get_app();
+      //auto papp = pparticle->get_app();
 
       //if (::is_set(puiOwner))
       //{
@@ -754,12 +781,12 @@ namespace core
    }
 
 
-   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
+   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
    {
 
       //__UNREFERENCED_PARAMETER(puiOwner);
 
-      //auto pbox = pobject->__create_new < ::userex::message_box >();
+      //auto pbox = pparticle->__create_new < ::userex::message_box >();
 
       //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 
@@ -767,7 +794,7 @@ namespace core
 
       ////pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
-      //auto papp = pobject->get_app();
+      //auto papp = pparticle->get_app();
 
       //string strTitle = papp->title();
 
@@ -1017,7 +1044,7 @@ namespace core
    }
 
 
-   ::pointer<::form_document>user::create_form(::object * pobject, ::pointer<::user::form>pimpact, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_form(::particle * pparticle, ::pointer<::user::form>pimpact, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       if (m_ptemplateForm == nullptr)
@@ -1078,12 +1105,12 @@ namespace core
    }
 
 
-   ::pointer<::form_document>user::create_form(::object * pobject, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       auto ptemplateForm = m_ptemplateForm;
 
-      //::aura::application * papp = ::get_app(pobject);
+      //::aura::application * papp = ::get_app(pparticle);
 
       //if (papp == nullptr)
       //{
@@ -1109,7 +1136,7 @@ namespace core
 
       //}
 
-      auto pcreate = pobject->__create_new < ::create >();
+      auto pcreate = pparticle->__create_new < ::create >();
 
       pcreate->m_bMakeVisible = false;
 
@@ -1160,7 +1187,7 @@ namespace core
    }
 
 
-   ::pointer<::form_document>user::create_child_form(::object * pobject, ::pointer<::user::form>pimpact, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_child_form(::particle * pparticle, ::pointer<::user::form>pimpact, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       if (m_ptemplateChildForm == nullptr)
@@ -1170,7 +1197,7 @@ namespace core
 
       }
 
-      auto papp = pobject->get_app();
+      auto papp = pparticle->get_app();
 
       if (papp == nullptr)
       {
@@ -1249,10 +1276,10 @@ namespace core
    }
 
 
-   ::pointer<::form_document>user::create_child_form(::object * pobject, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_child_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
-      auto papp = pobject->get_app();
+      auto papp = pparticle->get_app();
 
       if (papp == nullptr)
       {
@@ -1278,7 +1305,7 @@ namespace core
 
       }
 
-      auto pcreate = pobject->__create_new < ::create > ();
+      auto pcreate = pparticle->__create_new < ::create > ();
 
       pcreate->m_bMakeVisible = true;
 
@@ -1332,7 +1359,7 @@ namespace core
    }
 
 
-   ::pointer<::form_document>user::create_child_form(::object * pobject, ::type type, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_child_form(::particle * pparticle, ::type type, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       if (!type)
@@ -1362,7 +1389,7 @@ namespace core
                                 m_ptemplateChildForm->m_typeFrame,
                                 type));
 
-         psystemNew->initialize(pobject);
+         psystemNew->initialize(pparticle);
 
          psystem = psystemNew;
 
@@ -1372,25 +1399,25 @@ namespace core
 
       }
 
-      if (pobject == nullptr)
+      if (pparticle == nullptr)
       {
 
          if (puserinteractionParent.is_set())
          {
 
-            pobject = puserinteractionParent;
+            pparticle = puserinteractionParent;
 
          }
          else
          {
 
-            pobject = this;
+            pparticle = this;
 
          }
 
       }
 
-      auto pcreate = pobject->__create_new < ::create >();
+      auto pcreate = pparticle->__create_new < ::create >();
 
       pcreate->m_bMakeVisible = false;
 
@@ -1453,26 +1480,26 @@ namespace core
    }
 
 
-   ::pointer<::user::list_header>user::default_create_list_header(::object * pobject)
+   ::pointer<::user::list_header>user::default_create_list_header(::particle * pparticle)
    {
 
-      return pobject->__id_create < ::user::list_header > (default_type_list_header());
+      return pparticle->__id_create < ::user::list_header > (default_type_list_header());
 
    }
 
 
-   ::pointer<::user::mesh_data>user::default_create_mesh_data(::object * pobject)
+   ::pointer<::user::mesh_data>user::default_create_mesh_data(::particle * pparticle)
    {
 
-      return pobject->__id_create < ::user::mesh_data > (default_type_list_data());
+      return pparticle->__id_create < ::user::mesh_data > (default_type_list_data());
 
    }
 
 
-   ::pointer<::user::list_data>user::default_create_list_data(::object * pobject)
+   ::pointer<::user::list_data>user::default_create_list_data(::particle * pparticle)
    {
 
-      return pobject->__id_create <::user::list_data >(default_type_list_data());
+      return pparticle->__id_create <::user::list_data >(default_type_list_data());
 
    }
 
@@ -2071,7 +2098,7 @@ namespace core
          fork([this]()
          {
             
-               auto psystem = m_psystem->m_paurasystem;
+               auto psystem = acmesystem()->m_paurasystem;
 
                auto pdraw2d = psystem->draw2d();
 

@@ -182,7 +182,7 @@ namespace draw2d_opengl
       ::size_i32 SetBitmapDimension(i32 nWidth, i32 nHeight);
       ::size_i32 GetBitmapDimension() const;
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool attach(void * posdata);

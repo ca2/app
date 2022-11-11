@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/listing.h"
+#include "acme/primitive/collection/string_map.h"
+#include "apex/filesystem/fs/data.h"
+
+
 // ifs - implementation of file system interface - file.ca2.software
 
 class ftpnet;
@@ -59,7 +64,7 @@ public:
    virtual ~ftpfs();
 
 
-   virtual void initialize_ftpfs(::object * pobject, const ::string & pszRoot);
+   virtual void initialize_ftpfs(::particle * pparticle, const ::string & pszRoot);
 
 
    virtual bool has_subdir(const ::file::path & pszPath) override;

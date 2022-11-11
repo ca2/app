@@ -7,6 +7,8 @@
 //
 #pragma once
 
+
+
 template<class T>
 struct erase_reference
 {
@@ -34,3 +36,8 @@ typename erase_reference<T>::TYPE &&move(T &&t)
    return (static_cast<typename erase_reference<T>::TYPE &&>(t));
 
 }
+
+
+
+
+

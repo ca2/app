@@ -1,8 +1,11 @@
 #include "framework.h"
 #include "email_department.h"
+#include "acme/platform/system.h"
+#include "acme/networking/url_department.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "axis/networking/sockets/bsd/smtp/smtp_socket.h"
+#include "apex/networking/email.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
+#include "axis/networking/sockets/bsd/smtp/smtp_socket.h"
 
 
 namespace networking
@@ -22,7 +25,7 @@ namespace networking
 
       auto psocket = __create_new < ::sockets::smtp_socket >();
 
-      string strHost = m_pcontext->m_papexcontext->file().as_string("/sensitive/sensitive/seed/default_sendmail_host.txt");
+      string strHost = file()->as_string("/sensitive/sensitive/seed/default_sendmail_host.txt");
 
       if (!psocket->open(strHost, (port_t)25))
       {
@@ -144,7 +147,7 @@ namespace networking
 
       }
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 

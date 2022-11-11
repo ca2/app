@@ -32,9 +32,9 @@
          {
 
 
-            frame_Minimal001::frame_Minimal001(::object * pobject) :
-               object(pobject),
-               frame(pobject)
+            frame_Minimal001::frame_Minimal001(::particle * pparticle) :
+               object(pparticle),
+               frame(pparticle)
             {
 
                set_style(StyleLightBlue);

@@ -12,7 +12,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/primitive/text/context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
-#include "apex/filesystem/filesystem/file_watcher.h"
+#include "source/app/apex/filesystem/file/file_watcher.h"
 #include "axis/platform/system.h"
 
 
@@ -90,9 +90,9 @@ namespace dynamic_source
 //   void script_compiler::prepare_compile_and_link_environment()
 //   {
 //
-//      auto pacmedirectory = m_psystem->m_pacmedirectory;
+//      auto pacmedirectory = acmedirectory();
 //
-//      m_pcontext->m_papexcontext->dir().create(pacmedirectory->system() / "netnodelite/symbols");
+//      dir()->create(pacmedirectory->system() / "netnodelite/symbols");
 //
 //      ::file::path strVars;
 //
@@ -169,7 +169,7 @@ namespace dynamic_source
 //
 //#endif
 //
-//      m_strTime = m_pcontext->m_papexcontext->dir().install() / "time-" OPERATING_SYSTEM_NAME;
+//      m_strTime = dir()->install() / "time-" OPERATING_SYSTEM_NAME;
 //
 //#ifdef WINDOWS_DESKTOP
 //
@@ -244,17 +244,17 @@ namespace dynamic_source
 //
 //#endif
 //
-//      m_pcontext->m_papexcontext->dir().create(m_pcontext->m_papexcontext->dir().install()/m_strDynamicSourceStage / "front");
+//      dir()->create(dir()->install()/m_strDynamicSourceStage / "front");
 //
 //      string str;
 //
 //      string strItem;
 //
-//      strItem = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage /m_strStagePlatform;
+//      strItem = dir()->install() / m_strDynamicSourceStage /m_strStagePlatform;
 //
 //      str = str + strItem + ";";
 //
-//      strItem = m_pcontext->m_papexcontext->dir().install()/ m_strDynamicSourceStage /  m_strStagePlatform / "dynamic_source\\library";
+//      strItem = dir()->install()/ m_strDynamicSourceStage /  m_strStagePlatform / "dynamic_source\\library";
 //
 //      str = str + strItem + ";";
 //
@@ -274,7 +274,7 @@ namespace dynamic_source
    void script_compiler::compile(ds_script * pscript)
    {
 
-      synchronous_lock synchronouslock(pscript->mutex());
+      synchronous_lock synchronouslock(pscript->synchronization());
 
       INFORMATION("Compiling script " << pscript->m_strName.c_str());
 
@@ -299,7 +299,7 @@ namespace dynamic_source
 
       //strName.replace("/", "\\");
       //string strFolder;
-      //strFolder = m_pcontext->m_papexcontext->dir().install();
+      //strFolder = dir()->install();
       string str;
       //::file::path strB;
       ::file::path strO;
@@ -328,7 +328,7 @@ namespace dynamic_source
       ::file::path strScript;
       strScript = strName.title();
       ::file::path strTransformName = strName;
-      if(m_pcontext->m_papexcontext->file().exists(strName))
+      if(file()->exists(strName))
       {
          pscript->m_strSourcePath = strName;
          strTransformName.find_replace(":","");
@@ -339,7 +339,7 @@ namespace dynamic_source
       }
       pscript->m_strSourceDir = pscript->m_strSourcePath.folder();
 
-      if(!m_pcontext->m_papexcontext->file().exists(pscript->m_strSourcePath))
+      if(!file()->exists(pscript->m_strSourcePath))
       {
          ostreamError << "<pre>";
          str.format("Source File : \"%s\" does not exist",pscript->m_strSourcePath.c_str());
@@ -356,7 +356,7 @@ namespace dynamic_source
 
       ::ansi_zero_pad(strMillis, 3);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdatetime = psystem->datetime();
 
@@ -385,7 +385,7 @@ namespace dynamic_source
 
       //#ifdef _DEBUG
 #ifdef LINUX
-      //strB = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
+      //strB = dir()->install() / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
       strO = ::file::path(m_strTime) / "intermediate" / m_strPlatform / m_pmanager->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
 #else
 
@@ -429,13 +429,13 @@ namespace dynamic_source
 
          ::file::path pathDVP_Folder = pathDVP.folder();
 
-                  auto psystem = m_psystem;
+                  auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->create(pathDVP_Folder);
 
-         m_pcontext->m_papexcontext->file().copy(pathDVP, pathSourceDVP);
+         file()->copy(pathDVP, pathSourceDVP);
 
       }
 
@@ -462,9 +462,9 @@ pacmedirectory->create(pathDVP_Folder);
 
       try
       {
-         if(m_pcontext->m_papexcontext->file().exists(strO))
+         if(file()->exists(strO))
          {
-            m_pcontext->m_papexcontext->file().erase(strO);
+            file()->erase(strO);
          }
       }
       catch(...)
@@ -472,9 +472,9 @@ pacmedirectory->create(pathDVP_Folder);
       }
       try
       {
-         if(m_pcontext->m_papexcontext->file().exists(strObj))
+         if(file()->exists(strObj))
          {
-            m_pcontext->m_papexcontext->file().erase(strObj);
+            file()->erase(strObj);
          }
       }
       catch(...)
@@ -483,9 +483,9 @@ pacmedirectory->create(pathDVP_Folder);
 #ifndef LINUX
       try
       {
-         if(m_pcontext->m_papexcontext->file().exists(strP))
+         if(file()->exists(strP))
          {
-            m_pcontext->m_papexcontext->file().erase(strP);
+            file()->erase(strP);
          }
       }
       catch(...)
@@ -493,9 +493,9 @@ pacmedirectory->create(pathDVP_Folder);
       }
       try
       {
-         if(m_pcontext->m_papexcontext->file().exists(strL))
+         if(file()->exists(strL))
          {
-            m_pcontext->m_papexcontext->file().erase(strL);
+            file()->erase(strL);
          }
       }
       catch(...)
@@ -503,9 +503,9 @@ pacmedirectory->create(pathDVP_Folder);
       }
       try
       {
-         if(m_pcontext->m_papexcontext->file().exists(strE))
+         if(file()->exists(strE))
          {
-            m_pcontext->m_papexcontext->file().erase(strE);
+            file()->erase(strE);
          }
       }
       catch(...)
@@ -513,9 +513,9 @@ pacmedirectory->create(pathDVP_Folder);
       }
       //try
       //{
-      //   if(m_pcontext->m_papexcontext->file().exists(strDPC))
+      //   if(file()->exists(strDPC))
       //   {
-      //      m_pcontext->m_papexcontext->file().del(strDPC);
+      //      file()->del(strDPC);
       //   }
       //}
       //catch(...)
@@ -523,9 +523,9 @@ pacmedirectory->create(pathDVP_Folder);
       //}
       //try
       //{
-      //   if(m_pcontext->m_papexcontext->file().exists(strDVP))
+      //   if(file()->exists(strDVP))
       //   {
-      //      m_pcontext->m_papexcontext->file().del(strDVP);
+      //      file()->del(strDVP);
       //   }
       //}
       //catch(...)
@@ -533,9 +533,9 @@ pacmedirectory->create(pathDVP_Folder);
       //}
       //try
       //{
-      //   if(m_pcontext->m_papexcontext->file().exists(strDVI))
+      //   if(file()->exists(strDVI))
       //   {
-      //      m_pcontext->m_papexcontext->file().del(strDVI);
+      //      file()->del(strDVI);
       //   }
       //}
       //catch(...)
@@ -543,9 +543,9 @@ pacmedirectory->create(pathDVP_Folder);
       //}
       //try
       //{
-      //   if(m_pcontext->m_papexcontext->file().exists(strDO1))
+      //   if(file()->exists(strDO1))
       //   {
-      //      m_pcontext->m_papexcontext->file().del(strDO1);
+      //      file()->del(strDO1);
       //   }
       //}
       //catch(...)
@@ -553,9 +553,9 @@ pacmedirectory->create(pathDVP_Folder);
       //}
       //try
       //{
-      //   if(m_pcontext->m_papexcontext->file().exists(strDO2))
+      //   if(file()->exists(strDO2))
       //   {
-      //      m_pcontext->m_papexcontext->file().del(strDO2);
+      //      file()->del(strDO2);
       //   }
       //}
       //catch(...)
@@ -566,10 +566,10 @@ pacmedirectory->create(pathDVP_Folder);
       try
       {
 
-         if(m_pcontext->m_papexcontext->file().exists(strClog))
+         if(file()->exists(strClog))
          {
 
-            m_pcontext->m_papexcontext->file().erase(strClog);
+            file()->erase(strClog);
 
          }
 
@@ -582,10 +582,10 @@ pacmedirectory->create(pathDVP_Folder);
       try
       {
 
-         if(m_pcontext->m_papexcontext->file().exists(strLlog))
+         if(file()->exists(strLlog))
          {
 
-            m_pcontext->m_papexcontext->file().erase(strLlog);
+            file()->erase(strLlog);
 
          }
 
@@ -600,10 +600,10 @@ pacmedirectory->create(pathDVP_Folder);
       try
       {
 
-         if(m_pcontext->m_papexcontext->file().exists(pscript->m_strScriptPath + ".old"))
+         if(file()->exists(pscript->m_strScriptPath + ".old"))
          {
 
-            m_pcontext->m_papexcontext->file().erase(pscript->m_strScriptPath + ".old");
+            file()->erase(pscript->m_strScriptPath + ".old");
 
          }
 
@@ -620,10 +620,10 @@ pacmedirectory->create(pathDVP_Folder);
       try
       {
 
-         if(m_pcontext->m_papexcontext->file().exists(pscript->m_strScriptPath))
+         if(file()->exists(pscript->m_strScriptPath))
          {
 
-            m_pcontext->m_papexcontext->file().move(pscript->m_strScriptPath + ".old",pscript->m_strScriptPath);
+            file()->move(pscript->m_strScriptPath + ".old",pscript->m_strScriptPath);
 
          }
 
@@ -640,10 +640,10 @@ pacmedirectory->create(pathDVP_Folder);
       try
       {
 
-         if(m_pcontext->m_papexcontext->file().exists(pscript->m_strScriptPath + ".old"))
+         if(file()->exists(pscript->m_strScriptPath + ".old"))
          {
 
-            m_pcontext->m_papexcontext->file().erase(pscript->m_strScriptPath + ".old");
+            file()->erase(pscript->m_strScriptPath + ".old");
 
          }
 
@@ -658,20 +658,20 @@ pacmedirectory->create(pathDVP_Folder);
       }
 
 
-      m_pcontext->m_papexcontext->dir().create(pscript->m_strScriptPath.folder());
-      m_pcontext->m_papexcontext->dir().create(strL.folder());
-      m_pcontext->m_papexcontext->dir().create(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
+      dir()->create(pscript->m_strScriptPath.folder());
+      dir()->create(strL.folder());
+      dir()->create(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
 
       cppize(pscript);
 
-      string strV(m_pcontext->m_papexcontext->dir().install());
+      string strV(dir()->install());
       strV.find_replace("\\","/");
-      if(!::str().ends(strV,"/") && !::str().ends(strV,"\\"))
+      if(!string_ends(strV,"/") && !string_ends(strV,"\\"))
          strV += "/";
 
       string strN = m_pmanager->m_strNetnodePath;
       strN.find_replace("\\","/");
-      if(!::str().ends(strN,"/") && !::str().ends(strN,"\\"))
+      if(!string_ends(strN,"/") && !string_ends(strN,"\\"))
          strN += "/";
 
       string strObjFile;
@@ -706,12 +706,12 @@ pacmedirectory->create(pathDVP_Folder);
       string strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
-      strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+      strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
-      strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / ("operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
+      strBuildCmd.format(dir()->install() / "operating-system" / ("operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
 #endif
 
-      str = m_pcontext->m_papexcontext->file().as_string(strBuildCmd);
+      str = file()->as_string(strBuildCmd);
       str.find_replace("%ITEM_NAME%",strItemName);
       str.find_replace("%ITEM_TITLE%",strItemTitle);
       str.find_replace("%ITEM_DIR%",::str().replace_with("\\","/",string(strTransformName.folder())) + "/");
@@ -737,15 +737,15 @@ pacmedirectory->create(pathDVP_Folder);
 
       string strTargetPath = pscript->m_strScriptPath;
 #ifdef LINUX
-      ::str().ends_eat_ci(strTargetPath,".so");
+      strTargetPath.ends_eat_ci(".so");
 #else
-      ::str().ends_eat_ci(strTargetPath,".dll");
+      strTargetPath.ends_eat_ci(".dll");
 #endif
       str.find_replace("%TARGET_PATH%",strTargetPath);
       //strBuildCmd = pscript->m_strBuildBat;
-      //m_pcontext->m_papexcontext->file().put_text_utf8(strBuildCmd, str);
+      //file()->put_text_utf8(strBuildCmd, str);
 
-      ///m_pcontext->m_papexcontext->file().put_contents(strBuildCmd,str);
+      ///file()->put_contents(strBuildCmd,str);
 
       bool bTimeout = false;
 
@@ -757,7 +757,7 @@ pacmedirectory->create(pathDVP_Folder);
 
       string strCompiler = str;
 
-      m_pcontext->m_papexcontext->file().put_text_utf8(pathCompiler, strCompiler);
+      file()->put_text_utf8(pathCompiler, strCompiler);
 
 #ifdef WINDOWS
       process->create_child_process(strCompiler,true,"C:\\netnode\\source\\app-core\\netnode_dynamic_source_script",::e_priority_highest);
@@ -817,7 +817,7 @@ pacmedirectory->create(pathDVP_Folder);
          if(str.has_char())
          {
 
-            m_pcontext->m_papexcontext->file().put_text_utf8(strClog, strLog);
+            file()->put_text_utf8(strClog, strLog);
 
             ostreamError << "<pre>";
 
@@ -839,7 +839,7 @@ pacmedirectory->create(pathDVP_Folder);
 
          int iObjFileMinimumByteCount = 1024;
 
-         if (process->m_exitstatus.m_iExitCode != 0 || m_pcontext->m_papexcontext->file().length(pathObjFile) < iObjFileMinimumByteCount)
+         if (process->m_exitstatus.m_iExitCode != 0 || file()->length(pathObjFile) < iObjFileMinimumByteCount)
          {
 
             TRACE("Compilation FAILED: or object file is shorter than "<<iObjFileMinimumByteCount<<" bytes...");
@@ -873,12 +873,12 @@ pacmedirectory->create(pathDVP_Folder);
          //strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
-         strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+         strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
-         strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / ("operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
+         strBuildCmd.format(dir()->install() / "operating-system" / ("operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
 #endif
 
-         str = m_pcontext->m_papexcontext->file().as_string(strBuildCmd);
+         str = file()->as_string(strBuildCmd);
          str.find_replace("%ITEM_NAME%",::str().find_replace("\\","/",string(strTransformName)));
          str.find_replace("%ITEM_TITLE%",strTransformName.name());
          str.find_replace("%ITEM_DIR%",::str().find_replace("\\","/",string(strTransformName.folder())) + "/");
@@ -905,11 +905,11 @@ pacmedirectory->create(pathDVP_Folder);
          string strTargetPath = pscript->m_strScriptPath;
 #ifdef LINUX
          
-         ::str().ends_eat_ci(strTargetPath,".so");
+         strTargetPath.ends_eat_ci(".so");
 
 #else
          
-         ::str().ends_eat_ci(strTargetPath,".dll");
+         strTargetPath.ends_eat_ci(".dll");
 
 #endif
          
@@ -923,16 +923,16 @@ pacmedirectory->create(pathDVP_Folder);
 
          strSymbolName += strRndTitle;
 
-         auto pacmedirectory = m_psystem->m_pacmedirectory;
+         auto pacmedirectory = acmedirectory();
 
          strHmhLctvWildPdbPath = ::file::path(pacmedirectory->system() / "netnodelite\\symbols") / strSymbolName;
 
          str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
          //strBuildCmd = pscript->m_strBuildBat;
-         //m_pcontext->m_papexcontext->file().put_text_utf8(strBuildCmd, str);
+         //file()->put_text_utf8(strBuildCmd, str);
 
-         //m_pcontext->m_papexcontext->file().put_contents(strBuildCmd,str);
+         //file()->put_contents(strBuildCmd,str);
 
          //str.find_replace("\\", "/");
 
@@ -947,7 +947,7 @@ pacmedirectory->create(pathDVP_Folder);
          strLinker.find_replace("\\", "/");
          strLinker.trim();
 
-         m_pcontext->m_papexcontext->file().put_text_utf8(pathLinker, strLinker);
+         file()->put_text_utf8(pathLinker, strLinker);
 
          process->create_child_process(strLinker,true,nullptr,::e_priority_highest);
 
@@ -994,7 +994,7 @@ pacmedirectory->create(pathDVP_Folder);
             if(str.has_char())
             {
 
-               m_pcontext->m_papexcontext->file().put_text_utf8(strLlog,strLog);
+               file()->put_text_utf8(strLlog,strLog);
                ostreamError << "Linking...\n";
                //ostreamError << "Linker Command File" << "\n";
                //ostreamError << pathLinker << "\n";
@@ -1021,21 +1021,21 @@ pacmedirectory->create(pathDVP_Folder);
 
       //try
       //{
-      //   m_pcontext->m_papexcontext->file().del(strDVI);
+      //   file()->del(strDVI);
       //}
       //catch(...)
       //{
       //}
       try
       {
-         m_pcontext->m_papexcontext->file().erase(strDVP);
+         file()->erase(strDVP);
       }
       catch(...)
       {
       }
       //try
       //{
-      //   m_pcontext->m_papexcontext->file().del(strDPC);
+      //   file()->del(strDPC);
       //}
       //catch(...)
       //{
@@ -1050,7 +1050,7 @@ pacmedirectory->create(pathDVP_Folder);
 
       auto ftDs = get_file_time_set(pscript->m_strSourcePath);
 
-      if(m_pcontext->m_papexcontext->file().exists(pscript->m_strCppPath))
+      if(file()->exists(pscript->m_strCppPath))
       {
 
          if(ftDs == pscript->m_ftDs)
@@ -1062,7 +1062,7 @@ pacmedirectory->create(pathDVP_Folder);
 
       }
 
-      m_pcontext->m_papexcontext->dir().create(pscript->m_strCppPath.folder());
+      dir()->create(pscript->m_strCppPath.folder());
 
       cppize1(pscript);
 
@@ -1097,7 +1097,7 @@ pacmedirectory->create(pathDVP_Folder);
 
       int iTry = 0;
 
-      while ((strSource = m_pcontext->m_papexcontext->file().as_string(pscript->m_strSourcePath)).trimmed().is_empty() && ::task_get_run())
+      while ((strSource = file()->as_string(pscript->m_strSourcePath)).trimmed().is_empty() && ::task_get_run())
       {
 
          sleep(100_ms);
@@ -1122,7 +1122,7 @@ pacmedirectory->create(pathDVP_Folder);
       //{
       //   string str;
       //   str = m_straLibIncludePath[i].relative();
-      //   ::str().ends_eat_ci(str, ".ds");
+      //   str.ends_eat_ci(".ds");
       //   strDest += "#include \""+str+".h\"\r\n";
       //}
       strsize iStart = 0;
@@ -1275,15 +1275,15 @@ pacmedirectory->create(pathDVP_Folder);
 // \r\n \
 //      }\r\n\r\n\r\n\r\n\r\n";
 
-      //m_pcontext->m_papexcontext->file().put_text_utf8(pscript->m_strCppPath, strDest);
-      m_pcontext->m_papexcontext->file().put_text(pscript->m_strCppPath, strDest);
+      //file()->put_text_utf8(pscript->m_strCppPath, strDest);
+      file()->put_text(pscript->m_strCppPath, strDest);
 
    }
 
    void script_compiler::operator()(::file::action * paction)
    {
 
-      synchronous_lock synchronouslock(&m_mutex);
+      synchronous_lock synchronouslock(m_pmutex);
 
       ::file::path path = paction->m_pathFolder / paction->m_pathFile;
 
@@ -1293,7 +1293,7 @@ pacmedirectory->create(pathDVP_Folder);
       if(::str().find_ci("netnode_persistent_ui_str", strTransfer) >= 0)
          return;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       if(m_straSync.get_count() > 1)
       {
@@ -1304,19 +1304,19 @@ pacmedirectory->create(pathDVP_Folder);
 
             auto purl = psystem->url();
 
-            m_pcontext->m_papexcontext->http().get("http://" + m_straSync[i] + "/synchronization_object?src=" +m_straSync[0] + "&url=" + purl->url_encode(strTransfer) + "&pwd=sym123&authnone=1", set);
+            m_pcontext->m_papexcontext->http().get("http://" + m_straSync[i] + "/synchronization?src=" +m_straSync[0] + "&url=" + purl->url_encode(strTransfer) + "&pwd=sym123&authnone=1", set);
 
          }
 
       }
 
-      if(::str().begins(path, m_pmanager->m_strNetseedDsCa2Path/ "library/include"))
+      if(string_begins(path, m_pmanager->m_strNetseedDsCa2Path/ "library/include"))
       {
 
          m_pmanager->m_pcache->set_all_out_of_date();
 
       }
-      else if(::str().begins(path, m_pmanager->m_strNetseedDsCa2Path / "library/source"))
+      else if(string_begins(path, m_pmanager->m_strNetseedDsCa2Path / "library/source"))
       {
 
       }
@@ -1336,7 +1336,7 @@ pacmedirectory->create(pathDVP_Folder);
    void script_compiler::folder_watch()
    {
 
-      m_filewatcherid = m_pcontext->m_papexcontext->dir().watcher().add_watch(m_pmanager->m_strNetseedDsCa2Path, { e_as, this }, true);
+      m_filewatcherid = dir()->watcher().add_watch(m_pmanager->m_strNetseedDsCa2Path, { e_as, this }, true);
 
    }
 
@@ -1344,7 +1344,7 @@ pacmedirectory->create(pathDVP_Folder);
    library & script_compiler::lib(const ::string & pszLibrary)
    {
 
-      single_lock slLibrary(&m_mutexLibrary,true);
+      single_lock slLibrary(m_pmutexLibrary,true);
 
       auto p = m_mapLib.plookup(pszLibrary);
 
@@ -1358,14 +1358,14 @@ pacmedirectory->create(pathDVP_Folder);
       library & l = *m_mapLib[pszLibrary];
 
 
-      string strV(m_pcontext->m_papexcontext->dir().install());
+      string strV(dir()->install());
       strV.find_replace("\\","/");
-      if(!::str().ends(strV,"/") && !::str().ends(strV,"\\"))
+      if(!string_ends(strV,"/") && !string_ends(strV,"\\"))
          strV += "/";
 
       string strN = m_pmanager->m_strNetnodePath;
       strN.find_replace("\\","/");
-      if(!::str().ends(strN,"/") && !::str().ends(strN,"\\"))
+      if(!string_ends(strN,"/") && !string_ends(strN,"\\"))
          strN += "/";
 
 
@@ -1375,11 +1375,11 @@ pacmedirectory->create(pathDVP_Folder);
 
       ::file::path strName = strLibrary;
 
-      m_strLibsLibs = m_pcontext->m_papexcontext->dir().install() / "time-" OPERATING_SYSTEM_NAME"/library" / m_strStagePlatform / "/library/"+strLibrary+".lib";
+      m_strLibsLibs = dir()->install() / "time-" OPERATING_SYSTEM_NAME"/library" / m_strStagePlatform / "/library/"+strLibrary+".lib";
 
       //m_memfileLibError.set_length(0);
       string strFolder;
-      strFolder = m_pcontext->m_papexcontext->dir().install();
+      strFolder = dir()->install();
 
       //auto papp = get_app();
 
@@ -1391,7 +1391,7 @@ pacmedirectory->create(pathDVP_Folder);
 
       l.m_straLibSourcePath.set_listing(m_pmanager->m_strNetseedDsCa2Path / "library" / strName, ::e_depth_recursively);
 
-      pcontext->m_papexcontext->dir().enumerate(l.m_straLibSourcePath);
+      pcontext->m_papexcontext->dir()->enumerate(l.m_straLibSourcePath);
 
       for(i32 i = 0; i < l.m_straLibSourcePath.get_size();)
       {
@@ -1409,19 +1409,19 @@ pacmedirectory->create(pathDVP_Folder);
       for(i32 i = 0; i < l.m_straLibSourcePath.get_size(); i++)
       {
          string str = l.m_straLibSourcePath[i].relative();
-         ::str().ends_eat_ci(str,".ds");
+         str.ends_eat_ci(".ds");
          str.find_replace(":","");
          l.m_straLibCppPath.add(m_strTime / strLibRel / str + ".cpp");
       }
       //l.m_straLibIncludePath.m_pprovider = papp->m_papexapplication;
       l.m_straLibIncludePath.clear_results();
       l.m_straLibIncludePath.set_listing(m_pmanager->m_strNetseedDsCa2Path / "library" / strName, e_depth_recursively);
-      pcontext->m_papexcontext->dir().enumerate(l.m_straLibIncludePath);
+      pcontext->m_papexcontext->dir()->enumerate(l.m_straLibIncludePath);
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size();)
       {
          if(l.m_straLibIncludePath[i].final_extension() != "h"
                || ::str().find_ci(l.m_straLibIncludePath[i],"\\.svn\\") >= 0
-               || m_pcontext->m_papexcontext->dir().is(l.m_straLibIncludePath[i]))
+               || dir()->is(l.m_straLibIncludePath[i]))
          {
             l.m_straLibIncludePath.erase_at(i);
          }
@@ -1434,7 +1434,7 @@ pacmedirectory->create(pathDVP_Folder);
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
          string str = l.m_straLibIncludePath[i].relative();
-         ::str().ends_eat_ci(str,".ds");
+         str.ends_eat_ci(".ds");
          str.find_replace(":","");
          l.m_straLibHppPath.add(m_strTime / strLibRel / str + ".h");
       }
@@ -1446,14 +1446,14 @@ pacmedirectory->create(pathDVP_Folder);
 #ifdef LINUX
       l.m_strLibraryPath = "/aura/" / m_strDynamicSourceStage / "x86/libnetnodelibrary.so";
 #else
-      l.m_strLibraryPath = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / m_strStagePlatform / "dynamic_source/" / strName / strLib + ".dll";
+      l.m_strLibraryPath = dir()->install() / m_strDynamicSourceStage / m_strStagePlatform / "dynamic_source/" / strName / strLib + ".dll";
 #endif
       //#else
       // plib->m_strLibraryPath.format(strFolder, "app/_stage/aura/account/app/main/front/Release/%s.dll", false), strName);
       //#endif
 
-      m_pcontext->m_papexcontext->dir().create(l.m_strLibraryPath.folder());
-      m_pcontext->m_papexcontext->dir().create(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
+      dir()->create(l.m_strLibraryPath.folder());
+      dir()->create(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
 
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
@@ -1463,7 +1463,7 @@ pacmedirectory->create(pathDVP_Folder);
 
 //      string strN = m_pmanager->m_strNetnodePath;
       //    strN.replace("\\","/");
-      //  if(!::str().ends(strN,"/") && !::str().ends(strN,"\\"))
+      //  if(!string_ends(strN,"/") && !string_ends(strN,"\\"))
       //   strN += "/";
 
 
@@ -1472,20 +1472,20 @@ pacmedirectory->create(pathDVP_Folder);
       string vars2batSrc;
       string vars1batDst;
       string vars2batDst;
-      vars1batSrc = m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/vc_vars.bat";
-      vars2batSrc = m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/vc_vars_query_registry.bat";
-      vars1batDst = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front/vc_vars.bat";
-      vars2batDst = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front/vc_vars_query_registry.bat";
+      vars1batSrc = dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/vc_vars.bat";
+      vars2batSrc = dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/vc_vars_query_registry.bat";
+      vars1batDst = dir()->install() / m_strDynamicSourceStage / "front/vc_vars.bat";
+      vars2batDst = dir()->install() / m_strDynamicSourceStage / "front/vc_vars_query_registry.bat";
       try
       {
-         m_pcontext->m_papexcontext->file().copy(vars1batDst,vars1batSrc,false);
+         file()->copy(vars1batDst,vars1batSrc,false);
       }
       catch(...)
       {
       }
       try
       {
-         m_pcontext->m_papexcontext->file().copy(vars2batDst,vars2batSrc,false);
+         file()->copy(vars2batDst,vars2batSrc,false);
       }
       catch(...)
       {
@@ -1497,7 +1497,7 @@ pacmedirectory->create(pathDVP_Folder);
       {
          if(l.m_straLibSourcePath[i].final_extension() == "cpp")
          {
-            m_psystem->m_pacmefile->copy(l.m_straLibCppPath[i], l.m_straLibSourcePath[i], false);
+            acmefile()->copy(l.m_straLibCppPath[i], l.m_straLibSourcePath[i], false);
          }
          else
          {
@@ -1505,28 +1505,28 @@ pacmedirectory->create(pathDVP_Folder);
 
          }
          string strRel = l.m_straLibSourcePath[i].relative();
-         ::str().ends_eat_ci(strRel,".ds");
-         ::str().ends_eat_ci(strRel,".cpp");
+         strRel.ends_eat_ci(".ds");
+         strRel.ends_eat_ci(".cpp");
          strRel.find_replace("\\","/");
          ::file::path str1;
          str1 = "library/source" / strRel;
          string strCmd;
          //#ifdef _DEBUG
 //#ifdef LINUX
-//         strCmd = m_pcontext->m_papexcontext->dir().install()/ m_strDynamicSourceStage / "front"/ m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash";
+//         strCmd = dir()->install()/ m_strDynamicSourceStage / "front"/ m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash";
 //#else
-//         strCmd = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat";
+//         strCmd = dir()->install() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat";
 //#endif
 #ifdef LINUX
-         strCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
+         strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
 #else
-         strCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_strPlat1 + ".bat");
+         strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_strPlat1 + ".bat");
 #endif
 
          //#else
          //    strCmd.format(strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false));
          //#endif
-         string str = m_pcontext->m_papexcontext->file().as_string(strCmd);
+         string str = file()->as_string(strCmd);
 
 
          str.find_replace("%ITEM_NAME%",::str().find_replace("\\","/",string(l.m_straLibCppPath[i])));
@@ -1559,8 +1559,8 @@ pacmedirectory->create(pathDVP_Folder);
          str.find_replace("%SDK1%",m_strSdk1);
          //str.find_replace("%DVP%", strDVP_B);
 
-         m_pcontext->m_papexcontext->dir().create(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
-         m_pcontext->m_papexcontext->dir().create(m_strTime / "library" / m_strStagePlatform / str1.folder());
+         dir()->create(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
+         dir()->create(m_strTime / "library" / m_strStagePlatform / str1.folder());
 
          string strFormat = "libc-" + str1;
 
@@ -1572,7 +1572,7 @@ pacmedirectory->create(pathDVP_Folder);
 #else
          strFormat += ".bat";
 #endif
-         strCmd = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front" / strFormat;
+         strCmd = dir()->install() / m_strDynamicSourceStage / "front" / strFormat;
 
          bool bTimeout = false;
 
@@ -1642,7 +1642,7 @@ pacmedirectory->create(pathDVP_Folder);
             if(str.has_char())
             {
 
-               m_pcontext->m_papexcontext->file().put_text_utf8(strClog,strLog);
+               file()->put_text_utf8(strClog,strLog);
 
                l.m_memfileError << "<pre>";
 
@@ -1672,7 +1672,7 @@ pacmedirectory->create(pathDVP_Folder);
       {
          strObjs += " ";
          ::file::path strRel = l.m_straLibSourcePath[i].relative();
-         ::str().ends_eat_ci(strRel,".ds");
+         strRel.ends_eat_ci(".ds");
          strObjs += m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library" / strName;
          strObjs += m_strTime.separator();
          strObjs += strRel;
@@ -1685,21 +1685,21 @@ pacmedirectory->create(pathDVP_Folder);
       }
       ::file::path strCmd;
       //#ifdef _DEBUG
-//      strCmd = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 +
+//      strCmd = dir()->install() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 +
 //#ifdef LINUX
 //         ".bash";
 //#else
 //         ".bat";
 //#endif
 #ifdef LINUX
-      strCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
+      strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
 #else
-      strCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libl") + m_strPlat1 + ".bat");
+      strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libl") + m_strPlat1 + ".bat");
 #endif
       //#else
       // strCmd.format(strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_libl.bat", false));
       //#endif
-      string str = m_pcontext->m_papexcontext->file().as_string(strCmd);
+      string str = file()->as_string(strCmd);
       str.find_replace("%ITEM_NAME%",::file::path("library")/strName);
       str.find_replace("%ITEM_DIR%","library");
       str.find_replace("%OBJECTS%",strObjs);
@@ -1713,17 +1713,17 @@ pacmedirectory->create(pathDVP_Folder);
       //str.find_replace("%DVP%", strDVP_B);
 
       string strTargetName = l.m_strLibraryPath;
-      ::str().ends_eat_ci(strTargetName,".dll");
+      strTargetName.ends_eat_ci(".dll");
       str.find_replace("%TARGET_NAME%", strTargetName);
-      m_pcontext->m_papexcontext->dir().create(m_pcontext->m_papexcontext->dir().install()/ m_strDynamicSourceStage / m_strStagePlatform /"library");
+      dir()->create(dir()->install()/ m_strDynamicSourceStage / m_strStagePlatform /"library");
 //#ifdef LINUX
 //      //sleep(2000_ms);
-//      strCmd = m_pcontext->m_papexcontext->dir().install()/m_strDynamicSourceStage/ "front\\libl1.bash";
+//      strCmd = dir()->install()/m_strDynamicSourceStage/ "front\\libl1.bash";
 //#else
-//      strCmd = m_pcontext->m_papexcontext->dir().install()/ m_strDynamicSourceStage / "front\\libl1.bat";
+//      strCmd = dir()->install()/ m_strDynamicSourceStage / "front\\libl1.bat";
 //#endif
 
-      //m_pcontext->m_papexcontext->file().put_text_utf8(strCmd, str);
+      //file()->put_text_utf8(strCmd, str);
       bool bTimeout = false;
 
       ::operating_system::process_pointer process(e_create, this);
@@ -1785,7 +1785,7 @@ auto tickStart = ::duration::now();
          if(str.has_char())
          {
 
-            m_pcontext->m_papexcontext->file().put_text_utf8(strLlog,strLog);
+            file()->put_text_utf8(strLlog,strLog);
             l.m_memfileError << "Linking...\n";
             str.find_replace("\r\n","\n");
             l.m_memfileError << str;
@@ -1809,7 +1809,7 @@ auto tickStart = ::duration::now();
    void script_compiler::cppize(const ::file::path & lpcszSource,const ::file::path & lpcszDest,ecpptype enum_type)
    {
 
-      m_pcontext->m_papexcontext->dir().create(lpcszDest.folder());
+      dir()->create(lpcszDest.folder());
 
       cppize1(lpcszSource, lpcszDest, enum_type);
 
@@ -1819,7 +1819,7 @@ auto tickStart = ::duration::now();
    void script_compiler::cppize1(const ::file::path & lpcszSource,const ::file::path & lpcszDest,ecpptype enum_type)
    {
 
-      string strSource = m_pcontext->m_papexcontext->file().as_string(lpcszSource);
+      string strSource = file()->as_string(lpcszSource);
 
       bool bCode = false;
 
@@ -1834,7 +1834,7 @@ auto tickStart = ::duration::now();
          //{
          //   string str;
          //   str = m_straLibIncludePath[i].relative();
-         //   ::str().ends_eat_ci(str, ".ds");
+         //   str.ends_eat_ci(".ds");
          //   strDest += "#include \""+str+".h\"\r\n";
          //}
       }
@@ -1880,8 +1880,8 @@ auto tickStart = ::duration::now();
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
 
-      //m_pcontext->m_papexcontext->file().put_text_utf8(lpcszDest, strDest);
-      m_pcontext->m_papexcontext->file().put_text(lpcszDest, strDest);
+      //file()->put_text_utf8(lpcszDest, strDest);
+      file()->put_text(lpcszDest, strDest);
 
 
    }
@@ -1943,7 +1943,7 @@ auto tickStart = ::duration::now();
          bInserted = false;
          ch = str[i];
          chNext = str[i + 1];
-         if(::str().begins(str.Mid(i), "bk_filter_active1"))
+         if(string_begins(str.Mid(i), "bk_filter_active1"))
          {
             //debug_break();
          }
@@ -1954,7 +1954,7 @@ auto tickStart = ::duration::now();
                bNewLine = true;
                i++;
             }
-            else if(isspace(ch))
+            else if(character_isspace(ch))
             {
                i++;
                continue;
@@ -1981,7 +1981,7 @@ auto tickStart = ::duration::now();
                bNewLine = true;
                i++;
             }
-            else if(isspace(ch))
+            else if(character_isspace(ch))
             {
                i++;
                continue;
@@ -2019,7 +2019,7 @@ auto tickStart = ::duration::now();
                while(i < iLen)
                {
                   ch = str[i];
-                  if(isspace(ch))
+                  if(character_isspace(ch))
                      i++;
                   else if(bWaitQuote && (ch == '\'' || ch=='\"'))
                   {
@@ -2117,7 +2117,7 @@ auto tickStart = ::duration::now();
          }
          else if(bInVar)
          {
-            if(ansi_char_is_digit(ch) || ansi_char_is_alphabetic(ch) || ch == '_')
+            if(ansi_char_isdigit(ch) || ansi_char_isalpha(ch) || ch == '_')
             {
                if(bLow)
                {
@@ -2165,7 +2165,7 @@ auto tickStart = ::duration::now();
                }
                else
                {
-                  while(ansi_char_is_space(str[i]) && i < iLen)
+                  while(ansi_char_isspace(str[i]) && i < iLen)
                   {
                      i++;
                   }
@@ -2179,13 +2179,13 @@ auto tickStart = ::duration::now();
                   else if(ch == '-' && chNext == '>')
                   {
                      i+=2;
-                     while(ansi_char_is_space(str[i]) && i < iLen)
+                     while(ansi_char_isspace(str[i]) && i < iLen)
                      {
                         i++;
                      }
                      ch = str[i];
                      string strToken;
-                     if(ansi_char_is_alphabetic(ch) || ch == '_')
+                     if(ansi_char_isalpha(ch) || ch == '_')
                      {
                         strToken += ch;
                         i++;
@@ -2196,14 +2196,14 @@ auto tickStart = ::duration::now();
                         return strResult;
                      }
                      ch = str[i];
-                     while(ansi_char_is_digit(ch) || ansi_char_is_alphabetic(ch) || ch == '_')
+                     while(ansi_char_isdigit(ch) || ansi_char_isalpha(ch) || ch == '_')
                      {
                         strToken += ch;
                         i++;
                         ch = str[i];
                      }
                      ch = str[i];
-                     while(ansi_char_is_space(ch))
+                     while(ansi_char_isspace(ch))
                      {
                         i++;
                         ch = str[i];
@@ -2215,7 +2215,7 @@ auto tickStart = ::duration::now();
                         iaFunctionParen.add(iOpenParen);
                         iOpenParen++;
                         straFunction.add(strToken);
-                        while(ansi_char_is_space(ch))
+                        while(ansi_char_isspace(ch))
                         {
                            i++;
                            ch = str[i];
@@ -2260,7 +2260,7 @@ auto tickStart = ::duration::now();
             }
             else
             {
-               if(ch == '$' && (ansi_char_is_alphabetic(chNext) || chNext == '_'))
+               if(ch == '$' && (ansi_char_isalpha(chNext) || chNext == '_'))
                {
                   bInVar = true;
                   //strResult += "\") + glowstr(\"";
@@ -2331,7 +2331,7 @@ auto tickStart = ::duration::now();
             strResult += "'";
 
          }
-         else if(ch == '$' && (ansi_char_is_alphabetic(chNext) || chNext == '_'))
+         else if(ch == '$' && (ansi_char_isalpha(chNext) || chNext == '_'))
          {
             if(bInVar)
             {
@@ -2506,7 +2506,7 @@ ch_else:
                   bNewLine = true;
 
                }
-               else if(isspace((int) (unsigned char) ch))
+               else if(character_isspace((int) (unsigned char) ch))
                {
                }
                else
@@ -2542,7 +2542,7 @@ ch_else:
             return true;
          }
       }
-      if(::str().begins(psz, pszId)
+      if(string_begins(psz, pszId)
             && !isdigit(psz[iIdLen]) && !isalpha(psz[iIdLen]) && psz[iIdLen] != '_')
       {
          iIdLenRet = iIdLen;
@@ -2557,7 +2557,7 @@ ch_else:
 
       const char * psz = strParam;
 
-      while(*psz != '\0' && isspace(*psz))
+      while(*psz != '\0' && character_isspace(*psz))
       {
          psz++;
       }
@@ -2578,7 +2578,7 @@ ch_else:
 
       stra.set_listing(strPath, e_depth_recursively);
 
-      pcontext->m_papexcontext->dir().enumerate(stra);
+      pcontext->m_papexcontext->dir()->enumerate(stra);
 
       string strCat;
       strCat = m_pmanager->m_strNetseedDsCa2Path/ "core/netnode_persistent_ui_str.ds";
@@ -2594,20 +2594,20 @@ ch_else:
       for(i32 i = 0; i < stra.get_size(); i++)
       {
          string str = stra[i];
-         if(::str().begins_ci(str, m_pmanager->m_strNetseedDsCa2Path/ "core/persistent")
-               && ::str().ends_ci(str, ".ds"))
+         if(string_begins_ci(str, m_pmanager->m_strNetseedDsCa2Path/ "core/persistent")
+               && string_ends_ci(str, ".ds"))
          {
-            strBody += m_pcontext->m_papexcontext->file().as_string(str);
+            strBody += file()->as_string(str);
          }
       }
 
-      m_pcontext->m_papexcontext->file().put_text(strCat, strBody);
+      file()->put_text(strCat, strBody);
 
       string strInclude = strCat;
       
-      ::str().begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
+      strInclude.begins_eat_ci(m_pmanager->m_strNetseedDsCa2Path);
       
-      ::str().ends_eat_ci(strInclude, ".ds");
+      strInclude.ends_eat_ci(".ds");
       
       ::pointer<script_instance>pinstance = m_pmanager->get(strInclude);
 
@@ -2669,7 +2669,7 @@ ch_else:
    {
       string str(psz);
 
-      if(::str().find_ci("pstr_set", psz) && ::str().ends_ci(psz, ".txt"))
+      if(::str().find_ci("pstr_set", psz) && string_ends_ci(psz, ".txt"))
       {
 
          parse_pstr_set();
@@ -2677,8 +2677,8 @@ ch_else:
          //string strCat;
          //strCat = m_pmanager->m_strNetseedDsCa2Path/ "aura\\netnode_persistent_ui_str.ds";
          //string strInclude = strCat;
-         //::str().begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
-         //::str().ends_eat_ci(strInclude, ".ds");
+         //strInclude.begins_eat_ci(m_pmanager->m_strNetseedDsCa2Path);
+         //strInclude.ends_eat_ci(".ds");
          //script_instance * pinstance = m_pmanager->get(strInclude);
          //if(pinstance != nullptr)
          //{
@@ -2713,8 +2713,8 @@ ch_else:
          //   }
          //}
       }
-      else if(::str().begins_eat_ci(str,m_pmanager->m_strNetseedDsCa2Path/ "aura\\persistent")
-              && ::str().ends_eat_ci(str, ".ds")
+      else if(str.begins_eat_ci(m_pmanager->m_strNetseedDsCa2Path/ "aura\\persistent")
+              && str.ends_eat_ci(".ds")
               && str.compare_ci("netnode_persistent_ui_str") != 0)
       {
          run_persistent();
@@ -2732,7 +2732,7 @@ ch_else:
 //      return m_bLastLibraryVersionCheck;
 //   }
 
-//   single_lock slLibrary(&m_mutexLibrary, true);
+//   single_lock slLibrary(m_pmutexLibrary, true);
 
 //   for(i32 i = 0; i < m_straLibSourcePath.get_size(); i++)
 //   {
@@ -2771,7 +2771,7 @@ ch_else:
    void library::load_library()
    {
 
-      single_lock slLibrary(&m_mutex, true);
+      single_lock slLibrary(m_pmutex, true);
 
       m_plibraryLib.create(this);
 
@@ -2805,10 +2805,10 @@ ch_else:
    }
 
 
-   library::library(::object * pobject)
+   library::library(::particle * pparticle)
    {
 
-      initialize(pobject);
+      initialize(pparticle);
 
    }
 
@@ -2821,7 +2821,7 @@ ch_else:
 
    void library::unload_library()
    {
-      single_lock slLibrary(&m_mutex, true);
+      single_lock slLibrary(m_pmutex, true);
       m_plibraryLib->close();
    }
 
@@ -2860,21 +2860,21 @@ ch_else:
 
       ::file::path pathPstrSet = m_pmanager->m_strNetnodePath / "net/aura/pstr_set";
 
-      if (pcontext->m_papexcontext->dir().is(pathPstrSet))
+      if (pcontext->m_papexcontext->dir()->is(pathPstrSet))
       {
 
          straFile.set_listing(pathPstrSet, ::e_depth_recursively);
 
-         pcontext->m_papexcontext->dir().enumerate(straFile);
+         pcontext->m_papexcontext->dir()->enumerate(straFile);
 
       }
 
       for(int i = 0; i < straFile.get_count(); i++)
       {
          string strFile = straFile[i];
-         if(::str().find_ci(".svn",strFile) >= 0 || !::str().ends_ci(strFile,".txt"))
+         if(::str().find_ci(".svn",strFile) >= 0 || !string_ends_ci(strFile,".txt"))
             continue;
-         strFile = m_pcontext->m_papexcontext->file().as_string(strFile);
+         strFile = file()->as_string(strFile);
          string_array straLine;
          straLine.explode("\r\n",strFile);
          string strExtra;
@@ -2938,9 +2938,9 @@ ch_else:
    void script_compiler::pstr_set(atom pszTopic,atom idLocale,atom idSchema, const ::string & psz)
    {
 
-      synchronous_lock synchronouslock(m_pmanager->mutex());
+      synchronous_lock synchronouslock(m_pmanager->synchronization());
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       psystem->texttable()->set(pszTopic,idLocale,idSchema,psz);
 

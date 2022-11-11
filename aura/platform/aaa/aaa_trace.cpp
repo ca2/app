@@ -13,7 +13,7 @@ namespace aura
       trace::trace()
       {
 
-         //m_pobject = pobject;
+         //m_pobject = pparticle;
 
       }
 
@@ -381,7 +381,7 @@ void set_global_trace_level(enum_trace_level etracelevel)
 }
 
 
-CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string &pszFileName, i32 iLine, const ::string & psz)
+CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string &pszFileName, i32 iLine, const ::string & psz)
 {
 
    if (elevel < get_global_trace_level())
@@ -393,16 +393,16 @@ CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel
 
    string strMessage;
 
-   auto pszTopicText = topic_text(pobject);
+   auto pszTopicText = topic_text(pparticle);
 
    if (::is_set(pszTopicText) && *pszTopicText != '\0')
    {
 
       string strTopic(pszTopicText);
 
-      ::str().begins_eat_ci(strTopic, "class ");
+      strTopic.begins_eat_ci("class ");
 
-      ::str().begins_eat_ci(strTopic, "struct ");
+      strTopic.begins_eat_ci("struct ");
 
       strMessage.format("%c:%s> %s", e_trace_level_char(elevel), strTopic.c_str(), psz);
 
@@ -454,7 +454,7 @@ CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel
 }
 
 
-CLASS_DECL_AURA void __simple_tracev(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string &pszFileName, i32 iLine, const ::string & pszFormat, va_list args)
+CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string &pszFileName, i32 iLine, const ::string & pszFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)
@@ -470,7 +470,7 @@ CLASS_DECL_AURA void __simple_tracev(::matter * pobject, enum_trace_level elevel
 
    strMessage.format_arguments(pszFormat, args);
 
-   __simple_tracea(pobject, elevel, pszFunction, pszFileName, iLine, strMessage);
+   __simple_tracea(pparticle, elevel, pszFunction, pszFileName, iLine, strMessage);
 
 }
 

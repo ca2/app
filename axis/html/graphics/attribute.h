@@ -1,12 +1,16 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/atom.h"
+#include "acme/primitive/collection/pointer_array.h"
+
+
 namespace html
 {
 
 
    class attribute :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
 

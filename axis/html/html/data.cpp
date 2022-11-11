@@ -1,11 +1,11 @@
 #include "framework.h"
-#include "aura/graphics/image/image.h"
-
 #include "data.h"
 #include "core_data.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/message/user.h"
-#include "axis/html/user/form.h"
 #include "aura/user/user/frame.h"
+#include "aura/graphics/image/image.h"
+#include "axis/html/user/form.h"
 
 
 html_data::html_data()
@@ -75,7 +75,7 @@ i32 html_data::create_font(::html::element* pelemental)
 void html_data::delete_contents()
 {
 
-   synchronous_lock lock(mutex());
+   synchronous_lock lock(synchronization());
 
    destroy();
 

@@ -4,33 +4,13 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/path.h"
+
+
 struct CLASS_DECL_ACME MAIN // : public ::acme::reference
 {
 
    bool                             m_bFork;
-   ::e_display                      m_edisplay;
-   ::e_activation                   m_eactivation;
-
-   int               m_argc = 0;
-
-   char** m_argv = nullptr;
-   char** m_envp = nullptr;
-
-   wchar_t** m_wargv = nullptr;
-   wchar_t** m_wenvp = nullptr;
-
-#ifdef WINDOWS
-
-   hinstance         m_hinstanceThis = nullptr;
-   hinstance         m_hinstancePrev = nullptr;
-   int               m_nCmdShow = -1000;
-
-#elif defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
-
-   const char * m_pchar_binary__matter_zip_start = nullptr;
-   const char * m_pchar_binary__matter_zip_end = nullptr;
-
-#endif
 
    int                              m_iExitCode = 0;
 
@@ -55,7 +35,7 @@ struct CLASS_DECL_ACME MAIN // : public ::acme::reference
 
    ::tristate                       m_bExperienceMainFrame;
 
-   INT_STRING *                     m_pintstringLanguageResourceMap;
+   ::i32_sz *                       m_pintstringLanguageResourceMap;
    int                              m_iMatterFromHttpCache;
 
    const char *                     m_pszMain;
@@ -84,11 +64,9 @@ struct CLASS_DECL_ACME MAIN // : public ::acme::reference
 //
 //#endif
 
-extern "C"
-typedef ::acme::library * NEW_LIBRARY();
 
-typedef NEW_LIBRARY * PFN_NEW_LIBRARY;
-
+#include "acme/primitive/primitive/object.h"
+#include "implementable.h"
 
 
 class CLASS_DECL_ACME main :
@@ -114,7 +92,7 @@ public:
    string                              m_strProgName;
    ::duration                          m_durationStart;
    ::duration                          m_durationAfterApplicationFirstRequest;
-   //::apex::system *                  m_psystem;
+   //::apex::system *                  acmesystem();
    //::pointer<apex_main_data>        m_pmaindata;
    ::pointer<::acme::library>         m_plibrary;
    array < ::e_status >                m_estatusa;
@@ -134,17 +112,17 @@ public:
 
    virtual void system_construct(const main * pmain);
 
-   inline ::count _get_argc() const { return m_argc; }
+   //inline ::count _get_argc() const { return m_argc; }
 
-   string _get_argv(int iArg) const;
+   //string _get_argv(int iArg) const;
 
-   inline ::count get_argument_count1() const { return _get_argc() - 1; }
+   //inline ::count get_argument_count1() const { return _get_argc() - 1; }
 
-   string_array get_arguments();
+   //string_array get_arguments();
 
-   string get_executable() const;
+ /*  string get_executable() const;
 
-   string get_argument1(int iArgument) const;
+   string get_argument1(int iArgument) const;*/
 
 //#ifdef WINDOWS
 //
@@ -184,8 +162,6 @@ public:
 
 #endif
 
-   string get_arg(int i) const;
-   string get_env(const char *pszVariableName) const;
 
 
    bool is_console_app() const;
@@ -223,14 +199,14 @@ public:
    //::pointer<::acme::application>new_app(const char* pszAppId);
 
 
-   //   ::pointer<::apex::application>get_new_application(::object* pobject);
-   //   ::pointer<::apex::application>get_new_application(::object* pobject, const char* pszAppId);
+   //   ::pointer<::apex::application>get_new_application(::object* pparticle);
+   //   ::pointer<::apex::application>get_new_application(::object* pparticle, const char* pszAppId);
 
-   virtual void initialize_application(::acme::application * papp, ::object* pobject);
-
+   virtual void initialize_application(::acme::application * pacmeapplication, ::particle * pparticle);
 
 
 };
+
 
 class subsystem;
 

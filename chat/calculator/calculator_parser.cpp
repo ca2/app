@@ -6,9 +6,9 @@
 namespace calculator
 {
 
-   parser::parser(::object * pobject) :
-      ::object(pobject),
-      m_scanner(pobject)
+   parser::parser(::particle * pparticle) :
+      ::object(pparticle),
+      m_scanner(pparticle)
    {
    }
 

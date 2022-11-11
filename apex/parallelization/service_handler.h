@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/platform/department.h"
+
+
 class CLASS_DECL_APEX service_handler :
    virtual public ::acme::department
 {

@@ -1,8 +1,11 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 class CLASS_DECL_AXIS openweather_city :
-   virtual public object
+   virtual public ::object
 {
 public:
 

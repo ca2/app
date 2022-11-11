@@ -15,11 +15,11 @@ namespace file
       ::pointer<memory_base>    m_pmemory;
       ::pointer<::memory_file>       m_pmemoryfileIn;
       ::pointer<::memory_file>       m_pmemoryfileOut;
-      ::mutex                        m_spmutex;
+      ::pointer < ::mutex >                        m_spmutex;
 
 
-      transfer_file(::matter * pobject, ::mutex * pmutex = nullptr);
-      transfer_file(::matter * pobject, ::memory_file * pmemoryfileIn);
+      transfer_file(::particle * pparticle, ::pointer< ::mutex > pmutex = nullptr);
+      transfer_file(::particle * pparticle, ::memory_file * pmemoryfileIn);
       virtual ~transfer_file();
 
 

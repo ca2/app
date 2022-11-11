@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/primitive/primitive/object.h"
+
+
 namespace filemanager
 {
 
@@ -11,26 +15,25 @@ namespace filemanager
    public:
 
 
-      id_map < ::pointer<data >>                      m_datamap;
+      atom_map < ::pointer<data >>                       m_datamap;
 
       bool                                               m_bRestoring;
 
 
-      ::pointer<::user::multiple_document_template>   m_pdocumenttemplateForm;
-      ::pointer<::user::multiple_document_template>   m_pdocumenttemplateOperation;
+      ::pointer<::user::multiple_document_template>      m_pdocumenttemplateForm;
+      ::pointer<::user::multiple_document_template>      m_pdocumenttemplateOperation;
 
       ::file::path                                       m_pathFilemanagerProject;
 
 
       component();
-      virtual ~component();
-
+      ~component() override;
 
 
       inline ::core::session* get_session() const;
 
 
-      virtual void initialize_filemanager_component(::object * pobject);
+      virtual void initialize_filemanager_component(::particle * pparticle);
 
       virtual void filemanager_finalize();
 
@@ -38,7 +41,7 @@ namespace filemanager
       ::pointer<data>filemanager_create_data(atom atom);
 
 
-      id_map < ::pointer<data >>& datamap() { return m_datamap; }
+      atom_map < ::pointer<data >>& datamap() { return m_datamap; }
 
 
       void filemanager_set_data(atom idData, data * pdata);

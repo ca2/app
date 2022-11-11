@@ -5,6 +5,7 @@
 
 
 #include <X11/Xlib.h>
+#include "acme/primitive/primitive/element.h"
 
 
 namespace x11
@@ -12,7 +13,7 @@ namespace x11
 
 
    class event_listener :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

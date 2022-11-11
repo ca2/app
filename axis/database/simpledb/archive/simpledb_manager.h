@@ -23,19 +23,19 @@ namespace simpledb
 
       critical_section              m_csPersistentStr;
       critical_section              m_csUiRedir;
-      ::mutex                         m_mutexTagId;
+      ::pointer < ::mutex >                         m_pmutexTagId;
       string_to_string          m_tagid;
       string_to_string          m_usersecuretagid;
-      ::mutex                         m_mutexTagName;
+      ::pointer < ::mutex >                         m_pmutexTagName;
       string_to_string          m_tagname;
 
       i64                       m_iDatabaseWaitTimeOut;
 
-      ::mutex                         m_mutexSession;
+      ::pointer < ::mutex >                         m_pmutexSession;
       string_map < ::simpledb::session * >      m_mapSession;
 
 
-      manager(::object * pobject);
+      manager(::particle * pparticle);
       ~manager();
 
       

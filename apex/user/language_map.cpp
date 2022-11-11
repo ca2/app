@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "language_map.h"
+#include "language.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
@@ -28,11 +30,11 @@ namespace user
    }
 
 
-   void language_map::initialize(::object * pobject)
+   void language_map::initialize(::particle * pparticle)
    {
 
       //::e_status estatus = 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -54,7 +56,7 @@ namespace user
    }
 
 
-   bool language_map::set_language_resource_map(INT_STRING * pintstringLanguageResourceMap)
+   bool language_map::set_language_resource_map(::i32_sz * pintstringLanguageResourceMap)
    {
 
       m_pintstring = pintstringLanguageResourceMap;
@@ -259,9 +261,9 @@ namespace user
 
             straMatterLocator.add(strLocator);
 
-            ::file::path pathApplication = m_pcontext->m_papexcontext->dir().matter_from_locator("stringtable.po", straMatterLocator);
+            ::file::path pathApplication = dir()->matter_from_locator("stringtable.po", straMatterLocator);
 
-            string strPoData = m_pcontext->m_papexcontext->file().as_string(pathApplication);
+            string strPoData = file()->as_string(pathApplication);
 
             if (strPoData.has_char())
             {
@@ -306,13 +308,13 @@ namespace user
 
       //   ::file::path point1 = ::dir::appdata() / ("missing_translation_" + m_planguage->m_strLanguageCode + ".txt");
 
-      //   string str1 = m_psystem->m_pacmefile->as_string(point1);
+      //   string str1 = acmefile()->as_string(point1);
 
       //   str1 += "\nmsgid\"" + strId + "\"\n";
       //   str1 += "\nmsgstr\"" + strId + "\"\n";
       //   str1 += "\n";
 
-      //   m_psystem->m_pacmefile->put_contents(point1, str1);
+      //   acmefile()->put_contents(point1, str1);
 
       //   strText = "!" + m_planguage->m_strLanguageCode + ":" + strId;
 

@@ -1,6 +1,8 @@
 #include "framework.h"
-#include "_.h"
-#include "_gpu.h"
+#include "approach.h"
+#include "acme/exception/interface_only.h"
+//#include "_.h"
+//#include "_gpu.h"
 
 
 namespace gpu
@@ -19,10 +21,10 @@ namespace gpu
    }
 
 
-   void approach::initialize(::object * pobject)
+   void approach::initialize(::particle * pparticle)
    {
 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
    }
 

@@ -180,7 +180,7 @@ int get_current_process_affinity_order()
 //
 //   auto pevent = __new(manual_reset_event);
 //
-//   auto psystem = pobjectRunnable->m_psystem;
+//   auto psystem = pobjectRunnable->acmesystem();
 //
 //   auto pnode = psystem->node();
 //
@@ -212,7 +212,7 @@ int get_current_process_affinity_order()
 //
 //   ::pointer<object>prunnable = prunnableParam;
 //
-//   auto psystem = prunnableParam->m_psystem;
+//   auto psystem = prunnableParam->acmesystem();
 //
 //   auto pnode = psystem->node();
 //

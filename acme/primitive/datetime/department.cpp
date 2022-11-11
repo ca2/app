@@ -1,7 +1,15 @@
 #include "framework.h" // from "base/apex/.h"
+#include "department.h"
 #include <time.h>
-#include "acme/primitive/datetime/_string.h"
+#include "acme/exception/exception.h"
+#include "acme/exception/not_implemented.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/datetime/__string.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/string/str.h"
 #include "acme/primitive/text/context.h"
+#include "acme/regular_expression/regular_expression.h"
+#include "acme/regular_expression/result.h"
 
 
 namespace datetime
@@ -31,15 +39,15 @@ namespace datetime
    department::department()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
 
-   void department::initialize(::object * pobject)
+   void department::initialize(::particle * pparticle)
    {
     
-      /*auto estatus = */ ::acme::department::initialize(pobject);
+      /*auto estatus = */ ::acme::department::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -73,10 +81,10 @@ namespace datetime
    }
 
 
-   void department::international::initialize(::object * pobject)
+   void department::international::initialize(::particle * pparticle)
    {
 
-      /*auto estatus = */ ::object::initialize(pobject);
+      /*auto estatus = */ ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -90,10 +98,10 @@ namespace datetime
    }
 
 
-//   void department::str().initialize(::object * pobject)
+//   void department::str().initialize(::particle * pparticle)
 //   {
 //
-//      /* auto estatus = */ ::object::initialize(pobject);
+//      /* auto estatus = */ ::object::initialize(pparticle);
 //
 //      //if (!estatus)
 //      //{
@@ -506,9 +514,7 @@ namespace datetime
    time_t department::s_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear, const ::earth::time_shift& timeshift)
    {
 
-      struct ::tm tm;
-
-      __zero(tm);
+      struct ::tm tm {};
 
       tm.tm_hour = iHour;
       tm.tm_min = iMinute;
@@ -556,9 +562,7 @@ namespace datetime
    string department::get_week_day_str(const ::text::context * pcontext, i32 iWeekDay) // 1 - domingo
    {
       
-      auto psystem = m_psystem;
-
-      return psystem->texttable()->get(pcontext, "datetimestr_weekday_long[" + __string(iWeekDay - 1) + "]");
+      return acmesystem()->texttable()->get(pcontext, "datetimestr_weekday_long[" + __string(iWeekDay - 1) + "]");
 
    }
 
@@ -566,9 +570,7 @@ namespace datetime
    string department::get_tiny_week_day_str(const ::text::context * pcontext, i32 iWeekDay) // 1 - domingo
    {
 
-      auto psystem = m_psystem;
-
-      return psystem->texttable()->get(pcontext, "datetimestr_weekday_tiny[" + __string(iWeekDay - 1) + "]");
+      return acmesystem()->texttable()->get(pcontext, "datetimestr_weekday_tiny[" + __string(iWeekDay - 1) + "]");
 
    }
 
@@ -576,9 +578,7 @@ namespace datetime
    string department::get_month_str(const ::text::context * pcontext, i32 iMonth)
    {
    
-      auto psystem = m_psystem;
-
-      return psystem->texttable()->get(pcontext, "datetimestr_month[" + __string(iMonth - 1) + "]");
+      return acmesystem()->texttable()->get(pcontext, "datetimestr_month[" + __string(iMonth - 1) + "]");
 
    }
 
@@ -586,9 +586,7 @@ namespace datetime
    string department::get_short_month_str(const ::text::context * pcontext, i32 iMonth)
    {
 
-      auto psystem = m_psystem;
-
-      return psystem->texttable()->get(pcontext, "datetimestr_month_short[" + __string(iMonth - 1) + "]");
+      return acmesystem()->texttable()->get(pcontext, "datetimestr_month_short[" + __string(iMonth - 1) + "]");
 
    }
 
@@ -792,7 +790,7 @@ namespace datetime
    }
 
 
-   string department::strftime(const string & strFormatParam, const ::earth::time & time, const ::earth::time_shift & timeshift)
+   string department::format(const string & strFormatParam, const ::earth::time & time, const ::earth::time_shift & timeshift)
    {
 
       string strFormat(strFormatParam);
@@ -819,10 +817,10 @@ namespace datetime
    }
 
 
-   string department::strftime(const string & str, const ::earth::time_shift& timeshift)
+   string department::format(const string & str, const ::earth::time_shift& timeshift)
    {
 
-      return strftime(str, ::earth::time::now(), timeshift);
+      return format(str, ::earth::time::now(), timeshift);
 
    }
 
@@ -1225,8 +1223,8 @@ namespace datetime
       string strChar;
       for (i32 i = 0; *psz; psz += strChar.length())
       {
-         strChar = ::str().get_utf8_char(psz);
-         if (::str::ch().is_whitespace(psz))
+         strChar = get_utf8_char(psz);
+         if (unicode_is_whitespace(psz))
          {
             i++;
             //if(strNumber.has_char() && strText.has_char())
@@ -1334,11 +1332,11 @@ namespace datetime
             bMinus = true;
             strNumber.Empty();
          }
-         else if (::str::ch().is_digit(psz))
+         else if (unicode_is_digit(psz))
          {
             strNumber += strChar;
          }
-         else if (::str::ch().is_letter(psz))
+         else if (unicode_is_letter(psz))
          {
             strText1 += strChar;
          }
@@ -1437,9 +1435,7 @@ namespace datetime
 
             bBaseTime = true;
             
-            auto psystem = m_psystem;
-
-            auto pdatetime = m_psystem->datetime();
+            auto pdatetime = acmesystem()->datetime();
 
             pdatetime->international().parse_str(str, set);
 
@@ -1490,9 +1486,7 @@ namespace datetime
          {
             bBaseTime = true;
 
-            auto psystem = m_psystem;
-
-            auto pdatetime = m_psystem->datetime();
+            auto pdatetime = acmesystem()->datetime();
 
             pdatetime->international().parse_str(str, set);
 
@@ -1526,7 +1520,7 @@ namespace datetime
          }
       }
       if (!bBaseTime && (
-         ::str().begins_eat(str, "today") ||
+         str.begins_eat("today") ||
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:today"))))
       {
          time = ::earth::time::now();
@@ -1534,7 +1528,7 @@ namespace datetime
          bBaseTime = true;
       }
       if (!bBaseTime && (
-         ::str().begins_eat(str, "tomorrow") ||
+         str.begins_eat("tomorrow") ||
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:tomorrow"))))
       {
          time = ::earth::time::now();
@@ -1543,7 +1537,7 @@ namespace datetime
          bBaseTime = true;
       }
       if (!bBaseTime && (
-         ::str().begins_eat(str, "yesterday") ||
+         str.begins_eat("yesterday") ||
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:yesterday"))))
       {
          time = ::earth::time::now();
@@ -1552,7 +1546,7 @@ namespace datetime
          bBaseTime = true;
       }
       if (!bBaseTime && (
-         ::str().begins_eat(str, "now") ||
+         str.begins_eat("now") ||
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:now"))))
       {
 
@@ -1564,11 +1558,9 @@ namespace datetime
 
       string_array stra;
 
-      auto psystem = m_psystem;
+      auto pdatetime = acmesystem()->datetime();
 
-      auto pdatetime = m_psystem->datetime();
-
-      auto pcre1 = psystem->compile_pcre("^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
+      auto pcre1 = acmesystem()->compile_pcre("^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
 
       auto presult = pcre1->run(str);
 

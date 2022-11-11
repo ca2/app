@@ -1,4 +1,5 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "acme/handler/item.h"
 #include "aura/graphics/image/context_image.h"
 #include "group_image_list.h"
 #include "base/user/menu/button.h"
@@ -100,7 +101,7 @@ namespace userex
 
       pgroup->m_strTitle = strTitle;
 
-      m_idaHandledCommands.add("menu_item_" + idGroup);
+      m_atomaHandledCommands.add("menu_item_" + idGroup);
 
       m_groupa.add(pgroup);
 
@@ -135,7 +136,7 @@ namespace userex
 
       pcreate->previous();
 
-      m_idaHandledCommands.add(m_atom);
+      m_atomaHandledCommands.add(m_atom);
 
       m_pbuttonMenu->create_control(this, m_atom);
 
@@ -471,7 +472,7 @@ namespace userex
 
       string str = pcommand->m_atom;
 
-      if (::str().begins_eat_ci(str, "menu_item_"))
+      if (str.begins_eat_ci("menu_item_"))
       {
 
          show_group(str);

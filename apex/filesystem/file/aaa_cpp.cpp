@@ -14,13 +14,13 @@ namespace file
 
 #else
 
-      ::file::path pathSystemShortName =          auto psystem = m_psystem;
+      ::file::path pathSystemShortName =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->localconfig() / "system_short_name.txt";
 
-      return m_psystem->m_pacmefile->as_string(pathSystemShortName).trimmed();
+      return acmefile()->as_string(pathSystemShortName).trimmed();
 
 #endif
 

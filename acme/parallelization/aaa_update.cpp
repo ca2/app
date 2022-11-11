@@ -6,7 +6,7 @@
 
 
 critical_section * update::g_pcs = nullptr;
-::id_map < ::pointer<update >>* update::g_pmap = nullptr;
+::atom_map < ::pointer<update >>* update::g_pmap = nullptr;
 bool update::g_bDestroyAll = false;
 
 
@@ -117,7 +117,7 @@ void update::notify()
 void update::add(::matter * pmatter)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if(m_elementa.is_empty())
    {
@@ -139,7 +139,7 @@ void update::add(::matter * pmatter)
 void update::erase(::matter * pmatter)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    m_elementa.erase(pmatter);
 

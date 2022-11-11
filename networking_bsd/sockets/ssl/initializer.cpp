@@ -87,12 +87,12 @@ namespace sockets_bsd
    }
 
 
-   void SSLInitializer::initialize(::object* pobject)
+   void SSLInitializer::initialize(::particle * pparticle)
    {
 
-      //auto estatus = ::object::initialize(pobject);
+      //auto estatus = ::object::initialize(pparticle);
 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{

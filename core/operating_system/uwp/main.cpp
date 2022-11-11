@@ -254,10 +254,10 @@ string ca2_command_line()
 
    }
 
-   if (!::str().begins_eat_ci(strAppId, "com."))
+   if (!strAppId.begins_eat_ci("com."))
    {
 
-      ::str().begins_eat_ci(strAppId, "com.ca2.");
+      strAppId.begins_eat_ci("com.ca2.");
 
    }
 

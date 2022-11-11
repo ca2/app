@@ -5,7 +5,7 @@
 //public:
 //
 //
-//   virtual void __tracea(::object * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz) = 0;
+//   virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz) = 0;
 //
 //
 //};
@@ -22,7 +22,7 @@ public:
    virtual ~simple_trace();
 
 
-   virtual void __tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz) override;
+   virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz) override;
 
 
 };
@@ -51,8 +51,8 @@ public:
    const i32                  m_iLine;
 
 
-   trace_logger(const ::string & pszFunction, const ::string & pszFile, i32 iLine, ::matter * pobject) :
-      m_pszFunction(pszFunction), m_pszFile(pszFile), m_iLine(iLine), m_pobject(pobject)
+   trace_logger(const ::string & pszFunction, const ::string & pszFile, i32 iLine, ::particle * pparticle) :
+      m_pszFunction(pszFunction), m_pszFile(pszFile), m_iLine(iLine), m_pobject(pparticle)
    {
 
    }
@@ -102,10 +102,10 @@ public:
    }
 
 
-   inline void __cdecl operator()(::object * pobject, const ::string & strContext, i32 iError, const ::string & strMessage) const
+   inline void __cdecl operator()(::particle * pparticle, const ::string & strContext, i32 iError, const ::string & strMessage) const
    {
 
-      ::__tracef(pobject, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
+      ::__tracef(pparticle, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
 
    }
 
@@ -122,8 +122,8 @@ public:
    enum_trace_level           m_elevel;
 
 
-   trace_logger_level(const ::string & pszFunction, const ::string & pszFile, i32 iLine, ::matter * pobject, enum_trace_level elevel) :
-      trace_logger(pszFunction, pszFile, iLine, pobject),
+   trace_logger_level(const ::string & pszFunction, const ::string & pszFile, i32 iLine, ::particle * pparticle, enum_trace_level elevel) :
+      trace_logger(pszFunction, pszFile, iLine, pparticle),
       m_elevel(elevel)
    {
 
@@ -191,10 +191,10 @@ public:
    }
 
 
-   inline void operator()(::object * pobject, const ::string & strContext, i32 iError, const ::string & strMessage) const
+   inline void operator()(::particle * pparticle, const ::string & strContext, i32 iError, const ::string & strMessage) const
    {
 
-      ::__tracef(pobject, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
+      ::__tracef(pparticle, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
 
    }
 
@@ -302,7 +302,7 @@ namespace aura
          trace();
          virtual ~trace();
 
-         //virtual void initialize(::object* pobject) override;
+         //virtual void initialize(::particle * pparticle) override;
 
          category * operator[](e_trace_category ecategory)
          {

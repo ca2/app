@@ -16,10 +16,10 @@ file_system::~file_system()
 }
 
 
-void file_system::initialize(::object * pobject)
+void file_system::initialize(::particle * pparticle)
 {
    
-   /*auto estatus = */ ::object::initialize(pobject);
+   /*auto estatus = */ ::object::initialize(pparticle);
    
    //if(!estatus)
    //{
@@ -28,7 +28,7 @@ void file_system::initialize(::object * pobject)
    //   
    //}
 
-   ::file::path pathModule = m_psystem->m_pacmefile->module();
+   ::file::path pathModule = acmefile()->module();
 
    m_pathModule = pathModule;
 

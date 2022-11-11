@@ -2,6 +2,7 @@
 #include "icon.h"
 #include "map.h"
 #include "image.h"
+#include "acme/platform/system.h"
 #include "aura/windowing/icon.h"
 
 
@@ -53,10 +54,10 @@ namespace draw2d
    }
 
 
-   void icon::initialize(::object * pobject)
+   void icon::initialize(::particle * pparticle)
    {
 
-      ::matter::initialize(pobject);
+      ::matter::initialize(pparticle);
 
    }
 
@@ -150,7 +151,7 @@ namespace draw2d
       if(::is_null(m_pimagemap))
       {
 
-         m_pimagemap = m_psystem->__create_new < size_image >();
+         m_pimagemap = acmesystem()->__create_new < size_image >();
 
       }
 

@@ -2,7 +2,11 @@
 // Created by camilo on 31/01/2022 16:09 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "_nano.h"
+#include "window.h"
+#include "display.h"
+#include "acme/operating_system/cairo/nano/device.h"
+#include "acme/platform/system.h"
+#include "acme/platform/node.h"
 
 
 ::user::enum_desktop _get_edesktop();
@@ -15,7 +19,7 @@ void operating_system_initialize_x11_nano(::factory::factory * pfactory)
 
    pfactory->add_factory_item<::x11::nano_window, ::nano_window_implementation>();
 
-   ::x11::display::get(pfactory->m_psystem);
+   ::x11::display::get(pfactory);
 
 }
 
@@ -28,7 +32,7 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
 
    auto edesktop = _get_edesktop();
 
-   auto psystem = pfactory->m_psystem;
+   auto psystem = ::get_system();
 
    if(edesktop & ::user::e_desktop_kde && psystem->node()->has_xcb())
    {

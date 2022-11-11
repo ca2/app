@@ -1,6 +1,8 @@
 ﻿#include "framework.h"
 #include "file.h"
 #include "folder.h"
+#include "acme/exception/exception.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 namespace folder_zip
@@ -33,21 +35,21 @@ namespace folder_zip
 
 
 
-   void file::assert_ok() const
-   {
-
-
-   }
-
-
-   void file::dump(dump_context& dumpcontext) const
-   {
-
-      //dumpcontext << "with handle " << (uptr)m_pfolder.m_p;
-      //dumpcontext << " and name \"" << m_strFileName << "\"";
-      //dumpcontext << "\n";
-
-   }
+//   void file::assert_ok() const
+//   {
+//
+//
+//   }
+//
+//
+//   void file::dump(dump_context& dumpcontext) const
+//   {
+//
+//      //dumpcontext << "with handle " << (uptr)m_pfolder.m_p;
+//      //dumpcontext << " and name \"" << m_strFileName << "\"";
+//      //dumpcontext << "\n";
+//
+//   }
 
 //   bool file_container::unzip_open(const char * pcwsz)
 //
@@ -136,7 +138,7 @@ namespace folder_zip
 
    //   m_bOwnFile = true;
 
-   //   auto pfile = m_psystem->__create < ::file::file > ();
+   //   auto pfile = acmesystem()->__create < ::file::file > ();
 
    //   try
    //   {
@@ -190,7 +192,7 @@ namespace folder_zip
 memsize file::read(void* pdata, memsize nCount)
 {
 
-   synchronous_lock synchronouslock(m_pfolder->mutex());
+   synchronous_lock synchronouslock(m_pfolder->synchronization());
 
    //   ASSERT_VALID(this);
    ASSERT(m_pfolder->m_unzfile != nullptr);
@@ -295,7 +297,7 @@ void file::write(const void* pdata, memsize nCount)
    filesize file::translate(filesize offset, ::enum_seek eseek)
    {
 
-      synchronous_lock synchronouslock(m_pfolder->mutex());
+      synchronous_lock synchronouslock(m_pfolder->synchronization());
 
       u64 iNewPosition;
 

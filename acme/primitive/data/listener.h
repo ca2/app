@@ -1,6 +1,10 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/data/data.h"
+
+
 namespace data
 {
 
@@ -9,7 +13,7 @@ namespace data
 
 
    class CLASS_DECL_ACME listener :
-      virtual public ::matter
+      virtual public ::particle
    {
    public:
 

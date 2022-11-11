@@ -16,7 +16,7 @@ namespace android
       public:
 
 
-         file_system(::object * pobject);
+         file_system(::particle * pparticle);
 
          virtual file_pointer get_file(::payload payloadFile, ::u32 nOpenFlags, ::extended::status * pfesp, ::aura::application * papp);
 

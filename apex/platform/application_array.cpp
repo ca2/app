@@ -74,7 +74,7 @@ namespace apex
    ::apex::application * application_array::find_by_app_name(string strAppName)
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
    restart:
 

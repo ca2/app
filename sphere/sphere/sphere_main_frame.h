@@ -13,7 +13,7 @@ namespace sphere
 
       
 
-      main_frame(::object * pobject);
+      main_frame(::particle * pparticle);
       virtual ~main_frame();
 
 

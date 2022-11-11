@@ -2,8 +2,12 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
+
+
 class CLASS_DECL_ACME main_hold_base :
-   virtual public ::element
+   virtual public ::particle
 {
 public:
 

@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "email_address.h"
+
+
 namespace networking
 {
 
@@ -24,7 +28,7 @@ namespace networking
       virtual ~email();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       void prepare_headers();

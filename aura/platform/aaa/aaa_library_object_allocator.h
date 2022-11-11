@@ -17,7 +17,7 @@ public:
 
    }
 
-   virtual ::matter * new_object(::object * pobject) = 0;
+   virtual ::matter * new_object(::particle * pparticle) = 0;
 
 
 };
@@ -37,10 +37,10 @@ public:
    }
 
 
-   virtual ::matter * new_object(::object * pobject) override
+   virtual ::matter * new_object(::particle * pparticle) override
    {
 
-      return memory_new TYPE(pobject);
+      return memory_new TYPE(pparticle);
 
    }
 

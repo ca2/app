@@ -40,13 +40,13 @@ namespace database
          m_strSqlSelect = pszSql;
          break;
       case e_sql_update:
-         m_strSqlUpdate = pszSql;
+         m_straSqlUpdate.add(pszSql);
          break;
       case e_sql_insert:
-         m_strSqlInsert = pszSql;
+         m_straSqlInsert.add(pszSql);
          break;
       case e_sql_delete:
-         m_strSqlDelete = pszSql;
+         m_straSqlDelete.add(pszSql);
          break;
       default:
          ASSERT(false);
@@ -72,13 +72,13 @@ namespace database
          m_strSqlSelect.Empty();
          break;
       case e_sql_update:
-         m_strSqlUpdate.erase_all();
+         m_straSqlUpdate.erase_all();
          break;
       case e_sql_insert:
-         m_strSqlInsert.erase_all();
+         m_straSqlInsert.erase_all();
          break;
       case e_sql_delete:
-         m_strSqlDelete.erase_all();
+         m_straSqlDelete.erase_all();
          break;
       default:
          ASSERT(false);

@@ -1,5 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "file.h"
+#include "acme/primitive/primitive/memory.h"
+#include "acme/filesystem/file/file.h"
+#include "apex/filesystem/filesystem/file_context.h"
 
 
 namespace ftp
@@ -21,7 +24,7 @@ namespace ftp
 
       m_strFileName = strFileName;
 
-      m_file = m_pcontext->m_papexcontext->file().get_file(strFileName, eopen);
+      m_file = ::particle::file()->get_file(strFileName, eopen);
 
       return m_file.is_set();
 

@@ -5,13 +5,13 @@ namespace turboc
 {
 
 
-   edit_impact::edit_impact(::object * pobject):
-      ::object(pobject),
-      ::user::interaction(pobject),
-      ::user::scroll_impact(pobject),
-      ::data::listener(pobject),
-      ::user::edit_plain_text(pobject),
-      ::user::edit_plain_text_impact(pobject)
+   edit_impact::edit_impact(::particle * pparticle):
+      ::object(pparticle),
+      ::user::interaction(pparticle),
+      ::user::scroll_impact(pparticle),
+      ::data::listener(pparticle),
+      ::user::edit_plain_text(pparticle),
+      ::user::edit_plain_text_impact(pparticle)
    {
 
       m_ptopview = NULL;
@@ -43,7 +43,7 @@ namespace turboc
 
       {
 
-         synchronous_lock synchronouslock(&m_ptopview->m_pimpact->m_mutexText);
+         synchronous_lock synchronouslock(&m_ptopview->m_pimpact->m_pmutexText);
 
          _001GetText(m_ptopview->m_pimpact->m_strNewHelloMultiverse);
 

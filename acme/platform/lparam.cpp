@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 lparam::lparam(const ::particle * pelement)
@@ -18,6 +19,8 @@ lparam::lparam(const ::particle * pelement)
    m_lparam = (iptr)(void *)pelement;
 
 }
+
+
 
 
 

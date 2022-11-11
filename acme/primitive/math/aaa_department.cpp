@@ -281,10 +281,10 @@ namespace mathematics
 
    }
 
-   void math::initialize(::object * pobject)
+   void math::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::acme::department::initialize(pobject);
+      auto estatus = ::acme::department::initialize(pparticle);
 
       if (!estatus)
       {
@@ -574,7 +574,7 @@ namespace apex
 {
 
 
-   namespace papaya
+   namespace acme
    {
 
       i32 CLASS_DECL_APEX time_seed();

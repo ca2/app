@@ -8,14 +8,17 @@
 #pragma once
 
 
+#include "acme/platform/node.h"
+#include "apex/message/channel.h"
+
+
 namespace apex
 {
 
 
    class CLASS_DECL_APEX node :
       virtual public ::acme::node,
-      virtual public ::channel,
-      virtual public ::handler
+      virtual public ::channel
    {
    public:
 
@@ -39,7 +42,7 @@ namespace apex
 #endif
 
 
-      virtual void on_initialize_object() override;
+      virtual void on_initialize_particle() override;
       
       
       virtual void main();
@@ -56,7 +59,7 @@ namespace apex
       virtual void set_application_menu(application_menu * pmenu, ::apex::application * papp);
 
 
-      virtual ::file::path get_desktop_file_path(::apex::application * papp) const;
+      virtual ::file::path get_desktop_file_path(::apex::application * papp);
 
 
       virtual void defer_notify_startup_complete();
@@ -103,7 +106,7 @@ namespace apex
       virtual void get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory);
 
 
-
+      virtual void on_start_application(::apex::application * papplication);
 
 
       //DECLARE_MESSAGE_HANDLER(on_message_clear_application_data);

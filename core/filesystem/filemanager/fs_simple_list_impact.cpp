@@ -1,11 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "acme/handler/item.h"
+#include "acme/constant/message.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
 #include "acme/platform/timer.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
-//
 #include "aqua/xml/document.h"
 #include "fs_simple_list_impact.h"
 #include "core/user/user/list_cache.h"
@@ -58,15 +56,15 @@ namespace filemanager
 
 
 
-         void list_impact::assert_ok() const
-         {
-            simple_list_impact::assert_ok();
-         }
-
-         void list_impact::dump(dump_context & dumpcontext) const
-         {
-            simple_list_impact::dump(dumpcontext);
-         }
+//         void list_impact::assert_ok() const
+//         {
+//            simple_list_impact::assert_ok();
+//         }
+//
+//         void list_impact::dump(dump_context & dumpcontext) const
+//         {
+//            simple_list_impact::dump(dumpcontext);
+//         }
 
 
          void list_impact::on_message_create(::message::message* pmessage)
@@ -275,7 +273,7 @@ namespace filemanager
 
             simple_list_impact::handle(ptopic, pcontext);
 
-            //if(::is_null(pobject))
+            //if(::is_null(pparticle))
             {
 
               // _001UpdateColumns();

@@ -4,7 +4,10 @@
 #pragma once
 
 
-#include "acme/user/nano/_nano.h"
+//#include "acme/user/nano/_nano.h"
+
+
+#include "acme/user/nano/device.h"
 
 
 #include <cairo/cairo-features.h>

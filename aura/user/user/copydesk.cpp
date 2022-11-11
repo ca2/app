@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "copydesk.h"
+#include "acme/exception/interface_only.h"
 #include "acme/primitive/string/base64.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -85,7 +86,7 @@ namespace user
       for (auto & strPath : stra)
       {
 
-         if (strPath.has_char() && (pcontext->m_papexcontext->dir().is(strPath) || pcontext->m_papexcontext->file().exists(strPath)))
+         if (strPath.has_char() && (pcontext->m_papexcontext->dir()->is(strPath) || pcontext->m_papexcontext->file()->exists(strPath)))
          {
 
             if (ppatha == nullptr)
@@ -233,7 +234,7 @@ namespace user
 
             ::pointer<::aura::application>papp = get_app();
 
-            auto psystem = m_psystem->m_paurasystem;
+            auto psystem = acmesystem()->m_paurasystem;
 
             auto pcontext = m_pcontext->m_pauracontext;
 
@@ -306,9 +307,9 @@ namespace user
 
                      auto pcontext = get_context();
 
-                     pcontext->m_papexcontext->file().as_memory(payloadFile, mem);
+                     pcontext->m_papexcontext->file()->as_memory(payloadFile, mem);
 
-                     auto psystem = m_psystem;
+                     auto psystem = acmesystem();
 
                      auto pbase64 = psystem->base64();
 
@@ -391,7 +392,7 @@ namespace user
          if (_desk_to_image(pimage))
          {
 
-            pimage->set_ok();
+            pimage->set_ok_flag();
 
             return true;
 
@@ -419,7 +420,7 @@ namespace user
 
                auto pcontext = get_context();
 
-               pcontext->m_papexcontext->file().as_memory(payloadFile, *pmemory);
+               pcontext->m_papexcontext->file()->as_memory(payloadFile, *pmemory);
 
             }
 

@@ -5,6 +5,7 @@
 #include "disp_option.h"
 #include "parse_info.h"
 #include "document.h"
+#include "acme/platform/system.h"
 
 
 namespace xml
@@ -149,7 +150,7 @@ namespace xml
       if (opt == nullptr)
       {
 
-         opt = get_system()->xml()->m_poptionDefault;
+         opt = acmesystem()->xml()->m_poptionDefault;
 
       }
 
@@ -184,12 +185,12 @@ namespace xml
 
 
 
-// CLASS_DECL_AQUA void xml_export(::object * pobject, string & strXml, xml::exportable & exportable)
+// CLASS_DECL_AQUA void xml_export(::particle * pparticle, string & strXml, xml::exportable & exportable)
 // {
 
-//    ::xml::output_tree o(pobject);
+//    ::xml::output_tree o(pparticle);
 
-//    o.m_pdocument = __new(::xml::document(pobject));
+//    o.m_pdocument = __new(::xml::document(pparticle));
 
 //    o.m_pnode = o.m_pdocument->get_root();
 
@@ -200,12 +201,12 @@ namespace xml
 // }
 
 
-// CLASS_DECL_AQUA void xml_import(::object * pobject, xml::importable & importable, string & strXml)
+// CLASS_DECL_AQUA void xml_import(::particle * pparticle, xml::importable & importable, string & strXml)
 // {
 
-//    ::xml::input_tree i(pobject);
+//    ::xml::input_tree i(pparticle);
 
-//    i.m_pdocument = __new(xml::document(pobject));
+//    i.m_pdocument = __new(xml::document(pparticle));
 
 //    if (i.m_pdocument->load(strXml))
 //    {

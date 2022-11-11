@@ -4,12 +4,15 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/property_object.h"
+
+
 namespace acme
 {
 
 
    class CLASS_DECL_ACME message :
-      virtual public ::object
+      virtual public ::property_object
    {
    public:
 

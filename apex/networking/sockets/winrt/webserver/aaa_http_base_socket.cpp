@@ -111,7 +111,7 @@ namespace sockets
       //FORMATTED_TRACE("http version: %s\n", m_request.attr("http_version").get_string());
       //FORMATTED_TRACE("connection: %s\n", m_request.header("connection").get_string());
       //FORMATTED_TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
-   /*   if(::str().ends(m_request.attr("http_version").get_string(), "/1.1")
+   /*   if(string_ends(m_request.attr("http_version").get_string(), "/1.1")
          && m_request.header("connection").get_string().compare_ci("close") != 0)
       {
          m_b_keepalive = true;
@@ -258,7 +258,7 @@ namespace sockets
             if (response().m_strFile.has_char())
             {
 
-               compress.gz(pfile, pcontext->m_papexcontext->file().get_reader(response().m_strFile));
+               compress.gz(pfile, pcontext->m_papexcontext->file()->get_reader(response().m_strFile));
 
                response().m_strFile.Empty();
 

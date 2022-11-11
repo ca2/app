@@ -5,9 +5,9 @@ namespace colorertake5
 {
 
 
-   TextHRDMapper::TextHRDMapper(::object * pobject) :
-      object(pobject),
-      RegionMapperImpl(pobject)
+   TextHRDMapper::TextHRDMapper(::particle * pparticle) :
+      object(pparticle),
+      RegionMapperImpl(pparticle)
    {
    }
 

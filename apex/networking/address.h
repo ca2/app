@@ -1,14 +1,7 @@
 ﻿#pragma once
 
-//
-//#if defined(LINUX) || defined(FREEBSD)
-//#include <netdb.h>
-//#define in_addr6 in6_addr
-//#elif defined(ANDROID)
-//#include <netdb.h>
-//#include <netinet/in.h>
-//#define in_addr6 in6_addr
-//#endif
+
+#include "acme/primitive/primitive/particle.h"
 
 
 namespace networking
@@ -16,7 +9,7 @@ namespace networking
 
 
    class CLASS_DECL_APEX address :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 
@@ -27,7 +20,7 @@ namespace networking
       //address(const address& address);
       ////address(i32 family, ::networking::port_t port = 0);
       //address(const ::string & strAddress, ::networking::port_t port = 0);
-      //address(::object * pobject, const ::string & strAddress, const ::string & strServiceName);
+      //address(::particle * pparticle, const ::string & strAddress, const ::string & strServiceName);
 //#if defined(BSD_STYLE_SOCKETS)
 //      address(const in_addr & a, ::networking::port_t port = 0);
 //      address(const in6_addr & a, ::networking::port_t port = 0);

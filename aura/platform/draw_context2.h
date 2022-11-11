@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
+
+
 namespace draw2d
 {
 
@@ -15,7 +19,7 @@ namespace aura
 
    template < typename TYPE >
    class simple_chain :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

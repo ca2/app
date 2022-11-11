@@ -65,7 +65,7 @@ namespace experience_nanogui
 
       auto pframewindow = m_pframewindow;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "buffer.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/image.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction.h"
@@ -28,7 +29,7 @@ namespace graphics
    bool buffer::update_screen()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto bOk = update_screen(m_pimageBuffer);
 
@@ -119,18 +120,18 @@ namespace graphics
    }
 
 
-   synchronization_object * buffer::get_screen_sync()
+   ::particle * buffer::get_screen_sync()
    {
 
-      return mutex();
+      return synchronization();
 
    }
 
 
-   ::synchronization_object * buffer::get_draw_lock()
+   ::particle * buffer::get_draw_lock()
    {
 
-      return mutex();
+      return synchronization();
 
    }
 

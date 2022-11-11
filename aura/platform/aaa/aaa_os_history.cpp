@@ -1,9 +1,9 @@
 #include "framework.h"
 
 
-os_history::os_history(::object * pobject) :
-   ::object(pobject)//,
-   //::aura::history(pobject)
+os_history::os_history(::particle * pparticle) :
+   ::object(pparticle)//,
+   //::aura::history(pparticle)
 {
 }
 

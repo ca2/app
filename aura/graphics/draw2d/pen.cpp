@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "pen.h"
 #include "brush.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace draw2d
@@ -27,11 +28,11 @@ namespace draw2d
    }
 
 
-   void pen::dump(dump_context & dumpcontext) const
-   {
-      __UNREFERENCED_PARAMETER(dumpcontext);
-      throw ::interface_only();
-   }
+//   void pen::dump(dump_context & dumpcontext) const
+//   {
+//      __UNREFERENCED_PARAMETER(dumpcontext);
+//      throw ::interface_only();
+//   }
 
 
    bool pen::create_null()

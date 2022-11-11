@@ -65,8 +65,8 @@ namespace android
    //}
 
 
-   //interaction_impl::interaction_impl(::object * pobject):
-   //   ::object(pobject)
+   //interaction_impl::interaction_impl(::particle * pparticle):
+   //   ::object(pparticle)
    //{
    //   m_bScreenRelativeMouseMessagePosition = true;
    //   //  m_bScreenRelativeMouseMessagePosition = false;
@@ -763,7 +763,7 @@ namespace android
    //bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl)
    //{
 
-   //   //synchronous_lock synchronouslock(&user_mutex());
+   //   //synchronous_lock synchronouslock(&user_synchronization());
 
    //   //ASSERT(::is_window(get_handle()));
 
@@ -2365,7 +2365,7 @@ namespace android
 //
 //      return ::user::interaction_impl::set_window_position(z, x, y, cx, cy, nFlags);
 //
-//      //      single_lock synchronouslock(&user_mutex(), true);
+//      //      single_lock synchronouslock(&user_synchronization(), true);
 //
 //      //xdisplay d(m_oswindow->display());
 //

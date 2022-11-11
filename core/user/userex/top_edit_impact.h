@@ -30,15 +30,15 @@ namespace userex
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
-      virtual ::write_text::font_pointer get_font(::user::style* pstyle, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
+      ::write_text::font_pointer get_font(::user::style* pstyle, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) override;
 
-      virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context& action_context) override;
+       void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context& action_context) override;
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
 
 
-      bool keyboard_focus_is_focusable() const override;
+      bool keyboard_focus_is_focusable() override;
 
       virtual void _001OnTimer(::timer * ptimer) override;
 

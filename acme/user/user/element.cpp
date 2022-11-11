@@ -1,9 +1,11 @@
 ﻿#include "framework.h"
-#include "acme/constant/simple_command.h"
-#include "acme/handler/item.h"
 #include "check.h"
 #include "text.h"
 #include "element.h"
+#include "acme/constant/message.h"
+#include "acme/constant/simple_command.h"
+#include "acme/handler/item.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace user
@@ -45,7 +47,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_wnd() const
+   ::user::interaction * element::get_wnd()
    {
 
       return nullptr;
@@ -53,7 +55,7 @@ namespace user
    }
 
 
-   ::thread * element::get_task() const
+   ::task * element::get_task()
    {
 
       return nullptr;
@@ -138,7 +140,7 @@ namespace user
    //}
 
 
-   ::user::interaction* element::get_host_window() const
+   ::user::interaction* element::get_host_window()
    {
 
       //if (get_session() == nullptr
@@ -488,42 +490,15 @@ namespace user
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+   bool element::is_host_top_level()
+   {
+
+      return false;
+
+   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   bool element::is_ascendant(const element * puiIsAscendant, bool bIncludeSelf) const
+   bool element::is_ascendant(element * puiIsAscendant, bool bIncludeSelf)
    {
 
       throw ::interface_only();
@@ -533,7 +508,7 @@ namespace user
    }
 
 
-   bool element::is_parent(const element * puiIsParent) const
+   bool element::is_parent(element * puiIsParent)
    {
 
       throw ::interface_only();
@@ -543,7 +518,7 @@ namespace user
    }
 
 
-   bool element::is_child(const element * puiIsChild) const
+   bool element::is_child(element * puiIsChild)
    {
 
       throw ::interface_only();
@@ -553,7 +528,7 @@ namespace user
    }
 
 
-   bool element::is_descendant(const element * puiIsDescendant, bool bIncludeSelf) const
+   bool element::is_descendant( element * puiIsDescendant, bool bIncludeSelf)
    {
 
       throw ::interface_only();
@@ -563,7 +538,7 @@ namespace user
    }
 
 
-   bool element::is_descendant_of_or_owned_by(const ::user::element * puiAscendantCandidate, bool bIncludeSelf) const
+   bool element::is_descendant_of_or_owned_by(::user::element * puiAscendantCandidate, bool bIncludeSelf)
    {
 
       throw ::interface_only();
@@ -573,7 +548,7 @@ namespace user
    }
 
 
-   bool element::is_ascendant_or_owner_of(const ::user::element * puiDescendantCandidate, bool bIncludeSelf) const
+   bool element::is_ascendant_or_owner_of(::user::element * puiDescendantCandidate, bool bIncludeSelf)
    {
 
       throw ::interface_only();
@@ -583,7 +558,7 @@ namespace user
    }
 
 
-   bool element::is_ascendant_of(const element * puiIsDescendant, bool bIncludeSelf) const
+   bool element::is_ascendant_of(element * puiIsDescendant, bool bIncludeSelf)
    {
       
       return ::is_set(puiIsDescendant) && puiIsDescendant->is_ascendant(this, bIncludeSelf); 
@@ -591,7 +566,7 @@ namespace user
    }
 
 
-   bool element::is_parent_of(const element * puiIsChild) const
+   bool element::is_parent_of(element * puiIsChild)
    {
       
       return ::is_set(puiIsChild) && puiIsChild->is_parent(this); 
@@ -599,7 +574,7 @@ namespace user
    }
 
 
-   bool element::is_child_of(const element * puiIsParent) const
+   bool element::is_child_of(element * puiIsParent)
    {
       
       return ::is_set(puiIsParent) && puiIsParent->is_child(this); 
@@ -607,7 +582,7 @@ namespace user
    }
 
    
-   bool element::is_descendant_of(const element * puiIsAscendant, bool bIncludeSelf) const
+   bool element::is_descendant_of(element * puiIsAscendant, bool bIncludeSelf)
    { 
       
       return ::is_set(puiIsAscendant) && puiIsAscendant->is_descendant(this, bIncludeSelf); 
@@ -1123,7 +1098,7 @@ namespace user
    }
 
 
-   ::windowing::window * element::_window() const
+   ::windowing::window * element::_window()
    {
 
       return nullptr;
@@ -1478,7 +1453,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_next_window(bool bIgnoreChildren, const  ::user::interaction * puiInteractionStop) const
+   ::user::interaction * element::get_next_window(bool bIgnoreChildren, ::user::interaction * puiInteractionStop)
    {
 
       return nullptr;
@@ -1486,7 +1461,7 @@ namespace user
    }
 
    
-   ::user::interaction * element::get_window(enum_next enext) const
+   ::user::interaction * element::get_window(enum_next enext)
    {
 
       return nullptr;
@@ -1522,7 +1497,7 @@ namespace user
 //   }
 
 
-   bool element::is_message_only_window() const
+   bool element::is_message_only_window()
    {
 
       throw ::interface_only();
@@ -1532,7 +1507,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_wnd(::u32 nCmd) const
+   ::user::interaction * element::get_wnd(::u32 nCmd)
    {
 
       throw ::interface_only();
@@ -1775,7 +1750,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_parent() const
+   ::user::interaction * element::get_parent()
    {
 
       throw ::interface_only();
@@ -1832,7 +1807,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_owner() const
+   ::user::interaction * element::get_owner()
    {
 
       throw ::interface_only();
@@ -1852,7 +1827,7 @@ namespace user
    }*/
 
 
-   bool element::is_top_level_window() const
+   bool element::is_top_level_window()
    {
 
       return false;
@@ -1880,7 +1855,7 @@ namespace user
    //}
 
 
-   ::user::interaction * element::get_parent_owner() const
+   ::user::interaction * element::get_parent_owner()
    {
 
       throw ::interface_only();
@@ -1890,7 +1865,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_parent_or_owner() const
+   ::user::interaction * element::get_parent_or_owner()
    {
 
       throw ::interface_only();
@@ -1900,7 +1875,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_top_level_owner() const
+   ::user::interaction * element::get_top_level_owner()
    {
 
       throw ::interface_only();
@@ -1910,7 +1885,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::_top_level() const
+   ::user::interaction * element::_top_level()
    {
 
       throw ::interface_only();
@@ -2960,7 +2935,7 @@ namespace user
    //}
 
 
-   i32 element::get_descendant_level(const ::user::element * pinteraction) const
+   i32 element::get_descendant_level(::user::element * pinteraction)
    {
 
       throw ::interface_only();
@@ -2992,7 +2967,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_first_child_window() const
+   ::user::interaction * element::get_first_child_window()
    {
 
       return nullptr;
@@ -3008,7 +2983,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_focusable_descendant() const
+   ::user::interaction * element::get_focusable_descendant()
    {
 
       throw ::interface_only();
@@ -3384,7 +3359,7 @@ namespace user
    }
 
 
-   atom element::SetDlgCtrlId(atom atom)
+   atom element::SetDlgCtrlId(const atom & atom)
    {
 
       throw ::interface_only();
@@ -3885,7 +3860,7 @@ namespace user
    //void element::add_thread(::thread * pthread)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   m_threadptra.add(pthread);
 
@@ -3895,7 +3870,7 @@ namespace user
    //void element::erase_thread(::thread * pthread)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   m_threadptra.erase(pthread);
 
@@ -3910,14 +3885,14 @@ namespace user
 
 
    // Text Edit
-   void element::_001GetSel(strsize & iBeg, strsize & iEnd) const
+   void element::_001GetSel(strsize & iBeg, strsize & iEnd)
    {
 
 
    }
 
 
-   void element::_001GetSel(strsize& iBeg, strsize& iEnd, strsize& iComposingStart, strsize& iComposingEnd) const
+   void element::_001GetSel(strsize& iBeg, strsize& iEnd, strsize& iComposingStart, strsize& iComposingEnd)
    {
 
 
@@ -4027,7 +4002,7 @@ namespace user
    //}
 
 
-   bool element::keyboard_focus_is_focusable() const
+   bool element::keyboard_focus_is_focusable()
    {
 
       //return papp->keyboard_focus_is_focusable(this);
@@ -4317,7 +4292,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_parent_window() const
+   ::user::interaction * element::get_parent_window()
    {
 
       return nullptr;
@@ -4325,7 +4300,7 @@ namespace user
    }
 
 
-   ::user::element* element::get_parent_primitive() const
+   ::user::element* element::get_parent_primitive()
    {
 
       return nullptr;

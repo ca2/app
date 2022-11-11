@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "acme/operating_system.h"
+#include "time.h"
+#include "acme/primitive/datetime/file_time.h"
+#include "acme/primitive/datetime/system_time.h"
 #include "acme/operating_system/time.h"
 #if !defined(WINDOWS)
 #include "acme/operating_system/ansi/windows_time.h"

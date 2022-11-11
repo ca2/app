@@ -276,13 +276,13 @@ class Window;
 NANOGUI_EXPORT void pick_single_file(
     void * poswindow,
     const std::vector<std::pair<std::string, std::string>> & filetypes,
-    ::std::function < void(const::std::string &) > promisseFile, 
+    const ::function < void(const::std::string &) > & promisseFile,
     bool save);
 
 
 
-NANOGUI_EXPORT ::image_pointer ___load_image(::object * pobject, const char * path);
-NANOGUI_EXPORT void ___save_image(::object * pobject, const char * path, ::image * pimage);
+NANOGUI_EXPORT ::image_pointer ___load_image(::particle * pparticle, const char * path);
+NANOGUI_EXPORT void ___save_image(::particle * pparticle, const char * path, ::image * pimage);
 
 
 /**

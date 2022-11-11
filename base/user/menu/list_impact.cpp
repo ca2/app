@@ -22,21 +22,20 @@ namespace user
    }
 
 
-   void menu_list_impact::assert_ok() const
-   {
-      
-      impact::assert_ok();
-      
-   }
-
-
-   void menu_list_impact::dump(dump_context & dumpcontext) const
-   {
-      
-      impact::dump(dumpcontext);
-      
-   }
-
+//   void menu_list_impact::assert_ok() const
+//   {
+//
+//      impact::assert_ok();
+//
+//   }
+//
+//
+//   void menu_list_impact::dump(dump_context & dumpcontext) const
+//   {
+//
+//      impact::dump(dumpcontext);
+//
+//   }
 
 
    void menu_list_impact::install_message_routing(::channel * pchannel)

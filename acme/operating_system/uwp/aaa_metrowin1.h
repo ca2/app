@@ -22,7 +22,7 @@ namespace universal_windows
    CLASS_DECL_ACME HICON       ExtractIcon(HINSTANCE hInst, const char * lpszExeFileName, ::u32 nIconIndex);
    CLASS_DECL_ACME bool        DeleteFile(const char * lpFileName);
    CLASS_DECL_ACME int         GetMenuStringW(HMENU hMenu, ::u32 uDItem, string & str, ::u32 flags);
-   CLASS_DECL_ACME void        TimeToFileTime(::matter * pobject, const ::earth::time& time, LPFILETIME pFileTime);
+   CLASS_DECL_ACME void        TimeToFileTime(::particle * pparticle, const ::earth::time& time, LPFILETIME pFileTime);
 
 
 } // namespace universal_windows
@@ -54,11 +54,11 @@ CLASS_DECL_ACME ::_UWP::thread * __get_thread();
 CLASS_DECL_ACME void __set_thread(::thread * pthread);
 CLASS_DECL_ACME MSG* __get_current_message();
 
-CLASS_DECL_ACME void __end_thread(::matter * pobject, ::u32 nExitCode, bool bDelete = true);
+CLASS_DECL_ACME void __end_thread(::particle * pparticle, ::u32 nExitCode, bool bDelete = true);
 
 CLASS_DECL_ACME void __init_thread();
-//CLASS_DECL_ACME void __term_thread(::matter * pobject, HINSTANCE hInstTerm = nullptr);
-//CLASS_DECL_ACME void __term_thread(::matter * pobject);
+//CLASS_DECL_ACME void __term_thread(::particle * pparticle, HINSTANCE hInstTerm = nullptr);
+//CLASS_DECL_ACME void __term_thread(::particle * pparticle);
 
 
 //CLASS_DECL_ACME ::pointer<::user::interaction>__get_main_window();

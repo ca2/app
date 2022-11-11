@@ -21,18 +21,6 @@ namespace databaseuser
    }
 
 
-   void mesh_data::assert_ok() const
-   {
-
-   }
-
-
-   void mesh_data::dump(dump_context& dumpcontext) const
-   {
-
-   }
-
-
    void mesh_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 

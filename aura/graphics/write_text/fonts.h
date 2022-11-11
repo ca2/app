@@ -2,6 +2,7 @@
 
 
 #include "font_enumeration.h"
+#include "acme/platform/department.h"
 
 
 namespace write_text
@@ -22,7 +23,7 @@ namespace write_text
       ~fonts() override;
 
 
-      void initialize(::object* pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       virtual void enumerate_fonts();

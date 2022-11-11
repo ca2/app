@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "display.h"
 #include "acme/parallelization/asynchronous.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 namespace nano
@@ -16,7 +17,7 @@ namespace nano
    display::display()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       if(!g_p)
       {
@@ -46,7 +47,7 @@ namespace nano
    void display::display_post(const ::procedure & procedure)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_procedureaPost.add(procedure);
 
@@ -60,7 +61,7 @@ namespace nano
 
       auto bIsCurrentBranch = is_branch_current();
 
-      __material_send_procedure(this, this, &display::display_post, procedure);
+      __matter_send_procedure(this, this, &display::display_post, procedure);
 
    }
 
@@ -68,7 +69,7 @@ namespace nano
    bool display::display_posted_routine_step()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_procedureaPost.has_element())
       {

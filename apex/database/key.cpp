@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "key.h"
+#include "acme/primitive/primitive/payload.h"
 
 
 namespace database
@@ -63,7 +64,7 @@ namespace database
    key::key(const atom & idDataKey, bool bLocalData)
    {
 
-      m_strDataKey = __string(idDataKey);
+      m_strDataKey = idDataKey.string();
 
       m_bLocalData = bLocalData;
 

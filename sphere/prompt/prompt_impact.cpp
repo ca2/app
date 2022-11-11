@@ -7,9 +7,9 @@ namespace prompt
 {
 
 
-   impact::impact(::object * pobject) :
-      ::object(pobject),
-      ::user::interaction(pobject)
+   impact::impact(::particle * pparticle) :
+      ::object(pparticle),
+      ::user::interaction(pparticle)
    {
 
    }

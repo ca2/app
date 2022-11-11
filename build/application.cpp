@@ -160,10 +160,10 @@ namespace app_core_build
 
             datastream()->get("last_opened_file", path);
 
-            if (!file().exists(path))
+            if (!file()->exists(path))
             {
 
-               path = dir().document2() / "default.hellomultiverse";
+               path = dir()->document2() / "default.hellomultiverse";
 
             }
 

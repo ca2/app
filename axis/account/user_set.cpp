@@ -6,8 +6,8 @@ namespace account
 {
 
 
-   user_set::user_set(::object * pobject) //:
-//      ::object(pobject)
+   user_set::user_set(::particle * pparticle) //:
+//      ::object(pparticle)
    {
 
    }

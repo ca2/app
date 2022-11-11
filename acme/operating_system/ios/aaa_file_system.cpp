@@ -31,10 +31,10 @@ namespace ios
    }
 
 
-   void file_system::initialize(::matter * pobject)
+   void file_system::initialize(::particle * pparticle)
    {
    
-      auto estatus = ::file_system::initialize(pobject);
+      auto estatus = ::file_system::initialize(pparticle);
       
       if(!estatus)
       {

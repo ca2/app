@@ -109,12 +109,12 @@ namespace base
    }
 
 
-   void system::initialize(::object * pobject)
+   void system::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::axis::system::initialize(pobject);
+      ::axis::system::initialize(pparticle);
 
       //if (!estatus)
       //{

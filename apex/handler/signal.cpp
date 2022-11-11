@@ -1,5 +1,10 @@
 // Extrapolation from merge with control_"topic" by camilo on day after ThomasBirthday2021 10:30!!
 #include "framework.h"
+#include "signal.h"
+#include "manager.h"
+#include "context.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/system.h"
 
 
 signal::signal(const ::atom & atom, ::manager * pmanager) :
@@ -125,9 +130,9 @@ void signal::run()
 void signal::notify()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
-   for (auto & pair : m_mattercontext)
+   for (auto & pair : m_particlecontext)
    {
 
       auto & pmatter = pair.m_element1;
@@ -159,12 +164,12 @@ void signal::notify()
 }
 
 
-::context * signal::listener_context(::matter * pmatter)
+::context * signal::listener_context(::particle * pparticle)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
-   auto & pcontext = m_mattercontext[pmatter];
+   auto & pcontext = m_particlecontext[pparticle];
 
    if (!pcontext)
    {
@@ -224,10 +229,10 @@ void signal::set_up_to_date(::context * pcontext)
 
 
 
-void signal::add_handler(::matter * pmatter)
+void signal::add_handler(::particle * pparticle)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    //bool bShouldFork = false;
 
@@ -250,7 +255,7 @@ void signal::add_handler(::matter * pmatter)
 
    //}
 
-   auto & pcontext = m_mattercontext[pmatter];
+   auto & pcontext = m_particlecontext[pparticle];
 
    if (!pcontext)
    {
@@ -266,12 +271,12 @@ void signal::add_handler(::matter * pmatter)
 }
 
 
-void signal::erase_handler(::matter * pmatter)
+void signal::erase_handler(::particle * pparticle)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
-   m_mattercontext.erase_key(pmatter);
+   m_particlecontext.erase_key(pparticle);
 
 }
 
@@ -279,7 +284,7 @@ void signal::erase_handler(::matter * pmatter)
 void signal::set_modified()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    m_bModified = true;
 
@@ -313,13 +318,19 @@ bool signal::is_modified() const
 void signal::post_destroy_all()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
-   m_mattercontext.erase_all();
+   m_particlecontext.erase_all();
 
 }
 
 
+::duration signal::poll_time()
+{
+
+   return acmesystem()->get_update_poll_time(m_atom);
+
+}
 
 
 

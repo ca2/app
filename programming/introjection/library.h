@@ -22,7 +22,7 @@ namespace introjection
       library();
       virtual ~library();
 
-      virtual void initialize(::object* pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
    };

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "graphics.h"
 #include "graphics_extension.h"
-
+#include "acme/exception/exception.h"
 
 
 namespace draw2d
@@ -61,7 +61,7 @@ namespace draw2d
    void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::string & psz, size_i32 & size)
    {
 
-      //synchronous_lock ml(&user_mutex());
+      //synchronous_lock ml(&user_synchronization());
 
       /*string str(pwsz);
 

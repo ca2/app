@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "string.h"
 
  string i64toa_dup(i64 i, i32 iBase)
 {

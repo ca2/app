@@ -2,19 +2,38 @@
 #include "file_context.h"
 #include "file_system.h"
 #include "dir_context.h"
+#include "acme/exception/interface_only.h"
+#include "acme/exception/io.h"
+#include "acme/filesystem/file/exception.h"
+#include "acme/filesystem/file/folder.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/filesystem/file/status.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/listing.h"
+#include "acme/networking/url_department.h"
+#include "acme/networking/url_domain.h"
+#include "acme/parallelization/event.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/ini.h"
+#include "acme/platform/sequencer.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/datetime/department.h"
 #include "acme/primitive/primitive/read_only_memory.h"
 #include "acme/primitive/string/base64.h"
-#include "apex/operating_system.h"
+#include "acme/primitive/string/hex.h"
+#include "acme/primitive/string/str.h"
+#include "acme/user/user/conversation.h"
 #include "apex/crypto/crypto.h"
 #include "apex/crypto/hasher.h"
+#include "apex/filesystem/filesystem/dir_system.h"
+#include "apex/networking/http/context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
+#include "apex/platform/os_context.h"
 #include "apex/platform/session.h"
 #include "apex/platform/system.h"
 
@@ -33,7 +52,7 @@
 #define UTF8_BOM "\xef\xbb\xbf"
 
 
-//#include "apex/compress/zip/_.h"
+////#include "apex/compress/zip/_.h"
 #include "acme/constant/id.h"
 
 
@@ -53,7 +72,7 @@
 file_context::file_context()
 {
 
-   defer_create_mutex();
+   defer_create_synchronization();
 
 }
 
@@ -64,10 +83,10 @@ file_context::~file_context()
 }
 
 
-void file_context::initialize(::object * pobject)
+void file_context::initialize(::particle * pparticle)
 {
 
-   /*auto estatus = */ ::object::initialize(pobject);
+   /*auto estatus = */ ::object::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -127,7 +146,7 @@ bool file_context::exists(const ::file::path &pathParam)
 ::file::enum_type file_context::get_type(const ::file::path &path, ::payload *pvarQuery)
 {
 
-   if (::str().begins(path, "http://") || ::str().begins(path, "https://"))
+   if (path.begins("http://") || path.begins("https://"))
    {
 
       property_set set;
@@ -180,7 +199,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
          //}
 
-         //auto pfile = m_pcontext->m_papexcontext->file().get_reader(pathZip);
+         //auto pfile = file()->get_reader(pathZip);
 
          //zip_context zip(this);
 
@@ -295,14 +314,14 @@ bool file_context::exists(const ::file::path &pathParam)
 ::file::path file_context::time_square(const string &pszPrefix, const string &pszSuffix)
 {
 
-   return time(m_pcontext->m_papexcontext->dir().time_square(), 25, pszPrefix, pszSuffix);
+   return time(dir()->time_square(), 25, pszPrefix, pszSuffix);
 
 }
 
 
 ::file::path file_context::time_log(const string &pszId)
 {
-   return time(m_pcontext->m_papexcontext->dir().time_log(pszId), 9);
+   return time(dir()->time_log(pszId), 9);
 }
 
 
@@ -313,7 +332,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
    auto psystem = get_system()->m_papexsystem;
 
-   synchronous_lock lockMachineEvent(psystem->mutex());
+   synchronous_lock lockMachineEvent(psystem->synchronization());
 
    ::file::path str;
 
@@ -329,7 +348,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
    str = psz;
 
-   m_pcontext->m_papexcontext->dir().create(str);
+   dir()->create(str);
 
    ::file::listing listing;
 
@@ -340,9 +359,9 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
    for (i32 i = 1; i <= iMaxLevel;)
    {
 
-      m_pcontext->m_papexcontext->dir().create(str);
+      dir()->create(str);
 
-      if (!m_pcontext->m_papexcontext->dir().is(str))
+      if (!dir()->is(str))
       {
 
          throw ::exception(error_path_not_found, "time square dir does not exist");
@@ -351,7 +370,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
       listing.set_listing(str);
 
-      m_pcontext->m_papexcontext->dir().enumerate(listing);
+      dir()->enumerate(listing);
 
       if (i < iMaxLevel)
       {
@@ -363,7 +382,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
             str /= "00";
 
-            m_pcontext->m_papexcontext->dir().create(str);
+            dir()->create(str);
 
          }
          else if (iMax == 99)
@@ -391,7 +410,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
             if (i == iIncLevel)
             {
 
-               m_pcontext->m_papexcontext->dir().create(str);
+               dir()->create(str);
 
             }
 
@@ -405,7 +424,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
          listing.set_listing(str);
 
-         m_pcontext->m_papexcontext->dir().enumerate(listing);
+         dir()->enumerate(listing);
 
          i32 iMax = bTryDelete ? 0 : filterex_time_square(pszPrefix, listing);
 
@@ -487,7 +506,7 @@ i32 file_context::filterex_time_square(const char *pszPrefix, ::file::path_array
 
       string str = stra[i].name();
 
-      if (::str().begins_eat_ci(str, pszPrefix))
+      if (str.begins_eat_ci(pszPrefix))
       {
 
          if (str.get_length() < 2)
@@ -534,7 +553,7 @@ i32 file_context::filterex_time_square(const char *pszPrefix, ::file::path_array
 bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 {
 
-   if (m_pcontext->m_papexcontext->file().exists(path))
+   if (file()->exists(path))
    {
 
       if (!bTryDelete)
@@ -544,9 +563,9 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
       }
 
-      m_pcontext->m_papexcontext->file().erase(path);
+      file()->erase(path);
 
-      if (m_pcontext->m_papexcontext->file().exists(path))
+      if (file()->exists(path))
       {
 
          return false;
@@ -990,7 +1009,7 @@ void file_context::get_lines(string_array &stra, const ::payload &payloadFile, b
       if (bNoExceptionIfFailToOpen)
       {
 
-         if (::nok(pfile))
+         if (pfile.nok())
          {
 
             return;
@@ -1046,7 +1065,7 @@ void file_context::put_memory(const ::payload &payloadFile, const block & block)
       | ::file::e_open_no_truncate
       | ::file::e_open_defer_create_directory);
 
-   if (!::is_ok(pfile))
+   if (pfile.nok())
    {
 
       throw ::exception(error_io);
@@ -1127,7 +1146,7 @@ void file_context::put_text(const ::payload& payloadFile, const ::block & block)
 void file_context::add_contents(const ::payload &payloadFile, const char *pcszContents)
 {
 
-   if (is_null(pcszContents))
+   if (::is_null(pcszContents))
    {
 
       throw ::exception(error_bad_argument);
@@ -1225,19 +1244,12 @@ void file_context::calculate_main_resource_memory()
 ::block file_context::get_main_resource_block()
 {
 
-#if defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
-
-   if(m_psystem->m_pchar_binary__matter_zip_start && m_psystem->m_pchar_binary__matter_zip_end)
+   if(subsystem()->m_blockMatter)
    {
 
-      return {
-         m_psystem->m_pchar_binary__matter_zip_start,
-         m_psystem->m_pchar_binary__matter_zip_end - m_psystem->m_pchar_binary__matter_zip_start
-      };
+      return subsystem()->m_blockMatter;
 
    }
-
-#endif
 
    if (!m_bMainResourceMemoryCalculated)
    {
@@ -1266,9 +1278,9 @@ void file_context::calculate_main_resource_memory()
    try
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
-      auto & pfactory = m_psystem->folder_factory();
+      auto & pfactory = acmesystem()->folder_factory();
 
       if (m_bFolderResourceCalculated)
       {
@@ -1299,7 +1311,7 @@ void file_context::calculate_main_resource_memory()
 
       auto pfile = __new(::memory_file(pmemory));
 
-      m_psystem->m_pfactoryFolder->__construct(m_pfolderResource);
+      acmesystem()->m_pfactoryFolder->__construct(m_pcontext, m_pfolderResource);
 
       m_pfolderResource->initialize(this);
 
@@ -1332,11 +1344,11 @@ void file_context::calculate_main_resource_memory()
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       pfolder = resource_folder();
 
-      if (is_null(pfolder))
+      if (::is_null(pfolder))
       {
 
          return nullptr;
@@ -1345,7 +1357,7 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   synchronous_lock synchronouslock(pfolder->mutex());
+   synchronous_lock synchronouslock(pfolder->synchronization());
 
    string strPath(path);
 
@@ -1402,11 +1414,11 @@ void file_context::calculate_main_resource_memory()
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       pfolder = resource_folder();
 
-      if (is_null(pfolder))
+      if (::is_null(pfolder))
       {
 
          return ::file::e_type_doesnt_exist;
@@ -1415,7 +1427,7 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   synchronous_lock synchronouslock(pfolder->mutex());
+   synchronous_lock synchronouslock(pfolder->synchronization());
 
    string strPath(path);
 
@@ -1442,25 +1454,25 @@ void file_context::calculate_main_resource_memory()
 }
 
 
-void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, e_extract eextract)
+void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, enum_extract eextract)
 {
 
-   if (m_pcontext->m_papexcontext->dir().is(varSource.file_path()) &&
-       (eextract == extract_first || eextract == extract_all || !(::str().ends_ci(varSource.file_path(), ".zip"))))
+   if (dir()->is(varSource.file_path()) &&
+       (eextract == e_extract_first || eextract == e_extract_all || !(string_ends_ci(varSource.file_path(), ".zip"))))
    {
 
       ::file::listing listing;
 
       listing.set_listing(varSource, e_depth_recursively);
 
-      m_pcontext->m_papexcontext->dir().enumerate(listing);
+      dir()->enumerate(listing);
 
       ::file::path strDst;
       ::file::path strSrc;
       ::file::path strDirSrc(varSource.file_path());
       ::file::path strDirDst(varTarget.file_path());
 
-      if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().ends(strDirSrc, ".zip")))
+      if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends(strDirSrc, ".zip")))
       {
 
          strDirSrc += ":";
@@ -1474,29 +1486,29 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          strDst = strSrc;
 
-         ::str().begins_eat_ci(strDst, strDirSrc);
+         strDst.begins_eat_ci(strDirSrc);
 
          strDst = strDirDst / strDst;
 
-         if (m_pcontext->m_papexcontext->dir().is(strSrc))
+         if (dir()->is(strSrc))
          {
 
-            if ((eextract == extract_first || eextract == extract_none) &&
-                (::str().ends_ci(varSource.file_path(), ".zip")))
+            if ((eextract == e_extract_first || eextract == e_extract_none) &&
+                (string_ends_ci(varSource.file_path(), ".zip")))
             {
             }
             else
             {
-               m_pcontext->m_papexcontext->dir().create(strDst);
+               dir()->create(strDst);
             }
          }
          else
          {
-            if (!m_pcontext->m_papexcontext->dir().is(strDst.folder()))
+            if (!dir()->is(strDst.folder()))
             {
-               m_pcontext->m_papexcontext->dir().create(strDst.folder());
+               dir()->create(strDst.folder());
             }
-            copy(strDst, strSrc, bFailIfExists, eextract == extract_all ? extract_all : extract_none);
+            copy(strDst, strSrc, bFailIfExists, eextract == e_extract_all ? e_extract_all : e_extract_none);
 
          }
       }
@@ -1508,14 +1520,14 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
       if (varTarget.file_path().has_char() && varSource.file_path().has_char())
       {
 
-         if (!m_pcontext->m_papexcontext->dir().is(varTarget.file_path().folder()))
+         if (!dir()->is(varTarget.file_path().folder()))
          {
 
-            m_pcontext->m_papexcontext->dir().create(varTarget.file_path().folder());
+            dir()->create(varTarget.file_path().folder());
 
          }
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pacmefile = psystem->m_pacmefile;
 
@@ -1548,7 +1560,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       ::payload varNew;
 
-      if (m_pcontext->m_papexcontext->dir().is(varTarget) && varSource.file_path().name().has_char())
+      if (dir()->is(varTarget) && varSource.file_path().name().has_char())
       {
 
          varNew = ::file::path(varTarget) / varSource.file_path().name();
@@ -1567,9 +1579,11 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
                        ::file::e_open_write | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_defer_create_directory |
                        ::file::e_open_share_deny_write);
 
-      if (::nok(pfileOutput))
+      if (pfileOutput.nok())
       {
+
          string strError;
+
          strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
                          varSource.file_path().c_str(), varNew.file_path().c_str(), bFailIfExists);
          throw ::exception(::error_io, strError);
@@ -1584,15 +1598,17 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          auto pfileInput = get_reader(varSource, ::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_none);
 
-         if (!::is_ok(pfileInput))
+         if (pfileInput.nok())
          {
+
             string strError;
+
             strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
                             varSource.file_path().c_str(), varNew.file_path().c_str(), bFailIfExists);
             throw ::exception(::error_io, strError);
          }
 
-         m_pcontext->m_papexcontext->file().transfer(pfileOutput, pfileInput);
+         file()->transfer(pfileOutput, pfileInput);
 
          bool bStatusFail = false;
 
@@ -1882,7 +1898,7 @@ void file_context::erase(const ::file::path & path)
 {
    string strCopy("copy");
    string strNew;
-   if (m_pcontext->m_papexcontext->dir().is(psz))
+   if (dir()->is(psz))
    {
       i32 i = 1;
       while (i <= 100)
@@ -1890,7 +1906,7 @@ void file_context::erase(const ::file::path & path)
          strNew.format("%s-%s-%d", psz.c_str(), strCopy.c_str(), i);
          if (!exists(strNew))
          {
-            copy(strNew, psz, false, extract_all);
+            copy(strNew, psz, false, e_extract_all);
             return strNew;
          }
          i++;
@@ -1909,7 +1925,7 @@ void file_context::erase(const ::file::path & path)
          strNew.format("%s-%s-%d%s", psz.c_str(), strCopy.c_str(), i, strExt.c_str());
          if (!exists(strNew))
          {
-            copy(strNew, psz, false, extract_all);
+            copy(strNew, psz, false, e_extract_all);
             return strNew;
          }
          i++;
@@ -1939,7 +1955,7 @@ void file_context::erase(const ::file::path & path)
 
       ::file::path pathNew = pathDst / path.name();
 
-      copy(pathNew, path, false, extract_all);
+      copy(pathNew, path, false, e_extract_all);
 
       return pathNew;
 
@@ -1951,9 +1967,9 @@ void file_context::erase(const ::file::path & path)
 void file_context::trash_that_is_not_trash(const ::file::path &psz)
 {
 
-   ::file::path strDir = m_pcontext->m_papexcontext->dir().trash_that_is_not_trash(psz);
+   ::file::path strDir = dir()->trash_that_is_not_trash(psz);
 
-   m_pcontext->m_papexcontext->dir().create(strDir);
+   dir()->create(strDir);
 
    move(strDir / psz.name(), psz);
 
@@ -1971,9 +1987,9 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 
    }
 
-   ::file::path strDir = m_pcontext->m_papexcontext->dir().trash_that_is_not_trash(stra[0]);
+   ::file::path strDir = dir()->trash_that_is_not_trash(stra[0]);
 
-   m_pcontext->m_papexcontext->dir().create(strDir);
+   dir()->create(strDir);
 
    for (i32 i = 0; i < stra.get_size(); i++)
    {
@@ -1988,9 +2004,9 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 ::pointer<::handle::ini>file_context::get_ini(const ::payload& payloadFile)
 {
 
-   auto preader = m_pcontext->m_papexcontext->file().get_reader(payloadFile, ::file::e_open_share_deny_none);
+   auto preader = file()->get_reader(payloadFile, ::file::e_open_share_deny_none);
 
-   if (!::is_ok(preader))
+   if (preader.nok())
    {
 
       throw ::io_exception(error_io);
@@ -2054,7 +2070,7 @@ void file_context::replace_with(const ::file::path & pathContext, const string &
 
    listing.set_listing(pathContext);
 
-   m_pcontext->m_papexcontext->dir().enumerate(listing);
+   dir()->enumerate(listing);
 
    for (i32 i = 0; i < listing.get_size(); i++)
    {
@@ -2161,9 +2177,9 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 {
 
 
-   string strTempDir = m_psystem->m_pacmedirectory->sys_temp();
+   string strTempDir = acmedirectory()->sys_temp();
 
-   if (!::str().ends(strTempDir, "\\") && !::str().ends(strTempDir, "/"))
+   if (!string_ends(strTempDir, "\\") && !string_ends(strTempDir, "/"))
    {
 
       strTempDir += "\\";
@@ -2203,7 +2219,7 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 ::file::path file_context::sys_temp_unique(const ::file::path &lpszName)
 {
 
-   return m_psystem->m_pacmedirectory->sys_temp() / lpszName;
+   return acmedirectory()->sys_temp() / lpszName;
 
 }
 
@@ -2219,7 +2235,7 @@ file_pointer file_context::time_square_file(const string &pszPrefix, const strin
 file_pointer file_context::get(const ::file::path &name)
 {
 
-   m_pcontext->m_papexcontext->dir().create(name.name());
+   dir()->create(name.name());
 
    file_pointer fileOut = get_file(name, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 
@@ -2231,6 +2247,64 @@ file_pointer file_context::get(const ::file::path &name)
 //   }
 
    return fileOut;
+
+}
+
+
+::file_pointer file_context::get_temporary_upload_file(const ::file::path &pathCurrent)
+{
+
+   int i = 0;
+
+   //static ::pointer < ::mutex > s_mutex(nullptr);
+
+   //single_lock synchronouslock(&s_mutex, true);
+
+   ::earth::time timeFile = ::earth::time::now();
+
+   ::string strIndex;
+
+   ::string strTime;
+
+   ::string strTempFile;
+
+   while (true)
+   {
+
+      strTime = acmesystem()->datetime()->format("%Y\\%m\\%d\\%H\\%M\\%S\\", timeFile);
+
+      strIndex.format("%08x\\", i);
+
+      strTempFile = m_pcontext->acmesystem()->m_papexsystem->m_pdirsystem->m_pathUpload / (strTime + strIndex + pathCurrent);
+
+      if (!exists(strTempFile))
+      {
+
+         break;
+
+      }
+
+      string strMessage;
+
+      auto psystem = acmesystem()->m_papexsystem;
+
+      auto pdatetime = psystem->datetime();
+
+      strMessage = pdatetime->international().get_date_time() + " " + strTempFile;
+
+      acmefile()->append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
+
+      i++;
+
+   }
+
+   auto pfileUpload = get_file(strTempFile,
+                               ::file::e_open_defer_create_directory
+                               | ::file::e_open_binary
+                               | ::file::e_open_create
+                               | ::file::e_open_write);
+
+   return pfileUpload;
 
 }
 
@@ -2330,7 +2404,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   ::file::listing ls;
 //
-//   m_pcontext->m_papexcontext->dir().rls(ls, pszDir);
+//   dir()->rls(ls, pszDir);
 //
 //   dtf(pszFile, ls);
 //
@@ -2375,10 +2449,10 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   for (i32 i = 0; i < stra.get_size(); i++)
 //   {
-//      if (::str().ends_ci(stra[i], ".zip"))
+//      if (string_ends_ci(stra[i], ".zip"))
 //      {
 //      }
-//      else if (m_pcontext->m_papexcontext->dir().is(stra[i]))
+//      else if (dir()->is(stra[i]))
 //         continue;
 //      write_n_number(pfile, nullptr, 1);
 //      iPos = pfile->get_position();
@@ -2444,7 +2518,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //         MD5_Init(&ctx);
 //         read_gen_string(pfile, &ctx, strRelative);
 //         ::file::path strPath = ::file::path(pszDir) / strRelative;
-//         m_pcontext->m_papexcontext->dir().create(strPath.folder());
+//         dir()->create(strPath.folder());
 //         if (pfile2->open(strPath, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write).failed())
 //            throw ::exception(::exception("failed"));
 //         read_n_number(pfile, &ctx, iLen);
@@ -2690,20 +2764,20 @@ void file_context::init_context()
 //bool file_context::prepare_output(::stream & outputstream, path & pathDownloading, const ::stream & os)
 //{
 
-//   Sys(pobject).dir().mk(pathOut.folder());
+//   Sys(pparticle).dir()->mk(pathOut.folder());
 
 //   file_pointer fileOut;
 
 //   i64 iTry = 0;
 
-//   ::application * papp = ::get_app(pobject);
+//   ::application * papp = ::get_app(pparticle);
 
 //   while (true)
 //   {
 
 //      pathDownloading = pathOut + ".downloading." + ::str().zero_pad(__string(iTry), 20);
 
-//      fileOut = papp->file().get_file(pathDownloading, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
+//      fileOut = papp->file()->get_file(pathDownloading, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 
 //      if (fileOut.is_set())
 //      {
@@ -2732,7 +2806,7 @@ void file_context::init_context()
 //bool file_context::prepare_input(::stream & is, const path & pathIn)
 //{
 
-//   file_pointer fileIn = Sess(pobject).file().get_file(pathIn, ::file::e_open_binary | ::file::e_open_read);
+//   file_pointer fileIn = Sess(pparticle).file()->get_file(pathIn, ::file::e_open_binary | ::file::e_open_read);
 
 //   if (fileIn.is_null())
 //   {
@@ -2876,7 +2950,7 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
 
             ::pointer<memory_file>pmemoryfile = __new(memory_file());
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
             auto pbase64 = psystem->base64();
 
@@ -2908,7 +2982,7 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
 folder_pointer file_context::get_folder(::file::file *pfile, const char * pszImplementation, const ::file::e_open &eopen)
 {
 
-   auto & pfactory = m_psystem->folder_factory();
+   auto & pfactory = acmesystem()->folder_factory();
 
    if (!pfactory)
    {
@@ -2975,13 +3049,13 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
    ::url_domain domain;
 
-   auto psystem = m_psystem;
+   auto psystem = acmesystem();
 
    auto purl = psystem->url();
 
    domain.create(purl->get_server(path));
 
-   bool bSaveCache = domain.m_strRadix != "ca2" || !::str().begins(purl->get_object(path), "/matter/");
+   bool bSaveCache = domain.m_strRadix != "ca2" || !string_begins(purl->get_object(path), "/matter/");
 
    ::file::path pathCache;
 
@@ -2990,21 +3064,21 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
       pathCache = path;
 
-      if (::str().ends(pathCache, "en_us_international.xml"))
+      if (string_ends(pathCache, "en_us_international.xml"))
       {
          
          INFORMATION("Debug Here");
 
       }
 
-      if (::str().ends(pathCache, "text_select.xml"))
+      if (string_ends(pathCache, "text_select.xml"))
       {
 
          INFORMATION("Debug Here");
 
       }
 
-      if (::str().ends(pathCache, "arialuni.ttf"))
+      if (string_ends(pathCache, "arialuni.ttf"))
       {
 
          INFORMATION("Debug Here : arialuni.ttf");
@@ -3018,7 +3092,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 #else
       pathCache.replace_with("_/", "://");
 #endif
-      pathCache = m_pcontext->m_papexcontext->dir().cache() / (pathCache + ".cache");
+      pathCache = dir()->cache() / (pathCache + ".cache");
 
    }
 
@@ -3041,7 +3115,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
       synchronous_lock synchronouslock(m_pcontext->m_papexcontext->http().m_pmutexDownload);
 
-      if (!(path & ::file::e_flag_bypass_cache) && m_psystem->m_pacmefile->exists(pathCache))
+      if (!(path & ::file::e_flag_bypass_cache) && acmefile()->exists(pathCache))
       {
 
          synchronouslock.unlock();
@@ -3094,7 +3168,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
          pmemoryfile->seek_to_begin();
 
-         auto pfileOut = m_pcontext->m_papexcontext->file().get_writer(pathCache);
+         auto pfileOut = file()->get_writer(pathCache);
 
          transfer(pfileOut, pmemoryfile);
 
@@ -3268,7 +3342,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
       else
       {
 
-         throw file::exception(::error_file_not_found, __errno(ENOENT), path, "defer_process_path returns empty path");
+         throw file::exception(::error_file_not_found, errno_error_code(ENOENT), path, "defer_process_path returns empty path");
 
       }
       
@@ -3290,25 +3364,25 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
       return nullptr;
 
    }
-   else if (::str().begins_eat(path, "file:///") || ::str().begins_eat(path, "file:\\\\\\"))
+   else if (path.begins_eat("file:///") || path.begins_eat("file:\\\\\\"))
    {
 
       return get_file(path, eopen);
 
    }
-   else if (::str().begins_eat(path, "resource://") || ::str().begins_eat(path, "resource:\\\\"))
+   else if (path.begins_eat("resource://") || path.begins_eat("resource:\\\\"))
    {
 
       return resource_get_file(path);
 
    }
-   else if (::str().begins(path, "http://") || ::str().begins(path, "https://"))
+   else if (string_begins(path, "http://") || string_begins(path, "https://"))
    {
 
       return http_get_file(payloadFile, eopen);
 
    }
-   else if (::str().begins_eat(path, "zipresource://"))
+   else if (path.begins_eat("zipresource://"))
    {
 
       return create_resource_file(path);
@@ -3454,7 +3528,7 @@ bool file_context::is_link(string strPath)
 
    ::file::path pathNetworkPayload;
 
-   pathNetworkPayload = m_psystem->m_pacmedirectory->home() / ".dropbox/info" NETWORK_PAYLOAD_DEFAULT_EXTENSION;
+   pathNetworkPayload = acmedirectory()->home() / ".dropbox/info" NETWORK_PAYLOAD_DEFAULT_EXTENSION;
 
    return pathNetworkPayload;
 
@@ -3466,7 +3540,7 @@ bool file_context::is_link(string strPath)
 
    ::file::path pathGlobalIni;
 
-   pathGlobalIni = m_psystem->m_pacmedirectory->ca2roaming() / "OneDrive/settings/Personal/global.ini";
+   pathGlobalIni = acmedirectory()->ca2roaming() / "OneDrive/settings/Personal/global.ini";
 
    return pathGlobalIni;
 
@@ -3478,7 +3552,7 @@ bool file_context::is_link(string strPath)
 
    ::file::path pathGlobalIni = onedrive_global_ini();
 
-   string strIni = m_psystem->m_pacmefile->as_string(pathGlobalIni);
+   string strIni = acmefile()->as_string(pathGlobalIni);
 
    if (strIni.is_empty())
    {
@@ -3495,13 +3569,13 @@ bool file_context::is_link(string strPath)
    
    strCid = set["cid"];
 
-   ::file::path pathIni = m_psystem->m_pacmedirectory->ca2roaming() / "OneDrive/Settings/Personal/" + strCid + ".ini";
+   ::file::path pathIni = acmedirectory()->ca2roaming() / "OneDrive/Settings/Personal/" + strCid + ".ini";
 
    return pathIni;
 
 }
 //
-//::extended::status file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, e_extract eextract)
+//::extended::status file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, enum_extract eextract)
 //{
 //
 //   return psystem->m_spfile->copy(varTarget, varSource, bFailIfExists, eextract, get_app());
@@ -3563,7 +3637,7 @@ bool file_context::is_link(string strPath)
 
    }
 
-   return m_psystem->m_pacmepath->get_type(path);
+   return acmepath()->get_type(path);
 
 }
 
@@ -3763,7 +3837,7 @@ bool file_context::is_link(string strPath)
 //::file_pointer file_context::get_file(const ::payload & payloadFile, ::u32 nOpenFlags)
 //{
 //
-//   return m_pcontext->m_papexcontext->file().get_file(get_app(), payloadFile, nOpenFlags);
+//   return file()->get_file(get_app(), payloadFile, nOpenFlags);
 //
 //}
 
@@ -3847,7 +3921,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pathOut, pszSource);
+//   return file()->transfer(get_app(), pathOut, pszSource);
 
 
 //}
@@ -3856,7 +3930,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(const path & pathOut, ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pathOut, pfileIn);
+//   return file()->transfer(get_app(), pathOut, pfileIn);
 
 //}
 
@@ -3864,7 +3938,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(const path & pathOut, ::file::file & reader)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pathOut, reader);
+//   return file()->transfer(get_app(), pathOut, reader);
 
 //}
 
@@ -3872,7 +3946,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(::file::file * pfileOut, ::file::file * pfileIn)
 //{
 //
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pfileOut, pfileIn);
+//   return file()->transfer(get_app(), pfileOut, pfileIn);
 //
 //}
 
@@ -3880,7 +3954,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(file * pfileOut, ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pfileOut, pfileIn);
+//   return file()->transfer(get_app(), pfileOut, pfileIn);
 
 //}
 
@@ -3888,7 +3962,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(file * pfileOut, ::file::file & is)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), *pfileOut, is);
+//   return file()->transfer(get_app(), *pfileOut, is);
 
 //}
 
@@ -3896,7 +3970,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(::file::file & os, const path & pszSource)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), os, pszSource);
+//   return file()->transfer(get_app(), os, pszSource);
 
 //}
 
@@ -3904,7 +3978,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(::file::file & os, ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), os, pfileIn);
+//   return file()->transfer(get_app(), os, pfileIn);
 
 //}
 
@@ -3912,7 +3986,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(::file::file & os, ::file::file & is)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_app(), os, is);
+//   return file()->transfer(get_app(), os, is);
 
 //}
 
@@ -3994,5 +4068,18 @@ bool get_bypass_cache_if_empty(const ::payload & payloadFile)
    return true;
 
 }
+
+
+void file_context::set(const ::payload & payloadFile, const ::memory_base & memory)
+{
+
+   auto writer = get_writer(payloadFile);
+
+   writer->write(memory.get_data(), memory.get_size());
+
+   //return writer.m_estatus;
+
+}
+
 
 

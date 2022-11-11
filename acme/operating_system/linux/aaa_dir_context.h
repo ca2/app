@@ -19,7 +19,7 @@ namespace linux
       virtual ~dir_context();
 
 
-      virtual void initialize(::matter * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       virtual void init_system() override;
       virtual void init_context() override;
@@ -76,18 +76,18 @@ namespace linux
 
 //      virtual ::file::path usersystemappdata(const string & pcszPrefix);
 
-//      virtual ::file::path userappdata(::matter * pobject);
-//      virtual ::file::path userdata(::matter * pobject);
-//      //virtual ::file::path userfolder(::matter * pobject);
-//      virtual ::file::path default_os_user_path_prefix(::matter * pobject);
+//      virtual ::file::path userappdata(::particle * pparticle);
+//      virtual ::file::path userdata(::particle * pparticle);
+//      //virtual ::file::path userfolder(::particle * pparticle);
+//      virtual ::file::path default_os_user_path_prefix(::particle * pparticle);
 //      virtual ::file::path default_userappdata(const string & pcszPrefix, const string & lpcszLogin);
 
 //      virtual ::file::path default_userdata(const string & pcszPrefix, const string & lpcszLogin);
 
 //      virtual ::file::path default_userfolder(const string & pcszPrefix, const string & lpcszLogin);
 
-      virtual ::file::path userquicklaunch(::matter * pobject);
-      virtual ::file::path userprograms(::matter * pobject);
+      virtual ::file::path userquicklaunch(::particle * pparticle);
+      virtual ::file::path userprograms(::particle * pparticle);
 
       virtual ::file::path commonprograms() override;
 

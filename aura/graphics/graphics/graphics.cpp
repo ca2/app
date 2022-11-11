@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
 #include "graphics.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/windowing/window.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction.h"
@@ -13,7 +15,7 @@ namespace graphics
    graphics::graphics()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_uptrBuffer = 0;
 
@@ -128,10 +130,10 @@ namespace graphics
    }
 
 
-   ::synchronization_object * graphics::get_draw_lock()
+   ::particle * graphics::get_draw_lock()
    {
 
-      return mutex();
+      return synchronization();
 
    }
 
@@ -219,10 +221,10 @@ namespace graphics
    }
 
 
-   synchronization_object * graphics::get_buffer_sync()
+   ::particle * graphics::get_buffer_sync()
    {
 
-      return mutex();
+      return synchronization();
 
    }
 
@@ -237,10 +239,10 @@ namespace graphics
    }
 
 
-   synchronization_object * graphics::get_screen_sync()
+   ::particle * graphics::get_screen_sync()
    {
 
-      return mutex();
+      return synchronization();
 
    }
 

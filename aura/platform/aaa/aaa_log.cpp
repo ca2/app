@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/net/sockets/_.h"
+//#include "aura/net/sockets/_.h"
 #include "aura/platform/app_core.h"
 
 
@@ -44,7 +44,7 @@ namespace aura
 
 #else
 
-      ::file::path pathTrace =          auto psystem = m_psystem;
+      ::file::path pathTrace =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -52,10 +52,10 @@ pacmedirectory->system() / "trace.txt";
 
 #ifdef __DEBUG
 
-      if (!m_psystem->m_pacmefile->exists(pathTrace))
+      if (!acmefile()->exists(pathTrace))
       {
 
-         ::m_psystem->m_pacmefile->put_contents(pathTrace, "yes");
+         ::acmefile()->put_contents(pathTrace, "yes");
 
       }
 
@@ -79,7 +79,7 @@ pacmedirectory->system() / "trace.txt";
 
 #endif
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -166,7 +166,7 @@ pacmedirectory->system() / "trace.txt";
       //set_trace_category(trace_category_socket, "category_Socket", e_trace_level_warning);       // socket traces
 
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bInitialized)
       {
@@ -179,7 +179,7 @@ pacmedirectory->system() / "trace.txt";
 
       m_bInitialized = true;
 
-      if (file_is_true_dup(         auto psystem = m_psystem;
+      if (file_is_true_dup(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -318,19 +318,19 @@ pacmedirectory->system() / "log.txt"))
    //}
 
 
-   void log::__tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz)
+   void log::__tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz)
    {
 
-      const char * pszTopicText = ::is_set(pobject) ? pobject->topic_text() : nullptr;
+      const char * pszTopicText = ::is_set(pparticle) ? pparticle->topic_text() : nullptr;
 
-      synchronous_lock sl2(&m_mutexTrace);
+      synchronous_lock sl2(m_pmutexTrace);
 
       ::aura::trace::category * pcategory = nullptr;
 
       if (elevel != e_trace_level_none)
       {
 
-         pcategory = m_ptrace->enabled_get(object_trace_category(pobject), elevel);
+         pcategory = m_ptrace->enabled_get(object_trace_category(pparticle), elevel);
 
          if (pcategory == nullptr)
          {
@@ -357,9 +357,9 @@ pacmedirectory->system() / "log.txt"))
                if (strTopicText.has_char())
                {
 
-                  ::str().begins_eat_ci(strTopicText, "class ");
+                  strTopicText.begins_eat_ci("class ");
 
-                  ::str().begins_eat_ci(strTopicText, "struct ");
+                  strTopicText.begins_eat_ci("struct ");
 
                   str += strTopicText;
 
@@ -480,7 +480,7 @@ pacmedirectory->system() / "log.txt"))
          try
          {
 
-                     auto psystem = m_psystem;
+                     auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -557,7 +557,7 @@ pacmedirectory->create(::file_path_folder(m_strLogPath));
 
                   sleep(1_s);
 
-                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
+                  if (!acmepath()->app_module().contains_ci("logviewer") && acmefile()->exists(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -724,7 +724,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    void log::destroy()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_bInitialized)
       {

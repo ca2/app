@@ -2,7 +2,10 @@
 
 
 #include "object.h"
-#include "acme/primitive/geometry2d/polygon.h"
+//#include "acme/primitive/geometry2d/_collection.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/collection/pointer_array.h"
+#include "acme/primitive/collection/string_array.h"
 
 
 template < primitive_rectangle RECTANGLE >
@@ -43,7 +46,7 @@ namespace draw2d
 
 
       class CLASS_DECL_AURA item :
-         virtual public ::element
+         virtual public ::particle
       {
       public:
 

@@ -1,10 +1,5 @@
-#include "framework.h"
-//#include "core/html/html/_html.h"
-//#include "core/html/impl/_impl.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "hi5_twitter_authorization.h"
-//#include "core/user/simple/_component.h"
-#endif
+﻿#include "framework.h"
+#include "apex/filesystem/filesystem/dir_context.h"
 #include "core/user/user/user.h"
 #include "hi5_twitter_authorization.h"
 #include "base/user/simple/frame_window.h"
@@ -47,12 +42,12 @@ namespace hi5
       }
 
 
-      void authorization::initialize_twitter_authorization(::object* pobject, const ::string & pszAuthorizationUrl, const ::string & pszForm, bool bAuth, bool bInteractive)
+      void authorization::initialize_twitter_authorization(::object* pparticle, const ::string & pszAuthorizationUrl, const ::string & pszForm, bool bAuth, bool bInteractive)
       {
 
          // auto estatus = 
          
-         ::object::initialize(pobject);
+         ::object::initialize(pparticle);
 
          //if (!estatus)
          //{
@@ -109,7 +104,7 @@ namespace hi5
 
          ::pointer<::create>pcreate(e_create, this);
 
-         auto psystem = m_psystem->m_paurasystem;
+         auto psystem = acmesystem()->m_paurasystem;
 
          pcreate->m_bMakeVisible = false;
          pcreate->m_puserprimitiveParent = psystem->cast < ::user::interaction >("top_parent");
@@ -189,7 +184,7 @@ namespace hi5
 
          }
 
-         if(!m_pformdocumentAuth->on_open_document(pcontext->m_papexcontext->dir().matter(m_strForm)))
+         if(!m_pformdocumentAuth->on_open_document(pcontext->m_papexcontext->dir()->matter(m_strForm)))
          {
 
             return;
@@ -255,7 +250,7 @@ namespace hi5
 
          auto pcontext = get_context();
 
-         m_pformdocumentAuth->on_open_document(pcontext->m_papexcontext->dir().matter(pszMatter));
+         m_pformdocumentAuth->on_open_document(pcontext->m_papexcontext->dir()->matter(pszMatter));
          display_main_frame();
          //m_ptabimpact->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 

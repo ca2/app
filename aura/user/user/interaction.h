@@ -7,6 +7,9 @@
 #include "prodevian.h"
 #include "drawable.h"
 #include "acme/user/user/drag_client.h"
+#include "acme/primitive/collection/string_map.h"
+#include "acme/platform/timer_callback.h"
+#include "acme/platform/flags.h"
 
 
 namespace user
@@ -17,7 +20,6 @@ namespace user
       virtual public ::user::primitive,
       virtual public ::user::drawable,
       virtual public ::timer_callback,
-      virtual public ::conversation,
       virtual public ::user::drag_client
    {
    public:
@@ -223,7 +225,7 @@ namespace user
       ewindowflag                                  m_ewindowflag;
 
       // <3ThomasBorreggardSørensen_!!
-      ::pointer<::material_object>                m_pmaterialCommandHandler;
+      ::pointer<::matter>                          m_pmatterCommandHandler;
 
       ::user::interaction::enum_updown             m_eupdown;
 
@@ -241,7 +243,7 @@ namespace user
       enum_control_type                         m_econtroltype;
 
       enum_control_ddx                          m_eddx;
-      ::database::key                           m_datakey;
+      //::database::key                           m_datakey;
       int                                       m_iDataValue;
       flags < enum_control_function >           m_flagsfunction;
       enum_control_data_type                    m_edatatype;
@@ -393,11 +395,11 @@ namespace user
 
 
       //class control_descriptor& descriptor();
-      //const class control_descriptor& descriptor() const;
-      ::aura::application * get_app() const;
-      ::aura::session * get_session() const;
-      ::aura::system * get_system() const;
-      inline ::aura::context * context() const { return m_pcontext ? m_pcontext->m_pauracontext:nullptr; }
+      //const class control_descriptor& descriptor();
+      ::aura::application * get_app();
+      ::aura::session * get_session();
+      ::aura::system * get_system();
+      inline ::aura::context * context();
 
       bool _001CanEnterScreenSaver() override;
 
@@ -435,21 +437,21 @@ namespace user
          //fFontSize = pgraphics->m_puserinteraction->get_window()->dpiy((float)m_dFontSize);
 
 
-      //::windowing::window * window() const;
+      //::windowing::window * window();
 
-      virtual ::windowing::windowing * windowing() const;
+      virtual ::windowing::windowing * windowing();
 
-      ::windowing::display * get_display() const;
+      ::windowing::display * get_display();
 
-      ::user::interaction * get_host_window() const;
+      ::user::interaction * get_host_window();
 
       ::item_pointer get_user_item(const ::item & item);
 
-      virtual ::user::enum_state get_user_state() const;
+      virtual ::user::enum_state get_user_state();
 
-      virtual bool has_hover() const;
+      virtual bool has_hover();
 
-      virtual bool has_link() const;
+      virtual bool has_link();
 
       virtual pointer_array < interaction > * children();
 
@@ -460,26 +462,26 @@ namespace user
       const class ::user::interaction_layout& const_layout() const { return m_layout; }
       class ::user::interaction_layout& layout() { return m_layout; }
 
-      double screen_scaler() const;
-      double font_scaler() const;
+      double screen_scaler();
+      double font_scaler();
 
 
       //void clear();
       void control_descriptor_common_construct();
-      //bool operator == (const control_descriptor & control_descriptor) const;
+      //bool operator == (const control_descriptor & control_descriptor);
       //control_descriptor & operator = (const control_descriptor & control_descriptor);
       virtual enum_control_type get_control_type() const override;
-      void set_control_type(enum_control_type e_control);
-      void add_function(enum_control_function enum_control_function);
-      void erase_function(enum_control_function enum_control_function);
-      bool has_function(enum_control_function enum_control_function);
-      enum_control_data_type get_data_type();
-      void set_data_type(enum_control_data_type enum_control_data_type);
-      void set_ddx_dbflags(::database::key datakey, iptr value);
+      virtual void set_control_type(enum_control_type e_control);
+      virtual void add_function(enum_control_function enum_control_function);
+      virtual void erase_function(enum_control_function enum_control_function);
+      virtual bool has_function(enum_control_function enum_control_function);
+      virtual enum_control_data_type get_data_type();
+      virtual void set_data_type(enum_control_data_type enum_control_data_type);
+      virtual void set_ddx_dbflags(::database::key datakey, iptr value);
 
       //index find_control(::user::interaction * pinteraction);
 
-      ::pointer<interaction>alloc();
+      //::pointer<interaction>alloc();
       
       
       
@@ -501,7 +503,7 @@ namespace user
 
       //virtual void enumerate_composite(matter_array& a) override;
 
-      virtual bool is_user_thread() const;
+      virtual bool is_user_thread();
 
       virtual void interaction_send(const ::procedure & procedure);
 
@@ -536,17 +538,17 @@ namespace user
       virtual void load_style(string strStyle);
 
 
-      virtual::e_display window_stored_display() const;
-      virtual::e_display window_previous_display() const;
+      virtual::e_display window_stored_display();
+      virtual::e_display window_previous_display();
 
 
       virtual int get_derived_height(int iWidth);
       virtual int get_derived_width(int iHeight);
 
 
-      virtual bool is_full_screen_enabled() const;
-      inline bool is_full_screen() const { return m_bFullScreen; }
-      virtual bool _is_full_screen() const;
+      virtual bool is_full_screen_enabled();
+      inline bool is_full_screen() { return m_bFullScreen; }
+      virtual bool _is_full_screen();
 
       virtual bool get_element_rect(RECTANGLE_I32 & rectangle, enum_element eelement);
 
@@ -568,32 +570,32 @@ namespace user
       }
 
 
-      virtual enum_element get_default_element() const;
-      virtual ::write_text::font_pointer get_font(::user::style * pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
-      inline ::write_text::font_pointer get_font(::user::style* pstyle, ::user::enum_state estate = e_state_none) const { return get_font(pstyle, get_default_element(), estate); }
-      virtual enum_translucency get_translucency(::user::style* pstyle) const;
-      virtual int get_int(::user::style* pstyle, enum_int eint, ::user::enum_state estate = e_state_none, int iDefault = 0) const;
-      virtual double get_double(::user::style* pstyle, enum_double edouble, ::user::enum_state estate = e_state_none, double dDefault = 0.) const;
-      virtual status < ::rectangle_f64 > get_border(::user::style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
-      inline status < ::rectangle_f64 > get_border(::user::style* pstyle, ::user::enum_state estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
-      virtual status < ::rectangle_f64 > get_padding(::user::style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
-      inline status < ::rectangle_f64 > get_padding(::user::style* pstyle, ::user::enum_state estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
-      virtual status < ::rectangle_f64 > get_margin(::user::style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
-      inline status < ::rectangle_f64 > get_margin(::user::style* pstyle, ::user::enum_state estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
-      virtual status < ::color::color > get_color(::user::style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
-      inline status < ::color::color > get_color(::user::style* pstyle, ::user::enum_state estate = e_state_none) const { return get_color(pstyle, get_default_element(), estate); }
+      virtual enum_element get_default_element();
+      virtual ::write_text::font_pointer get_font(::user::style * pstyle, enum_element eelement, ::user::enum_state estate = e_state_none);
+      inline ::write_text::font_pointer get_font(::user::style* pstyle, ::user::enum_state estate = e_state_none) { return get_font(pstyle, get_default_element(), estate); }
+      virtual enum_translucency get_translucency(::user::style* pstyle);
+      virtual int get_int(::user::style* pstyle, enum_int eint, ::user::enum_state estate = e_state_none, int iDefault = 0);
+      virtual double get_double(::user::style* pstyle, enum_double edouble, ::user::enum_state estate = e_state_none, double dDefault = 0.);
+      virtual status < ::rectangle_f64 > get_border(::user::style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none);
+      inline status < ::rectangle_f64 > get_border(::user::style* pstyle, ::user::enum_state estate = e_state_none) { return get_border(pstyle, get_default_element(), estate); }
+      virtual status < ::rectangle_f64 > get_padding(::user::style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none);
+      inline status < ::rectangle_f64 > get_padding(::user::style* pstyle, ::user::enum_state estate = e_state_none) { return get_padding(pstyle, get_default_element(), estate); }
+      virtual status < ::rectangle_f64 > get_margin(::user::style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none);
+      inline status < ::rectangle_f64 > get_margin(::user::style* pstyle, ::user::enum_state estate = e_state_none) { return get_margin(pstyle, get_default_element(), estate); }
+      virtual status < ::color::color > get_color(::user::style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none);
+      inline status < ::color::color > get_color(::user::style* pstyle, ::user::enum_state estate = e_state_none) { return get_color(pstyle, get_default_element(), estate); }
 
-      virtual ::user::e_flag get_draw_flags(::user::style* pstyle) const;
+      virtual ::user::e_flag get_draw_flags(::user::style* pstyle);
 
-      virtual ::user::enum_state get_state() const;
+      virtual ::user::enum_state get_state();
 
-      virtual ::user::style* get_style() const;
+      virtual ::user::style* get_style();
 
-      virtual ::user::style * get_style(::draw2d::graphics_pointer& pgraphics) const;
+      virtual ::user::style * get_style(::draw2d::graphics_pointer& pgraphics);
 
       ::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
 
-      inline ::user::style * get_style(::user::style * pstyle) const
+      inline ::user::style * get_style(::user::style * pstyle)
       {
 
          return pstyle ? pstyle : pstyle = get_style();
@@ -615,7 +617,7 @@ namespace user
       inline bool is_graphical() const { return !m_bMessageWindow && m_ewindowflag & e_window_flag_graphical; }
 
 
-      virtual ::synchronization_object * mutex_draw();
+      virtual ::particle * mutex_draw();
 
 
       //virtual bool AddControlBar(::user::control_bar* pcontrolbar);
@@ -631,7 +633,7 @@ namespace user
 
       virtual void child_set_unique_id(::user::interaction* pinteraction);
 
-      virtual string default_id_prefix() const;
+      virtual string default_id_prefix();
 
       interaction * get_tooltip();
 
@@ -645,7 +647,7 @@ namespace user
 
       ::user::interaction * get_user_interaction() override;
 
-      ::element * get_taskpool_container() override;
+      ::particle * get_taskpool_container() override;
 
       //task_pointer defer_fork(const ::atom& atom, const matter_pointer& pmatter);
 
@@ -669,7 +671,7 @@ namespace user
       //void window_move(i32 x, i32 y) override;
 
 
-      auto prodevian() { return __new(::prodevian(this)); }
+      //auto prodevian() { return __new(::prodevian(this)); }
 
       virtual bool should_save_window_rect();
       
@@ -739,7 +741,7 @@ namespace user
       virtual void show_window();
 
 
-      ///virtual bool is_sketch_to_design_locked() const;
+      ///virtual bool is_sketch_to_design_locked();
 
       
       virtual void clear_activation(enum_layout elayout = e_layout_design);
@@ -755,7 +757,7 @@ namespace user
 
       virtual bool check_child_zorder();
 
-      virtual ::zorder zorder(enum_layout elayout = e_layout_design) const;
+      virtual ::zorder zorder(enum_layout elayout = e_layout_design);
       virtual void order(::zorder zorder);
 
       inline void order_top() { order(e_zorder_top); }
@@ -800,9 +802,9 @@ namespace user
       inline bool is_prodevian() const { return is_prodevian(this); }
 
 
-      virtual void add_prodevian(::matter * pmatter) override;
-      virtual void erase_prodevian(::matter * pmatter) override;
-      virtual bool is_prodevian(const ::matter * pmatter) const override;
+      void add_prodevian(::matter * pmatter) override;
+      void erase_prodevian(::matter * pmatter) override;
+      bool is_prodevian(const ::matter * pmatter) const override;
       bool has_prodevian() const noexcept;
 
 
@@ -812,11 +814,11 @@ namespace user
       virtual bool sketch_on_display();
 
 
-      bool is_this_visible(enum_layout elayout = e_layout_design) const;
-      bool is_this_screen_visible(enum_layout elayout = e_layout_design) const;
+      //bool is_this_visible(enum_layout elayout = e_layout_design);
+      bool is_this_screen_visible(enum_layout elayout = e_layout_design);
 
-      bool is_window_visible(enum_layout elayout = e_layout_design) const;
-      bool is_window_screen_visible(enum_layout elayout = e_layout_design) const;
+      bool is_window_visible(enum_layout elayout = e_layout_design);
+      bool is_window_screen_visible(enum_layout elayout = e_layout_design);
 
 
       virtual void create_message_queue(const ::string & strName) override;
@@ -826,7 +828,7 @@ namespace user
 
       virtual void kick_queue();
 
-      virtual bool contains_user_interaction(::user::interaction* pinteraction, bool bRecursive = true) const;
+      virtual bool contains_user_interaction(::user::interaction* pinteraction, bool bRecursive = true);
 
 
       virtual void on_select() override;
@@ -865,10 +867,10 @@ namespace user
       virtual void set_mouse_cursor(::windowing::cursor * pcursor) override;
 
 
-      //virtual ::point_i32 get_cursor_position() const override;
+      //virtual ::point_i32 get_cursor_position() override;
 
 
-      virtual bool is_left_button_pressed() const;
+      virtual bool is_left_button_pressed();
 
 
       virtual void set_current_item(item * pitem, const ::action_context & action_context);
@@ -883,10 +885,10 @@ namespace user
 
       virtual void ExitHelpMode();
 
-      //virtual ::i32 get_window_long(i32 nIndex) const override;
+      //virtual ::i32 get_window_long(i32 nIndex) override;
       //virtual ::i32 set_window_long(i32 nIndex, ::i32 lValue) override;
 
-      //virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      //virtual iptr get_window_long_ptr(i32 nIndex) override;
       //virtual void set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       virtual bool on_before_set_parent(::user::primitive * pinterface);
@@ -1241,8 +1243,8 @@ namespace user
 
       virtual bool is_composite() override;
 
-      //virtual u32 GetStyle() const override;
-      //virtual u32 GetExStyle() const override;
+      //virtual u32 GetStyle() override;
+      //virtual u32 GetExStyle() override;
       //virtual void ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0) override;
       //virtual void ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0) override;
 
@@ -1297,7 +1299,7 @@ namespace user
       virtual bool is_custom_draw();
 
       virtual atom GetDlgCtrlId() const override;
-      virtual atom SetDlgCtrlId(::atom atom) override;
+      virtual atom SetDlgCtrlId(const ::atom & atom) override;
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1306,12 +1308,12 @@ namespace user
 //
 //#endif
 
-      virtual bool is_active_window() const;
+      virtual bool is_active_window();
 
-      virtual bool has_mouse_capture() const;
+      virtual bool has_mouse_capture();
       virtual void set_mouse_capture();
 
-      virtual bool has_keyboard_focus() const;
+      virtual bool has_keyboard_focus();
       void set_keyboard_focus() override;
       void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
 
@@ -1320,8 +1322,8 @@ namespace user
 
       virtual void bring_to_front();
 
-      virtual bool is_window_enabled() const;
-      inline bool is_this_window_enabled() const { return m_ewindowflag.is(e_window_flag_enable); }
+      virtual bool is_window_enabled();
+      inline bool is_this_window_enabled()  { return m_ewindowflag.is(e_window_flag_enable); }
       void enable_window(bool bEnable = true) override;
 
       virtual void on_calc_size(calc_size* pcalcsize);
@@ -1359,15 +1361,15 @@ namespace user
       virtual void get_window_text(string& rectangleString) override;
       virtual strsize get_window_text_length() override;
 
-      virtual ::user::frame* frame() const;
-      inline ::user::interaction * top_level() const { return m_puserinteractionTopLevel; }
-      inline ::user::frame * top_level_frame() const { return m_puserframeTopLevel; }
-      inline ::user::frame * parent_frame() const { return m_puserframeParent; }
-      virtual ::user::frame* get_owner_frame() const;
+      virtual ::user::frame* frame();
+      inline ::user::interaction * top_level() { return m_puserinteractionTopLevel; }
+      inline ::user::frame * top_level_frame() { return m_puserframeTopLevel; }
+      inline ::user::frame * parent_frame() { return m_puserframeParent; }
+      virtual ::user::frame* get_owner_frame();
 
-      ::user::interaction * _top_level() const override;
-      virtual ::user::frame * _top_level_frame() const;
-      virtual ::user::frame * _parent_frame() const;
+      ::user::interaction * _top_level() override;
+      virtual ::user::frame * _top_level_frame();
+      virtual ::user::frame * _parent_frame();
 
 
       //virtual ::handler* get_user_callback();
@@ -1398,11 +1400,11 @@ namespace user
       void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics) override;
 
       
-      //virtual ::oswindow _oswindow() const;
+      //virtual ::oswindow _oswindow();
 
 
-      inline ::oswindow get_safe_oswindow() const;
-      inline ::oswindow oswindow() const { return m_oswindow; }
+      inline ::oswindow get_safe_oswindow();
+      inline ::oswindow oswindow() { return m_oswindow; }
 
       //virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, ::u32 flags = 0);
       //virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
@@ -1496,7 +1498,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnTextComposition);
 
 
-      virtual bool _001IsPointInside(const ::point_i32 & point) override;
+      bool _001IsPointInside(const ::point_i32 & point) override;
 
       virtual rectangle_i32 screen_rect();
 
@@ -1504,11 +1506,11 @@ namespace user
       virtual bool _001IsClientPointInsideInline(const ::point_i32 & point);
       virtual  bool _001IsParentClientPointInsideInline(const ::point_i32 & point);
 
-      virtual ::user::interaction* _001FromPoint(::point_i32 point, bool bTestedIfParentVisible = false) override;
+      ::user::interaction* _001FromPoint(::point_i32 point, bool bTestedIfParentVisible = false) override;
 
-      virtual void OnLinkClick(const ::string & psz, const ::string & pszTarget = nullptr) override;
+      void OnLinkClick(const ::string & psz, const ::string & pszTarget = nullptr) override;
 
-      virtual void pre_translate_message(::message::message* pmessage) override;
+      void pre_translate_message(::message::message* pmessage) override;
 
 
       ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1) override;
@@ -1519,69 +1521,69 @@ namespace user
       ::user::interaction* child_from_point(const ::point_i32& point, ::i32 iLevel = -1, const ::user::interaction_array * pinteractionaExclude = nullptr);
 
 
-      virtual bool is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const override;
-      virtual bool is_parent(const primitive * puiIsParent) const override;
-      virtual bool is_child(const primitive * puiIsChild) const override;
-      virtual bool is_descendant(const primitive * puiIsDescendant, bool bIncludeSelf) const override;
+      bool is_ascendant(element * puiIsAscendant, bool bIncludeSelf) override;
+      bool is_parent(element * puiIsParent) override;
+      bool is_child(element * puiIsChild)  override;
+      bool is_descendant(element * puiIsDescendant, bool bIncludeSelf) override;
 
-      virtual bool is_ascendant(const ::user::controller * pcontroller, bool bIncludeSelf) const;
-      virtual bool contains(const primitive* puiIsChild) const;
+      virtual bool is_ascendant(::user::controller * pcontroller, bool bIncludeSelf) ;
+      virtual bool contains(element* puiIsChild) ;
 
-      virtual bool recursively_contains(const primitive* puiIsChild, bool bIncludeSelf) const;
+      virtual bool recursively_contains(element* puiIsChild, bool bIncludeSelf);
 
-      virtual ::user::interaction* get_wnd() const override;
-      virtual ::user::interaction* get_wnd(::u32 nCmd) const override;
+      ::user::interaction* get_wnd() override;
+      ::user::interaction* get_wnd(::u32 nCmd) override;
 
-      virtual ::user::primitive * set_parent(::user::primitive * pinteraction) override;
-      virtual ::user::primitive * set_owner(::user::primitive * pinteraction) override;
+      ::user::primitive * set_parent(::user::primitive * pinteraction) override;
+      ::user::primitive * set_owner(::user::primitive * pinteraction) override;
 
-      virtual void on_add_owned(::user::primitive * pprimitive) override;
+      void on_add_owned(::user::primitive * pprimitive) override;
 
-      virtual ::user::interaction * get_parent_window() const override;
+      ::user::interaction * get_parent_window() override;
 
-      virtual ::user::interaction * get_first_child_window() const override;
+      ::user::interaction * get_first_child_window() override;
 
 
-      inline bool is_hosted() const { return m_ewindowflag & e_window_flag_hosted; }
-      inline bool is_top_level() const { return m_ewindowflag & e_window_flag_top_level; }
-      inline bool is_root() const  { return m_ewindowflag & e_window_flag_root; }
+      inline bool is_hosted() { return m_ewindowflag & e_window_flag_hosted; }
+      inline bool is_top_level()  { return m_ewindowflag & e_window_flag_top_level; }
+      inline bool is_root()  { return m_ewindowflag & e_window_flag_root; }
 
-      virtual bool is_host_top_level() const;
+      bool is_host_top_level() override;
 
-      ::user::element * get_parent_primitive() const override;
+      ::user::element * get_parent_primitive() override;
 
-      virtual ::user::interaction* get_parent() const override;
-      virtual ::user::interaction* get_owner() const override;
-      virtual ::user::interaction* get_parent_owner() const override;
-      virtual ::user::interaction* get_parent_or_owner() const override;
-      virtual ::user::interaction* get_top_level_owner() const override;
+      ::user::interaction* get_parent() override;
+      ::user::interaction* get_owner() override;
+      ::user::interaction* get_parent_owner() override;
+      ::user::interaction* get_parent_or_owner() override;
+      ::user::interaction* get_top_level_owner() override;
       
-      //virtual bool is_host_top_level() const;
+      //virtual bool is_host_top_level();
 
-      //virtual ::user::frame* get_parent_frame() const override;
-      //virtual ::user::frame* get_owner_frame() const override;
-
-
-      //void clear_cache(bool bRecursive = true) const;
+      //virtual ::user::frame* get_parent_frame() override;
+      //virtual ::user::frame* get_owner_frame() override;
 
 
-      //virtual ::user::frame * frame() const override;
-      //virtual ::user::frame * top_level_frame() const override;
+      //void clear_cache(bool bRecursive = true);
 
 
-      virtual void send_message_to_descendants(const ::atom & atom, wparam wParam = 0, lparam lParam = 0, bool bDeep = true, bool bOnlyPerm = false) override;
-
-      virtual void route_message_to_descendants(::message::message* pmessage) override;
-
-
-      virtual i32 get_descendant_level(const ::user::primitive * pinteraction) const override;
+      //virtual ::user::frame * frame() override;
+      //virtual ::user::frame * top_level_frame() override;
 
 
-      //virtual bool is_descendant(const ::user::primitive * pinteraction, bool bIncludeSelf = false) const override;
+      void send_message_to_descendants(const ::atom & atom, wparam wParam = 0, lparam lParam = 0, bool bDeep = true, bool bOnlyPerm = false) override;
 
-      virtual ::oswindow GetParentHandle() const;
+      void route_message_to_descendants(::message::message* pmessage) override;
 
-      virtual ::user::interaction* get_focusable_descendant() const override;
+
+      i32 get_descendant_level(::user::element * puserelement) override;
+
+
+      //virtual bool is_descendant(const ::user::primitive * pinteraction, bool bIncludeSelf = false) override;
+
+      ::oswindow GetParentHandle();
+
+      ::user::interaction* get_focusable_descendant() override;
 
       virtual void show_control_bar(::user::control_bar * pcontrolbar);
       virtual void hide_control_bar(::user::control_bar * pcontrolbar);
@@ -1593,22 +1595,22 @@ namespace user
 
       virtual ::user::interaction* get_next_sibling_window() override;
 
-      virtual ::user::interaction * get_next_window(bool bIgnoreChildren = false, const ::user::interaction * puiInteractionStop = nullptr) const override;
-      virtual ::user::interaction * get_window(enum_next enext) const override;
+      ::user::interaction * get_next_window(bool bIgnoreChildren = false, ::user::interaction * puiInteractionStop = nullptr) override;
+      ::user::interaction * get_window(enum_next enext) override;
 
-      virtual ::user::interaction* GetLastActivePopup() override;
+      ::user::interaction* GetLastActivePopup() override;
 
-      virtual bool is_message_only_window() const override;
+      bool is_message_only_window() override;
 
-      virtual void pre_subclass_window() override;
+      void pre_subclass_window() override;
 
-      virtual void post_non_client_destroy() override;
-
-
-      virtual void default_message_handler(::message::message * pmessage) override;
+      void post_non_client_destroy() override;
 
 
-      virtual void message_handler(::message::message* pmessage) override;
+      void default_message_handler(::message::message * pmessage) override;
+
+
+      void message_handler(::message::message* pmessage) override;
       //virtual lresult message_handler(MESSAGE * pmessage) override;
 
       //virtual void GuieProc(::message::message* pmessage) override;
@@ -1623,12 +1625,12 @@ namespace user
       ::oswindow detach_window() override;
 
 
-      inline ::windowing::window * window() const { return m_pwindow; }
-      virtual ::windowing::window * _window() const override;
+      inline ::windowing::window * window() { return m_pwindow; }
+      virtual ::windowing::window * _window() override;
 
       virtual ::user::copydesk * copydesk();
 
-      virtual void* get_os_data() const;
+      virtual void* get_os_data();
 
 
       virtual bool can_merge(::user::interaction* pinteraction);
@@ -1749,7 +1751,7 @@ namespace user
 
       virtual ::user::interaction* best_top_level_parent(RECTANGLE_I32 & rectangle);
 
-      //virtual void get_window_rect(RECTANGLE_I32 * prectangle) const override;
+      //virtual void get_window_rect(RECTANGLE_I32 * prectangle) override;
 
       virtual index get_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, edisplay edisplay);
 
@@ -1806,9 +1808,9 @@ namespace user
       virtual ::size_f64 get_page_size();
       virtual void set_total_size(const ::size_f64& size);
       virtual void set_page_size(const ::size_f64& size);
-      virtual ::point_i32 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design) const;
-      virtual ::point_i32 get_parent_context_offset() const;
-      virtual ::point_i32 get_ascendant_context_offset() const;
+      virtual ::point_i32 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design);
+      virtual ::point_i32 get_parent_context_offset();
+      virtual ::point_i32 get_ascendant_context_offset();
       virtual void get_margin_rect(RECTANGLE_I32* prectMargin);
 
       virtual int get_final_x_scroll_bar_width();
@@ -1848,7 +1850,7 @@ namespace user
       virtual void on_hide_place_holder_child(::user::interaction* pinteraction);
 
 
-      virtual void _001GetSel(strsize& iBeg, strsize& iEnd) const override;
+      void _001GetSel(strsize& iBeg, strsize& iEnd) override;
 
       
       virtual bool set_sel_by_name(const ::string & strName);
@@ -1899,7 +1901,7 @@ namespace user
       }
 
 
-      virtual enum_input_type preferred_input_type() const;
+      virtual enum_input_type preferred_input_type();
 
       //virtual ::user::primitive * get_keyboard_focus();
       //virtual void set_keyboard_focus(::user::primitive* pprimitive);
@@ -1908,11 +1910,11 @@ namespace user
       //virtual void erase_keyboard_focus() override;
 
 
-      virtual bool is_descendant_of(const ::user::primitive * puiAscendantCandidate, bool bIncludeSelf) const override;
-      virtual bool is_ascendant_of(const ::user::primitive * puiDescendantCandidate, bool bIncludeSelf) const override;
+      bool is_descendant_of(::user::element * puiAscendantCandidate, bool bIncludeSelf) override;
+      bool is_ascendant_of(::user::element * puiDescendantCandidate, bool bIncludeSelf) override;
 
-      virtual bool is_descendant_of_or_owned_by(const ::user::primitive * puiAscendantCandidate, bool bIncludeSelf) const override;
-      virtual bool is_ascendant_or_owner_of(const ::user::primitive * puiDescendantCandidate, bool bIncludeSelf) const override;
+      bool is_descendant_of_or_owned_by(::user::element * puiAscendantCandidate, bool bIncludeSelf) override;
+      bool is_ascendant_or_owner_of(::user::element * puiDescendantCandidate, bool bIncludeSelf) override;
 
       virtual void show_tooltip(const string& str, bool bError);
 
@@ -1922,7 +1924,7 @@ namespace user
 
       virtual bool frame_is_transparent();
 
-      virtual bool has_translucency() const;
+      virtual bool has_translucency();
 
       virtual double get_alpha();
 
@@ -1950,9 +1952,9 @@ namespace user
       virtual void check_transparent_mouse_events();
 
 
-      virtual void redraw_add(::object * pobject);
+      virtual void redraw_add(::particle * pparticle);
 
-      virtual void redraw_erase(::object * pobject);
+      virtual void redraw_erase(::particle * pparticle);
 
       virtual bool has_redraw();
 
@@ -2012,7 +2014,7 @@ namespace user
 
       virtual bool on_action(const ::string & pszId);
 
-      virtual bool keyboard_focus_is_focusable() const override;
+      bool keyboard_focus_is_focusable() override;
 
       //virtual bool simple_on_control_event(::message::message* pmessage, ::enum_topic etopic);
 
@@ -2052,13 +2054,13 @@ namespace user
       /// to build a default control with a default constructed
       /// ::user::control_descriptor.
       //void create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
-      //virtual elayout get_state() const override;
+      //virtual elayout get_state() override;
       //bool _003IsCustomMessage();
       //::user::primitive* _003GetCustomMessageWnd();
       //virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override;
       virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
-      virtual bool has_function(enum_control_function econtrolfunction) const;
-      //virtual enum_control_type get_control_type() const;
+      //virtual bool has_function(enum_control_function econtrolfunction);
+      //virtual enum_control_type get_control_type();
       //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
       //virtual bool _003CallCustomWindowProc(::pointer<::user::interaction>puserinteraction, const ::atom & atom, wparam wparam, lparam lparam, lresult& lresult);
       //virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
@@ -2077,8 +2079,8 @@ namespace user
       //virtual bool get_client_rect(RECTANGLE_I32 * prectangle) override;
       //using ::user::box::get_window_rect;
       //virtual bool get_window_rect(RECTANGLE_I32 * prectangle) override;
-      //bool operator == (const class ::user::control_descriptor& descriptor) const;
-      //bool operator == (const class control& control) const;
+      //bool operator == (const class ::user::control_descriptor& descriptor);
+      //bool operator == (const class control& control);
       virtual bool IsControlCommandEnabled();
       virtual void EnableControlCommand(bool bEnable);
       //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point_i32 & point);
@@ -2126,19 +2128,19 @@ namespace user
       //virtual bool set(e_font efont = font_default);
 
 
-      virtual void show_software_keyboard(::user::element* pelement) override;
-      virtual void hide_software_keyboard(::user::element* pelement) override;
+      virtual void show_software_keyboard(::user::element * pelement) override;
+      virtual void hide_software_keyboard(::user::element * pelement) override;
 
 
       virtual void set_stock_icon(enum_stock_icon eicon);
       virtual enum_stock_icon get_stock_icon();
 
 
-      virtual void post_procedure(const ::procedure & procedure) override;
+      //virtual void post_procedure(const ::procedure & procedure) override;
       virtual void prodevian_post_procedure(const ::procedure & procedure);
 
 
-      void send_procedure(const ::procedure & procedure) override;
+      //void send_procedure(const ::procedure & procedure) override;
 
 
    /*   template < typename PRED >
@@ -2184,8 +2186,8 @@ namespace user
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate() override;
 
-      virtual point_i32 screen_origin(enum_layout elayout = e_layout_design) const;
-      virtual point_i32 host_origin(enum_layout elayout = e_layout_design) const;
+      virtual point_i32 screen_origin(enum_layout elayout = e_layout_design);
+      virtual point_i32 host_origin(enum_layout elayout = e_layout_design);
 
 
       //template < typename OFFSETABLE, typename SOURCE >
@@ -2323,7 +2325,7 @@ namespace user
    };
 
 
-   inline ::oswindow interaction::get_safe_oswindow() const
+   inline ::oswindow interaction::get_safe_oswindow()
    {
 
       if (::is_null(this))

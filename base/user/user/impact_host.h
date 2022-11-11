@@ -147,7 +147,7 @@ namespace user
       virtual ::user::document * get_impact_document();
 
 
-      virtual void hide_all_except(const id_array & atom);
+      virtual void hide_all_except(const atom_array & atom);
 
 
       template < class T > pointer < T > get_typed_document()

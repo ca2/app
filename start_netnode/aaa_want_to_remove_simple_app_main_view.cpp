@@ -5,12 +5,12 @@ namespace simple_drawing
 {
 
 
-   main_impact::main_impact(::object * pobject):
-      object(pobject),
-      ::user::split_layout(pobject),
-      ::user::split_view(pobject),
-      ::userex::split_view(pobject),
-      place_holder_container(pobject)
+   main_impact::main_impact(::particle * pparticle):
+      object(pparticle),
+      ::user::split_layout(pparticle),
+      ::user::split_view(pparticle),
+      ::userex::split_view(pparticle),
+      place_holder_container(pparticle)
    {
 
       m_ptopview = NULL;

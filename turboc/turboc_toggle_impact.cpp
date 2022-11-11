@@ -5,10 +5,10 @@ namespace turboc
 {
 
 
-   toggle_impact::toggle_impact(::object * pobject):
-      ::object(pobject),
-      ::user::interaction(pobject),
-      ::user::button(pobject)
+   toggle_impact::toggle_impact(::particle * pparticle):
+      ::object(pparticle),
+      ::user::interaction(pparticle),
+      ::user::button(pparticle)
    {
 
       m_ptopview = NULL;
@@ -47,7 +47,7 @@ namespace turboc
    //      return;
 
    //   {
-   //      synchronous_lock synchronouslock(&m_pmainimpact->m_pimpact->m_mutexText);
+   //      synchronous_lock synchronouslock(&m_pmainimpact->m_pimpact->m_pmutexText);
    //      _001GetText(m_pmainimpact->m_pimpact->m_strNewHelloMultiverse);
    //   }
 

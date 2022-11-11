@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "primitive.h"
+#include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/single_lock.h"
 #include "apex/message/simple_command.h"
 #include "apex/platform/application.h"
 #include "apex/platform/session.h"
@@ -151,7 +154,7 @@ namespace user
    //}
 
 
-   ::user::interaction * primitive::get_wnd() const
+   ::user::interaction * primitive::get_wnd()
    {
 
       return nullptr;
@@ -159,7 +162,7 @@ namespace user
    }
 
 
-   ::thread * primitive::get_task() const
+   ::task * primitive::get_task()
    {
 
       return nullptr;
@@ -244,7 +247,7 @@ namespace user
    //}
 
 
-   ::user::interaction* primitive::get_host_window() const
+   ::user::interaction* primitive::get_host_window()
    {
 
       //if (get_session() == nullptr
@@ -1211,7 +1214,7 @@ namespace user
    }
 
 
-   ::windowing::window * primitive::_window() const
+   ::windowing::window * primitive::_window()
    {
 
       return nullptr;
@@ -1570,7 +1573,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_next_window(bool bIgnoreChildren, const  ::user::interaction * puiInteractionStop) const
+   ::user::interaction * primitive::get_next_window(bool bIgnoreChildren, ::user::interaction * puiInteractionStop)
    {
 
       return nullptr;
@@ -1578,7 +1581,7 @@ namespace user
    }
 
    
-   ::user::interaction * primitive::get_window(enum_next enext) const
+   ::user::interaction * primitive::get_window(enum_next enext)
    {
 
       return nullptr;
@@ -1614,7 +1617,7 @@ namespace user
 //   }
 
 
-   bool primitive::is_message_only_window() const
+   bool primitive::is_message_only_window()
    {
 
       throw ::interface_only();
@@ -1624,7 +1627,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_wnd(::u32 nCmd) const
+   ::user::interaction * primitive::get_wnd(::u32 nCmd)
    {
 
       throw ::interface_only();
@@ -1867,7 +1870,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_parent() const
+   ::user::interaction * primitive::get_parent()
    {
 
       throw ::interface_only();
@@ -1924,7 +1927,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_owner() const
+   ::user::interaction * primitive::get_owner()
    {
 
       throw ::interface_only();
@@ -1944,7 +1947,7 @@ namespace user
    }*/
 
 
-   bool primitive::is_top_level_window() const
+   bool primitive::is_top_level_window()
    {
 
      auto puiParent = get_parent_primitive();
@@ -1999,7 +2002,7 @@ namespace user
    //}
 
 
-   ::user::interaction * primitive::get_parent_owner() const
+   ::user::interaction * primitive::get_parent_owner()
    {
 
       throw ::interface_only();
@@ -2009,7 +2012,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_parent_or_owner() const
+   ::user::interaction * primitive::get_parent_or_owner()
    {
 
       throw ::interface_only();
@@ -2019,7 +2022,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_top_level_owner() const
+   ::user::interaction * primitive::get_top_level_owner()
    {
 
       throw ::interface_only();
@@ -2029,7 +2032,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::_top_level() const
+   ::user::interaction * primitive::_top_level()
    {
 
       throw ::interface_only();
@@ -3015,7 +3018,7 @@ namespace user
    //}
 
 
-   i32 primitive::get_descendant_level(const ::user::primitive * pinteraction) const
+   i32 primitive::get_descendant_level(::user::element * puserelement)
    {
 
       throw ::interface_only();
@@ -3047,7 +3050,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_first_child_window() const
+   ::user::interaction * primitive::get_first_child_window()
    {
 
       return nullptr;
@@ -3063,7 +3066,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_focusable_descendant() const
+   ::user::interaction * primitive::get_focusable_descendant()
    {
 
       throw ::interface_only();
@@ -3432,7 +3435,7 @@ namespace user
    }
 
 
-   atom primitive::SetDlgCtrlId(atom atom)
+   atom primitive::SetDlgCtrlId(const atom & atom)
    {
 
       throw ::interface_only();
@@ -4041,7 +4044,7 @@ namespace user
    //void primitive::add_thread(::thread * pthread)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   m_threadptra.add(pthread);
 
@@ -4051,7 +4054,7 @@ namespace user
    //void primitive::erase_thread(::thread * pthread)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   m_threadptra.erase(pthread);
 
@@ -4066,7 +4069,7 @@ namespace user
 
 
    // Text Edit
-   void primitive::_001GetSel(strsize & iBeg, strsize & iEnd) const
+   void primitive::_001GetSel(strsize & iBeg, strsize & iEnd)
    {
 
 
@@ -4175,7 +4178,7 @@ namespace user
    }
 
 
-   bool primitive::keyboard_focus_is_focusable() const
+   bool primitive::keyboard_focus_is_focusable()
    {
 
       return false;
@@ -4249,7 +4252,7 @@ namespace user
 
      }
 
-     single_lock(puiThis->get_app()->mutex(), true);
+     single_lock(puiThis->get_app()->synchronization(), true);
 
      ::pointer<primitive>pprimitive;
 
@@ -4460,7 +4463,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_parent_window() const
+   ::user::interaction * primitive::get_parent_window()
    {
 
       return nullptr;
@@ -4468,7 +4471,7 @@ namespace user
    }
 
 
-   ::user::element * primitive::get_parent_primitive() const
+   ::user::element * primitive::get_parent_primitive()
    {
 
       return nullptr;

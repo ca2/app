@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "acme/operating_system.h"
+#include "acme/primitive/string/string.h"
+//#include "acme/operating_system.h"
 
 
 CLASS_DECL_ACME enum_display equivalence_sink(enum_display edisplay)
@@ -76,3 +77,14 @@ CLASS_DECL_ACME string __string(enum_display edisplay)
    };
 
 }
+
+
+string __string(const ::e_display & edisplay) 
+{
+   
+   return __string((::enum_display)edisplay); 
+
+}
+
+
+

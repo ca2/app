@@ -10,20 +10,22 @@
 #define SMTP_QPENCODE_DOT 1
 #define SMTP_QPENCODE_TRAILING_SOFT 2
 
-_Success_(return != FALSE)
-inline BOOL __QPDecode(
-   _In_reads_bytes_(nSrcLen) BYTE * pbSrcData,
-   _In_ int nSrcLen,
-   _When_(*pnDestLen > 0, _Out_writes_to_(*pnDestLen, *pnDestLen)) CHAR * szDest,
-   _Inout_ int * pnDestLen,
-   _In_ DWORD dwFlags = 0)
+inline bool __QPDecode(
+   byte * pbSrcData,
+   int nSrcLen,
+   char * szDest,
+   int * pnDestLen,
+   ::u32 uFlags = 0)
 {
+   
    if (!pbSrcData || !szDest || !pnDestLen)
    {
-      return FALSE;
+      
+      return false;
+
    }
 
-   LPSTR szDestEnd = szDest + *pnDestLen;
+   char * szDestEnd = szDest + *pnDestLen;
    int nRead = 0, nWritten = 0, nLineLen = -1;
    char ch;
    while (nRead <= nSrcLen)
@@ -42,7 +44,7 @@ inline BOOL __QPDecode(
             szBuf[2] = '\0';
             char * tmp = nullptr;
             ASSERT(szDest < szDestEnd);
-            *szDest++ = (BYTE)strtoul(szBuf, &tmp, 16);
+            *szDest++ = (byte)strtoul(szBuf, &tmp, 16);
             nWritten++;
             nRead += 2;
             continue;
@@ -55,14 +57,17 @@ inline BOOL __QPDecode(
             nLineLen = -1;
             continue;
          }
-         return FALSE;
+         
+         return false;
+
       }
+
       if (ch == '\r' || ch == '\n')
       {
          nLineLen = -1;
          continue;
       }
-      if ((dwFlags & SMTP_QPENCODE_DOT) && ch == '.' && nLineLen == 0)
+      if ((uFlags & SMTP_QPENCODE_DOT) && ch == '.' && nLineLen == 0)
       {
          continue;
       }
@@ -72,53 +77,28 @@ inline BOOL __QPDecode(
    }
 
    *pnDestLen = (nWritten > 0) ? nWritten - 1 : 0;
-   return TRUE;
+
+   return true;
+
 }
+
+
 //=======================================================================
 // Quoted Printable encode/decode
 // compliant with RFC 2045
 //=======================================================================
 //
-inline int __QPEncodeGetRequiredLength(_In_ int nSrcLen)
+inline int __QPEncodeGetRequiredLength(int nSrcLen)
 {
    __int64 nRet64 = 3 * ((3 * static_cast<__int64>(nSrcLen)) / (SMTP_MAX_QP_LINE_LENGTH - 8));
    nRet64 += 3 * static_cast<__int64>(nSrcLen);
    nRet64 += 3;
    ASSERT(nRet64 <= INT_MAX && nRet64 >= INT_MIN);
    int nRet = static_cast<int>(nRet64);
+   
    return nRet;
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //

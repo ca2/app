@@ -5,7 +5,7 @@
 //typedef ::u32 ::u32;
 
 
-CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
+//CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
 
 
 // CLASS_DECL_ACME u32 thread_alloc(void);

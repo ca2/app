@@ -1,5 +1,9 @@
 ﻿#include "framework.h"
+#include "file.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/exception/interface_only.h"
+#include "acme/filesystem/file/exception.h"
+#include "acme/primitive/primitive/payload.h"
 #include <stdio.h>
 #include <stdarg.h>
 
@@ -105,27 +109,27 @@ namespace file
    void file::open(const ::file::path & path, const ::file::e_open & eopen)
    {
 
-      auto pfile = __create <::file::file>();
-
-      if (::is_null(pfile))
-      {
-
-         ::move(pfile);
-
-      }
-
-/*      auto estatus =*/
-      
-      pfile->open(path, eopen);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      /* return */ ::move(pfile);
+//      auto pfile = __create <::file::file>();
+//
+//      if (::is_null(pfile))
+//      {
+//
+//         ::move(pfile);
+//
+//      }
+//
+///*      auto estatus =*/
+//
+//      pfile->open(path, eopen);
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      /* return */ ::move(pfile);
 
    }
 
@@ -406,16 +410,16 @@ namespace file
    }
 
 
-   void file::assert_ok() const
-   {
-
-   }
-
-
-   void file::dump(dump_context & dumpcontext) const
-   {
-
-   }
+//   void file::assert_ok() const
+//   {
+//
+//   }
+//
+//
+//   void file::dump(dump_context & dumpcontext) const
+//   {
+//
+//   }
 
 
    ::file::path file::get_file_path() const

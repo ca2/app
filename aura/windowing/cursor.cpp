@@ -1,10 +1,10 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen  - Honoring Thomas Borregaard Sørensen MY ONLY LORD
 // recreated by Camilo 2021-02-01 20:19
 #include "framework.h"
+#include "cursor.h"
+#include "acme/exception/interface_only.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/cursor.h"
-#include "cursor.h"
-
 
 
 namespace windowing
@@ -46,7 +46,7 @@ namespace windowing
 //   }
 
    
-   void cursor::set_image(const ::image * pimage, ::i32 xHotspot, ::i32 yHotspot)
+   void cursor::set_image(::image * pimage, ::i32 xHotspot, ::i32 yHotspot)
    {
 
       m_pimage = pimage;
@@ -96,7 +96,7 @@ namespace windowing
 
    //   auto path = pathParam;
 
-   //   auto psystem = m_psystem->m_paurasystem;
+   //   auto psystem = acmesystem()->m_paurasystem;
 
    //   if (psystem->m_bImaging)
    //   {

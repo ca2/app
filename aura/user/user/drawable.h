@@ -2,6 +2,7 @@
 
 
 #include "aura/graphics/draw2d/host.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace user

@@ -53,22 +53,12 @@ class multimedia;
 
 }
 
+
 namespace multimedia
 {
 
 
-   class CLASS_DECL_AQUA information
-   {
-   public:
-
-
-      string      m_strName;
-      string      m_strAlbum;
-      string      m_strArtist;
-
-
-   };
-
+   class information;
 
    class multimedia;
 

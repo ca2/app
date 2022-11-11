@@ -15,7 +15,7 @@ namespace turboc
       top_impact * m_ptopview;
 
 
-      toggle_impact(::object * pobject);
+      toggle_impact(::particle * pparticle);
       virtual ~toggle_impact();
 
 

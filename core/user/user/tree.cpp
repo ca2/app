@@ -31,6 +31,30 @@ namespace user
    }
 
 
+   ::core::application* tree::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+   }
+
+
+   ::core::session* tree::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
+
+
+   ::core::system* tree::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+
+   }
+
+
    void tree::user_tree_common_construct()
    {
 
@@ -300,7 +324,7 @@ namespace user
 
          auto pitem = m_pitemFirstVisible;
 
-         synchronous_lock synchronouslock(!pitem ? nullptr : pitem->m_ptree->mutex());
+         synchronous_lock synchronouslock(!pitem ? nullptr : pitem->m_ptree->synchronization());
 
          index iItem = m_iFirstVisibleItemProperIndex;
 
@@ -693,7 +717,7 @@ namespace user
          if (eelement == e_tree_element_expand_box)
          {
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             m_treeitemaExpand.add_unique(pitem);
 
@@ -703,7 +727,7 @@ namespace user
          else if (eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             m_treeitemaOpen.add_unique(pitem);
 
@@ -824,7 +848,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(m_ptree ? m_ptree->mutex() : nullptr);
+      synchronous_lock synchronouslock(m_ptree ? m_ptree->synchronization() : nullptr);
 
       ::pointer<::data::tree_item>pitem = get_proper_item(iItem);
 
@@ -1162,7 +1186,7 @@ namespace user
 
       //      style_context context(this);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -1438,7 +1462,7 @@ namespace user
    ::pointer<::data::tree_item>tree::CalcFirstVisibleItem(index & iProperIndex)
    {
 
-      synchronous_lock synchronouslock(m_ptree ? m_ptree->mutex() : nullptr);
+      synchronous_lock synchronouslock(m_ptree ? m_ptree->synchronization() : nullptr);
 
       index nOffset;
 
@@ -1549,7 +1573,7 @@ namespace user
 
       auto iIndent = _001GetIndentation();
 
-      //auto psystem = m_psystem->m_paurasystem;
+      //auto psystem = acmesystem()->m_paurasystem;
 
       //auto pdraw2d = psystem->draw2d();
 
@@ -2161,7 +2185,7 @@ namespace user
    index tree::get_proper_item_count()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_ptree)
       {

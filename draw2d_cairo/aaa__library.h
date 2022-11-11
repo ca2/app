@@ -18,7 +18,7 @@
 
 
 
-::mutex * cairo_mutex();
+::particle * cairo_mutex();
 void init_cairo_mutex();
 void destroy_cairo_mutex();
 

@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/platform/department.h"
+#include "acme/primitive/collection/int_map.h"
+
+
 namespace user
 {
 
@@ -11,7 +15,7 @@ namespace user
    public:
 
 
-      id_map < int >          m_mapCommandImage;
+      atom_map < int >          m_mapCommandImage;
       ::i32_map < atom >        m_mapImageCommand;
 
       ::pointer<::image_list>     m_pimagelist;
@@ -34,7 +38,7 @@ namespace user
       ::pointer<::image_list>MenuV033GetImageListHueLight();
 
 
-      bool MenuV033AddImageMap(::object * pobject, ::xml::node * pnode);
+      bool MenuV033AddImageMap(::particle * pparticle, ::xml::node * pnode);
       
 
       int command_image(atom atom);

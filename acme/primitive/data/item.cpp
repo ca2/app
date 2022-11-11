@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "item.h"
 
 
 namespace data
@@ -13,21 +14,21 @@ namespace data
    {
    }
 
-   string item::data_item_get_text(::object * pobject) const
+   string item::data_item_get_text(::particle * pparticle) const
    {
-      __UNREFERENCED_PARAMETER(pobject);
+      __UNREFERENCED_PARAMETER(pparticle);
       return "";
    }
 
-   index item::data_item_get_image(::object * pobject) const
+   index item::data_item_get_image(::particle * pparticle) const
    {
-      __UNREFERENCED_PARAMETER(pobject);
+      __UNREFERENCED_PARAMETER(pparticle);
       return -1;
    }
 
-   image_list * item::data_item_get_image_list(::object * pobject) const
+   image_list * item::data_item_get_image_list(::particle * pparticle) const
    {
-      __UNREFERENCED_PARAMETER(pobject);
+      __UNREFERENCED_PARAMETER(pparticle);
       return nullptr;
    }
 

@@ -102,7 +102,7 @@ namespace hi5
       /* OAuth data */
       oauth m_oauth;
 
-      twit(::object * pobject, simple_log * psimplelog = nullptr, index iLogTarget = -1);
+      twit(::particle * pparticle, simple_log * psimplelog = nullptr, index iLogTarget = -1);
       virtual ~twit();
 
       /* Twitter OAuth authorization methods */

@@ -2,6 +2,7 @@
 #include "control_box.h"
 #include "frame_window.h"
 #include "frame.h"
+#include "acme/constant/message.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/write_text/font.h"
@@ -663,9 +664,7 @@ if(rectangle.left > 400)
 
       auto pfactory = m_pframewindow->m_pframe->m_pexperience->m_pfactory;
 
-      pfactory->__defer_construct(pbutton);
-
-      pbutton->initialize(this);
+      pfactory->__defer_construct(this, pbutton);
 
       pbutton->display(e_display_none);
 

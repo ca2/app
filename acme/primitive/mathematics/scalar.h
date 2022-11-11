@@ -1,5 +1,9 @@
 #pragma once
 
+
+#include "acme/primitive/string/string.h"
+
+
 template < typename SCALAR >
 inline string get_default_scalar_format()
 {
@@ -38,16 +42,19 @@ inline string get_default_scalar_format < i64 >()
 //} // namespace str
 
 
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/atom.h"
+
 
 template < typename SCALAR >
 class scalar_source :
-   virtual public matter
+   virtual public particle
 {
 public:
 
 
    class listener :
-      virtual public matter
+      virtual public particle
    {
    public:
 
@@ -84,7 +91,8 @@ public:
 
 
 
-class CLASS_DECL_ACME scalar_base
+class CLASS_DECL_ACME scalar_base :
+   virtual public ::particle
 {
 public:
 

@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "acme/operating_system.h"
+#include "net.h"
+#include "acme/primitive/string/hex.h"
+//#include "acme/operating_system.h"
 
 
 CLASS_DECL_ACME string url_decode(const ::string & strParam)
@@ -98,7 +100,7 @@ string url_decode(const char * pszUrl,strsize iLen)
          {
             i++;
             iLen--;
-            *psz = (char)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(pszUrl + 1)));
+            *psz = (char)(uchar)(hex::to_nibble(*pszUrl) << 4 | hex::to_nibble(*(pszUrl + 1)));
 
             psz++;
             pszUrl += 2;
@@ -255,8 +257,8 @@ string url_encode(const char * psz)
 
       char ch = *psz;
 
-      if(ansi_char_is_digit(ch)
-            || ansi_char_is_alphabetic(ch)
+      if(ansi_char_isdigit(ch)
+            || ansi_char_isalpha(ch)
             || ch == '.'
             || ch == '-'
             || ch == '_')
@@ -319,8 +321,8 @@ string url_encode(const char * psz)
 //while (*psz != '\0')
 //{
 //
-//   if (ansi_char_is_digit(*psz)
-//      || ansi_char_is_alphabetic(*psz)
+//   if (ansi_char_isdigit(*psz)
+//      || ansi_char_isalpha(*psz)
 //      || *psz == '.'
 //      || *psz == '-'
 //      || *psz == '_')
@@ -435,13 +437,13 @@ void openURL(const string &url_str)
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+//   //strUsername = acmefile()->as_string(         auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
 //pacmedirectory->system() / "config\\user.txt");
 ////
-////   //strPassword = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+////   //strPassword = acmefile()->as_string(         auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -806,8 +808,8 @@ CLASS_DECL_ACME string url_decode(const char* psz)
 //
 //      char uch = *psz;
 //
-//      if (ansi_char_is_digit(uch)
-//         || ansi_char_is_alphabetic(uch)
+//      if (ansi_char_isdigit(uch)
+//         || ansi_char_isalpha(uch)
 //         || uch == '.'
 //         || uch == '-'
 //         || uch == '_')
@@ -870,8 +872,8 @@ CLASS_DECL_ACME string url_decode(const char* psz)
 //while (*psz != '\0')
 //{
 //
-//   if (ansi_char_is_digit(*psz)
-//      || ansi_char_is_alphabetic(*psz)
+//   if (ansi_char_isdigit(*psz)
+//      || ansi_char_isalpha(*psz)
 //      || *psz == '.'
 //      || *psz == '-'
 //      || *psz == '_')
@@ -1003,13 +1005,13 @@ int ui_open_url(const char* psz);
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+//   //strUsername = acmefile()->as_string(         auto psystem = acmesystem();
 
    /*      auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / "config\\user.txt")*/;
 //
-//   //strPassword = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+//   //strPassword = acmefile()->as_string(         auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

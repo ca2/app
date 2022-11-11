@@ -21,7 +21,7 @@ namespace bred
       void common_construct();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       //virtual ::pointer<progress_control>show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount);
 
    };

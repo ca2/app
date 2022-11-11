@@ -1,13 +1,18 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "tree.h"
+#include "document.h"
+#include "data.h"
+#include "context_menu.h"
+#include "acme/constant/message.h"
+#include "acme/platform/system.h"
 #include "acme/platform/timer.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/context.h"
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/shell.h"
 #include "aura/template/list.h"
-#include "document.h"
 #include "core/filesystem/userfs/item.h"
-#include "data.h"
-#include "context_menu.h"
 #include "base/user/user/user.h"
 #include "core/user/user/tree.h"
 #include "aura/message/user.h"
@@ -25,6 +30,31 @@ namespace filemanager
 
    tree::~tree()
    {
+
+   }
+
+
+
+   ::core::application* tree::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+   }
+
+
+   ::core::session* tree::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
+
+
+   ::core::system* tree::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
 
    }
 
@@ -76,7 +106,7 @@ namespace filemanager
 
       m_pdatacontainerbase = pdocument;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_iAnimate = 0;
 
@@ -92,7 +122,7 @@ namespace filemanager
    void tree::_017EnsureVisible(const ::file::path & pathUser, const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr);
+      synchronous_lock synchronouslock(m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr);
 
       string_array stra;
 
@@ -164,7 +194,7 @@ namespace filemanager
 
          listing.set_listing(pathUser);
 
-         pcontext->m_papexcontext->dir().enumerate(listing);
+         pcontext->m_papexcontext->dir()->enumerate(listing);
 
       }
 
@@ -216,9 +246,9 @@ namespace filemanager
    void tree::browse_sync(const ::action_context & context)
    {
 
-      synchronization_object *pm = m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr;
+      auto pparticleSynchronization = m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr;
 
-      synchronous_lock synchronouslock(pm);
+      synchronous_lock synchronouslock(pparticleSynchronization);
 
       auto pcontext = get_context();
 
@@ -237,7 +267,7 @@ namespace filemanager
 
          ::file::path_array patha;
 
-         pathUser.ascendants_path(patha);
+         ascendants_path(pathUser, patha);
 
          for (auto & pathAscendant : patha)
          {
@@ -395,7 +425,7 @@ namespace filemanager
 
                ::file::path_array filepatha;
 
-               pathUser.ascendants_path(filepatha);
+               ascendants_path(pathUser, filepatha);
 
                for (index i = 0; i < filepatha.get_size(); i++)
                {
@@ -757,20 +787,20 @@ namespace filemanager
    }
 
 
-   void tree::assert_ok() const
-   {
-
-      ::data::tree::assert_ok();
-
-   }
-
-
-   void tree::dump(dump_context & dumpcontext) const
-   {
-
-      ::data::tree::dump(dumpcontext);
-
-   }
+//   void tree::assert_ok() const
+//   {
+//
+//      ::data::tree::assert_ok();
+//
+//   }
+//
+//
+//   void tree::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::data::tree::dump(dumpcontext);
+//
+//   }
 
 
 

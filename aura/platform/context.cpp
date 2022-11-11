@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "context.h"
-
+#include "apex/platform/system.h"
 #include "aura/graphics/image/context_image.h"
 
 
@@ -46,7 +46,7 @@ namespace aura
 
       ::apex::context::initialize_context_1();
 
-      if (m_psystem->m_papexsystem && m_psystem->m_papexsystem->m_bImaging)
+      if (acmesystem()->m_papexsystem && acmesystem()->m_papexsystem->m_bImaging)
       {
 
          try
@@ -266,70 +266,70 @@ namespace aura
 //
 //      path = defer_process_matter_path(path);
 //
-//      if (::str().begins_eat_ci(path, "music://"))
+//      if (path.begins_eat_ci("music://"))
 //      {
 //
-//         path = dir().music() / path;
+//         path = dir()->music() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "video://"))
+//      else if (path.begins_eat_ci("video://"))
 //      {
 //
-//         path = dir().video() / path;
+//         path = dir()->video() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "image://"))
+//      else if (path.begins_eat_ci("image://"))
 //      {
 //
-//         path = dir().image() / path;
+//         path = dir()->image() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "document://"))
+//      else if (path.begins_eat_ci("document://"))
 //      {
 //
-//         path = dir().document() / path;
+//         path = dir()->document() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "dropbox://"))
+//      else if (path.begins_eat_ci("dropbox://"))
 //      {
 //
-//         path = dir().dropbox() / path;
+//         path = dir()->dropbox() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "onedrive://"))
+//      else if (path.begins_eat_ci("onedrive://"))
 //      {
 //
-//         path = dir().onedrive() / path;
+//         path = dir()->onedrive() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "appconfig://"))
+//      else if (path.begins_eat_ci("appconfig://"))
 //      {
 //
 //         path = get_app()->appconfig_folder() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "download://"))
+//      else if (path.begins_eat_ci("download://"))
 //      {
 //
-//         path = dir().download() / path;
+//         path = dir()->download() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "usersystem://"))
+//      else if (path.begins_eat_ci("usersystem://"))
 //      {
 //
-//         path = m_psystem->m_pacmedirectory->system() / path;
+//         path = acmedirectory()->system() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "desktop://"))
+//      else if (path.begins_eat_ci("desktop://"))
 //      {
 //
-//         path = dir().desktop() / path;
+//         path = dir()->desktop() / path;
 //
 //      }
-//      else if (::str().begins_eat_ci(path, "bookmark://"))
+//      else if (path.begins_eat_ci("bookmark://"))
 //      {
 //
-//         path = dir().bookmark() / path;
+//         path = dir()->bookmark() / path;
 //
 //      }
 //
@@ -356,10 +356,10 @@ namespace aura
 //   ::file::path context::defer_process_matter_path(::file::path path)
 //   {
 //
-//      if (::str().begins_ci(path, "matter://"))
+//      if (string_begins_ci(path, "matter://"))
 //      {
 //
-//         path = dir().matter(path, false);
+//         path = dir()->matter(path, false);
 //
 //      }
 //
@@ -377,10 +377,10 @@ namespace aura
 //   ::file::path context::get_matter_path(string strMatter)
 //   {
 //
-//      if (::str().begins_eat_ci(strMatter, "appmatter://"))
+//      if (strMatter.begins_eat_ci("appmatter://"))
 //      {
 //
-//         return dir().install() / strMatter;
+//         return dir()->install() / strMatter;
 //
 //      }
 //
@@ -420,7 +420,7 @@ namespace aura
 //         ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 //
 //         if ((path & ::file::e_flag_get_local_path)
-//            || (!(path & ::file::e_flag_bypass_cache) && m_psystem->m_pacmepath->is_file_or_dir(pathCache, nullptr)))
+//            || (!(path & ::file::e_flag_bypass_cache) && acmepath()->is_file_or_dir(pathCache, nullptr)))
 //         {
 //
 //            return pathCache;
@@ -434,7 +434,7 @@ namespace aura
 //         if (!(path & ::file::e_flag_bypass_cache))
 //         {
 //
-//            string strFirstLine = m_psystem->m_pacmefile->line(pathMeta, 0);
+//            string strFirstLine = acmefile()->line(pathMeta, 0);
 //
 //            if (strFirstLine == "itdoesntexist" && !(path & ::file::e_flag_required))
 //            {
@@ -448,7 +448,7 @@ namespace aura
 //               if (!retry([pathMeta]()
 //               {
 //
-//                  return m_psystem->m_pacmefile->line(pathMeta, 0) != "processing";
+//                  return acmefile()->line(pathMeta, 0) != "processing";
 //
 //               }))
 //               {
@@ -465,19 +465,19 @@ namespace aura
 //
 //         ::file::enum_type etype = ::file::e_type_none;
 //
-//         if (m_psystem->m_pacmepath->is_file_or_dir(pathSide, &etype))
+//         if (acmepath()->is_file_or_dir(pathSide, &etype))
 //         {
 //
 //            if (etype == ::file::e_type_file)
 //            {
 //
-//               file().copy(pathCache, pathSide, true);
+//               file()->copy(pathCache, pathSide, true);
 //
 //            }
 //            else if (etype == ::file::e_type_folder)
 //            {
 //
-//               dir().mk(pathCache);
+//               dir()->mk(pathCache);
 //
 //            }
 //
@@ -494,11 +494,11 @@ namespace aura
 //
 //         }
 //
-//         ::str().begins_eat_ci(path, "appmatter://");
+//         path.begins_eat_ci("appmatter://");
 //
 //         path = string(get_server_ca2_cc()) + "matter" / path;
 //
-//         //if (file().exists(path, this))
+//         //if (file()->exists(path, this))
 //         {
 //
 //
@@ -534,7 +534,7 @@ namespace aura
 //                  if (!retry([&]()
 //                  {
 //
-//                     return dir().mk(pathCache);
+//                     return dir()->mk(pathCache);
 //
 //                  }))
 //                  {
@@ -552,7 +552,7 @@ namespace aura
 //                  if (!retry([&]()
 //                  {
 //
-//                     return file().copy(pathCache, pfile, false);
+//                     return file()->copy(pathCache, pfile, false);
 //
 //                  }))
 //                  {
@@ -590,7 +590,7 @@ namespace aura
 //
 //
 //         }
-//         //         else if (dir().is(path, this))
+//         //         else if (dir()->is(path, this))
 //         //         {
 //         //
 //         //            if (!retry([&]()
@@ -630,7 +630,7 @@ namespace aura
 //      try
 //      {
 //
-//         return file().get_file(payloadFile, eopen);
+//         return file()->get_file(payloadFile, eopen);
 //
 //      }
 //      catch (::file::exception& e)
@@ -649,7 +649,7 @@ namespace aura
 //   ::file::listing& context::perform_file_listing(::file::listing& listing)
 //   {
 //
-//      return dir().ls(listing);
+//      return dir()->ls(listing);
 //
 //   }
 //
@@ -657,7 +657,7 @@ namespace aura
 //   ::file::listing& context::perform_file_relative_name_listing(::file::listing& listing)
 //   {
 //
-//      return dir().ls_relative_name(listing);
+//      return dir()->ls_relative_name(listing);
 //
 //   }
 //
@@ -680,10 +680,10 @@ namespace aura
 //
 //      ::file_pointer pfile;
 //
-//      if (dir().is(path))
+//      if (dir()->is(path))
 //      {
 //
-//         pfile = file().get_reader(path / "this.ini");
+//         pfile = file()->get_reader(path / "this.ini");
 //
 //         //string str;
 //
@@ -692,11 +692,11 @@ namespace aura
 //         //ini.parse_ini(str);
 //
 //      }
-//      else if (file().exists(path))
+//      else if (file()->exists(path))
 //      {
 //
-//         pfile = file().get_reader(path);
-//         //ini.parse_ini_file(file().get_file());
+//         pfile = file()->get_reader(path);
+//         //ini.parse_ini_file(file()->get_file());
 //
 //      }
 //
@@ -719,7 +719,7 @@ namespace aura
 //   ::handle::ini context::local_ini()
 //   {
 //
-//      ::file::path pathFolder = m_psystem->m_pacmedirectory->localconfig();
+//      ::file::path pathFolder = acmedirectory()->localconfig();
 //
 //      return ini_from_path(pathFolder);
 //
@@ -856,7 +856,7 @@ namespace aura
 //   bool context::sys_set(string strPath, string strValue)
 //   {
 //
-//      return file().put_text_utf8(m_psystem->m_pacmedirectory->config() / strPath, strValue);
+//      return file()->put_text_utf8(acmedirectory()->config() / strPath, strValue);
 //
 //   }
 //
@@ -864,7 +864,7 @@ namespace aura
 //   string context::sys_get(string strPath, string strDefault)
 //   {
 //
-//      string strValue = file().as_string(m_psystem->m_pacmedirectory->config() / strPath);
+//      string strValue = file()->as_string(acmedirectory()->config() / strPath);
 //
 //      if (strValue.is_empty())
 //      {
@@ -889,7 +889,7 @@ namespace aura
 //   void context::on_update_matter_locator()
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      m_straMatterLocator.erase_all();
 //
@@ -940,7 +940,7 @@ namespace aura
 //   void context::add_matter_locator(string strApp)
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      string strMatterLocator = matter_locator(strApp);
 //
@@ -957,7 +957,7 @@ namespace aura
 //   void context::add_matter_locator(::apex::application* papp)
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      string strMatterLocator = matter_locator(papp);
 //
@@ -970,10 +970,10 @@ namespace aura
 //
 //
 //
-//   void context::_load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions)
+//   void context::_load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload& varOptions)
 //   {
 //
-//      binary_stream < FILE > reader(m_pcontext->m_papexcontext->file().get_reader(payloadFile));
+//      binary_stream < FILE > reader(file()->get_reader(payloadFile));
 //
 //      read(reader);
 //
@@ -982,10 +982,10 @@ namespace aura
 //   }
 //
 //
-//   void context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter* pobject)
+//   void context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::particle * pparticle)
 //   {
 //
-//      binary_stream < FILE > writer(m_pcontext->m_papexcontext->file().get_writer(payloadFile));
+//      binary_stream < FILE > writer(file()->get_writer(payloadFile));
 //
 //      write(writer);
 //

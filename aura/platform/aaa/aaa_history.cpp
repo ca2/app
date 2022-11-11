@@ -13,8 +13,8 @@ namespace aura
    }
 
 
-   //history::history(::object * pobject) :
-   //   ::object(pobject)
+   //history::history(::particle * pparticle) :
+   //   ::object(pparticle)
    //{
 
    //   m_phistory = nullptr;

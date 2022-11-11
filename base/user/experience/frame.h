@@ -1,6 +1,12 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/primitive/object.h"
+#include "acme/constant/element.h"
+
+
 namespace experience
 {
 
@@ -74,10 +80,10 @@ namespace experience
       ~frame() override;
 
 
-      ::base::application * get_app() const;
-      ::base::session * get_session() const;
-      ::base::system * get_system() const;
-      ::base::user * user() const;
+      ::base::application * get_app();
+      ::base::session * get_session();
+      ::base::system * get_system();
+      ::base::user * user();
 
 
       virtual int adjust_client_height(int iHeight);

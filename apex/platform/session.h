@@ -3,6 +3,7 @@
 
 #include "app_container.h"
 #include "context.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace apex
@@ -113,7 +114,7 @@ namespace apex
 
 
       // apex commented
-      //id_map < ::layered * >                      m_mapboundui;
+      //atom_map < ::layered * >                      m_mapboundui;
 
 
 
@@ -137,7 +138,7 @@ namespace apex
       ~session() override;
 
 
-      virtual void     initialize(::object * pobject) override;
+      virtual void     initialize(::particle * pparticle) override;
 
 
       void install_message_routing(::channel* pchannel) override;
@@ -155,7 +156,7 @@ namespace apex
 
       //virtual void enum_display_monitors();
 
-      ////void construct(::object * pobject, int iPhase) override;
+      ////void construct(::particle * pparticle, int iPhase) override;
 
       //virtual index get_main_monitor(RECTANGLE_I32* prectangle = nullptr);
 
@@ -210,7 +211,7 @@ namespace apex
 
 
       //virtual string matter_as_string(const ::string & pszMatter,const ::string & pszMatter2);
-      //virtual string dir().matter(const ::string & pszMatter,const ::string & pszMatter2);
+      //virtual string dir()->matter(const ::string & pszMatter,const ::string & pszMatter2);
 
       //virtual bool is_inside_time_dir(const ::string & pszPath);
       //virtual bool file_is_read_only(const ::string & pszPath);
@@ -245,7 +246,7 @@ namespace apex
       virtual string get_locale_schema_dir() override;
 
 
-      //virtual void     initialize(::object * pobject) override;
+      //virtual void     initialize(::particle * pparticle) override;
 
 
       //virtual ::user::interaction * get_session_window();
@@ -381,7 +382,7 @@ namespace apex
 
 
 
-      //virtual void initialize(::object * pobject) override;
+      //virtual void initialize(::particle * pparticle) override;
 
       //virtual void install_message_routing(::channel* pchannel) override;
 
@@ -438,7 +439,7 @@ namespace apex
 
       //virtual void will_use_impact_hint(::atom idImpact);
 
-      //virtual void on_app_request_bergedge_callback(::object * pobject);
+      //virtual void on_app_request_bergedge_callback(::particle * pparticle);
 
       // apex commented
       //virtual ::write_text::font_list* get_single_column_font_list();

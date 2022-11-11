@@ -1,26 +1,28 @@
 ﻿#include "framework.h"
-//#include "aura/message.h"
-#include "acme/constant/simple_command.h"
-#include "apex/message/simple_command.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "aura/graphics/graphics/graphics.h"
-#include "aura/graphics/image/context_image.h"
-#include "aura/graphics/image/drawing.h"
-////#include "aura/graphics/draw2d/_component.h"
-//#include "aura/graphics/graphics/_.h"
-//#include "aura/graphics/graphics/_graphics.h"
-#include "aura/windowing/windowing.h"
 #include "frame_window.h"
 #include "document.h"
 #include "impact.h"
 #include "toolbar.h"
-#include "base/platform/session.h"
+#include "acme/constant/message.h"
+#include "acme/constant/simple_command.h"
+#include "acme/exception/interface_only.h"
+#include "acme/platform/system.h"
+#include "apex/message/simple_command.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/savings.h"
+#include "aura/graphics/graphics/graphics.h"
+#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/copydesk.h"
+#include "aura/user/user/style.h"
 #include "aura/user/user/system.h"
 #include "base/user/user/place_holder.h"
-#include "aura/user/user/style.h"
+#include "base/platform/session.h"
 
 
 namespace user
@@ -316,43 +318,43 @@ namespace user
    }
 
 
-   void frame_window::assert_ok() const
-   {
-
-      try
-      {
-
-         ::user::interaction::assert_ok();
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
-
-
-   void frame_window::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::interaction::dump(dumpcontext);
-
-////#ifdef WINDOWS_DESKTOP
-////      dumpcontext << "m_hAccelTable = " << (uptr)m_hAccelTable;
-////#endif
-//      dumpcontext << "\nm_nWindow = " << m_nWindow;
-//      dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
-//      dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
-//      dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
-//      if (m_pviewActive != nullptr)
-//         dumpcontext << "\nwith active ::user::impact: " << ::hex::lower_from((::iptr)m_pviewActive);
-//      else
-//         dumpcontext << "\nno active ::user::impact";
+//   void frame_window::assert_ok() const
+//   {
 //
-//      dumpcontext << "\n";
-
-   }
+//      try
+//      {
+//
+//         ::user::interaction::assert_ok();
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//   }
+//
+//
+//   void frame_window::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::interaction::dump(dumpcontext);
+//
+//////#ifdef WINDOWS_DESKTOP
+//////      dumpcontext << "m_hAccelTable = " << (uptr)m_hAccelTable;
+//////#endif
+////      dumpcontext << "\nm_nWindow = " << m_nWindow;
+////      dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
+////      dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
+////      dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
+////      if (m_pviewActive != nullptr)
+////         dumpcontext << "\nwith active ::user::impact: " << ::hex::lower_from((::iptr)m_pviewActive);
+////      else
+////         dumpcontext << "\nno active ::user::impact";
+////
+////      dumpcontext << "\n";
+//
+//   }
 
 
    bool frame_window::create_bars()
@@ -516,11 +518,11 @@ namespace user
 
                   pimage1 = m_pcontext->m_pauracontext->create_image(rectangle.size());
 
-                  synchronization_object * psync = pimpl->m_pgraphics->get_draw_lock();
+                  auto pparticleSynchronization = pimpl->m_pgraphics->get_draw_lock();
 
                   ::draw2d::graphics_pointer pgraphics = pimpl->m_pgraphics->on_begin_draw();
 
-                  synchronous_lock synchronouslock(psync);
+                  synchronous_lock synchronouslock(pparticleSynchronization);
 
                   auto rectangleTarget = ::rectangle_f64(rectangle.size());
 
@@ -540,7 +542,7 @@ namespace user
 
                   auto pcontextimage = pcontext->context_image();
 
-                  pcontextimage->save_image(m_psystem->m_pacmedirectory->system() / "control_alt_p.png", pimage1);
+                  pcontextimage->save_image(acmedirectory()->system() / "control_alt_p.png", pimage1);
 
                   ::image_pointer pimage2;
 
@@ -584,7 +586,7 @@ namespace user
 
                   }
 
-                  pcontextimage->save_image(m_psystem->m_pacmedirectory->system() / "control_alt_p_w300.png", pimage2);
+                  pcontextimage->save_image(acmedirectory()->system() / "control_alt_p_w300.png", pimage2);
 
                   pkey->m_bRet = true;
 
@@ -1517,7 +1519,7 @@ namespace user
       ////if (bStayActive)
       ////   pTopLevel->m_nFlags |= WF_STAYACTIVE;
 
-      //// synchronization_object floating windows to the memory_new state
+      //// synchronization floating windows to the memory_new state
       //NotifyFloatingWindows(bStayActive ? FS_ACTIVATE : FS_DEACTIVATE);
 
       // get active ::user::impact (use active frame if no active ::user::impact)
@@ -1753,9 +1755,9 @@ namespace user
 
       }
 
-      string strMatter = pcontext->m_papexcontext->dir().matter(strToolbar);
+      string strMatter = pcontext->m_papexcontext->dir()->matter(strToolbar);
 //
-//      string strXml = pcontext->m_papexcontext->file().safe_get_string(strMatter);
+//      string strXml = pcontext->m_papexcontext->file()->safe_get_string(strMatter);
 
       ptoolbar->load_xml_toolbar(strMatter);
 
@@ -1771,7 +1773,7 @@ namespace user
    }
 
 
-   ::user::interaction * frame_window::get_active_impact() const
+   ::user::interaction * frame_window::get_active_impact()
    {
 
       ASSERT(m_pviewActive == nullptr || base_class < ::user::impact >::bases(m_pviewActive));
@@ -2462,7 +2464,7 @@ namespace user
 //   }
 
 
-   ::base::application * frame_window::get_app() const
+   ::base::application * frame_window::get_app()
    {
       
       return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
@@ -2470,7 +2472,7 @@ namespace user
    }
 
 
-   ::base::session * frame_window::get_session() const 
+   ::base::session * frame_window::get_session()
    {
       
       return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
@@ -2478,15 +2480,15 @@ namespace user
    }
 
 
-   ::base::system * frame_window::get_system() const 
+   ::base::system * frame_window::get_system()
    {
       
-      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
    
    }
 
 
-   ::base::user * frame_window::user() const
+   ::base::user * frame_window::user()
    {
       
       return get_session() ? get_session()->user() : nullptr; 

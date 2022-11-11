@@ -1,6 +1,8 @@
 ﻿#include "framework.h"
 ////#include "base/user/simple/_component.h"
 #include "main_frame.h"
+#include "acme/constant/message.h"
+#include "apex/platform/create.h"
 #include "aura/message/user.h"
 #include "base/platform/application.h"
 #include "base/user/experience/frame.h"
@@ -24,20 +26,20 @@ simple_main_frame::~simple_main_frame()
 }
 
 
-void simple_main_frame::assert_ok() const
-{
-   
-   simple_frame_window::assert_ok();
-
-}
-
-
-void simple_main_frame::dump(dump_context & dumpcontext) const
-{
-
-   simple_frame_window::dump(dumpcontext);
-
-}
+//void simple_main_frame::assert_ok() const
+//{
+//
+//   simple_frame_window::assert_ok();
+//
+//}
+//
+//
+//void simple_main_frame::dump(dump_context & dumpcontext) const
+//{
+//
+//   simple_frame_window::dump(dumpcontext);
+//
+//}
 
 
 void simple_main_frame::install_message_routing(::channel * pchannel)

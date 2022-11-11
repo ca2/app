@@ -7,6 +7,7 @@
 
 #include "source.h"
 
+#include "acme/graphics/image/_macro.h"
 
 #include "acme/primitive/primitive/memory.h"
 
@@ -16,7 +17,7 @@
 /// </summary>
 class CLASS_DECL_AURA image :
    virtual public ::image_meta,
-   virtual public ::object,
+   virtual public ::particle,
    virtual public ::image_drawer,
    virtual public ::image_source_interface
 {
@@ -32,7 +33,7 @@ public:
       bool cache = true;
       bool helper_maps = false;
       bool toy = true;
-      synchronization_object * psync;
+      ::particle * pparticleSync = nullptr;
       ::function < void(image *) > functionLoaded;
 
    };
@@ -48,11 +49,11 @@ public:
    ~image() override;
 
 
-   void on_initialize_object() override;
+   void on_initialize_particle() override;
 
 
    using image_meta::clear;
-   using object::clear;
+   //using object::clear;
 
 
    virtual void defer_update_image();
@@ -62,7 +63,9 @@ public:
    virtual ::pointer<::image>get_image(::i32 cx, ::i32 cy);
 
 
-   inline bool is_ok() const { return ::is_set(this) && (::pixmap::is_ok() && ::object::is_ok()); }
+   virtual bool _is_ok() const;
+   inline bool is_ok() const { return ::is_set(this) && _is_ok(); }
+   inline bool nok() const { return !is_ok(); }
 
 
    virtual ::draw2d::graphics * get_graphics() const; // is semantically const (besides may not be implementationly constant)
@@ -240,7 +243,7 @@ public:
    i32 x, i32 y, i32 iRadius);
 
 
-   virtual void gradient_fill(::color32_t clr1, ::color32_t clr2, const point_i32 & point1, const point_i32 & point2);
+   virtual void gradient_fill(::color32_t clr1, ::color32_t clr2, const ::point_i32 & point1, const ::point_i32 & point2);
    virtual void gradient_horizontal_fill(::color32_t clr1, ::color32_t clr2, int start, int end);
    virtual void gradient_vertical_fill(::color32_t clr1, ::color32_t clr2, int start, int end);
    virtual void gradient_horizontal_fill(::color32_t clr1, ::color32_t clr2);
@@ -259,7 +262,7 @@ public:
    virtual void create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
    virtual void create(::draw2d::graphics* pgraphics);
    virtual void create(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
-   using ::object::initialize;
+   using ::particle::initialize;
    virtual void initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
    inline void preserve(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1)
    {
@@ -429,7 +432,7 @@ public:
    //::stream & read(::stream & stream) override;
 
    
-   ::element * clone() const override;
+   ::particle * clone() const override;
 
 
    //inline int line(int line);
@@ -884,32 +887,32 @@ inline void __preserve(::image_pointer & pimage, const ::size_i32 & size, ::enum
 //
 
 
-template < >
-inline bool is_ok(const ::image * pimage)
-{
+//template < >
+//inline bool is_ok(const ::image * pimage)
+//{
+//
+//   if (::is_null(pimage))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return pimage->is_ok();
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline bool not_ok(const TYPE * p) { return is_null(p); }
 
-   if (::is_null(pimage))
-   {
 
-      return false;
-
-   }
-
-   return pimage->is_ok();
-
-}
-
-
-template < typename TYPE >
-inline bool not_ok(const TYPE * p) { return is_null(p); }
-
-
-inline bool not_ok(const ::image * pimage)
-{
-
-   return !is_ok(pimage);
-
-}
+//inline bool not_ok(const ::image * pimage)
+//{
+//
+//   return !is_ok(pimage);
+//
+//}
 
 
 #include "_image_impl.h"

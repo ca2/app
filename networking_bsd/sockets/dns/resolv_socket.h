@@ -26,7 +26,7 @@ namespace sockets
       bool                                            m_cached;
 
 
-      ::pointer<::apex::system>                      m_psystem;
+      ::pointer<::apex::system>                      acmesystem();
       ::pointer<class ::networking::address_department>      m_paddressdepartment;
 
 
@@ -36,7 +36,7 @@ namespace sockets
       resolv_socket(base_socket *parent, in6_addr&);
       ~resolv_socket();
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       virtual void destroy() override;
 
       void OnAccept() override { m_bServer = true; }

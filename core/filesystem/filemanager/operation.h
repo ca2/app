@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/filesystem/filesystem/listing.h"
+
+
 namespace filemanager
 {
 
@@ -54,7 +58,7 @@ namespace filemanager
       virtual bool make_duplicate_name(::file::path & str,const ::file::path & psz);
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
       virtual bool open_src_dst(const ::file::path & pszSrc,::file::path & strDst,const ::file::path & pszDir);
 
       virtual void set_operation(enum_operation eoperation);

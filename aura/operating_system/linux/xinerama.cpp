@@ -149,14 +149,14 @@ int xinerama_get_screen_size(int& width, int& height)
 
 
 // it doesn't work for final purpose, but it has example on how to "sort" rectangles with stability
-::array < rectangle_i32 > get_ordered_monitor_recta(::object * pobject)
+::array < rectangle_i32 > get_ordered_monitor_recta(::particle * pparticle)
 {
 
    index iMonitor = 0;
 
    ::array < ::rectangle_i32 > rectaMonitor;
 
-   ::aura::session * psession = Sess(__object(pobject)->get_session());
+   ::aura::session * psession = Sess(__object(pparticle)->get_session());
 
    ::count cMonitor = psession->get_monitor_count();
 

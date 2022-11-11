@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "multiple_buffer.h"
+#include "acme/parallelization/mutex.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/graphics/multiple_buffer.h"
 #include "aura/graphics/image/image.h"
 #include "aura/user/user/interaction.h"
@@ -61,7 +63,7 @@ namespace graphics
 
          __construct(pimage);
 
-         //pimage->defer_create_mutex();
+         //pimage->defer_create_synchronization();
 
       }
 
@@ -72,7 +74,7 @@ namespace graphics
    }
 
 
-   ::synchronization_object * multiple_buffer::get_draw_lock()
+   ::particle * multiple_buffer::get_draw_lock()
    {
 
       return m_mutexa[m_iBuffer];
@@ -116,7 +118,7 @@ namespace graphics
    index multiple_buffer::find_best_buffer(const ::size_i32 & size)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       bool bFoundExact = false;
 
@@ -313,7 +315,7 @@ namespace graphics
    bool multiple_buffer::buffer_lock_round_swap_key_buffers()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_iDone = m_iBuffer;
 
@@ -326,7 +328,7 @@ namespace graphics
    }
 
 
-   synchronization_object * multiple_buffer::get_screen_sync()
+   ::particle * multiple_buffer::get_screen_sync()
    {
 
       auto size = m_pimpl->m_puserinteraction->const_layout().design().size();
@@ -357,7 +359,7 @@ namespace graphics
    bool multiple_buffer::update_screen()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto size = m_pimpl->m_puserinteraction->const_layout().design().size();
 

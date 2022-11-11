@@ -57,12 +57,12 @@ namespace ftp
    }
 
    
-   void file_status::initialize(::object * pobject)
+   void file_status::initialize(::particle * pparticle)
    {
 
       //auto estatus =
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{

@@ -1,12 +1,12 @@
 ﻿#pragma once
 
 
-template < typename ARRAY >
-concept indexed_array = requires(ARRAY array, ::index i)
-{
-   array.get_size();
-   array.element_at(i);
-};
+#include "_iterator.h"
+#include "allocator.h"
+#include "acme/platform/common.h"
+#include "acme/primitive/primitive/particle.h"
+
+using tiny_index_array = tiny_array <::index>;
 
 
 #define __default_array_array_base(TYPE) ::array_base < TYPE, const TYPE &, ::allocator::def < TYPE > >
@@ -59,38 +59,22 @@ DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
 DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 
 
-template < typename CONTAINER >
-concept container_type = requires(CONTAINER container)
-{
-
-   {container.this_is_a_container()} -> std::same_as<void>;
-
-};
-
-
-template < container_type CONTAINERX, container_type CONTAINERY >
-inline CONTAINERX operator +(CONTAINERX x, const CONTAINERY & y)
-{
-
-   x += y;
-
-   return x;
-
-}
 
 
 
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
 // array is an array that call default constructors, copy constructs and destructors in elements
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
+template < class TYPE, class ARG_TYPE, class ALLOCATOR, ::enum_type m_etypeContainer >
 class array_base :
    virtual public ::particle
 {
 public:
 
 
-   typedef TYPE BASE_TYPE;
+   using PRIMITIVE_CONTAINER_TAG = PRIMITIVE_CONTAINER_TAG_TYPE;
+
+   using CONTAINER_ITEM_TYPE = TYPE;
    using TYPE_IS_PTR = TYPE;
 
 
@@ -409,7 +393,7 @@ public:
 
    void this_is_a_container() {}
 
-   enum_type get_payload_type() const override { return t_etypePayload; }
+   enum_type get_payload_type() const override { return m_etypeContainer; }
 
    inline auto values(index iStart = 0, index iEnd = -1) const { return iterator(iStart, iEnd, this); }
 
@@ -530,9 +514,14 @@ public:
 
    void zero(::index iStart = 0, ::count c = -1);
 
-   void _001RemoveIndexes(index_array & ia);
-   void erase_indexes(const index_array & ia);
-   void erase_descending_indexes(const index_array & ia);
+   template < primitive_array ARRAY >
+   void _001RemoveIndexes(ARRAY & ia);
+   
+   template < primitive_array ARRAY >
+   void erase_indexes(const ARRAY & ia);
+
+   template < primitive_array ARRAY >
+   void erase_descending_indexes(const ARRAY & ia);
 
 
    inline bool prepare_first_last(::index & first, ::index & last) const;
@@ -575,7 +564,7 @@ public:
    bool erase(const TYPE * p) { auto i = index_of(p); if (!__found(i)) return false; return __found(erase_at(i)); }
    ::count erase(const TYPE * begin, const TYPE * end);
 
-   template < typename ITERATOR > ITERATOR erase(ITERATOR it) { return ::papaya::iterator::erase(*this, it); }
+   template < typename ITERATOR > ITERATOR erase(ITERATOR it) { return ::acme::iterator::erase(*this, it); }
 
    template < typename ITERATOR >
    inline void erase(const ITERATOR & begin, const ITERATOR & last);
@@ -595,6 +584,10 @@ public:
 
    virtual ::count append(const array_base & src); // return old size_i32
    virtual void copy(const array_base & src);
+
+
+
+
 
    virtual void on_after_read();
 
@@ -623,7 +616,7 @@ public:
    ::count predicate_each(PRED pred, ::index iStart = 0, ::count c = -1) const
    {
 
-      return ((array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >*)this)->predicate_each(pred, iStart, c);
+      return ((array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >*)this)->predicate_each(pred, iStart, c);
 
    }
 
@@ -684,12 +677,12 @@ public:
    }
 
    template < typename OBJECT, typename ATTRIBUTE >
-   TYPE_IS_PTR merge_get_existing(const TYPE_IS_PTR & p, const OBJECT& pobject, const ATTRIBUTE& attribute)
+   TYPE_IS_PTR merge_get_existing(const TYPE_IS_PTR & p, const OBJECT& pparticle, const ATTRIBUTE& attribute)
    {
 
       auto pModified = __new(typename TYPE_IS_PTR::TYPE(*p));
 
-      pModified->process(pobject, attribute);
+      pModified->process(pparticle, attribute);
 
       return this->get_existing(pModified);
 
@@ -946,13 +939,1923 @@ public:
 };
 
 
-template < primitive_integral INTEGRAL, class TYPE, class ARG_TYPE, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
-inline TYPE& operator%(INTEGRAL nIndex, const array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
+template < primitive_integral INTEGRAL, class TYPE, class ARG_TYPE, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer = e_type_element >
+inline TYPE& operator%(INTEGRAL nIndex, const array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
 {
 
    return (TYPE &) (a % nIndex);
 
 }
 
+
+
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base()
+{
+
+   m_nGrowBy = 0;
+   m_pData = nullptr;
+   m_nSize = 0;
+   m_nMaxSize = 0;
+
+}
+
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~array_base ()
+{
+
+   if (m_pData != nullptr)
+   {
+
+      destroy();
+
+   }
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::resize(::count nNewSize, ARG_TYPE t, ::count nGrowBy)
+{
+
+   return allocate(nNewSize, nGrowBy, &t);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::allocate_in_bytes(::count nNewSize,::count nGrowBy)
+{
+
+   if(nGrowBy < 0)
+   {
+
+      return allocate(nNewSize / sizeof(TYPE),-1);
+
+   }
+   else
+   {
+
+      return allocate(nNewSize / sizeof(TYPE),nGrowBy / sizeof(TYPE));
+
+   }
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::erase_at(::index nIndex,::count nCount)
+{
+
+   //ASSERT_VALID(this);
+
+   ::index nUpperBound = nIndex + nCount;
+
+   if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
+   {
+
+      throw_exception(error_bad_argument);
+
+   }
+
+   ::count nMoveCount = m_nSize - (nUpperBound);
+
+   ALLOCATOR::destruct_count(m_pData + nIndex, nCount OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+
+   if(nMoveCount)
+   {
+
+      ::acme::memmove_s(m_pData + nIndex,(size_t)nMoveCount * sizeof(TYPE),m_pData + nUpperBound,(size_t)nMoveCount * sizeof(TYPE));
+
+   }
+
+   m_nSize -= nCount;
+
+   return nIndex;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::erase_item(TYPE * p)
+{
+
+   return erase_at(p - m_pData);
+
+}
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::free_extra()
+{
+
+   if(m_nSize != m_nMaxSize)
+   {
+      // shrink to desired size_i32
+#ifdef SIZE_T_MAX
+      ASSERT(m_nSize <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
+#endif
+      TYPE* pNewData = nullptr;
+      if(m_nSize != 0)
+      {
+         TYPE * pNewData;
+#if defined(__MCRTDBG) || MEMDLEAK
+         #ifdef __MCRTDBG
+         if (::get_task() != nullptr)
+         {
+            if (::get_task()->m_strFile.has_char())
+            {
+               pNewData = ALLOCATOR::alloc(m_nSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
+            }
+            else
+            {
+               pNewData = ALLOCATOR::alloc(m_nSize, __FILE__, __LINE__);
+            }
+         }
+         else
+         {
+            pNewData = ALLOCATOR::alloc(m_nSize, __FILE__, __LINE__);
+         }
+#else
+
+         if (::get_task()->m_strDebug.has_char())
+         {
+
+            pNewData = ALLOCATOR::alloc(m_nSize, ::get_task()->m_strDebug, 0);
+
+         }
+         else
+         {
+
+            pNewData = ALLOCATOR::alloc(m_nSize, __FILE__, __LINE__);
+
+         }
+
+#endif
+
+#else
+
+         pNewData = ALLOCATOR::alloc(m_nSize);
+
+#endif      // copy memory_new data from old
+
+         // copy memory_new data from old
+         ::acme::memcpy_s(pNewData, (size_t)m_nSize * sizeof(TYPE),m_pData, (size_t)m_nSize * sizeof(TYPE));
+
+      }
+
+      // get rid of old stuff (note: no destructors called)
+      ALLOCATOR::_free(m_pData);
+
+      m_pData = pNewData;
+
+      m_nMaxSize = m_nSize;
+
+   }
+
+}
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::destroy()
+{
+
+   if(m_pData != nullptr)
+   {
+
+      ALLOCATOR::destruct_count(m_pData, m_nSize OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+
+      ALLOCATOR::_free(m_pData);
+
+      m_pData     = nullptr;
+      m_nSize     = 0;
+      m_nMaxSize  = 0;
+
+   }
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_at(::index nIndex,const TYPE & newElement,::count nCount /*=1*/)
+{
+
+   ::index nIndexParam = make_room_at(nIndex, nCount);
+
+   while(nCount--)
+   {
+
+      ALLOCATOR::copy(m_pData + nIndex, &newElement);
+
+      nIndex++;
+
+   }
+
+   return nIndexParam;
+
+}
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::make_room_at(::index nIndex, ::count nCount /*=1*/)
+{
+
+   ASSERT(nIndex >= 0);    // will expand to meet need
+
+   if(nCount <= 0)
+      return -1;
+
+   if(nIndex < 0)
+      throw_exception(error_bad_argument);
+
+   if(nIndex >= m_nSize)
+   {
+
+      // adding after the end of the array
+      set_size(nIndex + nCount,-1);   // grow so nIndex is valid
+
+   }
+   else
+   {
+
+      // inserting in the middle of the array
+      ::count nOldSize = (::count) m_nSize;
+
+      set_size((::count) m_nSize + nCount,-1);  // grow it to memory_new size_i32
+      // destroy intial data before copying over it
+      // shift old data up to fill gap
+      ::acme::memmove_s(m_pData + nIndex + nCount,(size_t) ((nOldSize - nIndex) * sizeof(TYPE)),m_pData + nIndex,(size_t)((nOldSize - nIndex) * sizeof(TYPE)));
+
+      ::zero(m_pData + nIndex, nCount* sizeof(TYPE));
+
+      ALLOCATOR::construct_count(m_pData + nIndex,nCount);
+
+   }
+
+   // insert memory_new value in the gap
+   ASSERT(nIndex + nCount <= m_nSize);
+
+   return nIndex;
+
+}
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::append(const array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & src)
+{
+
+   ::count nOldSize = m_nSize;
+
+   ::count nSrcSize = src.m_nSize;   // to enable to append to itself
+
+   allocate(nOldSize + nSrcSize);
+
+   ALLOCATOR::copy_count(m_pData + nOldSize, src.m_pData, nSrcSize);
+
+   return nOldSize;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::copy(const array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & src)
+{
+
+   if(this == &src)
+   {
+
+      return;
+
+   }
+
+   ::count nSrcSize = src.m_nSize;
+
+   allocate(nSrcSize);
+
+   ALLOCATOR::copy_count(m_pData,src.m_pData, nSrcSize);
+
+}
+
+//#include "sort.h"
+
+// take in accptr that _001RemoveIndexes machine
+// the ::index raw_array by sorting it and returning
+// only the indexes that could be erased
+// without indexes duplicates
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+template < primitive_array ARRAY >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::_001RemoveIndexes(ARRAY & ia)
+{
+
+   // sort
+   //::sort::quick_sort(ia,true);
+
+   ia.sort();
+
+   ::index i = ia.get_upper_bound();
+
+   // filter out of upper bound indexes
+   while(i >= 0 && ia[i] >= get_size())
+   {
+
+      ia.erase_at(i);
+
+      i--;
+
+   }
+
+   // filter out of lower bound indexes
+   while(ia.get_size() > 0 && ia[0] < 0)
+   {
+
+      ia.erase_at(0);
+
+   }
+
+   i = ia.get_upper_bound();
+
+   // filter out duplicates
+   while(i > 0 && ia[i] >= get_size())
+   {
+
+      if(ia[i] == ia[i - 1])
+         ia.erase_at(i);
+
+      i--;
+
+   }
+
+   erase_indexes(ia);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+template < primitive_array ARRAY >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::erase_indexes(const ARRAY & ia)
+{
+
+
+   // erase indexes
+   for(::index i = ia.get_upper_bound(); i >= 0; i--)
+   {
+
+      erase_at(ia[i]);
+
+   }
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+template < primitive_array ARRAY >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::erase_descending_indexes(const ARRAY & ia)
+{
+
+   for(::index i = 0; i < ia.get_count(); i++)
+   {
+
+      erase_at(ia[i]);
+
+   }
+
+}
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_at(::index nIndex,array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > * pNewArray)
+{
+
+   ASSERT(pNewArray != nullptr);
+   ASSERT(nIndex >= 0);    // will expand to meet need
+
+   ::count nCount = pNewArray->get_size();
+
+   if (nCount <= 0)
+      return -1;
+
+   if (nIndex < 0)
+      throw_exception(error_bad_argument);
+
+   if (nIndex >= m_nSize)
+   {
+
+      // adding after the end of the array
+      set_size(nIndex + nCount, -1);   // grow so nIndex is valid
+
+   }
+   else
+   {
+
+      // inserting in the middle of the array
+      ::count nOldSize = (::count) m_nSize;
+
+      set_size((::count) (m_nSize + nCount), -1);  // grow it to memory_new size_i32
+      // destroy intial data before copying over it
+      // shift old data up to fill gap
+      ::acme::memmove_s(m_pData + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), m_pData + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
+
+      ::zero(m_pData + nIndex, nCount* sizeof(TYPE));
+
+      ALLOCATOR::construct_count(m_pData + nIndex, nCount);
+
+   }
+
+   // insert memory_new value in the gap
+   ASSERT(nIndex + nCount <= m_nSize);
+
+   ::index nIndexParam = nIndex;
+
+   ::index i = 0;
+
+   while (nCount--)
+   {
+
+      ALLOCATOR::copy(m_pData + nIndex, pNewArray->m_pData + i);
+
+      nIndex++;
+
+   }
+
+   return nIndexParam;
+
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pick_at(::index nIndex)
+{
+
+   ::count nCount = 1;
+
+   ::index nUpperBound = nIndex + nCount;
+
+   if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
+   {
+
+      throw_exception(error_bad_argument);
+
+   }
+
+   ::count nMoveCount = m_nSize - (nUpperBound);
+
+   auto t = m_pData[nIndex];
+
+   ALLOCATOR::destruct_count(m_pData + nIndex, nCount OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+
+   if (nMoveCount)
+   {
+
+      ::acme::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE), m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
+
+   }
+
+   m_nSize -= nCount;
+
+   return ::move(t);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pick_at(::index nIndex, ::count nCount)
+{
+
+   //ASSERT_VALID(this);
+
+   ::index nUpperBound = nIndex + nCount;
+
+   if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
+   {
+
+      throw_exception(error_bad_argument);
+
+   }
+
+   ::count nMoveCount = m_nSize - (nUpperBound);
+
+   array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > a(m_pData + nIndex, (size_t)nMoveCount);
+
+   ALLOCATOR::destruct_count(m_pData + nIndex, nCount OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+
+   if (nMoveCount)
+   {
+
+      ::acme::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE), m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
+
+   }
+
+   m_nSize -= nCount;
+
+   return a;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::set_raw_size(::count nNewSize,::count nGrowBy)
+{
+
+   ::count countOld = get_count();
+
+   ASSERT(nNewSize >= 0);
+
+   if(nNewSize < 0)
+      throw_exception(error_bad_argument);
+
+   if(nGrowBy >= 0)
+      m_nGrowBy = nGrowBy;  // set memory_new size_i32
+
+   if(nNewSize == 0)
+   {
+
+      // shrink to nothing
+      if(m_pData != nullptr)
+      {
+
+         ALLOCATOR::_free(m_pData);
+
+         m_pData = nullptr;
+
+      }
+
+      m_nSize = m_nMaxSize = 0;
+   }
+   else if (m_pData == nullptr)
+   {
+      // create buffer big enough to hold number of requested elements or
+      // m_nGrowBy elements, whichever is larger.
+#ifdef SIZE_T_MAX
+      if (nNewSize > SIZE_T_MAX / sizeof(TYPE))
+         throw_exception(error_no_memory);
+      ASSERT(nNewSize <= SIZE_T_MAX / sizeof(TYPE));    // no overflow
+#endif
+      ::count nAllocSize = (::count) maximum(nNewSize, m_nGrowBy);
+#if defined(__MCRTDBG) || MEMDLEAK
+      if (::get_task() != nullptr)
+      {
+#if defined(MEMDLEAK)
+
+         if (::get_task()->m_strFile.has_char())
+         {
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strFile, 0);
+
+         }
+         else
+         {
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+
+         }
+
+#else
+
+         if (::get_task()->m_strDebug.has_char())
+         {
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strDebug, ::get_task()->m_iLine);
+
+         }
+         else
+         {
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+
+         }
+
+#endif
+
+      }
+      else
+      {
+
+         m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+
+      }
+
+#else
+
+      m_pData = ALLOCATOR::alloc(nAllocSize);
+
+#endif
+
+      m_nSize = nNewSize;
+      m_nMaxSize = nAllocSize;
+   }
+   else if(nNewSize <= m_nMaxSize)
+   {
+      m_nSize = nNewSize;
+   }
+   else
+   {
+      // otherwise, grow aaa_base_array
+      nGrowBy = (::count) m_nGrowBy;
+      if(nGrowBy == 0)
+      {
+         // heuristically determine growth when nGrowBy == 0
+         //  (this avoids heap fragmentation in many situations)
+         nGrowBy = (::count) m_nSize;
+         nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
+      }
+      ::count nNewMax;
+      if(nNewSize < m_nMaxSize + nGrowBy)
+         nNewMax = (::count) (m_nMaxSize + nGrowBy);  // granularity
+      else
+         nNewMax = nNewSize;  // no slush
+
+      ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
+
+      if(nNewMax  < m_nMaxSize)
+         throw_exception(error_bad_argument);
+
+#ifdef SIZE_T_MAX
+      ASSERT(nNewMax <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
+#endif
+      TYPE * pNewData;
+#if defined(__MCRTDBG) || MEMDLEAK
+      #ifdef __MCRTDBG
+
+      if (::get_task() != nullptr)
+      {
+
+         if (::get_task()->m_strFile.has_char())
+         {
+
+            pNewData = ALLOCATOR::alloc(nNewMax, ::get_task()->m_strFile, ::get_task()->m_iLine);
+
+         }
+         else
+         {
+
+            pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
+
+         }
+
+      }
+      else
+      {
+
+         pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
+
+      }
+
+#else
+
+      if (::get_task()->m_strDebug.has_char())
+      {
+
+         pNewData = ALLOCATOR::alloc(nNewMax, ::get_task()->m_strDebug, ::get_task()->m_iLine);
+
+      }
+      else
+      {
+
+         pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
+
+      }
+
+#endif
+
+#else
+
+      pNewData = ALLOCATOR::alloc(nNewMax);
+
+#endif      // copy memory_new data from old
+
+      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
+
+      ///for(i32 i = 0; i < nNewSize - m_nSize; i++)
+      // get rid of old stuff (note: no destructors called)
+      ALLOCATOR::_free(m_pData);
+
+      m_pData = pNewData;
+
+      m_nSize = nNewSize;
+
+      m_nMaxSize = nNewMax;
+
+   }
+
+   return countOld;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::allocate(::count nNewSize,::count nGrowBy, const TYPE * ptype)
+{
+
+   ::count countOld = get_count();
+
+   ASSERT(nNewSize >= 0);
+
+   if(nNewSize < 0)
+   {
+
+      throw_exception(error_bad_argument);
+
+   }
+
+   if(nGrowBy >= 0)
+   {
+
+      m_nGrowBy = nGrowBy;  // set memory_new size_i32
+
+   }
+
+
+   if(nNewSize == m_nSize)
+   {
+
+      return m_nSize;
+
+   }
+
+   if(nNewSize == 0)
+   {
+
+      // shrink to nothing
+      if(m_pData != nullptr)
+      {
+
+         ALLOCATOR::destruct_count(m_pData, m_nSize  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+
+         ALLOCATOR::_free(m_pData);
+
+         m_pData = nullptr;
+
+      }
+
+      m_nSize = m_nMaxSize = 0;
+
+   }
+   else if(m_pData == nullptr)
+   {
+
+      // create buffer big enough to hold number of requested elements or
+      // m_nGrowBy elements, whichever is larger.
+#ifdef SIZE_T_MAX
+      if(::comparison::gt(nNewSize, SIZE_T_MAX / sizeof(TYPE)))
+         throw_exception(error_no_memory);
+      ASSERT(::comparison::lt(nNewSize, SIZE_T_MAX / sizeof(TYPE)));    // no overflow
+#endif
+
+      auto nAllocSize = maximum(nNewSize, m_nGrowBy);
+
+#if MEMDLEAK  || defined(__MCRTDBG)
+
+      if(::get_task() != nullptr)
+      {
+
+#if defined(__MCRTDBG)
+
+         if(::get_task()->m_strFile.has_char())
+         {
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
+
+         }
+         else
+         {
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+
+         }
+
+#else
+
+         if (::get_task()->m_strDebug.has_char())
+         {
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__;
+
+         }
+         else
+         {
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__;
+
+         }
+
+#endif
+
+      }
+      else
+      {
+
+         m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+
+      }
+
+#else
+
+      m_pData = ALLOCATOR::alloc(nAllocSize);
+
+#endif
+
+      if (::is_null(ptype))
+      {
+
+         ALLOCATOR::construct_count(m_pData, nNewSize);
+
+      }
+      else
+      {
+
+         ALLOCATOR::copy_construct_count(m_pData, nNewSize, *ptype);
+
+      }
+
+      m_nSize = nNewSize;
+
+      m_nMaxSize = nAllocSize;
+
+   }
+   else if(nNewSize <= m_nMaxSize)
+   {
+
+      if(nNewSize > m_nSize)
+      {
+
+         if (::is_null(ptype))
+         {
+
+            ALLOCATOR::construct_count(m_pData + m_nSize, nNewSize - m_nSize);
+
+         }
+         else
+         {
+
+            ALLOCATOR::copy_construct_count(m_pData + m_nSize, nNewSize - m_nSize, *ptype);
+
+         }
+
+      }
+      else if(m_nSize > nNewSize)
+      {
+
+         ALLOCATOR::destruct_count(m_pData + nNewSize,m_nSize - nNewSize OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+
+      }
+
+      m_nSize = nNewSize;
+
+   }
+   else
+   {
+
+      // otherwise, grow aaa_base_array
+      nGrowBy = m_nGrowBy;
+
+      if(nGrowBy == 0)
+      {
+
+         // heuristically determine growth when nGrowBy == 0
+         //  (this avoids heap fragmentation in many situations)
+         nGrowBy = m_nSize;
+         nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
+
+      }
+
+      ::count nNewMax;
+
+      if(nNewSize < m_nMaxSize+ nGrowBy)
+      {
+
+         nNewMax = m_nMaxSize+ nGrowBy;  // granularity
+
+      }
+      else
+      {
+
+         nNewMax = nNewSize;  // no slush
+
+      }
+
+      ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
+
+      if(nNewMax  < m_nMaxSize)
+      {
+
+         throw_exception(error_bad_argument);
+
+      }
+
+#ifdef SIZE_T_MAX
+
+      ASSERT(::comparison::lt(nNewMax, SIZE_T_MAX / sizeof(TYPE))); // no overflow
+
+#endif
+
+#if MEMDLEAK || defined(__MCRTDBG)
+
+      TYPE* pNewData =  nullptr;
+
+      if(::get_task() != nullptr)
+      {
+
+#if defined(__MCRTDBG)
+
+         if(::get_task()->m_strFile.has_char())
+         {
+
+            pNewData = ALLOCATOR::alloc(nNewMax, ::get_task()->m_strFile,::get_task()->m_iLine);
+
+         }
+         else
+         {
+
+            pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
+
+         }
+
+#else
+
+         if (::get_task()->m_strDebug.has_char())
+         {
+
+            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__;
+
+         }
+         else
+         {
+
+            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__;
+
+         }
+
+#endif
+
+      }
+      else
+      {
+
+         pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
+
+      }
+
+
+#else
+
+      TYPE* pNewData = ALLOCATOR::alloc(nNewMax);
+
+#endif
+
+      // copy memory_new data from old
+      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
+
+      // construct remaining elements
+      ASSERT(nNewSize > m_nSize);
+
+      if (nNewSize > m_nSize)
+      {
+
+         if (::is_null(ptype))
+         {
+
+            ALLOCATOR::construct_count(pNewData + m_nSize, nNewSize - m_nSize);
+
+         }
+         else
+         {
+
+            ALLOCATOR::copy_construct_count(pNewData + m_nSize, nNewSize - m_nSize, *ptype);
+
+         }
+
+      }
+
+      // get rid of old stuff (note: no destructors called)
+      ALLOCATOR::_free(m_pData);
+
+      m_pData = pNewData;
+
+      m_nSize = nNewSize;
+
+      m_nMaxSize = nNewMax;
+
+   }
+
+   return countOld;
+
+}
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::on_after_read()
+{
+
+
+}
+
+
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::set_at_grow(::index nIndex, ARG_TYPE newElement, ::count nGrowBy)
+{
+
+   ASSERT(nIndex >= 0);
+
+   if (nIndex >= this->m_nSize)
+   {
+
+      this->set_size(nIndex + 1, nGrowBy);
+
+   }
+
+   m_pData[nIndex] = newElement;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::element_at_grow(::index nIndex, ::count nGrowBy)
+{
+
+   ASSERT(nIndex >= 0);
+
+   if (nIndex >= this->m_nSize)
+   {
+
+      this->set_size(nIndex + 1, nGrowBy);
+
+   }
+
+   return m_pData[nIndex];
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::set_each(ARG_TYPE element, ::index first, ::count in_count_out_last)
+{
+
+   prepare_first_in_count_last_out(first, in_count_out_last);
+
+   for(::index i = first; i <= in_count_out_last; i++)
+   {
+
+      m_pData[i] = element;
+
+   }
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+template < typename ITERATOR >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::erase(const ITERATOR & begin, const ITERATOR & last)
+{
+
+   auto start = begin.index();
+
+   auto end = last.index();
+
+   if(start < 0 || end < start)
+   {
+
+      return;
+
+   }
+
+   auto count = end - start;
+
+   erase_at(start, count);
+
+}
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+bool array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::prepare_first_last(::index & first, ::index & last) const
+{
+
+   if (first < 0)
+   {
+
+      first += this->get_count();
+
+   }
+
+   if (last < 0)
+   {
+
+      last += this->get_count();
+
+   }
+
+   return last >= first;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+bool array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::prepare_first_in_count_last_out(::index & first, ::count & in_count_out_last) const
+{
+
+   if (first < 0)
+   {
+
+      first += this->get_count();
+
+   }
+
+   if (in_count_out_last < 0)
+   {
+
+      in_count_out_last += this->get_count();
+
+   }
+   else
+   {
+
+      in_count_out_last = first + in_count_out_last - 1;
+
+   }
+
+   return in_count_out_last >= first;
+
+}
+
+
+//
+// see collection_array_decl.h for declaration
+//
+// raw_array is an array that does not call constructors or destructor in elements
+// array is an array that call only copy constructor and destructor in elements
+// array is an array that call default constructors, copy constructs and destructors in elements
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_size() const
+{
+   return (::count) this->m_nSize;
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_count() const
+{
+   return (::count) this->m_nSize;
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_length() const
+{
+   return (::count) this->m_nSize;
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_size_in_bytes() const
+{
+   return (::count)this->m_nSize * sizeof(TYPE);
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_byte_count() const
+{
+   return (::count) (this->m_nSize * sizeof(TYPE));
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::size() const
+{
+   return this->get_size();
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::count() const
+{
+   return this->get_count();
+}
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::length() const
+{
+   return this->get_length();
+}
+
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline bool array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::is_empty(::count countMinimum) const
+//{
+//   return this->size() < countMinimum;
+//}
+
+
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline bool array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::empty(::count countMinimum) const
+//{
+//   return is_empty(countMinimum);
+//}
+
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline bool array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::isEmpty(::count countMinimum) const
+//{
+//   return empty(countMinimum);
+//}
+
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline bool array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::has_elements(::count countMinimum) const
+//{
+//   return this->size() >= countMinimum;
+//}
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_lower_bound(::index i) const
+{
+   return i < this->m_nSize ? i : -1;
+}
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_middle_index(::index iIndex) const
+{
+   return m_nSize / 2 + iIndex;
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_upper_bound(::index iIndex) const
+{
+   return this->size() + iIndex;
+}
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline bool array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::bounds(::index i) const
+{
+   return i >= 0 && i < this->size();
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::erase_all()
+{
+   return allocate(0, -1);
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::set_size(::index nNewSize, ::count nGrowBy) // does not call default constructors on memory_new items/elements
+{
+   return allocate(nNewSize, nGrowBy);
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::clear()
+{
+   erase_all();
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::erase_last()
+{
+   ASSERT(this->size() > 0);
+   erase_at(get_upper_bound());
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::zero(::index iStart,::count c)
+{
+   if(c < 0)
+   {
+      c = get_size() - iStart;
+   }
+   ::zero(&m_pData[iStart],c * sizeof(TYPE));
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline const TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::element_at(::index nIndex) const
+{
+
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
+
+   return m_pData[nIndex];
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::element_at(::index nIndex)
+{
+
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
+
+   return m_pData[nIndex];
+
+}
+
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::first(::index nIndex) const
+//{
+//   return this->element_at(nIndex);
+//}
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::first(::index nIndex)
+//{
+//   return this->element_at(nIndex);
+//}
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::last(::index i) const
+//{
+//   return this->element_at(this->get_upper_bound(i);
+//}
+//
+//
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::last(::index i)
+//{
+//   return this->element_at(this->get_upper_bound(i);
+//}
+
+
+
+
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline const TYPE* array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_data() const
+//{
+//   return (const TYPE*)this->m_pData;
+//}
+//
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline TYPE* array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_data()
+//{
+//   return (TYPE*)this->m_pData;
+//}
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline const TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator[](::index i) const
+{
+
+   return m_pData[i];
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator[](::index i)
+{
+
+   return m_pData[i];
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::__swap(::index index1, ::index index2)
+{
+
+   ::__swap(m_pData[index1], m_pData[index2]);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::__swap(iterator it1, iterator it2)
+{
+
+   TYPE t = *it1;
+
+   *it1 = *it2;
+
+   *it2 = t;
+
+}
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline const TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::first(::index nIndex) const
+{
+
+   return this->element_at(nIndex);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::first(::index nIndex)
+{
+
+   return this->element_at(nIndex);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline const TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::last(::index i) const
+{
+
+   return element_at(this->get_upper_bound(i));
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::last(::index i)
+{
+
+   return element_at(this->get_upper_bound(i));
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline const TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::middle(::index i) const
+{
+
+   return element_at(this->get_middle_index(i));
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::middle(::index i)
+{
+
+   return element_at(this->get_middle_index(i));
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+void  array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::set_all(const TYPE & t)
+{
+
+   for (::index i = 0; i < get_count(); i++)
+   {
+
+      m_pData[i] = t;
+
+   }
+
+}
+
+
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//template < typename VAR >
+//inline array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::operator = (const payload_type < VAR > & a)
+//{
+//
+//   ::count c = a.this_var()->array_get_count();
+//
+//   for(::index i = 0; i < c; i++)
+//   {
+//
+//      add((ARG_TYPE)(payload_cast)a.this_var()->at(i));
+//
+//   }
+//
+//   return *this;
+//
+//}
+
+
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(array_base && array) noexcept
+{
+
+   this->m_nGrowBy = array.m_nGrowBy;
+   this->m_pData = array.m_pData;
+   this->m_nSize = array.m_nSize;
+   this->m_nMaxSize = array.m_nMaxSize;
+
+   array.m_pData = nullptr;
+   array.m_nSize = 0;
+   array.m_nMaxSize = 0;
+
+}
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(const array_base & array)
+{
+
+   m_nGrowBy = 0;
+   m_pData = nullptr;
+   m_nSize = 0;
+   m_nMaxSize = 0;
+
+   set_size(array.get_size());
+
+   for (::index i = 0; i < array.get_size(); i++)
+   {
+
+      element_at(i) = array[i];
+
+   }
+
+}
+
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pop(::index n)
+{
+
+   ::index i = this->get_upper_bound(n);
+
+   TYPE t = element_at(i);
+
+   this->erase_at(i);
+
+   return t;
+
+}
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pop_first(::index i)
+{
+
+   auto t = ::move(this->first(i));
+
+   this->erase_at(i);
+
+   return t;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pop_back(::index n)
+{
+
+   erase_at(this->get_upper_bound(n));
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::push(ARG_TYPE newElement, ::index n)
+{
+
+   return insert_at(this->get_upper_bound(n), newElement);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::push_back(ARG_TYPE newElement, ::index n)
+{
+
+   insert_at(this->get_upper_bound(n), newElement);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::takeAt(::index i)
+{
+
+   TYPE t = element_at(i);
+
+   this->erase_at(i);
+
+   return t;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::takeFirst(::index i)
+{
+
+   TYPE t = element_at(i);
+
+   this->erase_at(i);
+
+   return t;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::takeLast(::index n)
+{
+
+   ::index i = this->get_upper_bound(n);
+
+   TYPE t = element_at(i);
+
+   this->erase_at(i);
+
+   return t;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(TYPE * p, ::count c)
+{
+
+   m_nGrowBy = 0;
+   m_pData = nullptr;
+   m_nSize = 0;
+   m_nMaxSize = 0;
+
+   set_size(c);
+
+   for (::index i = 0; i < c; i++)
+   {
+
+      element_at(i) = p[i];
+
+   }
+
+}
+
+
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::erase(const TYPE * begin, const TYPE * last)
+{
+
+   auto iStart = index_of(begin);
+
+   auto iEnd = index_of(last);
+
+   // iEnd exclusive
+   return erase_at(iStart, iEnd - iStart);
+
+}
+
+
+namespace acme
+{
+
+
+   namespace array
+   {
+
+
+      template < typename ARRAY1, typename ARRAY2 >
+      inline bool is_equal(const ARRAY1 & a1, const ARRAY2 & a2)
+      {
+
+         if (a1.get_count() != a2.get_count())
+         {
+
+            return false;
+
+         }
+
+         for (int i = 0; i < a1.get_count(); i++)
+         {
+
+            if (a1[i] != a2[i])
+            {
+
+               return false;
+
+            }
+
+         }
+
+         return true;
+
+      }
+
+
+      template < typename ARRAY_TYPE, typename PRED >
+      void predicate_sort(ARRAY_TYPE  & a, PRED pred)
+      {
+
+         tiny_index_array stackLowerBound;
+
+         tiny_index_array stackUpperBound;
+
+         iptr iLowerBound;
+
+         iptr iUpperBound;
+
+         iptr iLPos, iUPos, iMPos;
+
+         if (a.get_size() >= 2)
+         {
+
+            stackLowerBound.push(0);
+
+            stackUpperBound.push(a.get_size() - 1);
+
+            while (true)
+            {
+
+               iLowerBound = stackLowerBound.pop();
+
+               iUpperBound = stackUpperBound.pop();
+
+               iLPos = iLowerBound;
+
+               iMPos = iLowerBound;
+
+               iUPos = iUpperBound;
+
+               while (true)
+               {
+
+                  while (true)
+                  {
+
+                     if (iMPos >= iUPos)
+                     {
+
+                        goto break_mid_loop;
+
+                     }
+
+                     if (!pred(a[iUPos], a[iMPos]))
+                     {
+
+                        iUPos--;
+
+                     }
+                     else
+                     {
+
+                        a.__swap(iMPos, iUPos);
+
+                        break;
+
+                     }
+
+                  }
+
+                  iMPos = iUPos;
+
+                  while (true)
+                  {
+
+                     if (iLPos >= iMPos)
+                     {
+
+                        goto break_mid_loop;
+
+                     }
+
+                     if (!pred(a[iMPos], a[iLPos]))
+                     {
+
+                        iLPos++;
+
+                     }
+                     else
+                     {
+
+                        a.__swap(iLPos, iMPos);
+
+                        break;
+
+                     }
+
+
+                  }
+
+                  iMPos = iLPos;
+
+               }
+
+               break_mid_loop:
+
+               if (iLowerBound < iMPos - 1)
+               {
+
+                  stackLowerBound.push(iLowerBound);
+
+                  stackUpperBound.push(iMPos - 1);
+
+               }
+
+               if (iMPos + 1 < iUpperBound)
+               {
+
+                  stackLowerBound.push(iMPos + 1);
+
+                  stackUpperBound.push(iUpperBound);
+
+               }
+
+               if (stackLowerBound.count() == 0)
+               {
+
+                  break;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      template < typename ARRAY_TYPE, typename T, typename PRED >
+      iptr predicate_binary_search(const ARRAY_TYPE & a, const T & t, PRED pred)
+      {
+
+         iptr iLPos, iUPos, iMPos;
+
+         iLPos = 0;
+
+         iUPos = a.get_upper_bound();
+
+         while(iLPos <= iUPos)
+         {
+
+            iMPos = (iLPos + iUPos) / 2;
+
+            if (pred(a[iMPos], t))
+            {
+
+               if (pred(t, a[iMPos]))
+               {
+
+                  return iMPos;
+
+               }
+               else
+               {
+
+                  iLPos = iMPos + 1;
+
+               }
+
+            }
+            else
+            {
+
+               if (!pred(t, a[iMPos]))
+               {
+
+                  return iMPos;
+
+               }
+               else
+               {
+
+                  iUPos = iMPos - 1;
+
+               }
+
+            }
+
+         }
+
+         return -1;
+
+      }
+
+
+
+   } // namespace array
+
+
+} // namespace acme
+
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+template < typename PRED >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::predicate_sort(PRED pred)
+{
+
+   ::acme::array::predicate_sort(*this, pred);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+template < typename T, typename PRED >
+index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::predicate_binary_search(const T & t, PRED pred) const
+{
+
+   return ::acme::array::predicate_binary_search(*this, t, pred);
+
+}
 
 

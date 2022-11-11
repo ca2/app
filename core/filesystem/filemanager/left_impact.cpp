@@ -32,15 +32,15 @@ namespace filemanager
 
 
 
-   void left_impact::assert_ok() const
-   {
-      ::user::split_impact::assert_ok();
-   }
-
-   void left_impact::dump(dump_context & dumpcontext) const
-   {
-      ::user::split_impact::dump(dumpcontext);
-   }
+//   void left_impact::assert_ok() const
+//   {
+//      ::user::split_impact::assert_ok();
+//   }
+//
+//   void left_impact::dump(dump_context & dumpcontext) const
+//   {
+//      ::user::split_impact::dump(dumpcontext);
+//   }
 
 
 

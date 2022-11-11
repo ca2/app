@@ -24,9 +24,9 @@ namespace ios
 {
    
    
-   ip_enum::ip_enum(::object * pobject) :
-   ::object(pobject),
-   ::net::ip_enum(pobject)
+   ip_enum::ip_enum(::particle * pparticle) :
+   ::object(pparticle),
+   ::net::ip_enum(pparticle)
    {
       
    }

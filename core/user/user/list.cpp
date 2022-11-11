@@ -1,4 +1,14 @@
 ﻿#include "framework.h"
+#include "list.h"
+#include "list_column.h"
+#include "list_column_array.h"
+#include "list_header.h"
+#include "list_item.h"
+#include "list_data.h"
+#include "mesh_cache_interface.h"
+#include "acme/handler/item.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/database/selection.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics_extension.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -8,13 +18,6 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/scroll_data.h"
-#include "list.h"
-#include "list_column.h"
-#include "list_column_array.h"
-#include "list_header.h"
-#include "list_item.h"
-#include "list_data.h"
-#include "mesh_cache_interface.h"
 #include "core/user/simple/list_data.h"
 #include "core/platform/session.h"
 #include "axis/platform/system.h"
@@ -93,6 +96,30 @@ namespace user
    }
 
 
+   ::core::application* list::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+   }
+
+
+   ::core::session*list:: get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
+
+
+   ::core::system* list::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+
+   }
+
+
    void list::install_message_routing(::channel * pchannel)
    {
 
@@ -114,8 +141,8 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
       //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list::_001OnTimer);
-      add_command_handler("list_impact_auto_arrange", this, &list::_001OnListImpactAutoArrange);
-      add_command_prober("list_impact_auto_arrange", this, &list::_001OnUpdateListImpactAutoArrange);
+      add_command_handler("list_impact_auto_arrange", { this,  &list::_001OnListImpactAutoArrange });
+      add_command_prober("list_impact_auto_arrange", { this,  &list::_001OnUpdateListImpactAutoArrange });
 
    }
 
@@ -959,7 +986,7 @@ namespace user
    void list::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       //m_dItemHeight = m_sizeMaximumItem.cy + 1;
 
@@ -1097,7 +1124,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_nItemCount = nCount;
 
@@ -1549,7 +1576,7 @@ namespace user
 
       }
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -3262,7 +3289,7 @@ namespace user
    void list::LayoutHeaderCtrl()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_plistheader == nullptr)
       {
@@ -3303,7 +3330,7 @@ namespace user
       if (pkey->previous()) // give chance to child
          return;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_up ||
             pkey->m_ekey == ::user::e_key_next || pkey->m_ekey == ::user::e_key_prior)
@@ -3416,7 +3443,7 @@ namespace user
 
       screen_to_client()(point);
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bDrag)
       {
@@ -3611,7 +3638,7 @@ namespace user
 
       screen_to_client()(point);
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto psession = get_session();
 
@@ -3971,7 +3998,7 @@ namespace user
 
       KillTimer(224455);
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
 
       if (m_bDrag)
@@ -4047,7 +4074,7 @@ namespace user
 
                         auto pcontext = get_context();
 
-                        pcontext->m_papexcontext->file().put_text(strSort, stra.implode("\n"));
+                        pcontext->m_papexcontext->file()->put_text(strSort, stra.implode("\n"));
 
                         synchronouslock.unlock();
 
@@ -4168,7 +4195,7 @@ namespace user
 
       screen_to_client()(point);
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!has_keyboard_focus())
       {
@@ -5377,7 +5404,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_pcolumna->erase_all();
 
@@ -5575,7 +5602,7 @@ namespace user
 
       m_strTopText = pcwsz;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -5636,7 +5663,7 @@ namespace user
    void list::cache_hint()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pmeshcache.is_set())
       {
@@ -6410,7 +6437,7 @@ namespace user
 
       //m_pregexFilter1->setPositionMoves(1);
 
-      auto psystem = m_psystem->m_paxissystem;
+      auto psystem = acmesystem()->m_paxissystem;
 
       m_pregexFilter1 = psystem->compile_pcre("/.*" + stra.implode(".*") + ".*/i");
 
@@ -6446,7 +6473,7 @@ namespace user
    void list::_001OnListHeaderItemDblClk(index iHeaderItem)
    {
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -6644,7 +6671,7 @@ namespace user
    void list::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto point = get_context_offset();
 
@@ -7611,7 +7638,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       string strSort(m_pmeshdata ? m_pmeshdata->m_strMeshSort.c_str() : "");
 
@@ -7624,7 +7651,7 @@ namespace user
 
          auto pcontext = get_context();
 
-         string str = pcontext->m_papexcontext->file().safe_get_string(strSort);
+         string str = pcontext->m_papexcontext->file()->safe_get_string(strSort);
          string_array stra;
          stra.add_lines(str);
          for (index a = 0; a < stra.get_size(); a++)

@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "acme/constant/element.h"
+
+
 #include "aura/platform/draw_context2.h"
 
 
@@ -22,10 +25,10 @@
 #include "matrix.h"
 
 
-#include "acme/primitive/geometry2d/angle.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
-#include "acme/primitive/geometry2d/ellipse.h"
+//#include "acme/primitive/geometry2d/ellipse.h"
 
 
 using hdc = void *;
@@ -124,8 +127,8 @@ namespace draw2d
       ~graphics() override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
       
       
       void destroy() override;
@@ -1064,7 +1067,7 @@ namespace draw2d
 
 
       virtual void get(matrix & matrix);
-      using ::aura::simple_chain < ::aura::draw_context >::set;
+      //using ::aura::simple_chain < ::aura::draw_context >::set;
       virtual void set(const matrix & matrix);
       virtual void append(const matrix & matrix);
       virtual void prepend(const matrix & matrix);
@@ -1260,8 +1263,8 @@ namespace draw2d
 } // namespace draw2d
 
 
-CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::size_f64 & size);
-CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::point_f64 & point);
+//CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::size_f64 & size);
+//CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::point_f64 & point);
 
 
 

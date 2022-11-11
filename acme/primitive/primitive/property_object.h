@@ -7,8 +7,12 @@
 #pragma once
 
 
+#include "matter.h"
+#include "linked_property.h"
+#include "payload.h"
+
+
 class object;
-//class runnable_array;
 
 
 class CLASS_DECL_ACME property_object :
@@ -21,26 +25,13 @@ public:
 
 
    property_object() { }
-   property_object(const property_object & propertyobject);
    ~property_object() override;
-
-
 
 
    void destroy() override;
 
 
    virtual void notify_on_destroy(::property_object * pcontextobjectFinish) override;
-
-
-   //void destroy() override;
-
-
-   //virtual void on_finish() override;
-   
-
-   template < typename TYPE >
-   inline void __construct_new(::pointer<TYPE> pusermessage);
 
 
    virtual void keep_alive();
@@ -76,8 +67,6 @@ public:
 
 
 
-   inline bool is_status_ok() const { return m_estatus; }
-   inline bool has_failed_status() const { return !is_status_ok(); }
 
 
 
@@ -96,15 +85,15 @@ public:
 
 
 
-   inline bool has_property(const atom & atom) const;
-   inline property * lookup_property(const atom & atom) const;
-   inline bool erase_key(const atom & atom);
+   bool has_property(const atom & atom) const;
+   property * lookup_property(const atom & atom) const;
+   bool erase_key(const atom & atom);
 
-   inline property_set & get_property_set();
-   inline const property_set & get_property_set() const;
-   inline bool contains(const ::property_set & set) const;
+   property_set & get_property_set();
+   const property_set & get_property_set() const;
+   bool contains(const ::property_set & set) const;
 
-   using matter::set;
+   using matter::set_flag;
 
 //   template < typename TYPE >
 //   inline void set(const ::atom & atom, const TYPE & t);
@@ -112,42 +101,42 @@ public:
 //   template < typename TYPE >
 //   inline void get(const ::atom & atom, TYPE & t);
 
-   inline ::payload & topic(const ::atom & atom);
+   ::payload & topic(const ::atom & atom);
 
-   inline property * find_property(const ::atom & atom) const;
+   property * find_property(const ::atom & atom) const;
 
    //::extended::status run_property(const ::atom& atom);
 
    void run_property(const ::atom& atom);
 
-   inline ::payload attribute(const ::atom & atom);
+   ::payload attribute(const ::atom & atom);
    ::property * find_attribute(const ::atom & atom);
 
    template < typename TYPE >
    inline bool find_attribute(const ::atom & atom, TYPE & t);
 
-   inline ::payload & get_object(const ::atom & atom);
+   ::payload & get_object(const ::atom & atom);
 
-   inline ::payload operator()(const ::atom & atom) const;
-   inline ::payload operator()(const ::atom & atom, const ::payload & varDefault) const;
+   ::payload operator()(const ::atom & atom) const;
+   ::payload operator()(const ::atom & atom, const ::payload & varDefault) const;
 
-   inline ::payload & operator[](const ::atom & atom);
+   ::payload & operator[](const ::atom & atom);
 
-   inline ::payload operator[](const ::atom & atom) const;
+   ::payload operator[](const ::atom & atom) const;
 
-   inline ::payload & payload(const ::atom & atom);
+   ::payload & payload(const ::atom & atom);
 
-   inline ::payload payload(const ::atom & atom) const;
-   inline ::payload payload(const ::atom & atom, const ::payload & varDefault) const;
+   ::payload payload(const ::atom & atom) const;
+   ::payload payload(const ::atom & atom, const ::payload & varDefault) const;
 
-   inline ::payload find_payload(const ::atom & atom) const;
-   inline ::payload find_payload(const ::atom & atom, const ::payload & varDefault) const;
+   ::payload find_payload(const ::atom & atom) const;
+   ::payload find_payload(const ::atom & atom, const ::payload & varDefault) const;
 
-   inline string find_string(const ::atom & atom, const ansichar * pszDefault = nullptr) const;
+   string find_string(const ::atom & atom, const ansichar * pszDefault = nullptr) const;
 
-   inline ::i32 find_i32(const ::atom & atom, ::i32 iDefault = 0) const;
+   ::i32 find_i32(const ::atom & atom, ::i32 iDefault = 0) const;
 
-   inline ::u32 find_u32(const ::atom & atom, ::u32 iDefault = 0) const;
+   ::u32 find_u32(const ::atom & atom, ::u32 iDefault = 0) const;
 
    template < typename TYPE > inline TYPE & get_cast(const ::atom & atom, TYPE * pDefault = nullptr);
 
@@ -155,10 +144,10 @@ public:
 
    template < typename TYPE > inline ::pointer<TYPE>cast(const ::atom & atom) const;
 
-   inline void defer_propset();
+   void defer_propset();
 
-   inline bool is_true(const ::atom & atom, bool bDefault = false) const;
-   inline bool is_false(const ::atom & atom) const;
+   bool is_true(const ::atom & atom, bool bDefault = false) const;
+   bool is_false(const ::atom & atom) const;
    //inline bool is_true(const ::atom & atom, const ::payload & varDefault, bool bDefault) const;
 
    virtual string get_text(const ::payload & payload, const ::atom & atom);
@@ -202,4 +191,23 @@ using reference_pointer = ::pointer<::property_object>;
 //   return dynamic_cast <TYPE *> (p); 
 //
 //}
+
+
+
+template < typename TYPE > inline ::pointer<TYPE>property_object::cast(const ::atom & atom) const
+{
+
+   auto pproperty = find_property(atom);
+
+   if (!pproperty)
+   {
+
+      return nullptr;
+
+   }
+
+   return pproperty->cast < TYPE >();
+
+}
+
 

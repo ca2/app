@@ -1,18 +1,31 @@
 ﻿#include "framework.h"
-#include "acme/constant/id.h"
+#include "library.h"
 #include "node.h"
+#include "acme.h"
+#include "system_setup.h"
+#include "system.h"
+#include "sequencer.h"
+#include "application.h"
+#include "acme/compress/compress.h"
+#include "acme/compress/uncompress.h"
+#include "acme/constant/id.h"
+#include "acme/constant/idpool.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/platform/acme.h"
-#include "acme/platform/system_setup.h"
 #include "acme/filesystem/file/transfer.h"
-#include "acme/compress/_.h"
-#include "library.h"
-#include "acme/user/nano/_nano.h"
+#include "acme/exception/interface_only.h"
+#include "acme/exception/translator.h"
+#include "acme/operating_system/process.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/regular_expression/context.h"
+#include "acme/primitive/datetime/department.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/string/hex.h"
+#include "acme/user/user/conversation.h"
 
 
-CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
+CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
 CLASS_DECL_ACME void trace_category_static_init(::acme::system * psystem);
 CLASS_DECL_ACME void trace_category_static_term();
 
@@ -36,7 +49,9 @@ namespace acme
    system::system()
    {
 
-      m_psubsystem = ::subsystem::get();
+      m_psubsystem = ::acme::acme::g_p->m_psubsystem;
+
+      m_psubsystem->m_pcontext = this;
 
 #ifdef PARALLELIZATION_PTHREAD
 #if defined(__APPLE__)
@@ -44,13 +59,18 @@ namespace acme
 #endif
 #endif
 
-      m_psystem = this;
+      m_pcontext = this;
+
+      m_pacmesystem = this;
 
       m_ewindowing = e_windowing_none;
 
       m_etracelevel = e_trace_level_information;
 
       trace_category_static_init(this);
+
+
+      __defer_construct_new(m_pmemorycounter);
 
       //____creatable_from_base(simple_log, logger);
 
@@ -63,19 +83,13 @@ namespace acme
       //m_pcleanuptask = __new(::parallelization::cleanup_task);
 
       //m_pcleanuptask->begin();
-      ::factory::add_factory_item<::acme::idpool>();
+      //::factory::add_factory_item<::acme::idpool>();
 
       //m_pacme = nullptr;
       //m_pacmedirectory = nullptr;
       //m_pacmepath = nullptr;
 
-      m_pacmesystem = this;
-
-
-      ::object::m_pcontext = this;
-
       ::factory::get_factory()->initialize(this);
-
 
       //#ifdef LINUX
       //
@@ -87,7 +101,7 @@ namespace acme
 
       os_construct();
 
-      m_psystem = this;
+      //acmesystem() = this;
 
       if (g_psystem == nullptr)
       {
@@ -271,7 +285,7 @@ namespace acme
    void system::process_init()
    {
       
-      ::acme::idpool::init(this);
+      //::acme::idpool::init(this);
 
       __construct_new(m_pdatetime);
 
@@ -430,26 +444,26 @@ namespace acme
 
       m_pfactoryFolder.release();
 
-      ::acme::idpool::term();
+      //::acme::idpool::term();
 
       m_pnode->node_quit();
 
       m_pnode.release();
 
-      try
-      {
+      //try
+      //{
 
-         ::acme::acme::g_p->factory_close();
+      //   ::acme::acme::g_p->factory_close();
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
-      m_mapFactory.clear();
+      //m_mapFactory.clear();
 
-      m_mapComponentFactory.clear();
+      //m_mapComponentFactory.clear();
 
       destroy();
 
@@ -563,7 +577,7 @@ namespace acme
    ::task * system::get_task(itask_t itask)
    {
 
-      synchronous_lock synchronouslock(&m_mutexTask);
+      synchronous_lock synchronouslock(m_pmutexTask);
 
       return m_taskmap[itask];
 
@@ -573,7 +587,7 @@ namespace acme
    itask_t system::get_task_id(const ::task * ptask)
    {
 
-      synchronous_lock synchronouslock(&m_mutexTask);
+      synchronous_lock synchronouslock(m_pmutexTask);
 
       itask_t itask = null_itask;
 
@@ -592,7 +606,7 @@ namespace acme
    void system::set_task(itask_t itask, ::task * ptask)
    {
 
-      synchronous_lock synchronouslock(&m_mutexTask);
+      synchronous_lock synchronouslock(m_pmutexTask);
 
       m_taskmap[itask].reset(ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
@@ -604,7 +618,7 @@ namespace acme
    void system::unset_task(itask_t itask, ::task * ptask)
    {
 
-      synchronous_lock synchronouslock(&m_mutexTask);
+      synchronous_lock synchronouslock(m_pmutexTask);
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
 
@@ -702,7 +716,7 @@ namespace acme
    bool system::is_task_on(itask_t atom)
    {
 
-      synchronous_lock synchronouslock(&m_mutexTaskOn);
+      synchronous_lock synchronouslock(m_pmutexTaskOn);
 
       return m_mapTaskOn.plookup(atom) != nullptr;
 
@@ -727,7 +741,7 @@ namespace acme
    void system::set_task_on(itask_t atom)
    {
 
-      synchronous_lock synchronouslock(&m_mutexTaskOn);
+      synchronous_lock synchronouslock(m_pmutexTaskOn);
 
       m_mapTaskOn.set_at(atom, atom);
 
@@ -737,7 +751,7 @@ namespace acme
    void system::set_task_off(itask_t atom)
    {
 
-      synchronous_lock synchronouslock(&m_mutexTaskOn);
+      synchronous_lock synchronouslock(m_pmutexTaskOn);
 
       m_mapTaskOn.erase_key(atom);
 
@@ -924,7 +938,7 @@ namespace acme
 
 #else
 
-      auto plibrary = __new(::acme::library);
+      auto plibrary = __create_new < ::acme::library >();
 
       //plibrary->initialize_matter(this);
 
@@ -971,11 +985,11 @@ namespace acme
 
       }
 
-      synchronous_lock synchronouslock(&m_psubsystem->m_mutexLibrary4);
+      critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
 
       string strLibrary = library_filter(str);
 
-      auto & plibrary = m_psubsystem->m_mapLibrary4[strLibrary];
+      auto & plibrary = m_psubsystem->m_mapLibrary[strLibrary];
 
       if (plibrary)
       {
@@ -1019,9 +1033,9 @@ namespace acme
    ::pointer<::factory::factory>& system::factory(const ::string & strComponent, const ::string & strImplementation)
    {
       
-      synchronous_lock synchronouslock(&m_mutexComponentFactory);
+      critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
       
-      auto & pfactory = m_mapComponentFactory[strComponent][implementation_name(strComponent, strImplementation)];
+      auto & pfactory = (*m_psubsystem->m_pmapComponentFactory)[strComponent][implementation_name(strComponent, strImplementation)];
       
       if (pfactory)
       {
@@ -1046,7 +1060,7 @@ namespace acme
          if (pfnFactory)
          {
             
-            pfactory = m_psystem->__create_new < ::factory::factory >();
+            pfactory = acmesystem()->__create_new < ::factory::factory >();
             
             pfnFactory(pfactory);
             
@@ -1071,9 +1085,9 @@ namespace acme
    ::pointer<::factory::factory>& system::impact_factory(const ::string & strComponent, const ::string & strImplementation)
    {
       
-      synchronous_lock synchronouslock(&m_mutexComponentFactory);
+      critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
       
-      auto & pfactory = m_mapComponentFactory[strComponent][implementation_name(strComponent, strImplementation)];
+      auto & pfactory = (*m_psubsystem->m_pmapComponentFactory)[strComponent][implementation_name(strComponent, strImplementation)];
       
       try
       {
@@ -1105,13 +1119,13 @@ namespace acme
    ::pointer<::factory::factory>& system::factory(const ::string & strLibraryRequest)
    {
 
-      synchronous_lock synchronouslock(&m_mutexFactory);
+      critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
 
       string strLibrary;
 
       strLibrary = library_filter(strLibraryRequest);
 
-      auto & pfactory = m_mapFactory[strLibrary];
+      auto & pfactory = (*m_psubsystem->m_pmapFactory)[strLibrary];
 
       if (pfactory)
       {
@@ -1139,7 +1153,7 @@ namespace acme
 
          }
 
-         plibrary = m_psystem->__create_new < ::acme::library >();
+         plibrary = acmesystem()->__create_new < ::acme::library >();
 
          plibrary->m_strName = strLibrary;
 
@@ -1179,7 +1193,7 @@ namespace acme
 
    //   auto psystem = get_system();
 
-   //   synchronous_lock synchronouslock(&psystem->m_mutexLibrary2);
+   //   synchronous_lock synchronouslock(&psystem->m_pmutexLibrary2);
 
    //   auto & plibrary = psystem->m_mapLibrarySquare[strComponent][strImplementation];
 
@@ -1223,13 +1237,13 @@ namespace acme
 
    //   }
 
-   //   ::str().begins_eat_ci(strImplementation, strComponent + "_");
+   //   strImplementation.begins_eat_ci(strComponent + "_");
 
-   //   ::str().begins_eat_ci(strImplementation, strComponent);
+   //   strImplementation.begins_eat_ci(strComponent);
 
    //   auto psystem = get_system();
 
-   //   synchronous_lock synchronouslock(&psystem->m_mutexContainerizedLibrary);
+   //   synchronous_lock synchronouslock(&psystem->m_pmutexContainerizedLibrary);
 
    //   ::pointer<::acme::library>plibrary = psystem->m_mapContainerizedLibrary[strComponent][strImplementation];
 
@@ -1312,9 +1326,9 @@ namespace acme
    //
    //      string strImplementation(pszImplementation);
    //
-   //      ::str().begins_eat_ci(strImplementation, strComponent + "_");
+   //      strImplementation.begins_eat_ci(strComponent + "_");
    //
-   //      ::str().begins_eat_ci(strImplementation, strComponent);
+   //      strImplementation.begins_eat_ci(strComponent);
    //
    //   //#ifdef CUBE
    //
@@ -1329,7 +1343,7 @@ namespace acme
    //
    //#ifdef CUBE
    //
-   //      synchronous_lock synchronouslock(&m_mutexContainerizedLibrary);
+   //      synchronous_lock synchronouslock(m_pmutexContainerizedLibrary);
    //
    //      auto & plibrary = m_mapContainerizedLibrary[strComponent][strImplementation];
    //
@@ -1465,7 +1479,7 @@ namespace acme
 
          }
 
-         pfactory->__construct(pcontext);
+         pfactory->__construct(this, pcontext);
 
       }
 
@@ -1505,7 +1519,7 @@ namespace acme
 
       //         ::file::path pathPublicDomainExtensionList = "https://server.ca2.software/public_internet_domain_extension_list.txt";
 
-      //    m_pcontext->m_papexcontext->file().load_lines(stra, pathPublicDomainExtensionList);
+      //    file()->load_lines(stra, pathPublicDomainExtensionList);
 
       auto psz = g_pszTopLevelDomainList;
 
@@ -1562,13 +1576,13 @@ namespace acme
    }
 
 
-   void system::process_exit_status(::object * pobject, const ::e_status & estatus)
+   void system::process_exit_status(::particle * pparticle, const ::e_status & estatus)
    {
 
       if (estatus == error_exit_system)
       {
 
-         pobject->m_psystem->destroy();
+         pparticle->acmesystem()->set_finish();
 
       }
 
@@ -1717,11 +1731,11 @@ namespace acme
 
          string strDate;
 
-         strDate = m_psystem->datetime()->international().get_date_time_for_file_with_no_spaces();
+         strDate = datetime()->international().get_date_time_for_file_with_no_spaces();
 
          string strPid;
 
-         strPid = __string(get_current_process_id());
+         strPid = __string(acmenode()->get_current_process_id());
 
          strModifier = strDate + "_" + strPid;
 
@@ -1729,11 +1743,11 @@ namespace acme
 
 #ifdef ANDROID
 
-         pathFolder = m_psystem->m_pathCacheDirectory;
+         pathFolder = acmesystem()->m_pathCacheDirectory;
 
 #else
 
-         pathFolder = m_psystem->m_pacmedirectory->roaming();
+         pathFolder = acmedirectory()->roaming();
 
 #endif
 
@@ -1743,15 +1757,15 @@ namespace acme
 
          ::file::path path = pathFolder / (strModifier + "_command_line.txt");
 
-         m_psystem->m_pacmefile->put_contents(path, m_strCommandLine);
+         acmefile()->put_contents(path, m_strCommandLine);
 
-         ::file::path pathExecutable = m_psystem->m_pacmefile->module();
+         ::file::path pathExecutable = acmefile()->module();
 
-         string strAppTitle = executable_title_from_appid(strAppId);
+         string strAppTitle = acmenode()->executable_title_from_appid(strAppId);
 
          path = pathFolder / (strModifier + "_executable.txt");
 
-         m_psystem->m_pacmefile->put_contents(path, pathExecutable);
+         acmefile()->put_contents(path, pathExecutable);
 
       }
 
@@ -1826,10 +1840,10 @@ namespace acme
       if (etracelevel > e_trace_level_information)
       {
 
-         for (int i = 0; i < papplication->get_argument_count1(); i++)
+         for (int i = 0; i < m_psubsystem->get_argument_count1(); i++)
          {
 
-            string strArg = papplication->get_argument1(i);
+            string strArg = m_psubsystem->get_argument1(i);
 
             if (strArg == "verbose")
             {
@@ -1860,7 +1874,7 @@ namespace acme
       if (m_pacmeapplicationStartup)
       {
 
-         m_pacmeapplicationStartup->m_psystem = this;
+         m_pacmeapplicationStartup->m_pacmesystem = this;
 
       }
 
@@ -2132,7 +2146,7 @@ namespace acme
       if (psetup)
       {
 
-         auto pelementApp = psetup->create_application_as_element();
+         auto pelementApp = psetup->create_application_as_particle();
 
          papp = pelementApp;
 
@@ -2245,7 +2259,7 @@ namespace acme
                //         if(papp)
                //         {
                //
-               //            estatus = papp->initialize(pobject);
+               //            estatus = papp->initialize(pparticle);
                //
                //         }
 
@@ -2270,17 +2284,17 @@ namespace acme
 
       }
 
-#ifdef WINDOWS_DESKTOP
-
-      WCHAR wsz[1024];
-
-      DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
-
-      GetUserNameW(wsz, &dwSize);
-
-      string strUserName = wsz;
-
-#endif // WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//      WCHAR wsz[1024];
+//
+//      DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+//
+//      GetUserNameW(wsz, &dwSize);
+//
+//      string strUserName = wsz;
+//
+//#endif // WINDOWS_DESKTOP
 
       //   if (is_verbose())
       //   {
@@ -2451,7 +2465,7 @@ CLASS_DECL_ACME string get_latest_deployment_number(const ::string & strBranch)
 
 
 
-string __get_text(const string & str)
+CLASS_DECL_ACME string __get_text(const string & str)
 {
 
    return ::g_psystem->__get_text(str);
@@ -2589,7 +2603,7 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 
    }
 
-   auto pelement = pstaticsetup->create_element();
+   auto pelement = pstaticsetup->create_particle();
 
    if (!pelement)
    {
@@ -2612,5 +2626,14 @@ void system_on_open_file(void * pSystem, const char * pszFile)
    return ::move(psystem);
 
 }
+
+
+CLASS_DECL_ACME task_pointer fork(::particle * pparticle, const ::procedure & procedure)
+{
+
+   return pparticle->acmesystem()->fork(procedure);
+
+}
+
 
 

@@ -23,20 +23,20 @@ namespace userex
    }
 
 
-   void top_impact::assert_ok() const
-   {
-
-      ::user::split_impact::assert_ok();
-
-   }
-
-
-   void top_impact::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::split_impact::dump(dumpcontext);
-
-   }
+//   void top_impact::assert_ok() const
+//   {
+//
+//      ::user::split_impact::assert_ok();
+//
+//   }
+//
+//
+//   void top_impact::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::split_impact::dump(dumpcontext);
+//
+//   }
 
 
    void top_impact::handle(::topic * ptopic, ::context * pcontext)

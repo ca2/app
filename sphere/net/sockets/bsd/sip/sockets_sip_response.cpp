@@ -6,9 +6,9 @@ namespace sip
 {
 
 
-   response::response(::object * pobject, const string & version) :
-   ::object(pobject),
-   transaction(pobject),
+   response::response(::particle * pparticle, const string & version) :
+   ::object(pparticle),
+   transaction(pparticle),
    m_memfileBody(papp )
    {
 
@@ -53,7 +53,7 @@ namespace sip
    void response::clear()
    {
       transaction::clear();
-      file().Truncate(0);
+      file()->Truncate(0);
    //   m_file = ::pointer<IFile>e>(memory_new MemFile);
    }
 

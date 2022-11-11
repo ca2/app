@@ -5,11 +5,11 @@ namespace browser
 {
 
 
-   document::document(::object * pobject) :
-      object(pobject),
-      ::data::data_container_base(pobject),
-      ::user::document(pobject),
-      ::user::document(pobject)
+   document::document(::particle * pparticle) :
+      object(pparticle),
+      ::data::data_container_base(pparticle),
+      ::user::document(pparticle),
+      ::user::document(pparticle)
    {
 
    }
@@ -87,7 +87,7 @@ namespace browser
 
          {
 
-            synchronous_lock slText(&pimpact->m_mutexText);
+            synchronous_lock slText(&pimpact->m_pmutexText);
 
             pimpact->m_strHelloBrowser = "image:" + pimpact->m_strImage + "," + pimpact->m_strHelloBrowser;
 
@@ -95,8 +95,8 @@ namespace browser
 
       }
       else if(get_typed_impact < ::user::plain_edit_impact >() != nullptr
-              && pcontext->m_papexcontext->file().exists(payloadFile)
-              && (str = pcontext->m_papexcontext->file().as_string(payloadFile)).has_char())
+              && pcontext->m_papexcontext->file()->exists(payloadFile)
+              && (str = pcontext->m_papexcontext->file()->as_string(payloadFile)).has_char())
       {
 
          get_typed_impact < ::user::plain_edit_impact >()->_001SetText(str.Left(84),::e_source_user);

@@ -1,6 +1,11 @@
 ﻿#include "framework.h"
 #include "impact.h"
+#include "acme/handler/item.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "apex/database/_binary_stream.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "acme/platform/sequencer.h"
 #include "aqua/xml/document.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -41,20 +46,20 @@ namespace user
    }
 
 
-   void menu_impact::assert_ok() const
-   {
-
-      ::user::impact::assert_ok();
-
-   }
-
-
-   void menu_impact::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::impact::dump(dumpcontext);
-
-   }
+//   void menu_impact::assert_ok() const
+//   {
+//
+//      ::user::impact::assert_ok();
+//
+//   }
+//
+//
+//   void menu_impact::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::impact::dump(dumpcontext);
+//
+//   }
 
 
    void menu_impact::install_message_routing(::channel * pchannel)
@@ -197,7 +202,7 @@ namespace user
 
       m_pfontTitle.create(this);
 
-      auto psystem = m_psystem->m_pbasesystem;
+      auto psystem = acmesystem()->m_pbasesystem;
 
       auto pnode = psystem->node();
 
@@ -677,7 +682,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      string strXml = pcontext->m_papexcontext->file().as_string(payloadFile);
+      string strXml = pcontext->m_papexcontext->file()->as_string(payloadFile);
 
       try
       {

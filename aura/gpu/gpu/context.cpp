@@ -3,6 +3,8 @@
 #include "buffer.h"
 //#include "_.h"
 //#include "_gpu.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/platform/system.h"
 ////#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/image.h"
@@ -28,11 +30,11 @@ namespace gpu
    }
 
 
-   void context::initialize(::object * pobject)
+   void context::initialize(::particle * pparticle)
    {
 
       //::e_status estatus = 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -167,7 +169,7 @@ namespace gpu
    void context::create_window_buffer(void * pHwnd)
    {
 
-      ::pointer<::aura::system>psystem = m_psystem;
+      ::pointer<::aura::system>psystem = acmesystem();
 
       auto pgpu = psystem->get_gpu();
 
@@ -214,7 +216,7 @@ namespace gpu
    void context::create_offscreen_buffer(const ::size_i32& size)
    {
 
-      ::pointer<::aura::system>psystem = m_psystem;
+      ::pointer<::aura::system>psystem = acmesystem();
 
       auto pgpu = psystem->get_gpu();
 
@@ -229,7 +231,7 @@ namespace gpu
 
       m_pbuffer->m_pimage = m_pcontext->m_pauracontext->create_image(size);
 
-      if (!::is_ok(m_pbuffer->m_pimage))
+      if (m_pbuffer->m_pimage->nok())
       {
 
          throw ::exception(error_resource);
@@ -270,7 +272,7 @@ namespace gpu
 
       }
 
-      synchronous_lock synchronouslock(m_pbuffer->mutex());
+      synchronous_lock synchronouslock(m_pbuffer->synchronization());
 
       m_pbuffer->m_pimage->create(size);
 
@@ -360,11 +362,7 @@ namespace gpu
 
       ::file::path path(pszPath);
 
-      auto pcontext = get_context();
-
-      auto & file = pcontext->m_papexcontext->file();
-
-      string strFragment = file.as_string(path);
+      string strFragment = file()->as_string(path);
 
       string strExtension = path.all_extensions();
 

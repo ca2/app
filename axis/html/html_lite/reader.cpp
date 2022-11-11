@@ -26,7 +26,7 @@
 */
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "axis/html/html_lite/_.h"
+//#include "axis/html/html_lite/_.h"
 #endif
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 #include <sys/mman.h>
@@ -36,6 +36,7 @@
 #include "attributes.h"
 #include "tag.h"
 #include "reader.h"
+#include "axis/html/html/html.h"
 
 
 void ILiteHTMLReaderEvents::BeginParse(uptr dwAppData, bool &bAbort)
@@ -351,7 +352,7 @@ bool lite_html_reader::getEventNotify(u32 dwEvent) const
 
 bool lite_html_reader::isWhiteSpace(char ch) const
 {
-   return ::isspace(static_cast < unsigned char > (ch)) ? true : false;
+   return ::character_isspace(ch) ? true : false;
 }
 
 
@@ -491,7 +492,7 @@ bool lite_html_reader::parseComment(string &rComment)
    // skip white-space characters after comment ending delimeter '--'
    pszEnd += (sizeof(char) * 2);
 
-   while (::isspace(*pszEnd))
+   while (::character_isspace(*pszEnd))
 
       pszEnd++;
 

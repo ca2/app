@@ -1,7 +1,8 @@
 #pragma once
 
 
-//#include "drawing.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/object.h"
 
 
 class CLASS_DECL_AURA image_list :
@@ -24,12 +25,12 @@ public:
    size_i32                         m_size;
    i32                              m_iSize;
    i32                              m_iGrow;
-   ::pointer<::image>            m_pimage;
+   ::pointer<::image>               m_pimage;
 
 
-   ::pointer<::image>            m_pimageWork;
-   ::pointer<::image>            m_pimageWork2;
-   ::pointer<::image>            m_pimageWork3;
+   ::pointer<::image>               m_pimageWork;
+   ::pointer<::image>               m_pimageWork2;
+   ::pointer<::image>               m_pimageWork3;
 
 
    image_list();
@@ -66,7 +67,7 @@ public:
    // inline i32 add(::windowing::icon * picon) { return set(iItem, picon, x, y); }
 
    //i32 add_file(::payload payloadFile, int iItem = -1);
-   ///i32 add_matter(const ::string & pcsz, ::object * pobject = nullptr, int iItem = -1);
+   ///i32 add_matter(const ::string & pcsz, ::particle * pparticle = nullptr, int iItem = -1);
 
    //i32 add_std_matter(const ::string & pcsz, int iItem = -1);
 

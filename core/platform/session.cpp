@@ -1,6 +1,7 @@
 #include "framework.h"
-#include "acme/platform/system_setup.h"
 #include "session.h"
+#include "acme/platform/system_setup.h"
+#include "apex/platform/application.h"
 
 
 namespace core
@@ -28,12 +29,12 @@ namespace core
    }
 
 
-   void session::initialize(::object * pobject)
+   void session::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::base::session::initialize(pobject);
+      ::base::session::initialize(pparticle);
 
       //if (!estatus)
       //{

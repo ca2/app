@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "apex/id.h"
-#include "apex/networking/sockets/_sockets.h"
+//#include "apex/networking/sockets/_sockets.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/primitive/string/base64.h"
@@ -57,7 +57,7 @@ namespace sockets
 
       http_socket::OnHeader(key, value);
 
-      if(key == __id(content_length))
+      if(key == "content_length")
       {
          m_iContentLength = atoi(value);
       }
@@ -74,7 +74,7 @@ namespace sockets
       
       strHost = m_request.header("host");
 
-      if (::str().ends_eat_ci(strHost, ".test.ca2.software"))
+      if (strHost.ends_eat_ci(".test.ca2.software"))
       {
 
          m_request.header("host") = strHost + ".ca2.software";
@@ -95,7 +95,7 @@ namespace sockets
 
       string strTest(strHost);
 
-      if (::str().ends_eat_ci(strTest, ".ca2.software"))
+      if (strTest.ends_eat_ci(".ca2.software"))
       {
 
          if (strTest.find('.') > 0)
@@ -114,10 +114,10 @@ namespace sockets
 
       }
 
-      if(m_request.headers().has_property(__id(user_agent)))
+      if(m_request.headers().has_property("user_agent"))
       {
 
-         INFORMATION("user-agent: " << m_request.header(__id(user_agent)).get_string());
+         INFORMATION("user-agent: " << m_request.header("user_agent").get_string());
 
       }
       else
@@ -127,17 +127,17 @@ namespace sockets
 
       }
 
-      if(m_request.headers().has_property(__id(from)))
+      if(m_request.headers().has_property("from"))
       {
 
-         INFORMATION("from: " + m_request.header(__id(from)).get_string());
+         INFORMATION("from: " + m_request.header("from").get_string());
 
       }
 
-      if(m_request.headers().has_property(__id(accept_language)))
+      if(m_request.headers().has_property("accept_language"))
       {
 
-         FORMATTED_INFORMATION("accept-language: %s", m_request.header(__id(accept_language)).string().c_str());
+         FORMATTED_INFORMATION("accept-language: %s", m_request.header("accept_language").string().c_str());
 
       }
 
@@ -172,7 +172,7 @@ namespace sockets
       //FORMATTED_TRACE("http version: %s\n", m_request.attr("http_version").string());
       //FORMATTED_TRACE("connection: %s\n", m_request.header("connection").string());
       //FORMATTED_TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
-      /*   if(::str().ends(m_request.attr("http_version").string(), "/1.1")
+      /*   if(string_ends(m_request.attr("http_version").string(), "/1.1")
             && m_request.header("connection").string().compare_ci("close") != 0)
          {
             m_b_keepalive = true;
@@ -197,8 +197,8 @@ namespace sockets
 
       //TRACE0("http_base_socket::Respond");
 
-      if(outheader(__id(content_type)).string().find("text") >= 0
-            || outheader(__id(content_type)).string().find("javascript") >= 0)
+      if(outheader("content_type").string().find("text") >= 0
+            || outheader("content_type").string().find("javascript") >= 0)
       {
 
          on_compress();
@@ -208,29 +208,29 @@ namespace sockets
       if (response().m_strFile.has_char())
       {
 
-         response().m_propertysetHeader[__id(content_length)] = m_psystem->m_pacmefile->get_size(response().m_strFile);
+         response().m_propertysetHeader["content_length"] = acmefile()->get_size(response().m_strFile);
 
       }
       else
       {
 
-         m_response.m_propertysetHeader.set_at(__id(content_length), (i64)m_response.file()->get_size());
+         m_response.m_propertysetHeader.set_at("content_length", (i64)m_response.file()->get_size());
 
       }
 
       //for(i32 i = 0; i < m_response.cookies().get_size(); i++)
       //{
 
-      //   m_response.m_propertysetHeader.set_at(__id(set_cookie), m_response.cookies().element_at(i)->get_cookie_string());
+      //   m_response.m_propertysetHeader.set_at("set_cookie", m_response.cookies().element_at(i)->get_cookie_string());
 
       //}
 
       /*
 
-            if(m_response.m_propertysetHeader.has_property(__id(locationd)))
+            if(m_response.m_propertysetHeader.has_property("locationd"))
             {
 
-               string strLocation = m_response.m_propertysetHeader.lowprop(__id(Location));
+               string strLocation = m_response.m_propertysetHeader.lowprop("Location");
 
                m_response.m_propertysetHeader.erase_by_name("Location");
 
@@ -326,19 +326,19 @@ namespace sockets
       if(inheader("accept-encoding").string().find("gzip") >= 0)
       {
 
-         string str = outheader(__id(content_type)).string();
+         string str = outheader("content_type").string();
 
          if (str.find_ci("text") >= 0 || str.find_ci("javascript") >= 0)
          {
 
-            m_response.m_propertysetHeader.set_at(__id(content_encoding), "gzip");
+            m_response.m_propertysetHeader.set_at("content_encoding", "gzip");
 
             auto pfile = create_memory_file();
 
             if (response().m_strFile.has_char())
             {
 
-               m_psystem->compress(pfile, m_pcontext->m_papexcontext->file().get_reader(response().m_strFile), "zlib");
+               acmesystem()->compress(pfile, file()->get_reader(response().m_strFile), "zlib");
 
                response().m_strFile.Empty();
 
@@ -348,7 +348,7 @@ namespace sockets
 
                response().file()->seek_to_begin();
 
-               m_psystem->compress(pfile, response().file(), "zlib");
+               acmesystem()->compress(pfile, response().file(), "zlib");
 
             }
 
@@ -366,7 +366,7 @@ namespace sockets
 
       ::file::path pcsz(pcszParam);
 
-      bool bMd5Request = ::str().ends_eat_ci(pcsz, ".md5");
+      bool bMd5Request = pcsz.ends_eat_ci(".md5");
 
       string strExtension = pcsz.final_extension();
 
@@ -378,26 +378,26 @@ namespace sockets
 
 
 
-//      if (::str().ends_ci(strName, "03 Coisa De Acender - Se..... - Djavan.mp3"))
+//      if (string_ends_ci(strName, "03 Coisa De Acender - Se..... - Djavan.mp3"))
   //    {
     //     debug_print("%s", strName.c_str());
       //}
 
       if (bMd5Request)
       {
-         outheader(__id(content_type)) = "text/plain";
+         outheader("content_type") = "text/plain";
       }
-      else if (outheader(__id(content_type)).string().has_char())
+      else if (outheader("content_type").string().has_char())
       {
       }
       else if (strContentType.has_char() && strContentType.compare_ci("unknown") != 0)
       {
-         outheader(__id(content_type)) = strContentType;
+         outheader("content_type") = strContentType;
       }
       else
       {
 
-         outheader(__id(content_type)) = get_file_extension_mime_type(strExtension);
+         outheader("content_type") = get_file_extension_mime_type(strExtension);
 
       }
 
@@ -405,7 +405,7 @@ namespace sockets
       
       strReferer = inheader("referer");
 
-      string strServer = m_psystem->url()->get_server(strReferer);
+      string strServer = acmesystem()->url()->get_server(strReferer);
 
       string_array straAllowedOrigin;
 
@@ -467,15 +467,15 @@ namespace sockets
 
       }
 
-      if (!m_psystem->m_pacmefile->exists(pcsz))
+      if (!acmefile()->exists(pcsz))
       {
 
-         if (m_psystem->m_pacmedirectory->is(pcsz))
+         if (acmedirectory()->is(pcsz))
          {
             
-            outattr(__id(http_status_code)) = 200;
+            outattr("http_status_code") = 200;
             
-            outattr(__id(http_status)) = "OK";
+            outattr("http_status") = "OK";
             
             outheader("x-fstype") = "directory";
 
@@ -483,9 +483,9 @@ namespace sockets
          else
          {
             
-            outattr(__id(http_status_code)) = 404;
+            outattr("http_status_code") = 404;
             
-            outattr(__id(http_status)) = "Not Found";
+            outattr("http_status") = "Not Found";
 
          }
 
@@ -498,14 +498,14 @@ namespace sockets
       if (prangea == nullptr || prangea->get_count() == 0)
       {
 
-         if (::str().begins_ci(strContentType, "audio/"))
+         if (string_begins_ci(strContentType, "audio/"))
          {
 
-            auto preader = m_pcontext->m_papexcontext->file().get_reader(pcsz);
+            auto preader = file()->get_reader(pcsz);
 
-            //if (!m_psystem->uncompress(response().file(), preader, "zlib"))
+            //if (!acmesystem()->uncompress(response().file(), preader, "zlib"))
 
-            m_psystem->uncompress(response().file(), preader, "zlib");
+            acmesystem()->uncompress(response().file(), preader, "zlib");
             //{
 
                response().file()->from_begin(preader);
@@ -519,7 +519,7 @@ namespace sockets
             if (bMd5Request)
             {
 
-               response().print(m_pcontext->m_papexcontext->file().md5(pcsz));
+               response().print(file()->md5(pcsz));
 
                return true;
 
@@ -530,15 +530,15 @@ namespace sockets
 
                response().m_strFile = pcsz;
 
-               outattr(__id(http_status_code)) = 200;
+               outattr("http_status_code") = 200;
 
-               outattr(__id(http_status)) = "OK";
+               outattr("http_status") = "OK";
 
             }
             else
             {
 
-               auto preader = m_pcontext->m_papexcontext->file().shared_reader(pcsz);
+               auto preader = file()->shared_reader(pcsz);
 
                if (!preader)
                {
@@ -557,7 +557,7 @@ namespace sockets
       else
       {
 
-         auto preader = m_pcontext->m_papexcontext->file().shared_reader(pcsz);
+         auto preader = file()->shared_reader(pcsz);
 
          if (!preader)
          {
@@ -644,7 +644,7 @@ namespace sockets
                      break;
                }
 
-               auto psystem = m_psystem;
+               auto psystem = acmesystem();
 
                auto pbase64 = psystem->base64();
                
@@ -654,7 +654,7 @@ namespace sockets
             
             response().println("--THIS_STRING_SEPARATES--\r\n");
             
-            outheader(__id(content_type)) = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";
+            outheader("content_type") = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";
 
          }
          else
@@ -770,7 +770,7 @@ namespace sockets
 
       string_array stra;
 
-      m_pcontext->m_papexcontext->file().get_lines(stra, payloadFile);
+      file()->get_lines(stra, payloadFile);
 
       str = stra.implode("\n");
 

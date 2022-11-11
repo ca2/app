@@ -3,6 +3,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 namespace graphics
 {
 
@@ -13,7 +16,7 @@ namespace graphics
    public:
 
 
-      //::pointer<::mutex>     m_pmutex;
+      //::pointer < ::mutex >     m_pmutex;
       //::image_pointer         m_pimage;
       //int                   o  m_cx;
       //int                     m_cy;

@@ -1,22 +1,40 @@
 ﻿#include "framework.h"
-#include "acme/filesystem/file/memory_file.h"
-#include "apex/crypto/crypto.h"
-#include "apex/operating_system.h"
-#include "apex/platform/machine_event_data.h"
-#include "apex/platform/machine_event.h"
-#include "apex/platform/machine_event_central.h"
-#include "apex/networking/networking.h"
+#include "system.h"
+#include "context.h"
+#include "machine_event_data.h"
+#include "machine_event.h"
+#include "machine_event_central.h"
+#include "shell_launcher.h"
+#include "create.h"
+#include "os_context.h"
+#include "application.h"
+#include "context.h"
+#include "node.h"
+#include "history.h"
 #include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/exception/dump_context.h"
+#include "acme/exception/interface_only.h"
+#include "acme/filesystem/file/memory_file.h"
+#include "apex/id.h"
+#include "acme/networking/url_department.h"
+#include "acme/operating_system/process.h"
+#include "acme/parallelization/single_lock.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
-#include "apex/id.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/datetime/department.h"
+#include "acme/primitive/string/command_line.h"
+#include "apex/crypto/crypto.h"
+#include "apex/message/message.h"
+//#include "apex/operating_system.h"
+#include "apex/networking/http/context.h"
+#include "apex/networking/networking.h"
+#include "apex/operating_system/department.h"
+#include "apex/user/language_map.h"
 #ifdef LINUX
 #include <unistd.h>
 #endif
-#include "apex/platform/application.h"
-#include "apex/platform/context.h"
-#include "apex/platform/node.h"
-#include "apex/platform/system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "apex/filesystem/filesystem/dir_context.h"
@@ -32,7 +50,7 @@
 #include "acme/primitive/string/base64.h"
 
 int file_put_contents(const char * path, const char * contents);;
-CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
+CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
 
 
 //extern ::apex::system* g_papexsystem;
@@ -76,7 +94,7 @@ extern "C"
 #include <sys/time.h>
 #endif
 
-CLASS_DECL_APEX void __simple_tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
+CLASS_DECL_APEX void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
 
 
 #ifdef WINDOWS
@@ -97,25 +115,25 @@ void unit_test_primitive_var_apex_block();
 void dappy(const ::string & psz);
 
 
-#ifdef WINDOWS_DESKTOP
-
-#include <Lmcons.h>
-
-string get_user_name()
-{
-   
-   WCHAR wsz[UNLEN * 2];
-
-   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
-
-   ::GetUserNameW(wsz,&dwSize);
-
-   return string(wsz);
-
-}
-
-//#include "acme/operating_system/windows/_c.h"
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//#include <Lmcons.h>
+//
+//string get_user_name()
+//{
+//   
+//   WCHAR wsz[UNLEN * 2];
+//
+//   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+//
+//   ::GetUserNameW(wsz,&dwSize);
+//
+//   return string(wsz);
+//
+//}
+//
+////#include "acme/operating_system/windows/_c.h"
+//#endif
 
 
 
@@ -132,7 +150,7 @@ namespace apex
 
       //::factory::add_factory_item<::apex::idpool, ::acme::idpool >();
 
-      m_edisplay = e_display_default;
+      //m_edisplay = e_display_default;
 
       //set_layer(LAYERED_APEX, this);
 
@@ -185,7 +203,7 @@ namespace apex
 
       ::factory::add_factory_item < ::apex::application >();
       ::factory::add_factory_item < ::apex::session, ::apex::session >();
-      ::factory::add_factory_item < ::apex::idpool, ::acme::idpool >();
+      //::factory::add_factory_item < ::apex::idpool, ::acme::idpool >();
       
 
    }
@@ -213,11 +231,11 @@ namespace apex
 #endif
 
 
-   void system::initialize(::object * pobject)
+   void system::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
-      ::apex::context::initialize(pobject);
+      ::apex::context::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -257,7 +275,7 @@ namespace apex
 
 #if !defined(_UWP) && !defined(ANDROID)
 
-      m_pmutexMatter = __new(::mutex(this, false, "Local\\ca2-appmatter"));
+      m_pmutexMatter = acmenode()->create_local_named_mutex(this, false, "ca2-appmatter");
 
 #endif
 
@@ -273,7 +291,7 @@ namespace apex
       //}
 
       //estatus =
-      __construct_new(m_pprocess);
+      __construct_new(m_poperatingsystem);
       
       //if (!estatus)
       //{
@@ -298,7 +316,7 @@ namespace apex
 #ifdef __DEBUG
 
       //estatus = 
-      __construct_new(m_pdumpcontext);
+      //__construct_new(m_pdumpcontext);
 
       //if (!estatus)
       //{
@@ -341,9 +359,9 @@ namespace apex
 
       //    bool bGlobalEnableStackTrace = true;
 
-      //    ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedirectory->config() / "system/no_exception_stack_trace.txt";
+      //    ::file::path pathNoExceptionStackTrace = acmedirectory()->config() / "system/no_exception_stack_trace.txt";
 
-      //    if (m_psystem->m_pacmefile->exists(pathNoExceptionStackTrace))
+      //    if (acmefile()->exists(pathNoExceptionStackTrace))
       //    {
 
       //       bGlobalEnableStackTrace = false;
@@ -585,8 +603,8 @@ namespace apex
       if (!m_pacmeapplicationStartup->m_papexapplication->is_service() || m_pacmeapplicationStartup->m_papexapplication->is_user_service())
       {
 
-         m_pmutexUserAppData = __new(::mutex(this, false, "Local\\ca2.UserAppData"));
-         m_pmutexSystemAppData = __new(::mutex(this, false, "Local\\ca2.SystemAppData"));
+         m_pmutexUserAppData = acmenode()->create_local_named_mutex(this, false, "ca2.UserAppData");
+         m_pmutexSystemAppData = acmenode()->create_local_named_mutex(this, false, "ca2.SystemAppData");
 
       }
 
@@ -711,11 +729,10 @@ namespace apex
          printf("%s", "\n\nApplication Information\n");
          output_debug_string("\n\nApplication Information\n");
 
-         int iPid;
-
-         iPid = ::get_current_process_id();
+         auto iPid = acmenode()->get_current_process_id();
 
          printf("%s", ("Process PID: " + __string(iPid) + "\n").c_str());
+
          output_debug_string("Process PID: " + __string(iPid) + "\n");
 
       }
@@ -730,12 +747,12 @@ namespace apex
       //
       //         string str;
       //
-      //         str = m_psystem->m_pacmedirectory->home() / ".profile";
+      //         str = acmedirectory()->home() / ".profile";
       //
-      //         if(!m_psystem->m_pacmefile->exists(str))
+      //         if(!acmefile()->exists(str))
       //         {
       //
-      //            str = m_psystem->m_pacmedirectory->home() / ".bashrc";
+      //            str = acmedirectory()->home() / ".bashrc";
       //
       //         }
       //
@@ -789,34 +806,34 @@ namespace apex
       //
       //#endif
 
-      {
-
-         {
-
-#ifdef WINDOWS_DESKTOP
-
-            {
-
-               ASSERT(m_hinstancePrev == nullptr);
-
-               HINSTANCE hinstance = (HINSTANCE)m_hinstanceThis;
-
-               //auto edisplay = m_edisplay;
-
-               // handle critical errors and avoid Windows message boxes
-               SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
-
-               //m_edisplay = edisplay;
-
-               //SetCurrentHandles();
-
-            }
-
-#endif
-
-         }
-
-      }
+//      {
+//
+//         {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//            {
+//
+//               ASSERT(m_hinstancePrev == nullptr);
+//
+//               HINSTANCE hinstance = (HINSTANCE)m_hinstanceThis;
+//
+//               //auto edisplay = m_edisplay;
+//
+//               // handle critical errors and avoid Windows message boxes
+//               SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
+//
+//               //m_edisplay = edisplay;
+//
+//               //SetCurrentHandles();
+//
+//            }
+//
+//#endif
+//
+//         }
+//
+//      }
 
       //estatus = __construct_new(m_pxml);
 
@@ -844,7 +861,7 @@ namespace apex
 
       //add_factory_item < application_bias >();
 
-      //add_factory_item < ::mutex >();
+      //add_factory_item < ::pointer < ::mutex > >();
       //add_factory_item < event >();
 
       //if (!::application::process_init())
@@ -868,13 +885,13 @@ namespace apex
 
                   string str("installing or unstalling as root : getuid() %d", uid);
 
-                           auto psystem = m_psystem;
+                           auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->create("/ca2core");
 
-                  m_psystem->m_pacmefile->put_contents("/ca2core/teste.txt", str, str.length());
+                  acmefile()->put_contents("/ca2core/teste.txt", str, str.length());
                   */
 #endif
 
@@ -1021,11 +1038,11 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      auto pid = get_current_process_id();
+      auto pid = acmenode()->get_current_process_id();
 
       string strPid = __string(pid);
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pdatetime = psystem->datetime();
 
@@ -1037,14 +1054,14 @@ pacmedirectory->create("/ca2core");
 
       {
 
-         string strExecutable = get_executable();
+         string strExecutable = subsystem()->get_executable();
 
          string_array straArguments;
 
-         for (int i = 0; i < get_argument_count1(); i++)
+         for (int i = 0; i < subsystem()->get_argument_count1(); i++)
          {
 
-            string strArgument = get_argument1(i);
+            string strArgument = subsystem()->get_argument1(i);
 
             straArguments.add(strArgument);
 
@@ -1056,9 +1073,9 @@ pacmedirectory->create("/ca2core");
 
          string strCmdLineDumpFileName = strAppId / (strLogTime + "-pid" + strPid + "-command_line.txt");
 
-         ::file::path pathCmdLineDumpFile = m_psystem->m_pacmedirectory->home() / "application" / strCmdLineDumpFileName;
+         ::file::path pathCmdLineDumpFile = acmedirectory()->home() / "application" / strCmdLineDumpFileName;
 
-         m_psystem->m_pacmefile->put_contents(pathCmdLineDumpFile, strCmd);
+         acmefile()->put_contents(pathCmdLineDumpFile, strCmd);
 
       }
 
@@ -1066,10 +1083,10 @@ pacmedirectory->create("/ca2core");
 
          string_array straEnv;
 
-         if (m_wenvp)
+         if (subsystem()->m_wenvp)
          {
 
-            for (auto wenv = m_wenvp; *wenv != 0; wenv++)
+            for (auto wenv = subsystem()->m_wenvp; *wenv != 0; wenv++)
             {
 
                auto thisEnv = *wenv;
@@ -1079,10 +1096,10 @@ pacmedirectory->create("/ca2core");
             }
 
          }
-         else if (m_envp)
+         else if (subsystem()->m_envp)
          {
 
-            for (auto env = m_envp; *env != 0; env++)
+            for (auto env = subsystem()->m_envp; *env != 0; env++)
             {
 
                auto thisEnv = *env;
@@ -1099,9 +1116,9 @@ pacmedirectory->create("/ca2core");
 
          string strEnvDumpFileName = strAppId / strLogTime + "-pid" + strPid + "-environment_variables.txt";
 
-         ::file::path pathEnvDumpFile = m_psystem->m_pacmedirectory->home() / "application" / strEnvDumpFileName;
+         ::file::path pathEnvDumpFile = acmedirectory()->home() / "application" / strEnvDumpFileName;
 
-         m_psystem->m_pacmefile->put_contents(pathEnvDumpFile, strEnv);
+         acmefile()->put_contents(pathEnvDumpFile, strEnv);
 
       }
 
@@ -1228,7 +1245,7 @@ pacmedirectory->create("/ca2core");
 
       bool bMatterFromResource = false;
 
-      auto pfile = m_papexsystem->file().create_resource_file("app/_matter/main/_std/_std/thomasborregaardsorensen.txt");
+      auto pfile = m_papexsystem->file()->create_resource_file("app/_matter/main/_std/_std/thomasborregaardsorensen.txt");
 
       if (pfile)
       {
@@ -1363,7 +1380,7 @@ pacmedirectory->create("/ca2core");
 //
 //#endif
 
-      auto strMain = m_pcontext->m_papexcontext->dir().install() / "app/_appmatter/main";
+      auto strMain = dir()->install() / "app/_appmatter/main";
 
       if (!m_ptexttable->load(strMain))
       {
@@ -1723,7 +1740,7 @@ pacmedirectory->create("/ca2core");
 
       //pcreate->m_pcommandline = __create_new < command_line >();
 
-      auto straArguments = get_arguments();
+      auto straArguments = subsystem()->get_arguments();
 
       if (straArguments.has_element())
       {
@@ -1975,7 +1992,7 @@ pacmedirectory->create("/ca2core");
    //void system::post_to_all_threads(const ::atom & atom, WPARAM wparam, LPARAM lparam)
    //{
 
-   //   synchronous_lock synchronouslock(m_mutexThread);
+   //   synchronous_lock synchronouslock(m_pmutexThread);
 
    //   for (auto& pair : get_system()->m_threadidmap)
    //   {
@@ -2096,6 +2113,12 @@ pacmedirectory->create("/ca2core");
    }
 
 
+   ::apex::node * system::node()
+   {
+
+      return m_pnode ? m_pnode->m_papexnode : nullptr;
+
+   }
 
 
    void system::process_term()
@@ -2263,21 +2286,21 @@ pacmedirectory->create("/ca2core");
    }
 
 
-//   ::mutex * system::get_openweather_city_mutex()
+//   ::pointer< ::mutex > system::get_openweather_city_mutex()
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (m_spmutexOpenweatherCity.is_null())
 //      {
 //
 //#ifdef _UWP
 //
-//         m_spmutexOpenweatherCity = __new(::mutex());
+//         m_spmutexOpenweatherCity = __new(::pointer < ::mutex >());
 //
 //#else
 //
-//         m_spmutexOpenweatherCity = __new(::mutex(e_create_new, false, "Global\\ca2_weather_city"));
+//         m_spmutexOpenweatherCity = __new(::pointer < ::mutex >(e_create_new, false, "Global\\ca2_weather_city"));
 //
 //#endif
 //
@@ -2288,14 +2311,14 @@ pacmedirectory->create("/ca2core");
 //   }
 
 
-   //void system::on_allocation_error(const ::string & str, ::object * pobject)
+   //void system::on_allocation_error(const ::string & str, ::particle * pparticle)
    //{
 
    //   string strMessage("Allocation Error!! : ");
 
    //   strMessage += "Type: " + str;
 
-   //   //if (::is_null(pobject))
+   //   //if (::is_null(pparticle))
    //   //{
 
    //   //   strMessage += " : (Parent: (nullptr))";
@@ -2308,7 +2331,7 @@ pacmedirectory->create("/ca2core");
 
    //   //   try
    //   //   {
-   //   //      strMessage += __type_name(pobject);
+   //   //      strMessage += __type_name(pparticle);
 
    //   //   }
    //   //   catch (...)
@@ -2316,7 +2339,7 @@ pacmedirectory->create("/ca2core");
 
    //   //   }
 
-   //   //   strMessage += "(0x" + ::hex::lower_from((iptr)pobject) + ") )";
+   //   //   strMessage += "(0x" + ::hex::lower_from((iptr)pparticle) + ") )";
 
    //   //}
 
@@ -2386,10 +2409,10 @@ pacmedirectory->create("/ca2core");
 //}
 
 
-   ::operating_system::department & system::process()
+   ::operating_system::department & system::operating_system()
    {
 
-      return *m_pprocess;
+      return *m_poperatingsystem;
 
    }
 
@@ -2452,7 +2475,7 @@ pacmedirectory->create("/ca2core");
    {
 
       //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
-      single_lock rsl(mutex());
+      single_lock rsl(synchronization());
 
       rsl.lock(10_s);
 
@@ -2469,7 +2492,7 @@ pacmedirectory->create("/ca2core");
    {
 
       //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
-      single_lock rsl(mutex());
+      single_lock rsl(synchronization());
 
       rsl.lock(10_s);
 
@@ -2490,7 +2513,7 @@ pacmedirectory->create("/ca2core");
       {
 
          //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(pszAppName, pszId));
-         auto pmutex = ::open_mutex(this, m_pnode->get_global_id_mutex_name(pszAppName,pszId));
+         auto pmutex = acmenode()->open_global_named_mutex(this, m_pnode->get_global_id_mutex_name(pszAppName,pszId));
 
          if(pmutex == nullptr)
          {
@@ -2505,7 +2528,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_restored);
+            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, strParameters, nullptr, e_display_restored);
 
             plauncher->launch();
 
@@ -2526,7 +2549,7 @@ pacmedirectory->create("/ca2core");
       else
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_mutex_name(pszAppName));
-         auto pmutex = ::open_mutex(this, m_pnode->get_global_mutex_name(pszAppName));
+         auto pmutex = acmenode()->open_global_named_mutex(this, m_pnode->get_global_mutex_name(pszAppName));
          if(pmutex == nullptr)
          {
             string strApp = pszAppName;
@@ -2540,7 +2563,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, nullptr, nullptr, e_display_restored);
+            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, nullptr, nullptr, e_display_restored);
 
             plauncher->launch();
 
@@ -2564,7 +2587,7 @@ pacmedirectory->create("/ca2core");
       if(strId.has_char())
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_id_mutex_name(pszAppName, strId));
-         auto pmutex = ::open_mutex(this, m_pnode->get_local_id_mutex_name(pszAppName,strId));
+         auto pmutex = acmenode()->open_local_named_mutex(this, m_pnode->get_local_id_mutex_name(pszAppName,strId));
          if(pmutex == nullptr)
          {
             string strApp;
@@ -2580,7 +2603,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_restored);
+            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, strParameters, nullptr, e_display_restored);
 
             plauncher->launch();
 
@@ -2598,7 +2621,7 @@ pacmedirectory->create("/ca2core");
       else
       {
          //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_mutex_name(pszAppName));
-         auto pmutex = ::open_mutex(this, m_pnode->get_local_mutex_name(pszAppName));
+         auto pmutex = acmenode()->open_local_named_mutex(this, m_pnode->get_local_mutex_name(pszAppName));
          if(pmutex == nullptr)
          {
             string strApp;
@@ -2614,7 +2637,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_restored);
+            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, strParameters, nullptr, e_display_restored);
 
             plauncher->launch();
 
@@ -2630,14 +2653,6 @@ pacmedirectory->create("/ca2core");
          return true;
       }
    }
-
-
-
-
-
-
-
-
 
 
    ::count system::get_application_count()
@@ -2822,7 +2837,7 @@ pacmedirectory->create("/ca2core");
    ::file::path system::local_get_matter_path()
    {
 
-      return m_psystem->m_pacmedirectory->ca2roaming() / "appmatter";
+      return acmedirectory()->ca2roaming() / "appmatter";
 
    }
 
@@ -2846,7 +2861,7 @@ pacmedirectory->create("/ca2core");
    ::file::path system::local_get_matter_cache_path()
    {
 
-      return m_psystem->m_pacmedirectory->ca2roaming() / "cache/appmatter";
+      return acmedirectory()->ca2roaming() / "cache/appmatter";
 
    }
 
@@ -2869,7 +2884,7 @@ pacmedirectory->create("/ca2core");
 ////      if(has_property("install"))
 ////         return true;
 ////
-////      file_pointer pfile = m_pcontext->m_papexcontext->file().get_file(m_pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
+////      file_pointer pfile = file()->get_file(dir()->appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
 ////
 ////      if(!pfile)
 ////         return false;
@@ -2902,7 +2917,7 @@ pacmedirectory->create("/ca2core");
 ////
 ////      ::file::listing straTitle(this);
 ////
-////      ::file::path pathCa2Module = m_pcontext->m_papexcontext->dir().ca2module();
+////      ::file::path pathCa2Module = dir()->ca2module();
 ////
 ////      ::output_debug_string("\n\n::apex::system::find_applications_to_cache\n\n");
 ////
@@ -2918,13 +2933,13 @@ pacmedirectory->create("/ca2core");
 ////         strLibraryId = straTitle[i];
 ////
 ////
-////         if(::str().ends_eat_ci(strLibraryId,".dll")
-////               || ::str().ends_eat_ci(strLibraryId,".so")
-////               || ::str().ends_eat_ci(strLibraryId,".dylib"))
+////         if(strLibraryId.ends_eat_ci(".dll")
+////               || strLibraryId.ends_eat_ci(".so")
+////               || strLibraryId.ends_eat_ci(".dylib"))
 ////         {
 ////
-////            if(::str().begins_ci(strLibraryId,"libdraw2d_")
-////                  || ::str().begins_ci(strLibraryId,"libbase"))
+////            if(string_begins_ci(strLibraryId,"libdraw2d_")
+////                  || string_begins_ci(strLibraryId,"libbase"))
 ////            {
 ////               continue;
 ////            }
@@ -2945,7 +2960,7 @@ pacmedirectory->create("/ca2core");
 ////      try
 ////      {
 ////
-////         file = psession->file().get_file(m_pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
+////         file = psession->file()->get_file(dir()->appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
 ////
 ////      }
 ////      catch(::exception &)
@@ -3038,10 +3053,10 @@ pacmedirectory->create("/ca2core");
 //         strLibrary = "base";
 //
 //      }
-//      else if(!::str().begins_eat(strLibrary,"libbase"))
+//      else if(!strLibrary.begins_eat("libbase"))
 //      {
 //
-//         ::str().begins_eat(strLibrary,"lib");
+//         strLibrary.begins_eat("lib");
 //
 //      }
 //
@@ -3053,7 +3068,7 @@ pacmedirectory->create("/ca2core");
 //
 //      strPrefix.replace("/","_");
 //
-//      ::str().begins_eat_ci(strLibrary,strPrefix);
+//      strLibrary.begins_eat_ci(strPrefix);
 //
 //      strRoot += strLibrary;
 //
@@ -3157,7 +3172,7 @@ pacmedirectory->create("/ca2core");
    {
       
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_durationCommandLineLast.Now();
 
@@ -3203,7 +3218,7 @@ pacmedirectory->create("/ca2core");
       if(psession == nullptr)
       {
          
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
          
          papp = psystem->m_pacmeapplicationMain ? psystem->m_pacmeapplicationMain->m_papexapplication : psystem->m_pacmeapplicationStartup->m_papexapplication;
          
@@ -3499,7 +3514,7 @@ pacmedirectory->create("/ca2core");
    string system::standalone_setting(string str)
    {
 
-      return m_psystem->m_pacmefile->as_string(m_pcontext->m_papexcontext->dir().standalone() / (str + ".txt"));
+      return acmefile()->as_string(dir()->standalone() / (str + ".txt"));
 
    }
 
@@ -3507,7 +3522,7 @@ pacmedirectory->create("/ca2core");
    void system::set_standalone_setting(string str, string strSetting)
    {
 
-      m_psystem->m_pacmefile->put_contents(m_pcontext->m_papexcontext->dir().standalone() / (str + ".txt"), strSetting);
+      acmefile()->put_contents(dir()->standalone() / (str + ".txt"), strSetting);
 
    }
 
@@ -3515,7 +3530,7 @@ pacmedirectory->create("/ca2core");
    void system::on_extra(string str)
    {
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -3530,7 +3545,7 @@ pacmedirectory->create("/ca2core");
 
          string strAppId = purl->get_script(str);
 
-         ::str().begins_eat(strAppId, "/");
+         strAppId.begins_eat("/");
 
          string strQuery = purl->get_query(str);
 
@@ -3571,14 +3586,14 @@ pacmedirectory->create("/ca2core");
 
          string strScheme = purl->get_script(str);
 
-         ::str().begins_eat(strScheme, "/");
+         strScheme.begins_eat("/");
 
          if(strBase == "scheme")
          {
 
 //         int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
 
-            ::file::path pathScript = m_psystem->m_pacmedirectory->tool() / "papaya/script/xcode_set_active_scheme.scpt";
+            ::file::path pathScript = acmedirectory()->tool() / "papaya/script/xcode_set_active_scheme.scpt";
 
             ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
 
@@ -3600,19 +3615,19 @@ pacmedirectory->create("/ca2core");
 
 
 
-   //void system::__tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz)
+   //void system::__tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz)
    //{
 
    //   if (m_ptracelog.is_null())
    //   {
 
-   //      __simple_tracea(trace_object(pobject), elevel, pszFunction, pszFile, iLine, psz);
+   //      __simple_tracea(trace_object(pparticle), elevel, pszFunction, pszFile, iLine, psz);
 
    //      return;
 
    //   }
 
-   //   log().__tracea(trace_object(pobject), elevel, pszFunction, pszFile, iLine, psz);
+   //   log().__tracea(trace_object(pparticle), elevel, pszFunction, pszFile, iLine, psz);
 
    //}
 
@@ -3735,7 +3750,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
       if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
       {
 
-         strWeather = m_pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->system() / "browser_weather.txt");
+         strWeather = file()->as_string(acmedirectory()->system() / "browser_weather.txt");
 
       }
 
@@ -4018,7 +4033,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
       pathDir = path.folder();
 
-      ::file::path pathAppDataDir(m_psystem->m_pacmedirectory->ca2roaming());
+      ::file::path pathAppDataDir(acmedirectory()->ca2roaming());
 
       ::file::path pathProfile;
 
@@ -4100,9 +4115,9 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
             }
 
-            strParam += " " + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
+            strParam += " " + acmefile()->as_string(acmedirectory()->localconfig() / "app-core/commander/chrome.txt");
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
             auto pnode = psystem->node();
 
@@ -4118,7 +4133,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
          sa.add("--user-data-dir=" + pathProfile + "");
 
-         string strChrome = m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
+         string strChrome = acmefile()->as_string(acmedirectory()->localconfig() / "app-core/commander/chrome.txt");
 
          string_array sa2 = get_c_args_for_c(strChrome);
 
@@ -4128,7 +4143,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
          argv.add(nullptr);
          
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
          
          auto purl = psystem->url();
 
@@ -4149,7 +4164,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
          strParam += "--user-data-dir=\"" + pathProfile + "\"";
 
-         strParam += " " + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
+         strParam += " " + acmefile()->as_string(acmedirectory()->localconfig() / "app-core/commander/chrome.txt");
 
          string strCmd = path + " " + strParam;
 
@@ -4159,7 +4174,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
          output_debug_string(strParam);
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node();
 
@@ -4185,7 +4200,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
 #else
 
-      if (m_pcontext->m_papexcontext->dir().is(pathProfile))
+      if (dir()->is(pathProfile))
       {
 
          return;
@@ -4200,17 +4215,19 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
       pathProfileDir = pathProfile.folder();
 
-      m_pcontext->m_papexcontext->dir().create(pathProfileDir);
+      dir()->create(pathProfileDir);
 
       string strParam = "-no-remote -CreateProfile \"" + strProfileName + " " + pathProfile + "\"";
 
       ::property_set set;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
-      pnode->call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_minute, set);
+      ::i32 iExitCode = 0;
+
+      pnode->call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_minute, set, &iExitCode);
 
 #endif
 
@@ -4255,7 +4272,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
       //}
 
-      if (!m_pcontext->m_papexcontext->file().exists(strBrowserPath) || !m_pcontext->m_papexcontext->dir().is(strBrowserDir))
+      if (!file()->exists(strBrowserPath) || !dir()->is(strBrowserDir))
       {
 
          throw ::exception(error_not_found);
@@ -4275,7 +4292,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
       if (!bFound)
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node();
 
@@ -4288,11 +4305,11 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
       if (strBrowser.has_char())
       {
 
-         m_pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedirectory->system() / "browser.txt", strBrowser);
+         file()->put_text_utf8(acmedirectory()->system() / "browser.txt", strBrowser);
 
-         m_pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedirectory->system() / "browser_path.txt", strBrowserPath);
+         file()->put_text_utf8(acmedirectory()->system() / "browser_path.txt", strBrowserPath);
 
-         m_pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedirectory->system() / "browser_dir.txt", strBrowserDir);
+         file()->put_text_utf8(acmedirectory()->system() / "browser_dir.txt", strBrowserDir);
 
       }
 
@@ -4365,7 +4382,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
    //   }
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   auto & threadgroupa = m_taskgroupmap[epriority];
 
@@ -4386,7 +4403,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
    //::task_tool * system::task_tool(::enum_task_tool etool)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   auto& threadtoola = m_tasktoolmap[etool];
 
@@ -4446,7 +4463,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
    string system::crypto_md5_text(const ::string & str)
    {
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto pcrypto = psystem->crypto();
 
@@ -4689,7 +4706,7 @@ namespace apex
    //}
 
 
-   void system::on_allocation_error(const ::string& str, ::object* pobject)
+   void system::on_allocation_error(const ::string& str, ::object* pparticle)
    {
 
       string strMessage;
@@ -4716,7 +4733,7 @@ namespace apex
 
    {
 
-      string filename = m_pcontext->m_papexcontext->file().time_square();
+      string filename = file()->time_square();
 
       property_set set;
 
@@ -4745,13 +4762,13 @@ namespace apex
 
          set["cookies"] = pcookies;
 
-         m_pcontext->m_papexcontext->file().erase(filename);
+         file()->erase(filename);
 
          return m_pcontext->m_papexcontext->http().download(str, strLocation, set);
 
       }
 
-      str = m_pcontext->m_papexcontext->file().as_string(filename);
+      str = file()->as_string(filename);
 
       return true;
 
@@ -4935,20 +4952,20 @@ namespace apex
 #endif
 
 
-   void system::assert_ok() const
-   {
-
-      ::thread::assert_ok();
-
-   }
-
-
-   void system::dump(dump_context& context) const
-   {
-
-      ::thread::dump(context);
-
-   }
+//   void system::assert_ok() const
+//   {
+//
+//      ::thread::assert_ok();
+//
+//   }
+//
+//
+//   void system::dump(dump_context& context) const
+//   {
+//
+//      ::thread::dump(context);
+//
+//   }
 
 
    void system::main()
@@ -5173,25 +5190,25 @@ namespace apex
    }
 
 
-   void system::process_exit_status(::object* pobject, const ::e_status & estatus)
+   void system::process_exit_status(::object* pparticle, const ::e_status & estatus)
    {
 
       if (estatus == error_exit_session)
       {
 
-         pobject->get_session()->destroy();
+         pparticle->get_session()->destroy();
       
       }
       else if (estatus == error_exit_application)
       {
 
-         pobject->get_session()->destroy();
+         pparticle->get_session()->destroy();
       
       }
       else
       {
       
-         ::acme::system::process_exit_status(pobject, estatus);
+         ::acme::system::process_exit_status(pparticle, estatus);
       
       }
 
@@ -5294,10 +5311,10 @@ namespace apex
    }
 
 
-   //pointer< ::extended::future < ::conversation > > system::_message_box(::object * pobject, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::future < ::conversation > > system::_message_box(::particle * pparticle, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
    //{
 
-   //   return ::system::_message_box(pobject, pszText, pszTitle, emessagebox);
+   //   return ::system::_message_box(pparticle, pszText, pszTitle, emessagebox);
 
    //}
 

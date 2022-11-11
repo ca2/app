@@ -1,14 +1,7 @@
 ﻿#pragma once
 
 
-#if defined(LINUX) || defined(FREEBSD)
-#include <netdb.h>
-#define in_addr6 in6_addr
-#elif defined(ANDROID)
-#include <netdb.h>
-#include <netinet/in.h>
-#define in_addr6 in6_addr
-#endif
+#include "apex/networking/address.h"
 
 
 namespace networking_bsd
@@ -143,7 +136,7 @@ namespace networking_bsd
       void set_address(::networking::address * paddress);
       void set_family(i32 family, ::networking::port_t port = 0);
       //void set_address(const ::string & strAddress, ::networking::port_t port = 0);
-      //void set_address(::object * pobject, const ::string & strAddress, const ::string & strServiceName);
+      //void set_address(::particle * pparticle, const ::string & strAddress, const ::string & strServiceName);
 #if defined(BSD_STYLE_SOCKETS)
       void set_address(const in_addr & a, ::networking::port_t port = 0);
       void set_address(const in6_addr & a, ::networking::port_t port = 0);

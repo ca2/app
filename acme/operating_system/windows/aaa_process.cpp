@@ -147,7 +147,7 @@ struct shell_execute :
    }
 
 
-   bool synchronization_object(const class ::wait & wait)
+   bool synchronization(const class ::wait & wait)
    {
 
       fMask = SEE_MASK_NOASYNC | SEE_MASK_NOCLOSEPROCESS;
@@ -225,7 +225,7 @@ bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration
 
    shell_execute execute(pszFile, pszParams);
 
-   return execute.synchronization_object(durationTimeout);
+   return execute.synchronization(durationTimeout);
 
 }
 
@@ -251,7 +251,7 @@ bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration 
    execute.lpVerb = L"RunAs";
 
 
-   return execute.synchronization_object(durationTimeout);
+   return execute.synchronization(durationTimeout);
 
 }
 
@@ -426,69 +426,6 @@ void call_sync(const char * pszPath, const char * pszParam, const char * pszDir,
 
 }
 
-
-i32 get_current_processor_index()
-{
-
-
-   return ::GetCurrentProcessorNumber();
-
-
-}
-
-i32 get_current_process_maximum_affinity()
-{
-
-   DWORD_PTR dwProcessAffinityMask;
-   DWORD_PTR dwSystemAffinityMask;
-   if (!GetProcessAffinityMask(::GetCurrentProcess(), &dwProcessAffinityMask, &dwSystemAffinityMask))
-   {
-      return 0;
-   }
-   i32 iMax = -1;
-   uptr dwMask = 1;
-   for (i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
-   {
-      if ((dwMask & dwProcessAffinityMask) != 0)
-      {
-         iMax = i;
-      }
-      dwMask = dwMask << 1;
-   }
-
-   return iMax;
-
-}
-
-i32 get_current_process_affinity_order()
-{
-
-
-   DWORD_PTR dwProcessAffinityMask;
-   DWORD_PTR dwSystemAffinityMask;
-
-   if (!GetProcessAffinityMask(::GetCurrentProcess(), &dwProcessAffinityMask, &dwSystemAffinityMask))
-   {
-
-      return 0;
-
-   }
-
-   i32 iCount = 0;
-   uptr dwMask = 1;
-   for (i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
-   {
-      if ((dwMask & dwProcessAffinityMask) != 0)
-      {
-         iCount++;
-      }
-      dwMask = dwMask << 1;
-   }
-
-   return iCount;
-
-
-}
 
 
 

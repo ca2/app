@@ -9,7 +9,7 @@
 #include "framework.h"
 #include "main.h"
 #include "aura/windowing/window.h"
-//#include "aura/operating_system/_.h"
+////#include "aura/operating_system/_.h"
 //#include "aura/update.h"
 #include <dispatch/dispatch.h>
 #include <CoreGraphics/CoreGraphics.h>
@@ -153,7 +153,7 @@
 //      if(::str().begins_eat_ci(stra[i], "file://"))
 //      {
 //
-//         if(!::str().begins(stra[i], "/"))
+//         if(!string_begins(stra[i], "/"))
 //         {
 //
 //            stra[i] = "/" + stra[i];

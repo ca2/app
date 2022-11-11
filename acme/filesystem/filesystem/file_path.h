@@ -7,7 +7,10 @@
 /// the text from arguments.
 /// No file should be actually queried.
 /// If possible should be just c strings.
-/// 
+///
+
+
+#include "acme/constant/path.h"
 
 
 CLASS_DECL_ACME bool is_url(const char * pszCandidate);

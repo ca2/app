@@ -4,13 +4,21 @@
 #include "_binary_stream.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
-#include "apex/filesystem/filesystem/file_context.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/sequencer.h"
 #include "acme/primitive/datetime/_binary_stream.h"
+#include "acme/primitive/datetime/department.h"
+#include "acme/primitive/datetime/zonetime.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "acme/primitive/collection/_map_binary_stream.h"
 #include "acme/primitive/datetime/_binary_stream.h"
+#include "acme/primitive/mathematics/number_double.h"
 #include "acme/filesystem/file/binary_stream.h"
-
+#include "acme/primitive/string/international.h"
+#include "acme/primitive/string/str.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/networking/open_weather_city.h"
+#include "apex/networking/http/context.h"
 
 
 namespace geo
@@ -42,14 +50,14 @@ namespace geo
    }
 
 
-   void department::initialize(::object* pobject)
+   void department::initialize(::particle * pparticle)
    {
 
-      ::acme::department::initialize(pobject);
+      ::acme::department::initialize(pparticle);
 
-      m_pathCityTimeZoneFile = m_psystem->m_pacmedirectory->system() / "datetime_departament_cityTimeZone.bin";
+      m_pathCityTimeZoneFile = acmedirectory()->system() / "datetime_departament_cityTimeZone.bin";
 
-      m_pathLocalityTimeZoneFile = m_psystem->m_pacmedirectory->system() / "datetime_departament_LocalityTimeZone.bin";
+      m_pathLocalityTimeZoneFile = acmedirectory()->system() / "datetime_departament_LocalityTimeZone.bin";
 
    }
    
@@ -70,17 +78,17 @@ namespace geo
 
       }
 
-      ::file::path pathFolder = m_psystem->m_pacmedirectory->system();
+      ::file::path pathFolder = acmedirectory()->system();
 
       bool bOk = false;
 
       auto pcontext = m_pcontext->m_pcontext;
 
-      auto& file = pcontext->m_papexcontext->file();
+      auto pfile = pcontext->m_papexcontext->file();
 
       {
 
-         auto memory = file.as_memory(pathFolder / "weather.bin");
+         auto memory = pfile->as_memory(pathFolder / "weather.bin");
 
          auto pfile = __new(memory_file(memory));
 
@@ -102,27 +110,27 @@ namespace geo
 
             }
 
-            //pcontext->m_papexcontext->file().to_array(m_straCity,          auto psystem = m_psystem;
+            //pcontext->m_papexcontext->file()->to_array(m_straCity,          auto psystem = acmesystem();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-cit.bin");
-            //pcontext->m_papexcontext->file().to_array(m_straCityLo,          auto psystem = m_psystem;
+            //pcontext->m_papexcontext->file()->to_array(m_straCityLo,          auto psystem = acmesystem();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-cil.bin");
-            //pcontext->m_papexcontext->file().to_array(m_iaIds,          auto psystem = m_psystem;
+            //pcontext->m_papexcontext->file()->to_array(m_iaIds,          auto psystem = acmesystem();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-ids.bin");
-            //pcontext->m_papexcontext->file().to_array(m_daLon,          auto psystem = m_psystem;
+            //pcontext->m_papexcontext->file()->to_array(m_daLon,          auto psystem = acmesystem();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-lon.bin");
-            //pcontext->m_papexcontext->file().to_array(m_daLat,          auto psystem = m_psystem;
+            //pcontext->m_papexcontext->file()->to_array(m_daLat,          auto psystem = acmesystem();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
@@ -149,7 +157,7 @@ namespace geo
          try
          {
 
-            file.erase(pathFolder / "weather.bin");
+            pfile->erase(pathFolder / "weather.bin");
 
             m_straCityLo.erase_all();
             m_straCity.erase_all();
@@ -193,7 +201,7 @@ namespace geo
 
          string str;
 
-         str = file.as_string("https://ca2.software/city-list.json");
+         str = pfile->as_string("https://ca2.software/city-list.json");
 
          if (str.has_char())
          {
@@ -235,9 +243,9 @@ namespace geo
 
             }
 
-            auto pfile = file.get_writer(pathFolder / "weather.bin");
+            auto pfileOut = pfile->get_writer(pathFolder / "weather.bin");
 
-            auto stream = __binary_stream(pfile);
+            auto stream = __binary_stream(pfileOut);
 
             stream << m_straCity;
             stream << m_straCityLo;
@@ -260,7 +268,7 @@ namespace geo
       if (!pcity)
       {
 
-         pcity = __new(openweather_city);
+         pcity = memory_new openweather_city;
 
          pcity->m_iIndex = openweather_find_city2(
             strQuery,
@@ -564,7 +572,7 @@ namespace geo
 
       string str = pcontext->m_papexcontext->http().get(strGetUrl, set);
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       const char* pszJson = str;
 
@@ -684,11 +692,11 @@ namespace geo
       //
       //#ifdef WINDOWS
       //
-      //         strKey = m_psystem->m_pacmefile->as_string("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
+      //         strKey = acmefile()->as_string("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
       //
       //#else
       //
-      //         strKey = m_psystem->m_pacmefile->as_string("/sensitive/sensitive/seed/timezonedb.txt");
+      //         strKey = acmefile()->as_string("/sensitive/sensitive/seed/timezonedb.txt");
       //
       //#endif
       //
@@ -753,9 +761,9 @@ namespace geo
       //
       //         m_countryLocalityTimeZone[strCountry][strLocality] = timezone;
       //
-      //         ::file::path path = m_psystem->m_pacmedirectory->public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
+      //         ::file::path path = acmedirectory()->public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
       //
-      //         auto & file = pcontext->m_papexcontext->file().friendly_get_file(path, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
+      //         auto & file = pcontext->m_papexcontext->file()->friendly_get_file(path, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
       //
       //         stream os(file);
       //
@@ -1289,7 +1297,6 @@ namespace geo
 
       return dTimeZoneOffset;
 
-
    }
 
   
@@ -1333,14 +1340,14 @@ namespace geo
          try
          {
 
-            auto pfile = m_pcontext->m_papexcontext->file().get_reader(path);
+            auto pfile = file()->get_reader(path);
 
             if (::is_ok(pfile))
             {
 
                auto reader = __binary_stream(pfile);
 
-               synchronous_lock synchronouslock(&m_mutexCityTimeZone);
+               synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
                reader >> m_cityTimeZone;
 
@@ -1357,7 +1364,7 @@ namespace geo
       try
       {
 
-         synchronous_lock synchronouslock(&m_mutexCityTimeZone);
+         synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
          auto& timezone = m_cityTimeZone[iOpenweatherCity];
 
@@ -1413,14 +1420,14 @@ namespace geo
          try
          {
 
-            auto pfile = m_pcontext->m_papexcontext->file().get_reader(path);
+            auto pfile = file()->get_reader(path);
 
             if (pfile)
             {
 
                auto reader = __binary_stream(pfile);
 
-               synchronous_lock synchronouslock(&m_mutexLocalityTimeZone);
+               synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
 
                reader >> m_localityTimeZone;
 
@@ -1441,7 +1448,7 @@ namespace geo
       try
       {
 
-         synchronous_lock synchronouslock(&m_mutexCityTimeZone);
+         synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
          auto& timezone = m_localityTimeZone[dLat][dLng];
 
@@ -1545,11 +1552,11 @@ namespace geo
          try
          {
 
-            auto file = m_pcontext->m_papexcontext->file().get_reader(path);
+            auto file = ::particle::file()->get_reader(path);
 
             auto reader = __binary_stream(file);
 
-            synchronous_lock synchronouslock(&m_mutexCityWeather);
+            synchronous_lock synchronouslock(m_pmutexCityWeather);
 
             reader >> m_cityWeather;
 
@@ -1578,7 +1585,7 @@ namespace geo
       try
       {
 
-         synchronous_lock synchronouslock(&m_mutexCityTimeZone);
+         synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
          auto& stringtimeout = m_cityWeather[pcity->m_iId];
 
@@ -1834,14 +1841,14 @@ namespace geo
       try
       {
 
-         auto pfile = m_pcontext->m_papexcontext->file().get_writer(path);
+         auto pfile = file()->get_writer(path);
 
          if (pfile)
          {
 
             auto writer = __binary_stream(pfile);
 
-            synchronous_lock synchronouslock(&m_mutexCityTimeZone);
+            synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
             writer << m_cityTimeZone;
 
@@ -1864,14 +1871,14 @@ namespace geo
       try
       {
 
-         auto pfile = m_pcontext->m_papexcontext->file().get_writer(path);
+         auto pfile = file()->get_writer(path);
 
          if (pfile)
          {
 
             auto writer = __binary_stream(pfile);
 
-            synchronous_lock synchronouslock(&m_mutexLocalityTimeZone);
+            synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
 
             writer << m_localityTimeZone;
 
@@ -1894,11 +1901,11 @@ namespace geo
       try
       {
 
-         auto file = m_pcontext->m_papexcontext->file().get_writer(path);
+         auto pfile = file()->get_writer(path);
 
-         auto writer = __binary_stream(file);
+         auto writer = __binary_stream(pfile);
 
-         synchronous_lock synchronouslock(&m_mutexCityWeather);
+         synchronous_lock synchronouslock(m_pmutexCityWeather);
 
          writer << m_cityWeather;
 

@@ -2,6 +2,7 @@
 
 
 #include "apex/networking/sockets/basic/socket_handler.h"
+#include "apex/parallelization/thread.h"
 
 
 namespace simpledb

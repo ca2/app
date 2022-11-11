@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "controller.h"
 
 
 namespace user
@@ -18,7 +19,7 @@ namespace user
    }
 
 
-   ::user::interaction* controller::impact_at(::index iImpact) const
+   ::user::interaction* controller::impact_at(::index iImpact)
    {
 
       return nullptr;
@@ -26,7 +27,7 @@ namespace user
    }
 
 
-   ::count controller::impact_count() const
+   ::count controller::impact_count()
    {
 
       return 0;
@@ -34,21 +35,20 @@ namespace user
    }
 
 
-   void controller::dump(dump_context&dumpcontext) const
-   {
-
-      channel::dump(dumpcontext);
-
-   }
-
-
-   void controller::assert_ok() const
-   {
-
-      channel::assert_ok();
-
-   }
-
+//   void controller::dump(dump_context&dumpcontext) const
+//   {
+//
+//      channel::dump(dumpcontext);
+//
+//   }
+//
+//
+//   void controller::assert_ok() const
+//   {
+//
+//      channel::assert_ok();
+//
+//   }
 
 
 } // namespace user

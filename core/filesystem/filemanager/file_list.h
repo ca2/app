@@ -38,8 +38,8 @@ namespace filemanager
       void initialize_impact(::user::document * pdocument) override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
 

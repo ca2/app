@@ -1,7 +1,11 @@
 ﻿#include "framework.h"
 #include "form_mesh.h"
-#include "core/user/user/mesh_item.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/handler/item.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/message/user.h"
+#include "core/user/user/mesh_item.h"
 
 
 namespace user
@@ -308,7 +312,7 @@ namespace user
    void form_mesh::_001HideEditingControls()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if(_001GetEditControl() != nullptr)
       {
@@ -656,7 +660,7 @@ namespace user
    bool form_mesh::_001OnControlSetFocus(::user::interaction * pinteraction)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       //index iItem;
 
@@ -681,7 +685,7 @@ namespace user
    bool form_mesh::_001OnControlKillFocus(::user::interaction * pinteraction)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       //index iItem;
 

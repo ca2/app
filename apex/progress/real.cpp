@@ -1,5 +1,6 @@
 // Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "real.h"
 
 
 namespace progress
@@ -9,7 +10,7 @@ namespace progress
    real::real()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
 
    }

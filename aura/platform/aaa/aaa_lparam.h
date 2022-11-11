@@ -23,7 +23,7 @@ public:
 
 
    /// posting/sending object
-   inline lparam(const ::object * pobject);
+   inline lparam(const ::particle * pparticle);
 
 
    /// posting/sending object

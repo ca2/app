@@ -11,6 +11,9 @@ Copyright (ca) 1998 by PJ Naughter.
 #pragma once
 
 
+#include "apex/networking/ip_enum.h"
+
+
 namespace networking_bsd
 {
 

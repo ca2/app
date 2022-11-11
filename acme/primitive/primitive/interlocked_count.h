@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "atomic.h"
+
+
 #if OSBIT == 64
 
 

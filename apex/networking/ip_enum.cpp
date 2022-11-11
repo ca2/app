@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "ip_enum.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace networking

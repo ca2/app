@@ -1,17 +1,27 @@
-// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
-#include "listener.h"
+//#include "listener.h"
+//
+//
+//#include "integer.h"
+//
+//
+//#include "real.h"
+//
+//
+//#include "progress.h"
 
 
-#include "integer.h"
+namespace progress
+{
 
 
-#include "real.h"
+   class listener;
 
 
-#include "progress.h"
+} // namespace progress
 
 
 

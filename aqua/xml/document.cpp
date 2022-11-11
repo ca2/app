@@ -2,6 +2,9 @@
 #include "document.h"
 #include "xml.h"
 #include "exception.h"
+#include "acme/exception/interface_only.h"
+#include "acme/primitive/string/str.h"
+#include "apex/platform/context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 
 
@@ -58,9 +61,9 @@ namespace xml
    //   
    //   string str;
 
-   //   auto psystem = m_psystem->m_paurasystem;
+   //   auto psystem = acmesystem()->m_paurasystem;
 
-   //   str = m_pcontext->m_papexcontext->file().as_string(psz);
+   //   str = file()->as_string(psz);
 
    //   load(str);
 
@@ -93,12 +96,12 @@ namespace xml
    }
 
 
-   void document::initialize(::object * pobject)
+   void document::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      //::object::initialize(pobject);
+      //::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -109,7 +112,7 @@ namespace xml
 
       //estatus = 
       
-      //node::initialize_matter(pobject);
+      //node::initialize_matter(pparticle);
 
       //if (!estatus)
       //{
@@ -371,7 +374,7 @@ namespace xml
 
          strName += *pszXml;
 
-         ::str().increment(pszXml);
+         unicode_increment(pszXml);
 
       }
 
@@ -413,13 +416,13 @@ namespace xml
 
          pszXmlParam = pszXml;
 
-         return pacmecontext->m_papexcontext->file().as_string(m_pathLocation.sibling(extEnt));
+         return pacmecontext->m_papexcontext->file()->as_string(m_pathLocation.sibling(extEnt));
 
       }
 
       string strEntityReference(pszXmlParam, pszXml - pszXmlParam);
 
-      if(::str().begins_eat_ci(strEntityReference, "&#"))
+      if(strEntityReference.begins_eat_ci("&#"))
       {
 
          int i = atoi(strEntityReference);

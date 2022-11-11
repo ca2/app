@@ -3,8 +3,13 @@
 #include "frame_window.h"
 #include "impact.h"
 #include "impact_system.h"
-//#include "aura/message.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
+#include "acme/filesystem/file/file.h"
+#include "acme/primitive/datetime/department.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/create.h"
 #include "aura/user/user/wait_cursor.h"
 #include "aura/user/user/window_util.h"
 #include "base/platform/application.h"
@@ -38,7 +43,7 @@ namespace user
 
       m_bEmbedded = false;        // default to file-based document
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -73,20 +78,20 @@ namespace user
    }
 
 
-   void document::assert_ok() const
-   {
-      ::object::assert_ok();
+//   void document::assert_ok() const
+//   {
+//      ::object::assert_ok();
+//
+//      ::count count = get_impact_count();
+//      for (index index = 0; index < count; index++)
+//      {
+//         ::pointer<::user::impact>pimpact = get_impact(index);
+//         ASSERT_VALID(pimpact);
+//      }
+//   }
 
-      ::count count = get_impact_count();
-      for (index index = 0; index < count; index++)
-      {
-         ::pointer<::user::impact>pimpact = get_impact(index);
-         ASSERT_VALID(pimpact);
-      }
-   }
 
-
-   ::base::application * document::get_app() const 
+   ::base::application * document::get_app()
    {
       
       return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
@@ -94,7 +99,7 @@ namespace user
    }
 
 
-   ::base::session * document::get_session() const 
+   ::base::session * document::get_session()
    {
       
       return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
@@ -102,15 +107,15 @@ namespace user
    }
 
 
-   ::base::system * document::get_system() const 
+   ::base::system * document::get_system()
    {
       
-      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
    
    }
 
 
-   ::base::user * document::user() const 
+   ::base::user * document::user()
    {
       
       return get_session() ? get_session()->user() : nullptr; 
@@ -118,7 +123,7 @@ namespace user
    }
 
 
-   ::user::interaction* document::impact_at(::index iImpact) const
+   ::user::interaction* document::impact_at(::index iImpact)
    {
 
       return m_impacta[iImpact];
@@ -126,7 +131,7 @@ namespace user
    }
 
 
-   ::count document::impact_count() const
+   ::count document::impact_count()
    {
 
       return m_impacta.get_count();
@@ -137,7 +142,7 @@ namespace user
    ::user::interaction_array document::get_top_level_windows()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ::user::interaction_array uia;
 
@@ -231,29 +236,29 @@ namespace user
    }
 
 
-   void document::dump(dump_context & dumpcontext) const
-   {
-      ::object::dump(dumpcontext);
-
-      //dumpcontext << "\nm_pDocTemplate = " << (void *)m_pimpactsystem;
-
-      //if (dumpcontext.GetDepth() > 0)
-      //{
-      //   ::count count = get_impact_count();
-      //   for (index index = 0; index < count; index++)
-      //   {
-      //      ::pointer<::user::impact>pimpact = get_impact(index);
-      //      dumpcontext << "\nwith ::user::impact " << (void *)pimpact;
-      //   }
-      //}
-
-      //dumpcontext << "m_strTitle = " << m_strTitle;
-      //dumpcontext << "\nm_path = " << m_path;
-      //dumpcontext << "\nm_bModified = " << m_bModified;
-      //dumpcontext << "\n";
-
-
-   }
+//   void document::dump(dump_context & dumpcontext) const
+//   {
+//      ::object::dump(dumpcontext);
+//
+//      //dumpcontext << "\nm_pDocTemplate = " << (void *)m_pimpactsystem;
+//
+//      //if (dumpcontext.GetDepth() > 0)
+//      //{
+//      //   ::count count = get_impact_count();
+//      //   for (index index = 0; index < count; index++)
+//      //   {
+//      //      ::pointer<::user::impact>pimpact = get_impact(index);
+//      //      dumpcontext << "\nwith ::user::impact " << (void *)pimpact;
+//      //   }
+//      //}
+//
+//      //dumpcontext << "m_strTitle = " << m_strTitle;
+//      //dumpcontext << "\nm_path = " << m_path;
+//      //dumpcontext << "\nm_bModified = " << m_bModified;
+//      //dumpcontext << "\n";
+//
+//
+//   }
 
 
    //void document::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
@@ -422,7 +427,9 @@ namespace user
 
       run_property("on_create");
 
-      call_routines_with_id(CREATE_ROUTINE);
+      //throw_todo();
+
+      //call_routines_with_id(CREATE_ROUTINE);
 
       //::database::client::initialize_data_client(papp->dataserver());
 
@@ -503,7 +510,7 @@ namespace user
    void document::disconnect_impacts()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       for (index index = 0; index < m_impacta.get_count(); index++)
       {
@@ -551,7 +558,7 @@ namespace user
    ::pointer<::user::impact>document::get_impact(index index) const
    {
 
-      synchronous_lock synchronouslock(((document *)this)->mutex());
+      synchronous_lock synchronouslock(((document *) this)->synchronization());
 
       if (index < 0 || index >= m_impacta.get_count())
       {
@@ -603,7 +610,7 @@ namespace user
    ::pointer<::user::impact>document::get_typed_impact(::type info, index indexFind)
    {
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       ::count countImpact = get_impact_count();
 
@@ -643,7 +650,7 @@ namespace user
 
    ::pointer<::user::impact>document::get_typed_impact_with_id(::type info, atom atom)
    {
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
       ::count countImpact = get_impact_count();
       ::count countFind = 0;
       ::pointer<::user::impact>pimpact;
@@ -725,7 +732,9 @@ namespace user
 
       ASSERT(::is_set(this));
 
-      return m_bModified || has(e_object_property_set_modified);
+      //return m_bModified || has(e_flag_is_modified);
+
+      return m_bModified;
 
    }
 
@@ -760,7 +769,7 @@ namespace user
       else if (payloadFile.cast < ::file::file>() != nullptr)
       {
 
-         auto psystem = m_psystem->m_pbasesystem;
+         auto psystem = acmesystem()->m_pbasesystem;
 
          auto pdatetime = psystem->datetime();
 
@@ -824,7 +833,7 @@ namespace user
       ASSERT_VALID(this);
 
       // set the document_interface title based on path name
-      string strTitle = pcontext->m_papexcontext->file().title_(m_strPathName);
+      string strTitle = pcontext->m_papexcontext->file()->title_(m_strPathName);
       set_title(strTitle);
 
 
@@ -1004,7 +1013,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      auto preader = pcontext->m_papexcontext->file().get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      auto preader = pcontext->m_papexcontext->file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       if (!::is_ok(preader))
       {
@@ -1057,7 +1066,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      auto pwriter = pcontext->m_papexcontext->file().get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive | ::file::e_open_no_exception_on_open);
+      auto pwriter = pcontext->m_papexcontext->file()->get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive | ::file::e_open_no_exception_on_open);
 
       if(!::is_ok(pwriter))
       {
@@ -1124,7 +1133,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          for (auto & pimpact : m_impacta.ptra())
          {
@@ -1155,7 +1164,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_impacta.erase_all();
 
@@ -1171,7 +1180,7 @@ namespace user
 
       ::pointer<::object>pthis = this;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto viewptra = m_impacta;
 
@@ -1362,7 +1371,7 @@ namespace user
    //  (at least one of our views must be in this frame)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ASSERT_VALID(pframeParam);
 
@@ -1594,7 +1603,7 @@ namespace user
             try
             {
 
-               pcontext->m_papexcontext->file().erase(newName);
+               pcontext->m_papexcontext->file()->erase(newName);
 
             }
             catch(const ::exception &)
@@ -1621,7 +1630,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      if (is_new_document() || pcontext->m_papexcontext->file().is_read_only(m_path))
+      if (is_new_document() || pcontext->m_papexcontext->file()->is_read_only(m_path))
       {
 
          // we do not have read-write access or the file does not (now) exist
@@ -1795,7 +1804,7 @@ namespace user
    void document::add_impact(::user::impact * pimpact)
    {
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       ASSERT_VALID(pimpact);
 
@@ -1825,7 +1834,7 @@ namespace user
    void document::erase_impact(::user::impact * pimpact)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ASSERT_VALID(pimpact);
 
@@ -1876,7 +1885,7 @@ namespace user
 
    //   __UNREFERENCED_PARAMETER(pdata);
    //   string strUrl(payloadFile);
-   //   if(::str().begins_eat(strUrl,"ext://"))
+   //   if(strUrl.begins_eat("ext://"))
    //   {
    //      papp->open_link(strUrl,"", pszTargetFrameName);
 
@@ -1886,7 +1895,7 @@ namespace user
    //      *pbCancel = true;
    //      return;
    //   }
-   //   if(::str().begins_eat(strUrl,"hist://"))
+   //   if(strUrl.begins_eat("hist://"))
    //   {
    //      psystem->hist_hist(strUrl);
    //      *pbCancel = true;

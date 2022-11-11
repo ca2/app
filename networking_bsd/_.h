@@ -1,9 +1,10 @@
 ﻿// https://avatars.githubusercontent.com/u/5128963?v=4
 #pragma once
 
+//#error "test"
+
 
 #include "apex/_.h"
-#include "_operating_system.h"
 
 
 #if defined(_NETWORKING_BSD_LIBRARY)
@@ -17,21 +18,11 @@
 #define HAVE_OPENSSL 1
 
 
-CLASS_DECL_NETWORKING_BSD const char * bsd_socket_error(int x);
-
-#ifdef WINDOWS
+#include "_operating_system.h"
 
 
-#include "winsock2/_.h"
+//CLASS_DECL_NETWORKING_BSD const char * bsd_socket_error(int x);
 
-
-#else
-
-
-#include "bsd/_.h"
-
-
-#endif
 
 
 #ifdef HAVE_OPENSSL
@@ -52,7 +43,42 @@ CLASS_DECL_NETWORKING_BSD const char * bsd_socket_error(int x);
 #include <openssl/evp.h>
 #endif
 
-#include "_net.h"
+
+#include "_constant.h"
+
+
+//#include "_net.h"
+
+
+
+CLASS_DECL_NETWORKING_BSD int_bool to(in6_addr & addr,const ::string & str);
+CLASS_DECL_NETWORKING_BSD ::string __string(const in6_addr & addr);
+CLASS_DECL_NETWORKING_BSD int_bool to(in_addr & addr,const ::string & str);
+CLASS_DECL_NETWORKING_BSD ::string __string(const in_addr & addr);
+CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr_in &  addr);
+CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr_in6 &  addr);
+#ifdef BSD_STYLE_SOCKETS
+CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr & addr);
+#endif
+
+
+CLASS_DECL_NETWORKING_BSD void from_string(in6_addr & addr, const ansichar * psz);
+CLASS_DECL_NETWORKING_BSD ::string __string(const in6_addr & addr);
+CLASS_DECL_NETWORKING_BSD void from_string(in_addr & addr, const ansichar * psz);
+CLASS_DECL_NETWORKING_BSD ::string __string(const in_addr & addr);
+CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr_in & addr);
+CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr_in6 & addr);
+//CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in & addr, const ansichar * psz);
+//CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in6 & addr, const ansichar * psz);
+#ifdef BSD_STYLE_SOCKETS
+CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr & addr);
+//CLASS_DECL_NETWORKING_BSD void from_string(sockaddr & addr, ansichar * psz);
+#endif
+
+
+CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const char * hostname);
+
+
 
 
 

@@ -1,7 +1,12 @@
 #pragma once
 
 
-template < typename POINTER, class ARRAY_TYPE = comparable_array < POINTER, POINTER, comparable_eq_array < POINTER, POINTER, raw_array < POINTER, POINTER, ::allocator::zero < POINTER > > > > >
+#include "raw_array.h"
+#include "comparable_eq_array.h"
+#include "comparable_array.h"
+
+
+template < typename POINTER, class ARRAY_TYPE >
 class address_array :
    public ARRAY_TYPE
 {
@@ -52,7 +57,7 @@ public:
 //   typedef ::address_array < matter * > BASE_TYPE;
 //
 //   inline object_ptra() {}
-//   inline object_ptra(::matter * pobject) : ::matter(pobject) { }
+//   inline object_ptra(::particle * pparticle) : ::matter(pparticle) { }
 //   inline object_ptra(const object_ptra & a) : ::matter(a), BASE_TYPE(a) { }
 //   inline object_ptra(const BASE_TYPE & a) : ::matter((const ::matter & )a), BASE_TYPE(a) { }
 //   inline object_ptra(object_ptra && a): ::matter(a), BASE_TYPE(::move(a)) { }
@@ -70,19 +75,5 @@ public:
 
 
 
-class CLASS_DECL_ACME const_char_ptra :
-   public address_array < const char * >
-{
-};
 
 
-
-
-
-
-typedef address_array < void * > void_ptra;
-
-typedef address_array < matter * > simple_object_ptra;
-
-
-typedef address_array < matter * > reference_addressa;

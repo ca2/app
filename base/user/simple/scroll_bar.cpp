@@ -1,10 +1,12 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "scroll_bar.h"
+#include "acme/constant/message.h"
+#include "acme/handler/item.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "acme/platform/timer.h"
-#include "scroll_bar.h"
 #include "aura/message/user.h"
 #include "aura/user/user/style.h"
 
@@ -210,7 +212,7 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
    }
 
 
-   auto psystem = m_psystem->m_paurasystem;
+   auto psystem = acmesystem()->m_paurasystem;
 
    auto pdraw2d = psystem->draw2d();
 
@@ -272,7 +274,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
       point -= m_sizeTrackOffset;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -794,7 +796,7 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
    else if(ptimer->m_uEvent == ((uptr) this) + 1)
    {
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -1795,7 +1797,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    ::rectangle_i32 rectangleTrack;
 
-   auto psystem = m_psystem->m_paurasystem;
+   auto psystem = acmesystem()->m_paurasystem;
 
    auto pdraw2d = psystem->draw2d();
 

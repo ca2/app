@@ -5,11 +5,11 @@ namespace calculator
 {
 
 
-   document::document(::object * pobject) :
-      ::object(pobject),
-      ::data::data_container_base(pobject),
-      ::user::document(pobject),
-      ::user::document(pobject)
+   document::document(::particle * pparticle) :
+      ::object(pparticle),
+      ::data::data_container_base(pparticle),
+      ::user::document(pparticle),
+      ::user::document(pparticle)
    {
    }
 
@@ -71,7 +71,7 @@ namespace calculator
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      string str = pcontext->m_papexcontext->file().as_string(payloadFile);
+      string str = pcontext->m_papexcontext->file()->as_string(payloadFile);
 
       update_all_impacts(nullptr, OPEN_DOCUMENT_UPDATE);
 

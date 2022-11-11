@@ -1,8 +1,12 @@
 ﻿#include "framework.h"
 #include "app_container.h"
+#include "acme/constant/message.h"
+#include "acme/exception/exception.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/multiple_lock.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "apex/platform/create.h"
 #include "apex/platform/node.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
@@ -225,7 +229,7 @@ namespace apex
    application_array application_container::get_applicationa()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       return m_applicationa;
 
@@ -242,7 +246,7 @@ namespace apex
    //
    //   }
    //
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
    //
    //   if (papp == this)
    //   {
@@ -259,7 +263,7 @@ namespace apex
    //void application_container::app_erase(::apex::application * papp)
    //{
    //
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
    //
    //   if (m_applicationa.is_set())
    //   {
@@ -424,7 +428,7 @@ namespace apex
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          papp = m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 
@@ -470,11 +474,11 @@ namespace apex
 
       string strBuild;
 
-      ::file::path pathExe = m_psystem->m_pacmefile->module();
+      ::file::path pathExe = acmefile()->module();
 
       auto psystem = get_system()->m_papexsystem;
 
-      if (!m_psystem->m_papexsystem->m_papexnode->is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
+      if (!acmesystem()->m_papexsystem->m_papexnode->is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
          psystem->get_system_configuration(), strLocale, strSchema))
       {
 

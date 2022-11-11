@@ -1,4 +1,5 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "acme/handler/item.h"
 #include "core/user/simple/list_impact.h"
 
 
@@ -23,20 +24,20 @@ void simple_list_impact::install_message_routing(::channel * pchannel)
 
 
 
-void simple_list_impact::assert_ok() const
-{
-
-   ::user::impact::assert_ok();
-
-}
-
-
-void simple_list_impact::dump(dump_context & dumpcontext) const
-{
-
-   ::user::impact::dump(dumpcontext);
-
-}
+//void simple_list_impact::assert_ok() const
+//{
+//
+//   ::user::impact::assert_ok();
+//
+//}
+//
+//
+//void simple_list_impact::dump(dump_context & dumpcontext) const
+//{
+//
+//   ::user::impact::dump(dumpcontext);
+//
+//}
 
 
 

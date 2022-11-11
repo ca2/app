@@ -4,6 +4,7 @@
 
 #include "interaction.h"
 #include "style.h"
+#include "control_style.h"
 
 
 namespace user

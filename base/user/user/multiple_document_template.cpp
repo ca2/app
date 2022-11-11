@@ -1,8 +1,10 @@
 #include "framework.h"
-//#include "aura/message.h"
 #include "multiple_document_template.h"
 #include "document.h"
 #include "frame_window.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "apex/platform/create.h"
 #include "base/platform/application.h"
 
 
@@ -14,7 +16,7 @@ namespace user
       ::user::impact_system(pszMatter, pDocClass, pFrameClass, pImpactClass)
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       ASSERT(m_docptra.is_empty());
 
@@ -247,34 +249,34 @@ namespace user
    // multiple_document_template diagnostics
 
 
-   void multiple_document_template::dump(dump_context & dumpcontext) const
-   {
-      impact_system::dump(dumpcontext);
-
-      //dumpcontext << "\nm_nUntitledCount = " << m_nUntitledCount;
-      //dumpcontext << "\nwith " << m_docptra.get_count() << " open documents";
-      //::count count = get_document_count();
-      //for(index index = 0; index < count; index++)
-      //{
-      //   ::pointer<::user::document>pdocument = get_document(index);
-      //   dumpcontext << "\nwith ::user::document " << (void *)pdocument;
-      //}
-
-      //dumpcontext << "\n";
-   }
-
-   void multiple_document_template::assert_ok() const
-   {
-      impact_system::assert_ok();
-
-      ::count count = get_document_count();
-      for(index index = 0; index < count; index++)
-      {
-         ::pointer<::user::document>pdocument = get_document(index);
-         pdocument->assert_ok();
-      }
-
-   }
+//   void multiple_document_template::dump(dump_context & dumpcontext) const
+//   {
+//      impact_system::dump(dumpcontext);
+//
+//      //dumpcontext << "\nm_nUntitledCount = " << m_nUntitledCount;
+//      //dumpcontext << "\nwith " << m_docptra.get_count() << " open documents";
+//      //::count count = get_document_count();
+//      //for(index index = 0; index < count; index++)
+//      //{
+//      //   ::pointer<::user::document>pdocument = get_document(index);
+//      //   dumpcontext << "\nwith ::user::document " << (void *)pdocument;
+//      //}
+//
+//      //dumpcontext << "\n";
+//   }
+//
+//   void multiple_document_template::assert_ok() const
+//   {
+//      impact_system::assert_ok();
+//
+//      ::count count = get_document_count();
+//      for(index index = 0; index < count; index++)
+//      {
+//         ::pointer<::user::document>pdocument = get_document(index);
+//         pdocument->assert_ok();
+//      }
+//
+//   }
 
 
 } // namespace user

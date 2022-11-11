@@ -2,6 +2,7 @@
 
 
 #include "context.h"
+#include "aqua/platform/system.h"
 
 
 namespace aura
@@ -27,7 +28,7 @@ namespace aura
 
       double                                             m_dDpi;
 
-      ::mutex                                            m_mutexUserChildren;
+      ::pointer < ::mutex >                                            m_pmutexUserChildren;
       ::pointer<class ::imaging>                       m_pimaging;
 
       ::pointer<::gpu::approach>                      m_pgpu;
@@ -49,7 +50,7 @@ namespace aura
 
       void common_construct();
 
-      virtual void  initialize(::object * pobject) override;
+      virtual void  initialize(::particle * pparticle) override;
 
       virtual void on_add_session(::apex::session* papexsession) override;
 
@@ -96,8 +97,8 @@ namespace aura
 
 
 
-      inline ::aura::session* get_session() { return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr; }
-      inline ::aura::node* node() { return m_pnode ? m_pnode->m_pauranode : nullptr; }
+      ::aura::session* get_session();
+      ::aura::node* node();
 
       inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
       inline ::gpu::approach* gpu() { return m_pgpu.get(); };
@@ -198,7 +199,7 @@ namespace aura
 
 
 
-      //virtual string dir_appmatter_locator(::object * pobject);
+      //virtual string dir_appmatter_locator(::particle * pparticle);
 
 
       //virtual void hist_hist(const ::string & psz);
@@ -217,7 +218,7 @@ namespace aura
       virtual string get_locale_schema_dir() override;
 
 
-      //virtual void     initialize_system(::object * pobject, app_core * pappcore);
+      //virtual void     initialize_system(::particle * pparticle, app_core * pappcore);
 
 
       //::pointer<::thread_tools>create_thread_tools(::enum_task_tool etool);
@@ -302,7 +303,7 @@ namespace aura
 
       virtual void on_allocation_error(const ::string & strName, ::object * pobjectSometimes) override;
 
-      //::mutex * get_openweather_city_mutex();
+      //::pointer< ::mutex > get_openweather_city_mutex();
 
 
       template < typename T >
@@ -345,7 +346,7 @@ namespace aura
       //   if(idType.is_empty())
       //      return nullptr;
 
-      //   synchronous_lock synchronouslock(&m_mutexFactory);
+      //   synchronous_lock synchronouslock(m_pmutexFactory);
 
       //   return m_typemap[idType].m_p;
 
@@ -559,7 +560,7 @@ namespace aura
       //virtual bool set_standalone_setting(string str, string strSetting) override;
 
 
-      //virtual void on_event(::u64 u, ::object * pobject) override;
+      //virtual void on_event(::u64 u, ::particle * pparticle) override;
 
 
       virtual void on_initial_frame_position(::user::frame * pframe);
@@ -582,7 +583,7 @@ namespace aura
 
 
 
-      //virtual void  initialize_system(::object* pobject, app_core* pappcore) override;
+      //virtual void  initialize_system(::object* pparticle, app_core* pappcore) override;
 
  /*     virtual void discard_to_factory(::pointer<object>pca) override;*/
 
@@ -714,8 +715,8 @@ namespace aura
 //#endif
 
 
-      void assert_ok() const override;
-      void dump(dump_context& action_context) const override;
+      // void assert_ok() const override;
+      //void dump(dump_context& action_context) const override;
 
 
       virtual void     main() override;
@@ -743,7 +744,7 @@ namespace aura
       //virtual ~system();
 
 
-      ///virtual void initialize_system(::object* pobject, app_core* pappcore) override;
+      ///virtual void initialize_system(::object* pparticle, app_core* pappcore) override;
 
 
       //virtual void process_init() override;
@@ -789,7 +790,7 @@ namespace aura
    };
 
 
-   CLASS_DECL_AURA ::mutex * get_image_mutex();
+   CLASS_DECL_AURA ::pointer< ::mutex > get_image_mutex();
 
 
 } // namespace aura

@@ -1,68 +1,20 @@
 ﻿// added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "_api.h"
+#include "exception.h"
+#include "callstack.h"
+//#include "acme/primitive/string/__string.h"
+#include "acme/filesystem/file/exception.h"
+#include "acme/operating_system/process.h"
+#include "acme/platform/node.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/primitive/atom.h"
+//#include "_api.h"
 #include <stdio.h>
 
-
-//const char * strcatdup(const char * psz1, const char * psz2)
-//{
-//   
-//   if(::is_null(psz1))
-//   {
-//      
-//      if(::is_null(psz2))
-//      {
-//         
-//         return nullptr;
-//         
-//      }
-//      else
-//      {
-//         
-//         return strdup(psz2);
-//      
-//      }
-//      
-//   }
-//   else if(::is_null(psz2))
-//   {
-//      
-//      return strdup(psz1);
-//      
-//   }
-//   else
-//   {
-//
-//      char * pszNew = (char *) malloc(strlen(psz1) + strlen(psz2) + 1);
-//
-//      strcpy(pszNew, psz1);
-//   
-//      strcat(pszNew, psz2);
-//   
-//      return pszNew;
-//
-//   }
-//   
-//}
-
-
-//#if defined(APPLE_IOS)
-//
-//bool ::exception::s_bEnableCallStackBackTrace = false;
-//
-//#elif defined(ANDROID)
-//
-//bool ::exception::s_bEnableCallStackBackTrace = true;
-//
-//#elif defined(MACOS)
-//
-//bool ::exception::s_bEnableCallStackBackTrace = false;
-//
-//#else
+string get_status_message(const ::e_status & estatus);
 
 bool ::exception::s_bEnableCallStackBackTrace = true;
 
-//#endif
 
 exception::exception()
 {
@@ -95,9 +47,23 @@ exception::exception(const ::e_status & estatus, const char * pszMessage, const 
       m_strCallstack = unwind_callstack(callstack_default_format(), iSkip);
 
 #else
-      
-      m_strCallstack = get_callstack(callstack_default_format(), iSkip, caller_address);
 
+      auto psystem = ::get_system();
+
+      if(psystem)
+      {
+
+         auto pnode = psystem->acmenode();
+
+         if(pnode)
+         {
+
+            m_strCallstack = pnode->get_callstack(callstack_default_format(), iSkip, caller_address);
+
+         }
+
+      }
+      
 #endif
 
    }
@@ -489,7 +455,7 @@ string estatus_to_string(::e_status estatus)
 //}
 
 
-CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails)
+CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails)
 {
 
 
@@ -509,7 +475,7 @@ CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exc
    strDetails += strMessage + "\n";
    strDetails += exception.m_strDetails + "\n\n";
    strDetails += "\n";
-   strDetails += "PID: " + __string(::get_current_process_id()) + "\n";
+   strDetails += "PID: " + __string(pparticle->acmenode()->get_current_process_id()) + "\n";
    //strDetails += "Working Directory: " + string(GetCurrentDirectory()) + "\n\n";
    
    if (strMoreDetails.has_char())
@@ -526,7 +492,7 @@ CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exc
 
    }
 
-   message_box_synchronous(pobject, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
+   message_box_synchronous(pparticle, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
 
 }
 
@@ -543,6 +509,37 @@ CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const char * ps
 {
 
    throw exception(estatus, pszMessage, pszDetails, iSkip);
+
+}
+
+
+
+
+
+
+CLASS_DECL_ACME void throw_todo()
+{
+
+   throw ::exception(todo);
+
+}
+
+
+
+
+
+CLASS_DECL_ACME const char * callstack_default_format()
+{ 
+   
+   return "%f(%l) %s\n"; 
+
+}
+
+
+CLASS_DECL_ACME void copy(::string& str, const ::exception& exception)
+{
+
+   str = exception.m_strMessage;
 
 }
 

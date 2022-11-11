@@ -1,11 +1,12 @@
 #include "framework.h"
 #include "acme/operating_system/parallelization.h"
-#include "acme/operating_system.h"
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/_operating_system.h"
 #include <Shlobj.h>
 #include <Shellapi.h>
 
 
-HANDLE duplicate_handle(HANDLE h)
+CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
 {
 
    DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &h, 0, false, DUPLICATE_SAME_ACCESS);
@@ -21,7 +22,7 @@ HANDLE duplicate_handle(HANDLE h)
 
 #if defined(ANDROID)
 
-   return m_psystem->m_pacmepath->app_module().folder();
+   return acmepath()->app_module().folder();
 
 #elif defined(_UWP)
 
@@ -118,10 +119,10 @@ HANDLE duplicate_handle(HANDLE h)
       wcscat(wstrModuleFilePath, L"\\ca2\\");
 
 #ifdef X86
-      wcscat(wstrModuleFilePath,L"stage\\x86\\");
+      wstrModuleFilePath += L"/stage/x86/";
 
 #else
-      wide_concatenate(wstrModuleFilePath, L"stage\\x64\\");
+      wstrModuleFilePath += L"/stage/x64/";
 
 #endif
 
@@ -285,10 +286,10 @@ found:
 
 #ifdef X86
 
-      wcscat(wstrModuleFilePath, L"stage\\x86\\");
+      wstrModuleFilePath += L"/stage/x86/";
 
 #else
-      wide_concatenate(wstrModuleFilePath, L"stage\\x64\\");
+      wstrModuleFilePath += L"/stage/x64/";
 
 #endif
 

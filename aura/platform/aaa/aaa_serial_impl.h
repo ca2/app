@@ -71,11 +71,11 @@ private:
    serial_impl * pimpl_;
 };
 
-serial::serial(::object * pobject, const string & port, u32 baudrate, serial::Timeout timeout,
+serial::serial(::particle * pparticle, const string & port, u32 baudrate, serial::Timeout timeout,
    enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
    enum_flow_control eflowcontrol)
-   : ::object(pobject),
-   pimpl_(__new(serial_impl(pobject, port, baudrate, ebytesize, eparity, estopbit, eflowcontrol)))
+   : ::object(pparticle),
+   pimpl_(__new(serial_impl(pparticle, port, baudrate, ebytesize, eparity, estopbit, eflowcontrol)))
 {
    pimpl_->setTimeout(timeout);
 }

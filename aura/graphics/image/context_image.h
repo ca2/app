@@ -2,6 +2,8 @@
 
 
 #include "image.h"
+#include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/collection/string_map.h"
 
 
 class save_image;
@@ -23,7 +25,7 @@ public:
    ~context_image() override;
 
 
-   void initialize(::object * pobject) override;
+   void initialize(::particle * pparticle) override;
 
 
    //virtual void set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;

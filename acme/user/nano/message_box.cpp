@@ -2,9 +2,17 @@
 // Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSørensen
 // Generalization by camilo on 31/01/2022 14:53 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "message_box.h"
+#include "device.h"
+#include "still.h"
+#include "button.h"
+#include "window_implementation.h"
+#include "acme/user/nano/details_window.h"
+#include "acme/user/nano/popup_button.h"
 #include "acme/user/user/mouse.h"
-#include "acme/operating_system.h"
-#include "_nano.h"
+#include "acme/platform/sequencer.h"
+#include "acme/platform/system.h"
+#include "acme/_operating_system.h"
 
 
 bool is_ui_possible();
@@ -311,21 +319,21 @@ void nano_message_box::on_create()
 CLASS_DECL_ACME ::acme::system * get_system();
 
 
-CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * pszMessage, const char * pszTitle, enum_message_box emessagebox, const char * pszDetails)
+CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const char * pszDetails)
 {
 
    initialize_nano_window();
 
-   if (::is_null(pobject))
+   if (::is_null(pparticle))
    {
 
-      pobject = ::get_system();
+      pparticle = ::get_system();
       
    }
 
 #if defined(_UWP)
 
-   if(pobject->m_psystem->m_bConsole || !is_ui_possible())
+   if(pparticle->acmesystem()->m_bConsole || !is_ui_possible())
    {
 
       return message_box_for_console(pszMessage, pszTitle, emessagebox, pszDetails);
@@ -340,7 +348,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * 
    
 #endif
    
-   auto psequencer = pobject->create_message_box_sequencer(pszMessage, pszTitle, emessagebox, pszDetails);
+   auto psequencer = pparticle->m_pcontext->create_message_box_sequencer(pszMessage, pszTitle, emessagebox, pszDetails);
    
    auto atomResult = psequencer->do_synchronously();
    
@@ -359,7 +367,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * 
 //
 //   pmanualresetevent->wait();
 //
-////   auto pmessagebox = pobject->__create_new < nano_message_box >();
+////   auto pmessagebox = pparticle->__create_new < nano_message_box >();
 ////
 ////   atom idResult;
 ////
@@ -414,29 +422,29 @@ public:
 };
 
 
-CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::object * pobject, const char * pszMessage, const char * pszTitle, enum_message_box emessagebox, const char * pszDetails)
+CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::particle * pparticle, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const char * pszDetails)
 {
 
    auto pmessagebox = __new(message_box);
 
-   pmessagebox->m_pobject = pobject;
+   pmessagebox->m_pobject = pparticle;
    pmessagebox->initialize_conversation(pszMessage,pszTitle, emessagebox, pszDetails);
 
-   //pobject->fork([pmessagebox]()
+   //pparticle->fork([pmessagebox]()
    //{
 
    initialize_nano_window();
 
-   if (::is_null(pobject))
+   if (::is_null(pparticle))
    {
 
-      pobject = ::get_system();
+      pparticle = ::get_system();
       
    }
 
 #if defined(_UWP)
 
-   if(pobject->m_psystem->m_bConsole || !is_ui_possible())
+   if(pparticle->acmesystem()->m_bConsole || !is_ui_possible())
    {
 
       auto result = message_box_for_console(pszMessage, pszTitle, emessagebox, pszDetails);
@@ -453,10 +461,10 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    
 #endif
    
-   //main_asynchronous([ pmessagebox, pobject ]()
+   //main_asynchronous([ pmessagebox, pparticle ]()
    //{
 
-      auto pnanomessagebox = pobject->__create_new < nano_message_box >();
+      auto pnanomessagebox = __create_new < nano_message_box >(pparticle);
    
       atom idResult;
    

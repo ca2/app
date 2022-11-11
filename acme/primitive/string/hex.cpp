@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "hex.h"
+#include "string.h"
+#include "acme/exception/exception.h"
 
 
 i32 alphadigit_weight(char ch)
@@ -88,16 +91,6 @@ namespace hex
 
 
 
-bool ishexdigit(char ch)
-{
-   if(ch >= '0' && ch <= '9')
-      return true;
-   if(ch >= 'a' && ch <= 'f')
-      return true;
-   if(ch >= 'A' && ch <= 'F')
-      return true;
-   return false;
-}
 
 
 
@@ -114,7 +107,7 @@ namespace hex
       for (index i = 0; i < 4; i++)
       {
          psz = pszNext;
-         pszNext = ::str().next(psz);
+         pszNext = unicode_next(psz);
          if (pszNext > pszEnd)
          {
             throw ::exception(error_parsing, "hexadecimal digit expected, premature end");

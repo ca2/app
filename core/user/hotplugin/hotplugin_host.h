@@ -25,7 +25,7 @@ namespace hotplugin
       bool                          m_bRunningSpaAdmin;
 
 
-      ::mutex                       m_mutexSystem;
+      ::pointer < ::mutex >                       m_pmutexSystem;
 
       ::image_pointer               m_pimage;
 

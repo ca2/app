@@ -21,7 +21,7 @@ namespace draw2d_opengl
          HDC            m_hdc;
 
 
-         document_properties(::object * pobject);
+         document_properties(::particle * pparticle);
          virtual ~document_properties();
 
 
@@ -36,7 +36,7 @@ namespace draw2d_opengl
       document_properties     m_documentproperties;
 
 
-      printer(::object * pobject);
+      printer(::particle * pparticle);
       virtual ~printer();
 
 

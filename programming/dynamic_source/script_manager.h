@@ -19,7 +19,7 @@ namespace dynamic_source
 
          ::pointer<script_manager>  m_pmanager;
 
-         clear_include_matches_file_watcher(::object * pobject);
+         clear_include_matches_file_watcher(::particle * pparticle);
 
          virtual void operator()(::file::action * paction) override;
 
@@ -64,27 +64,27 @@ namespace dynamic_source
       pointer_array < plugin_map_item >                      m_pluginmapitema;
 
 
-      ::mutex                                               m_mutexIncludeMatches;
+      ::pointer < ::mutex >                                               m_pmutexIncludeMatches;
       string_map < bool >                                   m_mapIncludeMatchesFileExists;
       string_map < bool >                                   m_mapIncludeMatchesIsDir;
-      ::mutex                                               m_mutexIncludeHasScript;
+      ::pointer < ::mutex >                                               m_pmutexIncludeHasScript;
       string_map < bool >                                   m_mapIncludeHasScript;
-      ::mutex                                               m_mutexShouldBuild;
+      ::pointer < ::mutex >                                               m_pmutexShouldBuild;
       string_map < bool >                                   m_mapShouldBuild;
-      ::mutex                                               m_mutexIncludeExpandMd5;
+      ::pointer < ::mutex >                                               m_pmutexIncludeExpandMd5;
       string_to_string                                      m_mapIncludeExpandMd5;
       //::pointer<::user::message_window>                  m_pmessagequeue;
 
       i32                                                   m_iTunnelPluginCount;
-      ::mutex                                               m_mutexOutLink;
+      ::pointer < ::mutex >                                               m_pmutexOutLink;
       string_map < ::pointer<::sockets::link_out_socket >> m_mapOutLink;
-      ::mutex                                               m_mutexInLink;
+      ::pointer < ::mutex >                                               m_pmutexInLink;
       ::pointer<::sockets::in_link_map>                    m_pmapInLink;
-      ::mutex                                               m_mutexTunnel;
+      ::pointer < ::mutex >                                               m_pmutexTunnel;
       strmap(tunnel_map_item)                               m_mapTunnel;
 
 
-      ::mutex                                               m_mutexImageSize;
+      ::pointer < ::mutex >                                               m_pmutexImageSize;
       string_map < ::size_i32 >                                 m_mapImageSize;
 
 
@@ -95,10 +95,10 @@ namespace dynamic_source
       ::file::path                                          m_strNetseedPath;
       ::file::path                                          m_strNetseedDsCa2Path;
 
-      ::mutex                                               m_mutexSimage;
-      ::mutex                                               m_mutexSpider;
+      ::pointer < ::mutex >                                               m_pmutexSimage;
+      ::pointer < ::mutex >                                               m_pmutexSpider;
 
-      ::mutex                                               m_mutexRsa;
+      ::pointer < ::mutex >                                               m_pmutexRsa;
 
       ::crypto::rsaptra                                     m_rsaptra;
 
@@ -108,10 +108,10 @@ namespace dynamic_source
 
       i64                                                   m_iDatabaseWaitTimeOut;
 
-      ::mutex                                               m_mutexSession;
+      ::pointer < ::mutex >                                               m_pmutexSession;
       string_map < ::pointer<::dynamic_source::session >>  m_mapSession;
-      ::mutex                                               m_mutexMusicDbPool;
-      ::mutex                                               m_mutexWayDbPool;
+      ::pointer < ::mutex >                                               m_pmutexMusicDbPool;
+      ::pointer < ::mutex >                                               m_pmutexWayDbPool;
       ::pointer<script_cache>                              m_pcache;
       ::pointer<script_compiler>                           m_pcompiler;
       i32                                                   m_iBuildTimeWindow;
@@ -121,12 +121,12 @@ namespace dynamic_source
 
       string                                                m_strPersistentError;
 
-      ::mutex                                               m_mutexPersistentStr;
-      ::mutex                                               m_mutexUiRedir;
-      ::mutex                                               m_mutexTagId;
+      ::pointer < ::mutex >                                               m_pmutexPersistentStr;
+      ::pointer < ::mutex >                                               m_pmutexUiRedir;
+      ::pointer < ::mutex >                                               m_pmutexTagId;
       string_to_string                                      m_tagid;
       string_to_string                                      m_usersecuretagid;
-      ::mutex                                               m_mutexTagName;
+      ::pointer < ::mutex >                                               m_pmutexTagName;
       string_to_string                                      m_tagname;
 
 
@@ -141,7 +141,7 @@ namespace dynamic_source
       ~script_manager() override;
 
       
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual void init1();

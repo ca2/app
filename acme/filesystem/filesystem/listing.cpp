@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "listing.h"
+#include "enumerator.h"
 
 
 namespace file
@@ -56,6 +58,68 @@ namespace file
    }
 
 
+   index listing::name_find_first_ci(const path & pcsz,index find,index last ) const
+   {
+
+      if(find < 0)
+         find += this->get_count();
+      if(last < 0)
+         last += this->get_count();
+      for(; find <= last; find++)
+      {
+         if(ansi_icmp(this->element_at(find).name(), pcsz) == 0)
+
+            return find;
+      }
+      return -1;
+   }
+
+
+   bool listing::name_move_ci(const path & pcsz,index iIndex)
+
+   {
+      index i = name_find_first_ci(pcsz);
+
+      if(i < 0)
+         return false;
+      path point = element_at(i);
+
+      string t;
+
+      if (i < m_straTitle.get_count())
+      {
+
+         t = m_straTitle[i];
+
+      }
+
+      erase_at(i);
+      insert_at(iIndex,pcsz);
+
+      return true;
+   }
+
+
+   bool listing::preferred_name(const path & pcsz)
+
+   {
+      return name_move_ci(pcsz,0);
+
+   }
+
+
+   ::count listing::preferred_name(path_array & stra)
+   {
+      ::count count = 0;
+      for(index i = stra.get_upper_bound(); i >= 0; i--)
+      {
+         if(preferred_name(stra[ i]))
+            count++;
+      }
+      return count;
+   }
+
+   
    void listing::defer_add(::file::path & path)
    {
 
@@ -139,6 +203,8 @@ namespace file
    {
 
    }
+
+
 
 
 } // namespace file
@@ -225,3 +291,82 @@ CLASS_DECL_ACME string normalize_wildcard_criteria(const ::string & strPattern)
    }
 
 }
+
+
+
+
+namespace file
+{
+
+
+   string listing::title(index i)
+   {
+
+      if (i >= 0 && i < m_straTitle.get_count())
+      {
+
+         return m_straTitle[i];
+
+      }
+
+      return operator[](i).title();
+
+   }
+
+
+   string listing::name(index i)
+   {
+
+      if (i >= 0 && i < m_straTitle.get_count())
+      {
+
+         return m_straTitle[i];
+
+      }
+
+      return operator[](i).name();
+
+   }
+
+
+   void listing::to_name()
+   {
+
+      for (index i = 0; i < get_size(); i++)
+      {
+
+         element_at(i) = element_at(i).name();
+
+      }
+
+   }
+
+
+   listing & listing::operator = (const listing & listing)
+   {
+
+      if (this == &listing)
+      {
+
+         return *this;
+
+      }
+
+      path_array::operator         = (listing);
+      *((LISTING *)this) = (const LISTING &)listing;
+      m_pathUser = listing.m_pathUser;
+      m_pathFinal = listing.m_pathFinal;
+      m_straPattern = listing.m_straPattern;
+      m_straIgnoreName = listing.m_straIgnoreName;
+      //m_statusresult = listing.m_statusresult;
+      m_straTitle = listing.m_straTitle;
+
+      return *this;
+
+   }
+
+
+} // namespace file
+
+
+

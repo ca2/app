@@ -329,12 +329,12 @@ namespace universal_windows
 
             spbase = pkey;
 
-            bool bTextFocus = m_psystem->get_session()->get_focus_ui() != nullptr;
+            bool bTextFocus = acmesystem()->get_session()->get_focus_ui() != nullptr;
 
             bool bSpecialKey = false;
 
             pkey->m_atom = e_message_key_down;
-            pkey->m_puserinteraction = m_psystem->get_session()->m_puserinteractionHost;
+            pkey->m_puserinteraction = acmesystem()->get_session()->m_puserinteractionHost;
             pkey->m_nChar = 0;
             pkey->m_ekey = ::user::e_key_refer_to_text_member;
             pkey->m_wparam = pkey->m_nChar;
@@ -344,7 +344,7 @@ namespace universal_windows
             //      pkey->m_key = args;
 
 
-            m_psystem->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
+            acmesystem()->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
          }
 

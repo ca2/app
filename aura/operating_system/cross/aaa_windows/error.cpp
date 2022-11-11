@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 #include "framework.h"
-#include "aura/os/cross/windows/_.h"
+//#include "aura/os/cross/windows/_.h"
 #include "aura/os/cross/windows/windows_thread_impl.h"
 #include "aura/os/_os.h"
 //
@@ -34,7 +34,7 @@
 //#define __WINESRC__
 ////#include "os_cross_windows_internals.h"
 ////#include "c/c/verisimple_string.h"
-////#include "c/c/::mutex.h"
+////#include "c/c/::pointer < ::mutex >.h"
 ////#include "c/c/single_lock.h"
 ////#include <stdarg.h>
 //////

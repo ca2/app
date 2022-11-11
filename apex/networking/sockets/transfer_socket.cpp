@@ -10,6 +10,7 @@
 #include "framework.h"
 #include "transfer_socket.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
@@ -90,7 +91,7 @@ namespace sockets
       //tcp_socket(handler)
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       //defer_initialize_winsock();
 
@@ -295,7 +296,7 @@ namespace sockets
    void read_socket::on_read(const void * pdata, iptr n)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       u8 * pbuf = (u8 *) pdata;
 
@@ -329,7 +330,7 @@ namespace sockets
 
    //      {
 
-   //         synchronous_lock synchronouslock(mutex());
+   //         synchronous_lock synchronouslock(this->synchronization());
 
    //         iRead = m_pmemoryfile->erase_begin(&point[nBytesReceived], nSize - nBytesReceived);
 
@@ -403,7 +404,7 @@ namespace sockets
    void write_socket::OnWrite()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       write(m_pmemoryfile->get_data(), (memsize)m_pmemoryfile->get_size());
 

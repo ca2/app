@@ -23,7 +23,7 @@ namespace interprocess
    }
 
 
-   void target::on_initialize_object()
+   void target::on_initialize_particle()
    {
 
       //fork([this]()
@@ -60,7 +60,7 @@ namespace interprocess
    bool target::_handle_uri(const ::block & blockUri)
    {
 
-      for (auto & phandler : m_handlera)
+      for (auto & phandler : m_particleaHandler)
       {
 
          try
@@ -96,7 +96,7 @@ namespace interprocess
    //   INFORMATION("::interprocess::target::on_interprocess_handle " << strUri);
 
 
-   //   //   if(!::str().begins_eat(strMessage, "call "))
+   //   //   if(!strMessage.begins_eat("call "))
    //   //   {
    //   //
    //   //      return;
@@ -105,7 +105,7 @@ namespace interprocess
    //   //
    //   //   ::i64 iCall = ::str().consume_natural(strMessage);
    //   //
-   //   //   if(!::str().begins_eat(strMessage, " from "))
+   //   //   if(!strMessage.begins_eat(" from "))
    //   //   {
    //   //
    //   //      return;
@@ -214,13 +214,13 @@ namespace interprocess
    //   //   }
 
 
-   //   string strObject = m_psystem->url()->get_server(strUri);
+   //   string strObject = acmesystem()->url()->get_server(strUri);
 
-   //   string strMember = m_psystem->url()->get_script(strUri);
+   //   string strMember = acmesystem()->url()->get_script(strUri);
 
    //   strMember.trim_left("/");
 
-   //   string strNetworkArguments = m_psystem->url()->get_query(strUri);
+   //   string strNetworkArguments = acmesystem()->url()->get_query(strUri);
 
    //   ::property_set propertyset;
 
@@ -269,7 +269,7 @@ namespace interprocess
    //bool target::on_interprocess_handle(const ::block & blockUri)
    //{
 
-   //   //if (::str().begins_ci(strMessage, "synch_"))
+   //   //if (string_begins_ci(strMessage, "synch_"))
    //   //{
 
    //   //   if (m_phandler != nullptr)
@@ -384,7 +384,7 @@ namespace interprocess
    //void target::dispatch_item(::pointer<class dispatch_item> && pdispatchitem)
    //{
 
-   //   synchronous_lock synchronouslock(&m_mutexDispatch);
+   //   synchronous_lock synchronouslock(m_pmutexDispatch);
 
    //   bool bWasEmpty = m_dispatchitema.is_empty();
 
@@ -405,7 +405,7 @@ namespace interprocess
 
    //   auto ptask = ::get_task();
 
-   //   single_lock singlelock(&m_mutexDispatch);
+   //   single_lock singlelock(m_pmutexDispatch);
 
    //   while (ptask->task_get_run())
    //   {
@@ -453,10 +453,10 @@ namespace interprocess
    //}
 
 
-   void target::add_handler(::handler * phandler)
+   void target::add_handler(::particle * pparticle)
    {
 
-      m_handlera.add_unique(phandler);
+      m_particleaHandler.add_unique(pparticle);
 
    }
 

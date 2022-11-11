@@ -1,5 +1,5 @@
 #include "framework.h" 
-#include "apex/networking/sockets/_.h"
+//#include "apex/networking/sockets/_.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #ifdef _MSC_VER
 #pragma warning(disable:4786)
@@ -255,7 +255,7 @@ namespace http
 
                      int i = 0;
 
-                     //static ::mutex s_mutex(nullptr);
+                     //static ::pointer < ::mutex > s_mutex(nullptr);
 
                      //single_lock synchronouslock(&s_mutex, true);
 
@@ -268,7 +268,7 @@ namespace http
 
                         strTempFile = "C:\\upload\\" + strTime + strIndex + current_filename;
 
-                        if (!m_pcontext->m_papexcontext->file().exists(strTempFile))
+                        if (!file()->exists(strTempFile))
                         {
 
                            break;
@@ -277,19 +277,19 @@ namespace http
 
                         string strMessage;
 
-                        auto psystem = m_psystem->m_papexsystem;
+                        auto psystem = acmesystem()->m_papexsystem;
 
                         auto pdatetime = psystem->datetime();
 
                         strMessage = pdatetime->international().get_date_time() + " " + strTempFile;
 
-                        m_psystem->m_pacmefile->append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
+                        acmefile()->append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
 
                         i++;
 
                      }
 
-                     file_pointer spfile(m_pcontext->m_papexcontext->file().get_file(strTempFile, ::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write));
+                     file_pointer spfile(file()->get_file(strTempFile, ::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write));
 
                      //synchronouslock.unlock();
 

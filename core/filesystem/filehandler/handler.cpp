@@ -21,12 +21,12 @@ namespace filehandler
    }
 
 
-   void handler::initialize(::object * pobject)
+   void handler::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if(!estatus)
       //{

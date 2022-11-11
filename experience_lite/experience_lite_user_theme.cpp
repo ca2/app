@@ -15,10 +15,10 @@ namespace lite
 {
 
 
-   theme::theme(::object * pobject):
-      object(pobject),
-      ::user::style(pobject),
-      ::user::theme(pobject)
+   theme::theme(::particle * pparticle):
+      object(pparticle),
+      ::user::style(pparticle),
+      ::user::theme(pparticle)
    {
 
       create_translucency(::e_element_none, ::user::e_translucency_present);

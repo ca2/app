@@ -1,7 +1,10 @@
 #include "framework.h"
+#include "acme/primitive/primitive/atom.h"
+#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/string/str.h"
 
 
-extern ::mutex * g_pmutexChildren;
+extern ::pointer< ::mutex > g_pmutexChildren;
 
 
 void _debug_debug_string_string()
@@ -9,14 +12,14 @@ void _debug_debug_string_string()
 
    ::atom atom("a-ha");
 
-   auto bEndsInHa1 = ::str().ends(atom, "ha");
-   auto bEndsInHa2 = ::str().ends_ci(atom, "Ha");
+   auto bEndsInHa1 = string_ends(atom, "ha");
+   auto bEndsInHa2 = string_ends_ci(atom, "Ha");
 
 
 }
 
 
-void __assert_object_ok(const ::matter * pOb, const char * pszFileName, i32 nLine)
+void __assert_particle_ok(const ::particle * pOb, const char * pszFileName, i32 nLine)
 {
 
    if (pOb == nullptr)
@@ -61,15 +64,15 @@ void __assert_object_ok(const ::matter * pOb, const char * pszFileName, i32 nLin
 
    }
 
-   pOb->assert_ok();
+   //pOb->assert_ok();
 
 }
 
 
-CLASS_DECL_ACME void __call(::matter * pmatter)
+CLASS_DECL_ACME void __call(::particle * pparticle)
 {
    
-   pmatter->run();
+   pparticle->run();
    
 }
 

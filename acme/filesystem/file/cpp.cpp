@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/primitive/string/string.h"
+#include "acme/exception/exception.h"
 
 
 namespace file

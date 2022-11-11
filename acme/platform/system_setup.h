@@ -8,6 +8,10 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
+
+
 #define DECLARE_FACTORY(library) \
 __FACTORY_EXPORT void IDENTIFIER_CONCATENATE(library, _factory)(::factory::factory* pfactory);
 
@@ -69,13 +73,13 @@ public:
 
 
    virtual ::pointer<::acme::library>create_library();
-   virtual ::pointer<::element>create_element();
-   virtual ::pointer<::element>create_application_as_element();
+   virtual ::pointer < ::particle > create_particle();
+   virtual ::pointer < ::particle > create_application_as_particle();
 
 
    virtual ::pointer<::acme::library>_create_library();
-   virtual ::pointer<::element>_create_element();
-   virtual ::pointer<::element>_create_application_as_element();
+   virtual ::pointer < ::particle > _create_particle();
+   virtual ::pointer < ::particle > _create_application_as_particle();
 
 
 };
@@ -109,7 +113,7 @@ class static_object_factory :
 public:
 
 
-   ::pointer<::element>_create_element() override { return __new(OBJECT); }
+   ::pointer < ::particle > _create_element() override { return __new(OBJECT); }
 
 
    explicit static_object_factory(::system_setup::enum_flag eflag, const char* pszName = "") :
@@ -149,7 +153,7 @@ class static_application_factory :
 public:
 
 
-   virtual ::pointer<::element>_create_application_as_element() override
+   virtual ::pointer < ::particle >  _create_application_as_element() override
    {
 
       auto papp = __new(APPLICATION_TYPE);

@@ -4,6 +4,7 @@
 #include "document.h"
 #include "data.h"
 #include "format.h"
+#include "acme/handler/item.h"
 #include "acme/platform/timer.h"
 #include "acme/constant/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -181,7 +182,7 @@ namespace user
 
          auto psession = get_session();
 
-         m_pdata->set_mutex(mutex());
+         m_pdata->set_mutex(synchronization());
 
          fork([this]()
             {
@@ -795,7 +796,7 @@ namespace user
       void edit_impl::draw_impl(::draw2d::graphics_pointer & pgraphics)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          //pgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
 
@@ -1014,7 +1015,7 @@ namespace user
       void edit_impl::on_message_key_down(::message::message * pmessage)
       {
 
-         //synchronous_lock synchronouslock(mutex());
+         //synchronous_lock synchronouslock(this->synchronization());
 
          {
 
@@ -1460,7 +1461,7 @@ namespace user
 
             {
 
-               synchronous_lock synchronouslock(mutex());
+               synchronous_lock synchronouslock(this->synchronization());
 
                bool bControl = psession->is_key_pressed(::user::e_key_control);
 
@@ -1712,7 +1713,7 @@ namespace user
 
                         const char * end = &psz[m_pdata->m_iSelEnd];
 
-                        const char * inc = ::str().next(end);
+                        const char * inc = unicode_next(end);
 
                         m_pdata->m_iSelEnd += inc - end;
 
@@ -1768,7 +1769,7 @@ namespace user
 
                      const char * end = &psz[m_pdata->m_iSelEnd];
 
-                     const char * dec = ::str().prior(end, psz);
+                     const char * dec = unicode_prior(end, psz);
 
                      m_pdata->m_iSelEnd -= end - dec;
 

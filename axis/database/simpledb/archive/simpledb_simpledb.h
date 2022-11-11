@@ -29,7 +29,7 @@ namespace simpledb
       ::pointer<db_server>       m_pserver;
 
 
-      simpledb(::object * pobject);
+      simpledb(::particle * pparticle);
       virtual ~simpledb();
 
       virtual bool init2();

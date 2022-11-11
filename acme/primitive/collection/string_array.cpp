@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "string_array.h"
+#include "acme/filesystem/filesystem/path.h"
+#include <memory.h>
 
 
 void string2a::add_csv(string str)
@@ -144,4 +147,67 @@ void add_csv(string_array & stra, const ::string & str)
    }
 
 }
+
+
+
+
+CLASS_DECL_ACME char * const * alloc_c_string_array(const string_array & stra)
+{
+
+   auto iCount = stra.get_count();
+
+   char ** p = (char**) malloc(iCount * sizeof(char**));
+
+   for(int i = 0; i < iCount; i++)
+   {
+
+      p[i] = strdup(stra[i]);
+
+   }
+
+   return p;
+
+}
+
+
+CLASS_DECL_ACME void free_c_string_array(char * const * ppszList, int iCount)
+{
+
+   if(::is_null(ppszList))
+   {
+
+      return;
+
+   }
+
+   for(int i = 0; i < iCount; i++)
+   {
+
+      if(::is_set(ppszList[i]))
+      {
+
+         ::free((void*)ppszList[i]);
+
+      }
+
+   }
+
+
+   ::free((void*)ppszList);
+
+
+
+}
+
+//namespace file
+//{
+//
+//string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
+//////   inline path path::folder() const { return ::file_path_folder(*this); }
+////inline bool path::operator == (const ::payload & payload) const { return operator == (payload.file_path()); }
+////inline bool path::operator != (const ::payload & payload) const { return operator != (payload.file_path()); }
+////
+//
+//} // namespace file
+//
 

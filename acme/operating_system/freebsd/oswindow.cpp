@@ -7,7 +7,7 @@
 
 
 extern SnLauncheeContext* g_psncontext;
-::mutex * user_mutex();
+::particle * user_synchronization();
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
@@ -227,7 +227,7 @@ i32 oswindow_data::unmap_window(bool bWithdraw)
 oswindow_dataptra * oswindow_data::s_pdataptra = nullptr;
 
 
-::mutex * oswindow_data::s_pmutex = nullptr;
+::pointer< ::mutex > oswindow_data::s_pmutex = nullptr;
 
 
 i32 oswindow_find_message_only_window(::user::interaction_impl * pimpl)
@@ -633,7 +633,7 @@ bool oswindow_data::set_icon(::image * pimage)
    if(status != 0)
    {
 
-      //m_psystem->m_pacmefile->put_contents("/home/camilo/window.txt", __string((int)w->window()));
+      //acmefile()->put_contents("/home/camilo/window.txt", __string((int)w->window()));
       return false;
 
    }

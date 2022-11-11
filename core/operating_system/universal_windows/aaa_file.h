@@ -44,8 +44,8 @@ namespace universal_windows
       virtual ~file();
 
 
-      void assert_ok() const override;
-      virtual void dump(dump_context& dumpcontext) const override;
+      // void assert_ok() const override;
+      // virtual void dump(dump_context& dumpcontext) const override;
 
 
       operator HANDLE() const;
@@ -92,8 +92,8 @@ namespace universal_windows
 
    //   void OsErrorToException(::i32 lOsError);
    //   void ErrnoToException(int nErrno);
-   //   void ThrowOsError(::object * pobject, ::i32 lOsError, const ::string & lpszFileName = nullptr);
-   //   void ThrowErrno(::object * pobject, int nErrno, const ::string & lpszFileName = nullptr);
+   //   void ThrowOsError(::particle * pparticle, ::i32 lOsError, const ::string & lpszFileName = nullptr);
+   //   void ThrowErrno(::particle * pparticle, int nErrno, const ::string & lpszFileName = nullptr);
 
    //}
 

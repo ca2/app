@@ -27,8 +27,8 @@ namespace android
       virtual ~interaction_impl();
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
       //bool create_message_queue(::user::interaction * pinteraction, const ::string & pszName) override;
 

@@ -1,11 +1,19 @@
-#pragma once
+﻿#pragma once
+
+
+#include "acme/primitive/primitive/memory.h"
+
+
+#include <FreeImage.h>
 
 
 class fimemory
 {
 public:
 
+
    FIMEMORY * m_pfimemory;
+
 
    fimemory(const memory & memory)
    {

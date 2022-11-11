@@ -2,9 +2,9 @@
 
 
 #include "object.h"
-#include "acme/primitive/geometry2d/angle.h"
-#include "acme/primitive/geometry2d/ellipse.h"
-#include "acme/primitive/geometry2d/ellipse.h"
+#include "acme/primitive/geometry2d/_collection.h"
+//#include "acme/primitive/geometry2d/ellipse.h"
+//#include "acme/primitive/geometry2d/rectangle.h"
 
 
 template < typename HOLDEE >

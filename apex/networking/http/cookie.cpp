@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "cookie.h"
 #include <time.h>
 
 
@@ -350,7 +351,7 @@ namespace http
       class cookie ca;
       while(true)
       {
-         while(*pszParam != '\0' && isspace((uchar ) *pszParam))
+         while(*pszParam != '\0' && character_isspace(*pszParam))
          {
             pszParam++;
          }

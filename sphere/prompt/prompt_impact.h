@@ -22,13 +22,13 @@ namespace prompt
          OpUpdateCurrentArea,
       };
 
-      impact(::object * pobject);
+      impact(::particle * pparticle);
       virtual ~impact();
 
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
 

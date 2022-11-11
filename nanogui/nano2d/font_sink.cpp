@@ -5,17 +5,19 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 06/04/22 05:06
 //
 #include "framework.h"
-
+#include "font_sink.h"
 #include "aura/graphics/draw2d/draw2d.h"
+#include "nano2d/draw2d_context.h"
 
 
 namespace nano2d
 {
 
+
    ::write_text::font_pointer font_sink::get_shared_font(const char * face, float size)
    {
                                                  
-       auto fontdescriptor = m_psystem->m_paurasystem->draw2d()->write_text()->calculate_font_descriptor(face, size);
+       auto fontdescriptor = acmesystem()->m_paurasystem->draw2d()->write_text()->calculate_font_descriptor(face, size);
        
        auto & pfontShared = m_mapSharedFont[fontdescriptor.m_strFace][fontdescriptor.m_fSize];
        

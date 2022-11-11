@@ -112,8 +112,8 @@ namespace userfs
       void _001OnTimer(::timer * ptimer) override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
       ::pointer<::user::mesh_data>create_mesh_data() override;
 

@@ -13,10 +13,10 @@
 //
 //
 //      ::image_pointer     m_spimageBuffer;
-//      ::mutex                m_mutex;
+//      ::pointer < ::mutex >                m_pmutex;
 //
 //
-//      impact_bitmap(::matter * pobject);
+//      impact_bitmap(::particle * pparticle);
 //      virtual ~impact_bitmap();
 //
 //      virtual void create_window_graphics(oswindow interaction_impl, i64 cx, i64 cy, int iStride = -1);

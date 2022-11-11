@@ -5,6 +5,9 @@
 #include "text_out_array.h"
 #include "text_metric.h"
 #include "font.h"
+#include "acme/exception/interface_only.h"
+#include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace write_text
@@ -209,7 +212,7 @@ namespace write_text
 
          auto pszLast = pszEnd;
 
-         bool bWhitespaceNow = ::str::ch().is_whitespace(pszEnd);
+         bool bWhitespaceNow = unicode_is_whitespace(pszEnd);
 
          if (bWhitespaceNow && !bWhitespace)
          {
@@ -226,7 +229,7 @@ namespace write_text
 
          bWhitespace = bWhitespaceNow;
 
-         ::str().increment(pszEnd);
+         unicode_increment(pszEnd);
 
          if (::is_null(pszEnd))
          {
@@ -245,7 +248,7 @@ namespace write_text
             if (extent <= w)
             {
 
-               strNow = string(pszStart, is_null(pszEnd) ? -1:pszEnd - pszStart);
+               strNow = string(pszStart, ::is_null(pszEnd) ? -1:pszEnd - pszStart);
 
                pszStart = pszEnd;
 
@@ -293,7 +296,7 @@ namespace write_text
          if (is_empty(pszEnd) && !is_empty(pszStart))
          {
 
-            strNow = string(pszStart, is_null(pszEnd) ? -1 : pszEnd - pszStart);
+            strNow = string(pszStart, ::is_null(pszEnd) ? -1 : pszEnd - pszStart);
 
             if (strNow.has_char())
             {
@@ -331,7 +334,7 @@ namespace write_text
 
          auto pszLast = pszEnd;
 
-         ::str().increment(pszEnd);
+         unicode_increment(pszEnd);
 
          string strNow = string(pszStart, pszEnd - pszStart);
          

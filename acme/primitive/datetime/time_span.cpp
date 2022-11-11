@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+#include "earth_time_shift.h"
+#include "earth_time.h"
+#include "acme/primitive/string/string.h"
 
 
 namespace earth
@@ -13,21 +16,21 @@ namespace earth
 
 
 
-#ifdef __DEBUG
-
-
-dump_context & operator <<(dump_context & dumpcontext,::earth::time_span timeSpan)
-{
-   //dumpcontext << "time_span(" << timeSpan.GetDays() << " days, " <<
-   //            timeSpan.GetHours() << " hours, " <<
-   //            timeSpan.GetMinutes() << " minutes and " <<
-   //            timeSpan.GetSeconds() << " seconds)";
-
-   return dumpcontext;
-}
-
-
-#endif
+//#ifdef __DEBUG
+//
+//
+//dump_context & operator <<(dump_context & dumpcontext,::earth::time_span timeSpan)
+//{
+//   //dumpcontext << "time_span(" << timeSpan.GetDays() << " days, " <<
+//   //            timeSpan.GetHours() << " hours, " <<
+//   //            timeSpan.GetMinutes() << " minutes and " <<
+//   //            timeSpan.GetSeconds() << " seconds)";
+//
+//   return dumpcontext;
+//}
+//
+//
+//#endif
 
 
 //stream & operator << (stream & os, ::earth::time_span span)
@@ -70,7 +73,7 @@ namespace earth
       {
          ASSERT(pFormat != nullptr);
          if (pFormat == nullptr)
-            throw ::exception(error_bad_argument);
+            throw_exception(error_bad_argument);
 
          string strBuffer;
          // string hmsFormats [_CTIMESPANFORMATS] = {"%ca","%02ld","%d"};
@@ -139,7 +142,7 @@ namespace earth
 } // namespace earth
 
 
-//DEFINE_COMPARISON_WITH_DURATION(::earth::time_span)
+//DEFINE_COMPARISON_WITH_DURATION(inline, ::earth::time_span)
 
 
 

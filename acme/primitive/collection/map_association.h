@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "pair.h"
+
+
 template <  typename PAYLOAD >
 class map_association :
    public PAYLOAD

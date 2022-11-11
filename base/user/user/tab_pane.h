@@ -1,8 +1,12 @@
-// Created by Camilo 2021-01-08 <3TBS!!
+﻿// Created by Camilo 2021-01-08 <3TBS!!
 #pragma once
 
 
 #include "aura/graphics/draw2d/holder.h"
+#include "acme/primitive/geometry2d/_collection_basic.h"
+#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/primitive/property_object.h"
+#include "acme/primitive/text/text.h"
 
 
 namespace user

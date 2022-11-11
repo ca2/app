@@ -1,9 +1,10 @@
 ﻿#include "framework.h"
-#include "acme/operating_system.h"
-#include <stdio.h>
+#include "stdio_file.h"
+#include "acme/exception/exception.h"
+#include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
-
+#include "acme/platform/system.h"
 
 
 stdio_file::stdio_file()
@@ -33,14 +34,15 @@ void stdio_file::open(const ::file::path & path, const ::file::e_open & eopen)
 
    string str;
 
-   if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
-   {
+//   if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
+//   {
+//
+//      acmedirectory()->create(path.folder());
+//
+//   }
 
-      m_psystem->m_pacmedirectory->create(path.folder());
-
-   }
-
-   if (eopen & ::file::e_open_no_truncate && m_psystem->m_pacmefile->exists(path))
+   //if (eopen & ::file::e_open_no_truncate && acmefile()->exists(path))
+   if (eopen & ::file::e_open_no_truncate)
    {
 
       str += "r";
@@ -123,7 +125,7 @@ void stdio_file::open(const ::file::path & path, const ::string & strAttributes,
 
       int iErrNo = errno;
 
-      auto estatus = errno_to_status(iErrNo);
+      auto estatus = errno_status(iErrNo);
 
       if (!estatus)
       {
@@ -142,15 +144,15 @@ void stdio_file::open(const ::file::path & path, const ::string & strAttributes,
          if (estatus == error_file_access_denied)
          {
 
-            if (m_psystem->m_pacmefile->exists(path))
+            if (acmefile()->exists(path))
             {
 
                if (!bTriedSetFileNormal)
                {
 
-                  m_psystem->m_pacmefile->set_file_normal(path);
+                  acmefile()->set_file_normal(path);
 
-                  m_psystem->m_pacmefile->clear_read_only(path);
+                  acmefile()->clear_read_only(path);
 
                   bTriedSetFileNormal = true;
 
@@ -198,9 +200,13 @@ filesize stdio_file::translate(filesize offset, ::enum_seek eseek)
    if (fseek(m_pfile, (long)offset, nFrom))
    {
 
-      // error;
+      auto iErrNo = errno;
 
-      throw ::file::exception(error_file, __last_error(), errno, m_path);
+      auto estatus = errno_status(iErrNo);
+
+      auto errorcode = errno_error_code(iErrNo);
+
+      throw ::file::exception(estatus, errorcode, m_path, "fseek != 0", m_eopen);
 
       return -1;
 
@@ -216,9 +222,9 @@ filesize stdio_file::translate(filesize offset, ::enum_seek eseek)
 
       i32 iErrNo = errno;
       
-      auto errorcode = __errno(iErrNo);
+      auto errorcode = errno_error_code(iErrNo);
       
-      auto estatus = errno_to_status(iErrNo);
+      auto estatus = errno_status(iErrNo);
       
       throw ::file::exception(estatus, errorcode, m_path, "fseek != 0");
 
@@ -274,9 +280,9 @@ memsize stdio_file::read(void * pdata, memsize nCount)
 
          i32 iErrNo = errno;
          
-         auto errorcode = __errno(iErrNo);
+         auto errorcode = errno_error_code(iErrNo);
          
-         auto estatus = errno_to_status(iErrNo);
+         auto estatus = errno_status(iErrNo);
          
          throw ::file::exception(estatus, errorcode, m_path, "fread: !feof and ferror");
 
@@ -378,7 +384,7 @@ void stdio_file::set_size(filesize dwNewLen)
 filesize stdio_file::get_size() const
 {
 
-   //return m_psystem->m_pacmefile->get_size(m_pfile);
+   //return acmefile()->get_size(m_pfile);
 
    auto position = get_position();
 
@@ -391,18 +397,18 @@ filesize stdio_file::get_size() const
 }
 
 
-void stdio_file::assert_ok() const
-{
-
-}
-
-
-void stdio_file::dump(dump_context & dumpcontext) const
-{
-
-   __UNREFERENCED_PARAMETER(dumpcontext);
-
-}
+//void stdio_file::assert_ok() const
+//{
+//
+//}
+//
+//
+//void stdio_file::dump(dump_context & dumpcontext) const
+//{
+//
+//   __UNREFERENCED_PARAMETER(dumpcontext);
+//
+//}
 
 
 ::file::path stdio_file::get_file_path() const

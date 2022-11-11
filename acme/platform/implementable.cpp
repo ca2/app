@@ -1,12 +1,13 @@
 // Created on 2021-11-01 18:14 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "implementable.h"
 
 
 namespace acme
 {
 
 
-   bool implementable::defer_implement(::acme::system * psystem)
+   bool implementable::defer_implement(::acme::context * pcontext)
    {
 
       if (!m_pfnImplement)
@@ -16,7 +17,7 @@ namespace acme
          
       }
 
-      m_pfnImplement(psystem);
+      m_pfnImplement(pcontext);
 
       return true;
 

@@ -1,5 +1,6 @@
 #include "framework.h" 
 #include "debug_socket.h"
+#include "apex/constant/idpool.h"
 
 
 namespace sockets
@@ -66,16 +67,16 @@ namespace sockets
                "<input type='text' name='text' value='test text'><br>"
                "<input type='submit' name='submit' value=' OK '></form>");
       print(   "<pre style='background: #e0e0e0'>");
-      print(m_request.attr(__id(http_method)).string() + " " + m_request.attr(__id(request_uri)) + " " + m_request.attr(__id(http_version)) + "\n");
+      print(m_request.attr("http_method").string() + " " + m_request.attr("request_uri") + " " + m_request.attr("http_version") + "\n");
    }
 
 
    void http_debug_socket::OnHeader(atom key, const string & value)
    {
-      if(key == __id(content_length))
+      if(key == "content_length")
          m_content_length = atoi(value);
 
-      print(__string(key) + ": " + value + "\n");
+      print(key.string() + ": " + value + "\n");
    }
 
 

@@ -1,18 +1,17 @@
 #include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
-//////#include "aura/update.h"
-#include "base/user/user/split_pane.h"
 #include "impact.h"
 #include "path_impact.h"
 #include "main_impact.h"
 #include "document.h"
 #include "save_as_name_impact.h"
 #include "data.h"
-#include "core/platform/application.h"
-#include "base/user/user/frame_window.h"
+#include "acme/constant/id.h"
+#include "acme/filesystem/file/item.h"
+#include "acme/primitive/datetime/department.h"
 #include "aura/platform/system.h"
+#include "base/user/user/split_pane.h"
+#include "base/user/user/frame_window.h"
+#include "core/platform/application.h"
 
 
 namespace filemanager
@@ -40,15 +39,15 @@ namespace filemanager
    }
 
 
-   void impact::assert_ok() const
-   {
-      ::user::split_impact::assert_ok();
-   }
-
-   void impact::dump(dump_context & dumpcontext) const
-   {
-      ::user::split_impact::dump(dumpcontext);
-   }
+//   void impact::assert_ok() const
+//   {
+//      ::user::split_impact::assert_ok();
+//   }
+//
+//   void impact::dump(dump_context & dumpcontext) const
+//   {
+//      ::user::split_impact::dump(dumpcontext);
+//   }
 
 
    void impact::on_create_split_impact()
@@ -61,7 +60,7 @@ namespace filemanager
 
       }
 
-      auto papp = get_app();
+      auto papp = ::filemanager_impact_base::get_app();
 
       bool bPathImpact = papp->is_false("no_path_impact");
 
@@ -121,7 +120,7 @@ namespace filemanager
 
       ::user::split_impact::handle(ptopic, pcontext);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdocumentSubject = ptopic->cast < ::user::document >(id_document);
 
@@ -245,7 +244,7 @@ namespace filemanager
 
                }
 
-               //auto psystem = m_psystem;
+               //auto psystem = acmesystem();
 
                auto pdatetime = psystem->datetime();
 
@@ -300,7 +299,7 @@ namespace filemanager
       //tab_impact * ptabimpact = get_parent_frame()->get_typed_parent < tab_impact >();
       //if (ptabimpact != nullptr)
       //{
-      //   ptabimpact->on_update(this, eupdate, pobject);
+      //   ptabimpact->on_update(this, eupdate, pparticle);
       //}
 
    }

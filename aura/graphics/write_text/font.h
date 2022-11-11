@@ -10,6 +10,28 @@
 #include "text_metric.h"
 
 
+#include "acme/primitive/geometry2d/_geometry2d.h"
+
+
+#include "acme/constant/character_set.h"
+
+
+#include "acme/primitive/collection/comparable_eq_array.h"
+#include "acme/primitive/collection/comparable_array.h"
+
+
+#include "acme/primitive/collection/string_map.h"
+
+
+#include "acme/filesystem/filesystem/path.h"
+
+
+#include "font_descriptor.h"
+
+
+#include "_constant.h"
+
+
 namespace write_text
 {
 
@@ -65,7 +87,7 @@ namespace write_text
       ~font() override;
 
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
       
       virtual void create_text_metrics(::draw2d::graphics * pgraphics);
 

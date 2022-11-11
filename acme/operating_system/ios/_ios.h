@@ -63,9 +63,9 @@ string get_error_message(::u32 dwError);
 i32 CLASS_DECL_ACME __ios_main(i32 argc, char * argv[]);
 
 
-CLASS_DECL_ACME void vfxThrowFileException(::matter * pobject, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
+CLASS_DECL_ACME void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
 
-CLASS_DECL_ACME ::file::exception * get_FileException(::matter * pobject, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
+CLASS_DECL_ACME ::file::exception * get_FileException(::particle * pparticle, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
 
 
 

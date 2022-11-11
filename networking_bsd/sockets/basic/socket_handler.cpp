@@ -2,6 +2,8 @@
 #include "socket_handler.h"
 #include "tcp_socket.h"
 #include "networking_bsd/networking.h"
+#include "acme/acme.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/platform/system.h"
 #include <time.h>
 
@@ -31,9 +33,9 @@ namespace sockets_bsd
    ::interlocked_count g_interlockedcountSocketHandler;
 
 
-   //socket_handler::socket_handler(::object * pobject, ::apex::log *plogger) :
+   //socket_handler::socket_handler(::particle * pparticle, ::apex::log *plogger) :
    socket_handler::socket_handler() :
-      //::object(pobject),
+      //::object(pparticle),
       //base_socket_handler(plogger),
       m_b_use_mutex(false)
       , m_maxsock(0)
@@ -49,7 +51,7 @@ namespace sockets_bsd
    {
 
       m_p2 = this;
-      defer_create_mutex();
+      defer_create_synchronization();
       __zero(m_socks4_host);
       //m_prfds = memory_new fd_set;
       //m_pwfds = memory_new fd_set;
@@ -95,10 +97,10 @@ namespace sockets_bsd
    }
 
 
-   void socket_handler::initialize(::object * pobject)
+   void socket_handler::initialize(::particle * pparticle)
    {
 
-      base_socket_handler::initialize(pobject);
+      base_socket_handler::initialize(pparticle);
 
    }
 
@@ -155,14 +157,14 @@ namespace sockets_bsd
       if (m_b_use_mutex)
       {
 
-         mutex()->unlock();
+         synchronization()->unlock();
 
       }
 
    }
 
 
-   //synchronization_object & socket_handler::GetMutex() const
+   //synchronization & socket_handler::GetMutex() const
    //{
 
    //   return *mutex();
@@ -738,13 +740,13 @@ end_processing_adding:
          if (m_b_use_mutex)
          {
 
-            mutex()->unlock();
+            synchronization()->unlock();
 
             n = ::select((int)m_maxsock, psetR, psetW, psetE, tsel);
 
             m_iSelectErrno = networking_last_error();
 
-            mutex()->lock();
+            synchronization()->lock();
 
          }
          else
@@ -786,7 +788,7 @@ end_processing_adding:
 
 #elif defined(WINDOWS)
 
-            INFORMATION("networking_bsd::socket_handler select error : "<< last_error_message(iError) <<" ("<< iError <<")");
+            INFORMATION("networking_bsd::socket_handler select error : "<< ::windows::last_error_message(iError) <<" ("<< iError <<")");
 
 #endif
 
@@ -1485,7 +1487,7 @@ end_processing_adding:
 
                         auto psystem = get_system()->m_papexsystem;
 
-                        synchronous_lock synchronouslock(&__SystemNetworking(psystem)->m_mutexPool);
+                        synchronous_lock synchronouslock(__SystemNetworking(psystem)->m_pmutexPool);
 
                         auto ppoolsocket = __new(pool_socket(psocket));
 
@@ -1964,9 +1966,9 @@ end_processing_adding:
    ::pointer<base_socket_handler::pool_socket>socket_handler::FindConnection(i32 type, const string & protocol, ::networking::address * ad)
    {
 
-      auto pnetworking2 = __SystemNetworking(m_psystem);
+      auto pnetworking2 = __SystemNetworking(acmesystem());
 
-      synchronous_lock synchronouslock(&pnetworking2->m_mutexPool);
+      synchronous_lock synchronouslock(pnetworking2->m_pmutexPool);
 
       auto p = pnetworking2->m_pool.begin();
 

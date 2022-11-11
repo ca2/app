@@ -1,8 +1,10 @@
 ﻿#include "framework.h"
-#include "aura/user/user/wait_cursor.h"
 #include "impact_system.h"
 #include "document.h"
+#include "acme/platform/application.h"
+#include "apex/platform/create.h"
 #include "aura/user/user/system.h"
+#include "aura/user/user/wait_cursor.h"
 #include "frame_window.h"
 
 
@@ -393,44 +395,44 @@ namespace user
    }
 
 
-   void impact_system::dump(dump_context & dumpcontext) const
-   {
-      channel::dump(dumpcontext);
-
-      //dumpcontext << "m_strMatter = " << m_atom;
-      //dumpcontext << "\nm_strDocStrings: " << m_strDocStrings;
-
-      //if (m_typeDocument)
-      //   dumpcontext << "\nm_pDocClass = " << m_typeDocument.name();
-      //else
-      //   dumpcontext << "\nm_pDocClass = nullptr";
-
-      //if (dumpcontext.GetDepth() > 0)
-      //{
-      //   dumpcontext << "\ndocument list = {";
-      //   ::count count = get_document_count();
-      //   for (index index = 0; index < count; index++)
-      //   {
-      //      ::pointer<::user::document>pdocument = get_document(index);
-      //      dumpcontext << (void *)pdocument.m_p;
-      //   }
-      //   dumpcontext << "\n}";
-      //}
-
-      //dumpcontext << "\n";
-   }
-
-   void impact_system::assert_ok() const
-   {
-      channel::assert_ok();
-
-      ::count count = get_document_count();
-      for (index index = 0; index < count; index++)
-      {
-         ::pointer<::user::document>pdocument = get_document(index);
-         pdocument->assert_ok();
-      }
-   }
+//   void impact_system::dump(dump_context & dumpcontext) const
+//   {
+//      channel::dump(dumpcontext);
+//
+//      //dumpcontext << "m_strMatter = " << m_atom;
+//      //dumpcontext << "\nm_strDocStrings: " << m_strDocStrings;
+//
+//      //if (m_typeDocument)
+//      //   dumpcontext << "\nm_pDocClass = " << m_typeDocument.name();
+//      //else
+//      //   dumpcontext << "\nm_pDocClass = nullptr";
+//
+//      //if (dumpcontext.GetDepth() > 0)
+//      //{
+//      //   dumpcontext << "\ndocument list = {";
+//      //   ::count count = get_document_count();
+//      //   for (index index = 0; index < count; index++)
+//      //   {
+//      //      ::pointer<::user::document>pdocument = get_document(index);
+//      //      dumpcontext << (void *)pdocument.m_p;
+//      //   }
+//      //   dumpcontext << "\n}";
+//      //}
+//
+//      //dumpcontext << "\n";
+//   }
+//
+//   void impact_system::assert_ok() const
+//   {
+//      channel::assert_ok();
+//
+//      ::count count = get_document_count();
+//      for (index index = 0; index < count; index++)
+//      {
+//         ::pointer<::user::document>pdocument = get_document(index);
+//         pdocument->assert_ok();
+//      }
+//   }
 
 
    void impact_system::handle(::topic * ptopic, ::context * pcontext)

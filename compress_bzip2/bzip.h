@@ -56,7 +56,7 @@ public:
    int m_iVerbosity;
    int m_iWorkFactor;
 
-   compress_bz(::object * pobject, int iBlockSize, int iVerbosity, int iWorkFactor);
+   compress_bz(::particle * pparticle, int iBlockSize, int iVerbosity, int iWorkFactor);
    virtual ~compress_bz();
 
 
@@ -72,7 +72,7 @@ class CLASS_DECL_AXIS uncompress_bz :
 public:
 
 
-   uncompress_bz(::object * pobject);
+   uncompress_bz(::particle * pparticle);
    virtual ~uncompress_bz();
 
 

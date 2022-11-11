@@ -2,8 +2,9 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/size.h"
-#include "acme/primitive/geometry2d/rectangle.h"
+//#include "acme/primitive/geometry2d/point.h"
+//#include "acme/primitive/geometry2d/size.h"
+//#include "acme/primitive/geometry2d/rectangle.h"
 
 
 class imaging;
@@ -18,48 +19,6 @@ class image_list;
 using image_list_pointer = ::pointer<::image_list>;
 
 
-CLASS_DECL_AURA void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);
-CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);
-CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int x, int y, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);
-
-
-CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::SIZE_I32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);
-
-
-
-
-
-CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount);
-
-
-CLASS_DECL_AURA void vertical_swap(pixmap * ppixmap);
-CLASS_DECL_AURA void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int x, int y, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void _001ProperCopyColorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-
-
-
-namespace draw2d
-{
-
-
-   CLASS_DECL_AURA void image_copy(::image * imagethis, ::image * pimage);
-   CLASS_DECL_AURA void image_create(::object * pobject, ::image *& image);
-   CLASS_DECL_AURA void image_create_image(::image * pimage, const ::size_i32 & size);
-   CLASS_DECL_AURA unsigned int * image_get_data(::image * pimage);
-   CLASS_DECL_AURA graphics * image_get_graphics(::image * pimage);
-
-
-} // namespace draw2d
-
-
-CLASS_DECL_AURA enum_rotate_flip exif_orientation_rotate_flip(int orientation);
 
 
 //class CLASS_DECL_AURA image_base :
@@ -415,22 +374,5 @@ CLASS_DECL_AURA enum_rotate_flip exif_orientation_rotate_flip(int orientation);
 //
 //}
 
-
-inline CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
-{
-
-   byte * pDst = (byte *)pcolorrefDst;
-
-   return copy_colorref((::color32_t *)pDst + point.x * sizeof(::color32_t) + point.y * iStrideDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
-
-}
-
-
-inline CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
-{
-
-   return copy_colorref(pcolorrefDst, rectangle.top_left(), rectangle.size(), iStrideDst, pcolorrefSrc, iStrideSrc);
-
-}
 
 //

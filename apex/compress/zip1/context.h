@@ -7,7 +7,7 @@ class CLASS_DECL_APEX zip_context :
 public:
 
 
-   zip_context(::object * pobject);
+   zip_context(::particle * pparticle);
    virtual ~zip_context();
 
 
@@ -19,7 +19,7 @@ public:
 
    //virtual bool extract(const char * pszFileName, const char * pszExtractFileName, ::file::enum_type * petype = nullptr);
 
-   virtual bool extract_all(const char * pszDir,::payload payloadFile, ::file::path_array * ppatha = nullptr, string_array * pstraFilter = nullptr,bool_array * pbaBeginsFilterEat = nullptr);
+   virtual bool e_extract_all(const char * pszDir,::payload payloadFile, ::file::path_array * ppatha = nullptr, string_array * pstraFilter = nullptr,bool_array * pbaBeginsFilterEat = nullptr);
    virtual bool is_unzippable(const char * pszFileName);
 
    virtual bool has_sub_folder(const char * pszFileName);

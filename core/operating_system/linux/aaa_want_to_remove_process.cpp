@@ -148,9 +148,9 @@ namespace ansios
 {
 
 
-   operating_system::process(::object * pobject):
-      object(pobject),
-      ::operating_system::process(pobject)
+   operating_system::process(::particle * pparticle):
+      object(pparticle),
+      ::operating_system::process(pparticle)
    {
 
    }
@@ -224,7 +224,7 @@ namespace ansios
 
       string strFallback;
 
-      if(::str().begins_ci(strFallback, "/Users/"))
+      if(string_begins_ci(strFallback, "/Users/"))
       {
 
          index i = 0;

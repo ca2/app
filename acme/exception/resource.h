@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "exception.h"
+
+
 class CLASS_DECL_ACME resource_exception :
    public ::exception
 {

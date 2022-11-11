@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "format_tool.h"
 #include "format.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font_list.h"
@@ -31,12 +34,12 @@ namespace user
    }
 
 
-   void format_tool::initialize(::object * pobject)
+   void format_tool::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::user::tool_window::initialize(pobject);
+      ::user::tool_window::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -83,9 +86,7 @@ namespace user
    }
 
 
-
-
-   ::user::enum_translucency format_tool::get_translucency(::user::style* pstyle) const
+   ::user::enum_translucency format_tool::get_translucency(::user::style* pstyle)
    {
 
       return ::user::e_translucency_present;
@@ -621,7 +622,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(m_pformata->first()->mutex());
+      synchronous_lock synchronouslock(m_pformata->first()->synchronization());
 
       if (bSaveAndValidate)
       {

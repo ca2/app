@@ -15,7 +15,7 @@ namespace filehandler
       ::pointer<::user::single_document_template>      m_ptemplateMenu;
 
 
-      department(::object * pobject);
+      department(::particle * pparticle);
       virtual ~department();
 
       void construct();

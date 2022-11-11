@@ -6,6 +6,7 @@
 //  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
 //
 #include "framework.h"
+#include "acme/primitive/string/string.h"
 
 
 namespace posix

@@ -6,7 +6,7 @@
 //
 ////Display * x11_get_display();
 //
-//::mutex * user_mutex();
+//::particle * user_synchronization();
 //
 //#define CA2_X11_WINDOW_LONG "ca2_ccwarehouse_window_long"
 //#define CA2_X11_WINDOW_LONG_STYLE "ca2_ccwarehouse_window_long_style"
@@ -38,7 +38,7 @@
 //   }
 //
 //   //osdisplay_dataptra * display::s_pdataptra = nullptr;
-//   //::mutex * display::s_pmutex = nullptr;
+//   //::pointer< ::mutex > display::s_pmutex = nullptr;
 //
 //   //display * g_posdisplaydataMain = nullptr;
 //
@@ -56,7 +56,7 @@
 //      //m_atomNetWmState        = None;
 //      //m_atomLongStyleEx       = 0;
 //      //m_countReference        = 1;
-//   //   m_pmutexInput           = memory_new ::mutex();
+//   //   m_pmutexInput           = memory_new ::pointer < ::mutex >();
 //
 //   }
 //

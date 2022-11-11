@@ -16,7 +16,7 @@ namespace draw2d_opengl
       virtual ~palette();
 
 
-      static palette * from_handle(::object * pobject, HPALETTE hPalette);
+      static palette * from_handle(::particle * pparticle, HPALETTE hPalette);
 
       bool CreatePalette(LPLOGPALETTE lpLogPalette);
       bool CreateHalftonePalette(::image::image * pimage);

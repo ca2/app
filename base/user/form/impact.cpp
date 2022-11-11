@@ -1,6 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "document.h"
 #include "impact.h"
+#include "acme/constant/id.h"
+#include "axis/html/html/html.h"
 #include "base/platform/system.h"
 #include "base/platform/session.h"
 #include "base/user/user/user.h"
@@ -32,13 +34,15 @@ namespace user
       if (ptopic->m_atom == ::id_form_initialize && ptopic->user_interaction() == this)
       {
 
-         if (get_document())
-         {
+         throw ::exception(todo);
 
-            //call_sync(get_document()->m_mapMethod["load"]);
-            get_document()->call_routines_with_id("load");
-
-         }
+//         if (get_document())
+//         {
+//
+//            //call_sync(get_document()->m_mapMethod["load"]);
+//            get_document()->call_routines_with_id("load");
+//
+//         }
 
       }
       else if (ptopic->m_atom == id_browse)
@@ -104,7 +108,7 @@ namespace user
    bool form_impact::open_document(const ::payload & payloadFile)
    {
 
-      auto psystem = m_psystem->m_pbasesystem;
+      auto psystem = acmesystem()->m_pbasesystem;
 
       psystem->defer_create_html();
 
@@ -119,6 +123,8 @@ namespace user
 
       }
 
+      m_pform.release();
+
       string strHtml;
 
       ::file::path pathHtml;
@@ -131,6 +137,13 @@ namespace user
       {
 
          bOk = false;
+
+         if (pformOld)
+         {
+
+            pformOld->set_finish();
+
+         }
 
          auto psession = get_session();
 
@@ -191,13 +204,6 @@ namespace user
 
             m_pform = pformNew;
 
-            if (pformOld)
-            {
-
-               pformOld->set_finish();
-
-            }
-
          }
 
       }
@@ -227,7 +233,7 @@ namespace user
    bool form_impact::open_html(const ::string & str)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto pformOld = m_pform;
 

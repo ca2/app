@@ -1,5 +1,8 @@
 #include "framework.h"
-#include "axis/networking/_networking.h"
+#include "smtpd_socket.h"
+#include "acme/primitive/string/parse.h"
+#include "apex/networking/email_address.h"
+//#include "axis/networking/_networking.h"
 
 
 namespace sockets

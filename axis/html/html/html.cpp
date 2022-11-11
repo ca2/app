@@ -1,10 +1,11 @@
 ﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "axis/html/html_lite/_.h"
+//#include "axis/html/html_lite/_.h"
 #endif
 #include "axis/id.h"
 #include "axis/platform/system.h"
 #include "axis/html/html_lite/entity_resolver.h"
+#include "axis/html/html/html.h"
 
 
 namespace html
@@ -27,12 +28,12 @@ namespace html
    }
 
 
-   void html::initialize(::object * pobject)
+   void html::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::acme::department::initialize(pobject);
+      ::acme::department::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -41,7 +42,7 @@ namespace html
 
       //}
 
-      //__construct_new(this, m_pentitysolver = memory_new LiteHTMLEntityResolver(pobject);
+      //__construct_new(this, m_pentitysolver = memory_new LiteHTMLEntityResolver(pparticle);
       __construct_new(m_pentitysolver);
 
       m_clrInvalid = 0xffffffff;
@@ -253,7 +254,7 @@ namespace html
       string strChar;
       while (*psz != '\0')
       {
-         i32 iChar = (i32) ::str::ch().uni_index(psz);
+         i32 iChar = (i32) unicode_index(psz);
          if (iChar == '&')
          {
             str += "&amp;";
@@ -283,7 +284,7 @@ namespace html
             strChar.format("&#%d;", iChar);
             str += strChar;
          }
-         ::str().increment(psz);
+         unicode_increment(psz);
       }
       return str;
    }
@@ -305,7 +306,7 @@ namespace html
       string strChar;
       while (*psz != '\0')
       {
-         i32 iChar = (i32) ::str::ch().uni_index(psz);
+         i32 iChar = (i32) unicode_index(psz);
          if (iChar == '&')
          {
             str += "&amp;";
@@ -336,7 +337,7 @@ namespace html
             str += strChar;
          }
          
-         ::str().increment(psz);
+         unicode_increment(psz);
 
       }
       return str;
@@ -384,7 +385,7 @@ namespace html
    }
 
 
-   //void html::initialize(::object * pobject)
+   //void html::initialize(::particle * pparticle)
    //{
 
 
@@ -412,119 +413,119 @@ namespace html
       {
          return tag_none;
       }
-      if (idTag == __id(html_html))
+      if (idTag == "html_html")
       {
          return tag_html;
       }
-      if (idTag == __id(html_head))
+      if (idTag == "html_head")
       {
          return tag_head;
       }
-      if (idTag == __id(html_title))
+      if (idTag == "html_title")
       {
          return tag_title;
       }
-      if (idTag == __id(html_meta))
+      if (idTag == "html_meta")
       {
          return tag_meta;
       }
-      if (idTag == __id(html_link))
+      if (idTag == "html_link")
       {
          return tag_link;
       }
-      if (idTag == __id(html_style))
+      if (idTag == "html_style")
       {
          return tag_style;
       }
-      if (idTag == __id(html_script))
+      if (idTag == "html_script")
       {
          return tag_script;
       }
-      if (idTag == __id(html_body))
+      if (idTag == "html_body")
       {
          return tag_body;
       }
-      if (idTag == __id(html_span))
+      if (idTag == "html_span")
       {
          return tag_span;
       }
-      if (idTag == __id(html_h1))
+      if (idTag == "html_h1")
       {
          return tag_h1;
       }
-      if (idTag == __id(html_h2))
+      if (idTag == "html_h2")
       {
          return tag_h2;
       }
-      if (idTag == __id(html_h3))
+      if (idTag == "html_h3")
       {
          return tag_h3;
       }
-      if (idTag == __id(html_h4))
+      if (idTag == "html_h4")
       {
          return tag_h4;
       }
-      if (idTag == __id(html_h5))
+      if (idTag == "html_h5")
       {
          return tag_h5;
       }
-      if (idTag == __id(html_p))
+      if (idTag == "html_p")
       {
          return tag_p;
       }
-      if (idTag == __id(html_table))
+      if (idTag == "html_table")
       {
          return tag_table;
       }
-      if (idTag == __id(html_tbody))
+      if (idTag == "html_tbody")
       {
          return tag_tbody;
       }
-      if (idTag == __id(html_tr))
+      if (idTag == "html_tr")
       {
          return tag_tr;
       }
-      if (idTag == __id(html_td))
+      if (idTag == "html_td")
       {
          return tag_td;
       }
-      if (idTag == __id(html_div))
+      if (idTag == "html_div")
       {
          return tag_div;
       }
-      if (idTag == __id(html_br))
+      if (idTag == "html_br")
       {
          return tag_br;
       }
-      if (idTag == __id(html_form))
+      if (idTag == "html_form")
       {
          return tag_form;
       }
-      if (idTag == __id(html_input))
+      if (idTag == "html_input")
       {
          return tag_input;
       }
-      if (idTag == __id(html_select))
+      if (idTag == "html_select")
       {
          return tag_select;
       }
-      if (idTag == __id(html_option))
+      if (idTag == "html_option")
       {
          return tag_option;
       }
-      if (idTag == __id(html_img))
+      if (idTag == "html_img")
       {
          return tag_img;
       }
-      if (idTag == __id(html_font))
+      if (idTag == "html_font")
       {
          return tag_font;
       }
-      if (idTag == __id(html_a))
+      if (idTag == "html_a")
       {
          return tag_a;
       }
-      if (idTag == __id(html_strong))
+      if (idTag == "html_strong")
       {
          return tag_strong;
       }
@@ -537,148 +538,148 @@ namespace html
    atom html::concat(atom id1, atom id2)
    {
 
-      if (id1 == __id(html_margin))
+      if (id1 == "html_margin")
       {
 
-         if (id2 == __id(html_css_suffix_left))
+         if (id2 == "html_css_suffix_left")
          {
 
-            return __id(html_margin_left);
+            return "html_margin_left";
 
          }
-         if (id2 == __id(html_css_suffix_top))
+         if (id2 == "html_css_suffix_top")
          {
 
-            return __id(html_margin_top);
+            return "html_margin_top";
 
          }
-         if (id2 == __id(html_css_suffix_right))
+         if (id2 == "html_css_suffix_right")
          {
 
-            return __id(html_margin_right);
+            return "html_margin_right";
 
          }
-         if (id2 == __id(html_css_suffix_bottom))
+         if (id2 == "html_css_suffix_bottom")
          {
 
-            return __id(html_margin_bottom);
+            return "html_margin_bottom";
 
          }
 
       }
-      else if (id1 == __id(html_border))
+      else if (id1 == "html_border")
       {
 
-         if (id2 == __id(html_css_suffix_left))
+         if (id2 == "html_css_suffix_left")
          {
 
-            return __id(html_border_left);
+            return "html_border_left";
 
          }
-         if (id2 == __id(html_css_suffix_top))
+         if (id2 == "html_css_suffix_top")
          {
 
-            return __id(html_border_top);
+            return "html_border_top";
 
          }
-         if (id2 == __id(html_css_suffix_right))
+         if (id2 == "html_css_suffix_right")
          {
 
-            return __id(html_border_right);
+            return "html_border_right";
 
          }
-         if (id2 == __id(html_css_suffix_bottom))
+         if (id2 == "html_css_suffix_bottom")
          {
 
-            return __id(html_border_bottom);
+            return "html_border_bottom";
 
          }
-         if (id2 == __id(html_css_suffix_width))
+         if (id2 == "html_css_suffix_width")
          {
 
-            return __id(html_border_width);
+            return "html_border_width";
 
          }
-         if (id2 == __id(html_css_suffix_left_width))
+         if (id2 == "html_css_suffix_left_width")
          {
 
-            return __id(html_border_left_width);
+            return "html_border_left_width";
 
          }
-         if (id2 == __id(html_css_suffix_top_width))
+         if (id2 == "html_css_suffix_top_width")
          {
 
-            return __id(html_border_top_width);
+            return "html_border_top_width";
 
          }
-         if (id2 == __id(html_css_suffix_right_width))
+         if (id2 == "html_css_suffix_right_width")
          {
 
-            return __id(html_border_right_width);
+            return "html_border_right_width";
 
          }
-         if (id2 == __id(html_css_suffix_bottom_width))
+         if (id2 == "html_css_suffix_bottom_width")
          {
 
-            return __id(html_border_bottom_width);
+            return "html_border_bottom_width";
 
          }
-         if (id2 == __id(html_css_suffix_color))
+         if (id2 == "html_css_suffix_color")
          {
 
-            return __id(html_border_color);
+            return "html_border_color";
 
          }
-         if (id2 == __id(html_css_suffix_left_color))
+         if (id2 == "html_css_suffix_left_color")
          {
 
-            return __id(html_border_left_color);
+            return "html_border_left_color";
 
          }
-         if (id2 == __id(html_css_suffix_top_color))
+         if (id2 == "html_css_suffix_top_color")
          {
 
-            return __id(html_border_top_color);
+            return "html_border_top_color";
 
          }
-         if (id2 == __id(html_css_suffix_right_color))
+         if (id2 == "html_css_suffix_right_color")
          {
 
-            return __id(html_border_right_color);
+            return "html_border_right_color";
 
          }
-         if (id2 == __id(html_css_suffix_bottom_color))
+         if (id2 == "html_css_suffix_bottom_color")
          {
 
-            return __id(html_border_bottom_color);
+            return "html_border_bottom_color";
 
          }
       }
-      else if (id1 == __id(html_padding))
+      else if (id1 == "html_padding")
       {
 
-         if (id2 == __id(html_css_suffix_left))
+         if (id2 == "html_css_suffix_left")
          {
 
-            return __id(html_padding_left);
+            return "html_padding_left";
 
          }
-         if (id2 == __id(html_css_suffix_top))
+         if (id2 == "html_css_suffix_top")
          {
 
-            return __id(html_padding_top);
+            return "html_padding_top";
 
          }
-         if (id2 == __id(html_css_suffix_right))
+         if (id2 == "html_css_suffix_right")
          {
 
-            return __id(html_padding_right);
+            return "html_padding_right";
 
          }
-         if (id2 == __id(html_css_suffix_bottom))
+         if (id2 == "html_css_suffix_bottom")
          {
 
-            return __id(html_padding_bottom);
+            return "html_padding_bottom";
 
          }
 
@@ -693,7 +694,7 @@ namespace html
    }
 
 
-   bool html::defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobject, const ::payload & payload)
+   bool html::defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pparticle, const ::payload & payload)
    {
 
       bool bHtml = false;
@@ -745,22 +746,22 @@ namespace html
 
          atom idDisplay = strDisplay;
 
-         if(idDisplay == __id(html_none))
+         if(idDisplay == "html_none")
             return e_display_none;
 
-         if(idDisplay == __id(html_block))
+         if(idDisplay == "html_block")
             return display_block;
 
-         if(idDisplay == __id(html_inline))
+         if(idDisplay == "html_inline")
             return display_inline;
 
-         if(idDisplay == __id(html_table))
+         if(idDisplay == "html_table")
             return display_table;
 
-         if(idDisplay == __id(html_table_row))
+         if(idDisplay == "html_table_row")
             return display_table_row;
 
-         if(idDisplay == __id(html_table_cell))
+         if(idDisplay == "html_table_cell")
             return display_table_cell;
 
       }

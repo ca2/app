@@ -6,9 +6,9 @@ namespace android
 {
 
 
-   copydesk::copydesk(::object * pobject) :
-      ::object(pobject),
-      ::user::copydesk(pobject)
+   copydesk::copydesk(::particle * pparticle) :
+      ::object(pparticle),
+      ::user::copydesk(pparticle)
    {
    }
 

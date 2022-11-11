@@ -14,9 +14,9 @@ namespace browser
 {
 
 
-   impact::impact(::object * pobject):
-      object(pobject),
-      impact_base(pobject)
+   impact::impact(::particle * pparticle):
+      object(pparticle),
+      impact_base(pparticle)
    {
 //      m_pclienthandler = nullptr;
       m_bBrowser = false;
@@ -160,7 +160,7 @@ namespace browser
 
          {
 
-            synchronous_lock synchronouslock(&m_mutexText);
+            synchronous_lock synchronouslock(m_pmutexText);
 
             calc_processed_browser(m_strProcessedHellomultiverse);
 
@@ -168,7 +168,7 @@ namespace browser
 
          {
 
-            synchronous_lock synchronouslock(&m_mutexText);
+            synchronous_lock synchronouslock(m_pmutexText);
 
             if (m_bPendingImageChange)
             {
@@ -210,11 +210,11 @@ namespace browser
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       {
 
-         synchronous_lock slText(&m_mutexText);
+         synchronous_lock slText(m_pmutexText);
 
          if(m_strNewHelloBrowser.is_empty())
          {
@@ -473,7 +473,7 @@ namespace browser
    void impact::calc_processed_browser(string & strProcessedHellomultiverse)
    {
 
-      synchronous_lock slText(&m_mutexText);
+      synchronous_lock slText(m_pmutexText);
 
       string str;
 
@@ -492,7 +492,7 @@ namespace browser
 
       strsize iFind = str.find("image:");
 
-      if(iFind >= 0 && (iFind == 0 || !ansi_char_is_alphanumeric(str[iFind-1])))
+      if(iFind >= 0 && (iFind == 0 || !ansi_char_is_alnum(str[iFind-1])))
       {
 
          bool bData = str.Mid(iFind + strlen("image:")).begins_ci("data:");
@@ -537,10 +537,10 @@ namespace browser
          if (m_prender->m_pimageImage)
          {
 
-            if (::str().begins_eat_ci(str, m_strImage))
+            if (str.begins_eat_ci(m_strImage))
             {
 
-               ::str().begins_eat_ci(str, ",");
+               str.begins_eat_ci(",");
 
             }
 
@@ -563,7 +563,7 @@ namespace browser
 
       }
 
-      if(::str().begins_eat_ci(str, "crt:"))
+      if(str.begins_eat_ci("crt:"))
       {
 
          m_eeffect = effect_crt;
@@ -600,7 +600,7 @@ namespace browser
    string impact::get_browser()
    {
 
-      synchronous_lock synchronouslock(&m_mutexText);
+      synchronous_lock synchronouslock(m_pmutexText);
 
       if(m_strHelloBrowser.c_str() != m_strNewHelloBrowser.c_str())
       {
@@ -664,7 +664,7 @@ namespace browser
       if (m_prender != nullptr)
       {
 
-         synchronous_lock synchronouslock(&m_mutexText);
+         synchronous_lock synchronouslock(m_pmutexText);
 
          if (m_strProcessedHellomultiverse != m_prender->m_strHelloBrowser)
          {
@@ -685,7 +685,7 @@ namespace browser
    void impact::on_draw_image_layer(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_prender->m_bImageEnable && m_prender->m_pimageImage->is_ok())
       {
@@ -722,7 +722,7 @@ namespace browser
 
 /*                  pimage->stretch_image(m_prender->m_pimageImage);
 
-                  synchronous_lock synchronouslock(mutex());
+                  synchronous_lock synchronouslock(this->synchronization());
 
 /*                  m_prender->m_pimageImageStretched = pimage;
 
@@ -751,7 +751,7 @@ namespace browser
 
       {
 
-         synchronous_lock synchronouslock(&m_mutexText);
+         synchronous_lock synchronouslock(m_pmutexText);
 
          m_strNewHelloBrowser = strText;
 
@@ -892,7 +892,7 @@ namespace browser
                       int height)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       pixmap p;
 

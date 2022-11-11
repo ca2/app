@@ -16,8 +16,8 @@ namespace dynamic_source
    } LOADPARMS32;
 
 
-   library_class::library_class(::object * pobject) :
-      ::object(pobject)
+   library_class::library_class(::particle * pparticle) :
+      ::object(pparticle)
    {
 
    }

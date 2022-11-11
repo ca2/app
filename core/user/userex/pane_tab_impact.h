@@ -3,6 +3,7 @@
 
 #include "base/user/user/tab_impact.h"
 #include "aura/user/user/form_callback.h"
+#include "apex/platform/app_consumer.h"
 
 
 namespace userex
@@ -31,9 +32,9 @@ namespace userex
       };
 
       
-      id_map < ::pointer<::form_document >> m_mapForm;
+      atom_map < ::pointer<::form_document >> m_mapForm;
       ::pointer<pane_impact>                  m_ppaneimpact;
-      id_map < ::pointer<::object >>        m_mapFileManager;
+      atom_map < ::pointer<::object >>        m_mapFileManager;
       ::pointer<::user::document>           m_pdocAppOptions;
       ::pointer<font_impact>                m_pfontimpact;
       ::pointer<color_impact>               m_pcolorimpact;
@@ -55,9 +56,9 @@ namespace userex
       void add_pane_tab_impact_handler_library(const ::string & strLibrary);
 
 
-      inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
-      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
-      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      ::core::application* get_app();
+      ::core::session* get_session();
+      ::core::system* get_system();
 
       
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -123,12 +124,12 @@ public:
    }
 
 
-   void initialize(::object* pobject) override
+   void initialize(::particle * pparticle) override
    {
 
       //auto estatus =
       
-      BASE1::initialize(pobject);
+      BASE1::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -139,7 +140,7 @@ public:
 
       //estatus =
       
-      BASE2::initialize(pobject);
+      BASE2::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -150,7 +151,7 @@ public:
 
       //estatus =
       
-      BASE3::initialize(pobject);
+      BASE3::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -161,7 +162,7 @@ public:
 
       //estatus = 
       
-      BASE4::initialize(pobject);
+      BASE4::initialize(pparticle);
 
       //if (!estatus)
       //{

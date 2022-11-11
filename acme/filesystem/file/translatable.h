@@ -1,12 +1,15 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+
+
 namespace file
 {
 
 
    class CLASS_DECL_ACME translatable :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

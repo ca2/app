@@ -2,6 +2,7 @@
 
 
 #include "base.h"
+#include "acme/primitive/string/string.h"
 
 
 namespace html

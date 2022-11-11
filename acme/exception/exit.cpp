@@ -1,7 +1,9 @@
 #include "framework.h"
+#include "exit.h"
+#include "acme/parallelization/task.h"
 
 
-exit_exception::exit_exception(::pointer<::task>playeredThreadExit, const char * pszMessage) :
+exit_exception::exit_exception(const ::e_status & estatus, ::task * playeredThreadExit, const char * pszMessage) :
    exception(::error_failed, pszMessage),
    m_ptaskExit(playeredThreadExit)
 {
@@ -50,6 +52,14 @@ exit_exception::~exit_exception()
    }
 
    return ::success;
+
+}
+
+
+CLASS_DECL_ACME void throw_exit_exception(const ::e_status& estatus, ::task* playeredThreadExit, const char* pszMessage)
+{
+
+   throw ::exit_exception(estatus);
 
 }
 

@@ -28,11 +28,11 @@ namespace aura
       }
 
 
-      //ipc::ipc(::object * pobject) :
-      //   ::object(pobject),
-      //   base(pobject),
-      //   tx(pobject),
-      //   m_rx(pobject)
+      //ipc::ipc(::particle * pparticle) :
+      //   ::object(pparticle),
+      //   base(pparticle),
+      //   tx(pparticle),
+      //   m_rx(pparticle)
       //{
 
       //   m_durationTimeout = (5000) * 11;

@@ -1,13 +1,20 @@
 ﻿#include "framework.h"
-////#include "base/user/simple/_component.h"
-#include "aura/windowing/window.h"
+#include "user.h"
+#include "impact_creator.h"
+#include "style.h"
+#include "split_impact.h"
+#include "tab_impact.h"
+#include "split_bar.h"
+#include "acme/exception/exit.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system_setup.h"
+#include "aura/graphics/image/image.h"
+#include "aura/message/user.h"
+#include "aura/windowing/window.h"
 #include "base/platform/application.h"
 #include "base/platform/session.h"
 #include "base/platform/system.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "aura/graphics/image/image.h"
-#include "user.h"
 #include "base/user/experience/department.h"
 #include "base/user/experience/experience.h"
 #include "base/user/simple/impact.h"
@@ -20,12 +27,6 @@
 #include "base/user/menu/item.h"
 #include "base/user/menu/central.h"
 #include "base/user/form/impact.h"
-#include "impact_creator.h"
-#include "style.h"
-#include "split_impact.h"
-#include "tab_impact.h"
-#include "split_bar.h"
-#include "aura/message/user.h"
 
 
 namespace base
@@ -46,12 +47,12 @@ namespace base
    }
 
 
-   void user::initialize(::object * pobject)
+   void user::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::axis::user::initialize(pobject);
+      ::axis::user::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -62,7 +63,7 @@ namespace base
 
       //estatus = 
       
-      ::user::document_manager_container::initialize(pobject);
+      ::user::document_manager_container::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -74,6 +75,30 @@ namespace base
 
 
       //return estatus;
+
+   }
+
+
+   ::base::application* user::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr;
+
+   }
+
+
+   ::base::session* user::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr;
+
+   }
+
+
+   ::base::system* user::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr;
 
    }
 
@@ -168,7 +193,7 @@ namespace base
 
       //xml::document docUser;
 
-      //string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata()/"langstyle_settings.xml");
+      //string strUser = pcontext->m_papexcontext->file()->as_string(pcontext->m_papexcontext->dir()->appdata()/"langstyle_settings.xml");
 
       //string strLangUser;
 
@@ -204,7 +229,7 @@ namespace base
 
       //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
 
-      auto psystem = m_psystem->m_pbasesystem;
+      auto psystem = acmesystem()->m_pbasesystem;
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -337,7 +362,7 @@ namespace base
 
          ::pointer<::base::application>pappItem = pappApex;
 
-         synchronous_lock synchronouslock(&pappItem->m_mutexFrame);
+         synchronous_lock synchronouslock(pappItem->m_pmutexFrame);
 
          ::pointer<::user::interaction>pinteraction;
 
@@ -360,7 +385,7 @@ namespace base
    }
 
 
-//   ::user::front_end_schema * GetUfeSchema(::object * pobject)
+//   ::user::front_end_schema * GetUfeSchema(::particle * pparticle)
 //   {
 //
 //      if (papp == nullptr)
@@ -389,7 +414,7 @@ namespace base
 //   }
 //
 //
-//   ::user::front_end * GetUfe(::object * pobject)
+//   ::user::front_end * GetUfe(::particle * pparticle)
 //   {
 //
 //      return Sess(papp).user()->GetUfe();
@@ -465,10 +490,10 @@ namespace base
 #ifdef WINDOWS_DESKTOP
 
 
-   CLASS_DECL_BASE ::pointer<::user::interaction>create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
+   CLASS_DECL_BASE ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
 
 
-   CLASS_DECL_BASE ::pointer<::user::interaction>create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
+   CLASS_DECL_BASE ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
    {
 
       __UNREFERENCED_PARAMETER(dwExStyle);
@@ -685,13 +710,13 @@ namespace base
    //}
 
 
-//   void session::on_app_request_bergedge_callback(::object * pobject)
+//   void session::on_app_request_bergedge_callback(::particle * pparticle)
 //   {
 //
-//      if (&App(pobject) != nullptr)
+//      if (&App(pparticle) != nullptr)
 //      {
 //
-//         psession->m_pappCurrent = &App(pobject);
+//         psession->m_pappCurrent = &App(pparticle);
 //
 //      }
 //
@@ -1165,7 +1190,7 @@ namespace base
 
    //   auto pcontext = get_context();
 
-   //   string strXml = pcontext->m_papexcontext->file().as_string(varXmlFile);
+   //   string strXml = pcontext->m_papexcontext->file()->as_string(varXmlFile);
 
    //   return track_popup_xml_menu(pinteraction, strXml, iFlags, point, sizeMinimum, pchannelNotify);
 
@@ -1235,7 +1260,7 @@ namespace base
 
       ::user::style_pointer pstyle;
 
-      pexperience->m_pfactory->__construct(pstyle);
+      pexperience->m_pfactory->__construct(papp, pstyle);
 
       if (!pstyle)
       {

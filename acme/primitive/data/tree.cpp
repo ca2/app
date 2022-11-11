@@ -1,5 +1,10 @@
 #include "framework.h" 
-#include "_data.h"
+#include "tree.h"
+#include "tree_item.h"
+#include "listener.h"
+#include "item.h"
+#include "acme/exception/exception.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 namespace data
@@ -9,7 +14,7 @@ namespace data
    tree::tree()
    {
 
-      //defer_create_mutex();
+      //defer_create_synchronization();
 
       m_bFill = false;
 
@@ -315,7 +320,7 @@ namespace data
    //::count tree::get_proper_item_count()
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   return get_base_item()->get_proper_item_count();
 
@@ -406,7 +411,7 @@ namespace data
 
       }
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (pitemNew == nullptr)
       {
@@ -682,7 +687,7 @@ namespace data
    }
 
 
-   void tree::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context, ::user::primitive * ptree, const ::point_i32 & point)
+   void tree::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context, ::user::primitive * ptree, const ::POINT_I32 & point)
    {
 
 
@@ -765,7 +770,7 @@ namespace data
    //void tree::start_fill_children()
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   m_bFill = true;
 

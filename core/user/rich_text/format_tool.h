@@ -43,11 +43,11 @@ namespace user
          ~format_tool() override;
 
          
-         void initialize(::object * pobject)override;
+         void initialize(::particle * pparticle)override;
       
          void install_message_routing(::channel * psender) override;
 
-         ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
+         ::user::enum_translucency get_translucency(::user::style* pstyle) override;
 
          DECLARE_MESSAGE_HANDLER(on_message_create);
 

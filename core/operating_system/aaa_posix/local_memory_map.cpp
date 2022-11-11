@@ -79,7 +79,7 @@ namespace file
 
       ::file::path path(get_path());
 
-               auto psystem = m_psystem;
+               auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -112,9 +112,9 @@ pacmedirectory->create(path.folder());
 
       string strMutex;
 
-      strMutex = m_strName + "-::mutex";
+      strMutex = m_strName + "-::pointer < ::mutex >";
 
-      set_mutex(__new(::mutex(e_create_new, false, strMutex, nullptr)));
+      set_mutex(__new(::pointer < ::mutex >(e_create_new, false, strMutex, nullptr)));
 
       return true;
 

@@ -16,7 +16,7 @@ namespace calculator
       {
       public:
 
-         virtual ::mutex * get_mutex()
+         virtual ::pointer< ::mutex > get_mutex()
          {
             return mutex();
          }
@@ -33,7 +33,7 @@ namespace calculator
       string                     m_strFormat;
 
 
-      plain_edit_impact(::object * pobject);
+      plain_edit_impact(::particle * pparticle);
       virtual ~plain_edit_impact();
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);

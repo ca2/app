@@ -5,6 +5,10 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/property_object.h"
+#include "acme/primitive/primitive/action_context.h"
+
+
 class extended_topic;
 
 
@@ -19,9 +23,9 @@ public:
    ::item_pointer                         m_pitem;
    ::user::enum_key                       m_ekey;
    ::action_context                       m_actioncontext;
-   ::pointer<::property_object>          m_psender;
-   ::pointer<::user::element>            m_puserelement; // user::interaction
-   ::pointer<::matter>                   m_pmatter;
+   ::pointer<::property_object>           m_psender;
+   ::pointer<::user::element>             m_puserelement; // user::interaction
+   ::pointer<::matter>                    m_pmatter;
 
 
    topic(const ::atom & atom) 

@@ -81,6 +81,8 @@ list(APPEND library_source
         xml/edit.h
         xml/entity.cpp
         xml/entity.h
+        xml/exception.cpp
+        xml/exception.h
         xml/exportable.cpp
         xml/exportable.h
         xml/glue.h
@@ -133,7 +135,7 @@ else()
 endif()
 
 
-add_library(aqua SHARED ${library_source} )
+add_library(aqua SHARED ${library_source} multimedia/information.h)
 
 target_precompile_headers(aqua PRIVATE framework.h)
 

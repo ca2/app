@@ -37,12 +37,12 @@ namespace dynamic_source
    }
 
 
-   void script_interface::initialize(::object * pobject)
+   void script_interface::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::html::file::initialize(pobject);
+      ::html::file::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -51,7 +51,7 @@ namespace dynamic_source
 
       //}
 
-      ::pointer<script_interface>pinterface = pobject;
+      ::pointer<script_interface>pinterface = pparticle;
 
       if (pinterface)
       {
@@ -247,7 +247,7 @@ namespace dynamic_source
    void script_interface::current_url(string& strUrl)
    {
 
-      strUrl = inattr(__id(http_protocol)) + "://" + inattr(__id(http_host)) + inattr(__id(request_uri));
+      strUrl = inattr("http_protocol") + "://" + inattr("http_host") + inattr("request_uri");
 
    }
 
@@ -672,7 +672,7 @@ namespace dynamic_source
       void script_interface::uri_set_var(string & strUrl, const ::string & pszUrl, const ::string & pszKey, ::payload payload)
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto purl = psystem->url();
 
@@ -684,7 +684,7 @@ namespace dynamic_source
       void script_interface::uri_set_param(string & strUrl, const ::string & pszUrl, const ::string & pszKey, const string & strParam)
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto purl = psystem->url();
 
@@ -696,7 +696,7 @@ namespace dynamic_source
       string script_interface::query_get_param(const ::string & pszUrl, const ::string & pszKey)
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto purl = psystem->url();
 
@@ -708,7 +708,7 @@ namespace dynamic_source
       ::payload script_interface::query_get_var(const ::string & pszUrl, const ::string & pszKey)
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto purl = psystem->url();
 

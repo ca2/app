@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "rsa.h"
+#include "acme/exception/resource.h"
+#include "acme/parallelization/single_lock.h"
 #include "acme/primitive/primitive/memory.h"
 
 
@@ -296,7 +298,7 @@ namespace crypto_openssl
 
 #elif OPENSSL_VERSION_NUMBER >= 0x30000000
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       auto pctx = EVP_PKEY_CTX_new(m_pkey, nullptr);
 
@@ -542,7 +544,7 @@ namespace crypto_openssl
 
 #elif OPENSSL_VERSION_NUMBER >= 0x30000000
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       auto pctx = EVP_PKEY_CTX_new(m_pkey, nullptr);
 

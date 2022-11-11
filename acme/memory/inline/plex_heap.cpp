@@ -1,23 +1,7 @@
 #include "framework.h"
-#include "acme/operating_system.h"
  
-//#include "plex_heap1.h"
 
-//#include "plex_heap_impl1.h"
-
-//#include "align_byte_count.h"
-//#include "acme/platform/static_start_internal.h"
-
-
-//#if !defined(MCHECK) && !defined(_VLD) && !defined(__MCRTDBG) && !MEMDLEAK
-//
-//#include "heap_memory.h"
-//
-//#endif
-
-
-
-#include "acme/platform/acme.h"
+//#include "acme/platform/acme.h"
 
 
 
@@ -847,7 +831,7 @@ plex_heap * plex_heap::create(plex_heap * & pheapHead, uptr nMax, uptr cbElement
    if (nMax == 0 || cbElement == 0)
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 

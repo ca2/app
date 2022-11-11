@@ -21,6 +21,14 @@ public:
    ~filemanager_impact_base() override;
 
 
+
+   ::core::application* get_app();
+   ::core::session* get_session();
+   ::core::system* get_system();
+
+   ::filemanager::document * get_document();
+
+
    void initialize_impact(::user::document * pdocument) override;
 
 
@@ -33,8 +41,8 @@ public:
    
    virtual ::filemanager::document * filemanager_document() { return m_pfilemanagerdocument; }
    virtual ::filemanager::data *                   filemanager_data();
-   inline ::fs::data * fs_data() { return m_pfsdata; }
-   inline ::filemanager::document * get_document() { return m_pfilemanagerdocument; }
+   ::fs::data * fs_data() { return m_pfsdata; }
+   //::filemanager::document * get_document() { return m_pfilemanagerdocument; }
 
 
    void handle(::topic * ptopic, ::context * pcontext) override;
@@ -79,11 +87,6 @@ public:
    }
 
 
-   inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
-   inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
-   inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
-
-   inline ::filemanager::document * get_document() { return ::filemanager_impact_base::get_document(); }
 
    virtual void install_message_routing(::channel* pchannel) override
    {

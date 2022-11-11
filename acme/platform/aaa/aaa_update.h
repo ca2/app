@@ -25,7 +25,7 @@ protected:
    static void _erase(::matter* pmatter);
 
    static ::critical_section* g_pcs;
-   static ::id_map < ::pointer<update >> g_pmap;
+   static ::atom_map < ::pointer<update >> g_pmap;
    static bool g_bDestroyAll;
 
 
@@ -68,7 +68,7 @@ public:
 
    static void post_destroy_all();
 
-   inline bool is_ending() { synchronous_lock synchronouslock(mutex()); return m_map.is_empty(); };
+   inline bool is_ending() { synchronous_lock synchronouslock(this->synchronization()); return m_map.is_empty(); };
    inline int poll_millis() { return os_get_system_update_poll_time(m_iUpdateSerial); };
 
    static inline bool should_poll(int iMillis)
@@ -86,8 +86,8 @@ public:
    ::update& operator =(const ::atom& atom) { m_atom = atom; return *this; }
    inline bool operator ==(const ::atom& atom) const { return m_atom == atom || m_atom == FULL_ID; }
 
-   //void set_handled_by(const ::matter* pobject) { m_handledbya.add((::matter*) pobject); }
-   //bool handled_by(const ::matter* pobject) const { return m_handledbya.has((::matter*) pobject); }
+   //void set_handled_by(const ::particle * pparticle) { m_handledbya.add((::matter*) pparticle); }
+   //bool handled_by(const ::particle * pparticle) const { return m_handledbya.has((::matter*) pparticle); }
 
 
 

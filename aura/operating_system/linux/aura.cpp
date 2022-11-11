@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/primitive/string/string.h"
+
 
 //extern thread_pointer < os_thread > t_posthread;
 //extern thread_pointer < htask > t_htask;
@@ -82,13 +84,13 @@ CLASS_DECL_AURA void __node_aura_pos_term()
 // int get_proc_stat_core_count()
 // {
 
-//    string str = m_psystem->m_pacmefile->as_string("/proc/stat");
+//    string str = acmefile()->as_string("/proc/stat");
 
 //    string_array stra;
 
 //    stra.add_lines(str);
 
-//    return stra.predicate_get_count([](auto str) { return ::str().begins(str, "cpu"); });
+//    return stra.predicate_get_count([](auto str) { return string_begins(str, "cpu"); });
 
 // }
 

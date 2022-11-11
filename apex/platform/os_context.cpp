@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "os_context.h"
+#include "acme/exception/interface_only.h"
+#include "acme/platform/node.h"
 #include "apex/platform/context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/file/set.h"
@@ -150,7 +153,7 @@
    void os_context::link_open(const string & strUrl, const string & strProfile)
    {
       
-      m_psystem->node()->open_url(strUrl);
+      acmenode()->open_url(strUrl);
 
 //      file_open(strUrl);
       //{
@@ -447,14 +450,10 @@
    bool os_context::resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory, string * pstrParams, string * pstrIcon, int * piIcon)
    {
 
-      if(::str().ends_ci(strSource, ".desktop"))
+      if(strSource.ends_ci(".desktop"))
       {
 
-         string str = m_pcontext->m_papexcontext->file().as_string(strSource);
-
-         string_array stra;
-
-         stra.add_lines(str);
+         auto stra = file()->lines(strSource);
 
          stra.filter_begins_ci("exec=");
 
@@ -624,7 +623,7 @@
 
       ::file::path_array pathaRelative;
 
-      pathSource.ascendants_path(patha, &pathaRelative);
+      ascendants_path(pathSource, patha, &pathaRelative);
 
       for (index i = 0; i < patha.get_count(); i++)
       {

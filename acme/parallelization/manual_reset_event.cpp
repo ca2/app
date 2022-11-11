@@ -8,6 +8,7 @@
 //
 //*****************************************************************************
 #include "framework.h"
+#include "manual_reset_event.h"
 
 
 manual_reset_event::manual_reset_event(char * sz, bool bInitiallyOwn) :

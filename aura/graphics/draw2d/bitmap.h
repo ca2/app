@@ -2,6 +2,7 @@
 
 
 #include "object.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace draw2d
@@ -30,7 +31,7 @@ namespace draw2d
       ~bitmap() override;
 
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
 
 
       template < typename POINTER >

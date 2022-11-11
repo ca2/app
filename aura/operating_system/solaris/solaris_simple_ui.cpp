@@ -18,8 +18,8 @@ namespace os
    map < oswindow, oswindow, simple_ui *, simple_ui * > m_windowmap;
 
    simple_ui::simple_ui(::pointer<base_application>papp) :
-      ::object(pobject),
-      interaction(pobject)
+      ::object(pparticle),
+      interaction(pparticle)
    {
 
       m_w = 840;
@@ -46,7 +46,7 @@ namespace os
    bool simple_ui::create_window(const RECTANGLE_I32 * lpcrect)
    {
 
-      single_lock ml(&user_mutex());
+      single_lock ml(&user_synchronization());
 
       Display *display;
 
@@ -186,7 +186,7 @@ namespace os
    bool simple_ui::prepare_window(const RECTANGLE_I32 * lpcrect)
    {
 
-      single_lock ml(&user_mutex());
+      single_lock ml(&user_synchronization());
 
       XGetWindowAttributes(m_window->display(), m_window->window(), &m_attr);
 
@@ -199,7 +199,7 @@ namespace os
          XStoreName(m_window->display(), m_window->window(), m_strText);
       }
 
-      m_pmutexGraphics = memory_new ::mutex();
+      m_pmutexGraphics = memory_new ::pointer < ::mutex >();
 
       //on_size(width(lpcrect), height(lpcrect));
 
@@ -257,7 +257,7 @@ namespace os
       KeySym keysym;
       XComposeStatus compose;
 
-      single_lock synchronouslock(&user_mutex(), false);
+      single_lock synchronouslock(&user_synchronization(), false);
 
       xdisplay x(m_window->display(), false);
 
@@ -810,7 +810,7 @@ void wm_nodecorations(oswindow w, int map)
    int set;
 
 
-   single_lock synchronouslock(&user_mutex(), true);
+   single_lock synchronouslock(&user_synchronization(), true);
 
    xdisplay d(w->display());
    Display * dpy = w->display();

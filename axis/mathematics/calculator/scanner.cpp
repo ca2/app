@@ -1,7 +1,11 @@
 /* (C) Copyright 2008 Nick Mudge <mudgen@gmail.com>
  * This code can be freely copied and modified.
  */
-#include  "framework.h"
+#include "framework.h"
+#include "token.h"
+#include "scanner.h"
+#include "acme/primitive/string/str.h"
+#include "acme/exception/exception.h"
 
 /* conversas dos Js Jefferson Dalavechia e Joice sobre calculadora científica, financeira e com pilha
 mais típico de calculadora no "command" */
@@ -75,10 +79,10 @@ namespace calculator
 
       }
 
-      while (::str::ch().is_space_char(input))
+      while (unicode_is_space_char(input))
       {
 
-         ::str().increment(input);
+         unicode_increment(input);
 
       }
 
@@ -91,9 +95,9 @@ namespace calculator
 
       }
 
-      const char * nextinput = ::str().next(input);
+      const char * nextinput = unicode_next(input);
 
-      if((*input == 'j' || *input == 'i') && ::str::ch().is_digit(nextinput))
+      if((*input == 'j' || *input == 'i') && unicode_is_digit(nextinput))
       {
 
          m_ptoken->m_etype = token::type_imaginary;
@@ -109,7 +113,7 @@ namespace calculator
          return m_ptoken;
 
       }
-      else if(::str::ch().is_digit(input))
+      else if(unicode_is_digit(input))
       {
 
          m_ptoken->m_etype = token::type_number;
@@ -120,7 +124,7 @@ namespace calculator
 
          m_ptoken->m_str = string(input, endptr - input);
 
-         if((*endptr == 'i' || *endptr == 'j') && !(ansi_char_is_digit(*(endptr + 1)) || ansi_char_is_alphabetic(*(endptr + 1))))
+         if((*endptr == 'i' || *endptr == 'j') && !(ansi_char_isdigit(*(endptr + 1)) || ansi_char_isalpha(*(endptr + 1))))
          {
 
             m_ptoken->m_etype = token::type_imaginary;
@@ -181,10 +185,10 @@ namespace calculator
 
          m_ptoken->m_str = ::str().consume_nc_name(input);
 
-         while (::str::ch().is_space_char(input))
+         while (unicode_is_space_char(input))
          {
 
-            ::str().increment(input);
+            unicode_increment(input);
 
          }
          if(*input == '(')

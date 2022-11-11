@@ -1,6 +1,10 @@
 #include "framework.h"
-#include "_imaging_freeimage.h"
+#include "context_image.h"
+#include "aura/graphics/image/image.h"
 #include "aura/graphics/image/save_image.h"
+
+
+#include <FreeImage.h>
 
 
 namespace imaging_freeimage

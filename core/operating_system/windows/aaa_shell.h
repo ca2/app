@@ -34,7 +34,7 @@ namespace windows
       virtual ~shell();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual i32 impl_get_file_image(const image_key & key) override;
@@ -62,16 +62,16 @@ namespace windows
       i32 add_system_icon(int iSize, IImageList * plist, SHFILEINFOW * pinfo, ::color::color crBck, bool & bUsedImageList, int iImage);
 
 
-      virtual ::user::shell::e_folder get_folder_type(::object * pobject, const unichar * pcszPath) override;
+      virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const unichar * pcszPath) override;
 
-      virtual ::user::shell::e_folder get_folder_type(::object * pobject, const ::string & pcszPath) override;
+      virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const ::string & pcszPath) override;
 
 
 
       virtual void set_image_ico(string strIconLocation, i32 & iImage, ::color::color crBk);
       virtual void set_image_resource(string strIconLocation, i32 & iImage, const image_key & imagekey, ::color::color crBk);
 
-      virtual void finish(::property_object * pobject) override;
+      virtual void finish(::property_object * pparticle) override;
 
       //int shell::add_hover_image(int iSize, int iImage, ::color::color crBk)
 

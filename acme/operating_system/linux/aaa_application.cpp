@@ -13,8 +13,8 @@
 namespace acme
 {
 
-//   application::application(::matter * pobject) :
-//      ::matter(pobject)
+//   application::application(::particle * pparticle) :
+//      ::matter(pparticle)
 //   {
 //
 ////      m_pthreadimpl.create(this);
@@ -507,7 +507,7 @@ namespace acme
 
          ::file::path path = pnode->get_desktop_file_path(papp);
 
-         if(path.has_char() && !m_psystem->m_pacmefile->exists(path))
+         if(path.has_char() && !acmefile()->exists(path))
          {
 
             auto pfile = __create_new<::linux::desktop_file>();

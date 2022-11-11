@@ -1,13 +1,13 @@
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+//#include "apex/networking/sockets/_sockets.h"
 
 
 namespace sockets
 {
 
 
-   resolv_server::resolv_server(::object * pobject, port_t port) :
-      ::object(pobject),
+   resolv_server::resolv_server(::particle * pparticle, port_t port) :
+      ::object(pparticle),
       m_quit(false),
       m_port(port),
       m_ready(false)

@@ -53,7 +53,7 @@ namespace sockets
       port_t                        m_port;
 
 
-      EventHandler(::axis::application * papp, const EventHandler& ) : ::object(pobject), socket_handler(pobject) {} // copy constructor
+      EventHandler(::axis::application * papp, const EventHandler& ) : ::object(pparticle), socket_handler(pparticle) {} // copy constructor
       EventHandler& operator=(const EventHandler& ) { return *this; } // assignment operator
 
 
@@ -61,7 +61,7 @@ namespace sockets
 
 
       EventHandler(::axis::application * papp, ::apex::log * p = nullptr);
-      //EventHandler(::axis::application * papp, ::mutex &,logger * = nullptr);
+      //EventHandler(::axis::application * papp, ::pointer < ::mutex > &,logger * = nullptr);
       ~EventHandler();
 
       bool GetTimeUntilNextEvent(struct timeval *tv);

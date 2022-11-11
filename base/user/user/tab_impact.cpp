@@ -2,14 +2,17 @@
 #include "tab_impact.h"
 #include "tab_pane.h"
 #include "tab_data.h"
-#include "aura/user/user/window_util.h"
 #include "frame_window.h"
-#include "aura/message/user.h"
 #include "split_impact.h"
+#include "document.h"
 #include "tab_drop_target_window.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "aura/user/user/window_util.h"
+#include "aura/message/user.h"
 #include "base/platform/application.h"
 #include "base/user/menu/menu.h"
-#include "document.h"
 #include "base/user/menu/list_impact.h"
 #include "base/user/user/tab_drop_target_window.h"
 
@@ -38,20 +41,20 @@ namespace user
    }
 
 
-   void tab_impact::assert_ok() const
-   {
-
-      impact::assert_ok();
-
-   }
-
-
-   void tab_impact::dump(dump_context & dumpcontext) const
-   {
-
-      impact::dump(dumpcontext);
-
-   }
+//   void tab_impact::assert_ok() const
+//   {
+//
+//      impact::assert_ok();
+//
+//   }
+//
+//
+//   void tab_impact::dump(dump_context & dumpcontext) const
+//   {
+//
+//      impact::dump(dumpcontext);
+//
+//   }
 
 
    void tab_impact::on_message_create(::message::message * pmessage)
@@ -266,7 +269,7 @@ namespace user
    void tab_impact::_001OnRemoveTab(class tab_pane * ptabpane)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ::user::tab::_001OnRemoveTab(ptabpane);
 
@@ -493,7 +496,7 @@ namespace user
 
          on_change_cur_sel();
 
-         on_change_cur_sel();
+//         on_change_cur_sel();
 
       }
 
@@ -568,7 +571,7 @@ namespace user
 
             {
 
-               synchronous_lock synchronouslock(mutex());
+               synchronous_lock synchronouslock(this->synchronization());
 
                if (pimpactdata->m_strTitle.has_char())
                {
@@ -639,7 +642,17 @@ namespace user
 
       }
 
-      if (m_pimpactdataOld 
+   }
+
+
+   void tab_impact::on_after_change_cur_sel()
+   {
+
+      auto ptabdata = get_data();
+
+      ::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
+
+      if (m_pimpactdataOld
          && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus
          && m_pimpactdataOld->m_atom != MENU_IMPACT
          && m_pimpactdataOld->m_atom != OPTIONS_IMPACT)
@@ -712,16 +725,16 @@ namespace user
 
          m_pimpactdata->m_pplaceholder->display();
 
-//         m_pimpactdata->m_pplaceholder->set_need_redraw();
-//
-//         m_pimpactdata->m_pplaceholder->set_need_layout();
-//
-//         m_pimpactdata->m_pplaceholder->post_redraw();
+         //         m_pimpactdata->m_pplaceholder->set_need_redraw();
+         //
+         //         m_pimpactdata->m_pplaceholder->set_need_layout();
+         //
+         //         m_pimpactdata->m_pplaceholder->post_redraw();
 
       }
 
       ::user::impact * pimpact = nullptr;
-      
+
       if (m_pimpactdata->m_puserinteraction)
       {
 
@@ -739,25 +752,25 @@ namespace user
       auto pframe = parent_frame();
 
       auto pframeImpact = pimpact->parent_frame();
-      
-      if(pframe && pframeImpact)
+
+      if (pframe && pframeImpact)
       {
-      
-         if(pframeImpact != pframe)
+
+         if (pframeImpact != pframe)
          {
-         
+
             pframe->set_active_impact(this);
-            
+
             pframeImpact->set_active_impact(pimpact);
 
          }
          else
          {
-            
+
             pframe->set_active_impact(pimpact);
-            
+
          }
-         
+
       }
 
       auto papp = get_app();
@@ -839,7 +852,7 @@ namespace user
    void tab_impact::prepare_impact_menu(::user::menu * pmenu)
    {
 
-      auto strXml = get_app()->file().as_string("matter://impact.menu");
+      auto strXml = get_app()->file()->as_string("matter://impact.menu");
 
       if (pmenu->load_xml_menu(strXml))
       {
@@ -941,7 +954,7 @@ namespace user
 
    //         {
 
-   //            synchronous_lock synchronouslock(mutex());
+   //            synchronous_lock synchronouslock(this->synchronization());
 
    //            if (pimpactdata->m_strCreatorDataTitle.has_char() && ppane->m_atom == pimpactdata->m_atom)
    //            {

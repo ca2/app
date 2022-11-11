@@ -4,14 +4,16 @@
 #include "hasher_algorithm.h"
 #include "initializer.h"
 #include "rsa.h"
+#include "acme/exception/interface_only.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/parallelization/event.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/mathematics/mathematics.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/string/base64.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/primitive/mathematics/mathematics.h"
-#include "acme/primitive/string/base64.h"
+#include "acme/primitive/string/str.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
-
 
 
 namespace crypto
@@ -209,7 +211,7 @@ namespace crypto
 
          //auto psystem = get_system()->m_papexsystem;
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pbase64 = psystem->base64();
 
@@ -238,7 +240,7 @@ namespace crypto
 
       //   storageDecrypt.from_string(pszDecrypt);
 
-      //   auto psystem = m_psystem;
+      //   auto psystem = acmesystem();
 
       //   auto pbase64 = psystem->base64();
 
@@ -262,7 +264,7 @@ namespace crypto
 
       //   memory storageKey;
 
-      //   auto psystem = m_psystem;
+      //   auto psystem = acmesystem();
 
       //   auto pbase64 = psystem->base64();
 
@@ -548,7 +550,7 @@ namespace crypto
 
          encrypt(memoryEncrypt, pszData, pszSalt);
 
-         m_pcontext->m_papexcontext->file().put_memory(payloadFile, memoryEncrypt);
+         file()->put_memory(payloadFile, memoryEncrypt);
 
       }
 
@@ -558,7 +560,7 @@ namespace crypto
 
          memory memoryEncrypt;
 
-         if (!m_pcontext->m_papexcontext->file().exists(payloadFile))
+         if (!file()->exists(payloadFile))
          {
             
             str.Empty();
@@ -567,7 +569,7 @@ namespace crypto
 
          }
 
-         m_pcontext->m_papexcontext->file().as_memory(payloadFile, memoryEncrypt);
+         file()->as_memory(payloadFile, memoryEncrypt);
 
          decrypt(str, memoryEncrypt, pszSalt);
 
@@ -713,7 +715,7 @@ namespace crypto
       ::file::path crypto::get_crypt_key_file_path()
       {
 
-         return m_psystem->m_pacmedirectory->system() / "user" / "databin.bin";
+         return acmedirectory()->system() / "user" / "databin.bin";
 
       }
 
@@ -723,7 +725,7 @@ namespace crypto
 
          string strPath = get_crypt_key_file_path();
 
-         string str = m_pcontext->m_papexcontext->file().as_string(strPath);
+         string str = file()->as_string(strPath);
 
          if (str.has_char())
          {
@@ -736,7 +738,7 @@ namespace crypto
 
          generate_random_alphanumeric(str.get_string_buffer(iLength), iLength);
 
-         m_pcontext->m_papexcontext->file().put_memory(strPath, str);
+         file()->put_memory(strPath, str);
 
          return str;
 

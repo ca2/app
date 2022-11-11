@@ -5,16 +5,21 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/12/18.
 //
 #include "framework.h"
+#include "department.h"
+#include "user_array.h"
+#include "product_array.h"
+#include "user.h"
 #include "system_storage.h"
 #include "network_authenticator.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/constant/timer.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/networking/url_department.h"
+#include "acme/networking/url_domain.h"
 #include "acme/parallelization/pool.h"
-#include "department.h"
-#include "user_array.h"
-#include "product_array.h"
-#include "user.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/string/str.h"
 #include "axis/platform/session.h"
 
 
@@ -28,7 +33,7 @@ namespace account
 #endif
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -52,7 +57,7 @@ namespace account
    ::file::path department::system_storage_default_path_prefix()
    {
 
-      return m_psystem->m_pacmedirectory->system() / "credential_storage";
+      return acmedirectory()->system() / "credential_storage";
 
    }
 
@@ -124,7 +129,7 @@ namespace account
    bool department::url_requires_auth(::file::path pathUrl)
    {
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -214,7 +219,7 @@ namespace account
 //
 //      string strGetFontopus;
 //
-//      if(::str().ends(strRequestingServer,".ca2.software"))
+//      if(string_ends(strRequestingServer,".ca2.software"))
 //      {
 //         strGetFontopus = "https://ca2.software/get_account_login";
 //      }
@@ -246,12 +251,12 @@ namespace account
 //   }
 
 
-   void department::initialize(::object * pobject)
+   void department::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::acme::department::initialize(pobject);
+      ::acme::department::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -332,7 +337,7 @@ namespace account
    void department::not_auth(::file::path pathUrl)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto puser = get_user(pathUrl);
 

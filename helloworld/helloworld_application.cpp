@@ -5,15 +5,15 @@ namespace helloworld
 {
 
 
-   application::application(::object * pobject) :
+   application::application(::particle * pparticle) :
       ::object(this),
       ::thread(this),
-      ::aura::application(pobject),
-      ::axis::application(pobject),
-      ::base::application(pobject),
-      ::aura::application(pobject),
-      ::sphere::application(pobject) :
-      m_mutexAiFont(this)
+      ::aura::application(pparticle),
+      ::axis::application(pparticle),
+      ::base::application(pparticle),
+      ::aura::application(pparticle),
+      ::sphere::application(pparticle) :
+      m_pmutexAiFont(this)
    {
 
       m_ptemplateHelloWorldMain = nullptr;
@@ -209,10 +209,10 @@ namespace helloworld
 
 
 extern "C"
-::acme::library * app_helloworld_get_new_library(::object * pobject)
+::acme::library * app_helloworld_get_new_library(::particle * pparticle)
 {
 
-   return memory_new ::apex::single_application_library < ::helloworld::application > (pobject, "app/helloworld");
+   return memory_new ::apex::single_application_library < ::helloworld::application > (pparticle, "app/helloworld");
 
 }
 

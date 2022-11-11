@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/data/data.h"
+
+
 class CLASS_DECL_AXIS form_data :
    virtual public ::data::data
 {

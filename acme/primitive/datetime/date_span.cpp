@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "date_span.h"
 
 
 namespace earth

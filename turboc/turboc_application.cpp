@@ -5,15 +5,15 @@ namespace turboc
 {
 
 
-   application::application(::object * pobject) :
+   application::application(::particle * pparticle) :
       ::object(this),
       ::thread(this),
-      ::aura::application(pobject),
-      ::axis::application(pobject),
-      ::base::application(pobject),
-      ::aura::application(pobject),
-      ::sphere::application(pobject) :
-      m_mutexAiFont(this)
+      ::aura::application(pparticle),
+      ::axis::application(pparticle),
+      ::base::application(pparticle),
+      ::aura::application(pparticle),
+      ::sphere::application(pparticle) :
+      m_pmutexAiFont(this)
    {
 
       m_strAppName            = "turboc";
@@ -215,7 +215,7 @@ namespace turboc
 
       pimpact->m_iErrorAiFont = -1;
 
-      //pimpact->m_iErrorAiFont = FT_New_Face((FT_Library)Sys(pimpact->get_app()).ftlibrary(),Sess(pimpact->get_app()).dir().matter_file("font/truetype/arialuni.ttf"),0,(FT_Face *)&pimpact->m_faceAi);
+      //pimpact->m_iErrorAiFont = FT_New_Face((FT_Library)Sys(pimpact->get_app()).ftlibrary(),Sess(pimpact->get_app()).dir()->matter_file("font/truetype/arialuni.ttf"),0,(FT_Face *)&pimpact->m_faceAi);
 
       return pimpact->m_iErrorAiFont;
 

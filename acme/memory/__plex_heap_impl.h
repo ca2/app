@@ -1,9 +1,5 @@
 #pragma once
 
-//#include "plex_heap1.h"
-
-
-
 
 class CLASS_DECL_ACME plex_heap_alloc :
    public array < plex_heap_alloc_sync *, plex_heap_alloc_sync *, ::allocator::sys < plex_heap_alloc_sync * > >

@@ -26,7 +26,7 @@
 #define SWAPLONG(x)		__MAKE_LONG(SWAPWORD(HIWORD(x)), SWAPWORD(LOWORD(x)))
 
 
-#define make64_from32(l, h) ((::u64) (l)) | (((::u64) (h)) << 32)
+
 #define first_u16(u) ((u) & 0xffff)
 #define second_u16(u) (((u) >> 16) & 0xffff)
 #define first_i16(u) ((::i16)(((::i32)(u)) & 0xffff)) // signed first_u16 or at least should be designed to be signed

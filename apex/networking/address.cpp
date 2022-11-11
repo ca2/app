@@ -1,5 +1,6 @@
 ﻿#include "framework.h" 
 #include "address.h"
+#include "acme/exception/interface_only.h"
 #include "apex/networking/sockets/sockets.h"
 
 
@@ -236,7 +237,7 @@ namespace networking
 //   }
 //
 //
-//   address::address(::object * pobject, const string & host, const ::string & strService)
+//   address::address(::particle * pparticle, const string & host, const ::string & strService)
 //   {
 //
 //#ifdef BSD_STYLE_SOCKETS
@@ -251,7 +252,7 @@ namespace networking
 //
 //#ifdef BSD_STYLE_SOCKETS
 //
-//      auto psystem = pobject->get_system();
+//      auto psystem = pparticle->get_system();
 //
 //      u.s.m_port = psystem->m_papexsystem->sockets().net().service_port(strService);
 //

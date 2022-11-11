@@ -65,7 +65,7 @@ namespace compress_bzip2
       ~uncompress() override;
 
 
-      void initialize(::object* pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       void transfer(::file::file* pfileOut, ::file::file* pfileIn) override;

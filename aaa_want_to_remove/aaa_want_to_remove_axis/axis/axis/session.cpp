@@ -13,10 +13,10 @@ namespace axis
    }
 
 
-   void session::initialize(::object * pobject)
+   void session::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::aura::session::initialize(pobject);
+      auto estatus = ::aura::session::initialize(pparticle);
 
       if (!estatus)
       {
@@ -43,7 +43,7 @@ namespace axis
    }
 
 
-   //void session::construct(::object * pobject, int iPhase)
+   //void session::construct(::particle * pparticle, int iPhase)
    //{
 
    //   if(iPhase == 0)

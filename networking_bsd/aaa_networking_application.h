@@ -22,7 +22,7 @@ public:
    ~networking_application() override;
 
 
-   void initialize(::object* pobject) override;
+   void initialize(::particle * pparticle) override;
 
 
    void create_networking_application();

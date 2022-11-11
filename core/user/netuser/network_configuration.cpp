@@ -1,4 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "core/user/netuser/_netuser.h"
 #include "aqua/xml/document.h"
 #include "core/user/user/user.h"
@@ -85,14 +87,14 @@ namespace usernet
 
       auto pcontext = get_context();
 
-      if(!m_pdocument->on_open_document(pcontext->m_papexcontext->dir().matter("system/network/configuration/proxy.xhtml")))
+      if(!m_pdocument->on_open_document(pcontext->m_papexcontext->dir()->matter("system/network/configuration/proxy.xhtml")))
       {
          return;
       }
 
       xml::document doc;
 
-      doc.load(pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "proxy.xml"));
+      doc.load(pcontext->m_papexcontext->file()->as_string(pcontext->m_papexcontext->dir()->appdata() / "proxy.xml"));
          
       string strProxy(doc.root()->attribute("server").get_string());
 
@@ -131,7 +133,7 @@ namespace usernet
             if(strServer.get_length() == 0)
             {
 
-               pcontext->m_papexcontext->file().erase(pcontext->m_papexcontext->dir().appdata()/ "proxy.xml");
+               pcontext->m_papexcontext->file()->erase(pcontext->m_papexcontext->dir()->appdata()/ "proxy.xml");
 
             }
             else
@@ -151,7 +153,7 @@ namespace usernet
 
                doc.root()->set_attribute("port", strPort);
 
-               pcontext->m_papexcontext->file().put_text(pcontext->m_papexcontext->dir().appdata()/"proxy.xml", doc.get_xml());
+               pcontext->m_papexcontext->file()->put_text(pcontext->m_papexcontext->dir()->appdata()/"proxy.xml", doc.get_xml());
 
             }
 

@@ -1,16 +1,20 @@
 ﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/asynchronous.h"
+#include "acme/platform/system.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/icon.h"
 #include "aura/user/user/user.h"
 #include "aura/message/user.h"
+#include "aura/platform/application.h"
+#include "aura/platform/session.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/user/user/interaction.h"
-#include "aura/platform/session.h"
-#include "acme/parallelization/asynchronous.h"
 
 
 namespace windowing
@@ -37,10 +41,10 @@ namespace windowing
    }
 
 
-   void window::on_initialize_object()
+   void window::on_initialize_particle()
    {
 
-      ::channel::on_initialize_object();
+      ::channel::on_initialize_particle();
 
       auto psession = get_session();
 
@@ -51,18 +55,18 @@ namespace windowing
    }
 
 
-   void window::assert_ok() const
-   {
-
-
-   }
-
-
-   void window::dump(dump_context & dumpcontext) const
-   {
-
-
-   }
+//   void window::assert_ok() const
+//   {
+//
+//
+//   }
+//
+//
+//   void window::dump(dump_context & dumpcontext) const
+//   {
+//
+//
+//   }
 
 
    void window::install_message_routing(channel * pchannel)
@@ -78,9 +82,9 @@ namespace windowing
       if(pmessage->m_atom == e_message_post_user)
       {
 
-         auto pobject = pmessage->m_union.m_pobject;
+         auto pparticle = pmessage->m_union.m_pparticle;
 
-         ::pointer<::message::message>pmessagePost = pobject->m_pelement;
+         ::pointer<::message::message>pmessagePost = pparticle->m_pparticle;
 
          if (::is_null(pmessagePost))
          {
@@ -1100,15 +1104,15 @@ namespace windowing
    }
 
    
-   bool window::on_set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+   bool window::on_set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
    {
 
-      return set_window_position(zorder, x, y, cx, cy, nFlags);
+      return set_window_position(zorder, x, y, cx, cy, eactivation, bNoZorder, bNoMove, bNoSize, bShow, bHide);
 
    }
 
 
-   bool window::set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+   bool window::set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
    {
 
       bool bOk = false;
@@ -1118,7 +1122,7 @@ namespace windowing
    }
 
 
-   bool window::_set_window_pos(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+   bool window::_set_window_pos(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
    {
 
       return true;
@@ -1179,7 +1183,7 @@ namespace windowing
    void window::window_send(const ::procedure & procedure)
    {
 
-      __material_send_procedure(this, this, &window::window_post, procedure);
+      __matter_send_procedure(this, this, &window::window_post, procedure);
 
    }
 
@@ -1323,7 +1327,7 @@ namespace windowing
    }
 
 
-   ::aura::application* window::get_app() const
+   ::aura::application* window::get_app()
    {
 
       return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
@@ -1331,7 +1335,7 @@ namespace windowing
    }
 
 
-   ::aura::session* window::get_session() const
+   ::aura::session* window::get_session()
    {
 
       return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
@@ -1339,14 +1343,12 @@ namespace windowing
    }
 
 
-   ::aura::system* window::get_system() const
+   ::aura::system* window::get_system()
    {
 
-      return m_psystem ? m_psystem->m_paurasystem : nullptr;
+      return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
 
    }
-
-
 
 
 } // namespace windowing

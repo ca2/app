@@ -23,7 +23,7 @@ namespace console
       bool                    m_bMoveDrag;
       bool                    m_bLControl;
 
-      prompt_frame(::object * pobject);
+      prompt_frame(::particle * pparticle);
       virtual ~prompt_frame();
 
       void install_message_routing(::channel * pchannel) override;
@@ -34,8 +34,8 @@ namespace console
       bool show_mini();
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       bool m_bHoverMouse;

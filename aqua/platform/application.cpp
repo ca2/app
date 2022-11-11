@@ -1,4 +1,6 @@
 ﻿#include "framework.h"
+#include "application.h"
+#include "system.h"
 #include "aqua/multimedia/multimedia.h"
 #include "aqua/xml/document.h"
 
@@ -43,12 +45,12 @@ namespace aqua
    }
 
 
-   void application::initialize(::object * pobject)
+   void application::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::apex::application::initialize(pobject);
+      ::apex::application::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -158,6 +160,13 @@ namespace aqua
 
    //}
 
+
+   ::aqua::system* application::get_system()
+   {
+
+      return dynamic_cast <::aqua::system*> (acmesystem());
+
+   }
 
 
 } // namespace aqua

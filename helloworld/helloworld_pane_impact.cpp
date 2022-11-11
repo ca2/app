@@ -5,13 +5,13 @@
 namespace helloworld
 {
 
-   pane_impact::pane_impact(::object * pobject) :
-      object(pobject),
-      ::user::tab(pobject),
+   pane_impact::pane_impact(::particle * pparticle) :
+      object(pparticle),
+      ::user::tab(pparticle),
 
-      ::user::tab_impact(pobject),
-      ::userex::pane_tab_impact(pobject),
-      place_holder_container(pobject)
+      ::user::tab_impact(pparticle),
+      ::userex::pane_tab_impact(pparticle),
+      place_holder_container(pparticle)
    {
       m_pimpactLast = nullptr;
       m_pimpactLastBilbo = nullptr;
@@ -389,7 +389,7 @@ namespace helloworld
             string strCheck = ptopic->user_element_id();
 
 
-            if (::str().begins_eat_ci(strCheck, "bilbo"))
+            if (strCheck.begins_eat_ci("bilbo"))
             {
 
                if (ptopic->user_interaction() != nullptr && !ptopic->m_context.is_source(::e_source_initialize)
@@ -450,13 +450,13 @@ namespace helloworld
       if (m_pimpactLast == nullptr && m_pimpactLastBilbo == nullptr)
       {
 
-         str = pcontext->m_papexcontext->file().as_string("matter://home.html");
+         str = pcontext->m_papexcontext->file()->as_string("matter://home.html");
 
       }
       else
       {
 
-         str = pcontext->m_papexcontext->file().as_string("matter://menu.html");
+         str = pcontext->m_papexcontext->file()->as_string("matter://menu.html");
 
       }
 
@@ -497,9 +497,9 @@ namespace helloworld
 
       ::file::path path;
 
-      path = pcontext->m_papexcontext->dir().appdata() / "helloworld_menu.html";
+      path = pcontext->m_papexcontext->dir()->appdata() / "helloworld_menu.html";
 
-      pcontext->m_papexcontext->file().put_contents(path, str);
+      pcontext->m_papexcontext->file()->put_contents(path, str);
 
       return path;
 

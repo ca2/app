@@ -1,10 +1,11 @@
-#include "framework.h"
-////#include "aura/update.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "_userfs.h"
-//#endif
-#include "acme/constant/id.h"
+﻿#include "framework.h"
 #include "document.h"
+#include "acme/constant/id.h"
+#include "acme/filesystem/file/item.h"
+#include "acme/platform/context.h"
+#include "apex/filesystem/fs/set.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/platform/context.h"
 
 
 namespace userfs
@@ -23,12 +24,12 @@ namespace userfs
    }
 
 
-   void document::initialize(::object * pobject)
+   void document::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::user::document::initialize(pobject);
+      ::user::document::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -61,20 +62,20 @@ namespace userfs
    //}
 
 
-   void document::assert_ok() const
-   {
-
-      ::user::document::assert_ok();
-
-   }
-
-
-   void document::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::document::dump(dumpcontext);
-
-   }
+//   void document::assert_ok() const
+//   {
+//
+//      ::user::document::assert_ok();
+//
+//   }
+//
+//
+//   void document::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::document::dump(dumpcontext);
+//
+//   }
 
 
    bool document::browse(::pointer<::file::item>pitem, const ::action_context & context)
@@ -82,7 +83,7 @@ namespace userfs
 
       {
 
-         synchronous_lock synchronouslock(fs_data()->mutex());
+         synchronous_lock synchronouslock(fs_data()->synchronization());
 
          m_pathFolder = pitem->user_path();
 
@@ -97,7 +98,7 @@ namespace userfs
 
          {
 
-            synchronous_lock synchronouslock(fs_data()->mutex());
+            synchronous_lock synchronouslock(fs_data()->synchronization());
 
             m_listingRoot = listing;
 
@@ -134,7 +135,7 @@ namespace userfs
 
          listingUser.set_listing(pitem->user_path());
 
-         pcontext->m_papexcontext->dir().enumerate(listingUser);
+         pcontext->m_papexcontext->dir()->enumerate(listingUser);
 
          listingUser.m_pathUser = pitem->user_path();
 
@@ -243,7 +244,7 @@ namespace userfs
          if (pathFinal.m_iDir < 0)
          {
 
-            pathFinal.m_iDir = pcontext->m_papexcontext->dir().is(pathFinal | ::file::e_flag_resolve_alias) ? 1 : 0;
+            pathFinal.m_iDir = pcontext->m_papexcontext->dir()->is(pathFinal | ::file::e_flag_resolve_alias) ? 1 : 0;
 
          }
 
@@ -269,7 +270,7 @@ namespace userfs
 
       {
 
-         synchronous_lock synchronouslock(fs_data()->mutex());
+         synchronous_lock synchronouslock(fs_data()->synchronization());
 
          m_listingUser2 = listingUser;
 

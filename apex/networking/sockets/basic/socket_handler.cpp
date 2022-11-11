@@ -1,7 +1,9 @@
 #include "framework.h"
 #include "socket_handler.h"
 #include "tcp_socket.h"
+#include "acme/exception/interface_only.h"
 #include "apex/networking/networking.h"
+
 //#include <time.h>
 //
 //#ifdef ANDROID
@@ -27,9 +29,9 @@ namespace sockets
    ::interlocked_count g_interlockedcountsocket_idHandler;
 
 
-   //socket_handler::socket_handler(::object * pobject, ::apex::log *plogger) :
+   //socket_handler::socket_handler(::particle * pparticle, ::apex::log *plogger) :
    socket_handler::socket_handler() :
-      //::object(pobject),
+      //::object(pparticle),
       //base_socket_handler(plogger),
       m_b_use_mutex(false)
       //, m_maxsock(0)
@@ -44,7 +46,7 @@ namespace sockets
       //, m_slave(false)
    {
       m_p2 = nullptr;
-      defer_create_mutex();
+      defer_create_synchronization();
       //__zero(m_socks4_host);
       //m_prfds = memory_new fd_set;
       //m_pwfds = memory_new fd_set;
@@ -90,10 +92,10 @@ namespace sockets
    }
 
 
-   void socket_handler::initialize(::object * pobject)
+   void socket_handler::initialize(::particle * pparticle)
    {
 
-      base_socket_handler::initialize(pobject);
+      base_socket_handler::initialize(pparticle);
 
       __construct(m_pcomposite);
 
@@ -154,14 +156,14 @@ namespace sockets
       if (m_b_use_mutex)
       {
 
-         mutex()->unlock();
+         synchronization()->unlock();
 
       }
 
    }
 
 
-   //synchronization_object & socket_handler::GetMutex() const
+   //synchronization & socket_handler::GetMutex() const
    //{
 
    //   return *mutex();
@@ -574,7 +576,7 @@ namespace sockets
      throw interface_only();
 
      return -1;
-//     i32 n = m_psystem->m_papexsystem->networking()->_select(this, wait);
+//     i32 n = acmesystem()->m_papexsystem->networking()->_select(this, wait);
 //
 //
 //     auto tick2 = ::duration::now();
@@ -605,7 +607,7 @@ namespace sockets
 //
 //#elif defined(WINDOWS)
 //
-//           INFORMATION("sockets::socket_handler select error : "<< last_error_message(iError) <<" ("<< iError <<")");
+//           INFORMATION("sockets::socket_handler select error : "<< ::windows::last_error_message(iError) <<" ("<< iError <<")");
 //
 //#endif
 //
@@ -1304,7 +1306,7 @@ namespace sockets
 //
 //                       auto psystem = get_system()->m_papexsystem;
 //
-//                       synchronous_lock synchronouslock(&psystem->sockets().m_mutexPool);
+//                       synchronous_lock synchronouslock(&psystem->sockets().m_pmutexPool);
 //
 //                       auto ppoolsocket_id = __new(pool_socket_id(psocket));
 //
@@ -1785,7 +1787,7 @@ namespace sockets
 
    //   auto psystem = get_system()->m_papexsystem;
 
-   //   synchronous_lock synchronouslock(&psystem->sockets().m_mutexPool);
+   //   synchronous_lock synchronouslock(&psystem->sockets().m_pmutexPool);
 
    //   auto p = psystem->sockets().m_pool.begin();
 

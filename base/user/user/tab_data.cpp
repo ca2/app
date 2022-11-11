@@ -27,12 +27,12 @@ namespace user
    }
 
 
-   void tab_data::initialize(::object * pobject)
+   void tab_data::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::data::data::initialize(pobject);
+      ::data::data::initialize(pparticle);
 
       //if (!estatus)
       //{

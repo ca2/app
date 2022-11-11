@@ -799,7 +799,7 @@ namespace user
    public:
 
 
-      status_command(::object * pobject);
+      status_command(::particle * pparticle);
 
       virtual void enable(bool bOn);
       void _001SetCheck(const ::e_check & echeck, const ::action_context & context) override;
@@ -811,10 +811,10 @@ namespace user
    };
 
 
-   status_command::status_command(::object * pobject)
+   status_command::status_command(::particle * pparticle)
    {
 
-      initialize(pobject);
+      initialize(pparticle);
 
    }
 

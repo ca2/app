@@ -2,8 +2,18 @@
 #pragma once
 
 
+#include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/collection/atom_map.h"
+#include "acme/primitive/collection/atom_array.h"
+#include "acme/primitive/primitive/object.h"
+
+
 namespace interprocess
 {
+
+
+   using task_map = atom_map < ::pointer< task > >;
 
 
    class CLASS_DECL_APEX communication :
@@ -16,7 +26,7 @@ namespace interprocess
       string                                                   m_strApp;
       ::atom                                                   m_atomApp;
       string_map < ::pointer<::interprocess::caller > >        m_callermap;
-      string_map < ::pointer<::mutex > >                       m_mapAppMutex;
+      string_map < ::pointer< ::mutex > >                      m_mapAppMutex;
       ::pointer<::interprocess::target>                        m_ptarget;
       string_array                                             m_straModule;
 
@@ -34,7 +44,7 @@ namespace interprocess
       ~communication() override;
 
 
-      virtual void initialize_interprocess_communication(::object * pobject, const ::string & strApp);
+      virtual void initialize_interprocess_communication(::particle * pparticle, const ::string & strApp);
 
 
       void destroy() override;
@@ -52,7 +62,7 @@ namespace interprocess
 
       virtual ::interprocess::caller & caller(const ::string & strApp, const ::atom & idPid);
 
-      virtual id_array get_pid(const ::string & strApp);
+      virtual atom_array get_pid(const ::string & strApp);
 
       virtual string key(const string & strApp, const ::atom & idPid);
 

@@ -31,12 +31,12 @@ namespace filemanager
          }
 
 
-         void tree::initialize(::object * pobject)
+         void tree::initialize(::particle * pparticle)
          {
 
             //auto estatus = 
             
-            ::user::tree_data::initialize(pobject);
+            ::user::tree_data::initialize(pparticle);
 
             //if (!estatus)
             //{
@@ -71,20 +71,20 @@ namespace filemanager
          }
 
 
-         void tree::assert_ok() const
-         {
-
-            ::data::tree::assert_ok();
-
-         }
-
-
-         void tree::dump(dump_context & dumpcontext) const
-         {
-
-            ::data::tree::dump(dumpcontext);
-
-         }
+//         void tree::assert_ok() const
+//         {
+//
+//            ::data::tree::assert_ok();
+//
+//         }
+//
+//
+//         void tree::dump(dump_context & dumpcontext) const
+//         {
+//
+//            ::data::tree::dump(dumpcontext);
+//
+//         }
 
 
          void tree::parse(const ::string & pszSource)

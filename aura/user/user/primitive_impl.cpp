@@ -1,13 +1,15 @@
 ﻿#include "framework.h"
-
-//#include "acme/constant/id.h"
 #include "interaction_thread.h"
-#include "call_message_handler_task.h"
-//#include "acme/operating_system/_user.h"
-#include "acme/platform/timer_array.h"
 #include "primitive_impl.h"
 #include "interaction.h"
 #include "interaction_impl.h"
+#include "call_message_handler_task.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/context.h"
+#include "acme/platform/system.h"
+#include "acme/platform/timer_array.h"
 #include "aura/message/user.h"
 
 
@@ -617,7 +619,7 @@ namespace user
    }
 
 
-   bool primitive_impl::_is_window() const
+   bool primitive_impl::_is_window()
    {
 
       return false;
@@ -1025,7 +1027,7 @@ namespace user
 //////
 //////      }
 //////
-//////      synchronous_lock synchronouslock(&((primitive_impl *)this)->m_mutexLongPtr);
+//////      synchronous_lock synchronouslock(&((primitive_impl *)this)->m_pmutexLongPtr);
 //////
 //////      return (LONG_PTR)m_longptr[nIndex];
 ////
@@ -1050,7 +1052,7 @@ namespace user
 ////
 ////      }
 ////
-////      synchronous_lock synchronouslock(&m_mutexLongPtr);
+////      synchronous_lock synchronouslock(m_pmutexLongPtr);
 ////
 ////      m_longptr[nIndex] = lValue;
 ////
@@ -1193,7 +1195,7 @@ namespace user
    }
 
 
-   bool primitive_impl::is_ascendant(const ::user::primitive * puiIsAscendant, bool bIncludeSelf) const
+   bool primitive_impl::is_ascendant(::user::element * puiIsAscendant, bool bIncludeSelf)
    {
 
       if (::is_null(puiIsAscendant))
@@ -1208,7 +1210,7 @@ namespace user
    }
 
 
-   bool primitive_impl::is_parent(const ::user::primitive * puiIsParent) const
+   bool primitive_impl::is_parent(::user::element * puiIsParent)
    {
 
       if (puiIsParent == nullptr)
@@ -1223,7 +1225,7 @@ namespace user
    }
 
 
-   bool primitive_impl::is_child(const ::user::primitive * puiIsChild) const
+   bool primitive_impl::is_child(::user::element * puiIsChild)
    {
 
       if (puiIsChild == nullptr)
@@ -1240,10 +1242,10 @@ namespace user
    }
 
 
-   bool primitive_impl::is_descendant(const ::user::primitive * puiIsDescendant, bool bIncludeSelf) const
+   bool primitive_impl::is_descendant(::user::element * puiIsDescendant, bool bIncludeSelf)
    {
 
-      const ::user::primitive * puiProbe;
+      ::user::element * puiProbe;
 
       if (bIncludeSelf)
       {
@@ -1284,7 +1286,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::get_wnd() const
+   ::user::interaction * primitive_impl::get_wnd()
    {
 
       if (!m_puserinteraction)
@@ -1299,7 +1301,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::get_wnd(::u32 nCmd) const
+   ::user::interaction * primitive_impl::get_wnd(::u32 nCmd)
    {
 
       if (!m_puserinteraction)
@@ -1331,7 +1333,7 @@ namespace user
    //}
 
 
-   ::user::interaction * primitive_impl::get_parent() const
+   ::user::interaction * primitive_impl::get_parent()
    {
 
       if (!m_puserinteraction)
@@ -1346,7 +1348,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::get_owner() const
+   ::user::interaction * primitive_impl::get_owner()
    {
 
       if (!m_puserinteraction)
@@ -1361,7 +1363,7 @@ namespace user
    }
 
 
-   ::user::frame * primitive_impl::frame() const
+   ::user::frame * primitive_impl::frame()
    {
 
       if (!m_puserinteraction)
@@ -1391,7 +1393,7 @@ namespace user
    //}
 
 
-   ::user::interaction * primitive_impl::get_parent_owner() const
+   ::user::interaction * primitive_impl::get_parent_owner()
    {
 
       if (!m_puserinteraction)
@@ -1406,7 +1408,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::get_parent_or_owner() const
+   ::user::interaction * primitive_impl::get_parent_or_owner()
    {
 
       if (!m_puserinteraction)
@@ -1421,7 +1423,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::get_top_level_owner() const
+   ::user::interaction * primitive_impl::get_top_level_owner()
    {
 
       if (!m_puserinteraction)
@@ -1436,7 +1438,7 @@ namespace user
    }
 
 
-   ::user::frame * primitive_impl::top_level_frame() const
+   ::user::frame * primitive_impl::top_level_frame()
    {
 
       if (!m_puserinteraction)
@@ -1705,7 +1707,7 @@ namespace user
             if (pinteractionimpl)
             {
 
-               synchronous_lock synchronouslock(pinteractionimpl->mutex());
+               synchronous_lock synchronouslock(pinteractionimpl->synchronization());
 
                pinteractionimpl->m_userinteractionaMouseHover.erase(m_puserinteraction);
 
@@ -1944,7 +1946,7 @@ namespace user
 
       }
 
-      m_puserinteraction->post_procedure(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
+      m_puserinteraction->interaction_post(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
 
    }
 
@@ -1956,7 +1958,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          try
          {
@@ -2067,7 +2069,7 @@ namespace user
 //
 //      fflush(stdout);
 
-      m_puserinteraction->call_routines_with_id(CREATE_ROUTINE);
+      //m_puserinteraction->call_routines_with_id(CREATE_ROUTINE);
 
 //      if(::is_null(m_puserinteraction->m_pwindow))
 //      {
@@ -2091,7 +2093,7 @@ namespace user
    void primitive_impl::on_message_destroy(::message::message * pmessage)
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       //try
       //{
@@ -2170,13 +2172,13 @@ namespace user
    }
 
 
-   void primitive_impl::redraw_add(::object * point_i32)
+   void primitive_impl::redraw_add(::particle * pparticle)
    {
 
    }
 
 
-   void primitive_impl::redraw_erase(::object * point_i32)
+   void primitive_impl::redraw_erase(::particle * pparticle)
    {
 
    }
@@ -2435,7 +2437,7 @@ namespace user
 #endif
 
 
-   ::user::interaction * primitive_impl::top_level() const
+   ::user::interaction * primitive_impl::top_level()
    {
       
       return m_puserinteraction->m_puserinteractionTopLevel;
@@ -2443,7 +2445,7 @@ namespace user
    }
 
 
-   ::user::frame * primitive_impl::parent_frame() const
+   ::user::frame * primitive_impl::parent_frame()
    {
       
       return m_puserinteraction->m_puserframeParent;
@@ -2459,7 +2461,7 @@ namespace user
    }
 
 
-   ::aura::application * primitive_impl::get_app() const
+   ::aura::application * primitive_impl::get_app()
    {
 
       return m_pcontext ? m_pcontext->m_pauraapplication : nullptr;
@@ -2467,7 +2469,7 @@ namespace user
    }
 
 
-   ::aura::session * primitive_impl::get_session() const
+   ::aura::session * primitive_impl::get_session()
    {
 
       return m_pcontext ? m_pcontext->m_paurasession : nullptr;
@@ -2475,12 +2477,13 @@ namespace user
    }
 
 
-   ::aura::system * primitive_impl::get_system() const
+   ::aura::system * primitive_impl::get_system()
    {
 
-      return m_psystem ? m_psystem->m_paurasystem : nullptr;
+      return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
 
    }
+
 
 } // namespace user
 

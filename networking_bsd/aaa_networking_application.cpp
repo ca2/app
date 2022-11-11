@@ -18,12 +18,12 @@ networking_application::~networking_application()
 }
 
 
-void networking_application::initialize(::object* pobject)
+void networking_application::initialize(::particle * pparticle)
 {
 
    //auto estatus = 
    
-   ::object::initialize(pobject);
+   ::object::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -53,7 +53,7 @@ void networking_application::create_networking_application()
 
    m_psocketthread->m_strIp = "127.0.0.1";
    
-   //auto pfolder = m_psystem->m_papexsystem->file().resource_folder();
+   //auto pfolder = file()->resource_folder();
 
    //if (pfolder)
    //{
@@ -82,7 +82,7 @@ void networking_application::create_networking_application()
    //}
 
 
-   //      m_psocketthread->m_strCat = "cat://"+m_psystem->m_pacmefile->as_string("C:\\sensitive\\sensitive\\certificate\\localwebserver.app\\localwebserver.cat");
+   //      m_psocketthread->m_strCat = "cat://"+acmefile()->as_string("C:\\sensitive\\sensitive\\certificate\\localwebserver.app\\localwebserver.cat");
      //    m_psocketthread->m_strCipherList = "ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RSA:SHA:3DES:!aNULL:!eNULL:!EXP:!LOW:!MD5:@STRENGTH";
        //  m_psocketthread->m_iSsl = 1;
 
@@ -156,7 +156,7 @@ void networking_application::add_handler(const ::string& strPrefix, networking_a
 ::e_status networking_application::on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
 {
 
-   string strRequestScript = m_psystem->url()->get_script(strUrl);
+   string strRequestScript = acmesystem()->url()->get_script(strUrl);
 
    for (auto& assoc : m_maphandler)
    {
@@ -188,7 +188,7 @@ void networking_application::add_handler(const ::string& strPrefix, networking_a
 
    }
 
-   auto psystem = m_psystem;
+   auto psystem = acmesystem();
 
    auto pdatetime = psystem->datetime();
 

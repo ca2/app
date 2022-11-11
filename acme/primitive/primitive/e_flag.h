@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/constant/flag.h"
+
+
 inline bool __enum_is_ok(const ::enum_flag& e) { return (e & e_flag_success) != 0; }
 inline bool __enum_is_failed(const ::enum_flag& e) { return (e & e_flag_failure) != 0 || (e & e_flag_timeout) != 0; }
 
@@ -14,8 +17,8 @@ public:
    enum_flag         m_eflag;
 
 
-   e_flag() { m_eflag = (enum_flag)0; }
-   e_flag(const std::initializer_list < enum_flag >& list) { m_eflag = (enum_flag)0; for (auto& e : list) add(e); }
+   e_flag() { m_eflag = e_flag_none; }
+   e_flag(const std::initializer_list < enum_flag >& list) { m_eflag = e_flag_none; for (auto& e : list) add(e); }
    e_flag(enum_flag e) { m_eflag = e; }
    e_flag(::i64 i) { m_eflag = (enum_flag)i; }
    e_flag(const e_flag& e) { m_eflag = e.m_eflag; }

@@ -14,7 +14,7 @@ namespace lite
 
 
 
-      theme(::object * pobject);
+      theme(::particle * pparticle);
       virtual ~theme();
 
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override

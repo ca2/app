@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/filesystem/file/file.h"
+
+
 class CLASS_DECL_CORE ftpfs_file :
    virtual public ::file::file
 {

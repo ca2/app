@@ -1,14 +1,16 @@
 #include "framework.h"
-
-#include "aura/graphics/image/icon.h"
-#include "acme/parallelization/pool.h"
-#include "aura/windowing/windowing.h"
 #include "frame.h"
 #include "key.h"
 #include "style.h"
 #include "user.h"
+#include "acme/constant/id.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/pool.h"
+#include "acme/constant/message.h"
+#include "aura/graphics/image/icon.h"
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
+#include "aura/windowing/windowing.h"
 
 
 namespace user
@@ -42,7 +44,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      add_command_handler("app_exit", this, &frame::on_message_application_exit);
+      add_command_handler("app_exit", { this, &frame::on_message_application_exit });
       
 
       //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &window::on_message_set_cursor);
@@ -246,7 +248,7 @@ namespace user
    }
 
 
-   ::user::interaction* frame::get_active_impact() const
+   ::user::interaction* frame::get_active_impact()
    {
 
       return nullptr;
@@ -286,7 +288,7 @@ namespace user
    }
 
 
-   string frame::get_frame_title() const
+   string frame::get_frame_title()
    {
 
       return m_strFrameTitle;

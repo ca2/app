@@ -24,7 +24,7 @@ namespace core
       void common_construct();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual void on_instantiate_application(::apex::application* papp) override;

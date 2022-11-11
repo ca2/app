@@ -17,7 +17,7 @@ namespace calculator
       bool                       m_bTimerOn;
 
 
-      frame(::object * pobject);
+      frame(::particle * pparticle);
       virtual ~frame();
 
       virtual bool pre_create_window(::user::system * pusersystem);
@@ -26,8 +26,8 @@ namespace calculator
       
       
    
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
    
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

@@ -49,7 +49,7 @@ namespace sockets
       smtp_socket();
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       void OnLine(const string &) override;

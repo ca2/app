@@ -31,9 +31,9 @@ public:
 
    }
 
-   linked_property(property * pproperty, property_object * pobject) :
+   linked_property(property * pproperty, property_object * pparticle) :
       m_pproperty(pproperty),
-      m_ppropertyobject(pobject)
+      m_ppropertyobject(pparticle)
    {
 
    }

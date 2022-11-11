@@ -30,12 +30,12 @@ namespace experience_tranquillum
    }
 
 
-   void experience::initialize(::object * pobject)
+   void experience::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
          
-      ::experience::experience::initialize(pobject);
+      ::experience::experience::initialize(pparticle);
 
       //if (!estatus)
       //{

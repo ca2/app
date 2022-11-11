@@ -21,14 +21,14 @@ class CLASS_DECL_CORE simple_menu_bar :
 public:
 
 
-   ::pointer<::image_list>            m_pimagelist;
-   ::pointer<::image_list>            m_pimagelistDisabled;
+   ::pointer<::image_list>             m_pimagelist;
+   ::pointer<::image_list>             m_pimagelistDisabled;
    i32_spreadset *                     m_prel;
    bool                                m_bTracking;
    index                               m_iTracking;
-   ::u32                                m_uResourceId;
+   ::u32                               m_uResourceId;
    index                               m_iTopMenuCount;
-   ::pointer<::user::menu>          m_pmenu;
+   ::pointer<::user::menu>             m_pmenu;
 
 
    simple_menu_bar();

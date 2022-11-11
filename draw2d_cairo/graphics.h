@@ -47,11 +47,11 @@ namespace draw2d_cairo
       ~graphics() override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context& dumpcontext) const override;
+      // void assert_ok() const override;
+      //void dump(dump_context& dumpcontext) const override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
       void * detach() override;
 
@@ -195,7 +195,7 @@ namespace draw2d_cairo
       void paint_region(::draw2d::region* pRgn) override;
 
       // Clipping Functions
-      i32 get_clip_box(::rectangle_f64 * prectangle) override;
+      i32 get_clip_box(::rectangle_f64 & rectangle) override;
 
 
       void intersect_clip(const ::rectangle_f64 & rectangle) override;
@@ -493,7 +493,7 @@ namespace draw2d_cairo
       void SelectClipPath(i32 nMode) override;
 
       // Misc Helper Functions
-      //static ::draw2d::brush* PASCAL GetHalftoneBrush(::object * pobject);
+      //static ::draw2d::brush* PASCAL GetHalftoneBrush(::particle * pparticle);
 //      void DrawDragRect(const ::rectangle_f64 & rectangle_f64, const ::size_f64 & size_f64,
 //                        const ::rectangle_f64 & rectangleLast, const ::size_f64 & sizeLast,
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
@@ -531,7 +531,7 @@ namespace draw2d_cairo
 
       //protected:
       // used for implementation of non-virtual SelectObject calls
-      //static ::draw2d_cairo::object* PASCAL SelectGdiObject(::object * pobject, HDC hDC, HGDIOBJ h) override;
+      //static ::draw2d_cairo::object* PASCAL SelectGdiObject(::particle * pparticle, HDC hDC, HGDIOBJ h) override;
 
 
       // operating-system-specific or operating-system-internals

@@ -15,7 +15,7 @@
 //      ::pointer<image_list>m_pimagelist;
 //      ::pointer<image_list>m_pimagelistDisable;
 //      ///CBaseNumericDiscreteRelation < ::u32, ::u32, ::u32, ::u32 > m_rel;
-//      id_map < int > m_rel;
+//      atom_map < int > m_rel;
 //
 //
 //      image_manager();
@@ -25,7 +25,7 @@
 //      //void LoadToolbar(simple_toolbar & toolbar, ::u32 * user);
 //      image_list & GetImageList();
 //      image_list & GetImageListDisable();
-//      bool Initialize(::object * pobject, ::u32 uaMenuV003Map[][2]);
+//      bool Initialize(::particle * pparticle, ::u32 uaMenuV003Map[][2]);
 //
 //
 //   };

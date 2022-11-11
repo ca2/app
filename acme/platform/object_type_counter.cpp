@@ -9,7 +9,7 @@ critical_section g_csObjTypCtr;
 
 map < const char*, const char*, ::i64, ::i64 > * g_pmapObjTypCtr = nullptr;
 
-void object_type_counter_increment(::matter * pobject)
+void object_type_counter_increment(::particle * pparticle)
 {
 
    if (!g_iObjTypCtrInit)
@@ -21,7 +21,7 @@ void object_type_counter_increment(::matter * pobject)
 
    critical_section_lock synchronouslock(&g_csObjTypCtr);
 
-   const char* psz = typeid(*pobject).name();
+   const char* psz = typeid(*pparticle).name();
 
    auto i = atomic_increment(&g_pmapObjTypCtr->operator[](psz));
 
@@ -41,7 +41,7 @@ void object_type_counter_increment(::matter * pobject)
    atomic_increment(&g_iObjTypCtr);
 
 }
-void object_type_counter_decrement(::matter* pobject)
+void object_type_counter_decrement(::particle * pparticle)
 {
    if (!g_iObjTypCtrInit)
    {
@@ -51,7 +51,7 @@ void object_type_counter_decrement(::matter* pobject)
    }
 
    critical_section_lock synchronouslock(&g_csObjTypCtr);
-   const char* psz = typeid(*pobject).name();
+   const char* psz = typeid(*pparticle).name();
 
    auto i = atomic_decrement(&g_pmapObjTypCtr->operator[](psz));
 

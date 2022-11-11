@@ -16,8 +16,11 @@
  wrapper class for _set_standard_translator API
  maps Win32 exceptions (C structured exceptions) into C++ typed exceptions.
 */
-
 #pragma once
+
+
+#include "exception.h"
+
 
 #if defined(ANDROID)
 
@@ -107,10 +110,7 @@ public:
 
 
 
-#ifdef WINDOWS
-
-
-#else
+#if !defined(WINDOWS)
 
    static void * siginfodup(void * psiginfo);
    static void siginfofree(void * psiginfo);
@@ -127,7 +127,7 @@ public:
 
    }
 
-#endif
+#else
 
    standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP,
                       void * caller_address = nullptr) :
@@ -142,6 +142,8 @@ public:
    }
 
 #endif
+
+#endif //!def(WINDOWS)
 
 
    virtual ~standard_exception()
@@ -217,7 +219,7 @@ typedef struct _sig_ucontext
 #endif
 #endif
 //         ::exception(),
-         //       ::standard_exception(pobject, signal, psiginfo, pc)
+         //       ::standard_exception(pparticle, signal, psiginfo, pc)
       {
 
       }
@@ -358,7 +360,7 @@ private:
 {
    friend class translator;
 protected:
-   standard_sigsegv (siginfo_t * psiginfo, void * pc) : ::matter(pobject), standard_exception(psiginfo, pc) {}
+   standard_sigsegv (siginfo_t * psiginfo, void * pc) : ::matter(pparticle), standard_exception(psiginfo, pc) {}
 public:
    //bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
    //uptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -368,7 +370,7 @@ public:
 {
    friend class translator;
 protected:
-   standard_sigfpe (siginfo_t * psiginfo, void * pc) : ::matter(pobject), standard_exception(psiginfo, pc) {}
+   standard_sigfpe (siginfo_t * psiginfo, void * pc) : ::matter(pparticle), standard_exception(psiginfo, pc) {}
 public:
 //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
   // uptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }

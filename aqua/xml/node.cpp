@@ -8,6 +8,8 @@
 #include "parse_info.h"
 #include "disp_option.h"
 #include "exception.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/string/str.h"
 
 
 // https://www.codeproject.com/Articles/3426/XMLite-simple-XML-parser
@@ -280,7 +282,7 @@ namespace xml
    const char * node::LoadDocType( const char * pszXml, parse_info * pparseinfo)
    {
 
-      auto pxml = get_system()->xml();
+      auto pxml = acmesystem()->xml();
 
       if (pparseinfo == nullptr)
       {
@@ -349,12 +351,13 @@ namespace xml
                }
                if(entity_value.has_char())
                {
-                  defer_clone(m_pdocument->m_pentitiesHash);
+                  ::__construct(m_pdocument, m_pdocument->m_pentitiesHash);
+                  ::__defer_construct(m_pdocument, m_pdocument->m_pentitiesHash);
                   m_pdocument->m_pentitiesHash->set_at(entity_name, entity_value);
                }
                if(ext_entity_value.has_char())
                {
-                  defer_clone(m_pdocument->m_pentitiesExtHash);
+                  ::__defer_construct(m_pdocument, m_pdocument->m_pentitiesExtHash);
                   m_pdocument->m_pentitiesExtHash->set_at(entity_name, ext_entity_value);
                }
             }
@@ -506,7 +509,7 @@ namespace xml
 //                           else
 //                           {
 //
-//                              ::str().increment(psz);
+//                              unicode_increment(psz);
 //
 //                           }
 //
@@ -583,7 +586,7 @@ namespace xml
       if(end == nullptr)
          return nullptr;
 
-      while(*end != '\0' && isspace(*end))
+      while(*end != '\0' && character_isspace(*end))
          end++;
 
       if(*end == '\0')
@@ -889,7 +892,7 @@ namespace xml
          if (m_enode == ::data::e_node_xml_document)
          {
             // is DOCTYPE
-            if(::str().begins(xml, "<!DOCTYPE"))
+            if(string_begins(xml, "<!DOCTYPE"))
             {
                // processing instrunction parse
                // return pointer is next node of pparseinfo
@@ -1151,7 +1154,7 @@ namespace xml
                   //   ////   }
                   //   ////   else
                   //   ////   {
-                  //   ::str().increment(pszEnd);
+                  //   unicode_increment(pszEnd);
                   //   //   }
                   //}
                   _SetString(xml, pszEnd, &pnode->m_strValue, trim, escape);

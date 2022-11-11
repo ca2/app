@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "acme/constant/id.h"
 #include "timer_task.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 timer_task::timer_task()
@@ -47,10 +48,10 @@ i64 timer_task::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 #endif
 
 
-void timer_task::initialize_timer(::object * pobject, ::acme::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class synchronization_object* pmutex)
+void timer_task::initialize_timer(::particle * pparticle, ::acme::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, ::particle * pparticleSynchronization)
 {
 
-   /*auto estatus = */ ::task::initialize(pobject);
+   /*auto estatus = */ ::task::initialize(pparticle);
 
    //if(!estatus)
    //{
@@ -87,7 +88,7 @@ void timer_task::initialize_timer(::object * pobject, ::acme::timer_array * ptim
 void timer_task::start(const class ::wait & wait, bool bPeriodic)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if (::is_set(m_ptimercallback) && !m_ptimercallback->e_timer_is_ok())
    {
@@ -96,7 +97,7 @@ void timer_task::start(const class ::wait & wait, bool bPeriodic)
 
    }
 
-   set_ok();
+   set_ok_flag();
 
    m_bPeriodic = bPeriodic;
 
@@ -287,7 +288,7 @@ void timer_task::destroy()
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       try
       {

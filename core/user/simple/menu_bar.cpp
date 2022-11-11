@@ -1,8 +1,8 @@
 ﻿#include "framework.h"
-////#include "core/user/simple/_component.h"
-////#include "aura/graphics/draw2d/_component.h"
 #include "toolbar.h"
 #include "menu_bar.h"
+#include "acme/constant/message.h"
+#include "acme/handler/item.h"
 #include "aura/message/user.h"
 #include "base/user/menu/menu.h"
 
@@ -277,7 +277,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //
 //         u32 fwKeys = (u32)pmsg->wParam; // key flags
 //
-//         auto point = __point((::lparam) pmsg->lParam); // horizontal position of cursor
+//         auto point = ::point_i32((::lparam) pmsg->lParam); // horizontal position of cursor
 //
 //         //index yPos = HIWORD(pmsg->lParam);
 //
@@ -687,7 +687,7 @@ index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
 //
 //   }
 //
-//   // synchronization_object up the sizes
+//   // synchronization up the sizes
 ////   SetSizes(m_sizeButton, m_sizeImage);
 //
 //   // Note: Parent must resize itself for control bar to be resized

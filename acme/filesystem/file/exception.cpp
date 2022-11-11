@@ -1,10 +1,7 @@
 #include "framework.h"
+#include "text_stream.h"
+#include "exception.h"
 
-#ifdef WINDOWS
-//#include <Shellapi.h>
-#endif
-
-//extern int g_iCallStackLevel;
 
 #define DUMP_FILE_EXCEPTION_BACK_TRACE 0
 
@@ -110,15 +107,13 @@ namespace file
 
          }
          
-         auto pstringbuffer = __new(::string_buffer);
+         string strErrorCodeMessage;
          
-         text_stream textstream(pstringbuffer);
-         
-         errorcode.get_string(textstream);
+         errorcode.get_message(strErrorCodeMessage);
 
          string strException;
 
-         strException.format("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error = \"%s\"", path.c_str(), psz, estatus.m_estatus, pstringbuffer->m_str.c_str());
+         strException.format("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error = \"%s\"", path.c_str(), psz, estatus.m_estatus, strErrorCodeMessage.c_str());
 
          m_strMessage += strException;
 
@@ -393,10 +388,10 @@ namespace file
 #endif
 
 
-      //void  throw ::file::exception(errno_to_status(errno), (int iErrNo, const ::file::path& path)
+      //void  throw ::file::exception(errno_status(errno), (int iErrNo, const ::file::path& path)
       //{
 
-      //   throw _exception(errno_to_status(iErrNo), -1, iErrNo, path, e_null);
+      //   throw _exception(errno_status(iErrNo), -1, iErrNo, path, e_null);
 
       //}
 
@@ -444,14 +439,14 @@ namespace file
 //   }
 
 
-   //void throw ::file::exception(errno_to_status(errno), (i32 nErrno, const char* pszFileName /* = nullptr */)
+   //void throw ::file::exception(errno_status(errno), (i32 nErrno, const char* pszFileName /* = nullptr */)
 
    //{
 
    //   if (nErrno != 0)
    //   {
 
-   //      ::file::throw_exception(errno_to_status(nErrno), -1, errno, pszFileName);
+   //      ::file::throw_exception(errno_status(nErrno), -1, errno, pszFileName);
 
 
    //   }
@@ -468,7 +463,7 @@ namespace file
 } // namespace file
 
 
-::enum_status _errno_to_status(int iErrorNumber)
+::enum_status _errno_status(int iErrorNumber)
 {
 
    switch (iErrorNumber)
@@ -501,7 +496,7 @@ namespace file
 }
 
 
-::enum_status _failed_errno_to_status(int iErrorNumber)
+::enum_status _failed_errno_status(int iErrorNumber)
 {
 
    if(iErrorNumber == 0)
@@ -511,7 +506,7 @@ namespace file
 
    }
 
-   return _errno_to_status(iErrorNumber);
+   return _errno_status(iErrorNumber);
 
 }
 
@@ -521,7 +516,7 @@ namespace file
 
    int iErrorNumber = errno;
 
-   auto estatus = errno_to_status(iErrorNumber);
+   auto estatus = errno_status(iErrorNumber);
 
    set_last_status(estatus);
 

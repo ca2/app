@@ -36,7 +36,7 @@ namespace axis
 
       void common_construct();
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       virtual void on_add_session(::apex::session * papexsession) override;
 
@@ -110,8 +110,8 @@ namespace axis
       virtual void defer_create_html();
 
 
-      void assert_ok() const override;
-      void dump(dump_context& action_context) const override;
+      // void assert_ok() const override;
+      //void dump(dump_context& action_context) const override;
 
 
 

@@ -2,8 +2,11 @@
 //#include "__apps.inl"
 
 
-#include "acme/operating_system.h"
+
+#include "acme/_operating_system.h"
 #include "acme/platform/system_setup.h"
+
+#include "acme/platform/acme.h"
 
 #ifdef CUBE
 #include "operating_system/appconfig.h"
@@ -44,7 +47,7 @@
 #include "_new_impl.h"
 
 
-//#include "acme/library.h"
+//#include "acme/_library.h"
 
 
 #endif
@@ -60,15 +63,15 @@ extern char _binary__matter_zip_end[];
 
 #ifdef WINDOWS
 
-CLASS_DECL_ACME void set_winmain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, int nCmdShow);
+//CLASS_DECL_ACME void set_winmain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, int nCmdShow);
 
 #else
 
-   #if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
-
-   void set_res(const char * p1, const char * p2);
-
-#endif
+//   #if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
+//
+//   void set_res(const char * p1, const char * p2);
+//
+//#endif
 
 void set_argc_argv_envp(int argc, char ** argv, char ** envp);
 
@@ -86,13 +89,46 @@ int main(int argc, char * argv[], char * envp[])
 #endif
 {
 
-   auto psubsystem = __new(subsystem);
+//   acme::acme acme;
+//
+//   auto psubsystem = __new(subsystem);
+//
+//   auto pmainhold = __new(main_hold);
 
-   auto pmainhold = __new(main_hold);
+   ::acme::acme acme;
+
+   ::sub_system subsystem(&acme);
+
+   main_hold mainhold;
 
    #ifdef WINDOWS
 
-      set_winmain(hinstanceThis, hinstancePrev, nCmdShow);
+#ifdef WINDOWS_DESKTOP
+
+   //if (!m_hinstanceThis)
+   //{
+
+   subsystem.m_hinstanceThis = hinstanceThis;
+   subsystem.m_hinstancePrev = hinstancePrev;
+   //}
+   subsystem.m_nCmdShow = nCmdShow;
+   //m_hPrevInstance = nullptr;
+
+   if (subsystem.m_nCmdShow == -1000)
+   {
+
+      subsystem.m_nCmdShow = SW_SHOWDEFAULT;
+
+   }
+
+#elif defined(LINUX)
+
+   m_bGtkApp = false;
+
+#endif
+
+
+      //set_winmain(hinstanceThis, hinstancePrev, nCmdShow);
    
    #else
 
@@ -100,7 +136,7 @@ int main(int argc, char * argv[], char * envp[])
 
       #if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN)
    
-         set_res(_binary__matter_zip_start, _binary__matter_zip_end);
+         subsystem.set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
    
       #elif defined(ANDROID)
    

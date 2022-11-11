@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "still.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/primitive/string/international.h"
 #include "aura/graphics/write_text/text_out.h"
 #include "aura/graphics/write_text/text_out_array.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -404,7 +407,7 @@ namespace user
       if (pgraphics.is_null())
       {
 
-         auto psystem = m_psystem->m_paurasystem;
+         auto psystem = acmesystem()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 
@@ -597,7 +600,7 @@ namespace user
    //}
 
 
-   ::write_text::font_pointer still::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer still::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
       if(m_pfont)
@@ -652,7 +655,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       if (get_translucency(pstyle) >= e_translucency_present)
       {
@@ -786,7 +789,7 @@ namespace user
    }
 
 
-   bool still::keyboard_focus_is_focusable() const
+   bool still::keyboard_focus_is_focusable()
    {
 
       //return is_window_enabled() && is_window_visible();
@@ -1123,7 +1126,7 @@ namespace user
    }
 
 
-   bool still::has_link() const
+   bool still::has_link()
    {
 
       return m_strLink.has_char();

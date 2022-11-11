@@ -1,15 +1,15 @@
-#include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "_userfs.h"
-//#endif
-#include "aura/user/user/shell.h"
+﻿#include "framework.h"
 #include "list_data.h"
 #include "list_item_array.h"
 #include "list_item.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "aura/user/user/shell.h"
+#include "aura/user/user/window_util.h"
+#include "base/user/user/user.h"
 #include "core/user/user/mesh.h"
 #include "core/platform/session.h"
-#include "base/user/user/user.h"
-#include "aura/user/user/window_util.h"
 
 
 string _001FileSizeText(i64 i)
@@ -103,7 +103,7 @@ namespace userfs
 
       m_iSelectionSubItem = -1;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -114,10 +114,10 @@ namespace userfs
    }
 
 
-   void list_data::initialize(::object * pobject)
+   void list_data::initialize(::particle * pparticle)
    {
 
-      ::user::list_data::initialize(pobject);
+      ::user::list_data::initialize(pparticle);
 
       __construct_new(m_pitema);
 
@@ -135,7 +135,7 @@ namespace userfs
    void list_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
 //      if(is_locked())
 //         return;
@@ -214,7 +214,7 @@ namespace userfs
             if (path.m_iDir < 0)
             {
 
-               (*m_pitema)[psubitem->m_pitem->m_iItem]->set_final_path_dir(pcontext->m_papexcontext->dir().is(path) ? 1 : 0);
+               (*m_pitema)[psubitem->m_pitem->m_iItem]->set_final_path_dir(pcontext->m_papexcontext->dir()->is(path) ? 1 : 0);
 
             }
 
@@ -230,7 +230,7 @@ namespace userfs
                if (path.m_iSize < 0)
                {
 
-                  path.m_iSize = pcontext->m_papexcontext->file().length(path);
+                  path.m_iSize = pcontext->m_papexcontext->file()->length(path);
 
                }
 
@@ -293,7 +293,7 @@ namespace userfs
    void list_data::_001GetSubItemImage(::user::mesh_subitem * psubitem)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if(psubitem->m_iSubItem == m_iNameSubItemText)
       {

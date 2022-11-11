@@ -25,9 +25,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+#pragma once
 
-#ifndef TINYJS_H
-#define TINYJS_H
+
+#include "acme/primitive/collection/address_array.h"
+#include "acme/primitive/collection/string_array.h"
+
 
 // If defined, this keeps a note of all calls and where from in memory. This is slower, but good for debugging
 #define TINYJS_callstack
@@ -367,4 +370,3 @@ private:
    CScriptVarLink *findInParentClasses(CScriptVar *object, const string &name);
 };
 
-#endif

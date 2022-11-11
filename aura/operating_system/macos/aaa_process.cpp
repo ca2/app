@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/os/_.h"
+//#include "aura/os/_.h"
 #include "aura/os/_os.h"
 
 
@@ -13,13 +13,13 @@
 ::file::path macos_app_path(string strApp)
 {
 
-   ::file::path path =          auto psystem = m_psystem;
+   ::file::path path =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->home() / "Library/papp Support/ca2/mypath" / (strApp + ".txt");
 
-   return m_psystem->m_pacmefile->as_string(path);
+   return acmefile()->as_string(path);
 
 }
 
@@ -323,7 +323,7 @@ CLASS_DECL_AURA ::file::path core_app_path(string strApp)
 
    path += ".txt";
 
-   return m_psystem->m_pacmefile->as_string(path);
+   return acmefile()->as_string(path);
 
 }
 
@@ -346,7 +346,7 @@ bool launch_command(const ::string & const pszCommand)
    
    strParams.format("-c \"screen -d -m %s\"", strCommand.c_str());
    
-   if (call_async("/bin/bash", strParams,          auto psystem = m_psystem;
+   if (call_async("/bin/bash", strParams,          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

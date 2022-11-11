@@ -18,29 +18,10 @@ namespace geometry
    }
 
 
-   //void geometry::initialize(::object * pobject)
-   //{
-
-   //   auto estatus = ::matter::initialize(pobject);
-
-   //   if (!estatus)
-   //   {
-
-   //      return estatus;
-
-   //   }
-
-   //   return estatus;
-
-   //}
-
-
    void geometry::destroy()
    {
 
-      ::matter::destroy();
-
-      //return ::success;
+      ::particle::destroy();
 
    }
 

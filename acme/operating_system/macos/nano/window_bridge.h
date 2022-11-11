@@ -23,7 +23,7 @@ class nano_window;
 
 
 class nano_window_bridge :
-   virtual public ::element
+   virtual public ::particle
 {
 public:
 

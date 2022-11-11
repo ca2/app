@@ -30,7 +30,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "framework.h"
 #include "socket.h"
 #include "socket_thread.h"
+#include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "networking_bsd/sockets/basic/socket_handler.h"
 #include "apex/networking/networking.h"
 #include "apex/platform/system.h"
@@ -65,7 +67,7 @@ namespace sockets_bsd
 {
 
 
-   //::mutex * base_socket::s_pmutex = nullptr;
+   //::pointer< ::mutex > base_socket::s_pmutex = nullptr;
 
 
    base_socket::base_socket() :
@@ -953,7 +955,7 @@ namespace sockets_bsd
    void base_socket::SetSocks4Host(const string & host)
    {
 
-      //auto pnetworking = m_psystem->m_papexsystem->networking();
+      //auto pnetworking = acmesystem()->m_papexsystem->networking();
 
       //paddressdepartment->convert(m_socks4_host, host);
 
@@ -2756,7 +2758,7 @@ namespace sockets_bsd
    string base_socket::get_short_description()
    {
 
-      auto pnetworking = m_psystem->m_papexsystem->networking();
+      auto pnetworking = acmesystem()->m_papexsystem->networking();
 
       return pnetworking->canonical_name(GetRemoteAddress());
 
@@ -2768,7 +2770,7 @@ namespace sockets_bsd
 
 #ifdef BSD_STYLE_SOCKETS
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_psslcontext->m_pclientcontext->get_session() != nullptr)
       {
@@ -2785,7 +2787,7 @@ namespace sockets_bsd
    void base_socket::get_ssl_session()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
 #ifdef BSD_STYLE_SOCKETS
       if (m_psslcontext->m_pclientcontext->m_psslsession == nullptr)

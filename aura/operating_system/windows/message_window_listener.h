@@ -4,12 +4,15 @@
 #ifdef WINDOWS_DESKTOP
 
 
+#include "acme/primitive/primitive/particle.h"
+
+
 namespace user
 {
 
 
    class CLASS_DECL_AURA message_window_listener:
-      virtual public ::object
+      virtual public ::particle
    {
    public:
 

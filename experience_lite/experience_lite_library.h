@@ -19,11 +19,11 @@
          public:
 
 
-            library(::object * pobject);
+            library(::particle * pparticle);
             virtual ~library();
 
 
-            virtual ::pointer<::object>alloc(::object * pobject, const ::string & pszClass, object * p) override;
+            virtual ::pointer<::object>alloc(::particle * pparticle, const ::string & pszClass, object * p) override;
 
 
          };

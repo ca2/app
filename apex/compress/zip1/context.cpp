@@ -12,7 +12,7 @@ namespace str
       for(index i = 0; i < stra.get_count(); i++)
       {
 
-         if(::str().begins_eat_ci(str,stra[i]))
+         if(str.begins_eat_ci(stra[i]))
             return i;
 
       }
@@ -28,7 +28,7 @@ namespace str
       for(index i = 0; i < stra.get_count(); i++)
       {
 
-         if(::str().begins_eat(str,stra[i]))
+         if(str.begins_eat(stra[i]))
             return i;
 
       }
@@ -46,10 +46,10 @@ namespace str
 //{
 
 
-   zip_context::zip_context(::object * pobject) 
+   zip_context::zip_context(::particle * pparticle) 
    {
 
-      initialize(pobject);
+      initialize(pparticle);
 
    }
 
@@ -69,7 +69,7 @@ namespace str
 
       string strLastZip;
 
-      if(::str().ends_ci(listing.m_pathUser, ".zip"))
+      if(string_ends_ci(listing.m_pathUser, ".zip"))
       {
 
          listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);
@@ -113,7 +113,7 @@ namespace str
 
       }
 
-      auto pfile = m_pcontext->m_papexcontext->file().get_reader(pathZip);
+      auto pfile = file()->get_reader(pathZip);
 
       if (!pfile)
       {
@@ -143,12 +143,12 @@ namespace str
 
       strRemain.replace("\\", "/");
 
-      ::str().begins_eat(strRemain, "/");
+      strRemain.begins_eat("/");
 
       if(strRemain.has_char())
       {
 
-         if(!::str().ends(strRemain,"/"))
+         if(!string_ends(strRemain,"/"))
          {
 
             strRemain += "/";
@@ -185,7 +185,7 @@ namespace str
 
             if(strRemain != strTitle && ((strRemain.is_empty() &&
                                           (strTitle.find("/") < 0  || strTitle.find("/") == (strTitle.get_length() - 1)))
-                                         || (strRemain.has_char() && ::str().begins_eat_ci(strTitle, strRemain))))
+                                         || (strRemain.has_char() && strTitle.begins_eat_ci(strRemain))))
             {
 
                if(listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
@@ -193,7 +193,7 @@ namespace str
 
                   listing.add(::file::path(strLastZip + ":" + strRemain + strTitle));
                   listing.last().m_iRelative = iLastZip;
-                  listing.last().m_iDir = ::str().ends(szTitle, "/") || ::str().ends(szTitle, "\\") || ::str().ends(szTitle, ".zip");
+                  listing.last().m_iDir = string_ends(szTitle, "/") || string_ends(szTitle, "\\") || string_ends(szTitle, ".zip");
                   listing.last().m_iSize = fi.uncompressed_size;
 
                }
@@ -229,7 +229,7 @@ namespace str
 
       ::file::path pathFinal;
 
-      if (::str().ends_ci(strPath, ".zip"))
+      if (string_ends_ci(strPath, ".zip"))
       {
 
          pathFinal = m_pcontext->m_papexcontext->defer_process_path(strPath);
@@ -274,7 +274,7 @@ namespace str
 
       }
 
-      auto pfile = m_pcontext->m_papexcontext->file().get_reader(pathZip);
+      auto pfile = file()->get_reader(pathZip);
 
       if (!pfile)
       {
@@ -338,10 +338,10 @@ namespace str
    }
 
 
-   bool zip_context::extract_all(const char * pszDir,::payload payloadFile, ::file::path_array * ppatha, string_array * pstraFilter, bool_array * pbaBeginsFilterEat)
+   bool zip_context::e_extract_all(const char * pszDir,::payload payloadFile, ::file::path_array * ppatha, string_array * pstraFilter, bool_array * pbaBeginsFilterEat)
    {
 
-      auto pfile = m_pcontext->m_papexcontext->file().get_file(payloadFile,::file::e_open_binary | ::file::e_open_read);
+      auto pfile = file()->get_file(payloadFile,::file::e_open_binary | ::file::e_open_read);
 
       if (!pfile)
       {
@@ -387,18 +387,18 @@ namespace str
             nullptr, // comment
             0);
             string strTitle(szTitle);
-            if(::str().ends(szTitle, "/") || ::str().ends(szTitle, "\\"))
+            if(string_ends(szTitle, "/") || string_ends(szTitle, "\\"))
             {
 
             }
-            else if(pinfile->locate(strTitle) && (pstraFilter == nullptr || ::str().begins_eat_ci(strTitle, *pstraFilter) >= 0))
+            else if(pinfile->locate(strTitle) && (pstraFilter == nullptr || strTitle.begins_eat_ci(*pstraFilter) >= 0))
             {
 
                string strRelative(strTitle);
 
                ::file::path path = ::file::path(pszDir) / strRelative;
 
-               file_pointer spfile = m_pcontext->m_papexcontext->file().get_file(
+               file_pointer spfile = file()->get_file(
                                 path,
                                 ::file::e_open_create | ::file::e_open_write | ::file::e_open_defer_create_directory);
 
@@ -448,7 +448,7 @@ namespace str
          
       }
       
-      auto pfile = m_pcontext->m_papexcontext->file().get_reader(pszFileName);
+      auto pfile = file()->get_reader(pszFileName);
       
       if(!pfile)
       {

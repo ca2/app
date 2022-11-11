@@ -14,7 +14,7 @@ namespace turboc
       ::turboc::impact *                     m_pflagview;
 
 
-      pane_impact(::object * pobject);
+      pane_impact(::particle * pparticle);
 	   virtual ~pane_impact();
 
       
@@ -22,9 +22,9 @@ namespace turboc
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-	   void assert_ok() const override;
+	   // void assert_ok() const override;
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
 
 	   DECLARE_MESSAGE_HANDLER(on_message_create);
 

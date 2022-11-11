@@ -5,6 +5,10 @@
 #include "acme/user/user/check.h"
 #include "acme/user/user/text.h"
 #include "acme/user/user/element.h"
+#include "apex/handler/manager.h"
+#include "apex/handler/source.h"
+#include "apex/message/channel.h"
+
 
 
 namespace user
@@ -33,7 +37,7 @@ namespace user
       void create_message_queue(const ::string & lpszName) override;
 
 
-      ::user::interaction * get_host_window() const;
+      ::user::interaction * get_host_window();
 
       ::user::form * get_form() override;
 
@@ -74,9 +78,9 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      void show_software_keyboard(::user::element* pelement) override;
+      void show_software_keyboard(::user::element * pelement) override;
 
-      void hide_software_keyboard(::user::element* pelement) override;
+      void hide_software_keyboard(::user::element * pelement) override;
 
       void UpdateWindow() override;
       
@@ -300,7 +304,7 @@ namespace user
       virtual bool is_descendant_of(const primitive * puiIsAscendant, bool bIncludeSelf) const; 
 
       atom GetDlgCtrlId() const override;
-      atom SetDlgCtrlId(::atom atom) override;
+      atom SetDlgCtrlId(const ::atom & atom) override;
 
 //
 //#ifdef WINDOWS_DESKTOP
@@ -345,10 +349,10 @@ namespace user
       ::user::element * get_primitive_by_id(const ::atom & atom, ::index iItem = -1, i32 iLevel = -1) override;
 
 
-      ::user::interaction * get_wnd() const override;
-      ::user::interaction * get_wnd(::u32 nCmd) const override;
+      ::user::interaction * get_wnd() override;
+      ::user::interaction * get_wnd(::u32 nCmd) override;
       //virtual ::user::interaction_impl * get_impl() const;
-      ::thread * get_task() const override;
+      ::task * get_task() override;
 
       virtual ::user::primitive * set_parent(::user::primitive * pinteraction);
       virtual ::user::primitive * set_owner(::user::primitive * pinteraction);
@@ -356,15 +360,15 @@ namespace user
 
 
 
-      ::user::interaction * get_parent() const override;
-      ::user::interaction * get_owner() const override;
-      ::user::interaction * get_parent_owner() const override;
-      ::user::interaction * get_parent_or_owner() const override;
-      ::user::interaction * get_top_level_owner() const override;
+      ::user::interaction * get_parent() override;
+      ::user::interaction * get_owner() override;
+      ::user::interaction * get_parent_owner() override;
+      ::user::interaction * get_parent_or_owner() override;
+      ::user::interaction * get_top_level_owner() override;
 
-      ::user::interaction * _top_level() const override;
+      ::user::interaction * _top_level() override;
 
-      bool is_top_level_window() const override;
+      bool is_top_level_window() override;
 
       void send_message_to_descendants(const ::atom & atom, wparam wParam = 0, lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false) override;
 
@@ -372,9 +376,9 @@ namespace user
       void pre_translate_message(::message::message * pmessage) override;
 
 
-      virtual i32 get_descendant_level(const ::user::primitive * pinteraction) const;
+      i32 get_descendant_level(::user::element * puserelement) override;
       //virtual bool is_descendant(const ::user::primitive * pinteraction,bool bIncludeSelf = false) const;
-       ::user::interaction * get_focusable_descendant() const override;
+       ::user::interaction * get_focusable_descendant() override;
 
       void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true) override;
 
@@ -394,14 +398,14 @@ namespace user
       void set_tool_window(bool bSet = true) override;
 
       
-      ::user::interaction * get_next_window(bool bIgnoreChildren = false, const ::user::interaction * puiInteractionStop = nullptr) const override;
-      ::user::interaction * get_window(enum_next enext) const override;
+      ::user::interaction * get_next_window(bool bIgnoreChildren = false, ::user::interaction * puiInteractionStop = nullptr) override;
+      ::user::interaction * get_window(enum_next enext) override;
 
 
       ::user::interaction * GetLastActivePopup() override;
 
 
-      bool is_message_only_window() const override;
+      bool is_message_only_window() override;
 
       void pre_subclass_window() override;
 
@@ -423,7 +427,7 @@ namespace user
       oswindow detach_window() override;
 
 
-      ::windowing::window * _window() const override;
+      ::windowing::window * _window() override;
       
       //virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       //virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
@@ -592,15 +596,15 @@ namespace user
       //pointer < T > get_typed_parent() const;
 
       
-      ::user::interaction * get_parent_window() const override;
+      ::user::interaction * get_parent_window() override;
 
-      ::user::element * get_parent_primitive() const override;
-
-
-      ::user::interaction * get_first_child_window() const override;
+      ::user::element * get_parent_primitive() override;
 
 
-      bool keyboard_focus_is_focusable() const override;
+      ::user::interaction * get_first_child_window() override;
+
+
+      bool keyboard_focus_is_focusable() override;
       bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
       bool keyboard_focus_OnChildKillFocus() override;
       ::user::element * keyboard_get_next_focusable(::user::element * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
@@ -679,7 +683,7 @@ namespace user
       //virtual bool enable_window(bool bEnable );
 
       // Text Edit
-      void _001GetSel(strsize & iBeg, strsize & iEnd) const override;
+      void _001GetSel(strsize & iBeg, strsize & iEnd) override;
       index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
       index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x) override;
       index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;

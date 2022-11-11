@@ -2,6 +2,7 @@
 
 
 #include "base/user/form/document.h"
+#include "acme/filesystem/filesystem/listing.h"
 
 
 namespace userfs
@@ -15,7 +16,7 @@ namespace userfs
 
 
       ::file::path                              m_pathFolder;
-      ::pointer<::fs::set>                   m_pfsset;
+      ::pointer<::fs::set>                      m_pfsset;
       ::file::listing                           m_listingRoot;
       ::file::listing                           m_listingUser2;
       ::file::listing                           m_listingFinal2;
@@ -27,7 +28,7 @@ namespace userfs
       ~document() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       ::user::document * get_document();
@@ -35,8 +36,8 @@ namespace userfs
 
       //virtual ::aura::application * get_app() const override;
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool browse(::pointer<::file::item>pitem, const ::action_context & action_context);

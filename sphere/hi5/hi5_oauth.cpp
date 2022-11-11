@@ -66,8 +66,8 @@ namespace hi5
    * @output: none
    *
    *--*/
-   oauth::oauth(::object * pobject, simple_log * psimplelog, index iLogTarget) :
-      object(pobject),
+   oauth::oauth(::particle * pparticle, simple_log * psimplelog, index iLogTarget) :
+      object(pparticle),
       simple_log(psimplelog, iLogTarget),
       OAUTHLIB_CONSUMERKEY_KEY("oauth_consumer_key"),
       OAUTHLIB_CALLBACK_KEY("oauth_callback"),

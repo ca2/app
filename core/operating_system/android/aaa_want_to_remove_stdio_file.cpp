@@ -31,7 +31,7 @@
 //
 //      if ((nOpenFlags & ::file::e_open_defer_create_directory) && (nOpenFlags & ::file::e_open_write))
 //      {
-//         pcontext->m_papexcontext->dir().create(lpszFileName.folder());
+//         pcontext->m_papexcontext->dir()->create(lpszFileName.folder());
 //      }
 //
 //      m_pStream = nullptr;

@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "object.h"
+
+
 class CLASS_DECL_ACME nano_brush :
    virtual public ::nano_object
 {
@@ -24,7 +27,7 @@ public:
 //{
 //
 //
-//   ::pointer<nano_brush> create_solid_brush(::object * pobject, color32_t color);
+//   ::pointer<nano_brush> create_solid_brush(::particle * pparticle, color32_t color);
 //
 //
 //} // namespace nano

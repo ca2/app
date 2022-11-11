@@ -1,7 +1,8 @@
 #pragma once
 
 
-typedef CLASS_DECL_ACME pointer_array < ::matter > object_array;
+#include "acme/primitive/collection/atom_map.h"
+#include "acme/primitive/primitive/object.h"
 
 
 namespace data
@@ -9,7 +10,7 @@ namespace data
 
 
    typedef CLASS_DECL_ACME pointer_array < listener > listener_array;
-   typedef CLASS_DECL_ACME id_map < ::pointer<data >>data_map;
+   typedef CLASS_DECL_ACME atom_map < ::pointer<data >>data_map;
 
 
    class CLASS_DECL_ACME data :
@@ -34,8 +35,8 @@ namespace data
       ~data() override;
 
 
-      virtual void dump(dump_context &) const override;
-      void assert_ok() const override;
+      // virtual void dump(dump_context &) const override;
+      // void assert_ok() const override;
 
 
       virtual ::data::data_container_base* get_data_container();

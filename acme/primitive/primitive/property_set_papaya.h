@@ -4,7 +4,7 @@
 class property_object;
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -73,7 +73,7 @@ namespace papaya
    } // namespace property_set
 
 
-} // namespace papaya
+} // namespace acme
 
 
 
@@ -81,7 +81,7 @@ namespace papaya
 #pragma once
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -249,7 +249,7 @@ namespace papaya
       //      else if (ch == '$')
       //      {
 
-      //         if (!(ansi_char_is_alphabetic(chNext) || chNext == '_'))
+      //         if (!(ansi_char_isalpha(chNext) || chNext == '_'))
       //         {
 
       //            // error
@@ -267,7 +267,7 @@ namespace papaya
 
       //            ch = str[iEnd];
 
-      //            if (!(ansi_char_is_alphabetic(ch) || ch == '_' || ansi_char_is_digit(ch)))
+      //            if (!(ansi_char_isalpha(ch) || ch == '_' || ansi_char_isdigit(ch)))
       //            {
 
       //               break;
@@ -309,7 +309,7 @@ namespace papaya
    } // namespace property_set
 
 
-} // namespace papaya
+} // namespace acme
 
 
 

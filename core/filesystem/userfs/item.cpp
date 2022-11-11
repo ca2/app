@@ -1,15 +1,13 @@
 ﻿#include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "_userfs.h"
-//#endif
 #include "item.h"
+#include "tree.h"
+#include "acme/constant/message.h"
 #include "acme/primitive/data/tree_item.h"
 #include "aura/user/user/shell.h"
-#include "tree.h"
+#include "aura/user/user/window_util.h"
+#include "base/user/user/user.h"
 #include "core/user/user/tree.h"
 #include "core/platform/session.h"
-#include "base/user/user/user.h"
-#include "aura/user/user/window_util.h"
 
 
 namespace userfs
@@ -61,17 +59,17 @@ namespace userfs
 
 
 
-   string item::data_item_get_text(object * pobject) const
+   string item::data_item_get_text(::particle * pparticle) const
    {
 
-      __UNREFERENCED_PARAMETER(pobject);
+      __UNREFERENCED_PARAMETER(pparticle);
 
       return m_strName;
 
    }
 
 
-   index item::data_item_get_image(object * pobject) const
+   index item::data_item_get_image(::particle * pparticle) const
    {
 
       ::user::shell::enum_file_attribute efileattribute;
@@ -135,7 +133,7 @@ namespace userfs
    }
 
 
-   ::image_list * item::data_item_get_image_list(::object * pobject) const
+   ::image_list * item::data_item_get_image_list(::particle * pparticle) const
    {
 
       return m_ptree->m_pimagelist;

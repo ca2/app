@@ -102,9 +102,6 @@
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{0700aa41-3b42-4581-ab4a-a8dc6683d8a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\memory\os_alloc">
-      <UniqueIdentifier>{f1d64368-6958-4b0f-a00d-2213b49194d9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{7ab1ad1c-4556-49dc-9f10-9f160a23fd40}</UniqueIdentifier>
     </Filter>
@@ -125,9 +122,6 @@
     </Filter>
     <Filter Include="Header Files\process">
       <UniqueIdentifier>{0c4f9178-4c9b-4b9f-993c-d99fda73a182}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\process">
-      <UniqueIdentifier>{e6ab6d3c-a0cd-454c-9787-8cf79460e0fe}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive\logic">
       <UniqueIdentifier>{e97a5ec9-2fa7-4178-8eec-69ba27417691}</UniqueIdentifier>
@@ -161,9 +155,6 @@
     </Filter>
     <Filter Include="Header Files\exception">
       <UniqueIdentifier>{f5755d06-f5af-4ec2-bd4e-63cecdfc66a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\promise">
-      <UniqueIdentifier>{fc3edfe5-7239-41ce-bf2f-27609e6afdcf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive\promise">
       <UniqueIdentifier>{ca282869-7285-4060-9314-2dcb61f30654}</UniqueIdentifier>
@@ -279,6 +270,33 @@
     <Filter Include="Header Files\primitive\media_library">
       <UniqueIdentifier>{2ba9cca5-9984-4952-8198-7e129e4ab6e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\memory\os_impl">
+      <UniqueIdentifier>{f1d64368-6958-4b0f-a00d-2213b49194d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\memory\bounds_check">
+      <UniqueIdentifier>{da169a7f-9cd8-41a0-992c-0752b49fc552}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\string\c">
+      <UniqueIdentifier>{4a15e66f-2072-4bb3-b946-4ac3318b2e0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\string\c\ancient">
+      <UniqueIdentifier>{e2c0ab84-9f65-48fb-a5b2-e27ce94f244b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\string\c\extension">
+      <UniqueIdentifier>{dc9438c6-ade9-4dd0-b96f-3fac3c359d12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\string\sz">
+      <UniqueIdentifier>{c586842f-b9a5-4fd5-8bd7-71a8c1c2a214}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\string\sz">
+      <UniqueIdentifier>{6e659bd9-6adc-4801-8517-f91a761ee43a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\numeric">
+      <UniqueIdentifier>{61a25920-e5d9-4613-be22-31daa06b796b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\image">
+      <UniqueIdentifier>{1815af9e-cbde-4d16-a6c5-906a46510aa6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -306,9 +324,6 @@
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\atom_space.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\interlocked_long_pulse.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\logic.h">
@@ -341,18 +356,6 @@
     <ClInclude Include="primitive\primitive\type.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\traits.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\trait.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\str.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\runnable.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\request_interface.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -377,16 +380,13 @@
     <ClInclude Include="primitive\primitive\memory_base.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\papaya.h">
+    <ClInclude Include="primitive\primitive\acme.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\base64.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\bstring.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\ch.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\ch_class.h">
@@ -410,9 +410,6 @@
     <ClInclude Include="primitive\string\parse.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\stdstring.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\string\stringtow.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
@@ -428,31 +425,13 @@
     <ClInclude Include="primitive\string\whole_word.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_inline.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_unicode.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_compare.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__string.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_string_wide.h">
+    <ClInclude Include="primitive\string\__begin.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_uhash.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_unicode.h">
+    <ClInclude Include="primitive\string\unicode.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\static_string.h">
@@ -464,19 +443,10 @@
     <ClInclude Include="primitive\string\string_inst.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\string_wide_conversion.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\string\_base_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\str.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_str.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_str_impl.h">
+    <ClInclude Include="primitive\string\_str.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_str_impl.h">
@@ -485,46 +455,10 @@
     <ClInclude Include="primitive\string\_international.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str3.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_tokenizer.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_ch_class.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_wstring.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_x.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_ansi.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_ansi_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait_ansi_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_memory.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_unicode_impl.h">
+    <ClInclude Include="primitive\string\unicode_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\x\x_charcategory.h">
@@ -546,9 +480,6 @@
       <Filter>Header Files\primitive\string\x</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_impl_prio.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait_ansi.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\natural.h">
@@ -665,16 +596,16 @@
     <ClInclude Include="primitive\geometry2d\size_array.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\size.h">
+    <ClInclude Include="primitive\geometry2d\_size.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\polygon.h">
+    <ClInclude Include="primitive\geometry2d\_polygon.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\point_array.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\point.h">
+    <ClInclude Include="primitive\geometry2d\_point.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\geometry.h">
@@ -695,37 +626,7 @@
     <ClInclude Include="primitive\primitive\_.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait_wd16_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait_wd16.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait_wd32.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait_wd32_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\string\_trait_CHAR_TYPE.template">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd16.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd16_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd32_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd32.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\_defer.h">
@@ -756,9 +657,6 @@
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\_papaya.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\simple_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\comparison\_c.h">
@@ -794,41 +692,11 @@
     <ClInclude Include="inline\__debug_box_set_impl.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\__c_ansi.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_ansi_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_wd16.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_wd16_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_wd32.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_wd32_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_wide.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_wide_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\___ch_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
     <ClInclude Include="inline\_acid_app_impl.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
     <ClInclude Include="inline\_draw2d_impl.h">
       <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\eobject.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\_constant.h">
       <Filter>Header Files\filesystem\file</Filter>
@@ -902,22 +770,13 @@
     <ClInclude Include="memory\memory_allocator.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="id.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="update.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="memory\os_alloc.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework_c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="__defer.h">
+    <ClInclude Include="aaaa__defer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\block.h">
@@ -952,15 +811,6 @@
     </ClInclude>
     <ClInclude Include="inline\console_common.h">
       <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_generic_object_constructor_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aaa_astr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="callback.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="console.h">
       <Filter>Header Files</Filter>
@@ -1001,9 +851,6 @@
     <ClInclude Include="filesystem\filesystem\_impl.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_atom_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="inline\application_common.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
@@ -1013,19 +860,19 @@
     <ClInclude Include="primitive\primitive\matter.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\lines.h">
+    <ClInclude Include="primitive\geometry2d\_lines.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\line.h">
+    <ClInclude Include="primitive\geometry2d\_line.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\arc.h">
+    <ClInclude Include="primitive\geometry2d\_arc.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\shape.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\angle.h">
+    <ClInclude Include="primitive\geometry2d\_angle.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\bounding_rect.h">
@@ -1130,14 +977,8 @@
     <ClInclude Include="graphics\draw2d\opacity.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_payload_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\payload.h">
       <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="_c.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\_i32.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
@@ -1151,7 +992,7 @@
     <ClInclude Include="primitive\geometry2d\_f64.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\rectangle.h">
+    <ClInclude Include="primitive\geometry2d\_rectangle.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\bits.h">
@@ -1160,7 +1001,7 @@
     <ClInclude Include="primitive\datetime\_datetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system.h">
+    <ClInclude Include="_operating_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\condition_variable.h">
@@ -1168,9 +1009,6 @@
     </ClInclude>
     <ClInclude Include="primitive\datetime\micro_duration.h">
       <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\material_object.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\system_time.h">
       <Filter>Header Files\primitive\datetime</Filter>
@@ -1247,13 +1085,13 @@
     <ClInclude Include="primitive\mathematics\math_clip.h">
       <Filter>Header Files\primitive\mathematics</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\mathematics\index.h">
+    <ClInclude Include="primitive\mathematics\types.h">
       <Filter>Header Files\primitive\mathematics</Filter>
     </ClInclude>
     <ClInclude Include="primitive\mathematics\filestream.h">
       <Filter>Header Files\primitive\mathematics</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\mathematics\count.h">
+    <ClInclude Include="primitive\mathematics\____count.h">
       <Filter>Header Files\primitive\mathematics</Filter>
     </ClInclude>
     <ClInclude Include="primitive\mathematics\complex.h">
@@ -1283,9 +1121,6 @@
     <ClInclude Include="parallelization\synchronization_object.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\trait_predicate.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="_start.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1295,7 +1130,7 @@
     <ClInclude Include="primitive\primitive\property_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\common.h">
+    <ClInclude Include="primitive\collection\range.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\comparable_array.h">
@@ -1349,7 +1184,7 @@
     <ClInclude Include="primitive\collection\list.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\logic_array.h">
+    <ClInclude Include="primitive\collection\bool_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\map.h">
@@ -1388,7 +1223,7 @@
     <ClInclude Include="primitive\collection\queue.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\raw_array_decl.h">
+    <ClInclude Include="primitive\collection\raw_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\set.h">
@@ -1424,7 +1259,7 @@
     <ClInclude Include="primitive\collection\strid_map.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\string_array_base.h">
+    <ClInclude Include="primitive\collection\string_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\string_iterable.h">
@@ -1571,7 +1406,7 @@
     <ClInclude Include="primitive\data\_.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\_data.h">
+    <ClInclude Include="primitive\data\aaa_data.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
     <ClInclude Include="primitive\data\_impl.h">
@@ -1799,9 +1634,6 @@
     <ClInclude Include="exception\file.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="include\_no_templates.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
     <ClInclude Include="include\_c.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
@@ -1838,7 +1670,7 @@
     <ClInclude Include="memory\memory_management.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="memory\_.h">
+    <ClInclude Include="memory\_config.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\acme_file.h">
@@ -1949,9 +1781,6 @@
     <ClInclude Include="parallelization\wait.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\tracer.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\duration\integral\_.h">
       <Filter>Header Files\primitive\duration\integral</Filter>
     </ClInclude>
@@ -2036,13 +1865,13 @@
     <ClInclude Include="primitive\duration\floating\second.h">
       <Filter>Header Files\primitive\duration\floating</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\duration\_.h">
+    <ClInclude Include="primitive\duration\_duration.h">
       <Filter>Header Files\primitive\duration</Filter>
     </ClInclude>
     <ClInclude Include="primitive\duration\integral\_impl.h">
       <Filter>Header Files\primitive\duration\integral</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\duration\_struct.h">
+    <ClInclude Include="primitive\duration\_structures.h">
       <Filter>Header Files\primitive\duration</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\duration.h">
@@ -2063,9 +1892,6 @@
     <ClInclude Include="primitive\primitive\bbb_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\element.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\element_array.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -2078,16 +1904,10 @@
     <ClInclude Include="primitive\primitive\atom_array.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\interlocked.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\interlocked_count.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\object_meta.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\payload_type.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\set_bit.h">
@@ -2104,9 +1924,6 @@
     </ClInclude>
     <ClInclude Include="parallelization\synchronously_keep_bit.h">
       <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_interlocked_count_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="inline\application\windows.h">
       <Filter>Header Files\inline\application</Filter>
@@ -2165,12 +1982,6 @@
     <ClInclude Include="operating_system\_impl.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\_operating_system.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\_user.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system\aaa_c2.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
@@ -2225,31 +2036,7 @@
     <ClInclude Include="operating_system\windows_common\_.h">
       <Filter>Header Files\operating_system\windows_common</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\windows_common\_c.h">
-      <Filter>Header Files\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows_common\_windows_common.h">
-      <Filter>Header Files\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows_common\api.h">
-      <Filter>Header Files\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows_common\arg_sec_attrs.h">
-      <Filter>Header Files\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows_common\parallelization.h">
-      <Filter>Header Files\operating_system\windows_common</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system\windows\_.h">
-      <Filter>Header Files\operating_system\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\_c.h">
-      <Filter>Header Files\operating_system\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\_windows.h">
-      <Filter>Header Files\operating_system\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\process.h">
       <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\windows\nano\_nano.h">
@@ -2369,7 +2156,7 @@
     <ClInclude Include="memory\_memory.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\duration\_duration.h">
+    <ClInclude Include="primitive\duration\_string.h">
       <Filter>Header Files\primitive\duration</Filter>
     </ClInclude>
     <ClInclude Include="user\nano\popup_button.h">
@@ -2408,14 +2195,8 @@
     <ClInclude Include="primitive\primitive\function.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\mouse.h">
       <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__string.h">
-      <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\from_numeric_type.h">
       <Filter>Header Files\primitive\string</Filter>
@@ -2444,55 +2225,7 @@
     <ClInclude Include="primitive\string\from_string.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_to.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\character.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_ch.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_ch_wd16_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_ch_wd32_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_ch_ansi_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_ch_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_to_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wide.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wide_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\string\_conv.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_conv_ansi_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_trait_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_international_locale_schema.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_001.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_char_traits.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaaa_conv_ansi.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\bstr.h">
@@ -2783,7 +2516,7 @@
     <ClInclude Include="primitive\logic\tristate.h">
       <Filter>Header Files\primitive\logic</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\shift.h">
+    <ClInclude Include="primitive\geometry2d\_shift.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="user\user\_constant.h">
@@ -2807,12 +2540,6 @@
     <ClInclude Include="operating_system\_api.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
-    <ClInclude Include="_api.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\_api.h">
-      <Filter>Header Files\operating_system\windows</Filter>
-    </ClInclude>
     <ClInclude Include="constant\data.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
@@ -2834,9 +2561,6 @@
     <ClInclude Include="primitive\datetime\time_zone.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="_binary_stream.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\duration\_binary_stream.h">
       <Filter>Header Files\primitive\duration</Filter>
     </ClInclude>
@@ -2852,10 +2576,10 @@
     <ClInclude Include="primitive\primitive\echeck.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="platform\subsystem.h">
+    <ClInclude Include="platform\sub_system.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\string_type.h">
+    <ClInclude Include="primitive\string\aaa_string_type.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\asynchronous.h">
@@ -2867,7 +2591,7 @@
     <ClInclude Include="primitive\collection\_map_binary_stream.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\_basic.h">
+    <ClInclude Include="primitive\geometry2d\__basic.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\_enhanced.h">
@@ -2876,13 +2600,10 @@
     <ClInclude Include="constant\_geometry.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\_collection_basic.h">
+    <ClInclude Include="primitive\geometry2d\_collection.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\_collection_enhanced.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry2d\_concept.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="user\user\drag_client.h">
@@ -2897,15 +2618,333 @@
     <ClInclude Include="primitive\primitive\read_only_memory.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="parallelization\_.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\ini.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\string.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\message.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\procedure_array.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\copy_elements.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\__end.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\__string.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\allocator.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\__property.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\debug.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\_u32hash.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\debug.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\del.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\earth_gregorian_time.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_synchronization.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\wstring_adaptor.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_c.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\_c.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\create_task_attributes.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\security_attributes.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\flag.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_enumeration.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_structures.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_function_declarations.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\message_prototype.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\process1.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\counter.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\exit_status.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\error_code.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\last_error_exception.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\str.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\str_array.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\unicode_data.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\encoding_exception.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\unicode_data.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\__string.h">
+      <Filter>Header Files\primitive\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\ancient\_impl.h">
+      <Filter>Header Files\primitive\string\c\ancient</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\ancient\ansi.h">
+      <Filter>Header Files\primitive\string\c\ancient</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\ancient\ansi_impl.h">
+      <Filter>Header Files\primitive\string\c\ancient</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\ancient\wd16.h">
+      <Filter>Header Files\primitive\string\c\ancient</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\ancient\wd16_impl.h">
+      <Filter>Header Files\primitive\string\c\ancient</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\ancient\wd32.h">
+      <Filter>Header Files\primitive\string\c\ancient</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\ancient\wd32_impl.h">
+      <Filter>Header Files\primitive\string\c\ancient</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\extension\_impl.h">
+      <Filter>Header Files\primitive\string\c\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\extension\ansi.h">
+      <Filter>Header Files\primitive\string\c\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\extension\ansi_impl.h">
+      <Filter>Header Files\primitive\string\c\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\extension\wd16.h">
+      <Filter>Header Files\primitive\string\c\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\extension\wd16_impl.h">
+      <Filter>Header Files\primitive\string\c\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\extension\wd32.h">
+      <Filter>Header Files\primitive\string\c\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\extension\wd32_impl.h">
+      <Filter>Header Files\primitive\string\c\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\_.h">
+      <Filter>Header Files\primitive\string\c</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\coupling.h">
+      <Filter>Header Files\primitive\string\c</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\encoding.h">
+      <Filter>Header Files\primitive\string\c</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\_impl.h">
+      <Filter>Header Files\primitive\string\c</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\coupling_impl.h">
+      <Filter>Header Files\primitive\string\c</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\encoding_impl.h">
+      <Filter>Header Files\primitive\string\c</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\sz\ansi.h">
+      <Filter>Header Files\primitive\string\sz</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\sz\ansi_impl.h">
+      <Filter>Header Files\primitive\string\sz</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\sz\wd16.h">
+      <Filter>Header Files\primitive\string\sz</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\sz\wd16_impl.h">
+      <Filter>Header Files\primitive\string\sz</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\sz\wd32.h">
+      <Filter>Header Files\primitive\string\sz</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\sz\wd32_impl.h">
+      <Filter>Header Files\primitive\string\sz</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\sz\_impl.h">
+      <Filter>Header Files\primitive\string\sz</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\sz\_.h">
+      <Filter>Header Files\primitive\string\sz</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\ancient\_.h">
+      <Filter>Header Files\primitive\string\c\ancient</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\extension\_.h">
+      <Filter>Header Files\primitive\string\c\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\unicode.h">
+      <Filter>Header Files\primitive\string\c</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\c\unicode_impl.h">
+      <Filter>Header Files\primitive\string\c</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\__string.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\__string.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\__string.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\__string.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\__string.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\enum_names.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\__string.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\__string.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\string_iterator.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_function.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_geometry2d.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_function_impl.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\_array.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\_container.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\numeric\types.h">
+      <Filter>Header Files\primitive\numeric</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\logarithm.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_ellipse.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_macro.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_configuration.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\concrete.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_inline_functions.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\_macro.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\_.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\typed.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\_random.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\_heap.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_types.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_c.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\what_exclamation_exception.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\error_number.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\_text_stream.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\_text_stream.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\__property_set.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\_text_stream.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\aaa_factory.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\_text_stream.h">
+      <Filter>Header Files\primitive\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\simple_string_base.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\utf8_character.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\factory.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\atom_space.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\interlocked_long.cpp">
@@ -2995,9 +3034,6 @@
     <ClCompile Include="primitive\string\string_wide.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\string_wide_conversion.cpp">
-      <Filter>Source Files\primitive\string</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filesystem\listing.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
@@ -3064,12 +3100,6 @@
     <ClCompile Include="primitive\collection\sort.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\stringl.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\payload_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\_.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
@@ -3114,9 +3144,6 @@
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\geometry.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\string_array_base.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
     <ClCompile Include="memory\allocate_mid_big.cpp">
       <Filter>Source Files\memory</Filter>
@@ -3214,28 +3241,13 @@
     <ClCompile Include="primitive\primitive\block.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="memory\alloc.cpp">
+    <ClCompile Include="memory\os_alloc.cpp">
       <Filter>Source Files\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc\bounds_check.cpp">
-      <Filter>Source Files\memory\os_alloc</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc\malloc.cpp">
-      <Filter>Source Files\memory\os_alloc</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc\no_bounds_check.cpp">
-      <Filter>Source Files\memory\os_alloc</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc\WindowsHeapAlloc.cpp">
-      <Filter>Source Files\memory\os_alloc</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="platform\object_type_counter.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\factory.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\path_object.cpp">
@@ -3325,15 +3337,6 @@
     <ClCompile Include="parallelization\task.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="process\bidirectional_pipe.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="process\pipe.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="process\exit_status.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\estatus.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
@@ -3358,9 +3361,6 @@
     <ClCompile Include="parallelization\condition_variable.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\material_object.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
@@ -3368,9 +3368,6 @@
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\multiple_lock.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\synchronization_object.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\synchronization_array.cpp">
@@ -3414,9 +3411,6 @@
     </ClCompile>
     <ClCompile Include="primitive\mathematics\value.cpp">
       <Filter>Source Files\primitive\mathematics</Filter>
-    </ClCompile>
-    <ClCompile Include="process\main.cpp">
-      <Filter>Source Files\process</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\message_queue_global.cpp">
       <Filter>Source Files\parallelization</Filter>
@@ -3523,9 +3517,6 @@
     <ClCompile Include="exception\extended_status.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\promise\signalization.cpp">
-      <Filter>Source Files\primitive\promise</Filter>
-    </ClCompile>
     <ClCompile Include="regular_expression\context.cpp">
       <Filter>Source Files\regular_expression</Filter>
     </ClCompile>
@@ -3536,9 +3527,6 @@
       <Filter>Source Files\regular_expression</Filter>
     </ClCompile>
     <ClCompile Include="exception\translator.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\file.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="platform\log.cpp">
@@ -3603,9 +3591,6 @@
     </ClCompile>
     <ClCompile Include="no_precompiled_header_sample.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\element.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\streamable.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -3700,13 +3685,10 @@
     <ClCompile Include="operating_system\windows\parallelization.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\process.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\windows\windows.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows_common\api.cpp">
+    <ClCompile Include="operating_system\windows_common\library.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\dll.cpp">
@@ -3850,9 +3832,6 @@
     <ClCompile Include="primitive\datetime\file_time_span.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\_main.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
     <ClCompile Include="handler\extended_topic.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
@@ -3864,9 +3843,6 @@
     </ClCompile>
     <ClCompile Include="handler\topic.cpp">
       <Filter>Source Files\handler</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows_common\process.cpp">
-      <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="exception\bad_file_format.cpp">
       <Filter>Source Files\exception</Filter>
@@ -3922,9 +3898,6 @@
     <ClCompile Include="operating_system\console_client.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\_api.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
     <ClCompile Include="platform\conversation_message.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3943,7 +3916,7 @@
     <ClCompile Include="primitive\primitive\atom.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="platform\subsystem.cpp">
+    <ClCompile Include="platform\sub_system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\tracer.cpp">
@@ -3958,11 +3931,107 @@
     <ClCompile Include="primitive\primitive\read_only_memory.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\bidirectional_pipe.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\pipe.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\assert.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\__payload_array.cpp">
+      <Filter>Source Files\primitive\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\thread.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\signalization.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\synchronizer.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\earth_gregorian_time.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\memory.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\create_task_attributes.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\security_attributes.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\idn.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\debug.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\message.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_impl\_select.cpp">
+      <Filter>Source Files\memory\os_impl</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_impl\malloc.cpp">
+      <Filter>Source Files\memory\os_impl</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_impl\WindowsHeapAlloc.cpp">
+      <Filter>Source Files\memory\os_impl</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\bounds_check\_select.cpp">
+      <Filter>Source Files\memory\bounds_check</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\bounds_check\off.cpp">
+      <Filter>Source Files\memory\bounds_check</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\bounds_check\on.cpp">
+      <Filter>Source Files\memory\bounds_check</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\exit_status.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\process.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\last_error_exception.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\str_array.cpp">
+      <Filter>Source Files\primitive\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\encoding_exception.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\_synchronization.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\duration\__string.cpp">
+      <Filter>Source Files\primitive\duration</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\string.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\ini.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\integral_byte.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\wd16.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\wd32.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\ansi.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="primitive\string\aaa_want_to_remove_str.inl">
-      <Filter>Header Files\primitive\string</Filter>
-    </None>
     <None Include="primitive\string\_defer.h">
       <Filter>Header Files\primitive\string</Filter>
     </None>
@@ -3980,9 +4049,6 @@
     </None>
     <None Include="filesystem\_impl.h">
       <Filter>Header Files\filesystem</Filter>
-    </None>
-    <None Include="primitive\primitive\_factory_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </None>
     <None Include="memory\namespace_heap.inl">
       <Filter>Header Files\memory</Filter>

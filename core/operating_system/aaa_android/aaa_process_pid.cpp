@@ -123,10 +123,10 @@ int_array module_path_get_pid(const ::string & pszPath)
 }
 
 
-id_array app_get_pid(const ::string & psz)
+atom_array app_get_pid(const ::string & psz)
 {
 
-   id_array ia;
+   atom_array ia;
 
    ::file::path_array stra;
 

@@ -1,6 +1,7 @@
 #include "framework.h"
-#include "acme/constant/id.h"
 #include "hyperlink.h"
+#include "acme/constant/id.h"
+#include "acme/platform/system.h"
 
 
 hyperlink::hyperlink()
@@ -20,7 +21,7 @@ hyperlink::~hyperlink()
 //bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
 //{
 //
-//   m_psystem->open_profile_link(strLink, strProfile, strTarget);
+//   acmesystem()->open_profile_link(strLink, strProfile, strTarget);
 //
 //   return true;
 //

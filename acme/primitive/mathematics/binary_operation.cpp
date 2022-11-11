@@ -20,7 +20,7 @@ namespace mathematics
    void binary_operation::set_value_string(const char * psz)
    {
       
-      throw ::exception(error_not_implemented, "not implemented");
+      throw_exception(error_not_implemented, "not implemented");
 
    }
 

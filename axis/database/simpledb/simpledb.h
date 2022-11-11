@@ -2,6 +2,7 @@
 
 
 #include "acme/primitive/primitive/get_memory.h"
+#include "apex/database/client.h"
 
 
 namespace simpledb

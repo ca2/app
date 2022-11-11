@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 namespace filehandler
 {
 
@@ -34,7 +37,7 @@ namespace filehandler
       virtual ~handler();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       string get_text(::pointer<::data::tree>ptree);

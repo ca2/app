@@ -1,6 +1,13 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/parallelization/task.h"
+#include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/collection/numeric_array.h"
+#include "acme/primitive/collection/string_array.h"
+
+
 namespace user
 {
 
@@ -143,7 +150,7 @@ namespace user
       index                                              m_iMaxThreadCount;
       index                                              m_iActiveThreadCount;
       index                                              m_iThread;
-      ::mutex                                            m_mutexImage;
+      ::pointer < ::mutex >                                            m_pmutexImage;
       //pointer_array < thread >                            m_threadptra;
       ::duration                                               m_durationLastMax;
       ::u32                                              m_bMax;
@@ -158,7 +165,7 @@ namespace user
       ~shell() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
       virtual void do_initialize();
 
 
@@ -167,9 +174,9 @@ namespace user
       virtual ::file::path & processed_path(_get_file_image_ & getfileimage);
       virtual ::file::path & final_path(_get_file_image_ & getfileimage);
 
-      inline ::aura::application * get_app() { return m_pcontext ? m_pcontext->m_pauraapplication : nullptr; }
-      inline ::aura::session * get_session() { return m_pcontext ? m_pcontext->m_paurasession : nullptr; }
-      inline ::aura::system * get_system() { return m_psystem ? m_psystem->m_paurasystem : nullptr; }
+      ::aura::application * get_app();
+      ::aura::session * get_session();
+      ::aura::system * get_system();
 
 
       //virtual void add_thread();
@@ -232,8 +239,8 @@ namespace user
       ::image_list * GetImageListHover(int iSize);
 
 
-      virtual enum_folder get_folder_type(::object * pobject, const ::wstring & wstrPath);
-      virtual enum_folder get_folder_type(::object * pobject, const ::string & strPath);
+      virtual enum_folder get_folder_type(::particle * pparticle, const ::wstring & wstrPath);
+      virtual enum_folder get_folder_type(::particle * pparticle, const ::string & strPath);
 
 
 //      void set_image(int iIndex, int iSize, ::image * pimage);
@@ -263,13 +270,13 @@ namespace user
 
 
 template < >
-inline u32 u32_hash<const ::user::shell::image_key &>(const ::user::shell::image_key & key)
+inline u32hash u32_hash<const ::user::shell::image_key &>(const ::user::shell::image_key & key)
 {
    // default identity hash - works for most primitive values
    return hash_cat(u32_hash(key.m_strPath),
       hash_cat(u32_hash(key.m_strShellThemePrefix),
          hash_cat(u32_hash(key.m_strExtension),
-            (((int)key.m_eicon) << 8) ^ (((int)key.m_eattribute) << 16)) ^ (((int)key.m_iIcon))));
+            (((int)key.m_eicon) << 8) ^ (((int)key.m_eattribute) << 16)).m_u ^ (((int)key.m_iIcon))));
 }
 
 

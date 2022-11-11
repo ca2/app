@@ -2,7 +2,7 @@
 //#include "acme/operating_system.h"
 #include "core/user/user/_user.h"
 #include "core/user/user/shell.h"
-#include "acme/compress/zip/_.h"
+//#include "acme/compress/zip/_.h"
 #include "acme/compress/gz.h"
 #include "acme/primitive/primitive/atomic.h"
 
@@ -151,7 +151,7 @@ namespace user
       }
 
 
-      void shell::initialize(::object * pobject)
+      void shell::initialize(::particle * pparticle)
       {
 
          if (m_bInitialized)
@@ -161,7 +161,7 @@ namespace user
 
          }
 
-         auto estatus = ::object::initialize(pobject);
+         auto estatus = ::object::initialize(pparticle);
 
          if (!estatus)
          {
@@ -170,7 +170,7 @@ namespace user
 
          }
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          add_thread();
 
@@ -189,7 +189,7 @@ namespace user
       void shell::add_thread()
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          auto pthread  = __new(thread(this));
 
@@ -239,7 +239,7 @@ namespace user
       bool shell::reserve_image(const image_key & imagekey, i32 & iImage)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          if (contains_image(imagekey, iImage))
          {
@@ -258,7 +258,7 @@ namespace user
       int shell::_reserve_image(const image_key & key)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          int iImage = -1;
 
@@ -281,7 +281,7 @@ namespace user
       bool shell::contains_image(const image_key & imagekey, i32 & iImage)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          if (m_imagemap.lookup(imagekey, iImage))
          {
@@ -298,7 +298,7 @@ namespace user
       void shell::add_size_interest(int_array iaSize)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          auto cAddedCount = m_iaSize.add_unique(iaSize);
 
@@ -317,7 +317,7 @@ namespace user
       void shell::set_size_interest(int_array iaSize)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          iaSize.sort();
 
@@ -336,7 +336,7 @@ namespace user
       void shell::on_update_sizes_interest()
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_imagemap.erase_all();
 
@@ -400,7 +400,7 @@ namespace user
 
                m_pevNewImageKey->wait();
 
-               synchronous_lock synchronouslock(mutex());
+               synchronous_lock synchronouslock(this->synchronization());
 
                if (m_imagekeySchedule.has_elements())
                {
@@ -447,7 +447,7 @@ namespace user
       ::image_list * shell::GetImageList(int iSize)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          if (m_bPendingUpdate)
          {
@@ -492,7 +492,7 @@ namespace user
       ::image_list * shell::GetImageListHover(int iSize)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          if (m_bPendingUpdate)
          {
@@ -534,22 +534,22 @@ namespace user
       }
 
 
-      shell::e_folder shell::get_folder_type(::object * pobject, const widechar * pcszPath)
+      shell::e_folder shell::get_folder_type(::particle * pparticle, const widechar * pcszPath)
       {
 
          string str(pcszPath);
 
-         return get_folder_type(pobject, str);
+         return get_folder_type(pparticle, str);
 
       }
 
 
-      shell::e_folder shell::get_folder_type(::object * pobject, const ::string & pcszPath)
+      shell::e_folder shell::get_folder_type(::particle * pparticle, const ::string & pcszPath)
       {
 
          wstring wstr(pcszPath);
 
-         return get_folder_type(pobject, wstr);
+         return get_folder_type(pparticle, wstr);
 
       }
 
@@ -557,7 +557,7 @@ namespace user
       i32 shell::get_file_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          image_key imagekey(strPath, m_strShellThemePrefix, eattribute, eicon, crBk);
 
@@ -602,7 +602,7 @@ namespace user
       i32 shell::get_file_image(const image_key & imagekey)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          if (m_bPendingUpdate)
          {
@@ -641,7 +641,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             m_imagekeySchedule.add(imagekey);
 
@@ -900,18 +900,18 @@ namespace user
    }
 
 
-   void shell::thread::finish(::property_object * pobject)
+   void shell::thread::finish(::property_object * pparticle)
    {
 
-      return ::thread::finish(pobject);
+      return ::thread::finish(pparticle);
 
    }
 
 
-   void shell::finish(::property_object * pobject)
+   void shell::finish(::property_object * pparticle)
    {
 
-      ::object::finish(pobject);
+      ::object::finish(pparticle);
 
       //task_erase_all();
 

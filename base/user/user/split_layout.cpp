@@ -2,6 +2,9 @@
 #include "split_layout.h"
 #include "split_pane.h"
 #include "split_bar.h"
+#include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "apex/platform/create.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/user/user/style.h"
 #include "aura/platform/session.h"
@@ -311,8 +314,8 @@ namespace user
          //if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
          //{
 
-         //   synchronous_lock synchronouslock(mutex());
-         //   //critical_section_lock synchronouslock(&m_mutex);
+         //   synchronous_lock synchronouslock(this->synchronization());
+         //   //critical_section_lock synchronouslock(m_pmutex);
          //   {
          //      //      FORMATTED_TRACE("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
 
@@ -958,7 +961,7 @@ namespace user
    bool split_layout::RemovePaneAt(index iIndex)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ASSERT(iIndex >= 0);
 
@@ -1191,9 +1194,9 @@ namespace user
 //         i32 yPos = splitRect.top + (i16) HIWORD(lParam);  // vertical position of cursor
 //         if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iSplitBar == m_iIndex))
 //         {
-//            //critical_section_lock lock(&m_mutex);
+//            //critical_section_lock lock(m_pmutex);
 //
-//            synchronous_lock synchronouslock(mutex());
+//            synchronous_lock synchronouslock(this->synchronization());
 //
 //            {
 //               FORMATTED_TRACE("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));

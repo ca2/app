@@ -27,8 +27,8 @@ namespace aura
       library() {}
       virtual ~library();
 
-      virtual void     initialize(::object * pobject);
-      virtual void     initialize_aura_library(::object * pobject, int iDesmabi, const ::string & pszRoot = nullptr, const ::string & pszName = nullptr, const ::string & pszFolder = nullptr);
+      virtual void     initialize(::particle * pparticle);
+      virtual void     initialize_aura_library(::particle * pparticle, int iDesmabi, const ::string & pszRoot = nullptr, const ::string & pszName = nullptr, const ::string & pszFolder = nullptr);
 
       virtual bool open(const ::string & pszPath,bool bAutoClose = true,bool bCa2Path = false);
 
@@ -72,14 +72,14 @@ namespace aura
 
 
       // impl
-      virtual ::pointer<::aura::application>get_new_application(::object * pobject, const ::string & pszAppId);
+      virtual ::pointer<::aura::application>get_new_application(::particle * pparticle, const ::string & pszAppId);
       virtual void get_app_list(string_array & stra);
 
 
-      virtual ::matter* new_object(::object* pobject, const ::string & pszClass);
+      virtual ::matter* new_object(::object* pparticle, const ::string & pszClass);
 
 
-      virtual ::pointer<::matter>create_object(::object* pobject, const ::string & pszClass);
+      virtual ::pointer<::matter>create_object(::object* pparticle, const ::string & pszClass);
       virtual bool has_object_class(const ::string & lpszClass);
 
 
@@ -91,10 +91,10 @@ namespace aura
       virtual void get_extension_list(string_array & stra);
 
 
-      virtual ::matter * factory_new(::object * pobject, const ::string & lpszClass);
+      virtual ::matter * factory_new(::particle * pparticle, const ::string & lpszClass);
 
 
-      virtual ::pointer<::matter>factory_create(::object * pobject, const ::string & lpszClass);
+      virtual ::pointer<::matter>factory_create(::particle * pparticle, const ::string & lpszClass);
       virtual bool factory_has_object_class(const ::string & lpszClass);
 
       library_object_allocator_base * find_allocator(const ::string & lpszClass);
@@ -131,7 +131,7 @@ namespace aura
       }
 
       // impl
-      virtual ::pointer<::aura::application>get_new_application(::object * pobject, const ::string & pszAppId) override;
+      virtual ::pointer<::aura::application>get_new_application(::particle * pparticle, const ::string & pszAppId) override;
 
 
       virtual void get_extension_list(string_array & stra) override;
@@ -175,7 +175,7 @@ class library :                                                         \
 public:                                                                 \
                                                                         \
                                                                         \
-     library(::object * pobject) : ::acme::library(pobject) {}          \
+     library(::particle * pparticle) : ::acme::library(pparticle) {}          \
      virtual ~library(){}                                               \
                                                                         \
                                                                         \
@@ -202,10 +202,10 @@ virtual void initialize_factory() override                              \
 #define END_ONLY_FACT(libname) END_CREATE_OBJECT \
  END_LIBRARY \
  \
-CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::object * pobject) \
+CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::particle * pparticle) \
 { \
 \
-   return memory_new library(pobject); \
+   return memory_new library(pparticle); \
  \
 } \
  \

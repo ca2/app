@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "main_window.h"
+#include "acme/constant/id.h"
 #include "acme/handler/item.h"
 #include "aura/windowing/window.h"
 #include "aura/platform/application.h"

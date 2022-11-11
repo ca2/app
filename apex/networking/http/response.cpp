@@ -1,5 +1,6 @@
-﻿#include "framework.h" 
-#include "apex/networking/sockets/_.h"
+﻿#include "framework.h"
+#include "response.h"
+//#include "apex/networking/sockets/_.h"
 #include "acme/filesystem/file/memory_file.h"
 
 
@@ -12,7 +13,7 @@ namespace http
 
       __UNREFERENCED_PARAMETER(version);
 
-      __defer_construct_new(m_pmemfileBody);
+      __raw_construct_new(m_pmemfileBody);
 
    }
 
@@ -36,7 +37,7 @@ namespace http
 
       transaction::operator=(src);
 
-      __defer_construct_new(m_pmemfileBody);
+      __defer_raw_construct_new(m_pmemfileBody);
 
       m_pmemfileBody->memory() = src.m_pmemfileBody->memory();
 
@@ -66,7 +67,7 @@ namespace http
 
       transaction::clear();
 
-      __defer_construct_new(m_pmemfileBody);
+      __defer_raw_construct_new(m_pmemfileBody);
 
       m_pmemfileBody->set_size(0);
    

@@ -1,6 +1,13 @@
 #include "framework.h"
-#include "_netserver.h"
+#include "socket.h"
 #include "apex/id.h"
+#include "acme/exception/exception.h"
+#include "acme/networking/url_department.h"
+#include "acme/networking/url_domain.h"
+#include "acme/platform/system.h"
+
+
+#include "acme/primitive/duration/_text_stream.h"
 
 
 namespace netserver
@@ -34,12 +41,12 @@ namespace netserver
 
       string strStatus;
 
-      auto code123 = ::__spin_namespace::idpool::g_pthis->http_status_code;
+      //auto code123 = ::__spin_namespace::idpool::g_pthis->http_status_code;
 
-      if (outattr(__id(http_status_code)).is_new() || outattr(__id(http_status)).is_new())
+      if (outattr("http_status_code").is_new() || outattr("http_status").is_new())
       {
 
-         if (outheaders().has_property(__id(location)))
+         if (outheaders().has_property("location"))
          {
 
             iStatusCode = 303; // 303 (See Other Location)
@@ -56,27 +63,27 @@ namespace netserver
 
          }
 
-         outattr(__id(http_status_code)) = iStatusCode;
+         outattr("http_status_code") = iStatusCode;
 
-         outattr(__id(http_status)) = strStatus;
+         outattr("http_status") = strStatus;
 
       }
 
-      outattr(__id(http_version)) = "HTTP/1.1";
+      outattr("http_version") = "HTTP/1.1";
 
-      if (outheader(__id(content_type)).begins("image/"))
+      if (outheader("content_type").begins("image/"))
       {
 
          m_bSetCookie = false;
 
       }
-      else if (outheader(__id(content_type)) == "application/javascript")
+      else if (outheader("content_type") == "application/javascript")
       {
 
          m_bSetCookie = false;
 
       }
-      else if (outheader(__id(content_type)) == "text/css")
+      else if (outheader("content_type") == "text/css")
       {
 
          m_bSetCookie = false;
@@ -87,6 +94,7 @@ namespace netserver
 
    }
 
+
    void socket::OnExecute()
    {
 
@@ -95,8 +103,6 @@ namespace netserver
       FORMATTED_INFORMATION("socket::OnExecute: %s\n", strUrl.c_str());
 
       auto tickExecuteBeg = ::duration::now();
-
-      //m_bEnd = false;
 
       send_response();
 
@@ -123,10 +129,10 @@ namespace netserver
    bool socket::http_filter_response_header(atom key, string_array & straValue)
    {
       
-      if (key == __id(location) && straValue.get_count() >= 1)
+      if (key == "location" && straValue.get_count() >= 1)
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto purl = psystem->url();
 
@@ -147,7 +153,7 @@ namespace netserver
          }
 
       }
-      else if (!m_bSetCookie && key == __id(set_cookie))
+      else if (!m_bSetCookie && key == "set_cookie")
       {
          
          return false;
@@ -264,7 +270,7 @@ namespace netserver
    //      savepimage->m_eformat = pimage::e_format_jpeg;
    //      savepimage->m_iQuality = 50;
 
-   //      outheader(__id(content_type)) = "image/jpeg";
+   //      outheader("content_type") = "image/jpeg";
 
 
    //      pimage->save_to_file(&response().file(), &saveimage);

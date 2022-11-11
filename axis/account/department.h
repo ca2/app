@@ -4,6 +4,12 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/12/18.
 //
+#pragma once
+
+
+#include "acme/platform/department.h"
+#include "acme/parallelization/semaphore.h"
+
 
 namespace account
 {
@@ -36,7 +42,7 @@ namespace account
       ~department() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       class ::pointer<class authenticator> authenticator();

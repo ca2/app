@@ -1,4 +1,4 @@
-// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
 // Adapted by Camilo for android 2022-01-05 04:36 <3TBS (Thomas likes number 5), Mummi and bilbo!!
 #include "framework.h"
@@ -17,7 +17,7 @@ namespace sandbox_windowing
    windowing::windowing()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_psandboxwindowing = this;
 
@@ -48,10 +48,10 @@ namespace sandbox_windowing
 
       ::pointer<::sandbox_windowing::window>pwindow;
 
-      if (::is_null(m_psystem->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
+      if (::is_null(acmesystem()->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
       {
 
-         pwindow = m_psystem->m_paurasystem->m_pwindowMain;
+         pwindow = acmesystem()->m_paurasystem->m_pwindowMain;
 
       }
       else
@@ -89,12 +89,12 @@ namespace sandbox_windowing
    }
 
 
-   void windowing::initialize(::object* pobject)
+   void windowing::initialize(::particle * pparticle)
    {
 
       //auto estatus =
       //
-      ::windowing::windowing::initialize(pobject);
+      ::windowing::windowing::initialize(pparticle);
 
       //      if(!estatus)
       //      {
@@ -195,7 +195,7 @@ namespace sandbox_windowing
    //   void windowing::start()
    //   {
    //
-   //      auto psystem = m_psystem->m_papexsystem;
+   //      auto psystem = acmesystem()->m_papexsystem;
    //
    //      if (psystem->m_bUser)
    //      {
@@ -229,14 +229,14 @@ namespace sandbox_windowing
    void windowing::windowing_post(const ::procedure& procedure)
    {
 
-      if (::is_null(procedure))
+      if (!procedure)
       {
 
          throw ::exception(error_null_pointer);
 
       }
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_procedurelist.add_tail(procedure);
 
@@ -267,7 +267,7 @@ namespace sandbox_windowing
 
       //}
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_procedurelist.is_empty())
       {
@@ -326,7 +326,7 @@ namespace sandbox_windowing
    ::pointer<::windowing::cursor>windowing::load_default_cursor(enum_cursor ecursor)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_pcursormanager)
       {
@@ -418,7 +418,7 @@ namespace sandbox_windowing
 
       //}
 
-      //synchronous_lock sl(user_mutex());
+      //synchronous_lock sl(user_synchronization());
 
       windowing_output_debug_string("\n::x11_GetWindowRect 1");
 

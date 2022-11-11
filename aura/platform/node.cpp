@@ -3,6 +3,9 @@
 //
 #include "framework.h"
 #include "node.h"
+#include "acme/exception/interface_only.h"
+#include "acme/platform/system.h"
+
 
 #ifdef LINUX
 #include "aura/operating_system/linux/x11.h"
@@ -31,12 +34,12 @@ namespace aura
    }
 
 
-   void node::on_initialize_object()
+   void node::on_initialize_particle()
    {
 
       //auto estatus =
       
-      ::apex::node::on_initialize_object();
+      ::apex::node::on_initialize_particle();
 
       //if (!estatus)
       //{
@@ -47,7 +50,7 @@ namespace aura
 
       //message_box_factory();
 
-      m_psystem->m_pauranode = this;
+      acmesystem()->m_pauranode = this;
 
       //return estatus;
 

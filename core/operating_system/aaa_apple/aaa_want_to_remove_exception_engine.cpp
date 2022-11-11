@@ -429,8 +429,8 @@ namespace exception
 
 #endif
 
-   engine::engine(::object * pobject) :
-      object(pobject)
+   engine::engine(::particle * pparticle) :
+      object(pparticle)
 #ifdef WINDOWS_DESKTOP
       ,m_bOk(false)
       ,m_bInit(false)
@@ -1025,7 +1025,7 @@ namespace exception
    bool engine::init()
    {
 
-      //if(!::m_psystem->m_pacmefile->exists("C:\\aura\\exception_engine.txt"))
+      //if(!::acmefile()->exists("C:\\aura\\exception_engine.txt"))
       //{
       //   return false;
       //}
@@ -1759,7 +1759,7 @@ namespace exception
    void engine::backtrace(void ** ppui, int &c)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ::u32 maxframes = c;
 

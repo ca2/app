@@ -1,6 +1,8 @@
 ﻿#include "framework.h" 
 #include "tunnel.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "apex/constant/idpool.h"
+#include "apex/networking/http/context.h"
 #include "apex/platform/context.h"
 
 
@@ -29,11 +31,11 @@ namespace sockets
    }
 
 
-   void http_tunnel::initialize(::object * pobject)
+   void http_tunnel::initialize(::particle * pparticle)
    {
 
 
-      http_socket::initialize(pobject);
+      http_socket::initialize(pparticle);
 
       SetLineProtocol();
       m_bOk = false;
@@ -132,7 +134,7 @@ namespace sockets
 
             }
 
-            //if (::str().begins(strStatus, astr.s200Space))
+            //if (string_begins(strStatus, astr.s200Space))
             //{
 
             //   m_estate = state_proxy_ok;
@@ -184,20 +186,20 @@ namespace sockets
 
       string str;
 
-      m_request.attr(__id(http_method)) = "GET";
-      m_request.attr(__id(request_uri)) = m_strRequest;
-      m_request.attr(__id(http_version)) = "HTTP/1.1";
-      //   outheader(__id(accept)) = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
+      m_request.attr("http_method") = "GET";
+      m_request.attr("request_uri") = m_strRequest;
+      m_request.attr("http_version") = "HTTP/1.1";
+      //   outheader("accept") = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
       //outheader("Accept-Language") = "en-us,en;q=0.5";
       //outheader("Accept-Encoding") = "gzip,deflate";
       //outheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
-      //outheader(__id(user_agent)) = MyUseragent();
+      //outheader("user_agent") = MyUseragent();
 
       //if (GetUrlPort() != 80 && GetUrlPort() != 443)
       //   outheader("Host") = GetUrlHost() + ":" + Utility::l2string(GetUrlPort());
       //else
       //   outheader("Host") = GetUrlHost();
-      outheader(__id(host)) = m_host;
+      outheader("host") = m_host;
       SendRequest();
 
       return true;

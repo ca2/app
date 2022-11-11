@@ -9,10 +9,13 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/context_image.h"
+#include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/graphics/write_text/fonts.h"
+#include "acme/parallelization/single_lock.h"
 #include "acme/primitive/geometry2d/_enhanced.h"
 #include "acme/primitive/geometry2d/_collection_enhanced.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
+#include "acme/primitive/string/str.h"
 #include "aura/user/user/interaction.h"
 #include "nanosvg/nanosvg.h"
 
@@ -51,7 +54,7 @@ namespace draw2d
 
       m_bOutline = false;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_bPat                     = false;
       m_bStoreThumbnails         = true;
@@ -1565,7 +1568,7 @@ namespace draw2d
 //
 //      ASSERT(m_pimageAlphaBlend->is_ok());
 //
-//      single_lock synchronouslock(mutex());
+//      single_lock synchronouslock(this->synchronization());
 //
 //      // "Reference" implementation for TextOutAlphaBlend
 //
@@ -1637,7 +1640,7 @@ namespace draw2d
       if (m_pimageAlphaBlend->is_set())
       {
 
-         single_lock synchronouslock(mutex());
+         single_lock synchronouslock(this->synchronization());
 
          if (block.is_empty())
          {
@@ -2558,22 +2561,22 @@ namespace draw2d
    }
 
 
-      void graphics::assert_ok() const
-   {
-
-
-
-   }
-
-
-   void graphics::dump(dump_context & dumpcontext) const
-   {
-
-      __UNREFERENCED_PARAMETER(dumpcontext);
-
-
-
-   }
+//      void graphics::assert_ok() const
+//   {
+//
+//
+//
+//   }
+//
+//
+//   void graphics::dump(dump_context & dumpcontext) const
+//   {
+//
+//      __UNREFERENCED_PARAMETER(dumpcontext);
+//
+//
+//
+//   }
 
 
    void graphics::destroy()
@@ -3486,7 +3489,7 @@ namespace draw2d
       while (*psz && iRange < iStart + iCount)
       {
 
-         const char * pszNext = ::str().next(psz);
+         const char * pszNext = unicode_next(psz);
 
          if (pszNext == nullptr)
          {
@@ -4327,7 +4330,7 @@ namespace draw2d
             while (true)
             {
 
-               ::str().increment(psz);
+               unicode_increment(psz);
 
                strSample = string(pszStart, psz - pszStart) + "...";
 
@@ -4389,7 +4392,7 @@ namespace draw2d
                if ((int) sz.cx > rectangleClip.width())
                {
 
-                  i = ::str().prior_index(i, str);
+                  i = unicode_prior_index(i, str);
 
                   if (i <= 0)
                   {
@@ -4590,7 +4593,7 @@ namespace draw2d
 
       const char * pszEnd = pszSource + len;
 
-      const char * pszStart = ::str().next(pszSource);
+      const char * pszStart = unicode_next(pszSource);
 
       size_i32 sz;
 
@@ -4666,7 +4669,7 @@ namespace draw2d
 
          }
 
-         if(::str::ch().is_space_char(pszPrevious))
+         if(unicode_is_space_char(pszPrevious))
          {
 
             pszSpaceStart       = pszPrevious;
@@ -4676,7 +4679,7 @@ namespace draw2d
 
                pszSpaceEnd      = psz;
 
-               if(!::str::ch().is_space_char(psz))
+               if(!unicode_is_space_char(psz))
                {
 
                   break;
@@ -4685,7 +4688,7 @@ namespace draw2d
 
                pszPrevious      = psz;
 
-               ::str().increment(psz);
+               unicode_increment(psz);
 
             }
             while(psz != nullptr);
@@ -4714,7 +4717,7 @@ namespace draw2d
                break;
             }
 
-            ::str().decrement(psz, pszSource);
+            unicode_decrement(psz, pszSource);
 
             pszEnd = psz;
 
@@ -4724,7 +4727,7 @@ namespace draw2d
 
          pszPrevious = psz;
 
-         ::str().increment(psz);
+         unicode_increment(psz);
 
          if(bEnd)
          {
@@ -5200,17 +5203,17 @@ namespace draw2d
    ::file::path graphics::get_font_path(const ::string & strName, int iWeight, bool bItalic)
    {
 
-      auto penumeration = m_psystem->m_paurasystem->draw2d()->write_text()->fonts()->enumeration();
+      auto penumeration = acmesystem()->m_paurasystem->draw2d()->write_text()->fonts()->enumeration();
 
       penumeration->m_eventReady.wait(30_s);
 
-      critical_section_lock synchronouslock(&m_psystem->m_paurasystem->draw2d()->write_text()->m_csFont);
+      critical_section_lock synchronouslock(&acmesystem()->m_paurasystem->draw2d()->write_text()->m_csFont);
 
       string strFontName(strName);
 
       strFontName.make_lower();
 
-      string strPath = m_psystem->m_paurasystem->draw2d()->write_text()->m_mapFontKeyFaceName[strFontName][iWeight * 10 + (bItalic ? 1 : 0)];
+      string strPath = acmesystem()->m_paurasystem->draw2d()->write_text()->m_mapFontKeyFaceName[strFontName][iWeight * 10 + (bItalic ? 1 : 0)];
 
       return strPath;
 

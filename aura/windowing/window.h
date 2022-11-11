@@ -3,6 +3,11 @@
 #pragma once
 
 
+#include "apex/message/channel.h"
+#include "acme/primitive/collection/osdata_array.h"
+#include "acme/primitive/geometry2d/_collection.h"
+
+
 namespace windowing
 {
 
@@ -42,16 +47,16 @@ namespace windowing
       void user_common_construct();
 
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
-      ::aura::application* get_app() const;
-      ::aura::session* get_session() const;
-      ::aura::system* get_system() const;
+      ::aura::application* get_app();
+      ::aura::session* get_session();
+      ::aura::system* get_system();
 
 
       void install_message_routing(::channel * pchannel) override;
@@ -145,10 +150,10 @@ namespace windowing
       virtual bool screen_to_client(POINT_I32 * ppoint);
 
 
-      virtual bool on_set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
+      virtual bool on_set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
 
-      virtual bool set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
-      virtual bool _set_window_pos(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
+      virtual bool set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
+      virtual bool _set_window_pos(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
 
       virtual bool is_destroying();
 

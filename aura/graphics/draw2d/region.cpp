@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "region.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace draw2d

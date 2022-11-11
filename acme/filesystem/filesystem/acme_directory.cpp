@@ -1,9 +1,15 @@
 // Create on 2021-03-20 23:59 <3ThomasBS_
 #include "framework.h"
-#include "acme/operating_system.h"
 #include "acme_directory.h"
 #include "acme_file.h"
 #include "acme_path.h"
+#include "path_array.h"
+#include "listing.h"
+#include "acme/exception/interface_only.h"
+#include "acme/operating_system/process.h"
+#include "acme/platform/node.h"
+#include "acme/platform/system.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 CLASS_DECL_ACME bool is_like_url_protocol(const char * psz);
@@ -22,10 +28,10 @@ acme_directory::~acme_directory()
 }
 
 
-void acme_directory::initialize(::object * pobject)
+void acme_directory::initialize(::particle * pparticle)
 {
 
-   ::matter::initialize(pobject);
+   ::particle::initialize(pparticle);
 
    m_pathInstallFolder = default_install();
 
@@ -194,7 +200,7 @@ string acme_directory::system_short_name()
 
    path.replace_with("", ":");
 
-   ::str().ends_eat_ci(path, ".exe");
+   path.ends_ci(".exe");
 
    return path;
 
@@ -217,7 +223,7 @@ string acme_directory::system_short_name()
 ::file::path acme_directory::app_relative()
 {
 
-   ::file::path path = m_psystem->m_pacmefile->module();
+   ::file::path path = acmefile()->module();
 
    path = file_path_folder(path);
 
@@ -227,7 +233,6 @@ string acme_directory::system_short_name()
 
 
 #endif
-
 
 
 ::file::path acme_directory::inplace_install(string strAppId, string strPlatform, string strConfiguration)
@@ -279,7 +284,7 @@ string acme_directory::system_short_name()
 
 #else
 
-   return m_psystem->m_pacmefile->module() - 4;
+   return acmefile()->module() - 4;
 
 #endif
 
@@ -310,7 +315,7 @@ string acme_directory::system_short_name()
 
 #else
 
-   return m_psystem->m_pacmefile->module() - 4;
+   return acmefile()->module() - 4;
 
 #endif
 
@@ -341,7 +346,7 @@ string acme_directory::system_short_name()
 
 #elif defined(__APPLE__)
 
-   return m_psystem->m_pacmefile->module()-3;
+   return acmefile()->module()-3;
 
 #elif defined(_UWP)
 
@@ -349,11 +354,11 @@ string acme_directory::system_short_name()
 
 #elif defined(FREEBSD)
 
-   return m_psystem->m_pacmefile->module() - 2;
+   return acmefile()->module() - 2;
 
 #else
 
-   return m_psystem->m_pacmefile->module() - 4;
+   return acmefile()->module() - 4;
 
 #endif
 
@@ -368,94 +373,16 @@ string acme_directory::system_short_name()
 }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-#include <Shlobj.h>
-
-
-::file::path acme_directory::program_files_x86()
-{
-
-   wstring wstrModuleFolder(e_get_buffer, sizeof(unichar) * 8);
-
-   wstring wstrModuleFilePath(e_get_buffer, sizeof(unichar) * 8);
-
-   wcscpy(wstrModuleFilePath, _wgetenv(L"PROGRAMFILES(X86)"));
-
-   if (wcslen(wstrModuleFilePath) == 0)
-   {
-
-      SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, false);
-
-   }
-
-   wstrModuleFilePath.trim_right(L"\\/");
-
-   wcscpy(wstrModuleFolder, wstrModuleFilePath);
-
-   return string(wstrModuleFolder);
-
-}
-
-
-::file::path acme_directory::program_files()
-{
-
-   wstring wstrModuleFolder(e_get_buffer, sizeof(unichar) * 8);
-
-   wstring wstrModuleFilePath(e_get_buffer, sizeof(unichar) * 8);
-
-   wcscpy(wstrModuleFilePath, _wgetenv(L"PROGRAMW6432"));
-
-   if (wcslen(wstrModuleFilePath) == 0)
-   {
-
-      SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, false);
-
-   }
-
-   wstrModuleFilePath.trim_right(L"\\/");
-
-   wstrModuleFolder = wstrModuleFilePath;
-
-   return string(wstrModuleFolder);
-
-
-
-}
-
-
-#else
-
-
-::file::path acme_directory::program_files_x86()
-{
-
-   ::file::path path("/opt/ca2");
-
-   return path;
-
-}
-
-
-::file::path acme_directory::program_files()
-{
-
-   ::file::path path("/opt/ca2");
-
-   return path;
-
-}
-
-
-#endif
-
 
 ::file::path acme_directory::stage(string strAppId, string strPlatform, string strConfiguration)
 {
 
-   return inplace_install(strAppId, strPlatform, strConfiguration) / "time" / time_binary_platform(strPlatform) / strConfiguration;
+   return 
+      inplace_install(
+         strAppId,
+         strPlatform,
+         strConfiguration) 
+      / "time" / acmenode()->time_binary_platform(strPlatform) / strConfiguration;
 
 }
 
@@ -574,7 +501,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
    if(m_pathModuleFolder.is_empty())
    {
 
-      auto pnode = m_psystem->node();
+      auto pnode = acmenode();
 
       auto pathModule = pnode->module_path_source();
 
@@ -642,7 +569,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 
       strCandidate = patha[i] / pszTopic;
 
-      //if (m_pcontext->m_papexcontext->file().exists(strCandidate))
+      //if (file()->exists(strCandidate))
       if (m_pacmefile->exists(strCandidate))
       {
          
@@ -656,6 +583,22 @@ void acme_directory::set_path_install_folder(const string & strPath)
 
 }
 
+
+::file::path acme_directory::program_files_x86()
+{
+
+   return {};
+
+}
+
+
+
+::file::path acme_directory::program_files()
+{
+
+   return {};
+
+}
 
 ::file::path acme_directory::get_memory_map_base_folder_path()
 {
@@ -752,7 +695,7 @@ void acme_directory::create(const char * pathParam)
 
    ::file::path_array patha;
 
-   path.ascendants_path(patha);
+   ascendants_path(path, patha);
 
    index i = patha.get_upper_bound();
 
@@ -794,12 +737,12 @@ void acme_directory::create(const char * pathParam)
 void acme_directory::_create2(const char * pathParam)
 {
 
-   if (is(pathParam))
-   {
+   //if (is(pathParam))
+   //{
 
-      return;
+   //   return;
 
-   }
+   //}
 
    auto bExists = m_pacmefile->exists(pathParam);
 
@@ -903,7 +846,7 @@ bool acme_directory::enumerate(::file::listing & listing)
 bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
 {
 
-   synchronous_lock sl(&m_mutexMediaLibrary);
+   synchronous_lock sl(m_pmutexMediaLibrary);
 
    for (auto& pair : m_medialibraryitemmap)
    {
@@ -960,7 +903,7 @@ bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
 ::media_library::item* acme_directory::media_library_item(const ::file::path& path)
 {
 
-   synchronous_lock sl(&m_mutexMediaLibrary);
+   synchronous_lock sl(m_pmutexMediaLibrary);
 
    string strId(path);
 
@@ -1221,7 +1164,7 @@ void acme_directory::change_to_home()
 void acme_directory::add_media_library_item(::media_library::item* pmedialibraryitem)
 {
 
-   synchronous_lock lock(&m_mutexMediaLibrary);
+   synchronous_lock lock(m_pmutexMediaLibrary);
 
    auto emedialibrary = pmedialibraryitem->media_library_type();
 

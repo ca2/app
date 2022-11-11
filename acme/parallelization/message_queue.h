@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/collection/array.h"
+
+
 class CLASS_DECL_ACME message_array :
    public array < MESSAGE >
 {
@@ -9,8 +12,12 @@ class CLASS_DECL_ACME message_array :
 };
 
 
+#include "acme/primitive/primitive/matter.h"
+#include "acme/parallelization/manual_reset_event.h"
+
+
 class CLASS_DECL_ACME message_queue :
-   virtual public matter
+   virtual public particle
 {
 public:
 
@@ -18,7 +25,6 @@ public:
    message_array           m_messagea;
    manual_reset_event      m_eventNewMessage;
    itask_t                 m_itask;
-   //bool                    m_bKickIdle;
    bool                    m_bQuit;
 
 

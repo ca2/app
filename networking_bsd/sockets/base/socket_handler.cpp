@@ -1,5 +1,6 @@
 #include "framework.h" 
 #include "socket_handler.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace sockets_bsd
@@ -43,7 +44,7 @@ namespace sockets_bsd
      /* if (plogger == nullptr)
       {
 
-         ::application* papp = ::get_app(pobject);
+         ::application* papp = ::get_app(pparticle);
 
          if (psystem != nullptr)
          {

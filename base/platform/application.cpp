@@ -2,6 +2,8 @@
 #include "application.h"
 #include "session.h"
 #include "system.h"
+#include "apex/platform/create.h"
+#include "acme/filesystem/file/item_array.h"
 #include "base/user/user/user.h"
 #include "base/user/user/document_manager.h"
 
@@ -28,12 +30,12 @@ namespace base
    }
 
 
-   void application::initialize(::object * pobject)
+   void application::initialize(::particle * pparticle)
    {
 
-      ::axis::application::initialize(pobject);
+      ::axis::application::initialize(pparticle);
 
-      ::user::document_manager_container::initialize(pobject);
+      ::user::document_manager_container::initialize(pparticle);
 
    }
 
@@ -44,20 +46,20 @@ namespace base
    }
 
 
-   void application::assert_ok() const
-   {
-
-      ::axis::application::assert_ok();
-
-   }
-
-
-   void application::dump(dump_context & dumpcontext) const
-   {
-
-      ::axis::application::dump(dumpcontext);
-
-   }
+//   void application::assert_ok() const
+//   {
+//
+//      ::axis::application::assert_ok();
+//
+//   }
+//
+//
+//   void application::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::axis::application::dump(dumpcontext);
+//
+//   }
 
 
    ::user::document *application::place_hold(::user::interaction * pinteraction)
@@ -170,15 +172,15 @@ namespace base
    }
 
    
-   ::base::system * application::get_system() const
+   ::base::system * application::get_system()
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::base::system *> (m_psystem) : nullptr;
+      return ::is_set(acmesystem()) ? dynamic_cast <::base::system *> (acmesystem()) : nullptr;
 
    }
 
 
-   ::base::session * application::get_session() const
+   ::base::session * application::get_session()
    {
 
       return m_pcontext ? m_pcontext->m_pbasesession : nullptr;
@@ -186,10 +188,10 @@ namespace base
    }
 
 
-   ::base::system * session::get_system() const
+   ::base::system * session::get_system()
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::base::system *> (m_psystem) : nullptr;
+      return ::is_set(acmesystem()) ? dynamic_cast <::base::system *> (acmesystem()) : nullptr;
 
    }
 

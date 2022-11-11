@@ -2,6 +2,7 @@
 
 
 #include "core/user/user/list_data.h"
+#include "apex/database/client.h"
 
 
 namespace filemanager
@@ -16,14 +17,14 @@ namespace filemanager
 
 
       folder_list_data();
-      virtual ~folder_list_data();
+      ~folder_list_data() override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
       using ::database::client::set_data_key_modifier;
 

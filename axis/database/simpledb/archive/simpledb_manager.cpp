@@ -8,12 +8,12 @@ namespace simpledb
 {
 
 
-   manager::manager(::object * pobject) :
-      ::object(pobject),
-      thread(pobject),
+   manager::manager(::particle * pparticle) :
+      ::object(pparticle),
+      thread(pparticle),
       
       
-      m_mutexTagName(pobject)
+      m_pmutexTagName(pparticle)
    {
       m_dwBuildTimeWindow = 770;
       m_dwBuildTimeRandomWindow = 840;
@@ -46,11 +46,11 @@ namespace simpledb
       {
          string strError;
          strError = "Error processing command";
-         psocket->response().file().write(strError, strError.get_length());
+         psocket->response().file()->write(strError, strError.get_length());
          return false;
       }
-      psocket->response().file().write(memory.get_data(), memory.get_size());
-      psocket->outheader(__id(content_type)) = "application/x-aura-::payload";
+      psocket->response().file()->write(memory.get_data(), memory.get_size());
+      psocket->outheader("content_type") = "application/x-aura-::payload";
       return true;
    }
 
@@ -85,7 +85,7 @@ namespace simpledb
 
    session * & manager::get_session(const ::string & pszId)
    {
-      single_lock synchronouslock(&m_mutexSession, true);
+      single_lock synchronouslock(m_pmutexSession, true);
       ::simpledb::session * & psession = m_mapSession[pszId];
       return psession;
    }

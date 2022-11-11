@@ -639,7 +639,7 @@ int_bool os_init_windowing()
    
 //   set_DispatchMessage(&axis_DispatchMessage);
    
-   g_pmutexOsWindowData = memory_new ::mutex();
+   g_pmutexOsWindowData = memory_new ::pointer < ::mutex >();
          
    g_poswindowdataptra = memory_new oswindow_dataptra;
    

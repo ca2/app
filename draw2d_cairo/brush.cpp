@@ -20,12 +20,12 @@ namespace draw2d_cairo
    }
 
 
-   void brush::dump(dump_context & dumpcontext) const
-   {
-
-      object::dump(dumpcontext);
-
-   }
+//   void brush::dump(dump_context & dumpcontext) const
+//   {
+//
+//      object::dump(dumpcontext);
+//
+//   }
 
 
    bool brush::create(::draw2d::graphics * pgraphics)

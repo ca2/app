@@ -6,11 +6,11 @@ namespace sip
 {
 
 
-   request::request(::object * pobject) :
-      ::object(pobject),
-      transaction(pobject),
-      m_file(pobject),
-      m_form(pobject)
+   request::request(::particle * pparticle) :
+      ::object(pparticle),
+      transaction(pparticle),
+      m_file(pparticle),
+      m_form(pparticle)
    {
 
    }
@@ -119,7 +119,7 @@ namespace sip
       //   m_file = ::pointer<IFile>e>(nullptr);
       m_form.clear();
       m_cookies.erase_all();
-      file().Truncate(0);
+      file()->Truncate(0);
    }
 
 } // namespace sip

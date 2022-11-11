@@ -1,9 +1,11 @@
 #include "framework.h"
-#include "_imaging_freeimage.h"
-#include <math.h>
+#include "context_image.h"
+#include "fimemory.h"
 #include "aura/graphics/image/frame.h"
 #include "aura/graphics/image/frame_array.h"
-////#include "aura/graphics/draw2d/_component.h"
+
+
+#include <FreeImage.h>
 
 
 struct FIBITMAP;

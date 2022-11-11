@@ -20,7 +20,7 @@ namespace xml
       ~data() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       virtual void edit(edit * pedit);

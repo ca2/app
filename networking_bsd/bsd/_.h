@@ -3,9 +3,24 @@
 
 
 #include <sys/socket.h>
+#include <netinet/in.h>
 
 
-using SOCKET = int;
+#if defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
+
+
+#include <netdb.h>
+
+
+//#define in_addr6 in6_addr
+//#elif defined(ANDROID)
+///#include <netdb.h>
+//#include <netinet/in.h>
+//#define in_addr6 in6_addr
+
+
+#endif
+//using SOCKET = int;
 
 
 #if defined(FREEBSD)

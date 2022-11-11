@@ -1109,3 +1109,47 @@ class ::duration operator * (INTEGRAL i, const ::duration & duration)
    return { e_raw, (::i64)(nanosecond / 1'000'000'000), (long)(nanosecond % 1'000'000'000) };
 
 }
+
+
+
+
+
+template < typename DURATION >
+inline ::wait integral_duration < DURATION >::wait() const
+{
+
+   return ::duration(*this).integral_microsecond().m_i / 1'000'000.0;
+
+}
+
+
+inline bool duration::timeout(const duration & duration)
+{
+
+   auto now = this->now();
+
+   if (elapsed(now) < duration)
+   {
+
+      return false;
+
+   }
+
+   operator =(now);
+
+   return true;
+
+}
+
+
+inline ::duration duration::remaining(const duration & duration, const ::duration & durationNow)
+{
+
+   auto durationRemaining = duration - elapsed(durationNow);
+
+   return durationRemaining;
+
+}
+
+
+

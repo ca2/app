@@ -502,7 +502,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
         dp.dwFlags[dp.dwCount - 1] |= DP_DATESEP;
     }
 //xxx    else if (*strIn == ',' || isspaceW(*strIn))
-        else if (*strIn == ',' || isspace(*strIn))
+        else if (*strIn == ',' || character_isspace(*strIn))
     {
       if (*strIn == ',' && !strIn[1])
         hRet = DISP_E_TYPEMISMATCH;

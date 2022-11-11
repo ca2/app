@@ -1,6 +1,12 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/string/string.h"
+#include "acme/parallelization/manual_reset_event.h"
+
+
 #ifdef _UWP
 #define CREATE_STRUCT_P_CREATE_PARAMS pCreateParams
 #else

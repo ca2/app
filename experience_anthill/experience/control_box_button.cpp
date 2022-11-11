@@ -1,6 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "control_box_button.h"
 #include "control_box.h"
+#include "acme/handler/item.h"
 #include "aura/user/user/frame.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -207,7 +208,7 @@ namespace experience_anthill
    ::item_pointer control_box_button::on_hit_test(const ::point_i32 & point)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_spregion.is_null())
       {

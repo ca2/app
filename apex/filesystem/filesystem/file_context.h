@@ -2,6 +2,8 @@
 
 
 #include "acme/primitive/primitive/memory.h"
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/collection/string_array.h"
 
 
 class CLASS_DECL_APEX file_context :
@@ -20,7 +22,7 @@ public:
    ~file_context() override;
 
    
-   void initialize(::object * pobject) override;
+   void initialize(::particle * pparticle) override;
 
 
    virtual void init_system();
@@ -42,7 +44,7 @@ public:
    virtual ::file::enum_type resource_get_type(const char* path);
 
 
-   virtual void copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
+   virtual void copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, enum_extract eextract = e_extract_first);
    virtual void move(const ::file::path & pathNew, const ::file::path & path);
    virtual void erase(const ::file::path & path);
    virtual ::file::path duplicate(const ::file::path & path);
@@ -84,6 +86,8 @@ public:
 
    virtual file_pointer time_square_file(const string & pszPrefix = nullptr, const string & pszSuffix = nullptr);
    virtual file_pointer get(const ::file::path & name);
+
+   virtual file_pointer get_temporary_upload_file(const ::file::path & pathCurrent);
 
 
    //template < class T >
@@ -263,7 +267,7 @@ public:
    virtual ::file::path onedrive_global_ini();
    virtual ::file::path onedrive_cid_ini();
 
-//   virtual ::extended::status copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
+//   virtual ::extended::status copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, enum_extract eextract = e_extract_first);
    //virtual ::extended::status move(const ::file::path & pszNew, const ::file::path & psz);
    //virtual ::extended::status del(const ::file::path & psz);
    //virtual ::extended::status rename(const ::file::path & pszNew, const ::file::path & psz);
@@ -304,16 +308,7 @@ public:
    }
 
 
-   void set(const ::payload & payloadFile, const ::memory_base & memory)
-   {
-
-      auto writer = get_writer(payloadFile);
-
-      writer->write(memory.get_data(), memory.get_size());
-
-      //return writer.m_estatus;
-
-   }
+   void set(const ::payload & payloadFile, const ::memory_base & memory);
 
 
    template < class OBJECT >
@@ -450,18 +445,18 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
    try
    {
 
-      //stream outputstream(pobject, FIRST_VERSION);
+      //stream outputstream(pparticle, FIRST_VERSION);
 
-      //if (!prepare_output(pobject, outputstream, pathDownloading, os))
+      //if (!prepare_output(pparticle, outputstream, pathDownloading, os))
       //{
 
       //   return false;
 
       //}
 
-      //stream inputstream(pobject, FIRST_VERSION);
+      //stream inputstream(pparticle, FIRST_VERSION);
 
-      //if (!prepare_input(pobject, inputstream, is))
+      //if (!prepare_input(pparticle, inputstream, is))
       //{
 
       //   return false;
@@ -486,7 +481,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
    //try
    //{
 
-   //   if (!post_output(pobject, os.m_pfile->GetFilePath(), pathDownloading))
+   //   if (!post_output(pparticle, os.m_pfile->GetFilePath(), pathDownloading))
    //   {
 
    //      return false;

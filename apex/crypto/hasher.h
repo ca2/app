@@ -1,12 +1,15 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+
+
 namespace crypto
 {
 
 
    class CLASS_DECL_APEX hasher :
-      virtual public ::matter
+      virtual public ::particle
    {
    public:
 

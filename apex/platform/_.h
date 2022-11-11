@@ -17,6 +17,7 @@ namespace apex
 
 
    class application_container;
+   class log;
 
 
 } // namespace apex
@@ -24,7 +25,6 @@ namespace apex
 
 class application_menu_item;
 class application_menu;
-
 
 
 

@@ -27,11 +27,11 @@ namespace simple_ui
 {
 
 
-   message_box::message_box(::object * pobject, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::duration durationTimeout):
-      ::object(pobject)
+   message_box::message_box(::particle * pparticle, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::duration durationTimeout):
+      ::object(pparticle)
    {
 
-      auto estatus = initialize(pobject);
+      auto estatus = initialize(pparticle);
 
       if (!estatus)
       {

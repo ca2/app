@@ -4,6 +4,8 @@
 #include "format.h"
 #include "line.h"
 #include "box.h"
+#include "acme/constant/id.h"
+#include "acme/parallelization/mutex.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/image.h"
@@ -85,7 +87,7 @@ namespace user
 
          m_durationCaretPeriod = 1_s;
 
-         defer_create_mutex();
+         defer_create_synchronization();
 
       }
 
@@ -93,10 +95,10 @@ namespace user
       data::~data()
       {
 
-         if (mutex() == m_pedit->mutex())
+         if (synchronization() == m_pedit->synchronization())
          {
 
-            set_mutex(nullptr);
+            set_synchronization(nullptr);
 
          }
 
@@ -170,7 +172,7 @@ namespace user
       ::pointer<span>data::add_span(const span & span)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          return __new(class span(this, span));
 
@@ -180,7 +182,7 @@ namespace user
       ::pointer<span>data::add_span(::e_align ealignNewLine)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          auto pspan = create_span(ealignNewLine);
 
@@ -218,7 +220,7 @@ namespace user
       void data::on_selection_change(format * pformat)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          index iSelBeg = get_sel_beg();
 
@@ -232,7 +234,7 @@ namespace user
       void data::get_selection_intersection_format(format * pformat, index iSelBeg, index iSelEnd)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          update_span_cache(m_spana);
 
@@ -282,7 +284,7 @@ namespace user
       strsize data::hit_test(point_f64 point)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          //double xLast = 0.0;
 
@@ -403,7 +405,7 @@ namespace user
       strsize data::hit_test_line_x(index iLine, double x)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          auto plinea = m_plinea;
 
@@ -476,7 +478,7 @@ namespace user
       void data::_001GetText(string & str) const
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          str = text(m_spana);
 
@@ -486,7 +488,7 @@ namespace user
       void data::_001GetLayoutText(string & str) const
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          str = layout_text(*m_plinea);
 
@@ -504,7 +506,7 @@ namespace user
       index data::LineColumnToSel(index iLine, strsize iColumn) const
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          if (iLine < 0)
          {
@@ -559,7 +561,7 @@ namespace user
 
          }
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          update_span_cache(m_spana);
 
@@ -666,7 +668,7 @@ namespace user
       string data::get_full_text()
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          update_span_cache(m_spana);
 
@@ -682,7 +684,7 @@ namespace user
 
          straLines.add_lines(psz);
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          index iSelBeg = get_sel_beg();
 
@@ -843,7 +845,7 @@ namespace user
       void data::_001SetSelFontFormat(const format * pformat, const e_attribute & eattribute)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          optimize_data();
 
@@ -980,7 +982,7 @@ namespace user
 
       }
 
-      // ::str().next(str.c_str()) - str.c_str(); // at least one char is the longest pline
+      // unicode_next(str.c_str()) - str.c_str(); // at least one char is the longest pline
 
       // find phrase with greatest word count that fits the x, right constraints
       ::count longest_pline(string & strSlice, double & d, string_array & straWords, double * pdaPosition, double dPositionLeft, int cx)
@@ -1118,7 +1120,7 @@ namespace user
       //void data::do_layout()
       //{
 
-      //   synchronous_lock synchronouslock(mutex());
+      //   synchronous_lock synchronouslock(this->synchronization());
 
       //   if (m_pgraphics.is_null())
       //   {
@@ -1141,7 +1143,7 @@ namespace user
 
          //m_rectangle = rectangle;
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -1361,7 +1363,7 @@ namespace user
                   pbox->m_sizeBox.cx = 0;
 
                   // just horizonal layout
-                  pbox->m_rectangleBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
+                  pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx, 0);
 
                   pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
@@ -1388,11 +1390,11 @@ namespace user
 
             cWords = (int) longest_pline(strSlice, dPosition, straWords, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int) rectangleClient.right - x);
 
-            if (ansi_char_is_space(straWords.last().last_char())
+            if (ansi_char_isspace(straWords.last().last_char())
                || (iSpan + 1 < m_spana.get_count()
                   && (m_spana[iSpan + 1]->is_new_line()
                      || (m_spana[iSpan + 1]->m_str.has_char()
-                        && ansi_char_is_space(m_spana[iSpan + 1]->m_str[0]))))
+                        && ansi_char_isspace(m_spana[iSpan + 1]->m_str[0]))))
                || cWords < straWords.get_count())
             {
 
@@ -1413,7 +1415,7 @@ namespace user
                   pbox->m_sizeBox.cx = dPosition - dPositionLeft;
 
                   // just horizonal layout
-                  pbox->m_rectangleBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
+                  pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx, 0);
 
                   pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
@@ -1460,7 +1462,7 @@ namespace user
                pbox->m_sizeBox.cx = dPosition - dPositionLeft;
 
                // just horizonal layout
-               pbox->m_rectangleBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
+               pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx, 0);
 
                pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
@@ -1492,7 +1494,7 @@ namespace user
                pbox->m_sizeBox.cx = dPosition;
 
                // just horizonal layout
-               pbox->m_rectangleBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
+               pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx, 0);
 
                pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
@@ -1559,7 +1561,7 @@ namespace user
       void data::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          if (pgraphics->m_bPrinting)
          {
@@ -1934,7 +1936,7 @@ namespace user
       void data::optimize_data()
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_pformata->erase_all();
 
@@ -1998,7 +2000,7 @@ namespace user
       strsize data::_001GetTextLength() const
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          if (m_spana.is_empty())
          {
@@ -2015,7 +2017,7 @@ namespace user
       strsize data::_001GetLayoutTextLength() const
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          auto plinea = m_plinea;
 
@@ -2034,7 +2036,7 @@ namespace user
       void data::internal_update_sel_char()
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          //m_iSelBeg = sel_char(*plinea, m_iSelBeg3, m_ebiasBeg);
 
@@ -2139,7 +2141,7 @@ namespace user
       //void data::write(::binary_stream < FILE > & stream) const
       //{
 
-      //   synchronous_lock synchronouslock(mutex());
+      //   synchronous_lock synchronouslock(this->synchronization());
 
       //   stream << m_pformata;
 
@@ -2151,7 +2153,7 @@ namespace user
       //void data::read(::binary_stream < FILE > & stream)
       //{
 
-      //   synchronous_lock synchronouslock(mutex());
+      //   synchronous_lock synchronouslock(this->synchronization());
 
       //   m_plinea->erase_all();
 
@@ -2169,7 +2171,7 @@ namespace user
       void data::draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangleBox)
       {
 
-         synchronous_lock synchronouslock(pgraphics->mutex());
+         synchronous_lock synchronouslock(pgraphics->synchronization());
 
          synchronous_lock sl1(mutex());
 

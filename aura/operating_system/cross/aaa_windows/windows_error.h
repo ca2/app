@@ -1873,7 +1873,7 @@
 //
 // MessageText:
 //
-// Attempt to release ::mutex not owned by caller.
+// Attempt to release ::pointer < ::mutex > not owned by caller.
 //
 #define ERROR_NOT_OWNER                  288L
 
@@ -17120,7 +17120,7 @@
 //
 // MessageText:
 //
-// The replication synchronization attempt failed because a master replica attempted to synchronization_object from a partial replica.
+// The replication synchronization attempt failed because a master replica attempted to synchronization from a partial replica.
 //
 #define ERROR_DS_DRA_SOURCE_IS_PARTIAL_REPLICA 8465L
 
@@ -17661,7 +17661,7 @@
 //
 // MessageText:
 //
-// While processing a change to the DNS Host Name for an object, the Service Principal Name values could not be kept in synchronization_object.
+// While processing a change to the DNS Host Name for an object, the Service Principal Name values could not be kept in synchronization.
 //
 #define ERROR_DS_COULDNT_UPDATE_SPNS     8525L
 
@@ -24157,7 +24157,7 @@
 //
 // MessageText:
 //
-// The OLE service ::mutex already exists
+// The OLE service ::pointer < ::mutex > already exists
 //
 #define CO_E_INIT_SCM_MUTEX_EXISTS       _HRESULT_TYPEDEF_(0x8000400EL)
 
@@ -42544,7 +42544,7 @@
 //
 // MessageText:
 //
-// The specified member is already in-synchronization_object with the other active members. It does not need to be regenerated.
+// The specified member is already in-synchronization with the other active members. It does not need to be regenerated.
 //
 #define ERROR_VOLMGR_MEMBER_IN_SYNC      _NDIS_ERROR_TYPEDEF_(0xC0380023L)
 
@@ -42733,7 +42733,7 @@
 //
 // MessageText:
 //
-// The specified plex is already in-synchronization_object with the other active plexes. It does not need to be regenerated.
+// The specified plex is already in-synchronization with the other active plexes. It does not need to be regenerated.
 //
 #define ERROR_VOLMGR_PLEX_IN_SYNC        _NDIS_ERROR_TYPEDEF_(0xC0380038L)
 

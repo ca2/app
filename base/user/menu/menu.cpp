@@ -1,17 +1,20 @@
 ﻿#include "framework.h"
 #include "menu.h"
 #include "item.h"
-//#include "acme/constant/id.h"
 #include "aqua/xml/document.h"
 #include "aqua/xml/xml.h"
+#include "acme/constant/id.h"
 #include "acme/constant/timer.h"
-//#include "aura/astr.h"
+#include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/draw2d.h"
+#include "acme/platform/sequencer.h"
 #include "acme/platform/timer.h"
 #include "aura/platform/application.h"
 #include "aura/message/user.h"
 #include "aura/user/menu/command.h"
 #include "aura/user/user/button.h"
+#include "aura/user/user/calc_size.h"
 #include "base/user/user/style.h"
 #include "base/platform/session.h"
 #include "base/user/user/user.h"
@@ -97,7 +100,7 @@ namespace user
       MESSAGE_LINK(e_message_create, pchannel, this, &menu::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::on_message_destroy);
       MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &menu::_001OnNcActivate);
-      MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this, &menu::on_message_non_client_calculate_size);
+      MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &menu::on_message_non_client_calculate_size);
       MESSAGE_LINK(e_message_enable, pchannel, this, &menu::_001OnEnable);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &menu::on_message_show_window);
       MESSAGE_LINK(e_message_close, pchannel, this, &menu::on_message_close);
@@ -258,7 +261,7 @@ namespace user
    bool menu::load_xml_menu(const ::payload & payload)
    {
 
-      m_psystem->m_paquasystem->_xml();
+      acmesystem()->m_paquasystem->_xml();
 
       auto pxmldocument = __create_new < ::xml::document >();
 
@@ -297,12 +300,12 @@ namespace user
          if (m_puserinteractionParent)
          {
 
-            post_procedure([this]()
+            interaction_post([this]()
             {
 
                set_foreground_window();
 
-               post_procedure([this]()
+               interaction_post([this]()
                   {
 
                      set_active_window();
@@ -438,9 +441,9 @@ namespace user
 
       m_pchannelNotify = pchannelNotify;
 
-      m_pmaterialCommandHandler = pchannelNotify;
+      m_pmatterCommandHandler = pchannelNotify;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -617,7 +620,7 @@ namespace user
 
       }
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -1154,7 +1157,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             update_command(m_pmenuitem);
 
@@ -1585,7 +1588,7 @@ namespace user
 
       //}
 
-      pinteraction->m_pmaterialCommandHandler = this;
+      pinteraction->m_pmatterCommandHandler = this;
       
       pinteraction->add_handler(this);
 
@@ -1622,14 +1625,14 @@ namespace user
    void menu::handle_command(const ::atom& atom)
    {
 
-      if (m_pmaterialCommandHandler)
+      if (m_pmatterCommandHandler)
       {
 
          defer_close();
 
          //auto estatus = 
          
-         m_pmaterialCommandHandler->handle_command(atom);
+         m_pmatterCommandHandler->handle_command(atom);
 
          //if (!estatus)
          //{
@@ -1647,11 +1650,7 @@ namespace user
    }
 
 
-
 } // namespace user
-
-
-
 
 
 

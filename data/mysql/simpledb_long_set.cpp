@@ -46,7 +46,7 @@ class CLASS_DECL_AURA db_long_set_core:
 public:
 
 
-   ::mutex                                     m_mutex;
+   ::pointer < ::mutex >                                     m_pmutex;
    sockets::socket_handler                   m_handler;
    sockets::http_session *                   m_phttpsession;
 
@@ -85,18 +85,18 @@ class CLASS_DECL_AURA db_long_sync_queue:
 public:
 
 
-   ::mutex                                                    m_mutex;
+   ::pointer < ::mutex >                                                    m_pmutex;
    db_long_set *                                            m_ppropertyset;
    sockets::socket_handler                                  m_handler;
    sockets::http_session *                                  m_phttpsession;
 
    pointer_array < db_long_set_queue_item >           m_itema;
 
-   db_long_sync_queue(::object * pobject):
-      ::object(pobject),
-      thread(pobject),
-      ::thread(pobject),
-      m_handler(pobject),
+   db_long_sync_queue(::particle * pparticle):
+      ::object(pparticle),
+      thread(pparticle),
+      ::thread(pparticle),
+      m_handler(pparticle),
       
       m_phttpsession(nullptr)
    {}
@@ -123,7 +123,7 @@ repeat:;
 
        {
 
-          single_lock synchronouslock(&m_mutex);
+          single_lock synchronouslock(m_pmutex);
 
           if(m_itema.get_size() <= 0)
           {
@@ -147,7 +147,7 @@ repeat:;
 
           set["interactive_user"] = true;
 
-          strUrl = "https://" + pcontext->m_papexcontext->dir().get_api_cc() + "/account/long_set_save?key=";
+          strUrl = "https://" + pcontext->m_papexcontext->dir()->get_api_cc() + "/account/long_set_save?key=";
           strUrl += purl->url_encode(m_itema[0]->m_strKey);
           strUrl += "&value=";
           strUrl += __string(m_itema[0]->m_l);
@@ -177,7 +177,7 @@ repeat:;
 void db_long_sync_queue::queue(const ::string & pszKey,i64 l)
 {
 
-   single_lock synchronouslock(&m_mutex, true);
+   single_lock synchronouslock(m_pmutex, true);
 
    db_long_set_queue_item item;
 
@@ -228,7 +228,7 @@ bool db_long_set::load(const ::string & lpKey, i64 * plValue)
 
       set["interactive_user"] = true;
 
-      strUrl = "https://" + pcontext->m_papexcontext->dir().get_api_cc() + "/account/long_set_load?key=";
+      strUrl = "https://" + pcontext->m_papexcontext->dir()->get_api_cc() + "/account/long_set_load?key=";
       strUrl += purl->url_encode(lpKey);
 
       //m_phttpsession = pcontext->m_papexcontext->http().request(m_handler, m_phttpsession, strUrl, post, headers, set, nullptr, psession->account()->get_user(), nullptr, &estatus);

@@ -2,6 +2,7 @@
 #include "base64.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/filesystem/file/string_buffer.h"
 
 
 #define N1_A 0
@@ -329,10 +330,10 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
    }
 
 
-   //void base64::initialize(::object * pobject)
+   //void base64::initialize(::particle * pparticle)
    //{
 
-   //   auto estatus = ::matter::initialize(pobject);
+   //   auto estatus = ::matter::initialize(pparticle);
 
    //   if (!estatus)
    //   {
@@ -568,11 +569,11 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
    string base64::encode(const ::block & block, e_mode emode)
    {
 
-      ::string_buffer file;
+      ::memory_file file;
 
       encode(&file, (u8 *) block.m_pdata, (memsize) block.m_iSize, emode);
 
-      return file.m_str;
+      return file.as_string();
 
    }
 
@@ -620,7 +621,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
 
       string str(pszBase64, s);
 
-      ::string_buffer fileIn(str);
+      ::memory_file fileIn(str);
 
       memory_file fileOut(storageBinary);
 
@@ -634,7 +635,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
 
       string str(pszBase64, s);
 
-      ::string_buffer fileIn(str);
+      ::memory_file fileIn(str);
 
       return decode(block, &fileIn);
 

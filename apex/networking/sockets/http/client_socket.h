@@ -2,7 +2,8 @@
 
 
 #include "tunnel.h"
-
+#include "acme/primitive/primitive/matter.h"
+#include "apex/progress/integer.h"
 //#include "apex/networking/sockets/bsd/basic/socket_handler.h"
 
 
@@ -39,7 +40,7 @@ namespace sockets
 
 #endif
 
-      ::mutex                          m_mutexData;
+      ::pointer < ::mutex >                          m_pmutexData;
       ::memory_file_pointer            m_pmemoryfile;
       ::file::file *                   m_pfile;
       i64                              m_iFinalSize;
@@ -153,7 +154,7 @@ namespace http
       ::pointer<::sockets::http_client_socket>    m_psocket;
 
 
-      // session(::object* pobject);
+      // session(::object* pparticle);
       session();
       virtual ~session();
 

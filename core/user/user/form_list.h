@@ -23,9 +23,9 @@ namespace user
       ~form_list() override;
 
 
-      inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
-      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
-      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      ::core::application* get_app();
+      ::core::session* get_session();
+      ::core::system* get_system();
 
 
       void _001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * psubitem) override;

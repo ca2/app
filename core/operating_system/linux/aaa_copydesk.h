@@ -17,7 +17,7 @@ namespace linux
       virtual ~copydesk();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       virtual void destroy() override;
 
       virtual bool _set_filea(const ::file::path_array & patha, e_op eop) override;

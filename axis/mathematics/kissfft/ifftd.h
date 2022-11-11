@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "ifft.h"
+
+
 namespace kissfft
 {
 
@@ -10,17 +14,22 @@ namespace kissfft
    {
    public:
 
+
       i32                     m_iSize;
       kiss_fftr_cfg           m_cfg;
 
 
       ifftd(i32 iSize);
-      virtual ~ifftd();
+      ~ifftd() override;
+
 
       void ifft(COMPLEXD * pIn, double * pOut);
+
 
    };
 
 
 } // namespace kissfft
+
+
 

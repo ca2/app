@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "central.h"
-#include "base/platform/system.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/platform/node.h"
 #include "aqua/xml/document.h"
 #include "aura/graphics/write_text/font.h"
@@ -8,6 +8,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/imaging.h"
+#include "base/platform/system.h"
 
 
 namespace user
@@ -17,7 +18,7 @@ namespace user
    menu_central::menu_central()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -28,12 +29,12 @@ namespace user
    }
 
 
-   bool menu_central::MenuV033AddImageMap(::object * pobject, ::xml::node * pnode)
+   bool menu_central::MenuV033AddImageMap(::particle * pparticle, ::xml::node * pnode)
    {
 
       defer_initialize();
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       i32 iIndex;
 
@@ -155,7 +156,7 @@ namespace user
    void menu_central::defer_initialize()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pimagelist)
       {
@@ -171,7 +172,7 @@ namespace user
       __construct_new(m_pimagelistBlend);
       __construct_new(m_pimagelistHueLight);
 
-      auto psystem = m_psystem->m_pbasesystem;
+      auto psystem = acmesystem()->m_pbasesystem;
 
       auto pnode = psystem->node();
 

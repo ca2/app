@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "signal.h"
+
+
 /// manager is originator of signals
 class CLASS_DECL_APEX manager :
    virtual public ::object

@@ -31,6 +31,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 #include "apex/networking/sockets/basic/socket.h"
+#include "apex/platform/log.h"
 
 
 namespace sockets
@@ -79,7 +80,7 @@ namespace sockets
       base_socket_handler();
       ~base_socket_handler() override;
 
-      ///** get ::mutex object for threadsafe operations. */
+      ///** get ::pointer < ::mutex > object for threadsafe operations. */
       //virtual clasync & GetMutex() const = 0;
 
       virtual void set_logger(::apex::log * plog);

@@ -20,22 +20,6 @@ namespace std { enum class align_val_t : std::size_t {}; }
 #ifndef __cplusplus_winrt
 
 
-template < typename BLOCK_TYPE >
-inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block & block)
-{
-
-   if (block.get_size() < get_size())
-   {
-
-      throw ::exception(error_bad_argument);
-
-   }
-
-   ::memcpy_dup(get_data(), block.get_data(), (size_t) get_size());
-
-   return *get_data();
-
-}
 
 
 #endif // __cplusplus_winrt
@@ -67,25 +51,6 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 }
 
 
-template<class TYPE>
-inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
-{
-
-   ENSURE((nCount == 0) || ((pDest != 0) && (pSrc != 0)));
-   ASSERT((nCount == 0) || __is_valid_address(pDest, (size_t)nCount * sizeof(TYPE)));
-   ASSERT((nCount == 0) || __is_valid_address(pSrc, (size_t)nCount * sizeof(TYPE)));
-
-   // default is matter-copy using assignment
-   while (nCount--)
-   {
-
-      *pDest++ = *pSrc++;
-
-   }
-
-}
-
-
 
 
 //namespace acme
@@ -93,7 +58,7 @@ inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
 //
 //
 //   template < class APP >
-//   ::pointer<::acme::application>single_application_library < APP > ::get_new_application(::matter * pobject, const char * pszAppId)
+//   ::pointer<::acme::application>single_application_library < APP > ::get_new_application(::particle * pparticle, const char * pszAppId)
 //   {
 //
 //      if(!contains_app(pszAppId))
@@ -123,7 +88,7 @@ inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
 //
 //      }
 //
-//      auto estatus = papp->initialize(pobject);
+//      auto estatus = papp->initialize(pparticle);
 //
 //      if (!estatus)
 //      {
@@ -154,12 +119,6 @@ inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
 //} // namespace acme
 
 
-inline bool IsDirSep(widechar ch)
-{
-
-   return (ch == '\\' || ch == '/');
-
-}
 
 
 //#define memory_new ACME_NEW
@@ -187,9 +146,9 @@ void memory_counter_increment(T * pthis)
 
       //synchronous_lock synchronouslock(g_pmutexMemoryCounters);
 
-      //int i = atoi(m_psystem->m_pacmefile->as_string(path));
+      //int i = atoi(acmefile()->as_string(path));
 
-      //m_psystem->m_pacmefile->put_contents(path, __string(i + 1));
+      //acmefile()->put_contents(path, __string(i + 1));
    }
 
 }
@@ -206,9 +165,9 @@ void memory_counter_decrement(T * pthis)
 
       _memory_counter_decrement(psz);
 
-      //int i = atoi(m_psystem->m_pacmefile->as_string(path));
+      //int i = atoi(acmefile()->as_string(path));
 
-      //m_psystem->m_pacmefile->put_contents(path, __string(i - 1));
+      //acmefile()->put_contents(path, __string(i - 1));
 
    }
 
@@ -253,24 +212,24 @@ namespace acme
 
 
 template < typename BASE >
-inline ::pointer<BASE>alloc_object(::matter * pobject)
+inline ::pointer<BASE>alloc_object(::particle * pparticle)
 {
 
-   return BASE::g_pallocfactory->alloc_object(pobject);
+   return BASE::g_pallocfactory->alloc_object(pparticle);
 
 }
 
 
 template < typename BASE >
-inline ::pointer<BASE>& alloc_object(::pointer<BASE> p, ::matter * pobject)
+inline ::pointer<BASE>& alloc_object(::pointer<BASE> p, ::particle * pparticle)
 {
 
-   return p = ::alloc_object < BASE > (pobject);
+   return p = ::alloc_object < BASE > (pparticle);
 
 }
 
 //
-//inline class ::synchronization_object * matter::get_mutex()
+//inline class ::synchronization * matter::get_mutex()
 //{
 //
 //   return ::is_null(this) ? nullptr : mutex();
@@ -374,7 +333,7 @@ inline pointer < T > & pointer < T >::clone(T2 * p)
 //
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -394,7 +353,7 @@ namespace papaya
    } // namespace chill
 
 
-} // namespace papaya
+} // namespace acme
 
 
 //inline float i32muldiv(float f, i32 iNum, i32 iDen)
@@ -446,7 +405,6 @@ inline RESULT muldiv(MULTIPLICATOR iMultiplicator, NUMERATOR iNumerator, DENOMIN
 }
 
 
-inline string __string(const ::e_display & edisplay) { return __string((::enum_display) edisplay); }
 
 
 //template < typename TYPE >
@@ -521,494 +479,11 @@ inline string __string(const ::e_display & edisplay) { return __string((::enum_d
 #endif // __cplusplus_winrt
 
 
-template < class c_derived >
-inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   if (::is_null(pca))
-   {
-
-      return -1;
-
-   }
-
-   return pca->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-}
-
-
-template < class c_derived, typename SOURCE >
-inline i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
-{
-
-   c_derived * pderived = dynamic_cast <c_derived *>((SOURCE *)psource);
-
-   if (::is_null(pderived))
-   {
-
-      throw ::exception(error_wrong_type);
-
-   }
-
-   pca = pderived;
-
-   return increment_reference_count(pca);
-
-}
-
-
-template < class c_derived, typename SOURCE >
-inline i64 increment_reference_count(c_derived *& pderived, const ::pointer<SOURCE>& psource)
-{
-
-   return increment_reference_count(pderived, psource.m_p);
-
-}
-
-
-template < class c_derived >
-inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   c_derived * ptr = pca;
-
-   if (::is_null(ptr))
-   {
-
-      return -1;
-
-   }
-
-#ifdef _DEBUG
-
-//   ::atom atom = p->m_atom;
-   //char * pszType = nullptr;
-   //
-   //try
-   //{
-
-   //   pszType = _strdup(typeid(*p).name());
-
-   //}
-   //catch (...)
-   //{
-
-   //   ::output_debug_string("exception release strdup(typeid(*p).name())\n");
-
-   //}
-
-#endif
-
-   try
-   {
-
-      pca = nullptr;
-
-   }
-   catch (...)
-   {
-
-      //::output_debug_string("exception release pca = nullptr; (" + string(atom) + ")\n");
-      ::output_debug_string("exception release pca = nullptr; \n");
-
-   }
-
-   try
-   {
-
-      return ptr->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-   }
-   catch (...)
-   {
-
-      ::output_debug_string("exception release p->release() \n");
-
-   }
-
-   return -1;
-
-}
-
-
-//template < class COMPOSITE >
-//inline i64 release(::pointer<COMPOSITE>& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-//{
-//
-//   return release(pcomposite.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-//
-//}
-
-
-template < typename TYPE >
-inline i64 release(::pointer<TYPE>& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
-
-
-template < typename TYPE >
-inline i64 __finalize(::pointer<TYPE> pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-   
-   if (!pointer) return -1;
-   
-   pointer->destroy();
-   
-   return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
-
-//
-//template < class REFERENCE >
-//inline i64 release(::pointer<REFERENCE>& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-//{
-//
-//   return release(preference.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-//
-//}
-
-
-template < class c_derived >
-inline i64 ref_count(c_derived * pca)
-{
-
-   if (pca == nullptr)
-   {
-
-      return -1;
-
-   }
-
-   return pca->get_ref_count();
-
-}
 
 
 //#ifndef __cplusplus_winrt
 
 
-template < typename SEQUENCE >
-sequencer < SEQUENCE > ::sequencer()
-{
-
-   //m_ptask = ::get_task();
-
-   m_pevent = nullptr;
-
-}
-
-
-//template < typename TYPE >
-//void future < RESULT > ::set_object(const RESULT& result, const ::e_status & estatus)
-//{
-//
-//   critical_section_lock lock(get_sequence_critical_section());
-//
-//   if (m_p.m_estatus == error_not_initialized)
-//   {
-//
-//      m_p.m_estatus = estatus;
-//
-//      m_p.m_result = result;
-//
-//      if (m_pevent)
-//      {
-//
-//         m_pevent->SetEvent();
-//
-//      }
-//
-//      if (m_preceptor)
-//      {
-//
-//         m_preceptor->get(this);
-//
-//      }
-//
-//   }
-//
-//}
-
-
-template < typename SEQUENCE >
-void sequencer < SEQUENCE > ::fork()
-{
-
-   ::get_system()->fork(__routine([this]()
-   {
-
-      on_sequence();
-
-   }));
-
-}
-
-
-template < typename SEQUENCE >
-void sequencer < SEQUENCE > ::on_sequence()
-{
-
-   critical_section_lock lock(get_sequence_critical_section());
-
-   if (m_pevent)
-   {
-
-      m_pevent->SetEvent();
-
-   }
-
-   while (m_stepa.has_element())
-   {
-
-      auto step = m_stepa.pop_first();
-
-      lock.unlock();
-
-      step(m_psequence);
-
-      lock.lock();
-
-   }
-
-}
-
-
-//template < typename SEQUENCE >
-//void sequencer < SEQUENCE > ::set_status(const ::e_status & estatus)
-//{
-//
-//   critical_section_lock lock(get_sequence_critical_section());
-//
-//   m_p.m_estatus = estatus;
-//
-//   if (m_pevent)
-//   {
-//
-//      m_pevent->SetEvent();
-//
-//   }
-//
-//   increment_reference_count();
-//
-//   m_psystem->fork(__routine([this]()
-//      {
-//
-//         auto pHold = ::move_transfer(this);
-//
-//         critical_section_lock lock(get_sequence_critical_section());
-//
-//         while (m_stepa.has_element())
-//         {
-//
-//            auto pfunction = m_stepa.pop_first();
-//
-//            lock.unlock();
-//
-//            pfunction->process(*this);
-//
-//            lock.lock();
-//
-//         }
-//
-//      }));
-//
-//}
-
-template < typename SEQUENCE >
-sequence < SEQUENCE > * sequencer < SEQUENCE > ::topic(const ::duration& duration)
-{
-
-   critical_section_lock lock(get_sequence_critical_section());
-
-   if (m_psequence.m_estatus == error_not_initialized)
-   {
-
-      m_pevent = memory_new manual_reset_event();
-
-      if (!m_pevent->wait(duration))
-      {
-
-         lock.lock();
-
-         if (m_psequence.m_estatus == error_not_initialized)
-         {
-
-            m_psequence.m_estatus = error_timeout;
-
-         }
-
-         lock.unlock();
-
-      }
-
-   }
-
-   return this->m_p;
-
-}
-
-
-template < typename SEQUENCE >
-::e_status sequencer < SEQUENCE > ::wait(const class ::wait& wait)
-{
-
-   critical_section_lock lock(get_sequence_critical_section());
-
-   if (m_psequence.m_estatus == error_not_initialized)
-   {
-
-      m_pevent = __new(manual_reset_event);
-
-      lock.unlock();
-
-      if (!m_pevent->wait(wait))
-      {
-
-         lock.lock();
-
-         if (m_psequence.m_estatus == error_not_initialized)
-         {
-
-            m_psequence.m_estatus = error_wait_timeout;
-
-         }
-
-         lock.unlock();
-
-      }
-
-   }
-
-   return m_psequence.m_estatus;
-
-}
-
-
-template < typename SEQUENCE >
-sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const sequence_step < SEQUENCE > & step)
-{
-
-   critical_section_lock lock(get_sequence_critical_section());
-
-   if (m_psequence.is_set())
-   {
-
-      m_stepa.add(step);
-
-   }
-   else
-   {
-
-      lock.unlock();
-
-      step(m_psequence);
-
-   }
-   
-   return m_psequence;
-
-}
-
-
-template < typename SEQUENCE >
-sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const ::duration& duration, const sequence_step < SEQUENCE > & step)
-{
-
-   critical_section_lock lock(get_sequence_critical_section());
-
-   if (m_psequence.m_estatus == error_not_initialized)
-   {
-
-      m_stepa.add(step);
-
-      m_pevent = memory_new manual_reset_event();
-
-      lock.unlock();
-
-      if (!m_pevent->wait(duration))
-      {
-
-         lock.lock();
-
-         if (m_psequence.m_estatus == error_not_initialized)
-         {
-
-            m_psequence.m_estatus = error_timeout;
-
-         }
-
-         lock.unlock();
-
-         if (m_psequence.m_estatus == error_timeout)
-         {
-
-            step(m_psequence);
-
-         }
-
-      }
-
-   }
-   else
-   {
-
-      lock.unlock();
-
-      step(m_psequence);
-
-   }
-
-   return m_psequence;
-
-}
-
-
-
-//template < typename OBJECT, typename TRANSPORT , typename SEQUENCE >
-//SEQUENCE * asynchronous < OBJECT, TRANSPORT, SEQUENCE >::sequence()
-//{
-//
-//   if (!m_pfuture)
-//   {
-//
-//      m_psystem->__construct_new(m_pfuture);
-//       
-//      m_pfuture->m_psystem = m_psystem;
-//
-//      m_pfuture->m_p = this;
-//
-//   }
-//
-//   return m_pfuture;
-//
-//}
-
-
-
-
-//template < typename TYPE >
-//inline ::pointer<TYPE>property_object::__create_new()
-//{
-//
-//   auto p = __new(TYPE);
-//
-//   p->initialize_matter(this);
-//
-//   return p;
-//
-//}
-
-
-//#endif // __cplusplus_winrt
-
-
-inline tracer trace_log_information() { return ::get_task()->trace_log_information(); }
-inline tracer trace_log_warning() { return ::get_task()->trace_log_warning(); }
-inline tracer trace_log_error() { return ::get_task()->trace_log_error(); }
-inline tracer trace_log_fatal() { return ::get_task()->trace_log_fatal(); }
 
 
 

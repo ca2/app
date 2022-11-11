@@ -10,11 +10,11 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
-BOOL                InitInstance(::object * pobject, HINSTANCE, int);
+BOOL                InitInstance(::particle * pparticle, HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, ::u32, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, ::u32, WPARAM, LPARAM);
 
-int my_main(::object * pobject)
+int my_main(::particle * pparticle)
 {
 
    HINSTANCE hInstance = Sys(papp).m_hinstance;
@@ -86,7 +86,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //        In this function, we save the instance handle in a global variable and
 //        create and display the main program window.
 //
-BOOL InitInstance(::object * pobject, HINSTANCE hInstance, int nCmdShow)
+BOOL InitInstance(::particle * pparticle, HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // Store instance handle in our global variable
 

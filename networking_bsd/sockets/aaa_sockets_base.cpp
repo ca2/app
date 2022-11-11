@@ -22,12 +22,12 @@ namespace networking_bsd
    }
 
 
-   void sockets_base::initialize(::object * pobject)
+   void sockets_base::initialize(::particle * pparticle)
    {
 
-      //auto estatus = object::initialize(pobject);
+      //auto estatus = object::initialize(pparticle);
 
-      object::initialize(pobject);
+      object::initialize(pparticle);
 
       //if (!estatus)
       //{

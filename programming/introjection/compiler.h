@@ -52,9 +52,9 @@ namespace introjection
       ::file::path                              m_strTime;
 
 
-      ::mutex                                     m_mutex;
+      ::pointer < ::mutex >                                     m_pmutex;
 
-      ::mutex                                     m_mutexLibrary;
+      ::pointer < ::mutex >                                     m_pmutexLibrary;
 
       string_map < ::pointer<library >>               m_lib;
 
@@ -62,7 +62,7 @@ namespace introjection
       compiler();
       ~compiler() override;
 
-      virtual void initialize_introjection_compiler(::object * pobject, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName);
+      virtual void initialize_introjection_compiler(::particle * pparticle, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName);
 
       //void initialize_compiler();
       //void prepare1(const ::string & lpcszSource, const ::string & lpcszDest);

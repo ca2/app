@@ -1,8 +1,9 @@
 #include "framework.h"
 #include "bitmap.h"
 #include "graphics.h"
-#include "aura/graphics/image/pixmap.h"
+#include "acme/exception/interface_only.h"
 #include "acme/primitive/primitive/memory.h"
+#include "aura/graphics/image/pixmap.h"
 
 
 namespace draw2d
@@ -192,14 +193,14 @@ namespace draw2d
    }
 
 
-   void ::draw2d::bitmap::dump(dump_context & dumpcontext) const
-   {
-
-      __UNREFERENCED_PARAMETER(dumpcontext);
-
-      throw ::interface_only();
-
-   }
+//   void ::draw2d::bitmap::dump(dump_context & dumpcontext) const
+//   {
+//
+//      __UNREFERENCED_PARAMETER(dumpcontext);
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    //const ::size_i32 & size bitmap::SetBitmapDimension(i32 nWidth,i32 nHeight)

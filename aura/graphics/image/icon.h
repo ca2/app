@@ -2,6 +2,7 @@
 
 
 #include "aura/graphics/image/source.h"
+#include "acme/primitive/collection/int_map.h"
 
 
 using hicon = void *;
@@ -39,7 +40,7 @@ namespace draw2d
       ~icon() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       virtual void initialize_with_windowing_icon(::windowing::icon * picon);

@@ -3,6 +3,28 @@
 
 
 template < typename FILE >
+inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth::time & z)
+{
+
+   s >> z.m_i;
+
+   return s;
+
+}
+
+
+template < typename FILE >
+inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::earth::time & z)
+{
+
+   s << z.m_i;
+
+   return s;
+
+}
+
+
+template < typename FILE >
 inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, const ::earth::time_shift & timeshift)
 {
 
@@ -72,6 +94,7 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::
    return s;
 
 }
+
 
 
 

@@ -1,9 +1,18 @@
 ﻿#include "framework.h"
 #include "frame_window.h"
+#include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/constant/id.h"
 #include "acme/parallelization/pool.h"
+#include "acme/platform/system.h"
 #include "apex/database/_binary_stream.h"
+#include "apex/database/change_event.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/application_menu.h"
+#include "apex/platform/create.h"
+#include "apex/platform/node.h"
+#include "apex/platform/savings.h"
+#include "apex/platform/system.h"
 #include "aqua/xml/document.h"
 #include "aura/user/user/window_util.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -119,12 +128,12 @@ simple_frame_window::~simple_frame_window()
 }
 
 
-void simple_frame_window::initialize(::object * pobject)
+void simple_frame_window::initialize(::particle * pparticle)
 {
 
    //auto estatus = 
 
-   ::experience::frame_window::initialize(pobject);
+   ::experience::frame_window::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -146,7 +155,7 @@ void simple_frame_window::initialize(::object * pobject)
 }
 
 
-::user::enum_translucency simple_frame_window::get_translucency(::user::style * pstyle) const
+::user::enum_translucency simple_frame_window::get_translucency(::user::style * pstyle)
 {
 
    if (m_etranslucencyFrame != ::user::e_translucency_undefined)
@@ -185,21 +194,21 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_display_change, pchannel, this, &simple_frame_window::on_message_display_change);
    MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_frame_window::on_message_show_window);
    MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &simple_frame_window::_001OnMouseActivate);
-   MESSAGE_LINK(e_message_non_client_hittest, pchannel, this, &simple_frame_window::_001OnNcHitTest);
+   MESSAGE_LINK(e_message_non_client_hit_test, pchannel, this, &simple_frame_window::_001OnNcHitTest);
 
    MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_frame_window::_001OnKey);
    MESSAGE_LINK(e_message_sys_key_down, pchannel, this, &simple_frame_window::_001OnKey);
    MESSAGE_LINK(e_message_key_up, pchannel, this, &simple_frame_window::_001OnKey);
    MESSAGE_LINK(e_message_sys_key_up, pchannel, this, &simple_frame_window::_001OnKey);
 
-   add_command_prober("transparent_frame", this, &simple_frame_window::_001OnUpdateToggleTransparentFrame);
-   add_command_handler("transparent_frame", this, &simple_frame_window::_001OnToggleTransparentFrame);
+   add_command_prober("transparent_frame", { this,  &simple_frame_window::_001OnUpdateToggleTransparentFrame });
+   add_command_handler("transparent_frame", { this,  &simple_frame_window::_001OnToggleTransparentFrame });
 
-   add_command_prober("view_full_screen", this, &simple_frame_window::_001OnUpdateImpactFullScreen);
-   add_command_handler("view_full_screen", this, &simple_frame_window::_001OnImpactFullScreen);
+   add_command_prober("view_full_screen", { this,  &simple_frame_window::_001OnUpdateImpactFullScreen });
+   add_command_handler("view_full_screen", { this,  &simple_frame_window::_001OnImpactFullScreen });
 
-   add_command_handler("notify_icon_topic", this, &simple_frame_window::_001OnNotifyIconTopic);
-   add_command_handler("app_exit", this, &simple_frame_window::on_message_app_exit);
+   add_command_handler("notify_icon_topic", { this,  &simple_frame_window::_001OnNotifyIconTopic });
+   add_command_handler("app_exit", { this,  &simple_frame_window::on_message_app_exit });
 
 #ifdef WINDOWS_DESKTOP
 
@@ -333,7 +342,7 @@ void simple_frame_window::task_intensive_save_window_placement()
 void simple_frame_window::defer_save_window_placement()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if (!should_save_window_rect())
    {
@@ -478,20 +487,20 @@ bool simple_frame_window::_001OnBeforeAppearance()
 }
 
 
-void simple_frame_window::assert_ok() const
-{
-
-   ::user::frame_window::assert_ok();
-
-}
-
-
-void simple_frame_window::dump(dump_context & dumpcontext) const
-{
-
-   ::user::frame_window::dump(dumpcontext);
-
-}
+//void simple_frame_window::assert_ok() const
+//{
+//
+//   ::user::frame_window::assert_ok();
+//
+//}
+//
+//
+//void simple_frame_window::dump(dump_context & dumpcontext) const
+//{
+//
+//   ::user::frame_window::dump(dumpcontext);
+//
+//}
 
 
 ::pointer<::user::interaction>simple_frame_window::WindowDataGetWnd()
@@ -518,12 +527,12 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       try
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node();
 
@@ -734,7 +743,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
          }
 
-         //if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+         //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
          //{
 
          //   m_bWindowFrame = false;
@@ -747,7 +756,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
    //else
    //{
 
-   //   m_bWindowFrame = m_psystem->m_papexsystem->m_bExperienceMainFrame;
+   //   m_bWindowFrame = acmesystem()->m_papexsystem->m_bExperienceMainFrame;
 
    //}
 
@@ -808,7 +817,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
-   //if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+   //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
    //{
 
    //   m_bWindowFrame = false;
@@ -830,7 +839,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
             auto pcontext = get_context();
 
-            m_varFrame = pcontext->m_papexcontext->file().safe_get_network_payload(pathFrameJson);
+            m_varFrame = pcontext->m_papexcontext->file()->safe_get_network_payload(pathFrameJson);
 
          }
 
@@ -971,7 +980,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
       if (m_bDefaultNotifyIcon)
       {
 
-         //auto psystem = m_psystem->m_papexsystem;
+         //auto psystem = acmesystem()->m_papexsystem;
 
          //auto estatus = 
 
@@ -1677,7 +1686,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       auto papp = get_app();
 
-      if (::str().ends_eat_ci(strImpact, "::frame"))
+      if (strImpact.ends_eat_ci("::frame"))
       {
 
          papp->datastream()->set("frame::" + strImpact + ".visible", bShow);
@@ -1730,7 +1739,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 #ifdef LINUX
       //if(is_window_visible())
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto pnode = psystem->node();
 
@@ -2213,7 +2222,7 @@ void simple_frame_window::on_frame_position()
 //bool simple_frame_window::_001FancyInitialFramePlacement(bool bForceRestore)
 //{
 //
-//   //if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+//   //if (acmesystem()->m_papexsystem->m_bPreferNoFrameWindow)
 //   //{
 //
 //   //   set_need_layout();
@@ -2383,7 +2392,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pprimitiveimpl->m_puserinteraction == nullptr)
       {
@@ -2608,7 +2617,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       //printf("simplefrmwnd : " + __type_name(this) + " : blur_background");
 
-      //auto psystem = m_psystem->m_pbasesystem;
+      //auto psystem = acmesystem()->m_pbasesystem;
 
 //      class imaging & imaging = psystem->imaging();
 
@@ -3380,7 +3389,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   uia = m_uiptraChild;
 
@@ -3401,7 +3410,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
             for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
             {
 
-               auto pcontrolbox = pinteraction->cast < ::experience::control_box >();
+               ::pointer < ::experience::control_box > pcontrolbox = pinteraction;
 
                if (!pcontrolbox)
                {
@@ -3868,12 +3877,13 @@ class ::mini_dock_frame_window * simple_frame_window::CreateFloatingFrame(u32 uS
 //}
 
 
-bool simple_frame_window::keyboard_focus_is_focusable() const
+bool simple_frame_window::keyboard_focus_is_focusable()
 {
 
    return false;
 
 }
+
 
 bool simple_frame_window::create_bars()
 {
@@ -4187,7 +4197,7 @@ void simple_frame_window::call_notification_area_action(const ::string & pszId)
 
    ::atom atom(pszId);
 
-   post_procedure([this, atom]()
+   interaction_post([this, atom]()
       {
 
          handle_command(atom);

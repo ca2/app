@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/gpu/gpu/context.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 namespace opengl

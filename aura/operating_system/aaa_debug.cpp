@@ -3,8 +3,8 @@
 
 CLASS_DECL_AURA void __simple_tracev(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 CLASS_DECL_AURA void __simple_tracea(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz);
-CLASS_DECL_AURA void __simple_tracev(matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
-CLASS_DECL_AURA void __simple_tracea(matter * pobject, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz);
+CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz);
 
 
 
@@ -61,23 +61,23 @@ void simple_debug_print(const char * psz)
 
 
 
-CLASS_DECL_AURA void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+CLASS_DECL_AURA void __tracea(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
 {
 
    if (::is_null(::get_context_system()))
    {
 
-      __simple_tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+      __simple_tracea(pparticle, elevel, pszFunction, pszFile, iLine, psz);
 
       return;
 
    }
 
-   ::aura::get_system()->__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+   ::aura::get_system()->__tracea(pparticle, elevel, pszFunction, pszFile, iLine, psz);
 
 }
 
-CLASS_DECL_AURA void __tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
+CLASS_DECL_AURA void __tracef(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
 {
 
    va_list list;
@@ -87,7 +87,7 @@ CLASS_DECL_AURA void __tracef(::matter * pobject, enum_trace_level elevel, const
    try
    {
 
-      __tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, list);
+      __tracev(pparticle, elevel, pszFunction, pszFile, iLine, pszFormat, list);
 
    }
    catch (...)
@@ -100,19 +100,19 @@ CLASS_DECL_AURA void __tracef(::matter * pobject, enum_trace_level elevel, const
 }
 
 
-CLASS_DECL_AURA void __tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
+CLASS_DECL_AURA void __tracev(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
 {
 
    if (::is_null(::get_context_system()))
    {
 
-      __simple_tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
+      __simple_tracev(pparticle, elevel, pszFunction, pszFile, iLine, pszFormat, args);
 
       return;
 
    }
 
-   ::aura::get_system()->__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
+   ::aura::get_system()->__tracev(pparticle, elevel, pszFunction, pszFile, iLine, pszFormat, args);
 
 }
 

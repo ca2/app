@@ -14,7 +14,7 @@ namespace aura
 
 
       void m_estatus;
-      ::pointer<::aura::system>m_psystem;
+      ::pointer<::aura::system>acmesystem();
 
 
       void create_system()
@@ -22,9 +22,9 @@ namespace aura
 
          aura_ref();
 
-         m_psystem = ::move_transfer(platform_create_system(::GetModuleHandle(NULL)));
+         acmesystem() = ::move_transfer(platform_create_system(::GetModuleHandle(NULL)));
 
-         m_psystem->console_initialize();
+         acmesystem()->console_initialize();
 
       }
 
@@ -34,7 +34,7 @@ namespace aura
 
          create_system();
 
-         application_common(m_psystem);
+         application_common(acmesystem());
 
       }
 
@@ -44,7 +44,7 @@ namespace aura
 
          common_construct();
 
-         m_psystem->system_construct(argc, argv);
+         acmesystem()->system_construct(argc, argv);
 
          init();
 
@@ -56,7 +56,7 @@ namespace aura
 
          common_construct();
 
-         m_psystem->system_construct(argc, argv);
+         acmesystem()->system_construct(argc, argv);
 
          init();
 
@@ -66,7 +66,7 @@ namespace aura
       void init()
       {
 
-         m_estatus = (void) m_psystem->inline_init();
+         m_estatus = (void) acmesystem()->inline_init();
 
       }
 
@@ -78,9 +78,9 @@ namespace aura
 
          ::i32 iErrorStatus = m_estatus.error_status();
 
-         m_psystem->inline_term();
+         acmesystem()->inline_term();
 
-         m_psystem.release();
+         acmesystem().release();
 
          return iErrorStatus;
 
@@ -90,7 +90,7 @@ namespace aura
       ~console()
       {
 
-         if (m_psystem)
+         if (acmesystem())
          {
 
             result();

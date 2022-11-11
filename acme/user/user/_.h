@@ -12,6 +12,8 @@
 
 class item;
 
+struct os_theme_colors;
+
 
 namespace user
 {
@@ -40,8 +42,8 @@ namespace windowing
 //#include "mouse.h"
 
 
-#include "os_colors.h"
-#include "theme_colors.h"
+//#include "os_colors.h"
+//#include "theme_colors.h"
 
 //#include "drag.h"
 

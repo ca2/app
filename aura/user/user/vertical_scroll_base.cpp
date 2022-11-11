@@ -1,12 +1,11 @@
 ﻿// From scroll.cpp by camilo on 2022-08-27 12:46 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-//#include "acme/operating_system.h"
-
-//#include "acme/operating_system/_user.h"
-#include "aura/graphics/draw2d/graphics.h"
 #include "scroll_data.h"
 #include "vertical_scroll_base.h"
 #include "scroll_bar.h"
+#include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 
 
@@ -215,7 +214,7 @@ namespace user
    void vertical_scroll_base::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pscrollbarVertical.is_set())
       {

@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/filesystem/filesystem/path.h"
+
+
 class CLASS_DECL_APEX dir_system :
    virtual public ::object
 {
@@ -26,11 +30,14 @@ public:
    bool                          m_bMatterFromResource;
 
 
+   ::file::path                  m_pathUpload;
+
+
    dir_system();
    ~dir_system() override;
 
 
-   virtual void initialize(::object * pobject) override;
+   virtual void initialize(::particle * pparticle) override;
 
    virtual void init_system();
 

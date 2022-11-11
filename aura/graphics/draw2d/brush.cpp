@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "graphics.h"
 #include "brush.h"
+#include "acme/exception/interface_only.h"
 #include "aura/graphics/image/image.h"
 
 
@@ -57,14 +58,14 @@ namespace draw2d
    }
 
 
-   void brush::dump(dump_context & dumpcontext) const
-   {
-
-      __UNREFERENCED_PARAMETER(dumpcontext);
-
-      throw ::interface_only();
-
-   }
+//   void brush::dump(dump_context & dumpcontext) const
+//   {
+//
+//      __UNREFERENCED_PARAMETER(dumpcontext);
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    bool brush::create_null()

@@ -209,13 +209,13 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 
 //#define APP_PRELUDE_LEVEL(prefix) \
 //extern "C" \
-//::application * prefix##_get_new_app(::object * pobject); \
+//::application * prefix##_get_new_app(::particle * pparticle); \
 //prelude apexprelude(&prefix##_get_new_app);
 //
 //
 //#define LIBRARY_PRELUDE(prefix) \
 //extern "C" \
-//::acme::library * prefix##_get_new_library(::object * pobject); \
+//::acme::library * prefix##_get_new_library(::particle * pparticle); \
 //prelude apexprelude(&prefix##_get_new_library);
 
 

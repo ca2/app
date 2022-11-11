@@ -1,14 +1,16 @@
-#include "framework.h"
-#include "aura/graphics/image/list.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
-#include "folder_list.h"
+﻿#include "framework.h"
+#include "data.h"
 #include "document.h"
+#include "folder_list.h"
+#include "acme/constant/message.h"
+#include "acme/filesystem/file/item.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/context.h"
+#include "aura/graphics/image/list.h"
+#include "aura/message/user.h"
 #include "core/user/user/list_column.h"
 #include "core/user/user/list_column_array.h"
-#include "data.h"
-#include "aura/message/user.h"
 #include "core/user/user/mesh_item.h"
 
 
@@ -43,20 +45,20 @@ namespace filemanager
    }
 
 
-   void folder_list::assert_ok() const
-   {
-
-      ::user::impact::assert_ok();
-
-   }
-
-
-   void folder_list::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::impact::dump(dumpcontext);
-
-   }
+//   void folder_list::assert_ok() const
+//   {
+//
+//      ::user::impact::assert_ok();
+//
+//   }
+//
+//
+//   void folder_list::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::impact::dump(dumpcontext);
+//
+//   }
 
 
 
@@ -83,6 +85,7 @@ namespace filemanager
       }
 
    }
+
 
    void folder_list::_001OnCancelMode(::message::message * pmessage)
    {
@@ -145,7 +148,7 @@ namespace filemanager
 
       listing.set_listing(strParent);
 
-      pcontext->m_papexcontext->dir().enumerate(listing);
+      pcontext->m_papexcontext->dir()->enumerate(listing);
 
       for (i32 i = 0; i < listing.get_count(); i++)
       {

@@ -3,6 +3,7 @@
 
 #include "aura/filesystem/filemanager/item_action.h"
 #include "aura/platform/context.h"
+#include "aqua/platform/session.h"
 
 
 namespace aura
@@ -36,7 +37,7 @@ namespace aura
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;
 
-      id_map < ::user::interaction * >                      m_mapboundui;
+      atom_map < ::user::interaction * >                      m_mapboundui;
 
       ::pointer<::write_text::font_list>                     m_pfontlistSingleColumn;
       ::pointer<::user::user>                            m_puser;
@@ -49,7 +50,7 @@ namespace aura
       ~session() override;
 
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
 
 #if defined(WINDOWS)
@@ -68,12 +69,12 @@ namespace aura
 
 #endif
 
-      inline ::aura::system* get_system() const;
+      inline ::aura::system* get_system();
 
       //virtual void finish(::property_object * pcontextobjectFinish = nullptr) override;
       void destroy() override;
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       //void _on_initialize_window_object() override;
@@ -82,7 +83,7 @@ namespace aura
 
       virtual bool is_session() const override;
 
-      //void construct(::object * pobject, int iPhase) override;
+      //void construct(::particle * pparticle, int iPhase) override;
 
       virtual void process_init() override;
 
@@ -114,7 +115,7 @@ namespace aura
 
 
       //virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2);
-      //virtual string dir().matter(const ::string & pszMatter, const ::string & pszMatter2);
+      //virtual string dir()->matter(const ::string & pszMatter, const ::string & pszMatter2);
 
       //virtual bool is_inside_time_dir(const ::string & pszPath);
       //virtual bool file_is_read_only(const ::string & pszPath);
@@ -153,7 +154,7 @@ namespace aura
       virtual string get_locale_schema_dir() override;
 
 
-      //virtual void     initialize(::object * pobject) override;
+      //virtual void     initialize(::particle * pparticle) override;
 
 
       //virtual ::user::interaction * get_session_window() override;
@@ -191,7 +192,7 @@ namespace aura
 
       virtual bool open_by_file_extension(::create * pcc) override;
 
-      //::pointer<::aura::application>get_new_application(::object * pobject, const ::string & pszAppId);
+      //::pointer<::aura::application>get_new_application(::particle * pparticle, const ::string & pszAppId);
 
       inline ::apex::savings &                  savings()      { return *m_psavings; }
 
@@ -276,7 +277,7 @@ namespace aura
 
 
 
-      //virtual void initialize(::object * pobject) override;
+      //virtual void initialize(::particle * pparticle) override;
 
       virtual void install_message_routing(::channel* pchannel) override;
 
@@ -329,7 +330,7 @@ namespace aura
 
       //virtual void will_use_impact_hint(::atom idImpact);
 
-      //virtual void on_app_request_bergedge_callback(::object * pobject);
+      //virtual void on_app_request_bergedge_callback(::particle * pparticle);
 
       virtual ::write_text::font_list* get_single_column_font_list();
 

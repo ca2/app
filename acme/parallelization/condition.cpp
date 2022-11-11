@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "acme/operating_system.h"
+#include "condition.h"
+#include "acme/exception/exception.h"
+#include "acme/_operating_system.h"
 
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
@@ -17,7 +19,7 @@ condition::condition()
 
 #elif defined(ANDROID)
 
-   pthread_mutex_init(&m_mutex, nullptr);
+   pthread_mutex_init(m_pmutex, nullptr);
 
    pthread_cond_init(&m_cond, nullptr);
 
@@ -77,19 +79,19 @@ bool condition::SetEvent()
 
 #elif defined(ANDROID)
 
-   pthread_mutex_lock(&m_mutex);
+   pthread_mutex_lock(m_pmutex);
 
    if (!m_bSignaled)
    {
       m_bSignaled = true;
 
-      pthread_mutex_unlock(&m_mutex);
+      pthread_mutex_unlock(m_pmutex);
 
       pthread_cond_signal(&m_cond);
    }
    else
    {
-      pthread_mutex_unlock(&m_mutex);
+      pthread_mutex_unlock(m_pmutex);
    }
 
    return true;
@@ -117,17 +119,17 @@ bool condition::pulse()
 
 #elif defined(ANDROID)
 
-   pthread_mutex_lock(&m_mutex);
+   pthread_mutex_lock(m_pmutex);
 
    if (m_iHold > 0)
    {
       m_bSignaled = true;
 
-      pthread_mutex_unlock(&m_mutex);
+      pthread_mutex_unlock(m_pmutex);
 
       pthread_cond_signal(&m_cond);
 
-      pthread_mutex_lock(&m_mutex);
+      pthread_mutex_lock(m_pmutex);
 
       while (m_iHold > 0)
       {
@@ -138,11 +140,11 @@ bool condition::pulse()
 
       m_bSignaled = false;
 
-      pthread_mutex_unlock(&m_mutex);
+      pthread_mutex_unlock(m_pmutex);
    }
    else
    {
-      pthread_mutex_unlock(&m_mutex);
+      pthread_mutex_unlock(m_pmutex);
    }
 
    return true;
@@ -174,22 +176,22 @@ bool condition::pulse()
 
 #elif defined(ANDROID)
 
-   pthread_mutex_lock(&m_mutex);
+   pthread_mutex_lock(m_pmutex);
 
    m_iHold++;
 
    while (!m_bSignaled)
    {
-      pthread_cond_wait(&m_cond, &m_mutex);
+      pthread_cond_wait(&m_cond, m_pmutex);
    }
 
-   pthread_mutex_unlock(&m_mutex);
+   pthread_mutex_unlock(m_pmutex);
 
-   pthread_mutex_lock(&m_mutex);
+   pthread_mutex_lock(m_pmutex);
 
    m_iHold--;
 
-   pthread_mutex_unlock(&m_mutex);
+   pthread_mutex_unlock(m_pmutex);
 
 #else
 
@@ -238,7 +240,7 @@ bool condition::pulse()
 
       }
 
-      auto estatus = last_error_to_status(dwLastError);
+      auto estatus = ::windows::last_error_status(dwLastError);
 
       return error_failed;
 
@@ -250,7 +252,7 @@ bool condition::pulse()
 
    u32 timeout = wait;
 
-   pthread_mutex_lock(&m_mutex);
+   pthread_mutex_lock(m_pmutex);
 
    m_iHold++;
 
@@ -261,7 +263,7 @@ bool condition::pulse()
    while (!m_bSignaled)
    {
 
-      pthread_cond_wait(&m_cond, &m_mutex);
+      pthread_cond_wait(&m_cond, m_pmutex);
 
       if (start.elapsed() > wait)
       {
@@ -276,7 +278,7 @@ bool condition::pulse()
 
    m_iHold--;
 
-   pthread_mutex_unlock(&m_mutex);
+   pthread_mutex_unlock(m_pmutex);
 
    //return e_synchronization_result_signaled_base;
    return true;
@@ -446,13 +448,13 @@ bool condition::ResetEvent()
 {
 #ifdef ANDROID
 
-   pthread_mutex_lock(&m_mutex);
+   pthread_mutex_lock(m_pmutex);
 
    m_iHold = 0;
 
    m_bSignaled = false;
 
-   pthread_mutex_unlock(&m_mutex);
+   pthread_mutex_unlock(m_pmutex);
 
    pthread_cond_signal(&m_cond);
 

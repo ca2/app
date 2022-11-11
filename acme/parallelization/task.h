@@ -1,6 +1,15 @@
 #pragma once
 
 
+#include "acme/operating_system/error_code.h"
+#include "acme/primitive/primitive/_u32hash.h"
+#include "acme/primitive/primitive/function.h"
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/collection/procedure_array.h"
+#include "acme/platform/implementable.h"
+
+
+
 typedef pointer_array < ::matter > object_array;
 typedef map < itask_t, ::pointer<task >>task_map;
 typedef map < task *, itask_t > task_id_map;
@@ -8,7 +17,7 @@ typedef map < task *, itask_t > task_id_map;
 
 class CLASS_DECL_ACME task :
    virtual public object,
-   virtual public synchronization_object,
+   //virtual public synchronization_object,
    virtual public acme::implementable
 {
 public:
@@ -43,14 +52,14 @@ public:
    string                                          m_strTaskName;
    string                                          m_strTaskTag;
 
-   ::element_array                                 m_elementaHold;
+   ::particle_array                                 m_particleaHold;
    ::pointer<manual_reset_event>                  m_peventInitialization;
 
    ::procedure                                     m_procedure;
    ::pointer<manual_reset_event>                  m_pevSleep;
 
 #ifdef WINDOWS
-   HRESULT                                         m_hresultCoInitialize;
+   error_code                                      m_errorcodeHresultCoInitialize;
 #endif
 
 #ifdef __DEBUG
@@ -66,10 +75,14 @@ public:
    ~task() override;
 
 
-   void on_initialize_object() override;
+   void on_initialize_particle() override;
 
    
    virtual void on_pre_run_task();
+
+
+   virtual bool on_init_task();
+   virtual void on_term_task();
 
 
    string get_tag() const override;
@@ -104,7 +117,7 @@ public:
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);
 
-   void post_procedure(const ::procedure & procedure) override;
+   virtual void post_procedure(const ::procedure & procedure);
    
 
    virtual void run_posted_procedures();
@@ -125,20 +138,10 @@ public:
 
    virtual bool has_message() const;
 
+   ::pointer<::task>branch(const create_task_attributes & createtaskattributes = nullptr) override;
 
-   
+   ::pointer<::task>branch_synchronously(const create_task_attributes & createtaskattributes = nullptr) override;
 
-   ::pointer<::task>branch(
-      ::enum_priority epriority = ::e_priority_normal,
-      ::u32 nStackSize = 0,
-      u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
-
-   ::pointer<::task>branch_synchronously(
-      ::enum_priority epriority = ::e_priority_normal,
-      ::u32 nStackSize = 0,
-      u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
-
-   
    virtual bool task_sleep(const class ::wait & wait);
 
    //template < typename METHOD >
@@ -207,7 +210,6 @@ public:
 
    bool is_branch_current() const override;
 
-
 };
 
 
@@ -216,3 +218,108 @@ using task_array = pointer_array < task >;
 
 
 
+
+
+inline ::payload & task_property(const ::atom & atom) { return ::get_task()->payload(atom); }
+
+
+
+
+//
+//class CLASS_DECL_ACME thread_local_particle :
+//   virtual public ::particle
+//{
+//public:
+//
+//
+//   thread_local_particle * m_pthreadlocalparticleNext;
+//
+//
+//   thread_local_particle();
+//   ~thread_local_particle() override;
+//
+//
+//};
+//
+//
+//template < typename TYPE >
+//class thread_local_pointer :
+//   public ::thread_local_particle,
+//   public pointer <TYPE >
+//{
+//public:
+//
+//
+//   using pointer < TYPE >::pointer;
+//
+//
+//   using pointer < TYPE >::operator = ;
+//
+//
+//};
+
+
+
+class task_guard
+{
+public:
+
+
+   //static thread_local thread_local_particle * t_pthreadlocalparticleList;
+
+
+   task_guard();
+
+   ~task_guard();
+
+
+};
+
+
+
+typedef string GET_TASK_NAME(::task * ptask);
+using LPFN_GET_TASK_NAME = GET_TASK_NAME *;
+
+
+CLASS_DECL_ACME string get_task_name(htask_t htask);
+
+CLASS_DECL_ACME void set_get_task_name(LPFN_GET_TASK_NAME);
+
+CLASS_DECL_ACME void task_set_name(const char * psz);
+CLASS_DECL_ACME void task_set_name(htask_t htask, const char * pszName);
+
+
+CLASS_DECL_ACME string task_get_name();
+CLASS_DECL_ACME string task_get_name(htask_t htask);
+
+
+CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
+
+
+CLASS_DECL_ACME::task * get_task();
+
+//CLASS_DECL_ACME::task* get_task();
+CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+
+CLASS_DECL_ACME string get_task_name(::task * ptask);
+
+
+
+//template <  >
+//inline u32hash u32_hash(const itask_t key)
+//{
+//
+//   return { (::u32) key };
+//
+//}
+
+
+
+template<typename THREAD_POINTER>
+class ___task_pool;
+
+
+using task_pointer = ::pointer<::task>;
+
+
+class task_pool;

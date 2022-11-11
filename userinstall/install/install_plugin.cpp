@@ -56,12 +56,12 @@ namespace install
 
 #endif
 
-      if(m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
+      if(acmefile()->exists(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / "config\\plugin\\version.txt"))
-         strVersion = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+         strVersion = acmefile()->as_string(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -72,17 +72,17 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
    }
 
 
-   plugin::plugin(::object * pobject) :
-      ::object(pobject),
-      ::simple_ui::style(pobject),
-      ::aura::session(pobject),
-      ::axis::session(pobject),
-      hotplugin::plugin(pobject),
-      ::aura::ipc::base(pobject),
-      ::aura::ipc::tx(pobject),
-      ::aura::ipc::ipc(pobject),
-      m_canvas(pobject),
-      m_startca2(pobject)
+   plugin::plugin(::particle * pparticle) :
+      ::object(pparticle),
+      ::simple_ui::style(pparticle),
+      ::aura::session(pparticle),
+      ::axis::session(pparticle),
+      hotplugin::plugin(pparticle),
+      ::aura::ipc::base(pparticle),
+      ::aura::ipc::tx(pparticle),
+      ::aura::ipc::ipc(pparticle),
+      m_canvas(pparticle),
+      m_startca2(pparticle)
    {
 
       m_bCa2Login             = false;
@@ -312,7 +312,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
                   m_phost->m_strBitmapChannel = str;
 
-                  ::hotplugin::container_launcher launcher(process_platform_dir_name2(), str);
+                  ::hotplugin::container_launcher launcher(process_platform_name(), str);
 
                   launcher.m_iStart = 1; // only one attempt to start, as we repeatealy and accordingly make this process of
                   // reopening channel as needed. Repetdely trying to open channel using default m_iStart = 11, make
@@ -383,9 +383,9 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
    }
 
-   plugin::thread_start_ca2::thread_start_ca2(::object * pobject) :
-      ::object(pobject),
-      thread(pobject)
+   plugin::thread_start_ca2::thread_start_ca2(::particle * pparticle) :
+      ::object(pparticle),
+      thread(pparticle)
    {
 
 //      m_durationRunLock = ::duration(84 + 77);
@@ -421,7 +421,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
       set.parse_network_arguments(m_straLinesNativeLaunch[1]);
 
-      string strPath = ::path::acme::application(process_platform_dir_name2());
+      string strPath = ::path::acme::application(process_platform_name());
 
       string strCommandLine;
 
@@ -782,7 +782,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
          // erase install tag : should be turned into a function dependant of spalib at maximum
 
-         if(!node.load(m_psystem->m_pacmefile->as_string(dir::appdata() / "install.xml")))
+         if(!node.load(acmefile()->as_string(dir::appdata() / "install.xml")))
             goto run_install;
 
 
@@ -818,7 +818,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
          lpnodeType->erase_child(pnode);
 
-         m_psystem->m_pacmefile->put_contents(dir::appdata() / "install.xml", node.get_xml(nullptr));
+         acmefile()->put_contents(dir::appdata() / "install.xml", node.get_xml(nullptr));
 
       }
 
@@ -1183,7 +1183,7 @@ run_install:
 
       ::u32 dwRead;
 
-      HANDLE hfile = ::create_file(::path::install_log(process_platform_dir_name2()), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+      HANDLE hfile = ::create_file(::path::install_log(process_platform_name()), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 
       double dRate = 0.0;
 
@@ -1222,7 +1222,7 @@ run_install:
                bFirst = false;
                iSkip = 0;
                strLine.trim();
-               if(::str().begins_eat(strLine, "#----------"))
+               if(strLine.begins_eat("#----------"))
                {
                   m_strStatus = "Thank you";
                   bStatus = true;
@@ -1231,17 +1231,17 @@ run_install:
                   dRate = 0.0;
                   bRate = true;
                }
-               else if(!bRate && ::str().begins_eat(strLine, "|||"))
+               else if(!bRate && strLine.begins_eat("|||"))
                {
                   bRate = true;
                   dRate = ((double) ansi_to_i32(strLine)) / (1000.0 * 1000.0 * 1000.0 );
                }
-               else if (!bStatus2 && ::str().begins_eat(strLine, "***"))
+               else if (!bStatus2 && strLine.begins_eat("***"))
                {
                   bStatus2 = true;
                   m_strStatus2 = strLine;
                }
-               else if (!bStatus && ::str().begins_eat(strLine, ":::"))
+               else if (!bStatus && strLine.begins_eat(":::"))
                {
                   bStatus = true;
                   m_strStatus = strLine;
@@ -1438,7 +1438,7 @@ retry_get_prompt:
 
          string strPrompt(strData);
 
-         if(::str().begins_eat_ci(strPrompt,"ca2prompt"))
+         if(strPrompt.begins_eat_ci("ca2prompt"))
          {
 
             strPrompt.trim();
@@ -1446,7 +1446,7 @@ retry_get_prompt:
             strApp = purl->get_script(strPrompt);
 
          }
-         else if(::str().begins_eat_ci(strPrompt,"native_desktop_launcher"))
+         else if(strPrompt.begins_eat_ci("native_desktop_launcher"))
          {
 
             strPrompt.trim();
@@ -1667,9 +1667,9 @@ restart:
 
 #if !defined(CUBE) && !defined(ANDROID)
 
-::hotplugin::plugin * new_hotplugin(::object * pobject)
+::hotplugin::plugin * new_hotplugin(::particle * pparticle)
 {
-   return memory_new ::install::plugin(pobject);
+   return memory_new ::install::plugin(pparticle);
 }
 
 #endif

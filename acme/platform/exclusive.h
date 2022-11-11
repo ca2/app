@@ -1,38 +1,42 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+
+
 namespace acme
 {
 
 
    class CLASS_DECL_ACME exclusive :
-      virtual public ::matter
+      virtual public ::particle
    {
    public:
 
 
       string                  m_strId;
 
-#ifdef WINDOWS
+// #ifdef WINDOWS
 
-      ::u32                   m_dwLastError;
-      bool                    m_bResourceException;
+//       ::u32                   m_dwLastError;
+//       bool                    m_bResourceException;
 
-#else
+// #else
 
-      int                     m_iFile;
-      int                     m_iLock;
+//       int                     m_iFile;
+//       int                     m_iLock;
 
-#endif
+// #endif
 
-      ::pointer<::mutex>     m_pmutex;
+      // ::pointer < ::mutex >     m_pmutex;
 
 
-      exclusive(::object * pobject, string str ARG_SEC_ATTRS_DEF);
+      //exclusive(::particle * pparticle, string str ARG_SEC_ATTRS_DEF);
+      exclusive();
       ~exclusive() override;
 
 
-      bool exclusive_fails() const;
+      virtual bool exclusive_fails() const;
 
 
    };

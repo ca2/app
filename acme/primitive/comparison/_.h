@@ -20,14 +20,9 @@ inline iptr CompareElements(ARG_KEY element1, ARG_KEY element2)
 }
 
 
-
 template <  >
-inline iptr CompareElements<string>(string element1, string  element2)
-{
+CLASS_DECL_ACME iptr CompareElements<const string & >(const string &  element1, const string &  element2);
 
-   return element1.compare(element2);
-
-}
 
 template <  >
 inline iptr CompareElements<void *>(void * element1, void *  element2)

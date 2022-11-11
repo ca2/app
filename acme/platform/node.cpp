@@ -2,17 +2,25 @@
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "framework.h"
+#include "node.h"
+#include "sequencer.h"
+#include "system.h"
 #include "acme/constant/id.h"
-#include "acme/platform/node.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/memory/counter.h"
+#include "acme/platform/exclusive.h"
 #include "acme/parallelization/install_mutex.h"
-#include "acme/user/nano/_nano.h"
 #include "acme/parallelization/asynchronous.h"
+#include "acme/exception/interface_only.h"
+#include "acme/primitive/collection/array.h"
+#include "acme/primitive/collection/string_array.h"
+#include "acme/user/nano/button.h"
+#include "acme/user/nano/message_box.h"
 
 
-CLASS_DECL_ACME void exception_message_box(::object* pobject, ::exception& exception, const ::string& strMoreDetails);
+CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& exception, const ::string& strMoreDetails);
 
 
 //CLASS_DECL_ACME void operating_system_open_url(const char* pszUrl);
@@ -111,7 +119,7 @@ namespace acme
    }
 
 
-   void node::call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+   void node::call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set, int * piExitCode)
    {
 
       throw ::interface_only();
@@ -121,10 +129,10 @@ namespace acme
    }
   
 
-   void node::initialize(::object * pobject)
+   void node::initialize(::particle * pparticle)
    {
 
-      /*auto estatus = */ ::object::initialize(pobject);
+      /*auto estatus = */ ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -140,7 +148,7 @@ namespace acme
    }
 
 
-   ::pointer<::element>node::create_quit_element(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
+   ::pointer < ::particle > node::create_quit_particle(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
    {
       
       return nullptr;
@@ -151,7 +159,7 @@ namespace acme
    void node::implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem)
    {
       
-      m_pelementQuit = create_quit_element(pnode, psystem);
+      m_pparticleQuit = create_quit_particle(pnode, psystem);
 
       if(psystem->m_pfnImplement)
       {
@@ -257,10 +265,10 @@ namespace acme
 
 
 
-   void node::on_initialize_object()
+   void node::on_initialize_particle()
    {
 
-      /*auto estatus = */ ::object::on_initialize_object();
+      /*auto estatus = */ ::object::on_initialize_particle();
 
       //if (!estatus)
       //{
@@ -269,7 +277,7 @@ namespace acme
 
       //}
 
-      m_psystem->m_pacmenode = this;
+      m_pcontext->m_pacmenode = this;
 
       //return estatus;
 
@@ -279,7 +287,7 @@ namespace acme
    void node::initialize_memory_counter()
    {
 
-      ::initialize_memory_counter(this);
+      //::initialize_memory_counter(this);
 
    }
 
@@ -287,7 +295,7 @@ namespace acme
    void node::system_main()
    {
 
-      /* auto estatus =*/ m_psystem->main();
+      /* auto estatus =*/ acmesystem()->main();
 
       //g_psystem->m_bIsReadyForUserInteraction = true;
       //if(!estatus)
@@ -323,7 +331,7 @@ namespace acme
 //   void node::implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> psystem)
 //   {
 //
-//      //      auto psystem = m_psystem;
+//      //      auto psystem = acmesystem();
 //      //
 //      //      auto estatus = psystem->main();
 //      //
@@ -428,6 +436,112 @@ namespace acme
    }
 
 
+   //__new(::pointer < ::mutex >(this, false, "Local\\ca2-appmatter")
+
+   ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::string & strName, security_attributes * psecurityattributes)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::pointer < ::mutex > node::create_global_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::string & strName, security_attributes * psecurityattributes)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::pointer < ::mutex > node::open_local_named_mutex(::particle * pparticleContext, const ::string & strName)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::pointer < ::mutex > node::open_global_named_mutex(::particle * pparticleContext, const ::string & strName)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::pointer < ::mutex > node::get_install_mutex(::particle *pparticleContext, const ::string &strPlatform, const ::string & strSuffix)
+   {
+
+      string strName = "::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix;
+
+      return open_global_named_mutex(pparticleContext, strName);
+
+   //__new(::install::pointer < ::mutex >(this, process_platform_name())
+
+   }
+
+
+   ::pointer < ::acme::exclusive > node::_get_exclusive(::particle * pparticleContext, const ::string & strName, security_attributes * psecurityattributes)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::pointer < ::acme::exclusive > node::get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes)
+   {
+
+      auto & pexclusive = m_mapExclusive[strName];
+
+      if (!pexclusive)
+      {
+
+         auto pexclusiveNew = _get_exclusive(pparticleContext, strName, psecurityattributes);
+
+         pexclusive = pexclusiveNew;
+
+      }
+
+      return pexclusive;
+
+   }
+
+
+   bool node::erase_exclusive(const ::string & strName)
+   {
+
+      return m_mapExclusive.erase_key(strName);
+
+   }
+
+
+   void node::release_exclusive()
+   {
+
+      m_mapExclusive.release();
+
+   }
+
+
+   bool node::exclusive_fails(::particle * pparticleContext, const ::string & strName, security_attributes * psecurityattributes)
+   {
+
+      auto pexclusive = get_exclusive(pparticleContext, strName, psecurityattributes);
+
+      if (!pexclusive)
+      {
+
+         return false;
+
+      }
+
+      return pexclusive->exclusive_fails();
+
+   }
+
+
    string node::app_id_to_app_name(const ::string & strAppId)
    {
 
@@ -473,7 +587,7 @@ namespace acme
 
       path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 
-      strBuild = m_psystem->m_pacmefile->as_string(path);
+      strBuild = acmefile()->as_string(path);
 
       return strBuild.has_char();
 
@@ -487,7 +601,7 @@ namespace acme
 
       path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 
-      m_psystem->m_pacmefile->put_contents(path, pszBuild);
+      acmefile()->put_contents(path, pszBuild);
 
    }
 
@@ -499,7 +613,7 @@ namespace acme
 
       strFolder.replace_with("", ":");
 
-      return m_psystem->m_pacmedirectory->ca2roaming() / "appdata" / strFolder / strAppId / pszPlatform / pszConfiguration / pszLocale / pszSchema;
+      return acmedirectory()->ca2roaming() / "appdata" / strFolder / strAppId / pszPlatform / pszConfiguration / pszLocale / pszSchema;
 
    }
 
@@ -509,7 +623,7 @@ namespace acme
 
       auto pathLastRun = get_last_run_application_path(strAppId);
 
-      if (pathLastRun.has_char() && m_psystem->m_pacmefile->exists(pathLastRun))
+      if (pathLastRun.has_char() && acmefile()->exists(pathLastRun))
       {
 
          return pathLastRun;
@@ -518,7 +632,7 @@ namespace acme
 
       ::file::path pathFolder;
 
-      pathFolder = m_psystem->m_pacmedirectory->stage(strAppId, pszPlatform, pszConfiguration);
+      pathFolder = acmedirectory()->stage(strAppId, pszPlatform, pszConfiguration);
 
       string strName;
 
@@ -561,7 +675,7 @@ namespace acme
 
       }
 
-      ::file::path pathFile = m_psystem->m_pacmedirectory->local() / "appdata" / strAppId / "last_run_path.txt";
+      ::file::path pathFile = acmedirectory()->local() / "appdata" / strAppId / "last_run_path.txt";
 
       const char * pszPathFile = pathFile;
 
@@ -577,11 +691,7 @@ namespace acme
 
       ::file::path pathFile = get_last_run_application_path_file(strAppId);
 
-      auto psystem = m_psystem;
-
-      auto pfile = psystem->m_pacmefile;
-
-      ::file::path path = pfile->as_string(pathFile);
+      ::file::path path = acmefile()->as_string(pathFile);
 
       return path;
 
@@ -591,15 +701,13 @@ namespace acme
    void node::set_last_run_application_path(const ::string & strAppId)
    {
 
-      ::file::path path = m_psystem->m_pacmefile->module();
+      ::file::path path = acmefile()->module();
 
       ::file::path pathFile = get_last_run_application_path_file(strAppId);
 
-      const char * pszPath = path;
-
       INFORMATION("node::set_last_run_application_path_file path:" << path);
 
-      return m_psystem->m_pacmefile->put_contents(pathFile, path);
+      return acmefile()->put_contents(pathFile, path);
 
    }
 
@@ -857,12 +965,14 @@ namespace acme
    }
 
 
+
+
    void node::node_post(const ::procedure & procedure)
    {
 
-//      defer_create_mutex();
+//      defer_create_synchronization();
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      m_routineaPost.add(routine);
 
@@ -872,7 +982,7 @@ namespace acme
    void node::node_send(const ::procedure & procedure)
    {
 
-      __material_send_procedure(this, this, &node::node_post, procedure);
+      __matter_send_procedure(this, this, &node::node_post, procedure);
 
    }
 
@@ -1183,11 +1293,7 @@ namespace acme
    string node::file_memory_map_path_from_name(const string& strName)
    {
 
-      auto psystem = m_psystem;
-
-      auto pacmedirectory = psystem->acmedir();
-
-      auto pathFolder =  pacmedirectory->get_memory_map_base_folder_path();
+      auto pathFolder = acmedirectory()->get_memory_map_base_folder_path();
 
       auto path = pathFolder / (strName + ".filememorymap");
 
@@ -1337,24 +1443,24 @@ namespace acme
    }
 
 
-   id_array node::get_pids()
+   atom_array node::get_pids()
    {
       
       //throw ::interface_only();
 
       throw ::interface_only();
    
-      //return id_array();
+      //return atom_array();
       
    }
 
 
-   id_array node::module_path_get_pid(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted)
+   atom_array node::module_path_get_pid(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted)
    {
       
-      id_array iaPid;
+      atom_array iaPid;
 
-      id_array pids = get_pids();
+      atom_array pids = get_pids();
 
       string strPath;
 
@@ -1489,7 +1595,7 @@ namespace acme
 #if !defined(_UWP)
 
 
-   array <::serial::port_info> node::list_serial_ports()
+   ::array <::serial::port_info> node::list_serial_ports()
    {
 
       //throw ::interface_only();
@@ -1510,10 +1616,10 @@ namespace acme
    }
 
 
-   bool node::get_application_exclusivity_security_attributes(memory & memory)
+   ::pointer < security_attributes > node::get_application_exclusivity_security_attributes()
    {
 
-      return true;
+      return nullptr;
 
    }
 
@@ -1533,9 +1639,13 @@ namespace acme
    bool node::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
    {
 
-      ::install::admin_mutex smutex(this, strPlatform);
+      throw ::exception(todo);
 
-      return smutex.already_exists();
+//      ::install::admin_mutex smutex(this, strPlatform);
+//
+//      return smutex.already_exists();
+
+return false;
 
    }
 
@@ -1606,7 +1716,7 @@ namespace acme
 
          path /= pszCommand;
 
-         if (m_psystem->m_pacmefile->exists(path))
+         if (acmefile()->exists(path))
          {
 
             return path;
@@ -1622,7 +1732,7 @@ namespace acme
    }
 
 
-   void node::launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount)
+   void node::launch_application(::particle * pparticle, const ::string & strAppId, const ::string & strParams, int iBitCount)
    {
 
       //throw ::interface_only();
@@ -1652,7 +1762,7 @@ namespace acme
    }
 
 
-   void node::aaa_shell_execute_async(const char * pszFile, const char * pszParams)
+   void node::shell_execute_async(const char * pszFile, const char * pszParams)
    {
 
       //throw ::interface_only();
@@ -1664,7 +1774,7 @@ namespace acme
    }
 
 
-   void node::aaa_shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+   void node::shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
    {
 
       //throw ::interface_only();
@@ -1715,7 +1825,7 @@ namespace acme
    }
 
 
-   void node::report_exception_to_user(::object* pobject, ::exception& exception, const ::string& strMoreDetails)
+   void node::report_exception_to_user(::object* pparticle, ::exception& exception, const ::string& strMoreDetails)
    {
 
       exception_message_box(this, exception, strMoreDetails);
@@ -1896,12 +2006,511 @@ namespace acme
     }
 
 
-   ::string node::get_callstack()
+   //::string node::get_callstack()
+   //{
+   //   
+   //   return {};
+   //   
+   //}
+
+
+   ::i64 node::get_current_process_id()
    {
-      
-      return {};
-      
+
+      return -1;
+
    }
+   
+   
+   bool node::stdin_has_input_events()
+   {
+
+      return false;
+
+   }
+
+
+   void node::flush_stdin_input_events()
+   {
+
+
+   }
+
+
+   void node::flush_stdin()
+   {
+
+
+   }
+
+
+   void node::defer_initialize_callstack()
+   {
+
+
+   }
+
+
+   string node::get_callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount)
+   {
+
+
+      return {};
+
+   }
+
+
+   ::string node::get_command_line()
+   {
+
+      return {};
+
+   }
+
+
+   string node::process_version_dir_name()
+   {
+
+      return is_release_build() ? "release" : "debug";
+
+   }
+
+
+   int node::is_debug_build()
+   {
+
+#ifdef _DEBUG
+
+      return true;
+
+#else
+
+      return false;
+
+#endif
+
+
+   }
+
+
+   int node::is_release_build()
+   {
+
+#ifdef _DEBUG
+
+      return false;
+
+#else
+
+      return true;
+
+#endif
+
+   }
+
+
+   bool node::succeeded(const ::error_code& errorcode)
+   {
+
+      if (errorcode.m_etype == e_error_code_type_errno)
+      {
+
+         return errorcode.m_iOsError == 0;
+
+      }
+      else if (errorcode.m_etype == e_error_code_type_last_error)
+      {
+
+         return errorcode.m_iOsError == 0;
+
+      }
+
+      throw interface_only();
+
+      return false;
+    
+   }
+
+   bool node::failed(const ::error_code& errorcode)
+   {
+
+      return !succeeded(errorcode);
+
+   }
+
+
+#ifdef WINDOWS
+
+
+   error_code node::defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE)
+   {
+
+      throw interface_only();
+
+      return {};
+
+   }
+
+
+#endif
+
+
+   ::file::path node::core_app_path(string strAppId)
+   {
+
+      ::file::path path = get_last_run_application_path(strAppId);
+
+      if (path.has_char())
+      {
+
+         return path;
+
+      }
+
+      strAppId.find_replace("-", "_");
+
+      strAppId.find_replace("/", "_");
+
+      path = "C:\\acme\\time\\x64\\basis\\" + strAppId + ".exe";
+
+      return path;
+
+   }
+   
+   
+   bool node::shell_execute_async(const ::string & pszFile, const ::string & pszParams)
+   {
+
+      return false;
+
+   }
+
+
+   bool node::shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const ::duration & durationTimeout)
+   {
+
+      return false;
+
+   }
+
+   
+   bool node::root_execute_async(const ::string & pszFile, const ::string & pszParams)
+   {
+
+      return false;
+
+   }
+
+
+   bool node::root_execute_sync(const ::string & pszFile, const ::string & pszParams, const ::duration & durationTimeout)
+   {
+
+      return false;
+
+   }
+
+
+   string node::executable_title_from_appid(const string & strParam)
+   {
+
+      string str(strParam);
+
+#ifdef WINDOWS
+
+#ifdef CUBE
+
+      str = "static_" + str;
+
+#else
+
+      str = "shared_" + str;
+
+#endif
+
+#endif
+
+      str.replace_with("_", "-");
+
+      str.replace_with("_", "/");
+
+      return str;
+
+   }
+
+
+   void node::prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
+   {
+
+      char * pPtr = nullptr;
+
+      char * p;
+
+      char * psz = cmd_line;
+
+      enum enum_state
+      {
+
+         e_state_initial,
+
+         state_quote,
+
+         state_non_space,
+
+      };
+
+      enum_state e = e_state_initial;
+
+      char quote = '\0';
+
+      while (psz != nullptr && *psz != '\0')
+      {
+
+         if (e == e_state_initial)
+         {
+
+            if (*psz == ' ')
+            {
+
+               unicode_increment(psz);
+
+            }
+            else if (*psz == '\"')
+            {
+
+               quote = '\"';
+
+               unicode_increment(psz);
+
+               argv[argc++] = (char *)psz;
+
+               e = state_quote;
+
+            }
+            else if (*psz == '\'')
+            {
+
+               quote = '\'';
+
+               unicode_increment(psz);
+
+               argv[argc++] = (char *)psz;
+
+               e = state_quote;
+
+            }
+            else
+            {
+
+               argv[argc++] = (char *)psz;
+
+               unicode_increment(psz);
+
+               e = state_non_space;
+
+            }
+
+         }
+         else if (e == state_quote)
+         {
+
+            if (*psz == '\\')
+            {
+
+               __memmov(psz, psz + 1, strlen(psz));
+
+               unicode_increment(psz);
+
+            }
+            else if (*psz == quote)
+            {
+
+               p = unicode_next(psz);
+
+               *psz = '\0';
+
+               psz = p;
+
+               e = e_state_initial;
+
+            }
+            else
+            {
+
+               unicode_increment(psz);
+
+            }
+
+         }
+         else
+         {
+
+            if (*psz == ' ')
+            {
+
+               p = unicode_next(psz);
+
+               *psz = '\0';
+
+               psz = p;
+
+               e = e_state_initial;
+
+            }
+            else
+            {
+
+               unicode_increment(psz);
+
+            }
+
+         }
+
+      }
+
+      argv[argc] = nullptr;
+
+   }
+
+
+
+   string node::process_platform_name()
+   {
+
+#if defined(_M_IX86)
+
+      return "Win32";
+
+#else
+
+      return "x64";
+
+#endif
+
+   }
+
+
+
+   string node::time_binary_platform(const ::string & strPlatformParam)
+   {
+
+      ::string strPlatform(strPlatformParam);
+
+      strPlatform.make_lower();
+
+      if (strPlatform == "x86" || strPlatform == "win32")
+      {
+
+         return "Win32";
+
+      }
+      else if (strPlatform == "x64" || strPlatform == "amd64")
+      {
+
+         return "x64";
+
+      }
+      else
+      {
+
+         return strPlatform;
+
+      }
+
+   }
+
+
+
+   string node::process_configuration_name()
+   {
+
+#ifdef __DEBUG
+
+      return "debug";
+
+#else
+
+      return "release";
+
+#endif
+
+   }
+
+
+   int node::get_current_process_affinity_order()
+   {
+
+      return -1;
+
+   }
+
+
+   int node::get_current_process_maximum_affinity()
+   {
+
+      return -1;
+
+   }
+
+   ::u64 node::translate_processor_affinity(::i32 i)
+   {
+
+      return 0;
+
+   }
+
+
+   ::i32 node::get_current_processor_index()
+   {
+
+      return -1;
+
+   }
+
+
+   bool node::set_process_priority(::enum_priority epriority)
+   {
+
+      
+      throw interface_only();
+      
+      return false;
+
+
+   }
+
+
+   void node::command_system(string_array & straOutput, int & iExitCode, const char * psz, enum_command_system ecommandsystem, const ::duration & durationTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLines)
+   {
+
+      throw interface_only();
+
+   }
+
+
+#if !defined(WINDOWS)
+
+
+   string_array node::cmdline_from_pid(unsigned int pid)
+   {
+
+      throw interface_only();
+
+      return {};
+
+   }
+
+
+   atom_array  node::app_get_pid(const ::string & strApp)
+   {
+
+      throw interface_only();
+
+      return {};
+
+   }
+
+
+#endif
 
 
 } // namespace acme

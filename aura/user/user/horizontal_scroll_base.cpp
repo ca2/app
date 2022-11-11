@@ -3,6 +3,9 @@
 #include "horizontal_scroll_base.h"
 #include "scroll_data.h"
 #include "scroll_bar.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/message/user.h"
 
 
@@ -177,7 +180,7 @@ namespace user
    void horizontal_scroll_base::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pscrollbarHorizontal.is_set())
       {

@@ -44,7 +44,7 @@
 //      main_init_data *     m_pmaindata;
 //
 //
-//      application(::object * pobject);
+//      application(::particle * pparticle);
 //      ~application() override;
 //
 //      virtual HINSTANCE GetHinstance();
@@ -174,8 +174,8 @@
 //      // Advanced: virtual access to GetMainWnd()
 //      virtual ::user::interaction* GetMainWnd();
 //
-//      void assert_ok() const override;
-//      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 //      virtual void CommonConstruct();
 //      virtual void Delete();
 //         // 'delete this' only if m_bAutoDelete == true

@@ -1,6 +1,10 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/mathematics/_.h"
+#include "acme/primitive/primitive/_u32hash.h"
+
+
 struct CLASS_DECL_ACME BLOCK
 {
 
@@ -41,9 +45,9 @@ struct CLASS_DECL_ACME block :
    block(const memory_base & memory);
    block(const memory_base * pmemory);
    block(const block & block) : ::block(block.m_pdata, block.m_iSize) {}
-   block(const atom & atom) : ::block(atom.is_text() ? atom.m_str : nullptr, atom.is_text() ? atom.m_str.length() : 0) {}
-   block(const ::string & str) : ::block(str.c_str(), str.get_length()) {}
-   block(const ::string & str, ::strsize s) : ::block((const void *)str.c_str(), (::i64)( s >= 0 ? s : str.get_length() + s + 1)) {}
+   block(const atom & atom);
+   //block(const ::string & str);
+   //block(const ::string & str, ::strsize s);
    block(const char * psz, ::strsize s = -1) : ::block((const void *)psz, (::i64) (s >= 0 ? s : strlen(psz) + s + 1)) {}
    template < typename TYPE >
    block(enum_as_block, TYPE & t): ::block((void *) & t, sizeof(t)) {}
@@ -59,10 +63,11 @@ struct CLASS_DECL_ACME block :
    memsize get_size() const { return m_iSize; }
    memsize size() const { return (memsize)m_iSize; }
 
-   inline bool is_empty() const { return m_pdata == nullptr || get_size() <= 0; }
+   inline bool is_empty() const { return ::is_null(m_pdata) || get_size() <= 0; }
+   inline bool is_set() const { return !is_empty(); }
 
-
-   inline bool operator !() const { return is_empty(); }
+   inline operator int() const { return is_set();}
+   inline bool operator !() const { return !operator int(); }
 
 //#ifdef _UWP
 //
@@ -72,7 +77,7 @@ struct CLASS_DECL_ACME block :
 //#endif
 
    block & from_base64(const char * psz, strsize iSize) const;
-   string to_base64() const;
+   //string to_base64() const;
 
 
    int compare(const block& block) const
@@ -94,26 +99,9 @@ struct CLASS_DECL_ACME block :
    }
 
 
-   bool operator == (const block & block) const
-   {
+   bool operator == (const block & block) const;
 
-      if (block.get_size() != get_size())
-      {
-
-         return false;
-
-      }
-
-      return __memcmp(block.get_data(), get_data(), (size_t) get_size()) == 0;
-
-   }
-
-   void to_string(string & str) const
-   {
-
-      str.assign((const ansichar *) get_data(), get_size());
-
-   }
+   //void to_string(string & str) const;
 
 };
 
@@ -156,27 +144,6 @@ namespace acme
 //};
 
 
-namespace hex
-{
-
-
-   inline CLASS_DECL_ACME string lower_from(const block & block)
-   {
-
-      return lower_from(block.get_data(), block.get_size());
-
-   }
-
-   inline CLASS_DECL_ACME string upper_from(const block & block)
-   {
-
-      return upper_from(block.get_data(), block.get_size());
-
-   }
-
-
-} // namespace hex
-
 
 template < typename TYPE >
 inline ::block memory_block(TYPE type) 
@@ -186,5 +153,49 @@ inline ::block memory_block(TYPE type)
 
 }
 
+
+template < >
+inline u32hash u32_hash < const block & >(const block & b)
+{
+
+   if (::is_null(b.get_data()) || b.is_empty())
+   {
+
+      return { 0 };
+
+   }
+
+   auto psz = (const char *)b.get_data();
+
+   u32 uHash = 0;
+
+   strsize i = 1;
+
+   for (; i < b.get_size(); i++)
+   {
+
+      if (i % 4 == 3)
+      {
+
+         uHash = (uHash << 5) + ((u32 *)psz)[i >> 2];
+
+      }
+
+   }
+
+   psz += i;
+
+   i %= 4;
+
+   if (i > 0)
+   {
+
+      while (i-- >= 0) uHash = (uHash << 5) + *(--psz);
+
+   }
+
+   return { uHash };
+
+}
 
 

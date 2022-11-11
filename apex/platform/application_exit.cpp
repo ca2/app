@@ -1,6 +1,7 @@
 // Created on 2021-07-08 13:18 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "application_exit.h"
+#include "acme/platform/application.h"
 
 
 application_exit::application_exit()
@@ -32,7 +33,7 @@ void application_exit::request_exit_application()
 
    m_bProcessingApplicationExitRequest = true;
 
-   post_procedure([this]()
+   acmeapplication()->post_procedure([this]()
    {
 
       try

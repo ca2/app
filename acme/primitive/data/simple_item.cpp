@@ -1,6 +1,9 @@
 #include "framework.h"
+#include "simple_item.h"
 #include "data.h"
-#include "_data.h"
+#include "listener.h"
+#include "tree.h"
+#include "tree_item.h"
 
 
 namespace data
@@ -22,13 +25,13 @@ namespace data
 
    }
 
-   string simple_item::data_item_get_text(matter * pobject) const
+   string simple_item::data_item_get_text(::particle * pparticle) const
    {
-      __UNREFERENCED_PARAMETER(pobject);
+      __UNREFERENCED_PARAMETER(pparticle);
       return m_str;
    }
    
-   index simple_item::data_item_get_image(matter * pobject) const
+   index simple_item::data_item_get_image(::particle * pparticle) const
    {
 
       if(m_pdatatree->is_selected(this))
@@ -46,7 +49,7 @@ namespace data
 
    }
 
-   image_list * simple_item::data_item_get_image_list(matter * pobject) const
+   image_list * simple_item::data_item_get_image_list(::particle * pparticle) const
    {
 
       return m_pdatatree->get_image_list();

@@ -10,13 +10,29 @@
 #pragma once
 
 
+#include "acme/constant/application_capability.h"
+#include "acme/constant/element.h"
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/operating_system/security_attributes.h"
+#include "acme/platform/serial_shared.h"
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/primitive/pointer.h"
+#include "acme/primitive/collection/atom_array.h"
+#include "acme/primitive/collection/string_map.h"
+
+
+CLASS_DECL_ACME const char * callstack_default_format();
+
+
+using enum_application_capability_array = ::comparable_array < enum_application_capability >;
+
+
 namespace acme
 {
 
 
    class CLASS_DECL_ACME node :
       virtual public object
-      //, virtual public layered < node >
    {
    protected:
 
@@ -55,7 +71,7 @@ namespace acme
       :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::node *  m_pAuraPlatform;
       
       
-      ::pointer<::element>                                 m_pelementQuit;
+      ::pointer < ::particle >                              m_pparticleQuit;
       
 
       //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
@@ -87,10 +103,12 @@ namespace acme
       ::user::enum_desktop                                  m_edesktop;
 
       enum_application_capability_array                     m_eapplicationcapabilitya;
+      string_map < ::pointer<::acme::exclusive > >          m_mapExclusive;
 
 
       node();
       ~node() override;
+
 
 #ifdef _DEBUG
 
@@ -103,7 +121,7 @@ namespace acme
 
 
       virtual void call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
-      virtual void call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
+      virtual void call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set, int * piExitCode);
 
 
 //#ifdef LINUX
@@ -112,16 +130,17 @@ namespace acme
 //
 //#endif
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       
       
-      virtual ::pointer<::element>create_quit_element(::pointer<::acme::node> & pnode, ::pointer<::acme::system> & psystem);
+      virtual ::pointer < ::particle > create_quit_particle(::pointer<::acme::node>& pnode, ::pointer<::acme::system>& psystem);
       
       
       virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem);
 
       virtual void acme_application_main(::acme::system * psystem);
       virtual void _will_finish_launching();
+      
       
       //virtual void element_quit_post_quit();
 
@@ -136,7 +155,7 @@ namespace acme
   
       virtual void _launch_macos_app_args(const ::string & pszAppFolder, const ::string & pszArgs);
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
       virtual void initialize_memory_counter();
 
@@ -160,8 +179,28 @@ namespace acme
       //virtual ::file::path module_path_origin();
       //::file::path update_module_path();
 
-      
-      
+
+      virtual ::pointer < ::mutex > create_local_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::string & strName, security_attributes * psecurityattributes = nullptr);
+      virtual ::pointer < ::mutex > create_global_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::string & strName, security_attributes * psecurityattributes = nullptr);
+
+
+      virtual ::pointer < ::mutex > open_local_named_mutex(::particle * pparticleContext, const ::string & strName);
+      virtual ::pointer < ::mutex > open_global_named_mutex(::particle * pparticleContext, const ::string & strName);
+
+
+      virtual ::pointer < ::mutex > get_install_mutex(::particle * pparticleContext, const ::string & strPlatform, const ::string & strSuffix);
+
+      virtual ::pointer < ::acme::exclusive > _get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes = nullptr);
+
+      virtual ::pointer < ::acme::exclusive > get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes = nullptr);
+
+      virtual bool erase_exclusive(const string & strName);
+
+      virtual void release_exclusive();
+
+      virtual bool exclusive_fails(::particle * pparticleContext, const string & strName, security_attributes * psecurityattributes = nullptr);
+    
+
       virtual string app_id_to_app_name(const ::string & strAppId);
       virtual string app_id_to_executable_name(const ::string & strAppId);
 
@@ -240,47 +279,12 @@ namespace acme
 
       virtual void * get_os_xcb_connection();
 
-
-//      template < typename PREDICATE >
-//      void node_fork(PREDICATE predicate)
-//      {
-//
-//         node_post(predicate);
-//
-//      }
-
       virtual void node_post(const ::procedure & procedure);
 
 
-      /// returns true if processed something
-      //virtual bool run_posted_routine_step();
-
       virtual void node_send(const ::procedure & procedure);
 
-//      template < typename PRED >
-//      void user_fork(PRED pred)
-//      {
-//
-//         user_fork(__routine(pred));
-//
-//      }
-
-      //virtual void user_fork(const ::procedure & procedure);
-
-//      template < typename PRED >
-//      void user_sync(const ::duration & durationTimeout, PRED pred)
-//      {
-//
-//         user_sync(durationTimeout, __routine(pred));
-//
-//      }
-
-      //virtual void user_sync(const ::duration & durationTimeout, const ::procedure & procedure);
-
-
       virtual void node_post_quit();
-
-      //virtual void enum_display_monitors(::aura::session * psession);
 
       virtual void node_quit();
 
@@ -347,9 +351,9 @@ namespace acme
 
       virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string & pszExceptDir);
 
-      virtual id_array get_pids();
+      virtual atom_array get_pids();
 
-      virtual id_array module_path_get_pid(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted);
+      virtual atom_array module_path_get_pid(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted);
 
       virtual string module_path_from_pid(u32 pid);
 
@@ -373,7 +377,7 @@ namespace acme
 
 #ifndef _UWP
 
-      virtual array <::serial::port_info> list_serial_ports();
+      virtual ::array <::serial::port_info> list_serial_ports();
 
 #endif
 
@@ -381,7 +385,7 @@ namespace acme
       virtual string get_user_language();
 
 
-      virtual bool get_application_exclusivity_security_attributes(memory & memory);
+      virtual ::pointer < security_attributes > get_application_exclusivity_security_attributes();
 
       virtual void register_spa_file_type(const ::string & strAppIdHandler);
 
@@ -398,16 +402,15 @@ namespace acme
 
 
 
-      virtual void launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount);
-
+      virtual void launch_application(::particle * pparticle, const ::string & strAppId, const ::string & strParams, int iBitCount);
 
 
       virtual void shell_open(const ::file::path & path, const string & strParams = "", const ::file::path & pathFolder = {});
       virtual void open_url(const ::string & strUrl);
 
 
-      virtual void aaa_shell_execute_async(const char * pszFile, const char * pszParams);
-      virtual void aaa_shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
+      virtual void shell_execute_async(const char * pszFile, const char * pszParams);
+      virtual void shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
 
       virtual void root_execute_async(const char * pszFile, const char * pszParams);
       virtual void root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
@@ -427,7 +430,7 @@ namespace acme
       virtual void create_app_shortcut(::acme::application * papplication);
 
 
-      virtual void report_exception_to_user(::object* pobject, ::exception& exception, const ::string& strMoreDetails);
+      virtual void report_exception_to_user(::object* pparticle, ::exception& exception, const ::string& strMoreDetails);
 
 
       virtual ::pointer<::conversation>create_new_message_box_conversation();
@@ -461,8 +464,193 @@ namespace acme
       virtual string get_global_id_mutex_name(const ::string & strAppId, const ::string & strId);
 
       
-      virtual ::string get_callstack();
+
+
+//      virtual ::string get_callstack();
+
+
+      virtual ::i64 get_current_process_id();
+
+
+      virtual bool stdin_has_input_events();
+      virtual void flush_stdin_input_events();
+      virtual void flush_stdin();
+
+
+      virtual void defer_initialize_callstack();
+#if defined(ANDROID)
+      virtual string unwind_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+#else
+      virtual string get_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
+#endif
+
+
+
+
+      virtual ::string get_command_line();
+
+
+      //virtual ::pointer<::acme::exclusive> get_exclusive(string str, const security_attributes & securityattributes = nullptr);
+
       
+      virtual i32 get_current_processor_index();
+      virtual i32 get_current_process_maximum_affinity();
+      virtual i32 get_current_process_affinity_order();
+      virtual ::u64 translate_processor_affinity(::i32 i);
+
+      //CLASS_DECL_ACME string expand_env(string str);
+      //CLASS_DECL_ACME string xxxget_environment_variable(const char * pszEnvironmentVariable);
+      //CLASS_DECL_ACME string ca2_command_line();
+
+
+
+
+      //virtual int process_get_status();
+      //virtual void process_set_status(int iStatus);
+      //virtual int * process_get_pargc();
+      //virtual int process_get_argc();
+
+
+      virtual bool set_process_priority(::enum_priority epriority);
+
+
+
+
+      //virtual string time_binary_platform(string strPlatform);
+
+
+
+
+
+
+
+#if !defined(_UWP)
+
+      //virtual i32 call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+
+      typedef i32 CALLSYNCONRETRY(i32 iTry, uptr dwParam);
+
+      typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
+
+      //CLASS_DECL_ACME u32 call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
+
+#endif
+
+
+//#if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+//
+//
+//      //virtual i32 get_current_processor_index();
+//
+//      //virtual i32 get_current_process_maximum_affinity();
+//
+//      //virtual i32 get_current_process_affinity_order();
+//
+//
+//#endif
+
+
+      //virtual string expand_env(string str);
+
+      //CLASS_DECL_ACME string consume_command_line_parameter(const ::string & pszCommandLine, const ::string * & pszEndPtr);
+      //CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const ::string & pszCommandLine, const ::string & pszParam, bool bDefault = false);
+      //CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::string & pszCommandLine, const ::string & pszParam);
+      //CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::string & pszCommandLine, const ::string & pszParam, const ::string & pszDefault);
+      //CLASS_DECL_ACME string get_command_line_parameter(const ::string & pszCommandLine, const ::string & pszParam);
+
+
+      //virtual bool launch_command(const ::string & pszCommand);
+
+
+      virtual string process_configuration_name();
+
+      virtual string time_binary_platform(const string & strPlatform);
+      virtual string process_platform_name();
+      //virtual string process_platform_name();
+      virtual string process_version_dir_name();
+
+      virtual ::file::path core_app_path(string strApp);
+
+#if !defined(_UWP)
+
+
+      //virtual string module_path_from_pid(unsigned int pid);
+      //virtual atom_array module_path_get_pid(const ::string & pszModuleName, bool bModuleNameIsPropertyFormatted = true);
+
+
+#ifndef WINDOWS
+
+      virtual string_array cmdline_from_pid(unsigned int pid);
+      virtual atom_array app_get_pid(const ::string & pszModuleName);
+
+
+#endif
+
+
+#endif
+
+#ifndef _UWP
+      //virtual bool process_contains_module(string & strImage, ::u32 processID, const ::string & pszLibrary);
+      //virtual void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::string & pszLibrary);
+#endif
+
+
+
+      //virtual bool is_shared_library_busy(u32 processid, const string_array & stra);
+      //virtual bool is_shared_library_busy(const string_array & stra);
+
+
+      // virtual bool launch_application(::particle * pparticle, const ::string & strAppId, const ::string & strParams, int iBitCount);
+
+
+
+      virtual bool shell_execute_async(const ::string & pszFile, const ::string & pszParams);
+      virtual bool shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const ::duration & durationTimeout = 1_minute);
+
+      virtual bool root_execute_async(const ::string & pszFile, const ::string & pszParams);
+      virtual bool root_execute_sync(const ::string & pszFile, const ::string & pszParams, const ::duration & durationTimeout = 1_minute);
+
+
+      //CLASS_DECL_ACME bool os_init_application();
+      //CLASS_DECL_ACME void os_term_application();
+
+
+
+      virtual string executable_title_from_appid(const string & strAppId);
+
+
+      //CLASS_DECL_ACME ::u32 get_current_process_id();
+
+
+
+      virtual void prepare_argc_argv(int & argc, char ** argv, char * cmd_line);
+
+
+
+
+      virtual void command_system(string_array & straOutput, int & iExitCode, const char * psz, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
+
+
+      //virtual string process_version_dir_name();
+
+
+
+      virtual int is_debug_build();
+
+
+      virtual int is_release_build();
+
+
+      virtual bool succeeded(const ::error_code& errorcode);
+      virtual bool failed(const ::error_code& errorcode);
+
+
+#ifdef WINDOWS
+
+      virtual error_code defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
+
+#endif
+
 
    };
 

@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "str.h"
+#include "string.h"
+#include "ch_class.h"
 #include "x/x_charcategory2.h"
 #include "x/x_charcategory_names.h"
 
@@ -135,7 +138,7 @@ void * gen_ch_class_reference_tables()
                break;
             default:
                strsize retEnd;
-               prev_char = ::str().uni_to_utf8(
+               prev_char = unicode_to_utf8(
                   ::str().get_escaped_char(ccs, pos, retEnd));
                if(prev_char.is_empty())
                   break;
@@ -204,7 +207,7 @@ void * gen_ch_class_reference_tables()
 
             strsize retEnd;
 
-            string nextc = ::str().uni_to_utf8(::str().get_escaped_char(ccs, pos+1, retEnd));
+            string nextc = unicode_to_utf8(::str().get_escaped_char(ccs, pos+1, retEnd));
 
             if(nextc.is_empty())
                break;
@@ -217,7 +220,7 @@ void * gen_ch_class_reference_tables()
 
          }
 
-         cc->add_char(::str().get_utf8_char(&ccs[pos]));
+         cc->add_char(get_utf8_char(&ccs[pos]));
 
          prev_char = ccs[pos];
 
@@ -228,7 +231,7 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::add_char(const char * pszUtf8Char)
    {
-      i64 iChar = ::str::ch().uni_index(pszUtf8Char);
+      i64 iChar = unicode_index(pszUtf8Char);
       bit_array * tablePos = infoIndex[iChar >> 8];
       if (!tablePos)
       {
@@ -240,7 +243,7 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::clear_char(const char * pszUtf8Char)
    {
-      i64 iChar = ::str::ch().uni_index(pszUtf8Char);
+      i64 iChar = unicode_index(pszUtf8Char);
       bit_array *tablePos = infoIndex[iChar >> 8];
       if(!tablePos)
          return;
@@ -249,8 +252,8 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::add_range(const char * s, const char * e)
    {
-      i64 iCharStart = ::str::ch().uni_index(s);
-      i64 iCharEnd = ::str::ch().uni_index(e);
+      i64 iCharStart = unicode_index(s);
+      i64 iCharEnd = unicode_index(e);
       for(i64 ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
          if (!infoIndex[ti])
@@ -263,8 +266,8 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::clear_range(const char * s, const char * e)
    {
-      i64 iCharStart = ::str::ch().uni_index(s);
-      i64 iCharEnd = ::str::ch().uni_index(e);
+      i64 iCharStart = unicode_index(s);
+      i64 iCharEnd = unicode_index(e);
       for(i64 ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
          if (!infoIndex[ti])
@@ -298,7 +301,7 @@ void * gen_ch_class_reference_tables()
    {
       for(size_t pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
       {
-         if(::str().begins(cat, char_category_names[pos]))
+         if(string_begins(cat, char_category_names[pos]))
          {
             add_category(ECharCategory(pos));
          }
@@ -388,10 +391,11 @@ void * gen_ch_class_reference_tables()
       }
    }
 
+
    bool ch_class::in_class(const char * pszUtf8Char) const
    {
-      i64 ca = ::str::ch().uni_index(pszUtf8Char);
-      if(!::str::ch().is_legal_uni_index(ca))
+      auto ca = unicode_index(pszUtf8Char);
+      if(!is_legal_unicode_index(ca))
          return false;
       bit_array * tablePos = infoIndex[ca>>8];
       if(tablePos == nullptr)

@@ -32,21 +32,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "event_time.h"
 #include "event.h"
 #include "ievent_owner.h"
+#include "acme/platform/system.h"
 #include "apex/networking/sockets/basic/tcp_socket.h"
 #include "apex/networking/sockets/basic/listen_socket.h"
 #include "apex/networking/networking.h"
+#include "apex/platform/system.h"
 
 
 namespace sockets
 {
 
 
-   EventHandler::EventHandler(::object * pobject, ::apex::log * plog) :
+   EventHandler::EventHandler(::particle * pparticle, ::apex::log * plog) :
       //socket_handler(plog),
       m_bQuit(false), m_ptcpsocket(nullptr)
    {
 
-      initialize(pobject);
+      initialize(pparticle);
 
    }
 
@@ -264,15 +266,15 @@ namespace sockets
    void EventHandler::RemoveEvent(IEventOwner * pownerFrom, long lEid)
    {
 
-      auto pevent = ::deref(m_eventplist.begin());
+      auto pevent = m_eventplist.begin();
 
       for(; pevent; pevent++)
       {
 
-         if(pownerFrom == pevent->GetFrom() && lEid == pevent->GetID())
+         if(pownerFrom == (*pevent)->GetFrom() && lEid == (*pevent)->GetID())
          {
 
-            ::delete_erase(pevent);
+            delete (*pevent);
 
             break;
 
@@ -302,7 +304,7 @@ namespace sockets
          m_ptcpsocket -> SetReconnect(true);
 #endif
          
-         auto paddress = m_psystem->m_papexsystem->networking()->create_address("127.0.0.1", m_port);
+         auto paddress = acmesystem()->m_papexsystem->networking()->create_address("127.0.0.1", m_port);
 //         m_ptcpsocket -> open(::networking::address("127.0.0.1", m_port));
          
          m_ptcpsocket -> open(paddress);

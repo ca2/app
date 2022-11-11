@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/datetime/earth_time.h"
+
+
 namespace file
 {
 
@@ -18,7 +21,7 @@ namespace file
       ::file::path         m_strFullName;   // absolute path name
 
 
-      void dump(dump_context & dumpcontext) const;
+      //void dump(dump_context & dumpcontext) const;
 
    };
 

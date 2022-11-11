@@ -561,7 +561,7 @@ namespace networking_bsd
 
          generate_random_bytes(m.get_data(), m.get_size());
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pbase64 = psystem->base64();
 
@@ -679,7 +679,7 @@ namespace networking_bsd
 
                memory mem2;
 
-               auto psystem = m_psystem->m_papexsystem;
+               auto psystem = acmesystem()->m_papexsystem;
 
                auto pbase64 = psystem->base64();
 
@@ -723,7 +723,7 @@ namespace networking_bsd
    void websocket_client::write(const void *buf, memsize c)
    {
 
-      synchronous_lock synchronouslock(&m_mutexWebsocketWrite);
+      synchronous_lock synchronouslock(m_pmutexWebsocketWrite);
 
       http_client_socket::write(buf, c);
 

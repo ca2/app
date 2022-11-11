@@ -25,7 +25,7 @@ namespace user
 
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       virtual void add_document_template(::user::impact_system* ptemplate);
 

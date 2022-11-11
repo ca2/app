@@ -7,9 +7,11 @@
 #endif
 
 
+#include "acme/operating_system/security_attributes.h"
+
 
 class CLASS_DECL_ACME event :
-   public synchronization_object
+   public particle
 {
 public:
 
@@ -21,7 +23,7 @@ public:
    bool              m_bSignaled;  // meaningful only when m_bManualEvent
    i32               m_iSignalId;  // meaningful only when m_bManualEvent
    void *            m_pcond; // pthread_cond_t
-   void *            m_mutex; // pthread_mutex_t;
+   void *            m_pmutex; // pthread_mutex_t;
 
 
 #endif
@@ -35,14 +37,13 @@ public:
 #endif
 
 
-   event(char * sz = nullptr,bool bInitiallyOwn = false, bool bManualReset = false, const char * pszNAme = nullptr ARG_SEC_ATTRS_DEF);
-
+   event(char * sz = nullptr, bool bInitiallyOwn = false, bool bManualReset = false, const char * pszNAme = nullptr, security_attributes * psecurityattributes = nullptr);
    ~event() override;
 
    // using event_base::lock;
    //bool lock(const ::wait & wait = wait::infinite()) override;
 
-   using synchronization_object::unlock;
+   using particle::unlock;
    void unlock() override;
 
    //virtual HSYNC hsync() const;

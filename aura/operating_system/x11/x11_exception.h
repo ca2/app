@@ -3,9 +3,10 @@
 // Copyright (C) 2008 Jay Bromley <jbromley@gmail.com>
 //
 // $Id: X11Exception.h 26 2008-04-09 08:47:11Z jay $
+#pragma once
 
-#ifndef X11EXCEPTION_H_FE39A315_6827_447B_AE62_5FA2C3FD391F
-#define X11EXCEPTION_H_FE39A315_6827_447B_AE62_5FA2C3FD391F
+
+#include "acme/primitive/string/string.h"
 
 
 class X11Exception
@@ -20,7 +21,6 @@ private:
     string _reason;
 };
 
-#endif // GAMEEXCEPTION_H_FE39A315_6827_447B_AE62_5FA2C3FD391F
 
 // Local Variables:
 // mode: c++

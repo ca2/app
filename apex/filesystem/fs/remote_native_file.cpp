@@ -1,9 +1,12 @@
 ﻿#include "framework.h"
-#include "acme/filesystem/file/memory_file.h"
-#include "apex/networking/sockets/_sockets.h"
-#include "apex/filesystem/fs/_fs.h"
-#include "apex/filesystem/filesystem/file_context.h"
 #include "remote_native_file.h"
+#include "acme/filesystem/file/memory_file.h"
+#include "acme/filesystem/filesystem/listing.h"
+#include "acme/networking/url_department.h"
+//#include "apex/networking/sockets/_sockets.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/networking/http/context.h"
+#include "acme/platform/system.h"
 #include "apex/platform/context.h"
 
 
@@ -85,7 +88,7 @@ namespace fs
 
       string strUrl;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -111,7 +114,7 @@ namespace fs
 
       string strUrl;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -135,7 +138,7 @@ namespace fs
 
          string strMd5Here;
 
-         strMd5Here = m_pcontext->m_papexcontext->file().md5(m_payloadFile["xml"].cast < ::memory_file >());
+         strMd5Here = ::particle::file()->md5(m_payloadFile["xml"].cast < ::memory_file >());
 
          string strMd5There;
          

@@ -1,7 +1,7 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/printer.h"
 #include "print_task.h"
-
+#include "acme/exception/interface_only.h"
+#include "aura/graphics/draw2d/printer.h"
 
 
 namespace user
@@ -18,12 +18,12 @@ namespace user
    }
 
 
-   void print_task::initialize(::object * pobject)
+   void print_task::initialize(::particle * pparticle)
    {
 
       //auto estatus =
       
-      ::task::initialize(pobject);
+      ::task::initialize(pparticle);
 
       //if (!estatus)
       //{

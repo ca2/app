@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace papaya
+namespace acme
 {
 
    template <class RandomAccessIterator >
@@ -350,7 +350,7 @@ namespace papaya
 
 
 
-} // namespace papaya
+} // namespace acme
 
 
 

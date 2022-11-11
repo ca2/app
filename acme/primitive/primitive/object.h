@@ -1,6 +1,12 @@
 ﻿#pragma once
 
 
+#include "property_object.h"
+#include "acme/parallelization/create_task_attributes.h"
+#include "acme/primitive/collection/pointer_array.h"
+#include "acme/primitive/primitive/function.h"
+
+
 enum enum_method : ::i32;
 enum enum_future : ::i32;
 
@@ -41,14 +47,15 @@ namespace aura
 
 
 class CLASS_DECL_ACME object :
-   virtual public material_object
+   //virtual public material_object
+   virtual public property_object
 {
 protected:
 
 
    bool                                            m_bCheckingChildrenTask;
    ::object *                                      m_pobjectParentTask;
-   pointer< pointer_array < ::object > >            m_pobjectaChildrenTask;
+   ::pointer < ::pointer_array < ::particle > >    m_pparticleaChildrenTask;
 
 
 public:
@@ -57,8 +64,8 @@ public:
    //::task_pointer                                 m_pthread;
    //::pointer<::apex::application>                           m_pacmeapplication;
    //::pointer<::apex::session>                         m_psession;
-   //::pointer<::acme::system>                          m_psystem;
-   ::acme::context *                                     m_pcontext;
+   //::pointer<::acme::system>                          acmesystem();
+   //::acme::context *                                     m_pcontext;
 
 
    //pointer< pointer_array < ::object > >                m_pobjecta;
@@ -72,10 +79,12 @@ public:
 
 
    //object() : m_pmeta(nullptr) { }
-   object() { m_pobjectParentTask = nullptr; m_pcontext = nullptr; }
-   //object(::object * pobject);
+   object() { m_pobjectParentTask = nullptr;
+   //   m_pcontext = nullptr;
+   }
+   //object(::particle * pparticle);
    //object(const ::atom & atom):property_object(atom){ m_pobjectParentTask = nullptr; m_pcontext = nullptr; }
-   object(enum_default_initialization) : ::object() {  };
+   //object(enum_default_initialization) : ::object() {  };
    ~object() override;
 
 
@@ -108,8 +117,8 @@ public:
    //inline element_array & composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
    //inline element_array & reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
 
-   //virtual void add_object(::object * pobject);
-   //virtual void on_delete_object(::object * pobject);
+   //virtual void add_object(::particle * pparticle);
+   //virtual void on_delete_object(::particle * pparticle);
 
    //virtual void enumerate_composite(element_array& a);
    //virtual void enumerate_reference(element_array& a);
@@ -117,7 +126,7 @@ public:
    //virtual void process_exit_status(const ::e_status & estatus);
 
    //inline ::object* this const { return this; }
-   //virtual void set_object(::object* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void set_object(::object* pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
    //inline ::application* application() { return m_pacmeapplication; }
 
@@ -137,63 +146,63 @@ public:
 
    //virtual array < ::procedure >* routinea(const ::atom& idRoutine);
 
-   template < typename ROUTINE_RUNNER_OBJECT, typename ROUTINE_RUNNER_METHOD >
-   void for_routines_with_id(const ::atom & atom, ROUTINE_RUNNER_OBJECT proutinerunner, ROUTINE_RUNNER_METHOD routine_runner_method)
-   {
+   //template < typename ROUTINE_RUNNER_OBJECT, typename ROUTINE_RUNNER_METHOD >
+   //void for_routines_with_id(const ::atom & atom, ROUTINE_RUNNER_OBJECT proutinerunner, ROUTINE_RUNNER_METHOD routine_runner_method)
+   //{
 
-      if (::is_null(m_pmapPropertyProcedure))
-      {
+   //   if (::is_null(m_pmapPropertyProcedure))
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      auto pprocedurea = this->procedure_array(atom);
+   //   auto pprocedurea = this->procedure_array(atom);
 
-      if (::is_null(pprocedurea))
-      {
+   //   if (::is_null(pprocedurea))
+   //   {
 
-         //throw ::exception(error_not_found);
+   //      //throw_exception(error_not_found);
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      for (auto routine : *pprocedurea)
-      {
+   //   for (auto routine : *pprocedurea)
+   //   {
 
-         (proutinerunner->*routine_runner_method)(routine);
+   //      (proutinerunner->*routine_runner_method)(routine);
 
-      }
+   //   }
 
-   }
+   //}
 
    
-   virtual void call_routine2(const ::procedure & procedure);
+   //virtual void call_routine2(const ::procedure & procedure);
 
 
-   inline void call_routines_with_id(const ::atom & atom)
-   {
+   //inline void call_routines_with_id(const ::atom & atom)
+   //{
 
-      return for_routines_with_id(atom, this, &object::call_routine2);
+   //   return for_routines_with_id(atom, this, &object::call_routine2);
 
-   }
-
-
-   inline void post_routines_with_id(const ::atom & atom)
-   {
-
-      return for_routines_with_id(atom, this, &object::post_procedure);
-
-   }
+   //}
 
 
-   inline void send_routines_with_id(const ::atom & atom)
-   {
+   //inline void post_routines_with_id(const ::atom & atom)
+   //{
 
-      return for_routines_with_id(atom, this, &object::send_procedure);
+   //   return for_routines_with_id(atom, this, &object::post_procedure);
 
-   }
+   //}
+
+
+   //inline void send_routines_with_id(const ::atom & atom)
+   //{
+
+   //   return for_routines_with_id(atom, this, &object::send_procedure);
+
+   //}
 
 
 
@@ -210,10 +219,10 @@ public:
 
 
    template < typename BASE_TYPE >
-   void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
+   void save_to(const ::payload& payloadFile, BASE_TYPE* pparticle);
 
    
-   virtual void initialize(::object * pobject) override;
+   virtual void initialize(::particle * pparticle) override;
    virtual void set_finish() override;
    //virtual void destroy() override;
 
@@ -258,7 +267,7 @@ public:
 
 
 
-   //virtual void on_initialize_object() override;
+   //virtual void on_initialize_particle() override;
 
 
    //inline const char* topic_text();
@@ -308,10 +317,10 @@ public:
    //#endif
 
 
-      //virtual void set_object(::object * pobject) override;
+      //virtual void set_object(::particle * pparticle) override;
 
 
-      //inline void defer_set_object(::object * pobject);
+      //inline void defer_set_object(::particle * pparticle);
 
    void call_run() override;
 
@@ -343,41 +352,6 @@ public:
    //::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
    //::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
-   template < typename BASE_TYPE >
-   inline ::pointer<BASE_TYPE>__create();
-
-   template < typename BASE_TYPE >
-   inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom);
-
-   template < typename TYPE >
-   inline ::pointer<TYPE>__create_new();
-
-
-   template < typename BASE_TYPE >
-   inline void __defer_construct(::pointer<BASE_TYPE> &  ptype);
-
-   template < typename TYPE >
-   inline void __defer_construct_new(::pointer<TYPE> & ptype);
-
-
-
-   template < typename BASE_TYPE >
-   inline void __construct(::pointer<BASE_TYPE> & ptype);
-
-
-   template < typename BASE_TYPE, typename TYPE >
-   inline void __construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p);
-
-
-   template < typename BASE_TYPE, typename TYPE >
-   inline void __construct(::pointer<BASE_TYPE> & ptype, TYPE * p);
-
-
-   template < typename BASE_TYPE >
-   inline void __id_construct(::pointer<BASE_TYPE> & ptype, const ::atom& atom);
-
-   template < typename TYPE >
-   inline void __construct_new(::pointer<TYPE> & ptype);
 
    //template < typename BASE_TYPE >
    //inline void __release(::pointer<BASE_TYPE>& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
@@ -389,13 +363,13 @@ public:
    //inline void release_reference(::pointer<SOURCE>& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   //virtual void add_composite(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual void add_reference(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
-   //virtual void release_composite2(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual void finalize_composite(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual void release_reference(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
    //template < typename BASE_TYPE >
@@ -484,11 +458,11 @@ public:
 
    //virtual ::pointer<::element>running(const char* pszTag) const;
 
-   //virtual bool ___is_reference(::element* pobject) const;
+   //virtual bool ___is_reference(::particle * pparticle) const;
 
-   //virtual bool __is_composite(::element* pobject) const;
+   //virtual bool __is_composite(::particle * pparticle) const;
 
-   virtual bool __is_child_task(::object * pobject) const;
+   virtual bool __is_child_task(::particle * pparticle) const;
 
    //virtual void on_finalize();
 
@@ -528,8 +502,8 @@ public:
 
    //using property_object::branch;
 
-   void branch(const ::procedure_array& routinea);
-   void branch_each(const ::procedure_array& routinea);
+   //void branch(const ::procedure_array& routinea);
+   //void branch_each(const ::procedure_array& routinea);
 
    //using property_object::defer_branch;
 
@@ -588,10 +562,8 @@ public:
 
 
    ::pointer<task>fork(const ::procedure & procedure,
-      const ::element_array & elementaHold = {},
-      ::enum_priority epriority = e_priority_normal,
-      ::u32 nStackSize = 0,
-      ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+      const ::particle_array & elementaHold = {},
+      const create_task_attributes & createtaskattributes = nullptr);
 
 
    //inline ::task_pointer launch(const ::procedure & procedure);
@@ -631,30 +603,17 @@ public:
    //}
 
 
-   virtual ::pointer<::task>branch_procedure(const ::procedure & procedure,
-      ::enum_priority epriority = e_priority_normal,
-      ::u32 nStackSize = 0,
-      ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+   virtual ::pointer<::task>branch_procedure(const ::procedure & procedure, const create_task_attributes & createtaskattributes = nullptr);
 
-
-   virtual ::pointer<::task>branch_procedure_synchronously(const ::procedure & procedure,
-                                    ::enum_priority epriority = e_priority_normal,
-                                    ::u32 nStackSize = 0,
-                                    ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+   virtual ::pointer<::task>branch_procedure_synchronously(const ::procedure & procedure, const create_task_attributes & createtaskattributes = nullptr);
 
    virtual ::task_pointer run_procedure(bool bSyncronously, const ::procedure & procedure);
 
    //using property_object::branch;
 
-   virtual ::pointer<::task>branch(
-      ::enum_priority epriority = ::e_priority_normal,
-      ::u32 nStackSize = 0,
-      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+   virtual ::pointer<::task> branch(const create_task_attributes & createtaskattributes = nullptr);
 
-   virtual ::pointer<::task>branch_synchronously(
-      ::enum_priority epriority = ::e_priority_normal,
-      ::u32 nStackSize = 0,
-      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+   virtual ::pointer<::task> branch_synchronously(const create_task_attributes & createtaskattributes = nullptr);
 
    //::task_pointer defer_fork(string strThread = "");
 
@@ -662,22 +621,12 @@ public:
 //   virtual void ns_main_async(dispatch_block_t block);
 //#endif
 
-   inline ::file_pointer get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
-   inline ::file_pointer get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
-   inline ::file_pointer fully_shared_reader(const ::payload& payloadFile) { return get_reader(payloadFile, ::file::e_open_share_deny_none); }
-
-   //virtual void to_string(string & str) const override;
-
-
-   virtual ::file_pointer get_file(const ::payload& payloadFile, const ::file::e_open& eopen);
-   //inline ::file_pointer get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
-   //inline ::file_pointer get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 
    //void add_update_notification(property * pproperty);
    //void add_update_notification(const ::atom & atom, bool bCreate = true);
-   //void property_notify(const ::atom & atom, ::element * pelement);
+   //void property_notify(const ::atom & atom, ::particle * pparticle);
 
 
 //   inline void format_topic_text(const char * psz, ...)
@@ -738,10 +687,10 @@ public:
 
    ::task_pointer defer_branch(const ::atom& atom, const ::procedure & procedure, enum_priority epriority = e_priority_normal);
 
-   virtual element* get_taskpool_container() override;
+   virtual ::particle * get_taskpool_container() override;
 
    //object() : m_pmeta(nullptr) { }
-   //object(::object * pobject);
+   //object(::particle * pparticle);
    //object(enum_default_initialization) : ::object() {};
    //virtual ~object();
 //
@@ -779,7 +728,7 @@ public:
    //virtual void process_exit_status(const ::e_status & estatus);
 
    //inline ::object* this const { return this; }
-   //virtual void set_object(::object* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void set_object(::object* pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
    //inline ::application* application() { return m_pacmeapplication; }
 
@@ -820,9 +769,9 @@ public:
 
 
    //template < typename BASE_TYPE >
-   //void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
+   //void save_to(const ::payload& payloadFile, BASE_TYPE* pparticle);
 
-   //virtual void initialize(::object * pobject) override;
+   //virtual void initialize(::particle * pparticle) override;
    //virtual void destroy() override;
 
    //inline const char* topic_text();
@@ -870,10 +819,10 @@ public:
 //#endif
 
 
-   //virtual void set_object(::object * pobject) override;
+   //virtual void set_object(::particle * pparticle) override;
 
 
-   //inline void defer_set_object(::object * pobject);
+   //inline void defer_set_object(::particle * pparticle);
 
    //virtual void operator()() override;
 
@@ -900,7 +849,7 @@ public:
    //static u32 s_thread_proc(void* p);
 
 
-   string as_string() const override;
+   virtual string as_string() const;
 
 
    // for composition (ownership)
@@ -919,9 +868,6 @@ public:
 
    //template < typename BASE_TYPE >
    //inline void __id_construct(::pointer<BASE_TYPE> ptype, const ::atom& atom);
-
-   template < typename BASE_TYPE >
-   inline void __raw_construct(::pointer<BASE_TYPE> & p);
 
    //template < typename BASE_TYPE, typename SOURCE >
    //inline void __raw_construct(::pointer<BASE_TYPE> ptype, const SOURCE* psource);
@@ -971,13 +917,13 @@ public:
    //inline void __release(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   //virtual void add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual void add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void add_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
-   //virtual void release_composite2(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual void finalize_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual void release_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void release_composite2(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void finalize_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
    //template < typename BASE_TYPE >
@@ -1079,9 +1025,9 @@ public:
 
    //virtual ::pointer<::element>running(const ::string & pszTag) const;
 
-   //virtual bool ___is_reference(::element* pobject) const;
+   //virtual bool ___is_reference(::particle * pparticle) const;
 
-   //virtual bool __is_composite(::element* pobject) const;
+   //virtual bool __is_composite(::particle * pparticle) const;
 
    //virtual bool __is_child_task(::task* ptask) const;
 
@@ -1257,7 +1203,7 @@ public:
 
    //void add_update_notification(property * pproperty);
    //void add_update_notification(const ::atom & atom, bool bCreate = true);
-   //void property_notify(const ::atom & atom, ::element * pelement);
+   //void property_notify(const ::atom & atom, ::particle * pparticle);
 
 
 //   inline void format_topic_text(const char * psz, ...)
@@ -1324,13 +1270,6 @@ public:
 };
 
 
-template < typename INTERMEDIATE, typename RELEASEE >
-inline void release(INTERMEDIATE*, RELEASEE* & p)
-{ 
-   
-   ::release(p); 
-
-}
 
 
 #define __make_identifier(PART1, PART2) PART1 ## PART2
@@ -1339,7 +1278,7 @@ inline void release(INTERMEDIATE*, RELEASEE* & p)
 #define __defer_branch(procedure) defer_branch(m_p ## procedure, [this](){procedure();})
 
 
-CLASS_DECL_ACME void call_sync(const ::procedure_array& routinea);
+//CLASS_DECL_ACME void call_sync(const ::procedure_array& routinea);
 
 
 
@@ -1375,12 +1314,17 @@ inline void create_ ## xxx ## _properties() \
 
 
 
-template < typename TYPE >
-inline void __raw_construct_new(::pointer<TYPE> & ptype)
-{
-   ptype = memory_new TYPE;
-}
 
 
+
+
+
+
+
+
+
+
+
+#include "acme/primitive/primitive/factory.h"
 
 

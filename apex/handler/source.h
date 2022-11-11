@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 /// source is originator of subjects
 class CLASS_DECL_APEX source :
    virtual public ::object
@@ -10,6 +13,10 @@ public:
 
 
    pointer< pointer_array < ::matter > >    m_phandlera;
+
+
+   source();
+   ~source() override;
 
 
    inline bool has_handler() const

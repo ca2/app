@@ -22,6 +22,8 @@
 #endif
 
 
+#define HAVE_OPENSSL 1
+
 
 namespace crypto_openssl
 {

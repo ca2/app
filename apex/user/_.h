@@ -4,10 +4,23 @@
 #include "acme/user/user/_.h"
 
 
-#include "language.h"
+namespace user
+{
 
 
-#include "language_map.h"
+   class language;
+
+
+   class language_map;
+
+
+} // namespace user
+
+
+//#include "language.h"
+
+
+//#include "language_map.h"
 
 
 

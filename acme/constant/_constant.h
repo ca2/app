@@ -4,7 +4,13 @@
 #include "GLOBAL_ID.h"
 
 
-//#warning "passed here"
+
+enum enum_optional
+{
+
+   e_optional,
+
+};
 
 
 enum enum_property : ::iptr
@@ -164,30 +170,20 @@ enum enum_type
    //type_block = 1000,
    e_type_bool,
    e_type_pbool,
-   e_type_char,
-   e_type_i8 = e_type_char,
-   e_type_pi8,
    e_type_byte,
    e_type_u8 = e_type_byte,
-   e_type_pu8,
-   e_type_i16,
-   e_type_pi16,
+   e_type_char,
+   e_type_i8 = e_type_char,
    e_type_u16,
-   e_type_pu16,
-   e_type_i32,
-   e_type_pi32,
+   e_type_i16,
    e_type_u32,
-   e_type_pu32,
-   e_type_i64,
-   e_type_pi64,
+   e_type_i32,
    e_type_u64,
-   e_type_pu64,
+   e_type_i64,
 
    // floating point_i32
    e_type_f32 = 2000,
-   e_type_pfloat,
    e_type_f64,
-   e_type_pdouble,
 
    // simple classes
    e_type_string = 4000,
@@ -248,7 +244,21 @@ enum enum_type
    e_type_enum_command = 20000,
    e_type_enum_status,
    e_type_enum_check,
-   e_type_enum_flag
+   e_type_enum_flag,
+
+   e_type_primitive_mask = 65535,
+   e_type_pointer_of = 65536,
+   e_type_pu8 = e_type_u8 | e_type_pointer_of,
+   e_type_pi8 = e_type_i8 | e_type_pointer_of,
+   e_type_pu16 = e_type_u16 | e_type_pointer_of,
+   e_type_pi16 = e_type_i16 | e_type_pointer_of,
+   e_type_pu32 = e_type_u32 | e_type_pointer_of,
+   e_type_pi32 = e_type_i32 | e_type_pointer_of,
+   e_type_pu64 = e_type_u64 | e_type_pointer_of,
+   e_type_pi64 = e_type_i64 | e_type_pointer_of,
+   e_type_pf32= e_type_f32 | e_type_pointer_of,
+   e_type_pf64= e_type_f64 | e_type_pointer_of,
+
 
 
 };
@@ -319,31 +329,31 @@ enum enum_trace_level
 };
 
 
-enum enum_object : i64
-{
-
-
-   e_object_none,
-   aaa_want_to_erase_object_locked = 1 << 10,
-   aaa_want_to_erase_object_shared = 1 << 11,
-   aaa_want_to_erase_object_read_only_link = 1 << 12,
-   e_object_log_disable = 1 << 13,
-   e_object_property_set_modified = 1 << 14,
-   e_object_default_io_exchange = 1 << 15,
-   //e_object_alertable_wait = 1 << 16,
-   e_object_any_hook = 1 << 17,
-   //e_object_any_hook = 1 << 17,
-   //e_object_any_update = (1 << 18) | e_object_any_hook,
-   //e_object_composite = 1 << 19,
-#if OBJECT_TYPE_COUNTER
-   e_object_object_type_counter = 1 << 20,
-#endif
-   e_object_synchronous = 1 << 21,
-   e_object_shared = 1 << 22,
-
-
-};
-
+//enum enum_object : i64
+//{
+//
+//
+//   e_object_none,
+//   aaa_want_to_erase_object_locked = 1 << 10,
+//   aaa_want_to_erase_object_shared = 1 << 11,
+//   aaa_want_to_erase_object_read_only_link = 1 << 12,
+//   e_object_log_disable = 1 << 13,
+//   e_object_property_set_modified = 1 << 14,
+//   e_object_default_io_exchange = 1 << 15,
+//   //e_object_alertable_wait = 1 << 16,
+//   e_object_any_hook = 1 << 17,
+//   //e_object_any_hook = 1 << 17,
+//   //e_object_any_update = (1 << 18) | e_object_any_hook,
+//   //e_object_composite = 1 << 19,
+//#if OBJECT_TYPE_COUNTER
+//   e_object_object_type_counter = 1 << 20,
+//#endif
+//   e_object_synchronous = 1 << 21,
+//   e_object_shared = 1 << 22,
+//
+//
+//};
+//
 
 #define ALOG_CATEGORY trace_category_general
 
@@ -693,45 +703,6 @@ enum enum_system_message
 };
 
 
-enum enum_message_box
-{
-
-
-   e_message_box_ok                    = 0x00000000L,
-   e_message_box_ok_cancel             = 0x00000001L,
-   e_message_box_abort_retry_ignore    = 0x00000002L,
-   e_message_box_yes_no_cancel         = 0x00000003L,
-   e_message_box_yes_no                = 0x00000004L,
-   e_message_box_retry_cancel          = 0x00000005L,
-   e_message_box_cancel_try_continue   = 0x00000006L,
-   e_message_box_icon_error            = 0x00000010L,
-   e_message_box_icon_exclamation      = 0x00000030L,
-   e_message_box_icon_question         = 0x00000020L,
-   e_message_box_icon_asterisk         = 0x00000040L,
-   e_message_box_default_button_1      = 0x00000000L,
-   e_message_box_default_button_2      = 0x00000100L,
-   e_message_box_default_button_3      = 0x00000200L,
-   e_message_box_default_button_4      = 0x00000300L,
-   e_message_box_button_mask           = 0x00000300L,
-   
-   
-   e_message_box_icon_hand             = e_message_box_icon_error,
-   e_message_box_icon_warning          = e_message_box_icon_exclamation,
-   e_message_box_icon_information      = e_message_box_icon_asterisk,
-   e_message_box_icon_stop             = e_message_box_icon_asterisk,
-   
-   
-   e_message_box_system_modal          = 0x00001000L,
-
-   
-   e_message_box_type_mask             = 0x0000000FL,
-   e_message_box_icon_mask             = 0x000000F0L,
-   e_message_box_default_button_mask   = 0x00000F00L,
-   e_message_box_mode_mask             = 0x00003000L,
-   e_message_box_miscellaneous_mask    = 0x0000C000L,
-
-
-};
 
 
 enum enum_relative
@@ -751,7 +722,7 @@ enum enum_relative
 };
 
 
-#include "message.h"
+//#include "message.h"
 
 
 enum enum_operating_system
@@ -812,5 +783,52 @@ enum enum_item : ::i64
 
 };
 
+
+#include "_geometry.h"
+
+#include "message_box.h"
+
+
+
+enum enum_command_system
+{
+
+   e_command_system_none = 0,
+   e_command_system_inline_log = 1,
+
+};
+
+
+enum ECodePage
+{
+   CodePageShiftJIS = 932,
+   CodePageLatin1 = 1252,
+   //#ifdef WINDOWS
+   //         CodePageUtf8 = CP_UTF8,
+   //         CodePageAnsi = CP_ACP,
+   //         CodePageOem = CP_OEMCP,
+   //#else
+   CodePageUtf8 = 65001,
+   CodePageAnsi = 10,
+   CodePageOem = 11
+   ///#endif
+};
+
+
+
+
+
+
+
+
+
+enum enum_extract
+{
+
+   e_extract_none,
+   e_extract_first,
+   e_extract_all
+
+};
 
 

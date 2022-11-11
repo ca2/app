@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/data/node.h"
+
+
 namespace xml
 {
 

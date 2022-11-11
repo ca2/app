@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
-
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
 #include "aura/platform/draw_context2.h"
@@ -49,7 +50,7 @@ namespace user
    }
 
 
-   ::element * check_box::clone() const
+   ::particle * check_box::clone() const
    {
 
       auto pcheckbox = memory_new ::user::check_box;
@@ -132,7 +133,7 @@ namespace user
    }
 
 
-   enum_element check_box::get_default_element() const
+   enum_element check_box::get_default_element()
    {
 
       return e_element_check;

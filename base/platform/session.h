@@ -20,17 +20,17 @@ namespace base
       virtual ~session();
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
 
       virtual void on_instantiate_application(::apex::application* papp) override;
 
 
-      ::base::user* user() const;
+      ::base::user* user();
 
 
-      ::base::system* get_system() const;
+      ::base::system* get_system();
 
 
    };

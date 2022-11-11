@@ -14,7 +14,7 @@
 //      ::create            m_commandStartup;
 //
 //
-//      application(::matter * pobject);
+//      application(::particle * pparticle);
 //      ~application() override;
 //
 //      virtual HINSTANCE GetHinstance();

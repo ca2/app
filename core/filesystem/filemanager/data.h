@@ -1,6 +1,12 @@
 #pragma once
 
 
+
+#include "acme/primitive/data/data.h"
+#include "apex/database/key.h"
+#include "acme/primitive/primitive/action_context.h"
+
+
 namespace user
 {
 
@@ -83,14 +89,14 @@ namespace filemanager
       virtual ~data();
 
 
-      void assert_ok() const override;
-      virtual void dump(dump_context& dumpcontext) const override;
+      // void assert_ok() const override;
+      // virtual void dump(dump_context& dumpcontext) const override;
 
 
       bool is_topic();
 
 
-      virtual void initialize_filemanager_data(::object * pobject);
+      virtual void initialize_filemanager_data(::particle * pparticle);
 
       
       bool open(::apex::application * pappOnBehalfOf = nullptr, ::file::path path = "", const ::action_context & action_context = ::e_source_system);
@@ -107,8 +113,8 @@ namespace filemanager
 
 
       virtual ::atom get_local_machine_id();
-      virtual string get_last_browse_path(::object * pobject, const ::string & pszDefault = nullptr);
-      virtual void set_last_browse_path(::object * pobject, const ::file::path & path);
+      virtual string get_last_browse_path(::particle * pparticle, const ::string & pszDefault = nullptr);
+      virtual void set_last_browse_path(::particle * pparticle, const ::file::path & path);
 
 
    };

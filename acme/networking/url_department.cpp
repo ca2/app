@@ -1,23 +1,15 @@
 ﻿#include "framework.h"
-#include "acme/operating_system.h"
+#include "url_department.h"
+#include "__string.h"
 #include "acme/constant/id.h"
-//#include "acme/astr.h"
+#include "acme/constant/idpool.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/string/str.h"
+#include "acme/platform/system.h"
 
-#ifdef WINDOWS_DESKTOP
-#include "idn/idna.h"
-#elif defined(ANDROID)
-#include "idn/idna.h"
-#elif defined(__APPLE__)
-#include "idn/idna.h"
-#elif defined(LINUX)
-// apt install libidn11-dev
-// dnf install libidn-devel
-#include <idna.h>
-#elif defined(FREEBSD)
-// apt install libidn11-dev
-// dnf install libidn-devel
-#include <idna.h>
-#endif
+
+::string idn_to_punycode(const ::string & str);
+::string idn_from_punycode(const ::string & str);
 
 
 namespace url
@@ -828,7 +820,7 @@ namespace url
 
       string strValue = url_encode(payload.string());
 
-      if(::str().begins(strQuery, strKeyEqual))
+      if(string_begins(strQuery, strKeyEqual))
       {
          strsize iPos = strQuery.find("&");
          if(iPos < 0)
@@ -840,7 +832,7 @@ namespace url
             strQuery = strKeyEqual2 + strValue + __query_erase(strQuery.Mid(iPos), strAndKeyEqual);
          }
       }
-      else if(::str().begins(strQuery, strKeyEqual2))
+      else if(string_begins(strQuery, strKeyEqual2))
       {
          strsize iPos = strQuery.find("&");
          if(iPos < 0)
@@ -904,7 +896,7 @@ namespace url
 
       string strAndKeyEqual = "&" + strKeyEqual;
 
-      if(::str().begins(strQuery, strKeyEqual))
+      if(string_begins(strQuery, strKeyEqual))
       {
          strsize iPos = strQuery.find("&");
          if(iPos < 0)
@@ -1032,7 +1024,7 @@ namespace url
 
       strsize iPos = 0;
 
-      if(::str().begins(strQuery, strKeyEqual))
+      if(string_begins(strQuery, strKeyEqual))
       {
          
          iPos = strQuery.find('&');
@@ -1481,43 +1473,43 @@ namespace url
    }
 
 
-   bool department::locale_is_eu(atom idLocale)
+   bool department::locale_is_eu(const ::atom & idLocale)
    {
 
       if(
-      idLocale == __id(eu)
-      || idLocale == __id(se)
-      || idLocale == __id(at)
-      || idLocale == __id(dk)
-      || idLocale == __id(en_uk)
-      || idLocale == __id(uk)
-      || idLocale == __id(fi)
-      || idLocale == __id(gr)
-      || idLocale == __id(de)
-      || idLocale == __id(nl)
-      || idLocale == __id(be)
-      || idLocale == __id(fr)
-      || idLocale == __id(it)
-      || idLocale == __id(pt)
-      || idLocale == __id(cz)
-      || idLocale == __id(lu)
-      || idLocale == __id(ie)
-      || idLocale == __id(no)
-      || idLocale == __id(cy)
-      || idLocale == __id(su)
-      || idLocale == __id(lv)
-      || idLocale == __id(li)
-      || idLocale == __id(hu)
-      || idLocale == __id(es)
-      || idLocale == __id(sk)
-      || idLocale == __id(cz)
-      || idLocale == __id(si)
-      || idLocale == __id(ro)
-      || idLocale == __id(kz)
-      || idLocale == __id(ru)
-      || idLocale == __id(pl)
-      || idLocale == __id(tr)
-      || idLocale == __id(ee))
+         idLocale == "eu"
+      || idLocale == "se"
+      || idLocale == "at"
+      || idLocale == "dk"
+      || idLocale == "en_uk"
+      || idLocale == "uk"
+      || idLocale == "fi"
+      || idLocale == "gr"
+      || idLocale == "de"
+      || idLocale == "nl"
+      || idLocale == "be"
+      || idLocale == "fr"
+      || idLocale == "it"
+      || idLocale == "pt"
+      || idLocale == "cz"
+      || idLocale == "lu"
+      || idLocale == "ie"
+      || idLocale == "no"
+      || idLocale == "cy"
+      || idLocale == "su"
+      || idLocale == "lv"
+      || idLocale == "li"
+      || idLocale == "hu"
+      || idLocale == "es"
+      || idLocale == "sk"
+      || idLocale == "cz"
+      || idLocale == "si"
+      || idLocale == "ro"
+      || idLocale == "kz"
+      || idLocale == "ru"
+      || idLocale == "pl"
+      || idLocale == "tr"
+      || idLocale == "ee")
       {
          return true;
       }
@@ -1526,27 +1518,27 @@ namespace url
 
    }
 
-   bool department::locale_is_asia(atom idLocale)
+   bool department::locale_is_asia(const ::atom & idLocale)
    {
 
-      if(idLocale == __id(asia)
-            || idLocale == __id(cn)
-            || idLocale == __id(tw)
-            || idLocale == __id(vn)
-            || idLocale == __id(in)
-            || idLocale == __id(kg)
-            || idLocale == __id(kz)
-            || idLocale == __id(kr)
-            || idLocale == __id(my)
-            || idLocale == __id(ph)
-            || idLocale == __id(sg)
-            || idLocale == __id(su)
-            || idLocale == __id(ru)
-            || idLocale == __id(zh)
-            || idLocale == __id(hk)
-            || idLocale == __id(ja)
-            || idLocale == __id(jp)
-            || idLocale == __id(tr))
+      if(idLocale == "asia"
+            || idLocale == "cn"
+            || idLocale == "tw"
+            || idLocale == "vn"
+            || idLocale == "in"
+            || idLocale == "kg"
+            || idLocale == "kz"
+            || idLocale == "kr"
+            || idLocale == "my"
+            || idLocale == "ph"
+            || idLocale == "sg"
+            || idLocale == "su"
+            || idLocale == "ru"
+            || idLocale == "zh"
+            || idLocale == "hk"
+            || idLocale == "ja"
+            || idLocale == "jp"
+            || idLocale == "tr")
       {
          return true;
       }
@@ -1555,59 +1547,15 @@ namespace url
 
    }
 
-   bool department::locale_is_middle_east(atom idLocale)
-   {
-
-      string strLocale(idLocale);
-
-      if(idLocale == __id(sy)
-            || idLocale == __id(tr)
-            || idLocale == __id(il)
-            || idLocale == __id(ps))
-      {
-         return true;
-      }
-
-      return false;
-
-   }
-
-
-
-   bool department::locale_is_south_america(atom idLocale)
+   bool department::locale_is_middle_east(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
 
-      if(idLocale == __id(ar)
-            || idLocale == __id(bo)
-            || idLocale == __id(br)
-            || idLocale == __id(cl)
-            || idLocale == __id(co)
-            || idLocale == __id(ec)
-            || idLocale == __id(gs)
-            || idLocale == __id(pe)
-            || idLocale == __id(py)
-            || idLocale == __id(uy)
-            || idLocale == __id(ve)
-            || idLocale == __id(amdesur))
-      {
-         return true;
-      }
-
-      return false;
-
-   }
-
-   bool department::locale_is_oceania(atom idLocale)
-   {
-
-      string strLocale(idLocale);
-
-      if(idLocale == __id(au)
-            || idLocale == __id(oceania)
-            || idLocale == __id(nz)
-            || idLocale == __id(tl))
+      if(idLocale == "sy"
+            || idLocale == "tr"
+            || idLocale == "il"
+            || idLocale == "ps")
       {
          return true;
       }
@@ -1617,16 +1565,24 @@ namespace url
    }
 
 
-   bool department::locale_is_africa(atom idLocale)
+
+   bool department::locale_is_south_america(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
 
-      if(idLocale == __id(ug)
-            || idLocale == __id(sc)
-            || idLocale == __id(cm)
-            || idLocale == __id(za)
-            || idLocale == __id(africa) )
+      if(idLocale == "ar"
+            || idLocale == "bo"
+            || idLocale == "br"
+            || idLocale == "cl"
+            || idLocale == "co"
+            || idLocale == "ec"
+            || idLocale == "gs"
+            || idLocale == "pe"
+            || idLocale == "py"
+            || idLocale == "uy"
+            || idLocale == "ve"
+            || idLocale == "amdesur")
       {
          return true;
       }
@@ -1635,12 +1591,48 @@ namespace url
 
    }
 
-   bool department::locale_is_latin_america(atom idLocale)
+   bool department::locale_is_oceania(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
 
-      if(idLocale == __id(mx))
+      if(idLocale == "au"
+            || idLocale == "oceania"
+            || idLocale == "nz"
+            || idLocale == "tl")
+      {
+         return true;
+      }
+
+      return false;
+
+   }
+
+
+   bool department::locale_is_africa(const ::atom & idLocale)
+   {
+
+      string strLocale(idLocale);
+
+      if(idLocale == "ug"
+            || idLocale == "sc"
+            || idLocale == "cm"
+            || idLocale == "za"
+            || idLocale == "africa" )
+      {
+         return true;
+      }
+
+      return false;
+
+   }
+
+   bool department::locale_is_latin_america(const ::atom & idLocale)
+   {
+
+      string strLocale(idLocale);
+
+      if(idLocale == "mx")
       {
          return true;
       }
@@ -1649,14 +1641,14 @@ namespace url
 
    }
 
-   bool department::locale_is_north_america(atom idLocale)
+   bool department::locale_is_north_america(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
 
-      if(idLocale == __id(mx)
-            || idLocale == __id(us)
-            || idLocale == __id(ca))
+      if(idLocale == "mx"
+            || idLocale == "us"
+            || idLocale == "ca")
       {
          return true;
       }
@@ -1665,17 +1657,17 @@ namespace url
 
    }
 
-   bool department::locale_is_caribe(atom idLocale)
+   bool department::locale_is_caribe(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
 
-      if(idLocale == __id(caribe))
+      if(idLocale == "caribe")
          return true;
 
-      if(idLocale == __id(ht)
-            || idLocale == __id(cu)
-            || idLocale == __id(tc))
+      if(idLocale == "ht"
+            || idLocale == "cu"
+            || idLocale == "tc")
       {
          return true;
       }
@@ -1685,7 +1677,7 @@ namespace url
    }
 
 
-   bool department::locale_is_central_america(atom idLocale)
+   bool department::locale_is_central_america(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
@@ -1693,10 +1685,10 @@ namespace url
       if(strLocale == "central_america")
          return true;
 
-      if(idLocale == __id(centralam))
+      if(idLocale == "centralam")
          return true;
 
-      if(idLocale == __id(bz))
+      if(idLocale == "bz")
       {
          return true;
       }
@@ -1705,12 +1697,12 @@ namespace url
 
    }
 
-   bool department::locale_is_america(atom idLocale)
+   bool department::locale_is_america(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
 
-      if(idLocale == __id(america))
+      if(idLocale == "america")
          return true;
 
       return
@@ -1734,7 +1726,7 @@ namespace url
 
       }
 
-      if(::str().ends_ci(strServer, "." + strRoot))
+      if(string_ends_ci(strServer, "." + strRoot))
       {
 
          return true;
@@ -1779,7 +1771,7 @@ namespace url
       if(bOverrideQuery && strQuery.is_empty())
          strQuery = strQueryOver;
 
-      if (!::str().begins(strScript, "/"))
+      if (!string_begins(strScript, "/"))
          strScript = "/" + strScript;
 
       return strProtocol + "://" + strRoot + strScript + ::str().has_char(strQuery, "?");
@@ -1811,7 +1803,7 @@ namespace url
       if(strQueryOver.has_char())
          strQuery = strQueryOver;
 
-      if (!::str().begins(strScript, "/"))
+      if (!string_begins(strScript, "/"))
          strScript = "/" + strScript;
 
       return strProtocol + "://" + strRoot + strScript + ::str().has_char(strQuery, "?");
@@ -1821,111 +1813,19 @@ namespace url
    string department::to_punycode(const ::string & str)
    {
 
-#ifdef WINDOWS
-
-      wstring wstr(str);
-
-      int iSize = IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int) wstr.get_length(), nullptr, 0);
-
-      wstring wstrTarget;
-
-      WCHAR * pwszTarget = wstrTarget.get_string_buffer(iSize);
-
-      IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int) wstr.get_length(), pwszTarget, iSize);
-
-      wstrTarget.release_string_buffer();
-
-      string strTarget = wstrTarget;
-
-      return strTarget;
-
-#else
-
-      char * psz = nullptr;
-
-      Idna_rc rc = (Idna_rc) idna_to_ascii_8z(str, &psz, IDNA_ALLOW_UNASSIGNED);
-
-      if (rc != IDNA_SUCCESS)
-      {
-
-         throw ::exception(idna_strerror(rc));
-
-      }
-
-      string strReturn(psz);
-
-      free(psz);
-
-      return strReturn;
-
-#endif
+      return ::idn_to_punycode(str);
 
    }
 
    string department::from_punycode(const ::string & str)
    {
 
-#ifdef WINDOWS
-
-      wstring wstrSource(str);
-
-      int iSize = IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (int)wstrSource.get_length(), nullptr, 0);
-
-      wstring wstrTarget;
-
-      auto pwszTarget = wstrTarget.get_string_buffer(iSize);
-
-      IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (int)wstrSource.get_length(), pwszTarget, iSize);
-
-      wstrTarget.release_string_buffer(iSize);
-
-      string strTarget = wstrTarget;
-
-      return strTarget;
-
-#else
-
-      if(str.is_empty())
-      {
-
-         return "";
-
-      }
-
-      string strTrimmed(str);
-
-      strTrimmed.trim();
-
-      if(strTrimmed.is_empty())
-      {
-
-         return "";
-
-      }
-
-      char * psz = nullptr;
-
-      Idna_rc rc = (Idna_rc)idna_to_unicode_8z8z(strTrimmed, &psz, IDNA_ALLOW_UNASSIGNED);
-
-      if (rc != IDNA_SUCCESS)
-      {
-
-         throw ::exception(idna_strerror(rc));
-
-      }
-
-      string strReturn(psz);
-
-      free(psz);
-
-      return strReturn;
-
-#endif
+      return ::idn_from_punycode(str);
 
    }
 
 
-   inline bool ansi_char_is_alphanumeric(i32 i)
+   inline bool ansi_char_is_alnum(i32 i)
    {
 
       return (i >= '0' && i <= '9') || (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z');
@@ -1941,7 +1841,7 @@ namespace url
       if (m_straPublicDomainExtension.is_empty())
       {
 
-         m_psystem->get_public_internet_domain_extension_list(m_straPublicDomainExtension);
+         acmesystem()->get_public_internet_domain_extension_list(m_straPublicDomainExtension);
 
       }
 

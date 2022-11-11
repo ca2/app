@@ -1,8 +1,7 @@
 ﻿#pragma once
 
 
-
-template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array < TYPE, ARG_TYPE > >
+template < class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 class comparable_array :
    public ARRAY_TYPE
 {
@@ -21,7 +20,7 @@ public:
    using BASE_ARRAY::operator +=;
 
    comparable_array() { }
-   explicit comparable_array(::matter * pobject) : BASE_ARRAY(pobject) { }
+   explicit comparable_array(::particle * pparticle) : BASE_ARRAY(pparticle) { }
    comparable_array(::std::initializer_list < TYPE > l) : BASE_ARRAY(l) {   }
    comparable_array(const comparable_array & array) : BASE_ARRAY(array) {}
    comparable_array(comparable_array && array) : BASE_ARRAY(::move(array)) {}

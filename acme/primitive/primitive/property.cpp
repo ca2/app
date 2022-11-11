@@ -1,8 +1,10 @@
 ﻿#include "framework.h"
-//#include "acme/xml/_.h"
+#include "payload.h"
+#include "acme/networking/__string.h"
+#include "acme/primitive/string/str.h"
 
 
-void prop_id_debug(::matter * pobject);
+void prop_id_debug(::particle * pparticle);
 
 
 //property::property(property_set * pset) :
@@ -128,19 +130,19 @@ void prop_id_debug(::matter * pobject);
 ////}
 //
 //
-////property::property(property_set * pset, const atom & atom, const ::payload &  ::payload, ::matter * pobject) :
+////property::property(property_set * pset, const atom & atom, const ::payload &  ::payload, ::particle * pparticle) :
 ////   m_ppropertyset(pset),
 ////   m_var(payload)
 ////{
 ////
 ////   m_atom = atom;
 ////
-////   if(::is_set(pobject))
+////   if(::is_set(pparticle))
 ////   {
 ////
 ////      ASSERT(m_pointer.is_null());
 ////
-////      m_pointer = pobject;
+////      m_pointer = pparticle;
 ////
 ////   }
 ////
@@ -1405,8 +1407,8 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-////property_ptra::property_ptra(::matter * pobject):
-////   ::matter(pobject)
+////property_ptra::property_ptra(::particle * pparticle):
+////   ::matter(pparticle)
 ////{
 ////   set_size(0, 64);
 ////}
@@ -1474,7 +1476,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//void prop_id_debug(::matter * pobject)
+//void prop_id_debug(::particle * pparticle)
 //{
 //
 //   comparable_array < ::atom > idaSchema;

@@ -1,11 +1,14 @@
 ﻿#include "framework.h"
 #include "box.h"
+#include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
+#include "acme/parallelization/single_lock.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
 #include "aura/platform/application.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
+#include "aura/windowing/monitor.h"
 
 
 namespace user
@@ -30,10 +33,10 @@ namespace user
    }
 
 
-   void box::initialize(::object * pobject)
+   void box::initialize(::particle * pparticle)
    {
 
-      interaction::initialize(pobject);
+      interaction::initialize(pparticle);
 
       if (m_atom.is_empty())
       {
@@ -88,7 +91,7 @@ namespace user
    }
 
 
-   ::e_display box::window_stored_display() const
+   ::e_display box::window_stored_display()
    {
 
       auto edisplayStored = m_windowrectangle.m_edisplay;
@@ -98,7 +101,7 @@ namespace user
    }
 
 
-   ::e_display box::window_previous_display() const
+   ::e_display box::window_previous_display()
    {
 
       auto edisplayPrevious = m_windowrectangle.m_edisplayPrevious;
@@ -551,7 +554,7 @@ namespace user
          if(m_ewindowflag & e_window_flag_window_created)
          {
             
-            send_procedure(functionGoodRestore);
+            interaction_send(functionGoodRestore);
             
          }
          else
@@ -730,7 +733,7 @@ namespace user
    string box::calc_display()
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       string strDisplay;
 
@@ -755,7 +758,7 @@ namespace user
    bool box::does_display_match()
    {
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       if (m_strDisplay.is_empty())
          return false;
@@ -768,7 +771,7 @@ namespace user
    void box::defer_update_display()
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       m_strDisplay = calc_display();
 

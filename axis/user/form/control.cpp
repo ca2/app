@@ -1,11 +1,14 @@
 ﻿#include "framework.h"
 #include "control.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/include/_c_swap.h"
 #include "acme/platform/timer.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/database/selection.h"
+#include "apex/platform/create.h"
 #include "aura/user/user/form_callback.h"
 #include "aura/message/user.h"
 #include "axis/platform/application.h"
@@ -358,9 +361,9 @@ namespace user
       if(pinteraction->has_function(e_control_function_vms_data_edit))
       {
 
-         ::database::selection selection;
-
-         _001GetSelection(pinteraction->m_datakey, selection);
+//         ::database::selection selection;
+//
+//         _001GetSelection(pinteraction->m_datakey, selection);
 
          throw_todo();
 
@@ -507,37 +510,39 @@ namespace user
          if (pinteraction->m_eddx == e_control_ddx_dbflags)
          {
 
-            int_array ia;
+            throw_todo();
 
-            ::pointer<::database::client>pclient = pinteraction;
-
-            if (pclient.is_null())
-            {
-
-               TRACE("control doesn't implement database::client");
-
-               return;
-
-            }
-
-            pclient->datastream()->get(pinteraction->m_datakey, ia);
-
-            ::pointer<check>pcheck = ptopic->user_interaction();
-
-            if (pcheck->echeck() == ::e_check_checked)
-            {
-
-               ia.add_unique(pinteraction->m_iDataValue);
-
-            }
-            else
-            {
-
-               ia.erase(pinteraction->m_iDataValue);
-
-            }
-
-            pclient->datastream()->set(pinteraction->m_datakey, ia);
+//            int_array ia;
+//
+//            ::pointer<::database::client>pclient = pinteraction;
+//
+//            if (pclient.is_null())
+//            {
+//
+//               TRACE("control doesn't implement database::client");
+//
+//               return;
+//
+//            }
+//
+//            pclient->datastream()->get(pinteraction->m_datakey, ia);
+//
+//            ::pointer<check>pcheck = ptopic->user_interaction();
+//
+//            if (pcheck->echeck() == ::e_check_checked)
+//            {
+//
+//               ia.add_unique(pinteraction->m_iDataValue);
+//
+//            }
+//            else
+//            {
+//
+//               ia.erase(pinteraction->m_iDataValue);
+//
+//            }
+//
+//            pclient->datastream()->set(pinteraction->m_datakey, ia);
 
          }
 
@@ -696,53 +701,54 @@ namespace user
 
       if(pinteraction->has_function(e_control_function_vms_data_edit))
       {
-         ::payload payload;
-         ::database::selection selection;
-         _001GetSelection(pinteraction->m_datakey,selection);
-         if(selection.get_item_count() > 0)
-         {
-
-            //::database::selection_item & item = selection.get_item(0);
-
-            if (!pinteraction)
-            {
-
-               return;
-
-            }
-
-            //if(datastream()->get(pinteraction->m_datakey.m_strDataKey + "." + item.m_datakey.m_strDataKey,::payload))
-            //{
-            //   switch(payload.get_type())
-            //   {
-            //   case ::e_type_string:
-            //   {
-
-            //      string str;
-
-            //      str = payload.m_str;
-
-            //      pinteraction->_001SetText(str,::e_source_database);
-
-            //   }
-            //   break;
-            //   case ::e_type_i32:
-            //   {
-
-            //      string str;
-
-            //      str.format("%d",payload.i32());
-
-            //      pinteraction->_001SetText(str,::e_source_database);
-
-            //   }
-            //   break;
-            //   default:
-            //      ASSERT(false);
-            //      break;
-            //   }
-            //}
-         }
+         throw_todo();
+//         ::payload payload;
+//         ::database::selection selection;
+//         _001GetSelection(pinteraction->m_datakey,selection);
+//         if(selection.get_item_count() > 0)
+//         {
+//
+//            //::database::selection_item & item = selection.get_item(0);
+//
+//            if (!pinteraction)
+//            {
+//
+//               return;
+//
+//            }
+//
+//            //if(datastream()->get(pinteraction->m_datakey.m_strDataKey + "." + item.m_datakey.m_strDataKey,::payload))
+//            //{
+//            //   switch(payload.get_type())
+//            //   {
+//            //   case ::e_type_string:
+//            //   {
+//
+//            //      string str;
+//
+//            //      str = payload.m_str;
+//
+//            //      pinteraction->_001SetText(str,::e_source_database);
+//
+//            //   }
+//            //   break;
+//            //   case ::e_type_i32:
+//            //   {
+//
+//            //      string str;
+//
+//            //      str.format("%d",payload.i32());
+//
+//            //      pinteraction->_001SetText(str,::e_source_database);
+//
+//            //   }
+//            //   break;
+//            //   default:
+//            //      ASSERT(false);
+//            //      break;
+//            //   }
+//            //}
+         //}
       }
    }
 
@@ -999,10 +1005,17 @@ namespace user
             _001UpdateDbFlags(pinteraction);
 
          }
-         else if(pinteraction->m_datakey == key)
+         else
          {
 
-            _001Update(pinteraction);
+            throw_todo();
+
+//         else if(pinteraction->m_datakey == key)
+//         {
+//
+//            _001Update(pinteraction);
+//
+//         }
 
          }
 
@@ -1217,11 +1230,11 @@ namespace user
    //   //   return false;
    //   //}
 
-   ///*   ::pointer<object>pobject;
+   ///*   ::pointer<object>pparticle;
 
-   //   __id_construct(pobject, pdescriptor->m_type);
+   //   __id_construct(pparticle, pdescriptor->m_type);
 
-   //   if(!pobject)
+   //   if(!pparticle)
    //   {
 
    //      TRACE("form_control::create_interaction: failed to create control, allocation error");
@@ -1230,12 +1243,12 @@ namespace user
 
    //   }
 
-   //   ::pointer<interaction>pinteraction = pobject;
+   //   ::pointer<interaction>pinteraction = pparticle;
 
    //   if(!pinteraction)
    //   {
 
-   //      pobject.release();
+   //      pparticle.release();
 
    //      TRACE("form_control::create_interaction: failed to create control, object is not derived from user::control_descriptor");
 
@@ -1269,7 +1282,7 @@ namespace user
    }
 
 
-   ::axis::application * form_control::get_app() const
+   ::axis::application * form_control::get_app()
    {
 
       return ::is_set(m_pcontext) ? m_pcontext->m_paxisapplication : nullptr;
@@ -1277,7 +1290,7 @@ namespace user
    }
 
 
-   ::axis::session * form_control::get_session() const
+   ::axis::session * form_control::get_session()
    {
 
       return ::is_set(m_pcontext) ? m_pcontext->m_paxissession : nullptr;
@@ -1286,15 +1299,15 @@ namespace user
 
 
 
-   ::axis::system * form_control::get_system() const 
+   ::axis::system * form_control::get_system()
    {
       
-      return ::is_set(m_psystem) ? m_psystem->m_paxissystem : nullptr; 
+      return ::is_set(acmesystem()) ? acmesystem()->m_paxissystem : nullptr; 
    
    }
 
 
-   ::axis::user * form_control::user() const
+   ::axis::user * form_control::user()
    {
       
       return get_session() ? get_session()->user() : nullptr; 
@@ -1655,7 +1668,7 @@ namespace user
 
       }
 
-      auto pform = pinteraction->cast < ::user::form >();
+      ::pointer < ::user::form > pform = pinteraction;
 
       if (!pform)
       {

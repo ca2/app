@@ -1,6 +1,10 @@
 ﻿#include "framework.h"
 #include "memory_file.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/exception/exception.h"
+#include "acme/exception/io.h"
+#include "acme/filesystem/file/exception.h"
+#include "acme/filesystem/file/status.h"
 
 
 memory_file::memory_file() :
@@ -9,7 +13,7 @@ memory_file::memory_file() :
 
    m_position = 0;
    m_estatus = ::success;
-   set_ok();
+   set_ok_flag();
 
 }
 
@@ -22,7 +26,7 @@ memory_file::memory_file(const ::file::e_open & eopen) :
    m_position = 0;
    m_pbyte = nullptr;
    m_estatus = ::success;
-   set_ok();
+   set_ok_flag();
 
 }
 
@@ -34,7 +38,7 @@ memory_file::memory_file(memsize size) :
    m_position = 0;
    m_pbyte = nullptr;
    m_estatus = ::success;
-   set_ok();
+   set_ok_flag();
 
 }
 
@@ -47,7 +51,7 @@ memory_file::memory_file(const memory_file & m) :
 
    m_position = m.m_position;
    m_estatus = m.m_estatus;
-   if(m.is_ok()) set_ok();
+   if(m.is_ok()) set_ok_flag();
 
 }
 
@@ -59,7 +63,7 @@ memory_file::memory_file(memory_file && m) :
 
    m_position = m.m_position;
    m_estatus = m.m_estatus;
-   if(m.is_ok()) set_ok();
+   if(m.is_ok()) set_ok_flag();
 
 }
 
@@ -84,16 +88,6 @@ memory_file::memory_file(const ::block & block) :
 
 }
 
-
-memory_file::memory_file(::payload & payload, const ::file::e_open & eopen) :
-   memory_container(payload)
-{
-
-   m_eopen = eopen;
-   m_position = 0;
-   m_estatus = ::success;
-
-}
 
 
 memory_file::memory_file(memory_base & memory, const ::file::e_open & eopen) :
@@ -666,20 +660,20 @@ string memory_file::as_string() const
 }
 
 
-void memory_file::assert_ok() const
-{
-
-   file::assert_ok();
-
-}
-
-
-void memory_file::dump(dump_context & dumpcontext) const
-{
-
-   file::dump(dumpcontext);
-
-}
+//void memory_file::assert_ok() const
+//{
+//
+//   //file::assert_ok();
+//
+//}
+//
+//
+//void memory_file::dump(dump_context & dumpcontext) const
+//{
+//
+//   //file::dump(dumpcontext);
+//
+//}
 
 
 //void memory_file::full_load(::payload payloadFile)
@@ -687,7 +681,7 @@ void memory_file::dump(dump_context & dumpcontext) const
 //
 //   ASSERT(is_valid());
 //
-//   auto pfile = m_pcontext->m_papexcontext->file().get_file(payloadFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
+//   auto pfile = file()->get_file(payloadFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
 //
 //   if (!pfile)
 //   {

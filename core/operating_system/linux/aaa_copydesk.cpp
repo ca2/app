@@ -32,8 +32,8 @@ struct clipboard_data :
 public:
 
 
-   clipboard_data(::object * pobject, e_clipboard eclipboard) :
-      object(pobject)
+   clipboard_data(::particle * pparticle, e_clipboard eclipboard) :
+      object(pparticle)
    {
 
       m_eclipboard = eclipboard;
@@ -194,7 +194,7 @@ void clipboard_received_func(GtkClipboard * clipboard, GtkSelectionData * select
 
       string strItem = stra[i];
 
-      ::str().begins_eat_ci(strItem, "file://");
+      strItem.begins_eat_ci("file://");
 
       pdata->m_patha.add(::file::path(strItem));
 
@@ -471,10 +471,10 @@ namespace linux
    }
 
 
-   void copydesk::initialize(::object * pobject)
+   void copydesk::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::user::copydesk::initialize(pobject);
+      auto estatus = ::user::copydesk::initialize(pparticle);
 
       if(!estatus)
       {

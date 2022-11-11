@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-
+#include "task.h"
 
 //#define memory_new ACME_NEW
 
@@ -15,7 +15,7 @@ public:
    PRED m_predicate;
 
 
-   predicate_task(::object * pobject, PRED pred) :
+   predicate_task(::particle * pparticle, PRED pred) :
       m_predicate(pred)
    {
 
@@ -25,7 +25,7 @@ public:
 
       //m_bFork = true;
 
-      initialize(pobject);
+      initialize(pparticle);
 
 
    }
@@ -51,10 +51,10 @@ public:
 
 
 template < typename PRED >
-inline auto new_predicateicate_task(::object * pobject, PRED pred)
+inline auto new_predicateicate_task(::particle * pparticle, PRED pred)
 {
 
-   return __new(predicate_task < PRED > (pobject, pred));
+   return __new(predicate_task < PRED > (pparticle, pred));
 
 }
 
@@ -137,17 +137,17 @@ inline auto new_predicateicate_task(::object * pobject, PRED pred)
 
 
 //template < typename PRED >
-//CLASS_DECL_ACME ::pointer<::task>& branch(::pointer<::task> ptask, ::object * pobject, const ::procedure & procedure);
+//CLASS_DECL_ACME ::pointer<::task>& branch(::pointer<::task> ptask, ::particle * pparticle, const ::procedure & procedure);
 
 
 
 //template < typename PRED >
-//::task * fork(::object * pobject, PRED pred)
+//::task * fork(::particle * pparticle, PRED pred)
 //{
 //
 //   ::task * ptask = nullptr;
 //
-//   return fork(ptask, pobject, pred);
+//   return fork(ptask, pparticle, pred);
 //
 //}
 
@@ -196,10 +196,10 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 
 //
 //template < typename PRED >
-//::pointer<task>fork(::object * pobject, PRED pred)
+//::pointer<task>fork(::particle * pparticle, PRED pred)
 //{
 //
-//   ptask = memory_new predicate_task < PRED >(pobject, pred);
+//   ptask = memory_new predicate_task < PRED >(pparticle, pred);
 //
 //   ptask->begin();
 //
@@ -211,10 +211,10 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //
 
 //template < typename PRED >
-//::task * fork(::object * pobject, PRED pred, const char * pszTag, int iCallStackAddUp = 0, enum_priority epriority = e_priority_normal)
+//::task * fork(::particle * pparticle, PRED pred, const char * pszTag, int iCallStackAddUp = 0, enum_priority epriority = e_priority_normal)
 //{
 //
-//   auto ppredtask = __new(predicate_task < PRED >(pobject, pred));
+//   auto ppredtask = __new(predicate_task < PRED >(pparticle, pred));
 //
 //   string strTag(pszTag);
 //
@@ -247,7 +247,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 
 ///// optimized: forks if not forked
 //template < typename PRED >
-//::task * opt_fork(::object * pobject,  PRED pred)
+//::task * opt_fork(::particle * pparticle,  PRED pred)
 //{
 //
 //   if (::get_task() != nullptr && ::get_task()->m_bFork)
@@ -259,7 +259,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //
 //   }
 //
-//   return fork(pobject, pred);
+//   return fork(pparticle, pred);
 //
 //}
 
@@ -270,9 +270,9 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //
 //   iCallStackAddUp++;
 //
-//   defer_create_mutex();
+//   defer_create_synchronization();
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   ptask = ::fork(ptask, this, pred, pszTag, iCallStackAddUp);
 //
@@ -287,9 +287,9 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //
 //   iCallStackAddUp++;
 //
-//   defer_create_mutex();
+//   defer_create_synchronization();
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   return fork(pred, pszTag, iCallStackAddUp, epriority);
 //
@@ -358,71 +358,69 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //
 
 
-template < typename PRED >
-class forking_count_predicate :
-virtual public predicate_holder_base
-{
-public:
+//class CLASS_DECL_ACME forking_count_function :
+//   virtual public particle
+//{
+//public:
+//
+//   ::function < void(index) > m_function;
+//
+//   struct fork_index
+//   {
+//
+//      index       m_iOrder;
+//      index       m_iIndex;
+//      index       m_iScan;
+//      ::count     m_cCount;
+//      index       m_i;
+//
+//      operator index()
+//      {
+//
+//         return m_i;
+//
+//      }
+//
+//   };
+//
+//   fork_index m_index;
+//
+//   forking_count_predicate(index iOrder, index iIndex, ::count iScan, ::count cCount, const ::function < void(index) > & function) :
+//   m_predicate(function)
+//   {
+//
+//      m_index.m_iOrder  = iOrder;
+//      m_index.m_iIndex  = iIndex;
+//      m_index.m_iScan   = iScan;
+//      m_index.m_cCount  = cCount;
+//
+//   }
+//
+//   virtual void run() override
+//   {
+//
+//      for (m_index.m_i = m_index.m_iIndex; m_index.m_i < m_index.m_cCount; m_index.m_i += m_index.m_iScan)
+//      {
+//
+//         m_function(m_index);
+//
+//      }
+//
+//      //return ::success;
+//
+//   }
+//
+//};
 
-   PRED m_predicate;
 
-   struct fork_index
-   {
-
-      index       m_iOrder;
-      index       m_iIndex;
-      index       m_iScan;
-      ::count     m_cCount;
-      index       m_i;
-
-      operator index()
-      {
-
-         return m_i;
-
-      }
-
-   };
-
-   fork_index m_index;
-
-   forking_count_predicate(index iOrder, index iIndex, ::count iScan, ::count cCount, PRED pred) :
-   m_predicate(pred)
-   {
-
-      m_index.m_iOrder  = iOrder;
-      m_index.m_iIndex  = iIndex;
-      m_index.m_iScan   = iScan;
-      m_index.m_cCount  = cCount;
-
-   }
-
-   virtual void run() override
-   {
-
-      for (m_index.m_i = m_index.m_iIndex; m_index.m_i < m_index.m_cCount; m_index.m_i += m_index.m_iScan)
-      {
-
-         m_predicate(m_index);
-
-      }
-
-      //return ::success;
-
-   }
-
-};
-
-
-template < typename PRED >
-class forking_count_task :
+class CLASS_DECL_ACME forking_count_task :
 virtual public task
 {
 public:
 
 
 
-   PRED        m_predicate;
+   ::function < void(index, index, index, index) > m_function;
 
 
    index       m_iOrder;
@@ -435,127 +433,22 @@ public:
    ::pointer<object> m_pholdref;
 
 
-   forking_count_task(::object * pobject, ::pointer<object>pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
-   m_pholdref(pholdref),
-   m_predicate(pred),
-   m_iOrder(iOrder),
-   m_iIndex(iIndex),
-   m_iScan(iScan),
-   m_iCount(iCount),
-   m_pobjectTaskEnd(pobjectTaskEnd)
-   {
-      construct();
-      initialize(pobject);
-   }
+   forking_count_task(::particle * pparticle, ::pointer<object>pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, const ::function < void(index, index, index, index) > & function, ::object * pobjectTaskEnd = nullptr);
 
-   forking_count_task(::object * pobject, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
-   m_predicate(pred),
-   m_iOrder(iOrder),
-   m_iIndex(iIndex),
-   m_iScan(iScan),
-   m_iCount(iCount),
-   m_pobjectTaskEnd(pobjectTaskEnd)
-   {
-      construct();
-      initialize(pobject);
-   }
+   forking_count_task(::particle * pparticle, index iOrder, index iIndex, ::count iScan, ::count iCount, const ::function < void(index, index, index, index) > & function, ::object * pobjectTaskEnd = nullptr);
 
    
-   void construct()
-   {
-
-      m_uThreadAffinityMask = (::uptr) translate_processor_affinity((int) m_iOrder);
-
-   }
+   void construct();
 
 
-   virtual ~forking_count_task()
-   {
+   ~forking_count_task() override;
 
-   }
-
-   virtual void     run() override
-   {
-
-      try
-      {
-
-         m_predicate(m_iOrder, m_iIndex, m_iCount, m_iScan);
-
-      }
-      catch (...)
-      {
-
-      }
-
-      if (m_pobjectTaskEnd.is_set())
-      {
-
-         if (m_pobjectTaskEnd->get_ref_count() == 1)
-         {
-
-            m_pobjectTaskEnd->run();
-
-         }
-
-         m_pobjectTaskEnd.release();
-
-      }
-
-      if (m_pcounter.is_set())
-      {
-
-         (*m_pcounter)++;
-
-      }
-
-      //return ::success;
-
-   }
+   void run() override;
 
 };
 
 
-template < typename PRED >
-void fork_count(::object * pobjectParent, ::count iCount, PRED pred, const ::procedure & procedureCompletion, index iStart = 0)
-{
-
-   int iAffinityOrder = get_current_process_affinity_order();
-
-   if (::get_task() != nullptr && ::get_task()->m_bAvoidProcedureFork)
-   {
-
-      iAffinityOrder = 1;
-
-   }
-
-   ::count cScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
-
-   auto pcounter = __new(::counter(cScan, procedureCompletion));
-
-   auto ptask = ::get_task();
-
-   for (index iOrder = 0; iOrder < cScan; iOrder++)
-   {
-
-      auto ppredtask = __new(forking_count_task < PRED >(pobjectParent, iOrder, iOrder + iStart, cScan, iCount, pred));
-
-      //if (::is_set(ptask))
-      //{
-
-      //   ptask->add_reference(ppredtask);
-
-      //}
-
-      ppredtask->m_pcounter = pcounter;
-
-      ppredtask->branch();
-
-   }
-
-   //return pcounter;
-
-}
+//CLASS_DECL_ACME void fork_count(::particle * pobjectParent, ::count iCount, const ::function < void(index, index, index, index) > & function, const ::procedure & procedureCompletion, index iStart = 0);
 
 
 //template < typename PRED, typename PRED_END >
@@ -608,8 +501,8 @@ void fork_count(::object * pobjectParent, ::count iCount, PRED pred, const ::pro
 //
 //   ::pointer<::object> m_pobjectTaskEnd;
 //
-//   forking_for_task(::object * pobject, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
-//   ::object(pobject),
+//   forking_for_task(::particle * pparticle, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
+//   ::object(pparticle),
 //   m_predicate(pred),
 //   m_iOrder(iOrder),
 //   m_iIndex(iIndex),
@@ -785,26 +678,7 @@ CLASS_DECL_ACME u32 processor_index_generator();
 //}
 
 
-template < typename PRED >
-::task * predicate_run(::object * pobject, bool bSync, PRED pred)
-{
-
-  if (bSync)
-  {
-
-     pred();
-
-     return nullptr;
-
-  }
-  else
-  {
-
-     return pobject->fork(pred);
-
-  }
-
-}
+CLASS_DECL_ACME ::task * predicate_run(::particle * pparticle, bool bSync, const ::procedure & procedure);
 
 
 //template < typename PRED >

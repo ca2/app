@@ -4,7 +4,7 @@
 
 //extern string_map < ::pointer<::acme::library >>* g_pmapLibrary;
 
-//extern ::mutex * ::aura::get_system()->m_mutexLibrary;
+//extern ::pointer< ::mutex > ::aura::get_system()->m_pmutexLibrary;
 
 
 typedef  void(*PFN_create_factory)();
@@ -17,10 +17,10 @@ namespace aura
    const char * psz_empty_app_id = "";
 
 
-   void     library::initialize(::object * pobject)
+   void     library::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      auto estatus = ::object::initialize(pparticle);
 
       m_plibrary = nullptr;
 
@@ -31,10 +31,10 @@ namespace aura
    }
 
 
-   void library::initialize_aura_library(::object * pobject,int iDesambig, const ::string & pszRoot, const ::string & pszName, const ::string & pszFolder)
+   void library::initialize_aura_library(::particle * pparticle,int iDesambig, const ::string & pszRoot, const ::string & pszName, const ::string & pszFolder)
    {
 
-      auto estatus = initialize(pobject);
+      auto estatus = initialize(pparticle);
 
       if (!estatus)
       {
@@ -111,7 +111,7 @@ namespace aura
    bool library::open(const ::string & pszPath,bool bAutoClose,bool bCa2Path)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       m_strMessage.Empty();
 
@@ -187,7 +187,7 @@ namespace aura
    bool library::open_ca2_library(string strTitle)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       if (m_pca2library.is_set())
       {
@@ -253,7 +253,7 @@ namespace aura
 
                iPhase++;
 
-               if (::str().begins_eat(strTitle, "lib"))
+               if (strTitle.begins_eat("lib"))
                {
 
                   get(pfnNewAuraLibrary, strTitle + "_get_new_library");
@@ -358,7 +358,7 @@ namespace aura
    string library::get_library_name()
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       if(m_pca2library)
       {
@@ -403,7 +403,7 @@ namespace aura
    bool library::close()
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       try
       {
@@ -453,7 +453,7 @@ namespace aura
    string library::get_app_id(const ::string & pszAppName)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       if(!contains_app(pszAppName))
          return "";
@@ -470,16 +470,16 @@ namespace aura
          strLibraryName = "ca2";
 
       }
-      else if(!::str().begins_eat(strLibraryName,"libca2"))
+      else if(!strLibraryName.begins_eat("libca2"))
       {
 
-         ::str().begins_eat(strLibraryName,"lib");
+         strLibraryName.begins_eat("lib");
 
       }
 
 #elif defined(_UWP)
 
-      //      ::str().begins_eat_ci(strLibraryName, "m_");
+      //      strLibraryName.begins_eat_ci("m_");
 
 #endif
 
@@ -507,7 +507,7 @@ namespace aura
    string library::get_app_name(const ::string & pszAppId)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       string strAppName(pszAppId);
 
@@ -523,16 +523,16 @@ namespace aura
          strLibraryName = "ca2";
 
       }
-      else if(!::str().begins_eat(strLibraryName,"libca2"))
+      else if(!strLibraryName.begins_eat("libca2"))
       {
 
-         ::str().begins_eat(strLibraryName,"lib");
+         strLibraryName.begins_eat("lib");
 
       }
 
 #elif defined(_UWP)
 
-      //      ::str().begins_eat_ci(strLibraryName, "m_");
+      //      strLibraryName.begins_eat_ci("m_");
 
 #endif
 
@@ -542,7 +542,7 @@ namespace aura
 
       strPrefix += "/";
 
-      ::str().begins_eat(strAppName,strPrefix);
+      strAppName.begins_eat(strPrefix);
 
       if(!contains_app(strAppName))
       {
@@ -553,7 +553,7 @@ namespace aura
 
          strPrefix += "/";
 
-         ::str().begins_eat(strAppName,strPrefix);
+         strAppName.begins_eat(strPrefix);
 
          if(!contains_app(strAppName))
             return "";
@@ -564,10 +564,10 @@ namespace aura
    }
 
 
-   ::pointer<::aura::application>library::get_new_application(::object * pobject, const ::string & pszAppId)
+   ::pointer<::aura::application>library::get_new_application(::particle * pparticle, const ::string & pszAppId)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       try
       {
@@ -582,7 +582,7 @@ namespace aura
             if (papp)
             {
 
-               auto estatus = papp->initialize(pobject);
+               auto estatus = papp->initialize(pparticle);
 
                if (!estatus)
                {
@@ -616,7 +616,7 @@ namespace aura
 
             }
 
-            auto papp = get_ca2_library()->get_new_application(pobject, strAppName);
+            auto papp = get_ca2_library()->get_new_application(pparticle, strAppName);
 
             if (!papp)
             {
@@ -643,7 +643,7 @@ namespace aura
                if (papp)
                {
 
-                  papp->initialize(pobject);
+                  papp->initialize(pparticle);
 
                }
 
@@ -677,7 +677,7 @@ namespace aura
    void library::get_app_list(string_array & stra)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       if(get_ca2_library() != nullptr)
       {
@@ -702,7 +702,7 @@ namespace aura
 //
 //#if defined(LINUX) || defined(__APPLE__)
 //
-//         ::str().begins_eat(strAppId,"lib");
+//         strAppId.begins_eat("lib");
 //
 //#elif defined(_UWP)
 //
@@ -714,9 +714,9 @@ namespace aura
 //
 //         strPrefix += "_";
 //
-//         ::str().begins_eat_ci(strAppId,strPrefix);
+//         strAppId.begins_eat_ci(strPrefix);
 //
-//         //if(::str().begins_eat_ci(strAppId,strPrefix))
+//         //if(strAppId.begins_eat_ci(strPrefix))
 //         {
 //
 //            stra.add(strAppId);
@@ -728,7 +728,7 @@ namespace aura
    }
 
 
-   ::matter* library::new_object(::object* pobject, const ::string & pszClassId)
+   ::matter* library::new_object(::object* pparticle, const ::string & pszClassId)
    {
 
       return nullptr;
@@ -736,15 +736,15 @@ namespace aura
    }
 
 
-   ::pointer<::matter>library::create_object(::object * pobject, const ::string & pszClass)
+   ::pointer<::matter>library::create_object(::particle * pparticle, const ::string & pszClass)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       if (factory_has_object_class(pszClass))
       {
 
-         return factory_create(pobject, pszClass);
+         return factory_create(pparticle, pszClass);
 
       }
       
@@ -753,28 +753,28 @@ namespace aura
       if(get_ca2_library() != nullptr)
       {
 
-         p = get_ca2_library()->new_object(pobject, pszClass);
+         p = get_ca2_library()->new_object(pparticle, pszClass);
 
       }
       else
       {
          
-         p = new_object(pobject, pszClass);
+         p = new_object(pparticle, pszClass);
 
       }
 
-      auto pobject = ::move(p);
+      auto pparticle = ::move(p);
       
-      if (::is_null(pobject))
+      if (::is_null(pparticle))
       {
 
          return nullptr;
 
       }
 
-      pobject->initialize(pobject);
+      pparticle->initialize(pparticle);
 
-      return pobject;
+      return pparticle;
 
    }
 
@@ -782,7 +782,7 @@ namespace aura
    bool library::has_object_class(const ::string & pszClassId)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       if (factory_has_object_class(pszClassId))
       {
@@ -806,7 +806,7 @@ namespace aura
    bool library::contains_app(const ::string & pszAppId)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       string_array stra;
 
@@ -820,7 +820,7 @@ namespace aura
    string library::get_root()
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       if(m_pca2library)
       {
@@ -837,7 +837,7 @@ namespace aura
    void library::get_create_impact_id_list(::array < atom > & ida)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       __UNREFERENCED_PARAMETER(ida);
 
@@ -847,7 +847,7 @@ namespace aura
    bool library::is_opened()
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       return m_plibrary != nullptr;
 
@@ -865,14 +865,14 @@ namespace aura
    void * library::raw_get(const ::string & pszEntryName)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
 
       return __node_library_raw_get(m_plibrary,pszEntryName);
 
    }
 
    
-   ::matter* library::factory_new(::object* pobject, const ::string & lpszClass)
+   ::matter* library::factory_new(::object* pparticle, const ::string & lpszClass)
    {
 
       return nullptr;
@@ -880,7 +880,7 @@ namespace aura
    }
 
 
-   ::pointer<::matter>library::factory_create(::object * pobject, const ::string & lpszClass)
+   ::pointer<::matter>library::factory_create(::particle * pparticle, const ::string & lpszClass)
    {
 
       library_object_allocator_base * pallocator = find_allocator(lpszClass);
@@ -892,18 +892,18 @@ namespace aura
 
       }
 
-      auto p = pallocator->new_object(pobject);
+      auto p = pallocator->new_object(pparticle);
 
-      auto pobject = ::move(p);
+      auto pparticle = ::move(p);
 
-      if (!pobject)
+      if (!pparticle)
       {
 
          return nullptr;
 
       }
 
-      return pobject;
+      return pparticle;
 
    }
 

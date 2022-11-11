@@ -26,13 +26,15 @@
 */
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "axis/html/html_lite/_.h"
+//#include "axis/html/html_lite/_.h"
 #endif
 #include "common.h"
+#include "acme/primitive/string/str.h"
 #include "axis/platform/session.h"
 #include "axis/platform/system.h"
 #include "attributes.h"
 #include "reader.h"
+#include "axis/html/html/html.h"
 
 
 /**
@@ -58,13 +60,13 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
    //   char   ch = 0;
 
    // skip leading white-space characters
-   while(::isspace((uchar) *pszBegin))
+   while(::character_isspace(*pszBegin))
 
       pszBegin++;
 
 
    // name doesn't begin with an alphabet?
-   if (!::isalpha((uchar) *pszBegin))
+   if (!::character_isalpha(*pszBegin))
 
       return (0U);
 
@@ -74,7 +76,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
    {
       // attribute name may contain letters (a-z, A-Z), digits (0-9),
       // underscores '_', hyphen '-', colons ':', and periods '.'
-      if ( (!::ansi_char_is_alphanumeric((uchar) *pszEnd)) &&
+      if ( (!::character_isalnum(*pszEnd)) &&
 
             (*pszEnd != '-') && (*pszEnd != ':') &&
 
@@ -88,7 +90,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
          // equal-sign, a greater-than symbol, or a forward-slash
          // can act as the separator between an attribute and its
          // value
-         if (*pszEnd =='\0' || ::isspace((uchar) *pszEnd) ||
+         if (*pszEnd =='\0' || ::character_isspace(*pszEnd) ||
 
                *pszEnd == '=' ||
 
@@ -111,7 +113,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
 
 
    // skip leading white-space characters
-   while (::isspace((uchar)*pszEnd))
+   while (::character_isspace(*pszEnd))
 
       pszEnd++;
 
@@ -134,7 +136,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
          pszEnd++;
 
       }
-      while (::isspace((uchar) *pszEnd));
+      while (::character_isspace(*pszEnd));
 
 
       pszBegin = pszEnd;
@@ -165,7 +167,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
          // was used at the starting of the attribute value.
          // Anything within these quotes is considered valid!
          // NOTE that the entity references are resolved later.
-         while (*pszEnd != '\0' && !::str().begins_ci(pszEnd, strChar));
+         while (*pszEnd != '\0' && !string_begins_ci(pszEnd, strChar));
 
       }
 
@@ -181,7 +183,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
          // loop until we find a tag ending delimeter or any
          // white-space character, or until we reach at the
          // end of the string buffer
-         while (*pszEnd != '\0' && !::isspace((uchar) *pszEnd) &&
+         while (*pszEnd != '\0' && !::character_isspace(*pszEnd) &&
 
                 *pszEnd != '/' && *pszEnd != '>');
 
@@ -358,7 +360,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & p
 
    string strChar;
 
-   ::pointer<::axis::system>psystem = preader->get_system();
+   ::pointer<::axis::system>psystem = preader->acmesystem();
 
    do
    {

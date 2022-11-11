@@ -2,6 +2,9 @@
 
 
 #include "aura/graphics/image/drawing.h"
+#include "acme/primitive/collection/int_map.h"
+#include "context.h"
+#include "font_sink.h"
 
 
 namespace nano2d

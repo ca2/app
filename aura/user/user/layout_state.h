@@ -4,6 +4,7 @@
 
 #include "visual_state.h"
 #include "zorder.h"
+#include "acme/memory/memory.h"
 
 
 namespace user

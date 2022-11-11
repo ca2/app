@@ -46,11 +46,11 @@ namespace axis
       ~application() override;
 
 
-      virtual void     initialize(::object * pobject) override;
+      virtual void     initialize(::particle * pparticle) override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       //virtual bool app_data_get(const ::atom & atom, stream & os) override;
@@ -203,9 +203,9 @@ namespace axis
       virtual ::aura::printer * get_printer(const ::string & pszDeviceName);
 
 
-      virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon) override;
+      virtual ::draw2d::icon * set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon) override;
 
-      virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const override;
+      virtual ::draw2d::icon * get_icon(object * pparticle, bool bBigIcon) const override;
 
       virtual void on_service_request(::create * pcreate) override;
 

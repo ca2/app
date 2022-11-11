@@ -23,7 +23,7 @@
 #include "data.h"
 
 
-#include "translator.h"
+//#include "translator.h"
 
 
 

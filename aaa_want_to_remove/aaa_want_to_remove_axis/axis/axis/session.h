@@ -31,13 +31,13 @@ namespace axis
       virtual ~session();
 
 
-      virtual void     initialize(::object * pobject) override;
+      virtual void     initialize(::particle * pparticle) override;
 
       inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
       virtual bool is_session() const override;
 
-      //void construct(::object * pobject, int iPhase) override;
+      //void construct(::particle * pparticle, int iPhase) override;
 
       virtual void process_init() override;
 
@@ -71,7 +71,7 @@ namespace axis
 
 
       //virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2);
-      //virtual string dir().matter(const ::string & pszMatter, const ::string & pszMatter2);
+      //virtual string dir()->matter(const ::string & pszMatter, const ::string & pszMatter2);
 
       //virtual bool is_inside_time_dir(const ::string & pszPath);
       //virtual bool file_is_read_only(const ::string & pszPath);

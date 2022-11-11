@@ -1,7 +1,9 @@
 ﻿
 
 #include "_main_hold.h"
-#include "acme/_api.h"
+#include "acme/exception/exception.h"
+#include "acme/operating_system/process.h"
+#include APPLICATION_INCLUDE
 
 //void stage();
 ::acme::system * acme_system_init();
@@ -15,7 +17,7 @@ void acme_system_term();
 #include "acme/operating_system/console.inl"
 
 #endif
-#include "acme/platform/subsystem.h"
+#include "acme/platform/sub_system.h"
 
 #ifdef WINDOWS
 CLASS_DECL_ACME void set_argc_argv_envp(int argc, wchar_t ** argv, wchar_t ** envp);
@@ -24,7 +26,10 @@ CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp);
 #endif
 
 
-void implement(::acme::system * psystem);
+#include "acme/platform/acme.h"
+
+
+void implement(::acme::context * pcontext);
 
 
 namespace acme
@@ -37,6 +42,7 @@ namespace acme
 }
 
 
+
 #ifdef WINDOWS
 int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 #else
@@ -44,7 +50,13 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
 
-   subsystem subsystem;
+   ::acme::acme acme;
+
+   sub_system subsystem(&acme);
+
+   //acme.m_psubsystem = &subsystem;
+
+   //subsystem.m_pacme = &acme;
 
    main_hold mainhold;
 
@@ -113,8 +125,8 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
          strReport += "Exception has occurred:\n";
          strReport += exception.m_strMessage + ";\n";
-         strReport += "Command Line:\n";
-         strReport += get_command_line() + ";\n";
+         //strReport += "Command Line:\n";
+         //strReport += acmenode()->get_command_line() + ";\n";
          strReport += exception.m_strDetails;
          strReport += "Callstack:\n";
          strReport += exception.m_strCallstack;
@@ -239,7 +251,7 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 #if defined(WINDOWS)
 
 
-#include "acme/library.h"
+#include "acme/_library.h"
 
 
 #endif

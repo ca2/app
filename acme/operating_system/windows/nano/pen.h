@@ -4,6 +4,10 @@
 #pragma once
 
 
+#include "acme/user/nano/pen.h"
+#include "object.h"
+
+
 namespace windows
 {
 

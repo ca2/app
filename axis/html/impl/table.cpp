@@ -1,7 +1,7 @@
 #include "framework.h"
-
 #include "table.h"
 #include "table_row.h"
+#include "acme/primitive/string/str.h"
 #include "axis/html/html/data.h"
 #include "axis/html/html/core_data.h"
 #include "axis/html/element/element.h"
@@ -112,7 +112,7 @@ namespace html
 
          strWidth.trim();
 
-//         if (false && ::str().ends_eat(strWidth, "%"))
+//         if (false && strWidth.ends_eat("%"))
 //         {
 //
 //            strWidth.trim();

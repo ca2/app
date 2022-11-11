@@ -11,12 +11,6 @@
 //{
 
 
-   class context;
-
-   using context_pointer = ::pointer<::context>;
-
-   using matter_context = map < ::matter_pointer, ::context_pointer >;
-
 
 //} // namespace topic
 
@@ -31,22 +25,22 @@
 //#include "apex/topic/topic.h"
 
 
-#include "apex/handler/signal.h"
+//#include "apex/handler/signal.h"
 
 
-#include "apex/handler/context.h"
+//#include "apex/handler/context.h"
 
 
-#include "apex/handler/manager.h"
+//#include "apex/handler/manager.h"
 
 
-#include "apex/handler/promise.h"
+//#include "apex/handler/promise.h"
 
 
-#include "apex/handler/predicate.h"
+//#include "apex/handler/predicate.h"
 
 
-#include "apex/handler/source.h"
+//#include "apex/handler/source.h"
 
 
 

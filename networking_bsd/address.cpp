@@ -217,10 +217,10 @@ namespace networking_bsd
 //   }
 
 
-//   void address::set_address(::object * pobject, const string & host, const ::string & strService)
+//   void address::set_address(::particle * pparticle, const string & host, const ::string & strService)
 //   {
 //
-//      auto psystem = pobject->get_system();
+//      auto psystem = pparticle->get_system();
 //
 //      auto pnetworking = (::networking_bsd::networking *)psystem->m_papexsystem->networking()->m_p2;
 //

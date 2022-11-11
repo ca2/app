@@ -4,6 +4,7 @@
 #include "call.h"
 #include "caller.h"
 #include "communication.h"
+#include "acme/parallelization/manual_reset_event.h"
 
 
 namespace interprocess
@@ -41,7 +42,7 @@ namespace interprocess
 
          string strSource;
 
-         string strPid = __string(m_pcall->m_pinterprocesscommunication->m_atomApp);
+         string strPid = m_pcall->m_pinterprocesscommunication->m_atomApp.string();
 
          strSource.format("protocol.origin=%s&protocol.origin_pid=%s", m_pcall->m_pinterprocesscommunication->m_strApp.c_str(), strPid.c_str());
 

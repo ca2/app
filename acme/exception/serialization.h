@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "exception.h"
+
+
 class CLASS_DECL_ACME serialization_exception :
    public ::exception
 {

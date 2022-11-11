@@ -1,5 +1,9 @@
 #include "framework.h"
-#include "apex/filesystem/fs/_fs.h"
+#include "set.h"
+#include "acme/filesystem/filesystem/listing.h"
+#include "acme/parallelization/event.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/data/listener.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
 
@@ -68,7 +72,7 @@ namespace fs
    ::file::listing & set::root_ones(::file::listing & listing)
    {
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       m_fsdatamap.erase_all();
 
@@ -108,7 +112,7 @@ namespace fs
    ::pointer<data>set::path_data(const ::file::path & psz)
    {
 
-      single_lock synchronouslock(mutex(), true);
+      single_lock synchronouslock(synchronization(), true);
 
       auto p = m_fsdatamap.begin();
 
@@ -128,7 +132,7 @@ namespace fs
             if (pdata.is_set())
             {
 
-               if (::str().begins_ci(psz, strRoot))
+               if (psz.begins_ci(strRoot))
                {
 
                   return pdata;
@@ -291,7 +295,7 @@ namespace fs
       {
          try
          {
-            m_pcontext->m_papexcontext->file().copy(pszDst, pszSrc);
+            file()->copy(pszDst, pszSrc);
          }
          catch(...)
          {

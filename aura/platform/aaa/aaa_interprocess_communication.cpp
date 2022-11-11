@@ -227,7 +227,7 @@ namespace aura
 
       m_atom = "::interprocess::communication";
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
 #ifdef _UWP
 
@@ -249,10 +249,10 @@ namespace aura
    }
 
 
-   void inteprocess_channel::initialize(::object * pobject)
+   void inteprocess_channel::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      auto estatus = ::object::initialize(pparticle);
 
       if (!estatus)
       {
@@ -276,7 +276,7 @@ namespace aura
 
       int iPid = pcontext->m_papexcontext->os().get_pid();
 
-      //defer_add_module(pcontext->m_papexcontext->file().module(), iPid);
+      //defer_add_module(pcontext->m_papexcontext->file()->module(), iPid);
 
 //      ::file::path path;
 //
@@ -327,7 +327,7 @@ namespace aura
       if(pmutex.is_null())
       {
 
-         pmutex = __new(::mutex());
+         pmutex = __new(::pointer < ::mutex >());
 
       }
 
@@ -344,7 +344,7 @@ namespace aura
 
       }
 
-      ::aura::app_launcher launcher(process_platform_dir_name2(), strApp);
+      ::aura::app_launcher launcher(process_platform_name(), strApp);
 
       atom idPid = -1;
 
@@ -489,7 +489,7 @@ started:
 
 #ifdef LINUX
 
-      strKey =          auto psystem = m_psystem;
+      strKey =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -515,7 +515,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
 
 #else
 
-      strKey =          auto psystem = m_psystem;
+      strKey =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -550,7 +550,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
 
       FORMATTED_INFORMATION("interprocess_intercommunication::on_receive %s", pszMessage);
 
-      if(!::str().begins_eat(str, "call "))
+      if(!str.begins_eat("call "))
       {
 
          return;
@@ -559,7 +559,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
 
       ::i64 iCall = ::str().consume_natural(str);
 
-      if(!::str().begins_eat(str, " from "))
+      if(!str.begins_eat(" from "))
       {
 
          return;
@@ -679,7 +679,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
 
       auto pobjectTask = __new(class task(pcall, idPid, atomic_increment(&m_iTaskSeed)));
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -693,7 +693,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
    ::pointer<class inteprocess_channel::task> inteprocess_channel::get_task(i64 iTask)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       return m_mapTask[iTask];
 
@@ -722,7 +722,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
       if(strObject == "application")
       {
 
-         if(::str().begins_ci(strMember, "reply."))
+         if(string_begins_ci(strMember, "reply."))
          {
 
             ::i64 iTask = payloada[0].i64();
@@ -762,10 +762,10 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
    }
 
 
-   id_array inteprocess_channel::get_pid(const ::string & strApp)
+   atom_array inteprocess_channel::get_pid(const ::string & strApp)
    {
 
-      id_array idaPid;
+      atom_array idaPid;
 
 #if defined(LINUX) || defined(MACOS)
 
@@ -789,7 +789,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
 
       pathModule /= strApp + ".module_list";
 
-      string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
+      string strModuleList = acmefile()->as_string(pathModule);
 
       stra.add_lines(strModuleList);
 
@@ -881,7 +881,7 @@ repeat:
 
       ::file::path pathPid = module_path_from_pid((::u32)idPid.i64());
 
-      string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
+      string strModuleList = acmefile()->as_string(pathModule);
 
       m_straModule.add_lines(strModuleList);
 
@@ -954,7 +954,7 @@ repeat:
 
       m_straModule = straUnique;
 
-      ::file::path pathThisModule = pcontext->m_papexcontext->file().module();
+      ::file::path pathThisModule = pcontext->m_papexcontext->file()->module();
 
       string strItem;
 
@@ -975,7 +975,7 @@ repeat:
 
       strModuleList = m_straModule.implode("\n");
 
-      pcontext->m_papexcontext->file().put_contents(pathModule,strModuleList);
+      pcontext->m_papexcontext->file()->put_contents(pathModule,strModuleList);
 
 #endif
 

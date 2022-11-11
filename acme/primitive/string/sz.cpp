@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "sz.h"
+#include "string.h"
 
 
 namespace sz
@@ -17,7 +19,7 @@ namespace sz
       while((*psz != 0) && (strchr(pszTrimmer,*psz) != nullptr))
       {
          
-         ::str().increment(psz);
+         unicode_increment(psz);
 
       }
 

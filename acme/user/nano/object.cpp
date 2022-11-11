@@ -2,7 +2,7 @@
 // Created by camilo on 31/01/2022 17:02 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "_nano.h"
+#include "object.h"
 
 
 nano_object::nano_object()

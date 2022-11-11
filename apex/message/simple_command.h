@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "message.h"
+
+
 namespace message
 {
 

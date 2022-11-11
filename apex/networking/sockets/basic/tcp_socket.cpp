@@ -88,10 +88,10 @@ namespace sockets
    }
 
 
-   void tcp_socket::initialize(::object * pobject)
+   void tcp_socket::initialize(::particle * pparticle)
    {
 
-      stream_socket::initialize(pobject);
+      stream_socket::initialize(pparticle);
 
       __construct(m_ptcpsocketComposite);
 
@@ -1345,7 +1345,7 @@ return true;
 
       SetNonblocking(true);
 
-      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_mutex);
+      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_pmutex);
 
       if (is_true("from_pool"))
          return;
@@ -1452,7 +1452,7 @@ return true;
 
       SetNonblocking(true);
 
-      //synchronous_lock slMap(psystem->sockets().m_servercontextmap.m_mutex);
+      //synchronous_lock slMap(psystem->sockets().m_servercontextmap.m_pmutex);
 
       //{
       //   if(m_psslcontext.is_set()
@@ -1845,7 +1845,7 @@ return true;
 //         if (keyfile.ends_ci(".cat"))
 //         {
 //
-//            strCert = m_pcontext->m_papexcontext->file().as_string(keyfile);
+//            strCert = file()->as_string(keyfile);
 //
 //         }
 //         else
@@ -1853,7 +1853,7 @@ return true;
 //
 //            strCert = keyfile;
 //
-//            ::str().begins_eat_ci(strCert, "cat://");
+//            strCert.begins_eat_ci("cat://");
 //
 //         }
 //
@@ -2004,7 +2004,7 @@ return true;
 //
 //
 //      {
-//         synchronous_lock synchronouslock(mutex());
+//         synchronous_lock synchronouslock(this->synchronization());
 //         int i;
 //
 //         auto psystem = get_system()->m_papexsystem;
@@ -2569,7 +2569,7 @@ return true;
 //
 //               string str = data;
 //
-//               if(::str().begins_eat(str,"*."))
+//               if(str.begins_eat("*."))
 //               {
 //
 //                  string strCommon = common_name;
@@ -2659,7 +2659,7 @@ return true;
 //
 //                        string str = strDnsName;
 //
-//                        if (::str().begins_eat(str, "*."))
+//                        if (str.begins_eat("*."))
 //                        {
 //
 //                           string strCommon = common_name;

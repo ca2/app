@@ -5,31 +5,6 @@ namespace file
 {
 
 
-   // inline path::path(const ::payload & payload,e_path epath): path(payload.get_file_path(),epath){}
-   // inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
-   inline path & path::operator = (const ::payload & payload) { return operator = (payload.string()); }
-   inline path & path::operator += (const ::payload & payload) { return operator += (payload.string()); }
-   inline path & path::operator = (const property & property) { return operator = ((const ::payload &)property); }
-   inline path & path::operator += (const property & property) { return operator += ((const ::payload &) property); }
-   inline path path::operator + (const ::payload & payload) const { return operator + (payload.string()); }
-   inline path path::operator + (const property & property) const { return operator + (property.string()); }
-   inline path path::operator + (const atom & atom) const { return operator + (::string(atom)); }
-   inline path path::operator / (const ::payload & payload) const { return operator /(::file::path(payload)); }
-   inline path path::operator / (const property & property) const { return operator /(::file::path(property)); }
-   inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
-   inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
-   inline path path::folder() const { return { ::file_path_folder(*this), m_epath };}
-   inline path path::sibling(const path & path) const { return {::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(path), m_epath}; }
-   inline path path::sibling(const ::string & str) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(str), m_epath }; }
-   inline path path::sibling(const char * psz) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(psz), m_epath }; }
-   inline string path::all_extensions() const { return &m_pdata[find_skip_or_length('.', rfind(separator()) + 1)]; }
-   inline string path::final_extension() const { return file_path_final_extension(operator const char * ()); }
-   inline path_array path::ascendants_path() const { path_array patha; return ascendants_path(patha); }
-   inline string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
-   //   inline path path::folder() const { return ::file_path_folder(*this); }
-   inline bool path::operator == (const ::payload & payload) const { return operator == (payload.file_path()); }
-   inline bool path::operator != (const ::payload & payload) const { return operator != (payload.file_path()); }
-
 } // namespace file
 
 
@@ -42,18 +17,18 @@ namespace file
 //   try
 //   {
 //
-//      //stream outputstream(pobject, FIRST_VERSION);
+//      //stream outputstream(pparticle, FIRST_VERSION);
 //
-//      //if (!prepare_output(pobject, outputstream, pathDownloading, os))
+//      //if (!prepare_output(pparticle, outputstream, pathDownloading, os))
 //      //{
 //
 //      //   return false;
 //
 //      //}
 //
-//      //stream inputstream(pobject, FIRST_VERSION);
+//      //stream inputstream(pparticle, FIRST_VERSION);
 //
-//      //if (!prepare_input(pobject, inputstream, is))
+//      //if (!prepare_input(pparticle, inputstream, is))
 //      //{
 //
 //      //   return false;
@@ -78,7 +53,7 @@ namespace file
 //   //try
 //   //{
 //
-//   //   if (!post_output(pobject, os.m_pfile->GetFilePath(), pathDownloading))
+//   //   if (!post_output(pparticle, os.m_pfile->GetFilePath(), pathDownloading))
 //   //   {
 //
 //   //      return false;
@@ -99,7 +74,7 @@ namespace file
 
 
 //template < class T >
-//bool ::file::system::output(::matter * pobject, const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
+//bool ::file::system::output(::particle * pparticle, const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -107,18 +82,18 @@ namespace file
 //   try
 //   {
 
-//      stream os(pobject, FIRST_VERSION);
+//      stream os(pparticle, FIRST_VERSION);
 
-//      if (!prepare_output(pobject, os, pathDownloading, pathOut, nullptr))
+//      if (!prepare_output(pparticle, os, pathDownloading, pathOut, nullptr))
 //      {
 
 //         return false;
 
 //      }
 
-//      stream is(pobject, FIRST_VERSION);
+//      stream is(pparticle, FIRST_VERSION);
 
-//      if (!prepare_input(pobject, is, pfileIn))
+//      if (!prepare_input(pparticle, is, pfileIn))
 //      {
 
 //         return false;
@@ -145,7 +120,7 @@ namespace file
 //   try
 //   {
 
-//      if (!post_output(pobject, pathOut, pathDownloading))
+//      if (!post_output(pparticle, pathOut, pathDownloading))
 //      {
 
 //         return false;
@@ -166,7 +141,7 @@ namespace file
 
 
 //template < class T >
-//bool system::output(::matter * pobject, const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
+//bool system::output(::particle * pparticle, const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -174,16 +149,16 @@ namespace file
 //   try
 //   {
 
-//      stream os(pobject, FIRST_VERSION);
+//      stream os(pparticle, FIRST_VERSION);
 
-//      if (!prepare_output(pobject, os, pathDownloading, pathOut, nullptr))
+//      if (!prepare_output(pparticle, os, pathDownloading, pathOut, nullptr))
 //      {
 
 //         return false;
 
 //      }
 
-//      if (!prepare_input(pobject, is, pfileIn))
+//      if (!prepare_input(pparticle, is, pfileIn))
 //      {
 
 //         return false;
@@ -208,7 +183,7 @@ namespace file
 //   try
 //   {
 
-//      if (!post_output(pobject, pathOut, pathDownloading))
+//      if (!post_output(pparticle, pathOut, pathDownloading))
 //      {
 
 //         return false;
@@ -228,7 +203,7 @@ namespace file
 
 
 //template < class T >
-//bool ::file::system::output(::matter * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
+//bool ::file::system::output(::particle * pparticle, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -236,18 +211,18 @@ namespace file
 //   try
 //   {
 
-//      stream os(pobject, FIRST_VERSION);
+//      stream os(pparticle, FIRST_VERSION);
 
-//      if (!prepare_output(pobject, os, pathDownloading, "", pfileOut))
+//      if (!prepare_output(pparticle, os, pathDownloading, "", pfileOut))
 //      {
 
 //         return false;
 
 //      }
 
-//      stream is(pobject, FIRST_VERSION);
+//      stream is(pparticle, FIRST_VERSION);
 
-//      if (!prepare_input(pobject, is, pathIn))
+//      if (!prepare_input(pparticle, is, pathIn))
 //      {
 
 //         return false;
@@ -275,7 +250,7 @@ namespace file
 
 
 //template < class T >
-//bool ::file::system::output(::matter * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
+//bool ::file::system::output(::particle * pparticle, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -283,64 +258,18 @@ namespace file
 //   try
 //   {
 
-//      stream os(pobject, FIRST_VERSION);
+//      stream os(pparticle, FIRST_VERSION);
 
-//      if (!prepare_output(pobject, os, pathDownloading, "", pfileOut))
+//      if (!prepare_output(pparticle, os, pathDownloading, "", pfileOut))
 //      {
 
 //         return false;
 
 //      }
 
-//      stream is(pobject, FIRST_VERSION);
+//      stream is(pparticle, FIRST_VERSION);
 
-//      if (!prepare_input(pobject, is, pfileIn))
-//      {
-
-//         return false;
-
-//      }
-
-//      if (!(p->*pfnOuput)(&os, &is))
-
-//      {
-
-//         return false;
-
-//      }
-
-//   }
-//   catch (...)
-//   {
-
-//      return false;
-
-//   }
-
-//   return true;
-
-//}
-
-
-//template < class T >
-//bool system::output(::matter * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
-//{
-
-//   ::file::path pathDownloading;
-
-//   try
-//   {
-
-//      stream os(pobject, FIRST_VERSION);
-
-//      if (!prepare_output(pobject, os, pathDownloading, "", pfileOut))
-//      {
-
-//         return false;
-
-//      }
-
-//      if (!prepare_input(pobject, is, pfileIn))
+//      if (!prepare_input(pparticle, is, pfileIn))
 //      {
 
 //         return false;
@@ -369,7 +298,7 @@ namespace file
 
 
 //template < class T >
-//bool ::file::system::output(::matter * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
+//bool system::output(::particle * pparticle, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -377,9 +306,55 @@ namespace file
 //   try
 //   {
 
-//      stream is(pobject, FIRST_VERSION);
+//      stream os(pparticle, FIRST_VERSION);
 
-//      if (!prepare_input(pobject, is, pathIn))
+//      if (!prepare_output(pparticle, os, pathDownloading, "", pfileOut))
+//      {
+
+//         return false;
+
+//      }
+
+//      if (!prepare_input(pparticle, is, pfileIn))
+//      {
+
+//         return false;
+
+//      }
+
+//      if (!(p->*pfnOuput)(&os, &is))
+
+//      {
+
+//         return false;
+
+//      }
+
+//   }
+//   catch (...)
+//   {
+
+//      return false;
+
+//   }
+
+//   return true;
+
+//}
+
+
+//template < class T >
+//bool ::file::system::output(::particle * pparticle, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
+//{
+
+//   ::file::path pathDownloading;
+
+//   try
+//   {
+
+//      stream is(pparticle, FIRST_VERSION);
+
+//      if (!prepare_input(pparticle, is, pathIn))
 //      {
 
 //         return false;
@@ -408,7 +383,7 @@ namespace file
 
 
 //template < class T >
-//bool ::file::system::output(::matter * pobject, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * pfileIn)
+//bool ::file::system::output(::particle * pparticle, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * pfileIn)
 
 //{
 
@@ -417,9 +392,9 @@ namespace file
 //   try
 //   {
 
-//      stream is(pobject, FIRST_VERSION);
+//      stream is(pparticle, FIRST_VERSION);
 
-//      if (!prepare_input(pobject, is, pfileIn))
+//      if (!prepare_input(pparticle, is, pfileIn))
 //      {
 
 //         return false;
@@ -448,7 +423,7 @@ namespace file
 
 
 //template < class T >
-//bool system::output(::matter * pobject, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * preader)
+//bool system::output(::particle * pparticle, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * preader)
 //{
 
 //   ::file::path pathDownloading;
@@ -458,7 +433,7 @@ namespace file
 
 //      stream is;
 
-//      if (!prepare_input(pobject, is, preader))
+//      if (!prepare_input(pparticle, is, preader))
 //      {
 
 //         return false;
@@ -491,7 +466,7 @@ namespace file
 //bool file_context::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 //
-//   return m_pcontext->m_papexcontext->file().output(get_app(), pfileOut, p, pfnOuput, pfileIn);
+//   return file()->output(get_app(), pfileOut, p, pfnOuput, pfileIn);
 //
 //}
 
@@ -500,7 +475,7 @@ namespace file
 //bool application::output(const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_app(), pathOut, p, pfnOuput, pfileIn);
+//   return file()->output(get_app(), pathOut, p, pfnOuput, pfileIn);
 
 //}
 
@@ -509,7 +484,7 @@ namespace file
 //bool application::output(const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_app(), pathOut, point, pfnOuput, istream);
+//   return file()->output(get_app(), pathOut, point, pfnOuput, istream);
 
 //}
 
@@ -518,7 +493,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_app(), pfileOut, point, pfnOuput, pathIn);
+//   return file()->output(get_app(), pfileOut, point, pfnOuput, pathIn);
 
 
 //}
@@ -528,7 +503,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_app(), pfileOut, p, pfnOuput, pfileIn);
+//   return file()->output(get_app(), pfileOut, p, pfnOuput, pfileIn);
 
 //}
 
@@ -537,7 +512,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_app(), pfileOut, p, pfnOuput, pfileIn);
+//   return file()->output(get_app(), pfileOut, p, pfnOuput, pfileIn);
 
 //}
 
@@ -546,7 +521,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::* pfnOuput)(::file::file*, ::file::file*), ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_app(), os, p, pfnOuput, pathIn);
+//   return file()->output(get_app(), os, p, pfnOuput, pathIn);
 
 //}
 
@@ -555,7 +530,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_app(), os, p, pfnOuput, pfileIn);
+//   return file()->output(get_app(), os, p, pfnOuput, pfileIn);
 
 //}
 
@@ -565,7 +540,7 @@ namespace file
 
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_app(), os, point, pfnOuput, istream);
+//   return file()->output(get_app(), os, point, pfnOuput, istream);
 
 
 //}
@@ -605,7 +580,7 @@ namespace file
 
 //      }
 
-//      file_pointer pfile = App(papp).file().get_file(path, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
+//      file_pointer pfile = App(papp).file()->get_file(path, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
 
 //      if (pfile.is_null())
 //      {
@@ -661,7 +636,7 @@ namespace file
 
 //      }
 
-//      file_pointer pfile = App(papp).file().get_file(path, ::file::e_open_read | ::file::e_open_binary);
+//      file_pointer pfile = App(papp).file()->get_file(path, ::file::e_open_read | ::file::e_open_binary);
 
 //      if (pfile.is_null())
 //      {
@@ -760,10 +735,10 @@ inline const char * FormatArgument(const ::file::path & value) noexcept
 
 
 template<>
-inline uptr uptr_hash < const ::file::path & >(const ::file::path & key)
+inline uptr u32_hash < const ::file::path & >(const ::file::path & key)
 {
 
-   return uptr_hash < const string & >(key);
+   return u32_hash < const string & >(key);
 
 }
 
@@ -790,111 +765,6 @@ inline uptr uptr_hash < const ::file::path & >(const ::file::path & key)
 //}
 
 
-inline filesize stream_base::precision(filesize prec)
-{
-
-   return m_precision = prec;
-
-}
-
-
-inline filesize stream_base::width() const
-{
-
-   return m_width;
-
-}
-
-inline filesize stream_base::width(filesize prec)
-{
-
-   return m_width = prec;
-
-}
-
-
-inline filesize stream_base::precision() const
-{
-
-   return m_precision;
-
-}
-
-
-
-
-namespace file
-{
-
-
-   inline string listing::title(index i)
-   {
-
-      if (i >= 0 && i < m_straTitle.get_count())
-      {
-
-         return m_straTitle[i];
-
-      }
-
-      return operator[](i).title();
-
-   }
-
-
-   inline string listing::name(index i)
-   {
-
-      if (i >= 0 && i < m_straTitle.get_count())
-      {
-
-         return m_straTitle[i];
-
-      }
-
-      return operator[](i).name();
-
-   }
-
-
-   inline void listing::to_name()
-   {
-
-      for (index i = 0; i < get_size(); i++)
-      {
-
-         element_at(i) = element_at(i).name();
-
-      }
-
-   }
-
-
-   inline listing & listing::operator = (const listing & listing)
-   {
-
-      if (this == &listing)
-      {
-
-         return *this;
-
-      }
-
-      path_array::operator         = (listing);
-      *((LISTING *)this) = (const LISTING&)listing;
-      m_pathUser = listing.m_pathUser;
-      m_pathFinal = listing.m_pathFinal;
-      m_straPattern = listing.m_straPattern;
-      m_straIgnoreName = listing.m_straIgnoreName;
-      //m_statusresult = listing.m_statusresult;
-      m_straTitle = listing.m_straTitle;
-
-      return *this;
-
-   }
-
-
-} // namespace file
 
 
 

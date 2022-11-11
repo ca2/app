@@ -1,5 +1,7 @@
 // Created by camilo on 2022-06-07 07:39 <3ThomasBorregaardSorense!! Mummi and bilbo!!
 #include "framework.h"
+#include "str.h"
+#include "string.h"
 
 
 bool str::to(i64 & i, const ::string & str)

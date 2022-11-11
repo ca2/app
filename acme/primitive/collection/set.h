@@ -3,6 +3,12 @@
 
 //#define memory_new ACME_NEW
 
+#include "_iterator.h"
+#include "single.h"
+#include "map_association.h"
+#include "range.h"
+#include "acme/primitive/primitive/particle.h"
+
 
 template < typename PAYLOAD, const int DEFAULT_HASH_TABLE_SIZE = 17 >
 class set_dynamic_hash_table
@@ -146,7 +152,7 @@ public:
 
 template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 class set :
-   virtual public ::matter
+   virtual public ::particle
 {
 public:
 
@@ -158,6 +164,9 @@ public:
 
    typedef ::map_association < PAYLOAD >           association;
    typedef association                             single;
+
+   using CONTAINER_ITEM_TYPE = association;
+
 
 
    __declare_iterator_struct_ok(set, association *, m_passociation, ::is_set(this->m_passociation));
@@ -431,10 +440,20 @@ public:
    inline bool erase_key(ARG_KEY key) { auto pitem = find_item(key);  return ::is_set(pitem) ? erase_item(pitem) : false; }
 
    template < typename ITERATOR >
-   inline ITERATOR erase(ITERATOR it) { return ::papaya::iterator::erase(*this, it); }
+   inline ITERATOR erase(ITERATOR it) { return ::acme::iterator::erase(*this, it); }
 
    template < typename ITERATOR >
-   inline void erase(const ITERATOR & begin, const ITERATOR & last) { ::erase(*this, begin, last); }
+   inline void erase(const ITERATOR & begin, const ITERATOR & last)
+   {
+
+      for(auto it = begin; it != last; it++)
+      {
+
+         erase(it);
+
+      }
+
+   }
 
    void erase_all();
    void clear();
@@ -524,8 +543,8 @@ public:
    association * get_association_at(ARG_KEY, ::u32&, ::u32&) const;
 
 
-   void assert_ok() const override;
-   void dump(dump_context & dumpcontext) const override;
+   //// void assert_ok() const override;
+   //// void dump(dump_context & dumpcontext) const override;
 
 
 
@@ -804,7 +823,7 @@ template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 void set < KEY, ARG_KEY, PAYLOAD >::erase_all()
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
    if(this->m_passociationHead != nullptr)
    {
@@ -971,7 +990,7 @@ set < KEY, ARG_KEY, PAYLOAD >::get_association_at(ARG_KEY key, ::u32& nHashBucke
 // find association (or return nullptr)
 {
 
-   nHashValue = u32_hash<ARG_KEY>(key);
+   nHashValue = u32_hash<ARG_KEY>(key).m_u;
 
    nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
 
@@ -1059,7 +1078,7 @@ template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 inline typename set < KEY, ARG_KEY, PAYLOAD >::association * set < KEY, ARG_KEY, PAYLOAD >::find_association(ARG_KEY key) const
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
    ::u32 nHashBucket, nHashValue;
 
@@ -1072,7 +1091,7 @@ template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 typename set < KEY, ARG_KEY, PAYLOAD >::association * set < KEY, ARG_KEY, PAYLOAD >::get_association(ARG_KEY key)
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
    ::u32 nHashBucket,nHashValue;
 
@@ -1082,7 +1101,7 @@ typename set < KEY, ARG_KEY, PAYLOAD >::association * set < KEY, ARG_KEY, PAYLOA
    {
 
       // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
-      if(void_ptr_is_null(m_hashtable.m_ppassociationHash))
+      if(::is_null(m_hashtable.m_ppassociationHash))
          InitHashTable(m_hashtable.GetHashTableSize());
 
       ENSURE(m_hashtable.m_ppassociationHash);
@@ -1218,19 +1237,19 @@ get(ARG_KEY argkey, ARG_KEY valueDefault)
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-void set < KEY, ARG_KEY, PAYLOAD >::assert_ok() const
-{
-
-   ::matter::assert_ok();
-
-   ASSERT(GetHashTableSize() > 0);
-
-   ASSERT(m_nCount == 0 || m_hashtable.m_ppassociationHash != nullptr);
-   // non-empty set should have hash table
-
-}
-
+//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+//void set < KEY, ARG_KEY, PAYLOAD >::assert_ok() const
+//{
+//
+//   ::matter::assert_ok();
+//
+//   ASSERT(GetHashTableSize() > 0);
+//
+//   ASSERT(m_nCount == 0 || m_hashtable.m_ppassociationHash != nullptr);
+//   // non-empty set should have hash table
+//
+//}
+//
 
 using double_set = set < double >;
 
@@ -1302,3 +1321,50 @@ using index_set = set < index >;
 using string_set = set < string >;
 
 
+
+
+//#pragma once
+
+
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+void set < KEY, ARG_KEY, PAYLOAD >::InitHashTable(
+   ::u32 nHashSize, bool bAllocNow)
+//
+// Used to force allocation of a hash table or to override the default
+//   hash table size_i32 of (which is fairly small)
+{
+
+   //ASSERT_VALID(this);
+   ASSERT(this->m_nCount == 0);
+   ASSERT(nHashSize > 0);
+
+   this->m_hashtable.InitHashTable(nHashSize,bAllocNow);
+
+}
+
+
+//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+//void set < KEY, ARG_KEY, PAYLOAD >::dump(dump_context& dumpcontext) const
+//{
+//
+//   ::matter::dump(dumpcontext);
+//
+//   //dumpcontext << "with " << this->m_nCount << " elements";
+//   //if (dumpcontext.GetDepth() > 0)
+//   //{
+//   //   // Dump in format "[key] -> value"
+//
+//   //   const association* passociation = get_start();
+//   //   while (passociation != nullptr)
+//   //   {
+//   //      passociation = get_next(passociation);
+//   //      dumpcontext << "\n\t[";
+//   //      dump_elements<KEY>(dumpcontext, &passociation->key(), 1);
+//   //   }
+//   //}
+//
+//   //dumpcontext << "\n";
+//}
+//
+//
+//

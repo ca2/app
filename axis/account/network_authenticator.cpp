@@ -8,6 +8,11 @@
 #include "network_authenticator.h"
 #include "credentials.h"
 #include "user.h"
+#include "acme/exception/exception.h"
+#include "acme/networking/url_department.h"
+#include "acme/platform/system.h"
+#include "apex/networking/http/context.h"
+#include "apex/platform/context.h"
 
 
 namespace account
@@ -94,7 +99,7 @@ namespace account
       //   if(puser->m_strHost == purl->get_server(psession->account()->get_default_url()))
       //   {
 
-      //      pcontext->m_papexcontext->file().put_contents(pcontext->m_papexcontext->dir().appdata()/"database/text/last_good_known_account_com.txt", puser->m_strAccountServer);
+      //      pcontext->m_papexcontext->file()->put_contents(pcontext->m_papexcontext->dir()->appdata()/"database/text/last_good_known_account_com.txt", puser->m_strAccountServer);
 
       //   }
 
@@ -206,7 +211,7 @@ namespace account
 
       string strDeferRegistration;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -253,9 +258,7 @@ namespace account
 
       auto tickTimeProfile1 = ::duration::now();
 
-      auto pcontext = get_context();
-
-      auto strResponse = pcontext->m_papexcontext->http().get(strAuthUrl, set);
+      auto strResponse = m_pcontext->m_papexcontext->http().get(strAuthUrl, set);
 
       pcredentials->m_strResponse = strResponse;
 
@@ -288,7 +291,7 @@ namespace account
 
       auto puser = pcredentials->m_puser;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -298,7 +301,7 @@ namespace account
 
       strGetFontopus = "https://ca2.software/get_account_login";
 
-      auto pcontext = get_context();
+      auto pcontext = m_pcontext;
 
       purl->set_param(strGetFontopus,strGetFontopus,"lang",pcontext->m_papexcontext->get_locale());
 

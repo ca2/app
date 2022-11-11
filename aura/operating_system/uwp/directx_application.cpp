@@ -59,7 +59,7 @@ namespace universal_windows
 
       }
 
-      m_psystem = psystem;
+      acmesystem() = psystem;
 
       //      psystem->get_session()->m_frameworkview = this;
 
@@ -81,10 +81,10 @@ namespace universal_windows
 
       int nReturnCode = 0;
 
-      if (!m_psystem->m_htask)
+      if (!acmesystem()->m_htask)
       {
 
-         if (!m_psystem->begin_synch())
+         if (!acmesystem()->begin_synch())
          {
 
             throw ::exception(::exception("failed to begin_synch the system"));
@@ -93,7 +93,7 @@ namespace universal_windows
 
       }
 
-      auto estatus = m_pdxi->initialize(m_psystem);
+      auto estatus = m_pdxi->initialize(acmesystem());
 
       if (!estatus)
       {
@@ -102,9 +102,9 @@ namespace universal_windows
 
       }
 
-      //m_psystem->get_session()->m_pframeworkview = this;
+      //acmesystem()->get_session()->m_pframeworkview = this;
 
-      m_psystem->get_session()->m_puserinteractionHost = m_pdxi;
+      acmesystem()->get_session()->m_puserinteractionHost = m_pdxi;
 
       m_directx->defer_init();
 
@@ -112,7 +112,7 @@ namespace universal_windows
 
       auto pcs = __new(::user::system);
 
-      auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
+      auto puserinteractionHost = __user_interaction(acmesystem()->get_session()->m_puserinteractionHost);
 
       auto routine = [this]()
       {
@@ -139,7 +139,7 @@ namespace universal_windows
 
          topic.wait(15_s);
 
-         auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
+         auto puserinteractionHost = __user_interaction(acmesystem()->get_session()->m_puserinteractionHost);
 
          auto puserinteraction = m_pdxi;
 
@@ -244,7 +244,7 @@ namespace universal_windows
 
       m_directx = ref memory_new directx_base();
 
-      m_directx->m_psystem = m_psystem;
+      m_directx->acmesystem() = acmesystem();
 
       ::winrt::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::winrt::Windows::Graphics::Display::DisplayInformation::GetForCurrentImpact();
 
@@ -345,24 +345,24 @@ namespace universal_windows
 
             string str = eventArgs->Uri->AbsoluteUri;
 
-            auto pcreate = m_psystem->__create_new < ::create >();
+            auto pcreate = acmesystem()->__create_new < ::create >();
 
             pcreate->m_ecommand = ::command_protocol;
 
             pcreate->m_payloadFile = str;
 
-            //m_psystem->add_create(pcreate);
+            //acmesystem()->add_create(pcreate);
 
-            //auto papp = m_psystem->m_pacmeapplicationStartup;
+            //auto papp = m_pcontext->m_pacmeapplicationStartup;
 
             //if (papp == nullptr)
             //{
 
-            //   papp = m_psystem->get_session()->m_pappCurrent;
+            //   papp = acmesystem()->get_session()->m_pappCurrent;
 
             //}
 
-            m_psystem->post_object(e_message_system, e_system_message_create, pcreate);
+            acmesystem()->post_object(e_message_system, e_system_message_create, pcreate);
 
          }
 
@@ -387,10 +387,10 @@ namespace universal_windows
    void directx_framework_impact::OnCharacterReceived(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::CharacterReceivedEventArgs ^ args)
    {
 
-      if(m_psystem->get_session() == nullptr)
+      if(acmesystem()->get_session() == nullptr)
          return;
 
-      auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
+      auto puserinteractionHost = __user_interaction(acmesystem()->get_session()->m_puserinteractionHost);
 
       if (puserinteractionHost == nullptr)
          return;
@@ -420,10 +420,10 @@ namespace universal_windows
          m_bFontopusShift = true;
       }
 
-      if(m_psystem == nullptr)
+      if(acmesystem() == nullptr)
          return;
 
-      auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
+      auto puserinteractionHost = __user_interaction(acmesystem()->get_session()->m_puserinteractionHost);
 
       if (puserinteractionHost == nullptr)
          return;
@@ -443,12 +443,12 @@ namespace universal_windows
 
       ::user::enum_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
-      if(bSpecialKey || !bTextFocus || m_psystem->get_session()->is_key_pressed(::user::e_key_control)
-         || m_psystem->get_session()->is_key_pressed(::user::e_key_alt))
+      if(bSpecialKey || !bTextFocus || acmesystem()->get_session()->is_key_pressed(::user::e_key_control)
+         || acmesystem()->get_session()->is_key_pressed(::user::e_key_alt))
       {
 
          pkey->m_atom                 = e_message_key_down;
-         pkey->m_playeredUserPrimitive       = m_psystem->get_session()->m_puserinteractionHost;
+         pkey->m_playeredUserPrimitive       = acmesystem()->get_session()->m_puserinteractionHost;
          pkey->m_nChar              = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey               = ekey;
          pkey->m_wparam             = pkey->m_nChar;
@@ -471,10 +471,10 @@ namespace universal_windows
    void directx_framework_impact::OnKeyUp(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::KeyEventArgs ^ args)
    {
 
-      if(m_psystem == nullptr)
+      if(acmesystem() == nullptr)
          return;
 
-      auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
+      auto puserinteractionHost = __user_interaction(acmesystem()->get_session()->m_puserinteractionHost);
 
       if (puserinteractionHost == nullptr)
          return;
@@ -504,7 +504,7 @@ namespace universal_windows
       {
 
          pkey->m_atom = e_message_key_up;
-         pkey->m_playeredUserPrimitive = m_psystem->get_session()->m_puserinteractionHost;
+         pkey->m_playeredUserPrimitive = acmesystem()->get_session()->m_puserinteractionHost;
          pkey->m_nChar = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey = ekey;
          pkey->m_wparam = pkey->m_nChar;
@@ -512,7 +512,7 @@ namespace universal_windows
 
          //      pkey->m_key = args;
 
-               //if (m_psystem->m_psimpleui != nullptr && m_psystem->m_psimpleui->is_window_visible())
+               //if (acmesystem()->m_psimpleui != nullptr && acmesystem()->m_psimpleui->is_window_visible())
                //{
                //   string str;
                //   str = (char)pkey->m_nChar;
@@ -538,7 +538,7 @@ namespace universal_windows
                //         str = ".";
                //      }
                //   }
-               //   m_psystem->m_psimpleui->on_char(virtualkey_to_userkey(args->VirtualKey), str);
+               //   acmesystem()->m_psimpleui->on_char(virtualkey_to_userkey(args->VirtualKey), str);
                //}
                //else
                //{
@@ -613,10 +613,10 @@ namespace universal_windows
 
       //}
 
-      if(m_psystem == nullptr)
+      if(acmesystem() == nullptr)
          return;
 
-      auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
+      auto puserinteractionHost = __user_interaction(acmesystem()->get_session()->m_puserinteractionHost);
 
       if (puserinteractionHost == nullptr)
          return;
@@ -637,7 +637,7 @@ namespace universal_windows
       pmouse->m_point.x       = (::i32) pointerPoint->RawPosition.X;
       pmouse->m_point.y       = (::i32) pointerPoint->RawPosition.Y;
       pmouse->m_atom            = e_message_mouse_move;
-      pmouse->m_playeredUserPrimitive  = m_psystem->get_session()->m_puserinteractionHost;
+      pmouse->m_playeredUserPrimitive  = acmesystem()->get_session()->m_puserinteractionHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
@@ -657,14 +657,14 @@ namespace universal_windows
    void directx_framework_impact::OnPointerPressed(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::PointerEventArgs ^ args)
    {
 
-      if (m_psystem == nullptr)
+      if (acmesystem() == nullptr)
       {
 
          return;
 
       }
 
-      auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
+      auto puserinteractionHost = __user_interaction(acmesystem()->get_session()->m_puserinteractionHost);
 
       if (puserinteractionHost == nullptr)
       {
@@ -725,7 +725,7 @@ namespace universal_windows
 
       }
 
-      pmouse->m_playeredUserPrimitive = m_psystem->get_session()->m_puserinteractionHost;
+      pmouse->m_playeredUserPrimitive = acmesystem()->get_session()->m_puserinteractionHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
@@ -737,7 +737,7 @@ namespace universal_windows
    void directx_framework_impact::OnPointerReleased(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::PointerEventArgs ^ args)
    {
 
-      if (m_psystem == nullptr)
+      if (acmesystem() == nullptr)
       {
 
          return;
@@ -748,7 +748,7 @@ namespace universal_windows
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
+      auto puserinteractionHost = __user_interaction(acmesystem()->get_session()->m_puserinteractionHost);
 
       if (puserinteractionHost == nullptr)
          return;
@@ -788,7 +788,7 @@ namespace universal_windows
 
       }
 
-      pmouse->m_playeredUserPrimitive = m_psystem->get_session()->m_puserinteractionHost;
+      pmouse->m_playeredUserPrimitive = acmesystem()->get_session()->m_puserinteractionHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
@@ -800,7 +800,7 @@ namespace universal_windows
    directx_application_source::directx_application_source(::aura::system * paxissystem, const ::string & strId)
    {
 
-      m_psystem     = paxissystem;
+      acmesystem()     = paxissystem;
 
       m_strId           = strId;
 
@@ -810,7 +810,7 @@ namespace universal_windows
    ::winrt::Windows::ApplicationModel::Core::IFrameworkView^ directx_application_source::CreateImpact()
    {
 
-      return ref memory_new directx_framework_impact(m_psystem,m_strId);
+      return ref memory_new directx_framework_impact(acmesystem(),m_strId);
 
    }
 
@@ -954,7 +954,7 @@ namespace universal_windows
    ::winrt::Windows::Foundation::Point directx_framework_impact::get_cursor_position()
    {
 
-      single_lock synchronouslock(&m_mutex, true);
+      single_lock synchronouslock(m_pmutex, true);
 
       ::winrt::Windows::Foundation::Point p = m_pointLastCursor;
 

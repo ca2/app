@@ -3,9 +3,13 @@
 // Created by camilo on 21/02/2022 23:15 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "_nano.h"
-//#include "aura_posix/_.h"
-//#include "aura_posix/_library.h"
+#include "display.h"
+#include "window.h"
+#include "acme/user/nano/window.h"
+#include "acme/parallelization/mutex.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/system.h"
+#include "acme/platform/acme.h"
 
 
 struct MWMHints
@@ -33,7 +37,7 @@ struct MWMHints
 #define MWM_DECOR_MAXIMIZE      (1L << 6)
 
 
-void * x11_get_display(::object * pobject);
+void * x11_get_display(::particle * pparticle);
 
 void set_main_user_thread();
 
@@ -60,7 +64,7 @@ namespace xcb
 
       }
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
 
    }
@@ -218,7 +222,7 @@ namespace xcb
 
       windowing_output_debug_string("\nwindow::select_input");
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       //display_lock displaylock(xcb_display());
 
@@ -251,9 +255,9 @@ namespace xcb
 //   void display::display_post(const ::procedure & procedure)
 //   {
 //
-//      defer_create_mutex();
+//      defer_create_synchronization();
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      m_routineaPost.add(routine);
 //
@@ -265,7 +269,7 @@ namespace xcb
 //   bool display::display_posted_routine_step()
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      synchronous_lock synchronouslock(this->synchronization());
 //
 //      if (m_routineaPost.has_element())
 //      {
@@ -376,17 +380,17 @@ namespace xcb
 //}
 //
 
-   display * display::get(::object * pobject, bool bBranch, void * pX11Display)
+   display * display::get(::particle * pparticle, bool bBranch, void * pX11Display)
    {
 
-      synchronous_lock lock(::acme::get_global_mutex());
+      critical_section_lock lock(::globals_critical_section());
 
       if (g_p == nullptr)
       {
 
          auto p = memory_new display;
 
-         p->initialize(pobject);
+         p->initialize(pparticle);
 
          p->add_listener(p);
 
@@ -417,7 +421,7 @@ namespace xcb
    void display::add_listener(event_listener * plistener)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_eventlistenera.add(plistener);
 
@@ -427,7 +431,7 @@ namespace xcb
    void display::add_window(nano_window * pwindow)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_windowa.add(pwindow);
 
@@ -437,7 +441,7 @@ namespace xcb
    void display::erase_listener(event_listener * plistener)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_eventlistenera.erase(plistener);
 
@@ -447,7 +451,7 @@ namespace xcb
    void display::erase_window(nano_window * pwindow)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_windowa.erase(pwindow);
 
@@ -576,12 +580,12 @@ namespace xcb
    void display::init_task()
    {
 
-      if(m_psystem->m_ewindowing == e_windowing_none)
+      if(acmesystem()->m_ewindowing == e_windowing_none)
       {
 
          set_main_user_thread();
 
-         m_psystem->m_ewindowing = e_windowing_xcb;
+         acmesystem()->m_ewindowing = e_windowing_xcb;
 
       }
 
@@ -594,7 +598,7 @@ namespace xcb
 
 #if defined(WITH_XCB)
 
-      m_pconnection = (xcb_connection_t *) m_psystem->m_pnode->get_os_xcb_connection();
+      m_pconnection = (xcb_connection_t *) acmesystem()->m_pnode->get_os_xcb_connection();
 
 #endif
 
@@ -1105,7 +1109,7 @@ namespace xcb
 //
 //         pwindowing->m_bFirstWindowMap = true;
 //
-//         auto psystem = m_psystem->m_paurasystem;
+//         auto psystem = acmesystem()->m_paurasystem;
 //
 //         auto pnode = psystem->node();
 //

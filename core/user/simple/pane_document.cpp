@@ -17,20 +17,20 @@ simple_pane_document::~simple_pane_document()
 
 
 
-void simple_pane_document::assert_ok() const
-{
-
-   ::user::document::assert_ok();
-
-}
-
-
-void simple_pane_document::dump(dump_context & dumpcontext) const
-{
-
-   ::user::document::dump(dumpcontext);
-
-}
+//void simple_pane_document::assert_ok() const
+//{
+//
+//   ::user::document::assert_ok();
+//
+//}
+//
+//
+//void simple_pane_document::dump(dump_context & dumpcontext) const
+//{
+//
+//   ::user::document::dump(dumpcontext);
+//
+//}
 
 
 bool simple_pane_document::on_new_document()

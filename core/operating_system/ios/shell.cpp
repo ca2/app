@@ -23,7 +23,7 @@ namespace ios
    shell::shell()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
       //begin();
 
       //SHGetImageList(SHIL_SMALL, IID_IImageList, m_pimagelistSmall);
@@ -84,10 +84,10 @@ namespace ios
 
       i32 iImage = 0x80000000;
 
-      if (::str().begins_ci(imagekey.m_strPath, "uifs:"))
+      if (string_begins_ci(imagekey.m_strPath, "uifs:"))
       {
 
-         ::file::path path = pcontext->m_papexcontext->dir().matter("cloud.ico");
+         ::file::path path = pcontext->m_papexcontext->dir()->matter("cloud.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -106,10 +106,10 @@ namespace ios
          return iImage;
 
       }
-      else if (::str().begins_ci(imagekey.m_strPath, "fs:"))
+      else if (string_begins_ci(imagekey.m_strPath, "fs:"))
       {
 
-         ::file::path path = pcontext->m_papexcontext->dir().matter("remote.ico");
+         ::file::path path = pcontext->m_papexcontext->dir()->matter("remote.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -128,10 +128,10 @@ namespace ios
          return iImage;
 
       }
-      else if (::str().begins_ci(imagekey.m_strPath, "ftp:"))
+      else if (string_begins_ci(imagekey.m_strPath, "ftp:"))
       {
 
-         ::file::path path = pcontext->m_papexcontext->dir().matter("ftp.ico");
+         ::file::path path = pcontext->m_papexcontext->dir()->matter("ftp.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -151,14 +151,14 @@ namespace ios
 
       }
 
-      if (::str().ends_ci(imagekey.m_strPath, ".aura"))
+      if (string_ends_ci(imagekey.m_strPath, ".aura"))
       {
-         string str = pcontext->m_papexcontext->file().as_string(imagekey.m_strPath);
-         if (::str().begins_eat_ci(str, "ca2prompt\r\n"))
+         string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
+         if (str.begins_eat_ci("ca2prompt\r\n"))
          {
             str.trim();
-            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
             synchronous_lock sl1(m_pil48Hover->mutex());
             synchronous_lock sl2(m_pil48->mutex());
             iImage = m_pil16->add_icon_os_data(hicon16);
@@ -189,7 +189,7 @@ namespace ios
          string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
          i32 i = 0;
 
-         while (i < strProtocol.get_length() && ansi_char_is_alphanumeric(strProtocol[i]))
+         while (i < strProtocol.get_length() && ansi_char_is_alnum(strProtocol[i]))
          {
 
             i++;
@@ -217,7 +217,7 @@ namespace ios
 
       string strExtension;
 
-      if (::str().ends_ci(imagekey.m_strPath, ".sln"))
+      if (string_ends_ci(imagekey.m_strPath, ".sln"))
       {
          output_debug_string("test");
       }
@@ -444,7 +444,7 @@ namespace ios
 ////
 ////                  imagekey.set_path(strFilePath);
 ////
-////                  if (::str().ends_ci(strFilePath, ".lnk"))
+////                  if (string_ends_ci(strFilePath, ".lnk"))
 ////                  {
 ////
 ////                     string strTarget;
@@ -453,8 +453,8 @@ namespace ios
 ////
 ////                     string strParams;
 ////
-////                     //if(pcontext->m_papexcontext->file().resolve_link(strTarget, strFilePath, psystem->ui_from_handle))
-////                     if (pcontext->m_papexcontext->file().resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
+////                     //if(pcontext->m_papexcontext->file()->resolve_link(strTarget, strFilePath, psystem->ui_from_handle))
+////                     if (pcontext->m_papexcontext->file()->resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 ////                     {
 ////
 ////                        if (m_straThemeableIconName.get_count() > 0)
@@ -463,7 +463,7 @@ namespace ios
 ////                           index i = m_straThemeableIconName.predicate_find_first(
 ////                              [=](auto & str)
 ////                           {
-////                              return ::str().ends_ci(imagekey.m_strPath, str);
+////                              return string_ends_ci(imagekey.m_strPath, str);
 ////                           }
 ////                           );
 ////
@@ -472,7 +472,7 @@ namespace ios
 ////
 ////                              string str = m_straThemeableIconName[i];
 ////
-////                              if (::str().ends_ci(imagekey.m_strPath, str))
+////                              if (string_ends_ci(imagekey.m_strPath, str))
 ////                              {
 ////
 ////                                 strExpandEnv = imagekey.m_strPath;
@@ -587,7 +587,7 @@ namespace ios
 ////
 ////            string strParams;
 ////
-////            if (pcontext->m_papexcontext->file().resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
+////            if (pcontext->m_papexcontext->file()->resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 ////            {
 ////
 ////               wstring wstr = utf8_to_unicode(strTarget);
@@ -601,7 +601,7 @@ namespace ios
 ////
 ////         }
 ////
-////         synchronous_lock synchronouslock(mutex());
+////         synchronous_lock synchronouslock(this->synchronization());
 ////
 ////         if (!m_pimagemap->lookup(imagekey, iImage))
 ////         {
@@ -631,7 +631,7 @@ namespace ios
 ////
 ////                     {
 ////
-////                        synchronous_lock synchronouslock(mutex());
+////                        synchronous_lock synchronouslock(this->synchronization());
 ////
 ////                        if (m_pimagemap->lookup(imagekey, iImage))
 ////                           return iImage;
@@ -642,7 +642,7 @@ namespace ios
 ////
 ////                     string strIcon;
 ////
-////                     strIcon =          auto psystem = m_psystem;
+////                     strIcon =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -657,7 +657,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 ////
 ////                     }
 ////
-////                     synchronous_lock synchronouslock(mutex());
+////                     synchronous_lock synchronouslock(this->synchronization());
 ////
 ////                     m_pimagemap->set_at(imagekey, iImage);
 ////
@@ -713,7 +713,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 ////                           ::DestroyIcon(shfi48.hIcon);
 ////                        }
 ////                        //                        iImage = add_icon_set(pfork, nullptr, &shfi48, crBk);
-////                        synchronous_lock synchronouslock(mutex());
+////                        synchronous_lock synchronouslock(this->synchronization());
 ////
 ////                        m_pimagemap->set_at(imagekey, iImage);
 ////
@@ -776,7 +776,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 ////                        ::DestroyIcon(shfi48.hIcon);
 ////                     }                     //iImage = add_icon_set(pfork, nullptr, &shfi48, crBk);
 ////
-////                     synchronous_lock synchronouslock(mutex());
+////                     synchronous_lock synchronouslock(this->synchronization());
 ////
 ////                     m_pimagemap->set_at(imagekey, iImage);
 ////
@@ -791,7 +791,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 ////                        &hicon16,
 ////                        1);
 ////
-////                     if (hicon48 == nullptr && ::str().ends_ci(imagekey.m_strPath, ".ico"))
+////                     if (hicon48 == nullptr && string_ends_ci(imagekey.m_strPath, ".ico"))
 ////                     {
 ////
 ////                        hicon48 = (HICON)LoadImage(nullptr, imagekey.m_strPath, IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
@@ -857,7 +857,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 ////                     if (!b48 && shfi48.hIcon != nullptr)
 ////                     {
 ////                        ::DestroyIcon(shfi48.hIcon);
-////                     }                     synchronous_lock synchronouslock(mutex());
+////                     }                     synchronous_lock synchronouslock(this->synchronization());
 ////
 ////                     m_pimagemap->set_at(imagekey, iImage);
 ////
@@ -871,7 +871,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 ////         }
 ////         else
 ////         {
-////            synchronous_lock synchronouslock(mutex());
+////            synchronous_lock synchronouslock(this->synchronization());
 ////
 ////
 ////         }
@@ -898,7 +898,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 ////
 ////         {
 ////
-////            synchronous_lock synchronouslock(mutex());
+////            synchronous_lock synchronouslock(this->synchronization());
 ////
 ////            if (m_pimagemap->lookup(imagekey, iImage))
 ////            {
@@ -973,7 +973,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 ////         if (!b48 && shfi48.hIcon != nullptr)
 ////         {
 ////            ::DestroyIcon(shfi48.hIcon);
-////         }         synchronous_lock synchronouslock(mutex());
+////         }         synchronous_lock synchronouslock(this->synchronization());
 //
 //      m_pimagemap->set_at(imagekey, iImage);
 //
@@ -1091,7 +1091,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
    //         }
    //      }
    //   }
-   //   if (pcontext->m_papexcontext->dir().is(unicode_to_utf8(szFilePath)))
+   //   if (pcontext->m_papexcontext->dir()->is(unicode_to_utf8(szFilePath)))
    //   {
    //      if (imagekey.m_iIcon == 0x80000000)
    //      {
@@ -1306,7 +1306,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 
 
 
-//   e_folder ios::get_folder_type(::object * pobject, const ::string & pcsz)
+//   e_folder ios::get_folder_type(::particle * pparticle, const ::string & pcsz)
 //   {
 //
 //      return get_folder_type(papp, utf8_to_unicode(pcsz));
@@ -1314,14 +1314,14 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 //   }
 
 
-//   e_folder ios::get_folder_type(::object * pobject, const unichar * lpcszPath)
+//   e_folder ios::get_folder_type(::particle * pparticle, const unichar * lpcszPath)
 //   {
 //
 //      string strPath;
 //
 //      unicode_to_utf8(strPath, lpcszPath);
 //
-//      if (         auto psystem = m_psystem;
+//      if (         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1366,7 +1366,7 @@ pacmedirectory->is(strPath))
 
    //            {
 
-   //               synchronous_lock synchronouslock(mutex());
+   //               synchronous_lock synchronouslock(this->synchronization());
 
    //               for (auto & folder : m_mapFolder)
    //               {
@@ -1440,10 +1440,10 @@ pacmedirectory->is(strPath))
 //
 //      i32 iImage = 0x80000000;
 //
-//      if (::str().begins_ci(imagekey.m_strPath, "uifs:"))
+//      if (string_begins_ci(imagekey.m_strPath, "uifs:"))
 //      {
 //
-//         ::file::path path = pcontext->m_papexcontext->dir().matter("cloud.ico");
+//         ::file::path path = pcontext->m_papexcontext->dir()->matter("cloud.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -1462,10 +1462,10 @@ pacmedirectory->is(strPath))
 //         return iImage;
 //
 //      }
-//      else if (::str().begins_ci(imagekey.m_strPath, "fs:"))
+//      else if (string_begins_ci(imagekey.m_strPath, "fs:"))
 //      {
 //
-//         ::file::path path = pcontext->m_papexcontext->dir().matter("remote.ico");
+//         ::file::path path = pcontext->m_papexcontext->dir()->matter("remote.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -1484,10 +1484,10 @@ pacmedirectory->is(strPath))
 //         return iImage;
 //
 //      }
-//      else if (::str().begins_ci(imagekey.m_strPath, "ftp:"))
+//      else if (string_begins_ci(imagekey.m_strPath, "ftp:"))
 //      {
 //
-//         ::file::path path = pcontext->m_papexcontext->dir().matter("ftp.ico");
+//         ::file::path path = pcontext->m_papexcontext->dir()->matter("ftp.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -1511,14 +1511,14 @@ pacmedirectory->is(strPath))
 //
 //
 //
-//      if (::str().ends_ci(imagekey.m_strPath, ".aura"))
+//      if (string_ends_ci(imagekey.m_strPath, ".aura"))
 //      {
-//         string str = pcontext->m_papexcontext->file().as_string(imagekey.m_strPath);
-//         if (::str().begins_eat_ci(str, "ca2prompt\r\n"))
+//         string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
+//         if (str.begins_eat_ci("ca2prompt\r\n"))
 //         {
 //            str.trim();
-//            HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-//            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+//            HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+//            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
 //            synchronous_lock sl1(m_pil48Hover->mutex());
 //            synchronous_lock sl2(m_pil48->mutex());
 //            iImage = m_pil16->add_icon_os_data(hicon16);
@@ -1549,7 +1549,7 @@ pacmedirectory->is(strPath))
 //         string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
 //         i32 i = 0;
 //
-//         while (i < strProtocol.get_length() && ansi_char_is_alphanumeric(strProtocol[i]))
+//         while (i < strProtocol.get_length() && ansi_char_is_alnum(strProtocol[i]))
 //         {
 //
 //            i++;
@@ -1577,7 +1577,7 @@ pacmedirectory->is(strPath))
 //
 //      string strExtension;
 //
-//      if (::str().ends_ci(imagekey.m_strPath, ".sln"))
+//      if (string_ends_ci(imagekey.m_strPath, ".sln"))
 //      {
 //         output_debug_string("test");
 //      }
@@ -1698,7 +1698,7 @@ pacmedirectory->is(strPath))
 //
 //      per_fork fork;
 //
-//      synchronous_lock synchronouslock(&m_mutexQueue);
+//      synchronous_lock synchronouslock(m_pmutexQueue);
 //
 //      while (task_get_run())
 //      {
@@ -1773,7 +1773,7 @@ pacmedirectory->is(strPath))
 //
 //         {
 //
-//            synchronous_lock synchronouslock(mutex());
+//            synchronous_lock synchronouslock(this->synchronization());
 //
 //            if (m_pimagemap->lookup(imagekey, iImage))
 //            {
@@ -1788,7 +1788,7 @@ pacmedirectory->is(strPath))
 //
 //         {
 //
-//            synchronous_lock synchronouslock(&m_mutexQueue);
+//            synchronous_lock synchronouslock(m_pmutexQueue);
 //
 //            m_keyptra.add(pstore);
 //
@@ -1798,7 +1798,7 @@ pacmedirectory->is(strPath))
 //
 //         iImage = get_foo_image(nullptr, oswindow, imagekey, imagekey.m_cr);
 //
-//         synchronous_lock synchronouslock(mutex());
+//         synchronous_lock synchronouslock(this->synchronization());
 //
 //         m_pimagemap->set_at(imagekey, iImage);
 //
@@ -1839,7 +1839,7 @@ pacmedirectory->is(strPath))
 //
 //         {
 //
-//            synchronous_lock synchronouslock(mutex());
+//            synchronous_lock synchronouslock(this->synchronization());
 //
 //            if (m_pimagemap->lookup(imagekey, iImage))
 //            {
@@ -1854,7 +1854,7 @@ pacmedirectory->is(strPath))
 //
 //         iImage = get_image(&f, oswindow, imagekey, nullptr, crBk);
 //
-//         synchronous_lock synchronouslock(mutex());
+//         synchronous_lock synchronouslock(this->synchronization());
 //
 //         m_pimagemap->set_at(imagekey, iImage);
 //
@@ -1926,7 +1926,7 @@ pacmedirectory->is(strPath))
 
       {
 
-         synchronous_lock synchronouslock(&m_mutexQueue);
+         synchronous_lock synchronouslock(m_pmutexQueue);
 
          m_keyptra.add(pstore);
 
@@ -1938,7 +1938,7 @@ pacmedirectory->is(strPath))
 
       iImage = get_foo_image(i2, i2.m_cr);
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_imagemap.set_at(imagekey, iImage);
 
@@ -1955,7 +1955,7 @@ pacmedirectory->is(strPath))
       fork([&]()
       {
 
-         synchronous_lock synchronouslock(&m_mutexQueue);
+         synchronous_lock synchronouslock(m_pmutexQueue);
 
          while (task_get_run())
          {
@@ -2002,12 +2002,12 @@ pacmedirectory->is(strPath))
 
    }
 
-   shell::e_folder shell::get_folder_type(::object * pobject, const ::string & lpcszPath)
+   shell::e_folder shell::get_folder_type(::particle * pparticle, const ::string & lpcszPath)
    {
 
       string strPath(lpcszPath);
 
-      if (         auto psystem = m_psystem;
+      if (         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

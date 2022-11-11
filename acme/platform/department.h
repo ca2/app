@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 namespace acme
 {
 
@@ -12,10 +15,10 @@ namespace acme
 
 
       department();
-      virtual ~department();
+      ~department() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual void call_member(::i64 iId) override;

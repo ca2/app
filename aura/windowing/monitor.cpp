@@ -1,8 +1,10 @@
 // created by Camilo 2021-01-31 05:16 BRT <3CamiloSasukeThomasBorregaardSoerensen
 #include "framework.h"
-
+#include "acme/platform/system.h"
+#include "aura/graphics/image/image.h"
 #include "aura/windowing/monitor.h"
 #include "aura/windowing/desktop_environment.h"
+#include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
 #include "aura/platform/session.h"
 
@@ -52,7 +54,7 @@ namespace windowing
    void monitor::get_monitor_rectangle(::RECTANGLE_I32 & rectangle)
    {
 
-      auto psession = m_psystem->m_paurasession;
+      auto psession = acmesystem()->m_paurasession;
 
       auto pdesktopenvironment = psession->user()->m_pdesktopenvironment;
 
@@ -66,7 +68,7 @@ namespace windowing
    void monitor::get_workspace_rectangle(::RECTANGLE_I32 & rectangle)
    {
 
-      auto psession = m_psystem->m_paurasession;
+      auto psession = acmesystem()->m_paurasession;
 
       auto pdesktopenvironment = psession->user()->m_pdesktopenvironment;
 

@@ -1153,7 +1153,7 @@
 ////   if(pmq == NULL)
 ////      return false;
 ////
-////   synchronous_lock ml(&pmq->m_mutex);
+////   synchronous_lock ml(&pmq->m_pmutex);
 ////
 ////   MESSAGE msg;
 ////
@@ -1191,7 +1191,7 @@
 ////   if(pmq == NULL)
 ////      return false;
 ////
-////   synchronous_lock ml(&pmq->m_mutex);
+////   synchronous_lock ml(&pmq->m_pmutex);
 ////
 ////   MESSAGE msg;
 ////

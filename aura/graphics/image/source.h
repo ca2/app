@@ -2,6 +2,11 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/concrete.h"
+#include "acme/primitive/primitive/matter.h"
+
+
 template < typename IMAGE_SOURCE_POINTER >
 concept image_source_pointer = requires(IMAGE_SOURCE_POINTER p, const concrete < ::size_i32 > & concreteSize, const ::size_f64 & sizeDst, enum_image_selection eimageselection)
 {
@@ -145,7 +150,7 @@ class CLASS_DECL_AURA image_payload :
 public:
 
 
-   image_payload(::object * pobject, const ::payload & payload);
+   image_payload(::particle * pparticle, const ::payload & payload);
 
 
 };
@@ -158,7 +163,7 @@ class CLASS_DECL_AURA icon_payload :
 public:
 
 
-   icon_payload(::object * pobject, const ::payload & payload);
+   icon_payload(::particle * pparticle, const ::payload & payload);
 
 
 };

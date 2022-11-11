@@ -1,11 +1,8 @@
 #include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
 #include "operation_thread.h"
 #include "operation.h"
 #include "operation_impact.h"
-
+#include "acme/constant/message.h"
 
 
 namespace filemanager
@@ -81,7 +78,7 @@ namespace filemanager
 
          m_fileoperationa[m_iOperation]->end();
 
-         single_lock synchronouslock(&m_mutexFileOperationA, true);
+         single_lock synchronouslock(m_pmutexFileOperationA, true);
 
          m_estate = ::filemanager::e_state_start;
 
@@ -111,7 +108,7 @@ namespace filemanager
    double operation_thread::get_item_progress(i32 iItem)
    {
 
-      single_lock synchronouslock(&m_mutexFileOperationA,true);
+      single_lock synchronouslock(m_pmutexFileOperationA,true);
 
       i32 iLowerBound = 0;
 
@@ -141,7 +138,7 @@ namespace filemanager
    string operation_thread::get_item_message(i32 iItem)
    {
 
-      single_lock synchronouslock(&m_mutexFileOperationA,true);
+      single_lock synchronouslock(m_pmutexFileOperationA,true);
 
       i32 iLowerBound = 0;
 
@@ -172,7 +169,7 @@ namespace filemanager
    i32 operation_thread::get_item_count()
    {
       
-      single_lock synchronouslock(&m_mutexFileOperationA,true);
+      single_lock synchronouslock(m_pmutexFileOperationA,true);
 
       i32 iCount = 0;
 
@@ -227,7 +224,7 @@ namespace filemanager
 
       }
 
-      single_lock synchronouslock(&m_mutexFileOperationA,true);
+      single_lock synchronouslock(m_pmutexFileOperationA,true);
 
       m_fileoperationa.add(poperation);
 
@@ -278,7 +275,7 @@ namespace filemanager
    double operation_thread::get_progress_rate()
    {
 
-      single_lock synchronouslock(&m_mutexFileOperationA,true);
+      single_lock synchronouslock(m_pmutexFileOperationA,true);
 
       double dTotal = 0.0;
 

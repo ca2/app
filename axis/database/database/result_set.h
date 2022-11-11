@@ -2,12 +2,15 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/matter.h"
+
+
 namespace database
 {
 
 
    class CLASS_DECL_AXIS result_set :
-      virtual public ::object
+      virtual public ::matter
    {
    public:
 

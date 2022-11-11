@@ -1,7 +1,10 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "dispatcher.h"
+#include "acme/platform/message.h"
+#include "acme/primitive/primitive/action_context.h"
 
 
 namespace message
@@ -12,14 +15,14 @@ namespace message
    {
 
       e_flag_none,
-      flag_synthesized = 1 << 0,
+      e_flag_synthesized = 1 << 0,
 
    };
 
 
    class key;
    class mouse;
-   class object;
+   class particle;
    class context_menu;
 
 
@@ -27,7 +30,7 @@ namespace message
    {
      
       void *                        m_p;
-      ::message::object *           m_pobject;
+      ::message::particle *         m_pparticle;
       ::message::key *              m_pkey;
       ::message::mouse *            m_pmouse;
       ::message::context_menu *     m_pcontextmenu;
@@ -69,7 +72,7 @@ namespace message
          m_union.m_p = nullptr;
          m_pdispatchera = nullptr;
          m_pchannel = nullptr;
-         m_wparam = 0;
+         m_wparam = {};
          m_iRouteIndex = -1;
          m_iParam = 0;
          m_bRet = false;

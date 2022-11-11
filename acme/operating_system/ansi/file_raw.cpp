@@ -161,7 +161,7 @@ u64 file_length_raw(const char * path)
 
 
 
-//string m_psystem->m_pacmefile->line(const char * path, index iLine)
+//string acmefile()->line(const char * path, index iLine)
 //{
 //
 //   string str;

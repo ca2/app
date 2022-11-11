@@ -1,8 +1,10 @@
 ﻿#include "framework.h"
-
+#include "console.h"
+#include "acme/exception/not_implemented.h"
 #include "acme/operating_system/_const_console.h"
 #include "acme/operating_system/console.h"
-#include "console.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/string/international.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/context_image.h"
@@ -133,10 +135,9 @@ namespace graphics
 
    console::console(::user::interaction * puserinteraction, ::size_i32 sizeTile) :
       m_puserinteraction(puserinteraction),
-      m_sizeTile(sizeTile)
+      m_sizeTile(sizeTile),
+      m_cout(this)
    {
-
-      m_cout.m_p = this;
 
       m_x = 0;
       m_y = 0;
@@ -152,7 +153,7 @@ namespace graphics
    }
 
 
-   string_stream & console::cout()
+   write_text_stream <::file::file> & console::cout()
    {
 
       return m_cout;
@@ -160,26 +161,26 @@ namespace graphics
    }
 
 
-   void console::assert_ok() const
-   {
-
-
-   }
-
-
-
-   void console::dump(dump_context& dump) const
-   {
-
-
-   }
+//   void console::assert_ok() const
+//   {
+//
+//
+//   }
+//
+//
+//
+//   void console::dump(dump_context& dump) const
+//   {
+//
+//
+//   }
 
 
 
    void console::SetWindowSize(int iHeight, int iWidth)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_sizeWindow.cx = iWidth;
 
@@ -191,7 +192,7 @@ namespace graphics
 
       m_pimage->g()->m_pdraw2dhost = m_puserinteraction;
 
-      __construct(m_pimage->g()->m_pfont);
+      m_pcontext->__construct(m_pimage->g()->m_pfont);
 
 #ifdef LINUX
 
@@ -232,7 +233,7 @@ namespace graphics
    {
 
       m_edoscolor = color;
-      //synchronous_lock synchronouslock(&m_mutex);
+      //synchronous_lock synchronouslock(m_pmutex);
 
       //m_pimage->g()->FillSolidRect(0,iLineStart * m_sizeTile.cy,m_pimage->width(),m_pimage->height() - iLineStart * m_sizeTile.cy,console_dos_color(color));
 
@@ -243,7 +244,7 @@ namespace graphics
 
    void console::write(const ::string & strParam)
    {
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto psz = strParam.c_str();
       string str;
@@ -290,7 +291,7 @@ namespace graphics
    void console::update_image()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pimage.nok())
       {

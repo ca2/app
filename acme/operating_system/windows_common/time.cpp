@@ -1,9 +1,12 @@
 #include "framework.h"
-#include "acme/operating_system.h"
+#include "acme/exception/exception.h"
 #include "acme/operating_system/ansi/datetime_c.h"
 #include "acme/operating_system/time.h"
-#include <time.h>
+#include "acme/primitive/datetime/earth_time.h"
+#include "acme/primitive/datetime/system_time.h"
 #include "acme/platform/nanosecond_timer.h"
+#include "acme/_operating_system.h"
+#include <time.h>
 
 
 extern "C"
@@ -324,7 +327,7 @@ void datetime_to_filetime(::file_time_t * pfiletime, const ::earth::time & time)
 
       DWORD dwLastError = ::GetLastError();
 
-      auto estatus = last_error_to_status(dwLastError);
+      auto estatus = ::windows::last_error_status(dwLastError);
 
       throw ::exception(estatus);
 
@@ -336,7 +339,7 @@ void datetime_to_filetime(::file_time_t * pfiletime, const ::earth::time & time)
 
       DWORD dwLastError = ::GetLastError();
 
-      auto estatus = last_error_to_status(dwLastError);
+      auto estatus = ::windows::last_error_status(dwLastError);
 
       throw ::exception(estatus);
 

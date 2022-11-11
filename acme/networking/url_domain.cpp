@@ -1,5 +1,8 @@
 ﻿#include "framework.h"
-//#include "acme/astr.h"
+#include "url_domain.h"
+#include "url_department.h"
+#include "acme/primitive/string/str.h"
+#include "acme/exception/exception.h"
 
 
 url_domain_base::url_domain_base()
@@ -39,7 +42,7 @@ void url_domain_base::create(const char * pszServerName)
       psz++;
    }
    psz = m_strOriginalName;
-   m_bHasWww = ::str().begins(pszServerName, "www.");
+   m_bHasWww = string_begins(pszServerName, "www.");
    if(m_bHasWww)
    {
       psz += 4;

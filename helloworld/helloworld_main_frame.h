@@ -14,12 +14,12 @@ namespace helloworld
       bool                       m_bExplicitTranslucency;
 
 
-      main_frame(::object * pobject);
+      main_frame(::particle * pparticle);
       virtual ~main_frame();
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       using ::simple_frame_window::get_translucency;

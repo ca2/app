@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -106,7 +106,7 @@ namespace papaya
          }
 
          template < typename MAP >
-         typename MAP::BASE_VALUE value(MAP & m, typename MAP::BASE_ARG_KEY key, typename MAP::BASE_VALUE default_value = ::papaya::weak::default_value < typename MAP::BASE_VALUE >())
+         typename MAP::BASE_VALUE value(MAP & m, typename MAP::BASE_ARG_KEY key, typename MAP::BASE_VALUE default_value = ::acme::weak::default_value < typename MAP::BASE_VALUE >())
          {
 
             auto pval = pvalue(m, key);
@@ -129,4 +129,4 @@ namespace papaya
    } // namespace weak
 
 
-} // namespace papaya
+} // namespace acme

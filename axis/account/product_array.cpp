@@ -2,6 +2,7 @@
 #include "product_array.h"
 #include "department.h"
 #include "product.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 namespace account
@@ -11,7 +12,7 @@ namespace account
    product_array::product_array()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -28,7 +29,7 @@ namespace account
 
       //auto estatus = 
       
-      ::object::initialize(pdepartment);
+      ::particle::initialize(pdepartment);
 
       //if (!estatus)
       //{
@@ -109,7 +110,7 @@ namespace account
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_map[strAppId] = __new(::account::product);
 

@@ -197,25 +197,53 @@ enum
 #endif
 
 
+enum enum_show_window
+{
+
+   e_show_window_parent_closing = 1,// SW_PARENTCLOSING
+   e_show_window_other_zoom = 2,// SW_OTHERZOOM
+   e_show_window_parent_opening = 3,// SW_PARENTOPENING
+
+};
+
+
+namespace user
+{
+
+   /*
+   * e_message_size message wParam values
+   */
+//#define SIZE_RESTORED       0
+//#define SIZE_MINIMIZED      1
+//#define SIZE_MAXIMIZED      2
+//#define SIZE_MAXSHOW        3
+//#define SIZE_MAXHIDE        4
+
+   enum enum_size
+   {
+
+      e_size_restored = 0,
+      e_size_minimized = 1,
+      e_size_maximized = 2,
+      e_size_maxshow = 3,
+      e_size_maxhide = 4,
+
+   };
+
+} // namespace user
+
+
 #ifndef WINDOWS_DESKTOP
 
 
-/*
-* e_message_size message wParam values
-*/
-#define SIZE_RESTORED       0
-#define SIZE_MINIMIZED      1
-#define SIZE_MAXIMIZED      2
-#define SIZE_MAXSHOW        3
-#define SIZE_MAXHIDE        4
 
 
-/*
-* Identifiers for the e_message_show_window message
-*/
-#define SW_PARENTCLOSING    1
-#define SW_OTHERZOOM        2
-#define SW_PARENTOPENING    3
+///*
+//* Identifiers for the e_message_show_window message
+//*/
+//#define SW_PARENTCLOSING    1
+//#define SW_OTHERZOOM        2
+//#define SW_PARENTOPENING    3
 
 
 #define GWL_STYLE           (-16)

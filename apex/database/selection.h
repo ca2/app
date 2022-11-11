@@ -2,6 +2,7 @@
 
 
 #include "selection_item.h"
+#include "acme/primitive/collection/array.h"
 
 
 namespace database
@@ -17,7 +18,7 @@ namespace database
 
 
       selection();
-      virtual ~selection() ;
+      virtual ~selection();
 
 
       void add_item(key key);

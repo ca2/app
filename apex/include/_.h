@@ -70,9 +70,8 @@
 //  ca2/C++/C/Assembly/Huffman Machine/Hardware/Universe/Multiverse stack
 //
 //
-
-
 #pragma once
+
 
 #undef LAYER_NAMESPACE
 #define LAYER_NAMESPACE apex
@@ -107,6 +106,7 @@ namespace apex
 CLASS_DECL_APEX void apex_ref();
 
 
+#include "_forward_declaration.h"
 
 
 
@@ -179,6 +179,8 @@ extern CLASS_DECL_APEX int g_bApex;
 //#define FLOATABS(f) (((f) >= 0.f) ? (f) : (-(f)))
 //#define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-(d)))
 //
+#undef APPLICATION_INCLUDE
+#define APPLICATION_INCLUDE "apex/platform/application.h"
 #undef APPLICATION_CLASS
 #define APPLICATION_CLASS ::apex::application
 
@@ -186,72 +188,61 @@ extern CLASS_DECL_APEX int g_bApex;
 
 
 
-#ifdef WINDOWS
-#include <intsafe.h>
-#else
-
-#ifndef LODWORD
-#define LODWORD(l)                                    ((::u32)(((::u64)(l)) & 0xffffffff))
-#endif
-#ifndef HIDWORD
-#define HIDWORD(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffff))
-#endif
-
-#endif
-
-
-
-
-#define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
-#define __u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
-
-
-#ifdef __cplusplus
-
-
-#define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
-
-
-#else
-
-#define __MAKE_LONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
-#define __u64(a, b)                                   (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
-
-#endif
-
-#define __lo16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
-#define __hi16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
-#define __lo32(u)                                     ((::u32)(u))
-#define __hi32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
-
-#define __u32x(u)                                     ((::i16)__lo16(u))
-#define __u32y(u)                                     ((::i16)__hi16(u))
-
-#define __u32xy(u)                                    __u32x(u), __u32y(u)
-
-#define __u64x(u)                                     ((::i32)__lo32(u))
-#define __u64y(u)                                     ((::i32)__hi32(u))
-
-#define __u64xy(u)                                    __u64x(u), __u64y(u)
-
-
-#ifndef GET_X_LPARAM
-#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
-#endif
-
-
-#ifndef GET_Y_LPARAM
-#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
-#endif
-
-#define GET_X_LPARAM64(lparam)                        ((i32)(i16)LODWORD(lparam))
-#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
-
-
-
-#if !defined(O_BINARY) && !defined(WINDOWS)
-# define O_BINARY 0
-#endif
+//
+//
+//
+//
+//
+//#define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
+//#define __u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
+//
+//
+//#ifdef __cplusplus
+//
+//
+//#define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+//
+//
+//#else
+//
+//#define __MAKE_LONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
+//#define __u64(a, b)                                   (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
+//
+//#endif
+//
+//#define __lo16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
+//#define __hi16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
+//#define __lo32(u)                                     ((::u32)(u))
+//#define __hi32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
+//
+//#define __u32x(u)                                     ((::i16)__lo16(u))
+//#define __u32y(u)                                     ((::i16)__hi16(u))
+//
+//#define __u32xy(u)                                    __u32x(u), __u32y(u)
+//
+//#define __u64x(u)                                     ((::i32)__lo32(u))
+//#define __u64y(u)                                     ((::i32)__hi32(u))
+//
+//#define __u64xy(u)                                    __u64x(u), __u64y(u)
+//
+//
+//#ifndef GET_X_LPARAM
+//#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
+//#endif
+//
+//
+//#ifndef GET_Y_LPARAM
+//#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
+//#endif
+//
+//#define GET_X_LPARAM64(lparam)                        ((i32)(i16)LODWORD(lparam))
+//#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
+//
+//
+//
+//#if !defined(O_BINARY) && !defined(WINDOWS)
+//# define O_BINARY 0
+//#endif
 
 
 namespace aqua
@@ -329,7 +320,13 @@ namespace core
 
 
 
-#include "acme/platform/library.h"
+#include "apex/handler/_.h"
+
+
+#include "apex/platform/_critical_section.h"
+
+
+//#include "acme/platform/library.h"
 
 
 #include "apex/filesystem/_.h"
@@ -354,8 +351,8 @@ namespace core
 //enum enum_check: ::i32;
 
 
-template < typename CHAR_TYPE >
-class string_base;
+//template < typename CHAR_TYPE >
+//class string_base;
 
 
 struct pixmap;
@@ -363,15 +360,15 @@ struct pixmap;
 
 #define CONSIDER_AS(as, use) using use = as
 
-
-using ansistring = string_base < ansichar >;
-using wd16string = string_base < wd16char >;
-using wd32string = string_base < wd32char >;
-using widestring = string_base < widechar >;
-
-
-using string = string_base < ansichar >;
-using wstring = string_base < widechar >;
+//
+//using ansistring = string_base < ansichar >;
+//using wd16string = string_base < wd16char >;
+//using wd32string = string_base < wd32char >;
+//using widestring = string_base < widechar >;
+//
+//
+//using string = string_base < ansichar >;
+//using wstring = string_base < widechar >;
 
 
 class machine_event_central;
@@ -462,7 +459,7 @@ class compress_department; // only usable from axis.dll and dependants
 
 class channel;
 
-class dump_context;
+//class dump_context;
 
 class atom_space;
 class ptra;
@@ -488,11 +485,6 @@ namespace colorertake5
 class memory;
 
 
-//CLASS_DECL_APEX ::pointer<::apex::system>platform_create_system(const char * pszAppId);
-//CLASS_DECL_APEX ::apex::session* platform_create_session();
-
-
-#define SECOND_NANOS 1000000000
 
 
 namespace datetime
@@ -626,7 +618,7 @@ namespace html
 
 
 //#undef Ctx
-//#define Ctx(pobject) (*(::get_context(pobject)))
+//#define Ctx(pparticle) (*(::get_context(pparticle)))
 //#define Context (Ctx(this))
 
 
@@ -691,7 +683,7 @@ namespace aura
 //CLASS_DECL_APEX void register_apex_library(const char* psz, ::acme::library* plibrary);
 
 //CLASS_DECL_APEX ::context * get_context();
-//CLASS_DECL_APEX ::context * get_context(::object * pobject);
+//CLASS_DECL_APEX ::context * get_context(::particle * pparticle);
 //CLASS_DECL_APEX inline ::context * get_context(::context * pcontext);
 
 
@@ -703,17 +695,17 @@ namespace aura
 
 
 //CLASS_DECL_APEX ::application * get_app();
-//CLASS_DECL_APEX ::application * get_app(::object * pobject);
+//CLASS_DECL_APEX ::application * get_app(::particle * pparticle);
 //CLASS_DECL_APEX inline ::application * get_app(::apex::application * papp);
 //CLASS_DECL_APEX inline ::application * get_app() { return get_app(); }
 
 
 //CLASS_DECL_APEX ::apex::session * get_session();
-//CLASS_DECL_APEX ::apex::session * get_session(::object * pobject);
+//CLASS_DECL_APEX ::apex::session * get_session(::particle * pparticle);
 //CLASS_DECL_APEX inline ::apex::session * get_session(::apex::session * psession);
 
 
-//CLASS_DECL_APEX ::apex::system * ::apex::get_system(::object * pobject);
+//CLASS_DECL_APEX ::apex::system * ::apex::get_system(::particle * pparticle);
 
 
 #define BAD_WCHAR ((widechar)(-1))
@@ -839,13 +831,13 @@ namespace core
 
 //#include "apex/primitive/primitive/object.h"
 
-#include "apex/handler/_.h"
+//#include "apex/handler/_.h"
 
 //#include "apex/primitive/primitive/object.h"
 
 //#include "acme/primitive/primitive/object_meta.h"
 
-#include "app/acme/platform/trace.h"
+//#include "app/acme/platform/trace.h"
 
 #include "apex/platform/display.h"
 
@@ -859,7 +851,7 @@ namespace core
 #include "apex/filesystem/filesystem.h"
 
 
-#include "apex/progress/_.h"
+//#include "apex/progress/_.h"
 
 
 #include "apex/parallelization/_.h"
@@ -867,7 +859,7 @@ namespace core
 
 #if defined(LINUX)
 
-#include "apex/operating_system/ansi/_.h"
+//#include "apex/operating_system/ansi/_.h"
 
 #elif defined(_UWP)
 //
@@ -908,10 +900,10 @@ namespace core
 
 
 
-#include "apex/message/_message.h"
+//#include "apex/message/_message.h"
 
 
-#include "apex/message/message.h"
+//#include "apex/message/message.h"
 
 
 //#include "apex/platform/thread_set.h"
@@ -923,7 +915,7 @@ namespace core
 //#include "apex/platform/department.h"
 
 
-#include "apex/parallelization/threading.h"
+//#include "apex/parallelization/threading.h"
 
 
 class message_queue;
@@ -944,7 +936,7 @@ namespace windowing
 //#include "apex/user/primitive.h"
 
 
-#include "apex/parallelization/thread.h"
+//s#include "apex/parallelization/thread.h"
 
 
 class handler_manager;
@@ -953,7 +945,7 @@ class handler_manager;
 class service;
 class service_handler;
 
-#include "apex/parallelization/service.h"
+//#include "apex/parallelization/service.h"
 
 //#include "apex/parallelization/handler_manager.h"
 //#include "apex/parallelization/service_status.h"
@@ -962,14 +954,14 @@ class service_handler;
 //#include "apex/parallelization/service/plain_service.h"
 //#include "apex/parallelization/service/plain_service.h"
 //#include "apex/parallelization/fork.h"
-#include "apex/parallelization/delay_thread.h"
+//#include "apex/parallelization/delay_thread.h"
 //#include "apex/parallelization/tools.h"
 
 
-#include "apex/parallelization/thread_impl.h"
+//#include "apex/parallelization/thread_impl.h"
 
 
-#include "apex/platform/log.h"
+//#include "apex/platform/log.h"
 
 
 namespace user
@@ -986,7 +978,7 @@ namespace user
 
 #include "apex/user.h"
 
-#include "apex/platform/savings.h"
+//#include "apex/platform/savings.h"
 
 #include "apex/networking/_.h"
 
@@ -1023,7 +1015,7 @@ namespace file
 
 //#include "apex/platform/command_line.h"
 
-#include "apex/platform/create.h"
+//#include "apex/platform/create.h"
 
 
 namespace zip
@@ -1038,11 +1030,11 @@ namespace zip
 
 //#include "apex/operating_system/text.h"
 
-#include "apex/process/process.h"
+//#include "apex/operating_system/process.h"
 
-#include "apex/filesystem/filesystem/file_listener.h"
+//#include "apex/filesystem/filesystem/file_listener.h"
 
-#include "apex/platform/os_context.h"
+//#include "apex/platform/os_context.h"
 
 //#include "apex/crypto/crypto.h"
 
@@ -1061,7 +1053,7 @@ namespace zip
 
 //class interprocess_intercommunication;
 
-//using interprocess_task_map = id_map < ::pointer<::interprocess::task >>;
+//using interprocess_task_map = atom_map < ::pointer<::interprocess::task >>;
 
 
 //#include "apex/platform/::interprocess::call.h"
@@ -1121,9 +1113,9 @@ namespace user
 } // namespace user
 
 
-#include "apex/filesystem/fs/_fs.h"
+#include "apex/filesystem/fs/_.h"
 
-#include "apex/_.h"
+//#include "apex/_.h"
 
 //#include "apex/user/text.h"
 
@@ -1135,7 +1127,7 @@ namespace user
 
 #include "apex/message/_.h"
 
-
+#include "apex/progress/_.h"
 //#include "apex/platform/context_thread.h"
 
 
@@ -1147,7 +1139,7 @@ namespace user
 
 //#include "apex/platform/session.h"
 
-#include "apex/parallelization/retry.h"
+//#include "apex/parallelization/retry.h"
 
 
 //CLASS_DECL_APEX::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
@@ -1178,7 +1170,7 @@ namespace xml
 //#include "apex/platform/app_core.h"
 
 
-#include "apex/process/_.h"
+//#include "apex/process/_.h"
 
 
 //#include "apex/primitive/math/department.h"
@@ -1199,7 +1191,7 @@ namespace xml
 //#include "apex/os/chronometer.h"
 
 
-#include "apex/platform/assert_running_task.h"
+//#include "apex/platform/assert_running_task.h"
 
 
 //#include "apex/platform/debug.h"
@@ -1210,10 +1202,10 @@ namespace xml
 //#include "apex/operating_system/_.h"
 
 
-#include "apex/parallelization/data.h"
+//#include "apex/parallelization/data.h"
 
 
-#include "apex/platform/shell_launcher.h"
+//#include "apex/platform/shell_launcher.h"
 
 
 //#include "apex/platform/async.h"
@@ -1242,25 +1234,16 @@ namespace mathematics
 #include "apex/compress/_.h"
 
 
-#include "apex/platform/app_consumer.h"
+//#include "apex/platform/app_consumer.h"
 
 
 //#include "apex/platform/async.h"
 
 
-#include "apex/constant/idpool.h"
+//#include "apex/constant/idpool.h"
 
 
 #include "apex/user/_.h"
-
-
-#include "apex/platform/message_box.h"
-
-
-//#include "apex/platform/console_application.h"
-
-
-//#include "apex/platform/application.h"
 
 
 #include "apex/parallelization/_impl.h"
@@ -1272,7 +1255,7 @@ namespace mathematics
 #ifndef WINDOWS_DESKTOP
 
 
-#include "apex/operating_system/cross/windows/windows_thread_impl.h"
+//#include "apex/operating_system/cross/windows/windows_thread_impl.h"
 
 
 #endif

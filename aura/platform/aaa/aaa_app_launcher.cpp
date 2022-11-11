@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/os/_c.h"
-#include "aura/os/_.h"
+//#include "aura/os/_.h"
 
 
 namespace aura
@@ -22,7 +22,7 @@ namespace aura
 
       ::file::path path = get_last_run_application_path(m_strApp);
 
-      if(m_psystem->m_pacmefile->exists(path))
+      if(acmefile()->exists(path))
       {
 
          return ::move(path);
@@ -41,16 +41,16 @@ namespace aura
 
 #endif
 
-      ::file::path pathCandidate = pcontext->m_papexcontext->dir().ca2module() / strExe;
+      ::file::path pathCandidate = pcontext->m_papexcontext->dir()->ca2module() / strExe;
 
-      if (pcontext->m_papexcontext->file().exists(pathCandidate))
+      if (pcontext->m_papexcontext->file()->exists(pathCandidate))
       {
 
          return ::move(pathCandidate);
 
       }
 
-      return ::path::app_app(m_strPlatform, process_configuration_dir_name());
+      return ::path::app_app(m_strPlatform, process_configuration_name());
 
    }
 
@@ -63,7 +63,7 @@ namespace aura
 #if !defined(MACOS)
 
 #ifdef WINDOWS_DESKTOP
-      if (::str().ends_ci(get_executable_path(), "\\app.exe"))
+      if (string_ends_ci(get_executable_path(), "\\app.exe"))
 #endif
       {
 

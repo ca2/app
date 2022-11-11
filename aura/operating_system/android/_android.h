@@ -58,7 +58,7 @@ string get_error_message(::u32 dwError);
 i32 CLASS_DECL_AURA __android_main(i32 argc, char* argv[]);
 
 
-//CLASS_DECL_AURA void vfxThrowFileException(::object* pobject, const ::e_status & estatus, ::i32 lOsError, const ::string & lpszFileName = nullptr);
+//CLASS_DECL_AURA void vfxThrowFileException(::object* pparticle, const ::e_status & estatus, ::i32 lOsError, const ::string & lpszFileName = nullptr);
 
 
 //#include "internal.h"

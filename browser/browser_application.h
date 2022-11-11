@@ -36,7 +36,7 @@ namespace browser
       pane_impact *                            m_ppaneimpact;
 
 
-      application(::object * pobject);
+      application(::particle * pparticle);
       ~application() override;
 
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/filesystem/fs/_fs.h"
+#include "fs.h"
 
 
 namespace fs
@@ -18,12 +18,12 @@ namespace fs
    }
 
 
-   void fs::initialize(::object * pobject)
+   void fs::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::acme::department::initialize(pobject);
+      ::acme::department::initialize(pparticle);
 
       //if (!estatus)
       //{

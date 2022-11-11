@@ -7,7 +7,7 @@ namespace draw2d
 
 
     class path_optimization :
-        virtual public ::element
+        virtual public ::particle
     {
     public:
 

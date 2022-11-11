@@ -3,11 +3,25 @@
 #include "system.h"
 #include "application.h"
 #include "node.h"
-#include "apex/operating_system.h"
+#include "os_context.h"
 #include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/exception/exception.h"
+#include "acme/networking/url_department.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system_setup.h"
-#include "apex/message/command.h"
+#include "acme/primitive/data/listener.h"
 #include "acme/primitive/text/context.h"
+#include "apex/filesystem/fs/fs.h"
+#include "apex/filesystem/fs/ifs.h"
+#include "apex/filesystem/fs/link.h"
+#include "apex/filesystem/fs/remote_native.h"
+#include "apex/filesystem/fs/set.h"
+#include "apex/message/channel.h"
+#include "apex/message/command.h"
+#include "apex/message/message.h"
+//#include "apex/operating_system.h"
+#include "apex/platform/create.h"
 #include "apex/user/primitive.h"
 
 
@@ -58,18 +72,8 @@ namespace apex
    session::session()
    {
 
-      //m_bOnInitializeWindowObject = false;
       m_papexsession = this;
-      ::object::m_pcontext = this;
-      m_pcontext = this;
 
-      m_paquasession = nullptr;
-      m_paurasession = nullptr;
-      m_paxissession = nullptr;
-      m_pbasesession = nullptr;
-      m_pbredsession = nullptr;
-      m_pcoresession = nullptr;
-      //m_psession = this;
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
@@ -99,7 +103,7 @@ namespace apex
    session::~session()
    {
 
-      if(m_psystem->m_etracelevel >= e_trace_level_information)
+      if(acmesystem()->m_etracelevel >= e_trace_level_information)
       {
 
          output_debug_string("apex::session::~session()\n");
@@ -109,11 +113,13 @@ namespace apex
    }
 
 
-   void session::initialize(::object * pobject)
+   void session::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
-      ::thread::initialize(pobject);
+      ::thread::initialize(pparticle);
+
+      ::apex::context::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -130,9 +136,8 @@ namespace apex
 
       //set_context_session(this);
 
-      m_pcontext = this;
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       if (psystem != nullptr)
       {
@@ -926,12 +931,12 @@ namespace apex
 
       }
 
-      if (::str().ends_ci(strPathName, ".ca2"))
+      if (strPathName.ends_ci(".ca2"))
       {
 
       }
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -944,7 +949,7 @@ namespace apex
 
          string str = purl->get_object(strPathName);
 
-         ::str().begins_eat(str, "/");
+         str.begins_eat("/");
 
          pcreate->m_payloadFile = str;
 
@@ -1225,7 +1230,7 @@ namespace apex
    bool session::is_key_pressed(::user::enum_key ekey)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pmapKeyPressed == nullptr)
       {
@@ -1310,7 +1315,7 @@ ret:
    void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pmapKeyPressed == nullptr)
       {
@@ -1670,10 +1675,10 @@ namespace apex
 
 
 
-   //void session::initialize(::object * pobject)
+   //void session::initialize(::particle * pparticle)
    //{
 
-   //   auto estatus = ::apex::session::initialize(pobject);
+   //   auto estatus = ::apex::session::initialize(pparticle);
 
    //   if (!estatus)
    //   {
@@ -2212,7 +2217,7 @@ namespace apex
       //for (string str : straSource)
       //{
 
-      //   if (::str().begins_eat_ci(str, "file://"))
+      //   if (str.begins_eat_ci("file://"))
       //   {
 
       //      str = purl->url_decode(str);

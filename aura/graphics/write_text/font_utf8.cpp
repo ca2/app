@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "font.h"
+#include "acme/primitive/string/international.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 

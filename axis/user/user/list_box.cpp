@@ -2,7 +2,10 @@
 #include "list_box.h"
 #include "combo_box.h"
 #include "acme/handler/item.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/constant/timer.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -38,7 +41,7 @@ namespace user
    void list_box::user_combo_list_common_construct()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_bClickDefaultMouseHandling = true;
 
@@ -124,7 +127,7 @@ namespace user
             if (pimpl)
             {
 
-               synchronous_lock synchronouslock(pimpl->mutex());
+               synchronous_lock synchronouslock(pimpl->synchronization());
 
                pimpl->m_userinteractionaHideOnConfigurationChange.add_unique_interaction(this);
 
@@ -139,7 +142,7 @@ namespace user
    }
 
 
-   bool list_box::_001GetListText(index iSel, string& str) const
+   bool list_box::_001GetListText(index iSel, string& str)
    {
 
       str.Empty();
@@ -161,7 +164,7 @@ namespace user
    }
 
 
-   index list_box::_001FindListText(const string& str) const
+   index list_box::_001FindListText(const string& str)
    {
 
 
@@ -214,7 +217,7 @@ namespace user
    }
 
 
-   index list_box::_001GetListCount() const
+   index list_box::_001GetListCount()
    {
 
       return m_straList.get_count();
@@ -287,7 +290,7 @@ namespace user
    void list_box::reset_content()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_straList.erase_all();
 
@@ -351,7 +354,7 @@ namespace user
             if (pimpl)
             {
 
-               synchronous_lock synchronouslock(pimpl->mutex());
+               synchronous_lock synchronouslock(pimpl->synchronization());
 
                pimpl->m_userinteractionaHideOnConfigurationChange.erase_interaction(this);
 
@@ -521,7 +524,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer list_box::get_font(style *pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer list_box::get_font(style *pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
       if (m_pcombo)
@@ -546,7 +549,7 @@ namespace user
    void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, SIZE_I32 * psize)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -703,7 +706,7 @@ namespace user
    }
 
 
-   bool list_box::keyboard_focus_is_focusable() const
+   bool list_box::keyboard_focus_is_focusable()
    {
 
       return true;
@@ -1345,7 +1348,7 @@ namespace user
 
                auto psession = get_session();
 
-               synchronous_lock synchronouslock(psession->mutex());
+               synchronous_lock synchronouslock(psession->synchronization());
 
                auto pinteraction = __create_new < ::user::interaction >();
 
@@ -1365,7 +1368,7 @@ namespace user
 
                auto psession = get_session();
 
-               synchronous_lock synchronouslock(psession->mutex());
+               synchronous_lock synchronouslock(psession->synchronization());
 
                auto puser = psession->user();
 

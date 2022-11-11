@@ -1,5 +1,6 @@
 #include "framework.h" 
 #include "session.h"
+#include "apex/constant/idpool.h"
 
 
 //#ifdef LINUX
@@ -30,9 +31,9 @@ namespace sockets
       m_strProtocol                 = protocol;
       m_host                        = host;
 
-      inattr(__id(http_protocol))   = protocol;
+      inattr("http_protocol")   = protocol;
 
-      m_request.m_propertysetHeader[__id(host)] = host;
+      m_request.m_propertysetHeader["host"] = host;
 
       set_url(protocol + "://" + host);
 
@@ -67,10 +68,10 @@ namespace sockets
    {
 
       m_emethod                     = emethod;
-      inattr(__id(request_uri))     = strRequest;
-      inattr(__id(http_protocol))   = m_strProtocol;
+      inattr("request_uri")     = strRequest;
+      inattr("http_protocol")   = m_strProtocol;
       set_url(m_strProtocol + "://" + GetUrlHost() + inattr("request_uri"));
-      inattr(__id(http_version))    = "HTTP/1.1";
+      inattr("http_version")    = "HTTP/1.1";
       //m_b_keepalive                 = true;
       m_content_ptr                 = 0;
 
@@ -87,9 +88,9 @@ namespace sockets
    bool http_session::step()
    {
 
-      inheader(__id(connection)) = "Keep-Alive";
+      inheader("connection") = "Keep-Alive";
 
-      inattr(__id(http_method)) = http_method_string(m_emethod);
+      inattr("http_method") = http_method_string(m_emethod);
 
       switch (m_emethod)
       {

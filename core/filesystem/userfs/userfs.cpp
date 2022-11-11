@@ -1,7 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "userfs.h"
 #include "tree.h"
 #include "list.h"
+#include "acme/handler/item.h"
 #include "core/user/user/user.h"
 #include "list_item.h"
 #include "main_impact.h"
@@ -22,12 +23,12 @@ namespace userfs
    }
 
    
-   void userfs::initialize(::object * pobject)
+   void userfs::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::acme::department::initialize(pobject);
+      ::acme::department::initialize(pparticle);
 
       //if (!estatus)
       //{

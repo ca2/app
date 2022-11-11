@@ -1,7 +1,10 @@
-﻿#include "framework.h" 
+﻿#include "framework.h"
+#include "request.h"
 #include "apex/id.h"
-#include "apex/networking/sockets/_.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/networking/url_department.h"
+#include "acme/platform/system.h"
+////#include "apex/networking/sockets/_.h"
 
 
 namespace http
@@ -68,29 +71,29 @@ namespace http
 
 
    // --------------------------------------------------------------------------------------
-   void request::ParseBody()
+   void request::ParseBody(::apex::context * pcontextUploadFile)
    {
 
       m_form.clear();
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
       m_strQueryString = purl->object_get_query(m_strRequestUri);
 
-      attr(__id(query_string)) = m_strQueryString;
+      attr("query_string") = m_strQueryString;
       m_form.parse_query_string(m_strQueryString, m_strQueryString.get_length());
       m_form.request()         = m_form.get();
-      attr(__id(http_referer)) = header(__id(referer));
-      if(m_atomHttpMethod == __id(put))
+      attr("http_referer") = header("referer");
+      if(m_atomHttpMethod == "put")
       {
          // skip following POST processing below
          return;
       }
       if(m_pmemfileBody->get_size() > 0)
       {
-         m_form.parse_body(m_pmemfileBody, ContentType(), ContentLength());
+         m_form.parse_body(pcontextUploadFile, m_pmemfileBody, ContentType(), ContentLength());
       }
       m_form.request().merge(m_form.post());
    }

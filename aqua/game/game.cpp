@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "game.h"
 #include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/platform/context.h"
 
 
 namespace aqua
@@ -43,7 +44,7 @@ namespace aqua
    
       string strFileName = string(psz) + string(".wav");
 
-      string strFilePath = m_pcontext->m_papexcontext->dir().matter(strFileName);
+      string strFilePath = dir()->matter(strFileName);
 
       return strFilePath;
 

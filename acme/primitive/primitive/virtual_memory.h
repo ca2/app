@@ -19,14 +19,9 @@ public:
    ~virtual_memory() override;
 
 
-   //void construct_memory(memory_container * pcontainer, memsize dwAllocationAddUp = 4096, ::u32 nAllocFlags = 0);
-
-
    virtual byte * impl_alloc(memsize dwAllocation) override;
    virtual byte * impl_realloc(void * pdata, memsize dwAllocation) override;
    virtual void impl_free(byte * pdata) override;
-
-   //virtual ::matter * clone() override;
 
 
 };

@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-MetaControlBox::MetaControlBox(::object * pobject) :
-   object(pobject),
-   ::user::interaction(pobject),
-   ::experience::control_box(pobject)
+MetaControlBox::MetaControlBox(::particle * pparticle) :
+   object(pparticle),
+   ::user::interaction(pparticle),
+   ::experience::control_box(pparticle)
 {
    m_iDefaultButtonMargin = 0;
 

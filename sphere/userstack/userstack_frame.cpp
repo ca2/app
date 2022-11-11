@@ -5,9 +5,9 @@ namespace userstack
 {
 
 
-   frame::frame(::object * pobject) :
-      ::object(pobject),
-      simple_frame_window(pobject),
+   frame::frame(::particle * pparticle) :
+      ::object(pparticle),
+      simple_frame_window(pparticle),
       m_spqueue(e_create)
    {
 
@@ -314,7 +314,7 @@ namespace userstack
       else if(pusermessage->m_wparam == 33)
       {
          string str = psystem->get_local_mutex_id();
-         ::str().begins_eat_ci(str, "bergedge");
+         str.begins_eat_ci("bergedge");
          i32 iEdge = atoi(str);
          if(iEdge == 0)
             iEdge = 77;

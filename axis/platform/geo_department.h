@@ -2,8 +2,12 @@
 #pragma once
 
 
+#include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/collection/string_map.h"
 #include "apex/platform/api.h"
 #include "apex/platform/api_client.h"
+#include "acme/primitive/datetime/time_zone.h"
+#include "acme/platform/department.h"
 
 
 class CLASS_DECL_AXIS string_timeout
@@ -41,9 +45,9 @@ namespace geo
       //bool                                                            m_bInitialCountryTimeZoneInit;
       bool                                                  m_bInitialLocalityTimeZoneInit;
 
-      ::mutex                                               m_mutexOpenweatherCity;
+      ::pointer < ::mutex >                                               m_pmutexOpenweatherCity;
       
-      ::mutex                                               m_mutexCityTimeZone;
+      ::pointer < ::mutex >                                               m_pmutexCityTimeZone;
       index_map < ::datetime::time_zone >                   m_cityTimeZone;
       bool                                                  m_bLoadedCityTimeZoneFromFile;
       ::file::path                                          m_pathCityTimeZoneFile;
@@ -52,7 +56,7 @@ namespace geo
 
 
 
-      ::mutex                                               m_mutexLocalityTimeZone;
+      ::pointer < ::mutex >                                               m_pmutexLocalityTimeZone;
       double_map < double_map < ::datetime::time_zone > >   m_localityTimeZone;
       bool                                                  m_bLoadedLocalityTimeZoneFromFile;
       ::file::path                                          m_pathLocalityTimeZoneFile;
@@ -60,7 +64,7 @@ namespace geo
       bool                                                  m_bLocalityTimeZoneModified;
 
 
-      ::mutex                                               m_mutexCityWeather;
+      ::pointer < ::mutex >                                               m_pmutexCityWeather;
       index_map < string_timeout >                          m_cityWeather;
       bool                                                  m_bLoadedCityWeatherFromFile;
       ::file::path                                          m_pathCityWeatherFile;
@@ -76,19 +80,19 @@ namespace geo
       double_array                                       m_daLon;
       double_array                                       m_daLat;
 
-      string_map < ::pointer<openweather_city >>        m_mapCity;
+      string_map < openweather_city * >                  m_mapCity;
 
 
       department();
       ~department() override;
 
 
-      void initialize(::object* pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       virtual void defer_check_openweather_city_list();
 
-      ::mutex * get_openweather_city_mutex() { return &m_mutexOpenweatherCity; }
+      ::pointer< ::mutex > get_openweather_city_mutex() { return m_pmutexOpenweatherCity; }
 
       virtual openweather_city* openweather_find_city(string strQuery);
       virtual index openweather_find_city2(string strQuery, string& strCit, i64& iId, double& dLat, double& dLon);

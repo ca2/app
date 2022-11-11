@@ -2,6 +2,9 @@
 
 
 #include "session.h"
+#include "context.h"
+#include "acme/platform/system.h"
+#include "apex/parallelization/threading.h"
 
 
 namespace apex
@@ -23,7 +26,7 @@ namespace apex
 
 #endif
 
-      ::pointer<::dump_context>                       m_pdumpcontext;
+      //::pointer<::dump_context>                       m_pdumpcontext;
 
       ::pointer<::networking::networking>             m_pnetworking;
 
@@ -33,21 +36,19 @@ namespace apex
 
       ::pointer<class machine_event_central>           m_pmachineeventcentral;
 
-      ::pointer<::mutex>                                m_pmutexUserAppData;
-      ::pointer<::mutex>                                m_pmutexSystemAppData;
+      ::pointer < ::mutex >                                m_pmutexUserAppData;
+      ::pointer < ::mutex >                                m_pmutexSystemAppData;
 
-      ::pointer<::mutex>                                m_pmutexMatter;
+      ::pointer < ::mutex >                                m_pmutexMatter;
 
-      ::pointer<::operating_system::department>       m_pprocess;
+      ::pointer<::operating_system::department>       m_poperatingsystem;
 
       ::pointer<::parallelization::threading>         m_pthreading;
       size_t                                             m_nSafetyPoolSize; // ideal size_i32
 
-      bool                                               m_bFinalizeIfNoSessionSetting;
-      bool                                               m_bFinalizeIfNoSession;
+      bool                                            m_bFinalizeIfNoSessionSetting;
+      bool                                            m_bFinalizeIfNoSession;
 
-      ::pointer<::dir_system>                         m_pdirsystem;
-      ::pointer<::file_system>                        m_pfilesystem;
 
 
       string_array                                       m_straCommandLineAccumul;
@@ -82,7 +83,7 @@ namespace apex
 #endif
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
       void install_message_routing(::channel * pchannel) override;
 
@@ -138,7 +139,7 @@ namespace apex
       virtual void create_os_node() override;
 
 
-      inline ::apex::node * node() { return m_pnode ? m_pnode->m_papexnode : nullptr; }
+      ::apex::node * node();
 
 
       virtual ::pointer<::factory::factory>& node_factory() override;
@@ -171,7 +172,7 @@ namespace apex
       virtual void destroy() override;
 
 
-      virtual void process_exit_status(::object* pobject, const ::e_status & estatus);
+      virtual void process_exit_status(::object* pparticle, const ::e_status & estatus);
 
 
       virtual void hist_hist(const ::string & psz);
@@ -184,7 +185,7 @@ namespace apex
       virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
       virtual string get_locale_schema_dir() override;
 
-      ::operating_system::department                        &  process();
+      ::operating_system::department                        &  operating_system();
 
       class ::machine_event_central                &  machine_event_central();
       inline ::parallelization::threading           *  threading() { return m_pthreading; }
@@ -226,7 +227,7 @@ namespace apex
 
 
 
-      virtual ::u32 os_post_to_all_threads(const ::atom & atom,wparam wparam = 0,lparam lparam = 0);
+      virtual ::u32 os_post_to_all_threads(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
 
 
       virtual void on_add_session(::apex::session* psession);
@@ -406,8 +407,8 @@ namespace apex
 
 
 
-      void assert_ok() const override;
-      void dump(dump_context& action_context) const override;
+      // void assert_ok() const override;
+      //void dump(dump_context& action_context) const override;
 
 
       void     main() override;
@@ -445,7 +446,7 @@ namespace apex
    };
 
 
-   //CLASS_DECL_APEX ::mutex * get_image_mutex();
+   //CLASS_DECL_APEX ::pointer< ::mutex > get_image_mutex();
 
 } // namespace apex
 

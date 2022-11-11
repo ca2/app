@@ -20,10 +20,10 @@ namespace ios
    }
 
 
-   void dir_system::initialize(::object * pobject)
+   void dir_system::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::dir_system::initialize(pobject);
+      auto estatus = ::dir_system::initialize(pparticle);
 
       if (!estatus)
       {

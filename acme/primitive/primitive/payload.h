@@ -1,7 +1,23 @@
 ﻿#pragma once
 
 
+#include "type.h"
+#include "acme/primitive/datetime/earth_time.h"
+#include "acme/primitive/datetime/file_time.h"
+#include "acme/graphics/draw2d/color.h"
+#include "ptr.h"
+#include "acme/memory/memory.h"
+#include "acme/platform/procedure.h"
+#include "acme/primitive/collection/numeric_array.h"
+#include "acme/filesystem/filesystem/path_object.h"
+#include "acme/filesystem/filesystem/path_array.h"
+#include "acme/primitive/datetime/file_time.h"
+#include "acme/primitive/string/sz.h"
+
+
 inline payload & copy(payload & payload, const integral_second & integralsecond);
+
+
 
 
 enum para_return
@@ -24,14 +40,12 @@ ENUM enum_default()
 }
 
 
-template < typename PAYLOAD_TYPE >
-concept payload_class = (is_derived_from < PAYLOAD_TYPE, ::payload > || ::std::same_as < PAYLOAD_TYPE, ::payload >);
-
-
-class CLASS_DECL_ACME payload // : public payload_type < payload >
+class CLASS_DECL_ACME payload
 {
 public:
 
+
+   using PRIMITIVE_PAYLOAD_TAG = PRIMITIVE_PAYLOAD_TAG_TYPE;
 
    enum_type                        m_etype;
 
@@ -111,7 +125,7 @@ public:
 
       ::particle *               m_p;
       ::string_array *           m_pstra;
-      ::int_array *              m_pia;
+      ::i32_array *              m_pia;
       ::payload_array *          m_ppayloada;
       ::property_set *           m_ppropertyset;
       ::i64_array *              m_pi64a;
@@ -123,9 +137,9 @@ public:
    };
 
 
-   inline payload();
-   inline payload(enum_type etype);
-   inline payload(std::nullptr_t);
+   payload();
+   payload(enum_type etype);
+   payload(std::nullptr_t);
    payload(bool b);
    payload(::i32 i);
    payload(::u32 u);
@@ -146,7 +160,7 @@ public:
    payload(::string * pstr);
    payload(::payload * ppayload);
    payload(::property * pproperty);
-   payload(::particle * pobject);
+   payload(::particle * pparticle);
    payload(::duration * pduration);
    payload(const char * psz);
    payload(const ::string & str);
@@ -388,9 +402,18 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    bool is_boolean() const;
    bool is_double() const;
    bool is_duration() const;
+   bool is_text() const;
+   bool is_fairly_convertible_to_text() const;
 
    bool ok() const;
    bool failed() const;
+
+
+   enum_type integer_type() const;
+   enum_type left_hand_integer_type() const;
+
+   enum_type floating_type() const;
+   enum_type left_hand_floating_type() const;
 
 
    payload dereference();
@@ -399,7 +422,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
 
-   ::comparison::var_strict strictly_compare() const;
+   //::comparison::var_strict strictly_compare() const;
 
    void           set_string(const char * psz);
    void           set_string(const ::string & str);
@@ -436,28 +459,36 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    bool begins_ci(const ::string & strPrefix) const { return get_string().begins_ci(strPrefix); }
    bool ends_ci(const ::string & strSuffix) const { return get_string().ends_ci(strSuffix); }
 
+   bool begins_eat(const ::string & strPrefix);
+   bool ends_eat(const ::string & strSuffix);
+   bool begins_eat_ci(const ::string & strPrefix);
+   bool ends_eat_ci(const ::string & strSuffix);
+
    payload get_topic(const ::atom & atom) const;
    //payload defer_get(const ::atom & atom) const;
 
    payload & operator ++(::i32);
 
-   template < payload_class PAYLOAD >
-   payload operator +(const PAYLOAD & payload) const;
-   template < payload_class PAYLOAD >
-   payload operator -(const PAYLOAD & payload) const;
-   template < payload_class PAYLOAD >
-   payload operator *(const PAYLOAD & payload) const;
-   template < payload_class PAYLOAD >
-   payload operator /(const PAYLOAD & payload) const;
+   payload operator +(const ::payload & payload) const;
+   payload operator -(const ::payload & payload) const;
+   payload operator *(const ::payload & payload) const;
+   payload operator /(const ::payload & payload) const;
 
-   template < payload_class PAYLOAD >
-   payload & operator +=(const PAYLOAD & payload);
-   template < payload_class PAYLOAD >
-   payload & operator -=(const PAYLOAD & payload);
-   template < payload_class PAYLOAD >
-   payload & operator *=(const PAYLOAD & payload);
-   template < payload_class PAYLOAD >
-   payload & operator /=(const PAYLOAD & payload);
+   payload & operator +=(const ::payload & payload);
+   payload & operator -=(const ::payload & payload);
+   payload & operator *=(const ::payload & payload);
+   payload & operator /=(const ::payload & payload);
+
+
+   payload addition(const ::payload & payload) const;
+   payload subtraction(const ::payload & payload) const;
+   payload multiplication(const ::payload & payload) const;
+   payload division(const ::payload & payload) const;
+
+   payload & add(const ::payload & payload);
+   payload & subtract(const ::payload & payload);
+   payload & multiply(const ::payload & payload);
+   payload & divide(const ::payload & payload);
 
    bool operator !() const
    {
@@ -511,14 +542,30 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::property_set & property_set_reference();
    ::property & property_reference();
 
-
    ::file::path & file_path_reference();
-
 
    ::file_time & file_time_reference();
    ::earth::time & earth_time_reference();
    ::color::color & color_reference();
    ::color::hls & color_hls_reference();
+
+   const ::string_array & string_array_reference() const;
+   const ::i32_array & i32_array_reference() const;
+   const ::i64_array & i64_array_reference() const;
+   const ::payload_array & payload_array_reference() const;
+   const ::duration & duration_reference() const;
+   const ::property_set & property_set_reference() const;
+   const ::property & property_reference() const;
+
+
+
+
+   const ::file::path & file_path_reference() const;
+   const ::file_time & file_time_reference() const;
+   const ::earth::time & earth_time_reference() const;
+   const ::color::color & color_reference() const;
+   const ::color::hls & color_hls_reference() const;
+
 
    //operator ::enum_check &();
 
@@ -597,12 +644,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    payload & operator = (const ::particle & o);
 
-   inline payload & operator = (const ::file::path & path)
-   {
-      set_type(e_type_path, false);
-      m_ppath = memory_new ::file::path_object(path);
-      return *this;
-   }
+   payload & operator = (const ::file::path & path);
 
    //template < typename ENUM >
    //payload& operator = (const enumeration < ENUM > & eflag)
@@ -805,19 +847,19 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    ::particle * get_particle();
 
-   bool strictly_equal(const payload & payload) const;
-   bool strictly_equal(const char * psz) const;
-   bool strictly_equal(const ::string & str) const;
-   bool strictly_equal(double d) const;
-   bool strictly_equal(::i32 i) const;
-   bool strictly_equal(bool b) const;
-
-   bool strictly_different(const payload & payload) const;
-   bool strictly_different(const char * psz) const;
-   bool strictly_different(const ::string & str) const;
-   bool strictly_different(double d) const;
-   bool strictly_different(::i32 i) const;
-   bool strictly_different(bool b) const;
+//   bool strictly_equal(const payload & payload) const;
+//   bool strictly_equal(const char * psz) const;
+//   bool strictly_equal(const ::string & str) const;
+//   bool strictly_equal(double d) const;
+//   bool strictly_equal(::i32 i) const;
+//   bool strictly_equal(bool b) const;
+//
+//   bool strictly_different(const payload & payload) const;
+//   bool strictly_different(const char * psz) const;
+//   bool strictly_different(const ::string & str) const;
+//   bool strictly_different(double d) const;
+//   bool strictly_different(::i32 i) const;
+//   bool strictly_different(bool b) const;
 
    //friend bool CLASS_DECL_ACME strict_equal(const char * psz,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_equal(const ::string & str,const payload & payload);
@@ -887,7 +929,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    payload last() const;
    payload first();
    payload last();
-   inline ::count get_count() const;
+   ::count get_count() const;
 
 
    inline ::property & operator[] (const ::atom & atom) { return get_property(atom); }
@@ -917,8 +959,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::payload at(index i);
    inline ::payload at(index i) const { return ((::payload *)this)->at(i); }
 
-   inline ::count array_get_count() const;
-   inline ::index array_get_upper_bound() const;
+   ::count array_get_count() const;
+   ::index array_get_upper_bound() const;
    bool array_contains(const char * psz,::index find = 0,::count count = -1) const;
    bool array_contains_ci(const char * psz,::index find = 0,::count count = -1) const;
    bool array_is_empty() const { return array_get_count() <= 0; }
@@ -1017,9 +1059,11 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 };
 
 
+#include "acme/primitive/collection/__payload_array.h"
 
 
-
+#include "__payload_reference.h"
+#include "acme/primitive/collection/__property_set.h"
 
 
 //
@@ -1473,59 +1517,59 @@ inline ::payload payload::operator * (FLOATING f) const
 }
 
 
-#include "payload_cast.h"
+#include "__payload_cast.h"
 
 
-template < primitive_integral INTEGRAL, payload_class PAYLOAD >
+template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
 inline ::payload operator - (INTEGRAL i, const PAYLOAD & payload)
 {
    return i - ((INTEGRAL)payload_cast(payload));
 }
 
 
-template < primitive_floating FLOATING, payload_class PAYLOAD >
+template < primitive_floating FLOATING, primitive_payload PAYLOAD >
 inline ::payload operator - (FLOATING i, const PAYLOAD & payload)
 {
    return i - ((FLOATING)payload_cast(payload));
 }
 
 
-template < primitive_integral INTEGRAL, payload_class PAYLOAD >
+template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
 inline ::payload operator + (INTEGRAL i, const PAYLOAD & payload)
 {
    return i +((INTEGRAL)payload_cast(payload));
 }
 
 
-template < primitive_floating FLOATING, payload_class PAYLOAD >
+template < primitive_floating FLOATING, primitive_payload PAYLOAD >
 inline ::payload operator + (FLOATING i, const PAYLOAD & payload)
 {
    return i + ((FLOATING)payload_cast(payload));
 }
 
 
-template < primitive_integral INTEGRAL, payload_class PAYLOAD >
+template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
 inline ::payload operator / (INTEGRAL i, const PAYLOAD & payload)
 {
    return i / ((INTEGRAL)payload_cast(payload));
 }
 
 
-template < primitive_floating FLOATING, payload_class PAYLOAD >
+template < primitive_floating FLOATING, primitive_payload PAYLOAD >
 inline ::payload operator / (FLOATING i, const PAYLOAD & payload)
 {
    return i / ((FLOATING)payload_cast(payload));
 }
 
 
-template < primitive_integral INTEGRAL, payload_class PAYLOAD >
+template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
 inline ::payload operator * (INTEGRAL i, const PAYLOAD & payload)
 {
    return i * ((INTEGRAL)payload_cast(payload));
 }
 
 
-template < primitive_floating FLOATING, payload_class PAYLOAD >
+template < primitive_floating FLOATING, primitive_payload PAYLOAD >
 inline ::payload operator * (FLOATING i, const PAYLOAD & payload)
 {
    return i * ((FLOATING)payload_cast(payload));
@@ -1594,31 +1638,28 @@ inline ::payload & payload::operator *= (FLOATING f)
 
 
 
-template < payload_class PAYLOAD >
-inline bool strictly_equal(const char * psz, const PAYLOAD & payload);
-template < payload_class PAYLOAD >
-inline bool strictly_equal(const ::string & str, const PAYLOAD & payload);
-template < payload_class PAYLOAD >
-inline bool strictly_equal(double d, const PAYLOAD & payload);
-template < payload_class PAYLOAD >
-inline bool strictly_equal(::i32 i, const PAYLOAD & payload);
-template < payload_class PAYLOAD >
-inline bool strictly_equal(bool b, const PAYLOAD & payload);
+//template < primitive_payload PAYLOAD >
+//inline bool strictly_equal(const char * psz, const PAYLOAD & payload);
+//template < primitive_payload PAYLOAD >
+//inline bool strictly_equal(const ::string & str, const PAYLOAD & payload);
+//template < primitive_payload PAYLOAD >
+//inline bool strictly_equal(double d, const PAYLOAD & payload);
+//template < primitive_payload PAYLOAD >
+//inline bool strictly_equal(::i32 i, const PAYLOAD & payload);
+//template < primitive_payload PAYLOAD >
+//inline bool strictly_equal(bool b, const PAYLOAD & payload);
 
 
-template < payload_class PAYLOAD >
+template < primitive_payload PAYLOAD >
 inline bool strictly_different(const char * psz, const PAYLOAD & payload);
-template < payload_class PAYLOAD >
+template < primitive_payload PAYLOAD >
 inline bool strictly_different(const ::string & str, const PAYLOAD & payload);
-template < payload_class PAYLOAD >
+template < primitive_payload PAYLOAD >
 inline bool strictly_different(double d, const PAYLOAD & payload);
-template < payload_class PAYLOAD >
+template < primitive_payload PAYLOAD >
 inline bool strictly_different(::i32 i, const PAYLOAD & payload);
-template < payload_class PAYLOAD >
+template < primitive_payload PAYLOAD >
 inline bool strictly_different(bool b, const PAYLOAD & payload);
-
-
-#include "payload_reference.h"
 
 
 inline ::payload_reference __reference(payload & payload)
@@ -1655,6 +1696,410 @@ inline payload & copy(payload & payload, const integral_second & integralsecond)
    return payload;
 
 }
+
+
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR >::string_base(const ::payload & payload) :
+//   string_base(payload.string())
+//{
+//
+//
+//}
+
+
+template < class T >
+inline pointer < T > payload::cast(T * pDefault)
+{
+
+   if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
+   {
+
+      return m_ppayload->cast < T >(pDefault);
+
+   }
+   else if (m_etype == e_type_property && m_pproperty != nullptr)
+   {
+
+      return m_pproperty->cast < T >(pDefault);
+
+   }
+
+   auto p = cast < T >();
+
+   if (!p)
+   {
+
+      return pDefault;
+
+   }
+
+   return p;
+
+}
+
+
+
+
+
+template < class T >
+inline T & payload::get_cast(T * pDefault)
+{
+
+   if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
+   {
+
+      return m_ppayload->get_cast <T>(pDefault);
+
+   }
+
+   if (m_etype == e_type_property && m_pproperty != nullptr)
+   {
+
+      return m_pproperty->get_cast <T>(pDefault);
+
+   }
+
+   if (m_etype != e_type_element)
+   {
+
+      return defer_create_type < T >(pDefault);
+
+   }
+
+   auto p = cast < T >();
+
+   if (!p)
+   {
+
+      return defer_create_type < T >(pDefault);
+
+   }
+
+   return *p;
+
+}
+
+
+template < class T >
+inline pointer < T > payload::cast()
+{
+
+   if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
+   {
+
+      return m_ppayload->cast < T >();
+
+   }
+
+   if (m_etype == e_type_property && m_pproperty != nullptr)
+   {
+
+      return m_pproperty->cast < T >();
+
+   }
+
+
+   return get_particle();
+
+}
+
+
+
+template < typename T >
+inline pointer < T > payload::pointer() const
+{
+
+   auto pproperty = find_pointer < T >();
+
+   if (!pproperty)
+   {
+
+      return nullptr;
+
+   }
+
+   return pproperty->template cast < T >();
+
+}
+
+
+inline ::payload __visible(::payload varOptions, bool bVisible)
+{
+
+   varOptions["visible"] = bVisible;
+
+   return varOptions;
+
+}
+
+
+
+inline ::payload operator + (::payload payload, const ::procedure & procedure)
+{
+
+   if (payload.get_type() != e_type_property_set)
+   {
+
+      payload["message"] = payload;
+
+   }
+
+   payload["routine"] = procedure.m_p;
+
+   return payload;
+
+}
+
+
+
+
+inline void assign(bool & b, const payload & payload)
+{
+
+   b = payload.get_bool();
+
+}
+
+
+inline void assign(::block & block, const ::payload & r)
+{
+
+   block.operator=(r.block());
+
+}
+
+
+
+
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+
+
+inline void assign(long & l, const payload & payload)
+{
+
+   l = payload.get_long();
+
+}
+
+
+inline void assign(unsigned long & ul, const payload & payload)
+{
+
+   ul = payload.get_unsigned_long();
+
+}
+
+
+#endif // defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+
+
+namespace file
+{
+
+
+   // inline path::path(const ::payload & payload,e_path epath): path(payload.get_file_path(),epath){}
+   // inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
+   inline path & path::operator = (const ::payload & payload) { return operator = (payload.string()); }
+   inline path & path::operator += (const ::payload & payload) { return operator += (payload.string()); }
+   inline path & path::operator = (const property & property) { return operator = ((const ::payload &)property); }
+   inline path & path::operator += (const property & property) { return operator += ((const ::payload &)property); }
+   template < primitive_payload PAYLOAD >
+   inline path path::operator + (const PAYLOAD & payload) const { return operator + (payload.string()); }
+   template < primitive_atom ATOM >
+   inline path path::operator + (const ATOM & atom) const { return operator + (::string(atom)); }
+   template < primitive_payload PAYLOAD >
+   inline path path::operator / (const PAYLOAD & payload) const { return operator /(::file::path(payload)); }
+   template < primitive_atom ATOM >
+   inline path path::operator / (const ATOM & atom) const { return operator /(::file::path(atom)); }
+   inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
+   inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
+   inline path path::folder() const { return { ::file_path_folder(*this), m_epath }; }
+   inline path path::sibling(const path & path) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(path), m_epath }; }
+   inline path path::sibling(const ::ansistring & str) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(str), m_epath }; }
+   inline path path::sibling(const char * psz) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(psz), m_epath }; }
+   inline string path::all_extensions() const { return &m_pdata[find_skip_or_length('.', rfind(separator()) + 1)]; }
+   inline string path::final_extension() const { return file_path_final_extension(operator const char * ()); }
+   inline bool path::operator == (const ::payload & payload) const { return operator == (payload.file_path()); }
+   inline bool path::operator != (const ::payload & payload) const { return operator != (payload.file_path()); }
+
+
+} // namespace file
+
+
+
+
+
+//template < typename TYPE_CHAR >
+//string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const ::payload & payload)
+//{
+//
+//   return append(payload);
+//
+//}
+//
+//template < typename TYPE_CHAR >
+//string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ::payload & payload) const
+//{
+//
+//   string_base < TYPE_CHAR > ansistr(*this);
+//
+//   ansistr += payload;
+//
+//   return ansistr;
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ::property & property) const
+//{
+//
+//   string_base < TYPE_CHAR > ansistr(*this);
+//
+//   ansistr += property;
+//
+//   return ansistr;
+//
+//}
+
+
+//template < primitive_payload PAYLOAD >
+inline payload payload::operator +(const ::payload & payload) const
+{
+
+   return ::move(addition(payload));
+
+}
+
+
+//template < primitive_payload PAYLOAD >
+inline payload payload::operator -(const ::payload & payload) const
+{
+
+   return ::move(subtraction(payload));
+
+}
+
+
+//template < primitive_payload PAYLOAD >
+inline payload payload::operator *(const payload & payload) const
+
+{
+
+   return ::move(multiplication(payload));
+
+}
+
+///template < primitive_payload PAYLOAD >
+inline payload payload:: operator /(const ::payload & payload) const
+{
+
+   return ::move(division(payload));
+
+}
+
+
+//template < primitive_payload PAYLOAD >
+inline payload & payload::operator +=(const ::payload & payload)
+{
+
+   return add(payload);
+
+}
+
+
+inline payload & payload::operator -=(const ::payload & payload)
+{
+
+   return subtract(payload);
+
+}
+
+
+//template < primitive_payload PAYLOAD >
+inline payload & payload::operator *=(const ::payload & payload)
+{
+
+   return multiply(payload);
+
+}
+
+
+//template < primitive_payload PAYLOAD >
+inline payload & payload::operator /=(const ::payload & payload)
+{
+
+   return divide(payload);
+
+}
+
+template < primitive_string STRING, primitive_payload PAYLOAD >
+inline STRING& copy(STRING& string, const PAYLOAD& payload)
+{
+
+    string = payload.string();
+
+    return string;
+
+}
+
+
+template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
+inline void copy(INTEGRAL& integral, const PAYLOAD& payload)
+{
+
+    integral = (INTEGRAL)payload.i64();
+
+}
+
+
+template < primitive_payload PAYLOAD >
+inline void copy(f32& f, const PAYLOAD& payload)
+{
+
+    f = payload.f32();
+
+}
+
+
+template < primitive_payload PAYLOAD >
+inline void copy(::f64& f, const PAYLOAD& payload)
+{
+
+    f = payload.f64();
+
+}
+
+
+template < primitive_payload PAYLOAD, primitive_number NUMBER >
+inline void copy(PAYLOAD& payload, const NUMBER& number)
+{
+
+    payload = number;
+
+}
+
+
+template < primitive_payload PAYLOAD, primitive_string STRING >
+inline PAYLOAD& copy(PAYLOAD& payload, const STRING& string)
+{
+
+    payload = string;
+
+    return payload;
+
+}
+
+
+template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
+inline void copy(PAYLOAD1& payload1, const PAYLOAD2& payload2)
+{
+
+    payload1 = payload2;
+
+}
+
+
 
 
 

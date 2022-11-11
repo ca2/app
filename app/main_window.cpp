@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "main_window.h"
 #include "acme/handler/item.h"
+#include "acme/platform/node.h"
 #include "acme/user/user/mouse.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/user/control_box_button.h"
@@ -91,26 +92,26 @@ namespace app_app
 
       double y = dBase * 3;
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x, y, dBase * 5.0, dBase * 5.0), __acolor(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x, y, dBase * 5.0, dBase * 5.0), ::color::color(127, 40, 150, 235));
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), __acolor(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::color::color(127, 40, 150, 235));
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), __acolor(127, 255, 110, 150));
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::color::color(127, 255, 110, 150));
       
       rectangleClient.deflate((::i32) dBase);
 
       ::color::color colorInset;
 
-      if (m_psystem->node()->background_color().get_luminance() < 0.5)
+      if (acmenode()->background_color().get_luminance() < 0.5)
       {
 
-         colorInset = __acolor(255, 89, 89, 89);
+         colorInset = ::color::color(255, 89, 89, 89);
 
       }
       else
       {
 
-         colorInset = __acolor(255, 127, 127, 127);
+         colorInset = ::color::color(255, 127, 127, 127);
 
       }
 

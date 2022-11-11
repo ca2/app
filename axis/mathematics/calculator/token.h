@@ -1,7 +1,7 @@
 #pragma once
 
 
-
+#include "acme/primitive/string/string.h"
 
 
 namespace calculator
@@ -9,7 +9,7 @@ namespace calculator
 
 
    class CLASS_DECL_AXIS token :
-      virtual public object
+      virtual public particle
    {
    public:
 

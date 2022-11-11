@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "html_file.h"
 #include "acme/primitive/text/context.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace html

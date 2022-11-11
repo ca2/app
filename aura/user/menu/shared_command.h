@@ -8,8 +8,11 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/element.h"
+
+
 class CLASS_DECL_APEX menu_shared_command :
-   virtual public ::element
+   virtual public ::particle
 {
 public: // re-implementations only
 

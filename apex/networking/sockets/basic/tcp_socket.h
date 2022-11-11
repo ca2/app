@@ -124,7 +124,7 @@ namespace sockets
 
       //::file::circular_file ibuf; ///< Circular input buffer
       //string m_strUrl;
-      //::mutex *        m_pmutexSslCtx;
+      //::pointer< ::mutex >        m_pmutexSslCtx;
       ////
       //bool m_b_input_buffer_disabled;
       //u64 m_bytes_sent;
@@ -168,7 +168,7 @@ namespace sockets
       ~tcp_socket() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       base_socket * base_socket_composite() override;

@@ -2,6 +2,8 @@
 #include "acme/platform/timer.h"
 #include "top_edit_impact.h"
 #include "top_impact.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "aura/message/user.h"
 #include "base/user/user/document.h"
 
@@ -39,7 +41,7 @@ namespace userex
    }
 
 
-   ::write_text::font_pointer top_edit_impact::get_font(::user::style* pstyle, ::enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer top_edit_impact::get_font(::user::style* pstyle, ::enum_element eelement, ::user::enum_state estate)
    {
 
       if (m_pfont)
@@ -179,7 +181,7 @@ namespace userex
    }
 
 
-   bool top_edit_impact::keyboard_focus_is_focusable() const
+   bool top_edit_impact::keyboard_focus_is_focusable()
    {
 
       return is_window_enabled() && is_window_visible();

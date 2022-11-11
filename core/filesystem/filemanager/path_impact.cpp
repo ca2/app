@@ -1,10 +1,12 @@
 #include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
 #include "path_impact.h"
 #include "document.h"
 #include "data.h"
+#include "acme/constant/id.h"
+#include "acme/filesystem/file/item.h"
+#include "acme/platform/context.h"
+#include "apex/filesystem/fs/data.h"
+#include "apex/platform/context.h"
 
 
 namespace filemanager

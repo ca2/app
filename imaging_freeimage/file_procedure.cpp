@@ -1,5 +1,8 @@
 #include "framework.h"
-#include "_imaging_freeimage.h"
+#include "acme/filesystem/file/file.h"
+
+
+#include <FreeImage.h>
 
 
 unsigned DLL_CALLCONV __ReadProc2(void * buffer, unsigned size, unsigned count, fi_handle handle)

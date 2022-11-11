@@ -33,6 +33,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "networking_bsd/sockets/basic/stream_socket.h"
 #include "apex/networking/sockets/basic/tcp_socket.h"
 #include "networking_bsd/sockets/ssl/ticket_key.h"
+#include "acme/primitive/collection/list.h"
+
 
 #define TCP_BUFSIZE_READ (16400)
 #define TCP_OUTPUT_CAPACITY 1024000
@@ -40,6 +42,39 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets_bsd
 {
 
+
+   struct OUTPUT {
+      OUTPUT() : _b(0), _t(0), _q(0) {}
+      OUTPUT(const char *buf, memsize len) : _b(0), _t(len), _q(len) {
+         ::memcpy_dup(_buf, buf, len);
+      }
+      memsize Space() {
+         return TCP_OUTPUT_CAPACITY - _t;
+      }
+      void add(const char *buf, memsize len) {
+         ::memcpy_dup(_buf + _t, buf, len);
+         _t += len;
+         _q += len;
+      }
+      memsize erase(memsize len) {
+         _b += len;
+         _q -= len;
+         return _q;
+      }
+      const char *Buf() {
+         return _buf + _b;
+      }
+      memsize Len() {
+         return _q;
+      }
+      memsize _b;
+      memsize _t;
+      memsize _q;
+      char _buf[TCP_OUTPUT_CAPACITY];
+   };
+
+
+   typedef ::list < OUTPUT *> output_list;
 
 
    /** socket implementation for TCP.
@@ -65,7 +100,7 @@ namespace sockets_bsd
       ::file::circular_file ibuf; ///< Circular input buffer
       string m_strUrl;
 
-      ::mutex *        m_pmutexSslCtx;
+      ::pointer< ::mutex >        m_pmutexSslCtx;
       //
       bool m_b_input_buffer_disabled;
       u64 m_bytes_sent;
@@ -107,7 +142,7 @@ namespace sockets_bsd
       virtual ~tcp_socket();
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       //using ::sockets::stream_socket::open;

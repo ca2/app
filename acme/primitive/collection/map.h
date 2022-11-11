@@ -3,6 +3,9 @@
 
 //#define memory_new ACME_NEW
 
+#include "set.h"
+#include "acme/primitive/comparison/equals.h"
+
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 class map :
@@ -17,16 +20,26 @@ public:
    typedef typename BASE_SET::BASE_ARG_KEY                     BASE_ARG_KEY;
    typedef VALUE                                      BASE_VALUE;
    typedef ARG_VALUE                                  BASE_ARG_VALUE;
+   
 
    typedef typename BASE_SET::association             association;
    typedef typename association::payload              pair;
 
+   //using iterator_struct = BASE_SET::iterator_struct;
+   //using const_iterator_struct = BASE_SET::const_iterator_struct;
+   //using key_iterator = BASE_SET::key_iterator;
+   //using iterator = BASE_SET::iterator;
+   //using const_iterator = BASE_SET::const_iterator;
+   //sing make_iterator = BASE_SET::make_iterator;
 
    __declare_iterator_struct_ok(map, association *, m_passociation, ::is_set(this->m_passociation));
 
 
-   template < typename ITERATOR > struct make_iterator : ITERATOR
+   template < typename ITERATOR > 
+   struct make_iterator : public ITERATOR
    {
+
+
 
       using CONTAINER = typename ITERATOR::CONTAINER;
 
@@ -286,10 +299,20 @@ public:
    inline bool erase_key(ARG_KEY key) { auto passociation = find_association(key);  return ::is_set(passociation) ? erase(passociation) : false; }
 
    template < typename ITERATOR >
-   inline ITERATOR erase(ITERATOR it) { return ::papaya::iterator::erase(*this, it); }
+   inline ITERATOR erase(ITERATOR it) { return ::acme::iterator::erase(*this, it); }
 
    template < typename ITERATOR >
-   inline void erase(const ITERATOR & begin, const ITERATOR & last) { ::erase(*this, begin, last); }
+   inline void erase(const ITERATOR & begin, const ITERATOR & last)
+   {
+
+      for(auto it = begin; it != last; it++)
+      {
+
+         erase(it);
+
+      }
+
+   }
 
    void erase_all();
    void clear();
@@ -385,8 +408,8 @@ public:
    void move(association* passociation, map * pmap = nullptr);
    void move(map* pmap, ARG_KEY key);
 
-   void assert_ok() const override;
-   void dump(dump_context & dumpcontext) const override;
+   //// void assert_ok() const override;
+   //// void dump(dump_context & dumpcontext) const override;
 
 
 
@@ -442,7 +465,7 @@ public:
 
    PAIR & element_at(::index iIndex)
    {
-      return elements().element_at(iIndex);
+      return this->elements().element_at(iIndex);
    }
 
    template < typename PRED >
@@ -882,7 +905,7 @@ template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, t
 void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::hash(::u32& nHashBucket, ::u32& nHashValue, ARG_KEY key) const
 {
 
-   nHashValue = u32_hash<ARG_KEY>(key);
+   nHashValue = u32_hash<ARG_KEY>(key).m_u;
 
    nHashBucket = nHashValue % this->m_hashtable.GetHashTableSize();
 
@@ -1168,19 +1191,19 @@ get(ARG_KEY argkey, ARG_VALUE valueDefault)
 }
 
 
-template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assert_ok() const
-{
-
-   ::matter::assert_ok();
-
-   ASSERT(GetHashTableSize() > 0);
-
-   ASSERT(this->m_nCount == 0 || this->m_hashtable.m_ppassociationHash != nullptr);
-   // non-empty map should have hash table
-
-}
-
+//template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+//void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assert_ok() const
+//{
+//
+//   ::matter::assert_ok();
+//
+//   ASSERT(GetHashTableSize() > 0);
+//
+//   ASSERT(this->m_nCount == 0 || this->m_hashtable.m_ppassociationHash != nullptr);
+//   // non-empty map should have hash table
+//
+//}
+//
 
 template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
 using double_map = map < double, VALUE, typename argument_of < double >::type, ARG_VALUE >;
@@ -1251,13 +1274,51 @@ __declare_map(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue);
 #endif
 
 
-using int_ptr_to_string = map < iptr, iptr, string, const string & >;
 
-using int_ptr_to_int_ptr_to_string = map < iptr, iptr, int_ptr_to_string, const int_ptr_to_string & >;
+template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::InitHashTable(
+   ::u32 nHashSize, bool bAllocNow)
+//
+// Used to force allocation of a hash table or to override the default
+//   hash table size_i32 of (which is fairly small)
+{
 
-using index_string = map < index, string >;
+   //ASSERT_VALID(this);
+   ASSERT(this->m_nCount == 0);
+   ASSERT(nHashSize > 0);
 
-using index_to_index_to_string = map < index, index_string >;
+   this->m_hashtable.InitHashTable(nHashSize,bAllocNow);
+
+}
+
+
+//template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+//void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::dump(dump_context& dumpcontext) const
+//{
+//
+//   ::matter::dump(dumpcontext);
+//
+//   //dumpcontext << "with " << this->m_nCount << " elements";
+//   //if (dumpcontext.GetDepth() > 0)
+//   //{
+//   //   // Dump in format "[key] -> value"
+//
+//   //   const association* passociation = get_start();
+//   //   while (passociation != nullptr)
+//   //   {
+//   //      passociation = get_next(passociation);
+//   //      dumpcontext << "\n\t[";
+//   //      dump_elements<KEY>(dumpcontext, &passociation->element1(), 1);
+//   //      dumpcontext << "] = ";
+//   //      dump_elements<VALUE>(dumpcontext, &passociation->element2(), 1);
+//   //   }
+//   //}
+//
+//   //dumpcontext << "\n";
+//}
+//
+//
+
 
 
 

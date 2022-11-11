@@ -9,19 +9,19 @@ namespace android
    {
 
 
-      dir::dir(::object * pobject) :
-         ::object(pobject),
-         ::file::system_dir(pobject),
-         ::file::dir::axis::system(pobject),
-         ::android::dir(pobject),
-         ::file_watcher::file_watcher(pobject)
+      dir::dir(::particle * pparticle) :
+         ::object(pparticle),
+         ::file::system_dir(pparticle),
+         ::file::dir::axis::system(pparticle),
+         ::android::dir(pparticle),
+         ::file_watcher::file_watcher(pparticle)
       {
 
 
       }
 
-      //path::path(::object * pobject) :
-      //   ::object(pobject)
+      //path::path(::particle * pparticle) :
+      //   ::object(pparticle)
       //{
       //}
 
@@ -161,11 +161,11 @@ namespace android
       //   const char * pszRequest;
       //   if(::url::is_url(lpcszSource, &pszRequest))
       //   {
-      //      if(::str().begins(lpcszRelative, "/"))
+      //      if(string_begins(lpcszRelative, "/"))
       //      {
       //         return path((const ::string &) string(lpcszSource, pszRequest - lpcszSource), lpcszRelative);
       //      }
-      //      else if(*pszRequest == '\0' || ::str().ends(lpcszSource, "/"))
+      //      else if(*pszRequest == '\0' || string_ends(lpcszSource, "/"))
       //      {
       //         return path(lpcszSource, lpcszRelative, psz2);
       //      }
@@ -176,7 +176,7 @@ namespace android
       //   }
       //   else
       //   {
-      //      if(::str().ends(lpcszSource, "\\") || ::str().ends(lpcszSource, "/"))
+      //      if(string_ends(lpcszSource, "\\") || string_ends(lpcszSource, "/"))
       //      {
       //         return path(lpcszSource, lpcszRelative, psz2);
       //      }
@@ -267,7 +267,7 @@ namespace android
 
 
 
-      ::file::listing & dir::ls(::object * pobject, ::file::listing & listing)
+      ::file::listing & dir::ls(::particle * pparticle, ::file::listing & listing)
       {
 
 
@@ -283,7 +283,7 @@ namespace android
       }
 
 
-      //   bool dir::rls(::object * pobject, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, e_extract eextract)
+      //   bool dir::rls(::particle * pparticle, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, enum_extract eextract)
       //   {
       //
       //      if(::file::dir::axis::system::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
@@ -298,7 +298,7 @@ namespace android
       //   }
       //
       //
-      //   bool dir::rls_pattern(::object * pobject, const ::string & lpcsz, const ::string & lpszPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, i64_array * piaSize, e_extract eextract)
+      //   bool dir::rls_pattern(::particle * pparticle, const ::string & lpcsz, const ::string & lpszPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, i64_array * piaSize, enum_extract eextract)
       //   {
       //
       //      if(::file::dir::axis::system::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract))
@@ -313,7 +313,7 @@ namespace android
       //   }
 
 
-      //   bool dir::rls_dir(::object * pobject, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative)
+      //   bool dir::rls_dir(::particle * pparticle, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative)
       //   {
       //
       //      if(::file::dir::axis::system::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative))
@@ -328,7 +328,7 @@ namespace android
       //   }
       //
       //
-      //   bool dir::ls_dir(::object * pobject, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle)
+      //   bool dir::ls_dir(::particle * pparticle, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle)
       //   {
       //
       //      if(::file::dir::axis::system::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
@@ -343,7 +343,7 @@ namespace android
       //   }
       //
       //
-      //   bool dir::ls_file(::object * pobject, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle)
+      //   bool dir::ls_file(::particle * pparticle, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle)
       //   {
       //
       //      if(::file::dir::axis::system::ls_file(papp,lpcsz,pstraPath,pstraTitle))
@@ -358,7 +358,7 @@ namespace android
       //   }
       //
       //
-      //   bool dir::ls(::object * pobject, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, bool_array * pbaIsDir, i64_array * piaSize)
+      //   bool dir::ls(::particle * pparticle, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, bool_array * pbaIsDir, i64_array * piaSize)
       //   {
       //
       //      if(::file::dir::axis::system::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize))
@@ -373,7 +373,7 @@ namespace android
       //   }
 
 
-      bool          auto psystem = m_psystem;
+      bool          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -390,7 +390,7 @@ pacmedirectory->is(const ::file::path & lpcszPath, ::aura::application * papp)
 
       }
 
-      //   bool          auto psystem = m_psystem;
+      //   bool          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -458,7 +458,7 @@ pacmedirectory->is(const ::string & strPath, ::aura::application * papp)
 
          }
 
-         bool bIsDir =          auto psystem = m_psystem;
+         bool bIsDir =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "decoder_plugin.h"
 #include "decoder.h"
+#include "acme/parallelization/event.h"
+#include "aqua/platform/system.h"
 
 
 namespace multimedia
@@ -86,7 +88,7 @@ namespace multimedia
 //
 //      string strTitle = ::file::path(pszTitle).title();
 //
-//      ::str().begins_eat_ci(strTitle, "lib");
+//      strTitle.begins_eat_ci("lib");
 //
 //      string strFunction = strTitle + "_" + m_strNewDecoder;
 //

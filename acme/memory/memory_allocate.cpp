@@ -1,6 +1,5 @@
 //Created by camilo on 2021-07-23 23:12 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
-#include "acme/operating_system.h"
 
 
 #define HEAP_NAMESPACE_PREFIX main

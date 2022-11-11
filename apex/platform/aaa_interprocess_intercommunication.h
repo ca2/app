@@ -8,14 +8,14 @@ class CLASS_DECL_APEX inteprocess_channel :
 public:
 
 
-   using interprocess_map = id_map < ::pointer< ::interprocess::task > >;
+   using interprocess_map = atom_map < ::pointer< ::interprocess::task > >;
 
 
    interlocked_count                                                 m_iTaskSeed;
    string                                                            m_strApp;
    ::atom                                                            m_atomApp;
    string_map < ::pointer<::interprocess::caller > >   m_callermap;
-   string_map < ::pointer<::mutex > >                                m_mapAppMutex;
+   string_map < ::pointer< ::mutex > >                                m_mapAppMutex;
    ::pointer<::interprocess::handler>                  m_phandler;
    string_array                                                      m_straModule;
 
@@ -33,7 +33,7 @@ public:
    ~interprocess_intercommunication() override;
 
 
-   virtual void initialize_interprocess_communication(::object* pobject, const ::string& strApp);
+   virtual void initialize_interprocess_communication(::object* pparticle, const ::string& strApp);
 
 
    void destroy() override;
@@ -51,7 +51,7 @@ public:
 
    virtual ::interprocess::caller & call(const ::string& strApp, const ::atom& idPid);
 
-   virtual id_array get_pid(const ::string& strApp);
+   virtual atom_array get_pid(const ::string& strApp);
 
    virtual string key(const string& strApp, const ::atom& idPid);
 

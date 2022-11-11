@@ -53,7 +53,7 @@ i32 vwprintf_dup(const widechar *format, va_list args)
 
 #ifdef __APPLE__
 
-::mutex * g_pmutexCvt = nullptr;
+::pointer< ::mutex > g_pmutexCvt = nullptr;
 
 i32 ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 {

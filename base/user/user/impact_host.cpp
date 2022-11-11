@@ -2,6 +2,8 @@
 #include "frame_window.h"
 #include "impact.h"
 #include "impact_host.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
 #include "base/platform/application.h"
 #include "place_holder.h"
 #include "document.h"
@@ -352,7 +354,7 @@ namespace user
 
       auto papp = get_app();
 
-      auto pimpactcreator = papp->cast< ::user::impact_creator>();
+      ::pointer < ::user::impact_creator > pimpactcreator = papp;
 
       if (pimpactcreator->impact_creator_create_impact(pimpactdata))
       {
@@ -553,7 +555,7 @@ namespace user
       if(!bCallOnCreateImpact)
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          return m_impactdatamap[atom];
 
@@ -622,7 +624,7 @@ namespace user
 
       //      bool bShow = false;
 
-      //      ::str().begins_eat_ci(strImpact, "frame::");
+      //      strImpact.begins_eat_ci("frame::");
 
       //      pdataclient->datastream()->set("frame::" + strImpact + ".visible", bShow);
 
@@ -652,7 +654,7 @@ namespace user
 
       //      bool bShow = false;
 
-      //      ::str().begins_eat_ci(strImpact, "frame::");
+      //      strImpact.begins_eat_ci("frame::");
 
       //      pdataclient->datastream()->set("frame::" + strImpact + ".visible", bShow);
 
@@ -682,7 +684,7 @@ namespace user
 
       //      bool bShow = false;
 
-      //      ::str().begins_eat_ci(strImpact, "frame::");
+      //      strImpact.begins_eat_ci("frame::");
 
       //      pdataclient->datastream()->set("frame::" + strImpact + ".visible", bShow);
       //
@@ -712,7 +714,7 @@ namespace user
 
             bool bShow = false;
 
-            ::str().begins_eat_ci(strImpact, "frame::");
+            strImpact.begins_eat_ci("frame::");
 
             pdataclient->datastream()->set("frame::" + strImpact + ".visible", bShow);
 
@@ -862,7 +864,7 @@ namespace user
    }
 
 
-   void impact_host::hide_all_except(const id_array & ida)
+   void impact_host::hide_all_except(const atom_array & ida)
    {
 
       auto ppair = m_impactdatamap.get_start();

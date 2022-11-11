@@ -5,10 +5,10 @@ namespace ios2
 {
 
 
-   printer::printer(::object * pobject) :
-      ::object(pobject),
-      ::user::printer(pobject),
-      m_documentproperties(pobject)
+   printer::printer(::particle * pparticle) :
+      ::object(pparticle),
+      ::user::printer(pparticle),
+      m_documentproperties(pparticle)
    {
    }
 
@@ -50,8 +50,8 @@ namespace ios2
    }
 
 
-   printer::document_properties::document_properties(::object * pobject) :
-      ::object(pobject)
+   printer::document_properties::document_properties(::particle * pparticle) :
+      ::object(pparticle)
    {
       m_hdc = nullptr;
 //      m_pdevmode = nullptr;

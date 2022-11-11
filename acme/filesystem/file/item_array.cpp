@@ -1,4 +1,8 @@
 #include "framework.h"
+#include "item_array.h"
+#include "item.h"
+#include "acme/platform/flags.h"
+#include "acme/primitive/primitive/payload.h"
 
 
 namespace file

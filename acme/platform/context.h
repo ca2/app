@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/parallelization/task.h"
+
+
 namespace acme
 {
 
@@ -40,33 +43,56 @@ namespace acme
       ::apex::node *                                  m_papexnode;
       ::aura::node *                                  m_pauranode;
 
-      ::pointer<::text::translator>                  m_ptexttranslator;
+      ::pointer<::text::translator>                   m_ptexttranslator;
 
-      ::pointer<::context_image>                   m_pcontextimage;
+      ::pointer<::context_image>                      m_pcontextimage;
+      ::pointer<::dir_context>                        m_pdir;
+      ::pointer<::file_context>                       m_pfile;
+
 
 
       context();
       ~context() override;
 
 
-      inline ::context_image* context_image() { return m_pcontextimage; }
-
+      void initialize(::particle * pparticle) override;
 
       virtual void initialize_context();
 
       virtual void initialize_context_1();
 
+
+      inline ::context_image* context_image() { return m_pcontextimage; }
+
+
+
       virtual void translate_text_data(::text::data * ptextdata);
       virtual ::text::text __text(const ::atom& atom) override;
+
+
+      inline ::acme_file * acmefile();
+      inline ::acme_path * acmepath();
+      inline ::acme_directory * acmedirectory();
+      inline ::acme::node * acmenode();
+      inline ::acme::system * acmesystem() { return m_pacmesystem; }
+
+      inline ::dir_context * dir() { return m_pdir; }
+      inline ::file_context * file() { return m_pfile; }
+      ::dir_system * dirsystem();
+      ::file_system * filesystem();
+
+
 
 
       virtual ::payload file_payload(const ::payload & payloadFile);
 
 
-      ::file_pointer get_file(const ::payload& payloadFile, const ::file::e_open& eopen) override;
+      //::file_pointer get_file(const ::payload& payloadFile, const ::file::e_open& eopen) override;
 
 
       virtual ::file::path defer_process_path(::file::path path);
+
+      virtual void fork_count(::count iCount, const ::function < void(index, index, index, index) > & function, const ::procedure & procedureCompletion, index iStart = 0);
 
 
    };

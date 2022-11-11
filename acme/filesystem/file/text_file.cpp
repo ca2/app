@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "text_file.h"
 
 
 namespace file

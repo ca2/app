@@ -17,7 +17,7 @@ namespace graphics
 
 
 
-      buffer(::object * pobject);
+      buffer(::particle * pparticle);
       virtual ~buffer();
 
 
@@ -38,7 +38,7 @@ namespace graphics
 
       //virtual bool is_buffer_okx();
 
-      virtual ::draw2d::graphics * on_begin_draw(synchronization_object ** ppsync);
+      virtual ::draw2d::graphics * on_begin_draw(synchronization ** ppsync);
       virtual void on_end_draw();
 
 

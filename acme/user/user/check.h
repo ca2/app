@@ -1,7 +1,8 @@
 ﻿#pragma once
 
 
-#include "acme/primitive/primitive/echeck.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/primitive/object.h"
 
 
 namespace user
@@ -9,7 +10,7 @@ namespace user
 
 
    class CLASS_DECL_ACME check :
-      virtual public object
+      virtual public ::object
    {
    public:
 

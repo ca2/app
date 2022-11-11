@@ -16,12 +16,12 @@ shell_open::~shell_open()
 }
 
 
-void shell_open::initialize(::object * pobject)
+void shell_open::initialize(::particle * pparticle)
 {
 
    //auto estatus = 
    
-   ::object::initialize(pobject);
+   ::object::initialize(pparticle);
 
    //if (!estatus)
    //{

@@ -899,7 +899,7 @@ namespace crypto
 
       }
 
-      if (!pcontext->m_papexcontext->file().put_contents(payloadFile, memoryEncrypt))
+      if (!pcontext->m_papexcontext->file()->put_contents(payloadFile, memoryEncrypt))
       {
 
          return false;
@@ -916,13 +916,13 @@ namespace crypto
 
       memory memoryEncrypt;
 
-      if (!pcontext->m_papexcontext->file().exists(payloadFile))
+      if (!pcontext->m_papexcontext->file()->exists(payloadFile))
       {
          str.Empty();
          return success_not_found;
       }
 
-      if (!pcontext->m_papexcontext->file().as_memory(payloadFile, memoryEncrypt))
+      if (!pcontext->m_papexcontext->file()->as_memory(payloadFile, memoryEncrypt))
       {
          return error_file;
       }
@@ -1051,7 +1051,7 @@ namespace crypto
    ::file::path crypto::get_crypt_key_file_path()
    {
 
-      return          auto psystem = m_psystem;
+      return          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1065,7 +1065,7 @@ pacmedirectory->system() / "user" / "databin.bin";
 
       string strPath = get_crypt_key_file_path();
 
-      string str = pcontext->m_papexcontext->file().as_string(strPath);
+      string str = pcontext->m_papexcontext->file()->as_string(strPath);
 
       if (str.has_char())
       {
@@ -1078,7 +1078,7 @@ pacmedirectory->system() / "user" / "databin.bin";
 
       generate_random_alphanumeric(str.get_string_buffer(iLength), iLength);
 
-      pcontext->m_papexcontext->file().put_contents(strPath, str);
+      pcontext->m_papexcontext->file()->put_contents(strPath, str);
 
       return str;
 
@@ -1541,7 +1541,7 @@ pacmedirectory->system() / "user" / "databin.bin";
 
       X509* signer = nullptr;
       {
-         string strSigner = pcontext->m_papexcontext->file().as_string(strSignerPath);
+         string strSigner = pcontext->m_papexcontext->file()->as_string(strSignerPath);
          BIO* pbio = BIO_new_mem_buf((void*)(const char *)strSigner, (i32)strSigner.get_length());
          //signer = PEM_read_bio_X509_AUX(pbio, nullptr, 0, nullptr);
          signer = PEM_read_bio_X509(pbio, nullptr, 0, nullptr);
@@ -1550,7 +1550,7 @@ pacmedirectory->system() / "user" / "databin.bin";
 
       EVP_PKEY* pkey;
       {
-         string strKey = pcontext->m_papexcontext->file().as_string(strKeyPath);
+         string strKey = pcontext->m_papexcontext->file()->as_string(strKeyPath);
          BIO* pbio = BIO_new_mem_buf((void*)(const char *)strKey, (i32)strKey.get_length());
          pkey = PEM_read_bio_PrivateKey(pbio, nullptr, nullptr, nullptr);
          BIO_free(pbio);
@@ -1559,7 +1559,7 @@ pacmedirectory->system() / "user" / "databin.bin";
 
       stack_st_X509* pstack509 = nullptr;
       {
-         string strOthers = pcontext->m_papexcontext->file().as_string(strOthersPath);
+         string strOthers = pcontext->m_papexcontext->file()->as_string(strOthersPath);
          address_array < X509* > xptra;
          strsize iStart = 0;
          strsize iFind;
@@ -1611,7 +1611,7 @@ pacmedirectory->system() / "user" / "databin.bin";
       char* pchData = nullptr;
       long count = BIO_get_mem_data(output, &pchData);
 
-      pcontext->m_papexcontext->file().put_contents(strDir / "META-INF/zigbert.rsa", pchData, count);
+      pcontext->m_papexcontext->file()->put_contents(strDir / "META-INF/zigbert.rsa", pchData, count);
 
       BIO_free(output);
       PKCS7_free(pkcs7);

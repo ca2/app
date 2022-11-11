@@ -297,7 +297,7 @@ public:
 
       auto pszStart = psz;
 
-      while (!::str().isspace(*psz) && *psz != '\0')
+      while (!::str().character_isspace(*psz) && *psz != '\0')
       {
 
          *psz++;
@@ -383,7 +383,7 @@ public:
    static void skip_whitespace(const char *& psz)
    {
 
-      while (::str::ch().is_whitespace(*psz))
+      while (unicode_is_whitespace(*psz))
       {
 
          psz++;

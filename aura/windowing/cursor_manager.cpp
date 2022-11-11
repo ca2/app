@@ -1,6 +1,8 @@
 #include "framework.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/application.h"
 #include "aura/windowing/cursor_manager.h"
 #include "aura/windowing/cursor.h"
 #include "aura/platform/system.h"
@@ -104,15 +106,15 @@ namespace windowing
       if (strCursor == "arrow") { return e_cursor_arrow; }
       else if (strCursor == "hand") { return e_cursor_hand; }
       else if (strCursor == "text_select") { return e_cursor_text_select; }
-      else if (::str().begins_eat_ci(strCursor, "size_"))
+      else if (strCursor.begins_eat_ci("size_"))
       {
-         if (::str().begins_eat_ci(strCursor, "top"))
+         if (strCursor.begins_eat_ci("top"))
          {
             if (strCursor.is_empty()) { return e_cursor_size_top; }
             else if (strCursor == "_left") { return e_cursor_size_top_left; }
             else if (strCursor == "_right") { return e_cursor_size_top_right; }
          }
-         else if (::str().begins_eat_ci(strCursor, "bottom"))
+         else if (strCursor.begins_eat_ci("bottom"))
          {
             if (strCursor.is_empty()) { return e_cursor_size_bottom; }
             else if (strCursor == "_left") { return e_cursor_size_bottom_left; }
@@ -134,7 +136,7 @@ namespace windowing
    ::pointer<cursor>cursor_manager::get_cursor(enum_cursor ecursor)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto & pcursor = m_cursormap[ecursor];
 
@@ -163,7 +165,7 @@ namespace windowing
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          pcursor = get_cursor(ecursor);
 
@@ -171,7 +173,7 @@ namespace windowing
 
       auto path = pathParam;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       if (psystem->m_bImaging)
       {
@@ -203,7 +205,7 @@ namespace windowing
 
       auto pcontext = get_context();
 
-      parse_hotspot_text(pcontext->m_papexcontext->file().as_string(pathDir / "hotspot.txt"));
+      parse_hotspot_text(pcontext->m_papexcontext->file()->as_string(pathDir / "hotspot.txt"));
 
    }
 
@@ -263,7 +265,7 @@ namespace windowing
 
       auto pcontext = pobjectContext->m_pcontext;
 
-      ::file::path pathArrow = pcontext->m_papexcontext->dir().matter(pathMatter / "arrow.png");
+      ::file::path pathArrow = pcontext->m_papexcontext->dir()->matter(pathMatter / "arrow.png");
       
       if(pathArrow.is_empty())
       {
@@ -607,7 +609,7 @@ namespace windowing
    ::pointer<cursor>cursor_manager::set_system_default_cursor(enum_cursor ecursor)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       cursor * pcursor = get_cursor(ecursor);
 
@@ -630,7 +632,7 @@ namespace windowing
    }
 
 
-   ::aura::application* cursor_manager::get_app() const
+   ::aura::application* cursor_manager::get_app()
    {
 
       return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
@@ -638,7 +640,7 @@ namespace windowing
    }
 
 
-   ::aura::session* cursor_manager::get_session() const
+   ::aura::session* cursor_manager::get_session()
    {
 
       return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
@@ -646,10 +648,10 @@ namespace windowing
    }
 
 
-   ::aura::system* cursor_manager::get_system() const
+   ::aura::system* cursor_manager::get_system()
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
+      return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
 
    }
 

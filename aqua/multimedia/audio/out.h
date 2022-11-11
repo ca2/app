@@ -17,7 +17,7 @@
 //
 //
 //
-//            out(::object * pobject);
+//            out(::particle * pparticle);
 //            virtual ~out();
 //
 //

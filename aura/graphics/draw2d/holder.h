@@ -1,4 +1,4 @@
-// Created by camilo on 2022-06-23 20:13 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-06-23 20:13 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -10,7 +10,7 @@ namespace draw2d
 
 
    class CLASS_DECL_AURA holder :
-      virtual public element
+      virtual public ::particle
    {
    public:
 

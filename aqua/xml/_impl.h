@@ -8,10 +8,10 @@
 //
 //
 //   template < class T >
-//   bool system::output(::object * pobject,const char * pszOutput,T * p,bool (T::*lpfnOuput)(stream &,const char *),const char * lpszSource)
+//   bool system::output(::particle * pparticle,const char * pszOutput,T * p,bool (T::*lpfnOuput)(stream &,const char *),const char * lpszSource)
 //   {
 //
-//      pcontext->m_papexcontext->dir().create(pcontext->m_papexcontext->dir().name(pszOutput),papp);
+//      pcontext->m_papexcontext->dir()->create(pcontext->m_papexcontext->dir()->name(pszOutput),papp);
 //
 //      file_pointer fileOut = papp->get_session()->file_get_file(pszOutput,::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 //
@@ -26,10 +26,10 @@
 //
 //
 //   template < class T >
-//   bool system::output(::object * pobject,const char * pszOutput,T * p,bool (T::*lpfnOuput)(stream &,stream &),const char * lpszInput)
+//   bool system::output(::particle * pparticle,const char * pszOutput,T * p,bool (T::*lpfnOuput)(stream &,stream &),const char * lpszInput)
 //   {
 //
-//      pcontext->m_papexcontext->dir().create(pcontext->m_papexcontext->dir().name(pszOutput),papp);
+//      pcontext->m_papexcontext->dir()->create(pcontext->m_papexcontext->dir()->name(pszOutput),papp);
 //
 //      file_pointer fileOut = papp->get_session()->file_get_file(pszOutput,::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 //
@@ -51,7 +51,7 @@
 //
 //
 //   template < class T >
-//   bool system::output(::object * pobject,const char * pszOutput,T * p,bool (T::*lpfnOuput)(stream &,stream &),stream & istream)
+//   bool system::output(::particle * pparticle,const char * pszOutput,T * p,bool (T::*lpfnOuput)(stream &,stream &),stream & istream)
 //   {
 //
 //      stream ostream(get(pszOutput,papp));

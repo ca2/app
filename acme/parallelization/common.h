@@ -63,8 +63,8 @@ class multi_lock;
 //{
 //public:
 //
-//   predicate_holder_base(::matter * pobject) :
-//      ::matter(pobject),
+//   predicate_holder_base(::particle * pparticle) :
+//      ::matter(pparticle),
 //      m_pholdref(pholdref)
 //   {
 //
@@ -82,9 +82,9 @@ class multi_lock;
 //
 //   PRED m_predicate;
 //
-//   predicate_holder(::matter * pobject, PRED pred) :
-//      ::matter(pobject),
-//      predicate_holder_base(pobject),
+//   predicate_holder(::particle * pparticle, PRED pred) :
+//      ::matter(pparticle),
+//      predicate_holder_base(pparticle),
 //      m_predicate(pred)
 //   {
 //
@@ -118,4 +118,4 @@ namespace primitive
 
 
 
-//CLASS_DECL_ACME thread* __begin_thread(::matter * pobject, __THREADPROC pfnThreadProc, LPVOID pParam, i32 epriority = ::e_priority_normal, ::u32 nStackSize = 0, u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, itask_t * puiId = nullptr, error * perror = nullptr);
+//CLASS_DECL_ACME thread* __begin_thread(::particle * pparticle, __THREADPROC pfnThreadProc, LPVOID pParam, i32 epriority = ::e_priority_normal, ::u32 nStackSize = 0, u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, itask_t * puiId = nullptr, error * perror = nullptr);

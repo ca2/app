@@ -1,7 +1,12 @@
 ﻿#include "framework.h"
-#include "acme/operating_system.h"
-#include "acme/primitive/string/base64.h"
+#include "acme/exception/exception.h"
+#include "acme/filesystem/file/file.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/string/base64.h"
+#include "acme/primitive/string/hex.h"
+#include "acme/primitive/string/international.h"
+#include "acme/_operating_system.h"
 
 
 #ifdef WINDOWS
@@ -559,9 +564,9 @@ void memory_base::transfer_from(::file::file * pfileIn,memsize uiBufferSize)
 //
 //            i32 iErrNo = errno;
 //            
-//            auto errorcode = __errno(iErrNo);
+//            auto errorcode = errno_error_code(iErrNo);
 //            
-//            auto estatus = errno_to_status(iErrNo);
+//            auto estatus = errno_status(iErrNo);
 //            
 //            throw ::file::exception(estatus, errorcode, m_path, "");
 //
@@ -679,9 +684,9 @@ char * memory_base::get_psz(strsize & len)
 
       mem = *this;
 
-      set_size(::str().utf_to_utf_length((char *) get_data(),(const wd16char *)&get_data()[2],get_size() - 2));
+      set_size(utf_to_utf_length((char *) get_data(),(const wd16char *)&get_data()[2],get_size() - 2));
 
-      ::str().utf_to_utf((char *) get_data(),(const widechar *)&mem.get_data()[2],(i32)(mem.get_size() - 2));
+      utf_to_utf((char *) get_data(),(const widechar *)&mem.get_data()[2],(i32)(mem.get_size() - 2));
 
       len = get_size();
 
@@ -695,9 +700,9 @@ char * memory_base::get_psz(strsize & len)
 
       mem = *this;
 
-      set_size(::str().utf_to_utf_length((char *) get_data(),(const wd16char *)&get_data()[3],get_size() - 3));
+      set_size(utf_to_utf_length((char *) get_data(),(const wd16char *)&get_data()[3],get_size() - 3));
 
-      ::str().utf_to_utf((char *)get_data(),(const wd16char *)&mem.get_data()[3],(i32)(mem.get_size() - 3));
+      utf_to_utf((char *)get_data(),(const wd16char *)&mem.get_data()[3],(i32)(mem.get_size() - 3));
 
       len = get_size();
 
@@ -734,7 +739,7 @@ string memory_base::as_utf8() const
          && get_data()[1] == 60)
    {
 
-      ::str().utf_to_utf(strResult, (wd16char *)&get_data()[2], (i32)(get_size() - 2));
+      utf_to_utf(strResult, (wd16char *)&get_data()[2], (i32)(get_size() - 2));
 
    }
    else if (get_size() >= 2
@@ -750,7 +755,7 @@ string memory_base::as_utf8() const
       //   storage.get_data()[i + 1] = b;
       //}
 #endif
-      ::str().utf_to_utf(strResult, (const wd16char *)&get_data()[2], (i32)(get_size() - 2));
+      utf_to_utf(strResult, (const wd16char *)&get_data()[2], (i32)(get_size() - 2));
 
    }
    else if (get_size() >= 3
@@ -1149,6 +1154,16 @@ memory_base & memory_base::operator = (const memory_base & s)
 }
 
 
+memory_base & memory_base::operator += (const block & block)
+{
+
+   append(block);
+
+   return *this;
+
+}
+
+
 memory_base & memory_base::operator += (const memory_base & s)
 {
 
@@ -1273,7 +1288,7 @@ strsize memory_base::from_hex(const char * psz, strsize nCount)
       try
       {
 
-         ch = ::hex::to(psz[i]);
+         ch = ::hex::to_nibble(psz[i]);
 
       }
       catch (...)
@@ -1291,7 +1306,7 @@ strsize memory_base::from_hex(const char * psz, strsize nCount)
          try
          {
 
-            ch2 = ::hex::to(psz[i]);
+            ch2 = ::hex::to_nibble(psz[i]);
 
          }
          catch (...)
@@ -1940,7 +1955,7 @@ memsize memory_base::length() const
 }
 
 
-::element * memory_base::clone() const
+::particle * memory_base::clone() const
 {
 
    auto pmemory = memory_new memory();
@@ -2196,7 +2211,7 @@ byte * memory_base::reverse_find_byte_not_in_block(const ::block & block, ::inde
 }
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -2235,7 +2250,7 @@ namespace papaya
 
       pfileIn->seek_to_begin();
 
-      ::papaya::transfer_from(pfileIn, mem, uiBufferSize);
+      ::acme::transfer_from(pfileIn, mem, uiBufferSize);
 
    }
 
@@ -2282,7 +2297,7 @@ namespace papaya
 
 
 
-} // namespace papaya
+} // namespace acme
 
 
 
@@ -2324,7 +2339,7 @@ namespace papaya
 //CLASS_DECL_ACME stream & operator << (stream & stream, memory_base & mem)
 //{
 //
-//   ::papaya::transfer_to(stream, mem);
+//   ::acme::transfer_to(stream, mem);
 //
 //   return stream;
 //
@@ -2335,7 +2350,7 @@ namespace papaya
 //CLASS_DECL_ACME stream & operator >> (stream & stream, memory_base & mem)
 //{
 //
-//   ::papaya::transfer_from(stream, mem);
+//   ::acme::transfer_from(stream, mem);
 //
 //   return stream;
 //
@@ -2366,14 +2381,14 @@ memory_base & memory_base::operator = (const block & block)
 }
 
 
-memory_base & memory_base::operator += (const block & block)
-{
-
-   append(block);
-
-   return *this;
-
-}
+//memory_base & memory_base::operator += (const block & block)
+//{
+//
+//   append(block);
+//
+//   return *this;
+//
+//}
 
 
 void memory_base::assign(const ::block & block)

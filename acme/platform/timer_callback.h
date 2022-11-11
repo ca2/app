@@ -1,8 +1,11 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/matter.h"
+
+
 class CLASS_DECL_ACME timer_callback :
-   virtual public ::matter
+   virtual public ::particle
 {
 public:
 

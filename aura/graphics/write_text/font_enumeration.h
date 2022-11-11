@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "apex/handler/manager.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "font_enumeration_item.h"
+
+
 namespace write_text
 {
 
@@ -24,7 +29,7 @@ namespace write_text
       ~font_enumeration() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       //void signal(::signal * psignal) override;

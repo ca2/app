@@ -49,20 +49,6 @@
 //}
 
 
-inline duration& duration::operator = (const ::duration & duration)
-{
-
-   if(this != &duration)
-   {
-
-      m_iSecond = duration.m_iSecond;
-      m_iNanosecond = duration.m_iNanosecond;
-
-   }
-
-   return *this;
-
-}
 
 //
 //inline nanosecond operator -(const ::nanosecond& nanosecond, const ::duration & duration)
@@ -82,34 +68,34 @@ inline duration& duration::operator = (const ::duration & duration)
 //
 
 
-
-inline bool duration::timeout(const duration & duration)
-{
-
-   auto now = this->now();
-
-   if (elapsed(now) < duration)
-   {
-
-      return false;
-
-   }
-
-   operator =(now);
-
-   return true;
-
-}
-
-
-::duration duration::remaining(const duration & duration, const ::duration & durationNow)
-{
-
-   auto durationRemaining = duration - elapsed(durationNow);
-   
-   return durationRemaining;
-
-}
-
-
+//
+//inline bool duration::timeout(const duration & duration)
+//{
+//
+//   auto now = this->now();
+//
+//   if (elapsed(now) < duration)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   operator =(now);
+//
+//   return true;
+//
+//}
+//
+//
+//::duration duration::remaining(const duration & duration, const ::duration & durationNow)
+//{
+//
+//   auto durationRemaining = duration - elapsed(durationNow);
+//
+//   return durationRemaining;
+//
+//}
+//
+//
 

@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 
-//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-//void __io_array(stream & stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array);
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//void __io_array(stream & stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array);
 
 //template < typename ARRAY, typename READER >
 //inline void __load_array(ARRAY & array, READER && reader);
@@ -13,7 +13,7 @@
 
 CLASS_DECL_ACME void __transfer_to_writable(::file::writable * pwritable, ::file::file * pfileIn, memsize uiBufSize =-1);
 
-namespace papaya
+namespace acme
 {
 
 
@@ -24,7 +24,7 @@ namespace papaya
    } // namespace array
 
 
-} // namespace papaya
+} // namespace acme
 
 
 

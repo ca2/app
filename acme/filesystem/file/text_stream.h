@@ -1,275 +1,1727 @@
 ﻿#pragma once
 
 
-class text_stream;
+#include "string_buffer.h"
+#include "stream.h"
+
+inline ::string ellipsis(const char* psz, strsize len)
+{
+
+   auto lenTotal = string_safe_length(psz, len);
+
+   if (lenTotal < 0)
+   {
+
+      return ::string(psz, len - 3) + "...";
+
+   }
+   else
+   {
+
+      return psz;
+
+   }
+
+}
 
 
-//template < typename TYPE >
-//inline void __string_exchange(text_stream & s, TYPE & t);
-//
-//
-//inline void __string_exchange(stream & s, ::payload & payload);
-//
-//inline void __string_exchange(text_stream & s, ansichar & ansich);
-//inline void __string_exchange(text_stream & s, widechar & widech);
-//inline void __string_exchange(text_stream & s, i8 & i);
-//inline void __string_exchange(text_stream & s, i16 & i);
-//inline void __string_exchange(text_stream & s, i32 & i);
-//inline void __string_exchange(text_stream & s, i64 & i);
-//inline void __string_exchange(text_stream & s, u8 & u);
-//inline void __string_exchange(text_stream & s, u16 & u);
-//inline void __string_exchange(text_stream & s, u32 & u);
-//inline void __string_exchange(text_stream & s, u64 & u);
-//inline void __string_exchange(text_stream & s, float & f);
-//inline void __string_exchange(text_stream & s, double & d);
-//inline void __string_exchange(text_stream & s, ::earth::time & time);
-//inline void __string_exchange(text_stream & s, const char * psz);
-//inline void __string_exchange(text_stream & s, char * sz);
-//inline void __string_exchange(text_stream & s, string & str);
-//inline void __string_exchange(text_stream & s, ::file::path & path);
-//inline void __string_exchange(text_stream & s, ::atom & atom);
-//inline void __string_exchange(text_stream & s, void * & p);
-////inline void __string_exchange(text_stream & s, oswindow & oswindow);
-//inline void __string_exchange(text_stream & s, wchar_t sz[]);
-////inline void __string_exchange(text_stream & s, ::matter & matter);
-//
-////inline void __string_exchange(text_stream & s, ::rectangle_i32 & r);
-//
-//
+inline ::string natural_string(::u64 u, int iRadix = 10)
+{
 
-//template < typename STRINGABLE >
-//inline void __exchange_as_string(stream & s, STRINGABLE & stringable);
+   char sz[64];
 
-class CLASS_DECL_ACME text_stream :
-   virtual public stream_base
+   _ui64toa(u, sz, iRadix);
+
+   return sz;
+
+}
+
+
+inline ::string integer_string(::i64 i, int iRadix = 10)
+{
+
+   char sz[64];
+
+   _i64toa(i, sz, iRadix);
+
+   return sz;
+
+}
+
+
+inline ::string floating_string(::f64 d, const char * pszFormat = "%f")
+{
+
+   char sz[64];
+
+   sprintf(sz, pszFormat, d);
+
+   return sz;
+
+}
+
+
+inline ::u64 consume_natural(const char*& psz, const char* pszBegin, int iRadix = 10)
+{
+
+   char* endptr = nullptr;
+
+   auto u = strtoull(psz, &endptr, iRadix);
+
+   if (!endptr)
+   {
+
+      if (::is_null(pszBegin))
+      {
+
+         pszBegin = psz;
+
+      }
+
+      throw_exception(error_premature_end_of_file, "not natural number near \"" + ellipsis(maximum(psz - 10, pszBegin), 20) + "\"");
+
+   }
+
+   psz = endptr;
+
+   return u;
+
+}
+
+
+inline ::i64 consume_integer(const char * & psz, const char * pszBegin, int iRadix = 10)
+{
+
+   char* endptr = nullptr;
+
+   auto i = strtoll(psz, &endptr, 10);
+
+   if (!endptr)
+   {
+
+      if (::is_null(pszBegin))
+      {
+
+         pszBegin = psz;
+
+      }
+
+      throw_exception(error_parsing, "not integer near \"" + ellipsis(maximum(psz - 10, pszBegin), 20) + "\"");
+
+   }
+
+   psz = endptr;
+
+   return i;
+
+}
+
+
+inline ::f64 consume_floating(const char*& psz, const char* pszBegin, int iRadix = 10)
+{
+
+   char* endptr = nullptr;
+
+   auto d = strtod(psz, &endptr);
+
+   if (!endptr)
+   {
+
+      if (::is_null(pszBegin))
+      {
+
+         pszBegin = psz;
+
+      }
+
+      throw_exception(error_premature_end_of_file, "not floating near \"" + ellipsis(maximum(psz - 10, pszBegin), 20) + "\"");
+
+   }
+
+   psz = endptr;
+
+   return d;
+
+}
+
+
+template < typename FILE >
+class write_text_stream :
+   public FLAGS,
+   public print_formatting
 {
 public:
 
 
-   using RAW_POINTER = ::file::file *;
+   FILE *         m_pfile;
+   char           m_chSeparator = ' ';
+#ifdef WINDOWS
+   const char* m_pszEolSeparator = "\r\n";
+#else
+   const char* m_pszEolSeparator = "\n";
+#endif
 
-   ::file_pointer    m_p;
 
-   text_stream() {}
-   text_stream(::file::file * pfile) : m_p(pfile) { }
-   text_stream(const text_stream & base) :
-      m_p(base.m_p)
+   write_text_stream();
+   write_text_stream(FILE* pfile);
+   write_text_stream(const write_text_stream& stream) = delete;
+   ~write_text_stream();
+
+
+   // void destroy() ;
+
+   //void destroy() {}
+
+   //string as_string() const;
+
+
+   //FILE * get_file()  { return m_pfile; }
+
+
+   //::file::file* get_file()
+   //{
+
+   //   return m_pfile;
+
+   //}
+
+   //template < primitive_integral INTEGRAL >
+   //void number_read(TYPE& t)
+   //{
+
+   //   const char endptr = nullptr;
+
+   //   auto ull = strtoull(m_str, &endptr, 10);
+
+   //   if (!endptr)
+   //   {
+
+   //      set_fail_flag();
+
+   //   }
+   //   else
+   //   {
+
+   //      
+
+   //   }
+
+   //   ::copy(t, str);
+
+   //}
+
+
+   void print(const ::string& str)
    {
 
-   }
-   text_stream(text_stream & base) :
-      m_p(::move(base.m_p))
-   {
-
-   }
-   ~text_stream() ;
-
-   //virtual void destroy() ;
-
-   void destroy() override;
-
-   string as_string() const override;
-
-
-   ::file::file * get_file() override { return m_p; }
-
-
-
-   template < typename TYPE >
-   void number_read(TYPE & t)
-   {
-
-      string str;
-
-      m_p->read_string(str);
-
-      ::from_string(t, str);
-
-   }
-
-
-   template < typename TYPE >
-   void number_write(const TYPE & t)
-   {
-
-      string str;
-
-      str = __string(t);
-
-      m_p->print(str);
-
-   }
-
-
-   template < typename TYPE >
-   void number_exchange(TYPE & t)
-   {
-
-      is_loading() ? number_read(t) : number_write(t);
-
-   }
-
-
-   template < typename TYPE >
-   void string_read(TYPE & t)
-   {
-
-      string str;
-
-      m_p->read_string(str);
-
-      ::from_string(t, str);
+      m_pfile->write(str.c_str(), str.get_length_in_bytes());
 
    }
 
 
-   template < typename TYPE >
-   void string_write(const TYPE & t)
+   void write_natural(::u64 u) { print(natural_string(u)); }
+   
+   void write_integer(::i64 i) { print(integer_string(i)); }
+
+   void write_floating(::f64 d) { print(floating_string(d)); }
+
+   /*template < typename TYPE >
+   void number_exchange(TYPE& t)
    {
 
-      string str;
+      has_loading_flag() ? number_read(t) : number_write(t);
 
-      str = __string(t);
-
-      m_p->print(str);
-
-   }
+   }*/
 
 
-   template < typename TYPE >
-   void string_exchange(TYPE & t)
-   {
+   //template < typename TYPE >
+   //void string_read(TYPE& t)
+   //{
 
-      is_loading() ? string_read(t) : string_write(t);
+   //   string str = read_string();
 
-   }
+   //   ::from_string(t, str);
+
+   //}
 
 
-   template < typename TYPE >
-   void network_payload_exchange(TYPE & t);
+   //template < typename TYPE >
+   //void string_write(const TYPE& t)
+   //{
+
+   //   string str;
+
+   //   str = __string(t);
+
+   //   print(str);
+
+   //}
+
+
+   //template < typename TYPE >
+   //void string_exchange(TYPE& t)
+   //{
+
+   //   has_loading_flag() ? string_read(t) : string_write(t);
+
+   //}
+
+
+   //template < typename TYPE >
+   //void network_payload_exchange(TYPE& t);
 
 
    /*template < typename TYPE >
-   void write_only(TYPE & t) { is_loading() ? throw ::exception(error_io) : operator <<(t); }
+   void write_only(TYPE & t) { is_loading() ? throw_exception(error_io) : operator <<(t); }
 
    template < typename TYPE >
    void exchange(const ::atom & atom, TYPE & t) { ::__string_exchange(*this, t); }*/
 
+   void append_format(const char* pszFormat, ...)
+   {
 
-   //virtual void exchange(const ::atom &, i8 & i) { default_exchange(i); }
-   //virtual void exchange(const ::atom &, i16 & i) { default_exchange(i); }
-   //virtual void exchange(const ::atom &, i32 & i) { default_exchange(i); }
-   //virtual void exchange(const ::atom &, i64 & i) { default_exchange(i); }
-   //virtual void exchange(const ::atom &, u8 & u) { default_exchange(u); }
-   //virtual void exchange(const ::atom &, u16 & u) { default_exchange(u); }
-   //virtual void exchange(const ::atom &, u32 & u) { default_exchange(u); }
-   //virtual void exchange(const ::atom &, u64 & u) { default_exchange(u); }
-   //virtual void exchange(const ::atom &, float & f) { default_exchange(f); }
-   //virtual void exchange(const ::atom &, double & d) { default_exchange(d); }
-   //virtual void exchange(const ::atom &, ::earth::time & time) { default_exchange(time.m_time); }
-   //virtual void exchange(const ::atom &, const char * psz) { write_only(psz); }
-   //virtual void exchange(const ::atom &, string & str) { default_exchange(str); }
-   //virtual void exchange(const ::atom &, ::file::path & path) { default_exchange(path); }
-   //virtual void exchange(const ::atom &, ::atom & atom) { default_exchange(atom); }
+      ::string strText;
 
-   virtual bool is_stream_null();
-   virtual bool is_stream_set();
+      ASSERT(__is_valid_string(pszFormat));
 
-   virtual void close() ;
+      va_list argList;
 
-   text_stream & operator <<(bool b) ;
-   text_stream & operator <<(char ch)  ;
-   text_stream & operator <<(uchar uch)  ;
+      va_start(argList, pszFormat);
+
+      strText.format_arguments(pszFormat, argList);
+
+      va_end(argList);
+
+      print(strText);
+
+   }
+
+
+   //bool is_stream_null();
+   //bool is_stream_set();
+
+   //void close() {}
+
+   void new_line()
+   {
+
+      m_pfile->unget_if(m_chSeparator);
+
+      print(m_pszEolSeparator);
+
+   }
+
+
+   write_text_stream& operator <<(bool b)
+   {
+
+      if(b)
+      {
+
+         print("1");
+
+      }
+      else
+      {
+
+         print("0");
+
+      }
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
+
+
+   write_text_stream& operator <<(char ch)
+   {
+
+      write(&ch, 1);
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
+
+
+   write_text_stream& operator <<(uchar uch)
+   {
+
+      write(&uch, 1);
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
+
+
 #ifdef WINDOWS
-   text_stream & operator <<(unichar wch)  ;
+
+
+   write_text_stream& operator <<(unichar wch)
+   {
+      
+      char sz[10];
+
+      wd16_to_ansi(sz, &wch, 1);
+
+      print(sz);
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
+
+
 #endif
-   text_stream & operator <<(i16 sh)  ;
-   text_stream & operator <<(u16 u)  ;
-   text_stream & operator <<(i32 i)  ;
-   text_stream & operator <<(u32 u)  ;
-   text_stream & operator <<(i64 i)  ;
-   text_stream & operator <<(u64 u)  ;
-   text_stream & operator <<(float f)  ;
-   text_stream & operator <<(double d)  ;
-   //virtual void write(const POINT_I32 & point) ;
-   //virtual void write(const SIZE_I32 & size) ;
-   //virtual void write(const ::rectangle_i32 &rectangle) ;
 
-   text_stream & operator <<(const char * psz) ;
-   text_stream & operator <<(const ::atom & atom) ;
-   text_stream & operator <<(const ::string & str) ;
-   text_stream & operator <<(const property_set& set) ;
+
+   write_text_stream& operator <<(i16 sh)
+   {
+
+      write_integer(sh);
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
+
+
+   write_text_stream& operator <<(u16 u)
+   {
+
+      write_natural(u);
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
+
+
+   write_text_stream& operator <<(i32 i)
+   {
+
+      write_integer(i);
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
+
+
+   write_text_stream& operator <<(u32 u)
+   {
+
+      write_natural(u);
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
+
+
+   write_text_stream& operator <<(i64 i)
+   {
+
+      write_integer(i);
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
+
+
+   write_text_stream& operator <<(u64 u)
+   {
+
+      write_natural(u);
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
+
+
+   write_text_stream& operator <<(float f)
+   {
+
+      write_floating(f);
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
+
+
+   write_text_stream& operator <<(double d)
+   {
+
+      write_floating(d);
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
+
+
+   // void write(const POINT_I32 & point) ;
+   // void write(const SIZE_I32 & size) ;
+   // void write(const ::rectangle_i32 &rectangle) ;
+
+   write_text_stream& operator <<(const char* psz)
+   {
+
+      if (m_fmtflags & ::file::network_payload)
+      {
+
+         print("\"");
+
+      }
+
+      print(psz);
+
+      if (m_fmtflags & ::file::network_payload)
+      {
+
+         print("\"");
+
+      }
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
+
+   //text_stream & operator <<(const ::atom & atom) ;
+   write_text_stream& operator <<(const ::string& str)
+   {
+
+      if (m_fmtflags & ::file::network_payload)
+      {
+
+         print("\"");
+
+      }
+
+      print(str);
+
+      if (m_fmtflags & ::file::network_payload)
+      {
+
+         print("\"");
+
+      }
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
+
+   //text_stream & operator <<(const property_set& set) ;
    template < typename TYPE >
-   void network_payload_write(const TYPE & t);
+   write_text_stream & write(const TYPE& t)
+   {
 
-   //virtual void network_payload_write(const ::matter & matter);
+      return *this << t;
+
+   }
+
+   // void network_payload_write(const ::matter & matter);
 
 
-   virtual void raw_print(const ::string & str);
-   virtual void print_number(const ::string & str);
+   void raw_print(const ::string& str)
+   {
 
-   virtual ::string get_location() const;
+      print(str);
 
-   virtual ::filesize get_position() const ;
-   virtual void write(const void * psz, strsize s) ;
+   }
 
-   operator void * () { return this; }
 
-   text_stream & operator >>(bool & b) ;
-   text_stream & operator >>(char & ch) ;
-   text_stream & operator >>(uchar & uch) ;
-#ifdef WINDOWS
-   text_stream & operator >>(unichar & wch) ;
-#endif
-   text_stream & operator >>(i8 & i) ;
-   text_stream & operator >>(i16 & sh) ;
-   text_stream & operator >>(u16 & u) ;
-   text_stream & operator >>(i32 & i) ;
-   text_stream & operator >>(u32 & u) ;
-   text_stream & operator >>(i64 & i) ;
-   text_stream & operator >>(u64 & u) ;
-   text_stream & operator >>(float & f) ;
-   text_stream & operator >>(double & d) ;
-   text_stream & operator >>(string & str) ;
-   text_stream & operator >>(property_set& set) ;
-   text_stream & operator >>(::atom & atom) ;
+   //void print_number(const ::string& str)
+   //{
 
-   template < typename TYPE >
-   void network_payload_read(TYPE & matter);
+   //   print_number(str);
 
+   //}
+
+   //::string get_location() const;
+
+   //::filesize get_position() const ;
+   void write(const void* psz, strsize s)
+   {
+
+      m_pfile->write(psz, s);
+
+   }
+
+   //operator void* () { return this; }
+
+//   text_stream& operator >>(bool& b);
+//   text_stream& operator >>(char& ch);
+//   text_stream& operator >>(uchar& uch);
+//#ifdef WINDOWS
+//   text_stream& operator >>(unichar& wch);
+//#endif
+//   text_stream& operator >>(i8& i);
+//   text_stream& operator >>(i16& sh);
+//   text_stream& operator >>(u16& u);
+//   text_stream& operator >>(i32& i);
+//   text_stream& operator >>(u32& u);
+//   text_stream& operator >>(i64& i);
+//   text_stream& operator >>(u64& u);
+//   text_stream& operator >>(float& f);
+//   text_stream& operator >>(double& d);
+//   text_stream& operator >>(string& str);
+//   //text_stream & operator >>(property_set& set) ;
+//   //text_stream & operator >>(::atom & atom) ;
+//
+//   template < typename TYPE >
+//   void network_payload_read(TYPE& matter);
+//
 
 };
 
 
-using std_string_stream = ::text_stream;
-
-
-class CLASS_DECL_ACME string_stream :
-   public text_stream
+class read_sz_stream :
+   public FLAGS
 {
 public:
 
 
-   string_stream() : text_stream(memory_new string_buffer()) { }
-   string_stream(string_buffer * pfile) : text_stream(pfile) { }
+   const char * m_psz;
+   const char* m_pszBegin;
 
 
-   operator string & () {return m_p.cast < string_buffer>()->m_str; }
+   read_sz_stream(const char * psz, const char* pszBegin = nullptr);
+   read_sz_stream(const read_sz_stream& stream) = delete;
+   ~read_sz_stream();
+
+
+   // void destroy() ;
+
+   //void destroy() {}
+
+   //string as_string() const;
+
+
+   //FILE * get_file()  { return m_pfile; }
+
+
+   //::file::file* get_file()
+   //{
+
+   //   return m_pfile;
+
+   //}
+
+   ::u64 read_natural(int iRadix = 10)
+   {
+
+      return consume_natural(m_psz, m_pszBegin, iRadix);
+
+   }
+
+
+   ::i64 read_integer(int iRadix = 10)
+   {
+
+      return consume_integer(m_psz, m_pszBegin, iRadix);
+
+   }
+
+
+   ::f64 read_floating()
+   {
+
+      return consume_floating(m_psz, m_pszBegin);
+
+
+   }
+
+
+   ::string get_word(const char* pszBreakCharacters = " \n\t\r,;")
+   {
+
+      return read_span_excluding(pszBreakCharacters);
+
+   }
+
+   ::string read_span_excluding(const char * pszBreakCharacters)
+   {
+
+      auto size = string_span_excluding(m_psz, pszBreakCharacters);
+
+      ::string str(m_psz, size);
+
+      m_psz += size;
+
+      return ::move(str);
+
+   }
+
+
+   //void close() {}
+
+//   text_stream& operator <<(bool b);
+//   text_stream& operator <<(char ch);
+//   text_stream& operator <<(uchar uch);
+//#ifdef WINDOWS
+//   text_stream& operator <<(unichar wch);
+//#endif
+//   text_stream& operator <<(i16 sh);
+//   text_stream& operator <<(u16 u);
+//   text_stream& operator <<(i32 i);
+//   text_stream& operator <<(u32 u);
+//   text_stream& operator <<(i64 i);
+//   text_stream& operator <<(u64 u);
+//   text_stream& operator <<(float f);
+//   text_stream& operator <<(double d);
+//   // void write(const POINT_I32 & point) ;
+//   // void write(const SIZE_I32 & size) ;
+//   // void write(const ::rectangle_i32 &rectangle) ;
+//
+//   text_stream& operator <<(const char* psz);
+//   //text_stream & operator <<(const ::atom & atom) ;
+//   text_stream& operator <<(const ::string& str);
+//   //text_stream & operator <<(const property_set& set) ;
+//   template < typename TYPE >
+//   void network_payload_write(const TYPE& t);
+//
+//   // void network_payload_write(const ::matter & matter);
+
+
+
+   read_sz_stream& operator >>(bool& b)
+   {
+
+      auto strWord = get_word();
+
+      strWord.trim_left("\"'([{");
+
+      strWord.trim_right("\"')]}");
+
+      if (strWord.compare_ci("no") == 0
+         || strWord.compare_ci("false") == 0
+         || strWord.compare_ci("0") == 0)
+      {
+
+         b = false;
+
+      }
+      else
+      {
+
+         b = true;
+
+      }
+
+      return *this;
+
+   }
+
+   read_sz_stream& operator >>(char& ch)
+   {
+
+      ch = *m_psz;
+
+      if (!ch)
+      {
+
+         throw_exception(error_premature_end_of_file);
+
+      }
+
+      m_psz++;
+
+      return *this;
+
+   }
+
+
+   read_sz_stream& operator >>(uchar& uch)
+   {
+
+      return operator >>((char&)uch);
+
+   }
+
+#ifdef WINDOWS
+   read_sz_stream& operator >>(unichar& wch)
+   {
+
+      ::i32 len = 0;
+
+      auto iIndex = unicode_index_length(m_psz, len);
+
+      if (iIndex < 0)
+      {
+
+         throw_exception(error_premature_end_of_file);
+
+      }
+      else if (iIndex >= 65536)
+      {
+
+         wch = 65535; // (INVALID CHAR CODE)?
+
+      }
+
+      wch = iIndex;
+
+      m_psz += len;
+
+      return *this;
+
+   }
+
+#endif
+   read_sz_stream& operator >>(i8& i)
+   {
+
+      return operator >>((char&)i);
+
+   }
+
+
+   read_sz_stream& operator >>(i16& sh)
+   {
+
+      auto iRead = read_integer();
+
+      if (iRead < SHRT_MIN)
+      {
+
+         throw_exception(error_standard_int_overflow);
+
+      }
+      else if (iRead > SHRT_MAX)
+      {
+
+         throw_exception(error_standard_int_overflow);
+
+      }
+
+      sh = (::i16)iRead;
+
+   }
+
+
+   read_sz_stream& operator >>(u16& u)
+   {
+
+      auto uRead = read_natural();
+
+      if (uRead > USHRT_MAX)
+      {
+
+         throw_exception(error_standard_int_overflow);
+
+      }
+
+      u = (::u16)uRead;
+
+   }   
+
+
+   read_sz_stream& operator >>(i32& i)
+   {
+
+      auto iRead = read_integer();
+
+      if (iRead < INT_MIN)
+      {
+
+         throw_exception(error_standard_int_overflow, "INT_MIN overflow: " + integer_string(iRead));
+
+      }
+      else if (iRead > INT_MAX)
+      {
+
+         throw_exception(error_standard_int_overflow, "INT_MAX overflow: " + integer_string(iRead));
+
+      }
+
+      i = (::i32)iRead;
+
+   }
+
+
+   read_sz_stream& operator >>(u32& u)
+   {
+
+      auto uRead = read_natural();
+
+      if (uRead > UINT_MAX)
+      {
+
+         throw_exception(error_standard_int_overflow);
+
+      }
+
+      u = (::u32) uRead;
+
+   }
+
+
+   read_sz_stream& operator >>(i64& i)
+   {
+
+      i = read_integer();
+
+   }  
+
+
+   read_sz_stream& operator >>(u64& u)
+   {
+
+      u = read_natural();
+
+   }
+
+
+   read_sz_stream& operator >>(float& f)
+   {
+
+      f = (float) read_floating();
+
+   }
+   
+
+   read_sz_stream& operator >>(double& d)
+   {
+
+      d = read_floating();
+
+   }
+
+
+   read_sz_stream& operator >>(string& str)
+   {
+
+      str = get_word();
+
+   }
+   ////text_stream & operator >>(property_set& set) ;
+   ////text_stream & operator >>(::atom & atom) ;
+
+   template < typename TYPE >
+   read_sz_stream & read(TYPE& t)
+   {
+
+      *this = t;
+
+      return *this;
+   
+   }
 
 
 };
 
 
-// namespace str
-// {
+using std_string_stream = ::write_text_stream;
 
 
-   CLASS_DECL_ACME ::string __string(const text_stream & strstream);
+class CLASS_DECL_ACME string_stream :
+   public write_text_stream < string_reference_buffer >,
+   public string_reference_buffer
+{
+public:
 
-   CLASS_DECL_ACME ::string __string(const string_stream & strstream);
+
+   string_stream(::string& str) : write_text_stream(this),string_reference_buffer(str) { }
 
 
-// } // namespace str
+};
+
+
+class CLASS_DECL_ACME string_buffer_stream :
+   public write_text_stream < string_buffer >,
+   public string_buffer
+{
+public:
+
+
+   string_buffer_stream() : write_text_stream(this) { }
+
+
+};
+
+
+template < typename FILE >
+inline write_text_stream < FILE >::write_text_stream()
+{
+
+
+}
+
+
+template < typename FILE >
+inline write_text_stream < FILE >::write_text_stream(FILE* pfile)
+{
+
+   m_pfile = pfile;
+
+   set_ok_flag();
+
+   //if (pfile->has_storing_flag())
+   //{
+
+   //   defer_set_storing_flag();
+
+   //}
+
+}
+
+
+//template < typename FILE >
+//inline text_stream < FILE >::text_stream(const stream_base& stream)
+//{
+//
+//   m_pfile = dynamic_cast <FILE*>(((stream_base&)stream).get_file());
+//
+//   if (!m_pfile)
+//   {
+//
+//      throw_exception(error_wrong_type);
+//
+//   }
+//
+//   if (stream.nok())
+//   {
+//      set_nok();
+//   }
+//   else
+//   {
+//
+//      set_ok_flag();
+//
+//   }
+//
+//   if (stream.has_storing_flag())
+//   {
+//
+//      defer_set_storing_flag();
+//
+//   }
+//}
+
+
+template < typename FILE >
+inline write_text_stream < FILE >::~write_text_stream()
+{
+
+
+}
+
+
+//template < typename FILE >
+//inline string write_text_stream < FILE >::read_string()
+//{
+//
+//   string str;
+//
+//   m_pfile->read_string(str);
+//
+//   return str;
+//
+//}
+
+
+//template < typename FILE >
+//bool text_stream < FILE >::is_stream_null()
+//{
+//
+//   return !m_pfile;
+//
+//}
+//
+//
+//template < typename FILE >
+//void text_stream < FILE >::destroy()
+//{
+//
+//   m_pfile.release();
+//
+//   ///* auto estatus = */ stream::destroy();
+//
+//   /* return estatus; */
+//
+//}
+
+
+//template < typename FILE >
+//string text_stream < FILE >::as_string() const
+//{
+//
+//   return m_pfile->as_string();
+//
+//}
+
+
+//template < typename FILE >
+//bool text_stream < FILE >::is_stream_set()
+//{
+//
+//   return m_pfile;
+//
+//}
+
+
+//template < typename FILE >
+//text_stream < FILE>& text_stream < FILE >::operator >>(i8& ch)
+//{
+//
+//   m_gcount = m_pfile->read(&ch, 1);
+//
+//   if (m_gcount <= 0)
+//   {
+//
+//      throw_exception(error_io);
+//
+//   }
+//
+//   return *this;
+//
+//}
+
+
+//template < typename FILE >
+//void text_stream < FILE >::close()
+//{
+//
+//   m_pfile->close();
+//
+//}
+
+
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator <<(bool b)
+//{
+//
+//   if (b)
+//   {
+//
+//      raw_print("true");
+//
+//   }
+//   else
+//   {
+//
+//      raw_print("false");
+//
+//   }
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator <<(char ch)
+//{
+//
+//   m_pfile->write(&ch, sizeof(ch)); // treat as char - character
+//
+//   return *this;
+//
+//}
+
+
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator <<(uchar uch)
+//{
+//
+//   operator <<((u32)uch);
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator <<(i16 i)
+//{
+//
+//   operator <<((i32)i);
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator <<(u16 u)
+//{
+//
+//   operator <<((u32)u);
+//
+//   return *this;
+//
+//}
+//
+//
+//#ifdef WINDOWS
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator <<(unichar wch)
+//{
+//
+//   raw_print(unicode_to_utf8(wch));
+//
+//   return *this;
+//
+//}
+//
+//#endif
+//
+//
+//template < typename FILE >
+//void text_stream < FILE >::print_number(const ::string& str)
+//{
+//
+//   auto estrflag = this->m_estrflag;
+//
+//   if (estrflag & str_flag_ifnumberparenthesize)
+//   {
+//
+//      raw_print("(");
+//
+//   }
+//
+//   raw_print(str);
+//
+//   if (estrflag & str_flag_ifnumberparenthesize)
+//   {
+//
+//      raw_print(")");
+//
+//   }
+//
+//   if (estrflag & str_flag_ifnumberspace)
+//   {
+//
+//      raw_print(" ");
+//
+//   }
+//
+//}
+
+
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator <<(i32 i)
+//{
+//
+//   print_number(__string(i));
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator <<(u32 u)
+//{
+//
+//   print_number(__string(u));
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator <<(i64 i)
+//{
+//
+//   print_number(__string(i));
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator <<(u64 u)
+//{
+//
+//   print_number(__string(u));
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator <<(float f)
+//{
+//
+//   string str;
+//
+//   str.format("%f", f);
+//
+//   print_number(str);
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator <<(double d)
+//{
+//
+//   string str;
+//
+//   str.format("%f", d);
+//
+//   print_number(__string(d));
+//
+//   return *this;
+//
+//}
+
+
+//text_stream & text_stream < FILE >::operator <<(const ::rectangle_i32 &rectangle)
+//{
+//
+//   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
+//
+//   *this << prectangle->left << prectangle->top << prectangle->right << prectangle->bottom;
+//
+//}
+//
+//
+//text_stream & text_stream < FILE >::operator <<(const SIZE_I32 * psize)
+//{
+//
+//   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
+//
+//   *this << psize->cx << psize->cy;
+//
+//}
+//
+//
+//
+//text_stream & text_stream < FILE >::operator <<(const POINT_I32 * ppoint)
+//{
+//
+//   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
+//
+//   *this << ppoint->x << ppoint->y;
+//
+//}
+
+
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator <<(const char* psz)
+//{
+//
+//   if (::is_null(psz))
+//   {
+//
+//      throw_exception(error_io);
+//
+//   }
+//   else
+//   {
+//
+//      write(psz, strlen(psz));
+//
+//   }
+//
+//   return *this;
+//
+//}
+//
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator <<(const ::string& str)
+//{
+//
+//   operator <<(str.c_str());
+//
+//   return *this;
+//
+//}
+//
+//
+//
+//
+//template < typename FILE >
+//void text_stream < FILE >::raw_print(const ::string& str)
+//{
+//
+//   write(str.c_str(), str.size());
+//
+//   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesize);
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator >>(bool& b)
+//{
+//
+//   m_pfile->read(&b, sizeof(b));
+//
+//   return *this;
+//
+//}
+//
+////
+////text_stream & text_stream < FILE >::operator >>(char & ch)
+////{
+////
+////   return operator >>((char &)ch);
+////
+////}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator >>(char& ch)
+//{
+//
+//   m_gcount = m_pfile->read(&ch, sizeof(ch));
+//
+//   if (m_gcount <= 0)
+//   {
+//
+//      throw_exception(error_io);
+//
+//   }
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator >>(uchar& uch)
+//{
+//
+//   m_pfile->read(&uch, sizeof(uch));
+//
+//   return *this;
+//
+//}
+//
+//
+//#ifdef WINDOWS
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator >>(unichar& wch)
+//{
+//
+//   m_pfile->read(&wch, sizeof(wch));
+//
+//   return *this;
+//
+//}
+//
+//
+//#endif
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator >>(i16& sh)
+//{
+//
+//   m_pfile->read(&sh, sizeof(sh));
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator >>(u16& u)
+//{
+//
+//   m_pfile->read(&u, sizeof(u));
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator >>(i32& i)
+//{
+//
+//   number_read(i);
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator >>(u32& u)
+//{
+//
+//   number_read(u);
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator >>(i64& i)
+//{
+//
+//   number_read(i);
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator >>(u64& u)
+//{
+//
+//   number_read(u);
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator >>(float& f)
+//{
+//
+//   number_read(f);
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator >>(double& d)
+//{
+//
+//   number_read(d);
+//
+//   return *this;
+//
+//}
+//
+////text_stream & text_stream < FILE >::operator >>(RECTANGLE_I32 * prectangle)
+////
+////{
+////   m_pfile->read(&prectangle->left, sizeof(prectangle->left));
+////
+////   m_pfile->read(&prectangle->top, sizeof(prectangle->top));
+////
+////   m_pfile->read(&prectangle->right, sizeof(prectangle->right));
+////
+////   m_pfile->read(&prectangle->bottom, sizeof(prectangle->bottom));
+////   
+////}
+////
+////text_stream & text_stream < FILE >::operator >>(SIZE_I32 * psize)
+////{
+////   m_pfile->read(&psize->cx, sizeof(psize->cx));
+////   m_pfile->read(&psize->cy, sizeof(psize->cy));
+////}
+////
+////text_stream & text_stream < FILE >::operator >>(POINT_I32 * ppoint)
+////{
+////   m_pfile->read(&ppoint->x, sizeof(ppoint->x));
+////   m_pfile->read(&ppoint->y, sizeof(ppoint->y));
+////}
+//
+//
+//template < typename FILE >
+//text_stream < FILE >& text_stream < FILE >::operator >>(string& str)
+//{
+//
+//   str.Empty();
+//
+//   char ch = 0;
+//
+//   while (true)
+//   {
+//
+//      operator >>(ch);
+//
+//      if (ch == '\0')
+//      {
+//
+//         break;
+//
+//      }
+//
+//      if (m_gcount <= 0)
+//      {
+//
+//         break;
+//
+//      }
+//
+//      if (ch == '\n')
+//      {
+//
+//         break;
+//
+//      }
+//
+//      str += ch;
+//
+//   }
+//
+//   return *this;
+//
+//}
+//
+//
+////template < typename FILE >
+////text_stream < FILE > & text_stream < FILE >::operator >>(property_set& set)
+////{
+////
+////   //__exchange_load_array(*this, set);
+//////#define memory_new ACME_NEW
+////
+////   return *this;
+////
+////}
+//
+//
+////template < typename FILE >
+////text_stream < FILE > & text_stream < FILE >::operator >>(::atom& atom)
+////{
+////
+////   string str;
+////
+////   operator >> (str);
+////
+////   atom = str;
+////
+////   return *this;
+////
+////}
+//
+//
+//template < typename FILE >
+//inline  string text_stream < FILE >::get_location() const
+//{
+//
+//   return "<unknown text_stream_base locationd>";
+//
+//}
+//
+//
+////template < typename FILE >
+////inline ::filesize text_stream < FILE >::get_position() const
+////{
+////
+////   return m_pfile->get_position();
+////
+////}
+//
+//
+//template < typename FILE >
+//inline void text_stream < FILE >::write(const void* psz, strsize s)
+//{
+//
+//   m_pfile->write(psz, s);
+//
+//}
+//
+//
+////void text_stream < FILE >::network_payload_write(const ::matter & matter)
+////{
+////
+////   payload_stream s;
+////
+////   string strNetworkPayload;
+////
+////   s.set_storing();
+////
+////   ::__exchange(s, t);
+////
+////   strNetworkPayload = s.m_ppayload->get_network_payload();
+////
+////   string_write(strNetworkPayload);
+////
+////}
+////
+////
+////void text_stream < FILE >::network_payload_read(::matter & matter)
+////{
+////
+////   payload_stream s;
+////
+////   string strNetworkPayload;
+////
+////   string_read(strNetworkPayload);
+////
+////   s.m_ppayload->parse_network_payload(strNetworkPayload);
+////
+////   s.set_loading();
+////
+////   ::__exchange(s, t);
+////
+////}
+//
+//
+//
+//
+//
+
+
+
+template < typename FILE >
+inline auto __write_text_stream(FILE* pfile)
+{
+
+   return write_text_stream < FILE >(pfile);
+
+}
+
+
+template < typename FILE >
+inline auto __text_stream(const ::pointer<FILE>& pfile)
+{
+
+   return __text_stream(pfile.m_p);
+
+}
+
+
+inline read_sz_stream::read_sz_stream(const char* psz, const char * pszBegin) :
+   m_psz(psz),
+   m_pszBegin(!pszBegin ? psz : pszBegin)
+{
+
+
+}
+
+
+inline read_sz_stream::~read_sz_stream()
+{
+
+
+}
 
 
 

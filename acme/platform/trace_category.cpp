@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "trace_category.h"
+#include "acme/primitive/collection/pointer_array.h"
+#include "acme/platform/system.h"
 
 
 CLASS_DECL_ACME void trace_category_static_init(::acme::system * psystem);
@@ -38,7 +40,7 @@ void trace_category_static_init(::acme::system * psystem)
       "map",
       "util",
       "security",
-      "synchronization_object",
+      "synchronization",
       "isapi",
       "user",
       "user2",
@@ -164,7 +166,7 @@ CLASS_DECL_ACME int_bool c_enable_trace_category(enum_trace_category etracecateg
 }
 
 
-CLASS_DECL_ACME const ::matter * general_trace_object()
+CLASS_DECL_ACME const ::particle * general_trace_object()
 {
 
    return trace_category::s_ptracecategorya->element_at(0);
@@ -172,7 +174,7 @@ CLASS_DECL_ACME const ::matter * general_trace_object()
 }
 
 
-CLASS_DECL_ACME const ::matter* trace_object(enum_trace_category etracecategory)
+CLASS_DECL_ACME const ::particle * trace_object(enum_trace_category etracecategory)
 {
 
    return trace_category::s_ptracecategorya->element_at((iptr)etracecategory);
@@ -206,25 +208,25 @@ char g_chaTraceLevel[] =
 };
 
 
-enum_trace_category object_trace_category(::matter * pobject)
+enum_trace_category object_trace_category(::particle * pparticle)
 {
 
-   return pobject->trace_category();
+   return pparticle->trace_category();
 
 }
 
 
-const char* topic_text(::matter * pobject)
+const char* topic_text(::particle * pparticle)
 {
 
-   if (::is_null(pobject))
+   if (::is_null(pparticle))
    {
 
       return nullptr;
 
    }
 
-   return pobject->topic_text();
+   return pparticle->topic_text();
 
 }
 

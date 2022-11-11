@@ -12,8 +12,7 @@
 //
 //
 //   class CLASS_DECL_ACME sync_routine :
-//           public ::synchronization_object
-//   {
+//           public ::synchronization//   {
 //   protected:
 //
 //      friend ::pointer<sync_routine>___sync_routine(const ::procedure &routine);

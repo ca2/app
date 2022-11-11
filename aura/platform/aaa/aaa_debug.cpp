@@ -27,11 +27,11 @@ void debug_object_event_promisse_predicate()
    //o += { ok, id_text, [&](auto & result) { output_debug_string("o += ok, id_text ..."); return ::success; } };
 
 
-   //::pointer<::object>pobject;
+   //::pointer<::object>pparticle;
 
-   //__keep(pobject, nullptr);
+   //__keep(pparticle, nullptr);
    ////   // 4 arguments
-   ////   o += { ok, id_text, [&](auto pobject) { ASSERT(pobject == &o); output_debug_string("o += ok, id_text, &o ...");  } };
+   ////   o += { ok, id_text, [&](auto pparticle) { ASSERT(pparticle == &o); output_debug_string("o += ok, id_text, &o ...");  } };
 
 
 }

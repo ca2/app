@@ -45,10 +45,10 @@ namespace user
       ~check_box() override;
 
       
-      ::element* clone() const override;
+      ::particle * clone() const override;
 
 
-      enum_element get_default_element() const override;
+      enum_element get_default_element() override;
 
 
       void _001OnNcDraw(::draw2d::graphics_pointer& pgraphics) override;

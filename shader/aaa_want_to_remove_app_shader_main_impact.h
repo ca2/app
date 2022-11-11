@@ -15,13 +15,13 @@ namespace simple_shader
       impact *                  m_pimpact;
 
 
-      main_impact(::object * pobject);
+      main_impact(::particle * pparticle);
       virtual ~main_impact();
 
 
-      void assert_ok() const override;
+      // void assert_ok() const override;
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
 
       void on_create_split_impact() override;
 

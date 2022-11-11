@@ -3,12 +3,16 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/concrete.h"
+
+
 namespace windowing
 {
 
 
    class CLASS_DECL_AURA icon :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
 
@@ -19,7 +23,7 @@ namespace windowing
 
 
       icon();
-      virtual ~icon();
+      ~icon() override;
 
 
       virtual string get_tray_icon_name() const;

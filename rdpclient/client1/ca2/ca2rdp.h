@@ -67,7 +67,7 @@ namespace draw2d
 namespace draw2d
 {
    class cursor;
-   void cursor_alloc(::object * pobject,cursor * & pcursor,int xHotspot,int yHotspot);
+   void cursor_alloc(::particle * pparticle,cursor * & pcursor,int xHotspot,int yHotspot);
    ::draw2d::image_pointer * cursor_get_dib(cursor * pcursor);
 }
 
@@ -86,7 +86,7 @@ namespace message
 namespace draw2d
 {
 /*   void dib_copy(dib * pimagethis, dib *pimage);
-/*   void dib_alloc(::object * pobject, dib * & pimage);
+/*   void dib_alloc(::particle * pparticle, dib * & pimage);
 /*   void dib_create(dib * pimage, int w, int h);
 /*   unsigned int * dib_get_data(dib * pimage);
 /*   graphics * dib_get_graphics(dib * pimage);

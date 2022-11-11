@@ -1,6 +1,9 @@
 #include "framework.h"
-#include "acme/operating_system.h"
+#include "semaphore.h"
+#include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/exception/exception.h"
+#include "acme/_operating_system.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -25,7 +28,7 @@
 #endif
 
 
-semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName ARG_SEC_ATTRS)
+semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName, security_attributes * psecurityattributes)
 {
 
    ASSERT(lMaxCount > 0);
@@ -33,9 +36,17 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
 #ifdef WINDOWS
 
-   m_hsync = ::CreateSemaphoreExW((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, lInitialCount, lMaxCount, pstrName == nullptr ? nullptr : (const wchar_t *)  utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
+   wstring wstrName(pstrName);
 
-   if (m_hsync == nullptr)
+   m_hsynchronization = ::CreateSemaphoreExW(
+      (LPSECURITY_ATTRIBUTES)(psecurityattributes ? psecurityattributes->get_os_security_attributes() : nullptr),
+      lInitialCount,
+      lMaxCount,
+      pstrName == nullptr ? nullptr : (const wchar_t *)  wstrName, 
+      0,
+      SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
+
+   if (m_hsynchronization == nullptr)
    {
 
       throw ::exception(error_resource);
@@ -93,20 +104,22 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
       string strPath;
 
-      auto psystem = m_psystem;
+      auto psystem = ::get_system();
 
       auto pacmedirectory = psystem->m_pacmedirectory;
 
-      if(::str().begins_ci(pstrName, "Local\\") || ::str().begins_ci(pstrName, "Local\\"))
+      string strName(pstrName);
+
+      if(strName.begins_ci("Local\\") || strName.begins_ci("Local\\"))
       {
 
-         strPath = pacmedirectory->home() / ".ca2/ftok/semaphore/" + string(pstrName);
+         strPath = pacmedirectory->home() / (".ca2/ftok/semaphore/" + strName);
 
       }
       else
       {
 
-         strPath = "/::payload/tmp/ca2/ftok/semaphore/" + string(pstrName);
+         strPath = "/::payload/tmp/ca2/ftok/semaphore/" + strName;
 
       }
 
@@ -237,7 +250,7 @@ bool semaphore::_wait(const class ::wait & wait)
 
 #elif defined(__APPLE__)
 
-//::mutex * g_pmutexSemaphore = nullptr;
+//::pointer< ::mutex > g_pmutexSemaphore = nullptr;
 //
 //comparable_array < pthread_t > * g_pthreadaSemaphore = nullptr;
 //
@@ -362,7 +375,7 @@ void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
 
 #ifdef WINDOWS
 
-   /*return */ ::ReleaseSemaphore(m_hsync, lCount, (LPLONG)pPrevCount) /*  != false */;
+   /*return */ ::ReleaseSemaphore(m_hsynchronization, lCount, (LPLONG)pPrevCount) /*  != false */;
 
 #elif defined(ANDROID)
 

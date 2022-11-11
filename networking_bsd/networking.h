@@ -5,10 +5,28 @@
 #include "apex/networking/networking.h"
 #include "address.h"
 #include "networking_bsd/sockets/ssl/client_context_map.h"
+#include "sockets/_collection.h"
+#include "acme/primitive/collection/string_map.h"
+
+
+namespace sockets_bsd
+{
+
+
+   /* type, host, result */
+   typedef string_map < ::string_to_string >       resolv_cache_t;
+
+   /* type, host, time */
+   typedef string_map < string_map < time_t > >    resolv_timeout_t;
+
+
+} // namespace sockets_bsd
 
 
 namespace networking_bsd
 {
+
+
 
 
    class CLASS_DECL_NETWORKING_BSD networking :
@@ -57,7 +75,7 @@ namespace networking_bsd
       public:
 
          
-         ::pointer<::networking_bsd::address>  m_paddress;
+         ::pointer<::networking_bsd::address>   m_paddress;
          string                                 m_strIpAddress;
          string                                 m_strReverse;
          ::duration                             m_durationLastChecked;
@@ -76,45 +94,45 @@ namespace networking_bsd
 
       };
 
-      ::mutex                                            m_mutexCache;
-      ::mutex                                            m_mutexReverseCache;
+      ::pointer < ::mutex >                              m_pmutexCache;
+      ::pointer < ::mutex >                              m_pmutexReverseCache;
       string_map < dns_cache_item >                      m_mapCache;
-      string_map < ::pointer<reverse_cache_item >>      m_mapReverseCache;
-      array < ::pointer<reverse_cache_item >>           m_reversecacheaRequest;
+      string_map < ::pointer<reverse_cache_item >>       m_mapReverseCache;
+      array < ::pointer<reverse_cache_item >>            m_reversecacheaRequest;
       ::task_pointer                                     m_pthreadReverse;
       ::i64                                              m_iListenSocket;
-      /*::mutex m_mutexPool;*/
+      /*::pointer < ::mutex > m_pmutexPool;*/
 
-      interlocked_i32                  m_lListenSocket;
+      interlocked_i32                                    m_lListenSocket;
 
-      ::pointer<::sockets_bsd::SSLInitializer>       m_psslinit;
+      ::pointer<::sockets_bsd::SSLInitializer>           m_psslinit;
 
-      byte                             m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
+      byte                                               m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
 
 #if defined(BSD_STYLE_SOCKETS)
-      ::sockets_bsd::ssl_client_context_map           m_clientcontextmap;
+      ::sockets_bsd::ssl_client_context_map              m_clientcontextmap;
 #endif
 
-      ::count                          m_countHttpPostBoundary;
-      ::mutex                          m_mutexHttpPostBoundary;
+      ::count                                            m_countHttpPostBoundary;
+      ::pointer < ::mutex >                              m_pmutexHttpPostBoundary;
 
-      ::sockets_bsd::resolv_cache_t                   m_resolvcache;
-      ::sockets_bsd::resolv_timeout_t                 m_resolvtimeout;
-      ::mutex                          m_mutexResolvCache;
-      //::pointer<::sockets::net>       m_pnet;
+      ::sockets_bsd::resolv_cache_t                      m_resolvcache;
+      ::sockets_bsd::resolv_timeout_t                    m_resolvtimeout;
+      ::pointer < ::mutex >                              m_pmutexResolvCache;
+      //::pointer<::sockets::net>                        m_pnet;
 #ifdef WINDOWS
-      ::net::port_forward_pointer      m_pportforward;
+      ::net::port_forward_pointer                        m_pportforward;
 #endif
 
-      ::mutex                          m_mutexPool;
-      ::sockets_bsd::socket_map                       m_pool; ///< Active sockets map
+      ::pointer < ::mutex >                              m_pmutexPool;
+      ::sockets_bsd::socket_map                          m_pool; ///< Active sockets map
 
 
       networking();
       ~networking() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
       virtual void destroy() override;
 
       virtual bool gudo_set() override;
@@ -196,7 +214,7 @@ namespace networking_bsd
 
       //class ::sockets::net & net();
 
-      //virtual void initialize(::object * pobject) override;
+      //virtual void initialize(::particle * pparticle) override;
 
       //virtual void destroy() override;
 

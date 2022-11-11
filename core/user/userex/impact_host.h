@@ -52,7 +52,7 @@ namespace userex
       ::size_i32                                    m_sizeTabbedFrame;
       string_map < ::pointer<::user::document >>      m_mapdoc;
       string_map < simple_frame_window * >      m_mapframe;
-      id_array                                  m_idaHandledImpacts;
+      atom_array                                  m_idaHandledImpacts;
 
       ::pointer<::user::single_document_template>     m_ptemplateTab;
 
@@ -62,12 +62,12 @@ namespace userex
 
       inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
       inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
-      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      inline ::core::system* get_system() const { return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; }
 
       void install_message_routing(::channel * pchannel) override;
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 

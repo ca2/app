@@ -1,7 +1,51 @@
 ﻿#include "framework.h"
+//#include "acme/primitive/string/__string.h"
+#include "payload.h"
 #include "acme/platform/acme.h"
-#include "acme/operating_system.h"
+#include "acme/filesystem/file/file.h"
+#include "acme/primitive/datetime/system_time.h"
+#include "acme/primitive/datetime/earth_gregorian_time.h"
+#include "acme/primitive/datetime/earth_time.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/primitive/string/_conv.h"
+#include "acme/primitive/string/from_integer.h"
+#include "acme/primitive/string/international.h"
+#include "acme/primitive/string/network_payload.h"
+#include "acme/primitive/string/str.h"
+#include "acme/exception/not_implemented.h"
+//#include "acme/array.h"
+#include "acme/_operating_system.h"
+
+
+#include "acme/primitive/collection/_container.h"
+
+
+//void copy(payload * pp, const system_time_t * ps)
+//{
+//   ::earth::gregorian::time t;
+//   t.set(ps);
+//   ::earth::time time;
+//   time = t;
+//
+//   *pp = time;
+//}
+
+
+void copy(::payload * ppayload, const string * pstring)
+{
+
+   *ppayload = *pstring;
+
+}
+
+
+void copy(::payload * ppayload1, const ::payload * ppayload2)
+{
+
+   *ppayload1 = *ppayload2;
+
+}
+
 
 
 #if defined(WINDOWS)
@@ -13,6 +57,69 @@
 #endif
 //extern locale_t ::acme::get_c_locale();
 #endif
+
+
+
+
+
+payload::payload()
+{
+
+   m_etype = e_type_new;
+   //clear_data();
+
+}
+
+
+payload::payload(enum_type etype)
+{
+
+   m_etype = e_type_null;
+
+   set_type(etype, false);
+   //clear_data();
+
+}
+
+
+//payload::payload(const ::e_status & estatus)
+//{
+//
+//   set_type(type_enum_status);
+//
+//   m_estatus = estatus;
+//
+//}
+
+
+//payload::payload(enum_command ecommand)
+//{
+//
+//   set_type(type_enum_command);
+//
+//   m_ecommand = ecommand;
+//
+//}
+
+
+//payload::payload(enum_check echeck)
+//{
+//
+//   set_type(type_enum_check);
+//
+//   m_echeck = echeck;
+//
+//}
+
+
+payload::payload(std::nullptr_t)
+{
+
+   m_etype = e_type_null;
+
+}
+
+
 
 payload::payload(const char * psz)
 {
@@ -1962,65 +2069,65 @@ bool payload::operator > (bool b) const
    return is_greater(get_bool(), b);
 }
 
-bool payload::strictly_equal(const class ::payload & payload) const
-{
-   return m_etype == payload.m_etype && operator == (payload);
-}
-
-bool payload::strictly_equal(const char * psz) const
-{
-   return m_etype == e_type_string && m_str == psz;
-}
-
-bool payload::strictly_equal(const ::string & str) const
-{
-   return m_etype == e_type_string && m_str == str;
-}
-
-bool payload::strictly_equal(::f64 f64) const
-{
-   return m_etype == e_type_f64 && m_f64 == f64;
-}
-
-bool payload::strictly_equal(::i32 i) const
-{
-   return m_etype == e_type_i32 && m_i32 == i;
-}
-
-bool payload::strictly_equal(bool b) const
-{
-   return m_etype == e_type_bool && is_equivalent(m_b, b);
-}
-
-bool payload::strictly_different(const class ::payload & payload) const
-{
-   return m_etype != payload.m_etype || operator != (payload);
-}
-
-bool payload::strictly_different(const char * psz) const
-{
-   return m_etype != e_type_string || m_str != psz;
-}
-
-bool payload::strictly_different(const ::string & str) const
-{
-   return m_etype != e_type_string || m_str != str;
-}
-
-bool payload::strictly_different(::f64 f64) const
-{
-   return m_etype != e_type_f64 || m_f64 != f64;
-}
-
-bool payload::strictly_different(::i32 i) const
-{
-   return m_etype != e_type_i32 || m_i32 != i;
-}
-
-bool payload::strictly_different(bool b) const
-{
-   return m_etype != e_type_bool || is_different(m_b, b);
-}
+//bool payload::strictly_equal(const class ::payload & payload) const
+//{
+//   return m_etype == payload.m_etype && operator == (payload);
+//}
+//
+//bool payload::strictly_equal(const char * psz) const
+//{
+//   return m_etype == e_type_string && m_str == psz;
+//}
+//
+//bool payload::strictly_equal(const ::string & str) const
+//{
+//   return m_etype == e_type_string && m_str == str;
+//}
+//
+//bool payload::strictly_equal(::f64 f64) const
+//{
+//   return m_etype == e_type_f64 && m_f64 == f64;
+//}
+//
+//bool payload::strictly_equal(::i32 i) const
+//{
+//   return m_etype == e_type_i32 && m_i32 == i;
+//}
+//
+//bool payload::strictly_equal(bool b) const
+//{
+//   return m_etype == e_type_bool && is_equivalent(m_b, b);
+//}
+//
+//bool payload::strictly_different(const class ::payload & payload) const
+//{
+//   return m_etype != payload.m_etype || operator != (payload);
+//}
+//
+//bool payload::strictly_different(const char * psz) const
+//{
+//   return m_etype != e_type_string || m_str != psz;
+//}
+//
+//bool payload::strictly_different(const ::string & str) const
+//{
+//   return m_etype != e_type_string || m_str != str;
+//}
+//
+//bool payload::strictly_different(::f64 f64) const
+//{
+//   return m_etype != e_type_f64 || m_f64 != f64;
+//}
+//
+//bool payload::strictly_different(::i32 i) const
+//{
+//   return m_etype != e_type_i32 || m_i32 != i;
+//}
+//
+//bool payload::strictly_different(bool b) const
+//{
+//   return m_etype != e_type_bool || is_different(m_b, b);
+//}
 
 
 string payload::get_recursive_string() const
@@ -2130,7 +2237,7 @@ string payload::string(const char * pszOnNull) const
       else if (is_element_set())
       {
          
-         str = __string(*particle());
+         copy(str, *particle());
 
       }
 
@@ -3837,6 +3944,102 @@ duration payload::duration() const
 }
 
 
+::file_time & payload::file_time_reference()
+{
+
+   if (m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->file_time_reference();
+
+   }
+   else if (m_etype == e_type_property)
+   {
+
+      return m_pproperty->file_time_reference();
+
+   }
+   else
+   {
+
+      if (m_etype != e_type_file_time)
+      {
+
+         set_type(e_type_file_time);
+
+      }
+
+      return *(::file_time *)&m_filetime;
+
+   }
+
+}
+
+
+::color::color & payload::color_reference()
+{
+
+   if (m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->color_reference();
+
+   }
+   else if (m_etype == e_type_property)
+   {
+
+      return m_pproperty->color_reference();
+
+   }
+   else
+   {
+
+      if (m_etype != e_type_color)
+      {
+
+         set_type(e_type_color);
+
+      }
+
+      return m_color;
+
+   }
+
+}
+
+
+::color::hls & payload::color_hls_reference()
+{
+
+   if (m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->color_hls_reference();
+
+   }
+   else if (m_etype == e_type_property)
+   {
+
+      return m_pproperty->color_hls_reference();
+
+   }
+   else
+   {
+
+      if (m_etype != e_type_hls)
+      {
+
+         set_type(e_type_hls);
+
+      }
+
+      return m_hls;
+
+   }
+
+}
+
+
 class ::payload & payload::operator = (::payload * pvar)
 {
 
@@ -4217,13 +4420,13 @@ string payload::implode(const char * pszGlue) const
 
 
 
-
-::comparison::var_strict payload::strictly_compare() const
-{
-
-   return *this;
-
-}
+//
+//::comparison::var_strict payload::strictly_compare() const
+//{
+//
+//   return *this;
+//
+//}
 
 
 ::payload payload::dereference()
@@ -5108,19 +5311,19 @@ bool payload::is_floating() const
             return false;
          else if(str[0] == '+'
                  || str[0] == '-'
-                 || ansi_char_is_digit(str[0]))
+                 || ansi_char_isdigit(str[0]))
          {
             ::i32 i;
             for(i = 1; i < str.get_length(); i++)
             {
-               if(ansi_char_is_digit(str[i]))
+               if(ansi_char_isdigit(str[i]))
                   continue;
                if(str[i] == '.')
                {
                   i++;
                   goto dot1;
                }
-               if(isspace(str[i]))
+               if(character_isspace(str[i]))
                {
                   i++;
                   goto sp1;
@@ -5135,7 +5338,7 @@ bool payload::is_floating() const
 dot1:
             for(; i < str.get_length(); i++)
             {
-               if(ansi_char_is_digit(str[i]))
+               if(ansi_char_isdigit(str[i]))
                   continue;
                if(str[i] == 'e' || str[i] == 'E')
                   goto e;
@@ -5144,7 +5347,7 @@ dot1:
 sp1:
             for(; i < str.get_length(); i++)
             {
-               if(isspace(str[i]))
+               if(character_isspace(str[i]))
                   continue;
                if(str[i] == 'e' || str[i] == 'E')
                   goto e;
@@ -5154,14 +5357,14 @@ e:
 //sp2:
             for(; i < str.get_length(); i++)
             {
-               if(isspace(str[i]))
+               if(character_isspace(str[i]))
                   continue;
                if(str[i] == '.')
                {
                   i++;
                   goto dot2;
                }
-               if(ansi_char_is_digit(str[i]))
+               if(ansi_char_isdigit(str[i]))
                {
                   i++;
                   break;
@@ -5170,7 +5373,7 @@ e:
             }
             for(; i < str.get_length(); i++)
             {
-               if(ansi_char_is_digit(str[i]))
+               if(ansi_char_isdigit(str[i]))
                   continue;
                if(str[i] == '.')
                {
@@ -5182,7 +5385,7 @@ e:
 dot2:
             for(; i < str.get_length(); i++)
             {
-               if(ansi_char_is_digit(str[i]))
+               if(ansi_char_isdigit(str[i]))
                   continue;
                return false;
             }
@@ -5238,19 +5441,19 @@ bool payload::is_double() const
             return false;
          else if(str[0] == '+'
                  || str[0] == '-'
-                 || ansi_char_is_digit(str[0]))
+                 || ansi_char_isdigit(str[0]))
          {
             ::i32 i;
             for(i = 1; i < str.get_length(); i++)
             {
-               if(ansi_char_is_digit(str[i]))
+               if(ansi_char_isdigit(str[i]))
                   continue;
                if(str[i] == '.')
                {
                   i++;
                   goto dot1;
                }
-               if(isspace(str[i]))
+               if(character_isspace(str[i]))
                {
                   i++;
                   goto sp1;
@@ -5265,7 +5468,7 @@ bool payload::is_double() const
 dot1:
             for(; i < str.get_length(); i++)
             {
-               if(ansi_char_is_digit(str[i]))
+               if(ansi_char_isdigit(str[i]))
                   continue;
                if(str[i] == 'e' || str[i] == 'E')
                   goto e;
@@ -5274,7 +5477,7 @@ dot1:
 sp1:
             for(; i < str.get_length(); i++)
             {
-               if(isspace(str[i]))
+               if(character_isspace(str[i]))
                   continue;
                if(str[i] == 'e' || str[i] == 'E')
                   goto e;
@@ -5284,14 +5487,14 @@ e:
 //sp2:
             for(; i < str.get_length(); i++)
             {
-               if(isspace(str[i]))
+               if(character_isspace(str[i]))
                   continue;
                if(str[i] == '.')
                {
                   i++;
                   goto dot2;
                }
-               if(ansi_char_is_digit(str[i]))
+               if(ansi_char_isdigit(str[i]))
                {
                   i++;
                   break;
@@ -5300,7 +5503,7 @@ e:
             }
             for(; i < str.get_length(); i++)
             {
-               if(ansi_char_is_digit(str[i]))
+               if(ansi_char_isdigit(str[i]))
                   continue;
                if(str[i] == '.')
                {
@@ -5312,7 +5515,7 @@ e:
 dot2:
             for(; i < str.get_length(); i++)
             {
-               if(ansi_char_is_digit(str[i]))
+               if(ansi_char_isdigit(str[i]))
                   continue;
                return false;
             }
@@ -5358,11 +5561,11 @@ bool payload::is_integer() const
             return false;
          else if(str[0] == '+'
                  || str[0] == '-'
-                 || ansi_char_is_digit(str[0]))
+                 || ansi_char_isdigit(str[0]))
          {
             for(index i = 1; i < str.get_length(); i++)
             {
-               if(!ansi_char_is_digit(str[i]))
+               if(!ansi_char_isdigit(str[i]))
                   return false;
             }
             return true;
@@ -5405,11 +5608,11 @@ bool payload::is_natural() const
          if(str.get_length() == 0)
             return false;
          else if(str[0] == '+'
-                 || ansi_char_is_digit(str[0]))
+                 || ansi_char_isdigit(str[0]))
          {
             for(index i = 1; i < str.get_length(); i++)
             {
-               if(!ansi_char_is_digit(str[i]))
+               if(!ansi_char_isdigit(str[i]))
                   return false;
             }
             return true;
@@ -5424,6 +5627,87 @@ bool payload::is_natural() const
    }
 }
 
+
+
+bool payload::is_text() const
+{
+
+   if(m_etype == e_type_string || m_etype == e_type_path)
+   {
+
+      return true;
+
+   }
+   else if(m_etype == e_type_pstring)
+   {
+
+      return true;
+
+   }
+   else if(m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->is_text();
+
+   }
+   else if(m_etype == e_type_property)
+   {
+
+      return m_pproperty->is_text();
+
+   }
+   else
+   {
+
+      return false;
+
+   }
+
+}
+
+
+
+bool payload::is_fairly_convertible_to_text() const
+{
+
+   if(m_etype == e_type_string || m_etype == e_type_path)
+   {
+
+      return true;
+
+   }
+   else if(m_etype == e_type_pstring)
+   {
+
+      return true;
+
+   }
+   else if(m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->is_text();
+
+   }
+   else if(m_etype == e_type_property)
+   {
+
+      return m_pproperty->is_text();
+
+   }
+   else if(is_number())
+   {
+
+      return true;
+
+   }
+   else
+   {
+
+      return false;
+
+   }
+
+}
 
 //bool payload::get_bool(bool bDefault) const
 //{
@@ -5497,25 +5781,25 @@ bool payload::is_natural() const
 //   else if(m_etype == e_type_string)
 //   {
 //
-//      return ::papaya::is_true(m_str);
+//      return ::acme::is_true(m_str);
 //
 //   }
 //   else if (m_etype == e_type_pstring)
 //   {
 //
-//      return m_pstr != nullptr && ::papaya::is_true(*m_pstr);
+//      return m_pstr != nullptr && ::acme::is_true(*m_pstr);
 //
 //   }
 //   else if (m_etype == e_type_id)
 //   {
 //
-//      return (m_atom.is_text() && ::papaya::is_true(m_atom.m_psz)) || (m_atom.is_integer() && m_atom.m_i != 0);
+//      return (m_atom.is_text() && ::acme::is_true(m_atom.m_psz)) || (m_atom.is_integer() && m_atom.m_i != 0);
 //
 //   }
 //   else if (m_etype == e_type_pid)
 //   {
 //
-//      return m_patom != nullptr && ((m_patom->is_text() && ::papaya::is_true(m_patom->m_psz)) || (m_patom->is_integer() && m_patom->m_i != 0));
+//      return m_patom != nullptr && ((m_patom->is_text() && ::acme::is_true(m_patom->m_psz)) || (m_patom->is_integer() && m_patom->m_i != 0));
 //
 //   }
 //   else if (m_etype == e_type_i32_array)
@@ -5533,7 +5817,7 @@ bool payload::is_natural() const
 //   else if (m_etype == e_type_string_array)
 //   {
 //
-//      return m_pstra != nullptr && (m_pstra->get_count() >= 2 || (m_pstra->get_count() == 1 && ::papaya::is_true(m_pstra->element_at(0))));
+//      return m_pstra != nullptr && (m_pstra->get_count() >= 2 || (m_pstra->get_count() == 1 && ::acme::is_true(m_pstra->element_at(0))));
 //
 //   }
 //   else if (m_etype == e_type_f32)
@@ -5576,7 +5860,7 @@ bool payload::is_natural() const
 //   else if (m_etype == e_type_property_set)
 //   {
 //
-//      return m_ppropertyset != nullptr && ::papaya::array::every::is_true(m_ppropertyset->values());
+//      return m_ppropertyset != nullptr && ::acme::array::every::is_true(m_ppropertyset->values());
 //
 //   }
 //   else if (m_etype == e_type_duration)
@@ -5643,6 +5927,84 @@ bool payload::is_property_false(const ::atom & atom) const
    return !is_property_true(atom);
 
 }
+
+
+
+bool payload::begins_eat(const ::string & strPrefix)
+{
+
+   ::string str = this->string();
+
+   if(!str.begins_eat(strPrefix))
+   {
+
+      return false;
+
+   }
+
+   operator =(str);
+
+   return true;
+
+}
+
+
+bool payload::ends_eat(const ::string & strSuffix)
+{
+
+   ::string str = this->string();
+
+   if(!str.ends_eat(strSuffix))
+   {
+
+      return false;
+
+   }
+
+   operator =(str);
+
+   return true;
+
+}
+
+
+bool payload::begins_eat_ci(const ::string & strPrefix)
+{
+
+   ::string str = this->string();
+
+   if(!str.begins_eat_ci(strPrefix))
+   {
+
+      return false;
+
+   }
+
+   operator =(str);
+
+   return true;
+
+}
+
+
+bool payload::ends_eat_ci(const ::string & strSuffix)
+{
+
+   ::string str = this->string();
+
+   if(!str.ends_eat_ci(strSuffix))
+   {
+
+      return false;
+
+   }
+
+   operator =(str);
+
+   return true;
+
+}
+
 
 //::block payload::block () const
 //{
@@ -5758,7 +6120,7 @@ void payload::consume_identifier(const char * & psz, const char * pszEnd)
 
    const char * pszStart = pszParse;
 
-   while (ansi_char_is_alphabetic(*pszParse) && pszParse <= pszEnd)
+   while (ansi_char_isalpha(*pszParse) && pszParse <= pszEnd)
    {
 
       pszParse++;
@@ -5929,7 +6291,7 @@ void var_skip_identifier(const char *& psz, const char * pszEnd)
    const char * pszParse = psz;
    ::str().consume_spaces(pszParse, 0, pszEnd);
    const char * pszStart = pszParse;
-   while (ansi_char_is_alphabetic(*pszParse) && pszParse <= pszEnd)
+   while (ansi_char_isalpha(*pszParse) && pszParse <= pszEnd)
       pszParse++;
    strsize iLen = pszParse - pszStart;
    if (iLen == 5 && ansi_count_compare_ci(pszStart, "false", 5) == 0)
@@ -6053,7 +6415,7 @@ void var_skip_network_payload(const char *& pszJson, const char * pszEnd)
       ::str().skip_quoted_value_ex(pszJson, pszEnd);
 
    }
-   else if (ansi_char_is_digit(*pszJson) || *pszJson == '-' || *pszJson == '.')
+   else if (ansi_char_isdigit(*pszJson) || *pszJson == '-' || *pszJson == '.')
    {
 
       var_skip_number(pszJson, pszEnd);
@@ -6159,7 +6521,7 @@ void payload::parse_network_payload(const char *& pszJson, const char * pszEnd)
       operator=(str);
 
    }
-   else if (ansi_char_is_digit(*pszJson) || *pszJson == '-' || *pszJson == '.')
+   else if (ansi_char_isdigit(*pszJson) || *pszJson == '-' || *pszJson == '.')
    {
 
       consume_number(pszJson, pszEnd);
@@ -6283,7 +6645,7 @@ void payload::parse_network_payload(const char *& pszJson, const char * pszEnd)
          return ::e_type_new;
       }
    }
-   else if (ansi_char_is_digit(*pszJson) || *pszJson == '-' || *pszJson == '.')
+   else if (ansi_char_isdigit(*pszJson) || *pszJson == '-' || *pszJson == '.')
    {
       consume_number(pszJson, pszEnd);
       if (operator == (varChild))
@@ -6370,7 +6732,7 @@ void payload::parse_network_payload(const char *& pszJson, const char * pszEnd)
          return ::e_type_new;
       }
    }
-   else if (ansi_char_is_digit(*pszJson) || *pszJson == '-' || *pszJson == '.')
+   else if (ansi_char_isdigit(*pszJson) || *pszJson == '-' || *pszJson == '.')
    {
       consume_number(pszJson, pszEnd);
       if (operator == (varChild))
@@ -6505,10 +6867,377 @@ bool payload::is_numeric() const
 }
 
 
+const ::string_array & payload::string_array_reference() const
+{
+
+   if(m_etype == e_type_string_array)
+   {
+
+      return *m_pstra;
+
+   }
+   else if(m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->string_array_reference();
+
+   }
+   else if(m_etype == e_type_property)
+   {
+
+      return m_pproperty->string_array_reference();
+
+   }
+   else
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+
+}
+
+
+const ::i32_array & payload::i32_array_reference() const
+{
+
+   if(m_etype == e_type_i32_array)
+   {
+
+      return *m_pia;
+
+   }
+   else if(m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->i32_array_reference();
+
+   }
+   else if(m_etype == e_type_property)
+   {
+
+      return m_pproperty->i32_array_reference();
+
+   }
+   else
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+
+}
+
+
+const ::i64_array & payload::i64_array_reference() const
+{
+
+   if(m_etype == e_type_i64_array)
+   {
+
+      return *m_pi64a;
+
+   }
+   else if(m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->i64_array_reference();
+
+   }
+   else if(m_etype == e_type_property)
+   {
+
+      return m_pproperty->i64_array_reference();
+
+   }
+   else
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+
+}
+
+
+const ::payload_array & payload::payload_array_reference() const
+{
+
+   if(m_etype == e_type_payload_array)
+   {
+
+      return *m_ppayloada;
+
+   }
+   else if(m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->payload_array_reference();
+
+   }
+   else if(m_etype == e_type_property)
+   {
+
+      return m_pproperty->payload_array_reference();
+
+   }
+   else
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+
+}
+
+
+const ::duration & payload::duration_reference() const
+{
+
+   if(m_etype == e_type_duration)
+   {
+
+      return m_duration;
+
+   }
+   else if(m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->duration_reference();
+
+   }
+   else if(m_etype == e_type_property)
+   {
+
+      return m_pproperty->duration_reference();
+
+   }
+   else
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+
+}
+
+
+const ::property_set & payload::property_set_reference() const
+{
+
+   if(m_etype == e_type_property_set)
+   {
+
+      return *m_ppropertyset;
+
+   }
+   else if(m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->property_set_reference();
+
+   }
+   else if(m_etype == e_type_property)
+   {
+
+      return m_pproperty->property_set_reference();
+
+   }
+   else
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+
+}
+
+
+const ::property & payload::property_reference() const
+{
+
+   if(m_etype == e_type_property)
+   {
+
+      return *m_pproperty;
+
+   }
+   else if(m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->property_reference();
+
+   }
+   else
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+
+}
+
+
+const ::file::path & payload::file_path_reference() const
+{
+
+   if(m_etype == e_type_path)
+   {
+
+      return *m_ppath;
+
+   }
+   else if(m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->file_path_reference();
+
+   }
+   else if(m_etype == e_type_property)
+   {
+
+      return m_pproperty->file_path_reference();
+
+   }
+   else
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+
+}
+
+
+const ::file_time &payload:: file_time_reference() const
+{
+
+   if(m_etype == e_type_file_time)
+   {
+
+      return *(const ::file_time *) &m_filetime;
+
+   }
+   else if(m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->file_time_reference();
+
+   }
+   else if(m_etype == e_type_property)
+   {
+
+      return m_pproperty->file_time_reference();
+
+   }
+   else
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+
+}
+
+
+const ::earth::time & payload::earth_time_reference() const
+{
+
+   if(m_etype == e_type_time)
+   {
+
+      return m_time;
+
+   }
+   else if(m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->earth_time_reference();
+
+   }
+   else if(m_etype == e_type_property)
+   {
+
+      return m_pproperty->earth_time_reference();
+
+   }
+   else
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+
+}
+
+
+const ::color::color & payload::color_reference() const
+{
+
+   if(m_etype == e_type_color)
+   {
+
+      return m_color;
+
+   }
+   else if(m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->color_reference();
+
+   }
+   else if(m_etype == e_type_property)
+   {
+
+      return m_pproperty->color_reference();
+
+   }
+   else
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+
+}
+
+
+const ::color::hls & payload::color_hls_reference() const
+{
+
+   if(m_etype == e_type_hls)
+   {
+
+      return m_hls;
+
+   }
+   else if(m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->color_hls_reference();
+
+   }
+   else if(m_etype == e_type_property)
+   {
+
+      return m_pproperty->color_hls_reference();
+
+   }
+   else
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+
+}
+
 
 bool is_return_ok(para_return eret)
 {
+
    return ((::i32)eret) >= 0;
+
 }
 
 
@@ -6568,13 +7297,13 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
    else if (get_type() == ::e_type_i32_array)
    {
 
-      return ia().get_network_payload(str, bNewLine);
+      return ::get_network_payload(str, *m_pia, bNewLine);
 
    }
    else if (get_type() == ::e_type_i64_array)
    {
 
-      return i64a().get_network_payload(str, bNewLine);
+      return ::get_network_payload(str, *m_pi64a, bNewLine);
 
    }
    else if (get_type() == ::e_type_payload_array)
@@ -6833,11 +7562,11 @@ bool payload::is_false() const
       return !m_pu64 || !*m_pu64;
 
    // floating point_i32
-   case e_type_pfloat:
+   case e_type_pf32:
       return !*m_pf32;
    case e_type_f32:
       return !m_f32;
-   case e_type_pdouble:
+   case e_type_pf64:
       return !*m_pf64;
    case e_type_f64:
       return !m_f64;
@@ -7020,11 +7749,11 @@ bool payload::is_set_false() const
    case e_type_pu64:
       return !m_pu64 || !*m_pu64;
    // floating point_i32
-   case e_type_pfloat:
+   case e_type_pf32:
       return !*m_pf32;
    case e_type_f32:
       return !m_f32;
-   case e_type_pdouble:
+   case e_type_pf64:
       return !*m_pf64;
    case e_type_f64:
       return !m_f64;
@@ -7782,3 +8511,2349 @@ return nullptr;
 
 
 }
+
+
+
+
+
+
+::payload payload::first() const
+{
+
+   return at(0);
+
+}
+
+
+::payload payload::last() const
+{
+
+   if (array_get_count() == 0)
+   {
+
+      return first();
+
+   }
+   else
+   {
+
+      return at(array_get_upper_bound());
+
+   }
+
+}
+
+
+::payload payload::first()
+{
+
+   return at(0);
+
+}
+
+
+::payload payload::last()
+{
+
+   if (array_get_count() == 0)
+   {
+
+      return first();
+
+   }
+   else
+   {
+
+      return at(array_get_upper_bound());
+
+   }
+
+}
+
+
+
+
+//bool strictly_equal(const char * psz, const class ::payload & payload)
+//{
+//   return payload.m_etype == ::e_type_string && payload.m_str == psz;
+//}
+//
+//bool strictly_equal(const ::string & str, const class ::payload & payload)
+//{
+//   return payload.m_etype == ::e_type_string && str == payload.m_str;
+//}
+//
+//bool strictly_equal(double d, const class ::payload & payload)
+//{
+//   return payload.m_etype == ::e_type_f64 && d == payload.m_f64;
+//}
+//
+//bool strictly_equal(::i32 i, const class ::payload & payload)
+//{
+//   return payload.m_etype == ::e_type_i32 && i == payload.m_i32;
+//}
+//
+//bool strictly_equal(bool b, const class ::payload & payload)
+//{
+//   return payload.m_etype == ::e_type_bool && is_equivalent(b, payload.m_b);
+//}
+//
+//bool strictly_different(const char * psz, const class ::payload & payload)
+//{
+//   return !strictly_equal(psz, payload);
+//}
+//
+//bool strictly_different(const ::string & str, const class ::payload & payload)
+//{
+//   return !strictly_equal(str, payload);
+//}
+//
+//bool strictly_different(double d, const class ::payload & payload)
+//{
+//   return !strictly_equal(d, payload);
+//}
+//
+//bool strictly_different(::i32 i, const class ::payload & payload)
+//{
+//   return !strictly_equal(i, payload);
+//}
+//
+//bool strictly_different(bool b, const class ::payload & payload)
+//{
+//   return !strictly_equal(b, payload);
+//}
+
+
+
+void assign(::i8 & i, const payload & payload)
+{
+
+i = payload.i8();
+
+}
+
+
+void assign(::u8 & u, const payload & payload)
+{
+
+u = payload.u8();
+
+}
+
+
+void assign(::i16 & i, const payload & payload)
+{
+
+i = payload.i16();
+
+}
+
+
+void assign(::u16 & u, const payload & payload)
+{
+
+u = payload.u16();
+
+}
+
+
+void assign(::i32 & i, const payload & payload)
+{
+
+i = payload.i32();
+
+}
+
+
+void assign(::u32 & u, const payload & payload)
+{
+
+u = payload.u32();
+
+}
+
+
+void assign(::i64 & i, const payload & payload)
+{
+
+i = payload.i64();
+
+}
+
+
+void assign(::u64 & u, const payload & payload)
+{
+
+u = payload.u64();
+
+}
+
+
+void assign(::f32 & f, const payload & payload)
+{
+
+f = payload.f32();
+
+}
+
+
+void assign(::f64 & f, const payload & payload)
+{
+
+f = payload.f64();
+
+}
+
+
+
+::count payload::get_count() const
+{
+   switch (m_etype)
+   {
+      case e_type_bool:
+         return 1;
+      case e_type_i32_array:
+         return ::is_null(m_pia) ? 0 : m_pia->get_count();
+      case e_type_string_array:
+         return ::is_null(m_pstra) ? 0 : m_pstra->get_count();
+      case e_type_payload_array:
+         return ::is_null(m_ppayloada) ? 0 : m_ppayloada->get_count();
+      case e_type_property_set:
+         return ::is_null(m_ppropertyset) ? 0 : m_ppropertyset->get_count();
+      case e_type_empty:
+      case e_type_null:
+      case e_type_new:
+      case e_type_empty_argument:
+         return 0;
+      default:
+         return 1;
+   }
+}
+
+
+::count payload::array_get_count() const
+{
+   if (m_etype == e_type_new
+       || m_etype == e_type_null
+       || m_etype == e_type_empty
+       || m_etype == e_type_empty_argument)
+   {
+      return -1; // indicates that this ::payload is not an array
+   }
+   else if (is_array())
+      return this->get_count();
+   else
+      return 1; // this ::payload is an scalar or object that can be retrieved through "array_" methods
+}
+
+
+
+index payload::array_get_upper_bound() const
+{
+   if (m_etype == e_type_new
+       || m_etype == e_type_null
+       || m_etype == e_type_empty
+       || m_etype == e_type_empty_argument)
+   {
+      return -1; // indicates that this ::payload is not an array
+   }
+   else if (is_array())
+      return this->get_count() - 1;
+   else
+      return 0; // this ::payload is an scalar or object that can be retrieved through "array_" methods
+}
+
+
+bool payload::is_array() const
+{
+
+   if (m_etype == e_type_string_array
+       || m_etype == e_type_i32_array
+       || m_etype == e_type_payload_array
+       || m_etype == e_type_property_set)
+   {
+      return true;
+   }
+   else if (m_etype == e_type_property)
+   {
+      return this->property().is_array();
+   }
+   else if (m_etype == e_type_element)
+   {
+      return false;
+   }
+   else
+   {
+      return false;
+   }
+}
+
+
+
+//bool operator == (const string& str, const ::payload & payload)
+//{
+//
+//   return str == payload.string();
+//
+//}
+
+
+
+//atom& atom::operator = (const ::payload & payload)
+//{
+//
+//   if (payload.is_null())
+//   {
+//      m_all = {};
+//      return *this;
+//   }
+//   else if (payload.is_empty())
+//   {
+//      return operator =("");
+//   }
+//   else if (payload.is_integer())
+//   {
+//      return operator = (payload.iptr());
+//   }
+//   else
+//   {
+//      return operator = (payload.string());
+//   }
+//
+//}
+//
+//atom& atom::operator = (const property& prop)
+//{
+//
+//   return operator = ((const ::payload&)prop);
+//
+//}
+//
+
+
+//template < primitive_payload PAYLOAD >
+//::payload payload::operator - (const PAYLOAD & payload2) const
+//{
+//
+//   ::payload payload;
+//
+//   if (m_etype == ::e_type_i32_array)
+//   {
+//
+//      if (payload2.m_etype == ::e_type_i32_array)
+//      {
+//
+//         payload = ia() - payload2.ia();
+//
+//      }
+//      else
+//      {
+//
+//         payload = *this;
+//
+//         payload.ia().erase(payload2.i32());
+//
+//      }
+//
+//   }
+//   else if (m_etype == ::e_type_string_array)
+//   {
+//
+//      if (payload2.m_etype == ::e_type_string_array)
+//      {
+//
+//         payload = stra() - payload2.stra();
+//
+//      }
+//      else if (payload2.is_array())
+//      {
+//
+//         payload = stra() - payload2.stra();
+//
+//      }
+//      else
+//      {
+//
+//         payload = *this;
+//
+//         payload.stra().erase(payload2.string());
+//
+//      }
+//
+//   }
+//   else if (m_etype == ::e_type_payload_array)
+//   {
+//      if (payload2.m_etype == ::e_type_payload_array)
+//      {
+//         payload = payloada() - payload2.payloada();
+//      }
+//      else
+//      {
+//         payload = *this;
+//         payload.payloada().erase(payload2);
+//      }
+//   }
+//   else if (is_double() || payload2.is_double())
+//   {
+//      payload = f64() - payload2.f64();
+//   }
+//   else if (is_integer() || payload2.is_integer())
+//   {
+//      payload = i32() - payload2.i32();
+//   }
+//   else if (is_natural() || payload2.is_natural())
+//   {
+//      payload = u32() - payload2.u32();
+//   }
+//   else
+//   {
+//      payload = atoi(string()) - atoi(payload2.string());
+//   }
+//   return payload;
+//}
+//
+//template < primitive_payload PAYLOAD >
+//::payload payload::operator + (const PAYLOAD & payload2) const
+//{
+//
+//   ::payload payload;
+//
+//   if (m_etype == ::e_type_i32_array || m_etype == ::e_type_i32_array)
+//   {
+//
+//      if (m_etype == ::e_type_i32_array)
+//      {
+//
+//         if (payload2.m_etype == ::e_type_i32_array)
+//         {
+//
+//            payload = ia() + payload2.ia();
+//
+//         }
+//         else
+//         {
+//
+//            payload = *this;
+//
+//            payload.ia().add(payload2.i32());
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         payload = payload2;
+//
+//         payload.ia().add(i32());
+//
+//      }
+//
+//   }
+//   else if (m_etype == ::e_type_string_array || payload2.m_etype == ::e_type_string_array)
+//   {
+//
+//      if (m_etype == ::e_type_string_array)
+//      {
+//
+//         if (payload2.m_etype == ::e_type_string_array)
+//         {
+//
+//            payload = stra() + payload2.stra();
+//
+//         }
+//         else
+//         {
+//
+//            payload = *this;
+//
+//            payload.stra().add(payload2.string());
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         payload = payload2;
+//
+//         payload.stra().add(string());
+//
+//      }
+//
+//   }
+//   else if (m_etype == ::e_type_payload_array || payload2.m_etype == ::e_type_payload_array)
+//   {
+//
+//      if (payload2.m_etype == ::e_type_payload_array)
+//      {
+//
+//         if (payload2.m_etype == ::e_type_payload_array)
+//         {
+//
+//            payload = payloada() + payload2.payloada();
+//
+//         }
+//         else
+//         {
+//
+//            payload = *this;
+//
+//            payload.payloada().add(payload2);
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         payload = payload2;
+//
+//         payload.payloada().add(*this);
+//
+//      }
+//
+//   }
+//   else if ((is_double() && payload2.is_number()) || (is_number() && payload2.is_double()))
+//   {
+//
+//      payload = f64() + payload2.f64();
+//
+//   }
+//   else if (is_integer() && payload2.is_integer())
+//   {
+//
+//      payload = i32() + payload2.i32();
+//
+//   }
+//   else if (is_natural() && payload2.is_natural())
+//   {
+//
+//      payload = u32() + payload2.u32();
+//
+//   }
+//   else
+//   {
+//
+//      payload = string() + payload2.string();
+//
+//   }
+//
+//   return payload;
+//
+//}
+
+
+
+
+
+//template < primitive_payload PAYLOAD >
+//::payload payload::operator / (const PAYLOAD & payload2) const
+//{
+//
+//   ::payload payload;
+//
+//   if (m_etype == ::e_type_i32_array)
+//   {
+//      if (payload2.m_etype == ::e_type_i32_array)
+//      {
+//         payload = *this;
+//         payload.ia().intersect(payload2.ia());
+//      }
+//      else
+//      {
+//         payload = *this;
+//         payload.ia().divide(payload2.i32());
+//      }
+//   }
+//   else if (m_etype == ::e_type_string_array)
+//   {
+//      if (payload2.m_etype == ::e_type_string_array)
+//      {
+//         //payload = stra().intersect(payload2.stra());
+//      }
+//      else
+//      {
+//         payload = *this;
+//         payload.stra().erase(payload2.string());
+//      }
+//   }
+//   else if (m_etype == ::e_type_payload_array)
+//   {
+//      if (payload2.m_etype == ::e_type_payload_array)
+//      {
+//         //payload = payloada() / payload2.payloada();
+//      }
+//      else
+//      {
+//         payload = *this;
+//         payload.payloada().erase(payload2);
+//      }
+//   }
+//   else if (is_double() || payload2.is_double())
+//   {
+//      payload = f64() / payload2.f64();
+//   }
+//   else if (is_integer() || payload2.is_integer())
+//   {
+//      payload = i32() / payload2.i32();
+//   }
+//   else if (is_natural() || payload2.is_natural())
+//   {
+//      payload = u32() / payload2.u32();
+//   }
+//   else
+//   {
+//      payload = atoi(string()) / atoi(payload2.string());
+//   }
+//   return payload;
+//}
+
+
+
+//template < primitive_payload PAYLOAD >
+//::payload payload:: operator * (const PAYLOAD & payload2) const
+//{
+//
+//   ::payload payload;
+//
+//   if (m_etype == ::e_type_i32_array || m_etype == ::e_type_i32_array)
+//   {
+//
+//      ::acme::array::intersection(payload.ia(), ia(), payload2.ia());
+//
+//   }
+//   else if (m_etype == ::e_type_string_array || payload2.m_etype == ::e_type_string_array)
+//   {
+//
+//      ::acme::array::intersection(payload.stra(), stra(), payload2.stra());
+//
+//   }
+//   else if (m_etype == ::e_type_payload_array || payload2.m_etype == ::e_type_payload_array)
+//   {
+//
+//      ::acme::array::intersection(payload.payloada(), payloada(), payload2.payloada());
+//
+//   }
+//   else if (is_double() || payload2.is_double())
+//   {
+//
+//      payload = f64() * payload2.f64();
+//
+//   }
+//   else if (is_integer() || payload2.is_integer())
+//   {
+//
+//      payload = i32() * payload2.i32();
+//
+//   }
+//   else if (is_natural() || payload2.is_natural())
+//   {
+//
+//      payload = u32() * payload2.u32();
+//
+//   }
+//   else
+//   {
+//
+//      payload = get_string().intersection(payload2.to_string());
+//
+//   }
+//
+//   return payload;
+//
+//}
+
+
+
+
+
+
+
+
+//template < primitive_payload PAYLOAD >
+//::payload & payload:: operator -= (const PAYLOAD & payload)
+//{
+//
+//   *this = *this - payload;
+//
+//   return *this;
+//
+//}
+//
+//
+//template < primitive_payload PAYLOAD >
+//::payload & payload:: operator += (const PAYLOAD & payload)
+//{
+//
+//   *this = *this + payload;
+//
+//   return *this;
+//
+//}
+//
+//
+//template < primitive_payload PAYLOAD >
+//::payload & payload:: operator /= (const PAYLOAD & payload)
+//{
+//
+//   *this = *this / payload;
+//
+//   return *this;
+//
+//}
+//
+//
+//template < primitive_payload PAYLOAD >
+//::payload & payload:: operator *= (const PAYLOAD & payload)
+//{
+//
+//   *this = *this * payload;
+//
+//   return *this;
+//
+//}
+
+
+
+
+
+
+
+//payload::operator bool() const { return this->get_bool(); }
+//
+//payload::operator ::i8() const { return this->i8(); }
+//payload::operator ::u8() const { return this->u8(); }
+//payload::operator ::i16() const { return this->i16(); }
+//payload::operator ::u16() const { return this->u16(); }
+//payload::operator ::i32() const { return this->i32(); }
+//payload::operator ::u32() const { return this->u32(); }
+//payload::operator ::i64() const { return this->i64(); }
+//payload::operator ::u64() const { return this->u64(); }
+//payload::operator ::f32() const { return this->f32(); }
+//payload::operator ::f64() const { return this->f64(); }
+//
+//
+//payload::operator ::string() const
+//{
+//
+//   return this->string();
+//
+//}
+
+
+payload & payload::operator = (const ::file::path & path)
+{
+   set_type(e_type_path, false);
+   m_ppath = memory_new::file::path_object(path);
+   return *this;
+}
+
+
+
+bool succeeded(const ::payload & payload)
+{
+
+   if (payload.m_etype == e_type_enum_status)
+   {
+
+      return ::succeeded(payload.m_estatus);
+
+   }
+   else if (payload.is_integer())
+   {
+
+      return ::succeeded(payload.i64());
+
+   }
+   else
+   {
+
+      throw ::exception(error_unexpected_situation);
+
+   }
+
+}
+
+
+
+//class ::payload & payload::operator -= (const class property & property) { operator -=(property);  return *this; }
+//class ::payload & payload::operator += (const class property & property) { operator +=(property);  return *this; }
+//class ::payload & payload::operator /= (const class property & property) { operator /=(property);  return *this; }
+//class ::payload & payload::operator *= (const class property & property) { operator *=(property);  return *this; }
+
+
+
+payload payload::addition(const ::payload & payload) const
+{
+
+   ::payload payloadResult(*this);
+
+   payloadResult += payload;
+
+   return ::move(payloadResult);
+
+}
+
+
+payload  payload::subtraction(const ::payload & payload) const
+{
+
+   ::payload payloadResult(*this);
+
+   payloadResult -= payload;
+
+   return ::move(payloadResult);
+
+}
+
+
+payload payload::multiplication(const ::payload & payload) const
+{
+
+   ::payload payloadResult(*this);
+
+   payloadResult *= payload;
+
+   return ::move(payloadResult);
+
+}
+
+
+payload  payload::division(const ::payload & payload) const
+{
+
+   ::payload payloadResult(*this);
+
+   payloadResult /= payload;
+
+   return ::move(payloadResult);
+
+}
+
+
+enum_type payload::integer_type() const
+{
+
+   switch(get_type())
+   {
+      case e_type_new:
+      case e_type_null:
+      case e_type_string_array:
+      case e_type_i32_array:
+      case e_type_empty:
+      case e_type_element:
+      case e_type_path:
+         return e_type_not_found;
+      case e_type_bool:
+         return e_type_i8;
+      case e_type_string:
+         return e_type_not_found;
+      case e_type_f32:
+         return e_type_not_found;
+      case e_type_f64:
+         return e_type_not_found;
+      case e_type_pf32:
+         return e_type_not_found;
+      case e_type_pf64:
+         return e_type_not_found;
+      case e_type_u8:
+         return e_type_u8;
+      case e_type_i8:
+         return e_type_i8;
+      case e_type_u16:
+         return e_type_u16;
+      case e_type_i16:
+         return e_type_i16;
+      case e_type_u32:
+         return e_type_u32;
+      case e_type_i32:
+         return e_type_i32;
+      case e_type_u64:
+         return e_type_u32;
+      case e_type_i64:
+         return e_type_i32;
+      case e_type_pu8:
+         return e_type_u8;
+      case e_type_pi8:
+         return e_type_i8;
+      case e_type_pu16:
+         return e_type_u16;
+      case e_type_pi16:
+         return e_type_i16;
+      case e_type_pu32:
+         return e_type_u32;
+      case e_type_pi32:
+         return e_type_i32;
+      case e_type_pu64:
+         return e_type_u64;
+      case e_type_pi64:
+         return e_type_i64;
+      default:
+         break;
+   }
+   return e_type_not_found;
+
+}
+
+
+enum_type payload::left_hand_integer_type() const
+{
+
+   switch(get_type())
+   {
+      case e_type_new:
+      case e_type_null:
+      case e_type_string_array:
+      case e_type_i32_array:
+      case e_type_empty:
+      case e_type_element:
+      case e_type_path:
+         return e_type_not_found;
+      case e_type_bool:
+         return e_type_i8;
+      case e_type_string:
+         return e_type_not_found;
+      case e_type_f32:
+         return e_type_not_found;
+      case e_type_f64:
+         return e_type_not_found;
+      case e_type_pf32:
+         return e_type_not_found;
+      case e_type_pf64:
+         return e_type_not_found;
+      case e_type_u8:
+         return e_type_u8;
+      case e_type_i8:
+         return e_type_i8;
+      case e_type_u16:
+         return e_type_u16;
+      case e_type_i16:
+         return e_type_i16;
+      case e_type_u32:
+         return e_type_u32;
+      case e_type_i32:
+         return e_type_i32;
+      case e_type_u64:
+         return e_type_u32;
+      case e_type_i64:
+         return e_type_i32;
+      case e_type_pu8:
+         return e_type_pu8;
+      case e_type_pi8:
+         return e_type_pi8;
+      case e_type_pu16:
+         return e_type_pu16;
+      case e_type_pi16:
+         return e_type_pi16;
+      case e_type_pu32:
+         return e_type_pu32;
+      case e_type_pi32:
+         return e_type_pi32;
+      case e_type_pu64:
+         return e_type_pu64;
+      case e_type_pi64:
+         return e_type_pi64;
+      default:
+    break;
+   }
+   return e_type_not_found;
+
+}
+
+
+enum_type payload::floating_type() const
+{
+
+   switch(get_type())
+   {
+      case e_type_new:
+      case e_type_null:
+      case e_type_string_array:
+      case e_type_i32_array:
+      case e_type_empty:
+      case e_type_element:
+      case e_type_path:
+         return e_type_not_found;
+      case e_type_bool:
+         return e_type_i8;
+      case e_type_string:
+         return e_type_not_found;
+      case e_type_f32:
+         return e_type_f32;
+      case e_type_f64:
+         return e_type_f64;
+      case e_type_pf32:
+         return e_type_f32;
+      case e_type_pf64:
+         return e_type_f64;
+      case e_type_u8:
+         return e_type_not_found;
+      case e_type_i8:
+         return e_type_not_found;
+      case e_type_u16:
+         return e_type_not_found;
+      case e_type_i16:
+         return e_type_not_found;
+      case e_type_u32:
+         return e_type_not_found;
+      case e_type_i32:
+         return e_type_not_found;
+      case e_type_u64:
+         return e_type_not_found;
+      case e_type_i64:
+         return e_type_not_found;
+      case e_type_pu8:
+         return e_type_not_found;
+      case e_type_pi8:
+         return e_type_not_found;
+      case e_type_pu16:
+         return e_type_not_found;
+      case e_type_pi16:
+         return e_type_not_found;
+      case e_type_pu32:
+         return e_type_not_found;
+      case e_type_pi32:
+         return e_type_not_found;
+      case e_type_pu64:
+         return e_type_not_found;
+      case e_type_pi64:
+         return e_type_not_found;
+      default:
+break;
+   }
+
+   return e_type_not_found;
+
+}
+
+
+enum_type payload::left_hand_floating_type() const
+{
+
+   switch(get_type())
+   {
+      case e_type_new:
+      case e_type_null:
+      case e_type_string_array:
+      case e_type_i32_array:
+      case e_type_empty:
+      case e_type_element:
+      case e_type_path:
+         return e_type_not_found;
+      case e_type_bool:
+         return e_type_i8;
+      case e_type_string:
+         return e_type_not_found;
+      case e_type_f32:
+         return e_type_f32;
+      case e_type_f64:
+         return e_type_f64;
+      case e_type_pf32:
+         return e_type_pf32;
+      case e_type_pf64:
+         return e_type_pf64;
+      case e_type_u8:
+         return e_type_not_found;
+      case e_type_i8:
+         return e_type_not_found;
+      case e_type_u16:
+         return e_type_not_found;
+      case e_type_i16:
+         return e_type_not_found;
+      case e_type_u32:
+         return e_type_not_found;
+      case e_type_i32:
+         return e_type_not_found;
+      case e_type_u64:
+         return e_type_not_found;
+      case e_type_i64:
+         return e_type_not_found;
+      case e_type_pu8:
+         return e_type_not_found;
+      case e_type_pi8:
+         return e_type_not_found;
+      case e_type_pu16:
+         return e_type_not_found;
+      case e_type_pi16:
+         return e_type_not_found;
+      case e_type_pu32:
+         return e_type_not_found;
+      case e_type_pi32:
+         return e_type_not_found;
+      case e_type_pu64:
+         return e_type_not_found;
+      case e_type_pi64:
+         return e_type_not_found;
+      default:
+         break;
+   }
+
+   return e_type_not_found;
+
+}
+
+
+payload & payload::add(const ::payload & payload)
+{
+
+   if(get_type() == e_type_i32_array)
+   {
+
+      if(payload.get_type() == e_type_i32_array)
+      {
+
+         i32_array_reference().append(payload.i32_array_reference());
+
+      }
+      else if(payload.get_type() == e_type_i64_array)
+      {
+
+         ::acme::container::append(i32_array_reference(), payload.i64_array_reference());
+
+      }
+      else
+      {
+
+         // simple implementation
+         i32_array_reference().add(payload.i32());
+
+      }
+
+   }
+   else if(get_type() == e_type_i64_array)
+   {
+
+      if(payload.get_type() == e_type_i64_array)
+      {
+
+         i64_array_reference().append(payload.i64_array_reference());
+
+      }
+      else if(payload.get_type() == e_type_i32_array)
+      {
+
+         ::acme::container::append(i64_array_reference(), payload.i32_array_reference());
+
+      }
+      else
+      {
+
+         // simple implementation
+         i64_array_reference().add(payload.i64());
+
+      }
+
+   }
+   else if(get_type() == e_type_string_array)
+   {
+
+      if(payload.get_type() == e_type_string_array)
+      {
+
+         string_array_reference().append(payload.string_array_reference());
+
+      }
+      else if(payload.get_type() == e_type_i32_array)
+      {
+
+          ::acme::container::append(string_array_reference(), payload.i32_array_reference());
+
+      }
+      else if(payload.get_type() == e_type_i64_array)
+      {
+
+          ::acme::container::append(string_array_reference(), payload.i64_array_reference());
+
+      }
+      else if(payload.get_type() == e_type_payload_array)
+      {
+
+          ::acme::container::append(string_array_reference(), payload.payload_array_reference());
+
+      }
+      else
+      {
+
+         // simple implementation
+         string_array_reference().add(payload.get_string());
+
+      }
+
+   }
+   else if(get_type() == e_type_payload_array)
+   {
+
+      if(payload.get_type() == e_type_payload_array)
+      {
+
+         payload_array_reference().append(payload.payload_array_reference());
+
+      }
+      else if(payload.get_type() == e_type_i32_array)
+      {
+
+          ::acme::container::append(payload_array_reference(), payload.i32_array_reference());
+
+      }
+      else if(payload.get_type() == e_type_i64_array)
+      {
+
+          ::acme::container::append(payload_array_reference(), payload.i64_array_reference());
+
+      }
+      else if(payload.get_type() == e_type_string_array)
+      {
+
+          ::acme::container::append(payload_array_reference(), payload.string_array_reference());
+
+      }
+      else
+      {
+
+         // simple implementation
+         payload_array_reference().add(payload);
+
+      }
+
+   }
+   else if(is_integer())
+   {
+
+      if(payload.is_integer())
+      {
+
+         auto etype = maximum(left_hand_integer_type(), payload.integer_type());
+
+         if(etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch(etype)
+         {
+            case e_type_u8:
+               if((::u16) m_u8 + (::u16) payload.u8() >= 256)
+               {
+                  set_type(e_type_u16);
+                  m_u16 += payload.u8();
+               }
+               else
+               {
+                  m_u8 += payload.u8();
+               }
+               break;
+            case e_type_i8:
+               if(((::i16) m_i8 + (::i16) payload.i8() >= 129 )|| ((::i16) m_i8 + (::i16) payload.i8() < -128))
+               {
+                  set_type(e_type_i16);
+                  m_i16 += payload.i8();
+               }
+               else
+               {
+                  m_i8 += payload.i8();
+               }
+               break;
+            case e_type_u16:
+               if((::u32) m_u16 + (::u32) payload.u16() >= 65536)
+               {
+                  set_type(e_type_u32);
+                  m_u32 += payload.u16();
+               }
+               else
+               {
+                  m_u16 += payload.u16();
+               }
+               break;
+            case e_type_i16:
+               if(((::i32) m_i16 + (::i32) payload.i16() >= 32769) || ((::i32) m_i16 + (::i32) payload.i16() < -32768))
+               {
+                  set_type(e_type_i32);
+                  m_i32 += payload.i16();
+               }
+               else
+               {
+                  m_i16 += payload.i16();
+               }
+               break;
+            case e_type_u32:
+               if((::u64) m_u32 + (::u64) payload.u32() >= (::u64) UINT_MAX)
+               {
+                  set_type(e_type_u64);
+                  m_u64 += payload.u32();
+               }
+               else
+               {
+                  m_u32 += payload.u32();
+               }
+               break;
+            case e_type_i32:
+               if(((::i64) m_i32 + (::i64) payload.i32() > (::i64) INT_MAX) || ((::i64) m_i32 + (::i64) payload.i32() < (::i64) INT_MIN))
+               {
+                  set_type(e_type_i64);
+                  m_i64 += payload.i32();
+               }
+               else
+               {
+                  m_i32 += payload.i32();
+               }
+               break;
+            case e_type_u64:
+               m_u64 += payload.u64();
+               break;
+            case e_type_i64:
+               m_i64 += payload.i64();
+               break;
+            case e_type_pu8:
+               *m_pu8 += payload.u8();
+               break;
+            case e_type_pi8:
+               *m_pi8 += payload.i8();
+               break;
+            case e_type_pu16:
+               *m_pu16 += payload.u16();
+               break;
+            case e_type_pi16:
+               *m_pi16 += payload.i16();
+               break;
+            case e_type_pu32:
+               *m_pu32 += payload.u32();
+               break;
+            case e_type_pi32:
+               *m_pi32 += payload.i32();
+               break;
+            case e_type_pu64:
+               *m_pu64 += payload.u64();
+               break;
+            case e_type_pi64:
+               *m_pi64 += payload.i64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+         };
+
+      }
+      else if(payload.is_floating())
+      {
+
+         auto etype = maximum(left_hand_integer_type(), payload.floating_type());
+
+         if(etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch(etype)
+         {
+            case e_type_f32:
+               m_f32 += payload.u32();
+               break;
+            case e_type_f64:
+               m_f64 += payload.f64();
+               break;
+            case e_type_pu8:
+               *m_pu8 += payload.u8();
+               break;
+            case e_type_pi8:
+               *m_pi8 += payload.i8();
+               break;
+            case e_type_pu16:
+               *m_pu16 += payload.u16();
+               break;
+            case e_type_pi16:
+               *m_pi16 += payload.i16();
+               break;
+            case e_type_pu32:
+               *m_pu32 += payload.u32();
+               break;
+            case e_type_pi32:
+               *m_pi32 += payload.i32();
+               break;
+            case e_type_pu64:
+               *m_pu64 += payload.u64();
+               break;
+            case e_type_pi64:
+               *m_pi64 += payload.i64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+
+         };
+
+      }
+      else if(payload.is_text())
+      {
+
+         operator= (get_string() + payload.get_string());
+
+      }
+      else
+      {
+
+         throw ::not_implemented("yet to be done");
+
+      }
+
+   }
+   else if(is_floating())
+   {
+
+      if(payload.is_integer())
+      {
+
+         auto etype = maximum(left_hand_floating_type(), payload.integer_type());
+
+         if(etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch(etype)
+         {
+            case e_type_f32:
+               m_f32 += payload.f32();
+               break;
+            case e_type_f64:
+               m_f64 += payload.f64();
+               break;
+            case e_type_pf32:
+               *m_pf32 += payload.f32();
+               break;
+            case e_type_pf64:
+               *m_pf64 += payload.f64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+         };
+
+      }
+      else if(payload.is_floating())
+      {
+
+         auto etype = maximum(left_hand_floating_type(), payload.floating_type());
+
+         if(etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch(etype)
+         {
+            case e_type_f32:
+               m_f32 += payload.f32();
+               break;
+            case e_type_f64:
+               m_f64 += payload.f64();
+               break;
+            case e_type_pf32:
+               *m_pf32 += payload.f32();
+               break;
+            case e_type_pf64:
+               *m_pf64 += payload.f64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+         };
+
+
+      }
+      else if(payload.is_text())
+      {
+
+         operator= (get_string() + payload.get_string());
+
+      }
+      else
+      {
+
+         throw ::not_implemented("yet to be done");
+
+      }
+
+   }
+   else if(payload.is_text())
+   {
+
+      operator= (get_string() + payload.get_string());
+
+   }
+   else
+   {
+
+      throw ::not_implemented("yet to be done");
+
+   }
+
+   return *this;
+
+}
+
+
+payload & payload::subtract(const ::payload & payload)
+{
+
+   if(is_integer())
+   {
+
+      if(payload.is_integer())
+      {
+
+         auto etype = maximum(left_hand_integer_type(), payload.integer_type());
+
+         if(etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch(etype)
+         {
+            case e_type_u8:
+               if((::i16) m_u8 - (::i16) payload.i16() < 0)
+               {
+                  set_type(e_type_i16);
+                  m_i16 -= payload.u8();
+               }
+               else
+               {
+                  m_u8 -= payload.u8();
+               }
+               break;
+            case e_type_i8:
+               if(((::i16) m_i8 - (::i16) payload.i8() >= 129) || ((::i16) m_i8 - (::i16) payload.i8() <=  -128))
+               {
+                  set_type(e_type_i16);
+                  m_i16 -= payload.i8();
+               }
+               else
+               {
+                  m_i8 -= payload.i8();
+               }
+               break;
+            case e_type_u16:
+               if((::i32) m_u16 - (::i32) payload.i32() < 0)
+               {
+                  set_type(e_type_i32);
+                  m_i32 -= payload.u32();
+               }
+               else
+               {
+                  m_u16 -= payload.u16();
+               }
+               break;
+            case e_type_i16:
+               if(((::i32) m_i16 - (::i32) payload.i16() >= 32769) || ((::i32) m_i16 - (::i32) payload.i16() < -32768))
+               {
+                  set_type(e_type_i32);
+                  m_i32 -= payload.i16();
+               }
+               else
+               {
+                  m_i16 -= payload.i16();
+               }
+               break;
+            case e_type_u32:
+               if((::i64) m_u32 - (::i64) payload.i64() < 0)
+               {
+                  set_type(e_type_i64);
+                  m_i64 -= payload.i64();
+               }
+               else
+               {
+                  m_u32 -= payload.u32();
+               }
+               break;
+            case e_type_i32:
+               if(((::i64) m_i32 + (::i64) payload.i32() >= (::i64) INT_MAX) || ((::i64) m_i32 - (::i64) payload.i32() < (::i64) INT_MIN))
+               {
+                  set_type(e_type_i64);
+                  m_i64 -= payload.i32();
+               }
+               else
+               {
+                  m_i32 -= payload.i32();
+               }
+               break;
+            case e_type_u64:
+               m_u64 -= payload.u64();
+               break;
+            case e_type_i64:
+               m_i64 -= payload.i64();
+               break;
+            case e_type_pu8:
+               *m_pu8 -= payload.u8();
+               break;
+            case e_type_pi8:
+               *m_pi8 -= payload.i8();
+               break;
+            case e_type_pu16:
+               *m_pu16 -= payload.u16();
+               break;
+            case e_type_pi16:
+               *m_pi16 -= payload.i16();
+               break;
+            case e_type_pu32:
+               *m_pu32 -= payload.u32();
+               break;
+            case e_type_pi32:
+               *m_pi32 -= payload.i32();
+               break;
+            case e_type_pu64:
+               *m_pu64 -= payload.u64();
+               break;
+            case e_type_pi64:
+               *m_pi64 -= payload.i64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+         };
+
+      }
+      else if(payload.is_floating())
+      {
+
+         auto etype = maximum(left_hand_integer_type(), payload.floating_type());
+
+         if(etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch(etype)
+         {
+            case e_type_f32:
+               m_f32 -= payload.u32();
+               break;
+            case e_type_f64:
+               m_f64 -= payload.f64();
+               break;
+            case e_type_pu8:
+               *m_pu8 -= payload.u8();
+               break;
+            case e_type_pi8:
+               *m_pi8 -= payload.i8();
+               break;
+            case e_type_pu16:
+               *m_pu16 -= payload.u16();
+               break;
+            case e_type_pi16:
+               *m_pi16 -= payload.i16();
+               break;
+            case e_type_pu32:
+               *m_pu32 -= payload.u32();
+               break;
+            case e_type_pi32:
+               *m_pi32 -= payload.i32();
+               break;
+            case e_type_pu64:
+               *m_pu64 -= payload.u64();
+               break;
+            case e_type_pi64:
+               *m_pi64 -= payload.i64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+
+         };
+
+      }
+      else if(payload.is_text())
+      {
+
+         throw ::exception(error_unexpected);
+
+      }
+      else
+      {
+
+         throw ::not_implemented("yet to be done");
+
+      }
+
+   }
+   else if(is_floating())
+   {
+
+      if(payload.is_integer())
+      {
+
+         auto etype = maximum(left_hand_floating_type(), payload.integer_type());
+
+         if(etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch(etype)
+         {
+            case e_type_f32:
+               m_f32 -= payload.f32();
+               break;
+            case e_type_f64:
+               m_f64 -= payload.f64();
+               break;
+            case e_type_pf32:
+               *m_pf32 -= payload.f32();
+               break;
+            case e_type_pf64:
+               *m_pf64 -= payload.f64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+         };
+
+      }
+      else if(payload.is_floating())
+      {
+
+         auto etype = maximum(left_hand_floating_type(), payload.floating_type());
+
+         if(etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch(etype)
+         {
+            case e_type_f32:
+               m_f32 -= payload.f32();
+               break;
+            case e_type_f64:
+               m_f64 -= payload.f64();
+               break;
+            case e_type_pf32:
+               *m_pf32 -= payload.f32();
+               break;
+            case e_type_pf64:
+               *m_pf64 -= payload.f64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+         };
+
+
+      }
+      else if(payload.is_text())
+      {
+
+         throw ::exception(error_unexpected);
+
+      }
+      else
+      {
+
+         throw ::not_implemented("yet to be done");
+
+      }
+
+   }
+   else if(payload.is_text())
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+   else
+   {
+
+      throw ::not_implemented("yet to be done");
+
+   }
+
+   return *this;
+}
+
+
+payload &  payload::multiply(const ::payload & payload)
+{
+
+   if (is_integer())
+   {
+
+      if (payload.is_integer())
+      {
+
+         auto etype = maximum(left_hand_integer_type(), payload.integer_type());
+
+         if (etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch (etype)
+         {
+            case e_type_u8:
+               if ((::u16) m_u8 + (::u16) payload.u8() >= 256)
+               {
+                  set_type(e_type_u16);
+                  m_u16 *= payload.u8();
+               } else
+               {
+                  m_u8 *= payload.u8();
+               }
+               break;
+            case e_type_i8:
+               if ((::i16) m_i8 + (::i16) payload.i8() >= 129)
+               {
+                  set_type(e_type_i16);
+                  m_i16 *= payload.i8();
+               } else
+               {
+                  m_i8 *= payload.i8();
+               }
+               break;
+            case e_type_u16:
+               if ((::u32) m_u16 + (::u32) payload.u16() >= 65536)
+               {
+                  set_type(e_type_u32);
+                  m_u32 *= payload.u16();
+               } else
+               {
+                  m_u16 *= payload.u16();
+               }
+               break;
+            case e_type_i16:
+               if ((::i32) m_i16 + (::i32) payload.i16() >= 32769)
+               {
+                  set_type(e_type_i32);
+                  m_i32 *= payload.i16();
+               } else
+               {
+                  m_i16 *= payload.i16();
+               }
+               break;
+            case e_type_u32:
+               if ((::u64) m_u32 + (::u64) payload.u32() >= 65536)
+               {
+                  set_type(e_type_u64);
+                  m_u64 *= payload.u32();
+               } else
+               {
+                  m_u32 *= payload.u32();
+               }
+               break;
+            case e_type_i32:
+               if ((::i64) m_i32 + (::i64) payload.i32() >= 64769)
+               {
+                  set_type(e_type_i64);
+                  m_i64 *= payload.i32();
+               } else
+               {
+                  m_i32 *= payload.i32();
+               }
+               break;
+            case e_type_u64:
+               m_u64 *= payload.u64();
+               break;
+            case e_type_i64:
+               m_i64 *= payload.i64();
+               break;
+            case e_type_pu8:
+               *m_pu8 *= payload.u8();
+               break;
+            case e_type_pi8:
+               *m_pi8 *= payload.i8();
+               break;
+            case e_type_pu16:
+               *m_pu16 *= payload.u16();
+               break;
+            case e_type_pi16:
+               *m_pi16 *= payload.i16();
+               break;
+            case e_type_pu32:
+               *m_pu32 *= payload.u32();
+               break;
+            case e_type_pi32:
+               *m_pi32 *= payload.i32();
+               break;
+            case e_type_pu64:
+               *m_pu64 *= payload.u64();
+               break;
+            case e_type_pi64:
+               *m_pi64 *= payload.i64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+         };
+
+      }
+      else if (payload.is_floating())
+      {
+
+         auto etype = maximum(left_hand_integer_type(), payload.floating_type());
+
+         if (etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch (etype)
+         {
+            case e_type_f32:
+               m_f32 *= payload.u32();
+               break;
+            case e_type_f64:
+               m_f64 *= payload.f64();
+               break;
+            case e_type_pu8:
+               *m_pu8 *= payload.u8();
+               break;
+            case e_type_pi8:
+               *m_pi8 *= payload.i8();
+               break;
+            case e_type_pu16:
+               *m_pu16 *= payload.u16();
+               break;
+            case e_type_pi16:
+               *m_pi16 *= payload.i16();
+               break;
+            case e_type_pu32:
+               *m_pu32 *= payload.u32();
+               break;
+            case e_type_pi32:
+               *m_pi32 *= payload.i32();
+               break;
+            case e_type_pu64:
+               *m_pu64 *= payload.u64();
+               break;
+            case e_type_pi64:
+               *m_pi64 *= payload.i64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+
+         };
+
+      } else if (payload.is_text())
+      {
+
+         operator= (file_path().folder() / payload.file_path().name());
+
+      } else
+      {
+
+         throw ::not_implemented("yet to be done");
+
+      }
+
+   }
+   else if (is_floating())
+   {
+
+      if (payload.is_integer())
+      {
+
+         auto etype = maximum(left_hand_floating_type(), payload.integer_type());
+
+         if (etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch (etype)
+         {
+            case e_type_f32:
+               m_f32 *= payload.f32();
+               break;
+            case e_type_f64:
+               m_f64 *= payload.f64();
+               break;
+            case e_type_pf32:
+               *m_pf32 *= payload.f32();
+               break;
+            case e_type_pf64:
+               *m_pf64 *= payload.f64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+         };
+
+      } else if (payload.is_floating())
+      {
+
+         auto etype = maximum(left_hand_floating_type(), payload.floating_type());
+
+         if (etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch (etype)
+         {
+            case e_type_f32:
+               m_f32 *= payload.f32();
+               break;
+            case e_type_f64:
+               m_f64 *= payload.f64();
+               break;
+            case e_type_pf32:
+               *m_pf32 *= payload.f32();
+               break;
+            case e_type_pf64:
+               *m_pf64 *= payload.f64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+         };
+
+
+      }
+      else if (payload.is_text())
+      {
+
+         operator= (file_path().folder() / payload.file_path().name());
+
+      }
+      else
+      {
+
+         throw ::not_implemented("yet to be done");
+
+      }
+
+   }
+   else if (payload.is_text())
+   {
+
+      operator= (file_path().folder() / payload.file_path().name());
+
+   }
+   else
+   {
+
+      throw ::not_implemented("yet to be done");
+
+   }
+
+   return *this;
+
+}
+
+   
+payload &  payload::divide(const ::payload & payload)
+{
+
+   if(is_integer())
+   {
+
+      if(payload.is_integer())
+      {
+
+         auto etype = maximum(left_hand_integer_type(), payload.integer_type());
+
+         if(etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch(etype)
+         {
+            case e_type_u8:
+               if((::u16) m_u8 + (::u16) payload.u8() >= 256)
+               {
+                  set_type(e_type_u16);
+                  m_u16 /= payload.u8();
+               }
+               else
+               {
+                  m_u8 /= payload.u8();
+               }
+               break;
+            case e_type_i8:
+               if((::i16) m_i8 + (::i16) payload.i8() >= 129)
+               {
+                  set_type(e_type_i16);
+                  m_i16 /= payload.i8();
+               }
+               else
+               {
+                  m_i8 /= payload.i8();
+               }
+               break;
+            case e_type_u16:
+               if((::u32) m_u16 + (::u32) payload.u16() >= 65536)
+               {
+                  set_type(e_type_u32);
+                  m_u32 /= payload.u16();
+               }
+               else
+               {
+                  m_u16 /= payload.u16();
+               }
+               break;
+            case e_type_i16:
+               if((::i32) m_i16 + (::i32) payload.i16() >= 32769)
+               {
+                  set_type(e_type_i32);
+                  m_i32 /= payload.i16();
+               }
+               else
+               {
+                  m_i16 /= payload.i16();
+               }
+               break;
+            case e_type_u32:
+               if((::u64) m_u32 + (::u64) payload.u32() >= 65536)
+               {
+                  set_type(e_type_u64);
+                  m_u64 /= payload.u32();
+               }
+               else
+               {
+                  m_u32 /= payload.u32();
+               }
+               break;
+            case e_type_i32:
+               if((::i64) m_i32 + (::i64) payload.i32() >= 64769)
+               {
+                  set_type(e_type_i64);
+                  m_i64 /= payload.i32();
+               }
+               else
+               {
+                  m_i32 /= payload.i32();
+               }
+               break;
+            case e_type_u64:
+               m_u64 /= payload.u64();
+               break;
+            case e_type_i64:
+               m_i64 /= payload.i64();
+               break;
+            case e_type_pu8:
+               *m_pu8 /= payload.u8();
+               break;
+            case e_type_pi8:
+               *m_pi8 /= payload.i8();
+               break;
+            case e_type_pu16:
+               *m_pu16 /= payload.u16();
+               break;
+            case e_type_pi16:
+               *m_pi16 /= payload.i16();
+               break;
+            case e_type_pu32:
+               *m_pu32 /= payload.u32();
+               break;
+            case e_type_pi32:
+               *m_pi32 /= payload.i32();
+               break;
+            case e_type_pu64:
+               *m_pu64 /= payload.u64();
+               break;
+            case e_type_pi64:
+               *m_pi64 /= payload.i64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+         };
+
+      }
+      else if(payload.is_floating())
+      {
+
+         auto etype = maximum(left_hand_integer_type(), payload.floating_type());
+
+         if(etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch(etype)
+         {
+            case e_type_f32:
+               m_f32 /= payload.u32();
+               break;
+            case e_type_f64:
+               m_f64 /= payload.f64();
+               break;
+            case e_type_pu8:
+               *m_pu8 /= payload.u8();
+               break;
+            case e_type_pi8:
+               *m_pi8 /= payload.i8();
+               break;
+            case e_type_pu16:
+               *m_pu16 /= payload.u16();
+               break;
+            case e_type_pi16:
+               *m_pi16 /= payload.i16();
+               break;
+            case e_type_pu32:
+               *m_pu32 /= payload.u32();
+               break;
+            case e_type_pi32:
+               *m_pi32 /= payload.i32();
+               break;
+            case e_type_pu64:
+               *m_pu64 /= payload.u64();
+               break;
+            case e_type_pi64:
+               *m_pi64 /= payload.i64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+
+         };
+
+      }
+      else if(payload.is_text())
+      {
+
+         operator= (file_path() / payload.file_path());
+
+      }
+      else
+      {
+
+         throw ::not_implemented("yet to be done");
+
+      }
+
+   }
+   else if(is_floating())
+   {
+
+      if(payload.is_integer())
+      {
+
+         auto etype = maximum(left_hand_floating_type(), payload.integer_type());
+
+         if(etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch(etype)
+         {
+            case e_type_f32:
+               m_f32 /= payload.f32();
+               break;
+            case e_type_f64:
+               m_f64 /= payload.f64();
+               break;
+            case e_type_pf32:
+               *m_pf32 /= payload.f32();
+               break;
+            case e_type_pf64:
+               *m_pf64 /= payload.f64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+         };
+
+      }
+      else if(payload.is_floating())
+      {
+
+         auto etype = maximum(left_hand_floating_type(), payload.floating_type());
+
+         if(etype != get_type())
+         {
+
+            set_type(etype);
+
+         }
+
+         switch(etype)
+         {
+            case e_type_f32:
+               m_f32 /= payload.f32();
+               break;
+            case e_type_f64:
+               m_f64 /= payload.f64();
+               break;
+            case e_type_pf32:
+               *m_pf32 /= payload.f32();
+               break;
+            case e_type_pf64:
+               *m_pf64 /= payload.f64();
+               break;
+            default:
+               throw ::exception(error_unexpected, "unexpected result from cast/promotion");
+         };
+
+
+      }
+      else if(payload.is_text())
+      {
+
+         operator= (file_path() / payload.file_path());
+
+      }
+      else
+      {
+
+         throw ::not_implemented("yet to be done");
+
+      }
+
+   }
+   else if(payload.is_text())
+   {
+
+      operator= (file_path() / payload.file_path());
+
+   }
+   else
+   {
+
+      throw ::not_implemented("yet to be done");
+
+   }
+
+   return *this;
+
+}
+
+
+
+
+
+
+CLASS_DECL_ACME void copy(string * pstring, const ::payload * ppayload)
+{
+
+   *pstring = ppayload->get_string();
+
+}
+
+
+
+//template < primitive_payload PAYLOAD, primitive_number NUMBER >
+//inline void copy(PAYLOAD * ppayload, const NUMBER * pnumber)
+//{
+//
+//   *ppayload = *pnumber;
+//
+//}
+

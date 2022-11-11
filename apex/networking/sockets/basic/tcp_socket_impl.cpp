@@ -1224,7 +1224,7 @@
 //
 //      SetNonblocking(true);
 //
-//      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_mutex);
+//      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_pmutex);
 //
 //      if (is_true("from_pool"))
 //         return;
@@ -1331,7 +1331,7 @@
 //
 //      SetNonblocking(true);
 //
-//      //synchronous_lock slMap(psystem->sockets().m_servercontextmap.m_mutex);
+//      //synchronous_lock slMap(psystem->sockets().m_servercontextmap.m_pmutex);
 //
 //      //{
 //      //   if(m_psslcontext.is_set()
@@ -1716,7 +1716,7 @@
 ////         if (keyfile.ends_ci(".cat"))
 ////         {
 ////
-////            strCert = m_pcontext->m_papexcontext->file().as_string(keyfile);
+////            strCert = file()->as_string(keyfile);
 ////
 ////         }
 ////         else
@@ -1724,7 +1724,7 @@
 ////
 ////            strCert = keyfile;
 ////
-////            ::str().begins_eat_ci(strCert, "cat://");
+////            strCert.begins_eat_ci("cat://");
 ////
 ////         }
 ////
@@ -1875,7 +1875,7 @@
 ////
 ////
 ////      {
-////         synchronous_lock synchronouslock(mutex());
+////         synchronous_lock synchronouslock(this->synchronization());
 ////         int i;
 ////
 ////         auto psystem = get_system()->m_papexsystem;
@@ -2393,7 +2393,7 @@
 ////
 ////               string str = data;
 ////
-////               if(::str().begins_eat(str,"*."))
+////               if(str.begins_eat("*."))
 ////               {
 ////
 ////                  string strCommon = common_name;
@@ -2483,7 +2483,7 @@
 ////
 ////                        string str = strDnsName;
 ////
-////                        if (::str().begins_eat(str, "*."))
+////                        if (str.begins_eat("*."))
 ////                        {
 ////
 ////                           string strCommon = common_name;

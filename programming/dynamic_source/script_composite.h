@@ -21,7 +21,7 @@ namespace dynamic_source
       ~script_composite() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       virtual void destroy() override;
 

@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "location.h"
+#include "dimension.h"
 
 
 class CLASS_DECL_ACME box

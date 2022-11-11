@@ -1,6 +1,11 @@
 #include "framework.h"
 #include "bitmap_source_buffer.h"
+#include "acme/parallelization/mutex.h"
+#include "acme/parallelization/single_lock.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
 #include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/platform/context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction.h"
@@ -95,13 +100,13 @@ namespace graphics
 
       strMutexName.format(szName, strBitmapSource.c_str());
 
-      m_pmutexBitmapSource = __new(::mutex(this, false, strMutexName));
+      m_pmutexBitmapSource = acmenode()->open_local_named_mutex(this, strMutexName);
 
       synchronous_lock synchronouslock(m_pmutexBitmapSource);
 
       ::file::path pathFolder;
 
-      pathFolder = m_pcontext->m_papexcontext->dir().config();
+      pathFolder = dir()->config();
 
       ::file::path path;
 

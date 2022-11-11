@@ -23,7 +23,7 @@ namespace user
    }
 
 
-   //style::style(::object * pobject) :
+   //style::style(::particle * pparticle) :
    //{
 
    //   m_puserstyle = this;
@@ -49,12 +49,12 @@ namespace user
    }
 
 
-   void style::initialize(::object * pobject)
+   void style::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      style_base::initialize(pobject);
+      style_base::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -947,7 +947,7 @@ namespace user
    }
 
 
-   ::color::color style::get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate) const
+   ::color::color style::get_color(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
    {
 
       if (::is_set(pinteraction))
@@ -1087,7 +1087,7 @@ namespace user
          if (is_dark_mode())
          {
 
-            crBk = m_psystem->node()->background_color();
+            crBk = acmenode()->background_color();
 
             //crBk = argb(255, 0x40, 0x40, 0x40);
 
@@ -1095,7 +1095,7 @@ namespace user
          else
          {
 
-            crBk = m_psystem->node()->background_color();
+            crBk = acmenode()->background_color();
             //crBk = argb(255, 255, 255, 255);
 
          }
@@ -1172,7 +1172,7 @@ namespace user
    }
 
 
-   bool style::get_int(const ::user::interaction * pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate) const
+   bool style::get_int(::user::interaction * pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate)
    {
 
       if(eint == e_int_scroll_bar_width)
@@ -1189,7 +1189,7 @@ namespace user
    }
 
 
-   bool style::get_double(const ::user::interaction* pinteraction, double & d, ::user::enum_double edouble, ::user::enum_state estate) const
+   bool style::get_double(::user::interaction* pinteraction, double & d, ::user::enum_double edouble, ::user::enum_state estate)
    {
 
       return false;

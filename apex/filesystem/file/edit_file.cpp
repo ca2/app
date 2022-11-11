@@ -1,7 +1,10 @@
 ﻿#include "framework.h"
-#include "_data.h"
+#include "edit_file.h"
+#include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/buffered_file.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/data/listener.h"
 
 
 #define MAX_STOP (::numeric_info < filesize >::get_maximum_value())
@@ -905,7 +908,7 @@ namespace file
    void edit_file::flush()
    {
       
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto pfile = create_memory_file();
 

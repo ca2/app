@@ -1,9 +1,10 @@
 ﻿#include "framework.h"
 #include "folder_list_data.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "apex/database/_binary_stream.h"
+#include "apex/platform/application.h"
 #include "core/user/user/list.h"
-
 
 
 namespace filemanager
@@ -13,7 +14,7 @@ namespace filemanager
    folder_list_data::folder_list_data()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -24,26 +25,12 @@ namespace filemanager
    }
 
 
-   void folder_list_data::assert_ok() const
-   {
-
-
-   }
-
-
-   void folder_list_data::dump(dump_context& dumpcontext) const
-   {
-
-
-   }
-
-
-   void folder_list_data::on_initialize_object()
+   void folder_list_data::on_initialize_particle()
    {
 
       //auto estatus = 
       
-      ::user::list_data::on_initialize_object();
+      ::user::list_data::on_initialize_particle();
 
       //if (!estatus)
       //{
@@ -54,7 +41,7 @@ namespace filemanager
 
       //estatus = 
       
-      ::database::client::on_initialize_object();
+      ::database::client::on_initialize_particle();
 
       //if (!estatus)
       //{
@@ -75,7 +62,7 @@ namespace filemanager
    void folder_list_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if(psubitem->m_iSubItem == 0)
       {
@@ -109,7 +96,7 @@ namespace filemanager
    void folder_list_data::GetSel(::user::list * plist, string_array & stra)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       string_array wstraTotal;
 
@@ -149,7 +136,7 @@ namespace filemanager
    ::count folder_list_data::_001GetItemCount()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       string_array straTotal;
 
@@ -168,7 +155,7 @@ namespace filemanager
    bool folder_list_data::add_unique(const string_array& stra)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       string_array straFolderPath;
 
@@ -203,7 +190,7 @@ namespace filemanager
    bool folder_list_data::add_unique(const string_array & stra, i32_array & baRecursive)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       string_array straFolderPath;
 
@@ -266,7 +253,7 @@ namespace filemanager
    bool folder_list_data::erase(const string_array & stra)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       string_array straFolderPath;
 
@@ -344,7 +331,7 @@ namespace filemanager
    bool folder_list_data::set_recursive(::index iItem, bool bRecursive)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       i32_array iaRecursive;
 
@@ -382,7 +369,7 @@ namespace filemanager
    bool folder_list_data::get_recursive(::index iItem)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       i32_array iaRecursive;
 

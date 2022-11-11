@@ -4,6 +4,8 @@
 #include "primitive_impl.h"
 #include "window_util.h"
 #include "interaction.h"
+#include "acme/primitive/collection/list.h"
+#include "acme/primitive/geometry2d/_collection.h"
 
 
 #ifdef __DEBUG
@@ -112,7 +114,8 @@ namespace user
       double                                    m_dOutputFps;
       point_i32                                 m_pointMouseMove;
       ::size_i32                                m_sizeDrawn;
-      reference_addressa                        m_ptraRedraw;
+      ::size_i32                                m_sizeSetWindowSizeRequest;
+      particle_array                            m_particleaRedraw;
 
       //::rectangle_i32                           m_rectangleUpdateBuffer;
       ::thread_pointer                          m_pthreadMouseLeave;
@@ -132,8 +135,8 @@ namespace user
 
       ::pointer<::graphics::graphics>        m_pgraphics;
 
-      ::pointer<::mutex>                       m_pmutexDraw;
-      ::pointer<::mutex>                       m_pmutexRedraw;
+      ::pointer < ::mutex >                     m_pmutexDraw;
+      ::pointer < ::mutex >                     m_pmutexRedraw;
 
       ::user::interaction_ptra                  m_userinteractionaMouseHover;
 
@@ -168,8 +171,8 @@ namespace user
 
       
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
       virtual void set_prodevian_fps(double dProdevianFps);
       virtual void set_nominal_fps(double dNominalFps);
@@ -188,7 +191,7 @@ namespace user
 
       virtual void on_tsf_activate(bool bActivate);
 
-      virtual ::mutex * draw_mutex();
+      virtual ::pointer< ::mutex > draw_mutex();
 
       virtual ::user::interaction_impl * get_user_interaction_impl() override;
 
@@ -385,7 +388,7 @@ namespace user
 
 
 
-      virtual bool _is_window() const override;
+      bool _is_window() override;
 
 #if(WINVER >= 0x0500)
 
@@ -744,7 +747,7 @@ namespace user
       bool is_composite() override;
 
 
-      virtual void set_finish(::object * pobject);
+      virtual void set_finish(::particle * pparticle);
 
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
@@ -761,10 +764,10 @@ namespace user
       //virtual void impl_erase_keyboard_focus(::user::primitive * pprimitive) override;
       //virtual void impl_clear_keyboard_focus() override;
 
-      virtual void redraw_add(::object * point_i32) override;
-      virtual void redraw_erase(::object * point_i32) override;
+      virtual void redraw_add(::particle * pparticle) override;
+      virtual void redraw_erase(::particle * pparticle) override;
       virtual bool has_redraw() override;
-      virtual ::mutex * mutex_redraw();
+      virtual ::particle * mutex_redraw();
 
       virtual void _001OnTriggerMouseInside() override;
 
@@ -834,7 +837,7 @@ namespace user
       ::user::interaction * m_puiForward;
 
 
-      guie_message_wnd(::property_object * pobject);
+      guie_message_wnd(::property_object * pparticle);
 
 
       virtual void message_handler(::message::message * pmessage);

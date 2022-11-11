@@ -3,6 +3,12 @@
 #pragma once
 
 
+#include "topic.h"
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/datetime/earth_time.h"
+#include "acme/primitive/primitive/payload.h"
+
+
 class CLASS_DECL_ACME extended_topic :
    virtual public ::topic,
    virtual public ::object
@@ -15,10 +21,10 @@ public:
    enum_timer                             m_etimer;
    u32                                    m_uiVKey;
    u32                                    m_uiFlags;
-   ::earth::time                       m_timeOuterBeg;
-   ::earth::time                       m_timeOuterEnd;
-   ::earth::time                       m_timeBeg;
-   ::earth::time                       m_timeEnd;
+   ::earth::time                          m_timeOuterBeg;
+   ::earth::time                          m_timeOuterEnd;
+   ::earth::time                          m_timeBeg;
+   ::earth::time                          m_timeEnd;
 
 
    ::payload                              m_payload;

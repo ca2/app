@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "font.h"
+#include "acme/exception/interface_only.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 
@@ -39,14 +40,14 @@ namespace write_text
    }
 
 
-   void font::dump(dump_context & dumpcontext) const
-   {
-
-      __UNREFERENCED_PARAMETER(dumpcontext);
-
-      throw ::interface_only();
-
-   }
+//   void font::dump(dump_context & dumpcontext) const
+//   {
+//
+//      __UNREFERENCED_PARAMETER(dumpcontext);
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    void font::create_text_metrics(::draw2d::graphics * pgraphics)
@@ -261,7 +262,7 @@ namespace write_text
    string font::get_font_descriptor_face()
    {
       
-      return m_psystem->m_paurasystem->draw2d()->write_text()->get_font_descriptor_face(m_fontdescriptor);
+      return acmesystem()->m_paurasystem->draw2d()->write_text()->get_font_descriptor_face(m_fontdescriptor);
       
    }
 
@@ -482,7 +483,7 @@ namespace write_text
 //   bool font::AddGlyph(::u32 user)
 //   {
 //
-//      //   single_lock synchronouslock(&m_mutex);
+//      //   single_lock synchronouslock(m_pmutex);
 //      //   synchronouslock.lock(U32_INFINITE_TIMEOUT);
 //
 //      return TRUE;

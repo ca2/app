@@ -143,9 +143,9 @@ bool is_space_key(XIRawEvent *event)
 
 
 // Tutor Exilius Q(t)List streaming contribution
-::mutex * g_pmutexX11Runnable = nullptr;
+::pointer< ::mutex > g_pmutexX11Runnable = nullptr;
 list < ::pointer<::matter >>* g_prunnableptrlX11 = nullptr;
-//::mutex * g_pmutexX11Sync = nullptr;
+//::pointer< ::mutex > g_pmutexX11Sync = nullptr;
 //manual_reset_event * g_peventX11Sync = nullptr;
 //::pointer<::matter>g_prunnableX11Sync;
 Window g_windowX11Client = 0;
@@ -3718,7 +3718,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                      if(pinteraction->layout().design().display() == ::e_display_iconic)
                      {
 
-                        //m_psystem->m_pacmefile->put_contents("/home/camilo/xxx.txt", "");
+                        //acmefile()->put_contents("/home/camilo/xxx.txt", "");
 
                         // 1111111111111111111111111111111111111111111
 
@@ -4675,7 +4675,7 @@ int_bool get_client_rect(oswindow window, RECTANGLE_I32 * prectangle)
 int_bool ca2_GetClientRect(oswindow window, RECTANGLE_I32 * prectangle)
 {
 
-   synchronous_lock synchronouslock(window->m_pimpl->m_puserinteraction->mutex());
+   synchronous_lock synchronouslock(window->m_pimpl->m_puserinteraction->synchronization());
 
    window->m_pimpl->m_puserinteraction->get_window_rect(prectangle);
 
@@ -4786,21 +4786,21 @@ int_bool os_init_windowing()
 
    acme_defer_os_init_windowing();
 
-   g_pmutexX11Runnable = memory_new ::mutex();
+   g_pmutexX11Runnable = memory_new ::pointer < ::mutex >();
 
    g_prunnableptrlX11 = memory_new list < ::pointer<::matter >>);
 
-//   g_pmutexX11Sync = memory_new ::mutex();
+//   g_pmutexX11Sync = memory_new ::pointer < ::mutex >();
 
    //g_peventX11Sync = memory_new manual_reset_event();
 
    oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 
-   oswindow_data::s_pmutex = memory_new ::mutex;
+   oswindow_data::s_pmutex = memory_new ::pointer < ::mutex >;
 
    osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
 
-   osdisplay_data::s_pmutex = memory_new ::mutex;
+   osdisplay_data::s_pmutex = memory_new ::pointer < ::mutex >;
 
 
    return true;
@@ -5132,9 +5132,9 @@ int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,
 
 
 
-extern ::mutex * g_pmutexX11Runnable;
+extern ::pointer< ::mutex > g_pmutexX11Runnable;
 extern list < ::pointer<::matter >>* g_prunnableptrlX11;
-extern ::mutex * g_pmutexX11Sync;
+extern ::pointer< ::mutex > g_pmutexX11Sync;
 extern manual_reset_event * g_peventX11Sync;
 extern ::pointer<::matter>g_prunnableX11Sync;
 
@@ -5309,7 +5309,7 @@ bool post_ui_message(const MESSAGE & message)
 
    }
 
-   synchronous_lock ml(pmq->mutex());
+   synchronous_lock ml(pmq->synchronization());
 
    if(message.message == e_message_quit)
    {

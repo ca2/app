@@ -6,7 +6,7 @@
 //{
 //   // // DECLARE_DYNCREATE(html_child_frame)
 //public:
-//   html_child_frame(::object * pobject);
+//   html_child_frame(::particle * pparticle);
 //   virtual ~html_child_frame();
 //
 //   simple_toolbar        m_toolbar;

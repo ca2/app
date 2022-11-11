@@ -20,7 +20,10 @@ namespace apex
 
       app_launcher();
 
-      virtual void initialize_app_launcher(::object * pobject, string strPlatform, string strApp);
+      virtual void initialize_app_launcher(::particle * pparticle, string strPlatform, string strApp);
+
+
+      virtual string get_executable_extension();
 
       virtual string get_executable_path();
 

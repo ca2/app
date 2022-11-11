@@ -5,12 +5,15 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+
+
 namespace file
 {
 
 
    class CLASS_DECL_ACME enumerator :
-      virtual public ::matter
+      virtual public ::particle
    {
 
    public:

@@ -4,8 +4,8 @@ namespace sockets
 {
 
    sip_server::sip_server(::axis::application * papp) :
-      ::object(pobject),
-      thread(pobject)
+      ::object(pparticle),
+      thread(pparticle)
    {
    }
 

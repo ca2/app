@@ -3,6 +3,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 namespace interprocess
 {
 

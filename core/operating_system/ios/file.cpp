@@ -31,8 +31,8 @@ namespace ios
 
    }
 
-//   file::file(::object * pobject, i32 hFile) :
-//      ::object(pobject)
+//   file::file(::particle * pparticle, i32 hFile) :
+//      ::object(pparticle)
 //   {
 //
 //      m_iFile = hFile;
@@ -41,8 +41,8 @@ namespace ios
 //
 //   }
 //
-//   file::file(::object * pobject, const ::string & lpszFileName, ::u32 nOpenFlags) :
-//      ::object(pobject)
+//   file::file(::particle * pparticle, const ::string & lpszFileName, ::u32 nOpenFlags) :
+//      ::object(pparticle)
 //   {
 //
 //      ASSERT(__is_valid_string(lpszFileName));
@@ -105,7 +105,7 @@ namespace ios
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         if(!pcontext->m_papexcontext->dir().create(path.folder()))
+         if(!pcontext->m_papexcontext->dir()->create(path.folder()))
          {
 
             return { __new(::file::exception(::error_file_not_found, -1, -1, path, eopenParam)) };
@@ -211,7 +211,7 @@ namespace ios
 
 
             //            vfxThrowFileexception(::macos::file_exception::os_error_to_exception(dwLastError), dwLastError, m_strFileName);
-            return { __new(::file::exception(::file::errno_to_status(iErrNo), -1, -1, path, eopen)) };
+            return { __new(::file::exception(::file::errno_status(iErrNo), -1, -1, path, eopen)) };
 
             //}
 
@@ -219,7 +219,7 @@ namespace ios
 
          /*try
           {
-          get_app()->m_psystem->m_spfilesystem.m_p->FullPath(m_wstrFileName, m_wstrFileName);
+          get_app()->acmesystem()->m_spfilesystem.m_p->FullPath(m_wstrFileName, m_wstrFileName);
           }
           catch(...)
           {
@@ -250,7 +250,7 @@ namespace ios
 
             //            vfxThrowFileexception(::macos::file_exception::os_error_to_exception(dwLastError), dwLastError, m_strFileName);
 
-            return { __new(::file::exception(::file::errno_to_status(iErrNo), -1, -1, path, eopen)) };
+            return { __new(::file::exception(::file::errno_status(iErrNo), -1, -1, path, eopen)) };
 
             //}
 
@@ -752,7 +752,7 @@ CLASS_DECL_CORE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 }
 
 
-//void CLASS_DECL_CORE vfxThrowFileException(::object * pobject, void cause, ::i32 lOsError, const ::string & lpszFileName /* == nullptr */)
+//void CLASS_DECL_CORE vfxThrowFileException(::particle * pparticle, void cause, ::i32 lOsError, const ::string & lpszFileName /* == nullptr */)
 //{
 //
 //   throw ::exception(::file::exception(cause, lOsError, lpszFileName));
@@ -760,7 +760,7 @@ CLASS_DECL_CORE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 //}
 //
 //
-//::file::exception * CLASS_DECL_CORE get_FileException(::object * pobject, void cause, ::i32 lOsError, const ::string & lpszFileName /* == nullptr */)
+//::file::exception * CLASS_DECL_CORE get_FileException(::particle * pparticle, void cause, ::i32 lOsError, const ::string & lpszFileName /* == nullptr */)
 //{
 //
 //   return __new(::file::exception(cause, lOsError, lpszFileName));

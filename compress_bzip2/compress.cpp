@@ -49,12 +49,12 @@ namespace compress_bzip2
    }
 
 
-   void compress::initialize(::object* pobject)
+   void compress::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{

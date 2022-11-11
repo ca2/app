@@ -30,11 +30,11 @@ namespace file
       public:
 
 
-         ::mutex                m_mutex;
+         ::pointer < ::mutex >                m_pmutex;
          ::duration m_durationTimeout;
 
 
-         is_dir_map(::object * pobject);
+         is_dir_map(::particle * pparticle);
 
 
          bool lookup(const ::file::path & strPath, bool &bIsDir, u32 & dwLastError);
@@ -59,8 +59,8 @@ namespace file
          ::file::path         m_pathUser;
          ::file::path         m_pathHome;
 
-         dir_system_heap(::object * pobject) :
-            m_isdirmap(pobject)
+         dir_system_heap(::particle * pparticle) :
+            m_isdirmap(pparticle)
          {
 
 

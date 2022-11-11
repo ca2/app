@@ -1,8 +1,11 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "department.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
 #include "experience.h"
 #include "frame.h"
+#include "acme/exception/exit.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/application.h"
 #include "axis/platform/session.h"
 #include "base/platform/system.h"
 #include "base/user/user/user.h"
@@ -25,12 +28,12 @@ namespace experience
    }
 
 
-   ::pointer<::experience::experience>department::create_experience(::object * pobject, const ::string & strExperienceRequest)
+   ::pointer<::experience::experience>department::create_experience(::particle * pparticle, const ::string & strExperienceRequest)
    {
 
       string strExperience = experience_name(strExperienceRequest);
 
-      auto & pfactory = m_psystem->factory("experience", strExperience);
+      auto & pfactory = acmesystem()->factory("experience", strExperience);
 
       if (!pfactory)
       {
@@ -48,7 +51,7 @@ namespace experience
 
       }
 
-      pexperience->initialize(pobject);
+      pexperience->initialize(pparticle);
 
       pexperience->m_pfactory = pfactory;
 
@@ -59,7 +62,7 @@ namespace experience
    }
 
 
-   ::pointer<::experience::experience>department::experience(::object * pobject, const ::string & strExperienceRequest)
+   ::pointer<::experience::experience>department::experience(::particle * pparticle, const ::string & strExperienceRequest)
    {
 
       auto & pexperience = m_mapExperience[experience_name(strExperienceRequest)];
@@ -77,7 +80,7 @@ namespace experience
 
          {
 
-            auto psystem = m_psystem->m_pbasesystem;
+            auto psystem = acmesystem()->m_pbasesystem;
 
             auto strExperience = psystem->payload("experience").string();
 
@@ -87,7 +90,7 @@ namespace experience
 
          {
 
-            auto papp = pobject->get_app();
+            auto papp = pparticle->acmeapplication();
 
             {
 
@@ -111,7 +114,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().safe_get_string(m_psystem->m_pacmedirectory->config() / papp->m_papexapplication->m_strAppName / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file()->safe_get_string(acmedirectory()->config() / papp->m_papexapplication->m_strAppName / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -119,7 +122,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().safe_get_string(m_psystem->m_pacmedirectory->config() / ::file::path(papp->m_papexapplication->m_strAppName).folder() / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file()->safe_get_string(acmedirectory()->config() / ::file::path(papp->m_papexapplication->m_strAppName).folder() / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -127,7 +130,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().safe_get_string(m_psystem->m_pacmedirectory->config() / ::file::path(papp->m_papexapplication->m_strAppName).name() / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file()->safe_get_string(acmedirectory()->config() / ::file::path(papp->m_papexapplication->m_strAppName).name() / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -135,7 +138,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().safe_get_string(m_psystem->m_pacmedirectory->config() / "system/experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file()->safe_get_string(acmedirectory()->config() / "system/experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -143,7 +146,7 @@ namespace experience
 
                {
 
-                  string strExperience = pcontext->m_papexcontext->file().safe_get_string(m_psystem->m_pacmedirectory->config() / "system/experience.txt");
+                  string strExperience = pcontext->m_papexcontext->file()->safe_get_string(acmedirectory()->config() / "system/experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -172,7 +175,7 @@ namespace experience
          for (auto& str : straExperience)
          {
 
-            pexperienceSelected = create_experience(pobject, str);
+            pexperienceSelected = create_experience(pparticle, str);
 
             if (pexperienceSelected.is_set())
             {
@@ -186,7 +189,7 @@ namespace experience
          if (pexperienceSelected.is_null())
          {
 
-            auto psystem = m_psystem->m_pbasesystem;
+            auto psystem = acmesystem()->m_pbasesystem;
 
             throw exit_exception(psystem, "no experience_* plugin installed");
 
@@ -201,12 +204,12 @@ namespace experience
    }
 
 
-   ::pointer<::experience::frame>department::frame_experience(::object * pobject, const ::string & strExperienceRequest, const ::string & strFrameSchema)
+   ::pointer<::experience::frame>department::frame_experience(::particle * pparticle, const ::string & strExperienceRequest, const ::string & strFrameSchema)
    {
 
       auto strExperience = experience_name(strExperienceRequest);
 
-      auto pexperience = experience(pobject, strExperience);
+      auto pexperience = experience(pparticle, strExperience);
 
       if (!pexperience)
       {

@@ -2,15 +2,8 @@
 // Created by camilo on 12/11/2020.
 //
 #include "framework.h"
-
-
-// CLASS_DECL_ACME ::string __string(const ::e_status & estatus)
-// {
-
-//    str.format("%" PRIestatus, estatus.m_estatus);
-
-// }
-
+#include "acme/primitive/string/string.h"
+#include "acme/primitive/string/hex.h"
 
 
 

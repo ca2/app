@@ -1,17 +1,22 @@
 #pragma once
 
 
+#include "dispatcher.h"
+#include "acme/primitive/collection/atom_array.h"
+#include "acme/primitive/primitive/object.h"
+
+
 class CLASS_DECL_APEX channel :
    virtual public ::object
 {
 public:
 
 
-   static ::pointer<::mutex>                      s_pmutexChannel;
-   ::pointer<::channel>                           m_pchannel;
-   id_array                                        m_idaHandledCommands;
-   ::message::dispatcher_map                       m_dispatchermap;
-   //::procedure_map                                 m_proceduremap;
+   //static critical_section                            s_criticalsectionChannel;
+   ::pointer<::channel>                               m_pchannel;
+   atom_array                                         m_atomaHandledCommands;
+   ::message::dispatcher_map                          m_dispatchermap;
+   //::procedure_map                                  m_proceduremap;
 
 
    channel();
@@ -24,13 +29,11 @@ public:
    virtual void install_message_routing(::channel* pchannel) override;
 
 
-   static inline ::mutex * channel_mutex() { return s_pmutexChannel; }
-
    virtual void destroy() override;
 
-   virtual void erase_handler(::matter * pmatter);
+   virtual void erase_handler(::particle * pparticle);
 
-   virtual void transfer_handler(::message::dispatcher_map & dispatchermap, ::matter * pmatter);
+   virtual void transfer_handler(::message::dispatcher_map & dispatchermap, ::particle* pparticle);
 
    virtual void erase_all_routes();
 
@@ -68,11 +71,11 @@ public:
    //}
 
 
-   ::matter * add_message_handler(const ::atom & atom, const ::message::dispatcher & dispatcher);
+   ::particle * add_message_handler(const ::atom & atom, const ::message::dispatcher & dispatcher);
 
 
    template < typename T1, typename T2 >
-   ::matter * add_message_handler(const ::atom & atom, T1 * p, void (T2:: * pfn)(::message::message *))
+   ::particle* add_message_handler(const ::atom & atom, T1 * p, void (T2:: * pfn)(::message::message *))
    {
 
       return add_message_handler(atom, { p, pfn });
@@ -80,7 +83,7 @@ public:
    }
 
 
-   ::matter * add_command_prober(const ::atom & atom, const ::message::dispatcher & dispatcher)
+   ::particle* add_command_prober(const ::atom & atom, const ::message::dispatcher & dispatcher)
    {
 
       return add_message_handler(atom.compounded(::atom::e_type_command_probe), dispatcher);
@@ -89,15 +92,15 @@ public:
 
 
    template < typename T1, typename T2 >
-   ::matter * add_command_prober(const ::atom & atom, T1 * p, void (T2:: * pfn)(::message::message *))
+   ::particle* add_command_prober(const ::atom & atom, T1 * p, void (T2:: * pfn)(::message::message *))
    {
 
       return add_command_prober(atom, { p, pfn });
 
    }
+   
 
-
-   ::matter * add_command_handler(const ::atom & atom, const ::message::dispatcher & dispatcher)
+   ::particle* add_command_handler(const ::atom & atom, const ::message::dispatcher & dispatcher)
    {
 
       return add_message_handler(atom.compounded(::atom::e_type_command), dispatcher);
@@ -105,13 +108,21 @@ public:
    }
 
 
-   template < typename T1, typename T2 >
-   ::matter * add_command_handler(const ::atom & atom, T1 * p, void (T2:: * pfn)(::message::message *))
-   {
+   //::particle* add_command_handler(const ::atom & atom, const ::function < void(::message::message * ) > & functionHandler)
+   //{
 
-      return add_command_handler(atom, { p, pfn });
+   //   return add_message_handler(atom.compounded(::atom::e_type_command), functionHandler);
 
-   }
+   //}
+
+
+   //template < typename T1, typename T2 >
+   //::particle* add_command_handler(const ::atom & atom, T1 * p, void (T2:: * pfn)(::message::message *))
+   //{
+
+   //   return add_command_handler(atom, { p, pfn });
+
+   //}
 
 
    void default_toggle_check_handling(const ::atom& atom);
@@ -134,6 +145,10 @@ public:
   
 
 };
+
+
+#define MESSAGE_LINK(atom, pchannel, preceiver, phandler) \
+   pchannel->add_message_handler((enum_message) (atom), { preceiver, phandler } )
 
 
 

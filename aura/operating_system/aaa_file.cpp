@@ -1,15 +1,15 @@
 #include "framework.h"
 
 
-int_bool m_psystem->m_pacmefile->put_contents(const ::string & path, const ::string & contents)
+int_bool acmefile()->put_contents(const ::string & path, const ::string & contents)
 {
 
-   return m_psystem->m_pacmefile->put_contents(path, contents, strlen(contents));
+   return acmefile()->put_contents(path, contents, strlen(contents));
 
 }
 
 
-CLASS_DECL_AURA bool _os_resolve_alias(::object * pobject, ::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount);
+CLASS_DECL_AURA bool _os_resolve_alias(::particle * pparticle, ::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount);
 
 CLASS_DECL_AURA bool _os_may_have_alias(const ::string & psz);
 

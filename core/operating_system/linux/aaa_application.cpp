@@ -14,8 +14,8 @@
 namespace aura
 {
 
-//   application::application(::object * pobject) :
-//      ::object(pobject)
+//   application::application(::particle * pparticle) :
+//      ::object(pparticle)
 //   {
 //
 ////      m_pthreadimpl.create(this);

@@ -66,7 +66,7 @@ bool context::_os_resolve_alias(::file::path & path, const ::string & psz, ::use
 #endif
 
 //
-//CLASS_DECL_CORE bool _os_resolve_alias(::object * pobject, ::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+//CLASS_DECL_CORE bool _os_resolve_alias(::particle * pparticle, ::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
 //{
 //
 //   return _os_resolve_alias(path, psz, pinteraction, bNoUI, bNoMount);

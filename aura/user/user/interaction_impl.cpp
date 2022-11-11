@@ -1,32 +1,42 @@
 ﻿#include "framework.h"
-#ifdef WINDOWS_DESKTOP
-#include "apex/operating_system.h"
-#endif
-#include "aura/platform/message_queue.h"
-#include "aura/user/user/_constant.h"
+#include "interaction_impl.h"
+#include "interaction.h"
+#include "interaction_scaler.h"
+#include "system.h"
+#include "user.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
-#include "aura/operating_system/_node.h"
+//#include "aura/operating_system/_node.h"
 //#include "acme/operating_system/_user.h"
-#include "aura/graphics/graphics/_.h"
-#include "aura/graphics/graphics/_graphics.h"
+//#include "aura/graphics/graphics/_.h"
+//#include "aura/graphics/graphics/_graphics.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/mutex.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/text_editor_interface.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
+#include "aura/windowing/monitor.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/display.h"
-#include "interaction_impl.h"
-#include "interaction.h"
-#include "system.h"
-#include "user.h"
 #include "aura/message/user.h"
-#include "interaction_scaler.h"
+#include "aura/platform/message_queue.h"
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
 
+
+#ifdef WINDOWS_DESKTOP
+
+
+//#include "acme/_operating_system.h"
+
+
+#endif
 
 point_i32 g_pointLastBottomRight;
 
@@ -103,7 +113,7 @@ namespace user
       m_bUpdatingBuffer = false;
       m_bCursorRedraw = false;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_bScreenRelativeMouseMessagePosition  = true;
       m_bTranslateMouseMessageCursor         = true;
@@ -135,13 +145,13 @@ namespace user
    }
 
 
-   ::mutex * interaction_impl::draw_mutex()
+   ::pointer< ::mutex > interaction_impl::draw_mutex()
    {
 
       if (m_pmutexDraw == nullptr)
       {
 
-         m_pmutexDraw = __new(::mutex());
+         __construct(m_pmutexDraw);
 
       }
 
@@ -479,12 +489,12 @@ namespace user
    void interaction_impl::operating_system_create_host()
    {
 
-      //      auto pwindowMain = m_psystem->m_paurasystem->m_pwindowMain;
+      //      auto pwindowMain = acmesystem()->m_paurasystem->m_pwindowMain;
       //
       //      if (pwindowMain && !pwindowMain->m_puserinteractionimpl)
       //      {
       //
-      //         m_pwindow = m_psystem->m_paurasystem->m_pwindowMain;
+      //         m_pwindow = acmesystem()->m_paurasystem->m_pwindowMain;
       //
       //         m_pwindow->m_puserinteractionimpl = this;
       //
@@ -505,10 +515,10 @@ namespace user
       //
       //         //}
       //
-      //         if (!m_psystem->m_paurasystem->m_pwindowMain)
+      //         if (!acmesystem()->m_paurasystem->m_pwindowMain)
       //         {
       //
-      //            m_psystem->m_paurasystem->m_pwindowMain = m_pwindow;
+      //            acmesystem()->m_paurasystem->m_pwindowMain = m_pwindow;
       //
       //         }
       //
@@ -635,12 +645,12 @@ namespace user
    void interaction_impl::native_create_host_alternate()
    {
 
-//      auto pwindowMain = m_psystem->m_paurasystem->m_pwindowMain;
+//      auto pwindowMain = acmesystem()->m_paurasystem->m_pwindowMain;
 //
 //      if (pwindowMain && !pwindowMain->m_puserinteractionimpl)
 //      {
 //
-//         m_pwindow = m_psystem->m_paurasystem->m_pwindowMain;
+//         m_pwindow = acmesystem()->m_paurasystem->m_pwindowMain;
 //
 //         m_pwindow->m_puserinteractionimpl = this;
 //
@@ -661,10 +671,10 @@ namespace user
 //
 //         //}
 //
-//         if (!m_psystem->m_paurasystem->m_pwindowMain)
+//         if (!acmesystem()->m_paurasystem->m_pwindowMain)
 //         {
 //
-//            m_psystem->m_paurasystem->m_pwindowMain = m_pwindow;
+//            acmesystem()->m_paurasystem->m_pwindowMain = m_pwindow;
 //
 //         }
 //
@@ -1200,7 +1210,7 @@ namespace user
 
          //{
 
-         //   _synchronous_lock synchronouslock(mutex());
+         //   _synchronous_lock synchronouslock(this->synchronization());
 
          //   uia = m_uiptraMouseHover;
 
@@ -1283,7 +1293,7 @@ namespace user
 
    //      {
 
-   //         _synchronous_lock synchronouslock(mutex());
+   //         _synchronous_lock synchronouslock(this->synchronization());
 
    //         for(auto & pinteraction : m_uiptraMouseHover)
    //         {
@@ -1403,7 +1413,7 @@ namespace user
    void interaction_impl::add_prodevian(::matter * pmatter)
    {
 
-      _synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto bAdded = m_matteraProdevian.add_unique(pmatter);
 
@@ -1424,7 +1434,7 @@ namespace user
    void interaction_impl::erase_prodevian(::matter * pmatter)
    {
 
-      _synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       bool bRemoved = m_matteraProdevian.erase(pmatter) > 0;
 
@@ -1445,7 +1455,7 @@ namespace user
    bool interaction_impl::is_prodevian(const ::matter * pmatter) const
    {
 
-      _synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       return m_matteraProdevian.contains(pmatter);
 
@@ -1465,7 +1475,7 @@ namespace user
       
       {
 
-         _synchronous_lock synchronouslock(mutex());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          bWasEmpty = m_userinteractionaMouseHover.is_empty();
 
@@ -1504,7 +1514,7 @@ namespace user
    void interaction_impl::_on_mouse_move_step(const ::point_i32 & pointCursor, bool bMouseLeave)
    {
 
-      _synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       for(::index i = 0; i < m_userinteractionaMouseHover.get_count(); )
       {
@@ -1552,7 +1562,7 @@ namespace user
 //
 //      {
 //
-//         _synchronous_lock synchronouslock(mutex());
+//         _synchronous_lock synchronouslock(this->synchronization());
 //
 //         if (statusPointCursor.m_estatus != success)
 //         {
@@ -1611,7 +1621,7 @@ namespace user
    bool interaction_impl::mouse_hover_erase(::user::interaction * pinterface)
    {
 
-      _synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       return m_userinteractionaMouseHover.erase(pinterface) >= 0;
 
@@ -1704,9 +1714,9 @@ namespace user
 
       {
 
-         auto psync = mutex();
+         auto psync = synchronization();
 
-         _synchronous_lock synchronouslock(mutex());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          m_userinteractionaMouseHover.erase_all();
 
@@ -1753,20 +1763,20 @@ namespace user
 
 
 
-   void interaction_impl::assert_ok() const
-   {
-
-      ::user::primitive_impl::assert_ok();
-
-   }
-
-
-   void interaction_impl::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::primitive_impl::dump(dumpcontext);
-
-   }
+//   void interaction_impl::assert_ok() const
+//   {
+//
+//      ::user::primitive_impl::assert_ok();
+//
+//   }
+//
+//
+//   void interaction_impl::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::primitive_impl::dump(dumpcontext);
+//
+//   }
 
 
    void interaction_impl::destroy_impl_only()
@@ -1830,7 +1840,7 @@ namespace user
    void interaction_impl::start_destroying_window()
    {
 
-      if (is_destroying())
+      if (has_destroying_flag())
       {
 
          //return true;
@@ -1839,7 +1849,7 @@ namespace user
 
       }
 
-      if (!is_destroying())
+      if (!has_destroying_flag())
       {
 
          if (m_pprodevian && m_pprodevian->task_active())
@@ -1851,7 +1861,7 @@ namespace user
          else
          {
 
-            set_destroying();
+            set_destroying_flag();
 
             m_puserinteraction->post_message(e_message_destroy_window);
 
@@ -1881,10 +1891,10 @@ namespace user
 
       }
 
-      if(!m_puserinteraction->is_destroying())
+      if(!m_puserinteraction->has_destroying_flag())
       {
 
-         m_puserinteraction->set(e_flag_destroying);
+         m_puserinteraction->set_flag(e_flag_destroying);
 
       }
       
@@ -2221,7 +2231,7 @@ namespace user
             //         if(m_puserinteraction != nullptr && m_puserinteraction->get_session()  != nullptr && m_puserinteraction->get_session() != get_session())
             //         {
             //
-            //            auto psystem = m_psystem;
+            //            auto psystem = acmesystem();
             //
             //            auto psession = psystem->node();
             //
@@ -2711,7 +2721,7 @@ namespace user
 
             puserinteraction = puserinteraction->get_parent();
 
-            if (is_set(puserinteraction))
+            if (::is_set(puserinteraction))
             {
 
                auto pchild = puserinteraction->child_from_point(pmouse->m_point, -1, &interactionaHandled);
@@ -3173,7 +3183,7 @@ namespace user
    //}
 
 
-   bool interaction_impl::_is_window() const
+   bool interaction_impl::_is_window()
    {
 
       throw ::interface_only();
@@ -4325,9 +4335,9 @@ namespace user
 
       {
 
-         auto psync = mutex();
+         auto psync = synchronization();
 
-         _synchronous_lock synchronouslock(mutex());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          userinteractiona = m_userinteractionaMouseHover;
 
@@ -4650,7 +4660,7 @@ namespace user
 
             {
 
-               _synchronous_lock synchronouslock(mutex());
+               _synchronous_lock synchronouslock(this->synchronization());
 
                userinteractiona = m_userinteractionaMouseHover;
 
@@ -4685,7 +4695,7 @@ namespace user
 
             //{
 
-            //   _synchronous_lock synchronouslock(mutex());
+            //   _synchronous_lock synchronouslock(this->synchronization());
 
             //   if(!m_puserinteraction)
             //   {
@@ -4704,7 +4714,7 @@ namespace user
                   try
                   {
 
-                     pinteraction->send_message(e_message_show_window, 0, SW_PARENTCLOSING);
+                     pinteraction->send_message(e_message_show_window, 0, e_show_window_parent_closing);
 
                   }
                   catch (...)
@@ -4832,7 +4842,7 @@ namespace user
    void interaction_impl::_001UpdateBuffer()
    {
 
-      if (!m_puserinteraction || is_destroying())
+      if (!m_puserinteraction || has_destroying_flag())
       {
 
          return;
@@ -4868,7 +4878,7 @@ namespace user
 
          ::size_i32 sizeDrawn;
 
-         //single_lock synchronouslockObjects(m_psystem->m_paurasystem->draw2d()->get_object_list_mutex());
+         //single_lock synchronouslockObjects(acmesystem()->m_paurasystem->draw2d()->get_object_list_mutex());
 
          //if (!synchronouslockObjects.lock(0_s))
          //{
@@ -4876,7 +4886,7 @@ namespace user
          //   return;
 
          //}
-         //single_lock synchronouslockImages(m_psystem->m_paurasystem->draw2d()->get_image_list_mutex());
+         //single_lock synchronouslockImages(acmesystem()->m_paurasystem->draw2d()->get_image_list_mutex());
 
          //if (!synchronouslockImages.lock(0_s))
          //{
@@ -4884,7 +4894,7 @@ namespace user
          //   return;
 
          //}
-         //single_lock synchronouslockGraphicsContext(m_psystem->m_paurasystem->draw2d()->get_graphics_context_list_mutex());
+         //single_lock synchronouslockGraphicsContext(acmesystem()->m_paurasystem->draw2d()->get_graphics_context_list_mutex());
 
          //if (!synchronouslockGraphicsContext.lock(0_s))
          //{
@@ -4892,11 +4902,11 @@ namespace user
          //   return;
 
          //}
-         _synchronous_lock slGraphics(m_pgraphics->mutex());
+         _synchronous_lock slGraphics(m_pgraphics->synchronization());
 
-         ::synchronization_object * psync = m_pgraphics->get_buffer_sync();
+         auto pparticleSynchronization = m_pgraphics->get_buffer_sync();
 
-         _synchronous_lock synchronouslock(psync);
+         _synchronous_lock synchronouslock(pparticleSynchronization);
 
          //windowing::graphics_lock graphicslock(m_pwindow);
 
@@ -4908,7 +4918,7 @@ namespace user
 
          windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
 
-         if (is_destroying())
+         if (has_destroying_flag())
          {
 
             return;
@@ -4947,7 +4957,9 @@ namespace user
 
             pgraphics->m_pimage->m_rectangleTag.Null();
 
-            sizeDrawn = pgraphics->m_pimage->m_size;
+            //sizeDrawn = pgraphics->m_pimage->m_size;
+
+            sizeDrawn = m_puserinteraction->const_layout().design().size();
 
          }
 
@@ -4956,15 +4968,15 @@ namespace user
          if (strBitmapSource.has_char())
          {
 
-            auto pbitmapsourcebuffer = pgraphics->cast < ::graphics::bitmap_source_buffer >();
-
-            if(pbitmapsourcebuffer)
-            {
-
-
-
-
-            }
+//            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+//
+//            if(pbitmapsourcebuffer)
+//            {
+//
+//
+//
+//
+//            }
 
          }
 
@@ -4973,7 +4985,7 @@ namespace user
 
             //auto r = m_puserinteraction->screen_rect();
 
-            if (m_puserinteraction->is_finishing())
+            if (m_puserinteraction->has_finishing_flag())
             {
 
                output_debug_string("::user::interaction_impl set_finish");
@@ -5154,7 +5166,7 @@ namespace user
    void interaction_impl::_001UpdateScreen()
    {
 
-      _synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_puserinteraction)
       {
@@ -5224,7 +5236,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             if (m_messagelist.is_empty())
             {
@@ -5247,7 +5259,7 @@ namespace user
    void interaction_impl::queue_message_handler(::message::message * pmessage)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       bool bWasEmpty = m_messagelist.is_empty();
 
@@ -5300,7 +5312,7 @@ namespace user
    void interaction_impl::update_graphics_resources()
    {
 
-      single_lock synchronouslock(mutex());
+      single_lock synchronouslock(this->synchronization());
 
       if (m_pgraphics.is_null())
       {
@@ -5358,7 +5370,7 @@ namespace user
    }
 
    
-   guie_message_wnd::guie_message_wnd(::property_object * pobject)
+   guie_message_wnd::guie_message_wnd(::property_object * pparticle)
    {
 
       m_puiForward = nullptr;
@@ -5429,24 +5441,24 @@ namespace user
    }
 
 
-   void interaction_impl::set_finish(::object * pcontextobjectFinish)
+   void interaction_impl::set_finish(::particle * pparticleContextFinish)
    {
 
-      if(!is_destroying())
+      if(!has_destroying_flag())
       {
 
          if (m_pgraphics)
          {
 
-            _synchronous_lock slGraphics(m_pgraphics->mutex());
+            _synchronous_lock slGraphics(m_pgraphics->synchronization());
 
-            ::synchronization_object * psync = m_pgraphics->get_draw_lock();
+            auto pparticleSynchronization = m_pgraphics->get_draw_lock();
 
-            _synchronous_lock synchronouslock(psync);
+            _synchronous_lock synchronouslock(pparticleSynchronization);
 
             slGraphics.unlock();
 
-            set_destroying();
+            set_destroying_flag();
 
          }
 
@@ -5469,11 +5481,11 @@ namespace user
 
          {
 
-            _synchronous_lock slGraphics(m_pgraphics->mutex());
+            _synchronous_lock slGraphics(m_pgraphics->synchronization());
 
-            ::synchronization_object * psyncDraw = m_pgraphics->get_draw_lock();
+            auto pparticleSynchronization = m_pgraphics->get_draw_lock();
 
-            _synchronous_lock slDraw(psyncDraw);
+            _synchronous_lock slDraw(pparticleSynchronization);
 
             slGraphics.unlock();
 
@@ -5487,7 +5499,7 @@ namespace user
 
          //{
 
-         //   _synchronous_lock synchronouslock(mutex());
+         //   _synchronous_lock synchronouslock(this->synchronization());
 
          //   _synchronous_lock slGraphics(m_pgraphics->mutex());
 
@@ -5684,7 +5696,7 @@ namespace user
    void interaction_impl::on_final_set_keyboard_focus()
    {
 
-      _synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_puserinteractionKeyboardFocusRequest)
       {
@@ -5741,7 +5753,7 @@ namespace user
 //      }
 
 
-//      _synchronous_lock synchronouslock(mutex());
+//      _synchronous_lock synchronouslock(this->synchronization());
 //
 //      auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
 //
@@ -5805,7 +5817,7 @@ namespace user
    void interaction_impl::on_final_kill_keyboard_focus()
    {
 
-      _synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_puserinteractionToKillKeyboardFocus && m_puserinteractionToKillKeyboardFocus != m_puserinteractionKeyboardFocusRequest)
       {
@@ -6175,22 +6187,22 @@ namespace user
 
 
 
-   void interaction_impl::redraw_add(::object * p)
+   void interaction_impl::redraw_add(::particle * pparticle)
    {
 
       _synchronous_lock synchronouslock(mutex_redraw());
 
-      m_ptraRedraw.add(p);
+      m_particleaRedraw.add(pparticle);
 
    }
 
 
-   void interaction_impl::redraw_erase(::object * p)
+   void interaction_impl::redraw_erase(::particle * pparticle)
    {
 
       _synchronous_lock synchronouslock(mutex_redraw());
 
-      m_ptraRedraw.erase(p);
+      m_particleaRedraw.erase(pparticle);
 
    }
 
@@ -6200,18 +6212,18 @@ namespace user
 
       _synchronous_lock synchronouslock(mutex_redraw());
 
-      return m_ptraRedraw.has_elements();
+      return m_particleaRedraw.has_elements();
 
    }
 
 
-   ::mutex * interaction_impl::mutex_redraw()
+   ::particle * interaction_impl::mutex_redraw()
    {
 
       if (m_pmutexRedraw == nullptr)
       {
 
-         m_pmutexRedraw = __new(::mutex());
+         __construct(m_pmutexRedraw);
 
       }
 
@@ -6225,9 +6237,9 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(mutex());
+         _synchronous_lock synchronouslock(this->synchronization());
 
-         if (m_ptraRedraw.has_elements())
+         if (m_particleaRedraw.has_elements())
          {
 
             return true;
@@ -6315,14 +6327,14 @@ namespace user
 
       __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_apply_visual);
 
-      ::u32 uFlags = 0;
+      //::u32 uFlags = 0;
 
       //bool bLayered = GetExStyle() & WS_EX_LAYERED;
 
       //if (bLayered)
       {
 
-         uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+         //uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
 
       }
       //else
@@ -6332,12 +6344,12 @@ namespace user
 
       //}
 
-      if (eactivationOutput & e_activation_no_activate)
-      {
+      //if (eactivationOutput & e_activation_no_activate)
+      //{
 
-         uFlags |= SWP_NOACTIVATE;
+      //   uFlags |= SWP_NOACTIVATE;
 
-      }
+      //}
 
       // if GNOME
       // if Xorg
@@ -6361,15 +6373,15 @@ namespace user
 
          bSize = false;
 
-         uFlags |= SWP_NOSIZE;
+         //uFlags |= SWP_NOSIZE;
 
       }
       else
       {
 
-         uFlags |= SWP_ASYNCWINDOWPOS | SWP_FRAMECHANGED | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
-         //uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
-         //uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS;
+         //uFlags |= SWP_ASYNCWINDOWPOS | SWP_FRAMECHANGED | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+         ////uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+         ////uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS;
 
       }
 
@@ -6380,7 +6392,7 @@ namespace user
 
          bMove = false;
 
-         uFlags |= SWP_NOMOVE;
+         //uFlags |= SWP_NOMOVE;
 
       }
 
@@ -6388,39 +6400,45 @@ namespace user
 
       bool bVisibilityChange = is_different(bWasVisible, shouldGetVisible);
 
+      bool bShow = false;
+
+      bool bHide = false;
+
       if (bVisibilityChange)
       {
 
          if (shouldGetVisible)
          {
 
-            uFlags |= SWP_SHOWWINDOW;
+            bShow = true;
 
          }
          else
          {
 
-            uFlags |= SWP_HIDEWINDOW;
+            bHide = true;
 
          }
 
       }
 
-      if (eactivationOutput & e_activation_no_activate)
-      {
+      //if (eactivationOutput & e_activation_no_activate)
+      //{
 
-         uFlags |= SWP_NOACTIVATE;
+      //   uFlags |= SWP_NOACTIVATE;
 
-      }
+      //}
 
       bool bZ = zOutput.is_change_request();
 
-      if (!bZ)
-      {
 
-         uFlags |= SWP_NOZORDER;
 
-      }
+      //if (!bZ)
+      //{
+
+      //   uFlags |= SWP_NOZORDER;
+
+      //}
 
       string strType = __type_name(m_puserinteraction);
 
@@ -6518,13 +6536,28 @@ namespace user
 
 //#if !defined(_UWP) && !defined(ANDROID)
 
-         bHasSetWindowPosition = m_pwindow->on_set_window_position(
-             zorderNew, 
-             pointOutput.x, 
-             pointOutput.y,
-             sizeOutput.cx, 
-             sizeOutput.cy,
-             uFlags);
+         if(sizeOutput != m_sizeDrawn)
+         {
+
+            m_puserinteraction->set_need_redraw();
+
+            m_puserinteraction->post_redraw();
+
+         }
+         else
+         {
+
+            bHasSetWindowPosition = m_pwindow->on_set_window_position(
+               zorderNew,
+               pointOutput.x,
+               pointOutput.y,
+               sizeOutput.cx,
+               sizeOutput.cy,
+               eactivationOutput,!bZ, !bMove, !bSize, bShow, bHide);
+
+            m_sizeSetWindowSizeRequest = sizeOutput;
+
+         }
 
          //::SetWindowPos(get_handle(), oswindowInsertAfter,
          //   pointOutput.x, pointOutput.y,
@@ -6678,7 +6711,7 @@ namespace user
    void interaction_impl::on_configuration_change(::user::primitive * pprimitiveSource)
    {
 
-      _synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       for(auto & puserinteraction : m_userinteractionaHideOnConfigurationChange.m_interactiona)
       {

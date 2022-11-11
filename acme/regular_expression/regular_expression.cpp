@@ -2,6 +2,8 @@
 // Recreated by camilo on 2021-05-05 22:52 <3ThomasBS_!!
 //
 #include "framework.h"
+#include "regular_expression.h"
+#include "acme/exception/exception.h"
 
 
 namespace regular_expression

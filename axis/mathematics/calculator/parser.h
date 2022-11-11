@@ -1,22 +1,28 @@
 #pragma once
 
 
+#include "acme/primitive/collection/pointer_array.h"
+#include "element.h"
+#include "scanner.h"
+#include "token.h"
+
+
 namespace calculator
 {
 
 
    class CLASS_DECL_AXIS parser :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
 
 
-      scanner                                      m_scanner;
-      pointer_array < ::calculator::element >       m_elementa;
+      scanner                                         m_scanner;
+      pointer_array < ::calculator::element >         m_elementa;
 
 
       parser();
-      virtual ~parser();
+      ~parser() override;
 
 
       ::calculator::element * parse(const ::string & psz);

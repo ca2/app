@@ -3,6 +3,8 @@
 
 
 #include "font.h"
+#include "acme/platform/department.h"
+#include "acme/primitive/collection/int_map.h"
 
 
 namespace write_text
@@ -29,7 +31,7 @@ namespace write_text
       ~write_text() override;
 
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
       
       class fonts * fonts();

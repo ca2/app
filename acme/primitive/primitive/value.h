@@ -15,8 +15,10 @@ namespace mathematics
 
       enum e_get_value
       {
+         
          get_value_formula,
          get_value_number,
+
       };
 
 

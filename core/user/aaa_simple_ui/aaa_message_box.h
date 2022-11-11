@@ -23,7 +23,7 @@ namespace simple_ui
       manual_reset_event               m_evReady;
 
 
-      message_box(::object * pobject, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::duration durationTimeout);
+      message_box(::particle * pparticle, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::duration durationTimeout);
       virtual ~message_box();
 
 

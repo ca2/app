@@ -9,6 +9,8 @@
 
 
 #include "font.h"
+#include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/primitive/object.h"
 
 
 namespace write_text

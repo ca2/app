@@ -1,8 +1,6 @@
 #include "framework.h"
-
-
-
-
+#include "string.h"
+#include "_conv.h"
 
 
 wd16char * __u64towd16(::u64 u, wd16char * buf, int iBase)

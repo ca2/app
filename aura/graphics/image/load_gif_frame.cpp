@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "frame.h"
 #include "image.h"
+#include "acme/graphics/draw2d/colorref_array.h"
 
 
 //#define unequal(a, b, n) ((a) > (b) - (n))
@@ -267,7 +268,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //      //if (uFrameIndex <= 0)
 //      //{
 //
-//      //   pobject->__construct(pimageCanvas, pframea->m_size);
+//      //   pparticle->__construct(pimageCanvas, pframea->m_size);
 //
 //      //}
 //

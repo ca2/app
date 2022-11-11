@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "apex/handler/manager.h"
+#include "apex/message/channel.h"
+
+
 namespace user
 {
 
@@ -13,15 +17,15 @@ namespace user
 
 
       controller();
-      virtual ~controller();
+      ~controller() override;
 
 
-      virtual void dump(dump_context&) const override;
-      void assert_ok() const override;
+      // void dump(dump_context&) const override;
+      // void assert_ok() const override;
 
 
-      virtual ::user::interaction* impact_at(::index iImpact) const;
-      virtual ::count impact_count() const;
+      virtual ::user::interaction* impact_at(::index iImpact);
+      virtual ::count impact_count();
 
 
    };

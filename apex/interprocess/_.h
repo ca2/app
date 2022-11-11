@@ -3,6 +3,9 @@
 #pragma once
 
 
+//#include "acme/primitive/collection/atom_map.h"
+
+
 namespace interprocess
 {
 
@@ -19,12 +22,8 @@ namespace interprocess
    class communication;
 
 
-   using task_map = id_map < ::pointer< task > >;
 
-
-
-
-   CLASS_DECL_APEX string app_install(string strPlatform = "");
+   //CLASS_DECL_APEX string app_install(string strPlatform = "");
 
 
 } // namespace interprocess

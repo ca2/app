@@ -1,5 +1,5 @@
-//
-// Created by camilo on 2021-10-05 12:41 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
+ï»¿//
+// Created by camilo on 2021-10-05 12:41 BRT <3ThomasBorregaardSï¿½rensen!![ THE ONE GOD ]
 //
 
 
@@ -13,7 +13,7 @@ public:
 
 
    constexpr floating_second_t(FLOATING_SECOND second = {}) : FLOATING_SECOND(second) {}
-
+   floating_second_t(const ::duration & duration);
 
    INTEGRAL_SECOND integral_seconds() const { return (INTEGRAL_SECOND)((::i64) m_d); }
    INTEGRAL_NANOSECOND integral_nanoseconds() const { return (INTEGRAL_NANOSECOND)((::i64) (fmod(m_d, 1.0) * 1'000'000'000.0)); }

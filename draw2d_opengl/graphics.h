@@ -487,7 +487,7 @@ namespace draw2d_opengl
       bool SelectClipPath(i32 nMode);
 
       // Misc Helper Functions
-      static ::draw2d::brush* GetHalftoneBrush(::object * pobject);
+      static ::draw2d::brush* GetHalftoneBrush(::particle * pparticle);
       void DrawDragRect(const ::rectangle_i32 & rectangle, const ::size_i32 & size,
                         const ::rectangle_i32 & lpRectLast, const ::size_i32 & sizeLast,
                         ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr);
@@ -503,8 +503,8 @@ namespace draw2d_opengl
 
       // Implementation
    public:
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
       HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
 

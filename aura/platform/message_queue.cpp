@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/exception/exception.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/platform/message_queue.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/windowing/window.h"
@@ -88,7 +90,7 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
 
    }
 
-   synchronous_lock ml(pmq->mutex());
+   synchronous_lock ml(pmq->synchronization());
 
    pmq->m_messagea.predicate_erase([=](MESSAGE & message)
    {

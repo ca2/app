@@ -1,13 +1,17 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
+
+
 namespace message
 {
 
 
    template < typename PREDICATE >
    class predicate_handler :
-      virtual public ::matter
+      virtual public ::particle
    {
    public:
 
@@ -31,7 +35,7 @@ namespace message
 
 
    template < typename PREDICATE >
-   ::matter_pointer __handler(PREDICATE predicate) 
+   ::pointer < ::particle > __handler(PREDICATE predicate) 
    {
 
       return __new(predicate_handler<PREDICATE>(predicate));

@@ -1,8 +1,9 @@
 ﻿#include "framework.h"
-#include "acme/operating_system.h"
-
 #include "cursor.h"
 #include "image.h"
+
+
+//#include "acme/operating_system.h"
 
 
 namespace draw2d
@@ -61,10 +62,10 @@ namespace draw2d
 
 
 
-   void cursor_alloc(::object * pobject,cursor_pointer & pcursor,int xHotspot,int yHotspot)
+   void cursor_alloc(::particle * pparticle,cursor_pointer & pcursor,int xHotspot,int yHotspot)
    {
 
-      pobject->__construct(pcursor);
+      __construct(pparticle, pcursor);
 
       pcursor->m_szHotspotOffset.cx = xHotspot;
 

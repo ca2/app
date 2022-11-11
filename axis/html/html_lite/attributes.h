@@ -3,9 +3,13 @@
 //
 //Version 1.0            Gurmeet S. Kochar (GSK)
 //Mar 18, 2004         First release version.
-
-
 #pragma once
+
+
+#include "acme/exception/exception.h"
+#include "acme/primitive/collection/address_array.h"
+#include "acme/primitive/string/string.h"
+
 
 class LiteHTMLAttributes;   // forward declaration
 

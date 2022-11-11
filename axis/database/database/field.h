@@ -2,13 +2,16 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/matter.h"
+
+
 namespace database
 {
 
 
 
    class CLASS_DECL_AXIS field :
-      virtual public ::object
+      virtual public ::matter
    {
    public:
 

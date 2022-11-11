@@ -2,7 +2,17 @@
 #pragma once
 
 
-#include "email_department.h"
+//#include "email_department.h"
+
+
+namespace networking
+{
+
+
+   class email_department;
+
+
+} // namespace networking
 
 
 

@@ -18,7 +18,7 @@ public:
    virtual ~message_box();
 
 
-   void show(::object* pobject);
+   void show(::object* pparticle);
 
 
 };

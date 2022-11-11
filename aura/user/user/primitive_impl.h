@@ -2,6 +2,7 @@
 
 
 #include "apex/user/primitive.h"
+#include "acme/primitive/collection/int_map.h"
 
 
 namespace user
@@ -54,9 +55,9 @@ namespace user
       virtual ::user::interaction_child * get_user_interaction_child();
 
       
-      ::aura::application* get_app() const;
-      ::aura::session* get_session() const;
-      ::aura::system* get_system() const;
+      ::aura::application* get_app();
+      ::aura::session* get_session();
+      ::aura::system* get_system();
 
 
 
@@ -140,7 +141,7 @@ namespace user
       virtual void destroy_window();
 
 
-      virtual bool _is_window() const;
+      virtual bool _is_window();
 
       
       virtual ::lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::point_i32& point = nullptr);
@@ -278,7 +279,7 @@ namespace user
       virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual ::user::interaction * get_wnd() const;
+      virtual ::user::interaction * get_wnd();
 
 
       virtual void set_origin(::draw2d::graphics_pointer & pgraphics);
@@ -318,31 +319,31 @@ namespace user
       //virtual bool BringWindowToTop();
 
 
-      virtual bool is_ascendant(const ::user::primitive * puiIsAscendant, bool bIncludeSelf) const;
-      virtual bool is_parent(const ::user::primitive * puiIsParent) const;
-      virtual bool is_child(const ::user::primitive * puiIsChild) const;
-      virtual bool is_descendant(const ::user::primitive * puiIsDescendant, bool bIncludeSelf) const;
+      virtual bool is_ascendant(::user::element * puiIsAscendant, bool bIncludeSelf);
+      virtual bool is_parent(::user::element * puiIsParent);
+      virtual bool is_child(::user::element * puiIsChild);
+      virtual bool is_descendant(::user::element * puiIsDescendant, bool bIncludeSelf);
 
 
-//      virtual ::user::interaction * get_wnd() const;
-      virtual ::user::interaction * get_wnd(::u32 nCmd) const;
+//      virtual ::user::interaction * get_wnd();
+      virtual ::user::interaction * get_wnd(::u32 nCmd);
 
 
-      virtual ::user::frame * frame() const;
-      virtual ::user::frame * top_level_frame() const;
+      virtual ::user::frame * frame();
+      virtual ::user::frame * top_level_frame();
 
 
       //virtual ::user::interaction * GetTopWindow() const;
-      virtual ::user::interaction * get_parent() const;
-      inline ::user::interaction * top_level() const;
+      virtual ::user::interaction * get_parent();
+      inline ::user::interaction * top_level();
       //virtual ::user::interaction * GetParentTopLevel() const;
       //virtual ::user::interaction * EnsureTopLevel();
       //virtual ::user::interaction * EnsureParentTopLevel();
-      virtual ::user::interaction * get_owner() const;
-      virtual ::user::interaction * get_parent_owner() const;
-      virtual ::user::interaction * get_parent_or_owner() const;
-      virtual ::user::interaction * get_top_level_owner() const;
-      inline ::user::frame * parent_frame() const;
+      virtual ::user::interaction * get_owner();
+      virtual ::user::interaction * get_parent_owner();
+      virtual ::user::interaction * get_parent_or_owner();
+      virtual ::user::interaction * get_top_level_owner();
+      inline ::user::frame * parent_frame();
       //virtual ::user::frame * GetParentTopLevelFrame() const;
       //virtual ::user::frame * EnsureParentFrame();
 
@@ -424,8 +425,8 @@ namespace user
 
       virtual void show_task(bool bShow);
 
-      virtual void redraw_add(::object * point_i32);
-      virtual void redraw_erase(::object * point_i32);
+      virtual void redraw_add(::particle * pparticle);
+      virtual void redraw_erase(::particle * pparticle);
       virtual bool has_redraw();
 
 

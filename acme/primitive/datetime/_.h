@@ -110,6 +110,7 @@ namespace earth
     class time;
     class time_span;
     class zonetime;
+    class date_span;
  
 } // namespace earth
 
@@ -123,28 +124,6 @@ namespace datetime
 
 } // namespace datetime;
 
-
-#include "micro_duration.h"
-
-
-#include "time_span.h"
-
-
-#include "date_span.h"
-
-
-#include "earth_time.h"
-
-
-#include "system_time.h"
-
-
-#include "result.h"
-
-
-#include "microsecond_sleep.h"
-
-
 #ifdef WINDOWS
 
 
@@ -157,7 +136,41 @@ extern "C" CLASS_DECL_ACME time_t timegm(struct tm *tmp);
 extern "C" CLASS_DECL_ACME int c_localtime_offset();
 
 
-#include "micro_duration.h"
 
-
-
+//#include "micro_duration.h"
+//
+//
+//#include "time_span.h"
+//
+//
+//#include "date_span.h"
+//
+//
+//#include "earth_time.h"
+//
+//
+//#include "system_time.h"
+//
+//
+//#include "result.h"
+//
+//
+//#include "microsecond_sleep.h"
+//
+//
+//#ifdef WINDOWS
+//
+//
+//extern "C" CLASS_DECL_ACME time_t timegm(struct tm *tmp);
+//
+//
+//#endif
+//
+//
+//extern "C" CLASS_DECL_ACME int c_localtime_offset();
+//
+//
+//#include "micro_duration.h"
+//
+//
+//

@@ -43,7 +43,7 @@ namespace hi5
       const string OAUTHLIB_TWITTER_ACCESS_TOKEN_URL;
 
 
-      oauth(::object * pobject, simple_log * psimplelog, index iLogTarget);
+      oauth(::particle * pparticle, simple_log * psimplelog, index iLogTarget);
       virtual ~oauth();
 
       /* OAuth public methods used by twitCurl */

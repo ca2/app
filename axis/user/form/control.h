@@ -31,10 +31,10 @@ namespace user
 
 
 
-      ::axis::application* get_app() const;
-      ::axis::session* get_session() const;
-      ::axis::system * get_system() const;
-      ::axis::user * user() const;
+      ::axis::application* get_app();
+      ::axis::session* get_session();
+      ::axis::system * get_system();
+      ::axis::user * user();
 
       //ref_array < CTransparentStatic > m_staticpa;
 
@@ -124,7 +124,7 @@ namespace user
       virtual bool _001OnControlKillFocus(::user::interaction * pinteraction);
 
 
-      //        ::user::form_window(::object * pobject);
+      //        ::user::form_window(::particle * pparticle);
       //    virtual ~::user::form_window();
 
       //void install_message_routing(::channel * pchannel) override;
@@ -132,7 +132,7 @@ namespace user
       //      DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
-      //      ::user::form_window(::object * pobject);
+      //      ::user::form_window(::particle * pparticle);
 
       //virtual void handle(::topic * ptopic, ::context * pcontext) override;
       //      virtual void handle(::topic * ptopic, ::context * pcontext);

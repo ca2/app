@@ -7,8 +7,8 @@
 //public:
 //
 //
-//   explicit initial_single_lock(synchronization_object * pobject) :
-//      single_lock(pobject,true)
+//   explicit initial_single_lock(synchronization * pparticle) :
+//      single_lock(pparticle,true)
 //   {
 //
 //   }

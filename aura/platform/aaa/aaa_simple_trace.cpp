@@ -9,8 +9,8 @@
 #include "trace_category.h"
 
 
-CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
-CLASS_DECL_AURA void __simple_tracev(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & pszFormat, va_list args);
+CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
+CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & pszFormat, va_list args);
 
 
 //CLASS_DECL_AURA void FUNCTION_DEBUGBOX(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
@@ -113,7 +113,7 @@ CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::string & pszTag, con
 
 int g_iMemoryCounters = -1;
 
-CLASS_DECL_AURA::mutex * g_pmutexMemoryCounters = nullptr;
+CLASS_DECL_AURA::pointer< ::mutex > g_pmutexMemoryCounters = nullptr;
 
 int g_iMemoryCountersStartable = 0;
 
@@ -123,7 +123,7 @@ CLASS_DECL_AURA bool memory_counter_on()
    if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
    {
 
-      g_iMemoryCounters = m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
+      g_iMemoryCounters = acmefile()->exists(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -132,7 +132,7 @@ pacmedirectory->config() / "system/memory_counters.txt") ? 1 : 0;
       if (g_iMemoryCounters)
       {
 
-         g_pmutexMemoryCounters = memory_new ::mutex(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
+         g_pmutexMemoryCounters = memory_new ::pointer < ::mutex >(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
 
       }
 
@@ -156,7 +156,7 @@ CLASS_DECL_AURA::file::path memory_counter_base_path()
 
 #if defined(_UWP)
 
-      string strBasePath =          auto psystem = m_psystem;
+      string strBasePath =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -166,7 +166,7 @@ pacmedirectory->system() / "memory_counters";
 
       ::file::path strModule = module_path_from_pid(getpid());
 
-      string strBasePath =          auto psystem = m_psystem;
+      string strBasePath =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -204,10 +204,10 @@ simple_trace::~simple_trace()
 }
 
 
-void simple_trace::__tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz)
+void simple_trace::__tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz)
 {
 
-   __simple_tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+   __simple_tracea(pparticle, elevel, pszFunction, pszFile, iLine, psz);
    //printf("%d %c %s %d %s", (i32)ecategory, e_trace_level_char(elevel), pszFunction, iLine, psz);
 
 }

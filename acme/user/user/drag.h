@@ -2,8 +2,8 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/point.h"
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/constant/element.h"
 
 
 namespace user
@@ -15,7 +15,7 @@ namespace user
 
 
    class CLASS_DECL_ACME drag :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

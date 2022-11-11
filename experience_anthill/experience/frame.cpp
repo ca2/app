@@ -324,7 +324,7 @@ namespace experience_anthill
 
       auto pframewindow = m_pframewindow;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -720,14 +720,14 @@ namespace experience_anthill
 
 
 
-   void frame::GetFrameRect(rectangle_i32 * prectangle)
+   void frame::GetFrameRect(rectangle_i32 & rectangle)
    {
 
-      m_pframewindow->get_window_rect(prectangle);
+      m_pframewindow->get_window_rect(rectangle);
 
-      prectangle->offset(-prectangle->top_left());
+      rectangle.offset(-rectangle.top_left());
 
-      prectangle->deflate(10, 10);
+      rectangle.deflate(10, 10);
 
    }
 

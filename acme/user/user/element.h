@@ -3,6 +3,8 @@
 
 
 #include "command_update_target.h"
+#include "conversation.h"
+#include "acme/primitive/mathematics/c_number.h"
 
 
 namespace user
@@ -19,7 +21,8 @@ namespace user
 
 
    class CLASS_DECL_ACME element :
-      virtual public ::user::command_update_target
+      virtual public ::user::command_update_target,
+      virtual public ::conversation
    {
    public:
 
@@ -113,7 +116,7 @@ namespace user
       //::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
 
 
-      ::user::interaction * get_host_window() const;
+      ::user::interaction * get_host_window();
 
       virtual ::user::form * get_form();
 
@@ -164,9 +167,9 @@ namespace user
       virtual string get_title();
 
 
-      virtual void show_software_keyboard(::user::element* pelement);
+      virtual void show_software_keyboard(::user::element * pelement);
 
-      virtual void hide_software_keyboard(::user::element* pelement);
+      virtual void hide_software_keyboard(::user::element * pelement);
 
       virtual void UpdateWindow();
       
@@ -326,9 +329,9 @@ namespace user
       //virtual lresult send(::message::message * pmessage);
       //virtual bool post(::message::message * pmessage);
 
-      virtual lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr);
+      virtual lresult send_message(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = nullptr);
 
-      virtual lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr);
+      virtual lresult message_call(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = nullptr);
       virtual lresult message_call(::message::message * pmessage);
 
 
@@ -338,7 +341,7 @@ namespace user
 
 #endif
 
-      virtual void post_message(const ::atom & atom, wparam wparam = 0,lparam lparam = 0);
+      virtual void post_message(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
 
       virtual void post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0);
 
@@ -353,22 +356,24 @@ namespace user
       virtual void KillTimer(uptr uEvent);
 
 
+      virtual bool is_host_top_level();
 
-      virtual bool is_ascendant(const element * puiIsAscendant, bool bIncludeSelf) const;
-      virtual bool is_parent(const element * puiIsParent) const;
-      virtual bool is_child(const element * puiIsChild) const;
-      virtual bool is_descendant(const element * puiIsDescendant, bool bIncludeSelf) const;
 
-      virtual bool is_descendant_of_or_owned_by(const ::user::element * puiAscendantCandidate, bool bIncludeSelf) const;
-      virtual bool is_ascendant_or_owner_of(const ::user::element * puiDescendantCandidate, bool bIncludeSelf) const;
+      virtual bool is_ascendant(element * puiIsAscendant, bool bIncludeSelf);
+      virtual bool is_parent(element * puiIsParent);
+      virtual bool is_child(element * puiIsChild);
+      virtual bool is_descendant(element * puiIsDescendant, bool bIncludeSelf);
 
-      virtual bool is_ascendant_of(const element * puiIsDescendant, bool bIncludeSelf) const;
-      virtual bool is_parent_of(const element * puiIsChild) const; 
-      virtual bool is_child_of(const element * puiIsParent) const; 
-      virtual bool is_descendant_of(const element * puiIsAscendant, bool bIncludeSelf) const; 
+      virtual bool is_descendant_of_or_owned_by(::user::element * puiAscendantCandidate, bool bIncludeSelf);
+      virtual bool is_ascendant_or_owner_of(::user::element * puiDescendantCandidate, bool bIncludeSelf);
+
+      virtual bool is_ascendant_of(element * puiIsDescendant, bool bIncludeSelf);
+      virtual bool is_parent_of(element * puiIsChild);
+      virtual bool is_child_of(element * puiIsParent);
+      virtual bool is_descendant_of(element * puiIsAscendant, bool bIncludeSelf);
 
       virtual atom GetDlgCtrlId() const;
-      virtual atom SetDlgCtrlId(::atom atom);
+      virtual atom SetDlgCtrlId(const ::atom & atom);
 
 //
 //#ifdef WINDOWS_DESKTOP
@@ -413,10 +418,10 @@ namespace user
       virtual ::user::element * get_primitive_by_id(const ::atom & atom, ::index iItem = -1, i32 iLevel = -1);
 
 
-      virtual ::user::interaction * get_wnd() const;
-      virtual ::user::interaction * get_wnd(::u32 nCmd) const;
+      virtual ::user::interaction * get_wnd();
+      virtual ::user::interaction * get_wnd(::u32 nCmd);
       //virtual ::user::interaction_impl * get_impl() const;
-      virtual ::thread * get_task() const;
+      virtual ::task * get_task();
 
       virtual ::user::element * set_parent(::user::element * pinteraction);
       virtual ::user::element * set_owner(::user::element * pinteraction);
@@ -424,27 +429,27 @@ namespace user
 
 
 
-      virtual ::user::interaction * get_parent() const;
-      virtual ::user::interaction * get_owner() const;
-      virtual ::user::interaction * get_parent_owner() const;
-      virtual ::user::interaction * get_parent_or_owner() const;
-      virtual ::user::interaction * get_top_level_owner() const;
+      virtual ::user::interaction * get_parent();
+      virtual ::user::interaction * get_owner();
+      virtual ::user::interaction * get_parent_owner();
+      virtual ::user::interaction * get_parent_or_owner();
+      virtual ::user::interaction * get_top_level_owner();
 
 
-      virtual ::user::interaction * _top_level() const;
+      virtual ::user::interaction * _top_level();
 
 
-      virtual bool is_top_level_window() const;
+      virtual bool is_top_level_window();
 
-      virtual void send_message_to_descendants(const ::atom & atom, wparam wParam = 0, lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false);
+      virtual void send_message_to_descendants(const ::atom & atom, wparam wParam = {}, lparam lParam = 0, bool bDeep = true, bool bOnlyPerm = false);
 
       virtual void route_message_to_descendants(::message::message * pmessage);
       virtual void pre_translate_message(::message::message * pmessage);
 
 
-      virtual i32 get_descendant_level(const ::user::element * pinteraction) const;
+      virtual i32 get_descendant_level(::user::element * puserelement);
       //virtual bool is_descendant(const ::user::element * pinteraction,bool bIncludeSelf = false) const;
-      virtual ::user::interaction * get_focusable_descendant() const;
+      virtual ::user::interaction * get_focusable_descendant();
 
       virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true);
 
@@ -464,14 +469,14 @@ namespace user
       virtual void set_tool_window(bool bSet = true);
 
       
-      virtual ::user::interaction * get_next_window(bool bIgnoreChildren = false, const ::user::interaction * puiInteractionStop = nullptr) const;
-      virtual ::user::interaction * get_window(enum_next enext) const;
+      virtual ::user::interaction * get_next_window(bool bIgnoreChildren = false, ::user::interaction * puiInteractionStop = nullptr);
+      virtual ::user::interaction * get_window(enum_next enext);
 
 
       virtual ::user::interaction * GetLastActivePopup();
 
 
-      virtual bool is_message_only_window() const;
+      virtual bool is_message_only_window();
 
       virtual void pre_subclass_window();
 
@@ -482,7 +487,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      virtual bool call_message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = nullptr,lresult * presult = nullptr);
+      virtual bool call_message_handler(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = nullptr, lresult * presult = nullptr);
 
 
       //virtual void GuieProc(::message::message * pmessage);
@@ -493,7 +498,7 @@ namespace user
       virtual oswindow detach_window();
 
 
-      virtual ::windowing::window * _window() const;
+      virtual ::windowing::window * _window();
       
       //virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       //virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
@@ -644,7 +649,7 @@ namespace user
 
 
       template < class T >
-      pointer < T > get_typed_parent() const
+      pointer < T > get_typed_parent()
       {
 
          ASSERT_VALID(this);
@@ -673,16 +678,16 @@ namespace user
 
       }
 
-      virtual ::user::interaction * get_parent_window() const;
+      virtual ::user::interaction * get_parent_window();
 
-      virtual ::user::element * get_parent_primitive() const;
+      virtual ::user::element * get_parent_primitive();
 
       virtual ::user::primitive_impl* get_primitive_impl();
 
-      virtual ::user::interaction * get_first_child_window() const;
+      virtual ::user::interaction * get_first_child_window();
 
 
-      virtual bool keyboard_focus_is_focusable() const;
+      virtual bool keyboard_focus_is_focusable();
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew);
       virtual bool keyboard_focus_OnChildKillFocus();
       virtual element * keyboard_get_next_focusable(element * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
@@ -762,8 +767,8 @@ namespace user
       //virtual bool enable_window(bool bEnable );
 
       // Text Edit
-      virtual void _001GetSel(strsize & iBeg, strsize & iEnd) const override;
-      virtual void _001GetSel(strsize& iBeg, strsize& iEnd, strsize & iComposingStart, strsize & iComposingEnd) const;
+      virtual void _001GetSel(strsize & iBeg, strsize & iEnd) override;
+      virtual void _001GetSel(strsize& iBeg, strsize& iEnd, strsize & iComposingStart, strsize & iComposingEnd);
       virtual index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel);
       virtual index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x);
       virtual index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);

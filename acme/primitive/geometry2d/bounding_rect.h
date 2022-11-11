@@ -1,6 +1,10 @@
 ﻿#pragma once
 
 
+#include "_arc.h"
+#include "_line.h"
+
+
 template < primitive_rectangle RECTANGLE >
 inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const ::arc & arc)
 {
@@ -79,6 +83,7 @@ inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const line & l
 //
 //}
 
+
 template < primitive_rectangle RECTANGLE >
 inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const ellipse & ellipse)
 {
@@ -136,21 +141,22 @@ void get_bounding_rectangle(RECTANGLE_BASE_TYPE & rect, const POINT_BASE_TYPE * 
    }
    else
    {
-      rect.left = lppoint[0].x;
-      rect.top = lppoint[0].y;
-      rect.right = lppoint[0].x;
-      rect.bottom = lppoint[0].y;
+
+      rect.left =(decltype(rect.left))lppoint[0].x;
+      rect.top = (decltype(rect.top))lppoint[0].y;
+      rect.right = (decltype(rect.right))lppoint[0].x;
+      rect.bottom = (decltype(rect.bottom))lppoint[0].y;
 
       for (i32 i = 1; i < count; i++)
       {
          if (lppoint[i].x < rect.left)
-            rect.left = lppoint[i].x;
+            rect.left = (decltype(rect.left))lppoint[i].x;
          else if (lppoint[i].x > rect.right)
-            rect.right = lppoint[i].x;
+            rect.right = (decltype(rect.right))lppoint[i].x;
          if (lppoint[i].y < rect.top)
-            rect.top = lppoint[i].y;
+            rect.top = (decltype(rect.top))lppoint[i].y;
          else if (lppoint[i].y > rect.bottom)
-            rect.bottom = lppoint[i].y;
+            rect.bottom = (decltype(rect.bottom))lppoint[i].y;
       }
 
    }

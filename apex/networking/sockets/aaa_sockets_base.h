@@ -18,7 +18,7 @@
 //      sockets_base();
 //      virtual ~sockets_base();
 //
-//      virtual void initialize(::object * pobject) override;
+//      virtual void initialize(::particle * pparticle) override;
 //
 //      virtual void destroy() override;
 //

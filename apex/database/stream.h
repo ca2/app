@@ -28,7 +28,7 @@ namespace database
 
          auto stream = __binary_stream(&memoryfile);
 
-         stream.set_storing();
+         stream.set_storing_flag();
 
          stream << t;
 
@@ -54,7 +54,7 @@ namespace database
 
          auto stream = __binary_stream(&memoryfile);
 
-         stream.set_loading();
+         stream.set_loading_flag();
 
          stream >> t;
 

@@ -1,18 +1,17 @@
 ﻿#pragma once
 
 
-template < typename SEQUENCE >
-using sequence_step = ::function < void(SEQUENCE *) >;
+#include "acme/primitive/primitive/payload.h"
 
 
 template < typename SEQUENCE >
 class sequence :
-   virtual public ::element
+   virtual public ::particle
 {
 public:
 
 
-   pointer< sequencer < SEQUENCE > >   m_psequencer;
+   pointer< sequencer < SEQUENCE > >      m_psequencer;
    ::payload                              m_payloadResult;
 
 
@@ -41,3 +40,45 @@ public:
 
 
 };
+
+
+
+
+
+
+//template < typename OBJECT, typename TRANSPORT , typename SEQUENCE >
+//SEQUENCE * asynchronous < OBJECT, TRANSPORT, SEQUENCE >::sequence()
+//{
+//
+//   if (!m_pfuture)
+//   {
+//
+//      acmesystem()->__construct_new(m_pfuture);
+//       
+//      m_pfuture->acmesystem() = acmesystem();
+//
+//      m_pfuture->m_p = this;
+//
+//   }
+//
+//   return m_pfuture;
+//
+//}
+
+
+
+
+//template < typename TYPE >
+//inline ::pointer<TYPE>property_object::__create_new()
+//{
+//
+//   auto p = __new(TYPE);
+//
+//   p->initialize_matter(this);
+//
+//   return p;
+//
+//}
+
+
+//#endif // __cplusplus_winrt

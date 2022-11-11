@@ -26,9 +26,9 @@
          {
 
 
-            frame_001::frame_001(::object * pobject) :
-               object(pobject),
-               frame(pobject)
+            frame_001::frame_001(::particle * pparticle) :
+               object(pparticle),
+               frame(pparticle)
             {
 
                set_style(StyleLightBlue);

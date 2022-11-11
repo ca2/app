@@ -1,7 +1,10 @@
 ﻿#pragma once
 
 
-#include "acme/primitive/geometry2d/_basic.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/action_context.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/primitive/object.h"
 
 
 namespace user
@@ -9,7 +12,7 @@ namespace user
 
 
    class CLASS_DECL_ACME text :
-      virtual public object
+      virtual public ::object
    {
    public:
 
@@ -22,12 +25,12 @@ namespace user
       ~text() override;
 
 
-      virtual void _001GetText(string & str) const;
+      virtual void _001GetText(string & str);
 
 
-      virtual strsize _001GetTextLength() const;
-      virtual void _001GetText(char * psz, strsize len) const;
-      virtual void _001GetText(string & str, index iBeg, index iEnd) const;
+      virtual strsize _001GetTextLength();
+      virtual void _001GetText(char * psz, strsize len);
+      virtual void _001GetText(string & str, index iBeg, index iEnd);
 
 
       virtual void _001SetText(const ::string & str, const ::action_context & action_context);
@@ -35,16 +38,16 @@ namespace user
 
 
 
-      virtual void _001GetSel(strsize & iBeg, strsize & iEnd) const;
+      virtual void _001GetSel(strsize & iBeg, strsize & iEnd);
       virtual void _001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context = ::e_source_user);
       virtual void _001SetSelEnd(strsize iSelEnd);
 
 
-      virtual void _001GetSelText(string & str) const;
+      virtual void _001GetSelText(string & str);
       virtual void _001SetSelText(const ::string & psz, const ::action_context & action_context);
 
 
-      virtual void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd) const;
+      virtual void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd);
 
 
       virtual void MacroBegin();

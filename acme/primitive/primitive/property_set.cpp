@@ -1,9 +1,12 @@
 ﻿#include "framework.h"
+#include "payload.h"
+#include "acme/exception/exception.h"
+#include "acme/filesystem/file/file.h"
+#include "acme/networking/__string.h"
 #include "acme/platform/acme.h"
-//#include "acme/platform/static_start_internal.h"
-
-
-
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/string/command_line.h"
+#include "acme/primitive/string/str.h"
 
 
 #ifdef LINUX
@@ -874,7 +877,7 @@ void property_set::parse_ini(const ::string & strIni)
 
       }
 
-      if(::str().begins_eat(strLine, "["))
+      if(strLine.begins_eat("["))
       {
 
          strLine.trim_right("]");
@@ -1189,15 +1192,15 @@ void property_set::parse_network_headers(const char * pszHeaders)
 string property_set::_001Replace(const ::string & str) const
 {
 
-   return ::papaya::property_set::evaluate(*this, str);
+   return evaluate(str);
 
 }
 
 
-::matter * property_set::source_channel()
+::particle * property_set::source_channel()
 {
 
-   return set("source_channel").cast < ::matter >();
+   return set("source_channel").cast < ::particle >();
 
 }
 
@@ -1411,7 +1414,7 @@ property_set& property_set::operator = (const ::payload & payload)
       //else
       //{
 
-         ::papaya::copy((property_ptra &)*this, (const property_ptra &)*payload.m_ppropertyset);
+         ::acme::copy((property_ptra &)*this, (const property_ptra &)*payload.m_ppropertyset);
 
 //      }
 
@@ -1442,7 +1445,7 @@ property_set & property_set::operator = (const property_set & set)
    if (&set != this)
    {
 
-      ::papaya::copy((property_ptra & )*this, (const property_ptra & ) set);
+      ::acme::copy((property_ptra & )*this, (const property_ptra & ) set);
 
    }
 
@@ -1554,7 +1557,7 @@ property_set & property_set::merge(const property_set & set)
 
                   }
 
-                  operator[](pproperty->name()).payloada().add_unique(operator[](pproperty->name()).payloada());
+                  operator[](pproperty->name()).payloada().append_unique(operator[](pproperty->name()).payloada());
 
                }
 
@@ -2081,73 +2084,6 @@ string property_set::get_command_line() const
 }
 
 
-namespace handle
-{
-
-
-   ini::ini(const ::string & str)
-   {
-
-      parse_ini(str);
-
-   }
-
-
-   ini::ini(::file::file * pfile)
-   {
-
-      string str;
-
-      pfile->as(str);
-
-      parse_ini(str);
-
-   }
-
-
-   //ini::ini(::acme::application * papp)
-   //{
-
-   //   auto preader = Ctx(papp).file().get_reader(papp->get_app_localconfig_folder());
-
-   //   if (preader)
-   //   {
-
-   //      string str;
-
-   //      preader->full_read_string(str);
-
-   //      parse_ini(str);
-
-   //   }
-
-   //}
-
-
-   //localini::localini(::matter * pobject)
-   //{
-
-   //   auto preader = Ctx(pobject).file().get_reader(         auto psystem = m_psystem;
-
-//         auto pacmedirectory = psystem->m_pacmedirectory;
-//
-//pacmedirectory->localconfig() / "this.ini");
-
-   //   if (preader)
-   //   {
-
-   //      string str;
-
-   //      preader->full_read_string(str);
-
-   //      parse_ini(str);
-
-   //   }
-
-   //}
-
-
-} // namespace handle
 
 
 void property_set::parse_environment_variable(const string_array & straEnvironment)
@@ -2228,4 +2164,445 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
    return *pproperty;
 
 }
+
+
+
+
+//::payload matter::topic(const ::atom & atom)
+//{
+//
+//   auto pproperty = fetch_property(atom);
+//
+//   if (!pproperty)
+//   {
+//
+//      throw ::exception(error_resource);
+//
+//   }
+//
+//   return pproperty;
+//
+//}
+
+
+::index property_set::find_index(const ::atom & atom, ::index i) const
+{
+
+   for(; i < m_nSize; i++)
+   {
+
+      if (m_pData[i]->m_atom == atom)
+      {
+
+         return i;
+
+      }
+
+   }
+
+   return -1;
+
+}
+
+
+
+property & property_set::get(const ::atom & atom)
+{
+
+   auto pproperty = find(atom);
+
+   if (!pproperty)
+   {
+
+      pproperty = memory_new property(atom);
+
+      add_item(pproperty);
+
+   }
+
+   return *pproperty;
+
+}
+
+//#define memory_new ACME_NEW
+
+::property * property_set::find(const ::atom & atom) const
+{
+
+   auto iFind = find_index(atom);
+
+   if(__not_found(iFind))
+   {
+
+      return nullptr;
+
+   }
+
+   return (const_cast < property_set * > (this))->m_pData[iFind];
+
+}
+
+
+::payload property_set::operator()(const ::atom & atom, const ::payload & varDefault) const
+{
+
+   auto pproperty = find(atom);
+
+   if (!pproperty)
+   {
+
+      return varDefault;
+
+   }
+
+   return pproperty;
+
+}
+
+
+::payload & property_set::topic(const atom & atom)
+{
+
+   return set(atom);
+
+}
+
+
+
+
+
+::payload & property_set::set(const ::atom & atom)
+{
+
+   auto pproperty = find(atom);
+
+   if (!pproperty)
+   {
+
+      pproperty = memory_new property(atom);
+
+      add_item(pproperty);
+
+   }
+
+   return *pproperty;
+
+}
+
+
+//#define memory_new ACME_NEW
+
+//property * payload::find_property(const ::atom & atom) const
+//{
+//
+//   if (!casts_to(e_type_property_set))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return propset().find(atom);
+//
+//}
+
+
+//property & payload::get_property(const ::atom & atom)
+//{
+//
+//   return propset().get(atom);
+//
+//}
+
+
+
+//CLASS_DECL_ACME string atom::operator + (const atom & atom) const
+//{
+//
+//   if (is_integer())
+//   {
+//
+//      if (atom.is_integer())
+//      {
+//
+//         return (iptr)(m_i + atom.m_i);
+//
+//      }
+//      else if (atom.is_text())
+//      {
+//
+//         return __string(m_i) + "." + string(atom.m_psz);
+//
+//      }
+//      else
+//      {
+//
+//         return *this;
+//
+//      }
+//
+//   }
+//   else if (atom.is_integer())
+//   {
+//
+//      if (is_text())
+//      {
+//
+//         return string(m_psz) + "." + __string(atom.m_i);
+//
+//      }
+//      else
+//      {
+//
+//         return atom;
+//
+//      }
+//
+//   }
+//   else if (is_text())
+//   {
+//
+//      if (atom.is_text())
+//      {
+//
+//         return string(m_psz) + string(atom.m_psz);
+//
+//      }
+//      else
+//      {
+//
+//         return *this;
+//
+//      }
+//
+//   }
+//   else if (atom.is_text())
+//   {
+//
+//      return atom;
+//
+//   }
+//   else
+//   {
+//
+//      return ::atom();
+//
+//   }
+//
+//}
+
+
+bool property_set::has_property(atom idName) const
+{
+
+   if (::is_null(this))
+   {
+
+      return false;
+
+   }
+
+   const property * pproperty = find(idName);
+
+   return pproperty != nullptr && pproperty->m_etype != ::e_type_new;
+
+}
+
+
+bool property_set::is_true(atom idName, bool bDefault) const
+{
+
+   const property * pproperty = find(idName);
+
+   if (pproperty == nullptr)
+   {
+
+      return bDefault;
+
+   }
+
+   return pproperty->is_true(bDefault);
+
+}
+
+
+::payload property_set::value(atom idName) const
+{
+
+   property * pproperty = find(idName);
+
+   if (pproperty == nullptr)
+   {
+
+      return ::error_not_found;
+
+   }
+
+   return *pproperty;
+
+}
+
+
+::payload property_set::value(atom idName, ::payload varDefault) const
+{
+
+   property * pproperty = find(idName);
+
+   if (pproperty == nullptr)
+   {
+
+      return varDefault;
+
+   }
+
+   return *pproperty;
+
+}
+
+
+
+// ::property_set set;
+//
+// set["var5"] = "searching value";
+//
+// str = "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = '$var5'"
+//
+// real-ization: "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = 'searching value'"
+string property_set::evaluate(const ::string & strSource) const
+{
+
+   string str(strSource);
+
+   strsize iPos;
+
+   char ch;
+
+   char chNext;
+
+   for (iPos = 0; iPos < str.get_length(); iPos++)
+   {
+
+      ch = str[iPos];
+
+      if (iPos + 1 < str.get_length())
+      {
+
+         chNext = str[iPos + 1];
+
+      }
+      else
+      {
+
+         chNext = '\0';
+
+      }
+
+      if (ch == '\\')
+      {
+
+         iPos++;
+
+         continue;
+
+      }
+      else if (ch == '{' && chNext == '$')
+      {
+
+         strsize iEnd = str.find('}', iPos + 1);
+
+         if (iEnd < 0)
+         {
+
+            //error
+
+            break;
+
+         }
+
+         string strKey = str.Mid(iPos + 2, iEnd - iPos - 2);
+
+         string strEval;
+
+         if (get_string(strEval, strKey))
+         {
+
+            str = str.Left(iPos) + strEval + str.Mid(iEnd + 1);
+
+            iPos += strEval.get_length() - 1;
+
+         }
+         else
+         {
+
+            iPos = iEnd;
+
+         }
+
+
+      }
+      else if (ch == '$')
+      {
+
+         if (!(ansi_char_isalpha(chNext) || chNext == '_'))
+         {
+
+            // error
+
+            break;
+
+         }
+
+         strsize iStart = iPos;
+
+         strsize iEnd = iStart + 2;
+
+         for (; iEnd < str.get_length(); iEnd++)
+         {
+
+            ch = str[iEnd];
+
+            if (!(ansi_char_isalpha(ch) || ch == '_' || ansi_char_isdigit(ch)))
+            {
+
+               break;
+
+            }
+
+         }
+
+         string strExpression = str.Mid(iStart, iEnd - iStart);
+
+         string strEval;
+
+         if (get_evaluation(strEval, strExpression))
+         {
+
+            str = str.Left(iPos) + strEval + str.Mid(iEnd);
+
+            iPos += strEval.get_length() - 1;
+
+         }
+         else
+         {
+
+            iPos = iEnd;
+
+         }
+
+      }
+
+   }
+
+   return str;
+
+}
+
+
+bool property_set::get_evaluation(::string & str, const ::string & strExpression) const
+{
+
+   return get_string(str, strExpression);
+
+}
+
 

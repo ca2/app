@@ -1,6 +1,12 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/collection/bool_array.h"
+#include "acme/primitive/collection/string_array.h"
+#include "acme/filesystem/filesystem/listing.h"
+
+
 namespace file
 {
 
@@ -11,18 +17,18 @@ namespace file
    public:
 
 
-      ::pointer<::file::path_array>     m_ppathaSearch;
-      ::pointer<bool_array>        m_pbaRecursive;
-      string_array                  m_straFilter;
-      ::file::listing               m_listing;
-      ::file::listing               m_listingAddUp;
+      ::pointer<::file::path_array>    m_ppathaSearch;
+      ::pointer<bool_array>            m_pbaRecursive;
+      string_array                     m_straFilter;
+      ::file::listing                  m_listing;
+      ::file::listing                  m_listingAddUp;
 
 
       set();
       ~set() override;
 
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
 
       // reference

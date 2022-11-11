@@ -2,6 +2,8 @@
 #include "split_bar.h"
 #include "split_pane.h"
 #include "split_layout.h"
+#include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/user/user/frame.h"
 #include "aura/message/user.h"
@@ -132,7 +134,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_pparent->m_iIndex = m_iIndex;
 
@@ -158,7 +160,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if(m_pparent->m_iIndex == m_iIndex)
       {
@@ -181,7 +183,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto point = pmouse->m_point+ m_pparent->screen_to_client();
 

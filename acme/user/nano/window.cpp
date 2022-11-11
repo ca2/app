@@ -2,11 +2,20 @@
 // Created by camilo on 31/01/2022 16:16 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "_nano.h"
+#include "window.h"
+#include "window_implementation.h"
+#include "device.h"
+#include "child.h"
+#include "button.h"
+#include "acme/user/nano/font.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/platform/node.h"
 #include "acme/user/user/drag.h"
+#include "acme/platform/sequencer.h"
+#include "acme/platform/system.h"
+#include "acme/exception/interface_only.h"
 
 
 nano_window::nano_window()
@@ -40,10 +49,10 @@ nano_window::~nano_window()
 
 
 
-void nano_window::on_initialize_object()
+void nano_window::on_initialize_particle()
 {
 
-   ::object::on_initialize_object();
+   ::object::on_initialize_particle();
 
    __construct(m_pimplementation);
 
@@ -234,7 +243,7 @@ void nano_window::create_drawing_objects()
 
       m_pfont->m_iFontSize = m_iFontSize;
 
-      m_pfont->m_strFontName = m_psystem->node()->font_name(m_efont);
+      m_pfont->m_strFontName = acmenode()->font_name(m_efont);
 
    }
 
@@ -735,13 +744,13 @@ void nano_window::display_temporary_file_with_text(const ::string & str)
 
    string strAppId;
 
-   strAppId = m_psystem->m_strAppId;
+   strAppId = acmesystem()->m_strAppId;
 
-   ::file::path pathFolder = m_psystem->m_pacmedirectory->home() / "application" / strAppId / "details";
+   ::file::path pathFolder = acmedirectory()->home() / "application" / strAppId / "details";
 
-   auto pathDetails = m_psystem->m_pacmefile->time_put_contents(pathFolder, "details", "txt", str);
+   auto pathDetails = acmefile()->time_put_contents(pathFolder, "details", "txt", str);
 
-   m_psystem->node()->shell_open(pathDetails, "");
+   acmenode()->shell_open(pathDetails, "");
 
 }
 

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/platform/department.h"
+
+
 namespace fs
 {
 
@@ -12,10 +15,10 @@ namespace fs
 
 
       fs();
-      virtual ~fs();
+      ~fs() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
    };

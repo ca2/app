@@ -11,14 +11,15 @@
 #include "user.h"
 #include "frame.h"
 #include "form.h"
-#ifdef WINDOWS_DESKTOP
-#include "apex/operating_system.h"
-#endif
-#include "aura/message/timer.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/constant/message_prototype.h"
 #include "acme/constant/simple_command.h"
+#include "aura/message/timer.h"
 #include "acme/handler/item.h"
 #include "acme/user/user/drag.h"
 #include "apex/message/simple_command.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/timer.h"
@@ -30,19 +31,26 @@
 #include "acme/primitive/geometry2d/_enhanced.h"
 #include "acme/primitive/geometry2d/_collection_enhanced.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
+#include "acme/primitive/string/international.h"
+#include "apex/message/simple_command.h"
+#include "aqua/user/controller.h"
+#include "aura/user/appearance/appearance.h"
+#include "aura/user/user/calc_size.h"
+#include "aura/user/user/system.h"
+#include "aura/windowing/monitor.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/cursor.h"
 #include "aura/message/user.h"
 #include "aura/graphics/draw2d/graphics_call.h"
-#include "aura/user/appearance/appearance.h"
-#include "aura/user/user/system.h"
 #include "aura/graphics/user/control_box_icon.h"
 #include "aura/graphics/user/control_box_button.h"
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
-
+#ifdef WINDOWS_DESKTOP
+//#include "acme/_operating_system.h"
+#endif
 
 
 #define INFO_LAYOUT_DISPLAY
@@ -597,7 +605,7 @@ namespace user
 
 
 
-   ::windowing::window * interaction::_window() const
+   ::windowing::window * interaction::_window()
    {
       
       auto puserinteractionTopLevel = ((interaction *)this)->_top_level();
@@ -670,7 +678,7 @@ namespace user
    }
 
 
-   ::windowing::windowing * interaction::windowing() const
+   ::windowing::windowing * interaction::windowing()
    {
 
       auto pwindow = m_pwindow;
@@ -702,7 +710,7 @@ namespace user
    }
 
 
-   ::windowing::display * interaction::get_display() const
+   ::windowing::display * interaction::get_display()
    {
 
       auto pwindowing = windowing();
@@ -728,7 +736,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_host_window() const
+   ::user::interaction * interaction::get_host_window()
    {
 
       auto psession = get_session();
@@ -758,7 +766,7 @@ namespace user
    }
 
 
-   enum_element interaction::get_default_element() const
+   enum_element interaction::get_default_element()
    {
 
       return e_element_none;
@@ -766,8 +774,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer
-      interaction::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer interaction::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
       if (pstyle)
@@ -787,7 +794,7 @@ namespace user
    }
 
 
-   enum_translucency interaction::get_translucency(style * pstyle) const
+   enum_translucency interaction::get_translucency(style * pstyle)
    {
 
       if (pstyle)
@@ -802,7 +809,7 @@ namespace user
    }
 
 
-   int interaction::get_int(style * pstyle, enum_int eint, ::user::enum_state estate, int iDefault) const
+   int interaction::get_int(style * pstyle, enum_int eint, ::user::enum_state estate, int iDefault)
    {
 
       int i;
@@ -837,7 +844,7 @@ namespace user
    }
 
 
-   double interaction::get_double(style * pstyle, enum_double edouble, ::user::enum_state estate, double dDefault) const
+   double interaction::get_double(style * pstyle, enum_double edouble, ::user::enum_state estate, double dDefault)
    {
 
       double d;
@@ -872,8 +879,7 @@ namespace user
    }
 
 
-   status<::rectangle_f64>
-      interaction::get_border(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   status<::rectangle_f64> interaction::get_border(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
       return nullptr;
@@ -881,8 +887,7 @@ namespace user
    }
 
 
-   status<::rectangle_f64>
-      interaction::get_padding(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   status<::rectangle_f64> interaction::get_padding(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
       if (get_control_type() == ::user::e_control_type_button)
@@ -905,8 +910,7 @@ namespace user
    }
 
 
-   status<::rectangle_f64>
-      interaction::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   status<::rectangle_f64> interaction::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
       if (m_flagNonClient.has(e_non_client_focus_rect))
@@ -928,7 +932,7 @@ namespace user
    }
 
 
-   status<::color::color> interaction::get_color(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   status<::color::color> interaction::get_color(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
       //if (pstyle)
@@ -976,7 +980,7 @@ namespace user
    }
 
 
-   ::user::e_flag interaction::get_draw_flags(::user::style * pstyle) const
+   ::user::e_flag interaction::get_draw_flags(::user::style * pstyle)
    {
 
       return e_null;
@@ -984,7 +988,7 @@ namespace user
    }
 
 
-   style * interaction::get_style() const
+   style * interaction::get_style()
    {
 
       auto pframe = top_level_frame();
@@ -1007,7 +1011,7 @@ namespace user
    }
 
 
-   ::user::style * interaction::get_style(::draw2d::graphics_pointer & pgraphics) const
+   ::user::style * interaction::get_style(::draw2d::graphics_pointer & pgraphics)
    {
 
       return pgraphics ? get_style(pgraphics->m_puserstyle) : get_style();
@@ -1023,7 +1027,7 @@ namespace user
    }
 
 
-   string interaction::default_id_prefix() const
+   string interaction::default_id_prefix()
    {
 
       return __type_name(this) + "_";
@@ -1047,7 +1051,7 @@ namespace user
 
       bool bDuplicate = true;
 
-      //synchronous_lock slChildren(::user::mutex_children());
+      //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -1163,7 +1167,7 @@ namespace user
    void interaction::set_tool_window(bool bSet)
    {
 
-      if (is_null(m_pprimitiveimpl))
+      if (::is_null(m_pprimitiveimpl))
       {
 
          m_bToolWindow = true;
@@ -1355,7 +1359,7 @@ namespace user
    }
 
 
-   ::element * interaction::get_taskpool_container()
+   ::particle * interaction::get_taskpool_container()
    {
 
       return parent_frame();
@@ -1433,7 +1437,7 @@ namespace user
    }
 
 
-   interaction * interaction::get_parent_window() const
+   interaction * interaction::get_parent_window()
    {
 
       return get_parent();
@@ -1441,7 +1445,7 @@ namespace user
    }
 
 
-   bool interaction::is_host_top_level() const
+   bool interaction::is_host_top_level()
    {
 
       return ::is_set(m_puserinteractionParent) && is_top_level();
@@ -1516,7 +1520,7 @@ namespace user
    //   }
 
 
-   ::user::element * interaction::get_parent_primitive() const
+   ::user::element * interaction::get_parent_primitive()
    {
 
       return get_parent();
@@ -1524,7 +1528,7 @@ namespace user
    }
 
 
-   interaction * interaction::get_parent() const
+   interaction * interaction::get_parent()
    {
 
       if (!m_puserinteractionParent)
@@ -1546,7 +1550,7 @@ namespace user
    }
 
 
-   oswindow interaction::GetParentHandle() const
+   oswindow interaction::GetParentHandle()
    {
 
       interaction * puserinteractionParent = get_parent();
@@ -1598,10 +1602,10 @@ namespace user
       if (m_pthreadUserInteraction)
       {
 
-         if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+         if (::is_set(m_pthreadUserInteraction->m_puserprimitiveaThread))
          {
 
-            m_pthreadUserInteraction->m_puiptraThread->erase(this);
+            m_pthreadUserInteraction->m_puserprimitiveaThread->erase(this);
 
          }
 
@@ -1682,7 +1686,7 @@ namespace user
 
          ::rectangle_i32 rectangleWindow;
 
-         auto pparent = puserinteractionParent->cast<::user::interaction>();
+         ::pointer < ::user::interaction > pparent = puserinteractionParent;
 
          if (pparent)
          {
@@ -2071,14 +2075,14 @@ namespace user
          if (m_bEditDefaultHandling)
          {
 
-            add_command_handler("edit_delete", this, &interaction::_001OnEditDelete);
+            add_command_handler("edit_delete", { this,  &interaction::_001OnEditDelete });
 
          }
 
          MESSAGE_LINK(e_message_close, pchannel, this, &interaction::on_message_close);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction::on_message_size);
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction::on_message_move);
-         MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this,
+         MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this,
             &interaction::on_message_non_client_calculate_size);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::on_message_show_window);
          MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::on_message_display_change);
@@ -2493,10 +2497,10 @@ namespace user
    }
 
 
-   void interaction::notify_on_destroy(::property_object * pobject)
+   void interaction::notify_on_destroy(::property_object * pparticle)
    {
 
-      ::user::primitive::notify_on_destroy(pobject);
+      ::user::primitive::notify_on_destroy(pparticle);
 
    }
 
@@ -2512,7 +2516,7 @@ namespace user
          if (m_pprimitiveimpl)
          {
 
-            m_pprimitiveimpl->set_destroying();
+            m_pprimitiveimpl->set_destroying_flag();
 
          }
 
@@ -2582,7 +2586,7 @@ namespace user
 
       auto psession = get_session();
 
-      if (is_null(psession))
+      if (::is_null(psession))
       {
 
          return;
@@ -2620,10 +2624,10 @@ namespace user
       try
       {
 
-         if (!m_pprimitiveimpl->is_destroying())
+         if (!m_pprimitiveimpl->has_destroying_flag())
          {
 
-            //synchronous_lock slChildren(::user::mutex_children());
+            //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
             auto puserinteractionpointeraChild = m_puserinteractionpointeraChild.get();
 
@@ -2743,7 +2747,7 @@ namespace user
 
          if (::is_null(pinteraction)
             || ::is_null(get_wnd()->m_pprimitiveimpl)
-            || get_wnd()->m_pprimitiveimpl->is_destroying())
+            || get_wnd()->m_pprimitiveimpl->has_destroying_flag())
          {
 
             output_debug_string("destroying os window");
@@ -2752,7 +2756,7 @@ namespace user
          else
          {
 
-            post_procedure([this]()
+            interaction_post([this]()
                {
 
                   if (get_app() != nullptr && get_app()->get_session() != nullptr &&
@@ -2837,7 +2841,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(psession->mutex());
+            synchronous_lock synchronouslock(psession->synchronization());
 
             try
             {
@@ -2870,7 +2874,7 @@ namespace user
    }
 
 
-   void interaction::_001GetSel(strsize & iBeg, strsize & iEnd) const
+   void interaction::_001GetSel(strsize & iBeg, strsize & iEnd)
    {
 
 
@@ -3062,7 +3066,7 @@ namespace user
             if (pprimitiveimpl)
             {
 
-               synchronous_lock synchronouslock(pprimitiveimpl->mutex());
+               synchronous_lock synchronouslock(pprimitiveimpl->synchronization());
 
                pprimitiveimpl->m_userinteractionaMouseHover.erase(this);
 
@@ -3074,7 +3078,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          auto pthread = get_thread();
 
@@ -3100,7 +3104,7 @@ namespace user
          try
          {
 
-            //synchronous_lock slChildren(::user::mutex_children());
+            //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
             auto puserinteractionpointeraChild = __new(
                ::user::interaction_array(*puserinteractionParent->m_puserinteractionpointeraChild));
@@ -3251,7 +3255,7 @@ namespace user
 
       pmessage->previous();
 
-      if (psize->m_nType == SIZE_MINIMIZED)
+      if (psize->m_nType == ::user::e_size_minimized)
       {
 
          TRACE("::user::interaction::on_message_size SIZE_MINIMIZED - ignoring event");
@@ -3269,7 +3273,7 @@ namespace user
       if (this == psession->get_user_interaction_host())
       {
 
-         //synchronous_lock slChildren(::user::mutex_children());
+         //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
          auto puserinteractionpointeraChild = m_puserinteractionpointeraChild.get();
 
@@ -3359,7 +3363,7 @@ namespace user
       if (get_parent() == nullptr)
       {
 
-         if(m_psystem->m_bImaging)
+         if(acmesystem()->m_bImaging)
          //if (!window()->defer_set_icon())
          {
 
@@ -3461,7 +3465,7 @@ namespace user
    }
 
 
-   ::point_i32 interaction::get_parent_accumulated_scroll(enum_layout elayout) const
+   ::point_i32 interaction::get_parent_accumulated_scroll(enum_layout elayout)
    {
 
       ::point_i32 pointScroll;
@@ -3552,7 +3556,7 @@ namespace user
 
          ::user::interaction * pinteraction = this;
 
-         //synchronous_lock synchronouslock(mutex());
+         //synchronous_lock synchronouslock(this->synchronization());
 
          //auto pinteractiondraw2d = get_draw2d();
 
@@ -3637,7 +3641,7 @@ namespace user
 
          {
 
-            //synchronous_lock synchronouslock(mutex());
+            //synchronous_lock synchronouslock(this->synchronization());
 
             {
 
@@ -3818,7 +3822,7 @@ namespace user
 
 #endif
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       {
 
@@ -3917,7 +3921,7 @@ namespace user
 
          set_context_org(pgraphics);
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          _008OnDraw(pgraphics);
 
@@ -3951,7 +3955,7 @@ namespace user
    }
 
 
-   synchronization_object * interaction::mutex_draw()
+   ::particle * interaction::mutex_draw()
    {
 
       auto puserinteraction = get_wnd();
@@ -3990,7 +3994,7 @@ namespace user
 
       }
 
-      return pgraphics->mutex();
+      return pgraphics->synchronization();
 
    }
 
@@ -4035,7 +4039,7 @@ namespace user
 
                   }
 
-                  if (pinteraction->is_destroying() || !pinteraction->is_window())
+                  if (pinteraction->has_destroying_flag() || !pinteraction->is_window())
                   {
 
                      ::output_debug_string("trying to draw window being destroyed");
@@ -4252,7 +4256,7 @@ namespace user
       try
       {
 
-         //synchronous_lock slChildren(::user::mutex_children());
+         //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
          //if (0) // abcxxx
          {
@@ -4613,7 +4617,7 @@ namespace user
    void interaction::queue_graphics_call(const ::function<void(::draw2d::graphics_pointer&) > & function)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       __defer_construct_new(m_pgraphicscalla);
 
@@ -4625,7 +4629,7 @@ namespace user
    void interaction::process_graphics_call_queue(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pgraphicscalla)
       {
@@ -4896,14 +4900,16 @@ namespace user
    bool interaction::is_prodevian(const ::matter * pmatter) const
    {
 
-      if (get_wnd() == nullptr || get_wnd()->m_pprimitiveimpl == nullptr)
+      auto pwnd = ((interaction*)this)->get_wnd();
+
+      if (pwnd == nullptr || pwnd->m_pprimitiveimpl == nullptr)
       {
 
          return false;
 
       }
 
-      return get_wnd()->m_pprimitiveimpl->is_prodevian(pmatter);
+      return pwnd->m_pprimitiveimpl->is_prodevian(pmatter);
 
    }
 
@@ -4917,34 +4923,34 @@ namespace user
 
       switch (eprototype)
       {
-      case ::message::PrototypeNone:
+      case ::message::e_prototype_none:
       {
 
          pmessage = __new(::user::message);
 
       }
       break;
-      case ::message::PrototypeCreate:
+      case ::message::e_prototype_create:
       {
          pmessage = __new(::message::create);
       }
       break;
-      case ::message::PrototypeEnable:
+      case ::message::e_prototype_enable:
       {
          pmessage = __new(::message::enable);
       }
       break;
-      case ::message::PrototypeNcActivate:
+      case ::message::e_prototype_non_client_activate:
       {
          pmessage = __new(::message::nc_activate);
       }
       break;
-      case ::message::PrototypeKey:
+      case ::message::e_prototype_key:
       {
          pmessage = __new(::message::key);
       }
       break;
-      case ::message::PrototypeTimer:
+      case ::message::e_prototype_timer:
       {
 
          //throw ::exception(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
@@ -4953,91 +4959,91 @@ namespace user
 
       }
       break;
-      case ::message::PrototypeShowWindow:
+      case ::message::e_prototype_show_window:
       {
          pmessage = __new(::message::show_window);
       }
       break;
-      case ::message::PrototypeSetCursor:
+      case ::message::e_prototype_set_cursor:
       {
          pmessage = __new(::message::set_cursor);
       }
       break;
-      case ::message::PrototypeNcHitTest:
+      case ::message::e_prototype_non_client_hit_test:
       {
          pmessage = __new(::message::nc_hit_test);
       }
       break;
-      case ::message::PrototypeMove:
+      case ::message::e_prototype_move:
       {
          pmessage = __new(::message::move);
       }
       break;
-      case ::message::PrototypeEraseBkgnd:
+      case ::message::e_prototype_erase_background:
       {
          pmessage = __new(::message::erase_bkgnd);
       }
       break;
-      case ::message::PrototypeScroll:
+      case ::message::e_prototype_scroll:
       {
          pmessage = __new(::message::scroll);
       }
       break;
-      case ::message::PrototypeSetFocus:
+      case ::message::e_prototype_set_focus:
       {
          pmessage = __new(::message::set_keyboard_focus);
       }
       break;
-      case ::message::PrototypeKillFocus:
+      case ::message::e_prototype_kill_focus:
       {
          pmessage = __new(::message::kill_keyboard_focus);
       }
       break;
 #if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD)
-      case ::message::PrototypeWindowPos:
+      case ::message::e_prototype_window_pos:
       {
          pmessage = __new(::message::window_pos);
       }
       break;
-      case ::message::PrototypeNcCalcSize:
+      case ::message::e_prototype_non_client_calc_size:
       {
          pmessage = __new(::message::nc_calc_size);
       }
       break;
 #endif
-      case ::message::PrototypeMouse:
+      case ::message::e_prototype_mouse:
       {
          pmessage = __new(::message::mouse);
       }
       break;
-      case ::message::PrototypeMouseWheel:
+      case ::message::e_prototype_mouse_wheel:
       {
          pmessage = __new(::message::mouse_wheel);
       }
       break;
-      case ::message::PrototypeSize:
+      case ::message::e_prototype_size:
       {
          pmessage = __new(::message::size);
       }
       break;
-      case ::message::PrototypeActivate:
+      case ::message::e_prototype_activate:
       {
          pmessage = __new(::message::activate);
       }
       break;
-      case ::message::PrototypeMouseActivate:
+      case ::message::e_prototype_mouse_activate:
       {
          pmessage = __new(::message::mouse_activate);
       }
       break;
-      case ::message::PrototypeSimpleCommand:
+      case ::message::e_prototype_simple_command:
       {
          pmessage = __new(::message::simple_command);
       }
       break;
-      case ::message::PrototypeObject:
+      case ::message::e_prototype_object:
       {
-         pmessage = __new(::message::object);
+         pmessage = __new(::message::particle);
       }
       break;
       default:
@@ -5226,7 +5232,7 @@ namespace user
    bool interaction::is_branch_current() const
    {
 
-      if (is_null(m_pthreadUserInteraction))
+      if (::is_null(m_pthreadUserInteraction))
       {
 
          return false;
@@ -5300,7 +5306,7 @@ namespace user
    //}
 
 
-   bool interaction::is_user_thread() const
+   bool interaction::is_user_thread()
    {
 
       auto pthreadCurrent = ::get_task();
@@ -5317,7 +5323,7 @@ namespace user
    void interaction::interaction_send(const ::procedure & procedure)
    {
 
-      __material_send_procedure(this, this, &interaction::interaction_post, procedure);
+      __matter_send_procedure(this, this, &interaction::interaction_post, procedure);
 
    }
 
@@ -5365,7 +5371,7 @@ namespace user
 
       //}
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto psignal = psystem->get_signal(id_user_style_change);
 
@@ -5386,7 +5392,7 @@ namespace user
 
       run_property("on_create");
 
-      call_routines_with_id(CREATE_ROUTINE);
+      //call_routines_with_id(CREATE_ROUTINE);
 
       sync_style();
 
@@ -5407,7 +5413,7 @@ namespace user
       if (is_top_level_window() && !is_message_only_window())
       {
 
-         //synchronous_lock synchronouslock(mutex());
+         //synchronous_lock synchronouslock(this->synchronization());
 
          //if (get_app()->get_context_system() != nullptr)
          //{
@@ -5434,7 +5440,7 @@ namespace user
 
       }
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       //try
       //{
@@ -5652,7 +5658,7 @@ namespace user
    //void interaction::_000OnMouse(::message::mouse * pmouse)
    //{
 
-   //   // must lock ::user::mutex_children() at top stack chain
+   //   // must lock ::user::pointer < ::mutex >_children() at top stack chain
    //   // and only at top stack chain.
 
    //   bool bThisCapture = false;
@@ -5754,7 +5760,7 @@ namespace user
    //void interaction::_000OnChildrenMouse(::message::mouse * pmouse)
    //{
 
-   //   // must lock ::user::mutex_children() at top stack chain
+   //   // must lock ::user::pointer < ::mutex >_children() at top stack chain
    //   // and only at top stack chain.
 
    //   // these try catchs are needed for multi threading : multi threaded windows: the hell
@@ -6815,7 +6821,7 @@ namespace user
 
       }
 
-      //synchronous_lock synchronouslock(::user::mutex_children());
+      //synchronous_lock synchronouslock(::user::pointer < ::mutex >_children());
 
       if (m_puserinteractionpointeraChild)
       {
@@ -6883,7 +6889,7 @@ namespace user
 
       {
 
-         //synchronous_lock slChildren(::user::mutex_children());
+         //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
 
 
@@ -7040,7 +7046,7 @@ namespace user
    //bool interaction::subclass_window(oswindow posdata)
    //{
    //
-   //      synchronous_lock synchronouslock(mutex());
+   //      synchronous_lock synchronouslock(this->synchronization());
    //
    //      if (is_window())
    //      {
@@ -7311,7 +7317,7 @@ namespace user
 
       }
 
-      if (::is_null(m_psystem))
+      if (::is_null(acmesystem()))
       {
 
          initialize(puserinteractionParent);
@@ -7521,7 +7527,7 @@ namespace user
    bool interaction::_is_window() const
    {
 
-      if (is_null(this))
+      if (::is_null(this))
       {
 
          return false;
@@ -7535,10 +7541,10 @@ namespace user
 
       }
 
-      if (get_parent() != nullptr)
+      if (((interaction *)this)->get_parent() != nullptr)
       {
 
-         if (!get_parent()->is_window())
+         if (!((interaction *)this)->get_parent()->is_window())
          {
 
             return false;
@@ -7585,21 +7591,21 @@ namespace user
    ::property_object * interaction::parent_property_set_holder() const
    {
 
-      ::object * pobject = get_parent();
+      ::user::element * pelement = ((interaction*)this)->get_parent();
 
-      if (::is_set(pobject))
+      if (::is_set(pelement))
       {
 
-         return pobject;
+         return pelement;
 
       }
 
-      pobject = get_owner();
+      pelement = ((interaction*)this)->get_owner();
 
-      if (::is_set(pobject))
+      if (::is_set(pelement))
       {
 
-         return pobject;
+         return pelement;
 
       }
 
@@ -7683,7 +7689,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_first_child_window() const
+   ::user::interaction * interaction::get_first_child_window()
    {
 
       auto pchildren = m_puserinteractionpointeraChild;
@@ -7728,8 +7734,7 @@ namespace user
    }
 
 
-   ::user::interaction *
-      interaction::get_next_window(bool bIgnoreChildren, const ::user::interaction * puserinteractionStop) const
+   ::user::interaction * interaction::get_next_window(bool bIgnoreChildren, ::user::interaction * puserinteractionStop)
    {
 
       if (!bIgnoreChildren)
@@ -7815,7 +7820,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_window(enum_next enext) const
+   ::user::interaction * interaction::get_window(enum_next enext)
    {
 
       if (enext == e_next_sibling)
@@ -7842,7 +7847,7 @@ namespace user
    }
 
 
-   bool interaction::is_message_only_window() const
+   bool interaction::is_message_only_window()
    {
 
       return m_bMessageWindow;
@@ -7850,7 +7855,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_wnd(::u32 nCmd) const
+   ::user::interaction * interaction::get_wnd(::u32 nCmd)
    {
 
       if (m_pprimitiveimpl == nullptr)
@@ -8020,9 +8025,9 @@ namespace user
          while (*psz)
          {
 
-            string strUtf8Character = ::str().get_utf8_char(psz);
+            string strUtf8Character = get_utf8_char(psz);
 
-            auto iCharacter = ::str::ch().uni_index(strUtf8Character);
+            auto iCharacter = unicode_index(strUtf8Character);
 
             m_pappearance->on_character(iCharacter);
 
@@ -8081,7 +8086,7 @@ namespace user
    void interaction::get_window_text(string & rectangleString)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       rectangleString = m_strWindowText;
 
@@ -8091,7 +8096,7 @@ namespace user
    strsize interaction::get_window_text_length()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pprimitiveimpl == nullptr)
       {
@@ -8120,7 +8125,7 @@ namespace user
    //}
 
 
-   ::user::frame * interaction::frame() const
+   ::user::frame * interaction::frame()
    {
 
       ::user::interaction * pinteraction = (::user::interaction *)this;
@@ -8138,7 +8143,7 @@ namespace user
          if (pinteraction->is_frame_window())
          {
 
-            return pinteraction->cast<::user::frame>();
+            return dynamic_cast < ::user::frame * >(pinteraction);
 
          }
 
@@ -8151,7 +8156,7 @@ namespace user
    }
 
 
-   ::user::frame * interaction::_parent_frame() const
+   ::user::frame * interaction::_parent_frame()
    {
 
       ::user::interaction * pinteraction = get_parent_window();
@@ -8168,7 +8173,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::_top_level() const
+   ::user::interaction * interaction::_top_level()
    {
 
       ::user::interaction * puserinteractionParent = (::user::interaction *)this;
@@ -8196,7 +8201,7 @@ namespace user
    }
 
 
-   ::user::frame * interaction::_top_level_frame() const
+   ::user::frame * interaction::_top_level_frame()
    {
 
       auto pframe = frame();
@@ -8248,14 +8253,14 @@ namespace user
 
       }
 
-      if (is_destroying())
+      if (has_destroying_flag())
       {
 
          return;
 
       }
 
-      set_destroying();
+      set_destroying_flag();
 
       // set_destroying() m_bUserElementOk = false;
 
@@ -8383,7 +8388,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          try
          {
@@ -8398,9 +8403,9 @@ namespace user
 
       }
 
-      set(e_flag_task_ready);
+      set_flag(e_flag_task_ready);
 
-      set(e_flag_task_terminated);
+      set_flag(e_flag_task_terminated);
 
       if (::is_set(m_pobjectParentTask))
       {
@@ -8425,10 +8430,10 @@ namespace user
 
          }
 
-         if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+         if (::is_set(m_pthreadUserInteraction->m_puserprimitiveaThread))
          {
 
-            m_pthreadUserInteraction->m_puiptraThread->erase(this);
+            m_pthreadUserInteraction->m_puserprimitiveaThread->erase(this);
 
          }
 
@@ -8461,7 +8466,7 @@ namespace user
 
       bool bShouldContinue = task_get_run();
 
-      return !bShouldContinue && has(e_flag_task_ready);
+      return !bShouldContinue && has_flag(e_flag_task_ready);
 
    }
 
@@ -8744,7 +8749,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_owner() const
+   ::user::interaction * interaction::get_owner()
    {
 
       if (m_puserinteractionOwner != nullptr)
@@ -8766,7 +8771,7 @@ namespace user
    }
 
 
-   ::user::frame * interaction::get_owner_frame() const
+   ::user::frame * interaction::get_owner_frame()
    {
 
       ::user::interaction * pinteraction = get_owner();
@@ -8817,7 +8822,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_parent_owner() const
+   ::user::interaction * interaction::get_parent_owner()
    {
 
       ::pointer<::user::interaction>puserinteractionParent = get_parent();
@@ -8834,7 +8839,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_parent_or_owner() const
+   ::user::interaction * interaction::get_parent_or_owner()
    {
 
       ::pointer<::user::interaction>puserinteractionParent = get_parent();
@@ -8851,7 +8856,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_top_level_owner() const
+   ::user::interaction * interaction::get_top_level_owner()
    {
 
       ::pointer<::user::interaction>puiOwner = get_owner();
@@ -8967,7 +8972,7 @@ namespace user
    //}
 
 
-   ::e_display interaction::window_stored_display() const
+   ::e_display interaction::window_stored_display()
    {
 
       return e_display_none;
@@ -8975,7 +8980,7 @@ namespace user
    }
 
 
-   ::e_display interaction::window_previous_display() const
+   ::e_display interaction::window_previous_display()
    {
 
       return e_display_none;
@@ -8983,7 +8988,7 @@ namespace user
    }
 
 
-   bool interaction::is_full_screen_enabled() const
+   bool interaction::is_full_screen_enabled()
    {
 
       return true;
@@ -8991,7 +8996,7 @@ namespace user
    }
 
 
-   bool interaction::_is_full_screen() const
+   bool interaction::_is_full_screen()
    {
 
       auto pwindow = window();
@@ -9008,7 +9013,6 @@ namespace user
       return bDisplayIsFullScreen;
 
    }
-
 
 
    float interaction::preferred_dpi_x()
@@ -9103,7 +9107,7 @@ namespace user
    }
 
 
-   zorder interaction::zorder(enum_layout elayout) const
+   zorder interaction::zorder(enum_layout elayout)
    {
 
       return const_layout().state(elayout).zorder();
@@ -9460,7 +9464,7 @@ namespace user
       //    if (get_parent() != NULL)
       {
 
-         //synchronous_lock slChildren(::user::mutex_children());
+         //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
          //string strType = __type_name(this);
 
@@ -9624,7 +9628,7 @@ namespace user
    void interaction::design_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_pprimitiveimpl || !m_pprimitiveimpl->m_puserinteraction)
       {
@@ -9857,7 +9861,7 @@ namespace user
 
       primitive_impl * pprimitiveimpl = m_pprimitiveimpl;
 
-      bool bDestroying = pprimitiveimpl->is_destroying();
+      bool bDestroying = pprimitiveimpl->has_destroying_flag();
 
       pprimitiveimpl->message_handler(pmessage);
 
@@ -10228,7 +10232,7 @@ namespace user
    }
 
 
-   ::user::enum_state interaction::get_user_state() const
+   ::user::enum_state interaction::get_user_state()
    {
 
       if (!is_window_enabled())
@@ -10260,7 +10264,7 @@ namespace user
    }
 
 
-   bool interaction::has_hover() const
+   bool interaction::has_hover()
    {
 
       return has_link();
@@ -10268,7 +10272,7 @@ namespace user
    }
 
 
-   bool interaction::has_link() const
+   bool interaction::has_link()
    {
 
       return false;
@@ -10657,7 +10661,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void * interaction::get_os_data() const
+   void * interaction::get_os_data()
    {
 
       return window()->get_os_data();
@@ -11057,7 +11061,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
          {
 
             // discards object
-            ::pointer<::element>spo(lparam);
+            ::pointer <::particle > pparticle(lparam);
 
 
          }
@@ -11091,7 +11095,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::call_and_set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
    {
 
-      if (has(e_flag_destroying))
+      if (has_flag(e_flag_destroying))
       {
 
          return;
@@ -11111,7 +11115,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       void * pdata)
    {
 
-      if (is_destroying())
+      if (has_destroying_flag())
       {
 
          return;
@@ -11134,7 +11138,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      if (is_destroying())
+      if (has_destroying_flag())
       {
 
          return;
@@ -11161,7 +11165,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::has_keyboard_focus() const
+   bool interaction::has_keyboard_focus()
    {
 
       auto pwindowThis = window();
@@ -11240,7 +11244,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::has_mouse_capture() const
+   bool interaction::has_mouse_capture()
    {
 
       auto pwindowing = windowing();
@@ -11388,7 +11392,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::is_active_window() const
+   bool interaction::is_active_window()
    {
 
       //      auto psession = get_session();
@@ -11555,7 +11559,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::track_mouse_hover()
    {
 
-      //      synchronous_lock synchronouslock(mutex());
+      //      synchronous_lock synchronouslock(this->synchronization());
 
       //if (m_bTrackMouseLeave)
       //{
@@ -12114,11 +12118,10 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    bool interaction::on_set_parent(::user::primitive * puserprimitiveParent)
    {
 
-      auto puserinteractionParent = puserprimitiveParent->cast<::user::interaction>();
+      ::pointer < ::user::interaction > puserinteractionParent = puserprimitiveParent;
 
       if (m_puserinteractionParent == puserinteractionParent)
       {
-
 
          INFORMATION("-------------------------------------------------------------------");
          INFORMATION("");
@@ -12132,6 +12135,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       if (::is_set(puserinteractionParent) && puserinteractionParent->is_descendant_of(this, true))
       {
+
          INFORMATION("-------------------------------------------------------------------");
          INFORMATION("");
          INFORMATION("");
@@ -12145,7 +12149,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::pointer<::user::interaction>puiThis = this;
 
-      //synchronous_lock slChildren(::user::mutex_children());
+      //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
       try
       {
@@ -12187,10 +12191,10 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
                if (m_pthreadUserInteraction)
                {
 
-                  if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+                  if (::is_set(m_pthreadUserInteraction->m_puserprimitiveaThread))
                   {
 
-                     m_pthreadUserInteraction->m_puiptraThread->erase(this);
+                     m_pthreadUserInteraction->m_puserprimitiveaThread->erase(this);
 
                   }
 
@@ -12423,7 +12427,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::contains_user_interaction(::user::interaction * pinteraction, bool bRecursive) const
+   bool interaction::contains_user_interaction(::user::interaction * pinteraction, bool bRecursive)
    {
 
       if (this == pinteraction)
@@ -12597,7 +12601,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    ::draw2d::graphics_pointer interaction::create_memory_graphics()
    {
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -12906,7 +12910,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
    ::user::interaction * interaction::next_sibling(::user::interaction * pinteraction)
    {
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
       try
       {
          auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
@@ -13142,7 +13146,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const
+   bool interaction::is_ascendant(element * puiIsAscendant, bool bIncludeSelf)
    {
 
       if (::is_null(m_pprimitiveimpl))
@@ -13157,7 +13161,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::is_parent(const primitive * puiIsParent) const
+   bool interaction::is_parent(element * puiIsParent)
    {
 
       return m_pprimitiveimpl->is_parent(puiIsParent);
@@ -13165,7 +13169,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::is_child(const primitive * puiIsChild) const
+   bool interaction::is_child(element * puiIsChild)
    {
 
       return m_pprimitiveimpl->is_child(puiIsChild);
@@ -13181,7 +13185,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //}
 
 
-   bool interaction::is_ascendant(const ::user::controller * pcontroller, bool bIncludeSelf) const
+   bool interaction::is_ascendant(::user::controller * pcontroller, bool bIncludeSelf)
    {
 
       if (::is_null(pcontroller))
@@ -13215,7 +13219,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::contains(const primitive * puiIsChild) const
+   bool interaction::contains(element * puiIsChild)
    {
 
       return is_child(puiIsChild);
@@ -13223,7 +13227,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::recursively_contains(const primitive * puiIsChild, bool bIncludeSelf) const
+   bool interaction::recursively_contains(element * puiIsChild, bool bIncludeSelf)
    {
 
       return is_descendant(puiIsChild, bIncludeSelf);
@@ -13231,7 +13235,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   ::user::interaction * interaction::get_wnd() const
+   ::user::interaction * interaction::get_wnd()
    {
 
       if (m_puserinteractionParent == this)
@@ -13266,7 +13270,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
 
    // returns -1 if not descendant
-   i32 interaction::get_descendant_level(const ::user::primitive * pinteraction) const
+   i32 interaction::get_descendant_level(::user::element * pinteraction)
    {
 
       i32 iLevel = 0;
@@ -13292,7 +13296,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::is_descendant(const ::user::primitive * pinteraction, bool bIncludeSelf) const
+   bool interaction::is_descendant(::user::element * pinteraction, bool bIncludeSelf)
    {
 
       if (bIncludeSelf)
@@ -13311,7 +13315,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   ::user::interaction * interaction::get_focusable_descendant() const
+   ::user::interaction * interaction::get_focusable_descendant()
    {
 
       auto pinteraction = this;
@@ -13455,9 +13459,9 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::on_message_simple_command(::message::message * pmessage)
    {
 
-      SCAST_MSG(simple_command);
+      ::pointer < ::message::simple_command > psimplecommand = pmessage;
 
-      on_simple_command(psimple_command);
+      on_simple_command(psimplecommand);
 
    }
 
@@ -13593,7 +13597,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
          else
          {
 
-            synchronous_lock synchronouslock(mutex());
+            synchronous_lock synchronouslock(this->synchronization());
 
             auto pthread = payload("transparent_mouse_event_thread").cast<::thread>();
 
@@ -13664,10 +13668,10 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::handle_command(const ::atom & atom)
    {
 
-      if (m_pmaterialCommandHandler)
+      if (m_pmatterCommandHandler)
       {
 
-         return m_pmaterialCommandHandler->handle_command(atom);
+         return m_pmatterCommandHandler->handle_command(atom);
 
       }
 
@@ -14676,7 +14680,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       if (bSet && !is_empty(rectangleNew) && iMatchingMonitor >= 0)
       {
 
-         synchronous_lock slUserMutex(mutex());
+         synchronous_lock slUserMutex(synchronization());
 
          order(zorderParam);
 
@@ -14785,7 +14789,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       if (bSet && (!is_empty(rectangle) || iMatchingMonitor >= 0))
       {
 
-         synchronous_lock slUserMutex(mutex());
+         synchronous_lock slUserMutex(synchronization());
 
          order(zorderParam);
 
@@ -14917,7 +14921,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       if (bSet && (!::is_empty(rectangleNew) || iMatchingMonitor >= 0))
       {
 
-         synchronous_lock slUserMutex(mutex());
+         synchronous_lock slUserMutex(synchronization());
 
          display(e_display_iconic, eactivation);
 
@@ -14992,7 +14996,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   atom interaction::SetDlgCtrlId(atom atom)
+   atom interaction::SetDlgCtrlId(const atom & atom)
    {
 
       m_atom = atom;
@@ -15230,7 +15234,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   point_i32 interaction::get_ascendant_context_offset() const
+   point_i32 interaction::get_ascendant_context_offset()
    {
 
       ::pointer<::user::interaction>puser = get_parent();
@@ -15288,7 +15292,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   point_i32 interaction::get_parent_context_offset() const
+   point_i32 interaction::get_parent_context_offset()
    {
 
       ::user::interaction * puser = get_parent();
@@ -15627,7 +15631,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    bool interaction::rget_child(::pointer<::user::interaction>& pinteraction)
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -15643,7 +15647,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   enum_input_type interaction::preferred_input_type() const
+   enum_input_type interaction::preferred_input_type()
    {
 
       return e_input_type_none;
@@ -15788,7 +15792,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::is_ascendant_of(const ::user::primitive * puiDescendantCandidate, bool bIncludeSelf) const
+   bool interaction::is_ascendant_of(::user::element * puiDescendantCandidate, bool bIncludeSelf)
    {
 
       if (::is_null(puiDescendantCandidate))
@@ -15803,7 +15807,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::is_descendant_of(const ::user::primitive * puiAscendantCandidate, bool bIncludeSelf) const
+   bool interaction::is_descendant_of(::user::element * puiAscendantCandidate, bool bIncludeSelf)
    {
 
       const ::user::interaction * pinteraction = bIncludeSelf ? this : get_parent();
@@ -15834,7 +15838,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::is_ascendant_or_owner_of(const ::user::primitive * puiDescendantCandidate, bool bIncludeSelf) const
+   bool interaction::is_ascendant_or_owner_of(::user::element * puiDescendantCandidate, bool bIncludeSelf)
    {
 
       if (puiDescendantCandidate == nullptr)
@@ -15849,10 +15853,10 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::is_descendant_of_or_owned_by(const ::user::primitive * puiAscendantCandidate, bool bIncludeSelf) const
+   bool interaction::is_descendant_of_or_owned_by(::user::element * puiAscendantCandidate, bool bIncludeSelf)
    {
 
-      const ::user::interaction * pinteraction = bIncludeSelf ? this : get_parent_or_owner();
+      ::user::interaction * pinteraction = bIncludeSelf ? this : get_parent_or_owner();
 
       while (pinteraction != nullptr)
       {
@@ -15883,7 +15887,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::is_left_button_pressed() const
+   bool interaction::is_left_button_pressed()
    {
 
       auto psession = get_session();
@@ -16122,7 +16126,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::has_translucency() const
+   bool interaction::has_translucency()
    {
 
       return true;
@@ -16163,7 +16167,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       //
       //      {
       //
-      //         synchronous_lock synchronouslock(mutex());
+      //         synchronous_lock synchronouslock(this->synchronization());
       //
       //         for (index i = 0; i < m_uiptraChild.get_size(); i++)
       //         {
@@ -16238,7 +16242,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      synchronous_lock synchronouslock(puiTop->mutex());
+      synchronous_lock synchronouslock(puiTop->synchronization());
 
       ::pointer<::user::interaction_impl>pprimitiveimpl = puiTop->m_pprimitiveimpl;
 
@@ -16297,18 +16301,18 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::redraw_add(::object * p)
+   void interaction::redraw_add(::particle * pparticle)
    {
 
-      get_wnd()->m_pprimitiveimpl->redraw_add(p);
+      get_wnd()->m_pprimitiveimpl->redraw_add(pparticle);
 
    }
 
 
-   void interaction::redraw_erase(::object * p)
+   void interaction::redraw_erase(::particle * pparticle)
    {
 
-      get_wnd()->m_pprimitiveimpl->redraw_erase(p);
+      get_wnd()->m_pprimitiveimpl->redraw_erase(pparticle);
 
    }
 
@@ -16912,19 +16916,19 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::post_procedure(const ::procedure & procedure)
-   {
-
-      if (!::is_set(m_pthreadUserInteraction))
-      {
-
-         throw ::exception(error_null_pointer);
-
-      }
-
-      m_pthreadUserInteraction->post_procedure(procedure);
-
-   }
+//   void interaction::post_procedure(const ::procedure & procedure)
+//   {
+//
+//      if (!::is_set(m_pthreadUserInteraction))
+//      {
+//
+//         throw ::exception(error_null_pointer);
+//
+//      }
+//
+//      m_pthreadUserInteraction->post_procedure(procedure);
+//
+//   }
 
 
 #ifdef WINDOWS
@@ -16981,55 +16985,55 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 #endif
 
 
-   void interaction::send_procedure(const ::procedure & procedure)
-   {
-
-      ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction.m_p;
-
-      ::task * ptaskCurrent = ::get_task();
-
-      if (pthread == nullptr || pthread == ptaskCurrent)
-      {
-
-         return procedure();
-
-      }
-
-      pthread->send_procedure(procedure);
-
-   }
-
-
-   ::mutex * g_pmutexChildren;
+//   void interaction::send_procedure(const ::procedure & procedure)
+//   {
+//
+//      ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction.m_p;
+//
+//      ::task * ptaskCurrent = ::get_task();
+//
+//      if (pthread == nullptr || pthread == ptaskCurrent)
+//      {
+//
+//         return procedure();
+//
+//      }
+//
+//      pthread->send_procedure(procedure);
+//
+//   }
 
 
-   CLASS_DECL_AURA::mutex * mutex_children()
-   {
-
-      return g_pmutexChildren;
-
-   }
-
-
-   void initialize_children_mutex()
-   {
-
-      if (!g_pmutexChildren)
-      {
-
-         g_pmutexChildren = memory_new mutex();
-
-      }
-
-   }
+//   ::pointer< ::mutex > g_pmutexChildren;
+//
+//
+//   CLASS_DECL_AURA::pointer< ::mutex > mutex_children()
+//   {
+//
+//      return g_pmutexChildren;
+//
+//   }
 
 
-   void finalize_children_mutex()
-   {
-
-      ::acme::del(g_pmutexChildren);
-
-   }
+//   void initialize_children_mutex()
+//   {
+//
+//      if (!g_pmutexChildren)
+//      {
+//
+//         __raw_construct(g_pmutexChildren);
+//
+//      }
+//
+//   }
+//
+//
+//   void finalize_children_mutex()
+//   {
+//
+//      ::release(g_pmutexChildren);
+//
+//   }
 
 
    //void interaction::get_layout_rect(RECTANGLE_I32 * prectangle)
@@ -17206,7 +17210,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //   }
 
 
-   bool interaction::is_window_enabled() const
+   bool interaction::is_window_enabled()
    {
 
       auto pparent = get_parent();
@@ -17305,10 +17309,11 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
          }
 
       }
-      
-      if(m_bEnableHorizontalBarDragScroll || m_bEnableVerticalBarDragScroll)
+
+      if((m_bEnableHorizontalBarDragScroll && _001HasHorizontalBarDragScrolling()) 
+      || (m_bEnableVerticalBarDragScroll && _001HasVerticalBarDragScrolling()))
       {
-         
+
          m_pointBarDragScrollLeftButtonDown = pmouse->m_point;
          
          m_bBarDragScrollLeftButtonDown = true;
@@ -17996,7 +18001,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       {
 
-         //synchronous_lock synchronouslock(mutex());
+         //synchronous_lock synchronouslock(this->synchronization());
 
          pmouse->m_pcursor = get_mouse_cursor();
 
@@ -18152,7 +18157,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    ::item_pointer interaction::update_hover(::user::mouse * pmouse, bool bAvoidRedraw)
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       auto pitemHitTest = hit_test(pmouse);
 
@@ -18242,7 +18247,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto pappearance = get_appearance();
 
@@ -18308,7 +18313,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    ::item_pointer interaction::on_hit_test(const ::point_i32 & point)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
 
@@ -18438,7 +18443,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::keyboard_focus_is_focusable() const
+   bool interaction::keyboard_focus_is_focusable()
    {
 
       return false;
@@ -18715,9 +18720,9 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       while (*psz)
       {
 
-         string strCharacter = ::str().get_utf8_char(psz);
+         string strCharacter = get_utf8_char(psz);
 
-         int iCharacter = ::str::ch().uni_index(strCharacter);
+         int iCharacter = unicode_index(strCharacter);
 
          if (m_pappearance)
          {
@@ -18795,7 +18800,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   point_i32 interaction::screen_origin(enum_layout elayout) const
+   point_i32 interaction::screen_origin(enum_layout elayout)
    {
 
       auto puserinteraction = this;
@@ -18816,7 +18821,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   point_i32 interaction::host_origin(enum_layout elayout) const
+   point_i32 interaction::host_origin(enum_layout elayout)
    {
 
       auto puserinteraction = this;
@@ -19109,9 +19114,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-
-
-   bool interaction::has_function(enum_control_function econtrolfunction) const
+   bool interaction::has_function(enum_control_function econtrolfunction)
    {
 
       //if (m_pdescriptor.is_null())
@@ -19158,7 +19161,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //}
 
 
-   ::user::enum_state interaction::get_state() const
+   ::user::enum_state interaction::get_state()
    {
 
       auto psession = get_session();
@@ -19866,13 +19869,13 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
    //         string str = argument.get_string();
 
-   //         if (::str().begins_eat_ci(str, "class="))
+   //         if (str.begins_eat_ci("class="))
    //         {
 
    //            m_strClass = str;
 
    //         }
-   //         else if (::str().begins_eat_ci(str, "style="))
+   //         else if (str.begins_eat_ci("style="))
    //         {
 
    //            m_strStyle = str;
@@ -20118,12 +20121,12 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::has_function(enum_control_function enum_control_function)
-   {
-
-      return m_flagsfunction.has(enum_control_function);
-
-   }
+//   bool interaction::has_function(enum_control_function enum_control_function)
+//   {
+//
+//      return m_flagsfunction.has(enum_control_function);
+//
+//   }
 
 
    void interaction::set_data_type(enum_control_data_type edatatype)
@@ -20147,7 +20150,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       m_eddx = ::user::e_control_ddx_dbflags;
 
-      m_datakey = datakey;
+      //m_databasekey = datakey;
 
       m_iDataValue = (int)value;
 
@@ -20252,7 +20255,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //}
 
 
-   ::aura::application * interaction::get_app() const
+   ::aura::application * interaction::get_app()
    {
 
       return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
@@ -20260,7 +20263,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   ::aura::session * interaction::get_session() const
+   ::aura::session * interaction::get_session()
    {
 
       return m_pcontext ? m_pcontext->m_paurasession : nullptr;
@@ -20268,15 +20271,23 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   ::aura::system * interaction::get_system() const
+   ::aura::system * interaction::get_system()
    {
 
-      return m_psystem ? m_psystem->m_paurasystem : nullptr;
+      return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
 
    }
 
 
-   double interaction::screen_scaler() const
+   ::aura::context * interaction::context()
+   {
+
+      return m_pcontext ? m_pcontext->m_pauracontext:nullptr;
+
+   }
+
+
+   double interaction::screen_scaler()
    {
 
       return m_pinteractionScaler->screen_scaler();
@@ -20284,22 +20295,23 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   double interaction::font_scaler() const
+   double interaction::font_scaler()
    {
 
       return m_pinteractionScaler->font_scaler();
 
    }
 
-   bool interaction::is_this_visible(enum_layout elayout) const
-   {
 
-      return m_layout.is_this_visible(elayout);
+//   bool interaction::is_this_visible(enum_layout elayout)
+//   {
+//
+//      return m_layout.is_this_visible(elayout);
+//
+//   }
 
-   }
 
-
-   bool interaction::is_this_screen_visible(enum_layout elayout) const
+   bool interaction::is_this_screen_visible(enum_layout elayout)
    {
 
       return m_layout.is_this_screen_visible(elayout);
@@ -20307,7 +20319,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::is_window_visible(enum_layout elayout) const
+   bool interaction::is_window_visible(enum_layout elayout)
    {
 
       return m_puserinteractionParent && !m_puserinteractionParent->is_window_visible(elayout) ? false : m_layout.state(elayout).is_visible();
@@ -20315,7 +20327,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::is_window_screen_visible(enum_layout elayout) const
+   bool interaction::is_window_screen_visible(enum_layout elayout)
    {
 
       return m_puserinteractionParent && !m_puserinteractionParent->is_window_screen_visible(elayout) ? false : is_screen_visible(m_layout.state(elayout).display());

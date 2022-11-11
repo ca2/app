@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "region.h"
 #include "keep.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include <math.h>
 
 

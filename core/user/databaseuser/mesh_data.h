@@ -2,6 +2,7 @@
 
 
 #include "core/user/user/mesh_data.h"
+#include "apex/database/client.h"
 
 
 namespace databaseuser
@@ -19,11 +20,11 @@ namespace databaseuser
 
 
       mesh_data();
-      virtual ~mesh_data();
+      ~mesh_data() override;
 
 
-      void assert_ok() const override;
-      virtual void dump(dump_context& dumpcontext) const override;
+      // void assert_ok() const override;
+      // virtual void dump(dump_context& dumpcontext) const override;
 
 
       void _001GetSubItemText(::user::mesh_subitem * pitem) override;

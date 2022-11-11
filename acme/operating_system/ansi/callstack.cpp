@@ -8,6 +8,7 @@
 //
 #include "framework.h"
 #include "callstack.h"
+#include "acme/primitive/string/string.h"
 #include <execinfo.h>
 #include <cxxabi.h>
 

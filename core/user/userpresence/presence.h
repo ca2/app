@@ -26,7 +26,7 @@ namespace userpresence
       string         m_strLongStatus;
 
 
-      presence(::object * pobject);
+      presence(::particle * pparticle);
       virtual ~presence();
 
       virtual void report_activity();

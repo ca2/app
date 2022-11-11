@@ -39,11 +39,11 @@ namespace interprocess
 
 
 
-      ::pointer_array<::handler>             m_handlera;
+      ::particle_array                       m_particleaHandler;
       //rx_private *                         m_pp;
       //pointer_array < dispatch_item >      m_dispatchitema;
       //manual_reset_event                   m_evDispatchItemNew;
-      //::mutex                              m_mutexDispatch;
+      //::pointer < ::mutex >                              m_pmutexDispatch;
 
 
 //#ifndef WINDOWS
@@ -59,7 +59,7 @@ namespace interprocess
       ~target() override;
 
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
 
 
       virtual void create(const ::string & strChannel);
@@ -72,7 +72,7 @@ namespace interprocess
 
 
 
-      virtual void add_handler(::handler * phandler);
+      virtual void add_handler(::particle * pparticle);
 
       virtual bool on_idle();
 

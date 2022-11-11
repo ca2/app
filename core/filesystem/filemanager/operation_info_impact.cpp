@@ -1,12 +1,10 @@
 #include "framework.h"
-#include "acme/platform/timer.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
-#include "aura/graphics/draw2d/graphics.h"
 #include "operation_info_impact.h"
 #include "operation_document.h"
 #include "operation_thread.h"
+#include "acme/constant/message.h"
+#include "acme/platform/timer.h"
+#include "aura/graphics/draw2d/graphics.h"
 
 
 namespace filemanager
@@ -142,14 +140,14 @@ namespace filemanager
 //      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_info_impact::_001OnTimer);
    }
 
-   void operation_info_impact::assert_ok() const
-   {
-      ::user::impact::assert_ok();
-   }
-   void operation_info_impact::dump(dump_context & context) const
-   {
-      ::user::impact::dump(context);
-   }
+//   void operation_info_impact::assert_ok() const
+//   {
+//      ::user::impact::assert_ok();
+//   }
+//   void operation_info_impact::dump(dump_context & context) const
+//   {
+//      ::user::impact::dump(context);
+//   }
 
 
 } // namespace filemanager

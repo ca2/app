@@ -49,19 +49,19 @@ namespace user
 
       virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, SIZE_I32 * psize);
 
-      virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
+      ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
 
       virtual i32 _001GetItemHeight() const;
 
       virtual void on_change_combo_sel(index iSel);
 
-      virtual bool pre_create_window(::user::system * pusersystem) override;
+      bool pre_create_window(::user::system * pusersystem) override;
 
       virtual void _001EnsureVisible(index iItem);
 
-      virtual void _001OnTimer(::timer* ptimer) override;
+      void _001OnTimer(::timer* ptimer) override;
 
-       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
@@ -87,7 +87,7 @@ namespace user
       ::item_pointer hover_item() override;
 
 
-      bool keyboard_focus_is_focusable() const override;
+      bool keyboard_focus_is_focusable() override;
       bool keyboard_focus_OnKillFocus(::oswindow oswindowNew) override;
 
 
@@ -109,9 +109,9 @@ namespace user
       virtual string get_current_item_string_value();
 
 
-      virtual bool _001GetListText(index iSel, string& str) const;
-      virtual index _001FindListText(const string& str) const;
-      virtual count _001GetListCount() const;
+      virtual bool _001GetListText(index iSel, string& str);
+      virtual index _001FindListText(const string& str);
+      virtual count _001GetListCount();
 
 
       

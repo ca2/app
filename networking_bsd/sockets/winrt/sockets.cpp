@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+//#include "apex/networking/sockets/_sockets.h"
 
 
 namespace sockets
@@ -21,10 +21,10 @@ namespace sockets
    }
 
 
-   void sockets::initialize(::object * pobject)
+   void sockets::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::acme::department::initialize(pobject);
+      auto estatus = ::acme::department::initialize(pparticle);
 
       if (!estatus)
       {
@@ -99,7 +99,7 @@ namespace sockets
    //   if(get_app()->is_system())
    //   {
 
-   //      /*            ::sockets::SSLInitializer ssl_init(m_psystem);*/
+   //      /*            ::sockets::SSLInitializer ssl_init(acmesystem());*/
 
    //      //add_factory_item <::http::memory_file > ();
    //      //add_factory_item < ::sockets::winrt_address  >  (::apex::get_system()->template type_info < ::networking::address_base > ());

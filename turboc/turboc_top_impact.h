@@ -16,13 +16,13 @@ namespace turboc
       impact *                  m_pimpact;
 
 
-      top_impact(::object * pobject);
+      top_impact(::particle * pparticle);
       virtual ~top_impact();
 
 
-      void assert_ok() const override;
+      // void assert_ok() const override;
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
 
       void on_create_split_impact();
 

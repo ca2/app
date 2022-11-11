@@ -3,6 +3,9 @@
 
 #include "networking_bsd/sockets/base/socket_handler.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
+#include "acme/primitive/collection/list.h"
+#include "acme/primitive/collection/comparable_eq_list.h"
+#include "acme/primitive/collection/comparable_list.h"
 
 
 namespace sockets_bsd
@@ -11,6 +14,8 @@ namespace sockets_bsd
 
    class base_socket;
    class resolv_server;
+
+   typedef comparable_list < socket_pointer > socket_pointer_list;
 
 
    class CLASS_DECL_NETWORKING_BSD socket_handler :
@@ -24,7 +29,7 @@ namespace sockets_bsd
       socket_map                 m_socketmap; ///< Active sockets map
       socket_map                 m_socketmapAdd; ///< Sockets to be added to sockets map
       socket_pointer_list        m_delete; ///< Sockets to be deleted (failed when add)
-      bool                       m_b_use_mutex; ///< ::mutex correctly initialized
+      bool                       m_b_use_mutex; ///< ::pointer < ::mutex > correctly initialized
       SOCKET                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list
       ::count                    m_countR;
       ::count                    m_countW;
@@ -67,13 +72,13 @@ namespace sockets_bsd
       i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
       i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
       void cleanup_handler();
 
       bool call_on_connect();
 
-//      synchronization_object & GetMutex() const override;
+//      synchronization & GetMutex() const override;
 
 
       //resolv_server * resolver();

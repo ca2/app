@@ -1,5 +1,10 @@
-// Created by camilo on 2021-06-08 02:49 BRT <3ThomasBorregaardSørensen__!!
+// Created by camilo on 2021-06-08 02:49 BRT <3ThomasBorregaardSï¿½rensen__!!
 #pragma once
+
+
+#include "acme/primitive/collection/pointer_array.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/matter.h"
 
 
 namespace write_text

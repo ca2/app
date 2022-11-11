@@ -2,6 +2,10 @@
 // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #include "framework.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/asynchronous.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "aura/platform/application.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/message/user.h"
 #include "aura/user/user/interaction.h"
@@ -11,7 +15,6 @@
 #include "aura/windowing/cursor_manager.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/keyboard.h"
-#include "acme/parallelization/asynchronous.h"
 
 
 namespace windowing
@@ -164,7 +167,7 @@ namespace windowing
    ::pointer<cursor>windowing::get_cursor(enum_cursor ecursor)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pcursormanager.is_null())
       {
@@ -192,7 +195,7 @@ namespace windowing
    void windowing::set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathDir)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bSettingCursorMatter)
       {
@@ -680,7 +683,7 @@ namespace windowing
 
       string str(path);
 
-      if (!::str().ends_eat_ci(str, ".png"))
+      if (!str.ends_eat_ci(".png"))
       {
 
          //return false;
@@ -731,7 +734,7 @@ namespace windowing
    void windowing::windowing_send(const ::procedure & procedure)
    {
 
-      __material_send_procedure(this, this, &windowing::windowing_post, procedure);
+      __matter_send_procedure(this, this, &windowing::windowing_post, procedure);
 
    }
 
@@ -909,7 +912,7 @@ namespace windowing
    }
 
 
-   ::aura::application* windowing::get_app() const
+   ::aura::application* windowing::get_app()
    {
 
       return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
@@ -917,7 +920,7 @@ namespace windowing
    }
 
 
-   ::aura::session* windowing::get_session() const
+   ::aura::session* windowing::get_session()
    {
 
       return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
@@ -925,10 +928,10 @@ namespace windowing
    }
 
 
-   ::aura::system* windowing::get_system() const
+   ::aura::system* windowing::get_system()
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
+      return ::is_set(acmesystem()) ? dynamic_cast <::aura::system*> (acmesystem()) : nullptr;
 
    }
 

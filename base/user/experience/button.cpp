@@ -1,8 +1,11 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "button.h"
 #include "control_box.h"
 #include "frame_window.h"
 #include "dock_manager.h"
+#include "acme/constant/message.h"
+#include "acme/handler/item.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/message/user.h"
 #include "aura/graphics/draw2d/region.h"
 #include "aura/graphics/write_text/font.h"
@@ -175,7 +178,7 @@ namespace experience
    ::item_pointer button::on_hit_test(const ::point_i32 &point)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pregion.is_null() || !m_pregion->contains(point))
       {
@@ -210,7 +213,7 @@ namespace experience
    }
 
 
-   bool button::keyboard_focus_is_focusable() const
+   bool button::keyboard_focus_is_focusable()
    {
 
       return false;

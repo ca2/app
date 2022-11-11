@@ -28,7 +28,7 @@ namespace draw2d
 {
 
 
-   ::mutex * lock::g_pmutex = nullptr;
+   ::pointer< ::mutex > lock::g_pmutex = nullptr;
 
 } // namespace draw2d
 
@@ -146,7 +146,7 @@ namespace draw2d_direct2d
    }
 
 
-   void plugin::initialize(::object * pobject)
+   void plugin::initialize(::particle * pparticle)
    {
 
       // This flag adds support for surfaces with a different color channel ordering

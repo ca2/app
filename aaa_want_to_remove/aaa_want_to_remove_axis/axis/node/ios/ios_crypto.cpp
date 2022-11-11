@@ -5,9 +5,9 @@ namespace ios
 {
 
 
-   crypto::crypto(::object * pobject) :
-      ::object(pobject),
-      ::crypto::crypto(pobject)
+   crypto::crypto(::particle * pparticle) :
+      ::object(pparticle),
+      ::crypto::crypto(pparticle)
    {
    }
 
@@ -20,7 +20,7 @@ namespace ios
    ::file::path crypto::get_crypt_key_file_path()
    {
 
-      return pcontext->m_papexcontext->dir().appdata() / ".ca2/cryptkey";
+      return pcontext->m_papexcontext->dir()->appdata() / ".ca2/cryptkey";
 
    }
 

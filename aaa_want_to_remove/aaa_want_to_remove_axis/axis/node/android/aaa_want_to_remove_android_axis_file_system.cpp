@@ -19,11 +19,11 @@ namespace android
    {
 
 
-      file_system::file_system(::object * pobject) :
-         ::object(pobject),
-         ::file::system(pobject),
-         ::file::axis::system(pobject),
-         ::android::file_system(pobject)
+      file_system::file_system(::particle * pparticle) :
+         ::object(pparticle),
+         ::file::system(pparticle),
+         ::file::axis::system(pparticle),
+         ::android::file_system(pparticle)
       {
       }
 

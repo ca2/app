@@ -18,20 +18,20 @@ simple_tab_document::~simple_tab_document()
 }
 
 
-void simple_tab_document::assert_ok() const
-{
-
-   ::user::document::assert_ok();
-
-}
-
-
-void simple_tab_document::dump(dump_context & dumpcontext) const
-{
-
-   ::user::document::dump(dumpcontext);
-
-}
+//void simple_tab_document::assert_ok() const
+//{
+//
+//   ::user::document::assert_ok();
+//
+//}
+//
+//
+//void simple_tab_document::dump(dump_context & dumpcontext) const
+//{
+//
+//   ::user::document::dump(dumpcontext);
+//
+//}
 
 
 bool simple_tab_document::on_new_document()

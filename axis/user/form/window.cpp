@@ -1,10 +1,13 @@
 ﻿#include "framework.h"
 #include "window.h"
-#include "apex/database/selection.h"
-#include "axis/user/user/validate.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/include/_c_swap.h"
-#include "aura/message/user.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "apex/database/selection.h"
 #include "axis/platform/application.h"
+#include "axis/user/user/validate.h"
+#include "aura/message/user.h"
 
 
 namespace user
@@ -376,17 +379,19 @@ namespace user
       if(pinteraction->has_function(e_control_function_vms_data_edit))
       {
 
-         ::database::selection selection;
-
-         _001GetSelection(pinteraction->m_datakey, selection);
-
-         //auto ptask = new_task();
-
-         //ptask->set_handled_by(this);
-
          throw_todo();
 
-         //_data_set(selection, payload, &update);
+//         ::database::selection selection;
+//
+//         _001GetSelection(pinteraction->m_datakey, selection);
+//
+//         //auto ptask = new_task();
+//
+//         //ptask->set_handled_by(this);
+//
+//         throw_todo();
+//
+//         //_data_set(selection, payload, &update);
 
       }
 
@@ -634,45 +639,45 @@ namespace user
 
       if(pinteraction->has_function(e_control_function_vms_data_edit))
       {
-
-         ::payload payload;
-         ::database::selection selection;
-         _001GetSelection(pinteraction->m_datakey, selection);
-         if(selection.get_item_count() > 0)
-         {
-
-            if(!pinteraction)
-            {
-
-               return;
-
-            }
-
-            //if(datastream()->get(pinteraction->m_datakey + item.m_datakey, payload))
-            //{
-
-            //   switch(payload.get_type())
-            //   {
-            //   case ::e_type_string:
-            //   {
-            //      string str;
-            //      str = payload.m_str;
-            //      pinteraction->_001SetText(str, ::e_source_database);
-            //   }
-            //   break;
-            //   case ::e_type_i32:
-            //   {
-            //      string str;
-            //      str.format("%d", payload.i32());
-            //      pinteraction->_001SetText(str, ::e_source_database);
-            //   }
-            //   break;
-            //   default:
-            //      ASSERT(false);
-            //      break;
-            //   }
-            //}
-         }
+throw_todo();
+//         ::payload payload;
+//         ::database::selection selection;
+//         _001GetSelection(pinteraction->m_datakey, selection);
+//         if(selection.get_item_count() > 0)
+//         {
+//
+//            if(!pinteraction)
+//            {
+//
+//               return;
+//
+//            }
+//
+//            //if(datastream()->get(pinteraction->m_datakey + item.m_datakey, payload))
+//            //{
+//
+//            //   switch(payload.get_type())
+//            //   {
+//            //   case ::e_type_string:
+//            //   {
+//            //      string str;
+//            //      str = payload.m_str;
+//            //      pinteraction->_001SetText(str, ::e_source_database);
+//            //   }
+//            //   break;
+//            //   case ::e_type_i32:
+//            //   {
+//            //      string str;
+//            //      str.format("%d", payload.i32());
+//            //      pinteraction->_001SetText(str, ::e_source_database);
+//            //   }
+//            //   break;
+//            //   default:
+//            //      ASSERT(false);
+//            //      break;
+//            //   }
+//            //}
+//         }
       }
    }
 
@@ -725,7 +730,7 @@ namespace user
    bool form_window::_001GetData(const ::atom & atom, bool &bData)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ::pointer<interaction>pinteraction = get_child_by_id(atom);
 
@@ -844,7 +849,7 @@ namespace user
    //void form_window::_001RemoveControls()
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   //m_controldescriptorset.erase_all();
 
@@ -864,7 +869,7 @@ namespace user
    void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * ptopic)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if(ptopic != nullptr)
       {
@@ -920,7 +925,7 @@ namespace user
    void form_window::_001UpdateFunctionStatic()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto papp = get_app();
 
@@ -1314,7 +1319,7 @@ namespace user
       if(m_bInitialized)
          return true;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       _001InitializeFormPreData();
 

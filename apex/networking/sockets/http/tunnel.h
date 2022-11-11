@@ -42,7 +42,7 @@ namespace sockets
       http_tunnel();
       ~http_tunnel() override;
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
       virtual const string & GetUrlHost();
       /** get port from url. */

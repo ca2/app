@@ -18,4 +18,7 @@ CLASS_DECL_ACME void preempt(const class time& time)
 }
 
 
+DEFINE_COMPARISON_WITH_DURATION(NON_INLINE, time)
+
+
 

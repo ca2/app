@@ -25,7 +25,7 @@ namespace datetime
       }
 
 
-      void graphics::initialize(::object * pobject)
+      void graphics::initialize(::particle * pparticle)
       {
 
          //return ::success;

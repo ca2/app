@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/primitive/object.h"
+
+
 class ftpnet :
    virtual public object
 {
@@ -16,7 +20,7 @@ public:
    virtual ~ftpnet();
 
 
-   virtual void initialize(::object * pobject) override;
+   virtual void initialize(::particle * pparticle) override;
 
 
 };

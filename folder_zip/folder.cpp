@@ -1,9 +1,13 @@
 #include "framework.h"
 #include "folder.h"
 #include "file.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/primitive/primitive/memory.h"
 #include "file_function_definitions.h"
+#include "acme/exception/exception.h"
+#include "acme/filesystem/file/status.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/listing.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 #ifndef _MAX_PATH
@@ -23,7 +27,7 @@ namespace folder_zip
       m_zipfile(nullptr)
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
       //m_pzlibfilefuncdef = zip_filefuncdef_malloc();
           
    }
@@ -64,11 +68,11 @@ namespace folder_zip
 
 
 
-   void folder::initialize(::object* pobject)
+   void folder::initialize(::particle * pparticle)
    {
 
       //auto estatus =
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -147,7 +151,7 @@ namespace folder_zip
    bool folder::enumerate(::file::listing & listing)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       unzFile pf = m_unzfile;
 
@@ -239,7 +243,7 @@ namespace folder_zip
    ::file_pointer folder::get_file(const char* pszFile)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (::is_set(pszFile))
       {
@@ -280,7 +284,7 @@ namespace folder_zip
    }
 
 
-   void folder::extract_all(const char* pszTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
+   void folder::e_extract_all(const char* pszTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
    {
 
       ::file::listing listing;
@@ -303,7 +307,7 @@ namespace folder_zip
 
             auto pathTarget = pathTargetFolder / path;
 
-            m_psystem->m_pacmefile->put_block(pathTarget, memory);
+            acmefile()->put_block(pathTarget, memory);
 
          }
 
@@ -377,7 +381,7 @@ namespace folder_zip
    bool folder::locate(const ::function < bool(const char*) > & function)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       unzFile pf = m_unzfile;
 

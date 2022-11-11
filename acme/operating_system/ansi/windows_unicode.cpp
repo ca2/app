@@ -8,6 +8,7 @@
 //
 #include "framework.h"
 #include "windows_unicode.h"
+#include "acme/primitive/string/string.h"
 #include <iconv.h>
 
 
@@ -67,7 +68,7 @@ i32      cchWideChar)
      if(pWideCharStr != nullptr)
      {
 
-        ::str().utf_to_utf(pWideCharStr, wstr.c_str(), iLen);
+        ::utf_to_utf(pWideCharStr, wstr.c_str(), iLen);
 
         if(cchWideChar > 0 && cbMultiByte < 0)
         {
@@ -192,7 +193,7 @@ i32      cchWideChar)
      if(pWideCharStr != nullptr)
      {
 
-        ::str().utf_to_utf(pWideCharStr, wstr.c_str(), iLen);
+        ::utf_to_utf(pWideCharStr, wstr.c_str(), iLen);
 
         if(cchWideChar > 0 && cbMultiByte < 0)
         {
@@ -371,14 +372,14 @@ int_bool *  pUsedDefaultChar)
 }
 
 
-CLASS_DECL_ACME string last_error_message(u32 dwError)
-{
-
-   string str;
-
-   return str;
-
-}
+//CLASS_DECL_ACME string ::windows::last_error_message(u32 dwError)
+//{
+//
+//   string str;
+//
+//   return str;
+//
+//}
 
 
 #endif

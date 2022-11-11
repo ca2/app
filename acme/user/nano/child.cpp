@@ -1,7 +1,10 @@
 // Created by camilo on 2022-01-21 05:10 PM <3ThomasBorregaardSørensen
 #include "framework.h"
-#include "acme/operating_system.h"
-#include "_nano.h"
+#include "child.h"
+#include "window.h"
+#include "device.h"
+#include "button.h"
+//#include "acme/operating_system.h"
 
 
 void nano_child::set_focus()
@@ -81,7 +84,6 @@ void nano_child::resize_to_fit()
    m_rectangle.bottom = m_rectangle.top + size.cy;
 
 }
-
 
 
 

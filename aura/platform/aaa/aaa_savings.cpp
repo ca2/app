@@ -16,10 +16,10 @@ namespace aura
    }
 
 
-   void savings::initialize(::object * pobject)
+   void savings::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      auto estatus = ::object::initialize(pparticle);
 
       if (!estatus)
       {

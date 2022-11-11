@@ -1,12 +1,17 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/collection/osdata_array.h"
+#include "acme/primitive/primitive/matter.h"
+
+
 namespace draw2d
 {
 
 
    class CLASS_DECL_AURA object :
-      virtual public ::material_object,
+      virtual public ::matter,
       virtual public ::osdata_array
    {
    public:
@@ -26,11 +31,11 @@ namespace draw2d
       ~object() override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
-      void on_initialize_object() override;
+      void on_initialize_particle() override;
       
       
       inline ::aura::system* get_system();

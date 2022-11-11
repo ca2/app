@@ -18,10 +18,10 @@ namespace linux
    }
 
 
-   void file_system::initialize(::matter * pobject)
+   void file_system::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::file_system::initialize(pobject);
+      auto estatus = ::file_system::initialize(pparticle);
 
       if(!estatus)
       {
@@ -62,7 +62,7 @@ namespace linux
 
       }
 
-      ::file::path pathAppModule = m_psystem->m_pacmepath->app_module();
+      ::file::path pathAppModule = acmepath()->app_module();
 
       m_pathModule = pathAppModule;
 

@@ -6,11 +6,11 @@
 #include "context_image.h"
 #include "image.h"
 #include "icon.h"
+#include "acme/platform/context.h"
 
 
-
-image_payload::image_payload(::object * pobject, const ::payload & payload):
-   image_source(pobject->m_pcontext->context_image()->get_image(payload))
+image_payload::image_payload(::particle * pparticle, const ::payload & payload):
+   image_source(pparticle->m_pcontext->context_image()->get_image(payload))
 {
 
 
@@ -18,8 +18,8 @@ image_payload::image_payload(::object * pobject, const ::payload & payload):
 
 
 
-icon_payload::icon_payload(::object * pobject, const ::payload & payload) :
-   image_source(pobject->m_pcontext->context_image()->get_icon(payload))
+icon_payload::icon_payload(::particle * pparticle, const ::payload & payload) :
+   image_source(pparticle->m_pcontext->context_image()->get_icon(payload))
 {
 
 

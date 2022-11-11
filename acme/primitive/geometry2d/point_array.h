@@ -1,6 +1,14 @@
 ﻿#pragma once
 
 
+//#include "_concept.h"
+
+
+#include "acme/primitive/collection/array.h"
+#include "acme/primitive/collection/comparable_eq_array.h"
+#include "acme/primitive/collection/comparable_array.h"
+
+
 inline bool tolerance_is_equal(double tolerance, double d1, double d2)
 {
    return ::abs(d1 - d2) <= tolerance;
@@ -18,7 +26,7 @@ public:
    using UNIT_TYPE = typename POINT_TYPE::UNIT_TYPE;
    using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
    using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
-   using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
+   //using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
 
 
    inline point_array_base() : comparable_array < POINT_TYPE >() {}
@@ -38,7 +46,7 @@ public:
 
    void rotate(double dAngle, POINT_TYPE pointCenter);
 
-   void get_bounding_rectangle(RECTANGLE_BASE_TYPE & rectangle) const;
+   //void get_bounding_rectangle(RECTANGLE_BASE_TYPE & rectangle) const;
 
    bool polygon_contains(const POINT_TYPE & point) const;
 
@@ -138,14 +146,14 @@ void point_array_base < POINT_TYPE >::rotate(double dAngle)
 
 
 
-
-template < typename POINT_TYPE >
-void point_array_base < POINT_TYPE >::get_bounding_rectangle(RECTANGLE_BASE_TYPE & rectangle) const
-{
-
-   ::get_bounding_rectangle(rectangle, this->get_data(), this->get_count());
-
-}
+//
+//template < typename POINT_TYPE >
+//void point_array_base < POINT_TYPE >::get_bounding_rectangle(RECTANGLE_BASE_TYPE & rectangle) const
+//{
+//
+//   ::get_bounding_rectangle(rectangle, this->get_data(), this->get_count());
+//
+//}
 
 
 

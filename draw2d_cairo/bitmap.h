@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/graphics/draw2d/bitmap.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 namespace draw2d_cairo
@@ -45,7 +46,7 @@ namespace draw2d_cairo
       ::size_i32 SetBitmapDimension(i32 nWidth, i32 nHeight);
       ::size_i32 GetBitmapDimension() const override;
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
 
 
       virtual void attach(void * posdata) override;

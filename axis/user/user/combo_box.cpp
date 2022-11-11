@@ -1,7 +1,11 @@
 #include "framework.h"
 #include "combo_box.h"
 #include "list_box.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/constant/user/_.h"
 #include "acme/handler/item.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -169,7 +173,7 @@ namespace user
    }
 
 
-   enum_input_type combo_box::preferred_input_type() const
+   enum_input_type combo_box::preferred_input_type()
    {
 
       if (m_bEdit)
@@ -353,7 +357,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
       //if (pstyle)
@@ -397,7 +401,7 @@ namespace user
    }
 
 
-   void combo_box::_001GetText(string & str) const
+   void combo_box::_001GetText(string & str)
    {
 
       ::user::plain_edit::_001GetText(str);
@@ -454,7 +458,7 @@ namespace user
 //
 //         m_strText = str;
 //
-//         auto psystem = m_psystem->m_paurasystem;
+//         auto psystem = acmesystem()->m_paurasystem;
 //
 //         auto pdraw2d = psystem->draw2d();
 //
@@ -768,7 +772,7 @@ namespace user
 
          psession->on_show_user_input_popup(m_plistbox);
 
-         auto psystem = m_psystem->m_paurasystem;
+         auto psystem = acmesystem()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 
@@ -1456,7 +1460,7 @@ namespace user
    index combo_box::add_string(const ::string & pszString,uptr dwItemData)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ASSERT(m_edatamode == data_mode_opaque);
 
@@ -1542,7 +1546,7 @@ namespace user
    }
 
 
-   bool combo_box::keyboard_focus_is_focusable() const
+   bool combo_box::keyboard_focus_is_focusable()
    {
 
       return is_window_enabled() && is_window_visible(e_layout_sketch);

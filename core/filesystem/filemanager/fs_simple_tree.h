@@ -72,7 +72,7 @@ namespace filemanager
             virtual ~tree();
 
 
-            virtual void initialize(::object * pobject) override;
+            virtual void initialize(::particle * pparticle) override;
 
             void _001OnItemExpand(::data::tree_item * pitem, const ::action_context & action_context) override;
 
@@ -84,8 +84,8 @@ namespace filemanager
             index _001GetItemImage(::pointer<::data::tree_item>pitem, bool bSelected);
 
 
-            void assert_ok() const override;
-            void dump(dump_context & dumpcontext) const override;
+            // void assert_ok() const override;
+            // void dump(dump_context & dumpcontext) const override;
 
 
          };

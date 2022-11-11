@@ -1,6 +1,12 @@
 ﻿#include "framework.h"
+#include "context_image.h"
 #include "aura/platform/context.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "aura/graphics/image/image.h"
+
+
+#include <FreeImage.h>
 
 
 CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload & payloadFile);
@@ -266,13 +272,13 @@ namespace imaging_freeimage
 
       ::file::path pathProcess = m_pcontext->m_papexcontext->defer_process_path(path);
 
-      m_pcontext->m_papexcontext->file().as_memory(payloadFile, memory);
+      file()->as_memory(payloadFile, memory);
 
       auto p1 = memory.get_data();
 
       auto s1 = memory.get_size();
 
-      //m_pcontext->m_papexcontext->file().non_empty_memory(payloadFile, *pmemory);
+      //file()->non_empty_memory(payloadFile, *pmemory);
 
       const char * psz = (const char *)memory.get_data();
 
@@ -358,7 +364,7 @@ namespace imaging_freeimage
    else if (bGif)
       {
 
-      //m_psystem->m_pacmefile->put_contents("/home/camilo/a.gif", memory);
+      //acmefile()->put_contents("/home/camilo/a.gif", memory);
 
          _load_multi_frame_image(pimage, memory);
 

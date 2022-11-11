@@ -1,5 +1,9 @@
 ﻿#pragma once
 
+
+#include "acme/memory/del.h"
+
+
 enum e_new_array
 {
    new_array,

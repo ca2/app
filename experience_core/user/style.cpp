@@ -1,6 +1,8 @@
 ﻿#include "framework.h"
-#include "base/user/simple/scroll_bar.h"
-#include "base/user/user/tab_pane.h"
+#include "style.h"
+#include "acme/handler/item.h"
+#include "acme/platform/node.h"
+#include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
@@ -8,9 +10,10 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/brush.h"
-#include "style.h"
+#include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab.h"
 #include "base/user/user/tab_data.h"
+#include "base/user/user/tab_pane.h"
 #include "base/platform/session.h"
 
 
@@ -37,17 +40,17 @@ namespace experience_core
    }
 
 
-   void style::on_initialize_object()
+   void style::on_initialize_particle()
    {
 
-      ::base::style::on_initialize_object();
+      ::base::style::on_initialize_particle();
 
       if (::is_null(m_pfont))
       {
 
          m_pfont.create(this);
 
-         auto pnode = m_psystem->node();
+         auto pnode = acmenode();
 
          m_pfont->create_point_font(pnode->font_name(e_font_sans_ui), 12, e_font_weight_normal);
 
@@ -1253,7 +1256,7 @@ namespace experience_core
    }
 
 
-   ::color::color style::get_color(const ::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate) const
+   ::color::color style::get_color(::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate)
    {
 
       if (::is_set(pinteraction))
@@ -1402,7 +1405,7 @@ namespace experience_core
                if (estate & ::user::e_state_selected)
                {
 
-                  return __acolor(127, 0, 0, 0);
+                  return ::color::color(127, 0, 0, 0);
 
                }
                else
@@ -1419,13 +1422,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return __acolor(255, 230, 230, 230);
+                  return ::color::color(255, 230, 230, 230);
 
                }
                else
                {
 
-                  return __acolor(255, 40, 40, 40);
+                  return ::color::color(255, 40, 40, 40);
 
                }
 
@@ -1450,13 +1453,13 @@ namespace experience_core
                   if (is_dark_mode())
                   {
 
-                     return __acolor(255, 230, 230, 230);
+                     return ::color::color(255, 230, 230, 230);
 
                   }
                   else
                   {
 
-                     return __acolor(255, 40, 40, 40);
+                     return ::color::color(255, 40, 40, 40);
 
                   }
 
@@ -1483,13 +1486,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 255, 255, 255);
+               return ::color::color(255, 255, 255, 255);
 
             }
             else
             {
 
-               return __acolor(255, 0, 0, 0);
+               return ::color::color(255, 0, 0, 0);
 
             }
 
@@ -1505,13 +1508,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 255, 255, 255);
+               return ::color::color(255, 255, 255, 255);
 
             }
             else
             {
 
-               return __acolor(255, 0, 0, 0);
+               return ::color::color(255, 0, 0, 0);
 
             }
 
@@ -1522,13 +1525,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 255, 255, 255);
+               return ::color::color(255, 255, 255, 255);
 
             }
             else
             {
 
-               return __acolor(255, 0, 0, 0);
+               return ::color::color(255, 0, 0, 0);
 
             }
 
@@ -1539,13 +1542,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 210, 210, 200);
+               return ::color::color(255, 210, 210, 200);
 
             }
             else
             {
 
-               return __acolor(255, 90, 90, 80);
+               return ::color::color(255, 90, 90, 80);
 
             }
 
@@ -1555,13 +1558,13 @@ namespace experience_core
       else if (eelement == ::e_element_scrollbar)
       {
 
-         return __acolor(100, 192, 192, 192);
+         return ::color::color(100, 192, 192, 192);
 
       }
       else if (eelement == ::e_element_scrollbar_trackbar)
       {
 
-         return __acolor(160, 140, 140, 140);
+         return ::color::color(160, 140, 140, 140);
 
       }
       else if (eelement == ::e_element_item_text)
@@ -1573,13 +1576,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 130, 130, 130);
+               return ::color::color(255, 130, 130, 130);
 
             }
             else
             {
 
-               return __acolor(255, 192, 192, 192);
+               return ::color::color(255, 192, 192, 192);
 
             }
 
@@ -1590,13 +1593,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 230, 230, 230);
+               return ::color::color(255, 230, 230, 230);
 
             }
             else
             {
 
-               return __acolor(255, 40, 40, 40);
+               return ::color::color(255, 40, 40, 40);
 
             }
 
@@ -1615,13 +1618,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return __acolor(255, 150, 150, 150);
+                  return ::color::color(255, 150, 150, 150);
 
                }
                else
                {
 
-                  return __acolor(255, 160, 160, 160);
+                  return ::color::color(255, 160, 160, 160);
 
                }
 
@@ -1632,13 +1635,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return __acolor(255, 110, 110, 110);
+                  return ::color::color(255, 110, 110, 110);
 
                }
                else
                {
 
-                  return __acolor(255, 200, 200, 200);
+                  return ::color::color(255, 200, 200, 200);
 
                }
 
@@ -1654,13 +1657,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return __acolor(255, 130, 130, 130);
+                  return ::color::color(255, 130, 130, 130);
 
                }
                else
                {
 
-                  return __acolor(255, 180, 180, 180);
+                  return ::color::color(255, 180, 180, 180);
 
                }
 
@@ -1671,13 +1674,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return __acolor(255, 80, 80, 80);
+                  return ::color::color(255, 80, 80, 80);
 
                }
                else
                {
 
-                  return __acolor(255, 255, 255, 255);
+                  return ::color::color(255, 255, 255, 255);
 
                }
 
@@ -1695,13 +1698,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 130, 130, 130);
+               return ::color::color(255, 130, 130, 130);
 
             }
             else
             {
 
-               return __acolor(255, 192, 192, 192);
+               return ::color::color(255, 192, 192, 192);
 
             }
 
@@ -1712,13 +1715,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 230, 230, 230);
+               return ::color::color(255, 230, 230, 230);
 
             }
             else
             {
 
-               return __acolor(255, 40, 40, 40);
+               return ::color::color(255, 40, 40, 40);
 
             }
 
@@ -1734,13 +1737,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 130, 130, 130);
+               return ::color::color(255, 130, 130, 130);
 
             }
             else
             {
 
-               return __acolor(255, 192, 192, 192);
+               return ::color::color(255, 192, 192, 192);
 
             }
 
@@ -1751,13 +1754,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 230, 230, 230);
+               return ::color::color(255, 230, 230, 230);
 
             }
             else
             {
 
-               return __acolor(255, 40, 40, 40);
+               return ::color::color(255, 40, 40, 40);
 
             }
 
@@ -1773,13 +1776,13 @@ namespace experience_core
             if (estate & ::user::e_state_hover)
             {
 
-               return __acolor(127, 120, 120, 120);
+               return ::color::color(127, 120, 120, 120);
 
             }
             else
             {
 
-               return __acolor(127, 80, 80, 80);
+               return ::color::color(127, 80, 80, 80);
 
             }
 
@@ -1790,13 +1793,13 @@ namespace experience_core
             if (estate & ::user::e_state_hover)
             {
 
-               return __acolor(127, 230, 230, 230);
+               return ::color::color(127, 230, 230, 230);
 
             }
             else
             {
 
-               return __acolor(127, 210, 210, 210);
+               return ::color::color(127, 210, 210, 210);
 
             }
 
@@ -1810,13 +1813,13 @@ namespace experience_core
          if (is_dark_mode())
          {
 
-            return __acolor(255, 50, 50, 50);
+            return ::color::color(255, 50, 50, 50);
 
          }
          else
          {
 
-            return __acolor(255, 40, 40, 40);
+            return ::color::color(255, 40, 40, 40);
 
          }
 
@@ -1862,7 +1865,7 @@ namespace experience_core
 
       ::color::color colorBorder = pscrollbar->scrollbar_border_color(this, ::e_element_scrollbar_trackbar);
 
-      auto pbar = pscrollbar->cast < ::simple_scroll_bar >();
+      ::pointer < ::simple_scroll_bar > pbar = pscrollbar;
 
       auto ppenDraw = __create < ::draw2d::pen >();
 

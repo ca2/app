@@ -22,12 +22,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
-#ifdef BSD_STYLE_SOCKETS
 
+#ifdef BSD_STYLE_SOCKETS
 
 //#include "apex/networking/sockets/bsd/config.h"
 
 //#include "openssl/ssl.h"
+
+#include "acme/primitive/primitive/object.h"
 
 typedef struct bio_st BIO;
 
@@ -35,7 +37,7 @@ namespace sockets_bsd
 {
 
    class CLASS_DECL_NETWORKING_BSD SSLInitializer :
-      public object
+      public ::object
    {
    public:
 
@@ -61,12 +63,12 @@ namespace sockets_bsd
       ~SSLInitializer() override;
 
       
-      void initialize(::object* pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       void DeleteRandFile();
 
-      /** SSL; ::mutex locking function callback. */
+      /** SSL; ::pointer < ::mutex > locking function callback. */
       //static void SSL_locking_function(i32 mode, i32 n, const char *file, i32 line);
 
       /** Return thread atom. */

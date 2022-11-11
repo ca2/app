@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/_geometry2d.h"
+
+
 namespace write_text
 {
 

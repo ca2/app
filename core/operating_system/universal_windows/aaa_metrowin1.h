@@ -22,7 +22,7 @@ namespace universal_windows
    CLASS_DECL_CORE HICON       ExtractIcon(HINSTANCE hInst, const ::string & lpszExeFileName, ::u32 nIconIndex);
    CLASS_DECL_CORE bool        DeleteFile(const ::string & lpFileName);
    CLASS_DECL_CORE int         GetMenuStringW(HMENU hMenu, ::u32 uDItem, string & str, ::u32 flags);
-   CLASS_DECL_CORE void        TimeToFileTime(::object * pobject, const ::earth::time& time, LPFILETIME pFileTime);
+   CLASS_DECL_CORE void        TimeToFileTime(::particle * pparticle, const ::earth::time& time, LPFILETIME pFileTime);
 
 
 } // namespace universal_windows
@@ -54,11 +54,11 @@ CLASS_DECL_CORE ::_UWP::thread * __get_thread();
 CLASS_DECL_CORE void __set_thread(::thread * pthread);
 CLASS_DECL_CORE MSG* __get_current_message();
 
-CLASS_DECL_CORE void __end_thread(::object * pobject, ::u32 nExitCode, bool bDelete = true);
+CLASS_DECL_CORE void __end_thread(::particle * pparticle, ::u32 nExitCode, bool bDelete = true);
 
 CLASS_DECL_CORE void __init_thread();
-//CLASS_DECL_CORE void __term_thread(::object * pobject, HINSTANCE hInstTerm = nullptr);
-//CLASS_DECL_CORE void __term_thread(::object * pobject);
+//CLASS_DECL_CORE void __term_thread(::particle * pparticle, HINSTANCE hInstTerm = nullptr);
+//CLASS_DECL_CORE void __term_thread(::particle * pparticle);
 
 
 //CLASS_DECL_CORE ::pointer<::user::interaction>__get_main_window();

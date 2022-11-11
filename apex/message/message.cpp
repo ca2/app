@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "message.h"
 
 
 namespace message
@@ -38,7 +39,7 @@ namespace message
    bool message::route_message()
    { 
       
-      m_pdispatchera->m_pData[m_iRouteIndex]->handle(this); 
+      m_pdispatchera->m_pData[m_iRouteIndex].m_functionHandler(this); 
       
       return m_bRet; 
    
@@ -80,7 +81,7 @@ namespace message
       if (m_pdispatchera->m_pData)
       {
 
-         m_pdispatchera->m_pData[m_iRouteIndex]->handle(this);
+         m_pdispatchera->m_pData[m_iRouteIndex].m_functionHandler(this);
 
       }
 
@@ -110,6 +111,14 @@ namespace message
       m_wparam = wparam;
 
       m_lparam = lparam;
+
+   }
+
+
+   ::u32 translate_to_os_message(const ::atom& atom)
+   {
+
+      return atom.u32();
 
    }
 

@@ -1,12 +1,18 @@
 #pragma once
 
 
+#include "acme/primitive/string/string.h"
+#include "acme/operating_system/security_attributes.h"
+
+
 class CLASS_DECL_ACME semaphore :
-   virtual public synchronization_object
+   virtual public particle
 {
 public:
 
+
    string            m_strName;
+
 
 #if defined(ANDROID)
 
@@ -20,7 +26,7 @@ public:
 
 #endif
 
-   semaphore(::i32 lInitialCount = 1, ::i32 lMaxCount = 1, const char * pstrName=nullptr ARG_SEC_ATTRS_DEF);
+   semaphore(::i32 lInitialCount = 1, ::i32 lMaxCount = 1, const char * pstrName=nullptr, security_attributes * psecurityattributes = nullptr);
    ~semaphore() override;
 
 

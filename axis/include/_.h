@@ -36,13 +36,13 @@ namespace axis
 
 #include "axis/networking/_.h"
 
-#include "axis/platform/openweather_city.h"
+//#include "axis/platform/openweather_city.h"
 
 #include "axis/mathematics/_.h"
 
 #include "axis/database/_.h"
 
-#include "axis/platform/geo_department.h"
+#include "axis/geoip/_.h"
 
 #include "axis/html/_.h"
 

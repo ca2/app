@@ -1,6 +1,7 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen  - Honoring Thomas Borregaard Sørensen MY ONLY LORD
 // recreated by Camilo 2021-01-28 16:38
 #include "framework.h"
+#include "acme/exception/interface_only.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/windowing/icon.h"
@@ -62,9 +63,7 @@ namespace windowing
    void icon::load_matter(const ::string & strMatter)
    {
 
-      auto pcontext = get_context();
-
-      string strPath = pcontext->m_papexcontext->dir().matter(strMatter);
+      string strPath = dir()->matter(strMatter);
 
       load_file(strPath);
 

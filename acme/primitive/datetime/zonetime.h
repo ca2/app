@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "earth_time.h"
+
+
 namespace earth
 {
 
@@ -47,8 +50,8 @@ namespace earth
 } // namespace earth
 
 
-#ifdef __DEBUG
-CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::earth::zonetime time);
-#endif
+//#ifdef __DEBUG
+//CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::earth::zonetime time);
+//#endif
 
 

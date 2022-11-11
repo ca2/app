@@ -1,14 +1,20 @@
 ﻿#include "framework.h"
-
-//#include "acme/message.h"
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
-#include "acme/parallelization/message_queue.h"
-//#include "acme/operating_system/_user.h"
-#include "aura/graphics/draw2d/graphics.h"
-#include "aura/windowing/window.h"
 #include "interaction_impl.h"
 #include "interaction.h"
+#include "acme/constant/message.h"
+#include "acme/exception/exception.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/parallelization/message_queue.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/windowing/window.h"
+
+
+#if defined(WINDOWS_DESKTOP)
+CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
+#endif
+
 
 #if !defined(WINDOWS_DESKTOP)
 #define PM_NOREMOVE 0
@@ -167,7 +173,7 @@ namespace user
       m_procedureUpdateScreen = [this]()
          {
 
-            if (!has(e_flag_destroying) && !is_finishing())
+            if (!has_flag(e_flag_destroying) && !has_finishing_flag())
             {
 
                update_screen();
@@ -288,7 +294,7 @@ namespace user
       if (m_puserinteraction)
       {
 
-         if (m_puserinteraction->is_destroying())
+         if (m_puserinteraction->has_destroying_flag())
          {
 
            m_puserinteraction->post_message(e_message_destroy_window);
@@ -398,7 +404,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(m_puserinteraction->mutex());
+         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
          if (strType.contains_ci("filemanager"))
          {
@@ -1007,7 +1013,7 @@ namespace user
       try
       {
 
-         synchronous_lock synchronouslock(m_puserinteraction->mutex());
+         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
          if(!m_puserinteraction)
          {
@@ -1174,10 +1180,10 @@ namespace user
 
          }
 
-         if (m_puserinteraction->has(e_flag_destroying)
-            || m_puserinteraction->is_finishing()
-            || m_pimpl->has(e_flag_destroying)
-            || m_pimpl->is_finishing())
+         if (m_puserinteraction->has_flag(e_flag_destroying)
+            || m_puserinteraction->has_finishing_flag()
+            || m_pimpl->has_flag(e_flag_destroying)
+            || m_pimpl->has_finishing_flag())
          {
 
             bDraw = false;

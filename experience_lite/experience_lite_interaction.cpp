@@ -13,9 +13,9 @@
       {
 
 
-         experience::experience(::object * pobject) :
-            object(pobject),
-            ::experience::experience(pobject)
+         experience::experience(::particle * pparticle) :
+            object(pparticle),
+            ::experience::experience(pparticle)
          {
 
             fork([&]()

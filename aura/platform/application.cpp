@@ -1,23 +1,31 @@
 ﻿#include "framework.h"
 #include "application.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
+#include "acme/filesystem/file/folder.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/networking/url_department.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/primitive/string/base64.h"
 #include "aura/constant/idpool.h"
 #include "acme/platform/version.h"
 #include "acme/platform/profiler.h"
 #include "acme/primitive/text/context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/platform/node.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/interprocess/communication.h"
 #include "apex/interprocess/target.h"
+#include "apex/networking/http/context.h"
+#include "apex/platform/os_context.h"
 #include "aura/graphics/image/icon.h"
-#include "acme/primitive/string/base64.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aqua/game/game.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/create.h"
 #include "apex/platform/node.h"
 #include "aura/user/user/window_util.h"
 #include "aura/user/user/interaction.h"
@@ -65,7 +73,7 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 #undef _GNU_SOURCE
 
 //#include "aura/node/ansios/ansios.h"
-#include "aura/operating_system/linux/_linux.h"
+//#include "aura/operating_system/linux/_linux.h"
 
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
@@ -80,7 +88,7 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 #elif defined(ANDROID)
 
 //#include "aura/node/ansios/ansios.h"
-#include "aura/operating_system/android/_.h"
+//#include "aura/operating_system/android/_.h"
 
 //#elif defined(WINDOWS_DESKTOP)
 
@@ -127,8 +135,10 @@ namespace aura
       m_pauraapplication = this;
 #if defined(LINUX) || defined(FREEBSD)
       m_bSnLauncheeSetup = false;
+      m_bGtkApp = false;
 #endif
 
+      m_bConsole = false;
       m_pappParent = nullptr;
 
       m_bSimpleMessageLoop = false;
@@ -224,12 +234,12 @@ namespace aura
    }
 
 
-   void application::initialize(::object * pobject)
+   void application::initialize(::particle * pparticle)
    {
 
       //auto estatus =
       
-      ::aqua::application::initialize(pobject);
+      ::aqua::application::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -301,7 +311,7 @@ namespace aura
    //::file::path application::local_application_path()
    //{
 
-   //   return m_psystem->m_pacmedirectory->localconfig() / "application" / m_strAppName ;
+   //   return acmedirectory()->localconfig() / "application" / m_strAppName ;
 
 
    //}
@@ -413,24 +423,24 @@ namespace aura
    //}
 
 
-   void application::assert_ok() const
-   {
-
-      ::aqua::application::assert_ok();
-
-   }
-
-
-   void application::dump(dump_context & dumpcontext) const
-   {
-
-      ::aqua::application::dump(dumpcontext);
-
-      //dumpcontext << "\nm_bHelpMode = " << m_strAppName;
-
-      //dumpcontext << "\n";
-
-   }
+//   void application::assert_ok() const
+//   {
+//
+//      ::aqua::application::assert_ok();
+//
+//   }
+//
+//
+//   void application::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::aqua::application::dump(dumpcontext);
+//
+//      //dumpcontext << "\nm_bHelpMode = " << m_strAppName;
+//
+//      //dumpcontext << "\n";
+//
+//   }
 
 
    void application::install_message_routing(::channel * pchannel)
@@ -439,7 +449,7 @@ namespace aura
       ::aqua::application::install_message_routing(pchannel);
 
       //add_command_handler("app_exit", &application::on_message_app_exit);
-      add_command_handler("switch_context_theme", this, &application::_001OnSwitchContextTheme);
+      add_command_handler("switch_context_theme", { this, &application::_001OnSwitchContextTheme });
 
    }
 
@@ -447,7 +457,7 @@ namespace aura
    void application::call_request(::create * pcreate)
    {
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       if (psystem->payload("exit_on_application_call_request").is_true())
       {
@@ -499,18 +509,18 @@ namespace aura
 
          }
 
-         if (::str().begins_ci(str, m_pinterprocesscommunication->m_ptarget->m_strBaseChannel + "://"))
+         if (str.begins_ci(m_pinterprocesscommunication->m_ptarget->m_strBaseChannel + "://"))
          {
 
             m_pinterprocesscommunication->_handle_uri(str);
 
-            //   if (::str().begins_eat_ci(str, "send?message="))
+            //   if (str.begins_eat_ci("send?message="))
             //   {
 
             //      m_pinterprocesscommunication->_handle_call(m_pinterprocesscommunication->m_prx, purl->url_decode(str));
 
             //   }
-            //   else if (::str().begins_eat_ci(str, "send?messagebin="))
+            //   else if (str.begins_eat_ci("send?messagebin="))
             //   {
 
             //      strsize iFind = str.find(',');
@@ -522,7 +532,7 @@ namespace aura
 
             //         memory m;
 
-            //         auto psystem = m_psystem;
+            //         auto psystem = acmesystem();
 
             //         auto pbase64 = psystem->base64();
 
@@ -881,7 +891,7 @@ namespace aura
 
    //   }
 
-   //   synchronous_lock synchronouslock(&m_mutexStr);
+   //   synchronous_lock synchronouslock(m_pmutexStr);
 
    //   if (m_stringtableStd.lookup(strTable, pmap))
    //   {
@@ -1015,7 +1025,7 @@ namespace aura
 //
 //         path /= pszCommand;
 //
-//         if (m_psystem->m_pacmefile->exists(path))
+//         if (acmefile()->exists(path))
 //         {
 //
 //            return path;
@@ -1053,7 +1063,7 @@ namespace aura
 //
 //      string str = ::str().get_window_text_timeout(hwnd, 1000);
 //
-//      if (::str().ends_ci(str, penum->m_strWindowEnd))
+//      if (string_ends_ci(str, penum->m_strWindowEnd))
 //      {
 //
 //         penum->m_hwnd = hwnd;
@@ -1074,7 +1084,7 @@ namespace aura
 //
 //      string str = ::str().get_window_text_timeout(hwnd);
 //
-//      if (::str().ends_ci(str, penum->m_strTopic))
+//      if (string_ends_ci(str, penum->m_strTopic))
 //      {
 //
 //         penum->m_hwndaTopic.add(hwnd);
@@ -1094,7 +1104,7 @@ namespace aura
 //
 //      string str = ::str().get_window_text_timeout(hwnd, 1000);
 //
-//      if (::str().ends_ci(str, penum->m_strCounterTopic))
+//      if (string_ends_ci(str, penum->m_strCounterTopic))
 //      {
 //
 //         penum->m_hwndaCounterTopic.add(hwnd);
@@ -1635,7 +1645,7 @@ namespace aura
 
       //}
       
-      auto psignal = m_psystem->m_papexsystem->get_signal(id_app_activated);
+      auto psignal = acmesystem()->m_papexsystem->get_signal(id_app_activated);
       
       psignal->add_handler(this);
 
@@ -1895,9 +1905,9 @@ retry_license:
 
 //          auto psystem = get_system()->m_paurasystem;
 
-//          string strModuleName = psystem->file().module();
+//          string strModuleName = psystem->file()->module();
 
-//          m_psystem->m_pnode->install_crash_dump_reporting(strModuleName);
+//          acmesystem()->m_pnode->install_crash_dump_reporting(strModuleName);
 
 // #endif
 
@@ -2710,8 +2720,8 @@ retry_license:
 
    //  localeschema.add_locale_variant(strLocale, strSchema);
    //  localeschema.add_locale_variant(get_locale(), strSchema);
-   //  localeschema.add_locale_variant(__id(std), strSchema);
-   //  localeschema.add_locale_variant(__id(en), strSchema);
+   //  localeschema.add_locale_variant("std", strSchema);
+   //  localeschema.add_locale_variant("en", strSchema);
 
 
    //  localeschema.destroy();
@@ -2779,7 +2789,7 @@ retry_license:
    //  for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    //  {
 
-   //     localeschema.add_locale_variant(__id(std), straSchema[iSchema]);
+   //     localeschema.add_locale_variant("std", straSchema[iSchema]);
 
    //  }
 
@@ -2787,7 +2797,7 @@ retry_license:
    //  for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    //  {
 
-   //     localeschema.add_locale_variant(__id(en), straSchema[iSchema]);
+   //     localeschema.add_locale_variant("en", straSchema[iSchema]);
 
    //  }
 
@@ -2904,9 +2914,9 @@ retry_license:
 //
 //      {
 //
-//         synchronous_lock synchronouslock(mutex());
+//         synchronous_lock synchronouslock(this->synchronization());
 //
-//         file().add_contents(dir().appdata() / (file().module().name() + "_log_error.txt"), strMessage);
+//         file()->add_contents(dir()->appdata() / (file()->module().name() + "_log_error.txt"), strMessage);
 //
 //      }
 //
@@ -2938,7 +2948,7 @@ retry_license:
 //
 //      static int g_iCount = 0;
 //
-//      string strFile = dir().appdata() / (file().module().name() + "_log_error.txt");
+//      string strFile = dir()->appdata() / (file()->module().name() + "_log_error.txt");
 //
 //      g_iCount++;
 //
@@ -3015,7 +3025,7 @@ retry_license:
    //::file::path application::get_executable_path()
    //{
 
-   //   return m_psystem->m_pacmedirectory->module() / (get_executable_title() + get_executable_extension());
+   //   return acmedirectory()->module() / (get_executable_title() + get_executable_extension());
 
 
    //}
@@ -3085,7 +3095,7 @@ retry_license:
    //void application::install_trace(const ::string & str)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   //::install::trace_file(this, m_strInstallTraceLabel).print(str);
 
@@ -3095,7 +3105,7 @@ retry_license:
    //void application::install_trace(double dRate)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
 
@@ -3113,7 +3123,7 @@ retry_license:
 //      wstring desc = L"spafile";          // file type description
 //      wstring content_type = L"application/x-spa";
 //
-//      wstring app(m_psystem->m_pacmedirectory->stage(m_XstrAppId, process_platform_dir_name(), process_configuration_dir_name()));
+//      wstring app(acmedirectory()->stage(m_XstrAppId, process_platform_name(), process_configuration_name()));
 //
 //      wstring icon(app);
 //
@@ -3160,20 +3170,20 @@ retry_license:
 //      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
 //      RegCloseKey(hkey);
 //
-//      wstring wstr(m_psystem->m_pacmedirectory->stage(m_XstrAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
+//      wstring wstr(acmedirectory()->stage(m_XstrAppId, process_platform_name(), process_configuration_name()) / "spa_register.txt");
 //
 //      int iRetry = 9;
 //
-//      while (!m_psystem->m_pacmefile->exists(utf8(wstr.c_str())) && iRetry > 0)
+//      while (!acmefile()->exists(utf8(wstr.c_str())) && iRetry > 0)
 //      {
 //
-//                  auto psystem = m_psystem;
+//                  auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
 //pacmedirectory->create(::file_path_folder(utf8(wstr.c_str())).c_str());
 //
-//         m_psystem->m_pacmefile->put_contents(utf8(wstr.c_str()).c_str(), "");
+//         acmefile()->put_contents(utf8(wstr.c_str()).c_str(), "");
 //
 //         iRetry--;
 //
@@ -3222,7 +3232,7 @@ retry_license:
 //
 //      string str = ::path::app_app_admin(strPlatform, strConfiguration);
 //
-//      if (!::m_psystem->m_pacmefile->exists(str))
+//      if (!::acmefile()->exists(str))
 //      {
 //
 //         return;
@@ -3273,7 +3283,7 @@ retry_license:
 //
 //      ::string strPath = wstr.c_str();
 //
-//      ::string strContents = m_psystem->m_pacmefile->as_string(strPath.c_str());
+//      ::string strContents = acmefile()->as_string(strPath.c_str());
 //
 //      throw ::exception(todo("xml"));
 //
@@ -3362,9 +3372,9 @@ retry_license:
 
 #endif
 
-      //synchronous_lock synchronouslock(&m_mutexFrame);
+      //synchronous_lock synchronouslock(m_pmutexFrame);
 
-      //synchronous_lock slChildren(::user::mutex_children2());
+      //synchronous_lock slChildren(::user::pointer < ::mutex >_children2());
 
       auto puserinteractionFrame = m_puserinteractionaFrame;
 
@@ -3399,7 +3409,7 @@ retry_license:
 
       }
 
-      synchronous_lock synchronouslock(&m_mutexFrame); // recursive lock (on m_framea.add(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
+      synchronous_lock synchronouslock(m_pmutexFrame); // recursive lock (on m_framea.add(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
 
       if (m_puserinteractiona->add_unique_interaction(puserinteraction))
       {
@@ -3454,7 +3464,7 @@ retry_license:
    void application::erase_user_interaction(::user::interaction * puserinteraction)
    {
 
-      synchronous_lock synchronouslock(&m_mutexFrame); // recursive lock (on m_framea.erase(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
+      synchronous_lock synchronouslock(m_pmutexFrame); // recursive lock (on m_framea.erase(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
 
       if (m_puserinteractionMain == puserinteraction)
       {
@@ -3806,21 +3816,21 @@ retry_license:
    }
 
 
-   //::draw2d::icon * application::set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon)
+   //::draw2d::icon * application::set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon)
    //{
 
-   //   ::draw2d::icon * piconOld = get_icon(pobject, bBigIcon);
+   //   ::draw2d::icon * piconOld = get_icon(pparticle, bBigIcon);
 
    //   if (bBigIcon)
    //   {
 
-   //      pobject->payload("big_icon") = (::pointer<object> picon;
+   //      pparticle->payload("big_icon") = (::pointer<object> picon;
 
    //   }
    //   else
    //   {
 
-   //      pobject->payload("small_icon") = (::pointer<object> picon;
+   //      pparticle->payload("small_icon") = (::pointer<object> picon;
 
    //   }
 
@@ -3829,19 +3839,19 @@ retry_license:
    //}
 
 
-   //::draw2d::icon * application::get_icon(object * pobject, bool bBigIcon) const
+   //::draw2d::icon * application::get_icon(object * pparticle, bool bBigIcon) const
    //{
 
    //   if (bBigIcon)
    //   {
 
-   //      return ((object *)pobject)->cast < ::draw2d::icon >("big_icon");
+   //      return ((object *)pparticle)->cast < ::draw2d::icon >("big_icon");
 
    //   }
    //   else
    //   {
 
-   //      return ((object *)pobject)->cast <::draw2d::icon>("small_icon");
+   //      return ((object *)pparticle)->cast <::draw2d::icon>("small_icon");
 
    //   }
 
@@ -3878,23 +3888,23 @@ retry_license:
 //   }
 //
 //
-////   void application::on_event(::u64 u, ::object * pobject)
+////   void application::on_event(::u64 u, ::particle * pparticle)
 ////   {
 ////
 ////      object_ptra ptra;
 ////
 ////      {
 ////
-////         synchronous_lock synchronouslock(mutex());
+////         synchronous_lock synchronouslock(this->synchronization());
 ////
-////         ptra = m_objectptraEventHook;
+////         ptra = m_particleaddressaEventHook;
 ////
 ////      }
 ////
-////      for(auto & pobject : ptra)
+////      for(auto & pparticle : ptra)
 ////      {
 ////
-////         pobject->on_event(u, pobject);
+////         pparticle->on_event(u, pparticle);
 ////
 ////      }
 ////
@@ -3905,7 +3915,7 @@ retry_license:
    //::file::path application::appconfig_folder()
    //{
 
-   //   return m_psystem->m_pacmedirectory->config() / m_strAppName;
+   //   return acmedirectory()->config() / m_strAppName;
 
    //}
 
@@ -3944,7 +3954,7 @@ retry_license:
    void application::on_initial_frame_position(::user::frame * pframe)
    {
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       psystem->on_initial_frame_position(pframe);
 
@@ -4048,7 +4058,7 @@ retry_license:
    //void application::record(::create * pcommand)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   get_command()->m_createa.add(pcommand);
 
@@ -4062,7 +4072,7 @@ retry_license:
 
    //   auto& file = psystem->file();
 
-   //   string strNetworkPayload = file.as_string(m_psystem->m_pacmedirectory->config() / strAppId / +"http.network_payload");
+   //   string strNetworkPayload = file.as_string(acmedirectory()->config() / strAppId / +"http.network_payload");
 
    //   if (strNetworkPayload.has_char())
    //   {
@@ -4190,7 +4200,7 @@ retry_license:
    //string application::load_string(const ::atom & atom)
    //{
 
-   //   synchronous_lock synchronouslock(&m_mutexStr);
+   //   synchronous_lock synchronouslock(m_pmutexStr);
 
    //   string str;
 
@@ -4298,7 +4308,7 @@ retry_license:
 
    //   }
 
-   //   synchronous_lock synchronouslock(&m_mutexStr);
+   //   synchronous_lock synchronouslock(m_pmutexStr);
 
    //   ::pointer<string_to_string>pmap;
 
@@ -4472,10 +4482,10 @@ retry_license:
 
    //      string strType = __type_name(this);
 
-   //      //if(::is_set(m_psystem))
+   //      //if(::is_set(acmesystem()))
    //      //{
 
-   //      //   m_psystem->add_reference(this);
+   //      //   acmesystem()->add_reference(this);
 
    //      //}
 
@@ -4747,7 +4757,7 @@ retry_license:
       for (index i = 0; i < iCount; i++)
       {
 
-         if (plocaleschema->m_idaLocale[i] == __id(std) && plocaleschema->m_idaSchema[i] == __id(std) && bIgnoreStdStd)
+         if (plocaleschema->m_idaLocale[i] == "std" && plocaleschema->m_idaSchema[i] == "std" && bIgnoreStdStd)
             continue;
 
          string strLocale;
@@ -4760,7 +4770,7 @@ retry_license:
 
          update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
 
-         auto psystem = m_psystem->m_paurasystem;
+         auto psystem = acmesystem()->m_paurasystem;
 
          psystem->install_progress_add_up();
 
@@ -4785,11 +4795,11 @@ retry_license:
 
       auto pcontext = get_context();
 
-      ::file::path strFile = dir().install() / strRelative;
+      ::file::path strFile = dir()->install() / strRelative;
 
       ::file::path strUrl(::e_path_url);
 
-      if (framework_is_basis())
+      if (acmenode()->is_debug_build())
       {
          strUrl = "http://basis-server.ca2.software/api/spaignition/download?authnone&configuration=basis&stage=";
       }
@@ -4798,7 +4808,7 @@ retry_license:
          strUrl = "http://stage-server.ca2.software/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 
@@ -4845,16 +4855,16 @@ retry_license:
 
 //         zip_context zip(this);
 
-         auto pfolder = m_pcontext->m_papexcontext->file().get_folder(&file, "zip", ::file::e_open_read);
+         auto pfolder = ::particle::file()->get_folder(&file, "zip", ::file::e_open_read);
 
          string strDir = strFile;
 
-         ::str().ends_eat_ci(strDir, ".zip");
+         strDir.ends_eat_ci(".zip");
 
          //try
          //{
 
-            pfolder->extract_all(strDir);
+            pfolder->e_extract_all(strDir);
 
          //}
          //catch (...)
@@ -4866,7 +4876,7 @@ retry_license:
 
          //}
 
-         //psystem->compress().extract_all(strFile, this);
+         //psystem->compress().e_extract_all(strFile, this);
 
       }
 
@@ -4885,10 +4895,10 @@ retry_license:
 
       string strRequestUrl;
 
-      if (m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt").has_char())
+      if (acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 
@@ -4931,24 +4941,24 @@ retry_license:
 
       auto pcontext = get_context();
 
-      string strMatter = dir().matter(::file::path(pszMatter) / pszMatter2);
+      string strMatter = dir()->matter(::file::path(pszMatter) / pszMatter2);
 
       payloadFile["url"] = strMatter;
 
-      return file().as_string(payloadFile);
+      return file()->as_string(payloadFile);
 
    }
 
-   //string application::dir().matter(const ::string & pszMatter, const ::string & pszMatter2)
+   //string application::dir()->matter(const ::string & pszMatter, const ::string & pszMatter2)
    //{
 
-   //   return dir().matter(pszMatter,pszMatter2);
+   //   return dir()->matter(pszMatter,pszMatter2);
 
    //}
 
    //bool application::is_inside_time_dir(const ::string & pszPath)
    //{
-   //   return dir().is_inside_time(pszPath);
+   //   return dir()->is_inside_time(pszPath);
    //}
 
 
@@ -4956,7 +4966,7 @@ retry_license:
    //{
 
    //   return false;
-   //   //return file().is_read_only(pszPath);
+   //   //return file()->is_read_only(pszPath);
 
    //}
 
@@ -4988,7 +4998,7 @@ retry_license:
 
          m_iWaitCursorCount = 0;
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node()->m_papexnode;
 
@@ -5006,7 +5016,7 @@ retry_license:
          if (m_iWaitCursorCount > 0)
          {
 
-            auto psystem = m_psystem;
+            auto psystem = acmesystem();
 
             auto pnode = psystem->node()->m_papexnode;
 
@@ -5016,7 +5026,7 @@ retry_license:
 
          m_iWaitCursorCount = 0;
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node()->m_papexnode;
 
@@ -5033,7 +5043,7 @@ retry_license:
 
          m_iWaitCursorCount++;
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node()->m_papexnode;
 
@@ -5155,7 +5165,7 @@ retry_license:
 
 
 
-   //::draw2d::icon * application::set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon)
+   //::draw2d::icon * application::set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon)
    //{
 
    //   return nullptr;
@@ -5163,7 +5173,7 @@ retry_license:
    //}
 
 
-   //::draw2d::icon * application::get_icon(object * pobject, bool bBigIcon) const
+   //::draw2d::icon * application::get_icon(object * pparticle, bool bBigIcon) const
    //{
 
    //   return nullptr;
@@ -5221,9 +5231,9 @@ retry_license:
 //
 //      {
 //
-//         ::installpointer< class ::mutex > ::mutex(process_platform_dir_name2());
+//         ::installpointer< class ::pointer < ::mutex > > ::pointer < ::mutex >(process_platform_name());
 //
-//         if (::mutex.already_exists())
+//         if (::pointer < ::mutex >.already_exists())
 //         {
 //
 //            //            output_error_message("Could not launch spa installer. It is already running.", e_message_box_ok);
@@ -5236,7 +5246,7 @@ retry_license:
 //
 //      string strValue;
 //
-//      if (get_command_line_param(strValue, pszCommandLine, "enable_desktop_launch"))
+//      if (get_command_line_parameter(strValue, pszCommandLine, "enable_desktop_launch"))
 //      {
 //
 //#ifdef _UWP
@@ -5247,7 +5257,7 @@ retry_license:
 //
 //         ::property_set set;
 //
-//         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, ::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_restored, 2_min, set);
+//         return ::call_sync(::path::app_app(process_platform_name(), process_configuration_name()), pszCommandLine, ::path::app_app(process_platform_name(), process_configuration_name()), e_display_restored, 2_min, set);
 //
 //#endif
 //
@@ -5518,10 +5528,10 @@ namespace aura
    //}
 
 
-   //void application::initialize(::object * pobject)
+   //void application::initialize(::particle * pparticle)
    //{
 
-   //   auto estatus = ::aura::application::initialize(pobject);
+   //   auto estatus = ::aura::application::initialize(pparticle);
 
    //   if (!estatus)
    //   {
@@ -5548,7 +5558,7 @@ namespace aura
          if(pinteraction)
          {
 
-            pinteraction->post_procedure([pinteraction, idCommand]()
+            pinteraction->interaction_post([pinteraction, idCommand]()
             {
 
                ::message::command command(idCommand);
@@ -7244,16 +7254,16 @@ namespace aura
 
 
 
-   /*   property_set & application::propset(object * pobject)
+   /*   property_set & application::propset(object * pparticle)
    {
    single_lock synchronouslock(&m_mapObjectSet, true);
-   return m_mapObjectSet[pobject];
+   return m_mapObjectSet[pparticle];
    }
 
-   property_set * application::existing_propset(object * pobject)
+   property_set * application::existing_propset(object * pparticle)
    {
    single_lock synchronouslock(&m_mapObjectSet, true);
-   auto point = m_mapObjectSet.plookup(pobject);
+   auto point = m_mapObjectSet.plookup(pparticle);
    if(point == nullptr)
    return nullptr;
    return &point->m_value;
@@ -7414,7 +7424,7 @@ namespace aura
 //      throw ::exception(todo);
 //      /*#elif defined(LINUX)
 //
-//      //      synchronous_lock synchronouslock(&user_mutex());
+//      //      synchronous_lock synchronouslock(&user_synchronization());
 //
 //      xdisplay pdisplay.
 //      pdisplay.open(nullptr) = x11_get_display();
@@ -7629,7 +7639,7 @@ namespace aura
 ////      // i16 file name so we need to use the i16 file name.
 ////      string strShortName;
 ////
-////      strShortName = file().module();
+////      strShortName = file()->module();
 ////
 ////      // strip out path
 ////      //string strFileName = ::PathFindFileName(strShortName);
@@ -8310,10 +8320,10 @@ namespace aura
    //}
 
 
-   //void application::initialize(::object * pobject)
+   //void application::initialize(::particle * pparticle)
    //{
 
-   //   auto estatus = ::aura::application::initialize(pobject);
+   //   auto estatus = ::aura::application::initialize(pparticle);
 
    //   if (!estatus)
    //   {
@@ -8357,14 +8367,14 @@ namespace aura
          if (ptopic->m_atom == ::id_initialize_control)
          {
 
-            auto puserinteraction = ptopic->m_puserelement->cast<::user::interaction>();
+            ::pointer < ::user::interaction > puserinteraction = ptopic->m_puserelement;
 
-            if (puserinteraction->m_atom == __id(user_auto_start_checkbox))
+            if (puserinteraction->m_atom == "user_auto_start_checkbox")
             {
 
                try
                {
-                  ::pointer<::user::check>pcheck = puserinteraction;
+                  ::pointer<::user::check> pcheck = puserinteraction;
 
                   if (pcheck.is_set())
                   {
@@ -8375,7 +8385,7 @@ namespace aura
                         os_context()->is_user_auto_start(get_executable_appid()),
                         ::e_source_initialize);
 
-                     auto puserinteractionCheck = pcheck->cast <::user::interaction>();
+                     ::pointer < ::user::interaction > puserinteractionCheck = pcheck;
 
                      if (puserinteractionCheck)
                      {
@@ -8399,7 +8409,7 @@ namespace aura
 
             auto puserinteraction = ptopic->user_interaction();
 
-            if (puserinteraction->m_atom == __id(user_auto_start_checkbox)
+            if (puserinteraction->m_atom == "user_auto_start_checkbox"
                && ptopic->m_actioncontext.is_user_source())
             {
 
@@ -8575,9 +8585,9 @@ namespace aura
       if(strRequestUrl.is_empty())
       {
 
-         string strIgnitionServer = m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt");
+         string strIgnitionServer = acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt");
 
-         if(::str().ends_ci(strIgnitionServer,".ca2.software"))
+         if(string_ends_ci(strIgnitionServer,".ca2.software"))
          {
 
             strRequestUrl = "https://" + strIgnitionServer + "/";
@@ -8732,7 +8742,7 @@ namespace aura
    //}
 
 
-   ::draw2d::icon* application::set_icon(object* pobject, ::draw2d::icon* picon, bool bBigIcon)
+   ::draw2d::icon* application::set_icon(::object * pobject, ::draw2d::icon* picon, bool bBigIcon)
    {
 
       ::draw2d::icon* piconOld = get_icon(pobject, bBigIcon);
@@ -8824,9 +8834,9 @@ namespace aura
    string application::get_visual_studio_build()
    {
 
-      ::file::path path = m_psystem->m_pacmedirectory->config() / "programming/vs_build.txt";
+      ::file::path path = acmedirectory()->config() / "programming/vs_build.txt";
 
-      string strBuild = file().as_string(path);
+      string strBuild = file()->as_string(path);
 
       strBuild.trim();
 
@@ -8840,7 +8850,7 @@ namespace aura
 
       string strFileName = string(psz) + string(".wav");
 
-      string strFilePath = dir().matter(strFileName);
+      string strFilePath = dir()->matter(strFileName);
 
       return strFilePath;
 
@@ -8978,11 +8988,17 @@ namespace aura
    ::aura::system * application::get_system()
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::aura::system *> (m_psystem) : nullptr;
+      return ::is_set(acmesystem()) ? dynamic_cast <::aura::system *> (acmesystem()) : nullptr;
 
    }
 
 
+   ::aura::session* application::get_session()
+   {
+
+      return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
+
+   }
 
 
 } // namespace aura

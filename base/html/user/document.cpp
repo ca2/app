@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "document.h"
 #include "impact.h"
+#include "acme/constant/id.h"
+#include "apex/platform/shell_launcher.h"
 #include "axis/html/user/form.h"
 #include "axis/html/html/data.h"
 #include "axis/html/html/core_data.h"
@@ -53,20 +55,20 @@ html_document::~html_document()
 }
 
 
-void html_document::assert_ok() const
-{
-
-   ::user::document::assert_ok();
-
-}
-
-
-void html_document::dump(dump_context & dumpcontext) const
-{
-
-   ::user::document::dump(dumpcontext);
-
-}
+//void html_document::assert_ok() const
+//{
+//
+//   ::user::document::assert_ok();
+//
+//}
+//
+//
+//void html_document::dump(dump_context & dumpcontext) const
+//{
+//
+//   ::user::document::dump(dumpcontext);
+//
+//}
 
 
 
@@ -261,9 +263,9 @@ bool html_document::on_open_document(const ::payload & payloadFile)
 void html_document::soft_reload()
 {
 
-   auto psync = get_html_data()->mutex();
+   auto pparticleSynchronization = get_html_data()->synchronization();
 
-   synchronous_lock lock(psync);
+   synchronous_lock lock(pparticleSynchronization);
 
    string str = get_html_data()->m_pcoredata->m_strSource;
 

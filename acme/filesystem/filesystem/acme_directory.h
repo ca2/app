@@ -10,10 +10,15 @@
 
 
 #include "acme/primitive/media_library/item.h"
+#include "acme/primitive/primitive/particle.h"
+#include "enumerator.h"
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/primitive/collection/map.h"
+#include "acme/parallelization/mutex.h"
 
 
 class CLASS_DECL_ACME acme_directory :
-   virtual public ::matter,
+   virtual public ::particle,
    virtual public ::file::enumerator
 {
 public:
@@ -62,9 +67,9 @@ public:
 
 
 
-   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::acme_directory *  m_pplatformdir;
-   acme_file *                                     m_pacmefile;
-   acme_path *                                     m_pacmepath;
+   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::acme_directory *     m_pplatformdir;
+   ::acme_file *                                                     m_pacmefile;
+   ::acme_path *                                                     m_pacmepath;
 
    ::file::path                                    m_pathInstallFolder;
    ::file::path                                    m_pathModuleFolder;
@@ -72,14 +77,14 @@ public:
 
    ::media_library::item_map                       m_medialibraryitemmap;
    
-   ::mutex                                         m_mutexMediaLibrary;
+   ::pointer < ::mutex >                           m_pmutexMediaLibrary;
 
 
    acme_directory();
    ~acme_directory() override;
 
 
-   void initialize(::object * pobject) override;
+   void initialize(::particle * pparticle) override;
 
    
    //virtual ::file::path module_folder();

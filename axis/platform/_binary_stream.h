@@ -3,6 +3,7 @@
 
 
 #include "acme/filesystem/file/binary_stream.h"
+#include "axis/platform/geo_department.h"
 
 
 template < typename FILE >

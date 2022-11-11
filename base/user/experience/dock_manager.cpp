@@ -72,7 +72,7 @@ namespace experience
 
       pointDock+=m_pframewindow->screen_to_client();
 
-      point = __point(pointCursor - pointDock);
+      point = ::point_i32(pointCursor - pointDock);
 
       ::rectangle_i32 rectangleWindow;
 
@@ -429,7 +429,7 @@ namespace experience
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      if (pmouse->m_eflagMessage & ::message::flag_synthesized)
+      if (pmouse->m_eflagMessage & ::message::e_flag_synthesized)
       {
 
          return;

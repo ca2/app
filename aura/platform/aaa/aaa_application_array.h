@@ -7,7 +7,7 @@ class CLASS_DECL_AURA application_array:
 public:
 
 
-   //application_array(::object * pobject);
+   //application_array(::particle * pparticle);
    application_array();
    application_array(const application_array & a);
    application_array(application_array && a);

@@ -8,7 +8,9 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace user
@@ -16,7 +18,7 @@ namespace user
 
 
    class CLASS_DECL_ACME mouse :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

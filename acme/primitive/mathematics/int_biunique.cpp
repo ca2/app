@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "int_biunique.h"
+#include "acme/primitive/collection/numeric_array.h"
 
 
 index_biunique::index_biunique()

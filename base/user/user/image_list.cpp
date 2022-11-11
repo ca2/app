@@ -1,5 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "image_list.h"
+#include "acme/array.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/handler/item.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/array.h"
 #include "aura/message/user.h"
@@ -58,26 +62,26 @@ namespace user
    }
 
 
-   void image_list::assert_ok() const
-   {
-
-      ::user::box::assert_ok();
-
-   }
-
-
-   void image_list::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::box::dump(dumpcontext);
-
-   }
+//   void image_list::assert_ok() const
+//   {
+//
+//      ::user::box::assert_ok();
+//
+//   }
+//
+//
+//   void image_list::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::box::dump(dumpcontext);
+//
+//   }
 
 
    ::image * image_list::get_current_image()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_iaSel.get_count() != 1)
       {
@@ -677,20 +681,20 @@ namespace user
    }
 
 
-   void image_list_impact::assert_ok() const
-   {
-
-      ::user::image_list::assert_ok();
-
-   }
-
-
-   void image_list_impact::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::image_list::dump(dumpcontext);
-
-   }
+//   void image_list_impact::assert_ok() const
+//   {
+//
+//      ::user::image_list::assert_ok();
+//
+//   }
+//
+//
+//   void image_list_impact::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::user::image_list::dump(dumpcontext);
+//
+//   }
 
 
    void image_list_impact::install_message_routing(::channel * pchannel)
@@ -749,7 +753,7 @@ namespace user
    ::item_pointer image_list::current_item()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_iaSel.get_count() == 1)
       {
@@ -766,7 +770,7 @@ namespace user
    index_array image_list::_001GetSelection()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       return m_iaSel;
 
@@ -776,7 +780,7 @@ namespace user
    void image_list::set_current_item(index iFind, const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_iaSel.erase_all();
 
@@ -788,9 +792,9 @@ namespace user
    void image_list::_001SetSelection(const index_array & ia, const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
-      if (!::papaya::array::equals_non_unique_unordered(ia, m_iaSel))
+      if (!::acme::array::equals_non_unique_unordered(ia, m_iaSel))
       {
 
          m_iaSel = ia;

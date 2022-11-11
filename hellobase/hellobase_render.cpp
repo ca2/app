@@ -15,11 +15,11 @@ namespace hellobase
 {
 
 
-   render::render(::object * pobject) :
-      object(pobject),
-      thread(pobject),
-      helloaura::render(pobject),
-      helloaxis::render(pobject)
+   render::render(::particle * pparticle) :
+      object(pparticle),
+      thread(pparticle),
+      helloaura::render(pparticle),
+      helloaxis::render(pparticle)
    {
 
       m_bFirst23 = false;
@@ -98,9 +98,9 @@ namespace hellobase
       //if (m_bNewLayout)
       //{
 
-      //   synchronous_lock sl2(&m_mutexWork);
-      //   synchronous_lock sl3(&m_mutexDraw);
-      //   synchronous_lock sl4(&m_mutexSwap);
+      //   synchronous_lock sl2(m_pmutexWork);
+      //   synchronous_lock sl3(m_pmutexDraw);
+      //   synchronous_lock sl4(m_pmutexSwap);
 
 /*      //   bool bNewSize = m_pimage->width() != sizeNew.cx || m_pimage->m_size.cy != sizeNew.cy;
 
@@ -298,7 +298,7 @@ namespace hellobase
 
       {
 
-         synchronous_lock synchronouslock(&m_mutexWork);
+         synchronous_lock synchronouslock(m_pmutexWork);
 
 /*         ::image_pointer pimage = m_pimageWork;
 
@@ -343,7 +343,7 @@ namespace hellobase
 
       //_001OnPostProcess(m_pimageWork);
 
-      synchronous_lock slDraw(&m_mutexDraw);
+      synchronous_lock slDraw(m_pmutexDraw);
 
       if (m_bDib1)
       {
@@ -360,7 +360,7 @@ namespace hellobase
 
       }
 
-      synchronous_lock slSwap(&m_mutexSwap);
+      synchronous_lock slSwap(m_pmutexSwap);
 
       if (m_bDib1)
       {
@@ -470,7 +470,7 @@ namespace hellobase
 //
 //            {
 //
-//               synchronous_lock slDib(&m_mutexDib);
+//               synchronous_lock slDib(m_pmutexDib);
 //
 //               if (m_pimage->initialize(m_cxCache1, m_cyCache1, int (m_dMaxRadius)))
 //               {
@@ -727,7 +727,7 @@ namespace hellobase
 //
 //      {
 //
-//         synchronous_lock slDib(&m_mutexDib);
+//         synchronous_lock slDib(m_pmutexDib);
 //
 //         if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
 //         {
@@ -849,7 +849,7 @@ namespace hellobase
 //      if (papp->m_iErrorAiFont == 0)
 //      {
 //
-//         synchronous_lock slAiFont(&papp->m_mutexAiFont);
+//         synchronous_lock slAiFont(&papp->m_pmutexAiFont);
 //
 //         FT_Face & face = (FT_Face &)papp->m_faceAi;
 //
@@ -869,7 +869,7 @@ namespace hellobase
 //            if (error == 0)
 //            {
 //
-//               i64 iChar = ::str::ch().uni_index(unicode_to_utf8(L"愛"));
+//               i64 iChar = unicode_index(unicode_to_utf8(L"愛"));
 //
 //               i32 glyph_index = FT_Get_Char_Index(face, (i32)iChar);
 //
@@ -920,7 +920,7 @@ namespace hellobase
 //            if (error == 0)
 //            {
 //
-//               i64 iChar = ::str::ch().uni_index(unicode_to_utf8(L"愛"));
+//               i64 iChar = unicode_index(unicode_to_utf8(L"愛"));
 //
 //               i32 glyph_index = FT_Get_Char_Index(face, (i32)iChar);
 //
@@ -1044,7 +1044,7 @@ namespace hellobase
       //         if (m_strLast23.has_char())
       //         {
 
-      //            synchronous_lock synchronouslock(&m_mutexDib23);
+      //            synchronous_lock synchronouslock(m_pmutexDib23);
 
       //            auto & pimage = image23(m_strLast23);
 
@@ -1062,7 +1062,7 @@ namespace hellobase
       //         if (m_strCurrent23.has_char())
       //         {
 
-      //            synchronous_lock synchronouslock(&m_mutexDib23);
+      //            synchronous_lock synchronouslock(m_pmutexDib23);
 
       //            auto & pimage = image23(m_strCurrent23);
 
@@ -1081,7 +1081,7 @@ namespace hellobase
       //      else if (m_strCurrent23.has_char())
       //      {
 
-      //         synchronous_lock synchronouslock(&m_mutexDib23);
+      //         synchronous_lock synchronouslock(m_pmutexDib23);
 
       //         auto & pimage = image23(m_strCurrent23);
 
@@ -1113,7 +1113,7 @@ namespace hellobase
 
       //      {
 
-      //         synchronous_lock slText(&m_pimpact->m_mutexText);
+      //         synchronous_lock slText(&m_pimpact->m_pmutexText);
 
       //         strHelloBase = m_pimpact->get_processed_helloaura().c_str();
 
@@ -1179,7 +1179,7 @@ namespace hellobase
 
       //   synchronous_lock sl1(m_pimpact->get_wnd()->mutex());
 
-      //   synchronous_lock slDraw(&m_mutexDraw);
+      //   synchronous_lock slDraw(m_pmutexDraw);
 
       //   if (m_bFast || m_pimageFast->is_null())
       //   {
@@ -1188,7 +1188,7 @@ namespace hellobase
 
       //      {
 
-      //         synchronous_lock slText(&m_pimpact->m_mutexText);
+      //         synchronous_lock slText(&m_pimpact->m_pmutexText);
 
       //         helloaura_fast_render(m_pimpact->get_processed_helloaura());
 
@@ -1230,9 +1230,9 @@ namespace hellobase
 
       //::image_pointer pimageFast = m_pimageFast;
 
-      //synchronous_lock synchronouslock(&m_mutexDraw);
+      //synchronous_lock synchronouslock(m_pmutexDraw);
 
-      //synchronous_lock slSwap(&m_mutexSwap);
+      //synchronous_lock slSwap(m_pmutexSwap);
 
       //pimage = m_pimageOut;
 
@@ -1302,7 +1302,7 @@ namespace hellobase
    //void render::defer_update_bilbo()
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   for (auto & bilbo : m_bilboa)
    //   {
@@ -1333,7 +1333,7 @@ namespace hellobase
    //   for (auto str23 : m_stra23)
    //   {
 
-   //      synchronous_lock synchronouslock(&m_mutexDib23);
+   //      synchronous_lock synchronouslock(m_pmutexDib23);
 
    //      image23(str23);
 
@@ -1356,7 +1356,7 @@ namespace hellobase
    //   if (m_cx <= 0 || m_cy <= 0)
    //      return;
 
-   //   synchronous_lock slDraw(&m_mutexDraw);
+   //   synchronous_lock slDraw(m_pmutexDraw);
 
    //   ::size_i32 sizeNew = ::size_i32(m_cx, m_cy);
 

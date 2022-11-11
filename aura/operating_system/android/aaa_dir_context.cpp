@@ -20,10 +20,10 @@ namespace android
    }
 
 
-   void dir_context::initialize(::object * pobject)
+   void dir_context::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::dir_context::initialize(pobject);
+      auto estatus = ::dir_context::initialize(pparticle);
 
       if (!estatus)
       {
@@ -164,7 +164,7 @@ namespace android
 
             ::file::path strPath = stra[i];
 
-            if (!::str().begins(strPath, listing.m_pathFinal))
+            if (!string_begins(strPath, listing.m_pathFinal))
                continue;
 
             bool bIsDir;
@@ -205,7 +205,7 @@ namespace android
    }
 
 
-   //bool dir_context::rls(const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, e_extract eextract)
+   //bool dir_context::rls(const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, enum_extract eextract)
    //{
 
    //   if(::file::system_dir::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
@@ -220,7 +220,7 @@ namespace android
    //}
 
 
-   //bool dir_context::rls_pattern(const ::string & lpcsz, const ::string & pszPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, i64_array * piaSize, e_extract eextract)
+   //bool dir_context::rls_pattern(const ::string & lpcsz, const ::string & pszPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, i64_array * piaSize, enum_extract eextract)
    //{
 
 
@@ -250,7 +250,7 @@ namespace android
    //         iStart = pstraRelative->get_size();
    //      }
 
-   //      rls_pattern(papp, strDir, pszPattern, pstraPath, pstraTitle, pstraRelative, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
+   //      rls_pattern(papp, strDir, pszPattern, pstraPath, pstraTitle, pstraRelative, pbaIsDir, piaSize, eextract == e_extract_all ? e_extract_all : e_extract_none);
 
    //      if(pstraRelative != nullptr)
    //      {
@@ -258,7 +258,7 @@ namespace android
    //         for(index i = iStart; i < pstraRelative->get_size(); i++)
    //         {
 
-   //            pstraRelative->element_at(i) = pcontext->m_papexcontext->dir_context().path(pcontext->m_papexcontext->file().name_(strDir), pstraRelative->element_at(i));
+   //            pstraRelative->element_at(i) = pcontext->m_papexcontext->dir_context().path(pcontext->m_papexcontext->file()->name_(strDir), pstraRelative->element_at(i));
 
    //         }
 
@@ -268,7 +268,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str().ends(strDir, "/"))
+   //   if(!string_ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -286,7 +286,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str().begins_eat(strName, strDir))
+   //      if(!strName.begins_eat(strDir))
    //         continue;
 
    //      if(!matches_wildcard_criteria(pszPattern, strName))
@@ -370,7 +370,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str().ends(strDir, "/"))
+   //   if(!string_ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -385,7 +385,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str().begins_eat(strName, strDir))
+   //      if(!strName.begins_eat(strDir))
    //         continue;
 
    //      if(!pcontext->m_papexcontext->dir_context().is(strPath))
@@ -458,7 +458,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str().ends(strDir, "/"))
+   //   if(!string_ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -473,7 +473,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str().begins_eat(strName, strDir))
+   //      if(!strName.begins_eat(strDir))
    //         continue;
 
    //      if(!pcontext->m_papexcontext->dir_context().is(strPath))
@@ -516,7 +516,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str().ends(strDir, "/"))
+   //   if(!string_ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -531,7 +531,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str().begins_eat(strName, strDir))
+   //      if(!strName.begins_eat(strDir))
    //         continue;
 
    //      if(pcontext->m_papexcontext->dir_context().is(strPath))
@@ -577,7 +577,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str().ends(strDir, "/"))
+   //   if(!string_ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -592,7 +592,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str().begins_eat(strName, strDir))
+   //      if(!strName.begins_eat(strDir))
    //         continue;
 
    //      if(pstraPath != nullptr)
@@ -666,7 +666,7 @@ namespace android
       if (strPath.get_length() >= MAX_PATH)
       {
 
-         if (::str().begins(strPath, "\\\\"))
+         if (string_begins(strPath, "\\\\"))
          {
 
             strPath = "\\\\?\\UNC" + strPath.Mid(1);
@@ -720,7 +720,7 @@ namespace android
    //   wstrPath = utf8_to_unicode(strPath);
    //   if(wstrPath.get_length() >= MAX_PATH)
    //   {
-   //      if(::str().begins(wstrPath, L"\\\\"))
+   //      if(string_begins(wstrPath, L"\\\\"))
    //      {
    //         ::str().begin(wstrPath, L"\\\\?\\UNC");
    //      }
@@ -894,7 +894,7 @@ namespace android
                   str.trim_right("\\/");
                   try
                   {
-                     pcontext->m_papexcontext->file().del(str);
+                     pcontext->m_papexcontext->file()->del(str);
                   }
                   catch (...)
                   {
@@ -903,7 +903,7 @@ namespace android
                   str.trim_right("\\/");
                   try
                   {
-                     pcontext->m_papexcontext->file().del(str);
+                     pcontext->m_papexcontext->file()->del(str);
                   }
                   catch (...)
                   {
@@ -993,19 +993,19 @@ namespace android
 
       xml::document doc;
 
-      doc.load(pcontext->m_papexcontext->file().as_string(appdata() / "configuration\\directory.xml"));
+      doc.load(pcontext->m_papexcontext->file()->as_string(appdata() / "configuration\\directory.xml"));
 
       ::file::path pathInstall = ::aura::get_system()->m_pathCacheDir;
 
       m_pdirsystem->m_pathInstall = pathInstall;
 
-      //nodeos_set_home(         auto psystem = m_psystem;
+      //nodeos_set_home(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / "home");
 
-      //nodeos_set_temp(         auto psystem = m_psystem;
+      //nodeos_set_temp(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1105,7 +1105,7 @@ pacmedirectory->system() / "temp");
          CSIDL_COMMON_APPDATA,
          false);*/
 
-      str =          auto psystem = m_psystem;
+      str =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1297,7 +1297,7 @@ pacmedirectory->system() / ".ca2/app/appdata";
    bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return ::str().begins_ci(pszDir, pszPath);
+      return string_begins_ci(pszDir, pszPath);
 
    }
 

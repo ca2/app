@@ -5,11 +5,11 @@ namespace turboc
 {
 
 
-   top_impact::top_impact(::object * pobject):
-      ::object(pobject),
-      ::user::split_layout(pobject),
-      ::user::split_impact(pobject),
-      place_holder_container(pobject)
+   top_impact::top_impact(::particle * pparticle):
+      ::object(pparticle),
+      ::user::split_layout(pparticle),
+      ::user::split_impact(pparticle),
+      place_holder_container(pparticle)
    {
 
    }

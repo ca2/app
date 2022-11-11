@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "history.h"
 
 
 namespace apex
@@ -13,8 +14,8 @@ namespace apex
    }
 
 
-   //history::history(::object * pobject) :
-   //   ::object(pobject)
+   //history::history(::particle * pparticle) :
+   //   ::object(pparticle)
    //{
 
    //   m_phistory = nullptr;

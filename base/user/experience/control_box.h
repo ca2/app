@@ -65,7 +65,7 @@ namespace experience
       ::color::color                         m_colorButtonForeDisabled;
 
       enum_button_item_map                   m_itemmap;
-      id_map < enum_button >                 m_idmap;
+      atom_map < enum_button >                 m_idmap;
             
       status < ::color::color  >      m_colorBackground;
 

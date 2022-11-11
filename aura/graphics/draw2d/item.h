@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
+
+
 namespace draw2d
 {
 
@@ -17,11 +21,13 @@ namespace draw2d
       int                           itemState;
       oswindow                      oswindowItem;
       ::draw2d::graphics_pointer    m_pgraphics;
-      ::rectangle_i32                        rcItem;
+      ::RECTANGLE_I32               rcItem;
       uptr                          itemData;
       
+
       item();
       ~item();
+
       
    };
 

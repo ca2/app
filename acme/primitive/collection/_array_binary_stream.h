@@ -2,8 +2,8 @@
 #pragma once
 
 
-template < typename FILE, class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
+template < typename FILE, class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer >
+inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
 {
 
    ::count c = a.get_count();
@@ -28,8 +28,8 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, con
 }
 
 
-template < typename FILE, class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
+template < typename FILE, class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer >
+inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
 {
 
    ::count c;
@@ -77,8 +77,8 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::a
 }
 
 
-template < typename FILE, class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
+template < typename FILE, class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer >
+inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
 {
 
    ::count c = a.get_count();
@@ -92,8 +92,8 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, con
 }
 
 
-template < typename FILE, class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
+template < typename FILE, class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer >
+inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
 {
 
    ::count c;

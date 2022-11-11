@@ -6,7 +6,7 @@
 int main2()
 {
 
-   ::file pfile = pcontext->m_papexcontext->file().get_file("C:\\window.window");
+   ::file pfile = pcontext->m_papexcontext->file()->get_file("C:\\window.window");
 
    in_addr addr;
 
@@ -44,7 +44,7 @@ void __exchange(stream & s, const ::atom & atom,)
 int main()
 {
 
-    ::file pfile = pcontext->m_papexcontext->file().get_file("C:\\window.window");
+    ::file pfile = pcontext->m_papexcontext->file()->get_file("C:\\window.window");
 
     auto pinteraction = memory_new window();
 

@@ -1,5 +1,9 @@
-// Created by camilo on 2022-03-30 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-03-30 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
+
+
+#include "check.h"
+#include "text.h"
 
 
 namespace user

@@ -1,6 +1,7 @@
 #include "framework.h"
-#include "_.h"
-#include "_gpu.h"
+#include "shader.h"
+//#include "_.h"
+//#include "_gpu.h"
 
 
 namespace gpu

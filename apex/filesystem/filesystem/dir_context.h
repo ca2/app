@@ -1,6 +1,11 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/filesystem/filesystem/enumerator.h"
+#include "acme/filesystem/filesystem/path.h"
+
+
 //namespace file
 //{
 
@@ -21,7 +26,7 @@
       ~dir_context() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual void init_system();
@@ -142,7 +147,7 @@
 
       virtual ::file::path pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
 
-      //virtual void initialize(::object * pobject) override;
+      //virtual void initialize(::particle * pparticle) override;
 
       //virtual ::file::path get_api_cc();
 

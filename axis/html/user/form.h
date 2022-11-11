@@ -20,7 +20,7 @@ public:
    ~html_form() override;
 
    
-   void initialize(::object * pobject) override;
+   void initialize(::particle * pparticle) override;
 
 
    virtual bool has_document() const;
@@ -65,7 +65,7 @@ public:
 
 
 
-   virtual void _001GetText(string & str) const override;
+   virtual void _001GetText(string & str) override;
    virtual void _001SetText(const ::string & str, const ::action_context & action_context) override;
 
 

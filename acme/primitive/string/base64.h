@@ -1,12 +1,13 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
 //namespace str
 //{
 
 
    class CLASS_DECL_ACME base64 :
-      virtual public ::matter
+      virtual public ::particle
    {
    public:
 
@@ -33,7 +34,7 @@
       virtual ~base64();
 
 
-      ///virtual void initialize(::object * pobject) override;
+      ///virtual void initialize(::particle * pparticle) override;
 
 
       // from arbitrary binary data to Base 64

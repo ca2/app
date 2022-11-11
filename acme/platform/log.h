@@ -2,13 +2,16 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 class logger :
    virtual public ::object
 {
 public:
 
    
-   static void t_construct(::acme::system * psystem);
+   static void t_construct(::acme::context * pcontext);
    static void t_release();
 
 
@@ -35,7 +38,7 @@ public:
    ~log() override;
 
 
-   void initialize(::object* pobject) override;
+   void initialize(::particle * pparticle) override;
    
 
    virtual void initialize_log(enum_trace_level etracelevelMin, const ::atom& atom);

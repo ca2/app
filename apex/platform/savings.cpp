@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "savings.h"
 
 
 namespace apex
@@ -16,11 +17,11 @@ namespace apex
    }
 
 
-   void savings::initialize(::object * pobject)
+   void savings::initialize(::particle * pparticle)
    {
 
       //auto estatus =
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{

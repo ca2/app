@@ -3,6 +3,7 @@
 #include "lock.h"
 #include "device_lock.h"
 #include "draw2d.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace draw2d
@@ -22,36 +23,36 @@ namespace draw2d
    object::~object()
    {
 
-      m_psystem->m_paurasystem->draw2d()->erase_object(this);
+      acmesystem()->m_paurasystem->draw2d()->erase_object(this);
 
    }
 
 
-   void object::dump(dump_context& dumpcontext) const
+//   void object::dump(dump_context& dumpcontext) const
+//   {
+//
+//      __UNREFERENCED_PARAMETER(dumpcontext);
+//
+//      throw ::interface_only();
+//
+//   }
+//
+//
+//   void object::assert_ok() const
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
+
+
+   void object::on_initialize_particle()
    {
 
-      __UNREFERENCED_PARAMETER(dumpcontext);
-
-      throw ::interface_only();
-
-   }
-
-
-   void object::assert_ok() const
-   {
-
-      throw ::interface_only();
-
-   }
-
-
-   void object::on_initialize_object()
-   {
-
-      if (m_psystem)
+      if (acmesystem())
       {
 
-         m_psystem->m_paurasystem->draw2d()->add_object(this);
+         acmesystem()->m_paurasystem->draw2d()->add_object(this);
 
       }
 

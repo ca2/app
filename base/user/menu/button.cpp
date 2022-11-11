@@ -1,16 +1,18 @@
 #include "framework.h"
+#include "button.h"
+#include "item.h"
+#include "menu.h"
+#include "aura/user/user/calc_size.h"
+#include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/list.h"
-#include "button.h"
-#include "item.h"
 #include "base/user/user/style.h"
 #include "base/platform/session.h"
 #include "base/user/user/user.h"
 #include "base/user/menu/central.h"
 #include "aura/message/user.h"
-#include "menu.h"
 
 
 namespace user
@@ -362,7 +364,7 @@ namespace user
    }
 
 
-   bool menu_button::keyboard_focus_is_focusable() const
+   bool menu_button::keyboard_focus_is_focusable()
    {
 
       return false;

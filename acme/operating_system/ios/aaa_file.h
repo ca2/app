@@ -58,8 +58,8 @@ namespace ios
       virtual ~file();
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
       //virtual bool has_write_mode() override;
 
@@ -95,8 +95,8 @@ namespace ios
 //
 //      void os_error_to_exception(::i32 lOsError);
 //      void err_no_to_exception(i32 nErrno);
-//      void throw_os_error(::matter * pobject, ::i32 lOsError, const char * lpszFileName = nullptr);
-//      void throw_err_no(::matter * pobject, i32 nErrno, const char * lpszFileName = nullptr);
+//      void throw_os_error(::particle * pparticle, ::i32 lOsError, const char * lpszFileName = nullptr);
+//      void throw_err_no(::particle * pparticle, i32 nErrno, const char * lpszFileName = nullptr);
 //
 //
 //   }  // namespace file_exception

@@ -2,6 +2,9 @@
 #include "data.h"
 #include "document.h"
 #include "apex/database/_binary_stream.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/create.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/user/user/interaction.h"
@@ -58,26 +61,26 @@ namespace filemanager
    }
 
 
-   void data::assert_ok() const
-   {
+//   void data::assert_ok() const
+//   {
+//
+//
+//   }
+//
+//
+//   void data::dump(dump_context& dumpcontext) const
+//   {
+//
+//
+//   }
 
 
-   }
-
-
-   void data::dump(dump_context& dumpcontext) const
-   {
-
-
-   }
-
-
-   void data::initialize_filemanager_data(::object * pobject)
+   void data::initialize_filemanager_data(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::data::data::initialize(pobject);
+      ::data::data::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -269,12 +272,12 @@ namespace filemanager
 //   }
 
 
-   string data::get_last_browse_path(::object * pobject, const ::string & pszDefault)
+   string data::get_last_browse_path(::particle * pparticle, const ::string & pszDefault)
    {
 
       string strPath;
 
-      ::pointer<::core::application>papp = pobject->get_app();
+      ::pointer<::core::application>papp = pparticle->acmeapplication();
 
       auto pcontext = m_pcontext;
 
@@ -299,9 +302,9 @@ namespace filemanager
 
          }
 
-         //pcontext->m_papexcontext->dir().create(strPath);
+         //pcontext->m_papexcontext->dir()->create(strPath);
 
-         if (pcontext->m_papexcontext->dir().is(strPath))
+         if (pcontext->m_papexcontext->dir()->is(strPath))
          {
 
             return strPath;
@@ -319,7 +322,7 @@ namespace filemanager
       else
       {
 
-         strPath = pcontext->m_papexcontext->dir().desktop();
+         strPath = pcontext->m_papexcontext->dir()->desktop();
 
       }*/
 
@@ -350,15 +353,15 @@ namespace filemanager
    }
 
 
-   void data::set_last_browse_path(::object * pobject, const ::file::path& path)
+   void data::set_last_browse_path(::particle * pparticle, const ::file::path& path)
    {
 
       string strPath(path);
 
-      ::pointer<::core::application>papp = pobject->get_app();
+      ::pointer<::core::application>papp = pparticle->acmeapplication();
 
-      if (::str().begins(path, "uifs://")
-         || ::str().begins(path, "fs://"))
+      if (string_begins(path, "uifs://")
+         || string_begins(path, "fs://"))
       {
 
          papp->datastream()->set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey +".last_browse_folder" }, strPath);

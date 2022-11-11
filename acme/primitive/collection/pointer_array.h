@@ -1,6 +1,13 @@
 ﻿#pragma once
 
 
+#include "pointer_array_process.h"
+#include "acme/primitive/collection/array.h"
+#include "acme/primitive/primitive/pointer.h"
+#include "comparable_eq_array.h"
+#include "comparable_array.h"
+
+
 template < class T >
 class pointer_array :
    public pointer_array_process < comparable_array < ::pointer < T > >, T >
@@ -81,13 +88,21 @@ public:
    }
 
 
+   pointer < T >& add_new()
+   {
+
+      return comparable_array < ::pointer<T > >::add_new();
+
+   }
+
+
    template < typename OBJECT >
-   pointer < T > & add_new(OBJECT * pobject)
+   pointer < T > & add_new(OBJECT * pparticle)
    {
 
       pointer < T > & p = comparable_array < ::pointer<T > >::add_new();
 
-      pobject->__construct(p);
+      pparticle->__construct(p);
 
       return p;
 
@@ -102,7 +117,7 @@ public:
    }
 
    template < typename OBJECT >
-   ::count set_size_create(OBJECT * pobject, ::count nNewSize, ::count nGrowBy = -1);
+   ::count set_size_create(OBJECT * pparticle, ::count nNewSize, ::count nGrowBy = -1);
 
 
    template < class DERIVED >
@@ -161,6 +176,7 @@ public:
 
    }
 
+
    inline ::index add_item(pointer < T > && p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
@@ -189,6 +205,7 @@ public:
    //   return this->add_item(p);
 
    //}
+
 
    ::index add(const pointer < T > & p)
    {
@@ -1146,9 +1163,9 @@ public:
 //   }
 //
 //
-//   smart_pointer_array2(::matter * pobject):
-//      ::matter(pobject),
-//      comparable_array < ::pointer<T >>pobject)
+//   smart_pointer_array2(::particle * pparticle):
+//      ::matter(pparticle),
+//      comparable_array < ::pointer<T >>pparticle)
 //   {
 //   }
 //
@@ -1719,6 +1736,80 @@ typedef pointer_array < matter > object_pointera;
 typedef pointer_array < matter > simple_object_pointera;
 
 
+
+
+
+
+
+
+
+template < typename T >
+bool pointer_array < T > ::insert_unique_at(::index i, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+{
+
+   if (i < 0 || i > this->get_size())
+   {
+
+      throw_exception(error_bad_argument);
+
+   }
+
+   auto iFind = this->find_first(p);
+
+   if (iFind < 0)
+   {
+
+      this->insert_at(i, p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+      return true;
+
+   }
+
+   if (iFind < i)
+   {
+
+      this->erase_at(iFind);
+
+      this->insert_at(i - 1, p);
+
+   }
+   else if(iFind > i)
+   {
+
+      this->erase_at(iFind);
+
+      this->insert_at(i, p);
+
+   }
+
+   return false;
+
+}
+
+
+
+
+template < class T >
+template < typename OBJECT >
+::count pointer_array < T > ::set_size_create(OBJECT * pparticle, ::count nNewSize, ::count nGrowBy)
+{
+
+   ::index i = this->get_size();
+
+   comparable_array < ::pointer<T >>::set_size(nNewSize);
+
+   ::count c = this->get_size();
+
+   for (; i < c; i++)
+   {
+
+      pparticle->__construct(this->element_at(i));
+
+   }
+
+   return c;
+
+}
 
 
 

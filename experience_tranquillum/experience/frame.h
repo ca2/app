@@ -2,6 +2,7 @@
 
 
 #include "base/user/experience/frame.h"
+#include "acme/primitive/geometry2d/size.h"
 
 
 namespace experience_tranquillum

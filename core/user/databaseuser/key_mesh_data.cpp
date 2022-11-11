@@ -18,16 +18,16 @@ namespace databaseuser
    }
 
 
-   void data_key_mesh_data::assert_ok() const
-   {
-
-   }
-
-
-   void data_key_mesh_data::dump(dump_context& dumpcontext) const
-   {
-
-   }
+//   void data_key_mesh_data::assert_ok() const
+//   {
+//
+//   }
+//
+//
+//   void data_key_mesh_data::dump(dump_context& dumpcontext) const
+//   {
+//
+//   }
 
 
    void data_key_mesh_data::_001GetSubItemText(::user::mesh_subitem * psubitem)

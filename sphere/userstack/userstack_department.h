@@ -14,7 +14,7 @@
 //   public:
 //
 //
-//      department(::object * pobject);
+//      department(::particle * pparticle);
 //      virtual ~department();
 //
 //

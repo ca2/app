@@ -28,16 +28,16 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+//#include "apex/networking/sockets/_sockets.h"
 
 
 namespace sockets
 {
 
 
-   socket_handler::socket_handler(::object * pobject, ::apex::log * plog) :
-      ::object(pobject),
-      base_socket_handler(pobject, plog),
+   socket_handler::socket_handler(::particle * pparticle, ::apex::log * plog) :
+      ::object(pparticle),
+      base_socket_handler(pparticle, plog),
       m_b_use_mutex(false)
       ,m_maxsock(0)
       ,m_preverror(-1)
@@ -60,9 +60,9 @@ namespace sockets
    }
 
 
-   //socket_handler::socket_handler(::object * pobject, ::apex::log *plog) :
-   //   ::object(pobject),
-   //   base_socket_handler(pobject, plog)
+   //socket_handler::socket_handler(::particle * pparticle, ::apex::log *plog) :
+   //   ::object(pparticle),
+   //   base_socket_handler(pparticle, plog)
    //   ,m_b_use_mutex(true)
    //   ,m_maxsock(0)
    //   ,m_preverror(-1)
@@ -79,7 +79,7 @@ namespace sockets
 
    //   __memset(&m_socks4_host, 0, sizeof(m_socks4_host));
 
-   //   //m_mutex.lock();
+   //   //m_pmutex.lock();
 
    //   /*      FD_ZERO(&m_rfds);
    //         FD_ZERO(&m_wfds);
@@ -131,12 +131,12 @@ namespace sockets
       }
       if (m_b_use_mutex)
       {
-         //m_mutex.unlock();
+         //m_pmutex.unlock();
       }
    }
 
 
-   ::synchronization_object& socket_handler::GetMutex() const
+   ::synchronization& socket_handler::GetMutex() const
    {
       
       return *mutex();

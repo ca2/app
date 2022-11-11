@@ -2,26 +2,15 @@
 
 
 #include "header.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/concrete.h"
 
 
 namespace draw2d
 {
 
 
-   inline ::color::color get_pixel(const ::color32_t * pdata, int iScan, int iHeight, int x, int y)
-   {
-
-#ifdef __APPLE__
-
-      return ((::color32_t *)&((u8 *)pdata)[iScan * (iHeight - y - 1)])[x];
-
-#else
-
-      return ((::color32_t *)&((u8 *)pdata)[iScan * y])[x];
-
-#endif
-
-   }
+   inline ::color::color get_pixel(const ::color32_t* pdata, int iScan, int iHeight, int x, int y);
 
 
 } // namespace draw2d
@@ -53,6 +42,7 @@ struct pixmap
    ::point_i32                   m_point;
    ::color32_t *                 m_pcolorrefRaw;
    ::size_i32                    m_sizeRaw;
+   ::color_indexes               m_colorindexes = common_system_image_color_indexes();
    mutable bool                  m_bTrans; // optionally used by implementation
    mutable bool                  m_bMapped; // optionally used by implementation
    bool                          m_bReduced; // optionally used by implementation
@@ -340,10 +330,94 @@ struct pixmap
 #pragma pack(pop, pixmap)
 
 
+
+
+
+
+
+
+
+
+
+CLASS_DECL_AURA void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);
+CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);
+CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int x, int y, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);
+
+
+CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);
+
+
+
+
+
+CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount);
+
+
+CLASS_DECL_AURA void vertical_swap(pixmap * ppixmap);
+CLASS_DECL_AURA void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int x, int y, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::point_i32 & point, const size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void _001ProperCopyColorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
+
+
+
+namespace draw2d
+{
+
+
+   CLASS_DECL_AURA void image_copy(::image * imagethis, ::image * pimage);
+   CLASS_DECL_AURA void image_create(::particle * pparticle, ::image *& image);
+   CLASS_DECL_AURA void image_create_image(::image * pimage, const size_i32 & size);
+   CLASS_DECL_AURA unsigned int * image_get_data(::image * pimage);
+   CLASS_DECL_AURA graphics * image_get_graphics(::image * pimage);
+
+
+} // namespace draw2d
+
+
+CLASS_DECL_AURA enum_rotate_flip exif_orientation_rotate_flip(int orientation);
+
+
+CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::point_i32 & point, const size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);
+CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);
+
+
+
+
+
+
+namespace draw2d
+{
+
+
+   inline ::color::color get_pixel(const ::color32_t* pdata, int iScan, int iHeight, int x, int y)
+   {
+
+#ifdef __APPLE__
+
+      return ((::color32_t*)&((u8*)pdata)[iScan * (iHeight - y - 1)])[x];
+
+#else
+
+      return ((::color32_t*)&((u8*)pdata)[iScan * y])[x];
+
+#endif
+
+   }
+
+
+} // namespace draw2d
+
+
 #ifdef __cplusplus
 
 
-inline void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::pixmap * ppixmapSrc)
+inline void copy_colorref(::color32_t* pcolorrefDst, const ::size_i32& size, int iStrideDst, const ::pixmap* ppixmapSrc)
 {
 
    copy_colorref(pcolorrefDst, size, iStrideDst, ppixmapSrc->colorref(), ppixmapSrc->scan_size());
@@ -351,7 +425,7 @@ inline void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, i
 }
 
 
-inline void copy_colorref(::pixmap * ppixmapDst, const ::size_i32 & size, const ::pixmap * ppixmapSrc)
+inline void copy_colorref(::pixmap* ppixmapDst, const ::size_i32& size, const ::pixmap* ppixmapSrc)
 {
 
    copy_colorref(ppixmapDst->colorref(), size, ppixmapDst->scan_size(), ppixmapSrc);
@@ -359,7 +433,7 @@ inline void copy_colorref(::pixmap * ppixmapDst, const ::size_i32 & size, const 
 }
 
 
-inline void copy_colorref(::pixmap * ppixmapDst, const ::pixmap * ppixmapSrc)
+inline void copy_colorref(::pixmap* ppixmapDst, const ::pixmap* ppixmapSrc)
 {
 
    copy_colorref(ppixmapDst, ppixmapDst->size().minimum(ppixmapSrc->size()), ppixmapSrc);
@@ -367,13 +441,7 @@ inline void copy_colorref(::pixmap * ppixmapDst, const ::pixmap * ppixmapSrc)
 }
 
 
-inline pixmap & pixmap::operator =(const pixmap & pixmap) { if (this != &pixmap) ::copy_colorref(this, pixmap); return *this; }
+inline pixmap& pixmap::operator =(const pixmap& pixmap) { if (this != &pixmap) ::copy_colorref(this, pixmap); return *this; }
 
 
 #endif
-
-
-
-
-
-

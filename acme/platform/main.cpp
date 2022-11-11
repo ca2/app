@@ -2,14 +2,23 @@
 // Created by camilo on 30/10/2021 ~ 00:00 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
+#include "main.h"
 #ifdef LINUX
 #include "acme/operating_system/ansi/binreloc.h"
 #endif
+#include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/acme.h"
+#include "acme/platform/application.h"
+#include "acme/platform/node.h"
 #include "acme/platform/set_app_id.h"
+#include "acme/platform/system.h"
 #include "acme/platform/system_setup.h"
+#include "acme/primitive/string/command_line.h"
 #include "_main_hold_base.h"
+#include "acme/_operating_system.h"
+
+
 
 
 static int g_argc;
@@ -37,22 +46,20 @@ CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp)
 }
 
 
-namespace acme
-{
-
-   
-   void initialize();
-
-
-} // namespace acme
+//namespace acme
+//{
+//
+//
+//   void initialize();
+//
+//
+//} // namespace acme
 
 
 MAIN::MAIN()
 {
 
-   __zero(this);
-
-   ::acme::initialize();
+   memset(this, 0, sizeof(MAIN));
 
 }
 
@@ -130,86 +137,6 @@ main::~main()
 
 
 
-string main::_get_argv(int iArgument) const
-{
-
-   if (iArgument < 0 || iArgument >= _get_argc())
-   {
-
-      return "";
-
-   }
-
-   if (m_wargv && m_wargv[iArgument])
-   {
-
-      return m_wargv[iArgument];
-
-   }
-   else if (m_argv && m_argv[iArgument])
-   {
-
-      return m_argv[iArgument];
-
-   }
-
-   return "";
-
-}
-
-
-string main::get_executable() const
-{
-
-   return _get_argv(0);
-
-}
-
-
-string_array main::get_arguments()
-{
-
-   string_array stra;
-
-   for (::index i = 0; i < m_argc; i++)
-   {
-
-      string strArgument;
-
-      if (m_wargv && m_wargv[i])
-      {
-
-      strArgument = m_wargv[i];
-
-      }
-      else if (m_argv && m_argv[i])
-      {
-
-         strArgument = m_argv[i];
-
-      }
-      else
-      {
-
-         break;
-
-      }
-
-      stra.add(strArgument);
-
-   }
-
-   return ::move(stra);
-
-}
-
-
-string main::get_argument1(int iArgument) const
-{
-
-   return _get_argv(iArgument + 1);
-
-}
 
 
 CLASS_DECL_ACME void set_main_user_thread();
@@ -227,43 +154,45 @@ CLASS_DECL_ACME void set_main_user_thread();
 void __main(::acme::application * pacmeapplication)
 {
 
-   #ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS_DESKTOP
+
    //{
 
    //   auto papp = ::app_factory::new_app();
 
-   pacmeapplication->m_argc = __argc;
+   //pacmeapplication->m_argc = __argc;
 
-   pacmeapplication->m_argv = __argv;
+   //pacmeapplication->m_argv = __argv;
 
-   pacmeapplication->m_wargv = __wargv;
+   //pacmeapplication->m_wargv = __wargv;
 
-   pacmeapplication->m_envp = *__p__environ();
+   //pacmeapplication->m_envp = *__p__environ();
 
-   pacmeapplication->m_wenvp = *__p__wenviron();
+   //pacmeapplication->m_wenvp = *__p__wenviron();
 
-      //pacmeapplication->m_hinstanceThis = hinstanceThis;
+   //pacmeapplication->m_hinstanceThis = hinstanceThis;
 
-      //pacmeapplication->m_hinstancePrev = hinstancePrev;
+   //pacmeapplication->m_hinstancePrev = hinstancePrev;
 
    pacmeapplication->m_strCommandLine = ::GetCommandLineW();
 
-      //pacmeapplication->m_nCmdShow = nCmdShow;
+   //pacmeapplication->m_nCmdShow = nCmdShow;
 
-      //pacmeapplication->m_bConsole = false;
+   //pacmeapplication->m_bConsole = false;
 
-      //int iExitCode = pacmeapplication->main_loop();
+   //int iExitCode = pacmeapplication->main_loop();
 
-      //return iExitCode;
+   //return iExitCode;
 
 #elif !defined(_UWP)
 
-   pacmeapplication->set_args(g_argc, g_argv, g_envp);
+   //pacmeapplication->set_args(g_argc, g_argv, g_envp);
 
 #endif
 
-
    set_main_user_thread();
+
+   task_guard taskguard;
 
    ::e_status estatus = error_failed;
 
@@ -282,7 +211,7 @@ void __main(::acme::application * pacmeapplication)
 
    auto pfactoryitem = ::factory::get_factory()->get_factory_item<::acme::system>();
 
-   ::pointer<::acme::system>psystem = pfactoryitem->create_element();
+   ::pointer<::acme::system> psystem = pfactoryitem->create_particle();
 
    ::set_task(psystem);
 
@@ -394,7 +323,7 @@ char * embed_resource::get_end()
 
 
 
-#include "acme/operating_system.h"
+//#include "acme/_operating_system.h"
 
 
 //#ifdef ANDROID
@@ -437,19 +366,19 @@ void main::system_construct(const ::main * pmain)
 
       m_pfnImplement = pmain->m_pfnImplement;
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
-
-      if (!m_pchar_binary__matter_zip_start && !m_pchar_binary__matter_zip_end
-         && pmain->m_pchar_binary__matter_zip_start && pmain->m_pchar_binary__matter_zip_end)
-      {
-
-         m_pchar_binary__matter_zip_start = pmain->m_pchar_binary__matter_zip_start;
-
-         m_pchar_binary__matter_zip_end = pmain->m_pchar_binary__matter_zip_end;
-
-      }
-
-#endif
+//#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+//
+//      if (!m_pchar_binary__matter_zip_start && !m_pchar_binary__matter_zip_end
+//         && pmain->m_pchar_binary__matter_zip_start && pmain->m_pchar_binary__matter_zip_end)
+//      {
+//
+//         m_pchar_binary__matter_zip_start = pmain->m_pchar_binary__matter_zip_start;
+//
+//         m_pchar_binary__matter_zip_end = pmain->m_pchar_binary__matter_zip_end;
+//
+//      }
+//
+//#endif
 
       if (!m_pacmeapplicationStartup && pmain->m_pacmeapplicationStartup)
       {
@@ -471,21 +400,21 @@ void main::system_construct(const ::main * pmain)
 
 #ifdef WINDOWS_DESKTOP
 
-   if (!m_hinstanceThis)
-   {
+   //if (!subsystem.m_hinstanceThis)
+   //{
 
-      m_hinstanceThis = ::GetModuleHandle(nullptr);
+   //   subsystem.m_hinstanceThis = ::GetModuleHandle(nullptr);
 
-   }
+   //}
 
    //m_hPrevInstance = nullptr;
 
-   if (m_nCmdShow == -1000)
-   {
+   //if (m_nCmdShow == -1000)
+   //{
 
-      m_nCmdShow = SW_SHOWDEFAULT;
+   //   m_nCmdShow = SW_SHOWDEFAULT;
 
-   }
+   //}
 
 #elif defined(LINUX)
 
@@ -710,83 +639,7 @@ void main::system_construct(const char * pszCommandLine, const ::e_display & edi
 //}
 
 
-string main::get_arg(int i) const
-{
 
-   if (m_wargv)
-   {
-
-      return string(m_wargv[i]);
-
-   }
-   else if (m_argv)
-   {
-
-      return string(m_argv[i]);
-
-   }
-
-   return "";
-
-
-}
-
-
-string main::get_env(const char * pszVariableName) const
-{
-
-   if (m_wenvp)
-   {
-
-      wstring wstrPrefix(pszVariableName);
-
-      wstrPrefix += "=";
-
-      for(auto p = m_wenvp; p != nullptr; p++)
-      {
-
-         wstring wstr(*p);
-
-         if(wstr.begins_eat_ci(wstrPrefix))
-         {
-
-            return wstr;
-
-         }
-
-      }
-
-      return "";
-
-   }
-   else if (m_envp)
-   {
-
-      string strPrefix(pszVariableName);
-
-      strPrefix += "=";
-
-      for(auto p = m_envp; p != nullptr; p++)
-      {
-
-         string str(*p);
-
-         if(str.begins_eat_ci(strPrefix))
-         {
-
-            return str;
-
-         }
-
-      }
-
-      return "";
-
-   }
-
-   return "";
-
-}
 
 
 bool main::is_console_app() const
@@ -880,7 +733,7 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-//void debug_context_object(::object * pobject);
+//void debug_context_object(::particle * pparticle);
 
 
 #ifdef __APPLE__
@@ -962,7 +815,7 @@ void main::system_prep()
 //
 //    string str = apple_get_bundle_identifier();
 //
-//    ::str().begins_eat_ci(str, "com.ca2.");
+//    str.begins_eat_ci("com.ca2.");
 //
 //    str.replace(".", "/");
 //
@@ -976,14 +829,14 @@ void main::system_prep()
 
    m_durationAfterApplicationFirstRequest = m_durationStart;
 
-   if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
+   if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
 
       sleep(10_s);
 
    }
 
-   if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
+   if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
    {
 
       //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
@@ -1031,7 +884,7 @@ void main::system_init()
 
    //   ::file::path pathModule = get_arg(m_iPathInstallFolderExeArg);
 
-   //   m_psystem->m_pacmedirectory->set_path_install_folder(pathModule.folder(4));
+   //   acmedirectory()->set_path_install_folder(pathModule.folder(4));
 
    //}
 
@@ -1124,7 +977,7 @@ void main::system_init()
 //
 //   string strUid;
 //
-//   get_command_line_param(strUid, strCommandLine, "uid");
+//   get_command_line_parameter(strUid, strCommandLine, "uid");
 //
 //   if (strUid.has_char())
 //   {
@@ -1162,7 +1015,7 @@ void main::system_init()
 
       string strShowApplicationInformation;
 
-      if (is_command_line_param_true(strShowApplicationInformation, m_strCommandLine, "show_application_information"))
+      if (is_command_line_parameter_true(strShowApplicationInformation, m_strCommandLine, "show_application_information"))
       {
 
          m_bShowApplicationInformation = true;
@@ -1173,7 +1026,7 @@ void main::system_init()
 
    //string strNoDock;
 
-   //get_command_line_param(strAppId, strCommandLine, "app");
+   //get_command_line_parameter(strAppId, strCommandLine, "app");
 
    //if (strAppId.has_char())
    //{
@@ -1202,7 +1055,7 @@ void main::system_init()
 
    //string strDerivedApplication;
 
-   //get_command_line_param(strDerivedApplication, strCommandLine, "derived_application");
+   //get_command_line_parameter(strDerivedApplication, strCommandLine, "derived_application");
 
    //g_iDerivedApplication = atoi(strDerivedApplication);
 
@@ -1305,11 +1158,11 @@ void main::system_init()
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 //
-  // ::file::path pathOutputDebugString = m_psystem->m_pacmedirectory->system() / strAppId / "output_debug_string.txt" ;
+  // ::file::path pathOutputDebugString = acmedirectory()->system() / strAppId / "output_debug_string.txt" ;
 
-   //::file::path pathGlobalOutputDebugString = m_psystem->m_pacmedirectory->config() / "output_debug_string.txt" ;
+   //::file::path pathGlobalOutputDebugString = acmedirectory()->config() / "output_debug_string.txt" ;
 
-   //::apex::g_bOutputDebugString = m_psystem->m_pacmefile->exists(pathOutputDebugString)||  m_psystem->m_pacmefile->exists(pathGlobalOutputDebugString);
+   //::apex::g_bOutputDebugString = acmefile()->exists(pathOutputDebugString)||  acmefile()->exists(pathGlobalOutputDebugString);
 
    //return true;
 
@@ -1913,23 +1766,10 @@ void main::system_proc()
 //}
 
 
-
-
-void main::initialize_application(::acme::application *papp, ::object * pobject)
+void main::initialize_application(::acme::application * pacmeapplication, ::particle * pparticle)
 {
 
-   //auto estatus = 
-   
-   papp->initialize(pobject);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return ::success;
+   pacmeapplication->initialize(pparticle);
 
 }
 

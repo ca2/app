@@ -37,15 +37,15 @@ namespace linux
 
 
       interaction_impl();
-      interaction_impl(::matter * pobject);
+      interaction_impl(::particle * pparticle);
       virtual ~interaction_impl();
 
 
       void linux_interaction_impl_common_construct();
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       //virtual void on_delete(::matter * poc);

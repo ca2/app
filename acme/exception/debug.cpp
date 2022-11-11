@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "acme/operating_system.h"
 
 
 byte OriginalBytes[5] = {0};
@@ -12,21 +11,6 @@ CLASS_DECL_ACME int is_debugger_attached()
 
 }
 
-
-CLASS_DECL_ACME void throw_todo()
-{
-
-   throw ::exception(todo);
-
-}
-
-
-CLASS_DECL_ACME int throw_assert_exception(const char * pszFileName,int iLineNumber)
-{
-
-   throw assert_exception(pszFileName,iLineNumber);
-
-}
 
 
 //CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char* psz)

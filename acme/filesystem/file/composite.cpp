@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "composite.h"
 
 
 namespace file
@@ -164,20 +165,20 @@ namespace file
    }
 
 
-   void reference::assert_ok() const
-   {
-
-      return m_pfile->assert_ok();
-
-   }
-
-
-   void reference::dump(dump_context & dumpcontext) const
-   {
-
-      return m_pfile->dump(dumpcontext);
-
-   }
+//   void reference::assert_ok() const
+//   {
+//
+//      return m_pfile->assert_ok();
+//
+//   }
+//
+//
+//   void reference::dump(dump_context & dumpcontext) const
+//   {
+//
+//      return m_pfile->dump(dumpcontext);
+//
+//   }
 
 
 } // namespace file

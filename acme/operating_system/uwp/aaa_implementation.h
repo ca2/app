@@ -6,8 +6,8 @@
 
 
 // Temporary ::map management (locks temp ::map on current thread)
-//CLASS_DECL_ACME void ::ca2::LockTempMaps(::matter * pobject);
-//CLASS_DECL_ACME bool ::ca2::UnlockTempMaps(::matter * pobject, bool bDeleteTemps = true);
+//CLASS_DECL_ACME void ::ca2::LockTempMaps(::particle * pparticle);
+//CLASS_DECL_ACME bool ::ca2::UnlockTempMaps(::particle * pparticle, bool bDeleteTemps = true);
 
 
 

@@ -155,7 +155,7 @@ bool ::interprocess::call::_wait(const class ::wait & wait)
 }
 
 
-id_array ::interprocess::call::prepare_call()
+atom_array ::interprocess::call::prepare_call()
 {
 
    ///exclude_this_app();

@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "sync_socket_handler.h"
+#include "socket.h"
 #include "acme/filesystem/file/memory_file.h"
 
 
@@ -8,8 +9,8 @@ namespace sockets
 
 
    sync_socket_handler::sync_socket_handler(::apex::log * plog) //:
-      //::object(pobject),
-      //m_handler(pobject, plog)
+      //::object(pparticle),
+      //m_handler(pparticle, plog)
       //m_handler(plog)
    {
 

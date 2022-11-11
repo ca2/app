@@ -76,13 +76,13 @@ namespace user
       void user_button_construct();
 
 
-      ::element * clone() const override;
+      ::particle * clone() const override;
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
 
-      virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
-      virtual enum_translucency get_translucency(style * pstyle) const override;
+      ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
+      enum_translucency get_translucency(style * pstyle) override;
 
 
 
@@ -125,7 +125,7 @@ namespace user
 
       virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool keyboard_focus_is_focusable() const override;
+      bool keyboard_focus_is_focusable() override;
 
       //virtual bool has_action_hover() override;
 

@@ -388,10 +388,10 @@
    bool os_context::resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory, string * pstrParams, ::user::primitive * puiMessageParentOptional)
    {
 
-      if(::str().ends_ci(strSource, ".desktop"))
+      if(string_ends_ci(strSource, ".desktop"))
       {
 
-         string str = pcontext->m_papexcontext->file().as_string(strSource);
+         string str = pcontext->m_papexcontext->file()->as_string(strSource);
 
          string_array stra;
 

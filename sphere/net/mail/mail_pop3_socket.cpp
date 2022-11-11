@@ -86,27 +86,27 @@ namespace mail
          stra.add_tokens(strLine, " ", true);
          if(stra.get_size() > 0 && stra[0] == "+OK")
          {
-            if(::str().begins_ci(m_ppop3->get_transaction(), "UIDL"))
+            if(string_begins_ci(m_ppop3->get_transaction(), "UIDL"))
             {
                m_estate = state_listmessages_start;
             }
-            else if(::str().begins_ci(m_ppop3->get_transaction(), "STAT"))
+            else if(string_begins_ci(m_ppop3->get_transaction(), "STAT"))
             {
                m_estate = state_stat_start;
             }
-            else if(::str().begins_ci(m_ppop3->get_transaction(), "TOP"))
+            else if(string_begins_ci(m_ppop3->get_transaction(), "TOP"))
             {
                m_estate = state_top_start;
             }
-            else if(::str().begins_ci(m_ppop3->get_transaction(), "RETR"))
+            else if(string_begins_ci(m_ppop3->get_transaction(), "RETR"))
             {
                m_estate = state_retr_start;
             }
-            else if(::str().begins_ci(m_ppop3->get_transaction(), "LIST") && m_ppop3->get_transaction().get_length() >= 6)
+            else if(string_begins_ci(m_ppop3->get_transaction(), "LIST") && m_ppop3->get_transaction().get_length() >= 6)
             {
                m_estate = state_receive_list;
             }
-            else if(::str().begins_ci(m_ppop3->get_transaction(), "RETRHD"))
+            else if(string_begins_ci(m_ppop3->get_transaction(), "RETRHD"))
             {
                m_estate = state_retr_only_headers_start;
                write("RETR\r\n");
@@ -312,7 +312,7 @@ namespace mail
          }
          else
          {
-            if(isspace(strLine[0]))
+            if(character_isspace(strLine[0]))
             {
                m_strValue += strLine;
             }

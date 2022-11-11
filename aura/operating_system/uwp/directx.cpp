@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "app/draw2d_direct2d/_.h"
+//#include "app/draw2d_direct2d/_.h"
 #include "aura/os/windows_common/draw2d_direct2d_global.h"
 #include "_uwp.h"
 
@@ -298,7 +298,7 @@ namespace universal_windows
       {
          OnChangeDpi(dpi);
 
-         //         ::aura::get_system()->m_psystem->m_possystemwindow->m_bWindowSizeChange = true;
+         //         ::aura::get_system()->acmesystem()->m_possystemwindow->m_bWindowSizeChange = true;
 
       }));
 
@@ -360,19 +360,19 @@ namespace universal_windows
 
          ::draw2d::device_lock devicelock(this);
 
-         auto ptopic = m_psystem->topic(id_os_dark_mode);
+         auto ptopic = acmesystem()->topic(id_os_dark_mode);
 
-         m_psystem->process(ptopic);
+         acmesystem()->process(ptopic);
 
          CreateWindowSizeDependentResources();
 
          if (m_size.area() > 0)
          {
 
-            m_psystem->fork([this]()
+            acmesystem()->fork([this]()
             {
 
-               m_psystem->on_graphics_ready();
+               acmesystem()->on_graphics_ready();
 
             });
 
@@ -929,7 +929,7 @@ namespace universal_windows
 
    //   dc->attach((ID2D1DeviceContext *) m_pd2d1devicecontext.Get());
 
-   //   auto pimpl = m_psystem->get_session()->m_puserinteractionHost->m_pimpl;
+   //   auto pimpl = acmesystem()->get_session()->m_puserinteractionHost->m_pimpl;
 
    //   //throw_todo();
 

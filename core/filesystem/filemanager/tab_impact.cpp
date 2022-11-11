@@ -1,17 +1,19 @@
-#include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
+﻿#include "framework.h"
 #include "tab_impact.h"
-#include "core/user/user/user.h"
 #include "form.h"
 #include "operation_document.h"
 #include "data.h"
 #include "document.h"
-#include "base/user/user/multiple_document_template.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/create.h"
 #include "aura/user/user/frame.h"
-#include "base/user/user/frame_window.h"
 #include "aura/platform/session.h"
+#include "base/user/user/frame_window.h"
+#include "base/user/user/multiple_document_template.h"
+#include "core/user/user/user.h"
 
 
 namespace filemanager
@@ -30,15 +32,15 @@ namespace filemanager
    }
 
 
-   void tab_impact::assert_ok() const
-   {
-      ::user::tab_impact::assert_ok();
-   }
-
-   void tab_impact::dump(dump_context & dumpcontext) const
-   {
-      ::user::tab_impact::dump(dumpcontext);
-   }
+//   void tab_impact::assert_ok() const
+//   {
+//      ::user::tab_impact::assert_ok();
+//   }
+//
+//   void tab_impact::dump(dump_context & dumpcontext) const
+//   {
+//      ::user::tab_impact::dump(dumpcontext);
+//   }
 
 
 
@@ -181,7 +183,7 @@ namespace filemanager
 
          string str = pimpactdata->m_atom;
 
-         ::str().begins_eat_ci(str, "verifile://");
+         str.begins_eat_ci("verifile://");
 
          ::file::path pathFolder = str;
 
@@ -229,7 +231,7 @@ namespace filemanager
             try
             {
 
-               bPathIsDir = pathFolder.has_char() && pcontext->m_papexcontext->dir().is(pathFolder);
+               bPathIsDir = pathFolder.has_char() && pcontext->m_papexcontext->dir()->is(pathFolder);
 
             }
             catch (...)

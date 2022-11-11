@@ -2,6 +2,7 @@
 #include "image_list.h"
 #include "top_edit_impact.h"
 #include "apex/database/_binary_stream.h"
+#include "apex/filesystem/filesystem/dir_context.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/array.h"
@@ -70,7 +71,7 @@ namespace userex
    ::file::path image_list_impact::get_link_path(string strLink)
    {
 
-      if (::str().begins_eat_ci(strLink, get_link_prefix()))
+      if (strLink.begins_eat_ci(get_link_prefix()))
       {
 
          return m_pathFolder / strLink;
@@ -85,7 +86,7 @@ namespace userex
    void image_list_impact::update_data(bool bSaveAndValidate)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (bSaveAndValidate)
       {
@@ -96,7 +97,7 @@ namespace userex
       else
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_pimageaThumb->m_imagea.clear();
 
@@ -113,7 +114,7 @@ namespace userex
 
             m_plisting->set_pattern_file_listing(m_pathFolder, get_ls_pattern_stra());
 
-            pcontext->m_papexcontext->dir().enumerate(*m_plisting);
+            pcontext->m_papexcontext->dir()->enumerate(*m_plisting);
 
          }
 
@@ -134,7 +135,7 @@ namespace userex
       fork([this]()
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          int iForkDib = m_iForkAddDib;
 

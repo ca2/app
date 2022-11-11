@@ -38,8 +38,8 @@ namespace linux
    }
 
 
-//   file::file(::object * pobject, int iFile) :
-//      ::object(pobject)
+//   file::file(::particle * pparticle, int iFile) :
+//      ::object(pparticle)
 //   {
 //
 //      m_iFile = iFile;
@@ -47,8 +47,8 @@ namespace linux
 //   }
 //
 //
-//   file::file(::object * pobject, const ::file::path & pszFileName, const cflag < ::file::e_open > & eopen) :
-//      ::object(pobject)
+//   file::file(::particle * pparticle, const ::file::path & pszFileName, const cflag < ::file::e_open > & eopen) :
+//      ::object(pparticle)
 //   {
 //
 //      m_iFile = INVALID_FILE;
@@ -113,7 +113,7 @@ namespace linux
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         pcontext->m_papexcontext->dir().create(pszFileName.folder());
+         pcontext->m_papexcontext->dir()->create(pszFileName.folder());
 
 
       }
@@ -197,7 +197,7 @@ namespace linux
 
          //return //::fesp(get_app(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 
-         return ::file::errno_to_status(iError);
+         return ::file::errno_status(iError);
 
       }
 
@@ -272,7 +272,7 @@ namespace linux
          i32 iWrite = ::write(m_iFile, &((const u8 *)pdata)[pos], (size_t) minimum(0x7fffffff, nCount));
 
          if(iWrite < 0)
-            throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
+            throw ::file::exception(errno_status(errno), -1, errno, m_path);
          nCount -= iWrite;
          pos += iWrite;
       }
@@ -286,7 +286,7 @@ namespace linux
    {
 
       if(m_iFile == INVALID_FILE)
-         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
+         throw ::file::exception(errno_status(errno), -1, errno, m_path);
 
 
       ASSERT(m_iFile != INVALID_FILE);
@@ -299,7 +299,7 @@ namespace linux
       filesize posNew = ::lseek64(m_iFile, lLoOffset, (::u32)nFrom);
 //      posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
-         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
+         throw ::file::exception(errno_status(errno), -1, errno, m_path);
 
       return posNew;
    }
@@ -315,7 +315,7 @@ namespace linux
       filesize pos = ::lseek64(m_iFile, lLoOffset, SEEK_CUR);
       //    pos |= ((filesize)lHiOffset) << 32;
       if(pos  == (filesize)-1)
-         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
+         throw ::file::exception(errno_status(errno), -1, errno, m_path);
 
       return pos;
    }
@@ -335,7 +335,7 @@ namespace linux
 //         return;
 //
 //      if (!::FlushFileBuffers((HANDLE)m_iFile))
-//         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
+//         throw ::file::exception(errno_status(errno), -1, errno, m_path);
    }
 
    void file::close()
@@ -351,7 +351,7 @@ namespace linux
       m_path.Empty();
 
       if (bError)
-         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
+         throw ::file::exception(errno_status(errno), -1, errno, m_path);
 
    }
 
@@ -399,7 +399,7 @@ namespace linux
       if (::ftruncate64(m_iFile, dwNewLen) == -1)
       {
 
-         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
+         throw ::file::exception(errno_status(errno), -1, errno, m_path);
 
       }
 
@@ -514,7 +514,7 @@ namespace linux
 
 //   {
 //      if (nErrno != 0)
-//         vfxThrowFileexception(file_exception::errno_to_status(nErrno), errno, pszFileName);
+//         vfxThrowFileexception(file_exception::errno_status(nErrno), errno, pszFileName);
 
 //   }
 

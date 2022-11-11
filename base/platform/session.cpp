@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "session.h"
+#include "apex/platform/application.h"
 ////#include "base/user/experience/_component.h"
 #include "acme/platform/system_setup.h"
 #include "aura/user/user/user.h"
@@ -25,12 +26,12 @@ namespace base
    }
 
 
-   void session::initialize(::object * pobject)
+   void session::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::axis::session::initialize(pobject);
+      ::axis::session::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -67,8 +68,8 @@ namespace base
    }
 
    
-   ::base::user* session::user() const
-   { 
+   ::base::user* session::user()
+   {
       
       return m_puser ? m_puser->m_pbaseuser : nullptr; 
    

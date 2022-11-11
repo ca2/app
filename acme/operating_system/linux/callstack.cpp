@@ -1,8 +1,10 @@
 #include "framework.h"
 #include "acme/operating_system/ansi/callstack.h"
 #include "_linux.h"
+#include "acme/primitive/string/string.h"
 #include <execinfo.h>
 #undef USE_MISC
+
 
 string get_callstack(const char* pszFormat, i32 iSkip, void * caller_address, int iCount)
 {

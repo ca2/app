@@ -5,9 +5,9 @@ namespace browser
 {
 
 
-   gcom::gcom(::object * pobject) :
-      object(pobject),
-      impact_base(pobject)
+   gcom::gcom(::particle * pparticle) :
+      object(pparticle),
+      impact_base(pparticle)
    {
 
       if (papp->m_varTopicQuery["hello_bk"].get_string().has_char())

@@ -43,12 +43,12 @@ namespace user
    void network_configuration::on_show()
    {
       /*
-      if(!m_pdocument->on_open_document(pcontext->m_papexcontext->dir().matter("system/network/configuration/proxy.xhtml")))
+      if(!m_pdocument->on_open_document(pcontext->m_papexcontext->dir()->matter("system/network/configuration/proxy.xhtml")))
       {
          return;
       }
       xml::node node(this);
-      if(node.load(psystem->m_psystem->m_pacmefile->as_string(System, pcontext->m_papexcontext->dir().appdata("proxy.xml"))))
+      if(node.load(psystem->acmefile()->as_string(System, pcontext->m_papexcontext->dir()->appdata("proxy.xml"))))
       {
          string strProxy = node.attr("server");
          i32 iProxyPort = node.attr("port");

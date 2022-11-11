@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/string/string.h"
+
+
 namespace acme
 {
 
@@ -18,14 +22,14 @@ namespace acme
       PFN_factory                                     m_pfnFactory;
 
 
-      //static ::mutex *                                s_pmutexLoading;
+      //static ::pointer< ::mutex >                                s_pmutexLoading;
       //static ::acme::library *                        s_plibraryLoading;
 
 
       library();
       ~library() override;
 
-      //void assert_ok() const override;
+      //// void assert_ok() const override;
       //void dump(dump_context &) const override;
 
       //void     initialize_matter(::matter * pmatter) override;
@@ -96,7 +100,7 @@ namespace acme
       //virtual void get_extension_list(string_array & stra);
 
 
-      // virtual ::matter * factory_new(::object * pobject, const char * lpszClass);
+      // virtual ::matter * factory_new(::particle * pparticle, const char * lpszClass);
 
 
       //virtual ::pointer<::matter>factory_create(const char * lpszClass);
@@ -130,8 +134,6 @@ namespace acme
 
 
 
-   
-   
 
 
 } // namespace acme
@@ -174,7 +176,7 @@ class library :                                                         \
 public:                                                                 \
                                                                         \
                                                                         \
-     library(::object * pobject) : ::acme::library(pobject) {}          \
+     library(::particle * pparticle) : ::acme::library(pparticle) {}          \
      virtual ~library(){}                                               \
                                                                         \
                                                                         \
@@ -201,10 +203,10 @@ virtual void initialize_factory() override                              \
 #define END_ONLY_FACT(libname) END_CREATE_OBJECT \
  END_LIBRARY \
  \
-CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::object * pobject) \
+CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::particle * pparticle) \
 { \
 \
-   return memory_new library(pobject); \
+   return memory_new library(pparticle); \
  \
 } \
  \
@@ -225,7 +227,7 @@ CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::object * p
 //   inline pointer< ::factory::factory_item_base < BASE_TYPE > > _add_factory_item_from(const ::atom & atomSource)
 //   {
 //
-//      critical_section_lock lock(::factory::get_factory_critical_section());
+//      critical_section_lock lock(::factory_critical_section());
 //
 //      if (::acme::library::loading_library() != nullptr)
 //      {
@@ -246,4 +248,17 @@ CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::object * p
 //} // namespace factory
 //
 //
+
+CLASS_DECL_ACME string implementation_name(const ::string & strComponent, const ::string & strImplementation);
+
+
+CLASS_DECL_ACME string library_name(const ::string & strComponent, const ::string & strImplementation);
+
+
+CLASS_DECL_ACME string factory_name(const ::string & strLibrary);
+
+
+CLASS_DECL_ACME string library_filter(const ::string & str);
+
+
 

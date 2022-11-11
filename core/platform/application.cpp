@@ -2,6 +2,7 @@
 #include "application.h"
 #include "system.h"
 #include "acme/platform/system_setup.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aura/platform/node.h"
 #include "core/user/userex/progress.h"
 #include "core/user/userex/pane_tab_impact.h"
@@ -44,12 +45,12 @@ namespace core
    }
 
 
-   void application::initialize(::object * pobject)
+   void application::initialize(::particle * pparticle)
    {
 
       //auto estatus =
       
-      ::base::application::initialize(pobject);
+      ::base::application::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -128,7 +129,7 @@ namespace core
    string application::prepare_impact_options_main_body()
    {
 
-      auto strMenuImpactPartialHtml = file().safe_get_string("matter://options.partial.html");
+      auto strMenuImpactPartialHtml = file()->safe_get_string("matter://options.partial.html");
 
       return strMenuImpactPartialHtml;
 
@@ -153,7 +154,7 @@ namespace core
 
       }
 
-      strOptionsHtml += m_psystem->m_pnode->m_pauranode->system_options_html();
+      strOptionsHtml += acmesystem()->m_pnode->m_pauranode->system_options_html();
 
       strOptionsHtml += "</body>";
       strOptionsHtml += "</html>";

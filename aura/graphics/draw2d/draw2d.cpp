@@ -37,13 +37,13 @@ namespace draw2d
    draw2d::draw2d()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_pimpl = nullptr;
 
 
 
-      //m_pmutexFont = __new(::mutex);
+      //m_pmutexFont = __new(::pointer < ::mutex >);
 
       //add_factory_item < e_cursor_set >();
 
@@ -56,12 +56,12 @@ namespace draw2d
    }
 
 
-   void draw2d::initialize(::object * pobject)
+   void draw2d::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
 
-      ::acme::department::initialize(pobject);
+      ::acme::department::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -150,7 +150,7 @@ namespace draw2d
    }
 
 
-   //::mutex * draw2d::get_object_list_mutex()
+   //::pointer< ::mutex > draw2d::get_object_list_mutex()
    //{
 
    //   return m_pmutexObjectList;
@@ -158,7 +158,7 @@ namespace draw2d
    //}
 
 
-   //::mutex * draw2d::get_image_list_mutex()
+   //::pointer< ::mutex > draw2d::get_image_list_mutex()
    //{
 
    //   return m_pmutexImageList;
@@ -166,7 +166,7 @@ namespace draw2d
    //}
 
 
-   //::mutex * draw2d::get_graphics_context_list_mutex()
+   //::pointer< ::mutex > draw2d::get_graphics_context_list_mutex()
    //{
 
    //   return m_pmutexGraphicsContextList;
@@ -189,10 +189,10 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
 
-      for (auto & pobject : m_objecta)
+      for (auto & pparticle : m_objecta)
       {
 
-         pobject->destroy_os_data();
+         pparticle->destroy_os_data();
 
       }
 
@@ -251,7 +251,7 @@ namespace draw2d
 
       //}
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       if (psystem->m_paurasystem->m_bWriteText)
       {
@@ -270,7 +270,7 @@ namespace draw2d
 
       ::acme::department::process_init();
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       //if (!m_papi->open())
       //{
@@ -352,7 +352,7 @@ namespace draw2d
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          try
          {
@@ -423,7 +423,7 @@ namespace draw2d
 
       auto psaveimage = __new(save_image);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -432,7 +432,7 @@ namespace draw2d
       if (eformat != ::draw2d::e_format_none)
       {
 
-         ::pointer<::aura::system>psystem = m_psystem;
+         ::pointer<::aura::system>psystem = acmesystem();
 
          eformat = pdraw2d->file_extension_to_format(payloadFile.file_path());
 
@@ -670,7 +670,7 @@ void draw2d::emboss_predicate(
 
       pimage->get_graphics()->offset_origin(-rectangleCache.left + rectangle.left, -rectangleCache.top + rectangle.top);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       psystem->imaging().channel_spread_set_color(pimageBlur->g(), nullptr, size, pimage->g(), nullptr, ::color::e_channel_alpha, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
 
@@ -738,7 +738,7 @@ void draw2d::emboss_predicate(
       i32 iRadius2 = iRadius * iRadius;
       i32 r2;
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
 
@@ -1053,7 +1053,7 @@ void draw2d::emboss_predicate(
       i32 rSquare;
 
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
 
@@ -1410,9 +1410,9 @@ void draw2d::emboss_predicate(
          //if (strDraw2d.has_char())
          //{
 
-         //   ::str().begins_eat_ci(strDraw2d, "draw2d_");
+         //   strDraw2d.begins_eat_ci("draw2d_");
 
-         //   ::str().begins_eat_ci(strDraw2d, "draw2d");
+         //   strDraw2d.begins_eat_ci("draw2d");
 
          //   strLibrary = "draw2d_" + strDraw2d;
 
@@ -1425,7 +1425,7 @@ void draw2d::emboss_predicate(
       if (strLibrary.has_char())
       {
 
-         ::pointer<::aura::system>psystem = m_psystem;
+         ::pointer<::aura::system>psystem = acmesystem();
 
          auto & pfactoryWriteText = psystem->factory("write_text", strLibrary);
 
@@ -1455,7 +1455,7 @@ void draw2d::emboss_predicate(
 
       }
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto & pfactoryWriteText = psystem->factory("write_text", strLibrary);
 
@@ -1472,7 +1472,7 @@ void draw2d::emboss_predicate(
       if (strLibrary != "write_text_gdiplus")
       {
 
-         ::pointer<::aura::system>psystem = m_psystem;
+         ::pointer<::aura::system>psystem = acmesystem();
 
          auto & pfactoryWriteText = psystem->factory("write_text", "gdiplus");
 
@@ -1489,7 +1489,7 @@ void draw2d::emboss_predicate(
       if (strLibrary != "write_text_direct2d")
       {
 
-         ::pointer<::aura::system>psystem = m_psystem;
+         ::pointer<::aura::system>psystem = acmesystem();
 
          auto & pfactoryWriteText = psystem->factory("write_text", "direct2d");
 
@@ -1508,7 +1508,7 @@ void draw2d::emboss_predicate(
       if (strLibrary != "write_text_pango")
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto & pfactoryWriteText = psystem->factory("write_text", "pango");
 

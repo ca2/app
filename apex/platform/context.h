@@ -1,8 +1,15 @@
 #pragma once
 
 
+#include "apex/parallelization/thread.h"
+#include "acme/platform/context.h"
+#include "acme/filesystem/filesystem/enumerator.h"
+#include "acme/primitive/collection/string_map.h"
+
+
 namespace apex
 {
+
 
    class context_thread;
 
@@ -18,10 +25,8 @@ namespace apex
       string                              m_strStoreServerBaseUrl;
 
       string_to_string                    m_mapCachedLatestBuild;
-      ::pointer<::http::context>       m_phttp;
-      ::pointer<::dir_context>         m_pdir;
-      ::pointer<::file_context>        m_pfile;
-      ::pointer<::os_context>          m_poscontext;
+      ::pointer<::http::context>          m_phttp;
+      ::pointer<::os_context>             m_poscontext;
 
 
       string                              m_strLocale;
@@ -39,6 +44,9 @@ namespace apex
 
       context();
       ~context() override;
+
+
+      void initialize(::particle * pparticle) override;
 
 
       virtual void on_command_create(::create* pcreate);
@@ -73,9 +81,14 @@ namespace apex
 
 
       inline ::http::context& http() { return *m_phttp; }
-      inline ::dir_context& dir() { return *m_pdir; }
-      inline ::file_context& file() { return *m_pfile; }
       inline ::os_context * os_context() { return m_poscontext; };
+
+
+      //::dir_context * dir() override;
+      //::dir_system * dirsystem() override;
+      //::file_context * file() override;
+      //::file_system * filesystem() override;
+
 
       ::handle::ini ini_from_path(::file::path& path);
 
@@ -185,14 +198,14 @@ namespace apex
       virtual void add_matter_locator(::apex::application* papp);
 
 
-      virtual void _load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions);
-      virtual void _save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter* pobject);
+      virtual void _load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload& varOptions);
+      virtual void _save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::particle * pparticle);
 
 
-      inline void load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload* pvarOptions);
-      inline void load_from_file(::matter* pobject, const ::payload& payloadFile);
-      inline void save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::matter* pobject);
-      inline void save_to_file(const ::payload& payloadFile, const ::matter* pobject);
+      inline void load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload* pvarOptions);
+      inline void load_from_file(::particle * pparticle, const ::payload& payloadFile);
+      inline void save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::particle * pparticle);
+      inline void save_to_file(const ::payload& payloadFile, const ::particle * pparticle);
 
 
       //virtual void destroy() override;

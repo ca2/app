@@ -1,6 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "element.h"
+#include "acme/networking/url_department.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_collection_basic.h"
+#include "acme/primitive/string/str.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "axis/id.h"
 #include "axis/html/html/data.h"
@@ -22,6 +25,7 @@
 #include "axis/html/graphics/value.h"
 #include "axis/html/user/form.h"
 #include "axis/html/graphics/font.h"
+#include "axis/html/html/html.h"
 #include "aura/platform/system.h"
 
 
@@ -86,7 +90,7 @@ namespace html
 
       m_pdata = phtmldata;
 
-      synchronous_lock lock(phtmldata->mutex());
+      synchronous_lock lock(phtmldata->synchronization());
 
       implement_phase1(phtmldata);
 
@@ -161,7 +165,7 @@ namespace html
       if (m_pbase->get_type() == ::html::base::type_value)
       {
 
-         m_strClass = m_pparent->get_tag()->get_attr_value(__id(html_class));
+         m_strClass = m_pparent->get_tag()->get_attr_value("html_class");
 
          m_strInlineStyle = m_pparent->get_tag()->get_attr_value("style");
 
@@ -169,7 +173,7 @@ namespace html
       else
       {
 
-         m_strClass = get_tag()->get_attr_value(__id(html_class));
+         m_strClass = get_tag()->get_attr_value("html_class");
 
          m_strInlineStyle = get_tag()->get_attr_value("style");
 
@@ -409,13 +413,13 @@ namespace html
                   output_debug_string("field");
 
                }
-               m_pstyle->get_surround_box(__id(html_padding), "", phtmldata, this, m_pimpl->m_padding);
+               m_pstyle->get_surround_box("html_padding", "", phtmldata, this, m_pimpl->m_padding);
 
-               m_pstyle->get_border_box(__id(html_border), "", phtmldata, this, m_pimpl->m_border);
+               m_pstyle->get_border_box("html_border", "", phtmldata, this, m_pimpl->m_border);
 
-               m_pstyle->get_border_color(__id(html_border), "", phtmldata, this, m_pimpl->m_border);
+               m_pstyle->get_border_color("html_border", "", phtmldata, this, m_pimpl->m_border);
 
-               m_pstyle->get_surround_box(__id(html_margin), "", phtmldata, this, m_pimpl->m_margin);
+               m_pstyle->get_surround_box("html_margin", "", phtmldata, this, m_pimpl->m_margin);
 
             }
 
@@ -937,7 +941,7 @@ namespace html
 
       }
 
-      synchronous_lock lock(phtmldata->m_pcoredata->mutex());
+      synchronous_lock lock(phtmldata->m_pcoredata->synchronization());
 
       m_pbase = pusermessage;
 
@@ -961,7 +965,7 @@ namespace html
 
          }
 
-         if (m_atomTagName == __id(html_link) && get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
+         if (m_atomTagName == "html_link" && get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
          {
 
             ::pointer<style_sheet>pstylesheet(__create_new < style_sheet > ());
@@ -976,11 +980,11 @@ namespace html
             {
 
             }
-            else if(::str().begins(m_pdata->m_pcoredata->m_strPathName,"http://") ||
-                    ::str().begins(m_pdata->m_pcoredata->m_strPathName,"https://"))
+            else if(m_pdata->m_pcoredata->m_strPathName.begins_ci("http://") ||
+                    m_pdata->m_pcoredata->m_strPathName.begins_ci("https://"))
             {
 
-               auto psystem = m_psystem->m_paurasystem;
+               auto psystem = acmesystem()->m_paurasystem;
 
                auto purl = psystem->url();
 
@@ -998,7 +1002,7 @@ namespace html
 
             auto pcontext = get_context();
 
-            pstylesheet->parse(phtmldata, pcontext->m_papexcontext->file().as_string(strUrl));
+            pstylesheet->parse(phtmldata, pcontext->m_papexcontext->file()->as_string(strUrl));
             phtmldata->m_pcoredata->m_stylesheeta.add(pstylesheet);
          }
          for (i32 i = 0; i < ptag->baseptra().get_size(); i++)
@@ -1019,13 +1023,13 @@ namespace html
 
          m_atomTagName = ptag->get_name();
          m_strBody = pvalue->get_value();
-         if (m_atomTagName == __id(html_style))
+         if (m_atomTagName == "html_style")
          {
             ::pointer<style_sheet>pstylesheet(__create_new < style_sheet >());
             pstylesheet->parse(phtmldata, pvalue->get_value());
             phtmldata->m_pcoredata->m_stylesheeta.add(pstylesheet);
          }
-         else if (m_atomTagName == __id(html_link)
+         else if (m_atomTagName == "html_link"
                   && m_pparent->get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
          {
             
@@ -1033,7 +1037,7 @@ namespace html
 
             auto pcontext = get_context();
 
-            pstylesheet->parse(phtmldata, pcontext->m_papexcontext->file().as_string(m_pparent->get_tag()->get_attr_value("href")));
+            pstylesheet->parse(phtmldata, pcontext->m_papexcontext->file()->as_string(m_pparent->get_tag()->get_attr_value("href")));
 
             phtmldata->m_pcoredata->m_stylesheeta.add(pstylesheet);
 
@@ -1049,7 +1053,7 @@ namespace html
    {
       const char * psz = pszParam;
       // skip white space
-      while (*psz != '\0' && isspace(*psz))
+      while (*psz != '\0' && character_isspace(*psz))
          psz++;
       if (*psz != '<')
       {
@@ -1060,11 +1064,11 @@ namespace html
       }
       psz++;
       // skip white space
-      while (*psz != '\0' && isspace(*psz))
+      while (*psz != '\0' && character_isspace(*psz))
          psz++;
       const char * pszTag = psz;
       // skip valid char
-      while (*psz != '\0' && !isspace(*psz) && *psz != '>')
+      while (*psz != '\0' && !character_isspace(*psz) && *psz != '>')
          psz++;
       string strTag(pszTag, psz - pszTag);
       if (strTag[0] == '/')
@@ -1079,12 +1083,12 @@ namespace html
       else
       {
          // skip white space
-         while (*psz != '\0' && isspace(*psz))
+         while (*psz != '\0' && character_isspace(*psz))
             psz++;
          // Parse Attributes
          parse_attributes(phtmldata, psz);
          // skip white space
-         while (*psz != '\0' && isspace(*psz))
+         while (*psz != '\0' && character_isspace(*psz))
             psz++;
          if (*psz != '/' && *psz != '>')
          {
@@ -1093,7 +1097,7 @@ namespace html
          if (*psz == '/')
          {
             // skip white space
-            while (*psz != '\0' && isspace(*psz))
+            while (*psz != '\0' && character_isspace(*psz))
                psz++;
             if (*psz != '>')
             {
@@ -1104,7 +1108,7 @@ namespace html
          psz++;
       }
 
-      if (m_atomTagName == __id(html_br))
+      if (m_atomTagName == "html_br")
       {
 
          return true;
@@ -1140,7 +1144,7 @@ namespace html
          return true;
 
       // skip white space
-      while (*psz != '\0' && isspace(*psz))
+      while (*psz != '\0' && character_isspace(*psz))
          psz++;
       if (*psz != '<')
       {
@@ -1148,11 +1152,11 @@ namespace html
       }
       psz++;
       // skip white space
-      while (*psz != '\0' && isspace(*psz))
+      while (*psz != '\0' && character_isspace(*psz))
          psz++;
       const char * pszCloseTag = psz;
       // skip valid char
-      while (*psz != '\0' && !isspace(*psz) && *psz != '>')
+      while (*psz != '\0' && !character_isspace(*psz) && *psz != '>')
          psz++;
 
       if (pszCloseTag[0] == '/' && ansi_count_compare_ci(m_atomTagName.m_str, pszCloseTag + 1, psz - pszCloseTag - 1) == 0)
@@ -1174,7 +1178,7 @@ namespace html
       while (*psz != '\0' && *psz != '/' && *psz != '>')
       {
          // skip white space
-         while (*psz != '\0' && isspace(*psz) && *psz != '/' && *psz != '>')
+         while (*psz != '\0' && character_isspace(*psz) && *psz != '/' && *psz != '>')
             psz++;
          if (*psz != '/' && *psz != '>')
          {
@@ -1183,7 +1187,7 @@ namespace html
          }
          const char * pszKey = psz;
          // skip valid char
-         while (*psz != '\0' && !isspace(*psz) && *psz != '=' && *psz != '/' && *psz != '>')
+         while (*psz != '\0' && !character_isspace(*psz) && *psz != '=' && *psz != '/' && *psz != '>')
             psz++;
          string strKey(pszKey, psz - pszKey);
 
@@ -1193,7 +1197,7 @@ namespace html
             return;
          }
          // skip valid char
-         while (*psz != '\0' && isspace(*psz) && *psz != '=' && *psz != '/' && *psz != '>')
+         while (*psz != '\0' && character_isspace(*psz) && *psz != '=' && *psz != '/' && *psz != '>')
             psz++;
 
          if (*psz == '/' || *psz == '>')
@@ -1207,7 +1211,7 @@ namespace html
             continue;
          }
          // skip space
-         while (*psz != '\0' && isspace(*psz))
+         while (*psz != '\0' && character_isspace(*psz))
             psz++;
 
          const char * pszValue;
@@ -1224,7 +1228,7 @@ namespace html
          {
             pszValue = psz;
             // skip space
-            while (*psz != '\0' && isspace(*psz) && *psz != '/' && *psz != '>')
+            while (*psz != '\0' && character_isspace(*psz) && *psz != '/' && *psz != '>')
                psz++;
          }
 

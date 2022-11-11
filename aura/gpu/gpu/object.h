@@ -1,5 +1,8 @@
-// Created by camilo on 2022-04-25 20:42 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-04-25 20:42 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
+
+
+#include "acme/primitive/primitive/particle.h"
 
 
 namespace gpu
@@ -7,7 +10,7 @@ namespace gpu
 
 
    class CLASS_DECL_AURA object :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

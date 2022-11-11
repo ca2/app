@@ -1,6 +1,10 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/geometry2d/size.h"
+
+
 namespace user
 {
 

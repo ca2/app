@@ -1,6 +1,8 @@
 ﻿#include "framework.h"
 #include "memory.h"
 #include "memory_container.h"
+#include "acme/exception/exception.h"
+#include "acme/primitive/primitive/payload.h"
 
 
 memory_container::memory_container(memsize size)
@@ -21,14 +23,6 @@ memory_container::memory_container(void * pdata, memsize size)
 }
 
 
-memory_container::memory_container(::payload & payload)
-{
-
-   m_pmemory = &payload.memory_reference();
-   m_pbyte = m_pmemory->m_memory.m_pdata;
-   m_memsize = m_pmemory->m_memory.m_cbStorage;
-
-}
 
 
 memory_container::memory_container(memory_base & memory)

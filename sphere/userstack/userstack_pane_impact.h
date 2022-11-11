@@ -25,7 +25,7 @@ namespace userstack
 
 
 
-      pane_impact(::object * pobject);
+      pane_impact(::particle * pparticle);
       virtual ~pane_impact();
 
       using ::user::tab_impact::on_change_cur_sel;
@@ -59,8 +59,8 @@ namespace userstack
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       DECLARE_MESSAGE_HANDLER(_001OnMenuMessage);

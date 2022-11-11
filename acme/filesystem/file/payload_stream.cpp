@@ -12,9 +12,9 @@
 ////{
 ////
 ////
-////   payload_stream::payload_stream(::matter * pobject, bool bStoring) :
-////      ::matter(pobject),
-////      stream(pobject)
+////   payload_stream::payload_stream(::particle * pparticle, bool bStoring) :
+////      ::matter(pparticle),
+////      stream(pparticle)
 ////   {
 ////
 ////   }
@@ -163,7 +163,7 @@
 ////      m_
 ////   }
 ////   void payload_stream::write(string & str);
-////   void payload_stream::write(matter * pobject);
+////   void payload_stream::write(::particle * pparticle);
 ////   void payload_stream::write(matter & matter);
 ////
 ////
@@ -199,7 +199,7 @@
 ////   void payload_stream::read(::payload & payload);
 ////   void payload_stream::read(property & property);
 ////   void payload_stream::read(string & str);
-////   void payload_stream::read(matter * pobject);
+////   void payload_stream::read(::particle * pparticle);
 ////   void payload_stream::read(matter & matter);
 ////
 ////
@@ -212,7 +212,7 @@
 ////
 ////
 ////
-////   output_var_stream(::matter * pobject);
+////   output_var_stream(::particle * pparticle);
 ////   virtual ~output_var_stream();
 ////
 ////
@@ -222,12 +222,12 @@
 ////
 //
 //
-////void payload_stream::write_object(const ::atom & atom, ::matter * pobject)
+////void payload_stream::write_object(const ::atom & atom, ::particle * pparticle)
 ////{
 ////
 ////   payload_stream stream(memory_new ::payload(&payload()[atom].propset()));
 ////
-////   ::atom idType = __type_name(pobject);
+////   ::atom idType = __type_name(pparticle);
 ////
 ////   string strId = stream.factory_id_to_text(idType);
 ////
@@ -235,7 +235,7 @@
 ////
 ////   stream.set_storing();
 ////
-////   pobject->exchange(stream);
+////   pparticle->exchange(stream);
 ////
 ////}
 ////
@@ -249,11 +249,11 @@
 ////
 ////   stream.var_exchange(e_property_id, strId);
 ////
-////   auto pobject = stream.create_object_from_text(strId);
+////   auto pparticle = stream.create_object_from_text(strId);
 ////
-////   pobject->exchange(stream);
+////   pparticle->exchange(stream);
 ////
-////   return pobject;
+////   return pparticle;
 ////
 ////}
 //

@@ -28,7 +28,7 @@ namespace userstack
       ::pointer<pane_impact>               m_ppaneimpact;
 
 
-      frame(::object * pobject);
+      frame(::particle * pparticle);
       void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnApp1);
@@ -43,8 +43,8 @@ namespace userstack
 
       virtual ~frame();
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
       virtual void pre_translate_message(::message::message * pmessage);

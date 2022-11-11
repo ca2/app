@@ -8,8 +8,8 @@ namespace primitive
 {
 
 
-   shared_file::shared_file(::object * pobject, ::u32 nAllocFlags, ::u32 nGrowBytes) :
-      ::object(pobject)
+   shared_file::shared_file(::particle * pparticle, ::u32 nAllocFlags, ::u32 nGrowBytes) :
+      ::object(pparticle)
    {
 
       __UNREFERENCED_PARAMETER(nGrowBytes);

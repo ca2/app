@@ -2,12 +2,16 @@
 #pragma once
 
 
+//#include "acme/primitive/primitive/element.h"
+#include "acme/primitive/primitive/payload.h"
+
+
 namespace interprocess
 {
 
 
    class CLASS_DECL_APEX task :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

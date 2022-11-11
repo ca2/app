@@ -8,12 +8,12 @@ namespace simpledb
 {
 
 
-   socket_thread::socket_thread(::object * pobject) :
-      ::object(pobject),
-      thread(pobject),
-      ::sockets::socket_handler(pobject),
+   socket_thread::socket_thread(::particle * pparticle) :
+      ::object(pparticle),
+      thread(pparticle),
+      ::sockets::socket_handler(pparticle),
       
-      m_evInitialized(pobject)
+      m_evInitialized(pparticle)
    {
       m_psocket = nullptr;
       m_evCanInit.ResetEvent();

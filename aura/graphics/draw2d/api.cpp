@@ -1,7 +1,8 @@
 ﻿#include "framework.h"
 #include "api.h"
 #include "graphics.h"
-//#include "_defer.h"
+#include "acme/primitive/string/international.h"
+
 
 namespace draw2d
 {
@@ -266,11 +267,11 @@ namespace draw2d
    }
 
 
-   void api::initialize(::object * pobject)
+   void api::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{

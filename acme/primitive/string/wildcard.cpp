@@ -1,5 +1,9 @@
 // Created by camilo on 2022-04-24 05:22 <3ThomasBorregaardSørensen!! (Thomas likes number 5!!)
 #include "framework.h"
+#include "acme/filesystem/filesystem/listing.h"
+#include "acme/primitive/string/string.h"
+#include "acme/primitive/string/str.h"
+#include "acme/exception/exception.h"
 
 
 const char* wildcard_next_stop(const char* pszCriteria)
@@ -82,7 +86,9 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const char* pszCriteriaPa
 
          if (pszStop == nullptr)
          {
-            return ::str().ends(pszValue, pszFind + 1);
+            
+            return string_ends(pszValue, pszFind + 1) != 0;
+
          }
 
          iLen = pszStop - (pszFind + 1);

@@ -11,12 +11,12 @@ namespace turboc
    public:
 
 
-      lite_impact(::object * pobject);
+      lite_impact(::particle * pparticle);
       virtual ~lite_impact();
 
-      void assert_ok() const override;
+      // void assert_ok() const override;
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 

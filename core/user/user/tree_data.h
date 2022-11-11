@@ -2,6 +2,7 @@
 
 
 #include "acme/primitive/data/tree.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 namespace user

@@ -71,7 +71,7 @@ namespace user
    bool interaction_ptra::get_child(::pointer<::user::interaction>& pinteraction)
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       if (get_count() <= 0)
       {
@@ -127,7 +127,7 @@ namespace user
    bool interaction_ptra::rget_child(::pointer<::user::interaction>& pinteraction)
    {
 
-      //synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       if (get_count() <= 0)
       {

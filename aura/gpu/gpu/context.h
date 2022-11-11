@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/exception/exception.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/object.h"
 #include "aura/graphics/draw3d/matrix.h"
 
 
@@ -49,7 +52,7 @@ namespace gpu
       virtual void lock_context();
       virtual void unlock_context();
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
       virtual string _001GetIntroProjection();
       virtual string _001GetIntroFragment();

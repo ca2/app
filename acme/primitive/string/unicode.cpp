@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/exception/exception.h"
 
 
 CLASS_DECL_ACME int is_surrogated(u32 character)
@@ -258,105 +259,6 @@ wd32char* wd16_to_wd32(const wd16char * input, strsize input_size)
 // }
 
 
-const char * unicode_prior(const char * psz, const char * pszBeg)
-{
-
-   if (psz <= pszBeg)
-   {
-
-      return nullptr;
-
-   }
-
-   if ((*(psz - 1) & 0x80) == 0x00)
-   {
-
-      if ((psz - 1) < pszBeg)
-      {
-         
-         return nullptr;
-
-      }
-
-      return psz - 1;
-
-   }
-   else if ((*(psz - 2) & 0xE0) == 0xC0)
-   {
-
-      if ((psz - 2) < pszBeg)
-      {
-
-         return nullptr;
-
-      }
-
-      return psz - 2;
-
-   }
-   else if ((*(psz - 3) & 0xF0) == 0xE0)
-   {
-      
-      if ((psz - 3) < pszBeg)
-      {
-
-         return nullptr;
-
-      }
-
-      return psz - 3;
-
-   }
-   else if ((*(psz - 4) & 0xF8) == 0xF0)
-   {
-
-      if ((psz - 4) < pszBeg)
-      {
-
-         return nullptr;
-
-      }
-      
-      return psz - 4;
-
-   }
-   else if ((*(psz - 5) & 0xFC) == 0xF8)
-   {
-
-      if ((psz - 5) < pszBeg)
-      {
-
-         return nullptr;
-
-      }
-
-      return psz - 5;
-
-   }
-   else if ((*(psz - 6) & 0xFE) == 0xFC)
-   {
-
-      if ((psz - 6) < pszBeg)
-      {
-
-         return nullptr;
-
-      }
-
-      return psz - 6;
-
-   }
-
-   if ((psz - 1) < pszBeg)
-   {
-
-      return nullptr;
-
-   }
-
-   return psz - 1;
-
-}
 
 
 

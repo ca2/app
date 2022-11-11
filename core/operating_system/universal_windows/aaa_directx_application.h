@@ -32,9 +32,9 @@ namespace universal_windows
 
       bool                                      m_bFontopusShift;
 
-      ::mutex                                     m_mutex;
+      ::pointer < ::mutex >                                     m_pmutex;
 
-      //::aura::system *                          m_psystem;
+      //::aura::system *                          acmesystem();
 
       //::aura::application *                     m_pacmeapplication;
 
@@ -141,7 +141,7 @@ namespace universal_windows
    {
    internal:
 
-      ::aura::system * m_psystem;
+      ::aura::system * acmesystem();
 
       string m_strId;
 

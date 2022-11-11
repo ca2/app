@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "cancel.h"
 
 
 cancel_exception::cancel_exception(const char * pszMessage) :

@@ -13,10 +13,8 @@
 #include <pthread.h>
 
 
-class synchronization_object;
+//class synchronization;
 
-
-using HSYNC = ::pointer<synchronization_object>;
 
 
 #define PM_NOREMOVE 0

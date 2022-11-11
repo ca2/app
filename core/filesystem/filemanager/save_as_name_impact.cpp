@@ -1,11 +1,17 @@
-#include "framework.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
+﻿#include "framework.h"
 #include "save_as_name_impact.h"
 #include "data.h"
 #include "document.h"
+#include "acme/constant/id.h"
+#include "acme/platform/context.h"
+#include "acme/filesystem/file/item.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/platform/sequencer.h"
+#include "acme/platform/system.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/filesystem/fs/data.h"
+#include "apex/platform/context.h"
 #include "aura/user/user/frame.h"
 
 
@@ -65,7 +71,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      if (pcontext->m_papexcontext->dir().is(str))
+      if (pcontext->m_papexcontext->dir()->is(str))
       {
 
          filemanager_document()->browse(str, context + ::e_source_sync);
@@ -81,7 +87,7 @@ namespace filemanager
 
             strName = strName.folder();
 
-            if (pcontext->m_papexcontext->dir().is(strName))
+            if (pcontext->m_papexcontext->dir()->is(strName))
             {
 
                if (filemanager_item()->user_path() != strName)
@@ -224,12 +230,12 @@ namespace filemanager
       else
       {
 
-         bool bSave = !pcontext->m_papexcontext->dir().is(strPath);
+         bool bSave = !pcontext->m_papexcontext->dir()->is(strPath);
 
          if (bSave)
          {
 
-            if (filemanager_document()->fs_data()->m_psystem->m_pacmefile->exists(strPath))
+            if (filemanager_document()->fs_data()->acmefile()->exists(strPath))
             {
 
                //auto pfuture = __process([this, strPath](const ::payload & payload)
@@ -250,7 +256,7 @@ namespace filemanager
 
                //   });
 
-               auto psequencer = m_psystem->create_message_box_sequencer("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no);
+               auto psequencer = acmesystem()->create_message_box_sequencer("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no);
 
                psequencer->then([this, strPath](auto pconversation)
                      {

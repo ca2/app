@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "memory_map.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace file
@@ -40,10 +41,10 @@ namespace file
 //
 //      string str = m_strName;
 //
-//      if (::str().begins_eat_ci(str, "Local\\"))
+//      if (str.begins_eat_ci("Local\\"))
 //      {
 //
-//         path /=          auto psystem = m_psystem;
+//         path /=          auto psystem = acmesystem();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

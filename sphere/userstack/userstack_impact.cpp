@@ -6,8 +6,8 @@ namespace userstack
 {
 
 
-   impact::impact(::object * pobject) :
-      ::object(pobject),
+   impact::impact(::particle * pparticle) :
+      ::object(pparticle),
       m_pfont(e_create)
    {
 
@@ -135,13 +135,13 @@ namespace userstack
       pframe->m_pdocument = get_document();
 
 
-      string strImageDir = pcontext->m_papexcontext->dir().appdata() / "image";
+      string strImageDir = pcontext->m_papexcontext->dir()->appdata() / "image";
       m_straImagePath.m_pprovider = get_app();
       m_straImagePath.rls(strImageDir);
 
       for(i32 i = 0; i < m_straImagePath.get_size();)
       {
-         if(pcontext->m_papexcontext->dir().is(m_straImagePath[i]))
+         if(pcontext->m_papexcontext->dir()->is(m_straImagePath[i]))
          {
             m_straImagePath.erase_at(i);
          }

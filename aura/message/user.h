@@ -1,9 +1,12 @@
 #pragma once
 
 
+#include "acme/user/user/mouse.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
 #include "aura/user/user/message.h"
 #include "aura/user/user/key.h"
-#include "acme/user/user/mouse.h"
 
 
 namespace message
@@ -33,7 +36,7 @@ namespace message
 
       ::user::system * get_user_create();
 
-      ::element * get_impact_data();
+      ::particle * get_impact_data();
 
 
    };
@@ -365,16 +368,16 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA object : public ::user::message
+   class CLASS_DECL_AURA particle : public ::user::message
    {
    public:
 
 
-      ::pointer<::element>      m_pelement;
+      ::pointer < ::particle >      m_pparticle;
 
 
-      object();
-      ~object() override;
+      particle();
+      ~particle() override;
 
 
       virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam) override;

@@ -41,10 +41,10 @@ namespace crypto
 #if OPENSSL_API_COMPAT < 0x10100000L
 
 
-   map < i32, ::mutex* >* g_pmapMutex = nullptr;
+   map < i32, ::pointer < ::mutex >* >* g_pmapMutex = nullptr;
 
 
-   ::mutex* g_pmutexMap = nullptr;
+   ::pointer < ::mutex >* g_pmutexMap = nullptr;
 
 
 #endif
@@ -57,9 +57,9 @@ namespace crypto
 
       m_rand_size = 1024;
 
-      g_pmapMutex = memory_new map < i32, ::mutex*>;
+      g_pmapMutex = memory_new map < i32, ::pointer < ::mutex >*>;
 
-      g_pmutexMap = memory_new ::mutex();
+      g_pmutexMap = memory_new ::pointer < ::mutex >();
 
       OpenSSL_add_all_digests();
 
@@ -136,7 +136,7 @@ namespace crypto
       if (m_rand_file.get_length())
       {
 
-         m_pcontext->m_papexcontext->file().del(m_rand_file);
+         file()->del(m_rand_file);
 
       }
 
@@ -159,12 +159,12 @@ extern "C" void crypto_initializer_SSL_locking_function(i32 mode, i32 n, const c
 
    synchronous_lock synchronouslock(::crypto::g_pmutexMap);
 
-   ::mutex* pmutex = nullptr;
+   ::pointer < ::mutex >* pmutex = nullptr;
 
    if (::crypto::g_pmapMutex != nullptr && !::crypto::g_pmapMutex->lookup(n, pmutex))
    {
 
-      ::crypto::g_pmapMutex->operator [](n) = memory_new ::mutex();
+      ::crypto::g_pmapMutex->operator [](n) = memory_new ::pointer < ::mutex >();
 
       if (!::crypto::g_pmapMutex->lookup(n, pmutex))
       {

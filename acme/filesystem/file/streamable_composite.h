@@ -2,6 +2,10 @@
 #pragma once
 
 
+#include "streamable.h"
+#include "acme/primitive/primitive/pointer.h"
+
+
 namespace file
 {
 

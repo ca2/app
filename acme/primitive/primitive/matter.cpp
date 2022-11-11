@@ -1,6 +1,12 @@
 ﻿#include "framework.h"
+#include "matter.h"
+#include "payload.h"
 #include "acme/constant/id.h"
-//#include "acme/primitive/primitive/layered.h"
+#include "acme/handler/topic.h"
+#include "acme/platform/system.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronizer.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
@@ -20,55 +26,42 @@ matter::~matter()
    ::defer_delete(m_pobjrefdbg);
 
 #endif
-
-   ::release(m_pmutex);
-
-   if (m_eobject & e_object_any_hook && m_psystem)
-   {
-
-      m_psystem->erase_from_any_hook(this);
-
-   }
+//
+//   if (m_eobject & e_object_any_hook && m_pcontext)
+//   {
+//
+//      acmesystem()->erase_from_any_hook(this);
+//
+//   }
 
 }
 
 
-void matter::assert_ok() const
-{
-
-}
-
-
-void matter::dump(dump_context & dumpcontext) const
-{
-
-}
+//void matter::assert_ok() const
+//{
+//
+//}
+//
+//
+//void matter::dump(dump_context & dumpcontext) const
+//{
+//
+//}
 
 
 //void matter::initialize_matter(::matter* pmatter)
 //{
 //
-//   m_psystem = pmatter->m_psystem;
+//   acmesystem() = pmatter->acmesystem();
 //
 //   //return ::success;
 //
 //}
 
 
-void matter::initialize(::object * pobject)
-{
-
-   if (!m_psystem)
-   {
-
-      m_psystem = pobject->m_psystem;
-
-   }
-
-}
 
 
-//void matter::on_initialize_object()
+//void matter::on_initialize_particle()
 //{
 //
 //   //return ::success;
@@ -76,26 +69,8 @@ void matter::initialize(::object * pobject)
 //}
 
 
-::acme::application * matter::get_context_application()
-{
 
-   if (m_psystem->m_pacmeapplicationMain)
-   {
 
-      return m_psystem->m_pacmeapplicationMain;
-
-   }
-
-   if (m_psystem->m_pacmeapplicationStartup)
-   {
-
-      return m_psystem->m_pacmeapplicationStartup;
-
-   }
-
-   return nullptr;
-
-}
 
 
 void matter::operator()(::message::message * pmessage)
@@ -111,9 +86,15 @@ void matter::operator()(const ::payload & payload)
 }
 
 
+//// <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
+void matter::handle_command(const ::atom & atom)
+{
+//
+//   //return ::success_none;
+//
+}
 
-
-//void matter::set_object(::object* pobject)
+//void matter::set_object(::object* pparticle)
 //{
 //
 //   return ::success;
@@ -158,7 +139,7 @@ void matter::operator()(const ::payload & payload)
 void matter::post_quit()
 {
 
-   set_finishing();
+   set_finishing_flag();
 
 }
 
@@ -166,7 +147,7 @@ void matter::post_quit()
 void matter::set_finish()
 {
 
-   set_finishing();
+   set_finishing_flag();
 
    //destroy();
 
@@ -202,15 +183,7 @@ void matter::on_set_finish()
 
 
 
-const char* matter::debug_note() const
-{
-
-   return nullptr;
-
-}
-
-
-::element * matter::clone() const
+::particle * matter::clone() const
 {
 
    throw ::interface_only();
@@ -228,21 +201,7 @@ bool matter::is_ready_to_quit() const
 }
 
 
-void matter::set_mutex(synchronization_object* psync)
-{
 
-   if (::is_set(psync))
-   {
-
-      psync->increment_reference_count();
-
-   }
-
-   ::release(m_pmutex);
-
-   m_pmutex = psync;
-
-}
 
 
 //void matter::erase_from_any_source()
@@ -263,7 +222,7 @@ void matter::set_mutex(synchronization_object* psync)
 ////   else
 ////   {
 //
-//     auto ptask = m_psystem->branch(__routine([this](){this->operator()();}));
+//     auto ptask = acmesystem()->branch(__routine([this](){this->operator()();}));
 //
 //     if(!ptask)
 //     {
@@ -279,17 +238,7 @@ void matter::set_mutex(synchronization_object* psync)
 //}
 
 
-void matter::defer_create_mutex()
-{
 
-   if (!m_pmutex)
-   {
-
-      set_mutex(__new(::mutex));
-
-   }
-
-}
 
 
 //void matter::run()
@@ -348,6 +297,14 @@ bool matter::thread_is_running() const
 }
 
 
+//::acme::system * matter::get_system()
+//{
+//
+//   return ::is_set(m_pcontext) ? m_pcontext->m_pacmesystem : nullptr;
+//
+//}
+
+
 ::acme::application* matter::_get_app()
 {
 
@@ -378,17 +335,12 @@ void matter::task_erase(::task* ptask)
 }
 
 
-void matter::notify_on_destroy(::property_object * pobject)
+void matter::notify_on_destroy(::property_object * pparticle)
 {
 
 }
 
 
-void matter::kick_idle()
-{
-
-
-}
 
 
 
@@ -437,7 +389,7 @@ void matter::delete_this()
 //void matter::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
 //{
 //
-//   m_psystem->__tracea(elevel, pszFunction, pszFile, iLine, psz);
+//   acmesystem()->__tracea(elevel, pszFunction, pszFile, iLine, psz);
 //
 //}
 //
@@ -490,275 +442,9 @@ void matter::delete_this()
 //}
 
 
-enum_trace_category matter::trace_category() const
-{
 
-   return e_trace_category_general;
 
-}
 
-
-enum_trace_category matter::trace_category(const ::matter * pobject) const
-{
-
-   return pobject->trace_category();
-
-}
-
-
-string matter::topic_text() const
-{
-
-   return __type_name(this);
-
-}
-
-
-string matter::class_title() const
-{
-   
-   auto strTypeName =  __type_name(this);
-   
-   auto findLastColonColon = strTypeName.reverse_find("::");
-   
-   if(findLastColonColon < 0)
-   {
-    
-      return strTypeName;
-      
-   }
-    
-   return strTypeName.Mid(findLastColonColon + 2);
-   
-}
-
-
-void matter::trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFormat, va_list & arguments)
-{
-
-
-   tracer(m_psystem, etracelevel, etracecategory).format_output_arguments(pszFormat, arguments);
-
-
-}
-
-
-void matter::trace_log_information_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments)
-{
-
-   tracer(m_psystem, e_trace_level_information, etracecategory).format_output_arguments(pszFormat, arguments);
-
-}
-
-
-void matter::trace_log_warning_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments)
-{
-
-   tracer(m_psystem, e_trace_level_warning, etracecategory).format_output_arguments(pszFormat, arguments);
-
-}
-
-
-void matter::trace_log_error_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments)
-{
-
-   tracer(m_psystem, e_trace_level_error, etracecategory).format_output_arguments(pszFormat, arguments);
-
-}
-
-
-void matter::trace_log_fatal_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments)
-{
-
-   tracer(m_psystem, e_trace_level_fatal, etracecategory).format_output_arguments(pszFormat, arguments);
-
-}
-
-
-
-
-void matter::trace_arguments(enum_trace_level etracelevel, const char * pszFormat, va_list & arguments)
-{
-
-
-   tracer(m_psystem, etracelevel, trace_category()).format_output_arguments(pszFormat, arguments);
-
-}
-
-
-void matter::trace_log_information_arguments(const char * pszFormat, va_list & arguments)
-{
-
-   tracer(m_psystem, e_trace_level_information, trace_category()).format_output_arguments(pszFormat, arguments);
-
-}
-
-
-void matter::trace_log_warning_arguments(const char * pszFormat, va_list & arguments)
-{
-
-   tracer(m_psystem, e_trace_level_warning, trace_category()).format_output_arguments(pszFormat, arguments);
-
-}
-
-
-void matter::trace_log_error_arguments(const char * pszFormat, va_list & arguments)
-{
-
-   tracer(m_psystem, e_trace_level_error, trace_category()).format_output_arguments(pszFormat, arguments);
-
-}
-
-
-void matter::trace_log_fatal_arguments(const char * pszFormat, va_list & arguments)
-{
-
-   tracer(m_psystem, e_trace_level_fatal, trace_category()).format_output_arguments(pszFormat, arguments);
-
-}
-
-
-
-
-
-void matter::trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * psz, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, psz);
-
-   trace_arguments(etracelevel, etracecategory, psz, arguments);
-
-   va_end(arguments);
-
-}
-
-
-void matter::trace_log_information(enum_trace_category etracecategory, const char * psz, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, psz);
-
-   trace_arguments(e_trace_level_information, etracecategory, psz, arguments);
-
-   va_end(arguments);
-
-}
-
-
-void matter::trace_log_warning(enum_trace_category etracecategory, const char * psz, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, psz);
-
-   trace_arguments(e_trace_level_warning, etracecategory, psz, arguments);
-
-   va_end(arguments);
-
-}
-
-
-void matter::trace_log_error(enum_trace_category etracecategory, const char * psz, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, psz);
-
-   trace_arguments(e_trace_level_error, etracecategory, psz, arguments);
-
-   va_end(arguments);
-
-}
-
-
-void matter::trace_log_fatal(enum_trace_category etracecategory, const char * psz, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, psz);
-
-   trace_arguments(e_trace_level_fatal, etracecategory, psz, arguments);
-
-   va_end(arguments);
-
-}
-
-
-void matter::trace(enum_trace_level etracelevel, const char * psz, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, psz);
-
-   trace_arguments(etracelevel, trace_category(), psz, arguments);
-
-   va_end(arguments);
-
-}
-
-
-void matter::trace_log_information(const char * psz, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, psz);
-
-   trace_arguments(e_trace_level_information, trace_category(), psz, arguments);
-
-   va_end(arguments);
-
-}
-
-
-void matter::trace_log_warning(const char * psz, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, psz);
-
-   trace_arguments(e_trace_level_warning, trace_category(), psz, arguments);
-
-   va_end(arguments);
-
-}
-
-
-void matter::trace_log_error(const char * psz, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, psz);
-
-   trace_arguments(e_trace_level_error, trace_category(), psz, arguments);
-
-   va_end(arguments);
-
-}
-
-
-void matter::trace_log_fatal(const char * psz, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, psz);
-
-   trace_arguments(e_trace_level_fatal, trace_category(), psz, arguments);
-
-   va_end(arguments);
-
-}
 
 
 
@@ -990,7 +676,7 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 pointer< ::sequencer < ::conversation > > matter::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 {
 
-   auto psequencer = m_psystem->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
+   auto psequencer = acmesystem()->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
 
    return psequencer;
 
@@ -1036,7 +722,7 @@ pointer< ::sequencer < ::conversation > > matter::exception_message_box_sequence
 
    }
 
-   auto psequencer = m_psystem->create_message_box_sequencer(
+   auto psequencer = acmesystem()->create_message_box_sequencer(
       strMessage, 
       strTitle, 
       emessagebox, 
@@ -1050,7 +736,7 @@ pointer< ::sequencer < ::conversation > > matter::exception_message_box_sequence
 pointer< ::sequencer < ::conversation > > matter::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 {
 
-   auto psequencer = m_psystem->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails);
+   auto psequencer = acmesystem()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails);
 
    return psequencer;
 
@@ -1062,7 +748,7 @@ pointer< ::sequencer < ::conversation > > matter::exception_message_sequencer(co
    
    string strExceptionDetails = exception.get_consolidated_details();
 
-   auto psequencer = m_psystem->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails + "\n" + strExceptionDetails);
+   auto psequencer = acmesystem()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails + "\n" + strExceptionDetails);
 
    return psequencer;
 
@@ -1128,6 +814,143 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 //{
 //
 //   return false;
+//
+//}
+
+
+//
+//::topic_pointer matter::create_topic(const ::atom & atom)
+//{
+//
+//   auto ptopic = __new(::topic(atom));
+//
+//   ptopic->m_pcontext = acmesystem();
+//
+//   return ::move(ptopic);
+//
+//}
+
+
+bool matter::__get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload)
+{
+
+   auto psynchronizer = __new(::parallelization::synchronizer);
+
+   psynchronizer->set_nok();
+
+   auto function = [functionReturn, &payload, psynchronizer]()
+   {
+
+      auto payloadReturn = functionReturn();
+
+      synchronous_lock synchronizationlock(psynchronizer->synchronization());
+
+      psynchronizer->m_evGoingToWrite.SetEvent();
+
+      psynchronizer->m_evResponse.wait();
+
+      if(!psynchronizer->has_flag(e_flag_timeout))
+      {
+
+         payload = payloadReturn;
+
+         psynchronizer->set_ok_flag();
+
+      }
+
+      psynchronizer->m_evReady.SetEvent();
+
+      ::release((::particle * &)psynchronizer.m_p);
+
+   };
+
+   functionPost(function);
+
+   if (psynchronizer->m_evGoingToWrite.wait(functionReturn.m_waitTimeout).failed())
+   {
+
+      psynchronizer->set_flag(e_flag_timeout);
+
+      psynchronizer->m_evResponse.SetEvent();
+
+      return false;
+
+   }
+
+   psynchronizer->m_evResponse.SetEvent();
+
+   psynchronizer->m_evReady.wait();
+
+   return psynchronizer->is_ok();
+
+}
+
+
+void matter::__send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedure)
+{
+
+   auto psignalization = __new(::parallelization::signalization);
+
+   auto function = [procedure, psignalization]()
+   {
+
+      try
+      {
+
+         procedure();
+
+         psignalization->m_estatus = ::success;
+
+      }
+      catch (const ::exception& exception)
+      {
+
+         psignalization->m_estatus = exception.m_estatus;
+
+      }
+      catch(...)
+      {
+
+         psignalization->m_estatus = ::error_exception;
+
+      }
+
+      psignalization->m_evReady.SetEvent();
+
+      psignalization->m_pparticleHold.release();
+
+   };
+
+   auto procedurePost = ::procedure(function);
+
+   psignalization->m_pparticleHold = procedurePost;
+
+   functionPost(procedurePost);
+
+   auto estatus = psignalization->m_evReady.wait(procedure.timeout());
+
+   if(estatus == error_wait_timeout)
+   {
+
+      procedurePost->set_timed_out_flag();
+
+   }
+
+}
+
+
+::file_pointer matter::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
+{
+
+   return m_pcontext->get_file(payloadFile, eopen);
+
+}
+
+//
+//::acme::system * matter::get_system() const
+//{
+//
+//   return ((matter*)this)->acmesystem();
 //
 //}
 

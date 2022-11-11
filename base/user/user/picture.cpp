@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/handler/item.h"
 #include "aura/platform/context.h"
 #include <math.h>
 #include "aura/graphics/draw2d/matrix.h"
@@ -42,7 +43,7 @@ namespace user
    picture::picture()
    {
 
-      set(e_object_default_io_exchange);
+      set(e_flag_default_io_exchange);
 
       reset_cursor_rect();
 
@@ -78,7 +79,7 @@ namespace user
    picture::picture_impl::picture_impl()
    {
 
-      set(e_object_default_io_exchange);
+      set(e_flag_default_io_exchange);
 
       m_dZoom = 1.0;
       m_pointDrag2.x = 0.0;
@@ -745,7 +746,7 @@ namespace user
    }
 
 
-   bool picture::is_text_editable() const
+   bool picture::is_text_editable()
    {
 
       return false;
@@ -753,7 +754,7 @@ namespace user
    }
 
 
-   bool picture::is_text_editor() const
+   bool picture::is_text_editor()
    {
 
       return false;
@@ -922,7 +923,7 @@ namespace user
       size = ::size_f64(pointDrag.x * m_ppictureimpl->m_rectangleDrawing.width(),
          pointDrag.y * m_ppictureimpl->m_rectangleDrawing.height()) - size;
 
-      rectangle_f64 rectangle(__pointd(size), ::size_f64(m_ppictureimpl->m_rectangleDrawing.size()));
+      rectangle_f64 rectangle(::point_f64(size), ::size_f64(m_ppictureimpl->m_rectangleDrawing.size()));
 
       return rectangle;
 

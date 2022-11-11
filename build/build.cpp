@@ -74,7 +74,7 @@ m_bStdout = false;
       if (str.has_char())
       {
 
-         m_psystem->m_pacmefile->append(m_psystem->m_pacmedirectory->home() /"build.log", str);
+         acmefile()->append(acmedirectory()->home() /"build.log", str);
 
          if(m_bStdout)
          {

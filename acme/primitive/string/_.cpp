@@ -1,17 +1,7 @@
 #include "framework.h"
-#include "acme/operating_system.h"
-
-
-
-
-
-
-//CLASS_DECL_ACME string __string(const estatus & estatus)
-//{
-//
-//   return __string((::i64) estatus.m_estatus);
-//
-//}
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/string/string.h"
+#include "acme/_operating_system.h"
 
 
 int debug_string_iterator()
@@ -26,7 +16,7 @@ int debug_string_iterator()
    for(auto character : str)
    {
 
-      if (wide_char_is_alphabetic(character)
+      if (character_isalpha(character)
           || character == L'.'
           || character == L'/'
           || character == L'?'
@@ -100,3 +90,16 @@ CLASS_DECL_ACME inline strsize safe_strlen(void * p, strsize n)
    return i;
 
 }
+
+
+
+CLASS_DECL_ACME string demangle(const char * psz);
+
+CLASS_DECL_ACME void copy(::string & str, const particle & particle)
+{
+
+   str = demangle(typeid((::particle &)particle).name());
+
+}
+
+

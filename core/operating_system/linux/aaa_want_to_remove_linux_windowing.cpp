@@ -17,13 +17,13 @@ CLASS_DECL_CORE void update_application_session_cursor(void * pvoidApp, const po
 
 
 // Tutor Exilius Q(t)List streaming contribution
-::mutex * user_mutex() = nullptr;
+::pointer< ::mutex > user_synchronization() = nullptr;
 list < sp(object) > * g_pobjectTaskptrlX11 = nullptr;
 
 int_bool _x11_get_cursor_pos(Display * d, POINT32 * ppointCursor);
 
 
-::mutex * g_pmutexX = nullptr;
+::pointer< ::mutex > g_pmutexX = nullptr;
 
 
 //int get_best_ordered_monitor(::user::interaction * pinteraction, int & l, int & t, int & cx, int & cy);
@@ -1185,7 +1185,7 @@ int_bool destroy_window(oswindow window)
 
    synchronous_lock synchronouslock(g_pmutexX);
 
-   //single_lock synchronouslock(&user_mutex(), true);
+   //single_lock synchronouslock(&user_synchronization(), true);
 
    if(!is_window(window))
       return false;
@@ -2243,11 +2243,11 @@ bool x11_step()
    while(g_pobjectTaskptrlX11->has_elements())
    {
 
-      sp(object) pobject = g_pobjectTaskptrlX11->pop_front();
+      sp(object) pparticle = g_pobjectTaskptrlX11->pop_front();
 
       synchronouslock.unlock();
 
-      pobject->call();
+      pparticle->call();
 
       synchronouslock.lock();
 
@@ -2340,7 +2340,7 @@ bool post_ui_message(const MESSAGE & message)
 
    }
 
-   synchronous_lock ml(&pmq->m_mutex);
+   synchronous_lock ml(&pmq->m_pmutex);
 
    if(message.message == e_message_quit)
    {
@@ -2608,7 +2608,7 @@ bool x11_process_message(Display * pdisplay)
                if(pinteraction->layout().design().display() == ::e_display_iconic && !msg.hwnd->is_iconic())
                {
 
-                  //m_psystem->m_pacmefile->put_contents("/home/camilo/xxx.txt", "");
+                  //acmefile()->put_contents("/home/camilo/xxx.txt", "");
 
                   // 1111111111111111111111111111111111111111111
 
@@ -3470,11 +3470,11 @@ CLASS_DECL_CORE void defer_dock_application(int_bool bDock)
 bool os_init_windowing()
 {
 
-   //g_pmutexX = memory_new ::mutex();
+   //g_pmutexX = memory_new ::pointer < ::mutex >();
 
    //g_pmutexX = nullptr;
 
-   sudo rebootx11_mutex() = memory_new ::mutex();
+   sudo rebootx11_mutex() = memory_new ::pointer < ::mutex >();
 
    g_pobjectTaskptrlX11 = memory_new list < sp(object) >();
 
@@ -3484,11 +3484,11 @@ bool os_init_windowing()
 
    oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 
-   oswindow_data::s_pmutex = memory_new ::mutex;
+   oswindow_data::s_pmutex = memory_new ::pointer < ::mutex >;
 
    osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
 
-   osdisplay_data::s_pmutex = memory_new ::mutex;
+   osdisplay_data::s_pmutex = memory_new ::pointer < ::mutex >;
 
    c_xstart();
 

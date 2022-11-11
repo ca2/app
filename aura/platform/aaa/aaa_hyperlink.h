@@ -7,7 +7,7 @@ class CLASS_DECL_AURA hyperlink :
 public:
 
 
-   hyperlink(::object * pobject);
+   hyperlink(::particle * pparticle);
    virtual ~hyperlink();
 
    virtual bool open_link(string strLink, string strProfile = "", string strTarget = "");

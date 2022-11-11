@@ -19,7 +19,7 @@
 //   public:
 //
 //
-//      byte_stream_memory_file(::matter * pobject);
+//      byte_stream_memory_file(::particle * pparticle);
 //      virtual ~byte_stream_memory_file();
 //
 //      virtual filesize seek(filesize offset, enum_seek seekOrigin);

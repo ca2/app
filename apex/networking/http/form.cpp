@@ -1,8 +1,11 @@
-#include "framework.h" 
+#include "framework.h"
+#include "form.h"
+#include "acme/filesystem/file/text_stream.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/primitive/string/parse.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "apex/networking/sockets/_.h"
+////#include "apex/networking/sockets/_.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
@@ -43,7 +46,7 @@ namespace http
    }
 
 
-   void form::parse_body(file::file *infil, const char * pszContentType, strsize content_length)
+   void form::parse_body(::apex::context *pcontext, file::file *infil, const char * pszContentType, strsize content_length)
    {
 
       if (::comparison::gt(content_length, get_max_http_post()))
@@ -53,7 +56,7 @@ namespace http
 
       }
 
-      ::text_stream is(infil);
+      //::text_stream is(infil);
 
       __UNREFERENCED_PARAMETER(content_length);
 
@@ -248,57 +251,17 @@ namespace http
 
                      char ca;
 
-                     string strFormat;
+                     //string strFormat;
 
-                     ::earth::time t = ::earth::time::now();
+                     //::earth::time t = ::earth::time::now();
 
-                     string strTime;
+                     //string strTime;
 
-                     string strIndex;
+                     //string strIndex;
 
-                     string strTempFile;
+                     auto pfileUpload = pcontext->file()->get_temporary_upload_file(current_filename);
 
-                     int i = 0;
-
-                     //static ::mutex s_mutex(nullptr);
-
-                     //single_lock synchronouslock(&s_mutex, true);
-
-                     while (true)
-                     {
-
-                        strTime = ::earth::format("%Y\\%m\\%d\\%H\\%M\\%S\\", t);
-
-                        strIndex.format("%08x\\", i);
-
-                        strTempFile = "C:\\upload\\" + strTime + strIndex + current_filename;
-
-                        if (!m_pcontext->m_papexcontext->file().exists(strTempFile))
-                        {
-
-                           break;
-
-                        }
-
-                        string strMessage;
-
-                        auto psystem = m_psystem->m_papexsystem;
-
-                        auto pdatetime = psystem->datetime();
-
-                        strMessage = pdatetime->international().get_date_time() + " " + strTempFile;
-
-                        m_psystem->m_pacmefile->append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
-
-                        i++;
-
-                     }
-
-                     file_pointer spfile(m_pcontext->m_papexcontext->file().get_file(strTempFile, ::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write));
-
-                     //synchronouslock.unlock();
-
-                     if(spfile.is_set())
+                     if(pfileUpload.ok())
                      {
 
                         while (infil -> read(&ca,1))
@@ -307,7 +270,7 @@ namespace http
                            if (out)
                            {
 
-                              spfile->write(&tempcmp[tc], 1); // %! ??? should we write value of 'ca' here?
+                              pfileUpload->write(&tempcmp[tc], 1); // %! ??? should we write value of 'ca' here?
 
                            }
 
@@ -350,13 +313,13 @@ namespace http
 
                         }
 
-                        spfile->close();
+                        pfileUpload->close();
 
                         //cgi = memory_new CGI(current_name,fn,fn);
                         //m_cgi.push_back(cgi);
 
                         m_setPost[current_name]["name"]           = current_filename;
-                        m_setPost[current_name]["tmp_name"]       = strTempFile;
+                        m_setPost[current_name]["tmp_name"]       = pfileUpload->m_path;
                         m_setPost[current_name]["content_type"]   = content_type;
 
                         slask = m_strBoundary;

@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "base/platform/session.h"
 #include "style.h"
 #include "user.h"
-
+#include "acme/platform/system.h"
+#include "base/platform/session.h"
 
 
 namespace base
@@ -25,7 +25,7 @@ namespace base
    }
 
 
-   ::base::application * style::get_app() const
+   ::base::application * style::get_app()
    {
       
       return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
@@ -33,7 +33,7 @@ namespace base
    }
 
 
-   ::base::session * style::get_session() const 
+   ::base::session * style::get_session()
    {
       
       return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
@@ -41,15 +41,15 @@ namespace base
    }
 
 
-   ::base::system * style::get_system() const 
+   ::base::system * style::get_system()
    {
       
-      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
    
    }
 
 
-   ::base::user * style::user() const 
+   ::base::user * style::user()
    {
       
       return get_session() ? get_session()->user() : nullptr; 

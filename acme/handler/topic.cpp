@@ -1,6 +1,7 @@
 // Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
 // Changed to -nano- topic on 2022-02-04 18:08 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "topic.h"
 #include "acme/user/user/check.h"
 #include "acme/user/user/text.h"
 #include "acme/user/user/command_update_target.h"
@@ -74,8 +75,6 @@
    return m_puserelement->m_puserinteraction;
 
 }
-
-
 
 
 ::atom topic::user_element_id() const

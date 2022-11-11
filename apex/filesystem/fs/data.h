@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "acme/primitive/data/_.h"
+#include "acme/primitive/data/data.h"
+#include "acme/filesystem/filesystem/enumerator.h"
 
 
 namespace fs
@@ -21,8 +22,8 @@ namespace fs
       data();
 
 
-      void assert_ok() const override;
-      virtual void dump(dump_context& dumpcontext) const override;
+      // void assert_ok() const override;
+      // virtual void dump(dump_context& dumpcontext) const override;
 
 
       // optional if ls_dir is implemented

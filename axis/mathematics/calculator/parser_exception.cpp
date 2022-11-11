@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "parser_exception.h"
 #include "acme/constant/id.h"
 
 

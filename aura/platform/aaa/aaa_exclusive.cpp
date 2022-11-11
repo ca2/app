@@ -24,7 +24,7 @@ namespace aura
       try
       {
 
-         set_mutex(__new(::mutex(e_create_new, false, strId, psa)));
+         set_mutex(__new(::pointer < ::mutex >(e_create_new, false, strId, psa)));
 
          m_dwLastError = ::GetLastError();
 
@@ -35,7 +35,7 @@ namespace aura
          try
          {
 
-            set_mutex(__new(::mutex(e_create_new, false, strId)));
+            set_mutex(__new(::pointer < ::mutex >(e_create_new, false, strId)));
 
             m_dwLastError = ::GetLastError();
 
@@ -68,7 +68,7 @@ namespace aura
 
       path /= strId;
 
-               auto psystem = m_psystem;
+               auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

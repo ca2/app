@@ -6,10 +6,10 @@ namespace draw2d_opengl
 {
 
 
-   printer::printer(::object * pobject) :
-      object(pobject),
-      ::aura::printer(pobject),
-      m_documentproperties(pobject)
+   printer::printer(::particle * pparticle) :
+      object(pparticle),
+      ::aura::printer(pparticle),
+      m_documentproperties(pparticle)
    {
       }
 
@@ -58,8 +58,8 @@ namespace draw2d_opengl
    }
 
 
-   printer::document_properties::document_properties(::object * pobject) :
-      object(pobject)
+   printer::document_properties::document_properties(::particle * pparticle) :
+      object(pparticle)
    {
       m_hdc = nullptr;
       m_pdevmode = nullptr;

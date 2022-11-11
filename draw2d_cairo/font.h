@@ -98,7 +98,7 @@ namespace draw2d_cairo
       void destroy_os_data() override;
 
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
 
       ::enum_character_set calculate_character_set(::draw2d::graphics * pgraphics) override;
 

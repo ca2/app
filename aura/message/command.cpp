@@ -1,18 +1,18 @@
 #include "framework.h"
-
+//s#include "apex/message/channel.h"
 
 //namespace user
 //{
 //
 //
-//   command::command(::object * pobject)
+//   command::command(::particle * pparticle)
 //   {
 //
 //         common_construct();
-//         if (::is_set(pobject))
+//         if (::is_set(pparticle))
 //         {
 //
-//            initialize(pobject);
+//            initialize(pparticle);
 //
 //         }
 //
@@ -83,16 +83,16 @@
 //      //}
 //
 //
-//      //command::command(::object * pobject) :
-//      //   ::object(pobject)
+//      //command::command(::particle * pparticle) :
+//      //   ::object(pparticle)
 //      //{
 //
 //      //   m_ecommand = command_default;
 //
 //      //}
 //
-//      //command::command(::object * pobject, enum_command ecommand) :
-//      //   ::object(pobject)
+//      //command::command(::particle * pparticle, enum_command ecommand) :
+//      //   ::object(pparticle)
 //      //{
 //
 //      //   m_ecommand = ecommand;
@@ -375,7 +375,7 @@
 //
 //      pcommand->m_atom.set_compounded_type(::atom::e_type_command);
 //
-//      if (m_idaHandledCommands.contains(pcommand->m_atom))
+//      if (m_atomaHandledCommands.contains(pcommand->m_atom))
 //      {
 //
 //         return true;

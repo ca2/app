@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "tree_impact.h"
+#include "acme/constant/message.h"
 #include "aura/message/user.h"
 
 
@@ -34,15 +35,15 @@ void simple_tree_impact::handle(::topic * ptopic, ::context * pcontext)
 
 
 
-void simple_tree_impact::assert_ok() const
-{
-   ::user::impact::assert_ok();
-}
-
-void simple_tree_impact::dump(dump_context & dumpcontext) const
-{
-   ::user::impact::dump(dumpcontext);
-}
+//void simple_tree_impact::assert_ok() const
+//{
+//   ::user::impact::assert_ok();
+//}
+//
+//void simple_tree_impact::dump(dump_context & dumpcontext) const
+//{
+//   ::user::impact::dump(dumpcontext);
+//}
 
 
 

@@ -1,7 +1,7 @@
 #include "framework.h"
-
-
+#include "acme/primitive/string/string.h"
 #include "x/x_charcategory_names.h"
+#include "acme/primitive/string/str.h"
 
 
 /*
@@ -44,15 +44,17 @@ CLASS_DECL_ACME int trailingBytesForUTF8(char ch)
    //{
 
 
-      i32 str::ch::ref_tables()
+      i32 unicode_ref_tables()
       {
+
          return sizeof(char_bidi_names);
+
       }
 
 
-      const char * str::ch::get_category_name(i32 i)
+      const char * unicode_get_category_name(i32 i)
       {
-         if (!is_legal_uni_index(i))
+         if (!is_legal_unicode_index(i))
             return "";
          return char_category_names[CHAR_CATEGORY(CHAR_PROP(i))];
       }
@@ -69,7 +71,7 @@ CLASS_DECL_ACME int trailingBytesForUTF8(char ch)
 
 
 
-      void * str::ch::char_bidi_names_non_usage_warning()
+      void * unicode_char_bidi_names_non_usage_warning()
       {
          return char_bidi_names;
       }

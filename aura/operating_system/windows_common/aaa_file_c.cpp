@@ -129,7 +129,7 @@ CLASS_DECL_AURA::winrt::Windows::Storage::StorageFolder^ winrt_folder(string& st
 //   try
 //   {
 //
-//      if (         auto psystem = m_psystem;
+//      if (         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -212,7 +212,7 @@ pacmedirectory->is(path))
 //}
 //
 //
-int_bool m_psystem->m_pacmepath->is_file_or_dir(const ::string & path, ::file::enum_type * petype)
+int_bool acmepath()->is_file_or_dir(const ::string & path, ::file::enum_type * petype)
 {
 
    auto dwFileAttributes = windows_get_file_attributes(path);
@@ -237,7 +237,7 @@ int_bool m_psystem->m_pacmepath->is_file_or_dir(const ::string & path, ::file::e
 
          strPrefix.replace("/", "\\");
 
-         ::str().begins_eat_ci(strRelative, strPrefix);
+         strRelative.begins_eat_ci(strPrefix);
 
          strRelative.trim("/\\");
 
@@ -358,7 +358,7 @@ CLASS_DECL_AURA bool _os_may_have_alias(const ::string & psz)
 bool context::os_is_alias(const ::string & psz)
 {
 
-   return ::str().ends_ci(psz, ".lnk");
+   return string_ends_ci(psz, ".lnk");
 
 }
 

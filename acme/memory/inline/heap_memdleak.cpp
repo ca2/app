@@ -23,7 +23,7 @@ extern class ::exception_engine * g_pexceptionengine;
 
 thread_int_ptr < iptr > t_iMemdleak;
 
-::mutex * g_pmutgen = nullptr;
+::pointer< ::mutex > g_pmutgen = nullptr;
 
 extern memdleak_block * s_pmemdleakList;
 
@@ -81,7 +81,7 @@ void * unaligned_memory_allocate(size_t size)
       //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
    }
 
-   ::papaya::set_maximum(pblock->m_uiLine);
+   ::acme::set_maximum(pblock->m_uiLine);
 
    pblock->m_size = nAllocSize;
 
@@ -290,7 +290,7 @@ void * memory_reallocate_debug(void * pmemory, size_t size, i32 nBlockUse, const
    //   pblock->m_pszFileName = nullptr;
    //}
 
-   //::papaya::set_maximum(pblock->m_uiLine);
+   //::acme::set_maximum(pblock->m_uiLine);
 
    //pblock->m_size = nAllocSize;
 
@@ -324,7 +324,7 @@ void * memory_reallocate_debug(void * pmemory, size_t size, i32 nBlockUse, const
       //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
    }
 
-   ::papaya::set_maximum(pblock->m_uiLine);
+   ::acme::set_maximum(pblock->m_uiLine);
 
    pblock->m_size = nAllocSize;
 
@@ -485,7 +485,7 @@ CLASS_DECL_ACME int  global_memdleak_enabled()
 
 #else
 
-      bMemdleak = ::m_psystem->m_pacmefile->exists("/archive/ca2/config/system/memdleak.txt");
+      bMemdleak = ::acmefile()->exists("/archive/ca2/config/system/memdleak.txt");
 
 #endif
 
@@ -726,7 +726,7 @@ void memdleak_dump()
    output_debug_string(sz);
    output_debug_string(" memory leaks.");
 
-   //m_psystem->m_pacmefile->put_contents(         auto psystem = m_psystem;
+   //acmefile()->put_contents(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -742,7 +742,7 @@ pacmedirectory->system() / "m.html", get_mem_info_report1());
 void memdleak_init()
 {
 
-   g_pmutgen = memory_new ::mutex();
+   g_pmutgen = memory_new ::pointer < ::mutex >();
 
 }
 

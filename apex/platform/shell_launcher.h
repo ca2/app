@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+
+
 namespace apex
 {
 
@@ -14,7 +17,7 @@ namespace apex
 
 
    class CLASS_DECL_APEX shell_launcher :
-      virtual public ::matter
+      virtual public ::particle
    {
    public:
 

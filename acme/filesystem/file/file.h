@@ -1,6 +1,11 @@
 ﻿#pragma once
 
 
+//#include "acme/primitive/primitive/object.h"
+#include "acme/filesystem/filesystem/path.h"
+#include "streamable.h"
+
+
 namespace file
 {
 
@@ -23,7 +28,6 @@ namespace file
 
 
    class CLASS_DECL_ACME file :
-      virtual public ::object,
       virtual public streamable
    {
    public:
@@ -40,8 +44,8 @@ namespace file
       ~file() override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+      //// void assert_ok() const override;
+      //// void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool is_end_of_file() const;
@@ -78,7 +82,7 @@ namespace file
 
       virtual ::filesize get_left() const;
 
-      string as_string() const override;
+      virtual string as_string() const;
 
       virtual void as_memory(memory_base & memory) const;
 

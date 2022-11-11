@@ -1,6 +1,11 @@
 // Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
 #include "framework.h"
 #include "networking.h"
+#include "acme/exception/exception.h"
+#include "acme/primitive/string/parse.h"
+#include "acme/primitive/string/str.h"
+
+
 //#define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
 //
 ////#include <stdio.h>
@@ -40,7 +45,7 @@ namespace networking
    {
 
       m_p2 = nullptr;
-      defer_create_mutex();
+      defer_create_synchronization();
 
       //m_bInitialized = false;
       //m_mapCache.m_bAutoGudoSet = false;
@@ -58,7 +63,7 @@ namespace networking
    }
 
 
-   void     networking::initialize(::object * pobject)
+   void     networking::initialize(::particle * pparticle)
    {
 
       //if (m_bInitialized)
@@ -68,9 +73,9 @@ namespace networking
 
       //}
 
-      //auto estatus = ::object::initialize(pobject);
+      //auto estatus = ::object::initialize(pparticle);
 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -138,7 +143,7 @@ namespace networking
       string dst;
       for (i32 i = 0; i < src.get_length(); i++)
       {
-         if (ansi_char_is_alphanumeric((uchar)src[i]))
+         if (character_isalnum(src[i]))
          {
             dst += src[i];
          }
@@ -292,7 +297,7 @@ namespace networking
 //      if (str.is_empty())
 //         return false;
 //
-//      single_lock synchronouslock(&m_mutexCache, true);
+//      single_lock synchronouslock(m_pmutexCache, true);
 //      dns_cache_item item;
 //      if (m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_durationLastChecked.elapsed()) < (5_minute)))))
 //      {
@@ -925,7 +930,7 @@ namespace networking
    bool networking::reverse(string& number, const string& hostname)
    {
 
-      //auto paddress = m_psystem->m_papexsystem->sockets()->create_address(hostname);
+      //auto paddress = acmesystem()->m_papexsystem->sockets()->create_address(hostname);
 
       //number = paddress->get_display_number();
 
@@ -945,7 +950,7 @@ namespace networking
    //bool networking::reverse_schedule(reverse_cache_item* pitem)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   m_reversecacheaRequest.add(pitem);
 
@@ -959,7 +964,7 @@ namespace networking
 
    //            ::task_set_name("reverse___dns");
 
-   //            single_lock synchronouslock(mutex());
+   //            single_lock synchronouslock(this->synchronization());
 
    //            while (task_get_run())
    //            {
@@ -1008,7 +1013,7 @@ namespace networking
    bool networking::reverse(string& hostname, ::networking::address * address)
    {
 
-      //single_lock synchronouslock(&m_mutexReverseCache, true);
+      //single_lock synchronouslock(m_pmutexReverseCache, true);
 
       //auto& pitem = m_mapReverseCache[address.get_display_number()];
 
@@ -1159,13 +1164,13 @@ namespace networking
 //
 //      //   reverse_cache_item item;
 //
-//      single_lock synchronouslock(&m_mutexReverseCache, true);
+//      single_lock synchronouslock(m_pmutexReverseCache, true);
 //
 //      pitem->m_strReverse = host;
 //      //item.m_strService = serv;
 //      pitem->m_durationLastChecked.Now();
 //
-//      //single_lock synchronouslock(&m_mutexCache, true);
+//      //single_lock synchronouslock(m_pmutexCache, true);
 //
 //      //m_mapReverseCache.set_at(strIpString, item);
 //

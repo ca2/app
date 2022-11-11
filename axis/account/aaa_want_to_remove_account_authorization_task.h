@@ -40,7 +40,7 @@ namespace account
       
       
       
-      authorization_task(::object * pobject);
+      authorization_task(::particle * pparticle);
       virtual ~authorization_task();
       
 

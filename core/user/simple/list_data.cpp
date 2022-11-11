@@ -101,7 +101,8 @@ void simple_list_data::enable(bool bEnable)
 
 void simple_list_data::get_column_data(string_array & stra,index iColumn)
 {
-   stra = m_array[iColumn];
+
+   stra = *m_array[iColumn];
 
 }
 

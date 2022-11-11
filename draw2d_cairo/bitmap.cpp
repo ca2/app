@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
 #include "bitmap.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 namespace draw2d_cairo
@@ -362,14 +364,14 @@ namespace draw2d_cairo
 //#endif
 //
 //
-   void bitmap::dump(dump_context & dumpcontext) const
-   {
-
-      object::dump(dumpcontext);
-
-      //dumpcontext << "\n";
-
-   }
+//   void bitmap::dump(dump_context & dumpcontext) const
+//   {
+//
+//      object::dump(dumpcontext);
+//
+//      //dumpcontext << "\n";
+//
+//   }
 
 
    void get_surface_size (cairo_surface_t * psurface, ::i32 * plongWidth, ::i32 * plongHeight)

@@ -1,6 +1,10 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/collection/procedure_array.h"
+
+
 // <3ThomasBS_ [THE MAN], [THE ONLY], [THE GOD], [THE ONLY GOD], Mummi the Goddess, and bilbo my pet mate :)
 class CLASS_DECL_APEX handler_manager :
    virtual public ::object
@@ -22,7 +26,7 @@ public:
    ~handler_manager() override;
 
 
-   virtual void initialize_handler_manager(::object * pobjectContext, const ::string & strThreadName, int iAliveCount = -1);
+   virtual void initialize_handler_manager(::particle * pparticleContext, const ::string & strThreadName, int iAliveCount = -1);
    
 
    virtual void on_start_loop();

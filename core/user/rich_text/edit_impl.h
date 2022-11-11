@@ -57,8 +57,8 @@ namespace user
 
          virtual ::size_f64 get_size() override;
 
-         void assert_ok() const override;
-         void dump(dump_context & dumpcontext) const override;
+         // void assert_ok() const override;
+         // void dump(dump_context & dumpcontext) const override;
 
          bool _001GetItemText(string & str, index iItem) override;
          bool _001IsPointInside(const ::point_i32 & point) override;
@@ -77,9 +77,9 @@ namespace user
 
          bool set_text_editable(bool bEditable = true) override;
 
-         bool is_text_editable() const override;
+         bool is_text_editable() override;
 
-         bool is_text_editor() const override;
+         bool is_text_editor() override;
 
          void _001OnDeleteText() override;
 
@@ -98,8 +98,8 @@ namespace user
          //::user::tool_window * tool_window(enum_tool etool, bool bCreate) override;
 
          using ::user::interaction::_001GetText;
-         void _001GetText(string & str) const override;
-         void _001GetLayoutText(string & str) const override;
+         void _001GetText(string & str) override;
+         void _001GetLayoutText(string & str) override;
 
          void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -126,7 +126,7 @@ namespace user
          void key_to_char(::message::key * pkey) override;
 
 
-         bool keyboard_focus_is_focusable() const override;
+         bool keyboard_focus_is_focusable() override;
 
 
          void keyboard_focus_OnChar(::message::message * pmessage) override;
@@ -141,13 +141,13 @@ namespace user
          void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-         strsize _001GetTextLength() const override;
+         strsize _001GetTextLength() override;
 
          //void write(::binary_stream < FILE > & stream) const override;
          //void read(::binary_stream < FILE > & stream) override;
 
-         void _001GetSel(strsize & iBeg, strsize & iEnd) const override;
-         void _001GetSelLineText(string & str) const override;
+         void _001GetSel(strsize & iBeg, strsize & iEnd) override;
+         void _001GetSelLineText(string & str) override;
 
 
          void get_text_composition_area(::rectangle_i32 & r) override;

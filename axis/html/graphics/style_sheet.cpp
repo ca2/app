@@ -1,7 +1,7 @@
 #include "framework.h"
-
 #include "style_sheet.h"
 #include "axis/html/graphics/style.h"
+#include "axis/html/html/html.h"
 #include "axis/platform/session.h"
 #include "axis/platform/session.h"
 #include "axis/user/user/user.h"
@@ -17,12 +17,12 @@ namespace html
    }
 
 
-   void style_sheet::initialize(::object * pobject)
+   void style_sheet::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::object::initialize(pobject);
+      ::particle::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -63,7 +63,7 @@ namespace html
             psz++;
          }
 
-         auto pstyle = __create_new < class style >();
+         auto pstyle = __create_new < class style >(this);
 
          string strStyle = str.Left(psz - pszStart);
 
@@ -80,7 +80,7 @@ namespace html
 
             strStyle.make_lower();
 
-            ::pointer<::axis::session>psession = get_session();
+            ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
 
             auto puser = psession->user();
 
@@ -127,7 +127,7 @@ namespace html
    }
 
 
-   style * style_sheet::rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName)
+   style * style_sheet::rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName)
    {
 
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
@@ -144,7 +144,8 @@ namespace html
 
    }
 
-   const style * style_sheet::rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName) const
+
+   const style * style_sheet::rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName) const
    {
 
       return ((style_sheet *) this)->rfind(etag, strClass, strSubClass, idName);
@@ -152,7 +153,7 @@ namespace html
    }
 
 
-   style * style_sheet::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName, float & f)
+   style * style_sheet::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName, float & f)
    {
 
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
@@ -170,7 +171,7 @@ namespace html
    }
 
 
-   const style * style_sheet::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName, float & f) const
+   const style * style_sheet::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName, float & f) const
    {
 
       return ((style_sheet *) this)->rfind_border_width(etag, strClass, strSubClass, idName, f);
@@ -178,7 +179,7 @@ namespace html
    }
 
 
-   style * style_sheet::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName, ::color::color & color32)
+   style * style_sheet::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName, ::color::color & color32)
    {
 
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
@@ -196,7 +197,7 @@ namespace html
    }
 
 
-   const style * style_sheet::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName, ::color::color & color32) const
+   const style * style_sheet::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName, ::color::color & color32) const
    {
 
       return ((style_sheet *) this)->rfind_border_color(etag, strClass, strSubClass, idName, color32);

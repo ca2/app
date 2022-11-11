@@ -1,14 +1,17 @@
 ﻿// Extracted from device_lock, Changed and Organized by camilo on 2021-09-04 05:46 BRT <3ThomasBS__!!
 #include "framework.h"
-#include "acme/operating_system.h"
 #include "lock.h"
+
+
+
+//#include "acme/_operating_system.h"
 
 
 namespace draw2d
 {
 
 
-   //::mutex * lock::s_pmutex = nullptr;
+   //::pointer< ::mutex > lock::s_pmutex = nullptr;
 
    //::interlocked_count lock::s_countReference;
 
@@ -21,7 +24,7 @@ namespace draw2d
    //   if (count == 0)
    //   {
 
-   //      s_pmutex = memory_new ::mutex();
+   //      s_pmutex = memory_new ::pointer < ::mutex >();
 
    //   }
 
@@ -48,9 +51,9 @@ namespace draw2d
 //
 ////#ifdef _UWP
 ////
-////      m_psystem = pinteraction->m_psystem;
+////      acmesystem() = pinteraction->acmesystem();
 ////
-////      ::pointer<::aura::system>psystem = m_psystem;
+////      ::pointer<::aura::system>psystem = acmesystem();
 ////
 ////      auto pdraw2d = psystem->draw2d();
 ////
@@ -70,7 +73,7 @@ namespace draw2d
 ////
 ////      //m_D2DMultitask->Leave();
 ////
-////      ::pointer<::aura::system>psystem = m_psystem;
+////      ::pointer<::aura::system>psystem = acmesystem();
 ////
 ////      auto pdraw2d = psystem->draw2d();
 ////

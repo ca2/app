@@ -2,6 +2,8 @@
  * This code can be freely copied and modified.
  */
 #include "framework.h"
+#include "parser.h"
+#include "parser_exception.h"
 
 
 namespace calculator

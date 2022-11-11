@@ -21,7 +21,20 @@ inline string_base < CHAR_TYPE > str::repeat(const CHAR_TYPE * psz, strsize c)
       while (c > 0)
       {
 
-         memcpy(p, psz, itemByteCount);
+         auto psource = psz;
+
+         auto ptarget = psz;
+
+         auto copyLength = itemLen;
+
+         while (copyLength > 0)
+         {
+
+            *ptarget++ = *psource++;
+
+            copyLength--;
+
+         }
 
          p += itemLen;
 
@@ -104,7 +117,7 @@ inline bool str::trimmed_is_empty(const ::string & str)
 
       }
 
-      if (!isspace(*psz))
+      if (!character_isspace(*psz))
       {
 
          return false;
@@ -215,63 +228,63 @@ inline i32 compare_ignore_case(const char * left, const string & right, size_t l
 }
 
 
-   inline bool equal_ignore_case(const char * left, const string & right, size_t len)
+inline bool equal_ignore_case(const char * left, const string & right, size_t len)
+{
+
+   return compare_ignore_case(left, right, len) == 0;
+
+}
+
+
+inline i32 compare_ignore_case(const string & left, const char * right, size_t len)
+{
+
+   if (len)
    {
-
-      return compare_ignore_case(left, right, len) == 0;
-
-   }
-
-
-   inline i32 compare_ignore_case(const string & left, const char * right, size_t len)
-   {
-
-      if (len)
-      {
 
 #if defined(WIN32) || defined(WIN64)
 
-         return _strnicmp(left.c_str(), right, len);
+      return _strnicmp(left.c_str(), right, len);
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-         return ansi_count_compare_ci(left.c_str(), right, len);
+      return ansi_count_compare_ci(left.c_str(), right, len);
 
 #else
 
-         return strncasecmp(left.c_str(), right, len);
+      return strncasecmp(left.c_str(), right, len);
 
 #endif
 
-      }
-      else
-      {
+   }
+   else
+   {
 
 #if defined(WIN32) || defined(WIN64)
 
-         return _stricmp(left.c_str(), right);
+      return _stricmp(left.c_str(), right);
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-         return ansi_compare_ci(left.c_str(), right);
+      return ansi_compare_ci(left.c_str(), right);
 
 #else
 
-         return strcasecmp(left.c_str(), right);
+      return strcasecmp(left.c_str(), right);
 
 #endif
 
-      }
-
    }
 
+}
 
-   inline bool equal_ignore_case(const string & left, const char * right, size_t len)
-   {
 
-      return compare_ignore_case(left, right, len) == 0;
+inline bool equal_ignore_case(const string & left, const char * right, size_t len)
+{
 
-   }
+   return compare_ignore_case(left, right, len) == 0;
+
+}
 
 
 
@@ -280,7 +293,7 @@ inline i32 compare_ignore_case(const char * left, const string & right, size_t l
 inline void from_string(i8 & i, const ansichar * psz)
 {
 
-   i = (i8) atoi(psz);
+   i = (i8)atoi(psz);
 
 }
 
@@ -288,7 +301,7 @@ inline void from_string(i8 & i, const ansichar * psz)
 inline void from_string(i16 & i, const ansichar * psz)
 {
 
-   i = (i16) atoi(psz);
+   i = (i16)atoi(psz);
 
 }
 
@@ -328,7 +341,7 @@ inline void from_string(i64 & i, i32 iBase, const ansichar * psz)
 inline void from_string(u8 & u, const ansichar * psz)
 {
 
-   u = (u8) ansi_to_u32(psz, nullptr, 10);
+   u = (u8)ansi_to_u32(psz, nullptr, 10);
 
 }
 
@@ -336,7 +349,7 @@ inline void from_string(u8 & u, const ansichar * psz)
 inline void from_string(u16 & u, const ansichar * psz)
 {
 
-   u = (u16) ansi_to_u32(psz, nullptr, 10);
+   u = (u16)ansi_to_u32(psz, nullptr, 10);
 
 }
 
@@ -377,7 +390,7 @@ inline void from_string(u64 & u, i32 iBase, const ansichar * psz)
 inline void from_string(long & l, const ansichar * psz)
 {
 
-l = ansi_to_i64(psz, nullptr, 10);
+   l = ansi_to_i64(psz, nullptr, 10);
 
 }
 #elif defined(WINDOWS)
@@ -392,10 +405,10 @@ inline void from_string(long & l, const ansichar * psz)
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
 
-inline void from_string(long  & l, i32 iBase, const ansichar * psz)
+inline void from_string(long & l, i32 iBase, const ansichar * psz)
 {
 
-l = ansi_to_i64(psz, nullptr, iBase);
+   l = ansi_to_i64(psz, nullptr, iBase);
 
 }
 #elif defined(WINDOWS)
@@ -440,54 +453,6 @@ inline void from_string(i64 & i, const wd32char * psz)
 }
 
 
-inline void from_string(i32 & i, i32 iBase, const widechar * psz)
-{
-
-   i = wide_to_i32(psz, nullptr, iBase);
-
-}
-
-
-inline void from_string(i64 & i, i32 iBase, const widechar * psz)
-{
-
-   i = wide_to_i64(psz, nullptr, iBase);
-
-}
-
-
-inline void from_string(u32 & u, const widechar * psz)
-{
-
-   u = wide_to_u32(psz, nullptr, 10);
-
-}
-
-
-inline void from_string(u64 & u, const widechar * psz)
-{
-
-   u = wide_to_u64(psz, nullptr, 10);
-
-}
-
-
-inline void from_string(u32 & u, i32 iBase, const widechar * psz)
-{
-
-   u = wide_to_u32(psz, nullptr, iBase);
-
-}
-
-
-inline void from_string(u64 & u, i32 iBase, const widechar * psz)
-{
-
-   u = wide_to_u64(psz, nullptr, iBase);
-
-}
-
-
 inline void from_string(float & f, const ansichar * psz)
 {
 
@@ -512,7 +477,7 @@ inline void from_string(ansichar * sz, const ansichar * psz)
 }
 
 
-inline void from_string(ansichar & ch, const ansichar* psz)
+inline void from_string(ansichar & ch, const ansichar * psz)
 {
 
    ch = *psz;
@@ -520,10 +485,10 @@ inline void from_string(ansichar & ch, const ansichar* psz)
 }
 
 
-inline void from_string(widechar & wch, const ansichar* psz)
+inline void from_string(widechar & wch, const ansichar * psz)
 {
 
-   str().utf_to_utf(&wch, psz, unicode_next(psz) - psz);
+   utf_to_utf(&wch, psz, unicode_next(psz) - psz);
 
 }
 
@@ -531,7 +496,7 @@ inline void from_string(widechar & wch, const ansichar* psz)
 inline void from_string(wd16char * sz, const ansichar * psz)
 {
 
-   str().utf_to_utf(sz, psz);
+   utf_to_utf(sz, psz);
 
 }
 
@@ -539,7 +504,7 @@ inline void from_string(wd16char * sz, const ansichar * psz)
 inline void from_string(wd32char * sz, const ansichar * psz)
 {
 
-   str().utf_to_utf(sz, psz);
+   utf_to_utf(sz, psz);
 
 }
 
@@ -551,7 +516,7 @@ inline void from_string(ansichar sz[n], const ansichar * psz)
    if (strlen(psz) >= n)
    {
 
-      throw ::exception(error_would_reach_buffer_limit);
+      throw_exception(error_would_reach_buffer_limit);
 
    }
 
@@ -564,14 +529,14 @@ template < size_t n >
 inline void from_string(wd16char sz[n], const ansichar * psz)
 {
 
-   if (str().utf_to_utf_length(sz, psz) >= n)
+   if (utf_to_utf_length(sz, psz) >= n)
    {
 
-      throw ::exception(error_would_reach_buffer_limit);
+      throw_exception(error_would_reach_buffer_limit);
 
    }
 
-   str().utf_to_utf(sz, psz);
+   utf_to_utf(sz, psz);
 
 }
 
@@ -580,129 +545,24 @@ template < size_t n >
 inline void from_string(wd32char sz[n], const ansichar * psz)
 {
 
-   if (str().utf_to_utf_length(sz, psz) >= n)
+   if (utf_to_utf_length(sz, psz) >= n)
    {
 
-      throw ::exception(error_would_reach_buffer_limit);
+      throw_exception(error_would_reach_buffer_limit);
 
    }
 
-   str().utf_to_utf(sz, psz);
+   utf_to_utf(sz, psz);
 
 }
 
 
-inline void from_string(::atom & atom, const ansichar * psz)
-{
-
-   atom = psz;
-
-}
+//template < typename FILE >
+//inline ::string __string(const ::string_stream & strstream);
 
 
-//inline void from_string(::element & element, const ansichar * psz)
-//{
-//
-//   payload_stream stream;
-//
-//   stream.m_ppayload->parse_network_payload(psz);
-//
-//   element.exchange(stream);
-//
-//}
-//
-
-//template < typename TYPE >
-//inline ::string __string(const TYPE & t)
-//{
-//
-//   str = t.get_string();
-//
-//}
-
-
-
-//inline ::string __string(const element & t)
-//{
-
-//   auto len = t.sz_len();
-
-//   auto psz = str.get_string_buffer(len);
-
-//   t.to_sz(psz, len);
-
-//   str.release_string_buffer(len);
-
-//}
-
-
-//#ifdef _UWP
-//
-//
-//   inline void to_string(string& str, Platform::String ^ strSource)
-//   {
-//
-//      str = strSource->Begin();
-//
-//   }
-//
-//#endif
-
-
-inline ::string __string(const particle & particle)
-{
-
-   ::string str;
-
-   auto len = particle.sz_len();
-
-   auto psz = str.get_string_buffer(len);
-
-   particle.to_sz(psz, len);
-
-   str.release_string_buffer();
-
-   return ::move(str);
-
-}
-
-
-//inline ::string __string(const element & o)
-//{
-
-//   o.to_string(str);
-
-//}
-
-
-//inline ::string __string(const ::atom & atom)
-//{
-//
-//   atom.to_string(str);
-//
-//}
-
-
-//inline ::string __string(const ::wd16string & wd16str)
-//{
-//
-//   str = wd16str;
-//
-//}
-//
-//
-//inline ::string __string(const ::wd32string & wd32str)
-//{
-//
-//   str = wd32str;
-//
-//}
-
-
-CLASS_DECL_ACME ::string __string(const ::string_stream & strstream);
-
-
-CLASS_DECL_ACME ::string __string(const ::text_stream & strstream);
+//template < typename FILE >
+//inline ::string __string(const ::text_stream < FILE > & strstream);
 
 
 inline string _001Concatenate(const ::string & str1, const ::string & strMid, const ::string & str2)
@@ -745,7 +605,7 @@ inline string _001Concatenate(const ::string & str1, const ::string & strMid, co
 
 
 template < typename T >
-inline string string_from_int(const T& t)
+inline string string_from_int(const T & t)
 {
 
    return __string((::i64)t);
@@ -754,7 +614,7 @@ inline string string_from_int(const T& t)
 
 
 template < typename T >
-inline string string_from_u(const T& t)
+inline string string_from_u(const T & t)
 {
 
    return __string((::u64)t);
@@ -762,859 +622,142 @@ inline string string_from_u(const T& t)
 }
 
 
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const string_base & strSrc)
-//{
-//
-//   POINTER::operator =(strSrc);
-//
-//}
-//
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const ansichar * pszSrc)
-//   : string_base(pszSrc, string_safe_length(pszSrc))
-//{
-//
-//}
+CLASS_DECL_ACME void to_string(string & str, const float & f);
 
 
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const ansichar* pch,strsize strsize)
-//{
-//
-//   if (::is_null(pch))
-//   {
-//
-//      if(strsize != 0)
-//      {
-//
-//         throw ::exception(error_bad_argument);
-//
-//      }
-//
-//      natural_release();
-//
-//   }
-//   else
-//   {
-//
-//      auto pNew = create_meta_data(char_length_to_byte_length(strsize + 1));
-//
-//      if (pNew == nullptr)
-//      {
-//
-//         throw no_memory();
-//
-//      }
-//
-//      POINTER::operator=(pNew);
-//
-//      memcpy(pNew->m_pdata, pch, pNew->memsize());
-//
-//      set_length(strsize);
-//
-//   }
-//
-//}
-
-// besides returning a element (and const does not really impedes changing), do not machine a string_base (or string) directly,
-// there may be multiple instances of a string (all referencing the same pointer).
-//template < typename TYPE_CHAR >
-//inline const ansichar & string_base < TYPE_CHAR >::operator [](index iChar ) const
-//{
-//
-//   return m_psz[iChar];
-//
-//}
-//
-//template < typename TYPE_CHAR >
-//inline ansichar string_base < TYPE_CHAR >::get_at(strsize iChar ) const
-//{
-//
-//   return m_psz[iChar];
-//
-//}
-
-//template < typename TYPE_CHAR >
-//inline void string_base < TYPE_CHAR >::set_at(strsize iChar,ansichar ch )
-//{
-//
-//   if((iChar < 0) || (iChar >= get_length()))
-//   {
-//
-//      throw ::exception(error_bad_argument);
-//
-//   }
-//
-//   strsize nLength = get_length();
-//
-//   ansichar * pszBuffer = get_string_buffer();
-//
-//   pszBuffer[iChar] = ch;
-//
-//   release_string_buffer( nLength );
-//
-//}
-//
-
-//template < typename TYPE_CHAR >
-//inline void string_base < TYPE_CHAR >::set_string(const ansichar * pszSrc,strsize nLength )
-//{
-//
-//   if( nLength == 0 )
-//   {
-//
-//      Empty();
-//
-//   }
-//   else
-//   {
-//
-//      // It is possible that pszSrc points to a locationd inside of our
-//      // buffer.  GetBuffer() might machine m_psz if (1) the buffer
-//      // is shared or (2) the buffer is too small to hold the memory_new
-//      // string.  We detect this aliasing, and modify pszSrc to point_i32
-//      // into the newly allocated buffer instead.
-//      if(pszSrc == nullptr)
-//      {
-//
-//         throw ::exception(error_bad_argument);
-//
-//      }
-//
-//      uptr nOldLength = (uptr) get_length();
-//
-//      uptr nOffset = (uptr) (pszSrc - m_psz);
-//
-//      // If 0 <= nOffset <= nOldLength, then pszSrc points into our
-//      // buffer
-//      auto pszBuffer = get_string_buffer( nLength );
-//
-//      if( nOffset <= nOldLength )
-//      {
-//
-//#if _SECURE_TEMPLATE
-//
-//         CopyCharsOverlapped( pszBuffer, nLength,
-//                              pszBuffer+nOffset, nLength );
-//
-//#else
-//
-//         CopyCharsOverlapped( pszBuffer, pszBuffer+nOffset, nLength );
-//
-//#endif
-//
-//      }
-//      else
-//      {
-//
-//#if _SECURE_TEMPLATE
-//
-//         CopyChars( pszBuffer, nLength, pszSrc, nLength );
-//
-//#else
-//         CopyChars( pszBuffer, pszSrc, nLength );
-//
-//#endif
-//
-//      }
-//
-//      release_string_buffer( nLength );
-//
-//   }
-//
-//}
-
-//template < typename TYPE_CHAR >
-//inline void string_buffer < TYPE_CHAR >::set_length(strsize nLength )
-//{
-//
-//   ASSERT(nLength >= 0);
-//
-//   ASSERT(nLength <= m_nBufferLength);
-//
-//   if(nLength < 0)
-//   {
-//
-//      throw ::exception(error_bad_argument);
-//
-//   }
-//
-//   m_nLength = nLength;
-//
-//}
-//
-//
-//template < typename TYPE_CHAR >
-//inline void string_base < TYPE_CHAR >::release_string_buffer(strsize nNewLength )
-//{
-//
-//   ASSERT(nNewLength >= 0);
-//
-//   this->metadata()->set_length(nNewLength);
-//
-//}
+CLASS_DECL_ACME void to_string(string & str, const double & d);
 
 
-template < typename TYPE_CHAR >
-inline void string_base < TYPE_CHAR >::truncate(strsize nNewLength)
+
+inline strsize str::utf8_dec_len(const ansichar * pszBeg, const ansichar * psz)
 {
 
-   if (nNewLength >= this->length())
+   const ansichar * pszDec = unicode_prior(pszBeg, psz);
+
+   if (pszDec == nullptr)
    {
 
-      return;
+      return -1;
 
    }
 
-   if(nNewLength <= 0)
-   {
-
-      Empty();
-
-   }
-
-   get_string_buffer(nNewLength);
-
-   release_string_buffer(nNewLength);
+   return psz - pszDec;
 
 }
 
 
-template < typename TYPE_CHAR >
-inline void string_base < TYPE_CHAR >::set_at(strsize iChar, CHAR_TYPE ch)
+inline  strsize str::utf8_inc_len(const ansichar * psz)
 {
 
-   auto p = this->metadata();
-
-   if (p->natural_is_shared() || iChar >= p->length())
-   {
-
-      fork_string(maximum(p->length(), iChar + 1));
-
-   }
-
-   this->m_pdata[iChar] = ch;
+   return get_utf8_char_length(psz);
 
 }
 
 
-#ifdef WINDOWS
-#if OSBIT == 64
-typedef ::u64* int_ptr_atomic;
-#elif OSBIT == 32
-typedef unsigned int* int_ptr_atomic;
-#else
-#error "What is OSBIT?"
-#endif
-#else
-#ifdef ANDROID
-typedef int* int_ptr_atomic;
-#elif defined(RASPBIAN)
-typedef ::u64* int_ptr_atomic;
-#elif defined(LINUX)
-typedef ::u64* int_ptr_atomic;
-#elif defined(__APPLE__)
-typedef ::u64* int_ptr_atomic;
-#else
-typedef iptr int_ptr_atomic;
-#endif
-#endif
-
-
-
-
-
-template < >
-inline void std_string_assign(string& t, const ansichar* psz)
-{
-   t.assign(psz);
-}
-
-template < >
-inline void std_string_assign(string& t, const widechar* psz)
-{
-   t = unicode_to_utf8(psz);
-}
-
-template < >
-inline void std_string_bassign(string& t, const u8* psz, strsize nsize)
-{
-   t = (const ansichar*)string((const ansichar*)psz, minimum(nsize, strlen_s_dup((const ansichar*)psz, nsize)));
-}
-
-template < >
-inline void std_string_assign(string& t, const string* pstr)
-{
-   t = *pstr;
-}
-
-template < >
-inline void std_string_assign(string& t, const wstring* pwstr)
-{
-   t = unicode_to_utf8(*pwstr);
-}
-
-//template < >
-//inline void std_string_assign(string & t,const bstring * pbstr)
-//{
-//   t = string((const ansichar *)pbstr->get_data(),minimum(pbstr->get_length(),strlen_s_dup((const ansichar *)pbstr->get_data(),pbstr->get_length())));
-//}
-
-//template < >
-//inline void std_string_assign(string & t,const ansichar * psz)
-//{
-//   t.assign(psz);
-//}
-
-
-//template < >
-//inline void std_string_assign(string & t,const widechar * psz)
-//{
-//
-//   t.assign(psz);
-//
-//}
-
-
-template < >
-inline void std_string_bassign(wstring& t, const u8* psz, strsize nsize)
-{
-   t = utf8_to_unicode(string((const ansichar*)psz, minimum(nsize, strlen_s_dup((const ansichar*)psz, nsize))));
-}
-
-template < >
-inline void std_string_assign(wstring& t, const string* pstr)
-{
-   t = utf8_to_unicode(*pstr);
-}
-
-//template < >
-//inline void std_string_assign(wstring & t,const string * pstr)
-//{
-//   t = utf8_to_unicode(*pstr);
-//}
-
-template < >
-inline void std_string_assign(wstring& t, const wstring* pwstr)
-{
-   t = *pwstr;
-}
-
-//template < >
-//inline void std_string_assign(wstring & t,const bstring * pbstr)
-//{
-//   t = utf8_to_unicode(string((const ansichar *)pbstr->get_data(),minimum(pbstr->get_length(),strlen_s_dup((const ansichar *)pbstr->get_data(),pbstr->get_length()))));
-//}
-
-
-//template < >
-//inline void std_string_assign(bstring & t,const ansichar * psz)
-//{
-//   t.assign(psz);
-//}
-//
-//template < >
-//inline void std_string_assign(bstring & t,const widechar * psz)
-//{
-//   t.assign(unicode_to_utf8(psz));
-//}
-//
-//template < >
-//inline void std_string_bassign(bstring & t,const u8 * psz,strsize nsize)
-//{
-//   t.assign(string((const ansichar *)psz,minimum(nsize,strlen_s_dup((const ansichar *)psz,nsize))));
-//}
-//
-//template < >
-//inline void std_string_assign(bstring & t,const string * pstr)
-//{
-//   t = (const ansichar *) *pstr;
-//}
-//
-//template < >
-//inline void std_string_assign(bstring & t,const wstring * pwstr)
-//{
-//   t = (const ansichar *) unicode_to_utf8(*pwstr);
-//}
-//
-//template < >
-//inline void std_string_assign(bstring & t,const bstring * pbstr)
-//{
-//   t = *pbstr;
-//}
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// namespace str
-// {
-
-
-   //inline void from(string & str, const wstring & wstr)
-   //{
-
-   //   unicode_to_utf8(str, wstr, wstr.get_length());
-
-   //}
-
-
-//inline string::string(const istring & istr) :
-//   string_base(istr.m_str)
-//{
-//
-//}
-
-
-
-
-/// 
-//#if !defined(WINDOWS) && !defined(LINUX) && !defined(FREEBSD)
-//
-//
-//inline void to_string(string& str, const unsigned long & ul)
-//{
-//
-//   str = ui64toa_dup(ul, 10);
-//
-//}
-//
-//#endif
-
-
-CLASS_DECL_ACME void to_string(string& str, const float & f);
-
-
-CLASS_DECL_ACME void to_string(string& str, const double & d);
-
-//
-//#if defined(ANDROID) || defined(RASPBIAN)
-//
-//inline void to_string(string& str, const long int& i)
-//{
-//
-//   str = i64toa_dup(i);
-//
-//}
-//
-//#endif
-
-
-
-//#ifdef WINDOWS
-//
-//
-//inline ::string __string(const long & l)
-//{
-//
-//   str = i64toa_dup(l);
-//
-//}
-//
-//
-//
-////inline ::string __string(const unsigned long &ul)
-////{
-////
-////   str = ui64toa_dup(ul);
-////
-////}
-//
-//
-//#elif defined(__APPLE__)
-//
-//
-//inline void to_string(string& str, const long& l)
-//{
-//
-//   str = i64toa_dup(l);
-//
-//}
-//
-//
-//#endif
-
-
-//} // namespace str
-
-
-//#if defined(_UWP) && defined(__cplusplus_winrt)
-//
-//
-//inline string & string::operator = (String ^ & str)
-//{
-//
-//
-//   return operator = (begin(str));
-//
-//
-//}
-//
-//
-//#endif
-
-//
-//
-//inline bool string_format::defer_get_additional_argument(const ansichar * & s)
-//{
-//
-//   throw ::exception(::exception("missing argument value"));
-//
-//}
-//
-//
-//template < typename T, typename... Args>
-//inline void string_format::defer_get_additional_argument(const ansichar * & s, const T & value, Args... args)
-//{
-//
-//   if(m_estate == e_state_initial || m_estate == state_parse_precision || m_estate == state_parse_length)
-//   {
-//
-//      if(!parse(s))
-//      {
-//
-//         str::format_type(this, value);
-//
-//         m_estate = e_state_initial;
-//
-//         format(s, args...);
-//
-//         return;
-//
-//      }
-//
-//   }
-//
-//   if(m_estate == state_waiting_width)
-//   {
-//
-//      throw ::exception(::exception("width should plain i32"));
-//
-//   }
-//   else if(m_estate == state_waiting_precision)
-//   {
-//
-//      throw ::exception(::exception("width should plain i32"));
-//
-//   }
-//
-//   defer_get_additional_argument(s, args...);
-//
-//}
-//
-
-// namespace str
-// {
-
-//=======
-//>>>>>>> origin/basis
-inline string string_from_strdup(const ansichar* psz)
+inline bool str::namespaced(const ansichar * psz, const ansichar * pszNamespace, const ansichar * pszSeparator)
 {
 
-   if (psz == nullptr)
+   if (::is_null(psz) || ::is_null(pszNamespace) || *psz == '\0' || *pszNamespace == '\0')
    {
-
-      return "";
-
-   }
-
-   string str;
-
-   try
-   {
-
-      str = psz;
-
-   }
-   catch (...)
-   {
-
-   }
-
-   try
-   {
-
-      ::free((void*)psz);
-
-   }
-   catch (...)
-   {
-
-   }
-
-   return str;
-
-}
-
-//
-//namespace str
-//{
-//
-
-   inline strsize str::utf8_dec_len(const ansichar* pszBeg, const ansichar* psz)
-   {
-
-      const ansichar* pszDec = prior(pszBeg, psz);
-
-      if (pszDec == nullptr)
-      {
-
-         return -1;
-
-      }
-
-      return psz - pszDec;
-
-   }
-
-
-   inline  strsize str::utf8_inc_len(const ansichar* psz)
-   {
-
-      return get_utf8_char_length(psz);
-
-   }
-
-
-   inline bool str::namespaced(const ansichar * psz, const ansichar * pszNamespace, const ansichar* pszSeparator)
-   {
-
-      if (::is_null(psz) || ::is_null(pszNamespace) || *psz == '\0' || *pszNamespace == '\0')
-      {
-
-         return false;
-
-      }
-
-      if (strcmp(psz, pszNamespace) == 0)
-      {
-
-         return true;
-
-      }
-
-      if (str::begins(psz, string(pszNamespace) + pszSeparator))
-      {
-
-         return true;
-
-      }
 
       return false;
 
    }
 
-
-   inline bool str::begins_ci_skip(const char*& psz, const char* pszPrefix)
+   if (strcmp(psz, pszNamespace) == 0)
    {
-
-      auto length = strlen(pszPrefix);
-
-      if (strnicmp(psz, pszPrefix, length) != 0)
-      {
-
-         return false;
-
-      }
-
-      psz += length;
 
       return true;
 
    }
 
-
-   /// Returns:
-   /// end of line, and;
-   /// next line or null if no next line
-   inline struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const char* psz)
+   if (string_begins(psz, string(pszNamespace) + pszSeparator))
    {
 
-      struct ::end_of_line_and_next_line pair;
-
-      pair.end_of_line = strpbrk(psz, "\r\n\0");
-
-      pair.next_line = pair.end_of_line;
-
-      if (!*pair.next_line  )
-      {
-
-         pair.next_line   = nullptr;
-
-      }
-      else if (*pair.next_line   == '\r')
-      {
-
-         pair.next_line  ++;
-
-         if (*pair.next_line   == '\r')
-         {
-
-            pair.next_line  ++;
-
-         }
-
-      }
-      else if (*pair.next_line   == '\n')
-      {
-
-         pair.next_line  ++;
-
-      }
-      else
-      {
-
-         throw ::exception(error_failed);
-
-      }
-
-      return pair;
+      return true;
 
    }
-//
-//
-//} // namespace str
-//
 
-template < typename TYPE_CHAR >
-inline bool string_base < TYPE_CHAR >::equals(const CHAR_TYPE* psz) const
-{
-
-   return compare(psz) == 0;
+   return false;
 
 }
 
 
-template < typename TYPE_CHAR >
-inline bool string_base < TYPE_CHAR >::equals_ci(const CHAR_TYPE* psz) const
+inline bool str::begins_ci_skip(const char *& psz, const char * pszPrefix)
 {
 
-   return compare_ci(psz) == 0;
+   auto length = strlen(pszPrefix);
+
+   if (strnicmp(psz, pszPrefix, length) != 0)
+   {
+
+      return false;
+
+   }
+
+   psz += length;
+
+   return true;
 
 }
 
 
-//// find the first occurrence of character 'ch', starting at strsize 'iStart'
-//inline strsize string::find(ansichar ch) const RELEASENOTHROW
-//{
-//
-//   const ansichar * psz = strchr(m_psz, ch);
-//
-//   return psz == nullptr ? -1 : psz - m_psz;
-//
-//}
-//
+inline const ansichar * str::windows_bbqbunc(const ansistring &) { return "\\\\?\\UNC"; }
+inline const ansichar * str::windows_bbqb(const ansistring &) { return "\\\\?\\"; }
+inline const ansichar * str::windows_bb(const ansistring &) { return "\\\\"; }
 
-//// find the first occurrence of character 'ch', starting at strsize 'iStart'
-//inline strsize string::find(ansichar ch, strsize iStart) const RELEASENOTHROW
-//{
-//
-//   const ansichar * psz = strchr(&m_psz[iStart], ch);
-//
-//   return psz == nullptr ? -1 : psz - m_psz;
-//
-//}
+inline const widechar * str::windows_bbqbunc(const widestring &) { return L"\\\\?\\UNC"; }
+inline const widechar * str::windows_bbqb(const widestring &) { return L"\\\\?\\"; }
+inline const widechar * str::windows_bb(const widestring &) { return L"\\\\"; }
 
 
-int get_mem_free_available_kb();
-
-
-template < typename TYPE_CHAR >
-inline void string_meta_data < TYPE_CHAR > ::set_length(::strsize strsize)
+/// Returns:
+/// end of line, and;
+/// next line or null if no next line
+inline struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const char * psz)
 {
 
-   if (this->natural_is_shared())
+   struct ::end_of_line_and_next_line pair;
+
+   pair.end_of_line = strpbrk(psz, "\r\n\0");
+
+   pair.next_line = pair.end_of_line;
+
+   if (!*pair.next_line)
    {
 
-      throw ::exception(error_wrong_state, "invalid state");
+      pair.next_line = nullptr;
+
+   }
+   else if (*pair.next_line == '\r')
+   {
+
+      pair.next_line++;
+
+      if (*pair.next_line == '\r')
+      {
+
+         pair.next_line++;
+
+      }
+
+   }
+   else if (*pair.next_line == '\n')
+   {
+
+      pair.next_line++;
+
+   }
+   else
+   {
+
+      throw_exception(error_failed);
 
    }
 
-   auto strsizeStorage = this->memsize_in_chars();
-
-   if (strsize >= strsizeStorage)
-   {
-
-      throw ::exception(error_bad_argument);
-
-   }
-
-   this->m_datasize = strsize;
-
-   this->get_data()[strsize] = (TYPE_CHAR)0;
-
-   this->get_data()[strsizeStorage - 1] = (TYPE_CHAR)0;
+   return pair;
 
 }
-
-
-
-inline int str::get_utf8_char_length(const char * psz)
-{
-
-   int len = ch_uni_len(*psz);
-   if (len == 0) return 0;
-   if (*psz++ == 0)
-   {
-      return -1;
-   }
-   if (len == 1) return 1;
-   if (*psz++ == 0)
-   {
-      return -1;
-   }
-   if (len == 2) return 2;
-   if (*psz++ == 0)
-   {
-      return -1;
-   }
-   if (len == 3) return 3;
-   if (*psz++ == 0)
-   {
-      return -1;
-   }
-   if (len == 4) return 4;
-   if (*psz++ == 0)
-   {
-      return -1;
-   }
-   if (len == 5) return 5;
-   if (*psz++ == 0)
-   {
-      return -1;
-   }
-   if (len == 6) return 6;
-
-   {
-      return -1;
-   }
-   return -1;
-}
-
-
-
-
-
 
 
 

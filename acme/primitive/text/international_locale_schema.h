@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/atom.h"
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/collection/atom_array.h"
+
+
 namespace text
 {
 
@@ -10,7 +15,7 @@ namespace text
 
 
       class CLASS_DECL_ACME locale_schema :
-         virtual public ::matter
+         virtual public ::particle
       {
       public:
 
@@ -23,16 +28,16 @@ namespace text
          bool                       m_bSchemaOnly;
          bool                       m_bAddAlternateStyle;
 
-         atom                         m_atomLocale;
-         atom                         m_atomSchema;
+         atom                       m_atomLocale;
+         atom                       m_atomSchema;
 
-         comparable_array < atom >    m_idaLocale;
-         comparable_array < atom >    m_idaSchema;
+         atom_array                 m_idaLocale;
+         atom_array                 m_idaSchema;
 
 
          locale_schema();
          locale_schema(const locale_schema& ls);
-         virtual ~locale_schema();
+         ~locale_schema() override;
 
 
          ::atom localeid(const char* pszLocale, strsize iLen);

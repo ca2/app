@@ -1,93 +1,6 @@
 #pragma once
 
 
-// CLASS_DECL_ACME bool avoid_bad_status_exception();
-// CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet);
-
-
-#include "callstack.h"
-
-#include "exception.h"
-
-#include "not_implemented.h"
-
-#include "interface_only.h"
-
-//CLASS_DECL_ACME string estatus_to_string(::e_status estatus);
-
-//#include "base.h"
-
-//#include "simple.h"
-#include "cancel.h"
-
-
-#include "file.h"
-
-
-//#include "memory.h"
-//#include "invalid_argument.h"
-
-#include "translator.h"
-#include "standard.h"
-
-
-inline ::e_status errno_to_status(i32 nErrno) { return _errno_to_status(nErrno); }
-
-inline ::e_status failed_errno_to_status(i32 nErrno) { return _failed_errno_to_status(nErrno); }
-
-
-
-
-
-//namespace exception
-//{
-
-//   CLASS_DECL_ACME void throw_interface_only(const char * pszMessage = nullptr);
-//   CLASS_DECL_ACME void throw_not_implemented(const char * pszMessage = nullptr);
-//
-//}
-
-
-
-//#include "index_out_of_bounds.h"
-//#include "overflow.h"
-//#include "runtime.h"
-//#include "range.h"
-
-
-//#include "not_implemented.h"
-//#include "void_implementation.h"
-//#include "interface_only.h"
-//#include "not_installed.h"
-//#include "not_supported.h"
-#include "exit.h"
-//#include "not_licensed.h"
-//#include "temporary.h"
-//#include "installing.h"
-
-//#include "assert.h"
-//#include "misc.h"
-
-
-
-#include "io.h"
-#include "resource.h"
-//#include "user.h"
-
-
-
-
-
-//#include "hresult.h"
-
-
-
-
-#ifndef ___JUMPBUF
-// Use portable 'jmp_buf' defined by ANSI by default.
-#define ___JUMPBUF jmp_buf
-#endif
-
 namespace datetime
 {
 
@@ -99,11 +12,11 @@ namespace datetime
 } // namespace datetime
 
 
-class dump_context;
-
-// ::earth::time_span diagnostics and serialization
-CLASS_DECL_ACME dump_context & operator<<(dump_context & dumpcontext, const ::earth::time_span & dateSpanSrc);
-CLASS_DECL_ACME dump_context & operator<<(dump_context & dumpcontext, const ::earth::time & dateSrc);
+//class dump_context;
+//
+//// ::earth::time_span diagnostics and serialization
+//CLASS_DECL_ACME dump_context & operator<<(dump_context & dumpcontext, const ::earth::time_span & dateSpanSrc);
+//CLASS_DECL_ACME dump_context & operator<<(dump_context & dumpcontext, const ::earth::time & dateSrc);
 
 
 
@@ -195,20 +108,18 @@ void ::acme::DoForAllClasses(void (c_cdecl *pfn)(::type pClass,
 #endif //NNDEBUG
 
 
-CLASS_DECL_ACME string __get_thread_note();
-CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
 
 
 // Debug ASSERTs then throws. Retail throws if condition not met
 #define ENSURE_THROW(cond, exception)   \
    do { i32 _gen__condVal=!!(cond); ASSERT(_gen__condVal); if (!(_gen__condVal)){exception;} } while (false)
-#define ENSURE(cond)      ENSURE_THROW(cond, throw ::exception(error_bad_argument))
-#define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw ::exception(error_bad_argument))
+#define ENSURE(cond)      ENSURE_THROW(cond, throw_exception(error_bad_argument))
+#define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw_exception(error_bad_argument))
 
 // Debug ASSERT_VALIDs then throws. Retail throws if pOb is nullptr
 #define ENSURE_VALID_THROW(pOb, exception)   \
    do { ASSERT_VALID(pOb); if (!(pOb)){exception;} } while (false)
-#define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, throw ::exception(error_bad_argument))
+#define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, throw_exception(error_bad_argument))
 
 #define ASSERT_POINTER(p, type) \
    ASSERT(((p) != nullptr) && __is_valid_address((p), sizeof(type), false))
@@ -313,9 +224,9 @@ CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int nLine);
 //CLASS_DECL_ACME void TRACE(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 //CLASS_DECL_ACME void __tracef(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
 //CLASS_DECL_ACME void __tracev(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
-CLASS_DECL_ACME void __assert_object_ok(const ::matter * pOb, const char * pszFileName, i32 nLine);
+CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const char * pszFileName, i32 nLine);
 
-CLASS_DECL_ACME void __dump(const ::matter * pOb);
+CLASS_DECL_ACME void __dump(const ::particle * pparticle);
 
 
 #define THIS_FILE          __FILE__
@@ -339,16 +250,23 @@ CLASS_DECL_ACME void __dump(const ::matter * pOb);
 //#include "system.h"
 
 
-#include "parsing.h"
+//#include "parsing.h"
 
 
 //#include "invalid_type.h"
 
 
-#include  "serialization.h"
+//#include  "serialization.h"
 
 
 //#include  "file_open.h"
+
+
+
+
+
+
+CLASS_DECL_ACME void throw_exit_exception(const ::e_status& estatus = error_failed, ::task* playeredThreadExit = nullptr, const char* pszMessage = nullptr);
 
 
 

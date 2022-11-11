@@ -1,14 +1,20 @@
 #pragma once
 
 
-#include "item.h"
+//#include "item.h"
 
 
 #include "plain_text_file_options.h"
 
 
-#include "stdio_file.h"
+//#include "stdio_file.h"
 
+inline bool IsDirSep(widechar ch)
+{
+
+   return (ch == '\\' || ch == '/');
+
+}
 
 
 
@@ -18,53 +24,8 @@ CLASS_DECL_ACME int get_generate_sync_io_error();
 CLASS_DECL_ACME void set_generate_sync_io_error(int iError);
 
 
-/////////////////////////////////////////////////////
-//
-//    md5 implementation
-//    intentional duplication because spa
-//    needs md5
-//
-CLASS_DECL_ACME string file_md5_dup(const char* psz);
-//
-//
-/////////////////////////////////////////////////////
 
 
-class CLASS_DECL_ACME sync_io_error
-{
-public:
-
-
-   int   m_iGenerateBefore;
-   int   m_iErrorBefore;
-   int * m_piError;
-
-
-   sync_io_error(int * piError = nullptr)
-   {
-      m_iGenerateBefore = get_generate_sync_io_error();
-      m_iErrorBefore = get_sync_io_error();
-      set_sync_io_error(0);
-      set_generate_sync_io_error(1);
-      m_piError = piError;
-   }
-
-   ~sync_io_error()
-   {
-      if (m_piError != nullptr)
-      {
-         *m_piError = get_sync_io_error();
-      }
-      set_generate_sync_io_error(m_iGenerateBefore);
-      set_sync_io_error(m_iErrorBefore);
-   }
-
-   bool none() const { return get_sync_io_error() == 0; }
-
-
-   operator bool() const { return get_sync_io_error() != 0; }
-
-};
 
 
 namespace file
@@ -73,6 +34,8 @@ namespace file
    
    class insert_item;
    class edit_file;
+   class enumerator;
+
 
 };
 
@@ -120,10 +83,10 @@ class memory_base;
 
 
 
-template < typename N, enum_type t_etypePayload >
-class numeric_array;
+//template < typename N, enum_type m_etypeContainer >
+//class numeric_array;
 
-typedef CLASS_DECL_ACME numeric_array < u32 > u32_array;
+
 
 
 
@@ -131,7 +94,7 @@ typedef CLASS_DECL_ACME numeric_array < u32 > u32_array;
 
 
 //CLASS_DECL_ACME string file_path_title(const char * path);
-//CLASS_DECL_ACME string file_path_name(const char * path);
+CLASS_DECL_ACME const char * file_path_name(const char * path);
 
 
 
@@ -146,33 +109,33 @@ CLASS_DECL_ACME ::file::path dir_base_module();
 
 #include "opened.h"
 
-#include "exception.h"
+//#include "exception.h"
 
-#include "status.h"
+//#include "status.h"
 
-#include "stream.h"
+//#include "stream.h"
 
-#include "opened.h"
+//#include "opened.h"
 
 #include "dir.h"
 
-#include "composite.h"
+//#include "composite.h"
 
 //#include "serializable.h"
 
-#include "path.h"
+//#include "path.h"
 
-#include "buffer.h"
+//#include "buffer.h"
 
-#include "text_file.h"
+//#include "text_file.h"
 
 //#include "memory_file.h"
 
-#include "string_buffer.h"
+//#include "string_buffer.h"
 
-#include "text_stream.h"
+//#include "text_stream.h"
 
-#include "payload_stream.h"
+//#include "payload_stream.h"
 
 
 
@@ -207,6 +170,9 @@ namespace file
    using seekdir = ::enum_seek;
 
 
+   class writable;
+   class file;
+
 }
 
 
@@ -219,7 +185,7 @@ namespace file
 
 
 
-#include "item_array.h"
+//#include "item_array.h"
 
 
 //#include "html_file.h"
@@ -232,22 +198,25 @@ namespace file
 namespace file
 {
 
-   template < typename TRANSFER >
-   bool output(::file::file* pfileOut, TRANSFER* ptransfer, bool (TRANSFER::* pfn)(::file::file* pfileOut, ::file::file* pfileIn), ::file::file* pfileIn)
-   {
+   //template < typename TRANSFER >
+   CLASS_DECL_ACME bool output(::file::file* pfileOut, const ::function < bool (::file::file* pfileOut, ::file::file* pfileIn) > & function, ::file::file* pfileIn);
+//   {
+//
+//      throw ::not_implemented();
+//
+//   }
 
-      throw ::not_implemented();
 
-   }
+} // namespace file
 
 
-}
+
 
 
 #include "listing_provider.h"
 
 
-#include "folder.h"
+//#include "folder.h"
 
 
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+//#include "apex/networking/sockets/_sockets.h"
 
 
 #if defined(LINUX) || defined(MACOS)
@@ -30,10 +30,10 @@ namespace sockets
    }
 
 
-   void net::initialize(::object * pobject)
+   void net::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      auto estatus = ::object::initialize(pparticle);
 
       if(estatus.succeeded())
       {
@@ -47,7 +47,7 @@ namespace sockets
    }
 
 
-   //void net::initialize(::object * pobject)
+   //void net::initialize(::particle * pparticle)
    //{
 
    //   return ::success;

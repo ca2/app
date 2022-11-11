@@ -41,9 +41,9 @@ color32_t SetAValue(byte a, color32_t color32)
 
 
 
-            frame_002::frame_002(::object * pobject) :
-               object(pobject),
-               frame(pobject)
+            frame_002::frame_002(::particle * pparticle) :
+               object(pparticle),
+               frame(pparticle)
             {
 
                set_style(StyleLightGreen);

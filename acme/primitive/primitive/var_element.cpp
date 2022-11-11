@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/primitive/primitive/payload.h"
 
 
 /*
@@ -32,7 +33,7 @@ default:
 
 
 #define VAR_SET_ELEMENT(P, TYPE, ENUM_TYPE) \
-payload.P = dynamic_cast < TYPE * >(pobject); \
+payload.P = dynamic_cast < TYPE * >(pparticle); \
 if(::is_set(payload.m_pstra)) return ENUM_TYPE;
 
 

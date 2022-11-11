@@ -2,7 +2,7 @@
 
 
 #include "aura/_.h" // psystem->ftlibrary()
-#include "acme/operating_system.h"
+//#include "acme/operating_system.h"
 ////#include "aura/graphics/draw2d/_component.h"
 //#include "acme/primitive/geometry2d/_impl.h"
 
@@ -39,7 +39,7 @@
 #endif
 
 
-::mutex * cairo_mutex();
+::particle * cairo_mutex();
 void init_cairo_mutex();
 void destroy_cairo_mutex();
 
@@ -108,7 +108,7 @@ namespace draw2d_cairo
 
 
 
-::mutex * cairo_mutex();
+::particle * cairo_mutex();
 void init_cairo_mutex();
 void destroy_cairo_mutex();
 

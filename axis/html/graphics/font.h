@@ -1,12 +1,15 @@
 #pragma once
 
 
+#include "acme/primitive/string/string.h"
+
+
 namespace html
 {
 
 
    class CLASS_DECL_AXIS font :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
       
@@ -23,7 +26,7 @@ namespace html
       font(const class font & font);
       
       
-      bool create(::object * pobject);
+      bool create(::particle * pparticle);
 
 
       bool operator == (const font & font) const;

@@ -186,7 +186,7 @@ namespace serial
        * \throw ::exception( serial::io_exception
        * \throw ::exception( invalid_argument
        */
-      serial (::object * pobject,
+      serial (::particle * pparticle,
               const string &port = "",
               u32 baudrate = 9600,
               Timeout timeout = Timeout(),

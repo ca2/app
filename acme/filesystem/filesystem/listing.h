@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "path_array.h"
+
+
 namespace file
 {
 
@@ -16,7 +19,7 @@ namespace file
       bool                 m_bFile = true;
       bool                 m_bDir = true;
       bool                 m_bRecursive = false;
-      e_extract            m_eextract = extract_first;
+      enum_extract         m_eextract = e_extract_first;
 
 
    };
@@ -154,65 +157,14 @@ namespace file
       listing & operator = (const listing & listing);
 
 
-      index name_find_first_ci(const path & pcsz,index find = 0,index last = -1) const
+      index name_find_first_ci(const path & pcsz,index find = 0,index last = -1) const;
 
-      {
-         if(find < 0)
-            find += this->get_count();
-         if(last < 0)
-            last += this->get_count();
-         for(; find <= last; find++)
-         {
-            if(ansi_icmp(this->element_at(find).name(), pcsz) == 0)
+      bool name_move_ci(const path & pcsz,index iIndex);
 
-               return find;
-         }
-         return -1;
-      }
-
-      bool name_move_ci(const path & pcsz,index iIndex)
-
-      {
-         index i = name_find_first_ci(pcsz);
-
-         if(i < 0)
-            return false;
-         path point = element_at(i);
-         
-         string t;
-         
-         if (i < m_straTitle.get_count())
-         {
-         
-            t = m_straTitle[i];
-
-         }
-
-         erase_at(i);
-         insert_at(iIndex,pcsz);
-
-         return true;
-      }
+      bool preferred_name(const path & pcsz);
 
 
-      bool preferred_name(const path & pcsz)
-
-      {
-         return name_move_ci(pcsz,0);
-
-      }
-
-
-      ::count preferred_name(path_array & stra)
-      {
-         ::count count = 0;
-         for(index i = stra.get_upper_bound(); i >= 0; i--)
-         {
-            if(preferred_name(stra[ i]))
-               count++;
-         }
-         return count;
-      }
+      ::count preferred_name(path_array & stra);
 
 
       void defer_add(::file::path & path);

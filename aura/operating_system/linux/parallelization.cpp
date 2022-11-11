@@ -1,5 +1,10 @@
 #include "framework.h"
-#include "_linux.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/platform/node.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/primitive/object.h"
+
+
 //#include "gnome_gnome.h"
 
 
@@ -177,7 +182,7 @@ CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, ::duration d
 
    auto pevent = __new(manual_reset_event);
 
-   auto psystem = pobjectRunnable->m_psystem;
+   auto psystem = pobjectRunnable->acmesystem();
 
    auto pnode = psystem->node();
 
@@ -207,7 +212,7 @@ CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, ::duration d
 CLASS_DECL_AURA void main_async_runnable(::object * prunnable)
 {
 
-   auto psystem = prunnable->m_psystem;
+   auto psystem = prunnable->acmesystem();
 
    auto pnode = psystem->node();
 

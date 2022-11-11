@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/filesystem/file/item.h"
+
+
 namespace userfs
 {
 

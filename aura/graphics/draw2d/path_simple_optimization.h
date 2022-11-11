@@ -3,7 +3,7 @@
 
 
 #include "path_optimization.h"
-#include "acme/primitive/geometry2d/_collection_basic.h"
+#include "acme/primitive/geometry2d/_collection.h"
 
 
 namespace draw2d

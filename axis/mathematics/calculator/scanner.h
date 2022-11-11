@@ -22,7 +22,7 @@ numbers:
 
 
    class CLASS_DECL_AXIS scanner :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
 

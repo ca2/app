@@ -41,6 +41,8 @@
 
 #define PRIestatus PRIi64
 
+#define DECLARE_SE_EXCEPTION_ERROR(name) IDENTIFIER_CONCATENATE(error_,name)
+
 
 enum enum_status : ::int64_t
 {
@@ -126,6 +128,7 @@ enum enum_status : ::int64_t
    error_library_not_loaded,
    error_debug_testing,
    error_xml_parsing,
+   error_encoding,
 
 
 error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),
@@ -190,6 +193,31 @@ error_invalid_type,
 error_unexpected_situation,
 error_datetime_parser,
 error_invalid_empty_argument,
+error_segmentation_fault,
+DECLARE_SE_EXCEPTION_ERROR(standard_datatype_misalignment),
+DECLARE_SE_EXCEPTION_ERROR(standard_breakpoint),
+DECLARE_SE_EXCEPTION_ERROR(standard_single_step),
+DECLARE_SE_EXCEPTION_ERROR(standard_array_bounds_exceeded),
+DECLARE_SE_EXCEPTION_ERROR(standard_flt_denormal_operand),
+DECLARE_SE_EXCEPTION_ERROR(standard_flt_divide_by_zero),
+DECLARE_SE_EXCEPTION_ERROR(standard_flt_inexact_result),
+DECLARE_SE_EXCEPTION_ERROR(standard_flt_invalid_operation),
+DECLARE_SE_EXCEPTION_ERROR(standard_flt_overflow),
+DECLARE_SE_EXCEPTION_ERROR(standard_flt_stack_check),
+DECLARE_SE_EXCEPTION_ERROR(standard_flt_underflow),
+DECLARE_SE_EXCEPTION_ERROR(standard_int_divide_by_zero),
+DECLARE_SE_EXCEPTION_ERROR(standard_int_overflow),
+DECLARE_SE_EXCEPTION_ERROR(standard_priv_instruction),
+DECLARE_SE_EXCEPTION_ERROR(standard_in_page_error),
+DECLARE_SE_EXCEPTION_ERROR(standard_illegal_instruction),
+DECLARE_SE_EXCEPTION_ERROR(standard_noncontinuable_exception),
+DECLARE_SE_EXCEPTION_ERROR(standard_stack_overflow),
+DECLARE_SE_EXCEPTION_ERROR(standard_invalid_disposition),
+DECLARE_SE_EXCEPTION_ERROR(standard_guard_page),
+DECLARE_SE_EXCEPTION_ERROR(standard_invalid_handle),
+DECLARE_SE_EXCEPTION_ERROR(standard_microsoft_cpp),
+DECLARE_SE_EXCEPTION_ERROR(standard_winrt_originate_error),
+
 
 error_io = INT_FAILURE_STATUS(STATUS_RANGE_IO),
 error_serial,
@@ -309,8 +337,8 @@ INLINE_CONSTEXPR bool is_exit_exception_status(::enum_status estatus)
 }
 
 
-CLASS_DECL_ACME ::enum_status _errno_to_status(i32 nErrno);
-CLASS_DECL_ACME ::enum_status _failed_errno_to_status(i32 nErrno);
+CLASS_DECL_ACME ::enum_status _errno_status(i32 nErrno);
+CLASS_DECL_ACME ::enum_status _failed_errno_status(i32 nErrno);
 CLASS_DECL_ACME int _status_exit_code(enum_status estatus);
 
 

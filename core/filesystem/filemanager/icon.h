@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/string/string.h"
+
+
 namespace filemanager
 {
 
@@ -10,7 +13,7 @@ namespace filemanager
    public:
 
 
-      i32     m_iIcon;
+      i32         m_iIcon;
       string      m_strPath;
       string      m_strExtension;
 

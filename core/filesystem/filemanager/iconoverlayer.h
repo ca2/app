@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 namespace filemanager
 {
 
@@ -12,9 +15,9 @@ namespace filemanager
 
 
       iconoverlayer();
-      virtual ~iconoverlayer();
+      ~iconoverlayer() override;
 
-      virtual void initialize(::object * pobject) = 0;
+      virtual void initialize(::particle * pparticle) = 0;
       virtual void destroy() = 0;
 
 

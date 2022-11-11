@@ -2,6 +2,7 @@
 #include "font.h"
 #include "draw2d.h"
 #include "graphics.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/host.h"
 
 
@@ -155,12 +156,12 @@ namespace draw2d_cairo
    }
 
 
-   void font::dump(dump_context & dumpcontext) const
-   {
-
-      ::write_text::font::dump(dumpcontext);
-
-   }
+//   void font::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::write_text::font::dump(dumpcontext);
+//
+//   }
 
 
    void font::create(::draw2d::graphics * pgraphics, i8 iCreate)
@@ -171,7 +172,7 @@ namespace draw2d_cairo
       if (m_path.has_char())
       {
 
-         ::pointer<::draw2d_cairo::draw2d>pdraw2d = m_psystem->m_paurasystem->draw2d();
+         ::pointer<::draw2d_cairo::draw2d>pdraw2d = acmesystem()->m_paurasystem->draw2d();
 
          auto pfontface = pdraw2d->private_ftface_from_file(pgraphics->m_pcontext, m_path);
 

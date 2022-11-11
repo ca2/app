@@ -2,6 +2,9 @@
 #include "font_enumeration.h"
 #include "font_enumeration_item.h"
 #include "font.h"
+#include "acme/constant/id.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/write_text/fonts.h"
 
@@ -31,11 +34,11 @@ namespace write_text
    }
 
 
-   void font_enumeration::initialize(::object * pobject)
+   void font_enumeration::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -61,13 +64,13 @@ namespace write_text
       else if (ptopic->m_atom == id_operating_system_font_list_change)
       {
 
-         ::pointer<::aura::system>psystem = m_psystem;
+         ::pointer<::aura::system>psystem = acmesystem();
 
          psystem->signal(id_operating_system_font_list_change);
 
          update();
 
-         ptopic->set_modified();
+         ptopic->set_modified_flag();
 
       }
 
@@ -77,7 +80,7 @@ namespace write_text
    bool font_enumeration::has_font_name(const string& str)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       for (auto& m_pfontenumerationitema : *m_pfontenumerationitema)
       {
@@ -99,13 +102,13 @@ namespace write_text
    ::pointer<::write_text::font_enumeration_item>font_enumeration::similar_font(const ::string & psz)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       ::pointer<::write_text::font_enumeration_item>pitemFound;
 
       double dMaxSimilarity = 0.2;
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto * pdraw2d = psystem->draw2d();
 
@@ -164,7 +167,7 @@ namespace write_text
       else
       {
 
-         auto psystem = m_psystem->m_paurasystem;
+         auto psystem = acmesystem()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 
@@ -190,7 +193,7 @@ namespace write_text
 
       pitema = __new(::write_text::font_enumeration_item_array);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -198,7 +201,7 @@ namespace write_text
 
       sort_fonts();
 
-      if (m_pfontenumerationitema.is_set() && ::papaya::array::are_all_elements_equal(*pitema, *m_pfontenumerationitema))
+      if (m_pfontenumerationitema.is_set() && ::acme::array::is_equal(*pitema, *m_pfontenumerationitema))
       {
 
          m_bUpdating = false;
@@ -215,7 +218,7 @@ namespace write_text
 
       m_bUpdating = false;
 
-      ptopic->set_modified();
+      ptopic->set_modified_flag();
 
       //ptopic->m_atom = id_handle;
 
@@ -233,7 +236,7 @@ namespace write_text
 
       pitema = __new(::write_text::font_enumeration_item_array);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
@@ -293,7 +296,7 @@ namespace write_text
    void font_enumeration::sort_fonts()
    {
 
-      ::sort::array::predicate_sort(*m_pfontenumerationitema, [&](auto& a, auto& b)
+      ::acme::array::predicate_sort(*m_pfontenumerationitema, [&](auto& a, auto& b)
       {
 
          return a->m_strName < b->m_strName;

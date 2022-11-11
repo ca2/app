@@ -1,5 +1,9 @@
 #include "framework.h"
+#include "data.h"
+#include "listener.h"
+#include "container.h"
 #include "acme/constant/id.h"
+#include "acme/exception/exception.h"
 
 
 namespace data
@@ -30,24 +34,24 @@ namespace data
    }
 
    
-   void data::assert_ok() const
-   {
-
-      ::matter::assert_ok();
-
-   }
-
-
-   void data::dump(dump_context & dumpcontext) const
-   {
-
-      ::matter::dump(dumpcontext);
-
-      //dumpcontext << "m_strTitle = " << m_strTitle;
-      //dumpcontext << "\nm_path = " << m_path;
-      //dumpcontext << "\nm_bModified = " << m_bModified;
-
-   }
+//   void data::assert_ok() const
+//   {
+//
+//      ::matter::assert_ok();
+//
+//   }
+//
+//
+//   void data::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::matter::dump(dumpcontext);
+//
+//      //dumpcontext << "m_strTitle = " << m_strTitle;
+//      //dumpcontext << "\nm_path = " << m_path;
+//      //dumpcontext << "\nm_bModified = " << m_bModified;
+//
+//   }
 
 
    void data::initialize_data(::data::data_container_base * pdatacontainerbase)
@@ -73,7 +77,7 @@ namespace data
 
       //run_property("on_create");
 
-      call_routines_with_id(CREATE_ROUTINE);
+      //call_routines_with_id(CREATE_ROUTINE);
 
       //return ::success;
 

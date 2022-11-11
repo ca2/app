@@ -2,6 +2,11 @@
 #pragma once
 
 
+#include "acme/graphics/image/_macro.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "apex/platform/context.h"
+
+
 namespace aura
 {
 

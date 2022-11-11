@@ -10,7 +10,7 @@ static ::u32 nextTlsIndex = ::parallelization::slot_user_begin;
 
 u32_array* g_puaThreadLocalDataFreeIndexes = nullptr;
 
-//::mutex* g_pmutexThreadLocalData = nullptr;
+//::pointer < ::mutex >* g_pmutexThreadLocalData = nullptr;
 
 //map < itask_t, itask_t, thread_local_data >* g_pmapThreadLocalData = nullptr;
 

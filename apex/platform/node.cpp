@@ -3,6 +3,8 @@
 //
 #include "framework.h"
 #include "node.h"
+#include "acme/constant/id.h"
+#include "acme/exception/interface_only.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
 
@@ -48,12 +50,12 @@ namespace apex
 #endif
 
 
-   void node::on_initialize_object()
+   void node::on_initialize_particle()
    {
 
       //auto estatus =
       
-      ::acme::node::on_initialize_object();
+      ::acme::node::on_initialize_particle();
 
       //if (!estatus)
       //{
@@ -62,7 +64,7 @@ namespace apex
 
       //}
 
-      m_psystem->m_papexnode = this;
+      acmesystem()->m_papexnode = this;
 
       //return estatus;
 
@@ -72,7 +74,7 @@ namespace apex
    void node::main()
    {
    
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
       
       //auto estatus = 
       
@@ -95,7 +97,7 @@ namespace apex
 
       string strFooter__;
 
-      if (m_psystem->m_bAudio)
+      if (acmesystem()->m_bAudio)
       {
 
          ::payload payload;
@@ -108,7 +110,7 @@ namespace apex
 
          ::string strMember = "add_pane_tab_impact_handler_library";
 
-         m_psystem->m_pacmeapplicationMain->_handle_call(payload, strObject, strMember, propertyset);
+         acmesystem()->m_pacmeapplicationMain->_handle_call(payload, strObject, strMember, propertyset);
 
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";
@@ -195,7 +197,7 @@ namespace apex
    }
 
 
-   ::file::path node::get_desktop_file_path(::apex::application * papp) const
+   ::file::path node::get_desktop_file_path(::apex::application * papp)
    {
 
       return "";
@@ -234,7 +236,7 @@ namespace apex
    void node::on_operating_system_user_theme_change()
    {
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       psystem->signal(id_operating_system_user_theme_change);
 
@@ -244,7 +246,7 @@ namespace apex
    void node::on_operating_system_user_color_change()
    {
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       psystem->signal(id_operating_system_user_color_change);
 
@@ -254,7 +256,7 @@ namespace apex
    void node::on_operating_system_font_list_change()
    {
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       psystem->signal(id_operating_system_font_list_change);
 
@@ -403,12 +405,11 @@ namespace apex
 //   }
 
 
+   void node::on_start_application(::apex::application *papplication)
+   {
 
 
-
-
-
-
+   }
 
 
 } // namespace apex

@@ -2,6 +2,9 @@
 #include "framework.h"
 #include "acme_path.h"
 #include "acme_directory.h"
+#include "acme/primitive/string/hex.h"
+#include "acme/exception/interface_only.h"
+#include "acme/platform/system.h"
 
 
 acme_path::acme_path()
@@ -31,7 +34,7 @@ string acme_path::from(string str)
    for (index i = 0; i < str.length(); i++)
    {
 
-      if (ansi_char_is_alphanumeric(str[i]))
+      if (character_isalnum(str[i]))
       {
 
          strFsSafe += str[i];
@@ -134,7 +137,7 @@ bool acme_path::final_begins_eat_ci(string & str, const char * pcszPrefix)
       return true;
 
    }
-   else if (::str().begins_eat_ci(str, strPath))
+   else if (str.begins_eat_ci(strPath))
    {
 
       return true;
@@ -145,13 +148,13 @@ bool acme_path::final_begins_eat_ci(string & str, const char * pcszPrefix)
 
       string strFull;
 
-      strFull = m_psystem->m_pacmepath->final(str);
+      strFull = acmepath()->final(str);
 
       string strFullPath;
 
-      strFullPath = m_psystem->m_pacmepath->final(strPath);
+      strFullPath = acmepath()->final(strPath);
 
-      if (::str().begins_eat_ci(strFull, strFullPath))
+      if (strFull.begins_eat_ci(strFullPath))
       {
 
          str = strFull;
@@ -249,7 +252,7 @@ bool acme_path::has_custom_icon(const char * path)
 
    }
 
-   auto pathFolderCurrent = m_psystem->m_pacmedirectory->get_current();
+   auto pathFolderCurrent = acmedirectory()->get_current();
 
    ::file::path pathAbsolute = pathFolderCurrent / path;
 

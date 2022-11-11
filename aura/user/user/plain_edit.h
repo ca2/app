@@ -3,11 +3,10 @@
 
 #include "scroll_base.h"
 #include "text_composition_composite.h"
+#include "acme/primitive/data/listener.h"
 
 
 class element_2d;
-
-
 
 
 namespace colorertake5
@@ -62,13 +61,6 @@ namespace user
          virtual public ::object
       {
       public:
-
-         virtual synchronization_object * get_mutex()
-         {
-
-            return mutex();
-
-         }
 
          virtual void set_expression(const ::string & pszExp)
          {
@@ -309,7 +301,7 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
 
-      virtual status < ::rectangle_f64 > get_margin(style * pstyle, enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
+      status < ::rectangle_f64 > get_margin(style * pstyle, enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none) override;
   
       
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -365,10 +357,10 @@ namespace user
 
 
 
-      virtual enum_input_type preferred_input_type() const override;
+      enum_input_type preferred_input_type() override;
 
 
-      virtual bool keyboard_focus_is_focusable() const override;
+      bool keyboard_focus_is_focusable() override;
 
 
       virtual i32 get_wheel_scroll_delta() override;
@@ -416,23 +408,23 @@ namespace user
 
       //colorertake5::file_type * colorer_select_type();
 
-      virtual strsize _001GetTextLength() const override;
-      virtual strsize _001_get_text_length() const;
-      virtual void plain_edit_get_text(string & str) const;
-      virtual void _001GetText(string & str) const override;
-      virtual void _001GetSelText(string & str) const override;
-      virtual void _001GetText(string & str, index iBeg, index iEnd) const override;
+      virtual strsize _001GetTextLength() override;
+      virtual strsize _001_get_text_length();
+      virtual void plain_edit_get_text(string & str);
+      virtual void _001GetText(string & str) override;
+      virtual void _001GetSelText(string & str) override;
+      virtual void _001GetText(string & str, index iBeg, index iEnd) override;
 
-      void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd) const override;
-      void _001_get_impact_sel(strsize & iSelStart, strsize & iSelEnd) const;
+      void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd) override;
+      void _001_get_impact_sel(strsize & iSelStart, strsize & iSelEnd);
 
       void _001SetText(const ::string & str, const ::action_context & action_context) override;
       void _001SetSelText(const ::string & psz, const ::action_context & action_context) override;
       void _001SetSelEnd(strsize iSelEnd) override;
       void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd);
       void _001SetSel(strsize iSelStart, strsize iSelEnd, const ::action_context & action_context = ::e_source_user) override;
-      void _001GetSel(strsize & iSelStart, strsize & iSelEnd) const override;
-      void _001GetSel(strsize& iSelStart, strsize& iSelEnd, strsize & iComposingStart, strsize & iComposingEnd) const override;
+      void _001GetSel(strsize & iSelStart, strsize & iSelEnd) override;
+      void _001GetSel(strsize& iSelStart, strsize& iSelEnd, strsize & iComposingStart, strsize & iComposingEnd) override;
 
       void _001EnsureVisibleChar(::draw2d::graphics_pointer & pgraphics, strsize iChar);
       void _001EnsureVisibleLine(::draw2d::graphics_pointer & pgraphics, index iLine);

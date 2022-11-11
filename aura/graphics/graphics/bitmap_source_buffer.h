@@ -2,6 +2,7 @@
 
 
 #include "graphics.h"
+#include "acme/filesystem/file/memory_map.h"
 
 
 namespace graphics
@@ -16,7 +17,7 @@ namespace graphics
 
       ::pointer<file::memory_map>        m_pmemorymap;
       string                              m_strBitmapSource;
-      ::pointer<::mutex>                 m_pmutexBitmapSource;
+      ::pointer < ::mutex >                 m_pmutexBitmapSource;
 
 
       bitmap_source_buffer();

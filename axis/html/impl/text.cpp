@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "text.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/text_metric.h"
 #include "acme/primitive/geometry2d/_enhanced.h"
@@ -46,7 +47,7 @@ namespace html
       void text::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
-         synchronous_lock lock(pdata->m_pcoredata->mutex());
+         synchronous_lock lock(pdata->m_pcoredata->synchronization());
 
          ::html::impl::element::implement_phase1(pdata, pelement);
 
@@ -143,7 +144,7 @@ namespace html
       void text::layout_phase0(html_data * pdata)
       {
 
-         synchronous_lock lock(pdata->m_pcoredata->mutex());
+         synchronous_lock lock(pdata->m_pcoredata->synchronization());
 
          ::html::impl::element::layout_phase0(pdata);
 
@@ -195,7 +196,7 @@ namespace html
 
          strsize iLastSpace = 0;
 
-         uchar uch;
+         char ch;
 
          i32 iSpace = 0;
 
@@ -206,14 +207,14 @@ namespace html
 
             iSpace = 0;
 
-            uch = (uchar)str[i];
+            ch = str[i];
 
             while (i < str.get_length())
             {
 
-               uch = (uchar)str[i];
+               ch = str[i];
 
-               if (!isspace(uch))
+               if (!character_isspace(ch))
                   break;
 
                iSpace++;
@@ -248,9 +249,9 @@ namespace html
             while (i < str.get_length())
             {
 
-               uch = (uchar)str[i];
+               ch = str[i];
 
-               if (isspace(uch))
+               if (character_isspace(ch))
                   break;
 
                strLine += str[i];
@@ -275,9 +276,9 @@ namespace html
          for (i32 i = 0; i < m_straWordSpace.get_size(); i++)
          {
 
-            uch = (uchar)m_straWordSpace[i][0];
+            ch = m_straWordSpace[i][0];
 
-            if (!isspace(uch))
+            if (!character_isspace(ch))
             {
 
                size = pgraphics->get_text_extent(m_straWordSpace[i]);
@@ -387,7 +388,7 @@ namespace html
 
          string strLine;
 
-         uchar uch;
+         char ch;
 
          strsize iLastSpace = 0;
 
@@ -408,14 +409,14 @@ namespace html
 
             iSpace = 0;
 
-            uch = (uchar)str[i];
+            ch = str[i];
 
             while (i < str.get_length())
             {
 
-               uch = (uchar)str[i];
+               ch = str[i];
 
-               if (!isspace(uch))
+               if (!character_isspace(ch))
                   break;
 
                iSpace++;
@@ -441,9 +442,9 @@ namespace html
             while (i < str.get_length())
             {
 
-               uch = (uchar)str[i];
+               ch = str[i];
 
-               if (isspace(uch))
+               if (character_isspace(ch))
                   break;
 
                strLine += str[i];
@@ -1223,7 +1224,7 @@ namespace html
 
                   }
 
-                  ::str().increment(pszEnd);
+                  unicode_increment(pszEnd);
 
                   iChar++;
                }

@@ -16,8 +16,8 @@ namespace str
    inline  i32                is_space(const CHAR_TYPE * pch) noexcept;
    inline  i32                string_compare(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB) noexcept;
    inline  i32                string_compare_ci(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB) noexcept;
-   inline  i32                string_n_compare(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB, strsize len) noexcept;
-   inline  i32                string_n_compare_ci(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB, strsize len) noexcept;
+   inline  i32                string_count_compare(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB, strsize len) noexcept;
+   inline  i32                string_count_compare_ci(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB, strsize len) noexcept;
    inline  i32                string_collate(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB) noexcept;
    inline  i32                string_collate_ci(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB) noexcept;
    inline  const CHAR_TYPE *   string_find_string(const CHAR_TYPE * pszBlock, const CHAR_TYPE * pszMatch) noexcept;

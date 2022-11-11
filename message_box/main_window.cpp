@@ -37,7 +37,7 @@ namespace app_message_box
 
       pmessage->m_bRet = true;
 
-      auto psequencer = m_psystem->create_message_box_sequencer("Are you sure you want to close application?", nullptr, e_message_box_yes_no);
+      auto psequencer = acmesystem()->create_message_box_sequencer("Are you sure you want to close application?", nullptr, e_message_box_yes_no);
 
       psequencer->then([this](auto * pmessagebox)
          {
@@ -144,7 +144,7 @@ namespace app_message_box
    void main_window::show_message_box()
    {
 
-      auto psequencer = m_psystem->create_message_box_sequencer("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+      auto psequencer = acmesystem()->create_message_box_sequencer("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
 
       psequencer->then([this](auto pmessagebox)
          {

@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 namespace draw2d
 {
 

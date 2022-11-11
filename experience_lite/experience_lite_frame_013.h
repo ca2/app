@@ -22,7 +22,7 @@
             public:
 
 
-               frame_013(::object * pobject);
+               frame_013(::particle * pparticle);
                virtual ~frame_013();
             };
 

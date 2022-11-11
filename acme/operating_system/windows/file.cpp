@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/operating_system.h"
+#include "acme/_operating_system.h"
 
 
 string CLASS_DECL_ACME windows_get_short_file_name(const string & strPath)

@@ -10,13 +10,17 @@
 */
 #include "framework.h"
 #include "Object.h"
+#include "acme/platform/context.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/listing.h"
+#include "apex/platform/context.h"
 #include "aura/graphics/image/context_image.h"
 
 
 void CLASS_DECL_NANOGUI file_dialog_from_platform(
    void * poswindow,
    const std::vector<std::pair<std::string, std::string>> & filetypes,
-   ::std::function < void(const std::vector<std::string> & ) > function, 
+   const ::function < void(const std::vector<std::string> & ) > & function,
    bool save, 
    bool multiple);
 
@@ -90,7 +94,7 @@ static double emscripten_last = 0;
 static float emscripten_refresh = 0;
 #endif
 
-std::mutex m_async_mutex;
+::pointer < ::mutex > m_async_mutex;
 std::vector<::function<void()>> m_async_functions;
 
 //void mainloop(float refresh) {
@@ -110,7 +114,7 @@ std::vector<::function<void()>> m_async_functions;
 //#endif
 //
 //      /* Run async functions */ {
-//         std::lock_guard<std::mutex> guard(m_async_mutex);
+//         std::lock_guard<std::pointer < ::mutex >> guard(m_async_mutex);
 //         for (auto & f : m_async_functions)
 //            f();
 //         m_async_functions.clear();
@@ -208,7 +212,7 @@ std::vector<::function<void()>> m_async_functions;
 //}
 
 //void async(const ::function<void()> & func) {
-//   std::lock_guard<std::mutex> guard(m_async_mutex);
+//   std::lock_guard<std::pointer < ::mutex >> guard(m_async_mutex);
 //   m_async_functions.push_back(func);
 //}
 
@@ -295,15 +299,15 @@ void NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, std::vector<std::pair
 //      const char * fname = ep->d_name;
 //#else
 
-   auto pobject = get_nano2d_object(ctx);
+   auto pparticle = get_nano2d_object(ctx);
 
-   auto pcontext = pobject->m_pcontext->m_papexcontext;
+   auto pcontext = pparticle->m_pcontext->m_papexcontext;
 
    ::file::listing listing;
 
    listing.set_file_listing(path.c_str());
 
-   pcontext->dir().enumerate(listing);
+   pcontext->dir()->enumerate(listing);
 
    for (auto & path : listing)
    {
@@ -352,7 +356,7 @@ void NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, std::vector<std::pair
 void pick_single_file(
    void * poswindow, 
    const std::vector<std::pair<std::string, std::string>> & filetypes, 
-   ::std::function < void(const ::std::string &) > function,
+   const ::function < void(const ::std::string &) > & function,
    bool save)
 {
    
@@ -385,7 +389,7 @@ void pick_single_file(
 void pick_multiple_file(
    void * poswindow,
    const std::vector<std::pair<std::string, std::string>> & filetypes,
-   std::function < void(const ::std::vector<::std::string> &) > function)
+   const ::function < void(const ::std::vector<::std::string> &) > & function)
 {
 
    file_dialog_from_platform(
@@ -420,18 +424,18 @@ Object::~Object() { }
 
 
 
-::image_pointer ___load_image(::object * pobject, const char * path)
+::image_pointer ___load_image(::particle * pparticle, const char * path)
 {
 
-   return pobject->m_pcontext->context_image()->path_image(path);
+   return pparticle->m_pcontext->context_image()->path_image(path);
 
 }
 
 
-void ___save_image(::object * pobject, const char * path, ::image * pimage)
+void ___save_image(::particle * pparticle, const char * path, ::image * pimage)
 {
 
-   return pobject->m_pcontext->context_image()->save_image(path, pimage);
+   return pparticle->m_pcontext->context_image()->save_image(path, pimage);
 
 }
 

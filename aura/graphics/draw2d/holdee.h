@@ -1,5 +1,11 @@
-// Created by camilo on 2022-06-23 20:13 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-06-23 20:13 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
+
+
+#include "path.h"
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
+#include "acme/primitive/collection/int_map.h"
 
 
 namespace draw2d
@@ -31,8 +37,9 @@ namespace draw2d
 
    };
 
+
    class CLASS_DECL_AURA holdee :
-      virtual public element
+      virtual public ::particle
    {
    public:
 

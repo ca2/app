@@ -1,8 +1,17 @@
 #pragma once
 
 
+#include "predicate_handler.h"
+#include "acme/primitive/collection/atom_map.h"
+#include "acme/primitive/primitive/function.h"
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
+
+
 CLASS_DECL_APEX int get_member_function_offset();
 CLASS_DECL_APEX int get_member_function_size();
+
+
 
 
 namespace message
@@ -10,106 +19,52 @@ namespace message
 
 
    class CLASS_DECL_APEX dispatcher :
-      public ::function_pointer
+      virtual public ::particle
    {
    public:
 
 
-      ::matter_pointer           m_phandlerTarget;
-      chunk                      m_chunkMemberFunction;
+      ::pointer < ::particle >                     m_pparticleHandlerTarget;
+      ::function < void(::message::message *) >    m_functionHandler;
+      chunk                                        m_chunkMemberFunction;
 
 
-      dispatcher() { }
+      dispatcher();
 
-      dispatcher(::matter * phandlerTarget, ::matter * phandlerFunction) :
-         m_phandlerTarget(phandlerTarget),
-         ::function_pointer(phandlerFunction)
-      {
-
-      }
-      
+      //dispatcher(::particle* pparticleHandleTarget, const ::function < void(::message::message *) > & functionHandler);
 
       template < typename T1, typename T2 >
-      dispatcher(T1 * p, void (T2:: * pfn)(::message::message * pmessage))
+      dispatcher(T1 * pparticleHandlerTarget, void (T2:: * pfnHandlerFunction)(::message::message * pmessage))
       {
 
-         //auto s = sizeof(pfn);
-
-         auto ptrptr = (byte*)&pfn;
+         auto ptrptr = (byte*)&pfnHandlerFunction;
 
          m_chunkMemberFunction.assign(ptrptr + get_member_function_offset(), get_member_function_size());
 
-         ::function_pointer::operator = (::message::__handler([p, pfn](::message::message * pmessage)
+         m_functionHandler = 
+            [pparticleHandlerTarget, pfnHandlerFunction](::message::message* pmessage)
             {
 
-               (p->*pfn)(pmessage);
+               (pparticleHandlerTarget->*pfnHandlerFunction)(pmessage);
 
-            }));
+            };
 
-         m_phandlerTarget = p;
+         m_pparticleHandlerTarget = pparticleHandlerTarget;
 
       }
 
-
-      template < typename PREDICATE >
-      dispatcher(PREDICATE predicate)
+      template < typename FUNCTION >
+      dispatcher(FUNCTION function)
       {
 
-         ::function_pointer::operator = (__new(predicate_handler < PREDICATE >(predicate)));
-
-         m_phandlerTarget = m_p;
+         m_functionHandler = function;
 
       }
 
 
-      dispatcher(const dispatcher & dispatcher) :
-         m_phandlerTarget(dispatcher.m_phandlerTarget),
-         ::function_pointer(dispatcher),
-         m_chunkMemberFunction(dispatcher.m_chunkMemberFunction)
-      {
-
-      }
-
-
-      dispatcher & operator = (const dispatcher & dispatcher)
-      {
-
-         if (this != &dispatcher)
-         {
-          
-            m_phandlerTarget = dispatcher.m_phandlerTarget;
-
-            ::function_pointer::operator=(dispatcher.m_p);
-
-            m_chunkMemberFunction = dispatcher.m_chunkMemberFunction;
-
-         }
-
-         return *this;
-
-      }
-
-
-      bool operator == (const dispatcher & dispatcher) const
-      {
-
-         if (this == &dispatcher)
-         {
-
-            return true;
-
-         }
-
-         bool bSameHandler = m_phandlerTarget == dispatcher.m_phandlerTarget;
-
-         bool bExactlySamePredicateHolder = m_p == dispatcher.m_p;
-
-         bool bSameMemberIfSet = m_chunkMemberFunction.size() > 0 && m_chunkMemberFunction == dispatcher.m_chunkMemberFunction;
-
-         return bSameHandler && (bExactlySamePredicateHolder || bSameMemberIfSet);
-
-      }
-
+      dispatcher(const dispatcher& dispatcher);
+      dispatcher& operator = (const dispatcher& dispatcher);
+      bool operator == (const dispatcher& dispatcher) const;
 
    };
 
@@ -117,7 +72,7 @@ namespace message
    using dispatcher_array = ::array < dispatcher >;
 
 
-   using dispatcher_map = ::id_map < dispatcher_array >;
+   using dispatcher_map = ::atom_map < dispatcher_array >;
 
    
 } // namespace message

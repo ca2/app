@@ -14,6 +14,7 @@
 #include "Screen.h"
 #include "Window.h"
 #include "VScrollPanel.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "nano2d/context.h"
 #include "nano2d/draw2d_context.h"
 #include "aura/user/user/interaction.h"
@@ -279,7 +280,7 @@ bool Widget::keyboard_character_event(unsigned int)
 
 void Widget::add_child(int index, Widget * widget) 
 {
-   synchronous_lock lock(screen()->m_puserinteraction->mutex());
+   synchronous_lock lock(screen()->m_puserinteraction->synchronization());
    m_iHoverCandidateChildStart = -1;
    m_iHoverCandidateChildEnd = -1;
    assert(index <= child_count());
@@ -297,7 +298,7 @@ void Widget::add_child(Widget * widget) {
 
 void Widget::remove_child(const Widget * widget) 
 {
-   synchronous_lock lock(screen()->m_puserinteraction->mutex());
+   synchronous_lock lock(screen()->m_puserinteraction->synchronization());
    m_iHoverCandidateChildStart = -1;
    m_iHoverCandidateChildEnd = -1;
    size_t child_count = m_children.size();

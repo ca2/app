@@ -8,6 +8,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 namespace text_to_speech
 {
 

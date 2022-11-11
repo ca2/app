@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+//#include "apex/networking/sockets/_sockets.h"
 #include "apex/networking/_networking_impl.h"
 //#include <stdio.h>
 
@@ -31,7 +31,7 @@ namespace sockets
    net::net()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_bInitialized = false;
       //m_mapCache.m_bAutoGudoSet = false;
@@ -49,7 +49,7 @@ namespace sockets
    }
 
 
-   void     net::initialize(::object * pobject)
+   void     net::initialize(::particle * pparticle)
    {
 
       if (m_bInitialized)
@@ -59,9 +59,9 @@ namespace sockets
 
       }
 
-      //auto estatus = ::object::initialize(pobject);
+      //auto estatus = ::object::initialize(pparticle);
 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -129,7 +129,7 @@ namespace sockets
       string dst;
       for (i32 i = 0; i < src.get_length(); i++)
       {
-         if (ansi_char_is_alphanumeric((uchar) src[i]))
+         if (ansi_char_is_alnum((uchar) src[i]))
          {
             dst += src[i];
          }
@@ -248,7 +248,7 @@ namespace sockets
 //      if(str.is_empty())
 //         return false;
 //
-//      single_lock synchronouslock(&m_mutexCache, true);
+//      single_lock synchronouslock(m_pmutexCache, true);
 //      dns_cache_item item;
 //      if(m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_durationLastChecked.elapsed()) < (5 * 60 * 1000)))))
 //      {
@@ -813,7 +813,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //bool net::reverse_schedule(reverse_cache_item * pitem)
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   m_reversecacheaRequest.add(pitem);
 //
@@ -827,7 +827,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //
 //            ::task_set_name("reverse_dns");
 //
-//            single_lock synchronouslock(mutex());
+//            single_lock synchronouslock(this->synchronization());
 //
 //            while (task_get_run())
 //            {
@@ -876,7 +876,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //bool net::reverse(string & hostname, ::networking::address * address)
 //{
 //
-//   single_lock synchronouslock(&m_mutexReverseCache, true);
+//   single_lock synchronouslock(m_pmutexReverseCache, true);
 //
 //   auto & pitem = m_mapReverseCache[address.get_display_number()];
 //
@@ -1027,13 +1027,13 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //
 ////   reverse_cache_item item;
 //
-//   single_lock synchronouslock(&m_mutexReverseCache, true);
+//   single_lock synchronouslock(m_pmutexReverseCache, true);
 //
 //   pitem->m_strReverse = host;
 //   //item.m_strService = serv;
 //   pitem->m_durationLastChecked.Now();
 //
-//   //single_lock synchronouslock(&m_mutexCache, true);
+//   //single_lock synchronouslock(m_pmutexCache, true);
 //
 //   //m_mapReverseCache.set_at(strIpString, item);
 //

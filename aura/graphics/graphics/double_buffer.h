@@ -16,7 +16,7 @@ namespace graphics
 
       int                           m_iGoodStride;
       ::image_pointer               m_imageaBuffer[2];
-      ::mutex                       m_mutexa[2];
+      ::pointer_array < ::mutex >   m_mutexa;
 
 
       bool                          m_bDibIsHostingBuffer;
@@ -34,12 +34,12 @@ namespace graphics
 
       bool buffer_lock_round_swap_key_buffers() override;
 
-      // synchronous_lock buffer synchronization_object first...
-      synchronization_object * get_buffer_sync() override;
+      // synchronous_lock buffer synchronization first...
+      ::particle * get_buffer_sync() override;
       ::image_pointer & get_buffer_image() override;
 
-      // synchronous_lock screen synchronization_object first...
-      virtual synchronization_object * get_screen_sync() override;
+      // synchronous_lock screen synchronization first...
+      virtual ::particle * get_screen_sync() override;
       virtual ::image_pointer & get_screen_image() override;
 
       ::index get_buffer_index() const;
@@ -48,7 +48,7 @@ namespace graphics
       using graphics::update_screen;
       bool update_screen() override;
 
-      synchronization_object * get_draw_lock() override;
+      ::particle * get_draw_lock() override;
       ::draw2d::graphics * on_begin_draw() override;
 
 

@@ -8,7 +8,7 @@
 
 #include "framework.h"
 #include "main.h"
-#include "aura/os/_.h"
+//#include "aura/os/_.h"
 #include "aura/os/_os.h"
 #include "aura/update.h"
 //char * ns_realpath(const ::string & pszPath);
@@ -151,7 +151,7 @@ void apple_accumulate_on_open_file(const ::string &* psza, int iCount, const ::s
       if(::str().begins_eat_ci(stra[i], "file://"))
       {
 
-         if(!::str().begins(stra[i], "/"))
+         if(!string_begins(stra[i], "/"))
          {
 
             stra[i] = "/" + stra[i];

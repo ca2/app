@@ -8,16 +8,16 @@
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/windowing/icon.h"
 
 
-
 context_image::context_image()
 {
 
-   defer_create_mutex();
+   defer_create_synchronization();
    m_iImageSeed = 1;
 
 }
@@ -30,12 +30,12 @@ context_image::~context_image()
 }
 
 
-void context_image::initialize(::object * pobject)
+void context_image::initialize(::particle * pparticle)
 {
 
    //auto estatus = 
    
-   ::object::initialize(pobject);
+   ::object::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -60,7 +60,7 @@ void context_image::on_destroy()
 i32 context_image::image_integer(const char * path)
 {
 
-   synchronous_lock  synchronouslock(mutex());
+   synchronous_lock  synchronouslock(this->synchronization());
 
    ::i32 iImage = -1;
    
@@ -105,7 +105,7 @@ i32 context_image::create_image_integer(int w, int h, const color32_t * pcolor, 
 
    strPath.format("image_pointer://%016" PRIxPTR, pimage.m_p);
 
-   synchronous_lock  synchronouslock(mutex());
+   synchronous_lock  synchronouslock(this->synchronization());
 
    auto iImage = m_iImageSeed;
 
@@ -125,7 +125,7 @@ i32 context_image::create_image_integer(int w, int h, const color32_t * pcolor, 
 image_pointer context_image::integer_image(i32 iImage)
 {
 
-   synchronous_lock  synchronouslock(mutex());
+   synchronous_lock  synchronouslock(this->synchronization());
 
    auto strPath = m_mapIntPath[iImage];
 
@@ -139,7 +139,7 @@ image_pointer context_image::integer_image(i32 iImage)
 image_pointer context_image::path_image(const char * path)
 {
 
-   synchronous_lock  synchronouslock(mutex());
+   synchronous_lock  synchronouslock(this->synchronization());
 
    auto & pimage = m_mapPathImage[path];
 
@@ -171,7 +171,7 @@ image_pointer context_image::path_image(const char * path)
 void context_image::_save_to_file(const ::payload & payloadFile, const image * pimage, const ::payload & varOptions)
 {
 
-   auto psystem = m_psystem->m_paurasystem;
+   auto psystem = acmesystem()->m_paurasystem;
 
    auto pdraw2d = psystem->draw2d();
 
@@ -256,7 +256,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 
       pimage = matter_cache_image(strMatter);
 
-      if (::is_ok(pimage))
+      if (pimage.ok())
       {
 
          return pimage;
@@ -300,7 +300,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 
       pimage = get_cache_image(payloadFile);
 
-      if (::is_ok(pimage))
+      if (pimage.ok())
       {
 
          return pimage;
@@ -319,10 +319,10 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 
    //}
 
-   if (loadoptions.psync)
+   if (loadoptions.pparticleSync)
    {
 
-      pimage->set_mutex(loadoptions.psync);
+      pimage->set_synchronization(loadoptions.pparticleSync);
 
    }
 
@@ -352,7 +352,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 
       pimage = matter_cache_image(strMatter);
 
-      if (::is_ok(pimage))
+      if (pimage.ok())
       {
 
          return pimage;
@@ -590,7 +590,7 @@ void context_image::_load_matter_image(image * pimage, const ::string & strMatte
 
    auto pcontext = get_context();
 
-   ::file::path path = pcontext->m_papexcontext->dir().matter(strMatter);
+   ::file::path path = pcontext->m_papexcontext->dir()->matter(strMatter);
 
    //auto estatus = 
    _load_image(pimage, path, loadoptions);
@@ -619,7 +619,7 @@ void context_image::_load_matter_icon(image * pimage, string_array & straMatter,
 
       path = strMatter;
 
-      path = pcontext->m_papexcontext->dir().matter(path / strIcon);
+      path = pcontext->m_papexcontext->dir()->matter(path / strIcon);
 
       //auto estatus = 
       
@@ -673,7 +673,7 @@ void context_image::_load_thumbnail(image * pimage, const ::payload & payloadFil
 
       pimage->on_load_image();
 
-      pimage->set_ok();
+      pimage->set_ok_flag();
 
       //return true;
 
@@ -705,7 +705,7 @@ void context_image::_load_thumbnail(image * pimage, const ::payload & payloadFil
 
    //}
 
-   pimage->set_ok();
+   pimage->set_ok_flag();
 
    //return true;
 
@@ -722,7 +722,7 @@ void context_image::_load_dib(image * pimage, const ::file::path & pathDib)
 
       auto pcontext = get_context();
 
-      auto pfile = pcontext->m_papexcontext->file().get_file(pathDib, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      auto pfile = pcontext->m_papexcontext->file()->get_file(pathDib, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       //if (!pfile)
       //{
@@ -744,7 +744,7 @@ void context_image::_load_dib(image * pimage, const ::file::path & pathDib)
 
       pimage->on_load_image();
 
-      pimage->set_ok();
+      pimage->set_ok_flag();
 
       //return true;
 
@@ -775,7 +775,7 @@ void context_image::save_image(const ::payload & payloadFile, const image * pima
 
    auto pcontext = get_context();
 
-   pcontext->m_papexcontext->file().put_memory(payloadFile, mem);
+   pcontext->m_papexcontext->file()->put_memory(payloadFile, mem);
 
 }
 
@@ -809,7 +809,7 @@ void context_image::save_dib(const ::file::path & pathDib, const image * pimage)
 
       auto pcontext = get_context();
 
-      auto pfile = pcontext->m_papexcontext->file().get_file(pathDib, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
+      auto pfile = pcontext->m_papexcontext->file()->get_file(pathDib, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
 
       if (pfile)
       {
@@ -900,7 +900,7 @@ void context_image::_load_image(::image* pimage, ::pointer<image_frame_array> & 
 //   //   if (pimage != this)
 //   //   {
 //
-//   //      pimage->set_ok();
+//   //      pimage->set_ok_flag();
 //
 //   //   }
 //
@@ -949,7 +949,7 @@ void context_image::_load_multi_frame_image(image * pimage, memory & memory)
 
       pimage->m_estatus = ::success;
 
-      pimage->set_ok();
+      pimage->set_ok_flag();
 
       return;
 
@@ -963,7 +963,7 @@ void context_image::_load_multi_frame_image(image * pimage, memory & memory)
 
    pimage->m_estatus = ::success;
 
-   pimage->set_ok();
+   pimage->set_ok_flag();
 
    ::duration durationTotal;
 
@@ -1035,7 +1035,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    auto t1 = ::duration::now();
 
-   m_pcontext->m_papexcontext->file().safe_get_memory(payload, memory);
+   file()->safe_get_memory(payload, memory);
 
    auto t2 = ::duration::now();
 
@@ -1073,7 +1073,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
       pimage->on_load_image();
 
-      pimage->set_ok();
+      pimage->set_ok_flag();
 
       pimage->m_estatus = ::success;
 
@@ -1101,7 +1101,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
       pimage->on_load_image();
 
-      pimage->set_ok();
+      pimage->set_ok_flag();
 
       pimage->m_estatus = ::success;
 
@@ -1163,7 +1163,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 
    synchronous_lock synchronouslock(::aura::get_image_mutex());
 
-   auto & pimage = m_psystem->m_paurasystem->m_mapImage[path];
+   auto & pimage = acmesystem()->m_paurasystem->m_mapImage[path];
 
    if (!pimage)
    {
@@ -1179,10 +1179,10 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 }
 
 
-//::image_pointer context_image::get_image(::object * pobject, const ::payload & payloadFile, const ::image::load_options & loadoptions)
+//::image_pointer context_image::get_image(::particle * pparticle, const ::payload & payloadFile, const ::image::load_options & loadoptions)
 //{
 //
-//   auto pimage = get_cache_image(pobject, payloadFile);
+//   auto pimage = get_cache_image(pparticle, payloadFile);
 //
 //   if (!::is_ok(pimage))
 //   {
@@ -1200,7 +1200,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 //}
 //
 //
-//::image_pointer context_image::matter_image(::object * pobject, const ::string & strMatter, const ::image::load_options & loadoptions)
+//::image_pointer context_image::matter_image(::particle * pparticle, const ::string & strMatter, const ::image::load_options & loadoptions)
 //{
 //
 //   string str(strMatter);
@@ -1212,6 +1212,6 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 //
 //   }
 //
-//   return get_image(pobject, str, loadoptions);
+//   return get_image(pparticle, str, loadoptions);
 //
 //}

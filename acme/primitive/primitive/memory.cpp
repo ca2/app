@@ -3,13 +3,14 @@
 #define HEAP_NAMESPACE_PREFIX main
 #include "acme/memory/_____heap_namespace.h"
 #include "acme/primitive/string/base64.h"
+#include "acme/exception/exception.h"
 
 
 memory::memory(memory && memory) :
    memory_base(::move(memory))
 {
    
-   __zero(memory.m_memory);
+   memset(&memory.m_memory, 0, sizeof(memory.m_memory));
 
 }
 

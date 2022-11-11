@@ -5,9 +5,9 @@ namespace colorertake5
 {
 
 
-   colorertake5::colorertake5(::object * pobject) :
-      object(pobject),
-      ::acme::department(pobject)
+   colorertake5::colorertake5(::particle * pparticle) :
+      object(pparticle),
+      ::acme::department(pparticle)
    {
 
    }

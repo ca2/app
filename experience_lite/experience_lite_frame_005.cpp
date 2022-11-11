@@ -28,9 +28,9 @@
          {
 
 
-            frame_005::frame_005(::object * pobject) :
-               object(pobject),
-               frame(pobject),
+            frame_005::frame_005(::particle * pparticle) :
+               object(pparticle),
+               frame(pparticle),
                m_pbrushGrip(e_create),
                m_pbrushTextCaption(e_create)
             {

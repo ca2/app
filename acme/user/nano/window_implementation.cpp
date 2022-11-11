@@ -2,9 +2,16 @@
 // Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "_nano.h"
-#include "acme/constant/id.h"
 #include "display.h"
+#include "window_implementation.h"
+#include "window.h"
+#include "button.h"
+#include "acme/constant/id.h"
+#include "acme/handler/topic.h"
+#include "acme/platform/node.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/platform/sequencer.h"
+#include "acme/platform/system.h"
 
 
 nano_window_implementation::nano_window_implementation()
@@ -56,9 +63,9 @@ bool nano_window_implementation::is_active()
 void nano_window_implementation::nano_window_on_create()
 {
 
-   m_psystem->node()->fetch_user_color();
+   acmenode()->fetch_user_color();
 
-   m_psystem->add_signal_handler(this, id_operating_system_user_color_change);
+   acmesystem()->add_signal_handler(this, id_operating_system_user_color_change);
    
    create_drawing_objects();
 
@@ -133,7 +140,7 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
       
    }
 
-   //   auto pmessagebox = pobject->__create_new < nano_message_box >();
+   //   auto pmessagebox = pparticle->__create_new < nano_message_box >();
    //
    //   atom idResult;
    //

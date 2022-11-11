@@ -1,8 +1,8 @@
 #include "framework.h"
-
-#include "aura/graphics/draw2d/graphics.h"
 #include "interaction_child.h"
 #include "interaction.h"
+#include "acme/constant/message.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 
 
@@ -20,8 +20,8 @@ namespace user
    }
 
 
-   //interaction_child::interaction_child(::object * pobject) :
-   //   ::object(pobject)
+   //interaction_child::interaction_child(::particle * pparticle) :
+   //   ::object(pparticle)
    //{
 
    //   m_bCreate = false;
@@ -68,7 +68,7 @@ namespace user
 
          m_puserinteraction = pinteraction;
 
-         if (::is_null(m_psystem))
+         if (::is_null(acmesystem()))
          {
 
             initialize(pprimitiveParent);
@@ -199,7 +199,7 @@ namespace user
 
       m_bUserImplCreated = true;
 
-      m_puserinteraction->set(e_flag_task_started);
+      m_puserinteraction->set_flag(e_flag_task_started);
 
       //return true;
 
@@ -656,7 +656,7 @@ namespace user
    }
 
 
-   bool interaction_child::_is_window() const
+   bool interaction_child::_is_window()
    {
 
       //if (!m_bUserElementOk)
@@ -830,7 +830,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_child::get_owner() const
+   ::user::interaction * interaction_child::get_owner()
    {
 
       if (m_puserprimitiveOwner != nullptr)

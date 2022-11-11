@@ -30,7 +30,7 @@ void window_xlib::create(oswindow window, i64 cxParam, i64 cyParam, int iStrideP
 
    destroy();
 
-   single_lock synchronouslock(&user_mutex(), true);
+   single_lock synchronouslock(&user_synchronization(), true);
 
    m_window = window;
 
@@ -82,7 +82,7 @@ void window_xlib::destroy()
 void window_xlib::update_window(oswindow window, color32_t * pOsBitmapData, const RECTANGLE_I32 * lpcrect, int iStride)
 {
 
-   single_lock synchronouslock(&user_mutex());
+   single_lock synchronouslock(&user_synchronization());
 
    if(m_pdc == nullptr)
       return;

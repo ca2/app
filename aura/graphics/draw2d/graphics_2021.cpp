@@ -45,7 +45,7 @@ namespace draw2d
 
       m_bOutline = false;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_bPat                     = false;
       m_bStoreThumbnails         = true;
@@ -1559,7 +1559,7 @@ namespace draw2d
 
       ASSERT(m_pimageAlphaBlend->is_ok());
 
-      single_lock synchronouslock(mutex());
+      single_lock synchronouslock(this->synchronization());
 
       // "Reference" implementation for TextOutAlphaBlend
 
@@ -3447,7 +3447,7 @@ namespace draw2d
       while (*psz && iRange < iStart + iCount)
       {
 
-         const char * pszNext = ::str().next(psz);
+         const char * pszNext = unicode_next(psz);
 
          if (pszNext == nullptr)
          {
@@ -4270,7 +4270,7 @@ namespace draw2d
             while (true)
             {
 
-               ::str().increment(psz);
+               unicode_increment(psz);
 
                strSample = string(pszStart, psz - pszStart) + "...";
 
@@ -4503,7 +4503,7 @@ namespace draw2d
 
       const char * pszEnd = pszSource + len;
 
-      const char * pszStart = ::str().next(pszSource);
+      const char * pszStart = unicode_next(pszSource);
 
       size_i32 sz;
 
@@ -4579,7 +4579,7 @@ namespace draw2d
 
          }
 
-         if(::str::ch().is_space_char(pszPrevious))
+         if(unicode_is_space_char(pszPrevious))
 
          {
             pszSpaceStart       = pszPrevious;
@@ -4589,7 +4589,7 @@ namespace draw2d
 
                pszSpaceEnd      = psz;
 
-               if(!::str::ch().is_space_char(psz))
+               if(!unicode_is_space_char(psz))
                {
 
                   break;
@@ -4598,7 +4598,7 @@ namespace draw2d
 
                pszPrevious      = psz;
 
-               ::str().increment(psz);
+               unicode_increment(psz);
 
             }
             while(psz != nullptr);
@@ -4638,7 +4638,7 @@ namespace draw2d
 
          pszPrevious = psz;
 
-         ::str().increment(psz);
+         unicode_increment(psz);
 
          if(bEnd)
          {
@@ -5113,13 +5113,13 @@ namespace draw2d
    ::file::path graphics::get_font_path(const ::string & strName, int iWeight, bool bItalic)
    {
 
-      critical_section_lock synchronouslock(&m_psystem->m_paurasystem->draw2d()->write_text()->m_csFont);
+      critical_section_lock synchronouslock(&acmesystem()->m_paurasystem->draw2d()->write_text()->m_csFont);
 
       string strFontName(strName);
 
       strFontName.make_lower();
 
-      string strPath = m_psystem->m_paurasystem->draw2d()->write_text()->m_mapFontFaceName[strFontName][iWeight * 10 + (bItalic ? 1 : 0)];
+      string strPath = acmesystem()->m_paurasystem->draw2d()->write_text()->m_mapFontFaceName[strFontName][iWeight * 10 + (bItalic ? 1 : 0)];
 
       return strPath;
 

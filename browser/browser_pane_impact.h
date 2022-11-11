@@ -24,7 +24,7 @@ namespace browser
       address_array < ::user::check_box * >           m_checkptraBilbo;
 
 
-      pane_impact(::object * pobject);
+      pane_impact(::particle * pparticle);
       virtual ~pane_impact();
 
 
@@ -32,9 +32,9 @@ namespace browser
 
       void install_message_routing(::channel * pchannel) override;
 
-      void assert_ok() const override;
+      // void assert_ok() const override;
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       void handle(::topic * ptopic, ::context * pcontext);

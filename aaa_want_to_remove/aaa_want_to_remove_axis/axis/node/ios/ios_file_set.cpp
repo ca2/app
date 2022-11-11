@@ -5,10 +5,10 @@ namespace ios
 {
    
    
-   file_set::file_set(::object * pobject) :
-   ::object(pobject),
-   ::file::set(pobject),
-   m_straFile(pobject)
+   file_set::file_set(::particle * pparticle) :
+   ::object(pparticle),
+   ::file::set(pparticle),
+   m_straFile(pparticle)
    {
       
    }

@@ -7,7 +7,7 @@
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/platform/application.h"
 #ifdef WINDOWS_DESKTOP
-#include "acme_windows/_.h"
+//#include "acme_windows/_.h"
 #include "acme_windows/registry.h"
 #endif
 
@@ -19,7 +19,7 @@ namespace programming
    compiler::compiler()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -31,12 +31,12 @@ namespace programming
    }
 
 
-   void compiler::initialize_programming_compiler(::object* pobject)
+   void compiler::initialize_programming_compiler(::object* pparticle)
    {
 
       //auto estatus = 
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -49,7 +49,7 @@ namespace programming
 
       {
 
-         auto pacmedirectory = m_psystem->m_pacmedirectory;
+         auto pacmedirectory = acmedirectory();
 
          ::file::path path;
 
@@ -57,7 +57,7 @@ namespace programming
 
          auto pcontext = get_context();
 
-         m_strVs = m_pcontext->m_papexcontext->file().as_string(path);
+         m_strVs = file()->as_string(path);
 
          m_strVs.trim();
 
@@ -125,7 +125,7 @@ namespace programming
 
 #endif
 
-      m_strDynamicSourceStageFolder = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage;
+      m_strDynamicSourceStageFolder = dir()->install() / m_strDynamicSourceStage;
 
       //return estatus;
 
@@ -135,9 +135,9 @@ namespace programming
    void compiler::prepare_compile_and_link_environment()
    {
 
-      auto pacmedirectory = m_psystem->m_pacmedirectory;
+      auto pacmedirectory = acmedirectory();
 
-      m_pcontext->m_papexcontext->dir().create(pacmedirectory->system() / "netnodelite/symbols");
+      dir()->create(pacmedirectory->system() / "netnodelite/symbols");
 
       ::file::path strVars;
 
@@ -214,7 +214,7 @@ namespace programming
 
 #endif
 
-      m_strTime = m_pcontext->m_papexcontext->dir().install() / ("time-" OPERATING_SYSTEM_NAME);
+      m_strTime = dir()->install() / ("time-" OPERATING_SYSTEM_NAME);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -289,17 +289,17 @@ namespace programming
 
 #endif
 
-      m_pcontext->m_papexcontext->dir().create(m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front");
+      dir()->create(dir()->install() / m_strDynamicSourceStage / "front");
 
       string str;
 
       string strItem;
 
-      strItem = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / m_strStagePlatform;
+      strItem = dir()->install() / m_strDynamicSourceStage / m_strStagePlatform;
 
       str = str + strItem + ";";
 
-      strItem = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / m_strStagePlatform / "dynamic_source\\library";
+      strItem = dir()->install() / m_strDynamicSourceStage / m_strStagePlatform / "dynamic_source\\library";
 
       str = str + strItem + ";";
 
@@ -364,21 +364,21 @@ namespace programming
 
       ::file::path pathEnvTxt;
 
-      auto pacmedirectory = m_psystem->m_pacmedirectory;
+      auto pacmedirectory = acmedirectory();
 
       pathEnvTxt = pacmedirectory->system() / "env.txt";
 
-      m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
+      acmefile()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
 
-      m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
+      acmefile()->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
       pnode->run_silent(pacmedirectory->system() / "env1.bat", "");
 
-      strLog = m_psystem->m_pacmefile->as_string(pacmedirectory->system() / "env.txt");
+      strLog = acmefile()->as_string(pacmedirectory->system() / "env.txt");
 
       stra.add_lines(strLog);
 
@@ -403,8 +403,8 @@ namespace programming
 #endif
 
       //   ::file::path strFolder;
-      //   strFolder = m_pcontext->m_papexcontext->dir().install();
-      //   if (!::str().ends(strFolder, "/") && !::str().ends(strFolder, "\\"))
+      //   strFolder = dir()->install();
+      //   if (!string_ends(strFolder, "/") && !string_ends(strFolder, "\\"))
       //      strFolder += "/";
       //   string strTemplate;
       //   string strSource = "platform/time-" OPERATING_SYSTEM_NAME"/dynamic_source/";
@@ -423,16 +423,16 @@ namespace programming
       //   // strTemplate = strFolder, "app/time-" OPERATING_SYSTEM_NAME"/aura/account/app/main/matter/dynamic_source_cl.bat", false);
       //   //#endif
       //   string str;
-      //   str = m_pcontext->m_papexcontext->file().as_string(strTemplate);
+      //   str = file()->as_string(strTemplate);
       //   /*string strVars = getenv("VS100COMNTOOLS");
-      //   m_pcontext->m_papexcontext->file().path().eat_end_level(strVars, 2, "/");
+      //   file()->path().eat_end_level(strVars, 2, "/");
       //   strVars += "vc/bin/vcvars32.bat";*/
       //   str.replace("%VS_VARS%", m_strEnv);
       //   str.replace("%VS_VARS_PLAT2%", m_strPlat2);
       //
-      //   string strV(m_pcontext->m_papexcontext->dir().install());
+      //   string strV(dir()->install());
       //   strV.replace("\\", "/");
-      //   if (!::str().ends(strV, "/") && !::str().ends(strV, "\\"))
+      //   if (!string_ends(strV, "/") && !string_ends(strV, "\\"))
       //      strV += "/";
       //   str.replace("%CA2_ROOT%", strV);
       //   str.replace("%PROJECT_DIR%", m_pathProjectDir);
@@ -445,10 +445,10 @@ namespace programming
       //   //#else
       //   // strCmd = strFolder, "app\\time-" OPERATING_SYSTEM_NAME"\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
       //   //#endif
-      //   m_pcontext->m_papexcontext->dir().create(strCmd.folder());
-      //   //m_pcontext->m_papexcontext->file().put_text_utf8(strCmd, str);
-      //   m_pcontext->m_papexcontext->file().put_contents(strCmd, str);
-      //   m_pcontext->m_papexcontext->dir().create(m_strTime / "dynamic_source");
+      //   dir()->create(strCmd.folder());
+      //   //file()->put_text_utf8(strCmd, str);
+      //   file()->put_contents(strCmd, str);
+      //   dir()->create(m_strTime / "dynamic_source");
       //
       //
       //   string strBuildCmd = m_strEnv;
@@ -458,12 +458,12 @@ namespace programming
       //   ::process::process_pointer process(e_create);
       //
       //
-      //   m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
+      //   acmefile()->put_contents(pacmedirectory->system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
       //
       //   set_thread_priority(::e_priority_highest);
       //   process->prop("inherit") = false;
       //
-      //   ::file::path pathCommand =          auto psystem = m_psystem;
+      //   ::file::path pathCommand =          auto psystem = acmesystem();
 
       //         auto pacmedirectory = psystem->m_pacmedirectory;
       //
@@ -582,15 +582,15 @@ namespace programming
       //
       stra.add_lines(strLog);
 
-      //string strEnv = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+      //string strEnv = acmefile()->as_string(         auto psystem = acmesystem();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "env.txt");
 
       ::file::path strFolder;
-      strFolder = m_pcontext->m_papexcontext->dir().install();
-      if (!::str().ends(strFolder, "/") && !::str().ends(strFolder, "\\"))
+      strFolder = dir()->install();
+      if (!string_ends(strFolder, "/") && !string_ends(strFolder, "\\"))
          strFolder += "/";
       string strTemplate;
       string strSource = "operating-system/operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/";
@@ -598,7 +598,7 @@ namespace programming
 
       //   string strN = m_pmanager->m_strNetnodePath;
             //strN.replace("\\","/");
-            //if(!::str().ends(strN,"/") && !::str().ends(strN,"\\"))
+            //if(!string_ends(strN,"/") && !string_ends(strN,"\\"))
             // strN += "/";
 
             //#ifdef _DEBUG
@@ -607,16 +607,16 @@ namespace programming
       // strTemplate = strFolder, "app/_stage/aura/account/app/main/matter/dynamic_source_cl.bat", false);
       //#endif
       string str;
-      str = m_pcontext->m_papexcontext->file().safe_get_string(strTemplate);
+      str = file()->safe_get_string(strTemplate);
       /*string strVars = getenv("VS100COMNTOOLS");
-      m_pcontext->m_papexcontext->file().path().eat_end_level(strVars, 2, "/");
+      file()->path().eat_end_level(strVars, 2, "/");
       strVars += "vc/bin/vcvars32.bat";*/
       str.find_replace("%VS_VARS%", m_strEnv);
       str.find_replace("%VS_VARS_PLAT2%", m_strPlat2);
 
-      string strV(m_pcontext->m_papexcontext->dir().install());
+      string strV(dir()->install());
       strV.find_replace("\\", "/");
-      if (!::str().ends(strV, "/") && !::str().ends(strV, "\\"))
+      if (!string_ends(strV, "/") && !string_ends(strV, "\\"))
          strV += "/";
       str.find_replace("%CA2_ROOT%", strV);
       str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
@@ -631,10 +631,10 @@ namespace programming
       //#else
       // strCmd = strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
       //#endif
-      m_pcontext->m_papexcontext->dir().create(strCmd.folder());
-      //m_pcontext->m_papexcontext->file().put_text_utf8(strCmd, str);
-      m_pcontext->m_papexcontext->file().put_text(strCmd, str);
-      m_pcontext->m_papexcontext->dir().create(m_strTime / "dynamic_source");
+      dir()->create(strCmd.folder());
+      //file()->put_text_utf8(strCmd, str);
+      file()->put_text(strCmd, str);
+      dir()->create(m_strTime / "dynamic_source");
    }
 
 

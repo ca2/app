@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/parallelization/task.h"
+
+
 namespace simpledb
 {
 
@@ -20,7 +23,7 @@ namespace simpledb
       ~thread_localdatabase() override;
 
 
-      virtual void     run() override;
+      void run() override;
 
       void queue(const ::string & pszKey, block block);
 

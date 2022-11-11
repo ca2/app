@@ -21,7 +21,7 @@
 //    bool                    m_bRadioChanged;
 
 
-//    probe_::message::command(::object * pobject);
+//    probe_::message::command(::particle * pparticle);
 
 
 //    virtual void enable(bool bOn, const ::action_context & action_context = ::e_source_system);

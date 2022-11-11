@@ -1,7 +1,10 @@
 // Created by camilo on 2022-01-21 05:05 PM <3ThomasBorregaardSørensen
 #include "framework.h"
-#include "acme/user/nano/_nano.h"
-#include "_nano.h"
+#include "window.h"
+#include "device.h"
+#include "acme/exception/exception.h"
+#include "acme/user/nano/button.h"
+#include "acme/user/nano/window.h"
 #include "acme/user/user/mouse.h"
 
 

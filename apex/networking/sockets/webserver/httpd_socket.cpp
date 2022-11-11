@@ -28,7 +28,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "framework.h"
 #include "apex/id.h"
 #include "httpd_socket.h"
-
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/string/base64.h"
 
 
@@ -43,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <openssl/ssl.h>
 
-//extern ::mutex * get_globals_mutex();
+//extern ::pointer< ::mutex > get_globals_mutex();
 
 namespace sockets
 {
@@ -93,7 +94,7 @@ namespace sockets
          else*/
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pbase64 = psystem->base64();
 
@@ -105,7 +106,7 @@ namespace sockets
          m_response.attr("http_status") = "OK";
 
          m_response.header("Content-length") = (i64) mem.get_size();
-         m_response.header(__id(content_type)) = type;
+         m_response.header("content_type") = type;
          //      m_response.header("Last-modified") = m_start;
          SendResponse();
 
@@ -193,7 +194,7 @@ namespace sockets
    map < int, DH * > * dh_map()
    {
 
-      synchronous_lock synchronouslock(::get_globals_mutex());
+      critical_section_lock synchronouslock(::globals_critical_section());
 
       if (g_pmapdh == nullptr)
       {
@@ -210,7 +211,7 @@ namespace sockets
    DH * get_dh(int keylength)
    {
 
-      synchronous_lock synchronouslock(::get_globals_mutex());
+      critical_section_lock synchronouslock(::globals_critical_section());
 
       return dh_map()->operator[](keylength);
 
@@ -220,7 +221,7 @@ namespace sockets
    void set_dh(int keylength, DH * pdh)
    {
 
-      synchronous_lock synchronouslock(::get_globals_mutex());
+      critical_section_lock synchronouslock(::globals_critical_section());
 
       dh_map()->operator[](keylength) = pdh;
 
@@ -252,8 +253,7 @@ namespace sockets
    }
 
 
-
-
 } // namespace sockets
+
 
 

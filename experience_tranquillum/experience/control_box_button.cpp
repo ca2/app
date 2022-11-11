@@ -1,11 +1,15 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "control_box_button.h"
-#include "base/user/experience/control_box.h"
+#include "acme/constant/message.h"
+#include "acme/handler/item.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aura/user/user/frame.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/message/user.h"
+#include "base/user/experience/control_box.h"
 
 
 namespace experience_tranquillum
@@ -204,7 +208,7 @@ namespace experience_tranquillum
    ::item_pointer control_box_button::on_hit_test(const ::point_i32 &point)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_spregion.is_null())
       {
@@ -229,7 +233,7 @@ namespace experience_tranquillum
    }
 
 
-   bool control_box_button::keyboard_focus_is_focusable() const
+   bool control_box_button::keyboard_focus_is_focusable()
    {
 
       //return false && ::user::button::keyboard_focus_is_focusable();

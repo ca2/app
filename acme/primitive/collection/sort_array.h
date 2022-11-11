@@ -6,7 +6,7 @@
 //
 //template < typename ARG_TYPE >
 //class default_less :
-//   public less_predicateicate_base < ARG_TYPE >
+//   public less_predicate_base < ARG_TYPE >
 //{
 //public:
 //
@@ -23,7 +23,7 @@
 //
 //   bool                                            m_bSorted;
 //   ::pointer<index_array>                         m_pindexa;
-//   pointer< less_predicateicate_base < ARG_TYPE > >          m_pless;
+//   pointer< less_predicate_base < ARG_TYPE > >          m_pless;
 //
 //   sort_data()
 //   {
@@ -41,7 +41,7 @@
 //
 //template < typename ARG_TYPE >
 //class sort_map :
-//   virtual public id_map < pointer< sort_data < ARG_TYPE > > >
+//   virtual public atom_map < pointer< sort_data < ARG_TYPE > > >
 //{
 //public:
 //
@@ -196,7 +196,7 @@
 //
 //         m_parray = a.m_parray;
 //
-//         ::papaya::map::copy(m_map, a.m_map);
+//         ::acme::map::copy(m_map, a.m_map);
 //
 //      }
 //
@@ -223,7 +223,7 @@
 //
 //   auto psort = get_sorted(atom);
 //
-//   return ::papaya::array::binary_search(
+//   return ::acme::array::binary_search(
 //      *m_parray,
 //      t,
 //      iIndex,

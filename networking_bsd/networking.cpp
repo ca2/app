@@ -2,7 +2,11 @@
 #include "framework.h"
 #include "networking.h"
 #include "sockets/ssl/initializer.h"
+#include "acme/array.h"
+#include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/duration/_binary_stream.h"
+#include "acme/primitive/string/parse.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
 #define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
@@ -50,7 +54,7 @@ namespace networking_bsd
 
       m_p2 = this;
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       
       defer_initialize_operating_system_networking();
@@ -84,7 +88,7 @@ namespace networking_bsd
    //networking::net()
    //{
 
-   //   defer_create_mutex();
+   //   defer_create_synchronization();
 
    //   m_bInitialized = false;
    //   //m_mapCache.m_bAutoGudoSet = false;
@@ -103,7 +107,7 @@ namespace networking_bsd
 
 
 
-   void     networking::initialize(::object * pobject)
+   void     networking::initialize(::particle * pparticle)
    {
 
       if (m_bInitialized)
@@ -113,9 +117,9 @@ namespace networking_bsd
 
       }
 
-      //auto estatus = ::object::initialize(pobject);
+      //auto estatus = ::object::initialize(pparticle);
 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -138,7 +142,7 @@ namespace networking_bsd
 
       //return estatus;
 
-      //auto paddressdepartment = pobject->__create_new<class ::networking::address_department>();
+      //auto paddressdepartment = pparticle->__create_new<class ::networking::address_department>();
 
       //paddressdepartment->increment_reference_count();
 
@@ -347,7 +351,7 @@ namespace networking_bsd
       string dst;
       for (i32 i = 0; i < src.get_length(); i++)
       {
-         if (ansi_char_is_alphanumeric((uchar)src[i]))
+         if (ansi_char_is_alnum((uchar)src[i]))
          {
             dst += src[i];
          }
@@ -465,7 +469,7 @@ namespace networking_bsd
       if (str.is_empty())
          return false;
 
-      single_lock synchronouslock(&m_mutexCache, true);
+      single_lock synchronouslock(m_pmutexCache, true);
       dns_cache_item item;
       if (m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_durationLastChecked.elapsed()) < (5_minute)))))
       {
@@ -1026,7 +1030,7 @@ namespace networking_bsd
          }
          if (addra.is_empty())
             return false;
-         ::memcpy_dup(&sa, &::papaya::array::pick_random(addra)->sin6_addr, sizeof(sa));
+         ::memcpy_dup(&sa, &::acme::array::pick_random(addra)->sin6_addr, sizeof(sa));
          freeaddrinfo(res);
          return true;
       }
@@ -1057,7 +1061,7 @@ namespace networking_bsd
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         synchronous_lock synchronouslock(this->synchronization());
 
          m_reversecacheaRequest.add(pitem);
 
@@ -1073,7 +1077,7 @@ namespace networking_bsd
 
                ::task_set_name("reverse___dns");
 
-               single_lock synchronouslock(mutex());
+               single_lock synchronouslock(this->synchronization());
 
                while (task_get_run())
                {
@@ -1117,7 +1121,7 @@ namespace networking_bsd
    bool networking::reverse(string& hostname, ::networking::address * paddress)
    {
 
-      single_lock synchronouslock(&m_mutexReverseCache, true);
+      single_lock synchronouslock(m_pmutexReverseCache, true);
 
       auto& pitem = m_mapReverseCache[paddress->get_display_number()];
 
@@ -1268,13 +1272,13 @@ namespace networking_bsd
 
       //   reverse_cache_item item;
 
-      single_lock synchronouslock(&m_mutexReverseCache, true);
+      single_lock synchronouslock(m_pmutexReverseCache, true);
 
       pitem->m_strReverse = host;
       //item.m_strService = serv;
       pitem->m_durationLastChecked.Now();
 
-      //single_lock synchronouslock(&m_mutexCache, true);
+      //single_lock synchronouslock(m_pmutexCache, true);
 
       //m_mapReverseCache.set_at(strIpString, item);
 
@@ -1627,7 +1631,7 @@ namespace networking_bsd
 
 
 
-   //void networking::initialize(::object * pobject)
+   //void networking::initialize(::particle * pparticle)
    //{
 
    //   if (m_bInitialized)
@@ -1637,9 +1641,9 @@ namespace networking_bsd
 
    //   }
 
-   //   //auto estatus = ::object::initialize(pobject);
+   //   //auto estatus = ::object::initialize(pparticle);
 
-   //   ::object::initialize(pobject);
+   //   ::object::initialize(pparticle);
 
    //   //if (!estatus)
    //   //{
@@ -1711,7 +1715,7 @@ namespace networking_bsd
    //   for (i32 i = 0; i < src.get_length(); i++)
    //   {
 
-   //      if (ansi_char_is_alphanumeric((uchar)src[i]))
+   //      if (ansi_char_is_alnum((uchar)src[i]))
    //      {
 
    //         dst += src[i];
@@ -1842,7 +1846,7 @@ namespace networking_bsd
    //      if(str.is_empty())
    //         return false;
    //
-   //      single_lock synchronouslock(&m_mutexCache, true);
+   //      single_lock synchronouslock(m_pmutexCache, true);
    //      dns_cache_item item;
    //      if(m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_durationLastChecked.elapsed()) < (5 * 60 * 1000)))))
    //      {
@@ -2407,7 +2411,7 @@ namespace networking_bsd
       //bool networking::reverse_schedule(reverse_cache_item * pitem)
       //{
       //
-      //   synchronous_lock synchronouslock(mutex());
+      //   synchronous_lock synchronouslock(this->synchronization());
       //
       //   m_reversecacheaRequest.add(pitem);
       //
@@ -2421,7 +2425,7 @@ namespace networking_bsd
       //
       //            ::task_set_name("reverse_dns");
       //
-      //            single_lock synchronouslock(mutex());
+      //            single_lock synchronouslock(this->synchronization());
       //
       //            while (task_get_run())
       //            {
@@ -2470,7 +2474,7 @@ namespace networking_bsd
       //bool networking::reverse(string & hostname, ::networking::address * address)
       //{
       //
-      //   single_lock synchronouslock(&m_mutexReverseCache, true);
+      //   single_lock synchronouslock(m_pmutexReverseCache, true);
       //
       //   auto & pitem = m_mapReverseCache[address.get_display_number()];
       //
@@ -2621,13 +2625,13 @@ namespace networking_bsd
       //
       ////   reverse_cache_item item;
       //
-      //   single_lock synchronouslock(&m_mutexReverseCache, true);
+      //   single_lock synchronouslock(m_pmutexReverseCache, true);
       //
       //   pitem->m_strReverse = host;
       //   //item.m_strService = serv;
       //   pitem->m_durationLastChecked.Now();
       //
-      //   //single_lock synchronouslock(&m_mutexCache, true);
+      //   //single_lock synchronouslock(m_pmutexCache, true);
       //
       //   //m_mapReverseCache.set_at(strIpString, item);
       //
@@ -3114,12 +3118,12 @@ namespace networking_bsd
 //}
 //
 //
-//void networking_bsd::initialize(::object * pobject)
+//void networking_bsd::initialize(::particle * pparticle)
 //{
 //
-//   //auto estatus = sockets_base::initialize(pobject);
+//   //auto estatus = sockets_base::initialize(pparticle);
 //
-//   sockets_base::initialize(pobject);
+//   sockets_base::initialize(pparticle);
 //
 //   //if (!estatus)
 //   //{
@@ -3128,7 +3132,7 @@ namespace networking_bsd
 //
 //   //}
 //
-//   auto paddressdepartment = pobject->__create_new<class ::networking::address_department>();
+//   auto paddressdepartment = pparticle->__create_new<class ::networking::address_department>();
 //
 //   paddressdepartment->increment_reference_count();
 //
@@ -3206,7 +3210,7 @@ namespace networking_bsd
 
       //auto psystem = get_system()->m_papexsystem;
 
-      single_lock lock(&m_mutexHttpPostBoundary, true);
+      single_lock lock(m_pmutexHttpPostBoundary, true);
 
       string strBoundary = "----";
 
@@ -3215,7 +3219,7 @@ namespace networking_bsd
 
          char c = m_countHttpPostBoundary++ % 128;
 
-         while (!ansi_char_is_alphanumeric((unsigned char)c))
+         while (!ansi_char_is_alnum((unsigned char)c))
          {
 
             c = m_countHttpPostBoundary++ % 128;

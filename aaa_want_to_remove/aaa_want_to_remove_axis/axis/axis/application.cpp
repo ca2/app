@@ -13,10 +13,10 @@ namespace axis
    }
 
 
-   void application::initialize(::object * pobject)
+   void application::initialize(::particle * pparticle)
    {
 
-      auto estatus = aura::application::initialize(pobject);
+      auto estatus = aura::application::initialize(pparticle);
 
       if (!estatus)
       {
@@ -34,7 +34,7 @@ namespace axis
 
       m_bInitializeDataCentral = true;
 
-      //if (m_psystem != nullptr)
+      //if (acmesystem() != nullptr)
       //{
 
       //   m_bInitializeDataCentral = psystem->m_bInitializeDataCentral;
@@ -89,7 +89,7 @@ namespace axis
    string application::load_string(const ::atom & atom)
    {
 
-      synchronous_lock synchronouslock(&m_mutexStr);
+      synchronous_lock synchronouslock(m_pmutexStr);
 
       string str;
 
@@ -194,7 +194,7 @@ namespace axis
 
       }
 
-      synchronous_lock synchronouslock(&m_mutexStr);
+      synchronous_lock synchronouslock(m_pmutexStr);
 
       ::pointer<string_to_string>pmap;
 
@@ -358,10 +358,10 @@ namespace axis
 
       string strType = __type_name(this);
 
-      //if(::is_set(m_psystem))
+      //if(::is_set(acmesystem()))
       //{
 
-      //   m_psystem->add_reference(this);
+      //   acmesystem()->add_reference(this);
 
       //}
 
@@ -647,19 +647,19 @@ resume_on_exception:
          if (is_system())
          {
 
-            pathDatabase = pcontext->m_papexcontext->dir().appdata() / "system.sqlite";
+            pathDatabase = pcontext->m_papexcontext->dir()->appdata() / "system.sqlite";
 
          }
          else if (is_session())
          {
 
-            pathDatabase = pcontext->m_papexcontext->dir().appdata() / "session.sqlite";
+            pathDatabase = pcontext->m_papexcontext->dir()->appdata() / "session.sqlite";
 
          }
          else
          {
 
-            pathDatabase = pcontext->m_papexcontext->dir().appdata() / "app.sqlite";
+            pathDatabase = pcontext->m_papexcontext->dir()->appdata() / "app.sqlite";
 
          }
 
@@ -720,7 +720,7 @@ resume_on_exception:
 
       }
 
- /*     if (!m_psystem->m_phtml->initialize())
+ /*     if (!acmesystem()->m_phtml->initialize())
       {
 
          return false;
@@ -1029,7 +1029,7 @@ m_durationHeartBeat.Now();
       string strSchema;
       FORMATTED_TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)",pszRoot.c_str(),pszRelative.c_str(),pszLocale.c_str(),pszStyle.c_str());
       ::file::path strRelative = ::file::path(pszRoot) / "appmatter" / pszRelative  / get_locale_schema_dir(pszLocale,pszStyle) + ".zip";
-      ::file::path strFile = pcontext->m_papexcontext->dir().install() / strRelative;
+      ::file::path strFile = pcontext->m_papexcontext->dir()->install() / strRelative;
       ::file::path strUrl(::file::path_url);
 
       if(framework_is_basis())
@@ -1084,12 +1084,12 @@ m_durationHeartBeat.Now();
 
          string strDir = strFile;
 
-         ::str().ends_eat_ci(strDir,".zip");
+         strDir.ends_eat_ci(".zip");
 
          try
          {
 
-            zip.extract_all(strDir,&file);
+            zip.e_extract_all(strDir,&file);
 
          }
          catch(...)
@@ -1101,7 +1101,7 @@ m_durationHeartBeat.Now();
 
          }
 
-         //psystem->compress().extract_all(strFile, this);
+         //psystem->compress().e_extract_all(strFile, this);
 
       }
 
@@ -1120,14 +1120,14 @@ m_durationHeartBeat.Now();
 
       string strRequestUrl;
 
-      if(m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+      if(acmefile()->as_string(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+         strRequestUrl = "https://" + acmefile()->as_string(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -1172,24 +1172,24 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
 
       payloadFile["disable_ca2_sessid"] = true;
 
-      string strMatter = pcontext->m_papexcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
+      string strMatter = pcontext->m_papexcontext->dir()->matter(::file::path(pszMatter) / pszMatter2);
 
       payloadFile["url"] = strMatter;
 
-      return pcontext->m_papexcontext->file().as_string(payloadFile);
+      return pcontext->m_papexcontext->file()->as_string(payloadFile);
 
    }
 
-   //string application::dir().matter(const ::string & pszMatter, const ::string & pszMatter2)
+   //string application::dir()->matter(const ::string & pszMatter, const ::string & pszMatter2)
    //{
 
-   //   return dir().matter(pszMatter,pszMatter2);
+   //   return dir()->matter(pszMatter,pszMatter2);
 
    //}
 
    //bool application::is_inside_time_dir(const ::string & pszPath)
    //{
-   //   return dir().is_inside_time(pszPath);
+   //   return dir()->is_inside_time(pszPath);
    //}
 
 
@@ -1197,7 +1197,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
    //{
 
    //   return false;
-   //   //return file().is_read_only(pszPath);
+   //   //return file()->is_read_only(pszPath);
 
    //}
 
@@ -1355,7 +1355,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
 
 
 
-   ::draw2d::icon * application::set_icon(object * pobject,::draw2d::icon * picon,bool bBigIcon)
+   ::draw2d::icon * application::set_icon(object * pparticle,::draw2d::icon * picon,bool bBigIcon)
    {
 
       return nullptr;
@@ -1363,7 +1363,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
    }
 
 
-   ::draw2d::icon * application::get_icon(object * pobject,bool bBigIcon) const
+   ::draw2d::icon * application::get_icon(object * pparticle,bool bBigIcon) const
    {
 
       return nullptr;
@@ -1470,7 +1470,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
 
       {
 
-         ::install::mutex mutex(process_platform_dir_name2());
+         ::install::pointer < ::mutex > mutex(process_platform_name());
 
          if (mutex.already_exists())
          {
@@ -1485,7 +1485,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
 
       string strValue;
 
-      if(get_command_line_param(strValue,pszCommandLine,"enable_desktop_launch"))
+      if(get_command_line_parameter(strValue,pszCommandLine,"enable_desktop_launch"))
       {
 
 #ifdef _UWP
@@ -1496,7 +1496,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
 
          ::property_set set;
 
-         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()),pszCommandLine,::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()),e_display_restored, 2_min, set);
+         return ::call_sync(::path::app_app(process_platform_name(), process_configuration_name()),pszCommandLine,::path::app_app(process_platform_name(), process_configuration_name()),e_display_restored, 2_min, set);
 
 #endif
 

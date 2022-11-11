@@ -3,6 +3,8 @@
 #include "call.h"
 #include "communication.h"
 #include "task.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 namespace interprocess
@@ -163,7 +165,7 @@ namespace interprocess
    }
 
 
-   id_array call::prepare_call()
+   atom_array call::prepare_call()
    {
 
       ///exclude_this_app();

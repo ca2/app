@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-hyperlink::hyperlink(::object * pobject) :
-   ::object(pobject)
+hyperlink::hyperlink(::particle * pparticle) :
+   ::object(pparticle)
 {
 
 }

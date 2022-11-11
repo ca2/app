@@ -28,9 +28,9 @@
          {
 
 
-            frame_011::frame_011(::object * pobject) :
-               object(pobject),
-               frame(pobject)
+            frame_011::frame_011(::particle * pparticle) :
+               object(pparticle),
+               frame(pparticle)
             {
 
                set_style(StyleTranslucidWarmLiteGray);

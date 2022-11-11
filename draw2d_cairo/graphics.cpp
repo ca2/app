@@ -4,16 +4,22 @@
 #include "image.h"
 #include "region.h"
 #include "font.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
+#include "acme/platform/restore.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/geometry2d/_shape.h"
+#include "acme/primitive/string/international.h"
+#include "acme/primitive/string/str.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/write_text/text_out.h"
 #include "aura/graphics/write_text/draw_text.h"
-#include "acme/primitive/geometry2d/_shape.h"
 #include "aura/user/user/interaction.h"
 #include <math.h>
-#include "acme/platform/restore.h"
 
 
 
@@ -59,7 +65,7 @@ double g_dPi = atan(1.0) * 4.0;
 
 #include <pango/pangocairo.h>
 
-::mutex * g_pmutexFc = nullptr;
+::pointer< ::mutex > g_pmutexFc = nullptr;
 
 FcBool g_fcResult;
 
@@ -193,22 +199,22 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::assert_ok() const
-   {
-
-      object::assert_ok();
-
-   }
-
-
-   void graphics::dump(dump_context & dumpcontext) const
-   {
-
-      object::dump(dumpcontext);
-
-      //dumpcontext << "\n";
-
-   }
+//   void graphics::assert_ok() const
+//   {
+//
+//      object::assert_ok();
+//
+//   }
+//
+//
+//   void graphics::dump(dump_context & dumpcontext) const
+//   {
+//
+//      object::dump(dumpcontext);
+//
+//      //dumpcontext << "\n";
+//
+//   }
 
 
    graphics::~graphics()
@@ -252,12 +258,12 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::initialize(::object * pobject)
+   void graphics::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
 
-      ::draw2d::graphics::initialize(pobject);
+      ::draw2d::graphics::initialize(pparticle);
 
       //if(!estatus)
       //{
@@ -266,7 +272,7 @@ namespace draw2d_cairo
 
       //}
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
@@ -3116,7 +3122,7 @@ namespace draw2d_cairo
 // special graphics drawing primitives/helpers
 
 
-//::draw2d::brush * PASCAL graphics::GetHalftoneBrush(::object * pobject)
+//::draw2d::brush * PASCAL graphics::GetHalftoneBrush(::particle * pparticle)
 //{
 //
 //    return nullptr;
@@ -3427,7 +3433,7 @@ namespace draw2d_cairo
    }
 
 
-   i32 graphics::get_clip_box(::rectangle_f64 * prectangle)
+   i32 graphics::get_clip_box(::rectangle_f64 & rectangle)
    {
 
       return 0;
@@ -3898,7 +3904,7 @@ namespace draw2d_cairo
 
       rectangle_f64 rectangle;
 
-      copy(&rectangle, &rectangleParam);
+      copy(rectangle, rectangleParam);
 
       internal_draw_text(strParam, rectangle, ealign, edrawtext);
 
@@ -4530,7 +4536,7 @@ namespace draw2d_cairo
 
          cairo_font_extents_t e;
 
-         if (::str().begins(str, unitext("バーチャルマシン")))
+         if (string_begins(str, unitext("バーチャルマシン")))
          {
 
             TRACE("Likely to fail in certain circumstances");

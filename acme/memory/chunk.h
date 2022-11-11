@@ -73,7 +73,7 @@ public:
 
       m_p = memory_allocate(s);
 
-      if (::is_set_ptr(m_p))
+      if (::is_set(m_p))
       {
 
          memcpy(m_p, p, s);

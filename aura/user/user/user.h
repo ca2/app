@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "acme/platform/department.h"
+#include "acme/primitive/collection/list.h"
+#include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/collection/string_map.h"
+
 class keyboard;
 class front_end_schema;
 
@@ -48,7 +53,7 @@ namespace user
 
       ::pointer<::windowing::windowing>      m_pwindowing;
 
-      ::mutex                                   m_mutexRunnable;
+      ::pointer < ::mutex >                                   m_pmutexRunnable;
 
       ::list < ::pointer<::matter >>           m_listRunnable;
 
@@ -63,7 +68,7 @@ namespace user
       ~user() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual void on_initialize_window_object();

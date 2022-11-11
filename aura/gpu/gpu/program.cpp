@@ -1,6 +1,9 @@
 #include "framework.h"
-#include "_.h"
-#include "_gpu.h"
+#include "program.h"
+#include "shader.h"
+//#include "acme/primitive/primitive/factory.h"
+//#include "_.h"
+//#include "_gpu.h"
 
 
 namespace gpu
@@ -19,7 +22,7 @@ namespace gpu
    }
 
 
-   void program::create_program(::object * pobject, const string& strVertex, const string& strFragment, const string& strGeometry)
+   void program::create_program(::particle * pparticle, const string& strVertex, const string& strFragment, const string& strGeometry)
    {
 
       m_strProjection = strVertex;
@@ -27,7 +30,7 @@ namespace gpu
       m_strGeometry = strGeometry;
 
       //::e_status estatus = 
-      pobject->__construct_new(m_pshader);
+      ::__construct_new(pparticle, m_pshader);
 
       //if (!estatus)
       //{

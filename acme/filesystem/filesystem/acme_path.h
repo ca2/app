@@ -2,17 +2,18 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+
+
 class CLASS_DECL_ACME acme_path :
-   virtual public matter
+   virtual public particle
 {
 public:
 
 
-   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::acme_path *   m_pplatformpath;
-
-
-   acme_directory *                          m_pacmedirectory;
-   acme_file *                         m_pacmefile;
+   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::acme_path *    m_pplatformpath;
+   ::acme_directory *                                          m_pacmedirectory;
+   ::acme_file *                                               m_pacmefile;
 
 
    acme_path();

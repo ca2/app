@@ -1,11 +1,14 @@
 #include "framework.h"
 #include "tools.h"
+#include "acme/operating_system/process.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/platform/node.h"
 
 
 task_tool::task_tool()
 {
 
-   defer_create_mutex();
+   defer_create_synchronization();
 
 }
 
@@ -19,9 +22,9 @@ task_tool::~task_tool()
 task_group::task_group(::matter * pmatter, ::enum_priority epriority)
 {
 
-   defer_create_mutex();
+   defer_create_synchronization();
 
-   //auto estatus = initialize(pmatter);
+   //auto estatus = initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -35,7 +38,7 @@ task_group::task_group(::matter * pmatter, ::enum_priority epriority)
    m_cIteration                     = 0;
    m_cSpan                          = 0;
 
-   int cOrder = get_current_process_affinity_order();
+   int cOrder = acmenode()->get_current_process_affinity_order();
 
    auto iPreviousSize = m_taska.get_size();
 
@@ -46,7 +49,7 @@ task_group::task_group(::matter * pmatter, ::enum_priority epriority)
 
       auto & ptooltask = m_taska[iThread];
 
-      ptooltask = m_psystem->__create_new < ::tool_task >();
+      ptooltask = acmesystem()->__create_new < ::tool_task >();
 
       ptooltask->initialize_tool_task(this);
 
@@ -54,7 +57,7 @@ task_group::task_group(::matter * pmatter, ::enum_priority epriority)
 
       ptooltask->m_iThread = iThread;
 
-      ptooltask->m_uThreadAffinityMask = translate_processor_affinity((int) (ptooltask->m_iThread));
+      ptooltask->m_uThreadAffinityMask = acmenode()->translate_processor_affinity((int) (ptooltask->m_iThread));
 
       if (epriority == ::e_priority_none)
       {
@@ -84,7 +87,7 @@ task_group::~task_group()
 void task_group::prepare(::enum_task_op etaskop, ::count cIteration)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    for (auto & ptask : m_taska)
    {
@@ -129,10 +132,10 @@ void task_group::prepare(::enum_task_op etaskop, ::count cIteration)
 //}
 
 
-bool task_group::add_predicate(::predicate_holder_base * ppred)
+bool task_group::add_procedure(const ::procedure & procedure)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if ((m_etaskop != ::e_task_op_predicate && m_etaskop != ::e_task_op_fork_count) || is_full())
    {
@@ -148,7 +151,7 @@ bool task_group::add_predicate(::predicate_holder_base * ppred)
 
    }
 
-   m_taska[m_cCount]->set_predicate(ppred);
+   m_taska[m_cCount]->set_procedure(procedure);
 
    m_cCount++;
 
@@ -160,7 +163,7 @@ bool task_group::add_predicate(::predicate_holder_base * ppred)
 void task_group::set_ready_to_start()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if (m_cCount <= 0)
    {
@@ -207,7 +210,7 @@ void task_group::set_ready_to_start()
 ::e_status task_group::wait()
 {
 
-   //synchronous_lock synchronouslock(mutex());
+   //synchronous_lock synchronouslock(this->synchronization());
 
    //if (m_cCount <= 0)
    //{
@@ -266,7 +269,7 @@ void task_group::process()
 tool_task::tool_task()
 {
 
-   defer_create_mutex();
+   defer_create_synchronization();
 
 
 }
@@ -297,15 +300,15 @@ void tool_task::initialize_tool_task(::task_group* pgroup)
 }
 
 
-bool tool_task::set_predicate(::predicate_holder_base * ppred)
+bool tool_task::set_procedure(const ::procedure & procedure)
 {
 
    try
    {
 
-      ppred->m_ptooltask = this;
+      //m_ptooltask = this;
 
-      m_ppred = ppred;
+      m_procedure = procedure;
 
       return true;
 
@@ -343,7 +346,7 @@ void tool_task::run()
       if (m_pgroup->m_etaskop == ::e_task_op_predicate || m_pgroup->m_etaskop == ::e_task_op_fork_count)
       {
 
-         m_ppred->run();
+         m_procedure();
 
       }
       else if (m_pgroup->m_etaskop == ::e_task_op_tool)
@@ -440,7 +443,7 @@ void task_group::select_tool(task_tool* ptool)
 
       auto & pitem = ptool->item_at(i);
 
-      pitem = m_psystem->__id_create < ::task_tool_item > (ptool->m_atom);
+      pitem = acmesystem()->__id_create < ::task_tool_item > (ptool->m_atom);
 
       pitem->m_ptask = ptask;
 

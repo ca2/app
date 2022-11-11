@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 namespace experience
 {
 
@@ -22,10 +25,10 @@ namespace experience
       ~experience() override;
 
 
-      ::base::application * get_app() const;
-      ::base::session * get_session() const;
-      ::base::system * get_system() const;
-      ::base::user * user() const;
+      ::base::application * get_app();
+      ::base::session * get_session();
+      ::base::system * get_system();
+      ::base::user * user();
 
 
       virtual void update();

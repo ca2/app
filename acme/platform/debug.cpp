@@ -1,14 +1,5 @@
 #include "framework.h"
 #include "acme/constant/id.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "acme/user/user/_user.h"
-//CLASS_DECL_ACME void __simple_tracev(e_trace_category ecategory, enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args);
-//CLASS_DECL_ACME void __simple_tracea(e_trace_category ecategory, enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz);
-
-//CLASS_DECL_ACME void __tracev(const ::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
-
-//#endif
-#include "acme/update.h"
 #ifdef WINDOWS
 #include <process.h>
 #elif defined(LINUX)
@@ -16,9 +7,6 @@
 #include <unistd.h>
 #endif
 #include "trace_category.h"
-
-
-
 
 
 void debug_object_event_promisse_predicate()
@@ -35,11 +23,11 @@ void debug_object_event_promisse_predicate()
    //o += { ok, id_text, [&](auto & result) { output_debug_string("o += ok, id_text ..."); return ::success; } };
 
 
-   //::pointer<::matter>pobject;
+   //::pointer<::matter>pparticle;
 
-   //__keep(pobject, nullptr);
+   //__keep(pparticle, nullptr);
    ////   // 4 arguments
-   ////   o += { ok, id_text, [&](auto pobject) { ASSERT(pobject == &o); output_debug_string("o += ok, id_text, &o ...");  } };
+   ////   o += { ok, id_text, [&](auto pparticle) { ASSERT(pparticle == &o); output_debug_string("o += ok, id_text, &o ...");  } };
 
 
 }
@@ -130,7 +118,7 @@ void set_verbose(bool bVerbose)
 CLASS_DECL_ACME void debug_print(const char * pszFormat, ...)
 {
 
-   if (is_ptr_null(pszFormat, 1024))
+   if (is_null(pszFormat, 1024))
    {
 
       return;

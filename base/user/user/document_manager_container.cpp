@@ -30,12 +30,12 @@ namespace user
    }
 
 
-   void document_manager_container::initialize(::object * pobject)
+   void document_manager_container::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{

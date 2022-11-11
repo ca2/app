@@ -1,7 +1,11 @@
 ﻿#pragma once
 
 
-namespace papaya
+#include "map.h"
+#include "acme/primitive/primitive/atom.h"
+
+
+namespace acme
 {
 
 
@@ -35,20 +39,13 @@ namespace papaya
    } // namespace map
 
 
-} // namespace papaya
+} // namespace acme
 
 
-template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE > >
-using id_map = ::map < atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE, PAIR >;
+
+using procedure_map = ::atom_map < ::procedure_array >;
 
 
-using procedure_map = ::id_map < ::procedure_array >;
-
-
-using id_to_id = id_map < atom >;
-
-
-using id_to_index = id_map < index >;
 
 
 

@@ -1,45 +1,46 @@
 ﻿#include "framework.h"
-
-////#include "aura/message.h"
-#include "acme/operating_system.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
-#include "aura/windowing/window.h"
-#include "aura/windowing/windowing.h"
 #include "interaction_impl.h"
 #include "interaction.h"
 #include "user.h"
 #include "system.h"
 #include "message.h"
+#include "acme/constant/message.h"
+#include "acme/exception/exception.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
 #include "aura/platform/session.h"
 
 
 #ifdef WINDOWS_DESKTOP
 
 
-int windows_desktop1_main(HINSTANCE hInstance, int       nCmdShow);
+//int windows_desktop1_main(HINSTANCE hInstance, int       nCmdShow);
 
-
-void verisimple_message_loop()
-{
-
-   MSG msg;
-
-   while (::GetMessage(&msg, nullptr, 0, 0))
-   {
-
-      //if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-      {
-
-         TranslateMessage(&msg);
-
-         DispatchMessage(&msg);
-
-      }
-
-   }
-
-}
+//
+//void verisimple_message_loop()
+//{
+//
+//   MSG msg;
+//
+//   while (::GetMessage(&msg, nullptr, 0, 0))
+//   {
+//
+//      //if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+//      {
+//
+//         TranslateMessage(&msg);
+//
+//         DispatchMessage(&msg);
+//
+//      }
+//
+//   }
+//
+//}
 
 
 #endif
@@ -218,7 +219,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      HRESULT hr = CoInitialize(NULL);
+      acmenode()->defer_co_initialize_ex(false);
 
 #endif
 
@@ -335,7 +336,7 @@ namespace user
 
       //{
 
-      //   synchronous_lock synchronouslock(mutex());
+      //   synchronous_lock synchronouslock(this->synchronization());
 
       //   if (m_messagebasea.has_elements())
       //   {
@@ -425,7 +426,7 @@ namespace user
 
             if (m_pimpl 
                && m_pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_is_window
-               && ::thread::is_finishing())
+               && ::thread::has_finishing_flag())
             {
 
                m_pimpl->m_puserinteraction->start_destroying_window();
@@ -1122,7 +1123,7 @@ namespace user
    void thread::destroy()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pimpl)
       {
@@ -1178,7 +1179,7 @@ namespace user
          INFORMATION("notify_icon");
       }
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_pimpl.release();
 

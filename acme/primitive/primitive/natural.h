@@ -1,23 +1,11 @@
 #pragma once
 
 
-enum e_zero_init
-{
-
-   zero_init
-
-};
-
-
-
-
-
-#include "acme/constant/_enumeration.h"
-
+#include "acme/memory/memory_allocator.h"
+#include "acme/primitive/primitive/interlocked_count.h"
 
 template < typename NATURAL_DATA >
 NATURAL_DATA* __nil() { return nullptr; }
-
 
 
 #define NATURAL_METADATA_ALIGN 32
@@ -40,7 +28,7 @@ public:
 
 
    meta_data(): m_memsize(0),m_countReference (1) {}
-   meta_data(e_zero_init) : m_memsize(0), m_countReference(1), m_endofmetadata{} {}
+   meta_data(enum_zero_init) : m_memsize(0), m_countReference(1), m_endofmetadata{} {}
 
    bool natural_is_shared() const { return m_countReference > 1; }
 
@@ -70,7 +58,7 @@ public:
 
    natural_meta_data() {}
 
-   natural_meta_data(e_zero_init) :BASE_META_DATA(zero_init){}
+   natural_meta_data(enum_zero_init) :BASE_META_DATA(e_zero_init){}
 
    bool is_set() { return ::is_set(this->m_pdata); }
 
@@ -139,19 +127,27 @@ public:
    inline natural_pointer()
    {
 
-      m_pdata = default_construct_natural_pointer();
+      natural_pointer_default_construct();
 
    }
 
    ~natural_pointer()
    {
 
-      if (::c_is_set(this->m_pdata))
+      if (::is_set(this->m_pdata))
       {
 
          this->_natural_release(NATURAL_META_DATA::from_data(this->m_pdata));
 
       }
+
+   }
+
+
+   void natural_pointer_default_construct()
+   {
+
+      m_pdata = default_construct_natural_pointer();
 
    }
 
@@ -203,6 +199,17 @@ public:
       assign_natural_meta_data(NATURAL_META_DATA::from_data(pointer.m_pdata));
 
    }
+
+
+   void create_assign_natural_meta_data(natural_meta_data < BASE_META_DATA > * pNew)
+   {
+
+      auto i = pNew->natural_add_ref();
+
+      this->m_pdata = pNew->get_data();
+
+   }
+
 
    void assign_natural_meta_data(natural_meta_data < BASE_META_DATA > * pNew)
    {

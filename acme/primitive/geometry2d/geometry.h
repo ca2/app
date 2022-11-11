@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+
+
 namespace geometry
 {
 
@@ -18,16 +21,16 @@ namespace geometry
    };
 
    class CLASS_DECL_ACME geometry :
-      virtual public ::matter
+      virtual public ::particle
    {
    public:
 
 
       geometry();
-      virtual ~geometry();
+      ~geometry() override;
 
 
-      //virtual void initialize(::object * pobject) override;
+      //virtual void initialize(::particle * pparticle) override;
       void destroy() override;
 
 

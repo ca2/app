@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/exception/exception.h"
 //#include "acme/operating_system.h"
 //#ifdef WINDOWS
 //#include <io.h>
@@ -68,7 +69,7 @@
 //}
 //
 //
-//int_bool m_psystem->m_pacmefile->exists(const char * path1)
+//int_bool acmefile()->exists(const char * path1)
 //{
 //
 //   // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -94,7 +95,7 @@
 //}
 //
 //
-//int_bool m_psystem->m_pacmepath->is_file_or_dir(const char * path1, ::file::enum_type * petype)
+//int_bool acmepath()->is_file_or_dir(const char * path1, ::file::enum_type * petype)
 //{
 //
 //   struct stat st;
@@ -136,12 +137,12 @@
 //}
 //
 //
-//int_bool m_psystem->m_pacmefile->put_contents(const char * path, const char * contents, ::count len)
+//int_bool acmefile()->put_contents(const char * path, const char * contents, ::count len)
 //{
 //
 //   bool bOk = false;
 //
-//            auto psystem = m_psystem;
+//            auto psystem = acmesystem();
 //
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -196,7 +197,7 @@
 //
 //
 //
-//string m_psystem->m_pacmefile->as_string(const char * path, strsize iReadAtMostByteCount)
+//string acmefile()->as_string(const char * path, strsize iReadAtMostByteCount)
 //{
 //
 //   string str;
@@ -220,7 +221,7 @@
 //
 //   str.release_string_buffer(iRead);
 //
-//   ::str().begins_eat_ci(str, "\xef\xbb\xbf");
+//   str.begins_eat_ci("\xef\xbb\xbf");
 //
 //   fclose(f);
 //
@@ -231,7 +232,7 @@
 //string_array file_as_lines(const char * path, strsize iReadAtMostByteCount)
 //{
 //
-//   string str = m_psystem->m_pacmefile->as_string(path, iReadAtMostByteCount);
+//   string str = acmefile()->as_string(path, iReadAtMostByteCount);
 //
 //   string_array stra;
 //
@@ -743,7 +744,7 @@ bool is_directory(const char * path)
 
       }
 
-      auto estatus = errno_to_status(iErrNo);
+      auto estatus = errno_status(iErrNo);
 
       if(estatus == error_file_not_found)
       {
@@ -780,7 +781,7 @@ bool file_exists(const char * path)
    if (::stat(path, &stat))
    {
 
-      auto estatus = errno_to_status(errno);
+      auto estatus = errno_status(errno);
 
       if(estatus == error_file_not_found)
       {
@@ -883,7 +884,7 @@ void create_directory(const char * path)
       
       int iErrorNumber = errno;
 
-      auto estatus = errno_to_status(errno);
+      auto estatus = errno_status(errno);
       
       if(estatus == error_already_exists)
       {
@@ -912,7 +913,7 @@ void erase_directory(const char * path)
    if (::rmdir(path) != 0)
    {
 
-      auto estatus =  errno_to_status(errno);
+      auto estatus =  errno_status(errno);
 
       throw ::exception(estatus);
 
@@ -928,7 +929,7 @@ void file_delete(const char * path)
    if (::unlink(path) == -1)
    {
 
-      auto estatus = errno_to_status(errno);
+      auto estatus = errno_status(errno);
 
       throw ::exception(estatus);
 

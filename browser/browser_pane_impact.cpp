@@ -7,11 +7,11 @@ namespace browser
 {
 
 
-   pane_impact::pane_impact(::object * pobject) :
-      object(pobject),
-      ::user::tab_impact(pobject),
-      ::userex::pane_tab_impact(pobject),
-      place_holder_container(pobject)
+   pane_impact::pane_impact(::particle * pparticle) :
+      object(pparticle),
+      ::user::tab_impact(pparticle),
+      ::userex::pane_tab_impact(pparticle),
+      place_holder_container(pparticle)
    {
 
       m_pimpactLast = nullptr;
@@ -433,7 +433,7 @@ namespace browser
             string strCheck = ptopic->user_element_id();
 
 
-            if (::str().begins_eat_ci(strCheck, "slide"))
+            if (strCheck.begins_eat_ci("slide"))
             {
 
                if (ptopic->user_interaction() != nullptr && !ptopic->m_context.is(::e_source_initialize)
@@ -551,13 +551,13 @@ namespace browser
       if (m_pimpactLast == nullptr && m_pimpactLastBilbo == nullptr)
       {
 
-         str = pcontext->m_papexcontext->file().as_string("matter://home.html");
+         str = pcontext->m_papexcontext->file()->as_string("matter://home.html");
 
       }
       else
       {
 
-         str = pcontext->m_papexcontext->file().as_string("matter://menu.html");
+         str = pcontext->m_papexcontext->file()->as_string("matter://menu.html");
 
       }
 
@@ -598,9 +598,9 @@ namespace browser
 
       ::file::path path;
 
-      path = pcontext->m_papexcontext->dir().appdata() / "browser_menu.html";
+      path = pcontext->m_papexcontext->dir()->appdata() / "browser_menu.html";
 
-      pcontext->m_papexcontext->file().put_contents(path, str);
+      pcontext->m_papexcontext->file()->put_contents(path, str);
 
       return path;
 

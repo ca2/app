@@ -3,6 +3,12 @@
 //
 #include "framework.h"
 #include "message_queue.h"
+#include "acme/operating_system/message.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/parallelization/mutex.h"
+#include "acme/primitive/collection/map.h"
+#include "acme/exception/exception.h"
+#include "acme/parallelization/task.h"
 
 
 #define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
@@ -14,7 +20,7 @@ bool apex_defer_process_x_message(htask_t htask,MESSAGE * pMsg,oswindow oswindow
 
 #endif
 
-mutex * g_pmutexMq;
+critical_section g_criticalsectionMq;
 
 
 map < itask_t, ::pointer<message_queue >>* g_pmapMq;
@@ -32,7 +38,7 @@ message_queue * get_message_queue(itask_t itask, bool bCreate)
 
    }
 
-   synchronous_lock synchronouslock(g_pmutexMq);
+   critical_section_lock criticalsectionlock(&g_criticalsectionMq);
 
    auto & pmessagequeue = (*g_pmapMq)[itask];
 
@@ -58,7 +64,7 @@ message_queue * get_message_queue(itask_t itask, bool bCreate)
 void clear_message_queue(itask_t idthread)
 {
 
-   synchronous_lock synchronouslock(g_pmutexMq);
+   critical_section_lock synchronouslock(&g_criticalsectionMq);
 
    g_pmapMq->erase_key(idthread);
 
@@ -133,7 +139,7 @@ void clear_message_queue(itask_t idthread)
 ////
 ////   }
 ////
-////   synchronous_lock ml(&pmq->m_mutex);
+////   synchronous_lock ml(&pmq->m_pmutex);
 ////
 ////   pmq->m_messagea.predicate_erase([=](MESSAGE & item)
 ////   {
@@ -159,7 +165,7 @@ CLASS_DECL_ACME void mq_clear(itask_t idthread)
 
    }
 
-   synchronous_lock ml(g_pmutexMq);
+   critical_section_lock ml(&g_criticalsectionMq);
 
    pmq->m_messagea.erase_all();
 
@@ -239,7 +245,7 @@ CLASS_DECL_ACME int_bool mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32
 void initialize_global_message_queue()
 {
 
-   g_pmutexMq = memory_new mutex();
+   //g_pmutexMq = memory_new mutex();
 
    g_pmapMq = memory_new map < itask_t, ::pointer < message_queue > >();
 
@@ -249,7 +255,7 @@ void initialize_global_message_queue()
 void finalize_global_message_queue()
 {
 
-   ::acme::del(g_pmutexMq);
+   //::acme::del(g_pmutexMq);
 
    ::acme::del(g_pmapMq);
 

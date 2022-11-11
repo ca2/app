@@ -2,12 +2,15 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 namespace user
 {
 
 
    class CLASS_DECL_BASE impact_kit :
-      virtual public object
+virtual public ::object
    {
    public:
 

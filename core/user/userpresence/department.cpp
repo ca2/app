@@ -37,12 +37,12 @@ namespace userpresence
    }
 
 
-   void department::initialize(::object * pobject)
+   void department::initialize(::particle * pparticle)
    {
 
       //auto estatus =
 
-         ::acme::department::initialize(pobject);
+         ::acme::department::initialize(pparticle);
 
 //      if (!estatus)
 //      {
@@ -51,7 +51,7 @@ namespace userpresence
 //
 //      }
 
-      if(!m_psystem->is_true("do_not_initialize_user_presence"))
+      if(!acmesystem()->is_true("do_not_initialize_user_presence"))
       {
          // xxx
          // defer_initialize_user_presence();

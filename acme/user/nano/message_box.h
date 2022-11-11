@@ -5,6 +5,9 @@
 #pragma once
 
 
+#include "window.h"
+
+
 class nano_message_box :
    virtual public nano_window
 {
@@ -12,7 +15,7 @@ public:
 
 
    string                              m_strLabelDetails;
-   ::pointer<nano_still>              m_pstillDetails;
+   ::pointer<nano_still>               m_pstillDetails;
 
 
    nano_message_box();

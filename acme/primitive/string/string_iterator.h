@@ -17,7 +17,7 @@ public:
    string_iterator(const CHAR_TYPE * psz) : m_psz(psz) { }
    string_iterator(const CHAR_TYPE * psz, strsize size) : m_psz(psz + size) { }
 
-   ::i32 operator *();
+   ::wd32char operator *();
    string_iterator & operator ++();
    string_iterator operator ++(int);
 

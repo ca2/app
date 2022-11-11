@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/parallelization/thread.h"
+
+
 namespace filemanager
 {
 
@@ -16,7 +19,7 @@ namespace filemanager
       pointer_array < ::filemanager::operation >              m_fileoperationa;
       i32                          m_iOperation;
       bool                             m_bStep;
-      ::mutex                            m_mutexFileOperationA;
+      ::pointer < ::mutex >                            m_pmutexFileOperationA;
       bool                             m_bStop;
 
 

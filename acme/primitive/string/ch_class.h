@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "acme/primitive/collection/bit_array.h"
+//#include "acme/primitive/string/_c.h"
 
 /** Character classes store implementation.
       - ch_class allows to store enumerations of characters in compact

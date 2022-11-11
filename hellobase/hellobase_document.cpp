@@ -5,11 +5,11 @@ namespace hellobase
 {
 
 
-   document::document(::object * pobject) :
-      object(pobject),
-      ::data::data_container_base(pobject),
-      ::user::document(pobject),
-      ::user::document(pobject)
+   document::document(::particle * pparticle) :
+      object(pparticle),
+      ::data::data_container_base(pparticle),
+      ::user::document(pparticle),
+      ::user::document(pparticle)
    {
 
    }
@@ -76,7 +76,7 @@ namespace hellobase
 
          {
 
-            synchronous_lock slText(get_typed_impact < impact >() != nullptr  ? &get_typed_impact < impact >()->m_mutexText : nullptr);
+            synchronous_lock slText(get_typed_impact < impact >() != nullptr  ? &get_typed_impact < impact >()->m_pmutexText : nullptr);
 
             get_typed_impact < impact >()->m_strHelloBase = "image:" + get_typed_impact < impact >()->m_strImage + "," + get_typed_impact < impact >()->m_strHelloBase;
 
@@ -86,8 +86,8 @@ namespace hellobase
 
       }
       else if(get_typed_impact < ::user::plain_edit_impact >() != nullptr
-              && pcontext->m_papexcontext->file().exists(payloadFile)
-              && (str = pcontext->m_papexcontext->file().as_string(payloadFile)).has_char())
+              && pcontext->m_papexcontext->file()->exists(payloadFile)
+              && (str = pcontext->m_papexcontext->file()->as_string(payloadFile)).has_char())
       {
 
          get_typed_impact < ::user::plain_edit_impact >()->_001SetText(str.Left(84),::e_source_user);

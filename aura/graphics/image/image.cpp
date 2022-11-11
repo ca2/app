@@ -7,12 +7,14 @@
 #include "drawing.h"
 #include "save_image.h"
 #include "context_image.h"
-//#include "acme/primitive/geometry2d/_concept.h"
-#include "acme/operating_system.h"
+#include "acme/exception/interface_only.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/task_tool.h"
 #include "aura/graphics/draw2d/draw2d.h"
+
+
+//#include "acme/_operating_system.h"
 
 
 double get_default_screen_dpi()
@@ -23,13 +25,13 @@ double get_default_screen_dpi()
 
 }
 
-
-#ifdef WINDOWS
-#include <wincodec.h>
-#include <ShCore.h>
-//#elif defined(_UWP)
+//
+//#ifdef WINDOWS
+//#include <wincodec.h>
 //#include <ShCore.h>
-#endif
+////#elif defined(_UWP)
+////#include <ShCore.h>
+//#endif
 
 
 
@@ -71,22 +73,22 @@ image::image()
 image::~image()
 {
 
-   if (m_psystem)
+   if (acmesystem())
    {
 
-      m_psystem->m_paurasystem->draw2d()->erase_image(this);
+      acmesystem()->m_paurasystem->draw2d()->erase_image(this);
 
    }
 
 }
 
 
-void image::on_initialize_object()
+void image::on_initialize_particle()
 {
 
-   m_psystem->m_paurasystem->draw2d()->add_image(this);
+   acmesystem()->m_paurasystem->draw2d()->add_image(this);
 
-   ::object::on_initialize_object();
+   ::particle::on_initialize_particle();
 
 }
 
@@ -119,6 +121,14 @@ concrete < ::size_i32 > image::image_source_size() const
 {
    
    return get_size(); 
+
+}
+
+
+bool image::_is_ok() const
+{ 
+   
+   return ::pixmap::is_ok() && ::particle::has_ok_flag(); 
 
 }
 
@@ -1702,15 +1712,15 @@ void image::fork_blend(const ::point_i32& pointDstParam, ::image* pimageSrc, con
 
    }
 
-   ::pointer<::aura::system>psystem = m_psystem;
+   ::pointer<::aura::system>psystem = acmesystem();
 
    auto pgroup = psystem->task_group();
 
-   synchronous_lock slGroup(pgroup->mutex());
+   synchronous_lock slGroup(pgroup->synchronization());
 
    auto ptool = psystem->task_tool(::e_task_tool_draw2d);
 
-   synchronous_lock slTool(ptool->mutex());
+   synchronous_lock slTool(ptool->synchronization());
 
    if (!pgroup || !ptool)
    {
@@ -4980,18 +4990,18 @@ u32 image::GetPixel(i32 x, i32 y)
 
    u8* p = (u8*)&u;
 
-   int iA = p[IMAGE_A_BYTE_INDEX];
+   int iA = p[m_colorindexes.a];
 
    if (iA == 0)
    {
 
-      return rgb(p[IMAGE_R_BYTE_INDEX], p[IMAGE_G_BYTE_INDEX], p[IMAGE_B_BYTE_INDEX]);
+      return rgb(p[m_colorindexes.r], p[m_colorindexes.g], p[m_colorindexes.b]);
 
    }
    else
    {
 
-      return argb(iA, p[IMAGE_R_BYTE_INDEX] * 255 / iA, p[IMAGE_G_BYTE_INDEX] * 255 / iA, p[IMAGE_B_BYTE_INDEX] * 255 / iA);
+      return argb(iA, p[m_colorindexes.r] * 255 / iA, p[m_colorindexes.g] * 255 / iA, p[m_colorindexes.b] * 255 / iA);
 
    }
 
@@ -6370,7 +6380,7 @@ void image::fill_byte(uchar uch)
    else if (g())
    {
 
-      auto color = __acolor(uch, uch, uch, uch);
+      auto color = ::color::color(uch, uch, uch, uch);
 
       auto ealphamode = g()->alpha_mode();
 
@@ -8331,7 +8341,7 @@ void image::set_rgb(color32_t cr)
 
       auto ysq = (rTotal.bottom - y);
 
-      auto pbyte = &((byte*)p)[IMAGE_A_BYTE_INDEX];
+      auto pbyte = &((byte*)p)[m_colorindexes.a];
 
       for (int x = r.left; x < r.right; x++)
       {
@@ -8374,16 +8384,21 @@ void image::paint_rgb(const ::color::color & color)
    int B = color.blue;
    int A;
 
+   auto indexA = m_colorindexes.a;
+   auto indexR = m_colorindexes.r;
+   auto indexG = m_colorindexes.g;
+   auto indexB = m_colorindexes.b;
+
    u8* puch = (u8*)get_data();
    i64 iArea = scan_area();
    while (iArea > 0)
    {
 
-      A = puch[IMAGE_A_BYTE_INDEX];
+      A = puch[indexA];
 
-      puch[IMAGE_R_BYTE_INDEX] = R * A / 255;
-      puch[IMAGE_G_BYTE_INDEX] = G * A / 255;
-      puch[IMAGE_B_BYTE_INDEX] = B * A / 255;
+      puch[indexR] = R * A / 255;
+      puch[indexG] = G * A / 255;
+      puch[indexB] = B * A / 255;
 
       puch += 4;
 
@@ -9329,10 +9344,10 @@ void image_copy(::image* pimagethis, ::image* pimage)
 }
 
 
-//void image_create(::object* pobject, ::image_pointer& pimage)
+//void image_create(::object* pparticle, ::image_pointer& pimage)
 //{
 //
-//   __construct(pimage, pobject);
+//   __construct(pimage, pparticle);
 //
 //}
 
@@ -9507,14 +9522,14 @@ save_image::save_image()
 //save_image::save_image(::matter * pmatter, const ::payload & payloadFile, const ::payload & varOptions)
 //{
 //
-//   ::pointer<::aura::system>psystem = m_psystem;
+//   ::pointer<::aura::system>psystem = acmesystem();
 //
 //   auto eformat = pdraw2d->text_to_format(varOptions["format"]);
 //
 //   if (eformat != ::draw2d::e_format_none)
 //   {
 //
-//      ::pointer<::aura::system>psystem = m_psystem;
+//      ::pointer<::aura::system>psystem = acmesystem();
 //
 //      eformat = pdraw2d->file_extension_to_format(payloadFile.get_file_path());
 //
@@ -9571,7 +9586,7 @@ save_image::save_image()
 //
 //      path = strMatter;
 //
-//      path = pcontext->m_papexcontext->dir().matter(path / strIcon);
+//      path = pcontext->m_papexcontext->dir()->matter(path / strIcon);
 //
 //      if (load_image(path))
 //      {
@@ -10093,7 +10108,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* 
 //}
 
 
-::element * image::clone() const
+::particle * image::clone() const
 {
 
    auto pimage = ((::image*)this)->__create<::image>();

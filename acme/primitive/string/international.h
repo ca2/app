@@ -9,21 +9,6 @@
 //   {
 //
 
-      enum ECodePage
-      {
-         CodePageShiftJIS = 932,
-         CodePageLatin1 = 1252,
-#ifdef WINDOWS
-         CodePageUtf8 = CP_UTF8,
-         CodePageAnsi = CP_ACP,
-         CodePageOem = CP_OEMCP,
-#else
-         CodePageUtf8 = 65001,
-         CodePageAnsi = 10,
-         CodePageOem = 11
-#endif
-      };
-
 
       bool CLASS_DECL_ACME unicode_to_multibyte(::u32 uCodePage, char * psz, strsize nCount, const widechar * pcsz);
 
@@ -115,8 +100,8 @@
 //} // namespace str
 
 
-inline wstring unicode(const char * psz) { return utf8_to_unicode(psz);  }
-inline string utf8(const widechar * pwsz) { return unicode_to_utf8(pwsz); }
+//inline wstring unicode(const char * psz) { return utf8_to_unicode(psz);  }
+//inline string utf8(const widechar * pwsz) { return unicode_to_utf8(pwsz); }
 
 
 #define unitext(text) (unicode_to_utf8(L##text))

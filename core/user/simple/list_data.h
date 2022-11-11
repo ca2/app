@@ -10,7 +10,7 @@ class CLASS_DECL_CORE simple_list_data:
 public:
 
 
-   bool                 m_bEnable;
+   bool                                   m_bEnable;
 
    pointer_array < string_array >         m_array;
 

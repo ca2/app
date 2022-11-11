@@ -10,14 +10,6 @@ namespace write_text
 {
 
 
-   struct font_descriptor
-   {
-
-      string      m_strFace;
-      float       m_fSize;
-
-   };
-
 
    class text_out;
    class draw_text;
@@ -32,13 +24,7 @@ namespace write_text
    using font_pointer_array = pointer_array < font >;
 
 
-   enum enum_font_list
-   {
 
-      e_font_list_wide,
-      e_font_list_single_column,
-
-   };
 
 
 } // namespace write_text
@@ -55,7 +41,7 @@ namespace write_text
 //#include "draw_text.h"
 //
 //
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_enhanced.h"
 //
 //
 //#include "aura/graphics/draw2d/path.h"

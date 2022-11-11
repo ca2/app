@@ -1,9 +1,9 @@
 #include "framework.h"
-
+#include "user.h"
+#include "acme/exception/interface_only.h"
 #include "acme/include/_c_swap.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
-#include "aura/message/user.h"
 #include "aura/user/user/system.h"
 #include "aura/user/user/user.h"
 #include "aura/user/user/interaction.h"
@@ -38,7 +38,7 @@ namespace message
 
 
 
-   //base::base(::object * pobject) :
+   //base::base(::particle * pparticle) :
    //   ::message::message(psignal)
    //{
 
@@ -140,7 +140,7 @@ namespace message
    //}
 
 
-   ::element * create::get_impact_data()
+   ::particle * create::get_impact_data()
    {
 
       auto pusersystem = get_user_create();
@@ -179,9 +179,7 @@ namespace message
       else
       {
 
-         auto psession = get_session();
-
-         auto paurasession = psession->m_paurasession;
+         auto paurasession = m_pcontext->m_paurasession;
 
          auto puser = paurasession->m_puser;
 
@@ -272,7 +270,7 @@ namespace message
 
       ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      m_point = __point(lparam);
+      m_point = ::point_i32(lparam);
 
    }
 
@@ -352,7 +350,7 @@ namespace message
 
       }
 
-      m_point    = __point(lparam);
+      m_point    = ::point_i32(lparam);
 
 #if defined(LINUX) || defined(FREEBSD)
 
@@ -380,7 +378,7 @@ namespace message
 
       m_nFlags    = wparam;
 
-      m_point        = __point(lparam);
+      m_point        = ::point_i32(lparam);
 
       m_bTranslated = true;
 
@@ -441,7 +439,7 @@ namespace message
    point_i32 context_menu::GetPoint()
    {
 
-      return __point(m_lparam);
+      return ::point_i32(m_lparam);
 
    }
 
@@ -565,6 +563,7 @@ namespace message
 
 #ifdef WINDOWS_DESKTOP
 
+
    void window_pos::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
@@ -606,19 +605,26 @@ namespace message
 
    ::u32 mouse_wheel::GetFlags()
    {
+
       return first_u16(m_wparam);
+
    }
+
 
    i16 mouse_wheel::GetDelta()
    {
+
       return second_i16(m_wparam);
+
    }
+
 
    point_i32 mouse_wheel::GetPoint()
    {
-      return point_i32(x_i16(m_lparam), y_i16(m_lparam));
-   }
 
+      return point_i32(x_i16(m_lparam), y_i16(m_lparam));
+
+   }
 
 
    i32 notify::get_ctrl_id()
@@ -629,49 +635,36 @@ namespace message
    }
 
 
-   object::object()
+   particle::particle()
    {
 
-      m_union.m_pobject = this;
+      m_union.m_pparticle = this;
 
    }
 
 
-   object::~object()
+   particle::~particle()
    {
 
 
    }
 
 
-   void object::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   void particle::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
       ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      ::pointer<::element>pelement(lparam);
+      ::pointer < ::particle > pparticle(lparam);
 
-      m_pelement = pelement;
+      m_pparticle = pparticle;
 
       m_lparam = 0;
 
    }
 
 
-//   text::text()
-//   {
-//      
-//   }
-
-
 } // namespace message
-
-
-
-
-
-
-
 
 
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))

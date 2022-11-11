@@ -1,6 +1,6 @@
 #include "framework.h" 
 #include "apex/id.h"
-#include "apex/networking/sockets/_sockets.h"
+//#include "apex/networking/sockets/_sockets.h"
 #include <stdio.h>
 
 
@@ -50,12 +50,12 @@ namespace sockets
    void http_put_socket::SetFile(const string & file)
    {
 
-      if(m_pcontext->m_papexcontext->file().exists(file))
+      if(file()->exists(file))
       {
 
          m_filename = file;
 
-         m_pcontext->m_papexcontext->file().length(file).as(m_content_length);
+         file()->length(file).as(m_content_length);
 
       }
       else
@@ -90,19 +90,19 @@ namespace sockets
 
       }
 
-      m_request.attr(__id(http_method))    = "PUT";
+      m_request.attr("http_method")    = "PUT";
 
-      m_request.attr(__id(http_version))   = "HTTP/1.1";
+      m_request.attr("http_version")   = "HTTP/1.1";
 
-      //inheader(__id(host))                = GetUrlHost();
+      //inheader("host")                = GetUrlHost();
 
       if(m_content_type.has_char())
       {
-         outheader(__id(content_type))     = m_content_type;
+         outheader("content_type")     = m_content_type;
       }
-      inheader(__id(content_length))      = (i64) m_content_length;
-      inheader(__id(user_agent))          = MyUseragent();
-      inheader(__id(connection))          = "close";
+      inheader("content_length")      = (i64) m_content_length;
+      inheader("user_agent")          = MyUseragent();
+      inheader("connection")          = "close";
       SendRequest();
 
       if(m_file.is_set())

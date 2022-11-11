@@ -1,8 +1,8 @@
 ﻿#include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
 #include "file_properties_form.h"
+#include "acme/constant/id.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/platform/create.h"
 #include "core/user/userex/pane_tab_impact.h"
 #include "core/user/user/user.h"
 #include "core/platform/session.h"
@@ -28,12 +28,12 @@ namespace filemanager
    }
 
 
-   void file_properties_form::initialize(::object * pobject)
+   void file_properties_form::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::user::impact_host::initialize(pobject);
+      ::user::impact_host::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -107,7 +107,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      ::file::path path = pcontext->m_papexcontext->dir().matter("filemanager/file_properties.html");
+      ::file::path path = pcontext->m_papexcontext->dir()->matter("filemanager/file_properties.html");
 
       if(!m_pdocGeneral->on_open_document(path))
       {

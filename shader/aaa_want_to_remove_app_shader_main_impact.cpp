@@ -5,12 +5,12 @@ namespace simple_shader
 {
 
 
-   main_impact::main_impact(::object * pobject):
-      object(pobject),
-      ::user::split_layout(pobject),
-      ::user::split_impact(pobject),
-      ::userex::split_impact(pobject),
-      place_holder_container(pobject)
+   main_impact::main_impact(::particle * pparticle):
+      object(pparticle),
+      ::user::split_layout(pparticle),
+      ::user::split_impact(pparticle),
+      ::userex::split_impact(pparticle),
+      place_holder_container(pparticle)
    {
 
       m_ptopview = NULL;

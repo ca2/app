@@ -1,5 +1,8 @@
 #include "framework.h"
-#include "apex/filesystem/fs/_fs.h"
+#include "data.h"
+#include "acme/filesystem/filesystem/listing.h"
+#include "acme/primitive/data/listener.h"
+#include "acme/primitive/primitive/payload.h"
 
 
 namespace fs
@@ -13,16 +16,16 @@ namespace fs
    }
 
 
-   void data::assert_ok() const
-   {
-
-   }
-
-
-   void data::dump(dump_context& dumpcontext) const
-   {
-
-   }
+//   void data::assert_ok() const
+//   {
+//
+//   }
+//
+//
+//   void data::dump(dump_context& dumpcontext) const
+//   {
+//
+//   }
 
 
    bool data::has_subdir(const ::file::path & pszPath)
@@ -159,7 +162,7 @@ namespace fs
    //   for(i32 i = 0; i < stra.get_size(); i++)
    //   {
    //      str += stra[i];
-   //      if(i != 0 || !::str().ends(str, "//"))
+   //      if(i != 0 || !string_ends(str, "//"))
    //      {
    //         str += "/";
    //      }
@@ -180,7 +183,7 @@ namespace fs
    //      if(straParam[i].is_empty())
    //      {
    //         straParam.erase_at(i);
-   //         if(i == 1 && ::str().ends(straParam[0], ":"))
+   //         if(i == 1 && string_ends(straParam[0], ":"))
    //         {
    //            straParam[0] = straParam[0] + "//";
    //         }
@@ -260,7 +263,7 @@ namespace fs
    bool data::is_link(const ::file::path & psz)
    {
 
-      return ::str().ends_ci(psz,".lnk");
+      return psz.ends_ci(".lnk");
 
    }
 

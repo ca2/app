@@ -1,17 +1,17 @@
 #include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
 #include "impact_base.h"
 #include "document.h"
 #include "tab_impact.h"
 #include "data.h"
 #include "operation_document.h"
 #include "operation_thread.h"
+#include "acme/constant/id.h"
+#include "acme/filesystem/file/item.h"
+#include "acme/platform/system.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/message/user.h"
-#include "core/platform/application.h"
 #include "aura/user/user/frame.h"
+#include "core/platform/application.h"
 
 
 filemanager_impact_base::filemanager_impact_base()
@@ -26,6 +26,38 @@ filemanager_impact_base::filemanager_impact_base()
 
 filemanager_impact_base::~filemanager_impact_base()
 {
+
+}
+
+
+::core::application* filemanager_impact_base::get_app()
+{
+
+   return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+}
+
+
+::core::session* filemanager_impact_base::get_session()
+{
+
+   return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+}
+
+
+::core::system* filemanager_impact_base::get_system()
+{
+
+   return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+
+}
+
+
+::filemanager::document * filemanager_impact_base::get_document()
+{
+
+   return ::filemanager_impact_base::get_document();
 
 }
 
@@ -47,9 +79,9 @@ void filemanager_impact_base::install_message_routing(::channel * pchannel)
 
    ::user::impact::install_message_routing(pchannel);
 
-   add_command_prober("edit_paste", this, &filemanager_impact_base::_001OnUpdateEditPaste);
+   add_command_prober("edit_paste", { this,  &filemanager_impact_base::_001OnUpdateEditPaste });
 
-   add_command_handler("edit_paste", this, &filemanager_impact_base::_001OnEditPaste);
+   add_command_handler("edit_paste", { this,  &filemanager_impact_base::_001OnEditPaste });
 
    MESSAGE_LINK(WM_APP + 1024,pchannel,this,&filemanager_impact_base::_001OnOperationDocMessage);
 

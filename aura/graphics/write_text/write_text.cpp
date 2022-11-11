@@ -1,11 +1,13 @@
 #include "framework.h"
 #include "write_text.h"
+#include "font_enumeration_item.h"
 #include "fonts.h"
-#include "aqua/xml/_.h"
 #include "true_type_font_utilities.h"
+#include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/platform/system.h"
 
 
@@ -27,10 +29,10 @@ namespace write_text
    }
 
 
-   void write_text::on_initialize_object()
+   void write_text::on_initialize_particle()
    {
 
-      ::acme::department::on_initialize_object();
+      ::acme::department::on_initialize_particle();
 
 #ifdef ANDROID
 
@@ -51,7 +53,7 @@ namespace write_text
    class fonts * write_text::fonts()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pfonts == nullptr)
       {
@@ -67,7 +69,7 @@ namespace write_text
 
          //}
 
-         auto psystem = m_psystem->m_paurasystem;
+         auto psystem = acmesystem()->m_paurasystem;
 
          psystem->signal(id_font_enumeration);
 
@@ -164,7 +166,7 @@ namespace write_text
 
       __construct_new(pmemory);
 
-      *pmemory = pcontext->m_papexcontext->file().as_memory(path);
+      *pmemory = pcontext->m_papexcontext->file()->as_memory(path);
 
       return pmemory;
 
@@ -202,9 +204,9 @@ namespace write_text
 
    //   double dAndroid = 4.4;
 
-   //   string strSystemFonts = m_pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
+   //   string strSystemFonts = file()->as_string("/system/etc/system_fonts.xml");
 
-   //   auto psystem = m_psystem->m_paurasystem;
+   //   auto psystem = acmesystem()->m_paurasystem;
 
    //   auto pxml = psystem->xml();
 
@@ -269,7 +271,7 @@ namespace write_text
 
    //                     pitem = __new(::write_text::font_enumeration_item);
 
-   //                     if (m_psystem->m_pacmefile->exists(path))
+   //                     if (acmefile()->exists(path))
    //                     {
 
    //                        pitem->m_mapFileName[400] = path;
@@ -307,7 +309,7 @@ namespace write_text
 
    //      listing.set_file_listing("/system/fonts");
 
-   //      m_psystem->m_pacmedirectory->enumerate(listing);
+   //      acmedirectory()->enumerate(listing);
 
    //      for (auto & path : listing)
    //      {
@@ -338,7 +340,7 @@ namespace write_text
    //   if (itema.is_empty())
    //   {
    //      
-   //      auto pnode = m_psystem->node();
+   //      auto pnode = acmenode();
 
    //      pitem = __new(::write_text::font_enumeration_item);
 

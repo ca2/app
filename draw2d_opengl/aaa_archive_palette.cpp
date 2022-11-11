@@ -22,7 +22,7 @@ namespace draw2d_opengl
    {
       return (HPALETTE)(this == nullptr ? nullptr : get_os_data());
    }
-   palette* palette::from_handle(::object * pobject, HPALETTE hPalette)
+   palette* palette::from_handle(::particle * pparticle, HPALETTE hPalette)
    {
       //return dynamic_cast < palette * > (::draw2d_opengl::object::from_handle(papp, hPalette));
       return nullptr;

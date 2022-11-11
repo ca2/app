@@ -55,12 +55,12 @@ namespace helloworld
       //::user::button_impact *                          m_ptoggleviewFontSel;
       //::user::plain_edit_impact *              m_peditFontSel;
 
-      ::mutex                                  m_mutexAiFont;
+      ::pointer < ::mutex >                                  m_pmutexAiFont;
       i32                                m_iErrorAiFont;
       bool                                   m_bLoadAiFont;
       void *                                 m_faceAi; // FT_Face m_faceAi;
 
-      application(::object * pobject);
+      application(::particle * pparticle);
       ~application() override;
 
       virtual string preferred_experience() override;

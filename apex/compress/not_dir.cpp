@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/constant/id.h"
+#include "not_dir.h"
 
 
 compress_not_dir::compress_not_dir()

@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+class colorref_array;
+
+
 namespace draw2d
 {
 

@@ -6,12 +6,16 @@
 //  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
 //
 #include "framework.h"
+#include "acme/filesystem/file/text_stream.h"
 #include "error_code.h"
+#include "debug.h"
 #include "_api.h"
 
 
-void error_code::get_string(::text_stream & textstream) const
+void error_code::get_message(::string & strMessage) const
 {
+
+   string_stream textstream(strMessage);
    
    switch(m_etype)
    {

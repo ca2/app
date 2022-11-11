@@ -1,9 +1,10 @@
 #include "framework.h"
 #include "theme.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/listing.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "apex/filesystem/filesystem/file_watcher.h"
+#include "apex/filesystem/file/watcher.h"
 #include "aura/platform/application.h"
 
 
@@ -26,12 +27,12 @@ namespace aura
    }
 
 
-   void theme::initialize(::object * pobject)
+   void theme::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -186,11 +187,11 @@ namespace aura
 
 #endif
 
-      ::file::path pathWeatherState = m_psystem->m_pacmedirectory->config() / "weather_state.txt";
+      ::file::path pathWeatherState = acmedirectory()->config() / "weather_state.txt";
 
       auto pcontext = get_context();
 
-      string strState = pcontext->m_papexcontext->file().as_string(pathWeatherState);
+      string strState = pcontext->m_papexcontext->file()->as_string(pathWeatherState);
 
       if (strState.is_empty())
       {
@@ -315,11 +316,11 @@ namespace aura
    void theme::on_change_weather_state()
    {
 
-      ::file::path pathWeatherState = m_psystem->m_pacmedirectory->config() / "weather_state.txt";
+      ::file::path pathWeatherState = acmedirectory()->config() / "weather_state.txt";
 
       auto pcontext = get_context();
 
-      string strWeatherState = pcontext->m_papexcontext->file().as_string(pathWeatherState);
+      string strWeatherState = pcontext->m_papexcontext->file()->as_string(pathWeatherState);
 
       m_strWeatherState = strWeatherState;
 
@@ -457,7 +458,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      pcontext->m_papexcontext->dir().matter_enumerate("sphere/theme", patha);
+      pcontext->m_papexcontext->dir()->matter_enumerate("sphere/theme", patha);
 
       m_straTheme.add_unique("blue");
       m_straTheme.add_unique("dark");
@@ -466,7 +467,7 @@ namespace aura
       for (auto& path : patha)
       {
 
-         if (pcontext->m_papexcontext->dir().is(path))
+         if (pcontext->m_papexcontext->dir()->is(path))
          {
 
             string strTheme = path.name();
@@ -479,7 +480,7 @@ namespace aura
 
       sync_with_stored_theme();
 
-      m_watchidWeather = pcontext->m_papexcontext->dir().watcher().add_watch(m_psystem->m_pacmedirectory->config(), { e_as, this }, false);
+      m_watchidWeather = pcontext->m_papexcontext->dir()->watcher().add_watch(acmedirectory()->config(), { e_as, this }, false);
       
       on_change_theme();
 

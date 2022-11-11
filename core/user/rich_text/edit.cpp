@@ -4,13 +4,14 @@
 #include "format_tool.h"
 #include "document.h"
 #include "span.h"
+#include "acme/constant/id.h"
 #include "acme/platform/timer.h"
+#include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/platform/session.h"
-
 
 
 namespace user
@@ -27,10 +28,10 @@ namespace user
       }
 
 
-      //edit::edit(::object * pobject) :
-      //   ::object(pobject),
-      //   ::user::picture(pobject),
-      //   ::user::picture_interaction(pobject)
+      //edit::edit(::particle * pparticle) :
+      //   ::object(pparticle),
+      //   ::user::picture(pparticle),
+      //   ::user::picture_interaction(pparticle)
       //{
 
       //}
@@ -63,20 +64,20 @@ namespace user
       }
 
 
-      void edit::assert_ok() const
-      {
-
-         ::user::interaction::assert_ok();
-
-      }
-
-
-      void edit::dump(dump_context & dumpcontext) const
-      {
-
-         ::user::interaction::dump(dumpcontext);
-
-      }
+//      void edit::assert_ok() const
+//      {
+//
+//         ::user::interaction::assert_ok();
+//
+//      }
+//
+//
+//      void edit::dump(dump_context & dumpcontext) const
+//      {
+//
+//         ::user::interaction::dump(dumpcontext);
+//
+//      }
 
 
       void edit::install_message_routing(::channel * pchannel)
@@ -348,7 +349,7 @@ namespace user
       }
 
 
-      void edit::_001GetText(string & str) const
+      void edit::_001GetText(string & str)
       {
 
          ::user::interaction::_001GetText(str);
@@ -356,7 +357,7 @@ namespace user
       }
 
 
-      void edit::_001GetLayoutText(string & str) const
+      void edit::_001GetLayoutText(string & str)
       {
 
       }
@@ -390,7 +391,7 @@ namespace user
       }
 
 
-      bool edit::is_text_editable() const
+      bool edit::is_text_editable()
       {
 
          return is_window_enabled();
@@ -398,7 +399,7 @@ namespace user
       }
 
 
-      bool edit::is_text_editor() const
+      bool edit::is_text_editor()
       {
 
          return true;
@@ -486,7 +487,7 @@ namespace user
       }
 
 
-      bool edit::keyboard_focus_is_focusable() const
+      bool edit::keyboard_focus_is_focusable()
       {
 
          return is_window_visible() && is_text_editable();
@@ -813,7 +814,7 @@ namespace user
       }
 
 
-      strsize edit::_001GetTextLength() const
+      strsize edit::_001GetTextLength()
       {
 
          return 0;
@@ -821,18 +822,16 @@ namespace user
       }
 
 
-      void edit::_001GetSel(strsize & iBeg, strsize & iEnd) const
+      void edit::_001GetSel(strsize & iBeg, strsize & iEnd)
       {
 
       }
 
 
-      void edit::_001GetSelLineText(string & strText) const
+      void edit::_001GetSelLineText(string & strText)
       {
 
       }
-
-
 
 
       void edit::update_placement()

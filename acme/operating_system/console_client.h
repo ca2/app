@@ -20,7 +20,7 @@ namespace console
 
 
       virtual console * get_console();
-      string_stream & cout() override;
+      write_text_stream < ::file::file > & cout() override;
 
 
       virtual void redirect_io() override;

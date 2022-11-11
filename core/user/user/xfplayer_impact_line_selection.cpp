@@ -48,7 +48,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
       
       bool bInside;
       
-      auto pointCursor = __point(pusermessage->m_lparam);
+      auto pointCursor = ::point_i32(pusermessage->m_lparam);
 
       ::rectangle_i32 rectanglePlacement;
       

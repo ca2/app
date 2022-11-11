@@ -1,6 +1,11 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/data/item.h"
+#include "acme/primitive/string/string.h"
+
+
 namespace filehandler
 {
 
@@ -26,8 +31,8 @@ namespace filehandler
       string_array        m_straApp;
 
 
-      string data_item_get_text(object * pobject) const;
-     index data_item_get_image(object * pobject) const;
+      string data_item_get_text(object * pparticle) const;
+     index data_item_get_image(object * pparticle) const;
 
 
    

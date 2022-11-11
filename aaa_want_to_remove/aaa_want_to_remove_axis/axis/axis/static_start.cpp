@@ -29,11 +29,11 @@ namespace axis
 //
 //         oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 //
-//         oswindow_data::s_pmutex = memory_new ::mutex;
+//         oswindow_data::s_pmutex = memory_new ::pointer < ::mutex >;
 //
 //         osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
 //
-//         osdisplay_data::s_pmutex = memory_new ::mutex;
+//         osdisplay_data::s_pmutex = memory_new ::pointer < ::mutex >;
 
 #endif // defined(LINUX)
 

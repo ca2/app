@@ -3,6 +3,7 @@
 #include "storage.h"
 #include "queue_item.h"
 #include "server.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "axis/database/database/database.h"
 
 
@@ -13,7 +14,7 @@ namespace simpledb
    thread_localdatabase::thread_localdatabase()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -33,7 +34,7 @@ namespace simpledb
 
       auto pdatabase = pserver->get_local_database();
 
-      single_lock synchronouslock(mutex());
+      single_lock synchronouslock(this->synchronization());
 
       try
       {
@@ -231,7 +232,7 @@ namespace simpledb
    void thread_localdatabase::queue(const ::string & pszKey, block block)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto pitem(__new(queue_item));
 

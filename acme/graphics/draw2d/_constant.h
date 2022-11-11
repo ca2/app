@@ -323,3 +323,7 @@ enum enum_draw_text
 };
 
 
+DECLARE_ENUMERATION(e_draw_text, enum_draw_text);
+
+
+

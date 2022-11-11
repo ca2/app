@@ -1,15 +1,15 @@
 #include "framework.h"
-
 #include "wait_cursor.h"
+#include "acme/platform/system.h"
 #include "aura/platform/node.h"
 
 
-wait_cursor::wait_cursor(::object * pobject)
+wait_cursor::wait_cursor(::particle * pparticle)
 {
 
    //auto estatus =
    
-   initialize(pobject);
+   initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -18,7 +18,7 @@ wait_cursor::wait_cursor(::object * pobject)
 
    //}
 
-   auto pnode = m_psystem->m_pauranode;
+   auto pnode = acmesystem()->m_pauranode;
 
    pnode->BeginWaitCursor();
 
@@ -28,7 +28,7 @@ wait_cursor::wait_cursor(::object * pobject)
  wait_cursor::~wait_cursor()
 {
 
-    auto pnode = m_psystem->m_pauranode;
+    auto pnode = acmesystem()->m_pauranode;
 
     pnode->EndWaitCursor();
 
@@ -38,7 +38,7 @@ wait_cursor::wait_cursor(::object * pobject)
 void wait_cursor::restore()
 {
 
-   auto pnode = m_psystem->m_pauranode;
+   auto pnode = acmesystem()->m_pauranode;
 
 	pnode->RestoreWaitCursor();
 

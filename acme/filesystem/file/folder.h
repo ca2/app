@@ -2,6 +2,11 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/enumerator.h"
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/collection/bool_array.h"
+
+
 class CLASS_DECL_ACME folder :
    virtual public ::file::enumerator,
    virtual public ::object
@@ -18,7 +23,7 @@ public:
    ~folder() override;
 
 
-   void initialize(::object* pobject) override;
+   void initialize(::particle * pparticle) override;
 
 
    virtual bool is_reading() const;
@@ -31,33 +36,7 @@ public:
    virtual bool locate_folder(const char* pszFileName);
    virtual ::file_pointer get_file(const char* pszFile = nullptr);
    
-   inline ::file::enum_type type(const char* pszItem = nullptr)
-   {
-
-      if (::is_empty(pszItem))
-      {
-
-         throw ::exception(error_bad_argument);
-
-      }
-
-      if(locate_file(pszItem))
-      {
-
-         return ::file::e_type_file;
-
-      }
-
-      if (locate_folder(pszItem))
-      {
-
-         return ::file::e_type_folder;
-
-      }
-
-      return ::file::e_type_doesnt_exist;
-
-   }
+   ::file::enum_type type(const char * pszItem = nullptr);
 
    virtual bool has_sub_folder(const char* pszDir = nullptr);
    virtual void extract(memory& m, const char* pszFile = nullptr);
@@ -65,7 +44,7 @@ public:
 
    virtual bool locate(const ::function < bool(const char *) > & function);
 
-   virtual void extract_all(const char* pszTargetDir, ::file::path_array * ppatha = nullptr, string_array* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr);
+   virtual void e_extract_all(const char* pszTargetDir, ::file::path_array * ppatha = nullptr, string_array* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr);
 
 
    //bool _enumerates(::file::listing & listing) override;

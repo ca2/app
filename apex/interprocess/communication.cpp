@@ -5,14 +5,22 @@
 #include "caller.h"
 #include "call.h"
 #include "task.h"
+#include "acme/exception/exception.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/networking/url_department.h"
+#include "acme/operating_system/process.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
 #include "apex/constant/method.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/app_launcher.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/launcher.h"
+#include "apex/platform/os_context.h"
+#include "apex/platform/system.h"
 
 
 namespace interprocess
@@ -24,7 +32,7 @@ namespace interprocess
 
       m_atom = "::interprocess::communication";
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
 
    }
@@ -37,10 +45,10 @@ namespace interprocess
    }
 
 
-   void communication::initialize_interprocess_communication(::object * pobject, const ::string & strApp)
+   void communication::initialize_interprocess_communication(::particle * pparticle, const ::string & strApp)
    {
 
-      ::object::initialize(pobject);
+      ::object::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -57,13 +65,13 @@ namespace interprocess
 
 #else
 
-      m_atomApp = (::i64) ::get_current_process_id();
+      m_atomApp = (::i64) acmenode()->get_current_process_id();
 
 #endif
 
       run_property("on_create");
 
-      call_routines_with_id(CREATE_ROUTINE);
+      //call_routines_with_id(CREATE_ROUTINE);
 
       /*estatus = */ __construct(m_ptarget);
 
@@ -76,7 +84,7 @@ namespace interprocess
 
       int iPid = m_pcontext->m_papexcontext->os_context()->get_pid();
 
-      //defer_add_module(m_pcontext->m_papexcontext->file().module(), iPid);
+      //defer_add_module(file()->module(), iPid);
 
    //      ::file::path path;
    //
@@ -130,7 +138,7 @@ namespace interprocess
       INFORMATION("::interprocess::communication::on_interprocess_handle " << strUri);
 
 
-      //   if(!::str().begins_eat(strMessage, "call "))
+      //   if(!strMessage.begins_eat("call "))
       //   {
       //
       //      return;
@@ -139,7 +147,7 @@ namespace interprocess
       //
       //   ::i64 iCall = ::str().consume_natural(strMessage);
       //
-      //   if(!::str().begins_eat(strMessage, " from "))
+      //   if(!strMessage.begins_eat(" from "))
       //   {
       //
       //      return;
@@ -248,13 +256,13 @@ namespace interprocess
       //   }
 
 
-      string strObject = m_psystem->url()->get_server(strUri);
+      string strObject = acmesystem()->url()->get_server(strUri);
 
-      string strMember = m_psystem->url()->get_script(strUri);
+      string strMember = acmesystem()->url()->get_script(strUri);
 
       strMember.trim_left("/");
 
-      string strNetworkArguments = m_psystem->url()->get_query(strUri);
+      string strNetworkArguments = acmesystem()->url()->get_query(strUri);
 
       ::property_set propertyset;
 
@@ -303,14 +311,14 @@ namespace interprocess
    void communication::start(const ::string & strApp)
    {
 
-      synchronous_lock sl1(mutex());
+      synchronous_lock sl1(synchronization());
 
       auto & pmutex = m_mapAppMutex[strApp];
 
       if (pmutex.is_null())
       {
 
-         pmutex = __new(::mutex());
+         __construct(pmutex);
 
       }
 
@@ -336,7 +344,7 @@ namespace interprocess
 
       auto plauncher = __new(::apex::app_launcher);
 
-      plauncher->initialize_app_launcher(this, process_platform_dir_name2(), strApp);
+      plauncher->initialize_app_launcher(this, acmenode()->process_platform_name(), strApp);
 
       atom idPid = -1;
 
@@ -387,7 +395,7 @@ namespace interprocess
 
       }
 
-      string strKey = strApp + ":" + __string(idPid);
+      string strKey = strApp + ":" + idPid;
 
       if (m_callermap[strKey].is_null())
       {
@@ -404,7 +412,7 @@ namespace interprocess
    void communication::connect(const ::string & strApp, const ::atom & idPid)
    {
 
-      string strKey = strApp + ":" + __string(idPid);
+      string strKey = strApp + ":" + idPid;
 
       if (m_callermap[strKey].is_null())
       {
@@ -428,7 +436,7 @@ namespace interprocess
    ::interprocess::caller & communication::caller(const ::string & strApp, const ::atom & iPid)
    {
 
-      string strKey = strApp + ":" + __string(iPid);
+      string strKey = strApp + ":" + iPid;
 
       if (m_callermap[strKey].is_null())
       {
@@ -470,7 +478,7 @@ namespace interprocess
 
 #else
 
-      strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + __string(idPid);
+      strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + idPid;
 
 #endif
 
@@ -478,7 +486,7 @@ namespace interprocess
 
 #if defined(LINUX) || defined(FREEBSD)
 
-      strKey = m_psystem->m_pacmedirectory->system() / "communication" / strApp / __string(idPid);
+      strKey = acmedirectory()->system() / "communication" / strApp / idPid;
 
 #elif defined(__APPLE__)
 
@@ -500,7 +508,7 @@ namespace interprocess
 
 #else
 
-      strKey = m_psystem->m_pacmedirectory->system() / "communication" / strApp / __string(idPid);
+      strKey = acmedirectory()->system() / "communication" / strApp / __string(idPid);
 
 
 #endif
@@ -538,7 +546,7 @@ namespace interprocess
 
    //   string strUrl = strMessage;
 
-   //   //   if(!::str().begins_eat(strMessage, "call "))
+   //   //   if(!strMessage.begins_eat("call "))
    //   //   {
    //   //
    //   //      return;
@@ -547,7 +555,7 @@ namespace interprocess
    //   //
    //   //   ::i64 iCall = ::str().consume_natural(strMessage);
    //   //
-   //   //   if(!::str().begins_eat(strMessage, " from "))
+   //   //   if(!strMessage.begins_eat(" from "))
    //   //   {
    //   //
    //   //      return;
@@ -656,13 +664,13 @@ namespace interprocess
    //   //   }
 
 
-   //   string strObject = m_psystem->url()->get_server(strUrl);
+   //   string strObject = acmesystem()->url()->get_server(strUrl);
 
-   //   string strMember = m_psystem->url()->get_script(strUrl);
+   //   string strMember = acmesystem()->url()->get_script(strUrl);
 
    //   strMember.trim_left("/");
 
-   //   string strNetworkArguments = m_psystem->url()->get_query(strUrl);
+   //   string strNetworkArguments = acmesystem()->url()->get_query(strUrl);
 
    //   ::property_set propertyset;
 
@@ -713,7 +721,7 @@ namespace interprocess
 
       auto pobjectTask = __new(::interprocess::task(pcall, idPid, m_iTaskSeed++));
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -727,7 +735,7 @@ namespace interprocess
    ::pointer<::interprocess::task>communication::get_task(i64 iTask)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       return m_mapTask[iTask];
 
@@ -760,7 +768,7 @@ namespace interprocess
       if (strObject == "application")
       {
 
-         if (::str().begins_ci(strMember, "reply."))
+         if (strMember.begins_ci("reply."))
          {
 
             ::i64 iTask = propertyset["protocol:call_id"];
@@ -830,14 +838,14 @@ namespace interprocess
    }
 
 
-   id_array communication::get_pid(const ::string & strApp)
+   atom_array communication::get_pid(const ::string & strApp)
    {
 
-      id_array idaPid;
+      atom_array idaPid;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
@@ -857,11 +865,11 @@ namespace interprocess
 
       ::file::path pathModule;
 
-      pathModule = m_psystem->m_pacmedirectory->system() / "communication";
+      pathModule = acmedirectory()->system() / "communication";
 
       pathModule /= strApp + ".module_list";
 
-      string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
+      string strModuleList = acmefile()->as_string(pathModule);
 
       stra.add_lines(strModuleList);
 
@@ -878,7 +886,7 @@ namespace interprocess
 
       int_array iaPid2;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
@@ -945,7 +953,7 @@ namespace interprocess
    void communication::defer_add_module(const ::string & strModule, const ::atom & idPid)
    {
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
@@ -955,13 +963,13 @@ namespace interprocess
 
       m_straModule.erase_all();
 
-      pathModule = m_psystem->m_pacmedirectory->system() / "communication";
+      pathModule = acmedirectory()->system() / "communication";
 
       pathModule /= m_strApp + ".module_list";
 
       ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.i64());
 
-      string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
+      string strModuleList = acmefile()->as_string(pathModule);
 
       m_straModule.add_lines(strModuleList);
 
@@ -1025,29 +1033,29 @@ namespace interprocess
 
       string_array straUnique;
 
-      forallref(m_straModule)
+      for(auto & strItem : m_straModule)
       {
 
-         straUnique.add_unique_ci(item);
+         straUnique.add_unique_ci(strItem);
 
       }
 
       m_straModule = straUnique;
 
-      ::file::path pathThisModule = m_pcontext->m_papexcontext->file().module();
+      ::file::path pathThisModule = file()->module();
 
       string strItem;
 
       if (pathPid.has_char())
       {
 
-         strItem = pathPid + "|" + __string(idPid);
+         strItem = pathPid + "|" + idPid;
 
       }
       else
       {
 
-         strItem = strModule + "|" + __string(idPid);
+         strItem = strModule + "|" + idPid;
       }
 
 
@@ -1055,7 +1063,7 @@ namespace interprocess
 
       strModuleList = m_straModule.implode("\n");
 
-      m_pcontext->m_papexcontext->file().put_text(pathModule, strModuleList);
+      file()->put_text(pathModule, strModuleList);
 
 #endif
 

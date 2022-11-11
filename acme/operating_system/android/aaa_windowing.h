@@ -80,7 +80,7 @@ struct CLASS_DECL_ACME oswindow_data
 //xx
 
    static oswindow_dataptra * s_pdataptra;
-   static ::mutex * s_pmutex;
+   static ::pointer< ::mutex > s_pmutex;
 
 
    oswindow_data();

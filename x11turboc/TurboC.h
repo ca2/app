@@ -146,8 +146,8 @@ typedef unsigned long gulong;
 #define isdigit isdigitTurbo
 #undef isxdigit
 #define isxdigit isxdigitTurbo
-#undef isspace
-#define isspace isspaceTurbo
+#undef character_isspace
+#define character_isspace isspaceTurbo
 #undef isprint
 #define isprint isprintTurbo
 #undef isgraph

@@ -19,7 +19,7 @@ machine_event_central::~machine_event_central()
 }
 
 
-void machine_event_central::initialize(::object * pobject)
+void machine_event_central::initialize(::particle * pparticle)
 {
 
    if (m_bInitialized)
@@ -29,7 +29,7 @@ void machine_event_central::initialize(::object * pobject)
 
    }
 
-   auto estatus = ::object::initialize(pobject);
+   auto estatus = ::object::initialize(pparticle);
 
    if (!estatus)
    {
@@ -69,7 +69,7 @@ void     machine_event_central::run()
    {
 
       {
-         synchronous_lock lockMachineEvent(&m_machineevent.m_mutex);
+         synchronous_lock lockMachineEvent(&m_machineevent.m_pmutex);
 
          //machine_event_data data;
 
@@ -92,7 +92,7 @@ void     machine_event_central::run()
 bool machine_event_central::is_close_application()
 {
 
-   synchronous_lock lockMachineEvent(&m_machineevent.m_mutex);
+   synchronous_lock lockMachineEvent(&m_machineevent.m_pmutex);
 
    machine_event_data data;
 
@@ -108,7 +108,7 @@ bool machine_event_central::is_close_application()
 //void machine_event_central::command(::pointer<::xml::node>pnode)
 //{
 //
-//   synchronous_lock lockMachineEvent(&m_machineevent.m_mutex);
+//   synchronous_lock lockMachineEvent(&m_machineevent.m_pmutex);
 //
 //   machine_event_data data;
 //

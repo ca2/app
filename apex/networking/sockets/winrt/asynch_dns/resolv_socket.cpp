@@ -28,7 +28,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+//#include "apex/networking/sockets/_sockets.h"
 #ifdef _WIN32
 #else
 //#include <netdb.h>
@@ -135,7 +135,7 @@ namespace sockets
          // %! check cache
          {
 
-            single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
+            single_lock lock(::apex::get_system()->sockets().m_pmutexResolvCache, true);
 
             string result;
 
@@ -235,7 +235,7 @@ namespace sockets
          if (!m_cached)
          {
 
-            single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
+            single_lock lock(::apex::get_system()->sockets().m_pmutexResolvCache, true);
    
             FORMATTED_TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             
@@ -262,7 +262,7 @@ namespace sockets
          if (!m_cached)
          {
 
-            single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
+            single_lock lock(::apex::get_system()->sockets().m_pmutexResolvCache, true);
             
             FORMATTED_TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
 
@@ -292,7 +292,7 @@ namespace sockets
          if (!m_cached)
          {
 
-            single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
+            single_lock lock(::apex::get_system()->sockets().m_pmutexResolvCache, true);
 
             FORMATTED_TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
 
@@ -322,7 +322,7 @@ namespace sockets
          if (!m_cached)
          {
          
-            single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
+            single_lock lock(::apex::get_system()->sockets().m_pmutexResolvCache, true);
    
             FORMATTED_TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             
@@ -532,7 +532,7 @@ namespace sockets
          if (!m_cached)
          {
 
-            single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
+            single_lock lock(::apex::get_system()->sockets().m_pmutexResolvCache, true);
 
             string value;
 

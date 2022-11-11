@@ -88,27 +88,6 @@ public:
    }
 
 
-   ::pointer<::particle>detach_element()
-   {
-
-      auto p = ::move_transfer((particle *)m_lparam);
-
-      m_lparam = 0;
-
-      return ::move(p);
-
-   }
-
-  
-   template < typename T >
-   pointer < T > detach()
-   {
-
-      return detach_element();
-
-   }
-
-
    lparam& operator = (const lparam & lparam)
    {
 
@@ -146,7 +125,6 @@ public:
 
 
 };
-
 
 
 template < class T >

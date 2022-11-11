@@ -76,10 +76,10 @@ namespace ios
                listing.m_pathUser.Empty();
                listing.m_pathFinal = dir_context;
 
-               if(listing.m_eextract != extract_all)
+               if(listing.m_eextract != e_extract_all)
                {
 
-                  listing.m_eextract = extract_none;
+                  listing.m_eextract = e_extract_none;
 
                }
 
@@ -171,7 +171,7 @@ namespace ios
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(         auto psystem = m_psystem;
+      if(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -189,7 +189,7 @@ pacmedirectory->is(path))
       if(strPath.get_length() >= MAX_PATH)
       {
 
-         if(::str().begins(strPath, "\\\\"))
+         if(string_begins(strPath, "\\\\"))
          {
 
             strPath = "\\\\?\\UNC" + strPath.Mid(1);
@@ -261,7 +261,7 @@ pacmedirectory->is(path))
 
             }
 
-            if(!         auto psystem = m_psystem;
+            if(!         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -445,7 +445,7 @@ pacmedirectory->is(stra[i]))
 //   ::file::path dir::install()
 //   {
 //
-//      single_lock synchronouslock(&m_mutex, true);
+//      single_lock synchronouslock(m_pmutex, true);
 //
 //      return m_strCa2;
 //
@@ -542,10 +542,10 @@ pacmedirectory->is(stra[i]))
 //   }
 
 
-   void dir_context::initialize(::object * pobject)
+   void dir_context::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::dir_context::initialize(pobject);
+      auto estatus = ::dir_context::initialize(pparticle);
       
       if(!estatus)
       {
@@ -593,7 +593,7 @@ pacmedirectory->is(stra[i]))
 
       //m_pdirsystem->m_pathHome = m_pdirsystem->m_strCa2/"Documents";
 
-      m_pdirsystem->m_pathHome = m_psystem->m_pacmedirectory->m_pplatformdir->m_pathDocument;
+      m_pdirsystem->m_pathHome = acmedirectory()->m_pplatformdir->m_pathDocument;
 
 
       //nodeos_set_home(psystem->m_strIosHome);
@@ -634,7 +634,7 @@ pacmedirectory->is(stra[i]))
       string strPath = appdata() / "configuration/directory.xml";
 
       
-      string strDocument = pcontext->m_papexcontext->file().as_string(strPath);
+      string strDocument = pcontext->m_papexcontext->file()->as_string(strPath);
 
       if(doc.load(strDocument))
       {
@@ -753,7 +753,7 @@ pacmedirectory->is(stra[i]))
    bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return ::str().begins_ci(pszDir, pszPath);
+      return string_begins_ci(pszDir, pszPath);
 
    }
 

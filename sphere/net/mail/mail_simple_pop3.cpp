@@ -7,9 +7,9 @@ namespace mail
 {
 
 
-   simple_pop3::simple_pop3(::object * pobject) :
-      ::object(pobject),
-      pop3(pobject)
+   simple_pop3::simple_pop3(::particle * pparticle) :
+      ::object(pparticle),
+      pop3(pparticle)
    {
 
    }

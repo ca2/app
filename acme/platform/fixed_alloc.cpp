@@ -1,9 +1,9 @@
 #include "framework.h"
+#include "fixed_alloc.h"
+#include "fixed_alloc_impl.h"
+#include "acme/operating_system/process.h"
 #define HEAP_NAMESPACE_PREFIX main
 #include "acme/memory/_____heap_namespace.h"
-
-
-
 
 
 fixed_alloc_no_sync::fixed_alloc_no_sync(::u32 nAllocSize, ::u32 nBlockSize)
@@ -158,11 +158,13 @@ fixed_alloc::fixed_alloc(::u32 nAllocSize, ::u32 nBlockSize)
 
    m_i = 0;
 
-#if defined(_UWP) || defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
    i32 iShareCount = 0;
-#else
-   i32 iShareCount = ::get_current_process_maximum_affinity() + 1;
-#endif
+
+//#if defined(_UWP) || defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//   i32 iShareCount = 0;
+//#else
+//   i32 iShareCount = acmesystem()->acmenode()->get_current_process_maximum_affinity() + 1;
+//#endif
 
    if(iShareCount <= 0)
       iShareCount = 4;
@@ -335,7 +337,7 @@ void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNe
 
 fixed_alloc * fixed_alloc_array::find(size_t nAllocSize)
 {
-   //synchronous_lock lock(&m_mutex, true);
+   //synchronous_lock lock(m_pmutex, true);
    size_t nFoundSize = UINT_MAX;
    i32 iFound = -1;
    for(i32 i = 0; i < this->get_count(); i++)

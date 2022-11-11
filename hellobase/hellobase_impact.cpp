@@ -10,9 +10,9 @@ namespace hellobase
 
 
 
-   impact::impact(::object * pobject):
-      object(pobject),
-      impact_base(pobject),
+   impact::impact(::particle * pparticle):
+      object(pparticle),
+      impact_base(pparticle),
       m_pimageColor,
       m_pimageAi1,
       m_pimageAi2
@@ -45,7 +45,7 @@ namespace hellobase
 
       m_prender->m_pimpact = this;
 
-      m_prender->m_pmutexText = &m_mutexText;
+      m_prender->m_pmutexText = m_pmutexText;
 
       m_bOkPending = true;
 
@@ -122,11 +122,11 @@ namespace hellobase
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       {
 
-         synchronous_lock slText(&m_mutexText);
+         synchronous_lock slText(m_pmutexText);
 
          if(m_strNewHelloBase.is_empty())
          {
@@ -239,11 +239,11 @@ namespace hellobase
    string impact::get_processed_hellobase()
    {
 
-      synchronous_lock slText(&m_mutexText);
+      synchronous_lock slText(m_pmutexText);
 
       string str = get_hellobase();
 
-      if(::str().begins_eat_ci(str,"image:"))
+      if(str.begins_eat_ci("image:"))
       {
 
          string strImage = str;
@@ -267,10 +267,10 @@ namespace hellobase
             {
 
 
-               if(::str().ends_ci(strImage,".png"))
+               if(string_ends_ci(strImage,".png"))
                {
                }
-               else if(::str().ends_ci(strImage,".jpg"))
+               else if(string_ends_ci(strImage,".jpg"))
                {
                }
                else
@@ -310,16 +310,16 @@ namespace hellobase
          if(m_prender->m_pimageImage->is_set() && m_prender->m_pimageImage->area() > 0)
          {
 
-            if(::str().begins_eat_ci(str,m_strImage))
+            if(str.begins_eat_ci(m_strImage))
             {
-               ::str().begins_eat_ci(str,",");
+               str.begins_eat_ci(",");
             }
 
          }
 
       }
 
-      if(::str().begins_eat_ci(str, "crt:"))
+      if(str.begins_eat_ci("crt:"))
       {
 
          m_eeffect = effect_crt;
@@ -340,7 +340,7 @@ namespace hellobase
    string impact::get_hellobase()
    {
 
-      synchronous_lock synchronouslock(&m_mutexText);
+      synchronous_lock synchronouslock(m_pmutexText);
 
       if(m_strHelloBase != m_strNewHelloBase)
       {
@@ -398,7 +398,7 @@ namespace hellobase
       if (m_prender != nullptr)
       {
 
-         synchronous_lock synchronouslock(&m_mutexText);
+         synchronous_lock synchronouslock(m_pmutexText);
 
          if (get_processed_hellobase() != m_prender->m_strHelloBase)
          {

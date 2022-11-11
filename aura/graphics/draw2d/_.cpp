@@ -62,10 +62,10 @@ namespace draw2d
 //}
 //
 //
-//image::image(::object * pobject)
+//image::image(::particle * pparticle)
 //{
 //
-//   m_pimpl = pobject->create_image();
+//   m_pimpl = pparticle->create_image();
 //
 //}
 

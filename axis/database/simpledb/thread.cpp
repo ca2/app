@@ -2,7 +2,12 @@
 #include "thread.h"
 #include "storage.h"
 #include "queue_item.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/system.h"
+#include "acme/networking/url_department.h"
+#include "apex/networking/http/context.h"
 #include "apex/filesystem/filesystem/dir_system.h"
+#include "apex/platform/system.h"
 #include "axis/platform/application.h"
 #include "axis/platform/session.h"
 
@@ -14,7 +19,7 @@ namespace simpledb
    void thread::run()
    {
 
-      single_lock synchronouslock(mutex());
+      single_lock synchronouslock(this->synchronization());
 
       ::pointer<::axis::application>papp = get_app();
 
@@ -114,7 +119,7 @@ namespace simpledb
 
                strUrl = "https://ca2.software/api/account/str_set_save?key=";
 
-               auto psystem = m_psystem->m_papexsystem;
+               auto psystem = acmesystem()->m_papexsystem;
 
                auto purl = psystem->url();
 
@@ -126,7 +131,7 @@ namespace simpledb
 
                {
 
-                  synchronous_lock slDatabase(mutex());
+                  synchronous_lock slDatabase(synchronization());
 
                   m_pcontext->m_papexcontext->http().get(strUrl, set);
 
@@ -170,7 +175,7 @@ namespace simpledb
    void thread::queue(const ::string & pszKey, block block)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto pitem = __new(queue_item);
 

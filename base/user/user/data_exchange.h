@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 namespace user
 {
 
@@ -15,7 +18,7 @@ namespace user
 
 
       data_exchange();
-      virtual ~data_exchange();
+      ~data_exchange() override;
 
 
       virtual void Fail();

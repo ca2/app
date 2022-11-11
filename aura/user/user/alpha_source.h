@@ -2,12 +2,15 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+
+
 namespace user
 {
 
 
    class CLASS_DECL_AURA alpha_source :
-      virtual public ::element
+      virtual public ::particle
    {
    public:
 

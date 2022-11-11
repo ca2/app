@@ -9,6 +9,9 @@ namespace filemanager
 
 
    class data;
+   class callback;
+
+
    class document;
    class file_list;
    class file_list_callback;
@@ -52,6 +55,6 @@ namespace filemanager
 } // namespace filemanager
 
 
-#include "component.h"
+//#include "component.h"
 
 

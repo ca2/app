@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "numeric.h"
+
+
 struct COMPLEXD 
 {
    
@@ -55,7 +58,7 @@ template < typename T > complex < T > pow(const complex < T > & base, T exp) // 
 template < typename T > complex < T > sqrt(const complex < T > & c)
 {
    T mod = mod(c);
-   return complex < T >(::sqrt((mod + abs(c.m_x)) / 2.0),::papaya::sgn(c.m_y) * ::sqrt((mod - abs(c.m_x)) / 2.0));
+   return complex < T >(::sqrt((mod + abs(c.m_x)) / 2.0),::numeric::sgn(c.m_y) * ::sqrt((mod - abs(c.m_x)) / 2.0));
 }
 
 

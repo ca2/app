@@ -114,8 +114,8 @@ namespace linux
    }
 
 
-   interaction_impl::interaction_impl(::object * pobject) :
-      ::object(pobject)
+   interaction_impl::interaction_impl(::particle * pparticle) :
+      ::object(pparticle)
    {
 
       linux_interaction_impl_common_construct();
@@ -2426,8 +2426,8 @@ namespace linux
 //      oswindow m_hwnd;
 //      HDC m_hdc;
 //
-//      print_window(::object * pobject, oswindow hwnd, HDC hdc, ::u32 tickTimeout) :
-//         ::object(pobject)
+//      print_window(::particle * pparticle, oswindow hwnd, HDC hdc, ::u32 tickTimeout) :
+//         ::object(pparticle)
 //      {
 //         m_event.ResetEvent();
 //         m_hwnd = hwnd;

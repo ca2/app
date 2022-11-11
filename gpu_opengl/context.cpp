@@ -30,10 +30,10 @@ namespace opengl
    }
 
 
-   //void context::initialize(::object * pobject)
+   //void context::initialize(::particle * pparticle)
    //{
 
-   //   ::e_status estatus = ::object::initialize(pobject);
+   //   ::e_status estatus = ::object::initialize(pparticle);
 
    //   if (!estatus)
    //   {

@@ -2,17 +2,21 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+#include "path.h"
+
+
 class CLASS_DECL_ACME acme_file :
-   virtual public ::matter
+   virtual public ::particle
 {
 public:
 
 
-   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::acme_file *    m_pplatformfile;
-   acme_directory *                                   m_pacmedirectory;
-   acme_path *                                  m_pacmepath;
+   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::acme_file *       m_pplatformfile;
+   ::acme_directory *                                             m_pacmedirectory;
+   ::acme_path *                                                  m_pacmepath;
 
-   ::file::path                                 m_pathExecutable;
+   ::file::path                                                   m_pathExecutable;
 
 
    acme_file();
@@ -51,7 +55,7 @@ public:
    virtual void append_wait(const char * pszFile, const block & block, const ::duration & duration);
    virtual void append(const char * pszFile, const block & block);
 
-   virtual bool exists(const char * path);
+   virtual bool exists(const ::file::path & path);
 
    virtual void put_contents(const char * path, const char * contents, strsize len);
    virtual filesize get_size(const char * path);

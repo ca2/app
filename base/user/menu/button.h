@@ -40,11 +40,11 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
-      virtual void on_calc_size(calc_size * psize) override;
+      void on_calc_size(calc_size * psize) override;
 
-      virtual bool keyboard_focus_is_focusable() const override;
+      bool keyboard_focus_is_focusable() override;
 
-      virtual ::color::color _001GetButtonBackgroundColor() override;
+      ::color::color _001GetButtonBackgroundColor() override;
 
 
    };

@@ -5,11 +5,11 @@ namespace simpledb
 {
 
 
-   database::database(::object * pobject):
-      ::object(pobject)
+   database::database(::particle * pparticle):
+      ::object(pparticle)
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_protocol = 0;
 

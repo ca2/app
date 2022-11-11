@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "fonts.h"
 #include "font.h"
+#include "font_enumeration_item.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 #define FONTFACENAME_MENU pnode->font_name(e_font_sans)
@@ -15,7 +17,7 @@ namespace write_text
    fonts::fonts()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -26,12 +28,12 @@ namespace write_text
    }
 
 
-   void fonts::initialize(::object* pobject)
+   void fonts::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::acme::department::initialize(pobject);
+      ::acme::department::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -48,7 +50,7 @@ namespace write_text
    font_enumeration* fonts::enumeration()
    {
 
-      synchronous_lock syncronouslock(mutex());
+      synchronous_lock syncronouslock(synchronization());
 
       if (!m_pfontenumeration)
       {
@@ -65,7 +67,7 @@ namespace write_text
    void fonts::enumerate_fonts()
    {
 
-      synchronous_lock syncronouslock(mutex());
+      synchronous_lock syncronouslock(synchronization());
 
       auto pfontenumeration = __create < ::write_text::font_enumeration >();
 
@@ -88,7 +90,7 @@ namespace write_text
 
          pfontenumeration->enumerate_fonts();
 
-         synchronous_lock syncronouslock(mutex());
+         synchronous_lock syncronouslock(synchronization());
 
          m_pfontenumeration = pfontenumeration;
 

@@ -3,10 +3,10 @@
 namespace user
 {
 
-   button::button(::object * pobject) :
-      object(pobject),
-      ::user::button(pobject),
-      ::experience::button(pobject),
+   button::button(::particle * pparticle) :
+      object(pparticle),
+      ::user::button(pparticle),
+      ::experience::button(pparticle),
       m_spregion(e_create),
       m_ppen(e_create),
       m_pbrush(e_create)
@@ -198,7 +198,7 @@ namespace user
    ::item_pointer button::on_hit_test(const ::point_i32 &point)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_spregion.is_null())
       {

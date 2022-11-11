@@ -10,7 +10,7 @@ namespace xml
 {
 
 
-   property_set_exchange::property_set_exchange(::object * pobject)
+   property_set_exchange::property_set_exchange(::particle * pparticle)
    {
 
       m_ppropertyset = nullptr;

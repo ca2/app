@@ -8,9 +8,9 @@ i32 g_idbchange;
 //#define memory_new ACME_NEW
 
 
-db_server::db_server(::object * pobject) :
-   ::object(pobject),
-   server(pobject)
+db_server::db_server(::particle * pparticle) :
+   ::object(pparticle),
+   server(pparticle)
 {
 
    m_pdb                = nullptr;
@@ -116,7 +116,7 @@ bool db_server::initialize()
 
    ::file::path str;
 
-   //str =          auto psystem = m_psystem;
+   //str =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -125,23 +125,23 @@ pacmedirectory->system() / "database.sqlite";
    if (papp->is_system())
    {
 
-      str = pcontext->m_papexcontext->dir().appdata() / "system.sqlite";
+      str = pcontext->m_papexcontext->dir()->appdata() / "system.sqlite";
 
    }
    else if (papp->is_session())
    {
 
-      str = pcontext->m_papexcontext->dir().appdata() / "session.sqlite";
+      str = pcontext->m_papexcontext->dir()->appdata() / "session.sqlite";
 
    }
    else
    {
 
-      str = pcontext->m_papexcontext->dir().appdata() / "app.sqlite";
+      str = pcontext->m_papexcontext->dir()->appdata() / "app.sqlite";
 
    }
 
-   if(!pcontext->m_papexcontext->dir().create(str.folder()))
+   if(!pcontext->m_papexcontext->dir()->create(str.folder()))
    {
 
       return false;
@@ -276,7 +276,7 @@ void db_server::close()
 bool db_server::data_server_load(::database::client * pclient, ::database::key key, memory & memory, ::update * pupdate)
 {
 
-   __UNREFERENCED_PARAMETER(pobject);
+   __UNREFERENCED_PARAMETER(pparticle);
 
    if (!load(calc_data_key(pclient, key), memory))
    {
@@ -293,9 +293,9 @@ bool db_server::data_server_load(::database::client * pclient, ::database::key k
 bool db_server::data_server_save(::database::client * pclient, ::database::key key, memory & memory, ::update * pupdate)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
-   __UNREFERENCED_PARAMETER(pobject);
+   __UNREFERENCED_PARAMETER(pparticle);
 
    if (!save(calc_data_key(pclient, key), memory))
    {
@@ -359,7 +359,7 @@ bool db_server::save(const ::database::key & key, const ::string & pcsz)
 
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if(get_db_str_set() == nullptr)
    {
@@ -377,7 +377,7 @@ bool db_server::save(const ::database::key & key, const ::string & pcsz)
 bool db_server::save(const ::database::key & key, memory & mem)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    string str;
 

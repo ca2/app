@@ -1,14 +1,17 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+
+
 class CLASS_DECL_ACME work :
-   virtual public matter
+   virtual public ::particle
 {
 public:
 
 
    work();
-   virtual ~work();
+   ~work() override;
 
 
    virtual void start_work();

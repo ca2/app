@@ -1,7 +1,10 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/data/container.h"
 #include "aqua/user/controller.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/collection/procedure_array.h"
 
 
 namespace user
@@ -33,7 +36,7 @@ namespace user
       bool                                m_bAutoSaveModified;
 
       string                              m_strSaveFileExtension;
-      id_map < ::procedure_array >          m_mapRoutine;
+      atom_map < ::procedure_array >          m_mapRoutine;
       bool                                m_bToolbar;
 
 
@@ -42,18 +45,18 @@ namespace user
       ~document() override;
 
 
-      void dump(dump_context &) const override;
-      void assert_ok() const override;
+      //void dump(dump_context &) const override;
+      // void assert_ok() const override;
 
 
-      ::base::application * get_app() const;
-      ::base::session * get_session() const;
-      ::base::system * get_system() const;
-      ::base::user * user() const;
+      ::base::application * get_app();
+      ::base::session * get_session();
+      ::base::system * get_system();
+      ::base::user * user();
 
 
-      ::user::interaction* impact_at(::index iImpact) const override;
-      ::count impact_count() const override;
+      ::user::interaction* impact_at(::index iImpact) override;
+      ::count impact_count() override;
 
       ::user::interaction_array get_top_level_windows();
 
@@ -97,7 +100,7 @@ namespace user
       template < class T >
       ::count get_typed_impact_count() const
       {
-         synchronous_lock synchronouslock(((document *)this)->mutex());
+         synchronous_lock synchronouslock(((document *) this)->synchronization());
          ::count count = 0;
          for (index index = 0; index < m_impacta.get_count(); index++)
          {
@@ -116,7 +119,7 @@ namespace user
       pointer < T > get_typed_impact(index indexFind = 0) const
       {
 
-         synchronous_lock synchronouslock(((document *)this)->mutex());
+         synchronous_lock synchronouslock(((document *) this)->synchronization());
 
          if (indexFind < 0 || indexFind >= m_impacta.get_count())
          {
@@ -168,7 +171,7 @@ namespace user
       pointer < T > get_typed_impact_with_id(atom atom) const
       {
 
-         synchronous_lock synchronouslock(((document *)this)->mutex());
+         synchronous_lock synchronouslock(((document *) this)->synchronization());
 
          ::count count = 0;
 

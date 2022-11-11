@@ -2,6 +2,10 @@
 #include "core_data.h"
 #include "data.h"
 #include "axis/id.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/networking/url_department.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/context_image.h"
 #include "acme/platform/hyperlink.h"
@@ -25,7 +29,7 @@ namespace html
    core_data::image::image()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
    }
 
@@ -47,7 +51,7 @@ namespace html
    core_data::core_data()
    {
 
-      defer_create_mutex();
+      defer_create_synchronization();
 
       m_pcoredata = this;
       m_pcookies = nullptr;
@@ -104,7 +108,7 @@ namespace html
    //}
 
 
-   font * core_data::get_font(::html::element* pelement)
+   font * core_data::get_font(::html::element * pelement)
    {
 
       i32 iFont = -1;
@@ -205,7 +209,7 @@ namespace html
    void core_data::delete_contents()
    {
 
-      synchronous_lock lock(mutex());
+      synchronous_lock lock(synchronization());
 
       destroy();
 
@@ -264,7 +268,7 @@ namespace html
 
       ::html::reader reader;
 
-      phtmlreader->m_phtml = m_psystem->m_paxissystem->m_phtml;
+      phtmlreader->m_phtml = acmesystem()->m_paxissystem->m_phtml;
 
       phtmlreader->setEventHandler(&reader);
 
@@ -294,11 +298,7 @@ namespace html
 
       m_pelement = ::move_transfer(memory_new ::html::element);
 
-      //m_pelement->m_pbase = memory_new ::html::tag(nullptr);
-
       m_pelement->initialize_html_elemental(this);
-
-      //m_pelement->initialize_html_element(this);
 
       m_pelement->load(this, m_ptag);
 
@@ -314,7 +314,7 @@ namespace html
    void core_data::implement(::draw2d::graphics_pointer & pgraphics)
    {
       
-      if(::is_null(m_pelement))\
+      if(::is_null(m_pelement))
       {
          
          return;
@@ -322,6 +322,8 @@ namespace html
       }
 
       m_bImplemented = false;
+
+      m_bLaidout = false;
 
       __guard_wait(m_bImplement);
 
@@ -392,7 +394,7 @@ namespace html
    void core_data::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_bImplemented)
       {
@@ -442,7 +444,7 @@ namespace html
 
       }
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       m_pgraphics = pgraphics;
 
@@ -550,7 +552,7 @@ namespace html
    
       string strUrl(pszUrl);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       if (strUrl.find(":") >= 0)
       {
@@ -560,11 +562,11 @@ namespace html
       {
 
       }
-      else if (::str().begins(m_strPathName, "http://") ||
-         ::str().begins(m_strPathName, "https://"))
+      else if (m_strPathName.begins("http://") ||
+         m_strPathName.begins("https://"))
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto purl = psystem->url();
 
@@ -618,7 +620,7 @@ namespace html
    bool core_data::load_image(image* pimage)
    {
 
-      synchronous_lock lockImage(pimage->mutex());
+      synchronous_lock lockImage(pimage->synchronization());
 
       bool bRet = false;
 
@@ -675,7 +677,7 @@ namespace html
 
       string strPath(pszPath);
 
-      if (::str().begins_eat(strPath, "ext://"))
+      if (strPath.begins_eat("ext://"))
       {
 
          auto phyperlink =__create_new < hyperlink>();
@@ -725,7 +727,7 @@ namespace html
 
       //i32 iRetry = 0;
 
-      synchronous_lock lock(mutex());
+      synchronous_lock lock(synchronization());
 
    //restart:
 
@@ -774,8 +776,8 @@ namespace html
 
       payloadFile["http_set"]["app"] = get_app();
 
-      //varQuery.propset()["headers"].propset()[__id(accept)] = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
-      payloadFile["http_set"]["headers"].propset()[__id(accept)] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+      //varQuery.propset()["headers"].propset()["accept"] = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
+      payloadFile["http_set"]["headers"].propset()["accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
       //      varQuery.propset()["headers"].propset()["Accept-Language"] = "en-us,en;q=0.5";
             //varQuery.propset()["headers"].propset()["Accept-Encoding"] = "gzip,deflate";
       //      varQuery.propset()["headers"].propset()["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
@@ -791,7 +793,7 @@ namespace html
 
       auto pcontext = get_context();
 
-      str = pcontext->m_papexcontext->file().as_string(payloadFile);
+      str = pcontext->m_papexcontext->file()->as_string(payloadFile);
 
       //if (!payloadFile["http_set"]["get_headers"].propset()["Location"].is_empty())
       //{
@@ -820,7 +822,7 @@ namespace html
       if (str.is_empty())
       {
          string strCandidate = m_strPathName / payloadFile.file_path();
-         str = pcontext->m_papexcontext->file().as_string(strCandidate);
+         str = pcontext->m_papexcontext->file()->as_string(strCandidate);
          if (str.is_empty())
          {
 
@@ -957,7 +959,7 @@ namespace html
 
       }*/
 
-      synchronous_lock lock(mutex());
+      synchronous_lock lock(synchronization());
 
       m_puserinteraction = pform;
 
@@ -1010,7 +1012,7 @@ namespace html
 
       //}
 
-      synchronous_lock lock(mutex());
+      synchronous_lock lock(synchronization());
 
       m_puserinteraction = pform;
 
@@ -1052,7 +1054,7 @@ namespace html
 
       //}
 
-      synchronous_lock lock(mutex());
+      synchronous_lock lock(synchronization());
 
       m_puserinteraction = pform;
 

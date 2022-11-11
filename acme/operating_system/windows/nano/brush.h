@@ -1,6 +1,11 @@
 //
 // Created by camilo on 31/01/2022 14:40 <3ThomasBorregaardSørensen!!
 //
+#pragma once
+
+
+#include "acme/user/nano/brush.h"
+#include "object.h"
 
 
 namespace windows

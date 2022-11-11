@@ -3,6 +3,7 @@
 
 #include "unzip.h"
 #include "zip.h"
+#include "acme/filesystem/file/folder.h"
 
 
 namespace folder_zip
@@ -29,7 +30,7 @@ namespace folder_zip
       ~folder() override;
 
 
-      void initialize(::object* pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       void open_for_reading(file_pointer pfile, int iBufferLevel = 2) override;
@@ -48,7 +49,7 @@ namespace folder_zip
 
       ::file_pointer get_file(const char* pszFile = nullptr) override;
 
-      void extract_all(const char* pszTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat) override;
+      void e_extract_all(const char* pszTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat) override;
 
       void open_for_writing(file_pointer pfile) override;
 

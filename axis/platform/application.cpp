@@ -2,15 +2,17 @@
 #include "application.h"
 #include "session.h"
 #include "system.h"
-#include "apex/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/user/language_map.h"
+#include "apex/networking/application/application.h"
+#include "axis/database/simpledb/server.h"
 #include "axis/user/user/combo_box.h"
 #include "aura/user/user/button.h"
 #include "aura/user/user/still.h"
 #include "aura/user/user/check_box.h"
-#include "axis/database/simpledb/server.h"
-
 
 
 namespace axis
@@ -34,7 +36,7 @@ namespace axis
       m_paxisapplication = this;
       m_bInitializeDataCentral = true;
 
-      ::factory::add_factory_item < ::networking_application >();
+      ::factory::add_factory_item < ::networking::application >();
 
    }
 
@@ -45,40 +47,40 @@ namespace axis
    }
 
 
-   void application::initialize(::object * pobject)
+   void application::initialize(::particle * pparticle)
    {
 
-      ::aura::application::initialize(pobject);
+      ::aura::application::initialize(pparticle);
 
    }
 
 
-   void application::assert_ok() const
-   {
-
-      thread::assert_ok();
-
-   }
-
-
-   void application::dump(dump_context & dumpcontext) const
-   {
-
-      thread::dump(dumpcontext);
-
-//#ifdef WINDOWS
+//   void application::assert_ok() const
+//   {
 //
-//      dumpcontext << "m_hinstance = " << (void *)m_hinstance;
+//      thread::assert_ok();
 //
-//#endif
-
-      ////dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
-      ////dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
-      //dumpcontext << "\nm_bHelpMode = " << m_strAppName;
-
-      //dumpcontext << "\n";
-
-   }
+//   }
+//
+//
+//   void application::dump(dump_context & dumpcontext) const
+//   {
+//
+//      thread::dump(dumpcontext);
+//
+////#ifdef WINDOWS
+////
+////      dumpcontext << "m_hinstance = " << (void *)m_hinstance;
+////
+////#endif
+//
+//      ////dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
+//      ////dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
+//      //dumpcontext << "\nm_bHelpMode = " << m_strAppName;
+//
+//      //dumpcontext << "\n";
+//
+//   }
 
 
    string application::__get_text(string str)
@@ -177,7 +179,7 @@ namespace axis
 //
 //      string str = ::str().get_window_text_timeout(hwnd, 1000);
 //
-//      if (::str().ends_ci(str, penum->m_strWindowEnd))
+//      if (string_ends_ci(str, penum->m_strWindowEnd))
 //      {
 //
 //         penum->m_hwnd = hwnd;
@@ -198,7 +200,7 @@ namespace axis
 //
 //      string str = ::str().get_window_text_timeout(hwnd);
 //
-//      if (::str().ends_ci(str, penum->m_strTopic))
+//      if (string_ends_ci(str, penum->m_strTopic))
 //      {
 //
 //         penum->m_hwndaTopic.add(hwnd);
@@ -218,7 +220,7 @@ namespace axis
 //
 //      string str = ::str().get_window_text_timeout(hwnd, 1000);
 //
-//      if (::str().ends_ci(str, penum->m_strCounterTopic))
+//      if (string_ends_ci(str, penum->m_strCounterTopic))
 //      {
 //
 //         penum->m_hwndaCounterTopic.add(hwnd);
@@ -467,7 +469,7 @@ namespace axis
 
          ////data_pulse_change({ "ca2.savings", true }, nullptr);
 
-         //auto psystem = m_psystem->m_paurasystem;
+         //auto psystem = acmesystem()->m_paurasystem;
 
          //psystem->appa_load_string_table();
 
@@ -723,7 +725,7 @@ namespace axis
          if (!is_session() && !is_system())
          {
 
-            auto psystem = m_psystem->m_paurasystem;
+            auto psystem = acmesystem()->m_paurasystem;
 
             if (psystem != nullptr)
             {
@@ -909,7 +911,7 @@ namespace axis
 
             auto pcontext = get_context();
 
-            ::file::path pathFolder = pcontext->m_papexcontext->dir().appdata(m_strDatabaseAppId);
+            ::file::path pathFolder = pcontext->m_papexcontext->dir()->appdata(m_strDatabaseAppId);
 
             if (is_system())
             {
@@ -1394,10 +1396,10 @@ namespace axis
 
          string strType = __type_name(this);
 
-         //if(::is_set(m_psystem))
+         //if(::is_set(acmesystem()))
          //{
 
-         //   m_psystem->add_reference(this);
+         //   acmesystem()->add_reference(this);
 
          //}
 
@@ -1630,7 +1632,7 @@ namespace axis
 
    //   }
 
-   //   /*     if (!m_psystem->m_phtml->initialize())
+   //   /*     if (!acmesystem()->m_phtml->initialize())
    //        {
 
    //           return false;
@@ -1786,10 +1788,10 @@ namespace axis
 
       string strRequestUrl;
 
-      if (m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt").has_char())
+      if (acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 

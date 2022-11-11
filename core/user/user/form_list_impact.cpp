@@ -1,7 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "form_list_impact.h"
-#include "base/user/form/document.h"
+#include "acme/handler/item.h"
+#include "apex/filesystem/filesystem/dir_context.h"
 #include "aura/user/user/interaction_impl.h"
+#include "base/user/form/document.h"
 
 
 namespace user
@@ -16,6 +18,30 @@ namespace user
 
    form_list_impact::~form_list_impact()
    {
+
+   }
+
+
+   ::core::application* form_list_impact::get_app()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+
+   }
+
+
+   ::core::session* form_list_impact::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
+
+
+   ::core::system* form_list_impact::get_system()
+   {
+
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
 
    }
 
@@ -45,7 +71,7 @@ namespace user
             if(!ptopic->payload(id_form).is_empty())
             {
 
-               string strMatter = m_pcontext->m_papexcontext->dir().matter(ptopic->payload(id_form));
+               string strMatter = dir()->matter(ptopic->payload(id_form));
 
                if(get_document()->on_open_document(strMatter))
                {
@@ -78,12 +104,12 @@ namespace user
    }
 
 
-   void form_list_impact::initialize(::object * pobject)
+   void form_list_impact::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::user::form_list::initialize(pobject);
+      ::user::form_list::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -94,7 +120,7 @@ namespace user
 
       //estatus =
       
-      ::user::form_impact::initialize(pobject);
+      ::user::form_impact::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -105,7 +131,7 @@ namespace user
 
       //estatus = 
       
-      ::user::list_impact::initialize(pobject);
+      ::user::list_impact::initialize(pparticle);
 
       //if (!estatus)
       //{

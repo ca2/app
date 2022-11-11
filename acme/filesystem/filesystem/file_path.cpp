@@ -2,9 +2,10 @@
 // From acme_windows/acme_file.cpp
 // 04:38 BRT <3ThomasBorregaardSørensen
 #include "framework.h"
-#include "acme/operating_system.h"
 #include "acme_file.h"
-#include <stdio.h>
+#include "acme/networking/__string.h"
+#include "acme/primitive/collection/numeric_array.h"
+
 
 
 void copy_character_per_character(char * pszTarget, const char * pszSource)
@@ -111,19 +112,23 @@ string url_dir_name_for_relative(const char * pszPath)
    
    string strDir(pszPath);
 
-   if (::str().ends(strDir, "/"))
+   if (strDir.ends("/"))
    {
 
       return strDir;
 
    }
 
-   ::str().ends_eat(strDir, "/");
+   strDir.ends_eat("/");
 
    strsize iFind = strDir.reverse_find("/");
 
    if (iFind < 0)
+   {
+
       return "/";
+
+   }
 
    return strDir.substr(0, iFind + 1);
 
@@ -330,7 +335,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
                else
                {
 
-                  iPos += ch_uni_len(psz[iPos]);
+                  iPos += utf8_unicode_length(psz[iPos]);
 
                   if (iPos >= iLen)
                   {
@@ -391,7 +396,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
             else
             {
 
-               iPos += ch_uni_len(psz[iPos]);
+               iPos += utf8_unicode_length(psz[iPos]);
 
                if (iPos >= iLen)
                {
@@ -435,7 +440,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
          else
          {
 
-            iPos += ch_uni_len(psz[iPos]);
+            iPos += utf8_unicode_length(psz[iPos]);
 
             if (iPos >= iLen)
             {
@@ -450,7 +455,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
       else
       {
 
-         iPos += ch_uni_len(psz[iPos]);
+         iPos += utf8_unicode_length(psz[iPos]);
 
          if (iPos >= iLen)
          {
@@ -517,17 +522,17 @@ CLASS_DECL_ACME string defer_solve_relative(const char * pszRelative, const char
       return "";
    if (strAbsolute.is_empty())
       return solve_relative(strRelative);
-   if (::str().begins_ci(strRelative, "http://"))
+   if (strRelative.begins_ci("http://"))
       return solve_relative(strRelative);
-   if (::str().begins_ci(strRelative, "https://"))
+   if (strRelative.begins_ci("https://"))
       return solve_relative(strRelative);
-   if (::str().begins_ci(strRelative, "ftp://"))
+   if (strRelative.begins_ci("ftp://"))
       return solve_relative(strRelative);
-   if (::str().begins_ci(strRelative, "ext://"))
+   if (strRelative.begins_ci("ext://"))
       return solve_relative(strRelative);
-   if (::str().begins(strRelative, "/"))
+   if (strRelative.begins("/"))
       return solve_relative(strRelative);
-   if (::str().begins(strRelative, "\\\\"))
+   if (strRelative.begins("\\\\"))
       return solve_relative(strRelative);
 
    index iFind = strRelative.find(":\\");
@@ -537,7 +542,7 @@ CLASS_DECL_ACME string defer_solve_relative(const char * pszRelative, const char
       index i = 0;
       for (; i < iFind; i++)
       {
-         if (!ansi_char_is_alphabetic(strRelative[i]) && !ansi_char_is_digit(strRelative[i]))
+         if (!ansi_char_isalpha(strRelative[i]) && !ansi_char_isdigit(strRelative[i]))
             break;
       }
 
@@ -548,7 +553,7 @@ CLASS_DECL_ACME string defer_solve_relative(const char * pszRelative, const char
 
    strAbsolute = ::url_dir_name_for_relative(strAbsolute);
 
-   if (!::str().ends(strAbsolute, "/"))
+   if (!strAbsolute.ends("/"))
       strAbsolute += "/";
    strRelative = strAbsolute + strRelative;
 
@@ -562,38 +567,113 @@ CLASS_DECL_ACME string defer_solve_relative(const char * pszRelative, const char
 
 //CLASS_DECL_ACME bool read_resource_as_file(const char * pszFile,HINSTANCE hinst,::u32 nID,LPCTSTR pcszType);
 
+const char * string_reverse_span_excluding(const char * psz, const char * pszBegin, const char * pszExcluding)
+{
 
+   while (psz >= pszBegin)
+   {
+
+      auto pszCheck = pszExcluding;
+
+      while(*pszCheck)
+      {
+
+         if (*psz == *pszCheck)
+         {
+
+            return psz;
+
+         }
+
+         pszCheck++;
+
+      }
+
+      psz--;
+
+   }
+
+   return nullptr;
+
+}
+
+
+const char * string_reverse_span_including(const char * psz, const char * pszBegin, const char * pszIncluding)
+{
+
+   while (psz >= pszBegin)
+   {
+
+      auto pszCheck = pszIncluding;
+
+      bool bIncludesAny = false;
+
+      while(*pszCheck)
+      {
+
+         if (*psz == *pszCheck)
+         {
+
+            bIncludesAny = true;
+
+         }
+
+         pszCheck++;
+
+      }
+
+      if(!bIncludesAny)
+      {
+
+         return psz;
+
+      }
+
+      psz--;
+
+   }
+
+   return nullptr;
+
+}
+
+
+// 1. /folder/name
+// 2. /name
 string file_path_folder(const char * path1)
 {
 
-   const char * psz = path1 + strlen(path1) - 1;
-   while (psz >= path1)
+   const char * psz = path1 + string_safe_length(path1) - 1;
+
+   auto pszSeparator = string_reverse_span_excluding(psz, path1, "\\/:");
+
+// 1. /folder/
+// 2. /
+
+   if(!pszSeparator)
    {
-      if (*psz != '\\' && *psz != '/' && *psz != ':')
-         break;
-      psz--;
-   }
-   while (psz >= path1)
-   {
-      if (*psz == '\\' || *psz == '/' || *psz == ':')
-         break;
-      psz--;
-   }
-   if (psz >= path1) // strChar == "\\" || strChar == "/"
-   {
-      const char * pszEnd = psz;
-      /*while(psz >= path1)
-       {
-       if(*psz != '\\' && *psz != '/' && *psz != ':')
-       break;
-       psz--;
-       }*/
-      return string(path1, pszEnd - path1);
-   }
-   else
-   {
+
       return "";
+
    }
+
+   auto pszLastFolderCharacter = string_reverse_span_including(pszSeparator, path1, "\\/:");
+
+// 1. /folder
+// 2. nullptr
+
+   if(pszLastFolderCharacter)
+   {
+
+      pszSeparator = pszLastFolderCharacter + 1;
+
+   }
+
+// 1. /folder/
+// 2. /
+
+   return string(path1, pszSeparator - path1);
+
 }
 
 
@@ -699,7 +779,7 @@ bool file_path_is_absolute(const char * psz)
 
    }
 
-   if (!ansi_char_is_alphabetic(*psz))
+   if (!ansi_char_isalpha(*psz))
    {
 
       return false;
@@ -716,8 +796,8 @@ bool file_path_is_absolute(const char * psz)
    }
       
    while (*psz
-      && (ansi_char_is_alphabetic(*psz)
-      || ansi_char_is_digit(*psz)
+      && (ansi_char_isalpha(*psz)
+      || ansi_char_isdigit(*psz)
       || *psz == '-'
       || *psz == '_'))
    {
@@ -849,7 +929,7 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
    if (strPath.get_length() > 3
       && strPath[2] == ':'
-      && ::str().begins_eat(strPath, "/"))
+      && strPath.begins_eat("/"))
    {
 
       //strPath = strPath.Mid(1);

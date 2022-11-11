@@ -1,6 +1,7 @@
 #include "framework.h"
-#include "_.h"
-#include "_graphics.h"
+#include "double_buffer.h"
+#include "acme/parallelization/mutex.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/image.h"
 
 
@@ -36,12 +37,14 @@ namespace graphics
 
       //}
 
+      m_mutexa.set_size(2);
+
       __construct(m_imageaBuffer[0]);
-      //m_imageaBuffer[0]->defer_create_mutex();
+      __construct(m_mutexa[0]);
       m_imageaBuffer[0]->m_atom = 0;
 
       __construct(m_imageaBuffer[1]);
-      //m_imageaBuffer[1]->defer_create_mutex();
+      __construct(m_mutexa[1]);
       m_imageaBuffer[1]->m_atom = 1;
 
       //return estatus;
@@ -49,7 +52,7 @@ namespace graphics
    }
 
 
-   synchronization_object * double_buffer::get_draw_lock()
+   ::particle * double_buffer::get_draw_lock()
    {
 
       return get_buffer_sync();
@@ -93,7 +96,7 @@ namespace graphics
 //
 //         }
           
-          auto sizeImage = ::is_ok(pimage)?pimage->get_size() : ::size_i32(0,0);
+         auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::size_i32(0, 0);
          auto sizeReserved = ::size_i32(1920, 1080);
           
           if(sizeWindow.cx > sizeImage.cx)
@@ -163,10 +166,10 @@ namespace graphics
    }
 
 
-   synchronization_object * double_buffer::get_buffer_sync()
+   ::particle * double_buffer::get_buffer_sync()
    {
 
-      return &m_mutexa[get_buffer_index()];
+      return m_mutexa[get_buffer_index()];
 
    }
 
@@ -179,10 +182,10 @@ namespace graphics
    }
 
 
-   synchronization_object * double_buffer::get_screen_sync()
+   ::particle * double_buffer::get_screen_sync()
    {
 
-      return &m_mutexa[get_screen_index()];
+      return m_mutexa[get_screen_index()];
 
    }
 
@@ -300,7 +303,7 @@ namespace graphics
    bool double_buffer::update_screen()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       synchronous_lock slScreen(get_screen_sync());
 
@@ -308,7 +311,7 @@ namespace graphics
 
       synchronouslock.unlock();
 
-      if (!::is_ok(pimage))
+      if (pimage->nok())
       {
 
          return false;

@@ -52,7 +52,7 @@ namespace html
          void set_cell(index iCol, index iRow, cell * pcell);
 
 
-         void implement_phase1(html_data * pdata, ::html::element* pelement);
+         void implement_phase1(html_data * pdata, ::html::element * pelement);
 
 
          virtual void layout_phase0(html_data * pdata);

@@ -16,18 +16,18 @@ namespace user
 
 
 
-      scalar_base *  m_pscalarVelocity;
-      scalar_base *  m_pscalarPosition;
+      ::pointer < scalar_base >     m_pscalarVelocity;
+      ::pointer < scalar_base >     m_pscalarPosition;
 
-      e_scalar       m_escalar;
+      e_scalar                      m_escalar;
 
-      ::duration m_durationLastTime;
+      ::duration                    m_durationLastTime;
 
-      double         m_dPosition;// 0.0 = minimum 1.0 = maximum
-      double         m_dTensionPosition;// 0.0 = minimum 1.0 = maximum
-      bool           m_bSlide;
-      index          m_iScalar;
-      double_array   m_daScalar;
+      double                        m_dPosition;// 0.0 = minimum 1.0 = maximum
+      double                        m_dTensionPosition;// 0.0 = minimum 1.0 = maximum
+      bool                          m_bSlide;
+      index                         m_iScalar;
+      double_array                  m_daScalar;
 
 
       elastic_slider();

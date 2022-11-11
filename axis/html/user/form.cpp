@@ -1,5 +1,9 @@
 ﻿#include "framework.h"
 #include "form.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/datetime/department.h"
 #include "aura/graphics/image/context_image.h"
 #include "axis/platform/system.h"
 #include "axis/html/element/element.h"
@@ -33,12 +37,12 @@ html_form::~html_form()
 }
 
 
-void html_form::initialize(::object * pobject)
+void html_form::initialize(::particle * pparticle)
 {
 
    //auto estatus = 
    
-   ::user::form_window::initialize(pobject);
+   ::user::form_window::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -166,7 +170,7 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
 
          get_html_data()->m_pcoredata->m_box = rectangleClient;
 
-         synchronous_lock lock(get_html_data()->mutex());
+         synchronous_lock lock(get_html_data()->synchronization());
 
          auto pimage = m_pcontext->m_pauracontext->create_image({ 50,  50 });
 
@@ -224,7 +228,7 @@ void html_form::GetClientBox(::rectangle_f32 & box)
 void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if(get_html_data() == nullptr)
    {
@@ -262,7 +266,7 @@ void html_form::on_message_create(::message::message * pmessage)
 
    ::pointer<::message::create>pcreate(pmessage);
 
-   auto psystem = m_psystem->m_paxissystem;
+   auto psystem = acmesystem()->m_paxissystem;
 
    psystem->defer_create_html();
 
@@ -333,14 +337,14 @@ void html_form::on_message_mouse_move(::message::message * pmessage)
 
    screen_to_client()(point);
 
-   synchronous_lock synchronouslock(mutex());
+   synchronous_lock synchronouslock(this->synchronization());
 
    if(::is_set(get_html_data()) 
       && ::is_set(get_html_data()->m_pcoredata) 
       && ::is_set(get_html_data()->m_pcoredata->m_pelement))
    {
 
-      synchronous_lock synchronouslock(get_html_data()->mutex());
+      synchronous_lock synchronouslock(get_html_data()->synchronization());
 
       html::element * pelement = get_html_data()->m_pcoredata->m_pelement->hit_test(get_html_data(), point);
 
@@ -491,9 +495,9 @@ void html_form::soft_reload()
 
       auto phtmldata = get_html_data();
 
-      auto psync = phtmldata->mutex();
+      auto pparticleSynchronization = phtmldata->synchronization();
 
-      synchronous_lock lock(psync);
+      synchronous_lock lock(pparticleSynchronization);
 
       str = phtmldata->m_pcoredata->m_strSource;
 
@@ -532,37 +536,37 @@ bool html_form::open_document(const ::payload & payloadFile)
 
    auto path = payloadFile.file_path();
 
-   auto psystem = m_psystem->m_paurasystem;
+   auto psystem = acmesystem()->m_paurasystem;
 
-   if (path.is_empty())
-   {
-
-      if (payloadFile.get_type() == ::e_type_property_set && payloadFile.propset()["url"].has_char())
-      {
-
-         path = payloadFile.propset()["url"];
-
-      }
-      else if (payloadFile.cast < ::file::file >() != nullptr)
-      {
-
-         auto psystem = m_psystem;
-
-         auto pdatetime = psystem->datetime();
-
-//         path = pdatetime->international().get_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
-
-         path = pdatetime->international().get_date_time() + ".html";
-
-      }
-      else
-      {
-
-         path = payloadFile;
-
-      }
-
-   }
+//   if (path.is_empty())
+//   {
+//
+//      if (payloadFile.get_type() == ::e_type_property_set && payloadFile.propset()["url"].has_char())
+//      {
+//
+//         path = payloadFile.propset()["url"];
+//
+//      }
+//      else if (payloadFile.cast < ::file::file >() != nullptr)
+//      {
+//
+//         auto psystem = acmesystem();
+//
+//         auto pdatetime = psystem->datetime();
+//
+////         path = pdatetime->international().get_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
+//
+//         path = pdatetime->international().get_date_time() + ".html";
+//
+//      }
+//      else
+//      {
+//
+//         path = payloadFile;
+//
+//      }
+//
+//   }
 
    auto phtmldata = get_html_data();
 
@@ -614,7 +618,7 @@ bool html_form::open_html(const ::string & str)
 }
 
 
-void html_form::_001GetText(string & str) const
+void html_form::_001GetText(string & str)
 {
 
    ((html_form *) this)->get_html_data()->m_pcoredata->m_pelement->get_html((const_cast < html_form * > (this)->get_html_data()), str);
@@ -627,7 +631,7 @@ void html_form::_001SetText(const ::string & str, const ::action_context & conte
 
    auto psession = get_session();
 
-   auto puserinteraction = get_keyboard_focus()->cast < ::user::interaction >();
+   ::pointer < ::user::interaction > puserinteraction = get_keyboard_focus();
 
    bool bFocus = has_keyboard_focus() || is_descendant(puserinteraction, true);
 

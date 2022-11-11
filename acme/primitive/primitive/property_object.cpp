@@ -1,4 +1,9 @@
 ﻿#include "framework.h"
+#include "property_object.h"
+#include "payload.h"
+#include "acme/constant/message.h"
+#include "acme/exception/exception.h"
+#include "acme/platform/system.h"
 
 
 property_object::~property_object()
@@ -19,10 +24,10 @@ property_object::~property_object()
 //}
 
 
-//void     property_object::initialize(::object * pobject)
+//void     property_object::initialize(::particle * pparticle)
 //{
 //
-//   set_object(pobject);
+//   set_object(pparticle);
 //
 //   return ::success;
 //
@@ -42,7 +47,7 @@ void property_object::destroy()
 void property_object::notify_on_destroy(::property_object * pcontextobjectFinish)
 {
 
-   if (has(e_flag_destroying))
+   if (has_flag(e_flag_destroying))
    {
 
       //finish(nullptr);
@@ -322,7 +327,7 @@ void property_object::add_exception(const ::exception & e)
 
    m_estatus = error_exception;
 
-   set_fail();
+   set_fail_flag();
 
 }
 
@@ -332,7 +337,7 @@ void property_object::on_catch_all_exception()
 
    m_estatus = error_catch_all_exception;
 
-   set_fail();
+   set_fail_flag();
 
 }
 
@@ -392,16 +397,16 @@ void property_object::on_catch_all_exception()
 linked_property property_object::parent_lookup_property(const atom & atom) const
 {
 
-   auto pobject = parent_property_set_holder();
+   auto pparticle = parent_property_set_holder();
 
-   if (!pobject)
+   if (!pparticle)
    {
 
       return nullptr;
 
    }
 
-   return pobject->on_fetch_property(atom);
+   return pparticle->on_fetch_property(atom);
 
 }
 
@@ -493,7 +498,7 @@ atom property_object::translate_property_id(const ::atom & atom)
 string property_object::property_set_evaluate(const ::string & str) const
 {
 
-   return ::papaya::property_set::evaluate(*this, str);
+   return m_ppropertyset ? m_ppropertyset->evaluate(str) : str;
 
 }
 
@@ -700,6 +705,294 @@ void property_object::run_property(const ::atom& atom)
 //   strncpy(sz, str, len);
 //
 //}
+
+
+
+
+
+//property_object::property_object(const property_object & propertyobject) :
+//   ::PARTICLE(propertyobject),
+//   ::particle(propertyobject),
+//   ::matter(propertyobject),
+//   m_ppropertyset(propertyobject.m_ppropertyset)
+//{
+//
+//}
+
+
+
+
+bool property_object::has_property(const atom & atom) const { return m_ppropertyset && m_ppropertyset->has_property(atom); }
+property * property_object::lookup_property(const atom& atom) const { return m_ppropertyset ? m_ppropertyset->find(atom) : nullptr; }
+bool property_object::erase_key(const atom & atom) { return m_ppropertyset && m_ppropertyset->erase_by_name(atom); }
+property_set & property_object::get_property_set() { defer_propset(); return *m_ppropertyset; }
+const property_set & property_object::get_property_set() const { ((property_object *)this)->defer_propset(); return *m_ppropertyset; }
+
+
+bool property_object::contains(const property_set & set) const
+{
+
+   if (set.is_empty())
+   {
+
+      return true;
+
+   }
+
+   if (m_ppropertyset.is_null())
+   {
+
+      return false;
+
+   }
+
+   return m_ppropertyset->contains(set);
+
+}
+
+
+void property_object::defer_propset()
+{
+
+   m_pcontext->__defer_construct_new(m_ppropertyset);
+
+}
+
+
+property * property_object::find_property(const atom & atom) const
+{
+
+   if (!m_ppropertyset)
+   {
+
+      return nullptr;
+
+   }
+
+   return m_ppropertyset->find(atom);
+
+}
+
+
+string property_object::find_string(const ::atom & atom, const ansichar * pszDefault) const
+{
+
+   if (!m_ppropertyset)
+   {
+
+      return pszDefault;
+
+   }
+
+   auto pproperty = m_ppropertyset->find(atom);
+
+   if (!pproperty)
+   {
+
+      return pszDefault;
+
+   }
+
+   return pproperty->string(pszDefault);
+
+}
+
+
+::i32 property_object::find_i32(const ::atom & atom, ::i32 iDefault) const
+{
+
+   if (!m_ppropertyset)
+   {
+
+      return iDefault;
+
+   }
+
+   auto pproperty = m_ppropertyset->find(atom);
+
+   if (!pproperty)
+   {
+
+      return iDefault;
+
+   }
+
+   return pproperty->i32(iDefault);
+
+}
+
+
+::u32 property_object::find_u32(const ::atom & atom, ::u32 iDefault) const
+{
+
+   if (!m_ppropertyset)
+   {
+
+      return iDefault;
+
+   }
+
+   auto pproperty = m_ppropertyset->find(atom);
+
+   if (!pproperty)
+   {
+
+      return iDefault;
+
+   }
+
+   return pproperty->u32(iDefault);
+
+}
+
+
+template < typename TYPE > TYPE & property_object::get_cast(const ::atom & atom, TYPE * pDefault)
+{
+
+   return payload(atom).get_cast <TYPE>(pDefault);
+
+}
+
+
+//template < typename TYPE > ::pointer<TYPE>property_object::cast(const ::atom & atom) const
+//{
+//
+//   auto pproperty = find_property(atom);
+//
+//   if (!pproperty)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return pproperty->cast < TYPE >();
+//
+//}
+
+
+::payload & property_object::payload(const atom & atom)
+{
+
+   auto & set = get_property_set();
+
+   return set.get(atom);
+
+}
+
+
+bool property_object::is_true(const ::atom & atom, bool bDefault) const
+{
+
+   return m_ppropertyset && payload(atom).is_true(bDefault);
+
+}
+
+
+bool property_object::is_false(const ::atom& atom) const
+{
+
+   return !is_true(atom);
+
+}
+
+
+//bool property_object::__is_true(const ::atom & atom, const ::payload & varDefault, bool bDefault = false) const
+//{
+//
+//   return payload(atom).__is_true(varDefault, bDefault);
+//
+//}
+
+
+::payload & property_object::operator[](const ::atom & atom) { return payload(atom); }
+
+::payload property_object::operator[](const ::atom & atom) const { return find_property(atom); }
+
+::payload property_object::payload(const ::atom & atom) const { return find_property(atom); }
+
+::payload property_object::payload(const ::atom & atom, const ::payload & varDefault) const { return operator()(atom, varDefault); }
+
+::payload property_object::operator()(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
+
+::payload property_object::operator()(const ::atom & atom, const ::payload & varDefault) const { return find_payload(atom, varDefault); }
+
+::payload property_object::find_payload(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
+
+::payload property_object::find_payload(const ::atom & atom, const ::payload & varDefault) const
+{
+
+   auto pproperty = find_property(atom);
+
+   if (!pproperty)
+   {
+
+      return varDefault;
+
+   }
+
+   return pproperty;
+
+}
+
+::payload property_object::attribute(const ::atom & atom) { return payload(atom); }
+
+::property * property_object::find_attribute(const ::atom & atom) { return find_property(atom); }
+
+template < typename TYPE >
+bool property_object::find_attribute(const ::atom & atom, TYPE & t)
+{
+
+   auto p = find_property(atom);
+
+   if (!p)
+   {
+
+      return false;
+
+   }
+
+   t = *p;
+
+   return true;
+
+}
+
+
+::payload & property_object::get_object(const ::atom & atom)
+{
+
+   auto pproperty = &payload(atom);
+
+   if (!pproperty)
+   {
+
+      throw ::exception(error_resource);
+
+   }
+
+   return *pproperty;
+
+}
+
+
+
+
+::payload & property_object::topic(const ::atom& atom)
+{
+
+   auto property = fetch_property(atom);
+
+   if (!property)
+   {
+
+      throw ::exception(error_resource);
+
+   }
+
+   return *property.m_pproperty;
+
+}
 
 
 

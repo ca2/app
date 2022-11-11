@@ -20,10 +20,10 @@ namespace draw2d_gdiplus
    }
 
 
-   void printer::initialize(::object * pobject)
+   void printer::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::aura::printer::initialize(pobject);
+      auto estatus = ::aura::printer::initialize(pparticle);
 
       if (!estatus)
       {

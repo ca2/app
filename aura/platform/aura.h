@@ -30,7 +30,7 @@
 //
 //   extern CLASS_DECL_AURA critical_section* g_pcsFont;
 //
-//   extern CLASS_DECL_AURA ::mutex * g_pmutexWindowing;
+//   extern CLASS_DECL_AURA ::pointer< ::mutex > g_pmutexWindowing;
 //
 //   //extern critical_section* g_pcsRefDbg;
 //
@@ -41,8 +41,8 @@
 ////
 ////#endif
 //
-//   extern ::mutex * g_pmutexChildren;
-//   //extern ::mutex * g_pmutexThreadWaitClose;
+//   extern ::pointer< ::mutex > g_pmutexChildren;
+//   //extern ::pointer< ::mutex > g_pmutexThreadWaitClose;
 //   //extern string_map < ::pointer<::acme::library >> g_pmapLibrary;
 //   //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 //
@@ -62,11 +62,11 @@
 ////#endif
 //
 //
-//   //extern ::mutex * psystem->g_mutexLibrary;
+//   //extern ::pointer< ::mutex > psystem->g_mutexLibrary;
 //
 //   //extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 //
-//   //extern ::mutex * g_pmutexGlobals;
+//   //extern ::pointer< ::mutex > g_pmutexGlobals;
 //
 //   //extern critical_section* g_pcsGlobal;
 //
@@ -94,12 +94,12 @@
 ////#endif
 //
 //
-//   //extern ::mutex * g_pmutexCred;
+//   //extern ::pointer< ::mutex > g_pmutexCred;
 //
 //
 //   //extern class ::exception_engine* g_pexceptionengine;
 //
-//   //extern ::mutex * g_pmutexMessageDispatch;
+//   //extern ::pointer< ::mutex > g_pmutexMessageDispatch;
 //
 //
 //   //extern CLASS_DECL_AURA array < matter* >* g_paAura;
@@ -134,37 +134,37 @@
 //   //plex_heap_alloc_array * g_pplexheapallocarray;
 //
 //   //extern int g_iMemoryCountersStartable;
-//   //extern ::mutex * g_pmutexTrait;
-//   //extern ::mutex * g_pmutexFactory;
+//   //extern ::pointer< ::mutex > g_pmutexTrait;
+//   //extern ::pointer< ::mutex > g_pmutexFactory;
 //
-//   extern ::mutex * g_pmutexUiDestroyed;
+//   extern ::pointer< ::mutex > g_pmutexUiDestroyed;
 //
 ////#ifdef ANDROID
 ////
-////   extern ::mutex * g_pmutexOutputDebugStringA;
+////   extern ::pointer< ::mutex > g_pmutexOutputDebugStringA;
 ////
 ////#endif
 //
 //
 //   // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 //
-//   // extern ::mutex * g_pmutexMq;
+//   // extern ::pointer< ::mutex > g_pmutexMq;
 //
 //   // #endif
 ////
 ////#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
 ////
-//////extern ::mutex * g_pmutexThreadIdHandleLock;
+//////extern ::pointer< ::mutex > g_pmutexThreadIdHandleLock;
 ////
-//////extern ::mutex * g_pmutexThreadIdLock;
+//////extern ::pointer< ::mutex > g_pmutexThreadIdLock;
 ////
 //////#if !defined(_UWP)
 ////
-//////extern ::mutex * g_pmutexPendingThreadsLock;
+//////extern ::pointer< ::mutex > g_pmutexPendingThreadsLock;
 ////
 //////#endif
 ////
-//////extern ::mutex * g_pmutexTlsData;
+//////extern ::pointer< ::mutex > g_pmutexTlsData;
 ////
 ////#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
 //
@@ -172,9 +172,9 @@
 ////#if defined(LINUX) || defined(__APPLE__)
 ////
 ////
-////   extern ::mutex * g_pmutexTz;
+////   extern ::pointer< ::mutex > g_pmutexTz;
 ////
-////   extern ::mutex * g_pmutexThreadHandleLock;
+////   extern ::pointer< ::mutex > g_pmutexThreadHandleLock;
 ////
 ////
 ////#endif // defined(LINUX) || defined(__APPLE__)
@@ -183,7 +183,7 @@
 ////#ifdef __APPLE__
 ////
 ////
-////   extern ::mutex * g_pmutexCvt;
+////   extern ::pointer< ::mutex > g_pmutexCvt;
 ////
 ////
 ////#endif

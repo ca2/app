@@ -124,21 +124,21 @@ namespace app_core_build
 
    ::file::path pathEnvTxt;
 
-   auto pacmedirectory = m_psystem->m_pacmedirectory;
+   auto pacmedirectory = acmedirectory();
 
    pathEnvTxt = pacmedirectory->system() / "env.txt";
 
-   m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
+   acmefile()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
 
-   m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
+   acmefile()->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 
-   auto psystem = m_psystem;
+   auto psystem = acmesystem();
 
    auto pnode = psystem->node();
 
    pnode->run_silent(pacmedirectory->system() / "env1.bat", "");
 
-   string strLog = m_psystem->m_pacmefile->as_string(pacmedirectory->system() / "env.txt");
+   string strLog = acmefile()->as_string(pacmedirectory->system() / "env.txt");
    string_array stra;
    stra.add_lines(strLog);
 
@@ -224,7 +224,7 @@ namespace app_core_build
 
       string_array straLine;
 
-      m_pcontext->m_papexcontext->file().get_lines(straLine, m_psystem->m_pacmedirectory->home() /"build.log");
+      file()->get_lines(straLine, acmedirectory()->home() /"build.log");
 
       ::point_i32 p;
 

@@ -1,5 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "presence.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "acme/user/user/mouse.h"
 #include "axis/account/department.h"
 #include "axis/platform/session.h"
 
@@ -8,10 +11,10 @@ namespace userpresence
 {
 
 
-   presence::presence(::object * pobject)
+   presence::presence(::particle * pparticle)
    {
 
-      initialize(pobject);
+      initialize(pparticle);
 
       m_iShortStatusWayTag = status_online;
 
@@ -69,7 +72,7 @@ namespace userpresence
 
       auto pcontext = m_pcontext;
 
-      string strHost = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
+      string strHost = pcontext->m_papexcontext->file()->as_string(pcontext->m_papexcontext->dir()->appdata() / "database\\text\\last_good_known_account_com.txt");
       string_array straRequestingServer;
       straRequestingServer.add("api.ca2.software");
       straRequestingServer.add("eu-api.ca2.software");
@@ -81,7 +84,7 @@ namespace userpresence
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto purl = psystem->url();
 

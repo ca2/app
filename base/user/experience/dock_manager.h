@@ -1,6 +1,13 @@
 #pragma once
 
 
+#include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/size.h"
+#include "apex/message/channel.h"
+
+
 namespace experience
 {
 

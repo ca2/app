@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "split_impact.h"
 #include "split_pane.h"
+#include "acme/constant/message.h"
 #include "aura/message/user.h"
 #include "base/platform/application.h"
 
@@ -38,15 +39,15 @@ namespace user
 
 
 
-   void split_impact::assert_ok() const
-   {
-      impact::assert_ok();
-   }
-
-   void split_impact::dump(dump_context & dumpcontext) const
-   {
-      impact::dump(dumpcontext);
-   }
+//   void split_impact::assert_ok() const
+//   {
+//      impact::assert_ok();
+//   }
+//
+//   void split_impact::dump(dump_context & dumpcontext) const
+//   {
+//      impact::dump(dumpcontext);
+//   }
 
    void split_impact::on_message_create(::message::message * pmessage)
    {

@@ -1,6 +1,9 @@
 ﻿#include "framework.h"
 #include "database.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/application.h"
+#include "apex/platform/context.h"
 #include "axis/database/database/result_set.h"
 #include "axis/database/database/exception.h"
 #include "axis/database/database/field.h"
@@ -367,7 +370,7 @@ namespace sqlite
    void database::_connect()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       disconnect();
 
@@ -422,7 +425,7 @@ namespace sqlite
    void database::disconnect()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pstmtSelect != nullptr)
       {
@@ -483,7 +486,7 @@ namespace sqlite
    void database::drop()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       disconnect();
 
@@ -499,7 +502,7 @@ namespace sqlite
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->file().erase(m_strName);
+         pcontext->m_papexcontext->file()->erase(m_strName);
 
       }
       catch (...)
@@ -517,7 +520,7 @@ namespace sqlite
    //long database::nextid(const ::string & sname)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   if(!isActive())
    //   {
@@ -580,7 +583,7 @@ namespace sqlite
    void database::start_transaction()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (isActive())
       {
@@ -593,7 +596,7 @@ namespace sqlite
    void database::commit_transaction()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (isActive())
       {
@@ -606,7 +609,7 @@ namespace sqlite
    void database::rollback_transaction()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (isActive())
       {
@@ -633,14 +636,14 @@ namespace sqlite
    //void database::create_long_set(const ::string & strTable)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   try
    //   {
 
    //      dataset dataset(this);
 
-   //      synchronous_lock synchronouslock(mutex());
+   //      synchronous_lock synchronouslock(this->synchronization());
 
    //      dataset.query("select * from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
@@ -662,14 +665,14 @@ namespace sqlite
    //void database::create_string_set(const ::string & strTable)
    //{
 
-   //   synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
    //   try
    //   {
 
    //      dataset dataset(this);
 
-   //      synchronous_lock synchronouslock(mutex());
+   //      synchronous_lock synchronouslock(this->synchronization());
 
    //      dataset.query("select * from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
@@ -725,7 +728,7 @@ namespace sqlite
 
          string str;
 
-         synchronous_lock slDatabase(mutex());
+         synchronous_lock slDatabase(synchronization());
 
          {
 

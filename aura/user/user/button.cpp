@@ -1,6 +1,8 @@
 ﻿#include "framework.h"
 #include "button.h"
 #include "style.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -74,7 +76,7 @@ namespace user
    }
 
 
-   ::element * button::clone() const
+   ::particle * button::clone() const
    {
 
       auto pcheckbox = memory_new ::user::button;
@@ -84,7 +86,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer button::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer button::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
       if (pstyle)
@@ -111,7 +113,7 @@ namespace user
    }
 
 
-   enum_translucency button::get_translucency(style * pstyle) const
+   enum_translucency button::get_translucency(style * pstyle)
    {
 
       if (pstyle)
@@ -191,7 +193,7 @@ namespace user
       if (pgraphics.is_null())
       {
 
-         auto psystem = m_psystem->m_paurasystem;
+         auto psystem = acmesystem()->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 
@@ -371,7 +373,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       if (get_translucency(pstyle) >= e_translucency_present)
       {
@@ -469,11 +471,10 @@ namespace user
    }
 
 
-   bool button::keyboard_focus_is_focusable() const
+   bool button::keyboard_focus_is_focusable()
    {
 
-      return is_window_enabled() && is_window_visible(::user::e_layout_sketch)
-      && !windowing()->is_sandboxed();
+      return is_window_enabled() && is_window_visible(::user::e_layout_sketch) && !windowing()->is_sandboxed();
 
    }
 
@@ -862,13 +863,13 @@ namespace user
 
       auto psession = get_session();
 
-      if(echeck() == ::e_check_checked && ::is_ok(m_pbitmap->m_pimageSel))
+      if(echeck() == ::e_check_checked && m_pbitmap->m_pimageSel.ok())
          pimage = m_pbitmap->m_pimageSel;
-      else if(::is_set(m_pitemHover) && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
+      else if(::is_set(m_pitemHover) && is_window_enabled() && m_pbitmap->m_pimageHover.ok())
          pimage = m_pbitmap->m_pimageHover;
-      else if(::is_ok(m_pbitmap->m_pimageFocus) && has_keyboard_focus())
+      else if(m_pbitmap->m_pimageFocus.ok() && has_keyboard_focus())
          pimage = m_pbitmap->m_pimageFocus;   // third image for focused
-      else if(!is_window_enabled() && ::is_ok(m_pbitmap->m_pimageDisabled))
+      else if(!is_window_enabled() && m_pbitmap->m_pimageDisabled.ok())
          pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
 
       ::rectangle_i32 rectangleClient;
@@ -958,13 +959,13 @@ namespace user
 
          auto psession = get_session();
 
-         if (echeck() == ::e_check_checked && ::is_ok(m_pbitmap->m_pimageSel))
+         if (echeck() == ::e_check_checked && m_pbitmap->m_pimageSel.ok())
             pimage = m_pbitmap->m_pimageSel;
-         else if (::is_set(m_pitemHover) && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
+         else if (::is_set(m_pitemHover) && is_window_enabled() && m_pbitmap->m_pimageHover.ok())
             pimage = m_pbitmap->m_pimageHover;
-         else if (::is_ok(m_pbitmap->m_pimageFocus) && has_keyboard_focus())
+         else if (m_pbitmap->m_pimageFocus.ok() && has_keyboard_focus())
            pimage = m_pbitmap->m_pimageFocus;   // third image for focused
-         else if (!is_window_enabled() && ::is_ok(m_pbitmap->m_pimageDisabled))
+         else if (!is_window_enabled() && m_pbitmap->m_pimageDisabled.ok())
             pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
 
          if (pimage->area() > 0 && rectangleClient.area() > 0)
@@ -1076,7 +1077,7 @@ namespace user
 
       }
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       ::rectangle_i32 rectangle = rectangleClient;
       pgraphics->color_blend_3dRect(rectangle,colorExt1TL,215,colorExt1BR,215);

@@ -25,7 +25,7 @@
                bool     m_bHollow;
 
 
-               frame_008(::object * pobject);
+               frame_008(::particle * pparticle);
                virtual ~frame_008();
 
 

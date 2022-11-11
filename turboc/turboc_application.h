@@ -31,7 +31,7 @@ namespace turboc
       ::user::single_document_template *     m_ptemplateHelloMultiverseImpact;
       ::user::single_document_template *     m_ptemplateHelloMultiverseSwitcher;
 
-      ::mutex                                  m_mutexAiFont;
+      ::pointer < ::mutex >                                  m_pmutexAiFont;
 
       i32                                m_iErrorAiFont;
       bool                                   m_bLoadAiFont;
@@ -44,7 +44,7 @@ namespace turboc
       PFN_MAIN                               m_pfnmainMain;
 
 
-      application(::object * pobject);
+      application(::particle * pparticle);
       ~application() override;
 
 

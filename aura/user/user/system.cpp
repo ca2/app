@@ -5,9 +5,9 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 19/06/18.
 //
 #include "framework.h"
-
 #include "system.h"
 #include "interaction.h"
+#include "acme/constant/id.h"
 #include "aura/platform/application.h"
 
 
@@ -148,30 +148,30 @@ namespace user
       else
       {
 
-         ::pointer<::object>pobject = m_pdocumentCurrent;
+         ::pointer<::object>pparticle = m_pdocumentCurrent;
 
-         if(pobject.is_null())
+         if(pparticle.is_null())
          {
 
-            pobject = papp;
+            pparticle = papp;
 
          }
 
-         if (pobject.is_null() || ::is_null(pobject->get_app()))
+         if (pparticle.is_null() || ::is_null(pparticle->get_app()))
          {
 
-            _ERROR(pobject, "Cannot create impact. Document doesn't have context application. (Should it be a blocking thing...)");
+            _ERROR(pparticle, "Cannot create impact. Document doesn't have context application. (Should it be a blocking thing...)");
 
             return nullptr;
 
          }
 
-         auto pcontextJustForInspection = pobject->m_pcontext;
+         auto pcontextJustForInspection = pparticle->m_pcontext;
 
          string strType = typeid(*pcontextJustForInspection).name();
 
          //estatus =
-         pobject->__id_construct(pinteraction, m_typeNewImpact);
+         pparticle->__id_construct(pinteraction, m_typeNewImpact);
 
       }
 

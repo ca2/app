@@ -4,8 +4,11 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 26/11/17. tbs in <3
 //
-
 #pragma once
+
+
+#include "del.h"
+
 
 namespace acme
 {
@@ -282,8 +285,6 @@ namespace acme
 // {
 
    
-template < typename POINTER >
-inline ::string __string(const ::acme::memory_allocate < POINTER > & memoryallocpointer);
 
 
 // } // namespace str
@@ -296,6 +297,9 @@ inline ::string __string(const ::acme::memory_allocate < POINTER > & memoryalloc
 //   return ::acme::malloc < POINTER >(p);
 //
 //}
+
+
+
 
 
 

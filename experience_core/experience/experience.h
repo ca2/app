@@ -18,7 +18,7 @@ namespace experience_core
       ~experience() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual void update() override;

@@ -2,6 +2,7 @@
 
 
 #include "app/aura/user/user/interaction.h"
+#include "apex/database/key.h"
 
 
 namespace user
@@ -24,7 +25,7 @@ namespace user
       ~box() override;
 
       
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       void install_message_routing(::channel * pchannel) override;
@@ -42,8 +43,8 @@ namespace user
       void design_iconic() override;
       
 
-      virtual::e_display window_stored_display() const override;
-      virtual::e_display window_previous_display() const override;
+      virtual::e_display window_stored_display() override;
+      virtual::e_display window_previous_display() override;
 
 
       virtual void on_visual_applied() override;

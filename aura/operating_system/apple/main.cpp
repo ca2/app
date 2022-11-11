@@ -6,7 +6,7 @@
 //
 
 #include "framework.h"
-#include "aura/operating_system/_.h"
+//#include "aura/operating_system/_.h"
 //#include "aura/os/_os.h"
 #include "_.h"
 
@@ -78,10 +78,10 @@ string ca2_command_line();
 //
 //   string str = apple_get_bundle_identifier();
 //
-//   if(!::str().begins_eat_ci(str, "com."))
+//   if(!str.begins_eat_ci("com."))
 //   {
 //
-//      ::str().begins_eat_ci(str, "com.ca2.");
+//      str.begins_eat_ci("com.ca2.");
 //
 //   }
 //

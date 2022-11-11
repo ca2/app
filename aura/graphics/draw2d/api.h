@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_collection_basic.h"
+#include "acme/primitive/geometry2d/_collection.h"
+#include "acme/primitive/primitive/object.h"
 
 
 namespace draw2d
@@ -18,7 +19,7 @@ namespace draw2d
       ~api() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
       void destroy() override;
 

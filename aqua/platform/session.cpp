@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "acme/platform/system_setup.h"
+#include "apex/platform/application.h"
+#include "aqua/platform/session.h"
 
 
 namespace aqua
@@ -29,11 +31,11 @@ namespace aqua
    }
 
 
-   void session::initialize(::object * pobject)
+   void session::initialize(::particle * pparticle)
    {
 
       //auto estatus = 
-      ::apex::session::initialize(pobject);
+      ::apex::session::initialize(pparticle);
 
       //if (!estatus)
       //{

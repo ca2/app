@@ -302,7 +302,7 @@ list(APPEND library_source
         platform/department.h
         platform/display.cpp
         platform/exclusive.cpp
-        platform/factory.cpp
+        #platform/factory.cpp
         platform/fixed_alloc.cpp
         platform/flags.cpp
         platform/hyperlink.cpp
@@ -434,11 +434,11 @@ list(APPEND library_source
         primitive/duration/integral/_.h
         primitive/duration/__string.cpp
         primitive/duration/__string.h
-        primitive/duration/_.h
+        #primitive/duration/_.h
         primitive/duration/_duration.h
         primitive/duration/_impl.h
         primitive/duration/_impl.h
-        primitive/duration/_struct.h
+        primitive/duration/_structures.h
         primitive/duration/_unit.h
         primitive/duration/_unit_operator.h
         primitive/duration/time.cpp
@@ -446,14 +446,14 @@ list(APPEND library_source
         primitive/duration/time_operator.h
         primitive/geometry2d/_.cpp
         primitive/geometry2d/_.h
-        primitive/geometry2d/_basic.h
-        primitive/geometry2d/_collection_basic.h
+        primitive/geometry2d/_collection.h
         primitive/geometry2d/_collection_bounding_rect.h
         primitive/geometry2d/_collection_contains.h
         primitive/geometry2d/_collection_enhanced.h
-        primitive/geometry2d/_concept.h
+        #primitive/geometry2d/_concept.h
         primitive/geometry2d/_enhanced.h
         primitive/geometry2d/_defer.h
+        primitive/geometry2d/_geometry2d.h
         #primitive/geometry2d/_impl.h
         #primitive/geometry2d/_rect_impl.h
         primitive/geometry2d/_shape.cpp
@@ -461,28 +461,28 @@ list(APPEND library_source
         #primitive/geometry2d/_size_impl.h
         primitive/geometry2d/_struct.h
         #primitive/geometry2d/align.h
-        primitive/geometry2d/angle.h
-        primitive/geometry2d/arc.h
+        primitive/geometry2d/_angle.h
+        primitive/geometry2d/_arc.h
         primitive/geometry2d/bounding_rect.h
         primitive/geometry2d/collection.h
         primitive/geometry2d/contains.h
-        primitive/geometry2d/ellipse.h
+        primitive/geometry2d/_ellipse.h
         primitive/geometry2d/geometry.cpp
         primitive/geometry2d/geometry.h
-        primitive/geometry2d/line.h
-        primitive/geometry2d/lines.h
+        primitive/geometry2d/_line.h
+        primitive/geometry2d/_lines.h
         #primitive/geometry2d/point.cpp
-        primitive/geometry2d/point.h
+        primitive/geometry2d/_point.h
         primitive/geometry2d/point_array.h
-        primitive/geometry2d/polygon.h
+        primitive/geometry2d/_polygon.h
         primitive/geometry2d/rectangle.cpp
-        primitive/geometry2d/rectangle.h
+        primitive/geometry2d/_rectangle.h
         primitive/geometry2d/rectangle_array.h
         primitive/geometry2d/shape.cpp
         primitive/geometry2d/shape.h
         primitive/geometry2d/shape_array.h
         #primitive/geometry2d/size.cpp
-        primitive/geometry2d/size.h
+        primitive/geometry2d/_size.h
         primitive/geometry2d/size_array.h
         #primitive/geometry2d/types.cpp
         primitive/geometry2d/types.h
@@ -496,6 +496,7 @@ list(APPEND library_source
         primitive/mathematics/_.cpp
         primitive/mathematics/_.h
         primitive/mathematics/_impl.h
+        #primitive/mathematics/_types.h
         primitive/mathematics/binary_operation.cpp
         primitive/mathematics/binary_operation.h
         primitive/mathematics/c_number.h
@@ -503,11 +504,10 @@ list(APPEND library_source
         primitive/mathematics/cast.inl
         primitive/mathematics/classes.h
         primitive/mathematics/complex.h
-        primitive/mathematics/count.h
         primitive/mathematics/cvt.cpp
         primitive/mathematics/cvt_g.cpp
         primitive/mathematics/filestream.h
-        primitive/mathematics/index.h
+        #primitive/mathematics/index.h
         primitive/mathematics/int_biunique.cpp
         primitive/mathematics/math_clip.h
         primitive/mathematics/int_biunique.h
@@ -539,20 +539,20 @@ list(APPEND library_source
         primitive/mathematics/value.h
         primitive/media_library/item.cpp
         primitive/media_library/item.h
-        primitive/primitive/__particle_factory.h
+        #primitive/primitive/__particle_factory.h
         primitive/primitive/__property.h
         primitive/primitive/_.cpp
         primitive/primitive/_.h
-        primitive/primitive/_atom_impl.h
+        #primitive/primitive/_atom_impl.h
         primitive/primitive/_c_memory.h
         primitive/primitive/_defer.h
-        primitive/primitive/_factory_impl.h
+        #primitive/primitive/_factory_impl.h
         #primitive/primitive/_factory_prefix.h
         primitive/primitive/_impl.h
         #primitive/primitive/_memory.h
         primitive/primitive/_papaya.h
         primitive/primitive/_papaya_impl.h
-        primitive/primitive/_payload_impl.h
+        #primitive/primitive/_payload_impl.h
         primitive/primitive/_property_object_impl.h
         primitive/primitive/action_context.cpp
         primitive/primitive/action_context.h
@@ -571,10 +571,10 @@ list(APPEND library_source
         primitive/primitive/compare_predicate.h
         #primitive/primitive/context_object_traits.cpp
         #primitive/primitive/edit.cpp
-        primitive/primitive/element.cpp
-        primitive/primitive/element.cpp
-        primitive/primitive/element.h
-        primitive/primitive/element.h
+        #primitive/primitive/element.cpp
+        #primitive/primitive/element.cpp
+        #primitive/primitive/element.h
+        #primitive/primitive/element.h
         #primitive/primitive/element_array.cpp
         #primitive/primitive/element_array.h
         #primitive/primitive/element_array.h
@@ -582,7 +582,7 @@ list(APPEND library_source
         primitive/primitive/enumeration.h
         primitive/primitive/enumeration.h
         primitive/primitive/enumeration.h
-        primitive/primitive/eobject.h
+        #primitive/primitive/eobject.h
         primitive/primitive/estatus.cpp
         primitive/primitive/estatus.h
         primitive/primitive/factory.cpp
@@ -592,7 +592,7 @@ list(APPEND library_source
         #primitive/primitive/handler.cpp
         #primitive/primitive/id_array.cpp
         primitive/primitive/integral_byte.cpp
-        primitive/primitive/interlocked.h
+        #primitive/primitive/interlocked.h
         primitive/primitive/interlocked_count.h
         #primitive/primitive/interlocked_long_pulse.cpp
         #primitive/primitive/interlocked_long_pulse.h
@@ -603,13 +603,13 @@ list(APPEND library_source
         primitive/primitive/map.h
         primitive/primitive/match.cpp
         primitive/primitive/match.h
-        primitive/primitive/material_object.cpp
-        primitive/primitive/material_object.cpp
-        primitive/primitive/material_object.h
-        primitive/primitive/material_object.h
+        #primitive/primitive/material_object.cpp
+        #primitive/primitive/material_object.cpp
+        #primitive/primitive/material_object.h
+        #primitive/primitive/material_object.h
         primitive/primitive/matter.cpp
         primitive/primitive/matter.h
-        primitive/primitive/member.h
+        #primitive/primitive/member.h
         primitive/primitive/memory.cpp
         primitive/primitive/memory.h
         primitive/primitive/memory_base.cpp
@@ -654,7 +654,7 @@ list(APPEND library_source
         #primitive/primitive/tracer.cpp
         #primitive/primitive/tracer.h
         #primitive/primitive/trait.h
-        primitive/primitive/trait_predicate.h
+        #primitive/primitive/trait_predicate.h
         #primitive/primitive/traits.cpp
         #primitive/primitive/traits.h
         primitive/primitive/type.cpp
@@ -672,13 +672,42 @@ list(APPEND library_source
         primitive/string/_.cpp
         #primitive/string/_.h
         #primitive/string/_.h
-        primitive/string/___ch_impl.h
-        primitive/string/__c_ansi.h
-        primitive/string/__c_ansi_impl.h
-        primitive/string/__c_wd16.h
-        primitive/string/__c_wd16_impl.h
-        primitive/string/__c_wd32.h
-        primitive/string/__c_wd32_impl.h
+        primitive/string/c/extension/_impl.h
+        primitive/string/c/encoding.h
+        primitive/string/c/ancient/ansi.h
+        primitive/string/c/coupling.h
+        primitive/string/c/extension/wd32.h
+        primitive/string/c/ancient/_impl.h
+        primitive/string/c/extension/_.h
+        primitive/string/c/_.h
+        primitive/string/c/extension/ansi_impl.h
+        primitive/string/c/extension/ansi.h
+        primitive/string/c/extension/wd32_impl.h
+        primitive/string/c/extension/wd16_impl.h
+        primitive/string/c/ancient/wd32.h
+        primitive/string/c/unicode.h
+        primitive/string/c/encoding_impl.h
+        primitive/string/c/_impl.h
+        primitive/string/c/ancient/_.h
+        primitive/string/c/coupling_impl.h
+        primitive/string/c/extension/wd16.h
+        primitive/string/c/ancient/wd16.h
+        primitive/string/c/unicode_impl.h
+        primitive/string/c/ancient/ansi_impl.h
+        primitive/string/c/ancient/wd16_impl.h
+        primitive/string/c/ancient/wd32_impl.h
+        primitive/string/sz/_.h
+        primitive/string/sz/wd32.cpp
+        primitive/string/sz/ansi.cpp
+        primitive/string/sz/wd32_impl.h
+        primitive/string/sz/ansi.h
+        primitive/string/sz/wd32.h
+        primitive/string/sz/wd16_impl.h
+        primitive/string/sz/wd16.cpp
+        primitive/string/sz/wd16.h
+        primitive/string/sz/ansi_impl.h
+        primitive/string/sz/_impl.h
+        #primitive/string/__c_wd32_impl.h
         #primitive/string/__c_wide.h
         #primitive/string/__c_wide_impl.h
         #primitive/string/_base.h
@@ -686,13 +715,13 @@ list(APPEND library_source
         primitive/string/_base_impl.h
         primitive/string/_base_impl.h
         #primitive/string/_c.cpp
-        primitive/string/_c.h
-        primitive/string/_c_impl.h
-        primitive/string/_c_inline.h
+        #primitive/string/_c.h
+        #primitive/string/_c_impl.h
+        #primitive/string/_c_inline.h
         #primitive/string/_c_str.h
         #primitive/string/_c_str_impl.h
         #primitive/string/_c_trait.h
-        primitive/string/_c_trait_ansi.cpp
+        #primitive/string/_c_trait_ansi.cpp
         #primitive/string/_c_trait_ansi.h
         #primitive/string/_c_trait_ansi_impl.h
         #primitive/string/_c_trait_impl.h
@@ -704,7 +733,7 @@ list(APPEND library_source
         #primitive/string/_c_trait_wide.h
         #primitive/string/_c_trait_wide_impl.h
         #primitive/string/_c_unicode.h
-        primitive/string/__str_compare.h
+        #primitive/string/__str_compare.h
         #primitive/string/_str_compare_impl.h
         primitive/string/_conv.h
         #primitive/string/_conv_ansi.cpp
@@ -717,11 +746,11 @@ list(APPEND library_source
         #primitive/string/_natural.h
         #primitive/string/_str.h
         primitive/string/_string.cpp
-        primitive/string/_str_impl.h
-        primitive/string/_string_wide.h
-        primitive/string/_sz_ansi.cpp
-        primitive/string/_sz_wd16.cpp
-        primitive/string/_sz_wd32.cpp
+        #primitive/string/_str_impl.h
+        #primitive/string/_string_wide.h
+        #primitive/string/_sz_ansi.cpp
+        #primitive/string/_sz_wd16.cpp
+        #primitive/string/_sz_wd32.cpp
         primitive/string/__string.cpp
         #primitive/string/__string.h
         #primitive/string/_trait.h
@@ -732,7 +761,7 @@ list(APPEND library_source
         #primitive/string/_trait_wd16_impl.h
         #primitive/string/_trait_wd32.h
         #primitive/string/_trait_wd32_impl.h
-        primitive/string/_uhash.h
+        primitive/string/_u32hash.h
         #primitive/string/_unicode.h
         #primitive/string/_unicode_impl.h
         primitive/string/base64.cpp
@@ -790,7 +819,7 @@ list(APPEND library_source
         primitive/string/unicode16_32.cpp
         primitive/string/unicode32.cpp
         primitive/string/character.cpp
-        primitive/string/character.h
+        primitive/string/utf8_character.h
         primitive/string/wildcard.cpp
         #primitive/string/wstring_adaptor.h
         #primitive/string/x.cpp
@@ -874,7 +903,8 @@ list(APPEND library_source
         user/user/tool_item.cpp
         user/user/tool_item.h
         user/_.h
-        update.h)
+        #update.h
+        )
 
 
 list(APPEND library_source
@@ -883,12 +913,12 @@ list(APPEND library_source
         _start.h
         #application.h
         #astr.h
-        axispolicy/_.h
-        axispolicy/_c.h
-        axispolicy/policy_objc.h
-        axispolicy/policy_objcpp.h
-        axispolicy/policy_winrt.h
-        callback.h
+        #axispolicy/_.h
+        #axispolicy/_c.h
+        #ispolicy/policy_objc.h
+        #xispolicy/policy_objcpp.h
+        #xispolicy/policy_winrt.h
+        #allback.h
         #compress/_.h
         #compress/gz.h
         #compress/zip/_.h
@@ -1036,7 +1066,7 @@ list(APPEND library_source
         filesystem/filesystem/path_array.cpp
         filesystem/filesystem/path_array.h
         framework.h
-        framework_c.h
+        #amework_c.h
         graphics/draw2d/_.h
         graphics/draw2d/_constant.h
         graphics/draw2d/color.h
@@ -1257,7 +1287,7 @@ list(APPEND library_source
         #parallelization/zaa_update_task_item.h
         #parallelization/zaa_update_task_item_array.h
         platform/_features.h
-        platform/_generic_object_constructor_impl.h
+        #platform/_generic_object_constructor_impl.h
         platform/_global.h
         platform/_impl.h
         platform/_platform.h
@@ -1431,7 +1461,7 @@ list(APPEND library_source
         primitive/comparison/less.h
         primitive/comparison/md5.h
         primitive/comparison/sign.h
-        primitive/comparison/var_strict.h
+        #primitive/comparison/var_strict.h
         procedure.h
         template/list.h
         user/user/_.h
@@ -1444,8 +1474,8 @@ list(APPEND library_source
         version/version.h
         acme.h
         array2d.h
-        array.h
-        update.h
+        #array.h
+        #update.h
         )
 
 if (ANDROID)

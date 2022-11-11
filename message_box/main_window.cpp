@@ -1,5 +1,9 @@
 ﻿#include "framework.h"
 #include "main_window.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/platform/sequencer.h"
+#include "acme/platform/system.h"
 #include "aura/user/user/button.h"
 #include "aura/platform/application.h"
 

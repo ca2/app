@@ -2,6 +2,7 @@
 #include "crypto.h"
 #include "rsa.h"
 #include "initializer.h"
+#include "acme/exception/exception.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "acme/primitive/primitive/memory.h"

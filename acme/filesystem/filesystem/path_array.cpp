@@ -49,31 +49,49 @@ CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & pathBa
 //path_array & path::ascendants_path(path_array & straParam, path_array * ppathaRelative) const
 {
 
-   string_array stra;
+   auto path = pathBase;
 
-   pathBase.ascendants_name(stra);
-
-   ::file::path str;
-
-   if (stra.get_count() > 0)
+   while (path.has_char())
    {
-      str = stra[0];
-      pathaFolder.add(str);
-      if (ppathaRelative != nullptr)
-      {
-         ppathaRelative->add(::file::path(stra.slice(1).implode("/")));
-      }
+
+      pathaFolder.insert_at(0, path);
+
+      path = path.folder();
+
    }
 
-   for (i32 i = 1; i < stra.get_size(); i++)
+   if (::is_set(ppathaRelative))
    {
-      str /= stra[i];
-      pathaFolder.add(str);
-      if (ppathaRelative != nullptr)
-      {
-         ppathaRelative->add(::file::path(stra.slice(i + 1).implode("/")));
-      }
+
+      throw "needs to do and redoitout";
+
    }
+
+   //string_array stra;
+
+   //ascendants_name(stra, pathBase);
+
+   //::file::path str;
+
+   //if (stra.get_count() > 0)
+   //{
+   //   str = stra[0];
+   //   pathaFolder.add(str);
+   //   if (ppathaRelative != nullptr)
+   //   {
+   //      ppathaRelative->add(::file::path(stra.slice(1).implode("/")));
+   //   }
+   //}
+
+   //for (i32 i = 1; i < stra.get_size(); i++)
+   //{
+   //   str /= stra[i];
+   //   pathaFolder.add(str);
+   //   if (ppathaRelative != nullptr)
+   //   {
+   //      ppathaRelative->add(::file::path(stra.slice(i + 1).implode("/")));
+   //   }
+   //}
 
    return pathaFolder;
 
@@ -81,14 +99,74 @@ CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & pathBa
 
 
 
-CLASS_DECL_ACME ::file::path_array ascendants_path(const ::file::path & pathBase)
+CLASS_DECL_ACME ::file::path_array & ascendants_path(::file::path_array & patha, const ::file::path & pathParam)
+{
+
+   if(pathParam.has_char())
+   {
+
+      auto path = pathParam;
+
+      do
+      {
+
+         patha.add(path);
+
+         path = path.folder();
+
+      } while (path.has_char());
+
+   }
+
+   return patha;
+
+}
+
+
+CLASS_DECL_ACME ::string_array & ascendants_name(::string_array & stra, const ::file::path & pathParam)
+{
+
+   if(pathParam.has_char())
+   {
+
+      auto path = pathParam;
+
+      do
+      {
+
+         stra.add(path.name());
+
+         path = path.folder();
+
+      } while (path.has_char());
+
+   }
+
+   return stra;
+
+}
+
+
+CLASS_DECL_ACME::file::path_array ascendants_path(const ::file::path& pathBase)
 {
 
    ::file::path_array patha;
 
-   ascendants_path(pathBase, patha);
+   ascendants_path(patha, pathBase);
 
    return ::move(patha);
+
+}
+
+
+CLASS_DECL_ACME::string_array ascendants_name(const ::file::path& pathBase)
+{
+
+   ::string_array stra;
+
+   ascendants_name(stra, pathBase);
+
+   return ::move(stra);
 
 }
 

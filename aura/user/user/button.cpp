@@ -863,13 +863,13 @@ namespace user
 
       auto psession = get_session();
 
-      if(echeck() == ::e_check_checked && ::is_ok(m_pbitmap->m_pimageSel))
+      if(echeck() == ::e_check_checked && m_pbitmap->m_pimageSel.ok())
          pimage = m_pbitmap->m_pimageSel;
-      else if(::is_set(m_pitemHover) && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
+      else if(::is_set(m_pitemHover) && is_window_enabled() && m_pbitmap->m_pimageHover.ok())
          pimage = m_pbitmap->m_pimageHover;
-      else if(::is_ok(m_pbitmap->m_pimageFocus) && has_keyboard_focus())
+      else if(m_pbitmap->m_pimageFocus.ok() && has_keyboard_focus())
          pimage = m_pbitmap->m_pimageFocus;   // third image for focused
-      else if(!is_window_enabled() && ::is_ok(m_pbitmap->m_pimageDisabled))
+      else if(!is_window_enabled() && m_pbitmap->m_pimageDisabled.ok())
          pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
 
       ::rectangle_i32 rectangleClient;
@@ -959,13 +959,13 @@ namespace user
 
          auto psession = get_session();
 
-         if (echeck() == ::e_check_checked && ::is_ok(m_pbitmap->m_pimageSel))
+         if (echeck() == ::e_check_checked && m_pbitmap->m_pimageSel.ok())
             pimage = m_pbitmap->m_pimageSel;
-         else if (::is_set(m_pitemHover) && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
+         else if (::is_set(m_pitemHover) && is_window_enabled() && m_pbitmap->m_pimageHover.ok())
             pimage = m_pbitmap->m_pimageHover;
-         else if (::is_ok(m_pbitmap->m_pimageFocus) && has_keyboard_focus())
+         else if (m_pbitmap->m_pimageFocus.ok() && has_keyboard_focus())
            pimage = m_pbitmap->m_pimageFocus;   // third image for focused
-         else if (!is_window_enabled() && ::is_ok(m_pbitmap->m_pimageDisabled))
+         else if (!is_window_enabled() && m_pbitmap->m_pimageDisabled.ok())
             pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
 
          if (pimage->area() > 0 && rectangleClient.area() > 0)

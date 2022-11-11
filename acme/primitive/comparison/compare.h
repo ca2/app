@@ -178,3 +178,33 @@ namespace comparison
 
 
 
+
+
+template < typename TYPE, typename MINIMUM, typename MAXIMUM >
+inline auto constrain(TYPE t, MINIMUM tMinimum, MAXIMUM tMaximum)
+{
+   
+   return minimum(tMaximum, maximum(tMinimum, t));
+
+}
+
+
+template < typename TYPE, typename MINIMUM, typename MAXIMUM >
+inline auto sort_constrain(TYPE t, MINIMUM tMinimum, MAXIMUM tMaximum)
+{
+
+   return tMinimum < tMaximum ? constrain(tMinimum, tMaximum) : constrain(tMaximum, tMinimum);
+
+}
+
+
+template < typename TYPE >
+inline auto constrain_u16(TYPE t)
+{
+
+   return constrain(t, 0, USHRT_MAX);
+
+}
+
+
+

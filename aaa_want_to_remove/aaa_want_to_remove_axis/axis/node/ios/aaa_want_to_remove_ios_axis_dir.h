@@ -21,8 +21,8 @@ namespace ios
          //
          //      virtual void  ls_pattern(::aura::application *   papp, const ::string & pcsz, const ::string & lpcszPattern, string_array * pstraPath = nullptr, string_array * pstraTitle = nullptr, bool_array * pbaIsDir = nullptr, i64_array * piaSize = nullptr);
          //      virtual void  ls(::aura::application *   papp, const ::string & pcsz, string_array * pstraPath = nullptr, string_array * pstraTitle = nullptr, bool_array * pbaIsDir = nullptr, i64_array * piaSize = nullptr);
-         //      virtual void  rls_pattern(::aura::application *   papp, const ::string & pcsz, const ::string & lpcszPattern, string_array * pstraPath = nullptr, string_array * pstraTitle = nullptr, string_array * pstraRelative = nullptr, bool_array * pbaIsDir = nullptr, i64_array * piaSize = nullptr, e_extract eextract = extract_first);
-         //      virtual void  rls(::aura::application *   papp, const ::string & pcsz, string_array * pstraPath = nullptr, string_array * pstraTitle = nullptr, string_array * pstraRelative = nullptr, e_extract eextract = extract_first);
+         //      virtual void  rls_pattern(::aura::application *   papp, const ::string & pcsz, const ::string & lpcszPattern, string_array * pstraPath = nullptr, string_array * pstraTitle = nullptr, string_array * pstraRelative = nullptr, bool_array * pbaIsDir = nullptr, i64_array * piaSize = nullptr, enum_extract eextract = e_extract_first);
+         //      virtual void  rls(::aura::application *   papp, const ::string & pcsz, string_array * pstraPath = nullptr, string_array * pstraTitle = nullptr, string_array * pstraRelative = nullptr, enum_extract eextract = e_extract_first);
          //      virtual void  rls_dir(::aura::application *   papp, const ::string & pcsz, string_array * pstraPath = nullptr, string_array * pstraTitle = nullptr, string_array * pstraRelative = nullptr);
          //      virtual void  ls_dir(::aura::application *   papp, const ::string & pcsz, string_array * pstraPath = nullptr, string_array * pstraTitle = nullptr);
          //      virtual bool  has_subdir(::aura::application *   papp, const ::string & pcsz);

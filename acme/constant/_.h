@@ -20,6 +20,33 @@ enum enum_id : ::uptr;
 enum enum_check : ::i32;
 
 
+enum enum_platform_level
+{
+
+   e_platform_level_acme,
+   e_platform_level_apex,
+
+   e_platform_level_aura,
+   e_platform_level_axis,
+   e_platform_level_base,
+   e_platform_level_core,
+
+};
+
+
+
+
+
+enum enum_image_type
+{
+
+   e_image_type_complex,
+   e_image_type_plain_color
+
+};
+
+
+
 #include "_mathematics.h"
 
 
@@ -52,4 +79,5 @@ enum enum_check : ::i32;
 #include "error_code_type.h"
 
 
+#include "application_capability.h"
 

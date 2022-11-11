@@ -4,6 +4,7 @@
 #include "apex/message/command.h"
 #include "acme/user/user/check.h"
 #include "acme/user/user/text.h"
+#include "apex/message/channel.h"
 
 
 namespace user

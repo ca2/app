@@ -7,6 +7,8 @@
 //
 #pragma once
 
+
+
 template<class T>
 struct erase_reference
 {

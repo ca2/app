@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "character.h"
+//#include "character.h"
 #include "string.h"
 
 
@@ -14,15 +14,15 @@
 //
 
 
-wd32char character::parse_utf8(const char * pszUtf8)
-{
-
-   ::i32 iLen;
-
-   return unicode_index_len(pszUtf8, iLen);
-
-}
-
+//wd32char character::parse_utf8(const char * pszUtf8)
+//{
+//
+//   ::i32 iLen;
+//
+//   return unicode_index_length(pszUtf8, iLen);
+//
+//}
+//
 
 //char chLen = 1 + trailingBytesForUTF8(*pszUtf8);
 //char ch = 0;

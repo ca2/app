@@ -3,6 +3,7 @@
 
 
 #include "acme/primitive/primitive/enumeration.h"
+#include "acme/filesystem/file/_constant.h"
 
 
 DECLARE_ENUMERATION(e_message_box, enum_message_box);
@@ -32,4 +33,10 @@ namespace library
 } // namespace library
 
 
+
+using eiostate = ::enumeration<::file::e_iostate>;
+
+using ecommand = ::enumeration<enum_command>;
+
+using echeck = ::enumeration<enum_check>;
 

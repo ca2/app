@@ -413,7 +413,7 @@ inline const char * FormatArgument(const ::file::path & value) noexcept;
 
 
 template<>
-inline uptr uptr_hash < const ::file::path & >(const ::file::path & key);
+inline uptr u32_hash < const ::file::path & >(const ::file::path & key);
 
 
 CLASS_DECL_APEX ::file::path xxxxnode_full_file_path(file::path path);

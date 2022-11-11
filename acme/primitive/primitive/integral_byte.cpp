@@ -5,7 +5,7 @@
 #include "acme/primitive/string/string.h"
 
 
-::string & copy(::string & str, const integral_byte & memsize)
+CLASS_DECL_ACME ::string & copy(::string & str, const integral_byte & memsize)
 {
 
    if (memsize < 1_kb)

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/exception/exception.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
@@ -23,8 +24,9 @@ machine_event::~machine_event()
 
 void machine_event::initialize(::particle * pparticle)
 {
+
 //   auto estatus = 
-   ::matter::initialize(pparticle);
+   ::particle::initialize(pparticle);
 
    //if (!estatus)
    //{
@@ -58,7 +60,7 @@ bool machine_event::read(machine_event_data * pdata)
       if (pfile == nullptr)
       {
 
-         __zero(pdata);
+         memset(pdata, 0, sizeof(*pdata));
 
          return false;
 

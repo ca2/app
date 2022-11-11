@@ -23,6 +23,7 @@
 #include "aura/graphics/draw2d/task_tool.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/imaging.h"
+#include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
 #include "aura/hardware/devices.h"
 
@@ -174,7 +175,7 @@ namespace aura
 
       ::factory::add_factory_item < ::aura::session, ::apex::session >();
       ::factory::add_factory_item < ::aura::application, ::apex::application >();
-      ::factory::add_factory_item < ::aura::idpool, ::acme::idpool >();
+      //::factory::add_factory_item < ::aura::idpool, ::acme::idpool >();
       ::factory::add_factory_item < ::user::user >();
 
 

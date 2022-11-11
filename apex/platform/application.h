@@ -31,7 +31,7 @@ namespace apex
 
       //__creatable(application);
 
-      void *                                       m_pnativeapp;
+      void * m_pnativeapp;
 
 
       //class application_impl *                     m_pappimpl;
@@ -276,8 +276,8 @@ namespace apex
 
 
 
-      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative);
-      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle);
+      virtual void update_appmatter(::pointer<::sockets::http_session> & psession, const ::file::path & pszRoot, const string & pszRelative);
+      virtual void update_appmatter(::pointer<::sockets::http_session> & psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle);
 
 
       //virtual void SetCurrentHandles() override;
@@ -698,11 +698,11 @@ namespace apex
 
       virtual bool on_start_application();
 
-//#if !defined(LINUX)
-//
-//      virtual bool os_on_start_application();
-//
-//#endif
+      //#if !defined(LINUX)
+      //
+      //      virtual bool os_on_start_application();
+      //
+      //#endif
 
       DECLARE_MESSAGE_HANDLER(on_message_app_exit);
       DECLARE_MESSAGE_HANDLER(on_message_close);
@@ -802,7 +802,7 @@ namespace apex
       // user virtual ::user::document * place_hold(::user::interaction * pinteraction);
 
 
-      virtual void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0) override;
+      virtual void post_message(const ::atom & atom, wparam wParam = {}, lparam lParam = 0) override;
 
 
       //virtual ::draw2d::icon * set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon);

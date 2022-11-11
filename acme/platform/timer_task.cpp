@@ -97,7 +97,7 @@ void timer_task::start(const class ::wait & wait, bool bPeriodic)
 
    }
 
-   set_ok();
+   set_ok_flag();
 
    m_bPeriodic = bPeriodic;
 

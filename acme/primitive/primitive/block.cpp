@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "memory_base.h"
+#include "acme/primitive/primitive/atom.h"
 #include "acme/primitive/string/base64.h"
 #include "acme/primitive/string/hex.h"
 
@@ -11,28 +12,28 @@ block::block(const atom & atom) :
 }
 
 
-block::block(const ::string & str) :
-   ::block(str.c_str(), str.get_length())
-{
-
-}
-
-
-block::block(const ::string & str, ::strsize s) : 
-   ::block((const void *)str.c_str(), (::i64)(s >= 0 ? s : str.get_length() + s + 1))
-{
+//block::block(const ::string & str) :
+//   ::block(str.c_str(), str.get_length())
+//{
+//
+//}
 
 
-}
+//block::block(const ::string & str, ::strsize s) : 
+//   ::block((const void *)str.c_str(), (::i64)(s >= 0 ? s : str.get_length() + s + 1))
+//{
+//
+//
+//}
 
 
 
-void block::to_string(string & str) const
-{
-
-   str.assign((const ansichar *)get_data(), get_size());
-
-}
+//void block::to_string(string & str) const
+//{
+//
+//   str.assign((const ansichar *)get_data(), get_size());
+//
+//}
 
 
 //#ifdef _UWP
@@ -90,16 +91,29 @@ block & block::from_base64(const char * psz, strsize iSize) const
 }
 
 
-string block::to_base64() const
+//string block::to_base64() const
+//{
+//
+//   ::base64 base64;
+//
+//   return base64.encode(*this);
+//
+//}
+
+
+bool block::operator == (const block & block) const
 {
 
-   ::base64 base64;
+   if (block.get_size() != get_size())
+   {
 
-   return base64.encode(*this);
+      return false;
+
+   }
+
+   return __memcmp(block.get_data(), get_data(), (size_t)get_size()) == 0;
 
 }
-
-
 
 
 //fork_block & fork_block::from_base64(const char * psz, strsize iSize)

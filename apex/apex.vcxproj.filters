@@ -21,9 +21,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Header Files\primitive">
-      <UniqueIdentifier>{e747dff7-0cdb-45ea-9b6c-6ba1abfa384b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{dc109c06-f55b-48ea-ac46-06302b3262f3}</UniqueIdentifier>
     </Filter>
@@ -92,9 +89,6 @@
     </Filter>
     <Filter Include="Source Files\crypto\macos">
       <UniqueIdentifier>{df2a4f13-4c81-43cc-8afc-41791d4c6d1f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\subject">
-      <UniqueIdentifier>{1afcffb1-fdf1-4bfd-944d-9e578472682c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\inline\implement">
       <UniqueIdentifier>{78f8d54c-d7ac-45af-8d44-3331413b29d7}</UniqueIdentifier>
@@ -188,6 +182,9 @@
     </Filter>
     <Filter Include="Header Files\networking\application">
       <UniqueIdentifier>{1e23e3aa-3240-4461-8387-36514b136828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system">
+      <UniqueIdentifier>{f2f6a8be-3d42-41e2-8467-699bd80d3a74}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -309,9 +306,6 @@
       <Filter>Header Files\inline</Filter>
     </ClInclude>
     <ClInclude Include="const\id.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="const\idpool.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="const\impact.h">
@@ -746,30 +740,6 @@
     <ClInclude Include="message\handler_item.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\subject\subject.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\subject\promise1.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\subject\promise.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\subject\manager.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\subject\context.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\subject\aaa_handler.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\subject\_impl.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\subject\_.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
     <ClInclude Include="user\primitive.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -1063,6 +1033,12 @@
     </ClInclude>
     <ClInclude Include="networking\application\application.h">
       <Filter>Header Files\networking\application</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\action.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\idpool.h">
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1500,6 +1476,18 @@
     </ClCompile>
     <ClCompile Include="networking\application\application_socket.cpp">
       <Filter>Source Files\networking\application</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\action.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\department.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\listener.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\_synchronization.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

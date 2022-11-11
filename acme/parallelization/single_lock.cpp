@@ -15,7 +15,7 @@ single_lock::single_lock(::particle * pparticleSynchronization, bool bInitialLoc
 
    }
 
-   set_own_synchronization();
+   set_own_synchronization_flag();
 
    if (bInitialLock)
    {
@@ -30,7 +30,7 @@ single_lock::single_lock(::particle * pparticleSynchronization, bool bInitialLoc
 single_lock::~single_lock()
 {
 
-   if (is_acquired())
+   if (has_acquired_flag())
    {
 
       unlock();
@@ -39,7 +39,7 @@ single_lock::~single_lock()
 
    ::release(m_pparticleSynchronization);
 
-   unset_own_synchronization();
+   clear_own_synchronization_flag();
 
 }
 
@@ -57,7 +57,7 @@ void single_lock::_wait()
    }
 
 
-   if (is_acquired())
+   if (has_acquired_flag())
    {
 
       throw ::exception(error_wrong_state);
@@ -79,7 +79,7 @@ void single_lock::_wait()
 
    //m_bAcquired = estatus.signaled();
 
-      set_acquired();
+      set_acquired_flag();
 
    //return estatus;
 
@@ -91,7 +91,7 @@ bool single_lock::_wait(const class ::wait& wait)
 
    //::e_status estatus(signaled_base);
 
-   if (is_acquired())
+   if (has_acquired_flag())
    {
 
       throw ::exception(error_wrong_state);
@@ -128,7 +128,7 @@ bool single_lock::_wait(const class ::wait& wait)
       }
 
 
-   set_acquired();
+   set_acquired_flag();
 
 
 
@@ -142,7 +142,7 @@ bool single_lock::_wait(const class ::wait& wait)
 ::e_status single_lock::wait()
 {
 
-   if(is_acquired())
+   if(has_acquired_flag())
    {
 
       throw ::exception(error_wrong_state);
@@ -174,7 +174,7 @@ bool single_lock::_wait(const class ::wait& wait)
    if(estatus)
    {
 
-      set_acquired();
+      set_acquired_flag();
 
    }
 
@@ -186,7 +186,7 @@ bool single_lock::_wait(const class ::wait& wait)
 ::e_status single_lock::wait(const class ::wait & wait)
 {
 
-   if(is_acquired())
+   if(has_acquired_flag())
    {
 
       throw ::exception(error_wrong_state);
@@ -218,7 +218,7 @@ bool single_lock::_wait(const class ::wait& wait)
    if (estatus)
    {
 
-      set_acquired();
+      set_acquired_flag();
 
    }
 
@@ -237,7 +237,7 @@ void single_lock::unlock()
 
    }
 
-   if (!is_acquired())
+   if (!has_acquired_flag())
    {
 
       throw ::exception(error_wrong_state);
@@ -246,7 +246,7 @@ void single_lock::unlock()
 
    m_pparticleSynchronization->unlock();
 
-   unset_acquired();
+   clear_acquired_flag();
 
    // successfully unlocking means it isn't acquired
    //return !m_bAcquired;
@@ -259,7 +259,7 @@ void single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 
    ASSERT(m_pparticleSynchronization != nullptr);
 
-   if (!is_acquired())
+   if (!has_acquired_flag())
    {
 
       throw ::exception(error_wrong_state);
@@ -270,7 +270,7 @@ void single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 
    m_pparticleSynchronization->unlock(lCount, pPrevCount);
 
-   set_acquired();
+   set_acquired_flag();
 
    //}
 
@@ -283,7 +283,7 @@ void single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 bool single_lock::is_locked() const
 {
 
-   return is_acquired();
+   return has_acquired_flag();
 
 }
 
@@ -325,7 +325,7 @@ void _single_lock::_wait()
 
    //::e_status estatus(signaled_base);
 
-   if (is_acquired())
+   if (has_acquired_flag())
    {
 
       throw ::exception(error_wrong_state);
@@ -358,7 +358,7 @@ void _single_lock::_wait()
 
    //throw ::exception(
 
-   set_acquired();
+   set_acquired_flag();
 
    ///return estatus;
 
@@ -370,7 +370,7 @@ bool _single_lock::_wait(const class ::wait & wait)
 
    //::e_status estatus(signaled_base);
 
-   if (is_acquired())
+   if (has_acquired_flag())
    {
 
       throw ::exception(error_wrong_state);
@@ -409,7 +409,7 @@ bool _single_lock::_wait(const class ::wait & wait)
    if(bOk)
    {
 
-      set_acquired();
+      set_acquired_flag();
 
    }
 
@@ -431,7 +431,7 @@ void _single_lock::unlock()
 
    }
 
-   if (!is_acquired())
+   if (!has_acquired_flag())
    {
 
       return;
@@ -446,7 +446,7 @@ void _single_lock::unlock()
    m_pparticleSynchronization->unlock();
       //{
 
-         unset_acquired();
+         clear_acquired_flag();
 
       //}
 
@@ -469,7 +469,7 @@ void _single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 
    //ASSERT(m_psync != nullptr);
 
-   if (is_acquired())
+   if (has_acquired_flag())
    {
 
       throw ::exception(error_wrong_state);
@@ -480,7 +480,7 @@ void _single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 
    m_pparticleSynchronization->unlock(lCount, pPrevCount);
 
-   set_acquired();
+   set_acquired_flag();
 
 //   }
 
@@ -493,7 +493,7 @@ void _single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 bool _single_lock::is_locked() const
 {
 
-   return is_acquired();
+   return has_acquired_flag();
 
 }
 

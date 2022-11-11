@@ -3,6 +3,7 @@
 
 #include "acme/operating_system/_const_console.h"
 #include "acme/filesystem/file/file.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 void RedirectIOToConsole();
@@ -40,7 +41,7 @@ namespace console
 
 
    class CLASS_DECL_ACME console:
-      virtual public object
+      virtual public ::particle
    {
    public:
 
@@ -50,10 +51,10 @@ namespace console
 
 
       console();
-      virtual ~console();
+      ~console() override;
 
 
-      virtual ::string_stream & cout() = 0;
+      virtual ::write_text_stream < ::file::file > & cout() = 0;
 
 
       virtual void redirect_io();

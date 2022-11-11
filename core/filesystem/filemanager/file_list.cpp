@@ -77,18 +77,18 @@ namespace filemanager
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &file_list::on_message_set_focus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &file_list::on_message_kill_focus);
 
-      add_command_prober("edit_copy", this, &file_list::_001OnUpdateEditCopy);
-      add_command_handler("edit_copy", this, &file_list::_001OnEditCopy);
-      add_command_prober("trash_that_is_not_trash", this, &file_list::_001OnUpdateTrashThatIsNotTrash);
-      add_command_handler("trash_that_is_not_trash", this, &file_list::_001OnTrashThatIsNotTrash);
-      add_command_prober("open_with", this, &file_list::_001OnUpdateOpenWith);
+      add_command_prober("edit_copy", { this,  &file_list::_001OnUpdateEditCopy });
+      add_command_handler("edit_copy", { this,  &file_list::_001OnEditCopy });
+      add_command_prober("trash_that_is_not_trash", { this,  &file_list::_001OnUpdateTrashThatIsNotTrash });
+      add_command_handler("trash_that_is_not_trash", { this,  &file_list::_001OnTrashThatIsNotTrash });
+      add_command_prober("open_with", { this,  &file_list::_001OnUpdateOpenWith });
       //add_command_prober("spafy", &file_list::_001OnUpdateSpafy);
       //add_command_handler("spafy", &file_list::_001OnSpafy);
       //add_command_prober("spafy2", &file_list::_001OnUpdateSpafy2);
       //add_command_handler("spafy2", &file_list::_001OnSpafy2);
-      add_command_prober("file_rename", this, &file_list::_001OnUpdateFileRename);
-      add_command_handler("file_rename", this, &file_list::_001OnFileRename);
-      add_command_handler("file_open", this, &file_list::_001OnFileOpen);
+      add_command_prober("file_rename", { this,  &file_list::_001OnUpdateFileRename });
+      add_command_handler("file_rename", { this,  &file_list::_001OnFileRename });
+      add_command_handler("file_open", { this,  &file_list::_001OnFileOpen });
 
    }
 

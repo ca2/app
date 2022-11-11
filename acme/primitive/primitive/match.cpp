@@ -29,7 +29,7 @@ namespace match
 
 
    ci_string::ci_string(const char* psz) :
-      string(psz)
+      m_str(psz)
    {
 
    }
@@ -44,7 +44,7 @@ namespace match
 
 
    prefix::prefix(const char* psz) :
-      string(psz)
+      m_str(psz)
    {
 
    }
@@ -59,29 +59,37 @@ namespace match
 
 
    ci_prefix::ci_prefix(const char* psz) :
-      string(psz)
+      m_str(psz)
    {
+
    }
+
 
    bool ci_prefix::matches(const ::payload & payload) const
    {
       return payload.string().begins_ci(m_str);
    }
 
+
    suffix::suffix(const char* psz) :
-      string(psz)
+      m_str(psz)
    {
+
    }
+
 
    bool suffix::matches(const ::payload & payload) const
    {
       return payload.string().ends(m_str);
    }
 
+
    ci_suffix::ci_suffix(const char* psz) :
-      string(psz)
+      m_str(psz)
    {
+
    }
+
 
    bool ci_suffix::matches(const ::payload & payload) const
    {

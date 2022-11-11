@@ -127,19 +127,19 @@ namespace experience_anthill
                   if (estate & ::user::e_state_selected)
                   {
 
-                     return __acolor(255, 255, 255, 255);
+                     return ::color::color(255, 255, 255, 255);
 
                   }
                   else if (estate & ::user::e_state_hover)
                   {
 
-                     return __acolor(255, 235, 235, 255);
+                     return ::color::color(255, 235, 235, 255);
 
                   }
                   else
                   {
 
-                     return __acolor(255, 200, 200, 200);
+                     return ::color::color(255, 200, 200, 200);
 
                   }
 
@@ -150,19 +150,19 @@ namespace experience_anthill
                   if (estate & ::user::e_state_selected)
                   {
 
-                     return __acolor(255, 255, 255, 255);
+                     return ::color::color(255, 255, 255, 255);
 
                   }
                   else if (estate & ::user::e_state_hover)
                   {
 
-                     return __acolor(255, 20, 20, 20);
+                     return ::color::color(255, 20, 20, 20);
 
                   }
                   else
                   {
 
-                     return __acolor(255, 55, 55, 55);
+                     return ::color::color(255, 55, 55, 55);
 
                   }
 
@@ -178,19 +178,19 @@ namespace experience_anthill
                   if (estate & ::user::e_state_selected)
                   {
 
-                     return __acolor(255, 255, 255, 255);
+                     return ::color::color(255, 255, 255, 255);
 
                   }
                   else if (estate & ::user::e_state_hover)
                   {
 
-                     return __acolor(255, 235, 235, 255);
+                     return ::color::color(255, 235, 235, 255);
 
                   }
                   else
                   {
 
-                     return __acolor(255, 200, 200, 200);
+                     return ::color::color(255, 200, 200, 200);
 
                   }
 
@@ -201,19 +201,19 @@ namespace experience_anthill
                   if (estate & ::user::e_state_selected)
                   {
 
-                     return __acolor(255, 255, 255, 255);
+                     return ::color::color(255, 255, 255, 255);
 
                   }
                   else if (estate & ::user::e_state_hover)
                   {
 
-                     return __acolor(255, 20, 20, 20);
+                     return ::color::color(255, 20, 20, 20);
 
                   }
                   else
                   {
 
-                     return __acolor(255, 100, 100, 100);
+                     return ::color::color(255, 100, 100, 100);
 
                   }
 
@@ -232,13 +232,13 @@ namespace experience_anthill
                if (is_dark_mode())
                {
 
-                  return __acolor(255, 0, 0, 0);
+                  return ::color::color(255, 0, 0, 0);
 
                }
                else
                {
 
-                  return __acolor(255, 255, 255, 255);
+                  return ::color::color(255, 255, 255, 255);
 
                }
 
@@ -254,14 +254,14 @@ namespace experience_anthill
                if (is_dark_mode())
                {
 
-                  //return __acolor(255, 0x20, 0x45, 0x60);
+                  //return ::color::color(255, 0x20, 0x45, 0x60);
                   return pinteraction->top_level_frame()->get_moveable_border_color();
 
                }
                else
                {
 
-                  //return __acolor(255, 0x30, 0x75, 0xA0);
+                  //return ::color::color(255, 0x30, 0x75, 0xA0);
                   return pinteraction->top_level_frame()->get_moveable_border_color();
 
                }
@@ -279,13 +279,13 @@ namespace experience_anthill
                if (is_dark_mode())
                {
 
-                  return __acolor(255, 0, 0, 0);
+                  return ::color::color(255, 0, 0, 0);
 
                }
                else
                {
 
-                  return __acolor(255, 255, 255, 255);
+                  return ::color::color(255, 255, 255, 255);
 
                }
 
@@ -296,14 +296,14 @@ namespace experience_anthill
                if (estate & ::user::e_state_disabled)
                {
 
-                  return __acolor(255, 128, 128, 128);
+                  return ::color::color(255, 128, 128, 128);
 
                }
 
                if (estate & ::user::e_state_pressed)
                {
 
-                  return __acolor(255, 0x07, 0x6D, 0x91);
+                  return ::color::color(255, 0x07, 0x6D, 0x91);
 
                }
 
@@ -315,11 +315,11 @@ namespace experience_anthill
                   colorHover.lightness_rate(0.2);
 
                   return colorHover;
-                  //return __acolor(255, 0x55, 0x99, 0xC2);
+                  //return ::color::color(255, 0x55, 0x99, 0xC2);
 
                }
 
-               //return __acolor(255, 0x30, 0x75, 0xA0);
+               //return ::color::color(255, 0x30, 0x75, 0xA0);
                return pinteraction->top_level_frame()->get_moveable_border_color();
 
             }
@@ -360,14 +360,14 @@ namespace experience_anthill
             if (is_dark_mode())
             {
 
-               return __acolor(255, 185, 185, 180);
+               return ::color::color(255, 185, 185, 180);
 
             }
             else
             {
 
 
-               return __acolor(255, 235, 235, 230);
+               return ::color::color(255, 235, 235, 230);
 
             }
 
@@ -378,14 +378,14 @@ namespace experience_anthill
             if (is_dark_mode())
             {
 
-               return __acolor(255, 125, 125, 120);
+               return ::color::color(255, 125, 125, 120);
 
             }
             else
             {
 
 
-               return __acolor(255, 175, 175, 170);
+               return ::color::color(255, 175, 175, 170);
 
             }
 
@@ -400,13 +400,13 @@ namespace experience_anthill
          if (is_dark_mode())
          {
 
-            return __acolor(255, 0, 0, 0);
+            return ::color::color(255, 0, 0, 0);
 
          }
          else
          {
 
-            return __acolor(255, 255, 255, 255);
+            return ::color::color(255, 255, 255, 255);
 
          }
 
@@ -421,13 +421,13 @@ namespace experience_anthill
             if (estate & ::user::e_state_new_input)
             {
 
-               return __acolor(255, 127, 127, 127);
+               return ::color::color(255, 127, 127, 127);
 
             }
             else
             {
 
-               return __acolor(255, 255, 255, 255);
+               return ::color::color(255, 255, 255, 255);
 
             }
 
@@ -438,13 +438,13 @@ namespace experience_anthill
             if (estate & ::user::e_state_new_input)
             {
 
-               return __acolor(255, 192, 192, 192);
+               return ::color::color(255, 192, 192, 192);
 
             }
             else
             {
 
-               return __acolor(255, 0, 0, 0);
+               return ::color::color(255, 0, 0, 0);
 
             }
 
@@ -454,7 +454,7 @@ namespace experience_anthill
       else if (eelement == ::e_element_border)
       {
 
-         return __acolor(255, 127, 127, 127);
+         return ::color::color(255, 127, 127, 127);
 
       }
       else if (eelement == ::e_element_item_text)

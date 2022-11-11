@@ -3,6 +3,7 @@
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/primitive/function.h"
 #include "acme/_operating_system.h"
+#include "acme/operating_system/windows_common/__string.h"
 
 
 int __node_is_debugger_attached()

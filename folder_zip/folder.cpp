@@ -2,6 +2,7 @@
 #include "folder.h"
 #include "file.h"
 #include "file_function_definitions.h"
+#include "acme/exception/exception.h"
 #include "acme/filesystem/file/status.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/listing.h"
@@ -283,7 +284,7 @@ namespace folder_zip
    }
 
 
-   void folder::extract_all(const char* pszTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
+   void folder::e_extract_all(const char* pszTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
    {
 
       ::file::listing listing;

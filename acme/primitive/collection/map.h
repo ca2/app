@@ -905,7 +905,7 @@ template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, t
 void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::hash(::u32& nHashBucket, ::u32& nHashValue, ARG_KEY key) const
 {
 
-   nHashValue = u32_hash<ARG_KEY>(key);
+   nHashValue = u32_hash<ARG_KEY>(key).m_u;
 
    nHashBucket = nHashValue % this->m_hashtable.GetHashTableSize();
 

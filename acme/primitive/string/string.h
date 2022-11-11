@@ -2,48 +2,29 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/block.h"
+
+
+#include "simple_string_base.h"
+
+
 #include "__begin.h"
+
+
+#include "utf8_character.h"
 
 
 #include "string_base.h"
 
 
+using string = string_base < ansichar >;
+using wstring = string_base < widechar >;
+
+typedef string_array_base < string, string, e_type_string_array > string_array;
+
+
+
 #include "__end.h"
-
-
-CLASS_DECL_ACME string demangle(const char * psz);
-
-
-CLASS_DECL_ACME void copy(::string & str, const particle & particle);
-
-
-template < typename TYPE >
-inline ::string __string(const TYPE & t)
-{
-
-   ::string str;
-
-   ::copy(str, t);
-
-   return ::move(str);
-
-}
-
-
-//template < has_copy_to_string HAS_COPY_TO_STRING >
-//inline ::string __string(const HAS_COPY_TO_STRING & hascopytostring)
-//{
-//
-//   ::string str;
-//
-//   ::copy(str, hascopytostring);
-//
-//   return ::move(str);
-//
-//}
-
-
-CLASS_DECL_ACME string string_from_strdup(const ansichar* psz);
 
 
 

@@ -231,7 +231,7 @@ namespace gpu
 
       m_pbuffer->m_pimage = m_pcontext->m_pauracontext->create_image(size);
 
-      if (!::is_ok(m_pbuffer->m_pimage))
+      if (m_pbuffer->m_pimage->nok())
       {
 
          throw ::exception(error_resource);

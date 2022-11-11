@@ -247,7 +247,7 @@ namespace dynamic_source
    void script_interface::current_url(string& strUrl)
    {
 
-      strUrl = inattr(__id(http_protocol)) + "://" + inattr(__id(http_host)) + inattr(__id(request_uri));
+      strUrl = inattr("http_protocol") + "://" + inattr("http_host") + inattr("request_uri");
 
    }
 

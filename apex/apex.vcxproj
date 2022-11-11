@@ -755,6 +755,7 @@
     <ClCompile Include="filesystem\filesystem\dir_system.cpp" />
     <ClCompile Include="filesystem\filesystem\file_context.cpp" />
     <ClCompile Include="filesystem\filesystem\file_system.cpp" />
+    <ClCompile Include="filesystem\file\action.cpp" />
     <ClCompile Include="filesystem\file\edit_file.cpp" />
     <ClCompile Include="filesystem\file\html_file.cpp" />
     <ClCompile Include="filesystem\file\watch.cpp" />
@@ -792,6 +793,7 @@
     <ClCompile Include="networking\application\application.cpp" />
     <ClCompile Include="networking\application\application_handler.cpp" />
     <ClCompile Include="networking\application\application_socket.cpp" />
+    <ClCompile Include="networking\http\listener.cpp" />
     <ClCompile Include="networking\networking.cpp" />
     <ClCompile Include="networking\email.cpp" />
     <ClCompile Include="networking\email_address.cpp" />
@@ -843,10 +845,12 @@
     <ClCompile Include="networking\sockets\websocket_client.cpp" />
     <ClInclude Include="application.h" />
     <ClInclude Include="compress\not_dir.h" />
+    <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="crypto\initializer.h" />
     <ClInclude Include="database\stream.h" />
     <ClInclude Include="database\_binary_stream.h" />
     <ClInclude Include="filesystem\filesystem\file_listener.h" />
+    <ClInclude Include="filesystem\file\action.h" />
     <ClInclude Include="filesystem\file\_constant.h" />
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="handler\context.h" />
@@ -860,6 +864,7 @@
     <ClInclude Include="handler\_impl.h" />
     <ClInclude Include="inline\implement\ansi.h" />
     <ClInclude Include="inline\implement\windows.h" />
+    <ClCompile Include="operating_system\department.cpp" />
     <ClCompile Include="parallelization\handler_manager.cpp" />
     <ClCompile Include="parallelization\service.cpp" />
     <ClCompile Include="parallelization\service_handler.cpp" />
@@ -893,6 +898,7 @@
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\_application_service.cpp" />
+    <ClCompile Include="platform\_synchronization.cpp" />
     <ClCompile Include="progress\integer.cpp" />
     <ClCompile Include="progress\listener.cpp" />
     <ClCompile Include="progress\progress.cpp" />
@@ -1095,14 +1101,6 @@
     <ClInclude Include="include\_.h" />
     <ClInclude Include="include\_c_bridge.h" />
     <ClInclude Include="include\_include.h" />
-    <ClInclude Include="primitive\subject\aaa_handler.h" />
-    <ClInclude Include="primitive\subject\context.h" />
-    <ClInclude Include="primitive\subject\manager.h" />
-    <ClInclude Include="primitive\subject\promise.h" />
-    <ClInclude Include="primitive\subject\promise1.h" />
-    <ClInclude Include="primitive\subject\subject.h" />
-    <ClInclude Include="primitive\subject\_.h" />
-    <ClInclude Include="primitive\subject\_impl.h" />
     <ClInclude Include="progress\integer.h" />
     <ClInclude Include="progress\listener.h" />
     <ClInclude Include="progress\progress.h" />
@@ -1136,7 +1134,6 @@
     <ClCompile Include="filesystem\fs\remote_native.cpp" />
     <ClCompile Include="filesystem\fs\set.cpp" />
     <ClInclude Include="const\id.h" />
-    <ClInclude Include="const\idpool.h" />
     <ClInclude Include="const\impact.h" />
     <ClInclude Include="const\aaa_simple_command.h" />
     <ClInclude Include="const\status.h" />

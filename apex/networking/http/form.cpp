@@ -56,7 +56,7 @@ namespace http
 
       }
 
-      ::text_stream is(infil);
+      //::text_stream is(infil);
 
       __UNREFERENCED_PARAMETER(content_length);
 
@@ -261,7 +261,7 @@ namespace http
 
                      auto pfileUpload = pcontext->file()->get_temporary_upload_file(current_filename);
 
-                     if(::is_ok(pfileUpload))
+                     if(pfileUpload.ok())
                      {
 
                         while (infil -> read(&ca,1))

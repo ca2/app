@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "frame.h"
 #include "image.h"
+#include "acme/graphics/draw2d/colorref_array.h"
 
 
 //#define unequal(a, b, n) ((a) > (b) - (n))

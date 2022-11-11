@@ -735,10 +735,10 @@ inline const char * FormatArgument(const ::file::path & value) noexcept
 
 
 template<>
-inline uptr uptr_hash < const ::file::path & >(const ::file::path & key)
+inline uptr u32_hash < const ::file::path & >(const ::file::path & key)
 {
 
-   return uptr_hash < const string & >(key);
+   return u32_hash < const string & >(key);
 
 }
 

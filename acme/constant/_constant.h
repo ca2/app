@@ -4,7 +4,13 @@
 #include "GLOBAL_ID.h"
 
 
-//#warning "passed here"
+
+enum enum_optional
+{
+
+   e_optional,
+
+};
 
 
 enum enum_property : ::iptr
@@ -811,5 +817,18 @@ enum ECodePage
 
 
 
+
+
+
+
+
+enum enum_extract
+{
+
+   e_extract_none,
+   e_extract_first,
+   e_extract_all
+
+};
 
 

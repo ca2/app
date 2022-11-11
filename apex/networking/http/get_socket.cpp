@@ -49,13 +49,13 @@ namespace http
 
       ::sockets::http_get_socket::OnHeader(key, value);
 
-      if(key == __id(location))
+      if(key == "location")
       {
 
          m_strHeaderLocation = value;
 
       }
-      else if(key == __id(set_cookie))
+      else if(key == "set_cookie")
       {
 
          if(m_pcookies != nullptr)

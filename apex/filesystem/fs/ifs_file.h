@@ -7,7 +7,7 @@
 
 class CLASS_DECL_APEX ifs_file :
    virtual public ::sockets::http_batch_buffer,
-   virtual public ::object
+   virtual public ::particle
 {
 public:
 

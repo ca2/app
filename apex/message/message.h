@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "dispatcher.h"
 #include "acme/platform/message.h"
 #include "acme/primitive/primitive/action_context.h"
@@ -72,7 +72,7 @@ namespace message
          m_union.m_p = nullptr;
          m_pdispatchera = nullptr;
          m_pchannel = nullptr;
-         m_wparam = 0;
+         m_wparam = {};
          m_iRouteIndex = -1;
          m_iParam = 0;
          m_bRet = false;

@@ -391,6 +391,13 @@ void particle::handle(::topic * ptopic, ::context * pcontext)
 }
 
 
+bool particle::_is_ok() const
+{
+
+   return has_ok_flag();
+
+}
+
 
 void particle::install_message_routing(::channel * pchannel)
 {
@@ -1092,7 +1099,7 @@ void particle::acquire_ownership()
 
    //m_bOwner = true;
 
-   set_own_synchronization();
+   set_own_synchronization_flag();
 
 }
 
@@ -1101,7 +1108,7 @@ void particle::acquire_ownership()
 {
 
    //m_bOwner = false;
-   unset_own_synchronization();
+   clear_own_synchronization_flag();
 
 }
 
@@ -1686,9 +1693,6 @@ void particle::destroy_os_data()
 
 
 
-
-
-
 //void particle::write(::binary_stream < FILE > & stream) const
 //{
 //
@@ -1703,6 +1707,35 @@ void particle::destroy_os_data()
 //   throw interface_only();
 //
 //}
+
+
+CLASS_DECL_ACME ::pointer < ::particle > detach_pointer(::lparam& lparam)
+{
+
+   auto p = ::move_transfer((particle*)lparam.m_lparam);
+
+   lparam.m_lparam = 0;
+
+   return ::move(p);
+
+}
+
+
+
+const char* particle::debug_note() const
+{
+
+   return nullptr;
+
+}
+
+
+void particle::kick_idle()
+{
+
+
+}
+
 
 
 

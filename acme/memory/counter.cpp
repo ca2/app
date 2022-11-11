@@ -1,5 +1,6 @@
 // Created on 2021-03-21 16:35 <3ThomasBS_!!
 #include "framework.h"
+#include "counter.h"
 #include "acme/platform/node.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -8,44 +9,38 @@
 #include "acme/primitive/primitive/factory.h"
 
 
-int g_iMemoryCounters = -1;
 
-::global_pointer < mutex > g_pmutexMemoryCounters;
-
-int g_iMemoryCountersStartable = 0;
-
-::global_pointer < string_map < iptr > > g_pmapMemoryCounter;
-
-
-bool memory_counter_on()
+bool memory_counter::is_enabled()
 {
 
-   return g_iMemoryCountersStartable && g_iMemoryCounters;
+   return m_iMemoryCountersStartable && m_iMemoryCounters;
 
 }
 
 
-bool initialize_memory_counter(::particle * pparticle)
+void memory_counter::initialize(::particle * pparticle)
 {
 
-   if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
+   ::particle::initialize(pparticle);
+
+   if (m_iMemoryCountersStartable && m_iMemoryCounters < 0)
    {
 
-      g_iMemoryCounters = pparticle->acmefile()->exists(pparticle->acmedirectory()->config() / "system/memory_counters.txt") ? 1 : 0;
+      m_iMemoryCounters = pparticle->acmefile()->exists(pparticle->acmedirectory()->config() / "system/memory_counters.txt") ? 1 : 0;
 
-      if (g_iMemoryCounters)
-      {
+      //if (g_iMemoryCounters)
+      //{
 
-         //g_pmutexMemoryCounters = memory_new ::pointer < ::mutex >(e_create_new, false, "Global\\ca2_memory_counters");
-         __construct(pparticle, g_pmutexMemoryCounters);
+      //   //g_pmutexMemoryCounters = memory_new ::pointer < ::mutex >(e_create_new, false, "Global\\ca2_memory_counters");
+      //   //__construct(pparticle, g_pmutexMemoryCounters);
 
-         __construct_new(pparticle, g_pmapMemoryCounter);
+      //   __construct_new(pparticle, g_pmapMemoryCounter);
 
-      }
+      //}
 
    }
 
-   return true;
+   //return true;
 
 }
 
@@ -81,22 +76,22 @@ bool initialize_memory_counter(::particle * pparticle)
 //
 //
 
-void _memory_counter_increment(const char* psz)
+void memory_counter::increment(const char* psz)
 {
 
-   synchronous_lock lock(g_pmutexMemoryCounters);
+   critical_section_lock lock(&m_criticalsection);
 
-   g_pmapMemoryCounter->operator[](psz)++;
+   m_mapMemoryCounter[psz]++;
 
 }
 
 
-void _memory_counter_decrement(const char* psz)
+void memory_counter::decrement(const char* psz)
 {
 
-   synchronous_lock lock(g_pmutexMemoryCounters);
+   critical_section_lock lock(&m_criticalsection);
 
-   g_pmapMemoryCounter->operator[](psz)++;
+   m_mapMemoryCounter[psz]--;
 
 }
 

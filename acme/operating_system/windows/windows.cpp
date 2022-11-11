@@ -6,7 +6,7 @@
 #include <Shellapi.h>
 
 
-HANDLE duplicate_handle(HANDLE h)
+CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
 {
 
    DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &h, 0, false, DUPLICATE_SAME_ACCESS);

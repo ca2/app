@@ -12,7 +12,8 @@
 
 
 #include "acme/primitive/collection/array.h"
-#include "acme/primitive/collection/atom_map.h"
+#include "acme/primitive/primitive/factory.h"
+#include "acme/primitive/primitive/pointer.h"
 
 
 namespace acme
@@ -210,9 +211,6 @@ namespace acme
       //bool m_bRef;
 
 
-      ::pointer<::factory::factory>                               m_pfactory;
-      ::pointer<atom_map < ::pointer<::factory::factory > > >     m_pmapFactory;
-
       ::sub_system * m_psubsystem;
       static acme * g_p;
 
@@ -237,10 +235,7 @@ namespace acme
       //void init_windowing();
       //void term_windowing();
 
-      void factory_init();
-      void factory_close();
-      void factory_term();
-
+   
 
 
    };

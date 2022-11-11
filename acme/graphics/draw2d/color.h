@@ -389,3 +389,21 @@ auto inline opaque(const ::color::color& color) { return alpha(255, color); }
 
 CLASS_DECL_ACME::color::color _020GetColor(::index i);
 
+
+inline ::color::color argb_color(::i32 a, ::i32 r, ::i32 g, ::i32 b)
+{
+
+   return ::color::color(r, g, b, a);
+
+}
+
+
+inline ::color::color argb_color(double a, double r, double g, double b)
+{
+
+   return ::color::color(r, g, b, a);
+
+}
+
+
+

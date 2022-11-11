@@ -277,7 +277,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //
 //         u32 fwKeys = (u32)pmsg->wParam; // key flags
 //
-//         auto point = __point((::lparam) pmsg->lParam); // horizontal position of cursor
+//         auto point = ::point_i32((::lparam) pmsg->lParam); // horizontal position of cursor
 //
 //         //index yPos = HIWORD(pmsg->lParam);
 //

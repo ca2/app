@@ -1,8 +1,7 @@
 #include "framework.h"
 #include "type.h"
+#include "acme/primitive/primitive/particle.h"
 #include "acme/primitive/string/string.h"
-
-
 
 
 type::type(const ::particle * pparticle)
@@ -335,3 +334,163 @@ string demangle(const char* name)
 //
 //}
 //
+
+
+
+type& type::operator = (const ::std::type_info& typeinfo)
+{
+
+   ::string strName = typeinfo.name();
+
+   strName = demangle(strName);
+
+   ::atom::operator =(strName);
+
+   return *this;
+
+}
+
+
+type& type::operator = (const ::type& type)
+{
+
+   if (this != &type)
+   {
+
+      ::atom::operator =(type);
+
+   }
+
+   return *this;
+
+}
+
+
+bool type::operator == (const ::std::type_info& typeinfo) const
+{
+
+   ::string strName = ::type(typeinfo);
+
+   strName = demangle(strName);
+
+   return operator==(strName);
+
+}
+
+
+bool type::operator == (const ::type& type) const
+{
+
+   return ::atom::operator == (type);
+
+}
+
+
+bool type::operator == (const ::string& strType) const
+{
+
+   return ::atom::operator == (strType);
+
+}
+
+
+bool type::operator != (const ::std::type_info& typeinfo) const
+{
+
+   return !operator==(typeinfo);
+
+}
+
+
+
+//type& type::operator = (const ::type& type)
+//{
+//
+//   if (this != &type)
+//   {
+//
+//      ::atom::operator =(type);
+//
+//   }
+//
+//   return *this;
+//
+//}
+
+
+//const ::atom& type::name() const
+//{ 
+//   
+//   return *this; 
+//
+//}
+
+
+//bool type::operator == (const ::std::type_info& typeinfo) const
+//{
+//
+//   ::string strName = ::type(typeinfo);
+//
+//   strName = demangle(strName);
+//
+//   return operator==(strName);
+//
+//}
+
+
+//bool typea::operator == (const ::type& type) const
+//{
+//
+//   return ::atom::operator == (type);
+//
+//}
+//
+//
+//bool typea:: operator == (const ::string& strType) const
+//{
+//
+//   return ::atom::operator == (strType);
+//
+//}
+
+
+//bool type::operator == (const ::atom& atom) const
+//{
+//
+//   return ::atom::operator==(atom);
+//
+//}
+//
+//
+//bool type::operator != (const ::std::type_info& typeinfo) const
+//{
+//
+//   return !operator==(typeinfo);
+//
+//}
+
+
+bool type::operator != (const ::type& type) const
+{
+
+   return !operator==(type);
+
+}
+
+
+bool type::operator == (const ::particle* pparticle) const
+{
+
+   return operator ==(::type(pparticle));
+
+}
+
+
+bool type::operator != (const ::particle* pparticle) const
+{
+
+   return !operator==(pparticle);
+
+}
+
+

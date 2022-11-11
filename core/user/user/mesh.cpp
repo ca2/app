@@ -190,9 +190,9 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this,&mesh::on_message_create);
 
-      add_command_handler("mesh_impact_auto_arrange", this, &mesh::_001OnMeshImpactAutoArrange);
+      add_command_handler("mesh_impact_auto_arrange", { this,  &mesh::_001OnMeshImpactAutoArrange });
 
-      add_command_prober("mesh_impact_auto_arrange", this, &mesh::_001OnUpdateMeshImpactAutoArrange);
+      add_command_prober("mesh_impact_auto_arrange", { this,  &mesh::_001OnUpdateMeshImpactAutoArrange });
 
    }
 

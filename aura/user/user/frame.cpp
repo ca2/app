@@ -44,7 +44,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      add_command_handler("app_exit", this, &frame::on_message_application_exit);
+      add_command_handler("app_exit", { this, &frame::on_message_application_exit });
       
 
       //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &window::on_message_set_cursor);

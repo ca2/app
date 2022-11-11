@@ -59,7 +59,7 @@ namespace file
 
 
 
-   enum fmtflags
+   enum fmtflags : ::u16
    {
       nofmtflags = 0,
       boolalpha = 0x00000001,
@@ -77,6 +77,7 @@ namespace file
       internal = 0x00001000,
       left = 0x00002000,
       right = 0x00004000,
+      network_payload = 0x00008000,
       adjustfield = left | right | internal,
       basefield = dec | oct | hex,
       floatfield = scientific | fixed

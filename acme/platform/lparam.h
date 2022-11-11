@@ -88,18 +88,6 @@ public:
    }
 
 
-   ::pointer<::particle>detach_element();
-
-  
-   template < typename T >
-   pointer < T > detach()
-   {
-
-      return detach_element();
-
-   }
-
-
    lparam& operator = (const lparam & lparam)
    {
 
@@ -137,7 +125,6 @@ public:
 
 
 };
-
 
 
 template < class T >

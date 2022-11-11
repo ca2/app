@@ -42,6 +42,9 @@ namespace file
 CLASS_DECL_ACME ::file::path_array operator / (const ::file::path & pathBase, const string_array & straRelativeItems);
 CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & pathBase, ::file::path_array & pathaFolder, ::file::path_array * ppathaRelative = nullptr);
 CLASS_DECL_ACME ::file::path_array ascendants_path(const ::file::path & pathBase);
+CLASS_DECL_ACME ::file::path_array & ascendants_path(::file::path_array & patha, const ::file::path& pathBase);
+CLASS_DECL_ACME ::string_array ascendants_name(const ::file::path & pathBase);
+CLASS_DECL_ACME ::string_array & ascendants_name(::string_array & stra, const ::file::path& pathBase);
 
 
 

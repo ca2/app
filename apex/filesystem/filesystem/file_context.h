@@ -44,7 +44,7 @@ public:
    virtual ::file::enum_type resource_get_type(const char* path);
 
 
-   virtual void copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
+   virtual void copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, enum_extract eextract = e_extract_first);
    virtual void move(const ::file::path & pathNew, const ::file::path & path);
    virtual void erase(const ::file::path & path);
    virtual ::file::path duplicate(const ::file::path & path);
@@ -267,7 +267,7 @@ public:
    virtual ::file::path onedrive_global_ini();
    virtual ::file::path onedrive_cid_ini();
 
-//   virtual ::extended::status copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
+//   virtual ::extended::status copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, enum_extract eextract = e_extract_first);
    //virtual ::extended::status move(const ::file::path & pszNew, const ::file::path & psz);
    //virtual ::extended::status del(const ::file::path & psz);
    //virtual ::extended::status rename(const ::file::path & pszNew, const ::file::path & psz);

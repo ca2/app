@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/primitive/atom.h"
+#include "acme/primitive/primitive/particle.h"
 #include "acme/primitive/collection/atom_array.h"
 
 
@@ -14,7 +15,7 @@ namespace text
 
 
       class CLASS_DECL_ACME locale_schema :
-         virtual public ::matter
+         virtual public ::particle
       {
       public:
 

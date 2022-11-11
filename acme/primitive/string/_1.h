@@ -72,7 +72,7 @@ inline const wd32string __string_base(const wd32char * psz);
 
 #include "string_meta_data.h"
 
-#include "string_natural_pointer.h"
+#include "simple_string_base.h"
 
 #include "string_iterator.h"
 

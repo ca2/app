@@ -26,8 +26,8 @@ namespace text
       locale_schema::locale_schema()
       {
 
-         m_atomSchema = "_std"; // __id(std)
-         m_atomLocale = "_std"; // __id(std)
+         m_atomSchema = "_std"; // "std"
+         m_atomLocale = "_std"; // "std"
 
          m_idaLocale.allocate(0, 256);
          m_idaSchema.allocate(0, 256);
@@ -197,7 +197,7 @@ namespace text
          //            {
          //               if(iLen == 2)
          //               {
-         //                  return __id(at);
+         //                  return "at";
          //               }
          //            }
          //         }
@@ -207,7 +207,7 @@ namespace text
          //            {
          //               if(iLen == 2)
          //               {
-         //                  return __id(br);
+         //                  return "br";
          //               }
          //            }
          //         }
@@ -217,7 +217,7 @@ namespace text
          //            {
          //               if(iLen == 2)
          //               {
-         //                  return __id(cn);
+         //                  return "cn";
          //               }
          //            }
          //         }
@@ -227,21 +227,21 @@ namespace text
          //            {
          //               if(iLen == 2)
          //               {
-         //                  return __id(en);
+         //                  return "en";
          //               }
          //            }
          //            else if(ch2 == 's')
          //            {
          //               if(iLen == 2)
          //               {
-         //                  return __id(es);
+         //                  return "es";
          //               }
          //            }
          //            else if(ch2 == 'c')
          //            {
          //               if(iLen == 2)
          //               {
-         //                  return __id(ec);
+         //                  return "ec";
          //               }
          //            }
          //         }
@@ -254,7 +254,7 @@ namespace text
          //            {
          //               if(iLen == 2)
          //               {
-         //                  return __id(hk);
+         //                  return "hk";
          //               }
          //            }
          //         }
@@ -264,14 +264,14 @@ namespace text
          //            {
          //               if(iLen == 2)
          //               {
-         //                  return __id(ja);
+         //                  return "ja";
          //               }
          //            }
          //            else if(ch2 == 'p')
          //            {
          //               if(iLen == 2)
          //               {
-         //                  return __id(jp);
+         //                  return "jp";
          //               }
          //            }
          //         }
@@ -281,7 +281,7 @@ namespace text
          //            {
          //               if(iLen == 2)
          //               {
-         //                  return __id(mx);
+         //                  return "mx";
          //               }
          //            }
          //         }
@@ -297,18 +297,18 @@ namespace text
          //            {
          //               if(iLen == 2)
          //               {
-         //                  return __id(pt);
+         //                  return "pt";
          //               }
          //               else if(ch4 == 'b' && ch5 == 'r')
          //               {
-         //                  return __id(pt_br);
+         //                  return "pt_br";
          //               }
          //            }
          //            else if(ch2 == 'e')
          //            {
          //               if(iLen == 2)
          //               {
-         //                  return __id(pe);
+         //                  return "pe";
          //               }
          //            }
          //         }
@@ -321,7 +321,7 @@ namespace text
          //            {
          //               if(iLen == 2)
          //               {
-         //                  return __id(tw);
+         //                  return "tw";
          //               }
          //            }
          //         }
@@ -365,13 +365,13 @@ namespace text
 
          //   if(ch1 == 's' && ch2 == 'e')
          //   {
-         //      defer_add_locale(__id(sv_se), idSchema);
-         //      defer_add_locale(__id(sv), idSchema);
+         //      defer_add_locale("sv_se", idSchema);
+         //      defer_add_locale("sv", idSchema);
          //   }
          //   else if(ch1 == 's' && ch2 == 'v')
          //   {
-         //      defer_add_locale(__id(sv_se), idSchema);
-         //      defer_add_locale(__id(se), idSchema);
+         //      defer_add_locale("sv_se", idSchema);
+         //      defer_add_locale("se", idSchema);
          //   }
          //   else if(ch1 <= 'm')
          //   {
@@ -380,9 +380,9 @@ namespace text
          //         if(ch2 == 't')
          //         {
          //            // at
-         //            defer_add_locale(__id(de_at), idSchema);
-         //            defer_add_locale(__id(de), idSchema);
-         //            defer_add_locale(__id(de_de), idSchema);
+         //            defer_add_locale("de_at", idSchema);
+         //            defer_add_locale("de", idSchema);
+         //            defer_add_locale("de_de", idSchema);
          //         }
          //      }
          //      else if(ch1 == 'b')
@@ -390,9 +390,9 @@ namespace text
          //         if(ch2 == 'r')
          //         {
          //            // br
-         //            defer_add_locale(__id(pt_br), idSchema);
-         //            defer_add_locale(__id(pt), idSchema);
-         //            defer_add_locale(__id(es), idSchema);
+         //            defer_add_locale("pt_br", idSchema);
+         //            defer_add_locale("pt", idSchema);
+         //            defer_add_locale("es", idSchema);
          //         }
          //      }
          //      else if(ch1 == 'c')
@@ -400,16 +400,16 @@ namespace text
          //         if(ch2 == 'n')
          //         {
          //            // cn
-         //            defer_add_locale(__id(zh_cn), idSchema);
-         //            defer_add_locale(__id(zh_tw), idSchema);
+         //            defer_add_locale("zh_cn", idSchema);
+         //            defer_add_locale("zh_tw", idSchema);
          //         }
          //         else if(ch2 == 'a')
          //         {
          //            // acme
-         //            defer_add_locale(__id(en_ca), idSchema);
-         //            defer_add_locale(__id(en), idSchema);
-         //            defer_add_locale(__id(fr_ca), idSchema);
-         //            defer_add_locale(__id(fr), idSchema);
+         //            defer_add_locale("en_ca", idSchema);
+         //            defer_add_locale("en", idSchema);
+         //            defer_add_locale("fr_ca", idSchema);
+         //            defer_add_locale("fr", idSchema);
          //         }
          //      }
          //      else if(ch1 == 'e')
@@ -417,22 +417,22 @@ namespace text
          //         if(ch2 == 'n')
          //         {
          //            // en
-         //            defer_add_locale(__id(en_us), idSchema);
-         //            defer_add_locale(__id(std), idSchema);
+         //            defer_add_locale("en_us", idSchema);
+         //            defer_add_locale("std", idSchema);
          //         }
          //         else if(ch2 == 's')
          //         {
          //            // es
-         //            defer_add_locale(__id(br), idSchema);
-         //            defer_add_locale(__id(pt_br), idSchema);
-         //            defer_add_locale(__id(pt), idSchema);
+         //            defer_add_locale("br", idSchema);
+         //            defer_add_locale("pt_br", idSchema);
+         //            defer_add_locale("pt", idSchema);
          //         }
          //         else if(ch2 == 'c')
          //         {
-         //            defer_add_locale(__id(es), idSchema);
-         //            defer_add_locale(__id(br), idSchema);
-         //            defer_add_locale(__id(pt_br), idSchema);
-         //            defer_add_locale(__id(pt), idSchema);
+         //            defer_add_locale("es", idSchema);
+         //            defer_add_locale("br", idSchema);
+         //            defer_add_locale("pt_br", idSchema);
+         //            defer_add_locale("pt", idSchema);
          //         }
          //      }
          //      else if(ch1 == 'h')
@@ -440,9 +440,9 @@ namespace text
          //         if(ch2 == 'k')
          //         {
          //            // hk
-         //            defer_add_locale(__id(zh_cn), idSchema);
-         //            defer_add_locale(__id(zh_tw), idSchema);
-         //            defer_add_locale(__id(cn), idSchema);
+         //            defer_add_locale("zh_cn", idSchema);
+         //            defer_add_locale("zh_tw", idSchema);
+         //            defer_add_locale("cn", idSchema);
          //         }
          //      }
          //      else if(ch1 == 'j')
@@ -450,14 +450,14 @@ namespace text
          //         if(ch2 == 'a')
          //         {
          //            // ja
-         //            defer_add_locale(__id(ja_jp), idSchema);
-         //            defer_add_locale(__id(jp), idSchema);
+         //            defer_add_locale("ja_jp", idSchema);
+         //            defer_add_locale("jp", idSchema);
          //         }
          //         else if(ch2 == 'p')
          //         {
          //            // jp
-         //            defer_add_locale(__id(ja_jp), idSchema);
-         //            defer_add_locale(__id(ja), idSchema);
+         //            defer_add_locale("ja_jp", idSchema);
+         //            defer_add_locale("ja", idSchema);
          //         }
          //      }
          //      else if(ch1 == 'm')
@@ -465,10 +465,10 @@ namespace text
          //         if(ch2 == 'x')
          //         {
          //            // mx
-         //            defer_add_locale(__id(es), idSchema);
-         //            defer_add_locale(__id(br), idSchema);
-         //            defer_add_locale(__id(pt_br), idSchema);
-         //            defer_add_locale(__id(pt), idSchema);
+         //            defer_add_locale("es", idSchema);
+         //            defer_add_locale("br", idSchema);
+         //            defer_add_locale("pt_br", idSchema);
+         //            defer_add_locale("pt", idSchema);
          //         }
          //      }
          //   }
@@ -479,34 +479,34 @@ namespace text
          //         if(ch2 == 't')
          //         {
          //            // point_i32
-         //            defer_add_locale(__id(br), idSchema);
-         //            defer_add_locale(__id(pt_br), idSchema);
-         //            defer_add_locale(__id(es), idSchema);
+         //            defer_add_locale("br", idSchema);
+         //            defer_add_locale("pt_br", idSchema);
+         //            defer_add_locale("es", idSchema);
          //         }
          //         else if(ch2 == 'e')
          //         {
          //            // pe
-         //            defer_add_locale(__id(es), idSchema);
-         //            defer_add_locale(__id(br), idSchema);
-         //            defer_add_locale(__id(pt_br), idSchema);
-         //            defer_add_locale(__id(pt), idSchema);
+         //            defer_add_locale("es", idSchema);
+         //            defer_add_locale("br", idSchema);
+         //            defer_add_locale("pt_br", idSchema);
+         //            defer_add_locale("pt", idSchema);
          //         }
          //      }
          //      else if(ch1 == 't')
          //      {
          //         if(ch2 == 'w')
          //         {
-         //            defer_add_locale(__id(zh_tw), idSchema);
-         //            defer_add_locale(__id(zh_cn), idSchema);
-         //            defer_add_locale(__id(cn), idSchema);
+         //            defer_add_locale("zh_tw", idSchema);
+         //            defer_add_locale("zh_cn", idSchema);
+         //            defer_add_locale("cn", idSchema);
          //         }
          //      }
          //      else if(ch1 == 'u')
          //      {
          //         if(ch2 == 'k')
          //         {
-         //            defer_add_locale(__id(en_uk),idSchema);
-         //            defer_add_locale(__id(en_us),idSchema);
+         //            defer_add_locale("en_uk",idSchema);
+         //            defer_add_locale("en_us",idSchema);
          //         }
          //      }
 
@@ -541,7 +541,7 @@ namespace text
 //
 //            if(idSchema2.is_empty())
 //            {
-//               idSchema2 = __id(std);
+//               idSchema2 = "std";
 //            }
 //
 //            for(i32 i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
@@ -563,7 +563,7 @@ namespace text
 //
 //         if(idSchema2.is_empty())
 //         {
-//            idSchema2 = __id(std);
+//            idSchema2 = "std";
 //         }
 //
 //         for(i32 i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
@@ -697,7 +697,7 @@ restart:
          //{
          //   for(index i = 0; i < m_idaLocale.get_count(); i++)
          //   {
-         //      defer_add_locale(m_idaLocale[i], __id(std));
+         //      defer_add_locale(m_idaLocale[i], "std");
          //   }
          //}
 
@@ -732,7 +732,7 @@ restart:
       i64 locale_schema::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
       {
 
-         return matter::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       }
 
@@ -740,7 +740,7 @@ restart:
       i64 locale_schema::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
       {
 
-         return matter::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return particle::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       }
 

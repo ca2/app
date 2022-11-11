@@ -1,71 +1,236 @@
 ﻿#pragma once
 
 
-#include "_impl_prio.h"
+#include "_u32hash.h"
 
 
-
-#include "_ch_impl.h"
-
-
-//#include "_str_compare_impl.h"
+CLASS_DECL_ACME i64 strtoi(const char * psz);
+CLASS_DECL_ACME i64 strtoi(const widechar * psz);
 
 
-//#include "_str_trait_impl.h"
+namespace file
+{
 
+
+   class str;
+
+
+} // namespace file
+
+
+#if defined(__APPLE)
+
+#define noexcept
+
+#endif
+
+
+template <typename T>
+inline T FormatArgument(T value) noexcept
+{
+
+   return value;
+
+}
+
+
+#ifdef WINDOWS
+inline ::u32 _gen_GetConversionACP()
+{
+
+   //return CP_UTF8;
+   return CodePageUtf8;
+
+}
+#endif
+
+
+class fixed_alloc_array;
+
+
+template < >
+inline u32hash u32_hash < const ansistring & >(const ansistring & ansistr)
+{
+
+   return u32_hash < const ansichar * >(ansistr.c_str());
+
+}
+
+
+template < >
+inline u32hash u32_hash < const widestring & >(const widestring & widestr)
+{
+
+   return u32_hash < const widechar * >(widestr.c_str());
+
+}
+
+
+template < >
+inline u32hash u32_hash < ansistring >(ansistring ansistr)
+{
+
+   return u32_hash < const ansistring & >(ansistr);
+
+}
+
+
+template < >
+inline u32hash u32_hash < widestring >(widestring widestr)
+{
+
+   return u32_hash < const widestring & >(widestr);
+
+}
+
+
+inline const char * FormatArgument(const string & value) noexcept { return value.c_str(); }
 
 
 template < typename TYPE_CHAR >
-inline ::strsize string_meta_data < TYPE_CHAR>:: memsize_in_chars() const
+inline string_base < TYPE_CHAR > operator+(const string_base < TYPE_CHAR > & str1, const string_base < TYPE_CHAR > & str2)
 {
 
-   return (::strsize) byte_length_to_char_length(&this->get_data()[0], (::strsize)this->m_memsize);
+   string_base < TYPE_CHAR > str;
 
-}
-
-
-template < typename TYPE_CHAR >
-inline ::memsize string_meta_data < TYPE_CHAR>::length_in_bytes() const
-{
-
-   return char_length_to_byte_length(&this->get_data()[0], this->m_datasize);
+   return string_concatenate(str, str1, str1.get_length(), str2, str2.get_length());
 
 }
 
 
 
-template < typename CHAR_TYPE >
-::wd32char string_iterator < CHAR_TYPE > ::operator *(){return unicode_index(m_psz); }
+template < primitive_atom ATOM >
+inline ::string operator+(const char * psz, const ATOM & atom) { return string(psz) + string(atom); }
 
 
-template < typename CHAR_TYPE >
-string_iterator < CHAR_TYPE > & string_iterator < CHAR_TYPE > ::operator ++()
+template < primitive_payload PAYLOAD >
+inline ::string operator+(const char * psz, const PAYLOAD & payload) { return string(psz) + string(payload); }
+
+
+template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+inline ::string_base < CHARACTER2 > operator +(const CHARACTER * pszLeft, const ::string_base < CHARACTER2 > & strRight)
 {
 
-   unicode_increment(m_psz);
+   ::wstring strLeft(pszLeft);
 
-   return *this;
+   return strLeft + strRight;
 
 }
 
-template < typename CHAR_TYPE >
-string_iterator < CHAR_TYPE > string_iterator < CHAR_TYPE > ::operator ++(int)
+
+
+
+template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+inline ::string_base < CHARACTER2 > operator +(const CHARACTER chLeft, const ::string_base < CHARACTER2 > & strRight)
 {
 
-   auto psz = m_psz;
+   ::string_base < CHARACTER2 > strLeft(&chLeft, 1);
 
-   unicode_increment(m_psz);
-
-   return psz;
+   return strLeft + strRight;
 
 }
+
+
+//#include "__c_wd16_impl.h"
+
 
 #include "_string_base_impl.h"
 
-//#include "_str_ch_ansi_impl.h"
-//#include "_str_ch_wd16_impl.h"
-//#include "_str_ch_wd32_impl.h"
+
+template < typename CHAR_TYPE1, typename CHAR_TYPE2 >
+void copy(::string_base < CHAR_TYPE1 >& str1, const ::string_base < CHAR_TYPE2 >& str2)
+{
+
+	str1 = str2;
+
+}
+
+
+template < typename CHAR_TYPE1, primitive_character CHARACTER, std::size_t N >
+void copy(::string_base < CHAR_TYPE1 >& str1, const CHARACTER sz[N])
+{
+
+	str1 = sz;
+
+}
+
+
+template < typename CHAR_TYPE1, primitive_character CHARACTER >
+void copy(::string_base < CHAR_TYPE1 >& str1, const CHARACTER* psz)
+{
+
+	str1 = psz;
+
+}
 
 
 
 
+
+template < primitive_string STRING, primitive_integral INTEGRAL >
+inline STRING& copy(STRING& string, const INTEGRAL& number)
+{
+
+	string.append_format("%lld", (::i64)number);
+
+	return string;
+
+}
+
+
+template < primitive_signed SIGNED, primitive_string STRING >
+inline void copy(SIGNED& s, const STRING& string)
+{
+
+	s = (SIGNED)string_to_signed(string);
+
+}
+
+
+template < primitive_natural NATURAL, primitive_string STRING >
+inline void copy(NATURAL& n, const STRING& string)
+{
+
+	n = (NATURAL)string_to_natural(string);
+
+}
+
+
+template < primitive_floating FLOATING, primitive_string STRING >
+inline void copy(FLOATING& f, const STRING& string)
+{
+
+	f = (FLOATING)string_to_floating(string);
+
+}
+
+
+template < primitive_string STRING, primitive_floating FLOATING >
+inline STRING& copy(STRING& string, const FLOATING& number)
+{
+
+	string.format("%f", (::f64)number);
+
+	return string;
+
+}
+
+
+
+
+
+
+
+
+
+template < typename TYPE >
+inline ::string __string(const TYPE& t)
+{
+
+	::string str;
+
+	::copy(str, t);
+
+	return ::move(str);
+
+}

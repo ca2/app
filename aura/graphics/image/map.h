@@ -2,6 +2,8 @@
 
 
 #include "acme/primitive/collection/map.h"
+#include "acme/primitive/primitive/concrete.h"
+#include "acme/primitive/primitive/pointer.h"
 #include "header.h"
 
 

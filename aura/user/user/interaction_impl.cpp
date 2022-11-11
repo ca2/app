@@ -20,6 +20,7 @@
 #include "aura/windowing/text_editor_interface.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
+#include "aura/windowing/monitor.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/display.h"
@@ -30,7 +31,11 @@
 
 
 #ifdef WINDOWS_DESKTOP
-#include "apex/operating_system.h"
+
+
+//#include "acme/_operating_system.h"
+
+
 #endif
 
 point_i32 g_pointLastBottomRight;
@@ -1835,7 +1840,7 @@ namespace user
    void interaction_impl::start_destroying_window()
    {
 
-      if (is_destroying())
+      if (has_destroying_flag())
       {
 
          //return true;
@@ -1844,7 +1849,7 @@ namespace user
 
       }
 
-      if (!is_destroying())
+      if (!has_destroying_flag())
       {
 
          if (m_pprodevian && m_pprodevian->task_active())
@@ -1856,7 +1861,7 @@ namespace user
          else
          {
 
-            set_destroying();
+            set_destroying_flag();
 
             m_puserinteraction->post_message(e_message_destroy_window);
 
@@ -1886,10 +1891,10 @@ namespace user
 
       }
 
-      if(!m_puserinteraction->is_destroying())
+      if(!m_puserinteraction->has_destroying_flag())
       {
 
-         m_puserinteraction->set(e_flag_destroying);
+         m_puserinteraction->set_flag(e_flag_destroying);
 
       }
       
@@ -2716,7 +2721,7 @@ namespace user
 
             puserinteraction = puserinteraction->get_parent();
 
-            if (is_set(puserinteraction))
+            if (::is_set(puserinteraction))
             {
 
                auto pchild = puserinteraction->child_from_point(pmouse->m_point, -1, &interactionaHandled);
@@ -4709,7 +4714,7 @@ namespace user
                   try
                   {
 
-                     pinteraction->send_message(e_message_show_window, 0, SW_PARENTCLOSING);
+                     pinteraction->send_message(e_message_show_window, 0, e_show_window_parent_closing);
 
                   }
                   catch (...)
@@ -4837,7 +4842,7 @@ namespace user
    void interaction_impl::_001UpdateBuffer()
    {
 
-      if (!m_puserinteraction || is_destroying())
+      if (!m_puserinteraction || has_destroying_flag())
       {
 
          return;
@@ -4913,7 +4918,7 @@ namespace user
 
          windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
 
-         if (is_destroying())
+         if (has_destroying_flag())
          {
 
             return;
@@ -4980,7 +4985,7 @@ namespace user
 
             //auto r = m_puserinteraction->screen_rect();
 
-            if (m_puserinteraction->is_finishing())
+            if (m_puserinteraction->has_finishing_flag())
             {
 
                output_debug_string("::user::interaction_impl set_finish");
@@ -5439,7 +5444,7 @@ namespace user
    void interaction_impl::set_finish(::particle * pparticleContextFinish)
    {
 
-      if(!is_destroying())
+      if(!has_destroying_flag())
       {
 
          if (m_pgraphics)
@@ -5453,7 +5458,7 @@ namespace user
 
             slGraphics.unlock();
 
-            set_destroying();
+            set_destroying_flag();
 
          }
 
@@ -6322,14 +6327,14 @@ namespace user
 
       __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_apply_visual);
 
-      ::u32 uFlags = 0;
+      //::u32 uFlags = 0;
 
       //bool bLayered = GetExStyle() & WS_EX_LAYERED;
 
       //if (bLayered)
       {
 
-         uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+         //uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
 
       }
       //else
@@ -6339,12 +6344,12 @@ namespace user
 
       //}
 
-      if (eactivationOutput & e_activation_no_activate)
-      {
+      //if (eactivationOutput & e_activation_no_activate)
+      //{
 
-         uFlags |= SWP_NOACTIVATE;
+      //   uFlags |= SWP_NOACTIVATE;
 
-      }
+      //}
 
       // if GNOME
       // if Xorg
@@ -6368,15 +6373,15 @@ namespace user
 
          bSize = false;
 
-         uFlags |= SWP_NOSIZE;
+         //uFlags |= SWP_NOSIZE;
 
       }
       else
       {
 
-         uFlags |= SWP_ASYNCWINDOWPOS | SWP_FRAMECHANGED | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
-         //uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
-         //uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS;
+         //uFlags |= SWP_ASYNCWINDOWPOS | SWP_FRAMECHANGED | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+         ////uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+         ////uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOSENDCHANGING | SWP_NOREDRAW | SWP_NOCOPYBITS;
 
       }
 
@@ -6387,7 +6392,7 @@ namespace user
 
          bMove = false;
 
-         uFlags |= SWP_NOMOVE;
+         //uFlags |= SWP_NOMOVE;
 
       }
 
@@ -6395,39 +6400,45 @@ namespace user
 
       bool bVisibilityChange = is_different(bWasVisible, shouldGetVisible);
 
+      bool bShow = false;
+
+      bool bHide = false;
+
       if (bVisibilityChange)
       {
 
          if (shouldGetVisible)
          {
 
-            uFlags |= SWP_SHOWWINDOW;
+            bShow = true;
 
          }
          else
          {
 
-            uFlags |= SWP_HIDEWINDOW;
+            bHide = true;
 
          }
 
       }
 
-      if (eactivationOutput & e_activation_no_activate)
-      {
+      //if (eactivationOutput & e_activation_no_activate)
+      //{
 
-         uFlags |= SWP_NOACTIVATE;
+      //   uFlags |= SWP_NOACTIVATE;
 
-      }
+      //}
 
       bool bZ = zOutput.is_change_request();
 
-      if (!bZ)
-      {
 
-         uFlags |= SWP_NOZORDER;
 
-      }
+      //if (!bZ)
+      //{
+
+      //   uFlags |= SWP_NOZORDER;
+
+      //}
 
       string strType = __type_name(m_puserinteraction);
 
@@ -6542,7 +6553,7 @@ namespace user
                pointOutput.y,
                sizeOutput.cx,
                sizeOutput.cy,
-               uFlags);
+               eactivationOutput,!bZ, !bMove, !bSize, bShow, bHide);
 
             m_sizeSetWindowSizeRequest = sizeOutput;
 

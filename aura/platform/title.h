@@ -1,12 +1,13 @@
 #pragma once
 
 
-class title :
-   public string
+class title
 {
 public:
 
-   title(const ::string & str) : string(str) {}
+   ::string m_str;
+
+   title(const ::string & str) : m_str(str) {}
 
 };
 

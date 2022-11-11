@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/path.h"
+
+
 namespace file
 {
 
@@ -19,6 +22,10 @@ namespace file
       ::file::path                     m_pathFolder;
       ::file::path                     m_pathFile;
       enumeration < enum_action >      m_eaction;
+
+
+      action();
+      ~action();
 
 
    };

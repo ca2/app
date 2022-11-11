@@ -3,7 +3,7 @@
 
 #include "app_container.h"
 #include "context.h"
-#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace apex

@@ -3,6 +3,7 @@
 
 #include "pointer_array_process.h"
 #include "acme/primitive/collection/array.h"
+#include "acme/primitive/primitive/pointer.h"
 #include "comparable_eq_array.h"
 #include "comparable_array.h"
 
@@ -83,6 +84,14 @@ public:
          add(p);
 
       }
+
+   }
+
+
+   pointer < T >& add_new()
+   {
+
+      return comparable_array < ::pointer<T > >::add_new();
 
    }
 

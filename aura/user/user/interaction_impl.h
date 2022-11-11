@@ -5,6 +5,7 @@
 #include "window_util.h"
 #include "interaction.h"
 #include "acme/primitive/collection/list.h"
+#include "acme/primitive/geometry2d/_collection.h"
 
 
 #ifdef __DEBUG

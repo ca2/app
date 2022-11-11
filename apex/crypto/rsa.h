@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 namespace crypto
@@ -9,7 +9,7 @@ namespace crypto
 
 
    class CLASS_DECL_APEX rsa :
-      virtual public matter
+      virtual public particle
    {
    public:
 

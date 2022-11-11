@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/exception/exception.h"
 #include "acme/filesystem/file/item_array.h"
 #include "acme/networking/url_department.h"
 #include "acme/parallelization/synchronous_lock.h"

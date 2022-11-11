@@ -72,7 +72,7 @@ namespace experience
 
       pointDock+=m_pframewindow->screen_to_client();
 
-      point = __point(pointCursor - pointDock);
+      point = ::point_i32(pointCursor - pointDock);
 
       ::rectangle_i32 rectangleWindow;
 

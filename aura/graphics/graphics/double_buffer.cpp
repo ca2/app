@@ -96,7 +96,7 @@ namespace graphics
 //
 //         }
           
-          auto sizeImage = ::is_ok(pimage)?pimage->get_size() : ::size_i32(0,0);
+         auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::size_i32(0, 0);
          auto sizeReserved = ::size_i32(1920, 1080);
           
           if(sizeWindow.cx > sizeImage.cx)
@@ -311,7 +311,7 @@ namespace graphics
 
       synchronouslock.unlock();
 
-      if (!::is_ok(pimage))
+      if (pimage->nok())
       {
 
          return false;

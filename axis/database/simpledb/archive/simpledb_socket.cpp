@@ -79,7 +79,7 @@ namespace simpledb
       }
       if(!outheaders().has_property("content-type") && response().file()->get_length() > 0)
       {
-         outheader(__id(content_type)) = "text/html; charset=UTF-8";
+         outheader("content_type") = "text/html; charset=UTF-8";
       }
       i32 iStatusCode;
       string strStatus;
@@ -201,47 +201,47 @@ namespace simpledb
       string strContentType(pszContentType);
       if(strContentType.has_char() && strContentType.compare_ci("unknown") != 0)
       {
-         outheader(__id(content_type)) = strContentType;
+         outheader("content_type") = strContentType;
       }
       else if(str == "mp3")
       {
-         outheader(__id(content_type)) = "audio/mpeg";
+         outheader("content_type") = "audio/mpeg";
       }
       else if(str == "exe")
       {
-         outheader(__id(content_type)) = "application/x-msdownload";
+         outheader("content_type") = "application/x-msdownload";
       }
       else if(str == "spa")
       {
-         outheader(__id(content_type)) = "application/x-spa";
+         outheader("content_type") = "application/x-spa";
       }
       else if(str == "mid")
       {
-         outheader(__id(content_type)) = "audio/midi";
+         outheader("content_type") = "audio/midi";
       }
       else if(str == "js")
       {
-         outheader(__id(content_type)) = "text/javascript";
+         outheader("content_type") = "text/javascript";
       }
       else if(str == "xpi")
       {
-         outheader(__id(content_type)) = "application/x-xpinstall";
+         outheader("content_type") = "application/x-xpinstall";
       }
       else if(str == "ttf")
       {
-         outheader(__id(content_type)) = "font/ttf";
+         outheader("content_type") = "font/ttf";
       }
       else if(str == "ogv")
       {
-         outheader(__id(content_type)) = "video/ogg";
+         outheader("content_type") = "video/ogg";
       }
       else if(str == "zip")
       {
-         outheader(__id(content_type)) = "application/x-zip-compressed";
+         outheader("content_type") = "application/x-zip-compressed";
       }
       else if(str == "jar")
       {
-         outheader(__id(content_type)) = "application/x-jar";
+         outheader("content_type") = "application/x-jar";
       }
       file_pointer spfile(e_create);
       if(spfile->open(lpcsz, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none).failed())
@@ -310,7 +310,7 @@ namespace simpledb
                response().ostream() << pbase64->encode(*memfile.get_memory());
             }
             response().ostream() << "--THIS_STRING_SEPARATES--\r\n\r\n";
-            outheader(__id(content_type)) = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";
+            outheader("content_type") = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";
          }
          else
          {

@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 class trace;
@@ -36,7 +36,7 @@ public:
 
 
 class CLASS_DECL_ACME trace :
-   virtual public ::matter
+   virtual public ::particle
 {
 public:
 

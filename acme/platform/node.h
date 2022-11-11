@@ -10,13 +10,21 @@
 #pragma once
 
 
+#include "acme/constant/application_capability.h"
 #include "acme/constant/element.h"
 #include "acme/filesystem/filesystem/path.h"
 #include "acme/operating_system/security_attributes.h"
 #include "acme/platform/serial_shared.h"
 #include "acme/primitive/primitive/object.h"
+#include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/collection/atom_array.h"
 #include "acme/primitive/collection/string_map.h"
+
+
+CLASS_DECL_ACME const char * callstack_default_format();
+
+
+using enum_application_capability_array = ::comparable_array < enum_application_capability >;
 
 
 namespace acme
@@ -63,7 +71,7 @@ namespace acme
       :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::node *  m_pAuraPlatform;
       
       
-      ::pointer<::particle>                                 m_pparticleQuit;
+      ::pointer < ::particle >                              m_pparticleQuit;
       
 
       //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
@@ -125,7 +133,7 @@ namespace acme
       virtual void initialize(::particle * pparticle) override;
       
       
-      virtual ::pointer<::particle>create_quit_element(::pointer<::acme::node> & pnode, ::pointer<::acme::system> & psystem);
+      virtual ::pointer < ::particle > create_quit_particle(::pointer<::acme::node>& pnode, ::pointer<::acme::system>& psystem);
       
       
       virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem);
@@ -632,6 +640,16 @@ namespace acme
 
       virtual int is_release_build();
 
+
+      virtual bool succeeded(const ::error_code& errorcode);
+      virtual bool failed(const ::error_code& errorcode);
+
+
+#ifdef WINDOWS
+
+      virtual error_code defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
+
+#endif
 
 
    };

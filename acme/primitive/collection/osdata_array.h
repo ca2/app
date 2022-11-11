@@ -4,7 +4,7 @@
 #include "tiny_array.h"
 
 
-class CLASS_DECL_ACME osdata_array
+class osdata_array
 {
 public:
 

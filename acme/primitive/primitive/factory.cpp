@@ -1,8 +1,12 @@
 #include "framework.h"
+#include "acme/exception/exception.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/simple_log.h"
 #include "acme/platform/library.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/primitive/factory.h"
+#include "acme/primitive/string/string.h"
+
 
 
 CLASS_DECL_ACME ::acme::system * get_system();
@@ -45,7 +49,7 @@ namespace factory
     CLASS_DECL_ACME factory * get_factory()
     {
 
-       return ::acme::acme::g_p->m_pfactory;
+       return ::acme::acme::g_p->m_psubsystem->m_pfactory;
 
     }
 
@@ -69,7 +73,7 @@ namespace factory
    CLASS_DECL_ACME factory * get_factory(const ::atom & atomSource)
    {
 
-      auto & pfactory = (*::acme::acme::g_p->m_pmapFactory)[atomSource];
+      auto & pfactory = (*::acme::acme::g_p->m_psubsystem->m_pmapFactory)[atomSource];
 
       if (!pfactory)
       {
@@ -912,6 +916,128 @@ namespace factory
    //   }
    //
    //
+
+
+} // namespace factory
+
+
+
+//#include "factory.h"
+
+#ifndef WINDOWS
+
+
+#include <cxxabi.h>
+
+
+thread_local char * t_pszDemangle;
+thread_local size_t t_sizeDemangle;
+//extern critical_section * g_pcsDemangle;
+
+
+bool demangle (string & str, const char * pszType)
+{
+
+   //critical_section_lock cs(g_pcsDemangle);
+
+   int status = -4;
+
+   t_pszDemangle = abi::__cxa_demangle(pszType, t_pszDemangle, &t_sizeDemangle, &status);
+
+   if (status == 0)
+   {
+
+      str = t_pszDemangle;
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
+
+//bool demangle (string & str)
+//{
+//
+//   return str, str.c_str();
+//
+//}
+
+
+#endif
+
+
+namespace factory
+{
+
+
+
+   ::pointer < ::particle > factory::create(const ::string & strType)
+   {
+
+      //auto psystem = get_system();
+
+      //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
+
+      //::matter* p = nullptr;
+
+      ////if (get_library() != nullptr)
+      ////{
+
+      ////   p = get_library()->new_object(pszClass);
+
+      ////}
+      ////else
+      //{
+
+      //   p = new_object(pszClass);
+
+      //}
+
+      //auto pparticle = ::move_transfer(p);
+
+      //if (!pparticle)
+      //{
+
+      //   return nullptr;
+
+      //}
+
+      //return pparticle;
+
+      auto pfactoryinterface = get_factory_item(strType);
+
+      //if (!pfactoryinterface)
+      //{
+
+      //   return error_no_factory;
+
+      //}
+
+      return pfactoryinterface->create_particle();
+
+   }
+
+
+   bool factory::has_type(const ::string & strType) const
+   {
+
+      //auto psystem = get_system();
+
+      //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
+
+      //if (get_library() == nullptr)
+      //{
+
+      //   return false;
+
+      //}
+
+      return get_factory_item(strType) != nullptr;
+
+   }
 
 
 } // namespace factory

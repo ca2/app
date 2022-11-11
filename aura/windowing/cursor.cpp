@@ -7,7 +7,6 @@
 #include "aura/graphics/image/cursor.h"
 
 
-
 namespace windowing
 {
 
@@ -47,7 +46,7 @@ namespace windowing
 //   }
 
    
-   void cursor::set_image(const ::image * pimage, ::i32 xHotspot, ::i32 yHotspot)
+   void cursor::set_image(::image * pimage, ::i32 xHotspot, ::i32 yHotspot)
    {
 
       m_pimage = pimage;

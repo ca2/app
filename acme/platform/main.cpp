@@ -59,9 +59,7 @@ CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp)
 MAIN::MAIN()
 {
 
-   __zero(this);
-
-   //::acme::initialize();
+   memset(this, 0, sizeof(MAIN));
 
 }
 
@@ -213,7 +211,7 @@ void __main(::acme::application * pacmeapplication)
 
    auto pfactoryitem = ::factory::get_factory()->get_factory_item<::acme::system>();
 
-   ::pointer<::acme::system>psystem = pfactoryitem->create_element();
+   ::pointer<::acme::system> psystem = pfactoryitem->create_particle();
 
    ::set_task(psystem);
 

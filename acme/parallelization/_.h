@@ -39,30 +39,6 @@ CLASS_DECL_ACME void precision_wait(const ::duration & duration);
 
 
 
-
-
-
-//CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
-
-
-typedef string GET_TASK_NAME(::task * ptask);
-using LPFN_GET_TASK_NAME = GET_TASK_NAME*;
-
-
-CLASS_DECL_ACME string get_task_name(htask_t htask);
-
-CLASS_DECL_ACME void set_get_task_name(LPFN_GET_TASK_NAME);
-
-CLASS_DECL_ACME void task_set_name(const char * psz);
-CLASS_DECL_ACME void task_set_name(htask_t htask, const char* pszName);
-
-
-CLASS_DECL_ACME string task_get_name();
-CLASS_DECL_ACME string task_get_name(htask_t htask);
-
-
-CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
-
 CLASS_DECL_ACME bool is_single_main_user_thread();
 
 CLASS_DECL_ACME bool is_main_thread();
@@ -90,13 +66,6 @@ CLASS_DECL_ACME bool task_get_run();
 
 CLASS_DECL_ACME void task_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
-
-CLASS_DECL_ACME ::task* get_task();
-
-//CLASS_DECL_ACME::task* get_task();
-CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-
-CLASS_DECL_ACME string get_task_name(::task * ptask);
 
 
 

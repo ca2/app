@@ -2,8 +2,9 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/primitive/particle.h"
 #include "acme/primitive/primitive/function.h"
+#include "acme/primitive/primitive/matter.h"
 
 
 template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >

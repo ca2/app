@@ -209,10 +209,10 @@ namespace sockets
       url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
 
       set_host(m_host);
-      m_request.header(__id(host)) = get_host();
-      m_request.attr(__id(http_protocol)) = m_protocol;
-      m_request.attr(__id(request_uri)) = strRequestUri;
-      m_response.attr(__id(request_uri)) = strRequestUri;
+      m_request.header("host") = get_host();
+      m_request.attr("http_protocol") = m_protocol;
+      m_request.attr("request_uri") = strRequestUri;
+      m_response.attr("request_uri") = strRequestUri;
       set_url(strUrlParam);
 
 #ifdef BSD_STYLE_SOCKETS
@@ -251,7 +251,7 @@ namespace sockets
    void http_client_socket::OnConnect()
    {
 
-      m_request.attr(__id(http_method)) = http_method_string(m_emethod);
+      m_request.attr("http_method") = http_method_string(m_emethod);
 
       http_tunnel::OnConnect();
 
@@ -269,9 +269,9 @@ namespace sockets
 
       }
 
-      m_content = m_response.attr(__id(http_version)) + " " +
-                  m_response.attr(__id(http_status_code)) + " " +
-                  m_response.attr(__id(http_status)) + "\r\n";
+      m_content = m_response.attr("http_version") + " " +
+                  m_response.attr("http_status_code") + " " +
+                  m_response.attr("http_status") + "\r\n";
    }
 
 
@@ -284,15 +284,15 @@ namespace sockets
 
       m_content += key + ": " + value + "\r\n";
       m_response.m_propertysetHeader[key] = value;
-      if (key == __id(content_length))
+      if (key == "content_length")
       {
          m_content_length = atoi(value);
       }
-      else if (key == __id(content_type))
+      else if (key == "content_type")
       {
          m_content_type = value;
       }
-      else if (key == __id(set_cookie))
+      else if (key == "set_cookie")
       {
          m_response.m_cookies.add(value);
       }
@@ -312,8 +312,8 @@ namespace sockets
       {
          m_pmemoryfile->allocate_internal(m_content_length);
 
-         if(outheader(__id(content_encoding)).compare_ci("gzip") != 0
-               && (m_response.attr(__id(http_status_code)) < 300 || m_response.attr(__id(http_status_code)) >= 400))
+         if(outheader("content_encoding").compare_ci("gzip") != 0
+               && (m_response.attr("http_status_code") < 300 || m_response.attr("http_status_code") >= 400))
          {
 
             m_iFinalSize = m_content_length;
@@ -355,7 +355,7 @@ namespace sockets
 
       string strContentEncoding;
       
-      strContentEncoding = outheader(__id(content_encoding));
+      strContentEncoding = outheader("content_encoding");
 
       if (strContentEncoding.compare_ci("gzip") == 0)
       {
@@ -370,7 +370,7 @@ namespace sockets
 
       }
 
-      int iStatusCode = m_response.attr(__id(http_status_code));
+      int iStatusCode = m_response.attr("http_status_code");
 
       if(m_pfile != nullptr && (iStatusCode < 300 || iStatusCode >= 400))
       {
@@ -418,7 +418,7 @@ namespace sockets
    void http_client_socket::OnData(const char *buf,memsize len)
    {
 
-      if(m_response.attr(__id(http_status_code)).i32() >= 300 && m_response.attr(__id(http_status_code)).i32() <= 399)
+      if(m_response.attr("http_status_code").i32() >= 300 && m_response.attr("http_status_code").i32() <= 399)
       {
 
          return;
@@ -428,7 +428,7 @@ namespace sockets
       if(m_pfile != nullptr)
       {
 
-         if(outheader(__id(content_encoding)).compare_ci("gzip") != 0)
+         if(outheader("content_encoding").compare_ci("gzip") != 0)
          {
 
             m_pfile->write(buf,len);
@@ -609,10 +609,10 @@ namespace sockets
 
       url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
 
-      m_request.attr(__id(http_protocol))     = m_protocol;
-      m_request.header(__id(host))                   = m_host;
-      m_request.attr(__id(request_uri))       = strRequestUri;
-      m_response.attr(__id(request_uri))      = strRequestUri;
+      m_request.attr("http_protocol")     = m_protocol;
+      m_request.header("host")                   = m_host;
+      m_request.attr("request_uri")       = strRequestUri;
+      m_response.attr("request_uri")      = strRequestUri;
 
       set_url(strUrlParam);
 

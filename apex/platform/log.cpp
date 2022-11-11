@@ -701,7 +701,7 @@ namespace apex
 
       auto & log = set["log"];
 
-      if (::is_ref_set(log))
+      if (::is_set(&log))
       {
 
          m_bLogThreadName = log["threadname"].is_true();

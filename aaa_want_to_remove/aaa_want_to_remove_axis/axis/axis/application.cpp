@@ -1089,7 +1089,7 @@ m_durationHeartBeat.Now();
          try
          {
 
-            zip.extract_all(strDir,&file);
+            zip.e_extract_all(strDir,&file);
 
          }
          catch(...)
@@ -1101,7 +1101,7 @@ m_durationHeartBeat.Now();
 
          }
 
-         //psystem->compress().extract_all(strFile, this);
+         //psystem->compress().e_extract_all(strFile, this);
 
       }
 

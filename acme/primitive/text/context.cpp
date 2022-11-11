@@ -152,10 +152,10 @@ namespace text
 
             }
 
-            if(__id(std) != idSchema)
+            if("std" != idSchema)
             {
 
-               schema * pschema = (schema *)plocale->get_schema(__id(std));
+               schema * pschema = (schema *)plocale->get_schema("std");
 
                if(pschema != nullptr)
                {
@@ -699,7 +699,7 @@ namespace text
          while(unicode_is_whitespace(psz))
          {
             
-            psz += str_uni_len(psz);
+            psz += utf8_unicode_length(*psz);
 
             if (psz >= pszEnd)
             {
@@ -724,18 +724,31 @@ namespace text
 
          while(*psz != q)
          {
-            psz += str_uni_len(psz);
-            if(psz >= pszEnd)
+            
+            psz += utf8_unicode_length(*psz);
+
+            if (psz >= pszEnd)
+            {
+
                goto cont;
+
+            }
          }
          strRoot.assign(s, psz - s);
          psz++;
 
          while(unicode_is_whitespace(psz))
          {
-            psz += str_uni_len(psz);
-            if(psz >= pszEnd)
+            
+            psz += utf8_unicode_length(*psz);
+
+            if (psz >= pszEnd)
+            {
+
                goto end;
+
+            }
+
          }
 
          if(*psz != '=')
@@ -745,9 +758,16 @@ namespace text
 
          while(unicode_is_whitespace(psz))
          {
-            psz += str_uni_len(psz);
-            if(psz >= pszEnd)
+            
+            psz += utf8_unicode_length(*psz);
+
+            if (psz >= pszEnd)
+            {
+            
                goto end;
+
+            }
+
          }
 
          // going to consume another quoted value
@@ -789,7 +809,9 @@ namespace text
                   goto cont2;
                }
             }
-            l = str_uni_len(psz);
+            
+            l = utf8_unicode_length(*psz);
+
             if(wr != rd)
             {
                while(l > 0)

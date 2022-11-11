@@ -1,17 +1,7 @@
 ﻿#pragma once
 
-//
-//#if defined(LINUX) || defined(FREEBSD)
-//#include <netdb.h>
-//#define in_addr6 in6_addr
-//#elif defined(ANDROID)
-//#include <netdb.h>
-//#include <netinet/in.h>
-//#define in_addr6 in6_addr
-//#endif
 
-
-#include "acme/primitive/primitive/element.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 namespace networking

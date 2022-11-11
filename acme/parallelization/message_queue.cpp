@@ -107,7 +107,7 @@ void message_queue::kick_idle()
 
    //m_eventNewMessage.set_event();
 
-   post_message(nullptr, e_message_kick_idle, 0, 0);
+   post_message(nullptr, e_message_kick_idle, {}, 0);
 
 }
 

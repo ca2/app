@@ -8,7 +8,6 @@
 #include "ptr.h"
 #include "acme/memory/memory.h"
 #include "acme/platform/procedure.h"
-#include "acme/primitive/comparison/var_strict.h"
 #include "acme/primitive/collection/numeric_array.h"
 #include "acme/filesystem/filesystem/path_object.h"
 #include "acme/filesystem/filesystem/path_array.h"
@@ -46,7 +45,7 @@ class CLASS_DECL_ACME payload
 public:
 
 
-   using TAG = PAYLOAD_TAG;
+   using PRIMITIVE_PAYLOAD_TAG = PRIMITIVE_PAYLOAD_TAG_TYPE;
 
    enum_type                        m_etype;
 
@@ -423,7 +422,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
 
-   ::comparison::var_strict strictly_compare() const;
+   //::comparison::var_strict strictly_compare() const;
 
    void           set_string(const char * psz);
    void           set_string(const ::string & str);
@@ -1904,11 +1903,14 @@ namespace file
    inline path & path::operator += (const ::payload & payload) { return operator += (payload.string()); }
    inline path & path::operator = (const property & property) { return operator = ((const ::payload &)property); }
    inline path & path::operator += (const property & property) { return operator += ((const ::payload &)property); }
-   inline path path::operator + (const ::payload & payload) const { return operator + (payload.string()); }
-   inline path path::operator + (const property & property) const { return operator + (property.string()); }
-   inline path path::operator + (const atom & atom) const { return operator + (::string(atom)); }
-   inline path path::operator / (const ::payload & payload) const { return operator /(::file::path(payload)); }
-   inline path path::operator / (const property & property) const { return operator /(::file::path(property)); }
+   template < primitive_payload PAYLOAD >
+   inline path path::operator + (const PAYLOAD & payload) const { return operator + (payload.string()); }
+   template < primitive_atom ATOM >
+   inline path path::operator + (const ATOM & atom) const { return operator + (::string(atom)); }
+   template < primitive_payload PAYLOAD >
+   inline path path::operator / (const PAYLOAD & payload) const { return operator /(::file::path(payload)); }
+   template < primitive_atom ATOM >
+   inline path path::operator / (const ATOM & atom) const { return operator /(::file::path(atom)); }
    inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
    inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
    inline path path::folder() const { return { ::file_path_folder(*this), m_epath }; }
@@ -2028,6 +2030,72 @@ inline payload & payload::operator /=(const ::payload & payload)
 {
 
    return divide(payload);
+
+}
+
+template < primitive_string STRING, primitive_payload PAYLOAD >
+inline STRING& copy(STRING& string, const PAYLOAD& payload)
+{
+
+    string = payload.string();
+
+    return string;
+
+}
+
+
+template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
+inline void copy(INTEGRAL& integral, const PAYLOAD& payload)
+{
+
+    integral = (INTEGRAL)payload.i64();
+
+}
+
+
+template < primitive_payload PAYLOAD >
+inline void copy(f32& f, const PAYLOAD& payload)
+{
+
+    f = payload.f32();
+
+}
+
+
+template < primitive_payload PAYLOAD >
+inline void copy(::f64& f, const PAYLOAD& payload)
+{
+
+    f = payload.f64();
+
+}
+
+
+template < primitive_payload PAYLOAD, primitive_number NUMBER >
+inline void copy(PAYLOAD& payload, const NUMBER& number)
+{
+
+    payload = number;
+
+}
+
+
+template < primitive_payload PAYLOAD, primitive_string STRING >
+inline PAYLOAD& copy(PAYLOAD& payload, const STRING& string)
+{
+
+    payload = string;
+
+    return payload;
+
+}
+
+
+template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
+inline void copy(PAYLOAD1& payload1, const PAYLOAD2& payload2)
+{
+
+    payload1 = payload2;
 
 }
 

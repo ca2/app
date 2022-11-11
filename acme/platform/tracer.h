@@ -2,20 +2,20 @@
 #pragma once
 
 
-//#include "acme/primitive/string/__string.h"
+#include "acme/filesystem/file/text_stream.h"
 #include "acme/primitive/string/string.h"
 
 
 class logger;
 
 
-class CLASS_DECL_ACME tracer
+class CLASS_DECL_ACME tracer :
+   public string_buffer_stream
 {
 public:
 
 
    ::acme::context *          m_pcontext;
-   string                     m_str;
    enum_trace_level           m_etracelevel;
    enum_trace_category        m_etracecategory;
    const char *               m_pszFunction;
@@ -40,7 +40,7 @@ public:
    ~tracer()
    {
 
-      //flush();
+      flush();
 
    }
 
@@ -77,21 +77,21 @@ public:
    }
 
 
-   template < typename STRINGABLE >
-   tracer & operator <<(const STRINGABLE & stringable)
-   {
+   //template < typename STRINGABLE >
+   //tracer & operator <<(const STRINGABLE & stringable)
+   //{
 
-      string str;
+   //   string str;
 
-      ::copy(str, stringable);
+   //   ::copy(str, stringable);
 
-      m_str += str;
+   //   m_str += str;
 
-      return *this;
+   //   return *this;
 
-      //return operator << (str);
+   //   //return operator << (str);
 
-   }
+   //}
 
    //tracer & operator << (const exception & exception);
    //tracer & operator << (const e_status & estatus);
@@ -121,7 +121,7 @@ public:
 //   tracer & operator << (const INTEGRAL integral) { return operator << (::__string(integral)); }
 //
 //
-//   void flush();
+   void flush();
 
 
 };

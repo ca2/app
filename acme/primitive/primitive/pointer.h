@@ -347,7 +347,7 @@ public:
    inline bool ok() const
    {
 
-      return ::is_ok(m_p);
+      return is_set() && m_pparticle->is_ok();
 
    }
 
@@ -355,7 +355,7 @@ public:
    inline bool nok() const
    {
 
-      return ::nok(m_p);
+      return !ok();
 
    }
 
@@ -444,28 +444,14 @@ public:
    template < typename OBJECT >
    inline pointer < T > & create_new(OBJECT * pparticle);
 
-   //template < TEMPLATE_TYPE >
-   //inline pointer < T > & defer_create(TEMPLATE_ARG);
-
-   //template < TEMPLATE_TYPE >
-   //inline pointer < T > & create(TEMPLATE_ARG);
-
    template < typename OBJECT >
    inline pointer < T > & defer_create(OBJECT * pparticle, ::factory::factory * pfactory = ::factory::get_factory());
 
    template < typename OBJECT >
    inline pointer < T > & create(OBJECT * pparticle, ::factory::factory * pfactory = ::factory::get_factory());
 
-//   template < typename OBJECT >
-//   inline pointer < T > & create(OBJECT * pparticle, bool bCreate, ::factory::factory * pfactory = ::factory::get_factory());
-
    template < typename T2 >
    inline pointer < T > & clone(T2 * p);
-
-
-
-
-
 
    inline void run_and_release()
    {
@@ -804,7 +790,7 @@ template < class T >
 inline bool pointer < T > ::is_null() const
 {
 
-   return ::is_null(m_p);
+   return ::is_null(this) || ::is_null(m_p) || ::is_null(m_pparticle);
 
 }
 
@@ -813,27 +799,10 @@ template < class T >
 inline bool pointer < T > ::is_set() const
 {
 
-   return ::is_set(m_p);
+   return !is_null();
 
 }
 
-//
-//template < class T >
-//inline void __dynamic_cast(T*& ptarget, T* psource)
-//{
-//
-//   ptarget = psource;
-//
-//}
-//
-//
-//template < class T , typename T2 >
-//inline void __dynamic_cast(T * & ptarget, T2 * psource)
-//{
-//
-//   ptarget = dynamic_cast < T2 * >(psource);
-//
-//}
 
 
 template < class T >
@@ -872,7 +841,7 @@ inline pointer < T > & pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_D
 
       T* p;
 
-      __dynamic_cast(p, pNew);
+      p = dynamic_cast < T * >(pNew);
 
       if (m_p != p)
       {
@@ -1278,79 +1247,6 @@ inline i64 increment_reference_count(c_derived *& pderived, const ::pointer<SOUR
 }
 
 
-template < class c_derived >
-inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   c_derived * ptr = pca;
-
-   if (::is_null(ptr))
-   {
-
-      return -1;
-
-   }
-
-#ifdef _DEBUG
-
-//   ::atom atom = p->m_atom;
-   //char * pszType = nullptr;
-   //
-   //try
-   //{
-
-   //   pszType = _strdup(typeid(*p).name());
-
-   //}
-   //catch (...)
-   //{
-
-   //   ::output_debug_string("exception release strdup(typeid(*p).name())\n");
-
-   //}
-
-#endif
-
-   try
-   {
-
-      pca = nullptr;
-
-   }
-   catch (...)
-   {
-
-      //::output_debug_string("exception release pca = nullptr; (" + string(atom) + ")\n");
-      ::output_debug_string("exception release pca = nullptr; \n");
-
-   }
-
-   try
-   {
-
-      return ptr->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-   }
-   catch (...)
-   {
-
-      ::output_debug_string("exception release p->release() \n");
-
-   }
-
-   return -1;
-
-}
-
-
-//template < class COMPOSITE >
-//inline i64 release(::pointer<COMPOSITE>& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-//{
-//
-//   return release(pcomposite.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-//
-//}
-
 
 template < typename TYPE >
 inline i64 release(::pointer<TYPE>& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
@@ -1399,35 +1295,35 @@ inline i64 ref_count(c_derived * pca)
 }
 
 
-class CLASS_DECL_ACME global_particle :
-   virtual public ::particle
-{
-public:
+//class CLASS_DECL_ACME global_particle :
+//   virtual public ::particle
+//{
+//public:
+//
+//
+//   global_particle * m_pglobalparticleNext;
+//
+//   global_particle();
+//   ~global_particle() override;
+//
+//
+//};
 
 
-   global_particle * m_pglobalparticleNext;
-
-   global_particle();
-   ~global_particle() override;
-
-
-};
-
-
-template < typename TYPE >
-class global_pointer :
-   public ::global_particle,
-   public pointer <TYPE >
-{
-public:
-
-
-   using pointer < TYPE >::pointer;
-
-
-   using pointer < TYPE >::operator = ;
-
-};
+//template < typename TYPE >
+//class global_pointer :
+//   public ::global_particle,
+//   public pointer <TYPE >
+//{
+//public:
+//
+//
+//   using pointer < TYPE >::pointer;
+//
+//
+//   using pointer < TYPE >::operator = ;
+//
+//};
 
 
 
@@ -1492,6 +1388,207 @@ inline pointer < T > & pointer < T >::create_new(OBJECT * pparticle)
    }
 
    return operator=(p);
+
+}
+
+
+template<typename T>
+inline bool __found(const pointer < T >& p);
+
+
+template<typename T>
+inline bool __not_found(const pointer < T >& p);
+
+
+template<typename TDST, typename TSRC>
+inline ::pointer<TDST>& clone(::pointer<TDST>dst, const ::pointer<TSRC>rc);
+
+
+template<typename T>
+inline pointer < T > clone(const pointer < T >& t);
+
+
+template<class POINTER_TYPE>
+inline auto& __typed(::pointer<POINTER_TYPE>* pp) { return *pp->operator POINTER_TYPE * (); }
+
+
+template<class POINTER_TYPE>
+inline auto& __typed(::pointer<POINTER_TYPE>& p) { return *p; }
+
+
+template<typename T>
+void __destroy_and_release(pointer < T >& p)
+{
+
+   if (::is_null(p))
+   {
+
+      return;
+
+   }
+
+   try
+   {
+
+      p->destroy();
+
+   }
+   catch (...)
+   {
+
+   }
+
+   p.release();
+
+}
+
+
+template < class T >
+template < typename T2 >
+inline pointer < T > ::pointer(const ptr < T2 >& t) :
+   m_p(t.m_p),
+   m_pparticle(t.m_p)
+{
+
+   if (::is_set(m_p))
+   {
+
+      m_pparticle->increment_reference_count();
+
+   }
+
+}
+
+
+template < class T >
+template < typename T2 >
+inline pointer < T > ::pointer(ptr < T2 >&& t) :
+   m_p(t.m_p),
+   m_pparticle(t.m_p)
+{
+
+   if (::is_set(m_p))
+   {
+
+      m_pparticle->increment_reference_count();
+
+   }
+
+}
+
+
+template < class T >
+template < typename T2 >
+inline pointer < T >& pointer < T > ::operator = (const ptr < T2 >& t)
+{
+
+   auto pold = m_pparticle;
+
+   m_p = dynamic_cast <T*>(t.m_p);
+
+   m_pparticle = t.m_p;
+
+   if (::is_set(m_p))
+   {
+
+      m_pparticle->increment_reference_count();
+
+   }
+
+   ::release(pold REF_DBG_COMMA_POINTER);
+
+   return *this;
+
+}
+
+
+template < class T >
+template < typename T2 >
+inline pointer < T >& pointer < T > ::operator = (ptr < T2 >&& t)
+{
+
+   auto pOld = m_pparticle;
+
+   m_p = t.m_p;
+
+   m_pparticle = t.m_p;
+
+   t.m_p = nullptr;
+
+   ::release(pOld REF_DBG_COMMA_POINTER);
+
+   return *this;
+
+}
+
+
+
+template < typename T >
+template < typename PARTICLE >
+inline pointer < T >& pointer<T> ::defer_create(PARTICLE* pparticle, ::factory::factory* pfactory)
+{
+
+   if (is_null())
+   {
+
+      operator=(pparticle->template __create < T >());
+
+   }
+
+   return *this;
+
+}
+
+
+
+template < typename TYPE >
+inline ::pointer<TYPE> __create_new(::particle* pparticle)
+{
+
+   if (::is_null(pparticle))
+   {
+
+      throw_exception(error_wrong_state);
+
+   }
+
+   auto p = __new(TYPE());
+
+   if (p)
+   {
+
+      p->initialize(pparticle);
+
+   }
+
+   return ::move(p);
+
+}
+
+
+template < typename TYPE >
+inline void __construct_new(::particle* pparticle, ::pointer<TYPE>& p)
+{
+
+   p = __new(TYPE);
+
+   if (!p)
+   {
+
+      throw_exception(error_no_memory);
+
+   }
+
+   p->initialize(pparticle);
+
+}
+
+
+template < typename TYPE1, typename TYPE2 >
+inline void copy(::pointer < TYPE1 >& p1, const ::pointer < TYPE2 >& p2)
+{
+
+   p1 = ((TYPE2 *)p2.get());
 
 }
 

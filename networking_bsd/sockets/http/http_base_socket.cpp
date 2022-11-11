@@ -57,7 +57,7 @@ namespace sockets
 
       http_socket::OnHeader(key, value);
 
-      if(key == __id(content_length))
+      if(key == "content_length")
       {
          m_iContentLength = atoi(value);
       }
@@ -114,10 +114,10 @@ namespace sockets
 
       }
 
-      if(m_request.headers().has_property(__id(user_agent)))
+      if(m_request.headers().has_property("user_agent"))
       {
 
-         INFORMATION("user-agent: " << m_request.header(__id(user_agent)).get_string());
+         INFORMATION("user-agent: " << m_request.header("user_agent").get_string());
 
       }
       else
@@ -127,17 +127,17 @@ namespace sockets
 
       }
 
-      if(m_request.headers().has_property(__id(from)))
+      if(m_request.headers().has_property("from"))
       {
 
-         INFORMATION("from: " + m_request.header(__id(from)).get_string());
+         INFORMATION("from: " + m_request.header("from").get_string());
 
       }
 
-      if(m_request.headers().has_property(__id(accept_language)))
+      if(m_request.headers().has_property("accept_language"))
       {
 
-         FORMATTED_INFORMATION("accept-language: %s", m_request.header(__id(accept_language)).string().c_str());
+         FORMATTED_INFORMATION("accept-language: %s", m_request.header("accept_language").string().c_str());
 
       }
 
@@ -197,8 +197,8 @@ namespace sockets
 
       //TRACE0("http_base_socket::Respond");
 
-      if(outheader(__id(content_type)).string().find("text") >= 0
-            || outheader(__id(content_type)).string().find("javascript") >= 0)
+      if(outheader("content_type").string().find("text") >= 0
+            || outheader("content_type").string().find("javascript") >= 0)
       {
 
          on_compress();
@@ -208,29 +208,29 @@ namespace sockets
       if (response().m_strFile.has_char())
       {
 
-         response().m_propertysetHeader[__id(content_length)] = acmefile()->get_size(response().m_strFile);
+         response().m_propertysetHeader["content_length"] = acmefile()->get_size(response().m_strFile);
 
       }
       else
       {
 
-         m_response.m_propertysetHeader.set_at(__id(content_length), (i64)m_response.file()->get_size());
+         m_response.m_propertysetHeader.set_at("content_length", (i64)m_response.file()->get_size());
 
       }
 
       //for(i32 i = 0; i < m_response.cookies().get_size(); i++)
       //{
 
-      //   m_response.m_propertysetHeader.set_at(__id(set_cookie), m_response.cookies().element_at(i)->get_cookie_string());
+      //   m_response.m_propertysetHeader.set_at("set_cookie", m_response.cookies().element_at(i)->get_cookie_string());
 
       //}
 
       /*
 
-            if(m_response.m_propertysetHeader.has_property(__id(locationd)))
+            if(m_response.m_propertysetHeader.has_property("locationd"))
             {
 
-               string strLocation = m_response.m_propertysetHeader.lowprop(__id(Location));
+               string strLocation = m_response.m_propertysetHeader.lowprop("Location");
 
                m_response.m_propertysetHeader.erase_by_name("Location");
 
@@ -326,12 +326,12 @@ namespace sockets
       if(inheader("accept-encoding").string().find("gzip") >= 0)
       {
 
-         string str = outheader(__id(content_type)).string();
+         string str = outheader("content_type").string();
 
          if (str.find_ci("text") >= 0 || str.find_ci("javascript") >= 0)
          {
 
-            m_response.m_propertysetHeader.set_at(__id(content_encoding), "gzip");
+            m_response.m_propertysetHeader.set_at("content_encoding", "gzip");
 
             auto pfile = create_memory_file();
 
@@ -385,19 +385,19 @@ namespace sockets
 
       if (bMd5Request)
       {
-         outheader(__id(content_type)) = "text/plain";
+         outheader("content_type") = "text/plain";
       }
-      else if (outheader(__id(content_type)).string().has_char())
+      else if (outheader("content_type").string().has_char())
       {
       }
       else if (strContentType.has_char() && strContentType.compare_ci("unknown") != 0)
       {
-         outheader(__id(content_type)) = strContentType;
+         outheader("content_type") = strContentType;
       }
       else
       {
 
-         outheader(__id(content_type)) = get_file_extension_mime_type(strExtension);
+         outheader("content_type") = get_file_extension_mime_type(strExtension);
 
       }
 
@@ -473,9 +473,9 @@ namespace sockets
          if (acmedirectory()->is(pcsz))
          {
             
-            outattr(__id(http_status_code)) = 200;
+            outattr("http_status_code") = 200;
             
-            outattr(__id(http_status)) = "OK";
+            outattr("http_status") = "OK";
             
             outheader("x-fstype") = "directory";
 
@@ -483,9 +483,9 @@ namespace sockets
          else
          {
             
-            outattr(__id(http_status_code)) = 404;
+            outattr("http_status_code") = 404;
             
-            outattr(__id(http_status)) = "Not Found";
+            outattr("http_status") = "Not Found";
 
          }
 
@@ -530,9 +530,9 @@ namespace sockets
 
                response().m_strFile = pcsz;
 
-               outattr(__id(http_status_code)) = 200;
+               outattr("http_status_code") = 200;
 
-               outattr(__id(http_status)) = "OK";
+               outattr("http_status") = "OK";
 
             }
             else
@@ -654,7 +654,7 @@ namespace sockets
             
             response().println("--THIS_STRING_SEPARATES--\r\n");
             
-            outheader(__id(content_type)) = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";
+            outheader("content_type") = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";
 
          }
          else

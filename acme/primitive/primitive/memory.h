@@ -2,9 +2,7 @@
 
 
 #include "memory_base.h"
-
-
-
+#include "acme/primitive/primitive/pointer.h"
 
 
 // class CLASS_DECL_ACME read_only_memory :

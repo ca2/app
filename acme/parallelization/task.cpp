@@ -1,12 +1,21 @@
 ﻿#include "framework.h"
 #include "task.h"
 #include "manual_reset_event.h"
+#include "acme/exception/exception.h"
 #include "acme/platform/system.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/translator.h"
 #include "acme/parallelization/synchronous_lock.h"
+
+
+#include "acme/exception/_text_stream.h"
 #include "acme/_operating_system.h"
+
+
+bool on_init_thread();
+
+void on_term_thread();
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -200,7 +209,7 @@ bool task::task_set_name(const char* pszTaskName)
 bool task::task_get_run() const
 {
 
-   return !is_finishing();
+   return !has_finishing_flag();
 
 }
 
@@ -236,7 +245,7 @@ bool task::check_tasks_finished()
 
    auto b = ::object::check_tasks_finished();
 
-   if (is_finishing())
+   if (has_finishing_flag())
    {
 
       update_task_ready_to_quit();
@@ -267,6 +276,29 @@ void task::on_pre_run_task()
 {
 
    //return ::success;
+
+}
+
+
+bool task::on_init_task()
+{
+
+   if (!::on_init_thread())
+   {
+
+      return false;
+    
+   }
+
+   return true;
+
+}
+
+
+void task::on_term_task()
+{
+
+   ::on_term_thread();
 
 }
 
@@ -489,7 +521,7 @@ void* task::s_os_task(void* p)
 
       clear_message_queue(ptask->m_itask);
 
-      ptask->set(e_flag_task_terminated);
+      ptask->set_flag(e_flag_task_terminated);
 
       ptask->destroy();
 
@@ -1008,7 +1040,7 @@ bool task::has_message() const
 
    m_bIsRunning = true;
 
-   set(e_flag_task_started);
+   set_flag(e_flag_task_started);
 
    if (::is_null(m_pobjectParentTask))
    {
@@ -1111,7 +1143,7 @@ bool task::has_message() const
 ::pointer<::task>task::branch_synchronously(const ::create_task_attributes & createtaskattributes)
 {
 
-   unset_finishing();
+   clear_finishing_flag();
 
    ENSURE(m_htask == (htask_t) nullptr);
 
@@ -2074,28 +2106,28 @@ tracer trace_log_fatal() { return ::get_task()->trace_log_fatal(); }
 
 
 
-thread_local thread_local_particle * task_guard::t_pthreadlocalparticleList = nullptr;
-
-
-
-thread_local_particle::thread_local_particle()
-{
-
-   m_pthreadlocalparticleNext = task_guard::t_pthreadlocalparticleList;
-
-
-   task_guard::t_pthreadlocalparticleList = this;
-
-
-}
-
-
-thread_local_particle::~thread_local_particle()
-{
-
-   //// todo removed
-
-}
+//thread_local thread_local_particle * task_guard::t_pthreadlocalparticleList = nullptr;
+//
+//
+//
+//thread_local_particle::thread_local_particle()
+//{
+//
+//   m_pthreadlocalparticleNext = task_guard::t_pthreadlocalparticleList;
+//
+//
+//   task_guard::t_pthreadlocalparticleList = this;
+//
+//
+//}
+//
+//
+//thread_local_particle::~thread_local_particle()
+//{
+//
+//   //// todo removed
+//
+//}
 
 
 task_guard::task_guard()
@@ -2109,18 +2141,18 @@ task_guard::task_guard()
 task_guard::~task_guard()
 {
 
-   auto p = t_pthreadlocalparticleList;
+   //auto p = t_pthreadlocalparticleList;
 
-   while(p)
-   {
+   //while(p)
+   //{
 
-      auto pNext = t_pthreadlocalparticleList->m_pthreadlocalparticleNext;
+   //   auto pNext = t_pthreadlocalparticleList->m_pthreadlocalparticleNext;
 
-      ::release(p);
+   //   ::release(p);
 
-      p = pNext;
+   //   p = pNext;
 
-   }
+   //}
 
    on_term_thread();
 

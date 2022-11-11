@@ -12,8 +12,10 @@
 #include "_api.h"
 
 
-void error_code::get_string(::text_stream & textstream) const
+void error_code::get_message(::string & strMessage) const
 {
+
+   string_stream textstream(strMessage);
    
    switch(m_etype)
    {

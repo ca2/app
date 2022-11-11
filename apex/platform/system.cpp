@@ -203,7 +203,7 @@ namespace apex
 
       ::factory::add_factory_item < ::apex::application >();
       ::factory::add_factory_item < ::apex::session, ::apex::session >();
-      ::factory::add_factory_item < ::apex::idpool, ::acme::idpool >();
+      //::factory::add_factory_item < ::apex::idpool, ::acme::idpool >();
       
 
    }
@@ -316,7 +316,7 @@ namespace apex
 #ifdef __DEBUG
 
       //estatus = 
-      __construct_new(m_pdumpcontext);
+      //__construct_new(m_pdumpcontext);
 
       //if (!estatus)
       //{
@@ -729,11 +729,10 @@ namespace apex
          printf("%s", "\n\nApplication Information\n");
          output_debug_string("\n\nApplication Information\n");
 
-         int iPid;
-
-         iPid = acmenode()->get_current_process_id();
+         auto iPid = acmenode()->get_current_process_id();
 
          printf("%s", ("Process PID: " + __string(iPid) + "\n").c_str());
+
          output_debug_string("Process PID: " + __string(iPid) + "\n");
 
       }

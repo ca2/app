@@ -11,21 +11,21 @@ namespace networking
 {
 
 
-   class CLASS_DECL_APEX port_forward_change_callbacks :
-      virtual public object
-   {
-   public:
+   //class CLASS_DECL_APEX port_forward_change_callbacks :
+   //   virtual public object
+   //{
+   //public:
 
 
-      port_forward_change_callbacks();
-      ~port_forward_change_callbacks() override;
+   //   port_forward_change_callbacks();
+   //   ~port_forward_change_callbacks() override;
 
 
-      virtual HRESULT OnNewNumberOfEntries( i32 lNewNumberOfEntries );
-      virtual HRESULT OnNewExternalIPAddress(const char * psz );
+   //   virtual HRESULT OnNewNumberOfEntries( i32 lNewNumberOfEntries );
+   //   virtual HRESULT OnNewExternalIPAddress(const char * psz );
 
 
-   };
+   //};
 
 
    class CLASS_DECL_APEX port_forward :
@@ -106,14 +106,14 @@ namespace networking
       port_forward();
       virtual ~port_forward();
 
-      virtual HRESULT ListenForUpnpChanges(port_forward_change_callbacks *pCallbacks = nullptr);  // nullptr==default object; if you provide your own pointer to a port_forward_change_callbacks-derived object it is deleted for you automatically
-      virtual HRESULT StopListeningForUpnpChanges( );  // Stops listenting for UPnP machine events on the router and deletes any port_forward_change_callbacks-derived objects
+      //virtual HRESULT ListenForUpnpChanges(port_forward_change_callbacks *pCallbacks = nullptr);  // nullptr==default object; if you provide your own pointer to a port_forward_change_callbacks-derived object it is deleted for you automatically
+      //virtual HRESULT StopListeningForUpnpChanges( );  // Stops listenting for UPnP machine events on the router and deletes any port_forward_change_callbacks-derived objects
 
-      virtual bool GetDeviceInformationUsingThread( oswindow oswindow );  // starts a thread that will get IGD (router) device information; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
-      virtual bool GetMappingsUsingThread( oswindow oswindow );  // starts a thread that will get all mappings; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
-      virtual bool EditMappingUsingThread( port_map & oldMapping, port_map& newMapping, oswindow oswindow );  // starts a thread that will edit one specific mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
-      virtual bool AddMappingUsingThread( port_map& newMapping, oswindow oswindow );  // starts a thread that will add one memory_new mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
-      virtual bool DeleteMappingUsingThread( port_map& oldMapping, oswindow oswindow );  // starts a thread that will delete one specific mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
+      //virtual bool GetDeviceInformationUsingThread( oswindow oswindow );  // starts a thread that will get IGD (router) device information; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
+      //virtual bool GetMappingsUsingThread( oswindow oswindow );  // starts a thread that will get all mappings; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
+      //virtual bool EditMappingUsingThread( port_map & oldMapping, port_map& newMapping, oswindow oswindow );  // starts a thread that will edit one specific mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
+      //virtual bool AddMappingUsingThread( port_map& newMapping, oswindow oswindow );  // starts a thread that will add one memory_new mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
+      //virtual bool DeleteMappingUsingThread( port_map& oldMapping, oswindow oswindow );  // starts a thread that will delete one specific mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
 
       virtual pointer_array < port_map > get_port_map() const;  // gets a copy of currently-known port mappings
       virtual pointer_array < device > get_igd() const;  // gets a copy of currently-know device information

@@ -18,29 +18,10 @@ namespace geometry
    }
 
 
-   //void geometry::initialize(::particle * pparticle)
-   //{
-
-   //   auto estatus = ::matter::initialize(pparticle);
-
-   //   if (!estatus)
-   //   {
-
-   //      return estatus;
-
-   //   }
-
-   //   return estatus;
-
-   //}
-
-
    void geometry::destroy()
    {
 
-      ::matter::destroy();
-
-      //return ::success;
+      ::particle::destroy();
 
    }
 

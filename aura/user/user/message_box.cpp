@@ -12,6 +12,7 @@
 #include "acme/constant/message.h"
 #include "acme/platform/sequencer.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/windowing/monitor.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
 #include "aura/message/user.h"

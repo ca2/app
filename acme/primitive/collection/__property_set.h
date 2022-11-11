@@ -37,7 +37,7 @@ public:
    ::count erase_by_name(const atom & idName);
    ::count erase_by_name(string_array & straName);
 
-   virtual ::matter * source_channel();
+   virtual ::particle * source_channel();
 
    ::payload operator()(const atom & atom, const ::payload & varDefault = ::error_not_found) const;
 
@@ -415,7 +415,4 @@ inline bool property_set::get_string(string & strResult, const atom & idKey) con
    return true;
 
 }
-
-
-
 

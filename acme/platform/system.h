@@ -6,6 +6,7 @@
 #include "main.h"
 #include "context.h"
 #include "plane_system.h"
+#include "acme/memory/counter.h"
 #include "acme/primitive/primitive/factory.h"
 
 
@@ -40,13 +41,13 @@ namespace acme
       ::pointer<::apex::system>                                       m_psystemParent;
 
 
-      ::pointer < ::mutex >                                           m_pmutexFactory;
+      //::pointer < ::mutex >                                           m_pmutexFactory;
       //string_map < ::pointer<::factory::factory >>                  m_mapFactory;
-      string_map < ::pointer<::factory::factory >>                      m_mapFactory;
+      //string_map < ::pointer<::factory::factory >>                      m_mapFactory;
 
 
-      ::pointer < ::mutex >                                            m_pmutexComponentFactory;
-      string_map < string_map < ::pointer<::factory::factory >>>       m_mapComponentFactory;
+      ::pointer < ::memory_counter >   m_pmemorycounter;
+
 
 
       pointer< string_map < ::pointer<::regular_expression::context >>>                        m_pmapRegularExpressionContext;
@@ -63,6 +64,9 @@ namespace acme
 
 
       ::pointer<class ::datetime::department>                         m_pdatetime;
+
+      ::pointer<mutex>                                                  m_pmutexUiDestroyed;
+
 
 
 
@@ -99,6 +103,9 @@ namespace acme
 
       ::pointer<::dir_system>                                           m_pdirsystem;
       ::pointer<::file_system>                                          m_pfilesystem;
+
+
+      ::pointer < logger >                                              m_plogger;
 
 
       system();
@@ -141,6 +148,8 @@ namespace acme
       inline ::text::table * texttable() { return m_ptexttable; }
 
       inline ::url::department * url() { return m_purldepartment; }
+
+      ::particle * ui_destroyed_synchronization() { return m_pmutexUiDestroyed; }
 
 
       virtual void defer_audio();

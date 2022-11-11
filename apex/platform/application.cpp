@@ -530,8 +530,8 @@ namespace apex
 
       MESSAGE_LINK(e_message_close, pchannel, this, &application::on_message_close);
 
-      add_command_handler("app_exit", this, &application::on_message_app_exit);
-      add_command_handler("switch_context_theme", this, &application::_001OnSwitchContextTheme);
+      add_command_handler("app_exit", { this, &application::on_message_app_exit });
+      add_command_handler("switch_context_theme", { this, &application::_001OnSwitchContextTheme });
 
    }
 
@@ -4441,8 +4441,8 @@ namespace apex
 
       localeschema.add_locale_variant(strLocale, strSchema);
       localeschema.add_locale_variant(get_locale(), strSchema);
-      localeschema.add_locale_variant(__id(std), strSchema);
-      localeschema.add_locale_variant(__id(en), strSchema);
+      localeschema.add_locale_variant("std", strSchema);
+      localeschema.add_locale_variant("en", strSchema);
 
       localeschema.destroy();
 
@@ -4508,7 +4508,7 @@ namespace apex
       for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       {
 
-         localeschema.add_locale_variant(__id(std), straSchema[iSchema]);
+         localeschema.add_locale_variant("std", straSchema[iSchema]);
 
       }
 
@@ -4516,7 +4516,7 @@ namespace apex
       for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       {
 
-         localeschema.add_locale_variant(__id(en), straSchema[iSchema]);
+         localeschema.add_locale_variant("en", straSchema[iSchema]);
 
       }
 
@@ -6480,7 +6480,7 @@ namespace apex
       for (index i = 0; i < iCount; i++)
       {
 
-         if (plocaleschema->m_idaLocale[i] == __id(std) && plocaleschema->m_idaSchema[i] == __id(std) && bIgnoreStdStd)
+         if (plocaleschema->m_idaLocale[i] == "std" && plocaleschema->m_idaSchema[i] == "std" && bIgnoreStdStd)
             continue;
 
          string strLocale;
@@ -6576,7 +6576,7 @@ namespace apex
          //try
          //{
 
-         pfolder->extract_all(strDir);
+         pfolder->e_extract_all(strDir);
 
          //}
          //catch (...)
@@ -6588,7 +6588,7 @@ namespace apex
          //
          //}
 
-         //psystem->compress().extract_all(strFile, this);
+         //psystem->compress().e_extract_all(strFile, this);
 
       }
 
@@ -6957,7 +6957,7 @@ namespace apex
 
          auto pmutex = acmenode()->get_install_mutex(this, acmenode()->process_platform_name(), "");
 
-         if (pmutex->already_exists())
+         if (pmutex->has_already_exists_flag())
          {
 
             //            output_error_message("Could not launch spa installer. It is already running.", e_message_box_ok);

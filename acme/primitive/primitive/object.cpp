@@ -1,7 +1,8 @@
 ﻿#include "framework.h"
 #include "acme/constant/message.h"
+#include "acme/exception/exception.h"
 #include "acme/handler/extended_topic.h"
-#include "acme/update.h"
+//#include "acme/update.h"
 #if OBJECT_REFERENCE_COUNT_DEBUG
 #include "acme/platform/obj_ref_debug_impl.h"
 #endif
@@ -1118,7 +1119,7 @@ bool object::check_tasks_finished()
 
    }
 
-   if (!is_finishing())
+   if (!has_finishing_flag())
    {
 
       return m_pparticleaChildrenTask->has_element();
@@ -1216,7 +1217,7 @@ bool object::check_tasks_finished()
 
    }
 
-   if(!has(e_flag_checking_children_task))
+   if(!has_flag(e_flag_checking_children_task))
    {
 
       try
@@ -1605,7 +1606,7 @@ bool object::__is_child_task(::particle * pparticleTask) const
 ::task_pointer object::defer_branch(const ::atom& atom, const ::procedure & procedure, enum_priority epriority)
 {
 
-   auto ptask = get_property_set()[__id(thread)][atom].cast < ::task>();
+   auto ptask = get_property_set()["thread"][atom].cast < ::task>();
 
    if(ptask && ptask->is_running())
    {
@@ -1618,7 +1619,7 @@ bool object::__is_child_task(::particle * pparticleTask) const
 
    ptask->m_procedure = procedure;
 
-   get_property_set()[__id(thread)][atom] = ptask;
+   get_property_set()["thread"][atom] = ptask;
 
    ptask->branch();
 
@@ -1735,7 +1736,7 @@ void object::handle_exception(const ::exception& e)
    if (::is_exit_exception_status(e.estatus()))
    {
 
-      __rethrow(e);
+      throw e;
 
    }
    else if (e.estatus() == error_library_not_found)
@@ -1879,7 +1880,7 @@ void object::task_erase(::task* ptask)
       //}
 
       //if (finish_bit() && (!m_ptaska || ptaska->is_empty()))
-      if (is_finishing())
+      if (has_finishing_flag())
       {
 
          if (strThreadThis == "app_veriwell_keyboard::application")
@@ -1940,7 +1941,7 @@ void object::sleep(const ::duration& duration)
 
       }
 
-      if (acmesystem() && acmesystem()->is_finishing())
+      if (acmesystem() && acmesystem()->has_finishing_flag())
       {
 
          throw ::exception(error_exit_system);
@@ -1989,7 +1990,7 @@ void object::sleep(const ::duration& duration)
 
       }
 
-      if (acmesystem() && acmesystem()->is_finishing())
+      if (acmesystem() && acmesystem()->has_finishing_flag())
       {
 
          throw ::exception(error_exit_system);
@@ -2146,7 +2147,7 @@ void object::install_message_routing(::channel* pchannel)
 }
 
 
-//::pointer<::particle>object::running(const ::string & pszTag) const
+//::particle_pointerobject::running(const ::string & pszTag) const
 //{
 //
 //   //if (m_pcompositea)

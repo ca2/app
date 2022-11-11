@@ -2,12 +2,10 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/_uhash.h"
-#include "acme/primitive/string/_uhash.h"
+#include "acme/primitive/string/_u32hash.h"
 #include "acme/primitive/string/string.h"
 #include "acme/primitive/comparison/equals.h"
 #include "acme/primitive/comparison/hash.h"
-#include "acme/primitive/string/string_base.h"
 #include "acme/primitive/primitive/move.h"
 
 
@@ -231,7 +229,7 @@ class CLASS_DECL_ACME atom
 public:
 
 
-   using TAG = ATOM_TAG;
+   using PRIMITIVE_ATOM_TAG = PRIMITIVE_ATOM_TAG_TYPE;
 
    enum enum_type : ::iptr
    {
@@ -329,7 +327,17 @@ public:
 #endif // !NO_TEMPLATE
    atom(const ::lparam & lparam);
    atom(::atom && atom) { m_etype = atom.m_etype; m_u = atom.m_u; atom.m_etype = e_type_integer; atom.m_u = 0; }
-   ~atom() { if(is_text()) m_str.::string::~string(); }
+   ~atom()
+   {
+
+      if (is_text())
+      {
+
+         m_str.::string::~string();
+
+      }
+
+   }
 
 
    enum_type primitive_type() const
@@ -554,6 +562,12 @@ public:
 
    //inline atom & operator +=(const char * psz);
 
+   inline operator u32hash() const
+   {
+
+      return { (((::u32)m_etype) << 24) ^ (is_text() ? u32_hash(m_str.c_str()).m_u : ((((::u32)m_u) >> 8) & 0xffffffffu)) };
+
+   }
 
 
 #ifndef NO_TEMPLATE
@@ -1558,28 +1572,6 @@ inline bool atom::begins_ci(const char * pszCandidatePrefix) const
 
 
 
-#ifndef NO_TEMPLATE
-
-
-template < >
-inline uptr uptr_hash< const atom & >(const atom & key)
-{
-
-   return (((uptr)key.m_etype) << 24) ^ (key.is_text() ? uptr_hash(key.m_str.c_str()) : ((((::u32)(uptr)key.m_u) >> 8) & 0xffffffffu));
-
-}
-
-
-template < >
-inline uptr uptr_hash< atom>(atom key)
-{
-
-   return uptr_hash<const atom & >((const atom &)key);
-
-}
-
-
-#endif
 
 
 inline void from_string(::atom & atom, const ansichar * psz)

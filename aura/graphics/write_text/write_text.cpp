@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "write_text.h"
+#include "font_enumeration_item.h"
 #include "fonts.h"
 #include "true_type_font_utilities.h"
 #include "acme/constant/id.h"

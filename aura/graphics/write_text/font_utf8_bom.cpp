@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "font.h"
+#include "acme/primitive/string/international.h"
 
 
 namespace write_text

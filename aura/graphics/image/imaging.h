@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/platform/department.h"
 
 

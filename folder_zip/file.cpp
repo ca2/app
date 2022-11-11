@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "file.h"
 #include "folder.h"
+#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 
 

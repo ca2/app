@@ -1,13 +1,13 @@
 ﻿#pragma once
 
 
-#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/primitive/particle.h"
 //namespace str
 //{
 
 
    class CLASS_DECL_ACME base64 :
-      virtual public ::matter
+      virtual public ::particle
    {
    public:
 

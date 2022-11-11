@@ -283,7 +283,7 @@ namespace android
       }
 
 
-      //   bool dir::rls(::particle * pparticle, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, e_extract eextract)
+      //   bool dir::rls(::particle * pparticle, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, enum_extract eextract)
       //   {
       //
       //      if(::file::dir::axis::system::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
@@ -298,7 +298,7 @@ namespace android
       //   }
       //
       //
-      //   bool dir::rls_pattern(::particle * pparticle, const ::string & lpcsz, const ::string & lpszPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, i64_array * piaSize, e_extract eextract)
+      //   bool dir::rls_pattern(::particle * pparticle, const ::string & lpcsz, const ::string & lpszPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, i64_array * piaSize, enum_extract eextract)
       //   {
       //
       //      if(::file::dir::axis::system::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract))

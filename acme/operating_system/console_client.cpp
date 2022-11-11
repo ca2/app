@@ -39,7 +39,7 @@ namespace console
    }
 
 
-   string_stream & console_client::cout()
+   write_text_stream < ::file::file > & console_client::cout()
    {
 
       return get_console()->cout();

@@ -1,15 +1,9 @@
 ﻿#pragma once
 
 
-#include "acme/exception/debug.h"
-#include "acme/primitive/primitive/block.h"
-#include "string_natural_pointer.h"
-
-
-//inline ::string operator+(const char * pszLeft, const ::string & strRight);
-
-
-//inline ::wstring operator+(const widechar * pszLeft, const ::wstring & wstringableRight);
+//#include "acme/exception/debug.h"
+//#include "acme/primitive/primitive/block.h"
+//#include "simple_string_base.h"
 
 
 template < primitive_character CHARACTER, primitive_character CHARACTER2 >
@@ -38,7 +32,7 @@ inline string_base < TYPE_CHAR >::string_base(const CHARACTER2 * pszSource, strs
    if (dstlen <= 0)
    {
 
-      this->m_pdata = this->default_construct_natural_pointer();
+      default_construct();
 
    }
    else
@@ -68,13 +62,13 @@ inline string_base < TYPE_CHAR >::string_base(const string_base & strSource, str
    if (count <= 0)
    {
 
-      this->m_pdata = this->default_construct_natural_pointer();
+      default_construct();
 
    }
    else if(start == 0 && count == lenSource)
    {
 
-      this->create_assign_natural_meta_data(strSource.metadata());
+      this->create_assign_natural_meta_data(strSource.POINTER::metadata());
 
    }
    else
@@ -106,13 +100,13 @@ inline string_base < TYPE_CHAR >::string_base(const string_base < CHARACTER2 > &
    if (count <= 0)
    {
 
-      this->m_pdata = this->default_construct_natural_pointer();
+      default_construct();
 
    }
    else if(sizeof(TYPE_CHAR) == sizeof(CHARACTER2) && start == 0 && count == lenSource)
    {
 
-      this->create_assign_natural_meta_data((natural_meta_data < string_meta_data < TYPE_CHAR > > *)strSource.metadata());
+      this->create_assign_natural_meta_data((natural_meta_data < string_meta_data < TYPE_CHAR > > *)strSource.POINTER::metadata());
 
    }
    else
@@ -129,60 +123,6 @@ inline string_base < TYPE_CHAR >::string_base(const string_base < CHARACTER2 > &
    }
 
 }
-
-
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const ansichar * pansichar)
-//{
-//
-//   assign(pansichar);
-//
-//}
-//
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const wd16char * pwd16char)
-//{
-//
-//   assign(pwd16char);
-//
-//}
-//
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const wd32char * pwd32char)
-//{
-//
-//   assign(pwd32char);
-//
-//}
-
-
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const ansichar * pszSrc, strsize nLength)
-//{
-//
-//   assign(pszSrc, nLength);
-//
-//}
-//
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const wd16char * pwszSrc, strsize nLength)
-//{
-//
-//   assign(pwszSrc, nLength);
-//
-//}
-//
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const wd32char * pwszSrc, strsize nLength)
-//{
-//
-//   assign(pwszSrc, nLength);
-//
-//}
 
 
 template < typename TYPE_CHAR >
@@ -228,7 +168,7 @@ inline string_base < TYPE_CHAR >::string_base(CHARACTER2 chSrc, strsize repeat) 
    else
    {
 
-      this->m_pdata = this->default_construct_natural_pointer();
+      default_construct();
 
    }
 
@@ -633,7 +573,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const string_base & str)
 {
 
-   this->assign_natural_meta_data(str.metadata());
+   this->assign_natural_meta_data(str.POINTER::metadata());
 
    return *this;
 
@@ -1741,7 +1681,7 @@ inline string_base < TYPE_CHAR >::string_base(const block & block) :
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const natural_ansistring & ansistr) :
+inline string_base < TYPE_CHAR >::string_base(const simple_ansistring & ansistr) :
    string_base(ansistr.m_pdata)
 {
 
@@ -1749,7 +1689,7 @@ inline string_base < TYPE_CHAR >::string_base(const natural_ansistring & ansistr
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const natural_wd16string & wd16str) :
+inline string_base < TYPE_CHAR >::string_base(const simple_wd16string & wd16str) :
    string_base(wd16str.m_pdata)
 {
 
@@ -1757,7 +1697,7 @@ inline string_base < TYPE_CHAR >::string_base(const natural_wd16string & wd16str
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const natural_wd32string & wd32str) :
+inline string_base < TYPE_CHAR >::string_base(const simple_wd32string & wd32str) :
    string_base(wd32str.m_pdata)
 {
 
@@ -2008,7 +1948,7 @@ template < typename CHAR_TYPE >
 CHAR_TYPE * string_base < CHAR_TYPE >::fork_string(strsize strsize)
 {
 
-   auto pOld = this->metadata();
+   auto pOld = this->POINTER::metadata();
 
    ASSERT(pOld->m_countReference >= 1);
 
@@ -2056,7 +1996,7 @@ string_base < CHAR_TYPE > & string_base < CHAR_TYPE >::release_string_buffer(str
 
    }
 
-   this->metadata()->set_length(nNewLength);
+   this->POINTER::metadata()->set_length(nNewLength);
 
    return *this;
 
@@ -2068,11 +2008,11 @@ inline strsize string_base < CHAR_TYPE >::get_storage_length() { return (::strsi
 
 
 template < typename CHAR_TYPE >
-inline memsize string_base < CHAR_TYPE >::get_length_in_bytes() const { return char_length_to_byte_length(this->m_pdata, (strsize)(this->metadata()->m_datasize)); }
+inline memsize string_base < CHAR_TYPE >::get_length_in_bytes() const { return char_length_to_byte_length(this->m_pdata, (strsize)(this->POINTER::metadata()->m_datasize)); }
 
 
 template < typename CHAR_TYPE >
-inline memsize string_base < CHAR_TYPE >::get_length_in_bytes_with_null_terminator() const { return char_length_to_byte_length(this->m_pdata, (strsize)(this->metadata()->m_datasize + 1)); }
+inline memsize string_base < CHAR_TYPE >::get_length_in_bytes_with_null_terminator() const { return char_length_to_byte_length(this->m_pdata, (strsize)(this->POINTER::metadata()->m_datasize + 1)); }
 
 
 template < typename CHAR_TYPE >
@@ -2133,7 +2073,7 @@ template < typename TYPE_CHAR >
 inline void string_base < TYPE_CHAR >::set_at(strsize iChar, CHAR_TYPE ch)
 {
 
-   auto p = this->metadata();
+   auto p = this->POINTER::metadata();
 
    if (p->natural_is_shared() || iChar >= p->length())
    {
@@ -2151,13 +2091,13 @@ inline void string_base < TYPE_CHAR >::set_at(strsize iChar, CHAR_TYPE ch)
 
 
 
-template < typename TYPE_CHAR >
-void string_base < TYPE_CHAR >::construct() noexcept
-{
-
-   POINTER::natural_release();
-
-}
+//template < typename TYPE_CHAR >
+//void string_base < TYPE_CHAR >::construct() noexcept
+//{
+//
+//   POINTER::natural_release();
+//
+//}
 
 
 //#ifdef WINDOWS
@@ -3854,11 +3794,11 @@ strsize string_base < TYPE_CHAR >::find_w(const CHAR_TYPE * pszSub, strsize iSta
       bool bFound = true;
       const CHAR_TYPE * psz2 = psz;
       const CHAR_TYPE * pszSub2 = pszSub;
-      strsize len1;
-      strsize len2;
+      ::i32 len1;
+      ::i32 len2;
       while (*psz2 != '\0' && *pszSub2 != '\0')
       {
-         if (unicode_index(psz2, &len1) != unicode_index(pszSub2, &len2))
+         if (unicode_index_length(psz2, len1) != unicode_index_length(pszSub2, len2))
          {
             bFound = false;
             break;
@@ -3928,15 +3868,15 @@ strsize string_base < TYPE_CHAR >::find_wci(const CHAR_TYPE * pszSub, strsize iS
 
       const CHAR_TYPE * pszSub2 = pszSub;
 
-      strsize len1;
+      ::i32 len1;
 
-      strsize len2;
+      ::i32 len2;
 
       while (*psz2 != '\0' && *pszSub2 != '\0')
       {
 
-         if (unicode_to_lower_case(unicode_index(psz2, &len1)) !=
-            unicode_to_lower_case(unicode_index(pszSub2, &len2)))
+         if (unicode_to_lower_case(unicode_index_length(psz2, len1)) !=
+            unicode_to_lower_case(unicode_index_length(pszSub2, len2)))
          {
 
             bFound = false;
@@ -4532,7 +4472,7 @@ string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::trim_right(const CHAR_TYP
    const CHAR_TYPE * pszStart = psz;
    const CHAR_TYPE * pszLast = nullptr;
 
-   while (!is_ptr_null(psz, 1024) && *psz != 0)
+   while (!::is_null(psz, 1024) && *psz != 0)
    {
       if (string_find_char(pszTargets, *psz) != nullptr)
       {
@@ -5980,6 +5920,54 @@ inline void string_meta_data < TYPE_CHAR > ::set_length(::strsize strsize)
    this->get_data()[strsize] = (TYPE_CHAR)0;
 
    this->get_data()[strsizeStorage - 1] = (TYPE_CHAR)0;
+
+}
+
+
+
+
+template < typename TYPE_CHAR >
+inline ::strsize string_meta_data < TYPE_CHAR>::memsize_in_chars() const
+{
+
+   return (::strsize)byte_length_to_char_length(&this->get_data()[0], (::strsize)this->m_memsize);
+
+}
+
+
+template < typename TYPE_CHAR >
+inline ::memsize string_meta_data < TYPE_CHAR>::length_in_bytes() const
+{
+
+   return char_length_to_byte_length(&this->get_data()[0], this->m_datasize);
+
+}
+
+
+
+template < typename CHAR_TYPE >
+::wd32char string_iterator < CHAR_TYPE > ::operator *() { return unicode_index(m_psz); }
+
+
+template < typename CHAR_TYPE >
+string_iterator < CHAR_TYPE > & string_iterator < CHAR_TYPE > ::operator ++()
+{
+
+   unicode_increment(m_psz);
+
+   return *this;
+
+}
+
+template < typename CHAR_TYPE >
+string_iterator < CHAR_TYPE > string_iterator < CHAR_TYPE > ::operator ++(int)
+{
+
+   auto psz = m_psz;
+
+   unicode_increment(m_psz);
+
+   return psz;
 
 }
 

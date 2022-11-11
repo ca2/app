@@ -3,6 +3,7 @@
 
 
 #include "acme/operating_system/security_attributes.h"
+#include "acme/primitive/primitive/pointer.h"
 
 
 class CLASS_DECL_ACME create_task_attributes

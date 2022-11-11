@@ -2,6 +2,7 @@
 #include "context.h"
 #include "signal.h"
 #include "get_socket.h"
+#include "acme/exception/exception.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/networking/url_department.h"
 #include "acme/networking/url_domain.h"
@@ -19,6 +20,10 @@
 #include "apex/platform/system.h"
 #include "apex/progress/listener.h"
 #include <time.h>
+
+
+#include "acme/primitive/duration/_text_stream.h"
+
 
 
 #define DEBUG_LEVEL_SICK 9
@@ -1374,21 +1379,21 @@ namespace http
 //         if (set["cookies"].cast < ::http::cookies >() != nullptr && set["cookies"].cast < ::http::cookies >()->get_size() > 0)
 //         {
 //
-//            psession->request().header(__id(cookie)) = set["cookies"].cast < ::http::cookies >()->get_cookie_header();
+//            psession->request().header("cookie") = set["cookies"].cast < ::http::cookies >()->get_cookie_header();
 //
 //         }
 //
 //         //if (set["user"].cast < ::account::user >() != nullptr && set["user"].cast < ::account::user >()->m_phttpcookies != nullptr && !(bool)set["disable_ca2_user_cookies"])
 //         //{
 //
-//         //   psession->request().header(__id(cookie)) = set["user"].cast < ::account::user >()->m_phttpcookies->get_cookie_header();
+//         //   psession->request().header("cookie") = set["user"].cast < ::account::user >()->m_phttpcookies->get_cookie_header();
 //
 //         //}
 //
-//         if (set.has_property(__id(cookie)) && set[__id(cookie)].string().has_char())
+//         if (set.has_property("cookie") && set["cookie"].string().has_char())
 //         {
 //
-//            psession->request().header(__id(cookie)) = set[__id(cookie)];
+//            psession->request().header("cookie") = set["cookie"];
 //
 //         }
 //
@@ -1396,7 +1401,7 @@ namespace http
 //
 //         psession->m_strHost = purl->get_server(pszRequest);
 //
-//         psession->m_request.m_propertysetHeader[__id(host)] = psession->m_host;
+//         psession->m_request.m_propertysetHeader["host"] = psession->m_host;
 //
 //         set["http_body_size_downloaded"] = &psession->m_body_size_downloaded;
 //
@@ -1412,7 +1417,7 @@ namespace http
 //
 //         bool bPut;
 //
-//         if (set["put"].cast < ::file::file >() || set(__id(http_method)) == "PUT")
+//         if (set["put"].cast < ::file::file >() || set("http_method") == "PUT")
 //         {
 //
 //            bPost = false;
@@ -1424,7 +1429,7 @@ namespace http
 //            psession->request("PUT", strRequest);
 //
 //         }
-//         else if (set["post"].propset().has_element() || set(__id(http_method)) == "POST")
+//         else if (set["post"].propset().has_element() || set("http_method") == "POST")
 //         {
 //
 //            bPost = true;
@@ -1551,7 +1556,7 @@ namespace http
 //
 //         string strCookie = psession->response().cookies().get_cookie_header();
 //
-//         set[__id(cookie)] = strCookie;
+//         set["cookie"] = strCookie;
 //
 //         i32 iStatusCode;
 //
@@ -1904,9 +1909,9 @@ namespace http
          if (strSessId.has_char())
          {
 
-            string strCookie = set[__id(cookie)];
+            string strCookie = set["cookie"];
 
-            set[__id(cookie)] = ::str().has_char(strCookie, "", "; ") + "sessid=" + strSessId;
+            set["cookie"] = ::str().has_char(strCookie, "", "; ") + "sessid=" + strSessId;
 
          }
 
@@ -1929,7 +1934,7 @@ namespace http
 
       bool bPut;
 
-      if (set["put"].cast < ::file::file >() || set(__id(http_method)) == "PUT")
+      if (set["put"].cast < ::file::file >() || set("http_method") == "PUT")
       {
 
          bPost = false;
@@ -1947,7 +1952,7 @@ namespace http
          psocket->m_emethod = ::sockets::http_method_put;
 
       }
-      else if (set["post"].propset().has_element() || set(__id(http_method)) == "POST")
+      else if (set["post"].propset().has_element() || set("http_method") == "POST")
       {
 
          bPost = true;
@@ -1985,7 +1990,7 @@ namespace http
 
          psocket = psocketGet;
 
-         psocket->m_emethod = ::sockets::string_http_method(set(__id(http_method), "GET"));
+         psocket->m_emethod = ::sockets::string_http_method(set("http_method", "GET"));
 
       }
 
@@ -2084,7 +2089,7 @@ namespace http
 
          }
 
-         psocket->request().header(__id(cookie)) = set["cookies"].cast < ::http::cookies >()->get_cookie_header();
+         psocket->request().header("cookie") = set["cookies"].cast < ::http::cookies >()->get_cookie_header();
 
       }
 
@@ -2098,14 +2103,14 @@ namespace http
 
       //   }
 
-      //   psocket->request().header(__id(cookie)) = set["user"].cast < ::account::user >()->m_phttpcookies->get_cookie_header();
+      //   psocket->request().header("cookie") = set["user"].cast < ::account::user >()->m_phttpcookies->get_cookie_header();
 
       //}
 
-      if (set.has_property(__id(cookie)) && set[__id(cookie)].string().has_char())
+      if (set.has_property("cookie") && set["cookie"].string().has_char())
       {
 
-         psocket->request().header(__id(cookie)) = set[__id(cookie)];
+         psocket->request().header("cookie") = set["cookie"];
 
       }
 
@@ -2362,7 +2367,7 @@ namespace http
 
       string strCookie = psocket->response().cookies().get_cookie_header();
 
-      set[__id(cookie)] = strCookie;
+      set["cookie"] = strCookie;
 
       ::e_status estatus = error_failed;
 
@@ -2882,7 +2887,7 @@ namespace http
       if (iStatusCode == 200)
       {
 
-         return psocket->outheader(__id(content_length));
+         return psocket->outheader("content_length");
 
       }
       else
@@ -3040,7 +3045,7 @@ namespace http
    bool context::request(const char * pszMethod, const char * pszUrl, property_set & set)
    {
 
-      set[__id(http_method)] = pszMethod;
+      set["http_method"] = pszMethod;
 
       return get(pszUrl, set).is_true();
 

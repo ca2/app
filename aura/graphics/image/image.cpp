@@ -25,13 +25,13 @@ double get_default_screen_dpi()
 
 }
 
-
-#ifdef WINDOWS
-#include <wincodec.h>
-#include <ShCore.h>
-//#elif defined(_UWP)
+//
+//#ifdef WINDOWS
+//#include <wincodec.h>
 //#include <ShCore.h>
-#endif
+////#elif defined(_UWP)
+////#include <ShCore.h>
+//#endif
 
 
 
@@ -88,7 +88,7 @@ void image::on_initialize_particle()
 
    acmesystem()->m_paurasystem->draw2d()->add_image(this);
 
-   ::object::on_initialize_particle();
+   ::particle::on_initialize_particle();
 
 }
 
@@ -121,6 +121,14 @@ concrete < ::size_i32 > image::image_source_size() const
 {
    
    return get_size(); 
+
+}
+
+
+bool image::_is_ok() const
+{ 
+   
+   return ::pixmap::is_ok() && ::particle::has_ok_flag(); 
 
 }
 
@@ -4982,18 +4990,18 @@ u32 image::GetPixel(i32 x, i32 y)
 
    u8* p = (u8*)&u;
 
-   int iA = p[IMAGE_A_BYTE_INDEX];
+   int iA = p[m_colorindexes.a];
 
    if (iA == 0)
    {
 
-      return rgb(p[IMAGE_R_BYTE_INDEX], p[IMAGE_G_BYTE_INDEX], p[IMAGE_B_BYTE_INDEX]);
+      return rgb(p[m_colorindexes.r], p[m_colorindexes.g], p[m_colorindexes.b]);
 
    }
    else
    {
 
-      return argb(iA, p[IMAGE_R_BYTE_INDEX] * 255 / iA, p[IMAGE_G_BYTE_INDEX] * 255 / iA, p[IMAGE_B_BYTE_INDEX] * 255 / iA);
+      return argb(iA, p[m_colorindexes.r] * 255 / iA, p[m_colorindexes.g] * 255 / iA, p[m_colorindexes.b] * 255 / iA);
 
    }
 
@@ -6372,7 +6380,7 @@ void image::fill_byte(uchar uch)
    else if (g())
    {
 
-      auto color = __acolor(uch, uch, uch, uch);
+      auto color = ::color::color(uch, uch, uch, uch);
 
       auto ealphamode = g()->alpha_mode();
 
@@ -8333,7 +8341,7 @@ void image::set_rgb(color32_t cr)
 
       auto ysq = (rTotal.bottom - y);
 
-      auto pbyte = &((byte*)p)[IMAGE_A_BYTE_INDEX];
+      auto pbyte = &((byte*)p)[m_colorindexes.a];
 
       for (int x = r.left; x < r.right; x++)
       {
@@ -8376,16 +8384,21 @@ void image::paint_rgb(const ::color::color & color)
    int B = color.blue;
    int A;
 
+   auto indexA = m_colorindexes.a;
+   auto indexR = m_colorindexes.r;
+   auto indexG = m_colorindexes.g;
+   auto indexB = m_colorindexes.b;
+
    u8* puch = (u8*)get_data();
    i64 iArea = scan_area();
    while (iArea > 0)
    {
 
-      A = puch[IMAGE_A_BYTE_INDEX];
+      A = puch[indexA];
 
-      puch[IMAGE_R_BYTE_INDEX] = R * A / 255;
-      puch[IMAGE_G_BYTE_INDEX] = G * A / 255;
-      puch[IMAGE_B_BYTE_INDEX] = B * A / 255;
+      puch[indexR] = R * A / 255;
+      puch[indexG] = G * A / 255;
+      puch[indexB] = B * A / 255;
 
       puch += 4;
 

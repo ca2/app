@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "url_department.h"
+#include "__string.h"
 #include "acme/constant/id.h"
 #include "acme/constant/idpool.h"
 #include "acme/primitive/primitive/payload.h"
@@ -1472,43 +1473,43 @@ namespace url
    }
 
 
-   bool department::locale_is_eu(atom idLocale)
+   bool department::locale_is_eu(const ::atom & idLocale)
    {
 
       if(
-      idLocale == __id(eu)
-      || idLocale == __id(se)
-      || idLocale == __id(at)
-      || idLocale == __id(dk)
-      || idLocale == __id(en_uk)
-      || idLocale == __id(uk)
-      || idLocale == __id(fi)
-      || idLocale == __id(gr)
-      || idLocale == __id(de)
-      || idLocale == __id(nl)
-      || idLocale == __id(be)
-      || idLocale == __id(fr)
-      || idLocale == __id(it)
-      || idLocale == __id(pt)
-      || idLocale == __id(cz)
-      || idLocale == __id(lu)
-      || idLocale == __id(ie)
-      || idLocale == __id(no)
-      || idLocale == __id(cy)
-      || idLocale == __id(su)
-      || idLocale == __id(lv)
-      || idLocale == __id(li)
-      || idLocale == __id(hu)
-      || idLocale == __id(es)
-      || idLocale == __id(sk)
-      || idLocale == __id(cz)
-      || idLocale == __id(si)
-      || idLocale == __id(ro)
-      || idLocale == __id(kz)
-      || idLocale == __id(ru)
-      || idLocale == __id(pl)
-      || idLocale == __id(tr)
-      || idLocale == __id(ee))
+         idLocale == "eu"
+      || idLocale == "se"
+      || idLocale == "at"
+      || idLocale == "dk"
+      || idLocale == "en_uk"
+      || idLocale == "uk"
+      || idLocale == "fi"
+      || idLocale == "gr"
+      || idLocale == "de"
+      || idLocale == "nl"
+      || idLocale == "be"
+      || idLocale == "fr"
+      || idLocale == "it"
+      || idLocale == "pt"
+      || idLocale == "cz"
+      || idLocale == "lu"
+      || idLocale == "ie"
+      || idLocale == "no"
+      || idLocale == "cy"
+      || idLocale == "su"
+      || idLocale == "lv"
+      || idLocale == "li"
+      || idLocale == "hu"
+      || idLocale == "es"
+      || idLocale == "sk"
+      || idLocale == "cz"
+      || idLocale == "si"
+      || idLocale == "ro"
+      || idLocale == "kz"
+      || idLocale == "ru"
+      || idLocale == "pl"
+      || idLocale == "tr"
+      || idLocale == "ee")
       {
          return true;
       }
@@ -1517,27 +1518,27 @@ namespace url
 
    }
 
-   bool department::locale_is_asia(atom idLocale)
+   bool department::locale_is_asia(const ::atom & idLocale)
    {
 
-      if(idLocale == __id(asia)
-            || idLocale == __id(cn)
-            || idLocale == __id(tw)
-            || idLocale == __id(vn)
-            || idLocale == __id(in)
-            || idLocale == __id(kg)
-            || idLocale == __id(kz)
-            || idLocale == __id(kr)
-            || idLocale == __id(my)
-            || idLocale == __id(ph)
-            || idLocale == __id(sg)
-            || idLocale == __id(su)
-            || idLocale == __id(ru)
-            || idLocale == __id(zh)
-            || idLocale == __id(hk)
-            || idLocale == __id(ja)
-            || idLocale == __id(jp)
-            || idLocale == __id(tr))
+      if(idLocale == "asia"
+            || idLocale == "cn"
+            || idLocale == "tw"
+            || idLocale == "vn"
+            || idLocale == "in"
+            || idLocale == "kg"
+            || idLocale == "kz"
+            || idLocale == "kr"
+            || idLocale == "my"
+            || idLocale == "ph"
+            || idLocale == "sg"
+            || idLocale == "su"
+            || idLocale == "ru"
+            || idLocale == "zh"
+            || idLocale == "hk"
+            || idLocale == "ja"
+            || idLocale == "jp"
+            || idLocale == "tr")
       {
          return true;
       }
@@ -1546,59 +1547,15 @@ namespace url
 
    }
 
-   bool department::locale_is_middle_east(atom idLocale)
-   {
-
-      string strLocale(idLocale);
-
-      if(idLocale == __id(sy)
-            || idLocale == __id(tr)
-            || idLocale == __id(il)
-            || idLocale == __id(ps))
-      {
-         return true;
-      }
-
-      return false;
-
-   }
-
-
-
-   bool department::locale_is_south_america(atom idLocale)
+   bool department::locale_is_middle_east(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
 
-      if(idLocale == __id(ar)
-            || idLocale == __id(bo)
-            || idLocale == __id(br)
-            || idLocale == __id(cl)
-            || idLocale == __id(co)
-            || idLocale == __id(ec)
-            || idLocale == __id(gs)
-            || idLocale == __id(pe)
-            || idLocale == __id(py)
-            || idLocale == __id(uy)
-            || idLocale == __id(ve)
-            || idLocale == __id(amdesur))
-      {
-         return true;
-      }
-
-      return false;
-
-   }
-
-   bool department::locale_is_oceania(atom idLocale)
-   {
-
-      string strLocale(idLocale);
-
-      if(idLocale == __id(au)
-            || idLocale == __id(oceania)
-            || idLocale == __id(nz)
-            || idLocale == __id(tl))
+      if(idLocale == "sy"
+            || idLocale == "tr"
+            || idLocale == "il"
+            || idLocale == "ps")
       {
          return true;
       }
@@ -1608,16 +1565,24 @@ namespace url
    }
 
 
-   bool department::locale_is_africa(atom idLocale)
+
+   bool department::locale_is_south_america(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
 
-      if(idLocale == __id(ug)
-            || idLocale == __id(sc)
-            || idLocale == __id(cm)
-            || idLocale == __id(za)
-            || idLocale == __id(africa) )
+      if(idLocale == "ar"
+            || idLocale == "bo"
+            || idLocale == "br"
+            || idLocale == "cl"
+            || idLocale == "co"
+            || idLocale == "ec"
+            || idLocale == "gs"
+            || idLocale == "pe"
+            || idLocale == "py"
+            || idLocale == "uy"
+            || idLocale == "ve"
+            || idLocale == "amdesur")
       {
          return true;
       }
@@ -1626,12 +1591,48 @@ namespace url
 
    }
 
-   bool department::locale_is_latin_america(atom idLocale)
+   bool department::locale_is_oceania(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
 
-      if(idLocale == __id(mx))
+      if(idLocale == "au"
+            || idLocale == "oceania"
+            || idLocale == "nz"
+            || idLocale == "tl")
+      {
+         return true;
+      }
+
+      return false;
+
+   }
+
+
+   bool department::locale_is_africa(const ::atom & idLocale)
+   {
+
+      string strLocale(idLocale);
+
+      if(idLocale == "ug"
+            || idLocale == "sc"
+            || idLocale == "cm"
+            || idLocale == "za"
+            || idLocale == "africa" )
+      {
+         return true;
+      }
+
+      return false;
+
+   }
+
+   bool department::locale_is_latin_america(const ::atom & idLocale)
+   {
+
+      string strLocale(idLocale);
+
+      if(idLocale == "mx")
       {
          return true;
       }
@@ -1640,14 +1641,14 @@ namespace url
 
    }
 
-   bool department::locale_is_north_america(atom idLocale)
+   bool department::locale_is_north_america(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
 
-      if(idLocale == __id(mx)
-            || idLocale == __id(us)
-            || idLocale == __id(ca))
+      if(idLocale == "mx"
+            || idLocale == "us"
+            || idLocale == "ca")
       {
          return true;
       }
@@ -1656,17 +1657,17 @@ namespace url
 
    }
 
-   bool department::locale_is_caribe(atom idLocale)
+   bool department::locale_is_caribe(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
 
-      if(idLocale == __id(caribe))
+      if(idLocale == "caribe")
          return true;
 
-      if(idLocale == __id(ht)
-            || idLocale == __id(cu)
-            || idLocale == __id(tc))
+      if(idLocale == "ht"
+            || idLocale == "cu"
+            || idLocale == "tc")
       {
          return true;
       }
@@ -1676,7 +1677,7 @@ namespace url
    }
 
 
-   bool department::locale_is_central_america(atom idLocale)
+   bool department::locale_is_central_america(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
@@ -1684,10 +1685,10 @@ namespace url
       if(strLocale == "central_america")
          return true;
 
-      if(idLocale == __id(centralam))
+      if(idLocale == "centralam")
          return true;
 
-      if(idLocale == __id(bz))
+      if(idLocale == "bz")
       {
          return true;
       }
@@ -1696,12 +1697,12 @@ namespace url
 
    }
 
-   bool department::locale_is_america(atom idLocale)
+   bool department::locale_is_america(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
 
-      if(idLocale == __id(america))
+      if(idLocale == "america")
          return true;
 
       return

@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/particle.h"
 #include "acme/primitive/string/string.h"
 
 
@@ -248,4 +248,17 @@ CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::particle *
 //} // namespace factory
 //
 //
+
+CLASS_DECL_ACME string implementation_name(const ::string & strComponent, const ::string & strImplementation);
+
+
+CLASS_DECL_ACME string library_name(const ::string & strComponent, const ::string & strImplementation);
+
+
+CLASS_DECL_ACME string factory_name(const ::string & strLibrary);
+
+
+CLASS_DECL_ACME string library_filter(const ::string & str);
+
+
 

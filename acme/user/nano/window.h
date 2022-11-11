@@ -7,7 +7,7 @@
 #include "acme/platform/conversation_message.h"
 #include "acme/user/user/drag_client.h"
 #include "window_interface.h"
-#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 class CLASS_DECL_ACME nano_window :

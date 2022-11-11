@@ -21,6 +21,8 @@
 #include "aura/windowing/icon.h"
 
 
+#include "acme/primitive/collection/_array.h"
+
 #if defined(RASPBIAN)
 #define OPERATING_SYSTEM_NAMESPACE linux
 #endif
@@ -295,7 +297,7 @@ namespace user
 
       iaSize.sort();
 
-      if (m_iaSize != iaSize)
+      if (::acme::array::is_different(m_iaSize, iaSize))
       {
 
          m_iaSize = iaSize;
@@ -339,7 +341,7 @@ namespace user
 
       auto pimageTemplate = pcontextimage->load_image(getfileimage.m_imagekey.m_strPath);
 
-      if (::is_ok(pimageTemplate))
+      if (pimageTemplate.ok())
       {
 
          getfileimage.m_iImage = _reserve_image(getfileimage.m_imagekey);
@@ -1301,7 +1303,7 @@ namespace user
 
          ::image_pointer pimage1 = m_pcontext->m_pcontextimage->load_image(strIcon16);
 
-         if (!::is_ok(pimage1))
+         if (pimage1.nok())
          {
 
             return false;
@@ -1314,7 +1316,7 @@ namespace user
 
          ::image_pointer pimage = pcontextimage->load_image(strIcon48);
 
-         if (!::is_ok(pimage))
+         if (pimage.nok())
          {
 
             return false;
@@ -1334,7 +1336,7 @@ namespace user
 
             image16 = m_pcontext->m_pauracontext->create_image({16, 16});
 
-            if (!::is_ok(image16))
+            if (image16.nok())
             {
 
                return false;
@@ -1368,7 +1370,7 @@ namespace user
 
             image48 = m_pcontext->m_pauracontext->create_image({48, 48});
 
-            if (!::is_ok(image48))
+            if (image48.nok())
             {
 
                return false;
@@ -1511,10 +1513,10 @@ namespace user
          
          auto pimage = pnode->get_file_image_by_type_identifier(iSize, strTypeIdentifier);
          
-         if(!::is_ok(pimage))
+         if(pimage.nok())
          {
          
-            if(!::is_ok(pimageFirst))
+            if(pimageFirst.nok())
             {
                
                getfileimage.m_imagekey.m_strPath = strPath;
@@ -1619,10 +1621,10 @@ namespace user
          
          auto pimage = pnode->get_file_image(iSize, strPath);
          
-         if(!::is_ok(pimage))
+         if(pimage.nok())
          {
          
-            if(!::is_ok(pimageFirst))
+            if(pimageFirst.nok())
             {
           
                return false;
@@ -1939,7 +1941,7 @@ namespace user
 
             }
 
-            if (!::is_ok(pimage))
+            if (pimage.nok())
             {
 
                for (int & iSizeFallback : iaSizeFallback)
@@ -1957,7 +1959,7 @@ namespace user
 
                         pimage = pcontextimage->get_image(pathImage);
 
-                        if (::is_ok(pimage))
+                        if (pimage.ok())
                         {
 
                            break;
@@ -1972,7 +1974,7 @@ namespace user
 
             }
 
-            if (::is_ok(pimage))
+            if (pimage.ok())
             {
 
                image_source imagesource(pimage);

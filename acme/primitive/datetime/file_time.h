@@ -73,12 +73,7 @@ struct CLASS_DECL_ACME file_time_set
    file_time       m_filetimeAccess; // Not used at Windows?
 
 
-   file_time_set()
-   {
-
-      __zero(this);
-
-   }
+   file_time_set() {}
 
 
    bool operator == (const file_time_set & file_timeset) const

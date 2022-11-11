@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "hex.h"
 #include "international.h"
+#include "acme/exception/exception.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/text_stream.h"
 #include "acme/primitive/collection/string_array.h"
@@ -1374,7 +1375,7 @@ index str::find_file_extension(const ::string & strOld, const ::string & str, in
       if (*psz1 != '.')
       {
 
-         len1 = str_uni_len(psz1);
+         len1 = utf8_unicode_length(*psz1);
 
          psz1 += len1;
 
@@ -1404,7 +1405,7 @@ index str::find_file_extension(const ::string & strOld, const ::string & str, in
          while (true)
          {
 
-            if (unicode_to_lower_case(unicode_index_len(pszC1, len1)) == unicode_to_lower_case(unicode_index_len(pszC2, len2)))
+            if (unicode_to_lower_case(unicode_index_length(pszC1, len1)) == unicode_to_lower_case(unicode_index_length(pszC2, len2)))
             {
 
                pszC1 += len1;
@@ -1431,7 +1432,7 @@ index str::find_file_extension(const ::string & strOld, const ::string & str, in
             else
             {
 
-               unicode_index_len(psz1, len1);
+               unicode_index_length(psz1, len1);
 
                psz1 += len1;
 
@@ -1484,7 +1485,7 @@ index str::utf8_find(const ::string & strOld, const ::string & str, index iStart
 
     pSrc = psz;
 
-    while(unicode_index_len(pSrc, lenSrc) == unicode_index_len(pFin, lenFin) && lenSrc == lenFin)
+    while(unicode_index_length(pSrc, lenSrc) == unicode_index_length(pFin, lenFin) && lenSrc == lenFin)
     {
 
        pSrc+=lenSrc;
@@ -2004,39 +2005,85 @@ string str::get_word(const ::string & str, const ::string & strSeparator, bool b
 
 }
 
-string unicode_to_utf8(i64 w)
+// GitHub MightyPork / utf8_encode.c
+
+utf8_character unicode_to_utf8(::i64 i)
 {
 
-   string str;
-
-   if (w < 0x0080)
-   {
-
-      str += (char)w;
-
+   utf8_character utf8character;
+   auto & out = utf8character.m_sz;
+   if (i <= 0x7F) {
+      // Plain ASCII
+      out[0] = (char)i;
+      out[1] = 0;
+      utf8character.m_iLength =  1;
    }
-   else if (w < 0x0800)
+   else if (i <= 0x07FF) {
+      // 2-byte unicode
+      out[0] = (char)(((i >> 6) & 0x1F) | 0xC0);
+      out[1] = (char)(((i >> 0) & 0x3F) | 0x80);
+      out[2] = 0;
+      utf8character.m_iLength = 2;
+   }
+   else if (i <= 0xFFFF) {
+      // 3-byte unicode
+      out[0] = (char)(((i >> 12) & 0x0F) | 0xE0);
+      out[1] = (char)(((i >> 6) & 0x3F) | 0x80);
+      out[2] = (char)(((i >> 0) & 0x3F) | 0x80);
+      out[3] = 0;
+      utf8character.m_iLength = 3;
+   }
+   else if (i <= 0x10FFFF) {
+      // 4-byte unicode
+      out[0] = (char)(((i >> 18) & 0x07) | 0xF0);
+      out[1] = (char)(((i >> 12) & 0x3F) | 0x80);
+      out[2] = (char)(((i >> 6) & 0x3F) | 0x80);
+      out[3] = (char)(((i >> 0) & 0x3F) | 0x80);
+      out[4] = 0;
+      utf8character.m_iLength = 4;
+   }
+   else {
+      // error - use replacement character
+      out[0] = (char)0xEF;
+      out[1] = (char)0xBF;
+      out[2] = (char)0xBD;
+      out[3] = 0;
+      utf8character.m_iLength = 3;
+   }
+
+   return utf8character;
+
+}
+
+
+strsize unicode_to_utf8_length(::i64 i)
+{
+   if (i <0)
    {
-
-      str = (char)(0xc0 | ((w) >> 6));
-
-      str += (char)(0x80 | ((w) & 0x3f));
-
+      return -1;
+   }
+   else if (i <= 0x7F)
+   {
+      return 1;
+   }
+   else if (i <= 0x07FF)
+   {
+      return 2;
+   }
+   else if (i <= 0xFFFF) 
+   {
+      return 3;
+   }
+   else if (i <= 0x10FFFF) 
+   {
+      return 4;
    }
    else
    {
-
-      str = (char)(0xe0 | ((w) >> 12));
-
-      str += (char)(0x80 | (((w) >> 6) & 0x3f));
-
-      str += (char)(0x80 | ((w) & 0x3f));
-
+      return -1;
    }
-
-   return str;
-
 }
+
 
 
 
@@ -2377,7 +2424,7 @@ string get_utf8_char(const char * psz)
 
    i32 iLength;
    
-   auto iIndex = unicode_index_len(psz, iLength);
+   auto iIndex = unicode_index_length(psz, iLength);
 
    if (iLength < 0)
    {
@@ -5190,7 +5237,7 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 
       }
 
-      if(::is_ok(pfileLog))
+      if(::is_set(pfileLog) && pfileLog->has_ok_flag())
       {
 
          try
@@ -5229,20 +5276,21 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 }
 
 
-::string __string(const ::string_stream & strstream)
-{
+//::string __string(const ::string_stream & strstream)
+//{
+//
+//   return strstream.as_string();
+//
+//}
 
-   return strstream.as_string();
 
-}
-
-
-::string __string(const ::text_stream & strstream)
-{
-
-   return strstream.as_string();
-
-}
+//template < typename FILE >
+//::string __string(const ::text_stream < FILE > & strstream)
+//{
+//
+//   return strstream.as_string();
+//
+//}
 
 
 //ansistring & str::assign(ansistring & ansistrDst, const property & property)

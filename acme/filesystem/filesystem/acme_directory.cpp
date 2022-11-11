@@ -31,7 +31,7 @@ acme_directory::~acme_directory()
 void acme_directory::initialize(::particle * pparticle)
 {
 
-   ::matter::initialize(pparticle);
+   ::particle::initialize(pparticle);
 
    m_pathInstallFolder = default_install();
 
@@ -737,12 +737,12 @@ void acme_directory::create(const char * pathParam)
 void acme_directory::_create2(const char * pathParam)
 {
 
-   if (is(pathParam))
-   {
+   //if (is(pathParam))
+   //{
 
-      return;
+   //   return;
 
-   }
+   //}
 
    auto bExists = m_pacmefile->exists(pathParam);
 

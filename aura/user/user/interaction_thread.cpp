@@ -7,8 +7,9 @@
 #include "system.h"
 #include "message.h"
 #include "acme/constant/message.h"
-//#include "acme/operating_system.h"
+#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/platform/session.h"
@@ -17,29 +18,29 @@
 #ifdef WINDOWS_DESKTOP
 
 
-int windows_desktop1_main(HINSTANCE hInstance, int       nCmdShow);
+//int windows_desktop1_main(HINSTANCE hInstance, int       nCmdShow);
 
-
-void verisimple_message_loop()
-{
-
-   MSG msg;
-
-   while (::GetMessage(&msg, nullptr, 0, 0))
-   {
-
-      //if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-      {
-
-         TranslateMessage(&msg);
-
-         DispatchMessage(&msg);
-
-      }
-
-   }
-
-}
+//
+//void verisimple_message_loop()
+//{
+//
+//   MSG msg;
+//
+//   while (::GetMessage(&msg, nullptr, 0, 0))
+//   {
+//
+//      //if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+//      {
+//
+//         TranslateMessage(&msg);
+//
+//         DispatchMessage(&msg);
+//
+//      }
+//
+//   }
+//
+//}
 
 
 #endif
@@ -218,7 +219,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      HRESULT hr = CoInitialize(NULL);
+      acmenode()->defer_co_initialize_ex(false);
 
 #endif
 
@@ -425,7 +426,7 @@ namespace user
 
             if (m_pimpl 
                && m_pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_is_window
-               && ::thread::is_finishing())
+               && ::thread::has_finishing_flag())
             {
 
                m_pimpl->m_puserinteraction->start_destroying_window();

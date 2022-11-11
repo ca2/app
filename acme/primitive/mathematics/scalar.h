@@ -42,18 +42,19 @@ inline string get_default_scalar_format < i64 >()
 //} // namespace str
 
 
-#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/atom.h"
 
 
 template < typename SCALAR >
 class scalar_source :
-   virtual public matter
+   virtual public particle
 {
 public:
 
 
    class listener :
-      virtual public matter
+      virtual public particle
    {
    public:
 

@@ -5,7 +5,7 @@
 
 
 class CLASS_DECL_ACME timer :
-   virtual public ::matter
+   virtual public ::particle
 {
 public:
 

@@ -35,7 +35,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/primitive/particle.h"
 #include "acme/exception/exception.h"
 
 
@@ -157,7 +157,7 @@ namespace serial
     * Class that provides a portable serial port interface.
     */
    class CLASS_DECL_ACME serial :
-      virtual public matter
+      virtual public particle
    {
    public:
 

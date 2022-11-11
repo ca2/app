@@ -361,7 +361,7 @@ void manager::erase_signal_handler(::matter *pmatter)
    for (auto & psignal : m_psignalmap->values())
    {
 
-      psignal->m_mattercontext.erase_key(pmatter);
+      psignal->m_particlecontext.erase_key(pmatter);
 
    }
 

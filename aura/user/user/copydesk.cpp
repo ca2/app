@@ -392,7 +392,7 @@ namespace user
          if (_desk_to_image(pimage))
          {
 
-            pimage->set_ok();
+            pimage->set_ok_flag();
 
             return true;
 

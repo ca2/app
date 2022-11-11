@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "acme/primitive/string/string.h"
 #include "acme/_operating_system.h"
+#include "acme/operating_system/windows_common/__string.h"
 
 
 namespace windows

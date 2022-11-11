@@ -110,8 +110,8 @@ public:
    Type & element_at(::index nIndex);
    const Type & element_at(::index nIndex) const;
 
-   ::index add_new(const Type& psz = nullptr, ::index i = -1);
-   Type & new_element(::index i = -1);
+   //Type & add_new();
+   //Type * add_new(::count c);
 
    Type & first(::index i = 0);
    Type first(::index i = 0) const;
@@ -608,7 +608,7 @@ Type string_array_base < Type, RawType, m_etypeContainer > ::predicate_implode(P
 
 static inline void ConstructElement(string * pNewData)
 {
-   ((string *)pNewData)->construct();
+   ((string *)pNewData)->default_construct();
 }
 
 static inline void DestructElement(string * pOldData)
@@ -619,7 +619,7 @@ static inline void DestructElement(string * pOldData)
 
 static inline void ConstructElement(wstring * pNewData)
 {
-   ((wstring *)pNewData)->construct();
+   ((wstring *)pNewData)->default_construct();
 }
 
 static inline void DestructElement(wstring * pOldData)
@@ -1043,7 +1043,7 @@ void string_array_base < Type, RawType, m_etypeContainer >::insert_empty(::index
       for(::index i = nIndex; i < nIndex + nCount; i++)
       {
          
-         get_data()[i].construct();
+         get_data()[i].default_construct();
 
       }
 
@@ -1216,48 +1216,59 @@ string_array_base < Type, RawType, m_etypeContainer > & string_array_base < Type
 }
 
 
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer >::add_new(const Type& psz,::index i)
-{
+//template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+//inline Type & string_array_base < Type, RawType, m_etypeContainer >::add_new()
+//{
+//
+//   this->allocate(this->size() + 1);
+//
+//   return this->last();
+//
+//}
+//
+//
+//template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+//::index string_array_base < Type, RawType, m_etypeContainer >::add_new(::count c)
+//{
+//
+//   if(i == -1)
+//   {
+//
+//      return add(Type(psz));
+//
+//   }
+//   else
+//   {
+//
+//      insert_at(i,Type(psz));
+//
+//      return get_upper_bound();
+//
+//   }
+//
+//}
 
-   if(i == -1)
-   {
 
-      return add(Type(psz));
-
-   }
-   else
-   {
-
-      insert_at(i,Type(psz));
-
-      return get_upper_bound();
-
-   }
-
-}
-
-
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-Type & string_array_base < Type, RawType, m_etypeContainer >::new_element(::index i)
-{
-
-   add_new(nullptr,i);
-
-   if(i == -1)
-   {
-
-      return last();
-
-   }
-   else
-   {
-
-      return this->element_at(i);
-
-   }
-
-}
+//template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+//Type & string_array_base < Type, RawType, m_etypeContainer >::new_element(::count c)
+//{
+//
+//   add_new(nullptr,c);
+//
+//   if(i == -1)
+//   {
+//
+//      return last();
+//
+//   }
+//   else
+//   {
+//
+//      return this->element_at(i);
+//
+//   }
+//
+//}
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >

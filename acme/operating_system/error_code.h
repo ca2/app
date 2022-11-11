@@ -11,9 +11,6 @@
 #include "acme/constant/error_code_type.h"
 
 
-class text_stream;
-
-
 class CLASS_DECL_ACME error_code
 {
 public:
@@ -22,7 +19,7 @@ public:
 
    ::i64 m_iOsError;
    
-   void get_string(::text_stream & stream) const;
+   void get_message(::string & strMessage) const;
    
 };
 

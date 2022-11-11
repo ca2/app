@@ -10,9 +10,10 @@
 #include "button.h"
 #include "progress.h"
 #include "acme/constant/message.h"
+#include "acme/constant/simple_command.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system_setup.h"
-#include "acme/constant/simple_command.h"
+#include "acme/primitive/collection/_container.h"
 #include "apex/message/simple_command.h"
 #include "apex/platform/create.h"
 #include "aura/windowing/windowing.h"
@@ -33,9 +34,9 @@ CLASS_DECL_AURA void initialize_user_mutex();
 CLASS_DECL_AURA void finalize_user_mutex();
 
 
-::critical_section g_criticalsectionChildren;
+//::critical_section g_criticalsectionChildren;
 
-::critical_section * children_critical_section() { return &g_criticalsectionChildren; }
+//::critical_section * children_critical_section() { return &g_criticalsectionChildren; }
 
 
 
@@ -1376,7 +1377,7 @@ namespace user
 
                synchronous_lock synchronouslock(this->synchronization());
 
-               uiptraToolWindow.copy_container(m_uiptraToolWindow);
+               ::acme::container::copy(uiptraToolWindow, m_uiptraToolWindow);
 
             }
 
@@ -1547,7 +1548,7 @@ namespace user
    }
 
 
-   __namespace_object_factory(user, ::system_setup::flag_object_user);
+   //__namespace_object_factory(user, ::system_setup::flag_object_user);
 
 
    ::aura::application * user::get_app()

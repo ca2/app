@@ -127,19 +127,27 @@ public:
    inline natural_pointer()
    {
 
-      m_pdata = default_construct_natural_pointer();
+      natural_pointer_default_construct();
 
    }
 
    ~natural_pointer()
    {
 
-      if (::c_is_set(this->m_pdata))
+      if (::is_set(this->m_pdata))
       {
 
          this->_natural_release(NATURAL_META_DATA::from_data(this->m_pdata));
 
       }
+
+   }
+
+
+   void natural_pointer_default_construct()
+   {
+
+      m_pdata = default_construct_natural_pointer();
 
    }
 

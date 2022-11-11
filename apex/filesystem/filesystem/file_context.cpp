@@ -22,6 +22,7 @@
 #include "acme/primitive/datetime/department.h"
 #include "acme/primitive/primitive/read_only_memory.h"
 #include "acme/primitive/string/base64.h"
+#include "acme/primitive/string/hex.h"
 #include "acme/primitive/string/str.h"
 #include "acme/user/user/conversation.h"
 #include "apex/crypto/crypto.h"
@@ -1008,7 +1009,7 @@ void file_context::get_lines(string_array &stra, const ::payload &payloadFile, b
       if (bNoExceptionIfFailToOpen)
       {
 
-         if (::nok(pfile))
+         if (pfile.nok())
          {
 
             return;
@@ -1064,7 +1065,7 @@ void file_context::put_memory(const ::payload &payloadFile, const block & block)
       | ::file::e_open_no_truncate
       | ::file::e_open_defer_create_directory);
 
-   if (!::is_ok(pfile))
+   if (pfile.nok())
    {
 
       throw ::exception(error_io);
@@ -1145,7 +1146,7 @@ void file_context::put_text(const ::payload& payloadFile, const ::block & block)
 void file_context::add_contents(const ::payload &payloadFile, const char *pcszContents)
 {
 
-   if (is_null(pcszContents))
+   if (::is_null(pcszContents))
    {
 
       throw ::exception(error_bad_argument);
@@ -1347,7 +1348,7 @@ void file_context::calculate_main_resource_memory()
 
       pfolder = resource_folder();
 
-      if (is_null(pfolder))
+      if (::is_null(pfolder))
       {
 
          return nullptr;
@@ -1417,7 +1418,7 @@ void file_context::calculate_main_resource_memory()
 
       pfolder = resource_folder();
 
-      if (is_null(pfolder))
+      if (::is_null(pfolder))
       {
 
          return ::file::e_type_doesnt_exist;
@@ -1453,11 +1454,11 @@ void file_context::calculate_main_resource_memory()
 }
 
 
-void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, e_extract eextract)
+void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, enum_extract eextract)
 {
 
    if (dir()->is(varSource.file_path()) &&
-       (eextract == extract_first || eextract == extract_all || !(string_ends_ci(varSource.file_path(), ".zip"))))
+       (eextract == e_extract_first || eextract == e_extract_all || !(string_ends_ci(varSource.file_path(), ".zip"))))
    {
 
       ::file::listing listing;
@@ -1492,7 +1493,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
          if (dir()->is(strSrc))
          {
 
-            if ((eextract == extract_first || eextract == extract_none) &&
+            if ((eextract == e_extract_first || eextract == e_extract_none) &&
                 (string_ends_ci(varSource.file_path(), ".zip")))
             {
             }
@@ -1507,7 +1508,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             {
                dir()->create(strDst.folder());
             }
-            copy(strDst, strSrc, bFailIfExists, eextract == extract_all ? extract_all : extract_none);
+            copy(strDst, strSrc, bFailIfExists, eextract == e_extract_all ? e_extract_all : e_extract_none);
 
          }
       }
@@ -1578,9 +1579,11 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
                        ::file::e_open_write | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_defer_create_directory |
                        ::file::e_open_share_deny_write);
 
-      if (::nok(pfileOutput))
+      if (pfileOutput.nok())
       {
+
          string strError;
+
          strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
                          varSource.file_path().c_str(), varNew.file_path().c_str(), bFailIfExists);
          throw ::exception(::error_io, strError);
@@ -1595,9 +1598,11 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          auto pfileInput = get_reader(varSource, ::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_none);
 
-         if (!::is_ok(pfileInput))
+         if (pfileInput.nok())
          {
+
             string strError;
+
             strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
                             varSource.file_path().c_str(), varNew.file_path().c_str(), bFailIfExists);
             throw ::exception(::error_io, strError);
@@ -1901,7 +1906,7 @@ void file_context::erase(const ::file::path & path)
          strNew.format("%s-%s-%d", psz.c_str(), strCopy.c_str(), i);
          if (!exists(strNew))
          {
-            copy(strNew, psz, false, extract_all);
+            copy(strNew, psz, false, e_extract_all);
             return strNew;
          }
          i++;
@@ -1920,7 +1925,7 @@ void file_context::erase(const ::file::path & path)
          strNew.format("%s-%s-%d%s", psz.c_str(), strCopy.c_str(), i, strExt.c_str());
          if (!exists(strNew))
          {
-            copy(strNew, psz, false, extract_all);
+            copy(strNew, psz, false, e_extract_all);
             return strNew;
          }
          i++;
@@ -1950,7 +1955,7 @@ void file_context::erase(const ::file::path & path)
 
       ::file::path pathNew = pathDst / path.name();
 
-      copy(pathNew, path, false, extract_all);
+      copy(pathNew, path, false, e_extract_all);
 
       return pathNew;
 
@@ -2001,7 +2006,7 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 
    auto preader = file()->get_reader(payloadFile, ::file::e_open_share_deny_none);
 
-   if (!::is_ok(preader))
+   if (preader.nok())
    {
 
       throw ::io_exception(error_io);
@@ -3570,7 +3575,7 @@ bool file_context::is_link(string strPath)
 
 }
 //
-//::extended::status file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, e_extract eextract)
+//::extended::status file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, enum_extract eextract)
 //{
 //
 //   return psystem->m_spfile->copy(varTarget, varSource, bFailIfExists, eextract, get_app());

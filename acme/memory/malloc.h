@@ -285,8 +285,6 @@ namespace acme
 // {
 
    
-template < typename POINTER >
-inline ::string __string(const ::acme::memory_allocate < POINTER > & memoryallocpointer);
 
 
 // } // namespace str

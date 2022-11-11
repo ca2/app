@@ -36,8 +36,8 @@ namespace universal_windows
       //virtual string relpath(const ::string & lpcszSource, const ::string & lpcszRelative, const ::string & lpcsz2 = nullptr);
       //virtual bool  ls_pattern(const ::string & pcsz, const ::string & lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,bool_array * pbaIsDir = nullptr,i64_array * piaSize = nullptr);
       virtual ::file::listing & ls(::file::listing & listing) override;
-      //virtual bool  rls_pattern(const ::string & pcsz, const ::string & lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,bool_array * pbaIsDir = nullptr,i64_array * piaSize = nullptr,e_extract eextract = extract_first);
-      //virtual bool  rls(const ::string & pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,e_extract eextract = extract_first);
+      //virtual bool  rls_pattern(const ::string & pcsz, const ::string & lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,bool_array * pbaIsDir = nullptr,i64_array * piaSize = nullptr,enum_extract eextract = e_extract_first);
+      //virtual bool  rls(const ::string & pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,enum_extract eextract = e_extract_first);
       //virtual bool  rls_dir(const ::string & pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr);
       //virtual bool  ls_dir(const ::string & pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
       //virtual bool  ls_file(const ::string & pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);

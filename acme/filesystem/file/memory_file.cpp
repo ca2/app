@@ -13,7 +13,7 @@ memory_file::memory_file() :
 
    m_position = 0;
    m_estatus = ::success;
-   set_ok();
+   set_ok_flag();
 
 }
 
@@ -26,7 +26,7 @@ memory_file::memory_file(const ::file::e_open & eopen) :
    m_position = 0;
    m_pbyte = nullptr;
    m_estatus = ::success;
-   set_ok();
+   set_ok_flag();
 
 }
 
@@ -38,7 +38,7 @@ memory_file::memory_file(memsize size) :
    m_position = 0;
    m_pbyte = nullptr;
    m_estatus = ::success;
-   set_ok();
+   set_ok_flag();
 
 }
 
@@ -51,7 +51,7 @@ memory_file::memory_file(const memory_file & m) :
 
    m_position = m.m_position;
    m_estatus = m.m_estatus;
-   if(m.is_ok()) set_ok();
+   if(m.is_ok()) set_ok_flag();
 
 }
 
@@ -63,7 +63,7 @@ memory_file::memory_file(memory_file && m) :
 
    m_position = m.m_position;
    m_estatus = m.m_estatus;
-   if(m.is_ok()) set_ok();
+   if(m.is_ok()) set_ok_flag();
 
 }
 

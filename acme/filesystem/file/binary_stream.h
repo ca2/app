@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 
+#include "acme/exception/exception.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/primitive/payload.h"
 #include "stream.h"
@@ -8,12 +9,12 @@
 
 template < typename FILE >
 class binary_stream :
-    public stream_base
+    virtual public stream_base
 {
 public:
 
 
-   ::pointer < FILE > m_pfile;
+   FILE * m_pfile;
 
 
    binary_stream() { m_pfile = nullptr; }
@@ -21,61 +22,61 @@ public:
    {
       m_pfile = pfile; 
       
-      set_ok();
+      set_ok_flag();
 
-      if (pfile->is_storing())
+      if (pfile->has_storing_flag())
       {
 
-         defer_set_storing();
+         defer_set_storing_flag();
 
       }
    
    }
 
 
-   binary_stream(const stream_base & stream) 
-   { 
-      
-      m_pfile = dynamic_cast < FILE * >(((stream_base &) stream).get_file());
+   //binary_stream(const stream_base & stream) 
+   //{ 
+   //   
+   //   m_pfile = dynamic_cast < FILE * >(((stream_base &) stream).get_file());
 
-      if (!m_pfile)
-      {
+   //   if (!m_pfile)
+   //   {
 
-         throw ::exception(error_wrong_type);
+   //      throw ::exception(error_wrong_type);
 
-      }
+   //   }
 
-      if (stream.nok())
-      {
-         set_nok();
-      }
-      else
-      {
+   //   if (stream.nok())
+   //   {
+   //      set_nok();
+   //   }
+   //   else
+   //   {
 
-         set_ok();
+   //      set_ok_flag();
 
-      }
+   //   }
 
-      if (stream.is_storing())
-      {
+   //   if (stream.has_storing_flag())
+   //   {
 
-         defer_set_storing();
+   //      defer_set_storing_flag();
 
-      }
-   }
+   //   }
+   //}
    ~binary_stream()
    {
 
    }
 
 
-   // stream_base::get_file
-   ::file::file * get_file() override
-   {
+   //// stream_base::get_file
+   //::file::file * get_file() override
+   //{
 
-      return m_pfile;
+   //   return m_pfile;
 
-   }
+   //}
 
 
    inline bool is_end_of_file() const { return m_pfile->is_end_of_file(); }
@@ -98,7 +99,7 @@ public:
 
    // void close() ;
 
-   inline void defer_set_storing() { if (!is_storing()) set_storing(); }
+   //inline void defer_set_storing_flag() { if (!has_storing_flag()) set_storing_flag(); }
 
    //inline void set_storing() { m_bStoring = true; }
 
@@ -125,7 +126,7 @@ public:
    //template < typename TYPE >
    //void exchange(TYPE & t)
    //{
-   //   if (is_storing())
+   //   if (has_storing_flag())
    //   {
    //      write(t);
    //   }
@@ -163,7 +164,7 @@ public:
    //stream & operator()(TYPE & t)
    //{
 
-   //   if (is_storing())
+   //   if (has_storing_flag())
    //   {
 
    //      *this << t;
@@ -442,7 +443,7 @@ public:
 
    //::filesize get_left() const;
 
-   //inline bool is_storing() const { return m_bStoring; }
+   //inline bool has_storing_flag() const { return m_bStoring; }
    //inline bool is_loading() const { return !m_bStoring; }
 
 
@@ -526,12 +527,12 @@ public:
    //   m_pfile(p)
    //{
 
-   //   set_ok();
+   //   set_ok_flag();
 
    //   if (m_pfile->m_eopen & ::file::e_open_write)
    //   {
 
-   //      defer_set_storing();
+   //      defer_set_storing_flag();
 
    //   }
 
@@ -542,12 +543,12 @@ public:
    //   m_pfile(base.m_pfile)
    //{
 
-   //   //set_ok();
+   //   //set_ok_flag();
 
    //   //if (m_pfile->m_eopen & ::file::e_open_write)
    //   //{
 
-   //   //   defer_set_storing();
+   //   //   defer_set_storing_flag();
 
    //   //}
 
@@ -558,12 +559,12 @@ public:
    //   m_pfile(::move(base.m_pfile))
    //{
 
-   //   set_ok();
+   //   set_ok_flag();
 
    //   if (m_pfile->m_eopen & ::file::e_open_write)
    //   {
 
-   //      defer_set_storing();
+   //      defer_set_storing_flag();
 
    //   }
 

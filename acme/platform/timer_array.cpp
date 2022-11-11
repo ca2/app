@@ -246,7 +246,7 @@ namespace acme
 
                synchronous_lock synchronouslock(ptimer->synchronization());
 
-               ptimer->clear(e_flag_success);
+               ptimer->clear_flag(e_flag_success);
 
                if(!ptimer->m_bHandling)
                {

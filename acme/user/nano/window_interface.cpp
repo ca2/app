@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "window_interface.h"
-#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/user/user/mouse.h"
 
 

@@ -11,12 +11,6 @@
 //{
 
 
-   class context;
-
-   using context_pointer = ::pointer<::context>;
-
-   using matter_context = map < ::matter_pointer, ::context_pointer >;
-
 
 //} // namespace topic
 

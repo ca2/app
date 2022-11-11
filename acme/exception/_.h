@@ -1,96 +1,6 @@
 #pragma once
 
 
-// CLASS_DECL_ACME bool avoid_bad_status_exception();
-// CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet);
-
-
-//#include "callstack.h"
-
-//#include "exception.h"
-
-//#include "not_implemented.h"
-
-//#include "interface_only.h"
-
-//CLASS_DECL_ACME string estatus_to_string(::e_status estatus);
-
-//#include "base.h"
-
-//#include "simple.h"
-//#include "cancel.h"
-
-
-//#include "file.h"
-
-
-//#include "memory.h"
-//#include "invalid_argument.h"
-
-//#include "translator.h"
-//#include "standard.h"
-
-
-//inline ::e_status errno_status(i32 nErrno) { return _errno_status(nErrno); }
-
-//inline ::e_status failed_errno_to_status(i32 nErrno) { return _failed_errno_status(nErrno); }
-
-
-CLASS_DECL_ACME ::string callstack_default_format();
-
-
-
-
-
-//namespace exception
-//{
-
-//   CLASS_DECL_ACME void throw_interface_only(const char * pszMessage = nullptr);
-//   CLASS_DECL_ACME void throw_not_implemented(const char * pszMessage = nullptr);
-//
-//}
-
-
-
-//#include "index_out_of_bounds.h"
-//#include "overflow.h"
-//#include "runtime.h"
-//#include "range.h"
-
-
-//#include "not_implemented.h"
-//#include "void_implementation.h"
-//#include "interface_only.h"
-//#include "not_installed.h"
-//#include "not_supported.h"
-//#include "exit.h"
-//#include "not_licensed.h"
-//#include "temporary.h"
-//#include "installing.h"
-
-//#include "assert.h"
-//#include "misc.h"
-
-
-
-//#include "io.h"
-//#include "resource.h"
-//#include "user.h"
-
-
-
-
-
-//#include "hresult.h"
-
-
-
-//
-//#ifndef ___JUMPBUF
-//// Use portable 'jmp_buf' defined by ANSI by default.
-//#define ___JUMPBUF jmp_buf
-//#endif
-
 namespace datetime
 {
 
@@ -102,11 +12,11 @@ namespace datetime
 } // namespace datetime
 
 
-class dump_context;
-
-// ::earth::time_span diagnostics and serialization
-CLASS_DECL_ACME dump_context & operator<<(dump_context & dumpcontext, const ::earth::time_span & dateSpanSrc);
-CLASS_DECL_ACME dump_context & operator<<(dump_context & dumpcontext, const ::earth::time & dateSrc);
+//class dump_context;
+//
+//// ::earth::time_span diagnostics and serialization
+//CLASS_DECL_ACME dump_context & operator<<(dump_context & dumpcontext, const ::earth::time_span & dateSpanSrc);
+//CLASS_DECL_ACME dump_context & operator<<(dump_context & dumpcontext, const ::earth::time & dateSrc);
 
 
 
@@ -198,8 +108,6 @@ void ::acme::DoForAllClasses(void (c_cdecl *pfn)(::type pClass,
 #endif //NNDEBUG
 
 
-CLASS_DECL_ACME string __get_thread_note();
-CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
 
 
 // Debug ASSERTs then throws. Retail throws if condition not met
@@ -352,6 +260,13 @@ CLASS_DECL_ACME void __dump(const ::particle * pparticle);
 
 
 //#include  "file_open.h"
+
+
+
+
+
+
+CLASS_DECL_ACME void throw_exit_exception(const ::e_status& estatus = error_failed, ::task* playeredThreadExit = nullptr, const char* pszMessage = nullptr);
 
 
 

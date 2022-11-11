@@ -188,72 +188,61 @@ extern CLASS_DECL_APEX int g_bApex;
 
 
 
-#ifdef WINDOWS
-#include <intsafe.h>
-#else
-
-#ifndef LODWORD
-#define LODWORD(l)                                    ((::u32)(((::u64)(l)) & 0xffffffff))
-#endif
-#ifndef HIDWORD
-#define HIDWORD(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffff))
-#endif
-
-#endif
-
-
-
-
-#define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
-#define __u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
-
-
-#ifdef __cplusplus
-
-
-#define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
-
-
-#else
-
-#define __MAKE_LONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
-#define __u64(a, b)                                   (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
-
-#endif
-
-#define __lo16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
-#define __hi16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
-#define __lo32(u)                                     ((::u32)(u))
-#define __hi32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
-
-#define __u32x(u)                                     ((::i16)__lo16(u))
-#define __u32y(u)                                     ((::i16)__hi16(u))
-
-#define __u32xy(u)                                    __u32x(u), __u32y(u)
-
-#define __u64x(u)                                     ((::i32)__lo32(u))
-#define __u64y(u)                                     ((::i32)__hi32(u))
-
-#define __u64xy(u)                                    __u64x(u), __u64y(u)
-
-
-#ifndef GET_X_LPARAM
-#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
-#endif
-
-
-#ifndef GET_Y_LPARAM
-#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
-#endif
-
-#define GET_X_LPARAM64(lparam)                        ((i32)(i16)LODWORD(lparam))
-#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
-
-
-
-#if !defined(O_BINARY) && !defined(WINDOWS)
-# define O_BINARY 0
-#endif
+//
+//
+//
+//
+//
+//#define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
+//#define __u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
+//
+//
+//#ifdef __cplusplus
+//
+//
+//#define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+//
+//
+//#else
+//
+//#define __MAKE_LONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
+//#define __u64(a, b)                                   (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
+//
+//#endif
+//
+//#define __lo16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
+//#define __hi16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
+//#define __lo32(u)                                     ((::u32)(u))
+//#define __hi32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
+//
+//#define __u32x(u)                                     ((::i16)__lo16(u))
+//#define __u32y(u)                                     ((::i16)__hi16(u))
+//
+//#define __u32xy(u)                                    __u32x(u), __u32y(u)
+//
+//#define __u64x(u)                                     ((::i32)__lo32(u))
+//#define __u64y(u)                                     ((::i32)__hi32(u))
+//
+//#define __u64xy(u)                                    __u64x(u), __u64y(u)
+//
+//
+//#ifndef GET_X_LPARAM
+//#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
+//#endif
+//
+//
+//#ifndef GET_Y_LPARAM
+//#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
+//#endif
+//
+//#define GET_X_LPARAM64(lparam)                        ((i32)(i16)LODWORD(lparam))
+//#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
+//
+//
+//
+//#if !defined(O_BINARY) && !defined(WINDOWS)
+//# define O_BINARY 0
+//#endif
 
 
 namespace aqua
@@ -470,7 +459,7 @@ class compress_department; // only usable from axis.dll and dependants
 
 class channel;
 
-class dump_context;
+//class dump_context;
 
 class atom_space;
 class ptra;
@@ -496,11 +485,6 @@ namespace colorertake5
 class memory;
 
 
-//CLASS_DECL_APEX ::pointer<::apex::system>platform_create_system(const char * pszAppId);
-//CLASS_DECL_APEX ::apex::session* platform_create_session();
-
-
-#define SECOND_NANOS 1000000000
 
 
 namespace datetime
@@ -847,7 +831,7 @@ namespace core
 
 //#include "apex/primitive/primitive/object.h"
 
-#include "apex/handler/_.h"
+//#include "apex/handler/_.h"
 
 //#include "apex/primitive/primitive/object.h"
 
@@ -1131,7 +1115,7 @@ namespace user
 
 #include "apex/filesystem/fs/_.h"
 
-#include "apex/_.h"
+//#include "apex/_.h"
 
 //#include "apex/user/text.h"
 

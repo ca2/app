@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "acme/primitive/string/string.h"
 
+CLASS_DECL_ACME string __get_text(const string & str);
+
 
 CLASS_DECL_ACME string null_get_text(string str)
 {

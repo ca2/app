@@ -1,7 +1,7 @@
 ﻿
 
 #include "_main_hold.h"
-//#include "acme/_api.h"
+#include "acme/exception/exception.h"
 #include "acme/operating_system/process.h"
 #include APPLICATION_INCLUDE
 
@@ -52,9 +52,11 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
    ::acme::acme acme;
 
-   sub_system subsystem;
+   sub_system subsystem(&acme);
 
-   acme.m_psubsystem = &subsystem;
+   //acme.m_psubsystem = &subsystem;
+
+   //subsystem.m_pacme = &acme;
 
    main_hold mainhold;
 

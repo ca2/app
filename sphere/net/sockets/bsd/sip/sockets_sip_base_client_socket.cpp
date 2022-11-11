@@ -236,11 +236,11 @@ namespace sockets
       atom key(strKey.make_lower());
       string value = pa.getrest();
       OnHeader(key, value);
-      if(key == __id(content_length))
+      if(key == "content_length")
       {
          m_body_size_left = atol(value);
       }
-      if(key == __id(connection))
+      if(key == "connection")
       {
          if (m_b_http_1_1)
          {

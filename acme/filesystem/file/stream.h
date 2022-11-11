@@ -1,14 +1,14 @@
 ﻿#pragma once
 
 
-#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 //#define __EXCHANGE(xxx) binary_stream < FILE >.stream_exchange(__STRING(xxx), m_##xxx)
 //#define __TYPE_EXCHANGE(xxx) binary_stream < FILE >.stream_exchange(__STRING(xxx), t.m_##xxx)
 
 //class payload_stream;
-class text_stream;
+
 
 // Use cases:
 // - Entry point_i32 convenience syntax sugar
@@ -152,19 +152,73 @@ enum e_set_loading
 };
 
 
+#pragma pack(push, print_formatting, 1)
 
 
-class CLASS_DECL_ACME stream_base :
-   virtual public ::object
+class print_formatting
+{
+public:
+
+
+   ::file::fmtflags           m_fmtflags;
+   ::i8                       m_width;
+   ::i8                       m_precision;
+
+
+   print_formatting & operator <<(::file::fmtflags e)
+   {
+
+      m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) | ((::i32)e));
+
+      return *this;
+
+   }
+
+
+   filesize precision() const { return m_precision; }
+
+   filesize precision(i8 prec) { return m_precision = prec; }
+
+   filesize width() const { return m_width; }
+
+   filesize width(i8 wide) { return m_width = wide; }
+
+
+   ::file::fmtflags setf(::file::fmtflags flagsAdd)
+   {
+
+      m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) | ((::i32)flagsAdd));
+
+   }
+
+
+   ::file::fmtflags setf(::file::fmtflags flagsAdd, ::file::fmtflags flagsRemove)
+   {
+
+      setf(flagsAdd);
+
+      m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) & (~(::i32)flagsAdd));
+
+   }
+
+
+
+};
+
+
+#pragma pack(pop, print_formatting)
+
+
+class stream_base :
+   public FLAGS,
+   public print_formatting
+//class CLASS_DECL_ACME stream_base
 {
 public:
 
 
    e_str_flag                 m_estrflag;
    ::file::e_iostate          m_iostate;
-   ::file::fmtflags           m_fmtflags;
-   filesize                   m_width;
-   filesize                   m_precision;
    memsize                    m_gcount;
 
 
@@ -179,11 +233,11 @@ public:
       //m_iVersion = FIRST_VERSION;
 
    }
-   stream_base(const ::stream_base & meta) = default;
-   stream_base(::stream_base && meta) = default;
+   stream_base(const ::stream_base & meta) = delete;
+   stream_base(::stream_base && meta) = delete;
 
 
-   virtual ::file::file * get_file() = 0;
+   //virtual ::file::file * get_file() = 0;
 
 
    //bool bad() const
@@ -237,18 +291,6 @@ public:
    //   return fail();
 
    //}
-
-   filesize precision() const;
-
-   filesize precision(filesize prec);
-
-   filesize width() const;
-
-   filesize width(filesize wide);
-
-
-   ::file::fmtflags setf(::file::fmtflags flagsAdd);
-   ::file::fmtflags setf(::file::fmtflags flagsAdd, ::file::fmtflags flagsRemove);
 
 };
 

@@ -10,7 +10,7 @@
 #include "plain_edit_style.h"
 #include "control_style.h"
 #ifdef WINDOWS_DESKTOP
-#include "apex/operating_system.h"
+#include "acme/_operating_system.h"
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
 #include "aura/user/windows_tsf/edit_window.h"
 #endif
@@ -300,14 +300,14 @@ namespace user
 
 
 
-      add_command_prober("edit_cut", this, &plain_edit::_001OnUpdateEditCut);
-      add_command_handler("edit_cut", this, &plain_edit::_001OnEditCut);
-      add_command_prober("edit_copy", this, &plain_edit::_001OnUpdateEditCopy);
-      add_command_handler("edit_copy", this, &plain_edit::_001OnEditCopy);
-      add_command_prober("edit_paste", this, &plain_edit::_001OnUpdateEditPaste);
-      add_command_handler("edit_paste", this, &plain_edit::_001OnEditPaste);
-      add_command_prober("edit_delete", (interaction *)this, &interaction::_001OnUpdateEditDelete);
-      add_command_handler("edit_delete", (interaction *)this, &interaction::_001OnEditDelete);
+      add_command_prober("edit_cut", { this,  &plain_edit::_001OnUpdateEditCut });
+      add_command_handler("edit_cut", { this,  &plain_edit::_001OnEditCut });
+      add_command_prober("edit_copy", { this,  &plain_edit::_001OnUpdateEditCopy });
+      add_command_handler("edit_copy", { this,  &plain_edit::_001OnEditCopy });
+      add_command_prober("edit_paste", { this,  &plain_edit::_001OnUpdateEditPaste });
+      add_command_handler("edit_paste", { this,  &plain_edit::_001OnEditPaste });
+      add_command_prober("edit_delete", { (interaction*)this, &interaction::_001OnUpdateEditDelete });
+      add_command_handler("edit_delete", { (interaction*)this, &interaction::_001OnEditDelete });
 
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK

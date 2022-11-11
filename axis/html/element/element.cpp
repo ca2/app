@@ -165,7 +165,7 @@ namespace html
       if (m_pbase->get_type() == ::html::base::type_value)
       {
 
-         m_strClass = m_pparent->get_tag()->get_attr_value(__id(html_class));
+         m_strClass = m_pparent->get_tag()->get_attr_value("html_class");
 
          m_strInlineStyle = m_pparent->get_tag()->get_attr_value("style");
 
@@ -173,7 +173,7 @@ namespace html
       else
       {
 
-         m_strClass = get_tag()->get_attr_value(__id(html_class));
+         m_strClass = get_tag()->get_attr_value("html_class");
 
          m_strInlineStyle = get_tag()->get_attr_value("style");
 
@@ -413,13 +413,13 @@ namespace html
                   output_debug_string("field");
 
                }
-               m_pstyle->get_surround_box(__id(html_padding), "", phtmldata, this, m_pimpl->m_padding);
+               m_pstyle->get_surround_box("html_padding", "", phtmldata, this, m_pimpl->m_padding);
 
-               m_pstyle->get_border_box(__id(html_border), "", phtmldata, this, m_pimpl->m_border);
+               m_pstyle->get_border_box("html_border", "", phtmldata, this, m_pimpl->m_border);
 
-               m_pstyle->get_border_color(__id(html_border), "", phtmldata, this, m_pimpl->m_border);
+               m_pstyle->get_border_color("html_border", "", phtmldata, this, m_pimpl->m_border);
 
-               m_pstyle->get_surround_box(__id(html_margin), "", phtmldata, this, m_pimpl->m_margin);
+               m_pstyle->get_surround_box("html_margin", "", phtmldata, this, m_pimpl->m_margin);
 
             }
 
@@ -965,7 +965,7 @@ namespace html
 
          }
 
-         if (m_atomTagName == __id(html_link) && get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
+         if (m_atomTagName == "html_link" && get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
          {
 
             ::pointer<style_sheet>pstylesheet(__create_new < style_sheet > ());
@@ -1023,13 +1023,13 @@ namespace html
 
          m_atomTagName = ptag->get_name();
          m_strBody = pvalue->get_value();
-         if (m_atomTagName == __id(html_style))
+         if (m_atomTagName == "html_style")
          {
             ::pointer<style_sheet>pstylesheet(__create_new < style_sheet >());
             pstylesheet->parse(phtmldata, pvalue->get_value());
             phtmldata->m_pcoredata->m_stylesheeta.add(pstylesheet);
          }
-         else if (m_atomTagName == __id(html_link)
+         else if (m_atomTagName == "html_link"
                   && m_pparent->get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
          {
             
@@ -1108,7 +1108,7 @@ namespace html
          psz++;
       }
 
-      if (m_atomTagName == __id(html_br))
+      if (m_atomTagName == "html_br")
       {
 
          return true;

@@ -120,13 +120,13 @@ public:
 //   CFRunLoopRef                                       m_runloop;
 //
 //#endif
-
-#ifdef WINDOWS
-
-   bool                                               m_bCoInitialize;
-   HRESULT                                            m_hresultCoInitialize;
-
-#endif
+//
+//#ifdef WINDOWS
+//
+//   bool                                               m_bCoInitialize;
+//   HRESULT                                            m_hresultCoInitialize;
+//
+//#endif
 
    ::pointer < pointer_array < event > >              m_peventaWait;
 
@@ -145,6 +145,10 @@ public:
    
    //using task::fork;
    //using channel::fork;
+   
+   
+   //bool on_init_task() override;
+   //void on_term_task() override;
 
    
    void add_task(::object* pobjectTask) override;
@@ -244,9 +248,9 @@ public:
    //inline bool command_value_is_true(const ::atom& atom) const;
 
 
-   virtual void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0);
+   virtual void post_message(const ::atom & atom, wparam wParam = {}, lparam lParam = 0);
 
-   virtual void send_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0, const ::duration & durationTimeout = ::duration::infinite());
+   virtual void send_message(const ::atom & atom, wparam wParam = {}, lparam lParam = 0, const ::duration & durationTimeout = ::duration::infinite());
 
    virtual void post_element(const ::atom & atom, wparam wParam, ::particle * pparticle);
 

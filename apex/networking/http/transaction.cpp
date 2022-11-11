@@ -48,7 +48,7 @@ namespace http
    void transaction::SetAccept(const string & value)
    {
 
-      header(__id(accept)) = value;
+      header("accept") = value;
 
    }
 
@@ -58,7 +58,7 @@ namespace http
 
       string str;
 
-      str = header(__id(accept));
+      str = header("accept");
 
       return str;
 
@@ -128,7 +128,7 @@ namespace http
    void transaction::SetConnection(const string & value)
    {
    
-      header(__id(connection)) = value;
+      header("connection") = value;
 
    }
 
@@ -138,7 +138,7 @@ namespace http
    
       string str;
       
-      str = header(__id(connection));
+      str = header("connection");
 
       return str;
 
@@ -148,7 +148,7 @@ namespace http
    void transaction::SetContentType(const string & value)
    {
    
-      header(__id(content_type)) = value;
+      header("content_type") = value;
 
    }
 
@@ -158,7 +158,7 @@ namespace http
       
       string str;
       
-      str = header(__id(content_type));
+      str = header("content_type");
 
       return str;
 
@@ -168,7 +168,7 @@ namespace http
    void transaction::SetContentLength(memsize value)
    {
    
-      header(__id(content_length)) = value;
+      header("content_length") = value;
 
    }
 
@@ -176,7 +176,7 @@ namespace http
    memsize transaction::ContentLength()
    {
    
-      return header(__id(content_length)).iptr();
+      return header("content_length").iptr();
 
    }
 

@@ -66,34 +66,6 @@
 #define CA2_ACME
 
 
-#define IMPL_OPERATOR_PLUS(type) \
-template < typename TYPE > \
-type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
-
-
-#define TOKENPASTE_PROCESS(x, y) x ## y
-#define TOKENPASTE(x, y) TOKENPASTE_PROCESS(x, y)
-#define TOKEN_AT_LINE(token) TOKENPASTE(TOKENPASTE(token, _atLine_), __LINE__)
-
-
-#define __DEBUG_POWER
-
-
-#if defined(__cplusplus)
-
-#define DECL_EXTERN_C      extern "C"
-#define BEGIN_EXTERN_C      extern "C" {
-#define END_EXTERN_C         }
-
-#else
-
-#define DECL_EXTERN_C
-#define BEGIN_EXTERN_C
-#define END_EXTERN_C
-
-#endif
-
-
 #if defined(__cplusplus)
 
 #include <atomic>
@@ -103,14 +75,6 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 #include <type_traits>
 
 #endif
-
-
-//#ifdef WINDOWS
-//#include <intsafe.h>
-//#endif
-
-
-
 
 
 typedef iptr memsize_storage;

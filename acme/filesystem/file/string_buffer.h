@@ -5,124 +5,180 @@
 #include "file.h"
 
 
-//namespace file
-//{
+class string_buffer;
 
 
-   class string_buffer;
+typedef ::pointer<string_buffer>string_file_pointer;
 
 
-   typedef ::pointer<string_buffer>string_file_pointer;
+class string_reference_buffer
+{
+public:
 
 
-   class CLASS_DECL_ACME string_buffer :
-      virtual public ::file::file
+   string  &                        m_str;
+   //strsize                          m_iPos;
+
+
+   string_reference_buffer(::string& str) : m_str(str) {}
+   string_reference_buffer(string_reference_buffer& buffer) : m_str(buffer.m_str) {}
+   ~string_reference_buffer() {}
+
+
+   //using ::file::file::read;
+   //memsize read(void* pdata, memsize nCount)
+   //{
+
+   //   return 0;
+
+   //}
+
+   //virtual stream & read(stream & istream) override;
+
+
+   //using ::file::file::write;
+   void write(const void* pdata, memsize nCount)
    {
-   public:
+
+      m_str.append((const ansichar *) pdata, nCount);
+
+   }
+
+   //virtual stream & write(stream & ostream) const override;
+
+   //::string str() const
+   //{
+
+   //   return m_str;
+
+   //}
+
+   //virtual void flush();
+
+   //virtual void close();
+
+   void flush();
+
+   void close() {}
+
+   bool is_empty() const
+   {
+
+      return m_str.is_empty();
+
+   }
 
 
-      string         m_str;
-      strsize        m_iPos;
 
 
-      string_buffer();
-      string_buffer(const ::string & str);
-      string_buffer(const string_buffer & str);
-      ~string_buffer() override;
+   filesize get_length() const
+   {
+      return m_str.get_length();
+   }
 
 
-      //using ::file::file::read;
-      virtual memsize read(void *pdata, memsize nCount) override;
+   filesize get_position() const
+   {
 
-      //virtual stream & read(stream & istream) override;
+      return -1000;
 
+   //   retu
 
-      //using ::file::file::write;
-      virtual void write(const void *pdata, memsize nCount) override;
+   }
 
-      //virtual stream & write(stream & ostream) const override;
+   bool unget_if(ansichar ch)
+   {
 
-      ::string str() const;
-
-      virtual void flush() override;
-
-      virtual void close() override;
-
-      bool is_empty() const
+      if (m_str.last_char() != ch)
       {
 
-         return m_str.is_empty();
+         return false;
 
       }
 
+      m_str.truncate(m_str.length() - 1);
+
+      return true;
+
+   }
+
+
+   //}
+
+
+   //void destroy() { }
+   //void alloc(strsize iSize);
+
+   //void alloc_up(strsize iAtLeast);
+
+   //void set(const char* psz, strsize len)
+   //{
 
 
 
-      filesize get_length() const
-      {
-         return m_str.get_length();
-      }
+   //}
+
+   //void set(const ::string& str)
+   //{
+   //   set(str, str.length());
+   //}
 
 
-      virtual filesize get_position() const override;
+   //void append(const char* psz, strsize len)
+   //{
 
-      void destroy() override;
-      //void alloc(strsize iSize);
+   //   m_str.append
 
-      //void alloc_up(strsize iAtLeast);
+   //}
 
-      void set(const char * psz,strsize len);
-
-      void set(const ::string & str)
-      {
-         set(str, str.length());
-      }
-
-
-      void append(const char * psz,strsize len);
-
-      void append(const ::string & str)
-      {
-         append(str, str.length());
-      }
+   //void append(const ::string& str)
+   //{
+   //   append(str, str.length());
+   //}
 
 
 
-      //operator const char *() const
-      //{
+   //operator const string& () const
+   //{
 
-      //   return m_str;
+   //   return m_str;
 
-      //}
-
-
-      operator const string & () const
-      {
-
-         return m_str;
-
-      }
+   //}
 
 
-      string as_string() const override;
+   //string as_string() const;
 
 
-      string_buffer & operator += (const ::string & str)
-      {
-         append(str);
-         return *this;
-      }
+   //string_buffer& operator += (const ::string& str)
+   //{
+   //   append(str);
+   //   return *this;
+   //}
 
-      string_buffer & operator = (const ::string & str)
-      {
-         set(str);
-         return *this;
-      }
+   //string_buffer& operator = (const ::string& str)
+   //{
+   //   set(str);
+   //   return *this;
+   //}
 
-   };
-
-
-//} // namespace file
+};
 
 
+class string_buffer :
+   public string_reference_buffer
+{
+public:
+
+
+   ::string                         m_strOwnStorage;
+
+   string_buffer() :
+      string_reference_buffer(m_strOwnStorage)
+   {
+   
+   
+   }
+
+
+};
 

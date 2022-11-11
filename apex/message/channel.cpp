@@ -35,7 +35,7 @@ void channel::install_message_routing(::channel* pchannel)
 }
 
 
-void channel::erase_handler(::matter * pmatter)
+void channel::erase_handler(::particle * pparticle)
 {
 
    critical_section_lock synchronouslock(channel_critical_section());
@@ -53,7 +53,7 @@ void channel::erase_handler(::matter * pmatter)
       dispatchera.predicate_erase([=](auto & dispatcher)
       {
 
-         return dispatcher.m_phandlerTarget == pmatter;
+         return dispatcher.m_pparticleHandlerTarget == pparticle;
 
       });
 
@@ -62,7 +62,7 @@ void channel::erase_handler(::matter * pmatter)
 }
 
 
-void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::matter * pmatter)
+void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::particle * pparticle)
 {
 
    critical_section_lock synchronouslock(channel_critical_section());
@@ -80,7 +80,7 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::matt
       pair.element2().predicate_each([&](auto & dispatcher)
       {
 
-         if (dispatcher.m_phandlerTarget == pmatter)
+         if (dispatcher.m_pparticleHandlerTarget == pparticle)
          {
 
             auto & dispatcha = dispatchermap[pair.element1()];
@@ -94,7 +94,7 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::matt
       pair.element2().predicate_erase([&](auto & dispatcher)
       {
 
-         return dispatcher.m_phandlerTarget == pmatter;
+         return dispatcher.m_pparticleHandlerTarget == pparticle;
 
       });
 
@@ -103,7 +103,7 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::matt
 }
 
 
-::matter * channel::add_message_handler(const ::atom & atom, const ::message::dispatcher & dispatcher)
+::particle* channel::add_message_handler(const ::atom & atom, const ::message::dispatcher & dispatcher)
 {
 
    auto & dispatchera = m_dispatchermap[atom];
@@ -125,7 +125,7 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::matt
    
    dispatchera.add(dispatcher);
 
-   return dispatcher.m_phandlerTarget;
+   return dispatcher.m_pparticleHandlerTarget;
 
 }
 
@@ -138,16 +138,16 @@ void channel::route_message(::message::message * pmessage)
    for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_pdispatchera->get_upper_bound(); pmessage->m_pdispatchera && pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
 
-      auto & pdispatcher = pmessage->m_pdispatchera->m_pData[pmessage->m_iRouteIndex];
+      auto & dispatcher = pmessage->m_pdispatchera->m_pData[pmessage->m_iRouteIndex];
 
-      if (::is_null(pdispatcher))
+      if (::is_null(&dispatcher))
       {
 
          break;
 
       }
 
-      pdispatcher->handle(pmessage); if(pmessage->m_bRet) return;
+      dispatcher.m_functionHandler(pmessage); if(pmessage->m_bRet) return;
 
    }
 

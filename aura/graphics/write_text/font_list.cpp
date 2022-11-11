@@ -875,7 +875,8 @@ namespace write_text
 
          }
 
-         if (pfontlistdata.is_set() && iaSize == pfontlistdata->m_iaSize
+         if (pfontlistdata.is_set() 
+            && ::acme::array::is_equal(iaSize, pfontlistdata->m_iaSize)
             && pfontlistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId)
          {
 

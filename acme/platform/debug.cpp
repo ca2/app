@@ -1,6 +1,5 @@
 #include "framework.h"
 #include "acme/constant/id.h"
-#include "acme/update.h"
 #ifdef WINDOWS
 #include <process.h>
 #elif defined(LINUX)
@@ -119,7 +118,7 @@ void set_verbose(bool bVerbose)
 CLASS_DECL_ACME void debug_print(const char * pszFormat, ...)
 {
 
-   if (is_ptr_null(pszFormat, 1024))
+   if (is_null(pszFormat, 1024))
    {
 
       return;

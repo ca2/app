@@ -4,15 +4,12 @@
 #include "string.h"
 
 
-class CLASS_DECL_ACME tokenizer : public string
+class CLASS_DECL_ACME tokenizer
 {
-protected:
-
-
-   strsize      m_nCurrentIndex;
-
-
 public:
+
+   ::string       m_str;
+   strsize        m_nCurrentIndex;
 
 
    tokenizer();

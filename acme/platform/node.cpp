@@ -148,7 +148,7 @@ namespace acme
    }
 
 
-   ::pointer<::particle>node::create_quit_element(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
+   ::pointer < ::particle > node::create_quit_particle(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
    {
       
       return nullptr;
@@ -159,7 +159,7 @@ namespace acme
    void node::implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem)
    {
       
-      m_pparticleQuit = create_quit_element(pnode, psystem);
+      m_pparticleQuit = create_quit_particle(pnode, psystem);
 
       if(psystem->m_pfnImplement)
       {
@@ -287,7 +287,7 @@ namespace acme
    void node::initialize_memory_counter()
    {
 
-      ::initialize_memory_counter(this);
+      //::initialize_memory_counter(this);
 
    }
 
@@ -2107,6 +2107,52 @@ return false;
 #endif
 
    }
+
+
+   bool node::succeeded(const ::error_code& errorcode)
+   {
+
+      if (errorcode.m_etype == e_error_code_type_errno)
+      {
+
+         return errorcode.m_iOsError == 0;
+
+      }
+      else if (errorcode.m_etype == e_error_code_type_last_error)
+      {
+
+         return errorcode.m_iOsError == 0;
+
+      }
+
+      throw interface_only();
+
+      return false;
+    
+   }
+
+   bool node::failed(const ::error_code& errorcode)
+   {
+
+      return !succeeded(errorcode);
+
+   }
+
+
+#ifdef WINDOWS
+
+
+   error_code node::defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE)
+   {
+
+      throw interface_only();
+
+      return {};
+
+   }
+
+
+#endif
 
 
    ::file::path node::core_app_path(string strAppId)

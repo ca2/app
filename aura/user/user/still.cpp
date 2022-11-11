@@ -3,6 +3,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/primitive/string/international.h"
 #include "aura/graphics/write_text/text_out.h"
 #include "aura/graphics/write_text/text_out_array.h"
 #include "aura/graphics/draw2d/graphics.h"

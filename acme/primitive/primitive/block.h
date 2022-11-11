@@ -1,6 +1,10 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/mathematics/_.h"
+#include "acme/primitive/primitive/_u32hash.h"
+
+
 struct CLASS_DECL_ACME BLOCK
 {
 
@@ -42,8 +46,8 @@ struct CLASS_DECL_ACME block :
    block(const memory_base * pmemory);
    block(const block & block) : ::block(block.m_pdata, block.m_iSize) {}
    block(const atom & atom);
-   block(const ::string & str);
-   block(const ::string & str, ::strsize s);
+   //block(const ::string & str);
+   //block(const ::string & str, ::strsize s);
    block(const char * psz, ::strsize s = -1) : ::block((const void *)psz, (::i64) (s >= 0 ? s : strlen(psz) + s + 1)) {}
    template < typename TYPE >
    block(enum_as_block, TYPE & t): ::block((void *) & t, sizeof(t)) {}
@@ -73,7 +77,7 @@ struct CLASS_DECL_ACME block :
 //#endif
 
    block & from_base64(const char * psz, strsize iSize) const;
-   string to_base64() const;
+   //string to_base64() const;
 
 
    int compare(const block& block) const
@@ -95,21 +99,9 @@ struct CLASS_DECL_ACME block :
    }
 
 
-   bool operator == (const block & block) const
-   {
+   bool operator == (const block & block) const;
 
-      if (block.get_size() != get_size())
-      {
-
-         return false;
-
-      }
-
-      return __memcmp(block.get_data(), get_data(), (size_t) get_size()) == 0;
-
-   }
-
-   void to_string(string & str) const;
+   //void to_string(string & str) const;
 
 };
 
@@ -152,17 +144,6 @@ namespace acme
 //};
 
 
-namespace hex
-{
-
-
-   CLASS_DECL_ACME string lower_from(const block & block);
-
-   CLASS_DECL_ACME string upper_from(const block & block);
-
-
-} // namespace hex
-
 
 template < typename TYPE >
 inline ::block memory_block(TYPE type) 
@@ -173,18 +154,14 @@ inline ::block memory_block(TYPE type)
 }
 
 
-
-
-
-
 template < >
-inline uptr uptr_hash < block >(block b)
+inline u32hash u32_hash < const block & >(const block & b)
 {
 
    if (::is_null(b.get_data()) || b.is_empty())
    {
 
-      return 0;
+      return { 0 };
 
    }
 
@@ -217,7 +194,7 @@ inline uptr uptr_hash < block >(block b)
 
    }
 
-   return uHash;
+   return { uHash };
 
 }
 

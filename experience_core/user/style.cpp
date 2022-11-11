@@ -1405,7 +1405,7 @@ namespace experience_core
                if (estate & ::user::e_state_selected)
                {
 
-                  return __acolor(127, 0, 0, 0);
+                  return ::color::color(127, 0, 0, 0);
 
                }
                else
@@ -1422,13 +1422,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return __acolor(255, 230, 230, 230);
+                  return ::color::color(255, 230, 230, 230);
 
                }
                else
                {
 
-                  return __acolor(255, 40, 40, 40);
+                  return ::color::color(255, 40, 40, 40);
 
                }
 
@@ -1453,13 +1453,13 @@ namespace experience_core
                   if (is_dark_mode())
                   {
 
-                     return __acolor(255, 230, 230, 230);
+                     return ::color::color(255, 230, 230, 230);
 
                   }
                   else
                   {
 
-                     return __acolor(255, 40, 40, 40);
+                     return ::color::color(255, 40, 40, 40);
 
                   }
 
@@ -1486,13 +1486,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 255, 255, 255);
+               return ::color::color(255, 255, 255, 255);
 
             }
             else
             {
 
-               return __acolor(255, 0, 0, 0);
+               return ::color::color(255, 0, 0, 0);
 
             }
 
@@ -1508,13 +1508,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 255, 255, 255);
+               return ::color::color(255, 255, 255, 255);
 
             }
             else
             {
 
-               return __acolor(255, 0, 0, 0);
+               return ::color::color(255, 0, 0, 0);
 
             }
 
@@ -1525,13 +1525,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 255, 255, 255);
+               return ::color::color(255, 255, 255, 255);
 
             }
             else
             {
 
-               return __acolor(255, 0, 0, 0);
+               return ::color::color(255, 0, 0, 0);
 
             }
 
@@ -1542,13 +1542,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 210, 210, 200);
+               return ::color::color(255, 210, 210, 200);
 
             }
             else
             {
 
-               return __acolor(255, 90, 90, 80);
+               return ::color::color(255, 90, 90, 80);
 
             }
 
@@ -1558,13 +1558,13 @@ namespace experience_core
       else if (eelement == ::e_element_scrollbar)
       {
 
-         return __acolor(100, 192, 192, 192);
+         return ::color::color(100, 192, 192, 192);
 
       }
       else if (eelement == ::e_element_scrollbar_trackbar)
       {
 
-         return __acolor(160, 140, 140, 140);
+         return ::color::color(160, 140, 140, 140);
 
       }
       else if (eelement == ::e_element_item_text)
@@ -1576,13 +1576,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 130, 130, 130);
+               return ::color::color(255, 130, 130, 130);
 
             }
             else
             {
 
-               return __acolor(255, 192, 192, 192);
+               return ::color::color(255, 192, 192, 192);
 
             }
 
@@ -1593,13 +1593,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 230, 230, 230);
+               return ::color::color(255, 230, 230, 230);
 
             }
             else
             {
 
-               return __acolor(255, 40, 40, 40);
+               return ::color::color(255, 40, 40, 40);
 
             }
 
@@ -1618,13 +1618,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return __acolor(255, 150, 150, 150);
+                  return ::color::color(255, 150, 150, 150);
 
                }
                else
                {
 
-                  return __acolor(255, 160, 160, 160);
+                  return ::color::color(255, 160, 160, 160);
 
                }
 
@@ -1635,13 +1635,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return __acolor(255, 110, 110, 110);
+                  return ::color::color(255, 110, 110, 110);
 
                }
                else
                {
 
-                  return __acolor(255, 200, 200, 200);
+                  return ::color::color(255, 200, 200, 200);
 
                }
 
@@ -1657,13 +1657,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return __acolor(255, 130, 130, 130);
+                  return ::color::color(255, 130, 130, 130);
 
                }
                else
                {
 
-                  return __acolor(255, 180, 180, 180);
+                  return ::color::color(255, 180, 180, 180);
 
                }
 
@@ -1674,13 +1674,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return __acolor(255, 80, 80, 80);
+                  return ::color::color(255, 80, 80, 80);
 
                }
                else
                {
 
-                  return __acolor(255, 255, 255, 255);
+                  return ::color::color(255, 255, 255, 255);
 
                }
 
@@ -1698,13 +1698,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 130, 130, 130);
+               return ::color::color(255, 130, 130, 130);
 
             }
             else
             {
 
-               return __acolor(255, 192, 192, 192);
+               return ::color::color(255, 192, 192, 192);
 
             }
 
@@ -1715,13 +1715,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 230, 230, 230);
+               return ::color::color(255, 230, 230, 230);
 
             }
             else
             {
 
-               return __acolor(255, 40, 40, 40);
+               return ::color::color(255, 40, 40, 40);
 
             }
 
@@ -1737,13 +1737,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 130, 130, 130);
+               return ::color::color(255, 130, 130, 130);
 
             }
             else
             {
 
-               return __acolor(255, 192, 192, 192);
+               return ::color::color(255, 192, 192, 192);
 
             }
 
@@ -1754,13 +1754,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return __acolor(255, 230, 230, 230);
+               return ::color::color(255, 230, 230, 230);
 
             }
             else
             {
 
-               return __acolor(255, 40, 40, 40);
+               return ::color::color(255, 40, 40, 40);
 
             }
 
@@ -1776,13 +1776,13 @@ namespace experience_core
             if (estate & ::user::e_state_hover)
             {
 
-               return __acolor(127, 120, 120, 120);
+               return ::color::color(127, 120, 120, 120);
 
             }
             else
             {
 
-               return __acolor(127, 80, 80, 80);
+               return ::color::color(127, 80, 80, 80);
 
             }
 
@@ -1793,13 +1793,13 @@ namespace experience_core
             if (estate & ::user::e_state_hover)
             {
 
-               return __acolor(127, 230, 230, 230);
+               return ::color::color(127, 230, 230, 230);
 
             }
             else
             {
 
-               return __acolor(127, 210, 210, 210);
+               return ::color::color(127, 210, 210, 210);
 
             }
 
@@ -1813,13 +1813,13 @@ namespace experience_core
          if (is_dark_mode())
          {
 
-            return __acolor(255, 50, 50, 50);
+            return ::color::color(255, 50, 50, 50);
 
          }
          else
          {
 
-            return __acolor(255, 40, 40, 40);
+            return ::color::color(255, 40, 40, 40);
 
          }
 

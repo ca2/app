@@ -256,7 +256,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 
       pimage = matter_cache_image(strMatter);
 
-      if (::is_ok(pimage))
+      if (pimage.ok())
       {
 
          return pimage;
@@ -300,7 +300,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 
       pimage = get_cache_image(payloadFile);
 
-      if (::is_ok(pimage))
+      if (pimage.ok())
       {
 
          return pimage;
@@ -352,7 +352,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 
       pimage = matter_cache_image(strMatter);
 
-      if (::is_ok(pimage))
+      if (pimage.ok())
       {
 
          return pimage;
@@ -673,7 +673,7 @@ void context_image::_load_thumbnail(image * pimage, const ::payload & payloadFil
 
       pimage->on_load_image();
 
-      pimage->set_ok();
+      pimage->set_ok_flag();
 
       //return true;
 
@@ -705,7 +705,7 @@ void context_image::_load_thumbnail(image * pimage, const ::payload & payloadFil
 
    //}
 
-   pimage->set_ok();
+   pimage->set_ok_flag();
 
    //return true;
 
@@ -744,7 +744,7 @@ void context_image::_load_dib(image * pimage, const ::file::path & pathDib)
 
       pimage->on_load_image();
 
-      pimage->set_ok();
+      pimage->set_ok_flag();
 
       //return true;
 
@@ -900,7 +900,7 @@ void context_image::_load_image(::image* pimage, ::pointer<image_frame_array> & 
 //   //   if (pimage != this)
 //   //   {
 //
-//   //      pimage->set_ok();
+//   //      pimage->set_ok_flag();
 //
 //   //   }
 //
@@ -949,7 +949,7 @@ void context_image::_load_multi_frame_image(image * pimage, memory & memory)
 
       pimage->m_estatus = ::success;
 
-      pimage->set_ok();
+      pimage->set_ok_flag();
 
       return;
 
@@ -963,7 +963,7 @@ void context_image::_load_multi_frame_image(image * pimage, memory & memory)
 
    pimage->m_estatus = ::success;
 
-   pimage->set_ok();
+   pimage->set_ok_flag();
 
    ::duration durationTotal;
 
@@ -1073,7 +1073,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
       pimage->on_load_image();
 
-      pimage->set_ok();
+      pimage->set_ok_flag();
 
       pimage->m_estatus = ::success;
 
@@ -1101,7 +1101,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
       pimage->on_load_image();
 
-      pimage->set_ok();
+      pimage->set_ok_flag();
 
       pimage->m_estatus = ::success;
 

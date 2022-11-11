@@ -3,6 +3,8 @@
 //
 #include "framework.h"
 #include "pen.h"
+#include "acme/primitive/primitive/factory.h"
+#include "acme/primitive/primitive/pointer.h"
 
 
 nano_pen::nano_pen()

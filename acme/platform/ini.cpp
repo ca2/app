@@ -9,6 +9,12 @@
 namespace handle
 {
 
+   
+   ini::ini() 
+   {
+   
+   }
+
 
    ini::ini(const ::string & str)
    {
@@ -27,6 +33,36 @@ namespace handle
 
       parse_ini(str);
 
+   }
+
+   
+   ini::ini(const ::property_set & set) :
+      ::property_set(set)
+   {
+   
+   }
+
+
+   ini::ini(::property_set && set) : 
+      ::property_set(::move(set))
+   {
+   
+   }
+
+
+   ini::ini(const ini & ini) :
+      ::property_set(ini)
+   {
+   
+   
+   }
+
+   
+   ini::ini(ini && ini) : 
+      property_set(::move(ini)) 
+   {
+   
+   
    }
 
 

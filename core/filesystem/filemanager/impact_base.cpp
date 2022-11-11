@@ -79,9 +79,9 @@ void filemanager_impact_base::install_message_routing(::channel * pchannel)
 
    ::user::impact::install_message_routing(pchannel);
 
-   add_command_prober("edit_paste", this, &filemanager_impact_base::_001OnUpdateEditPaste);
+   add_command_prober("edit_paste", { this,  &filemanager_impact_base::_001OnUpdateEditPaste });
 
-   add_command_handler("edit_paste", this, &filemanager_impact_base::_001OnEditPaste);
+   add_command_handler("edit_paste", { this,  &filemanager_impact_base::_001OnEditPaste });
 
    MESSAGE_LINK(WM_APP + 1024,pchannel,this,&filemanager_impact_base::_001OnOperationDocMessage);
 

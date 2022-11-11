@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/_u32hash.h"
 
 
 #pragma pack(push, image_header, 1)
@@ -15,7 +16,7 @@ struct image_header
 {
 
 
-   e_image_type               m_etype;
+   enum_image_type            m_etype;
    ::color::color             m_cr;
    ::size_i32                 m_size;
 
@@ -27,7 +28,7 @@ struct image_header
       m_size(0, 0)
    {
 
-      m_etype = image_type_complex;
+      m_etype = e_image_type_complex;
       m_cr = 0;
 
    }
@@ -43,7 +44,7 @@ struct image_header
 
       switch (m_etype)
       {
-      case image_type_plain_color:
+      case e_image_type_plain_color:
          return m_cr == d.m_cr;
       default:
          return true;
@@ -66,7 +67,7 @@ struct image_header
 
       m_size.Null();
       m_cr = 0;
-      m_etype = image_type_complex;
+      m_etype = e_image_type_complex;
 
 
    }
@@ -79,16 +80,16 @@ struct image_header
 
 
 template < >
-inline uptr uptr_hash<const ::image_header&>(const ::image_header& key)
+inline u32hash u32_hash<const ::image_header&>(const ::image_header& key)
 {
    ::u32 u = (::u32)key.m_etype;
-   if (key.m_etype == ::image_type_plain_color)
+   if (key.m_etype == ::e_image_type_plain_color)
    {
       u |= key.m_cr;
    }
    u |= key.m_size.cx << 16;
    u |= key.m_size.cy << 24;
-   return u;
+   return { u };
 }
 
 

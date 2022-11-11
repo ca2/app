@@ -21,6 +21,9 @@
 #include "apex/parallelization/retry.h"
 
 
+#include "acme/primitive/duration/_text_stream.h"
+
+
 namespace apex
 {
 

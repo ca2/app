@@ -39,7 +39,7 @@ namespace sip
    void transaction::SetAccept(const string & value)
    {
 
-      header(__id(accept)) = value;
+      header("accept") = value;
 
    }
 
@@ -47,7 +47,7 @@ namespace sip
    string transaction::Accept()
    {
 
-      return header(__id(accept));
+      return header("accept");
 
    }
 
@@ -98,13 +98,13 @@ namespace sip
    // --------------------------------------------------------------------------------------
    void transaction::SetConnection(const string & value)
    {
-      header(__id(connection)) = value;
+      header("connection") = value;
    }
 
 
    string transaction::Connection()
    {
-      return header(__id(connection));
+      return header("connection");
    }
 
 
@@ -112,13 +112,13 @@ namespace sip
    // --------------------------------------------------------------------------------------
    void transaction::SetContentType(const string & value)
    {
-      header(__id(content_type)) = value;
+      header("content_type") = value;
    }
 
 
    string transaction::ContentType()
    {
-      return header(__id(content_type));
+      return header("content_type");
    }
 
 
@@ -126,13 +126,13 @@ namespace sip
    // --------------------------------------------------------------------------------------
    void transaction::SetContentLength(long value)
    {
-      header(__id(content_length)) = (i64) value;
+      header("content_length") = (i64) value;
    }
 
 
    long transaction::ContentLength()
    {
-      return atol(header(__id(content_length)));
+      return atol(header("content_length"));
    }
 
 

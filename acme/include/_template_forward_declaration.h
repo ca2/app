@@ -21,12 +21,23 @@ concept is_derived_from =
 
 template < typename FILE >
 class binary_stream;
+
+template < typename FILE >
+class write_text_stream;
+
 template < typename RESULT >
 class process;
 
 
 template<class T>
 class pointer;
+
+
+template < typename HOLDEE >
+class holdee
+{
+};
+
 
 
 template<class T>
@@ -56,7 +67,6 @@ namespace write_text
 
 
 
-
 template<typename Type, typename RawType = Type, ::enum_type m_etypeContainer = e_type_element >
 class string_array_base;
 
@@ -66,13 +76,12 @@ class string_base;
 
 
 
-#define CONSIDER_AS(as, use) using use = as
-
-
 using ansistring = string_base<ansichar>;
 using wd16string = string_base<wd16char>;
 using wd32string = string_base<wd32char>;
 using widestring = string_base<widechar>;
+using string = string_base < ansichar >;
+using wstring = string_base < widechar >;
 
 
 template < typename POINT >
@@ -137,21 +146,19 @@ concept primitive_xydim = requires(RECTANGLE rectangle)
 };
 
 
-using string = string_base < ansichar >;
-using wstring = string_base < widechar >;
-
-typedef string_array_base < string, string, e_type_string_array > string_array;
 
 template < typename TYPE_CHAR >
-class string_natural_pointer;
+class simple_string_base;
 
-using natural_ansistring = string_natural_pointer < ansichar >;
-using natural_wd16string = string_natural_pointer < wd16char >;
-using natural_wd32string = string_natural_pointer < wd32char >;
-using natural_widestring = string_natural_pointer < widechar >;
 
-typedef natural_ansistring natural_string;
-typedef natural_widestring natural_wstring;
+using simple_ansistring = simple_string_base < ansichar >;
+using simple_wd16string = simple_string_base < wd16char >;
+using simple_wd32string = simple_string_base < wd32char >;
+using simple_widestring = simple_string_base < widechar >;
+
+
+typedef simple_ansistring simple_string;
+typedef simple_widestring simple_wstring;
 
 
 
@@ -238,16 +245,10 @@ class e_status;
 
 
 template < typename T >
-concept a_pointer = std::is_pointer < T >::value;
-
-template < typename T >
-concept non_pointer = !std::is_pointer < T >::value;
-
-template < typename T >
 concept a_enum = std::is_enum < T >::value;
 
 template < typename T >
-concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value || std::is_same < T, ::e_status >::value;
+concept primitive_integral = std::is_integral_v < T > || std::is_enum < T >::value || std::is_same < T, ::e_status >::value;
 
 template < typename T >
 concept primitive_integer = std::is_integral < T >::value;
@@ -261,15 +262,14 @@ concept primitive_signed = (std::is_integral < T >::value || std::is_enum < T >:
 template < typename T >
 concept primitive_unsigned = (std::is_integral < T >::value || std::is_enum < T >::value) && !std::is_signed < T >::value;
 
-
 template < typename T >
 concept primitive_floating = std::is_floating_point < T >::value;
 
-template < typename T >
-concept primitive_number = std::is_integral < T >::value || std::is_enum < T >::value || std::is_floating_point < T >::value;
-
-
-
+template < typename NUMBER >
+concept primitive_number =
+   std::is_integral_v < NUMBER > ||
+   std::is_enum_v < NUMBER > ||
+   std::is_floating_point_v < NUMBER >;
 
 
 
@@ -374,19 +374,17 @@ template<class EENUM, EENUM edefault = (EENUM)0>
 class base_enum;
 
 
-
+template < typename CONTAINER >
+concept primitive_container = ::std::is_same < typename CONTAINER::PRIMITIVE_CONTAINER_TAG, PRIMITIVE_CONTAINER_TAG_TYPE >::value;
 
 template < typename PAYLOAD >
-concept primitive_payload = ::std::is_same < typename PAYLOAD::TAG, PAYLOAD_TAG >::value;
-
-//template < typename PROPERTY >
-//concept primitive_property = is_derived_from < PROPERTY, ::PROPERTY_TAG >;
+concept primitive_payload = ::std::is_same < typename PAYLOAD::PRIMITIVE_PAYLOAD_TAG, PRIMITIVE_PAYLOAD_TAG_TYPE >::value;
 
 template < typename ATOM >
-concept primitive_atom = ::std::is_same < typename ATOM::TAG, ATOM_TAG >::value;
+concept primitive_atom = ::std::is_same < typename ATOM::PRIMITIVE_ATOM_TAG, PRIMITIVE_ATOM_TAG_TYPE >::value;
 
 template < typename STRING >
-concept primitive_string = ::std::is_same < typename STRING::TAG, STRING_TAG >::value;
+concept primitive_string = ::std::is_same < typename STRING::PRIMITIVE_STRING_TAG, PRIMITIVE_STRING_TAG_TYPE >::value;
 
 using item_pointer = ::pointer < ::item >;
 
@@ -403,26 +401,6 @@ concept container_type = requires(CONTAINER container)
 };
 
 
-//template < typename HAS_COPY_TO_STRING >
-//concept has_copy_to_string = requires(const HAS_COPY_TO_STRING & t, ::string & str)
-//{
-//
-//   {::copy(str, t)} -> std::same_as<::string&>;
-//
-//};
-
-
-template < container_type CONTAINERX, container_type CONTAINERY >
-inline CONTAINERX operator +(CONTAINERX x, const CONTAINERY & y)
-{
-
-   x += y;
-
-   return x;
-
-}
-
-
 template < typename ARRAY >
 concept primitive_array = requires(ARRAY array, ::index i)
 {
@@ -430,41 +408,6 @@ concept primitive_array = requires(ARRAY array, ::index i)
    array.element_at(i);
 };
 
-template<primitive_array ARRAY1, primitive_array ARRAY2>
-bool operator==(const ARRAY1 &array1, const ARRAY2 &array2)
-{
-
-   if (array1.get_size() != array2.get_size())
-   {
-
-      return false;
-
-   }
-
-   for (::index i = 0; i < array1.get_size(); i++)
-   {
-
-      if (array1.element_at(i) != array2.element_at(i))
-      {
-
-         return false;
-
-      }
-
-   }
-
-   return true;
-
-}
-
-
-template<primitive_array ARRAY1, primitive_array ARRAY2>
-bool operator!=(const ARRAY1 &array1, const ARRAY2 &array2)
-{
-
-   return !operator==(array1, array2);
-
-}
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
@@ -497,11 +440,10 @@ template < typename POINTER, class ARRAY_TYPE = comparable_array < POINTER, POIN
 class address_array;
 
 
-
 class exception;
 
-using exception_array = ::array < ::exception >;
 
+using exception_array = ::array < ::exception >;
 
 
 template < typename T >
@@ -516,19 +458,7 @@ using particle_array = pointer_array < particle >;
 
 
 
-//#include "acme/primitive/collection/string_map.h"
-
-
 using regular_expression_pointer = ::pointer<::regular_expression::regular_expression>;
-
-
-//template < class T, typename C >
-//void std_string_assign(T & t, const C * psz);
-//
-//
-//template < class T >
-//void std_string_bassign(T & t, const u8 * psz, strsize nsize);
-//
 
 
 
@@ -537,22 +467,17 @@ typedef address_array < const char * > const_char_ptra;
 
 typedef address_array < void * > void_ptra;
 
-//typedef address_array < matter * > simple_object_ptra;
-
 
 using particle_address_array = address_array < particle * >;
 
 
-
-
-
-
 using file_pointer = ::pointer<::file::file>;
+
 
 using memory_file_pointer = ::pointer<::memory_file>;
 
-using folder_pointer = ::pointer<::folder>;
 
+using folder_pointer = ::pointer<::folder>;
 
 
 template < typename T >
@@ -580,7 +505,6 @@ template < typename SEQUENCE >
 class sequencer;
 
 
-//using handler_pointer = ::pointer<handler>;
 using manager_pointer = ::pointer<manager>;
 using context_pointer = ::pointer<context>;
 
@@ -672,6 +596,9 @@ using byte_array = u8_array;
 using task_pointer = ::pointer < task >;
 
 
+#include "acme/primitive/primitive/_u32hash.h"
+
+
 CLASS_DECL_ACME task_pointer fork(::particle * pparticle, const ::procedure & procedure);
 
 
@@ -687,143 +614,14 @@ namespace draw2d
 
 
 template < primitive_number NUMBER1, primitive_number NUMBER2 >
-inline void copy(NUMBER1 & number1, const NUMBER2 & number2)
+inline void copy(NUMBER1& number1, const NUMBER2& number2)
 {
 
-   number1 = (NUMBER1) number2;
+    number1 = (NUMBER1)number2;
 
 }
 
 
-template < primitive_string STRING, primitive_integral INTEGRAL >
-inline STRING & copy(STRING & string, const INTEGRAL & number)
-{
-
-   string.append_format("%lld", (::i64) number);
-
-   return string;
-
-}
-
-
-template < primitive_signed SIGNED, primitive_string STRING >
-inline void copy(SIGNED & s, const STRING & string)
-{
-
-   s = (SIGNED) string_to_signed(string);
-
-}
-
-
-template < primitive_natural NATURAL, primitive_string STRING >
-inline void copy(NATURAL & n, const STRING & string)
-{
-
-   n = (NATURAL) string_to_natural(string);
-
-}
-
-
-template < primitive_floating FLOATING, primitive_string STRING >
-inline void copy(FLOATING & f, const STRING & string)
-{
-
-   f = (FLOATING)string_to_floating(string);
-
-}
-
-
-template < primitive_string STRING, primitive_floating FLOATING >
-inline STRING & copy(STRING & string, const FLOATING & number)
-{
-
-   string.format("%f", (::f64)number);
-
-   return string;
-
-}
-
-
-template < primitive_payload PAYLOAD >
-inline ::string & copy(string & string, const PAYLOAD & payload)
-{
-
-   string = payload.string();
-
-   return string;
-
-}
-
-
-template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
-inline void copy(INTEGRAL & integral, const PAYLOAD & payload)
-{
-
-   integral = (INTEGRAL) payload.i64();
-
-}
-
-
-template < primitive_payload PAYLOAD >
-inline void copy(f32 & f, const PAYLOAD & payload)
-{
-
-   f = payload.f32();
-
-}
-
-
-template < primitive_payload PAYLOAD >
-inline void copy(::f64 & f, const PAYLOAD & payload)
-{
-
-   f = payload.f64();
-
-}
-
-
-template < primitive_payload PAYLOAD, primitive_number NUMBER >
-inline void copy(PAYLOAD & payload, const NUMBER & number)
-{
-
-   payload = number;
-
-}
-
-
-template < primitive_payload PAYLOAD, primitive_string STRING >
-inline PAYLOAD & copy(PAYLOAD & payload, const STRING & string)
-{
-
-   payload = string;
-
-   return payload;
-
-}
-
-
-template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
-inline void copy(PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
-{
-
-   payload1 = payload2;
-
-}
-
-
-
-
-
-
-
-
-template < a_pointer POINTER >
-inline bool is_null(POINTER p)
-{
-
-   return ((size_t)p <= 65536);
-
-}
 
 
 template < typename CHAR_STRING >
@@ -839,50 +637,19 @@ inline bool has_char(const wd16char * p) { return !is_empty(p); }
 inline bool has_char(const wd32char * p) { return !is_empty(p); }
 
 
-template < a_pointer POINTER >
-inline bool is_set(POINTER p)
-{
 
-   return !is_null(p);
-
-}
-
-
-template<typename TYPE>
-inline bool is_ref_set(const TYPE & t)
-{
-
-   return is_set(&t);
-
-}
-
-
-template<typename TYPE>
-inline bool is_ok(const TYPE * p)
-{
-
-   return ::is_set(p) && p->is_ok();
-
-}
-
-
-template<typename TYPE>
-inline bool is_ok(const ::pointer<TYPE> & p)
-{
-
-   return ::is_ok(p.m_p);
-
-}
-
-
-template<typename TYPE>
-inline bool nok(TYPE & t)
-{
-
-   return !::is_ok(t);
-
-}
-
+//template<typename TYPE>
+//inline bool is_ok(const ::pointer<TYPE>& p);
+//
+//
+//template<typename TYPE>
+//inline bool nok(TYPE & t)
+//{
+//
+//   return !::is_ok(t);
+//
+//}
+//
 
 
 
@@ -1049,874 +816,7 @@ void copy(SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 }
 
 
-template < typename CHAR_TYPE1, typename CHAR_TYPE2 >
-void copy(::string_base < CHAR_TYPE1 > & str1, const ::string_base < CHAR_TYPE2 > & str2)
-{
 
-   str1 = str2;
-
-}
-
-
-template < typename CHAR_TYPE1, primitive_character CHARACTER, std::size_t N >
-void copy(::string_base < CHAR_TYPE1 > & str1, const CHARACTER sz[N])
-{
-
-   str1 = sz;
-
-}
-
-
-template < typename CHAR_TYPE1, primitive_character CHARACTER >
-void copy(::string_base < CHAR_TYPE1 > & str1, const CHARACTER * psz)
-{
-
-   str1 = psz;
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE >
-constexpr auto width(RECTANGLE_TYPE & rectangle) { return rectangle.right - rectangle.left; }
-
-
-template < primitive_rectangle RECTANGLE_TYPE >
-constexpr auto height(RECTANGLE_TYPE & rectangle) { return rectangle.bottom - rectangle.top; }
-
-
-template < typename W, typename H >
-constexpr H area(W w, H h) { return (w <= (W)0 || h <= (H)0) ? 0 : (H)(w * h); }
-
-
-template < primitive_rectangle RECTANGLE_TYPE >
-constexpr auto area(RECTANGLE_TYPE & rectangle) { return area(width(rectangle), height(rectangle)); }
-
-
-template < primitive_rectangle RECTANGLE_TYPE >
-bool is_null(const RECTANGLE_TYPE & rectangle)
-{
-
-   return rectangle.left == (decltype(RECTANGLE_TYPE::left))0
-          && rectangle.top == (decltype(RECTANGLE_TYPE::top))0
-          && rectangle.right == (decltype(RECTANGLE_TYPE::right))0
-          && rectangle.bottom == (decltype(RECTANGLE_TYPE::bottom))0;
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE >
-constexpr auto is_empty(RECTANGLE_TYPE & rectangle) { return ::is_null(rectangle) || rectangle.right <= rectangle.left || rectangle.bottom <= rectangle.top; }
-
-
-template < primitive_rectangle RECTANGLE_TYPE >
-constexpr auto is_set(RECTANGLE_TYPE & rectangle) { return !::is_empty(rectangle); }
-
-
-template < primitive_size SIZE_TYPE >
-bool is_null(const SIZE_TYPE & size)
-{
-
-   return size.cx == (decltype(SIZE_TYPE::cx))0
-          && size.cy == (decltype(SIZE_TYPE::cy))0;
-
-}
-
-
-template < primitive_point POINT_TYPE >
-bool is_null(const POINT_TYPE & point)
-{
-
-   return point.x == (decltype(POINT_TYPE::cx))0 && point.y == (decltype(POINT_TYPE::cy))0;
-
-}
-
-
-
-
-
-template < primitive_rectangle RECTANGLE_TYPE, typename X >
-inline RECTANGLE_TYPE & x_offset(RECTANGLE_TYPE & rectangle, X x)
-{
-
-   rectangle.left = (decltype(RECTANGLE_TYPE::left))(rectangle.left + x);
-
-   rectangle.right = (decltype(RECTANGLE_TYPE::right))(rectangle.right + x);
-
-   return rectangle;
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, typename Y >
-inline RECTANGLE_TYPE & y_offset(RECTANGLE_TYPE & rectangle, Y y)
-{
-
-   rectangle.top = (decltype(RECTANGLE_TYPE::top))(rectangle.top + y);
-
-   rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom + y);
-
-   return rectangle;
-
-}
-
-
-
-template < primitive_rectangle RECTANGLE_TYPE, typename X >
-inline RECTANGLE_TYPE & x_subtract(RECTANGLE_TYPE & rectangle, X x)
-{
-
-   rectangle.left = (decltype(RECTANGLE_TYPE::left))(rectangle.left - x);
-
-   rectangle.right = (decltype(RECTANGLE_TYPE::right))(rectangle.right - x);
-
-   return rectangle;
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, typename Y >
-inline RECTANGLE_TYPE & y_subtract(RECTANGLE_TYPE & rectangle, Y y)
-{
-
-   rectangle.top = (decltype(RECTANGLE_TYPE::top))(rectangle.top - y);
-
-   rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom - y);
-
-   return rectangle;
-
-}
-
-
-template < typename RECTANGLE_TYPE, typename X, typename Y >
-inline RECTANGLE_TYPE & offset(RECTANGLE_TYPE & rectangle, X x, Y y)
-{
-
-   x_offset(rectangle, x);
-
-   y_offset(rectangle, y);
-
-   return rectangle;
-
-}
-
-
-template < typename RECTANGLE_TYPE, typename X, typename Y >
-inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, X x, Y y)
-{
-
-   x_subtract(rectangle, x);
-
-   y_subtract(rectangle, y);
-
-   return rectangle;
-
-}
-
-
-template < typename RECTANGLE_TYPE, primitive_point POINT_TYPE >
-inline RECTANGLE_TYPE & offset(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
-{
-
-   return offset(rectangle, point.x, point.y);
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT_TYPE >
-inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
-{
-
-   return subtract(rectangle, point.x, point.y);
-
-}
-
-
-template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
-inline RECTANGLE1 & subtract(RECTANGLE1 & rectangle, const RECTANGLE2 & rectangle2)
-{
-
-   rectangle.left = (decltype(rectangle.left))(rectangle.left - rectangle2.left);
-   rectangle.top = (decltype(rectangle.top))(rectangle.top - rectangle2.top);
-   rectangle.right = (decltype(rectangle.right))(rectangle.right - rectangle2.right);
-   rectangle.bottom = (decltype(rectangle.bottom))(rectangle.bottom - rectangle2.bottom);
-
-   return rectangle;
-
-}
-
-
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT >
-//inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT & point) { return subtract(rectangle, point); }
-
-
-template < primitive_point POINT, typename X, typename Y >
-inline POINT & offset(POINT & point, X x, Y y)
-{
-
-   point.x = (decltype(POINT::x))(point.x + x);
-   point.y = (decltype(POINT::y))(point.y + y);
-
-   return point;
-
-}
-
-
-template < primitive_point POINT, primitive_point POINT2 >
-inline POINT & offset(POINT & point, const POINT2 & point2)
-{
-
-   return offset(point, point2.x, point2.y);
-
-}
-
-
-template < primitive_point POINT, primitive_point POINT2 >
-inline POINT & add(POINT & point, const POINT2 & point2) { return offset(point, point2); }
-
-
-template < primitive_point POINT_TYPE, typename X, typename Y >
-inline POINT_TYPE & subtract(POINT_TYPE & point, X x, Y y)
-{
-
-   point.x = (decltype(POINT_TYPE::x))(point.x - x);
-   point.y = (decltype(POINT_TYPE::y))(point.y - y);
-
-   return point;
-
-}
-
-
-template < primitive_point POINT_TYPE, primitive_point POINT_TYPE2 >
-inline POINT_TYPE & subtract(POINT_TYPE & point, const POINT_TYPE2 & point2)
-{
-
-   return subtract(point, point2.x, point2.y);
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT_TYPE >
-inline RECTANGLE_TYPE & add(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
-{
-
-   return offset(rectangle, point);
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-bool x_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   auto left = maximum(rect1.left, rect2.left);
-
-   auto right = minimum(rect1.right, rect2.right);
-
-   bool bIntersect = right > left;
-
-   if (!bIntersect)
-   {
-
-      left = 0; right = 0;
-
-   }
-
-   if (::is_set(rectangle))
-   {
-
-      rectangle.left = left;
-
-      rectangle.right = right;
-
-   }
-
-   return bIntersect;
-
-}
-
-
-template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-bool x_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   auto left = maximum(rect1.left, rect2.left);
-
-   auto right = minimum(rect1.right, rect2.right);
-
-   return right > left;
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-bool y_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   auto top = maximum(rect1.top, rect2.top);
-
-   auto bottom = minimum(rect1.bottom, rect2.bottom);
-
-   bool bIntersect = bottom > top;
-
-   if (!bIntersect)
-   {
-
-      top = 0; bottom = 0;
-
-   }
-
-   if (::is_set(rectangle))
-   {
-
-      rectangle.top = top;
-
-      rectangle.bottom = bottom;
-
-   }
-
-   return bIntersect;
-
-}
-
-
-template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-bool y_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   auto top = maximum(rect1.top, rect2.top);
-
-   auto bottom = minimum(rect1.bottom, rect2.bottom);
-
-   return bottom > top;
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-bool intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   if (x_intersect(rectangle, rect1, rect2) && y_intersect(rectangle, rect1, rect2))
-   {
-
-      return true;
-
-   }
-
-   if (::is_set(rectangle))
-   {
-
-      null(rectangle);
-
-   }
-
-   return false;
-
-}
-
-
-template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-bool intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   return x_intersects(rect1, rect2) && y_intersects(rect1, rect2);
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-bool x_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   auto left = maximum(rect1.left, rect2.left);
-
-   auto right = minimum(rect1.right, rect2.right);
-
-   bool bIntersect = right >= left;
-
-   if (!bIntersect)
-   {
-
-      left = 0; right = 0;
-
-   }
-
-   if (::is_set(rectangle))
-   {
-
-      rectangle.left = left;
-
-      rectangle.right = right;
-
-   }
-
-   return bIntersect;
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-bool y_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   auto top = maximum(rect1.top, rect2.top);
-
-   auto bottom = minimum(rect1.bottom, rect2.bottom);
-
-   bool bIntersect = bottom >= top;
-
-   if (!bIntersect)
-   {
-
-      top = 0; bottom = 0;
-
-   }
-
-   if (::is_set(rectangle))
-   {
-
-      rectangle.top = top;
-
-      rectangle.bottom = bottom;
-
-   }
-
-   return bIntersect;
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-bool null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   if (x_null_intersect(rectangle, rect1, rect2) && y_null_intersect(rectangle, rect1, rect2))
-   {
-
-      return true;
-
-   }
-
-   if (::is_set(rectangle))
-   {
-
-      null(rectangle);
-
-   }
-
-   return false;
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-bool x_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   rectangle.left = maximum(rect1.left, rect2.left);
-
-   rectangle.right = minimum(rect1.right, rect2.right);
-
-   return rectangle.right > rectangle.left || (rectangle.right == rectangle.left && rect1.left == rect2.left);
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-bool y_top_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   rectangle.top = maximum(rect1.top, rect2.top);
-
-   rectangle.bottom = minimum(rect1.bottom, rect2.bottom);
-
-   return rectangle.top < rectangle.bottom || (rectangle.top == rectangle.bottom && rect1.top == rect2.top);
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-bool top_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   if (x_left_null_intersect(rectangle, rect1, rect2) && y_top_null_intersect(rectangle, rect1, rect2))
-   {
-
-      return true;
-
-   }
-   else
-   {
-
-      null(rectangle);
-
-      return false;
-
-   }
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-RECTANGLE_TYPE & unite(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   if (is_empty(rect1))
-   {
-
-      if (is_empty(rect2))
-      {
-
-         null(rectangle);
-
-      }
-      else
-      {
-
-         copy(rectangle, rect2);
-
-      }
-
-   }
-   else if (is_empty(rect1))
-   {
-
-      copy(rectangle, rect1);
-
-   }
-   else
-   {
-
-      rectangle.left = (decltype(RECTANGLE_TYPE::left))minimum(rect1.left, rect2.left);
-      rectangle.top = (decltype(RECTANGLE_TYPE::top))minimum(rect1.top, rect2.top);
-      rectangle.right = (decltype(RECTANGLE_TYPE::right))maximum(rect1.right, rect2.right);
-      rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))maximum(rect1.bottom, rect2.bottom);
-
-   }
-
-   return rectangle;
-
-}
-
-
-template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-RECT_TYPE1 & unite(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   if (is_empty(rect1))
-   {
-
-      if (is_empty(rect2))
-      {
-
-         null(rect1);
-
-      }
-      else
-      {
-
-         copy(rect1, rect2);
-
-      }
-
-   }
-   else if (is_set(rect2))
-   {
-
-      rect1.left = (decltype(RECT_TYPE1::left))minimum(rect1.left, rect2.left);
-      rect1.top = (decltype(RECT_TYPE1::top))minimum(rect1.top, rect2.top);
-      rect1.right = (decltype(RECT_TYPE1::right))maximum(rect1.right, rect2.right);
-      rect1.bottom = (decltype(RECT_TYPE1::bottom))maximum(rect1.bottom, rect2.bottom);
-
-   }
-
-   return rect1;
-
-}
-
-
-template < typename X, typename Y >
-auto get_dimension(enum_orientation eorientation, X x, Y y);
-
-
-template < typename X, typename Y >
-auto get_normal_dimension(enum_orientation eorientation, X x, Y y);
-
-
-template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
-bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
-{
-
-   return rectangle1.left == rectangle2.left && rectangle1.top == rectangle2.top
-          && rectangle1.right == rectangle2.right && rectangle1.bottom == rectangle2.bottom;
-
-}
-
-
-template < primitive_point POINT1, primitive_point POINT2 >
-bool is_equal(const POINT1 & point1, const POINT2 & point2)
-{
-
-   return point1.x == point2.x && point1.y == point2.y;
-
-}
-
-
-template < primitive_size SIZE_TYPE1, primitive_size SIZE_TYPE2 >
-bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
-{
-
-   return size1.cx == size2.cx && size1.cy == size2.cy;
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_number T, primitive_number R, primitive_number B >
-RECTANGLE_TYPE & assign(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
-{
-
-   rectangle.left = (decltype(RECTANGLE_TYPE::left))l;
-   rectangle.top = (decltype(RECTANGLE_TYPE::top))t;
-   rectangle.right = (decltype(RECTANGLE_TYPE::right))r;
-   rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))b;
-
-   return rectangle;
-
-}
-
-
-template < primitive_rectangle RECTANGLE, primitive_number L, primitive_number T, primitive_number W, primitive_number H >
-RECTANGLE & set_dimension(RECTANGLE & rectangle, L l, T t, W w, H h)
-{
-
-   rectangle.left = (decltype(RECTANGLE::left))l;
-   rectangle.top = (decltype(RECTANGLE::top))t;
-   rectangle.right = (decltype(RECTANGLE::right))(l + w);
-   rectangle.bottom = (decltype(RECTANGLE::bottom))(t + h);
-
-   return rectangle;
-
-}
-
-//template < primitive_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(RECTANGLE &r, L l, T t, W w, H h) { return set_dim(p, l, t, w, h); }
-//template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(RECTANGLE_I64 * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
-//template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(RECTANGLE_F32 * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
-//template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(RECTANGLE_F64 * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
-
-
-template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
-RECTANGLE & set_bottom_right(RECTANGLE & rectangle, const SIZE & size)
-{
-
-   rectangle.right = (decltype(RECTANGLE::right))(rectangle.left + size.cx);
-   rectangle.bottom = (decltype(RECTANGLE::bottom))(rectangle.top + size.cy);
-
-   return rectangle;
-
-}
-
-
-template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
-RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size)
-{
-
-   rectangle.left = (decltype(RECTANGLE::left))point.x;
-   rectangle.top = (decltype(RECTANGLE::top))point.y;
-   rectangle.right = (decltype(RECTANGLE::right))(point.x + size.cx);
-   rectangle.bottom = (decltype(RECTANGLE::bottom))(point.y + size.cy);
-
-   return rectangle;
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE >
-RECTANGLE_TYPE & null(RECTANGLE_TYPE & rectangle)
-{
-
-   return ::assign(rectangle, 0, 0, 0, 0);
-
-}
-
-
-
-template < primitive_rectangle RECTANGLE, primitive_number X >
-inline bool contains_x(const RECTANGLE & rectangle, X x)
-{
-
-   return x >= rectangle.left && x <= rectangle.right;
-
-}
-
-
-template < primitive_rectangle RECTANGLE, primitive_number Y >
-inline bool contains_y(const RECTANGLE & rectangle, Y y)
-{
-
-   return y >= rectangle.top && y <= rectangle.bottom;
-
-}
-
-
-template < typename RECTANGLE, primitive_number X, primitive_number Y >
-inline bool contains(const RECTANGLE & rectangle, X x, Y y)
-{
-
-   return contains_x(rectangle, x) && contains_y(rectangle, y);
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_number T, primitive_number R, primitive_number B >
-inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
-{
-
-   rectangle.left = (decltype(RECTANGLE_TYPE::left))(rectangle.left - l);
-   rectangle.top = (decltype(RECTANGLE_TYPE::top))(rectangle.top - t);
-   rectangle.right = (decltype(RECTANGLE_TYPE::right))(rectangle.right + r);
-   rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom + b);
-
-   return rectangle;
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
-inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
-{
-
-   return inflate(rectangle, rect2.left, rect2.top, rect2.right, rect2.bottom);
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
-inline RECTANGLE_TYPE & multiply_inline(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
-{
-
-   rectangle.left *= rect2.left;
-   rectangle.top *= rect2.top;
-   rectangle.right *= rect2.right;
-   rectangle.bottom *= rect2.bottom;
-
-   return rectangle;
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_number T, primitive_number R, primitive_number B >
-inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
-{
-
-   rectangle.left = (decltype(RECTANGLE_TYPE::left))(rectangle.left + l);
-   rectangle.top = (decltype(RECTANGLE_TYPE::top))(rectangle.top + t);
-   rectangle.right = (decltype(RECTANGLE_TYPE::right))(rectangle.right - r);
-   rectangle.bottom = (decltype(RECTANGLE_TYPE::bottom))(rectangle.bottom - b);
-
-   return rectangle;
-
-}
-
-
-template < typename RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
-inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
-{
-
-   return deflate(rectangle, rect2.left, rect2.top, rect2.right, rect2.bottom);
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number X, primitive_number Y >
-inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, X x, Y y)
-{
-
-   return inflate(rectangle, x, y, x, y);
-
-}
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number X, primitive_number Y >
-inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, X x, Y y)
-{
-
-   return deflate(rectangle, x, y, x, y);
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number UNIT >
-inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, UNIT u)
-{
-
-   return inflate(rectangle, u, u);
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number UNIT >
-inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, UNIT u)
-{
-
-   return deflate(rectangle, u, u);
-
-}
-
-
-template < primitive_rectangle RECTANGLE_TYPE >
-inline RECTANGLE_TYPE & swap_left_right(RECTANGLE_TYPE & rectangle) { __swap(rectangle.left, rectangle.right); return rectangle; }
-
-
-
-template < primitive_point POINT1, primitive_point POINT2 >
-inline bool polygon_contains(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point)
-{
-
-   int i, j = iCount - 1;
-
-   auto x = point.x;
-
-   auto y = point.y;
-
-   bool oddNodes = false;
-
-   for (i = 0; i < iCount; i++)
-   {
-
-      if (((ppPolygon[i].y < y && ppPolygon[j].y >= y) || (ppPolygon[j].y < y && ppPolygon[i].y >= y)) && (ppPolygon[i].x <= x || ppPolygon[j].x <= x))
-      {
-
-         oddNodes ^= (ppPolygon[i].x + (y - ppPolygon[i].y) / (ppPolygon[j].y - ppPolygon[i].y) * (ppPolygon[j].x - ppPolygon[i].x) < x);
-
-      }
-
-      j = i;
-
-   }
-
-   return oddNodes;
-
-}
-
-
-
-
-template < primitive_point POINT, primitive_point POINT2 >
-inline POINT & operator -= (POINT & point, const POINT2 & pointOffset) { ::subtract(point, pointOffset); return point; }
-
-template < primitive_point POINT, primitive_point POINT2 >
-inline POINT & operator += (POINT & point, const POINT2 & pointOffset) { ::add(point, pointOffset); return point; }
-
-
-
-template < primitive_rectangle RECTANGLE, primitive_point POINT >
-inline RECTANGLE & operator -= (RECTANGLE & rectangle, const POINT & point) { ::subtract(rectangle, point); return rectangle; }
-
-template < primitive_rectangle RECTANGLE, primitive_point POINT >
-inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point) { ::add(rectangle, point); return rectangle; }
 
 
 template <class TYPEA, class ARG_TYPEA, class TYPEB, class ARG_TYPEB,
@@ -1929,10 +829,249 @@ using i32_spreadset = spreadset < i32, i32, i32, i32, unique_i32_sort_array, uni
 using i64_spreadset = spreadset < i64, i64, i64, i64, unique_i64_sort_array, unique_i64_sort_array >;
 
 
+
+
+
+template < typename TYPE, std::size_t SIZE >
+inline array_reference < TYPE, SIZE >& __zero(TYPE(&)[SIZE]);
+
+
+
+template < typename TYPE, std::size_t Size >
+inline bool __is_zero(TYPE(&array)[Size]);
+
+
+
 #include "acme/primitive/duration/__string.h"
 
 
-::string & copy(::string & str, const integral_byte & memsize);
+
+// erase_const
+// erase_const
+// erase_const
+
+
+template<typename TYPE>
+struct erase_const_struct
+{
+
+   // erase top-level const qualifier
+   using NON_CONST_TYPE = TYPE;
+
+
+};
+
+template<typename TYPE>
+struct erase_const_struct<TYPE&>
+{
+   using NON_CONST_TYPE = TYPE&;
+};
+
+
+template<typename TYPE>
+struct erase_const_struct<const TYPE>
+{
+   using NON_CONST_TYPE = TYPE;
+};
+
+template<typename TYPE>
+struct erase_const_struct<const TYPE&>
+{
+   using NON_CONST_TYPE = TYPE&;
+};
+
+template<class TYPE>
+using non_const = typename erase_const_struct<TYPE>::NON_CONST_TYPE;
+
+struct true_type
+{
+};
+struct false_type
+{
+};
+
+
+
+
+
+
+// raw_type discorvery
+// raw_type discorvery
+// raw_type discorvery
+
+
+template<typename POINTER>
+class raw_pointer
+{
+public:
+
+   using RAW_POINTER = POINTER;
+
+};
+
+
+template<typename TYPE>
+class raw_type
+{
+public:
+
+   using RAW_TYPE = TYPE;
+
+};
+
+
+template<typename TYPE>
+class raw_type<TYPE*>
+{
+public:
+
+   using RAW_TYPE = TYPE;
+
+};
+
+
+template<typename TYPE>
+class raw_type<TYPE*&>
+{
+public:
+
+   using RAW_TYPE = TYPE;
+
+};
+
+
+template<typename TYPE>
+class raw_type<const TYPE*>
+{
+public:
+
+   using RAW_TYPE = TYPE;
+
+};
+
+
+template<typename TYPE>
+class raw_type<const TYPE*&>
+{
+public:
+
+   using RAW_TYPE = TYPE;
+
+};
+
+
+
+
+
+
+
+
+
+namespace write_text
+{
+
+
+
+   using font_enumeration_item_array = pointer_array < font_enumeration_item >;
+
+
+} // namespace write_text
+
+
+
+
+
+namespace mathematics
+{
+
+   template<typename T>
+   class complex;
+
+
+} // namespace mathematics
+
+
+
+template < typename HOLDEE >
+class ___shape;
+
+
+
+namespace _std
+{
+
+
+   template<class T>
+   void __swap(T& a, T& b)
+   {
+      T c(a);
+      a = b;
+      b = c;
+   }
+
+
+}
+
+
+
+
+#define return_(y, x) {y = x; return;}
+
+
+
+
+
+
+template<typename POINTER_TYPE>
+class ptr_array;
+
+
+using object_ptra = pointer_array < ::matter >; // Please use just for keeping non-member-based references.
+
+using matter_array = pointer_array < ::matter >; // Please use just for keeping non-member-based references.
+
+using task_array = pointer_array < ::task >; // Please use just for keeping non-member-based references.
+
+
+template < typename SEQUENCE >
+class sequence;
+
+#ifdef WINDOWS
+
+template < typename POINTER_TYPE >
+class cotaskptr;
+
+template < typename POINTER_TYPE >
+class cotaskptr_array;
+
+#endif
+
+
+using arguments = payload_array;
+
+
+template<class T>
+class guard_pointer;
+
+
+
+
+
+template < typename SEQUENCE >
+class sequencer;
+
+
+template < class T >
+inline void __dynamic_cast(T*& ptarget, T* psource);
+
+
+template < class T , typename T2 >
+inline void __dynamic_cast(T*& ptarget, T2* psource);
+
+
+using enum_application_capability_array = ::comparable_array < enum_application_capability >;
+
+
 
 
 

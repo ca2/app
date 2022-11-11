@@ -4,6 +4,7 @@
 
 #include "command_update_target.h"
 #include "conversation.h"
+#include "acme/primitive/mathematics/c_number.h"
 
 
 namespace user
@@ -328,9 +329,9 @@ namespace user
       //virtual lresult send(::message::message * pmessage);
       //virtual bool post(::message::message * pmessage);
 
-      virtual lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr);
+      virtual lresult send_message(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = nullptr);
 
-      virtual lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr);
+      virtual lresult message_call(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = nullptr);
       virtual lresult message_call(::message::message * pmessage);
 
 
@@ -340,7 +341,7 @@ namespace user
 
 #endif
 
-      virtual void post_message(const ::atom & atom, wparam wparam = 0,lparam lparam = 0);
+      virtual void post_message(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
 
       virtual void post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0);
 
@@ -440,7 +441,7 @@ namespace user
 
       virtual bool is_top_level_window();
 
-      virtual void send_message_to_descendants(const ::atom & atom, wparam wParam = 0, lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false);
+      virtual void send_message_to_descendants(const ::atom & atom, wparam wParam = {}, lparam lParam = 0, bool bDeep = true, bool bOnlyPerm = false);
 
       virtual void route_message_to_descendants(::message::message * pmessage);
       virtual void pre_translate_message(::message::message * pmessage);
@@ -486,7 +487,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      virtual bool call_message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = nullptr,lresult * presult = nullptr);
+      virtual bool call_message_handler(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = nullptr, lresult * presult = nullptr);
 
 
       //virtual void GuieProc(::message::message * pmessage);

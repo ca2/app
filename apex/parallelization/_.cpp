@@ -7,8 +7,8 @@
 //#include "acme/_operating_system.h"
 
 
-void __node_init_multitasking();
-void __node_term_multitasking();
+//void __node_init_multitasking();
+//void __node_term_multitasking();
 
 
 namespace parallelization
@@ -29,7 +29,7 @@ namespace parallelization
 
       //s_pthreadptra2 = memory_new pointer_array < thread >;
 
-      __node_init_multitasking();
+      //__node_init_multitasking();
 
    }
 
@@ -37,7 +37,7 @@ namespace parallelization
    CLASS_DECL_APEX void destroy()
    {
 
-      __node_term_multitasking();
+      //__node_term_multitasking();
 
       //::acme::del(s_pthreadptra2);
 

@@ -9,12 +9,222 @@
 #pragma once
 
 
-#include "acme/primitive/mathematics/index.h"
-#include "acme/primitive/mathematics/count.h"
+
+namespace opengl
+{
+
+
+   class opengl;
+
+
+} // namespace opengl
+
+
+namespace message
+{
+
+
+   class command;
+
+
+} // namespace message
+class matter;
+
+
+namespace acme
+{
+
+
+   class system; // acme - cam
+
+
+   class application; // apex(::apex::application) - tbs offloading his deep stack in ::acme::application(::acme):cstbs
+
+
+} // namespace acme
+
+
+
+
+
+namespace acme
+{
+
+
+   class node;
+   class library;
+
+
+} // namespace acme
+
+
+namespace acme_posix
+{
+
+
+   class node;
+
+
+} // namespace acme_posix
+
+
+
+namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
+{
+
+
+   class node;
+   class buffer;
+
+
+} // namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
+
+
+namespace acme_posix { class node; }
+namespace apex_posix { class node; }
+namespace aura_posix { class node; }
+
+
+namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_) { class node; }
+namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(apex_) { class node; }
+namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_) { class node; }
 
 
 constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
 
+
+
+namespace acme
+{
+
+
+   class system;
+
+
+   class node;
+
+
+} // namespace acme
+
+
+namespace apex
+{
+
+
+   class system;
+
+
+   class node;
+
+
+} // namespace apex
+
+
+namespace aura
+{
+
+
+   class system;
+
+
+   class node;
+
+
+} // namespace aura
+
+
+
+class object;
+class thread;
+
+
+namespace node_gtk
+{
+
+
+   class node;
+
+
+} // namespace node_gtk
+
+
+namespace node_gnome
+{
+
+
+   class node;
+
+
+} // namespace node_gnome
+
+
+namespace node_kde
+{
+
+
+   class node;
+
+
+} // namespace node_kde
+
+
+namespace node_xfce
+{
+
+
+   class node;
+
+
+} // namespace node_xfce
+
+
+namespace desktop_environment_gnome
+{
+
+
+   class node;
+
+
+} // namespace desktop_environment_gnome
+
+
+
+
+namespace windowing
+{
+
+   class window;
+
+} // namespace windowing
+
+//using oswindow = void *;
+using windows_handle = void*;
+using hinstance = void*;
+#ifdef UNICODE
+using tchar = wchar_t;
+#else
+using tchar = char;
+#endif
+
+
+namespace desktop_environment_kde
+{
+
+
+   class node;
+
+
+} // namespace desktop_environment_kde
+
+
+namespace desktop_environment_xfce
+{
+
+
+   class node;
+
+
+} // namespace desktop_environment_xfce
 
 
 namespace acme 
@@ -38,13 +248,9 @@ class task;
 class task_pool;
 class action_context;
 class object;
-class dump_context;
-//class synchronization;
+//class dump_context;
 class __id;
 class string_exchange;
-class text_stream;
-//class string;
-//class wstring;
 class lparam;
 class wait;
 class timer_callback;
@@ -148,9 +354,10 @@ namespace data
 class memory_base;
 
 struct HAS_STRING_LABEL_TAG { };
-struct PAYLOAD_TAG { };
-struct ATOM_TAG { };
-struct STRING_TAG { };
+struct PRIMITIVE_CONTAINER_TAG_TYPE { };
+struct PRIMITIVE_PAYLOAD_TAG_TYPE { };
+struct PRIMITIVE_ATOM_TAG_TYPE { };
+struct PRIMITIVE_STRING_TAG_TYPE { };
 
 //class handler;
 class manager;
@@ -426,7 +633,7 @@ class compress_department; // only usable from axis.dll and dependants
 class channel;
 
 
-class dump_context;
+//class dump_context;
 
 
 //class atom_space;
@@ -572,12 +779,21 @@ class file_time;
 
 class duration;
 
+
 namespace earth
 {
+
+
    class date_span;
 
    class time_span;
+
+   class time;
+
+
 } // namespace earth
+
+
 class folder;
 
 class memory_file;
@@ -633,6 +849,716 @@ namespace operating_system
 
 
 
+
+
+
+
+
+
+
+namespace acme
+{
+
+
+   class static_start;
+
+
+   extern CLASS_DECL_ACME bool g_bAcme;
+
+
+} // namespace acme
+
+
+class acme_directory;
+
+class acme_file;
+
+class acme_path;
+
+
+namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)
+{
+
+
+   class acme_directory;
+
+   class acme_file;
+
+   class acme_path;
+
+
+} // namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)
+
+
+
+
+class signal;
+class backing;
+class manager;
+class topic;
+class context;
+//class handler;
+//template < typename RESULT > class process;
+class extended_topic;
+
+
+namespace dynamic_source
+{
+
+
+   class script_interface;
+
+
+} // namespace dynamic_source
+
+
+
+
+
+namespace apex
+{
+
+
+   class theme;
+
+
+   class idpool;
+
+
+   class system;
+
+
+   class session;
+
+
+   class node;
+
+
+   //   class application;
+
+
+} // namespace apex
+
+
+namespace aqua
+{
+
+
+   class system;
+
+
+   class session;
+
+
+   class application;
+
+
+} // namespace aqua
+
+
+namespace aura
+{
+
+
+   class theme;
+
+
+   class idpool;
+
+
+   class application;
+
+
+   class session;
+
+
+   class node;
+
+
+   class system;
+
+
+} // namespace aura
+
+
+namespace axis
+{
+
+
+   class idpool;
+
+
+   class application;
+
+
+   class session;
+
+
+   class system;
+
+
+   class user;
+
+
+} // namespace axis
+
+
+namespace base
+{
+
+
+   class idpool;
+
+
+   class application;
+
+
+   class session;
+
+
+   class system;
+
+
+   class user;
+
+
+} // namespace base
+
+
+namespace bred
+{
+
+   class system;
+
+
+   class session;
+
+
+   class application;
+
+} // namespace bred
+
+
+namespace core
+{
+
+
+   //   class idpool;
+
+
+   class application;
+
+
+   class session;
+
+
+   class system;
+
+
+} // namespace core
+
+
+
+class machine_event_central;
+
+struct block;
+
+
+class payload;
+struct block;
+
+
+
+
+
+
+
+class trait;
+
+
+class create;
+
+
+class composite_base;
+
+
+
+
+
+namespace write_text
+{
+
+
+   class font_enumeration_item;
+
+
+
+} // namespace write_text
+
+
+
+
+
+
+
+
+
+namespace draw2d
+{
+
+
+   class graphics;
+   class path;
+
+
+} // namespace draw2d
+
+
+class wcsdup_array;
+
+
+
+
+namespace geometry
+{
+
+   class geometry;
+
+} // namespace geometry
+
+class compress;
+class uncompress;
+
+//class system_impl;
+
+
+//namespace str
+//{
+//
+class base64;
+//
+//} // namespace str
+
+
+namespace acme
+{
+
+   class library;
+
+
+   //   using library_map = string_map < ::pointer<::acme::library >>;
+
+} // namespace acme
+
+class task_group;
+class task_tool;
+
+
+
+class node_data_exchange;
+
+namespace xml
+{
+
+
+   class xml;
+
+
+} // namespace xml
+
+
+
+
+
+class ftpfs;
+
+
+namespace fs
+{
+
+   class remote_native;
+
+
+   class fs;
+
+
+   class data;
+
+}
+
+class ifs;
+
+
+
+namespace file
+{
+
+   class watcher;
+
+} // namespace file
+
+
+
+
+
+
+
+class mq_base;
+
+
+namespace acme
+{
+
+
+   class timer_array;
+
+
+} // namespace acme
+
+
+namespace file
+{
+
+
+   class path;
+   class path_object;
+   class path_array;
+
+
+} // namespace file
+
+class task;
+
+
+#ifdef WINDOWS_DESKTOP
+
+struct hwnd { }; // as pointer is a HWND
+
+using oswindow_t = hwnd;
+
+#else
+
+using oswindow_t = ::windowing::window;
+
+#endif
+
+
+using oswindow = oswindow_t*;
+
+
+
+
+namespace core
+{
+
+
+   class user;
+
+
+} // namespace core
+
+
+
+
+namespace http
+{
+
+   class context;
+
+} // namespace http
+
+
+class object_meta;
+
+
+class manual_reset_event;
+
+
+
+
+
+namespace factory
+{
+
+
+   class factory_item_interface;
+
+
+} // namespace factory
+
+
+namespace user
+{
+
+
+   class interaction;
+
+   class form;
+
+
+} // namespace user
+
+
+
+
+class thread;
+
+
+namespace user
+{
+
+   class primitive;
+
+   //class create;
+
+
+} // namespace user
+
+
+class action_context;
+
+
+class event_map;
+
+
+class thread_ptra;
+
+
+namespace acme
+{
+
+   class topic;
+
+} // namespace acme
+
+
+class memory_base;
+
+
+
+
+
+namespace message
+{
+
+
+   class message;
+
+
+} // namespace status
+
+
+class parents;
+
+
+class children;
+
+
+//namespace exception
+//{
+
+
+class exception;
+
+//using exception_pointer = ::pointer<exception>
+
+
+//} // namespace exception
+
+
+
+namespace message
+{
+
+
+   class message;
+
+
+} // namespace message
+
+
+class sticker;
+
+
+
+class context_image;
+
+
+using lresult = iptr;
+
+
+
+namespace mathematics
+{
+
+   class mathematics;
+
+} // namespace mathematics
+
+
+
+
+
+class type;
+
+namespace text
+{
+
+   class text;
+   class data;
+   class translator;
+
+
+   class table;
+   class context;
+
+
+   namespace international
+   {
+
+      class locale_schema;
+
+   }
+
+
+} // namespace text
+
+
+
+
+class conversation;
+
+
+
+
+class thread_parameter;
+
+
+
+
+
+
+class atom;
+
+
+namespace calculator
+{
+
+
+   class value;
+
+
+} // namespace calculator
+
+
+#ifndef WINDOWS_DESKTOP
+
+typedef void* HDWP;
+
+#endif
+
+
+namespace factory
+{
+
+
+   class factory;
+
+
+} // namespace factory
+
+
+
+
+typedef bool FN_TIMER(timer* ptimer);
+
+typedef FN_TIMER* PFN_TIMER;
+
+
+
+class event;
+
+
+namespace html
+{
+
+   class html; // defined and set by html library/component
+
+}
+
+
+class image_list;
+
+
+namespace acme
+{
+
+
+   class file;
+
+
+
+   namespace trace
+   {
+
+      class trace;
+
+   }
+
+   class session;
+
+} // namespace acme
+
+
+// only usable from base and base dependants
+namespace base
+{
+
+   class application;
+
+   class session;
+
+
+   class system;
+
+}
+
+
+class app_core;
+
+
+namespace data
+{
+
+
+   class item;
+
+
+} // namespace data
+
+
+namespace xml
+{
+
+
+   class node;
+
+
+   class document;
+
+
+} // namespace xml
+
+
+
+
+
+
+typedef void(*PFN_factory)(::factory::factory* pfactory);
+
+
+
+using argument = payload;
 
 
 

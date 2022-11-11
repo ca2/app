@@ -14,92 +14,14 @@ inline bool __enum_is_failed(const ::e_status & e)
 
 
 
-template < class T >
-template < typename T2 >
-inline pointer < T > ::pointer(const ptr < T2 > & t) :
-   m_p(t.m_p),
-   m_pparticle(t.m_p)
-{
-
-   if (::is_set(m_p))
-   {
-
-      m_pparticle->increment_reference_count();
-
-   }
-
-}
-
-
-template < class T >
-template < typename T2 >
-inline pointer < T > ::pointer(ptr < T2 > && t) :
-   m_p(t.m_p),
-   m_pparticle(t.m_p)
-{
-
-   if (::is_set(m_p))
-   {
-
-      m_pparticle->increment_reference_count();
-
-   }
-
-}
-
-
-template < class T >
-template < typename T2 >
-inline pointer < T > & pointer < T > ::operator = (const ptr < T2 >  & t)
-{
-
-   auto pold = m_pparticle;
-
-   m_p = dynamic_cast < T * >(t.m_p);
-
-   m_pparticle = t.m_p;
-
-   if (::is_set(m_p))
-   {
-
-      m_pparticle->increment_reference_count();
-
-   }
-
-   ::release(pold REF_DBG_COMMA_POINTER);
-
-   return *this;
-
-}
-
-
-template < class T >
-template < typename T2 >
-inline pointer < T > & pointer < T > ::operator = (ptr < T2 > && t)
-{
-
-   auto pOld         = m_pparticle;
-
-   m_p           = t.m_p;
-
-   m_pparticle        = t.m_p;
-
-   t.m_p         = nullptr;
-
-   ::release(pOld REF_DBG_COMMA_POINTER);
-
-   return *this;
-
-}
-
 
 
 
 //template < >
-//inline uptr uptr_hash < const type & >(const ::type & type)
+//inline uptr u32_hash < const type & >(const ::type & type)
 //{
 //
-//   return uptr_hash < const ::atom & > (type);
+//   return u32_hash < const ::atom & > (type);
 //
 //}
 
@@ -136,9 +58,7 @@ inline pointer < T > & pointer < T > ::operator = (ptr < T2 > && t)
 //}
 
 
-#include "acme/primitive/primitive/trait_predicate.h"
-
-
+//#include "acme/primitive/primitive/trait_predicate.h"
 
 
 //inline property_set ca_property_set()
@@ -979,22 +899,6 @@ inline ::pointer < T > move_transfer(T* p) { return { e_move_transfer, p }; }
 //}
 //
 
-
-template < typename T >
-template < typename PARTICLE >
-inline pointer < T > & pointer<T> ::defer_create(PARTICLE * pparticle, ::factory::factory * pfactory)
-{
-
-   if (is_null())
-   {
-
-      operator=(pparticle->template __create < T >());
-
-   }
-
-   return *this;
-
-}
 
 
 //template < class T >
@@ -1858,7 +1762,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //
 //   auto pfork = fork(pfn, epriority);
 //
-//   get_property_set()[__id(thread)][atom] = pfork;
+//   get_property_set()["thread"][atom] = pfork;
 //
 //   return pfork;
 //

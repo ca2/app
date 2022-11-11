@@ -199,3 +199,16 @@ inline bool ishexdigit(char ch)
       //   return true;
       //return false;
 }
+
+
+namespace hex
+{
+
+
+   CLASS_DECL_ACME string lower_from(const block & block);
+
+   CLASS_DECL_ACME string upper_from(const block & block);
+
+
+} // namespace hex
+

@@ -166,7 +166,7 @@ CLASS_DECL_ACME int_bool c_enable_trace_category(enum_trace_category etracecateg
 }
 
 
-CLASS_DECL_ACME const ::matter * general_trace_object()
+CLASS_DECL_ACME const ::particle * general_trace_object()
 {
 
    return trace_category::s_ptracecategorya->element_at(0);
@@ -174,7 +174,7 @@ CLASS_DECL_ACME const ::matter * general_trace_object()
 }
 
 
-CLASS_DECL_ACME const ::matter* trace_object(enum_trace_category etracecategory)
+CLASS_DECL_ACME const ::particle * trace_object(enum_trace_category etracecategory)
 {
 
    return trace_category::s_ptracecategorya->element_at((iptr)etracecategory);

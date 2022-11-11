@@ -179,7 +179,7 @@ strsize ansi_to_wd32(wd32char* pwsz, const char* psz, strsize srclen)
    while (srclen != 0 && psz != nullptr && *psz != '\0')
    {
 
-      auto iWd32 = unicode_index_len(psz, len);
+      auto iWd32 = unicode_index_length(psz, len);
 
       if (iWd32 < 0)
       {

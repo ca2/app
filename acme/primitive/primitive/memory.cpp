@@ -10,7 +10,7 @@ memory::memory(memory && memory) :
    memory_base(::move(memory))
 {
    
-   __zero(memory.m_memory);
+   memset(&memory.m_memory, 0, sizeof(memory.m_memory));
 
 }
 

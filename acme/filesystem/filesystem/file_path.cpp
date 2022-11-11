@@ -3,7 +3,9 @@
 // 04:38 BRT <3ThomasBorregaardSørensen
 #include "framework.h"
 #include "acme_file.h"
+#include "acme/networking/__string.h"
 #include "acme/primitive/collection/numeric_array.h"
+
 
 
 void copy_character_per_character(char * pszTarget, const char * pszSource)
@@ -333,7 +335,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
                else
                {
 
-                  iPos += ch_unicode_len(psz[iPos]);
+                  iPos += utf8_unicode_length(psz[iPos]);
 
                   if (iPos >= iLen)
                   {
@@ -394,7 +396,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
             else
             {
 
-               iPos += ch_unicode_len(psz[iPos]);
+               iPos += utf8_unicode_length(psz[iPos]);
 
                if (iPos >= iLen)
                {
@@ -438,7 +440,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
          else
          {
 
-            iPos += ch_unicode_len(psz[iPos]);
+            iPos += utf8_unicode_length(psz[iPos]);
 
             if (iPos >= iLen)
             {
@@ -453,7 +455,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
       else
       {
 
-         iPos += ch_unicode_len(psz[iPos]);
+         iPos += utf8_unicode_length(psz[iPos]);
 
          if (iPos >= iLen)
          {

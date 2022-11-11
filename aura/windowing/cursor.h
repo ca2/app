@@ -5,8 +5,8 @@
 
 #include "acme/filesystem/filesystem/path.h"
 #include "acme/primitive/collection/osdata_array.h"
-#include "acme/primitive/geometry2d/size.h"
-#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 namespace windowing
@@ -14,7 +14,7 @@ namespace windowing
 
 
    class CLASS_DECL_AURA cursor :
-      virtual public ::matter,
+      virtual public ::particle,
       virtual public ::osdata_array
    {
    public:
@@ -36,7 +36,7 @@ namespace windowing
 
 //      virtual void load_system_default_cursor_hint();
 
-      virtual void set_image(const ::image * pimage, ::i32 xHotspot, ::i32 yHotspot);
+      virtual void set_image(::image * pimage, ::i32 xHotspot, ::i32 yHotspot);
 
       virtual void set_file_path(const ::file::path & path);
 

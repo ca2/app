@@ -319,30 +319,30 @@ namespace earth
 } // namespace earth
 
 
-#ifdef __DEBUG
-
-
-dump_context & operator <<(dump_context & dumpcontext, ::earth::zonetime zonetime)
-{
-   //char psz[32];
-   //psz[0] = '\0';
-
-   ////   time_t tmp = zonetime.get_time();
-   ////   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
-
-   //errno_t err = 0;
-
-   //if ((err != 0) || (psz[0] == '\0') || (zonetime.get_time() == 0))
-   //{
-   //   dumpcontext << "::earth::zonetime(invalid #" << (iptr)zonetime.get_time() << ")";
-
-   //   return dumpcontext;
-   //}
-
-   //// format it
-   //dumpcontext << "::earth::zonetime(\"" << psz << "\")";
-
-   return dumpcontext;
-}
-
-#endif
+//#ifdef __DEBUG
+//
+//
+//dump_context & operator <<(dump_context & dumpcontext, ::earth::zonetime zonetime)
+//{
+//   //char psz[32];
+//   //psz[0] = '\0';
+//
+//   ////   time_t tmp = zonetime.get_time();
+//   ////   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
+//
+//   //errno_t err = 0;
+//
+//   //if ((err != 0) || (psz[0] == '\0') || (zonetime.get_time() == 0))
+//   //{
+//   //   dumpcontext << "::earth::zonetime(invalid #" << (iptr)zonetime.get_time() << ")";
+//
+//   //   return dumpcontext;
+//   //}
+//
+//   //// format it
+//   //dumpcontext << "::earth::zonetime(\"" << psz << "\")";
+//
+//   return dumpcontext;
+//}
+//
+//#endif

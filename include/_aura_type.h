@@ -4,7 +4,7 @@
 #include "_aura_integer.h"
 
 
-#include "_aura_memory.h"
+#include "acme/primitive/numeric/types.h"
 
 
 typedef u32 dword;

@@ -79,14 +79,6 @@
 //}
 
 
-//template <  >
-//inline uptr uptr_hash(itask_t key)
-//{
-//
-//   return 0;
-//
-//}
-
 
 #endif
 

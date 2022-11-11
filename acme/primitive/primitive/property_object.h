@@ -13,7 +13,6 @@
 
 
 class object;
-//class runnable_array;
 
 
 class CLASS_DECL_ACME property_object :
@@ -26,26 +25,13 @@ public:
 
 
    property_object() { }
-   //property_object(const property_object & propertyobject);
    ~property_object() override;
-
-
 
 
    void destroy() override;
 
 
    virtual void notify_on_destroy(::property_object * pcontextobjectFinish) override;
-
-
-   //void destroy() override;
-
-
-   //virtual void on_finish() override;
-   
-
-   //template < typename TYPE >
-   //inline void __construct_new(::pointer<TYPE> pusermessage);
 
 
    virtual void keep_alive();
@@ -81,8 +67,6 @@ public:
 
 
 
-   inline bool is_status_ok() const { return m_estatus; }
-   inline bool has_failed_status() const { return !is_status_ok(); }
 
 
 
@@ -109,7 +93,7 @@ public:
    const property_set & get_property_set() const;
    bool contains(const ::property_set & set) const;
 
-   using matter::set;
+   using matter::set_flag;
 
 //   template < typename TYPE >
 //   inline void set(const ::atom & atom, const TYPE & t);

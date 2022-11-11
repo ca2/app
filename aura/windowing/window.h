@@ -5,9 +5,7 @@
 
 #include "apex/message/channel.h"
 #include "acme/primitive/collection/osdata_array.h"
-#include "acme/primitive/geometry2d/point.h"
-#include "acme/primitive/geometry2d/rectangle.h"
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/geometry2d/_collection.h"
 
 
 namespace windowing
@@ -152,10 +150,10 @@ namespace windowing
       virtual bool screen_to_client(POINT_I32 * ppoint);
 
 
-      virtual bool on_set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
+      virtual bool on_set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
 
-      virtual bool set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
-      virtual bool _set_window_pos(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
+      virtual bool set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
+      virtual bool _set_window_pos(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
 
       virtual bool is_destroying();
 

@@ -41,94 +41,110 @@ class extended_topic;
 using hsynchronization = void *;
 
 
-struct PARTICLE
+struct FLAGS
+{
+public:
+   
+   
+   ::e_flag                            m_eflagElement;
+   ::e_status                          m_estatus;
+
+
+   [[nodiscard]] inline bool has_flag(enum_flag eflag) const { return (m_eflagElement & eflag) == eflag; }
+   inline void set_flag(enum_flag eflag) { m_eflagElement = (enum_flag)((::u64)(m_eflagElement) | (::u64)(eflag)); }
+   inline void set_flag(enum_flag eflag, bool bSet) { if (bSet) set_flag(eflag); else clear_flag(eflag); }
+   inline void clear_flag(enum_flag eflag) { m_eflagElement = (enum_flag)((::u64)(m_eflagElement) & (~(::u64)(eflag))); }
+
+
+   inline void set_ok_flag() { set_flag(e_flag_success); clear_flag(e_flag_timeout); clear_flag(e_flag_failure); }
+   inline void set_nok(enum_flag estatusFailure = e_flag_failure) { clear_flag(e_flag_success); set_flag(estatusFailure); }
+   inline void set_modified_flag(bool bModified = true) { set_flag(e_flag_changed, bModified); }
+
+
+   inline void set_fail_flag() { set_flag(e_flag_failure); clear_flag(e_flag_success); }
+   inline void set_timed_out_flag() { set_flag(e_flag_timeout); }
+   inline void set_persistent_flag(bool bSet = true) { set_flag(e_flag_persist, bSet); }
+
+
+   [[nodiscard]] inline bool has_ok_flag() const { return has_flag(e_flag_success); }
+   [[nodiscard]] inline bool nok() const { return has_flag(e_flag_failure) || has_flag(e_flag_timeout); }
+   [[nodiscard]] inline bool has_timed_out_flag() { return has_flag(e_flag_timeout); }
+   [[nodiscard]] inline bool has_modified_flag() const { return has_flag(e_flag_changed); }
+   [[nodiscard]] inline bool has_persistent_flag() const { return has_flag(e_flag_persist); }
+
+   [[nodiscard]] inline bool has_shared_flag() const { return has_flag(e_flag_shared); }
+   inline void set_shared_flag(bool bSet = true) { set_flag(e_flag_shared, bSet); }
+
+
+   [[nodiscard]] inline bool has_finishing_flag() const { return has_flag(e_flag_finishing); }
+   inline void set_finishing_flag() { set_flag(e_flag_finishing); }
+   inline void clear_finishing_flag() { clear_flag(e_flag_finishing); }
+
+
+   [[nodiscard]] inline bool has_acquired_flag() const { return has_flag(e_flag_acquired); }
+   inline void set_acquired_flag() { set_flag(e_flag_acquired); }
+   inline void clear_acquired_flag() { clear_flag(e_flag_acquired); }
+
+   [[nodiscard]] inline bool has_own_synchronization_flag() const { return has_flag(e_flag_own_synchronization); }
+   inline void set_own_synchronization_flag(bool bSet = true) { set_flag(e_flag_own_synchronization, bSet); }
+   inline void clear_own_synchronization_flag() { clear_flag(e_flag_own_synchronization); }
+
+
+   [[nodiscard]] inline bool has_already_exists_flag() const { return has_flag(e_flag_already_exists); }
+   inline void set_already_exists_flag(bool bSet = true) { set_flag(e_flag_already_exists, bSet); }
+   inline void clear_already_exists_flag() { clear_flag(e_flag_already_exists); }
+
+
+   // [[nodiscard]] inline bool is_heap_allocated() const { return has_flag(e_flag_heap_allocated); }
+   // inline void set_heap_allocated() { set_flag(e_flag_heap_allocated); }
+   // inline void clear_heap_allocated() { clear_flag(e_flag_heap_allocated); }
+
+
+   [[nodiscard]] inline bool has_destroying_flag() const { return has_flag(e_flag_destroying); }
+   inline void set_destroying_flag() { set_flag(e_flag_destroying); }
+   inline void clear_destroying_flag() { clear_flag(e_flag_destroying); }
+
+
+   [[nodiscard]] inline bool has_storing_flag() const { return has_flag(e_flag_storing); }
+   [[nodiscard]] inline bool has_loading_flag() const { return !has_storing_flag(); }
+
+
+   inline void set_storing_flag() { set_flag(e_flag_storing); }
+   inline void set_loading_flag() { clear_flag(e_flag_storing); }
+
+
+   inline void defer_set_storing_flag() { if (!has_storing_flag()) set_storing_flag(); }
+   inline void defer_set_loading_flag() { if (!has_loading_flag()) set_loading_flag(); }
+
+
+   inline void set_statically_allocated_flag() { set_flag(e_flag_statically_allocated); }
+   inline void set_verbose_flag(bool bVerbose = true) { set_flag(e_flag_verbose, bVerbose); }
+   [[nodiscard]] inline bool has_verbose_flag() const { return has_flag(e_flag_verbose); }
+
+
+   inline bool is_status_ok() const { return m_estatus; }
+   inline bool has_failed_status() const { return !is_status_ok(); }
+
+
+};
+
+struct PARTICLE :
+   public FLAGS
 {
 
 
    ::acme::context *                   m_pcontext;
-   ::e_flag                            m_eflagElement;
    union
    {
       mutable ::particle *             m_pparticleSynchronization;
       mutable hsynchronization         m_hsynchronization;
    };
-   ::e_status                          m_estatus;
 
 
 
-   PARTICLE() : m_pcontext(nullptr), m_pparticleSynchronization(nullptr), m_estatus(e_status_none)  {}
+   PARTICLE() : m_pcontext(nullptr), m_pparticleSynchronization(nullptr)  {}
 
 
-   [[nodiscard]] inline bool has(enum_flag eflag) const { return (m_eflagElement & eflag) == eflag; }
-   inline void set(enum_flag eflag) { m_eflagElement = (enum_flag)((::u64)(m_eflagElement) | (::u64)(eflag)); }
-   inline void set(enum_flag eflag, bool bSet) { if (bSet) set(eflag); else clear(eflag); }
-   inline void clear(enum_flag eflag) { m_eflagElement = (enum_flag)((::u64)(m_eflagElement) & (~(::u64)(eflag))); }
-
-
-   inline void set_ok() { set(e_flag_success); clear(e_flag_timeout); clear(e_flag_failure); }
-   inline void set_nok(enum_flag estatusFailure = e_flag_failure) { clear(e_flag_success); set(estatusFailure); }
-   inline void set_modified(bool bModified = true) { set(e_flag_changed, bModified); }
-
-
-   inline void set_fail() { set(e_flag_failure); clear(e_flag_success); }
-   inline void set_timed_out() { set(e_flag_timeout); }
-   inline void set_persistent(bool bSet = true) { set(e_flag_persist, bSet); }
-
-
-   [[nodiscard]] inline bool is_ok() const { return has(e_flag_success); }
-   [[nodiscard]] inline bool nok() const { return has(e_flag_failure) || has(e_flag_timeout); }
-   [[nodiscard]] inline bool has_timed_out() { return has(e_flag_timeout); }
-   [[nodiscard]] inline bool is_modified() const { return has(e_flag_changed); }
-   [[nodiscard]] inline bool is_persistent() const { return has(e_flag_persist); }
-
-   [[nodiscard]] inline bool is_shared2() const { return has(e_flag_shared); }
-   inline void set_shared(bool bSet = true) { set(e_flag_shared, bSet); }
-
-
-   [[nodiscard]] inline bool is_finishing() const { return has(e_flag_finishing); }
-   inline void set_finishing() { set(e_flag_finishing); }
-   inline void unset_finishing() { clear(e_flag_finishing); }
-
-
-   [[nodiscard]] inline bool is_acquired() const { return has(e_flag_acquired); }
-   inline void set_acquired() { set(e_flag_acquired); }
-   inline void unset_acquired() { clear(e_flag_acquired); }
-
-   [[nodiscard]] inline bool is_own_synchronization() const { return has(e_flag_own_synchronization); }
-   inline void set_own_synchronization(bool bSet = true) { set(e_flag_own_synchronization, bSet); }
-   inline void unset_own_synchronization() { clear(e_flag_own_synchronization); }
-
-
-   [[nodiscard]] inline bool already_exists() const { return has(e_flag_already_exists); }
-   inline void set_already_exists(bool bSet = true) { set(e_flag_already_exists, bSet); }
-   inline void unset_already_exists() { clear(e_flag_already_exists); }
-
-
-   // [[nodiscard]] inline bool is_heap_allocated() const { return has(e_flag_heap_allocated); }
-   // inline void set_heap_allocated() { set(e_flag_heap_allocated); }
-   // inline void unset_heap_allocated() { clear(e_flag_heap_allocated); }
-
-
-   [[nodiscard]] inline bool is_destroying() const { return has(e_flag_destroying); }
-   inline void set_destroying() { set(e_flag_destroying); }
-   inline void unset_destroying() { clear(e_flag_destroying); }
-
-
-   [[nodiscard]] inline bool is_storing() const { return has(e_flag_storing); }
-   [[nodiscard]] inline bool is_loading() const { return !is_storing(); }
-
-
-   inline void set_storing() { set(e_flag_storing); }
-   inline void set_loading() { clear(e_flag_storing); }
-
-
-   inline void defer_set_storing() { if (!is_storing()) set_storing(); }
-   inline void defer_set_loading() { if (!is_loading()) set_loading(); }
-
-
-   inline void set_statically_allocated() { set(e_flag_statically_allocated); }
-   inline void set_verbose(bool bVerbose = true) { set(e_flag_verbose, bVerbose); }
-   [[nodiscard]] inline bool is_verbose() const { return has(e_flag_verbose); }
 
 
 };
@@ -176,7 +192,7 @@ public:
    virtual void delete_this();
 
 
-   inline ::particle * synchronization() const { return ::is_set_ptr(this) ? m_pparticleSynchronization : nullptr; }
+   inline ::particle * synchronization() const { return ::is_set(this) ? m_pparticleSynchronization : nullptr; }
    void set_synchronization(::particle * pparticleSynchronization);
    void defer_create_synchronization();
 
@@ -216,6 +232,13 @@ public:
    virtual ::topic_pointer create_topic(const ::atom & atom);
    virtual ::extended_topic_pointer create_extended_topic(const ::atom & atom);
 
+
+   inline bool is_null() const { return ::is_null(this); }
+   inline bool is_set() const { return !is_null(); }
+
+   virtual bool _is_ok() const;
+   inline bool is_ok() const { return is_set() && _is_ok(); }
+   inline bool nok() const { return !is_ok(); }
 
    virtual void install_message_routing(::channel * pchannel);
 
@@ -344,7 +367,7 @@ public:
    // ThomasBorregaardSørensen!! Like handlers
    //virtual void call(const enum_message, i64 iData = 0, ::matter * pmatter = nullptr);
    //virtual void call(const enum_id, i64 iData = 0, ::matter* pmatter = nullptr);
-   virtual void call(const ::atom & atom, i64 wParam = 0, i64 lParam = 0, ::matter * pmatter = nullptr);
+   virtual void call(const ::atom & atom, i64 wParam = 0, i64 lParam = 0, ::particle * pparticle = nullptr);
 
 
    // ThomasBorregaardSørensen!! Like handlers
@@ -398,6 +421,7 @@ public:
 
 
 
+   virtual const char* debug_note() const;
 
 
 
@@ -431,6 +455,7 @@ public:
    virtual void destroy_os_data();
 
 
+   virtual void kick_idle();
 
 
 };
@@ -462,6 +487,49 @@ class optional_interaction2 : virtual public ::particle { OPTIONAL_INTERACTION_B
 class optional_interaction3 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
 class optional_interaction4 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
 
+
+template < typename T >
+inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+{
+
+   if (::is_null(p))
+   {
+
+      return -1;
+
+   }
+
+   ::particle* pparticle = p;
+
+   try
+   {
+
+      p = nullptr;
+
+   }
+   catch (...)
+   {
+
+      ::output_debug_string("exception release p = nullptr; \n");
+
+   }
+
+   try
+   {
+
+      return pparticle->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+   catch (...)
+   {
+
+      ::output_debug_string("exception release pparticle->release() \n");
+
+   }
+
+   return -1;
+
+}
 
 
 

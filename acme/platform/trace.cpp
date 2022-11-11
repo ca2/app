@@ -7,23 +7,26 @@
 #include "acme/_operating_system.h"
 
 
-thread_local ::thread_local_pointer<logger>  t_plogger;
-
-
-void logger::t_construct(::acme::context * pcontext)
-{
-
-   pcontext->__construct(t_plogger);
-
-}
-
-
-void logger::t_release()
-{
-
-   ::release(t_plogger);
-
-}
+//logger *  g_plogger = nullptr;
+//
+//
+//void logger::t_construct(::acme::context * pcontext)
+//{
+//
+//   if(!g_plogger)
+//   {
+//
+//   pcontext->__construct(t_plogger);
+//
+//}
+//
+//
+//void logger::t_release()
+//{
+//
+//   ::release(t_plogger);
+//
+//}
 
 
 
@@ -156,27 +159,4 @@ trace_category::~trace_category()
 //
 //}
 //
-//
-//void tracer::flush()
-//{
-//
-//   auto plogger = ::is_set(m_plogger) ? m_plogger : t_plogger.m_p;
-//
-//   if(::is_null(plogger))
-//   {
-//
-//      ::logger::t_construct(m_pcontext);
-//
-//      plogger = t_plogger.m_p;
-//
-//   }
-//
-//   if (::is_set(plogger))
-//   {
-//
-//      plogger->print(m_etracelevel, m_etracecategory, m_pszFunction, m_pszFile, m_iLine, m_str);
-//
-//   }
-//
-//}
 //

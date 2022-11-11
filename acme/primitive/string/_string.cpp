@@ -1,8 +1,9 @@
 ﻿// Created by camilo on 2022-06-07 06:23 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "acme/primitive/collection/numeric_array.h"
-#include "acme/primitive/collection/array.h"
+#include "_string.h"
 #include "string.h"
+#include "acme/primitive/collection/numeric_array.h"
+
 
 
 void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array * piaTab, array < strsize * > intptra)

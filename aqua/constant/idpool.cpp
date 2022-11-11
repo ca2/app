@@ -1,18 +1,18 @@
 #include "framework.h"
-#include "idpool.h"
-
-
-namespace aqua
-{
-
-
-   idpool::idpool()
-   {
-
-   }
-
-
-} // namespace aqua
-
-
-
+//#include "idpool.h"
+//
+//
+//namespace aqua
+//{
+//
+//
+//   idpool::idpool()
+//   {
+//
+//   }
+//
+//
+//} // namespace aqua
+//
+//
+//

@@ -1,18 +1,20 @@
 ﻿#pragma once
 
 
-#include "acme/memory/string_memory_allocator.h"
-#include "string_meta_data.h"
-#include "string_type.h"
-#include "_c_unicode.h"
-#include "character.h"
+//#include "acme/memory/string_memory_allocator.h"
+//#include "string_meta_data.h"
+//#include "string_type.h"
 #include "string_iterator.h"
-#include "acme/exception/debug.h"
+//#include "acme/exception/debug.h"
+
 
 enum enum_canonical
 {
+   
    e_canonical,
+
 };
+
 
 template < typename TYPE_CHAR >
 class string_base :
@@ -21,7 +23,7 @@ class string_base :
 public:
 
 
-   using TAG = STRING_TAG;
+   using PRIMITIVE_STRING_TAG = PRIMITIVE_STRING_TAG_TYPE;
    using CHAR_TYPE = TYPE_CHAR;
    typedef natural_pointer < string_meta_data < TYPE_CHAR >, string_memory_allocator >     POINTER;
 
@@ -38,6 +40,9 @@ public:
    string_base(const CHARACTER2 * pszSource, strsize len) : string_base(pszSource, 0, len) {}
    template < primitive_character CHARACTER2 >
    string_base(const CHARACTER2 * pszSource, strsize start, strsize len);
+   string_base(const utf8_character& utf8character) :
+      string_base(utf8character.m_sz, utf8character.m_iLength)
+   { }
 //   string_base(const ansichar * pansichar, strsize len);
 //   string_base(const ansichar * pansichar, strsize len, strsize pos) : string_base(pansichar + pos, len) { }
    string_base(const block & block);
@@ -60,20 +65,35 @@ public:
    //string_base(const ansistring & wd32str);
    //string_base(const wd16string & wd16str);
    //string_base(const wd32string & wd32str);
-   string_base(const natural_ansistring& ansistr);
-   string_base(const natural_wd16string& wd16str);
-   string_base(const natural_wd32string& wd32str);
+   string_base(const simple_ansistring& simpleansistr);
+   string_base(const simple_wd16string& simplewd16str);
+   string_base(const simple_wd32string& simplewd32str);
    template < primitive_character CHARACTER2 >
    string_base(CHARACTER2 chSrc, strsize repeat = 1);
 //   string_base(ansichar ansich, strsize repeat = 1);
 //   string_base(wd16char wd16ch, strsize repeat = 1);
 //   string_base(wd32char wd32ch, strsize repeat = 1);
-   string_base(const character & character, strsize repeat = 1) :string_base(character.m_wd32char, repeat) {}
+   //string_base(const character & character, strsize repeat = 1) :string_base(character.m_wd32char, repeat) {}
    template < primitive_payload PAYLOAD >
    string_base(const PAYLOAD & payload) : string_base(payload.get_string()) {}
    template < primitive_atom ATOM >
    string_base(const ATOM & atom) : string_base(atom.string()) {}
    inline ~string_base() {}
+
+
+   void default_construct()
+   {
+
+      POINTER::natural_pointer_default_construct();
+
+   }
+
+   void construct(typename POINTER::NATURAL_META_DATA * pNew)
+   {
+
+      POINTER::create_assign_natural_meta_data(pNew);
+
+   }
 
    void start_count(strsize & start, strsize & count, strsize len);
 
@@ -197,7 +217,7 @@ public:
    string_base operator + (wd32char wd32ch)  const;
    
 
-
+   operator ::block() const { return { c_str(), get_length_in_bytes() }; }
    template < primitive_payload PAYLOAD >
    string_base operator + (const PAYLOAD & payload) const { return *this + payload.get_string(); }
 
@@ -253,7 +273,12 @@ public:
    //inline string_base& assign(const wd16string& wd16str, strsize pos, strsize n);
    //inline string_base& assign(const wd32string& wd32str, strsize pos, strsize n);
    template < primitive_character CHARACTER2 >
-   inline string_base& assign(const CHARACTER2 * pszSrc, strsize start = 0, strsize len = -1);
+   inline string_base& assign(const CHARACTER2* pszSrc, strsize len = -1)
+   {
+      return assign(pszSrc, 0, len);
+   }
+   template < primitive_character CHARACTER2 >
+   inline string_base& assign(const CHARACTER2 * pszSrc, strsize start, strsize len);
    template < primitive_character CHARACTER2 >
    inline string_base& _assign(const CHARACTER2 * pszSrc, strsize start = 0, strsize len = -1);
    //inline string_base& assign(const wd16char* pwd16szSrc, strsize len);
@@ -427,7 +452,7 @@ public:
 //#endif
 //
 
-   void construct() noexcept;
+   //void construct() noexcept;
 
 
    void push_back(CHAR_TYPE ch);

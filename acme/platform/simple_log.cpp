@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "acme/update.h"
 #include "acme/platform/system.h"
 #ifdef WINDOWS
 #include <process.h>
@@ -9,6 +8,8 @@
 #endif
 #include "simple_log.h"
 #include "trace.h"
+
+string get_status_message(const ::e_status & estatus);
 
 
 CLASS_DECL_ACME void __simple_tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);

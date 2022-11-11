@@ -2,7 +2,6 @@
 #include "acme.h"
 #include "system.h"
 #include "sequencer.h"
-#include "simple_log.h"
 #include "library.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/primitive/primitive/malloc.h"
@@ -15,55 +14,55 @@
 #include "acme/operating_system/ansi/binreloc.h"
 
 
-global_particle * g_pglobalParticle = nullptr;
+//global_particle * g_pglobalParticle = nullptr;
+//
+//
+//global_particle::global_particle()
+//{
+//
+//   critical_section_lock criticalsectionlock(globals_critical_section());
+//
+//   m_pglobalparticleNext = g_pglobalParticle;
+//
+//   g_pglobalParticle = this;
+//
+//}
+//
+//
+//global_particle::~global_particle()
+//{
+//
+//
+//}
+//
 
-
-global_particle::global_particle()
-{
-
-   critical_section_lock criticalsectionlock(globals_critical_section());
-
-   m_pglobalparticleNext = g_pglobalParticle;
-
-   g_pglobalParticle = this;
-
-}
-
-
-global_particle::~global_particle()
-{
-
-
-}
-
-
-static void erase_all_global_particles()
-{
-
-   critical_section_lock criticalsectionlock(globals_critical_section());
-
-   auto pglobalparticle = g_pglobalParticle;
-
-   while(pglobalparticle)
-   {
-
-      auto pglobalparticleNext = pglobalparticle->m_pglobalparticleNext;
-
-      if(pglobalparticleNext)
-      {
-
-         ::release(pglobalparticleNext);
-
-      }
-
-      pglobalparticle = pglobalparticleNext;
-
-   }
-
-   g_pglobalParticle = nullptr;
-
-}
-
+//static void erase_all_global_particles()
+//{
+//
+//   critical_section_lock criticalsectionlock(globals_critical_section());
+//
+//   auto pglobalparticle = g_pglobalParticle;
+//
+//   while(pglobalparticle)
+//   {
+//
+//      auto pglobalparticleNext = pglobalparticle->m_pglobalparticleNext;
+//
+//      if(pglobalparticleNext)
+//      {
+//
+//         ::release(pglobalparticleNext);
+//
+//      }
+//
+//      pglobalparticle = pglobalparticleNext;
+//
+//   }
+//
+//   g_pglobalParticle = nullptr;
+//
+//}
+//
 
 
 void initialize_memory_management();
@@ -770,7 +769,6 @@ namespace acme
 
       __defer_new(::acme::g_pelementaddraReleaseOnEnd);
 
-      __raw_construct_new(m_pmapFactory);
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 
@@ -782,7 +780,7 @@ namespace acme
 
       //g_criticalsectionGlobal = memory_new critical_section();
 
-      ::initialize_sequence_critical_section();
+      //::initialize_sequence_critical_section();
 
       //::update::g_criticalsection = memory_new critical_section();
 
@@ -858,7 +856,7 @@ namespace acme
 
 #endif
 
-      factory_init();
+      //factory_init();
 
       g_paAura = memory_new ::array < matter * >;
 
@@ -999,7 +997,7 @@ namespace acme
       //term();
 
 
-      erase_all_global_particles();
+      //erase_all_global_particles();
 
 
       //::parallelization::wait_threads(1_min);
@@ -1192,16 +1190,16 @@ namespace acme
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         factory_term();
+      //   factory_term();
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
 #if OBJECT_TYPE_COUNTER
 
@@ -1288,7 +1286,7 @@ namespace acme
 
       delete_all_release_on_end();
 
-      ::finalize_sequence_critical_section();
+      //::finalize_sequence_critical_section();
 
       //::acme::del(g_criticalsectionGlobal);
 
@@ -1497,56 +1495,6 @@ namespace acme
 #endif
 
 
-   void acme::factory_init()
-   {
-
-      m_pfactory = __new(::factory::factory());
-
-      m_pfactory->InitHashTable(16189);
-
-      //::acme::acme::g_pstaticstatic->m_pfactorya = memory_new factory_array();
-
-
-
-      ::factory::add_factory_item<manual_reset_event>();
-      ::factory::add_factory_item<task>();
-
-
-      ::factory::add_factory_item<simple_log, logger>();
-
-
-      //operating_system_initialize_nano();
-
-
-   }
-
-
-   void acme::factory_close()
-   {
-
-      critical_section_lock synchronouslock(factory_critical_section());
-
-      m_pfactory->erase_all();
-
-      m_pmapFactory->erase_all();
-
-      m_pmapFactory.release();
-
-   }
-
-
-   void acme::factory_term()
-   {
-
-      critical_section_lock synchronouslock(factory_critical_section());
-
-      m_pfactory.release();
-
-      //::acme::del(::acme::acme::g_pstaticstatic->m_pfactorya);
-
-      //::acme::del(::acme::acme::g_pstaticstatic->m_pfactory);
-
-   }
 
 
 } // namespace acme
@@ -1786,15 +1734,15 @@ locale_t get_c_locale()
 //
 //}
 
-
-CLASS_DECL_ACME void release_on_end(::particle * pparticle)
-{
-
-   auto ppointer = new global_pointer<particle>();
-
-   *ppointer = pparticle;
-
-}
+//
+//CLASS_DECL_ACME void release_on_end(::particle * pparticle)
+//{
+//
+//   auto ppointer = new global_::particle_pointer();
+//
+//   *ppointer = pparticle;
+//
+//}
 
 
 void delete_all_release_on_end()

@@ -338,7 +338,7 @@ namespace str
    }
 
 
-   bool zip_context::extract_all(const char * pszDir,::payload payloadFile, ::file::path_array * ppatha, string_array * pstraFilter, bool_array * pbaBeginsFilterEat)
+   bool zip_context::e_extract_all(const char * pszDir,::payload payloadFile, ::file::path_array * ppatha, string_array * pstraFilter, bool_array * pbaBeginsFilterEat)
    {
 
       auto pfile = file()->get_file(payloadFile,::file::e_open_binary | ::file::e_open_read);

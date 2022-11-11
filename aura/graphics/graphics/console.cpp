@@ -135,10 +135,9 @@ namespace graphics
 
    console::console(::user::interaction * puserinteraction, ::size_i32 sizeTile) :
       m_puserinteraction(puserinteraction),
-      m_sizeTile(sizeTile)
+      m_sizeTile(sizeTile),
+      m_cout(this)
    {
-
-      m_cout.m_p = this;
 
       m_x = 0;
       m_y = 0;
@@ -154,7 +153,7 @@ namespace graphics
    }
 
 
-   string_stream & console::cout()
+   write_text_stream <::file::file> & console::cout()
    {
 
       return m_cout;
@@ -193,7 +192,7 @@ namespace graphics
 
       m_pimage->g()->m_pdraw2dhost = m_puserinteraction;
 
-      __construct(m_pimage->g()->m_pfont);
+      m_pcontext->__construct(m_pimage->g()->m_pfont);
 
 #ifdef LINUX
 

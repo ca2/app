@@ -70,7 +70,7 @@ namespace write_text
 
          update();
 
-         ptopic->set_modified();
+         ptopic->set_modified_flag();
 
       }
 
@@ -218,7 +218,7 @@ namespace write_text
 
       m_bUpdating = false;
 
-      ptopic->set_modified();
+      ptopic->set_modified_flag();
 
       //ptopic->m_atom = id_handle;
 

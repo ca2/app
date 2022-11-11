@@ -36,9 +36,9 @@ public:
 
    exception();
 #ifdef ANDROID
-   exception(const ::e_status & estatus, const ::string & strMessage = nullptr, const ::string & strDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
+   exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
 #else
-   exception(const ::e_status & estatus, const ::string & strMessage = nullptr, const ::string & strDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+   exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
 #endif
    virtual ~exception();
 
@@ -60,81 +60,6 @@ public:
 
 
 
-#if defined(__APPLE__)
-
-
-class ns_exception :
-   public ::exception
-{
-public:
-
-   int m_iCode;
-
-   ns_exception();
-   ~ns_exception();
-
-};
-
-
-#endif
-
-
-
-
-
-class CLASS_DECL_ACME what_exclamation_exclamation :
-   public ::exception
-{
-public:
-
-
-   what_exclamation_exclamation(const char* pszMessage) :
-      ::exception(error_what_exclamation_exclamation, pszMessage)
-   {
-
-   }
-
-
-};
-
-
-class CLASS_DECL_ACME error_number :
-   public ::exception
-{
-public:
-   
-   
-   int m_iErrNo;
-
-
-#ifdef ANDROID
-   error_number(::e_status estatus, int iError, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER) :
-      ::exception(estatus, pszMessage, pszDetails, iSkip),
-#else
-      error_number(::e_status estatus, int iError, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr ) :
-   ::exception(estatus, pszMessage, pszDetails, iSkip, caller_address),
-#endif
-   m_iErrNo(iError)
-   {
-
-   }
-   
-   ~error_number()
-   {
-      
-   }
-
-   
-};
-
-
-template < typename CHAR_TYPE1 >
-void copy(::string_base < CHAR_TYPE1 > & str1, const ::exception & exception)
-{
-
-   str1 = exception.m_strMessage;
-
-}
 
 
 

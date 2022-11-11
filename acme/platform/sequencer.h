@@ -90,9 +90,9 @@ public:
 
 CLASS_DECL_ACME critical_section* get_sequence_critical_section();
 
-CLASS_DECL_ACME void initialize_sequence_critical_section();
-
-CLASS_DECL_ACME void finalize_sequence_critical_section();
+//CLASS_DECL_ACME void initialize_sequence_critical_section();
+//
+//CLASS_DECL_ACME void finalize_sequence_critical_section();
 
 
 //template < typename TYPE /*, typename TRANSPORT = ::transport < TYPE >, typename SEQUENCE = ::sequence < TYPE, TRANSPORT >*/ >

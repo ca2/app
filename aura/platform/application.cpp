@@ -449,7 +449,7 @@ namespace aura
       ::aqua::application::install_message_routing(pchannel);
 
       //add_command_handler("app_exit", &application::on_message_app_exit);
-      add_command_handler("switch_context_theme", this, &application::_001OnSwitchContextTheme);
+      add_command_handler("switch_context_theme", { this, &application::_001OnSwitchContextTheme });
 
    }
 
@@ -2720,8 +2720,8 @@ retry_license:
 
    //  localeschema.add_locale_variant(strLocale, strSchema);
    //  localeschema.add_locale_variant(get_locale(), strSchema);
-   //  localeschema.add_locale_variant(__id(std), strSchema);
-   //  localeschema.add_locale_variant(__id(en), strSchema);
+   //  localeschema.add_locale_variant("std", strSchema);
+   //  localeschema.add_locale_variant("en", strSchema);
 
 
    //  localeschema.destroy();
@@ -2789,7 +2789,7 @@ retry_license:
    //  for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    //  {
 
-   //     localeschema.add_locale_variant(__id(std), straSchema[iSchema]);
+   //     localeschema.add_locale_variant("std", straSchema[iSchema]);
 
    //  }
 
@@ -2797,7 +2797,7 @@ retry_license:
    //  for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    //  {
 
-   //     localeschema.add_locale_variant(__id(en), straSchema[iSchema]);
+   //     localeschema.add_locale_variant("en", straSchema[iSchema]);
 
    //  }
 
@@ -4757,7 +4757,7 @@ retry_license:
       for (index i = 0; i < iCount; i++)
       {
 
-         if (plocaleschema->m_idaLocale[i] == __id(std) && plocaleschema->m_idaSchema[i] == __id(std) && bIgnoreStdStd)
+         if (plocaleschema->m_idaLocale[i] == "std" && plocaleschema->m_idaSchema[i] == "std" && bIgnoreStdStd)
             continue;
 
          string strLocale;
@@ -4864,7 +4864,7 @@ retry_license:
          //try
          //{
 
-            pfolder->extract_all(strDir);
+            pfolder->e_extract_all(strDir);
 
          //}
          //catch (...)
@@ -4876,7 +4876,7 @@ retry_license:
 
          //}
 
-         //psystem->compress().extract_all(strFile, this);
+         //psystem->compress().e_extract_all(strFile, this);
 
       }
 
@@ -8369,7 +8369,7 @@ namespace aura
 
             ::pointer < ::user::interaction > puserinteraction = ptopic->m_puserelement;
 
-            if (puserinteraction->m_atom == __id(user_auto_start_checkbox))
+            if (puserinteraction->m_atom == "user_auto_start_checkbox")
             {
 
                try
@@ -8409,7 +8409,7 @@ namespace aura
 
             auto puserinteraction = ptopic->user_interaction();
 
-            if (puserinteraction->m_atom == __id(user_auto_start_checkbox)
+            if (puserinteraction->m_atom == "user_auto_start_checkbox"
                && ptopic->m_actioncontext.is_user_source())
             {
 

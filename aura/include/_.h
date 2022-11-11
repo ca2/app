@@ -213,7 +213,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////} // namespace opengl
 ////
 ////
-////struct INT_STRING
+////struct ::i32_sz
 ////{
 ////
 ////   int            m_i;
@@ -330,7 +330,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#define argb(a, r, g, b)      RGBA(r, g, b, a)
 ////
 ////
-////#define __acolor(a, r, g, b)      ::color::color(r, g, b, a)
+////#define ::color::color(a, r, g, b)      ::color::color(r, g, b, a)
 ////
 ////
 ////inline int trailingBytesForUTF8(char ch);
@@ -839,12 +839,12 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////
 ////template < typename ARG_KEY >
-////inline uptr uptr_hash(ARG_KEY key) { return (uptr)((uptr)key); }
+////inline uptr u32_hash(ARG_KEY key) { return (uptr)((uptr)key); }
 ////
 //////#if OSBIT == 64
 ////
 ////template < typename ARG_KEY >
-////inline u32 u32_hash(ARG_KEY key) { return (u32)(uptr_hash<ARG_KEY>(key)); }
+////inline u32 u32_hash(ARG_KEY key) { return (u32)(u32_hash<ARG_KEY>(key)); }
 ////
 //////#endif
 //
@@ -1288,12 +1288,12 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////
 ////
-////enum e_extract
+////enum enum_extract
 ////{
 ////
-////   extract_none,
-////   extract_first,
-////   extract_all
+////   e_extract_none,
+////   e_extract_first,
+////   e_extract_all
 ////
 ////};
 ////

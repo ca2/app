@@ -767,43 +767,43 @@ namespace earth
 
 
 
-#ifdef __DEBUG
-
-dump_context & operator <<(dump_context & dumpcontext, ::earth::time & time)
-{
-//   char psz[32];
-//   psz[0] = '\0';
+//#ifdef __DEBUG
 //
-////   time_t tmp = time.get_time();
-////   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
-//
-//   errno_t err = 0;
-//
-//   if ((err != 0) || (psz[0] == '\0') || (time.get_time() == 0))
-//   {
-//      dumpcontext << "::earth::time(invalid #" << (iptr) time.get_time() << ")";
-//
-//      return dumpcontext;
-//   }
-//
-//   // format it
-//   dumpcontext << "::earth::time(\"" << psz << "\")";
-
-   return dumpcontext;
-}
-
-#endif
-
-//stream & operator <<(stream & os, ::earth::time & time)
+//dump_context & operator <<(dump_context & dumpcontext, ::earth::time & time)
 //{
+////   char psz[32];
+////   psz[0] = '\0';
+////
+//////   time_t tmp = time.get_time();
+//////   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
+////
+////   errno_t err = 0;
+////
+////   if ((err != 0) || (psz[0] == '\0') || (time.get_time() == 0))
+////   {
+////      dumpcontext << "::earth::time(invalid #" << (iptr) time.get_time() << ")";
+////
+////      return dumpcontext;
+////   }
+////
+////   // format it
+////   dumpcontext << "::earth::time(\"" << psz << "\")";
 //
-//   os.write((i64) time.m_i);
-//
-//   return os;
-//
+//   return dumpcontext;
 //}
 //
+//#endif
 //
+////stream & operator <<(stream & os, ::earth::time & time)
+////{
+////
+////   os.write((i64) time.m_i);
+////
+////   return os;
+////
+////}
+////
+////
 
 
 
@@ -905,7 +905,7 @@ CLASS_DECL_ACME FILETIME & copy(FILETIME & filetime, const ::earth::time & time)
 
       //TRACELASTERROR();
 
-      __zero(filetime);
+      memset(&filetime, 0, sizeof(filetime));
 
    }
 

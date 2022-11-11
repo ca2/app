@@ -116,7 +116,7 @@ namespace sockets
 
             string strContentType = m_fields["raw_text_content_type"];
 
-            inheader(__id(content_type)) = strContentType;
+            inheader("content_type") = strContentType;
 
          }
          else if (m_fields.has_property("network_payload"))
@@ -131,12 +131,12 @@ namespace sockets
 
                INFORMATION("JSON BODY: " << strBody);
 
-               string strContentType = inheader(__id(content_type)).string();
+               string strContentType = inheader("content_type").string();
 
                if (strContentType.find_ci("application/json") < 0)
                {
 
-                  inheader(__id(content_type)) = "application/json" + ::str().has_char(strContentType, ";", strContentType);
+                  inheader("content_type") = "application/json" + ::str().has_char(strContentType, ";", strContentType);
 
                }
 
@@ -151,9 +151,9 @@ namespace sockets
             //::xml::node * pnode = m_fields["xml"].cast < ::xml::node >();
             //body = pnode->get_xml();
             //body.trim();
-            //if(inheader(__id(content_type)).string().find_ci("application/xml") < 0)
+            //if(inheader("content_type").string().find_ci("application/xml") < 0)
             //{
-            //   inheader(__id(content_type)) = "application/xml; " + inheader(__id(content_type)).string();
+            //   inheader("content_type") = "application/xml; " + inheader("content_type").string();
             //}
 
          }
@@ -162,43 +162,43 @@ namespace sockets
 
             m_fields.get_network_arguments(strBody);
 
-            if (inheader(__id(content_type)).string().find_ci("application/x-www-form-urlencoded") < 0)
+            if (inheader("content_type").string().find_ci("application/x-www-form-urlencoded") < 0)
             {
 
-               inheader(__id(content_type)) = "application/x-www-form-urlencoded" + ::str().has_char(inheader(__id(content_type)).string(), "; ");
+               inheader("content_type") = "application/x-www-form-urlencoded" + ::str().has_char(inheader("content_type").string(), "; ");
 
             }
 
          }
 
-         m_request.attr(__id(http_method)) = "POST";
+         m_request.attr("http_method") = "POST";
 
-         m_request.attr(__id(http_version)) = "HTTP/1.1";
+         m_request.attr("http_version") = "HTTP/1.1";
 
          string strHost = GetUrlHost();
 
-         inheader(__id(host)) = strHost; // oops - this is actually a request header that we're adding..
+         inheader("host") = strHost; // oops - this is actually a request header that we're adding..
 
          string strUserAgent = MyUseragent();
 
          if (m_request.attr("minimal_headers").is_false())
          {
 
-            inheader(__id(user_agent)) = "ca2_netnode";
+            inheader("user_agent") = "ca2_netnode";
 
-            if (inheader(__id(accept)).is_empty())
+            if (inheader("accept").is_empty())
             {
 
-               inheader(__id(accept)) = "text/html, text/plain, application/xml, */*;q=0.01";
+               inheader("accept") = "text/html, text/plain, application/xml, */*;q=0.01";
 
             }
-            //inheader(__id(connection)) = "close";
+            //inheader("connection") = "close";
 
          }
 
          auto content_length = strBody.length();
 
-         inheader(__id(content_length)) = content_length;
+         inheader("content_length") = content_length;
 
 #if !defined(BSD_STYLE_SOCKETS)
 
@@ -349,23 +349,23 @@ namespace sockets
       length += (long)tmp.get_length();
 
       // build header, send body
-      m_request.attr(__id(http_method)) = "POST";
+      m_request.attr("http_method") = "POST";
 
-      m_request.attr(__id(http_version)) = "HTTP/1.1";
+      m_request.attr("http_version") = "HTTP/1.1";
 
       string strHost = GetUrlHost();
 
-      inheader(__id(host)) = strHost; // oops - this is actually a request header that we're adding..
+      inheader("host") = strHost; // oops - this is actually a request header that we're adding..
 
-      inheader(__id(user_agent)) = MyUseragent();
+      inheader("user_agent") = MyUseragent();
 
-      inheader(__id(accept)) = "text/html, text/plain, */*;q=0.01";
+      inheader("accept") = "text/html, text/plain, */*;q=0.01";
 
-      //inheader(__id(connection)) = "close";
+      //inheader("connection") = "close";
 
-      inheader(__id(content_type)) = "multipart/form-data; boundary=" + m_boundary;
+      inheader("content_type") = "multipart/form-data; boundary=" + m_boundary;
 
-      inheader(__id(content_length)) = (i64) length;
+      inheader("content_length") = (i64) length;
 
 #if !defined(BSD_STYLE_SOCKETS)
 

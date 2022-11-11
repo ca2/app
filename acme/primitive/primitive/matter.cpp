@@ -139,7 +139,7 @@ void matter::handle_command(const ::atom & atom)
 void matter::post_quit()
 {
 
-   set_finishing();
+   set_finishing_flag();
 
 }
 
@@ -147,7 +147,7 @@ void matter::post_quit()
 void matter::set_finish()
 {
 
-   set_finishing();
+   set_finishing_flag();
 
    //destroy();
 
@@ -181,14 +181,6 @@ void matter::on_set_finish()
 
 }
 
-
-
-const char* matter::debug_note() const
-{
-
-   return nullptr;
-
-}
 
 
 ::particle * matter::clone() const
@@ -349,11 +341,6 @@ void matter::notify_on_destroy(::property_object * pparticle)
 }
 
 
-void matter::kick_idle()
-{
-
-
-}
 
 
 
@@ -862,12 +849,12 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 
       psynchronizer->m_evResponse.wait();
 
-      if(!psynchronizer->has(e_flag_timeout))
+      if(!psynchronizer->has_flag(e_flag_timeout))
       {
 
          payload = payloadReturn;
 
-         psynchronizer->set_ok();
+         psynchronizer->set_ok_flag();
 
       }
 
@@ -882,7 +869,7 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
    if (psynchronizer->m_evGoingToWrite.wait(functionReturn.m_waitTimeout).failed())
    {
 
-      psynchronizer->set(e_flag_timeout);
+      psynchronizer->set_flag(e_flag_timeout);
 
       psynchronizer->m_evResponse.SetEvent();
 
@@ -945,7 +932,7 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
    if(estatus == error_wait_timeout)
    {
 
-      procedurePost->set_timed_out();
+      procedurePost->set_timed_out_flag();
 
    }
 

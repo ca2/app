@@ -6,9 +6,9 @@
 DECLARE_ENUMERATION(e_align, enum_align);
 
 
-
-
 #include "_struct.h"
+
+
 
 
 inline auto left(const RECTANGLE_I32 &rectangle) { return rectangle.left; }
@@ -20,6 +20,12 @@ inline auto top(const RECTANGLE_F32 & rectangle) { return rectangle.top; }
 inline auto left(const RECTANGLE_F64 & rectangle) { return rectangle.left; }
 inline auto top(const RECTANGLE_F64 & rectangle) { return rectangle.top; }
 
+
+
+#include "_i32.h"
+#include "_i64.h"
+#include "_f32.h"
+#include "_f64.h"
 
 
 //template < typename TARGET, typename SOURCE >
@@ -1447,10 +1453,10 @@ inline auto top(const RECTANGLE_F64 & rectangle) { return rectangle.top; }
 ////#endif
 //
 //
-////inline auto __point(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
-////inline auto __point(const ::u32 u) noexcept { return ::point_i32((::i32)__u32x(u), (::i32)__u32y(u)); }
-////inline auto __point(const ::u64 u) noexcept { return ::point_i32((::i32)__u64x(u), (::i32)__u64y(u)); }
-////inline auto __point(const ::size_i32 & size) noexcept { return ::point_i32(size.cx, size.cy); }
+////inline auto ::point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
+////inline auto ::point_i32(const ::u32 u) noexcept { return ::point_i32((::i32)__u32x(u), (::i32)__u32y(u)); }
+////inline auto ::point_i32(const ::u64 u) noexcept { return ::point_i32((::i32)__u64x(u), (::i32)__u64y(u)); }
+////inline auto ::point_i32(const ::size_i32 & size) noexcept { return ::point_i32(size.cx, size.cy); }
 ////
 ////inline auto __point64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x(), lparam.y()); }
 ////inline auto __point64(const ::u32 u) noexcept { return ::point_i64((i64)__u32x(u), (i64)__u32y(u)); }
@@ -1786,124 +1792,6 @@ inline auto top(const RECTANGLE_F64 & rectangle) { return rectangle.top; }
 ////
 //
 //
-
-
-
-
-
-template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
-class point_type;
-
-template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
-class size_type;
-
-template < typename POINT_TYPE >
-class line_base;
-
-template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-class rectangle_type;
-
-template < typename POINT_TYPE >
-class point_array_base;
-
-template < typename POINT_TYPE >
-class lines_base;
-
-template < typename POINT_TYPE >
-class polygon_base;
-
-template < typename POINT_TYPE >
-class point_array_base;
-
-template < typename _SIZE_TYPE >
-class size_array_base;
-
-template < typename RECTANGLE_TYPE >
-class rectangle_array_base;
-
-
-
-class arc;
-
-
-
-
-using point_i32 = point_type < POINT_I32, SIZE_I32, RECTANGLE_I32 >;
-using point_i64 = point_type < POINT_I64, SIZE_I64, RECTANGLE_I64 >;
-using point_f32 = point_type < POINT_F32, SIZE_F32, RECTANGLE_F32 >;
-using point_f64 = point_type < POINT_F64, SIZE_F64, RECTANGLE_F64 >;
-
-
-
-
-using size_i32 = size_type < SIZE_I32, POINT_I32, RECTANGLE_I32 >;
-using size_i64 = size_type < SIZE_I64, POINT_I64, RECTANGLE_I64 >;
-using size_f32 = size_type < SIZE_F32, POINT_F32, RECTANGLE_F32 >;
-using size_f64 = size_type < SIZE_F64, POINT_F64, RECTANGLE_F64 >;
-
-
-
-
-
-using rectangle_i32 = rectangle_type < RECTANGLE_I32, POINT_I32, SIZE_I32 >;
-using rectangle_i64 = rectangle_type < RECTANGLE_I64, POINT_I64, SIZE_I64 >;
-using rectangle_f32 = rectangle_type < RECTANGLE_F32, POINT_F32, SIZE_F32 >;
-using rectangle_f64 = rectangle_type < RECTANGLE_F64, POINT_F64, SIZE_F64 >;
-
-
-
-using line_i32 = line_base < ::point_i32 >;
-using line_i64 = line_base < ::point_i64 >;
-using line_f32 = line_base < ::point_f32 >;
-using line_f64 = line_base < ::point_f64 >;
-
-
-
-
-using line = ::line_f64;
-
-
-
-
-using lines_i32 = lines_base < point_i32 >;
-using lines_i64 = lines_base < point_i64 >;
-using lines_f32 = lines_base < point_f32 >;
-using lines_f64 = lines_base < point_f64 >;
-
-
-
-
-using lines = lines_f64;
-
-
-
-using polygon_i32 = polygon_base < point_i32 >;
-using polygon_i64 = polygon_base < point_i64 >;
-using polygon_f32 = polygon_base < point_f32 >;
-using polygon_f64 = polygon_base < point_f64 >;
-
-
-using polygon = polygon_f64;
-
-
-
-using point_i32_array = point_array_base < point_i32 >;
-using point_i64_array = point_array_base < point_i64 >;
-using point_f32_array = point_array_base < point_f32 >;
-using point_f64_array = point_array_base < point_f64 >;
-
-
-using size_i32_array = size_array_base < size_i32 >;
-using size_i64_array = size_array_base < size_i64 >;
-using size_f32_array = size_array_base < size_f32 >;
-using size_f64_array = size_array_base < size_f64 >;
-
-
-
-using rectangle_i32_array = rectangle_array_base < rectangle_i32 >;
-using rectangle_i64_array = rectangle_array_base < rectangle_i64 >;
-using rectangle_f32_array = rectangle_array_base < rectangle_f32 >;
-using rectangle_f64_array = rectangle_array_base < rectangle_f64 >;
 
 
 

@@ -2,7 +2,9 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/element.h"
+#include "path.h"
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/collection/int_map.h"
 
 

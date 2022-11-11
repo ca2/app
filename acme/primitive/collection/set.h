@@ -7,7 +7,7 @@
 #include "single.h"
 #include "map_association.h"
 #include "range.h"
-//#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 template < typename PAYLOAD, const int DEFAULT_HASH_TABLE_SIZE = 17 >
@@ -990,7 +990,7 @@ set < KEY, ARG_KEY, PAYLOAD >::get_association_at(ARG_KEY key, ::u32& nHashBucke
 // find association (or return nullptr)
 {
 
-   nHashValue = u32_hash<ARG_KEY>(key);
+   nHashValue = u32_hash<ARG_KEY>(key).m_u;
 
    nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
 
@@ -1101,7 +1101,7 @@ typename set < KEY, ARG_KEY, PAYLOAD >::association * set < KEY, ARG_KEY, PAYLOA
    {
 
       // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
-      if(void_ptr_is_null(m_hashtable.m_ppassociationHash))
+      if(::is_null(m_hashtable.m_ppassociationHash))
          InitHashTable(m_hashtable.GetHashTableSize());
 
       ENSURE(m_hashtable.m_ppassociationHash);

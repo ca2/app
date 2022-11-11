@@ -69,6 +69,9 @@ namespace acme
 
       trace_category_static_init(this);
 
+
+      __defer_construct_new(m_pmemorycounter);
+
       //____creatable_from_base(simple_log, logger);
 
       //____creatable(task);
@@ -80,7 +83,7 @@ namespace acme
       //m_pcleanuptask = __new(::parallelization::cleanup_task);
 
       //m_pcleanuptask->begin();
-      ::factory::add_factory_item<::acme::idpool>();
+      //::factory::add_factory_item<::acme::idpool>();
 
       //m_pacme = nullptr;
       //m_pacmedirectory = nullptr;
@@ -282,7 +285,7 @@ namespace acme
    void system::process_init()
    {
       
-      ::acme::idpool::init(this);
+      //::acme::idpool::init(this);
 
       __construct_new(m_pdatetime);
 
@@ -441,26 +444,26 @@ namespace acme
 
       m_pfactoryFolder.release();
 
-      ::acme::idpool::term();
+      //::acme::idpool::term();
 
       m_pnode->node_quit();
 
       m_pnode.release();
 
-      try
-      {
+      //try
+      //{
 
-         ::acme::acme::g_p->factory_close();
+      //   ::acme::acme::g_p->factory_close();
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
-      m_mapFactory.clear();
+      //m_mapFactory.clear();
 
-      m_mapComponentFactory.clear();
+      //m_mapComponentFactory.clear();
 
       destroy();
 
@@ -1030,9 +1033,9 @@ namespace acme
    ::pointer<::factory::factory>& system::factory(const ::string & strComponent, const ::string & strImplementation)
    {
       
-      synchronous_lock synchronouslock(m_pmutexComponentFactory);
+      critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
       
-      auto & pfactory = m_mapComponentFactory[strComponent][implementation_name(strComponent, strImplementation)];
+      auto & pfactory = (*m_psubsystem->m_pmapComponentFactory)[strComponent][implementation_name(strComponent, strImplementation)];
       
       if (pfactory)
       {
@@ -1082,9 +1085,9 @@ namespace acme
    ::pointer<::factory::factory>& system::impact_factory(const ::string & strComponent, const ::string & strImplementation)
    {
       
-      synchronous_lock synchronouslock(m_pmutexComponentFactory);
+      critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
       
-      auto & pfactory = m_mapComponentFactory[strComponent][implementation_name(strComponent, strImplementation)];
+      auto & pfactory = (*m_psubsystem->m_pmapComponentFactory)[strComponent][implementation_name(strComponent, strImplementation)];
       
       try
       {
@@ -1116,13 +1119,13 @@ namespace acme
    ::pointer<::factory::factory>& system::factory(const ::string & strLibraryRequest)
    {
 
-      synchronous_lock synchronouslock(m_pmutexFactory);
+      critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
 
       string strLibrary;
 
       strLibrary = library_filter(strLibraryRequest);
 
-      auto & pfactory = m_mapFactory[strLibrary];
+      auto & pfactory = (*m_psubsystem->m_pmapFactory)[strLibrary];
 
       if (pfactory)
       {
@@ -2143,7 +2146,7 @@ namespace acme
       if (psetup)
       {
 
-         auto pelementApp = psetup->create_application_as_element();
+         auto pelementApp = psetup->create_application_as_particle();
 
          papp = pelementApp;
 
@@ -2462,7 +2465,7 @@ CLASS_DECL_ACME string get_latest_deployment_number(const ::string & strBranch)
 
 
 
-string __get_text(const string & str)
+CLASS_DECL_ACME string __get_text(const string & str)
 {
 
    return ::g_psystem->__get_text(str);
@@ -2600,7 +2603,7 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 
    }
 
-   auto pelement = pstaticsetup->create_element();
+   auto pelement = pstaticsetup->create_particle();
 
    if (!pelement)
    {

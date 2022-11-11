@@ -8,6 +8,7 @@
 #include "aura/platform/application.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
+#include "aura/windowing/monitor.h"
 
 
 namespace user

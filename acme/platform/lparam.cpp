@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-//#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 lparam::lparam(const ::particle * pelement)
@@ -21,16 +21,6 @@ lparam::lparam(const ::particle * pelement)
 }
 
 
-::pointer<::particle> lparam::detach_element()
-{
-
-   auto p = ::move_transfer((particle *)m_lparam);
-
-   m_lparam = 0;
-
-   return ::move(p);
-
-}
 
 
 

@@ -7,6 +7,7 @@
 #include "framework.h"
 #include "fastblur.h"
 #include "image.h"
+#include "acme/exception/exception.h"
 
 
 inline void kernelPosition(int boxBlur,unsigned& std,int& dLeft,int& dRight)

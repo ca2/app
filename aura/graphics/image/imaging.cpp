@@ -4,6 +4,7 @@
 #include "fastblur.h"
 #include "context_image.h"
 #include "array.h"
+#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -7110,7 +7111,7 @@ void context_image::load_svg(::image * pimage, memory & memory)
 
       pimage->on_load_image();
 
-      pimage->set_ok();
+      pimage->set_ok_flag();
 
       //pimage->notify(OK);
 

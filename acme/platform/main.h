@@ -35,7 +35,7 @@ struct CLASS_DECL_ACME MAIN // : public ::acme::reference
 
    ::tristate                       m_bExperienceMainFrame;
 
-   INT_STRING *                     m_pintstringLanguageResourceMap;
+   ::i32_sz *                       m_pintstringLanguageResourceMap;
    int                              m_iMatterFromHttpCache;
 
    const char *                     m_pszMain;

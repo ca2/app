@@ -82,17 +82,17 @@ namespace url
       bool param_has_char(const ::string & strUrl, const ::string & strKey);
       bool has_param_replace(string & strUrl, const ::string & strKey, const ::string & strValue);
 
-      virtual bool locale_is_eu(atom pszLocale);
-      virtual bool locale_is_asia(atom pszLocale);
-      virtual bool locale_is_africa(atom pszLocale);
-      virtual bool locale_is_america(atom pszLocale);
-      virtual bool locale_is_caribe(atom pszLocale);
-      virtual bool locale_is_middle_east(atom pszLocale);
-      virtual bool locale_is_south_america(atom pszLocale);
-      virtual bool locale_is_latin_america(atom pszLocale);
-      virtual bool locale_is_north_america(atom pszLocale);
-      virtual bool locale_is_central_america(atom pszLocale);
-      virtual bool locale_is_oceania(atom pszLocale);
+      virtual bool locale_is_eu(const ::atom & pszLocale);
+      virtual bool locale_is_asia(const ::atom & pszLocale);
+      virtual bool locale_is_africa(const ::atom & pszLocale);
+      virtual bool locale_is_america(const ::atom & pszLocale);
+      virtual bool locale_is_caribe(const ::atom & pszLocale);
+      virtual bool locale_is_middle_east(const ::atom & pszLocale);
+      virtual bool locale_is_south_america(const ::atom & pszLocale);
+      virtual bool locale_is_latin_america(const ::atom & pszLocale);
+      virtual bool locale_is_north_america(const ::atom & pszLocale);
+      virtual bool locale_is_central_america(const ::atom & pszLocale);
+      virtual bool locale_is_oceania(const ::atom & pszLocale);
       
       
       virtual bool server_ends(string strUrl, string strRoot);

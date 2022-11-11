@@ -13,8 +13,11 @@
 #include "acme/primitive/string/network_payload.h"
 #include "acme/primitive/string/str.h"
 #include "acme/exception/not_implemented.h"
-#include "acme/array.h"
+//#include "acme/array.h"
 #include "acme/_operating_system.h"
+
+
+#include "acme/primitive/collection/_container.h"
 
 
 //void copy(payload * pp, const system_time_t * ps)
@@ -4417,13 +4420,13 @@ string payload::implode(const char * pszGlue) const
 
 
 
-
-::comparison::var_strict payload::strictly_compare() const
-{
-
-   return *this;
-
-}
+//
+//::comparison::var_strict payload::strictly_compare() const
+//{
+//
+//   return *this;
+//
+//}
 
 
 ::payload payload::dereference()
@@ -9606,7 +9609,7 @@ payload & payload::add(const ::payload & payload)
       else if(payload.get_type() == e_type_i64_array)
       {
 
-         i32_array_reference().append_container(payload.i64_array_reference());
+         ::acme::container::append(i32_array_reference(), payload.i64_array_reference());
 
       }
       else
@@ -9630,7 +9633,7 @@ payload & payload::add(const ::payload & payload)
       else if(payload.get_type() == e_type_i32_array)
       {
 
-         i64_array_reference().append_container(payload.i32_array_reference());
+         ::acme::container::append(i64_array_reference(), payload.i32_array_reference());
 
       }
       else
@@ -9654,19 +9657,19 @@ payload & payload::add(const ::payload & payload)
       else if(payload.get_type() == e_type_i32_array)
       {
 
-         string_array_reference().append_container(payload.i32_array_reference());
+          ::acme::container::append(string_array_reference(), payload.i32_array_reference());
 
       }
       else if(payload.get_type() == e_type_i64_array)
       {
 
-         string_array_reference().append_container(payload.i64_array_reference());
+          ::acme::container::append(string_array_reference(), payload.i64_array_reference());
 
       }
       else if(payload.get_type() == e_type_payload_array)
       {
 
-         string_array_reference().append_container(payload.payload_array_reference());
+          ::acme::container::append(string_array_reference(), payload.payload_array_reference());
 
       }
       else
@@ -9690,19 +9693,19 @@ payload & payload::add(const ::payload & payload)
       else if(payload.get_type() == e_type_i32_array)
       {
 
-         payload_array_reference().append_container(payload.i32_array_reference());
+          ::acme::container::append(payload_array_reference(), payload.i32_array_reference());
 
       }
       else if(payload.get_type() == e_type_i64_array)
       {
 
-         payload_array_reference().append_container(payload.i64_array_reference());
+          ::acme::container::append(payload_array_reference(), payload.i64_array_reference());
 
       }
       else if(payload.get_type() == e_type_string_array)
       {
 
-         payload_array_reference().append_container(payload.string_array_reference());
+          ::acme::container::append(payload_array_reference(), payload.string_array_reference());
 
       }
       else

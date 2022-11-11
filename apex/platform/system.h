@@ -26,7 +26,7 @@ namespace apex
 
 #endif
 
-      ::pointer<::dump_context>                       m_pdumpcontext;
+      //::pointer<::dump_context>                       m_pdumpcontext;
 
       ::pointer<::networking::networking>             m_pnetworking;
 
@@ -227,7 +227,7 @@ namespace apex
 
 
 
-      virtual ::u32 os_post_to_all_threads(const ::atom & atom,wparam wparam = 0,lparam lparam = 0);
+      virtual ::u32 os_post_to_all_threads(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
 
 
       virtual void on_add_session(::apex::session* psession);

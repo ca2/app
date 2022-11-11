@@ -19,7 +19,7 @@ namespace file
       bool                 m_bFile = true;
       bool                 m_bDir = true;
       bool                 m_bRecursive = false;
-      e_extract            m_eextract = extract_first;
+      enum_extract         m_eextract = e_extract_first;
 
 
    };

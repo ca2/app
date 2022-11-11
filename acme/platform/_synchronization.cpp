@@ -69,10 +69,6 @@ critical_section g_criticalsectionSystemHeap;
 ::critical_section * message_dispatch_critical_section() { return &g_criticalsectionMessageDispatch; }
 
 
-::global_pointer < ::mutex > g_pmutexUiDestroyed;
-
-
-::particle * ui_destroyed_synchronization() { return g_pmutexUiDestroyed; }
 
 
 

@@ -1,6 +1,10 @@
 #pragma once
 
 
+
+#define DOUBLE_PI 3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844
+
+
 typedef void GENERATE_RANDOM_BYTES(void * p, memsize s);
 using PFN_GENERATE_RANDOM_BYTES = GENERATE_RANDOM_BYTES *;
 
@@ -118,10 +122,10 @@ constexpr TYPE1 maximum(const TYPE1 & a, const TYPE2 & b) { return __lt(b, a) ? 
 
 
 
-#include "count.h"
+//#include "count.h"
 
 
-#include "index.h"
+//#include "index.h"
 
 
 

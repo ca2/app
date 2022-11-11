@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "app_container.h"
 #include "acme/constant/message.h"
+#include "acme/exception/exception.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/multiple_lock.h"

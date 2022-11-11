@@ -1,36 +1,7 @@
 ﻿#pragma once
 
 
-//#include "acme/primitive/primitive/property_set.h"
-//#include "acme/primitive/primitive/application_bias.h"
-//#include "acme/primitive/primitive/create.h"
-//#include "acme/primitive/primitive/edit.h"
-//#include "acme/primitive/primitive/factory.h"
-//#include "acme/primitive/primitive/atom.h"
-//#include "acme/primitive/primitive/atom_space.h"
-//#include "acme/primitive/primitive/interlocked.h"
-//#include "acme/primitive/primitive/interlocked_long_pulse.h"
-//#include "acme/primitive/primitive/job.h"
-//#include "acme/primitive/primitive/memory_container.h"
-//#include "acme/primitive/primitive/relation_set.h"
-//#include "acme/primitive/primitive/request_signal.h"
-//#include "acme/primitive/primitive/shared_memory.h"
-//#include "acme/primitive/primitive/virtual_memory.h"
-
-
-//#include "acme/primitive/primitive/property_set_papaya.h"
-
-
 #include "acme/user/user/_constant_key.h"
-
-
-//#include "acme/primitive/primitive/object.h"
-
-
-//#include "acme/primitive/primitive/property_object.h"
-
-
-//#include "acme/primitive/primitive/layered.h"
 
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
@@ -49,72 +20,6 @@ void release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 #endif
 
 
-//#include "acme/platform/update_item.h"
-
-
-//#include "acme/platform/update.h"
-
-
-//CLASS_DECL_ACME void __fork(
-//   matter* pmatter,
-//   ::enum_priority epriority = e_priority_normal,
-//   u32 nStackSize = 0,
-//   u32 dwCreateFlags = 0,
-//   itask_t* pitask = nullptr,
-//   htask_t* phtask = nullptr);
-
-
-//CLASS_DECL_ACME void launch_action(action* ptopic);
-
-
-//#include "acme/primitive/topic/_.h"
-
-
-// class CLASS_DECL_ACME parents :
-//    virtual public ::matter
-// {
-// public:
-
-
-//    pointer_array < matter >            m_ptra;
-
-//    parents();
-//    ~parents();
-
-
-// };
-
-
-// class CLASS_DECL_ACME children :
-//    virtual public ::matter
-// {
-// public:
-
-
-//    pointer_array < matter >            m_ptra;
-//    duration                      m_durationWait;
-
-
-//    children();
-//    ~children();
-
-
-//    // after posting quit to a child, the PARENT shouldn't matter it
-//    virtual void finish(::matter * pobjectParent);
-
-//    virtual ::count wait_quit(::matter * pobjectParent, const duration & duration);
-//    virtual ::count _wait_quit(::matter * pobjectParent);
-
-
-//    virtual ::pointer<::matter>running(const char * pszTag) const;
-//    virtual bool running(::particle * pparticle) const;
-
-
-//    friend class matter;
-
-// };
-
-
 namespace acme
 {
 
@@ -127,20 +32,3 @@ namespace acme
 
 } // namespace acme
 
-
-
-//inline stream & operator << (stream & s, const memory_container & memcontainer);
-//
-//
-//CLASS_DECL_ACME stream & operator >> (stream & s, memory_container & memcontainer);
-//
-//
-//inline stream & operator << (stream & s, const memory_base & mem);
-//
-//
-//inline stream & operator >> (stream & s, memory_base & mem);
-//
-//
-//CLASS_DECL_ACME string __string(const ::e_status & estatus);
-
-//CLASS_DECL_ACME ::string __string(const ::e_status & estatus);

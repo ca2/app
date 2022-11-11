@@ -18,7 +18,6 @@
 #include "aura/message/timer.h"
 #include "acme/handler/item.h"
 #include "acme/user/user/drag.h"
-//#include "apex/message/_constant.h"
 #include "apex/message/simple_command.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/asynchronous.h"
@@ -38,6 +37,7 @@
 #include "aura/user/appearance/appearance.h"
 #include "aura/user/user/calc_size.h"
 #include "aura/user/user/system.h"
+#include "aura/windowing/monitor.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
@@ -49,7 +49,7 @@
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
 #ifdef WINDOWS_DESKTOP
-#include "apex/operating_system.h"
+//#include "acme/_operating_system.h"
 #endif
 
 
@@ -1167,7 +1167,7 @@ namespace user
    void interaction::set_tool_window(bool bSet)
    {
 
-      if (is_null(m_pprimitiveimpl))
+      if (::is_null(m_pprimitiveimpl))
       {
 
          m_bToolWindow = true;
@@ -2075,7 +2075,7 @@ namespace user
          if (m_bEditDefaultHandling)
          {
 
-            add_command_handler("edit_delete", this, &interaction::_001OnEditDelete);
+            add_command_handler("edit_delete", { this,  &interaction::_001OnEditDelete });
 
          }
 
@@ -2516,7 +2516,7 @@ namespace user
          if (m_pprimitiveimpl)
          {
 
-            m_pprimitiveimpl->set_destroying();
+            m_pprimitiveimpl->set_destroying_flag();
 
          }
 
@@ -2586,7 +2586,7 @@ namespace user
 
       auto psession = get_session();
 
-      if (is_null(psession))
+      if (::is_null(psession))
       {
 
          return;
@@ -2624,7 +2624,7 @@ namespace user
       try
       {
 
-         if (!m_pprimitiveimpl->is_destroying())
+         if (!m_pprimitiveimpl->has_destroying_flag())
          {
 
             //synchronous_lock slChildren(::user::pointer < ::mutex >_children());
@@ -2747,7 +2747,7 @@ namespace user
 
          if (::is_null(pinteraction)
             || ::is_null(get_wnd()->m_pprimitiveimpl)
-            || get_wnd()->m_pprimitiveimpl->is_destroying())
+            || get_wnd()->m_pprimitiveimpl->has_destroying_flag())
          {
 
             output_debug_string("destroying os window");
@@ -3255,7 +3255,7 @@ namespace user
 
       pmessage->previous();
 
-      if (psize->m_nType == SIZE_MINIMIZED)
+      if (psize->m_nType == ::user::e_size_minimized)
       {
 
          TRACE("::user::interaction::on_message_size SIZE_MINIMIZED - ignoring event");
@@ -4039,7 +4039,7 @@ namespace user
 
                   }
 
-                  if (pinteraction->is_destroying() || !pinteraction->is_window())
+                  if (pinteraction->has_destroying_flag() || !pinteraction->is_window())
                   {
 
                      ::output_debug_string("trying to draw window being destroyed");
@@ -5000,12 +5000,12 @@ namespace user
       }
       break;
 #if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD)
-      case ::message::PrototypeWindowPos:
+      case ::message::e_prototype_window_pos:
       {
          pmessage = __new(::message::window_pos);
       }
       break;
-      case ::message::PrototypeNcCalcSize:
+      case ::message::e_prototype_non_client_calc_size:
       {
          pmessage = __new(::message::nc_calc_size);
       }
@@ -5232,7 +5232,7 @@ namespace user
    bool interaction::is_branch_current() const
    {
 
-      if (is_null(m_pthreadUserInteraction))
+      if (::is_null(m_pthreadUserInteraction))
       {
 
          return false;
@@ -7527,7 +7527,7 @@ namespace user
    bool interaction::_is_window() const
    {
 
-      if (is_null(this))
+      if (::is_null(this))
       {
 
          return false;
@@ -8253,14 +8253,14 @@ namespace user
 
       }
 
-      if (is_destroying())
+      if (has_destroying_flag())
       {
 
          return;
 
       }
 
-      set_destroying();
+      set_destroying_flag();
 
       // set_destroying() m_bUserElementOk = false;
 
@@ -8403,9 +8403,9 @@ namespace user
 
       }
 
-      set(e_flag_task_ready);
+      set_flag(e_flag_task_ready);
 
-      set(e_flag_task_terminated);
+      set_flag(e_flag_task_terminated);
 
       if (::is_set(m_pobjectParentTask))
       {
@@ -8466,7 +8466,7 @@ namespace user
 
       bool bShouldContinue = task_get_run();
 
-      return !bShouldContinue && has(e_flag_task_ready);
+      return !bShouldContinue && has_flag(e_flag_task_ready);
 
    }
 
@@ -9861,7 +9861,7 @@ namespace user
 
       primitive_impl * pprimitiveimpl = m_pprimitiveimpl;
 
-      bool bDestroying = pprimitiveimpl->is_destroying();
+      bool bDestroying = pprimitiveimpl->has_destroying_flag();
 
       pprimitiveimpl->message_handler(pmessage);
 
@@ -11061,7 +11061,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
          {
 
             // discards object
-            ::pointer<::particle >spo(lparam);
+            ::pointer <::particle > pparticle(lparam);
 
 
          }
@@ -11095,7 +11095,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::call_and_set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
    {
 
-      if (has(e_flag_destroying))
+      if (has_flag(e_flag_destroying))
       {
 
          return;
@@ -11115,7 +11115,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       void * pdata)
    {
 
-      if (is_destroying())
+      if (has_destroying_flag())
       {
 
          return;
@@ -11138,7 +11138,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      if (is_destroying())
+      if (has_destroying_flag())
       {
 
          return;

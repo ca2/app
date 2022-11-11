@@ -2,7 +2,7 @@
 
 
 #include "object.h"
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace draw2d

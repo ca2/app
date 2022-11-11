@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "command.h"
 #include "channel.h"
+#include "acme/exception/exception.h"
 
 
 namespace message

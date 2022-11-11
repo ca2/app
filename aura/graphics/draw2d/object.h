@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/collection/osdata_array.h"
 #include "acme/primitive/primitive/matter.h"
 

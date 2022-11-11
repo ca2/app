@@ -14,26 +14,6 @@
 CLASS_DECL_APEX string __apex_get_text(string str);
 
 
-static critical_section g_criticalsectionChannel;
-
-
-CLASS_DECL_APEX ::critical_section * channel_critical_section()
-{
-
-   return &g_criticalsectionChannel;
-
-}
-
-
-static critical_section g_criticalsectionMessageDispatch;
-
-
-CLASS_DECL_APEX ::critical_section * message_dispatch_critical_section()
-{
-
-   return &g_criticalsectionMessageDispatch;
-
-}
 
 
 namespace parallelization

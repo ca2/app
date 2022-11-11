@@ -201,14 +201,14 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_key_up, pchannel, this, &simple_frame_window::_001OnKey);
    MESSAGE_LINK(e_message_sys_key_up, pchannel, this, &simple_frame_window::_001OnKey);
 
-   add_command_prober("transparent_frame", this, &simple_frame_window::_001OnUpdateToggleTransparentFrame);
-   add_command_handler("transparent_frame", this, &simple_frame_window::_001OnToggleTransparentFrame);
+   add_command_prober("transparent_frame", { this,  &simple_frame_window::_001OnUpdateToggleTransparentFrame });
+   add_command_handler("transparent_frame", { this,  &simple_frame_window::_001OnToggleTransparentFrame });
 
-   add_command_prober("view_full_screen", this, &simple_frame_window::_001OnUpdateImpactFullScreen);
-   add_command_handler("view_full_screen", this, &simple_frame_window::_001OnImpactFullScreen);
+   add_command_prober("view_full_screen", { this,  &simple_frame_window::_001OnUpdateImpactFullScreen });
+   add_command_handler("view_full_screen", { this,  &simple_frame_window::_001OnImpactFullScreen });
 
-   add_command_handler("notify_icon_topic", this, &simple_frame_window::_001OnNotifyIconTopic);
-   add_command_handler("app_exit", this, &simple_frame_window::on_message_app_exit);
+   add_command_handler("notify_icon_topic", { this,  &simple_frame_window::_001OnNotifyIconTopic });
+   add_command_handler("app_exit", { this,  &simple_frame_window::on_message_app_exit });
 
 #ifdef WINDOWS_DESKTOP
 

@@ -43,8 +43,6 @@ namespace windows
 {
 
 
-   CLASS_DECL_ACME string last_error_message();
-   CLASS_DECL_ACME string last_error_message(DWORD dwError);
 
 
    CLASS_DECL_ACME::enum_status _last_error_status(DWORD dwLastError);
@@ -78,7 +76,6 @@ namespace windows
    CLASS_DECL_ACME ::e_status wait_result_status(int iResult);
 
 
-   CLASS_DECL_ACME wstring get_file_path_root(const wstring & wstrPath);
 
 
    CLASS_DECL_ACME DWORD get_file_attributes(const char * path);

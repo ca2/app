@@ -33,7 +33,6 @@ void compress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
 }
 
 
-
 ::u32 compress::crc32(::u32 uCrc, const ::block& block)
 {
 

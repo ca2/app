@@ -45,6 +45,7 @@ public:
       p->attach_observer(m_point2This);
       return true;
    }
+
    bool detach_observer(T * p)
    {
       if (!this->contains(p))
@@ -53,6 +54,7 @@ public:
       p->detach_observer(m_point2This);
       return true;
    }
+
 };
 
 

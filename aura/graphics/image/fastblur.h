@@ -251,7 +251,7 @@ inline vector4 Reflect(const vector4 & Incident,const vector4 & Normal)
 
 #include "acme/primitive/collection/numeric_array.h"
 #include "acme/primitive/primitive/object.h"
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace draw2d
@@ -259,7 +259,7 @@ namespace draw2d
 
 
    class CLASS_DECL_AURA fastblur :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
 
@@ -301,7 +301,7 @@ namespace draw2d
       fastblur();
       ~fastblur();
 
-      using ::object::initialize;
+      using ::particle::initialize;
       void initialize(i32 cx, i32 cy, i32 iRadius);
       void initialize(::size_i32 sz, i32 iRadius);
 

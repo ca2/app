@@ -199,7 +199,7 @@ namespace user
 
       m_bUserImplCreated = true;
 
-      m_puserinteraction->set(e_flag_task_started);
+      m_puserinteraction->set_flag(e_flag_task_started);
 
       //return true;
 

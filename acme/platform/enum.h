@@ -1,24 +1,6 @@
 #pragma once
 
 
-template <class EENUM>
-class base_enum_names :
-   public map < EENUM, EENUM, string, string >
-{
-public:
-
-   typedef typename map < EENUM, EENUM, string, string >::pair AXIS_ENUM_PAIR;
-
-   base_enum_names(AXIS_ENUM_PAIR pairs[]);
-};
-
-
-template <class EENUM>
-base_enum_names < EENUM > ::base_enum_names(AXIS_ENUM_PAIR pairs[]) :
-   map < EENUM, EENUM, string, string >(pairs)
-{
-}
-
 template < class EENUM, EENUM edefault >
 class base_enum
 {

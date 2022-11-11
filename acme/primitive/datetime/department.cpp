@@ -514,9 +514,7 @@ namespace datetime
    time_t department::s_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear, const ::earth::time_shift& timeshift)
    {
 
-      struct ::tm tm;
-
-      __zero(tm);
+      struct ::tm tm {};
 
       tm.tm_hour = iHour;
       tm.tm_min = iMinute;

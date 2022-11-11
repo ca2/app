@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/element.h"
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
 
 
 namespace draw2d

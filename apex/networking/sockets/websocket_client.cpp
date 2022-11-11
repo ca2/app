@@ -560,11 +560,11 @@ namespace sockets
             //inheader("Accept-Language") = "en-us,en;q=0.5";
             //if (m_pfile == nullptr) // by the time, inline gzip decompression not yet implemented
             //{
-            //   inheader(__id(accept_encoding)) = "gzip,deflate";
+            //   inheader("accept_encoding") = "gzip,deflate";
             //}
             //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
             string strUserAgent = MyUseragent();
-            inheader(__id(user_agent)) = strUserAgent;
+            inheader("user_agent") = strUserAgent;
          }
          //inheader("Content-Length") = 0;
          inheader("Upgrade") = "websocket";
@@ -603,9 +603,9 @@ namespace sockets
 
 
          /*      if (GetUrlPort() != 80 && GetUrlPort() != 443)
-         inheader(__id(host)) = GetUrlHost() + ":" + __string(GetUrlPort());
+         inheader("host") = GetUrlHost() + ":" + __string(GetUrlPort());
          else
-         inheader(__id(host)) = GetUrlHost();*/
+         inheader("host") = GetUrlHost();*/
 
 #ifdef WINRT_SOCKETS
 
@@ -653,11 +653,11 @@ namespace sockets
 
       int iHttpStatusCode;
 
-      iHttpStatusCode = outattr(__id(http_status_code));
+      iHttpStatusCode = outattr("http_status_code");
 
       string strStatus;
       
-      strStatus = outattr(__id(http_status));
+      strStatus = outattr("http_status");
 
       if (iHttpStatusCode == 101 &&  strStatus == "Switching Protocols")
       {

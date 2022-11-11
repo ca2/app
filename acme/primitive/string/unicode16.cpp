@@ -146,7 +146,7 @@ strsize ansi_to_wd16_len_len(const char* psz, strsize srclen)
 //   while (srclen != 0 && psz != nullptr && *psz != '\0')
 //   {
 //
-//      *pwsz++ = (wd16char) unicode_index_len(psz, len);
+//      *pwsz++ = (wd16char) unicode_index_length(psz, len);
 //
 //      psz += len;
 //
@@ -695,7 +695,7 @@ strsize ansi_to_wd16_len(const char* psz, strsize srclen)
 
       ::i32 len;
 
-      ::i32 iChar = unicode_index_len(psz, len);
+      ::i32 iChar = unicode_index_length(psz, len);
 
       if (iChar < 0)
       {

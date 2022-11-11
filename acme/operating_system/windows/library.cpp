@@ -3,6 +3,7 @@
 #include "acme/filesystem/filesystem/path.h"
 #include "acme/platform/tracer.h"
 #include "acme/_operating_system.h"
+#include "acme/operating_system/windows_common/__string.h"
 
 
 void * __node_library_open(const char * pszPath, string & strMessage)

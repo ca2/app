@@ -16,13 +16,13 @@ namespace handle
    public:
 
 
-      ini() {}
+      ini();
       ini(const ::string & str);
       ini(::file::file * pfile);
-      ini(const ::property_set & set) : ::property_set(set) {}
-      ini(::property_set && set) : ::property_set(::move(set)) {}
-      ini(const ini & ini) : ::property_set(ini) {}
-      ini(ini && ini) : property_set(::move(ini)) {}
+      ini(const ::property_set & set);
+      ini(::property_set && set);
+      ini(const ini & ini);
+      ini(ini && ini);
 
 
       ini & operator =(const ini & ini) { if (this != &ini) ::property_set::operator=(ini); return *this; }

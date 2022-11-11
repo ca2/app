@@ -107,15 +107,13 @@ namespace file
 
          }
          
-         auto pstringbuffer = __new(::string_buffer);
+         string strErrorCodeMessage;
          
-         text_stream textstream(pstringbuffer);
-         
-         errorcode.get_string(textstream);
+         errorcode.get_message(strErrorCodeMessage);
 
          string strException;
 
-         strException.format("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error = \"%s\"", path.c_str(), psz, estatus.m_estatus, pstringbuffer->m_str.c_str());
+         strException.format("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error = \"%s\"", path.c_str(), psz, estatus.m_estatus, strErrorCodeMessage.c_str());
 
          m_strMessage += strException;
 

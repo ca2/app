@@ -4,7 +4,7 @@
 
 #include "acme/primitive/geometry2d/_enhanced.h"
 #include "acme/primitive/geometry2d/shape_array.h"
-#include "acme/primitive/geometry2d/lines.h"
+#include "acme/primitive/geometry2d/_lines.h"
 
 
 template < >

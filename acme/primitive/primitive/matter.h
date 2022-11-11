@@ -1,9 +1,9 @@
 ﻿#pragma once
 
 
+#include "particle.h"
+#include "pointer.h"
 #include "atom.h"
-#include "element.h"
-#include "eobject.h"
 #include "factory.h"
 #include "acme/platform/tracer.h"
 
@@ -141,9 +141,6 @@ public:
    virtual void notify_on_destroy(::property_object * pparticle);
 
 
-   virtual void kick_idle();
-
-
    virtual void set_finish();
    //void destroy() override;
 
@@ -180,13 +177,12 @@ public:
    void delete_this() override;
 
 
-   virtual const char* debug_note() const;
    ::particle * clone() const override;
 
 
-   using particle::has;
-   using particle::set;
-   using particle::clear;
+   using particle::has_flag;
+   using particle::set_flag;
+   using particle::clear_flag;
 
 
 //   inline bool has(const ::eobject& eobject) const { return m_eobject.has(eobject); }
@@ -418,7 +414,7 @@ inline ::pointer<TYPE>matter::__id_create(const ::atom & atom, ::factory::factor
 
    }
 
-   auto ptypeNew = pfactoryitem->create_element();
+   auto ptypeNew = pfactoryitem->create_particle();
 
    if (!ptypeNew)
    {
@@ -438,7 +434,7 @@ inline ::pointer<TYPE>matter::__id_create(const ::atom & atom, ::factory::factor
 
    }
 
-   p->set(e_flag_factory);
+   p->set_flag(e_flag_factory);
 
    //auto estatus = p->initialize(this);
 

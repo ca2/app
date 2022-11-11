@@ -8,12 +8,12 @@
 #pragma once
 
 
-#include "_basic.h"
-#include "_collection_basic.h"
-#include "polygon.h"
+//#include "_geometry2d.h"
+#include "_collection.h"
+//#include "_polygon.h"
 
 
-#include "acme/primitive/primitive/element.h"
+//#include "acme/primitive/primitive/element.h"
 #include "acme/exception/interface_only.h"
 
 
@@ -215,11 +215,6 @@ public:
 
 
 
-//using line = ::line_f64;
-//using rectangle = ::rectangle_f64;
-//using ellipse = ::ellipse_f64;
-//using lines = ::lines_f64;
-//using polygon = ::polygon_f64;
 
 
 //using arc_shape = _shape < ::arc, e_shape_arc>;

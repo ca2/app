@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 namespace acme
@@ -9,7 +9,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME exclusive :
-      virtual public ::matter
+      virtual public ::particle
    {
    public:
 

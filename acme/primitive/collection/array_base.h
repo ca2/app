@@ -4,17 +4,10 @@
 #include "_iterator.h"
 #include "allocator.h"
 #include "acme/platform/common.h"
-//#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/particle.h"
 
 using tiny_index_array = tiny_array <::index>;
 
-template < typename P1, typename P2 >
-inline void copy(::pointer < P1 > & p1, const ::pointer < P2 > & p2)
-{
-
-   p1 = p2;
-
-}
 
 #define __default_array_array_base(TYPE) ::array_base < TYPE, const TYPE &, ::allocator::def < TYPE > >
 
@@ -78,6 +71,8 @@ class array_base :
 {
 public:
 
+
+   using PRIMITIVE_CONTAINER_TAG = PRIMITIVE_CONTAINER_TAG_TYPE;
 
    using CONTAINER_ITEM_TYPE = TYPE;
    using TYPE_IS_PTR = TYPE;
@@ -591,35 +586,7 @@ public:
    virtual void copy(const array_base & src);
 
 
-   template < typename CONTAINER >
-   ::count append_container(const CONTAINER & container)
-   {
 
-      ::count c = 0;
-
-      for(auto & item : container)
-      {
-
-         ::copy(add_new(), item);
-
-         c++;
-
-      }
-
-      return c;
-
-   }
-
-
-   template < typename CONTAINER >
-   void copy_container(const CONTAINER & container)
-   {
-
-      clear();
-
-      append_container(container);
-
-   }
 
 
    virtual void on_after_read();

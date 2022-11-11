@@ -2,6 +2,7 @@
 #include "system.h"
 #include "application.h"
 #include "session.h"
+#include "acme/exception/exception.h"
 #include "acme/parallelization/pool.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system_setup.h"
@@ -38,7 +39,7 @@ namespace aqua
 
       ::factory::add_factory_item < ::aqua::application, ::apex::application >();
       ::factory::add_factory_item < ::aqua::session, ::apex::session >();
-      ::factory::add_factory_item < ::aqua::idpool, ::acme::idpool >();
+      //::factory::add_factory_item < ::aqua::idpool, ::acme::idpool >();
       ::factory::add_factory_item < ::aqua::multimedia >();
 
    }
@@ -217,7 +218,7 @@ namespace aqua
          if (psetup)
          {
 
-            auto pelement = psetup->create_element();
+            auto pelement = psetup->create_particle();
 
             //if (!pelement)
             //{

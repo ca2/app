@@ -9,7 +9,9 @@ CLASS_DECL_ACME string demangle(const char * psz);
 
 #ifdef WINDOWS
 
+
 #define __c_type_name(t) (c_demangle(typeid(t).name()))
+
 
 inline const char * c_demangle(const char * psz)
 {
@@ -53,8 +55,12 @@ inline const char * c_demangle(const char * psz)
 //
 //}
 
+
 #endif
+
+
 #define __object_type(t) ::type(e_data_structure_type, t)
+
 
 enum enum_data_structure_type
 {
@@ -62,7 +68,6 @@ enum enum_data_structure_type
    e_data_structure_type
 
 };
-
 
 
 class CLASS_DECL_ACME type :
@@ -106,7 +111,7 @@ public:
 
 
    type(::type && type):
-      atom(::move(type))
+      atom((::atom &&)::move(type))
    {
 
    }
@@ -125,98 +130,37 @@ public:
    type(const ::pointer<BASE>& point);
 
 
-   type & operator = (const ::std::type_info & typeinfo)
-   {
-
-      ::string strName = typeinfo.name();
-      
-      strName = demangle(strName);
-      
-      ::atom::operator =(strName);
-
-      return *this;
-
-   }
+   type& operator = (const ::std::type_info& typeinfo);
 
 
-   type & operator = (const ::type & type)
-   {
-
-      if (this != &type)
-      {
-
-         ::atom::operator =(type);
-
-      }
-
-      return *this;
-
-   }
-
+   type& operator = (const ::type& type);
+   
 
    const ::atom & name() const { return *this; }
 
 
-   bool operator == (const ::std::type_info & typeinfo) const
-   {
-
-      ::string strName = ::type(typeinfo);
-
-      strName = demangle(strName);
-
-      return operator==(strName);
-
-   }
+   bool operator == (const ::std::type_info& typeinfo) const;
 
 
-   bool operator == (const ::type & type) const
-   {
+   bool operator == (const ::type& type) const;
 
-      return ::atom::operator == (type);
 
-   }
-
-   bool operator == (const ::string & strType) const
-   {
-
-      return ::atom::operator == (strType);
-
-   }
+   bool operator == (const ::string& strType) const;
 
 
    bool operator == (const ::atom& atom) const;
 
 
-   bool operator != (const ::std::type_info & typeinfo) const
-   {
-
-      return !operator==(typeinfo);
-
-   }
+   bool operator != (const ::std::type_info& typeinfo) const;
 
 
-   bool operator != (const ::type & type) const
-   {
-
-      return !operator==(type);
-
-   }
+   bool operator != (const ::type& type) const;
 
 
-   bool operator == (const ::particle * pparticle) const
-   {
-
-      return operator ==(::type(pparticle));
-
-   }
+   bool operator == (const ::particle* pparticle) const;
 
 
-   bool operator != (const ::particle * pparticle) const
-   {
-
-      return !operator==(pparticle);
-
-   }
+   bool operator != (const ::particle* pparticle) const;
 
 
    inline operator bool() const { return ::atom::has_char(); }
@@ -262,52 +206,16 @@ inline string __type_name()
 
 
 template < typename TYPE >
-inline string __type_name(const TYPE * p)
+inline string __type_name(const TYPE & t)
 {
 
-   TYPE * pNonConst = (TYPE *) p;
-
-   auto pszType = typeid(*pNonConst).name();
+   auto pszType = typeid(t).name();
 
    string strName = demangle(pszType);
 
    return strName;
 
 }
-
-
-template < typename TYPE >
-inline string __type_name(const ::pointer<TYPE>& pointer)
-{
-
-   return __type_name((const TYPE *) pointer.m_p);
-
-}
-
-
-template < non_pointer NON_POINTER >
-inline string __type_name(const NON_POINTER & t)
-{
-
-   NON_POINTER & tNonConst = (NON_POINTER &) t;
-
-   auto pszType = typeid(tNonConst).name();
-
-   string strName = demangle(pszType);
-
-   return strName;
-
-}
-
-
-template < >
-inline uptr uptr_hash < const type & >(const ::type & type)
-{
-
-   return uptr_hash < const ::atom & > (type);
-
-}
-
 
 
 inline bool type::operator == (const ::atom& atom) const

@@ -1,19 +1,36 @@
 ﻿// Created by camilo on 2022-10-09 21:01 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "sub_system.h"
+#include "acme.h"
+#include "simple_log.h"
+#include "acme/parallelization/manual_reset_event.h"
+#include "acme/exception/exception.h"
 #include "acme/platform/library.h"
 #include "acme/exception/exception.h"
 #include "acme/parallelization/task.h"
 
 
-sub_system::sub_system()
+sub_system::sub_system(::acme::acme* pacme) :
+   m_pacme(pacme)
 {
+
+   m_pacme->m_psubsystem = this;
+   
+   //__defer_raw_construct_new(m_pmemorycounter);
+   
+   factory_initialize();
 
 }
 
 
 sub_system::~sub_system()
 {
+
+   //m_pfactory.release();
+
+   //m_pmapFactory.release();
+
+   factory_terminate();
 
    task_release();
 
@@ -310,3 +327,59 @@ void sub_system::set_resource_block(const char * pstart, const char * pend)
 
 
 
+void sub_system::factory_initialize()
+{
+
+   __raw_construct_new(m_pmapFactory);
+
+   __raw_construct_new(m_pmapComponentFactory);
+
+   m_pfactory = __new(::factory::factory());
+
+   m_pfactory->InitHashTable(16189);
+
+   //::acme::acme::g_pstaticstatic->m_pfactorya = memory_new factory_array();
+
+
+
+   ::factory::add_factory_item<manual_reset_event>();
+   ::factory::add_factory_item<task>();
+
+
+   ::factory::add_factory_item<simple_log, logger>();
+
+
+   //operating_system_initialize_nano();
+
+
+}
+
+
+void sub_system::factory_terminate()
+{
+
+   critical_section_lock synchronouslock(factory_critical_section());
+
+   m_pfactory->erase_all();
+
+   m_pmapFactory->erase_all();
+
+   m_pfactory.release();
+
+   m_pmapFactory.release();
+
+}
+
+
+//void sub_system::factory_term()
+//{
+//
+//   critical_section_lock synchronouslock(factory_critical_section());
+//
+//   m_pfactory.release();
+//
+//   //::acme::del(::acme::acme::g_pstaticstatic->m_pfactorya);
+//
+//   //::acme::del(::acme::acme::g_pstaticstatic->m_pfactory);
+//
+//}

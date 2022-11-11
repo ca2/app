@@ -10,7 +10,7 @@
 #include "text_metric.h"
 
 
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 #include "acme/constant/character_set.h"

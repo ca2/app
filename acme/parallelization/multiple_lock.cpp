@@ -71,7 +71,7 @@ multiple_lock::multiple_lock(::count c, const synchronization_array & synchroniz
 
    m_synchronizationa.add(synchronizationa);
 
-   __zero(m_bitsLocked);
+   memset(&m_bitsLocked, 0, sizeof(m_bitsLocked));
 
    if (bInitialLock)
    {

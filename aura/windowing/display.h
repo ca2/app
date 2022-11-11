@@ -3,6 +3,7 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/_collection.h"
 #include "acme/primitive/primitive/object.h"
 
 

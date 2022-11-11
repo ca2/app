@@ -5,7 +5,7 @@
 #include "acme/parallelization/message_queue.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/log.h"
-#include "acme/update.h"
+#include "acme/constant/id.h"
 #include "apex/platform/node.h"
 #include "apex/user/primitive.h"
 #include "acme/parallelization/tools.h"
@@ -25,10 +25,12 @@
 CLASS_DECL_ACME void TRACELASTERROR();
 
 
-bool on_init_thread();
 
 
-void on_term_thread();
+//bool on_init_thread();
+
+
+//void on_term_thread();
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -46,7 +48,7 @@ void on_term_thread();
 #include "acme/_operating_system.h"
 
 
-HANDLE duplicate_handle(HANDLE h);
+CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h);
 
 
 #endif
@@ -98,7 +100,7 @@ struct send_thread_message :
 send_thread_message::send_thread_message(::particle * pparticle)
 {
 
-   __zero(m_message);
+   memset(&m_message, 0, sizeof(m_message));
 
    m_ev.ResetEvent();
 
@@ -199,7 +201,7 @@ thread::thread()
 
 #endif
 
-   memory_counter_increment(this);
+   //memory_counter_increment(this);
 
 }
 
@@ -1484,7 +1486,7 @@ void thread::task_erase(::task * ptask)
 
       //m_pcompositea->erase(ptask);
 
-      if (is_finishing())
+      if (has_finishing_flag())
       {
 
          if (strThreadThis == "app_veriwell_keyboard::application")
@@ -1643,15 +1645,15 @@ bool thread::task_get_run() const
 
       }
 
-      return !is_finishing();
+      return !has_finishing_flag();
 
    }
    else
    {
 
-      auto bFinishing = is_finishing();
+      auto bFinishing = has_finishing_flag();
 
-      auto bDestroying = has(e_flag_destroying);
+      auto bDestroying = has_flag(e_flag_destroying);
 
       return !bFinishing;
 
@@ -1732,6 +1734,9 @@ void thread::initialize(::particle * pparticle)
    //auto estatus = ::channel::initialize(pparticle);
 
    ::channel::initialize(pparticle);
+
+   memory_counter_decrement(pparticle);
+
 
    //if (!estatus)
    //{
@@ -2266,7 +2271,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 ::pointer<::task>thread::branch(const ::create_task_attributes & createtaskattributes)
 {
 
-   unset_finishing();
+   clear_finishing_flag();
 
    ENSURE(m_htask == (htask_t) nullptr);
 
@@ -2637,10 +2642,10 @@ void thread::task_osinit()
 
    m_bDedicated = true;
 
-   if (is_finishing())
+   if (has_finishing_flag())
    {
 
-      unset_finishing();
+      clear_finishing_flag();
 
    }
 
@@ -2775,7 +2780,7 @@ void thread::__set_thread_on()
 
    //}
 
-   if (!on_init_thread())
+   if (!on_init_task())
    {
 
       m_estatus = error_failed;
@@ -2802,7 +2807,7 @@ void thread::__set_thread_off()
 
       //}
 
-      on_term_thread();
+      on_term_task();
 
    }
    catch (...)
@@ -3320,7 +3325,7 @@ message_queue* thread::_get_message_queue()
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   if(is_finishing() || m_bThreadClosed)
+   if(has_finishing_flag() || m_bThreadClosed)
    {
 
       if (m_pmessagequeue)
@@ -3733,7 +3738,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
       if (m_pmessagequeue->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, true))
       {
 
-         set_finishing();
+         set_finishing_flag();
 
          if (pMsg->m_atom == e_message_quit)
          {
@@ -3755,7 +3760,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
       int iRet = -1;
       
-      if (is_finishing())
+      if (has_finishing_flag())
       {
 
          DWORD timeout = 100; // 100 ::durations;
@@ -3948,7 +3953,7 @@ void thread::on_task_term()
 thread::operator htask_t() const
 {
 
-   return is_null(this) ? (htask_t) nullptr : m_htask;
+   return is_set() ? m_htask : nullptr;
 
 }
 

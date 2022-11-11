@@ -1,7 +1,8 @@
 ﻿#include "framework.h"
-#include "acme/constant/message.h"
 #include "property_object.h"
 #include "payload.h"
+#include "acme/constant/message.h"
+#include "acme/exception/exception.h"
 #include "acme/platform/system.h"
 
 
@@ -46,7 +47,7 @@ void property_object::destroy()
 void property_object::notify_on_destroy(::property_object * pcontextobjectFinish)
 {
 
-   if (has(e_flag_destroying))
+   if (has_flag(e_flag_destroying))
    {
 
       //finish(nullptr);
@@ -326,7 +327,7 @@ void property_object::add_exception(const ::exception & e)
 
    m_estatus = error_exception;
 
-   set_fail();
+   set_fail_flag();
 
 }
 
@@ -336,7 +337,7 @@ void property_object::on_catch_all_exception()
 
    m_estatus = error_catch_all_exception;
 
-   set_fail();
+   set_fail_flag();
 
 }
 

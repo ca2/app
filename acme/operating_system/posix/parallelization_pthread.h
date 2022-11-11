@@ -4,7 +4,7 @@
 #pragma once
 
 
-using HSYNC = ::pointer < ::particle >;
+using HSYNC = ::particle_pointer;
 
 
 ::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * pparticle, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);

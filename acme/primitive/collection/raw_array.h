@@ -64,7 +64,7 @@ public:
    ::index add(ARG_TYPE newElement) { return add_item(newElement); }
    ::index add_item(ARG_TYPE newElement);
    ::index add(const raw_array& src);
-   virtual ::index add_new(::count count);
+   virtual TYPE * add_new(::count count);
    virtual TYPE & add_new();
    //::index append(const raw_array& src);
    //void copy(const raw_array& src);
@@ -250,12 +250,12 @@ inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::add(co
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::add_new(::count count)
+inline TYPE * raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::add_new(::count count)
 {
 
    this->allocate(this->size() + count);
 
-   return this->get_upper_bound();
+   return this->m_pData + (this->get_size() - count);
 
 }
 

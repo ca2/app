@@ -7,7 +7,7 @@
 #include "font.h"
 #include "acme/exception/interface_only.h"
 #include "acme/primitive/collection/string_array.h"
-#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace write_text
@@ -248,7 +248,7 @@ namespace write_text
             if (extent <= w)
             {
 
-               strNow = string(pszStart, is_null(pszEnd) ? -1:pszEnd - pszStart);
+               strNow = string(pszStart, ::is_null(pszEnd) ? -1:pszEnd - pszStart);
 
                pszStart = pszEnd;
 
@@ -296,7 +296,7 @@ namespace write_text
          if (is_empty(pszEnd) && !is_empty(pszStart))
          {
 
-            strNow = string(pszStart, is_null(pszEnd) ? -1 : pszEnd - pszStart);
+            strNow = string(pszStart, ::is_null(pszEnd) ? -1 : pszEnd - pszStart);
 
             if (strNow.has_char())
             {

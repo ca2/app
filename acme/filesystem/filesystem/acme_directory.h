@@ -10,7 +10,7 @@
 
 
 #include "acme/primitive/media_library/item.h"
-#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/primitive/particle.h"
 #include "enumerator.h"
 #include "acme/filesystem/filesystem/path.h"
 #include "acme/primitive/collection/map.h"
@@ -18,7 +18,7 @@
 
 
 class CLASS_DECL_ACME acme_directory :
-   virtual public ::matter,
+   virtual public ::particle,
    virtual public ::file::enumerator
 {
 public:

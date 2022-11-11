@@ -2,9 +2,11 @@
 
 
 #include "acme/primitive/collection/atom_map.h"
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/primitive/type.h"
-#include "acme/exception/exception.h"
-#include "acme/platform/library.h"
+//#include "acme/exception/exception.h"
+//#include "acme/platform/library.h"
 
 
 CLASS_DECL_ACME ::string demangle(const char * pszMangledName);
@@ -18,7 +20,7 @@ namespace factory
 
 
    class CLASS_DECL_ACME factory_item_interface :
-      virtual public particle
+      virtual public ::particle
    {
    public:
 
@@ -31,7 +33,7 @@ namespace factory
 
       virtual string __type_name() const = 0;
 
-      virtual ::pointer<::particle>create_element() = 0;
+      virtual ::pointer < ::particle > create_particle() = 0;
 
       virtual void return_back(::particle * pelement) = 0;
 
@@ -48,9 +50,9 @@ namespace factory
 
       string base_type_name() const override { return ::demangle(typeid(ORIGIN_TYPE).name()); }
 
-      virtual ::pointer<ORIGIN_TYPE>_create() = 0;
+      virtual ::pointer<ORIGIN_TYPE> _create() = 0;
 
-      virtual ::pointer<::particle>create_element() override
+      virtual ::pointer < ::particle > create_particle() override
       {
 
          return _create();
@@ -215,7 +217,7 @@ namespace factory
       inline void __raw_construct(::pointer<ORIGIN_TYPE> & p);
 
 
-      virtual ::pointer<::particle>create(const ::string & strType);
+      virtual ::pointer < ::particle > create(const ::string & strType);
 
 
       virtual bool has_type(const ::string & strType) const;
@@ -275,9 +277,11 @@ namespace factory
    inline ::pointer<factory_item_interface>& get_factory_item()
    {
 
-      static auto atom = get_atom<ORIGIN_TYPE>();
+      //static auto atom = get_atom<ORIGIN_TYPE>();
 
-      return get_factory_item(atom);
+      //return get_factory_item(atom);
+
+      return get_factory_item(get_atom<ORIGIN_TYPE>());
 
    }
 
@@ -286,9 +290,13 @@ namespace factory
    inline ::pointer<factory_item_interface> get_factory_item(const ::atom & atomSource)
    {
 
-      static auto atom = get_atom<ORIGIN_TYPE>();
+      //static auto atom = get_atom<ORIGIN_TYPE>();
 
-      return get_factory_item(atom, atomSource);
+      //return get_factory_item(atom, atomSource);
+
+      ///static auto atom = get_atom<ORIGIN_TYPE>();
+
+      return get_factory_item(atom, get_atom<ORIGIN_TYPE>());
 
    }
 
@@ -468,11 +476,11 @@ namespace factory
       if (!pfactoryinterface)
       {
 
-         throw ::exception(error_no_factory);
+         throw_exception(error_no_factory);
 
       }
 
-      return pfactoryinterface->create_element();
+      return pfactoryinterface->create_particle();
 
    }
 
@@ -516,16 +524,16 @@ namespace factory
 
       }
 
-      auto pelement = ::move(pfactoryitem->create_element());
+      auto pparticle = ::move(pfactoryitem->create_particle());
 
-      if (!pelement)
+      if (!pparticle)
       {
 
-         throw ::exception(error_no_memory, "Couldn't create_element for type \"" + __type_name<ORIGIN_TYPE>() + "\"");
+         throw ::exception(error_no_memory, "Couldn't create_particle for type \"" + __type_name<ORIGIN_TYPE>() + "\"");
 
       }
 
-      p = pelement;
+      p = pparticle;
 
       if (!p)
       {
@@ -599,7 +607,7 @@ namespace factory
       if (!pfactoryitem)
       {
 
-         throw ::exception(error_no_factory, "No factory for \"" + atom + "\"");
+         throw_exception(error_no_factory, "No factory for \"" + atom + "\"");
 
       }
 
@@ -777,7 +785,7 @@ namespace factory
 } // namespace factory
 
 
-#include "__particle_factory.h"
+//#include "_factory.h"
 
 
 namespace factory
@@ -794,6 +802,160 @@ namespace factory
 
 
 } // namespace factory
+
+
+template < typename TYPE >
+inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory = ::factory::get_factory())
+{
+
+   auto& pfactoryitem = pfactory->get_factory_item< TYPE >();
+
+   if (!pfactoryitem)
+   {
+
+      string strMessage;
+
+      strMessage.format("matter::__construct has failed to find factory_item for type \"%s\"", __type_name < TYPE >().c_str());
+
+      throw_exception(::error_not_implemented, strMessage);
+
+   }
+
+   auto pparticleNew = pfactoryitem->create_particle();
+
+   if (!pparticleNew)
+   {
+
+      string strMessage;
+
+      strMessage.format("matter::__construct no memory to allocate implementation of type \"%ss\"", __type_name < TYPE >().c_str());
+
+      throw_exception(::error_no_memory, strMessage);
+
+   }
+
+   p.release();
+
+   p = pparticleNew;
+
+   if (!p)
+   {
+
+      string strMessage;
+
+      strMessage.format("matter::__construct object(%s) is not of type \"%s\"", __type_name(*pparticleNew).c_str(), __type_name < TYPE >().c_str());
+
+      throw_exception(::error_wrong_type, strMessage);
+
+   }
+
+}
+
+
+template < typename BASE_TYPE >
+inline ::pointer<BASE_TYPE> __raw_create(::factory::factory* pfactory)
+{
+
+   ::pointer<BASE_TYPE> p;
+
+   __raw_construct(p, pfactory);
+
+   return ::move(p);
+
+}
+
+
+template < typename TYPE >
+inline void __construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory = ::factory::get_factory())
+{
+
+   __raw_construct(p, pfactory);
+
+   p->initialize(pparticle);
+
+}
+
+
+template < typename BASE_TYPE >
+inline ::pointer < BASE_TYPE > __create(::particle* pparticle, ::factory::factory* pfactory = ::factory::get_factory())
+{
+
+   ::pointer < BASE_TYPE > p;
+
+   __construct(pparticle, p, pfactory);
+
+   return p;
+
+}
+
+
+template < typename TYPE >
+inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory = ::factory::get_factory())
+{
+
+   if (!p)
+   {
+
+      __construct(pparticle, p, pfactory);
+
+   }
+
+
+}
+
+
+template < typename TYPE >
+inline void __id_construct(particle* pparticle, ::pointer<TYPE>& p, const ::atom& atom, ::factory::factory* pfactory = ::factory::get_factory())
+{
+
+   auto& pfactoryitem = pfactory->get_factory_item(atom);
+
+   auto pparticleNew = pfactoryitem->create_particle();
+
+   //if (!pparticleNew)
+   //{
+
+   //   return error_no_memory;
+
+   //}
+
+   p = pparticleNew;
+
+   if (!p)
+   {
+
+      throw_exception(error_wrong_type);
+
+   }
+
+   p->set_flag(e_flag_factory);
+
+   //auto estatus =
+
+   p->initialize(pparticle);
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+   //return estatus;
+
+}
+
+
+template < class T >
+template < typename PARTICLE >
+inline pointer < T >& pointer < T >::create(PARTICLE* pparticle, ::factory::factory* pfactory)
+{
+
+   auto p = ::__create < T >(pparticle);
+
+   return operator =(p);
+
+}
 
 
 

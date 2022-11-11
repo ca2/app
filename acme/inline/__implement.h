@@ -3,7 +3,7 @@
 
 
 
-//#include "acme/operating_system.h"
+#include "acme/_operating_system.h"
 #include "acme/platform/system_setup.h"
 
 #include "acme/platform/acme.h"
@@ -63,7 +63,7 @@ extern char _binary__matter_zip_end[];
 
 #ifdef WINDOWS
 
-CLASS_DECL_ACME void set_winmain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, int nCmdShow);
+//CLASS_DECL_ACME void set_winmain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, int nCmdShow);
 
 #else
 
@@ -97,9 +97,7 @@ int main(int argc, char * argv[], char * envp[])
 
    ::acme::acme acme;
 
-   ::sub_system subsystem;
-
-   acme.m_psubsystem = &subsystem;
+   ::sub_system subsystem(&acme);
 
    main_hold mainhold;
 
@@ -110,10 +108,10 @@ int main(int argc, char * argv[], char * envp[])
    //if (!m_hinstanceThis)
    //{
 
-   subsystem.m_hinstanceThis = ::GetModuleHandle(nullptr);
-
+   subsystem.m_hinstanceThis = hinstanceThis;
+   subsystem.m_hinstancePrev = hinstancePrev;
    //}
-
+   subsystem.m_nCmdShow = nCmdShow;
    //m_hPrevInstance = nullptr;
 
    if (subsystem.m_nCmdShow == -1000)
@@ -130,7 +128,7 @@ int main(int argc, char * argv[], char * envp[])
 #endif
 
 
-      set_winmain(hinstanceThis, hinstancePrev, nCmdShow);
+      //set_winmain(hinstanceThis, hinstancePrev, nCmdShow);
    
    #else
 

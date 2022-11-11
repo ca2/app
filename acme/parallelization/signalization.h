@@ -4,8 +4,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
 #include "acme/parallelization/manual_reset_event.h"
-#include "acme/primitive/primitive/element.h"
 
 
 namespace parallelization
@@ -19,8 +20,8 @@ namespace parallelization
 
 
 
-      manual_reset_event            m_evReady;
-      ::pointer<::particle>         m_pparticleHold;
+      manual_reset_event               m_evReady;
+      ::pointer < ::particle >         m_pparticleHold;
 
 
       signalization();

@@ -161,7 +161,7 @@ namespace experience_nanogui
 
          auto ppen = __create < ::draw2d::pen >();
 
-         ppen->create_solid(1.0f, __acolor(255, 255, 255, 255));
+         ppen->create_solid(1.0f, ::color::color(255, 255, 255, 255));
 
          pgraphics->set(ppen);
 

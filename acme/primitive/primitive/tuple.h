@@ -38,12 +38,12 @@ class tuple_recursion
 
 
 /////*
-//This is a partial specialization, so as long as there is at least one template argument, apart from the index, this specialization is preferred to the previously defined _tuple_recurr_base<std::size_t, typename Eypes>
+//This is a partial specialization, so as long as there is at least one template argument, apart from the index, this specialization is preferred to the previously defined _tuple_recurr_base<std::size_t, typename ï¿½Eypes>
 //*/
-//template <std::size_t _index, typename L, typenameEtypes>
-//class _tuple_recurr_base<_index, L, typesE :
+//template <std::size_t _index, typename L, typenameï¿½Etypes>
+//class _tuple_recurr_base<_index, L, typesï¿½E :
 //   public _tuple_impl<_index, typename std::remove_reference<L>::type>,
-//   public _tuple_recurr_base<_index + 1, typesE
+//   public _tuple_recurr_base<_index + 1, typesï¿½E
 //{
 //};
 template <::index i, typename L, typename... types>
@@ -107,4 +107,35 @@ auto& get(tuple<Args...>& t)
 {
    return (static_cast<tuple_item<i, typename extract_type_at< i, Args ...>::type> &>(t)).get();
 }
+
+
+
+
+// from acme/tuple.h Created by camilo on 2022-11-02 04:49 <3ThomasBorregaardSorensen!!
+#pragma once
+
+
+template < typename TUPLE, typename FIND_CONDITION, typename CONTINUE_CONDITION >
+inline TUPLE* tuple_array_find(TUPLE* ptuple, FIND_CONDITION find_condition, CONTINUE_CONDITION continue_condition)
+{
+
+   while (continue_condition(ptuple))
+   {
+
+      if (find_condition(ptuple))
+      {
+
+         return ptuple;
+
+      }
+
+      ptuple++;
+
+   }
+
+   return nullptr;
+
+}
+
+
 

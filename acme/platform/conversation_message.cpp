@@ -86,9 +86,7 @@ void conversation_message::initialize_conversation(const ::string & strMessage, 
 void conversation_message::do_asynchronously()
 {
    
-   auto pstringbuffer = __new(string_buffer);
-   
-   text_stream textstream(pstringbuffer);
+   string_buffer_stream textstream;
    
    textstream << "Title:   " << m_strTitle << "\n";
    textstream << "Message: " << m_strMessage << "\n";
@@ -96,7 +94,7 @@ void conversation_message::do_asynchronously()
    textstream << "Details:\n";
    textstream << m_strDetails << "\n";
    
-   output_debug_string(pstringbuffer->m_str);
+   output_debug_string(textstream.m_str);
    
 }
 

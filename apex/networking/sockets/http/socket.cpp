@@ -57,7 +57,7 @@ namespace sockets
 
       //}
 
-      m_request.attr(__id(http_version)) = "HTTP/1.1";
+      m_request.attr("http_version") = "HTTP/1.1";
       SetLineProtocol();
       DisableInputBuffer();
 
@@ -249,11 +249,11 @@ namespace sockets
          if (str.get_length() > 4 && str.begins_ci("http/")) // response
          {
 
-            //m_response.attr(__id(remote_addr)) = GetRemoteAddress().get_display_number();
-            m_response.attr(__id(http_version)) = str;
+            //m_response.attr("remote_addr") = GetRemoteAddress().get_display_number();
+            m_response.attr("http_version") = str;
             string strHttpStatusCode = pa.getword();
-            m_response.attr(__id(http_status_code)) = strHttpStatusCode;
-            m_response.attr(__id(http_status)) = pa.getrest();
+            m_response.attr("http_status_code") = strHttpStatusCode;
+            m_response.attr("http_status") = pa.getrest();
             m_bResponse    = true;
             m_bRequest     = false;
 
@@ -262,17 +262,17 @@ namespace sockets
          {
 
             str.make_lower();
-            //m_request.attr(__id(remote_addr)) = GetRemoteAddress().get_display_number();
+            //m_request.attr("remote_addr") = GetRemoteAddress().get_display_number();
             m_request.m_atomHttpMethod = str;
-            m_request.attr(__id(http_method)) = str;
-            m_request.attr(__id(https)) = IsSSL();
+            m_request.attr("http_method") = str;
+            m_request.attr("https") = IsSSL();
             if(IsSSL())
             {
-               m_request.attr(__id(http_protocol)) = "https";
+               m_request.attr("http_protocol") = "https";
             }
             else
             {
-               m_request.attr(__id(http_protocol)) = "http";
+               m_request.attr("http_protocol") = "http";
             }
 
             string strRequestUri = pa.getword();
@@ -286,9 +286,9 @@ namespace sockets
             string strQuery = purl->object_get_query(strRequestUri);
 
             m_request.m_strRequestUri = purl->url_decode(strScript) + ::str().has_char(strQuery, "?");
-            m_request.attr(__id(request_uri)) = m_request.m_strRequestUri;
-            m_request.attr(__id(http_version)) = pa.getword();
-            m_b_http_1_1 = string_ends(m_request.attr(__id(http_version)).string(), "/1.1");
+            m_request.attr("request_uri") = m_request.m_strRequestUri;
+            m_request.attr("http_version") = pa.getword();
+            m_b_http_1_1 = string_ends(m_request.attr("http_version").string(), "/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest     = true;
             m_bResponse    = false;
@@ -358,15 +358,15 @@ namespace sockets
 
       OnHeader(key, value);
 
-      if(key == __id(host))
+      if(key == "host")
       {
 
          m_request.m_strHttpHost = value;
 
-         m_request.attr(__id(http_host)) = value;
+         m_request.attr("http_host") = value;
 
       }
-      else if(key == __id(content_length))
+      else if(key == "content_length")
       {
 
          m_body_size_left = atol(value);
@@ -374,7 +374,7 @@ namespace sockets
          m_body_size_downloaded = 0;
 
       }
-      else if(key == __id(connection))
+      else if(key == "connection")
       {
 
          if (m_b_http_1_1)
@@ -445,13 +445,13 @@ namespace sockets
       
       string strLine;
       
-      strLine = m_response.attr(__id(http_version)).string() + " " + m_response.attr(__id(http_status_code)) + " " + m_response.attr(__id(http_status));
+      strLine = m_response.attr("http_version").string() + " " + m_response.attr("http_status_code") + " " + m_response.attr("http_status");
 
       msg = strLine + "\r\n";
       
       string strHost;
       
-      strHost = m_response.header(__id(host));
+      strHost = m_response.header("host");
 
       if(strHost.has_char())
       {
@@ -462,15 +462,15 @@ namespace sockets
 
       }
 
-      bool bContentLength = m_response.attr(__id(http_status_code)) != 304;
+      bool bContentLength = m_response.attr("http_status_code") != 304;
 
       if(bContentLength)
       {
 
-         if(!m_response.m_propertysetHeader.has_property(__id(content_length)))
+         if(!m_response.m_propertysetHeader.has_property("content_length"))
          {
 
-            m_response.m_propertysetHeader[__id(content_length)] = response().file()->get_size();
+            m_response.m_propertysetHeader["content_length"] = response().file()->get_size();
 
          }
 
@@ -478,7 +478,7 @@ namespace sockets
       else
       {
 
-         m_response.m_propertysetHeader.erase_by_name(__id(content_length));
+         m_response.m_propertysetHeader.erase_by_name("content_length");
 
       }
 
@@ -592,10 +592,10 @@ namespace sockets
 
       msg = m_request.attr("http_method").string() + " " + m_request.attr("request_uri").string() + " " + m_request.attr("http_version").string() + "\r\n";
 
-      if (m_request.m_propertysetHeader[__id(host)].string().has_char())
+      if (m_request.m_propertysetHeader["host"].string().has_char())
       {
 
-         strLine = "Host: " + m_request.m_propertysetHeader[__id(host)].get_string();
+         strLine = "Host: " + m_request.m_propertysetHeader["host"].get_string();
 
          if(m_iProxyPort > 0 ||
                (get_connect_port() != 80 && !IsSSL()) || (get_connect_port() != 443 && IsSSL()))
@@ -618,7 +618,7 @@ namespace sockets
 
          string strValue = pproperty->string();
 
-         if (pproperty->name() == __id(content_type))
+         if (pproperty->name() == "content_type")
          {
 
             msg += "Content-Type: " + strValue + "\r\n";
@@ -751,7 +751,7 @@ namespace sockets
       {
          FORMATTED_TRACE("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
       }*/
-      if(key == __id(cookie))
+      if(key == "cookie")
       {
          m_request.cookies().parse_header(value);
          //m_response.cookies().parse_header(value);
@@ -768,7 +768,7 @@ namespace sockets
       //if(IsRequest())
       //{
 
-      //   m_request.header(__id(content_length)).as(m_body_size_left);
+      //   m_request.header("content_length").as(m_body_size_left);
 
       //   m_body_size_downloaded = 0;
 
@@ -777,7 +777,7 @@ namespace sockets
       //if(IsResponse())
       //{
 
-      //   m_response.header(__id(content_length)).as(m_body_size_left);
+      //   m_response.header("content_length").as(m_body_size_left);
 
       //   m_body_size_downloaded = 0;
 

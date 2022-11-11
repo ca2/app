@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "list.h"
 #include "image.h"
+#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/lock.h"
@@ -165,7 +166,7 @@ void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   if (!::is_ok(m_pimage.get()))
+   if (m_pimage->is_ok())
    {
 
       return;
@@ -205,7 +206,7 @@ void image_list::color_blend(image_list* pimagelistSource, const ::color::color&
 
    copy_from(pimagelistSource);
 
-   if (::is_ok(m_pimage.get()))
+   if (m_pimage.ok())
    {
 
       m_pimage->g()->fill_rectangle(m_pimage->rectangle(), color & opacity);
@@ -701,7 +702,7 @@ void image_list::get_image_info(i32 nImage, info * pinfo) const
 
    }
 
-   if (!m_pimage->is_ok())
+   if (m_pimage.nok())
    {
 
       throw ::exception(error_null_pointer);

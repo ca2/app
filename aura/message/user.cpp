@@ -270,7 +270,7 @@ namespace message
 
       ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      m_point = __point(lparam);
+      m_point = ::point_i32(lparam);
 
    }
 
@@ -350,7 +350,7 @@ namespace message
 
       }
 
-      m_point    = __point(lparam);
+      m_point    = ::point_i32(lparam);
 
 #if defined(LINUX) || defined(FREEBSD)
 
@@ -378,7 +378,7 @@ namespace message
 
       m_nFlags    = wparam;
 
-      m_point        = __point(lparam);
+      m_point        = ::point_i32(lparam);
 
       m_bTranslated = true;
 
@@ -439,7 +439,7 @@ namespace message
    point_i32 context_menu::GetPoint()
    {
 
-      return __point(m_lparam);
+      return ::point_i32(m_lparam);
 
    }
 
@@ -655,7 +655,7 @@ namespace message
 
       ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      ::pointer<::particle> pparticle(lparam);
+      ::pointer < ::particle > pparticle(lparam);
 
       m_pparticle = pparticle;
 

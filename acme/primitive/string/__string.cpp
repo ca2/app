@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "string.h"
 #include "from_integer.h"
-//#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 // Sort of Canonical to serve as example and general correct solution

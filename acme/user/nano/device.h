@@ -1,10 +1,11 @@
 //
 // Created by camilo on 31/01/2022 14:35 <3ThomasBorregaardSørensen!!
 //
+#pragma once
 
 
-#include "acme/primitive/geometry2d/rectangle.h"
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 class CLASS_DECL_ACME nano_device :

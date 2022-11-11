@@ -3,8 +3,10 @@
 
 
 #include "acme/parallelization/mutex.h"
+#include "acme/platform/library.h"
+#include "acme/primitive/collection/atom_map.h"
 #include "acme/primitive/collection/string_map.h"
-#include "acme/primitive/primitive/element.h"
+#include "acme/primitive/primitive/pointer.h"
 
 
 namespace acme
@@ -13,6 +15,7 @@ namespace acme
 
    using library_map = string_map < ::pointer < ::acme::library > >;
 
+   class acme;
 
 } // namespace acme
 
@@ -30,6 +33,8 @@ public:
 
    ::e_display                      m_edisplay;
    ::e_activation                   m_eactivation;
+
+   ::acme::acme * m_pacme;
 
    int               m_argc = 0;
 
@@ -51,11 +56,16 @@ public:
 
    ::critical_section               m_criticalsection;
    ::acme::library_map              m_mapLibrary;
-   
+   ::pointer<::factory::factory>                               m_pfactory;
+   ::pointer<atom_map < ::pointer<::factory::factory > > >     m_pmapFactory;
+   //::pointer < ::mutex >                                            m_pmutexComponentFactory;
+   ::pointer < string_map < string_map < ::pointer<::factory::factory >>>>       m_pmapComponentFactory;
+
+
    int m_iProcessStatus = 0;
 
 
-   sub_system();
+   sub_system(::acme::acme * pacme);
    ~sub_system();
 
 
@@ -92,5 +102,11 @@ public:
 
    virtual void set_resource_block(const char * pstart, const char * pend);
 
+
+
+   void factory_initialize();
+   void factory_terminate();
+
+   // void factory_close();
 
 };

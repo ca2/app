@@ -270,13 +270,13 @@ namespace user
 
 
 template < >
-inline u32 u32_hash<const ::user::shell::image_key &>(const ::user::shell::image_key & key)
+inline u32hash u32_hash<const ::user::shell::image_key &>(const ::user::shell::image_key & key)
 {
    // default identity hash - works for most primitive values
    return hash_cat(u32_hash(key.m_strPath),
       hash_cat(u32_hash(key.m_strShellThemePrefix),
          hash_cat(u32_hash(key.m_strExtension),
-            (((int)key.m_eicon) << 8) ^ (((int)key.m_eattribute) << 16)) ^ (((int)key.m_iIcon))));
+            (((int)key.m_eicon) << 8) ^ (((int)key.m_eattribute) << 16)).m_u ^ (((int)key.m_iIcon))));
 }
 
 

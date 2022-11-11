@@ -24,16 +24,6 @@ CLASS_DECL_ACME int get_generate_sync_io_error();
 CLASS_DECL_ACME void set_generate_sync_io_error(int iError);
 
 
-/////////////////////////////////////////////////////
-//
-//    md5 implementation
-//    intentional duplication because spa
-//    needs md5
-//
-CLASS_DECL_ACME string file_md5_dup(const char* psz);
-//
-//
-/////////////////////////////////////////////////////
 
 
 

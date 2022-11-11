@@ -95,21 +95,21 @@ namespace sockets
          //inheader("Accept-Language") = "en-us,en;q=0.5";
          if (m_pfile == nullptr) // by the time, inline gzip decompression not yet implemented
          {
-            if (inheader(__id(accept_encoding)).is_new())
+            if (inheader("accept_encoding").is_new())
             {
-               inheader(__id(accept_encoding)) = "gzip,deflate";
+               inheader("accept_encoding") = "gzip,deflate";
             }
          }
          //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
-         inheader(__id(user_agent)) = MyUseragent();
+         inheader("user_agent") = MyUseragent();
       }
       //inheader("Content-Length") = 0;
       //inheader("Cache-Controlngth") = 0;
 
       /*      if (GetUrlPort() != 80 && GetUrlPort() != 443)
-               inheader(__id(host)) = GetUrlHost() + ":" + __string(GetUrlPort());
+               inheader("host") = GetUrlHost() + ":" + __string(GetUrlPort());
             else
-               inheader(__id(host)) = GetUrlHost();*/
+               inheader("host") = GetUrlHost();*/
 
 #if defined(WINRT_SOCKETS)
 

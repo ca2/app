@@ -4,7 +4,8 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/collection/string_array.h"
 
 
@@ -13,7 +14,7 @@ namespace regular_expression
 
 
    class CLASS_DECL_ACME result :
-      virtual public matter
+      virtual public particle
    {
    public:
 

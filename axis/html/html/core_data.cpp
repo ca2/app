@@ -776,8 +776,8 @@ namespace html
 
       payloadFile["http_set"]["app"] = get_app();
 
-      //varQuery.propset()["headers"].propset()[__id(accept)] = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
-      payloadFile["http_set"]["headers"].propset()[__id(accept)] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+      //varQuery.propset()["headers"].propset()["accept"] = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
+      payloadFile["http_set"]["headers"].propset()["accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
       //      varQuery.propset()["headers"].propset()["Accept-Language"] = "en-us,en;q=0.5";
             //varQuery.propset()["headers"].propset()["Accept-Encoding"] = "gzip,deflate";
       //      varQuery.propset()["headers"].propset()["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";

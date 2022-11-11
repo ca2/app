@@ -9,6 +9,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/context_image.h"
+#include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/graphics/write_text/fonts.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/primitive/geometry2d/_enhanced.h"

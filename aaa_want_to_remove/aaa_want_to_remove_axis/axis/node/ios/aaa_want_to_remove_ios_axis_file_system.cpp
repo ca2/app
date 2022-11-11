@@ -679,14 +679,14 @@ namespace ios
 //
 //      }
 //
-//      void file_system::copy(const ::string & pszNew, const ::string & psz, bool bFailIfExists, e_extract eextract, ::aura::application *  papp)
+//      void file_system::copy(const ::string & pszNew, const ::string & psz, bool bFailIfExists, enum_extract eextract, ::aura::application *  papp)
 //      {
 //         if(bFailIfExists)
 //         {
 //            if(exists(pszNew, papp))
 //               throw ::exception(::exception("Failed to copy file"));
 //         }
-//         if(pcontext->m_papexcontext->dir()->is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(string_ends_ci(psz, ".zip"))))
+//         if(pcontext->m_papexcontext->dir()->is(psz, papp) && (eextract == e_extract_first || eextract == e_extract_all || !(string_ends_ci(psz, ".zip"))))
 //         {
 //            string_array straPath;
 //            pcontext->m_papexcontext->dir()->rls(papp, psz, &straPath);
@@ -706,7 +706,7 @@ namespace ios
 //               strDst = pcontext->m_papexcontext->dir()->path(strDirDst, strDst);
 //               if(pcontext->m_papexcontext->dir()->is(strSrc, papp))
 //               {
-//                  if((eextract == extract_first || eextract == extract_none) && (string_ends_ci(psz, ".zip")))
+//                  if((eextract == e_extract_first || eextract == e_extract_none) && (string_ends_ci(psz, ".zip")))
 //                  {
 //                  }
 //                  else
@@ -720,7 +720,7 @@ namespace ios
 //                  {
 //                     pcontext->m_papexcontext->dir()->create(pcontext->m_papexcontext->dir()->name(strDst), papp);
 //                  }
-//                  copy(strDst, strSrc, bFailIfExists, eextract == extract_all ? extract_all : extract_none, papp);
+//                  copy(strDst, strSrc, bFailIfExists, eextract == e_extract_all ? e_extract_all : e_extract_none, papp);
 //               }
 //            }
 //         }
@@ -913,7 +913,7 @@ namespace ios
 //               strNew.format("%s-%s-%d", psz, strCopy.c_str(), i);
 //               if(!exists(strNew, papp))
 //               {
-//                  copy(strNew, psz, false, extract_all, papp);
+//                  copy(strNew, psz, false, e_extract_all, papp);
 //                  return strNew;
 //               }
 //               i++;
@@ -932,7 +932,7 @@ namespace ios
 //               strNew.format("%s-%s-%d%s", psz, strCopy.c_str(), i, strExt.c_str());
 //               if(!exists(strNew, papp))
 //               {
-//                  copy(strNew, psz, false, extract_all, papp);
+//                  copy(strNew, psz, false, e_extract_all, papp);
 //                  return strNew;
 //               }
 //               i++;
@@ -1070,7 +1070,7 @@ namespace ios
 //         else
 //         {
 //            string strNew = pcontext->m_papexcontext->dir()->path(strDest, name_(path));
-//            copy(strNew, path, false, extract_all, papp);
+//            copy(strNew, path, false, e_extract_all, papp);
 //            return strNew;
 //         }
 //      }

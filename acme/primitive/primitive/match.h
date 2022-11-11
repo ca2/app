@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/primitive/particle.h"
 #include "acme/primitive/collection/array.h"
 #include "acme/primitive/collection/pointer_array.h"
 
@@ -11,7 +11,7 @@ namespace match
 
 
    class CLASS_DECL_ACME item :
-      virtual public matter
+      virtual public particle
    {
    public:
 
@@ -60,10 +60,12 @@ namespace match
 
 
    class CLASS_DECL_ACME ci_string :
-      virtual public string
+      virtual public item
    {
    public:
 
+
+      ::string      m_str;
 
       ci_string(const char* psz = nullptr);
 
@@ -75,10 +77,12 @@ namespace match
 
 
    class CLASS_DECL_ACME prefix :
-      virtual public string
+      virtual public item
    {
    public:
 
+
+      ::string      m_str;
 
       prefix(const char* psz = nullptr);
 
@@ -90,9 +94,12 @@ namespace match
 
 
    class CLASS_DECL_ACME ci_prefix :
-      virtual public string
+      virtual public item
    {
    public:
+
+
+      ::string      m_str;
 
 
       ci_prefix(const char* psz = nullptr);
@@ -105,9 +112,12 @@ namespace match
 
 
    class CLASS_DECL_ACME suffix :
-      virtual public string
+      virtual public item
    {
    public:
+
+
+      ::string      m_str;
 
 
       suffix(const char* psz = nullptr);
@@ -120,10 +130,12 @@ namespace match
 
 
    class CLASS_DECL_ACME ci_suffix :
-      virtual public string
+      virtual public item
    {
    public:
 
+
+      ::string      m_str;
 
       ci_suffix(const char* psz = nullptr);
 

@@ -98,7 +98,7 @@ namespace experience
       {
       case e_message_left_button_double_click:
       {
-                              auto point = __point(pusermessage->m_lparam);
+                              auto point = ::point_i32(pusermessage->m_lparam);
                               if(OnLButtonDblClk((::u32)pusermessage->m_wparam, point))
                               {
 

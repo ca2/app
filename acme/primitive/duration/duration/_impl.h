@@ -3,7 +3,7 @@
 
 
 template < typename DURATION >
-inline class ::wait integral_duration < DURATION >::wait() const
+inline ::wait integral_duration < DURATION >::wait() const
 { 
 
    return ::duration(*this).integral_microsecond().m_i / 1'000'000.0;

@@ -1565,9 +1565,6 @@
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="message.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>

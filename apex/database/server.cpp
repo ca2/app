@@ -130,7 +130,7 @@ namespace database
          if (::is_set(ptopic))
          {
 
-            ptopic->m_pmatter = m_clienta.element_at(i);
+            ptopic->m_pparticle = m_clienta.element_at(i);
 
          }
 

@@ -1128,7 +1128,6 @@
     <ClInclude Include="include\_setup.h" />
     <ClInclude Include="library.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="message.h" />
     <ClInclude Include="message\aaa_menu_shared.h" />
     <ClInclude Include="message\timer.h" />
     <ClInclude Include="message\user.h" />

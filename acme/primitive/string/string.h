@@ -2,6 +2,7 @@
 #pragma once
 
 
+#include "acme/memory/malloc.h"
 #include "acme/primitive/primitive/block.h"
 
 

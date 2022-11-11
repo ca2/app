@@ -533,3 +533,64 @@ inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 
 
 
+
+
+
+#if !defined(_DEBUG)
+
+
+i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+{
+
+   auto c = ++m_countReference;
+
+#if OBJECT_REFERENCE_COUNT_DEBUG
+
+   add_ref_history(pReferer, pszObjRefDbg);
+
+#endif
+
+   return c;
+
+}
+
+
+i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+{
+
+   auto c = --m_countReference;
+
+#if OBJECT_REFERENCE_COUNT_DEBUG
+
+   if (c > 0)
+   {
+
+      dec_ref_history(pReferer, pszObjRefDbg);
+
+   }
+
+#endif
+
+   return c;
+
+}
+
+
+i64 particle::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+{
+
+   i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   if (i == 0)
+   {
+
+      delete_this();
+
+   }
+
+   return i;
+
+}
+
+
+#endif

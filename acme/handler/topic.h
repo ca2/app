@@ -25,7 +25,7 @@ public:
    ::action_context                       m_actioncontext;
    ::pointer<::property_object>           m_psender;
    ::pointer<::user::element>             m_puserelement; // user::interaction
-   ::pointer<::matter>                    m_pmatter;
+   ::pointer<::particle>                  m_pparticle;
 
 
    topic(const ::atom & atom) 
@@ -40,7 +40,7 @@ public:
    ~topic() override 
    { 
    
-      m_pmatter.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
+      m_pparticle.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
    
    }
 

@@ -102,7 +102,7 @@ public:
 
       pointer < T > & p = comparable_array < ::pointer<T > >::add_new();
 
-      pparticle->__construct(p);
+      ::__construct(pparticle, p);
 
       return p;
 

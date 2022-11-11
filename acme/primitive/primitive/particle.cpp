@@ -1280,11 +1280,10 @@ bool particle::is_branch_current() const
 
 
 
-
-CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wParam, i64 lParam, ::matter * pmatter)
+CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wParam, i64 lParam, ::particle * pparticleCall)
 {
 
-   if (::is_null(pmatter))
+   if (::is_null(pparticleCall))
    {
 
       auto psystem = ::get_system();
@@ -1305,7 +1304,7 @@ CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wPa
    else
    {
 
-      auto pextendedtopic = pmatter->create_extended_topic(atom);
+      auto pextendedtopic = pparticleCall->create_extended_topic(atom);
 
       if(wParam != 0 || lParam != 0)
       {
@@ -1315,7 +1314,7 @@ CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wPa
 
       }
 
-      pextendedtopic->m_pmatter = pmatter;
+      pextendedtopic->m_pparticle = pparticleCall;
 
       pparticle->handle(pextendedtopic, nullptr);
 
@@ -1344,10 +1343,10 @@ CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wPa
 //
 
 
-void particle::call(const ::atom & atom, i64 wParam, i64 lParam, ::matter * pmatter)
+void particle::call(const ::atom & atom, i64 wParam, i64 lParam, ::particle * pparticle)
 {
 
-   return __call(this, atom, wParam, lParam, pmatter);
+   return __call(this, atom, wParam, lParam, pparticle);
 
 }
 //

@@ -92,11 +92,11 @@ namespace app_app
 
       double y = dBase * 3;
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x, y, dBase * 5.0, dBase * 5.0), ::color::color(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x, y, dBase * 5.0, dBase * 5.0), ::argb_color(127, 40, 150, 235));
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::color::color(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::argb_color(127, 40, 150, 235));
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::color::color(127, 255, 110, 150));
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::argb_color(127, 255, 110, 150));
       
       rectangleClient.deflate((::i32) dBase);
 
@@ -105,13 +105,13 @@ namespace app_app
       if (acmenode()->background_color().get_luminance() < 0.5)
       {
 
-         colorInset = ::color::color(255, 89, 89, 89);
+         colorInset = argb_color(255, 89, 89, 89);
 
       }
       else
       {
 
-         colorInset = ::color::color(255, 127, 127, 127);
+         colorInset = argb_color(255, 127, 127, 127);
 
       }
 

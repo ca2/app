@@ -338,3 +338,14 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 #define END_EXTERN_C
 
 #endif
+
+
+
+#ifndef GET_X_LPARAM
+#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
+#endif
+
+
+#ifndef GET_Y_LPARAM
+#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
+#endif

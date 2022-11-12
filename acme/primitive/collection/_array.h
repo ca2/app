@@ -1300,7 +1300,7 @@ namespace acme
          array_permute(perm2, topermut);
          for (i32 j = 0; j < perm2.get_count(); j++)
          {
-            perm.add(elema + perm2[j]);
+            perm.append(elema + perm2[j]);
          }
       }
    }

@@ -73,7 +73,6 @@ public:
    inline ::index add(ARG_TYPE newElement);
    template < container_type CONTAINER >
    inline ::index add(const CONTAINER & container);
-   inline ::index append(ARG_TYPE newElement);
    inline ::index append(const array& src);
    inline void copy(const array& src);
 
@@ -362,11 +361,11 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add(const
 
 }
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::append(ARG_TYPE newElement)
-{
-   return add(newElement);
-}
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::append(ARG_TYPE newElement)
+//{
+//   return add(newElement);
+//}
 
 
 

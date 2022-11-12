@@ -15,7 +15,7 @@
 void error_code::get_message(::string & strMessage) const
 {
 
-   string_stream textstream(strMessage);
+   string_reference_stream textstream(strMessage);
    
    switch(m_etype)
    {

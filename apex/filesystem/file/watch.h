@@ -42,10 +42,10 @@ namespace file
       watch_id                            m_watchid;
       ::file::path                        m_pathFolder;
       comparable_eq_array < listener >    m_listenera;
-      ::pointer<thread>                  m_pthread;
+      ::pointer<thread>                   m_pthread;
       bool                                m_bRecursive;
       watcher *                           m_pwatcher;
-      ::pointer<watch>                   m_pwatchRelease;
+      ::pointer<watch>                    m_pwatchRelease;
       bool                                m_bStop;
       void *                              m_pthis;
       ::function < void () >              m_functionDestroy;

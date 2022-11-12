@@ -122,7 +122,7 @@ struct chldstatus
 //
 //   struct sigaction sa;
 //
-//   __zero(sa);
+//   zero(sa);
 //
 //   sa.sa_handler = &ansios_sigchld_handler;
 //

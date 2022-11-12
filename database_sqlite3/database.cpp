@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "database.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/string/base64.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
@@ -189,7 +190,7 @@ namespace sqlite
                                                             ::count iColumnCount)
    {
 
-      if (is_null(m_psqlite))
+      if (::is_null(m_psqlite))
       {
 
          TRACE("sqlite::database::_sqlite_query_result: No database Connection");
@@ -720,7 +721,9 @@ namespace sqlite
       try
       {
 
-         string strBase64(block.to_base64());
+         base64 base64;
+
+         string strBase64(base64.encode(block));
 
          property_set set;
 

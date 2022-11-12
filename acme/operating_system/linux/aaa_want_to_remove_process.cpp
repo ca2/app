@@ -128,7 +128,7 @@ void install_sigchld_handler()
 
    struct sigaction sa;
 
-   __zero(sa);
+   zero(sa);
 
    sa.sa_handler = &ansios_sigchld_handler;
 

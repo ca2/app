@@ -2,13 +2,19 @@
 #include "framework.h"
 #include "networking.h"
 #include "sockets/ssl/initializer.h"
-#include "acme/array.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/duration/_binary_stream.h"
 #include "acme/primitive/string/parse.h"
+#include "acme/primitive/string/str.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
+
+
+#include "acme/primitive/collection/_array.h"
+
+
+#undef ERROR
 #define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
 
 //#include <stdio.h>
@@ -351,7 +357,7 @@ namespace networking_bsd
       string dst;
       for (i32 i = 0; i < src.get_length(); i++)
       {
-         if (ansi_char_is_alnum((uchar)src[i]))
+         if (character_isalnum(src[i]))
          {
             dst += src[i];
          }
@@ -1429,7 +1435,7 @@ namespace networking_bsd
    networking::dns_cache_item::dns_cache_item()
    {
 
-      __zero(m_ipaddr);
+      memset(&m_ipaddr, 0, sizeof(m_ipaddr));
       m_bOk = false;
       m_bTimeout = true;
 
@@ -1464,7 +1470,7 @@ namespace networking_bsd
    networking::reverse_cache_item::reverse_cache_item()
    {
 
-      //__zero(m_ipaddr);
+      //zero(m_ipaddr);
       //m_durationLastChecked = 0;
       m_bOk = false;
       m_bTimeout = true;
@@ -2776,7 +2782,7 @@ namespace networking_bsd
    //networking::dns_cache_item::dns_cache_item()
    //{
    //
-   //   __zero(m_ipaddr);
+   //   zero(m_ipaddr);
    //   m_bOk = false;
    //   m_bTimeout = true;
    //
@@ -2845,7 +2851,7 @@ namespace networking_bsd
    //networking::reverse_cache_item::reverse_cache_item()
    //{
    //
-   //   //__zero(m_ipaddr);
+   //   //zero(m_ipaddr);
    //   //m_durationLastChecked = 0;
    //   m_bOk = false;
    //   m_bTimeout = true;
@@ -3219,7 +3225,7 @@ namespace networking_bsd
 
          char c = m_countHttpPostBoundary++ % 128;
 
-         while (!ansi_char_is_alnum((unsigned char)c))
+         while (!character_isalnum(c))
          {
 
             c = m_countHttpPostBoundary++ % 128;

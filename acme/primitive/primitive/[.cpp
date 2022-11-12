@@ -315,7 +315,7 @@ payload::payload(const ::property & property)
 //{
 //
 //   m_etype = e_type_new;
-//   __zero(m_all);
+//   zero(m_all);
 //   set_type(type_process);
 //   m_process = process;
 //
@@ -7481,7 +7481,7 @@ IMPLEMENT_PAYLOAD_NUMBER(f64);
    {                                               \
                                                    \
       m_etype = ::e_type_enum_ ## ENUMTYPE;              \
-      __zero(m_all);   \
+      zero(m_all);   \
                                                    \
    }                                               \
                                                    \

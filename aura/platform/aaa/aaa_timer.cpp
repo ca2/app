@@ -407,7 +407,7 @@ bool timer::thread_active() const
 void timer::impl_init()
 {
 
-   //__zero(m_sev);
+   //zero(m_sev);
 
    // m_timerid = nullptr;
 

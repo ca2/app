@@ -1877,9 +1877,6 @@
     <ClInclude Include="primitive\collection\duration.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="constant\_enumeration.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
     <ClInclude Include="constant\_mathematics.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
@@ -2938,6 +2935,15 @@
     </ClInclude>
     <ClInclude Include="primitive\string\utf8_character.h">
       <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\inline_string.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_template_structures.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_random.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4029,6 +4035,9 @@
     </ClCompile>
     <ClCompile Include="primitive\string\sz\ansi.cpp">
       <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\object_meta.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

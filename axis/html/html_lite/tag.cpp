@@ -30,7 +30,7 @@ lite_html_tag::lite_html_tag(lite_html_tag &rSource, bool bCopy)
       catch(const ::exception & e)
       {
 
-         __rethrow(e);
+         throw e;
 
       }
 

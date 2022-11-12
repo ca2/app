@@ -1000,7 +1000,7 @@ namespace xcb
 
       xcb_client_message_event_t event;
 
-      __zero(event);
+      zero(event);
 
       event.response_type = XCB_CLIENT_MESSAGE;
       event.sequence = 0;

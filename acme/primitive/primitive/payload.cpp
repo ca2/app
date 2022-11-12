@@ -8244,7 +8244,7 @@ e_ ## ENUMTYPE & payload::e_ ## ENUMTYPE ## _reference()         \
    {                                               \
                                                    \
       m_etype = ::e_type_enum_ ## ENUMTYPE;              \
-      __zero(m_all);   \
+      zero(m_all);   \
                                                    \
    }                                               \
                                                    \

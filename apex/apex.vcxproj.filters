@@ -1040,6 +1040,9 @@
     <ClInclude Include="constant\idpool.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\file\listener.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">

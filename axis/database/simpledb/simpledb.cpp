@@ -5,10 +5,13 @@
 #include "storage.h"
 #include "thread.h"
 #include "thread_localdatabase.h"
+#include "queue_item.h"
+#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/networking/url_department.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/datetime/department.h"
+#include "acme/primitive/string/base64.h"
 #include "acme/primitive/string/str.h"
 #include "apex/networking/http/context.h"
 #include "apex/platform/session.h"
@@ -337,7 +340,9 @@ namespace simpledb
 
          string strValue;
 
-         strValue = block.to_base64();
+         ::base64 base64;
+
+         strValue = base64.encode(block);
 
          string strSql = "REPLACE INTO fun_user_str_set VALUE('" + pserver->m_strUser + "', '" + pdatabase->escape(strKey) + "', '" + strValue + "')";
 

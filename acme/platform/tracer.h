@@ -10,7 +10,7 @@ class logger;
 
 
 class CLASS_DECL_ACME tracer :
-   public string_buffer_stream
+   public string_stream
 {
 public:
 

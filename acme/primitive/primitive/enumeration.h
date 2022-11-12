@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 
-template < typename ENUM >
-inline bool __enum_is_failed(const ENUM & e) { return !(::i64)e; }
+//template < typename ENUM >
+//inline bool __enum_is_failed(const ENUM & e) { return !(::i64)e; }
 
 
 template < typename ENUM >
@@ -63,6 +63,9 @@ public:
    inline enumeration operator | (ENUM e) const { return (ENUM)(m_eenum | e); }
    inline enumeration operator & (ENUM e) const { return (ENUM)(m_eenum & e); }
 
+   inline enumeration operator | (const enumeration & e) const { return (ENUM)(m_eenum | e.m_eenum); }
+   inline enumeration operator & (const enumeration & e) const { return (ENUM)(m_eenum & e.m_eenum); }
+
    inline bool is(ENUM e) const { return (i64)(m_eenum & e) == (i64)e; }
    inline bool has(ENUM e) const { return is(e); }
 
@@ -89,7 +92,7 @@ public:
    bool operator !()
    {
 
-      return __enum_is_failed((ENUM)m_eenum);
+      return !((ENUM)m_eenum);
 
    }
 

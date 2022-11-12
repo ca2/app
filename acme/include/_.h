@@ -84,6 +84,9 @@
 #include "_template_forward_declaration.h"
 
 
+#include "_template_structures.h"
+
+
 #include "_enumeration.h"
 
 
@@ -175,9 +178,6 @@
 
 
 #include "acme/primitive/primitive/echeck.h"
-
-
-#include "acme/constant/_enumeration.h"
 
 
 #include "acme/primitive/mathematics/mkint_c.h"
@@ -451,7 +451,19 @@
 #include "acme/constant/application_capability.h"
 
 
-//#include "acme/primitive/primitive/object.h"
+#define SOME_ADDITIONS_FOR_PRECOMPILED_HEADER 1
+
+
+#ifdef SOME_ADDITIONS_FOR_PRECOMPILED_HEADER
+
+
+#include "acme/primitive/primitive/payload.h"
+
+
+#include "acme/primitive/primitive/object.h"
+
+
+#endif
 
 
 

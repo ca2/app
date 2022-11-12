@@ -89,7 +89,7 @@ i32 networking_last_error()
 
 
 // only to be included in win32 projects
-CLASS_DECL_NETWORKING_BSD const char * bsd_socket_error(int x)
+CLASS_DECL_NETWORKING_BSD string bsd_socket_error(int x)
 {
    static   char tmp[100];
    switch (x)

@@ -182,8 +182,8 @@ namespace user
       virtual void design_window_minimize(::e_activation eactivation);
       virtual void design_window_maximize();
       virtual void design_window_full_screen(const ::rectangle_i32 & rectangleHint = nullptr);
-      virtual void design_window_restore(edisplay edisplay);
-      virtual void design_window_dock(edisplay edisplayDock);
+      virtual void design_window_restore(e_display edisplay);
+      virtual void design_window_dock(e_display edisplayDock);
 
 
       void prodevian_redraw(bool bUpdateBuffer) override;
@@ -541,7 +541,7 @@ namespace user
 
 
       virtual bool WfiOnStartDock();
-      virtual void WfiOnDock(edisplay edisplay);
+      virtual void WfiOnDock(e_display edisplay);
       virtual void WfiOnRestore();
       virtual void WfiOnMinimize(bool bNoActivate);
       virtual void WfiOnMaximize();

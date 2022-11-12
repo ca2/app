@@ -8,7 +8,7 @@
 
 #include "_constant.h"
 
-#include "_enumeration.h"
+//#include "_enumeration.h"
 
 class eimpact;
 

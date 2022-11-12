@@ -19,7 +19,7 @@
 #include "framework.h"
 #include "watcher.h"
 #include "watch.h"
-#include "apex/filesystem/filesystem/file_listener.h"
+#include "apex/filesystem/file/listener.h"
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronous_lock.h"
 
@@ -28,11 +28,11 @@ namespace file
 {
 
 
-   listener::~listener()
-   {
+   //listener::~listener()
+   //{
 
 
-   }
+   //}
 
 
    //void listener::handle_file_action(::file::action * paction)

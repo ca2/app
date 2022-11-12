@@ -1,15 +1,15 @@
 #pragma once
 
 
-#ifdef __cplusplus
-
-
-using edisplay = enumeration < enum_display >;
-using eactivation = enumeration < enum_activation >;
-using eappearance = enumeration < enum_appearance >;
-
-
-#endif
+//#ifdef __cplusplus
+//
+//
+//using edisplay = enumeration < enum_display >;
+//using eactivation = enumeration < enum_activation >;
+//DECLARE_ENUMERATION(eappearance, enum_appearance);
+//
+//
+//#endif
 
 
 //inline bool is_visible(enum_display edisplay) { return edisplay > e_display_none || edisplay == e_display_undefined; }

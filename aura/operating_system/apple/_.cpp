@@ -341,7 +341,7 @@ void copy(RECTANGLE_F64 * prectTarget, const CGRect * prectSource)
 //
 //   char sz[4096];
 //
-//   __zero(sz);
+//   zero(sz);
 //
 //   return realpath(path, sz);
 //

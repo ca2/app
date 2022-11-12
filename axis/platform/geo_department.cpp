@@ -1312,9 +1312,7 @@ namespace geo
    ::datetime::time_zone department::get_time_zone(openweather_city* pcity)
    {
 
-
-
-      if (is_null(pcity))
+      if (::is_null(pcity))
       {
 
          return {};
@@ -1342,7 +1340,7 @@ namespace geo
 
             auto pfile = file()->get_reader(path);
 
-            if (::is_ok(pfile))
+            if (pfile.ok())
             {
 
                auto reader = __binary_stream(pfile);

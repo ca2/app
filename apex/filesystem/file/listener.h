@@ -4,6 +4,12 @@
 #pragma once
 
 
+#include "acme/primitive/collection/array.h"
+#include "acme/primitive/collection/comparable_eq_array.h"
+#include "acme/primitive/collection/comparable_array.h"
+#include "acme/primitive/primitive/function.h"
+
+
 namespace file
 {
 
@@ -27,12 +33,13 @@ namespace file
 
    /// Basic interface for listening for file events.
    /// @class file_watch_listener
-   class CLASS_DECL_APEX listener :
-      public ::function <  void(::file::action *) >
+   class listener :
+      public ::function <  void(::file::action*) >
    {
    public:
 
-      //listener_function    m_function;
+      
+      //::function <  void(::file::action*) >       m_functionListener;
 
       comparable_array < ::pointer<watch >>       m_watcha;
 
@@ -40,7 +47,11 @@ namespace file
 
 
       //listener(listener_function function = nullptr);
-      ~listener();
+      ~listener()
+      {
+
+      }
+ 
 
 
       /// Handles the action file action
@@ -48,7 +59,19 @@ namespace file
       /// @lparam dir The directory
       /// @lparam filename The filename that was accessed (not full path)
       /// @lparam action Action that was performed
-      //virtual void handle_file_action(::file::action * paction);
+      //void operator()(::file::action* paction)
+      //{
+
+      //   m_functionListener(paction);
+
+      //}
+
+      //bool operator == (const listener& listener) const
+      //{
+
+      //   return m_functionListener.m_pbase == listener.m_functionListener.m_pbase;
+
+      //}
 
 
    }; // class file_watch_listener

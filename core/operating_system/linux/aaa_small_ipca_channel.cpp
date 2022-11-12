@@ -112,7 +112,7 @@ namespace aura
 
          msqid_ds b;
 
-         __zero(b);
+         zero(b);
 
          if((result = msgsnd(m_iQueue, pdata, m.get_size() - sizeof(long), 0)) == -1)
          {

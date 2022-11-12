@@ -206,7 +206,7 @@ void apex_main_data::on_system_construct()
 //
 //   m_nCmdShow = nCmdShow;
 //
-//   //__zero(m_mainrunnera);
+//   //zero(m_mainrunnera);
 //
 //   estatus = on_system_construct();
 //
@@ -247,7 +247,7 @@ void apex_main_data::system_construct(const ::string_array & straParam)
 
    m_edisplay = e_display_default;
 
-   //__zero(m_mainrunnera);
+   //zero(m_mainrunnera);
 
    //return ::success;
 
@@ -266,7 +266,7 @@ void apex_main_data::system_construct(const char * pszCommandLine, const ::e_dis
 
    //m_poslocal = nullptr;
 
-   //__zero(m_mainrunnera);
+   //zero(m_mainrunnera);
 
    //auto estatus =
    //

@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "library.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/platform/library.h"
 
 
 namespace introjection
@@ -15,7 +16,7 @@ namespace introjection
 
       //initialize(pparticle);
 
-      __zero(m_filetimeset);
+      zero(m_filetimeset);
 
    }
 

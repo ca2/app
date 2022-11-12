@@ -516,9 +516,6 @@
     <ClInclude Include="graphics\render\water_routine.h">
       <Filter>Header Files\graphics\render</Filter>
     </ClInclude>
-    <ClInclude Include="id.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="math\calculator\element.h">
       <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>

@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 
+#include "object_meta.h"
 #include "property_object.h"
 #include "acme/parallelization/create_task_attributes.h"
 #include "acme/primitive/collection/pointer_array.h"
@@ -56,6 +57,7 @@ protected:
    bool                                            m_bCheckingChildrenTask;
    ::object *                                      m_pobjectParentTask;
    ::pointer < ::pointer_array < ::particle > >    m_pparticleaChildrenTask;
+   //::pointer < ::procedure_map >                   m_pmapPropertyProcedure;
 
 
 public:
@@ -74,12 +76,12 @@ public:
 
 
 
-   //::object_meta *                                    m_pmeta;
+   ::object_meta *                                       m_pmeta;
    //::i64                                              m_cRun;
 
 
    //object() : m_pmeta(nullptr) { }
-   object() { m_pobjectParentTask = nullptr;
+   object():m_pmeta(nullptr) { m_pobjectParentTask = nullptr;
    //   m_pcontext = nullptr;
    }
    //object(::particle * pparticle);
@@ -138,71 +140,71 @@ public:
    ::pointer<BASE_TYPE>file_as(const ::payload& payloadFile);
 
 
-   //virtual void add_procedure(const ::atom& idRoutine, const ::procedure & procedure);
+   virtual void add_procedure(const ::atom& idRoutine, const ::procedure & procedure);
 
 
-   //virtual void add_each_routine_from(const ::atom& idRoutine, ::object* pobjectSource);
+   virtual void add_each_routine_from(const ::atom& idRoutine, ::object* pobjectSource);
 
 
-   //virtual array < ::procedure >* routinea(const ::atom& idRoutine);
+   virtual procedure_array * procedure_array(const ::atom& idRoutine);
 
-   //template < typename ROUTINE_RUNNER_OBJECT, typename ROUTINE_RUNNER_METHOD >
-   //void for_routines_with_id(const ::atom & atom, ROUTINE_RUNNER_OBJECT proutinerunner, ROUTINE_RUNNER_METHOD routine_runner_method)
-   //{
+   template < typename ROUTINE_RUNNER_OBJECT, typename ROUTINE_RUNNER_METHOD >
+   void for_routines_with_id(const ::atom & atom, ROUTINE_RUNNER_OBJECT proutinerunner, ROUTINE_RUNNER_METHOD routine_runner_method)
+   {
 
-   //   if (::is_null(m_pmapPropertyProcedure))
-   //   {
+      if (::is_null(m_pmeta) || m_pmeta->m_mapRoutine.is_empty())
+      {
 
-   //      return;
+         return;
 
-   //   }
+      }
 
-   //   auto pprocedurea = this->procedure_array(atom);
+      auto pprocedurea = this->procedure_array(atom);
 
-   //   if (::is_null(pprocedurea))
-   //   {
+      if (::is_null(pprocedurea))
+      {
 
-   //      //throw_exception(error_not_found);
+         //throw_exception(error_not_found);
 
-   //      return;
+         return;
 
-   //   }
+      }
 
-   //   for (auto routine : *pprocedurea)
-   //   {
+      for (auto routine : *pprocedurea)
+      {
 
-   //      (proutinerunner->*routine_runner_method)(routine);
+         (proutinerunner->*routine_runner_method)(routine);
 
-   //   }
+      }
 
-   //}
+   }
 
    
-   //virtual void call_routine2(const ::procedure & procedure);
+   virtual void call_routine2(const ::procedure & procedure);
 
 
-   //inline void call_routines_with_id(const ::atom & atom)
-   //{
+   inline void call_routines_with_id(const ::atom & atom)
+   {
 
-   //   return for_routines_with_id(atom, this, &object::call_routine2);
+      return for_routines_with_id(atom, this, &object::call_routine2);
 
-   //}
-
-
-   //inline void post_routines_with_id(const ::atom & atom)
-   //{
-
-   //   return for_routines_with_id(atom, this, &object::post_procedure);
-
-   //}
+   }
 
 
-   //inline void send_routines_with_id(const ::atom & atom)
-   //{
+   inline void post_routines_with_id(const ::atom & atom)
+   {
 
-   //   return for_routines_with_id(atom, this, &object::send_procedure);
+      return for_routines_with_id(atom, this, &object::post_procedure);
 
-   //}
+   }
+
+
+   inline void send_routines_with_id(const ::atom & atom)
+   {
+
+      return for_routines_with_id(atom, this, &object::send_procedure);
+
+   }
 
 
 
@@ -243,7 +245,8 @@ public:
    //virtual void child_post_quit_and_wait(const char* pszTag, const duration& duration);
 
 
-   ///virtual void post_procedure(const ::procedure & procedure);
+   virtual void post_procedure(const ::procedure & procedure);
+   virtual void send_procedure(const ::procedure& procedure);
 
 
    //void destroy() override;
@@ -278,11 +281,11 @@ public:
 
    //virtual void set_topic_text(const string& str);
 
-   //void create_object_meta();
+   void create_object_meta();
 
-   //inline void defer_object_meta() { if (::is_null(m_pmeta)) create_object_meta(); }
+   inline void defer_object_meta() { if (::is_null(m_pmeta)) create_object_meta(); }
 
-   //inline ::object_meta * get_meta() { defer_object_meta(); return m_pmeta; }
+   inline ::object_meta * get_meta() { defer_object_meta(); return m_pmeta; }
 
    inline ::acme::context* get_context() const { return m_pcontext; }
 
@@ -1068,8 +1071,8 @@ public:
    //void start();
 
 
-   //void single_fork(const ::procedure_array& routinea);
-   //void multiple_fork(const ::procedure_array& routinea);
+   void single_fork(const ::procedure_array& routinea);
+   void multiple_fork(const ::procedure_array& routinea);
 
    //using topic::manager::defer_fork;
 

@@ -922,7 +922,7 @@ namespace sockets
 
             }
 
-            __zero(m_maskingkey);
+            zero(m_maskingkey);
 
             if (m_memResponse.get_size() < m_header_size)
             {

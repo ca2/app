@@ -8,6 +8,7 @@
 #pragma once
 
 
+#include "acme/parallelization/manual_reset_event.h"
 #include "script.h"
 
 

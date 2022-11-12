@@ -827,8 +827,8 @@ namespace draw2d_opengl
       //   BITMAPINFO biC;
       //   BITMAPINFO biM;
 
-      //   __zero(biC);
-      //   __zero(biM);
+      //   zero(biC);
+      //   zero(biM);
 
 
 

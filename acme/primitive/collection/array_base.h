@@ -586,7 +586,7 @@ public:
    virtual void copy(const array_base & src);
 
 
-
+   array_base operator + (const array_base& array) const;
 
 
    virtual void on_after_read();
@@ -1241,6 +1241,20 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::copy(const arra
    allocate(nSrcSize);
 
    ALLOCATOR::copy_count(m_pData,src.m_pData, nSrcSize);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::operator + (const array_base& array) const
+{
+
+   auto a = *this;
+
+   a.append(array);
+
+   return ::move(a);
 
 }
 

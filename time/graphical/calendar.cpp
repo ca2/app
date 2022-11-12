@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "calendar.h"
+#include "acme/platform/system.h"
+#include "acme/primitive/datetime/department.h"
 #include "apex/filesystem/file/html_file.h"
 
 
@@ -134,13 +136,13 @@ namespace datetime
                if (pfile->m_strOptions.find("<monday-first>") >= 0)
                {
                   
-                  w = atoi(pdatetime->strftime("%V",::earth::time(iYear, iMonth, iDay, 0, 0, 0)));
+                  w = atoi(pdatetime->format("%V",::earth::time(iYear, iMonth, iDay, 0, 0, 0)));
 
                }
                else
                {
 
-                  w = atoi(pdatetime->strftime("%U", ::earth::time(iYear, iMonth, iDay, 0, 0, 0)));
+                  w = atoi(pdatetime->format("%U", ::earth::time(iYear, iMonth, iDay, 0, 0, 0)));
 
                }
 

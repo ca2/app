@@ -4,12 +4,16 @@
 #ifdef WINDOWS
 
 
+#include "acme/primitive/primitive/particle.h"
+#include "apex/networking/port_forward.h"
+
+
 namespace net
 {
 
 
    class CLASS_DECL_NETWORKING_BSD port_forward_change_callbacks :
-      virtual public object
+      virtual public particle
    {
    public:
 
@@ -26,7 +30,7 @@ namespace net
 
 
    class CLASS_DECL_NETWORKING_BSD port_forward :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
 
@@ -54,7 +58,7 @@ namespace net
       // GetPortMappingVector() and GetDeviceInformationContainer() methods
 
       class CLASS_DECL_NETWORKING_BSD port_map :
-         virtual public object
+         virtual public ::particle
       {
       public:
          string ExternalIPAddress;
@@ -67,7 +71,7 @@ namespace net
       };
 
       class CLASS_DECL_NETWORKING_BSD device :
-         virtual public object
+         virtual public ::particle
       {
       public:
 

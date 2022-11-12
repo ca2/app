@@ -8,6 +8,7 @@
 #include "credentials.h"
 #include "interactive.h"
 #include "user.h"
+#include "acme/exception/exception.h"
 #include "acme/primitive/string/hex.h"
 #include "apex/crypto/crypto.h"
 #include "apex/networking/http/context.h"

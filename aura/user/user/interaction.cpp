@@ -10672,7 +10672,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //void interaction::clear_cache(bool bRecursive) const
    //{
    //
-   //   __zero(m_cache);
+   //   zero(m_cache);
 
    //   if (bRecursive)
    //   {
@@ -12031,7 +12031,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::add_appearance(eappearance eappearance, enum_layout elayout)
+   void interaction::add_appearance(::e_appearance eappearance, enum_layout elayout)
    {
 
       m_layout.m_statea[elayout].m_eappearance += eappearance;
@@ -12039,7 +12039,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::erase_appearance(eappearance eappearance, enum_layout elayout)
+   void interaction::erase_appearance(::e_appearance eappearance, enum_layout elayout)
    {
 
       m_layout.m_statea[elayout].m_eappearance -= eappearance;
@@ -12047,7 +12047,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::toggle_appearance(eappearance eappearance, enum_layout elayout)
+   void interaction::toggle_appearance(::e_appearance eappearance, enum_layout elayout)
    {
 
       m_layout.m_statea[elayout].m_eappearance.toggle(eappearance);
@@ -14052,7 +14052,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::design_window_restore(edisplay edisplay)
+   void interaction::design_window_restore(::e_display edisplay)
    {
       
       auto activation = layout().sketch().activation();
@@ -14066,7 +14066,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::design_window_dock(edisplay edisplay)
+   void interaction::design_window_dock(::e_display edisplay)
    {
 
       ASSERT(is_docking_appearance(edisplay));
@@ -14399,7 +14399,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   index interaction::get_zoneing(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleParam, edisplay edisplay)
+   index interaction::get_zoneing(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleParam, ::e_display edisplay)
    {
 
       if (!is_docking_appearance(edisplay))
@@ -14500,7 +14500,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   edisplay interaction::initial_restore_display()
+   ::e_display interaction::initial_restore_display()
    {
 
       return e_display_restore;
@@ -14647,7 +14647,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //}
 
 
-   index interaction::make_zoneing(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, edisplay * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::make_zoneing(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, ::e_display * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       if (pedisplay == nullptr || !is_docking_appearance(*pedisplay))
@@ -14702,7 +14702,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   index interaction::get_best_zoneing(edisplay & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
+   index interaction::get_best_zoneing(::e_display & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
    {
 
       edisplay = layout().design().display();
@@ -14751,10 +14751,10 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   index interaction::best_zoneing(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, edisplay * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::best_zoneing(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, ::e_display * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
    {
 
-      edisplay edisplay;
+      ::e_display edisplay;
 
       if (pedisplay == nullptr)
       {
@@ -14816,7 +14816,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    /// the rectangle parameter indicates to the function
    /// which monitor or monitors the window restore should
    /// be positioned at.
-   index interaction::good_restore(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam, edisplay edisplay)
+   index interaction::good_restore(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam, ::e_display edisplay)
    {
 
       ::rectangle_i32 rectangleWindow;
@@ -16485,7 +16485,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::_001OnDeiconify(edisplay edisplay)
+   void interaction::_001OnDeiconify(::e_display edisplay)
    {
 
       display(e_display_restored);

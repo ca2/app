@@ -1,6 +1,8 @@
 // Refactor by camilo from gz on 2021-11-10 11:09 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "uncompress.h"
+#include "acme/exception/exception.h"
+#include "acme/filesystem/file/file.h"
 #include "acme/primitive/primitive/memory.h"
 #include <zlib.h>
 
@@ -38,7 +40,7 @@ namespace compress_zlib
 
       z_stream zstream;
 
-      __zero(zstream);
+      memset(&zstream, 0, sizeof(zstream));
       zstream.next_in = (u8*)memIn.get_data();
       zstream.avail_in = (u32)uRead;
       zstream.total_out = 0;

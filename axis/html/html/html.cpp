@@ -1,8 +1,8 @@
 ﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-//#include "axis/html/html_lite/_.h"
-#endif
-#include "axis/id.h"
+//#if !BROAD_PRECOMPILED_HEADER
+////#include "axis/html/html_lite/_.h"
+//#endif
+//#include "axis/id.h"
 #include "axis/platform/system.h"
 #include "axis/html/html_lite/entity_resolver.h"
 #include "axis/html/html/html.h"

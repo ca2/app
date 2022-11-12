@@ -61,10 +61,6 @@ public:
    inline bool contains_y(UNIT_TYPE y) const noexcept { return ::contains_y(*this, y); }
 
 
-   POINT_TYPE random_point() { return POINT_TYPE(__random(this->left, this->right), __random(this->top, this->bottom)); }
-   POINT_TYPE random_point(double dRate) { auto rectangle = *this; rectangle.rate(dRate); return rectangle.random_point(); }
-
-
    template < typename RECTANGLE_TYPE >
    rectangle_type & maximum(const RECTANGLE_TYPE & rectangle)
    {
@@ -171,8 +167,8 @@ public:
    { 
       return this->left == rectangle.left
          && this->top == rectangle.top
-         && this->right = rectangle.right
-         && this->bottom = rectangle.bottom;
+         && this->right == rectangle.right
+         && this->bottom == rectangle.bottom;
    
    }
 

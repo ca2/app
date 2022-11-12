@@ -8,6 +8,9 @@
 #include "acme/primitive/comparison/compare.h"
 
 
+#include "__string.h"
+
+
 #ifdef MEMDLEAK
 
 
@@ -41,8 +44,6 @@ CLASS_DECL_ACME void TRACELASTERROR();
 
 namespace windows
 {
-
-
 
 
    CLASS_DECL_ACME::enum_status _last_error_status(DWORD dwLastError);

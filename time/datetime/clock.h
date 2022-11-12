@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "acme/primitive/datetime/time_span.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/particle.h"
+
+
 namespace datetime
 {
 
@@ -10,7 +15,7 @@ namespace datetime
 
 
       class CLASS_DECL_CA2_TIME clock :
-         virtual public ::object
+         virtual public ::particle
       {
       protected:
 

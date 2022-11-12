@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/regular_expression/regular_expression.h"
+
+
 namespace regular_expression_pcre2
 {
 

@@ -92,9 +92,9 @@ namespace user
    __memory(window_rectangle)
    {
 
-      edisplay                   m_edisplayPrevious = e_display_none;
-      edisplay                   m_edisplay = e_display_none;
-      eappearance                m_eappearance = e_appearance_none;
+      e_display                  m_edisplayPrevious = e_display_none;
+      e_display                  m_edisplay = e_display_none;
+      e_appearance               m_eappearance = e_appearance_none;
       rectangle_i32              m_rectangleSnapped = nullptr;
       rectangle_i32              m_rectangleRestored = nullptr;
       rectangle_i32              m_rectangleWindow = nullptr;

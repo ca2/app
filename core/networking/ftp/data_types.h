@@ -443,7 +443,7 @@ namespace ftp
       public:
          code()
          {
-            __zero(m_szCode);
+            zero(m_szCode);
          }
          const char * Value() const { return m_szCode; }
          bool Set(const string& strCode)
@@ -452,7 +452,7 @@ namespace ftp
                   strCode[0]<'1' || strCode[0]>'5' ||
                   strCode[1]<'0' || strCode[1]>'5' )
             {
-               __zero(m_szCode);
+               zero(m_szCode);
                return false;
             }
             strcpy(m_szCode, strCode);

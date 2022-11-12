@@ -3,8 +3,10 @@
 #include "script_main.h"
 #include "httpd_socket.h"
 #include "exit_exception.h"
+#include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "axis/id.h"
+#include "acme/networking/url_department.h"
+#include "acme/platform/system.h"
 
 
 namespace dynamic_source

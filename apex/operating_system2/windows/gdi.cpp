@@ -10,7 +10,7 @@
 //   if (plf == nullptr)
 //   {
 //      plf = &lF;
-//      __zero(plf);
+//      zero(plf);
 //      plf->lfCharSet = DEFAULT_CHARSET;
 //
 //   }

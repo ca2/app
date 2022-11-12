@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "port_forward.h"
+#include "acme/platform/system.h"
 
 
 #ifdef WINDOWS
@@ -97,7 +98,7 @@ namespace net
 #ifdef WINDOWS_DESKTOP
 
    extern const ::u32 UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION = ::RegisterWindowMessage(
-		   _T("UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION-{7C29C80A_5712_40e8_A124_A82E4B2795A7}") );
+		   L"UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION-{7C29C80A_5712_40e8_A124_A82E4B2795A7}") ;
 
 #endif
 

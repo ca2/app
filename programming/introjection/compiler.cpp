@@ -1,11 +1,17 @@
 #include "framework.h"
 #include "compiler.h"
 #include "library.h"
+#include "acme/exception/exception.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/operating_system/process.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/library.h"
 #include "acme/primitive/mathematics/mathematics.h"
+#include "acme/primitive/string/str.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/context.h"
 
 
 #include <sys/stat.h>
@@ -568,7 +574,7 @@ namespace introjection
 
       }
 
-      synchronous_lock slCompiler(mutex());
+      synchronous_lock slCompiler(synchronization());
 
       auto & plibrary = m_lib[pathFile];
 
@@ -636,7 +642,7 @@ namespace introjection
 
       ::file::path strTransformName = strName;
 
-      auto pcontext = get_context();
+      auto pcontext = m_pcontext;
 
       if(pcontext->m_papexcontext->file()->exists(strName))
       {
@@ -1183,7 +1189,7 @@ auto tickStart = ::duration::now();
 
          }
 
-         sleep(100_ms);
+         preempt(100_ms);
 
          if(tickStart.elapsed() > 15_min)
          {
@@ -1389,7 +1395,7 @@ auto tickStart = ::duration::now();
             if(process->has_exited())
                break;
 
-            sleep(100_ms);
+            preempt(100_ms);
 
             if(tickStart.elapsed() > 15_min)
             {
@@ -1437,7 +1443,7 @@ auto tickStart = ::duration::now();
 
             }
 
-            plibrary->m_strError = plibrary->m_memfileError;
+            plibrary->m_strError = plibrary->m_memfileError.m_str;
 
             plibrary->m_strError.trim();
 

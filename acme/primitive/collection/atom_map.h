@@ -8,8 +8,6 @@
 #include "map.h"
 
 
-template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE > >
-using atom_map = ::map < atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE, PAIR >;
 
 
 using id_to_id = atom_map < atom >;

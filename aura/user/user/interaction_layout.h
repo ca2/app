@@ -185,10 +185,10 @@ namespace user
       inline class layout_state & window() { return state(e_layout_window); }
       virtual void set_initial_dim(const ::point_i32 & p, const ::size_i32 & s);
 
-      inline void set_appearance(eappearance eappearance) { sketch() = eappearance; }
-      inline void add_appearance(eappearance eappearance) { sketch() |= eappearance; }
-      inline void erase_appearance(eappearance eappearance) { sketch() -= eappearance; }
-      inline void toggle_appearance(eappearance eappearance) { sketch() ^= eappearance; }
+      inline void set_appearance(e_appearance eappearance) { sketch() = eappearance; }
+      inline void add_appearance(e_appearance eappearance) { sketch() |= eappearance; }
+      inline void erase_appearance(e_appearance eappearance) { sketch() -= eappearance; }
+      inline void toggle_appearance(e_appearance eappearance) { sketch() ^= eappearance; }
       inline void clear_appearance() { sketch() = e_appearance_none; }
       virtual void post_redraw(bool bAscendants = true);
       virtual void set_reposition(bool bSetThis = true);
@@ -246,7 +246,7 @@ namespace user
       //inline bool pending_request() const { return request() != process(); }
 
 
-      inline bool has_appearance(eappearance eappearance) const { return design().appearance() & eappearance; }
+      inline bool has_appearance(e_appearance eappearance) const { return design().appearance() & eappearance; }
 
 
 

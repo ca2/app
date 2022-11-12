@@ -6,7 +6,7 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_ACME time_zone
+   class time_zone
    {
    public:
 

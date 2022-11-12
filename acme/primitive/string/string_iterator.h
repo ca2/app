@@ -7,15 +7,16 @@
 //
 #pragma once
 
-template < typename CHAR_TYPE >
+
+template < primitive_character CHARACTER >
 class string_iterator
 {
 public:
 
-   const CHAR_TYPE *         m_psz;
+   const CHARACTER *         m_psz;
 
-   string_iterator(const CHAR_TYPE * psz) : m_psz(psz) { }
-   string_iterator(const CHAR_TYPE * psz, strsize size) : m_psz(psz + size) { }
+   string_iterator(const CHARACTER * psz) : m_psz(psz) { }
+   string_iterator(const CHARACTER * psz, strsize size) : m_psz(psz + size) { }
 
    ::wd32char operator *();
    string_iterator & operator ++();

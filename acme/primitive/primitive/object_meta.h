@@ -1,15 +1,17 @@
+// Reinserted on 2022-11-12 02:45 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
-class CLASS_DECL_APEX object_meta
+#include "acme/primitive/collection/map.h"
+
+
+class CLASS_DECL_ACME object_meta
 {
 public:
 
 
    string                              m_strTopicText;
-   atom_map < ::procedure_array >   m_mapRoutine;
-   //atom_map < future_array >   m_mapProcess;
-   //pointer_array < ::task >           m_taska;
+   ::procedure_map                     m_mapRoutine;
 
 
    object_meta() { }

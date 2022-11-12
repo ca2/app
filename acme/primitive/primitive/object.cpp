@@ -18,7 +18,12 @@
 #include "acme/platform/system.h"
 
 
-object::~object() = default;
+object::~object()
+{
+
+   ::acme::del(m_pmeta);
+
+}
 
 
 i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
@@ -75,19 +80,19 @@ i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 }
 
 
-//void object::create_object_meta()
-//{
-//
-//   if (m_pmeta)
-//   {
-//
-//      return;
-//
-//   }
-//
-//   m_pmeta = memory_new object_meta();
-//
-//}
+void object::create_object_meta()
+{
+
+   if (m_pmeta)
+   {
+
+      return;
+
+   }
+
+   m_pmeta = memory_new object_meta();
+
+}
 
 
 string object::as_string() const
@@ -412,13 +417,28 @@ void object::dev_log(string strMessage)
 //
 //
 //
-//void object::call_routine2(const ::procedure & procedure)
-//{
-//
-//   procedure();
-//
-//}
+void object::call_routine2(const ::procedure & procedure)
+{
 
+   procedure();
+
+}
+
+
+void object::post_procedure(const ::procedure& procedure)
+{
+
+   m_pcontext->fork(procedure);
+
+}
+
+
+void object::send_procedure(const ::procedure& procedure)
+{
+
+   procedure();
+
+}
 
 
 ::text::text object::__text(const ::atom& atom)
@@ -444,12 +464,13 @@ void object::dev_log(string strMessage)
 //}
 //
 
-//void object::add_procedure(const ::atom& atom, const ::procedure & procedure)
-//{
-//
-//   get_meta()->m_mapRoutine[atom].add(routine);
-//
-//}
+
+void object::add_procedure(const ::atom& atom, const ::procedure & procedure)
+{
+
+   get_meta()->m_mapRoutine[atom].add(procedure);
+
+}
 
 
 //void object::add_process(const ::atom & atom, const ::future & future)
@@ -460,24 +481,24 @@ void object::dev_log(string strMessage)
 //}
 
 
-//void object::add_each_routine_from(const ::atom& atom, ::object* pobjectSource)
-//{
-//
-//   if (pobjectSource)
-//   {
-//
-//      auto pprocedurea = pobjectSource->routinea(atom);
-//
-//      if (pprocedurea)
-//      {
-//
-//         get_meta()->m_mapRoutine[atom].add(*pprocedurea);
-//
-//      }
-//
-//   }
-//
-//}
+void object::add_each_routine_from(const ::atom& atom, ::object* pobjectSource)
+{
+
+   if (::is_set(pobjectSource))
+   {
+
+      auto pprocedurea = pobjectSource->procedure_array(atom);
+
+      if (pprocedurea)
+      {
+
+         get_meta()->m_mapRoutine[atom].add(*pprocedurea);
+
+      }
+
+   }
+
+}
 
 
 //void object::add_each_process_from(const ::atom & atom, ::object * pobjectSource)
@@ -2623,12 +2644,12 @@ string object::get_text(const ::payload& payload, const ::atom& atom)
 //}
 
 //
-//array < ::procedure >* object::routinea(const ::atom& idRoutine)
-//{
-//
-//   return nullptr;
-//
-//}
+procedure_array * object::procedure_array(const ::atom& atomProcedure)
+{
+
+   return &get_meta()->m_mapRoutine[atomProcedure];
+
+}
 
 //
 //void object::call_routine(const ::atom& idRoutine)

@@ -5,6 +5,7 @@
 
 
 #include "acme/primitive/collection/map.h"
+#include "acme/primitive/primitive/pointer.h"
 
 
 namespace sockets_bsd

@@ -70,9 +70,9 @@ public:
    virtual void _load_dib(image * pimage, const ::file::path & pathDib);
 
 
-   virtual void save_image(const ::payload & payloadFile, const image * pimage, const ::save_image * psaveimage = nullptr);
-   virtual void save_image(memory & memory, const image * pimage, const ::save_image * psaveimage = nullptr);
-   virtual void save_dib(const ::file::path & path, const image * pimage);
+   virtual void save_image(const ::payload & payloadFile, image * pimage, const ::save_image * psaveimage = nullptr);
+   virtual void save_image(memory & memory, image * pimage, const ::save_image * psaveimage = nullptr);
+   virtual void save_dib(const ::file::path & path, image * pimage);
 
    
    
@@ -80,7 +80,7 @@ public:
 
 
    virtual ::image_pointer _load_image_from_file(const ::payload & payloadFile, const ::payload & varOptions);
-   virtual void _save_to_file(const ::payload & payloadFile, const image * pimage, const ::payload & varOptions);
+   virtual void _save_to_file(const ::payload & payloadFile, image * pimage, const ::payload & varOptions);
    
    virtual void _load_image(::image* pimage, ::pointer<image_frame_array> & pframea, memory & memory);
    
@@ -91,7 +91,7 @@ public:
 #ifdef _UWP
    virtual bool _desk_to_image(::image* pimage);
    virtual bool _desk_has_image();
-   virtual bool _image_to_desk(const ::image* pimage);
+   virtual bool _image_to_desk(::image* pimage);
 #endif
    
    

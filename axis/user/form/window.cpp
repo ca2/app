@@ -874,7 +874,7 @@ throw_todo();
       if(ptopic != nullptr)
       {
 
-         if(!ptopic->is_modified())
+         if(!ptopic->has_modified_flag())
          {
 
             return;

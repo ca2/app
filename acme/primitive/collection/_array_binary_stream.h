@@ -50,7 +50,7 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::a
    try
    {
 
-      for (; i < c && stream.is_ok(); i++)
+      for (; i < c && stream.has_ok_flag(); i++)
       {
 
          stream >> a[i];

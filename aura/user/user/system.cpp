@@ -54,7 +54,7 @@ namespace user
    system::system(::create* pcreate)
    {
 
-      //__zero(m_createstruct);
+      //zero(m_createstruct);
 
       create_common_construct();
          

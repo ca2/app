@@ -7,17 +7,26 @@
 #include "ds_script.h"
 #include "session.h"
 #include "httpd_socket.h"
+#include "acme/exception/exit.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/filesystem/filesystem/listing.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
+#include "acme/primitive/string/string.h"
+#include "acme/primitive/string/str.h"
 #include "apex/crypto/crypto.h"
 #include "apex/crypto/rsa.h"
-#include "apex/networking/sockets/link_in_socket.h"
-#include "apex/networking/sockets/link_out_socket.h"
+#include "apex/filesystem/file/action.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "source/app/apex/filesystem/file/file_watcher.h"
+#include "apex/filesystem/file/watcher.h"
+#include "apex/networking/sockets/link_in_socket.h"
+#include "apex/networking/sockets/link_out_socket.h"
 #include "acme/constant/id.h"
 #include "axis/platform/system.h"
-#include "acme/operating_system.h"
+
+
+#include "acme/_operating_system.h"
 
 
 namespace dynamic_source
@@ -78,9 +87,9 @@ namespace dynamic_source
       
       m_bCompiler = true;
 
-      m_iBuildTimeWindow        = 30 * 1000;
-      m_iBuildTimeRandomWindow  = 30 * 1000;
-      m_iDatabaseWaitTimeOut     = 15 * 1000 * 1000 * 60;
+      m_durationBuildInterval        = 30_s;
+      m_durationTimeRandomInterval  = 30_s;
+      m_durationDatabaseWaitTimeOut     = 15_minutes;
 
       m_mapIncludeMatchesFileExists.InitHashTable(256 * 1024);
       m_mapIncludeMatchesIsDir.InitHashTable(256 * 1024);
@@ -257,17 +266,17 @@ namespace dynamic_source
          
       pcontext->m_papexcontext->dir()->enumerate(listing);
 
-      forallref(listing)
+      for(auto & path : listing)
       {
 
-         if(string_begins_ci(item.title(),"net-"))
+         if(string_begins_ci(path.title(),"net-"))
          {
 
             auto pwatcher = __new(clear_include_matches_file_watcher(this));
 
             pwatcher->m_pmanager = this;
 
-            pcontext->m_papexcontext->dir()->watcher().add_watch(item, { e_as, pwatcher }, true);
+            pcontext->m_papexcontext->dir()->watcher().add_watch(path, { e_as, pwatcher }, true);
 
          }
 
@@ -581,7 +590,7 @@ namespace dynamic_source
             if(pinstanceParent->m_pmain->m_iDebug > 0)
             {
 
-               if(pinstanceParent->m_pscript2->m_streamError.m_p->get_size() > 0)
+               if(pinstanceParent->m_pscript2->m_streamError.m_pfile->get_size() > 0)
                {
 
                   pinstanceParent->m_pmain->netnodesocket()->response().m_pmemfileBody->print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript2->m_strName);
@@ -1102,7 +1111,7 @@ namespace dynamic_source
       try
       {
 
-         synchronous_lock synchronouslock(&m_pmanager->m_pmutexShouldBuild);
+         synchronous_lock synchronouslock(m_pmanager->m_pmutexShouldBuild);
 
          m_pmanager->m_mapShouldBuild[path] = true;
 
@@ -1233,7 +1242,7 @@ namespace dynamic_source
             m_mapSession.erase_item(passoc);
 
          }
-         else if(passoc->element2()->get_ref_count() <= 1)
+         else if(passoc->element2()->m_countReference <= 1)
          {
 
             if(timeNow > passoc->element2()->m_timeExpiry)

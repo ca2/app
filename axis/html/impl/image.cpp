@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "image.h"
 #include "acme/parallelization/single_lock.h"
+#include "acme/primitive/data/listener.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
@@ -8,6 +9,8 @@
 #include "axis/html/html/core_data.h"
 #include "axis/html/element/element.h"
 #include "axis/html/graphics/base.h"
+#include "axis/html/graphics/font.h"
+#include "axis/html/graphics/style.h"
 #include "aura/user/user/interaction.h"
 
 

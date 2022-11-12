@@ -484,7 +484,6 @@
     <ClInclude Include="html\impl\_component.h" />
     <ClInclude Include="html\user\form.h" />
     <ClInclude Include="html\_.h" />
-    <ClInclude Include="id.h" />
     <ClInclude Include="include\objc.h" />
     <ClInclude Include="include\objcpp.h" />
     <ClInclude Include="include\winrt.h" />

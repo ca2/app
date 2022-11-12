@@ -47,7 +47,7 @@ public:
    typedef Type                                                      String;
    typedef RawType                                                   RawString;
    typedef string_array_base < RawType, RawType, m_etypeContainer >    RawStringArray;
-   typedef typename Type::CHAR_TYPE                                  CHAR_TYPE;
+   typedef typename Type::CHARACTER_TYPE                                  CHARACTER_TYPE;
 
 
    string_array_base() {}
@@ -65,7 +65,7 @@ public:
 //#ifdef _UWP
 //   string_array_base(Platform::Array < Platform::String ^ > ^ refstra);
 //#endif
-   string_array_base(CHAR_TYPE * const * ppsz, ::count c);
+   string_array_base(CHARACTER_TYPE * const * ppsz, ::count c);
    ~string_array_base() override;
 
 
@@ -181,9 +181,9 @@ public:
    ::count erase_empty_trimmed_begin();
    ::index add_normal(const Type& pcsz);
 
-   void trim_right(const CHAR_TYPE * pszChars);
-   void trim_left(const CHAR_TYPE* pszChars);
-   void trim(const CHAR_TYPE* pszChars);
+   void trim_right(const CHARACTER_TYPE * pszChars);
+   void trim_left(const CHARACTER_TYPE* pszChars);
+   void trim(const CHARACTER_TYPE* pszChars);
    void trim_right();
    void trim_left();
    void trim();
@@ -266,11 +266,11 @@ public:
    ::index find_first_ends_ci(const Type& strEnding, ::index iFind = 0, ::index iLast = -1) const { return find_first_suffixed_ci(strEnding, iFind, iLast); }
    ::index find_first_ends(const Type& strEnding, ::index iFind = 0, ::index iLast = -1) const { return find_first_suffixed(strEnding, iFind, iLast); }
 
-   ::index _find_first_contains_ci(const Type & strSubstring, ::index iFind = 0, ::index iLast = -1, const CHAR_TYPE ** ppszBeg = nullptr, const CHAR_TYPE ** ppszEnd = nullptr) const;
-   ::index _find_first_contains(const Type & strSubstring, ::index iFind = 0, ::index iLast = -1, const CHAR_TYPE ** ppszBeg = nullptr, const CHAR_TYPE ** ppszEnd = nullptr) const;
+   ::index _find_first_contains_ci(const Type & strSubstring, ::index iFind = 0, ::index iLast = -1, const CHARACTER_TYPE ** ppszBeg = nullptr, const CHARACTER_TYPE ** ppszEnd = nullptr) const;
+   ::index _find_first_contains(const Type & strSubstring, ::index iFind = 0, ::index iLast = -1, const CHARACTER_TYPE ** ppszBeg = nullptr, const CHARACTER_TYPE ** ppszEnd = nullptr) const;
 
-   ::index find_first_contains_ci(const Type& strSubstring, ::index iFind = 0, ::index iLast = -1, const CHAR_TYPE ** ppszBeg = nullptr, const CHAR_TYPE ** ppszEnd = nullptr) const;
-   ::index find_first_contains(const Type& strSubstring, ::index iFind = 0, ::index iLast = -1, const CHAR_TYPE ** ppszBeg = nullptr, const CHAR_TYPE ** ppszEnd = nullptr) const;
+   ::index find_first_contains_ci(const Type& strSubstring, ::index iFind = 0, ::index iLast = -1, const CHARACTER_TYPE ** ppszBeg = nullptr, const CHARACTER_TYPE ** ppszEnd = nullptr) const;
+   ::index find_first_contains(const Type& strSubstring, ::index iFind = 0, ::index iLast = -1, const CHARACTER_TYPE ** ppszBeg = nullptr, const CHARACTER_TYPE ** ppszEnd = nullptr) const;
 
    ::index find_first_begins_eat_ci(Type& strFoundAndEaten, const Type& strStarting, ::index iFind = 0, ::index iLast = -1) const;
    ::index find_first_begins_eat(Type& strFoundAndEaten, const Type& strStarting, ::index iFind = 0, ::index iLast = -1) const;
@@ -294,8 +294,8 @@ public:
    inline bool suffixes_ci(const Type& pcszTopic, ::index iFind = 0, ::index iLast = -1) const { return __found(suffix_find_first_ci(pcszTopic, iFind, iLast)); }
    inline bool suffixes(const Type& pcszTopic, ::index iFind = 0, ::index iLast = -1) const { return __found(suffix_find_first(pcszTopic, iFind, iLast)); }
 
-   ::index substring_find_first_ci(const Type& pcszTopic, ::index iFind = 0, ::index iLast = -1, const CHAR_TYPE ** ppszBeg = nullptr, const CHAR_TYPE ** ppszEnd = nullptr) const;
-   ::index substring_find_first(const Type& strTopic, ::index iFind = 0, ::index iLast = -1, const CHAR_TYPE ** ppszBeg = nullptr, const CHAR_TYPE ** ppszEnd = nullptr) const;
+   ::index substring_find_first_ci(const Type& pcszTopic, ::index iFind = 0, ::index iLast = -1, const CHARACTER_TYPE ** ppszBeg = nullptr, const CHARACTER_TYPE ** ppszEnd = nullptr) const;
+   ::index substring_find_first(const Type& strTopic, ::index iFind = 0, ::index iLast = -1, const CHARACTER_TYPE ** ppszBeg = nullptr, const CHARACTER_TYPE ** ppszEnd = nullptr) const;
 
    inline bool is_part_of_ci(const Type& pcszTopic, ::index iFind = 0, ::index iLast = -1) const { return __found(substring_find_first_ci(pcszTopic, iFind, iLast)); }
    inline bool is_part_of(const Type& pcszTopic, ::index iFind = 0, ::index iLast = -1) const { return __found(substring_find_first(pcszTopic, iFind, iLast)); }
@@ -314,8 +314,8 @@ public:
    bool contains(const Type& pcszFind,::index iFind = 0,::index iLast = -1) const { return __found(find_first_ci(pcszFind, iFind, iLast)); }
 
 
-   bool theres_ci(const Type& pcszSubstring,::index iFind = 0,::index iLast = -1, const CHAR_TYPE ** ppszBeg = nullptr, const CHAR_TYPE ** ppszEnd = nullptr) const { return __found(substring_find_first_ci(pcszSubstring, iFind, iLast, ppszBeg, ppszEnd)); }
-   bool theres(const Type& pcszSubstring,::index iFind = 0,::index iLast = -1, const CHAR_TYPE ** ppszBeg = nullptr, const CHAR_TYPE ** ppszEnd = nullptr) const { return __found(substring_find_first_ci(pcszSubstring, iFind, iLast, ppszBeg, ppszEnd)); }
+   bool theres_ci(const Type& pcszSubstring,::index iFind = 0,::index iLast = -1, const CHARACTER_TYPE ** ppszBeg = nullptr, const CHARACTER_TYPE ** ppszEnd = nullptr) const { return __found(substring_find_first_ci(pcszSubstring, iFind, iLast, ppszBeg, ppszEnd)); }
+   bool theres(const Type& pcszSubstring,::index iFind = 0,::index iLast = -1, const CHARACTER_TYPE ** ppszBeg = nullptr, const CHARACTER_TYPE ** ppszEnd = nullptr) const { return __found(substring_find_first_ci(pcszSubstring, iFind, iLast, ppszBeg, ppszEnd)); }
 
 
    template < primitive_array INDEX_ARRAY >
@@ -1370,7 +1370,7 @@ string_array_base < Type, RawType, m_etypeContainer > ::string_array_base(const 
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-string_array_base < Type, RawType, m_etypeContainer > ::string_array_base(CHAR_TYPE* const* ppsz, ::count c)
+string_array_base < Type, RawType, m_etypeContainer > ::string_array_base(CHARACTER_TYPE* const* ppsz, ::count c)
 {
 
    this->set_size(c);
@@ -1991,7 +1991,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains(const Type & strSubstring, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains(const Type & strSubstring, ::index iFind, ::index iLast, const CHARACTER_TYPE ** ppszBeg, const CHARACTER_TYPE ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2007,7 +2007,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_contains(const Type & strSubstring, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_contains(const Type & strSubstring, ::index iFind, ::index iLast, const CHARACTER_TYPE ** ppszBeg, const CHARACTER_TYPE ** ppszEnd) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -2030,7 +2030,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains_ci(const Type& strSubstring,::index iFind,::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains_ci(const Type& strSubstring,::index iFind,::index iLast, const CHARACTER_TYPE ** ppszBeg, const CHARACTER_TYPE ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2046,7 +2046,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_contains_ci(const Type & strSubstring, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_contains_ci(const Type & strSubstring, ::index iFind, ::index iLast, const CHARACTER_TYPE ** ppszBeg, const CHARACTER_TYPE ** ppszEnd) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -2121,7 +2121,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::substring_find_first(const Type& strTopic, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::substring_find_first(const Type& strTopic, ::index iFind, ::index iLast, const CHARACTER_TYPE ** ppszBeg, const CHARACTER_TYPE ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2156,7 +2156,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::substring_find_first_ci(const Type & strTopic, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::substring_find_first_ci(const Type & strTopic, ::index iFind, ::index iLast, const CHARACTER_TYPE ** ppszBeg, const CHARACTER_TYPE ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2313,9 +2313,9 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 ::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains_eat(Type & strFoundAndEaten, const Type & strSubstring, ::index iFind, ::index iLast) const
 {
 
-   const CHAR_TYPE * pszBeg = nullptr;
+   const CHARACTER_TYPE * pszBeg = nullptr;
 
-   const CHAR_TYPE * pszEnd = nullptr;
+   const CHARACTER_TYPE * pszEnd = nullptr;
 
    iFind = find_first_contains(strSubstring, iFind, iLast, &pszBeg, &pszEnd);
 
@@ -2326,7 +2326,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    }
 
-   const CHAR_TYPE * pszFind = element_at(iFind);
+   const CHARACTER_TYPE * pszFind = element_at(iFind);
 
    strFoundAndEaten = RawType(pszFind, pszBeg - pszFind) + RawType(pszEnd);
 
@@ -2352,7 +2352,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    }
 
-   const CHAR_TYPE * pszFind = element_at(iFind);
+   const CHARACTER_TYPE * pszFind = element_at(iFind);
 
    strFoundAndEaten = RawType(pszFind, pszBeg - pszFind) + RawType(pszEnd);
 
@@ -2689,7 +2689,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::trim_left(const CHAR_TYPE* pszChars)
+void string_array_base < Type, RawType, m_etypeContainer > ::trim_left(const CHARACTER_TYPE* pszChars)
 {
    for(::index i = 0; i < this->m_nSize; i++)
    {
@@ -2699,7 +2699,7 @@ void string_array_base < Type, RawType, m_etypeContainer > ::trim_left(const CHA
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::trim_right(const CHAR_TYPE* pszChars)
+void string_array_base < Type, RawType, m_etypeContainer > ::trim_right(const CHARACTER_TYPE* pszChars)
 {
    for(::index i = 0; i < this->m_nSize; i++)
    {
@@ -2709,7 +2709,7 @@ void string_array_base < Type, RawType, m_etypeContainer > ::trim_right(const CH
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::trim(const CHAR_TYPE* pszChars)
+void string_array_base < Type, RawType, m_etypeContainer > ::trim(const CHARACTER_TYPE* pszChars)
 {
    for(::index i = 0; i < this->m_nSize; i++)
    {

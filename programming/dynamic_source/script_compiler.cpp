@@ -6,20 +6,32 @@
 #include "library.h"
 #include "script_main.h"
 #include "script_instance.h"
-#include "apex/filesystem/filesystem/dir_context.h"
-#include "apex/filesystem/filesystem/file_context.h"
+#include "acme/exception/exception.h"
+#include "acme/exception/parsing.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/filesystem/file/text_stream.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/operating_system/process.h"
+#include "acme/networking/url_department.h"
+#include "acme/primitive/datetime/department.h"
+#include "acme/primitive/string/str.h"
 #include "acme/primitive/text/context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
-#include "source/app/apex/filesystem/file/file_watcher.h"
+#include "apex/crypto/rsa.h"
+#include "apex/filesystem/file/action.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/filesystem/file/watcher.h"
+#include "apex/networking/http/context.h"
 #include "axis/platform/system.h"
 
 
-
-
-
 #include <sys/stat.h>
+
+#undef ERROR
+#define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
+
 
 
 #if defined(LINUX)
@@ -276,9 +288,9 @@ namespace dynamic_source
 
       synchronous_lock synchronouslock(pscript->synchronization());
 
-      INFORMATION("Compiling script " << pscript->m_strName.c_str());
+      FORMATTED_INFORMATION("Compiling script %s", pscript->m_strName.c_str());
 
-      ::text_stream & ostreamError = pscript->m_streamError;
+      auto & ostreamError = pscript->m_streamError;
 
       ::file::path strName(pscript->m_strName);
 
@@ -370,7 +382,7 @@ namespace dynamic_source
 
       ::earth::time timeNow = ::earth::time::now();
 
-      string strCompileLogUnique = ::earth::format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
+      string strCompileLogUnique = acmesystem()->datetime()->format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
 
       strClog.format(m_strTime / "dynamic_source/%s-compile-log-%s.txt",strTransformName.c_str(), strCompileLogUnique.c_str());
       strLlog.format(m_strTime / "dynamic_source/%s-link-log.txt",strTransformName.c_str());
@@ -779,7 +791,7 @@ pacmedirectory->create(pathDVP_Folder);
          if(process->has_exited())
             break;
 
-         sleep(100_ms);
+         preempt(100_ms);
 
          if(tickStart.elapsed() > 890_s) // 14 minutes
          {
@@ -823,8 +835,8 @@ pacmedirectory->create(pathDVP_Folder);
 
             //ostreamError << "Compiling Command\n";
             //ostreamError << pathCompiler << "\n";
-            TRACE("Compiling Command File " << pathCompiler);
-            TRACE("Compiling Command " << strCompiler);
+            FORMATTED_TRACE("Compiling Command File %s", pathCompiler.c_str());
+            FORMATTED_TRACE("Compiling Command %s", strCompiler.c_str());
             ostreamError << "Compiling...\n";
             ostreamError << pscript->m_strCppPath;
             ostreamError << "\n";
@@ -842,7 +854,7 @@ pacmedirectory->create(pathDVP_Folder);
          if (process->m_exitstatus.m_iExitCode != 0 || file()->length(pathObjFile) < iObjFileMinimumByteCount)
          {
 
-            TRACE("Compilation FAILED: or object file is shorter than "<<iObjFileMinimumByteCount<<" bytes...");
+            FORMATTED_TRACE("Compilation FAILED: or object file is shorter than %lld bytes...", iObjFileMinimumByteCount);
 
             string_array straLog;
             straLog.add_lines(strLog);
@@ -853,18 +865,18 @@ pacmedirectory->create(pathDVP_Folder);
                {
                   if (strLine.get_length() < i + iColCount + 10)
                   {
-                     TRACE(strLine.Mid(i));
+                     FORMATTED_TRACE(strLine.Mid(i));
                      break;
                   }
                   else
                   {
-                     TRACE(strLine.Mid(i, iColCount) + "\\...");
+                     FORMATTED_TRACE(strLine.Mid(i, iColCount) + "\\...");
                   }
                }
 
             }
 
-            pscript->m_strError = ostreamError.as_string();
+            pscript->m_strError = ostreamError.m_pfile->as_string();
 
             return;
 
@@ -1100,7 +1112,7 @@ pacmedirectory->create(pathDVP_Folder);
       while ((strSource = file()->as_string(pscript->m_strSourcePath)).trimmed().is_empty() && ::task_get_run())
       {
 
-         sleep(100_ms);
+         preempt(100_ms);
 
          iTry++;
 
@@ -1596,7 +1608,7 @@ pacmedirectory->create(pathDVP_Folder);
             if(process->has_exited())
                break;
 
-            sleep(100_ms);
+            preempt(100_ms);
 
             if(tickStart.elapsed() > 890_s) // 14 minutes
             {
@@ -1658,7 +1670,7 @@ pacmedirectory->create(pathDVP_Folder);
 
             }
 
-            l.m_strError = l.m_memfileError;
+            l.m_strError = l.m_memfileError.m_str;
 
             l.m_strError.trim();
 
@@ -1740,10 +1752,14 @@ auto tickStart = ::duration::now();
 
          strLog += process->read();
 
-         if(process->has_exited())
+         if (process->has_exited())
+         {
+
             break;
 
-         sleep(100_ms);
+         }
+
+         preempt(100_ms);
 
          if(tickStart.elapsed() > 890_s) // 14 minutes
          {
@@ -1793,7 +1809,7 @@ auto tickStart = ::duration::now();
 
          }
 
-         l.m_strError = l.m_memfileError;
+         l.m_strError = l.m_memfileError.m_str;
 
          l.m_strError.trim();
 
@@ -2506,7 +2522,7 @@ ch_else:
                   bNewLine = true;
 
                }
-               else if(character_isspace((int) (unsigned char) ch))
+               else if(character_isspace(ch))
                {
                }
                else

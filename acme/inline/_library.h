@@ -1,4 +1,10 @@
+
+
+#ifndef _WINDOWS_
+
 #include "acme/_operating_system.h"
+
+#endif
 
 
 #ifndef CUBE

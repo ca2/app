@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/primitive/collection/string_map.h"
 #include "app/programming/programming/compiler.h"
 
 
@@ -13,7 +14,7 @@ namespace introjection
    {
    protected:
 
-      using ::object::initialize;
+      using ::particle::initialize;
       using programming::compiler::initialize_programming_compiler;
 
    public:

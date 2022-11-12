@@ -864,7 +864,6 @@
     <ClInclude Include="constant\timer.h" />
     <ClInclude Include="constant\_.h" />
     <ClInclude Include="constant\_constant.h" />
-    <ClInclude Include="constant\_enumeration.h" />
     <ClInclude Include="constant\_geometry.h" />
     <ClInclude Include="constant\_mathematics.h" />
     <ClInclude Include="exception\bad_file_format.h" />
@@ -907,6 +906,7 @@
     <ClInclude Include="include\_macro.h" />
     <ClInclude Include="include\_configuration.h" />
     <ClInclude Include="include\_structures.h" />
+    <ClInclude Include="include\_template_structures.h" />
     <ClInclude Include="include\_template_forward_declaration.h" />
     <ClInclude Include="include\_types.h" />
     <ClInclude Include="inline\application\windows.h" />
@@ -1212,6 +1212,7 @@
     <ClCompile Include="primitive\primitive\get_memory.cpp" />
     <ClCompile Include="primitive\primitive\integral_byte.cpp" />
     <ClCompile Include="primitive\primitive\object.cpp" />
+    <ClCompile Include="primitive\primitive\object_meta.cpp" />
     <ClCompile Include="primitive\primitive\particle.cpp" />
     <ClCompile Include="primitive\primitive\property_object.cpp" />
     <ClCompile Include="primitive\primitive\estatus.cpp" />
@@ -1385,6 +1386,7 @@
     <ClInclude Include="primitive\geometry2d\_function.h" />
     <ClInclude Include="primitive\geometry2d\_function_impl.h" />
     <ClInclude Include="primitive\geometry2d\_geometry2d.h" />
+    <ClInclude Include="primitive\geometry2d\_random.h" />
     <ClInclude Include="primitive\mathematics\logarithm.h" />
     <ClInclude Include="primitive\mathematics\_random.h" />
     <ClInclude Include="primitive\numeric\types.h" />
@@ -1417,6 +1419,7 @@
     <ClInclude Include="primitive\string\c\_impl.h" />
     <ClInclude Include="primitive\string\c\_.h" />
     <ClInclude Include="primitive\string\encoding_exception.h" />
+    <ClInclude Include="primitive\string\inline_string.h" />
     <ClInclude Include="primitive\string\str.h" />
     <ClInclude Include="primitive\string\string_iterator.h" />
     <ClInclude Include="primitive\string\simple_string_base.h" />

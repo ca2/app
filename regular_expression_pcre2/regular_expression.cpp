@@ -2,6 +2,7 @@
 #include "regular_expression.h"
 #include "context.h"
 #include "result.h"
+#include "acme/exception/exception.h"
 
 
 namespace regular_expression_pcre2
@@ -95,7 +96,7 @@ namespace regular_expression_pcre2
 
          presult->m_cMatchCount = -1;
 
-         presult->set_fail();
+         presult->set_fail_flag();
 
          return nullptr;
 
@@ -103,7 +104,7 @@ namespace regular_expression_pcre2
 
       presult->m_cMatchCount = pcre2_get_ovector_count(presult->m_pmatchdata);
 
-      presult->set_ok();
+      presult->set_ok_flag();
 
       return presult;
 

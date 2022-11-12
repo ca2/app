@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "style_sheet.h"
+#include "aura/user/user/interaction.h"
 #include "axis/html/graphics/style.h"
 #include "axis/html/html/html.h"
 #include "axis/platform/session.h"

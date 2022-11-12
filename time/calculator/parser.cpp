@@ -6,6 +6,7 @@
 #include "scanner.h"
 #include "element.h"
 #include "token.h"
+#include "acme/exception/exception.h"
 #include "acme/primitive/text/context.h"
 
 
@@ -29,7 +30,7 @@ namespace datetime
 
       //auto estatus = 
       
-      ::object::initialize(ptextcontext);
+      ::particle::initialize(ptextcontext);
 
       //if (!estatus)
       //{
@@ -40,7 +41,7 @@ namespace datetime
 
       //estatus = 
       
-      __construct_new(m_pscanner);
+      ::__construct_new(this, m_pscanner);
 
       //if (!estatus)
       //{

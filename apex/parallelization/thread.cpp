@@ -800,7 +800,7 @@ int thread::_GetMessage(MESSAGE * pmessage, ::windowing::window * pwindow, ::u32
 
    throw ::exception();
 
-   //__zero(pmessage);
+   //zero(pmessage);
 
    //return mq_get_message(pmessage, oswindow, wMsgFilterMin, wMsgFilterMax);
    return false;
@@ -2311,7 +2311,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //
 //      char sz[1024];
 //
-//      __zero(sz);
+//      zero(sz);
 //
 //      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
 //

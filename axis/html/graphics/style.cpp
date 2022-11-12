@@ -1,15 +1,16 @@
 #include "framework.h"
 #include "style.h"
-#include "acme/primitive/geometry2d/_collection_basic.h"
+#include "font.h"
+#include "border.h"
+#include "acme/primitive/data/listener.h"
+#include "acme/primitive/geometry2d/_collection.h"
 #include "acme/primitive/string/str.h"
 #include "axis/html/element/element.h"
 #include "axis/html/html/data.h"
 #include "axis/html/html/core_data.h"
 #include "axis/html/html/html.h"
-#include "axis/id.h"
 #include "axis/platform/session.h"
 #include "axis/user/user/user.h"
-#include "html/graphics/border.h"
 #include "aura/user/user/interaction.h"
 #include "aura/platform/system.h"
 #include "aura/platform/node.h"
@@ -1178,7 +1179,7 @@ namespace html
          f = (float) strtod(&str[iFindDigit], nullptr);
          return true;
       }
-      while(i < str.get_length() && i < character_isspace(str[i]))
+      while(i < str.get_length() && character_isspace(str[i]))
       {
          i++;
       }

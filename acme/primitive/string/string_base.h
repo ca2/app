@@ -372,7 +372,7 @@ public:
       else
       {
 
-         this->metadata()->set_length(size);
+         this->metadata()->set_data_length(size);
 
       }
 

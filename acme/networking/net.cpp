@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "net.h"
 #include "__string.h"
+#include "acme/exception/parsing.h"
 #include "acme/primitive/string/hex.h"
 //#include "acme/operating_system.h"
 
@@ -101,10 +102,28 @@ string url_decode(const char * pszUrl,strsize iLen)
          {
             i++;
             iLen--;
-            *psz = (char)(uchar)(hex::to_nibble(*pszUrl) << 4 | hex::to_nibble(*(pszUrl + 1)));
+            
+            auto nibble1 = hex::to_nibble(*pszUrl++);
+
+            if (nibble1 < 0)
+            {
+
+               throw_parsing_exception("url decode: % first nibble non hex");
+
+            }
+
+            auto nibble2 = hex::to_nibble(*pszUrl++);
+
+            if (nibble2 < 0)
+            {
+
+               throw_parsing_exception("url decode: % second nibble non hex");
+
+            }
+            
+            *psz = (char)(uchar)(((nibble1 << 4) & 0xf0) | (nibble2 & 0xf));
 
             psz++;
-            pszUrl += 2;
 
          }
       }

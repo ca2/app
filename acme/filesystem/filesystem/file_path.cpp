@@ -616,6 +616,8 @@ const char * string_reverse_span_including(const char * psz, const char * pszBeg
 
             bIncludesAny = true;
 
+            break;
+
          }
 
          pszCheck++;

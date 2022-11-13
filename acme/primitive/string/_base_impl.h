@@ -694,6 +694,13 @@ inline strsize string_base < CHARACTER > ::start_count_length(strsize& start, st
 
       len = string_safe_length(pszSource, start + count);
 
+      if (len < 0)
+      {
+
+         return start + count;
+
+      }
+
    }
 
    if (count + start > len)
@@ -5973,6 +5980,31 @@ inline void string_meta_data < CHARACTER > ::set_length(::strsize strsize)
 
 }
 
+
+
+template < primitive_character CHARACTER >
+inline void string_meta_data < CHARACTER > ::set_data_length(::strsize strsize)
+{
+
+   if (this->natural_is_shared())
+   {
+
+      throw_exception(error_wrong_state, "invalid state");
+
+   }
+
+   auto strsizeStorage = this->memsize_in_chars();
+
+   if (strsize >= strsizeStorage)
+   {
+
+      throw_exception(error_bad_argument);
+
+   }
+
+   this->m_datasize = strsize;
+
+}
 
 
 

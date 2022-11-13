@@ -23,7 +23,7 @@ namespace hex
    inline CLASS_DECL_ACME i32 to_nibble(char ch)
    {
 
-      return (ch >= 0 && ch <= 9) ? ch - '0' :
+      return (ch >= '0' && ch <= '9') ? ch - '0' :
       (
          (ch >= 'a' && ch <= 'f') ? ch - 'a' + 10 :
             (

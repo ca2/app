@@ -276,15 +276,15 @@ namespace sockets
 
       m_content += __string(key) + ": " + value + "\r\n";
       m_response.m_propertysetHeader[key] = value;
-      if (key == "content_length")
+      if (key == "content-length")
       {
          m_content_length = atoi(value);
       }
-      else if (key == "content_type")
+      else if (key == "content-type")
       {
          m_content_type = value;
       }
-      else if (key == "set_cookie")
+      else if (key == "set-cookie")
       {
          m_response.m_cookies.add(value);
       }
@@ -302,7 +302,7 @@ namespace sockets
       {
          m_memoryfile.allocate_internal(m_content_length);
 
-         if(outheader("content_encoding").compare_ci("gzip") != 0
+         if(outheader("content-encoding").compare_ci("gzip") != 0
                && (m_response.attr("http_status_code") < 300 || m_response.attr("http_status_code") >= 400))
          {
 
@@ -345,7 +345,7 @@ namespace sockets
 
       string strContentEncoding;
       
-      strContentEncoding = outheader("content_encoding");
+      strContentEncoding = outheader("content-encoding");
 
       if (strContentEncoding.compare_ci("gzip") == 0)
       {
@@ -417,7 +417,7 @@ namespace sockets
       if(m_pfile != nullptr)
       {
 
-         if(outheader("content_encoding").compare_ci("gzip") != 0)
+         if(outheader("content-encoding").compare_ci("gzip") != 0)
          {
 
             m_pfile->write(buf,len);

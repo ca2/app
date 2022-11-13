@@ -3186,11 +3186,11 @@ pacmedirectory->create("/ca2core");
          if(iIndex > 0)
          {
 
-            m_straCommandLineAccumul.add(stra.slice(0, iIndex));
+            m_straCommandLineAccumul.append(stra.slice(0, iIndex));
 
          }
 
-         m_straCommandLineExtra.add(stra.slice(iIndex));
+         m_straCommandLineExtra.append(stra.slice(iIndex));
 
       }
       else
@@ -3199,13 +3199,13 @@ pacmedirectory->create("/ca2core");
          if(m_straCommandLineExtra.has_elements())
          {
 
-            m_straCommandLineExtra.add(stra);
+            m_straCommandLineExtra.append(stra);
 
          }
          else
          {
 
-            m_straCommandLineAccumul.add(stra);
+            m_straCommandLineAccumul.append(stra);
 
          }
 

@@ -63,11 +63,11 @@ critical_section g_criticalsectionSystemHeap;
 #endif
 
 
-::critical_section g_criticalsectionMessageDispatch;
-
-
-::critical_section * message_dispatch_critical_section() { return &g_criticalsectionMessageDispatch; }
-
+//::critical_section g_criticalsectionMessageDispatch;
+//
+//
+//::critical_section * message_dispatch_critical_section() { return &g_criticalsectionMessageDispatch; }
+//
 
 
 

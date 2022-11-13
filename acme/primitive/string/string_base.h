@@ -96,6 +96,8 @@ public:
 
    }
 
+   template < primitive_character CHARACTER2 >
+   strsize start_count_length(strsize& start, strsize& count, const CHARACTER2 * pszSource);
    void start_count(strsize & start, strsize & count, strsize len);
 
    inline const string_base & to_string() const { return *this; }
@@ -370,7 +372,7 @@ public:
       else
       {
 
-         this->metadata()->set_length(size);
+         this->metadata()->set_data_length(size);
 
       }
 
@@ -810,26 +812,26 @@ public:
 
    }
 
-   inline strsize begins(const CHARACTER_TYPE* psz) const;
-   inline strsize ends(const CHARACTER_TYPE* psz) const;
+   inline bool begins(const CHARACTER_TYPE* psz) const;
+   inline bool ends(const CHARACTER_TYPE* psz) const;
 
-   inline strsize begins_ci(const CHARACTER_TYPE* psz) const;
-   inline strsize ends_ci(const CHARACTER_TYPE* psz) const;
+   inline bool begins_ci(const CHARACTER_TYPE* psz) const;
+   inline bool ends_ci(const CHARACTER_TYPE* psz) const;
 
-   inline strsize begins_eat(const CHARACTER_TYPE* psz);
-   inline strsize ends_eat(const CHARACTER_TYPE* psz);
+   inline bool begins_eat(const CHARACTER_TYPE* psz);
+   inline bool ends_eat(const CHARACTER_TYPE* psz);
 
-   inline strsize begins_eat_ci(const CHARACTER_TYPE* psz);
-   inline strsize ends_eat_ci(const CHARACTER_TYPE* psz);
+   inline bool begins_eat_ci(const CHARACTER_TYPE* psz);
+   inline bool ends_eat_ci(const CHARACTER_TYPE* psz);
 
-   inline strsize begins_eat(string_base & strRest, const CHARACTER_TYPE * psz) const;
-   inline strsize ends_eat(string_base & strRest, const CHARACTER_TYPE * psz) const;
+   inline bool begins_eat(string_base & strRest, const CHARACTER_TYPE * psz) const;
+   inline bool ends_eat(string_base & strRest, const CHARACTER_TYPE * psz) const;
 
-   inline strsize begins_eat_ci(string_base & strRest, const CHARACTER_TYPE * psz) const;
-   inline strsize ends_eat_ci(string_base & strRest, const CHARACTER_TYPE * psz) const;
+   inline bool begins_eat_ci(string_base & strRest, const CHARACTER_TYPE * psz) const;
+   inline bool ends_eat_ci(string_base & strRest, const CHARACTER_TYPE * psz) const;
 
-   inline strsize begins_eaten_ci(string_base & strEaten, const CHARACTER_TYPE * psz) const;
-   inline strsize ends_eaten_ci(string_base & strEaten, const CHARACTER_TYPE * psz) const;
+   inline bool begins_eaten_ci(string_base & strEaten, const CHARACTER_TYPE * psz) const;
+   inline bool ends_eaten_ci(string_base & strEaten, const CHARACTER_TYPE * psz) const;
 
    inline string_base& ensure_begins(const CHARACTER_TYPE* psz);
    inline string_base& ensure_begins_ci(const CHARACTER_TYPE* psz);

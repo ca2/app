@@ -121,7 +121,7 @@ namespace sockets
 
             string strContentType = m_fields["raw_text_content_type"];
 
-            inheader("content_type") = strContentType;
+            inheader("content-type") = strContentType;
 
          }
          else if (m_fields.has_property("network_payload"))
@@ -136,12 +136,12 @@ namespace sockets
 
                INFORMATION("JSON BODY: " << strBody);
 
-               string strContentType = inheader("content_type").string();
+               string strContentType = inheader("content-type").string();
 
                if (strContentType.find_ci("application/json") < 0)
                {
 
-                  inheader("content_type") = "application/json" + ::str().has_char(strContentType, ";", strContentType);
+                  inheader("content-type") = "application/json" + ::str().has_char(strContentType, ";", strContentType);
 
                }
 
@@ -156,9 +156,9 @@ namespace sockets
             //::xml::node * pnode = m_fields["xml"].cast < ::xml::node >();
             //body = pnode->get_xml();
             //body.trim();
-            //if(inheader("content_type").string().find_ci("application/xml") < 0)
+            //if(inheader("content-type").string().find_ci("application/xml") < 0)
             //{
-            //   inheader("content_type") = "application/xml; " + inheader("content_type").string();
+            //   inheader("content-type") = "application/xml; " + inheader("content-type").string();
             //}
 
          }
@@ -167,10 +167,10 @@ namespace sockets
 
             m_fields.get_network_arguments(strBody);
 
-            if (inheader("content_type").string().find_ci("application/x-www-form-urlencoded") < 0)
+            if (inheader("content-type").string().find_ci("application/x-www-form-urlencoded") < 0)
             {
 
-               inheader("content_type") = "application/x-www-form-urlencoded" + ::str().has_char(inheader("content_type").string(), "; ");
+               inheader("content-type") = "application/x-www-form-urlencoded" + ::str().has_char(inheader("content-type").string(), "; ");
 
             }
 
@@ -203,7 +203,7 @@ namespace sockets
 
          auto content_length = strBody.length();
 
-         inheader("content_length") = content_length;
+         inheader("content-length") = content_length;
 
 #ifdef WINRT_SOCKETS
 
@@ -233,7 +233,7 @@ namespace sockets
    void http_post_socket::DoMultipartPost()
    {
 
-      u64 length = 0; // calculate content_length of our post body
+      u64 length = 0; // calculate content-length of our post body
 
       string tmp;
 
@@ -329,18 +329,18 @@ namespace sockets
          //
          //   m_mapFiles.get_next_assoc(pos, name, filename);
          //
-         //   u64 content_length = m_mapContentLength[filename];
+         //   u64 content-length = m_mapContentLength[filename];
 
-         //   string content_type = m_mapContentType[filename];
+         //   string content-type = m_mapContentType[filename];
 
          //   tmp = "--" + m_boundary + "\r\n"
          //      "content-disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\"\r\n"
-         //      "content-type: " + content_type + "\r\n"
+         //      "content-type: " + content-type + "\r\n"
          //      "\r\n";
 
          //   length += (long)tmp.get_length();
 
-         //   length += content_length;
+         //   length += content-length;
 
          //   length += 2; // crlf after file
 
@@ -368,9 +368,9 @@ namespace sockets
 
       //inheader("connection") = "close";
 
-      inheader("content_type") = "multipart/form-data; boundary=" + m_boundary;
+      inheader("content-type") = "multipart/form-data; boundary=" + m_boundary;
 
-      inheader("content_length") = (i64) length;
+      inheader("content-length") = (i64) length;
 
 #ifdef WINRT_SOCKETS
 
@@ -457,7 +457,7 @@ namespace sockets
 
             write(m.get_data(), m.get_size());
 
-            //transfer_from(*pair.element2().m_spfile, content_length);
+            //transfer_from(*pair.element2().m_spfile, content-length);
             //}
             //}
             print("\r\n");
@@ -468,10 +468,10 @@ namespace sockets
          //   string name;
          //   string filename;
          //   m_mapFiles.get_next_assoc(pos, name, filename);
-         //   string content_type = m_mapContentType[filename];
+         //   string content-type = m_mapContentType[filename];
          //   tmp = "--" + m_boundary + "\r\n"
          //      "content-disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\"\r\n"
-         //      "content-type: " + content_type + "\r\n"
+         //      "content-type: " + content-type + "\r\n"
          //      "\r\n";
          //   write(tmp);
          //   {

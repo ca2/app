@@ -54,7 +54,7 @@ namespace datetime
    }
 
 
-   void graphical::_001GetHtml(::html::file * pfile)
+   void graphical::_001GetHtml(::html_file * pfile)
    {
 
 

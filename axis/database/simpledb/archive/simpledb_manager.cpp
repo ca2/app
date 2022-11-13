@@ -50,7 +50,7 @@ namespace simpledb
          return false;
       }
       psocket->response().file()->write(memory.get_data(), memory.get_size());
-      psocket->outheader("content_type") = "application/x-aura-::payload";
+      psocket->outheader("content-type") = "application/x-aura-::payload";
       return true;
    }
 

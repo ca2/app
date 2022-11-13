@@ -1035,6 +1035,7 @@
     <ClCompile Include="memory\property_memory_allocate.cpp" />
     <ClCompile Include="memory\secondary_memory_allocate.cpp" />
     <ClCompile Include="memory\string_memory_allocate.cpp" />
+    <ClCompile Include="networking\net.cpp" />
     <ClCompile Include="networking\top_level_domain_list.cpp" />
     <ClCompile Include="networking\url.cpp" />
     <ClCompile Include="networking\url_department.cpp" />
@@ -1140,7 +1141,6 @@
     <ClCompile Include="platform\main.cpp" />
     <ClCompile Include="platform\math.cpp" />
     <ClCompile Include="platform\nanosecond_timer.cpp" />
-    <ClCompile Include="platform\net.cpp" />
     <ClCompile Include="platform\node.cpp" />
     <ClCompile Include="platform\object_reference_count_debug.cpp" />
     <ClCompile Include="platform\object_type_counter.cpp" />
@@ -1355,6 +1355,7 @@
     <ClInclude Include="memory\_impl.h" />
     <ClInclude Include="memory\__memory_allocate.h" />
     <ClInclude Include="memory\_____heap_namespace.h" />
+    <ClInclude Include="networking\net.h" />
     <ClInclude Include="networking\url.h" />
     <ClInclude Include="networking\url_department.h" />
     <ClInclude Include="networking\url_domain.h" />
@@ -1548,7 +1549,6 @@
     <ClInclude Include="platform\main1.h" />
     <ClInclude Include="platform\message.h" />
     <ClInclude Include="platform\nanosecond_timer.h" />
-    <ClInclude Include="platform\net.h" />
     <ClInclude Include="platform\node.h" />
     <ClInclude Include="platform\number.h" />
     <ClInclude Include="platform\object_reference_count_debug.h" />

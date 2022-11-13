@@ -664,7 +664,7 @@ namespace dynamic_source
                      if (pdsscript->m_strError.has_char())
                      {
 
-                        pinstanceParent->file()->print(pscript->m_strError);
+                        pinstanceParent->output_file()->print(pscript->m_strError);
 
                      }
 
@@ -1184,7 +1184,11 @@ namespace dynamic_source
       if (ppair != nullptr)
       {
 
-         if (::earth::time::now() < ppair->element2()->m_timeExpiry)
+         auto timeNow = ::earth::time::now();
+
+         auto timeExpiry = ppair->element2()->m_timeExpiry;
+
+         if (timeNow < timeExpiry)
          {
 
             ppair->element2()->m_timeExpiry = ::earth::time::now() + m_secsSessionExpiration;

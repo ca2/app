@@ -35,7 +35,7 @@ namespace sockets
 
       http_socket::OnHeader(key, value);
 
-      if(key == __id(content_length))
+      if(key == __id(content-length))
       {
          m_iContentLength = atoi(value);
       }
@@ -136,19 +136,19 @@ namespace sockets
 
       //TRACE0("http_base_socket::Respond");
 
-      if(outheader(__id(content_type)).get_string().find("text") >= 0)
+      if(outheader(__id(content-type)).get_string().find("text") >= 0)
       {
       
          on_compress();
 
       }
 
-      m_response.m_propertysetHeader.set_at(__id(content_length), (i64) m_response.file()->get_size());
+      m_response.m_propertysetHeader.set_at(__id(content-length), (i64) m_response.file()->get_size());
 
       for(int i = 0; i < m_response.cookies().get_size(); i++)
       {
       
-         m_response.m_propertysetHeader.set_at(__id(set_cookie), m_response.cookies().element_at(i)->get_cookie_string());
+         m_response.m_propertysetHeader.set_at(__id(set-cookie), m_response.cookies().element_at(i)->get_cookie_string());
 
       }
 
@@ -194,7 +194,7 @@ namespace sockets
       }
       else
       {
-         //TRACE("keep_alive\n");
+         //TRACE("keep-alive\n");
       }
    }
 
@@ -218,7 +218,7 @@ namespace sockets
    }
 
 
-   string http_base_socket::set_cookie(
+   string http_base_socket::set-cookie(
          const char * name,
          ::payload payload,
          int iExpire,
@@ -227,7 +227,7 @@ namespace sockets
          bool bSecure)
    {
 
-      m_request.cookies().set_cookie(
+      m_request.cookies().set-cookie(
          name,
          ::payload,
          iExpire,
@@ -243,13 +243,13 @@ namespace sockets
    void http_base_socket::on_compress()
    {
        
-      if(inheader(__id(accept_encoding)).get_string().find("gzip") >= 0)
+      if(inheader(__id(accept-encoding)).get_string().find("gzip") >= 0)
       {
 
-         if(outheader(__id(content_type)).get_string().find_ci("text") >= 0)
+         if(outheader(__id(content-type)).get_string().find_ci("text") >= 0)
          {
        
-            m_response.m_propertysetHeader.set_at(__id(content_encoding), "gzip");
+            m_response.m_propertysetHeader.set_at(__id(content-encoding), "gzip");
 
             auto pfile = create_memory_file();
 

@@ -37,6 +37,7 @@ public:
 
 
    inline void set_length(::strsize strsize);
+   inline void set_data_length(::strsize strsize);
 
    operator const CHARACTER_TYPE * () const noexcept { return this->m_pdata; }
 

@@ -124,7 +124,7 @@ namespace programming
 
 #elif defined(_DEBUG)
 
-      m_strDynamicSourceConfiguration = "basis";
+      m_strDynamicSourceConfiguration = "debug";
       m_strDynamicSourceStage = "time-" OPERATING_SYSTEM_NAME;
 
 #else
@@ -161,7 +161,9 @@ namespace programming
 
 #endif
 
-      ::pointer<::aura::application>papp = get_app();
+      auto papp1 = get_app();
+
+      ::pointer<::aura::application>papp = papp1;
 
 #ifdef WINDOWS_DESKTOP
 

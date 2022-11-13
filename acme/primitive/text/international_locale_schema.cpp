@@ -701,8 +701,8 @@ restart:
          //   }
          //}
 
-         m_idaLocale.add(idaLocaleAdd1);
-         m_idaSchema.add(idaSchemaAdd1);
+         m_idaLocale.append(idaLocaleAdd1);
+         m_idaSchema.append(idaSchemaAdd1);
 
          return true;
 

@@ -1435,7 +1435,7 @@ namespace networking_bsd
    networking::dns_cache_item::dns_cache_item()
    {
 
-      memset(&m_ipaddr, 0, sizeof(m_ipaddr));
+      zero(m_ipaddr);
       m_bOk = false;
       m_bTimeout = true;
 

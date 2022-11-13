@@ -415,7 +415,7 @@ namespace dynamic_source
 
       //::file::path pathSourceDVP = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".pdb";
       
-      ::file::path pathSourceNetnodeDSS = "C:\\netnode\\time-" OPERATING_SYSTEM_NAME "\\intermediate\\x64\\basis\\app-core\\netnode_dynamic_source_script";
+      ::file::path pathSourceNetnodeDSS = "C:\\netnode\\time-" OPERATING_SYSTEM_NAME "\\intermediate\\x64\\" + m_strDynamicSourceConfiguration + "\\app-core\\netnode_dynamic_source_script";
 
       ::file::path pathSourceDVP = pathSourceNetnodeDSS / m_strSdk1 + ".pdb";
 
@@ -855,26 +855,27 @@ pacmedirectory->create(pathDVP_Folder);
          {
 
             FORMATTED_TRACE("Compilation FAILED: or object file is shorter than %lld bytes...", iObjFileMinimumByteCount);
+            FORMATTED_TRACE("%s", strLog.c_str());
 
-            string_array straLog;
-            straLog.add_lines(strLog);
-            for(auto & strLine : straLog)
-            {
-               int iColCount = 80;
-               for (index i = 0; i < strLine.get_length(); i += iColCount)
-               {
-                  if (strLine.get_length() < i + iColCount + 10)
-                  {
-                     FORMATTED_TRACE(strLine.Mid(i));
-                     break;
-                  }
-                  else
-                  {
-                     FORMATTED_TRACE(strLine.Mid(i, iColCount) + "\\...");
-                  }
-               }
+            //string_array straLog;
+            //straLog.add_lines(strLog);
+            //for(auto & strLine : straLog)
+            //{
+            //   int iColCount = 80;
+            //   for (index i = 0; i < strLine.get_length(); i += iColCount)
+            //   {
+            //      if (strLine.get_length() < i + iColCount + 10)
+            //      {
+            //         FORMATTED_TRACE(strLine.Mid(i));
+            //         break;
+            //      }
+            //      else
+            //      {
+            //         FORMATTED_TRACE(strLine.Mid(i, iColCount) + "\\...");
+            //      }
+            //   }
 
-            }
+            //}
 
             pscript->m_strError = ostreamError.m_pfile->as_string();
 

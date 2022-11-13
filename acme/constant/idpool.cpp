@@ -171,13 +171,13 @@
 //
 //   query_string = "query_string";
 //
-//   content_length = "content-length";
-//   content_type = "content-type";
+//   content-length = "content-length";
+//   content-type = "content-type";
 //   connection = "connection";
 //   location = "locationd";
-//   set_cookie = "set-cookie";
+//   set-cookie = "set-cookie";
 //   cookie = "cookie";
-//   cache_control = "cache-control";
+//   cache-control = "cache-control";
 //   pragma = "pragma";
 //   expires = "expires";
 //   host = "host";
@@ -190,14 +190,14 @@
 //   //remote_addr = "remote_addr";
 //   request_uri = "request_uri";
 //
-//   accept_encoding = "accept-encoding";
-//   content_encoding = "content-encoding";
+//   accept-encoding = "accept-encoding";
+//   content-encoding = "content-encoding";
 //
-//   keep_alive = "keep-alive";
+//   keep-alive = "keep-alive";
 //
 //   user_agent = "user-agent";
 //   from = "from";
-//   accept_language = "accept-language";
+//   accept-language = "accept-language";
 //
 //
 //   accept = "accept";
@@ -251,8 +251,8 @@
 //
 //   html_block = "block";
 //   html_inline = "inline";
-//   html_table_row = "table-row";
-//   html_table_cell = "table-cell";
+//   table-row = "table-row";
+//   table-cell = "table-cell";
 //
 //
 //   html_margin_left = "margin-left";

@@ -71,9 +71,17 @@ public:
 
 
    inline ::index add(ARG_TYPE newElement);
-   template < container_type CONTAINER >
-   inline ::index add(const CONTAINER & container);
-   inline ::index append(const array& src);
+   inline ::count append(const array& src);
+
+   template < primitive_container CONTAINER >
+      inline ::count append(const CONTAINER& container)
+   {
+
+         return ARRAY_BASE::append(container);
+
+   }
+
+
    inline void copy(const array& src);
 
    inline TYPE & add_new(::count c = 1);
@@ -343,23 +351,23 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add(ARG_T
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-template < container_type CONTAINER >
-inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add(const CONTAINER & container)
-{
-
-   ::index i = -1;
-
-   for(auto & item : container)
-   {
-
-      i = add_item(item);
-
-   }
-
-   return i;
-
-}
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//template < container_type CONTAINER >
+//inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add(const CONTAINER & container)
+//{
+//
+//   ::index i = -1;
+//
+//   for(auto & item : container)
+//   {
+//
+//      i = add_item(item);
+//
+//   }
+//
+//   return i;
+//
+//}
 
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 //inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::append(ARG_TYPE newElement)
@@ -499,13 +507,13 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array < TYPE, ARG
 
       array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > aCopy(container);
 
-      add(aCopy);
+      append(aCopy);
 
    }
    else
    {
 
-      add(container);
+      append(container);
 
    }
 

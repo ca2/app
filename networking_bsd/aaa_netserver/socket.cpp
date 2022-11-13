@@ -64,19 +64,19 @@ namespace netserver
 
       outattr(__id(http_version)) = "HTTP/1.1";
 
-      if (outheader(__id(content_type)).begins("image/"))
+      if (outheader(__id(content-type)).begins("image/"))
       {
 
          m_bSetCookie = false;
 
       }
-      else if (outheader(__id(content_type)) == "application/javascript")
+      else if (outheader(__id(content-type)) == "application/javascript")
       {
 
          m_bSetCookie = false;
 
       }
-      else if (outheader(__id(content_type)) == "text/css")
+      else if (outheader(__id(content-type)) == "text/css")
       {
 
          m_bSetCookie = false;
@@ -147,7 +147,7 @@ namespace netserver
          }
 
       }
-      else if (!m_bSetCookie && key == __id(set_cookie))
+      else if (!m_bSetCookie && key == __id(set-cookie))
       {
          
          return false;
@@ -261,7 +261,7 @@ namespace netserver
    //      savepimage->m_eformat = pimage::e_format_jpeg;
    //      savepimage->m_iQuality = 50;
 
-   //      outheader(__id(content_type)) = "image/jpeg";
+   //      outheader(__id(content-type)) = "image/jpeg";
 
 
    //      pimage->save_to_file(&response().file(), &saveimage);

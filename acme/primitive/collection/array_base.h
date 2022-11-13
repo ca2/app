@@ -39,7 +39,7 @@ DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
 
 #define DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
 ::index add_ ## ITEM(TYPE * p) { return CONTAINER.add_item(p); }      \
-::index add_ ## ITEM ## _array(const CONTAINER_TYPE & a) { return CONTAINER.add(a); } \
+::index add_ ## ITEM ## _array(const CONTAINER_TYPE & a) { return CONTAINER.append(a); } \
 ::index add_unique_ ## ITEM(TYPE * p) { return CONTAINER.add_unique(p); } \
 ::index add_unique_ ## ITEM ## _array(const CONTAINER_TYPE & a) { return CONTAINER.add_unique(a); } \
 ::index erase_ ## ITEM(TYPE * p) { return CONTAINER.erase(p); } \
@@ -586,7 +586,25 @@ public:
    virtual void copy(const array_base & src);
 
 
-   array_base operator + (const array_base& array) const;
+   template < primitive_container CONTAINER >
+   ::count append(const CONTAINER & container)
+   {
+
+      ::count c = 0;
+
+      for (auto& item : container)
+      {
+
+         add(item);
+
+         c++;
+
+      }
+
+      return c;
+
+   }
+
 
 
    virtual void on_after_read();
@@ -1245,18 +1263,19 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::copy(const arra
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >
-array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::operator + (const array_base& array) const
-{
-
-   auto a = *this;
-
-   a.append(array);
-
-   return ::move(a);
-
-}
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//template < primitive_container CONTAINER >
+//array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >
+//array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::operator + (const CONTAINER & array) const
+//{
+//
+//   auto a = *this;
+//
+//   a.append(array);
+//
+//   return ::move(a);
+//
+//}
 
 //#include "sort.h"
 
@@ -2871,5 +2890,19 @@ index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::predicate_bina
    return ::acme::array::predicate_binary_search(*this, t, pred);
 
 }
+
+
+template < primitive_container CONTAINER1, primitive_container CONTAINER2 >
+CONTAINER1 operator + (const CONTAINER1 & container1, const CONTAINER2 & container2)
+{
+
+   auto container = container1;
+
+   container.append(container2);
+
+   return ::move(container);
+
+}
+
 
 

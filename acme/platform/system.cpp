@@ -6,6 +6,7 @@
 #include "system.h"
 #include "sequencer.h"
 #include "application.h"
+#include "log.h"
 #include "acme/compress/compress.h"
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
@@ -113,6 +114,8 @@ namespace acme
       //m_psystemimpl = memory_new system_impl;
 
       //set_os_data(LAYERED_ACME, this);
+
+      
 
    }
 
@@ -286,6 +289,8 @@ namespace acme
    {
       
       //::acme::idpool::init(this);
+
+      __construct(m_plogger);
 
       __construct_new(m_pdatetime);
 

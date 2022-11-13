@@ -148,7 +148,7 @@ namespace http
    void transaction::SetContentType(const string & value)
    {
    
-      header("content_type") = value;
+      header("content-type") = value;
 
    }
 
@@ -158,7 +158,7 @@ namespace http
       
       string str;
       
-      str = header("content_type");
+      str = header("content-type");
 
       return str;
 
@@ -168,7 +168,7 @@ namespace http
    void transaction::SetContentLength(memsize value)
    {
    
-      header("content_length") = value;
+      header("content-length") = value;
 
    }
 
@@ -176,7 +176,7 @@ namespace http
    memsize transaction::ContentLength()
    {
    
-      return header("content_length").iptr();
+      return header("content-length").iptr();
 
    }
 

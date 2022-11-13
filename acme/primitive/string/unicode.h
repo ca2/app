@@ -141,46 +141,96 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 
 
 template < typename TYPE_CHAR >
-inline strsize string_begins(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszPrefix, strsize lenPrefix);
+inline bool string_begins(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszPrefix, strsize lenPrefix);
 template < typename TYPE_CHAR >
-inline strsize string_ends(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszSuffix, strsize lenSuffix);
+inline bool string_ends(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszSuffix, strsize lenSuffix);
 template < typename TYPE_CHAR >
-inline strsize string_begins_ci(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszPrefix, strsize lenPrefix);
+inline bool string_begins_ci(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszPrefix, strsize lenPrefix);
 template < typename TYPE_CHAR >
-inline strsize string_ends_ci(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszSuffix, strsize lenSuffix);
+inline bool string_ends_ci(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszSuffix, strsize lenSuffix);
 
 
-inline strsize string_begins(const ansichar * psz, const ansichar * pszPrefix)
+inline bool string_begins(const ansichar * psz, const ansichar * pszPrefix)
 {   return string_begins(psz, string_safe_length(psz), pszPrefix, string_safe_length(pszPrefix)); }
-inline strsize string_begins(const wd16char * psz, const wd16char * pszPrefix)
+inline bool string_begins(const wd16char * psz, const wd16char * pszPrefix)
 {   return string_begins(psz, string_safe_length(psz), pszPrefix, string_safe_length(pszPrefix)); }
-inline strsize string_begins(const wd32char * psz, const wd32char * pszPrefix)
+inline bool string_begins(const wd32char * psz, const wd32char * pszPrefix)
 {   return string_begins(psz, string_safe_length(psz), pszPrefix, string_safe_length(pszPrefix)); }
 
+inline bool _string_begins(const ansichar* psz, strsize len, const ansichar* pszPrefix, strsize & lenPrefix)
+{
+   return string_begins(psz, len, pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)));
+}
+inline bool _string_begins(const wd16char* psz, strsize len, const wd16char* pszPrefix, strsize& lenPrefix)
+{
+   return string_begins(psz, len, pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)));
+}
+inline bool _string_begins(const wd32char* psz, strsize len, const wd32char* pszPrefix, strsize& lenPrefix)
+{
+   return string_begins(psz, len, pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)));
+}
 
-inline strsize string_ends(const ansichar * psz, const ansichar * pszSuffix)
+
+inline bool string_ends(const ansichar * psz, const ansichar * pszSuffix)
 {   return string_ends(psz, string_safe_length(psz), pszSuffix, string_safe_length(pszSuffix)); }
-inline strsize string_ends(const wd16char * psz, const wd16char * pszSuffix)
+inline bool string_ends(const wd16char * psz, const wd16char * pszSuffix)
 {   return string_ends(psz, string_safe_length(psz), pszSuffix, string_safe_length(pszSuffix)); }
-inline strsize string_ends(const wd32char * psz, const wd32char * pszSuffix)
+inline bool string_ends(const wd32char * psz, const wd32char * pszSuffix)
 {   return string_ends(psz, string_safe_length(psz), pszSuffix, string_safe_length(pszSuffix)); }
 
 
-inline strsize string_begins_ci(const ansichar * psz, const ansichar * pszPrefix)
+inline bool _string_ends(const ansichar* psz, strsize len, const ansichar* pszSuffix, strsize& lenSuffix)
+{
+   return string_ends(psz, len, pszSuffix, (strsize)(lenSuffix= string_safe_length(pszSuffix)));
+}
+inline bool _string_ends(const wd16char* psz, strsize len, const wd16char* pszSuffix, strsize& lenSuffix)
+{
+   return string_ends(psz, len, pszSuffix, (strsize)(lenSuffix =string_safe_length(pszSuffix)));
+}
+inline bool _string_ends(const wd32char* psz, strsize len, const wd32char* pszSuffix, strsize& lenSuffix)
+{
+   return string_ends(psz, len, pszSuffix, (strsize)(lenSuffix= string_safe_length(pszSuffix)));
+}
+
+inline bool string_begins_ci(const ansichar * psz, const ansichar * pszPrefix)
 {   return string_begins_ci(psz, string_safe_length(psz), pszPrefix, string_safe_length(pszPrefix)); }
-inline strsize string_begins_ci(const wd16char * psz, const wd16char * pszPrefix)
+inline bool string_begins_ci(const wd16char * psz, const wd16char * pszPrefix)
 {   return string_begins_ci(psz, string_safe_length(psz), pszPrefix, string_safe_length(pszPrefix)); }
-inline strsize string_begins_ci(const wd32char * psz, const wd32char * pszPrefix)
+inline bool string_begins_ci(const wd32char * psz, const wd32char * pszPrefix)
 {   return string_begins_ci(psz, string_safe_length(psz), pszPrefix, string_safe_length(pszPrefix)); }
 
+inline bool _string_begins_ci(const ansichar* psz, strsize len, const ansichar* pszPrefix, strsize & lenPrefix)
+{
+   return string_begins_ci(psz, len, pszPrefix,(strsize)( lenPrefix =string_safe_length(pszPrefix)));
+}
+inline bool _string_begins_ci(const wd16char* psz, strsize len, const wd16char* pszPrefix, strsize& lenPrefix)
+{
+   return string_begins_ci(psz, len, pszPrefix, (strsize)(lenPrefix= string_safe_length(pszPrefix)));
+}
+inline bool _string_begins_ci(const wd32char* psz, strsize len, const wd32char* pszPrefix, strsize& lenPrefix)
+{
+   return string_begins_ci(psz, len, pszPrefix, (strsize)(lenPrefix=string_safe_length(pszPrefix)));
+}
 
-inline strsize string_ends_ci(const ansichar * psz, const ansichar * pszSuffix)
+inline bool string_ends_ci(const ansichar * psz, const ansichar * pszSuffix)
 {   return string_ends_ci(psz, string_safe_length(psz), pszSuffix, string_safe_length(pszSuffix)); }
-inline strsize string_ends_ci(const wd16char * psz, const wd16char * pszSuffix)
+inline bool string_ends_ci(const wd16char * psz, const wd16char * pszSuffix)
 {   return string_ends_ci(psz, string_safe_length(psz), pszSuffix, string_safe_length(pszSuffix)); }
-inline strsize string_ends_ci(const wd32char * psz, const wd32char * pszSuffix)
+inline bool string_ends_ci(const wd32char * psz, const wd32char * pszSuffix)
 {   return string_ends_ci(psz, string_safe_length(psz), pszSuffix, string_safe_length(pszSuffix)); }
 
+inline bool _string_ends_ci(const ansichar* psz, strsize len, const ansichar* pszSuffix, strsize & lenSuffix)
+{
+   return string_ends_ci(psz, len, pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)));
+}
+inline bool _string_ends_ci(const wd16char* psz, strsize len, const wd16char* pszSuffix, strsize& lenSuffix)
+{
+   return string_ends_ci(psz, len, pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)));
+}
+inline bool _string_ends_ci(const wd32char* psz, strsize len, const wd32char* pszSuffix, strsize& lenSuffix)
+{
+   return string_ends_ci(psz, len, pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)));
+}
 
 template < typename CHAR_TYPE >
 bool string_eat_before(string_base < CHAR_TYPE > & strBefore, const string_base < CHAR_TYPE > & strSeparator, string_base < CHAR_TYPE > & str, bool bEatEverythingIfNotFound);

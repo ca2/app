@@ -194,7 +194,7 @@ namespace text
    void table::initialize(::particle * pparticle)
    {
 
-      /*auto estatus =*/ ::object::initialize(pparticle);
+      /*auto estatus =*/ ::particle::initialize(pparticle);
 
       m_pschemaEn = &operator[]("en")["en"];
       m_pschemaStd = &operator[]("_std")["_std"];
@@ -409,7 +409,7 @@ namespace text
 
          _get(stra2, pcontext, id2);
 
-         stra.add(stra2);
+         stra.append(stra2);
 
          i++;
 

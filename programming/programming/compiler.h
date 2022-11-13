@@ -2,16 +2,20 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/primitive/primitive/matter.h"
+
+
 namespace programming
 {
 
 
    class CLASS_DECL_APP_PROGRAMMING compiler :
-      virtual public ::object
+      virtual public ::matter
    {
    protected:
 
-      using ::object::initialize;
+      using ::particle::initialize;
 
    public:
 
@@ -49,7 +53,7 @@ namespace programming
       ~compiler() override;
 
 
-      virtual void initialize_programming_compiler(::object* pparticle);
+      virtual void initialize_programming_compiler(::particle * pparticle);
 
       virtual void prepare_compile_and_link_environment();
 

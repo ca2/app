@@ -73,7 +73,7 @@ namespace android
       //rectangle.right = pimage->width();
       //rectangle.bottom = pimage->height();
 
-      //__zero(buffer);
+      //zero(buffer);
 
       //ANativeWindow_lock(m_pimpl->m_oswindow->m_engine.app->window, &buffer, rectangle);
 

@@ -25,12 +25,6 @@
     <Filter Include="Header Files\account">
       <UniqueIdentifier>{c7de4934-04af-4db6-bdb9-46ba97531ec0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\geoip">
-      <UniqueIdentifier>{6989d839-2444-400a-b270-e303f422ac07}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\geoip">
-      <UniqueIdentifier>{d88ad1e9-f034-46ab-8774-2ee102280746}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\html">
       <UniqueIdentifier>{1343948a-99fd-4ce1-bd0b-591500dc0e02}</UniqueIdentifier>
     </Filter>
@@ -306,21 +300,6 @@
     <ClInclude Include="math\kissfft\ifftd.h">
       <Filter>Header Files\mathematics\kissfft</Filter>
     </ClInclude>
-    <ClInclude Include="geoip\_.h">
-      <Filter>Header Files\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="geoip\city.h">
-      <Filter>Header Files\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="geoip\global.h">
-      <Filter>Header Files\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="geoip\internal.h">
-      <Filter>Header Files\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="geoip\update.h">
-      <Filter>Header Files\geoip</Filter>
-    </ClInclude>
     <ClInclude Include="database\_.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
@@ -516,9 +495,6 @@
     <ClInclude Include="graphics\render\water_routine.h">
       <Filter>Header Files\graphics\render</Filter>
     </ClInclude>
-    <ClInclude Include="id.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="math\calculator\element.h">
       <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>
@@ -554,9 +530,6 @@
     </ClInclude>
     <ClInclude Include="networking\_.h">
       <Filter>Header Files\networking</Filter>
-    </ClInclude>
-    <ClInclude Include="geoip\geoip.h">
-      <Filter>Header Files\geoip</Filter>
     </ClInclude>
     <ClInclude Include="html\html\data.h">
       <Filter>Header Files\html\html</Filter>

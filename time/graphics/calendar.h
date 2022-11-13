@@ -2,6 +2,7 @@
 
 
 #include "time/graphical/calendar.h"
+#include "acme/primitive/primitive/pointer.h"
 
 
 namespace datetime
@@ -28,10 +29,10 @@ namespace datetime
 
 
          graphics();
-         virtual ~graphics();
+         ~graphics() override;
 
 
-         virtual void initialize(::particle * pparticle) override;
+         void initialize(::particle * pparticle) override;
 
 
          virtual void GetRectDay(::earth::time& time, RECTANGLE_I32 * lprect);

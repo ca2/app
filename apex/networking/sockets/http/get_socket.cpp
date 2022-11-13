@@ -95,9 +95,9 @@ namespace sockets
          //inheader("Accept-Language") = "en-us,en;q=0.5";
          if (m_pfile == nullptr) // by the time, inline gzip decompression not yet implemented
          {
-            if (inheader("accept_encoding").is_new())
+            if (inheader("accept-encoding").is_new())
             {
-               inheader("accept_encoding") = "gzip,deflate";
+               inheader("accept-encoding") = "gzip,deflate";
             }
          }
          //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";

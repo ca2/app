@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "socket.h"
 #include "socket_handler.h"
+#include "acme/exception/exception.h"
 #include "networking_bsd/address.h"
 #include "networking_bsd/sockets/transfer_socket.h"
 
@@ -20,6 +21,12 @@
 #if defined(__APPLE__) || defined(FREEBSD)
 #include <netdb.h>
 #endif
+
+
+
+
+#undef ERROR
+#define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
 
 
 namespace sockets_bsd
@@ -77,7 +84,7 @@ namespace sockets_bsd
       if (m_socket == INVALID_SOCKET) // this could happen
       {
 
-         if(!is_null(socket_handler()))
+         if(!::is_null(socket_handler()))
          {
 
             WARNING("socket::close: file descriptor invalid");
@@ -93,7 +100,7 @@ namespace sockets_bsd
       if ((n = close_socket(m_socket)) == -1)
       {
 
-         if(!is_null(socket_handler()))
+         if(!::is_null(socket_handler()))
          {
 
             // failed...

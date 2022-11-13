@@ -594,7 +594,7 @@ namespace windowing
 
    i64 g_i_get_best_zoneing = 0;
 
-   index display::_get_best_zoneing(edisplay * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
+   index display::_get_best_zoneing(::e_display * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
    {
 
       ::rectangle_i32 rectangle(rectangleRequest);
@@ -603,7 +603,7 @@ namespace windowing
 
       index iBestWorkspace = get_best_workspace(& rectangleWorkspace, rectangle);
 
-      edisplay edisplay;
+      ::e_display edisplay;
 
       ::e_display edisplayPrevious = *pedisplay;
 
@@ -1171,7 +1171,7 @@ namespace windowing
    }
 
 
-   index display::get_good_restore(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleHintParam, ::user::interaction * pinteraction, edisplay edisplay)
+   index display::get_good_restore(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleHintParam, ::user::interaction * pinteraction, ::e_display edisplay)
    {
 
       ::rectangle_i32 rectangleHint(rectangleHintParam);

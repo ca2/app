@@ -3,6 +3,9 @@
 
 #include "string_buffer.h"
 #include "stream.h"
+#include "acme/primitive/string/string.h"
+
+
 
 inline ::string ellipsis(const char* psz, strsize len)
 {
@@ -25,38 +28,41 @@ inline ::string ellipsis(const char* psz, strsize len)
 }
 
 
-inline ::string natural_string(::u64 u, int iRadix = 10)
+template < primitive_unsigned UNSIGNED >
+inline inline_number_string unsigned_string(UNSIGNED u, int iRadix = 10)
 {
 
-   char sz[64];
+   inline_number_string numberstring;
 
-   _ui64toa(u, sz, iRadix);
+   _ui64toa(u, numberstring, iRadix);
 
-   return sz;
+   return numberstring;
 
 }
 
 
-inline ::string integer_string(::i64 i, int iRadix = 10)
+template < primitive_signed SIGNED >
+inline inline_number_string signed_string(SIGNED i, int iRadix = 10)
 {
 
-   char sz[64];
+   inline_number_string numberstring;
 
-   _i64toa(i, sz, iRadix);
+   _i64toa(i, numberstring, iRadix);
 
-   return sz;
+   return numberstring;
 
 }
 
 
-inline ::string floating_string(::f64 d, const char * pszFormat = "%f")
+template < primitive_floating FLOATING >
+inline ::string floating_string(FLOATING f, const char * pszFormat = "%f")
 {
 
-   char sz[64];
+   inline_number_string numberstring;
 
-   sprintf(sz, pszFormat, d);
+   sprintf(numberstring, pszFormat, f);
 
-   return sz;
+   return numberstring;
 
 }
 
@@ -219,11 +225,17 @@ public:
    }
 
 
-   void write_natural(::u64 u) { print(natural_string(u)); }
+   template < primitive_unsigned UNSIGNED >
+   void write_unsigned(UNSIGNED u) { print(unsigned_string(u)); }
    
-   void write_integer(::i64 i) { print(integer_string(i)); }
+   
+   template < primitive_signed SIGNED >
+   void write_signed(SIGNED i) { print(signed_string(i)); }
 
-   void write_floating(::f64 d) { print(floating_string(d)); }
+   
+   template < primitive_floating FLOATING >
+   void write_floating(FLOATING f) { print(floating_string(f)); }
+
 
    /*template < typename TYPE >
    void number_exchange(TYPE& t)
@@ -380,11 +392,11 @@ public:
 
 #endif
 
-
-   write_text_stream& operator <<(i16 sh)
+   template < primitive_signed_not_8bit SIGNED >
+   write_text_stream& operator <<(SIGNED i)
    {
 
-      write_integer(sh);
+      write_signed(i);
 
       print(m_chSeparator);
 
@@ -393,10 +405,11 @@ public:
    }
 
 
-   write_text_stream& operator <<(u16 u)
+   template < primitive_unsigned_not_8bit UNSIGNED >
+   write_text_stream& operator <<(UNSIGNED u)
    {
 
-      write_natural(u);
+      write_unsigned(u);
 
       print(m_chSeparator);
 
@@ -404,11 +417,22 @@ public:
 
    }
 
-
-   write_text_stream& operator <<(i32 i)
+   template < typename T >
+   void print_string_copy(const T& t)
    {
 
-      write_integer(i);
+      ::string str;
+
+      ::copy(str, t);
+
+      print(str);
+
+   }
+
+   write_text_stream& operator <<(integral_byte integralbyte)
+   {
+
+      print_string_copy(integralbyte);
 
       print(m_chSeparator);
 
@@ -416,44 +440,56 @@ public:
 
    }
 
+   //write_text_stream& operator <<(i32 i)
+   //{
 
-   write_text_stream& operator <<(u32 u)
-   {
+   //   write_integer(i);
 
-      write_natural(u);
+   //   print(m_chSeparator);
 
-      print(m_chSeparator);
+   //   return *this;
 
-      return *this;
-
-   }
-
-
-   write_text_stream& operator <<(i64 i)
-   {
-
-      write_integer(i);
-
-      print(m_chSeparator);
-
-      return *this;
-
-   }
+   //}
 
 
-   write_text_stream& operator <<(u64 u)
-   {
+   //write_text_stream& operator <<(u32 u)
+   //{
 
-      write_natural(u);
+   //   write_natural(u);
 
-      print(m_chSeparator);
+   //   print(m_chSeparator);
 
-      return *this;
+   //   return *this;
 
-   }
+   //}
 
 
-   write_text_stream& operator <<(float f)
+   //write_text_stream& operator <<(i64 i)
+   //{
+
+   //   write_integer(i);
+
+   //   print(m_chSeparator);
+
+   //   return *this;
+
+   //}
+
+
+   //write_text_stream& operator <<(u64 u)
+   //{
+
+   //   write_natural(u);
+
+   //   print(m_chSeparator);
+
+   //   return *this;
+
+   //}
+
+
+   template < primitive_floating FLOATING >
+   write_text_stream& operator <<(FLOATING f)
    {
 
       write_floating(f);
@@ -464,18 +500,33 @@ public:
 
    }
 
-
-   write_text_stream& operator <<(double d)
-   {
-
-      write_floating(d);
-
-      print(m_chSeparator);
-
-      return *this;
-
-   }
-
+//#ifdef _MSC_VER
+//
+//   write_text_stream& operator <<(long l)
+//   {
+//
+//      write_integer(l);
+//
+//      print(m_chSeparator);
+//
+//      return *this;
+//
+//   }
+//
+//#endif
+//
+//
+//   write_text_stream& operator <<(double d)
+//   {
+//
+//      write_floating(d);
+//
+//      print(m_chSeparator);
+//
+//      return *this;
+//
+//   }
+//
 
    // void write(const POINT_I32 & point) ;
    // void write(const SIZE_I32 & size) ;
@@ -846,13 +897,13 @@ public:
       if (iRead < INT_MIN)
       {
 
-         throw_exception(error_standard_int_overflow, "INT_MIN overflow: " + integer_string(iRead));
+         throw_exception(error_standard_int_overflow, "INT_MIN overflow: " + signed_string(iRead));
 
       }
       else if (iRead > INT_MAX)
       {
 
-         throw_exception(error_standard_int_overflow, "INT_MAX overflow: " + integer_string(iRead));
+         throw_exception(error_standard_int_overflow, "INT_MAX overflow: " + signed_string(iRead));
 
       }
 
@@ -936,27 +987,27 @@ public:
 using std_string_stream = ::write_text_stream;
 
 
-class CLASS_DECL_ACME string_stream :
+class CLASS_DECL_ACME string_reference_stream :
    public write_text_stream < string_reference_buffer >,
    public string_reference_buffer
 {
 public:
 
 
-   string_stream(::string& str) : write_text_stream(this),string_reference_buffer(str) { }
+   string_reference_stream(::string& str) : write_text_stream(this),string_reference_buffer(str) { }
 
 
 };
 
 
-class CLASS_DECL_ACME string_buffer_stream :
+class CLASS_DECL_ACME string_stream :
    public write_text_stream < string_buffer >,
    public string_buffer
 {
 public:
 
 
-   string_buffer_stream() : write_text_stream(this) { }
+   string_stream() : write_text_stream(this) { }
 
 
 };

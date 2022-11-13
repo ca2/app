@@ -23,7 +23,7 @@ inline string_base < CHAR_TYPE > str::repeat(const CHAR_TYPE * psz, strsize c)
 
          auto psource = psz;
 
-         auto ptarget = psz;
+         auto ptarget = p;
 
          auto copyLength = itemLen;
 

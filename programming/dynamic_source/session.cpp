@@ -2,6 +2,7 @@
 #include "session.h"
 #include "script_manager.h"
 #include "acme/primitive/text/international_locale_schema.h"
+#include "apex/crypto/rsa.h"
 
 
 namespace dynamic_source
@@ -34,7 +35,7 @@ namespace dynamic_source
 
       //auto estatus = 
       
-      ::object::initialize(pmanager);
+      ::particle::initialize(pmanager);
 
       //if (!estatus)
       //{
@@ -67,14 +68,14 @@ namespace dynamic_source
    i64 session::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
    i64 session::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 

@@ -701,8 +701,8 @@ namespace user
       virtual void design_window_minimize(::e_activation eactivation) override;
       virtual void design_window_maximize() override;
       virtual void design_window_full_screen(const ::rectangle_i32& rectangleHint = nullptr) override;
-      virtual void design_window_restore(edisplay edisplay) override;
-      virtual void design_window_dock(edisplay edisplay) override;
+      virtual void design_window_restore(::e_display edisplay) override;
+      virtual void design_window_dock(::e_display edisplay) override;
 
 
       virtual ::size_i32 preferred_size(::draw2d::graphics_pointer & pgraphics);
@@ -724,9 +724,9 @@ namespace user
       float preferred_density() override;
 
       
-      virtual void add_appearance(eappearance eappearance, enum_layout elayout = e_layout_sketch);
-      virtual void erase_appearance(eappearance eappearance, enum_layout elayout = e_layout_sketch);
-      virtual void toggle_appearance(eappearance eappearance, enum_layout elayout = e_layout_sketch);
+      virtual void add_appearance(::e_appearance eappearance, enum_layout elayout = e_layout_sketch);
+      virtual void erase_appearance(::e_appearance eappearance, enum_layout elayout = e_layout_sketch);
+      virtual void toggle_appearance(::e_appearance eappearance, enum_layout elayout = e_layout_sketch);
 
 
       virtual void set_reposition(bool bSetThis = true);
@@ -1753,9 +1753,9 @@ namespace user
 
       //virtual void get_window_rect(RECTANGLE_I32 * prectangle) override;
 
-      virtual index get_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, edisplay edisplay);
+      virtual index get_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_display edisplay);
 
-      virtual edisplay initial_restore_display();
+      virtual ::e_display initial_restore_display();
 
       // returns less than zero if no preferred restore
       // otherwise returns the preferred restore 
@@ -1772,11 +1772,11 @@ namespace user
       virtual index best_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
       virtual index best_monitor(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
       virtual index best_workspace(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual index good_restore(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top, edisplay edisplay = e_display_restore);
+      virtual index good_restore(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top, ::e_display edisplay = e_display_restore);
       virtual index good_iconify(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
 
       virtual index good_move(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual index get_best_zoneing(edisplay& edisplay, ::rectangle_i32* prectangle, const ::rectangle_i32& rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false);
+      virtual index get_best_zoneing(::e_display& edisplay, ::rectangle_i32* prectangle, const ::rectangle_i32& rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false);
       virtual index get_best_workspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
 
 
@@ -1961,7 +1961,7 @@ namespace user
       virtual void on_after_graphical_update() override;
 
 
-      virtual void _001OnDeiconify(edisplay edisplay);
+      virtual void _001OnDeiconify(::e_display edisplay);
 
 
       virtual ::e_status is_edit_delete_enabled();

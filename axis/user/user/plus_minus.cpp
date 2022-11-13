@@ -2,6 +2,8 @@
 // 2022-09-04 00:14 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "plus_minus.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "aura/message/user.h"
 #include "aura/user/user/button.h"
 #include "aura/user/user/still.h"

@@ -368,7 +368,7 @@ namespace sockets
          m_request.attr("http_host") = value;
 
       }
-      else if(key == "content_length")
+      else if(key == "content-length")
       {
 
          m_body_size_left = atol(value);
@@ -469,10 +469,10 @@ namespace sockets
       if(bContentLength)
       {
 
-         if(!m_response.m_propertysetHeader.has_property("content_length"))
+         if(!m_response.m_propertysetHeader.has_property("content-length"))
          {
 
-            m_response.m_propertysetHeader["content_length"] = response().file()->get_size();
+            m_response.m_propertysetHeader["content-length"] = response().file()->get_size();
 
          }
 
@@ -480,7 +480,7 @@ namespace sockets
       else
       {
 
-         m_response.m_propertysetHeader.erase_by_name("content_length");
+         m_response.m_propertysetHeader.erase_by_name("content-length");
 
       }
 
@@ -620,7 +620,7 @@ namespace sockets
 
          string strValue = pproperty->string();
 
-         if (pproperty->name() == "content_type")
+         if (pproperty->name() == "content-type")
          {
 
             msg += "Content-Type: " + strValue + "\r\n";
@@ -771,7 +771,7 @@ namespace sockets
       if(IsRequest())
       {
 
-         m_request.header("content_length").as(m_body_size_left);
+         m_request.header("content-length").as(m_body_size_left);
 
          m_body_size_downloaded = 0;
 
@@ -780,7 +780,7 @@ namespace sockets
       if(IsResponse())
       {
 
-         m_response.header("content_length").as(m_body_size_left);
+         m_response.header("content-length").as(m_body_size_left);
 
          m_body_size_downloaded = 0;
 

@@ -545,7 +545,7 @@ namespace networking_bsd
             //inheader("Accept-Language") = "en-us,en;q=0.5";
             //if (m_pfile == nullptr) // by the time, inline gzip decompression not yet implemented
             //{
-            //   inheader(__id(accept_encoding)) = "gzip,deflate";
+            //   inheader(__id(accept-encoding)) = "gzip,deflate";
             //}
             //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
             string strUserAgent = MyUseragent();
@@ -907,7 +907,7 @@ namespace networking_bsd
 
             }
 
-            __zero(m_maskingkey);
+            zero(m_maskingkey);
 
             if (m_memResponse.get_size() < m_header_size)
             {

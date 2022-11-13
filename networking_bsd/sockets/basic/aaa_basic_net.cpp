@@ -1178,7 +1178,7 @@
 ////net::dns_cache_item::dns_cache_item()
 ////{
 ////
-////   __zero(m_ipaddr);
+////   zero(m_ipaddr);
 ////   m_bOk = false;
 ////   m_bTimeout = true;
 ////
@@ -1247,7 +1247,7 @@
 ////net::reverse_cache_item::reverse_cache_item()
 ////{
 ////
-////   //__zero(m_ipaddr);
+////   //zero(m_ipaddr);
 ////   //m_durationLastChecked = 0;
 ////   m_bOk = false;
 ////   m_bTimeout = true;

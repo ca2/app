@@ -1,5 +1,4 @@
 #include "framework.h"
-
 #include "table_elemental.h"
 
 

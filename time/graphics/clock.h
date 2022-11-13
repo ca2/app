@@ -2,6 +2,7 @@
 
 
 #include "time/graphical/clock.h"
+#include "acme/primitive/primitive/pointer.h"
 
 
 namespace datetime
@@ -25,9 +26,10 @@ namespace datetime
 
 
          graphics();
-         virtual ~graphics();
+         ~graphics() override;
 
-         virtual void initialize(::particle * pparticle) override;
+         
+         void initialize(::particle * pparticle) override;
 
 
          void GetRect(RECTANGLE_I32 * lprect, enum enum_element eelement);

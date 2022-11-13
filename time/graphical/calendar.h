@@ -1,14 +1,6 @@
 #pragma once
 
-
-namespace html
-{
-
-
-   class file;
-
-
-} // namespace html
+class html_file;
 
 
 #include "time/datetime/calendar.h"
@@ -41,7 +33,7 @@ namespace datetime
          virtual void initialize(::particle * pparticle) override;
 
 
-         virtual void _001GetHtml(::html::file* pfile);
+         virtual void _001GetHtml(::html_file* pfile);
 
 
 

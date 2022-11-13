@@ -2,6 +2,8 @@
 #include "script_cache.h"
 #include "script_manager.h"
 #include "ds_script.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "apex/crypto/rsa.h"
 
 
 namespace dynamic_source

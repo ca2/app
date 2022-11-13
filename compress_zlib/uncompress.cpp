@@ -1,6 +1,8 @@
 // Refactor by camilo from gz on 2021-11-10 11:09 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "uncompress.h"
+#include "acme/exception/exception.h"
+#include "acme/filesystem/file/file.h"
 #include "acme/primitive/primitive/memory.h"
 #include <zlib.h>
 

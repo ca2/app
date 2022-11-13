@@ -1,8 +1,8 @@
 ﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-//#include "axis/html/html_lite/_.h"
-#endif
-#include "axis/id.h"
+//#if !BROAD_PRECOMPILED_HEADER
+////#include "axis/html/html_lite/_.h"
+//#endif
+//#include "axis/id.h"
 #include "axis/platform/system.h"
 #include "axis/html/html_lite/entity_resolver.h"
 #include "axis/html/html/html.h"
@@ -758,10 +758,10 @@ namespace html
          if(idDisplay == "html_table")
             return display_table;
 
-         if(idDisplay == "html_table_row")
+         if(idDisplay == "table-row")
             return display_table_row;
 
-         if(idDisplay == "html_table_cell")
+         if(idDisplay == "table-cell")
             return display_table_cell;
 
       }

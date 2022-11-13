@@ -168,7 +168,7 @@ image_pointer context_image::path_image(const char * path)
 }
 
 
-void context_image::_save_to_file(const ::payload & payloadFile, const image * pimage, const ::payload & varOptions)
+void context_image::_save_to_file(const ::payload & payloadFile, image * pimage, const ::payload & varOptions)
 {
 
    auto psystem = acmesystem()->m_paurasystem;
@@ -761,7 +761,7 @@ void context_image::_load_dib(image * pimage, const ::file::path & pathDib)
 }
 
 
-void context_image::save_image(const ::payload & payloadFile, const image * pimage, const ::save_image * psaveimage)
+void context_image::save_image(const ::payload & payloadFile, image * pimage, const ::save_image * psaveimage)
 {
    
    memory mem;
@@ -780,7 +780,7 @@ void context_image::save_image(const ::payload & payloadFile, const image * pima
 }
 
 
-void context_image::save_image(::memory & memory, const image * pimage, const ::save_image * psaveimage)
+void context_image::save_image(::memory & memory, image * pimage, const ::save_image * psaveimage)
 {
 
    auto pfile = create_memory_file(memory);
@@ -801,7 +801,7 @@ void context_image::save_image(::memory & memory, const image * pimage, const ::
 }
 
 
-void context_image::save_dib(const ::file::path & pathDib, const image * pimage)
+void context_image::save_dib(const ::file::path & pathDib, image * pimage)
 {
 
    //try

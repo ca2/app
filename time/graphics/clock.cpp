@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "clock.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -44,7 +45,7 @@ namespace datetime
 
          rectangle_i32 rectangle;
          GetRect(&rectangle, e_element_clock);
-         auto ppen = __create < ::draw2d::pen >();
+         auto ppen = ::__create < ::draw2d::pen >(this);
 
          ppen->create_solid(1, argb(255, 0, 0, 0));
          pgraphics->set(ppen);
@@ -52,8 +53,8 @@ namespace datetime
 
          point_i32 pointCenter(rectangle.center());
 
-         auto ppenHour = __create < ::draw2d::pen >();
-         auto ppenMinute = __create < ::draw2d::pen >();
+         auto ppenHour = ::__create < ::draw2d::pen >(this);
+         auto ppenMinute = ::__create < ::draw2d::pen >(this);
 
          ppenHour->create_solid(5, argb(255, 0, 0, 0));
          ppenMinute->create_solid(1, argb(255, 0, 0, 0));
@@ -89,7 +90,7 @@ namespace datetime
          double dRMinute = rectangle.width() * 15 / 32;
          double dRSecond = rectangle.width() * 16 / 32;
 
-         auto ppenHM = __create < ::draw2d::pen >();
+         auto ppenHM = ::__create < ::draw2d::pen >(this);
          ppenHM->create_solid(2, argb(255, 0, 0, 0));
          pgraphics->set(ppenHM);
 
@@ -107,7 +108,7 @@ namespace datetime
             pointMinute.offset(pointCenter);
             pgraphics->line_to(pointMinute);
          }
-         auto ppenRed = __create < ::draw2d::pen >();
+         auto ppenRed = ::__create < ::draw2d::pen >(this);
          ppenRed->create_solid(1, argb(255, 200, 0, 0));
          pgraphics->set(ppenRed);
          pgraphics->set_current_point(pointCenter);

@@ -2,6 +2,7 @@
 
 
 #include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/primitive/pointer.h"
 
 
 namespace account

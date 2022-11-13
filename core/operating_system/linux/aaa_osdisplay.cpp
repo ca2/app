@@ -305,13 +305,13 @@ void enum_display_monitors(::aura::system * psystem)
 
          GdkRectangle rectangle;
 
-         __zero(rectangle);
+         zero(rectangle);
 
          gdk_monitor_get_workarea(pmonitor, &rectangle);
 
          __copy(rectangleWork, rectangle);
 
-         __zero(rectangle);
+         zero(rectangle);
 
          gdk_monitor_get_geometry(pmonitor, &rectangle);
 

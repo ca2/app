@@ -2596,7 +2596,7 @@ namespace user
    }
 
 
-   void primitive::design_window_restore(edisplay edisplay)
+   void primitive::design_window_restore(e_display edisplay)
    {
 
       throw ::interface_only();
@@ -3573,7 +3573,7 @@ namespace user
    }
 
 
-   void primitive::WfiOnDock(edisplay edisplay)
+   void primitive::WfiOnDock(e_display edisplay)
    {
 
    }

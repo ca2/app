@@ -308,7 +308,7 @@ bool matter::thread_is_running() const
 ::acme::application* matter::_get_app()
 {
 
-   return nullptr;
+   return m_pcontext ? m_pcontext->m_pacmeapplication : nullptr;
 
 }
 

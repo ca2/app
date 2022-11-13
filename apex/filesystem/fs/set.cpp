@@ -93,7 +93,7 @@ namespace fs
 
          listing.add_listing(listingFsPath);
 
-         listing.m_straTitle.add(listingFsPath.m_straTitle);
+         listing.m_straTitle.append(listingFsPath.m_straTitle);
 
          for(i32 j = 0; j < listing.get_size(); j++)
          {

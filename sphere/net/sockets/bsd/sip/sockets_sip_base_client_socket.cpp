@@ -236,7 +236,7 @@ namespace sockets
       atom key(strKey.make_lower());
       string value = pa.getrest();
       OnHeader(key, value);
-      if(key == "content_length")
+      if(key == "content-length")
       {
          m_body_size_left = atol(value);
       }

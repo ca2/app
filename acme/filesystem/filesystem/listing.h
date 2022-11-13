@@ -102,7 +102,7 @@ namespace file
       inline ::index add_listing(const CONTAINER & container)
       {
 
-         return ::file::path_array::add(container);
+         return ::file::path_array::append(container);
 
       }
 

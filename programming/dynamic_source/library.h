@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/listing.h"
+
+
+
 namespace dynamic_source
 {
 
@@ -33,7 +37,7 @@ namespace dynamic_source
       raw_array < __time_t >                    m_ftaLibModified;
 
       
-      library(::object* pparticle);
+      library(::particle * pparticle);
       ~library() override;
 
 

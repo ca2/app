@@ -22,7 +22,15 @@ inline i32 string_collate_ci(const wd16char * pszA, const wd16char * pszB) noexc
 inline i32 string_n_collate(const wd16char * pszA, const wd16char * pszB, strsize len) noexcept { return wd16_ncoll(pszA, pszB, len); }
 inline i32 string_n_collate_ci(const wd16char * pszA, const wd16char * pszB, strsize len) noexcept { return wd16_nicoll(pszA, pszB, len); }
 inline strsize string_get_length(const wd16char * psz) noexcept { return wd16_len(psz); }
+inline strsize string_get_length(const wd16char* psz, strsize sizeMaximumInterest) noexcept
+{
+   strsize size = 0;
+   sizeMaximumInterest++;
+   while (*psz && sizeMaximumInterest > 0) { psz++; size++; sizeMaximumInterest--; }
+   return sizeMaximumInterest == 0 ? -1 : size;
+}
 inline strsize string_safe_length(const wd16char * psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
+inline strsize string_safe_length(const wd16char* psz, strsize sizeMaximumInterest) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz, sizeMaximumInterest); }
 inline wd16char * string_lowercase(wd16char * psz, strsize size) noexcept { wd16_lwr_s(psz, size); return  psz; }
 
 

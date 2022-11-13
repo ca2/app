@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "net.h"
+#include "__string.h"
 #include "acme/primitive/string/hex.h"
 //#include "acme/operating_system.h"
 

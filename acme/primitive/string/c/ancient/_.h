@@ -2,9 +2,9 @@
 #pragma once
 
 
-#include "ancient/ansi.h"
-#include "ancient/wd16.h"
-#include "ancient/wd32.h"
+#include "ansi.h"
+#include "wd16.h"
+#include "wd32.h"
 
 
 

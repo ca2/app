@@ -120,7 +120,7 @@ namespace axis
 
       ::factory::add_factory_item < ::axis::application, ::apex::application >();
       ::factory::add_factory_item < ::axis::session, ::apex::session >();
-      ::factory::add_factory_item < ::axis::idpool, ::acme::idpool >();
+      //::factory::add_factory_item < ::axis::idpool, ::acme::idpool >();
       ::factory::add_factory_item < ::geo::department >();
       //add_factory_item < ::imaging >();
 

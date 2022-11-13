@@ -3,6 +3,9 @@
 #pragma once
 
 
+#include "apex/message/channel.h"
+
+
 namespace user
 {
 

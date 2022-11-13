@@ -46,10 +46,10 @@ namespace http
    }
 
 
-   void form::parse_body(::apex::context *pcontext, file::file *infil, const char * pszContentType, strsize content_length)
+   void form::parse_body(::apex::context *pcontext, file::file *infil, const char * pszContentType, strsize sizeContentLength)
    {
 
-      if (::comparison::gt(content_length, get_max_http_post()))
+      if (::comparison::gt(sizeContentLength, get_max_http_post()))
       {
 
          return;
@@ -58,18 +58,18 @@ namespace http
 
       //::text_stream is(infil);
 
-      __UNREFERENCED_PARAMETER(content_length);
+      __UNREFERENCED_PARAMETER(sizeContentLength);
 
       strsize extra = 2;
 
-      string content_type(pszContentType);
+      string strContentType(pszContentType);
 
       infil->seek_to_begin();
 
-      if (content_type.get_length() >= 19 && content_type.Mid(0, 19) == "multipart/form-data")
+      if (strContentType.get_length() >= 19 && strContentType.Mid(0, 19) == "multipart/form-data")
       {
          
-         ::parse pa(content_type,";=");
+         ::parse pa(strContentType,";=");
 
          memory tempcmp;
          index tc = 0;
@@ -320,7 +320,7 @@ namespace http
 
                         m_setPost[current_name]["name"]           = current_filename;
                         m_setPost[current_name]["tmp_name"]       = pfileUpload->m_path;
-                        m_setPost[current_name]["content_type"]   = content_type;
+                        m_setPost[current_name]["content-type"]   = content_type;
 
                         slask = m_strBoundary;
 
@@ -356,7 +356,7 @@ namespace http
       }
       else
          // "x-www-form-urlencoded" is the default
-         //if (strstr(content_type, "x-www-form-urlencoded"))
+         //if (strstr(content-type, "x-www-form-urlencoded"))
       {
 
          string strNetworkArguments;
@@ -364,7 +364,7 @@ namespace http
          strNetworkArguments = infil->as_string();
 
          //strsize len = str.get_length();
-//         strsize clen = content_length;
+//         strsize clen = content-length;
          //FORMATTED_TRACE("x-www-form-urlencoded POST is %d bytes length and reported content-length header is %d.", len);
          m_setPost.parse_network_arguments(strNetworkArguments);
 

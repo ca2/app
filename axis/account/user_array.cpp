@@ -225,8 +225,10 @@ namespace account
 
 
 
-   user * user_array::get_user(const ::file::path & pathUrl, bool bFetch, bool bInteractive)
+   user * user_array::get_user(const ::file::path & pathUrlParam, bool bFetch, bool bInteractive)
    {
+
+      auto pathUrl = pathUrlParam;
 
       ::pointer<axis::session>psession = m_pcontext->m_paxissession;
 

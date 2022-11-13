@@ -2,9 +2,12 @@
 #include "data.h"
 #include "core_data.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/data/listener.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame.h"
 #include "aura/graphics/image/image.h"
+#include "axis/html/graphics/font.h"
+#include "axis/html/graphics/style.h"
 #include "axis/html/user/form.h"
 
 

@@ -52,7 +52,7 @@ namespace user
       virtual void window_show_change_visibility() override;
 
 
-      virtual void design_window_restore(edisplay edisplay) override;
+      virtual void design_window_restore(::e_display edisplay) override;
 
 
       virtual string get_display_tag() override;

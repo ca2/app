@@ -83,11 +83,11 @@ namespace operating_system
 
 
       // run process and get output
-      virtual ::payload get_output(const char * pszCmdLine, const ::duration & dur = ::duration::infinite(), edisplay edisplay = e_display_default, bool * pbPotentialTimeout = nullptr);
-      virtual exit_status retry(const char * pszCmdLine, const ::duration & dur, edisplay edisplay = e_display_default, bool * pbPotentialTimeout = nullptr);
-      virtual exit_status synch(const char * pszCmdLine, edisplay edisplay = e_display_default, const ::duration & dur = ::duration::infinite(), bool * pbPotentialTimeout = nullptr);
-      virtual bool launch(const char * pszCmdLine, edisplay edisplay = e_display_default, const char * pszDir = nullptr);
-      virtual exit_status elevated_synch(const char * pszCmdLine, edisplay edisplay = e_display_default, const ::duration & dur = ::duration::infinite(), bool * pbPotentialTimeout = nullptr);
+      virtual ::payload get_output(const char * pszCmdLine, const ::duration & dur = ::duration::infinite(), e_display edisplay = e_display_default, bool * pbPotentialTimeout = nullptr);
+      virtual exit_status retry(const char * pszCmdLine, const ::duration & dur, e_display edisplay = e_display_default, bool * pbPotentialTimeout = nullptr);
+      virtual exit_status synch(const char * pszCmdLine, e_display edisplay = e_display_default, const ::duration & dur = ::duration::infinite(), bool * pbPotentialTimeout = nullptr);
+      virtual bool launch(const char * pszCmdLine, e_display edisplay = e_display_default, const char * pszDir = nullptr);
+      virtual exit_status elevated_synch(const char * pszCmdLine, e_display edisplay = e_display_default, const ::duration & dur = ::duration::infinite(), bool * pbPotentialTimeout = nullptr);
 
    };
 

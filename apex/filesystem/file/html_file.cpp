@@ -4,94 +4,91 @@
 #include "acme/exception/interface_only.h"
 
 
-namespace html
+
+html_file::html_file()
 {
 
-
-   file::file()
-   {
-      
-   }
+}
 
 
-   file::~file()
-   {
+html_file::~html_file()
+{
 
-   }
-
-
-   const ::text::context * file::textcontext()
-   {
-      
-      return m_ptextcontext;
-
-   }
+}
 
 
-   void file::print(const ::string & str)
-   {
+const ::text::context* html_file::textcontext()
+{
 
-      raw_print(str);
+   return m_ptextcontext;
 
-   }
+}
 
 
-   void file::raw_print(const ::string & str)
-   {
+void html_file::print(const ::string& str)
+{
 
-      print(str);
+   raw_print(str);
 
-   }
+}
+
+
+void html_file::raw_print(const ::string& str)
+{
+
+   print(str);
+
+}
 
 
 #ifndef VARIADIC_TEMPLATE_FORMAT
 
 
-   void file::printf(string str,...)
-   {
+void html_file::printf(string str, ...)
+{
 
-      __UNREFERENCED_PARAMETER(str);
+   __UNREFERENCED_PARAMETER(str);
 
-      throw ::interface_only();
+   throw ::interface_only();
 
-   }
+}
 
 
-   void file::printstr(string str,...)
-   {
+void html_file::printstr(string str, ...)
+{
 
-      __UNREFERENCED_PARAMETER(str);
+   __UNREFERENCED_PARAMETER(str);
 
-      throw ::interface_only();
+   throw ::interface_only();
 
-   }
+}
 
 
 #else
 
 
-   void file::trace(void *,const char * psz)
-   {
+void html_file::trace(void*, const char* psz)
+{
 
-      print(psz);
+   print(psz);
 
-   }
+}
 
 
 #endif
 
 
-   void file::dprint(const char * pcsz)
-   {
+void html_file::dprint(const char* pcsz)
+{
 
-      __UNREFERENCED_PARAMETER(pcsz);
+   __UNREFERENCED_PARAMETER(pcsz);
 
-      throw ::interface_only();
+   throw ::interface_only();
 
-   }
+}
 
 
-} // namespace html
+///} // namespace html
 
 
 

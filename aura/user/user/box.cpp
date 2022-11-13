@@ -722,7 +722,7 @@ namespace user
    }
 
 
-   void box::design_window_restore(edisplay edisplay)
+   void box::design_window_restore(::e_display edisplay)
    {
 
       ::user::interaction::design_window_restore(edisplay);

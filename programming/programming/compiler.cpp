@@ -3,12 +3,21 @@
 #include "compiler.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/operating_system/process.h"
+#include "acme/platform/node.h"
+#include "acme/platform/system.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/platform/application.h"
+
+
 #ifdef WINDOWS_DESKTOP
-//#include "acme_windows/_.h"
+
+
+#include "acme_windows/_.h"
 #include "acme_windows/registry.h"
+
+
 #endif
 
 
@@ -31,12 +40,12 @@ namespace programming
    }
 
 
-   void compiler::initialize_programming_compiler(::object* pparticle)
+   void compiler::initialize_programming_compiler(::particle * pparticle)
    {
 
       //auto estatus = 
       
-      ::object::initialize(pparticle);
+      ::matter::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -55,7 +64,7 @@ namespace programming
 
          path = pacmedirectory->config() / "programming/vs.txt";
 
-         auto pcontext = get_context();
+         auto pcontext = m_pcontext;
 
          m_strVs = file()->as_string(path);
 
@@ -115,7 +124,7 @@ namespace programming
 
 #elif defined(_DEBUG)
 
-      m_strDynamicSourceConfiguration = "basis";
+      m_strDynamicSourceConfiguration = "debug";
       m_strDynamicSourceStage = "time-" OPERATING_SYSTEM_NAME;
 
 #else
@@ -152,7 +161,9 @@ namespace programming
 
 #endif
 
-      ::pointer<::aura::application>papp = get_app();
+      auto papp1 = get_app();
+
+      ::pointer<::aura::application>papp = papp1;
 
 #ifdef WINDOWS_DESKTOP
 

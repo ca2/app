@@ -1,12 +1,16 @@
 #pragma once
 
 
+#include "acme/primitive/datetime/result.h"
+#include "acme/primitive/primitive/particle.h"
+
+
 namespace datetime
 {
 
 
    class CLASS_DECL_CA2_TIME element :
-      virtual public ::matter
+      virtual public ::particle
    {
    public:
 

@@ -440,7 +440,7 @@ namespace exception
 #ifdef WINDOWS_DESKTOP
       m_iHa = 0;
       m_iMa = 0;
-      __zero(m_szaModule);
+      zero(m_szaModule);
 #else
 #endif
    }
@@ -1993,11 +1993,11 @@ void init_resolve_addr_file_func_line()
 
    bfdinit = 1;
 
-   __zero(abfda);
+   zero(abfda);
 
-   __zero(symsa);
+   zero(symsa);
 
-   __zero(texta)
+   zero(texta)
 
    bfd_init();
 

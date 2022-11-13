@@ -1,13 +1,21 @@
 #pragma once
 
 
+#include "acme/primitive/collection/pointer_array.h"
+#include "acme/primitive/datetime/result.h"
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/pointer.h"
+
+
 namespace datetime
 {
 
+   
    class element;
 
+
    class CLASS_DECL_CA2_TIME parser :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
 
@@ -17,7 +25,7 @@ namespace datetime
 
 
       parser();
-      virtual ~parser();
+      ~parser() override;
 
 
       virtual void initialize_datetime_parse(::text::context * pcontext);

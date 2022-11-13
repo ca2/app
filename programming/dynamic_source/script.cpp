@@ -6,9 +6,16 @@
 #include "script_compiler.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/parallelization/mutex.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/mathematics/_random.h"
+#include "acme/platform/library.h"
+#include "apex/crypto/rsa.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/platform/application.h"
-#include "acme/operating_system.h"
+
+
+#include "acme/_operating_system.h"
 
 
 #if defined(LINUX) || defined(APPLEOS)
@@ -61,7 +68,7 @@ namespace dynamic_source
 
       m_pfileError.create_new(this);
 
-      m_streamError.m_p = m_pfileError;
+      m_streamError.m_pfile = m_pfileError;
 
       //return estatus;
 
@@ -188,7 +195,7 @@ namespace dynamic_source
 
       m_bHasTempOsError          = false;
 
-      m_streamError.m_p->set_size(0);
+      m_streamError.m_pfile->set_size(0);
 
       m_strError.Empty();
 
@@ -199,8 +206,9 @@ namespace dynamic_source
    bool ds_script::HasTimedOutLastBuild()
    {
       synchronous_lock synchronouslock(this->synchronization());
-      return (m_durationLastBuildTime.elapsed()) >
-         INTEGRAL_SECOND{ m_pmanager->m_iBuildTimeWindow + __random(0, m_pmanager->m_iBuildTimeRandomWindow) };
+      return (m_durationLastBuildTime.elapsed()) > 
+         m_pmanager->m_durationBuildInterval +
+         __random(0_s, m_pmanager->m_durationTimeRandomInterval);
    }
 
    bool ds_script::HasCompileOrLinkError()
@@ -603,7 +611,7 @@ namespace dynamic_source
 
       {
 
-         synchronous_lock synchronouslock(&m_pmanager->m_pmutexShouldBuild);
+         synchronous_lock synchronouslock(m_pmanager->m_pmutexShouldBuild);
 
          m_pmanager->m_mapShouldBuild[m_strSourcePath] = false;
 

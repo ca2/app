@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_APEX openweather_city
+class openweather_city
 {
 public:
 

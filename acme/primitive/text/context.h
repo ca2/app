@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "acme/primitive/collection/atom_map.h"
+#include "acme/primitive/collection/pointer_array.h"
 #include "acme/primitive/text/international_locale_schema.h"
 
 
@@ -49,7 +51,7 @@ namespace text
 
 
    class CLASS_DECL_ACME table :
-      virtual public object
+      virtual public ::particle
    {
    public:
 
@@ -105,9 +107,8 @@ namespace text
    };
 
 
-
    class CLASS_DECL_ACME context :
-      virtual public ::object
+      virtual public ::particle
    {
    protected:
 
@@ -115,7 +116,6 @@ namespace text
       friend class table;
 
       ::pointer<::text::international::locale_schema>      m_plocaleschema;
-
 
       ::pointer<table>                                     m_ptable;
 
@@ -142,7 +142,7 @@ namespace text
       i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
 
-         return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       }
 
@@ -150,7 +150,7 @@ namespace text
       i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
 
-         return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         return ::particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       }
 

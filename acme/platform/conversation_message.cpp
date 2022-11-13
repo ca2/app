@@ -86,7 +86,7 @@ void conversation_message::initialize_conversation(const ::string & strMessage, 
 void conversation_message::do_asynchronously()
 {
    
-   string_buffer_stream textstream;
+   string_stream textstream;
    
    textstream << "Title:   " << m_strTitle << "\n";
    textstream << "Message: " << m_strMessage << "\n";

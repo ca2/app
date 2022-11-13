@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "_array.h"
 #include "string_array.h"
 
 

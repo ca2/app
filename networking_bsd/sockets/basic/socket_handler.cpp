@@ -5,6 +5,11 @@
 #include "acme/acme.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/platform/system.h"
+
+
+#include "acme/_operating_system.h"
+
+
 #include <time.h>
 
 #ifdef ANDROID

@@ -10,6 +10,8 @@ struct SIZE_I32
    ::i32 cx;
    ::i32 cy;
 
+   operator ::u32hash() const { return cx | cy << 16; }
+
 };
 
 

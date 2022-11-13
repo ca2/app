@@ -6,24 +6,24 @@
 
 
 template < typename STRING >
-inline STRING & string_concatenate(STRING & strResult, const typename STRING::CHAR_TYPE * psz1, strsize nLength1, const typename STRING::CHAR_TYPE * psz2, strsize nLength2);
+inline STRING & string_concatenate(STRING & strResult, const typename STRING::CHARACTER_TYPE * psz1, strsize nLength1, const typename STRING::CHARACTER_TYPE * psz2, strsize nLength2);
 
-//template < typename CHAR_TYPE >
+//template < typename CHARACTER_TYPE >
 //class string_buffer;
 #include "acme/primitive/primitive/natural.h"
 
 
-template < typename TYPE_CHAR >
+template < primitive_character CHARACTER >
 class string_meta_data :
-   public meta_data < TYPE_CHAR >
+   public meta_data < CHARACTER >
 {
 public:
 
 
-   typedef TYPE_CHAR                               CHAR_TYPE;
-   typedef string_meta_data < TYPE_CHAR >          STRING_META_DATA;
+   typedef CHARACTER                               CHARACTER_TYPE;
+   typedef string_meta_data < CHARACTER >          STRING_META_DATA;
 
-   using meta_data < TYPE_CHAR >::meta_data;
+   using meta_data < CHARACTER >::meta_data;
 
    /// in bytes, without meta, with null(s)
    inline ::memsize memsize() const { return (::memsize) this->m_memsize; }
@@ -38,13 +38,13 @@ public:
 
    inline void set_length(::strsize strsize);
 
-   operator const CHAR_TYPE * () const noexcept { return this->m_pdata; }
+   operator const CHARACTER_TYPE * () const noexcept { return this->m_pdata; }
 
-   operator CHAR_TYPE * () noexcept { return this->m_pdata; }
+   operator CHARACTER_TYPE * () noexcept { return this->m_pdata; }
 
-   const CHAR_TYPE * c_str() const noexcept { return this->m_pdata; }
+   const CHARACTER_TYPE * c_str() const noexcept { return this->m_pdata; }
 
-   CHAR_TYPE * data() const noexcept { return this->m_pdata; }
+   CHARACTER_TYPE * data() const noexcept { return this->m_pdata; }
 
 
 

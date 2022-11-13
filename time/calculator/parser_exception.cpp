@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/constant/id.h"
-
+#include "acme/exception/exception.h"
 
 
 //datetime_parsing_exception::datetime_parsing_exception(const ::string & strMessage):

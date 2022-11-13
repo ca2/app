@@ -891,7 +891,7 @@ numeric_array < TYPE, m_etypeContainer >  numeric_array < TYPE, m_etypeContainer
 
    numeric_array < TYPE, m_etypeContainer > aRet(*this);
 
-   aRet.add(a);
+   aRet.append(a);
 
    return aRet;
 
@@ -911,7 +911,7 @@ template < typename TYPE, ::enum_type m_etypeContainer >
 numeric_array < TYPE, m_etypeContainer >  & numeric_array < TYPE, m_etypeContainer >::operator += (const numeric_array < TYPE, m_etypeContainer >  & a)
 {
 
-   this->add(a);
+   this->append(a);
 
    return *this;
 

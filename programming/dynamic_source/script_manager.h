@@ -1,6 +1,12 @@
 #pragma once
 
 
+#include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "apex/message/channel.h"
+#include "apex/filesystem/file/listener.h"
+
+
 namespace dynamic_source
 {
 
@@ -106,7 +112,7 @@ namespace dynamic_source
 
 
 
-      i64                                                   m_iDatabaseWaitTimeOut;
+      ::duration                                                   m_durationDatabaseWaitTimeOut;
 
       ::pointer < ::mutex >                                               m_pmutexSession;
       string_map < ::pointer<::dynamic_source::session >>  m_mapSession;
@@ -114,8 +120,8 @@ namespace dynamic_source
       ::pointer < ::mutex >                                               m_pmutexWayDbPool;
       ::pointer<script_cache>                              m_pcache;
       ::pointer<script_compiler>                           m_pcompiler;
-      i32                                                   m_iBuildTimeWindow;
-      i32                                                   m_iBuildTimeRandomWindow;
+      ::duration                                       m_durationBuildInterval;
+      ::duration                                       m_durationTimeRandomInterval;
 
       string_to_string                                      m_strmapFunUserKey;
 

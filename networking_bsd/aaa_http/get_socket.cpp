@@ -49,7 +49,7 @@ namespace http
          m_strHeaderLocation = value;
 
       }
-      else if(key == __id(set_cookie))
+      else if(key == __id(set-cookie))
       {
 
          if(m_pcookies != nullptr)

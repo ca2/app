@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "library.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/platform/library.h"
 
 
 namespace introjection

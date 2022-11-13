@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "acme/primitive/datetime/earth_time.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/primitive/particle.h"
+
+
 namespace datetime
 {
 
@@ -11,7 +16,7 @@ namespace datetime
 
  
       class CLASS_DECL_CA2_TIME calendar :
-         virtual public ::object
+         virtual public ::particle
       {
       public:
 
@@ -24,7 +29,7 @@ namespace datetime
 
 
          calendar();
-         virtual ~calendar();
+         ~calendar() override;
 
 
          virtual void initialize(::particle * pparticle) override;

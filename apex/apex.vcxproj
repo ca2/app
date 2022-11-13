@@ -851,6 +851,7 @@
     <ClInclude Include="database\_binary_stream.h" />
     <ClInclude Include="filesystem\filesystem\file_listener.h" />
     <ClInclude Include="filesystem\file\action.h" />
+    <ClInclude Include="filesystem\file\listener.h" />
     <ClInclude Include="filesystem\file\_constant.h" />
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="handler\context.h" />

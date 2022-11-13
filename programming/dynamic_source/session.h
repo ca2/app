@@ -1,12 +1,17 @@
 #pragma once
 
 
+#include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/payload.h"
+
+
 namespace dynamic_source
 {
 
 
    class CLASS_DECL_APP_PROGRAMMING session :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
 

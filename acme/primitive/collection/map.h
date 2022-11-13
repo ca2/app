@@ -1225,9 +1225,9 @@ public:
    using KEY = KEY_TYPE;
    using VALUE = VALUE_TYPE;
    using TYPE1 = KEY;
-   using ARG_TYPE1 = typename argument_of < KEY & >::type;
    using TYPE2 = VALUE;
-   using ARG_TYPE2 = typename argument_of < const VALUE & >::type;
+   using ARG_TYPE1 = typename argument_of < TYPE1 >::type;
+   using ARG_TYPE2 = typename argument_of < TYPE2 >::type;
 
 
    // Contract

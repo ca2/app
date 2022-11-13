@@ -5,12 +5,13 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/09/22 22:30
 //  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
 //
-#pragma once
 // Created by camilo on 2021-08-31 16:00 BRT <3ThomasBS_!!
+//
 #pragma once
 
 
 
+#include "acme/primitive/primitive/enumeration.h"
 
 //constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
 
@@ -67,21 +68,6 @@ namespace write_text
 
 
 
-template<typename Type, typename RawType = Type, ::enum_type m_etypeContainer = e_type_element >
-class string_array_base;
-
-
-template<typename CHAR_TYPE>
-class string_base;
-
-
-
-using ansistring = string_base<ansichar>;
-using wd16string = string_base<wd16char>;
-using wd32string = string_base<wd32char>;
-using widestring = string_base<widechar>;
-using string = string_base < ansichar >;
-using wstring = string_base < widechar >;
 
 
 template < typename POINT >
@@ -237,6 +223,23 @@ struct base_const_c_string
 };
 
 
+template < primitive_character CHARACTER >
+class string_base;
+
+
+using ansistring = string_base<ansichar>;
+using wd16string = string_base<wd16char>;
+using wd32string = string_base<wd32char>;
+using widestring = string_base<widechar>;
+using string = string_base < ansichar >;
+using wstring = string_base < widechar >;
+
+
+
+
+template<typename Type, typename RawType = Type, ::enum_type m_etypeContainer = e_type_element >
+class string_array_base;
+
 
 
 
@@ -244,11 +247,25 @@ struct base_const_c_string
 class e_status;
 
 
+template <template <class...> class Template, class... Args>
+void derived_from_specialization_impl(const Template<Args...>&);
+
+template <class T, template <class...> class Template>
+concept derived_from_specialization_of = requires(const T & t) {
+   derived_from_specialization_impl<Template>(t);
+};
+
+template <class... Types> struct inherits : Types... {};
+
 template < typename T >
 concept a_enum = std::is_enum < T >::value;
 
 template < typename T >
-concept primitive_integral = std::is_integral_v < T > || std::is_enum < T >::value || std::is_same < T, ::e_status >::value;
+concept primitive_integral = 
+   std::is_integral_v < T > || 
+   std::is_enum < T >::value ||
+   std::is_same < T, ::e_status >::value ||
+   derived_from_specialization_of<T, enumeration >;
 
 template < typename T >
 concept primitive_integer = std::is_integral < T >::value;
@@ -260,7 +277,13 @@ template < typename T >
 concept primitive_signed = (std::is_integral < T >::value || std::is_enum < T >::value) && std::is_signed < T >::value;
 
 template < typename T >
+concept primitive_signed_not_8bit = primitive_signed < T > && sizeof(T) != 1;
+
+template < typename T >
 concept primitive_unsigned = (std::is_integral < T >::value || std::is_enum < T >::value) && !std::is_signed < T >::value;
+
+template < typename T >
+concept primitive_unsigned_not_8bit = primitive_unsigned < T > && sizeof(T) != 1;
 
 template < typename T >
 concept primitive_floating = std::is_floating_point < T >::value;
@@ -349,6 +372,7 @@ public:
 };
 
 
+
 template < typename T, typename ARG_T = typename argument_of < T >::type >
 class single;
 
@@ -389,6 +413,9 @@ concept primitive_string = ::std::is_same < typename STRING::PRIMITIVE_STRING_TA
 using item_pointer = ::pointer < ::item >;
 
 using memory_pointer = ::pointer < ::memory >;
+
+template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE > >
+using atom_map = ::map < atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE, PAIR >;
 
 
 
@@ -524,6 +551,9 @@ class function;
 
 using procedure = ::function < void() >;
 
+using procedure_array = ::comparable_array < ::procedure >;
+
+using procedure_map = ::atom_map < ::procedure_array >;
 
 using procedure_list = ::list < ::procedure >;
 
@@ -596,7 +626,7 @@ using byte_array = u8_array;
 using task_pointer = ::pointer < task >;
 
 
-#include "acme/primitive/primitive/_u32hash.h"
+//#include "acme/primitive/primitive/_u32hash.h"
 
 
 CLASS_DECL_ACME task_pointer fork(::particle * pparticle, const ::procedure & procedure);

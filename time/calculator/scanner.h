@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/particle.h"
+
+
 namespace datetime
 {
 
@@ -35,7 +38,7 @@ namespace datetime
 
 
    class CLASS_DECL_CA2_TIME scanner :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
       

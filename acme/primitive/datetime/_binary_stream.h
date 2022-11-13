@@ -2,6 +2,11 @@
 #pragma once
 
 
+#include "earth_time.h"
+#include "time_span.h"
+#include "zonetime.h"
+
+
 template < typename FILE >
 inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth::time & z)
 {

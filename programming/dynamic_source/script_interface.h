@@ -9,7 +9,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_APP_PROGRAMMING script_interface :
-      virtual public ::html::file
+      virtual public ::html_file
    {
    public:
 
@@ -59,7 +59,7 @@ namespace dynamic_source
 
 
 
-      virtual ::file::file * file();
+      virtual ::file::file * output_file();
 
 
       virtual void on_initialize();

@@ -9627,7 +9627,7 @@ payload & payload::add(const ::payload & payload)
       if(payload.get_type() == e_type_i64_array)
       {
 
-         i64_array_reference().append(payload.i64_array_reference());
+         i64_array_reference().add(payload.i64_array_reference());
 
       }
       else if(payload.get_type() == e_type_i32_array)

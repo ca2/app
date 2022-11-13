@@ -94,7 +94,7 @@ bool linux_can_exec(const char *file)
 
    }
 
-   __zero(st);
+   zero(st);
 
    if (stat(str, &st) < 0)
    {

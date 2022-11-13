@@ -1877,9 +1877,6 @@
     <ClInclude Include="primitive\collection\duration.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="constant\_enumeration.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
     <ClInclude Include="constant\_mathematics.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
@@ -2364,9 +2361,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\nanosecond_timer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\net.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\node.h">
@@ -2939,6 +2933,18 @@
     <ClInclude Include="primitive\string\utf8_character.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\string\inline_string.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_template_structures.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_random.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\net.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -3224,9 +3230,6 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\math.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\net.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\profiler.cpp">
@@ -4029,6 +4032,12 @@
     </ClCompile>
     <ClCompile Include="primitive\string\sz\ansi.cpp">
       <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\object_meta.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\net.cpp">
+      <Filter>Source Files\networking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

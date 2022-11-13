@@ -15,8 +15,9 @@
 
 #endif
 
+#ifdef GEOIP_NETWORKING
 static geoipv6_t IPV6_NULL;
-
+#endif // GEOIP_NETWORKING
 
 #define GEOIPDATADIR "/aura/geoip"
 
@@ -182,6 +183,7 @@ const char GeoIP_country_continent[253][3] = {"--","AS","EU","EU","AS","AS","SA"
                                               "SA","SA"
                                              };
 
+#ifdef GEOIP_NETWORKING
 geoipv6_t _GeoIP_lookupaddress_v6 (const char *host);
 
 #if defined(_UWP)
@@ -268,6 +270,8 @@ i32 __GEOIP_V6_IS_NULL(geoipv6_t v6)
    return 1;
 }
 
+#endif // GEOIP_NETWORKING
+
 const char * GeoIPDBDescription[NUM_DB_TYPES] = {nullptr, "GeoIP Country Edition", "GeoIP City Edition, Rev 1", "GeoIP Region Edition, Rev 1", "GeoIP ISP Edition", "GeoIP Organization Edition", "GeoIP City Edition, Rev 0", "GeoIP Region Edition, Rev 0","GeoIP Proxy Edition","GeoIP ASNum Edition","GeoIP Netspeed Edition","GeoIP Domain Name Edition", "GeoIP Country V6 Edition"};
 
 char * custom_directory = nullptr;
@@ -276,6 +280,8 @@ void GeoIP_setup_custom_directory (char * dir)
 {
    custom_directory = dir;
 }
+
+#ifdef GEOIP_FILESYSTEM
 
 char *_GeoIP_full_path_to(const char *file_name)
 {
@@ -1925,3 +1931,6 @@ u32 GeoIP_num_countries()
 {
    return num_GeoIP_countries;
 }
+
+
+#endif // GEOIP_FILESYSTEM

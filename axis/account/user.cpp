@@ -4,6 +4,7 @@
 #include "credentials.h"
 #include "authenticator.h"
 #include "acme/constant/timer.h"
+#include "acme/exception/exception.h"
 #include "apex/networking/http/cookie.h"
 #include "axis/platform/session.h"
 

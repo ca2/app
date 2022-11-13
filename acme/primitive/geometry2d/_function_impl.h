@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-08 16:19 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 16:19 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -985,7 +985,7 @@ inline auto get_normal_dimension(enum_orientation eorientation, X x, Y y)
    else
    {
 
-      throw ::exception(error_bad_argument, "invalid orientation");
+      throw_exception(error_bad_argument, "invalid orientation");
 
    }
 

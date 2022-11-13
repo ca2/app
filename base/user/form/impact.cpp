@@ -2,6 +2,7 @@
 #include "document.h"
 #include "impact.h"
 #include "acme/constant/id.h"
+#include "acme/exception/exception.h"
 #include "axis/html/html/html.h"
 #include "base/platform/system.h"
 #include "base/platform/session.h"

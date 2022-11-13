@@ -671,7 +671,7 @@ namespace user
    }
 
 
-   void document::show_all_frames(const ::edisplay & edisplay)
+   void document::show_all_frames(const ::::e_display & edisplay)
    {
 
       ::count count = get_impact_count();

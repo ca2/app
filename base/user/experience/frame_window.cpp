@@ -1935,7 +1935,7 @@ namespace experience
 #define ZONEING_COMPARE ::comparison
 
 
-      index frame_window::get_best_zoneing(edisplay & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
+      index frame_window::get_best_zoneing(::e_display & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
       {
 
          //i64 g_i_get_best_zoneing = 0;

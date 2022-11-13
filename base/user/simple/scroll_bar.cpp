@@ -1715,7 +1715,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
       //}
       
-      if(::is_ok(m_pimageDots))
+      if(m_pimageDots.ok())
       {
 
          m_pimageDots->fill_byte(0);

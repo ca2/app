@@ -270,7 +270,7 @@ namespace http
    }
 
 
-   bool cookies::set_cookie(const char * name, const ::payload & payload, const ::duration & duration, const char * path, const char * domain, bool bSecure)
+   bool cookies::set-cookie(const char * name, const ::payload & payload, const ::duration & duration, const char * path, const char * domain, bool bSecure)
    {
 
       auto & cookie = this->cookie(name);

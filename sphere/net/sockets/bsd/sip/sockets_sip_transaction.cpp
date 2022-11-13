@@ -112,13 +112,13 @@ namespace sip
    // --------------------------------------------------------------------------------------
    void transaction::SetContentType(const string & value)
    {
-      header("content_type") = value;
+      header("content-type") = value;
    }
 
 
    string transaction::ContentType()
    {
-      return header("content_type");
+      return header("content-type");
    }
 
 
@@ -126,13 +126,13 @@ namespace sip
    // --------------------------------------------------------------------------------------
    void transaction::SetContentLength(long value)
    {
-      header("content_length") = (i64) value;
+      header("content-length") = (i64) value;
    }
 
 
    long transaction::ContentLength()
    {
-      return atol(header("content_length"));
+      return atol(header("content-length"));
    }
 
 

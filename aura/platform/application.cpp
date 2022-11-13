@@ -3121,7 +3121,7 @@ retry_license:
 //
 //      wstring extension = L".spa";                     // file extension
 //      wstring desc = L"spafile";          // file type description
-//      wstring content_type = L"application/x-spa";
+//      wstring content-type = L"application/x-spa";
 //
 //      wstring app(acmedirectory()->stage(m_XstrAppId, process_platform_name(), process_configuration_name()));
 //
@@ -3144,7 +3144,7 @@ retry_license:
 //         return 0;
 //      }
 //      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)desc.c_str(), ::u32 (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
-//      RegSetValueExW(hkey, L"ContentType", 0, REG_SZ, (byte*)content_type.c_str(), ::u32 (content_type.length() * sizeof(wchar_t))); // default vlaue is description of file extension
+//      RegSetValueExW(hkey, L"ContentType", 0, REG_SZ, (byte*)content-type.c_str(), ::u32 (content-type.length() * sizeof(wchar_t))); // default vlaue is description of file extension
 //      RegCloseKey(hkey);
 //
 //

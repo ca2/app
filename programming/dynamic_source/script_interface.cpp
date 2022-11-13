@@ -44,7 +44,7 @@ namespace dynamic_source
 
       //auto estatus = 
       
-      ::html::file::initialize(pparticle);
+      ::html_file::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -85,7 +85,7 @@ namespace dynamic_source
    //void script_interface::destroy()
    //{
 
-   //   auto estatus = ::html::file::destroy();
+   //   auto estatus = ::html_file::destroy();
 
    //   m_pmain.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
    //   m_pinstanceParent2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
@@ -100,7 +100,7 @@ namespace dynamic_source
 
       //auto estatus = 
       
-      ::html::file::destroy();
+      ::html_file::destroy();
 
       m_pmain.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
       m_pinstanceParent2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
@@ -138,13 +138,13 @@ namespace dynamic_source
    //}
 
 
-   ::file::file * script_interface::file()
+   ::file::file * script_interface::output_file()
    {
 
       if(m_pmain)
       {
 
-         return m_pmain->file();
+         return m_pmain->output_file();
 
       }
       else if(netnodesocket())
@@ -494,7 +494,7 @@ namespace dynamic_source
       }
 
 
-      http::cookie& script_interface::set_cookie(atom idKey)
+      http::cookie& script_interface::set-cookie(atom idKey)
       {
 
          throw ::interface_only();

@@ -433,7 +433,7 @@
 #include "acme/platform/procedure_array.h"
 
 
-#include "acme/platform/net.h"
+#include "acme/networking/net.h"
 
 
 #include "acme/operating_system/text.h"

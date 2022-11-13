@@ -409,7 +409,7 @@ namespace text
 
          _get(stra2, pcontext, id2);
 
-         stra.add(stra2);
+         stra.append(stra2);
 
          i++;
 

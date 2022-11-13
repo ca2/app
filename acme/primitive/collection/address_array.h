@@ -23,7 +23,7 @@ public:
 
 
    ::index add(POINTER newElement) { return ARRAY_TYPE::add(newElement); }
-   ::index add(const address_array & src) { return ARRAY_TYPE::add(src); }
+   ::index append(const address_array & src) { return ARRAY_TYPE::append(src); }
 
 
    inline POINTER & element_at(::index i) { return (POINTER &)ARRAY_TYPE::element_at(i); }

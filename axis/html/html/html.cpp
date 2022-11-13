@@ -758,10 +758,10 @@ namespace html
          if(idDisplay == "html_table")
             return display_table;
 
-         if(idDisplay == "html_table_row")
+         if(idDisplay == "table-row")
             return display_table_row;
 
-         if(idDisplay == "html_table_cell")
+         if(idDisplay == "table-cell")
             return display_table_cell;
 
       }

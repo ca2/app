@@ -71,19 +71,19 @@ namespace netserver
 
       outattr("http_version") = "HTTP/1.1";
 
-      if (outheader("content_type").begins("image/"))
+      if (outheader("content-type").begins("image/"))
       {
 
          m_bSetCookie = false;
 
       }
-      else if (outheader("content_type") == "application/javascript")
+      else if (outheader("content-type") == "application/javascript")
       {
 
          m_bSetCookie = false;
 
       }
-      else if (outheader("content_type") == "text/css")
+      else if (outheader("content-type") == "text/css")
       {
 
          m_bSetCookie = false;
@@ -101,6 +101,13 @@ namespace netserver
       string strUrl = m_request.attr("http_protocol").string() + "://" + m_request.header("host").string() + m_request.attr("request_uri").string();
 
       FORMATTED_INFORMATION("socket::OnExecute: %s\n", strUrl.c_str());
+
+      for (auto& item : m_request.headers())
+      {
+
+         FORMATTED_INFORMATION("Headers %s=%s\n", item->m_atom.string().c_str(), item->string().c_str());
+
+      }
 
       auto tickExecuteBeg = ::duration::now();
 
@@ -153,7 +160,7 @@ namespace netserver
          }
 
       }
-      else if (!m_bSetCookie && key == "set_cookie")
+      else if (!m_bSetCookie && key == "set-cookie")
       {
          
          return false;
@@ -270,7 +277,7 @@ namespace netserver
    //      savepimage->m_eformat = pimage::e_format_jpeg;
    //      savepimage->m_iQuality = 50;
 
-   //      outheader("content_type") = "image/jpeg";
+   //      outheader("content-type") = "image/jpeg";
 
 
    //      pimage->save_to_file(&response().file(), &saveimage);

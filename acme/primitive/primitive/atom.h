@@ -556,6 +556,9 @@ public:
    inline bool begins(const char * pszPrefix) const;
    inline bool begins_ci(const char * pszPrefix) const;
 
+   inline bool ends(const char* pszSuffix) const;
+   inline bool ends_ci(const char* pszSuffix) const;
+
    inline bool is_text() const { return m_etype >= e_type_text; }
    inline bool is_integer() const { return m_etype >= 0 && m_etype < e_type_text; }
 
@@ -1568,6 +1571,72 @@ inline bool atom::begins_ci(const char * pszCandidatePrefix) const
 }
 
 
+inline bool atom::ends(const char* pszCandidateSuffix) const
+{
+
+   if (__atom_str_is_empty(pszCandidateSuffix))
+   {
+
+      return true;
+
+   }
+
+   if (is_empty() || is_integer())
+   {
+
+      return false;
+
+   }
+   else if (is_text())
+   {
+
+      return m_str.ends(pszCandidateSuffix);
+
+   }
+   else
+   {
+
+      throw "Unexpected::atom m_etype";
+
+      return false;
+
+   }
+
+}
+
+
+inline bool atom::ends_ci(const char* pszCandidateSuffix) const
+{
+
+   if (__atom_str_is_empty(pszCandidateSuffix))
+   {
+
+      return true;
+
+   }
+
+   if (is_empty())
+   {
+
+      return false;
+
+   }
+   else if (is_text())
+   {
+
+      return m_str.ends_ci(pszCandidateSuffix);
+
+   }
+   else
+   {
+
+      throw "Unexpected ::atom m_etype";
+
+      return false;
+
+   }
+
+}
 
 
 

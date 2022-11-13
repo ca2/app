@@ -191,10 +191,10 @@ public:
    }
 
    template < container_type CONTAINER >
-   ::index add(const CONTAINER & a)
+   ::index append(const CONTAINER & a)
    {
 
-      return BASE_ARRAY::add(a);
+      return BASE_ARRAY::append(a);
 
    }
 
@@ -709,23 +709,23 @@ public:
 
 
 
-   template < class ARRAY >
-   pointer_array & append(const ARRAY * pa)
-   {
+   //template < primitive_container ARRAY >
+   //::count add(const ARRAY * pa)
+   //{
 
-      ::count c = pa->get_count(); // allow to append to itself one time
+   //   ::count c = pa->get_count(); // allow to append to itself one time
 
-      for(::index i = 0; i < c; i++)
-      {
-         this->add(pa->element_at(i));
-      }
+   //   for(::index i = 0; i < c; i++)
+   //   {
+   //      this->add(pa->element_at(i));
+   //   }
 
-      return *this;
+   //   return c;
 
-   }
+   //}
 
-   template < class ARRAY >
-   pointer_array & append(const ::pointer<ARRAY>& pa)
+   template < primitive_container ARRAY >
+   ::count add(const ::pointer<ARRAY>& pa)
    {
 
       ::count c = pa->get_count(); // allow to append to itself one time
@@ -735,12 +735,12 @@ public:
          this->add(pa->operator[](i));
       }
 
-      return *this;
+      return c;
 
    }
 
-   template < class ARRAY >
-   pointer_array & append(const ARRAY & a)
+   template < primitive_container ARRAY >
+   ::count add(const ARRAY & a)
    {
 
       ::count c = a.get_count(); // allow to append to itself one time
@@ -750,12 +750,12 @@ public:
          this->add(a.element_at(i));
       }
 
-      return *this;
+      return c;
 
    }
 
 
-   pointer_array & append(const pointer_array & a)
+   ::count append(const pointer_array & a)
    {
 
       ::count c = a.get_count(); // allow to append to itself one time
@@ -767,13 +767,13 @@ public:
 
       }
 
-      return *this;
+      return c;
 
    }
 
 
-   template < class ARRAY >
-   pointer_array & append_ptra(const ARRAY * pptra)
+   template < primitive_container ARRAY >
+   ::count append_ptra(const ARRAY* pptra)
    {
 
       ::count c = pptra->get_count(); // allow to append to itself one time
@@ -783,24 +783,24 @@ public:
          this->add(*pptra->operator[](i));
       }
 
-      return *this;
+      return c;
 
    }
 
-   template < class ARRAY >
-   pointer_array & copy(const ARRAY * pa)
-   {
+   //template < class ARRAY >
+   //pointer_array & copy(const ARRAY * pa)
+   //{
 
-      if(pa == dynamic_cast < ARRAY * > (this))
-         return *this;
+   //   if(pa == dynamic_cast < ARRAY * > (this))
+   //      return *this;
 
-      this->erase_all();
+   //   this->erase_all();
 
-      this->append(pa);
+   //   this->append(pa);
 
-      return *this;
+   //   return *this;
 
-   }
+   //}
 
    template < class ARRAY >
    pointer_array & copy(const ::pointer<ARRAY>& pa)
@@ -848,24 +848,17 @@ public:
 
    }
 
-   template < class ARRAY >
-   pointer_array & copy(const ARRAY & a)
-   {
+   //template < class ARRAY >
+   //pointer_array & copy(const ARRAY & a)
+   //{
 
-      if (&a == dynamic_cast <ARRAY*> (this))
-      {
+   //   this->erase_all();
 
-         return *this;
+   //   this->append(a);
 
-      }
+   //   return *this;
 
-      this->erase_all();
-
-      this->append(a);
-
-      return *this;
-
-   }
+   //}
 
    pointer_array & copy(const pointer_array & a)
    {

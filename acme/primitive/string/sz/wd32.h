@@ -24,7 +24,9 @@ inline i32 string_collate_ci(const wd32char * pszA, const wd32char * pszB) noexc
 inline i32 string_n_collate(const wd32char * pszA, const wd32char * pszB, strsize len) noexcept;
 inline i32 string_n_collate_ci(const wd32char * pszA, const wd32char * pszB, strsize len) noexcept;
 inline strsize string_get_length(const wd32char * psz) noexcept;
+inline strsize string_get_length(const wd32char* psz, strsize sizeMaximumInterest) noexcept;
 inline strsize string_safe_length(const wd32char * psz) noexcept;
+inline strsize string_safe_length(const wd32char* psz, strsize sizeMaximumInterest) noexcept;
 inline wd32char * string_lowercase(wd32char * psz, strsize size) noexcept;
 
 

@@ -148,6 +148,8 @@ static GeoIPRecord * _get_record(GeoIP* gi, u32 ipnum)
 
 }
 
+
+#ifdef GEOIP_NETWORKING
 static
 GeoIPRecord * _get_record_v6(GeoIP* gi, geoipv6_t ipnum)
 {
@@ -253,6 +255,7 @@ i32 GeoIP_record_id_by_addr_v6 (GeoIP* gi, const char *addr)
    ipnum = _GeoIP_addr_to_num_v6(addr);
    return _GeoIP_seek_record_v6(gi, ipnum);
 }
+#endif // GEOIP_NETWORKING
 
 i32 GeoIP_init_record_iter (GeoIP* gi)
 {

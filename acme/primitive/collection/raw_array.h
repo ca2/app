@@ -63,7 +63,7 @@ public:
    TYPE get_at_grow(::index nIndex);
    ::index add(ARG_TYPE newElement) { return add_item(newElement); }
    ::index add_item(ARG_TYPE newElement);
-   ::index add(const raw_array& src);
+   ::index append(const raw_array& src);
    virtual TYPE * add_new(::count count);
    virtual TYPE & add_new();
    //::index append(const raw_array& src);
@@ -241,10 +241,10 @@ inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::add_it
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::add(const raw_array & src)
+inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::append(const raw_array & src)
 {
 
-   return this->append(src);
+   return ARRAY_BASE::append(src);
 
 }
 
@@ -807,11 +807,11 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < TYPE, AR
    if(&a == this)
    {
       raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > aCopy(a);
-      add(aCopy);
+      append(aCopy);
    }
    else
    {
-      add(a);
+      append(a);
    }
    return *this;
 

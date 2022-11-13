@@ -429,12 +429,6 @@
     <ClInclude Include="database\simpledb\_simpledb.h" />
     <ClInclude Include="database\_.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="geoip\city.h" />
-    <ClInclude Include="geoip\global.h" />
-    <ClInclude Include="geoip\internal.h" />
-    <ClInclude Include="geoip\update.h" />
-    <ClInclude Include="geoip\_.h" />
-    <ClInclude Include="geoip\geoip.h" />
     <ClInclude Include="graphics\render\water_routine.h" />
     <ClInclude Include="html\element\element.h" />
     <ClInclude Include="html\element\_.h" />

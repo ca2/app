@@ -23,9 +23,7 @@ inline string_base < CHARACTER >::string_base(const CHARACTER2 * pszSource, strs
    string_base(e_no_initialize)
 {
 
-   auto lenSource = string_safe_length(pszSource);
-
-   start_count(start, count, lenSource);
+   auto lenSource = start_count_length(start, count, pszSource);
 
    auto dstlen = utf_to_utf_length(this->m_pdata, pszSource + start, count);
 
@@ -662,6 +660,55 @@ inline ::string_base < CHARACTER > & string_base < CHARACTER >::assign(const ::s
 
 
 template < primitive_character CHARACTER >
+template < primitive_character CHARACTER2 >
+inline strsize string_base < CHARACTER > ::start_count_length(strsize& start, strsize& count, const CHARACTER2* pszSource)
+{
+
+   strsize len = -1;
+
+   if (start < 0)
+   {
+
+      start = 0;
+
+   }
+
+   if (count < 0)
+   {
+
+      len = string_safe_length(pszSource);
+
+      count += (len - start) + 1;
+
+      if (count < 0)
+      {
+
+         count = 0;
+
+      }
+
+   }
+
+   if (len < 0)
+   {
+
+      len = string_safe_length(pszSource, start + count);
+
+   }
+
+   if (count + start > len)
+   {
+
+      count = len - start;
+
+   }
+
+   return len;
+
+}
+
+
+template < primitive_character CHARACTER >
 inline void string_base < CHARACTER >::start_count(strsize & start, strsize & count, strsize len)
 {
 
@@ -701,9 +748,7 @@ template < primitive_character CHARACTER2 >
 inline string_base < CHARACTER > & string_base < CHARACTER >::assign(const CHARACTER2 * pszSource, strsize start, strsize count)
 {
 
-   auto lenSource = string_safe_length(pszSource);
-
-   start_count(start, count, lenSource);
+   auto lenSource = start_count_length(start, count, pszSource);
 
    return _assign(pszSource, start, count);
 
@@ -5418,7 +5463,7 @@ inline string_base < CHARACTER > & string_base < CHARACTER > ::ensure_ends_ci(co
 
 
 template < primitive_character CHARACTER >
-inline strsize string_base < CHARACTER > ::begins(const CHARACTER_TYPE * pszPrefix) const
+inline bool string_base < CHARACTER > ::begins(const CHARACTER_TYPE * pszPrefix) const
 {
 
    auto psz = c_str();
@@ -5431,7 +5476,7 @@ inline strsize string_base < CHARACTER > ::begins(const CHARACTER_TYPE * pszPref
       if (*psz != *pszPrefix)
       {
 
-         return 0;
+         return false;
 
       }
 
@@ -5443,13 +5488,13 @@ inline strsize string_base < CHARACTER > ::begins(const CHARACTER_TYPE * pszPref
 
    }
 
-   return len;
+   return !*pszPrefix;
 
 }
 
 
 template < primitive_character CHARACTER >
-inline strsize string_base < CHARACTER > ::ends(const CHARACTER_TYPE * pszSuffix) const
+inline bool string_base < CHARACTER > ::ends(const CHARACTER_TYPE * pszSuffix) const
 {
 
    return string_ends(c_str(), get_length(), pszSuffix, string_safe_length(pszSuffix));
@@ -5458,7 +5503,7 @@ inline strsize string_base < CHARACTER > ::ends(const CHARACTER_TYPE * pszSuffix
 
 
 template < primitive_character CHARACTER >
-inline strsize string_base < CHARACTER > ::begins_ci(const CHARACTER_TYPE * pszPrefix) const
+inline bool string_base < CHARACTER > ::begins_ci(const CHARACTER_TYPE * pszPrefix) const
 {
 
    auto psz = c_str();
@@ -5471,7 +5516,7 @@ inline strsize string_base < CHARACTER > ::begins_ci(const CHARACTER_TYPE * pszP
       if (character_tolower(*psz) != character_tolower(*pszPrefix))
       {
 
-         return 0;
+         return false;
 
       }
 
@@ -5483,13 +5528,13 @@ inline strsize string_base < CHARACTER > ::begins_ci(const CHARACTER_TYPE * pszP
 
    }
 
-   return len;
+   return !*pszPrefix;
 
 }
 
 
 template < primitive_character CHARACTER >
-inline strsize string_base < CHARACTER > ::ends_ci(const CHARACTER_TYPE * pszSuffix) const
+inline bool string_base < CHARACTER > ::ends_ci(const CHARACTER_TYPE * pszSuffix) const
 {
 
    return string_ends_ci(c_str(), get_length(), pszSuffix, string_safe_length(pszSuffix));
@@ -5498,202 +5543,202 @@ inline strsize string_base < CHARACTER > ::ends_ci(const CHARACTER_TYPE * pszSuf
 
 
 template < primitive_character CHARACTER >
-inline strsize string_base < CHARACTER > ::begins_eat(const CHARACTER_TYPE * pszPrefix)
+inline bool string_base < CHARACTER > ::begins_eat(const CHARACTER_TYPE * pszPrefix)
 {
 
-   auto len = begins(pszPrefix);
+   strsize lenPrefix;
 
-   if (len <= 0)
+   if (!_string_begins(c_str(), this->get_length(), pszPrefix, lenPrefix))
    {
 
-      return 0;
+      return false;
 
    }
 
-   assign(c_str() + len, get_length() - len);
+   assign(c_str() + lenPrefix, get_length() - lenPrefix);
 
-   return len;
+   return true;
 
 }
 
 
 template < primitive_character CHARACTER >
-inline strsize string_base < CHARACTER > ::ends_eat(const CHARACTER_TYPE * pszSuffix)
+inline bool string_base < CHARACTER > ::ends_eat(const CHARACTER_TYPE * pszSuffix)
 {
 
-   auto len = ends(pszSuffix);
+   strsize lenSuffix;
 
-   if (len <= 0)
+   if (!_string_ends(c_str(), this->get_length(), pszSuffix, lenSuffix))
    {
 
-      return 0;
+      return false;
 
    }
 
-   truncate(get_length() - len);
+   truncate(get_length() - lenSuffix);
 
-   return len;
+   return true;
 
 }
 
 
 template < primitive_character CHARACTER >
-inline strsize string_base < CHARACTER > ::begins_eat_ci(const CHARACTER_TYPE * pszPrefix)
+inline bool string_base < CHARACTER > ::begins_eat_ci(const CHARACTER_TYPE * pszPrefix)
 {
 
-   auto len = begins_ci(pszPrefix);
+   strsize lenPrefix;
 
-   if (len <= 0)
+   if (!_string_begins_ci(c_str(), this->get_length(), pszPrefix, lenPrefix))
    {
 
-      return 0;
+      return false;
 
    }
 
-   assign(c_str() + len, get_length() - len);
+   assign(c_str() + lenPrefix, get_length() - lenPrefix);
 
-   return len;
+   return true;
 
 }
 
 
 template < primitive_character CHARACTER >
-inline strsize string_base < CHARACTER > ::ends_eat_ci(const CHARACTER_TYPE * pszSuffix)
+inline bool string_base < CHARACTER > ::ends_eat_ci(const CHARACTER_TYPE * pszSuffix)
 {
 
-   auto len = ends_ci(pszSuffix);
+   strsize lenSuffix;
 
-   if (len <= 0)
+   if (!_string_ends_ci(c_str(), this->get_length(), pszSuffix, lenSuffix))
    {
 
-      return 0;
+      return false;
 
    }
 
-   truncate(get_length() - len);
+   truncate(get_length() - lenSuffix);
 
-   return len;
+   return true;
 
 }
 
 
 template < primitive_character CHARACTER >
-inline strsize string_base < CHARACTER > ::begins_eat(string_base & strRest, const CHARACTER_TYPE * pszPrefix) const
+inline bool string_base < CHARACTER > ::begins_eat(string_base & strRest, const CHARACTER_TYPE * pszPrefix) const
 {
 
-   auto len = begins(pszPrefix);
+   strsize lenPrefix;
 
-   if (!len)
+   if (!_string_begins(c_str(), this->get_length(), pszPrefix, lenPrefix))
    {
 
-      return 0;
+      return false;
 
    }
 
-   strRest.assign(c_str() + len, get_length() - len);
+   strRest.assign(c_str() + lenPrefix, get_length() - lenPrefix);
 
-   return len;
+   return true;
 
 }
 
 
 template < primitive_character CHARACTER >
-inline strsize string_base < CHARACTER > ::ends_eat(string_base & strRest, const CHARACTER_TYPE * pszSuffix) const
+inline bool string_base < CHARACTER > ::ends_eat(string_base & strRest, const CHARACTER_TYPE * pszSuffix) const
 {
 
-   auto len = ends(pszSuffix);
+   strsize lenSuffix;
 
-   if (!len)
+   if (!_string_ends(c_str(), this->get_length(), pszSuffix, lenSuffix))
    {
 
-      return 0;
+      return false;
 
    }
 
-   strRest.assign(c_str(), get_length() - len);
+   strRest.assign(c_str(), get_length() - lenSuffix);
 
-   return len;
+   return true;
 
 }
 
 
 template < primitive_character CHARACTER >
-inline strsize string_base < CHARACTER > ::begins_eat_ci(string_base & strRest, const CHARACTER_TYPE * pszPrefix) const
+inline bool string_base < CHARACTER > ::begins_eat_ci(string_base & strRest, const CHARACTER_TYPE * pszPrefix) const
 {
 
-   auto len = begins_ci(pszPrefix);
+   strsize lenPrefix;
 
-   if (!len)
+   if (!_string_begins_ci(c_str(), this->get_length(), pszPrefix, lenPrefix))
    {
 
-      return 0;
+      return false;
 
    }
 
-   strRest.assign(c_str() + len, get_length() - len);
+   strRest.assign(c_str() + lenPrefix, get_length() - lenPrefix);
 
-   return len;
+   return true;
 
 }
 
 
 template < primitive_character CHARACTER >
-inline strsize string_base < CHARACTER > ::ends_eat_ci(string_base & strRest, const CHARACTER_TYPE * pszSuffix) const
+inline bool string_base < CHARACTER > ::ends_eat_ci(string_base & strRest, const CHARACTER_TYPE * pszSuffix) const
 {
 
-   auto len = ends_ci(pszSuffix);
+   strsize lenSuffix;
 
-   if (!len)
+   if (!_string_ends_ci(c_str(), this->get_length(), pszSuffix, lenSuffix))
    {
 
-      return 0;
+      return false;
 
    }
 
-   strRest.assign(c_str(), get_length() - len);
+   strRest.assign(c_str(), get_length() - lenSuffix);
 
-   return len;
+   return true;
 
 }
 
 
 
 template < primitive_character CHARACTER >
-inline strsize string_base < CHARACTER > ::begins_eaten_ci(string_base & strEaten, const CHARACTER_TYPE * pszPrefix) const
+inline bool string_base < CHARACTER > ::begins_eaten_ci(string_base & strEaten, const CHARACTER_TYPE * pszPrefix) const
 {
 
-   auto len = begins_ci(pszPrefix);
+   strsize lenPrefix;
 
-   if (!len)
+   if (!_string_begins_ci(c_str(), this->get_length(), pszPrefix, lenPrefix))
    {
 
-      return 0;
+      return false;
 
    }
 
-   strEaten.assign(c_str(), len);
+   strEaten.assign(c_str(), lenPrefix);
 
-   return len;
+   return true;
 
 }
 
 
 template < primitive_character CHARACTER >
-inline strsize string_base < CHARACTER > ::ends_eaten_ci(string_base & strEaten, const CHARACTER_TYPE * pszSuffix) const
+inline bool string_base < CHARACTER > ::ends_eaten_ci(string_base & strEaten, const CHARACTER_TYPE * pszSuffix) const
 {
 
-   auto len = ends_ci(pszSuffix);
+   strsize lenSuffix;
 
-   if (!len)
+   if (!_string_ends_ci(c_str(), this->get_length(), pszSuffix, lenSuffix))
    {
 
-      return 0;
+      return false;
 
    }
 
-   strEaten.assign(c_str() + length() - len, len);
+   strEaten.assign(c_str() + length() - lenSuffix, lenSuffix);
 
-   return len;
+   return true;
 
 }
 

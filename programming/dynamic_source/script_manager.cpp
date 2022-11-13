@@ -664,7 +664,7 @@ namespace dynamic_source
                      if (pdsscript->m_strError.has_char())
                      {
 
-                        pinstanceParent->file()->print(pscript->m_strError);
+                        pinstanceParent->output_file()->print(pscript->m_strError);
 
                      }
 

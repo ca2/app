@@ -1471,7 +1471,7 @@ namespace http
 
             psession->m_psockethandler->select(240, 0);
 
-//            keeplive.keep_alive();
+//            keeplive.keep-alive();
 
             set["http_content_length"] = psession->m_content_length;
 
@@ -1525,7 +1525,7 @@ namespace http
 
          }
 
-///         keeplive.keep_alive();
+///         keeplive.keep-alive();
 
          (*this)["dw"].duration().Now();
 
@@ -2043,7 +2043,7 @@ namespace http
          if (set["cookies"].cast < ::http::cookies >()->find_cookie("sessid") >= 0)
          {
 
-            set["cookies"].cast < ::http::cookies >()->set_cookie("sessid", strSessId);
+            set["cookies"].cast < ::http::cookies >()->set-cookie("sessid", strSessId);
 
          }
 
@@ -2057,7 +2057,7 @@ namespace http
       //   if (set["user"].cast < ::account::user >()->m_phttpcookies->find_cookie("sessid") >= 0)
       //   {
 
-      //      set["user"].cast < ::account::user >()->m_phttpcookies->set_cookie("sessid", strSessId);
+      //      set["user"].cast < ::account::user >()->m_phttpcookies->set-cookie("sessid", strSessId);
 
       //   }
 
@@ -2271,7 +2271,7 @@ namespace http
 
          psocket->m_scalarsourceDownloaded.set_scalar(::scalar_none, iBodySizeDownloaded);
 
-//         keeplive.keep_alive();
+//         keeplive.keep-alive();
 
          if (psocket->m_estatus == error_connection_timed_out
             || psocket->m_estatus == error_on_connection_timeout)
@@ -2317,7 +2317,7 @@ namespace http
 
       }
 
-//      keeplive.keep_alive();
+//      keeplive.keep-alive();
 
       set["get_headers"] = psocket->outheaders();
 
@@ -2838,7 +2838,7 @@ namespace http
       if (iStatusCode == 200)
       {
 
-         return psocket->outheader(__id(content_length));
+         return psocket->outheader(__id(content-length));
 
       }
       else

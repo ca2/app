@@ -38,10 +38,10 @@ namespace http
    }
 
 
-   void form::parse_body(file::file *infil, const char * pszContentType, strsize content_length)
+   void form::parse_body(file::file *infil, const char * pszContentType, strsize content-length)
    {
 
-      if (::comparison::gt(content_length, get_max_http_post()))
+      if (::comparison::gt(content-length, get_max_http_post()))
       {
 
          return;
@@ -50,18 +50,18 @@ namespace http
 
       ::text_stream is(infil);
 
-      __UNREFERENCED_PARAMETER(content_length);
+      __UNREFERENCED_PARAMETER(content-length);
 
       strsize extra = 2;
 
-      string content_type(pszContentType);
+      string content-type(pszContentType);
 
       infil->seek_to_begin();
 
-      if (content_type.get_length() >= 19 && content_type.Mid(0, 19) == "multipart/form-data")
+      if (content-type.get_length() >= 19 && content-type.Mid(0, 19) == "multipart/form-data")
       {
          
-         ::parse pa(content_type,";=");
+         ::parse pa(content-type,";=");
 
          memory tempcmp;
          index tc = 0;
@@ -81,13 +81,13 @@ namespace http
          }
          if (!m_strBoundary.is_empty())
          {
-            string content_type;
+            string content-type;
             string current_name;
             string current_filename;
             string slask;
             while((slask.has_char() && !ansi_count_compare(slask,m_strBoundary, m_strBoundary.get_length())) || infil ->read_string(slask))
             {
-               content_type = "";
+               content-type = "";
                current_name = "";
                current_filename = "";
                if ((strstr(slask,m_strBoundary) || strstr(m_strBoundary,slask)) && strcmp(slask, m_strBoundary))
@@ -109,7 +109,7 @@ namespace http
                      string h = pa.getword();
                      if(!ansi_compare_ci(h,"Content-type:"))
                      {
-                        content_type = pa.getword();
+                        content-type = pa.getword();
                      }
                      else if(!ansi_compare_ci(h,"Content-Disposition:"))
                      {
@@ -352,7 +352,7 @@ namespace http
 
                         m_setPost[current_name]["name"]           = current_filename;
                         m_setPost[current_name]["tmp_name"]       = strTempFile;
-                        m_setPost[current_name]["content_type"]   = content_type;
+                        m_setPost[current_name]["content-type"]   = content-type;
 
                         slask = m_strBoundary;
 
@@ -388,7 +388,7 @@ namespace http
       }
       else
          // "x-www-form-urlencoded" is the default
-         //if (strstr(content_type, "x-www-form-urlencoded"))
+         //if (strstr(content-type, "x-www-form-urlencoded"))
       {
 
          string strNetworkArguments;
@@ -396,7 +396,7 @@ namespace http
          infil->full_read_string(strNetworkArguments);
 
          //strsize len = str.get_length();
-//         strsize clen = content_length;
+//         strsize clen = content-length;
          //FORMATTED_TRACE("x-www-form-urlencoded POST is %d bytes length and reported content-length header is %d.", len);
          m_setPost.parse_network_arguments(strNetworkArguments);
 

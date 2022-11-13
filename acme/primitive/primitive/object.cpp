@@ -492,7 +492,7 @@ void object::add_each_routine_from(const ::atom& atom, ::object* pobjectSource)
       if (pprocedurea)
       {
 
-         get_meta()->m_mapRoutine[atom].add(*pprocedurea);
+         get_meta()->m_mapRoutine[atom].append(*pprocedurea);
 
       }
 

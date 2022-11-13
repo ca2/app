@@ -55,7 +55,7 @@ namespace http
          m_strHeaderLocation = value;
 
       }
-      else if(key == "set_cookie")
+      else if(key == "set-cookie")
       {
 
          if(m_pcookies != nullptr)

@@ -564,7 +564,7 @@ namespace user
       {
       // show the application window
       ::pointer<::user::interaction>pMainWnd = psystem->m_puiMain;
-      edisplay edisplay = psystem->m_nCmdShow;
+      ::e_display edisplay = psystem->m_nCmdShow;
       if (nCmdShow == -1 || nCmdShow == SW_SHOWNORMAL)
       {
        trans         if (pMainWnd->is_iconic())

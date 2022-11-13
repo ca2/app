@@ -191,7 +191,7 @@ namespace experience
 
             auto psystem = acmesystem()->m_pbasesystem;
 
-            throw exit_exception(psystem, "no experience_* plugin installed");
+            throw exit_exception(::error_exit_system, psystem, "no experience_* plugin installed");
 
          }
 

@@ -4,7 +4,7 @@
 #include "acme/primitive/data/container.h"
 #include "aqua/user/controller.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/collection/procedure_array.h"
+//#include "acme/primitive/collection/procedure_array.h"
 
 
 namespace user
@@ -247,7 +247,7 @@ namespace user
 
       virtual ::pointer<::user::impact>get_typed_impact_with_id(::type info,atom atom);
 
-      virtual void show_all_frames(const ::edisplay & edisplay = e_display_restored);
+      virtual void show_all_frames(const ::e_display & edisplay = e_display_restored);
 
 
       //class update

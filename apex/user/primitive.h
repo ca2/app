@@ -199,7 +199,7 @@ namespace user
       void on_reposition() override;
       void on_show_window() override;
 
-      //virtual void BringToTop(edisplay edisplay);
+      //virtual void BringToTop(::e_display edisplay);
       //virtual bool BringWindowToTop();
 //
 //#ifdef WINDOWS_DESKTOP
@@ -280,7 +280,7 @@ namespace user
 
       //virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
       //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
-      //virtual bool _display(edisplay edisplay);
+      //virtual bool _display(::e_display edisplay);
 
       //virtual void SetWindowDisplayChanged();
 
@@ -517,15 +517,15 @@ namespace user
       //virtual bool onscreen_is_zoomed();
       //virtual bool onscreen_is_iconic();
 
-      //virtual bool display(edisplay edisplay);
+      //virtual bool display(::e_display edisplay);
 
       //virtual edisplay get_display();
       //virtual edisplay get_previous_display();
 
 
-      //virtual bool defer_set_appearance(edisplay edisplay);
-      //virtual bool set_appearance(edisplay edisplay);
-      //virtual bool set_previous_display(edisplay edisplay);
+      //virtual bool defer_set_appearance(::e_display edisplay);
+      //virtual bool set_appearance(::e_display edisplay);
+      //virtual bool set_previous_display(::e_display edisplay);
 
 
       //void show_keyboard(bool bShow = true) override;

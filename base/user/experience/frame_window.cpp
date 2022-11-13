@@ -2441,7 +2441,7 @@ namespace experience
 
       auto rectangleRequest = screen_rect();
 
-      edisplay edisplay = const_layout().sketch().display();
+      ::e_display edisplay = const_layout().sketch().display();
 
       if (!::is_equivalent(edisplay, e_display_restored))
       {

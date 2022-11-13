@@ -1,10 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/collection/int_map.h"
-#include "acme/primitive/geometry2d/point.h"
-#include "acme/primitive/geometry2d/rectangle.h"
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "apex/message/channel.h"
 
 
@@ -24,7 +22,7 @@ namespace experience
       point_i32                           m_pointCursorDockOrigin;
       point_i32                           m_pointWindowOrigin;
       bool                                m_bDocking;
-      edisplay                            m_edisplayOrigin;
+      ::e_display                         m_edisplayOrigin;
       ::size_i32                          m_sizeOrigin;
       ::point_i32                         m_pointMove;
       ::i32_map < rectangle_i32 >         m_mapWorkspaceRect;

@@ -879,7 +879,7 @@
     <ClInclude Include="uncompress.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="_compress_bzip2.h" />
+    <ClInclude Include="aaa_compress_bzip2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress.cpp" />

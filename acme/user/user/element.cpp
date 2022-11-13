@@ -2446,7 +2446,7 @@ namespace user
    //}
 
 
-   //void element::design_window_restore(edisplay edisplay)
+   //void element::design_window_restore(::e_display edisplay)
    //{
 
    //   throw ::interface_only();
@@ -3287,7 +3287,7 @@ namespace user
    //}
 
 
-   //bool element::defer_set_appearance(edisplay edisplay)
+   //bool element::defer_set_appearance(::e_display edisplay)
    //{
 
    //   if (get_display() == edisplay)
@@ -3301,7 +3301,7 @@ namespace user
 
    //}
 
-   //bool element::set_appearance(edisplay edisplay)
+   //bool element::set_appearance(::e_display edisplay)
    //{
 
    //   throw ::interface_only();
@@ -3311,7 +3311,7 @@ namespace user
    //}
 
 
-   //bool element::set_previous_display(edisplay edisplay)
+   //bool element::set_previous_display(::e_display edisplay)
    //{
 
    //   throw ::interface_only();

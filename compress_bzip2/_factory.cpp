@@ -1,4 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "compress.h"
+#include "uncompress.h"
+
 
 
 CLASS_DECL_COMPRESS_BZIP2 void compress_bzip2_factory(::factory::factory * pfactory)

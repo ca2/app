@@ -2357,7 +2357,7 @@ namespace user
 //   }
 
 
-   void frame_window::ActivateFrame(edisplay edisplay)
+   void frame_window::ActivateFrame(::e_display edisplay)
    // nCmdShow is the normal show mode this frame should be in
    {
       // translate default nCmdShow (-1)

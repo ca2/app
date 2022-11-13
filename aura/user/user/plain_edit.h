@@ -486,7 +486,7 @@ namespace user
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual bool display(edisplay edisplay) override;
+      //virtual bool display(::e_display edisplay) override;
 
       virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 

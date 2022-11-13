@@ -3363,7 +3363,7 @@ namespace user
    //}
 
 
-   //bool primitive::defer_set_appearance(edisplay edisplay)
+   //bool primitive::defer_set_appearance(::e_display edisplay)
    //{
 
    //   if (get_display() == edisplay)
@@ -3377,7 +3377,7 @@ namespace user
 
    //}
 
-   //bool primitive::set_appearance(edisplay edisplay)
+   //bool primitive::set_appearance(::e_display edisplay)
    //{
 
    //   throw ::interface_only();
@@ -3387,7 +3387,7 @@ namespace user
    //}
 
 
-   //bool primitive::set_previous_display(edisplay edisplay)
+   //bool primitive::set_previous_display(::e_display edisplay)
    //{
 
    //   throw ::interface_only();

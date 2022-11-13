@@ -8097,7 +8097,7 @@ namespace user
    }
 
 
-   //bool plain_edit::display(edisplay edisplay)
+   //bool plain_edit::display(::e_display edisplay)
    //{
 
    //   if (nCmdShow != e_display_none)

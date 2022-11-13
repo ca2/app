@@ -2,8 +2,10 @@
 #include "application.h"
 #include "session.h"
 #include "system.h"
-#include "apex/platform/create.h"
 #include "acme/filesystem/file/item_array.h"
+#include "apex/platform/create.h"
+#include "aura/user/user/interaction.h"
+#include "base/user/user/impact_system.h"
 #include "base/user/user/user.h"
 #include "base/user/user/document_manager.h"
 

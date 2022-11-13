@@ -451,7 +451,7 @@ void simple_frame_window::WindowDataSaveWindowRect()
 bool simple_frame_window::_001OnBeforeAppearance()
 {
 
-   edisplay edisplay = const_layout().sketch().display();
+   ::e_display edisplay = const_layout().sketch().display();
 
    if (edisplay == ::e_display_up || edisplay == ::e_display_down)
    {
@@ -1586,7 +1586,7 @@ void simple_frame_window::_001OnUpdateToggleTransparentFrame(::message::message 
 }
 
 
-void simple_frame_window::ActivateFrame(edisplay edisplay)
+void simple_frame_window::ActivateFrame(::e_display edisplay)
 {
 
    ::user::frame_window::ActivateFrame(edisplay);
@@ -3333,7 +3333,7 @@ string simple_frame_window::get_window_default_matter()
 //
 //         // finally, activate the frame
 //         // (send the default show command unless the main desktop u)
-//         edisplay edisplay = e_display_default;      // default
+//         ::e_display edisplay = e_display_default;      // default
 //         ::aura::application* pApp = System;
 //         if (pApp != nullptr && pApp->m_puiMain == pframe)
 //         {
@@ -3694,7 +3694,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //}
 
 
-//void simple_frame_window::WfiOnDock(edisplay edisplay)
+//void simple_frame_window::WfiOnDock(::e_display edisplay)
 //{
 //
 //   _001WindowDock(edisplay);
@@ -3845,7 +3845,7 @@ class ::mini_dock_frame_window * simple_frame_window::CreateFloatingFrame(u32 uS
 
 
 
-//bool simple_frame_window::display(edisplay edisplay)
+//bool simple_frame_window::display(::e_display edisplay)
 //{
 //
 //   bool bOk1 = ::user::frame_window::display(edisplay);

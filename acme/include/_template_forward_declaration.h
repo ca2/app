@@ -833,7 +833,7 @@ using i64_spreadset = spreadset < i64, i64, i64, i64, unique_i64_sort_array, uni
 
 
 template < typename TYPE, std::size_t SIZE >
-inline array_reference < TYPE, SIZE >& __zero(TYPE(&)[SIZE]);
+inline array_reference < TYPE, SIZE >& zero(TYPE(&)[SIZE]);
 
 
 

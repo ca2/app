@@ -880,7 +880,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
 //
 //      //TRACELASTERROR();
 //
-//      __zero(file_time);
+//      zero(file_time);
 //
 //   }
 //

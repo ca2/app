@@ -1113,7 +1113,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
 
       MESSAGE msg;
 
-      __zero(msg);
+      zero(msg);
 
       msg.message = message;
 

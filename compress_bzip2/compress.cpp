@@ -89,7 +89,7 @@ namespace compress_bzip2
       i32                    m_z_err;   /* error code for last stream operation */
       iptr                    ret;
 
-      __zero(zstream);
+      zero(zstream);
 
       int iBlockSize = m_iBlockSize;
       int iVerbosity = m_iVerbosity;

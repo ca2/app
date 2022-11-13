@@ -1393,7 +1393,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      ::sort::sort_non_negative(iBegParam, iEndParam);
+      ::sort_non_negative(iBegParam, iEndParam);
 
       filesize iEnd;
 
@@ -4877,7 +4877,7 @@ namespace user
 
             psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
 
-            ::sort::sort_non_negative(i1, i2);
+            ::sort_non_negative(i1, i2);
 
             string strSel;
 
@@ -5012,7 +5012,7 @@ namespace user
 
       strsize i2 = m_ptree->m_iSelEnd;
 
-      ::sort::sort_non_negative(i1, i2);
+      ::sort_non_negative(i1, i2);
 
       if (i1 < 0 || i1 > _001GetTextLength())
       {
@@ -5117,7 +5117,7 @@ namespace user
 
       strsize i2 = m_ptree->m_iSelEnd;
 
-      ::sort::sort_non_negative(i1, i2);
+      ::sort_non_negative(i1, i2);
 
       if (i1 < 0 || i1 > _001GetTextLength())
       {
@@ -6937,7 +6937,7 @@ namespace user
             strsize i2 = m_ptree->m_iSelEnd;
             if (i1 != i2)
             {
-               ::sort::sort_non_negative(i1, i2);
+               ::sort_non_negative(i1, i2);
                m_ptree->m_peditfile->seek(i1, ::e_seek_set);
                m_ptree->m_peditfile->Delete((memsize)(i2 - i1));
 
@@ -8298,7 +8298,7 @@ namespace user
 
          psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
 
-         ::sort::sort_non_negative(i1, i2);
+         ::sort_non_negative(i1, i2);
 
          m_ptree->m_peditfile->MacroBegin();
 

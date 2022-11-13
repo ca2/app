@@ -10672,7 +10672,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //void interaction::clear_cache(bool bRecursive) const
    //{
    //
-   //   __zero(m_cache);
+   //   zero(m_cache);
 
    //   if (bRecursive)
    //   {

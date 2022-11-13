@@ -545,7 +545,7 @@ namespace datetime
 
    //   struct ::tm tm;
 
-   //   __zero(tm);
+   //   zero(tm);
    //   
    //   tm.tm_hour = iHour;
    //   tm.tm_min = iMinute;

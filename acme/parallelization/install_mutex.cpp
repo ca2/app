@@ -41,14 +41,14 @@
 //null_dacl_security_attributes::null_dacl_security_attributes()
 //{
 //
-//   __zero(((SECURITY_ATTRIBUTES &)((SECURITY_ATTRIBUTES &)m_securityattributes)));
+//   zero(((SECURITY_ATTRIBUTES &)((SECURITY_ATTRIBUTES &)m_securityattributes)));
 //
 //   ((SECURITY_ATTRIBUTES &)((SECURITY_ATTRIBUTES &)m_securityattributes)).nLength = sizeof(((SECURITY_ATTRIBUTES &)m_securityattributes));
 //
 //   ((SECURITY_ATTRIBUTES &)((SECURITY_ATTRIBUTES &)m_securityattributes)).bInheritHandle = false; // matter uninheritable
 //
 //   // declare and initialize a security descriptor
-//   __zero(((SECURITY_ATTRIBUTES &)((SECURITY_ATTRIBUTES &)m_securityattributes)));
+//   zero(((SECURITY_ATTRIBUTES &)((SECURITY_ATTRIBUTES &)m_securityattributes)));
 //
 //   bool bInitOk = InitializeSecurityDescriptor(&((SECURITY_ATTRIBUTES &)((SECURITY_ATTRIBUTES &)m_securityattributes)), SECURITY_DESCRIPTOR_REVISION) != false;
 //

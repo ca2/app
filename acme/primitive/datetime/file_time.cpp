@@ -276,8 +276,8 @@ bool get_file_time_set(const char * psz, file_time & file_timeCreation, file_tim
    try
    {
       
-      //__zero(creation);
-      //__zero(modified);
+      //zero(creation);
+      //zero(modified);
       ::GetFileTime(h,(FILETIME*)&file_timeCreation,nullptr, (FILETIME *)&file_timeModified);
 
    }
@@ -341,8 +341,8 @@ bool get_file_time_set(const char * psz,file_time & creation,file_time & modifie
    try
    {
 
-      __zero(creation);
-      __zero(modified);
+      zero(creation);
+      zero(modified);
 
       if (::GetFileTime(hfile, (FILETIME *) &creation, nullptr, (FILETIME *)&modified))
       {

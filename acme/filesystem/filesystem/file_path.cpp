@@ -645,7 +645,7 @@ string file_path_folder(const char * path1)
 
    const char * psz = path1 + string_safe_length(path1) - 1;
 
-   auto pszSeparator = string_reverse_span_excluding(psz, path1, "\\/:");
+   auto pszSeparator = string_reverse_span_excluding(psz, path1, "\\/");
 
 // 1. /folder/
 // 2. /
@@ -657,7 +657,7 @@ string file_path_folder(const char * path1)
 
    }
 
-   auto pszLastFolderCharacter = string_reverse_span_including(pszSeparator, path1, "\\/:");
+   auto pszLastFolderCharacter = string_reverse_span_including(pszSeparator, path1, "\\/");
 
 // 1. /folder
 // 2. nullptr

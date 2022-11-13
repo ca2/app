@@ -201,7 +201,7 @@ void channel::route_message(::message::message * pmessage)
 //
 //   MESSAGE msg;
 //
-//   __zero(msg);
+//   zero(msg);
 //
 //   msg.message = (::u32) atom.m_emessage;
 //   msg.wParam = wparam;

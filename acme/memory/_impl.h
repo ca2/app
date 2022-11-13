@@ -12,7 +12,7 @@
 
 
 template < typename TYPE, std::size_t SIZE >
-inline array_reference < TYPE, SIZE > & __zero(TYPE (& array)[ SIZE ] ) { ::zero((void *) array, sizeof(array)); return array; }
+inline array_reference < TYPE, SIZE > & zero(TYPE (& array)[ SIZE ] ) { ::zero((void *) array, sizeof(array)); return array; }
 
 
 template < typename TYPE, std::size_t SIZE >

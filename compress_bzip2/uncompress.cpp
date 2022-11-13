@@ -53,7 +53,7 @@ namespace compress_bzip2
       i64 uRead = pfileIn->read(memIn.get_data(), memIn.get_size());
 
       bz_stream zstream;
-      __zero(zstream);
+      zero(zstream);
       zstream.next_in = (char*)memIn.get_data();
       zstream.avail_in = (u32)uRead;
 

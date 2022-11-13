@@ -19,11 +19,11 @@ void acme_system_term();
 #endif
 #include "acme/platform/sub_system.h"
 
-#ifdef WINDOWS
-CLASS_DECL_ACME void set_argc_argv_envp(int argc, wchar_t ** argv, wchar_t ** envp);
-#else
-CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp);
-#endif
+//#ifdef WINDOWS
+//CLASS_DECL_ACME void set_argc_argv_envp(int argc, wchar_t ** argv, wchar_t ** envp);
+//#else
+//CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp);
+//#endif
 
 
 #include "acme/platform/acme.h"
@@ -57,10 +57,18 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
    //acme.m_psubsystem = &subsystem;
 
    //subsystem.m_pacme = &acme;
+   subsystem.m_argc = argc;
+#if defined(WINDOWS)  && defined(UNICODE)
+   subsystem.m_wargv = argv;
+   subsystem.m_wenvp = envp;
+#else
+   subsystem.m_argv = argv;
+   subsystem.m_envp = envp;
+#endif
 
    main_hold mainhold;
 
-   set_argc_argv_envp(argc, argv, envp);
+   //set_argc_argv_envp(argc, argv, envp);
 
    ::pointer<APPLICATION_CLASS>papp(__new(APPLICATION_CLASS));
 

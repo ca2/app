@@ -32,18 +32,18 @@ static char ** g_argv;
 static char ** g_envp;
 #endif
 
-#ifdef WINDOWS
-CLASS_DECL_ACME void set_argc_argv_envp(int argc, wchar_t ** argv, wchar_t ** envp)
-#else
-CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp)
-#endif
-{
-
-   g_argc = argc;
-   g_argv = argv;
-   g_envp = envp;
-
-}
+//#ifdef WINDOWS
+//CLASS_DECL_ACME void set_argc_argv_envp(int argc, wchar_t ** argv, wchar_t ** envp)
+//#else
+//CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp)
+//#endif
+//{
+//
+//   g_argc = argc;
+//   g_argv = argv;
+//   g_envp = envp;
+//
+//}
 
 
 //namespace acme
@@ -550,7 +550,7 @@ void main::on_system_construct()
 //
 //   m_nCmdShow = nCmdShow;
 //
-//   //__zero(m_mainrunnera);
+//   //zero(m_mainrunnera);
 //
 //   estatus = on_system_construct();
 //
@@ -591,7 +591,7 @@ void main::system_construct(const ::string_array & straParam)
 
    m_edisplay = e_display_default;
 
-   //__zero(m_mainrunnera);
+   //zero(m_mainrunnera);
 
    //return ::success;
 
@@ -610,7 +610,7 @@ void main::system_construct(const char * pszCommandLine, const ::e_display & edi
 
    //m_poslocal = nullptr;
 
-   //__zero(m_mainrunnera);
+   //zero(m_mainrunnera);
 
    //auto estatus =
    //

@@ -25,7 +25,7 @@ public:
    service_status()
    {
 
-      __zero(this);
+      zero(this);
 
    }
 

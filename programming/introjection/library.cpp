@@ -15,7 +15,7 @@ namespace introjection
 
       //initialize(pparticle);
 
-      __zero(m_filetimeset);
+      zero(m_filetimeset);
 
    }
 

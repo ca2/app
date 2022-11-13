@@ -123,7 +123,7 @@ oswindow_data::oswindow_data()
 
    m_osdisplay             = nullptr;
 
-   __zero(m_visual);
+   zero(m_visual);
 
    m_iDepth                = -1;
 
@@ -813,7 +813,7 @@ void oswindow_data::send_client_event(Atom atom, unsigned int numArgs, ...)
 
    va_start(argp, numArgs);
 
-   __zero(xevent);
+   zero(xevent);
 
    xevent.xclient.type = ClientMessage;
    xevent.xclient.serial = 0;

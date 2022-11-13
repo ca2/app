@@ -38,7 +38,7 @@ namespace compress_zlib
 
       z_stream zstream;
 
-      __zero(zstream);
+      zero(zstream);
       zstream.next_in = (u8*)memIn.get_data();
       zstream.avail_in = (u32)uRead;
       zstream.total_out = 0;

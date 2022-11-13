@@ -52,7 +52,7 @@ namespace sockets_bsd
 
       m_p2 = this;
       defer_create_synchronization();
-      __zero(m_socks4_host);
+      zero(m_socks4_host);
       //m_prfds = memory_new fd_set;
       //m_pwfds = memory_new fd_set;
       //m_pefds = memory_new fd_set;

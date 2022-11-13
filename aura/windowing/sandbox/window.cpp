@@ -1196,7 +1196,7 @@ namespace sandbox_windowing
 
    //   va_start(argp, numArgs);
 
-   //   __zero(xevent);
+   //   zero(xevent);
 
    //   xevent.xclient.type = ClientMessage;
    //   xevent.xclient.serial = 0;
@@ -1235,7 +1235,7 @@ namespace sandbox_windowing
 //#define _NET_WM_STATE_ADD           1    /* add/set property */
 //#define _NET_WM_STATE_TOGGLE        2    /* toggle property  */
 //
-//      __zero(xclient);
+//      zero(xclient);
 //      xclient.type = ClientMessage;
 //      xclient.window = Window();
 //      xclient.message_type = x11_display()->intern_atom("_NET_WM_STATE", False);
@@ -1265,7 +1265,7 @@ namespace sandbox_windowing
 //
 //      va_start(argp, atom1);
 //
-//      __zero(xevent);
+//      zero(xevent);
 //
 //      array<Atom> atoms;
 //
@@ -2584,7 +2584,7 @@ namespace sandbox_windowing
 
    //      XEvent xev;
 
-   //      __zero(xev);
+   //      zero(xev);
 
    //      auto windowRoot = DefaultRootWindow(Display());
 

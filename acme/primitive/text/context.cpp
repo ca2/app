@@ -57,8 +57,8 @@ namespace text
    void context::prepare()
    {
 
-      static ::atom idEn("en");
-      static ::atom idStd("_std");
+      //static ::atom idEn("en");
+      //static ::atom idStd("_std");
 
 
       m_plocale               = nullptr;
@@ -99,9 +99,9 @@ namespace text
             if(plocale != nullptr)
             {
 
-               m_pschemaSchemaEn = (schema *)plocale->get_schema(idEn);
+               m_pschemaSchemaEn = (schema*)plocale->get_schema("en");
 
-               m_pschemaSchemaStd = (schema *)plocale->get_schema(idStd);
+               m_pschemaSchemaStd = (schema*)plocale->get_schema("_std");
 
             }
 

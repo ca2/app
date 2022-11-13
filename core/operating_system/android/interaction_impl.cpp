@@ -36,9 +36,9 @@ namespace android
       //m_bEnabled           = true;
       m_pthreadDraw = nullptr;
 
-      //__zero(m_rectangleParentClient);
-      __zero(m_size);
-      __zero(m_point);
+      //zero(m_rectangleParentClient);
+      zero(m_size);
+      zero(m_point);
 
 
 
@@ -56,9 +56,9 @@ namespace android
    //   m_bUpdateGraphics    = false;
    //   m_bEnabled           = true;
    //   m_pthreadDraw = nullptr;
-   //   //__zero(m_rectangleParentClient);
-   //   __zero(m_size);
-   //   __zero(m_point);
+   //   //zero(m_rectangleParentClient);
+   //   zero(m_size);
+   //   zero(m_point);
 
    //   set_handle(oswindow);
 
@@ -76,9 +76,9 @@ namespace android
    //   m_bIgnoreMoveEvent   = false;
    //   m_bEnabled           = true;
    //   m_pthreadDraw = nullptr;
-   //   __zero(m_rectangleParentClient);
-   //   __zero(m_size);
-   //   __zero(m_point);
+   //   zero(m_rectangleParentClient);
+   //   zero(m_size);
+   //   zero(m_point);
 
    //}
 
@@ -1133,7 +1133,7 @@ namespace android
          //}
          //::DeleteObject(hrgn); /* finished with region */
          //WINDOWPLACEMENT wp;
-         //__zero(wp);
+         //zero(wp);
          //wp.length = sizeof(WINDOWPLACEMENT);
          //::GetWindowPlacement(get_handle(),&wp);
          //bool bZoomed = ::IsZoomed(get_handle()) != false;

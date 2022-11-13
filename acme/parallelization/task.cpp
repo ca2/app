@@ -984,7 +984,7 @@ bool task::has_message() const
 
       char sz[1024];
 
-      __zero(sz);
+      zero(sz);
 
       engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
 
@@ -1181,7 +1181,7 @@ bool task::has_message() const
 //
 //      char sz[1024];
 //
-//      __zero(sz);
+//      zero(sz);
 //
 //      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
 //
@@ -1332,7 +1332,7 @@ bool task::has_message() const
 //
 //      char sz[1024];
 //
-//      __zero(sz);
+//      zero(sz);
 //
 //      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
 //

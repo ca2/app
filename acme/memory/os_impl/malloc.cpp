@@ -12,7 +12,7 @@ void check_bounds(u8 * p)
 
    byte a[256];
 
-   __zero(a);
+   zero(a);
 
    if (__memcmp(&p[sizeof(uptr)], a, sizeof(a)) != 0)
    {

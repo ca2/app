@@ -24,7 +24,7 @@ oswindow_data::oswindow_data()
 
    m_osdisplay             = nullptr;
 
-   __zero(m_visual);
+   zero(m_visual);
 
 }
 

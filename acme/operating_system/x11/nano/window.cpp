@@ -63,7 +63,7 @@ namespace x11
       m_psurface = nullptr;
       m_iDepth = -1;
       m_pvisual = nullptr;
-      __zero(m_visualinfo);
+      zero(m_visualinfo);
       m_colormap = 0;
 
    }
@@ -191,7 +191,7 @@ namespace x11
 
          m_pvisual = DefaultVisual(display, DefaultScreen(display));
 
-         __zero(m_visualinfo);
+         zero(m_visualinfo);
 
          if (XMatchVisualInfo(display, DefaultScreen(display), 32, TrueColor, &m_visualinfo))
          {
@@ -202,7 +202,7 @@ namespace x11
          else
          {
 
-            __zero(m_visualinfo);
+            zero(m_visualinfo);
 
          }
 
@@ -392,7 +392,7 @@ namespace x11
 
       XEvent xev;
 
-      __zero(xev);
+      zero(xev);
 
       Window windowRoot = DefaultRootWindow(m_pdisplay->m_pdisplay);
 

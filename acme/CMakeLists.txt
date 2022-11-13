@@ -212,6 +212,8 @@ list(APPEND library_source
         memory/string_memory_allocate.h
         memory/string_memory_allocator.h
         networking/top_level_domain_list.cpp
+        networking/net.cpp
+        networking/net.h
         networking/url.cpp
         networking/url.h
         networking/url_department.cpp
@@ -323,7 +325,6 @@ list(APPEND library_source
         #platform/muldiv64.cpp
         platform/nanosecond_timer.cpp
         platform/nanosecond_timer.h
-        platform/net.cpp
         platform/node.cpp
         platform/node.h
         platform/predicate_holder.cpp
@@ -1327,7 +1328,7 @@ list(APPEND library_source
         platform/uint32_muldiv.h
         platform/uint64_muldiv.h
         platform/nanosecond_timer.h
-        platform/net.h
+        #platform/net.h
         platform/number.h
         platform/object_reference_count_debug.cpp
         platform/object_reference_count_debug.h

@@ -199,7 +199,7 @@ namespace filemanager
 
          auto& watcher = pdir->watcher();
 
-         m_filewatchid = watcher.add_watch(m_pitem->final_path(), {e_as, this}, false);
+         m_filewatchid = watcher.add_watch(m_pitem->final_path(), {e_use, this}, false);
 
       }
       catch (...)

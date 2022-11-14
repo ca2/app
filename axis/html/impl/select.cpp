@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "select.h"
 #include "axis/user/user/combo_box.h"
 #include "aura/user/user/check_box.h"
@@ -69,14 +69,14 @@ namespace html
 
          element::implement_phase1(pdata, pelement);
 
-         if (pelement->m_pbase->get_type() != ::html::base::type_tag)
+         if (pelement->m_phtmlbase->get_type() != ::html::base::type_tag)
          {
 
             return;
 
          }
 
-         if(pelement->m_pbase->get_type() == ::html::base::type_tag && (!m_pcombo || !m_pcombo->is_window()))
+         if(pelement->m_phtmlbase->get_type() == ::html::base::type_tag && (!m_pcombo || !m_pcombo->is_window()))
          {
 
             m_pcombo = __create_new < ::user::combo_box>();
@@ -88,30 +88,30 @@ namespace html
             pdata->on_create_interaction(m_pcombo);
             
             m_pcombo->m_bPassword = pelement->m_propertyset["type"].compare_ci("password") == 0;
-            m_pcombo->m_strName = pelement->m_pbase->get_tag()->get_attr_value("name");
-            m_pcombo->m_atom = pelement->m_pbase->get_tag()->get_attr_value("id");
+            m_pcombo->m_strName = pelement->m_phtmlbase->get_tag()->get_attr_value("name");
+            m_pcombo->m_atom = pelement->m_phtmlbase->get_tag()->get_attr_value("id");
 
-            if (pelement->m_pbase->get_tag()->baseptra().has_elements())
+            if (pelement->m_phtmlbase->get_tag()->baseptra().has_elements())
             {
                m_pcombo->m_edatamode = ::user::combo_box::data_mode_string;
 
-               for (index i = 0; i < pelement->m_pbase->get_tag()->baseptra().get_count(); i++)
+               for (index i = 0; i < pelement->m_phtmlbase->get_tag()->baseptra().get_count(); i++)
                {
                   if (i == 0)
                   {
                   }
-                  if (pelement->m_pbase->get_tag()->baseptra()[i]->get_type() != ::html::base::type_tag)
+                  if (pelement->m_phtmlbase->get_tag()->baseptra()[i]->get_type() != ::html::base::type_tag)
                      continue;
-                  string strText = pelement->m_pbase->get_tag()->baseptra()[i]->get_tag()->baseptra()[0]->get_value()->get_value();
-                  string strValue = pelement->m_pbase->get_tag()->baseptra()[i]->get_tag()->get_attr_value("value");
+                  string strText = pelement->m_phtmlbase->get_tag()->baseptra()[i]->get_tag()->baseptra()[0]->get_value()->get_value();
+                  string strValue = pelement->m_phtmlbase->get_tag()->baseptra()[i]->get_tag()->get_attr_value("value");
                   m_pcombo->add_string(strText, strValue);
                }
-               string strValue = pelement->m_pbase->get_tag()->get_attr_value("value");
+               string strValue = pelement->m_phtmlbase->get_tag()->get_attr_value("value");
 
                if (strValue.has_char())
                {
 
-                  m_pcombo->_001SetText(pelement->m_pbase->get_tag()->get_attr_value("value"), ::action_context(::e_source_data) +  ::e_source_load);
+                  m_pcombo->_001SetText(pelement->m_phtmlbase->get_tag()->get_attr_value("value"), ::action_context(::e_source_data) +  ::e_source_load);
 
                }
                
@@ -138,7 +138,7 @@ namespace html
       void select::layout_phase1_end(html_data * pdata)
       {
 
-         if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+         if (m_pelemental->m_phtmlbase->get_type() != ::html::base::type_tag)
             return;
 
          ::html::impl::element::layout_phase1_end(pdata);
@@ -147,7 +147,7 @@ namespace html
 
       void select::layout_phase3_end(html_data * pdata)
       {
-         if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+         if (m_pelemental->m_phtmlbase->get_type() != ::html::base::type_tag)
             return;
 
          ::html::impl::element::layout_phase3_end(pdata);
@@ -162,14 +162,14 @@ namespace html
       bool select::layout_phase1(html_data * pdata)
       {
 
-         if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+         if (m_pelemental->m_phtmlbase->get_type() != ::html::base::type_tag)
          {
 
             return false;
 
          }
 
-         string strSize = m_pelemental->m_pbase->get_tag()->get_attr_value("size_i32");
+         string strSize = m_pelemental->m_phtmlbase->get_tag()->get_attr_value("size_i32");
 
          int iSize = 20;
 
@@ -186,7 +186,7 @@ namespace html
       void select::layout_phase3(html_data * pdata)
       {
 
-         if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+         if (m_pelemental->m_phtmlbase->get_type() != ::html::base::type_tag)
          {
 
             return;
@@ -205,7 +205,7 @@ namespace html
       void select::_001OnDraw(html_data * pdata)
       {
 
-         if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+         if (m_pelemental->m_phtmlbase->get_type() != ::html::base::type_tag)
          {
 
             return;
@@ -232,7 +232,7 @@ namespace html
       void select::on_change_layout(html_data * pdata)
       {
 
-         if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+         if (m_pelemental->m_phtmlbase->get_type() != ::html::base::type_tag)
             return;
 
          __UNREFERENCED_PARAMETER(pdata);

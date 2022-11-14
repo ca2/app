@@ -856,7 +856,7 @@
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="handler\context.h" />
     <ClInclude Include="handler\manager.h" />
-    <ClInclude Include="handler\predicate.h" />
+    <ClInclude Include="handler\aaa_predicate.h" />
     <ClInclude Include="handler\promise.h" />
     <ClInclude Include="handler\promise1.h" />
     <ClInclude Include="handler\signal.h" />

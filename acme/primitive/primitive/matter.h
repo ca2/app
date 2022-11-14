@@ -9,7 +9,7 @@
 
 
 class CLASS_DECL_ACME matter :
-   virtual public particle
+   virtual public signal_handler::base
 {
 public:
 
@@ -86,12 +86,8 @@ public:
 
 
 
-   //void on_initialize_particle() override;
+   void operator()(::topic* ptopic, ::context* pcontext) override;
 
-
-
-
-   //using element::operator();
    virtual void operator()(::message::message * pmessage);
    virtual void operator()(const ::payload & payload);
 

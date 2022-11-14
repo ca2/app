@@ -27,7 +27,7 @@ namespace html
 
          ::draw2d::graphics_pointer pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         if (m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
+         if (m_pelemental->m_phtmlbase->get_type() == ::html::base::type_tag)
          {
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -65,7 +65,7 @@ namespace html
 
          element::implement_phase1(pdata, pelement);
 
-         if (pelement->m_pbase->get_type() == ::html::base::type_tag)
+         if (pelement->m_phtmlbase->get_type() == ::html::base::type_tag)
          {
 
             string strSrc(pelement->m_propertyset["src"].get_string());
@@ -102,7 +102,7 @@ namespace html
       bool image::layout_phase1(html_data * pdata)
       {
 
-         if (m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
+         if (m_pelemental->m_phtmlbase->get_type() == ::html::base::type_tag)
          {
 
             single_lock lockImage(synchronization());
@@ -150,7 +150,7 @@ namespace html
 
          element::layout_phase3(pdata);
          
-         if (m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
+         if (m_pelemental->m_phtmlbase->get_type() == ::html::base::type_tag)
          {
             
             single_lock lockImage(synchronization());

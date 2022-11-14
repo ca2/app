@@ -118,9 +118,9 @@ namespace user
 
          auto sizeMinimum = frame::get_window_minimum_size();
 
-         auto rectangleFrame = screen_rect();
+         auto rectangleClient = const_layout().state(e_layout_sketch).client_rect();
 
-         auto sizeFrame = rectangleFrame.size();
+         auto sizeFrame = rectangleClient.size();
 
          if(sizeFrame.cx < sizeMinimum.cx || sizeFrame.cy < sizeMinimum.cy)
          {

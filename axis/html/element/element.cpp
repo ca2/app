@@ -102,16 +102,16 @@ namespace html
    tag * element::get_tag()
    {
 
-      if (m_pbase == nullptr)
+      if (m_phtmlbase == nullptr)
       {
          
          return nullptr;
 
       }
-      else if (m_pbase->get_type() == base::type_tag)
+      else if (m_phtmlbase->get_type() == ::html::base::type_tag)
       {
          
-         return dynamic_cast < ::html::tag * > (m_pbase);
+         return dynamic_cast < ::html::tag * > (m_phtmlbase);
 
       }
       else
@@ -162,7 +162,7 @@ namespace html
 
       m_pstyle->initialize_style(m_etag);
 
-      if (m_pbase->get_type() == ::html::base::type_value)
+      if (m_phtmlbase->get_type() == ::html::base::type_value)
       {
 
          m_strClass = m_pparent->get_tag()->get_attr_value("html_class");
@@ -187,7 +187,7 @@ namespace html
    void element::implement_phase1(html_data * phtmldata)
    {
 
-      if (m_pbase == nullptr)
+      if (m_phtmlbase == nullptr)
       {
 
          return;
@@ -279,10 +279,10 @@ namespace html
          else if (m_etag == tag_title)
          {
 
-            if (m_pbase->get_type() == base::type_value)
+            if (m_phtmlbase->get_type() == ::html::base::type_value)
             {
 
-               phtmldata->m_pcoredata->m_strTitle = m_pbase->get_value()->get_value();
+               phtmldata->m_pcoredata->m_strTitle = m_phtmlbase->get_value()->get_value();
 
                m_pimpl = __new(::html::impl::element());
 
@@ -917,7 +917,7 @@ namespace html
    }
 
 
-   void element::load(html_data * phtmldata, base * pusermessage)
+   void element::load(html_data * phtmldata, ::html::base * phtmlbase)
    {
 
       if (phtmldata == nullptr)
@@ -934,7 +934,7 @@ namespace html
 
       }
 
-      if (pusermessage == nullptr)
+      if (phtmlbase == nullptr)
       {
 
          return;
@@ -943,7 +943,7 @@ namespace html
 
       synchronous_lock lock(phtmldata->m_pcoredata->synchronization());
 
-      m_pbase = pusermessage;
+      m_phtmlbase = phtmlbase;
 
       m_elementalptra.erase_all();
 
@@ -951,10 +951,10 @@ namespace html
 
       payload.set_type(::e_type_string);
 
-      if (m_pbase->get_type() == base::type_tag)
+      if (m_phtmlbase->get_type() == ::html::base::type_tag)
       {
 
-         ::html::tag * ptag = dynamic_cast < ::html::tag * > (m_pbase);
+         ::html::tag * ptag = dynamic_cast < ::html::tag * > (m_phtmlbase);
 
          m_atomTagName = ptag->get_name();
 
@@ -1014,12 +1014,12 @@ namespace html
             m_elementalptra.add(pelemental);
          }
       }
-      else if (m_pbase->get_type() == base::type_value)
+      else if (m_phtmlbase->get_type() == ::html::base::type_value)
       {
 
-         ::html::value * pvalue = dynamic_cast < ::html::value * > (m_pbase);
+         ::html::value * pvalue = dynamic_cast < ::html::value * > (m_phtmlbase);
 
-         ::html::tag * ptag = dynamic_cast < ::html::tag * > (m_pparent->m_pbase);
+         ::html::tag * ptag = dynamic_cast < ::html::tag * > (m_pparent->m_phtmlbase);
 
          m_atomTagName = ptag->get_name();
          m_strBody = pvalue->get_value();
@@ -1245,9 +1245,9 @@ namespace html
 
    element * element::get_element_by_name(atom atom)
    {
-      if (m_pbase->get_type() == base::type_value)
+      if (m_phtmlbase->get_type() == ::html::base::type_value)
          return nullptr;
-      ::html::tag * ptag = m_pbase->get_tag();
+      ::html::tag * ptag = m_phtmlbase->get_tag();
       if (atom == ptag->get_attr_value("name"))
          return this;
       element * pelemental = nullptr;
@@ -1266,14 +1266,14 @@ namespace html
    element * element::get_element_by_id(atom atom)
    {
 
-      if (m_pbase->get_type() == base::type_value)
+      if (m_phtmlbase->get_type() == ::html::base::type_value)
       {
 
          return nullptr;
 
       }
 
-      ::html::tag * ptag = m_pbase->get_tag();
+      ::html::tag * ptag = m_phtmlbase->get_tag();
 
       if (atom == ptag->get_attr_value("id"))
       {
@@ -1457,7 +1457,7 @@ namespace html
 
       m_pparent = pparent;
       m_pimpl = nullptr;
-      m_pbase = nullptr;
+      m_phtmlbase = nullptr;
       m_pdata = phtmldata;
       m_etag = tag_initial;
       m_bParent = false;
@@ -1471,7 +1471,7 @@ namespace html
    void element::_001SetText(const ::string & str, const ::action_context & context)
    {
 
-      if (m_pbase->get_type() == base::type_tag)
+      if (m_phtmlbase->get_type() == ::html::base::type_tag)
       {
 
          if (m_elementalptra.get_size() == 1)
@@ -1657,7 +1657,7 @@ namespace html
    void element::get_html(html_data * phtmldata, string & str)
    {
 
-      if (m_pbase->get_type() == base::type_value)
+      if (m_phtmlbase->get_type() == ::html::base::type_value)
       {
 
          ::pointer<::axis::session>psession = phtmldata->m_pcoredata->get_session();

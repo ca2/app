@@ -5017,15 +5017,15 @@ namespace apex
    }
 
 
-   void system::add_handler(::matter * pmatter, bool bPriority)
+   void system::add_handler(const ::signal_handler & signalhandler, bool bPriority)
    {
 
-      ::apex::context::add_handler(pmatter, bPriority);
+      ::apex::context::add_signal_handler(signalhandler, bPriority);
 
    }
 
 
-   void system::add_signal_handler(::matter * pmatter, const ::atom & atomSignal)
+   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal)
    {
 
       auto psignal = get_signal(atomSignal);
@@ -5037,7 +5037,7 @@ namespace apex
 
       }
 
-      psignal->add_handler(pmatter);
+      psignal->add_signal_handler(signalhandler);
 
    }
 

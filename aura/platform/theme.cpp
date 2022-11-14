@@ -480,7 +480,7 @@ namespace aura
 
       sync_with_stored_theme();
 
-      m_watchidWeather = pcontext->m_papexcontext->dir()->watcher().add_watch(acmedirectory()->config(), { e_as, this }, false);
+      m_watchidWeather = pcontext->m_papexcontext->dir()->watcher().add_watch(acmedirectory()->config(), { e_use, this }, false);
       
       on_change_theme();
 

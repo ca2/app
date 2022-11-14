@@ -47,9 +47,6 @@ namespace filemanager
 //      m_pfilemanager             = nullptr;
       m_pcallback                = nullptr;
       m_strLevelUp = "levelup";
-      m_pfont.create(this);
-
-      m_pfont->create_pixel_font("Verdana",14);
 
       m_bEnableRecursiveFolderSelectionList = true;
 
@@ -89,6 +86,9 @@ namespace filemanager
       //   return estatus;
 
       //}
+      m_pfont.create(this);
+
+      m_pfont->create_pixel_font("Verdana", 14);
 
       m_strLevelUp.Empty();
       m_setToolbar[::userfs::e_mode_normal] = "matter://filemanager_toolbar.xml";

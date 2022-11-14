@@ -75,15 +75,15 @@ void html_form_impact::on_form_implemented()
 /////////////////////////////////////////////////////////////////////////////
 // html_form_impact diagnostics
 
-void html_form_impact::assert_ok() const
-{
-   ::user::show <::html_form>::assert_ok();
-}
-
-void html_form_impact::dump(dump_context & dumpcontext) const
-{
-   ::user::show <::html_form>::dump(dumpcontext);
-}
+//void html_form_impact::assert_ok() const
+//{
+//   ::user::show <::html_form>::assert_ok();
+//}
+//
+//void html_form_impact::dump(dump_context & dumpcontext) const
+//{
+//   ::user::show <::html_form>::dump(dumpcontext);
+//}
 
 /////////////////////////////////////////////////////////////////////////////
 // html_form_impact message handlers

@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/geometry2d/_collection.h"
 #include "aura/graphics/draw2d/graphics.h"
 
 

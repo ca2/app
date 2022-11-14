@@ -59,6 +59,9 @@ public:
    ::count add_unique(const ARRAY_TYPE & a);
    TYPE & insert_unique(ARG_TYPE t);
 
+
+   bool insert_unique_at(::index i, ARG_TYPE t);
+
    ::count add_erase(bool bAdd, ARG_TYPE t);
 
 
@@ -575,4 +578,45 @@ erase_array(const comparable_eq_array & a)
 }
 
 
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::insert_unique_at(::index i, ARG_TYPE t)
+{
 
+   if (i < 0 || i > this->get_size())
+   {
+
+      throw_exception(error_bad_argument);
+
+   }
+
+   auto iFind = this->find_first(t);
+
+   if (iFind < 0)
+   {
+
+      this->insert_at(i, t);
+
+      return true;
+
+   }
+
+   if (iFind < i)
+   {
+
+      this->erase_at(iFind);
+
+      this->insert_at(i - 1, t);
+
+   }
+   else if (iFind > i)
+   {
+
+      this->erase_at(iFind);
+
+      this->insert_at(i, t);
+
+   }
+
+   return false;
+
+}

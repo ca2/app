@@ -765,7 +765,7 @@ namespace experience_tranquillum
 
             ::draw2d::icon * picon = m_pframewindow->m_pdrawicon;
 
-            if (::is_ok(picon))
+            if (::is_set(picon) && picon->is_ok())
             {
 
                image_source imagesource(picon);

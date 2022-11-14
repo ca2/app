@@ -325,7 +325,7 @@ namespace filemanager
 
       }
 
-      auto pdata = __new(data);
+      auto pdata = __create_new<data>();
 
       pdata->initialize_filemanager_data(this);
 

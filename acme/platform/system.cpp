@@ -1932,14 +1932,14 @@ namespace acme
    }
 
 
-   void system::add_handler(::matter * pmatter, bool bPriority)
+   void system::add_handler(const ::signal_handler& signalhandler, bool bPriority)
    {
 
 
    }
 
 
-   void system::add_signal_handler(::matter * pmatter, const ::atom & atomSignal)
+   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal)
    {
 
 

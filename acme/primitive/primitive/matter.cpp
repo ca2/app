@@ -70,7 +70,11 @@ matter::~matter()
 
 
 
+void matter::operator()(::topic* ptopic, ::context* pcontext)
+{
 
+
+}
 
 
 void matter::operator()(::message::message * pmessage)

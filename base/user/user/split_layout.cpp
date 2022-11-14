@@ -3,6 +3,7 @@
 #include "split_pane.h"
 #include "split_bar.h"
 #include "acme/constant/message.h"
+#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/platform/create.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -44,7 +45,7 @@ namespace user
 
       place_holder_container::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &split_layout::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &split_layout::on_message_create);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &split_layout::on_message_show_window);
 
    }

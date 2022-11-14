@@ -2057,8 +2057,8 @@ namespace user
    void interaction::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &interaction::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &interaction::on_message_destroy);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
       primitive::install_message_routing(pchannel);
@@ -2066,7 +2066,7 @@ namespace user
       if (m_bMessageWindow)
       {
 
-         //MESSAGE_LINK(e_message_destroy              , pchannel, this, &interaction::_001OnDestroyMessageWindow);
+         //MESSAGE_LINK(MESSAGE_DESTROY              , pchannel, this, &interaction::_001OnDestroyMessageWindow);
 
       }
       else
@@ -7458,7 +7458,7 @@ namespace user
 
       //}
 
-      //synchronous_lock synchronouslock(puserinteractionParent == nullptr ? nullptr : puserinteractionParent->mutex());
+      //synchronous_lock synchronouslock(puserinteractionParent == nullptr ? nullptr : puserinteractionParent->synchronization());
 
       m_pprimitiveimpl = __create_new<::user::interaction_child>();
 
@@ -15998,7 +15998,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       if (ptopic)
       {
 
-         if (ptopic->m_atom == REDRAW_ID || ptopic->m_atom == m_atom)
+         if (ptopic->m_atom == ID_REDRAW || ptopic->m_atom == m_atom)
          {
 
             if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
@@ -18765,7 +18765,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //void interaction::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if (ptopic->m_atom == REDRAW_ID || ptopic->m_atom == m_atom)
+   //   if (ptopic->m_atom == ID_REDRAW || ptopic->m_atom == m_atom)
    //   {
 
    //      set_need_redraw();

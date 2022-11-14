@@ -110,7 +110,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &split_bar::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &split_bar::on_message_create);
       //MESSAGE_LINK(e_message_size, pchannel, this, &split_bar::on_message_size);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &split_bar::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &split_bar::on_message_left_button_up);

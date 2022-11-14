@@ -24,7 +24,7 @@ namespace calculator
 
       }
 
-      update_all_impacts(nullptr, INITIAL_UPDATE);
+      update_all_impacts(nullptr, ID_INITIAL_UPDATE);
 
       return true;
 
@@ -73,7 +73,7 @@ namespace calculator
 
       string str = pcontext->m_papexcontext->file()->as_string(payloadFile);
 
-      update_all_impacts(nullptr, OPEN_DOCUMENT_UPDATE);
+      update_all_impacts(nullptr, ID_OPEN_DOCUMENT);
 
       return true;
 

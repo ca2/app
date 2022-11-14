@@ -4,46 +4,49 @@
 #include "user.h"
 #include "font_combo_box.h"
 #include "acme/handler/item.h"
+#include "acme/platform/system_setup.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/database/change_event.h"
+#include "apex/platform/create.h"
+#include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/write_text/fonts.h"
-#include "core/user/account/impact.h"
 #include "aura/user/user/check_box.h"
 #include "aura/user/user/progress.h"
-#include "acme/platform/system_setup.h"
-#include "core/user/simple/toolbar.h"
-#include "core/user/simple/pane_document.h"
-#include "core/user/simple/list_header_control.h"
 #include "aura/user/user/shell.h"
-#include "core/user/userex/dialog_frame.h"
-#include "core/user/userex/progress.h"
+#include "axis/html/html/html.h"
 #include "base/user/simple/child_frame.h"
-#include "core/user/userex/split_impact.h"
-#include "core/user/simple/list_impact.h"
-#include "core/user/simple/printer_list_impact.h"
 #include "base/user/user/picture.h"
 #include "base/user/user/multiple_document_template.h"
 #include "base/user/user/document_manager.h"
 #include "base/user/form/document.h"
+#include "base/user/experience/orto_button.h"
+#include "core/filesystem/filemanager/data.h"
+#include "core/platform/application.h"
+#include "core/platform/session.h"
+#include "core/user/account/impact.h"
+#include "core/user/simple/list_data.h"
+#include "core/user/simple/list_header_control.h"
+#include "core/user/simple/list_impact.h"
+#include "core/user/simple/mesh_data.h"
+#include "core/user/simple/pane_document.h"
+#include "core/user/simple/printer_list_impact.h"
+#include "core/user/simple/toolbar.h"
+#include "core/user/userex/calculator_edit_impact.h"
+#include "core/user/userex/color_impact.h"
+#include "core/user/userex/dialog_frame.h"
+#include "core/user/userex/font_impact.h"
+#include "core/user/userex/form_child_frame.h"
 #include "core/user/userex/menu_document.h"
 #include "core/user/userex/menu_frame.h"
 #include "core/user/userex/menu_impact.h"
-#include "core/user/userex/form_child_frame.h"
-#include "base/user/experience/orto_button.h"
-#include "core/filesystem/filemanager/data.h"
-#include "core/user/simple/mesh_data.h"
-#include "core/user/simple/list_data.h"
-#include "core/user/userex/color_impact.h"
-#include "core/user/userex/font_impact.h"
 #include "core/user/userex/pane_tab_impact.h"
-#include "core/platform/application.h"
-#include "core/platform/session.h"
+#include "core/user/userex/progress.h"
+#include "core/user/userex/split_impact.h"
 #include "core/user/userex/top_impact.h"
 #include "core/user/userex/top_toggle_impact.h"
 #include "core/user/userex/top_edit_impact.h"
-#include "core/user/userex/calculator_edit_impact.h"
 
 
 //void __html_initialize(::user::user * puserex);
@@ -944,7 +947,7 @@ namespace core
       }
 
    }
-
+   
 
    bool user::modal_get_color(::user::interaction * puiOwner, ::color::hls & hls)
    {
@@ -1136,7 +1139,7 @@ namespace core
 
       //}
 
-      auto pcreate = pparticle->__create_new < ::create >();
+      auto pcreate = ::__create_new < ::create >(pparticle);
 
       pcreate->m_bMakeVisible = false;
 
@@ -1197,7 +1200,7 @@ namespace core
 
       }
 
-      auto papp = pparticle->get_app();
+      auto papp = pparticle->acmeapplication();
 
       if (papp == nullptr)
       {
@@ -1279,7 +1282,7 @@ namespace core
    ::pointer<::form_document>user::create_child_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
-      auto papp = pparticle->get_app();
+      auto papp = pparticle->acmeapplication();
 
       if (papp == nullptr)
       {
@@ -1305,7 +1308,7 @@ namespace core
 
       }
 
-      auto pcreate = pparticle->__create_new < ::create > ();
+      auto pcreate = ::__create_new < ::create > (pparticle);
 
       pcreate->m_bMakeVisible = true;
 
@@ -1417,7 +1420,7 @@ namespace core
 
       }
 
-      auto pcreate = pparticle->__create_new < ::create >();
+      auto pcreate = ::__create_new < ::create >(pparticle);
 
       pcreate->m_bMakeVisible = false;
 
@@ -1483,7 +1486,7 @@ namespace core
    ::pointer<::user::list_header>user::default_create_list_header(::particle * pparticle)
    {
 
-      return pparticle->__id_create < ::user::list_header > (default_type_list_header());
+      return ::__id_create < ::user::list_header > (pparticle, default_type_list_header());
 
    }
 
@@ -1491,7 +1494,7 @@ namespace core
    ::pointer<::user::mesh_data>user::default_create_mesh_data(::particle * pparticle)
    {
 
-      return pparticle->__id_create < ::user::mesh_data > (default_type_list_data());
+      return ::__id_create < ::user::mesh_data > (pparticle, default_type_list_data());
 
    }
 
@@ -1499,7 +1502,7 @@ namespace core
    ::pointer<::user::list_data>user::default_create_list_data(::particle * pparticle)
    {
 
-      return pparticle->__id_create <::user::list_data >(default_type_list_data());
+      return ::__id_create <::user::list_data >(pparticle, default_type_list_data());
 
    }
 

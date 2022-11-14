@@ -91,7 +91,7 @@
 //   ::pointer<::user::message>pusermessage(pmessage);
 //
 //   if (pusermessage->m_atom == e_message_mouse_move || pusermessage->m_atom == e_message_non_client_mouse_move ||
-//       pusermessage->m_atom == e_message_non_client_hittest || pusermessage->m_atom == e_message_set_cursor ||
+//       pusermessage->m_atom == e_message_non_client_hit_test || pusermessage->m_atom == e_message_set_cursor ||
 //       pusermessage->m_atom == WM_CTLCOLORBTN ||
 //       pusermessage->m_atom == WM_CTLCOLORDLG ||
 //       pusermessage->m_atom == WM_CTLCOLOREDIT ||
@@ -174,7 +174,7 @@
 //   ENSURE_ARG(lpmsg != nullptr);
 //
 //   if (lpmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||
-//       lpmsg->message == e_message_non_client_hittest || lpmsg->message == e_message_set_cursor ||
+//       lpmsg->message == e_message_non_client_hit_test || lpmsg->message == e_message_set_cursor ||
 //       lpmsg->message == WM_CTLCOLORBTN ||
 //       lpmsg->message == WM_CTLCOLORDLG ||
 //       lpmsg->message == WM_CTLCOLOREDIT ||

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "toolbar_control.h"
 
 
@@ -83,25 +83,25 @@ namespace user
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-   HRESULT toolbar_control::GetDropTarget(IDropTarget** ppDropTarget)
-   {
-      ASSERT(is_window());
-      ASSERT(ppDropTarget);
 //#ifdef WINDOWS_DESKTOP
-//      return (HRESULT) send_message( TB_GETOBJECT, (WPARAM)&IID_IDropTarget, (LPARAM)ppDropTarget);
-//#else
-//      throw ::exception(todo);
+//
+//
+//   HRESULT toolbar_control::GetDropTarget(IDropTarget** ppDropTarget)
+//   {
+//      ASSERT(is_window());
+//      ASSERT(ppDropTarget);
+////#ifdef WINDOWS_DESKTOP
+////      return (HRESULT) send_message( TB_GETOBJECT, (WPARAM)&IID_IDropTarget, (LPARAM)ppDropTarget);
+////#else
+////      throw ::exception(todo);
+////#endif
+//
+//      return 0;
+//
+//   }
+//
+//
 //#endif
-
-      return 0;
-
-   }
-
-
-#endif
 
 
    struct CToolBarCtrlData

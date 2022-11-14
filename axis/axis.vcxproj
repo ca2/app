@@ -500,10 +500,10 @@
     <ClInclude Include="inline\_new_impl.h" />
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
+    <ClInclude Include="mathematics\calculator\element.h" />
     <ClInclude Include="mathematics\_.h" />
     <ClInclude Include="mathematics\_component.h" />
     <ClInclude Include="math\calculator\calculator.h" />
-    <ClInclude Include="math\calculator\element.h" />
     <ClInclude Include="math\calculator\parser.h" />
     <ClInclude Include="math\calculator\parser_exception.h" />
     <ClInclude Include="math\calculator\result.h" />

@@ -1139,7 +1139,7 @@ public:
 
    //   auto ptask = ::get_task();
 
-   //   synchronous_lock synchronouslock(ptask->mutex());
+   //   synchronous_lock synchronouslock(ptask->synchronization());
 
    //   if (ptask && ptask->m_bIsPredicate)
    //   {

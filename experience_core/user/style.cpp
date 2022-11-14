@@ -2,6 +2,7 @@
 #include "style.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
+#include "acme/primitive/mathematics/_random.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -1103,7 +1104,7 @@ namespace experience_core
 
             ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
 
-            if (::is_ok(ppane->m_pimage))
+            if (ppane->m_pimage.ok())
             {
 
                size.cy = maximum(size.cy, ppane->m_pimage->size().cy);
@@ -1127,7 +1128,7 @@ namespace experience_core
 
             ixAdd = 5;
 
-            if (::is_ok(ppane->m_pimage))
+            if (ppane->m_pimage.ok())
             {
                //::image_list::info ii;
                ixAdd += ppane->m_pimage->width() + 2;

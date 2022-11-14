@@ -1,6 +1,9 @@
 ﻿#include "framework.h"
 #include "form_list_impact.h"
+#include "acme/constant/id.h"
 #include "acme/handler/item.h"
+#include "acme/platform/context.h"
+#include "acme/platform/system.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "aura/user/user/interaction_impl.h"
 #include "base/user/form/document.h"
@@ -65,18 +68,18 @@ namespace user
       ////__update(::update)
       {
 
-         if(ptopic->m_atom == id_browse)
+         if(ptopic->m_atom == ID_BROWSE)
          {
 
-            if(!ptopic->payload(id_form).is_empty())
+            if(!ptopic->payload(ID_FORM).is_empty())
             {
 
-               string strMatter = dir()->matter(ptopic->payload(id_form));
+               string strMatter = dir()->matter(ptopic->payload(ID_FORM));
 
                if(get_document()->on_open_document(strMatter))
                {
 
-                  m_strPath = ptopic->payload(id_form);
+                  m_strPath = ptopic->payload(ID_FORM);
 
                }
 
@@ -86,7 +89,7 @@ namespace user
          else if(ptopic->m_atom == id_get_form_impact)
          {
 
-            ptopic->payload(id_form) = this;
+            ptopic->payload(ID_FORM) = this;
 
          }
 
@@ -95,7 +98,7 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         ptopic->payload(id_form) = this;
+         ptopic->payload(ID_FORM) = this;
 
          m_pcallback->handle(ptopic, pcontext);
 
@@ -145,24 +148,24 @@ namespace user
    }
 
 
-   void form_list_impact::assert_ok() const
-   {
+   //void form_list_impact::assert_ok() const
+   //{
 
-      form_list::assert_ok();
-      form_impact::assert_ok();
-      list_impact::assert_ok();
+   //   form_list::assert_ok();
+   //   form_impact::assert_ok();
+   //   list_impact::assert_ok();
 
-   }
+   //}
 
 
-   void form_list_impact::dump(dump_context & dumpcontext) const
-   {
+   //void form_list_impact::dump(dump_context & dumpcontext) const
+   //{
 
-      form_list::dump(dumpcontext);
-      form_impact::dump(dumpcontext);
-      list_impact::dump(dumpcontext);
+   //   form_list::dump(dumpcontext);
+   //   form_impact::dump(dumpcontext);
+   //   list_impact::dump(dumpcontext);
 
-   }
+   //}
 
 
    bool form_list_impact::pre_create_window(::user::system * pusersystem)

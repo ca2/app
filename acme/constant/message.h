@@ -4,22 +4,22 @@
 enum enum_message : ::i32
 {
 
-   e_message_undefined = -1,
+   e_message_undefined = MESSAGE_UNDEFINED, // -1
 
-   e_message_null = 0,
+   e_message_null = MESSAGE_NULL, // 0
 
-   e_message_create = 1,
-   e_message_destroy = 2,
-   e_message_move = 3,
-   e_message_size = 5,
-   e_message_activate = 6,
-   e_message_set_focus = 7,
-   e_message_kill_focus = 8,
-   e_message_enable = 10,
-   e_message_set_text = 12,
-   e_message_paint = 15,
-   e_message_close = 16,
-   e_message_quit = 18,
+   e_message_create = MESSAGE_CREATE, //1,
+   e_message_destroy = MESSAGE_DESTROY, //,= 2,
+   e_message_move = MESSAGE_MOVE,//,3,
+   e_message_size = MESSAGE_SIZE,//,5,
+   e_message_activate = MESSAGE_ACTIVATE,//,6,
+   e_message_set_focus = MESSAGE_SET_FOCUS,//,7,
+   e_message_kill_focus = MESSAGE_KILL_FOCUS,// ,8,
+   e_message_enable = MESSAGE_ENABLE,//,10,
+   e_message_set_text = MESSAGE_SET_TEXT,//, 12,
+   e_message_paint = MESSAGE_PAINT,//,15,
+   e_message_close = MESSAGE_CLOSE,//16,
+   e_message_quit = MESSAGE_QUIT,//,18,
 
    e_message_erase_background  = 20, // 0x0014
 

@@ -279,7 +279,7 @@ namespace user
 
       last_install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_child::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &interaction_child::on_message_destroy);
 
       MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_child::on_message_show_window);
 

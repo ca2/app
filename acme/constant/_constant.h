@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "GLOBAL_ID.h"
+//#include "GLOBAL_ID.h"
 
 
 
@@ -329,7 +329,7 @@ enum enum_trace_level
 };
 
 
-//enum enum_object : i64
+//enum  : i64
 //{
 //
 //

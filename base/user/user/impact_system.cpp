@@ -1,11 +1,12 @@
 ﻿#include "framework.h"
 #include "impact_system.h"
 #include "document.h"
+#include "impact.h"
+#include "frame_window.h"
 #include "acme/platform/application.h"
 #include "apex/platform/create.h"
 #include "aura/user/user/system.h"
 #include "aura/user/user/wait_cursor.h"
-#include "frame_window.h"
 
 
 // 0000 -> 7FFF IDR range

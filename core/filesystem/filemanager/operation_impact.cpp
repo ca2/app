@@ -1,9 +1,10 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "operation_impact.h"
 #include "operation_document.h"
 #include "operation_thread.h"
 #include "operation_list_impact.h"
 #include "operation_info_impact.h"
+#include "operation.h"
 #include "acme/constant/message.h"
 #include "aura/message/user.h"
 #include "base/user/user/split_layout.h"
@@ -67,9 +68,9 @@ namespace filemanager
    void operation_impact::install_message_routing(::channel * pchannel)
    {
       ::user::split_impact::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create,pchannel,this,&operation_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE,pchannel,this,&operation_impact::on_message_create);
       MESSAGE_LINK(e_message_main_post,pchannel,this,&operation_impact::_001OnMainPostMessage);
-      MESSAGE_LINK(e_message_destroy,pchannel,this,&operation_impact::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_DESTROY,pchannel,this,&operation_impact::on_message_destroy);
    }
 
    ::pointer<operation_document>operation_impact::get_document()

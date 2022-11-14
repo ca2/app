@@ -904,6 +904,9 @@ inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::facto
 }
 
 
+
+
+
 template < typename TYPE >
 inline void __id_construct(particle* pparticle, ::pointer<TYPE>& p, const ::atom& atom, ::factory::factory* pfactory = ::factory::get_factory())
 {
@@ -942,6 +945,52 @@ inline void __id_construct(particle* pparticle, ::pointer<TYPE>& p, const ::atom
    //}
 
    //return estatus;
+
+}
+
+
+template < typename TYPE >
+inline ::pointer < TYPE > __id_create(particle* pparticle, const ::atom& atom, ::factory::factory* pfactory = ::factory::get_factory())
+{
+
+   auto& pfactoryitem = pfactory->get_factory_item(atom);
+
+   auto pparticleNew = pfactoryitem->create_particle();
+
+   //if (!pparticleNew)
+   //{
+
+   //   return error_no_memory;
+
+   //}
+
+   
+
+   ::pointer < TYPE > p = pparticleNew;
+
+   if (!p)
+   {
+
+      throw_exception(error_wrong_type);
+
+   }
+
+   p->set_flag(e_flag_factory);
+
+   //auto estatus =
+
+   p->initialize(pparticle);
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+   //return estatus;
+
+   return p;
 
 }
 

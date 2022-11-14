@@ -1,16 +1,18 @@
 ﻿#include "framework.h"
 #include "tree.h"
 #include "tree_data.h"
+#include "acme/constant/message.h"
 #include "acme/constant/timer.h"
-//#include "aura/message.h"
+#include "acme/primitive/data/listener.h"
 #include "aura/message/user.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/user/user/primitive_impl.h"
 #include "aura/user/user/scroll_data.h"
 #include "base/user/user/impact.h"
 #include "base/user/user/document.h"
-#include "aura/user/user/primitive_impl.h"
+
 
 
 namespace user
@@ -524,7 +526,7 @@ namespace user
 
          i32 iImage = (i32)data.m_pitem->get_image();
 
-         if (iImage >= 0 && pimagelistItem && ::is_ok(pimagelistItem->m_pimage.get()))
+         if (iImage >= 0 && pimagelistItem && pimagelistItem->m_pimage.ok())
          {
 
             if (_001GetItemElementRect(rectangle, data, e_tree_element_image))
@@ -889,7 +891,7 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
       ::user::scroll_base::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tree::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &tree::on_message_create);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::on_message_left_button_double_click);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tree::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tree::on_message_left_button_down);
@@ -2277,7 +2279,7 @@ namespace user
    }
 
 
-   bool tree::keyboard_focus_is_focusable() const
+   bool tree::keyboard_focus_is_focusable()
    {
 
       return true;

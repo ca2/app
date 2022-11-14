@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/user/impact.h"
+#include "apex/progress/real.h"
 
 
 namespace userex
@@ -22,19 +23,19 @@ namespace userex
 
 
       progress_control();
-      virtual ~progress_control();
+      ~progress_control() override;
 
 #ifdef _DEBUG
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 #endif
 
 
       void create_progress();
       void set_progress_title(const ::string & pszTitle);
-      virtual void close_progress() override;
+      void close_progress() override;
 
 
-      virtual void redraw() override;
+      void redraw() override;
 
       virtual void defer_show(::user::interaction * puiParent, const ::string & pszTitle, ::count iStepCount = 0);
 

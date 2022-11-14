@@ -114,19 +114,6 @@ namespace aura
 
 
 
-   //class ::atom system::idEmpty;
-
-   //system * system::g_p = nullptr;
-   ::pointer< ::mutex > g_pmutexImage = nullptr;
-
-   ::pointer< ::mutex > get_image_mutex()
-   {
-
-      return g_pmutexImage;
-
-   }
-
-
    system::system()
    {
 
@@ -143,7 +130,7 @@ namespace aura
    system::~system()
    {
 
-      ::release(g_pmutexImage);
+      //::release(g_pmutexImage);
 
       //#if !defined(WIN32)
       //
@@ -202,7 +189,7 @@ namespace aura
 
       enable_trace_category(e_trace_category_prodevian, false);
     
-      __construct(g_pmutexImage);
+      //__construct(g_pmutexImage);
 
       m_bProdevianMouse = false;
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "tree.h"
 #include "document.h"
 #include "item.h"
@@ -7,7 +7,10 @@
 #include "acme/platform/timer.h"
 #include "acme/platform/context.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/data/listener.h"
 #include "aura/user/user/interaction.h"
+#include "base/user/user/impact.h"
+#include "core/user/user/tree.h"
 
 
 namespace userfs
@@ -127,7 +130,7 @@ namespace userfs
    void tree::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tree::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &tree::on_message_create);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::on_message_left_button_double_click);
       MESSAGE_LINK(e_message_context_menu, pchannel, this, &tree::on_message_context_menu);
 

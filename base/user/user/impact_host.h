@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "impact_data.h"
@@ -22,20 +22,6 @@ namespace user
       virtual public ::user::impact_creator
    {
    public:
-
-
-      class CLASS_DECL_BASE exception :
-         virtual public ::exception
-      {
-      public:
-
-
-         atom       m_atom;
-
-         exception(atom atom) : m_atom(atom) {}
-
-
-      };
 
 
       impact_data_map                              m_impactdatamap;

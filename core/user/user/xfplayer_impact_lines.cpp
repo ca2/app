@@ -1,8 +1,11 @@
-#include "framework.h"
-////#include "core/user/user/_component.h"
+﻿#include "framework.h"
 #include "xfplayer_impact_line.h"
 #include "xfplayer_impact_lines.h"
 #include "xfplayer_impact_line_selection.h"
+#include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "apex/message/channel.h"
+#include "apex/message/message.h"
 
 
 xfplayer_impact_linea::xfplayer_impact_linea(::user::interaction * puserinteraction) :

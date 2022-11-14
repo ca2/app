@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-08 16:01 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 16:01 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -228,6 +228,11 @@ inline RECTANGLE & operator -= (RECTANGLE & rectangle, const POINT & point);
 
 template < primitive_rectangle RECTANGLE, primitive_point POINT >
 inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point);
+
+
+CLASS_DECL_ACME double d_distance(const point_i32& point1, const point_i32& point2);
+
+
 
 
 

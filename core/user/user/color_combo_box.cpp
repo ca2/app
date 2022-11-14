@@ -1,18 +1,20 @@
 ﻿#include "framework.h"
+#include "color_combo_box.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/platform/system.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/path.h"
-#include "color_combo_box.h"
-#include "core/user/user/user.h"
-#include "core/user/userex/color_impact.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame.h"
-#include "core/platform/application.h"
-#include "core/platform/session.h"
 #include "base/user/user/document.h"
 #include "base/user/user/impact_system.h"
 #include "base/user/simple/frame_window.h"
+#include "core/platform/application.h"
+#include "core/platform/session.h"
+#include "core/user/user/user.h"
+#include "core/user/userex/color_impact.h"
 
 
 namespace user
@@ -35,12 +37,36 @@ namespace user
    }
 
 
+   ::core::application* color_combo_box::get_app()
+   {
+      
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; 
+   
+   }
+
+
+   ::core::session* color_combo_box::get_session()
+   { 
+      
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr; 
+   
+   }
+
+
+   ::core::system* color_combo_box::get_system() 
+   {
+      
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; 
+   
+   }
+
+
    void color_combo_box::install_message_routing(::channel * psender)
    {
 
       ::user::interaction::install_message_routing(psender);
 
-      MESSAGE_LINK(e_message_create, psender, this, &::user::color_combo_box::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, psender, this, &::user::color_combo_box::on_message_create);
       MESSAGE_LINK(e_message_left_button_down, psender, this, &::user::color_combo_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, psender, this, &::user::color_combo_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move, psender, this, &::user::color_combo_box::on_message_mouse_move);
@@ -124,7 +150,7 @@ namespace user
 
                psession->set_bound_ui(COLORSEL_IMPACT, this);
 
-               m_pframewindow = m_pimpact->top_level_frame()->cast < ::simple_frame_window >();
+               m_pframewindow = dynamic_cast < ::simple_frame_window * > (m_pimpact->top_level_frame());
 
                m_pframewindow->set_owner(this);
 

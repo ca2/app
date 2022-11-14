@@ -2172,6 +2172,10 @@ string payload::string(const char * pszOnNull) const
    {
       return *m_pstr;
    }
+   else if (m_etype == e_type_path)
+   {
+      return *m_ppath;
+   }
    else if(m_etype != e_type_string)
    {
       ::string str;

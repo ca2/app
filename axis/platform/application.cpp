@@ -1121,7 +1121,7 @@ namespace axis
 
       //}
 
-      release_exclusive();
+      ///release_exclusive();
 
       //::application_message signal(::application_message_term_instance);
 

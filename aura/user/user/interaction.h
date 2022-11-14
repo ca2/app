@@ -1,8 +1,6 @@
 ﻿#pragma once
 
 
-#include "apex/message/command.h"
-#include "apex/user/primitive.h"
 #include "interaction_layout.h"
 #include "prodevian.h"
 #include "drawable.h"
@@ -10,6 +8,9 @@
 #include "acme/primitive/collection/string_map.h"
 #include "acme/platform/timer_callback.h"
 #include "acme/platform/flags.h"
+#include "apex/database/key.h"
+#include "apex/message/command.h"
+#include "apex/user/primitive.h"
 
 
 namespace user
@@ -243,7 +244,7 @@ namespace user
       enum_control_type                         m_econtroltype;
 
       enum_control_ddx                          m_eddx;
-      //::database::key                           m_datakey;
+      ::database::key                           m_datakey;
       int                                       m_iDataValue;
       flags < enum_control_function >           m_flagsfunction;
       enum_control_data_type                    m_edatatype;

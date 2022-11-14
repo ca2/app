@@ -896,8 +896,8 @@ namespace user
 //            str.trim();
 //            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
 //            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-//            synchronous_lock sl1(m_pil48Hover->mutex());
-//            synchronous_lock sl2(m_pil48->mutex());
+//            synchronous_lock sl1(m_pil48Hover->synchronization());
+//            synchronous_lock sl2(m_pil48->synchronization());
 //            iImage = m_pil16->add_icon_os_data(hicon16);
 //            m_pil48Hover->add_icon_os_data(hicon48);
 //
@@ -1068,8 +1068,8 @@ namespace user
             str.trim();
             /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
             HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-            synchronous_lock sl1(m_pil48Hover->mutex());
-            synchronous_lock sl2(m_pil48->mutex());
+            synchronous_lock sl1(m_pil48Hover->synchronization());
+            synchronous_lock sl2(m_pil48->synchronization());
             iImage = m_pil16->add_icon_os_data(hicon16);
             m_pil48Hover->add_icon_os_data(hicon48);
 
@@ -1803,9 +1803,9 @@ namespace user
 //   void shell::set_image(int iImage, int iSize, ::image * pimage)
 //   {
 //
-//      synchronous_lock synchronouslock(m_pimagelist[iSize]->mutex());
+//      synchronous_lock synchronouslock(m_pimagelist[iSize]->synchronization());
 //
-//      synchronous_lock slHover(m_pimagelistHover[iSize]->mutex());
+//      synchronous_lock slHover(m_pimagelistHover[iSize]->synchronization());
 //
 //      m_pimagelist[iSize]->set(iImage, pimage);
 //
@@ -2017,7 +2017,7 @@ namespace user
    //int shell::add_hover_image(int iSize, int iImage, ::color::color crBk)
    //{
 
-   //   synchronous_lock synchronouslock(m_pimagelistHover[iSize]->mutex());
+   //   synchronous_lock synchronouslock(m_pimagelistHover[iSize]->synchronization());
 
    //   if (crBk == 0)
    //   {
@@ -2075,7 +2075,7 @@ namespace user
    //int shell::add_hover_image(int iSize, int iImage, const ::color::color& colorBackground)
    //{
 
-   //   synchronous_lock synchronouslock(m_pimagelistHover[iSize]->mutex());
+   //   synchronous_lock synchronouslock(m_pimagelistHover[iSize]->synchronization());
 
    //   if (colorBackground.is_transparent())
    //   {

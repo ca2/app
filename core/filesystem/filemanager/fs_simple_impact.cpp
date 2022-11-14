@@ -7,6 +7,7 @@
 #include "acme/networking/url_department.h"
 #include "acme/platform/context.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/data/listener.h"
 #include "apex/networking/http/context.h"
 #include "apex/networking/http/signal.h"
 #include "apex/platform/context.h"
@@ -46,7 +47,7 @@ namespace filemanager
 
             ::user::split_impact::install_message_routing(pchannel);
 
-            MESSAGE_LINK(e_message_destroy, pchannel, this, &::filemanager::fs::simple::impact::on_message_destroy);
+            MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &::filemanager::fs::simple::impact::on_message_destroy);
 
          }
 

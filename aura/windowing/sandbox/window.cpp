@@ -1983,7 +1983,7 @@ namespace sandbox_windowing
 
    //   }
 
-   //   synchronous_lock ml(pmessagequeue->mutex());
+   //   synchronous_lock ml(pmessagequeue->synchronization());
 
    //   if (message.m_atom == e_message_quit)
    //   {
@@ -2044,7 +2044,7 @@ namespace sandbox_windowing
 
    //   }
 
-   //   synchronous_lock ml(pmq->mutex());
+   //   synchronous_lock ml(pmq->synchronization());
 
    //   pmq->m_messagea.predicate_erase([this](MESSAGE & item)
    //      {

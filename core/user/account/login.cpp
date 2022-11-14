@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "login.h"
+#include "acme/constant/message.h"
 #include "apex/crypto/crypto.h"
 #include "axis/user/user/simple_ui_draw.h"
 #include "aura/graphics/image/image.h"
@@ -65,7 +66,7 @@ namespace account
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &login::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &login::on_message_create);
 
    }
 

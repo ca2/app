@@ -9,7 +9,7 @@
 #include "acme/exception/exit.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/geometry2d/_concept.h"
+#include "acme/primitive/data/listener.h"
 #include "apex/platform/create.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -2159,7 +2159,7 @@ namespace user
       if(eelement == e_element_icon)
       {
 
-         if (::not_ok(ptabdata->m_tabpanecompositea[iIndex]->m_pimage))
+         if (ptabdata->m_tabpanecompositea[iIndex]->m_pimage.nok())
          {
 
             return false;
@@ -2192,7 +2192,7 @@ namespace user
 
          }
 
-         if(::is_ok(ptabdata->m_tabpanecompositea[iIndex]->m_pimage))
+         if(ptabdata->m_tabpanecompositea[iIndex]->m_pimage.ok())
          {
 
             rectangle.left += ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width() + 2;
@@ -2682,7 +2682,7 @@ namespace user
 
       //install_hover_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tab::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &tab::on_message_create);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tab::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tab::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tab::on_message_left_button_double_click);
@@ -3384,10 +3384,10 @@ namespace user
          set_current_tab_by_index(iIndex);
 
       }
-      catch (::exit_exception * pexception)
+      catch (const ::exit_exception & exception)
       {
 
-         __rethrow(pexception);
+         throw exception;
 
       }
       catch (const ::exception &)

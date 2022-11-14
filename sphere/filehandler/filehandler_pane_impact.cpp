@@ -135,7 +135,7 @@ namespace filehandler
          if(pdocument != nullptr)
          {
          ::pointer<::user::impact>pimpact = pdocument->get_impact();
-         pimpact->call_update(INITIAL_UPDATE);
+         pimpact->call_update(ID_INITIAL_UPDATE);
          if(pimpact != nullptr)
          {
          ::pointer<::user::frame_window>pframe =  (pimpact->get_parent_frame());
@@ -182,7 +182,7 @@ namespace filehandler
    {
       ::userex::pane_tab_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &pane_impact::on_message_create);
       MESSAGE_LINK(WM_USER + 1122, pchannel, this, &pane_impact::_001OnMenuMessage);
    }
 

@@ -264,8 +264,8 @@ template < typename T >
 concept primitive_integral = 
    std::is_integral_v < T > || 
    std::is_enum < T >::value ||
-   std::is_same < T, ::e_status >::value ||
-   derived_from_specialization_of<T, enumeration >;
+   std::is_same < T, ::e_status >::value;
+
 
 template < typename T >
 concept primitive_integer = std::is_integral < T >::value;

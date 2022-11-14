@@ -920,6 +920,7 @@
     <ClInclude Include="user\user\data_exchange.h" />
     <ClInclude Include="user\user\image_list.h" />
     <ClInclude Include="user\user\impact_data.h" />
+    <ClInclude Include="user\user\impact_exception.h" />
     <ClInclude Include="user\user\picture_impl.h" />
     <ClInclude Include="user\user\server.h" />
     <ClInclude Include="user\user\show.h" />

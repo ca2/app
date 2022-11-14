@@ -1,8 +1,7 @@
 ﻿#pragma once
 
 
-#include "acme/primitive/primitive/object.h"
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace user
@@ -17,7 +16,7 @@ namespace user
 
 
       class CLASS_DECL_CORE span :
-         virtual public ::object
+         virtual public ::particle
       {
       public:
 

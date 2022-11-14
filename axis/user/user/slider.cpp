@@ -26,7 +26,7 @@ namespace user
    void slider::install_message_routing(::channel * pchannel)
    {
       ::user::interaction::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create,pchannel,this,&slider::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE,pchannel,this,&slider::on_message_create);
 //      //MESSAGE_LINK(e_message_timer,pchannel,this,&slider::_001OnTimer);
       MESSAGE_LINK(e_message_left_button_down,pchannel,this,&slider::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up,pchannel,this,&slider::on_message_left_button_up);

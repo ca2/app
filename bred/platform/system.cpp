@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/system_setup.h"
 #include "bred/const/idpool.h"
 #include "application.h"
@@ -30,7 +30,7 @@ namespace bred
 
       ::factory::add_factory_item < ::bred::application, ::apex::application >();
       ::factory::add_factory_item < ::bred::session, ::apex::session >();
-      ::factory::add_factory_item < ::bred::idpool, ::acme::idpool >();
+      //::factory::add_factory_item < ::bred::idpool, ::acme::idpool >();
       //add_factory_item < ::core::user, ::user::user >();
       //add_factory_item < ::bred::idpool, ::apex::idpool >();
 

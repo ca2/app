@@ -25,7 +25,7 @@ namespace userstack
 
       }
    
-      update_all_impacts(nullptr, NEW_DOCUMENT_UPDATE);
+      update_all_impacts(nullptr, ID_NEW_DOCUMENT);
 
       return true;
 

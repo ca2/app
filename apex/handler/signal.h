@@ -80,7 +80,7 @@ public:
    }
 
 
-   inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == FULL_ID; }
+   inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == ID_FULL; }
 
    void subject_common_construct();
 

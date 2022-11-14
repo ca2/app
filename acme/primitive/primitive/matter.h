@@ -35,7 +35,7 @@ public:
 
 
    class ::atom                        m_atom;
-   //::eobject                           m_eobject;
+//   ::eobject                           m_eobject;
 
 
 

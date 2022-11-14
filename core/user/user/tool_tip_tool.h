@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace user
@@ -9,11 +9,13 @@ namespace user
 
 
    class tool_tip_tool :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
+
+
       tool_tip_tool();
-      virtual ~tool_tip_tool();
+      ~tool_tip_tool() override;
 
       // Attributes
       void BaseToolTipSetHandler(tool_tip_window * phandler);

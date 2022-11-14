@@ -257,7 +257,7 @@ namespace userstack
    void pane_impact::install_message_routing(::channel * pchannel)
    {
       ::userex::pane_tab_impact::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &pane_impact::on_message_create);
       MESSAGE_LINK(WM_USER + 1122, this, this, &pane_impact::_001OnMenuMessage);
       MESSAGE_LINK(e_message_right_button_up, pchannel, this, &pane_impact::on_message_right_button_up);
       add_command_handler("properties", &pane_impact::_001OnProperties);

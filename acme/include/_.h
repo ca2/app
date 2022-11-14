@@ -96,7 +96,7 @@
 #include "_c.h"
 
 
-#include "acme/primitive/primitive/estatus.h"
+#include "acme/primitive/primitive/e_status.h"
 
 
 

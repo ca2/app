@@ -1,5 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "statusbar.h"
+#include "acme/constant/message.h"
+#include "acme/exception/interface_only.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 
@@ -38,8 +40,8 @@ namespace user
 
    void status_bar::install_message_routing(::channel * pchannel)
    {
-      MESSAGE_LINK(e_message_non_client_hittest, pchannel, this, &status_bar::_001OnNcHitTest);
-      MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this, &status_bar::on_message_non_client_calculate_size);
+      MESSAGE_LINK(e_message_non_client_hit_test, pchannel, this, &status_bar::_001OnNcHitTest);
+      MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &status_bar::on_message_non_client_calculate_size);
       MESSAGE_LINK(e_message_size, pchannel, this, &status_bar::on_message_size);
       MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &status_bar::_001OnWindowPosChanging);
 //#ifdef WINDOWS_DESKTOP
@@ -923,34 +925,34 @@ namespace user
    }
 
 
-   /////////////////////////////////////////////////////////////////////////////
-   // status_bar diagnostics
+   ///////////////////////////////////////////////////////////////////////////////
+   //// status_bar diagnostics
 
 
-   void status_bar::assert_ok() const
-   {
-      ::user::control_bar::assert_ok();
-   }
+   //void status_bar::assert_ok() const
+   //{
+   //   ::user::control_bar::assert_ok();
+   //}
 
-   void status_bar::dump(dump_context & dumpcontext) const
-   {
-      ::user::control_bar::dump(dumpcontext);
+   //void status_bar::dump(dump_context & dumpcontext) const
+   //{
+   //   ::user::control_bar::dump(dumpcontext);
 
-      //if (dumpcontext.GetDepth() > 0)
-      //{
-      //   for (i32 i = 0; i < m_panecompositea.get_count(); i++)
-      //   {
-      //      __STATUSPANE * ppane = ((status_bar *) this)->_GetPanePtr(i);
-      //      dumpcontext << "\nstatus pane[" << i << "] = {";
-      //      dumpcontext << "\n\tnID = " << (const ::string &) ppane->m_atom;
-      //      dumpcontext << "\n\tnStyle = " << ppane->nStyle;
-      //      dumpcontext << "\n\tcxText = " << ppane->cxText;
-      //      dumpcontext << "\n\tstrText = " << ppane->strText;
-      //      dumpcontext << "\n\t}";
-      //   }
-      //}
-      //dumpcontext << "\n";
-   }
+   //   //if (dumpcontext.GetDepth() > 0)
+   //   //{
+   //   //   for (i32 i = 0; i < m_panecompositea.get_count(); i++)
+   //   //   {
+   //   //      __STATUSPANE * ppane = ((status_bar *) this)->_GetPanePtr(i);
+   //   //      dumpcontext << "\nstatus pane[" << i << "] = {";
+   //   //      dumpcontext << "\n\tnID = " << (const ::string &) ppane->m_atom;
+   //   //      dumpcontext << "\n\tnStyle = " << ppane->nStyle;
+   //   //      dumpcontext << "\n\tcxText = " << ppane->cxText;
+   //   //      dumpcontext << "\n\tstrText = " << ppane->strText;
+   //   //      dumpcontext << "\n\t}";
+   //   //   }
+   //   //}
+   //   //dumpcontext << "\n";
+   //}
 
 
 #ifdef __INIT_SEG

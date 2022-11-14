@@ -24,7 +24,7 @@ namespace prompt
 
       }
 
-      update_all_impacts(nullptr, NEW_DOCUMENT_UPDATE);
+      update_all_impacts(nullptr, ID_NEW_DOCUMENT);
 
       return true;
 
@@ -76,7 +76,7 @@ namespace prompt
       string str = pcontext->m_papexcontext->file()->as_string(payloadFile);
       //  m_document.load(str);
 
-      update_all_impacts(nullptr, OPEN_DOCUMENT_UPDATE);
+      update_all_impacts(nullptr, ID_OPEN_DOCUMENT);
 
       return true;
 

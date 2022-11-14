@@ -1,8 +1,21 @@
 ﻿#include "framework.h"
+#include "mesh.h"
+#include "list.h"
+#include "mesh_cache_interface.h"
+#include "list_data.h"
+#include "list_item.h"
+#include "list_column.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/constant/timer.h"
+#include "acme/exception/interface_only.h"
 #include "acme/handler/item.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/data/listener.h"
+#include "acme/primitive/duration/_text_stream.h"
 #include "acme/platform/timer.h"
 #include "apex/database/selection.h"
+#include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -11,18 +24,11 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/imaging.h"
 #include "aura/graphics/image/drawing.h"
-#include "mesh.h"
-#include "list.h"
-#include "mesh_cache_interface.h"
-#include "list_data.h"
-#include "list_item.h"
-#include "list_column.h"
+#include "aura/message/user.h"
+#include "axis/platform/system.h"
+#include "base/user/user/user.h"
 #include "core/user/simple/mesh_data.h"
 #include "core/platform/session.h"
-#include "axis/platform/system.h"
-#include "aura/message/user.h"
-#include "base/user/user/user.h"
-//#include "aura/_defer.h"
 
 
 #define DBLCLKMS 500
@@ -188,7 +194,7 @@ namespace user
 
       MESSAGE_LINK(e_message_key_down, pchannel, this,&mesh::on_message_key_down);
 
-      MESSAGE_LINK(e_message_create, pchannel, this,&mesh::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this,&mesh::on_message_create);
 
       add_command_handler("mesh_impact_auto_arrange", { this,  &mesh::_001OnMeshImpactAutoArrange });
 
@@ -5796,7 +5802,7 @@ namespace user
    }
 
 
-   bool mesh::keyboard_focus_is_focusable() const
+   bool mesh::keyboard_focus_is_focusable()
    {
 
       return true;

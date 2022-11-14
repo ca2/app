@@ -1421,7 +1421,7 @@ bool thread::post_quit_message(int nExitCode)
 //
 //      }
 //
-//      synchronous_lock slChild(ptask->mutex());
+//      synchronous_lock slChild(ptask->synchronization());
 //
 //      if (::parallelization::is_child(ptask) || ptask->m_pthreadParent)
 //      {
@@ -1473,7 +1473,7 @@ void thread::task_erase(::task * ptask)
 
       }
 
-      //synchronous_lock slChild(ptask->mutex());
+      //synchronous_lock slChild(ptask->synchronization());
 
       //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       //{

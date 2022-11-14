@@ -28,7 +28,7 @@ namespace filehandler
    {
 
       ::user::form::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &impact::on_message_create);
 //
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
 

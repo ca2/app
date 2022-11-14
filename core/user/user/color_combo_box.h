@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/interaction.h"
@@ -22,16 +22,16 @@ namespace user
 
 
       color_combo_box();
-      virtual ~color_combo_box();
+      ~color_combo_box() override;
 
 
-      inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
-      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
-      inline ::core::system* get_system() const { return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; }
+      ::core::application* get_app();
+      ::core::session* get_session();
+      ::core::system* get_system();
 
 
 
-      virtual void install_message_routing(::channel * psender) override;
+      void install_message_routing(::channel * psender) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -45,9 +45,10 @@ namespace user
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
+
 
    };
 

@@ -47,7 +47,7 @@ namespace filemanager
 //      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &frame::_001OnSetText);
 //#endif
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &frame::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &frame::on_message_create);
 
    }
 

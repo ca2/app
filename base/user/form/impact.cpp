@@ -46,16 +46,16 @@ namespace user
 //         }
 
       }
-      else if (ptopic->m_atom == id_browse)
+      else if (ptopic->m_atom == ID_BROWSE)
       {
 
-         if (!ptopic->payload(id_form).is_empty())
+         if (!ptopic->payload(ID_FORM).is_empty())
          {
 
-            if (get_document()->on_open_document(ptopic->payload(id_form)))
+            if (get_document()->on_open_document(ptopic->payload(ID_FORM)))
             {
 
-               m_strPath = ptopic->payload(id_form);
+               m_strPath = ptopic->payload(ID_FORM);
 
             }
 
@@ -65,7 +65,7 @@ namespace user
       else if (ptopic->m_atom == id_get_form_impact)
       {
 
-         ptopic->payload(id_form) = this;
+         ptopic->payload(ID_FORM) = this;
 
       }
       else if (ptopic->m_atom == id_new_document)
@@ -87,7 +87,7 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         ptopic->payload(id_form) = this;
+         ptopic->payload(ID_FORM) = this;
 
          m_pcallback->handle(ptopic, pcontext);
 

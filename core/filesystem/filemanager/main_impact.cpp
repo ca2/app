@@ -190,14 +190,14 @@ namespace filemanager
 
       ::user::split_impact::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == OPEN_DOCUMENT_UPDATE)
+      if (ptopic->m_atom == ID_OPEN_DOCUMENT)
       {
 
          output_debug_string("filemanager::main_impact ::update_open_document");
 
       }
 
-      if (filemanager_document() == ptopic->cast < ::user::document >(DOCUMENT_ID))
+      if (filemanager_document() == ptopic->cast < ::user::document >(ID_DOCUMENT))
       {
 
          if (ptopic->m_atom == id_open_selection_properties)

@@ -1,5 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "home_impact.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "base/user/user/document.h"
 #include "aura/user/user/frame.h"
 #include "aura/message/user.h"
@@ -41,20 +43,20 @@ namespace userex
    }
 
 
-   void home_impact::assert_ok() const
-   {
+   //void home_impact::assert_ok() const
+   //{
 
-      ::user::impact::assert_ok();
+   //   ::user::impact::assert_ok();
 
-   }
+   //}
 
 
-   void home_impact::dump(dump_context & dumpcontext) const
-   {
+   //void home_impact::dump(dump_context & dumpcontext) const
+   //{
 
-      ::user::impact::dump(dumpcontext);
+   //   ::user::impact::dump(dumpcontext);
 
-   }
+   //}
 
 
    void home_impact::install_message_routing(::channel * pchannel)
@@ -62,7 +64,7 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &home_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &home_impact::on_message_create);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &home_impact::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &home_impact::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &home_impact::on_message_left_button_up);

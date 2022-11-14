@@ -627,14 +627,14 @@ namespace ios
 
             m_puserinteraction->install_message_routing(pchannel);
 
-            MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::on_message_create);
+            MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &interaction_impl::on_message_create);
 
             if (!m_puserinteraction->m_bMessageWindow)
             {
 
       //         MESSAGE_LINK(e_message_set_cursor, pchannel, this, &interaction_impl::on_message_set_cursor);
       //         MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
-               //         MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
+               //         MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
       //         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
                //         MESSAGE_LINK(e_message_window_position_changing, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
                //         MESSAGE_LINK(e_message_window_position_changed, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
@@ -644,18 +644,18 @@ namespace ios
                //MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
             }
             prio_install_message_routing(pchannel);
-            MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
+            MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &interaction_impl::on_message_destroy);
 
             //      ::user::interaction_impl::install_message_routing(pchannel);
             //      //m_pbuffer->InstallMessageHandling(pinterface);
-            //      MESSAGE_LINK(e_message_destroy           , pchannel, this, &interaction_impl::on_message_destroy);
+            //      MESSAGE_LINK(MESSAGE_DESTROY           , pchannel, this, &interaction_impl::on_message_destroy);
             //      MESSAGE_LINK(e_message_paint             , pchannel, this, &interaction_impl::_001OnPaint);
             //      MESSAGE_LINK(WM_PRINT             , pchannel, this, &interaction_impl::_001OnPrint);
             //      if(m_puserinteraction != nullptr)
             //      {
             //         m_puserinteraction->install_message_routing(pchannel);
             //      }
-            //      MESSAGE_LINK(e_message_create            , pchannel, this, &interaction_impl::on_message_create);
+            //      MESSAGE_LINK(MESSAGE_CREATE            , pchannel, this, &interaction_impl::on_message_create);
             //      MESSAGE_LINK(e_message_set_cursor         , pchannel, this, &interaction_impl::on_message_set_cursor);
             //      MESSAGE_LINK(e_message_erase_background        , pchannel, this, &interaction_impl::_001OnEraseBkgnd);
             //      MESSAGE_LINK(e_message_move              , pchannel, this, &interaction_impl::on_message_move);
@@ -668,7 +668,7 @@ namespace ios
 
 //      ::user::interaction_impl::install_message_routing(pchannel);
 //      //m_pbuffer->InstallMessageHandling(pinterface);
-//      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
+//      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &interaction_impl::on_message_destroy);
 //      MESSAGE_LINK(e_message_paint, pchannel, this, &interaction_impl::_001OnPaint);
 //      MESSAGE_LINK(WM_PRINT, pchannel, this, &interaction_impl::_001OnPrint);
 //
@@ -679,7 +679,7 @@ namespace ios
 //
 //      }
 //
-//      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::on_message_create);
+//      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &interaction_impl::on_message_create);
 //      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &interaction_impl::on_message_set_cursor);
 //      MESSAGE_LINK(e_message_erase_background, pchannel, this, &interaction_impl::_001OnEraseBkgnd);
 //      MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::on_message_move);
@@ -5683,7 +5683,7 @@ namespace ios
 
       {
 
-         synchronous_lock synchronouslock(m_puserinteraction->mutex());
+         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
          m_puserinteraction->m_stateRequest2.m_point = pointMove;
 
@@ -5741,7 +5741,7 @@ namespace ios
 
       }
 
-      synchronous_lock synchronouslock(m_puserinteraction->mutex());
+      synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
       for (auto p : m_puserinteraction->m_uiptraChild)
       {

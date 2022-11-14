@@ -121,7 +121,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(itask_t idthread, bool bCreate
 //
 //   }
 //
-//   //synchronous_lock slMap(pmap->mutex());
+//   //synchronous_lock slMap(pmap->synchronization());
 //
 //   ::user::primitive * pusermessage;
 //
@@ -257,7 +257,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(itask_t idthread, bool bCreate
 //
 //   }
 //
-//   synchronous_lock ml(pmq->mutex());
+//   synchronous_lock ml(pmq->synchronization());
 //
 //   pmq->m_messagea.predicate_erase([=](MESSAGE & item)
 //   {

@@ -28,7 +28,7 @@ namespace filemanager
       ::user::impact::install_message_routing(pchannel);
       ::user::list::install_message_routing(pchannel);
 //      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_list_impact::_001OnTimer);
-      MESSAGE_LINK(e_message_create,pchannel,this,&operation_list_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE,pchannel,this,&operation_list_impact::on_message_create);
    }
 
 
@@ -180,7 +180,7 @@ namespace filemanager
 
       BASE::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == INITIAL_UPDATE)
+      if (ptopic->m_atom == ID_INITIAL_UPDATE)
       {
 
          _001UpdateColumns();

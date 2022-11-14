@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 #include "xfplayer_impact_line_selection.h"
+#include "acme/primitive/geometry2d/_collection.h"
 
 
 class CLASS_DECL_CORE xfplayer_impact_line  :

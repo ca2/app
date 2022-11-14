@@ -593,7 +593,7 @@ i32 image_list::set(int iItem, const image_drawing & imagedrawing)
 //i32 image_list::add_image(image_list * pil, int iImage, int iItem)
 //{
 //
-//   synchronous_lock synchronouslock(pil->mutex());
+//   synchronous_lock synchronouslock(pil->synchronization());
 //
 //   return add_image(pil->m_pimage, iImage * pil->m_size.cx, 0, iItem);
 //

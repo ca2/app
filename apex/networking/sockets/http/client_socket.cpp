@@ -760,6 +760,8 @@ namespace sockets
 
       string strAddUp;
 
+      auto papp = get_app();
+
       if (get_app()->m_papexapplication->m_strHttpUserAgentToken.has_char() && get_app()->m_papexapplication->m_strHttpUserAgentVersion.has_char())
       {
 

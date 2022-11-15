@@ -1188,7 +1188,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 //
 //   auto pimage = get_cache_image(pparticle, payloadFile);
 //
-//   if (!::is_ok(pimage))
+//   if (pimage.nok())
 //   {
 //
 //      auto pcontext = m_pcontext->m_pauracontext;

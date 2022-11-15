@@ -64,35 +64,15 @@
 
 
 #include "_macro.h"
-
-
 #include "_configuration.h"
-
-
 #include "_types.h"
-
-
 #include "acme/constant/_.h"
-
-
 #include "_forward_declaration.h"
-
-
 #include "_structures.h"
-
-
 #include "_template_forward_declaration.h"
-
-
 #include "_template_structures.h"
-
-
 #include "_enumeration.h"
-
-
 #include "_function_declarations.h"
-
-
 #include "_c.h"
 
 

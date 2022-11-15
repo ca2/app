@@ -213,10 +213,26 @@ void thread::thread_common_construct()
 
    m_bDedicated = false;
 
-   if (get_app() != nullptr && get_app()->get_session() != nullptr)
+   //if (get_app() != nullptr && get_app()->get_session() != nullptr)
+   //{
+
+   //   m_bZipIsDir2 = get_app()->get_session()->m_bZipIsDir2;
+
+   //}
+
+   auto pcontext = m_pcontext;
+
+   if (pcontext)
    {
 
-      m_bZipIsDir2 = get_app()->get_session()->m_bZipIsDir2;
+      auto papexcontext = pcontext->m_papexcontext;
+
+      if (papexcontext)
+      {
+
+         m_bZipIsDir2 = papexcontext->m_bZipIsDir2;
+
+      }
 
    }
 

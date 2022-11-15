@@ -464,7 +464,7 @@ i32 image_list::reserve_image(int iItem)
 //
 //         auto pimage = pcontextimage->load_image(payloadFile, true);
 //
-//         if (!::is_ok(pimage))
+//         if (pimage.nok())
 //         {
 //
 //            return;
@@ -520,7 +520,7 @@ i32 image_list::set(int iItem, const image_drawing & imagedrawing)
 //
 //   auto pimage = pcontextimage->get_image(pfile);
 //
-//   if(!::is_ok(pimage))
+//   if(pimage.nok())
 //   {
 //
 //      return -1;

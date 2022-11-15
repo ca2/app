@@ -19,6 +19,7 @@
 #pragma once
 
 
+#include "listener.h"
 #include "apex/parallelization/thread.h"
 
 
@@ -53,7 +54,9 @@ namespace file
       ~watcher() override;
 
 
-      virtual watch_id add_watch(const ::file::path & pathFolder, const listener & listener, bool bRecursive);
+      virtual watch_id add_watch_listener(const ::file::path& pathFolder, const listener& listener, bool bRecursive);
+
+      virtual watch_id add_watch(const ::file::path & pathFolder, typename listener::base * pbase, bool bRecursive);
 
       virtual void erase_watch(const ::file::path & pathFolder);
 

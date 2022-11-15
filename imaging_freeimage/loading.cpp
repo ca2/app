@@ -353,7 +353,7 @@ namespace imaging_freeimage
          
          pcontextimage->load_svg(pimage, memory);
 
-         if (::is_ok(pimage))
+         if (pimage.ok())
          {
 
             return;

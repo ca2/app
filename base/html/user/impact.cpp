@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "impact.h"
 #include "document.h"
 #include "acme/constant/id.h"
@@ -248,14 +248,14 @@ void html_impact::on_form_implemented()
 
    ::html_form::on_form_implemented();
 
-//   auto pdocument = get_document();
-//
-//   if (::is_set(pdocument))
-//   {
-//
-//      pdocument->call_routines_with_id("load");
-//
-//   }
+   auto pdocument = get_document();
+
+   if (::is_set(pdocument))
+   {
+
+      pdocument->call_routines_with_id("load");
+
+   }
 
 }
 

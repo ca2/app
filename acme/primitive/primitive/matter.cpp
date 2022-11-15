@@ -73,6 +73,7 @@ matter::~matter()
 void matter::operator()(::topic* ptopic, ::context* pcontext)
 {
 
+   handle(ptopic, pcontext);
 
 }
 

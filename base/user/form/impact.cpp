@@ -35,15 +35,15 @@ namespace user
       if (ptopic->m_atom == ::id_form_initialize && ptopic->user_interaction() == this)
       {
 
-         throw ::exception(todo);
+         //throw ::exception(todo);
 
-//         if (get_document())
-//         {
-//
-//            //call_sync(get_document()->m_mapMethod["load"]);
-//            get_document()->call_routines_with_id("load");
-//
-//         }
+         if (get_document())
+         {
+
+            //call_sync(get_document()->m_mapMethod["load"]);
+            get_document()->call_routines_with_id("load");
+
+         }
 
       }
       else if (ptopic->m_atom == ID_BROWSE)

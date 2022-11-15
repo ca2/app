@@ -481,6 +481,7 @@ void particle::on_sequence()
 }
 
 
+
 strsize particle::sz_len() const
 {
 

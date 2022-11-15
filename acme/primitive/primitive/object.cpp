@@ -1579,49 +1579,49 @@ bool object::__is_child_task(::particle * pparticleTask) const
 //#endif
 
 
-//void object::branch(const ::procedure_array& routinea)
-//{
-//
-//   fork([routinea]()
-//   {
-//
-//      for (auto& routine : routinea)
-//      {
-//
-//         try
-//         {
-//
-//            routine();
-//
-//         }
-//         catch (...)
-//         {
-//
-//         }
-//
-//      }
-//
-//   });
-//
-//}
-//
-//
-//void object::branch_each(const ::procedure_array& routinea)
-//{
-//
-//   for (auto& routine : routinea)
-//   {
-//
-//      fork([routine]()
-//      {
-//
-//         routine();
-//
-//      });
-//
-//   }
-//
-//}
+void object::branch(const ::procedure_array& routinea)
+{
+
+   fork([routinea]()
+   {
+
+      for (auto& routine : routinea)
+      {
+
+         try
+         {
+
+            routine();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+   });
+
+}
+
+
+void object::branch_each(const ::procedure_array& routinea)
+{
+
+   for (auto& routine : routinea)
+   {
+
+      fork([routine]()
+      {
+
+         routine();
+
+      });
+
+   }
+
+}
 
 
 ::task_pointer object::defer_branch(const ::atom& atom, const ::procedure & procedure, enum_priority epriority)
@@ -3667,7 +3667,9 @@ bool object::IsSerializable() const
 ::acme::application * object::get_app() const
 {
 
-   return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication : nullptr;
+   //return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication : nullptr;
+   
+   return ((::object *)this)->::matter::acmeapplication();
 
 }
 

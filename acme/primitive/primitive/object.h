@@ -505,8 +505,8 @@ public:
 
    //using property_object::branch;
 
-   //void branch(const ::procedure_array& routinea);
-   //void branch_each(const ::procedure_array& routinea);
+   void branch(const ::procedure_array& routinea);
+   void branch_each(const ::procedure_array& routinea);
 
    //using property_object::defer_branch;
 

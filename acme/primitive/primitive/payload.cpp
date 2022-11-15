@@ -1650,7 +1650,7 @@ bool payload::is_empty() const
    case e_type_path:
       return ::is_null(m_ppath) || m_ppath->is_empty();
    //case type_image:
-   //   return !::is_ok(m_pimage);
+   //   return m_pimage.ok();
 
    default:
       return false;
@@ -7621,7 +7621,7 @@ bool payload::is_false() const
    case e_type_path:
       return ::is_null(m_ppath) || m_ppath->is_empty();
    //case type_image:
-   //   return !::is_ok(m_pimage);
+   //   return m_pimage.ok();
 
    // enum
    case e_type_integral_nanosecond:
@@ -7807,7 +7807,7 @@ bool payload::is_set_false() const
    case e_type_path:
       return ::is_null(m_ppath) || m_ppath->is_empty();
    //case type_image:
-   //   return !::is_ok(m_pimage);
+   //   return m_pimage.ok();
 
    // enum
       case e_type_integral_nanosecond:

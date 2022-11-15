@@ -5094,7 +5094,7 @@ namespace ios
 
       }
 
-      if(!::is_ok(pimage))
+      if(pimage.nok())
       {
 
          return;

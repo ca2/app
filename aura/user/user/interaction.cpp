@@ -18362,7 +18362,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto rectangleResize = this->rectangle(::e_element_resize);
 
-      if (rectangleResize.contains(point))
+      if (rectangleResize.ok() && rectangleResize.contains(point))
       {
 
          auto pitemClient = __new(::item(e_element_resize));
@@ -19655,6 +19655,13 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else if (eelement == e_element_resize)
       {
 
+         if (!has_drag(eelement))
+         {
+
+            return false;
+
+         }
+
          get_client_rect(rectangle);
 
          rectangle.left = maximum(rectangle.left, rectangle.right - 25);
@@ -19665,6 +19672,13 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       }
       else if (eelement == e_element_drop_down)
       {
+
+         if (!has_drag(eelement))
+         {
+
+            return false;
+
+         }
 
          ::rectangle_i32 rectangleClient;
 

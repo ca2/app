@@ -421,7 +421,7 @@ namespace user
 
       //      ::image_pointer pimageSrc = m_imagea[item];
 
-      //      if (::is_ok(pimageSrc))
+      //      if (pimageSrc.ok())
       //      {
 
       //         if (m_imageaThumb.get_size() < m_imagea.get_size())

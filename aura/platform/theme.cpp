@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "theme.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/listing.h"
@@ -480,7 +480,7 @@ namespace aura
 
       sync_with_stored_theme();
 
-      m_watchidWeather = pcontext->m_papexcontext->dir()->watcher().add_watch(acmedirectory()->config(), { e_use, this }, false);
+      m_watchidWeather = pcontext->m_papexcontext->dir()->watcher().add_watch(acmedirectory()->config(), this, false);
       
       on_change_theme();
 

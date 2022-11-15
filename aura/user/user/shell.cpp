@@ -1572,7 +1572,7 @@ namespace user
 //         if (macos_get_file_image_by_type_identifier(pimage, strUniversalTypeIdentifier))
 //         {
 //
-//            if (::is_ok(pimage))
+//            if (pimage.ok())
 //            {
 //
 //               image_source imagesource(pimage);

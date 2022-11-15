@@ -683,7 +683,7 @@ namespace acme
 
       }
 
-      ::file::path pathFile = acmedirectory()->local() / "appdata" / strAppId / "last_run_path.txt";
+      ::file::path pathFile = acmedirectory()->roaming() / strAppId / "last_run_path.txt";
 
       const char * pszPathFile = pathFile;
 

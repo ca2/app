@@ -529,7 +529,7 @@
       <SDLCheck>true</SDLCheck>
       <UseFullPaths>true</UseFullPaths>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>false</FunctionLevelLinking>
     </ClCompile>

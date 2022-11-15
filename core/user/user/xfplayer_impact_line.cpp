@@ -1,4 +1,10 @@
 ﻿#include "framework.h"
+#include "xfplayer_impact_line.h"
+#include "xfplayer_impact_lines.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/regular_expression/regular_expression.h"
+#include "acme/regular_expression/result.h"
+#include "acme/platform/message.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/write_text/font.h"
@@ -8,11 +14,9 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "acme/platform/hyperlink.h"
 #include "aura/windowing/windowing.h"
-#include "xfplayer_impact_line.h"
-#include "xfplayer_impact_lines.h"
-#include "core/platform/system.h"
 #include "aura/message/user.h"
 #include "aura/user/user/interaction.h"
+#include "core/platform/system.h"
 
 
 const i32 xfplayer_impact_line::AlignLeft = 1;

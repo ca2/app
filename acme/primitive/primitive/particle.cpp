@@ -255,6 +255,13 @@ void particle::on_initialize_particle()
 ::acme::application * particle::acmeapplication()
 {
 
+   if (m_pcontext && m_pcontext->m_pacmeapplication)
+   {
+
+      return m_pcontext->m_pacmeapplication;
+
+   }
+
    if (acmesystem()->m_pacmeapplicationMain)
    {
 
@@ -472,6 +479,7 @@ void particle::on_sequence()
 
 
 }
+
 
 
 strsize particle::sz_len() const

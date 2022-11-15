@@ -82,8 +82,8 @@ namespace tsf
    void edit_window::install_message_routing(::channel* pchannel)
    {
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &edit_window::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &edit_window::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &edit_window::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &edit_window::on_message_destroy);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_window::on_message_set_focus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_window::on_message_kill_focus);
 

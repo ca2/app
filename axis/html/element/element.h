@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "axis/html/impl/_.h"
@@ -32,9 +32,9 @@ namespace html
 
       // always present property?! "text"
       property_set               m_propertyset;
-      ::pointer<impl::element>  m_pimpl;
+      ::pointer<impl::element>   m_pimpl;
       element *                  m_pparent;
-      base *                     m_pbase;
+      ::html::base *             m_phtmlbase;
       html_data *                m_pdata;
 
       ::pointer<::html::style>  m_pstyle;
@@ -86,7 +86,7 @@ namespace html
       virtual void on_layout(html_data * phtmldata);
 
       virtual void _001OnDraw(html_data * phtmldata);
-      virtual void load(html_data * phtmldata, base * pusermessage);
+      virtual void load(html_data * phtmldata, ::html::base * phtmlbase);
 
       //virtual bool get_color(::color::color & color32, ::user::e_color ecolor, ::user::style_context * pcontext) override;
       //virtual bool get_font(::write_text::font_pointer & spfont, ::user::e_font efont, ::user::style_context * pcontext) override;

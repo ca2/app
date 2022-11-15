@@ -413,119 +413,119 @@ namespace html
       {
          return tag_none;
       }
-      if (idTag == "html_html")
+      if (idTag == "html")
       {
          return tag_html;
       }
-      if (idTag == "html_head")
+      if (idTag == "head")
       {
          return tag_head;
       }
-      if (idTag == "html_title")
+      if (idTag == "title")
       {
          return tag_title;
       }
-      if (idTag == "html_meta")
+      if (idTag == "meta")
       {
          return tag_meta;
       }
-      if (idTag == "html_link")
+      if (idTag == "link")
       {
          return tag_link;
       }
-      if (idTag == "html_style")
+      if (idTag == "style")
       {
          return tag_style;
       }
-      if (idTag == "html_script")
+      if (idTag == "script")
       {
          return tag_script;
       }
-      if (idTag == "html_body")
+      if (idTag == "body")
       {
          return tag_body;
       }
-      if (idTag == "html_span")
+      if (idTag == "span")
       {
          return tag_span;
       }
-      if (idTag == "html_h1")
+      if (idTag == "h1")
       {
          return tag_h1;
       }
-      if (idTag == "html_h2")
+      if (idTag == "h2")
       {
          return tag_h2;
       }
-      if (idTag == "html_h3")
+      if (idTag == "h3")
       {
          return tag_h3;
       }
-      if (idTag == "html_h4")
+      if (idTag == "h4")
       {
          return tag_h4;
       }
-      if (idTag == "html_h5")
+      if (idTag == "h5")
       {
          return tag_h5;
       }
-      if (idTag == "html_p")
+      if (idTag == "p")
       {
          return tag_p;
       }
-      if (idTag == "html_table")
+      if (idTag == "table")
       {
          return tag_table;
       }
-      if (idTag == "html_tbody")
+      if (idTag == "tbody")
       {
          return tag_tbody;
       }
-      if (idTag == "html_tr")
+      if (idTag == "tr")
       {
          return tag_tr;
       }
-      if (idTag == "html_td")
+      if (idTag == "td")
       {
          return tag_td;
       }
-      if (idTag == "html_div")
+      if (idTag == "div")
       {
          return tag_div;
       }
-      if (idTag == "html_br")
+      if (idTag == "br")
       {
          return tag_br;
       }
-      if (idTag == "html_form")
+      if (idTag == "form")
       {
          return tag_form;
       }
-      if (idTag == "html_input")
+      if (idTag == "input")
       {
          return tag_input;
       }
-      if (idTag == "html_select")
+      if (idTag == "select")
       {
          return tag_select;
       }
-      if (idTag == "html_option")
+      if (idTag == "option")
       {
          return tag_option;
       }
-      if (idTag == "html_img")
+      if (idTag == "img")
       {
          return tag_img;
       }
-      if (idTag == "html_font")
+      if (idTag == "font")
       {
          return tag_font;
       }
-      if (idTag == "html_a")
+      if (idTag == "a")
       {
          return tag_a;
       }
-      if (idTag == "html_strong")
+      if (idTag == "strong")
       {
          return tag_strong;
       }

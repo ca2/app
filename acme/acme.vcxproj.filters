@@ -782,7 +782,7 @@
     <ClInclude Include="primitive\primitive\block.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\estatus.h">
+    <ClInclude Include="primitive\primitive\e_status.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\member.h">
@@ -1724,7 +1724,7 @@
     <ClInclude Include="constant\future.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
-    <ClInclude Include="constant\GLOBAL_ID.h">
+    <ClInclude Include="constant\_id.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\id.h">
@@ -2945,6 +2945,9 @@
     <ClInclude Include="networking\net.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
+    <ClInclude Include="constant\_message.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4038,6 +4041,12 @@
     </ClCompile>
     <ClCompile Include="networking\net.cpp">
       <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\string_list.cpp">
+      <Filter>Source Files\primitive\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\action_context.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

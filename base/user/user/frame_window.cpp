@@ -187,8 +187,8 @@ namespace user
 
       ::user::box::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &frame_window::on_message_destroy);
-      MESSAGE_LINK(e_message_create, pchannel, this, &frame_window::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &frame_window::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &frame_window::on_message_create);
       MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::on_message_size);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &frame_window::on_message_set_focus);
       MESSAGE_LINK(e_message_activate, pchannel, this, &frame_window::_001OnActivate);
@@ -508,7 +508,7 @@ namespace user
                if (pimpl.is_set())
                {
 
-                  //synchronous_lock synchronouslock(pimpl->m_spgraphics->mutex());
+                  //synchronous_lock synchronouslock(pimpl->m_spgraphics->synchronization());
 
                   ::image_pointer pimage1;
 
@@ -1145,7 +1145,7 @@ namespace user
       //   LoadAccelTable(MAKEINTRESOURCE(nIDResource));
 
       if (pcreate == nullptr)   // send initial update
-         send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (lparam)0, true, true);
+         send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
 
       return true;
 
@@ -1246,7 +1246,7 @@ namespace user
          //m_bLockSketchToDesign = false;
 
          // send initial update to all views (and other controls) in the frame
-         send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (lparam)0, true, true);
+         send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
 
          // give ::user::impact a chance to save the focus (CFormImpact needs this)
          if (pimpact != nullptr)
@@ -2273,7 +2273,7 @@ namespace user
          {
 
             // the rects are different -- recalc needed
-            m_rectangleBorder.copy(*pRectBorder);
+            ::copy(m_rectangleBorder, *pRectBorder);
 
             return true;
 
@@ -2357,7 +2357,7 @@ namespace user
 //   }
 
 
-   void frame_window::ActivateFrame(edisplay edisplay)
+   void frame_window::ActivateFrame(::e_display edisplay)
    // nCmdShow is the normal show mode this frame should be in
    {
       // translate default nCmdShow (-1)

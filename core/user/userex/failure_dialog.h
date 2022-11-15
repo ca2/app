@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 #include "dialog.h"
+#include "acme/exception/exception.h"
 
 
 namespace userex
@@ -15,8 +16,8 @@ namespace userex
 
 
       
-      ::exception                m_exception;
-      ::image_pointer                       m_pimage;
+      ::exception                            m_exception;
+      ::image_pointer                        m_pimage;
 
 
       failure_dialog();

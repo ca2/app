@@ -1,7 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "operation_info_impact.h"
 #include "operation_document.h"
 #include "operation_thread.h"
+#include "operation.h"
 #include "acme/constant/message.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -136,7 +137,7 @@ namespace filemanager
    void operation_info_impact::install_message_routing(::channel * pchannel)
    {
       ::user::impact::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create,pchannel,this,&operation_info_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE,pchannel,this,&operation_info_impact::on_message_create);
 //      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_info_impact::_001OnTimer);
    }
 

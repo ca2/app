@@ -1,11 +1,11 @@
-#include "framework.h"
-////#include "core/user/user/_component.h"
+﻿#include "framework.h"
 #include "list_cache.h"
 #include "mesh.h"
 #include "mesh_item.h"
 #include "list.h"
 #include "list_column.h"
 #include "list_column_array.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 namespace user

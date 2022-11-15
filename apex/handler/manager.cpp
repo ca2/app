@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "manager.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
@@ -137,10 +137,10 @@ class ::signal * manager::get_signal(const ::atom & atom, const ::action_context
 //   }
 
 
-void manager::__s_erase_signal_handler_from_any_source(::matter* pmatter)
+void manager::__s_erase_signal_handler_from_any_source(const ::signal_handler& signalhandler)
 {
 
-   ::manager::__s_erase_signal_handler(pmatter);
+   ::manager::__s_erase_signal_handler(signalhandler);
 
 }
 
@@ -353,7 +353,7 @@ void manager::destroy_signal_handling()
 }
 
 
-void manager::erase_signal_handler(::matter *pmatter)
+void manager::erase_signal_handler(const ::signal_handler& signalhandler)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
@@ -361,14 +361,14 @@ void manager::erase_signal_handler(::matter *pmatter)
    for (auto & psignal : m_psignalmap->values())
    {
 
-      psignal->m_particlecontext.erase_key(pmatter);
+      psignal->m_signalhandlercontext.erase_key(signalhandler);
 
    }
 
 }
 
 
-void manager::__s_erase_signal_handler(::matter *pmatter)
+void manager::__s_erase_signal_handler(const ::signal_handler& signalhandler)
 {
 
    critical_section_lock synchronouslock(&s_criticalsection);
@@ -378,7 +378,7 @@ void manager::__s_erase_signal_handler(::matter *pmatter)
 
       auto & pmanager = passociation.element();
 
-      pmanager->erase_signal_handler(pmatter);
+      pmanager->erase_signal_handler(signalhandler);
 
    }
 

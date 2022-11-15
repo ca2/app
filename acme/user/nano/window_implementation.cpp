@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
@@ -65,7 +65,7 @@ void nano_window_implementation::nano_window_on_create()
 
    acmenode()->fetch_user_color();
 
-   acmesystem()->add_signal_handler(this, id_operating_system_user_color_change);
+   acmesystem()->add_signal_handler({ e_use, this }, id_operating_system_user_color_change);
    
    create_drawing_objects();
 

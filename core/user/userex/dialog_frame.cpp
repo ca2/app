@@ -1,5 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "dialog_frame.h"
+#include "acme/constant/message.h"
 #include "aura/message/user.h"
 #include "base/platform/application.h"
 
@@ -26,20 +27,20 @@ namespace userex
    }
 
 
-   void dialog_frame::assert_ok() const
-   {
+   //void dialog_frame::assert_ok() const
+   //{
 
-      simple_frame_window::assert_ok();
+   //   simple_frame_window::assert_ok();
 
-   }
+   //}
 
 
-   void dialog_frame::dump(dump_context & dumpcontext) const
-   {
+   //void dialog_frame::dump(dump_context & dumpcontext) const
+   //{
 
-      simple_frame_window::dump(dumpcontext);
+   //   simple_frame_window::dump(dumpcontext);
 
-   }
+   //}
 
 
    bool dialog_frame::pre_create_window(::user::system * pusersystem)
@@ -65,7 +66,7 @@ namespace userex
 
       ::simple_frame_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &dialog_frame::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &dialog_frame::on_message_create);
       //MESSAGE_LINK(e_message_activate, pchannel, this, &list_box::_001OnActivate);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &dialog_frame::_001OnMouseActivate);
 

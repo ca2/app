@@ -422,7 +422,7 @@ namespace draw2d_opengl
       }
       break;
 
-      case e_message_non_client_hittest:
+      case e_message_non_client_hit_test:
          return HTCAPTION;   // allows dragging of the window
 
       case e_message_timer:

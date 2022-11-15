@@ -1,12 +1,6 @@
 ﻿#include "framework.h"
-#include "acme/handler/item.h"
-#include "aura/graphics/image/icon.h"
-#include "acme/primitive/mathematics/mathematics.h"
+#include "component.h"
 #include "fs_simple_tree.h"
-#include "aura/user/user/shell.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "apex/filesystem/filesystem/dir_context.h"
-#include "apex/filesystem/filesystem/file_context.h"
 #include "form.h"
 #include "child_frame.h"
 #include "impact.h"
@@ -19,7 +13,6 @@
 #include "tab_impact.h"
 #include "child_frame.h"
 #include "form_child_frame.h"
-#include "core/user/simple/form_impact.h"
 #include "folder_selection_list_impact.h"
 #include "operation_document.h"
 #include "operation_info_impact.h"
@@ -33,9 +26,21 @@
 #include "fs_simple_impact.h"
 #include "folder_list_impact.h"
 #include "thumbnail.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/handler/item.h"
+#include "acme/platform/node.h"
+#include "acme/primitive/collection/_container.h"
+#include "acme/primitive/mathematics/mathematics.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/filesystem/fs/data.h"
+#include "apex/platform/create.h"
+#include "aura/graphics/image/icon.h"
+#include "aura/user/user/shell.h"
 #include "base/user/user/multiple_document_template.h"
+#include "core/user/simple/form_impact.h"
+#include "core/user/user/tree.h"
 #include "core/platform/session.h"
-//#include "aura/_defer.h"
 
 
 CLASS_DECL_CORE ::type __form_document_type();
@@ -196,6 +201,7 @@ namespace filemanager
 
    }
 
+
    component::component()
    {
 
@@ -319,7 +325,7 @@ namespace filemanager
 
       }
 
-      auto pdata = __new(data);
+      auto pdata = __create_new<data>();
 
       pdata->initialize_filemanager_data(this);
 
@@ -458,9 +464,9 @@ namespace filemanager
 
          {
 
-            ::pointer < ::mutex > m(e_create_new, "Local\\ca2-filemanagers");
+            auto pmutexGlobal = acmenode()->create_global_named_mutex(this, false, "ca2-filemanagers");
 
-            synchronous_lock synchronouslock(&m);
+            synchronous_lock synchronouslock(pmutexGlobal);
 
             stra.add_lines(pcontext->m_papexcontext->file()->as_string(m_pathFilemanagerProject), true);
 

@@ -1562,3 +1562,18 @@ using argument = payload;
 
 
 
+
+namespace message
+{
+
+
+   class particle;
+   class key;
+   class mouse;
+   class context_menu;
+
+
+} // namespace message
+
+
+

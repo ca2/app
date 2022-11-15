@@ -9,9 +9,12 @@
 #include "impact_host.h"
 #include "pane_tab_impact.h"
 #include "font_impact.h"
+#include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
+#include "acme/platform/system.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
+#include "apex/platform/create.h"
 #include "base/user/user/tab_pane.h"
 #include "base/user/user/document.h"
 #include "base/user/user/single_document_template.h"
@@ -42,19 +45,43 @@ namespace userex
    }
 
 
-   void impact_host::assert_ok() const
+   //void impact_host::assert_ok() const
+   //{
+
+   //   ::user::impact::assert_ok();
+
+   //}
+
+
+   //void impact_host::dump(dump_context & dumpcontext) const
+   //{
+
+   //   ::user::impact::dump(dumpcontext);
+
+   //}
+
+
+   ::core::application* impact_host::get_app()
    {
-
-      ::user::impact::assert_ok();
-
+      
+      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; 
+   
    }
 
 
-   void impact_host::dump(dump_context & dumpcontext) const
+   ::core::session* impact_host::get_session() 
    {
+      
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr; 
+   
+   }
 
-      ::user::impact::dump(dumpcontext);
 
+   ::core::system* impact_host::get_system()
+   { 
+      
+      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; 
+   
    }
 
 
@@ -63,7 +90,7 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact_host::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &impact_host::on_message_create);
 
    }
 
@@ -71,7 +98,7 @@ namespace userex
    void impact_host::on_message_create(::message::message * pmessage)
    {
 
-      m_atomaHandledCommands.add(m_idaHandledImpacts);
+      m_atomaHandledCommands.append(m_idaHandledImpacts);
 
    }
 

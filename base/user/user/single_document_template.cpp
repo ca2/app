@@ -290,7 +290,7 @@ namespace user
          }
          pdocument->set_path_name(payloadFile);
          pdocument->update_title();
-         pdocument->id_update_all_impacts(OPEN_DOCUMENT_UPDATE);
+         pdocument->id_update_all_impacts(ID_OPEN_DOCUMENT);
 
 
       }

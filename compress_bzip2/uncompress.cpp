@@ -1,6 +1,11 @@
-// Refactor by camilo from bz on 2021-11-10 10:26 BRT <3ThomasBorregaardSørensen!!
+﻿// Refactor by camilo from bz on 2021-11-10 10:26 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
-#include "acme/operating_system.h"
+#include "uncompress.h"
+#include "acme/exception/exception.h"
+#include "acme/primitive/primitive/memory.h"
+
+
+#include "acme/_operating_system.h"
 #include <bzlib.h>
 
 
@@ -25,7 +30,7 @@ namespace compress_bzip2
    {
 
       //auto estatus = 
-      ::object::initialize(pparticle);
+      ::uncompress::initialize(pparticle);
 
     /*  if (!estatus)
       {

@@ -20,7 +20,7 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="_compress_bzip2.h">
+    <ClInclude Include="aaa_compress_bzip2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="compress.h">

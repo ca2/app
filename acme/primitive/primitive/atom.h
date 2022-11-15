@@ -303,14 +303,15 @@ public:
    inline atom();
    inline atom(enum_type etype);
    inline atom(enum_id eid);
+   inline atom(ENUM_ID EID);
+   inline atom(enum_message emessage);
+   inline atom(ENUM_MESSAGE EMESSAGE);
+   inline atom(enum_impact eimpact);
+   inline atom(ENUM_IMPACT EIMPACT);
    inline atom(enum_property eproperty);
    inline atom(enum_factory efactory);
    inline atom(enum_task_tool etasktool);
    inline atom(enum_timer etimer);
-   inline atom(enum_message emessage);
-   inline atom(enum_impact eimpact);
-   inline atom(ENUM_IMPACT EIMPACT);
-   //inline atom(enum_topic etopic);
    inline atom(enum_dialog_result edialogresult);
    inline atom(enum_type etypeAdd, const atom & atom);
    inline atom(const atom & atom);
@@ -464,6 +465,15 @@ public:
    inline bool operator >= (::enum_id eid) const;
 
 
+   inline int compare(ENUM_ID EID) const { return compare((::enum_id)EID); }
+   inline bool operator == (ENUM_ID EID) const { return operator==((::enum_id)EID); }
+   inline bool operator != (ENUM_ID EID) const { return operator!=((::enum_id)EID); }
+   inline bool operator < (ENUM_ID EID) const { return operator<((::enum_id)EID); }
+   inline bool operator <= (ENUM_ID EID) const { return operator<=((::enum_id)EID); }
+   inline bool operator > (ENUM_ID EID) const { return operator>((::enum_id)EID); }
+   inline bool operator >= (ENUM_ID EID) const { return operator>=((::enum_id)EID); }
+
+
    inline int compare(::enum_message emessage) const;
    inline bool operator == (::enum_message emessage) const;
    inline bool operator != (::enum_message emessage) const;
@@ -471,6 +481,15 @@ public:
    inline bool operator <= (::enum_message emessage) const;
    inline bool operator > (::enum_message emessage) const;
    inline bool operator >= (::enum_message emessage) const;
+
+
+   inline int compare(ENUM_MESSAGE EID) const { return compare((::enum_message)EID); }
+   inline bool operator == (ENUM_MESSAGE EID) const { return operator==((::enum_message)EID); }
+   inline bool operator != (ENUM_MESSAGE EID) const { return operator!=((::enum_message)EID); }
+   inline bool operator < (ENUM_MESSAGE EID) const { return operator<((::enum_message)EID); }
+   inline bool operator <= (ENUM_MESSAGE EID) const { return operator<=((::enum_message)EID); }
+   inline bool operator > (ENUM_MESSAGE EID) const { return operator>((::enum_message)EID); }
+   inline bool operator >= (ENUM_MESSAGE EID) const { return operator>=((::enum_message)EID); }
 
 
    //inline int compare(::enum_topic etopic) const;
@@ -614,6 +633,43 @@ inline atom::atom(enum_id eid) :
 }
 
 
+inline atom::atom(ENUM_ID EID) :
+   atom((::enum_id)EID) // used m_i to reset 64-bit field
+{
+
+}
+
+
+inline atom::atom(enum_message emessage) :
+   m_etype(e_type_message),
+   m_i((::iptr)emessage) // used m_i to reset 64-bit field
+{
+
+}
+
+
+inline atom::atom(ENUM_MESSAGE EMESSAGE) :
+   atom((::enum_message)EMESSAGE)
+{
+ 
+}
+
+
+inline atom::atom(enum_impact eimpact) :
+   m_etype(e_type_impact),
+   m_i((::iptr)eimpact) // used m_i to reset 64-bit field
+{
+
+}
+
+
+inline atom::atom(ENUM_IMPACT EIMPACT) :
+   atom((::enum_impact) EIMPACT)
+{
+
+}
+
+
 inline atom::atom(enum_property eproperty) :
    m_etype(e_type_property),
    m_i((::iptr)eproperty) // used m_i to reset 64-bit field
@@ -647,28 +703,7 @@ inline atom::atom(enum_timer etimer) :
 
 
 
-inline atom::atom(enum_message emessage) :
-   m_etype(e_type_message),
-   m_i((::iptr)emessage) // used m_i to reset 64-bit field
-{
 
-}
-
-
-inline atom::atom(enum_impact eimpact) :
-   m_etype(e_type_impact),
-   m_i((::iptr)eimpact) // used m_i to reset 64-bit field
-{
-
-}
-
-
-inline atom::atom(ENUM_IMPACT EIMPACT) :
-   m_etype(e_type_impact),
-   m_i((::iptr)EIMPACT) // used m_i to reset 64-bit field
-{
-
-}
 
 
 //inline atom::atom(enum_topic etopic) :

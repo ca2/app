@@ -7,6 +7,7 @@
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/filesystem/file/item_array.h"
+#include "acme/primitive/data/listener.h"
 #include "apex/filesystem/fs/set.h"
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/shell.h"
@@ -54,7 +55,7 @@ namespace userfs
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &list::_001OnHScroll);
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &list::_001OnVScroll);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &list::on_message_show_window);
-      MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &list::on_message_create);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::on_message_left_button_double_click);
 
    }

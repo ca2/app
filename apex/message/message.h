@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/geometry2d/_geometry2d.h"
@@ -26,17 +26,6 @@ namespace message
    class context_menu;
 
 
-   union message_union
-   {
-     
-      void *                        m_p;
-      ::message::particle *         m_pparticle;
-      ::message::key *              m_pkey;
-      ::message::mouse *            m_pmouse;
-      ::message::context_menu *     m_pcontextmenu;
-      
-   };
-
 
    class CLASS_DECL_APEX message :
       virtual public ::acme::message
@@ -46,8 +35,6 @@ namespace message
 
       //::message::key *              m_pkey;
       //::message::mouse *            m_pmouse;
-
-      message_union                 m_union;
 
       dispatcher_array *            m_pdispatchera;
       channel *                     m_pchannel;

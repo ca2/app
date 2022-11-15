@@ -8,6 +8,10 @@
 
 #include "_constant.h"
 
+#include "_id.h"
+
+#include "_message.h"
+
 //#include "_enumeration.h"
 
 class eimpact;

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/interaction.h"
@@ -70,9 +70,9 @@ namespace user
       ::image_list* SetImageList(::image_list* pImageList);
 
 
-#ifdef WINDOWS_DESKTOP
-      HRESULT GetDropTarget(IDropTarget** ppDropTarget);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      HRESULT GetDropTarget(IDropTarget** ppDropTarget);
+//#endif
 
 
       bool SetIndent(i32 iIndent);

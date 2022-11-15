@@ -1,4 +1,4 @@
-// From list.cpp by camilo on 2022-06-29 05:39 <3ThomasBorregaardSorensen!! 
+﻿// From list.cpp by camilo on 2022-06-29 05:39 <3ThomasBorregaardSorensen!! 
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_component.h"
@@ -176,7 +176,7 @@ namespace user
       else
       {
 
-         //synchronous_lock synchronouslock(get_image_list()->mutex());
+         //synchronous_lock synchronouslock(get_image_list()->synchronization());
 
          auto pimagelist = get_image_list();
 
@@ -265,7 +265,7 @@ namespace user
 
             m_pitem->m_pdrawlistitem->m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            if (::is_ok(pimage))
+            if (pimage.ok())
             {
 
                image_source imagesource(pimage);

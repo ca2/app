@@ -224,14 +224,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-      <Inputs>
-      </Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -290,14 +283,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-      <Inputs>
-      </Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -437,14 +423,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-      <Inputs>
-      </Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -506,14 +485,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <Inputs>
-      </Inputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <PostBuildEvent>
       <Command>
       </Command>
@@ -572,14 +544,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <Inputs>
-      </Inputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <PostBuildEvent>
       <Command>
       </Command>
@@ -702,14 +667,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <Inputs>
-      </Inputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <PostBuildEvent>
       <Command>
       </Command>
@@ -856,7 +814,7 @@
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="handler\context.h" />
     <ClInclude Include="handler\manager.h" />
-    <ClInclude Include="handler\predicate.h" />
+    <ClInclude Include="handler\aaa_predicate.h" />
     <ClInclude Include="handler\promise.h" />
     <ClInclude Include="handler\promise1.h" />
     <ClInclude Include="handler\signal.h" />

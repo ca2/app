@@ -1,4 +1,4 @@
-// Injected/Split in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
+﻿// Injected/Split in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
 #pragma once
 
 
@@ -268,7 +268,7 @@ namespace user
       virtual void on_reposition();
       virtual void on_show_window();
 
-      //virtual void BringToTop(edisplay edisplay);
+      //virtual void BringToTop(::e_display edisplay);
       //virtual bool BringWindowToTop();
 //
 //#ifdef WINDOWS_DESKTOP
@@ -347,7 +347,7 @@ namespace user
 
       //virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
       //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
-      //virtual bool _display(edisplay edisplay);
+      //virtual bool _display(::e_display edisplay);
 
       //virtual void SetWindowDisplayChanged();
 
@@ -531,7 +531,7 @@ namespace user
       virtual enum_type get_window_type();
 
 
-      virtual void add_child_handler(::matter * pmatter, const ::atom & idChild, bool bPriority = false);
+      virtual void add_child_handler(const ::signal_handler& signalhandler, const ::atom & idChild, bool bPriority = false);
 
 
 
@@ -573,15 +573,15 @@ namespace user
       //virtual bool onscreen_is_zoomed();
       //virtual bool onscreen_is_iconic();
 
-      //virtual bool display(edisplay edisplay);
+      //virtual bool display(::e_display edisplay);
 
       //virtual edisplay get_display();
       //virtual edisplay get_previous_display();
 
 
-      //virtual bool defer_set_appearance(edisplay edisplay);
-      //virtual bool set_appearance(edisplay edisplay);
-      //virtual bool set_previous_display(edisplay edisplay);
+      //virtual bool defer_set_appearance(::e_display edisplay);
+      //virtual bool set_appearance(::e_display edisplay);
+      //virtual bool set_previous_display(::e_display edisplay);
 
 
       //virtual void show_keyboard(bool bShow = true);

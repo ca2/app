@@ -127,6 +127,14 @@ namespace acme
       ///throw ::interface_only();
 
    }
+
+
+   ::pointer < ::particle > node::create_mutex()
+   {
+
+      return __create < ::mutex >();
+
+   }
   
 
    void node::initialize(::particle * pparticle)
@@ -520,7 +528,7 @@ namespace acme
    void node::release_exclusive()
    {
 
-      m_mapExclusive.release();
+      m_mapExclusive.clear();
 
    }
 
@@ -675,7 +683,7 @@ namespace acme
 
       }
 
-      ::file::path pathFile = acmedirectory()->local() / "appdata" / strAppId / "last_run_path.txt";
+      ::file::path pathFile = acmedirectory()->roaming() / strAppId / "last_run_path.txt";
 
       const char * pszPathFile = pathFile;
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/user/impact.h"
@@ -106,6 +106,10 @@ public:
    }
 
    inline ::fs::data * fs_data() { return ::filemanager_impact_base::fs_data(); }
+
+   ::core::application* get_app() { return ::filemanager_impact_base::get_app(); }
+
+   ::filemanager::document* get_document() { return ::filemanager_impact_base::get_document(); }
 
 
 };

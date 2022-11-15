@@ -34,7 +34,7 @@ namespace console
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create,pchannel,this,&prompt_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE,pchannel,this,&prompt_impact::on_message_create);
       MESSAGE_LINK(e_message_key_down,pchannel,this,&prompt_impact::on_message_key_down);
       MESSAGE_LINK(e_message_key_up,pchannel,this,&prompt_impact::on_message_key_up);
       MESSAGE_LINK(e_message_show_window,pchannel,this,&prompt_impact::on_message_show_window);

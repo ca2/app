@@ -342,7 +342,7 @@ namespace interprocess
 
       }
 
-      auto plauncher = __new(::apex::app_launcher);
+      auto plauncher = __create < ::apex::app_launcher>();
 
       plauncher->initialize_app_launcher(this, acmenode()->process_platform_name(), strApp);
 

@@ -417,7 +417,7 @@ int g_iDebug_post_thread_msg_time;
 //CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 //{
 //
-//   synchronous_lock ml(pmq->mutex());
+//   synchronous_lock ml(pmq->synchronization());
 //
 //   MESSAGE msg;
 //

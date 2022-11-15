@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 #include "mesh_cache_interface.h"
+#include "acme/primitive/collection/string_map.h"
 
 
 namespace user

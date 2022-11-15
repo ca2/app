@@ -1,4 +1,4 @@
-//
+﻿//
 //
 //	   Main header for the watcher class. Declares all implementation
 //	   classes to reduce compilation overhead.
@@ -71,8 +71,16 @@ namespace file
 
    //}
 
+   
+   watch_id watcher::add_watch(const ::file::path& pathFolder, typename listener::base* pbase, bool bRecursive)
+   {
 
-   watch_id watcher::add_watch(const ::file::path & pathFolder, const listener & listener, bool bRecursive)
+      return add_watch_listener(pathFolder, { e_use, pbase }, bRecursive);
+
+   }
+
+
+   watch_id watcher::add_watch_listener(const ::file::path & pathFolder, const listener & listener, bool bRecursive)
    {
 
 #ifdef ANDROID

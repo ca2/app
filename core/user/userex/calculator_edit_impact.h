@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/plain_edit.h"
@@ -36,7 +36,7 @@ namespace calculator
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      virtual bool keyboard_focus_is_focusable() const override;
+      virtual bool keyboard_focus_is_focusable() override;
 
       virtual ::payload get_payload() override;
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "cell.h"
 #include "table_row.h"
 #include "table.h"
@@ -72,7 +72,7 @@ namespace html
 
          m_iRow = ptable->m_rowptra.get_size();
 
-         if(m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
+         if(m_pelemental->m_phtmlbase->get_type() == ::html::base::type_tag)
          {
 
             ptable->m_rowptra.add_unique(this);

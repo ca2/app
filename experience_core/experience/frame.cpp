@@ -751,7 +751,7 @@ namespace experience_core
 
             auto pdrawicon = m_pframewindow->get_draw_icon();
 
-            if(::is_ok(pdrawicon))
+            if(::is_set(pdrawicon) && pdrawicon->is_ok())
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);

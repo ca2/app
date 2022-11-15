@@ -1177,7 +1177,7 @@ namespace helloworld
    //   if (m_bFast || !m_bFirstDone || m_durationLastFast.elapsed() < m_durationFastAnime)
    //   {
 
-   //      synchronous_lock sl1(m_pimpact->get_wnd()->mutex());
+   //      synchronous_lock sl1(m_pimpact->get_wnd()->synchronization());
 
    //      synchronous_lock slDraw(m_pmutexDraw);
 

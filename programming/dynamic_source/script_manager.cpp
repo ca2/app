@@ -254,7 +254,7 @@ namespace dynamic_source
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->dir()->watcher().add_watch(m_strNetseedDsCa2Path, { e_as, pwatcher }, true);
+         pcontext->m_papexcontext->dir()->watcher().add_watch(m_strNetseedDsCa2Path, { e_use, pwatcher }, true);
 
       }
 
@@ -276,7 +276,7 @@ namespace dynamic_source
 
             pwatcher->m_pmanager = this;
 
-            pcontext->m_papexcontext->dir()->watcher().add_watch(path, { e_as, pwatcher }, true);
+            pcontext->m_papexcontext->dir()->watcher().add_watch(path, { e_use, pwatcher }, true);
 
          }
 

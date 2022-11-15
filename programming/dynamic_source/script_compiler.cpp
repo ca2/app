@@ -1349,7 +1349,7 @@ pacmedirectory->create(pathDVP_Folder);
    void script_compiler::folder_watch()
    {
 
-      m_filewatcherid = dir()->watcher().add_watch(m_pmanager->m_strNetseedDsCa2Path, { e_as, this }, true);
+      m_filewatcherid = dir()->watcher().add_watch(m_pmanager->m_strNetseedDsCa2Path, { e_use, this }, true);
 
    }
 

@@ -66,7 +66,7 @@ namespace user
 
       ::user::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu_button::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &menu_button::on_message_create);
 
    }
 

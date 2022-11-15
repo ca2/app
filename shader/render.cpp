@@ -495,7 +495,7 @@ namespace app_shader
 
       }
 
-      if(::is_ok(m_pimageLabel))
+      if(m_pimageLabel.ok())
       {
 
          image_source imagesource(m_pimageLabel);
@@ -623,7 +623,7 @@ namespace app_shader
 
       }
 
-      if(::is_ok(m_pimageError))
+      if(m_pimageError.ok())
       {
 
          image_source imagesource(m_pimageError);
@@ -665,14 +665,14 @@ namespace app_shader
 
       //            m_pimage1 = get_image("matter://pat1.jpg");
 
-      //            if (::is_ok(m_pimage1))
+      //            if (m_pimage1.ok())
       //            {
 
       //               __construct(m_pimage2);
 
       //               m_pimage2->copy_from(m_pimage1);
 
-      //               if (::is_ok(m_pimage2))
+      //               if (m_pimage2.ok())
       //               {
 
       //                  m_pimage2->transform(e_image_grayscale);
@@ -762,7 +762,7 @@ namespace app_shader
 
       //}
 
-      //if (m_iDrawing == 3 && ::is_ok(m_pimage1))
+      //if (m_iDrawing == 3 && m_pimage1.ok())
       //{
 
       //   pbrush->CreatePatternBrush(m_pimage1);
@@ -820,7 +820,7 @@ namespace app_shader
       //   else
       //   {
 
-      //      if (::is_ok(m_pimage2))
+      //      if (m_pimage2.ok())
       //      {
 
       //         pbrush->CreatePatternBrush(m_pimage2);

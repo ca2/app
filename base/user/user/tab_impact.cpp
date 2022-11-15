@@ -8,6 +8,7 @@
 #include "tab_drop_target_window.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/primitive/data/listener.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/user/user/window_util.h"
 #include "aura/message/user.h"
@@ -251,7 +252,7 @@ namespace user
 
       impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tab_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &tab_impact::on_message_create);
       MESSAGE_LINK(WM_USER + 1122, pchannel, this, &tab_impact::_001OnMenuMessage);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_impact::on_message_set_focus);
 

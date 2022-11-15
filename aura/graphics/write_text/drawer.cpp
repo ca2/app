@@ -229,9 +229,9 @@ namespace write_text
 
          bWhitespace = bWhitespaceNow;
 
-         unicode_increment(pszEnd);
+         pszEnd = unicode_increment(pszEnd);
 
-         if (::is_null(pszEnd))
+         if (::is_empty(pszEnd))
          {
 
             break;

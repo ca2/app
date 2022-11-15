@@ -6,24 +6,31 @@
 #include "list_item.h"
 #include "list_data.h"
 #include "mesh_cache_interface.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/constant/timer.h"
+#include "acme/exception/interface_only.h"
 #include "acme/handler/item.h"
-#include "apex/filesystem/filesystem/file_context.h"
+#include "acme/platform/timer.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/collection/sort.h"
+#include "acme/primitive/data/listener.h"
+#include "acme/primitive/duration/_text_stream.h"
 #include "apex/database/selection.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics_extension.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "acme/platform/timer.h"
-#include "acme/constant/timer.h"
-#include "acme/primitive/collection/sort.h"
+#include "aura/user/user/scroll_bar.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/scroll_data.h"
+#include "aura/message/user.h"
+#include "axis/platform/system.h"
+#include "base/user/user/user.h"
 #include "core/user/simple/list_data.h"
 #include "core/platform/session.h"
-#include "axis/platform/system.h"
-#include "aura/message/user.h"
-#include "base/user/user/user.h"
-#include "aura/user/user/scroll_bar.h"
 
 
 #define DBLCLKMS 500_ms
@@ -139,7 +146,7 @@ namespace user
 
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list::on_message_key_down);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &list::on_message_create);
       //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list::_001OnTimer);
       add_command_handler("list_impact_auto_arrange", { this,  &list::_001OnListImpactAutoArrange });
       add_command_prober("list_impact_auto_arrange", { this,  &list::_001OnUpdateListImpactAutoArrange });
@@ -219,14 +226,14 @@ namespace user
 
       ::user::interaction::_001OnDraw(pgraphics);
 
-      if (is_null(m_pmeshdata.m_p))
+      if (!m_pmeshdata)
       {
 
          return;
 
       }
 
-      synchronous_lock synchronouslock(m_pmeshdata->mutex());
+      synchronous_lock synchronouslock(m_pmeshdata->synchronization());
 
       ::rectangle_i32 rectangleClient = get_client_rect();
 
@@ -7261,7 +7268,7 @@ namespace user
    }
 
 
-   bool list::keyboard_focus_is_focusable() const
+   bool list::keyboard_focus_is_focusable()
    {
 
       return true;

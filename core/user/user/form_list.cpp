@@ -1,16 +1,20 @@
 ﻿#include "framework.h"
-#include "acme/handler/item.h"
-#include "axis/user/user/validate.h"
-#include "acme/constant/id.h"
 #include "form_list.h"
 #include "list_column.h"
 #include "list_column_array.h"
 #include "list_item.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/handler/item.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/system.h"
+#include "aura/message/user.h"
+#include "axis/user/user/validate.h"
 #include "axis/user/user/combo_box.h"
 #include "axis/user/user/list_box.h"
 #include "aura/message/user.h"
-#include "core/platform/session.h"
 #include "aura/user/user/window_util.h"
+#include "core/platform/session.h"
 
 
 namespace user
@@ -35,7 +39,7 @@ namespace user
    }
 
 
-   ::core::application* get_app()
+   ::core::application* form_list::get_app()
    {
 
       return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
@@ -2024,7 +2028,7 @@ namespace user
       else if (ptopic->m_atom == ::id_key_down)
       {
 
-         SCAST_PTR(::message::key, pkey, ptopic->m_actioncontext.m_pmessage.m_p);
+         auto pkey = ptopic->m_actioncontext.m_pmessage->m_union.m_pkey;
 
          if (pkey->m_ekey == e_key_down || pkey->m_ekey == e_key_up
             || pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)

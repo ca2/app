@@ -1,11 +1,13 @@
 ﻿#include "framework.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
-#include "core/user/simple/printer_list_impact.h"
-#include "core/user/simple/mesh_data.h"
+#include "acme/primitive/data/listener.h"
 #include "aura/graphics/draw2d/printer.h"
 #include "base/user/user/print_task.h"
-#include "core/user/user/list_column.h"
 #include "base/platform/application.h"
+#include "core/user/simple/printer_list_impact.h"
+#include "core/user/simple/mesh_data.h"
+#include "core/user/user/list_column.h"
 
 
 simple_printer_list_impact::simple_printer_list_impact()
@@ -24,7 +26,7 @@ void simple_printer_list_impact::install_message_routing(::channel * pchannel)
 {
 
    simple_list_impact::install_message_routing(pchannel);
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_printer_list_impact::on_message_create);
+   MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &simple_printer_list_impact::on_message_create);
 
 }
 

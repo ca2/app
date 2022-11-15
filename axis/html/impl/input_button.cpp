@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "input_button.h"
 #include "acme/primitive/data/listener.h"
 #include "aura/user/user/button.h"
@@ -67,12 +67,12 @@ namespace html
 
          __defer_construct_new(m_pbutton);
 
-         m_pbutton->m_atom = pelemental->m_pbase->get_tag()->get_attr_value("id");
+         m_pbutton->m_atom = pelemental->m_phtmlbase->get_tag()->get_attr_value("id");
 
          if (m_pbutton->m_atom.is_empty())
          {
 
-            m_pbutton->m_atom = pelemental->m_pbase->get_tag()->get_attr_value("name");
+            m_pbutton->m_atom = pelemental->m_phtmlbase->get_tag()->get_attr_value("name");
 
          }
 
@@ -87,7 +87,7 @@ namespace html
 
          element::implement_phase1(pdata, pelemental);
 
-         auto value = pelemental->m_pbase->get_tag()->get_attr_value("value");
+         auto value = pelemental->m_phtmlbase->get_tag()->get_attr_value("value");
 
          m_pbutton->set_window_text(value);
 

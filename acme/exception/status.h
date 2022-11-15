@@ -1,4 +1,4 @@
-// created by Camilo 2021-02-02 06:50 BRT <3CamiloSasukeThomasBorregaardSoerensen
+﻿// created by Camilo 2021-02-02 06:50 BRT <3CamiloSasukeThomasBorregaardSoerensen
 #pragma once
 #ifdef __clang__
 #pragma clang diagnostic push
@@ -77,11 +77,9 @@ public:
    }
 
 
-   bool operator !() const { return !is_ok(); }
+   bool nok() const { return !is_ok(); }
 
-   operator int() const { return is_ok() != false; }
-
-   operator ::enum_status() const { return m_estatus; }
+   bool ok() const { return is_ok() != false; }
 
    [[nodiscard]] ::enum_status estatus() const { return m_estatus; }
 

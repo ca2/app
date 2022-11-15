@@ -1,4 +1,4 @@
-//
+﻿//
 //  apex_app.h
 //  apex
 //
@@ -113,7 +113,7 @@ class static_object_factory :
 public:
 
 
-   ::pointer < ::particle > _create_element() override { return __new(OBJECT); }
+   ::pointer < ::particle > _create_particle() override { return __new(OBJECT); }
 
 
    explicit static_object_factory(::system_setup::enum_flag eflag, const char* pszName = "") :

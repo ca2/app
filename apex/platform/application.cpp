@@ -10177,7 +10177,9 @@ namespace apex
    void application::release_exclusive()
    {
 
-      acmenode()->m_papexnode->release_exclusive();
+      auto papexnode = acmenode()->m_papexnode;
+
+      papexnode->release_exclusive();
 
    }
 

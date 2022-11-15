@@ -1,6 +1,7 @@
-#pragma once
+﻿#pragma once
 
 
+#include "acme/primitive/collection/int_map.h"
 #include "aura/user/user/interaction.h"
 
 
@@ -49,7 +50,7 @@ namespace user
       };
 
       class CToolMap :
-         public i32_map < tool_tip_tool * >
+         public i32_map < ::pointer < tool_tip_tool > >
       {
       public:
           void AddTool(tool_tip_tool * ptool);

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "text.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -958,7 +958,7 @@ namespace html
             return m_sizea[m_sizea.get_upper_bound()].cy;
 
          }
-         else if(m_pelemental->m_pbase->get_type() == base::type_tag)
+         else if(m_pelemental->m_phtmlbase->get_type() == ::html::base::type_tag)
          {
 
             if(m_pelemental->m_elementalptra.get_size() > 0)

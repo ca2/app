@@ -41,7 +41,7 @@ namespace user
    picture_impl::picture_impl()
    {
 
-      set(e_object_default_io_exchange);
+      set_flag(e_flag_default_io_exchange);
 
       m_dZoom = 1.0;
       m_pointDrag2.x = 0.0;

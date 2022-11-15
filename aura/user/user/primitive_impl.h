@@ -315,7 +315,7 @@ namespace user
 
 
       virtual ::u32 ArrangeIconicWindows();
-      //virtual void BringToTop(edisplay edisplay);
+      //virtual void BringToTop(::e_display edisplay);
       //virtual bool BringWindowToTop();
 
 

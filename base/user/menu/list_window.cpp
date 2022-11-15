@@ -48,8 +48,8 @@ namespace user
 
       menu::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu_list_window::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_list_window::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &menu_list_window::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &menu_list_window::on_message_destroy);
       MESSAGE_LINK(e_message_close, pchannel, this, &menu_list_window::on_message_close);
 
    }

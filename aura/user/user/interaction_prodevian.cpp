@@ -425,7 +425,7 @@ namespace user
 
          bHasProdevian = m_puserinteraction->has_prodevian();
 
-         //synchronous_lock synchronouslock(m_pimpl->mutex());
+         //synchronous_lock synchronouslock(m_pimpl->synchronization());
 
          // if (bHasProdevian)
          // {

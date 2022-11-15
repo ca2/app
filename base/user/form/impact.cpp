@@ -2,6 +2,7 @@
 #include "document.h"
 #include "impact.h"
 #include "acme/constant/id.h"
+#include "acme/exception/exception.h"
 #include "axis/html/html/html.h"
 #include "base/platform/system.h"
 #include "base/platform/session.h"
@@ -34,27 +35,27 @@ namespace user
       if (ptopic->m_atom == ::id_form_initialize && ptopic->user_interaction() == this)
       {
 
-         throw ::exception(todo);
+         //throw ::exception(todo);
 
-//         if (get_document())
-//         {
-//
-//            //call_sync(get_document()->m_mapMethod["load"]);
-//            get_document()->call_routines_with_id("load");
-//
-//         }
-
-      }
-      else if (ptopic->m_atom == id_browse)
-      {
-
-         if (!ptopic->payload(id_form).is_empty())
+         if (get_document())
          {
 
-            if (get_document()->on_open_document(ptopic->payload(id_form)))
+            //call_sync(get_document()->m_mapMethod["load"]);
+            get_document()->call_routines_with_id("load");
+
+         }
+
+      }
+      else if (ptopic->m_atom == ID_BROWSE)
+      {
+
+         if (!ptopic->payload(ID_FORM).is_empty())
+         {
+
+            if (get_document()->on_open_document(ptopic->payload(ID_FORM)))
             {
 
-               m_strPath = ptopic->payload(id_form);
+               m_strPath = ptopic->payload(ID_FORM);
 
             }
 
@@ -64,7 +65,7 @@ namespace user
       else if (ptopic->m_atom == id_get_form_impact)
       {
 
-         ptopic->payload(id_form) = this;
+         ptopic->payload(ID_FORM) = this;
 
       }
       else if (ptopic->m_atom == id_new_document)
@@ -86,7 +87,7 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         ptopic->payload(id_form) = this;
+         ptopic->payload(ID_FORM) = this;
 
          m_pcallback->handle(ptopic, pcontext);
 

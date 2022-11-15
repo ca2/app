@@ -1,12 +1,15 @@
-// Created by camilo on 2022-11-11 11:03 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-11 11:03 <3ThomasBorregaardSorensen!!
 #pragma once
+
+
+#include "acme/primitive/mathematics/_random.h"
 
 
 template < primitive_rectangle RECTANGLE >
 inline typename RECTANGLE::POINT_TYPE random_point(const RECTANGLE & r)
 { 
    
-      return {__random(r.left, r.right), __random(r.top, r.bottom));
+   return { __random(r.left, r.right), __random(r.top, r.bottom) };
 
 }
 
@@ -19,7 +22,7 @@ inline typename RECTANGLE::POINT_TYPE random_point(const RECTANGLE & r, double d
    
    rectangle.rate(dRate); 
    
-   return rectangle.random_point(); 
+   return random_point(rectangle); 
 
 }
 

@@ -264,8 +264,8 @@ template < typename T >
 concept primitive_integral = 
    std::is_integral_v < T > || 
    std::is_enum < T >::value ||
-   std::is_same < T, ::e_status >::value ||
-   derived_from_specialization_of<T, enumeration >;
+   std::is_same < T, ::e_status >::value;
+
 
 template < typename T >
 concept primitive_integer = std::is_integral < T >::value;
@@ -1100,6 +1100,55 @@ inline void __dynamic_cast(T*& ptarget, T2* psource);
 
 
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
+
+
+
+// From subject_listener from apex_database by camilo on day after ThomasBirthday2021 07:26 BRT
+#pragma once
+
+
+using signal_handler = ::function < void(::topic*, ::context*) >;
+//{
+//public:
+//
+//
+//
+//   using function::function;
+//
+//
+//   ~handle_function() {}
+//   //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
+//   //method(const ::method & method) : matter_pointer(method) { }
+//
+//
+//   //inline void operator()() const;
+//
+//   //void operator()(::topic * ptopic, ::context * pcontext) 
+//   //{
+//
+//   //   this-(ptopic, pcontext);
+//
+//   //}
+//
+//   //template < typename PRED >
+//   //void pred(PRED pred);
+//
+//   //inline method & operator = (const ::method & method) { m_pmatter = method.m_pmatter; return *this; }
+//   //method & operator = (const ::payload & payload);
+//
+//
+//};
+//
+//
+////template < typename PREDICATE >
+////::matter_pointer __handle_function(PREDICATE predicate)
+////{
+////
+////   return __new(han<PREDICATE>(predicate));
+////
+////}
+
+
 
 
 

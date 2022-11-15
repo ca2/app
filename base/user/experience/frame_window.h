@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/user/frame_window.h"
@@ -146,7 +146,7 @@ namespace experience
       bool window_is_notify_icon_enabled() override;
 
 
-      virtual index get_best_zoneing(edisplay & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false) override;
+      virtual index get_best_zoneing(::e_display & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false) override;
 
 
 

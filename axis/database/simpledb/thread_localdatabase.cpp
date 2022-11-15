@@ -134,7 +134,7 @@ namespace simpledb
 
                //string str;
 
-               //synchronous_lock slDatabase(pdatabase->mutex());
+               //synchronous_lock slDatabase(pdatabase->synchronization());
 
                pdatabase->set_id_blob(pitem->m_strKey, pitem->m_memory);
 

@@ -920,7 +920,7 @@ void thread_ptra::destroy()
          {
 
             /// this is quite dangerous
-            //synchronous_lock slThread(pthread->mutex());
+            //synchronous_lock slThread(pthread->synchronization());
 
             pthread->destroy();
 

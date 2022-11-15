@@ -444,9 +444,9 @@ namespace acme
 
       virtual void system_id_update(::i64 iUpdate, ::i64 iPayload);
 
-      virtual void add_handler(::matter * pmatter, bool bPriority = false);
+      virtual void add_handler(const ::signal_handler& signalhandler, bool bPriority = false);
 
-      virtual void add_signal_handler(::matter * pmatter, const ::atom & atomSignal);
+      virtual void add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal);
 
       virtual void node_will_finish_launching();
 

@@ -1,9 +1,10 @@
-#include "framework.h"
-#include "acme/platform/system_setup.h"
-#include "base/constant/idpool.h"
+﻿#include "framework.h"
 #include "application.h"
 #include "session.h"
 #include "system.h"
+#include "acme/platform/system_setup.h"
+#include "aura/user/user/interaction.h"
+#include "base/constant/idpool.h"
 #include "base/user/user/user.h"
 
 
@@ -103,7 +104,7 @@ namespace base
 
       ::factory::add_factory_item < ::base::session, ::apex::session >();
       ::factory::add_factory_item < ::base::application, ::apex::application >();
-      ::factory::add_factory_item < ::base::idpool, ::acme::idpool >();
+      //::factory::add_factory_item < ::base::idpool, ::acme::idpool >();
       ::factory::add_factory_item < ::base::user, ::user::user >();
 
    }

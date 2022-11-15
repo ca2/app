@@ -3,9 +3,10 @@
 #include "acme/handler/item.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/platform/sequencer.h"
+#include "acme/primitive/geometry2d/_collection.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "acme/platform/sequencer.h"
 #include "aqua/xml/document.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -69,8 +70,8 @@ namespace user
 
       //install_click_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu_impact::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_impact::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &menu_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &menu_impact::on_message_destroy);
 
    }
 

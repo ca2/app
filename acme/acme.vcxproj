@@ -216,14 +216,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-      <Inputs>
-      </Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -280,14 +273,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-      <Inputs>
-      </Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -433,14 +419,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-      <Inputs>
-      </Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -508,14 +487,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <Inputs>
-      </Inputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <PostBuildEvent>
       <Command>
       </Command>
@@ -572,14 +544,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <Inputs>
-      </Inputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <PostBuildEvent>
       <Command>
       </Command>
@@ -703,14 +668,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <Inputs>
-      </Inputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <PostBuildEvent>
       <Command>
       </Command>
@@ -847,7 +805,7 @@
     <ClInclude Include="constant\filesystem.h" />
     <ClInclude Include="constant\flag.h" />
     <ClInclude Include="constant\future.h" />
-    <ClInclude Include="constant\GLOBAL_ID.h" />
+    <ClInclude Include="constant\_id.h" />
     <ClInclude Include="constant\id.h" />
     <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="constant\impact.h" />
@@ -866,6 +824,7 @@
     <ClInclude Include="constant\_constant.h" />
     <ClInclude Include="constant\_geometry.h" />
     <ClInclude Include="constant\_mathematics.h" />
+    <ClInclude Include="constant\_message.h" />
     <ClInclude Include="exception\bad_file_format.h" />
     <ClInclude Include="exception\aaa_file_open.h" />
     <ClInclude Include="exception\debug.h" />
@@ -1049,6 +1008,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='release|x64'">NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="operating_system\argcargv.cpp" />
@@ -1170,6 +1136,7 @@
     <ClCompile Include="platform\_synchronization.cpp" />
     <ClCompile Include="primitive\collection\strdup_array.cpp" />
     <ClCompile Include="primitive\collection\string_array.cpp" />
+    <ClCompile Include="primitive\collection\string_list.cpp" />
     <ClCompile Include="primitive\collection\str_array.cpp" />
     <ClCompile Include="primitive\collection\__payload_array.cpp" />
     <ClCompile Include="primitive\data\container.cpp" />
@@ -1207,6 +1174,7 @@
     <ClCompile Include="primitive\mathematics\value.cpp" />
     <ClCompile Include="primitive\mathematics\_.cpp" />
     <ClCompile Include="primitive\media_library\item.cpp" />
+    <ClCompile Include="primitive\primitive\action_context.cpp" />
     <ClCompile Include="primitive\primitive\atom.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
     <ClCompile Include="primitive\primitive\get_memory.cpp" />
@@ -1812,7 +1780,7 @@
     <ClInclude Include="primitive\primitive\property_object.h" />
     <ClInclude Include="primitive\primitive\linked_property.h" />
     <ClInclude Include="primitive\primitive\matter.h" />
-    <ClInclude Include="primitive\primitive\estatus.h" />
+    <ClInclude Include="primitive\primitive\e_status.h" />
     <ClInclude Include="primitive\primitive\match.h" />
     <ClInclude Include="primitive\primitive\payload.h" />
     <ClInclude Include="primitive\primitive\member.h" />

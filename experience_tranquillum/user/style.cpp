@@ -39,7 +39,7 @@ namespace experience_tranquillum
    }
 
 
-   ::color::color style::get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate) const
+   ::color::color style::get_color(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
    {
 
       if (::is_set(pinteraction))
@@ -62,7 +62,7 @@ namespace experience_tranquillum
                }
                else
                {
-      
+
                   return argb(255, 255, 255, 255);
 
                }
@@ -143,7 +143,7 @@ namespace experience_tranquillum
 
                if (is_dark_mode())
                {
-                  
+
                   if (estate & ::user::e_state_hover)
                   {
 
@@ -253,22 +253,22 @@ namespace experience_tranquillum
 
       }
 
-         if (eelement == ::e_element_check)
+      if (eelement == ::e_element_check)
+      {
+
+         if (is_dark_mode())
          {
-
-            if (is_dark_mode())
-            {
-               return argb(255, 215, 215, 215);
-
-            }
-            else
-            {
-
-               return argb(255,40,40, 40);
-
-            }
+            return argb(255, 215, 215, 215);
 
          }
+         else
+         {
+
+            return argb(255, 40, 40, 40);
+
+         }
+
+      }
       else if (eelement == ::e_element_background)
       {
 
@@ -306,7 +306,7 @@ namespace experience_tranquillum
             }
 
          }
-         
+
       }
       else if (eelement == ::e_element_text)
       {
@@ -418,84 +418,84 @@ namespace experience_tranquillum
       else if (eelement == ::e_element_item_background)
       {
 
-      if (is_dark_mode())
-      {
-         if (estate & ::user::e_state_new_input)
+         if (is_dark_mode())
          {
-
-            return argb(255, 128, 128, 128);
-
-         }
-         else if (estate & ::user::e_state_hover)
-         {
-
-            if (estate & ::user::e_state_selected)
+            if (estate & ::user::e_state_new_input)
             {
 
-               return argb(255, 200, 200, 240);
+               return argb(255, 128, 128, 128);
+
+            }
+            else if (estate & ::user::e_state_hover)
+            {
+
+               if (estate & ::user::e_state_selected)
+               {
+
+                  return argb(255, 200, 200, 240);
+
+               }
+               else
+               {
+                  return argb(255, 220, 220, 220);
+
+               }
+
+            }
+            else if (estate & ::user::e_state_selected)
+            {
+
+               return argb(255, 200, 200, 200);
 
             }
             else
             {
-               return argb(255, 220, 220, 220);
+
+               return argb(255, 40, 40, 40);
+
+
 
             }
-
-         }
-         else if (estate & ::user::e_state_selected)
-         {
-
-            return argb(255, 200, 200, 200);
-
          }
          else
          {
-
-            return argb(255, 40, 40, 40);
-
-
-
-         }
-      }
-      else
-      {
-         if (estate & ::user::e_state_new_input)
-         {
-
-            return argb(255, 192, 192, 192);
-
-         }
-         else if (estate & ::user::e_state_hover)
-         {
-
-            if (estate & ::user::e_state_selected)
+            if (estate & ::user::e_state_new_input)
             {
 
-               return argb(255, 40, 40, 80);
+               return argb(255, 192, 192, 192);
+
+            }
+            else if (estate & ::user::e_state_hover)
+            {
+
+               if (estate & ::user::e_state_selected)
+               {
+
+                  return argb(255, 40, 40, 80);
+
+               }
+               else
+               {
+                  return argb(255, 120, 120, 180);
+
+               }
+
+            }
+            else if (estate & ::user::e_state_selected)
+            {
+
+               return argb(255, 40, 40, 40);
 
             }
             else
             {
-               return argb(255, 120, 120, 180);
+
+               return argb(255, 255, 255, 255);
+
+
 
             }
-
          }
-         else if (estate & ::user::e_state_selected)
-         {
-
-            return argb(255, 40, 40, 40);
-
-         }
-         else
-         {
-
-            return argb(255, 255, 255, 255);
-
-
-
-         }
-      }
 
       }
 
@@ -505,7 +505,7 @@ namespace experience_tranquillum
    }
 
 
-   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe)
+   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer& pgraphics, ::user::frame* pframe)
    {
 
       ::draw2d::savedc k(pgraphics);
@@ -520,7 +520,7 @@ namespace experience_tranquillum
       }
 
       ::rectangle_i32 rectangleClient;
-      
+
       pframe->get_client_rect(rectangleClient);
 
       auto pstyle = pframe->get_style(pgraphics);
@@ -536,7 +536,7 @@ namespace experience_tranquillum
    }
 
 
-   bool style::_001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab)
+   bool style::_001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab* ptab)
    {
 
       if (!ptab->get_data()->m_bCreated)
@@ -567,7 +567,7 @@ namespace experience_tranquillum
          for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
          {
 
-            auto & pane = *ptab->get_data()->m_tabpanecompositea[iPane];
+            auto& pane = *ptab->get_data()->m_tabpanecompositea[iPane];
 
             if (!pane.m_bTabPaneVisible)
             {
@@ -617,14 +617,14 @@ namespace experience_tranquillum
          }
 
          iTabWidth += ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right +
-                      ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right +
-                      ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
+            ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right +
+            ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
 
          ptab->get_data()->m_iTabWidth = iTabWidth;
 
          iTabHeight += ptab->get_data()->m_rectangleBorder.top + ptab->get_data()->m_rectangleBorder.bottom +
-                       ptab->get_data()->m_rectangleMargin.top + ptab->get_data()->m_rectangleMargin.bottom +
-                       ptab->get_data()->m_rectangleTextMargin.top + ptab->get_data()->m_rectangleTextMargin.bottom;
+            ptab->get_data()->m_rectangleMargin.top + ptab->get_data()->m_rectangleMargin.bottom +
+            ptab->get_data()->m_rectangleTextMargin.top + ptab->get_data()->m_rectangleTextMargin.bottom;
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
@@ -664,7 +664,7 @@ namespace experience_tranquillum
          for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
          {
 
-            auto & pane = *ptab->get_data()->m_tabpanecompositea[iPane];
+            auto& pane = *ptab->get_data()->m_tabpanecompositea[iPane];
 
             if (!pane.m_bTabPaneVisible)
             {
@@ -688,7 +688,7 @@ namespace experience_tranquillum
             if (pane.m_pimage->is_set())
             {
 
-               size.cy = (::i32) maximum(maximum(size.cy, pane.m_pimage->size().cy), metric.get_line_spacing());
+               size.cy = (::i32)maximum(maximum(size.cy, pane.m_pimage->size().cy), metric.get_line_spacing());
 
             }
 
@@ -724,9 +724,9 @@ namespace experience_tranquillum
 
 
             pane.m_size.cx = size.cx + ixAdd
-                                 + ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right
-                                 + ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right
-                                 + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
+               + ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right
+               + ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right
+               + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
 
             x += pane.m_size.cx;
 
@@ -740,14 +740,14 @@ namespace experience_tranquillum
          }
 
          iTabHeight += ptab->get_data()->m_rectangleBorder.top + ptab->get_data()->m_rectangleBorder.bottom +
-                       ptab->get_data()->m_rectangleMargin.top + ptab->get_data()->m_rectangleMargin.bottom + ptab->get_data()->m_iHeightAddUp;
+            ptab->get_data()->m_rectangleMargin.top + ptab->get_data()->m_rectangleMargin.bottom + ptab->get_data()->m_iHeightAddUp;
 
          ptab->get_data()->m_iTabHeight = iTabHeight + 8;
 
          for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
          {
 
-            auto & pane = *ptab->get_data()->m_tabpanecompositea[iPane];
+            auto& pane = *ptab->get_data()->m_tabpanecompositea[iPane];
 
             pane.m_size.cy = iTabHeight;
 
@@ -769,7 +769,7 @@ namespace experience_tranquillum
          m_rectangleTab.height(),
          0);*/
 
-         rectangle_i32 & rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
+         rectangle_i32& rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
 
          //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
          bool bTabbedClient = ptab->m_bShowTabs;
@@ -803,7 +803,7 @@ namespace experience_tranquillum
    }
 
 
-   bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab)
+   bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer& pgraphics, ::user::tab* ptab)
    {
 
       ::rectangle_i32 rectangle;
@@ -874,14 +874,14 @@ namespace experience_tranquillum
 
       ::index iTab = -1;
 
-      auto pbrushText = __create < ::draw2d::brush > ();
+      auto pbrushText = __create < ::draw2d::brush >();
 
-      auto ppenBorder = __create < ::draw2d::pen > ();
+      auto ppenBorder = __create < ::draw2d::pen >();
 
       for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
       {
 
-         auto & pane = *ptab->get_data()->m_tabpanecompositea[iPane];
+         auto& pane = *ptab->get_data()->m_tabpanecompositea[iPane];
 
          if (!pane.m_bTabPaneVisible)
          {
@@ -953,7 +953,7 @@ namespace experience_tranquillum
 
             }
 
-            auto ppath = __create < ::draw2d::path > ();
+            auto ppath = __create < ::draw2d::path >();
 
             if (true)
             {
@@ -1016,7 +1016,7 @@ namespace experience_tranquillum
 
                   if (::is_item(ptab->m_pitemHover, iTab)
                      && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
-                     && !::in_element_range(ptab->m_pitemHover,::e_element_split, 100))
+                     && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                   {
 
                      pane.m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
@@ -1159,7 +1159,7 @@ namespace experience_tranquillum
                      //pgraphics->fill(ppath);
 
                      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
-                     
+
                      //pgraphics->draw(ppath);
 
                      pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
@@ -1259,14 +1259,14 @@ namespace experience_tranquillum
    }
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleParam,::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer& pgraphics, const ::rectangle_i32& rectangleParam, ::draw2d::brush_pointer& pbrushText, const ::user::e_state& estate)
    {
 
-      string_array & straTitle = pane.m_straTitle;
+      string_array& straTitle = pane.m_straTitle;
 
       pgraphics->set(pbrushText);
 
-      if(straTitle.get_count() <= 1)
+      if (straTitle.get_count() <= 1)
       {
 
          pgraphics->_DrawText(pane.get_title(), rectangleParam, e_align_bottom_left, e_draw_text_no_prefix);
@@ -1287,27 +1287,27 @@ namespace experience_tranquillum
 
          ::rectangle_i32 rectangleEmp;
 
-         for(index i = 0; i < straTitle.get_size(); i++)
+         for (index i = 0; i < straTitle.get_size(); i++)
          {
             string str = straTitle[i];
             size_i32 s = pane.m_sizeaText[i];
-            rectangleText.right =rectangleText.left + s.cx;
-            pgraphics->_DrawText(str,rectangleText,e_align_bottom_left, e_draw_text_no_prefix);
+            rectangleText.right = rectangleText.left + s.cx;
+            pgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
             rectangleText.left += s.cx;
-            if(i < straTitle.get_upper_bound())
+            if (i < straTitle.get_upper_bound())
             {
                rectangleText.right = rectangleText.left + sSep.cx;
                rectangleEmp = rectangleText;
-               rectangleEmp.deflate(1,1);
+               rectangleEmp.deflate(1, 1);
                ::draw2d::enum_alpha_mode emode = pgraphics->alpha_mode();
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-               if(::is_item(ptab->m_pitemHover, (::index)::e_element_split + i))
+               if (::is_item(ptab->m_pitemHover, (::index)::e_element_split + i))
                {
-                  
-                  pgraphics->fill_rectangle(rectangleEmp,argb(128,149,184,255));
-                  
+
+                  pgraphics->fill_rectangle(rectangleEmp, argb(128, 149, 184, 255));
+
                   pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
-                  
+
                   pgraphics->set(pbrushText);
 
                }
@@ -1315,14 +1315,14 @@ namespace experience_tranquillum
                {
 
                   pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text));
-                  
+
                   pgraphics->set(pbrushText);
 
                }
 
                pgraphics->set_font(ptab, ::e_element_close_tab_button);
                pgraphics->set_alpha_mode(emode);
-               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectangleText, e_align_center, e_draw_text_no_prefix);
+               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
                rectangleText.left += sSep.cx;
 
             }
@@ -1337,682 +1337,682 @@ namespace experience_tranquillum
 
 
 
-//   bool style::on_ui_event(::enum_topic etopic, ::user::e_object eobject, ::user::interaction * pframewindow)
-//   {
-//
-//      if (eevent == ::id_calc_item_height)
-//      {
-//
-//         pframewindow->m_iItemHeight += 8;
-//
-//         return true;
-//
-//      }
-//
-//      return false;
-//
-//   }
-
-
-//   bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar)
-//   {
-//
-////      if (1)
-//      {
-//
-//         _001DrawTranquillumToolbarItem(pgraphics, iItem, ptoolbar);
-//
-//      }
-////      else
-////      {
-////
-////         _001DrawSimpleToolbarItem(pgraphics, iItem, ptoolbar);
-////
-////      }
-//
-//      return true;
-//
-//   }
-
-
-   //void style::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar)
-   //{
-
-   //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-   //   ::rectangle_i32 rectangleItem;
-
-   //   ::rectangle_i32 rectangleImage;
-
-   //   pgraphics->set_font(ptoolbar);
-
-   //   ::user::tool_item & item = ptoolbar->m_itema(iItem);
-
-   //   ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
-
-   //   bool bHover = ptoolbar->m_pitemHover == iItem;
-
-   //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_atom);
-
-   //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
-   //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
-   //   ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
-   //   if ((nStyle & e_tool_item_style_separator) == 0)
+   //   bool style::on_ui_event(::enum_topic etopic, ::user::e_object eobject, ::user::interaction * pframewindow)
    //   {
-   //      if ((nStyle & e_tool_item_style_disabled) == 0)
+   //
+   //      if (eevent == ::id_calc_item_height)
    //      {
-   //         // item is enabled
-   //         if (ptoolbar->m_iButtonPressItem >= 0)
-   //         {
-   //            if (iItem == ptoolbar->m_iButtonPressItem)
-   //            {
-   //               if (bHover)
-   //               {
-   //                  eelement = ::user::toolbar::element_item_press;
-   //                  eelementImage = ::user::toolbar::element_image_press;
-   //                  eelementText = ::user::toolbar::element_text_press;
-   //               }
-   //               else
-   //               {
-   //                  eelement = ::user::toolbar::element_item_hover;
-   //                  eelementImage = ::user::toolbar::element_image_hover;
-   //                  eelementText = ::user::toolbar::element_text_hover;
-   //               }
-   //            }
-   //         }
-   //         else if (bHover)
-   //         {
-   //            eelement = ::user::toolbar::element_item_hover;
-   //            eelementImage = ::user::toolbar::element_image_hover;
-   //            eelementText = ::user::toolbar::element_text_hover;
-   //         }
+   //
+   //         pframewindow->m_iItemHeight += 8;
+   //
+   //         return true;
+   //
    //      }
-   //      else
-   //      {
-   //         // item is disabled
-   //         eelement = ::user::toolbar::e_element_item;
-   //         eelementImage = ::user::toolbar::element_image;
-   //         eelementText = ::user::toolbar::e_element_text;
-   //      }
-   //   }
-   //   else
-   //   {
-   //      eelement = ::user::toolbar::e_element_item;
-   //      eelementImage = ::user::toolbar::element_image;
-   //      eelementText = ::user::toolbar::e_element_text;
+   //
+   //      return false;
+   //
    //   }
 
 
-   //   //int iOffsetX = 0;
-   //   //int iOffsetY = 0;
-
-   //   ptoolbar->index_element_rectangle(iItem, rectangleItem, eelement);
-
-   //   ptoolbar->index_element_rectangle(iItem, rectangleImage, eelementImage);
-
-   //   if ((nStyle & e_tool_item_style_separator) != 0)
+   //   bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar)
    //   {
-   //      ::rectangle_i32 rectangleSeparator;
-   //      rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
-   //      rectangleSeparator.right = rectangleSeparator.left + 2;
-   //      rectangleSeparator.top = rectangleImage.top;
-   //      rectangleSeparator.bottom = rectangleImage.bottom;
-   //      pgraphics->draw_inset_3d_rectangle(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
-   //   }
-   //   else
-   //   {
-   //      if (eelement == ::user::toolbar::element_item_hover)
+   //
+   ////      if (1)
    //      {
-   //         if ((nStyle & TBBS_CHECKED) != 0)
-   //         {
-
-   //            ptoolbar->index_element_rectangle(iItem, rectangleItem, ::user::toolbar::e_element_item);
-
-   //            ptoolbar->index_element_rectangle(iItem, rectangleImage, ::user::toolbar::element_image);
-
-   //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
-   //            {
-   //               psystem->imaging().color_blend(
-   //               pgraphics,
-   //               rectangleItem.left,
-   //               rectangleItem.top,
-   //               rectangleItem.width(),
-   //               rectangleItem.height(),
-   //               rgb(255, 255, 250), 208);
-
-   //               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
-
-   //            }
-
-   //            if (uImage != 0xffffffffu)
-   //            {
-
-   //               if ((nStyle & e_tool_item_style_disabled) == 0)
-   //               {
-
-   //                  // button is enabled
-   //                  psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
-
-   //               }
-   //               else
-   //               {
-
-   //                  // button is disabled
-   //                  psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
-
-   //               }
-
-   //            }
-
-   //         }
-   //         else
-   //         {
-
-   //            ::rectangle_i32 rectangleShadow;
-
-   //            ptoolbar->index_element_rectangle(iItem, rectangleShadow, ::user::toolbar::element_item_hover);
-
-   //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
-   //            {
-
-   //               auto ppen = __create < ::draw2d::pen > ();
-
-   //               ppen->create_solid(1, argb(184, 92, 184, 92));
-
-   //               auto pbrush = __create < ::draw2d::brush >();
-
-   //               pbrush->create_solid(argb(123, 177, 184, 255));
-
-   //               ::draw2d::pen * ppenOld = pgraphics->set(ppen);
-   //               ::draw2d::brush * pbrushOld = pgraphics->set(pbrush);
-   //               pgraphics->rectangle(rectangleItem);
-   //               pgraphics->set(ppenOld);
-   //               pgraphics->set(pbrushOld);
-
-   //            }
-
-   //            if (item.m_pimage->is_set())
-   //            {
-
-   //               ::rectangle_i32 rectangle;
-
-   //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_hover);
-
-   //               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
-
-   //            }
-   //            else if (uImage != 0xffffffffu)
-   //            {
-
-   //               ::rectangle_i32 rectangle;
-
-   //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_item_hover);
-
-   //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
-
-   //               psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
-   //            }
-
-   //         }
-
+   //
+   //         _001DrawTranquillumToolbarItem(pgraphics, iItem, ptoolbar);
+   //
    //      }
-   //      else if (eelement == ::user::toolbar::element_item_press)
-   //      {
-
-   //         if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
-   //         {
-
-   //            auto ppen = __create < ::draw2d::pen > ();
-
-   //            ppen->create_solid(1, argb(255, 92, 92, 92));
-   //            auto pbrush = __create < ::draw2d::brush >();
-
-   //            pbrush->create_solid(argb(255, 255, 255, 255));
-   //            ::draw2d::pen * ppenOld = pgraphics->set(ppen);
-   //            ::draw2d::brush * pbrushOld = pgraphics->set(pbrush);
-   //            pgraphics->rectangle(rectangleItem);
-   //            pgraphics->set(ppenOld);
-   //            pgraphics->set(pbrushOld);
-
-   //         }
-
-   //         if (item.m_pimage->is_set())
-   //         {
-
-   //            ::rectangle_i32 rectangle;
-
-   //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_press);
-
-   //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
-
-   //         }
-   //         else if (uImage != 0xffffffff)
-   //         {
-
-   //            psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
-
-   //         }
-
-   //      }
-   //      else
-   //      {
-
-   //         if ((nStyle & e_tool_item_style_disabled) == 0)
-   //         {
-
-   //            ptoolbar->index_element_rectangle(iItem, rectangleItem, ::user::toolbar::e_element_item);
-
-   //            pgraphics->fill_rectangle(rectangleItem, argb(184, 255, 255, 255));
-
-   //         }
-
-   //         if ((nStyle & TBBS_CHECKED) != 0)
-   //         {
-
-   //            pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
-
-   //         }
-
-   //         if (item.m_pimage->is_set())
-   //         {
-
-   //            ::rectangle_i32 rectangle;
-
-   //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image);
-
-   //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
-
-   //         }
-   //         else if (uImage != 0xffffffff)
-   //         {
-
-   //            if ((nStyle & e_tool_item_style_disabled) == 0)
-   //            {
-
-   //               psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
-
-   //            }
-   //            else
-   //            {
-
-   //               psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
-
-   //            }
-
-   //         }
-
-   //      }
-
-   //   }
-
-   //   if (item.m_str.has_char())
-   //   {
-
-   //      ptoolbar->select_font(pgraphics, ::user::font_toolbar);
-
-   //      ::rectangle_i32 rectangleText;
-
-   //      auto pbrushText = __create < ::draw2d::brush > ();
-
-   //      if ((nStyle & e_tool_item_style_disabled) == 0)
-   //      {
-
-   //         pbrushText->create_solid(argb(255, 0, 0, 0));
-
-   //      }
-   //      else
-   //      {
-
-   //         pbrushText->create_solid(argb(255, 123, 123, 118));
-
-   //      }
-
-   //      pgraphics->set(pbrushText);
-
-   //      if (ptoolbar->index_element_rectangle(iItem, rectangleText, eelementText) && rectangleText.right > 0)
-   //      {
-
-   //         pgraphics->_DrawText(item.m_str, item.m_str.get_length(), rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
-
-   //      }
-
-   //   }
-
-   //}
-
-
-   //void style::_001DrawTranquillumToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar)
-   //{
-
-   //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-   //   ::rectangle_i32 rectangleItem;
-
-   //   ::rectangle_i32 rectangleImage;
-
-   //   ptoolbar->select_font(pgraphics, ::user::font_toolbar);
-
-   //   ::user::tool_item & item = ptoolbar->m_itema(iItem);
-
-   //   ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
-
-   //   bool bHover = ptoolbar->m_pitemHover == iItem;
-
-   //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_atom);
-
-   //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
-   //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
-   //   ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
-   //   if ((nStyle & e_tool_item_style_separator) == 0)
-   //   {
-   //      if ((nStyle & e_tool_item_style_disabled) == 0)
-   //      {
-   //         // item is enabled
-   //         if (ptoolbar->m_iButtonPressItem >= 0)
-   //         {
-   //            if (iItem == ptoolbar->m_iButtonPressItem)
-   //            {
-   //               if (bHover)
-   //               {
-   //                  eelement = ::user::toolbar::element_item_press;
-   //                  eelementImage = ::user::toolbar::element_image_press;
-   //                  eelementText = ::user::toolbar::element_text_press;
-   //               }
-   //               else
-   //               {
-   //                  eelement = ::user::toolbar::element_item_hover;
-   //                  eelementImage = ::user::toolbar::element_image_hover;
-   //                  eelementText = ::user::toolbar::element_text_hover;
-   //               }
-   //            }
-   //         }
-   //         else if (bHover)
-   //         {
-   //            eelement = ::user::toolbar::element_item_hover;
-   //            eelementImage = ::user::toolbar::element_image_hover;
-   //            eelementText = ::user::toolbar::element_text_hover;
-   //         }
-   //      }
-   //      else
-   //      {
-   //         // item is disabled
-   //         eelement = ::user::toolbar::e_element_item;
-   //         eelementImage = ::user::toolbar::element_image;
-   //         eelementText = ::user::toolbar::e_element_text;
-   //      }
-   //   }
-   //   else
-   //   {
-   //      eelement = ::user::toolbar::e_element_item;
-   //      eelementImage = ::user::toolbar::element_image;
-   //      eelementText = ::user::toolbar::e_element_text;
+   ////      else
+   ////      {
+   ////
+   ////         _001DrawSimpleToolbarItem(pgraphics, iItem, ptoolbar);
+   ////
+   ////      }
+   //
+   //      return true;
+   //
    //   }
 
 
-   //   //int iOffsetX = 0;
-   //   //int iOffsetY = 0;
+      //void style::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar)
+      //{
+
+      //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      //   ::rectangle_i32 rectangleItem;
+
+      //   ::rectangle_i32 rectangleImage;
+
+      //   pgraphics->set_font(ptoolbar);
+
+      //   ::user::tool_item & item = ptoolbar->m_itema(iItem);
+
+      //   ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
+
+      //   bool bHover = ptoolbar->m_pitemHover == iItem;
+
+      //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_atom);
+
+      //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
+      //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
+      //   ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
+      //   if ((nStyle & e_tool_item_style_separator) == 0)
+      //   {
+      //      if ((nStyle & e_tool_item_style_disabled) == 0)
+      //      {
+      //         // item is enabled
+      //         if (ptoolbar->m_iButtonPressItem >= 0)
+      //         {
+      //            if (iItem == ptoolbar->m_iButtonPressItem)
+      //            {
+      //               if (bHover)
+      //               {
+      //                  eelement = ::user::toolbar::element_item_press;
+      //                  eelementImage = ::user::toolbar::element_image_press;
+      //                  eelementText = ::user::toolbar::element_text_press;
+      //               }
+      //               else
+      //               {
+      //                  eelement = ::user::toolbar::element_item_hover;
+      //                  eelementImage = ::user::toolbar::element_image_hover;
+      //                  eelementText = ::user::toolbar::element_text_hover;
+      //               }
+      //            }
+      //         }
+      //         else if (bHover)
+      //         {
+      //            eelement = ::user::toolbar::element_item_hover;
+      //            eelementImage = ::user::toolbar::element_image_hover;
+      //            eelementText = ::user::toolbar::element_text_hover;
+      //         }
+      //      }
+      //      else
+      //      {
+      //         // item is disabled
+      //         eelement = ::user::toolbar::e_element_item;
+      //         eelementImage = ::user::toolbar::element_image;
+      //         eelementText = ::user::toolbar::e_element_text;
+      //      }
+      //   }
+      //   else
+      //   {
+      //      eelement = ::user::toolbar::e_element_item;
+      //      eelementImage = ::user::toolbar::element_image;
+      //      eelementText = ::user::toolbar::e_element_text;
+      //   }
+
+
+      //   //int iOffsetX = 0;
+      //   //int iOffsetY = 0;
+
+      //   ptoolbar->index_element_rectangle(iItem, rectangleItem, eelement);
 
-   //   ptoolbar->index_element_rectangle(iItem, rectangleItem, eelement);
+      //   ptoolbar->index_element_rectangle(iItem, rectangleImage, eelementImage);
 
-   //   ptoolbar->index_element_rectangle(iItem, rectangleImage, eelementImage);
+      //   if ((nStyle & e_tool_item_style_separator) != 0)
+      //   {
+      //      ::rectangle_i32 rectangleSeparator;
+      //      rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
+      //      rectangleSeparator.right = rectangleSeparator.left + 2;
+      //      rectangleSeparator.top = rectangleImage.top;
+      //      rectangleSeparator.bottom = rectangleImage.bottom;
+      //      pgraphics->draw_inset_3d_rectangle(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
+      //   }
+      //   else
+      //   {
+      //      if (eelement == ::user::toolbar::element_item_hover)
+      //      {
+      //         if ((nStyle & TBBS_CHECKED) != 0)
+      //         {
 
-   //   if (item.m_atom.compare_ci("separator") == 0)
-   //   {
-   //      /*::rectangle_i32 rectangleSeparator;
-   //      rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
-   //      rectangleSeparator.right = rectangleSeparator.left + 2;
-   //      rectangleSeparator.top = rectangleImage.top;
-   //      rectangleSeparator.bottom = rectangleImage.bottom;*/
-   //      //pgraphics->Draw3dRect(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
-   //   }
-   //   else
-   //   {
-   //      if (eelement == ::user::toolbar::element_item_hover)
-   //      {
-   //         if ((nStyle & TBBS_CHECKED) != 0)
-   //         {
+      //            ptoolbar->index_element_rectangle(iItem, rectangleItem, ::user::toolbar::e_element_item);
 
-   //            ptoolbar->index_element_rectangle(iItem, rectangleItem, ::user::toolbar::e_element_item);
+      //            ptoolbar->index_element_rectangle(iItem, rectangleImage, ::user::toolbar::element_image);
 
-   //            ptoolbar->index_element_rectangle(iItem, rectangleImage, ::user::toolbar::element_image);
+      //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
+      //            {
+      //               psystem->imaging().color_blend(
+      //               pgraphics,
+      //               rectangleItem.left,
+      //               rectangleItem.top,
+      //               rectangleItem.width(),
+      //               rectangleItem.height(),
+      //               rgb(255, 255, 250), 208);
 
-   //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
-   //            {
-   //               psystem->imaging().color_blend(
-   //               pgraphics,
-   //               rectangleItem.left,
-   //               rectangleItem.top,
-   //               rectangleItem.width(),
-   //               rectangleItem.height(),
-   //               rgb(255, 255, 250), 208);
+      //               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
-   //               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+      //            }
 
-   //            }
+      //            if (uImage != 0xffffffffu)
+      //            {
 
-   //            if (uImage != 0xffffffffu)
-   //            {
+      //               if ((nStyle & e_tool_item_style_disabled) == 0)
+      //               {
 
-   //               if ((nStyle & e_tool_item_style_disabled) == 0)
-   //               {
+      //                  // button is enabled
+      //                  psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
 
-   //                  // button is enabled
-   //                  psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+      //               }
+      //               else
+      //               {
 
-   //               }
-   //               else
-   //               {
+      //                  // button is disabled
+      //                  psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
 
-   //                  // button is disabled
-   //                  psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+      //               }
 
-   //               }
+      //            }
 
-   //            }
+      //         }
+      //         else
+      //         {
 
-   //         }
-   //         else
-   //         {
+      //            ::rectangle_i32 rectangleShadow;
 
-   //            ::rectangle_i32 rectangleShadow;
+      //            ptoolbar->index_element_rectangle(iItem, rectangleShadow, ::user::toolbar::element_item_hover);
 
-   //            ptoolbar->index_element_rectangle(iItem, rectangleShadow, ::user::toolbar::element_item_hover);
+      //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
+      //            {
 
-   //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
-   //            {
+      //               auto ppen = __create < ::draw2d::pen > ();
 
-   //               auto ppen = __create < ::draw2d::pen > ();
+      //               ppen->create_solid(1, argb(184, 92, 184, 92));
 
-   //               ppen->create_solid(1, ptoolbar->_001GetColor(::user::color_button_background_hover));
-   //               auto pbrush = __create < ::draw2d::brush >();
+      //               auto pbrush = __create < ::draw2d::brush >();
 
-   //               pbrush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_hover));
-   //               ::draw2d::pen * ppenOld = pgraphics->set(ppen);
-   //               ::draw2d::brush * pbrushOld = pgraphics->set(pbrush);
-   //               pgraphics->rectangle(rectangleItem);
-   //               pgraphics->set(ppenOld);
-   //               pgraphics->set(pbrushOld);
+      //               pbrush->create_solid(argb(123, 177, 184, 255));
 
-   //            }
+      //               ::draw2d::pen * ppenOld = pgraphics->set(ppen);
+      //               ::draw2d::brush * pbrushOld = pgraphics->set(pbrush);
+      //               pgraphics->rectangle(rectangleItem);
+      //               pgraphics->set(ppenOld);
+      //               pgraphics->set(pbrushOld);
 
-   //            if (item.m_pimage->is_set())
-   //            {
+      //            }
 
-   //               ::rectangle_i32 rectangle;
+      //            if (item.m_pimage->is_set())
+      //            {
 
-   //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_hover);
+      //               ::rectangle_i32 rectangle;
 
-   //               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
+      //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-   //            }
-   //            else if (uImage != 0xffffffffu)
-   //            {
+      //               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
 
-   //               ::rectangle_i32 rectangle;
+      //            }
+      //            else if (uImage != 0xffffffffu)
+      //            {
 
-   //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_item_hover);
+      //               ::rectangle_i32 rectangle;
 
-   //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
+      //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_item_hover);
 
-   //               psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
-   //            }
+      //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
-   //         }
+      //               psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+      //            }
 
-   //      }
-   //      else if (eelement == ::user::toolbar::element_item_press)
-   //      {
+      //         }
 
-   //         if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
-   //         {
+      //      }
+      //      else if (eelement == ::user::toolbar::element_item_press)
+      //      {
 
-   //            auto ppen = __create < ::draw2d::pen > ();
+      //         if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
+      //         {
 
-   //            ppen->create_solid(1, ptoolbar->_001GetColor(::user::color_button_background_press));
-   //            auto pbrush = __create < ::draw2d::brush >();
+      //            auto ppen = __create < ::draw2d::pen > ();
 
-   //            pbrush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_press));
-   //            ::draw2d::pen * ppenOld = pgraphics->set(ppen);
-   //            ::draw2d::brush * pbrushOld = pgraphics->set(pbrush);
-   //            pgraphics->rectangle(rectangleItem);
-   //            pgraphics->set(ppenOld);
-   //            pgraphics->set(pbrushOld);
+      //            ppen->create_solid(1, argb(255, 92, 92, 92));
+      //            auto pbrush = __create < ::draw2d::brush >();
 
-   //         }
+      //            pbrush->create_solid(argb(255, 255, 255, 255));
+      //            ::draw2d::pen * ppenOld = pgraphics->set(ppen);
+      //            ::draw2d::brush * pbrushOld = pgraphics->set(pbrush);
+      //            pgraphics->rectangle(rectangleItem);
+      //            pgraphics->set(ppenOld);
+      //            pgraphics->set(pbrushOld);
 
-   //         if (item.m_pimage->is_set())
-   //         {
+      //         }
 
-   //            ::rectangle_i32 rectangle;
+      //         if (item.m_pimage->is_set())
+      //         {
 
-   //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_press);
+      //            ::rectangle_i32 rectangle;
 
-   //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
+      //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_press);
 
-   //         }
-   //         else if (uImage != 0xffffffff)
-   //         {
+      //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
 
-   //            psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+      //         }
+      //         else if (uImage != 0xffffffff)
+      //         {
 
-   //         }
+      //            psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
 
-   //      }
-   //      else
-   //      {
+      //         }
 
-   //         if ((nStyle & e_tool_item_style_disabled) == 0)
-   //         {
+      //      }
+      //      else
+      //      {
 
-   //            ptoolbar->index_element_rectangle(iItem, rectangleItem, ::user::toolbar::e_element_item);
+      //         if ((nStyle & e_tool_item_style_disabled) == 0)
+      //         {
 
-   //            pgraphics->fill_rectangle(rectangleItem, argb(184, 255, 255, 255));
+      //            ptoolbar->index_element_rectangle(iItem, rectangleItem, ::user::toolbar::e_element_item);
 
-   //         }
+      //            pgraphics->fill_rectangle(rectangleItem, argb(184, 255, 255, 255));
 
-   //         if ((nStyle & TBBS_CHECKED) != 0)
-   //         {
+      //         }
 
-   //            pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+      //         if ((nStyle & TBBS_CHECKED) != 0)
+      //         {
 
-   //         }
+      //            pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
-   //         if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
-   //         {
+      //         }
 
-   //            auto ppen = __create < ::draw2d::pen > ();
+      //         if (item.m_pimage->is_set())
+      //         {
 
-   //            ppen->create_solid(1, ptoolbar->_001GetColor(
-   //                              (nStyle & e_tool_item_style_disabled) == 0 ?
-   //                              ::user::color_button_background :
-   //                              ::user::color_button_background_disabled));
-   //            auto pbrush = __create < ::draw2d::brush >();
+      //            ::rectangle_i32 rectangle;
 
-   //            pbrush->create_solid(ptoolbar->_001GetColor(
-   //                                (nStyle & e_tool_item_style_disabled) == 0 ?
-   //                                ::user::color_button_background :
-   //                                ::user::color_button_background_disabled));
-   //            ::draw2d::pen * ppenOld = pgraphics->set(ppen);
-   //            ::draw2d::brush * pbrushOld = pgraphics->set(pbrush);
-   //            pgraphics->rectangle(rectangleItem);
-   //            pgraphics->set(ppenOld);
-   //            pgraphics->set(pbrushOld);
+      //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image);
 
-   //         }
+      //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
 
-   //         if (item.m_pimage->is_set())
-   //         {
+      //         }
+      //         else if (uImage != 0xffffffff)
+      //         {
 
-   //            ::rectangle_i32 rectangle;
+      //            if ((nStyle & e_tool_item_style_disabled) == 0)
+      //            {
 
-   //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image);
+      //               psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
 
-   //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
+      //            }
+      //            else
+      //            {
 
-   //         }
-   //         else if (uImage != 0xffffffff)
-   //         {
+      //               psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
 
-   //            if ((nStyle & e_tool_item_style_disabled) == 0)
-   //            {
+      //            }
 
-   //               psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+      //         }
 
-   //            }
-   //            else
-   //            {
+      //      }
 
-   //               psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+      //   }
 
-   //            }
+      //   if (item.m_str.has_char())
+      //   {
 
-   //         }
+      //      ptoolbar->select_font(pgraphics, ::user::font_toolbar);
 
-   //      }
+      //      ::rectangle_i32 rectangleText;
 
-   //   }
+      //      auto pbrushText = __create < ::draw2d::brush > ();
 
-   //   if (item.m_str.has_char())
-   //   {
+      //      if ((nStyle & e_tool_item_style_disabled) == 0)
+      //      {
 
-   //      ptoolbar->select_font(pgraphics, ::user::font_toolbar);
+      //         pbrushText->create_solid(argb(255, 0, 0, 0));
 
-   //      ::rectangle_i32 rectangleText;
+      //      }
+      //      else
+      //      {
 
-   //      auto pbrushText = __create < ::draw2d::brush > ();
+      //         pbrushText->create_solid(argb(255, 123, 123, 118));
 
-   //      if ((nStyle & e_tool_item_style_disabled) == 0)
-   //      {
+      //      }
 
-   //         pbrushText->create_solid(argb(255, 255, 255, 255));
+      //      pgraphics->set(pbrushText);
 
-   //         pgraphics->set_text_color(argb(255, 255, 255, 255));
+      //      if (ptoolbar->index_element_rectangle(iItem, rectangleText, eelementText) && rectangleText.right > 0)
+      //      {
 
-   //      }
-   //      else
-   //      {
+      //         pgraphics->_DrawText(item.m_str, item.m_str.get_length(), rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
-   //         pbrushText->create_solid(::user::color_button_text_disabled);
+      //      }
 
-   //         pgraphics->set_text_color(ptoolbar->_001GetColor(
+      //   }
 
-   //                                   ::user::color_button_text_disabled));
+      //}
 
-   //      }
 
-   //      if (ptoolbar->index_element_rectangle(iItem, rectangleText, eelementText) && rectangleText.right > 0)
-   //      {
+      //void style::_001DrawTranquillumToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar)
+      //{
 
-   //         pgraphics->_DrawText(item.m_str, item.m_str.get_length(), rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
+      //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   //      }
+      //   ::rectangle_i32 rectangleItem;
 
-   //   }
+      //   ::rectangle_i32 rectangleImage;
 
-   //}
+      //   ptoolbar->select_font(pgraphics, ::user::font_toolbar);
 
+      //   ::user::tool_item & item = ptoolbar->m_itema(iItem);
 
-   bool style::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)
+      //   ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
+
+      //   bool bHover = ptoolbar->m_pitemHover == iItem;
+
+      //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_atom);
+
+      //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
+      //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
+      //   ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
+      //   if ((nStyle & e_tool_item_style_separator) == 0)
+      //   {
+      //      if ((nStyle & e_tool_item_style_disabled) == 0)
+      //      {
+      //         // item is enabled
+      //         if (ptoolbar->m_iButtonPressItem >= 0)
+      //         {
+      //            if (iItem == ptoolbar->m_iButtonPressItem)
+      //            {
+      //               if (bHover)
+      //               {
+      //                  eelement = ::user::toolbar::element_item_press;
+      //                  eelementImage = ::user::toolbar::element_image_press;
+      //                  eelementText = ::user::toolbar::element_text_press;
+      //               }
+      //               else
+      //               {
+      //                  eelement = ::user::toolbar::element_item_hover;
+      //                  eelementImage = ::user::toolbar::element_image_hover;
+      //                  eelementText = ::user::toolbar::element_text_hover;
+      //               }
+      //            }
+      //         }
+      //         else if (bHover)
+      //         {
+      //            eelement = ::user::toolbar::element_item_hover;
+      //            eelementImage = ::user::toolbar::element_image_hover;
+      //            eelementText = ::user::toolbar::element_text_hover;
+      //         }
+      //      }
+      //      else
+      //      {
+      //         // item is disabled
+      //         eelement = ::user::toolbar::e_element_item;
+      //         eelementImage = ::user::toolbar::element_image;
+      //         eelementText = ::user::toolbar::e_element_text;
+      //      }
+      //   }
+      //   else
+      //   {
+      //      eelement = ::user::toolbar::e_element_item;
+      //      eelementImage = ::user::toolbar::element_image;
+      //      eelementText = ::user::toolbar::e_element_text;
+      //   }
+
+
+      //   //int iOffsetX = 0;
+      //   //int iOffsetY = 0;
+
+      //   ptoolbar->index_element_rectangle(iItem, rectangleItem, eelement);
+
+      //   ptoolbar->index_element_rectangle(iItem, rectangleImage, eelementImage);
+
+      //   if (item.m_atom.compare_ci("separator") == 0)
+      //   {
+      //      /*::rectangle_i32 rectangleSeparator;
+      //      rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
+      //      rectangleSeparator.right = rectangleSeparator.left + 2;
+      //      rectangleSeparator.top = rectangleImage.top;
+      //      rectangleSeparator.bottom = rectangleImage.bottom;*/
+      //      //pgraphics->Draw3dRect(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
+      //   }
+      //   else
+      //   {
+      //      if (eelement == ::user::toolbar::element_item_hover)
+      //      {
+      //         if ((nStyle & TBBS_CHECKED) != 0)
+      //         {
+
+      //            ptoolbar->index_element_rectangle(iItem, rectangleItem, ::user::toolbar::e_element_item);
+
+      //            ptoolbar->index_element_rectangle(iItem, rectangleImage, ::user::toolbar::element_image);
+
+      //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
+      //            {
+      //               psystem->imaging().color_blend(
+      //               pgraphics,
+      //               rectangleItem.left,
+      //               rectangleItem.top,
+      //               rectangleItem.width(),
+      //               rectangleItem.height(),
+      //               rgb(255, 255, 250), 208);
+
+      //               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+
+      //            }
+
+      //            if (uImage != 0xffffffffu)
+      //            {
+
+      //               if ((nStyle & e_tool_item_style_disabled) == 0)
+      //               {
+
+      //                  // button is enabled
+      //                  psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+
+      //               }
+      //               else
+      //               {
+
+      //                  // button is disabled
+      //                  psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+
+      //               }
+
+      //            }
+
+      //         }
+      //         else
+      //         {
+
+      //            ::rectangle_i32 rectangleShadow;
+
+      //            ptoolbar->index_element_rectangle(iItem, rectangleShadow, ::user::toolbar::element_item_hover);
+
+      //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
+      //            {
+
+      //               auto ppen = __create < ::draw2d::pen > ();
+
+      //               ppen->create_solid(1, ptoolbar->_001GetColor(::user::color_button_background_hover));
+      //               auto pbrush = __create < ::draw2d::brush >();
+
+      //               pbrush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_hover));
+      //               ::draw2d::pen * ppenOld = pgraphics->set(ppen);
+      //               ::draw2d::brush * pbrushOld = pgraphics->set(pbrush);
+      //               pgraphics->rectangle(rectangleItem);
+      //               pgraphics->set(ppenOld);
+      //               pgraphics->set(pbrushOld);
+
+      //            }
+
+      //            if (item.m_pimage->is_set())
+      //            {
+
+      //               ::rectangle_i32 rectangle;
+
+      //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_hover);
+
+      //               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
+
+      //            }
+      //            else if (uImage != 0xffffffffu)
+      //            {
+
+      //               ::rectangle_i32 rectangle;
+
+      //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_item_hover);
+
+      //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
+
+      //               psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+      //            }
+
+      //         }
+
+      //      }
+      //      else if (eelement == ::user::toolbar::element_item_press)
+      //      {
+
+      //         if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
+      //         {
+
+      //            auto ppen = __create < ::draw2d::pen > ();
+
+      //            ppen->create_solid(1, ptoolbar->_001GetColor(::user::color_button_background_press));
+      //            auto pbrush = __create < ::draw2d::brush >();
+
+      //            pbrush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_press));
+      //            ::draw2d::pen * ppenOld = pgraphics->set(ppen);
+      //            ::draw2d::brush * pbrushOld = pgraphics->set(pbrush);
+      //            pgraphics->rectangle(rectangleItem);
+      //            pgraphics->set(ppenOld);
+      //            pgraphics->set(pbrushOld);
+
+      //         }
+
+      //         if (item.m_pimage->is_set())
+      //         {
+
+      //            ::rectangle_i32 rectangle;
+
+      //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_press);
+
+      //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
+
+      //         }
+      //         else if (uImage != 0xffffffff)
+      //         {
+
+      //            psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+
+      //         }
+
+      //      }
+      //      else
+      //      {
+
+      //         if ((nStyle & e_tool_item_style_disabled) == 0)
+      //         {
+
+      //            ptoolbar->index_element_rectangle(iItem, rectangleItem, ::user::toolbar::e_element_item);
+
+      //            pgraphics->fill_rectangle(rectangleItem, argb(184, 255, 255, 255));
+
+      //         }
+
+      //         if ((nStyle & TBBS_CHECKED) != 0)
+      //         {
+
+      //            pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+
+      //         }
+
+      //         if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
+      //         {
+
+      //            auto ppen = __create < ::draw2d::pen > ();
+
+      //            ppen->create_solid(1, ptoolbar->_001GetColor(
+      //                              (nStyle & e_tool_item_style_disabled) == 0 ?
+      //                              ::user::color_button_background :
+      //                              ::user::color_button_background_disabled));
+      //            auto pbrush = __create < ::draw2d::brush >();
+
+      //            pbrush->create_solid(ptoolbar->_001GetColor(
+      //                                (nStyle & e_tool_item_style_disabled) == 0 ?
+      //                                ::user::color_button_background :
+      //                                ::user::color_button_background_disabled));
+      //            ::draw2d::pen * ppenOld = pgraphics->set(ppen);
+      //            ::draw2d::brush * pbrushOld = pgraphics->set(pbrush);
+      //            pgraphics->rectangle(rectangleItem);
+      //            pgraphics->set(ppenOld);
+      //            pgraphics->set(pbrushOld);
+
+      //         }
+
+      //         if (item.m_pimage->is_set())
+      //         {
+
+      //            ::rectangle_i32 rectangle;
+
+      //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image);
+
+      //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
+
+      //         }
+      //         else if (uImage != 0xffffffff)
+      //         {
+
+      //            if ((nStyle & e_tool_item_style_disabled) == 0)
+      //            {
+
+      //               psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+
+      //            }
+      //            else
+      //            {
+
+      //               psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+
+      //            }
+
+      //         }
+
+      //      }
+
+      //   }
+
+      //   if (item.m_str.has_char())
+      //   {
+
+      //      ptoolbar->select_font(pgraphics, ::user::font_toolbar);
+
+      //      ::rectangle_i32 rectangleText;
+
+      //      auto pbrushText = __create < ::draw2d::brush > ();
+
+      //      if ((nStyle & e_tool_item_style_disabled) == 0)
+      //      {
+
+      //         pbrushText->create_solid(argb(255, 255, 255, 255));
+
+      //         pgraphics->set_text_color(argb(255, 255, 255, 255));
+
+      //      }
+      //      else
+      //      {
+
+      //         pbrushText->create_solid(::user::color_button_text_disabled);
+
+      //         pgraphics->set_text_color(ptoolbar->_001GetColor(
+
+      //                                   ::user::color_button_text_disabled));
+
+      //      }
+
+      //      if (ptoolbar->index_element_rectangle(iItem, rectangleText, eelementText) && rectangleText.right > 0)
+      //      {
+
+      //         pgraphics->_DrawText(item.m_str, item.m_str.get_length(), rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
+
+      //      }
+
+      //   }
+
+      //}
+
+
+   bool style::_001OnDrawSplitLayout(::draw2d::graphics_pointer& pgraphics, ::user::split_layout* psplitlayout)
    {
 
       ::rectangle_i32 rectangleClient;

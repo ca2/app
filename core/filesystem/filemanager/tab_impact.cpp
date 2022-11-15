@@ -49,7 +49,7 @@ namespace filemanager
 
       ::user::tab_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tab_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &tab_impact::on_message_create);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_impact::on_message_create);
 
    }
@@ -93,24 +93,24 @@ namespace filemanager
 
          form * pformview = pdocument->get_typed_impact < form >();
 
-         auto ptopic = create_topic(BROWSE_ID);
+         auto ptopic = create_topic(ID_BROWSE);
 
          if (pimpactdata->m_atom == "new_folder")
          {
 
-            ptopic->payload(FORM_ID) = "matter://filemanager/new_folder.html";
+            ptopic->payload(ID_FORM) = "matter://filemanager/new_folder.html";
 
          }
          if (pimpactdata->m_atom == "replace_name")
          {
 
-            ptopic->payload(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
+            ptopic->payload(ID_FORM) = "matter://filemanager/replace_name_in_file_system.html";
 
          }
          else if (pimpactdata->m_atom == "add_location")
          {
 
-            ptopic->payload(FORM_ID) = "matter://filemanager/add_location_1.html";
+            ptopic->payload(ID_FORM) = "matter://filemanager/add_location_1.html";
 
          }
 

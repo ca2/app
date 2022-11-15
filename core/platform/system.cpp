@@ -2,8 +2,10 @@
 #include "application.h"
 #include "session.h"
 #include "system.h"
+#include "acme/exception/exception.h"
 #include "acme/primitive/datetime/department.h"
 #include "acme/platform/system_setup.h"
+#include "aura/user/user/interaction.h"
 #include "core/networking/ftp/file_status.h"
 #include "core/user/user/user.h"
 

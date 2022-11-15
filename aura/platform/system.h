@@ -790,7 +790,7 @@ namespace aura
    };
 
 
-   CLASS_DECL_AURA ::pointer< ::mutex > get_image_mutex();
+   //CLASS_DECL_AURA ::pointer< ::mutex > get_image_mutex();
 
 
 } // namespace aura

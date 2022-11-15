@@ -276,7 +276,7 @@ namespace user
       //, virtual public imm_client
 #endif
 #endif
-      MESSAGE_LINK(e_message_create, pchannel, this, &plain_edit::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &plain_edit::on_message_create);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &plain_edit::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &plain_edit::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &plain_edit::on_message_left_button_double_click);
@@ -8097,7 +8097,7 @@ namespace user
    }
 
 
-   //bool plain_edit::display(edisplay edisplay)
+   //bool plain_edit::display(::e_display edisplay)
    //{
 
    //   if (nCmdShow != e_display_none)

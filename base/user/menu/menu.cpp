@@ -1,15 +1,18 @@
 ﻿#include "framework.h"
 #include "menu.h"
 #include "item.h"
-#include "aqua/xml/document.h"
-#include "aqua/xml/xml.h"
+#include "interaction.h"
+#include "item_ptra.h"
+#include "acme/exception/exception.h"
 #include "acme/constant/id.h"
 #include "acme/constant/timer.h"
 #include "acme/constant/message.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "aura/graphics/draw2d/draw2d.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/timer.h"
+#include "aqua/xml/document.h"
+#include "aqua/xml/xml.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/platform/application.h"
 #include "aura/message/user.h"
 #include "aura/user/menu/command.h"
@@ -18,8 +21,6 @@
 #include "base/user/user/style.h"
 #include "base/platform/session.h"
 #include "base/user/user/user.h"
-#include "interaction.h"
-#include "item_ptra.h"
 
 
 #define SWP_NOSIZE          0x0001
@@ -97,8 +98,8 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &menu::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &menu::on_message_destroy);
       MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &menu::_001OnNcActivate);
       MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &menu::on_message_non_client_calculate_size);
       MESSAGE_LINK(e_message_enable, pchannel, this, &menu::_001OnEnable);

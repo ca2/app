@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/graphics/image/image.h"
@@ -66,18 +66,18 @@ namespace user
       public:
 
 
-         ::u32       mask;
-         i32         cxy;
-         string      m_strTextText;
-         ::image     m_image;
-         i32         cchTextMax;
-         i32         fmt;
-         lparam      lParam;
-         i32         iImage;        // index of bitmap in ImageList
-         i32         iOrder;
-         ::u32       type;           // [in] filter type (defined what pvFilter is a pointer to)
-         void *      pvFilter;       // [in] fillter data see above
-         ::u32       state;
+         ::u32                mask;
+         i32                  cxy;
+         string               m_strTextText;
+         ::image_pointer      m_pimage;
+         i32                  cchTextMax;
+         i32                  fmt;
+         lparam               lParam;
+         i32                  iImage;        // index of bitmap in ImageList
+         i32                  iOrder;
+         ::u32                type;           // [in] filter type (defined what pvFilter is a pointer to)
+         void *               pvFilter;       // [in] fillter data see above
+         ::u32                state;
       };
 
 

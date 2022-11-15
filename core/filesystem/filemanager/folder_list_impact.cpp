@@ -2,8 +2,9 @@
 #include "folder_list_impact.h"
 #include "folder_list_data.h"
 #include "data.h"
-#include "acme/platform/context.h"
 #include "acme/handler/item.h"
+#include "acme/platform/context.h"
+#include "acme/platform/sequencer.h"
 #include "aura/user/user/check_box.h"
 #include "core/user/user/list_column.h"
 
@@ -188,7 +189,7 @@ namespace filemanager
 
       FILEMANAGER_SHOW_IMPACT::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == INITIALIZE_ID)
+      if (ptopic->m_atom == ID_INITIALIZE)
       {
 
          if (filemanager_data()->m_bPassBk)
@@ -198,7 +199,7 @@ namespace filemanager
 
          }
 
-         initialize(__string(filemanager_data()->m_atom), filemanager_data()->m_bEnableRecursiveFolderSelectionList);
+         initialize(filemanager_data()->m_atom, filemanager_data()->m_bEnableRecursiveFolderSelectionList);
 
       }
 

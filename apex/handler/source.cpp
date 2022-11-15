@@ -1,4 +1,4 @@
-// Created by camilo on day after ThomasBirthday2021 09:07 BRT
+﻿// Created by camilo on day after ThomasBirthday2021 09:07 BRT
 #include "framework.h"
 #include "source.h"
 #include "acme/handler/topic.h"
@@ -19,21 +19,29 @@ source::~source()
 }
 
 
-void source::add_handler(::matter * pmatter, bool bPriority)
+void source::add_handler(::matter* pmatter, bool bPriority)
 {
 
-   __defer_construct_new(m_phandlera);
+   return add_signal_handler(::signal_handler( {e_use, pmatter}), bPriority);
+
+}
+
+
+void source::add_signal_handler(const ::signal_handler& signalhandler, bool bPriority)
+{
+
+   __defer_construct_new(m_psignalhandlera);
 
    if (bPriority)
    {
 
-      m_phandlera->insert_unique_at(0, pmatter);
+      m_psignalhandlera->insert_unique_at(0, signalhandler);
 
    }
    else
    {
 
-      m_phandlera->add_unique(pmatter);
+      m_psignalhandlera->add_unique(signalhandler);
 
    }
 
@@ -85,16 +93,16 @@ void source::add_handler(::matter * pmatter, bool bPriority)
 void source::route(::topic * ptopic, ::context * pcontext)
 {
 
-   if (m_phandlera)
+   if (m_psignalhandlera)
    {
 
-      for (auto & phandler : *m_phandlera)
+      for (auto & signalhandler : *m_psignalhandlera)
       {
 
          try
          {
 
-            phandler->handle(ptopic, pcontext);
+            signalhandler(ptopic, pcontext);
 
          }
          catch (...)

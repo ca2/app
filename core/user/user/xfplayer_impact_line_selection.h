@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class xfplayer_impact_line;
@@ -47,7 +47,7 @@ public:
 
 
 class CLASS_DECL_CORE xfplayer_impact_line_selection :
-   virtual public element
+   virtual public ::particle
 {
 public:
 

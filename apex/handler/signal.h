@@ -1,4 +1,4 @@
-// Extrapolation from merge with control_"topic" by camilo on day after ThomasBirthday2021 10:16!!
+﻿// Extrapolation from merge with control_"topic" by camilo on day after ThomasBirthday2021 10:16!!
 #pragma once
 
 
@@ -10,7 +10,7 @@
 
 class context;
 
-using particle_context = map < ::pointer < ::particle >, ::pointer < ::context > >;
+using signal_handle_context = map < signal_handler, ::pointer < ::context > >;
 
 
 
@@ -21,7 +21,7 @@ public:
 
 
    ::manager *                            m_pmanager;
-   ::particle_context                     m_particlecontext;
+   ::signal_handle_context                m_signalhandlercontext;
 
 
    signal(const ::atom & atom, ::manager * pmanager = nullptr);
@@ -44,9 +44,11 @@ public:
 
    virtual void notify();
 
-   virtual void add_handler(::particle* pparticle);
+   virtual void add_handler(::matter * pmatter);
 
-   virtual void erase_handler(::particle * pparticle);
+   virtual void add_signal_handler(const signal_handler& signalhandler);
+
+   virtual void erase_handler(const signal_handler& signalhandler);
 
    virtual void set_modified();
 
@@ -54,7 +56,7 @@ public:
 
    virtual bool is_modified() const;
 
-   virtual ::context * listener_context(::particle * pparticle);
+   virtual ::context * listener_context(const signal_handler & signalhandler);
 
    void post_destroy_all();
 
@@ -80,7 +82,7 @@ public:
    }
 
 
-   inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == FULL_ID; }
+   inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == ID_FULL; }
 
    void subject_common_construct();
 

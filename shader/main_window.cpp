@@ -51,8 +51,8 @@ namespace app_shader
    {
 
       ::user::main_window::install_message_routing(psender);
-      MESSAGE_LINK(e_message_create,psender,this,&main_window::on_message_create);
-      MESSAGE_LINK(e_message_destroy, psender, this, &main_window::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_CREATE,psender,this,&main_window::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, psender, this, &main_window::on_message_destroy);
       MESSAGE_LINK(e_message_key_down, psender, this, &main_window::on_message_key_down);
       MESSAGE_LINK(e_message_switch, psender, this, &main_window::on_message_switch);
 

@@ -227,14 +227,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-      <Inputs>
-      </Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -287,10 +280,7 @@
       <SubSystem>Windows</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <Manifest>
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
@@ -299,14 +289,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-      <Inputs>
-      </Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -438,10 +421,7 @@
       <MergeSections>
       </MergeSections>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <Manifest>
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
@@ -450,14 +430,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-      <Inputs>
-      </Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -521,14 +494,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <Inputs>
-      </Inputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <PostBuildEvent>
       <Command>
       </Command>
@@ -585,22 +551,12 @@
       <MapFileName>
       </MapFileName>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <CustomBuildStep>
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <Inputs>
-      </Inputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <PostBuildEvent>
       <Command>
       </Command>
@@ -717,22 +673,12 @@
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <CustomBuildStep>
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <Inputs>
-      </Inputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <PostBuildEvent>
       <Command>
       </Command>

@@ -6,6 +6,7 @@
 #include "box.h"
 #include "acme/constant/id.h"
 #include "acme/parallelization/mutex.h"
+#include "acme/primitive/data/listener.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/image.h"
@@ -2173,11 +2174,11 @@ namespace user
 
          synchronous_lock synchronouslock(pgraphics->synchronization());
 
-         synchronous_lock sl1(mutex());
+         synchronous_lock sl1(synchronization());
 
-         //synchronous_lock sl2(m_plinea->mutex());
+         //synchronous_lock sl2(m_plinea->synchronization());
 
-         //synchronous_lock sl3(m_pformata->mutex());
+         //synchronous_lock sl3(m_pformata->synchronization());
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

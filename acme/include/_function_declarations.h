@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-01 23:14 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-01 23:14 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -134,18 +134,18 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom& at
 
 
 
-inline bool is_filemanager(const ::atom& atom);
+CLASS_DECL_ACME bool is_filemanager(const ::atom& atom);
 
 
-inline bool is_filemanager_group(const ::atom& atom, const char* pszGroup);
+CLASS_DECL_ACME bool is_filemanager_group(const ::atom& atom, const char* pszGroup);
 
-inline bool is_filemanager_group(const ::atom& atom, int iGroup);
-
-
-inline bool is_color_sel(const ::atom& atom);
+CLASS_DECL_ACME bool is_filemanager_group(const ::atom& atom, int iGroup);
 
 
-inline bool is_font_sel(const ::atom& atom);
+CLASS_DECL_ACME bool is_color_sel(const ::atom& atom);
+
+
+CLASS_DECL_ACME bool is_font_sel(const ::atom& atom);
 
 
 

@@ -1,4 +1,4 @@
-// Extrapolation from merge with control_"topic" by camilo on day after ThomasBirthday2021 10:30!!
+﻿// Extrapolation from merge with control_"topic" by camilo on day after ThomasBirthday2021 10:30!!
 #include "framework.h"
 #include "signal.h"
 #include "manager.h"
@@ -132,10 +132,10 @@ void signal::notify()
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   for (auto & pair : m_particlecontext)
+   for (auto & pair : m_signalhandlercontext)
    {
 
-      auto & pmatter = pair.m_element1;
+      auto & signalhandler = pair.m_element1;
 
       auto & pcontext = pair.m_element2;
 
@@ -155,7 +155,7 @@ void signal::notify()
 //      else
 //      {
 
-         pmatter->handle(this, pcontext);
+      signalhandler(this, pcontext);
 
 //      }
 
@@ -164,12 +164,12 @@ void signal::notify()
 }
 
 
-::context * signal::listener_context(::particle * pparticle)
+::context * signal::listener_context(const ::signal_handler & signalhandler)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   auto & pcontext = m_particlecontext[pparticle];
+   auto & pcontext = m_signalhandlercontext[signalhandler];
 
    if (!pcontext)
    {
@@ -228,8 +228,15 @@ void signal::set_up_to_date(::context * pcontext)
 }
 
 
+void signal::add_handler(::matter* pmatter)
+{
 
-void signal::add_handler(::particle * pparticle)
+   add_signal_handler(::signal_handler({ e_use, pmatter }));
+
+}
+
+
+void signal::add_signal_handler(const ::signal_handler& signalhandler)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
@@ -255,7 +262,7 @@ void signal::add_handler(::particle * pparticle)
 
    //}
 
-   auto & pcontext = m_particlecontext[pparticle];
+   auto & pcontext = m_signalhandlercontext[signalhandler];
 
    if (!pcontext)
    {
@@ -271,12 +278,12 @@ void signal::add_handler(::particle * pparticle)
 }
 
 
-void signal::erase_handler(::particle * pparticle)
+void signal::erase_handler(const ::signal_handler & signalhandler)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   m_particlecontext.erase_key(pparticle);
+   m_signalhandlercontext.erase_key(signalhandler);
 
 }
 
@@ -320,7 +327,7 @@ void signal::post_destroy_all()
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   m_particlecontext.erase_all();
+   m_signalhandlercontext.erase_all();
 
 }
 

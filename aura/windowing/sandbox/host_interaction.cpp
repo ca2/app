@@ -47,7 +47,7 @@ namespace sandbox_windowing
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &host_interaction::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &host_interaction::on_message_create);
 
    }
 

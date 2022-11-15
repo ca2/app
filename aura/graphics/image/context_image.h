@@ -19,6 +19,8 @@ public:
    string_map < i32 > m_mapPathInt;
    string_map < image_pointer > m_mapPathImage;
    int         m_iImageSeed;
+   ::pointer < ::particle >         m_pparticleImageSynchronization;
+
 
 
    context_image();
@@ -26,6 +28,9 @@ public:
 
 
    void initialize(::particle * pparticle) override;
+
+
+   inline ::particle* image_synchronization() { return m_pparticleImageSynchronization; }
 
 
    //virtual void set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;

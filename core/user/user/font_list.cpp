@@ -1,7 +1,10 @@
 ﻿#include "framework.h"
 #include "font_list.h"
+#include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/exception/exception.h"
 #include "acme/handler/item.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/user/user/scroll_data.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
@@ -52,7 +55,7 @@ namespace user
 
       ::user::list_box::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &font_list::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &font_list::on_message_create);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &font_list::on_message_left_button_down);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &font_list::on_message_mouse_move);
       MESSAGE_LINK(e_message_close, pchannel, this, &font_list::on_message_close);

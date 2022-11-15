@@ -1,4 +1,4 @@
-// Created by camilo on day after ThomasBirthday2021 04:44 BRT
+﻿// Created by camilo on day after ThomasBirthday2021 04:44 BRT
 #pragma once
 
 
@@ -12,7 +12,7 @@ class CLASS_DECL_APEX source :
 public:
 
 
-   pointer< pointer_array < ::matter > >    m_phandlera;
+   pointer < comparable_array < ::signal_handler > > m_psignalhandlera;
 
 
    source();
@@ -22,9 +22,11 @@ public:
    inline bool has_handler() const
    {
 
-      return m_phandlera && m_phandlera->has_element();
+      return m_psignalhandlera && m_psignalhandlera->has_element();
 
    }
+
+   virtual void add_signal_handler(const ::signal_handler& signalhandler, bool bPriority = false);
 
    virtual void add_handler(::matter * pmatter, bool bPriority = false);
 

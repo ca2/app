@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/interaction.h"
+#include "acme/primitive/mathematics/scalar.h"
 
 
 namespace user

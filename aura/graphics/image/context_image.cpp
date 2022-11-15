@@ -5,10 +5,11 @@
 #include "save_image.h"
 #include "image.h"
 #include "acme/filesystem/file/binary_stream.h"
-#include "apex/filesystem/filesystem/dir_context.h"
-#include "apex/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/windowing/icon.h"
@@ -36,6 +37,9 @@ void context_image::initialize(::particle * pparticle)
    //auto estatus = 
    
    ::object::initialize(pparticle);
+
+
+   m_pparticleImageSynchronization = acmenode()->create_mutex();
 
    //if (!estatus)
    //{
@@ -1161,7 +1165,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 
    }
 
-   synchronous_lock synchronouslock(::aura::get_image_mutex());
+   synchronous_lock synchronouslock(image_synchronization());
 
    auto & pimage = acmesystem()->m_paurasystem->m_mapImage[path];
 
@@ -1184,7 +1188,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 //
 //   auto pimage = get_cache_image(pparticle, payloadFile);
 //
-//   if (!::is_ok(pimage))
+//   if (pimage.nok())
 //   {
 //
 //      auto pcontext = m_pcontext->m_pauracontext;

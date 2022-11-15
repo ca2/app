@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 6/23/21 08:19 BRT <3ThomasBS_!!
 //
 #pragma once
@@ -15,6 +15,9 @@ namespace acme
       virtual public ::property_object
    {
    public:
+
+
+      message_union                 m_union;
 
 
       wparam         m_wparam;

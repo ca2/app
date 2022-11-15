@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-20 11:35 <3ThomasBorregaardS�rensen!!
+﻿// Created by camilo on 2022-03-20 11:35 <3ThomasBorregaardS�rensen!!
 #pragma once
 
 
@@ -10,10 +10,10 @@
 
 //#include "acme/parallelization/wait.h"
 
-enum enum_as
+enum enum_use
 {
 
-   e_as,
+   e_use,
 
 }; // enum enum_base
 
@@ -34,7 +34,7 @@ enum enum_timeout
 }; // enum enum_timeout
 
 
-#define _as(p) { e_as, p }
+#define _as(p) { e_use, p }
 
 
 class function_common
@@ -365,6 +365,12 @@ public:
    bool operator !() const { return __pointer_is_null(m_ppredicate); }
 
 
+   operator u32hash() const {
+      return { (::u32)(::uptr)m_ppredicate.m_p };
+   };
+   
+
+
 };
 
 
@@ -411,7 +417,7 @@ public:
    };
 
    
-   ptr < base >     m_pbase;
+   ptr < base >     m_pfunctionbase;
 
 
    function(nullptr_t = nullptr)
@@ -420,10 +426,10 @@ public:
    }
 
 
-   function(enum_as, base * pbase)
+   function(enum_use, base * pbase)
    {
 
-      m_pbase = pbase;
+      m_pfunctionbase = pbase;
 
    }
 
@@ -432,20 +438,20 @@ public:
    function(FUNCTION functionParam)
    {
 
-      m_pbase.move(memory_new class implementation < FUNCTION >(functionParam));
+      m_pfunctionbase.move(memory_new class implementation < FUNCTION >(functionParam));
 
    }
 
 
    function(const function & function) :
-      m_pbase(function.m_pbase)
+      m_pfunctionbase(function.m_pfunctionbase)
    {
 
    }
 
 
    function(function && function) :
-      m_pbase(::move(function.m_pbase))
+      m_pfunctionbase(::move(function.m_pfunctionbase))
    {
 
    }
@@ -460,21 +466,21 @@ public:
    RETURN_TYPE operator()(TYPES... args) const
    {
 
-      //ASSERT(m_pbase);
+      //ASSERT(m_pfunctionbase);
 
-      return ((base *)m_pbase.m_p)->operator()(args...);
+      return ((base *)m_pfunctionbase.m_p)->operator()(args...);
 
    }
 
 
-   void clear() { m_pbase.release(); }
+   void clear() { m_pfunctionbase.release(); }
 
 
    template < typename FUNCTION >
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pbase.move ( memory_new class implementation <FUNCTION >(functionParam));
+      m_pfunctionbase.move ( memory_new class implementation <FUNCTION >(functionParam));
 
       return *this;
 
@@ -490,14 +496,17 @@ public:
 
    }
 
-   operator bool() const { return __pointer_is_set(m_pbase); }
+   operator bool() const { return __pointer_is_set(m_pfunctionbase); }
 
-   bool operator !() const { return __pointer_is_null(m_pbase); }
+   bool operator !() const { return __pointer_is_null(m_pfunctionbase); }
 
-   function & operator = (const function & function) { m_pbase = function.m_pbase; return *this; }
-   bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
+   function & operator = (const function & function) { m_pfunctionbase = function.m_pfunctionbase; return *this; }
+   bool operator == (const function & function) const { return m_pfunctionbase == function.m_pfunctionbase; }
    bool operator != (const function & function) const { return !operator==(function); }
 
+   operator u32hash() const {
+      return { (::u32)(::uptr)m_pfunctionbase.m_p };
+   }
 
 };
 
@@ -546,7 +555,7 @@ public:
    };
 
    
-   ptr < base >     m_pbase;
+   ptr < base >     m_pfunctionbase;
 
 
    function(nullptr_t = nullptr)
@@ -555,10 +564,10 @@ public:
    }
 
 
-   function(enum_as, base * pbase)
+   function(enum_use, base * pbase)
    {
 
-      m_pbase = pbase;
+      m_pfunctionbase = pbase;
 
    }
 
@@ -567,20 +576,20 @@ public:
    function(FUNCTION functionParam)
    {
 
-      m_pbase.move(memory_new class implementation < FUNCTION >(functionParam));
+      m_pfunctionbase.move(memory_new class implementation < FUNCTION >(functionParam));
 
    }
 
 
    function(const function & function) :
-      m_pbase(function.m_pbase)
+      m_pfunctionbase(function.m_pfunctionbase)
    {
 
    }
 
 
    function(function && function) :
-      m_pbase(::move(function.m_pbase))
+      m_pfunctionbase(::move(function.m_pfunctionbase))
    {
 
    }
@@ -595,21 +604,21 @@ public:
    void operator()(TYPES... args) const
    {
 
-      //ASSERT(m_pbase);
+      //ASSERT(m_pfunctionbase);
 
-      ((base *)m_pbase.m_p)->operator()(args...);
+      ((base *)m_pfunctionbase.m_p)->operator()(args...);
 
    }
 
 
-   void clear() { m_pbase.release(); }
+   void clear() { m_pfunctionbase.release(); }
 
 
    template < typename FUNCTION >
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pbase.move ( memory_new class implementation <FUNCTION >(functionParam));
+      m_pfunctionbase.move ( memory_new class implementation <FUNCTION >(functionParam));
 
       return *this;
 
@@ -625,14 +634,16 @@ public:
 
    }
 
-   operator bool() const { return __pointer_is_set(m_pbase.m_p); }
+   operator bool() const { return __pointer_is_set(m_pfunctionbase.m_p); }
 
-   bool operator !() const { return __pointer_is_null(m_pbase.m_p); }
+   bool operator !() const { return __pointer_is_null(m_pfunctionbase.m_p); }
 
-   function & operator = (const function & function) { m_pbase = function.m_pbase.m_p; return *this; }
-   bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
+   function & operator = (const function & function) { m_pfunctionbase = function.m_pfunctionbase.m_p; return *this; }
+   bool operator == (const function & function) const { return m_pfunctionbase == function.m_pfunctionbase; }
    bool operator != (const function & function) const { return !operator==(function); }
 
+
+   operator u32hash() const { return { (::u32)(::uptr)m_pfunctionbase.m_p }; }
 
 };
 

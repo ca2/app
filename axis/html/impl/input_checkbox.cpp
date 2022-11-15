@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "input_checkbox.h"
 #include "acme/constant/id.h"
 #include "acme/primitive/data/listener.h"
@@ -89,7 +89,7 @@ namespace html
 
          element::implement_phase1(pdata, pelement);
 
-         ::atom atom = pelement->m_pbase->get_tag()->get_attr_value("id");
+         ::atom atom = pelement->m_phtmlbase->get_tag()->get_attr_value("id");
 
          atom = translate_property_id(atom);
 
@@ -104,7 +104,7 @@ namespace html
 
             pdata->on_create_interaction(m_pcheckbox);
 
-            bool bCheck = pelement->m_pbase->get_tag()->get_attr("checked") != nullptr;
+            bool bCheck = pelement->m_phtmlbase->get_tag()->get_attr("checked") != nullptr;
 
             if(bCheck)
             {
@@ -127,7 +127,7 @@ namespace html
 
          }
 
-         m_pcheckbox->m_strName = pelement->m_pbase->get_tag()->get_attr_value("name");
+         m_pcheckbox->m_strName = pelement->m_phtmlbase->get_tag()->get_attr_value("name");
 
          if(pdata->m_pcoredata->m_pform != nullptr)
          {

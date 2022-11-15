@@ -1,8 +1,10 @@
-#include "framework.h"
-#include "acme/platform/timer.h"
+﻿#include "framework.h"
 #include "menu_impact.h"
-#include "axis/platform/application.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/platform/timer.h"
 #include "aura/user/user/frame.h"
+#include "axis/platform/application.h"
 
 
 menu_impact::menu_impact()
@@ -92,7 +94,7 @@ void menu_impact::handle(::topic * ptopic, ::context * pcontext)
 void menu_impact::install_message_routing(::channel * pchannel)
 {
    ::user::form::install_message_routing(pchannel);
-   MESSAGE_LINK(e_message_create, pchannel, this, &menu_impact::on_message_create);
+   MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &menu_impact::on_message_create);
 //   //MESSAGE_LINK(e_message_timer, pchannel, this, &menu_impact::_001OnTimer);
    //MESSAGE_LINK(WM_USER + 123, pchannel, this, &menu_impact::_001OnUser123);
 

@@ -1132,7 +1132,7 @@ namespace user
 
       ::user::primitive_impl::prio_install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnPrioCreate);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &interaction_impl::_001OnPrioCreate);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::on_prio_message_set_focus);
 
    }
@@ -1141,7 +1141,7 @@ namespace user
    void interaction_impl::last_install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &interaction_impl::on_message_create);
 
       ::user::primitive_impl::last_install_message_routing(pchannel);
 
@@ -1165,7 +1165,7 @@ namespace user
       }
 
       MESSAGE_LINK(e_message_destroy_window, pchannel, this, &interaction_impl::_001OnDestroyWindow);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &interaction_impl::on_message_destroy);
 
    }
 
@@ -1674,7 +1674,7 @@ namespace user
 
 //#endif
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &interaction_impl::on_message_destroy);
 
       prio_install_message_routing(pchannel);
 
@@ -5501,7 +5501,7 @@ namespace user
 
          //   _synchronous_lock synchronouslock(this->synchronization());
 
-         //   _synchronous_lock slGraphics(m_pgraphics->mutex());
+         //   _synchronous_lock slGraphics(m_pgraphics->synchronization());
 
          //   m_pprodevian);
 
@@ -6159,7 +6159,7 @@ namespace user
       //if (m_puserthread)
       //{
 
-      //   _synchronous_lock synchronouslock(m_puserthread->mutex());
+      //   _synchronous_lock synchronouslock(m_puserthread->synchronization());
 
       //   m_puserthread->m_messagebasea.add(pmessage);
 

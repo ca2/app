@@ -91,8 +91,13 @@ list(APPEND apex_source
         filesystem/file/edit_file.h
         filesystem/file/html_file.cpp
         filesystem/file/html_file.h
+        filesystem/file/listener.h
         filesystem/file/set.cpp
         filesystem/file/set.h
+        filesystem/file/watch.cpp
+        filesystem/file/watch.h
+        filesystem/file/watcher.cpp
+        filesystem/file/watcher.h
         filesystem/filesystem/_.h
         filesystem/filesystem/_impl.h
         filesystem/filesystem/dir_context.cpp
@@ -104,11 +109,6 @@ list(APPEND apex_source
         filesystem/filesystem/file_context.h
         filesystem/filesystem/file_system.cpp
         filesystem/filesystem/file_system.h
-        filesystem/file/watch.cpp
-        filesystem/file/watch.h
-        filesystem/file/watcher.cpp
-        filesystem/file/watcher.h
-        filesystem/filesystem/file_listener.h
         #filesystem/filesystem/path.h
         filesystem/fs/_.h
         #filesystem/fs/_fs.h

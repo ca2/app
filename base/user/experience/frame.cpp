@@ -1327,7 +1327,7 @@ namespace experience
    void frame::sync_dock_grip_border()
    {
 
-      edisplay edisplay = m_pframewindow->const_layout().sketch().display();
+      ::e_display edisplay = m_pframewindow->const_layout().sketch().display();
 
       auto rectangleMargin = m_rectangleMarginNormal;
 

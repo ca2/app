@@ -7,6 +7,7 @@
 #include "impact_data.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/exception/exception.h"
 #include "acme/platform/system.h"
 #include "apex/platform/create.h"
 #include "aura/message/user.h"
@@ -44,16 +45,16 @@ namespace user
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &impact::on_message_mouse_move);
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &impact::on_message_destroy);
       //      MESSAGE_LINK(e_message_left_button_down    , pchannel, this, &impact::on_message_right_button_down);
       MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &impact::on_message_middle_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &impact::on_message_right_button_down);
 
 
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &impact::_001OnMouseActivate);
-      //      MESSAGE_LINK(e_message_destroy        , pchannel, this, &impact::on_message_destroy);
-      //    MESSAGE_LINK(e_message_create        , pchannel, this, &impact::on_message_create);
+      //      MESSAGE_LINK(MESSAGE_DESTROY        , pchannel, this, &impact::on_message_destroy);
+      //    MESSAGE_LINK(MESSAGE_CREATE        , pchannel, this, &impact::on_message_create);
 
       // Standard commands for split pane
       //  //      add_command_handler(ID_WINDOW_SPLIT , &impact::_001OnSplitCmd);
@@ -348,7 +349,7 @@ namespace user
    //void impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   //call_update(INITIAL_UPDATE);        // initial update
+   //   //call_update(ID_INITIAL_UPDATE);        // initial update
 
    //}
 
@@ -1085,7 +1086,7 @@ namespace user
 
    /*void impact::handle(::topic * ptopic, ::context * pcontext)
    {
-   call_update(INITIAL_UPDATE);        // initial update
+   call_update(ID_INITIAL_UPDATE);        // initial update
    }*/
 
    /*   void impact::on_update(::user::impact * pSender, LPARAM lHint, object * pHint)
@@ -1178,7 +1179,7 @@ namespace user
 
       //synchronous_lock slImpact(mutex());
 
-      ////synchronous_lock slDocument(get_document()->mutex());.
+      ////synchronous_lock slDocument(get_document()->synchronization());.
 
       //{
 

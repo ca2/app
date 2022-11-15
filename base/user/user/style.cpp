@@ -1,7 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "style.h"
 #include "user.h"
 #include "acme/platform/system.h"
+#include "aura/user/user/interaction.h"
 #include "base/platform/session.h"
 
 

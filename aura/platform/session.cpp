@@ -1371,7 +1371,7 @@ namespace aura
 
    //            synchronous_lock synchronouslock(this->synchronization());
 
-   //            ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
+   //            ::acme::container::copy(uiptraToolWindow, m_uiptraToolWindow);
 
    //         }
 

@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "toolbar.h"
 #include "acme/constant/message.h"
+#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/graphics/write_text/font.h"
@@ -108,11 +109,11 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 
    ::user::toolbar::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_create       , pchannel, this, &simple_toolbar::on_message_create);
+   MESSAGE_LINK(MESSAGE_CREATE       , pchannel, this, &simple_toolbar::on_message_create);
    //MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &simple_toolbar::on_message_mouse_move);
    //MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &simple_toolbar::on_message_left_button_down);
    //MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &simple_toolbar::on_message_left_button_up);
-   //MESSAGE_LINK(e_message_non_client_hittest    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
+   //MESSAGE_LINK(e_message_non_client_hit_test    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
    //MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &simple_toolbar::on_message_mouse_leave);
 
    //install_click_default_mouse_handling(pchannel);

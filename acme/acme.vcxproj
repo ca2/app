@@ -463,6 +463,7 @@
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>false</FunctionLevelLinking>
+      <OmitFramePointers>false</OmitFramePointers>
     </ClCompile>
     <Link>
       <AdditionalDependencies>dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>

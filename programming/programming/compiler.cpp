@@ -111,7 +111,7 @@ namespace programming
 
       ::file::path path;
 
-      path = THIS_FILE;
+      path = __FILE__;
 
       m_pathProjectDir = path.folder();
 

@@ -5,7 +5,7 @@
 CLASS_DECL_ACME string url_encode(const char * psz);
 
 
-CLASS_DECL_ACME string url_decode(const char * psz);
+CLASS_DECL_ACME string url_decode(const ::string & str);
 CLASS_DECL_ACME string url_decode(const char * pszUrl, strsize iLen);
 
 

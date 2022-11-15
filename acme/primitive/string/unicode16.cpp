@@ -700,7 +700,10 @@ strsize ansi_to_wd16_len(const char* psz, strsize srclen)
       if (iChar < 0)
       {
 
-         return -1;
+         // Invalid char 0xFFFD
+
+         utf16len++;
+         len = 1;
 
       }
       else if (utf32_is_surrogated(iChar))
@@ -742,7 +745,9 @@ strsize ansi_to_wd16(wd16char* pwsz, const char* psz, strsize srclen)
       if(used_len <= 0)
       {
 
-         return -1;
+         used_len = 1;
+
+         u32 = 0xfffd;
 
       }
 

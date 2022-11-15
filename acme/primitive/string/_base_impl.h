@@ -1069,6 +1069,8 @@ inline string_base < CHARACTER > & string_base < CHARACTER >::append(const ansic
 
    utf_to_utf(pszBuffer + nOldLength, pszSrc, nLength);
 
+   release_string_buffer(nNewLength);
+
    return *this;
 
 }
@@ -1093,6 +1095,8 @@ inline string_base < CHARACTER > & string_base < CHARACTER >::append(const wd16c
 
    utf_to_utf(pszBuffer + nOldLength, pszSrc, nLength);
 
+   release_string_buffer(nNewLength);
+
    return *this;
 
 }
@@ -1116,6 +1120,8 @@ inline string_base < CHARACTER > & string_base < CHARACTER >::append(const wd32c
    auto pszBuffer = get_string_buffer(nNewLength);
 
    utf_to_utf(pszBuffer + nOldLength, pszSrc, nLength);
+
+   release_string_buffer(nNewLength);
 
    return *this;
 

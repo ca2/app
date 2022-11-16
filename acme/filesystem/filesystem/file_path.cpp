@@ -947,8 +947,8 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
       bUrl = false;
 
-      //strPath = ::file::path(get_system()->url().url_decode(strPath.Mid(7)));
-      strPath = ::file::path(url_decode(strPath.Mid(7)));
+      //strPath = ::file::path(get_system()->url().::url::decode(strPath.Mid(7)));
+      strPath = ::file::path(::url::decode(strPath.Mid(7)));
 
       return bCertainlySyntathicallyDir;
 

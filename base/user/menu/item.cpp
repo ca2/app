@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "base/platform/application.h"
 #include "aqua/xml/document.h"
 #include "aura/graphics/image/context_image.h"
@@ -197,7 +197,7 @@ namespace user
 
          auto pnodeChild = pnode->child_at(i);
 
-         auto pitemNewChild = __new(menu_item);
+         auto pitemNewChild = __create_new<menu_item>();
 
          pitemNewChild->m_pmenu = m_pmenu;
 

@@ -168,7 +168,7 @@ string apple_get_executable_path()
 //
 //         }
 //
-//         stra[i] = ::acme::get_system()->url().url_decode(stra[i]);
+//         stra[i] = ::acme::get_system()->url().::url::decode(stra[i]);
 //
 //      }
 //

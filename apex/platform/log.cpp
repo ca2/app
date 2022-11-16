@@ -314,7 +314,7 @@ namespace apex
 //
 //      //synchronous_lock sl2(m_pmutexTrace);
 //
-////      synchronous_lock sl2(mutex());
+////      synchronous_lock sl2(synchronization());
 ////
 ////      ::trace::category * pcategory = nullptr;
 ////

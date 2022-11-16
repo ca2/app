@@ -1317,7 +1317,7 @@ pacmedirectory->create(pathDVP_Folder);
 
             auto purl = psystem->url();
 
-            m_pcontext->m_papexcontext->http().get("http://" + m_straSync[i] + "/synchronization?src=" +m_straSync[0] + "&url=" + purl->url_encode(strTransfer) + "&pwd=sym123&authnone=1", set);
+            m_pcontext->m_papexcontext->http().get("http://" + m_straSync[i] + "/synchronization?src=" +m_straSync[0] + "&url=" + ::url::encode(strTransfer) + "&pwd=sym123&authnone=1", set);
 
          }
 

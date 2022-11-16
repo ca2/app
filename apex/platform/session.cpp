@@ -2220,7 +2220,7 @@ namespace apex
       //   if (str.begins_eat_ci("file://"))
       //   {
 
-      //      str = purl->url_decode(str);
+      //      str = ::url::decode(str);
 
       //   }
 

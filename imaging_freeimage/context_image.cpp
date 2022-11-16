@@ -1,8 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "context_image.h"
 
 
-#include <FreeImage.h>
+#include <FreeImage/FreeImage.h>
 
 
 namespace imaging_freeimage

@@ -56,7 +56,7 @@ namespace experience_anthill
    }
 
 
-   ::color::color style::get_color(const ::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate) const
+   ::color::color style::get_color(::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate)
    {
 
       if (::is_set(pinteraction))

@@ -3126,12 +3126,12 @@ namespace aura
 
 
 
-   //string system::url_encode(const ::string & str)
+   //string system::::url::encode(const ::string & str)
    //{
 
    //   //throw ::interface_only();
 
-   //   return url_encode(str);
+   //   return ::url::encode(str);
 
    //}
 
@@ -3958,13 +3958,13 @@ namespace aura
 //         if (strBrowser == "firefox")
 //         {
 //
-//            //strUrl = "https://ca2.software/open_f___?url=" + url_encode(strUrl) + "&profile=" + url_encode(strProfile) + "&target=" + url_encode(strTarget);
+//            //strUrl = "https://ca2.software/open_f___?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
 //
 //         }
 //         else
 //         {
 //
-//            //strUrl = "https://ca2.software/open_tab?url=" + url_encode(strUrl) + "&profile=" + url_encode(strProfile) + "&target=" + url_encode(strTarget);
+//            //strUrl = "https://ca2.software/open_tab?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
 //
 //         }
 //
@@ -4274,7 +4274,7 @@ namespace aura
 //
 //         argv.add(nullptr);
 //
-//         string strApp = url().url_decode(path);
+//         string strApp = url().::url::decode(path);
 //
 //         // 0x00010000 NSWorkspaceLaunchAsync
 //         // 0x00080000 NSWorkspaceLaunchNewInstance
@@ -4941,12 +4941,12 @@ namespace aura
    //}
 
 
-   string system::url_encode(const ::string & str)
-   {
+   //string system::::url::encode(const ::string & str)
+   //{
 
-      return m_purldepartment->url_encode(str);
+   //   return m_purldepartment->::url::encode(str);
 
-   }
+   //}
 
 
 } // namespace aura

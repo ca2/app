@@ -185,7 +185,7 @@ namespace simpledb
       }
       else
       {
-         strRelative = purl->url_decode(purl->get_script(inattr("request_uri")));
+         strRelative = ::url::decode(purl->get_script(inattr("request_uri")));
       }
       string strPath;
       strPath = psz / strRelative;

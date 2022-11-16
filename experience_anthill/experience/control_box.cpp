@@ -1,5 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "control_box.h"
+#include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"

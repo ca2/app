@@ -184,7 +184,7 @@ namespace filemanager
 
             auto purl = psystem->url();
             
-            string strFileNameEncoded =  purl->url_encode(pszFileName);
+            string strFileNameEncoded =  ::url::encode(pszFileName);
 
             strUrl.format("http://file.ca2.software/ifs/get?name=%s&folder=%I64d&extension=.%s",strFileNameEncoded.c_str(), iFolder, pszExtension.c_str());
 

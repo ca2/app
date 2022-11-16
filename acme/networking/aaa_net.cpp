@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "net.h"
 #include "__string.h"
 #include "acme/exception/parsing.h"
@@ -8,6 +8,7 @@
 
 CLASS_DECL_ACME string url_decode(const ::string & strParam)
 {
+
    return url_decode(strParam, strParam.get_length());
 
    /*string str(strParam);

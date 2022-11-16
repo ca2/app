@@ -1,10 +1,10 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/graphics/image/context_image.h"
 
 
-#include <FreeImage.h>
+#include <FreeImage/FreeImage.h>
 
 
 namespace imaging_freeimage
@@ -24,7 +24,7 @@ namespace imaging_freeimage
       virtual void _load_image(::image * pimageParam, const ::payload & payloadFile, const image::load_options & loadoptions) override;
 
       virtual void _load_image(::image * pimage, ::pointer<image_frame_array>& pframea, memory & memory) override;
-      virtual void save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage) override;
+      virtual void save_image(memory & memory, ::image * pimage, const ::save_image * psaveimage) override;
       //void load_svg(::image * pimage, memory & memory) override;
 
       //virtual void _load_image(::particle * pparticle, image_frame_array * pimageframea, const ::memory & memory);

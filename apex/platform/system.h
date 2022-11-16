@@ -179,7 +179,7 @@ namespace apex
 
 
 
-      virtual string url_encode(const ::string & str);
+      //virtual string ::url::encode(const ::string & str);
 
 
       virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;

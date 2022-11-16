@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/platform/department.h"
@@ -58,9 +58,9 @@ namespace url
       string path(const ::string & str1, const ::string & str2);
       string path(const ::string & str1, const ::string & str2, const ::string & str3);
       string name(const ::string & str);
-      string url_encode(const ::string & str);
-      string url_decode(const ::string & str);
-      string url_decode(const ::string & str, strsize iLen);
+      //string ::url::encode(const ::string & str);
+      //string ::url::decode(const ::string & str);
+      //string ::url::decode(const ::string & str, strsize iLen);
 
       string query_append(const ::string & strUrl, const ::string & strQuery);
       string query_erase(const ::string & strQuery, string_array & straKey);

@@ -1488,7 +1488,7 @@ pacmedirectory->is(strPath))
 
             {
 
-               synchronous_lock s(mutex());
+               synchronous_lock s(synchronization());
 
                m_imagemap.set_at(*pkey, iImage);
 

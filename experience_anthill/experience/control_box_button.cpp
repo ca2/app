@@ -2,6 +2,8 @@
 #include "control_box_button.h"
 #include "control_box.h"
 #include "acme/handler/item.h"
+#include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/user/user/frame.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -168,6 +170,7 @@ namespace experience_anthill
 
    }
 
+
    void control_box_button::on_message_show_window(::message::message * pmessage)
    {
 
@@ -241,7 +244,7 @@ namespace experience_anthill
    }
 
 
-   bool control_box_button::keyboard_focus_is_focusable() const
+   bool control_box_button::keyboard_focus_is_focusable()
    {
 
       //return false && ::user::button::keyboard_focus_is_focusable();

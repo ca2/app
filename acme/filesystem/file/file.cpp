@@ -672,7 +672,7 @@ namespace file
    }
 
 
-   bool file::read_block(const block & block)
+   bool file::read_block(block & block)
    {
 
       auto readBytes = read(block.get_data(), block.get_size());

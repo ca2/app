@@ -1912,7 +1912,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          auto purl = psystem->url();
 
-         string strUrl = "https://api.ca2.software/api/matter/list_dir?dir=" + purl->url_encode(strMatter);
+         string strUrl = "https://api.ca2.software/api/matter/list_dir?dir=" + ::url::encode(strMatter);
 
          strLs = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
@@ -2232,7 +2232,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       auto purl = psystem->url();
 
-      string strParam = purl->url_encode(strCandidate);
+      string strParam = ::url::encode(strCandidate);
 
       string strUrl;
 

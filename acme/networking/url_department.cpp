@@ -213,13 +213,13 @@ namespace url
       if (iFind < 0)
       {
 
-         return url_decode(str);
+         return ::url::decode(str);
 
       }
       else
       {
 
-         return url_decode(str.Left(iFind));
+         return ::url::decode(str.Left(iFind));
 
       }
 
@@ -369,28 +369,28 @@ namespace url
    }
 
 
-   string department::url_encode(const ::string & strParam)
-   {
+   //string department::::url::encode(const ::string & strParam)
+   //{
 
-      return ::url_encode(strParam);
+   //   return ::::url::encode(strParam);
 
-   }
-
-
-   string department::url_decode(const ::string & strParam)
-   {
-
-      return ::url_decode(strParam);
-
-   }
+   //}
 
 
-   string department::url_decode(const ::string & strUrl, strsize iLen)
-   {
+   //string department::::url::decode(const ::string & strParam)
+   //{
 
-      return ::url_decode(strUrl,iLen);
+   //   return ::::url::decode(strParam);
 
-   }
+   //}
+
+
+   //string department::::url::decode(const ::string & strUrl, strsize iLen)
+   //{
+
+   //   return ::::url::decode(strUrl,iLen);
+
+   //}
 
 
    string department::query_append(const ::string & strUrlParam, const ::string & strQuery)
@@ -569,8 +569,8 @@ namespace url
 
       const char * pszQuery = strchr(strUrlParam, '?');
 
-      string strKey = url_encode(strKeyParam);
-      string strValue = url_encode(strParam);
+      string strKey = ::url::encode(strKeyParam);
+      string strValue = ::url::encode(strParam);
 
       strsize iLenUrl = strlen(strUrlParam);
       strsize iLenKey = strKey.length();
@@ -737,7 +737,7 @@ namespace url
       if(iPos < 0)
          return payload(::e_type_empty);
       else
-         return url_decode(query_get_param(strUrl.Mid(iPos + 1), strKeyParam));
+         return ::url::decode(query_get_param(strUrl.Mid(iPos + 1), strKeyParam));
 
    }
 
@@ -806,19 +806,19 @@ namespace url
 
       string strQuery(strQueryParam);
 
-      string strKey(url_encode(strKeyParam));
+      string strKey(::url::encode(strKeyParam));
 
       string strKeyEqual = strKey + "=";
 
       string strAndKeyEqual = "&" + strKeyEqual;
 
-      string strKey2(url_encode(strKeyParam));
+      string strKey2(::url::encode(strKeyParam));
 
       string strKeyEqual2 = strKey + "=";
 
       string strAndKeyEqual2 = "&" + strKeyEqual;
 
-      string strValue = url_encode(payload.string());
+      string strValue = ::url::encode(payload.string());
 
       if(string_begins(strQuery, strKeyEqual))
       {

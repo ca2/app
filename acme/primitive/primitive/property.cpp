@@ -263,11 +263,11 @@ void property_skip_network_payload_value(const char *& pszJson, const char * psz
 string & property::get_network_arguments(::string & str) const
 {
 
-   str += url_encode(m_atom);
+   str += ::url::encode(m_atom);
 
    str += "=";
 
-   str += url_encode(this->string());
+   str += ::url::encode(this->string());
 
    return str;
 

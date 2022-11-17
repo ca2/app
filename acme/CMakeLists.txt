@@ -585,7 +585,7 @@ list(APPEND library_source
         primitive/primitive/enumeration.h
         #primitive/primitive/eobject.h
         primitive/primitive/estatus.cpp
-        primitive/primitive/estatus.h
+        primitive/primitive/e_status.h
         primitive/primitive/factory.cpp
         primitive/primitive/factory.h
         primitive/primitive/get_memory.cpp

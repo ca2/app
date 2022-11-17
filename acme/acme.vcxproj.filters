@@ -2948,6 +2948,9 @@
     <ClInclude Include="constant\_message.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\collection\datetime_array.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

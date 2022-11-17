@@ -1,5 +1,8 @@
-// Created by camilo on 2021-10-07 21:31 BRT <3ThomasBorregaardSørensen!!
+ï»¿// Created by camilo on 2021-10-07 21:31 BRT <3ThomasBorregaardSï¿½rensen!!
 #pragma once
+
+
+#include "acme/primitive/collection/numeric_array.h"
 
 
 using duration_array = numeric_array < duration >;

@@ -1001,13 +1001,18 @@ public:
 
 
 class CLASS_DECL_ACME string_stream :
-   public write_text_stream < string_buffer >,
-   public string_buffer
+   public write_text_stream < string_buffer >
 {
 public:
 
+   
+   string_buffer   m_stringbuffer;
 
-   string_stream() : write_text_stream(this) { }
+
+   string_stream() : write_text_stream(&m_stringbuffer) { }
+
+
+   ::string as_string() const { return m_stringbuffer.m_strOwnStorage; }
 
 
 };

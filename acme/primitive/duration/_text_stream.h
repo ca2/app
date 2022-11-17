@@ -1,4 +1,4 @@
-//
+﻿//
 //  _text_stream.h
 //  acme
 //
@@ -38,6 +38,15 @@ inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > &
 
 template < typename FILE >
 inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const INTEGRAL_DAY& integral);
+
+
+template < typename FILE, typename DURATION >
+inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_duration < DURATION >& duration)
+{
+
+   return textstream << (const DURATION & ) duration;
+
+}
 
 
 template < typename FILE >

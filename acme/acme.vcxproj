@@ -1344,6 +1344,7 @@
     <ClInclude Include="platform\_c.h" />
     <ClInclude Include="platform\__string.h" />
     <ClInclude Include="primitive\collection\str_array.h" />
+    <ClInclude Include="primitive\collection\datetime_array.h" />
     <ClInclude Include="primitive\collection\unicode_data.h" />
     <ClInclude Include="primitive\collection\_array.h" />
     <ClInclude Include="primitive\collection\_container.h" />

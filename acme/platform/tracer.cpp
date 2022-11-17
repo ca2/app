@@ -71,7 +71,7 @@ void tracer::flush()
    if (::is_set(plogger))
    {
 
-      plogger->print(m_etracelevel, m_etracecategory, m_pszFunction, m_pszFile, m_iLine, operator string());
+      plogger->print(m_etracelevel, m_etracecategory, m_pszFunction, m_pszFile, m_iLine, as_string());
 
    }
 

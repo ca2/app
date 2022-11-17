@@ -4,6 +4,8 @@
 #define TEMPLATE_TYPE typename __TEMPLATE_TYPE__ = nullptr_t
 #define TEMPLATE_ARG __TEMPLATE_TYPE__ t = nullptr
 
+template < class c_derived >
+inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF);
 
 class particle;
 

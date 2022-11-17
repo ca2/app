@@ -146,7 +146,7 @@ public:
    virtual void add_each_routine_from(const ::atom& idRoutine, ::object* pobjectSource);
 
 
-   virtual procedure_array * procedure_array(const ::atom& idRoutine);
+   virtual ::procedure_array * procedure_array(const ::atom& idRoutine);
 
    template < typename ROUTINE_RUNNER_OBJECT, typename ROUTINE_RUNNER_METHOD >
    void for_routines_with_id(const ::atom & atom, ROUTINE_RUNNER_OBJECT proutinerunner, ROUTINE_RUNNER_METHOD routine_runner_method)

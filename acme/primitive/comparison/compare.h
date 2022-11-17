@@ -22,13 +22,13 @@ namespace comparison
 
 
 
-   template < typename A, typename B >
-   inline bool lt(const A & a, const B & b)
-   {
-
-      return a < b;
-
-   }
+//   template < typename A, typename B >
+//   inline bool lt(const A & a, const B & b)
+//   {
+//
+//      return a < b;
+//
+//   }
 
 
 
@@ -71,11 +71,11 @@ namespace comparison
    }
 
 
-   template < typename A, typename B >
-   inline bool gt(const A & a, const B & b)
-   {
-      return b < a;
-   }
+//   template < typename A, typename B >
+//   inline bool gt(const A & a, const B & b)
+//   {
+//      return b < a;
+//   }
 
 
    template < primitive_signed SIGNED, primitive_unsigned UNSIGNED >

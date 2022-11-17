@@ -58,7 +58,9 @@
 
 
 #define __EVALUATE(xxx) xxx
+#ifndef __CONCAT
 #define __CONCAT(xxx, yyy) xxx ## yyy
+#endif
 
 #define __CONCAT3(xxx, yyy, zzz) xxx ## yyy ## zzz
 

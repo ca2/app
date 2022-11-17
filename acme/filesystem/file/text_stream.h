@@ -1041,8 +1041,8 @@ public:
    string_stream() : write_text_stream(&m_stringbuffer) { }
 
 
-   operator ::string() const { return m_stringbuffer.m_strOwnStorage; }
-   operator ::string &()  { return m_stringbuffer.m_strOwnStorage; }
+   ::string as_string() const { return m_stringbuffer.m_strOwnStorage; }
+   ::string & as_string()  { return m_stringbuffer.m_strOwnStorage; }
 
 
 };

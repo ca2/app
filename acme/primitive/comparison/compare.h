@@ -31,13 +31,6 @@ namespace comparison
 //   }
 
 
-
-   template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
-   inline bool lt(UNSIGNED1 u1, UNSIGNED2 u2)
-   {
-      return u1 > ::numeric_info<UNSIGNED2>::maximum() ? false : (UNSIGNED2)u1 < u2;
-   }
-
    template < primitive_unsigned UNSIGNED, primitive_signed SIGNED >
    inline bool lt(UNSIGNED u, SIGNED s)
    {
@@ -49,6 +42,26 @@ namespace comparison
    {
       return s < 0 ? true : (UNSIGNED)s < u;
    }
+
+
+   template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
+   inline bool lt(SIGNED1 s1, SIGNED2 s2)
+   {
+      
+      return s1 < s2;
+
+   }
+
+   template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
+   inline bool lt(UNSIGNED1 u1, UNSIGNED2 u2)
+   {
+
+      return u1 > ::numeric_info<UNSIGNED2>::maximum() ? false : (UNSIGNED2)u1 < u2;
+
+   }
+
+
+
 
    template < >
    inline bool lt(unsigned long u, long i)

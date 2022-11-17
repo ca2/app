@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/mathematics/numeric_info.h"
@@ -95,6 +95,22 @@ namespace comparison
 
    }
 
+   template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
+   inline bool gt(SIGNED1 s1, SIGNED2 s2)
+   {
+
+      return s2 < s1;
+
+   }
+
+
+   template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
+   inline bool gt(UNSIGNED1 u1, UNSIGNED2 u2)
+   {
+
+      return u2 < u1;
+
+   }
 
    template < typename A, typename B >
    inline bool ge(A a, B b)

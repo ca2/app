@@ -212,8 +212,8 @@ list(APPEND library_source
         memory/string_memory_allocate.h
         memory/string_memory_allocator.h
         networking/top_level_domain_list.cpp
-        networking/net.cpp
-        networking/net.h
+        #networking/net.cpp
+        #networking/net.h
         networking/url.cpp
         networking/url.h
         networking/url_department.cpp
@@ -585,7 +585,7 @@ list(APPEND library_source
         primitive/primitive/enumeration.h
         #primitive/primitive/eobject.h
         primitive/primitive/estatus.cpp
-        primitive/primitive/estatus.h
+        primitive/primitive/e_status.h
         primitive/primitive/factory.cpp
         primitive/primitive/factory.h
         primitive/primitive/get_memory.cpp

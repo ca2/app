@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 /// file_path 
@@ -13,10 +13,7 @@
 #include "acme/constant/path.h"
 
 
-CLASS_DECL_ACME bool is_url(const char * pszCandidate);
-
-
-//CLASS_DECL_ACME bool __node_further_file_is_equal(const ::file::path & path1, const ::file::path & path2);
+//CLASS_DECL_ACME bool is_url(const char * pszUrl);
 
 
 CLASS_DECL_ACME const char * file_path_name(const char * path);

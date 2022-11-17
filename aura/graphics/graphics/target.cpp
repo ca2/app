@@ -57,7 +57,7 @@ namespace graphics
    //
    //   //{
    //
-   //   //   synchronous_lock lock(mutex());
+   //   //   synchronous_lock lock(synchronization());
    //
    //   //   if (!m_pimage)
    //   //   {

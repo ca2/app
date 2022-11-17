@@ -1177,7 +1177,7 @@ namespace user
       return ::user::box::_001CallOnDraw(pgraphics);
       //on_context_offset(pgraphics);
 
-      //synchronous_lock slImpact(mutex());
+      //synchronous_lock slImpact(synchronization());
 
       ////synchronous_lock slDocument(get_document()->synchronization());.
 

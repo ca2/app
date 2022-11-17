@@ -1133,7 +1133,7 @@ namespace http
 
          auto purl = psystem->url();
 
-         string strScript = purl->url_encode(purl->url_decode(purl->get_script(strUrl)));
+         string strScript = ::url::encode(::url::decode(purl->get_script(strUrl)));
 
          strScript.replace_with("%20", "+");
 
@@ -1315,7 +1315,7 @@ namespace http
 //         // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
 //         {
 //
-//            string strScript = purl->url_encode(purl->url_decode(purl->get_script(strUrl)));
+//            string strScript = ::url::encode(::url::decode(purl->get_script(strUrl)));
 //
 //            strScript.replace_with("%20", "+");
 //
@@ -1918,7 +1918,7 @@ namespace http
          // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
          {
 
-            string strScript = purl->url_encode(purl->url_decode(purl->get_script(strUrl)));
+            string strScript = ::url::encode(::url::decode(purl->get_script(strUrl)));
 
             strScript.replace_with("%20", "+");
 

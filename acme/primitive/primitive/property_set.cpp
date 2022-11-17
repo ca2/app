@@ -1107,7 +1107,7 @@ void property_set::_parse_network_arguments(const char * pszNetworkArguments)
          if(pszKeyEnd == nullptr)
          {
             
-            strKey = url_decode(pszArgument, strlen(pszNetworkArguments) - (pszArgument - pszNetworkArguments));
+            strKey = ::url::decode({ pszArgument, strlen(pszNetworkArguments) - (pszArgument - pszNetworkArguments) });
             
             _008Add(strKey, "");
             
@@ -1115,9 +1115,9 @@ void property_set::_parse_network_arguments(const char * pszNetworkArguments)
          else
          {
             
-            string strKey = url_decode(pszArgument, pszKeyEnd - pszArgument);
+            string strKey = ::url::decode({ pszArgument, pszKeyEnd - pszArgument });
             
-            string strValue = url_decode(pszKeyEnd + 1, strlen(pszNetworkArguments) - (pszKeyEnd + 1 - pszNetworkArguments));
+            string strValue = ::url::decode({ pszKeyEnd + 1, strlen(pszNetworkArguments) - (pszKeyEnd + 1 - pszNetworkArguments) });
             
             _008Add(strKey, strValue);
             
@@ -1130,7 +1130,7 @@ void property_set::_parse_network_arguments(const char * pszNetworkArguments)
       if(pszKeyEnd == nullptr || pszKeyEnd > pszArgumentEnd)
       {
       
-         strKey = url_decode(pszArgument, pszArgumentEnd - pszArgument);
+         strKey = ::url::decode({ pszArgument, pszArgumentEnd - pszArgument });
          
          _008Add(strKey, "");
       
@@ -1138,9 +1138,9 @@ void property_set::_parse_network_arguments(const char * pszNetworkArguments)
       else
       {
       
-         string strKey = url_decode(pszArgument, pszKeyEnd - pszArgument);
+         string strKey = ::url::decode({ pszArgument, pszKeyEnd - pszArgument });
          
-         string strValue = url_decode(pszKeyEnd + 1, pszArgumentEnd - (pszKeyEnd + 1));
+         string strValue = ::url::decode({ pszKeyEnd + 1, pszArgumentEnd - (pszKeyEnd + 1) });
          
          _008Add(strKey, strValue);
          

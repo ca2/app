@@ -84,14 +84,8 @@
     <Filter Include="Header Files\version">
       <UniqueIdentifier>{1a6906fa-8c35-4bf2-bc58-b25cfc385b90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\memory">
-      <UniqueIdentifier>{a77de24b-5664-4133-bc41-2c67eb0ab597}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\platform">
       <UniqueIdentifier>{6e6bef37-2c89-4842-a307-c57af04f938f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\memory\inline">
-      <UniqueIdentifier>{642c106d-f7ae-42f1-a95a-48aabbd45abb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\exception">
       <UniqueIdentifier>{0ace9705-3ad7-4201-a601-a6601c80f6e0}</UniqueIdentifier>
@@ -270,12 +264,6 @@
     <Filter Include="Header Files\primitive\media_library">
       <UniqueIdentifier>{2ba9cca5-9984-4952-8198-7e129e4ab6e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\memory\os_impl">
-      <UniqueIdentifier>{f1d64368-6958-4b0f-a00d-2213b49194d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\memory\bounds_check">
-      <UniqueIdentifier>{da169a7f-9cd8-41a0-992c-0752b49fc552}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\string\c">
       <UniqueIdentifier>{4a15e66f-2072-4bb3-b946-4ac3318b2e0f}</UniqueIdentifier>
     </Filter>
@@ -296,6 +284,18 @@
     </Filter>
     <Filter Include="Header Files\graphics\image">
       <UniqueIdentifier>{1815af9e-cbde-4d16-a6c5-906a46510aa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\memory">
+      <UniqueIdentifier>{a77de24b-5664-4133-bc41-2c67eb0ab597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\memory\inline">
+      <UniqueIdentifier>{642c106d-f7ae-42f1-a95a-48aabbd45abb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\memory\os_impl">
+      <UniqueIdentifier>{f1d64368-6958-4b0f-a00d-2213b49194d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\memory\bounds_check">
+      <UniqueIdentifier>{da169a7f-9cd8-41a0-992c-0752b49fc552}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -3155,37 +3155,37 @@
       <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
     <ClCompile Include="memory\allocate_mid_big.cpp">
-      <Filter>Source Files\memory</Filter>
+      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\allocate_processor_cache_oriented.cpp">
-      <Filter>Source Files\memory</Filter>
+      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\allocate_system_heap.cpp">
-      <Filter>Source Files\memory</Filter>
+      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\allocate_x86_cache_oriented.cpp">
-      <Filter>Source Files\memory</Filter>
+      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\allocation.cpp">
-      <Filter>Source Files\memory</Filter>
+      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\inline\heap_bare.cpp">
-      <Filter>Source Files\memory\inline</Filter>
+      <Filter>Source Files\networking\memory\inline</Filter>
     </ClCompile>
     <ClCompile Include="memory\inline\heap_mcheck.cpp">
-      <Filter>Source Files\memory\inline</Filter>
+      <Filter>Source Files\networking\memory\inline</Filter>
     </ClCompile>
     <ClCompile Include="memory\inline\heap_mcrtdbg.cpp">
-      <Filter>Source Files\memory\inline</Filter>
+      <Filter>Source Files\networking\memory\inline</Filter>
     </ClCompile>
     <ClCompile Include="memory\inline\heap_memdleak.cpp">
-      <Filter>Source Files\memory\inline</Filter>
+      <Filter>Source Files\networking\memory\inline</Filter>
     </ClCompile>
     <ClCompile Include="memory\inline\heap_std.cpp">
-      <Filter>Source Files\memory\inline</Filter>
+      <Filter>Source Files\networking\memory\inline</Filter>
     </ClCompile>
     <ClCompile Include="memory\inline\heap_vld.cpp">
-      <Filter>Source Files\memory\inline</Filter>
+      <Filter>Source Files\networking\memory\inline</Filter>
     </ClCompile>
     <ClCompile Include="exception\cancel.cpp">
       <Filter>Source Files\exception</Filter>
@@ -3248,7 +3248,7 @@
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="memory\os_alloc.cpp">
-      <Filter>Source Files\memory</Filter>
+      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
@@ -3461,7 +3461,7 @@
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="memory\counter.cpp">
-      <Filter>Source Files\memory</Filter>
+      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\object.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
@@ -3539,34 +3539,34 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="memory\string_memory_allocate.cpp">
-      <Filter>Source Files\memory</Filter>
+      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\memory_allocate.cpp">
-      <Filter>Source Files\memory</Filter>
+      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="platform\simple_log.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="memory\inline\plex_heap.cpp">
-      <Filter>Source Files\memory\inline</Filter>
+      <Filter>Source Files\networking\memory\inline</Filter>
     </ClCompile>
     <ClCompile Include="memory\inline\plex.cpp">
-      <Filter>Source Files\memory\inline</Filter>
+      <Filter>Source Files\networking\memory\inline</Filter>
     </ClCompile>
     <ClCompile Include="platform\c_class.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="memory\property_memory_allocate.cpp">
-      <Filter>Source Files\memory</Filter>
+      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\array_memory_allocate.cpp">
-      <Filter>Source Files\memory</Filter>
+      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\secondary_memory_allocate.cpp">
-      <Filter>Source Files\memory</Filter>
+      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\memory_management.cpp">
-      <Filter>Source Files\memory</Filter>
+      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\acme_file.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
@@ -3812,7 +3812,7 @@
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
     <ClCompile Include="memory\memory.cpp">
-      <Filter>Source Files\memory</Filter>
+      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="user\nano\details_window.cpp">
       <Filter>Source Files\user\nano</Filter>
@@ -3980,22 +3980,22 @@
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
     <ClCompile Include="memory\os_impl\_select.cpp">
-      <Filter>Source Files\memory\os_impl</Filter>
+      <Filter>Source Files\networking\memory\os_impl</Filter>
     </ClCompile>
     <ClCompile Include="memory\os_impl\malloc.cpp">
-      <Filter>Source Files\memory\os_impl</Filter>
+      <Filter>Source Files\networking\memory\os_impl</Filter>
     </ClCompile>
     <ClCompile Include="memory\os_impl\WindowsHeapAlloc.cpp">
-      <Filter>Source Files\memory\os_impl</Filter>
+      <Filter>Source Files\networking\memory\os_impl</Filter>
     </ClCompile>
     <ClCompile Include="memory\bounds_check\_select.cpp">
-      <Filter>Source Files\memory\bounds_check</Filter>
+      <Filter>Source Files\networking\memory\bounds_check</Filter>
     </ClCompile>
     <ClCompile Include="memory\bounds_check\off.cpp">
-      <Filter>Source Files\memory\bounds_check</Filter>
+      <Filter>Source Files\networking\memory\bounds_check</Filter>
     </ClCompile>
     <ClCompile Include="memory\bounds_check\on.cpp">
-      <Filter>Source Files\memory\bounds_check</Filter>
+      <Filter>Source Files\networking\memory\bounds_check</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\exit_status.cpp">
       <Filter>Source Files\operating_system</Filter>
@@ -4039,9 +4039,6 @@
     <ClCompile Include="primitive\primitive\object_meta.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="networking\net.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\collection\string_list.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
@@ -4082,5 +4079,10 @@
     <ResourceCompile Include="deployment.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="application_build_helper_input.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

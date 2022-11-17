@@ -93,7 +93,7 @@ namespace aura
          if (!is_tx_ok())
             return false;
 
-         string anotherappURI = m_strBaseChannel + ":///send?message=" + psystem->url_encode(pszMessage);
+         string anotherappURI = m_strBaseChannel + ":///send?message=" + ::url::encode(pszMessage);
 
          Uri ^uri = ref memory_new Uri(anotherappURI);
 
@@ -130,7 +130,7 @@ namespace aura
 
 
 
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __string(message)+ "," + psystem->url_encode(pbase64->encode((byte *)pdata, len));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __string(message)+ "," + ::url::encode(pbase64->encode((byte *)pdata, len));
 
          Uri ^uri = ref memory_new Uri(anotherappURI);
 

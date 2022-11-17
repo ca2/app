@@ -8,7 +8,6 @@ namespace xml
 {
 
 
-
    class document;
 
 

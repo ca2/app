@@ -771,7 +771,7 @@ namespace apex
       //         if (str.begins_eat_ci("send?message="))
       //         {
 
-      //            m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, purl->url_decode(str));
+      //            m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, ::url::decode(str));
 
       //         }
       //         else if (str.begins_eat_ci("send?messagebin="))
@@ -786,7 +786,7 @@ namespace apex
 
       //               memory m;
 
-      //               pbase64->decode(m, purl->url_decode(str.Mid(iFind + 1)));
+      //               pbase64->decode(m, ::url::decode(str.Mid(iFind + 1)));
 
       //               m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, message, m.get_data(), m.get_size());
 
@@ -6526,7 +6526,7 @@ namespace apex
 
       auto purl = psystem->url();
 
-      strUrl += purl->url_encode(strRelative);
+      strUrl += ::url::encode(strRelative);
 
       if (psession == nullptr)
       {

@@ -29,7 +29,7 @@ public:
    memory_file(memsize iSize);
    memory_file(const memory_file & file);
    memory_file(memory_file && file);
-   memory_file(void * pMemory, memsize dwSize);
+   memory_file(const void * pmemory, memsize dwSize);
    memory_file(const ::block & block);
    template < primitive_payload PAYLOAD >
    memory_file(PAYLOAD & payload, const ::file::e_open & eopen = e_null);

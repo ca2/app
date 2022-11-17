@@ -137,7 +137,7 @@ namespace file
 
       virtual bool read_string(string & str);
       virtual bool read_string(memory_base & mem);
-      virtual bool read_block(const block & block);
+      virtual bool read_block(block & block);
       virtual ::memory as_memory();
       virtual void as(memory_base & memory);
       virtual ::string as_string();

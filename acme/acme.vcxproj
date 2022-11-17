@@ -995,7 +995,6 @@
     <ClCompile Include="memory\property_memory_allocate.cpp" />
     <ClCompile Include="memory\secondary_memory_allocate.cpp" />
     <ClCompile Include="memory\string_memory_allocate.cpp" />
-    <ClCompile Include="networking\net.cpp" />
     <ClCompile Include="networking\top_level_domain_list.cpp" />
     <ClCompile Include="networking\url.cpp" />
     <ClCompile Include="networking\url_department.cpp" />
@@ -2113,6 +2112,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="application_build_helper_input.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

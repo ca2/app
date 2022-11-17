@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "memory.h"
 #define HEAP_NAMESPACE_PREFIX main
 #include "acme/memory/_____heap_namespace.h"
@@ -109,11 +109,59 @@ memory::memory(const ::block & block)
 
 }
 
-memory::memory(const void * pdata, memsize iCount)
+
+memory::memory(void * pdata, memsize iCount)
 {
 
-   m_memory.m_pprimitivememory      = this;
-   assign(pdata, iCount);
+   m_memory.m_pdata = (::byte*)pdata;
+   m_memory.m_iSize = iCount;
+
+   m_memory.m_bOwner = false;
+   m_memory.m_bReadOnly = false;
+   m_memory.m_pbStorage = (::byte *) pdata;
+
+   m_memory.m_iOffset;
+   m_memory.m_iMaxOffset = 0;
+   m_memory.m_cbStorage = iCount;
+   m_memory.m_dAllocationRateUp = 0.0;
+   m_memory.m_dwAllocationAddUp = 0;
+
+   m_memory.m_pcontainer = nullptr;
+
+   m_memory.m_ememory = e_memory_primitive;
+
+   m_memory.m_preadonlymemory = nullptr;
+   m_memory.m_pprimitivememory = this;
+   m_memory.m_psharedmemory = nullptr;
+   m_memory.m_pvirtualmemory = nullptr;
+
+}
+
+
+memory::memory(const void* pdata, memsize iCount)
+{
+
+   m_memory.m_pdata = (::byte*)pdata;
+   m_memory.m_iSize = iCount;
+
+   m_memory.m_bOwner = false;
+   m_memory.m_bReadOnly = true;
+   m_memory.m_pbStorage = (::byte*)pdata;
+
+   m_memory.m_iOffset;
+   m_memory.m_iMaxOffset = 0;
+   m_memory.m_cbStorage = iCount;
+   m_memory.m_dAllocationRateUp = 0.0;
+   m_memory.m_dwAllocationAddUp = 0;
+
+   m_memory.m_pcontainer = nullptr;
+
+   m_memory.m_ememory = e_memory_primitive;
+
+   m_memory.m_preadonlymemory = nullptr;
+   m_memory.m_pprimitivememory = this;
+   m_memory.m_psharedmemory = nullptr;
+   m_memory.m_pvirtualmemory = nullptr;
 
 }
 
@@ -188,16 +236,30 @@ memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, ::u32 n
 }
 
 
-memory::memory(memory_container * pcontainer, const void * pMemory, memsize dwSize)
+memory::memory(memory_container * pcontainer, const void * pdata, memsize size)
 {
 
-   m_memory.m_pprimitivememory   = this;
-   m_memory.m_pbStorage          = (byte *) pMemory;
-   m_memory.m_pdata              = m_memory.m_pbStorage;
-   m_memory.m_pcontainer         = pcontainer;
-   m_memory.m_cbStorage          = dwSize;
-   m_memory.m_iSize              = m_memory.m_cbStorage;
-   m_bAligned                    = false;
+   m_memory.m_pdata = (::byte*) pdata;
+   m_memory.m_iSize = size;
+
+   m_memory.m_bOwner = false;
+   m_memory.m_bReadOnly = true;
+   m_memory.m_pbStorage = (::byte*)pdata;
+
+   m_memory.m_iOffset;
+   m_memory.m_iMaxOffset = 0;
+   m_memory.m_cbStorage = size;
+   m_memory.m_dAllocationRateUp = 0.0;
+   m_memory.m_dwAllocationAddUp = 0;
+
+   m_memory.m_pcontainer = pcontainer;
+
+   m_memory.m_ememory = e_memory_primitive;
+
+   m_memory.m_preadonlymemory = nullptr;
+   m_memory.m_pprimitivememory = this;
+   m_memory.m_psharedmemory = nullptr;
+   m_memory.m_pvirtualmemory = nullptr;
 
 }
 
@@ -365,7 +427,7 @@ byte * memory::impl_realloc(void * pdata, memsize dwAllocation)
 void memory::impl_free(byte * pdata)
 {
 
-   if (m_memory.m_bOwn)
+   if (m_memory.m_bOwner)
    {
 
       memory_free(pdata);

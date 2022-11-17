@@ -5,6 +5,10 @@
 #include "acme/primitive/primitive/_u32hash.h"
 
 
+inline strsize string_get_length(const ansichar* psz) noexcept { return strlen(psz); }
+inline strsize string_safe_length(const ansichar* psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
+
+
 struct CLASS_DECL_ACME BLOCK
 {
 
@@ -41,25 +45,24 @@ struct CLASS_DECL_ACME block :
 {
 
    block(enum_no_initialize) {}
-   block(const void * pdata = nullptr, memsize iSize = 0) { m_pdata = (byte *) pdata; m_iSize = iSize; }
+   block() { m_pdata = nullptr; m_iSize = 0; }
+   block(const void* pdata) { m_pdata = (byte*)pdata; m_iSize = string_safe_length((const char *) pdata); }
+   template < primitive_integral INTEGRAL >
+   block(const void * pdata, INTEGRAL iSize) { m_pdata = (byte *) pdata; m_iSize = (memsize_storage) iSize; }
    block(const memory_base & memory);
    block(const memory_base * pmemory);
    block(const block & block) : ::block(block.m_pdata, block.m_iSize) {}
    block(const atom & atom);
-   //block(const ::string & str);
-   //block(const ::string & str, ::strsize s);
-   block(const char * psz, ::strsize s = -1) : ::block((const void *)psz, (::i64) (s >= 0 ? s : strlen(psz) + s + 1)) {}
    template < typename TYPE >
    block(enum_as_block, TYPE & t): ::block((void *) & t, sizeof(t)) {}
    template < typename TYPE >
    block(enum_as_block, const TYPE & t):  ::block((void *)&t, sizeof(t)) {}
-   //   template < primitive_integral INTEGRAL >
-//   block(const INTEGRAL & integral) : ::block((const void*)&integral, sizeof(integral)) {}
-
+   
 
    block & operator = (const block & block) { if (this != &block) { m_pdata = block.m_pdata; m_iSize = block.m_iSize; } return *this; }
 
-   void * get_data() const { return m_pdata; }
+   void* get_data() { return m_pdata; }
+   const void * get_data() const { return m_pdata; }
    memsize get_size() const { return m_iSize; }
    memsize size() const { return (memsize)m_iSize; }
 
@@ -77,7 +80,6 @@ struct CLASS_DECL_ACME block :
 //#endif
 
    block & from_base64(const char * psz, strsize iSize) const;
-   //string to_base64() const;
 
 
    int compare(const block& block) const
@@ -99,11 +101,31 @@ struct CLASS_DECL_ACME block :
    }
 
 
-   bool operator == (const block & block) const;
+   bool operator == (const block& block) const
+   {
 
-   //void to_string(string & str) const;
+      if (block.get_size() != get_size())
+      {
+
+         return false;
+
+      }
+
+      return __memcmp(block.get_data(), get_data(), (size_t)get_size()) == 0;
+
+   }
+
+
+   bool operator != (const block& block) const
+   {
+
+      return !operator == (block);
+
+   }
+
 
 };
+
 
 namespace acme
 {
@@ -115,41 +137,11 @@ namespace acme
 }
 
 
-//struct CLASS_DECL_ACME fork_block :
-//   public block
-//{
-//
-//   fork_block() { }
-//   fork_block(void * pdata, memsize iSize) : block(memory_allocate(iSize), iSize) { memcpy_dup(m_pdata, pdata, (size_t) iSize); }
-//   fork_block(const block & block) : fork_block(block.get_data(), block.get_size()) {}
-//   fork_block(block && block) : fork_block(block.get_data(), block.get_size()) { block.m_pdata = NULL; block.m_iSize = 0; }
-//   fork_block(const memory_base & memory);
-//   ~fork_block() { destroy(); }
-//
-//   fork_block & from_base64(const char * psz, strsize iSize);
-//
-//   void destroy();
-//
-//   fork_block & operator = (const block & block);
-//
-//   fork_block & operator = (const fork_block & block);
-//
-//
-//   void assign(const void * pdata, i64 iSize);
-//
-//
-//   fork_block & operator = (block && block);
-//
-//
-//};
-
-
-
 template < typename TYPE >
-inline ::block memory_block(TYPE type) 
+inline ::block as_block(const TYPE & type) 
 { 
    
-   return { (void *)__memory_address_of(type), (memsize) sizeof(type) };
+   return { (void *)&type, (memsize) sizeof(TYPE) };
 
 }
 

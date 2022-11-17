@@ -68,11 +68,8 @@ memory_file::memory_file(memory_file && m) :
 }
 
 
-
-
-
-memory_file::memory_file(void * pMemory, memsize dwSize) :
-   memory_container(pMemory, dwSize)
+memory_file::memory_file(const void * pmemory, memsize dwSize) :
+   memory_container(pmemory, dwSize)
 {
 
    m_position = 0;

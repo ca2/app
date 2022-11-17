@@ -228,7 +228,7 @@ namespace account
       if(puser->m_bDeferRegistration)
       {
 
-         purl->set_param(strAuthUrl, "ruri", purl->url_encode(puser->m_pathRuri));
+         purl->set_param(strAuthUrl, "ruri", ::url::encode(puser->m_pathRuri));
 
       }
 

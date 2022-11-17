@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "memory_base.h"
 #include "acme/primitive/primitive/atom.h"
 #include "acme/primitive/string/base64.h"
@@ -101,19 +101,19 @@ block & block::from_base64(const char * psz, strsize iSize) const
 //}
 
 
-bool block::operator == (const block & block) const
-{
-
-   if (block.get_size() != get_size())
-   {
-
-      return false;
-
-   }
-
-   return __memcmp(block.get_data(), get_data(), (size_t)get_size()) == 0;
-
-}
+//bool block::operator == (const block & block) const
+//{
+//
+//   if (block.get_size() != get_size())
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return __memcmp(block.get_data(), get_data(), (size_t)get_size()) == 0;
+//
+//}
 
 
 //fork_block & fork_block::from_base64(const char * psz, strsize iSize)

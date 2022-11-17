@@ -48,7 +48,7 @@ namespace fs
 
       //string strUrl;
 
-      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + purl->url_encode(pszPath);
+      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::url::encode(pszPath);
 
       //string strSource;
 
@@ -124,8 +124,8 @@ namespace fs
 
       //string strUrl;
 
-      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + purl->url_encode(purl->get_script(listing.m_pathUser))
-      //         + "&server=" + purl->url_encode(purl->get_server(listing.m_pathUser));
+      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::url::encode(purl->get_script(listing.m_pathUser))
+      //         + "&server=" + ::url::encode(purl->get_server(listing.m_pathUser));
 
       //string strSource;
 
@@ -288,7 +288,7 @@ namespace fs
 
       /*string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/ls?path=" + purl->url_encode(pszPath);
+      strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::url::encode(pszPath);
 
       string strSource;
 

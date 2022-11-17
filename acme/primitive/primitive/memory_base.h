@@ -50,7 +50,8 @@ __memory(MEMORY), public block
 {
 public:
 
-   bool                    m_bOwn;
+   bool                    m_bOwner;
+   bool                    m_bReadOnly;
    byte *                  m_pbStorage;
    //byte *                  m_pdata;
 

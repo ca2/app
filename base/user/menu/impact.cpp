@@ -70,8 +70,8 @@ namespace user
 
       //install_click_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu_impact::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_impact::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &menu_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &menu_impact::on_message_destroy);
 
    }
 

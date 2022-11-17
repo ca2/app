@@ -159,8 +159,8 @@ namespace ios
             str.trim();
             /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
             HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-            synchronous_lock sl1(m_pil48Hover->mutex());
-            synchronous_lock sl2(m_pil48->mutex());
+            synchronous_lock sl1(m_pil48Hover->synchronization());
+            synchronous_lock sl2(m_pil48->synchronization());
             iImage = m_pil16->add_icon_os_data(hicon16);
             m_pil48Hover->add_icon_os_data(hicon48);
 
@@ -237,9 +237,9 @@ namespace ios
 
          {
             
-            synchronous_lock sl1(m_pimagelistHover[16]->mutex());
+            synchronous_lock sl1(m_pimagelistHover[16]->synchronization());
             
-            synchronous_lock sl2(m_pimagelist[16]->mutex());
+            synchronous_lock sl2(m_pimagelist[16]->synchronization());
             
             if (ios_get_file_image(pimage16, strPath))
             {
@@ -264,9 +264,9 @@ namespace ios
 
          }
 
-         synchronous_lock sl1(m_pimagelistHover[48]->mutex());
+         synchronous_lock sl1(m_pimagelistHover[48]->synchronization());
 
-         synchronous_lock sl2(m_pimagelist[48]->mutex());
+         synchronous_lock sl2(m_pimagelist[48]->synchronization());
 
          iImage = m_pimagelist[48]->add_image(pimage48, 0, 0);
 
@@ -1519,8 +1519,8 @@ pacmedirectory->is(strPath))
 //            str.trim();
 //            HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
 //            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-//            synchronous_lock sl1(m_pil48Hover->mutex());
-//            synchronous_lock sl2(m_pil48->mutex());
+//            synchronous_lock sl1(m_pil48Hover->synchronization());
+//            synchronous_lock sl2(m_pil48->synchronization());
 //            iImage = m_pil16->add_icon_os_data(hicon16);
 //            m_pil48Hover->add_icon_os_data(hicon48);
 //
@@ -1599,8 +1599,8 @@ pacmedirectory->is(strPath))
 //         pimage->Fill(0);
 //
 //         {
-//            synchronous_lock sl1(m_pimagelistHover[16]->mutex());
-//            synchronous_lock sl2(m_pimagelist[16]->mutex());
+//            synchronous_lock sl1(m_pimagelistHover[16]->synchronization());
+//            synchronous_lock sl2(m_pimagelist[16]->synchronization());
 //            if (ios_get_file_image(image16, strPath))
 //            {
 //               iImage = m_pimagelist[16]->add_image(image16, 0, 0);
@@ -1623,9 +1623,9 @@ pacmedirectory->is(strPath))
 //
 //         }
 //
-//         synchronous_lock sl1(m_pimagelistHover[48]->mutex());
+//         synchronous_lock sl1(m_pimagelistHover[48]->synchronization());
 //
-//         synchronous_lock sl2(m_pimagelist[48]->mutex());
+//         synchronous_lock sl2(m_pimagelist[48]->synchronization());
 //
 //         iImage = m_pimagelist[48]->add_image(image48, 0, 0);
 //
@@ -1724,7 +1724,7 @@ pacmedirectory->is(strPath))
 //
 //            {
 //
-//               synchronous_lock s(mutex());
+//               synchronous_lock s(synchronization());
 //
 //               m_pimagemap->set_at(*pkey, iImage);
 //
@@ -1981,7 +1981,7 @@ pacmedirectory->is(strPath))
 
                {
 
-                  synchronous_lock s(mutex());
+                  synchronous_lock s(synchronization());
 
                   m_imagemap.set_at(*pkey, iImage);
 

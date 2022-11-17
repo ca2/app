@@ -1,11 +1,13 @@
-#include "framework.h"
-#include "core/user/user/font_list.h"
-#include "aura/user/user/frame.h"
-#include "aura/graphics/write_text/font_list.h"
+﻿#include "framework.h"
 #include "font_impact.h"
 #include "top_impact.h"
 #include "top_edit_impact.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "aura/user/user/frame.h"
+#include "aura/graphics/write_text/font_list.h"
 #include "base/user/user/document.h"
+#include "core/user/user/font_list.h"
 
 
 namespace userex
@@ -32,20 +34,20 @@ namespace userex
    }
 
 
-   void font_impact::assert_ok() const
-   {
+   //void font_impact::assert_ok() const
+   //{
 
-      ::user::split_impact::assert_ok();
+   //   ::user::split_impact::assert_ok();
 
-   }
+   //}
 
 
-   void font_impact::dump(dump_context& dumpcontext) const
-   {
+   //void font_impact::dump(dump_context& dumpcontext) const
+   //{
 
-      ::user::split_impact::dump(dumpcontext);
+   //   ::user::split_impact::dump(dumpcontext);
 
-   }
+   //}
 
 
    void font_impact::install_message_routing(::channel* pchannel)
@@ -53,7 +55,7 @@ namespace userex
 
       ::user::split_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &font_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &font_impact::on_message_create);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &font_impact::on_message_show_window);
 
    }

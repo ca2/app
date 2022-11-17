@@ -122,6 +122,16 @@ public:
    [[nodiscard]] inline bool has_verbose_flag() const { return has_flag(e_flag_verbose); }
 
 
+
+   [[nodiscard]] inline bool has_read_only_flag() const { return has_flag(e_flag_read_only); }
+   inline void set_read_only_flag() { set_flag(e_flag_read_only); }
+   inline void clear_read_only_flag() { clear_flag(e_flag_read_only); }
+
+   [[nodiscard]] inline bool has_owner_flag() const { return has_flag(e_flag_owner); }
+   inline void set_owner_flag() { set_flag(e_flag_owner); }
+   inline void clear_owner_flag() { clear_flag(e_flag_owner); }
+
+
    inline bool is_status_ok() const { return m_estatus; }
    inline bool has_failed_status() const { return !is_status_ok(); }
 

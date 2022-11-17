@@ -199,7 +199,7 @@ namespace filemanager
 
          auto& watcher = pdir->watcher();
 
-         m_filewatchid = watcher.add_watch(m_pitem->final_path(), {e_as, this}, false);
+         m_filewatchid = watcher.add_watch(m_pitem->final_path(), this, false);
 
       }
       catch (...)
@@ -277,9 +277,9 @@ namespace filemanager
 
          ::pointer<document>pdocument = this;
 
-         auto ptopic = create_topic(TOPIC_OK_ID);
+         auto ptopic = create_topic(ID_TOPIC_OK);
 
-         ptopic->payload(DOCUMENT_ID) = pdocument;
+         ptopic->payload(ID_DOCUMENT) = pdocument;
 
          ptopic->_extended_topic()->m_pfileitem = itema.get_first_pointer();
 
@@ -699,7 +699,7 @@ namespace filemanager
       if (!fs_data()->is_zero_latency(pitem->final_path()))
       {
 
-         auto ptopic = create_topic(SYNCHRONIZE_PATH_ID);
+         auto ptopic = create_topic(ID_SYNCHRONIZE_PATH);
 
          ptopic->m_actioncontext = context + ::e_source_sync + ::e_source_system;
 
@@ -733,7 +733,7 @@ namespace filemanager
 
       }
 
-      auto pextendedtopic = create_extended_topic(SYNCHRONIZE_PATH_ID);
+      auto pextendedtopic = create_extended_topic(ID_SYNCHRONIZE_PATH);
 
       pextendedtopic->m_pfileitem = pitem;
 

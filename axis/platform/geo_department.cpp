@@ -566,7 +566,7 @@ namespace geo
 
       auto psystem = get_system()->m_paxissystem;
 
-      string strGetUrl = "https://ca2.software/api/account/openweather?request=" + psystem->url_encode(strUrl);
+      string strGetUrl = "https://ca2.software/api/account/openweather?request=" + ::url::encode(strUrl);
 
       auto pcontext = get_context();
 

@@ -56,7 +56,7 @@ bool ms_download_dup(const ::string & pszUrl, const ::string & pszFile, bool bPr
    strUrl = pszUrl;
    if(bUrlEncode)
    {
-      strUrl = url_encode(strUrl);
+      strUrl = ::url::encode(strUrl);
       strUrl.replace_ci("%5C", "\\");
       strUrl.replace_ci("\\", "/");
       strUrl.replace_ci("%3A", ":");
@@ -129,7 +129,7 @@ vsstring ms_get_dup(const ::string & pszUrl, bool bCache, void (*callback)(void 
 }
 
 
-vsstring url_encode(const ::string & psz)
+vsstring ::url::encode(const ::string & psz)
 {
    vsstring str;
    char sz[256];

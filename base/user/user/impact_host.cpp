@@ -1,7 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "impact_host.h"
 #include "frame_window.h"
 #include "impact.h"
-#include "impact_host.h"
+#include "impact_exception.h"
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
 #include "base/platform/application.h"
@@ -62,8 +63,8 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact_host::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact_host::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &impact_host::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &impact_host::on_message_destroy);
 
    }
 
@@ -283,10 +284,10 @@ namespace user
          }
 
       }
-      catch (const exception & exception)
+      catch (const impact_exception & impactexception)
       {
 
-         if (exception.m_atom == atom)
+         if (impactexception.m_atom == atom)
          {
 
             //::acme::del(pimpactdata);
@@ -297,7 +298,7 @@ namespace user
 
          }
 
-         throw ::move(exception);
+         throw ::move(impactexception);
 
 
       }

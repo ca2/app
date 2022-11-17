@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "form_impact.h"
 #include "document.h"
 #include "axis/html/html/data.h"
@@ -75,15 +75,15 @@ void html_form_impact::on_form_implemented()
 /////////////////////////////////////////////////////////////////////////////
 // html_form_impact diagnostics
 
-void html_form_impact::assert_ok() const
-{
-   ::user::show <::html_form>::assert_ok();
-}
-
-void html_form_impact::dump(dump_context & dumpcontext) const
-{
-   ::user::show <::html_form>::dump(dumpcontext);
-}
+//void html_form_impact::assert_ok() const
+//{
+//   ::user::show <::html_form>::assert_ok();
+//}
+//
+//void html_form_impact::dump(dump_context & dumpcontext) const
+//{
+//   ::user::show <::html_form>::dump(dumpcontext);
+//}
 
 /////////////////////////////////////////////////////////////////////////////
 // html_form_impact message handlers
@@ -206,7 +206,7 @@ void html_form_impact::handle(::topic * ptopic, ::context * pcontext)
    ////__update(::update)
    {
 
-      if (ptopic->m_atom == id_browse)
+      if (ptopic->m_atom == ID_BROWSE)
       {
 
          if (!ptopic->payload(id_form).is_empty())

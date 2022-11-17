@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-08 21:46 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 21:46 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -350,4 +350,12 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 
 #ifndef GET_Y_LPARAM
 #define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
+#endif
+
+
+#ifndef LODWORD
+#define LODWORD(l)                                    ((::u32)(((::u64)(l)) & 0xffffffffu))
+#endif
+#ifndef HIDWORD
+#define HIDWORD(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffffu))
 #endif

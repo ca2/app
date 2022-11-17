@@ -183,9 +183,9 @@ repeat:;
 
 
              strUrl = "https://" + pcontext->m_papexcontext->dir()->get_api_cc() + "/account/str_set_save?key=";
-             strUrl += purl->url_encode(m_itema[0]->m_strKey);
+             strUrl += ::url::encode(m_itema[0]->m_strKey);
              strUrl += "&value=";
-             strUrl += purl->url_encode(m_itema[0]->m_str);
+             strUrl += ::url::encode(m_itema[0]->m_str);
 
              m_itema.erase_at(0);
 
@@ -301,7 +301,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
 
       strUrl = "https://" + pcontext->m_papexcontext->dir()->get_api_cc() + "/account/str_set_load?key=";
 
-      strUrl += purl->url_encode(lpKey);
+      strUrl += ::url::encode(lpKey);
 
       set["user"] = psession->account()->get_user();
 

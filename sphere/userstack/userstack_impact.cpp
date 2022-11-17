@@ -38,9 +38,9 @@ namespace userstack
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &impact::on_message_destroy);
       MESSAGE_LINK(e_message_paint, pchannel, this, &impact::_001OnPaint);
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &impact::on_message_create);
       MESSAGE_LINK(e_message_context_menu, pchannel, this, &impact::on_message_context_menu);
       //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &impact::on_message_set_cursor);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);

@@ -1,9 +1,12 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "font_list.h"
+#include "font_combo_box.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/message/user.h"
 #include "aura/graphics/write_text/font_list.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
-#include "font_list.h"
-#include "font_combo_box.h"
 
 
 namespace user
@@ -41,7 +44,7 @@ namespace user
 
       ::user::combo_box::install_message_routing(psender);
 
-      MESSAGE_LINK(e_message_create, psender, this, &::user::font_combo_box::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, psender, this, &::user::font_combo_box::on_message_create);
 
    }
 

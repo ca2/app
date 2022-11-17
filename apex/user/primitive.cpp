@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "primitive.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
@@ -3670,7 +3670,7 @@ namespace user
    }
 
 
-   void primitive::add_child_handler(::matter * pmatter, const ::atom & idChild, bool bPriority)
+   void primitive::add_child_handler(const ::signal_handler& signalhandler, const ::atom & idChild, bool bPriority)
    {
 
       auto pchild = get_primitive_by_id(idChild);
@@ -3683,7 +3683,7 @@ namespace user
       }
 
       //auto estatus = 
-      pchild->m_puserprimitive->add_handler(pmatter, bPriority);
+      pchild->m_puserprimitive->add_signal_handler(signalhandler, bPriority);
 
       //if (!estatus)
       //{

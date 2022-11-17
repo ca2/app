@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "table.h"
 #include "table_row.h"
 #include "acme/primitive/data/listener.h"
@@ -46,7 +46,7 @@ namespace html
 
          element::implement_phase1(pdata, pelemental);
 
-         if(m_pelemental->m_pbase->get_type() !=:: html::base::type_tag)
+         if(m_pelemental->m_phtmlbase->get_type() !=:: html::base::type_tag)
          {
 
             return;
@@ -352,7 +352,7 @@ namespace html
       void table::_001OnDraw(html_data * pdata)
       {
 
-         if(m_pelemental->m_pbase->get_type() == ::html::base::type_value)
+         if(m_pelemental->m_phtmlbase->get_type() == ::html::base::type_value)
             return;
 
          element::_001OnDraw(pdata);

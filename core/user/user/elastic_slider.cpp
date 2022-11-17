@@ -1,9 +1,10 @@
-#include "framework.h"
-////#include "core/user/user/_component.h"
-#include "acme/platform/timer.h"
+﻿#include "framework.h"
 #include "elastic_slider.h"
-#include "aura/graphics/draw2d/graphics.h"
 #include "mesh.h"
+#include "acme/constant/message.h"
+#include "acme/platform/timer.h"
+#include "acme/primitive/mathematics/scalar.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 
 
@@ -30,7 +31,7 @@ namespace user
    void elastic_slider::install_message_routing(::channel * pchannel)
    {
       ::user::interaction::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &elastic_slider::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &elastic_slider::on_message_create);
       ////MESSAGE_LINK(e_message_timer, pchannel, this, &elastic_slider::_001OnTimer);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &elastic_slider::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &elastic_slider::on_message_left_button_up);
@@ -121,6 +122,7 @@ namespace user
       __UNREFERENCED_PARAMETER(pmessage);
 //      auto pmouse = pmessage->m_union.m_pmouse;
    }
+
 
    void elastic_slider::Slide()
    {

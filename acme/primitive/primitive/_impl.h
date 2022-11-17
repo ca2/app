@@ -850,7 +850,7 @@ inline ::pointer < T > move_transfer(T* p) { return { e_move_transfer, p }; }
 
 
 //template < typename TYPE >
-//TYPE & operator |=(TYPE & o, enum_object eobject)
+//TYPE & operator |=(TYPE & o,  eobject)
 //{
 //
 //   o.set(eobject);
@@ -861,7 +861,7 @@ inline ::pointer < T > move_transfer(T* p) { return { e_move_transfer, p }; }
 //
 //
 //template < typename TYPE >
-//TYPE & operator +=(TYPE & o, enum_object eobject)
+//TYPE & operator +=(TYPE & o,  eobject)
 //{
 //
 //   o.set(eobject);
@@ -872,7 +872,7 @@ inline ::pointer < T > move_transfer(T* p) { return { e_move_transfer, p }; }
 //
 //
 //template < typename TYPE >
-//TYPE & operator -=(TYPE & o, enum_object eobject)
+//TYPE & operator -=(TYPE & o,  eobject)
 //{
 //
 //   o.clear(eobject);
@@ -1291,7 +1291,7 @@ inline ::pointer < T > move_transfer(T* p) { return { e_move_transfer, p }; }
 //
 //   auto pgroup = get_system()->task_group(epriority);
 //
-//   synchronous_lock slGroup(pgroup->mutex());
+//   synchronous_lock slGroup(pgroup->synchronization());
 //
 //   ///   auto ptool = get_system()->task_tool(op_fork_count);
 //

@@ -13,7 +13,7 @@ memory_container::memory_container(memsize size)
 }
 
 
-memory_container::memory_container(void * pdata, memsize size)
+memory_container::memory_container(const void * pdata, memsize size)
 {
 
    m_pmemory = __new(class memory(this, pdata, size));

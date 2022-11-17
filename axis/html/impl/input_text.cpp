@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "input_text.h"
 #include "aura/user/user/check_box.h"
 #include "axis/html/element/element.h"
@@ -62,7 +62,7 @@ namespace html
 
          element::implement_phase1(pdata, pelemental);
 
-         ::atom atom = pelemental->m_pbase->get_tag()->get_attr_value("id");
+         ::atom atom = pelemental->m_phtmlbase->get_tag()->get_attr_value("id");
 
          atom = translate_property_id(atom);
 
@@ -98,14 +98,14 @@ namespace html
 
             m_pedit->m_bPassword = pelemental->m_propertyset["type"].compare_ci("password") == 0;
 
-            m_pedit->m_strName = pelemental->m_pbase->get_tag()->get_attr_value("name");
+            m_pedit->m_strName = pelemental->m_phtmlbase->get_tag()->get_attr_value("name");
 
-            bool bValue = pelemental->m_pbase->get_tag()->get_attr("value") != nullptr;
+            bool bValue = pelemental->m_phtmlbase->get_tag()->get_attr("value") != nullptr;
 
             if(bValue)
             {
 
-               m_pedit->_001SetText(pelemental->m_pbase->get_tag()->get_attr_value("value"), ::e_source_data | ::e_source_load);
+               m_pedit->_001SetText(pelemental->m_phtmlbase->get_tag()->get_attr_value("value"), ::e_source_data | ::e_source_load);
 
             }
 
@@ -125,7 +125,7 @@ namespace html
       bool input_text::layout_phase1(html_data * pdata)
       {
 
-         string strSize = m_pelemental->m_pbase->get_tag()->get_attr_value("ize");
+         string strSize = m_pelemental->m_phtmlbase->get_tag()->get_attr_value("ize");
 
          int iSize = 20;
 

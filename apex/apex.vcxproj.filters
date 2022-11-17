@@ -902,7 +902,7 @@
     <ClInclude Include="handler\promise.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
-    <ClInclude Include="handler\predicate.h">
+    <ClInclude Include="handler\aaa_predicate.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
     <ClInclude Include="handler\manager.h">

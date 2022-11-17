@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/user/impact.h"
@@ -16,7 +16,7 @@ namespace userex
    public:
 
       class menu :
-         virtual public ::element
+         virtual public ::particle
       {
       public:
          

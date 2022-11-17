@@ -606,7 +606,7 @@ namespace filemanager
 
       MESSAGE_LINK(MessageMainPost, pchannel,  this,  &tree::_001OnMainPostMessage);
       MESSAGE_LINK(e_message_context_menu, pchannel, this, &tree::on_message_context_menu);
-      MESSAGE_LINK(e_message_create, pchannel, this, &tree::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &tree::on_message_create);
 
    }
 

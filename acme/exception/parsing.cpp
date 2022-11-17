@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "parsing.h"
 
 
@@ -36,7 +36,7 @@ CLASS_DECL_ACME void set_avoid_parsing_exception(bool bSet)
 }
 
 
-CLASS_DECL_ACME bool throw_parsing_exception(const ::string & strMessage)
+CLASS_DECL_ACME bool throw_parsing_exception(const char * pszMessage)
 {
 
    if (should_avoid_parsing_exception())
@@ -46,7 +46,7 @@ CLASS_DECL_ACME bool throw_parsing_exception(const ::string & strMessage)
 
    }
 
-   throw ::exception(error_parsing, strMessage);
+   throw ::exception(error_parsing, pszMessage);
 
    return true;
 
@@ -89,7 +89,7 @@ network_payload_parsing_exception::~network_payload_parsing_exception()
 
 
 
-CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const ::string & strMessage)
+CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const char * pszMessage)
 {
 
    if (should_avoid_parsing_exception())
@@ -99,7 +99,7 @@ CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const ::string & st
 
    }
 
-   throw ::exception(error_network_payload_parsing, strMessage);
+   throw ::exception(error_network_payload_parsing, pszMessage);
 
    return true;
 

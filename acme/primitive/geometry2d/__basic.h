@@ -320,10 +320,6 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 
 
 
-CLASS_DECL_ACME double d_distance(const point_i32 & point1, const point_i32 & point2);
-
-
-
 
 
 

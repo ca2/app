@@ -1,13 +1,14 @@
 ﻿#include "framework.h"
 #include "data.h"
 #include "document.h"
+#include "acme/primitive/data/listener.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/create.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/write_text/font.h"
-#include "aura/user/user/interaction.h"
+#include "base/user/user/impact.h"
 #include "base/user/user/multiple_document_template.h"
 #include "core/platform/application.h"
 
@@ -46,9 +47,6 @@ namespace filemanager
 //      m_pfilemanager             = nullptr;
       m_pcallback                = nullptr;
       m_strLevelUp = "levelup";
-      m_pfont.create(this);
-
-      m_pfont->create_pixel_font("Verdana",14);
 
       m_bEnableRecursiveFolderSelectionList = true;
 
@@ -88,6 +86,9 @@ namespace filemanager
       //   return estatus;
 
       //}
+      m_pfont.create(this);
+
+      m_pfont->create_pixel_font("Verdana", 14);
 
       m_strLevelUp.Empty();
       m_setToolbar[::userfs::e_mode_normal] = "matter://filemanager_toolbar.xml";
@@ -291,7 +292,7 @@ namespace filemanager
 
             string strId;
 
-            strId = m_datakey.m_strDataKey +".last_browse_folder." + __string(idMachine);
+            strId = m_datakey.m_strDataKey +".last_browse_folder." + idMachine;
 
             if (!papp->datastream()->get({ m_datakey.m_bLocalData, strId }, strPath))
             {
@@ -376,7 +377,7 @@ namespace filemanager
 
          string strId;
 
-         strId = m_datakey.m_strDataKey+".last_browse_folder." + __string(idMachine);
+         strId = m_datakey.m_strDataKey+".last_browse_folder." + idMachine;
 
          papp->datastream()->set({ m_datakey.m_bLocalData, strId }, strPath);
 

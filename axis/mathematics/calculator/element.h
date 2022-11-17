@@ -1,15 +1,18 @@
-#pragma once
+﻿#pragma once
 
 
-#include "acme/primitive/primitive/matter.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 namespace calculator
 {
 
 
+   class token;
+
+
    class CLASS_DECL_AXIS element:
-      virtual public ::matter
+      virtual public ::particle
    {
    public:
 
@@ -23,11 +26,12 @@ namespace calculator
 
 
       element();
-      virtual ~element();
+      ~element() override;
 
 
       class result get_result();
       string get_expression();
+
 
    };
 

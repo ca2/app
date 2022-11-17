@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "fork.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/counter.h"
@@ -41,7 +41,6 @@ CLASS_DECL_ACME::task * predicate_run(::particle * pparticle, bool bSync, const 
 }
 
 
-
 forking_count_task::forking_count_task(::particle * pparticle, ::pointer<object>pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, const ::function < void(index, index, index, index) > & function, ::object * pobjectTaskEnd) :
    m_pholdref(pholdref),
    m_function(function),
@@ -51,9 +50,13 @@ forking_count_task::forking_count_task(::particle * pparticle, ::pointer<object>
    m_iCount(iCount),
    m_pobjectTaskEnd(pobjectTaskEnd)
 {
-   construct();
+
    initialize(pparticle);
+
+   construct();
+
 }
+
 
 forking_count_task::forking_count_task(::particle * pparticle, index iOrder, index iIndex, ::count iScan, ::count iCount, const ::function < void(index, index, index, index) > & function, ::object * pobjectTaskEnd) :
    m_function(function),
@@ -63,8 +66,11 @@ forking_count_task::forking_count_task(::particle * pparticle, index iOrder, ind
    m_iCount(iCount),
    m_pobjectTaskEnd(pobjectTaskEnd)
 {
-   construct();
+
    initialize(pparticle);
+
+   construct();
+
 }
 
 

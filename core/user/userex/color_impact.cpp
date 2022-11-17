@@ -1,14 +1,16 @@
 ﻿#include "framework.h"
+#include "color_impact.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/image/drawing.h"
-#include "base/user/user/document.h"
 #include "aura/user/user/frame.h"
 #include "aura/message/user.h"
 #include "aura/operating_system/windows_common/graphics.h"
-#include "color_impact.h"
 #include "aura/platform/system.h"
+#include "base/user/user/document.h"
 
 
 //#if defined(__APPLE__)
@@ -191,6 +193,11 @@ namespace visual
 
       ::byte * pline;
 
+      auto a = pimage->m_colorindexes.a;
+      auto r = pimage->m_colorindexes.r;
+      auto g = pimage->m_colorindexes.g;
+      auto b = pimage->m_colorindexes.b;
+
       for (index i = 0; i < w; i++)
       {
 
@@ -200,12 +207,12 @@ namespace visual
          {
 
             image_color_with_shade_of_grey(
-               pline[IMAGE_R_BYTE_INDEX],
-               pline[IMAGE_G_BYTE_INDEX],
-               pline[IMAGE_B_BYTE_INDEX],
+               pline[r],
+               pline[g],
+               pline[b],
                (double) i, (double) j, (double) w, (double) h);
 
-            pline[IMAGE_A_BYTE_INDEX] = 255;
+            pline[a] = 255;
 
             pline+=uScan;
 
@@ -382,20 +389,20 @@ namespace userex
    }
 
 
-   void color_impact::assert_ok() const
-   {
+   //void color_impact::assert_ok() const
+   //{
 
-      ::user::impact::assert_ok();
+   //   ::user::impact::assert_ok();
 
-   }
+   //}
 
 
-   void color_impact::dump(dump_context & dumpcontext) const
-   {
+   //void color_impact::dump(dump_context & dumpcontext) const
+   //{
 
-      ::user::impact::dump(dumpcontext);
+   //   ::user::impact::dump(dumpcontext);
 
-   }
+   //}
 
 
    void color_impact::install_message_routing(::channel * pchannel)
@@ -403,7 +410,7 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &color_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &color_impact::on_message_create);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &color_impact::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &color_impact::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &color_impact::on_message_left_button_up);

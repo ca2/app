@@ -297,7 +297,7 @@ namespace opengl
 
       }
 
-      if (::is_ok(pimage))
+      if (pimage.ok())
       {
 
          pimage->map();

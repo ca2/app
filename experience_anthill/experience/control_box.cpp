@@ -1,5 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "control_box.h"
+#include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -51,7 +52,7 @@ namespace experience_anthill
 
       ::experience::control_box::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &control_box::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &control_box::on_message_create);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &control_box::on_message_show_window);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_box::on_message_left_button_up);

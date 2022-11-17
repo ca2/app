@@ -1,14 +1,40 @@
 ﻿#pragma once
 
 
-enum enum_id : uptr
+enum enum_id : ::uptr
 {
 
 
-   id_none,
+   id_invalid = ID_INVALID,
 
 
-   id_invalid = INVALID_ID,
+   id_none = ID_NONE,
+
+
+   id_initial = ID_INITIAL_UPDATE,
+   id_pre_close_document = ID_PRE_CLOSE_DOCUMENT,
+   id_new_document = ID_NEW_DOCUMENT,
+   id_close_document = ID_CLOSE_DOCUMENT,
+   id_open_document = ID_OPEN_DOCUMENT,
+   id_save_document = ID_SAVE_DOCUMENT,
+   id_event = ID_EVENT,
+   id_update = ID_UPDATE,
+   id_full = ID_FULL,
+   id_document = ID_DOCUMENT,
+   id_topic_ok = ID_TOPIC_OK,
+   id_initialize = ID_INITIALIZE,
+   id_browse = ID_BROWSE,
+   id_synchronize_path = ID_SYNCHRONIZE_PATH,
+   id_filter = ID_FILTER,
+   id_form = ID_FORM,
+   id_redraw = ID_REDRAW,
+   id_soul = ID_SOUL,
+   id_create = ID_CREATE,
+   id_destroy = ID_DESTROY,
+   id_finish = ID_FINISH,
+   id_dialog_result = ID_DIALOG_RESULT,
+   id_complete = ID_COMPLETE,
+
 
 
    id_id = 1 << 16,
@@ -22,24 +48,6 @@ enum enum_id : uptr
    //id_weather_change,
 
 
-   id_initial = INITIAL_UPDATE,
-   id_pre_close_document = PRE_CLOSE_DOCUMENT_UPDATE,
-   id_new_document = NEW_DOCUMENT_UPDATE,
-   id_close_document = CLOSE_DOCUMENT_UPDATE,
-   id_open_document = OPEN_DOCUMENT_UPDATE,
-   id_save_document = SAVE_DOCUMENT_UPDATE,
-   id_event = EVENT_ID,
-   id_xxx = UPDATE_XXX,
-   id_full = FULL_ID,
-   id_document = DOCUMENT_ID,
-   id_topic_ok = TOPIC_OK_ID,
-   id_initialize = INITIALIZE_ID,
-   id_browse = BROWSE_ID,
-   id_synchronize_path = SYNCHRONIZE_PATH_ID,
-   id_filter = FILTER_ID,
-   id_form = FORM_ID,
-   id_redraw = REDRAW_ID,
-   id_soul = SOUL_ID,
 
 
    id_search = 1 << 20,
@@ -264,7 +272,6 @@ enum enum_id : uptr
    id_on_create_impact,
    id_on_create_tab,
    id_form_initialize,
-   id_create,
    id_layout,
    id_calc_item_height,
    id_change_impact_style,

@@ -38,8 +38,8 @@
 //else __msg_entry(e_message_display_change)
 //else __msg_entry(e_message_non_client_create)
 //else __msg_entry(e_message_non_client_destroy)
-//else __msg_entry(e_message_non_client_calcsize)
-//else __msg_entry(e_message_non_client_hittest)
+//else __msg_entry(e_message_non_client_calc_size)
+//else __msg_entry(e_message_non_client_hit_test)
 //else __msg_entry(e_message_non_client_paint)
 //else __msg_entry(e_message_non_client_activate)
 //else __msg_entry(e_message_non_client_mouse_move)//)//      0x00A0

@@ -74,8 +74,8 @@ namespace helloworld
 
       impact_base::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create,pchannel,this,&impact::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_CREATE,pchannel,this,&impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &impact::on_message_destroy);
 
    }
 

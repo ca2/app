@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "exception.h"
@@ -17,8 +17,6 @@ public:
 };
 
 
-CLASS_DECL_ACME bool should_avoid_parsing_exception();
-CLASS_DECL_ACME bool throw_parsing_exception(const ::string & strMessage);
 
 
 class CLASS_DECL_ACME avoid_parsing_exception :
@@ -45,4 +43,3 @@ public:
 };
 
 
-CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const ::string & strMessage);

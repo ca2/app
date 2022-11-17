@@ -216,14 +216,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-      <Inputs>
-      </Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -280,14 +273,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-      <Inputs>
-      </Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -433,14 +419,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-      <Inputs>
-      </Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -484,6 +463,7 @@
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>false</FunctionLevelLinking>
+      <OmitFramePointers>false</OmitFramePointers>
     </ClCompile>
     <Link>
       <AdditionalDependencies>dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -508,14 +488,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <Inputs>
-      </Inputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <PostBuildEvent>
       <Command>
       </Command>
@@ -572,14 +545,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <Inputs>
-      </Inputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <PostBuildEvent>
       <Command>
       </Command>
@@ -703,14 +669,7 @@
       <Command>
       </Command>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>
-      </Outputs>
-      <Inputs>
-      </Inputs>
-      <TreatOutputAsContent>
-      </TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <PostBuildEvent>
       <Command>
       </Command>
@@ -847,7 +806,7 @@
     <ClInclude Include="constant\filesystem.h" />
     <ClInclude Include="constant\flag.h" />
     <ClInclude Include="constant\future.h" />
-    <ClInclude Include="constant\GLOBAL_ID.h" />
+    <ClInclude Include="constant\_id.h" />
     <ClInclude Include="constant\id.h" />
     <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="constant\impact.h" />
@@ -866,6 +825,7 @@
     <ClInclude Include="constant\_constant.h" />
     <ClInclude Include="constant\_geometry.h" />
     <ClInclude Include="constant\_mathematics.h" />
+    <ClInclude Include="constant\_message.h" />
     <ClInclude Include="exception\bad_file_format.h" />
     <ClInclude Include="exception\aaa_file_open.h" />
     <ClInclude Include="exception\debug.h" />
@@ -1035,7 +995,6 @@
     <ClCompile Include="memory\property_memory_allocate.cpp" />
     <ClCompile Include="memory\secondary_memory_allocate.cpp" />
     <ClCompile Include="memory\string_memory_allocate.cpp" />
-    <ClCompile Include="networking\net.cpp" />
     <ClCompile Include="networking\top_level_domain_list.cpp" />
     <ClCompile Include="networking\url.cpp" />
     <ClCompile Include="networking\url_department.cpp" />
@@ -1049,6 +1008,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='release|x64'">NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="operating_system\argcargv.cpp" />
@@ -1170,6 +1136,7 @@
     <ClCompile Include="platform\_synchronization.cpp" />
     <ClCompile Include="primitive\collection\strdup_array.cpp" />
     <ClCompile Include="primitive\collection\string_array.cpp" />
+    <ClCompile Include="primitive\collection\string_list.cpp" />
     <ClCompile Include="primitive\collection\str_array.cpp" />
     <ClCompile Include="primitive\collection\__payload_array.cpp" />
     <ClCompile Include="primitive\data\container.cpp" />
@@ -1207,6 +1174,7 @@
     <ClCompile Include="primitive\mathematics\value.cpp" />
     <ClCompile Include="primitive\mathematics\_.cpp" />
     <ClCompile Include="primitive\media_library\item.cpp" />
+    <ClCompile Include="primitive\primitive\action_context.cpp" />
     <ClCompile Include="primitive\primitive\atom.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
     <ClCompile Include="primitive\primitive\get_memory.cpp" />
@@ -1376,6 +1344,7 @@
     <ClInclude Include="platform\_c.h" />
     <ClInclude Include="platform\__string.h" />
     <ClInclude Include="primitive\collection\str_array.h" />
+    <ClInclude Include="primitive\collection\datetime_array.h" />
     <ClInclude Include="primitive\collection\unicode_data.h" />
     <ClInclude Include="primitive\collection\_array.h" />
     <ClInclude Include="primitive\collection\_container.h" />
@@ -1812,7 +1781,7 @@
     <ClInclude Include="primitive\primitive\property_object.h" />
     <ClInclude Include="primitive\primitive\linked_property.h" />
     <ClInclude Include="primitive\primitive\matter.h" />
-    <ClInclude Include="primitive\primitive\estatus.h" />
+    <ClInclude Include="primitive\primitive\e_status.h" />
     <ClInclude Include="primitive\primitive\match.h" />
     <ClInclude Include="primitive\primitive\payload.h" />
     <ClInclude Include="primitive\primitive\member.h" />
@@ -2144,6 +2113,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="application_build_helper_input.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

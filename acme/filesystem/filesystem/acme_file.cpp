@@ -909,7 +909,15 @@ string_array acme_file::lines(const char * pathParam)
    try
    {
 
-      auto pfile = open(path, ::file::e_open_read | ::file::e_open_share_deny_none);
+      auto pfile = open(path, ::file::e_open_read | ::file::e_open_share_deny_none
+      | ::file::e_open_no_exception_on_open);
+
+      if (pfile.nok())
+      {
+
+         return {};
+
+      }
 
       string_array straLines;
 

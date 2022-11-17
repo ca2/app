@@ -1,7 +1,10 @@
 ﻿#include "framework.h"
-#include "acme/constant/timer.h"
 #include "tool_tip_window.h"
 #include "tool_tip_tool.h"
+#include "acme/constant/message.h"
+#include "acme/constant/timer.h"
+#include "acme/exception/interface_only.h"
+#include "acme/primitive/geometry2d/_random.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
@@ -650,7 +653,7 @@ namespace user
          
          ::geometry::deflate(rectangle, 0.5, 0.0, 0.0, 0.5);
 
-         point =  rectangle.random_point();
+         point =  random_point(rectangle);
 
          break;
       default:

@@ -4,16 +4,19 @@
 #include "document.h"
 #include "data.h"
 #include "format.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/constant/timer.h"
 #include "acme/handler/item.h"
 #include "acme/platform/timer.h"
-#include "acme/constant/timer.h"
+#include "acme/primitive/geometry2d/_binary_stream.h"
+#include "acme/primitive/string/str.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/copydesk.h"
 #include "base/user/user/user.h"
 #include "core/platform/session.h"
-#include "acme/primitive/geometry2d/_binary_stream.h"
 
 
 namespace user
@@ -108,20 +111,20 @@ namespace user
       }
 
 
-      void edit_impl::assert_ok() const
-      {
+      //void edit_impl::assert_ok() const
+      //{
 
-         ::user::interaction::assert_ok();
+      //   ::user::interaction::assert_ok();
 
-      }
+      //}
 
 
-      void edit_impl::dump(dump_context & dumpcontext) const
-      {
+      //void edit_impl::dump(dump_context & dumpcontext) const
+      //{
 
-         ::user::interaction::dump(dumpcontext);
+      //   ::user::interaction::dump(dumpcontext);
 
-      }
+      //}
 
 
       void edit_impl::install_message_routing(::channel * pchannel)
@@ -129,8 +132,8 @@ namespace user
 
          ::user::show < edit >::install_message_routing(pchannel);
 
-         MESSAGE_LINK(e_message_create, pchannel, this, &edit_impl::on_message_create);
-         MESSAGE_LINK(e_message_destroy, pchannel, this, &edit_impl::on_message_destroy);
+         MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &edit_impl::on_message_create);
+         MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &edit_impl::on_message_destroy);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &edit_impl::on_message_show_window);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &edit_impl::on_message_left_button_down);
          MESSAGE_LINK(e_message_left_button_up, pchannel, this, &edit_impl::on_message_left_button_up);
@@ -182,7 +185,7 @@ namespace user
 
          auto psession = get_session();
 
-         m_pdata->set_mutex(synchronization());
+         m_pdata->set_synchronization(synchronization());
 
          fork([this]()
             {
@@ -673,14 +676,15 @@ namespace user
       }
 
 
-      void edit_impl::_001GetText(string & str) const
+      void edit_impl::_001GetText(string & str)
       {
 
          m_pdata->_001GetText(str);
 
       }
 
-      void edit_impl::_001GetLayoutText(string & str) const
+
+      void edit_impl::_001GetLayoutText(string & str)
       {
 
          m_pdata->_001GetLayoutText(str);
@@ -856,7 +860,7 @@ namespace user
       }
 
 
-      bool edit_impl::is_text_editable() const
+      bool edit_impl::is_text_editable()
       {
 
          return is_window_enabled() && m_bEditable2;
@@ -864,7 +868,7 @@ namespace user
       }
 
 
-      bool edit_impl::is_text_editor() const
+      bool edit_impl::is_text_editor()
       {
 
          return true;
@@ -975,7 +979,7 @@ namespace user
 
          auto pframe = top_level_frame();
 
-         if (is_null(pframe))
+         if (::is_null(pframe))
          {
 
             return nullptr;
@@ -989,7 +993,7 @@ namespace user
       }
 
 
-      bool edit_impl::keyboard_focus_is_focusable() const
+      bool edit_impl::keyboard_focus_is_focusable()
       {
 
          return is_window_visible() && is_text_editable();
@@ -1324,7 +1328,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(m_pdata->mutex());
+            synchronous_lock synchronouslock(m_pdata->synchronization());
 
             strsize i1 = m_pdata->get_sel_beg();
 
@@ -1543,7 +1547,7 @@ namespace user
                      on_reset_focus_start_tick();
 
                      {
-                        synchronous_lock synchronouslock(m_pdata->mutex());
+                        synchronous_lock synchronouslock(m_pdata->synchronization());
 
                         strsize i1 = m_pdata->get_sel_beg();
 
@@ -1608,7 +1612,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  synchronous_lock synchronouslock(m_pdata->mutex());
+                  synchronous_lock synchronouslock(m_pdata->synchronization());
 
                   double x;
 
@@ -1642,7 +1646,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  synchronous_lock synchronouslock(m_pdata->mutex());
+                  synchronous_lock synchronouslock(m_pdata->synchronization());
 
                   double x;
 
@@ -1680,7 +1684,7 @@ namespace user
                   if (!bShift && m_pdata->m_iSelBeg > m_pdata->m_iSelEnd)
                   {
 
-                     synchronous_lock synchronouslock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->synchronization());
 
                      m_pdata->m_iSelEnd = m_pdata->m_iSelBeg;
 
@@ -1690,7 +1694,7 @@ namespace user
                   else if (!bShift && m_pdata->m_iSelEnd > m_pdata->m_iSelBeg)
                   {
 
-                     synchronous_lock synchronouslock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->synchronization());
 
                      m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
 
@@ -1700,7 +1704,7 @@ namespace user
                   else
                   {
 
-                     synchronous_lock synchronouslock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->synchronization());
 
                      if (m_pdata->m_iSelEnd < m_pdata->_001GetLayoutTextLength())
                      {
@@ -1739,7 +1743,7 @@ namespace user
                   if (!bShift && m_pdata->m_iSelBeg < m_pdata->m_iSelEnd)
                   {
 
-                     synchronous_lock synchronouslock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->synchronization());
 
                      m_pdata->m_iSelEnd = m_pdata->m_iSelBeg;
 
@@ -1749,7 +1753,7 @@ namespace user
                   else if (!bShift && m_pdata->m_iSelEnd < m_pdata->m_iSelBeg)
                   {
 
-                     synchronous_lock synchronouslock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->synchronization());
 
                      m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
 
@@ -1759,7 +1763,7 @@ namespace user
                   else if (m_pdata->m_iSelEnd > 0)
                   {
 
-                     synchronous_lock synchronouslock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->synchronization());
 
                      string strText;
 
@@ -1790,7 +1794,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  synchronous_lock synchronouslock(m_pdata->mutex());
+                  synchronous_lock synchronouslock(m_pdata->synchronization());
 
                   if (bControl)
                   {
@@ -1824,7 +1828,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  synchronous_lock synchronouslock(m_pdata->mutex());
+                  synchronous_lock synchronouslock(m_pdata->synchronization());
 
                   if (bControl)
                   {
@@ -1978,7 +1982,7 @@ namespace user
       }
 
 
-      strsize edit_impl::_001GetTextLength() const
+      strsize edit_impl::_001GetTextLength()
       {
 
          return m_pdata->_001GetTextLength();
@@ -1986,7 +1990,7 @@ namespace user
       }
 
 
-      void edit_impl::_001GetSel(strsize & iBeg, strsize & iEnd) const
+      void edit_impl::_001GetSel(strsize & iBeg, strsize & iEnd)
       {
 
          iBeg = m_pdata->m_iSelBeg;
@@ -1997,7 +2001,7 @@ namespace user
       }
 
 
-      void edit_impl::_001GetSelLineText(string & strText) const
+      void edit_impl::_001GetSelLineText(string & strText)
       {
 
 //         double x;

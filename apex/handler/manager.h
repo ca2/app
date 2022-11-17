@@ -1,4 +1,4 @@
-// Created by camilo on day after ThomasBirthday2021 21:07
+﻿// Created by camilo on day after ThomasBirthday2021 21:07
 #pragma once
 
 
@@ -49,14 +49,14 @@ public:
    virtual void destroy_signal_handling();
 
 
-   virtual void erase_signal_handler(::matter *pmatter);
+   virtual void erase_signal_handler(const ::signal_handler & signalhandler);
 
 
    static bool __s_may_run_signal_handling();
 
-   static void __s_erase_signal_handler_from_any_source(::matter *pmatter);
+   static void __s_erase_signal_handler_from_any_source(const ::signal_handler& signalhandler);
 
-   static void __s_erase_signal_handler(::matter *pmatter);
+   static void __s_erase_signal_handler(const ::signal_handler& signalhandler);
 
    static void __s_post_destroy_signal_handling();
 

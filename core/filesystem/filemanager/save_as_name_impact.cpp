@@ -3,6 +3,7 @@
 #include "data.h"
 #include "document.h"
 #include "acme/constant/id.h"
+#include "acme/exception/exception.h"
 #include "acme/platform/context.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -127,7 +128,7 @@ namespace filemanager
 
       ::user::impact::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == INITIALIZE_ID && ptopic->m_puserelement == this)
+      if (ptopic->m_atom == ID_INITIALIZE && ptopic->m_puserelement == this)
       {
          //            filemanager_document() = pupdate->filemanager_document();
          /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -143,7 +144,7 @@ namespace filemanager
          DISetSection(str);
          _001UpdateColumns();*/
       }
-      else if (ptopic->m_atom == FILTER_ID)
+      else if (ptopic->m_atom == ID_FILTER)
       {
          /*if(ptopic->payload(id_filter).is_empty())
          {

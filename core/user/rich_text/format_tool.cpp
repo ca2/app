@@ -1,8 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "format_tool.h"
 #include "format.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -99,7 +100,7 @@ namespace user
 
       ::user::tool_window::install_message_routing(psender);
 
-      MESSAGE_LINK(e_message_create, psender, this, &format_tool::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, psender, this, &format_tool::on_message_create);
 
    }
 

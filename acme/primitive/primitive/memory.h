@@ -46,6 +46,7 @@ public:
    memory(INTEGRAL i, bool bAligned = false) { m_memory.m_pprimitivememory = this; m_bAligned = bAligned; set_size(i); }
    memory(const ::std::initializer_list < int > & iaList);
    memory(const u8 *, memsize size);
+   memory(void*, memsize size);
    memory(const void *, memsize size);
    memory(enum_copy_clone, const memory_base & memorybase);
    memory(const memory_base & memorybase);

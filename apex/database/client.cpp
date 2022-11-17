@@ -5,7 +5,7 @@
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/parallelization/event.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "apex/handler/predicate.h"
+//#include "apex/handler/predicate.h"
 #include "apex/platform/application.h"
 
 
@@ -43,14 +43,14 @@ namespace database
 
       auto psignal = get_app()->m_papexapplication->get_signal(linkedproperty->m_atom);
 
-      psignal->add_handler(__new(handle_function([this, atom, linkedproperty](::topic * ptopic, ::context * pcontext)
+      psignal->add_signal_handler([this, atom, linkedproperty](::topic * ptopic, ::context * pcontext)
 
       //connect(atom, [atom, linkedproperty](::message::message* pmessage)
          {
 
             data_set_payload(atom, *linkedproperty.m_pproperty);
 
-         })));
+         });
 
       //::add_procedure(get_app()->m_proceduremap[idProcedure], [this, atom]()
       //   {
@@ -208,7 +208,7 @@ namespace database
    //   if (m_pdataserver != nullptr)
    //   {
 
-   //      synchronous_lock synchronouslock(m_pdataserver->mutex());
+   //      synchronous_lock synchronouslock(m_pdataserver->synchronization());
 
    //      m_pdataserver->m_clienta.erase_client(this);
 
@@ -217,7 +217,7 @@ namespace database
    //   if(pserver != nullptr)
    //   {
 
-   //      synchronous_lock synchronouslock(pserver->mutex());
+   //      synchronous_lock synchronouslock(pserver->synchronization());
 
    //      pserver->m_clienta.add_client(this);
 

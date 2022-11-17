@@ -123,11 +123,11 @@ namespace simpledb
 
                auto purl = psystem->url();
 
-               strUrl += purl->url_encode(strKey);
+               strUrl += ::url::encode(strKey);
 
                strUrl += "&value=";
 
-               strUrl += purl->url_encode(strBase64);
+               strUrl += ::url::encode(strBase64);
 
                {
 

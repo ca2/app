@@ -1,10 +1,13 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/_.h" // psystem->ftlibrary()
-//#include "acme/operating_system.h"
+
 ////#include "aura/graphics/draw2d/_component.h"
 //#include "acme/primitive/geometry2d/_impl.h"
+
+
+#include "acme/_operating_system.h"
 
 
 // apt install libcairo2-dev

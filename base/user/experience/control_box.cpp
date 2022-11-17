@@ -395,7 +395,7 @@ namespace experience
       ::user::interaction::install_message_routing(pframewindow);
 
       MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::on_message_show_window);
-      MESSAGE_LINK(e_message_create, pframewindow, this, &control_box::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pframewindow, this, &control_box::on_message_create);
       MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pframewindow, this, &control_box::on_message_left_button_up);

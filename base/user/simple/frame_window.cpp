@@ -175,11 +175,11 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 
    ::experience::frame_window::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_frame_window::on_message_create);
+   MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &simple_frame_window::on_message_create);
    //#ifdef WINDOWS_DESKTOP
       //MESSAGE_LINK(WM_DDE_INITIATE, pchannel, this, &simple_frame_window::_001OnDdeInitiate);
    //#endif
-   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_frame_window::on_message_destroy);
+   MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &simple_frame_window::on_message_destroy);
    MESSAGE_LINK(e_message_close, pchannel, this, &simple_frame_window::on_message_close);
    MESSAGE_LINK(e_message_size, pchannel, this, &simple_frame_window::on_message_size);
    MESSAGE_LINK(e_message_move, pchannel, this, &simple_frame_window::on_message_move);
@@ -250,7 +250,7 @@ void simple_frame_window::task_save_window_placement()
 
       }
 
-      bool bDestroying = m_pprimitiveimpl->is_destroying();
+      bool bDestroying = m_pprimitiveimpl->has_destroying_flag();
 
       if (bDestroying)
       {
@@ -2036,10 +2036,10 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
          initial_frame_placement();
 
-         rectangleFrame = screen_rect();
+         rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_client_rect();
 
          FORMATTED_INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __c_str(const_layout().sketch().display().eflag()));
+         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __string(const_layout().sketch().display().eflag()).c_str());
 
          if (wfi_has_up_down())
          {
@@ -2084,12 +2084,12 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
       }
 
-      rectangleFrame = screen_rect();
+      rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_client_rect();
 
       //pusersystem->set_rect(rectangleFrame);
 
       FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __c_str(const_layout().sketch().display().eflag()));
+      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __string(const_layout().sketch().display().eflag()).c_str());
 
 
    }
@@ -2134,7 +2134,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
    if (pusersystem == nullptr)   // send initial update
    {
 
-      send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (lparam)0, true, true);
+      send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
 
    }
 

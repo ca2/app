@@ -93,7 +93,7 @@
          if (!is_tx_ok())
             return false;
 
-         string anotherappURI = m_strBaseChannel + ":///send?message=" + ::apex::get_system()->url_encode(pszMessage);
+         string anotherappURI = m_strBaseChannel + ":///send?message=" + ::apex::get_system()->::url::encode(pszMessage);
 
          ::winrt::Windows::Foundation::Uri ^uri = ref memory_new ::winrt::Windows::Foundation::Uri(anotherappURI);
 
@@ -128,7 +128,7 @@
 
          memory m;
 
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __string(message) + "," + ::apex::get_system()->url_encode(::apex::get_system()->base64().encode({ pdata, len }));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __string(message) + "," + ::apex::get_system()->::url::encode(::apex::get_system()->base64().encode({ pdata, len }));
 
          ::winrt::Windows::Foundation::Uri ^uri = ref memory_new ::winrt::Windows::Foundation::Uri(anotherappURI);
 

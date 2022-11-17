@@ -1,8 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "handler.h"
 #include "menu_library.h"
 #include "item.h"
 #include "tree_interface.h"
+#include "acme/primitive/data/listener.h"
 
 
 namespace filehandler
@@ -351,7 +352,7 @@ namespace filehandler
       if (pitem)
       {
 
-         straAppId.add(pitem->m_straApp);
+         straAppId.append(pitem->m_straApp);
 
       }
 
@@ -375,7 +376,7 @@ namespace filehandler
       if (pitem)
       {
 
-         straAppId.add(pitem->m_straApp);
+         straAppId.append(pitem->m_straApp);
 
       }
 

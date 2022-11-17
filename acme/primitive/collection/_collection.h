@@ -267,17 +267,6 @@ typedef CLASS_DECL_ACME pointer_array < index_array > index_2darray;
 #include "priority_queue.h"
 
 
-namespace earth
-{
-
- 
-   class CLASS_DECL_ACME time_array :
-      public array < ::earth::time >
-   {
-   };
-
-
-} // namespace earth
 
 
 #include "string_list.h"

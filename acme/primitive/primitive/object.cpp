@@ -1197,7 +1197,7 @@ bool object::check_tasks_finished()
       //    else
       //    {
 
-      //       _synchronous_lock synchronouslockChild(ptaskChild->mutex());
+      //       _synchronous_lock synchronouslockChild(ptaskChild->synchronization());
 
       //       string strType = __type_name(ptaskChild);
 
@@ -1579,49 +1579,49 @@ bool object::__is_child_task(::particle * pparticleTask) const
 //#endif
 
 
-//void object::branch(const ::procedure_array& routinea)
-//{
-//
-//   fork([routinea]()
-//   {
-//
-//      for (auto& routine : routinea)
-//      {
-//
-//         try
-//         {
-//
-//            routine();
-//
-//         }
-//         catch (...)
-//         {
-//
-//         }
-//
-//      }
-//
-//   });
-//
-//}
-//
-//
-//void object::branch_each(const ::procedure_array& routinea)
-//{
-//
-//   for (auto& routine : routinea)
-//   {
-//
-//      fork([routine]()
-//      {
-//
-//         routine();
-//
-//      });
-//
-//   }
-//
-//}
+void object::branch(const ::procedure_array& routinea)
+{
+
+   fork([routinea]()
+   {
+
+      for (auto& routine : routinea)
+      {
+
+         try
+         {
+
+            routine();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+   });
+
+}
+
+
+void object::branch_each(const ::procedure_array& routinea)
+{
+
+   for (auto& routine : routinea)
+   {
+
+      fork([routine]()
+      {
+
+         routine();
+
+      });
+
+   }
+
+}
 
 
 ::task_pointer object::defer_branch(const ::atom& atom, const ::procedure & procedure, enum_priority epriority)
@@ -1880,7 +1880,7 @@ void object::task_erase(::task* ptask)
 
       }
 
-      //_synchronous_lock slChild(ptask->mutex());
+      //_synchronous_lock slChild(ptask->synchronization());
 
       //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       //{
@@ -3498,7 +3498,7 @@ bool object::IsSerializable() const
 
    //   auto ptask = ::get_task();
 
-   //   _synchronous_lock synchronouslock(ptask->mutex());
+   //   _synchronous_lock synchronouslock(ptask->synchronization());
 
    //   if (ptask && ptask->m_bIsPredicate)
    //   {
@@ -3667,7 +3667,9 @@ bool object::IsSerializable() const
 ::acme::application * object::get_app() const
 {
 
-   return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication : nullptr;
+   //return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication : nullptr;
+   
+   return ((::object *)this)->::matter::acmeapplication();
 
 }
 

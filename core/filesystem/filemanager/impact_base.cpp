@@ -1,10 +1,11 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "impact_base.h"
 #include "document.h"
 #include "tab_impact.h"
 #include "data.h"
 #include "operation_document.h"
 #include "operation_thread.h"
+#include "operation.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/platform/system.h"
@@ -57,7 +58,7 @@ filemanager_impact_base::~filemanager_impact_base()
 ::filemanager::document * filemanager_impact_base::get_document()
 {
 
-   return ::filemanager_impact_base::get_document();
+   return filemanager_document();
 
 }
 
@@ -262,7 +263,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
    if (ptopic->m_atom == id_initialize)
    {
 
-      if (filemanager_document() == ptopic->cast < ::user::document >(DOCUMENT_ID))
+      if (filemanager_document() == ptopic->cast < ::user::document >(ID_DOCUMENT))
       {
 
          ::pointer<::database::client>pclient = parent_frame();

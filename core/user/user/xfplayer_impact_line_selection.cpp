@@ -1,9 +1,9 @@
-#include "framework.h"
-#include "acme/constant/timer.h"
-/////#include "core/user/user/_component.h"
-#include "aura/windowing/window.h"
+﻿#include "framework.h"
 #include "xfplayer_impact_line_selection.h"
 #include "xfplayer_impact_line.h"
+#include "acme/constant/message.h"
+#include "acme/constant/timer.h"
+#include "aura/windowing/window.h"
 #include "aura/message/user.h"
 #include "aura/user/user/interaction.h"
 

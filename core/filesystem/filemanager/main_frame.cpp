@@ -1,6 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "main_frame.h"
 #include "document.h"
+#include "base/user/user/impact.h"
 
 
 namespace filemanager

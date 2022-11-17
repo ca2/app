@@ -160,7 +160,7 @@
 //
 //         }
 //
-//         stra[i] = ::aura::get_system()->url().url_decode(stra[i]);
+//         stra[i] = ::aura::get_system()->url().::url::decode(stra[i]);
 //
 //      }
 //

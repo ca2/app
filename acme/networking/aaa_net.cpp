@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "net.h"
 #include "__string.h"
 #include "acme/exception/parsing.h"
@@ -9,7 +9,9 @@
 CLASS_DECL_ACME string url_decode(const ::string & strParam)
 {
 
-   string str(strParam);
+   return url_decode(strParam, strParam.get_length());
+
+   /*string str(strParam);
 
    string strDecode;
 
@@ -54,7 +56,7 @@ CLASS_DECL_ACME string url_decode(const ::string & strParam)
 
    }
 
-   return strDecode;
+   return strDecode;*/
 
 
 }
@@ -67,7 +69,9 @@ string url_decode(const char * pszUrl,strsize iLen)
 
    string strDecode;
 
-   char * psz = strDecode.get_string_buffer(iLen * 4);
+   char * pszStart = strDecode.get_string_buffer(iLen * 4);
+
+   auto psz = pszStart;
 
    strsize i = 0;
 
@@ -140,7 +144,7 @@ string url_decode(const char * pszUrl,strsize iLen)
 
    strDecode.release_string_buffer(iLen);
 
-   return strDecode;
+   return ::move(strDecode);
 
 }
 
@@ -575,58 +579,58 @@ CLASS_DECL_ACME bool is_url(const char* pszCandidate)
 
 
 
-CLASS_DECL_ACME string url_decode(const char* psz)
-{
-
-   string str(psz);
-
-   string strDecode;
-
-   str.replace_with(" ", "+");
-
-   strsize iStart = 0;
-
-   while (true)
-   {
-
-      strsize iFind = str.find("%", iStart);
-
-      if (iFind == -1)
-      {
-         strDecode += str.Mid(iStart);
-         break;
-      }
-
-      strDecode += str.Mid(iStart, iFind - iStart);
-
-      if (str[iFind + 1] == '%')
-      {
-
-         strDecode += "%";
-         iStart = iFind + 2;
-
-      }
-      else
-      {
-
-         char ch = (char)strtol(str.Mid(iFind + 1, 2), nullptr, 16);
-
-         if (ch != 0)
-         {
-            strDecode += ch;
-         }
-
-         iStart = iFind + 3;
-
-      }
-
-
-   }
-
-   return strDecode;
-
-
-}
+//CLASS_DECL_ACME string url_decode(const char* psz)
+//{
+//
+//   string str(psz);
+//
+//   string strDecode;
+//
+//   str.replace_with(" ", "+");
+//
+//   strsize iStart = 0;
+//
+//   while (true)
+//   {
+//
+//      strsize iFind = str.find("%", iStart);
+//
+//      if (iFind == -1)
+//      {
+//         strDecode += str.Mid(iStart);
+//         break;
+//      }
+//
+//      strDecode += str.Mid(iStart, iFind - iStart);
+//
+//      if (str[iFind + 1] == '%')
+//      {
+//
+//         strDecode += "%";
+//         iStart = iFind + 2;
+//
+//      }
+//      else
+//      {
+//
+//         char ch = (char)strtol(str.Mid(iFind + 1, 2), nullptr, 16);
+//
+//         if (ch != 0)
+//         {
+//            strDecode += ch;
+//         }
+//
+//         iStart = iFind + 3;
+//
+//      }
+//
+//
+//   }
+//
+//   return ::move(strDecode);
+//
+//
+//}
 
 
 

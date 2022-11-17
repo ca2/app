@@ -1,4 +1,4 @@
-// Created by camilo on 2021-09-30 08:05 <3ThomasBorregaardS�rensen!!
+﻿// Created by camilo on 2021-09-30 08:05 <3ThomasBorregaardS�rensen!!
 #pragma once
 
 
@@ -51,6 +51,8 @@ enum enum_flag : u64
 #endif
    e_flag_synchronous = 1ll << 33,
    e_flag_shared = 1ll << 34,
+   e_flag_read_only = 1ll << 35,
+   e_flag_owner = 1ll << 35,
 
 };
 

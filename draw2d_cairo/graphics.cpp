@@ -5254,7 +5254,7 @@ namespace draw2d_cairo
       else if (pbrush->m_ebrush == ::draw2d::e_brush_pattern)
       {
 
-         if (!::is_ok(pbrush->m_pimage))
+         if(pbrush->m_pimage.nok())
          {
 
             return false;

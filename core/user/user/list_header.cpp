@@ -3,6 +3,7 @@
 #include "list_header.h"
 #include "list_column.h"
 #include "list_column_array.h"
+#include "acme/constant/message.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -949,7 +950,7 @@ namespace user
    }
 
 
-   ::point_i32 list_header::get_parent_context_offset() const
+   ::point_i32 list_header::get_parent_context_offset()
    {
 
       ::pointer<::user::interaction>puser = get_parent();

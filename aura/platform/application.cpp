@@ -517,7 +517,7 @@ namespace aura
             //   if (str.begins_eat_ci("send?message="))
             //   {
 
-            //      m_pinterprocesscommunication->_handle_call(m_pinterprocesscommunication->m_prx, purl->url_decode(str));
+            //      m_pinterprocesscommunication->_handle_call(m_pinterprocesscommunication->m_prx, ::url::decode(str));
 
             //   }
             //   else if (str.begins_eat_ci("send?messagebin="))
@@ -536,7 +536,7 @@ namespace aura
 
             //         auto pbase64 = psystem->base64();
 
-            //         pbase64->decode(m, purl->url_decode(str.Mid(iFind + 1)));
+            //         pbase64->decode(m, ::url::decode(str.Mid(iFind + 1)));
 
             //         m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, message, ::move(m));
 
@@ -4812,7 +4812,7 @@ retry_license:
 
       auto purl = psystem->url();
 
-      strUrl += purl->url_encode(strRelative);
+      strUrl += ::url::encode(strRelative);
 
       if (psession == nullptr)
       {

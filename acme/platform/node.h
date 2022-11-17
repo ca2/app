@@ -124,6 +124,7 @@ namespace acme
       virtual void call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set, int * piExitCode);
 
 
+      virtual ::pointer < ::particle > create_mutex();
 //#ifdef LINUX
 //
 //      virtual enum_linux_distribution get_linux_distribution() const;

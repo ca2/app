@@ -1,24 +1,28 @@
 ﻿#include "framework.h"
-#include "apex/filesystem/filesystem/dir_context.h"
-#include "apex/filesystem/filesystem/file_context.h"
-#include "base/user/user/tab_pane.h"
-#include "core/user/user/font_list.h"
-#include "core/user/user/user.h"
 #include "pane_tab_impact.h"
 #include "font_impact.h"
 #include "color_impact.h"
-#include "core/filesystem/filemanager/document.h"
-#include "core/filesystem/filemanager/data.h"
-#include "core/platform/application.h"
-#include "core/platform/session.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/platform/system.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/create.h"
+#include "aura/message/user.h"
+#include "aura/user/user/window_util.h"
+#include "axis/account/credentials.h"
+#include "base/user/user/tab_pane.h"
 #include "base/user/user/frame_window.h"
 #include "base/user/form/impact.h"
 #include "base/user/user/tab_data.h"
 #include "base/user/user/impact_system.h"
-#include "axis/account/credentials.h"
+#include "core/user/user/font_list.h"
+#include "core/user/user/user.h"
+#include "core/filesystem/filemanager/document.h"
+#include "core/filesystem/filemanager/data.h"
+#include "core/platform/application.h"
+#include "core/platform/session.h"
 #include "core/user/account/impact.h"
-#include "aura/message/user.h"
-#include "aura/user/user/window_util.h"
 
 
 namespace core
@@ -157,7 +161,7 @@ namespace userex
 
       ::user::tab_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_tab_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &pane_tab_impact::on_message_create);
 
       add_command_handler("file_save_as", { this,  &pane_tab_impact::_001OnFileSaveAs });
       add_command_prober("file_save_as", { this,  &pane_tab_impact::_001OnUpdateFileSaveAs });

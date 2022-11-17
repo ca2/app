@@ -1,12 +1,13 @@
 ﻿#include "framework.h"
 #include "context_image.h"
+#include "acme/exception/exception.h"
 #include "aura/platform/context.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/image.h"
 
 
-#include <FreeImage.h>
+#include <FreeImage/FreeImage.h>
 
 
 CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload & payloadFile);
@@ -353,7 +354,7 @@ namespace imaging_freeimage
          
          pcontextimage->load_svg(pimage, memory);
 
-         if (::is_ok(pimage))
+         if (pimage->is_ok())
          {
 
             return;
@@ -379,7 +380,7 @@ namespace imaging_freeimage
 
          pimage->on_load_image();
 
-         pimage->set_ok();
+         pimage->set_ok_flag();
 
          pimage->m_estatus = ::success;
 
@@ -553,7 +554,7 @@ namespace imaging_freeimage
 
       pimage->on_load_image();
 
-      pimage->set_ok();
+      pimage->set_ok_flag();
 
       pimage->m_estatus = ::success;
 

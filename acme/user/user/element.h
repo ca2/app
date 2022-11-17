@@ -1,4 +1,4 @@
-// Injected/Split in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
+﻿// Injected/Split in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
 #pragma once
 
 
@@ -531,7 +531,7 @@ namespace user
       virtual enum_type get_window_type();
 
 
-      virtual void add_child_handler(::matter * pmatter, const ::atom & idChild, bool bPriority = false);
+      virtual void add_child_handler(const ::signal_handler& signalhandler, const ::atom & idChild, bool bPriority = false);
 
 
 

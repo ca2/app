@@ -1,9 +1,10 @@
-#include "framework.h"
-
-//#include "axis/mathematics/calculator/_.h"
+﻿#include "framework.h"
 #include "calculator_edit_impact.h"
-//#include "aura/update.h"
 #include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/exception/exception.h"
+#include "axis/mathematics/calculator/parser.h"
+#include "axis/mathematics/calculator/element.h"
 
 
 namespace calculator
@@ -27,7 +28,7 @@ namespace calculator
    }
 
 
-   bool plain_edit_impact::keyboard_focus_is_focusable() const
+   bool plain_edit_impact::keyboard_focus_is_focusable()
    {
 
       return is_window_enabled() && is_window_visible();
@@ -48,12 +49,13 @@ namespace calculator
 
    }
 
+
    void plain_edit_impact::install_message_routing(::channel * pchannel)
    {
     
       ::user::show < ::user::plain_edit >::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &plain_edit_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &plain_edit_impact::on_message_create);
       
    }
 
@@ -112,7 +114,7 @@ namespace calculator
             e.m_iStart = -1;
             e.m_tick.Now();
 
-            ::calculator::particle * pparticle = nullptr;
+            ::calculator::element * pcalculatorelement = nullptr;
 
             string strSource;
 
@@ -214,11 +216,13 @@ namespace calculator
             {
                strFormat = m_strFormat;
             }
+            
             strExp.trim();
+
             try
             {
 
-               pelement = pparser->parse(strExp);
+               pcalculatorelement = pparser->parse(strExp);
                //throw ::exception(::exception("now a simple exception here"));
 
             }
@@ -234,10 +238,10 @@ namespace calculator
 
             string str;
 
-            if (pelement != nullptr)
+            if (pcalculatorelement != nullptr)
             {
 
-               m_result = pelement->get_result();
+               m_result = pcalculatorelement->get_result();
 
                str = strExp;
 

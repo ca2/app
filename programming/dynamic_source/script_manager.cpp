@@ -254,7 +254,7 @@ namespace dynamic_source
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->dir()->watcher().add_watch(m_strNetseedDsCa2Path, { e_as, pwatcher }, true);
+         pcontext->m_papexcontext->dir()->watcher().add_watch(m_strNetseedDsCa2Path, pwatcher, true);
 
       }
 
@@ -276,7 +276,7 @@ namespace dynamic_source
 
             pwatcher->m_pmanager = this;
 
-            pcontext->m_papexcontext->dir()->watcher().add_watch(path, { e_as, pwatcher }, true);
+            pcontext->m_papexcontext->dir()->watcher().add_watch(path, pwatcher, true);
 
          }
 
@@ -349,7 +349,7 @@ namespace dynamic_source
 
       pmain->run_property("on_create");
 
-      pmain->call_routines_with_id(CREATE_ROUTINE);
+      pmain->call_routines_with_id(ID_CREATE);
 
       pmain->m_pmain = pmain;
       
@@ -365,7 +365,7 @@ namespace dynamic_source
 
       pinstance->run_property("on_create");
 
-      pinstance->call_routines_with_id(CREATE_ROUTINE);
+      pinstance->call_routines_with_id(ID_CREATE);
 
       auto pthread = pdssocket->get_thread();
 
@@ -644,7 +644,7 @@ namespace dynamic_source
 
             pinstance->run_property("on_create");
             
-            pinstance->call_routines_with_id(CREATE_ROUTINE);
+            pinstance->call_routines_with_id(ID_CREATE);
 
             if (pinstanceParent->m_pmain->m_iDebug > 0)
             {

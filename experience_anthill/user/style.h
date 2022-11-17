@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/user/style.h"
@@ -35,7 +35,7 @@ namespace experience_anthill
       void initialize_theme() override;
 
 
-      ::color::color get_color(const ::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate) const override;
+      ::color::color get_color(::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate) override;
 
 
       //      virtual bool get_color(color32_t & color32, ::user::e_color ecolor, ::user::interaction * pframewindow) override;

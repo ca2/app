@@ -30,7 +30,7 @@ namespace user
       split_layout::install_message_routing(pchannel);
       impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &split_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &split_impact::on_message_create);
 
       //MESSAGE_LINK(e_message_size, pchannel, this, &split_impact::on_message_size);
       //MESSAGE_LINK(e_message_show_window, pchannel, this, &split_impact::on_message_show_window);

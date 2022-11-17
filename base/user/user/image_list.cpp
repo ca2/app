@@ -1,9 +1,10 @@
 ﻿#include "framework.h"
 #include "image_list.h"
-#include "acme/array.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/exception/exception.h"
 #include "acme/handler/item.h"
+#include "acme/primitive/collection/_array.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/array.h"
 #include "aura/message/user.h"
@@ -117,8 +118,8 @@ namespace user
 
       //install_click_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &image_list::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &image_list::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &image_list::on_message_destroy);
 
    }
 
@@ -420,7 +421,7 @@ namespace user
 
       //      ::image_pointer pimageSrc = m_imagea[item];
 
-      //      if (::is_ok(pimageSrc))
+      //      if (pimageSrc.ok())
       //      {
 
       //         if (m_imageaThumb.get_size() < m_imagea.get_size())
@@ -703,8 +704,8 @@ namespace user
       ::user::impact::install_message_routing(pchannel);
       ::user::image_list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &image_list_impact::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_impact::on_message_destroy);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &image_list_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &image_list_impact::on_message_destroy);
 
    }
 

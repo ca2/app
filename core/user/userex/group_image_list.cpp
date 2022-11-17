@@ -1,14 +1,17 @@
 ﻿#include "framework.h"
-#include "acme/handler/item.h"
-#include "aura/graphics/image/context_image.h"
 #include "group_image_list.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/exception/exception.h"
+#include "aura/graphics/image/context_image.h"
+#include "acme/handler/item.h"
+#include "aura/message/user.h"
+#include "aura/platform/context.h"
 #include "base/user/menu/button.h"
 #include "base/user/menu/menu.h"
 #include "base/user/menu/item.h"
 #include "base/user/menu/item_ptra.h"
 #include "base/user/user/user.h"
-#include "aura/message/user.h"
-#include "aura/platform/context.h"
 
 
 namespace userex
@@ -34,20 +37,20 @@ namespace userex
 
 
 
-   void group_image_list_impact::assert_ok() const
-   {
+   //void group_image_list_impact::assert_ok() const
+   //{
 
-      ::user::impact::assert_ok();
+   //   ::user::impact::assert_ok();
 
-   }
+   //}
 
 
-   void group_image_list_impact::dump(dump_context & dumpcontext) const
-   {
+   //void group_image_list_impact::dump(dump_context & dumpcontext) const
+   //{
 
-      ::user::impact::dump(dumpcontext);
+   //   ::user::impact::dump(dumpcontext);
 
-   }
+   //}
 
 
    void group_image_list_impact::handle(::topic * ptopic, ::context * pcontext)
@@ -82,7 +85,7 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &group_image_list_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &group_image_list_impact::on_message_create);
 
 
    }

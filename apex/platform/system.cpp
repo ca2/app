@@ -3105,12 +3105,12 @@ pacmedirectory->create("/ca2core");
 
 
 
-   //string system::url_encode(const ::string & str)
+   //string system::::url::encode(const ::string & str)
    //{
 
    //   //throw ::interface_only();
 
-   //   return url_encode(str);
+   //   return ::url::encode(str);
 
    //}
 
@@ -3794,13 +3794,13 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
          if (strBrowser == "firefox")
          {
 
-            //strUrl = "https://ca2.software/open_f___?url=" + psystem->url_encode(strUrl) + "&profile=" + psystem->url_encode(strProfile) + "&target=" + psystem->url_encode(strTarget);
+            //strUrl = "https://ca2.software/open_f___?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
 
          }
          else
          {
 
-            //strUrl = "https://ca2.software/open_tab?url=" + psystem->url_encode(strUrl) + "&profile=" + psystem->url_encode(strProfile) + "&target=" + psystem->url_encode(strTarget);
+            //strUrl = "https://ca2.software/open_tab?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
 
          }
 
@@ -4147,7 +4147,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
          
          auto purl = psystem->url();
 
-         string strApp = purl->url_decode(path);
+         string strApp = ::url::decode(path);
 
          // 0x00010000 NSWorkspaceLaunchAsync
          // 0x00080000 NSWorkspaceLaunchNewInstance
@@ -4472,12 +4472,12 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
    }
 
 
-   string system::url_encode(const ::string & str)
-   {
+   //string system::::url::encode(const ::string & str)
+   //{
 
-      return m_purldepartment->url_encode(str);
+   //   return m_purldepartment->::url::encode(str);
 
-   }
+   //}
 
 
 } // namespace apex
@@ -5017,15 +5017,15 @@ namespace apex
    }
 
 
-   void system::add_handler(::matter * pmatter, bool bPriority)
+   void system::add_handler(const ::signal_handler & signalhandler, bool bPriority)
    {
 
-      ::apex::context::add_handler(pmatter, bPriority);
+      ::apex::context::add_signal_handler(signalhandler, bPriority);
 
    }
 
 
-   void system::add_signal_handler(::matter * pmatter, const ::atom & atomSignal)
+   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal)
    {
 
       auto psignal = get_signal(atomSignal);
@@ -5037,7 +5037,7 @@ namespace apex
 
       }
 
-      psignal->add_handler(pmatter);
+      psignal->add_signal_handler(signalhandler);
 
    }
 

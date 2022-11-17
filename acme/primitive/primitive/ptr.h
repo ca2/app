@@ -1,4 +1,4 @@
-//
+﻿//
 //  simple_pointer.h
 //  acme
 //
@@ -184,6 +184,8 @@ class ptr
       
    }
    
+
+   operator u32hash() const { return { (::u32)(::uptr)m_p }; }
 
 };
 

@@ -186,6 +186,13 @@
       <Profile>false</Profile>
     </Link>
     <PreBuildEvent />
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep />
+    <CustomBuildStep />
+    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">
     <ClCompile>
@@ -281,7 +288,7 @@
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <EnableModules>false</EnableModules>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalOptions>/bigobj</AdditionalOptions>
@@ -300,6 +307,12 @@
       <Profile>false</Profile>
     </Link>
     <PreBuildEvent />
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep />
+    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">
     <ClCompile>
@@ -500,10 +513,10 @@
     <ClInclude Include="inline\_new_impl.h" />
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
+    <ClInclude Include="mathematics\calculator\element.h" />
     <ClInclude Include="mathematics\_.h" />
     <ClInclude Include="mathematics\_component.h" />
     <ClInclude Include="math\calculator\calculator.h" />
-    <ClInclude Include="math\calculator\element.h" />
     <ClInclude Include="math\calculator\parser.h" />
     <ClInclude Include="math\calculator\parser_exception.h" />
     <ClInclude Include="math\calculator\result.h" />

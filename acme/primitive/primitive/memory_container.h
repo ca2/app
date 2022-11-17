@@ -27,7 +27,7 @@ public:
 
    memory_container(memsize size = 0);
    memory_container(const memory_container & container);
-   memory_container(void * pdata, memsize size);
+   memory_container(const void * pdata, memsize size);
    template < primitive_payload PAYLOAD >
    memory_container(PAYLOAD & payload);
    memory_container(memory_base & memory);

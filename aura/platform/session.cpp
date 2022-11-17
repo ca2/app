@@ -1371,7 +1371,7 @@ namespace aura
 
    //            synchronous_lock synchronouslock(this->synchronization());
 
-   //            ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
+   //            ::acme::container::copy(uiptraToolWindow, m_uiptraToolWindow);
 
    //         }
 
@@ -2470,7 +2470,7 @@ namespace aura
    //      if (str.begins_eat_ci("file://"))
    //      {
 
-   //         str = purl->url_decode(str);
+   //         str = ::url::decode(str);
 
    //      }
 

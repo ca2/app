@@ -46,11 +46,11 @@ namespace html
       }
 
 
-      void element::initialize_html_impl_elemental(::html_data * pdata)
+      void element::initialize_html_impl_elemental(::html_data* pdata)
       {
 
          //auto estatus = 
-         
+
          initialize(pdata);
 
          //if (!estatus)
@@ -65,7 +65,7 @@ namespace html
       }
 
 
-      void element::delete_implementation(html_data * pdocument)
+      void element::delete_implementation(html_data* pdocument)
       {
 
          m_cxMax = -2;
@@ -74,12 +74,12 @@ namespace html
       }
 
 
-      bool element::hit_test(html_data * pdata, const ::point_f32 & point)
+      bool element::hit_test(html_data* pdata, const ::point_f32& point)
       {
 
          __UNREFERENCED_PARAMETER(pdata);
 
-//          e_tag etype = m_pelemental->m_etag;_001
+         //          e_tag etype = m_pelemental->m_etag;_001
 
          string strValue = m_pelemental->m_strBody;
 
@@ -95,7 +95,7 @@ namespace html
       }
 
 
-      double element::bound_hit_test(html_data * pdata, const ::point_f32 & point)
+      double element::bound_hit_test(html_data* pdata, const ::point_f32& point)
       {
 
          __UNREFERENCED_PARAMETER(pdata);
@@ -119,7 +119,7 @@ namespace html
             Δx = 0;
          }
 
-         if (point.y <m_box.top)
+         if (point.y < m_box.top)
          {
             Δy = m_box.top - point.y;
          }
@@ -135,16 +135,16 @@ namespace html
          return sqrt(Δx * Δx + Δy * Δy);
       }
 
-      void element::OnLButtonDown(::message::message * pmessage)
+      void element::OnLButtonDown(::message::message* pmessage)
       {
-         
+
          ::pointer<::html::message>phtml(pmessage);
-         
+
          ::pointer<::message::mouse>pmouse = phtml->m_pmessage;
-         
+
          if (has_link())
          {
-            
+
             pmouse->m_bRet = true;
 
             pmouse->m_lresult = 1;
@@ -154,7 +154,7 @@ namespace html
       }
 
 
-      void element::OnMouseMove(::message::message * pmessage)
+      void element::OnMouseMove(::message::message* pmessage)
       {
 
          ::pointer<::html::message>phtml(pmessage);
@@ -180,7 +180,7 @@ namespace html
 
                string strClass = m_pelemental->m_strClass;
 
-               style * pstyle = phtml->m_phtmldata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, "hover", "");
+               style* pstyle = phtml->m_phtmldata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, "hover", "");
 
                if (pstyle == nullptr)
                {
@@ -228,9 +228,9 @@ namespace html
       }
 
 
-      void element::OnLButtonUp(::message::message * pmessage)
+      void element::OnLButtonUp(::message::message* pmessage)
       {
-         
+
          ::pointer<::html::message>phtml(pmessage);
 
          if (has_link())
@@ -243,7 +243,7 @@ namespace html
       }
 
 
-      void element::implement_phase1(html_data * pdata, ::html::element * pelemental)
+      void element::implement_phase1(html_data* pdata, ::html::element* pelemental)
       {
 
          __UNREFERENCED_PARAMETER(pdata);
@@ -255,7 +255,7 @@ namespace html
       }
 
 
-      void element::implement_phase2(html_data * pdata)
+      void element::implement_phase2(html_data* pdata)
       {
 
          __UNREFERENCED_PARAMETER(pdata);
@@ -263,7 +263,7 @@ namespace html
       }
 
 
-      void element::layout_phase0(html_data * pdata)
+      void element::layout_phase0(html_data* pdata)
       {
 
          m_box.left = 0;
@@ -279,7 +279,7 @@ namespace html
       }
 
 
-      void element::container_raw_max_width(html_data * pdata)
+      void element::container_raw_max_width(html_data* pdata)
       {
 
          if (m_pelemental->m_elementalptra.is_empty())
@@ -289,7 +289,7 @@ namespace html
 
          }
 
-//         e_tag etag = m_pelemental->m_etag;
+         //         e_tag etag = m_pelemental->m_etag;
 
          float cxMax = 0.f;
 
@@ -302,7 +302,7 @@ namespace html
          for (index i = 0; i < m_pelemental->m_elementalptra.get_count(); i++)
          {
 
-            element * pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
+            element* pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
 
             if (pelemental == nullptr)
                continue;
@@ -341,7 +341,7 @@ namespace html
       }
 
 
-      void element::layout_phase0_end(html_data * pdata)
+      void element::layout_phase0_end(html_data* pdata)
       {
 
          if (m_pelemental->m_elementalptra.is_empty())
@@ -356,7 +356,7 @@ namespace html
       }
 
 
-      index element::find(element * pelemental)
+      index element::find(element* pelemental)
       {
 
          for (index i = 0; i < m_pelemental->m_pparent->m_elementalptra.get_count(); i++)
@@ -375,7 +375,7 @@ namespace html
 
       }
 
-      element * element::get_sibling(index i)
+      element* element::get_sibling(index i)
       {
 
          if (i < 0)
@@ -389,7 +389,7 @@ namespace html
       }
 
 
-      element * element::get_next_sibling()
+      element* element::get_next_sibling()
       {
 
          if (m_pelemental->m_pstyle->m_edisplay == display_block)
@@ -406,7 +406,7 @@ namespace html
 
          }
 
-         element * pelemental = get_sibling(find(this) + 1);
+         element* pelemental = get_sibling(find(this) + 1);
 
          if (pelemental == nullptr)
          {
@@ -441,12 +441,12 @@ namespace html
       }
 
 
-      element * element::get_first_sibling()
+      element* element::get_first_sibling()
       {
 
-         element * pelemental = this;
+         element* pelemental = this;
 
-         element * pelementalPrevious = this;
+         element* pelementalPrevious = this;
 
          while (true)
          {
@@ -507,7 +507,7 @@ namespace html
 
       }
 
-      element * element::get_previous_sibling()
+      element* element::get_previous_sibling()
       {
 
          return get_sibling(find(this) - 1);
@@ -515,7 +515,7 @@ namespace html
       }
 
 
-      bool element::layout_phase1(html_data * pdata)
+      bool element::layout_phase1(html_data* pdata)
       {
 
          if (m_pelemental == nullptr)
@@ -527,17 +527,17 @@ namespace html
          e_tag etag = m_pelemental->m_etag;
 
          if (etag == tag_html
-               || etag == tag_head
-               || etag == tag_style
-               || etag == tag_link
-               || etag == tag_script
-               || etag == tag_title
-               || etag == tag_meta
-               || etag == tag_body)
+            || etag == tag_head
+            || etag == tag_style
+            || etag == tag_link
+            || etag == tag_script
+            || etag == tag_title
+            || etag == tag_meta
+            || etag == tag_body)
             return false;
 
          bool bBlock = m_pelemental->m_pstyle->m_edisplay == display_block
-                       || m_pelemental->m_pstyle->m_edisplay == display_table;
+            || m_pelemental->m_pstyle->m_edisplay == display_table;
 
          string str = m_pelemental->m_strBody;
 
@@ -574,7 +574,7 @@ namespace html
 
          float fTotalMin = 0;
 
-         element * pelemental = get_first_sibling();
+         element* pelemental = get_first_sibling();
 
          int iCount = 0;
 
@@ -617,7 +617,7 @@ namespace html
       }
 
 
-      void element::layout_phase1_end(html_data * pdata)
+      void element::layout_phase1_end(html_data* pdata)
       {
 
          if (m_pelemental == nullptr)
@@ -629,12 +629,12 @@ namespace html
          e_tag etag = m_pelemental->m_etag;
 
          if (etag == tag_html
-               || etag == tag_head
-               || etag == tag_style
-               || etag == tag_link
-               || etag == tag_script
-               || etag == tag_title
-               || etag == tag_meta)
+            || etag == tag_head
+            || etag == tag_style
+            || etag == tag_link
+            || etag == tag_script
+            || etag == tag_title
+            || etag == tag_meta)
             return;
 
          if (m_pelemental->m_elementalptra.is_empty() || etag == tag_select)
@@ -672,7 +672,7 @@ namespace html
       }
 
 
-      void element::layout_phase2(html_data * pdata)
+      void element::layout_phase2(html_data* pdata)
       {
 
          __UNREFERENCED_PARAMETER(pdata);
@@ -680,12 +680,12 @@ namespace html
       }
 
 
-      void element::layout_phase3(html_data * pdata)
+      void element::layout_phase3(html_data* pdata)
       {
 
          move_to(pdata);
 
-//         bool bParent = false;
+         //         bool bParent = false;
 
          e_tag etag = m_pelemental->m_etag;
 
@@ -693,11 +693,11 @@ namespace html
             return;
 
          if (etag == tag_html
-               || etag == tag_head
-               || etag == tag_style
-               || etag == tag_script
-               || etag == tag_table
-               || etag == tag_tbody)
+            || etag == tag_head
+            || etag == tag_style
+            || etag == tag_script
+            || etag == tag_table
+            || etag == tag_tbody)
          {
             return;
          }
@@ -721,7 +721,7 @@ namespace html
             // assume all elements in the line 
             // wrapped by this <br> tag will be
             // base-line-aligned.
-             
+
             for (auto i = pparent->m_pimpl->m_iLayoutChildLineStartIndex; i < pparent->m_pimpl->m_iLayoutChildIndex; i++)
             {
 
@@ -742,7 +742,7 @@ namespace html
          }
 
 
-         ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (this);
+         ::html::impl::cell* pcell = dynamic_cast <::html::impl::cell*> (this);
          float iTableBorder = 0;
          if (pcell != nullptr)
          {
@@ -776,7 +776,7 @@ namespace html
       }
 
 
-      void element::move_to(html_data * pdata)
+      void element::move_to(html_data* pdata)
       {
 
          move_to(pdata, (float)pdata->m_pcoredata->m_layoutstate3.m_x, (float)pdata->m_pcoredata->m_layoutstate3.m_y);
@@ -784,7 +784,7 @@ namespace html
       }
 
 
-      void element::_001OnDraw(html_data * pdata)
+      void element::_001OnDraw(html_data* pdata)
       {
 
          ::draw2d::graphics_pointer pgraphics = pdata->m_pcoredata->m_pgraphics;
@@ -843,7 +843,7 @@ namespace html
             {
                ::point_f32 point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                ::point_f32 point2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-               auto ppen = pdata->__create < ::draw2d::pen > ();
+               auto ppen = pdata->__create < ::draw2d::pen >();
                ppen->create_solid(m_border.left, m_border.crLeft);
                pgraphics->set(ppen);
                pgraphics->draw_line(point1.x, point1.y, point2.x, point2.y);
@@ -855,7 +855,7 @@ namespace html
                pa[1] = ::point_f64(bIn.left, bIn.top);
                pa[2] = ::point_f64(bIn.left, bIn.bottom);
                pa[3] = ::point_f64(bOut.left, bOut.bottom);
-               auto pbrush = pdata->__create < ::draw2d::brush > ();
+               auto pbrush = pdata->__create < ::draw2d::brush >();
                pbrush->create_solid(m_border.crLeft);
                pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
@@ -867,7 +867,7 @@ namespace html
             {
                ::point_f32 point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                ::point_f32 point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-               auto ppen = pdata->__create < ::draw2d::pen > ();
+               auto ppen = pdata->__create < ::draw2d::pen >();
                ppen->create_solid(m_border.top, m_border.crTop);
                pgraphics->set(ppen);
                pgraphics->draw_line(point1.x, point1.y, point2.x, point2.y);
@@ -879,7 +879,7 @@ namespace html
                pa[1] = ::point_f64(bOut.right, bOut.top);
                pa[2] = ::point_f64(bIn.right, bIn.top);
                pa[3] = ::point_f64(bIn.left, bIn.top);
-               auto pbrush = pdata->__create < ::draw2d::brush > ();
+               auto pbrush = pdata->__create < ::draw2d::brush >();
                pbrush->create_solid(m_border.crTop);
                pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
@@ -891,7 +891,7 @@ namespace html
             {
                ::point_f32 point1(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                ::point_f32 point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-               auto ppen = pdata->__create < ::draw2d::pen > ();
+               auto ppen = pdata->__create < ::draw2d::pen >();
                ppen->create_solid(m_border.right, m_border.crRight);
                pgraphics->set(ppen);
                pgraphics->draw_line(point1.x, point1.y, point2.x, point2.y);
@@ -903,7 +903,7 @@ namespace html
                pa[1] = ::point_f64(bOut.right, bOut.bottom);
                pa[2] = ::point_f64(bIn.right, bIn.bottom);
                pa[3] = ::point_f64(bIn.right, bIn.top);
-               auto pbrush = pdata->__create < ::draw2d::brush > ();
+               auto pbrush = pdata->__create < ::draw2d::brush >();
                pbrush->create_solid(m_border.crRight);
                pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
@@ -915,7 +915,7 @@ namespace html
             {
                ::point_f32 point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                ::point_f32 point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-               auto ppen = pdata->__create < ::draw2d::pen > ();
+               auto ppen = pdata->__create < ::draw2d::pen >();
                ppen->create_solid(m_border.bottom, m_border.crBottom);
                pgraphics->set(ppen);
                pgraphics->draw_line(point1.x, point1.y, point2.x, point2.y);
@@ -927,7 +927,7 @@ namespace html
                pa[1] = ::point_f64(bIn.right, bIn.bottom);
                pa[2] = ::point_f64(bOut.right, bOut.bottom);
                pa[3] = ::point_f64(bOut.left, bOut.bottom);
-               auto pbrush = pdata->__create < ::draw2d::brush > ();
+               auto pbrush = pdata->__create < ::draw2d::brush >();
                pbrush->create_solid(m_border.crBottom);
                pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
@@ -939,7 +939,7 @@ namespace html
       }
 
 
-      bool element::get_color(::color::color & color32)
+      bool element::get_color(::color::color& color32)
       {
 
          color32 = argb(255, 0, 0, 0);
@@ -980,7 +980,7 @@ namespace html
          }
       }
 
-      void element::on_change_layout(html_data * pdata)
+      void element::on_change_layout(html_data* pdata)
       {
          __UNREFERENCED_PARAMETER(pdata);
       }
@@ -1074,7 +1074,7 @@ namespace html
       }
 
 
-      void element::set_bound_size(html_data * pdata, const ::size_f32 & size)
+      void element::set_bound_size(html_data* pdata, const ::size_f32& size)
       {
 
          m_bound.set_size(size);
@@ -1092,7 +1092,7 @@ namespace html
       }
 
 
-      void element::move_bound_to(html_data * pdata, const ::point_f32 & point)
+      void element::move_bound_to(html_data* pdata, const ::point_f32& point)
       {
 
          m_bound.move_to(point);
@@ -1113,7 +1113,7 @@ namespace html
       }
 
 
-      void element::move_left_to(html_data * pdata, float x)
+      void element::move_left_to(html_data* pdata, float x)
       {
 
          m_box.move_left_to(x);
@@ -1123,7 +1123,7 @@ namespace html
       }
 
 
-      void element::move_top_to(html_data * pdata, float y)
+      void element::move_top_to(html_data* pdata, float y)
       {
 
          m_box.move_top_to(y);
@@ -1133,7 +1133,7 @@ namespace html
       }
 
 
-      void element::set_width(html_data * pdata, float cx)
+      void element::set_width(html_data* pdata, float cx)
       {
 
          m_box.set_width(cx);
@@ -1143,7 +1143,7 @@ namespace html
       }
 
 
-      void element::set_height(html_data * pdata, float cy)
+      void element::set_height(html_data* pdata, float cy)
       {
 
          m_box.set_height(cy);
@@ -1153,7 +1153,7 @@ namespace html
       }
 
 
-      void element::move_to(html_data * pdata, float x, float y)
+      void element::move_to(html_data* pdata, float x, float y)
       {
 
          m_box.move_to(x, y);
@@ -1163,7 +1163,7 @@ namespace html
       }
 
 
-      void element::set_size(html_data * pdata, float cx, float cy)
+      void element::set_size(html_data* pdata, float cx, float cy)
       {
 
          m_box.set_size(cx, cy);
@@ -1173,7 +1173,7 @@ namespace html
       }
 
 
-      void element::set_dim(html_data * pdata, float l, float t, float w, float h)
+      void element::set_dim(html_data* pdata, float l, float t, float w, float h)
       {
 
          m_box.set_dimension(l, t, w, h);
@@ -1183,17 +1183,17 @@ namespace html
       }
 
 
-      bool element::use_in_final_layout(::html::impl::element * pimplChild)
+      bool element::use_in_final_layout(::html::impl::element* pimplChild)
       {
 
-         ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (pimplChild);
+         ::html::impl::cell* pcell = dynamic_cast <::html::impl::cell*> (pimplChild);
 
          if (pcell != nullptr)
          {
             if (pcell->m_iColBeg >= 0
-                  || pcell->m_iColEnd >= 0
-                  || pcell->m_iRowBeg >= 0
-                  || pcell->m_iRowEnd >= 0)
+               || pcell->m_iColEnd >= 0
+               || pcell->m_iRowBeg >= 0
+               || pcell->m_iRowEnd >= 0)
             {
 
                return false;
@@ -1207,13 +1207,13 @@ namespace html
 
       }
 
-      void element::layout_phase3_end(html_data * pdata)
+      void element::layout_phase3_end(html_data* pdata)
       {
 
          e_tag etag = m_pelemental->m_etag;
 
          if (m_pelemental->m_elementalptra.is_empty()
-               || etag == tag_select)
+            || etag == tag_select)
             return;
 
          float x = 3e33f;
@@ -1229,7 +1229,7 @@ namespace html
          for (i32 i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
          {
 
-            element * pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
+            element* pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
 
             if (pelemental == nullptr)
                continue;
@@ -1284,7 +1284,7 @@ namespace html
       bool element::is_tag()
       {
 
-         return m_pelemental->m_pbase->get_type() == ::html::base::type_tag;
+         return m_pelemental->m_phtmlbase->get_type() == ::html::base::type_tag;
 
       }
 
@@ -1292,7 +1292,7 @@ namespace html
       bool element::is_value()
       {
 
-         return m_pelemental->m_pbase->get_type() == ::html::base::type_value;
+         return m_pelemental->m_phtmlbase->get_type() == ::html::base::type_value;
 
       }
 
@@ -1354,11 +1354,11 @@ namespace html
       {
 
          return m_margin.left
-                + m_border.left
-                + m_padding.left
-                + m_padding.right
-                + m_border.right
-                + m_margin.right;
+            + m_border.left
+            + m_padding.left
+            + m_padding.right
+            + m_border.right
+            + m_margin.right;
 
       }
 
@@ -1367,11 +1367,11 @@ namespace html
       {
 
          return m_margin.top
-                + m_border.top
-                + m_padding.top
-                + m_padding.bottom
-                + m_border.bottom
-                + m_margin.bottom;
+            + m_border.top
+            + m_padding.top
+            + m_padding.bottom
+            + m_border.bottom
+            + m_margin.bottom;
 
       }
 

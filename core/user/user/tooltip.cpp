@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/path.h"
@@ -26,22 +26,22 @@ namespace user
 
 
 
-   void tooltip::assert_ok() const
-   {
-      ::user::interaction::assert_ok();
-   }
+   //void tooltip::assert_ok() const
+   //{
+   //   ::user::interaction::assert_ok();
+   //}
 
-   void tooltip::dump(dump_context & dumpcontext) const
-   {
-      ::user::interaction::dump(dumpcontext);
-   }
+   //void tooltip::dump(dump_context & dumpcontext) const
+   //{
+   //   ::user::interaction::dump(dumpcontext);
+   //}
 
 
    void tooltip::install_message_routing(::channel * pchannel)
    {
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create,pchannel,this,&tooltip::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE,pchannel,this,&tooltip::on_message_create);
       //
 
    }

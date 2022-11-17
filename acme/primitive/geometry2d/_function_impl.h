@@ -247,14 +247,14 @@ bool x_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const REC
 
    }
 
-   if (::is_set(rectangle))
-   {
+   //if (::is_set(rectangle))
+   //{
 
       rectangle.left = left;
 
       rectangle.right = right;
 
-   }
+   //}
 
    return bIntersect;
 
@@ -291,14 +291,14 @@ bool y_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const REC
 
    }
 
-   if (::is_set(rectangle))
-   {
+   //if (::is_set(rectangle))
+   //{
 
       rectangle.top = top;
 
       rectangle.bottom = bottom;
 
-   }
+   //}
 
    return bIntersect;
 
@@ -329,12 +329,12 @@ bool intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_
 
    }
 
-   if (::is_set(rectangle))
-   {
+   //if (::is_set(rectangle))
+   //{
 
       null(rectangle);
 
-   }
+   //}
 
    return false;
 
@@ -367,14 +367,14 @@ bool x_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, cons
 
    }
 
-   if (::is_set(rectangle))
-   {
+   //if (::is_set(rectangle))
+   //{
 
       rectangle.left = left;
 
       rectangle.right = right;
 
-   }
+   //}
 
    return bIntersect;
 
@@ -398,14 +398,14 @@ bool y_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, cons
 
    }
 
-   if (::is_set(rectangle))
-   {
+   //if (::is_set(rectangle))
+   //{
 
       rectangle.top = top;
 
       rectangle.bottom = bottom;
 
-   }
+   //}
 
    return bIntersect;
 
@@ -423,12 +423,12 @@ bool null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const 
 
    }
 
-   if (::is_set(rectangle))
-   {
+   //if (::is_set(rectangle))
+   //{
 
       null(rectangle);
 
-   }
+   //}
 
    return false;
 

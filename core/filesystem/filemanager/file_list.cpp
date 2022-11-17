@@ -3,14 +3,18 @@
 #include "data.h"
 #include "document.h"
 #include "file_list.h"
+#include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/filesystem/file/item_array.h"
 #include "acme/handler/item.h"
 #include "acme/platform/timer.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
+#include "acme/primitive/collection/_container.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/filesystem/fs/data.h"
+#include "apex/platform/os_context.h"
 #include "aura/graphics/image/list.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame.h"
@@ -421,7 +425,7 @@ namespace filemanager
 
       }
 
-      filemanager_document()->on_file_manager_item_command(__string(pcommand->m_atom), itema);
+      filemanager_document()->on_file_manager_item_command(pcommand->m_atom, itema);
 
    }
 
@@ -889,7 +893,7 @@ namespace filemanager
    //void file_list::_001OnSpafy2(::message::message * pmessage)
    //{
 
-   //   synchronous_lock synchronouslock(fs_list()->mutex());
+   //   synchronous_lock synchronouslock(fs_list()->synchronization());
 
    //   ::pointer<::userfs::list_data>pdata = fs_list();
    //
@@ -1034,13 +1038,13 @@ namespace filemanager
 
          string_array stra;
 
-         auto papp = get_app();
+         auto papp = ::filemanager_impact_base::get_app();
 
          auto pcontext = get_context();
 
          papp->datastream()->get(filemanager_data()->m_dataidStatic, stra);
 
-         synchronous_lock lock(fs_list()->mutex());
+         synchronous_lock lock(fs_list()->synchronization());
 
          fs_list()->m_pitema->erase_all();
 
@@ -1127,9 +1131,9 @@ namespace filemanager
 
       {
 
-         synchronization * pm = fs_list()->mutex();
+         auto pparticleSynchronization = fs_list()->synchronization();
 
-         synchronous_lock lock(pm);
+         synchronous_lock lock(pparticleSynchronization);
 
          ::file::listing & listingUser = get_document()->m_listingUser2;
 
@@ -1189,7 +1193,7 @@ namespace filemanager
 
       {
 
-         synchronous_lock lock(fs_list()->mutex());
+         synchronous_lock lock(fs_list()->synchronization());
 
          if (m_eview == impact_icon)
          {
@@ -1606,7 +1610,7 @@ namespace filemanager
    void file_list::_017OpenContextMenuSelected(const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(fs_list()->mutex());
+      synchronous_lock synchronouslock(fs_list()->synchronization());
 
       ::file::item_array itema;
 
@@ -1723,7 +1727,7 @@ namespace filemanager
    //void file_list::GetSelected(::file::item_array &itema)
    //{
 
-   //   synchronous_lock synchronouslock(fs_list()->mutex());
+   //   synchronous_lock synchronouslock(fs_list()->synchronization());
 
    //   index iItemRange, iItem;
    //   ::user::range range;
@@ -1790,7 +1794,7 @@ namespace filemanager
    bool file_list::add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName)
    {
 
-      synchronous_lock synchronouslock(fs_list()->mutex());
+      synchronous_lock synchronouslock(fs_list()->synchronization());
 
       ::userfs::list_item item;
 
@@ -1880,7 +1884,7 @@ namespace filemanager
    bool file_list::query_drop(index iDisplayDrop, index iDisplayDrag)
    {
 
-      synchronous_lock synchronouslock(fs_list()->mutex());
+      synchronous_lock synchronouslock(fs_list()->synchronization());
 
       if (iDisplayDrag < 0)
          return false;
@@ -1921,7 +1925,7 @@ namespace filemanager
    bool file_list::do_drop(index iDisplayDrop, index iDisplayDrag)
    {
 
-      synchronous_lock synchronouslock(fs_list()->mutex());
+      synchronous_lock synchronouslock(fs_list()->synchronization());
 
       index strict = _001DisplayToStrict(iDisplayDrop);
 
@@ -2040,7 +2044,7 @@ namespace filemanager
 
                string_array stra;
 
-               ::papaya::array::copy(stra, filepatha);
+               ::acme::container::copy(stra, filepatha);
 
                papp->datastream()->set(filemanager_data()->m_dataidStatic, stra);
 

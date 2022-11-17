@@ -23,7 +23,8 @@ MEMORY::MEMORY()
 
 #endif
 
-   m_bOwn = false;
+   m_bOwner = false;
+   m_bReadOnly = true;
    m_pbStorage = nullptr;
    m_pdata = nullptr;
 
@@ -224,26 +225,28 @@ bool memory_base::allocate_internal(memsize dwNewLength)
 
    byte * pb;
 
-   if(m_memory.m_pbStorage == nullptr || !m_memory.m_bOwn)
+   if(m_memory.m_pbStorage == nullptr || !m_memory.m_bOwner || m_memory.m_bReadOnly)
    {
 
       pb = (byte *) impl_alloc(dwAllocation);
 
       if(pb == nullptr)
-
       {
 
          return false;
 
       }
 
-      if (!m_memory.m_bOwn)
+      if (!m_memory.m_bOwner || m_memory.m_bReadOnly)
       {
 
          ::memcpy_dup(pb, m_memory.m_pbStorage, (memsize) minimum(m_memory.m_iSize, dwAllocation));
 
-
       }
+
+      m_memory.m_bOwner = true;
+
+      m_memory.m_bReadOnly = false;
 
    }
    else
@@ -256,30 +259,14 @@ bool memory_base::allocate_internal(memsize dwNewLength)
 
       }
 
-      if (m_memory.m_bOwn)
-      {
-
-         pb = impl_realloc(m_memory.m_pbStorage, (size_t)dwAllocation);
-
-
-      }
-      else
-      {
-
-         pb = nullptr;
-
-
-      }
+      pb = impl_realloc(m_memory.m_pbStorage, (size_t)dwAllocation);
 
       if(pb == nullptr)
-
       {
 
          pb = impl_alloc((size_t) dwAllocation);
 
-
          if(pb == nullptr)
-
          {
 
             return false;
@@ -288,36 +275,19 @@ bool memory_base::allocate_internal(memsize dwNewLength)
 
          ::memcpy_dup(pb,m_memory.m_pbStorage,m_memory.m_cbStorage);
 
-
-         if (!m_memory.m_bOwn)
-         {
-
-            impl_free(m_memory.m_pbStorage);
-
-         }
+         impl_free(m_memory.m_pbStorage);
 
       }
 
       memsize iOffset = pb - m_memory.m_pbStorage;
 
-
-      //if(m_pcontainer != nullptr)
-      //{
-
-      //   m_pcontainer->offset_kept_pointers(iOffset);
-
-      //}
-
    }
 
-   m_memory.m_iSize    = dwAllocation;
+   m_memory.m_iSize        = dwAllocation;
 
-   m_memory.m_pbStorage       = pb;
+   m_memory.m_pbStorage    = pb;
 
-
-   m_memory.m_pdata      = m_memory.m_pbStorage;
-
-   m_memory.m_bOwn            = true;
+   m_memory.m_pdata        = m_memory.m_pbStorage;
 
    return true;
 
@@ -373,11 +343,9 @@ void memory_base::erase_offset()
 memsize memory_base::calc_allocation(memsize size)
 {
 
-   return (memsize) (((size + m_memory.m_dwAllocationAddUp) ) / m_memory.m_dwAllocationAddUp * m_memory.m_dwAllocationAddUp);
+   return (memsize) (size + m_memory.m_dwAllocationAddUp);
 
 }
-
-
 
 
 //stream & memory_base::write(::stream & stream) const
@@ -2047,7 +2015,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const block& blo
 
    }
 
-   auto iFindEol = find_index(memory_block('\n'), iStart);
+   auto iFindEol = find_index(as_block('\n'), iStart);
 
    if (iFindEol < 0)
    {

@@ -35,7 +35,7 @@ namespace userex
 
       ::user::show < ::user::plain_edit >::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &top_edit_impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &top_edit_impact::on_message_create);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &top_edit_impact::on_message_key_down);
 
    }

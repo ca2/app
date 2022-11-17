@@ -1,4 +1,4 @@
-// Refactored by camilo on 2022-11-04 05:43 <3ThomasBorregaardSorensen!!
+﻿// Refactored by camilo on 2022-11-04 05:43 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -21,7 +21,8 @@ inline i32 string_collate(const ansichar * pszA, const ansichar * pszB) noexcept
 inline i32 string_collate_ci(const ansichar * pszA, const ansichar * pszB) noexcept { int i; if (_str_safe_precmp(i, pszA, pszB)) return i; return  __ansiicoll(pszA, pszB); }
 inline i32 string_n_collate(const ansichar * pszA, const ansichar * pszB, strsize len) noexcept { int i; if (_str_safe_precmp(i, pszA, pszB)) return i; return  __ansincoll(pszA, pszB, len); }
 inline i32 string_n_collate_ci(const ansichar * pszA, const ansichar * pszB, strsize len) noexcept { int i; if (_str_safe_precmp(i, pszA, pszB)) return i; return  __ansinicoll(pszA, pszB, len); }
-inline strsize string_get_length(const ansichar * psz) noexcept { return strlen(psz); }
+// defined at block
+// inline strsize string_get_length(const ansichar* psz) noexcept { return strlen(psz); }
 inline strsize string_get_length(const ansichar* psz, strsize sizeMaximumInterest) noexcept 
 { 
    strsize size = 0;
@@ -29,8 +30,9 @@ inline strsize string_get_length(const ansichar* psz, strsize sizeMaximumInteres
    while (*psz && sizeMaximumInterest > 0) { psz++; size++; sizeMaximumInterest--; }
    return sizeMaximumInterest == 0 ? -1 : size;
 }
-inline strsize string_safe_length(const ansichar * psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
 inline strsize string_safe_length(const ansichar* psz, strsize sizeMaximumInterest) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz, sizeMaximumInterest); }
+// defined at block
+//inline strsize string_safe_length(const ansichar* psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
 inline ansichar * string_lowercase(ansichar * psz, strsize size) noexcept { ansi_lwr_s(psz, size); return  psz; }
 
 

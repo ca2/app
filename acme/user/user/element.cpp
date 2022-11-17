@@ -3517,7 +3517,7 @@ namespace user
    }
 
 
-   void element::add_child_handler(::matter * pmatter, const ::atom & idChild, bool bPriority)
+   void element::add_child_handler(const ::signal_handler& signalhandler, const ::atom & idChild, bool bPriority)
    {
 
       throw ::interface_only();

@@ -179,7 +179,7 @@ namespace apex
 
 
 
-      virtual string url_encode(const ::string & str);
+      //virtual string ::url::encode(const ::string & str);
 
 
       virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
@@ -425,9 +425,9 @@ namespace apex
 
       void system_id_update(::i64 iUpdate, ::i64 iPayload) override;
 
-      void add_handler(::matter * pmatter, bool bPriority = false) override;
+      void add_handler(const ::signal_handler& signalhandler, bool bPriority = false) override;
 
-      void add_signal_handler(::matter * pmatter, const ::atom & atomSignal) override;
+      void add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal) override;
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override;
 

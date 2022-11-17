@@ -1,4 +1,4 @@
-// Created by camilo on 2021-10-09 18:43 BRT <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2021-10-09 18:43 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/simple/_component.h"
@@ -30,25 +30,25 @@ namespace user
 
       simple_frame_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &main_frame::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &main_frame::on_message_create);
 
    }
 
 
-   void main_frame::assert_ok() const
-   {
+   //void main_frame::assert_ok() const
+   //{
 
-      simple_frame_window::assert_ok();
+   //   simple_frame_window::assert_ok();
 
-   }
+   //}
 
 
-   void main_frame::dump(dump_context & dumpcontext) const
-   {
+   //void main_frame::dump(dump_context & dumpcontext) const
+   //{
 
-      simple_frame_window::dump(dumpcontext);
+   //   simple_frame_window::dump(dumpcontext);
 
-   }
+   //}
 
    
    void main_frame::on_message_create(::message::message * pmessage)

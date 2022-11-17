@@ -6,6 +6,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
+#include "acme/exception/exception.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/primitive/datetime/department.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -671,7 +672,7 @@ namespace user
    }
 
 
-   void document::show_all_frames(const ::::e_display & edisplay)
+   void document::show_all_frames(const ::e_display & edisplay)
    {
 
       ::count count = get_impact_count();
@@ -1015,7 +1016,7 @@ namespace user
 
       auto preader = pcontext->m_papexcontext->file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
-      if (!::is_ok(preader))
+      if (preader.nok())
       {
 
          report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
@@ -1068,7 +1069,7 @@ namespace user
 
       auto pwriter = pcontext->m_papexcontext->file()->get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive | ::file::e_open_no_exception_on_open);
 
-      if(!::is_ok(pwriter))
+      if(pwriter.nok())
       {
 
          ::file::path path = payloadFile.file_path();
@@ -1218,7 +1219,7 @@ namespace user
 
       }
 
-      update_all_impacts(nullptr, PRE_CLOSE_DOCUMENT_UPDATE);
+      update_all_impacts(nullptr, ID_PRE_CLOSE_DOCUMENT);
 
    }
 
@@ -2001,7 +2002,7 @@ namespace user
    void document::call_initial_update()
    {
 
-      id_update_all_impacts(INITIAL_UPDATE);
+      id_update_all_impacts(ID_INITIAL_UPDATE);
 
    }
 

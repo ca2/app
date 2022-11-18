@@ -761,7 +761,7 @@
     <ClCompile Include="networking\http\get_socket.cpp" />
     <ClCompile Include="networking\http\request.cpp" />
     <ClCompile Include="networking\http\response.cpp" />
-    <ClCompile Include="networking\http\signal.cpp" />
+    <ClCompile Include="networking\http\message.cpp" />
     <ClCompile Include="networking\http\status.cpp" />
     <ClCompile Include="networking\http\transaction.cpp" />
     <ClCompile Include="networking\ip_enum.cpp" />
@@ -801,7 +801,7 @@
     <ClCompile Include="networking\sockets\transfer_socket.cpp" />
     <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp" />
     <ClCompile Include="networking\sockets\websocket_client.cpp" />
-    <ClInclude Include="application.h" />
+    <ClInclude Include="aaa_application.h" />
     <ClInclude Include="compress\not_dir.h" />
     <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="crypto\initializer.h" />
@@ -872,14 +872,12 @@
     <ClInclude Include="crypto\rsa.h" />
     <ClInclude Include="crypto\_.h" />
     <ClInclude Include="crypto\_crypto.h" />
-    <ClInclude Include="future.h" />
     <ClInclude Include="compress\_.h" />
     <ClInclude Include="compress\context.h" />
     <ClInclude Include="compress\is_dir.h" />
-    <ClInclude Include="console.h" />
-    <ClInclude Include="console_slim.h" />
+    <ClInclude Include="aaa_console.h" />
+    <ClInclude Include="aaa_console_slim.h" />
     <ClInclude Include="const\charset.h" />
-    <ClInclude Include="const\method.h" />
     <ClInclude Include="database\change_event.h" />
     <ClInclude Include="database\client.h" />
     <ClInclude Include="database\const.h" />
@@ -893,8 +891,6 @@
     <ClInclude Include="filesystem\file\html_file.h" />
     <ClInclude Include="filesystem\file\_data.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="framework_c.h" />
-    <ClInclude Include="id.h" />
     <ClInclude Include="inline\application\linux.h" />
     <ClInclude Include="inline\application\macos.h" />
     <ClInclude Include="inline\application\universal_windows.h" />
@@ -916,7 +912,6 @@
     <ClInclude Include="interprocess\target.h" />
     <ClInclude Include="interprocess\task.h" />
     <ClInclude Include="interprocess\_.h" />
-    <ClInclude Include="message.h" />
     <ClInclude Include="message\application.h" />
     <ClInclude Include="message\base.h" />
     <ClInclude Include="message\channel.h" />
@@ -928,7 +923,7 @@
     <ClInclude Include="message\global.h" />
     <ClInclude Include="message\handler.h" />
     <ClInclude Include="message\handler_item.h" />
-    <ClInclude Include="message\listener_smart_pointer_array.h" />
+    <ClInclude Include="message\listener_pointer_array.h" />
     <ClInclude Include="message\message.h" />
     <ClInclude Include="message\predicate_handler.h" />
     <ClInclude Include="message\receiver.h" />
@@ -942,6 +937,18 @@
     <ClInclude Include="networking\application\application.h" />
     <ClInclude Include="networking\application\application_handler.h" />
     <ClInclude Include="networking\application\application_socket.h" />
+    <ClInclude Include="networking\http\context.h" />
+    <ClInclude Include="networking\http\cookie.h" />
+    <ClInclude Include="networking\http\form.h" />
+    <ClInclude Include="networking\http\get_socket.h" />
+    <ClInclude Include="networking\http\listener.h" />
+    <ClInclude Include="networking\http\request.h" />
+    <ClInclude Include="networking\http\response.h" />
+    <ClInclude Include="networking\http\message.h" />
+    <ClInclude Include="networking\http\status.h" />
+    <ClInclude Include="networking\http\stream.h" />
+    <ClInclude Include="networking\http\transaction.h" />
+    <ClInclude Include="networking\http\_.h" />
     <ClInclude Include="networking\netserver\socket.h" />
     <ClInclude Include="networking\netserver\socket_handler.h" />
     <ClInclude Include="networking\netserver\socket_thread.h" />
@@ -994,12 +1001,6 @@
     <ClInclude Include="networking\sockets\_sockets.h" />
     <ClInclude Include="networking\sockets\_strconv.h" />
     <ClInclude Include="networking\_.h" />
-    <ClInclude Include="net\_net_impl.h" />
-    <ClInclude Include="node\opengl\buffer.h" />
-    <ClInclude Include="node\opengl\context.h" />
-    <ClInclude Include="node\opengl\opengl.h" />
-    <ClInclude Include="node\opengl\program.h" />
-    <ClInclude Include="node\opengl\shader.h" />
     <ClInclude Include="parallelization\aaa_pred_procedure.h" />
     <ClInclude Include="parallelization\common.h" />
     <ClInclude Include="parallelization\create_thread.h" />
@@ -1051,7 +1052,6 @@
     <ClInclude Include="platform\shell_launcher.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\_.h" />
-    <ClInclude Include="platform\_generic_object_constructor_impl.h" />
     <ClInclude Include="platform\_platform.h" />
     <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="include\objc.h" />
@@ -1065,8 +1065,7 @@
     <ClInclude Include="progress\progress.h" />
     <ClInclude Include="progress\real.h" />
     <ClInclude Include="progress\_.h" />
-    <ClInclude Include="update.h" />
-    <ClInclude Include="user.h" />
+    <ClInclude Include="aaa_user.h" />
     <ClInclude Include="user\aaa_item.h" />
     <ClInclude Include="user\command.h" />
     <ClInclude Include="user\language.h" />
@@ -1075,7 +1074,6 @@
     <ClInclude Include="user\primitive.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="user\ewindowflag.h" />
-    <ClInclude Include="user\_const_key.h" />
     <ClInclude Include="version\version.h" />
     <ClInclude Include="const\thread.h" />
     <ClInclude Include="filesystem\filesystem\dir_context.h" />
@@ -1124,20 +1122,8 @@
     <ClInclude Include="inline\library.h" />
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
-    <ClInclude Include="net\http\context.h" />
-    <ClInclude Include="net\http\cookie.h" />
-    <ClInclude Include="net\http\form.h" />
-    <ClInclude Include="net\http\get_socket.h" />
-    <ClInclude Include="net\http\listener.h" />
-    <ClInclude Include="net\http\request.h" />
-    <ClInclude Include="net\http\response.h" />
-    <ClInclude Include="net\http\signal.h" />
-    <ClInclude Include="net\http\status.h" />
-    <ClInclude Include="net\http\stream.h" />
-    <ClInclude Include="net\http\transaction.h" />
-    <ClInclude Include="net\http\_.h" />
     <ClInclude Include="_.h" />
-    <ClInclude Include="__defer.h" />
+    <ClInclude Include="aaa__defer.h" />
     <None Include="filesystem\_impl.h" />
   </ItemGroup>
   <ItemGroup>

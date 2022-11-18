@@ -21,7 +21,7 @@ static const i32_sz g_iszaMessageName[] =
    __message_entry(e_message_kill_focus),
    __message_entry(e_message_enable),
    __message_entry(e_message_paint),
-   __message_entry(e_message_close),
+   __message_entry(MESSAGE_CLOSE),
    __message_entry(e_message_quit),
    __message_entry(e_message_erase_background),
    __message_entry(e_message_show_window),

@@ -976,7 +976,7 @@ namespace user
 } // namespace user
 
 
-#include "apex/user.h"
+//#include "apex/user.h"
 
 //#include "apex/platform/savings.h"
 
@@ -1135,7 +1135,7 @@ namespace user
 
 //#include "apex/platform/application.h"
 
-#include "apex/user/_const_key.h"
+//#include "apex/user/_const_key.h"
 
 //#include "apex/platform/session.h"
 

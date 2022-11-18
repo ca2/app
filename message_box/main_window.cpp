@@ -31,7 +31,7 @@ namespace app_message_box
 
       ::user::main_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_close, pchannel, this, &main_window::on_message_close);
+      MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &main_window::on_message_close);
 
    }
 
@@ -156,7 +156,7 @@ namespace app_message_box
             if (pmessagebox->m_payloadResult == e_dialog_result_yes)
             {
 
-               post_message(e_message_close);
+               post_message(MESSAGE_CLOSE);
 
             }
             else if (pmessagebox->m_payloadResult == e_dialog_result_cancel)

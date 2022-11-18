@@ -448,7 +448,7 @@ namespace user
 
          }
 
-         if (m_message.m_atom != WM_KICKIDLE && m_message.m_atom != e_message_quit)
+         if (m_message.m_atom != e_message_kick_idle && m_message.m_atom != e_message_quit)
          {
 
             if (m_message.m_atom == e_message_destroy_window)

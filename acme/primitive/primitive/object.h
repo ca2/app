@@ -183,7 +183,7 @@ public:
    virtual void call_routine2(const ::procedure & procedure);
 
 
-   inline void call_routines_with_id(const ::atom & atom)
+   inline void call_procedures(const ::atom & atom)
    {
 
       return for_routines_with_id(atom, this, &object::call_routine2);
@@ -191,7 +191,7 @@ public:
    }
 
 
-   inline void post_routines_with_id(const ::atom & atom)
+   inline void branch_procedures(const ::atom & atom)
    {
 
       return for_routines_with_id(atom, this, &object::post_procedure);
@@ -1268,7 +1268,7 @@ public:
 
    //virtual element* get_taskpool_container() override;
 
-   
+
 
 };
 

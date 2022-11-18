@@ -8,7 +8,7 @@
 #include "apex/networking/application/application_handler.h"
 #include "acme/parallelization/semaphore.h"
 #include "acme/platform/application.h"
-#include "acme/primitive/mathematics/scalar.h"
+//#include "acme/primitive/mathematics/scalar.h"
 #include "acme/primitive/text/text.h"
 #include "apex/progress/real.h"
 
@@ -19,9 +19,8 @@ namespace apex
 
    class CLASS_DECL_APEX application :
       virtual public ::acme::application,
-      //virtual public ::apex_main_struct,
       virtual public ::apex::context,
-      virtual public int_scalar_source,
+      virtual public scalar_source,
       virtual public ::database::client,
       virtual public ::application_exit,
       virtual public ::networking::application_handler
@@ -635,10 +634,10 @@ namespace apex
 
       virtual void release_exclusive();
 
-      virtual void on_set_scalar(e_scalar escalar, i64 iValue, int iFlags) override;
-      virtual void get_scalar_minimum(e_scalar escalar, i64 & i) override;
-      virtual void get_scalar(e_scalar escalar, i64 & i) override;
-      virtual void get_scalar_maximum(e_scalar escalar, i64 & i) override;
+      bool on_set_scalar(enum_scalar escalar, ::number number, int iFlags) override;
+      ::number get_scalar_minimum(enum_scalar escalar) override;
+      ::number get_scalar(enum_scalar escalar) override;
+      ::number get_scalar_maximum(enum_scalar escalar) override;
 
 
 

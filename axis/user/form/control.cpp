@@ -1063,7 +1063,7 @@ namespace user
    void form_control::WfiOnClose()
    {
 
-      post_message(e_message_close);
+      post_message(MESSAGE_CLOSE);
 
    }
 

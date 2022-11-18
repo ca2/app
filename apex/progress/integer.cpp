@@ -1,4 +1,4 @@
-// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardS�rensen!!
+﻿// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardS�rensen!!
 #include "framework.h"
 #include "integer.h"
 #include "apex/progress/listener.h"
@@ -33,6 +33,7 @@ namespace progress
 
    }
 
+
    void integer::trace_progress()
    {
 
@@ -45,6 +46,7 @@ namespace progress
 
    }
 
+
    void integer::progress_step()
    {
 
@@ -55,8 +57,7 @@ namespace progress
    }
 
 
-
-   void integer::on_set_scalar(int_scalar_source * psource, e_scalar escalar, i64 iValue, int iFlags)
+   bool integer::on_set_scalar(scalar_source * psource, enum_scalar escalar, ::number number, int iFlags)
    {
 
       if (m_scalar.m_psource == psource)
@@ -73,6 +74,8 @@ namespace progress
          }
 
       }
+
+      return true;
 
    }
 

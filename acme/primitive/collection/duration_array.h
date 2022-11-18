@@ -2,6 +2,7 @@
 #pragma once
 
 
+#include "acme/primitive/collection/pointer_array.h"
 #include "acme/primitive/collection/numeric_array.h"
 
 
@@ -14,4 +15,4 @@ using integral_microsecond_array = numeric_array < integral_microsecond >;
 using integral_millisecond_array = numeric_array < integral_millisecond >;
 
 
-
+using duration_2darray = pointer_array < duration_array >;

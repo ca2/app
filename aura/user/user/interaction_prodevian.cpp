@@ -471,7 +471,7 @@ namespace user
             while (peek_message(&m_message, NULL, 0, 0))
             {
 
-               if (m_message.m_atom == e_message_redraw || m_message.m_atom == WM_KICKIDLE)
+               if (m_message.m_atom == e_message_redraw || m_message.m_atom == e_message_kick_idle)
                {
 
                   iSkipped++;

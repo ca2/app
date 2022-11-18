@@ -22,7 +22,7 @@ enum enum_message : ::i32;
 enum enum_impact : ::iptr;
 enum enum_id : ::uptr;
 enum enum_check : ::i32;
-
+enum enum_event : ::i32;
 
 enum enum_platform_level
 {

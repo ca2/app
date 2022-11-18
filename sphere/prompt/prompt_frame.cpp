@@ -210,7 +210,7 @@ namespace prompt
    {
       simple_frame_window::install_message_routing(pchannel);
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &frame::on_message_create);
-      MESSAGE_LINK(e_message_close, pchannel, this, &frame::on_message_close);
+      MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &frame::on_message_close);
 //
       MESSAGE_LINK(e_message_move, pchannel, this, &frame::on_message_move);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &frame::on_message_show_window);

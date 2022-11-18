@@ -70,6 +70,7 @@
     <ClInclude Include="multimedia\decoder_plugin.h" />
     <ClInclude Include="multimedia\exception.h" />
     <ClInclude Include="multimedia\file_application.h" />
+    <ClInclude Include="multimedia\information.h" />
     <ClInclude Include="multimedia\multimedia.h" />
     <ClInclude Include="multimedia\_.h" />
     <ClInclude Include="multimedia\_c.h" />

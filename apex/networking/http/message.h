@@ -1,7 +1,7 @@
-#pragma once
+﻿#pragma once
 
 
-#include "acme/primitive/primitive/object.h"
+//#include "acme/primitive/primitive/object.h"
 #include "acme/primitive/primitive/payload.h"
 #include "apex/message/message.h"
 
@@ -11,8 +11,8 @@ namespace http
 
 
    class CLASS_DECL_APEX message :
-      public ::message::message,
-      virtual public ::object
+      public ::message::message //,
+      //virtual public ::object
    {
    public:
 

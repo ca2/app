@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "interaction.h"
@@ -15,7 +15,7 @@ namespace user
    public:
 
 
-      scalar_base * m_pscalar;
+      scalar         m_scalar;
 
       double         m_dRate;
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "progress.h"
 #include "aura/graphics/draw2d/graphics.h"
 
@@ -47,7 +47,7 @@ namespace user
    void progress::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_dRate = m_pscalar->get_rate();
+      m_dRate = m_scalar.get_rate();
 
       ::rectangle_i32 rectangle;
 

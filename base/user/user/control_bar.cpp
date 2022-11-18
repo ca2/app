@@ -60,7 +60,7 @@ namespace user
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &control_bar::_001OnMouseActivate);
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &control_bar::on_message_create);
       MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &control_bar::on_message_destroy);
-      MESSAGE_LINK(WM_HELPHITTEST, pchannel, this, &control_bar::_001OnHelpHitTest);
+      MESSAGE_LINK(e_message_help_hit_test, pchannel, this, &control_bar::_001OnHelpHitTest);
    }
 
 
@@ -659,7 +659,7 @@ namespace user
       // // update the indicators before becoming visible
       // ::user::message base(this);
       // LRESULT lresult;
-      // base.set(this, WM_IDLEUPDATECMDUI, true, (LPARAM) 0, lresult);
+      // base.set(this, e_message_idle_update_command_user_interface, true, (LPARAM) 0, lresult);
       // _001OnIdleUpdateCmdUI(&base);
 
    }

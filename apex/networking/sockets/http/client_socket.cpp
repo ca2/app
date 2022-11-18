@@ -172,8 +172,8 @@ namespace sockets
       m_b_close_when_complete(false)
    {
 
-      m_progressinteger.m_scalar.m_psource = this;
-      m_progressinteger.m_scalar.m_escalar = scalar_download_size;
+      //m_progressinteger.m_scalar.m_psource = this;
+      //m_progressinteger.m_scalar.m_escalar = scalar_download_size;
 
       m_pfile           = nullptr;
       m_iFinalSize      = -1;
@@ -451,7 +451,7 @@ namespace sockets
 
       OnDataArrived(buf, len);
 
-      increment_scalar(scalar_download_size, len);
+      //increment_scalar(scalar_download_size, len);
 
 #ifdef WINRT_SOCKETS
 
@@ -621,78 +621,83 @@ namespace sockets
    }
 
 
-   void http_client_socket::on_set_scalar(e_scalar escalar,i64 iValue,int iFlags)
+   bool http_client_socket::on_set_scalar(enum_scalar escalar,::number number,int iFlags)
    {
 
-      if (escalar == scalar_download_size)
+      if (escalar == e_scalar_download_size)
       {
 
-         m_content_ptr = (memsize) iValue;
+         m_content_ptr = (memsize) number.get_i64();
+
+         return true;
 
       }
       else
       {
 
-         return ::int_scalar_source::on_set_scalar(escalar, iValue, iFlags);
+         return ::scalar_source::on_set_scalar(escalar, number, iFlags);
 
       }
 
    }
 
 
-   void http_client_socket::get_scalar_minimum(e_scalar escalar, i64 & i)
+   ::number http_client_socket::get_scalar_minimum(enum_scalar escalar)
    {
 
-      if (escalar == scalar_download_size)
+      if (escalar == e_scalar_download_size)
       {
 
-         i = 0;
+         return (::i64)0;
 
       }
       else
       {
 
-         ::int_scalar_source::get_scalar_minimum(escalar, i);
+         return ::scalar_source::get_scalar_minimum(escalar);
 
       }
 
    }
 
-   void http_client_socket::get_scalar(e_scalar escalar, i64 & i)
+
+   ::number http_client_socket::get_scalar(enum_scalar escalar)
    {
 
-      if (escalar == scalar_download_size)
+      if (escalar == e_scalar_download_size)
       {
 
-         i = m_content_ptr;
+         return (::i64)m_content_ptr;
 
       }
       else
       {
 
-         ::int_scalar_source::get_scalar(escalar, i);
+         return ::scalar_source::get_scalar(escalar);
 
       }
 
    }
 
-   void http_client_socket::get_scalar_maximum(e_scalar escalar, i64 & i)
+
+   ::number http_client_socket::get_scalar_maximum(enum_scalar escalar)
    {
 
-      if (escalar == scalar_download_size)
+      if (escalar == e_scalar_download_size)
       {
 
-         i = m_content_length;
+         return (::i64) m_content_length;
 
       }
       else
       {
 
-         ::int_scalar_source::get_scalar_minimum(escalar, i);
+         return ::scalar_source::get_scalar_maximum(escalar);
 
       }
 
    }
+
 
    CLASS_DECL_APEX string http_method_string(e_http_method emethod)
    {

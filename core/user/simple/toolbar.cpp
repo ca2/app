@@ -1460,7 +1460,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //      if (pTarget != nullptr)
 //      {
 //
-//         pTarget->send_message_to_descendants(WM_IDLEUPDATECMDUI);
+//         pTarget->send_message_to_descendants(e_message_idle_update_command_user_interface);
 //
 //      }
 //

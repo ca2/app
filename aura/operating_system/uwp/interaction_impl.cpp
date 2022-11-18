@@ -2820,7 +2820,7 @@ return true;
 //            //}
 //            //if((dwFlags & MLF_NOKICKIDLE))
 //
-//            //   // universal_windows todo    ||           !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MSGF_DIALOGBOX, lIdleCount++))
+//            //   // universal_windows todo    ||           !__call_window_procedure(this, get_handle(), e_message_kick_idle, MSGF_DIALOGBOX, lIdleCount++))
 //            //{
 //            //   // stop idle processing next time
 //            //   bIdle = false;

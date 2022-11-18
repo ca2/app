@@ -1249,7 +1249,7 @@ void thread::kick_idle()
       else
       {
 
-         ::PostThreadMessage((DWORD) m_itask, WM_KICKIDLE, 0, 0);
+         ::PostThreadMessage((DWORD) m_itask, e_message_kick_idle, 0, 0);
 
       }
 #endif
@@ -2963,10 +2963,10 @@ void thread::post_element(const ::atom & atom, wparam wparam, ::particle * ppart
 void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 {
 
-   if (atom == e_message_close)
+   if (atom == MESSAGE_CLOSE)
    {
 
-      output_debug_string("thread::post_message e_message_close");
+      output_debug_string("thread::post_message MESSAGE_CLOSE");
 
    }
    else if (atom == e_message_branch)
@@ -4169,7 +4169,7 @@ bool thread::process_message()
 
       }
 
-      if(message.m_atom == WM_KICKIDLE)
+      if(message.m_atom == e_message_kick_idle)
       {
 
          return true;

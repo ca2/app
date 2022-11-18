@@ -281,7 +281,7 @@ LRESULT CTSFMainWnd::_OnCommand(::u16 wID, ::u16 wCmd, HWND hWnd)
     switch(wID)
     {
     case IDM_EXIT:
-        PostMessage(m_hWnd, e_message_close, 0, 0);
+        PostMessage(m_hWnd, MESSAGE_CLOSE, 0, 0);
         break;
     
     case IDM_ABOUT:

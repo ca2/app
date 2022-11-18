@@ -866,6 +866,9 @@ template < typename TYPE, std::size_t SIZE >
 inline array_reference < TYPE, SIZE >& zero(TYPE(&)[SIZE]);
 
 
+template < typename TYPE >
+inline TYPE& zero(TYPE & type);
+
 
 template < typename TYPE, std::size_t Size >
 inline bool __is_zero(TYPE(&array)[Size]);

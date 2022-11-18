@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "document.h"
 #include "impact.h"
+#include "acme/constant/happening.h"
 #include "acme/constant/id.h"
 #include "acme/exception/exception.h"
 #include "axis/html/html/html.h"
@@ -41,7 +42,7 @@ namespace user
          {
 
             //call_sync(get_document()->m_mapMethod["load"]);
-            get_document()->call_routines_with_id("load");
+            get_document()->call_procedures(e_happening_load);
 
          }
 

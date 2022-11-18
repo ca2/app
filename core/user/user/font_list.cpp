@@ -58,7 +58,7 @@ namespace user
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &font_list::on_message_create);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &font_list::on_message_left_button_down);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &font_list::on_message_mouse_move);
-      MESSAGE_LINK(e_message_close, pchannel, this, &font_list::on_message_close);
+      MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &font_list::on_message_close);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &font_list::on_message_show_window);
 
    }

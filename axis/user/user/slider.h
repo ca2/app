@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/interaction.h"
@@ -15,7 +15,7 @@ namespace user
    public:
 
 
-      scalar_base *  m_pscalar;
+      scalar         m_scalar;
 
       double         m_dRate;
 
@@ -35,7 +35,7 @@ namespace user
 
       void _001OnTimer(::timer * ptimer) override;
       
-      void set_scalar(scalar_base * pscalar);
+      void set_scalar(const scalar & scalar);
 
       void set_rate(double dRate);
 

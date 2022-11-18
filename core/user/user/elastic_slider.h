@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/interaction.h"
+#include "acme/primitive/mathematics/scalar.h"
 
 
 namespace user
@@ -16,10 +17,10 @@ namespace user
 
 
 
-      ::pointer < scalar_base >     m_pscalarVelocity;
-      ::pointer < scalar_base >     m_pscalarPosition;
+      ::pointer < scalar >          m_pscalarVelocity;
+      ::pointer < scalar >          m_pscalarPosition;
 
-      e_scalar                      m_escalar;
+      enum_scalar                   m_escalar;
 
       ::duration                    m_durationLastTime;
 
@@ -48,7 +49,7 @@ namespace user
 
 
 
-      void SetStreamingVelocityMode(scalar_base * pscalarVelocity, scalar_base * pscalarPosition);
+      void SetStreamingVelocityMode(scalar * pscalarVelocity, scalar* pscalarPosition);
 
 
       void UpdatePosition();

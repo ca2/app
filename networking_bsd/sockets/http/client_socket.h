@@ -121,10 +121,10 @@ namespace sockets
       virtual void request_url(string strUrlParam);
 
 
-      virtual void on_set_scalar(e_scalar escalar,i64 iValue,int iFlags) override;
-      virtual void get_scalar_minimum(e_scalar escalar, i64 & i) override;
-      virtual void get_scalar(e_scalar escalar, i64 & i) override;
-      virtual void get_scalar_maximum(e_scalar escalar, i64 & i) override;
+      virtual void on_set_scalar(enum_scalar escalar,i64 iValue,int iFlags) override;
+      virtual void get_scalar_minimum(enum_scalar escalar, i64 & i) override;
+      virtual void get_scalar(enum_scalar escalar, i64 & i) override;
+      virtual void get_scalar_maximum(enum_scalar escalar, i64 & i) override;
 
       virtual string MyUseragent() override;
 

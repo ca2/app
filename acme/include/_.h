@@ -395,7 +395,7 @@
 #include "acme/constant/context.h"
 
 
-#include "acme/primitive/mathematics/scalar_enum.h"
+//#include "acme/primitive/mathematics/scalar_enum.h"
 
 
 #include "acme/platform/enum.h"

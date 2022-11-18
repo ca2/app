@@ -252,6 +252,7 @@ public:
       e_type_update,
       e_type_dialog_result,
       e_type_impact,
+      e_type_event,
 
       e_type_text = 1ull << 16,
       e_type_id_text = e_type_id | e_type_text,
@@ -265,6 +266,7 @@ public:
       e_type_has_command_handler_text = e_type_has_command_handler | e_type_text,
       e_type_update_text = e_type_update | e_type_text,
       e_type_impact_text = e_type_impact | e_type_text,
+      e_type_event_text = e_type_event | e_type_text,
 
 
    };
@@ -283,6 +285,7 @@ public:
       enum_timer           m_etimer;
       enum_message         m_emessage;
       enum_dialog_result   m_edialogresult;
+      enum_event           m_eevent;
       ::string             m_str;
       ::iptr               m_iBody;
 
@@ -313,6 +316,7 @@ public:
    inline atom(enum_task_tool etasktool);
    inline atom(enum_timer etimer);
    inline atom(enum_dialog_result edialogresult);
+   inline atom(enum_event eevent);
    inline atom(enum_type etypeAdd, const atom & atom);
    inline atom(const atom & atom);
    atom(const char * psz);
@@ -508,6 +512,16 @@ public:
    inline bool operator <= (::enum_dialog_result edialogresult) const;
    inline bool operator > (::enum_dialog_result edialogresult) const;
    inline bool operator >= (::enum_dialog_result edialogresult) const;
+
+
+   inline int compare(::enum_event i) const;
+   inline bool operator == (::enum_event eid) const;
+   inline bool operator != (::enum_event eid) const;
+   inline bool operator < (::enum_event eid) const;
+   inline bool operator <= (::enum_event eid) const;
+   inline bool operator > (::enum_event eid) const;
+   inline bool operator >= (::enum_event eid) const;
+
 
    atom & operator = (const atom & atom);
    //atom & operator = (const char * psz);
@@ -720,6 +734,15 @@ inline atom::atom(enum_dialog_result edialogresult) :
 {
 
 }
+
+
+inline atom::atom(enum_event eevent) :
+   m_etype(e_type_event),
+   m_i((::iptr)eevent) // used m_i to reset 64-bit field
+{
+
+}
+
 
 
 // This constructor shouldn't change the primitive type of
@@ -1389,6 +1412,65 @@ inline bool atom::operator >= (::enum_dialog_result edialogresult) const
 {
 
    return compare(edialogresult) >= 0;
+
+}
+
+
+
+inline int atom::compare(::enum_event eid) const
+{
+
+   auto compare = m_etype - e_type_id;
+
+   return __atom_compare_square(compare, m_i - eid);
+
+}
+
+
+inline bool atom::operator == (::enum_event eid) const
+{
+
+   return compare(eid) == 0;
+
+}
+
+
+inline bool atom::operator != (::enum_event eid) const
+{
+
+   return compare(eid) != 0;
+
+}
+
+
+inline bool atom::operator < (::enum_event eid) const
+{
+
+   return compare(eid) < 0;
+
+}
+
+
+inline bool atom::operator <= (::enum_event eid) const
+{
+
+   return compare(eid) <= 0;
+
+}
+
+
+inline bool atom::operator > (::enum_event eid) const
+{
+
+   return compare(eid) > 0;
+
+}
+
+
+inline bool atom::operator >= (::enum_event eid) const
+{
+
+   return compare(eid) >= 0;
 
 }
 

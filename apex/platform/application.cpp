@@ -25,7 +25,7 @@
 #include "acme/primitive/string/str.h"
 #include "acme/primitive/text/context.h"
 #include "apex/message/application.h"
-#include "apex/id.h"
+//#include "apex/id.h"
 #include "acme/platform/version.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
@@ -528,7 +528,7 @@ namespace apex
 
       ::thread::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_close, pchannel, this, &application::on_message_close);
+      MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &application::on_message_close);
 
       add_command_handler("app_exit", { this, &application::on_message_app_exit });
       add_command_handler("switch_context_theme", { this, &application::_001OnSwitchContextTheme });
@@ -1264,7 +1264,7 @@ namespace apex
    void application::_001CloseApplication()
    {
 
-      post_message(e_message_close, 0, 0);
+      post_message(MESSAGE_CLOSE, 0, 0);
 
    }
 
@@ -4127,7 +4127,7 @@ namespace apex
    }
 
 
-   void application::on_set_scalar(e_scalar escalar, i64 iValue, int iFlags)
+   bool application::on_set_scalar(enum_scalar escalar, ::number number, int iFlags)
    {
 
       //if (escalar == scalar_app_install_progress)
@@ -4151,14 +4151,16 @@ namespace apex
       //else
       {
 
-         return ::int_scalar_source::on_set_scalar(escalar, iValue, iFlags);
+         //return ::int_scalar_source::on_set_scalar(escalar, iValue, iFlags);
 
       }
+
+      return false;
 
    }
 
 
-   void application::get_scalar_minimum(e_scalar escalar, i64 & i)
+   ::number application::get_scalar_minimum(enum_scalar escalar)
    {
 
       //if (escalar == scalar_app_install_progress)
@@ -4182,13 +4184,16 @@ namespace apex
       //else
       {
 
-         ::int_scalar_source::get_scalar_minimum(escalar, i);
+         //::int_scalar_source::get_scalar_minimum(escalar, i);
 
       }
 
+      return e_number_none;
+
    }
 
-   void application::get_scalar(e_scalar escalar, i64 & i)
+
+   ::number application::get_scalar(enum_scalar escalar)
    {
 
       //if (escalar == scalar_app_install_progress)
@@ -4212,13 +4217,16 @@ namespace apex
       //else
       {
 
-         ::int_scalar_source::get_scalar(escalar, i);
+         //::int_scalar_source::get_scalar(escalar, i);
 
       }
 
+      return e_number_none;
+
    }
 
-   void application::get_scalar_maximum(e_scalar escalar, i64 & i)
+
+   ::number application::get_scalar_maximum(enum_scalar escalar)
    {
 
       //if (escalar == scalar_download_size)
@@ -4242,9 +4250,11 @@ namespace apex
       //else
       {
 
-         ::int_scalar_source::get_scalar_minimum(escalar, i);
+         //::int_scalar_source::get_scalar_minimum(escalar, i);
 
       }
+
+      return e_number_none;
 
    }
 
@@ -5751,7 +5761,7 @@ namespace apex
    void application::_001TryCloseApplication()
    {
 
-      post_message(e_message_close, 1, 0);
+      post_message(MESSAGE_CLOSE, 1, 0);
 
    }
 
@@ -8057,7 +8067,7 @@ namespace apex
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
+   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle task
    //
    //      //trans pMainWnd->WinHelp(dwData, nCmd);
    //   }
@@ -8074,7 +8084,7 @@ namespace apex
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
+   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle task
    //
    //      // trans pMainWnd->HtmlHelp(dwData, nCmd);
    //   }
@@ -8089,7 +8099,7 @@ namespace apex
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
+   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle task
    //      // trans pMainWnd->WinHelpInternal(dwData, nCmd);
    //   }
    //
@@ -8298,7 +8308,7 @@ namespace apex
    //ENSURE(pMainWnd->is_frame_window());
    //pMainWnd->OnContextHelp();
    //m_bHelpMode = pMainWnd->m_bHelpMode;
-   //pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task */
+   //pMainWnd->PostMessage(e_message_kick_idle); // trigger idle task */
    //}
    //
    ///////////////////////////////////////////////////////////////////////////////
@@ -8390,7 +8400,7 @@ namespace apex
    //
    ////ASSERT(m_puserinteractionMain != nullptr);
    //
-   ////m_puserinteractionMain->m_puiThis->send_message(e_message_close);
+   ////m_puserinteractionMain->m_puiThis->send_message(MESSAGE_CLOSE);
    //
    //}
    //

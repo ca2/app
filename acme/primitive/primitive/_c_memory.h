@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -40,13 +40,7 @@ inline bool is_zero(const void * p, memsize iSize)
 }
 
 
-template < typename T >
-inline void zero(T& t)
-{
 
-   memset(&t, 0, sizeof(t));
-
-}
 
 //#define xxf_zeroa(array) (::zero(array, sizeof(array)))
 

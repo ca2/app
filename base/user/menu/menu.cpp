@@ -104,7 +104,7 @@ namespace user
       MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &menu::on_message_non_client_calculate_size);
       MESSAGE_LINK(e_message_enable, pchannel, this, &menu::_001OnEnable);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &menu::on_message_show_window);
-      MESSAGE_LINK(e_message_close, pchannel, this, &menu::on_message_close);
+      MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &menu::on_message_close);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &menu::_001OnMouseActivate);
       MESSAGE_LINK(e_message_activate, pchannel, this, &menu::_001OnActivate);
       MESSAGE_LINK(e_message_non_client_create, pchannel, this, &menu::_001OnNcCreate);
@@ -914,7 +914,7 @@ namespace user
       if (!m_bInline && !ptopic->m_bRet)
       {
 
-         post_message(e_message_close);
+         post_message(MESSAGE_CLOSE);
 
       }
 
@@ -969,7 +969,7 @@ namespace user
 
                   defer_close();
 
-                  // this may be destroyed by e_message_close above
+                  // this may be destroyed by MESSAGE_CLOSE above
 
                   if (::is_set(pchannelNotify))
                   {
@@ -1126,7 +1126,7 @@ namespace user
          KillTimer(e_timer_menu);
          if (m_atomSubMenu.has_char())
          {
-            m_psubmenu->send_message(e_message_close);
+            m_psubmenu->send_message(MESSAGE_CLOSE);
             m_psubmenu = nullptr;
             m_atomSubMenu.is_empty();
          }
@@ -1381,7 +1381,7 @@ namespace user
          if (m_pmenuParent != nullptr)
          {
 
-            m_pmenuParent->post_message(e_message_close);
+            m_pmenuParent->post_message(MESSAGE_CLOSE);
 
          }
 

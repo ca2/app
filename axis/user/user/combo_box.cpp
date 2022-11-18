@@ -548,7 +548,7 @@ namespace user
          if (m_plistbox.is_set())
          {
 
-            m_plistbox->post_message(e_message_close);
+            m_plistbox->post_message(MESSAGE_CLOSE);
 
          }
 
@@ -730,7 +730,7 @@ namespace user
       if (m_plistbox != nullptr)
       {
 
-         m_plistbox->post_message(e_message_close);
+         m_plistbox->post_message(MESSAGE_CLOSE);
 
       }
 

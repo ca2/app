@@ -375,7 +375,7 @@ namespace user
    ON_MESSAGE(WM_POPMESSAGESTRING, &frame_window::OnPopMessageString)
    ON_MESSAGE(WM_SETMESSAGESTRING, &frame_window::OnSetMessageString)
    ON_MESSAGE(WM_HELPPROMPTADDR, &frame_window::OnHelpPromptAddr)
-   ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, frame_window::OnIdleUpdateCmdUI)
+   ON_MESSAGE_VOID(e_message_idle_update_command_user_interface, frame_window::OnIdleUpdateCmdUI)
    ON_WM_ENTERIDLE()
    ON_e_message_hscroll()
    ON_e_message_vscroll()
@@ -396,7 +396,7 @@ namespace user
    ON_WM_QUERYNEWPALETTE()
    ON_WM_PALETTECHANGED()
    ON_MESSAGE(WM_COMMANDHELP, &frame_window::OnCommandHelp)
-   ON_MESSAGE(WM_HELPHITTEST, &frame_window::OnHelpHitTest)
+   ON_MESSAGE(e_message_help_hit_test, &frame_window::OnHelpHitTest)
    ON_MESSAGE(WM_ACTIVATETOPLEVEL, &frame_window::OnActivateTopLevel)
    // turning on and off standard frame gadgetry
    ON_UPDATE_::message::command(ID_VIEW_STATUS_BAR, &frame_window::OnUpdateControlBarMenu)
@@ -671,7 +671,7 @@ namespace user
       ::pointer<::user::frame_window>pFrameWnd = top_level_frame();
       ENSURE_VALID(pFrameWnd);
       pFrameWnd->m_bHelpMode = m_bHelpMode = HELP_INACTIVE;
-      PostMessage(WM_KICKIDLE);   // trigger idle update
+      PostMessage(e_message_kick_idle);   // trigger idle update
       */
    }
 

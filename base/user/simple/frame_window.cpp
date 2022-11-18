@@ -180,7 +180,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
       //MESSAGE_LINK(WM_DDE_INITIATE, pchannel, this, &simple_frame_window::_001OnDdeInitiate);
    //#endif
    MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &simple_frame_window::on_message_destroy);
-   MESSAGE_LINK(e_message_close, pchannel, this, &simple_frame_window::on_message_close);
+   MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &simple_frame_window::on_message_close);
    MESSAGE_LINK(e_message_size, pchannel, this, &simple_frame_window::on_message_size);
    MESSAGE_LINK(e_message_move, pchannel, this, &simple_frame_window::on_message_move);
 
@@ -213,7 +213,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 #ifdef WINDOWS_DESKTOP
 
 
-   MESSAGE_LINK(WM_APPEXIT, pchannel, this, &simple_frame_window::on_message_app_exit);
+   MESSAGE_LINK(e_message_application_exit, pchannel, this, &simple_frame_window::on_message_app_exit);
    MESSAGE_LINK(e_message_activate_app, pchannel, this, &simple_frame_window::_001OnActivateApp);
 
 #endif
@@ -3654,7 +3654,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //void simple_frame_window::WfiOnClose()
 //{
 //
-//   post_message(e_message_close);
+//   post_message(MESSAGE_CLOSE);
 //
 //}
 //

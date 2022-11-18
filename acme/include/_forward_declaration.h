@@ -829,7 +829,7 @@ namespace handle
 
 struct system_time_t;
 
-class scalar_base;
+//class scalar_base;
 
 
 CLASS_DECL_ACME int __node_is_debugger_attached();

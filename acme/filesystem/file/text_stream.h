@@ -5,6 +5,12 @@
 #include "stream.h"
 #include "acme/primitive/string/string.h"
 
+enum enum_start_reference
+{
+
+   e_start_reference,
+
+};
 
 
 inline ::string ellipsis(const char* psz, strsize len)
@@ -361,6 +367,13 @@ public:
       write(&ch, 1);
 
       print(m_chSeparator);
+
+      return *this;
+
+   }
+
+   write_text_stream& operator <<(enum_start_reference)
+   {
 
       return *this;
 

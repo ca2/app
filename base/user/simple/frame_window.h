@@ -19,20 +19,21 @@ public:
    bool                                            m_bTransparentFrameEnable : 1;
    bool                                            m_bCustomFrameBefore : 1;
    bool                                            m_bToolbar : 1;
-   ::pointer<::user::tool_window>                 m_ptoolwindowFont;
+   ::pointer<::user::tool_window>                  m_ptoolwindowFont;
    ::duration                                      m_durationLastSaveWindowRect;
    ::duration                                      m_durationLastSaveWindowRectRequest;
    ::image_pointer                                 m_pimageBk;
    ::rectangle_i32                                 m_FullScreenWindowRect;
-   ::pointer<::draw2d::fastblur>                  m_pfastblur;
+   ::pointer<::draw2d::fastblur>                   m_pfastblur;
    ::image_pointer                                 m_pimageBlur;
    ::user::enum_translucency                       m_etranslucencyFrame;
    ::image_pointer                                 m_pimageAlpha;
    ::database::key                                 m_datakeyFrame;
-   ::pointer<::windowing::icon>                   m_piconNotify;
-   ::pointer<::user::notify_icon>                 m_pnotifyicon;
+   ::pointer<::windowing::icon>                    m_piconNotify;
+   ::pointer<::user::notify_icon>                  m_pnotifyicon;
    ::payload                                       m_varFrame;
-   ::pointer<::task>                            m_ptask_save_window_placement;
+   ::pointer<::task>                               m_ptask_save_window_placement;
+   ::user::tab_impact *                            m_ptabimpact;
 
 
    simple_frame_window();

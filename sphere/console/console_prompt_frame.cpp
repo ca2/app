@@ -211,7 +211,7 @@ namespace console
    {
       simple_frame_window::install_message_routing(pchannel);
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &prompt_frame::on_message_create);
-      MESSAGE_LINK(e_message_close, pchannel, this, &prompt_frame::on_message_close);
+      MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &prompt_frame::on_message_close);
 //      //MESSAGE_LINK(e_message_timer, pchannel, this, &prompt_frame::_001OnTimer);
       MESSAGE_LINK(e_message_move, pchannel, this, &prompt_frame::on_message_move);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &prompt_frame::on_message_show_window);

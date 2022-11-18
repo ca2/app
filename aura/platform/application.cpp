@@ -2406,7 +2406,7 @@ retry_license:
    }
 
 
-   //void application::on_set_scalar(e_scalar escalar, i64 iValue, int iFlags)
+   //void application::on_set_scalar(enum_scalar escalar, i64 iValue, int iFlags)
    //{
 
    //   //if (escalar == scalar_app_install_progress)
@@ -2437,7 +2437,7 @@ retry_license:
    //}
 
 
-   //void application::get_scalar_minimum(e_scalar escalar, i64 & i)
+   //void application::get_scalar_minimum(enum_scalar escalar, i64 & i)
    //{
 
    //   //if (escalar == scalar_app_install_progress)
@@ -2467,7 +2467,7 @@ retry_license:
 
    //}
 
-   //void application::get_scalar(e_scalar escalar, i64 & i)
+   //void application::get_scalar(enum_scalar escalar, i64 & i)
    //{
 
    //   //if (escalar == scalar_app_install_progress)
@@ -2497,7 +2497,7 @@ retry_license:
 
    //}
 
-   //void application::get_scalar_maximum(e_scalar escalar, i64 & i)
+   //void application::get_scalar_maximum(enum_scalar escalar, i64 & i)
    //{
 
    //   //if (escalar == scalar_download_size)
@@ -3505,7 +3505,7 @@ retry_license:
 
                synchronouslock.unlock();
 
-               get_app()->m_papexapplication->post_message(e_message_close);
+               get_app()->m_papexapplication->post_message(MESSAGE_CLOSE);
 
             }
 
@@ -6376,7 +6376,7 @@ namespace aura
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle update
+   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle update
    //
    //      //trans pMainWnd->WinHelp(dwData, nCmd);
    //   }
@@ -6393,7 +6393,7 @@ namespace aura
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle update
+   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle update
    //
    //      // trans pMainWnd->HtmlHelp(dwData, nCmd);
    //   }
@@ -6408,7 +6408,7 @@ namespace aura
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle update
+   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle update
    //      // trans pMainWnd->WinHelpInternal(dwData, nCmd);
    //   }
    //
@@ -6617,7 +6617,7 @@ namespace aura
    //   ENSURE(pMainWnd->is_frame_window());
    //   pMainWnd->OnContextHelp();
    //   m_bHelpMode = pMainWnd->m_bHelpMode;
-   //   pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle update */
+   //   pMainWnd->PostMessage(e_message_kick_idle); // trigger idle update */
    //}
 
    ///////////////////////////////////////////////////////////////////////////////
@@ -6715,7 +6715,7 @@ namespace aura
 
    //   auto puserinteractionMain = __user_interaction(m_puserinteractionMain);
 
-   //   puserinteractionMain->m_puiThis->send_message(e_message_close);
+   //   puserinteractionMain->m_puiThis->send_message(MESSAGE_CLOSE);
 
    //}
 
@@ -8678,7 +8678,7 @@ namespace aura
               //               synchronouslock.unlock();
               try
               {
-                 pinteraction->send_message(WM_IDLEUPDATECMDUI, (wparam)true);
+                 pinteraction->send_message(e_message_idle_update_command_user_interface, (wparam)true);
               }
               catch (...)
               {

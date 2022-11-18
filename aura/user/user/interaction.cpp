@@ -2079,7 +2079,7 @@ namespace user
 
          }
 
-         MESSAGE_LINK(e_message_close, pchannel, this, &interaction::on_message_close);
+         MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &interaction::on_message_close);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction::on_message_size);
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction::on_message_move);
          MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this,
@@ -6049,7 +6049,7 @@ namespace user
             if (psession->is_key_pressed(::user::e_key_alt))
             {
 
-               post_message(e_message_close);
+               post_message(MESSAGE_CLOSE);
 
                pmessage->m_bRet = true;
 
@@ -10855,7 +10855,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      //psystem->post_to_all_threads(WM_KICKIDLE, 0, 0);
+      //psystem->post_to_all_threads(e_message_kick_idle, 0, 0);
 
       return m_atomModalResult;
 
@@ -10894,7 +10894,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      post_message(e_message_close);
+      post_message(MESSAGE_CLOSE);
 
       if (::is_set(m_ptaskModal))
       {
@@ -11029,10 +11029,10 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
          output_debug_string("::user::interaction::post_message e_message_key_down");
 
       }
-      else if (atom == e_message_close)
+      else if (atom == MESSAGE_CLOSE)
       {
 
-         output_debug_string("::user::interaction::post_message e_message_close");
+         output_debug_string("::user::interaction::post_message MESSAGE_CLOSE");
 
       }
 
@@ -16535,7 +16535,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
             || pitem->m_eelement == ::e_element_close_icon)
          {
 
-            post_message(e_message_close);
+            post_message(MESSAGE_CLOSE);
 
             return true;
 

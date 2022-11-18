@@ -253,7 +253,7 @@ void html_impact::on_form_implemented()
    if (::is_set(pdocument))
    {
 
-      pdocument->call_routines_with_id("load");
+      pdocument->call_procedures("load");
 
    }
 

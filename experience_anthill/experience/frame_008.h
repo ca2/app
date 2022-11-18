@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "frame.h"
@@ -19,6 +19,9 @@ namespace experience_anthill
 
       frame_008();
       ~frame_008() override;
+
+
+      void initialize(::particle* pparticle) override;
 
       
       void _on_style_change(::draw2d::graphics_pointer& pgraphics) override;

@@ -1,4 +1,7 @@
-#pragma once
+﻿#pragma once
+
+
+#include "channel.h"
 
 
 namespace message
@@ -6,7 +9,7 @@ namespace message
 
 
    template < class RECEIVER >
-   class listener_smart_pointer_array :
+   class listener_pointer_array :
       virtual public channel
    {
    public:
@@ -52,4 +55,4 @@ namespace message
 
 
 
-#define message_listener_spa(receiver) ::message::listener_smart_pointer_array < receiver >
+///#define message_listener_spa(receiver) ::message::listener_smart_pointer_array < receiver >

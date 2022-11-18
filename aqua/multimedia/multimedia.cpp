@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "multimedia.h"
 
 
@@ -75,7 +75,7 @@ namespace aqua
    }
 
 
-   ::pointer<::user::controller>multimedia::defer_create_impact(::object* pparticle, const string& strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
+   ::pointer<::user::controller>multimedia::defer_create_impact(::particle * pparticle, const string& strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
    {
 
       return nullptr;

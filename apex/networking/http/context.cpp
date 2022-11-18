@@ -10,6 +10,7 @@
 #include "acme/primitive/string/str.h"
 #include "apex/constant/idpool.h"
 #include "apex/networking/networking.h"
+#include "apex/networking/http/message.h"
 #include "apex/networking/sockets/http/tunnel.h"
 #include "apex/networking/sockets/http/session.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
@@ -2044,12 +2045,12 @@ namespace http
 
       }
 
-      if (set.has_property("int_scalar_source_listener"))
-      {
+      //if (set.has_property("int_scalar_source_listener"))
+      //{
 
-         psocket->::int_scalar_source::m_plistener = set["int_scalar_source_listener"].cast < int_scalar_source::listener >();
+      //   psocket->::int_scalar_manager::m_plistener = set["int_scalar_source_listener"].cast < int_scalar_source::listener >();
 
-      }
+      //}
 
       if (set.has_property("minimal_headers") && set["minimal_headers"].is_true())
       {
@@ -2136,13 +2137,13 @@ namespace http
 
       set["http_body_size_downloaded"] = &psocket->m_body_size_downloaded;
 
-      psocket->m_scalarsourceDownloadedRate.m_plistener = set["http_downloaded_rate_listener"].cast < ::double_scalar_source::listener >();
+      psocket->m_scalarlistenera.add(set["http_downloaded_rate_listener"].cast < ::scalar_source::listener >());
 
-      psocket->m_scalarsourceDownloadedRate.m_atom = set["http_downloaded_rate_id"].atom();
+      //psocket->m_realscalarDownloadedRate.m_atom = set["http_downloaded_rate_id"].atom();
 
-      psocket->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::int_scalar_source::listener >();
+      psocket->m_scalarlistenera.add(set["http_downloaded_listener"].cast < ::scalar_source::listener >());
 
-      psocket->m_scalarsourceDownloaded.m_atom = set["http_downloaded_id"].atom();
+      //psocket->m_integerscalarDownloaded.m_atom = set["http_downloaded_id"].atom();
 
       if (tickTotalTimeout.is_null())
       {
@@ -2309,9 +2310,9 @@ namespace http
 
          set["http_rate_downloaded"] = dRateDownloaded;
 
-         psocket->m_scalarsourceDownloadedRate.set_scalar(::scalar_none, dRateDownloaded);
+         psocket->set_scalar(::e_scalar_download_progress_rate, dRateDownloaded);
 
-         psocket->m_scalarsourceDownloaded.set_scalar(::scalar_none, iBodySizeDownloaded);
+         psocket->set_scalar(::e_scalar_download_size, iBodySizeDownloaded);
 
 //         keeplive.keep-alive();
 

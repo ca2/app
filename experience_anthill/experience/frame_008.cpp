@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "frame_008.h"
 #include "control_box.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -38,11 +38,6 @@ namespace experience_anthill
 
       // set_style(StyleTranslucidWarmLiteGray);
 
-      m_ppenHollow1.create(this);
-      m_ppenHollow2.create(this);
-      m_ppenHollow3.create(this);
-      m_ppenHollow4.create(this);
-      m_ppenHollow5.create(this);
 
       m_rectangleMarginNormal.set(10, 10, 10, 10);
 
@@ -56,6 +51,20 @@ namespace experience_anthill
 
    }
 
+
+   void frame_008::initialize(::particle* pparticle)
+   {
+
+      frame::initialize(pparticle);
+
+
+      m_ppenHollow1.create(this);
+      m_ppenHollow2.create(this);
+      m_ppenHollow3.create(this);
+      m_ppenHollow4.create(this);
+      m_ppenHollow5.create(this);
+
+   }
 
    //string frame_008::get_default_user_style() const
    //{

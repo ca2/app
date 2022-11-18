@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 2022-10-25 21:11 <3ThomasBorregaardSorensen!!
 //
 #pragma once
@@ -11,7 +11,7 @@ namespace multimedia
 {
 
 
-   class CLASS_DECL_AQUA information
+   class information
    {
    public:
 

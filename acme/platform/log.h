@@ -1,4 +1,4 @@
-// Created by camilo on 2021-07-17 23:24 BRT <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2021-07-17 23:24 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -54,10 +54,6 @@ public:
 };
 
 
-CLASS_DECL_ACME void set_verbose_log(bool bVerbose);
-
-
-CLASS_DECL_ACME bool is_verbose_log();
 
 
 

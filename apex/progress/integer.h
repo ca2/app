@@ -1,4 +1,4 @@
-// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardS�rensen!!
+﻿// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardS�rensen!!
 #pragma once
 
 
@@ -10,15 +10,15 @@ namespace progress
 
 
    class CLASS_DECL_APEX integer :
-      virtual public int_scalar_listener
+      virtual public scalar_source::listener
    {
    public:
 
 
-      double                  m_dProgressStart;
-      double                  m_dProgressEnd;
-      int_scalar              m_scalar;
-      ::progress::listener *  m_plistener;
+      double                     m_dProgressStart;
+      double                     m_dProgressEnd;
+      scalar                     m_scalar;
+      ::progress::listener *     m_plistener;
 
 
       integer();
@@ -30,9 +30,10 @@ namespace progress
 
       virtual void progress_step();
 
-      virtual void on_set_scalar(int_scalar_source * psource, e_scalar escalar, i64 iValue, int iFlags) override;
+      virtual bool on_set_scalar(scalar_source * psource, enum_scalar escalar, number number, int iFlags) override;
 
-      int_scalar & get_scalar() { return m_scalar; }
+      //scalar & get_scalar() { return m_scalar; }
+
 
    };
 

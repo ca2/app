@@ -14,6 +14,8 @@ CLASS_DECL_ACME ::string demangle(const char * pszMangledName);
 
 CLASS_DECL_ACME ::critical_section * factory_critical_section();
 
+template < typename TYPE >
+inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory = ::factory::get_factory());
 
 namespace factory
 {
@@ -296,7 +298,7 @@ namespace factory
 
       ///static auto atom = get_atom<ORIGIN_TYPE>();
 
-      return get_factory_item(atom, get_atom<ORIGIN_TYPE>());
+      return get_factory_item(atomSource, get_atom<ORIGIN_TYPE>());
 
    }
 
@@ -890,7 +892,7 @@ inline ::pointer < BASE_TYPE > __create(::particle* pparticle, ::factory::factor
 
 
 template < typename TYPE >
-inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory = ::factory::get_factory())
+inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory)
 {
 
    if (!p)

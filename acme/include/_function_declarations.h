@@ -235,3 +235,12 @@ inline bool is_impact_subgroup(::u64 u, ::u64 uGroup);
 
 inline bool is_file_or_folder(const ::file::enum_type& etype);
 inline bool exists(const ::file::enum_type& etype);
+
+
+CLASS_DECL_ACME void set_verbose_log(bool bVerbose);
+
+
+CLASS_DECL_ACME bool is_verbose_log();
+
+
+

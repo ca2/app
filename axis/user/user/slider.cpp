@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "slider.h"
 #include "acme/constant/message.h"
 #include "aura/message/user.h"
@@ -71,7 +71,7 @@ namespace user
 
       m_bSlide = true;
 
-      m_pscalar->set_rate(get_slide_rate(), scalar_slide);
+      m_scalar.set_rate(get_slide_rate(), e_scalar_slide);
 
       set_need_redraw();
 
@@ -100,7 +100,7 @@ namespace user
 
          m_bSlide = false;
 
-         m_pscalar->set_rate(get_slide_rate(), scalar_set);
+         m_scalar.set_rate(get_slide_rate(), e_scalar_set);
 
          set_need_redraw();
 
@@ -121,7 +121,7 @@ namespace user
       if(m_bSlide)
       {
 
-         m_pscalar->set_rate(get_slide_rate(), scalar_slide);
+         m_scalar.set_rate(get_slide_rate(), e_scalar_slide);
 
          set_need_redraw();
 
@@ -138,7 +138,7 @@ namespace user
    double slider::get_slide_rate()
    {
 
-      double dScalar = m_pscalar->get_rate();
+      double dScalar = m_scalar.get_rate();
 
       auto pointCursor = get_cursor_position();
 
@@ -162,10 +162,10 @@ namespace user
    }
 
 
-   void slider::set_scalar(scalar_base * pscalar)
+   void slider::set_scalar(const ::scalar & scalar)
    {
 
-      m_pscalar = pscalar;
+      m_scalar = scalar;
 
    }
 
@@ -178,7 +178,7 @@ namespace user
       else if(dRate > 1.0)
          dRate = 1.0;
 
-      m_pscalar->set_rate(dRate, scalar_set);
+      m_scalar.set_rate(dRate, e_scalar_set);
 
       set_need_redraw();
 
@@ -199,7 +199,7 @@ namespace user
       else
       {
 
-         m_dRate = m_pscalar->get_rate();
+         m_dRate = m_scalar.get_rate();
 
       }
 

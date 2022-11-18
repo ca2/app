@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/mathematics/numeric_info.h"
@@ -22,21 +22,14 @@ namespace comparison
 
 
 
-   template < typename A, typename B >
-   inline bool lt(const A & a, const B & b)
-   {
+//   template < typename A, typename B >
+//   inline bool lt(const A & a, const B & b)
+//   {
+//
+//      return a < b;
+//
+//   }
 
-      return a < b;
-
-   }
-
-
-
-   template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
-   inline bool lt(UNSIGNED1 u1, UNSIGNED2 u2)
-   {
-      return u1 > ::numeric_info<UNSIGNED2>::maximum() ? false : (UNSIGNED2)u1 < u2;
-   }
 
    template < primitive_unsigned UNSIGNED, primitive_signed SIGNED >
    inline bool lt(UNSIGNED u, SIGNED s)
@@ -49,6 +42,26 @@ namespace comparison
    {
       return s < 0 ? true : (UNSIGNED)s < u;
    }
+
+
+   template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
+   inline bool lt(SIGNED1 s1, SIGNED2 s2)
+   {
+      
+      return s1 < s2;
+
+   }
+
+   template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
+   inline bool lt(UNSIGNED1 u1, UNSIGNED2 u2)
+   {
+
+      return u1 > ::numeric_info<UNSIGNED2>::maximum() ? false : (UNSIGNED2)u1 < u2;
+
+   }
+
+
+
 
    template < >
    inline bool lt(unsigned long u, long i)
@@ -71,11 +84,11 @@ namespace comparison
    }
 
 
-   template < typename A, typename B >
-   inline bool gt(const A & a, const B & b)
-   {
-      return b < a;
-   }
+//   template < typename A, typename B >
+//   inline bool gt(const A & a, const B & b)
+//   {
+//      return b < a;
+//   }
 
 
    template < primitive_signed SIGNED, primitive_unsigned UNSIGNED >
@@ -95,6 +108,22 @@ namespace comparison
 
    }
 
+   template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
+   inline bool gt(SIGNED1 s1, SIGNED2 s2)
+   {
+
+      return s2 < s1;
+
+   }
+
+
+   template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
+   inline bool gt(UNSIGNED1 u1, UNSIGNED2 u2)
+   {
+
+      return u2 < u1;
+
+   }
 
    template < typename A, typename B >
    inline bool ge(A a, B b)

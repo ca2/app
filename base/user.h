@@ -13,7 +13,7 @@ namespace graphics
 
 
 
-#define e_message_size_parent       0x0361  // lParam = &__SIZEPARENTPARAMS
+//#define e_message_size_parent       0x0361  // lParam = &__SIZEPARENTPARAMS
 
 
 
@@ -24,10 +24,10 @@ namespace graphics
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
 // lParam = pszOther (or nullptr)
 
-#define WM_IDLEUPDATECMDUI  0x0363  // wParam == bDisableIfNoHandler
+//#define e_message_idle_update_command_user_interface  0x0363  // wParam == bDisableIfNoHandler
 #define WM_COMMANDHELP      0x0365  // lResult = true/false,
 // lParam = dwContext
-#define WM_HELPHITTEST      0x0366  // lResult = dwContext,
+#define e_message_help_hit_test      0x0366  // lResult = dwContext,
 // lParam = __MAKE_LONG(x,y)
 #define WM_EXITHELPMODE     0x0367  // (params unused)
 #define WM_RECALCPARENT     0x0368  // force on_layout on frame interaction_impl
@@ -36,7 +36,7 @@ namespace graphics
 // wParam = ID of child interaction_impl
 // lParam = pRectNew (memory_new position/size_i32)
 
-#define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
+#define e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
 #define WM_QUERYCENTERWND   0x036B  // lParam = oswindow to use as centering parent
 #define WM_DISABLEMODAL     0x036C  // lResult = 0, disable during modal state
 // lResult = 1, don't disable
@@ -94,7 +94,7 @@ namespace graphics
 //   LPARAM - MESSAGE * pMsg - a pointer to the MESSAGE structure
 //   return value - 0 if the message was not processed, nonzero if it was
 #define WM_FORWARDMSG      0x037F
-#define WM_APPEXIT         WM_APP + 1444
+//#define e_message_application_exit         WM_APP + 1444
 
 
 

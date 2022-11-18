@@ -83,7 +83,7 @@ namespace user
       if(pitem == m_pitemLButtonDown)
       {
 
-         m_scalar.set(pitem);
+         m_scalar.set(pitem->m_iItem);
 
       }
 
@@ -119,9 +119,9 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleClient, argb(bAlpha, 150, 200, 255));
 
-      i64 iMin = m_scalar.minimum();
-      i64 iMax = m_scalar.maximum();
-      i64 iVal = m_scalar;
+      i64 iMin = m_scalar.minimum().get_i64();
+      i64 iMax = m_scalar.maximum().get_i64();
+      i64 iVal = m_scalar.get().get_i64();
 
       ::rectangle_i32 rectangle;
       for(i64 i = iMin; i <= iMax; i++)
@@ -224,9 +224,9 @@ namespace user
 
       i64 iMin, iMax;
 
-      iMin = m_scalar.minimum();
+      iMin = m_scalar.minimum().get_i64();
 
-      iMax = m_scalar.maximum();
+      iMax = m_scalar.maximum().get_i64();
 
       return __new(::item((index) (iMin + (((point.x - rectangleClient.left) * (iMax - iMin)) / rectangleClient.width()))));
 

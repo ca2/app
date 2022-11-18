@@ -24,7 +24,7 @@
 //else __msg_entry(e_message_kill_focus)
 //else __msg_entry(e_message_enable)
 //else __msg_entry(e_message_paint)
-//else __msg_entry(e_message_close)
+//else __msg_entry(MESSAGE_CLOSE)
 //else __msg_entry(e_message_quit)
 //else __msg_entry(e_message_erase_background)
 //else __msg_entry(e_message_show_window)

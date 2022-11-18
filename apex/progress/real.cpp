@@ -1,4 +1,4 @@
-// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "real.h"
 
@@ -27,32 +27,35 @@ namespace progress
 
    }
 
-   void real::on_set_scalar(e_scalar escalar, double d, int iFlags)
+
+   bool real::on_set_scalar(enum_scalar escalar, ::number number, int iFlags)
    {
+
+      return false;
 
    }
 
 
-   void real::get_scalar_minimum(e_scalar escalar, double & d)
+   ::number real::get_scalar_minimum(enum_scalar escalar)
    {
 
-      d = 0.0;
+      return 0.0;
 
    }
 
 
-   void real::get_scalar(e_scalar escalar, double & d)
+   ::number real::get_scalar(enum_scalar escalar)
    {
 
-      d = (double)m_iStep / (double)m_iStepCount;
+      return (double)m_iStep / (double)m_iStepCount;
 
    }
 
 
-   void real::get_scalar_maximum(e_scalar escalar, double & d)
+   ::number real::get_scalar_maximum(enum_scalar escalar)
    {
 
-      d = 1.0;
+      return 1.0;
 
    }
 

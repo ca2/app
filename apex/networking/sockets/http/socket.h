@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/mathematics/scalar.h"
@@ -16,7 +16,8 @@ namespace sockets
    /** HTTP request/response axis class.
    \ingroup http */
    class CLASS_DECL_APEX http_socket :
-      virtual public tcp_socket
+      virtual public tcp_socket,
+      virtual public scalar_source
    {
    public:
 
@@ -36,12 +37,12 @@ namespace sockets
       string               m_strLine;
       bool                 m_bRequest;
       bool                 m_bResponse;
-      //bool                 m_bExpectRequest;
-      memsize               m_body_size_left;
-      memsize               m_body_size_downloaded;
-      double_scalar_source m_scalarsourceDownloadedRate;
-      int_scalar_source    m_scalarsourceDownloaded;
-      memsize               m_chunk_size;
+      //bool               m_bExpectRequest;
+      memsize              m_body_size_left;
+      memsize              m_body_size_downloaded;
+      ::f64                m_dDownloadRate;
+      ::i64                m_iDownloaded;
+      memsize              m_chunk_size;
       int                  m_chunk_state;
       string               m_chunk_line;
 

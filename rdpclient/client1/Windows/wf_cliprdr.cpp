@@ -1077,8 +1077,8 @@ void wf_destroy_file_obj(IDataObject* instance);
 //			clipboard->hwnd = hWnd;
 //			break;
 //
-//		case e_message_close:
-//			DEBUG_CLIPRDR("info: e_message_close");
+//		case MESSAGE_CLOSE:
+//			DEBUG_CLIPRDR("info: MESSAGE_CLOSE");
 //			RemoveClipboardFormatListener(hWnd);
 //			break;
 //

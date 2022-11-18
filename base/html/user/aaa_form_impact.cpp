@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "form_impact.h"
 #include "document.h"
+#include "acme/constant/happening.h"
 #include "axis/html/html/data.h"
 #include "axis/html/html/core_data.h"
 #include "aura/user/user/frame.h"
@@ -56,7 +57,7 @@ void html_form_impact::on_form_implemented()
    if (::is_set(pdocument))
    {
 
-      pdocument->call_routines_with_id("load");
+      pdocument->call_procedures(e_happening_load);
 
    }
 

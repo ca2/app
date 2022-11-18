@@ -1,4 +1,4 @@
-//
+﻿//
 //  conversation_message.cpp
 //  acme
 //
@@ -94,7 +94,7 @@ void conversation_message::do_asynchronously()
    textstream << "Details:\n";
    textstream << m_strDetails << "\n";
    
-   output_debug_string(textstream.m_str);
+   output_debug_string(textstream.as_string());
    
 }
 

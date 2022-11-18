@@ -129,7 +129,7 @@ namespace user
 
       UpdatePosition();
 
-      m_pscalarVelocity->set_rate(CalcScalar(),scalar_set);
+      m_pscalarVelocity->set_rate(CalcScalar(), e_scalar_set);
 
    }
 
@@ -190,18 +190,21 @@ namespace user
       m_iScalar = (m_iScalar + 1) % m_daScalar.get_size();
       m_durationLastTime = tickNow;
       return m_daScalar.simple_total_mean(); // Low Pass Filter
+
    }
 
-   void elastic_slider::SetStreamingVelocityMode(scalar_base * pscalarVelocity,scalar_base * pscalarPosition)
+
+   void elastic_slider::SetStreamingVelocityMode(scalar * pscalarVelocity,scalar * pscalarPosition)
    {
 
-      m_escalar = scalar_streaming_velocity;
+      m_escalar = e_scalar_streaming_velocity;
 
       m_pscalarVelocity = pscalarVelocity;
 
       m_pscalarPosition = pscalarPosition;
 
    }
+
 
    void elastic_slider::UpdatePosition()
    {
@@ -213,6 +216,7 @@ namespace user
 
    void elastic_slider::SetSliderPos(double dPos)
    {
+
       if(dPos < 0.0)
          dPos = 0.0;
       else if(dPos > 1.0)

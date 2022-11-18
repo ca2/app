@@ -146,7 +146,7 @@ public:
    virtual void add_each_routine_from(const ::atom& idRoutine, ::object* pobjectSource);
 
 
-   virtual procedure_array * procedure_array(const ::atom& idRoutine);
+   virtual ::procedure_array * procedure_array(const ::atom& idRoutine);
 
    template < typename ROUTINE_RUNNER_OBJECT, typename ROUTINE_RUNNER_METHOD >
    void for_routines_with_id(const ::atom & atom, ROUTINE_RUNNER_OBJECT proutinerunner, ROUTINE_RUNNER_METHOD routine_runner_method)
@@ -183,7 +183,7 @@ public:
    virtual void call_routine2(const ::procedure & procedure);
 
 
-   inline void call_routines_with_id(const ::atom & atom)
+   inline void call_procedures(const ::atom & atom)
    {
 
       return for_routines_with_id(atom, this, &object::call_routine2);
@@ -191,7 +191,7 @@ public:
    }
 
 
-   inline void post_routines_with_id(const ::atom & atom)
+   inline void branch_procedures(const ::atom & atom)
    {
 
       return for_routines_with_id(atom, this, &object::post_procedure);
@@ -1268,7 +1268,7 @@ public:
 
    //virtual element* get_taskpool_container() override;
 
-   
+
 
 };
 

@@ -1,4 +1,4 @@
-/** \file httpd_socket.cpp
+﻿/** \file httpd_socket.cpp
 */
 /*
 Copyright (C) 2001-2007  Anders Hedstrom (grymse@alhem.net)
@@ -26,7 +26,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "apex/id.h"
+//#include "apex/id.h"
 #include "httpd_socket.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"

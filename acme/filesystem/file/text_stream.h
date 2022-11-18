@@ -5,6 +5,12 @@
 #include "stream.h"
 #include "acme/primitive/string/string.h"
 
+enum enum_start_reference
+{
+
+   e_start_reference,
+
+};
 
 
 inline ::string ellipsis(const char* psz, strsize len)
@@ -47,7 +53,15 @@ inline inline_number_string signed_string(SIGNED i, int iRadix = 10)
 
    inline_number_string numberstring;
 
+#ifdef WINDOWS
+
    _i64toa(i, numberstring, iRadix);
+
+#else
+
+   i64toa(i, numberstring, iRadix);
+
+#endif
 
    return numberstring;
 
@@ -353,6 +367,13 @@ public:
       write(&ch, 1);
 
       print(m_chSeparator);
+
+      return *this;
+
+   }
+
+   write_text_stream& operator <<(enum_start_reference)
+   {
 
       return *this;
 
@@ -869,6 +890,8 @@ public:
 
       sh = (::i16)iRead;
 
+      return *this;
+
    }
 
 
@@ -885,6 +908,8 @@ public:
       }
 
       u = (::u16)uRead;
+
+      return *this;
 
    }   
 
@@ -909,6 +934,8 @@ public:
 
       i = (::i32)iRead;
 
+      return *this;
+
    }
 
 
@@ -926,6 +953,8 @@ public:
 
       u = (::u32) uRead;
 
+      return *this;
+
    }
 
 
@@ -933,6 +962,8 @@ public:
    {
 
       i = read_integer();
+
+      return *this;
 
    }  
 
@@ -942,6 +973,8 @@ public:
 
       u = read_natural();
 
+      return *this;
+
    }
 
 
@@ -949,6 +982,8 @@ public:
    {
 
       f = (float) read_floating();
+
+      return *this;
 
    }
    
@@ -958,6 +993,8 @@ public:
 
       d = read_floating();
 
+      return *this;
+
    }
 
 
@@ -966,9 +1003,14 @@ public:
 
       str = get_word();
 
+      return *this;
+
    }
+
+
    ////text_stream & operator >>(property_set& set) ;
    ////text_stream & operator >>(::atom & atom) ;
+
 
    template < typename TYPE >
    read_sz_stream & read(TYPE& t)
@@ -984,7 +1026,7 @@ public:
 };
 
 
-using std_string_stream = ::write_text_stream;
+//using std_string_stream = ::write_text_stream;
 
 
 class CLASS_DECL_ACME string_reference_stream :
@@ -1001,13 +1043,19 @@ public:
 
 
 class CLASS_DECL_ACME string_stream :
-   public write_text_stream < string_buffer >,
-   public string_buffer
+   public write_text_stream < string_buffer >
 {
 public:
 
+   
+   string_buffer   m_stringbuffer;
 
-   string_stream() : write_text_stream(this) { }
+
+   string_stream() : write_text_stream(&m_stringbuffer) { }
+
+
+   ::string as_string() const { return m_stringbuffer.m_strOwnStorage; }
+   ::string & as_string()  { return m_stringbuffer.m_strOwnStorage; }
 
 
 };

@@ -11,7 +11,7 @@
 #include "acme/parallelization/task.h"
 
 
-#define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
+#define e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
 #if defined(LINUX) // || defined(ANDROID)
 
 

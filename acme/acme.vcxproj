@@ -803,9 +803,11 @@
     <ClInclude Include="constant\context.h" />
     <ClInclude Include="constant\cursor.h" />
     <ClInclude Include="constant\data.h" />
+    <ClInclude Include="constant\happening.h" />
     <ClInclude Include="constant\filesystem.h" />
     <ClInclude Include="constant\flag.h" />
     <ClInclude Include="constant\future.h" />
+    <ClInclude Include="constant\scalar.h" />
     <ClInclude Include="constant\_id.h" />
     <ClInclude Include="constant\id.h" />
     <ClInclude Include="constant\idpool.h" />
@@ -1170,7 +1172,6 @@
     <ClCompile Include="primitive\mathematics\number_float.cpp" />
     <ClCompile Include="primitive\mathematics\number_integer.cpp" />
     <ClCompile Include="primitive\mathematics\random_number_generator.cpp" />
-    <ClCompile Include="primitive\mathematics\scalar.cpp" />
     <ClCompile Include="primitive\mathematics\value.cpp" />
     <ClCompile Include="primitive\mathematics\_.cpp" />
     <ClCompile Include="primitive\media_library\item.cpp" />
@@ -1192,6 +1193,7 @@
     <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\string\encoding_exception.cpp" />
     <ClCompile Include="primitive\string\command_line.cpp" />
+    <ClCompile Include="primitive\string\international2.cpp" />
     <ClCompile Include="primitive\string\string.cpp" />
     <ClCompile Include="primitive\string\str_to.cpp" />
     <ClCompile Include="primitive\string\sz\ansi.cpp" />
@@ -1344,6 +1346,7 @@
     <ClInclude Include="platform\_c.h" />
     <ClInclude Include="platform\__string.h" />
     <ClInclude Include="primitive\collection\str_array.h" />
+    <ClInclude Include="primitive\collection\datetime_array.h" />
     <ClInclude Include="primitive\collection\unicode_data.h" />
     <ClInclude Include="primitive\collection\_array.h" />
     <ClInclude Include="primitive\collection\_container.h" />
@@ -1595,7 +1598,6 @@
     <ClInclude Include="primitive\collection\array_base.h" />
     <ClInclude Include="primitive\collection\attrib_map.h" />
     <ClInclude Include="primitive\collection\back_insert_iterator.h" />
-    <ClInclude Include="primitive\collection\base_2array.h" />
     <ClInclude Include="primitive\collection\base_enum.h" />
     <ClInclude Include="primitive\collection\bitset.h" />
     <ClInclude Include="primitive\collection\bit_array.h" />
@@ -1749,7 +1751,7 @@
     <ClInclude Include="primitive\mathematics\objects.h" />
     <ClInclude Include="primitive\mathematics\random_number_generator.h" />
     <ClInclude Include="primitive\mathematics\scalar.h" />
-    <ClInclude Include="primitive\mathematics\scalar_enum.h" />
+    <ClInclude Include="primitive\mathematics\aaa_scalar_enum.h" />
     <ClInclude Include="primitive\mathematics\static_numeric_info.h" />
     <ClInclude Include="primitive\mathematics\std_template.h" />
     <ClInclude Include="primitive\mathematics\value.h" />
@@ -2101,6 +2103,7 @@
     <None Include="filesystem\file\_impl.h" />
     <None Include="filesystem\file\_serializable_impl.h" />
     <None Include="memory\namespace_heap.inl" />
+    <ClCompile Include="primitive\mathematics\scalar.cpp" />
     <None Include="primitive\primitive\_impl.h" />
     <None Include="primitive\string\_defer.h" />
   </ItemGroup>

@@ -28,8 +28,7 @@ namespace sockets
    /** get http response to file or memory.
    \ingroup http */
    class CLASS_DECL_APEX http_client_socket :
-      virtual public http_tunnel,
-      virtual public int_scalar_source
+      virtual public http_tunnel
    {
    public:
 
@@ -124,10 +123,10 @@ namespace sockets
       virtual void request_url(string strUrlParam);
 
 
-      virtual void on_set_scalar(e_scalar escalar,i64 iValue,int iFlags) override;
-      virtual void get_scalar_minimum(e_scalar escalar, i64 & i) override;
-      virtual void get_scalar(e_scalar escalar, i64 & i) override;
-      virtual void get_scalar_maximum(e_scalar escalar, i64 & i) override;
+      bool on_set_scalar(enum_scalar escalar,::number number,int iFlags) override;
+      ::number get_scalar_minimum(enum_scalar escalar) override;
+      ::number get_scalar(enum_scalar escalar) override;
+      ::number get_scalar_maximum(enum_scalar escalar) override;
 
       virtual string MyUseragent() override;
 

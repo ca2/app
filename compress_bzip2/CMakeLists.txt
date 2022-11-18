@@ -5,7 +5,7 @@ project(compress_bzip2 CXX)
 list(APPEND library_source
    _.cpp
    _.h
-   _compress_bzip2.h
+   #_compress_bzip2.h
    compress.cpp
    compress.h
    uncompress.cpp

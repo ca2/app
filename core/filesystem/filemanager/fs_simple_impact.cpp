@@ -9,7 +9,7 @@
 #include "acme/platform/system.h"
 #include "acme/primitive/data/listener.h"
 #include "apex/networking/http/context.h"
-#include "apex/networking/http/signal.h"
+#include "apex/networking/http/message.h"
 #include "apex/platform/context.h"
 #include "core/user/user/tree.h"
 

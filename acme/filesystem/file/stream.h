@@ -187,7 +187,7 @@ public:
    ::file::fmtflags setf(::file::fmtflags flagsAdd)
    {
 
-      m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) | ((::i32)flagsAdd));
+      return m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) | ((::i32)flagsAdd));
 
    }
 
@@ -197,7 +197,7 @@ public:
 
       setf(flagsAdd);
 
-      m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) & (~(::i32)flagsAdd));
+      return m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) & (~(::i32)flagsAdd));
 
    }
 

@@ -610,7 +610,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::on_set_scalar(e_scalar escalar,i64 iValue,int iFlags)
+   void http_client_socket::on_set_scalar(enum_scalar escalar,i64 iValue,int iFlags)
    {
 
       if (escalar == scalar_download_size)
@@ -629,7 +629,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::get_scalar_minimum(e_scalar escalar, i64 & i)
+   void http_client_socket::get_scalar_minimum(enum_scalar escalar, i64 & i)
    {
 
       if (escalar == scalar_download_size)
@@ -647,7 +647,7 @@ namespace sockets
 
    }
 
-   void http_client_socket::get_scalar(e_scalar escalar, i64 & i)
+   void http_client_socket::get_scalar(enum_scalar escalar, i64 & i)
    {
 
       if (escalar == scalar_download_size)
@@ -665,7 +665,7 @@ namespace sockets
 
    }
 
-   void http_client_socket::get_scalar_maximum(e_scalar escalar, i64 & i)
+   void http_client_socket::get_scalar_maximum(enum_scalar escalar, i64 & i)
    {
 
       if (escalar == scalar_download_size)

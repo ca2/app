@@ -1,6 +1,7 @@
-#pragma once
+﻿#pragma once
 
 
+#include "acme/primitive/collection/packset.h"
 
 
 template <class TYPEA, class ARG_TYPEA, class TYPEB, class ARG_TYPEB, class ARRAYA, class ARRAYB  >

@@ -58,7 +58,9 @@
 
 
 #define __EVALUATE(xxx) xxx
+#ifndef __CONCAT
 #define __CONCAT(xxx, yyy) xxx ## yyy
+#endif
 
 #define __CONCAT3(xxx, yyy, zzz) xxx ## yyy ## zzz
 
@@ -238,10 +240,10 @@
 #define TRACE_LOG_FORMATTED_FATAL(...)                      trace_log_fatal                  (__VA_ARGS__)
 
 
-#define TRACE_LOG_INFORMATION(...)                      trace_log_information            () << __VA_ARGS__
-#define TRACE_LOG_WARNING(...)                      trace_log_warning                () << __VA_ARGS__
-#define TRACE_LOG_ERROR(...)                      trace_log_error                  () << __VA_ARGS__
-#define TRACE_LOG_FATAL(...)                      trace_log_fatal                  () << __VA_ARGS__
+#define TRACE_LOG_INFORMATION(...)                      trace_log_information            () << e_start_reference << __VA_ARGS__
+#define TRACE_LOG_WARNING(...)                      trace_log_warning                () << e_start_reference << __VA_ARGS__
+#define TRACE_LOG_ERROR(...)                      trace_log_error                  () << e_start_reference << __VA_ARGS__
+#define TRACE_LOG_FATAL(...)                      trace_log_fatal                  () << e_start_reference << __VA_ARGS__
 
 
 #define FORMATTED_INFORMATION(...)                      TRACE_LOG_FORMATTED_INFORMATION(__VA_ARGS__)

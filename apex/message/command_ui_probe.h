@@ -135,7 +135,7 @@ struct CPrintInfo;          // print thumbnail customization info
 
 // flags for interaction_impl::RunModalLoop
 #define MLF_NOIDLEMSG       0x0001  // don't send WM_ENTERIDLE messages
-#define MLF_NOKICKIDLE      0x0002  // don't send WM_KICKIDLE messages
+#define MLF_NOKICKIDLE      0x0002  // don't send e_message_kick_idle messages
 #define MLF_SHOWONIDLE      0x0004  // show interaction_impl if not visible at idle time
 
 // extra apex API defined TTF_ flags for TOOLINFO::uFlags

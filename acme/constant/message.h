@@ -206,24 +206,31 @@ e_message_queue_sentinel =    0x0379,
 //   return value - 0 if the message was not processed, nonzero if it was
 //#define WM_FORWARDMSG      0x037F
    e_message_forward_message = 0x037F,
+
+   e_message_user = 0x0400,
+   e_message_main_post = e_message_user + 23,
+   e_message_image_loaded,
+
+
+
 //#define WM_APPEXIT         WM_APP + 1444
-   e_message_wm_app = 0x8000,
-   e_message_ole_dragenter  = e_message_wm_app + 324,
-   e_message_ole_dragover   = e_message_wm_app + 325,
-   e_message_ole_dragleave  = e_message_wm_app + 326,
-   e_message_ole_dragdrop  = e_message_wm_app + 327,
 
 
-   e_message_system = e_message_wm_app + 1024,
+   e_message_application = 0x8000,
+   e_message_ole_dragenter  = e_message_application + 324,
+   e_message_ole_dragover   = e_message_application + 325,
+   e_message_ole_dragleave  = e_message_application + 326,
+   e_message_ole_dragdrop  = e_message_application + 327,
+   e_message_application_exit = e_message_application + 1444,
+
+   e_message_system = e_message_application + 2048,
    e_message_branch,
    e_message_system_command,
    e_message_system_command_probe,
    e_message_system_has_command_handler,
    e_message_system_update,
    e_message_language,
-   e_message_application,
    e_message_has_command_handler,
-   //e_message_event,
    e_message_thread,
    e_message_desk,
    e_message_display_change,
@@ -288,15 +295,8 @@ e_message_queue_sentinel =    0x0379,
    e_message_notify_icon,
 
    e_message_open_response,
-   e_message_application_exit,
-
+   
    e_message_wave_in_data,
-
-e_message_wm_user = 0x0400,
-   e_message_main_post = e_message_wm_user + 23,
-   e_message_image_loaded,
-
-
 
 
 };

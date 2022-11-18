@@ -2052,7 +2052,7 @@ namespace user
 //
 //      fflush(stdout);
 
-      m_puserinteraction->run_property("on_create");
+      m_puserinteraction->run_property(ID_CREATE);
 
 //      if(::is_null(m_puserinteraction->m_pwindow))
 //      {
@@ -2069,7 +2069,7 @@ namespace user
 //
 //      fflush(stdout);
 
-      //m_puserinteraction->call_routines_with_id(CREATE_ROUTINE);
+      //m_puserinteraction->call_procedures(CREATE_ROUTINE);
 
 //      if(::is_null(m_puserinteraction->m_pwindow))
 //      {

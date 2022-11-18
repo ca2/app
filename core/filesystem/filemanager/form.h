@@ -17,7 +17,7 @@ namespace filemanager
       form();
 
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
 
    };

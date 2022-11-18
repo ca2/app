@@ -53,7 +53,7 @@ namespace ios
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       void _002OnDraw(::draw2d::graphics_pointer & pgraphics);
 
@@ -672,7 +672,7 @@ namespace ios
       virtual void show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd) override;
 
 
-      virtual bool has_pending_graphical_update() override;
+      bool has_pending_graphical_update() override;
       
 
    };

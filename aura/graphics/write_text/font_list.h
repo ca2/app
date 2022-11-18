@@ -69,7 +69,7 @@ namespace write_text
 
       //virtual void on_subject(::topic * ptopic) override;
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       //virtual void defer_enumerate_fonts(::topic * ptopic);
       //virtual void enumerate_fonts(::topic * ptopic);

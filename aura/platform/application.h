@@ -340,7 +340,7 @@ namespace aura
 
       //virtual void on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
       //virtual void on_notify_control_event(::user::control_event* pevent);
       //virtual void route(::topic * ptopic, ::context * pcontext);
 

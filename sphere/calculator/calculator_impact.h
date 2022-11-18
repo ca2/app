@@ -26,7 +26,7 @@ namespace calculator
 
       void install_message_routing(::channel * pchannel) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       ::user::document * get_document();
 

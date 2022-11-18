@@ -7,6 +7,8 @@
 #include "context.h"
 #include "plane_system.h"
 #include "acme/memory/counter.h"
+#include "acme/parallelization/_types.h"
+#include "acme/primitive/collection/map.h"
 #include "acme/primitive/primitive/factory.h"
 
 
@@ -56,10 +58,10 @@ namespace acme
       void * m_pmmos;
 #endif
 
-      ::pointer < ::mutex >                                             m_pmutexTask;
+      ::pointer < ::particle >                                          m_pmutexTask;
       task_map                                                          m_taskmap;
       task_id_map                                                       m_taskidmap;
-      ::pointer < ::mutex >                                             m_pmutexTaskOn;
+      ::pointer < ::particle >                                          m_pmutexTaskOn;
       map < itask_t, itask_t >                                          m_mapTaskOn;
 
 

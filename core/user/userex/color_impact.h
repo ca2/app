@@ -48,9 +48,9 @@ namespace userex
       ::color::hls get_sel_color() override;
       
       
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
-      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::context * pcontext) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

@@ -153,7 +153,7 @@ namespace user
       //virtual ::color::color get_button_text_color();
 
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       bool on_click(::item * pitem) override;

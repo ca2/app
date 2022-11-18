@@ -55,7 +55,7 @@ namespace userstack
 
       virtual void set_display(i32 iDisplay);
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * TinyJS
  *
  * A single-file Javascript-alike engine
@@ -29,6 +29,7 @@
  */
 
 #include "framework.h"
+#include "tinyjs.h"
 //#include "fiasco_finder.h"
 
 
@@ -123,11 +124,11 @@ void scStringSubstring(CScriptVar *ca, void *) {
 
 
 void scStringToLowerCase(CScriptVar *ca,void *) {
-   ca->getReturnVar()->setString(::str().ansi_lower(ca->getParameter("this")->getString()));
+   ca->getReturnVar()->setString(ca->getParameter("this")->getString().lowered());
 }
 
 void scStringToUpperCase(CScriptVar *ca,void *) {
-   ca->getReturnVar()->setString(::str().ansi_upper(ca->getParameter("this")->getString()));
+   ca->getReturnVar()->setString(ca->getParameter("this")->getString().uppered());
 }
 
 void scStringCharAt(CScriptVar *ca, void *) {

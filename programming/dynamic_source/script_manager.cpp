@@ -347,9 +347,9 @@ namespace dynamic_source
 
       pmain->m_pscript2 = pinstance->m_pscript2;
 
-      pmain->run_property("on_create");
+      pmain->run_property(ID_CREATE);
 
-      pmain->call_routines_with_id(ID_CREATE);
+      pmain->call_procedures(ID_CREATE);
 
       pmain->m_pmain = pmain;
       
@@ -363,9 +363,9 @@ namespace dynamic_source
 
       pinstance->initialize(pmain);
 
-      pinstance->run_property("on_create");
+      pinstance->run_property(ID_CREATE);
 
-      pinstance->call_routines_with_id(ID_CREATE);
+      pinstance->call_procedures(ID_CREATE);
 
       auto pthread = pdssocket->get_thread();
 
@@ -632,7 +632,7 @@ namespace dynamic_source
 
             //pimpl->m_pscript2 = pinstance->m_pscript2;
 
-            //pimpl->run_property("on_create");
+            //pimpl->run_property(ID_CREATE);
             //
             //pimpl->call_routine(CREATE_ROUTINE);
 
@@ -642,9 +642,9 @@ namespace dynamic_source
 
             pinstance->m_pinstanceParent2 = pinstanceParent;
 
-            pinstance->run_property("on_create");
+            pinstance->run_property(ID_CREATE);
             
-            pinstance->call_routines_with_id(ID_CREATE);
+            pinstance->call_procedures(ID_CREATE);
 
             if (pinstanceParent->m_pmain->m_iDebug > 0)
             {

@@ -208,7 +208,7 @@ namespace user
       //virtual void OnActivateImpact(bool bActivate, ::pointer<::user::impact>pActivateImpact, ::pointer<::user::impact>DeactiveImpact);
       //virtual void OnActivateFrame(::u32 nState, ::pointer<::user::frame_window>pFrameWnd);
 
-      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::context * pcontext) override;
 
       //      virtual void dump(dump_context &) const;
       //    // void assert_ok() const override;

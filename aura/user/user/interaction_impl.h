@@ -771,7 +771,7 @@ namespace user
 
       virtual void _001OnTriggerMouseInside() override;
 
-      virtual bool has_pending_graphical_update() override;
+      bool has_pending_graphical_update() override;
 
       virtual void on_after_graphical_update() override;
 

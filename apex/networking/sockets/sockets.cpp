@@ -246,7 +246,7 @@ namespace sockets
 
    //      char c = m_countHttpPostBoundary++ % 128;
 
-   //      while (!ansi_char_is_alnum((unsigned char)c))
+   //      while (!character_isalnum((unsigned char)c))
    //      {
 
    //         c = m_countHttpPostBoundary++ % 128;

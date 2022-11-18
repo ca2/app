@@ -103,7 +103,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnNcCreate);
 
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       bool pre_create_window(::user::system * pusersystem) override;
 
@@ -113,7 +113,7 @@ namespace user
 
       //::pointer<::user::menu_item>get_menu_item(::user::interaction * pinteraction);
 
-      virtual bool has_pending_graphical_update() override;
+      bool has_pending_graphical_update() override;
 
       virtual bool create_menu(const string_array & straCommand, const string_array & straCommandTitle);
 

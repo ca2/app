@@ -1,4 +1,4 @@
-/*
+﻿/*
  * TinyJS
  *
  * A single-file Javascript-alike engine
@@ -117,6 +117,7 @@
  */
 
 #include "framework.h"
+#include "tinyjs.h"
 //#include "fiasco_finder.h"
 #include <stdio.h>
 

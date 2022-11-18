@@ -19,9 +19,9 @@ namespace app_core_build
 //      // void dump(dump_context & dumpcontext) const override;
 
 
-      virtual ::experience::frame * frame_experience() override;
+      ::experience::frame * frame_experience() override;
 
-      virtual bool has_pending_graphical_update() override;
+      bool has_pending_graphical_update() override;
 
 
    };

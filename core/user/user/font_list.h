@@ -62,7 +62,7 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       virtual ::item_pointer current_item() override;

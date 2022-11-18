@@ -376,7 +376,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
       virtual void OnDraw(::image * pimage);      // overridden to draw this ::user::impact
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
 
 

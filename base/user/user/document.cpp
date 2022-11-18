@@ -426,11 +426,11 @@ namespace user
    void document::on_create(::create * pcreate)
    {
 
-      run_property("on_create");
+      run_property(ID_CREATE);
 
       //throw_todo();
 
-      //call_routines_with_id(CREATE_ROUTINE);
+      //call_procedures(CREATE_ROUTINE);
 
       //::database::client::initialize_data_client(papp->dataserver());
 

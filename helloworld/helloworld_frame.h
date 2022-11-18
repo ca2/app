@@ -19,7 +19,7 @@ namespace helloworld
 //      // void dump(dump_context & dumpcontext) const override;
 
 
-      virtual ::user::enum_translucency get_translucency(::user::style * pstyle) const override;
+      ::user::enum_translucency get_translucency(::user::style * pstyle) override;
 
 
    };

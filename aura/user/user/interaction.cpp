@@ -5390,9 +5390,9 @@ namespace user
 
       }
 
-      run_property("on_create");
+      run_property(ID_CREATE);
 
-      //call_routines_with_id(CREATE_ROUTINE);
+      //call_procedures(CREATE_ROUTINE);
 
       sync_style();
 

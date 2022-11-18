@@ -123,7 +123,7 @@ namespace experience
       void install_message_routing(::channel * pchannel) override;
 
       
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       void on_command(::message::command * pcommand) override;

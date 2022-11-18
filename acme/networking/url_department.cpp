@@ -1825,7 +1825,7 @@ namespace url
    }
 
 
-   inline bool ansi_char_is_alnum(i32 i)
+   inline bool character_isalnum(i32 i)
    {
 
       return (i >= '0' && i <= '9') || (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z');

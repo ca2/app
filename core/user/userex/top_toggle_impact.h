@@ -25,7 +25,7 @@ namespace userex
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       virtual bool keyboard_focus_is_focusable() override;

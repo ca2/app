@@ -20,7 +20,7 @@ public:
 
    DECLARE_MESSAGE_HANDLER(on_message_create);
 
-   virtual void handle(::topic * ptopic, ::context * pcontext) override;
+   void handle(::topic * ptopic, ::context * pcontext) override;
 
 
    // void assert_ok() const override;

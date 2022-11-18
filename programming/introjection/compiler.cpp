@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "compiler.h"
 #include "library.h"
 #include "acme/exception/exception.h"
@@ -1443,7 +1443,7 @@ auto tickStart = ::duration::now();
 
             }
 
-            plibrary->m_strError = plibrary->m_memfileError.m_str;
+            plibrary->m_strError = plibrary->m_memfileError.as_string();
 
             plibrary->m_strError.trim();
 

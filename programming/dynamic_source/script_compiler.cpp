@@ -1671,7 +1671,7 @@ pacmedirectory->create(pathDVP_Folder);
 
             }
 
-            l.m_strError = l.m_memfileError.m_str;
+            l.m_strError = l.m_memfileError.as_string();
 
             l.m_strError.trim();
 
@@ -1810,7 +1810,7 @@ auto tickStart = ::duration::now();
 
          }
 
-         l.m_strError = l.m_memfileError.m_str;
+         l.m_strError = l.m_memfileError.as_string();
 
          l.m_strError.trim();
 

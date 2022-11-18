@@ -75,9 +75,9 @@ namespace data
 
       }
 
-      //run_property("on_create");
+      //run_property(ID_CREATE);
 
-      //call_routines_with_id(CREATE_ROUTINE);
+      //call_procedures(CREATE_ROUTINE);
 
       //return ::success;
 

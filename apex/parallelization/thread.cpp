@@ -1529,7 +1529,7 @@ void thread::task_erase(::task * ptask)
 void thread::destroy()
 {
 
-   //call_routines_with_id(DESTROY_ROUTINE);
+   //call_procedures(DESTROY_ROUTINE);
 
    string strType = __type_name(this);
 

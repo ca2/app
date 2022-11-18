@@ -59,7 +59,7 @@ namespace user
 
       void set_need_load_form_data() override;
 
-      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::context * pcontext) override;
       
       form_document * get_document();
       

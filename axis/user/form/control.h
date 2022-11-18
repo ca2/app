@@ -134,7 +134,7 @@ namespace user
 
       //      ::user::form_window(::particle * pparticle);
 
-      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::context * pcontext) override;
       //      virtual void handle(::topic * ptopic, ::context * pcontext);
       //      DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer) override;

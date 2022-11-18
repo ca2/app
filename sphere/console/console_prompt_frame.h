@@ -49,7 +49,7 @@ namespace console
       virtual void on_command_probe(::message::command * pcommand) override;
 
 
-      virtual ::user::enum_translucency get_translucency(::user::style * pstyle) const override;
+      ::user::enum_translucency get_translucency(::user::style * pstyle) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

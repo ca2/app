@@ -42,7 +42,7 @@ namespace filemanager
 
       virtual void OpenSelectionProperties();
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
 
    };

@@ -63,7 +63,7 @@ namespace account
 
       virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool has_pending_graphical_update() override;
+      bool has_pending_graphical_update() override;
 
    };
 

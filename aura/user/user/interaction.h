@@ -1420,12 +1420,12 @@ namespace user
 
 
       //virtual void route(::topic * ptopic, ::context * pcontext);
-      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       /*void pre_create_window(::user::system* pusersystem);*/
       using ::user::primitive::handle;
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
 
 
@@ -1869,7 +1869,7 @@ namespace user
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics);
 
 
-      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       virtual void keyboard_focus_OnKeyDown(::message::message* pmessage) override;
@@ -1946,7 +1946,7 @@ namespace user
 
       //virtual void mouse_hover_move(bool& bPointInside, point_i32& pointLast);
 
-      virtual bool has_pending_graphical_update() override;
+      bool has_pending_graphical_update() override;
 
       virtual void enable_transparent_mouse_events(bool bEnable = true);
 
@@ -2097,7 +2097,7 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
       //virtual void route(::topic * ptopic, ::context * pcontext) override;
       //virtual void on_notify_control_event(control_event* pevent) override;
-      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::context * pcontext) override;
       //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_topic etopic) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,::pointer<::user::interaction>puiStop);
       //virtual bool get_element_rect(RECTANGLE_I32* prectangle, enum_element eelement);

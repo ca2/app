@@ -46,7 +46,7 @@ namespace filemanager
 
 
       virtual bool on_click(::item * pitem) override;
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       virtual void save_document(::file::path path);
@@ -72,7 +72,7 @@ namespace filemanager
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       virtual void on_create_split_impact() override;
 

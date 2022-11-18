@@ -1,4 +1,4 @@
-/*
+﻿/*
  * TinyJS
  *
  * A single-file Javascript-alike engine
@@ -24,6 +24,7 @@
  */
 
 #include "framework.h"
+#include "tinyjs.h"
 ////#include "aura/net/sockets/_.h"
 //
 //

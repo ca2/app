@@ -42,7 +42,7 @@ namespace helloworld
 
       virtual ::file::path prepare_menu_impact();
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);

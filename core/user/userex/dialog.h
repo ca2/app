@@ -46,7 +46,7 @@ public:
    //virtual bool OnInitDialog();
    // substituir, replace _001Initialize
    
-   virtual void handle(::topic * ptopic, ::context * pcontext) override;
+   void handle(::topic * ptopic, ::context * pcontext) override;
 
 
 };

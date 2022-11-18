@@ -2118,6 +2118,8 @@ inline void string_base < CHARACTER >::truncate(strsize nNewLength)
 
       Empty();
 
+      return;
+
    }
 
    get_string_buffer(nNewLength);

@@ -104,7 +104,7 @@ inline string_base < CHARACTER >::string_base(const string_base < CHARACTER2 > &
    else if(sizeof(CHARACTER) == sizeof(CHARACTER2) && start == 0 && count == lenSource)
    {
 
-      this->create_assign_natural_meta_data((natural_meta_data < string_meta_data < CHARACTER > > *)strSource.POINTER::metadata());
+      this->create_assign_natural_meta_data((natural_meta_data < string_meta_data < CHARACTER > > *)strSource.metadata());
 
    }
    else

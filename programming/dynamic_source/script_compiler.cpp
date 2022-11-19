@@ -441,11 +441,7 @@ namespace dynamic_source
 
          ::file::path pathDVP_Folder = pathDVP.folder();
 
-                  auto psystem = acmesystem();
-
-         auto pacmedirectory = psystem->m_pacmedirectory;
-
-pacmedirectory->create(pathDVP_Folder);
+         acmedirectory()->create(pathDVP_Folder);
 
          file()->copy(pathDVP, pathSourceDVP);
 

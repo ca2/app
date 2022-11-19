@@ -2137,11 +2137,33 @@ namespace http
 
       set["http_body_size_downloaded"] = &psocket->m_body_size_downloaded;
 
-      psocket->m_scalarlistenera.add(set["http_downloaded_rate_listener"].cast < ::scalar_source::listener >());
+      {
+
+         auto plistener = set["http_downloaded_rate_listener"].cast < ::scalar_source::listener >();
+
+         if (::is_set(plistener))
+         {
+
+            psocket->m_scalarlistenera.add(plistener);
+
+         }
+
+      }
 
       //psocket->m_realscalarDownloadedRate.m_atom = set["http_downloaded_rate_id"].atom();
 
-      psocket->m_scalarlistenera.add(set["http_downloaded_listener"].cast < ::scalar_source::listener >());
+      {
+
+         auto plistener = set["http_downloaded_listener"].cast < ::scalar_source::listener >();
+
+         if (::is_set(plistener))
+         {
+
+            psocket->m_scalarlistenera.add(plistener);
+
+         }
+
+      }
 
       //psocket->m_integerscalarDownloaded.m_atom = set["http_downloaded_id"].atom();
 

@@ -598,7 +598,7 @@ namespace browser
 
       ::file::path path;
 
-      path = pcontext->m_papexcontext->dir()->appdata() / "browser_menu.html";
+      path = dir()->appdata() / "browser_menu.html";
 
       pcontext->m_papexcontext->file()->put_contents(path, str);
 

@@ -136,7 +136,7 @@ namespace userfs
 
          listingUser.set_listing(pitem->user_path());
 
-         pcontext->m_papexcontext->dir()->enumerate(listingUser);
+         dir()->enumerate(listingUser);
 
          listingUser.m_pathUser = pitem->user_path();
 
@@ -245,7 +245,7 @@ namespace userfs
          if (pathFinal.m_iDir < 0)
          {
 
-            pathFinal.m_iDir = pcontext->m_papexcontext->dir()->is(pathFinal | ::file::e_flag_resolve_alias) ? 1 : 0;
+            pathFinal.m_iDir = dir()->is(pathFinal | ::file::e_flag_resolve_alias) ? 1 : 0;
 
          }
 

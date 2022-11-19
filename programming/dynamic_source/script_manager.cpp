@@ -254,7 +254,7 @@ namespace dynamic_source
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->dir()->watcher().add_watch(m_strNetseedDsCa2Path, pwatcher, true);
+         dir()->watcher().add_watch(m_strNetseedDsCa2Path, pwatcher, true);
 
       }
 
@@ -264,7 +264,7 @@ namespace dynamic_source
 
       listing.set_listing(m_strNetnodePath);
          
-      pcontext->m_papexcontext->dir()->enumerate(listing);
+      dir()->enumerate(listing);
 
       for(auto & path : listing)
       {
@@ -276,7 +276,7 @@ namespace dynamic_source
 
             pwatcher->m_pmanager = this;
 
-            pcontext->m_papexcontext->dir()->watcher().add_watch(path, pwatcher, true);
+            dir()->watcher().add_watch(path, pwatcher, true);
 
          }
 
@@ -771,12 +771,12 @@ namespace dynamic_source
 
 
       ::file::path str;
-      str = pcontext->m_papexcontext->dir()->module();
+      str = dir()->module();
       str.ascend(2);
       str = str/ "stage\\basis";
       str = ";" + str;
       ::file::path str2;
-      str2 = pcontext->m_papexcontext->dir()->module();
+      str2 = dir()->module();
       str2.ascend(2);
       str2 = str2/ "netnode\\library\\include";
       str2 = ";" + str2;
@@ -1011,7 +1011,7 @@ namespace dynamic_source
          return ppair->element2();
       }
 
-      bool bIsDir = pcontext->m_papexcontext->dir()->is(strPath);
+      bool bIsDir = dir()->is(strPath);
          m_mapIncludeMatchesIsDir.set_at(strPath, bIsDir);
          return bIsDir;
    }
@@ -1707,11 +1707,11 @@ namespace dynamic_source
 
 #ifdef WINDOWS
 
-      return pcontext->m_papexcontext->dir()->install()/m_pcompiler->m_strDynamicSourceStage /m_pcompiler->m_strStagePlatform /m_pcompiler->m_strDynamicSourceConfiguration/"dynamic_source" /strTransformName.folder()/strScript + strModifier + ".dll";
+      return dir()->install()/m_pcompiler->m_strDynamicSourceStage /m_pcompiler->m_strStagePlatform /m_pcompiler->m_strDynamicSourceConfiguration/"dynamic_source" /strTransformName.folder()/strScript + strModifier + ".dll";
 
 #else
 
-      return pcontext->m_papexcontext->dir()->install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
+      return dir()->install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
 
 #endif
 

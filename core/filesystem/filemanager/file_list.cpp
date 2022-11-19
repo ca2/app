@@ -835,14 +835,14 @@ namespace filemanager
    //   for (i32 i = 0; i < itema.get_size(); i++)
    //   {
 
-   //      if (pcontext->m_papexcontext->dir()->is(itema[i]->m_filepathFinal) && strcmp(itema[i]->m_filepathFinal.name(), ".svn"))
+   //      if (dir()->is(itema[i]->m_filepathFinal) && strcmp(itema[i]->m_filepathFinal.name(), ".svn"))
    //      {
 
    //         straSub.rls(itema[i]->m_filepathFinal);
 
    //         for (i32 j = 0; j < straSub.get_size(); j++)
    //         {
-   //            if (!pcontext->m_papexcontext->dir()->is(straSub[j]) && straSub[j].find(".svn") < 0)
+   //            if (!dir()->is(straSub[j]) && straSub[j].find(".svn") < 0)
    //            {
    //               strFileList += straSub[j] + "\n";
    //               strFileCheck += straSub[j] + ",";
@@ -921,7 +921,7 @@ namespace filemanager
 
    //            string strExtension = straSub[j].extension();
 
-   //            if (!pcontext->m_papexcontext->dir()->is(straSub[j])
+   //            if (!dir()->is(straSub[j])
    //                  && (strExtension == "exe" || strExtension == "dll" || strExtension == "dll.manifest"
    //                      || strExtension == "exe.manifest"))
    //            {
@@ -1055,7 +1055,7 @@ namespace filemanager
 
             ::file::path pathItem = stra[i];
 
-            if (pcontext->m_papexcontext->dir()->is(pathItem))
+            if (dir()->is(pathItem))
             {
 
                item.m_flags.add(::file::e_flag_folder);
@@ -1806,7 +1806,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      if (pcontext->m_papexcontext->dir()->is(pathFinal))
+      if (dir()->is(pathFinal))
       {
 
          item.m_flags.add(::file::e_flag_folder);
@@ -2209,7 +2209,7 @@ namespace filemanager
 
                auto pcontext = get_context();
 
-               pcontext->m_papexcontext->dir()->create(pathFolder);
+               dir()->create(pathFolder);
 
                ptopic->m_bRet = true;
 

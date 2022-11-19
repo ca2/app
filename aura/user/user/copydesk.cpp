@@ -86,7 +86,7 @@ namespace user
       for (auto & strPath : stra)
       {
 
-         if (strPath.has_char() && (pcontext->m_papexcontext->dir()->is(strPath) || pcontext->m_papexcontext->file()->exists(strPath)))
+         if (strPath.has_char() && (dir()->is(strPath) || pcontext->m_papexcontext->file()->exists(strPath)))
          {
 
             if (ppatha == nullptr)

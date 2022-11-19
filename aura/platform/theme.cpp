@@ -458,7 +458,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      pcontext->m_papexcontext->dir()->matter_enumerate("sphere/theme", patha);
+      dir()->matter_enumerate("sphere/theme", patha);
 
       m_straTheme.add_unique("blue");
       m_straTheme.add_unique("dark");
@@ -467,7 +467,7 @@ namespace aura
       for (auto& path : patha)
       {
 
-         if (pcontext->m_papexcontext->dir()->is(path))
+         if (dir()->is(path))
          {
 
             string strTheme = path.name();
@@ -480,7 +480,7 @@ namespace aura
 
       sync_with_stored_theme();
 
-      m_watchidWeather = pcontext->m_papexcontext->dir()->watcher().add_watch(acmedirectory()->config(), this, false);
+      m_watchidWeather = dir()->watcher().add_watch(acmedirectory()->config(), this, false);
       
       on_change_theme();
 

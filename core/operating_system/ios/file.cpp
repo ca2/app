@@ -105,7 +105,7 @@ namespace ios
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         if(!pcontext->m_papexcontext->dir()->create(path.folder()))
+         if(!dir()->create(path.folder()))
          {
 
             return { __new(::file::exception(::error_file_not_found, -1, -1, path, eopenParam)) };

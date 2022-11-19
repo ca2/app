@@ -194,7 +194,7 @@ namespace filemanager
 
          listing.set_listing(pathUser);
 
-         pcontext->m_papexcontext->dir()->enumerate(listing);
+         dir()->enumerate(listing);
 
       }
 

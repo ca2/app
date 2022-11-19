@@ -594,7 +594,7 @@ void context_image::_load_matter_image(image * pimage, const ::string & strMatte
 
    auto pcontext = get_context();
 
-   ::file::path path = pcontext->m_papexcontext->dir()->matter(strMatter);
+   ::file::path path = dir()->matter(strMatter);
 
    //auto estatus = 
    _load_image(pimage, path, loadoptions);
@@ -623,7 +623,7 @@ void context_image::_load_matter_icon(image * pimage, string_array & straMatter,
 
       path = strMatter;
 
-      path = pcontext->m_papexcontext->dir()->matter(path / strIcon);
+      path = dir()->matter(path / strIcon);
 
       //auto estatus = 
       

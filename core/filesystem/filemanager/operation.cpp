@@ -204,10 +204,10 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      if(pcontext->m_papexcontext->dir()->is(pszSrc) && !string_ends_ci(pszSrc,".zip"))
+      if(dir()->is(pszSrc) && !string_ends_ci(pszSrc,".zip"))
       {
 
-         pcontext->m_papexcontext->dir()->create(strDst.folder());
+         dir()->create(strDst.folder());
 
          return false;
 
@@ -236,7 +236,7 @@ namespace filemanager
          //   return false;
          //}
 
-         if(pcontext->m_papexcontext->file()->exists(strDst) || pcontext->m_papexcontext->dir()->is(strDst))
+         if(pcontext->m_papexcontext->file()->exists(strDst) || dir()->is(strDst))
          {
 
             //auto function = function_arg([](::payload& varRet, const ::payload& varVal)
@@ -281,7 +281,7 @@ namespace filemanager
 
       }
 
-      pcontext->m_papexcontext->dir()->create(strDst.folder());
+      dir()->create(strDst.folder());
 
       m_fileDst = pcontext->m_papexcontext->file()->get_file(strDst,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
 
@@ -460,7 +460,7 @@ namespace filemanager
 
             }
             m_iFile++;
-            while(m_iFile < m_stra.get_size() && pcontext->m_papexcontext->dir()->is(m_stra[m_iFile]) && !string_ends_ci(m_stra[m_iFile],".zip"))
+            while(m_iFile < m_stra.get_size() && dir()->is(m_stra[m_iFile]) && !string_ends_ci(m_stra[m_iFile],".zip"))
             {
                m_iFile++;
             }
@@ -610,7 +610,7 @@ namespace filemanager
       for(i32 i = 0; i < m_stra.get_size(); i++)
       {
 
-         if(pcontext->m_papexcontext->dir()->is(m_stra[i]) && !string_ends_ci(m_stra[i],".zip"))
+         if(dir()->is(m_stra[i]) && !string_ends_ci(m_stra[i],".zip"))
          {
 
             m_daSize.add(0.0);
@@ -938,12 +938,12 @@ namespace filemanager
       for(i32 i = 0; i < pathaExpand.get_size(); i++)
       {
 
-         if(pcontext->m_papexcontext->dir()->is(pathaExpand[i]) && !string_ends_ci(pathaExpand[i],".zip"))
+         if(dir()->is(pathaExpand[i]) && !string_ends_ci(pathaExpand[i],".zip"))
          {
 
             listingExpanded.set_listing(pathaExpand[i]);
 
-            pcontext->m_papexcontext->dir()->enumerate(listingExpanded);
+            dir()->enumerate(listingExpanded);
 
          }
          else

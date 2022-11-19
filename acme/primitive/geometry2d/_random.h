@@ -18,7 +18,7 @@ template < primitive_rectangle RECTANGLE >
 inline typename RECTANGLE::POINT_TYPE random_point(const RECTANGLE & r, double dRate)
 { 
    
-   auto rectangle = *this; 
+   auto rectangle = r; 
    
    rectangle.rate(dRate); 
    

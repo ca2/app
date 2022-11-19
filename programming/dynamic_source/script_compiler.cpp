@@ -382,7 +382,7 @@ namespace dynamic_source
 
       ::earth::time timeNow = ::earth::time::now();
 
-      string strCompileLogUnique = acmesystem()->datetime()->format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
+      string strCompileLogUnique = datetime()->format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
 
       strClog.format(m_strTime / "dynamic_source/%s-compile-log-%s.txt",strTransformName.c_str(), strCompileLogUnique.c_str());
       strLlog.format(m_strTime / "dynamic_source/%s-link-log.txt",strTransformName.c_str());
@@ -1400,7 +1400,7 @@ namespace dynamic_source
 
       l.m_straLibSourcePath.set_listing(m_pmanager->m_strNetseedDsCa2Path / "library" / strName, ::e_depth_recursively);
 
-      pcontext->m_papexcontext->dir()->enumerate(l.m_straLibSourcePath);
+      dir()->enumerate(l.m_straLibSourcePath);
 
       for(i32 i = 0; i < l.m_straLibSourcePath.get_size();)
       {
@@ -1425,7 +1425,7 @@ namespace dynamic_source
       //l.m_straLibIncludePath.m_pprovider = papp->m_papexapplication;
       l.m_straLibIncludePath.clear_results();
       l.m_straLibIncludePath.set_listing(m_pmanager->m_strNetseedDsCa2Path / "library" / strName, e_depth_recursively);
-      pcontext->m_papexcontext->dir()->enumerate(l.m_straLibIncludePath);
+      dir()->enumerate(l.m_straLibIncludePath);
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size();)
       {
          if(l.m_straLibIncludePath[i].final_extension() != "h"
@@ -2591,7 +2591,7 @@ ch_else:
 
       stra.set_listing(strPath, e_depth_recursively);
 
-      pcontext->m_papexcontext->dir()->enumerate(stra);
+      dir()->enumerate(stra);
 
       string strCat;
       strCat = m_pmanager->m_strNetseedDsCa2Path/ "core/netnode_persistent_ui_str.ds";
@@ -2873,12 +2873,12 @@ ch_else:
 
       ::file::path pathPstrSet = m_pmanager->m_strNetnodePath / "net/aura/pstr_set";
 
-      if (pcontext->m_papexcontext->dir()->is(pathPstrSet))
+      if (dir()->is(pathPstrSet))
       {
 
          straFile.set_listing(pathPstrSet, ::e_depth_recursively);
 
-         pcontext->m_papexcontext->dir()->enumerate(straFile);
+         dir()->enumerate(straFile);
 
       }
 

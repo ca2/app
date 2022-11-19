@@ -259,7 +259,7 @@ namespace freedesktop
 
       auto pcontext = m_pcontext;
 
-      ::file::path path = pcontext->m_papexcontext->dir()->matter("app.desktop");
+      ::file::path path = dir()->matter("app.desktop");
 
       pcontext->m_papexcontext->file()->lines(m_straLine, path);
 
@@ -298,7 +298,7 @@ namespace freedesktop
 
       pathUserBin = pacmedirectory->home() / "bin" / strName;
 
-      //::file::path pathIcon = pcontext->m_papexcontext->dir()->matter("main/icon-256.png");
+      //::file::path pathIcon = dir()->matter("main/icon-256.png");
 
       ::file::path pathModuleIcon256 = acmedirectory()->module() / (strName + "-256.png");
 

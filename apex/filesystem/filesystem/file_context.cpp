@@ -2272,7 +2272,7 @@ file_pointer file_context::get(const ::file::path &name)
    while (true)
    {
 
-      strTime = acmesystem()->datetime()->format("%Y\\%m\\%d\\%H\\%M\\%S\\", timeFile);
+      strTime = datetime()->format("%Y\\%m\\%d\\%H\\%M\\%S\\", timeFile);
 
       strIndex.format("%08x\\", i);
 

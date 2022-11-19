@@ -71,7 +71,7 @@ namespace mail
             m_estate = state_transaction;
             string strPass;
             papp->crypt().file_get(
-               pcontext->m_papexcontext->dir()->default_userappdata(m_ppop3->m_paccount->m_strEmail, "license_auth/00003"),
+               dir()->default_userappdata(m_ppop3->m_paccount->m_strEmail, "license_auth/00003"),
                strPass);
             Send("PASS " + strPass + "\r\n");
          }

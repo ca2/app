@@ -9586,7 +9586,7 @@ save_image::save_image()
 //
 //      path = strMatter;
 //
-//      path = pcontext->m_papexcontext->dir()->matter(path / strIcon);
+//      path = dir()->matter(path / strIcon);
 //
 //      if (load_image(path))
 //      {

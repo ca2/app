@@ -497,7 +497,7 @@ namespace helloworld
 
       ::file::path path;
 
-      path = pcontext->m_papexcontext->dir()->appdata() / "helloworld_menu.html";
+      path = dir()->appdata() / "helloworld_menu.html";
 
       pcontext->m_papexcontext->file()->put_contents(path, str);
 

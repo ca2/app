@@ -1449,9 +1449,9 @@ namespace datetime
 
             bBaseTime = true;
             
-            auto pdatetime = acmesystem()->datetime();
+            //auto pdatetime = datetime();
 
-            pdatetime->international().parse_str(str, set);
+            international().parse_str(str, set);
 
             string strWord = str.Mid(19);
             strWord.trim_left();
@@ -1500,9 +1500,7 @@ namespace datetime
          {
             bBaseTime = true;
 
-            auto pdatetime = acmesystem()->datetime();
-
-            pdatetime->international().parse_str(str, set);
+            international().parse_str(str, set);
 
             time = ::earth::time(
                set["year"].i32(),
@@ -1572,7 +1570,7 @@ namespace datetime
 
       string_array stra;
 
-      auto pdatetime = acmesystem()->datetime();
+      auto pdatetime = datetime();
 
       auto pcre1 = acmesystem()->compile_pcre("^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
 
@@ -1594,14 +1592,14 @@ namespace datetime
          if (i1 != i2
             && i1 >= 1 && i1 <= 12
             && i2 >= 1 && i2 <=
-            pdatetime->get_month_day_count(time.year(timeshift), i1))
+            get_month_day_count(time.year(timeshift), i1))
          {
             bFirst = true;
             iCount++;
          }
          if (i2 >= 1 && i2 <= 12
             && i1 >= 1 && i1 <=
-            pdatetime->get_month_day_count(time.year(timeshift), i2))
+            get_month_day_count(time.year(timeshift), i2))
          {
             iCount++;
          }

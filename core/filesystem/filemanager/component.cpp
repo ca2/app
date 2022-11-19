@@ -446,7 +446,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         if (pathFilemanagerProject.is_empty() || pcontext->m_papexcontext->dir()->is(pathFilemanagerProject)
+         if (pathFilemanagerProject.is_empty() || dir()->is(pathFilemanagerProject)
                || pathFilemanagerProject.final_extension().compare_ci("component") != 0)
          {
 
@@ -472,7 +472,7 @@ namespace filemanager
 
          }
 
-         if (pcontext->m_papexcontext->dir()->is(pathFilemanagerProject))
+         if (dir()->is(pathFilemanagerProject))
          {
 
             stra.add(create_manager_id(this) + ":" + pathFilemanagerProject);
@@ -854,7 +854,7 @@ namespace filemanager
 
 //      pathFolder = pcreate->m_payloadFile;
 
-//      if (pcontext->m_papexcontext->dir()->is(pathFolder))
+//      if (dir()->is(pathFolder))
 //      {
 
 //         pathFolder.m_iDir = 1;
@@ -985,7 +985,7 @@ namespace filemanager
 
 //      pathFolder = pcreate->m_payloadFile;
 
-//      if (pcontext->m_papexcontext->dir()->is(pathFolder))
+//      if (dir()->is(pathFolder))
 //      {
 
 //         pathFolder.m_iDir = 1;

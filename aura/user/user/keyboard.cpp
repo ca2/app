@@ -174,23 +174,23 @@ namespace user
 //
 //#ifdef MACOS
 //
-//      strFile = pcontext->m_papexcontext->dir()->matter("keyboard/windows/default.xml");
+//      strFile = dir()->matter("keyboard/windows/default.xml");
 //
 //#elif defined( LINUX)
 //
 //    return true;
 //
-//      strFile = pcontext->m_papexcontext->dir()->matter("keyboard/linux/default.xml");
+//      strFile = dir()->matter("keyboard/linux/default.xml");
 //
 //#elif defined(__APPLE__)
 //
-//      strFile = pcontext->m_papexcontext->dir()->matter("keyboard/macos/default.xml");
+//      strFile = dir()->matter("keyboard/macos/default.xml");
 //
 //#elif defined(ANDROID)
 //
-//      //strPath = pcontext->m_papexcontext->dir()->matter("keyboard/android/default.xml");
+//      //strPath = dir()->matter("keyboard/android/default.xml");
 //
-//      strFile = pcontext->m_papexcontext->dir()->matter("keyboard/windows/default.xml");
+//      strFile = dir()->matter("keyboard/windows/default.xml");
 //
 //#else
 //
@@ -238,7 +238,7 @@ namespace user
 //
 //      string str = __string(w);
 //
-//      //strFile = pcontext->m_papexcontext->dir()->matter("keyboard/windows/" + str + ".xml");
+//      //strFile = dir()->matter("keyboard/windows/" + str + ".xml");
 //
 //      //if(pcontext->m_papexcontext->file()->exists(strFile))
 //      //{
@@ -254,7 +254,7 @@ namespace user
 //
 //#endif
 //
-//      strFile = pcontext->m_papexcontext->dir()->matter("keyboard/windows/default.xml");
+//      strFile = dir()->matter("keyboard/windows/default.xml");
 //
 //#endif
 //
@@ -539,7 +539,7 @@ namespace user
 //
 //      ::file::path_array patha;
 //
-//      pcontext->m_papexcontext->dir()->matter_ls_file("keyboard layout", patha);
+//      dir()->matter_ls_file("keyboard layout", patha);
 //
 //      for(i32 i = 0; i < patha.get_count(); i++)
 //      {
@@ -573,7 +573,7 @@ namespace user
 //
 //         string strTest;
 //
-//         string strPath = pcontext->m_papexcontext->dir()->matter("keyboard layout/" + strOverride + ".xml");
+//         string strPath = dir()->matter("keyboard layout/" + strOverride + ".xml");
 //
 //         strTest = pcontext->m_papexcontext->file()->as_string(strPath);
 //
@@ -636,7 +636,7 @@ namespace user
 //
 //      {
 //
-//         string strPath = pcontext->m_papexcontext->dir()->matter("keyboard layout/br_abnt2.xml");
+//         string strPath = dir()->matter("keyboard layout/br_abnt2.xml");
 //
 //         if(pcontext->m_papexcontext->file()->exists(strPath))
 //         {
@@ -651,7 +651,7 @@ namespace user
 //
 //#endif
 //
-//      string strPath = pcontext->m_papexcontext->dir()->matter("keyboard layout/en_us_international.xml");
+//      string strPath = dir()->matter("keyboard layout/en_us_international.xml");
 //
 //      if(pcontext->m_papexcontext->file()->exists(strPath))
 //      {

@@ -1755,7 +1755,7 @@ namespace user
 
       }
 
-      string strMatter = pcontext->m_papexcontext->dir()->matter(strToolbar);
+      string strMatter = dir()->matter(strToolbar);
 //
 //      string strXml = pcontext->m_papexcontext->file()->safe_get_string(strMatter);
 

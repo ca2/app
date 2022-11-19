@@ -382,7 +382,7 @@ pacmedirectory->ca2roaming() / "home";
 
    ::file::path dir_context::warehouse()
    {
-      return pcontext->m_papexcontext->dir()->ca2module();
+      return dir()->ca2module();
    }
 
    ::file::path dir_context::time()

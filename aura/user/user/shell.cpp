@@ -809,7 +809,7 @@ namespace user
 //
 //         auto pcontext = m_pcontext;
 //
-//         ::file::path path = pcontext->m_papexcontext->dir()->matter("cloud.ico");
+//         ::file::path path = dir()->matter("cloud.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -835,7 +835,7 @@ namespace user
 //
 //         auto pcontext = m_pcontext;
 //
-//         ::file::path path = pcontext->m_papexcontext->dir()->matter("remote.ico");
+//         ::file::path path = dir()->matter("remote.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -861,7 +861,7 @@ namespace user
 //
 //         auto pcontext = m_pcontext;
 //
-//         ::file::path path = pcontext->m_papexcontext->dir()->matter("ftp.ico");
+//         ::file::path path = dir()->matter("ftp.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -894,8 +894,8 @@ namespace user
 //         {
 //
 //            str.trim();
-//            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-//            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+//            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+//            HICON hicon48 = (HICON) ::LoadImage(nullptr, dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
 //            synchronous_lock sl1(m_pil48Hover->synchronization());
 //            synchronous_lock sl2(m_pil48->synchronization());
 //            iImage = m_pil16->add_icon_os_data(hicon16);
@@ -981,7 +981,7 @@ namespace user
 
          auto pcontext = m_pcontext;
 
-         ::file::path path = pcontext->m_papexcontext->dir()->matter("cloud.ico");
+         ::file::path path = dir()->matter("cloud.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1007,7 +1007,7 @@ namespace user
 
          auto pcontext = m_pcontext;
 
-         ::file::path path = pcontext->m_papexcontext->dir()->matter("remote.ico");
+         ::file::path path = dir()->matter("remote.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1033,7 +1033,7 @@ namespace user
 
          auto pcontext = m_pcontext;
 
-         ::file::path path = pcontext->m_papexcontext->dir()->matter("ftp.ico");
+         ::file::path path = dir()->matter("ftp.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1066,8 +1066,8 @@ namespace user
          {
 
             str.trim();
-            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(nullptr, dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
             synchronous_lock sl1(m_pil48Hover->synchronization());
             synchronous_lock sl2(m_pil48->synchronization());
             iImage = m_pil16->add_icon_os_data(hicon16);

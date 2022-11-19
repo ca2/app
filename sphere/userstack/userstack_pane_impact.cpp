@@ -116,7 +116,7 @@ namespace userstack
       //   {
       //      /*bergedge::menu_impact * pimpact = dynamic_cast < bergedge::menu_impact *  > (get_impact());
       //      ::pointer<::filemanager::document>pdocument = (pimpact->get_document());
-      //      pdocument->FileManagerBrowse(pcontext->m_papexcontext->dir()->appdata() / "bergedge\\menu"), ::e_source_system);*/
+      //      pdocument->FileManagerBrowse(dir()->appdata() / "bergedge\\menu"), ::e_source_system);*/
       //   }
       //   else if(get_impact_id() ==CONFIGURATION_IMPACT)
       //   {
@@ -135,7 +135,7 @@ namespace userstack
       //   {
       //      string strDirName;
       //      strDirName.format("desktop-%d", m_iDisplay);
-      //      string strDir = pcontext->m_papexcontext->dir()->userfolder(strDirName);
+      //      string strDir = dir()->userfolder(strDirName);
       //      if(m_iDisplay <= 0)
       //      {
       //         check_desktop_dir(strDir);
@@ -278,7 +278,7 @@ namespace userstack
             nullptr,
             L"\"" + utf8_to_unicode(itema[0].m_strPath) + L"\"",
             nullptr,
-            L"\"" + utf8_to_unicode(pcontext->m_papexcontext->dir()->name(itema[0].m_strPath)) + L"\"",
+            L"\"" + utf8_to_unicode(dir()->name(itema[0].m_strPath)) + L"\"",
             SW_SHOWNORMAL);
          string str;
          str.format("%d", i);
@@ -295,14 +295,14 @@ namespace userstack
 
       ::file::listing straPath(get_app());
 
-      straPath.rls(pcontext->m_papexcontext->dir()->commonprograms());
+      straPath.rls(dir()->commonprograms());
 
       for(i32 i = 0; i < straPath.get_size(); i++)
       {
 
          ::file::path str = psz/straPath[i].relative();
 
-         pcontext->m_papexcontext->dir()->create(str.folder());
+         dir()->create(str.folder());
 
          pcontext->m_papexcontext->file()->copy(str, straPath[i], true);
 
@@ -310,14 +310,14 @@ namespace userstack
 
       straPath.clear_results();
 
-      straPath.rls(pcontext->m_papexcontext->dir()->userprograms(nullptr));
+      straPath.rls(dir()->userprograms(nullptr));
 
       for(i32 i = 0; i < straPath.get_size(); i++)
 
       {
          ::file::path str = psz / straPath[i].relative();
 
-         pcontext->m_papexcontext->dir()->create(str.folder());
+         dir()->create(str.folder());
 
          pcontext->m_papexcontext->file()->copy(str, straPath[i], true);
 
@@ -329,14 +329,14 @@ namespace userstack
    void pane_impact::check_3click_dir(const ::file::path & psz)
    {
 
-      if(pcontext->m_papexcontext->dir()->is(psz))
+      if(dir()->is(psz))
       {
 
          return;
 
       }
 
-      pcontext->m_papexcontext->dir()->create(psz);
+      dir()->create(psz);
 
       string strDir(psz);
 
@@ -360,15 +360,15 @@ namespace userstack
 
       }
 
-      //pcontext->m_papexcontext->file()->put_contents(pcontext->m_papexcontext->dir()->path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
+      //pcontext->m_papexcontext->file()->put_contents(dir()->path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
       /*      string_array straPath;
             string_array straRelative;
             straPath.erase_all();
-            pcontext->m_papexcontext->dir()->rls(pcontext->m_papexcontext->dir()->userquicklaunch(), &straPath, nullptr, &straRelative);
+            dir()->rls(dir()->userquicklaunch(), &straPath, nullptr, &straRelative);
             for(i32 i = 0; i < straPath.get_size(); i++)
             {
-               string str = pcontext->m_papexcontext->dir()->path(psz, straRelative[i]);
-               pcontext->m_papexcontext->dir()->create(pcontext->m_papexcontext->dir()->name(str));
+               string str = dir()->path(psz, straRelative[i]);
+               dir()->create(dir()->name(str));
                ::CopyFile(straPath[i], str, true);
             }*/
    }
@@ -398,7 +398,7 @@ namespace userstack
 //
 //               ::file::path str = psz / listing[i].relative();
 //
-//               pcontext->m_papexcontext->dir()->create(str.folder());
+//               dir()->create(str.folder());
 //
 //               ::CopyFileW(wstring(listing[i]), wstring(str), true);
 //
@@ -420,7 +420,7 @@ namespace userstack
 //            for(i32 i = 0; i < listing.get_size(); i++)
 //            {
 //               ::file::path str = psz / listing[i].relative();
-//               pcontext->m_papexcontext->dir()->create(listing[i].folder());
+//               dir()->create(listing[i].folder());
 //               ::CopyFile(listing[i], str, true);
 //            }
 //         }
@@ -442,19 +442,19 @@ namespace userstack
                switch(m_iArea)
                {
                case 0:
-                  strWallpaper = pcontext->m_papexcontext->dir()->standard_square_matter("windeskframe1_23.bmp");
+                  strWallpaper = dir()->standard_square_matter("windeskframe1_23.bmp");
                   break;
                case 1:
-                  strWallpaper = pcontext->m_papexcontext->dir()->standard_square_matter("windeskframe1_24.bmp");
+                  strWallpaper = dir()->standard_square_matter("windeskframe1_24.bmp");
                   break;
                case 2:
-                  strWallpaper = pcontext->m_papexcontext->dir()->standard_square_matter("windeskframe1_25.bmp");
+                  strWallpaper = dir()->standard_square_matter("windeskframe1_25.bmp");
                   break;
                case 3:on_create_on_crea
-                  strWallpaper = pcontext->m_papexcontext->dir()->standard_square_matter("windeskframe1_26.bmp");
+                  strWallpaper = dir()->standard_square_matter("windeskframe1_26.bmp");
                   break;
                default:
-                  strWallpaper = pcontext->m_papexcontext->dir()->standard_square_matter("windeskframe1_23.bmp");
+                  strWallpaper = dir()->standard_square_matter("windeskframe1_23.bmp");
                   break;
                }
                FIBITMAP * pfi;

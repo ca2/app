@@ -84,7 +84,7 @@ namespace userex
             {
 //               ::pointer<::user::menu_list_impact>pmenuview = (::pointer<::user::menu_list_impact>pimpact;
    /* xxx           xml::node node(this);
-               node.load(pcontext->m_papexcontext->file()->as_string(pcontext->m_papexcontext->dir()->matter(
+               node.load(pcontext->m_papexcontext->file()->as_string(dir()->matter(
                   "mplite_popup_lyricview.xml")));
                pmenuview->LoadMenu(&node);*/
                pimpactdata->m_puserinteraction = pimpact;

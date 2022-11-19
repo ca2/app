@@ -802,7 +802,7 @@ namespace sphere
 
    //   string strSentinelPath;
 
-   //   strSentinelPath = pcontext->m_papexcontext->dir()->install() / "stage/x86/app.sentinel.exe";
+   //   strSentinelPath = dir()->install() / "stage/x86/app.sentinel.exe";
 
    //   pcontext->m_papexcontext->os().local_machine_set_run("ca2 app.sentinel", "\"" + strSentinelPath + "\"", true);
 

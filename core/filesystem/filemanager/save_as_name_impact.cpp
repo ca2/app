@@ -73,7 +73,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      if (pcontext->m_papexcontext->dir()->is(str))
+      if (dir()->is(str))
       {
 
          filemanager_document()->browse(str, context + ::e_source_sync);
@@ -89,7 +89,7 @@ namespace filemanager
 
             strName = strName.folder();
 
-            if (pcontext->m_papexcontext->dir()->is(strName))
+            if (dir()->is(strName))
             {
 
                if (filemanager_item()->user_path() != strName)
@@ -232,7 +232,7 @@ namespace filemanager
       else
       {
 
-         bool bSave = !pcontext->m_papexcontext->dir()->is(strPath);
+         bool bSave = !dir()->is(strPath);
 
          if (bSave)
          {

@@ -186,7 +186,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->dir()->watcher().erase_watch(m_filewatchid);
+         dir()->watcher().erase_watch(m_filewatchid);
 
       }
 
@@ -195,7 +195,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         auto pdir = pcontext->m_papexcontext->dir();
+         auto pdir = dir();
 
          auto& watcher = pdir->watcher();
 

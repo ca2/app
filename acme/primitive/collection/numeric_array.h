@@ -177,7 +177,7 @@ public:
       if (iCompare != 0)
       {
 
-         return ::numeric::sgn(iCompare);
+         return ::numeric::sign(iCompare);
 
       }
 
@@ -190,7 +190,7 @@ public:
          if (t != 0)
          {
 
-            return ::numeric::sgn(t);
+            return ::numeric::sign(t);
 
          }
 

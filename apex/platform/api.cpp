@@ -26,7 +26,7 @@ api::~api()
 }
 
 
-void api::initialize_api(::object* pparticle, const ::file::path & pathProfile)
+void api::initialize_api(::particle * pparticle, const ::file::path & pathProfile)
 {
 
    //auto estatus =

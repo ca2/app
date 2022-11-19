@@ -2201,6 +2201,8 @@ retry_license:
    void application::init2()
    {
 
+      ::aqua::application::init2();
+
       //if (!impl_init2())
       //{
 

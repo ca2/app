@@ -25,6 +25,7 @@
 
 #include "framework.h"
 #include "tinyjs.h"
+#include "functions.h"
 ////#include "aura/net/sockets/_.h"
 //
 //

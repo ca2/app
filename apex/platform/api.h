@@ -1,4 +1,4 @@
-// Created by camilo on 2021-11-05 16:10 PM <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2021-11-05 16:10 PM <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -42,7 +42,7 @@ public:
    ~api() override;
 
    
-   virtual void initialize_api(::object* pparticle, const ::file::path & pathProfile);
+   virtual void initialize_api(::particle * pparticle, const ::file::path & pathProfile);
 
 
    virtual void load_profile();

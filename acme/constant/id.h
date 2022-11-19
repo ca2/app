@@ -296,6 +296,9 @@ enum enum_id : ::uptr
    id_video_input_device_removed,
 
 
+   id_array,
+
+
 
 
 };

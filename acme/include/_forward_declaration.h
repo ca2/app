@@ -354,6 +354,7 @@ namespace data
 class memory_base;
 
 struct HAS_STRING_LABEL_TAG { };
+struct PRIMITIVE_BLOCK_TAG_TYPE { };
 struct PRIMITIVE_CONTAINER_TAG_TYPE { };
 struct PRIMITIVE_PAYLOAD_TAG_TYPE { };
 struct PRIMITIVE_ATOM_TAG_TYPE { };

@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 2022-10-23 09:16 <3ThomasBorregaardSorensen!!
 //
 #pragma once
@@ -12,7 +12,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
 
 
    template <typename T>
-   int sgn(T val)
+   int sign(T val)
    {
 
       return (::numeric_info < T >::null() < val) - (val < ::numeric_info < T >::null());
@@ -21,7 +21,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
 
 
    template <typename T>
-   int nzsgn(T val)
+   int non_zero_sign(T val)
    {
       // val < 0 -> -1
       // val >= 0 -> 1

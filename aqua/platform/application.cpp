@@ -52,6 +52,7 @@ namespace aqua
       
       ::apex::application::initialize(pparticle);
 
+
       //if (!estatus)
       //{
 
@@ -97,6 +98,18 @@ namespace aqua
       //return estatus;
 
    }
+
+
+   void application::init2()
+   {
+
+      ::apex::application::init2();
+
+      acmesystem()->m_paquasystem->defer_audio();
+
+   }
+
+
 
 
    void application::game_on_create(::aqua::game * pgame)

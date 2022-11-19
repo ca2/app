@@ -170,7 +170,7 @@ public:
 
       this->allocate(nIndex + 1);
 
-      this->last().reset(p.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+      this->last().reset(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
       return nIndex;
 

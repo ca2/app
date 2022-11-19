@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -238,9 +238,12 @@ inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
 
 //#endif
 
+inline ::i64 as_i64(const char* psz)
+{
 
+   return _atoi64(psz);
 
-
+}
 
 
 

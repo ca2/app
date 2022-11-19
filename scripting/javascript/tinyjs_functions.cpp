@@ -30,6 +30,7 @@
 
 #include "framework.h"
 #include "tinyjs.h"
+#include "tinyjs_functions.h"
 //#include "fiasco_finder.h"
 
 

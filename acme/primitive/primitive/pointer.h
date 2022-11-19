@@ -17,7 +17,7 @@ class particle;
 // operational system nullptr/void itself to a windowing service
 //
 // Curitiba, inha-metro-win-ubuntu-mountain-lion-macos 4 de novembro de 2012
-template < class T >
+template < typename T >
 class pointer
 {
 public:
@@ -414,6 +414,8 @@ public:
       return copy(m_p->m_pcontainer, pparticle);
 
    }
+
+   inline pointer& reset(const ::pointer < T > & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename T2 >
    inline pointer & reset(T2 * ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
@@ -823,6 +825,42 @@ T * __dynamic_cast(const T2 * p)
 
 
 
+template < class T >
+inline pointer < T >& pointer < T > ::reset(const ::pointer < T > & pNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+{
+
+   if (pNew.is_null())
+   {
+
+      ::release(m_pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+      m_p = nullptr;
+
+   }
+   else if(m_p != pNew.m_p)
+   {
+
+      auto pparticleOld = m_pparticle;
+
+      pNew.m_pparticle->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+      m_p = pNew.m_p;
+
+      m_pparticle = pNew.m_pparticle;
+
+      if (::is_set(pparticleOld))
+      {
+
+         ::release(pparticleOld OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+      }
+
+   }
+
+   return *this;
+
+}
+
 
 
 template < class T >
@@ -997,6 +1035,13 @@ inline bool operator ==(const ::pointer<T1>& t1, const T2 * t2)
       return p2 == t2;
    }
    return false;
+}
+
+
+template < typename T >
+inline bool operator ==(const ::pointer<T>& t1, const ::pointer<T> t2)
+{
+   return t1.m_p == t2.m_p;
 }
 
 

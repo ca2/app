@@ -34,53 +34,6 @@ inline ::string ellipsis(const char* psz, strsize len)
 }
 
 
-template < primitive_unsigned UNSIGNED >
-inline inline_number_string unsigned_string(UNSIGNED u, int iRadix = 10)
-{
-
-   inline_number_string numberstring;
-
-   _ui64toa(u, numberstring, iRadix);
-
-   return numberstring;
-
-}
-
-
-template < primitive_signed SIGNED >
-inline inline_number_string signed_string(SIGNED i, int iRadix = 10)
-{
-
-   inline_number_string numberstring;
-
-#ifdef WINDOWS
-
-   _i64toa(i, numberstring, iRadix);
-
-#else
-
-   i64toa(i, numberstring, iRadix);
-
-#endif
-
-   return numberstring;
-
-}
-
-
-template < primitive_floating FLOATING >
-inline ::string floating_string(FLOATING f, const char * pszFormat = "%f")
-{
-
-   inline_number_string numberstring;
-
-   sprintf(numberstring, pszFormat, f);
-
-   return numberstring;
-
-}
-
-
 inline ::u64 consume_natural(const char*& psz, const char* pszBegin, int iRadix = 10)
 {
 
@@ -239,17 +192,11 @@ public:
    }
 
 
-   template < primitive_unsigned UNSIGNED >
-   void write_unsigned(UNSIGNED u) { print(unsigned_string(u)); }
+   template < primitive_number NUMBER >
+   void write_number(NUMBER number) { print(as_string(number)); }
    
-   
-   template < primitive_signed SIGNED >
-   void write_signed(SIGNED i) { print(signed_string(i)); }
-
-   
-   template < primitive_floating FLOATING >
-   void write_floating(FLOATING f) { print(floating_string(f)); }
-
+   template < primitive_number NUMBER >
+   void write_number(NUMBER number, const char * pszFormat) { print(as_string(number, pszFormat)); }
 
    /*template < typename TYPE >
    void number_exchange(TYPE& t)
@@ -417,7 +364,7 @@ public:
    write_text_stream& operator <<(SIGNED i)
    {
 
-      write_signed(i);
+      write_number(i);
 
       print(m_chSeparator);
 
@@ -430,7 +377,7 @@ public:
    write_text_stream& operator <<(UNSIGNED u)
    {
 
-      write_unsigned(u);
+      write_number(u);
 
       print(m_chSeparator);
 
@@ -922,13 +869,13 @@ public:
       if (iRead < INT_MIN)
       {
 
-         throw_exception(error_standard_int_overflow, "INT_MIN overflow: " + signed_string(iRead));
+         throw_exception(error_standard_int_overflow, "INT_MIN overflow: " + as_string(iRead));
 
       }
       else if (iRead > INT_MAX)
       {
 
-         throw_exception(error_standard_int_overflow, "INT_MAX overflow: " + signed_string(iRead));
+         throw_exception(error_standard_int_overflow, "INT_MAX overflow: " + as_string(iRead));
 
       }
 

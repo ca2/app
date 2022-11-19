@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-11 17:14 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-11 17:14 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -59,6 +59,13 @@ public:
 
    operator const CHARACTER* () const { return m_sz; }
    operator CHARACTER* () { return m_sz; }
+
+
+   const char * get_data() const { return m_sz; }
+   char * get_data() { return m_sz; }
+
+   
+   strsize get_size() const { return m_iLength; }
 
 
 };

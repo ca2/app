@@ -224,6 +224,8 @@ public:
    ::acme::node * acmenode();
    ::acme::system * acmesystem();
    ::sub_system * subsystem();
+   ::datetime::department* datetime();
+   ::url::department* url();
 
 
    ::apex::application * apexapplication();

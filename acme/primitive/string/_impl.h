@@ -234,3 +234,66 @@ inline ::string __string(const TYPE& t)
 	return ::move(str);
 
 }
+
+
+template < primitive_number NUMBER >
+inline string as_string(NUMBER number, const char* pszFormat)
+{
+
+   ::string str;
+
+   str.format(pszFormat, number);
+
+   return ::move(str);
+
+}
+
+
+template < primitive_unsigned UNSIGNED >
+inline inline_number_string as_string(UNSIGNED u, int iRadix = 10)
+{
+
+   inline_number_string numberstring;
+
+   _ui64toa(u, numberstring, iRadix);
+
+   return numberstring;
+
+}
+
+
+template < primitive_signed SIGNED >
+inline inline_number_string as_string(SIGNED i, int iRadix = 10)
+{
+
+   inline_number_string numberstring;
+
+#ifdef WINDOWS
+
+   _i64toa(i, numberstring, iRadix);
+
+#else
+
+   i64toa(i, numberstring, iRadix);
+
+#endif
+
+   return numberstring;
+
+}
+
+
+template < primitive_floating FLOATING >
+inline ::string as_string(FLOATING f)
+{
+
+   inline_number_string numberstring;
+
+   sprintf(numberstring, "%f", f);
+
+   return numberstring;
+
+}
+
+
+

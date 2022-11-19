@@ -17,7 +17,7 @@
 /// </summary>
 class CLASS_DECL_AURA image :
    virtual public ::image_meta,
-   virtual public ::particle,
+   virtual public ::property_object,
    virtual public ::image_drawer,
    virtual public ::image_source_interface
 {

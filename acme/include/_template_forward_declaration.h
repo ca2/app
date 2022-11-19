@@ -398,6 +398,16 @@ template<class EENUM, EENUM edefault = (EENUM)0>
 class base_enum;
 
 
+template < typename BLOCK >
+concept primitive_block = requires(BLOCK block)
+{
+
+   block.get_data();
+   block.get_size();
+
+};
+
+
 template < typename CONTAINER >
 concept primitive_container = ::std::is_same < typename CONTAINER::PRIMITIVE_CONTAINER_TAG, PRIMITIVE_CONTAINER_TAG_TYPE >::value;
 

@@ -977,8 +977,11 @@ namespace axis
 
    }
 
+
    void application::init2()
    {
+
+      ::aura::application::init2();
 
       //if (!impl_init2())
       //{
@@ -999,6 +1002,7 @@ namespace axis
       //return true;
 
    }
+
 
    void application::term2()
    {

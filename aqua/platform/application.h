@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "apex/platform/application.h"
@@ -27,8 +27,12 @@ namespace aqua
 
       inline ::aqua::system* get_system();
 
+
       virtual void initialize(::particle * pparticle) override;
       //virtual ::pointer<progress_control>show_progress(::user::interaction* puiParent, const char* pszTitle, ::count iProgressCount);
+
+      void init2() override;
+
 
       void exit_application() override;
 

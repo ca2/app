@@ -425,8 +425,10 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    //::comparison::var_strict strictly_compare() const;
 
    void           set_string(const char * psz);
+   void           set_string(const char * psz, strsize size);
    void           set_string(const ::string & str);
    void           set_string(::string && str);
+   void           set_string(const ::inline_number_string& str);
    void           set_id(const ::atom & atom);
    void unset();
    void unset(const ::string & strPropertySetKey);
@@ -691,6 +693,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    inline payload & operator = (const char * psz);
    inline payload & operator = (const ::string & str);
    inline payload & operator = (::string && str);
+   inline payload & operator = (const ::inline_number_string & str);
    payload & operator = (::string * pstr);
    payload & operator = (::payload * pvar);
    payload & operator = (const ::payload * pvar);
@@ -1359,6 +1362,17 @@ inline class payload & payload::operator = (::string && str)
 }
 
 
+inline class payload& payload::operator = (const inline_number_string & str)
+{
+
+   set_string(str);
+
+   return *this;
+
+}
+
+
+
 inline void payload::set_string(const char * psz)
 {
 
@@ -1386,6 +1400,39 @@ inline void payload::set_string(const char * psz)
       set_type(e_type_string,false);
 
       m_str = psz;
+
+   }
+
+}
+
+
+inline void payload::set_string(const char* psz, strsize size)
+{
+
+   if (get_type() == e_type_pstring)
+   {
+
+      m_pstr->assign(psz, size);
+
+   }
+   else if (get_type() == e_type_payload_pointer)
+   {
+
+      m_ppayload->set_string(psz, size);
+
+   }
+   else if (get_type() == e_type_property)
+   {
+
+      m_pproperty->set_string(psz, size);
+
+   }
+   else
+   {
+
+      set_type(e_type_string, false);
+
+      m_str.assign(psz, size);
 
    }
 
@@ -1424,6 +1471,38 @@ inline void payload::set_string(const ::string & str)
 
 }
 
+
+inline void payload::set_string(const ::inline_number_string & inlinenumberstring)
+{
+
+   if (get_type() == e_type_pstring)
+   {
+
+      m_pstr->assign(inlinenumberstring.get_data(), inlinenumberstring.get_size());
+
+   }
+   else if (get_type() == e_type_payload_pointer)
+   {
+
+      m_ppayload->set_string(inlinenumberstring.get_data(), inlinenumberstring.get_size());
+
+   }
+   else if (get_type() == e_type_property)
+   {
+
+      m_pproperty->set_string(inlinenumberstring.get_data(), inlinenumberstring.get_size());
+
+   }
+   else
+   {
+
+      set_type(e_type_string, false);
+
+      m_str.assign(inlinenumberstring.get_data(), inlinenumberstring.get_size());
+
+   }
+
+}
 
 
 class CLASS_DECL_ACME payload_object :

@@ -58,16 +58,18 @@ namespace acme
       void * m_pmmos;
 #endif
 
-      ::pointer < ::particle >                                          m_pmutexTask;
-      task_map                                                          m_taskmap;
-      task_id_map                                                       m_taskidmap;
-      ::pointer < ::particle >                                          m_pmutexTaskOn;
-      map < itask_t, itask_t >                                          m_mapTaskOn;
+      ::pointer < ::particle >                                 m_pmutexTask;
+      task_map                                                 m_taskmap;
+      task_id_map                                              m_taskidmap;
+      ::pointer < ::particle >                                 m_pmutexTaskOn;
+      
+      
+      ::map < itask_t, itask_t >                               m_mapTaskOn;
 
 
-      ::pointer<class ::datetime::department>                         m_pdatetime;
+      ::pointer<class ::datetime::department>                  m_pdatetime;
 
-      ::pointer<mutex>                                                  m_pmutexUiDestroyed;
+      ::pointer<::particle>                                    m_pmutexUiDestroyed;
 
 
 

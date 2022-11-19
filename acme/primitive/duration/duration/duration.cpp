@@ -10,9 +10,9 @@ void duration::normalize()
 
    m_iNanosecond %= SECOND_NANOS;
 
-   int iSecondSign = ::numeric::sgn(m_iSecond);
+   int iSecondSign = ::numeric::sign(m_iSecond);
 
-   int iNanosecondSign = ::numeric::sgn(m_iNanosecond);
+   int iNanosecondSign = ::numeric::sign(m_iNanosecond);
 
    if (iSecondSign == -iNanosecondSign && iSecondSign != 0)
    {

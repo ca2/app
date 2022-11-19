@@ -330,6 +330,22 @@ void particle::on_initialize_particle()
 }
 
 
+::datetime::department* particle::datetime()
+{
+
+   return acmesystem()->datetime();
+
+}
+
+
+::url::department* particle::url()
+{
+
+   return acmesystem()->url();
+
+}
+
+
 ::apex::application * particle::apexapplication()
 {
 

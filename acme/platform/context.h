@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/parallelization/task.h"
@@ -49,6 +49,7 @@ namespace acme
       ::pointer<::dir_context>                        m_pdir;
       ::pointer<::file_context>                       m_pfile;
 
+      ::pointer < ::os_context >                      m_poscontext;
 
 
       context();
@@ -76,12 +77,14 @@ namespace acme
       inline ::acme::node * acmenode();
       inline ::acme::system * acmesystem() { return m_pacmesystem; }
 
+
+      inline ::os_context* os_context() { return m_poscontext; }
+
+
       inline ::dir_context * dir() { return m_pdir; }
       inline ::file_context * file() { return m_pfile; }
       ::dir_system * dirsystem();
       ::file_system * filesystem();
-
-
 
 
       virtual ::payload file_payload(const ::payload & payloadFile);

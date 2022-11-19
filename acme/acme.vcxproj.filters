@@ -159,12 +159,6 @@
     <Filter Include="Header Files\regular_expression">
       <UniqueIdentifier>{664d3dae-7929-49cb-a819-65ee6518069e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\networking">
-      <UniqueIdentifier>{7adb01cd-7e0a-4d4c-a96b-9f0fb54b9515}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\networking">
-      <UniqueIdentifier>{498cf75a-61e7-4f40-9aca-b6956f291bc9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{4ca6747d-48cf-4544-9523-a0a3bfe96729}</UniqueIdentifier>
     </Filter>
@@ -285,17 +279,8 @@
     <Filter Include="Header Files\graphics\image">
       <UniqueIdentifier>{1815af9e-cbde-4d16-a6c5-906a46510aa6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\networking\memory">
-      <UniqueIdentifier>{a77de24b-5664-4133-bc41-2c67eb0ab597}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\networking\memory\inline">
-      <UniqueIdentifier>{642c106d-f7ae-42f1-a95a-48aabbd45abb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\networking\memory\os_impl">
-      <UniqueIdentifier>{f1d64368-6958-4b0f-a00d-2213b49194d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\networking\memory\bounds_check">
-      <UniqueIdentifier>{da169a7f-9cd8-41a0-992c-0752b49fc552}</UniqueIdentifier>
+    <Filter Include="Source Files\memory">
+      <UniqueIdentifier>{a3d7218f-de33-4dce-8f4e-af8e3d3c1a27}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1439,7 +1424,7 @@
     <ClInclude Include="primitive\data\tree_item.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\department.h">
+    <ClInclude Include="primitive\datetime\datetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\aaa_want_to_remove_papaya_array_decl.h">
@@ -1675,18 +1660,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\file_path.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\_.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\url.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\url_department.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\url_domain.h">
-      <Filter>Header Files\networking</Filter>
     </ClInclude>
     <ClInclude Include="constant\_.h">
       <Filter>Header Files\constant</Filter>
@@ -2834,9 +2807,6 @@
     <ClInclude Include="platform\enum_names.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="networking\__string.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system\windows_common\__string.h">
       <Filter>Header Files\operating_system\windows_common</Filter>
     </ClInclude>
@@ -2939,9 +2909,6 @@
     <ClInclude Include="primitive\geometry2d\_random.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="networking\net.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
     <ClInclude Include="constant\_message.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
@@ -2953,6 +2920,63 @@
     </ClInclude>
     <ClInclude Include="constant\happening.h">
       <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\nano.h">
+      <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\___url.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\__payload_cast.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\__payload_reference.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\__url_string.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\_c_memory.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\_property_object_impl.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\aaa_atom_array.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\aaa_atom_space.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\aaa_element_array.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\aaa_member.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\aaa_net.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\aaa_uhash.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\move.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\muldiv64.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\ptr.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\scope_stack.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\url.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\url_domain.h">
+      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3091,7 +3115,7 @@
     <ClCompile Include="primitive\datetime\date_span.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime.cpp">
+    <ClCompile Include="primitive\datetime\datetime1.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\mktime.cpp">
@@ -3160,39 +3184,6 @@
     <ClCompile Include="primitive\geometry2d\geometry.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
-    <ClCompile Include="memory\allocate_mid_big.cpp">
-      <Filter>Source Files\networking\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\allocate_processor_cache_oriented.cpp">
-      <Filter>Source Files\networking\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\allocate_system_heap.cpp">
-      <Filter>Source Files\networking\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\allocate_x86_cache_oriented.cpp">
-      <Filter>Source Files\networking\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\allocation.cpp">
-      <Filter>Source Files\networking\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_bare.cpp">
-      <Filter>Source Files\networking\memory\inline</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_mcheck.cpp">
-      <Filter>Source Files\networking\memory\inline</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_mcrtdbg.cpp">
-      <Filter>Source Files\networking\memory\inline</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_memdleak.cpp">
-      <Filter>Source Files\networking\memory\inline</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_std.cpp">
-      <Filter>Source Files\networking\memory\inline</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_vld.cpp">
-      <Filter>Source Files\networking\memory\inline</Filter>
-    </ClCompile>
     <ClCompile Include="exception\cancel.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -3252,9 +3243,6 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive\block.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc.cpp">
-      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
@@ -3463,9 +3451,6 @@
     <ClCompile Include="filesystem\filesystem\acme_path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="memory\counter.cpp">
-      <Filter>Source Files\networking\memory</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\object.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
@@ -3511,7 +3496,7 @@
     <ClCompile Include="primitive\data\tree_item.cpp">
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\department.cpp">
+    <ClCompile Include="primitive\datetime\datetime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\text\international_locale_schema.cpp">
@@ -3541,53 +3526,17 @@
     <ClCompile Include="platform\log.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="memory\string_memory_allocate.cpp">
-      <Filter>Source Files\networking\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\memory_allocate.cpp">
-      <Filter>Source Files\networking\memory</Filter>
-    </ClCompile>
     <ClCompile Include="platform\simple_log.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="memory\inline\plex_heap.cpp">
-      <Filter>Source Files\networking\memory\inline</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\inline\plex.cpp">
-      <Filter>Source Files\networking\memory\inline</Filter>
-    </ClCompile>
     <ClCompile Include="platform\c_class.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\property_memory_allocate.cpp">
-      <Filter>Source Files\networking\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\array_memory_allocate.cpp">
-      <Filter>Source Files\networking\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\secondary_memory_allocate.cpp">
-      <Filter>Source Files\networking\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\memory_management.cpp">
-      <Filter>Source Files\networking\memory</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\acme_file.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\top_level_domain_list.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\url.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\url_department.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\url_domain.cpp">
-      <Filter>Source Files\networking</Filter>
     </ClCompile>
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
@@ -3814,9 +3763,6 @@
     <ClCompile Include="operating_system\time.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="memory\memory.cpp">
-      <Filter>Source Files\networking\memory</Filter>
-    </ClCompile>
     <ClCompile Include="user\nano\details_window.cpp">
       <Filter>Source Files\user\nano</Filter>
     </ClCompile>
@@ -3982,24 +3928,6 @@
     <ClCompile Include="operating_system\message.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="memory\os_impl\_select.cpp">
-      <Filter>Source Files\networking\memory\os_impl</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\os_impl\malloc.cpp">
-      <Filter>Source Files\networking\memory\os_impl</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\os_impl\WindowsHeapAlloc.cpp">
-      <Filter>Source Files\networking\memory\os_impl</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\bounds_check\_select.cpp">
-      <Filter>Source Files\networking\memory\bounds_check</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\bounds_check\off.cpp">
-      <Filter>Source Files\networking\memory\bounds_check</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\bounds_check\on.cpp">
-      <Filter>Source Files\networking\memory\bounds_check</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\exit_status.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
@@ -4053,6 +3981,63 @@
     </ClCompile>
     <ClCompile Include="primitive\string\international2.cpp">
       <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\top_level_domain_list.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\url.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\url_domain.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\allocate_mid_big.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\allocate_processor_cache_oriented.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\allocate_system_heap.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\allocate_x86_cache_oriented.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\allocation.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\array_memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\counter.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\memory.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\memory_management.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\new.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_alloc.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\property_memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\secondary_memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\string_memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\nano.cpp">
+      <Filter>Source Files\user\nano</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

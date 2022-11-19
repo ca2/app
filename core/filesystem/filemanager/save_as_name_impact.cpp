@@ -9,6 +9,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
+#include "acme/user/nano/nano.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/fs/data.h"
@@ -257,7 +258,7 @@ namespace filemanager
 
                //   });
 
-               auto psequencer = acmesystem()->create_message_box_sequencer("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no);
+               auto psequencer = nano()->message_box_sequencer("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no);
 
                psequencer->then([this, strPath](auto pconversation)
                      {

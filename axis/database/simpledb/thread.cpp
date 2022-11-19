@@ -4,7 +4,7 @@
 #include "queue_item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
-#include "acme/networking/url_department.h"
+#include "acme/primitive/primitive/url.h"
 #include "apex/networking/http/context.h"
 #include "apex/filesystem/filesystem/dir_system.h"
 #include "apex/platform/system.h"

@@ -30,7 +30,7 @@ namespace apex
 
       ::pointer<::networking::networking>             m_pnetworking;
 
-      ::pointer<::crypto::crypto>                     m_pcrypto;
+      //::pointer<::crypto::crypto>                     m_pcrypto;
 
       ::apex::session::map                               m_sessionmap;
 

@@ -330,7 +330,7 @@ void particle::on_initialize_particle()
 }
 
 
-::datetime::department* particle::datetime()
+::datetime::datetime* particle::datetime()
 {
 
    return acmesystem()->datetime();
@@ -338,12 +338,36 @@ void particle::on_initialize_particle()
 }
 
 
-::url::department* particle::url()
+::url::url* particle::url()
 {
 
    return acmesystem()->url();
 
 }
+
+
+::os_context * particle::os_context()
+{
+
+   return m_pcontext->os_context();
+
+}
+
+
+::nano::nano * particle::nano()
+{
+
+   return acmesystem()->nano();
+
+}
+
+::crypto::crypto* particle::crypto()
+{
+
+   return acmesystem()->crypto();
+
+}
+
 
 
 ::apex::application * particle::apexapplication()

@@ -67,11 +67,13 @@ namespace acme
       ::map < itask_t, itask_t >                               m_mapTaskOn;
 
 
-      ::pointer<class ::datetime::department>                  m_pdatetime;
+      ::pointer < ::datetime::datetime >                       m_pdatetime;
 
       ::pointer<::particle>                                    m_pmutexUiDestroyed;
 
+      ::pointer <::nano::nano >                                m_pnano;
 
+      ::pointer <::crypto::crypto >                            m_pcrypto;
 
 
       string                                                            m_strOsUserTheme;
@@ -82,7 +84,7 @@ namespace acme
       //string_map < string_map < i64 > >                                 m_mapTextToEnum;
 
 
-      ::pointer<::url::department>                                    m_purldepartment;
+      ::pointer<::url::url>                                    m_purl;
 
       ::pointer<class ::base64>                                  m_pbase64;
 
@@ -147,13 +149,17 @@ namespace acme
 
       inline geometry::geometry * geometry() { return m_pgeometry; }
 
-      inline ::datetime::department * datetime() { return m_pdatetime; }
+      inline ::datetime::datetime * datetime() { return m_pdatetime; }
 
       inline ::text::table * texttable() { return m_ptexttable; }
 
-      inline ::url::department * url() { return m_purldepartment; }
+      inline ::url::url * url() { return m_purl; }
 
       ::particle * ui_destroyed_synchronization() { return m_pmutexUiDestroyed; }
+
+      inline ::nano::nano * nano() { return m_pnano; }
+
+      inline ::crypto::crypto * crypto() { return m_pcrypto; }
 
 
       virtual void defer_audio();
@@ -495,14 +501,6 @@ namespace acme
 
       virtual bool fast_is_decompressable_folder(const ::file::path & path);
 
-      pointer< ::sequencer < ::conversation > > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
-
-      
-      //pointer< ::sequence < ::conversation > > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
-      
-      pointer< ::sequencer < ::conversation > > create_message_sequencer(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
-
-
       virtual void windowing_send(const ::procedure & procedure);
       virtual void windowing_post(const ::procedure & procedure);
 
@@ -525,6 +523,8 @@ namespace acme
    inline ::acme_path * context::acmepath() {return m_pacmesystem->m_pacmepath;}
    inline ::acme_directory * context::acmedirectory() {return m_pacmesystem->m_pacmedirectory;}
    inline ::acme::node * context::acmenode() {return m_pacmesystem->node();}
+
+
 
 
 } // namespace acme

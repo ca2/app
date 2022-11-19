@@ -678,92 +678,12 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 }
 
 
-pointer< ::sequencer < ::conversation > > matter::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
-{
-
-   auto psequencer = acmesystem()->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
-
-   return psequencer;
-
-}
-
-
-pointer< ::sequencer < ::conversation > > matter::exception_message_box_sequencer(const ::exception & exception, const ::string & strMessageParam, const ::string & strTitleParam, const ::e_message_box & emessagebox, const ::string & strDetailsParam)
-{
-   
-   string strExceptionDetails = exception.get_consolidated_details();
-
-   string strMessage(strMessageParam);
-
-   if (strMessage.is_empty())
-   {
-
-      strMessage = exception.get_message();
-
-   }
-
-   string strTitle(strTitleParam);
-
-   if (strTitle.is_empty())
-   {
-
-      strTitle = exception.get_title();
-
-   }
-
-   string strDetails(strDetailsParam);
-
-   if (strExceptionDetails.has_char())
-   {
-
-      if (strDetails.has_char())
-      {
-
-         strDetails += "\n";
-
-      }
-
-      strDetails += strExceptionDetails;
-
-   }
-
-   auto psequencer = acmesystem()->create_message_box_sequencer(
-      strMessage, 
-      strTitle, 
-      emessagebox, 
-      strDetails);
-
-   return psequencer;
-
-}
-
-
-pointer< ::sequencer < ::conversation > > matter::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
-{
-
-   auto psequencer = acmesystem()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails);
-
-   return psequencer;
-
-}
-
-
-pointer< ::sequencer < ::conversation > > matter::exception_message_sequencer(const ::exception & exception, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
-{
-   
-   string strExceptionDetails = exception.get_consolidated_details();
-
-   auto psequencer = acmesystem()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails + "\n" + strExceptionDetails);
-
-   return psequencer;
-
-}
 
 
 //pointer< ::sequencer < ::conversation > > matter::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 //{
 //
-//   auto psequence = create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
+//   auto psequence = nano()->message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
 //
 //   psequencer->do_synchronously();
 //

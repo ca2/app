@@ -7,7 +7,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/exception/exception.h"
-#include "acme/networking/url_department.h"
+#include "acme/primitive/primitive/url.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system_setup.h"
 #include "acme/primitive/data/listener.h"

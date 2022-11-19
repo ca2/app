@@ -9,7 +9,7 @@
 #include "credentials.h"
 #include "user.h"
 #include "acme/exception/exception.h"
-#include "acme/networking/url_department.h"
+#include "acme/primitive/primitive/url.h"
 #include "acme/platform/system.h"
 #include "apex/networking/http/context.h"
 #include "apex/platform/context.h"

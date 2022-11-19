@@ -4,7 +4,7 @@
 #include "application.h"
 #include "acme/constant/id.h"
 #include "acme/exception/interface_only.h"
-#include "acme/networking/url_department.h"
+#include "acme/primitive/primitive/url.h"
 #include "acme/platform/system_setup.h"
 #include "acme/primitive/text/context.h"
 #include "acme/platform/node.h"
@@ -516,7 +516,7 @@ namespace aura
    //}
 
 
-   //::datetime::department & system::datetime()
+   //::datetime::datetime & system::datetime()
    //{
 
    //   return *m_pdatetime;

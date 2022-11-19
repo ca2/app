@@ -1,3 +1,4 @@
+﻿// From department to datetime by camilo on 2022-11-19 04:41 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -31,7 +32,7 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_ACME department:
+   class CLASS_DECL_ACME datetime:
       virtual public ::acme::department
    {
    public:
@@ -104,16 +105,17 @@ namespace datetime
 
 
 
-      ::pointer<::datetime::department::international>  m_pinternational;
-      //::pointer<::datetime::department::str>            m_pstr;
+      ::pointer<::datetime::datetime::international>  m_pinternational;
+      //::pointer<::datetime::datetime::str>            m_pstr;
 
 
 
 
-      department();
+      datetime();
+      ~datetime() override;
 
 
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
       void destroy() override;
 
 

@@ -20,9 +20,10 @@
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/regular_expression/context.h"
-#include "acme/primitive/datetime/department.h"
+#include "acme/primitive/datetime/datetime.h"
 #include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/string/hex.h"
+#include "acme/user/nano/nano.h"
 #include "acme/user/user/conversation.h"
 
 
@@ -1107,7 +1108,7 @@ namespace acme
          
          string strDetails = exception.get_consolidated_details();
          
-         auto psequencer = create_message_box_sequencer(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
+         auto psequencer = nano()->message_box_sequencer(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
                                                         strDetails);
          
          psequencer->do_asynchronously();
@@ -2109,29 +2110,12 @@ namespace acme
    }
 
 
-   pointer< ::sequencer < ::conversation > > system::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
-   {
 
-      auto psequencer = m_pnode->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
-
-      return psequencer;
-
-   }
-
-   
-   pointer< ::sequencer < ::conversation > > system::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
-   {
-
-      auto psequencer = m_pnode->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails);
-
-      return psequencer;
-
-   }
 
    //pointer< ::sequencer < ::conversation > > system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    //{
    //
-   //   auto psequencer = create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
+   //   auto psequencer = nano()->message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
    //
    //   psequencer->do_synchronously();
    //

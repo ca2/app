@@ -5,6 +5,7 @@
 #include "acme/constant/message.h"
 #include "acme/platform/sequencer.h"
 #include "acme/primitive/geometry2d/_collection.h"
+#include "acme/user/nano/nano.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aqua/xml/document.h"
@@ -14,14 +15,14 @@
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/message/user.h"
+#include "aura/platform/node.h"
+#include "aura/user/user/plain_edit.h"
+#include "aura/user/user/system.h"
 #include "base/user/user/document.h"
 #include "base/user/user/impact_system.h"
 #include "base/user/user/split_impact.h"
 #include "base/platform/application.h"
 #include "base/platform/system.h"
-#include "aura/user/user/system.h"
-#include "aura/platform/node.h"
-#include "aura/user/user/plain_edit.h"
 #include "base/user/user/impact_creator.h"
 
 
@@ -694,7 +695,7 @@ namespace user
       catch (const ::exception & exception)
       {
 
-         auto psequencer = exception_message_sequencer(exception);
+         auto psequencer = nano()->exception_message_sequencer(exception);
 
          psequencer->do_asynchronously();
 

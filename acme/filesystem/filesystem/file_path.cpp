@@ -1,9 +1,9 @@
-// From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
+﻿// From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
 // From acme_windows/acme_file.cpp
 // 04:38 BRT <3ThomasBorregaardSørensen
 #include "framework.h"
 #include "acme_file.h"
-#include "acme/networking/__string.h"
+//#include "acme/networking/__string.h"
 #include "acme/primitive/collection/numeric_array.h"
 
 

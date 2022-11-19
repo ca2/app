@@ -434,9 +434,9 @@ namespace acme
       virtual void report_exception_to_user(::object* pparticle, ::exception& exception, const ::string& strMoreDetails);
 
 
-      virtual ::pointer<::conversation>create_new_message_box_conversation();
+      virtual ::pointer<::conversation> create_new_message_box_conversation();
 
-      virtual ::pointer<::conversation>create_new_message_conversation();
+      virtual ::pointer<::conversation> create_new_message_conversation();
 
 
       virtual pointer< ::sequencer < ::conversation > > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails);

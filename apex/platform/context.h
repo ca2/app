@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "apex/parallelization/thread.h"
@@ -26,7 +26,7 @@ namespace apex
 
       string_to_string                    m_mapCachedLatestBuild;
       ::pointer<::http::context>          m_phttp;
-      ::pointer<::os_context>             m_poscontext;
+      //::pointer<::os_context>             m_poscontext;
 
 
       string                              m_strLocale;
@@ -81,7 +81,7 @@ namespace apex
 
 
       inline ::http::context& http() { return *m_phttp; }
-      inline ::os_context * os_context() { return m_poscontext; };
+      //inline ::os_context * os_context() { return m_poscontext; };
 
 
       //::dir_context * dir() override;

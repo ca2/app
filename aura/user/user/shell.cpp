@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "window_util.h"
 #include "interaction.h"
-#include "acme/networking/url_department.h"
+#include "acme/primitive/primitive/url.h"
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/primitive/atomic.h"
@@ -933,9 +933,9 @@ namespace user
 //      if(strFinalPath.is_empty())
 //      {
 //
-//         string strProtocol = acmesystem()->m_purldepartment->get_protocol(path);
+//         string strProtocol = url()->get_protocol(path);
 //
-//         string strRoot = acmesystem()->m_purldepartment->get_root(path);
+//         string strRoot = url()->get_root(path);
 //
 //         if (strProtocol.has_char() && strRoot.has_char())
 //         {
@@ -1101,9 +1101,9 @@ namespace user
       if(pathFinal.is_empty())
       {
 
-         string strProtocol = acmesystem()->m_purldepartment->get_protocol(strPath);
+         string strProtocol = url()->get_protocol(strPath);
 
-         string strRoot = acmesystem()->m_purldepartment->get_root(strPath);
+         string strRoot = url()->get_root(strPath);
 
          if (strProtocol.has_char() && strRoot.has_char())
          {

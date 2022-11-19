@@ -10,6 +10,7 @@
 #include "acme/user/nano/details_window.h"
 #include "acme/user/nano/popup_button.h"
 #include "acme/user/user/mouse.h"
+#include "acme/platform/node.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/_operating_system.h"
@@ -348,7 +349,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const cha
    
 #endif
    
-   auto psequencer = pparticle->m_pcontext->create_message_box_sequencer(pszMessage, pszTitle, emessagebox, pszDetails);
+   auto psequencer = pparticle->acmenode()->create_message_box_sequencer(pszMessage, pszTitle, emessagebox, pszDetails);
    
    auto atomResult = psequencer->do_synchronously();
    

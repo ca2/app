@@ -8,7 +8,7 @@
 #include "system_storage.h"
 #include "department.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/networking/url_department.h"
+#include "acme/primitive/primitive/url.h"
 #include "acme/platform/system.h"
 #include "apex/crypto/crypto.h"
 #include "apex/platform/application.h"

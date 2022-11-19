@@ -754,44 +754,6 @@
     <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\item.cpp" />
     <ClCompile Include="handler\topic.cpp" />
-    <ClCompile Include="memory\os_alloc.cpp" />
-    <ClCompile Include="memory\allocate_mid_big.cpp" />
-    <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
-    <ClCompile Include="memory\allocate_system_heap.cpp" />
-    <ClCompile Include="memory\allocate_x86_cache_oriented.cpp" />
-    <ClCompile Include="memory\allocation.cpp" />
-    <ClCompile Include="memory\array_memory_allocate.cpp" />
-    <ClCompile Include="memory\bounds_check\off.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\bounds_check\on.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\bounds_check\_select.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\counter.cpp" />
     <ClInclude Include="application.h" />
     <ClInclude Include="compress\compress.h" />
     <ClInclude Include="compress\uncompress.h" />
@@ -881,126 +843,21 @@
     <None Include="memory\heap_namespace.inl">
       <FileType>Document</FileType>
     </None>
-    <ClCompile Include="memory\inline\heap_bare.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_mcheck.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_mcrtdbg.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_memdleak.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_std.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_vld.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\inline\plex.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\inline\plex_heap.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="memory\allocate_mid_big.cpp" />
+    <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
+    <ClCompile Include="memory\allocate_system_heap.cpp" />
+    <ClCompile Include="memory\allocate_x86_cache_oriented.cpp" />
+    <ClCompile Include="memory\allocation.cpp" />
+    <ClCompile Include="memory\array_memory_allocate.cpp" />
+    <ClCompile Include="memory\counter.cpp" />
     <ClCompile Include="memory\memory.cpp" />
     <ClCompile Include="memory\memory_allocate.cpp" />
     <ClCompile Include="memory\memory_management.cpp" />
-    <ClCompile Include="memory\os_impl\malloc.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\os_impl\WindowsHeapAlloc.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\os_impl\_select.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="memory\new.cpp" />
+    <ClCompile Include="memory\os_alloc.cpp" />
     <ClCompile Include="memory\property_memory_allocate.cpp" />
     <ClCompile Include="memory\secondary_memory_allocate.cpp" />
     <ClCompile Include="memory\string_memory_allocate.cpp" />
-    <ClCompile Include="networking\top_level_domain_list.cpp" />
-    <ClCompile Include="networking\url.cpp" />
-    <ClCompile Include="networking\url_department.cpp" />
-    <ClCompile Include="networking\url_domain.cpp" />
     <ClCompile Include="no_precompiled_header_sample.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">NotUsing</PrecompiledHeader>
@@ -1149,7 +1006,7 @@
     <ClCompile Include="primitive\data\simple_item.cpp" />
     <ClCompile Include="primitive\data\tree.cpp" />
     <ClCompile Include="primitive\data\tree_item.cpp" />
-    <ClCompile Include="primitive\datetime\department.cpp" />
+    <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\earth_gregorian_time.cpp" />
     <ClCompile Include="primitive\datetime\file_time.cpp" />
     <ClCompile Include="primitive\datetime\file_time_span.cpp" />
@@ -1190,6 +1047,9 @@
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
+    <ClCompile Include="primitive\primitive\top_level_domain_list.cpp" />
+    <ClCompile Include="primitive\primitive\url.cpp" />
+    <ClCompile Include="primitive\primitive\url_domain.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\string\encoding_exception.cpp" />
     <ClCompile Include="primitive\string\command_line.cpp" />
@@ -1219,6 +1079,7 @@
     <ClCompile Include="user\nano\display.cpp" />
     <ClCompile Include="user\nano\font.cpp" />
     <ClCompile Include="user\nano\message_box.cpp" />
+    <ClCompile Include="user\nano\nano.cpp" />
     <ClCompile Include="user\nano\object.cpp" />
     <ClCompile Include="user\nano\pen.cpp" />
     <ClCompile Include="user\nano\popup_button.cpp" />
@@ -1325,12 +1186,6 @@
     <ClInclude Include="memory\_impl.h" />
     <ClInclude Include="memory\__memory_allocate.h" />
     <ClInclude Include="memory\_____heap_namespace.h" />
-    <ClInclude Include="networking\net.h" />
-    <ClInclude Include="networking\url.h" />
-    <ClInclude Include="networking\url_department.h" />
-    <ClInclude Include="networking\url_domain.h" />
-    <ClInclude Include="networking\_.h" />
-    <ClInclude Include="networking\__string.h" />
     <ClInclude Include="operating_system\error_code.h" />
     <ClInclude Include="operating_system\exit_status.h" />
     <ClInclude Include="operating_system\process1.h" />
@@ -1362,10 +1217,28 @@
     <ClInclude Include="primitive\mathematics\logarithm.h" />
     <ClInclude Include="primitive\mathematics\_random.h" />
     <ClInclude Include="primitive\numeric\types.h" />
+    <ClInclude Include="primitive\primitive\aaa_atom_array.h" />
+    <ClInclude Include="primitive\primitive\aaa_atom_space.h" />
+    <ClInclude Include="primitive\primitive\aaa_element_array.h" />
+    <ClInclude Include="primitive\primitive\aaa_member.h" />
+    <ClInclude Include="primitive\primitive\aaa_net.h" />
+    <ClInclude Include="primitive\primitive\aaa_uhash.h" />
     <ClInclude Include="primitive\primitive\concrete.h" />
+    <ClInclude Include="primitive\primitive\move.h" />
+    <ClInclude Include="primitive\primitive\muldiv64.h" />
+    <ClInclude Include="primitive\primitive\ptr.h" />
+    <ClInclude Include="primitive\primitive\scope_stack.h" />
     <ClInclude Include="primitive\primitive\typed.h" />
     <ClInclude Include="primitive\primitive\aaa_factory.h" />
+    <ClInclude Include="primitive\primitive\url.h" />
+    <ClInclude Include="primitive\primitive\url_domain.h" />
+    <ClInclude Include="primitive\primitive\_c_memory.h" />
+    <ClInclude Include="primitive\primitive\_property_object_impl.h" />
     <ClInclude Include="primitive\primitive\_text_stream.h" />
+    <ClInclude Include="primitive\primitive\__payload_cast.h" />
+    <ClInclude Include="primitive\primitive\__payload_reference.h" />
+    <ClInclude Include="primitive\primitive\__url_string.h" />
+    <ClInclude Include="primitive\primitive\___url.h" />
     <ClInclude Include="primitive\string\c\ancient\ansi.h" />
     <ClInclude Include="primitive\string\c\ancient\ansi_impl.h" />
     <ClInclude Include="primitive\string\c\ancient\wd16.h" />
@@ -1405,6 +1278,7 @@
     <ClInclude Include="primitive\string\sz\_impl.h" />
     <ClInclude Include="primitive\string\unicode_data.h" />
     <ClInclude Include="primitive\string\utf8_character.h" />
+    <ClInclude Include="user\nano\nano.h" />
     <ClInclude Include="_operating_system.h" />
     <ClInclude Include="operating_system\aaa_c2.h" />
     <ClInclude Include="operating_system\aaa_node2.h" />
@@ -1652,7 +1526,7 @@
     <ClInclude Include="primitive\data\aaa_data.h" />
     <ClInclude Include="primitive\data\_impl.h" />
     <ClInclude Include="primitive\data\_tree.h" />
-    <ClInclude Include="primitive\datetime\department.h" />
+    <ClInclude Include="primitive\datetime\datetime.h" />
     <ClInclude Include="primitive\datetime\earth_gregorian_time.h" />
     <ClInclude Include="primitive\datetime\file_time.h" />
     <ClInclude Include="primitive\datetime\file_time_span.h" />
@@ -1865,7 +1739,7 @@
     <ClCompile Include="primitive\collection\bit_array.cpp" />
     <ClCompile Include="primitive\collection\map_test_51778915.cpp" />
     <ClCompile Include="primitive\collection\sort.cpp" />
-    <ClCompile Include="primitive\datetime\datetime.cpp" />
+    <ClCompile Include="primitive\datetime\datetime1.cpp" />
     <ClCompile Include="primitive\datetime\date_span.cpp" />
     <ClCompile Include="primitive\datetime\mktime.cpp" />
     <ClCompile Include="primitive\datetime\time.cpp" />

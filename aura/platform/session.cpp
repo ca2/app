@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "acme/exception/exception.h"
 #include "acme/filesystem/file/item_array.h"
-#include "acme/networking/url_department.h"
+#include "acme/primitive/primitive/url.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system_setup.h"
 #include "apex/platform/create.h"
@@ -2293,7 +2293,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      return pcontext->m_papexcontext->os_context()->is_remote_session();
+      return os_context()->is_remote_session();
 
    }
 

@@ -1917,7 +1917,7 @@ namespace user
       //catch (const ::exception & exception)
       //{
 
-      //   auto psequencer = exception_message_sequencer(exception);
+      //   auto psequencer = nano()->exception_message_sequencer(exception);
 
       //   psequencer->do_asynchronously();
 

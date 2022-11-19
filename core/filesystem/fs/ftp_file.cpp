@@ -2,7 +2,7 @@
 #include "ftp_file.h"
 #include "ftpfs.h"
 #include "acme/platform/system.h"
-#include "acme/networking/url_department.h"
+#include "acme/primitive/primitive/url.h"
 #include "acme/primitive/data/listener.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"

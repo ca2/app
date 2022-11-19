@@ -17,13 +17,13 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/memory_file.h"
 //#include "apex/id.h"
-#include "acme/networking/url_department.h"
+#include "acme/primitive/primitive/url.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/datetime/department.h"
+#include "acme/primitive/datetime/datetime.h"
 #include "acme/primitive/string/command_line.h"
 #include "apex/crypto/crypto.h"
 #include "apex/message/message.h"
@@ -409,7 +409,7 @@ namespace apex
       thread::s_bAllocReady = true;
 
       //estatus = 
-      __construct_new(m_purldepartment);
+      __construct_new(m_purl);
 
       //if (!estatus)
       //{

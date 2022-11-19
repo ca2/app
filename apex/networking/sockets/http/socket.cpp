@@ -1,7 +1,7 @@
 ﻿#include "framework.h" 
 #include "socket.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/networking/url_department.h"
+#include "acme/primitive/primitive/url.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/string/hex.h"
 #include "acme/primitive/string/parse.h"

@@ -138,6 +138,9 @@ class object;
 class thread;
 
 
+class os_context;
+
+
 namespace node_gtk
 {
 
@@ -338,6 +341,15 @@ namespace factory
 
 } // namespace factory
 
+
+namespace crypto
+{
+
+
+   class crypto;
+
+
+} // namespace crypto
 
 
 namespace data
@@ -622,7 +634,7 @@ namespace sockets // only usable from base.dll and dependants
 namespace url
 {
 
-   class department; // only usable from base.dll and dependants
+   class url; // only usable from base.dll and dependants
 
 
 } // namespace url
@@ -682,7 +694,7 @@ namespace datetime
 {
 
 
-   class department;
+   class datetime;
 
 
    class time;
@@ -1578,3 +1590,9 @@ namespace message
 
 
 
+namespace nano
+{
+
+   class nano;
+
+} // namespace nano

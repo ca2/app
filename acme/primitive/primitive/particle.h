@@ -224,8 +224,11 @@ public:
    ::acme::node * acmenode();
    ::acme::system * acmesystem();
    ::sub_system * subsystem();
-   ::datetime::department* datetime();
-   ::url::department* url();
+   ::datetime::datetime * datetime();
+   ::url::url * url();
+   ::crypto::crypto * crypto();
+   ::nano::nano* nano();
+   ::os_context * os_context();
 
 
    ::apex::application * apexapplication();

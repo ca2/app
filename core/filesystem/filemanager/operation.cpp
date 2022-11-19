@@ -431,7 +431,7 @@ namespace filemanager
                   try
                   {
 
-                     pcontext->m_papexcontext->os_context()->set_file_status(strDestPath,st);
+                     os_context()->set_file_status(strDestPath,st);
 
                   }
                   catch(...)

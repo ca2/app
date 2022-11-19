@@ -1,6 +1,7 @@
-﻿#include "framework.h"
-#include "url_department.h"
-#include "__string.h"
+﻿// From url_department.h by camilo on 2022-11-19 04:24 <3ThomasBorregaardSorensen!!
+#include "framework.h"
+#include "url.h"
+//#include "__string.h"
 #include "acme/constant/id.h"
 #include "acme/constant/idpool.h"
 #include "acme/primitive/primitive/payload.h"
@@ -16,21 +17,21 @@ namespace url
 {
 
 
-   department::department()
+   url::url()
    {
 
 
    }
 
 
-   department::~department()
+   url::~url()
    {
 
 
    }
 
 
-   string department::get_protocol(const ::string & strParam)
+   string url::get_protocol(const ::string & strParam)
    {
 
       string str(strParam);
@@ -49,7 +50,7 @@ namespace url
    }
 
 
-   string department::get_root(const ::string & strParam)
+   string url::get_root(const ::string & strParam)
    {
 
       string str(strParam);
@@ -78,7 +79,7 @@ namespace url
    }
 
 
-   string department::get_server(const ::string & strParam)
+   string url::get_server(const ::string & strParam)
    {
 
       string strRoot = get_root(strParam);
@@ -93,7 +94,7 @@ namespace url
    }
 
 
-   i32 department::get_port(const ::string & strParam, i32 iDefault)
+   i32 url::get_port(const ::string & strParam, i32 iDefault)
    {
 
       string strRoot = get_root(strParam);
@@ -138,7 +139,7 @@ namespace url
    }
 
 
-   string department::get_object(const ::string & strParam)
+   string url::get_object(const ::string & strParam)
    {
 
       string str(strParam);
@@ -203,7 +204,7 @@ namespace url
    }
 
 
-   string department::object_get_script(const ::string & strParam) // page
+   string url::object_get_script(const ::string & strParam) // page
    {
 
       string str(strParam);
@@ -226,7 +227,7 @@ namespace url
    }
 
 
-   string department::object_get_query(const ::string & strParam) // id=1
+   string url::object_get_query(const ::string & strParam) // id=1
    {
 
       string str(strParam);
@@ -249,7 +250,7 @@ namespace url
    }
 
 
-   string department::object_set(const ::string & strObject, const ::string & strKeyParam, ::payload payload)
+   string url::object_set(const ::string & strObject, const ::string & strKeyParam, ::payload payload)
    {
 
       string strQuery = object_get_query(strObject);
@@ -259,7 +260,7 @@ namespace url
    }
 
 
-   string department::get_script(const ::string & strParam) // page
+   string url::get_script(const ::string & strParam) // page
    {
 
       return object_get_script(get_object(strParam));
@@ -267,7 +268,7 @@ namespace url
    }
 
 
-   string department::get_query(const ::string & strParam) // id=1
+   string url::get_query(const ::string & strParam) // id=1
    {
 
       return object_get_query(get_object(strParam));
@@ -275,7 +276,7 @@ namespace url
    }
 
 
-   string department::object(const ::string & strScriptParam, const ::string & strQueryParam)
+   string url::object(const ::string & strScriptParam, const ::string & strQueryParam)
    {
 
       string strScript(strScriptParam);
@@ -298,7 +299,7 @@ namespace url
    }
 
 
-   string department::path(const ::string & str1Param, const ::string & str2Param)
+   string url::path(const ::string & str1Param, const ::string & str2Param)
    {
 
       if (str2Param.is_empty())
@@ -331,7 +332,7 @@ namespace url
    }
 
 
-   string department::path(const ::string & str1, const ::string & str2, const ::string & str3)
+   string url::path(const ::string & str1, const ::string & str2, const ::string & str3)
    {
 
       return path(path(str1, str2), str3);
@@ -339,7 +340,7 @@ namespace url
    }
 
 
-   string department::name(const ::string & strParam)
+   string url::name(const ::string & strParam)
    {
 
       string str(strParam);
@@ -369,7 +370,7 @@ namespace url
    }
 
 
-   //string department::::url::encode(const ::string & strParam)
+   //string url::::url::encode(const ::string & strParam)
    //{
 
    //   return ::::url::encode(strParam);
@@ -377,7 +378,7 @@ namespace url
    //}
 
 
-   //string department::::url::decode(const ::string & strParam)
+   //string url::::url::decode(const ::string & strParam)
    //{
 
    //   return ::::url::decode(strParam);
@@ -385,7 +386,7 @@ namespace url
    //}
 
 
-   //string department::::url::decode(const ::string & strUrl, strsize iLen)
+   //string url::::url::decode(const ::string & strUrl, strsize iLen)
    //{
 
    //   return ::::url::decode(strUrl,iLen);
@@ -393,7 +394,7 @@ namespace url
    //}
 
 
-   string department::query_append(const ::string & strUrlParam, const ::string & strQuery)
+   string url::query_append(const ::string & strUrlParam, const ::string & strQuery)
    {
 
       string strUrl(strUrlParam);
@@ -438,7 +439,7 @@ namespace url
    }
 
 
-   bool department::is_url(const ::string & strCandidateParam)
+   bool url::is_url(const ::string & strCandidateParam)
    {
 
       string strCandidate(strCandidateParam);
@@ -473,7 +474,7 @@ namespace url
    }
 
 
-   ::payload & department::var_set(::payload & varUrl, const ::string & strKeyParam, ::payload payload)
+   ::payload & url::var_set(::payload & varUrl, const ::string & strKeyParam, ::payload payload)
    {
 
       return varUrl = set_key(varUrl, strKeyParam, payload);
@@ -481,7 +482,7 @@ namespace url
    }
 
 
-   property & department::property_set(property & propUrl, const ::string & strKeyParam, ::payload payload)
+   property & url::property_set(property & propUrl, const ::string & strKeyParam, ::payload payload)
    {
 
       propUrl = set_key(propUrl, strKeyParam, payload);
@@ -491,7 +492,7 @@ namespace url
    }
 
 
-   string department::string_set(string & strUrl, const ::string & strKeyParam, ::payload payload)
+   string url::string_set(string & strUrl, const ::string & strKeyParam, ::payload payload)
    {
 
       return strUrl = set_key(strUrl, strKeyParam, payload);
@@ -499,7 +500,7 @@ namespace url
    }
 
 
-   string department::string_set_if_not_empty(string& strUrl, const ::string & strKey, ::payload payload)
+   string url::string_set_if_not_empty(string& strUrl, const ::string & strKey, ::payload payload)
    {
 
       if (payload.is_empty())
@@ -514,7 +515,7 @@ namespace url
    }
 
 
-   string department::set_key(const ::string & strUrlParam, const ::string & strKeyParam, ::payload payload)
+   string url::set_key(const ::string & strUrlParam, const ::string & strKeyParam, ::payload payload)
    {
 
       string strUrl(strUrlParam);
@@ -535,7 +536,7 @@ namespace url
    }
 
 
-   void department::set_key(string & strUrl, const ::string & strUrlParam, const ::string & strKeyParam, ::payload payload)
+   void url::set_key(string & strUrl, const ::string & strUrlParam, const ::string & strKeyParam, ::payload payload)
    {
 
       strUrl = strUrlParam;
@@ -554,7 +555,7 @@ namespace url
    }
 
 
-   void department::set_param(string & strUrlParam, const ::string & strKeyParam, const ::string & strParam)
+   void url::set_param(string & strUrlParam, const ::string & strKeyParam, const ::string & strParam)
    {
 
       string strUrl(strUrlParam);
@@ -564,7 +565,7 @@ namespace url
    }
 
 
-   void department::set_param(string & strUrl, const ::string & strUrlParam, const ::string & strKeyParam, const ::string & strParam)
+   void url::set_param(string & strUrl, const ::string & strUrlParam, const ::string & strKeyParam, const ::string & strParam)
    {
 
       const char * pszQuery = strchr(strUrlParam, '?');
@@ -676,14 +677,14 @@ namespace url
 
    }
 
-   ::payload & department::var_erase(::payload & varUrl, const ::string & strKeyParam)
+   ::payload & url::var_erase(::payload & varUrl, const ::string & strKeyParam)
    {
 
       return varUrl = erase_key(varUrl, strKeyParam);
 
    }
 
-   property & department::property_erase(property & propUrl, const ::string & strKeyParam)
+   property & url::property_erase(property & propUrl, const ::string & strKeyParam)
    {
 
       propUrl = erase_key(propUrl, strKeyParam);
@@ -692,14 +693,14 @@ namespace url
 
    }
 
-   string department::string_erase(string & strUrl, const ::string & strKeyParam)
+   string url::string_erase(string & strUrl, const ::string & strKeyParam)
    {
 
       return strUrl = erase_key(strUrl, strKeyParam);
 
    }
 
-   string department::erase_key(const ::string & strUrlParam, const ::string & strKeyParam)
+   string url::erase_key(const ::string & strUrlParam, const ::string & strKeyParam)
    {
 
       string strUrl(strUrlParam);
@@ -713,7 +714,7 @@ namespace url
 
    }
 
-   ::payload department::get_var(const ::string & strUrlParam, const ::string & strKeyParam)
+   ::payload url::get_var(const ::string & strUrlParam, const ::string & strKeyParam)
    {
 
       string strUrl(strUrlParam);
@@ -727,7 +728,7 @@ namespace url
 
    }
 
-   string department::get_param(const ::string & strUrlParam, const ::string & strKeyParam)
+   string url::get_param(const ::string & strUrlParam, const ::string & strKeyParam)
    {
 
       string strUrl(strUrlParam);
@@ -741,7 +742,7 @@ namespace url
 
    }
 
-   bool department::get_param(string & strValue, const ::string & strUrl, const ::string & strKey)
+   bool url::get_param(string & strValue, const ::string & strUrl, const ::string & strKey)
    {
 
       strsize iPos = strUrl.find('?');
@@ -753,7 +754,7 @@ namespace url
 
    }
 
-   bool department::has_param(const ::string & strUrl, const ::string & strKey)
+   bool url::has_param(const ::string & strUrl, const ::string & strKey)
    {
 
       strsize iPos = strUrl.find('?');
@@ -765,7 +766,7 @@ namespace url
 
    }
 
-   bool department::param_has_char(const ::string & strUrl, const ::string & strKey)
+   bool url::param_has_char(const ::string & strUrl, const ::string & strKey)
    {
 
       strsize iPos = strUrl.find('?');
@@ -777,7 +778,7 @@ namespace url
    }
 
 
-   bool department::has_param_replace(string & strUrl, const ::string & strKeyParam, const ::string & strValueParam)
+   bool url::has_param_replace(string & strUrl, const ::string & strKeyParam, const ::string & strValueParam)
    {
 
       strsize iPos = strUrl.find('?');
@@ -801,7 +802,7 @@ namespace url
    }
 
 
-   string department::query_set(const ::string & strQueryParam, const ::string & strKeyParam, ::payload payload)
+   string url::query_set(const ::string & strQueryParam, const ::string & strKeyParam, ::payload payload)
    {
 
       string strQuery(strQueryParam);
@@ -885,7 +886,7 @@ namespace url
    }
 
 
-   string department::query_set_param(const ::string & strQueryParam, const ::string & strKeyParam, const ::string & strParam)
+   string url::query_set_param(const ::string & strQueryParam, const ::string & strKeyParam, const ::string & strParam)
    {
 
       string strQuery(strQueryParam);
@@ -934,7 +935,7 @@ namespace url
    }
 
 
-   string department::query_erase(const ::string & strQueryParam, const ::string & strKeyParam)
+   string url::query_erase(const ::string & strQueryParam, const ::string & strKeyParam)
    {
 
       ::property_set set;
@@ -952,7 +953,7 @@ namespace url
    }
 
 
-   string department::__query_erase(const ::string & strQueryParam, const ::string & strAndKeyEqual)
+   string url::__query_erase(const ::string & strQueryParam, const ::string & strAndKeyEqual)
    {
 
       string strQuery(strQueryParam);
@@ -991,7 +992,7 @@ namespace url
    }
 
 
-   string department::query_erase(const ::string & strQueryParam, string_array & straKey)
+   string url::query_erase(const ::string & strQueryParam, string_array & straKey)
    {
 
       ::property_set set;
@@ -1009,7 +1010,7 @@ namespace url
    }
 
 
-   ::payload department::query_get_var(const ::string & strQueryParam, const ::string & strKeyParam)
+   ::payload url::query_get_var(const ::string & strQueryParam, const ::string & strKeyParam)
    {
 
       string strQuery(strQueryParam);
@@ -1106,7 +1107,7 @@ namespace url
    }
 
 
-   string department::query_get_param(const ::string & strQuery, const ::string & strKey)
+   string url::query_get_param(const ::string & strQuery, const ::string & strKey)
    {
 
       string strValue;
@@ -1123,7 +1124,7 @@ namespace url
    }
 
 
-   bool department::query_get_param(string & strValue, const ::string & strQuery, const ::string & strKey)
+   bool url::query_get_param(string & strValue, const ::string & strQuery, const ::string & strKey)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
@@ -1221,7 +1222,7 @@ namespace url
    }
 
 
-   bool department::query_has_param(const ::string & strQuery, const ::string & strKey)
+   bool url::query_has_param(const ::string & strQuery, const ::string & strKey)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
@@ -1285,7 +1286,7 @@ namespace url
    }
 
 
-   bool department::query_param_has_char(const ::string & strQuery, const ::string & strKey)
+   bool url::query_param_has_char(const ::string & strQuery, const ::string & strKey)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
@@ -1375,7 +1376,7 @@ namespace url
    }
 
 
-   bool department::query_has_param_replace(string & strQuery, const ::string & strKey, const ::string & strValue)
+   bool url::query_has_param_replace(string & strQuery, const ::string & strKey, const ::string & strValue)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
@@ -1473,7 +1474,7 @@ namespace url
    }
 
 
-   bool department::locale_is_eu(const ::atom & idLocale)
+   bool url::locale_is_eu(const ::atom & idLocale)
    {
 
       if(
@@ -1518,7 +1519,7 @@ namespace url
 
    }
 
-   bool department::locale_is_asia(const ::atom & idLocale)
+   bool url::locale_is_asia(const ::atom & idLocale)
    {
 
       if(idLocale == "asia"
@@ -1547,7 +1548,7 @@ namespace url
 
    }
 
-   bool department::locale_is_middle_east(const ::atom & idLocale)
+   bool url::locale_is_middle_east(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
@@ -1566,7 +1567,7 @@ namespace url
 
 
 
-   bool department::locale_is_south_america(const ::atom & idLocale)
+   bool url::locale_is_south_america(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
@@ -1591,7 +1592,7 @@ namespace url
 
    }
 
-   bool department::locale_is_oceania(const ::atom & idLocale)
+   bool url::locale_is_oceania(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
@@ -1609,7 +1610,7 @@ namespace url
    }
 
 
-   bool department::locale_is_africa(const ::atom & idLocale)
+   bool url::locale_is_africa(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
@@ -1627,7 +1628,7 @@ namespace url
 
    }
 
-   bool department::locale_is_latin_america(const ::atom & idLocale)
+   bool url::locale_is_latin_america(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
@@ -1641,7 +1642,7 @@ namespace url
 
    }
 
-   bool department::locale_is_north_america(const ::atom & idLocale)
+   bool url::locale_is_north_america(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
@@ -1657,7 +1658,7 @@ namespace url
 
    }
 
-   bool department::locale_is_caribe(const ::atom & idLocale)
+   bool url::locale_is_caribe(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
@@ -1677,7 +1678,7 @@ namespace url
    }
 
 
-   bool department::locale_is_central_america(const ::atom & idLocale)
+   bool url::locale_is_central_america(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
@@ -1697,7 +1698,7 @@ namespace url
 
    }
 
-   bool department::locale_is_america(const ::atom & idLocale)
+   bool url::locale_is_america(const ::atom & idLocale)
    {
 
       string strLocale(idLocale);
@@ -1714,7 +1715,7 @@ namespace url
    }
 
 
-   bool department::server_ends(string strUrl, string strRoot)
+   bool url::server_ends(string strUrl, string strRoot)
    {
 
       string strServer = get_server(strUrl);
@@ -1739,7 +1740,7 @@ namespace url
 
 
 
-   string department::set_script(const ::string & strUrl, const ::string & strScript)
+   string url::set_script(const ::string & strUrl, const ::string & strScript)
    {
 
       return get_protocol(strUrl) + "://" + get_root(strUrl) + string(strScript) + ::str().has_char(get_query(strUrl), "?");
@@ -1747,7 +1748,7 @@ namespace url
    }
 
 
-   string department::override_if_empty(const ::string & strDst, const ::string & strSrc, bool bOverrideQuery)
+   string url::override_if_empty(const ::string & strDst, const ::string & strSrc, bool bOverrideQuery)
    {
 
       string strProtocol = get_protocol(strDst);
@@ -1779,7 +1780,7 @@ namespace url
    }
 
 
-   string department::override_if_set_at_source(const ::string & strDst, const ::string & strSrc)
+   string url::override_if_set_at_source(const ::string & strDst, const ::string & strSrc)
    {
 
       string strProtocol = get_protocol(strDst);
@@ -1810,14 +1811,14 @@ namespace url
    }
 
 
-   string department::to_punycode(const ::string & str)
+   string url::to_punycode(const ::string & str)
    {
 
       return ::idn_to_punycode(str);
 
    }
 
-   string department::from_punycode(const ::string & str)
+   string url::from_punycode(const ::string & str)
    {
 
       return ::idn_from_punycode(str);
@@ -1833,7 +1834,7 @@ namespace url
    }
 
 
-   bool department::is_valid_public_domain(const string& strDomain)
+   bool url::is_valid_public_domain(const string& strDomain)
    {
 
       critical_section_lock lock(&m_csPublicDomainExtension);
@@ -1852,7 +1853,7 @@ namespace url
    }
 
 
-   string department::os_fs(string strUrl, bool bPath)
+   string url::os_fs(string strUrl, bool bPath)
    {
 
       strUrl.replace_with("_lt_", "<");
@@ -1881,7 +1882,7 @@ namespace url
    }
 
 
-   string department::os_fspath(string strUrl)
+   string url::os_fspath(string strUrl)
    {
 
       return os_fs(strUrl, true);
@@ -1889,7 +1890,7 @@ namespace url
    }
 
 
-   string department::os_fsname(string strUrl)
+   string url::os_fsname(string strUrl)
    {
 
       return os_fs(strUrl, false);
@@ -1898,6 +1899,1229 @@ namespace url
 
 
 } // namespace url
+
+
+
+
+
+
+#include "framework.h"
+#include "acme/primitive/string/hex.h"
+#include "acme/primitive/string/string.h"
+
+
+char* string_append_character(char* psz, ansichar ch)
+{
+
+   *psz = ch;
+
+   psz++;
+
+   *psz = '\0';
+
+   return psz;
+
+}
+
+bool is_url(const char* pszCandidate, const char** ppszRequest)
+{
+
+   const char* psz = pszCandidate;
+   while (*psz != '\0' && (*psz == '.' || *psz == '_' || *psz == '-' || character_isalnum(*psz)))
+   {
+      psz++;
+   }
+   if (psz == pszCandidate)
+      return false;
+   if (psz == pszCandidate + 1)
+      return false;
+   if (*psz != ':')
+      return false;
+   psz++;
+   if (*psz != '/' && *psz != '\\')
+      return false;
+   psz++;
+   if (*psz == '/' || *psz == '\\')
+   {
+      psz++;
+   }
+   /*if(*psz != '/' && *psz != '\\')
+      return false;
+   psz++;*/
+   while (*psz != '\0' && (*psz == '.' || *psz == ':' || *psz == '@' || *psz == '_' || *psz == '-' || character_isalnum(*psz)))
+   {
+      psz++;
+   }
+   if (*psz != '\0' && *psz != '/' && *psz != '\\')
+      return false;
+   if (ppszRequest != nullptr)
+   {
+      *ppszRequest = psz;
+   }
+   return true;
+
+}
+
+
+CLASS_DECL_ACME bool is_like_url_protocol(const char* psz)
+{
+
+   if (is_empty(psz))
+   {
+
+      return false;
+
+   }
+
+   if (character_isalpha(*psz))
+   {
+
+      psz++;
+
+   }
+
+   if (*psz == ':' && (psz[1] == '\0' || (psz[1] == '/' && psz[2] == '/' && psz[3] == '\0')))
+   {
+
+      return true;
+
+   }
+
+   while (character_isalnum(*psz) || *psz == '-' || *psz == '_' || *psz == '.')
+   {
+
+      psz++;
+
+   }
+
+   if (*psz == ':' && (psz[1] == '\0' || (psz[1] == '/' && psz[2] == '/' && psz[3] == '\0')))
+   {
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
+
+
+
+//#include "framework.h"
+//#include "net.h"
+//#include "__string.h"
+//#include "acme/exception/parsing.h"
+//#include "acme/primitive/string/hex.h"
+////#include "acme/operating_system.h"
+
+
+//CLASS_DECL_ACME string ::url::decode(const & strParam)
+//{
+//
+//   return ::url::decode(strParam, strParam.get_length());
+//
+//   /*string str(strParam);
+//
+//   string strDecode;
+//
+//   str.replace_with(" ", "+");
+//
+//   strsize iStart = 0;
+//
+//   while(true)
+//   {
+//
+//      strsize iFind = str.find("%",iStart);
+//
+//      if(iFind == -1)
+//      {
+//         strDecode += str.Mid(iStart);
+//         break;
+//      }
+//
+//      strDecode += str.Mid(iStart,iFind - iStart);
+//
+//      if(str[iFind + 1] == '%')
+//      {
+//
+//         strDecode += "%";
+//         iStart = iFind + 2;
+//
+//      }
+//      else
+//      {
+//
+//         char ch = (char)strtol(str.Mid(iFind + 1,2),nullptr,16);
+//
+//         if(ch != 0)
+//         {
+//            strDecode += ch;
+//         }
+//
+//         iStart = iFind + 3;
+//
+//      }
+//
+//
+//   }
+//
+//   return strDecode;*/
+//
+//
+//}
+//
+
+
+namespace url
+{
+
+
+   string decode(const ::block& block)
+   {
+
+      auto sizeLen = block.get_size();
+
+      string strDecode;
+
+      char* pszStart = strDecode.get_string_buffer(sizeLen * 4);
+
+      auto pszDecode = pszStart;
+
+      strsize i = 0;
+
+      const char* pszEncoded = (const char*)block.get_data();
+
+      while (*pszEncoded != '\0' && i < sizeLen)
+      {
+
+         if (*pszEncoded == '+')
+         {
+
+            i++;
+
+            *pszDecode = ' ';
+
+            pszDecode++;
+
+            pszEncoded++;
+
+         }
+         else if (*pszEncoded == '%')
+         {
+
+            sizeLen--;
+
+            pszEncoded++;
+
+            if (*pszEncoded == '%')
+            {
+
+               i++;
+
+               *pszDecode = '%';
+
+               pszDecode++;
+
+               pszEncoded++;
+
+            }
+            else
+            {
+
+               i++;
+
+               sizeLen--;
+
+               auto nibble1 = hex::to_nibble(*pszEncoded++);
+
+               if (nibble1 < 0)
+               {
+
+                  throw_parsing_exception("url decode: % first nibble non hex");
+
+               }
+
+               auto nibble2 = hex::to_nibble(*pszEncoded++);
+
+               if (nibble2 < 0)
+               {
+
+                  throw_parsing_exception("url decode: % second nibble non hex");
+
+               }
+
+               *pszDecode = (char)(uchar)(((nibble1 << 4) & 0xf0) | (nibble2 & 0xf));
+
+               pszDecode++;
+
+            }
+
+         }
+         else
+         {
+
+            i++;
+
+            *pszDecode = *pszEncoded;
+
+            pszDecode++;
+
+            pszEncoded++;
+
+         }
+
+      }
+
+      strDecode.release_string_buffer(sizeLen);
+
+      return ::move(strDecode);
+
+   }
+
+
+
+   CLASS_DECL_ACME bool query_get_param(string& strParam, const char* pszKey, const char* pszUrl)
+   {
+
+      const char* pszBeg;
+      const char* pszEnd;
+
+      {
+
+         string strKey;
+
+         strKey = "?";
+         strKey += pszKey;
+         strKey += "=";
+
+         pszBeg = ansi_find_string(pszUrl, strKey);
+
+         if (pszBeg != nullptr)
+         {
+
+            pszBeg += strKey.get_length();
+
+            goto success;
+
+         }
+
+      }
+
+      {
+
+         string strKey;
+
+         strKey = "&";
+         strKey += pszKey;
+         strKey += "=";
+
+         pszBeg = ansi_find_string(pszUrl, strKey);
+
+         if (pszBeg != nullptr)
+         {
+
+            pszBeg += strKey.get_length();
+
+            goto success;
+
+         }
+
+      }
+
+      {
+
+         string strKey;
+
+         strKey = "?";
+         strKey += pszKey;
+         strKey += "&";
+
+         pszBeg = ansi_find_string(pszUrl, strKey);
+
+         if (pszBeg != nullptr)
+         {
+
+            strParam = "";
+
+            return true;
+
+         }
+
+      }
+
+      {
+
+         string strKey;
+
+         strKey = "&";
+         strKey += pszKey;
+         strKey += "&";
+
+         pszBeg = ansi_find_string(pszUrl, strKey);
+
+         if (pszBeg != nullptr)
+         {
+
+            strParam = "";
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   success:
+
+      pszEnd = ansi_find_string(pszBeg, "&");
+
+      if (pszEnd == nullptr)
+      {
+         strParam = pszBeg;
+      }
+      else
+      {
+         strParam = string(pszBeg, pszEnd - pszBeg);
+      }
+
+      return true;
+
+   }
+
+
+   string encode(const ::block& block)
+   {
+
+      string strEncoded;
+
+      auto pszEncodedStart = strEncoded.get_string_buffer(block.get_size() * 5);
+
+      auto pszEncoded = pszEncodedStart;
+
+      auto pszInput = (const char*)block.get_data();
+
+      memset(pszEncoded, 0, block.get_size() * 5);
+
+      while (*pszInput != '\0')
+      {
+
+         char ch = *pszInput;
+
+         if (ansi_char_isalnum(ch)
+            || ch == '.'
+            || ch == '-'
+            || ch == '_')
+         {
+
+            pszEncoded = string_append_character(pszEncoded, ch);
+
+         }
+         else if (ch == ' ')
+         {
+
+            pszEncoded = string_append_character(pszEncoded, '+');
+
+         }
+         else
+         {
+
+            pszEncoded = string_append_character(pszEncoded, '%');
+
+            pszEncoded = string_append_character(pszEncoded, ::hex::nibble_upper_from((ch >> 4) & 0xf));
+
+            pszEncoded = string_append_character(pszEncoded, ::hex::nibble_upper_from(ch & 0xf));
+
+         }
+
+         pszInput++;
+
+      }
+
+      strEncoded.release_string_buffer(pszEncoded - pszEncodedStart);
+
+      return ::move(strEncoded);
+
+   }
+
+
+} // namespace urls
+
+
+
+//string str;
+//
+//string strChar;
+//
+//while (*psz != '\0')
+//{
+//
+//   if (ansi_char_isdigit(*psz)
+//      || ansi_char_isalpha(*psz)
+//      || *psz == '.'
+//      || *psz == '-'
+//      || *psz == '_')
+//   {
+//      str += *psz;
+//   }
+//   else if (*psz == ' ')
+//   {
+//      str += "+";
+//   }
+//   else
+//   {
+//      strChar.format("%02X", *psz);
+//      str += "%" + strChar.Right(2);
+//   }
+//
+//   psz++;
+//}
+//
+//return str;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if defined(MACOS)
+#elif defined(APPLE_IOS)
+
+void openURL(const string& url_str);
+
+int ui_open_url(const char* psz);
+
+void openURL(const string& url_str)
+{
+   //   throw ::exception(todo);
+   //   CFURLRef url = CFURLCreateWithBytes(
+   //      nullptr,                        // allocator
+   //      (::u328*)url_str.c_str(),     // URLBytes
+   //      url_str.length(),            // length
+   //      kCFStringEncodingASCII,      // encoding
+   //      nullptr                         // baseURL
+   //      );
+   //       LSOpenCFURLRef(url,0);
+
+   ui_open_url(url_str);
+
+   //   CFRelease(url);
+}
+
+
+#endif
+
+
+
+
+
+
+
+
+
+
+
+//#ifdef WINDOWS
+//#define strdup _strdup
+//#endif
+//
+//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive)
+//{
+//
+//   ::acme::application * papp = (::acme::application *) instance;
+//
+//   ::account::user user;
+//
+//   user.initialize(papp);
+//
+//   ::account::credentials credentials;
+//
+//   credentials.initialize_account_credentials(&user, Sess(papp).account()->storage());
+//
+//   //string strUsername;
+//
+//   //string strUser;
+//
+//   //string strDomain;
+//
+//   //string strPassword;
+//
+//   //string strToken;
+//
+//   credentials.m_strToken = Sys(papp).crypto_md5_text(pszServerName);
+//
+//   //string strTitle;
+//
+//   credentials.m_strTitle = "Enter Credentials for : " + string(pszServerName);
+//
+//   credentials.m_bInteractive = bInteractive;
+//
+//   //strUsername = acmefile()->as_string(         auto psystem = acmesystem();
+//
+//         auto pacmedirectory = psystem->m_pacmedirectory;
+//
+//pacmedirectory->system() / "config\\user.txt");
+////
+////   //strPassword = acmefile()->as_string(         auto psystem = acmesystem();
+//
+//         auto pacmedirectory = psystem->m_pacmedirectory;
+//
+//pacmedirectory->system() / "config\\pass.txt");
+////
+//   //if(strUsername.has_char() && strPassword.has_char())
+//   //{
+//
+//   //}
+//   //else
+//   //{
+//
+//   if(credentials.get_credentials() != ::success_credentials)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   string strUser;
+//
+//   string strPassword(credentials.m_strPassword);
+//
+//   string strDomain;
+//
+//   index iFind = user.m_strLogin.find('/');
+//
+//   if(iFind > 0)
+//   {
+//
+//      strUser = user.m_strLogin.Mid(iFind + 1);
+//
+//      strDomain = user.m_strLogin.Left(iFind);
+//
+//   }
+//   else
+//   {
+//
+//      strUser = user.m_strLogin;
+//
+//   }
+//
+//   if(username != nullptr)
+//   {
+//
+//      *username = strdup(strUser);
+//
+//   }
+//
+//   if(domain != nullptr && strDomain.has_char())
+//   {
+//
+//      *domain = strdup(strDomain);
+//
+//   }
+//
+//   if(password != nullptr)
+//   {
+//
+//      *password = strdup(strPassword);
+//
+//   }
+//
+//   return true;
+//
+//}
+
+
+
+
+
+
+
+//CLASS_DECL_ACME bool is_url(const char* pszCandidate)
+//{
+//
+//   string strCandidate(pszCandidate);
+//
+//   strsize iLen = strCandidate.get_length();
+//
+//   strsize i = 0;
+//
+//   char ch;
+//
+//   while (i < iLen)
+//   {
+//
+//      ch = strCandidate[i];
+//
+//      if (isalpha((uchar)ch))
+//         i++;
+//      else if (ch == '.')
+//         i++;
+//      else if (ch == ':' && (((i + 1) == iLen) ||
+//         (iLen > (i + 3)
+//            && strCandidate[i + 1] == '/'
+//            && strCandidate[i + 2] == '/')))
+//         return true;
+//      else
+//         return false;
+//
+//   }
+//
+//   return false;
+//
+//}
+
+
+
+
+
+//CLASS_DECL_ACME string ::url::decode(const char* psz)
+//{
+//
+//   string str(psz);
+//
+//   string strDecode;
+//
+//   str.replace_with(" ", "+");
+//
+//   strsize iStart = 0;
+//
+//   while (true)
+//   {
+//
+//      strsize iFind = str.find("%", iStart);
+//
+//      if (iFind == -1)
+//      {
+//         strDecode += str.Mid(iStart);
+//         break;
+//      }
+//
+//      strDecode += str.Mid(iStart, iFind - iStart);
+//
+//      if (str[iFind + 1] == '%')
+//      {
+//
+//         strDecode += "%";
+//         iStart = iFind + 2;
+//
+//      }
+//      else
+//      {
+//
+//         char ch = (char)strtol(str.Mid(iFind + 1, 2), nullptr, 16);
+//
+//         if (ch != 0)
+//         {
+//            strDecode += ch;
+//         }
+//
+//         iStart = iFind + 3;
+//
+//      }
+//
+//
+//   }
+//
+//   return ::move(strDecode);
+//
+//
+//}
+
+
+
+//string ::url::decode(const char* pszUrl, strsize iLen)
+//
+//{
+//
+//   string strDecode;
+//
+//   char* psz = strDecode.get_string_buffer(iLen * 4);
+//
+//   strsize i = 0;
+//
+//   while (*pszUrl != '\0' && i < iLen)
+//
+//   {
+//      if (*pszUrl == '+')
+//
+//      {
+//         i++;
+//         *psz = ' ';
+//         psz++;
+//         pszUrl++;
+//
+//      }
+//      else if (*pszUrl == '%')
+//
+//      {
+//         iLen--;
+//         pszUrl++;
+//
+//         if (*pszUrl == '%')
+//
+//         {
+//            i++;
+//            *psz = '%';
+//            psz++;
+//            pszUrl++;
+//
+//         }
+//         else
+//         {
+//            i++;
+//            iLen--;
+//            *psz = (char)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(pszUrl + 1)));
+//
+//            psz++;
+//            pszUrl += 2;
+//
+//         }
+//      }
+//      else
+//      {
+//         i++;
+//         *psz = *pszUrl;
+//
+//         psz++;
+//         pszUrl++;
+//
+//      }
+//   }
+//
+//   strDecode.release_string_buffer(iLen);
+//
+//   return strDecode;
+//
+//}
+//
+//
+
+
+
+
+//CLASS_DECL_ACME bool url_query_get_param(string& strParam, const char* pszKey, const char* pszUrl)
+//{
+//
+//   const char* pszBeg;
+//   const char* pszEnd;
+//
+//   {
+//
+//      string strKey;
+//
+//      strKey = "?";
+//      strKey += pszKey;
+//      strKey += "=";
+//
+//      pszBeg = ansi_find_string(pszUrl, strKey);
+//
+//      if (pszBeg != nullptr)
+//      {
+//
+//         pszBeg += strKey.get_length();
+//
+//         goto success;
+//
+//      }
+//
+//   }
+//
+//   {
+//
+//      string strKey;
+//
+//      strKey = "&";
+//      strKey += pszKey;
+//      strKey += "=";
+//
+//      pszBeg = ansi_find_string(pszUrl, strKey);
+//
+//      if (pszBeg != nullptr)
+//      {
+//
+//         pszBeg += strKey.get_length();
+//
+//         goto success;
+//
+//      }
+//
+//   }
+//
+//   {
+//
+//      string strKey;
+//
+//      strKey = "?";
+//      strKey += pszKey;
+//      strKey += "&";
+//
+//      pszBeg = ansi_find_string(pszUrl, strKey);
+//
+//      if (pszBeg != nullptr)
+//      {
+//
+//         strParam = "";
+//
+//         return true;
+//
+//      }
+//
+//   }
+//
+//   {
+//
+//      string strKey;
+//
+//      strKey = "&";
+//      strKey += pszKey;
+//      strKey += "&";
+//
+//      pszBeg = ansi_find_string(pszUrl, strKey);
+//
+//      if (pszBeg != nullptr)
+//      {
+//
+//         strParam = "";
+//
+//         return true;
+//
+//      }
+//
+//   }
+//
+//   return false;
+//
+//success:
+//
+//   pszEnd = ansi_find_string(pszBeg, "&");
+//
+//   if (pszEnd == nullptr)
+//   {
+//      strParam = pszBeg;
+//   }
+//   else
+//   {
+//      strParam = string(pszBeg, pszEnd - pszBeg);
+//   }
+//
+//   return true;
+//
+//}
+
+
+
+
+
+
+
+
+//CLASS_DECL_ACME string ::url::encode(const char* psz)
+//{
+//
+//   string str;
+//
+//   char sz[256];
+//
+//   while (*psz != '\0')
+//   {
+//
+//      char uch = *psz;
+//
+//      if (ansi_char_isdigit(uch)
+//         || ansi_char_isalpha(uch)
+//         || uch == '.'
+//         || uch == '-'
+//         || uch == '_')
+//      {
+//
+//         str += uch;
+//
+//      }
+//      else if (uch == ' ')
+//      {
+//
+//         str += "+";
+//
+//      }
+//      else
+//      {
+//
+//         ansi_from_i64(sz, uch, 16);
+//
+//         ansi_upper(sz);
+//
+//         if (ansi_length(sz) == 0)
+//         {
+//
+//            str += "%00";
+//
+//         }
+//         else if (ansi_length(sz) == 1)
+//         {
+//
+//            str += "%0";
+//
+//            str += sz;
+//
+//         }
+//         else if (ansi_length(sz) == 2)
+//         {
+//
+//            str += "%";
+//
+//            str += sz;
+//
+//         }
+//
+//      }
+//
+//      psz++;
+//
+//   }
+//
+//   return str;
+//
+//}
+
+
+//string str;
+//
+//string strChar;
+//
+//while (*psz != '\0')
+//{
+//
+//   if (ansi_char_isdigit(*psz)
+//      || ansi_char_isalpha(*psz)
+//      || *psz == '.'
+//      || *psz == '-'
+//      || *psz == '_')
+//   {
+//      str += *psz;
+//   }
+//   else if (*psz == ' ')
+//   {
+//      str += "+";
+//   }
+//   else
+//   {
+//      strChar.format("%02X", *psz);
+//      str += "%" + strChar.Right(2);
+//   }
+//
+//   psz++;
+//}
+//
+//return str;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if defined(MACOS)
+
+//void openURL(const string& url_str);
+//
+//
+//void openURL(const string& url_str)
+//{
+//   CFURLRef url = CFURLCreateWithBytes(
+//      nullptr,                        // allocator
+//      (::u328*)url_str.c_str(),     // URLBytes
+//      url_str.length(),            // length
+//      kCFStringEncodingASCII,      // encoding
+//      nullptr                         // baseURL
+//   );
+//   LSOpenCFURLRef(url, 0);
+//   CFRelease(url);
+//}
+
+#elif defined(APPLE_IOS)
+
+void openURL(const string& url_str);
+
+int ui_open_url(const char* psz);
+
+//void openURL(const string& url_str)
+//{
+//   //   throw ::exception(todo);
+//   //   CFURLRef url = CFURLCreateWithBytes(
+//   //      nullptr,                        // allocator
+//   //      (::u328*)url_str.c_str(),     // URLBytes
+//   //      url_str.length(),            // length
+//   //      kCFStringEncodingASCII,      // encoding
+//   //      nullptr                         // baseURL
+//   //      );
+//   //       LSOpenCFURLRef(url,0);
+//
+//   ui_open_url(url_str);
+//
+//   //   CFRelease(url);
+//}
+
+
+#endif
+
+
+
+
+
+
+
+
+
+
+
+//#ifdef WINDOWS
+//#define strdup _strdup
+//#endif
+//
+//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive)
+//{
+//
+//   ::application * papp = (::apex::application *) instance;
+//
+//   ::account::user user;
+//
+//   user.initialize(papp);
+//
+//   ::account::credentials credentials;
+//
+//   credentials.initialize_account_credentials(&user, Sess(papp).account()->storage());
+//
+//   //string strUsername;
+//
+//   //string strUser;
+//
+//   //string strDomain;
+//
+//   //string strPassword;
+//
+//   //string strToken;
+//
+//   credentials.m_strToken = Sys(papp).crypto_md5_text(pszServerName);
+//
+//   //string strTitle;
+//
+//   credentials.m_strTitle = "Enter Credentials for : " + string(pszServerName);
+//
+//   credentials.m_bInteractive = bInteractive;
+//
+//   //strUsername = acmefile()->as_string(         auto psystem = acmesystem();
+
+   /*      auto pacmedirectory = psystem->m_pacmedirectory;
+
+pacmedirectory->system() / "config\\user.txt")*/;
+//
+//   //strPassword = acmefile()->as_string(         auto psystem = acmesystem();
+//
+//         auto pacmedirectory = psystem->m_pacmedirectory;
+//
+//pacmedirectory->system() / "config\\pass.txt");
+//
+//   //if(strUsername.has_char() && strPassword.has_char())
+//   //{
+//
+//   //}
+//   //else
+//   //{
+//
+//   if(credentials.get_credentials() != ::success_credentials)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   string strUser;
+//
+//   string strPassword(credentials.m_strPassword);
+//
+//   string strDomain;
+//
+//   index iFind = user.m_strLogin.find('/');
+//
+//   if(iFind > 0)
+//   {
+//
+//      strUser = user.m_strLogin.Mid(iFind + 1);
+//
+//      strDomain = user.m_strLogin.Left(iFind);
+//
+//   }
+//   else
+//   {
+//
+//      strUser = user.m_strLogin;
+//
+//   }
+//
+//   if(username != nullptr)
+//   {
+//
+//      *username = strdup(strUser);
+//
+//   }
+//
+//   if(domain != nullptr && strDomain.has_char())
+//   {
+//
+//      *domain = strdup(strDomain);
+//
+//   }
+//
+//   if(password != nullptr)
+//   {
+//
+//      *password = strdup(strPassword);
+//
+//   }
+//
+//   return true;
+//
+//}
+
+
+
+
+
+
+
+
 
 
 

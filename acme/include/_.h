@@ -108,7 +108,7 @@
 #include "acme/primitive/datetime/_.h"
 
 
-#include "acme/networking/_.h"
+//#include "acme/networking/_.h"
 
 
 #include "acme/primitive/primitive/_.h"
@@ -413,7 +413,7 @@
 #include "acme/platform/procedure_array.h"
 
 
-#include "acme/networking/net.h"
+//#include "acme/networking/net.h"
 
 
 #include "acme/operating_system/text.h"

@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿// From url_department.h by camilo on 2022-11-19 04:24 <3ThomasBorregaardSorensen!!
+#pragma once
 
 
 #include "acme/platform/department.h"
@@ -9,7 +10,7 @@ namespace url
 {
 
 
-   class CLASS_DECL_ACME department :
+   class CLASS_DECL_ACME url :
       virtual public ::acme::department
    {
    public:
@@ -19,8 +20,8 @@ namespace url
       critical_section              m_csPublicDomainExtension;
 
 
-      department();
-      ~department() override;
+      url();
+      ~url() override;
 
 
       // Example: http://veriwell.com.br:443/page?id=1
@@ -113,6 +114,5 @@ namespace url
 
 
 } // namespace url
-
 
 

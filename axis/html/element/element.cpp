@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "element.h"
 #include "acme/exception/exception.h"
-#include "acme/networking/url_department.h"
+#include "acme/primitive/primitive/url.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_collection.h"
 #include "acme/primitive/string/str.h"

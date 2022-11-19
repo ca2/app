@@ -82,7 +82,7 @@ namespace aura
 
       virtual void system_prep() override;
 
-      //::url::department                           & url()     { return m_urldepartment; }
+      //::url::url                           & url()     { return m_urldepartment; }
 
       //::thread * get_task(itask_t itask);
       //itask_t get_thread_id(::thread * pthread);
@@ -270,7 +270,7 @@ namespace aura
       inline class ::draw2d::draw2d                * draw2d() { return m_pdraw2d; }
 
 
-      //inline ::url::department                     &  url()
+      //inline ::url::url                     &  url()
       //{
 
       //   return *m_purldepartment;   // only usable from base.dll and dependants
@@ -296,7 +296,7 @@ namespace aura
 
       //::pointer<::account::user_set>               userset();
 
-      //::datetime::department                 & datetime();
+      //::datetime::datetime                 & datetime();
 
 
       //virtual string ::url::encode(const ::string & str);

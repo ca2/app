@@ -2,7 +2,7 @@
 #include "client_socket.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/memory/counter.h"
-#include "acme/networking/url_department.h"
+#include "acme/primitive/primitive/url.h"
 #include "acme/primitive/string/hex.h"
 #include "apex/constant/idpool.h"
 #include "apex/platform/application.h"

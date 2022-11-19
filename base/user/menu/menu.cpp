@@ -10,6 +10,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/timer.h"
+#include "acme/user/nano/nano.h"
 #include "aqua/xml/document.h"
 #include "aqua/xml/xml.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -275,7 +276,7 @@ namespace user
       catch(const ::exception & exception)
       {
 
-         auto psequencer = exception_message_sequencer(exception);
+         auto psequencer = nano()->exception_message_sequencer(exception);
 
          psequencer->do_asynchronously();
 

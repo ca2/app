@@ -1,12 +1,9 @@
 ﻿#include "framework.h"
 #include "socket.h"
-//#include "apex/id.h"
 #include "acme/exception/exception.h"
-#include "acme/networking/url_department.h"
-#include "acme/networking/url_domain.h"
+#include "acme/primitive/primitive/url.h"
+#include "acme/primitive/primitive/url_domain.h"
 #include "acme/platform/system.h"
-
-
 #include "acme/primitive/duration/_text_stream.h"
 
 

@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "element.h"
 #include "token.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/datetime/datetime.h"
 

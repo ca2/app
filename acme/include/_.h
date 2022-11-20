@@ -132,6 +132,8 @@
 
 #include "acme/memory/memory_allocate.h"
 
+#include "acme/primitive/primitive/_c_memory.h"
+
 #include "acme/memory/heap_c.h"
 
 #include "acme/memory/allocate_processor_cache_oriented.h"
@@ -167,9 +169,6 @@
 
 
 #include "acme/memory/secondary_memory_allocate.h"
-
-
-#include "acme/memory/heap_c.h"
 
 
 #include "acme/primitive/comparison/_c.h"
@@ -265,12 +264,6 @@
 #include "acme/primitive/primitive/ptr.h"
 
 
-//#include "acme/primitive/primitive/particle.h"
-
-
-//#include "acme/primitive/primitive/pointer.h"
-
-
 #include "acme/platform/lparam.h"
 
 
@@ -340,7 +333,6 @@
 #include "acme/parallelization/task_flag.h"
 
 
-
 #include "acme/primitive/primitive/pointer2.h"
 
 
@@ -395,9 +387,6 @@
 #include "acme/constant/context.h"
 
 
-//#include "acme/primitive/mathematics/scalar_enum.h"
-
-
 #include "acme/platform/enum.h"
 
 
@@ -411,9 +400,6 @@
 
 
 #include "acme/platform/procedure_array.h"
-
-
-//#include "acme/networking/net.h"
 
 
 #include "acme/operating_system/text.h"
@@ -441,6 +427,9 @@
 
 
 #include "acme/primitive/primitive/object.h"
+
+
+#include "acme/exception/exception.h"
 
 
 #endif

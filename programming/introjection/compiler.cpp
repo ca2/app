@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "compiler.h"
 #include "library.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/synchronous_lock.h"

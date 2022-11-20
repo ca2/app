@@ -4,7 +4,7 @@
 
 
 #include "topic.h"
-#include "acme/primitive/primitive/object.h"
+//#include "acme/primitive/primitive/object.h"
 #include "acme/primitive/datetime/earth_time.h"
 #include "acme/primitive/primitive/payload.h"
 

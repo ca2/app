@@ -4,7 +4,7 @@
 #include "frame.h"
 #include "control_box.h"
 #include "button.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"

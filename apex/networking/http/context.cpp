@@ -2,7 +2,7 @@
 #include "context.h"
 #include "signal.h"
 #include "get_socket.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/primitive/primitive/url_domain.h"

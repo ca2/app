@@ -81,10 +81,6 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_ci(const ansichar * pszCriter
 CLASS_DECL_ACME void ansi_parse_command_line(ansichar * cmdstart, ansichar ** argv, ansichar * args, i32 * numargs, i32 * numchars);
 
 
-inline i64 ansi_to_i64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
-inline u64 ansi_to_u64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
-inline i32 ansi_to_i32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
-inline u32 ansi_to_u32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
 
 
 inline const void *           memory_find_memory(const void * src, strsize srclen, const void * find, strsize findlen);

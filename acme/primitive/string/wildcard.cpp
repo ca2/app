@@ -3,7 +3,7 @@
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/primitive/string/string.h"
 #include "acme/primitive/string/str.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 const char* wildcard_next_stop(const char* pszCriteria)

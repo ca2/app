@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/simple_log.h"
 #include "acme/platform/library.h"

@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/single_lock.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/platform/acme.h"
 #include "acme/primitive/string/str.h"
 #include <sys/wait.h>

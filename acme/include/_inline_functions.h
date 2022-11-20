@@ -291,3 +291,81 @@ inline void sort_non_negative(T1& t1, T2& t2)
 
 
 
+
+
+inline i64 ansi_to_i64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase)
+{
+
+   return strtoll(psz, (ansichar **) ppszEnd, iBase);
+
+}
+
+inline u64 ansi_to_u64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase)
+{
+
+   return strtoull(psz, (ansichar **) ppszEnd, iBase);
+
+}
+
+
+inline i32 ansi_to_i32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase)
+{
+
+#ifdef WINDOWS
+
+   return strtol(psz, (ansichar **) ppszEnd, iBase);
+
+#else
+
+   long l = strtol(psz, (ansichar **) ppszEnd, iBase);
+
+   if(l > INT_MAX)
+   {
+
+      errno = ERANGE;
+
+      return INT_MAX;
+
+   }
+   else if(l < INT_MIN)
+   {
+
+      errno = ERANGE;
+
+      return INT_MIN;
+
+   }
+
+   return (::i32) l;
+
+#endif
+
+}
+
+
+inline u32 ansi_to_u32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase)
+{
+
+#ifdef WINDOWS
+
+   return strtoul(psz, (ansichar **) ppszEnd, iBase);
+
+#else
+
+   unsigned long ul = strtoul(psz, (ansichar **) ppszEnd, iBase);
+
+   if(ul > UINT_MAX)
+   {
+
+      errno = ERANGE;
+
+      return UINT_MAX;
+
+   }
+
+   return (::u32) ul;
+
+#endif
+
+}
+

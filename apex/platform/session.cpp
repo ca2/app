@@ -6,7 +6,7 @@
 #include "os_context.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system_setup.h"

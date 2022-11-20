@@ -6,7 +6,7 @@
 #include "thread.h"
 #include "thread_localdatabase.h"
 #include "queue_item.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/platform/system.h"

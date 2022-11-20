@@ -2,7 +2,7 @@
 #include "image_list.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/handler/item.h"
 #include "acme/primitive/collection/_array.h"
 #include "aura/graphics/image/image.h"

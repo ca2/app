@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "window.h"
 #include "device.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/user/nano/button.h"
 #include "acme/user/nano/window.h"
 #include "acme/user/user/mouse.h"

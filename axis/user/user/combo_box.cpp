@@ -4,7 +4,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/user/_.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"

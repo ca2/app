@@ -8,7 +8,7 @@
 #include "network_authenticator.h"
 #include "credentials.h"
 #include "user.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/platform/system.h"
 #include "apex/networking/http/context.h"

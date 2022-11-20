@@ -2,7 +2,7 @@
 #include "toolbar.h"
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/user/user/tool_item.h"
 #include "acme/platform/timer.h"
 #include "acme/parallelization/synchronous_lock.h"

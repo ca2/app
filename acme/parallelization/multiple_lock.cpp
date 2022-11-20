@@ -2,7 +2,7 @@
 #include "multiple_lock.h"
 #include "semaphore.h"
 #include "acme/parallelization/synchronization_array.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/_operating_system.h"
 
 

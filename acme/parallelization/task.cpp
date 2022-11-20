@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "task.h"
 #include "manual_reset_event.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/platform/system.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"

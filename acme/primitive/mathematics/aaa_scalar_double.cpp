@@ -1,7 +1,7 @@
 ﻿// From template to class by camilo on 2022-11-17 04:35 ILoveYouThomasBorregaardSorensen!!
 #include "framework.h"
 #include "scalar.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 //
 ////void double_scalar_source::listener::on_set_scalar(double_scalar_source * psource,enum_scalar escalar,double dValue,int iFlags)
 ////{

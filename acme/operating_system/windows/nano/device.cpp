@@ -6,7 +6,7 @@
 #include "brush.h"
 #include "font.h"
 #include "pen.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 int align_to_windows_draw_text_align(enum_align ealign);

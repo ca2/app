@@ -238,10 +238,12 @@ inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
 
 //#endif
 
-inline ::i64 as_i64(const char* psz)
+inline ::i64 as_i64(const char* psz, int iBase = 10)
 {
 
-   return _atoi64(psz);
+   const char * pszEnd = nullptr;
+
+   return ansi_to_i64(psz, &pszEnd, iBase);
 
 }
 

@@ -1,12 +1,12 @@
 ﻿#pragma once
 
 
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/primitive/collection/atom_map.h"
 #include "acme/primitive/primitive/particle.h"
 #include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/primitive/type.h"
-//#include "acme/exception/exception.h"
+//////#include "acme/exception/exception.h"
 //#include "acme/platform/library.h"
 
 

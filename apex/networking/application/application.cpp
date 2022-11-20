@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "application_socket.h"
 #include "application.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/primitive/datetime/datetime.h"
 #include "apex/filesystem/filesystem/file_context.h"

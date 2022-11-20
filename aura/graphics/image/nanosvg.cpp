@@ -2,7 +2,7 @@
 #include "nanosvg/nanosvg.h"
 #include "nanosvg/nanosvgrast.h"
 #include "image.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 void nsvg_rasterizer_set_output_format(NSVGrasterizer * prasterizer, int iRedLower);

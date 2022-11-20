@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "graphics.h"
 #include "graphics_extension.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 namespace draw2d

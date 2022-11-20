@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "central.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aqua/xml/document.h"
 #include "aura/platform/node.h"

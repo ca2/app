@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "post_socket.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/primitive/string/str.h"
 #include "apex/constant/idpool.h"
 #include "apex/filesystem/filesystem/file_context.h"

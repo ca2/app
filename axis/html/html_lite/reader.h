@@ -11,7 +11,7 @@ class lite_html_reader;   // forward declaration
 class lite_html_tag;   // forward declaration
 
 
-#include "acme/primitive/primitive/object.h"
+//#include "acme/primitive/primitive/object.h"
 
 
 /**

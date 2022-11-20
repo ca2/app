@@ -6,7 +6,7 @@
 #include "array_memory_allocate.h"
 #include "property_memory_allocate.h"
 #include "string_memory_allocate.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 extern iptr g_iMonitor;

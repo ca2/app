@@ -2,7 +2,7 @@
 #include "element.h"
 #include "result.h"
 #include "token.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 namespace calculator

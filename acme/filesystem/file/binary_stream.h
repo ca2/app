@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/primitive/payload.h"
 #include "stream.h"

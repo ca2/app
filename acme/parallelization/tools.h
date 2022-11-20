@@ -4,7 +4,7 @@
 #include "acme/parallelization/task.h"
 #include "synchronization_array.h"
 #include "synchronous_lock.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/platform/system.h"
 
 

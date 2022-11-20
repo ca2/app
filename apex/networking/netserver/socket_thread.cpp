@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "socket_thread.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 namespace netserver

@@ -3,7 +3,7 @@
 #include "split_pane.h"
 #include "split_bar.h"
 #include "acme/constant/message.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/platform/create.h"
 #include "aura/graphics/draw2d/graphics.h"

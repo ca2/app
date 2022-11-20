@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "circular_file.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 namespace file

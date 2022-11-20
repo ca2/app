@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "context_image.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/save_image.h"
 

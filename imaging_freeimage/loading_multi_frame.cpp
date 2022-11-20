@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "context_image.h"
 #include "fimemory.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/primitive/duration/_text_stream.h"
 #include "aura/graphics/image/frame.h"
 #include "aura/graphics/image/frame_array.h"

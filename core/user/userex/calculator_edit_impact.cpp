@@ -2,7 +2,7 @@
 #include "calculator_edit_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "axis/mathematics/calculator/parser.h"
 #include "axis/mathematics/calculator/element.h"
 

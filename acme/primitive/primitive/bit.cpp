@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/primitive/primitive/bit.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 #define BYTE_ALIGN (8)

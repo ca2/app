@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "single_lock.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 single_lock::single_lock(::particle * pparticleSynchronization, bool bInitialLock)

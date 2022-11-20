@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "impact.h"
 #include "acme/constant/message.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "apex/crypto/crypto.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/icon.h"

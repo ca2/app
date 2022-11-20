@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "string.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 strsize wd32_to_ansi_len(const wd32char* pwsz, strsize srclen)

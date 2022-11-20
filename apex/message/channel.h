@@ -3,7 +3,7 @@
 
 #include "dispatcher.h"
 #include "acme/primitive/collection/atom_array.h"
-#include "acme/primitive/primitive/object.h"
+//#include "acme/primitive/primitive/object.h"
 
 
 class CLASS_DECL_APEX channel :

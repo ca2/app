@@ -2,7 +2,7 @@
 #include "font_list.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/user/user/scroll_data.h"

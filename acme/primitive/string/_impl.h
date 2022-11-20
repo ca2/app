@@ -274,7 +274,7 @@ inline inline_number_string as_string(SIGNED i, int iRadix = 10)
 
 #else
 
-   i64toa(i, numberstring, iRadix);
+   __i64toansi(i, numberstring, iRadix);
 
 #endif
 

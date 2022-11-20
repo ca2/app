@@ -13,7 +13,7 @@
 #pragma once
 
 
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "apex/networking/sockets/basic/tcp_socket.h"
 //#ifdef WIN32
 //#ifdef _WINSOCKAPI_

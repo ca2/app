@@ -5,7 +5,7 @@
 #include "token.h"
 #include "scanner.h"
 #include "acme/primitive/string/str.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 /* conversas dos Js Jefferson Dalavechia e Joice sobre calculadora científica, financeira e com pilha
 mais típico de calculadora no "command" */

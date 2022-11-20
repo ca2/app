@@ -3,7 +3,7 @@
 #include "format.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"

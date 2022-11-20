@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "socket.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/primitive/primitive/url_domain.h"
 #include "acme/platform/system.h"

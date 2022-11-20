@@ -2,7 +2,7 @@
 #include "application.h"
 #include "session.h"
 #include "system.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/manual_reset_event.h"

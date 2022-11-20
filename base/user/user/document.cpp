@@ -6,7 +6,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/primitive/datetime/datetime.h"
 #include "apex/filesystem/filesystem/file_context.h"

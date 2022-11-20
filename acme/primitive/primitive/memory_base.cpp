@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/primitive/payload.h"

@@ -3,7 +3,7 @@
 #include "item.h"
 #include "acme/primitive/string/string.h"
 #include "acme/filesystem/filesystem/path.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 namespace media_library

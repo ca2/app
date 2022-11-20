@@ -6,7 +6,7 @@
 #include "library.h"
 #include "script_main.h"
 #include "script_instance.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/exception/parsing.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/filesystem/file/memory_file.h"

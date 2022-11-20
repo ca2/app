@@ -2,7 +2,7 @@
 #include "url_domain.h"
 #include "url.h"
 #include "acme/primitive/string/str.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 string idn_from_punycode(const ::string & str);

@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "buffered_file.h"
-#include "acme/exception/exception.h"
-#include "acme/primitive/comparison/compare.h"
+//////#include "acme/exception/exception.h"
+//#include "acme/primitive/comparison/compare.h"
 
 
 namespace file

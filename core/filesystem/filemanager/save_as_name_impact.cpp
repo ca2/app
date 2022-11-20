@@ -3,7 +3,7 @@
 #include "data.h"
 #include "document.h"
 #include "acme/constant/id.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/platform/context.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/filesystem/filesystem/acme_file.h"

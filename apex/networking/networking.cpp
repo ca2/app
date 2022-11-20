@@ -1,7 +1,7 @@
 // Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
 #include "framework.h"
 #include "networking.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/primitive/string/parse.h"
 #include "acme/primitive/string/str.h"
 

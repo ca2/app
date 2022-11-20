@@ -244,3 +244,9 @@ CLASS_DECL_ACME bool is_verbose_log();
 
 
 
+inline i64 ansi_to_i64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
+inline u64 ansi_to_u64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
+inline i32 ansi_to_i32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
+inline u32 ansi_to_u32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
+
+

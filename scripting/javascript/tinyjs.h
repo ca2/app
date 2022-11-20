@@ -28,7 +28,7 @@
 #pragma once
 
 
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/primitive/collection/address_array.h"
 #include "acme/primitive/collection/string_array.h"
 

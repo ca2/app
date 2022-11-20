@@ -4,7 +4,7 @@
 #include "interaction_impl.h"
 #include "interaction.h"
 #include "acme/constant/message.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/message_queue.h"
 #include "aura/graphics/draw2d/graphics.h"

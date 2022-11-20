@@ -6,7 +6,7 @@
 #include "acme/primitive/collection/string_array.h"
 #include "acme/primitive/collection/atom_map.h"
 #include "acme/primitive/collection/atom_array.h"
-#include "acme/primitive/primitive/object.h"
+//#include "acme/primitive/primitive/object.h"
 
 
 namespace interprocess

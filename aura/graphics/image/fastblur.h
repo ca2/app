@@ -250,7 +250,7 @@ inline vector4 Reflect(const vector4 & Incident,const vector4 & Normal)
 
 
 #include "acme/primitive/collection/numeric_array.h"
-#include "acme/primitive/primitive/object.h"
+//#include "acme/primitive/primitive/object.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
 
 

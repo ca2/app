@@ -1,7 +1,7 @@
 ﻿// From template to class by camilo on 2022-11-17 04:48 ILoveYouThomasBorregaardSorensen!!
 #include "framework.h"
 #include "scalar.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 bool scalar_source::get_integer_scalar_minimum(enum_scalar escalar, ::integer& i)

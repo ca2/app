@@ -2,7 +2,7 @@
 #include "group_image_list.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "aura/graphics/image/context_image.h"
 #include "acme/handler/item.h"
 #include "aura/message/user.h"

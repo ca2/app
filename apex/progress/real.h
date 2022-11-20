@@ -3,7 +3,7 @@
 
 #include "acme/primitive/string/string.h"
 #include "acme/primitive/mathematics/scalar.h"
-#include "acme/primitive/primitive/object.h"
+//#include "acme/primitive/primitive/object.h"
 
 
 namespace progress

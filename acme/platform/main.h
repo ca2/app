@@ -65,7 +65,7 @@ struct CLASS_DECL_ACME MAIN // : public ::acme::reference
 //#endif
 
 
-#include "acme/primitive/primitive/object.h"
+//#include "acme/primitive/primitive/object.h"
 #include "implementable.h"
 
 

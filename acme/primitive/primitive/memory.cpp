@@ -3,7 +3,7 @@
 #define HEAP_NAMESPACE_PREFIX main
 #include "acme/memory/_____heap_namespace.h"
 #include "acme/primitive/string/base64.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 memory::memory(memory && memory) :

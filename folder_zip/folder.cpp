@@ -2,7 +2,7 @@
 #include "folder.h"
 #include "file.h"
 #include "file_function_definitions.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/filesystem/file/status.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/listing.h"

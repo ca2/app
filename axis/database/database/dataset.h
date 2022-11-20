@@ -4,7 +4,7 @@
 #include "result_set.h"
 #include "parameter_list.h"
 #include "apex/database/stringhelper.h"
-#include "acme/primitive/primitive/object.h"
+//#include "acme/primitive/primitive/object.h"
 
 
 namespace database

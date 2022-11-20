@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "ifs.h"
 #include "ifs_file.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/data/listener.h"
 #include "apex/filesystem/filesystem/dir_context.h"

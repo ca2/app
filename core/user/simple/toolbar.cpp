@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "toolbar.h"
 #include "acme/constant/message.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/graphics/write_text/font.h"

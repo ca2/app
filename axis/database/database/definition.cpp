@@ -3,7 +3,7 @@
 #include "parameter_list.h"
 #include "field.h"
 #include "result_set.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 
 
 namespace database

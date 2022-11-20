@@ -7,7 +7,7 @@
 #include "system.h"
 #include "message.h"
 #include "acme/constant/message.h"
-#include "acme/exception/exception.h"
+////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "aura/windowing/window.h"

@@ -935,6 +935,9 @@ namespace apex
    class theme;
 
 
+   class context;
+
+
    class idpool;
 
 
@@ -975,6 +978,9 @@ namespace aura
 
    class theme;
 
+
+   class context;
+   
 
    class idpool;
 

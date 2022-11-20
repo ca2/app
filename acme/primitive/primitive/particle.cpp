@@ -321,6 +321,29 @@ void particle::on_initialize_particle()
 }
 
 
+::acme::context* particle::acmecontext()
+{
+
+   return m_pcontext;
+
+}
+
+
+::acme::context* particle::apexcontext()
+{
+
+   return m_pcontext ? m_pcontext->m_papexcontext : nullptr;
+
+}
+
+
+::acme::context* particle::auracontext()
+{
+
+   return m_pcontext ? m_pcontext->m_pauracontext : nullptr;
+
+}
+
 
 ::sub_system * particle::subsystem()
 {

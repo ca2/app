@@ -223,6 +223,9 @@ public:
    ::acme_directory * acmedirectory();
    ::acme::node * acmenode();
    ::acme::system * acmesystem();
+   ::acme::context* acmecontext();
+   ::apex::context* apexcontext();
+   ::aura::context* auracontext();
    ::sub_system * subsystem();
    ::datetime::datetime * datetime();
    ::url::url * url();

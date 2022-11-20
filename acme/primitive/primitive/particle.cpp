@@ -329,7 +329,7 @@ void particle::on_initialize_particle()
 }
 
 
-::acme::context* particle::apexcontext()
+::apex::context* particle::apexcontext()
 {
 
    return m_pcontext ? m_pcontext->m_papexcontext : nullptr;
@@ -337,7 +337,7 @@ void particle::on_initialize_particle()
 }
 
 
-::acme::context* particle::auracontext()
+::aura::context* particle::auracontext()
 {
 
    return m_pcontext ? m_pcontext->m_pauracontext : nullptr;

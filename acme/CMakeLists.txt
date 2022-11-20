@@ -211,15 +211,15 @@ list(APPEND library_source
         memory/string_memory_allocate.cpp
         memory/string_memory_allocate.h
         memory/string_memory_allocator.h
-        networking/top_level_domain_list.cpp
+        #networking/top_level_domain_list.cpp
         #networking/net.cpp
         #networking/net.h
-        networking/url.cpp
-        networking/url.h
-        networking/url_department.cpp
-        networking/url_department.h
-        networking/url_domain.cpp
-        networking/url_domain.h
+        #networking/url.cpp
+        #networking/url.h
+        #networking/url_department.cpp
+        #networking/url_department.h
+        #networking/url_domain.cpp
+        #networking/url_domain.h
         operating_system/_.cpp
         operating_system/_const_console.h
         operating_system/ansi/_pthread.h
@@ -407,8 +407,7 @@ list(APPEND library_source
         primitive/datetime/date_span.cpp
         primitive/datetime/date_span.h
         primitive/datetime/datetime.cpp
-        primitive/datetime/department.cpp
-        primitive/datetime/department.h
+        primitive/datetime/datetime.h
         primitive/datetime/earth_gregorian_time.cpp
         primitive/datetime/earth_gregorian_time.h
         primitive/datetime/earth_time_shift.h
@@ -533,7 +532,7 @@ list(APPEND library_source
         primitive/mathematics/random_number_generator.h
         primitive/mathematics/scalar.cpp
         primitive/mathematics/scalar.h
-        primitive/mathematics/scalar_enum.h
+        #primitive/mathematics/scalar_enum.h
         primitive/mathematics/static_numeric_info.h
         primitive/mathematics/std_template.h
         primitive/mathematics/value.cpp
@@ -652,6 +651,7 @@ list(APPEND library_source
         #primitive/primitive/simple_object.h
         primitive/primitive/stick.h
         #primitive/primitive/str.h
+        primitive/primitive/top_level_domain_list.cpp
         #primitive/primitive/tracer.cpp
         #primitive/primitive/tracer.h
         #primitive/primitive/trait.h
@@ -661,6 +661,10 @@ list(APPEND library_source
         primitive/primitive/type.cpp
         primitive/primitive/type.h
         primitive/primitive/uid.h
+        primitive/primitive/url.cpp
+        primitive/primitive/url.h
+        primitive/primitive/url_domain.cpp
+        primitive/primitive/url_domain.h
         primitive/primitive/util.h
         primitive/primitive/value.h
         primitive/primitive/var_element.cpp
@@ -1385,7 +1389,8 @@ list(APPEND library_source
         #primitive/collection/_papaya_impl.h
         #primitive/collection/_papaya_map.h
         #primitive/collection/_papaya_map_impl.h
-        primitive/collection/_papaya_weak.h
+        primitive/collection/_loosely.h
+        primitive/collection/_loosely_map.h
         #primitive/collection/_point_array.h
         #primitive/collection/_raw_array_impl.h
         #primitive/collection/_raw_array_impl2.h
@@ -1397,7 +1402,7 @@ list(APPEND library_source
         primitive/collection/array_base.h
         primitive/collection/attrib_map.h
         primitive/collection/back_insert_iterator.h
-        primitive/collection/base_2array.h
+        #primitive/collection/base_2array.h
         primitive/collection/base_enum.h
         primitive/collection/bit_array.h
         primitive/collection/bitset.h

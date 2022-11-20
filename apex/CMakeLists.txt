@@ -217,7 +217,7 @@ list(APPEND apex_source
         message/global.h
         #message/id.cpp
         #message/id.h
-        message/listener_smart_pointer_array.h
+        message/listener_pointer_array.h
         message/message.cpp
         message/message.h
         #message/receiver.cpp
@@ -238,13 +238,13 @@ list(APPEND apex_source
         networking/http/get_socket.h
         networking/http/listener.cpp
         networking/http/listener.h
+        networking/http/message.cpp
+        networking/http/message.h
         #networking/http/ostream.cpp
         networking/http/request.cpp
         networking/http/request.h
         networking/http/response.cpp
         networking/http/response.h
-        networking/http/signal.cpp
-        networking/http/signal.h
         networking/http/status.cpp
         networking/http/status.h
         networking/http/stream.h
@@ -565,7 +565,7 @@ list(APPEND apex_source
         progress/_.h
         template/list.h
         user/_.h
-        user/_const_key.h
+        #user/_const_key.h
         #user/command.cpp
         user/command.h
         #user/control_event.cpp
@@ -583,21 +583,24 @@ list(APPEND apex_source
         _.h
         #_defer.h
         aaa_want_to_move_xml.h
-        application.h
+        #application.h
         #astr.h
-        console.h
-        console_slim.h
+        #console.h
+        #console_slim.h
         #   context_glx.cpp
         framework.cpp
         framework.h
-        framework_c.h
-        future.h
-        id.h
+        #framework_c.h
+        #future.h
+        #id.h
+        #
         #library.h
         #message.h
-        procedure.h
+        #procedure.h
         #update.h
-        user.h)
+        #user.h
+
+        )
 
 
 if (WIN32)

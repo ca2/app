@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/gpu/gpu/approach.h"
@@ -47,6 +47,8 @@ namespace opengl
 
       virtual ::gpu::context* create_context() override;
 
+
+      int fread(void * data, int c, int s ,::file::file* pfile);
 
       virtual void defer_init_glew() override;
 

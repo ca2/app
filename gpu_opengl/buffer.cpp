@@ -1,5 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "buffer.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/image.h"
 
 
@@ -24,7 +25,7 @@ namespace opengl
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_pimage.ok())
+      if (m_pimage.nok())
       {
 
          return;
@@ -68,6 +69,8 @@ namespace opengl
          printf("glReadnPixels error");
 
       }
+
+      memset(m_pimage->m_pcolorrefRaw, 127, cx * cy * 4 / 8);
 
 #endif
       

@@ -1,5 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "opengl.h"
+#include "apex/filesystem/filesystem/file_context.h"
 
 
 namespace opengl
@@ -194,25 +195,34 @@ namespace opengl
 #define FOURCC_DXT3 0x33545844 // Equivalent to "DXT3" in ASCII
 #define FOURCC_DXT5 0x35545844 // Equivalent to "DXT5" in ASCII
 
+   int opengl::fread(void* data, int c, int s, ::file::file* pfile)
+   {
+
+      return (int) (pfile->read(data,s * c) / c);
+
+   }
+
    ::gpu::uniform opengl::load_dds(const ::string & strImagePath) 
    {
 
+      auto fp = file()->get_reader(strImagePath);
+
       unsigned char header[124];
 
-      FILE * fp;
+      //FILE * fp;
 
-      /* try to open the file */
-      fp = fopen(strImagePath, "rb");
-      if (fp == NULL) {
-         printf("%s could not be opened. Are you in the right directory ? Don't forget to read the FAQ !\n", strImagePath.c_str()); getchar();
-         return 0;
-      }
+      ///* try to open the file */
+      //fp = fopen(strImagePath, "rb");
+      //if (fp == NULL) {
+      //   printf("%s could not be opened. Are you in the right directory ? Don't forget to read the FAQ !\n", strImagePath.c_str()); getchar();
+      //   return 0;
+      //}
 
       /* verify the type of file */
       char filecode[4];
       fread(filecode, 1, 4, fp);
       if (strncmp(filecode, "DDS ", 4) != 0) {
-         fclose(fp);
+         //fclose(fp);
          return 0;
       }
 
@@ -233,7 +243,7 @@ namespace opengl
       buffer = (unsigned char *)malloc(bufsize * sizeof(unsigned char));
       fread(buffer, 1, bufsize, fp);
       /* close the file pointer */
-      fclose(fp);
+      //fclose(fp);
 
       unsigned int components = (fourCC == FOURCC_DXT1) ? 3 : 4;
       unsigned int format;

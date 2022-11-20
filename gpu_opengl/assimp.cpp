@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "assimp.h"
 
 
@@ -15,13 +15,14 @@ namespace assimp
 {
 
 
-   bool load_obj(const char * path, array<unsigned short> & indices, array<::glm::vec3> & vertices, array<::glm::vec2> & uvs, array<::glm::vec3> & normals)
+   bool load_obj(const void * data, memsize size, array<unsigned short> & indices, array<::glm::vec3> & vertices, array<::glm::vec2> & uvs, array<::glm::vec3> & normals)
    {
 
       Assimp::Importer importer;
 
       //const aiScene * scene = importer.ReadFile(path, aiProcess_JoinIdenticalVertices | aiProcess_SortByPType);
-      const aiScene * scene = importer.ReadFile(path, 0);
+      //const aiScene * scene = importer.ReadFile(path, 0);
+      const aiScene* scene = importer.ReadFileFromMemory(data, size, aiProcess_JoinIdenticalVertices | aiProcess_SortByPType);
       if (!scene) {
          fprintf(stderr, importer.GetErrorString());
          getchar();

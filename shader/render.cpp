@@ -1,6 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "render.h"
 #include "application.h"
+#include "acme/parallelization/single_lock.h"
 #include "aura/gpu/gpu/shader.h"
 #include "aura/gpu/gpu/approach.h"
 #include "aura/gpu/gpu/context.h"
@@ -46,7 +47,7 @@ namespace app_shader
       m_puserinteraction = puserinteraction;
 
       //auto estatus = 
-      ::object::initialize(puserinteraction);
+      ::particle::initialize(puserinteraction);
 
       //if (!estatus)
       //{
@@ -81,7 +82,7 @@ namespace app_shader
    int64_t render::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
@@ -89,7 +90,7 @@ namespace app_shader
    int64_t render::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
@@ -217,7 +218,7 @@ namespace app_shader
 
          //estatus = 
          
-         __construct(m_pprogram);
+         ::__construct(this, m_pprogram);
 
       }
 
@@ -286,10 +287,10 @@ namespace app_shader
 
       if (m_pcontext &&
         ::is_set(m_pcontext->m_pprogram) &&
-       m_pcontext->m_pbuffer && ::is_ok(m_pcontext->m_pbuffer->m_pimage))
+       m_pcontext->m_pbuffer && m_pcontext->m_pbuffer->m_pimage.ok())
       {
 
-         single_lock slImage(m_pcontext->m_pbuffer->mutex());
+         single_lock slImage(m_pcontext->m_pbuffer->synchronization());
 
          {
 
@@ -449,7 +450,7 @@ namespace app_shader
 
             pfont->create_point_font(strFontName, 12.0);
 
-            m_pimageLabel.defer_create(this);
+            m_pimageLabel.defer_create(::particle::m_pcontext);
 
             if(m_pimageLabel->g() == nullptr)
             {
@@ -577,7 +578,7 @@ namespace app_shader
 
             pfont->create_point_font(strFontName, 12.0);
 
-            m_pimageError.defer_create(this);
+            m_pimageError.defer_create(::particle::m_pcontext);
 
             if(m_pimageError->g() == nullptr)
             {

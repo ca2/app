@@ -1,4 +1,4 @@
-// Refactored by camilo on 2022-11-04 05:43 <3ThomasBorregaardSorensen!!
+﻿// Refactored by camilo on 2022-11-04 05:43 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -189,6 +189,27 @@ inline i32 unicode_index_length(const ansichar * pszUtf8, ::i32 & len)
    ch -= utf8_o(extraBytesToRead);
 
    return ch;
+
+}
+
+
+inline i32 consume_unicode_index(const ansichar *& pszUtf8)
+{
+
+   ::i32 len = 0;
+
+   auto i32 = unicode_index_length(pszUtf8, len);
+
+   if(i32 < 0)
+   {
+
+      throw_parsing_exception("end of string or not valid character to parse");
+
+   }
+
+   pszUtf8 += len;
+
+   return i32;
 
 }
 

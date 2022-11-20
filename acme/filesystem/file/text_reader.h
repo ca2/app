@@ -1,7 +1,8 @@
-// Created by camilo on 2022-04-26 05:41 <3ThomasBorregaardS�rensen!!
+﻿// Created by camilo on 2022-04-26 05:41 <3ThomasBorregaardS�rensen!!
 #pragma once
 
 
+#include "acme/exception/parsing.h"
 #include "acme/primitive/string/string_block.h"
 
 
@@ -116,7 +117,7 @@ public:
    text_reader & operator >>(unichar & wch)
    {
 
-      wch = ::parse_unicode(m_psz);
+      wch = ::consume_unicode_index(m_psz);
 
       return *this;
 
@@ -297,7 +298,7 @@ public:
 
       auto pszStart = psz;
 
-      while (!::str().character_isspace(*psz) && *psz != '\0')
+      while (!character_isspace(*psz) && *psz != '\0')
       {
 
          *psz++;

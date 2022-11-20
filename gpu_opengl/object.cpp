@@ -1,9 +1,10 @@
-// Created by camilo on 2022-04-25 21:02 <3ThomasBorregaardS�rensen!!
+﻿// Created by camilo on 2022-04-25 21:02 <3ThomasBorregaardS�rensen!!
 #include "framework.h"
 #include "object.h"
 #include <math.h>
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/text_reader.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "assimp.h"
 #include "opengl.h"
 
@@ -34,7 +35,11 @@ namespace opengl
    void object::load(const ::file::path & path)
    {
 
-      ::assimp::load_obj(path, m_indices, m_vertices, m_uvs, m_normals);
+      m_path = path;
+
+      auto memory = file()->as_memory(path);
+
+      ::assimp::load_obj(memory.data(), memory.size(), m_indices, m_vertices, m_uvs, m_normals);
 
    }
 
@@ -185,7 +190,7 @@ namespace opengl
       //auto pszError15 = (const char *)gluErrorString(iError15);
 
       // Load the texture
-      m_uniformTexture = papproach->load_dds("3d_sample_files\\uvmap.DDS");
+      m_uniformTexture = papproach->load_dds(m_path+ ".uvmap.DDS");
 
    }
 

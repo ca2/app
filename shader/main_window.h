@@ -1,6 +1,7 @@
-#pragma once
+﻿#pragma once
 
 
+#include "apex/platform/app_consumer.h"
 #include "aura/user/user/main_window.h"
 
 
@@ -42,9 +43,9 @@ namespace app_shader
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_switch);
 
-      virtual bool keyboard_focus_is_focusable() const override;
+      virtual bool keyboard_focus_is_focusable() override;
 
-      virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
+      virtual ::user::enum_translucency get_translucency(::user::style* pstyle) override;
 
       virtual void update_shader(const ::string & strShaderPath);
 

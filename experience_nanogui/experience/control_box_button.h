@@ -32,7 +32,7 @@ namespace experience_nanogui
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual bool keyboard_focus_is_focusable() const override;
+      virtual bool keyboard_focus_is_focusable() override;
 
 
    };

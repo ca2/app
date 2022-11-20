@@ -1,4 +1,4 @@
-// Created by camilo on 2022-04-25 21:02 <3ThomasBorregaardSørensen!!
+ï»¿// Created by camilo on 2022-04-25 21:02 <3ThomasBorregaardSï¿½rensen!!
 #include "framework.h"
 #include "object.h"
 

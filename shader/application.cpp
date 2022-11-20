@@ -2,6 +2,7 @@
 #include "application.h"
 #include "main_window.h"
 #include "render.h"
+#include "acme/filesystem/filesystem/listing.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 
 

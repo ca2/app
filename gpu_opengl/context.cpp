@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "context.h"
 #include "program.h"
 #include "shader.h"
@@ -297,7 +297,7 @@ namespace opengl
 
       }
 
-      if (pimage.ok())
+      if (pimage->is_ok())
       {
 
          pimage->map();

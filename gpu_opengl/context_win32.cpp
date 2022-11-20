@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "context_win32.h"
 #include "opengl.h"
 #include "buffer.h"
@@ -86,7 +86,7 @@ namespace opengl
 
       auto pgpu = psystem->get_gpu();
 
-      auto popengl = pgpu->cast < ::opengl::opengl >();
+      ::pointer < ::opengl::opengl > popengl = pgpu;
 
       if (!popengl->m_atomClass)
       {
@@ -221,8 +221,7 @@ namespace opengl
 
       m_estatus = ::success;
 
-      set_ok();
-
+      set_ok_flag();
       
    }
 

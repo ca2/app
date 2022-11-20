@@ -4,7 +4,10 @@
 #include "render.h"
 #include <math.h>
 #include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/datetime/datetime.h"
 #include "aura/graphics/user/control_box_icon.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/save_image.h"
@@ -39,7 +42,7 @@ namespace app_shader
    }
 
 
-   ::user::enum_translucency main_window::get_translucency(::user::style* pstyle) const
+   ::user::enum_translucency main_window::get_translucency(::user::style* pstyle)
    {
 
       return ::user::e_translucency_present;
@@ -127,7 +130,7 @@ namespace app_shader
 
       top_level()->set_prodevian();
 
-      update_shader("");
+      switch_shader();
 
    }
 
@@ -182,7 +185,7 @@ namespace app_shader
    }
 
 
-   bool main_window::keyboard_focus_is_focusable() const
+   bool main_window::keyboard_focus_is_focusable() 
    {
 
       return true;

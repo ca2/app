@@ -40,6 +40,11 @@ inline i32 unicode_index_length(const wd16char * pszChar, i32 & len);
 inline i32 unicode_index_length(const wd32char * pszChar, i32 & len) { len = *pszChar != 0; return *pszChar; }
 
 
+inline i32 consume_unicode_index_length(const ansichar * & pszChar);
+inline i32 consume_unicode_index_length(const wd16char * & pszChar);
+inline i32 consume_unicode_index_length(const wd32char * & pszChar) { return *pszChar++; }
+
+
 inline i32 unicode_index(const ansichar * pszChar) { ::i32 len = 0; return unicode_index_length(pszChar, len); }
 inline i32 unicode_index(const wd16char * pszChar) { ::i32 len = 0; return unicode_index_length(pszChar, len); }
 inline i32 unicode_index(const wd32char * pszChar) { ::i32 len = 0; return unicode_index_length(pszChar, len); }

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "program.h"
 #include "aura/gpu/gpu/shader.h"
 
@@ -28,7 +28,7 @@ namespace opengl
 
       //::e_status estatus = 
       
-      pparticle->__construct(m_pshader);
+      ::__construct(pparticle, m_pshader);
 
       //if (!estatus)
       //{

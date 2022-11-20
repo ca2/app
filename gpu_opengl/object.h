@@ -1,4 +1,4 @@
-// Created by camilo on 2022-04-25 20:42 <3ThomasBorregaardSørensen!!
+ï»¿// Created by camilo on 2022-04-25 20:42 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -34,6 +34,9 @@ namespace opengl
 
       ::gpu::uniform             m_iTextureUniform;
       ::gpu::element             m_uniformTexture;
+
+
+      ::file::path               m_path;
 
 
       object();

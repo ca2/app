@@ -76,10 +76,13 @@ class CLASS_DECL_ACME type :
 public:
 
 
-   type()
-   {
+   //type()
+   //{
+   //
+   //}
 
-   }
+
+   using atom::atom;
 
 
    template < typename TYPE >
@@ -95,11 +98,11 @@ public:
    }
 
 
-   type(const char * pszTypeName) :
-      atom(pszTypeName)
-   {
-      
-   }
+   //type(const char * pszTypeName) :
+   //   atom(pszTypeName)
+   //{
+   //   
+   //}
 
 
    type(const ::type & type)
@@ -117,10 +120,13 @@ public:
    }
 
 
-   type(const ::std::type_info & typeinfo)
+   type(const ::std::type_info & typeinfo) :
+#ifdef WINDOWS
+      atom(c_demangle(typeinfo.name()))
+#else
+      atom(demangle(typeinfo.name()))
+#endif
    {
-
-      operator = (typeinfo);
 
    }
 
@@ -130,10 +136,20 @@ public:
    type(const ::pointer<BASE>& point);
 
 
-   type& operator = (const ::std::type_info& typeinfo);
+   //type& operator = (const ::std::type_info& typeinfo);
 
 
-   type& operator = (const ::type& type);
+   //type& operator = (const ::type& type);
+
+
+   type& operator = (const ::type& type)
+   {
+
+      ::atom::operator = (type);
+
+      return *this;
+
+   }
    
 
    const ::atom & name() const { return *this; }

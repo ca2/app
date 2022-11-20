@@ -354,7 +354,7 @@ namespace aura
 
       string strId;
 
-      string strOriginalPathName(pcreate->m_payloadFile.get_string());
+      string strOriginalPathName(pcreate->m_payloadFile.as_string());
 
       ::file::path strPathName(strOriginalPathName);
 

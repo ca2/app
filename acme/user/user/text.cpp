@@ -25,7 +25,7 @@ namespace user
       if (m_linkedpropertyText)
       {
 
-         str = strtext();
+         str = as_string();
 
       }
 
@@ -35,7 +35,7 @@ namespace user
    void text::_001SetSelText(const ::string & psz, const ::action_context & context)
    {
 
-      strtext() = psz;
+      string_reference() = psz;
 
    }
 
@@ -43,7 +43,7 @@ namespace user
    void text::_001SetText(const ::string & str, const ::action_context & context)
    {
 
-      strtext() = str;
+      string_reference() = str;
 
    }
 

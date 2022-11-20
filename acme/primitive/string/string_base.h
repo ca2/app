@@ -75,10 +75,10 @@ public:
 //   string_base(wd16char wd16ch, strsize repeat = 1);
 //   string_base(wd32char wd32ch, strsize repeat = 1);
    //string_base(const character & character, strsize repeat = 1) :string_base(character.m_wd32char, repeat) {}
-   template < primitive_payload PAYLOAD >
-   string_base(const PAYLOAD & payload) : string_base(payload.get_string()) {}
-   template < primitive_atom ATOM >
-   string_base(const ATOM & atom) : string_base(atom.string()) {}
+   //template < primitive_payload PAYLOAD >
+   //string_base(const PAYLOAD & payload) : string_base(payload.get_string()) {}
+   //template < primitive_atom ATOM >
+   //string_base(const ATOM & atom) : string_base(atom.string()) {}
    inline ~string_base() {}
 
 
@@ -188,7 +188,7 @@ public:
    string_base & operator += (const PAYLOAD & payload) { return operator+=(payload.get_string()); }
    // string_base & operator += (const ::property & property) { ::append(this, &property); return *this; }
    template < primitive_atom ATOM >
-   string_base & operator += (const ATOM & atom) { return operator+=(atom.string()); }
+   string_base & operator += (const ATOM & atom) { return operator+=(atom.as_string()); }
 
 
 //   template < int t_nSize >
@@ -222,10 +222,10 @@ public:
 
    operator ::block() const { return { c_str(), get_length_in_bytes() }; }
    template < primitive_payload PAYLOAD >
-   string_base operator + (const PAYLOAD & payload) const { return *this + payload.get_string(); }
+   string_base operator + (const PAYLOAD & payload) const { return *this + payload.as_string(); }
 
    template < primitive_atom ATOM >
-   string_base operator + (const ATOM & atom) const { return *this + atom.string(); }
+   string_base operator + (const ATOM & atom) const { return *this + atom.as_string(); }
 
 
    template < typename TYPE >

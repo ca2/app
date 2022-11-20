@@ -1951,7 +1951,7 @@ namespace user
 
             auto pattributeId = pchild->find_attribute("id");
 
-            ptoolitem->m_atom = pattributeId->string();
+            ptoolitem->m_atom = pattributeId->as_string();
 
             ptoolitem->m_str = pchild->get_value();
 
@@ -1966,7 +1966,7 @@ namespace user
 
             }
             
-            if (pchild->attribute("hidden").string().compare_ci("true") == 0)
+            if (pchild->attribute("hidden").as_string().compare_ci("true") == 0)
             {
                
                ptoolitem->hide();
@@ -1976,7 +1976,7 @@ namespace user
             if (pchild->attribute("enable_if_has_command_handler").has_char())
             {
 
-               ptoolitem->m_bEnableIfHasCommandHandler = pchild->attribute("enable_if_has_command_handler").string().compare_ci("true") == 0;
+               ptoolitem->m_bEnableIfHasCommandHandler = pchild->attribute("enable_if_has_command_handler").as_string().compare_ci("true") == 0;
 
             }
 

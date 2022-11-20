@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "type.h"
 #include "acme/primitive/primitive/particle.h"
 #include "acme/primitive/string/string.h"
@@ -337,33 +337,33 @@ string demangle(const char* name)
 
 
 
-type& type::operator = (const ::std::type_info& typeinfo)
-{
+//type& type::operator = (const ::std::type_info& typeinfo)
+//{
+//
+//   ::string strName = typeinfo.name();
+//
+//   strName = demangle(strName);
+//
+//   ::atom::operator =(strName);
+//
+//   return *this;
+//
+//}
 
-   ::string strName = typeinfo.name();
 
-   strName = demangle(strName);
-
-   ::atom::operator =(strName);
-
-   return *this;
-
-}
-
-
-type& type::operator = (const ::type& type)
-{
-
-   if (this != &type)
-   {
-
-      ::atom::operator =(type);
-
-   }
-
-   return *this;
-
-}
+//type& type::operator = (const ::type& type)
+//{
+//
+//   if (this != &type)
+//   {
+//
+//      ::atom::operator =(type);
+//
+//   }
+//
+//   return *this;
+//
+//}
 
 
 bool type::operator == (const ::std::type_info& typeinfo) const

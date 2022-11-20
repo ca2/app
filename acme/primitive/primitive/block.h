@@ -46,7 +46,7 @@ struct CLASS_DECL_ACME block :
 
    block(enum_no_initialize) {}
    block() { m_pdata = nullptr; m_iSize = 0; }
-   block(const void* pdata) { m_pdata = (byte*)pdata; m_iSize = string_safe_length((const char *) pdata); }
+   block(const ansichar* psz) : block((byte*)psz, string_safe_length((const char*)psz)) { }
    template < primitive_integral INTEGRAL >
    block(const void * pdata, INTEGRAL iSize) { m_pdata = (byte *) pdata; m_iSize = (memsize_storage) iSize; }
    block(const memory_base & memory);
@@ -135,6 +135,8 @@ namespace acme
    inline void memory_free(T * & point);
 
 }
+
+
 
 
 template < typename TYPE >

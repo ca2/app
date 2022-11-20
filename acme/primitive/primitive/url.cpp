@@ -477,7 +477,7 @@ namespace url
    ::payload & url::var_set(::payload & varUrl, const ::string & strKeyParam, ::payload payload)
    {
 
-      return varUrl = set_key(varUrl, strKeyParam, payload);
+      return varUrl = set_key(varUrl.as_string(), strKeyParam, payload);
 
    }
 
@@ -819,7 +819,7 @@ namespace url
 
       string strAndKeyEqual2 = "&" + strKeyEqual;
 
-      string strValue = ::url::encode(payload.string());
+      string strValue = ::url::encode(payload.as_string());
 
       if(string_begins(strQuery, strKeyEqual))
       {

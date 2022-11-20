@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "session.h"
 #include "system.h"
 #include "application.h"
@@ -918,7 +918,7 @@ namespace apex
 
       string strId;
 
-      string strOriginalPathName(pcreate->m_payloadFile.get_string());
+      string strOriginalPathName(pcreate->m_payloadFile.as_string());
 
       ::file::path strPathName(strOriginalPathName);
 

@@ -563,14 +563,12 @@ public:
    //inline operator enum_dialog_result () const;
 
 
-#ifndef NO_TEMPLATE
-
-
-   void as(::string & str) const;
-   ::string string() const;
+   ::string as_string() const;
+   //::string string() const;
    //inline string __string() const;
 
-#endif
+
+   operator ::string() const { return as_string(); }
 
 
    inline bool is_null() const;
@@ -999,7 +997,7 @@ inline bool atom::operator >= (const ::string & str) const
 inline ::string atom::operator +(const char * psz) const
 {
 
-   return this->string() + psz;
+   return this->as_string() + psz;
 
 }
 
@@ -1007,17 +1005,17 @@ inline ::string atom::operator +(const char * psz) const
 inline ::string atom::operator +(const ::string & str) const
 {
 
-   return this->string() + str;
+   return this->as_string() + str;
 
 }
 
 
-inline void atom::as(::string & str) const
-{
-
-   str = this->string();
-
-}
+//inline void atom::as(::string & str) const
+//{
+//
+//   str = this->string();
+//
+//}
 
 
 #endif

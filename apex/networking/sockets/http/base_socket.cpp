@@ -74,7 +74,7 @@ namespace sockets
    void http_base_socket::OnHeaderComplete()
    {
 
-      string strProtocol = m_request.attr("http_protocol").string().c_str();
+      string strProtocol = m_request.attr("http_protocol").as_string().c_str();
 
       string strHost;
       
@@ -93,7 +93,7 @@ namespace sockets
 
       }
 
-      string strRequestUri = m_request.attr("request_uri").string();
+      string strRequestUri = m_request.attr("request_uri").as_string();
 
       http_socket::OnHeaderComplete();
 
@@ -113,7 +113,7 @@ namespace sockets
 
       }
 
-      if(m_request.attr("request_uri").string().find("/passthrough/") >= 0)
+      if(m_request.attr("request_uri").as_string().find("/passthrough/") >= 0)
       {
          
          INFORMATION("Passthrough");
@@ -123,7 +123,7 @@ namespace sockets
       if(m_request.headers().has_property("user_agent"))
       {
 
-         INFORMATION("user-agent: " << m_request.header("user_agent").get_string());
+         INFORMATION("user-agent: " << m_request.header("user_agent").as_string());
 
       }
       else
@@ -136,14 +136,14 @@ namespace sockets
       if(m_request.headers().has_property("from"))
       {
 
-         INFORMATION("from: " + m_request.header("from").get_string());
+         INFORMATION("from: " + m_request.header("from").as_string());
 
       }
 
       if(m_request.headers().has_property("accept-language"))
       {
 
-         FORMATTED_INFORMATION("accept-language: %s", m_request.header("accept-language").string().c_str());
+         FORMATTED_INFORMATION("accept-language: %s", m_request.header("accept-language").as_string().c_str());
 
       }
 
@@ -203,8 +203,8 @@ namespace sockets
 
       //TRACE0("http_base_socket::Respond");
 
-      if(outheader("content-type").string().find("text") >= 0
-            || outheader("content-type").string().find("javascript") >= 0)
+      if(outheader("content-type").as_string().find("text") >= 0
+            || outheader("content-type").as_string().find("javascript") >= 0)
       {
 
          on_compress();
@@ -331,10 +331,10 @@ namespace sockets
    void http_base_socket::on_compress()
    {
 
-      if(inheader("accept-encoding").string().find("gzip") >= 0)
+      if(inheader("accept-encoding").as_string().find("gzip") >= 0)
       {
 
-         string str = outheader("content-type").string();
+         string str = outheader("content-type").as_string();
 
          if (str.find_ci("text") >= 0 || str.find_ci("javascript") >= 0)
          {
@@ -395,7 +395,7 @@ namespace sockets
       {
          outheader("content-type") = "text/plain";
       }
-      else if (outheader("content-type").string().has_char())
+      else if (outheader("content-type").as_string().has_char())
       {
       }
       else if (strContentType.has_char() && strContentType.compare_ci("unknown") != 0)

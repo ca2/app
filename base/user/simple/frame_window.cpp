@@ -4172,7 +4172,7 @@ void simple_frame_window::on_select_user_style()
    if (m_puserstyle.is_null())
    {
 
-      string strSchema(m_varFrame["experience"].get_string());
+      string strSchema(m_varFrame["experience"].as_string());
 
       if (strSchema.has_char() || is_top_level_window())
       {

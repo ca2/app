@@ -267,7 +267,7 @@ string & property::get_network_arguments(::string & str) const
 
    str += "=";
 
-   str += ::url::encode(this->string());
+   str += ::url::encode(this->as_string());
 
    return str;
 
@@ -458,7 +458,7 @@ string & property::get_network_arguments(::string & str) const
 ::i32 payload::str_compare(const ::property & property) const
 {
 
-   return string().compare(property.string());
+   return string().compare(property.as_string());
 
 }
 

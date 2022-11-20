@@ -222,7 +222,7 @@ namespace geo
 
                v.parse_network_payload(pszJson);
 
-               string strLine = v["name"].string() + ", " + v["country"].string();
+               string strLine = v["name"].as_string() + ", " + v["country"].as_string();
 
                m_straCity.add(strLine);
 

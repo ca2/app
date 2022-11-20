@@ -278,9 +278,9 @@ namespace interprocess
          if (!strMember.begins_ci("reply."))
          {
 
-            string strOrigin = propertyset["protocol"]["origin"].get_string();
+            string strOrigin = propertyset["protocol"]["origin"].as_string();
 
-            string strOriginObject = propertyset["protocol"]["origin_object"].get_string();
+            string strOriginObject = propertyset["protocol"]["origin_object"].as_string();
 
             auto iCallId = propertyset["protocol"]["call_id"].i64();
 

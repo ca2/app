@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "xml.h"
 #include "edit.h"
 #include "entity.h"
@@ -161,9 +161,9 @@ namespace xml
       str += opt->m_chQuote;
       string strValue;
       if (opt->m_bReferenceValue && opt->m_pentities)
-         strValue = opt->m_pentities->entity_to_ref(prop.string());
+         strValue = opt->m_pentities->entity_to_ref(prop.as_string());
       else
-         strValue = prop.string();
+         strValue = prop.as_string();
 
       strValue.replace_with("\\\\", "\\"); // should be first
       strValue.replace_with("\\n", "\n");

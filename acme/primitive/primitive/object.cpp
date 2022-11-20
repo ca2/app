@@ -2404,39 +2404,39 @@ void call_sync(const ::procedure_array& methoda)
 
 
 
-string object::get_text(const ::payload& payload, const ::atom& atom)
-{
-
-   if (payload.has_property(atom) && payload[atom].has_char())
-   {
-
-      return payload[atom];
-
-   }
-
-   return "";
-
-   //string str = file()->as_string(payload);
-
-   //if (str.has_char())
-   //{
-
-   //   return str;
-
-   //}
-
-   //auto strExtension = payload.get_file_path().extension();
-
-   //if (strExtension == __string(atom))
-   //{
-
-   //   return "";
-
-   //}
-
-   //return payload.get_string();
-
-}
+//string object::get_text(const ::payload& payload, const ::atom& atom)
+//{
+//
+//   if (payload.has_property(atom) && payload[atom].has_char())
+//   {
+//
+//      return payload[atom];
+//
+//   }
+//
+//   return "";
+//
+//   //string str = file()->as_string(payload);
+//
+//   //if (str.has_char())
+//   //{
+//
+//   //   return str;
+//
+//   //}
+//
+//   //auto strExtension = payload.get_file_path().extension();
+//
+//   //if (strExtension == __string(atom))
+//   //{
+//
+//   //   return "";
+//
+//   //}
+//
+//   //return payload.get_string();
+//
+//}
 
 
 //pointer< ::extended::sequence < ::conversation > > object::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box& emessagebox)

@@ -978,7 +978,7 @@ namespace user
       if (m_linkedpropertyText && !m_linkedpropertyText->is_empty())
       {
 
-         _001SetText(m_linkedpropertyText->string(), ::e_source_initialize);
+         _001SetText(m_linkedpropertyText->as_string(), ::e_source_initialize);
 
       }
 

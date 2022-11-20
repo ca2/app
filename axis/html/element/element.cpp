@@ -1685,7 +1685,7 @@ namespace html
 
             str += "\"";
 
-            str += pproperty->string();
+            str += pproperty->as_string();
 
             str += "\"";
 

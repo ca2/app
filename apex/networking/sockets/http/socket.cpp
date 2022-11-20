@@ -289,7 +289,7 @@ namespace sockets
             m_request.m_strRequestUri = strScript + ::str().has_char(strQuery, "?");
             m_request.attr("request_uri") = m_request.m_strRequestUri;
             m_request.attr("http_version") = pa.getword();
-            m_b_http_1_1 = string_ends(m_request.attr("http_version").string(), "/1.1");
+            m_b_http_1_1 = string_ends(m_request.attr("http_version").as_string(), "/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest     = true;
             m_bResponse    = false;
@@ -446,7 +446,7 @@ namespace sockets
       
       string strLine;
       
-      strLine = m_response.attr("http_version").string() + " " + m_response.attr("http_status_code") + " " + m_response.attr("http_status");
+      strLine = m_response.attr("http_version").as_string() + " " + m_response.attr("http_status_code") + " " + m_response.attr("http_status");
 
       msg = strLine + "\r\n";
       
@@ -591,12 +591,12 @@ namespace sockets
 
       string strLine;
 
-      msg = m_request.attr("http_method").string() + " " + m_request.attr("request_uri").string() + " " + m_request.attr("http_version").string() + "\r\n";
+      msg = m_request.attr("http_method").as_string() + " " + m_request.attr("request_uri").as_string() + " " + m_request.attr("http_version").as_string() + "\r\n";
 
-      if (m_request.m_propertysetHeader["host"].string().has_char())
+      if (m_request.m_propertysetHeader["host"].as_string().has_char())
       {
 
-         strLine = "Host: " + m_request.m_propertysetHeader["host"].get_string();
+         strLine = "Host: " + m_request.m_propertysetHeader["host"].as_string();
 
          if(m_iProxyPort > 0 ||
                (get_connect_port() != 80 && !IsSSL()) || (get_connect_port() != 443 && IsSSL()))
@@ -617,7 +617,7 @@ namespace sockets
 
          string strKey = pproperty->name();
 
-         string strValue = pproperty->string();
+         string strValue = pproperty->as_string();
 
          if (pproperty->name() == "content-type")
          {

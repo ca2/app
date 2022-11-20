@@ -95,14 +95,14 @@ namespace netserver
    void socket::OnExecute()
    {
 
-      string strUrl = m_request.attr("http_protocol").string() + "://" + m_request.header("host").string() + m_request.attr("request_uri").string();
+      string strUrl = m_request.attr("http_protocol").as_string() + "://" + m_request.header("host").as_string() + m_request.attr("request_uri").as_string();
 
       FORMATTED_INFORMATION("socket::OnExecute: %s\n", strUrl.c_str());
 
       for (auto& item : m_request.headers())
       {
 
-         FORMATTED_INFORMATION("Headers %s=%s\n", item->m_atom.string().c_str(), item->string().c_str());
+         FORMATTED_INFORMATION("Headers %s=%s\n", item->m_atom.as_string().c_str(), item->as_string().c_str());
 
       }
 

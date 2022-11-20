@@ -1856,9 +1856,14 @@ public:
 
    ::byte get_byte()
    {
+      ::byte b = 0;
+      if (m_pfile->read(&b, 1) != 1)
+      {
 
-      return m_pfile->get_byte();
+         throw_exception(error_end_of_file);
 
+      }
+      return b;
    }
 
 
@@ -1988,7 +1993,7 @@ public:
    }
 
 
-   ::pointer<::matter>create_object_from_text(string strText)
+   ::pointer<::matter>create_object_from_text(::particle * pparticle, string strText)
    {
 
       if (strText.is_empty())
@@ -2000,7 +2005,7 @@ public:
 
       auto atom = text_to_factory_id(strText);
 
-      return __id_create < ::matter >(atom);
+      return __id_create < ::matter >(pparticle, atom);
 
    }
 

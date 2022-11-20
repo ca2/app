@@ -9911,7 +9911,7 @@ namespace apex
 
       }
 
-      return payload.string();
+      return payload.as_string();
 
    }
 

@@ -106,7 +106,7 @@ namespace user
 
       }
 
-      return get_current_image()->extension()->payload("read_only_link").get_string();
+      return get_current_image()->extension()->payload("read_only_link").as_string();
 
    }
 

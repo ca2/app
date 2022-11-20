@@ -32,7 +32,7 @@ namespace database
          else
          {
 
-            m_strDataKey = payload.string();
+            m_strDataKey = payload.as_string();
 
          }
 
@@ -64,7 +64,7 @@ namespace database
    key::key(const atom & idDataKey, bool bLocalData)
    {
 
-      m_strDataKey = idDataKey.string();
+      m_strDataKey = idDataKey.as_string();
 
       m_bLocalData = bLocalData;
 

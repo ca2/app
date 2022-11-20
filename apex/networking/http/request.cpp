@@ -124,7 +124,7 @@ namespace http
    string request::a_url()
    {
 
-      string strUrl = attr("http_protocol").string() + "://" + header("host").string() + attr("request_uri").string();
+      string strUrl = attr("http_protocol").as_string() + "://" + header("host").as_string() + attr("request_uri").as_string();
 
       return strUrl;
 

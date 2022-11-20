@@ -1277,7 +1277,7 @@ string property_set::implode(const char * pszGlue) const
    if(p)
    {
 
-      str = p->string();
+      str = p->as_string();
 
       p++;
 
@@ -1288,7 +1288,7 @@ string property_set::implode(const char * pszGlue) const
 
       str += pszGlue;
 
-      str += p->string();
+      str += p->as_string();
 
    }
 
@@ -1971,7 +1971,7 @@ string property_set::get_command_line(const string_array & straKeys) const
 
       str += "=";
 
-      strItem = pproperty->string();
+      strItem = pproperty->as_string();
 
       if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
       {
@@ -2052,7 +2052,7 @@ string property_set::get_command_line() const
 
       str += "=";
 
-      strItem = pproperty->string();
+      strItem = pproperty->as_string();
 
       if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
       {
@@ -2143,7 +2143,7 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 
    }
 
-   return pproperty->get_string();
+   return pproperty->as_string();
 
 }
 

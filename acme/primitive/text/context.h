@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/collection/atom_map.h"
@@ -209,7 +209,7 @@ namespace text
       inline bool begins(const ::atom & atom, const char * psz) const
       {
 
-         return m_ptable->begins(this, atom.string(), psz);
+         return m_ptable->begins(this, atom.as_string(), psz);
 
       }
 

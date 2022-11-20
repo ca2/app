@@ -3739,7 +3739,7 @@ namespace user
       catch (...)
       {
 
-         INFORMATION("Exception: interaction::_001DrawThis %s" << __object_type(*this).string());
+         INFORMATION("Exception: interaction::_001DrawThis %s" << __object_type(*this).as_string());
 
       }
 
@@ -4703,7 +4703,7 @@ namespace user
          catch (...)
          {
 
-            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s" << __object_type(*this).string());
+            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s" << __object_type(*this).as_string());
 
          }
 
@@ -4728,7 +4728,7 @@ namespace user
             catch (...)
             {
 
-               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s" << __object_type(*this).string());
+               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s" << __object_type(*this).as_string());
 
             }
 
@@ -7314,6 +7314,13 @@ namespace user
       {
 
          start_destroying_window();
+
+      }
+
+      if (::is_null(m_pcontext))
+      {
+
+         initialize(puserinteractionParent);
 
       }
 

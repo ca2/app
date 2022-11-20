@@ -42,7 +42,7 @@ namespace interprocess
 
          string strSource;
 
-         string strPid = m_pcall->m_pinterprocesscommunication->m_atomApp.string();
+         string strPid = m_pcall->m_pinterprocesscommunication->m_atomApp.as_string();
 
          strSource.format("protocol.origin=%s&protocol.origin_pid=%s", m_pcall->m_pinterprocesscommunication->m_strApp.c_str(), strPid.c_str());
 

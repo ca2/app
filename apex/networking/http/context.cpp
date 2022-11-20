@@ -172,7 +172,7 @@ namespace http
 
       //}
 
-      return set["get_response"].string();
+      return set["get_response"].as_string();
 
    }
 
@@ -184,7 +184,7 @@ namespace http
 
       set["bool_result"] = get(pszUrl, process_set(set, pszUrl));
 
-      str = set["get_response"].string();
+      str = set["get_response"].as_string();
 
       //return set["get_status"].estatus();
 
@@ -2108,7 +2108,7 @@ namespace http
 
       //}
 
-      if (set.has_property("cookie") && set["cookie"].string().has_char())
+      if (set.has_property("cookie") && set["cookie"].as_string().has_char())
       {
 
          psocket->request().header("cookie") = set["cookie"];
@@ -2186,7 +2186,7 @@ namespace http
       if (set.has_property("proxy"))
       {
 
-         straProxy.explode(":", set["proxy"].string());
+         straProxy.explode(":", set["proxy"].as_string());
 
          if (straProxy.get_count() != 2 || !psocket->proxy_open(straProxy[0], atoi(straProxy[1])))
          {

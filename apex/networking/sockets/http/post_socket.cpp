@@ -136,7 +136,7 @@ namespace sockets
 
                INFORMATION("JSON BODY: " << strBody);
 
-               string strContentType = inheader("content-type").string();
+               string strContentType = inheader("content-type").as_string();
 
                if (strContentType.find_ci("application/json") < 0)
                {
@@ -167,10 +167,10 @@ namespace sockets
 
             m_fields.get_network_arguments(strBody);
 
-            if (inheader("content-type").string().find_ci("application/x-www-form-urlencoded") < 0)
+            if (inheader("content-type").as_string().find_ci("application/x-www-form-urlencoded") < 0)
             {
 
-               inheader("content-type") = "application/x-www-form-urlencoded" + ::str().has_char(inheader("content-type").string(), "; ");
+               inheader("content-type") = "application/x-www-form-urlencoded" + ::str().has_char(inheader("content-type").as_string(), "; ");
 
             }
 
@@ -267,7 +267,7 @@ namespace sockets
 
             strFields += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + atom + "\"\r\n\r\n";
 
-            string value = payload.string();
+            string value = payload.as_string();
 
             strFields += value + "\r\n";
 

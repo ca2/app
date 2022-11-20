@@ -1,5 +1,8 @@
-// Created by camilo on 2022-11-08 16:53 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 16:53 <3ThomasBorregaardSorensen!!
 #pragma once
+
+
+#include "int_map.h"
 
 
 namespace acme
@@ -959,7 +962,7 @@ namespace acme
             for (::index i = 0; i < payload.payloada().get_count(); i++)
             {
 
-               index iItem = ::acme::array::add(array, payload.payloada()[i].string());
+               index iItem = ::acme::array::add(array, payload.payloada()[i].as_string());
 
                if (i < 0)
                {
@@ -998,7 +1001,7 @@ namespace acme
          else
          {
 
-            i = ::acme::array::add(array, payload.string());
+            i = ::acme::array::add(array, payload.as_string());
 
          }
 
@@ -1789,6 +1792,58 @@ namespace acme
 
 
    } //namespace array
+
+
+} // namespace acme
+
+
+
+
+
+namespace acme
+{
+
+
+   namespace array2d
+   {
+
+      template < typename A >
+      ::count predominant_column_count(A& a)
+      {
+
+         index_to_index column_count;
+
+         for (index i = 0; i < a.get_size(); i++)
+         {
+
+            column_count[a[i].get_count()]++;
+
+         }
+
+         ::count c = -1;
+
+         ::count cMax = -1;
+
+         for (auto& assoc : column_count)
+         {
+
+            if (assoc.element2() > cMax || (assoc.element2() == cMax && assoc.element1() > c))
+            {
+
+               c = assoc.element1();
+
+               cMax = assoc.element2();
+
+            }
+
+         }
+
+         return c;
+
+      }
+
+
+   } //namespace array2d
 
 
 } // namespace acme

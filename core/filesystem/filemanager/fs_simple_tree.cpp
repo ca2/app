@@ -160,7 +160,7 @@ namespace filemanager
 
                pfolder->m_strName = pnodeItem->attribute("name");
 
-               string strType(pnodeItem->attribute("type").get_string());
+               string strType(pnodeItem->attribute("type").as_string());
 
                if(strType == "normal")
                {

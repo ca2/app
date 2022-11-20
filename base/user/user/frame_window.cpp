@@ -954,7 +954,7 @@ namespace user
             if(!pinteraction)
             {
 
-               WARNING("the impact wasn't created: " << pusersystem->m_typeNewImpact.string());
+               WARNING("the impact wasn't created: " << pusersystem->m_typeNewImpact.as_string());
 
             }
 

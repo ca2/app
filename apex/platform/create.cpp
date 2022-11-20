@@ -45,7 +45,7 @@ void create::initialize_create(arguments arguments)
          //}
          
          // estatus = 
-         initialize_command_line2(arg.string());
+         initialize_command_line2(arg.as_string());
 
          //if (!estatus)
          //{

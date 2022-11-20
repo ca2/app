@@ -2,6 +2,12 @@
 #pragma once
 
 
+#include "core/user/rich_text/format.h"
+#include "core/user/rich_text/span.h"
+#include "core/user/rich_text/data.h"
+#include "core/user/rich_text/edit_impl.h"
+
+
 template < typename FILE >
 ::binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, const ::user::rich_text::format & format)
 {
@@ -82,11 +88,12 @@ template < typename FILE >
 
 }
 
+
 template < typename FILE >
 ::binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, const ::user::rich_text::data & data)
 {
 
-   synchronous_lock synchronouslock(data.mutex());
+   synchronous_lock synchronouslock(data.synchronization());
 
    stream << data.m_pformata;
 
@@ -101,7 +108,7 @@ template < typename FILE >
 ::binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, ::user::rich_text::data & data)
 {
 
-   synchronous_lock synchronouslock(data.mutex());
+   synchronous_lock synchronouslock(data.synchronization());
 
    data.m_plinea->erase_all();
 
@@ -131,10 +138,10 @@ template < typename FILE >
 
    editimpl.get_window_rect(rectangleWindow);
 
-   if (get_parent() != nullptr)
+   if (((::user::rich_text::edit_impl & )editimpl).get_parent() != nullptr)
    {
 
-      get_parent()->screen_to_client()(rectangleWindow);
+      ((::user::rich_text::edit_impl&)editimpl).get_parent()->screen_to_client()(rectangleWindow);
 
    }
 

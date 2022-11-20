@@ -548,7 +548,7 @@ namespace crypto
 
          memory memoryEncrypt;
 
-         encrypt(memoryEncrypt, pszData, pszSalt);
+         encrypt(memoryEncrypt, as_block(pszData), as_block(pszSalt));
 
          file()->put_memory(payloadFile, memoryEncrypt);
 
@@ -571,7 +571,7 @@ namespace crypto
 
          file()->as_memory(payloadFile, memoryEncrypt);
 
-         decrypt(str, memoryEncrypt, pszSalt);
+         decrypt(str, memoryEncrypt, as_block(pszSalt));
 
       }
 

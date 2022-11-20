@@ -1564,12 +1564,12 @@ namespace user
 
             newName = m_strTitle;
             // check for dubious filename
-            strsize iBad = newName.string().FindOneOf(":/\\");
+            strsize iBad = newName.as_string().FindOneOf(":/\\");
 
             if (iBad != -1)
             {
 
-               newName = newName.string().Left(iBad);
+               newName = newName.as_string().Left(iBad);
 
             }
 

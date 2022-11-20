@@ -524,7 +524,7 @@ bool payload::convert(const ::payload & payload)
    else if(m_etype == e_type_string)
    {
 
-      m_str = payload.string();
+      m_str = payload.as_string();
 
    }
    else
@@ -542,7 +542,7 @@ bool payload::convert(const ::payload & payload)
 strsize payload::length() const
 {
 
-   return string().length();
+   return as_string().length();
 
 }
 
@@ -550,7 +550,7 @@ strsize payload::length() const
 void payload::as(::string & str) const
 {
 
-   str = get_string();
+   str = as_string();
 
 }
 
@@ -704,7 +704,7 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_f64 = this->f64();
             break;
          case e_type_string:
-            m_str = ::move(this->string());
+            m_str = ::move(this->as_string());
             break;
          case e_type_id:
             m_atom = ::move(this->atom());
@@ -1661,7 +1661,7 @@ bool payload::is_empty() const
 bool payload::has_char() const
 {
 
-   return string().has_char();
+   return as_string().has_char();
 
 }
 
@@ -1736,7 +1736,7 @@ bool payload::is_new_or_null() const
       else
       {
          //payload = var1;
-         //payload.stra().erase(payload2.string());
+         //payload.stra().erase(payload2.as_string());
       }
    }
    else if(m_etype == ::e_type_payload_array)
@@ -1771,7 +1771,7 @@ bool payload::is_new_or_null() const
    }
    else
    {
-      return string().compare_ci(payload.string());
+      return as_string().compare_ci(payload.as_string());
    }
    return -2;
 }
@@ -1806,7 +1806,7 @@ bool payload::is_new_or_null() const
       else
       {
          //payload = var1;
-         //payload.stra().erase(payload2.string());
+         //payload.stra().erase(payload2.as_string());
       }
    }
    else if(m_etype == ::e_type_payload_array)
@@ -1841,7 +1841,7 @@ bool payload::is_new_or_null() const
    }
    else
    {
-      return string().compare(payload.string());
+      return as_string().compare(payload.as_string());
    }
    return -2;
 }
@@ -1886,62 +1886,62 @@ bool payload::operator != (const class ::payload & payload) const
 
 bool payload::operator == (const char * psz) const
 {
-   return string() == psz;
+   return as_string() == psz;
 }
 
 bool payload::operator < (const char * psz) const
 {
-   return string() < psz;
+   return as_string() < psz;
 }
 
 bool payload::operator <= (const char * psz) const
 {
-   return string() <= psz;
+   return as_string() <= psz;
 }
 
 bool payload::operator >= (const char * psz) const
 {
-   return string() >= psz;
+   return as_string() >= psz;
 }
 
 bool payload::operator > (const char * psz) const
 {
-   return string() > psz;
+   return as_string() > psz;
 }
 
 bool payload::operator != (const char * psz) const
 {
-   return string() != psz;
+   return as_string() != psz;
 }
 
 bool payload::operator == (const ::string & str) const
 {
-   return string() == str;
+   return as_string() == str;
 }
 
 bool payload::operator != (const ::string & str) const
 {
-   return string() != str;
+   return as_string() != str;
 }
 
 bool payload::operator < (const ::string & str) const
 {
-   return string() < str;
+   return as_string() < str;
 }
 
 bool payload::operator <= (const ::string & str) const
 {
-   return string() <= str;
+   return as_string() <= str;
 }
 
 bool payload::operator >= (const ::string & str) const
 {
-   return string() >= str;
+   return as_string() >= str;
 }
 
 bool payload::operator > (const ::string & str) const
 {
-   return string() > str;
+   return as_string() > str;
 }
 
 bool payload::operator == (::i32 i) const
@@ -2154,19 +2154,23 @@ string payload::get_recursive_string() const
    }
    else
    {
-      return ::string();
+      
+      return as_string();
+
    }
+
 }
 
-string payload::string(const char * pszOnNull) const
+
+string payload::as_string(const char * pszOnNull) const
 {
    if(m_etype == e_type_payload_pointer)
    {
-      return m_ppayload->string(pszOnNull);
+      return m_ppayload->as_string(pszOnNull);
    }
    else if (m_etype == e_type_property)
    {
-      return m_pproperty->string(pszOnNull);
+      return m_pproperty->as_string(pszOnNull);
    }
    else if(m_etype == e_type_pstring)
    {
@@ -2286,7 +2290,7 @@ string & payload::string_reference(const char * pszOnNull)
    else
    {
 
-      ::string str = this->string(pszOnNull);
+      ::string str = this->as_string(pszOnNull);
 
       set_string(str);
 
@@ -3551,7 +3555,7 @@ string_array payload::stra() const
          for (::index i = 0; i < c; i++)
          {
 
-            stra.add(at(i).get_string());
+            stra.add(at(i).as_string());
 
          }
 
@@ -3610,7 +3614,7 @@ string_array & payload::string_array_reference()
          for (::index i = 0; i < c; i++)
          {
 
-            pstra->add(at(i).get_string());
+            pstra->add(at(i).as_string());
 
          }
 
@@ -4416,7 +4420,7 @@ string payload::implode(const char * pszGlue) const
 
    class ::payload payload;
 
-   payload.stra().add_tokens(string(), pszGlue, bAddEmpty);
+   payload.stra().add_tokens(as_string(), pszGlue, bAddEmpty);
 
    return payload;
 
@@ -4648,7 +4652,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
       index upperbound = minimum(array_get_upper_bound(), last);
       for(index i = find; i <= upperbound; i++)
       {
-         if(at(i).string().compare_ci(psz) == 0)
+         if(at(i).as_string().compare_ci(psz) == 0)
          {
             return true;
          }
@@ -4702,7 +4706,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
       else
       {
 
-         varRet.set_string(varRet.string() + str);
+         varRet.set_string(varRet.as_string() + str);
 
       }
 
@@ -4719,7 +4723,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
       else
       {
 
-         varRet.set_string(varRet.string() + str);
+         varRet.set_string(varRet.as_string() + str);
 
       }
 
@@ -4727,7 +4731,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
    else
    {
 
-      varRet.set_string(varRet.string() + str);
+      varRet.set_string(varRet.as_string() + str);
 
    }
 
@@ -5298,7 +5302,7 @@ bool payload::is_floating() const
    else
    {
 
-      ::string str = string();
+      ::string str = as_string();
 
 #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       if(is_scalar()
@@ -5428,7 +5432,7 @@ bool payload::is_double() const
    else
    {
       
-      ::string str = string();
+      ::string str = as_string();
 
 #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       if(is_scalar()
@@ -5548,7 +5552,7 @@ bool payload::is_integer() const
    else
    {
       
-      ::string str = string();
+      ::string str = as_string();
 
 #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       if(is_scalar()
@@ -5596,7 +5600,7 @@ bool payload::is_natural() const
    else
    {
       
-      ::string str = string();
+      ::string str = as_string();
 
 #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       if(is_scalar()
@@ -5937,7 +5941,7 @@ bool payload::is_property_false(const ::atom & atom) const
 bool payload::begins_eat(const ::string & strPrefix)
 {
 
-   ::string str = this->string();
+   ::string str = this->as_string();
 
    if(!str.begins_eat(strPrefix))
    {
@@ -5956,7 +5960,7 @@ bool payload::begins_eat(const ::string & strPrefix)
 bool payload::ends_eat(const ::string & strSuffix)
 {
 
-   ::string str = this->string();
+   ::string str = this->as_string();
 
    if(!str.ends_eat(strSuffix))
    {
@@ -5975,7 +5979,7 @@ bool payload::ends_eat(const ::string & strSuffix)
 bool payload::begins_eat_ci(const ::string & strPrefix)
 {
 
-   ::string str = this->string();
+   ::string str = this->as_string();
 
    if(!str.begins_eat_ci(strPrefix))
    {
@@ -5994,7 +5998,7 @@ bool payload::begins_eat_ci(const ::string & strPrefix)
 bool payload::ends_eat_ci(const ::string & strSuffix)
 {
 
-   ::string str = this->string();
+   ::string str = this->as_string();
 
    if(!str.ends_eat_ci(strSuffix))
    {
@@ -6598,7 +6602,7 @@ void payload::parse_network_payload(const char *& pszJson, const char * pszEnd)
 
          property_parse_network_payload_id(atom, pszJson, pszEnd);
 
-         if (varChild.string().compare_ci(atom) == 0)
+         if (varChild.as_string().compare_ci(atom) == 0)
          {
 
             ::str().consume_spaces(pszJson, 0, pszEnd);
@@ -7331,7 +7335,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
    else if (is_numeric())
    {
 
-      return str += string();
+      return str += as_string();
 
    }
    else if (get_type() == ::e_type_bool)
@@ -7345,7 +7349,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
 
       ::string strValue;
 
-      strValue = string();
+      strValue = as_string();
 
       strValue.replace_with("\\\"", "\"");
 
@@ -7435,7 +7439,7 @@ void payload::null()
 
    }
 
-   return ::file::path(string());
+   return ::file::path(as_string());
 
 }
 
@@ -7926,7 +7930,7 @@ void payload::_001Add(const string_array & straParam)
    if(straParam.get_count() == 1)
    {
 
-      if(string().compare_ci(straParam[0]) == 0)
+      if(as_string().compare_ci(straParam[0]) == 0)
       {
 
          return;
@@ -8797,7 +8801,7 @@ bool payload::is_array() const
 //bool operator == (const string& str, const ::payload & payload)
 //{
 //
-//   return str == payload.string();
+//   return str == payload.as_string();
 //
 //}
 
@@ -8821,7 +8825,7 @@ bool payload::is_array() const
 //   }
 //   else
 //   {
-//      return operator = (payload.string());
+//      return operator = (payload.as_string());
 //   }
 //
 //}
@@ -8880,7 +8884,7 @@ bool payload::is_array() const
 //
 //         payload = *this;
 //
-//         payload.stra().erase(payload2.string());
+//         payload.stra().erase(payload2.as_string());
 //
 //      }
 //
@@ -8911,7 +8915,7 @@ bool payload::is_array() const
 //   }
 //   else
 //   {
-//      payload = atoi(string()) - atoi(payload2.string());
+//      payload = atoi(as_string()) - atoi(payload2.as_string());
 //   }
 //   return payload;
 //}
@@ -8971,7 +8975,7 @@ bool payload::is_array() const
 //
 //            payload = *this;
 //
-//            payload.stra().add(payload2.string());
+//            payload.stra().add(payload2.as_string());
 //
 //         }
 //
@@ -8981,7 +8985,7 @@ bool payload::is_array() const
 //
 //         payload = payload2;
 //
-//         payload.stra().add(string());
+//         payload.stra().add(as_string());
 //
 //      }
 //
@@ -9039,7 +9043,7 @@ bool payload::is_array() const
 //   else
 //   {
 //
-//      payload = string() + payload2.string();
+//      payload = as_string() + payload2.as_string();
 //
 //   }
 //
@@ -9079,7 +9083,7 @@ bool payload::is_array() const
 //      else
 //      {
 //         payload = *this;
-//         payload.stra().erase(payload2.string());
+//         payload.stra().erase(payload2.as_string());
 //      }
 //   }
 //   else if (m_etype == ::e_type_payload_array)
@@ -9108,7 +9112,7 @@ bool payload::is_array() const
 //   }
 //   else
 //   {
-//      payload = atoi(string()) / atoi(payload2.string());
+//      payload = atoi(as_string()) / atoi(payload2.as_string());
 //   }
 //   return payload;
 //}
@@ -9238,10 +9242,10 @@ bool payload::is_array() const
 //payload::operator ::f64() const { return this->f64(); }
 //
 //
-//payload::operator ::string() const
+//payload::operator ::as_string() const
 //{
 //
-//   return this->string();
+//   return this->as_string();
 //
 //}
 
@@ -9680,7 +9684,7 @@ payload & payload::add(const ::payload & payload)
       {
 
          // simple implementation
-         string_array_reference().add(payload.get_string());
+         string_array_reference().add(payload.as_string());
 
       }
 
@@ -9892,7 +9896,7 @@ payload & payload::add(const ::payload & payload)
       else if(payload.is_text())
       {
 
-         operator= (get_string() + payload.get_string());
+         operator= (as_string() + payload.as_string());
 
       }
       else
@@ -9972,7 +9976,7 @@ payload & payload::add(const ::payload & payload)
       else if(payload.is_text())
       {
 
-         operator= (get_string() + payload.get_string());
+         operator= (as_string() + payload.as_string());
 
       }
       else
@@ -9986,7 +9990,7 @@ payload & payload::add(const ::payload & payload)
    else if(payload.is_text())
    {
 
-      operator= (get_string() + payload.get_string());
+      operator= (as_string() + payload.as_string());
 
    }
    else
@@ -10847,7 +10851,7 @@ payload &  payload::divide(const ::payload & payload)
 CLASS_DECL_ACME void copy(string * pstring, const ::payload * ppayload)
 {
 
-   *pstring = ppayload->get_string();
+   *pstring = ppayload->as_string();
 
 }
 

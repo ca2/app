@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "match.h"
 #include "acme/primitive/primitive/payload.h"
 
@@ -23,7 +23,7 @@ namespace match
    bool string::matches(const ::payload & payload) const
    {
 
-      return payload.string() == m_str;
+      return payload.as_string() == m_str;
 
    }
 
@@ -38,7 +38,7 @@ namespace match
    bool ci_string::matches(const ::payload & payload) const
    {
       
-      return payload.string().compare_ci(m_str) == 0;
+      return payload.as_string().compare_ci(m_str) == 0;
 
    }
 
@@ -53,7 +53,7 @@ namespace match
    bool prefix::matches(const ::payload & payload) const
    {
 
-      return payload.string().begins(m_str);
+      return payload.as_string().begins(m_str);
 
    }
 
@@ -67,7 +67,7 @@ namespace match
 
    bool ci_prefix::matches(const ::payload & payload) const
    {
-      return payload.string().begins_ci(m_str);
+      return payload.as_string().begins_ci(m_str);
    }
 
 
@@ -80,7 +80,7 @@ namespace match
 
    bool suffix::matches(const ::payload & payload) const
    {
-      return payload.string().ends(m_str);
+      return payload.as_string().ends(m_str);
    }
 
 
@@ -93,7 +93,7 @@ namespace match
 
    bool ci_suffix::matches(const ::payload & payload) const
    {
-      return payload.string().ends_ci(m_str);
+      return payload.as_string().ends_ci(m_str);
    }
 
    bool any::matches(const ::payload & payload) const

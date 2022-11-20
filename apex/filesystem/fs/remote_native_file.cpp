@@ -130,7 +130,7 @@ namespace fs
 
          m_pcontext->m_papexcontext->http().put(strUrl,m_payloadFile["xmledit"].cast < ::memory_file >(),setRequest);
 
-         string strResponse(setRequest["get_response"].get_string());
+         string strResponse(setRequest["get_response"].as_string());
 
          property_set set;
 

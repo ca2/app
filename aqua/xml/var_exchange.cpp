@@ -35,7 +35,7 @@ namespace xml
 
       pnode->set_attribute("type", m_ppayload->get_type());
 
-      pnode->set_value(m_ppayload->string());
+      pnode->set_value(m_ppayload->as_string());
 
    }
 

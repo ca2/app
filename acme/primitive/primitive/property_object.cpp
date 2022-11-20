@@ -530,7 +530,7 @@ string property_object::property_set_get_string(const ::string & str) const
 
    }
 
-   return pproperty->string();
+   return pproperty->as_string();
 
 }
 
@@ -546,7 +546,7 @@ bool property_object::property_set_get_string(string & strResult, const string& 
 
    }
 
-   strResult = linkedproperty->string();
+   strResult = linkedproperty->as_string();
 
    return true;
 
@@ -641,19 +641,19 @@ void property_object::on_property_changed(property* pproperty, const action_cont
 //}
 
 
-string property_object::get_text(const ::payload & payload, const ::atom & atom)
-{
-
-   if (payload.has_property(atom) && payload[atom].has_char())
-   {
-
-      return payload[atom];
-
-   }
-
-   return payload.string();
-
-}
+//string property_object::get_text(const ::payload & payload, const ::atom & atom)
+//{
+//
+//   if (payload.has_property(atom) && payload[atom].has_char())
+//   {
+//
+//      return { payload[atom] };
+//
+//   }
+//
+//   return { payload };
+//
+//}
 
 
 void property_object::run_property(const ::atom& atom)
@@ -793,7 +793,7 @@ string property_object::find_string(const ::atom & atom, const ansichar * pszDef
 
    }
 
-   return pproperty->string(pszDefault);
+   return pproperty->as_string(pszDefault);
 
 }
 

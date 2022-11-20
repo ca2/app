@@ -3603,7 +3603,7 @@ namespace user
                if (pchild)
                {
 
-                  string strTitle(pchild->payload("place_child_title").get_string());
+                  string strTitle(pchild->payload("place_child_title").as_string());
 
                   ppane->set_title(strTitle);
 
@@ -4144,10 +4144,10 @@ namespace user
 
          // ODOW : TODO : should create bergedgewrapper to open bergedge inside a window.
 
-         if(payloada[i].get_type() == ::e_type_string && payloada[i].string() == "app:bergedge")
+         if(payloada[i].get_type() == ::e_type_string && payloada[i].as_string() == "app:bergedge")
             continue;
 
-         if(payloada[i].get_type() == ::e_type_string && payloada[i].string() == "app:")
+         if(payloada[i].get_type() == ::e_type_string && payloada[i].as_string() == "app:")
             continue;
 
          //if(stra.add_unique(payloada[i]) >= 0)

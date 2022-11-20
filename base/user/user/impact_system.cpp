@@ -153,7 +153,7 @@ namespace user
       if (!pdocument)
       {
 
-         CATEGORY_WARNING(appmsg, "Warning: Dynamic create of ::user::document type %hs failed.\n" << m_typeDocument.string());
+         CATEGORY_WARNING(appmsg, "Warning: Dynamic create of ::user::document type %hs failed.\n" << m_typeDocument.as_string());
 
          return nullptr;
 
@@ -231,11 +231,11 @@ namespace user
       if (!pframe)
       {
 
-         CATEGORY_WARNING(appmsg,"Warning: Dynamic create of frame %hs failed.\n", m_typeFrame.string().c_str());
+         CATEGORY_WARNING(appmsg,"Warning: Dynamic create of frame %hs failed.\n", m_typeFrame.as_string().c_str());
 
          string strMessage;
 
-         strMessage.format("Warning: Dynamic create of frame %hs failed.\n\n(Does allocation was implemented)?", m_typeFrame.string().c_str());
+         strMessage.format("Warning: Dynamic create of frame %hs failed.\n\n(Does allocation was implemented)?", m_typeFrame.as_string().c_str());
 
          //message_box(strMessage);
 

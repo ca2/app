@@ -301,7 +301,7 @@ public:
 
    //inline ::application * application() const { return m_pacmeapplication; }
 
-   virtual string get_text(const ::payload& payload, const ::atom& atom) override;
+   //virtual string get_text(const ::payload& payload, const ::atom& atom) override;
 
    //#ifdef _DEBUG
    //   virtual void set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);

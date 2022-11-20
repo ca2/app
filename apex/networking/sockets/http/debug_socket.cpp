@@ -1,4 +1,4 @@
-#include "framework.h" 
+﻿#include "framework.h" 
 #include "debug_socket.h"
 #include "apex/constant/idpool.h"
 
@@ -67,7 +67,7 @@ namespace sockets
                "<input type='text' name='text' value='test text'><br>"
                "<input type='submit' name='submit' value=' OK '></form>");
       print(   "<pre style='background: #e0e0e0'>");
-      print(m_request.attr("http_method").string() + " " + m_request.attr("request_uri") + " " + m_request.attr("http_version") + "\n");
+      print(m_request.attr("http_method").as_string() + " " + m_request.attr("request_uri") + " " + m_request.attr("http_version") + "\n");
    }
 
 
@@ -76,7 +76,7 @@ namespace sockets
       if(key == "content-length")
          m_content_length = atoi(value);
 
-      print(key.string() + ": " + value + "\n");
+      print(key.as_string() + ": " + value + "\n");
    }
 
 

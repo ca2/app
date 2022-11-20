@@ -38,7 +38,7 @@ atom::atom(const ::payload & payload)
    else
    {
 
-      operator = (payload.string());
+      operator = (payload.as_string());
 
    }
 
@@ -130,7 +130,7 @@ bool is_font_sel(const ::atom & atom)
 }
 
 
-::string atom::string() const
+::string atom::as_string() const
 {
 
    if (m_etype == e_type_null)

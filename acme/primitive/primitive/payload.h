@@ -379,8 +379,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::procedure get_procedure() const;
 
 
-   ::string string(const char * pszOnNull = nullptr) const;
-   ::string get_string() const;
+   ::string as_string(const char * pszOnNull) const;
+   ::string as_string() const;
    ::string get_recursive_string() const;
    ::atom atom(const ::atom & idDefault = nullptr)   const;
 
@@ -456,10 +456,10 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    bool is_property_false(const ::atom & atom) const;
 
 
-   bool begins(const ::string & strPrefix) const { return get_string().begins(strPrefix); }
-   bool ends(const ::string & strSuffix) const { return get_string().ends(strSuffix); }
-   bool begins_ci(const ::string & strPrefix) const { return get_string().begins_ci(strPrefix); }
-   bool ends_ci(const ::string & strSuffix) const { return get_string().ends_ci(strSuffix); }
+   bool begins(const ::string & strPrefix) const { return as_string().begins(strPrefix); }
+   bool ends(const ::string & strSuffix) const { return as_string().ends(strSuffix); }
+   bool begins_ci(const ::string & strPrefix) const { return as_string().begins_ci(strPrefix); }
+   bool ends_ci(const ::string & strSuffix) const { return as_string().ends_ci(strSuffix); }
 
    bool begins_eat(const ::string & strPrefix);
    bool ends_eat(const ::string & strSuffix);
@@ -521,6 +521,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    //::memory memory() const;
    //operator ::file::path() const { return this->file_path(); }
 
+
+   operator ::string() const { return this->as_string(); }
 
    operator ::file_time() const { return this->file_time(); }
    operator ::earth::time() const { return this->earth_time(); }
@@ -1324,10 +1326,10 @@ inline payload::operator unsigned long() const
 
 
 
-inline ::string payload::get_string() const
+inline ::string payload::as_string() const
 {
 
-   return this->string();
+   return this->as_string(nullptr);
 
 }
 
@@ -1978,12 +1980,12 @@ namespace file
 
    // inline path::path(const ::payload & payload,e_path epath): path(payload.get_file_path(),epath){}
    // inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
-   inline path & path::operator = (const ::payload & payload) { return operator = (payload.string()); }
-   inline path & path::operator += (const ::payload & payload) { return operator += (payload.string()); }
+   inline path & path::operator = (const ::payload & payload) { return operator = (payload.as_string()); }
+   inline path & path::operator += (const ::payload & payload) { return operator += (payload.as_string()); }
    inline path & path::operator = (const property & property) { return operator = ((const ::payload &)property); }
    inline path & path::operator += (const property & property) { return operator += ((const ::payload &)property); }
    template < primitive_payload PAYLOAD >
-   inline path path::operator + (const PAYLOAD & payload) const { return operator + (payload.string()); }
+   inline path path::operator + (const PAYLOAD & payload) const { return operator + (payload.as_string()); }
    template < primitive_atom ATOM >
    inline path path::operator + (const ATOM & atom) const { return operator + (::string(atom)); }
    template < primitive_payload PAYLOAD >
@@ -2116,7 +2118,7 @@ template < primitive_string STRING, primitive_payload PAYLOAD >
 inline STRING& copy(STRING& string, const PAYLOAD& payload)
 {
 
-    string = payload.string();
+    string = payload.as_string();
 
     return string;
 

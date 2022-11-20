@@ -333,7 +333,7 @@ void particle::on_initialize_particle()
 ::datetime::datetime* particle::datetime()
 {
 
-   return datetime();
+   return acmesystem()->datetime();
 
 }
 

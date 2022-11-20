@@ -83,7 +83,7 @@ namespace experience
 
             auto psystem = acmesystem()->m_pbasesystem;
 
-            auto strExperience = psystem->payload("experience").string();
+            auto strExperience = psystem->payload("experience").as_string();
 
             straExperience.add(strExperience);
 

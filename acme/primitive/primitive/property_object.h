@@ -150,7 +150,7 @@ public:
    bool is_false(const ::atom & atom) const;
    //inline bool is_true(const ::atom & atom, const ::payload & varDefault, bool bDefault) const;
 
-   virtual string get_text(const ::payload & payload, const ::atom & atom);
+   //virtual string get_text(const ::payload & payload, const ::atom & atom);
 
    virtual linked_property parent_lookup_property(const atom & atom) const;
 

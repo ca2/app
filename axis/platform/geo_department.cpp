@@ -563,7 +563,7 @@ namespace geo
 
       property_set set;
 
-      string strUrl = "http://api.openweathermap.org/data/2.5/weather?atom=" + as_string(pcity->m_iId) + "&APPID=" + string(pszId);
+      string strUrl = "http://api.openweathermap.org/data/2.5/weather?atom=" + ::as_string(pcity->m_iId) + "&APPID=" + string(pszId);
 
       auto psystem = get_system()->m_paxissystem;
 
@@ -1626,7 +1626,7 @@ namespace geo
 
       property_set set;
 
-      string strId = as_string(pcity->m_iId);
+      string strId = ::as_string(pcity->m_iId);
 
       string strUrl = "http://ca2.software/account/weather";
 

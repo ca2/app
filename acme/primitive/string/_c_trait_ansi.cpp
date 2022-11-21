@@ -1,9 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "string.h"
 #include "_conv.h"
 
 
-ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, char chTen)
+ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, ansichar ansichTen)
 {
 
    if (u == 0)
@@ -19,7 +19,7 @@ ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, char chTen)
 
    i32 iIndex = 0;
 
-   __natural_to_string_internal(u, buf, iBase, iIndex, chTen);
+   __natural_to_string_internal(u, buf, iBase, iIndex, ansichTen);
 
    buf[iIndex] = '\0';
 
@@ -32,7 +32,7 @@ ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, char chTen)
 
 
 
-ansichar * __i64toansi(::i64 i, ansichar * buf, int iBase, char chTen)
+ansichar * __i64toansi(::i64 i, ansichar * buf, int iBase, ansichar ansichTen)
 {
 
 
@@ -66,7 +66,7 @@ ansichar * __i64toansi(::i64 i, ansichar * buf, int iBase, char chTen)
 
    i32 iIndex = 0;
 
-   __natural_to_string_internal(i, buf, iBase, iIndex, chTen);
+   __natural_to_string_internal(i, buf, iBase, iIndex, ansichTen);
 
    if (bNegative)
    {

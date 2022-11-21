@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -59,9 +59,9 @@ inline int __wd32nicmp(const wd32char * psz1, const wd32char * psz2, strsize s);
 
 inline const wd32char * __wd32istr(const wd32char * psz, const wd32char * pszFind);
 
-CLASS_DECL_ACME wd32char * __u64towd32(::u64 u, wd32char * buf, int iBase);
+CLASS_DECL_ACME wd32char * __u64towd32(::u64 u, wd32char * buf, int iBase, char chTen);
 
-CLASS_DECL_ACME wd32char * __i64towd32(::i64 i, wd32char * buf, int iBase);
+CLASS_DECL_ACME wd32char * __i64towd32(::i64 i, wd32char * buf, int iBase, char chTen);
 
 inline wd32char * overlap_safe_wd32ncpy(wd32char * pszDst, const wd32char * pszSrc, strsize srclen);
 

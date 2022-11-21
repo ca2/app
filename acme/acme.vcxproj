@@ -1059,7 +1059,7 @@
     <ClCompile Include="primitive\string\sz\ansi.cpp" />
     <ClCompile Include="primitive\string\sz\wd16.cpp" />
     <ClCompile Include="primitive\string\sz\wd32.cpp" />
-    <ClCompile Include="primitive\string\__string.cpp" />
+    <ClCompile Include="primitive\string\as_string.cpp" />
     <ClCompile Include="primitive\string\character.cpp" />
     <ClCompile Include="primitive\string\_string.cpp" />
     <ClCompile Include="primitive\text\data.cpp" />

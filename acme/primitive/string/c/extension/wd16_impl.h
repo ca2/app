@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -714,18 +714,18 @@ inline const wd16char * wd16_find_char_reverse(const wd16char * psz, wd16char ch
 //inline const wd16char * wd16_concatenate_duplicate_and_free(const wd16char * psz1, wd16char * psz2);
 
 
-inline void wd16_from_u64_base(wd16char * sz, u64 u, i32 iBase)
+inline void wd16_from_u64_base(wd16char * sz, u64 u, i32 iBase, wd16char wd16chTen)
 {
 
-   __u64towd16(u, sz, iBase);
+   __u64towd16(u, sz, iBase, wd16chTen);
 
 }
 
 
-inline void wd16_from_i64_base(wd16char * sz, i64 i, i32 iBase)
+inline void wd16_from_i64_base(wd16char * sz, i64 i, i32 iBase, wd16char wd16chTen)
 {
 
-   __i64towd16(i, sz, iBase);
+   __i64towd16(i, sz, iBase, wd16chTen);
 
 }
 

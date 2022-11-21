@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -57,9 +57,9 @@ inline int __wd16nicmp(const wd16char * psz1, const wd16char * psz2, strsize s);
 
 inline const wd16char * __wd16istr(const wd16char * psz, const wd16char * pszFind);
 
-CLASS_DECL_ACME wd16char * __u64towd16(::u64 u, wd16char * buf, int iBase);
+CLASS_DECL_ACME wd16char * __u64towd16(::u64 u, wd16char * buf, int iBase, wd16char chTen);
 
-CLASS_DECL_ACME wd16char * __i64towd16(::i64 i, wd16char * buf, int iBase);
+CLASS_DECL_ACME wd16char * __i64towd16(::i64 i, wd16char * buf, int iBase, wd16char chTen);
 
 inline wd16char * overlap_safe_wd16ncpy(wd16char * pszDst, const wd16char * pszSrc, strsize srclen);
 

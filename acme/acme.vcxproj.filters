@@ -3820,7 +3820,7 @@
     <ClCompile Include="parallelization\fork.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\__string.cpp">
+    <ClCompile Include="primitive\string\as_string.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
     <ClCompile Include="primitive\string\command_line.cpp">

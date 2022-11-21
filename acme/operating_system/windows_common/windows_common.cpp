@@ -1,9 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/operating_system/error_code.h"
 #include "acme/primitive/primitive/memory.h"
 //#include "acme/primitive/primitive/function.h"
 #include "acme/_operating_system.h"
-#include "acme/operating_system/windows_common/as_string.h"
+#include "acme/operating_system/windows_common/_string.h"
 
 
 int __node_is_debugger_attached()

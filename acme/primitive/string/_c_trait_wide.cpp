@@ -1,9 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "string.h"
 #include "_conv.h"
 
 
-wd16char * __u64towd16(::u64 u, wd16char * buf, int iBase)
+wd16char * __u64towd16(::u64 u, wd16char * buf, int iBase, wd16char wd16chTen)
 {
 
    if (u == 0)
@@ -19,7 +19,7 @@ wd16char * __u64towd16(::u64 u, wd16char * buf, int iBase)
 
    i32 iIndex = 0;
 
-   __natural_to_string_internal(u, buf, iBase, iIndex);
+   __natural_to_string_internal(u, buf, iBase, iIndex, wd16chTen);
 
    buf[iIndex] = '\0';
 
@@ -30,7 +30,7 @@ wd16char * __u64towd16(::u64 u, wd16char * buf, int iBase)
 }
 
 
-wd32char * __u64towd32(::u64 u, wd32char * buf, int iBase)
+wd32char * __u64towd32(::u64 u, wd32char * buf, int iBase, wd32char wd32chTen)
 {
 
    if (u == 0)
@@ -46,7 +46,7 @@ wd32char * __u64towd32(::u64 u, wd32char * buf, int iBase)
 
    i32 iIndex = 0;
 
-   __natural_to_string_internal(u, buf, iBase, iIndex);
+   __natural_to_string_internal(u, buf, iBase, iIndex, wd32chTen);
 
    buf[iIndex] = '\0';
 
@@ -57,7 +57,7 @@ wd32char * __u64towd32(::u64 u, wd32char * buf, int iBase)
 }
 
 
-wd16char * __i64towd16(::i64 i, wd16char * buf, int iBase)
+wd16char * __i64towd16(::i64 i, wd16char * buf, int iBase, wd16char wd16chTen)
 {
 
 
@@ -91,7 +91,7 @@ wd16char * __i64towd16(::i64 i, wd16char * buf, int iBase)
 
    i32 iIndex = 0;
 
-   __natural_to_string_internal(i, buf, iBase, iIndex);
+   __natural_to_string_internal(i, buf, iBase, iIndex, wd16chTen);
 
    if (bNegative)
    {
@@ -111,7 +111,7 @@ wd16char * __i64towd16(::i64 i, wd16char * buf, int iBase)
 }
 
 
-wd32char * __i64towd32(::i64 i, wd32char * buf, int iBase)
+wd32char * __i64towd32(::i64 i, wd32char * buf, int iBase, wd32char wd32chTen)
 {
 
    if (i == 0)
@@ -144,7 +144,7 @@ wd32char * __i64towd32(::i64 i, wd32char * buf, int iBase)
 
    i32 iIndex = 0;
 
-   __natural_to_string_internal(i, buf, iBase, iIndex);
+   __natural_to_string_internal(i, buf, iBase, iIndex, wd32chTen);
 
    if (bNegative)
    {

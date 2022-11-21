@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 inline ansichar * ansi_dup(const ansichar * psz) { return _strdup(psz); }
@@ -88,9 +88,9 @@ inline int ansi_nicmp(const ansichar * psz1, const ansichar * psz2, strsize s)
 
 inline const ansichar * ansi_istr(const ansichar * psz, const ansichar * pszFind) { return __ansiistr(psz, pszFind); }
 
-inline ansichar * ui64tostr(::u64 u, ansichar * buf, int iBase) { return __u64toansi(u, buf, iBase); }
+inline ansichar * ui64tostr(::u64 u, ansichar * buf, int iBase, ansichar ansichTen) { return __u64toansi(u, buf, iBase, ansichTen); }
 
-inline ansichar * i64tostr(::u64 u, ansichar * buf, int iBase) { return __i64toansi(u, buf, iBase); }
+inline ansichar * i64tostr(::u64 u, ansichar * buf, int iBase, ansichar ansichTen) { return __i64toansi(u, buf, iBase, ansichTen); }
 
 inline int ansi_coll(const ansichar * psz1, const ansichar * psz2) { return strcmp(psz1, psz2); }
 
@@ -201,11 +201,11 @@ inline int wide_nicmp(const widechar * psz1, const widechar * psz2, strsize s) {
 inline const wd16char * wd16_istr(const wd16char * psz, const wd16char * pszFind) { return __wd16istr(psz, pszFind); }
 inline const wd32char * wd32_istr(const wd32char * psz, const wd32char * pszFind) { return __wd32istr(psz, pszFind); }
 
-inline wd16char * u64towd16(::u64 u, wd16char * buf, int iBase) { return _ui64tow(u, buf, iBase); }
-inline wd32char * u64towd32(::u64 u, wd32char * buf, int iBase) { return __u64towd32(u, buf, iBase); }
+inline wd16char * u64towd16(::u64 u, wd16char * buf, int iBase, wd16char wd16chTen) { return __u64towd16(u, buf, iBase, wd16chTen); }
+inline wd32char * u64towd32(::u64 u, wd32char * buf, int iBase, wd32char wd32chTen) { return __u64towd32(u, buf, iBase, wd32chTen); }
 
-inline wd16char * i64towd16(::i64 i, wd16char * buf, int iBase) { return _i64tow(i, buf, iBase); }
-inline wd32char * i64towd32(::i64 i, wd32char * buf, int iBase) { return __i64towd32(i, buf, iBase); }
+inline wd16char * i64towd16(::i64 i, wd16char * buf, int iBase, wd16char wd16chTen) { return __i64towd16(i, buf, iBase, wd16chTen); }
+inline wd32char * i64towd32(::i64 i, wd32char * buf, int iBase, wd32char wd32chTen) { return __i64towd32(i, buf, iBase, wd32chTen); }
 
 inline int wd16_coll(const wd16char * psz1, const wd16char * psz2) { return wcscoll(psz1, psz2); }
 inline int wd32_coll(const wd32char * psz1, const wd32char * psz2) { return __wd32cmp(psz1, psz2); }

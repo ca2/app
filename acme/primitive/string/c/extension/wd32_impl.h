@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 inline wd32char wd32_char_tolower(i32 i) { return __wd32tolower(i); }
@@ -711,18 +711,18 @@ inline const wd32char * wd32_find_char_reverse(const wd32char * psz, wd32char ch
 //inline const wd32char * wd32_concatenate_duplicate_and_free(const wd32char * psz1, wd32char * psz2);
 
 
-inline void wd32_from_u64_base(wd32char * sz, u64 u, i32 iBase)
+inline void wd32_from_u64_base(wd32char * sz, u64 u, i32 iBase, wd32char wd32chTen)
 {
 
-   __u64towd32(u, sz, iBase);
+   __u64towd32(u, sz, iBase, wd32chTen);
 
 }
 
 
-inline void wd32_from_i64_base(wd32char * sz, i64 i, i32 iBase)
+inline void wd32_from_i64_base(wd32char * sz, i64 i, i32 iBase, wd32char wd32chTen)
 {
 
-   __i64towd32(i, sz, iBase);
+   __i64towd32(i, sz, iBase, wd32chTen);
 
 }
 

@@ -1,9 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/exception/library_not_loaded.h"
 #include "acme/filesystem/filesystem/path.h"
 #include "acme/platform/tracer.h"
 #include "acme/_operating_system.h"
-#include "acme/operating_system/windows_common/as_string.h"
+#include "acme/operating_system/windows_common/_string.h"
 
 
 void * __node_library_open(const char * pszPath, string & strMessage)

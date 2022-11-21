@@ -2039,7 +2039,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
          rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_client_rect();
 
          FORMATTED_INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", as_string(const_layout().sketch().display().eflag()).c_str());
+         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", ::as_string(const_layout().sketch().display().eflag()).c_str());
 
          if (wfi_has_up_down())
          {
@@ -2089,7 +2089,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
       //pusersystem->set_rect(rectangleFrame);
 
       FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", as_string(const_layout().sketch().display().eflag()).c_str());
+      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", ::as_string(const_layout().sketch().display().eflag()).c_str());
 
 
    }

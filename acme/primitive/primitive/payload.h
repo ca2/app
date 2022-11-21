@@ -2195,3 +2195,39 @@ inline ::string_base < CHARACTER > & operator+=(::string_base < CHARACTER > & st
    return str.operator += ((::string) payload);
 
 }
+
+
+
+inline ::file::path operator + (const ::file::path & path, const ::payload& payload) 
+{
+
+   return path + payload.as_string();
+
+}
+
+
+inline ::file::path operator / (const ::file::path& path, const ::payload& payload)
+{
+   
+   return path / payload.as_string(); 
+
+}
+
+
+inline ::file::path & operator += (::file::path& path, const ::payload& payload)
+{
+
+   return path += payload.as_string();
+
+}
+
+
+inline ::file::path & operator /= ( ::file::path& path, const ::payload& payload)
+{
+
+   return path /= payload.as_string();
+
+}
+
+
+

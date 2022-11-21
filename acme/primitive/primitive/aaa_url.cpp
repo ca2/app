@@ -103,7 +103,7 @@ CLASS_DECL_ACME bool is_like_url_protocol(const char * psz)
 
 //#include "framework.h"
 //#include "net.h"
-//#include "__string.h"
+//#include "as_string.h"
 //#include "acme/exception/parsing.h"
 //#include "acme/primitive/string/hex.h"
 ////#include "acme/operating_system.h"

@@ -41,15 +41,15 @@ namespace net
 //
 //
 //   CLASS_DECL_APEX void from_string(in6_addr & addr, const ansichar * psz);
-//   CLASS_DECL_APEX ::string __string(const in6_addr & addr);
+//   CLASS_DECL_APEX ::string as_string(const in6_addr & addr);
 //   CLASS_DECL_APEX void from_string(in_addr & addr, const ansichar * psz);
-//   CLASS_DECL_APEX ::string __string(const in_addr & addr);
-//   CLASS_DECL_APEX ::string __string(const sockaddr_in & addr);
-//   CLASS_DECL_APEX ::string __string(const sockaddr_in6 & addr);
+//   CLASS_DECL_APEX ::string as_string(const in_addr & addr);
+//   CLASS_DECL_APEX ::string as_string(const sockaddr_in & addr);
+//   CLASS_DECL_APEX ::string as_string(const sockaddr_in6 & addr);
 //   CLASS_DECL_APEX void from_string(sockaddr_in & addr, const ansichar * psz);
 //   CLASS_DECL_APEX void from_string(sockaddr_in6 & addr, const ansichar * psz);
 //#ifdef BSD_STYLE_SOCKETS
-//   CLASS_DECL_APEX ::string __string(const sockaddr & addr);
+//   CLASS_DECL_APEX ::string as_string(const sockaddr & addr);
 //   CLASS_DECL_APEX void from_string(sockaddr & addr, ansichar * psz);
 //#endif
 //

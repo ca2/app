@@ -633,7 +633,7 @@ bool oswindow_data::set_icon(::image * pimage)
    if(status != 0)
    {
 
-      //acmefile()->put_contents("/home/camilo/window.txt", __string((int)w->window()));
+      //acmefile()->put_contents("/home/camilo/window.txt", as_string((int)w->window()));
       return false;
 
    }

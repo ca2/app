@@ -377,11 +377,11 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 
 
 //template < primitive_point POINT >
-//inline ::string __string(const POINT & point);
+//inline ::string as_string(const POINT & point);
 //
 //
 //template < primitive_size SIZE >
-//inline ::string __string(const SIZE & size);
+//inline ::string as_string(const SIZE & size);
 //
 //
 //

@@ -972,7 +972,7 @@ namespace sandbox_windowing
 //      if (status != 0)
 //      {
 //
-//         //file_put_contents("/home/camilo/window.txt", __string((int)w->Window()));
+//         //file_put_contents("/home/camilo/window.txt", as_string((int)w->Window()));
 //         return false;
 //
 //      }

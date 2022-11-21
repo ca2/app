@@ -73,8 +73,8 @@ namespace progress
 
       string strStatus(pszFormat);
 
-      strStatus.replace_with(__string(m_iStep), "%1");
-      strStatus.replace_with(__string(m_iStepCount), "%2");
+      strStatus.replace_with(as_string(m_iStep), "%1");
+      strStatus.replace_with(as_string(m_iStepCount), "%2");
 
       m_strStatus = strStatus;
 

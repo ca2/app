@@ -78,7 +78,7 @@ inline const wd32string __string_base(const wd32char * psz);
 
 #include "string_base.h"
 
-#include "__string.h"
+#include "as_string.h"
 
 
 #include "acme/primitive/string/x/x_charcategory.h"
@@ -133,7 +133,7 @@ inline  wd32char * next_char(const wd32char *& p)
 #include "string_inst.h"
 
 
-//#include "__string.h"
+//#include "as_string.h"
 
 
 //#include "_trait.h"

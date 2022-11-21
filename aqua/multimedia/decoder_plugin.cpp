@@ -80,7 +80,7 @@ namespace multimedia
 
       //   ::e_status estatus = m_pfactory;
 
-      //   INFORMATION("LoadLibrary failed to open library " << strTitle << estatus << __string(estatus));
+      //   INFORMATION("LoadLibrary failed to open library " << strTitle << estatus << as_string(estatus));
 
       //   return m_pfactory;
 
@@ -97,7 +97,7 @@ namespace multimedia
 //      if (m_lpfnNewDecoder != nullptr)
 //      {
 //
-//         output_debug_string("Got decoder creator function \"" + strFunction + "\" (" + __string((iptr)m_lpfnNewDecoder) + ")");
+//         output_debug_string("Got decoder creator function \"" + strFunction + "\" (" + as_string((iptr)m_lpfnNewDecoder) + ")");
 //
 //      }
 //      else
@@ -108,7 +108,7 @@ namespace multimedia
 //         if (m_lpfnNewDecoder != nullptr)
 //         {
 //
-//            output_debug_string("Got decoder creator function \"" + m_strNewDecoder + "\" (" + __string((iptr)m_lpfnNewDecoder) + ")");
+//            output_debug_string("Got decoder creator function \"" + m_strNewDecoder + "\" (" + as_string((iptr)m_lpfnNewDecoder) + ")");
 //
 //         }
 //         else

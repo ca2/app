@@ -248,7 +248,7 @@ void hellomultiverse_debugging()
 
       string strXX;
 
-      strXX = strOh + "123" + __string(15.59) + "%";
+      strXX = strOh + "123" + as_string(15.59) + "%";
 
       output_debug_string(strXX);
 

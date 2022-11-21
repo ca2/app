@@ -65,7 +65,7 @@ CLASS_DECL_ACME int _status_exit_code(enum_status estatus)
 
 
 
-CLASS_DECL_ACME ::string __string(const ::e_status & estatus)
+CLASS_DECL_ACME ::string as_string(const ::e_status & estatus)
 {
 
    string str = "estatus=";

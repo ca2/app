@@ -4887,13 +4887,13 @@ string str::signed_double(double d)
    if (d > 0.0)
    {
 
-      return "+" + __string(d);
+      return "+" + as_string(d);
 
    }
    else if (d < 0.0)
    {
 
-      return __string(d);
+      return as_string(d);
 
    }
    else
@@ -4911,13 +4911,13 @@ string str::signed_int(int i)
    if (i > 0)
    {
 
-      return "+" + __string(i);
+      return "+" + as_string(i);
 
    }
    else if (i < 0)
    {
 
-      return __string(i);
+      return as_string(i);
 
    }
    else
@@ -5064,7 +5064,7 @@ void str::fill(string & str, char ch)
 //} // namespace str
 
 //
-//::string __string(const float & f)
+//::string as_string(const float & f)
 //{
 //
 //   char sz[256];
@@ -5078,7 +5078,7 @@ void str::fill(string & str, char ch)
 //}
 //
 //
-//::string __string(const double & d)
+//::string as_string(const double & d)
 //{
 //
 //   char sz[256];
@@ -5276,7 +5276,7 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 }
 
 
-//::string __string(const ::string_stream & strstream)
+//::string as_string(const ::string_stream & strstream)
 //{
 //
 //   return strstream.as_string();
@@ -5285,7 +5285,7 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 
 
 //template < typename FILE >
-//::string __string(const ::text_stream < FILE > & strstream)
+//::string as_string(const ::text_stream < FILE > & strstream)
 //{
 //
 //   return strstream.as_string();

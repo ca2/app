@@ -563,7 +563,7 @@ namespace geo
 
       property_set set;
 
-      string strUrl = "http://api.openweathermap.org/data/2.5/weather?atom=" + __string(pcity->m_iId) + "&APPID=" + string(pszId);
+      string strUrl = "http://api.openweathermap.org/data/2.5/weather?atom=" + as_string(pcity->m_iId) + "&APPID=" + string(pszId);
 
       auto psystem = get_system()->m_paxissystem;
 
@@ -685,9 +685,9 @@ namespace geo
       //
       //         property_set set;
       //
-      //         string strLat = __string(pcity->m_dLat);
+      //         string strLat = as_string(pcity->m_dLat);
       //
-      //         string strLng = __string(pcity->m_dLon);
+      //         string strLng = as_string(pcity->m_dLon);
       //
       //         string strKey;
       //
@@ -1626,7 +1626,7 @@ namespace geo
 
       property_set set;
 
-      string strId = __string(pcity->m_iId);
+      string strId = as_string(pcity->m_iId);
 
       string strUrl = "http://ca2.software/account/weather";
 

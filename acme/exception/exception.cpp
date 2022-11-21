@@ -2,7 +2,7 @@
 #include "framework.h"
 //#include "exception.h"
 #include "callstack.h"
-//#include "acme/primitive/string/__string.h"
+//#include "acme/primitive/string/as_string.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
@@ -234,7 +234,7 @@ void __cdecl __clearerr_s(FILE *stream)
    //       [&](auto & e)
    //       {
 
-   //          str += __string(++i);
+   //          str += as_string(++i);
 
    //          str += ". ";
 
@@ -464,7 +464,7 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
    strMessage += "Failed to initialize application\n";
    strMessage += "\n";
    strMessage += exception.m_strMessage + "\n";
-   strMessage += "(" + __string(exception.m_estatus) + ")";
+   strMessage += "(" + as_string(exception.m_estatus) + ")";
 
    string strTitle;
 
@@ -475,7 +475,7 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
    strDetails += strMessage + "\n";
    strDetails += exception.m_strDetails + "\n\n";
    strDetails += "\n";
-   strDetails += "PID: " + __string(pparticle->acmenode()->get_current_process_id()) + "\n";
+   strDetails += "PID: " + as_string(pparticle->acmenode()->get_current_process_id()) + "\n";
    //strDetails += "Working Directory: " + string(GetCurrentDirectory()) + "\n\n";
    
    if (strMoreDetails.has_char())

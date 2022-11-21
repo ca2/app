@@ -53,7 +53,7 @@ namespace sockets
 
       });
 
-      m_datagramsocket->BindServiceNameAsync(__string(port))->Completed =
+      m_datagramsocket->BindServiceNameAsync(as_string(port))->Completed =
       ref memory_new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
       ([this] (::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
       {
@@ -95,7 +95,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      m_datagramsocket->BindEndpointAsync(ad.m_hostname, __string(ad.get_service_number()))->Completed =
+      m_datagramsocket->BindEndpointAsync(ad.m_hostname, as_string(ad.get_service_number()))->Completed =
       ref memory_new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
       ([this](::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
       {
@@ -150,7 +150,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      m_datagramsocket->ConnectAsync(ad.m_hostname, __string(ad.get_service_number()))->Completed =
+      m_datagramsocket->ConnectAsync(ad.m_hostname, as_string(ad.get_service_number()))->Completed =
       ref memory_new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
       ([this](::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
       {

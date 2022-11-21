@@ -565,7 +565,7 @@ public:
 
    ::string as_string() const;
    //::string string() const;
-   //inline string __string() const;
+   //inline string as_string() const;
 
 
    operator ::string() const { return as_string(); }
@@ -1030,7 +1030,7 @@ inline atom::operator const char *() const
 
 
 
-//inline string atom::__string() const
+//inline string atom::as_string() const
 //{
 //
 //   return str();
@@ -1829,6 +1829,19 @@ inline atom::atom(const ::string& str) :
 
 
 
-inline ::string operator+(const char * psz, const ::atom & atom) { return string(psz) + string(atom); }
+inline ::string operator+(const char * psz, const ::atom & atom)
+{
 
+   return string(psz) + string(atom);
+
+}
+
+
+template < primitive_character CHARACTER >
+inline ::string_base < CHARACTER > & operator+=(::string_base < CHARACTER > & str, const ::atom & atom)
+{
+
+   return str.operator += ((::string) atom);
+
+}
 

@@ -319,13 +319,13 @@ namespace networking_bsd
       if (_is_ip4())
       {
 
-         str = __string(u.m_addr.sin_addr);
+         str = as_string(u.m_addr.sin_addr);
 
       }
       else if (_is_ip6())
       {
 
-         str = __string(u.m_addr6.sin6_addr);
+         str = as_string(u.m_addr6.sin6_addr);
 
       }
 

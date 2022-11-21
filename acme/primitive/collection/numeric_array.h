@@ -412,7 +412,7 @@ void numeric_array < TYPE, m_etypeContainer >::implode(string & str, const char 
       i++;
       for(; i <= last; i++)
       {
-         str += strSeparator + __string(this->element_at(i));
+         str += strSeparator + as_string(this->element_at(i));
       }
    }
    else
@@ -449,11 +449,11 @@ string numeric_array < TYPE, m_etypeContainer >::surround_and_implode(const char
    if(iStart <= iEnd)
    {
       ::index i = iStart;
-      str = strPrefix + __string(this->element_at(i)) + strSuffix;
+      str = strPrefix + as_string(this->element_at(i)) + strSuffix;
       i++;
       for(; i <= iEnd; i++)
       {
-         str += strSeparator + strPrefix + __string(this->element_at(i)) + strSuffix;
+         str += strSeparator + strPrefix + as_string(this->element_at(i)) + strSuffix;
       }
    }
    return str;

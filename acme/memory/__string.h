@@ -3,4 +3,4 @@
 
 
 template < typename POINTER >
-inline ::string __string(const ::acme::memory_allocate < POINTER > & memoryallocpointer);
+inline ::string as_string(const ::acme::memory_allocate < POINTER > & memoryallocpointer);

@@ -181,14 +181,15 @@ public:
    string_base & operator += (const ansistring & ansistr);
    string_base & operator += (const wd16string & wd16str);
    string_base & operator += (const wd32string & wd32str);
+   string_base & operator += (const inline_number_string & inlinenumberstring);
    string_base & operator += (ansichar ansich);
    string_base & operator += (wd16char wd16ch);
    string_base & operator += (wd32char wd32ch);
-   template < primitive_payload PAYLOAD >
-   string_base & operator += (const PAYLOAD & payload) { return operator+=(payload.get_string()); }
+   //template < primitive_payload PAYLOAD >
+   //string_base & operator += (const PAYLOAD & payload) { return operator+=(payload.get_string()); }
    // string_base & operator += (const ::property & property) { ::append(this, &property); return *this; }
-   template < primitive_atom ATOM >
-   string_base & operator += (const ATOM & atom) { return operator+=(atom.as_string()); }
+   //template < primitive_atom ATOM >
+   //string_base & operator += (const ATOM & atom) { return operator+=(atom.as_string()); }
 
 
 //   template < int t_nSize >
@@ -215,6 +216,7 @@ public:
    string_base operator + (const ansistring & ansistr) const;
    string_base operator + (const wd16string & wd16str)  const;
    string_base operator + (const wd32string & wd32str)  const;
+   string_base operator + (const inline_number_string & inlinenumberstring) const;
    string_base operator + (ansichar character)  const;
    string_base operator + (wd16char wd16ch)  const;
    string_base operator + (wd32char wd32ch)  const;

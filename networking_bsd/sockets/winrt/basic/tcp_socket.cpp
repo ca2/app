@@ -150,7 +150,7 @@ namespace sockets
 
       m_event.ResetEvent();
 
-      String ^ strService = __string(ad.get_service_number());
+      String ^ strService = as_string(ad.get_service_number());
 
       try
       {
@@ -286,7 +286,7 @@ namespace sockets
                {
                   string sockshost;
                   psession->sockets().net().l2ip(GetSocks4Host(), sockshost);
-                  INFO(log_this, "open", 0, "is_connecting to socks4 server @ " + sockshost + ":" + __string(GetSocks4Port()));
+                  INFO(log_this, "open", 0, "is_connecting to socks4 server @ " + sockshost + ":" + as_string(GetSocks4Port()));
                }
                SetSocks4();
                n = connect(s, sa, sa);

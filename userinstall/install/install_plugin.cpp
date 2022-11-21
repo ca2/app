@@ -33,7 +33,7 @@
 
 void simple_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 {
-   //throw ::exception(::exception("integer_exception" + __string($1)));
+   //throw ::exception(::exception("integer_exception" + as_string($1)));
 }
 
 #endif // defined WINDOWS
@@ -490,7 +490,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
       else
       {
 
-         //::message_box(nullptr,strPath + "\n\nFailed return code : " + __string(dwExitCode),"Error Message",e_message_box_icon_information | e_message_box_ok);
+         //::message_box(nullptr,strPath + "\n\nFailed return code : " + as_string(dwExitCode),"Error Message",e_message_box_icon_information | e_message_box_ok);
 
          //m_phost->m_pbasecomposer->m_strEntryHallText = "***Failed to start application.";
 

@@ -139,7 +139,7 @@ const char* g_pszCacheDir = NULL;
 //   pdata,
 //   image_stride);
 //
-//   //output_debug_string("android_fill_plasma OK (area="+__string(pbuffer->m_spimageBuffer.area())+")");
+//   //output_debug_string("android_fill_plasma OK (area="+as_string(pbuffer->m_spimageBuffer.area())+")");
 //
 //}
 

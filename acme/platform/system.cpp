@@ -1741,7 +1741,7 @@ namespace acme
 
          string strPid;
 
-         strPid = __string(acmenode()->get_current_process_id());
+         strPid = as_string(acmenode()->get_current_process_id());
 
          strModifier = strDate + "_" + strPid;
 
@@ -2569,7 +2569,7 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 
          //   int iDialogResult = pfuture->m_var;
 
-         //   ::output_debug_string("result " + __string(iDialogResult));
+         //   ::output_debug_string("result " + as_string(iDialogResult));
 
          //}
 

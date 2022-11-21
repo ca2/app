@@ -631,7 +631,7 @@ namespace networking_bsd
       try
       {
 
-         str = __string(inaddr);
+         str = as_string(inaddr);
 
          return true;
 
@@ -652,7 +652,7 @@ namespace networking_bsd
       try
       {
 
-         str = __string(inaddr6);
+         str = as_string(inaddr6);
 
          return true;
 
@@ -766,14 +766,14 @@ namespace networking_bsd
          struct sockaddr_in6* sa6 = (struct sockaddr_in6*)sa;
          string tmp;
          convert(tmp, sa6->sin6_addr);
-         return tmp + ":" + __string(ntohs(sa6->sin6_port));
+         return tmp + ":" + as_string(ntohs(sa6->sin6_port));
       }
       if (sa->sa_family == AF_INET)
       {
          struct sockaddr_in* sa4 = (struct sockaddr_in*)sa;
          string tmp;
          convert(tmp, sa4->sin_addr);
-         return tmp + ":" + __string(ntohs(sa4->sin_port));
+         return tmp + ":" + as_string(ntohs(sa4->sin_port));
       }
       return "";
    }
@@ -2016,7 +2016,7 @@ namespace networking_bsd
    //   try
    //   {
    //
-   //      __string(str, sa);
+   //      as_string(str, sa);
    //
    //      return true;
    //
@@ -2081,7 +2081,7 @@ namespace networking_bsd
    //      try
    //      {
    //
-   //         __string(str, sa);
+   //         as_string(str, sa);
    //
    //         return true;
    //
@@ -2118,14 +2118,14 @@ namespace networking_bsd
    //      struct sockaddr_in6 *sa6 = (struct sockaddr_in6 *)sa;
    //      string tmp;
    //      convert(tmp, sa6 -> sin6_addr);
-   //      return tmp + ":" + __string(ntohs(sa6 -> sin6_port));
+   //      return tmp + ":" + as_string(ntohs(sa6 -> sin6_port));
    //   }
    //   if (sa -> sa_family == AF_INET)
    //   {
    //      struct sockaddr_in *sa4 = (struct sockaddr_in *)sa;
    //      string tmp;
    //      convert(tmp, sa4 -> sin_addr);
-   //      return tmp + ":" + __string(ntohs(sa4 -> sin_port));
+   //      return tmp + ":" + as_string(ntohs(sa4 -> sin_port));
    //   }
    //   return "";
    //}
@@ -2802,7 +2802,7 @@ namespace networking_bsd
    //
    //   string strAddress;
    //
-   //   __string(strAddress, m_ipaddr);
+   //   as_string(strAddress, m_ipaddr);
    //
    //   stream << strAddress;
    //   stream << m_durationLastChecked;
@@ -3236,7 +3236,7 @@ namespace networking_bsd
 
       }
 
-      strBoundary += "__" + __string(m_countHttpPostBoundary++);
+      strBoundary += "__" + as_string(m_countHttpPostBoundary++);
 
       return strBoundary;
 

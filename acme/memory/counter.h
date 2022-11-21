@@ -75,7 +75,7 @@ void memory_counter_increment(T * pthis)
 
       //int i = atoi(acmefile()->as_string(path));
 
-      //acmefile()->put_contents(path, __string(i + 1));
+      //acmefile()->put_contents(path, as_string(i + 1));
    }
 
 }
@@ -94,7 +94,7 @@ void memory_counter_decrement(T * pthis)
 
       //int i = atoi(acmefile()->as_string(path));
 
-      //acmefile()->put_contents(path, __string(i - 1));
+      //acmefile()->put_contents(path, as_string(i - 1));
 
    }
 

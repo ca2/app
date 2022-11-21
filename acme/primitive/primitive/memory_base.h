@@ -218,7 +218,7 @@ public:
    void append_from_string(const ::string & str);
    void append_from_string(const ::payload & payload);
    void append_byte(byte b){ append(&b, 1);}
-   //::string __string(memsize iStart = 0, memsize uiSize = -1) const;
+   //::string as_string(memsize iStart = 0, memsize uiSize = -1) const;
    virtual string as_string() const;
    virtual string as_string(memsize iStart, memsize uiSize = -1) const;
 

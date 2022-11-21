@@ -339,7 +339,7 @@ namespace sockets
          struct sockaddr_in6 *sa6 = (struct sockaddr_in6 *)sa;
          string tmp;
          net::l2ip(sa6 -> sin6_addr, tmp);
-         return tmp + ":" + __string(ntohs(sa6 -> sin6_port));
+         return tmp + ":" + as_string(ntohs(sa6 -> sin6_port));
       }
       if (sa -> sa_family == AF_INET)
       {
@@ -348,7 +348,7 @@ namespace sockets
          ::memcpy_dup(&a, &sa4 -> sin_addr, 4);
          string tmp;
          net::l2ip(a, tmp);
-         return tmp + ":" + __string(ntohs(sa4 -> sin_port));
+         return tmp + ":" + as_string(ntohs(sa4 -> sin_port));
       }
       return "";
    }

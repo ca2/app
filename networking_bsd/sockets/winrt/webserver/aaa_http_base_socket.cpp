@@ -154,10 +154,10 @@ namespace sockets
 
 /* 
 
-      if(m_response.m_propertysetHeader.low_has_property(__string(location)))
+      if(m_response.m_propertysetHeader.low_has_property(as_string(location)))
       {
 
-         string strLocation = m_response.m_propertysetHeader.lowprop(__string(Location));
+         string strLocation = m_response.m_propertysetHeader.lowprop(as_string(Location));
 
          m_response.m_propertysetHeader.erase_by_name("Location");
 

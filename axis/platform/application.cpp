@@ -292,7 +292,7 @@ namespace axis
 ////         if(m_iErrorCode != 0)
 ////         {
 ////
-////            dappy(__type_name(this) + " : on_run failure : " + __string(m_iErrorCode));
+////            dappy(__type_name(this) + " : on_run failure : " + as_string(m_iErrorCode));
 ////
 ////            ::output_debug_string("application::main on_run termination failure\n");
 ////
@@ -809,7 +809,7 @@ namespace axis
 //      if (!init1())
 //      {
 //
-//         //dappy(__type_name(this) + " : init1 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init1 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -824,7 +824,7 @@ namespace axis
 //      if (!init2())
 //      {
 //
-//         //dappy(__type_name(this) + " : init2 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init2 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -839,7 +839,7 @@ namespace axis
 //      if (!init3())
 //      {
 //
-//         //dappy(__type_name(this) + " : init3 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init3 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -851,7 +851,7 @@ namespace axis
 //
 //      m_durationHeartBeat.Now();
 //
-//      //dappy(__type_name(this) + " : init3 ok : " + __string(m_iErrorCode));
+//      //dappy(__type_name(this) + " : init3 ok : " + as_string(m_iErrorCode));
 //
 //      try
 //      {
@@ -859,7 +859,7 @@ namespace axis
 //         if (!init())
 //         {
 //
-//            //dappy(__type_name(this) + " : initialize failure : " + __string(m_iErrorCode));
+//            //dappy(__type_name(this) + " : initialize failure : " + as_string(m_iErrorCode));
 //
 //            return false;
 //

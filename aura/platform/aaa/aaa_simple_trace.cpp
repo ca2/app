@@ -170,7 +170,7 @@ pacmedirectory->system() / "memory_counters";
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedirectory->system() / "memory_counters" / strModule.title() / __string(getpid());
+pacmedirectory->system() / "memory_counters" / strModule.title() / as_string(getpid());
 
 #endif
 

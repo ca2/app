@@ -32,7 +32,7 @@ file_exception::file_exception(::e_status estatus, int iOsError, const string & 
 
    strMoreDetails += "Last Error:\n";
 
-   strMoreDetails += "\"" + ::windows::get_error_string(m_iOsError) + "\" (Last Error Code = " + __string(m_iOsError) + ");\n";
+   strMoreDetails += "\"" + ::windows::get_error_string(m_iOsError) + "\" (Last Error Code = " + as_string(m_iOsError) + ");\n";
 
 #endif
 

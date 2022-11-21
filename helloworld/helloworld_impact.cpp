@@ -109,9 +109,9 @@ namespace helloworld
             get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact")->_001SetText(strText,::e_source_initialize);
 
 
-//            acmefile()->put_contents("C:\\dennisheazle\\ft.txt", __string((iptr)get_top_level()->get_handle()));
+//            acmefile()->put_contents("C:\\dennisheazle\\ft.txt", as_string((iptr)get_top_level()->get_handle()));
 
-            //get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact")->_001SetText(__string((iptr)get_top_level()->get_handle()), ::e_source_initialize);
+            //get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact")->_001SetText(as_string((iptr)get_top_level()->get_handle()), ::e_source_initialize);
 
 
          }

@@ -249,7 +249,7 @@ namespace sockets
       //if (bind(s, psockaddr, sockaddr_len) == -1)
       //{
 
-      //   FATAL("bind() failed for port " << __string(ad.get_service_number()) << ", " << Errno << ", " << bsd_socket_error(Errno));
+      //   FATAL("bind() failed for port " << as_string(ad.get_service_number()) << ", " << Errno << ", " << bsd_socket_error(Errno));
       //   
       //   close_socket(s);
 
@@ -264,7 +264,7 @@ namespace sockets
 
       //   close_socket(s);
 
-      //   throw ::exception(error_socket, "listen() failed for port " + __string(ad.get_service_number()) + ": " + bsd_socket_error(Errno));
+      //   throw ::exception(error_socket, "listen() failed for port " + as_string(ad.get_service_number()) + ": " + bsd_socket_error(Errno));
 
       //   return -1;
 

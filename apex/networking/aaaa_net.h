@@ -18,13 +18,13 @@ typedef in6_addr in_addr6;
 
 
 CLASS_DECL_APEX int_bool to(in6_addr & addr,const ::string & str);
-CLASS_DECL_APEX ::string __string(const in6_addr & addr);
+CLASS_DECL_APEX ::string as_string(const in6_addr & addr);
 CLASS_DECL_APEX int_bool to(in_addr & addr,const ::string & str);
-CLASS_DECL_APEX ::string __string(const in_addr & addr);
-CLASS_DECL_APEX ::string __string(const sockaddr_in &  addr);
-CLASS_DECL_APEX ::string __string(const sockaddr_in6 &  addr);
+CLASS_DECL_APEX ::string as_string(const in_addr & addr);
+CLASS_DECL_APEX ::string as_string(const sockaddr_in &  addr);
+CLASS_DECL_APEX ::string as_string(const sockaddr_in6 &  addr);
 #ifdef BSD_STYLE_SOCKETS
-CLASS_DECL_APEX ::string __string(const sockaddr & addr);
+CLASS_DECL_APEX ::string as_string(const sockaddr & addr);
 #endif
 
 //

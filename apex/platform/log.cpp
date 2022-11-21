@@ -250,7 +250,7 @@ namespace apex
             str += "File : ";
             str += pszFileName;
             str += "\r\nLine : ";
-            str += __string(iLine);
+            str += as_string(iLine);
             str += "\r\n";
 
             string strCaption;
@@ -260,7 +260,7 @@ namespace apex
             output_debug_string(wstring(str));
             /*if(message_box(nullptr, str, strCaption, e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
-               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+__string(iLine)+"\"";
+               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+as_string(iLine)+"\"";
                ::acme::system(strCmdLine);
                exit(0);
             }
@@ -446,7 +446,7 @@ namespace apex
 ////
 ////         strMiddle += "\""+ string(pszFile) + "\"";
 ////
-////         strMiddle += "(" + __string(iLine) + "): ";
+////         strMiddle += "(" + as_string(iLine) + "): ";
 ////
 ////      }
 ////

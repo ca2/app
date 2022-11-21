@@ -406,7 +406,7 @@
 //
 //         stra2.erase_all();
 //
-//         id2 = string(atom.m_psz) + "[" + __string(i) + "]";
+//         id2 = string(atom.m_psz) + "[" + as_string(i) + "]";
 //
 //         _get(stra2, pcontext, id2);
 //

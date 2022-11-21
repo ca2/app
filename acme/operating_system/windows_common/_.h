@@ -8,7 +8,7 @@
 #include "acme/primitive/comparison/compare.h"
 
 
-#include "__string.h"
+#include "as_string.h"
 
 
 #ifdef MEMDLEAK

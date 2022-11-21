@@ -1584,7 +1584,7 @@ namespace user
             }
          }
 
-         //if (!papp->do_prompt_file_name(newName, __string("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
+         //if (!papp->do_prompt_file_name(newName, as_string("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
            // return false;       // don't even attempt to save
 
       }

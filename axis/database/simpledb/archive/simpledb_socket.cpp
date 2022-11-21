@@ -285,7 +285,7 @@ namespace simpledb
                   continue;
                }
                response().ostream() << "--THIS_STRING_SEPARATES\r\n\r\n";
-               response().ostream() << "Content-range: bytes " + __string(iStart) + "-" + __string(iEnd) + "/" + __string(iLen) + "\r\n";
+               response().ostream() << "Content-range: bytes " + as_string(iStart) + "-" + as_string(iEnd) + "/" + as_string(iLen) + "\r\n";
                response().ostream() << "Content-Transfer-Encoding: base64";
                response().ostream() << "\r\n";
                while(true)
@@ -357,11 +357,11 @@ namespace simpledb
             outattr("http_status") = "Partial Content";
             if(iEnd == -1)
             {
-               outheader("Content-range") = "bytes " + __string(iStart) + "-" + __string(iEnd) + "/*";
+               outheader("Content-range") = "bytes " + as_string(iStart) + "-" + as_string(iEnd) + "/*";
             }
             else
             {
-               outheader("Content-range") = "bytes " + __string(iStart) + "-" + __string(iEnd) + "/" + __string(iLen);
+               outheader("Content-range") = "bytes " + as_string(iStart) + "-" + as_string(iEnd) + "/" + as_string(iLen);
             }
 
          }

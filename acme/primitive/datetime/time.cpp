@@ -3,7 +3,7 @@
 //#include "file_time.h"
 #include "date_span.h"
 #include "earth_gregorian_time.h"
-#include "acme/primitive/datetime/__string.h"
+#include "acme/primitive/datetime/as_string.h"
 #include "acme/operating_system/time.h"
 #include "acme/exception/not_implemented.h"
 #include "acme/primitive/string/str.h"
@@ -691,12 +691,12 @@ namespace earth
 
       str = strFormat;
 
-      str.replace_with(__string(time.year(timeshift)), "%Y");
-      str.replace_with(::str().zero_padded(__string(time.month(timeshift)), 2), "%m");
-      str.replace_with(::str().zero_padded(__string(time.day(timeshift)), 2), "%d");
-      str.replace_with(::str().zero_padded(__string(time.hour(timeshift)), 2), "%H");
-      str.replace_with(::str().zero_padded(__string(time.minute(timeshift)), 2), "%M");
-      str.replace_with(::str().zero_padded(__string(time.second(timeshift)), 2), "%S");
+      str.replace_with(as_string(time.year(timeshift)), "%Y");
+      str.replace_with(::str().zero_padded(as_string(time.month(timeshift)), 2), "%m");
+      str.replace_with(::str().zero_padded(as_string(time.day(timeshift)), 2), "%d");
+      str.replace_with(::str().zero_padded(as_string(time.hour(timeshift)), 2), "%H");
+      str.replace_with(::str().zero_padded(as_string(time.minute(timeshift)), 2), "%M");
+      str.replace_with(::str().zero_padded(as_string(time.second(timeshift)), 2), "%S");
 
       return str;
 

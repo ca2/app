@@ -403,7 +403,7 @@ string module_path_from_pid(unsigned int iPid)
 
    string str;
 
-   str = "/proc/" + __string(iPid) + "/exe";
+   str = "/proc/" + as_string(iPid) + "/exe";
 
    memory mem;
 
@@ -585,7 +585,7 @@ string_array cmdline_from_pid(unsigned int iPid)
 
    string str;
 
-   str = "/proc/" + __string(iPid) + "/cmdline";
+   str = "/proc/" + as_string(iPid) + "/cmdline";
 
    memory mem = file_as_memory(str);
 

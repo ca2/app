@@ -588,7 +588,7 @@ namespace networking_bsd
 
 
          /*      if (GetUrlPort() != 80 && GetUrlPort() != 443)
-         inheader(__id(host)) = GetUrlHost() + ":" + __string(GetUrlPort());
+         inheader(__id(host)) = GetUrlHost() + ":" + as_string(GetUrlPort());
          else
          inheader(__id(host)) = GetUrlHost();*/
 
@@ -849,12 +849,12 @@ namespace networking_bsd
                else if (data[i] < 10)
                {
                   strChar += "0";
-                  strChar += __string((int)data[i]);
+                  strChar += as_string((int)data[i]);
                   strChar += " ";
                }
                else if (data[i] < 32)
                {
-                  strChar += __string((int)data[i]);
+                  strChar += as_string((int)data[i]);
                   strChar += " ";
                }
                else if (data[i] >= 128)

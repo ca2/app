@@ -489,7 +489,7 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth:
 //   if (!strText.begins_eat_ci("factoryless://"))
 //   {
 //
-//      strText = __string(binary_stream < FILE >.text_to_factory_id(strText));
+//      strText = as_string(binary_stream < FILE >.text_to_factory_id(strText));
 //
 //   }
 //

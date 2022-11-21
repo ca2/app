@@ -74,7 +74,7 @@ inline bool __enum_is_failed(const ::e_status & e)
 //
 //   string strRight(stringable);
 //
-//   return __string(psz) + strRight;
+//   return as_string(psz) + strRight;
 //
 //}
 
@@ -93,7 +93,7 @@ inline bool __enum_is_failed(const ::e_status & e)
 //inline string CLASS_DECL_ACME operator + (const char * psz, const ::payload & payload)
 //{
 //
-//   return __string(psz) + payload.get_string();
+//   return as_string(psz) + payload.get_string();
 //
 //}
 //

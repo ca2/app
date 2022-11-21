@@ -32,7 +32,7 @@ void ::interprocess::task::do_task(const string& strObject, const string& strMem
 
       string strSource;
 
-      string strPid = __string(m_pcall->m_pinterprocesscommunication->m_atomApp);
+      string strPid = as_string(m_pcall->m_pinterprocesscommunication->m_atomApp);
 
       strSource.format("protocol.origin=%s&protocol.origin_pid=%s", m_pcall->m_pinterprocesscommunication->m_strApp.c_str(), strPid.c_str());
       
@@ -42,7 +42,7 @@ void ::interprocess::task::do_task(const string& strObject, const string& strMem
       strApp.find_replace(".", "-");
       strApp.find_replace("/", ".");
 
-      string str = strApp + "://" + strObject + "/" + strMember + "?" + strNetworkArguments + "&protocol.call_id=" + __string(m_iTask) + "&" + strSource + "&protocol.target_pid=" + m_atomPid;
+      string str = strApp + "://" + strObject + "/" + strMember + "?" + strNetworkArguments + "&protocol.call_id=" + as_string(m_iTask) + "&" + strSource + "&protocol.target_pid=" + m_atomPid;
 
       //txc.send(str, m_pcall->m_duration);
       txc.send(str, 1_min);

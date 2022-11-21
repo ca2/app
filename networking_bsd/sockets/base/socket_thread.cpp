@@ -68,7 +68,7 @@ namespace sockets_bsd
    socket_thread::socket_thread()
    {
 
-      ::output_debug_string(__string(g_iSocketThread++) + " - memory_new socket_thread\n");
+      ::output_debug_string(as_string(g_iSocketThread++) + " - memory_new socket_thread\n");
 
    }
 

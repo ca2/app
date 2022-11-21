@@ -604,7 +604,7 @@ namespace sockets
 
             strLine += ":";
 
-            strLine += __string(get_connect_port());
+            strLine += as_string(get_connect_port());
 
          }
 

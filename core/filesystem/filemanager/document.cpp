@@ -1166,7 +1166,7 @@ namespace filemanager
 //               idMachine = "iOS";
 //#endif
 //
-//               if (papp->datastream()->get({true, "last_browse_folder." + __string(idMachine)}, str))
+//               if (papp->datastream()->get({true, "last_browse_folder." + as_string(idMachine)}, str))
 //               {
 //
 //                  browse(str, ::e_source_database);

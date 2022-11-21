@@ -112,8 +112,8 @@ namespace helloworld
 
       if(get_impact_id() == ::helloworld::PaneImpactHelloWorld
             || get_impact_id() == ::helloworld::PaneImpactHelloWorldSwitcher
-            || stra.contains(__string((int)::helloworld::PaneImpactHelloWorld))
-            || stra.contains(__string((int)::helloworld::PaneImpactHelloWorldSwitcher)))
+            || stra.contains(as_string((int)::helloworld::PaneImpactHelloWorld))
+            || stra.contains(as_string((int)::helloworld::PaneImpactHelloWorldSwitcher)))
       {
 
 
@@ -199,7 +199,7 @@ namespace helloworld
             for (auto & bilbo : m_pimpactLastBilbo->m_prender->m_bilboa)
             {
 
-               m_checkptraBilbo.add(dynamic_cast <::user::check_box *> (pimpact->get_child_by_id("bilbo" + __string(i))));
+               m_checkptraBilbo.add(dynamic_cast <::user::check_box *> (pimpact->get_child_by_id("bilbo" + as_string(i))));
 
                m_checkptraBilbo.last()->_001SetCheck(bilbo.m_b ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
 
@@ -348,7 +348,7 @@ namespace helloworld
                   //}
                   //else
                   //{
-                  //   m_prollspf->_001SetText(__string(1.0/d),::e_source_initialize);
+                  //   m_prollspf->_001SetText(as_string(1.0/d),::e_source_initialize);
                   //}
                }
                catch(...)
@@ -372,7 +372,7 @@ namespace helloworld
             //      {
             //         m_pflagview->m_dFps = 1.0/ d;
             //         m_pflagview->m_dwRoll= ::duration::now();
-            //         m_prollfps->_001SetText(__string(1.0 / d),::e_source_initialize);
+            //         m_prollfps->_001SetText(as_string(1.0 / d),::e_source_initialize);
             //      }
             //   }
             //   catch(...)

@@ -109,7 +109,7 @@ namespace usernet
 
       pinteraction = m_pimpact->get_child_by_name("port");
          
-      pinteraction->_001SetText(__string(iProxyPort), ::action_context(::e_source_data) +  ::e_source_load);
+      pinteraction->_001SetText(as_string(iProxyPort), ::action_context(::e_source_data) +  ::e_source_load);
 
    }
 

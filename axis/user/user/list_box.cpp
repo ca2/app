@@ -230,7 +230,7 @@ namespace user
 
       m_straList.add(pszString);
 
-      m_straValue.add(__string(dwItemData));
+      m_straValue.add(as_string(dwItemData));
 
       return m_straList.get_upper_bound();
 
@@ -1283,7 +1283,7 @@ namespace user
    void list_box::set_current_item_by_data(uptr u, const ::action_context& context)
    {
 
-      index iSel = m_straValue.find_first(__string(u));
+      index iSel = m_straValue.find_first(as_string(u));
 
       if (iSel < 0)
       {

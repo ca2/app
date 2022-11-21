@@ -132,7 +132,7 @@ namespace sockets_bsd
 
             SetCloseAndDelete();
 
-            throw ::exception(error_socket, "bind() failed for udp_socket, port:range: " + __string(paddress2->get_service_number()) + ":" + __string(range));
+            throw ::exception(error_socket, "bind() failed for udp_socket, port:range: " + as_string(paddress2->get_service_number()) + ":" + as_string(range));
 
             return -1;
 

@@ -5035,7 +5035,7 @@ namespace user
 
       auto elapsed = durationStart.elapsed();
 
-      output_debug_string("_001UpdateBuffer "+__string(elapsed.floating_millisecond().m_d) + "ms\n");
+      output_debug_string("_001UpdateBuffer "+as_string(elapsed.floating_millisecond().m_d) + "ms\n");
 
 #endif
 
@@ -6532,7 +6532,7 @@ namespace user
 
          ::point_i32 pointBottomRight = pointOutput + sizeOutput;
 
-         //output_debug_string("SetWindowPos bottom_right " + __string(pointBottomRight.x) + ", " + __string(pointBottomRight.y) + "\n");
+         //output_debug_string("SetWindowPos bottom_right " + as_string(pointBottomRight.x) + ", " + as_string(pointBottomRight.y) + "\n");
 
 //#if !defined(_UWP) && !defined(ANDROID)
 

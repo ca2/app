@@ -72,7 +72,7 @@ task::~task()
    auto strThreadName = ::task_get_name();
    auto itask = ::get_current_itask();
 
-   ::output_debug_string("Task destructor : " + strThreadName + " : (" + __string(itask) + ")\n");
+   ::output_debug_string("Task destructor : " + strThreadName + " : (" + as_string(itask) + ")\n");
 
 #endif
 
@@ -997,7 +997,7 @@ bool task::has_message() const
 
       }
 
-      strId = string(sz) + "(" + __string(uiLine) + ") :: forking_thread";
+      strId = string(sz) + "(" + as_string(uiLine) + ") :: forking_thread";
 
 #endif
 
@@ -1194,7 +1194,7 @@ bool task::has_message() const
 //
 //      }
 //
-//      strId =  string(sz) + "(" + __string(uiLine) + ") :: forking_thread";
+//      strId =  string(sz) + "(" + as_string(uiLine) + ") :: forking_thread";
 //
 //#endif
 //
@@ -1345,7 +1345,7 @@ bool task::has_message() const
 //
 //      }
 //
-//      strId = string(sz) + "(" + __string(uiLine) + ") :: forking_thread";
+//      strId = string(sz) + "(" + as_string(uiLine) + ") :: forking_thread";
 //
 //#endif
 //

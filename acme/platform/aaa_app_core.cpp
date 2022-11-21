@@ -354,12 +354,12 @@ void app_core::system_init()
 //
 //      uid_t uid = atoi(strUid);
 //
-//      output_error_message("going to seteuid to: " + __string(uid), "going to seteuid", e_message_box_ok);
+//      output_error_message("going to seteuid to: " + as_string(uid), "going to seteuid", e_message_box_ok);
 //
 //      if (seteuid(uid) == 0)
 //      {
 //
-//         output_error_message("uid=" + __string(uid), "seteuid success", e_message_box_ok);
+//         output_error_message("uid=" + as_string(uid), "seteuid success", e_message_box_ok);
 //
 //      }
 //      else

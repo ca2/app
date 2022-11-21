@@ -2,7 +2,7 @@
 
 
 template < typename T >
-inline string __string(const T& t)
+inline string as_string(const T& t)
 {
 
    string str;
@@ -15,12 +15,12 @@ inline string __string(const T& t)
 
 //
 //template < >
-//CLASS_DECL_ACME string __string(const ::enum_status & estatus);
+//CLASS_DECL_ACME string as_string(const ::enum_status & estatus);
 //
 
 
 template < typename T >
-inline string __string(const T * & p)
+inline string as_string(const T * & p)
 {
 
    string str;
@@ -32,7 +32,7 @@ inline string __string(const T * & p)
 }
 
 //
-//inline string __string(const ansichar* psz)
+//inline string as_string(const ansichar* psz)
 //{
 //
 //   return string(psz);
@@ -40,7 +40,7 @@ inline string __string(const T * & p)
 //}
 //
 //
-//inline string __string(ansichar* psz)
+//inline string as_string(ansichar* psz)
 //{
 //
 //   return string((const ansichar *) psz);
@@ -48,7 +48,7 @@ inline string __string(const T * & p)
 //}
 //
 //
-//inline string __string(const widechar * pwsz)
+//inline string as_string(const widechar * pwsz)
 //{
 //
 //   return string(pwsz);
@@ -56,7 +56,7 @@ inline string __string(const T * & p)
 //}
 //
 //
-//inline string __string(widechar * pwsz)
+//inline string as_string(widechar * pwsz)
 //{
 //
 //   return string(pwsz);
@@ -65,7 +65,7 @@ inline string __string(const T * & p)
 //
 //
 //template < >
-//inline string __string(const ansistring * & p)
+//inline string as_string(const ansistring * & p)
 //{
 //
 //   return *p;
@@ -74,7 +74,7 @@ inline string __string(const T * & p)
 //
 //
 //template < >
-//inline string __string(const widestring *& p)
+//inline string as_string(const widestring *& p)
 //{
 //
 //   return string(*p);
@@ -83,7 +83,7 @@ inline string __string(const T * & p)
 //
 //
 //template < >
-//inline string __string(const natural_ansistring & naturalansistr)
+//inline string as_string(const natural_ansistring & naturalansistr)
 //{
 //
 //   return naturalansistr.m_pdata;
@@ -92,7 +92,7 @@ inline string __string(const T * & p)
 //
 //
 //template < >
-//inline string __string(const natural_widestring & naturalwidestr)
+//inline string as_string(const natural_widestring & naturalwidestr)
 //{
 //
 //   return string(naturalwidestr);
@@ -101,29 +101,14 @@ inline string __string(const T * & p)
 //
 //
 
-   //inline ::string __string(const char * psz)
+   //inline ::string as_string(const char * psz)
    //{
 
    //   str = psz;
 
    //}
 
-   //inline ::string __string(char * const psz)
-   //{
-
-   //   str = psz;
-
-   //}
-
-
-   //inline ::string __string(const wd16char * psz)
-   //{
-
-   //   str = psz;
-
-   //}
-
-   //inline ::string __string(wd16char * const psz)
+   //inline ::string as_string(char * const psz)
    //{
 
    //   str = psz;
@@ -131,14 +116,14 @@ inline string __string(const T * & p)
    //}
 
 
-   //inline ::string __string(const wd32char * psz)
+   //inline ::string as_string(const wd16char * psz)
    //{
 
    //   str = psz;
 
    //}
 
-   //inline ::string __string(wd32char * const psz)
+   //inline ::string as_string(wd16char * const psz)
    //{
 
    //   str = psz;
@@ -146,7 +131,22 @@ inline string __string(const T * & p)
    //}
 
 
-   //   inline ::string __string(const signed char & ch)
+   //inline ::string as_string(const wd32char * psz)
+   //{
+
+   //   str = psz;
+
+   //}
+
+   //inline ::string as_string(wd32char * const psz)
+   //{
+
+   //   str = psz;
+
+   //}
+
+
+   //   inline ::string as_string(const signed char & ch)
    //{
 
    //   str = (ansichar) ch;

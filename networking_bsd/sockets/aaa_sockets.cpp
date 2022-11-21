@@ -257,7 +257,7 @@ namespace networking_bsd
 
       }
 
-      strBoundary += "__" + __string(m_countHttpPostBoundary++);
+      strBoundary += "__" + as_string(m_countHttpPostBoundary++);
 
       return strBoundary;
 

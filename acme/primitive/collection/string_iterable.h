@@ -209,7 +209,7 @@ typename ITERABLE::iterator string_iterable < ITERABLE >::add(const ::payload & 
    {
       for (i32 i = 0; i < payload.inta().get_count(); i++)
       {
-         add((Type) __string(payload.inta()[i]));
+         add((Type) as_string(payload.inta()[i]));
       }
    }
    else if (payload.get_type() == ::e_type_property_set)

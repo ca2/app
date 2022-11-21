@@ -1169,7 +1169,7 @@ bool thread::defer_pump_message()
       if(m_message.m_atom == e_message_quit)
       {
 
-         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + __string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + __type_name(this) + " (" + __string((u64)::get_current_itask()) + ")\n\n\n");
+         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + __type_name(this) + " (" + as_string((u64)::get_current_itask()) + ")\n\n\n");
 
          return false;
 
@@ -2340,7 +2340,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //
 //      }
 //
-//      strId =  string(sz) + "(" + __string(uiLine) + ") :: forking_thread";
+//      strId =  string(sz) + "(" + as_string(uiLine) + ") :: forking_thread";
 //
 //#endif
 //
@@ -3802,7 +3802,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
          auto lastError = ::GetLastError();
 
-         ::output_debug_string("Last Error : " + __string(lastError) + "\n");
+         ::output_debug_string("Last Error : " + as_string(lastError) + "\n");
 
          auto estatus = ::windows::last_error_status(lastError);
 
@@ -4286,7 +4286,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
 
       ::e_status estatus = ::get_last_status();
 
-      output_debug_string("thread::SetThreadPriority LastError = " + __string(estatus));
+      output_debug_string("thread::SetThreadPriority LastError = " + as_string(estatus));
 
    }
 

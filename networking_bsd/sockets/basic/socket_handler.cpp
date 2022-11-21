@@ -70,7 +70,7 @@ namespace sockets_bsd
 
       g_interlockedcountSocketHandler++;
 
-      ::output_debug_string("----socket_handler (count=" + __string((::iptr) g_interlockedcountSocketHandler) + ")\n");
+      ::output_debug_string("----socket_handler (count=" + as_string((::iptr) g_interlockedcountSocketHandler) + ")\n");
 
    }
 

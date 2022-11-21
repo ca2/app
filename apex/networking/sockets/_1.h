@@ -16,7 +16,7 @@
 // {
 
 
-CLASS_DECL_APEX ::string __string(const struct sockaddr & sockaddr);
+CLASS_DECL_APEX ::string as_string(const struct sockaddr & sockaddr);
 
 
 // } // namespace str

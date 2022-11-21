@@ -13,7 +13,7 @@ string get_error_message(::u32 dwError)
    //   1,
    //   nullptr);
 //   string str = lpBuffer;
-   string str = "Error: " + __string(dwError);
+   string str = "Error: " + as_string(dwError);
 //   string str = unicode_to_utf8(lpBuffer);
 // xxx   LocalFree(lpBuffer);
    return str;

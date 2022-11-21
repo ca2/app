@@ -247,7 +247,7 @@ namespace sockets
 //      m_iProxyPort = port;
 //
 //#ifdef BSD_STYLE_SOCKETS
-//      m_strInitSSLClientContext += "/" + m_strProxy + ":" + __string(port);
+//      m_strInitSSLClientContext += "/" + m_strProxy + ":" + as_string(port);
 //#endif
 //
 //      m_bSslTunnel = IsSSL();

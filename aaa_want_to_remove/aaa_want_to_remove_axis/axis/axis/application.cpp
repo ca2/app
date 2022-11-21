@@ -860,7 +860,7 @@ m_durationHeartBeat.Now();
 
 //      m_bAxisInitializeResult = true;
 
-//      dappy(__type_name(this) + " : initialize ok : " + __string(m_iErrorCode));
+//      dappy(__type_name(this) + " : initialize ok : " + as_string(m_iErrorCode));
 
       return true;
 

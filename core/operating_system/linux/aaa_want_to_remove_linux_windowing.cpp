@@ -2911,7 +2911,7 @@ bool x11_process_message(Display * pdisplay)
 //         else
 //         {
 //
-//            output_debug_string("B " + __string(wFocus));
+//            output_debug_string("B " + as_string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -2926,7 +2926,7 @@ bool x11_process_message(Display * pdisplay)
 //         else
 //         {
 //
-//            output_debug_string("D " + __string(wFocus));
+//            output_debug_string("D " + as_string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //

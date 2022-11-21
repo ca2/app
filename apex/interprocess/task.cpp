@@ -52,7 +52,7 @@ namespace interprocess
          strApp.find_replace(".", "-");
          strApp.find_replace("/", ".");
 
-         string str = strApp + ":/" + strObject + "/" + strMember + "?" + strNetworkArguments + "&protocol.call_id=" + __string(m_iTask) + "&" + strSource + "&protocol.target_pid=" + m_atomPid;
+         string str = strApp + ":/" + strObject + "/" + strMember + "?" + strNetworkArguments + "&protocol.call_id=" + as_string(m_iTask) + "&" + strSource + "&protocol.target_pid=" + m_atomPid;
 
          //txc.send(str, m_pcall->m_duration);
          caller.call(str, 1_min);

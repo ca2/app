@@ -3960,7 +3960,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 //         else
 //         {
 //
-//            output_debug_string("B " + __string(wFocus));
+//            output_debug_string("B " + as_string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -3975,7 +3975,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 //         else
 //         {
 //
-//            output_debug_string("D " + __string(wFocus));
+//            output_debug_string("D " + as_string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //

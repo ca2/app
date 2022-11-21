@@ -3384,7 +3384,7 @@ namespace user
          {
             for(index iLine = itemrange.get_lower_bound(); iLine <= itemrange.get_upper_bound(); iLine++)
             {
-               selection.add_item(key.m_strDataKey + "/" + __string(iLine));
+               selection.add_item(key.m_strDataKey + "/" + as_string(iLine));
             }
          }
       }
@@ -6345,7 +6345,7 @@ namespace user
    string mesh::_001GetItemId(index iStrictItem)
    {
 
-      return __string(iStrictItem);
+      return as_string(iStrictItem);
 
    }
 

@@ -306,7 +306,7 @@ namespace sockets
 
             string strContentLength;
 
-            strContentLength = "Content-Length: " + __string(content_length) + "\r\n";
+            strContentLength = "Content-Length: " + as_string(content_length) + "\r\n";
 
             tmp = "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + name + "\""+ filename + "\r\n"
                   + content_type + strContentLength + "\r\n";
@@ -438,7 +438,7 @@ namespace sockets
 
             string strContentLength;
 
-            strContentLength = "Content-Length: " + __string(content_length) + "\r\n";
+            strContentLength = "Content-Length: " + as_string(content_length) + "\r\n";
 
             tmp = "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + name + "\"" + filename + "\r\n"
                   + content_type + strContentLength + "\r\n";

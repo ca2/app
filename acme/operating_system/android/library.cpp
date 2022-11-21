@@ -69,7 +69,7 @@ CLASS_DECL_ACME void * __node_library_open(const char * pszPath, string & strMes
       if (psz != nullptr)
       {
 
-         strMessage += "strerror("+__string(iError) +") = " + string(psz);
+         strMessage += "strerror("+as_string(iError) +") = " + string(psz);
 
       }
 

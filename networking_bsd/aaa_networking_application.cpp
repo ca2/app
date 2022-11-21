@@ -99,7 +99,7 @@ void networking_application::create_networking_application()
    //fork([this]()
      // {
 
-         //::hyperlink::open_link("http://" + m_psocketthread->m_strIp + ":" + __string(m_psocketthread->m_iPort) + "/");
+         //::hyperlink::open_link("http://" + m_psocketthread->m_strIp + ":" + as_string(m_psocketthread->m_iPort) + "/");
 
    //return estatus;
 

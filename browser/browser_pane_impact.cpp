@@ -115,9 +115,9 @@ namespace browser
       if(get_impact_id() == MENU_IMPACT
             || get_impact_id() == MAIN_IMPACT
             || get_impact_id() == MAIN_SWITCHER_IMPACT
-            || stra.contains(__string((int)MENU_IMPACT))
-            || stra.contains(__string((int)MAIN_IMPACT))
-            || stra.contains(__string((int)MAIN_SWITCHER_IMPACT)))
+            || stra.contains(as_string((int)MENU_IMPACT))
+            || stra.contains(as_string((int)MAIN_IMPACT))
+            || stra.contains(as_string((int)MAIN_SWITCHER_IMPACT)))
       {
 
 
@@ -173,8 +173,8 @@ namespace browser
             m_strTopicTitle = get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_straTitle.implode(" ");
 
          }
-         else if (stra.contains(__string((int)MAIN_IMPACT))
-                  && stra.contains(__string((int)MAIN_SWITCHER_IMPACT)))
+         else if (stra.contains(as_string((int)MAIN_IMPACT))
+                  && stra.contains(as_string((int)MAIN_SWITCHER_IMPACT)))
          {
 
             {
@@ -235,7 +235,7 @@ namespace browser
             for (auto & pslide : m_pimpactLastBilbo->m_prender->slideshow())
             {
 
-               ::pointer<::user::check_box>pcheck = pimpact->get_child_by_id("slide" + __string(i));
+               ::pointer<::user::check_box>pcheck = pimpact->get_child_by_id("slide" + as_string(i));
 
                m_checkptraBilbo.add(pcheck);
 
@@ -388,7 +388,7 @@ namespace browser
                   //}
                   //else
                   //{
-                  //   m_prollspf->_001SetText(__string(1.0/d),::e_source_initialize);
+                  //   m_prollspf->_001SetText(as_string(1.0/d),::e_source_initialize);
                   //}
                }
                catch(...)
@@ -416,7 +416,7 @@ namespace browser
             //      {
             //         m_pflagview->m_dFps = 1.0/ d;
             //         m_pflagview->m_dwRoll= ::duration::now();
-            //         m_prollfps->_001SetText(__string(1.0 / d),::e_source_initialize);
+            //         m_prollfps->_001SetText(as_string(1.0 / d),::e_source_initialize);
             //      }
             //   }
             //   catch(...)

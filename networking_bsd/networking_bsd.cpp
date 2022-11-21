@@ -223,7 +223,7 @@ static const uchar index_hex[256] =
 //* (Same as inet_ntop(AF_INET6, addr, buf, size), except that errno
 //* is not set on failure.)
 //*/
-//CLASS_DECL_NETWORKING_BSD ::string __string(const in6_addr  & addr)
+//CLASS_DECL_NETWORKING_BSD ::string as_string(const in6_addr  & addr)
 //{
 //
 //   ::string str;
@@ -452,7 +452,7 @@ CLASS_DECL_NETWORKING_BSD::string __string_inet_ntop(int iFamily, const void * p
 }
 
 
-CLASS_DECL_NETWORKING_BSD::string __string(const in_addr & addr)
+CLASS_DECL_NETWORKING_BSD::string as_string(const in_addr & addr)
 {
 
    return __string_inet_ntop(AF_INET, &addr);
@@ -460,7 +460,7 @@ CLASS_DECL_NETWORKING_BSD::string __string(const in_addr & addr)
 }
 
 
-CLASS_DECL_NETWORKING_BSD::string __string(const in6_addr & addr)
+CLASS_DECL_NETWORKING_BSD::string as_string(const in6_addr & addr)
 {
 
    return __string_inet_ntop(AF_INET6, &addr);
@@ -468,17 +468,17 @@ CLASS_DECL_NETWORKING_BSD::string __string(const in6_addr & addr)
 }
 
 
-CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr_in & addr)
+CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr_in & addr)
 {
 
-   string strIp = __string(addr.sin_addr);
+   string strIp = as_string(addr.sin_addr);
 
    if (addr.sin_port > 0)
    {
 
       string strAddress;
 
-      strAddress = strIp + ":" + __string(addr.sin_port);
+      strAddress = strIp + ":" + as_string(addr.sin_port);
 
       return strAddress;
 
@@ -490,10 +490,10 @@ CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr_in & addr)
 }
 
 
-CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr_in6 &  addr)
+CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr_in6 &  addr)
 {
 
-   string strIp = __string(addr.sin6_addr);
+   string strIp = as_string(addr.sin6_addr);
 
    if (addr.sin6_port > 0)
    {
@@ -511,25 +511,25 @@ CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr_in6 &  addr)
 }
 
 
-CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr & addr)
+CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr & addr)
 {
 
    if(addr.sa_family == AF_INET)
    {
 
-      return __string((sockaddr_in &)addr);
+      return as_string((sockaddr_in &)addr);
 
    }
    else if(addr.sa_family == AF_INET6)
    {
 
-      return __string((sockaddr_in6 &)addr);
+      return as_string((sockaddr_in6 &)addr);
 
    }
    else
    {
 
-      throw ::exception(error_bad_argument, "Unexpected IP Family " + __string(addr.sa_family));
+      throw ::exception(error_bad_argument, "Unexpected IP Family " + as_string(addr.sa_family));
 
    }
 

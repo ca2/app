@@ -35,11 +35,11 @@ namespace aura
 
       string strSource;
 
-      string strPid = __string(m_pcall->m_pinterprocesscommunication->m_atomApp);
+      string strPid = as_string(m_pcall->m_pinterprocesscommunication->m_atomApp);
 
       strSource.format(" from %s:%s ", m_pcall->m_pinterprocesscommunication->m_strApp.c_str(), strPid.c_str());
 
-      string str = "call " + __string(m_iTask) + strSource + strObject + "." + strMember + ": " + strVara;
+      string str = "call " + as_string(m_iTask) + strSource + strObject + "." + strMember + ": " + strVara;
 
       bool bSendOk = txc.send(str, m_pcall->m_duration);
 
@@ -394,7 +394,7 @@ started:
 
       }
 
-      string strKey = strApp + ":" + __string(idPid);
+      string strKey = strApp + ":" + as_string(idPid);
 
       if(m_txmap[strKey].is_null())
       {
@@ -411,7 +411,7 @@ started:
    bool inteprocess_channel::connect(const ::string & strApp, const ::atom & idPid)
    {
 
-      string strKey = strApp + ":" + __string(idPid);
+      string strKey = strApp + ":" + as_string(idPid);
 
       if(m_txmap[strKey].is_null())
       {
@@ -439,7 +439,7 @@ started:
    ::aura::ipc::tx & inteprocess_channel::caller(const ::string & strApp, const ::atom & iPid)
    {
 
-      string strKey = strApp + ":" + __string(iPid);
+      string strKey = strApp + ":" + as_string(iPid);
 
       if(m_txmap[strKey].is_null())
       {
@@ -481,7 +481,7 @@ started:
 
 #else
 
-      strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + __string(idPid);
+      strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + as_string(idPid);
 
 #endif
 
@@ -493,7 +493,7 @@ started:
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
+pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
 #elif defined(__APPLE__)
 
@@ -509,7 +509,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
 
 #ifdef MACOS
 
-      strKey += "/" + __string(idPid.i32());
+      strKey += "/" + as_string(idPid.i32());
 
 #endif
 
@@ -519,7 +519,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
+pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
 
 #endif
@@ -961,13 +961,13 @@ repeat:
       if (pathPid.has_char())
       {
 
-         strItem = pathPid + "|" + __string(idPid);
+         strItem = pathPid + "|" + as_string(idPid);
 
       }
       else
       {
 
-         strItem = strModule + "|" + __string(idPid);
+         strItem = strModule + "|" + as_string(idPid);
       }
 
 

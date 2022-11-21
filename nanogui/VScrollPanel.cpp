@@ -73,7 +73,7 @@ bool VScrollPanel::mouse_drag_event(const Vector2i & p, const Vector2i & rel, co
 
       float yRate = (y - yMin) / yRange;
       
-      output_debug_string("drag:point=" + __string(p.y()) + ",rate=" + __string(yRate)+ "\n");
+      output_debug_string("drag:point=" + as_string(p.y()) + ",rate=" + as_string(yRate)+ "\n");
 
       if (is_different(yRate, m_scroll, 0.0001))
       {

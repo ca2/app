@@ -88,7 +88,7 @@ namespace userpresence
 
       auto purl = psystem->url();
 
-      purl->string_set(strUrl, "short_status", __string(m_iShortStatusWayTag));
+      purl->string_set(strUrl, "short_status", as_string(m_iShortStatusWayTag));
       purl->string_set(strUrl, "long_status", m_strLongStatus);
 
       property_set set;

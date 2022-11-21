@@ -198,7 +198,7 @@ namespace aura
 
             m.set_os_cf_data(data);
 
-            prx->on_ipc_receive(prx, __string(m));
+            prx->on_ipc_receive(prx, as_string(m));
 
          }
          else

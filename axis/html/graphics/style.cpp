@@ -827,16 +827,16 @@ namespace html
                string strParent;
                if(pelement->m_pparent->m_pstyle->get_text(idName, strSubClass, pdata, pelement->m_pparent, strParent))
                {
-                  str = __string((i32)((double) atof(str) * atoi(strParent)));
+                  str = as_string((i32)((double) atof(str) * atoi(strParent)));
                }
                else
                {
-                  str = __string((i32)((double) atof(str) * 12));
+                  str = as_string((i32)((double) atof(str) * 12));
                }
             }
             else
             {
-               str = __string((i32)((double) atof(str) * 12));
+               str = as_string((i32)((double) atof(str) * 12));
             }
          }
       }

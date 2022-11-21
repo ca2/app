@@ -29,8 +29,8 @@ CLASS_DECL_AURA int windows_show_window(enum_display edisplay, enum_activation e
 CLASS_DECL_AURA enum_display windows_show_window_to_edisplay(int iShowWindow, enum_activation & eactivation);
 
 
-CLASS_DECL_AURA string __string(enum_display edisplay);
-inline string __string(const ::e_display & edisplay);
+CLASS_DECL_AURA string as_string(enum_display edisplay);
+inline string as_string(const ::e_display & edisplay);
 
 
 

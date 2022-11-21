@@ -127,7 +127,7 @@ namespace sockets
       i16     server_port   = get_integer(buf, ptr);
       bool      is_ssl        = get_boolean(buf, ptr);
 
-      //string method_str = __string( method );
+      //string method_str = as_string( method );
       //string method_str(method);
       string method_str((char)method);
       psystem->sockets().m_pajpaxissocketinit->Method.lookup(method, method_str);

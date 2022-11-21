@@ -839,14 +839,14 @@ namespace windowing
       //      strP += "B";
 
       //   ::output_debug_string(
-      //      "w" + __string(rectangleWorkspace.left) + ","
-      //      + __string(rectangleWorkspace.top) + ","
-      //      + __string(rectangleWorkspace.right) + ","
-      //      + __string(rectangleWorkspace.bottom) + " " +
-      //      "r" + __string(prectangle->left) + ","
-      //      + __string(prectangle->top) + ","
-      //      + __string(prectangle->right) + ","
-      //      + __string(prectangle->bottom) + " " +
+      //      "w" + as_string(rectangleWorkspace.left) + ","
+      //      + as_string(rectangleWorkspace.top) + ","
+      //      + as_string(rectangleWorkspace.right) + ","
+      //      + as_string(rectangleWorkspace.bottom) + " " +
+      //      "r" + as_string(prectangle->left) + ","
+      //      + as_string(prectangle->top) + ","
+      //      + as_string(prectangle->right) + ","
+      //      + as_string(prectangle->bottom) + " " +
       //      strE + " " + strP + "\n");
 
       //}

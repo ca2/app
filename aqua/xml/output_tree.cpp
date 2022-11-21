@@ -108,7 +108,7 @@ namespace xml
    //void output_tree::set_double_attr(const char * pcszName, double dValue)
 
    //{
-   //   m_pnode->set_attr(pcszName, __string(dValue));
+   //   m_pnode->set_attr(pcszName, as_string(dValue));
 
    //}
 

@@ -117,7 +117,7 @@ namespace file
 
       template < typename TYPE >
       inline path(const TYPE & t, e_path epath = path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-         path(__string(t), epath, iDir, bNormalize, iSize)
+         path(as_string(t), epath, iDir, bNormalize, iSize)
       {
 
       }

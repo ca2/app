@@ -619,7 +619,7 @@ namespace sockets
                
                response().println("--THIS_STRING_SEPARATES\r\n");
                
-               response().println("Content-range: bytes " + __string(iStart) + "-" + __string(iEnd) + "/" + __string(iLen));
+               response().println("Content-range: bytes " + as_string(iStart) + "-" + as_string(iEnd) + "/" + as_string(iLen));
                
                response().println("Content-Transfer-Encoding: base64");
 
@@ -742,13 +742,13 @@ namespace sockets
             if (iEnd == -1)
             {
                
-               outheader("Content-range") = "bytes " + __string(iStart) + "-" + __string(iEnd) + "/*";
+               outheader("Content-range") = "bytes " + as_string(iStart) + "-" + as_string(iEnd) + "/*";
 
             }
             else
             {
 
-               outheader("Content-range") = "bytes " + __string(iStart) + "-" + __string(iEnd) + "/" + __string(iLen);
+               outheader("Content-range") = "bytes " + as_string(iStart) + "-" + as_string(iEnd) + "/" + as_string(iLen);
 
             }
 

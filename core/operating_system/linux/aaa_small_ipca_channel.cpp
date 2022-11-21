@@ -426,7 +426,7 @@ namespace aura
                if(lRequest == 1024)
                {
 
-                  on_ipc_receive(this, __string(m2));
+                  on_ipc_receive(this, as_string(m2));
 
                }
                else

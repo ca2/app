@@ -200,7 +200,7 @@ auto m_durationRoll = ::duration::now();
 
          pdcParam->set_font(f);
 
-         pdcParam->TextOutA(0, 0, __string(m_dwaFrame.get_size()));*/
+         pdcParam->TextOutA(0, 0, as_string(m_dwaFrame.get_size()));*/
 
 
          ::size_i32 size = m_pimageTime->get_size();
@@ -244,14 +244,14 @@ pacmedirectory->system() / "obs.png");
       //pdcParam->set_text_color(m_colorDrawStatus);
 
       //string str1;
-      //str1 = "FPS: " + __string((int) get_wnd()->m_pimpl.cast<::user::interaction_impl>()->m_dUpdateScreenFps);
+      //str1 = "FPS: " + as_string((int) get_wnd()->m_pimpl.cast<::user::interaction_impl>()->m_dUpdateScreenFps);
       //m_yDrawStatus = 10;
       //pdcParam->TextOutA(10, m_yDrawStatus, str1);
       //m_yDrawStatus += m_pfontDrawStatus->m_dFontSize;
       //if (m_prender != nullptr)
       //{
       //
-      //   str1 = "Render FPS: " + __string((int) m_prender->m_dRenderFps);
+      //   str1 = "Render FPS: " + as_string((int) m_prender->m_dRenderFps);
       //   pdcParam->TextOutA(10, m_yDrawStatus, str1);
       //   m_yDrawStatus += m_pfontDrawStatus->m_dFontSize;
       //}

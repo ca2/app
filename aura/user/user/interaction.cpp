@@ -511,7 +511,7 @@ namespace user
          else
          {
 
-            //output_debug_string("control_box::on_set_size(" + __string(size) + ")");
+            //output_debug_string("control_box::on_set_size(" + as_string(size) + ")");
 
             //if (size.cx > 500)
             //{
@@ -3665,7 +3665,7 @@ namespace user
                if (durationElapsed > 100_ms)
                {
 
-                  output_debug_string("\ndrawing took " + __string(durationElapsed.integral_millisecond()) + "!!");
+                  output_debug_string("\ndrawing took " + as_string(durationElapsed.integral_millisecond()) + "!!");
                   output_debug_string("\ndrawing took more than 100ms to complete!!");
                   output_debug_string("\n");
 
@@ -3769,7 +3769,7 @@ namespace user
             {
 
                CATEGORY_INFORMATION(prodevian,
-                  "\ndrawing took " + __string(durationElapsed.integral_millisecond()) + "!!");
+                  "\ndrawing took " + as_string(durationElapsed.integral_millisecond()) + "!!");
                CATEGORY_INFORMATION(prodevian, "\ndrawing took more than 100ms more than 50ms to complete!!");
 
                // let's trye to see what happened?
@@ -3898,7 +3898,7 @@ namespace user
 
          //string strType = __type_name(this);
 
-         //         output_debug_string("\n" + strType + "drawing took " + __string(tickElapsedWithLock.m_i) + "!!");
+         //         output_debug_string("\n" + strType + "drawing took " + as_string(tickElapsedWithLock.m_i) + "!!");
          //       output_debug_string("\ndrawing took more than 3ms to complete!!");
          //     output_debug_string("\n");
 
@@ -4117,7 +4117,7 @@ namespace user
 
                      //   //   }
 
-                     //   //   CINFO(prodevian)("(more than 50ms)(D) "+strType+"::_000OnDraw took " + __string(d1.m_i) + "::duration.\n");
+                     //   //   CINFO(prodevian)("(more than 50ms)(D) "+strType+"::_000OnDraw took " + as_string(d1.m_i) + "::duration.\n");
 
                      //   //   //pinteraction->_000OnDraw(pgraphics);
 
@@ -11909,7 +11909,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
          if (bDisplay)
          {
 
-            //output_debug_string(__string(++g_i_prodevian_update_visual) + "updvis dpy machine\n");
+            //output_debug_string(as_string(++g_i_prodevian_update_visual) + "updvis dpy machine\n");
 
          }
 
@@ -17246,7 +17246,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto pszType = typeid(*this).name();
       
-      ::output_debug_string("interaction::on_message_left_button_down " + __string(pszType));
+      ::output_debug_string("interaction::on_message_left_button_down " + as_string(pszType));
 
       if (!is_window_enabled())
       {
@@ -17480,7 +17480,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto pszType = typeid(*this).name();
       
-      ::output_debug_string("interaction::on_message_left_button_up " + __string(pszType));
+      ::output_debug_string("interaction::on_message_left_button_up " + as_string(pszType));
       
       auto pappearance = get_appearance();
 

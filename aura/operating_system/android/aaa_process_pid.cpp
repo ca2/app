@@ -67,7 +67,7 @@ string module_path_from_pid(unsigned int iPid)
    char * candidateDir = nullptr;
 
    string str;
-   str = "/proc/" + __string(iPid) + "/exe";
+   str = "/proc/" + as_string(iPid) + "/exe";
 
    /* the easiest case: we are in linux */
    ssize_t s = readlink(pszBuffer,path,iSize);
@@ -193,7 +193,7 @@ int_array module_path_get_pid(const ::string & pszPath)
 //
 //   string str;
 //
-//   str = "/proc/" + __string(iPid) + "/cmdline";
+//   str = "/proc/" + as_string(iPid) + "/cmdline";
 //
 //   memory mem = file_as_memory(str);
 //

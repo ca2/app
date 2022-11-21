@@ -291,7 +291,7 @@ namespace sockets
 
          m_listener = ref memory_new ::winrt::Windows::Networking::Sockets::StreamSocketListener;
 
-         m_listener->BindServiceNameAsync(__string(port));
+         m_listener->BindServiceNameAsync(as_string(port));
 
          m_depth = depth;
 
@@ -331,7 +331,7 @@ namespace sockets
 
          //SOCKET s;
          //m_iBindPort = ad.GetPort();
-         m_listener->BindEndpointAsync(ad.m_hostname, __string(ad.get_service_number()));
+         m_listener->BindEndpointAsync(ad.m_hostname, as_string(ad.get_service_number()));
 /*            {
             return -1;
          }

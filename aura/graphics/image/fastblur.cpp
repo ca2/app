@@ -496,7 +496,7 @@ auto tickC1 = ::duration::now();
 
          string str;
 
-         str = __string(tickA2.integral_millisecond());
+         str = as_string(tickA2.integral_millisecond());
 
       }
 
@@ -579,7 +579,7 @@ auto tickC1 = ::duration::now();
 
          string str;
 
-         str = __string(tickC2.integral_millisecond());
+         str = as_string(tickC2.integral_millisecond());
 
       }
 

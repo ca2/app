@@ -150,7 +150,7 @@ repeat:;
           strUrl = "https://" + dir()->get_api_cc() + "/account/long_set_save?key=";
           strUrl += ::url::encode(m_itema[0]->m_strKey);
           strUrl += "&value=";
-          strUrl += __string(m_itema[0]->m_l);
+          strUrl += as_string(m_itema[0]->m_l);
 
           m_itema.erase_at(0);
 
@@ -337,7 +337,7 @@ bool db_long_set::save(const ::string & lpKey, i64 lValue)
    else if(m_pcore->m_pmysqldbUser != nullptr)
    {
 
-      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_pcore->m_strUser + "', '" + m_pcore->m_pmysqldbUser->escape(lpKey) + "', " + __string(lValue) + ")";
+      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_pcore->m_strUser + "', '" + m_pcore->m_pmysqldbUser->escape(lpKey) + "', " + as_string(lValue) + ")";
 
       TRACE(strSql);
 

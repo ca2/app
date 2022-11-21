@@ -64,7 +64,7 @@ trace_category::~trace_category()
 //tracer& tracer::operator << (const exception& exception)
 //{
 //
-//   m_str += exception.m_strMessage  + " (" + __string(exception.m_estatus) + ")";
+//   m_str += exception.m_strMessage  + " (" + as_string(exception.m_estatus) + ")";
 //
 //   return *this;
 //
@@ -74,7 +74,7 @@ trace_category::~trace_category()
 //tracer& tracer::operator << (const e_status& estatus)
 //{
 //
-//   m_str += __string(estatus);
+//   m_str += as_string(estatus);
 //
 //   return *this;
 //
@@ -84,7 +84,7 @@ trace_category::~trace_category()
 //tracer& tracer::operator << (const enum_status& estatus)
 //{
 //
-//   m_str += __string(estatus);
+//   m_str += as_string(estatus);
 //
 //   return *this;
 //

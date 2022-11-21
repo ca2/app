@@ -145,7 +145,7 @@ namespace draw2d_cairo
 
 #if MEMDLEAK
 
-         m_mem.m_strTag = "image_section=" + __string(cx) + "x" + __string(size.ccy);
+         m_mem.m_strTag = "image_section=" + as_string(cx) + "x" + as_string(size.ccy);
 
 #endif
 

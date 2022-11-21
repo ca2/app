@@ -128,7 +128,7 @@
 
          memory m;
 
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __string(message) + "," + ::apex::get_system()->url_encode(::apex::get_system()->base64().encode({ pdata, len }));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + as_string(message) + "," + ::apex::get_system()->url_encode(::apex::get_system()->base64().encode({ pdata, len }));
 
          ::winrt::Windows::Foundation::Uri ^uri = ref memory_new ::winrt::Windows::Foundation::Uri(anotherappURI);
 

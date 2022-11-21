@@ -342,7 +342,7 @@ namespace ftp
 
       string strHostnamePort(plogon->Hostname());
       if (plogon->Hostport() != DEFAULT_FTP_PORT)
-         strHostnamePort = plogon->Hostname() + ":" + __string(plogon->Hostport()); // add port to hostname (only if port is not 21)
+         strHostnamePort = plogon->Hostname() + ":" + as_string(plogon->Hostport()); // add port to hostname (only if port is not 21)
 
 
       if (!OpenControlChannel(strTemp, ushPort))
@@ -1782,7 +1782,7 @@ auto tickStart = ::duration::now();
    {
       string strPortArguments;
       // convert the port number to 2 bytes + add to the local IP
-      strPortArguments = strHostIP + "," + __string (ushPort >> 8) + "," + __string (ushPort & 0xFF);
+      strPortArguments = strHostIP + "," + as_string (ushPort >> 8) + "," + as_string (ushPort & 0xFF);
 
       strPortArguments.find_replace(".", ",");
 
@@ -1831,7 +1831,7 @@ auto tickStart = ::duration::now();
       switch (representation.Type().AsEnum())
       {
       case type::tyLocalByte:
-         Arguments.add(__string((u32) dwSize));
+         Arguments.add(as_string((u32) dwSize));
          break;
       case type::tyASCII:
       case type::tyEBCDIC:
@@ -2012,11 +2012,11 @@ auto tickStart = ::duration::now();
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::Allocate(int iReserveBytes, const int* piMaxPageOrRecordSize/*=nullptr*/)
    {
-      string_array Arguments({ __string(iReserveBytes) });
+      string_array Arguments({ as_string(iReserveBytes) });
       if (piMaxPageOrRecordSize != nullptr)
       {
          Arguments.push_back("R");
-         Arguments.push_back(__string(*piMaxPageOrRecordSize));
+         Arguments.push_back(as_string(*piMaxPageOrRecordSize));
       }
 
       reply Reply;
@@ -2072,7 +2072,7 @@ auto tickStart = ::duration::now();
    int client_socket::Restart(::u32 dwPosition)
    {
       reply Reply;
-      if (!SendCommand(command::REST(), { __string((u32)dwPosition) }, Reply))
+      if (!SendCommand(command::REST(), { as_string((u32)dwPosition) }, Reply))
          return FTP_ERROR;
 
       if (Reply.Code().IsPositiveIntermediateReply())

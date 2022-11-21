@@ -67,7 +67,7 @@
 //      if (psz != nullptr)
 //      {
 //
-//         strMessage += "strerror("+__string(iError) +") = " + string(psz);
+//         strMessage += "strerror("+as_string(iError) +") = " + string(psz);
 //
 //      }
 //

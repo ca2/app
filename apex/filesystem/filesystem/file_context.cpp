@@ -2470,7 +2470,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //         MD5_Update(&ctx, buf, (size_t)uRead);
 //      }
 //      pfile->seek(iPos, ::e_seek_set);
-//      strMd5 = __string(ctx);
+//      strMd5 = as_string(ctx);
 //      write_gen_string(pfile, nullptr, strMd5);
 //      pfile->seek_to_end();
 //
@@ -2533,7 +2533,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //            iLen -= uRead;
 //         }
 //         pfile2->close();
-//         strMd5New = __string(ctx);
+//         strMd5New = as_string(ctx);
 //         if (strMd5 != strMd5New)
 //            throw ::exception(::exception("failed"));
 //      }
@@ -2720,7 +2720,7 @@ string file_context::nessie(const ::payload &payloadFile)
 
    //}
 
-   //return __string(ns);
+   //return as_string(ns);
 
 }
 
@@ -2776,7 +2776,7 @@ void file_context::init_context()
 //   while (true)
 //   {
 
-//      pathDownloading = pathOut + ".downloading." + ::str().zero_pad(__string(iTry), 20);
+//      pathDownloading = pathOut + ".downloading." + ::str().zero_pad(as_string(iTry), 20);
 
 //      fileOut = papp->file()->get_file(pathDownloading, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 

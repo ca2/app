@@ -175,7 +175,7 @@ namespace dynamic_source
 //      catch (const ::e_status & estatus)
 //      {
 //
-//         output_debug_string("failed to setup visual studio environment " + __string((::i64)estatus.m_estatus));
+//         output_debug_string("failed to setup visual studio environment " + as_string((::i64)estatus.m_estatus));
 //
 //      }
 //
@@ -364,7 +364,7 @@ namespace dynamic_source
 
       string strMillis;
 
-      strMillis = __string(::get_integral_millisecond().m_i % 1000);
+      strMillis = as_string(::get_integral_millisecond().m_i % 1000);
 
       ::ansi_zero_pad(strMillis, 3);
 
@@ -1243,7 +1243,7 @@ namespace dynamic_source
       string strId;
       for(i32 i = 0; i < straId.get_size(); i++)
       {
-         strId += "static ::atom lscript_id" + __string(i) + "(\"" + straId[i] + "\");\r\n";
+         strId += "static ::atom lscript_id" + as_string(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
@@ -1888,7 +1888,7 @@ auto tickStart = ::duration::now();
       string strId;
       for(i32 i = 0; i < straId.get_size(); i++)
       {
-         strId += "static ::atom lscript_id" + __string(i) + "(\"" + straId[i] + "\");\r\n";
+         strId += "static ::atom lscript_id" + as_string(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
@@ -1913,7 +1913,7 @@ auto tickStart = ::duration::now();
          straId.add(strKey);
          iFind = straId.get_upper_bound();
       }
-      strResult = strResult.Left(iArroba) + " lscript_id" + __string(iFind);
+      strResult = strResult.Left(iArroba) + " lscript_id" + as_string(iFind);
       iArroba = -1;
    }
 

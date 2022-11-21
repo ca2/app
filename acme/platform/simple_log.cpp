@@ -180,7 +180,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedirectory->system() / "memory_counters" / strModule.title() / __string(getpid());
+//pacmedirectory->system() / "memory_counters" / strModule.title() / as_string(getpid());
 //
 //#endif
 //
@@ -324,7 +324,7 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
       if (iLine >= 1)
       {
 
-         strMessage += "(" + __string(iLine) + ")";
+         strMessage += "(" + as_string(iLine) + ")";
 
       }
 

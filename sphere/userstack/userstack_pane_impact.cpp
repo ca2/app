@@ -201,7 +201,7 @@ namespace userstack
 
             }
 
-            str = __string((iptr) pcreate->m_pappbias->m_puserinteractionParent);
+            str = as_string((iptr) pcreate->m_pappbias->m_puserinteractionParent);
 
             pcreate->m_eventReady.ResetEvent();
 

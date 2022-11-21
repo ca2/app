@@ -204,7 +204,7 @@
 //      inline bool begins(const ::atom & atom, const ::string & psz) const
 //      {
 //
-//         return m_pstr->begins(this, __string(atom), psz);
+//         return m_pstr->begins(this, as_string(atom), psz);
 //
 //      }
 //

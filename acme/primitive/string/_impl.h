@@ -87,15 +87,15 @@ inline u32hash u32_hash < widestring >(widestring widestr)
 inline const char * FormatArgument(const string & value) noexcept { return value.c_str(); }
 
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > operator+(const string_base < TYPE_CHAR > & str1, const string_base < TYPE_CHAR > & str2)
-{
-
-   string_base < TYPE_CHAR > str;
-
-   return string_concatenate(str, str1, str1.get_length(), str2, str2.get_length());
-
-}
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > operator+(const string_base < TYPE_CHAR > & str1, const string_base < TYPE_CHAR > & str2)
+//{
+//
+//   string_base < TYPE_CHAR > str;
+//
+//   return string_concatenate(str, str1, str1.get_length(), str2, str2.get_length());
+//
+//}
 
 
 
@@ -215,17 +215,17 @@ inline STRING& copy(STRING& string, const FLOATING& number)
 
 
 
-template < typename TYPE >
-inline ::string __string(const TYPE& t)
-{
-
-	::string str;
-
-	::copy(str, t);
-
-	return ::move(str);
-
-}
+//template < typename TYPE >
+//inline ::string as_string(const TYPE& t)
+//{
+//
+//	::string str;
+//
+//	::copy(str, t);
+//
+//	return ::move(str);
+//
+//}
 
 
 template < primitive_number NUMBER >

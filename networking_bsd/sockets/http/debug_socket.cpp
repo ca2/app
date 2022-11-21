@@ -76,7 +76,7 @@ namespace sockets
       if(key == "content-length")
          m_content_length = atoi(value);
 
-      print(__string(key) + ": " + value + "\n");
+      print(as_string(key) + ": " + value + "\n");
    }
 
 

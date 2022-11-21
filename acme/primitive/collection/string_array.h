@@ -799,7 +799,7 @@ void string_array_base < Type, RawType, m_etypeContainer >::copy(const ARRAY & s
    for(::index i = 0; i < this->m_nSize; i++)
    {
       
-      get_data()[i] = __string(src[i]);
+      get_data()[i] = as_string(src[i]);
 
    }
 

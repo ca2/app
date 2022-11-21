@@ -1147,7 +1147,7 @@ pacmedirectory->is(strPath))
 
             ::u32 dwLastError = ::GetLastError();
 
-            output_debug_string("LastError = " + __string(dwLastError));
+            output_debug_string("LastError = " + as_string(dwLastError));
 
          }
 

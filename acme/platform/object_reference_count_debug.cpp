@@ -47,7 +47,7 @@ string object_name(matter* p)
    if (i < 16)
    {
 
-      return __string(i);
+      return as_string(i);
 
    }
 
@@ -175,7 +175,7 @@ void matter::check_pending_releases()
    if (m_pobjrefdbg->m_itema.has_element())
    {
 
-      ::output_debug_string("\nThere are pending releases (m_countReference=" + __string(m_countReference) + "):\n");
+      ::output_debug_string("\nThere are pending releases (m_countReference=" + as_string(m_countReference) + "):\n");
 
       try
       {
@@ -202,7 +202,7 @@ void matter::check_pending_releases()
          try
          {
 
-            ::output_debug_string(::str().pad(__string(iIndex), 4, " ", ::str().pad_left) + ": " + ::str().pad(__string(iStep), 4, " ", ::str().pad_left) + ": " + str + "\n");
+            ::output_debug_string(::str().pad(as_string(iIndex), 4, " ", ::str().pad_left) + ": " + ::str().pad(as_string(iStep), 4, " ", ::str().pad_left) + ": " + str + "\n");
 
          }
          catch (...)

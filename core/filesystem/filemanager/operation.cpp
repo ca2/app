@@ -812,7 +812,7 @@ namespace filemanager
    string set_number_value(string strName, i64 iValue)
    {
 
-      string strValue = __string(iValue);
+      string strValue = as_string(iValue);
 
       string strResult = strName;
 

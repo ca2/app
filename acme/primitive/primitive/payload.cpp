@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-//#include "acme/primitive/string/__string.h"
+//#include "acme/primitive/string/as_string.h"
 #include "payload.h"
 #include "acme/platform/acme.h"
 //#include "acme/filesystem/file/file.h"
@@ -2144,7 +2144,7 @@ string payload::get_recursive_string() const
       {
          if(i > 0)
             str += " ";
-         str += __string(i);
+         str += as_string(i);
          str += " => ";
          str += at(i).get_recursive_string();
          str += ";";
@@ -2190,11 +2190,11 @@ string payload::as_string(const char * pszOnNull) const
       }
       else if(m_etype == ::e_type_i32)
       {
-         str = __string(m_i32);
+         str = as_string(m_i32);
       }
       else if(m_etype == ::e_type_u32)
       {
-         str = __string( m_u32);
+         str = as_string( m_u32);
       }
       else if(m_etype == ::e_type_i64)
       {
@@ -2202,11 +2202,11 @@ string payload::as_string(const char * pszOnNull) const
       }
       else if(m_etype == ::e_type_u64)
       {
-         str = __string(m_u64);
+         str = as_string(m_u64);
       }
       else if(m_etype == ::e_type_f64)
       {
-         str = __string(m_f64);
+         str = as_string(m_f64);
       }
       else if(m_etype == ::e_type_id)
       {
@@ -2222,7 +2222,7 @@ string payload::as_string(const char * pszOnNull) const
       }
       else if(m_etype == ::e_type_bool)
       {
-         str = __string((int)m_b);
+         str = as_string((int)m_b);
       }
       else if (m_etype == ::e_type_payload_pointer)
       {
@@ -8464,7 +8464,7 @@ unsigned long & payload::unsigned_long_reference()
 #endif
 
 
-CLASS_DECL_ACME ::string __string(const ::payload & payload)
+CLASS_DECL_ACME ::string as_string(const ::payload & payload)
 {
 
    ::string str;

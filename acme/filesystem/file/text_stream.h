@@ -224,7 +224,7 @@ public:
 
    //   string str;
 
-   //   str = __string(t);
+   //   str = as_string(t);
 
    //   print(str);
 
@@ -1272,7 +1272,7 @@ inline write_text_stream < FILE >::~write_text_stream()
 //text_stream < FILE >& text_stream < FILE >::operator <<(i32 i)
 //{
 //
-//   print_number(__string(i));
+//   print_number(as_string(i));
 //
 //   return *this;
 //
@@ -1283,7 +1283,7 @@ inline write_text_stream < FILE >::~write_text_stream()
 //text_stream < FILE >& text_stream < FILE >::operator <<(u32 u)
 //{
 //
-//   print_number(__string(u));
+//   print_number(as_string(u));
 //
 //   return *this;
 //
@@ -1294,7 +1294,7 @@ inline write_text_stream < FILE >::~write_text_stream()
 //text_stream < FILE >& text_stream < FILE >::operator <<(i64 i)
 //{
 //
-//   print_number(__string(i));
+//   print_number(as_string(i));
 //
 //   return *this;
 //
@@ -1305,7 +1305,7 @@ inline write_text_stream < FILE >::~write_text_stream()
 //text_stream < FILE >& text_stream < FILE >::operator <<(u64 u)
 //{
 //
-//   print_number(__string(u));
+//   print_number(as_string(u));
 //
 //   return *this;
 //
@@ -1335,7 +1335,7 @@ inline write_text_stream < FILE >::~write_text_stream()
 //
 //   str.format("%f", d);
 //
-//   print_number(__string(d));
+//   print_number(as_string(d));
 //
 //   return *this;
 //

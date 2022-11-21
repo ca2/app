@@ -106,7 +106,7 @@ namespace sockets
       //      FATAL("bind" << Errno << ", " << bsd_socket_error(Errno));
 
       //      SetCloseAndDelete();
-      //      throw ::exception(error_socket, "bind() failed for udp_socket, port:range: " + __string(ad.get_service_number()) + ":" + __string(range));
+      //      throw ::exception(error_socket, "bind() failed for udp_socket, port:range: " + as_string(ad.get_service_number()) + ":" + as_string(range));
       //      return -1;
       //   }
       //   m_bind_ok = true;

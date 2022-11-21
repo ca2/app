@@ -220,7 +220,7 @@ static const char *basis_hex = "0123456789abcdef";
 * (Same as inet_ntop(AF_INET6, addr, buf, size), except that errno
 * is not set on failure.)
 */
-CLASS_DECL_APEX ::string __string(const in6_addr  & addr)
+CLASS_DECL_APEX ::string as_string(const in6_addr  & addr)
 {
 
    str.Empty();
@@ -432,7 +432,7 @@ inline string ip_to_string(byte b1, byte b2, byte b3, byte b4)
 //{
 
 
-CLASS_DECL_APEX ::string __string(const in_addr &  addr)
+CLASS_DECL_APEX ::string as_string(const in_addr &  addr)
 {
 #if defined(WINDOWS)
    str = ip_to_string(
@@ -447,7 +447,7 @@ CLASS_DECL_APEX ::string __string(const in_addr &  addr)
 }
 
 
-CLASS_DECL_APEX ::string __string(const sockaddr_in &  addr)
+CLASS_DECL_APEX ::string as_string(const sockaddr_in &  addr)
 {
 
    return to_string(str, addr.sin_addr);
@@ -455,7 +455,7 @@ CLASS_DECL_APEX ::string __string(const sockaddr_in &  addr)
 }
 
 
-CLASS_DECL_APEX ::string __string(const sockaddr_in6 &  addr)
+CLASS_DECL_APEX ::string as_string(const sockaddr_in6 &  addr)
 {
 
    return to_string(str, addr.sin6_addr);
@@ -479,7 +479,7 @@ CLASS_DECL_APEX void from_string(sockaddr_in6 & addr, const ::string & str)
 }
 
 
-CLASS_DECL_APEX ::string __string(const sockaddr & addr)
+CLASS_DECL_APEX ::string as_string(const sockaddr & addr)
 {
 
    if(addr.sa_family == AF_INET)

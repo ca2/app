@@ -1162,7 +1162,7 @@ void acme_file::set_line(const char * pathParam, index iLine, const char * pszLi
 //
 //      path /= lpszName;
 //
-//      path /= __string(i);
+//      path /= as_string(i);
 //
 //      path /= (string(lpszName) + "." + string(pszExtension));
 //

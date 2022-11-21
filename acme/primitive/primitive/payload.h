@@ -1765,7 +1765,7 @@ inline ::payload_reference __reference(payload & payload)
 //}
 //
 
-CLASS_DECL_ACME::string __string(const ::payload & payload);
+CLASS_DECL_ACME::string as_string(const ::payload & payload);
 
 
 inline payload & copy(payload & payload, const integral_second & integralsecond)
@@ -2186,8 +2186,18 @@ inline void copy(::payload & payload1, const ::payload& payload2)
 
 
 
-inline ::string operator+(const char * psz, const ::payload & payload) { return string(psz) + string(payload); }
+inline ::string operator+(const char * psz, const ::payload & payload)
+{
+
+   return string(psz) + string(payload);
+
+}
 
 
+template < primitive_character CHARACTER >
+inline ::string_base < CHARACTER > & operator+=(::string_base < CHARACTER > & str, const ::payload & payload)
+{
 
+   return str.operator += ((::string) payload);
 
+}

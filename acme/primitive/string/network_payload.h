@@ -10,7 +10,7 @@ template < primitive_number NUMBER >
 string & get_network_payload(::string & str, const NUMBER & number, bool bNewLine = true)
 {
 
-   str = __string(number);
+   str = as_string(number);
 
    return str;
 

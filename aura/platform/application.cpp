@@ -2003,7 +2003,7 @@ retry_license:
 //      if (!init1())
 //      {
 //
-//         //dappy(__type_name(this) + " : init1 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init1 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -2018,7 +2018,7 @@ retry_license:
 //      if (!init2())
 //      {
 //
-//         //dappy(__type_name(this) + " : init2 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init2 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -2033,7 +2033,7 @@ retry_license:
 //      if (!init3())
 //      {
 //
-//         //dappy(__type_name(this) + " : init3 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init3 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -2045,7 +2045,7 @@ retry_license:
 //
 //      m_durationHeartBeat.Now();
 //
-//      //dappy(__type_name(this) + " : init3 ok : " + __string(m_iErrorCode));
+//      //dappy(__type_name(this) + " : init3 ok : " + as_string(m_iErrorCode));
 //
 //      try
 //      {
@@ -2053,7 +2053,7 @@ retry_license:
 //         if (!init())
 //         {
 //
-//            //dappy(__type_name(this) + " : initialize failure : " + __string(m_iErrorCode));
+//            //dappy(__type_name(this) + " : initialize failure : " + as_string(m_iErrorCode));
 //
 //            return false;
 //

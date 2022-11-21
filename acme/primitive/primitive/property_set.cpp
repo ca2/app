@@ -2,7 +2,7 @@
 #include "payload.h"
 ////#include "acme/exception/exception.h"
 //#include "acme/filesystem/file/file.h"
-//#include "acme/networking/__string.h"
+//#include "acme/networking/as_string.h"
 #include "acme/platform/acme.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/string/command_line.h"
@@ -1516,10 +1516,10 @@ property_set & property_set::merge(const property_set & set)
                      while(true)
                      {
 
-                        if(!has_property(__string(i)))
+                        if(!has_property(as_string(i)))
                         {
 
-                           operator[](__string(i)) = *pproperty;
+                           operator[](as_string(i)) = *pproperty;
 
                            break;
 
@@ -2331,7 +2331,7 @@ property & property_set::get(const ::atom & atom)
 //      else if (atom.is_text())
 //      {
 //
-//         return __string(m_i) + "." + string(atom.m_psz);
+//         return as_string(m_i) + "." + string(atom.m_psz);
 //
 //      }
 //      else
@@ -2348,7 +2348,7 @@ property & property_set::get(const ::atom & atom)
 //      if (is_text())
 //      {
 //
-//         return string(m_psz) + "." + __string(atom.m_i);
+//         return string(m_psz) + "." + as_string(atom.m_i);
 //
 //      }
 //      else

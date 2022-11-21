@@ -502,13 +502,13 @@ namespace interprocess
 
 #ifdef MACOS
 
-      strKey += "/" + __string(idPid.i32());
+      strKey += "/" + as_string(idPid.i32());
 
 #endif
 
 #else
 
-      strKey = acmedirectory()->system() / "communication" / strApp / __string(idPid);
+      strKey = acmedirectory()->system() / "communication" / strApp / as_string(idPid);
 
 
 #endif

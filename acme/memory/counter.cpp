@@ -61,7 +61,7 @@ void memory_counter::initialize(::particle * pparticle)
 //
 //      ::file::path strModule = module_path_from_pid(get_current_process_id());
 //
-//      string strBasePath = pmatter->acmedirectory()->system() / "memory_counters" / strModule.title() / __string(get_current_process_id());
+//      string strBasePath = pmatter->acmedirectory()->system() / "memory_counters" / strModule.title() / as_string(get_current_process_id());
 //
 //#endif
 //

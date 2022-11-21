@@ -2776,7 +2776,7 @@ return true;
 //      oswindow hWndParent = oswindow_get(get_parent()->m_pimpl.cast < ::user::interaction_impl >());
 ////      m_puserinteraction->m_iModal = m_puserinteraction->m_iModalCount;
 //      //    int iLevel = m_puserinteraction->m_iModal;
-//      //prop(string("RunModalLoop.thread(") + __string(iLevel) + ")") = ::get_task();
+//      //prop(string("RunModalLoop.thread(") + as_string(iLevel) + ")") = ::get_task();
 //      //  m_puserinteraction->m_iModalCount++;
 //
 //      //m_puserinteraction->m_threadptraModal.add(::get_task());
@@ -2947,7 +2947,7 @@ return true;
    //      ::get_task()->kick_thread();
    //      for(int i = iLevel; i >= 0; i--)
    //      {
-   //         ::thread * pthread = prop(string("RunModalLoop.thread(") + __string(i) + ")").cast < ::thread >();
+   //         ::thread * pthread = prop(string("RunModalLoop.thread(") + as_string(i) + ")").cast < ::thread >();
    //         try
    //         {
    //            pthread->kick_thread();
@@ -6209,7 +6209,7 @@ namespace universal_windows
       ::user::interaction_impl::_001UpdateScreen();
 
       //alskdjfh++;
-      //::output_debug_string("::universal_windows::interaction_impl::_001UpdateScreen " + __string(alskdjfh) + "\n");
+      //::output_debug_string("::universal_windows::interaction_impl::_001UpdateScreen " + as_string(alskdjfh) + "\n");
 
       //if (m_frameworkview)
       //{

@@ -274,7 +274,7 @@ namespace sockets
       FORMATTED_TRACE("OnHeader %s: %s", (const char*)key, (const char*)value);
 #endif
 
-      m_content += __string(key) + ": " + value + "\r\n";
+      m_content += as_string(key) + ": " + value + "\r\n";
       m_response.m_propertysetHeader[key] = value;
       if (key == "content-length")
       {

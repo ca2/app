@@ -219,7 +219,7 @@ string get_status_message(const ::e_status & estatus)
 
    string strMessage;
 
-   strMessage += __string(estatus) + "\n";
+   strMessage += as_string(estatus) + "\n";
 
    strMessage += status_short_description(estatus);
 
@@ -228,7 +228,7 @@ string get_status_message(const ::e_status & estatus)
 }
 
 
-// CLASS_DECL_ACME ::string __string(const ::e_status & estatus)
+// CLASS_DECL_ACME ::string as_string(const ::e_status & estatus)
 // {
 
 //    string str = "estatus=";

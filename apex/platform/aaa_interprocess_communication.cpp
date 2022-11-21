@@ -196,7 +196,7 @@ started:
 
    }
 
-   string strKey = strApp + ":" + __string(idPid);
+   string strKey = strApp + ":" + as_string(idPid);
 
    if(m_txmap[strKey].is_null())
    {
@@ -213,7 +213,7 @@ started:
 void interprocess_intercommunication::connect(const ::string & strApp, const ::atom & idPid)
 {
 
-   string strKey = strApp + ":" + __string(idPid);
+   string strKey = strApp + ":" + as_string(idPid);
 
    if(m_txmap[strKey].is_null())
    {
@@ -237,7 +237,7 @@ void interprocess_intercommunication::connect(const ::string & strApp, const ::a
 ::inteprocess::caller & interprocess_intercommunication::tx(const ::string & strApp, const ::atom & iPid)
 {
 
-   string strKey = strApp + ":" + __string(iPid);
+   string strKey = strApp + ":" + as_string(iPid);
 
    if(m_txmap[strKey].is_null())
    {
@@ -279,7 +279,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 
 #else
 
-   strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + __string(idPid);
+   strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + as_string(idPid);
 
 #endif
 
@@ -287,7 +287,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 
 #if defined(LINUX) || defined(FREEBSD)
 
-   strKey = acmedirectory()->system() / "interprocess_intercommunication" / strApp / __string(idPid);
+   strKey = acmedirectory()->system() / "interprocess_intercommunication" / strApp / as_string(idPid);
 
 #elif defined(__APPLE__)
 
@@ -303,13 +303,13 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
    
 #ifdef MACOS
 
-   strKey += "/" + __string(idPid.i32());
+   strKey += "/" + as_string(idPid.i32());
 
 #endif
 
 #else
 
-   strKey = acmedirectory()->system() / "interprocess_intercommunication" / strApp / __string(idPid);
+   strKey = acmedirectory()->system() / "interprocess_intercommunication" / strApp / as_string(idPid);
 
 
 #endif
@@ -836,13 +836,13 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
    if (pathPid.has_char())
    {
 
-      strItem = pathPid + "|" + __string(idPid);
+      strItem = pathPid + "|" + as_string(idPid);
 
    }
    else
    {
 
-      strItem = strModule + "|" + __string(idPid);
+      strItem = strModule + "|" + as_string(idPid);
    }
 
 

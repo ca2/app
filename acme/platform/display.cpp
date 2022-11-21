@@ -20,7 +20,7 @@ CLASS_DECL_ACME enum_display equivalence_sink(enum_display edisplay)
 }
 
 
-CLASS_DECL_ACME string __string(enum_display edisplay)
+CLASS_DECL_ACME string as_string(enum_display edisplay)
 {
 
    if(is_docking_appearance(edisplay))
@@ -79,10 +79,10 @@ CLASS_DECL_ACME string __string(enum_display edisplay)
 }
 
 
-string __string(const ::e_display & edisplay) 
+string as_string(const ::e_display & edisplay) 
 {
    
-   return __string((::enum_display)edisplay); 
+   return as_string((::enum_display)edisplay); 
 
 }
 

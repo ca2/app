@@ -603,7 +603,7 @@ namespace sockets
 
 
          /*      if (GetUrlPort() != 80 && GetUrlPort() != 443)
-         inheader("host") = GetUrlHost() + ":" + __string(GetUrlPort());
+         inheader("host") = GetUrlHost() + ":" + as_string(GetUrlPort());
          else
          inheader("host") = GetUrlHost();*/
 
@@ -864,12 +864,12 @@ namespace sockets
                else if (data[i] < 10)
                {
                   strChar += "0";
-                  strChar += __string((int)data[i]);
+                  strChar += as_string((int)data[i]);
                   strChar += " ";
                }
                else if (data[i] < 32)
                {
-                  strChar += __string((int)data[i]);
+                  strChar += as_string((int)data[i]);
                   strChar += " ";
                }
                else if (data[i] >= 128)

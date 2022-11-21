@@ -490,7 +490,7 @@ namespace user
 
    #ifdef EXTRA_PRODEVIAN_ITERATION_LOG
 
-            INFORMATION("Skipped e_message_redraw count "+ __string(iSkipped) + "\n");
+            INFORMATION("Skipped e_message_redraw count "+ as_string(iSkipped) + "\n");
 
    #endif
 
@@ -680,7 +680,7 @@ namespace user
          {
 
             // todo display average from last 10 or so frame drawing time and not for every each single offending sample
-            // output_debug_string("("+__string(nanosElapsedSinceLastFrame/1'000'000)+"ms)Frames are taking long to draw. Wait a bit more to free CPU. Is there much load?!?!\n");
+            // output_debug_string("("+as_string(nanosElapsedSinceLastFrame/1'000'000)+"ms)Frames are taking long to draw. Wait a bit more to free CPU. Is there much load?!?!\n");
 
             m_durationNextScreenUpdate += durationFrame;
 
@@ -869,7 +869,7 @@ namespace user
       
       durationUpdateScreenPost.Now();
 
-      output_debug_string("durationBetweenUpdateBufferAndUpdateScreen "+__string(e1.floating_millisecond().m_d) +"ms\n");
+      output_debug_string("durationBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
 
 #endif
 
@@ -884,7 +884,7 @@ namespace user
 
       auto e2 = durationUpdateScreenPost.elapsed();
 
-      output_debug_string("durationUpdateScreenPost " + __string(e2.floating_millisecond().m_d) + "ms\n");
+      output_debug_string("durationUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
 
 #endif
 
@@ -1205,7 +1205,7 @@ namespace user
 
             static ::duration durationLast;
 
-            output_debug_string("time outside updatebuffer " +__string(durationLast.elapsed().floating_millisecond().m_d) + "ms\n");
+            output_debug_string("time outside updatebuffer " +as_string(durationLast.elapsed().floating_millisecond().m_d) + "ms\n");
 
 #endif
 
@@ -1379,9 +1379,9 @@ namespace user
       if (m_durationDuringUpdateScreen > 60_ms)
       {
 
-         //output_debug_string("It took about " + __string(m_durationDuringUpdateScreen) + " to update screen\n");
+         //output_debug_string("It took about " + as_string(m_durationDuringUpdateScreen) + " to update screen\n");
 
-         //output_debug_string("It took about " + __string(m_durationOufOfUpdateScreen) + " out of screen update\n");
+         //output_debug_string("It took about " + as_string(m_durationOufOfUpdateScreen) + " out of screen update\n");
 
       }
 
@@ -1390,9 +1390,9 @@ namespace user
       if (m_durationOufOfUpdateScreen > 60_ms)
       {
 
-         //output_debug_string("It took about " + __string(m_durationDuringUpdateScreen) + " to update screen\n");
+         //output_debug_string("It took about " + as_string(m_durationDuringUpdateScreen) + " to update screen\n");
 
-         //output_debug_string("It took about " + __string(m_durationOufOfUpdateScreen) + " out of screen update\n");
+         //output_debug_string("It took about " + as_string(m_durationOufOfUpdateScreen) + " out of screen update\n");
 
       }
       

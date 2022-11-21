@@ -434,7 +434,7 @@ namespace android
 
    //   output_debug_string("android_interaction_impl on _create_window");
 
-   //   output_debug_string("android_interaction_impl initialize (width=" + __string(width(pinitialize->m_rectangle)) + ",height=" + __string(height(pinitialize->m_rectangle)) + ")");
+   //   output_debug_string("android_interaction_impl initialize (width=" + as_string(width(pinitialize->m_rectangle)) + ",height=" + as_string(height(pinitialize->m_rectangle)) + ")");
 
    //   return true;
 

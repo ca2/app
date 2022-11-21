@@ -118,7 +118,7 @@ public:
 ////   tracer & operator << (const FLOATING_DAY & duration) { return format(duration); }
 //   
 //   template < primitive_integral INTEGRAL >
-//   tracer & operator << (const INTEGRAL integral) { return operator << (::__string(integral)); }
+//   tracer & operator << (const INTEGRAL integral) { return operator << (::as_string(integral)); }
 //
 //
    void flush();

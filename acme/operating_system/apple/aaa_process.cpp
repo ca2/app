@@ -532,7 +532,7 @@ namespace apple
       string_array straParam;
 
       straParam = get_c_args_for_c(pszCmdLineParam);
-      //straParam.add("uid=" + __string(uid));
+      //straParam.add("uid=" + as_string(uid));
       for(index i = 0; i < straParam.get_count(); i++)
       {
          char * psz = (char *)(const char *)straParam[i];

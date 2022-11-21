@@ -264,12 +264,12 @@ namespace earth
 
       str = strFormat;
 
-      str.replace_with(__string(GetZoneYear()), "%Y");
-      str.replace_with(::str().zero_padded(__string(GetZoneMonth()), 2), "%m");
-      str.replace_with(::str().zero_padded(__string(GetZoneDay()), 2), "%d");
-      str.replace_with(::str().zero_padded(__string(GetZoneHour()), 2), "%H");
-      str.replace_with(::str().zero_padded(__string(GetZoneMinute()), 2), "%M");
-      str.replace_with(::str().zero_padded(__string(GetZoneSecond()), 2), "%S");
+      str.replace_with(as_string(GetZoneYear()), "%Y");
+      str.replace_with(::str().zero_padded(as_string(GetZoneMonth()), 2), "%m");
+      str.replace_with(::str().zero_padded(as_string(GetZoneDay()), 2), "%d");
+      str.replace_with(::str().zero_padded(as_string(GetZoneHour()), 2), "%H");
+      str.replace_with(::str().zero_padded(as_string(GetZoneMinute()), 2), "%M");
+      str.replace_with(::str().zero_padded(as_string(GetZoneSecond()), 2), "%S");
 
       return str;
 

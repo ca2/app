@@ -36,7 +36,7 @@ binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, const ne
 
    string strAddress;
 
-   strAddress = __string(item.m_ipaddr);
+   strAddress = as_string(item.m_ipaddr);
 
    stream << strAddress;
    stream << item.m_durationLastChecked;

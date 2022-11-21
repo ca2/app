@@ -331,7 +331,7 @@ namespace http
       else
       {
 
-         strCache = __string(len.i64());
+         strCache = as_string(len.i64());
 
       }
 

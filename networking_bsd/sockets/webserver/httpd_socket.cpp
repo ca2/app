@@ -300,7 +300,7 @@ namespace sockets
 
       //         }
 
-      //         string strFile = ::file::path(m_strCat).sibling(strTitle) + ".dh" + __string(keylength) + ".pem";
+      //         string strFile = ::file::path(m_strCat).sibling(strTitle) + ".dh" + as_string(keylength) + ".pem";
 
       //         FILE * paramfile = fopen(strFile, "r");
 

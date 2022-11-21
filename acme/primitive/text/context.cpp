@@ -405,7 +405,7 @@ namespace text
 
          stra2.erase_all();
 
-         id2 = atom.m_str + "[" + __string(i) + "]";
+         id2 = atom.m_str + "[" + as_string(i) + "]";
 
          _get(stra2, pcontext, id2);
 

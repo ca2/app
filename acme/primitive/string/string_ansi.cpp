@@ -3419,7 +3419,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 
 
-CLASS_DECL_ACME::string __string_format(const char * pszFormat, ...)
+CLASS_DECL_ACME::string string_format(const char * pszFormat, ...)
 {
 
    ::string str;

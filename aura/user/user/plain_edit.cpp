@@ -109,7 +109,7 @@ namespace aura
 
             string strBase64 = str.Mid(iEncoding + 1, iBase64 - iEncoding - 1);
 
-            string strPack = "%pack" + __string(iPack + 1) + "%";
+            string strPack = "%pack" + as_string(iPack + 1) + "%";
 
             str = str.Left(iEncoding + 1) + strPack + str.Mid(iBase64);
 

@@ -75,7 +75,7 @@
 //
 //   uiError = ::get_last_error();
 //
-//   strError = "\n (1) LoadLibraryW " + path + " failed with (" + __string(uiError) + ") " + get_error_string(uiError);
+//   strError = "\n (1) LoadLibraryW " + path + " failed with (" + as_string(uiError) + ") " + get_error_string(uiError);
 //
 //   strMessage += strError;
 //
@@ -101,7 +101,7 @@
 //
 //   uiError = ::get_last_error();
 //
-//   strError = "\n (2) LoadLibraryW " + path + " failed with (" + __string(uiError) + ") " + get_error_string(uiError);
+//   strError = "\n (2) LoadLibraryW " + path + " failed with (" + as_string(uiError) + ") " + get_error_string(uiError);
 //
 //   strMessage += strError;
 //
@@ -120,7 +120,7 @@
 //
 //   uiError = ::get_last_error();
 //
-//   strError = "\n (3) LoadLibraryW " + path + " failed with (" + __string(uiError) + ") " + get_error_string(uiError);
+//   strError = "\n (3) LoadLibraryW " + path + " failed with (" + as_string(uiError) + ") " + get_error_string(uiError);
 //
 //   strMessage += strError;
 //
@@ -146,7 +146,7 @@
 //
 //   uiError = ::get_last_error();
 //
-//   strError = "\n (4) LoadLibraryW " + path + " failed with (" + __string(uiError) + ") " + get_error_string(uiError);
+//   strError = "\n (4) LoadLibraryW " + path + " failed with (" + as_string(uiError) + ") " + get_error_string(uiError);
 //
 //   strMessage += strError;
 //
@@ -172,7 +172,7 @@
 //
 //   uiError = ::get_last_error();
 //
-//   strError = "\n (5) LoadLibraryW " + path + " failed with (" + __string(uiError) + ") " + get_error_string(uiError);
+//   strError = "\n (5) LoadLibraryW " + path + " failed with (" + as_string(uiError) + ") " + get_error_string(uiError);
 //
 //   strMessage += strError;
 //
@@ -198,7 +198,7 @@
 //
 //   uiError = ::get_last_error();
 //
-//   strError = "\n (6) LoadLibraryW " + path + " failed with (" + __string(uiError) + ") " + get_error_string(uiError);
+//   strError = "\n (6) LoadLibraryW " + path + " failed with (" + as_string(uiError) + ") " + get_error_string(uiError);
 //
 //   strMessage += strError;
 //
@@ -299,7 +299,7 @@
 //
 //   uiError = ::get_last_error();
 //
-//   strError = "\n (1) GetModuleHandleW " + path + " failed with (" + __string(uiError) + ") " + get_error_string(uiError);
+//   strError = "\n (1) GetModuleHandleW " + path + " failed with (" + as_string(uiError) + ") " + get_error_string(uiError);
 //
 //   strMessage += strError;
 //
@@ -325,7 +325,7 @@
 //
 //   uiError = ::get_last_error();
 //
-//   strError = "\n (2) GetModuleHandleW " + path + " failed with (" + __string(uiError) + ") " + get_error_string(uiError);
+//   strError = "\n (2) GetModuleHandleW " + path + " failed with (" + as_string(uiError) + ") " + get_error_string(uiError);
 //
 //   strMessage += strError;
 //
@@ -344,7 +344,7 @@
 //
 //   uiError = ::get_last_error();
 //
-//   strError = "\n (3) GetModuleHandleW " + path + " failed with (" + __string(uiError) + ") " + get_error_string(uiError);
+//   strError = "\n (3) GetModuleHandleW " + path + " failed with (" + as_string(uiError) + ") " + get_error_string(uiError);
 //
 //   strMessage += strError;
 //
@@ -370,7 +370,7 @@
 //
 //   uiError = ::get_last_error();
 //
-//   strError = "\n (4) GetModuleHandleW " + path + " failed with (" + __string(uiError) + ") " + get_error_string(uiError);
+//   strError = "\n (4) GetModuleHandleW " + path + " failed with (" + as_string(uiError) + ") " + get_error_string(uiError);
 //
 //   strMessage += strError;
 //
@@ -396,7 +396,7 @@
 //
 //   uiError = ::get_last_error();
 //
-//   strError = "\n (5) GetModuleHandleW " + path + " failed with (" + __string(uiError) + ") " + get_error_string(uiError);
+//   strError = "\n (5) GetModuleHandleW " + path + " failed with (" + as_string(uiError) + ") " + get_error_string(uiError);
 //
 //   strMessage += strError;
 //
@@ -422,7 +422,7 @@
 //
 //   uiError = ::get_last_error();
 //
-//   strError = "\n (6) GetModuleHandleW " + path + " failed with (" + __string(uiError) + ") " + get_error_string(uiError);
+//   strError = "\n (6) GetModuleHandleW " + path + " failed with (" + as_string(uiError) + ") " + get_error_string(uiError);
 //
 //   strMessage += strError;
 //
@@ -488,7 +488,7 @@
 //
 //      u32 uiError = get_last_error();
 //
-//      strMessage = "Failed to Load Library (2) " + string(psz) + " with error (" + __string(uiError) +
+//      strMessage = "Failed to Load Library (2) " + string(psz) + " with error (" + as_string(uiError) +
 //                   ")" + get_error_string(uiError);
 //
 //   }

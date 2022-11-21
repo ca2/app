@@ -2427,7 +2427,7 @@ void call_sync(const ::procedure_array& methoda)
 //
 //   //auto strExtension = payload.get_file_path().extension();
 //
-//   //if (strExtension == __string(atom))
+//   //if (strExtension == as_string(atom))
 //   //{
 //
 //   //   return "";

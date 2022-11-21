@@ -3914,7 +3914,7 @@ end:
       for (; iterator != limit; iterator++)
       {
 
-         iterable.add(__string(*iterator));
+         iterable.add(as_string(*iterator));
 
       }
 

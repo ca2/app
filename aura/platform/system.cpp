@@ -722,8 +722,8 @@ namespace aura
 
       //   iPid = ::get_current_process_id();
 
-      //   printf("%s", ("Process PID: " + __string(iPid) + "\n").c_str());
-      //   output_debug_string("Process PID: " + __string(iPid) + "\n");
+      //   printf("%s", ("Process PID: " + as_string(iPid) + "\n").c_str());
+      //   output_debug_string("Process PID: " + as_string(iPid) + "\n");
 
       //}
 
@@ -2850,7 +2850,7 @@ namespace aura
 
    //   }
 
-   //   FORMATTED_INFORMATION("%s", ("::aura::system::on_request session = " + string(__type_name(psession)) + "("+__string((iptr) psession)+")\n\n").c_str());
+   //   FORMATTED_INFORMATION("%s", ("::aura::system::on_request session = " + string(__type_name(psession)) + "("+as_string((iptr) psession)+")\n\n").c_str());
 
    //   psession->do_request(pcreate);
 
@@ -2967,7 +2967,7 @@ namespace aura
 ////               continue;
 ////            }
 ////
-////            ::output_debug_string("library("+__string(i)+") : " + strLibraryId+"\n\n");
+////            ::output_debug_string("library("+as_string(i)+") : " + strLibraryId+"\n\n");
 ////
 ////            map_application_library(strLibraryId);
 ////

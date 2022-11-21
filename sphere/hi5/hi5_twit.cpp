@@ -393,7 +393,7 @@ namespace hi5
          if (!mediaUploadAppend(strMediaId, i, pfile, int (iSize), strMimeType, boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends))
          {
 
-            m_strError = "ERROR: mediaUploadAppend failed chunk=" + __string(i) + ", " + m_strError;
+            m_strError = "ERROR: mediaUploadAppend failed chunk=" + as_string(i) + ", " + m_strError;
 
             log_line(m_strError);
 
@@ -481,7 +481,7 @@ namespace hi5
    string twit::mediaUploadInit(int iTotalSize, string strMimeType, string strCategory)
    {
 
-      m_strRequest = "REQUEST: mediaUploadInit(" + __string(iTotalSize) + ", \"" + strMimeType + "\", \"" + strCategory + "\")";
+      m_strRequest = "REQUEST: mediaUploadInit(" + as_string(iTotalSize) + ", \"" + strMimeType + "\", \"" + strCategory + "\")";
 
       log_line(m_strRequest);
 
@@ -560,7 +560,7 @@ namespace hi5
    bool twit::mediaUploadAppend(string strMediaId, index iIndex, file_pointer pfile, int iSize, string strMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends)
    {
 
-      log_line("mediaUploadAppend(\"" + strMediaId + "\", " + __string(iIndex) + ", memory(size=" + __string(iSize) + "))");
+      log_line("mediaUploadAppend(\"" + strMediaId + "\", " + as_string(iIndex) + ", memory(size=" + as_string(iSize) + "))");
 
       property_set post;
 

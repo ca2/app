@@ -344,7 +344,7 @@ namespace universal_windows
    
       CoreTextRange range = args->Range;
 
-      ::output_debug_string("range" + __string(range.StartCaretPosition) + "," + __string(range.EndCaretPosition) +"\n");
+      ::output_debug_string("range" + as_string(range.StartCaretPosition) + "," + as_string(range.EndCaretPosition) +"\n");
 
       widestring newText = args->Text;
 

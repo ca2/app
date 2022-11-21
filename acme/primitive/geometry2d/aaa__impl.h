@@ -236,18 +236,18 @@
 //
 //
 //template < primitive_point POINT >
-//inline ::string __string(const POINT & point)
+//inline ::string as_string(const POINT & point)
 //{
 //
-//   str = __string(point.x) + ", " + __string(point.y);
+//   str = as_string(point.x) + ", " + as_string(point.y);
 //
 //}
 //
 //
 //template < primitive_size SIZE >
-//inline ::string __string(const SIZE & size)
+//inline ::string as_string(const SIZE & size)
 //{
 //
-//   str = __string(size.cx) + ", " + __string(size.cy);
+//   str = as_string(size.cx) + ", " + as_string(size.cy);
 //
 //}

@@ -236,7 +236,7 @@ namespace user
 //
 //      }
 //
-//      string str = __string(w);
+//      string str = as_string(w);
 //
 //      //strFile = dir()->matter("keyboard/windows/" + str + ".xml");
 //

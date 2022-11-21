@@ -148,7 +148,7 @@ void memory_counter_increment(T * pthis)
 
       //int i = atoi(acmefile()->as_string(path));
 
-      //acmefile()->put_contents(path, __string(i + 1));
+      //acmefile()->put_contents(path, as_string(i + 1));
    }
 
 }
@@ -167,7 +167,7 @@ void memory_counter_decrement(T * pthis)
 
       //int i = atoi(acmefile()->as_string(path));
 
-      //acmefile()->put_contents(path, __string(i - 1));
+      //acmefile()->put_contents(path, as_string(i - 1));
 
    }
 
@@ -307,7 +307,7 @@ inline pointer < T > & pointer < T >::clone(T2 * p)
 //
 //
 //
-////inline ::string __string(const bool & b)
+////inline ::string as_string(const bool & b)
 ////{
 ////
 ////   if(b)

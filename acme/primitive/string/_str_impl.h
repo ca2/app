@@ -558,11 +558,11 @@ inline void from_string(wd32char sz[n], const ansichar * psz)
 
 
 //template < typename FILE >
-//inline ::string __string(const ::string_stream & strstream);
+//inline ::string as_string(const ::string_stream & strstream);
 
 
 //template < typename FILE >
-//inline ::string __string(const ::text_stream < FILE > & strstream);
+//inline ::string as_string(const ::text_stream < FILE > & strstream);
 
 
 inline string _001Concatenate(const ::string & str1, const ::string & strMid, const ::string & str2)
@@ -608,7 +608,7 @@ template < typename T >
 inline string string_from_int(const T & t)
 {
 
-   return __string((::i64)t);
+   return as_string((::i64)t);
 
 }
 
@@ -617,7 +617,7 @@ template < typename T >
 inline string string_from_u(const T & t)
 {
 
-   return __string((::u64)t);
+   return as_string((::u64)t);
 
 }
 

@@ -360,6 +360,16 @@ inline string_base < CHARACTER > & string_base < CHARACTER >::operator+=(const w
 
 
 template < primitive_character CHARACTER >
+inline string_base < CHARACTER > & string_base < CHARACTER >::operator+=(const inline_number_string & inlinenumberstring)
+{
+
+   return append(inlinenumberstring.get_data(), inlinenumberstring.get_size());
+
+}
+
+
+
+template < primitive_character CHARACTER >
 inline string_base < CHARACTER > & string_base < CHARACTER >::operator+=(const ansichar * pszSrc)
 {
 
@@ -521,6 +531,20 @@ inline string_base < CHARACTER > string_base < CHARACTER >::operator +(const wd3
    string_base < CHARACTER > str(*this);
 
    str += wstrAddUp;
+
+   return str;
+
+}
+
+
+
+template < primitive_character CHARACTER >
+inline string_base < CHARACTER > string_base < CHARACTER >::operator +(const inline_number_string & inlinenumberstring) const
+{
+
+   string_base < CHARACTER > str(*this);
+
+   str.append(inlinenumberstring.get_data(), inlinenumberstring.get_size());
 
    return str;
 

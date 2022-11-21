@@ -643,14 +643,14 @@ namespace networking
    //      struct sockaddr_in6* sa6 = (struct sockaddr_in6*)sa;
    //      string tmp;
    //      convert(tmp, sa6->sin6_addr);
-   //      return tmp + ":" + __string(ntohs(sa6->sin6_port));
+   //      return tmp + ":" + as_string(ntohs(sa6->sin6_port));
    //   }
    //   if (sa->sa_family == AF_INET)
    //   {
    //      struct sockaddr_in* sa4 = (struct sockaddr_in*)sa;
    //      string tmp;
    //      convert(tmp, sa4->sin_addr);
-   //      return tmp + ":" + __string(ntohs(sa4->sin_port));
+   //      return tmp + ":" + as_string(ntohs(sa4->sin_port));
    //   }
    //   return "";
    //}

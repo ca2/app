@@ -330,7 +330,7 @@ const char * unicode_get_category_name(i32 i);
 
 
 template < typename POINTER >
-inline ::string __string(const ::acme::memory_allocate < POINTER > & memoryallocpointer)
+inline ::string as_string(const ::acme::memory_allocate < POINTER > & memoryallocpointer)
 {
 
    string str;

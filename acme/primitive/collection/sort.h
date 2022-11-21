@@ -1221,7 +1221,7 @@
          if (ia.get_size() != a.get_size())
          {
 
-            throw ::exception(error_bad_argument);
+            throw_exception(error_bad_argument);
 
          }
 

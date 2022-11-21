@@ -77,16 +77,16 @@ public:
       }
 
       if(iStart < 0)
-         throw ::exception(error_bad_argument);
+         throw_exception(error_bad_argument);
 
       if(iStart >= a.get_count())
-         throw ::exception(error_bad_argument);
+         throw_exception(error_bad_argument);
 
       if(iEnd < 0)
-         throw ::exception(error_bad_argument);
+         throw_exception(error_bad_argument);
 
       if(iEnd >= a.get_count())
-         throw ::exception(error_bad_argument);
+         throw_exception(error_bad_argument);
 
       m_iBeg = iStart;
 

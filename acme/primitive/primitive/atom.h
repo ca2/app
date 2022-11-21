@@ -1828,3 +1828,7 @@ inline atom::atom(const ::string& str) :
 
 
 
+
+inline ::string operator+(const char * psz, const ::atom & atom) { return string(psz) + string(atom); }
+
+

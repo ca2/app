@@ -153,7 +153,7 @@ class static_application_factory :
 public:
 
 
-   virtual ::pointer < ::particle >  _create_application_as_element() override
+   ::pointer < ::particle >  _create_application_as_particle() override
    {
 
       auto papp = __new(APPLICATION_TYPE);

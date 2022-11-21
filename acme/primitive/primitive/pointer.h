@@ -1274,7 +1274,7 @@ inline i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
    if (::is_null(pderived))
    {
 
-      throw ::exception(error_wrong_type);
+      throw_exception(error_wrong_type);
 
    }
 

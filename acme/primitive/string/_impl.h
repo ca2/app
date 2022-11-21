@@ -99,14 +99,6 @@ inline string_base < TYPE_CHAR > operator+(const string_base < TYPE_CHAR > & str
 
 
 
-template < primitive_atom ATOM >
-inline ::string operator+(const char * psz, const ATOM & atom) { return string(psz) + string(atom); }
-
-
-template < primitive_payload PAYLOAD >
-inline ::string operator+(const char * psz, const PAYLOAD & payload) { return string(psz) + string(payload); }
-
-
 template < primitive_character CHARACTER, primitive_character CHARACTER2 >
 inline ::string_base < CHARACTER2 > operator +(const CHARACTER * pszLeft, const ::string_base < CHARACTER2 > & strRight)
 {

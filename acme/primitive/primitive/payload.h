@@ -2115,8 +2115,8 @@ inline payload & payload::operator /=(const ::payload & payload)
 
 }
 
-template < primitive_string STRING, primitive_payload PAYLOAD >
-inline STRING& copy(STRING& string, const PAYLOAD& payload)
+template < typename CHAR_TYPE >
+inline ::string_base < CHAR_TYPE > & copy(::string_base < CHAR_TYPE > & string, const ::payload& payload)
 {
 
     string = payload.as_string();
@@ -2126,8 +2126,8 @@ inline STRING& copy(STRING& string, const PAYLOAD& payload)
 }
 
 
-template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
-inline void copy(INTEGRAL& integral, const PAYLOAD& payload)
+template < primitive_integral INTEGRAL >
+inline void copy(INTEGRAL& integral, const ::payload& payload)
 {
 
     integral = (INTEGRAL)payload.i64();
@@ -2135,8 +2135,7 @@ inline void copy(INTEGRAL& integral, const PAYLOAD& payload)
 }
 
 
-template < primitive_payload PAYLOAD >
-inline void copy(f32& f, const PAYLOAD& payload)
+inline void copy(f32& f, const ::payload& payload)
 {
 
     f = payload.f32();
@@ -2144,8 +2143,7 @@ inline void copy(f32& f, const PAYLOAD& payload)
 }
 
 
-template < primitive_payload PAYLOAD >
-inline void copy(::f64& f, const PAYLOAD& payload)
+inline void copy(::f64& f, const ::payload & payload)
 {
 
     f = payload.f64();
@@ -2153,8 +2151,8 @@ inline void copy(::f64& f, const PAYLOAD& payload)
 }
 
 
-template < primitive_payload PAYLOAD, primitive_number NUMBER >
-inline void copy(PAYLOAD& payload, const NUMBER& number)
+template < primitive_number NUMBER >
+inline void copy(::payload & payload, const NUMBER& number)
 {
 
     payload = number;
@@ -2162,8 +2160,8 @@ inline void copy(PAYLOAD& payload, const NUMBER& number)
 }
 
 
-template < primitive_payload PAYLOAD, primitive_string STRING >
-inline PAYLOAD& copy(PAYLOAD& payload, const STRING& string)
+template < typename CHAR_TYPE >
+inline ::payload & copy(::payload & payload, const ::string_base < CHAR_TYPE > & string)
 {
 
     payload = string;
@@ -2173,14 +2171,22 @@ inline PAYLOAD& copy(PAYLOAD& payload, const STRING& string)
 }
 
 
-template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
-inline void copy(PAYLOAD1& payload1, const PAYLOAD2& payload2)
+inline void copy(::payload & payload1, const ::payload& payload2)
 {
 
     payload1 = payload2;
 
 }
 
+
+
+
+
+
+
+
+
+inline ::string operator+(const char * psz, const ::payload & payload) { return string(psz) + string(payload); }
 
 
 

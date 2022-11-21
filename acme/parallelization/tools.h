@@ -131,7 +131,7 @@ public:
 
    void prepare(::enum_task_op eop, ::count cIteration = 0);
    virtual void set_ready_to_start();
-   virtual ::e_status wait();
+   ::e_status wait() override;
    virtual void process();
 
    bool add_procedure(const ::procedure & procedure);

@@ -61,7 +61,7 @@ public:
       else
       {
 
-         throw ::exception(error_bad_argument);
+         throw_exception(error_bad_argument);
 
       }
 

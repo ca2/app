@@ -242,12 +242,12 @@ inline string as_string(NUMBER number, const char* pszFormat)
 
 
 template < primitive_unsigned UNSIGNED >
-inline inline_number_string as_string(UNSIGNED u, int iRadix = 10, char chTen = 'a')
+inline inline_number_string as_string(UNSIGNED u, int iRadix = 10, enum_digit_case edigitcase = e_digit_case_lower)
 {
 
    inline_number_string numberstring;
 
-   __u64toansi(u, numberstring, iRadix, chTen);
+   __u64toansi(u, numberstring, iRadix, edigitcase);
 
    return numberstring;
 
@@ -255,12 +255,12 @@ inline inline_number_string as_string(UNSIGNED u, int iRadix = 10, char chTen = 
 
 
 template < primitive_signed SIGNED >
-inline inline_number_string as_string(SIGNED i, int iRadix = 10, char chTen = 'a')
+inline inline_number_string as_string(SIGNED i, int iRadix = 10, enum_digit_case edigitcase = e_digit_case_lower)
 {
 
    inline_number_string numberstring;
 
-   __i64toansi(i, numberstring, iRadix, chTen);
+   __i64toansi(i, numberstring, iRadix, edigitcase);
 
    return numberstring;
 

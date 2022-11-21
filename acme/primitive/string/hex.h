@@ -130,7 +130,7 @@ namespace hex
 
       char sz[64];
 
-      __u64toansi((::u64)i, sz, 16, 'A');
+      __u64toansi((::u64)i, sz, 16, e_digit_case_upper);
 
       ansi_upr(sz);
 
@@ -144,7 +144,7 @@ namespace hex
 
       char sz[64];
 
-      __u64toansi((::u64)i, sz, 16, 'a');
+      __u64toansi((::u64)i, sz, 16, e_digit_case_lower);
 
       ansi_lwr(sz);
 

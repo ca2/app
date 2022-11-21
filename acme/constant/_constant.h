@@ -3,7 +3,13 @@
 
 //#include "GLOBAL_ID.h"
 
+enum enum_digit_case : ::i32
+{
 
+   e_digit_case_lower = (::i32) 'a',
+   e_digit_case_upper = (::i32) 'A',
+
+};
 
 enum enum_optional
 {

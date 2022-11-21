@@ -99,7 +99,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 
          char pszNum[30];
 
-         ansi_from_i64(pszNum, iLine, 10);
+         ansi_from_i64(pszNum, iLine, 10, e_digit_case_upper);
 
          ansi_concatenate(psz, "(");
 

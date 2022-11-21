@@ -2,7 +2,7 @@
 //#include "acme/filesystem/file/file.h"
 
 
-#include <FreeImage/FreeImage.h>
+#include <FreeImage.h>
 
 
 u32 _stdcall ___Ex1File__WriteProc(void * buffer, u32 size, u32 count, fi_handle handle)

@@ -56,6 +56,8 @@ public:
    }
 
 
+   const CHARACTER* c_str() { return m_sz; }
+
 
    operator const CHARACTER* () const { return m_sz; }
    operator CHARACTER* () { return m_sz; }

@@ -3,7 +3,7 @@
 #include "_conv.h"
 
 
-ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, ansichar ansichTen)
+ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, enum_digit_case edigitcase)
 {
 
    if (u == 0)
@@ -19,7 +19,7 @@ ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, ansichar ansichTen)
 
    i32 iIndex = 0;
 
-   __natural_to_string_internal(u, buf, iBase, iIndex, ansichTen);
+   __natural_to_string_internal(u, buf, iBase, iIndex, edigitcase);
 
    buf[iIndex] = '\0';
 
@@ -32,7 +32,7 @@ ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, ansichar ansichTen)
 
 
 
-ansichar * __i64toansi(::i64 i, ansichar * buf, int iBase, ansichar ansichTen)
+ansichar * __i64toansi(::i64 i, ansichar * buf, int iBase, enum_digit_case edigitcase)
 {
 
 
@@ -66,7 +66,7 @@ ansichar * __i64toansi(::i64 i, ansichar * buf, int iBase, ansichar ansichTen)
 
    i32 iIndex = 0;
 
-   __natural_to_string_internal(i, buf, iBase, iIndex, ansichTen);
+   __natural_to_string_internal(i, buf, iBase, iIndex, edigitcase);
 
    if (bNegative)
    {

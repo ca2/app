@@ -2,7 +2,7 @@
 #include "context_image.h"
 
 
-#include <FreeImage/FreeImage.h>
+#include <FreeImage.h>
 
 
 namespace imaging_freeimage

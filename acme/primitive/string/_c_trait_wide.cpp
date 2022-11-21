@@ -3,7 +3,7 @@
 #include "_conv.h"
 
 
-wd16char * __u64towd16(::u64 u, wd16char * buf, int iBase, wd16char wd16chTen)
+wd16char * __u64towd16(::u64 u, wd16char * buf, int iBase, enum_digit_case edigitcase)
 {
 
    if (u == 0)
@@ -30,7 +30,7 @@ wd16char * __u64towd16(::u64 u, wd16char * buf, int iBase, wd16char wd16chTen)
 }
 
 
-wd32char * __u64towd32(::u64 u, wd32char * buf, int iBase, wd32char wd32chTen)
+wd32char * __u64towd32(::u64 u, wd32char * buf, int iBase, enum_digit_case edigitcase)
 {
 
    if (u == 0)
@@ -57,7 +57,7 @@ wd32char * __u64towd32(::u64 u, wd32char * buf, int iBase, wd32char wd32chTen)
 }
 
 
-wd16char * __i64towd16(::i64 i, wd16char * buf, int iBase, wd16char wd16chTen)
+wd16char * __i64towd16(::i64 i, wd16char * buf, int iBase, enum_digit_case edigitcase)
 {
 
 
@@ -111,7 +111,7 @@ wd16char * __i64towd16(::i64 i, wd16char * buf, int iBase, wd16char wd16chTen)
 }
 
 
-wd32char * __i64towd32(::i64 i, wd32char * buf, int iBase, wd32char wd32chTen)
+wd32char * __i64towd32(::i64 i, wd32char * buf, int iBase, enum_digit_case edigitcase)
 {
 
    if (i == 0)

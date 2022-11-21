@@ -5,7 +5,7 @@
 #include "aura/graphics/image/save_image.h"
 
 
-#include <FreeImage/FreeImage.h>
+#include <FreeImage.h>
 
 
 namespace imaging_freeimage

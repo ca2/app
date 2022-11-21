@@ -717,37 +717,37 @@ inline const ansichar * ansi_find_char_reverse(const ansichar * psz, ansichar ch
 //inline const ansichar * ansi_concatenate_duplicate_and_free(const ansichar * psz1, ansichar * psz2);
 
 
-inline void ansi_from_u64(ansichar * sz, u64 u, i32 iBase, ansichar chTen)
+inline void ansi_from_u64(ansichar * sz, u64 u, i32 iBase, enum_digit_case edigitcase)
 {
 
-   __u64toansi(u, sz, iBase, chTen);
+   __u64toansi(u, sz, iBase, edigitcase);
 
 }
 
 
-inline void ansi_from_i64(ansichar * sz, i64 i, i32 iBase, ansichar chTen)
+inline void ansi_from_i64(ansichar * sz, i64 i, i32 iBase, enum_digit_case edigitcase)
 {
 
-   __i64toansi(i, sz, iBase, chTen);
+   __i64toansi(i, sz, iBase, edigitcase);
 
 }
 
 
-inline void ansi_from_u32(ansichar * sz, u32 u, i32 iBase, ansichar chTen)
+inline void ansi_from_u32(ansichar * sz, u32 u, i32 iBase, enum_digit_case edigitcase)
 {
 
-   __u64toansi(u, sz, iBase, chTen);
+   __u64toansi(u, sz, iBase, edigitcase);
 
 }
 
 
-inline void ansi_from_i32(ansichar * sz, i32 i, i32 iBase, ansichar chTen)
+inline void ansi_from_i32(ansichar * sz, i32 i, i32 iBase, enum_digit_case edigitcase)
 {
 
-   __i64toansi(i, sz, iBase, chTen);
+   __i64toansi(i, sz, iBase, edigitcase);
+
 
 }
-
 
 
 

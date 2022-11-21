@@ -7,7 +7,7 @@
 #include "aura/graphics/image/frame_array.h"
 
 
-#include <FreeImage/FreeImage.h>
+#include <FreeImage.h>
 
 
 struct FIBITMAP;

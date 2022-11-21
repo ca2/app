@@ -4,7 +4,7 @@
 #include "acme/primitive/primitive/memory.h"
 
 
-#include <FreeImage/FreeImage.h>
+#include <FreeImage.h>
 
 
 class fimemory

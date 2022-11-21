@@ -88,9 +88,9 @@ inline int ansi_nicmp(const ansichar * psz1, const ansichar * psz2, strsize s)
 
 inline const ansichar * ansi_istr(const ansichar * psz, const ansichar * pszFind) { return __ansiistr(psz, pszFind); }
 
-inline ansichar * ui64tostr(::u64 u, ansichar * buf, int iBase, ansichar ansichTen) { return __u64toansi(u, buf, iBase, ansichTen); }
+inline ansichar * ui64tostr(::u64 u, ansichar * buf, int iBase, enum_digit_case edigitcase) { return __u64toansi(u, buf, iBase, edigitcase); }
 
-inline ansichar * i64tostr(::u64 u, ansichar * buf, int iBase, ansichar ansichTen) { return __i64toansi(u, buf, iBase, ansichTen); }
+inline ansichar * i64tostr(::u64 u, ansichar * buf, int iBase, enum_digit_case edigitcase) { return __i64toansi(u, buf, iBase, edigitcase); }
 
 inline int ansi_coll(const ansichar * psz1, const ansichar * psz2) { return strcmp(psz1, psz2); }
 
@@ -201,11 +201,11 @@ inline int wide_nicmp(const widechar * psz1, const widechar * psz2, strsize s) {
 inline const wd16char * wd16_istr(const wd16char * psz, const wd16char * pszFind) { return __wd16istr(psz, pszFind); }
 inline const wd32char * wd32_istr(const wd32char * psz, const wd32char * pszFind) { return __wd32istr(psz, pszFind); }
 
-inline wd16char * u64towd16(::u64 u, wd16char * buf, int iBase, wd16char wd16chTen) { return __u64towd16(u, buf, iBase, wd16chTen); }
-inline wd32char * u64towd32(::u64 u, wd32char * buf, int iBase, wd32char wd32chTen) { return __u64towd32(u, buf, iBase, wd32chTen); }
+inline wd16char * u64towd16(::u64 u, wd16char * buf, int iBase, enum_digit_case edigitcase) { return __u64towd16(u, buf, iBase, wd16chTen); }
+inline wd32char * u64towd32(::u64 u, wd32char * buf, int iBase, enum_digit_case edigitcase) { return __u64towd32(u, buf, iBase, wd32chTen); }
 
-inline wd16char * i64towd16(::i64 i, wd16char * buf, int iBase, wd16char wd16chTen) { return __i64towd16(i, buf, iBase, wd16chTen); }
-inline wd32char * i64towd32(::i64 i, wd32char * buf, int iBase, wd32char wd32chTen) { return __i64towd32(i, buf, iBase, wd32chTen); }
+inline wd16char * i64towd16(::i64 i, wd16char * buf, int iBase, enum_digit_case edigitcase) { return __i64towd16(i, buf, iBase, wd16chTen); }
+inline wd32char * i64towd32(::i64 i, wd32char * buf, int iBase, enum_digit_case edigitcase) { return __i64towd32(i, buf, iBase, wd32chTen); }
 
 inline int wd16_coll(const wd16char * psz1, const wd16char * psz2) { return wcscoll(psz1, psz2); }
 inline int wd32_coll(const wd32char * psz1, const wd32char * psz2) { return __wd32cmp(psz1, psz2); }
@@ -354,13 +354,13 @@ inline const wd16char * wd16_istr(const wd16char * psz, const wd16char * pszFind
 inline const wd32char * wd32_istr(const wd32char * psz, const wd32char * pszFind) { return __wd32istr(psz, pszFind); }
 inline const wd32char * widew_istr(const widechar * psz, const widechar * pszFind) { return wd32_istr(psz, pszFind); }
 
-inline wd16char * u64towd16(::u64 u, wd16char * buf, int iBase, wd16char wd16chTen) { return __u64towd16(u, buf, iBase, wd16chTen); }
-inline wd32char * u64towd32(::u64 u, wd32char * buf, int iBase, wd32char wd32chTen) { return __u64towd32(u, buf, iBase, wd32chTen); }
-inline widechar * u64towide(::u64 u, widechar * buf, int iBase, widechar widechTen) { return __u64towd32(u, buf, iBase, widechTen); }
+inline wd16char * u64towd16(::u64 u, wd16char * buf, int iBase, enum_digit_case edigitcase) { return __u64towd16(u, buf, iBase, edigitcase); }
+inline wd32char * u64towd32(::u64 u, wd32char * buf, int iBase, enum_digit_case edigitcase) { return __u64towd32(u, buf, iBase, edigitcase); }
+inline widechar * u64towide(::u64 u, widechar * buf, int iBase, enum_digit_case edigitcase) { return __u64towd32(u, buf, iBase, edigitcase); }
 
-inline wd16char * i64towd16(::i64 u, wd16char * buf, int iBase, wd16char wd16chTen) { return __i64towd16(u, buf, iBase, wd16chTen); }
-inline wd32char * i64towd32(::i64 u, wd32char * buf, int iBase, wd32char wd32chTen) { return __i64towd32(u, buf, iBase, wd32chTen); }
-inline widechar * i64towide(::i64 u, widechar * buf, int iBase, widechar widechTen) { return __i64towd32(u, buf, iBase, widechTen); }
+inline wd16char * i64towd16(::i64 u, wd16char * buf, int iBase, enum_digit_case edigitcase) { return __i64towd16(u, buf, iBase, edigitcase); }
+inline wd32char * i64towd32(::i64 u, wd32char * buf, int iBase, enum_digit_case edigitcase) { return __i64towd32(u, buf, iBase, edigitcase); }
+inline widechar * i64towide(::i64 u, widechar * buf, int iBase, enum_digit_case edigitcase) { return __i64towd32(u, buf, iBase, edigitcase); }
 
 inline int wd16_coll(const wd16char * psz1, const wd16char * psz2) { return __wd16cmp(psz1, psz2); }
 inline int wd32_coll(const wd32char * psz1, const wd32char * psz2) { return wcscoll(psz1, psz2); }

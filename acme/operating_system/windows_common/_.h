@@ -1,4 +1,4 @@
-// get_mem_info2 from debug.h by camilo on 2022-11-07 01:53 <3ThomasBorregaardSorensen!!
+﻿// get_mem_info2 from debug.h by camilo on 2022-11-07 01:53 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -8,7 +8,7 @@
 #include "acme/primitive/comparison/compare.h"
 
 
-#include "as_string.h"
+#include "_string.h"
 
 
 #ifdef MEMDLEAK

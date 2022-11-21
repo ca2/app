@@ -2807,7 +2807,7 @@
     <ClInclude Include="platform\enum_names.h">
       <Filter>Header Files\primitive\platform</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\windows_common\__string.h">
+    <ClInclude Include="operating_system\windows_common\_string.h">
       <Filter>Header Files\operating_system\windows_common</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\string_iterator.h">

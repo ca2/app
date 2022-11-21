@@ -1193,7 +1193,7 @@
     <ClInclude Include="operating_system\windows\_c.h" />
     <ClInclude Include="operating_system\windows_common\last_error_exception.h" />
     <ClInclude Include="operating_system\windows_common\_c.h" />
-    <ClInclude Include="operating_system\windows_common\__string.h" />
+    <ClInclude Include="operating_system\windows_common\_string.h" />
     <ClInclude Include="parallelization\counter.h" />
     <ClInclude Include="parallelization\create_task_attributes.h" />
     <ClInclude Include="parallelization\__string.h" />

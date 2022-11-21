@@ -135,8 +135,9 @@ namespace graphics
 
    console::console(::user::interaction * puserinteraction, ::size_i32 sizeTile) :
       m_puserinteraction(puserinteraction),
-      m_sizeTile(sizeTile),
-      m_cout(this)
+      m_sizeTile(sizeTile)
+//      ,
+//      m_cout(this)
    {
 
       m_x = 0;
@@ -153,12 +154,12 @@ namespace graphics
    }
 
 
-   write_text_stream <::file::file> & console::cout()
-   {
-
-      return m_cout;
-
-   }
+//   write_text_stream <::file::file> & console::cout()
+//   {
+//
+//      return m_cout;
+//
+//   }
 
 
 //   void console::assert_ok() const

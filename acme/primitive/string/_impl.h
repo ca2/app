@@ -250,12 +250,12 @@ inline string as_string(NUMBER number, const char* pszFormat)
 
 
 template < primitive_unsigned UNSIGNED >
-inline inline_number_string as_string(UNSIGNED u, int iRadix = 10)
+inline inline_number_string as_string(UNSIGNED u, int iRadix = 10, char chTen = 'a')
 {
 
    inline_number_string numberstring;
 
-   _ui64toa(u, numberstring, iRadix);
+   __u64toansi(u, numberstring, iRadix, chTen);
 
    return numberstring;
 
@@ -263,20 +263,12 @@ inline inline_number_string as_string(UNSIGNED u, int iRadix = 10)
 
 
 template < primitive_signed SIGNED >
-inline inline_number_string as_string(SIGNED i, int iRadix = 10)
+inline inline_number_string as_string(SIGNED i, int iRadix = 10, char chTen = 'a')
 {
 
    inline_number_string numberstring;
 
-#ifdef WINDOWS
-
-   _i64toa(i, numberstring, iRadix);
-
-#else
-
-   __i64toansi(i, numberstring, iRadix);
-
-#endif
+   __i64toansi(i, numberstring, iRadix, chTen);
 
    return numberstring;
 

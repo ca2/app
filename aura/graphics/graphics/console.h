@@ -20,7 +20,7 @@ namespace graphics
    public:
 
 
-      ::write_text_stream < ::file::file >      m_cout;
+      //::write_text_stream < ::file::file >      m_cout;
       ::image_pointer                           m_pimage;
       ::size_i32                                m_sizeTile;
       ::size_i32                                m_sizeWindow;
@@ -49,7 +49,7 @@ namespace graphics
       // virtual void dump(dump_context & dump) const override;
 
 
-      ::write_text_stream < ::file::file > & cout() override;
+      //::write_text_stream < ::file::file > & cout() override;
 
       
       virtual ::draw2d::pen_pointer & get_pen2(enum_dos_color edoscolor);

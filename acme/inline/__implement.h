@@ -132,7 +132,11 @@ int main(int argc, char * argv[], char * envp[])
    
    #else
 
-      set_argc_argv_envp(argc, argv, envp);
+      subsystem.m_argc = argc;
+
+      subsystem.m_argv = argv;
+
+      subsystem.m_envp = envp;
 
       #if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN)
    

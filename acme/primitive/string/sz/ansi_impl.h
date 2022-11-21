@@ -164,7 +164,7 @@ inline strsize  get_formatted_length(const ansichar * pszFormat, va_list args) n
 }
 
 
-inline strsize  string_format(ansichar * pszBuffer, strsize nlength, const ansichar * pszFormat, va_list args) noexcept
+inline strsize ansistring_format(ansichar * pszBuffer, strsize nlength, const ansichar * pszFormat, va_list args) noexcept
 {
 
 #ifdef WINDOWS

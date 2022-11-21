@@ -229,12 +229,12 @@ public:
    //   operator = (eenum);
    //}
 
-   template < typename T >
-   payload(const T & t)
-   {
-      m_etype = e_type_new;
-      operator = (t);
-   }
+//   template < typename T >
+//   payload(const T & t)
+//   {
+//      m_etype = e_type_new;
+//      operator = (t);
+//   }
 
 
    //payload(const ::e_status & estatus)
@@ -1981,28 +1981,22 @@ namespace file
 
    // inline path::path(const ::payload & payload,e_path epath): path(payload.get_file_path(),epath){}
    // inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
-   inline path & path::operator = (const ::payload & payload) { return operator = (payload.as_string()); }
-   inline path & path::operator += (const ::payload & payload) { return operator += (payload.as_string()); }
-   inline path & path::operator = (const property & property) { return operator = ((const ::payload &)property); }
-   inline path & path::operator += (const property & property) { return operator += ((const ::payload &)property); }
-   template < primitive_payload PAYLOAD >
-   inline path path::operator + (const PAYLOAD & payload) const { return operator + (payload.as_string()); }
-   template < primitive_atom ATOM >
-   inline path path::operator + (const ATOM & atom) const { return operator + (::string(atom)); }
-   template < primitive_payload PAYLOAD >
-   inline path path::operator / (const PAYLOAD & payload) const { return operator /(::file::path(payload)); }
-   template < primitive_atom ATOM >
-   inline path path::operator / (const ATOM & atom) const { return operator /(::file::path(atom)); }
-   inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
-   inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
+   //inline path & path::operator = (const ::payload & payload) { return operator = (payload.as_string()); }
+   //inline path & path::operator += (const ::payload & payload) { return operator += (payload.as_string()); }
+   //inline path & path::operator = (const property & property) { return operator = ((const ::payload &)property); }
+   //inline path & path::operator += (const property & property) { return operator += ((const ::payload &)property); }
+   inline path path::operator + (const ::atom & atom) const { return operator + (::string(atom)); }
+   inline path path::operator / (const ::atom & atom) const { return operator /(::file::path(atom)); }
+   //inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
+   //inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
    inline path path::folder() const { return { ::file_path_folder(*this), m_epath }; }
    inline path path::sibling(const path & path) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(path), m_epath }; }
    inline path path::sibling(const ::ansistring & str) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(str), m_epath }; }
    inline path path::sibling(const char * psz) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(psz), m_epath }; }
    inline string path::all_extensions() const { return &m_pdata[find_skip_or_length('.', rfind(separator()) + 1)]; }
    inline string path::final_extension() const { return file_path_final_extension(operator const char * ()); }
-   inline bool path::operator == (const ::payload & payload) const { return operator == (payload.file_path()); }
-   inline bool path::operator != (const ::payload & payload) const { return operator != (payload.file_path()); }
+   //inline bool path::operator == (const ::payload & payload) const { return operator == (payload.file_path()); }
+   //inline bool path::operator != (const ::payload & payload) const { return operator != (payload.file_path()); }
 
 
 } // namespace file

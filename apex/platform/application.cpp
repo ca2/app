@@ -223,7 +223,7 @@ namespace apex
 
       m_bLicense = false;
 
-      m_bInterprocessCommunication = true;
+      m_bInterprocessCommunication = false;
 
       //m_pimaging = nullptr;
 

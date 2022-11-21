@@ -2142,15 +2142,28 @@ string payload::get_recursive_string() const
 
       for(::i32 i = 0; i < array_get_count(); i++)
       {
+
          if(i > 0)
+         {
+
             str += " ";
-         str += as_string(i);
+
+         }
+
+         str += ::as_string(i);
+
          str += " => ";
+
          str += at(i).get_recursive_string();
+
          str += ";";
+
       }
+
       str += ")";
+
       return str;
+
    }
    else
    {
@@ -2182,47 +2195,68 @@ string payload::as_string(const char * pszOnNull) const
    }
    else if(m_etype != e_type_string)
    {
+
       ::string str;
 
       if(m_etype == ::e_type_null)
       {
+
          str = pszOnNull;
+
       }
       else if(m_etype == ::e_type_i32)
       {
-         str = as_string(m_i32);
+
+         str = ::as_string(m_i32);
+
       }
       else if(m_etype == ::e_type_u32)
       {
-         str = as_string( m_u32);
+
+         str = ::as_string( m_u32);
+
       }
       else if(m_etype == ::e_type_i64)
       {
+
          str = i64toa_dup(m_i64);
+
       }
       else if(m_etype == ::e_type_u64)
       {
-         str = as_string(m_u64);
+
+         str = ::as_string(m_u64);
+
       }
       else if(m_etype == ::e_type_f64)
       {
-         str = as_string(m_f64);
+
+         str = ::as_string(m_f64);
+
       }
       else if(m_etype == ::e_type_id)
       {
+
          str = m_atom;
+
       }
       else if(m_etype == ::e_type_pid)
       {
+
          str = *m_patom;
+
       }
       else if(m_etype == ::e_type_string_array)
       {
+
          str = stra().implode("");
+
       }
       else if(m_etype == ::e_type_bool)
       {
-         str = as_string((int)m_b);
+
+         str = ::as_string((int)m_b);
+
       }
       else if (m_etype == ::e_type_payload_pointer)
       {
@@ -2254,10 +2288,13 @@ string payload::as_string(const char * pszOnNull) const
    }
    else
    {
+
       return m_str;
+
    }
 
 }
+
 
 //string & payload::as_string(const char * pszOnNull)
 string & payload::string_reference(const char * pszOnNull)
@@ -2299,8 +2336,6 @@ string & payload::string_reference(const char * pszOnNull)
    }
 
 }
-
-
 
 
 //const string & payload::get_ref_string(const char * pszOnNull) const

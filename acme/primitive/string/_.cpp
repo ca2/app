@@ -43,23 +43,23 @@ int debug_string_iterator()
 
 
 
-string string_format(const char * pszFormat, ...)
-{
-
-   string str;
-
-   va_list argList;
-
-   va_start(argList, pszFormat);
-
-   str.format_arguments(pszFormat, argList);
-
-   va_end(argList);
-
-   return ::move(str);
-
-}
-
+//string string_format(const char * pszFormat, ...)
+//{
+//
+//   string str;
+//
+//   va_list argList;
+//
+//   va_start(argList, pszFormat);
+//
+//   str.format_arguments(pszFormat, argList);
+//
+//   va_end(argList);
+//
+//   return ::move(str);
+//
+//}
+//
 
 CLASS_DECL_ACME inline strsize safe_strlen(void * p, strsize n)
 {

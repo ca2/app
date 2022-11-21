@@ -112,6 +112,9 @@ namespace acme
 
       }
 
+
+      __construct_new(m_pnano);
+
       //m_psystemimpl = memory_new system_impl;
 
       //set_os_data(LAYERED_ACME, this);
@@ -1741,7 +1744,7 @@ namespace acme
 
          string strPid;
 
-         strPid = as_string(acmenode()->get_current_process_id());
+         strPid = ::as_string(acmenode()->get_current_process_id());
 
          strModifier = strDate + "_" + strPid;
 

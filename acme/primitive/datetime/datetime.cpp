@@ -4,7 +4,7 @@
 ////#include "acme/exception/exception.h"
 #include "acme/exception/not_implemented.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/datetime/as_string.h"
+#include "acme/primitive/datetime/_string.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/string/str.h"
 #include "acme/primitive/text/context.h"
@@ -576,7 +576,7 @@ namespace datetime
    string datetime::get_week_day_str(const ::text::context * pcontext, i32 iWeekDay) // 1 - domingo
    {
       
-      return acmesystem()->texttable()->get(pcontext, "datetimestr_weekday_long[" + as_string(iWeekDay - 1) + "]");
+      return acmesystem()->texttable()->get(pcontext, "datetimestr_weekday_long[" + ::as_string(iWeekDay - 1) + "]");
 
    }
 
@@ -584,7 +584,7 @@ namespace datetime
    string datetime::get_tiny_week_day_str(const ::text::context * pcontext, i32 iWeekDay) // 1 - domingo
    {
 
-      return acmesystem()->texttable()->get(pcontext, "datetimestr_weekday_tiny[" + as_string(iWeekDay - 1) + "]");
+      return acmesystem()->texttable()->get(pcontext, "datetimestr_weekday_tiny[" + ::as_string(iWeekDay - 1) + "]");
 
    }
 
@@ -592,7 +592,7 @@ namespace datetime
    string datetime::get_month_str(const ::text::context * pcontext, i32 iMonth)
    {
    
-      return acmesystem()->texttable()->get(pcontext, "datetimestr_month[" + as_string(iMonth - 1) + "]");
+      return acmesystem()->texttable()->get(pcontext, "datetimestr_month[" + ::as_string(iMonth - 1) + "]");
 
    }
 
@@ -600,7 +600,7 @@ namespace datetime
    string datetime::get_short_month_str(const ::text::context * pcontext, i32 iMonth)
    {
 
-      return acmesystem()->texttable()->get(pcontext, "datetimestr_month_short[" + as_string(iMonth - 1) + "]");
+      return acmesystem()->texttable()->get(pcontext, "datetimestr_month_short[" + ::as_string(iMonth - 1) + "]");
 
    }
 
@@ -894,17 +894,17 @@ namespace datetime
          if (iMinDiff <= 1)
          {
             strTime = pcontext->get("about 1 minute and %SECONDS% seconds ago");
-            strTime.replace_with(as_string((timeNow - time).GetSeconds()), "%SECONDS%");
+            strTime.replace_with(::as_string((timeNow - time).GetSeconds()), "%SECONDS%");
          }
          else if (iMinDiff <= 2)
          {
             strTime = pcontext->get("about 2 minutes and %SECONDS% seconds ago");
-            strTime.replace_with(as_string((timeNow - time).GetSeconds()), "%SECONDS%");
+            strTime.replace_with(::as_string((timeNow - time).GetSeconds()), "%SECONDS%");
          }
          else
          {
             strTime = pcontext->get("about %MINUTES% minutes ago");
-            strTime.replace_with(as_string(iMinDiff), "%MINUTES%");
+            strTime.replace_with(::as_string(iMinDiff), "%MINUTES%");
          }
       }
       else if (iHouDiff <= 24)
@@ -921,7 +921,7 @@ namespace datetime
          else
          {
             strTime = pcontext->get("about %HOURS% hours ago");
-            strTime.replace_with(as_string(iHouDiff), "%HOURS%");
+            strTime.replace_with(::as_string(iHouDiff), "%HOURS%");
          }
       }
       else

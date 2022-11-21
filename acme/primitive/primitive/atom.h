@@ -40,6 +40,7 @@ inline bool __atom_str_is_empty(const char * psz)
 
 }
 
+
 template <typename T>
 int __atom_sgn(T x)
 {
@@ -320,6 +321,7 @@ public:
    inline atom(enum_type etypeAdd, const atom & atom);
    inline atom(const atom & atom);
    atom(const char * psz);
+   atom(const inline_number_string & inlinenumberstring);
 
 #ifndef NO_TEMPLATE
    template < primitive_signed SIGNED >
@@ -1786,7 +1788,7 @@ inline atom::atom(const ::lparam & lparam)
 
 }
 
-#ifndef NO_TEMPLATE
+
 inline atom::atom(const ::string& str) :
    m_str(str)
 {
@@ -1794,7 +1796,16 @@ inline atom::atom(const ::string& str) :
    m_etype = e_type_text;
 
 }
-#endif
+
+
+inline atom::atom(const ::inline_number_string& inlinenumberstring) :
+   m_str(inlinenumberstring)
+{
+
+   m_etype = e_type_text;
+
+}
+
 
 //template < typename CHAR >
 //inline string_base < CHAR >::string_base(const ::atom & atom) :
@@ -1827,6 +1838,13 @@ inline atom::atom(const ::string& str) :
 //}
 
 
+template < primitive_character CHARACTER, strsize sizeMaximumLength >
+inline ::string_base < CHARACTER > operator+(const inline_string < CHARACTER, sizeMaximumLength > & inlinestring, const ::atom & atom)
+{
+
+   return string(inlinestring) + string(atom);
+
+}
 
 
 inline ::string operator+(const char * psz, const ::atom & atom)
@@ -1844,4 +1862,6 @@ inline ::string_base < CHARACTER > & operator+=(::string_base < CHARACTER > & st
    return str.operator += ((::string) atom);
 
 }
+
+
 

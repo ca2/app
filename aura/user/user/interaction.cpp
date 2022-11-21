@@ -24,6 +24,7 @@
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/timer_array.h"
+#include "acme/primitive/duration/_string.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/graphics/graphics.h"
@@ -3665,7 +3666,7 @@ namespace user
                if (durationElapsed > 100_ms)
                {
 
-                  output_debug_string("\ndrawing took " + as_string(durationElapsed.integral_millisecond()) + "!!");
+                  output_debug_string("\ndrawing took " + ::as_string(durationElapsed.integral_millisecond()) + "!!");
                   output_debug_string("\ndrawing took more than 100ms to complete!!");
                   output_debug_string("\n");
 
@@ -17246,7 +17247,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto pszType = typeid(*this).name();
       
-      ::output_debug_string("interaction::on_message_left_button_down " + as_string(pszType));
+      ::output_debug_string("interaction::on_message_left_button_down " + ::as_string(pszType));
 
       if (!is_window_enabled())
       {
@@ -17480,7 +17481,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto pszType = typeid(*this).name();
       
-      ::output_debug_string("interaction::on_message_left_button_up " + as_string(pszType));
+      ::output_debug_string("interaction::on_message_left_button_up " + ::as_string(pszType));
       
       auto pappearance = get_appearance();
 

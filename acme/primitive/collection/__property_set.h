@@ -70,24 +70,24 @@ public:
    inline property & operator[](const atom & atom) { return payload(atom); }
    inline const property & operator[](const atom & atom) const { return payload(atom); }
 
-   inline property & operator[](const char * pszName) { return payload(pszName); }
-   inline const property & operator[](const char * pszName) const { return payload(pszName); }
+   //inline property & operator[](const char * pszName) { return payload(pszName); }
+   //inline const property & operator[](const char * pszName) const { return payload(pszName); }
 
-   inline property & operator[](const ::string & strName) { return payload(strName); }
-   inline const property & operator[](const ::string & strName) const { return payload(strName); }
+   //inline property & operator[](const ::string & strName) { return payload(strName); }
+   //inline const property & operator[](const ::string & strName) const { return payload(strName); }
 
-   inline property & operator[](::index iIndex) { return payload(iIndex); }
-   inline const property & operator[](::index iIndex) const { return payload(iIndex); }
+   //inline property & operator[](::index iIndex) { return payload(iIndex); }
+   //inline const property & operator[](::index iIndex) const { return payload(iIndex); }
 
-   inline property & operator[](const ::payload & payloadKey) { return payload(payloadKey); }
-   inline const property & operator[](const ::payload & payloadKey) const { return payload(payloadKey); }
+   //inline property & operator[](const ::payload & payloadKey) { return payload(payloadKey); }
+   //inline const property & operator[](const ::payload & payloadKey) const { return payload(payloadKey); }
 
-#ifdef OS64BIT
-
-   inline property & operator[](i32 iIndex) { return payload(iIndex); }
-   inline const property & operator[](i32 iIndex) const { return payload(iIndex); }
-
-#endif
+//#ifdef OS64BIT
+//
+//   inline property & operator[](i32 iIndex) { return payload(iIndex); }
+//   inline const property & operator[](i32 iIndex) const { return payload(iIndex); }
+//
+//#endif
 
    ::payload & topic(const atom & atom);
 

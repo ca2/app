@@ -5,7 +5,6 @@
 //#include "acme/primitive/collection/numeric_array.h"
 
 
-
 void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array * piaTab, array < strsize * > intptra)
 {
 

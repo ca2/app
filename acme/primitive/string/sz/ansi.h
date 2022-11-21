@@ -59,7 +59,7 @@ inline strsize string_span_excluding(const ansichar * pszBlock, const ansichar *
 
 
 inline strsize get_formatted_length(const ansichar * pszFormat, va_list args) noexcept;
-inline strsize string_format(ansichar * pszBuffer, strsize nlength, const ansichar * pszFormat, va_list args) noexcept;
+inline strsize ansistring_format(ansichar * pszBuffer, strsize nlength, const ansichar * pszFormat, va_list args) noexcept;
 inline void  flood_characters(ansichar * psz, ansichar ch, strsize len) noexcept;
 
 inline strsize unichar_count(const ansichar * pstr);

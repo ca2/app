@@ -72,7 +72,7 @@ task::~task()
    auto strThreadName = ::task_get_name();
    auto itask = ::get_current_itask();
 
-   ::output_debug_string("Task destructor : " + strThreadName + " : (" + as_string(itask) + ")\n");
+   ::output_debug_string("Task destructor : " + strThreadName + " : (" + ::as_string(itask) + ")\n");
 
 #endif
 

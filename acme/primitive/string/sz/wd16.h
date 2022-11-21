@@ -61,7 +61,7 @@ inline strsize string_span_excluding(const wd16char * pszBlock, const wd16char *
 
 
 inline strsize get_formatted_length(const wd16char * pszFormat, va_list args) noexcept;
-inline strsize string_format(wd16char * pszBuffer, strsize nlength, const wd16char * pszFormat, va_list args) noexcept;
+inline strsize wd16string_format(wd16char * pszBuffer, strsize nlength, const wd16char * pszFormat, va_list args) noexcept;
 inline void  flood_characters(wd16char * psz, wd16char ch, strsize len) noexcept;
 
 

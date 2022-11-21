@@ -1516,10 +1516,10 @@ property_set & property_set::merge(const property_set & set)
                      while(true)
                      {
 
-                        if(!has_property(as_string(i)))
+                        if(!has_property(::as_string(i)))
                         {
 
-                           operator[](as_string(i)) = *pproperty;
+                           operator[](::as_string(i)) = *pproperty;
 
                            break;
 

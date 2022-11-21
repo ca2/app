@@ -154,13 +154,13 @@ bool is_font_sel(const ::atom & atom)
    else if (is_integer())
    {
 
-      return as_string(m_i);
+      return ::as_string(m_i);
 
    }
    else
    {
 
-      return ::string("(atom : type:") + as_string(m_etype) + ",body:" + as_string(m_u) + ")";
+      return ::string("(atom : type:") + ::as_string(m_etype) + ",body:" + ::as_string(m_u) + ")";
 
    }
 

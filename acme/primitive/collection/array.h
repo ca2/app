@@ -153,8 +153,8 @@ public:
 
    }
 
-   operator TYPE *() {return this->m_pData;}
-   operator const TYPE *() const {return this->m_pData;}
+   //operator TYPE *() {return this->m_pData;}
+   //operator const TYPE *() const {return this->m_pData;}
 
    template < container_type CONTAINER >
    inline array & operator += (const CONTAINER & container);

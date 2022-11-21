@@ -1177,7 +1177,13 @@ using signal_handler = ::function < void(::topic*, ::context*) >;
 ////}
 
 
+// hi5 and shegotmad
+consteval auto as_const(auto asconst)
+{
 
+   return asconst;
+
+}
 
 
 

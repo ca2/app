@@ -103,7 +103,7 @@ namespace file
 
       path & operator = (const ::file::path & path);
 
-      path & operator = (const ::ansistring & str);
+      //path & operator = (const ::ansistring & str);
 
 //      bool is_equal_full(const path & path) const
 //      {
@@ -182,13 +182,13 @@ namespace file
 
       //      bool operator == (const ::ansistring & str) const;
       //      bool operator == (const char * psz) const;
-      bool operator == (const ::payload & payload) const;
+      //bool operator == (const ::payload & payload) const;
 
       //      bool operator != (const path & path) const;
 
       //      bool operator != (const ::ansistring & str) const;
       //      bool operator != (const char * psz) const;
-      bool operator != (const ::payload & payload) const;
+      //bool operator != (const ::payload & payload) const;
 
       path operator + (const path & path) const;
 
@@ -196,10 +196,7 @@ namespace file
       path operator + (const ::ansistring & str) const;
 
       path operator + (const char * psz) const;
-      template < primitive_payload PAYLOAD >
-      path operator + (const PAYLOAD & payload) const;
-      template < primitive_atom ATOM >
-      path operator + (const ATOM & atom) const;
+      path operator + (const ::atom & atom) const;
 
       path & operator += (const path & path);
       path & operator += (const ::ansistring & str);
@@ -207,18 +204,13 @@ namespace file
       path operator / (const path & path) const;
       path operator / (const ::ansistring & str) const;
       path operator / (const char * psz) const;
-      template < primitive_payload PAYLOAD >
-      path operator / (const PAYLOAD& payload) const;
-      template < primitive_atom ATOM >
-      path operator / (const ATOM& atom) const;
+      path operator / (const ::atom & atom) const;
 
       path & operator /= (const path & path);
       path & operator /= (const ::ansistring & str);
+      path & operator /= (const ::inline_number_string &inlinenumberstring);
       path & operator /= (const char * psz);
-      template < primitive_payload PAYLOAD >
-      path & operator /= (const PAYLOAD& payload);
-      template < primitive_atom ATOM >
-      path & operator /= (const ATOM& atom);
+      path & operator /= (const ::atom & atom);
 
 
       bool is_empty() const;
@@ -236,19 +228,19 @@ namespace file
 
       //string operator << (const ::ansistring & str) const { return arg(str); }
 
-      path & operator = (const char * psz);
+      //path & operator = (const char * psz);
       path & operator += (const char * psz);
 
-      path & operator = (const ::payload & payload);
-      path & operator += (const ::payload & payload);
+      //path & operator = (const ::payload & payload);
+      //path & operator += (const ::payload & payload);
 
-      path & operator = (const property & property);
-      path & operator += (const property & property);
+      //path & operator = (const property & property);
+      //path & operator += (const property & property);
 
-      path & operator = (const wstring & wstr);
+      //path & operator = (const wstring & wstr);
       path & operator += (const wstring & wstr);
 
-      path & operator = (const widechar * psz);
+      //path & operator = (const widechar * psz);
       path & operator += (const widechar * psz);
 
       //path operator * () const;
@@ -267,13 +259,13 @@ namespace file
 
       path operator * (const ::ansistring & str) const;
       path operator * (const char * psz) const;
-      path operator * (const property & property) const;
+      //path operator * (const property & property) const;
 
       path & operator *= (const path & path);
 
       path & operator *= (const ::ansistring & str);
       path & operator *= (const char * psz);
-      path & operator *= (const property & property);
+      //path & operator *= (const property & property);
 
       ::file::path title() const;
 
@@ -992,6 +984,7 @@ namespace file
 
    }
 
+
    inline path& path::operator /= (const ::ansistring& str)
    {
 
@@ -1000,20 +993,18 @@ namespace file
    }
 
 
-   template < primitive_atom ATOM >
-   inline path& path::operator /= (const ATOM & atom)
+   inline path & path::operator /= (const ::inline_number_string & inlinenumberstring)
    {
 
-      return operator /=(::file::path(atom));
+      return operator /=(::file::path(::string(inlinenumberstring)));
 
    }
 
 
-   template < primitive_payload PAYLOAD >
-   inline path& path::operator /= (const PAYLOAD& payload)
+   inline path& path::operator /= (const ::atom & atom)
    {
 
-      return operator /=(::file::path(payload));
+      return operator /=(::file::path(atom));
 
    }
 
@@ -1160,18 +1151,18 @@ namespace file
    }
 
 
-   inline path& path::operator = (const ::ansistring& str)
-   {
-
-      *((path_meta*)this) = path_meta();
-
-      m_epath = file_path_get_type(str);
-
-      string ::operator  = (file_path_normalize(str, m_epath));
-
-      return *this;
-
-   }
+//   inline path& path::operator = (const ::ansistring& str)
+//   {
+//
+//      *((path_meta*)this) = path_meta();
+//
+//      m_epath = file_path_get_type(str);
+//
+//      string ::operator  = (file_path_normalize(str, m_epath));
+//
+//      return *this;
+//
+//   }
 
 
    inline path path::operator + (const path& path) const
@@ -1199,12 +1190,12 @@ namespace file
 
 
 
-   inline path& path::operator = (const char* psz)
-   {
-
-      return operator = (string(psz));
-
-   }
+//   inline path& path::operator = (const char* psz)
+//   {
+//
+//      return operator = (string(psz));
+//
+//   }
 
 
    inline path& path::operator += (const char* psz)
@@ -1214,16 +1205,16 @@ namespace file
 
    }
 
-   inline path& path::operator = (const wstring& wstr)
-   {
-
-      return operator = (string(wstr));
-
-   }
+//   inline path& path::operator = (const wstring& wstr)
+//   {
+//
+//      return operator = (string(wstr));
+//
+//   }
 
    inline path& path::operator += (const wstring& wstr) { return operator += (string(wstr)); }
 
-   inline path& path::operator = (const widechar* psz) { return operator = (wstring(psz)); }
+   //inline path& path::operator = (const widechar* psz) { return operator = (wstring(psz)); }
    inline path& path::operator += (const widechar* psz) { return operator += (wstring(psz)); }
 
    //void path::to_string(string & str) const

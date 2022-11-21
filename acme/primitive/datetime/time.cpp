@@ -3,7 +3,7 @@
 //#include "file_time.h"
 #include "date_span.h"
 #include "earth_gregorian_time.h"
-#include "acme/primitive/datetime/as_string.h"
+#include "acme/primitive/datetime/_string.h"
 #include "acme/operating_system/time.h"
 #include "acme/exception/not_implemented.h"
 #include "acme/primitive/string/str.h"

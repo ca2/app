@@ -42,7 +42,7 @@ inline bool is_zero(const void * p, memsize iSize)
 
 
 
-//#define xxf_zeroa(array) (::zero(array, sizeof(array)))
+//#define zero(array) (::zero(array, sizeof(array)))
 
 
 

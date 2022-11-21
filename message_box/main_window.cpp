@@ -4,6 +4,7 @@
 #include "acme/constant/message.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
+#include "acme/user/nano/nano.h"
 #include "aura/user/user/button.h"
 #include "aura/platform/application.h"
 

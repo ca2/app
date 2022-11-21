@@ -432,8 +432,8 @@ list(APPEND library_source
         primitive/duration/duration/duration.h
         primitive/duration/floating/_.h
         primitive/duration/integral/_.h
-        primitive/duration/__string.cpp
-        primitive/duration/__string.h
+        #primitive/duration/__string.cpp
+        primitive/duration/_string.h
         #primitive/duration/_.h
         primitive/duration/_duration.h
         primitive/duration/_impl.h
@@ -756,7 +756,6 @@ list(APPEND library_source
         #primitive/string/_sz_ansi.cpp
         #primitive/string/_sz_wd16.cpp
         #primitive/string/_sz_wd32.cpp
-        primitive/string/__string.cpp
         #primitive/string/__string.h
         #primitive/string/_trait.h
         #primitive/string/_trait_ansi.h
@@ -769,6 +768,7 @@ list(APPEND library_source
         primitive/string/_u32hash.h
         #primitive/string/_unicode.h
         #primitive/string/_unicode_impl.h
+        primitive/string/as_string.cpp
         primitive/string/base64.cpp
         primitive/string/base64.h
         primitive/string/bstr.h

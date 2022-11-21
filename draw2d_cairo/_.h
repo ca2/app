@@ -81,22 +81,6 @@ FT_Library __ftlibrary();
 //void copy(cairo_matrix_t* pcairomatrix,  const ::draw2d::matrix* pmatrix);
 
 
-namespace draw2d_cairo
-{
-
-
-   enum enum_mask
-   {
-
-      e_mask_fill,
-      e_mask_paint,
-      e_mask_paint_with_alpha,
-
-   };
-
-
-} // namespace draw2d_cairo
-
 
 #define TOY_FONT_SELECTION 0
 

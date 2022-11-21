@@ -141,7 +141,7 @@ inline strsize get_formatted_length(const wd16char * pszFormat, va_list args) no
 }
 
 
-inline strsize string_format(wd16char * pszBuffer, const wd16char * pszFormat, va_list args) noexcept
+inline strsize wd16string_format(wd16char * pszBuffer, const wd16char * pszFormat, va_list args) noexcept
 {
 
 #ifdef WINDOWS
@@ -169,7 +169,7 @@ inline strsize string_format(wd16char * pszBuffer, const wd16char * pszFormat, v
 }
 
 
-inline strsize string_format(wd16char * pszBuffer, strsize nlength, const wd16char * pszFormat, va_list args) noexcept
+inline strsize wd16string_format(wd16char * pszBuffer, strsize nlength, const wd16char * pszFormat, va_list args) noexcept
 {
 
 #ifdef WINDOWS

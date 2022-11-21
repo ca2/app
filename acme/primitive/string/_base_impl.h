@@ -14,7 +14,7 @@ template < primitive_character CHARACTER, primitive_character CHARACTER2 >
 inline ::string_base < CHARACTER2 > operator +(CHARACTER chLeft, const ::string_base < CHARACTER2 > & wstrRight);
 
 
-CLASS_DECL_ACME::string __string_format(const char * pszFormat, ...);
+CLASS_DECL_ACME::string string_format(const char * pszFormat, ...);
 
 
 template < primitive_character CHARACTER >
@@ -5024,7 +5024,7 @@ void string_base < CHARACTER >::format_arguments(const CHARACTER_TYPE * pszForma
 
    va_copy(ptr2, args);
 
-   string_format(pszBuffer, nLength + 1, pszFormat, ptr2);
+   ansistring_format(pszBuffer, nLength + 1, pszFormat, ptr2);
 
    va_end(ptr2);
 

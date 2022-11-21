@@ -731,9 +731,9 @@ namespace apex
 
          auto iPid = acmenode()->get_current_process_id();
 
-         printf("%s", ("Process PID: " + as_string(iPid) + "\n").c_str());
+         printf("%s", ("Process PID: " + ::as_string(iPid) + "\n").c_str());
 
-         output_debug_string("Process PID: " + as_string(iPid) + "\n");
+         output_debug_string("Process PID: " + ::as_string(iPid) + "\n");
 
       }
 
@@ -1040,7 +1040,7 @@ pacmedirectory->create("/ca2core");
 
       auto pid = acmenode()->get_current_process_id();
 
-      string strPid = as_string(pid);
+      string strPid = ::as_string(pid);
 
       auto psystem = acmesystem();
 
@@ -2827,7 +2827,7 @@ pacmedirectory->create("/ca2core");
 
       }
 
-      INFORMATION("::apex::system::on_request session = " << __type_name(psession) << "(" << as_string((iptr) psession) << ")");
+      INFORMATION("::apex::system::on_request session = " << __type_name(psession) << "(" << ((iptr) psession) << ")");
 
       psession->do_request(pcreate);
 

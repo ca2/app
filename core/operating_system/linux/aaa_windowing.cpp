@@ -3675,7 +3675,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 
       char buf[32];
 
-      xxf_zeroa(buf);
+      zero(buf);
 
       string strText;
 

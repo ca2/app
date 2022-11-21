@@ -1169,7 +1169,7 @@ bool thread::defer_pump_message()
       if(m_message.m_atom == e_message_quit)
       {
 
-         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + __type_name(this) + " (" + as_string((u64)::get_current_itask()) + ")\n\n\n");
+         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + __type_name(this) + " (" + ::as_string((u64)::get_current_itask()) + ")\n\n\n");
 
          return false;
 
@@ -4286,7 +4286,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
 
       ::e_status estatus = ::get_last_status();
 
-      output_debug_string("thread::SetThreadPriority LastError = " + as_string(estatus));
+      output_debug_string("thread::SetThreadPriority LastError = " + ::as_string(estatus));
 
    }
 

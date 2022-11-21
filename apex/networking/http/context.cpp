@@ -353,7 +353,7 @@ namespace http
       else
       {
 
-         strCache = as_string(len.i64());
+         strCache = ::as_string(len.i64());
 
       }
 

@@ -8,6 +8,24 @@ namespace draw2d_cairo
 {
 
 
+   enum enum_mask
+   {
+
+      e_mask_fill,
+      e_mask_paint,
+      e_mask_paint_with_alpha,
+
+   };
+
+
+} // namespace draw2d_cairo
+
+
+
+namespace draw2d_cairo
+{
+
+
    class CLASS_DECL_DRAW2D_CAIRO region :
       virtual public ::draw2d::region
    {

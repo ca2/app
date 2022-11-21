@@ -8,7 +8,7 @@ void os_alloc_check_bounds(u8 * point_i32)
 
 	byte a[256];
 
-	xxf_zeroa(a);
+	zero(a);
 
 	if (__memcmp(&point[sizeof(uptr)], a, sizeof(a)) != 0)
 	{

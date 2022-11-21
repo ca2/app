@@ -551,6 +551,32 @@ public:
 
    }
 
+
+   template < primitive_character CHARACTER2, strsize sizeMaximumLength >
+   write_text_stream& operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
+   {
+
+      if (m_fmtflags & ::file::network_payload)
+      {
+
+         print("\"");
+
+      }
+
+      write(inlinestring.get_data(), inlinestring.get_size());
+
+      if (m_fmtflags & ::file::network_payload)
+      {
+
+         print("\"");
+
+      }
+
+      print(m_chSeparator);
+
+      return *this;
+
+   }
    //text_stream & operator <<(const property_set& set) ;
    template < typename TYPE >
    write_text_stream & write(const TYPE& t)

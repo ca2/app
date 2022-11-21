@@ -228,7 +228,7 @@
 #include "acme/primitive/mathematics/numeric_info.h"
 
 
-#include "acme/primitive/mathematics/c_number.h"
+//#include "acme/primitive/mathematics/c_number.h"
 
 
 #include "acme/primitive/duration/time.h"
@@ -423,13 +423,13 @@
 #ifdef SOME_ADDITIONS_FOR_PRECOMPILED_HEADER
 
 
-#include "acme/primitive/primitive/payload.h"
+#include  "acme/primitive/primitive/payload.h"
 
 
-#include "acme/primitive/primitive/object.h"
+#include  "acme/primitive/primitive/object.h"
 
 
-#include "acme/exception/exception.h"
+#include  "acme/exception/exception.h"
 
 
 #endif

@@ -21,8 +21,6 @@ throw()
 
 #else
 
-   static ::global_pointer < ::pointer < ::mutex > > m;
-   synchronous_lock synchronouslock(&m);
    struct tm *tmp;
    tmp = gmtime(timep);
    *result = *tmp;

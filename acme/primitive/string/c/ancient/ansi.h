@@ -59,9 +59,6 @@ inline int __ansiincmp(const ansichar * psz1, const ansichar * psz2, strsize s);
 
 inline const ansichar * __ansiistr(const ansichar * psz, const ansichar * pszFind);
 
-CLASS_DECL_ACME ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase);
-
-CLASS_DECL_ACME ansichar * __i64toansi(::i64 u, ansichar * buf, int iBase);
 
 inline ansichar * overlap_safe_ansincpy(ansichar * pszDst, const ansichar * pszSrc, strsize srclen);
 

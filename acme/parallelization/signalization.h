@@ -5,7 +5,7 @@
 
 
 #include "acme/primitive/primitive/particle.h"
-#include "acme/primitive/primitive/pointer.h"
+//#include "acme/primitive/primitive/pointer.h"
 #include "acme/parallelization/manual_reset_event.h"
 
 

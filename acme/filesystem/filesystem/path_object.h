@@ -2,6 +2,7 @@
 
 
 #include "acme/primitive/primitive/particle.h"
+#include  "acme/primitive/primitive/pointer.h"
 #include "path.h"
 
 

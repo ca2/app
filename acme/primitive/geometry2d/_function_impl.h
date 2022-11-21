@@ -906,20 +906,22 @@ template < primitive_size SIZE >
 inline constexpr auto __vert(const SIZE& size) { return size.cy; }
 
 
-inline point_i32& top_left(const rectangle_i32& rectangle) { return *(point_i32*)&rectangle; }
-inline point_i32& bottom_right(const rectangle_i32& rectangle) { return *(point_i32*)&rectangle.right; }
+template < primitive_rectangle RECTANGLE >
+inline auto & top_left(const RECTANGLE & rectangle) { return *(typename RECTANGLE::POINT_TYPE*)&rectangle; }
+template < primitive_rectangle RECTANGLE >
+inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTANGLE::POINT_TYPE*)&rectangle.right; }
 
 
-inline point_i64& top_left(const rectangle_i64& rectangle) { return *(point_i64*)&rectangle; }
-inline point_i64& bottom_right(const rectangle_i64& rectangle) { return *(point_i64*)&rectangle.right; }
+//inline point_i64& top_left(const rectangle_i64& rectangle) { return *(point_i64*)&rectangle; }
+//inline point_i64& bottom_right(const rectangle_i64& rectangle) { return *(point_i64*)&rectangle.right; }
 
 
-inline point_f32& top_left(const rectangle_f32& rectangle) { return *(point_f32*)&rectangle; }
-inline point_f32& bottom_right(const rectangle_f32& rectangle) { return *(point_f32*)&rectangle.right; }
+//inline point_f32& top_left(const rectangle_f32& rectangle) { return *(point_f32*)&rectangle; }
+//inline point_f32& bottom_right(const rectangle_f32& rectangle) { return *(point_f32*)&rectangle.right; }
 
 
-inline point_f64& top_left(const rectangle_f64& rectangle) { return *(point_f64*)&rectangle; }
-inline point_f64& bottom_right(const rectangle_f64& rectangle) { return *(point_f64*)&rectangle.right; }
+//inline point_f64& top_left(const rectangle_f64& rectangle) { return *(point_f64*)&rectangle; }
+//inline point_f64& bottom_right(const rectangle_f64& rectangle) { return *(point_f64*)&rectangle.right; }
 
 
 //inline point_i32 & top_left(const ::rectangle_i32 &rectangle) { return *(point_i32 *)&rectangle; }

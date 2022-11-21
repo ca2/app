@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "device.h"
-#include "acme/primitive/collection/string_array.h"
+//#include "acme/primitive/collection/string_array.h"
 
 
 nano_device::nano_device()

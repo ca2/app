@@ -10,7 +10,7 @@
 #include "acme/exception/parsing.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/filesystem/file/text_stream.h"
+//#include "acme/filesystem/file/text_stream.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/operating_system/process.h"
 #include "acme/primitive/primitive/url.h"

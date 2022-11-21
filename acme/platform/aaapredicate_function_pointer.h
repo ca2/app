@@ -2,7 +2,7 @@
 
 
 #include "acme/primitive/primitive/particle.h"
-#include "acme/primitive/primitive/pointer.h"
+//#include "acme/primitive/primitive/pointer.h"
 
 //template < typename METHOD >
 //class sync_method :

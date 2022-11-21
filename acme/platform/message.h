@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/property_object.h"
+////#include "acme/primitive/primitive/property_object.h"
 
 
 namespace acme

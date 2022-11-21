@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "acme/primitive/collection/pointer_array.h"
+//#include "acme/primitive/collection/pointer_array.h"
 #include "acme/primitive/data/container.h"
 #include "aqua/user/controller.h"
 #include "acme/parallelization/synchronous_lock.h"

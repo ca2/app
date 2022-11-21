@@ -3,8 +3,8 @@
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/task.h"
 #include "acme/primitive/string/string.h"
-#include "acme/primitive/collection/string_array.h"
-#include "acme/primitive/primitive/payload.h"
+//#include "acme/primitive/collection/string_array.h"
+//#include "acme/primitive/primitive/payload.h"
 //#include "acme/_operating_system.h"
 
 

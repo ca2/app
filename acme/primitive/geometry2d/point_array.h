@@ -4,9 +4,9 @@
 //#include "_concept.h"
 
 
-#include "acme/primitive/collection/array.h"
-#include "acme/primitive/collection/comparable_eq_array.h"
-#include "acme/primitive/collection/comparable_array.h"
+//#include "acme/primitive/collection/array.h"
+////#include "acme/primitive/collection/comparable_eq_array.h"
+////#include "acme/primitive/collection/comparable_array.h"
 
 
 inline bool tolerance_is_equal(double tolerance, double d1, double d2)

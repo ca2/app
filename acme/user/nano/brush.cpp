@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "brush.h"
 #include "acme/primitive/primitive/factory.h"
-#include "acme/primitive/primitive/pointer.h"
+//#include "acme/primitive/primitive/pointer.h"
 
 
 nano_brush::nano_brush()

@@ -3,7 +3,7 @@
 #include "acme_directory.h"
 #include "acme_file.h"
 #include "acme_path.h"
-#include "path_array.h"
+//#include "path_array.h"
 #include "listing.h"
 #include "acme/exception/interface_only.h"
 #include "acme/operating_system/process.h"

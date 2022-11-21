@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 
-#include "acme/primitive/primitive/matter.h"
-#include "acme/primitive/collection/pointer_array.h"
+//#include "acme/primitive/primitive/matter.h"
+//#include "acme/primitive/collection/pointer_array.h"
 class image_list;
 
 

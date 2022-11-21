@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "acme/primitive/collection/pointer_array.h"
+//#include "acme/primitive/collection/pointer_array.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
-#include "acme/primitive/primitive/matter.h"
+//#include "acme/primitive/primitive/matter.h"
 
 
 class CLASS_DECL_AURA image_array :

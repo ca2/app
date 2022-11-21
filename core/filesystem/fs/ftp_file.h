@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/filesystem/file/file.h"
+//#include "acme/filesystem/file/file.h"
 
 
 class CLASS_DECL_CORE ftpfs_file :

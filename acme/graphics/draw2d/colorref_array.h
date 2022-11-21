@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/collection/numeric_array.h"
+//#include "acme/primitive/collection/numeric_array.h"
 
 
 class CLASS_DECL_ACME colorref_array :

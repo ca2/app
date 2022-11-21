@@ -1,7 +1,7 @@
 // From draw2d component by camilo on 2022-08-28 16:58 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "glyph_set.h"
-#include "acme/primitive/collection/numeric_array.h"
+//#include "acme/primitive/collection/numeric_array.h"
 
 
 namespace write_text

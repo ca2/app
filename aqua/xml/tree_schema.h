@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "acme/primitive/collection/string_array.h"
-//#include "acme/primitive/primitive/object.h"
+//#include "acme/primitive/collection/string_array.h"
+////#include "acme/primitive/primitive/object.h"
 
 
 namespace xml

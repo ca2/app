@@ -3,7 +3,7 @@
 //
 #pragma once
 #include "string.h"
-#include "acme/primitive/collection/numeric_array.h"
+//#include "acme/primitive/collection/numeric_array.h"
 
 
 template < primitive_number NUMBER >

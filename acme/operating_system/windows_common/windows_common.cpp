@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/operating_system/error_code.h"
 #include "acme/primitive/primitive/memory.h"
-#include "acme/primitive/primitive/function.h"
+//#include "acme/primitive/primitive/function.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/windows_common/__string.h"
 

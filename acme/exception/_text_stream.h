@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/filesystem/file/text_stream.h"
+//#include "acme/filesystem/file/text_stream.h"
 
 
 template < typename FILE >

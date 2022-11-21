@@ -2,7 +2,7 @@
 
 
 #include "acme/operating_system/_const_console.h"
-#include "acme/filesystem/file/file.h"
+//#include "acme/filesystem/file/file.h"
 #include "acme/primitive/primitive/particle.h"
 
 
@@ -45,16 +45,17 @@ namespace console
    {
    public:
 
-      
 
-      int               m_iTextColor;
+
+      ::write_text_stream < ::file::file >         m_cout;
+      int                                          m_iTextColor;
 
 
       console();
       ~console() override;
 
 
-      virtual ::write_text_stream < ::file::file > & cout() = 0;
+      inline ::write_text_stream < ::file::file > & cout() { return m_cout; }
 
 
       virtual void redirect_io();

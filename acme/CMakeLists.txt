@@ -620,9 +620,9 @@ list(APPEND library_source
         primitive/primitive/natural.h
         primitive/primitive/number.h
         primitive/primitive/object.cpp
-        primitive/primitive/object.cpp
         primitive/primitive/object.h
-        primitive/primitive/object.h
+        primitive/primitive/object_meta.cpp
+        primitive/primitive/object_meta.h
         #primitive/primitive/papaya.h
         primitive/primitive/particle.cpp
         primitive/primitive/particle.h
@@ -726,7 +726,7 @@ list(APPEND library_source
         #primitive/string/_c_str.h
         #primitive/string/_c_str_impl.h
         #primitive/string/_c_trait.h
-        #primitive/string/_c_trait_ansi.cpp
+        primitive/string/_c_trait_ansi.cpp
         #primitive/string/_c_trait_ansi.h
         #primitive/string/_c_trait_ansi_impl.h
         #primitive/string/_c_trait_impl.h
@@ -874,6 +874,8 @@ list(APPEND library_source
         user/nano/font.h
         user/nano/message_box.cpp
         user/nano/message_box.h
+        user/nano/nano.cpp
+        user/nano/nano.h
         user/nano/object.cpp
         user/nano/object.h
         user/nano/pen.cpp

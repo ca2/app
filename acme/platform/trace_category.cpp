@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "trace_category.h"
-#include "acme/primitive/collection/pointer_array.h"
+//#include "acme/primitive/collection/pointer_array.h"
 #include "acme/platform/system.h"
 
 

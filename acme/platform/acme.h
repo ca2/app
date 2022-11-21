@@ -11,9 +11,9 @@
 #pragma once
 
 
-#include "acme/primitive/collection/array.h"
+//#include "acme/primitive/collection/array.h"
 #include "acme/primitive/primitive/factory.h"
-#include "acme/primitive/primitive/pointer.h"
+//#include "acme/primitive/primitive/pointer.h"
 
 
 namespace acme

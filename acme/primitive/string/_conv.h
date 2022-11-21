@@ -1,7 +1,7 @@
 #pragma once
 
 template < typename NATURAL, typename CHAR_TYPE >
-CHAR_TYPE * __natural_to_string_internal(NATURAL u, CHAR_TYPE * buf, int iBase, ::i32 & iIndex)
+CHAR_TYPE * __natural_to_string_internal(NATURAL u, CHAR_TYPE * buf, int iBase, ::i32 & iIndex, char chTen)
 {
 
    while (u != 0)
@@ -20,7 +20,7 @@ CHAR_TYPE * __natural_to_string_internal(NATURAL u, CHAR_TYPE * buf, int iBase, 
       else
       {
 
-         ch = (CHAR_TYPE)(iDigit - 10 + 'a');
+         ch = (CHAR_TYPE)(iDigit - 10 + chTen);
 
       }
 

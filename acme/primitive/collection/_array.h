@@ -64,9 +64,9 @@ namespace acme
 #pragma once
 
 
-#include "acme/primitive/collection/pointer_array_process.h"
+//#include "acme/primitive/collection/pointer_array_process.h"
 #include "acme/primitive/primitive/compare_predicate.h"
-#include "acme/primitive/primitive/payload.h"
+//#include "acme/primitive/primitive/payload.h"
 //#include "acme/primitive/primitive/payload_array.h"
 
 
@@ -986,7 +986,7 @@ namespace acme
             for (auto& value : payload.propset().values())
             {
 
-               auto iItem = ::acme::array::add(array, value.string());
+               auto iItem = ::acme::array::add(array, value.as_string());
 
                if (i < 0)
                {

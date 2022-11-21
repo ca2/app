@@ -2,7 +2,7 @@
 #include "shell_launcher.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/primitive/payload.h"
+//#include "acme/primitive/primitive/payload.h"
 
 
 namespace ansios

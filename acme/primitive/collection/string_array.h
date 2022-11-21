@@ -2,11 +2,11 @@
 
 
 #include "array.h"
-#include "comparable_eq_array.h"
-#include "comparable_array.h"
-#include "acme/primitive/string/string.h"
+//#include "comparable_eq_array.h"
+//#include "comparable_array.h"
+//#include "acme/primitive/string/string.h"
 #include "acme/primitive/collection/address_array.h"
-//#include "acme/primitive/primitive/payload.h"
+////#include "acme/primitive/primitive/payload.h"
 //#include "acme/array.h"
 
 
@@ -4900,7 +4900,7 @@ return get_data()[nIndex];
 //
 //}
 
-//#include "acme/primitive/primitive/payload.h"
+////#include "acme/primitive/primitive/payload.h"
 
 //template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 //string_array_base < Type, RawType, m_etypeContainer >  & string_array_base < Type, RawType, m_etypeContainer > ::operator = (const ::payload & payload)

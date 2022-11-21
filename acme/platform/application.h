@@ -27,7 +27,7 @@ class main_hold_base;
 
 #include "main.h"
 #include "context.h"
-#include "acme/primitive/collection/string_array.h"
+//#include "acme/primitive/collection/string_array.h"
 
 
 namespace acme

@@ -15,8 +15,8 @@
 #include "acme/filesystem/filesystem/path.h"
 #include "acme/operating_system/security_attributes.h"
 #include "acme/platform/serial_shared.h"
-//#include "acme/primitive/primitive/object.h"
-#include "acme/primitive/primitive/pointer.h"
+////#include "acme/primitive/primitive/object.h"
+//#include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/collection/atom_array.h"
 #include "acme/primitive/collection/string_map.h"
 

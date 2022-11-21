@@ -1,7 +1,8 @@
 ﻿#pragma once
 
 
-//#include "_concept.h"
+#include "_function_impl.h"
+//#include "_size.h"
 
 
 template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >

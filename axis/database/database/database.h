@@ -2,7 +2,7 @@
 
 
 #include "acme/primitive/primitive/get_memory.h"
-//#include "acme/primitive/primitive/object.h"
+////#include "acme/primitive/primitive/object.h"
 
 
 namespace database

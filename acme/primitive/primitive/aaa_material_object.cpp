@@ -1,12 +1,12 @@
 ﻿#include "framework.h"
 //#include "material_object.h"
-//#include "acme/primitive/primitive/function.h"
+////#include "acme/primitive/primitive/function.h"
 //#include "acme/parallelization/asynchronous.h"
 //#include "acme/primitive/primitive/type.h"
 //#include "acme/exception/interface_only.h"
 //#include "acme/platform/system.h"
 ////#include "acme/platform/synchronized_predicate_routine.h"
-//#include "acme/primitive/primitive/payload.h"
+////#include "acme/primitive/primitive/payload.h"
 //#include "acme/parallelization/synchronous_lock.h"
 //
 //

@@ -46,67 +46,6 @@ inline TYPE __random()
 
 
 
-template < primitive_floating FLOATING1, primitive_floating FLOATING2, primitive_floating FLOATING_RESULT >
-inline FLOATING_RESULT __random(FLOATING1 f1, FLOATING2 f2)
-{
-
-   if (f1 == f2) return f1;
-
-   auto fMin = minimum(f1, f2);
-
-   auto fMax = maximum(f1, f2);
-
-   FLOATING_RESULT dRange = fMax - fMin;
-
-   u64 u;
-
-   __random(u);
-
-   return (FLOATING_RESULT)(((FLOATING_RESULT)u * dRange) / (FLOATING_RESULT)MAXU64) + fMin;
-
-}
-
-
-//inline double __random(double d1, double d2)
-//{
-//
-//   if (d1 == d2) return d1;
-//
-//   auto dMin = minimum(d1, d2);
-//
-//   auto dMax = maximum(d1, d2);
-//
-//   auto dRange = dMax - dMin;
-//
-//   u64 u;
-//
-//   __random(u);
-//
-//   return (((double)u * dRange) / (double)MAXU64) + dMin;
-//
-//}
-
-
-template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2, primitive_integral INTEGRAL3 >
-INTEGRAL3 __random(INTEGRAL1 i1, INTEGRAL2 i2)
-{
-
-   if (i1 == i2) return i1;
-
-   auto iMin = minimum(i1, i2);
-
-   auto iMax = maximum(i1, i2);
-
-   auto iRange = iMax - iMin;
-
-   u64 u;
-
-   __random(u);
-
-   return (INTEGRAL3)((u % ((INTEGRAL3)iRange + 1)) + (INTEGRAL3)iMin);
-
-}
-
 
 //inline i64 __random(i64 i1, i64 i2)
 //{

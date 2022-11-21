@@ -4,7 +4,7 @@
 //#include "__string.h"
 #include "acme/constant/id.h"
 #include "acme/constant/idpool.h"
-#include "acme/primitive/primitive/payload.h"
+//#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/string/str.h"
 #include "acme/platform/system.h"
 

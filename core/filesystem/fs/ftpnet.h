@@ -2,7 +2,7 @@
 
 
 #include "acme/primitive/collection/string_map.h"
-//#include "acme/primitive/primitive/object.h"
+////#include "acme/primitive/primitive/object.h"
 
 
 class ftpnet :

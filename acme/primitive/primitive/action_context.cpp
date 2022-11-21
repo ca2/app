@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "action_context.h"
-#include "acme/primitive/collection/pointer_array.h"
+//#include "acme/primitive/collection/pointer_array.h"
 
 
 void action_context::add(const ::particle * pparticle)

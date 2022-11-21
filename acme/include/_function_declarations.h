@@ -250,3 +250,6 @@ inline i32 ansi_to_i32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBas
 inline u32 ansi_to_u32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
 
 
+CLASS_DECL_ACME ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, char chTen = 'a');
+
+CLASS_DECL_ACME ansichar * __i64toansi(::i64 u, ansichar * buf, int iBase, char chTen = 'a');

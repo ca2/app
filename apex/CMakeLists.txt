@@ -70,7 +70,6 @@ list(APPEND apex_source
         database/change_event.h
         database/client.cpp
         database/client.h
-
         database/event_change.cpp
         #database/id.cpp
         database/key.cpp
@@ -86,6 +85,7 @@ list(APPEND apex_source
         #filesystem/file/_.h
         filesystem/file/_data.h
         filesystem/file/_file.h
+        filesystem/file/action.cpp
         filesystem/file/action.h
         filesystem/file/edit_file.cpp
         filesystem/file/edit_file.h
@@ -444,6 +444,7 @@ list(APPEND apex_source
         platform/_.cpp
         platform/_application_service.cpp
         platform/_critical_section.h
+        platform/_synchronization.cpp
         platform/_impl.h
         platform/_platform.h
         #platform/_system_id_impl.h

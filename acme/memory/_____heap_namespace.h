@@ -7,7 +7,7 @@
 #include "acme/primitive/collection/allocator.h"
 
 
-#include "acme/primitive/collection/array.h"
+//#include "acme/primitive/collection/array.h"
 
 
 #include "acme/primitive/collection/atom_map.h"

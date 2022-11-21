@@ -39,12 +39,12 @@ namespace console
    }
 
 
-   write_text_stream < ::file::file > & console_client::cout()
-   {
-
-      return get_console()->cout();
-
-   }
+//   write_text_stream < ::file::file > & console_client::cout()
+//   {
+//
+//      return get_console()->cout();
+//
+//   }
 
 
    void console_client::SetWindowSize(int iHeight, int iWidth)

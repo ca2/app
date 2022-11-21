@@ -11,8 +11,8 @@
 #include "acme/primitive/primitive/memory.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/io.h"
-#include "acme/primitive/collection/string_array.h"
-#include "acme/primitive/datetime/earth_time.h"
+//#include "acme/primitive/collection/string_array.h"
+////#include "acme/primitive/datetime/earth_time.h"
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);

@@ -2,7 +2,7 @@
 
 
 #include "acme/primitive/geometry2d/_collection.h"
-//#include "acme/primitive/primitive/object.h"
+////#include "acme/primitive/primitive/object.h"
 
 
 namespace draw2d

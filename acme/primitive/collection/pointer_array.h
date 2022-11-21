@@ -1,11 +1,11 @@
 ﻿#pragma once
 
 
-#include "pointer_array_process.h"
-#include "acme/primitive/collection/array.h"
-#include "acme/primitive/primitive/pointer.h"
-#include "comparable_eq_array.h"
-#include "comparable_array.h"
+//#include "pointer_array_process.h"
+#include  "acme/primitive/collection/array.h"
+//#include "acme/primitive/primitive/pointer.h"
+//#include "comparable_eq_array.h"
+//#include "comparable_array.h"
 
 
 template < class T >

@@ -6,7 +6,7 @@
 #include "text_metric.h"
 #include "font.h"
 #include "acme/exception/interface_only.h"
-#include "acme/primitive/collection/string_array.h"
+//#include "acme/primitive/collection/string_array.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
 
 

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include  "acme/primitive/mathematics/c_number.h"
+
+
 template < class EENUM, EENUM edefault >
 class base_enum
 {

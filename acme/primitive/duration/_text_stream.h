@@ -8,7 +8,7 @@
 #pragma once
 
 
-#include "acme/filesystem/file/text_stream.h"
+//#include "acme/filesystem/file/text_stream.h"
 
 
 struct INTEGRAL_NANOSECOND;

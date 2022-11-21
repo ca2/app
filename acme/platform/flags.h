@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "acme/primitive/collection/numeric_array.h"
+////#include "acme/primitive/collection/numeric_array.h"
 
 
 template < class ENUM >
@@ -202,13 +202,13 @@ flags < ENUM > & flags < ENUM > ::operator = (const flags < ENUM > & f)
 template < class ENUM >
 bool flags < ENUM > ::operator == (const flags < ENUM > & f)
 {
-   return ::is_set(this) && m_ia == f.m_ia;
+   return ::is_set(this) && ::acme::array::is_equal(m_ia, f.m_ia);
 }
 
 template < class ENUM >
 bool flags < ENUM > ::operator != (const flags < ENUM > & f)
 {
-   return ::is_set(this) && m_ia != f.m_ia;
+   return !this->operator == (f);
 }
 
 template < class ENUM >

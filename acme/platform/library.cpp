@@ -934,7 +934,7 @@ namespace acme
 
          auto pfnFactory = get < PFN_factory >(strFactoryFunction);
 
-         if (::is_null(pfnFactory))
+         if (::is_null((const void *) pfnFactory))
          {
 
             FORMATTED_WARNING("library::create_factory factory function: \"%s\" doesn't exist!!!", strFactoryFunction.c_str());

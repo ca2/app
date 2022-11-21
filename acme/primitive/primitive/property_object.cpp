@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
-#include "property_object.h"
-#include "payload.h"
+//#include "property_object.h"
+//#include "payload.h"
 #include "acme/constant/message.h"
 ////#include "acme/exception/exception.h"
 #include "acme/platform/system.h"

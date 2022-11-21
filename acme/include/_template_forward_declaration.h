@@ -13,6 +13,9 @@
 
 #include "acme/primitive/primitive/enumeration.h"
 
+
+
+
 //constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
 
 template < typename DERIVED, typename BASE >
@@ -1004,6 +1007,18 @@ public:
 
 
 
+
+
+template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
+class point_type;
+
+
+template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
+class size_type;
+
+
+template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
+class rectangle_type;
 
 
 

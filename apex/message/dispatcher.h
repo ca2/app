@@ -3,9 +3,9 @@
 
 #include "predicate_handler.h"
 #include "acme/primitive/collection/atom_map.h"
-#include "acme/primitive/primitive/function.h"
+//#include "acme/primitive/primitive/function.h"
 #include "acme/primitive/primitive/particle.h"
-#include "acme/primitive/primitive/pointer.h"
+//#include "acme/primitive/primitive/pointer.h"
 
 
 CLASS_DECL_APEX int get_member_function_offset();

@@ -8,7 +8,7 @@
 #include "acme/handler/topic.h"
 #include "acme/platform/context.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/primitive/payload.h"
+//#include "acme/primitive/primitive/payload.h"
 
 
 particle::~particle()

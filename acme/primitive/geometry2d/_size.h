@@ -2,7 +2,7 @@
 
 
 //#include "_concept.h"
-#include "acme/primitive/mathematics/numeric.h"
+//#include "acme/primitive/mathematics/numeric.h"
 
 
 template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >

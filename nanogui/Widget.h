@@ -16,7 +16,7 @@
 #include "Theme.h"
 #include <vector>
 #include <algorithm>
-#include "acme/primitive/primitive/function.h"
+//#include "acme/primitive/primitive/function.h"
 
 NAMESPACE_BEGIN(nanogui)
 

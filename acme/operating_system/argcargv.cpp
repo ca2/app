@@ -7,7 +7,7 @@
 // 08/12/06 (mv)
 
 #include "framework.h"
-#include "acme/primitive/collection/string_array.h"
+//#include "acme/primitive/collection/string_array.h"
 #include "acme/primitive/string/str.h"
 //#include "acme/primitive/string/ch12.h"
 ////#include "acme/exception/exception.h"

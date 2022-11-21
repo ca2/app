@@ -6,7 +6,7 @@
 //
 //
 #include "framework.h"
-#include "acme/primitive/primitive/function.h"
+//#include "acme/primitive/primitive/function.h"
 
 int ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, unsigned int uType, const char * pszDetails, ::function < void (enum_dialog_result) > function)
 {

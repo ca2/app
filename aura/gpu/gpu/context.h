@@ -3,7 +3,7 @@
 
 ////#include "acme/exception/exception.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
-//#include "acme/primitive/primitive/object.h"
+////#include "acme/primitive/primitive/object.h"
 #include "aura/graphics/draw3d/matrix.h"
 
 

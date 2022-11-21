@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "acme/primitive/collection/array.h"
+//#include "acme/primitive/collection/array.h"
 
 
 class CLASS_DECL_ACME message_array :
@@ -12,7 +12,7 @@ class CLASS_DECL_ACME message_array :
 };
 
 
-#include "acme/primitive/primitive/matter.h"
+//#include "acme/primitive/primitive/matter.h"
 #include "acme/parallelization/manual_reset_event.h"
 
 

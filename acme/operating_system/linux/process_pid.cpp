@@ -3,6 +3,9 @@
 #include <dirent.h>
 
 
+::e_status fgets_string(string & str, FILE * pfile, memsize iBufferSize);
+
+
 i32 get_process_pid(const char * procNameParam)
 {
 

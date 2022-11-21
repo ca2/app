@@ -3,7 +3,7 @@
 
 #include "acme/primitive/data/data.h"
 #include "acme/primitive/data/tree_item.h"
-#include "acme/primitive/collection/numeric_array.h"
+//#include "acme/primitive/collection/numeric_array.h"
 
 
 namespace data

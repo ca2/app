@@ -2,7 +2,7 @@
 
 
 //#include "synchronization_object.h"
-#include "acme/primitive/collection/pointer_array.h"
+////#include "acme/primitive/collection/pointer_array.h"
 #include "acme/primitive/collection/address_array.h"
 
 

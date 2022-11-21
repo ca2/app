@@ -16,7 +16,7 @@
 void x11_keyboard_get_current_group_info(string & strGroupName, string & strGroupSymbol);
 string x11_keyboard_get_current_group_name();
 string x11_keyboard_get_current_group_symbol();
-#include "acme/primitive/collection/string_array.h"
+//#include "acme/primitive/collection/string_array.h"
 
 typedef string_array StringVector;
 

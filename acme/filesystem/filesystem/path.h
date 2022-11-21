@@ -3,9 +3,9 @@
 
 #include "file_path.h"
 #include "acme/primitive/datetime/file_time_span.h"
-#include "acme/primitive/datetime/file_time.h"
+//#include "acme/primitive/datetime/file_time.h"
 #include "acme/primitive/primitive/particle.h"
-#include "acme/primitive/primitive/pointer.h"
+//#include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/string/string.h"
 
 
@@ -61,10 +61,7 @@ namespace file
          path((const::ansistring &)ch, epath, iDir, bNormalize, iSize) {}
       path(enum_path epath) { m_epath = epath; }
       path(const path& path);
-      template < primitive_payload PAYLOAD >
-      path(const PAYLOAD& payload) : path(payload.file_path()) {}
-      template < primitive_atom ATOM >
-      path(const ATOM& atom) : path(atom.string()) {}
+      path(const ::atom & atom) : path(atom.as_string()) {}
       ~path() noexcept;
 
 

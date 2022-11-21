@@ -2,16 +2,16 @@
 
 
 #include "type.h"
-#include "acme/primitive/datetime/earth_time.h"
-#include "acme/primitive/datetime/file_time.h"
+#include  "acme/primitive/datetime/earth_time.h"
+#include  "acme/primitive/datetime/file_time.h"
 #include "acme/graphics/draw2d/color.h"
 #include "ptr.h"
 #include "acme/memory/memory.h"
 #include "acme/platform/procedure.h"
 #include "acme/primitive/collection/numeric_array.h"
 #include "acme/filesystem/filesystem/path_object.h"
-#include "acme/filesystem/filesystem/path_array.h"
-#include "acme/primitive/datetime/file_time.h"
+#include  "acme/filesystem/filesystem/path_array.h"
+//#include "acme/primitive/datetime/file_time.h"
 #include "acme/primitive/string/sz.h"
 
 
@@ -523,6 +523,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
    operator ::string() const { return this->as_string(); }
+   operator ::file::path() const { return this->file_path(); }
 
    operator ::file_time() const { return this->file_time(); }
    operator ::earth::time() const { return this->earth_time(); }

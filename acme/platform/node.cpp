@@ -14,8 +14,8 @@
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/exception/interface_only.h"
-#include "acme/primitive/collection/array.h"
-#include "acme/primitive/collection/string_array.h"
+//#include "acme/primitive/collection/array.h"
+//#include "acme/primitive/collection/string_array.h"
 #include "acme/user/nano/button.h"
 #include "acme/user/nano/message_box.h"
 

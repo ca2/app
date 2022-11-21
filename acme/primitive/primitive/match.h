@@ -2,8 +2,8 @@
 
 
 #include "acme/primitive/primitive/particle.h"
-#include "acme/primitive/collection/array.h"
-#include "acme/primitive/collection/pointer_array.h"
+//#include "acme/primitive/collection/array.h"
+//#include "acme/primitive/collection/pointer_array.h"
 
 
 namespace match

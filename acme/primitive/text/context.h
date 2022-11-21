@@ -2,7 +2,7 @@
 
 
 #include "acme/primitive/collection/atom_map.h"
-#include "acme/primitive/collection/pointer_array.h"
+//#include "acme/primitive/collection/pointer_array.h"
 #include "acme/primitive/text/international_locale_schema.h"
 
 

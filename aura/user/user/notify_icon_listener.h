@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/collection/pointer_array.h"
+//#include "acme/primitive/collection/pointer_array.h"
 #include "acme/primitive/string/string.h"
 #include "apex/user/notify_icon_bridge.h"
 

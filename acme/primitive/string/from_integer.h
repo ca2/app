@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -16,8 +16,6 @@ inline char * ansi_concatenate_i64(char * psz, i64 i, int iBase = 10, enum_digit
 
 
 
-inline void ansi_from_i64(char * sz, i64 i, i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
-inline void ansi_from_u64(char * sz, u64 u, i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
 
 
 inline void wide_from_i64_base(widechar * sz, i64 i, i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);

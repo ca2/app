@@ -6869,12 +6869,10 @@ namespace apex
 
 
 
-   //bool application::get_temp_file_name_template(string & strRet,const ::string & lpszName,const ::string & pszExtension,const ::string & pszTemplate)
+   //void application::get_temp_file_name_template(string & strRet,const ::string & lpszName,const ::string & pszExtension,const ::string & pszTemplate)
    //{
 
    //   throw ::not_implemented();
-
-   //   return false;
 
    //}
 

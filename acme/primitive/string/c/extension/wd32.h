@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -49,11 +49,11 @@ inline const wd32char *       wd32_find_char_reverse(const wd32char * sz, wd32ch
 inline const wd32char *       wd32_concatenate_and_duplicate(const wd32char * psz1, const wd32char * psz2, int iFree1, int iFree2);
 
 
-inline void                   wd32_from_u64(wd32char * psz, u64 u, i32 iBase = 10);
-inline void                   wd32_from_i64(wd32char * psz, i64 i, i32 iBase = 10);
+inline void                   wd32_from_u64(wd32char * psz, u64 u, i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+inline void                   wd32_from_i64(wd32char * psz, i64 i, i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
-inline void                   wd32_from_u32(wd32char * psz, u32 u, i32 iBase = 10);
-inline void                   wd32_from_i32(wd32char * psz, i32 i, i32 iBase = 10);
+inline void                   wd32_from_u32(wd32char * psz, u32 u, i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+inline void                   wd32_from_i32(wd32char * psz, i32 i, i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
 inline i64                    wd32_to_i64(const wd32char * psz, const wd32char ** ppszEnd = nullptr, i32 iBase = 10);
 inline u64                    wd32_to_u64(const wd32char * psz, const wd32char ** ppszEnd = nullptr, i32 iBase = 10);

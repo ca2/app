@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "socket_handler.h"
 #include "tcp_socket.h"
 #include "networking_bsd/networking.h"
@@ -70,7 +70,7 @@ namespace sockets_bsd
 
       g_interlockedcountSocketHandler++;
 
-      ::output_debug_string("----socket_handler (count=" + as_string((::iptr) g_interlockedcountSocketHandler) + ")\n");
+      ::output_debug_string("----socket_handler (count=" + ::as_string((::iptr) g_interlockedcountSocketHandler) + ")\n");
 
    }
 

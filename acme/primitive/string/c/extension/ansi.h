@@ -47,12 +47,14 @@ inline const ansichar *       ansi_find_char(const ansichar * sz, ansichar ch);
 inline const ansichar *       ansi_find_char_reverse(const ansichar * sz, ansichar ch);
 inline const ansichar *       ansi_concatenate_and_duplicate(const ansichar * psz1, const ansichar * psz2, int_bool iFree1 = false, int_bool iFree2 = false);
 
+//inline void ansi_from_i64(char* sz, i64 i, i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
+//inline void ansi_from_u64(char* sz, u64 u, i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
 
-inline void                   ansi_from_u64(ansichar * psz, u64 u, i32 iBase = 10, ansichar chTen = 'a');
-inline void                   ansi_from_i64(ansichar * psz, i64 i, i32 iBase = 10, ansichar chTen = 'a');
+inline void                   ansi_from_u64(ansichar * psz, u64 u, i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+inline void                   ansi_from_i64(ansichar * psz, i64 i, i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
-inline void                   ansi_from_u32(ansichar * psz, u32 u, i32 iBase = 10, ansichar chTen = 'a');
-inline void                   ansi_from_i32(ansichar * psz, i32 i, i32 iBase = 10, ansichar chTen = 'a');
+inline void                   ansi_from_u32(ansichar * psz, u32 u, i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+inline void                   ansi_from_i32(ansichar * psz, i32 i, i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
 inline i64                    ansi_to_i64(const ansichar * psz, const ansichar ** ppszEnd = nullptr, i32 iBase = 10);
 inline u64                    ansi_to_u64(const ansichar * psz, const ansichar ** ppszEnd = nullptr, i32 iBase = 10);

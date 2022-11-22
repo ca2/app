@@ -294,7 +294,7 @@ namespace sockets_bsd
       if (bind(s, psockaddr, sockaddr_len) == -1)
       {
 
-         FATAL("bind() failed for port " << as_string(paddress2->get_service_number()) << ", " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+         FATAL("bind() failed for port " << ::as_string(paddress2->get_service_number()) << ", " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
          
          close_socket(s);
 
@@ -309,7 +309,7 @@ namespace sockets_bsd
 
          close_socket(s);
 
-         throw ::exception(error_socket, "listen() failed for port " + as_string(paddress2->get_service_number()) + ": " + bsd_socket_error(networking_last_error()));
+         throw ::exception(error_socket, "listen() failed for port " + ::as_string(paddress2->get_service_number()) + ": " + bsd_socket_error(networking_last_error()));
 
          return -1;
 

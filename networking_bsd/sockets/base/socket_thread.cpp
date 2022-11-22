@@ -1,4 +1,4 @@
-/** \file socket_thread.cpp
+﻿/** \file socket_thread.cpp
 **   \date  2021-07-26
 **   \author grymse@alhem.net
 **   \moved to this file by camilosasuketbs@gmail.com
@@ -68,7 +68,7 @@ namespace sockets_bsd
    socket_thread::socket_thread()
    {
 
-      ::output_debug_string(as_string(g_iSocketThread++) + " - memory_new socket_thread\n");
+      ::output_debug_string(::as_string(g_iSocketThread++) + " - memory_new socket_thread\n");
 
    }
 

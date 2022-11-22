@@ -316,7 +316,7 @@ void particle::on_initialize_particle()
 ::acme::system * particle::acmesystem()
 {
 
-   return m_pcontext->acmesystem();
+   return ::is_set(m_pcontext) ? m_pcontext->acmesystem() : nullptr;
 
 }
 

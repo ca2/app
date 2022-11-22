@@ -1,4 +1,4 @@
-// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #pragma once
 
@@ -85,6 +85,7 @@ namespace windowing
 
       virtual void bring_to_front();
 
+      virtual void switch_to_this_window(bool b);
 
       virtual void graphics_lock();
       virtual void graphics_unlock();

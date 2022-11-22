@@ -1018,6 +1018,14 @@ namespace windowing
    }
 
 
+   void window::switch_to_this_window(bool b)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
    void window::graphics_lock()
    {
 

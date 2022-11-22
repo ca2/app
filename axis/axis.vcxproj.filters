@@ -264,24 +264,6 @@
     <ClInclude Include="platform\system.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="math\calculator\_.h">
-      <Filter>Header Files\mathematics\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator.h">
-      <Filter>Header Files\mathematics\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\parser.h">
-      <Filter>Header Files\mathematics\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\parser_exception.h">
-      <Filter>Header Files\mathematics\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\scanner.h">
-      <Filter>Header Files\mathematics\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\token.h">
-      <Filter>Header Files\mathematics\calculator</Filter>
-    </ClInclude>
     <ClInclude Include="math\kissfft\_.h">
       <Filter>Header Files\mathematics\kissfft</Filter>
     </ClInclude>
@@ -498,9 +480,6 @@
     <ClInclude Include="net\netserver\_netserver.h">
       <Filter>Header Files\net\netserver</Filter>
     </ClInclude>
-    <ClInclude Include="math\calculator\result.h">
-      <Filter>Header Files\mathematics\calculator</Filter>
-    </ClInclude>
     <ClInclude Include="database\database\database_composite.h">
       <Filter>Header Files\database\database</Filter>
     </ClInclude>
@@ -693,7 +672,28 @@
     <ClInclude Include="platform\_binary_stream.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="mathematics\calculator\token.h">
+      <Filter>Header Files\mathematics\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="mathematics\calculator\scanner.h">
+      <Filter>Header Files\mathematics\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="mathematics\calculator\result.h">
+      <Filter>Header Files\mathematics\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="mathematics\calculator\parser_exception.h">
+      <Filter>Header Files\mathematics\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="mathematics\calculator\parser.h">
+      <Filter>Header Files\mathematics\calculator</Filter>
+    </ClInclude>
     <ClInclude Include="mathematics\calculator\element.h">
+      <Filter>Header Files\mathematics\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="mathematics\calculator\calculator.h">
+      <Filter>Header Files\mathematics\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="mathematics\calculator\_.h">
       <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>
   </ItemGroup>

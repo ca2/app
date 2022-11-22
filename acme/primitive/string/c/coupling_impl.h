@@ -201,11 +201,11 @@ inline int wide_nicmp(const widechar * psz1, const widechar * psz2, strsize s) {
 inline const wd16char * wd16_istr(const wd16char * psz, const wd16char * pszFind) { return __wd16istr(psz, pszFind); }
 inline const wd32char * wd32_istr(const wd32char * psz, const wd32char * pszFind) { return __wd32istr(psz, pszFind); }
 
-inline wd16char * u64towd16(::u64 u, wd16char * buf, int iBase, enum_digit_case edigitcase) { return __u64towd16(u, buf, iBase, wd16chTen); }
-inline wd32char * u64towd32(::u64 u, wd32char * buf, int iBase, enum_digit_case edigitcase) { return __u64towd32(u, buf, iBase, wd32chTen); }
+inline wd16char * u64towd16(::u64 u, wd16char * buf, int iBase, enum_digit_case edigitcase) { return __u64towd16(u, buf, iBase, edigitcase); }
+inline wd32char * u64towd32(::u64 u, wd32char * buf, int iBase, enum_digit_case edigitcase) { return __u64towd32(u, buf, iBase, edigitcase); }
 
-inline wd16char * i64towd16(::i64 i, wd16char * buf, int iBase, enum_digit_case edigitcase) { return __i64towd16(i, buf, iBase, wd16chTen); }
-inline wd32char * i64towd32(::i64 i, wd32char * buf, int iBase, enum_digit_case edigitcase) { return __i64towd32(i, buf, iBase, wd32chTen); }
+inline wd16char * i64towd16(::i64 i, wd16char * buf, int iBase, enum_digit_case edigitcase) { return __i64towd16(i, buf, iBase, edigitcase); }
+inline wd32char * i64towd32(::i64 i, wd32char * buf, int iBase, enum_digit_case edigitcase) { return __i64towd32(i, buf, iBase, edigitcase); }
 
 inline int wd16_coll(const wd16char * psz1, const wd16char * psz2) { return wcscoll(psz1, psz2); }
 inline int wd32_coll(const wd32char * psz1, const wd32char * psz2) { return __wd32cmp(psz1, psz2); }

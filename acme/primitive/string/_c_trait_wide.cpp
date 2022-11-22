@@ -19,7 +19,7 @@ wd16char * __u64towd16(::u64 u, wd16char * buf, int iBase, enum_digit_case edigi
 
    i32 iIndex = 0;
 
-   __natural_to_string_internal(u, buf, iBase, iIndex, wd16chTen);
+   __natural_to_string_internal(u, buf, iBase, iIndex, edigitcase);
 
    buf[iIndex] = '\0';
 
@@ -46,7 +46,7 @@ wd32char * __u64towd32(::u64 u, wd32char * buf, int iBase, enum_digit_case edigi
 
    i32 iIndex = 0;
 
-   __natural_to_string_internal(u, buf, iBase, iIndex, wd32chTen);
+   __natural_to_string_internal(u, buf, iBase, iIndex, edigitcase);
 
    buf[iIndex] = '\0';
 
@@ -91,7 +91,7 @@ wd16char * __i64towd16(::i64 i, wd16char * buf, int iBase, enum_digit_case edigi
 
    i32 iIndex = 0;
 
-   __natural_to_string_internal(i, buf, iBase, iIndex, wd16chTen);
+   __natural_to_string_internal(i, buf, iBase, iIndex, edigitcase);
 
    if (bNegative)
    {
@@ -144,7 +144,7 @@ wd32char * __i64towd32(::i64 i, wd32char * buf, int iBase, enum_digit_case edigi
 
    i32 iIndex = 0;
 
-   __natural_to_string_internal(i, buf, iBase, iIndex, wd32chTen);
+   __natural_to_string_internal(i, buf, iBase, iIndex, edigitcase);
 
    if (bNegative)
    {

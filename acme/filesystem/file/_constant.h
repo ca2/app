@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 enum enum_depth : ::i32
@@ -59,7 +59,7 @@ namespace file
 
 
 
-   enum fmtflags : ::u16
+   enum fmtflags : ::u32
    {
       nofmtflags = 0,
       boolalpha = 0x00000001,
@@ -78,6 +78,7 @@ namespace file
       left = 0x00002000,
       right = 0x00004000,
       network_payload = 0x00008000,
+      separated = 0x00010000,
       adjustfield = left | right | internal,
       basefield = dec | oct | hex,
       floatfield = scientific | fixed

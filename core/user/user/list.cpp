@@ -4363,7 +4363,7 @@ namespace user
             for (index iLine = itemrange.get_lower_bound(); iLine <= itemrange.get_upper_bound(); iLine++)
             {
 
-               selection.add_item(key.m_strDataKey + "/" + as_string(iLine));
+               selection.add_item(key.m_strDataKey + "/" + ::as_string(iLine));
 
             }
 

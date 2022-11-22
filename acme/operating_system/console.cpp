@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 #include "acme/operating_system/_const_console.h"
@@ -19,7 +19,8 @@ namespace console
 {
 
 
-   console::console()
+   console::console(::file::file * pfile) :
+      m_cout(pfile)
    {
 
 

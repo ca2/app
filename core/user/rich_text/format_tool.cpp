@@ -582,7 +582,7 @@ namespace user
 
          m_pformata->first()->m_dFontSize = (double)iRound;
 
-         strEdit = as_string(iRound);
+         strEdit = ::as_string(iRound);
 
       }
       else if (dRound >= 0.75)
@@ -594,7 +594,7 @@ namespace user
 
          m_pformata->first()->m_dFontSize = (double)iRound;
 
-         strEdit = as_string(iRound);
+         strEdit = ::as_string(iRound);
 
       }
       else
@@ -604,7 +604,7 @@ namespace user
 
          m_pformata->first()->m_dFontSize = ((double)iRound) / 2.0;
 
-         strEdit = as_string(iDouble / 2) + ".5";
+         strEdit = ::as_string(iDouble / 2) + ".5";
 
       }
 

@@ -278,7 +278,12 @@ public:
    void new_line()
    {
 
-      m_pfile->unget_if(m_chSeparator);
+      if (m_fmtflags & ::file::separated)
+      {
+
+         m_pfile->unget_if(m_chSeparator);
+
+      }
 
       print(m_pszEolSeparator);
 
@@ -301,7 +306,12 @@ public:
 
       }
 
-      print(m_chSeparator);
+      if (m_fmtflags & ::file::separated)
+      {
+
+         print(m_chSeparator);
+
+      }
 
       return *this;
 
@@ -313,7 +323,12 @@ public:
 
       write(&ch, 1);
 
-      print(m_chSeparator);
+      if (m_fmtflags & ::file::separated)
+      {
+
+         print(m_chSeparator);
+
+      }
 
       return *this;
 
@@ -332,7 +347,12 @@ public:
 
       write(&uch, 1);
 
-      print(m_chSeparator);
+      if (m_fmtflags & ::file::separated)
+      {
+
+         print(m_chSeparator);
+
+      }
 
       return *this;
 
@@ -351,7 +371,12 @@ public:
 
       print(sz);
 
-      print(m_chSeparator);
+      if (m_fmtflags & ::file::separated)
+      {
+
+         print(m_chSeparator);
+
+      }
 
       return *this;
 
@@ -366,7 +391,12 @@ public:
 
       write_number(i);
 
-      print(m_chSeparator);
+      if (m_fmtflags & ::file::separated)
+      {
+
+         print(m_chSeparator);
+
+      }
 
       return *this;
 
@@ -379,7 +409,12 @@ public:
 
       write_number(u);
 
-      print(m_chSeparator);
+      if (m_fmtflags & ::file::separated)
+      {
+
+         print(m_chSeparator);
+
+      }
 
       return *this;
 
@@ -402,7 +437,12 @@ public:
 
       print_string_copy(integralbyte);
 
-      print(m_chSeparator);
+      if (m_fmtflags & ::file::separated)
+      {
+
+         print(m_chSeparator);
+
+      }
 
       return *this;
 
@@ -462,7 +502,12 @@ public:
 
       write_floating(f);
 
-      print(m_chSeparator);
+      if (m_fmtflags & ::file::separated)
+      {
+
+         print(m_chSeparator);
+
+      }
 
       return *this;
 
@@ -519,7 +564,12 @@ public:
 
       }
 
-      print(m_chSeparator);
+      if (m_fmtflags & ::file::separated)
+      {
+
+         print(m_chSeparator);
+
+      }
 
       return *this;
 
@@ -545,7 +595,12 @@ public:
 
       }
 
-      print(m_chSeparator);
+      if (m_fmtflags & ::file::separated)
+      {
+
+         print(m_chSeparator);
+
+      }
 
       return *this;
 
@@ -572,7 +627,12 @@ public:
 
       }
 
-      print(m_chSeparator);
+      if (m_fmtflags & ::file::separated)
+      {
+
+         print(m_chSeparator);
+
+      }
 
       return *this;
 

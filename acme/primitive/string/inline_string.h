@@ -70,6 +70,9 @@ public:
    strsize get_size() const { return m_iLength; }
 
 
+   operator ::block() const { return { get_data(), get_size() }; }
+
+
 };
 
 

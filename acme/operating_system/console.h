@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/operating_system/_const_console.h"
@@ -51,7 +51,7 @@ namespace console
       int                                          m_iTextColor;
 
 
-      console();
+      console(::file::file * pfile = nullptr);
       ~console() override;
 
 

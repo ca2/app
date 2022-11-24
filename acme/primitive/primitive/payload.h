@@ -215,6 +215,12 @@ public:
       operator = (memorytemplate.block());
    }
 
+   template < primitive_character CHARACTER2, strsize sizeMaximumLength >
+   payload(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
+      payload(::string(inlinestring))
+   {
+   }
+
    //template < typename ENUM >
    //payload(const ::enumeration < ENUM > & eflag)
    //{

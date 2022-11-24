@@ -125,16 +125,15 @@ namespace hex
       return str;
    }
 
-   inline string upper_from(::i64 i)
+
+   inline ::inline_number_string upper_from(::i64 i)
    {
 
-      char sz[64];
+      ::inline_number_string numberstring;
 
-      __u64toansi((::u64)i, sz, 16, e_digit_case_upper);
+      __u64toansi((::u64)i, numberstring, 16, e_digit_case_upper, numberstring.m_iLength);
 
-      ansi_upr(sz);
-
-      return sz;
+      return numberstring;
 
    }
 
@@ -142,13 +141,11 @@ namespace hex
    inline string lower_from(::i64 i)
    {
 
-      char sz[64];
+      ::inline_number_string numberstring;
 
-      __u64toansi((::u64)i, sz, 16, e_digit_case_lower);
+      __u64toansi((::u64)i, numberstring, 16, e_digit_case_lower, numberstring.m_iLength);
 
-      ansi_lwr(sz);
-
-      return sz;
+      return numberstring;
 
    }
 

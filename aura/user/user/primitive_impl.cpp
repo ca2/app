@@ -374,12 +374,12 @@ namespace user
 
       string strType = __type_name(m_puserinteraction);
 
-      if (strType.contains("list_box"))
-      {
-
-         output_debug_string("list_box");
-
-      }
+//      if (strType.contains("list_box"))
+//      {
+//
+//         output_debug_string("list_box");
+//
+//      }
 
       windowing_output_debug_string("\ninteraction_impl_base::_001Print");
 

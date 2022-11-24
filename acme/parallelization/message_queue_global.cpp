@@ -232,14 +232,9 @@ CLASS_DECL_ACME int_bool mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32
 
    }
 
-   pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
-
-   return true;
+   return ::succeeded(pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax));
 
 }
-
-
-
 
 
 void initialize_global_message_queue()

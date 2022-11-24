@@ -66,6 +66,7 @@ inline i32                    ansi_count_to_i32(const ansichar * psz, const ansi
 
 
 inline void                   ansi_reverse(ansichar * sz);
+inline void                   ansi_reverse(ansichar * sz, strsize size);
 inline void                   ansi_zero_pad(ansichar * sz, strsize lenPad);
 inline const ansichar *       ansi_scan(const ansichar * psz, const ansichar * find);
 inline ansichar *             ansi_first_token(ansichar * psz, const ansichar * delimiters, ansichar ** action_context);

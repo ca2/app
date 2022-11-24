@@ -1690,7 +1690,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, ::part
 
    }
 
-   auto iTenths = (::i32) (wait.m_d * 10.0);
+   auto iTenths = (::i32) (wait.u32() / 100);
 
    try
    {

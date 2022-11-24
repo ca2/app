@@ -720,7 +720,9 @@ inline const ansichar * ansi_find_char_reverse(const ansichar * psz, ansichar ch
 inline void ansi_from_u64(ansichar * sz, u64 u, i32 iBase, enum_digit_case edigitcase)
 {
 
-   __u64toansi(u, sz, iBase, edigitcase);
+   ::i32 len;
+
+   __u64toansi(u, sz, iBase, edigitcase, len);
 
 }
 
@@ -728,7 +730,9 @@ inline void ansi_from_u64(ansichar * sz, u64 u, i32 iBase, enum_digit_case edigi
 inline void ansi_from_i64(ansichar * sz, i64 i, i32 iBase, enum_digit_case edigitcase)
 {
 
-   __i64toansi(i, sz, iBase, edigitcase);
+   ::i32 len;
+
+   __i64toansi(i, sz, iBase, edigitcase, len);
 
 }
 
@@ -736,7 +740,9 @@ inline void ansi_from_i64(ansichar * sz, i64 i, i32 iBase, enum_digit_case edigi
 inline void ansi_from_u32(ansichar * sz, u32 u, i32 iBase, enum_digit_case edigitcase)
 {
 
-   __u64toansi(u, sz, iBase, edigitcase);
+   ::i32 len;
+
+   __u64toansi(u, sz, iBase, edigitcase, len);
 
 }
 
@@ -744,11 +750,11 @@ inline void ansi_from_u32(ansichar * sz, u32 u, i32 iBase, enum_digit_case edigi
 inline void ansi_from_i32(ansichar * sz, i32 i, i32 iBase, enum_digit_case edigitcase)
 {
 
-   __i64toansi(i, sz, iBase, edigitcase);
+   ::i32 len;
 
+   __i64toansi(i, sz, iBase, edigitcase, len);
 
 }
-
 
 
 inline i64 ansi_count_to_i64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase, strsize srclen)
@@ -791,9 +797,6 @@ inline i64 ansi_count_to_i64(const ansichar * psz, const ansichar ** ppszEnd, i3
    return ansi_to_i64(psz, ppszEnd, iBase);
 
 }
-
-
-
 
 
 inline i32 ansi_count_to_i32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase, strsize srclen)
@@ -841,7 +844,15 @@ inline i32 ansi_count_to_i32(const ansichar * psz, const ansichar ** ppszEnd, i3
 inline void ansi_reverse(ansichar * psz)
 {
 
-   reverse_memory(psz, strlen(psz));
+   reverse_memory(psz, string_safe_length(psz));
+
+}
+
+
+inline void ansi_reverse(ansichar * psz, strsize size)
+{
+
+   reverse_memory(psz, size);
 
 }
 

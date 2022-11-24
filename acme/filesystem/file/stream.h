@@ -136,18 +136,18 @@ inline void __exchange(::binary_stream < FILE > & s, ::string_array_base < Type,
 #define FIRST_VERSION 0
 
 
-enum e_set_storing
+enum enum_set_storing
 {
 
-   set_storing
+   e_set_storing
 
 };
 
 
-enum e_set_loading
+enum enum_set_loading
 {
 
-   set_loading
+   e_set_loading
 
 };
 

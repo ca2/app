@@ -125,9 +125,9 @@
 inline timespec & operator +=(timespec & timespec, const class time & time)
 {
 
-   timespec.tv_sec += (::i64) time.m_d;
+   timespec.tv_sec += (::i64) time.m_iSecond;
 
-   timespec.tv_nsec += (long) (fmod(time.m_d, 1.0) *1'000'000'000.0);
+   timespec.tv_nsec += (long) time.m_iNanosecond;
 
    normalize(timespec);
 

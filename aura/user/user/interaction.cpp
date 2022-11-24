@@ -3517,12 +3517,12 @@ namespace user
 
          auto type = __object_type(*this);
 
-         if (type.name_contains("scroll_bar"))
-         {
-
-            output_debug_string("scroll_bar");
-
-         }
+//         if (type.name_contains("scroll_bar"))
+//         {
+//
+//            output_debug_string("scroll_bar");
+//
+//         }
          //         else if (strType.contains_ci("combo_box"))
          //         {
          //
@@ -4464,12 +4464,12 @@ namespace user
          //output_debug_string("combo_box");
 
       }
-      else if (type.name_contains("list_box"))
-      {
-
-         output_debug_string("list_box");
-
-      }
+//      else if (type.name_contains("list_box"))
+//      {
+//
+//         output_debug_string("list_box");
+//
+//      }
 
       //if (!is_sketch_to_design_locked())
       //{
@@ -4558,12 +4558,12 @@ namespace user
 
       }
 
-      if (type.name_contains("list_box"))
-      {
-
-         output_debug_string("list_box");
-
-      }
+//      if (type.name_contains("list_box"))
+//      {
+//
+//         output_debug_string("list_box");
+//
+//      }
 
       //      if(m_strInteractionTag.begins_ci("button_"))
       //      {
@@ -4672,11 +4672,11 @@ namespace user
 
          auto type = __object_type(*this);
 
-         if (type.name_contains("waven::impact"))
-         {
-
-            output_debug_string("waven::impact");
-         }
+//         if (type.name_contains("waven::impact"))
+//         {
+//
+//            output_debug_string("waven::impact");
+//         }
          //         else if(strType.contains_ci("menu_list_impact"))
          //         {
          //
@@ -9181,12 +9181,12 @@ namespace user
 
       auto type = __object_type(*this);
 
-      if (type.name_contains("page_home"))
-      {
-
-         INFORMATION("page_home");
-
-      }
+//      if (type.name_contains("page_home"))
+//      {
+//
+//         INFORMATION("page_home");
+//
+//      }
 
       auto edisplayDesign = layout().design().display();
 
@@ -11046,12 +11046,12 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto type = __object_type(*this);
 
-      if (type.name_contains("list_box"))
-      {
-
-         ::output_debug_string("list_box");
-
-      }
+//      if (type.name_contains("list_box"))
+//      {
+//
+//         ::output_debug_string("list_box");
+//
+//      }
 
       return m_pprimitiveimpl->post_message(atom, wparam, lparam);
 
@@ -17073,12 +17073,12 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto type = __object_type(*this);
 
-      if (type.name_contains("list_box"))
-      {
-
-         output_debug_string("prodevian_redraw list_box");
-
-      }
+//      if (type.name_contains("list_box"))
+//      {
+//
+//         output_debug_string("prodevian_redraw list_box");
+//
+//      }
 
       if (m_pprimitiveimpl.is_null())
       {

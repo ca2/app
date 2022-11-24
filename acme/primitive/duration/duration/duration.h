@@ -62,7 +62,7 @@ public:
    duration(const ::INTEGRAL_DAY & integral) : duration::duration(e_raw, integral.m_i * 86'400) {}
    duration(const ::FLOATING_DAY & floating) : duration(e_raw, (::i64)(floating.m_d * 86'400.0), (long)(fmod(floating.m_d * 86'400.0, 1.0) * 1'000'000'000.0)) {}
 
-   duration(const class ::time& time) : duration(e_raw, (::i64)(time.m_d), (long)(fmod(time.m_d, 1.0) * 1'000'000'000.0)) {}
+   duration(const class ::time& time) : duration(e_raw, (::i64)(time.m_iSecond), (long)(time.m_iNanosecond)) {}
 
    template < primitive_integer INTEGER1, primitive_integral INTEGRAL2 >
    duration(INTEGER1 iSecond, INTEGRAL2 iNanosecond) :
@@ -574,10 +574,10 @@ public:
 
 
 
-   duration operator %(const class time & time) const { return *this % ::duration(FLOATING_SECOND(time.m_d));}
-   double operator /(const class time & time) const { return *this / ::duration(FLOATING_SECOND(time.m_d));}
-   duration operator +(const class time & time) const { return *this + ::duration(FLOATING_SECOND(time.m_d)); }
-   duration operator -(const class time & time) const { return *this - ::duration(FLOATING_SECOND(time.m_d)); }
+   duration operator %(const class time & time) const { return *this % ::duration(time);}
+   double operator /(const class time & time) const { return *this / ::duration(time);}
+   duration operator +(const class time & time) const { return *this + ::duration(time); }
+   duration operator -(const class time & time) const { return *this - ::duration(time); }
 
 
 
@@ -1049,7 +1049,7 @@ CLASS_DECL_ACME class ::duration __random(const class ::duration & d1, const cla
 inline class ::time duration::time() const
 {
 
-   return is_infinite() ? ::wait::__infinite() : floating_second().m_d;
+   return is_infinite() ? (class ::time) ::wait::infinite() : (class ::time){m_iSecond, m_iNanosecond};
 
 }
 

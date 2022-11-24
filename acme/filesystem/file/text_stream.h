@@ -500,7 +500,7 @@ public:
    write_text_stream& operator <<(FLOATING f)
    {
 
-      write_floating(f);
+      write_number(f);
 
       if (m_fmtflags & ::file::separated)
       {

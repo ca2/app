@@ -2,6 +2,17 @@
 #pragma once
 
 
+template < typename A, typename B >
+inline void swap(A & a, B & b)
+{
+
+   auto t = a;
+
+   a = b;
+
+   b = t;
+
+}
 
 
 inline ::u64 make64_from32(::u32 l, ::u32 h)
@@ -257,37 +268,6 @@ inline bool __sort(T1& t1, T2& t2)
 }
 
 
-template<typename T1, typename T2>
-inline void sort_non_negative(T1& t1, T2& t2)
-{
-
-   if (t1 < ::numeric_info<T1>::null())
-   {
-
-      return;
-
-   }
-
-   if (t2 < ::numeric_info<T2>::null())
-   {
-
-      return;
-
-   }
-
-   if (t1 > t2)
-   {
-
-      auto t = t2;
-
-      t2 = t1;
-
-      t1 = t;
-
-   }
-
-}
-
 
 
 
@@ -366,6 +346,52 @@ inline u32 ansi_to_u32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBas
    return (::u32) ul;
 
 #endif
+
+}
+
+
+
+template < primitive_integral SECOND, primitive_integral NANOSECOND >
+constexpr void normalize_second_nanosecond(SECOND & second, NANOSECOND & nanosecond)
+{
+
+   auto extrasecond = nanosecond > 0 ? (nanosecond / 1'000'000'000) : ((nanosecond / 1'000'000'000) - 1);
+
+   second += extrasecond;
+
+   nanosecond -= extrasecond * 1'000'000'000;
+
+}
+
+
+
+template < primitive_integral SECOND1, primitive_integral NANOSECOND1, primitive_integral SECOND2, primitive_integral NANOSECOND2 >
+constexpr void add_second_nanosecond(SECOND1 & second1, NANOSECOND1 & nanosecond1, const SECOND2 & second2, const NANOSECOND2 & nanosecond2)
+{
+
+   auto nanos = nanosecond1 + nanosecond2;
+
+   auto extrasecond = nanos > 0 ? (nanos / 1'000'000'000) : ((nanos / 1'000'000'000) - 1);
+
+   second1 = second1 + second2 + extrasecond;
+
+   nanosecond1 = nanos - extrasecond * 1'000'000'000;
+
+}
+
+
+
+template < primitive_integral SECOND1, primitive_integral NANOSECOND1, primitive_integral SECOND2, primitive_integral NANOSECOND2 >
+constexpr void subtract_second_nanosecond(SECOND1 & second1, NANOSECOND1 & nanosecond1, const SECOND2 & second2, const NANOSECOND2 & nanosecond2)
+{
+
+   auto nanos = nanosecond1 - nanosecond2;
+
+   auto extrasecond = nanos > 0 ? (nanos / 1'000'000'000) : ((nanos / 1'000'000'000) - 1);
+
+   second1 = second1 - second2 + extrasecond;
+
+   nanosecond1 = nanos - extrasecond * 1'000'000'000;
 
 }
 

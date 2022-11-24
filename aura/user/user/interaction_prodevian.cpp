@@ -250,12 +250,12 @@ namespace user
 
       ::task_set_name("prodevian," + strType);
 
-      if (strType.contains_ci("list_box"))
-      {
-
-         output_debug_string("list_box");
-
-      }
+//      if (strType.contains_ci("list_box"))
+//      {
+//
+//         output_debug_string("list_box");
+//
+//      }
 
       m_puserinteraction->add_task(this);
 
@@ -457,12 +457,12 @@ namespace user
 
             }
 
-            if (strType.contains_ci("list_box"))
-            {
-
-               output_debug_string("list_box");
-
-            }
+//            if (strType.contains_ci("list_box"))
+//            {
+//
+//               output_debug_string("list_box");
+//
+//            }
 
             //printf("prodevian get_message(%d)\n", m_message.message);
 
@@ -635,16 +635,18 @@ namespace user
       if (bWait)
       {
 
+         auto elapsed = m_durationNow - m_durationLastFrame;
+
          if (bHasProdevian)
          {
 
-            bWait = (m_durationNow - m_durationLastFrame) < m_durationPostRedrawProdevian.half();
+            bWait = elapsed < m_durationPostRedrawProdevian.half();
 
          }
          else
          {
 
-            bWait = (m_durationNow - m_durationLastFrame) < m_durationPostRedrawNominal.half();
+            bWait = elapsed < m_durationPostRedrawNominal.half();
 
          }
 
@@ -911,25 +913,30 @@ namespace user
          // ENDIF WINDOWS
       }
 
-      auto durationNow = ::duration::now();
-
-      for (index i = 0; i < m_durationaFrame.get_size();)
       {
 
-         auto durationFrame = m_durationaFrame[i];
+         synchronous_lock sl(synchronization());
 
-         auto durationDiff = durationNow - durationFrame;
+         auto durationNow = ::duration::now();
 
-         if (durationDiff > 1_s)
+         for (index i = 0; i < m_durationaFrame.get_size();)
          {
 
-            m_durationaFrame.erase_at(i);
+            auto durationFrame = m_durationaFrame[i];
 
-         }
-         else
-         {
+            auto durationDiff = durationNow - durationFrame;
 
-            break;
+            if (durationDiff > 1_s)
+            {
+
+               m_durationaFrame.erase_at(i);
+
+            } else
+            {
+
+               break;
+
+            }
 
          }
 
@@ -1367,6 +1374,8 @@ namespace user
 
    void prodevian::profiling_on_after_update_screen()
    {
+
+      synchronous_lock sl(synchronization());
       
       m_durationLastFrame.Now();
 

@@ -5017,10 +5017,10 @@ namespace apex
    }
 
 
-   void system::add_handler(const ::signal_handler & signalhandler, bool bPriority)
+   void system::add_handler(::matter * pmatter, bool bPriority)
    {
 
-      ::apex::context::add_signal_handler(signalhandler, bPriority);
+      ::apex::context::add_handler(pmatter, bPriority);
 
    }
 

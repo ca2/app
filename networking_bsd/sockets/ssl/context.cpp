@@ -7,6 +7,9 @@
 #include "framework.h"
 #include "context.h"
 
+#if !defined(WINDOWS)
+#include <signal.h>
+#endif
 
 namespace sockets_bsd
 {

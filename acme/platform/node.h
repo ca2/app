@@ -282,8 +282,11 @@ namespace acme
 
       virtual void node_post(const ::procedure & procedure);
 
-
       virtual void node_send(const ::procedure & procedure);
+
+      void post_procedure(const ::procedure & procedure) override;
+
+      void send_procedure(const ::procedure & procedure) override;
 
       virtual void node_post_quit();
 

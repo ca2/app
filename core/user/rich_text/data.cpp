@@ -22,6 +22,7 @@ namespace user
    namespace rich_text
    {
 
+      void align(line * pline, const ::rectangle_f64 & rectangle);
 
       ::count get_vars(strsize_array& ia1, strsize_array& ia2, string str)
       {

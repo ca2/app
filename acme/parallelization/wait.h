@@ -16,21 +16,22 @@ class CLASS_DECL_ACME wait :
 public:
 
 
-   wait() : wait(infinite()) {}
+   wait(enum_no_initialize) {}
+   constexpr wait():time() {}
+   constexpr wait(::i64 iSecond, ::i64 iNanosecond) : time(iSecond, iNanosecond) {}
    wait(double dWait): time(dWait) {}
-   wait(const class time& timeWait) : time(timeWait.m_d) {}
-   wait(const class wait& waitTime) : time(waitTime.m_d) {}
+   wait(const class time& timeWait) : time(timeWait) {}
+   wait(const class wait& waitTime) : time(waitTime) {}
    using time::time;
 
-   static inline double __infinite() { return 0xffffffffu; }
+   static consteval ::wait infinite() { return {infinite_milliseconds().m_i, 0}; }
 
-   static inline class ::wait infinite() { return __infinite(); }
+   static consteval INTEGRAL_MILLISECOND infinite_milliseconds() { return numeric_info<::u32>::maximum(); }
 
-   inline operator ::u32() const { return (::u32) ( m_d <= 0. ? 0 : (m_d >= 0xffffffffu ? 0xffffffffu : (::u32)( m_d * 1'000.0))); }
 
-   inline bool is_infinite() const { return m_d >= __infinite(); }
+   inline bool is_infinite() const { return m_iSecond >= numeric_info<::u32>::maximum(); }
 
-   inline bool is_null() const { return m_d <= 0; }
+   inline bool is_null() const { return m_iSecond <= 0; }
 
 
    //DECLARE_COMPARISON_WITH_DURATION

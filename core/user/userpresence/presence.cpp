@@ -1,7 +1,10 @@
 ﻿#include "framework.h"
 #include "presence.h"
+#include "acme/constant/message.h"
+#include "acme/primitive/primitive/url.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/networking/http/context.h"
 #include "acme/user/user/mouse.h"
 #include "axis/account/department.h"
 #include "axis/platform/session.h"
@@ -84,12 +87,8 @@ namespace userpresence
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";
 
-      auto psystem = acmesystem();
-
-      auto purl = psystem->url();
-
-      purl->string_set(strUrl, "short_status", as_string(m_iShortStatusWayTag));
-      purl->string_set(strUrl, "long_status", m_strLongStatus);
+      url()->string_set(strUrl, "short_status", ::as_string(m_iShortStatusWayTag));
+      url()->string_set(strUrl, "long_status", m_strLongStatus);
 
       property_set set;
 

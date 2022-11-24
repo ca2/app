@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/filesystem/file/exception.h"
 ////#include "acme/exception/exception.h"
 //#include "acme/operating_system.h"
 //#ifdef WINDOWS
@@ -781,7 +782,9 @@ bool file_exists(const char * path)
    if (::stat(path, &stat))
    {
 
-      auto estatus = errno_status(errno);
+      int iErrorNumber = errno;
+
+      auto estatus = errno_status(iErrorNumber);
 
       if(estatus == error_file_not_found)
       {
@@ -789,8 +792,16 @@ bool file_exists(const char * path)
          return false;
 
       }
+      else if(estatus == error_not_a_directory)
+      {
 
-      throw ::exception(estatus);
+         return false;
+
+      }
+
+      auto errorcode = errno_error_code(iErrorNumber);
+
+      throw ::file::exception(estatus, errorcode, path, "stat");
 
    }
 

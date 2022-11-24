@@ -2243,7 +2243,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source} include/_impl.h)
 
 
 if (NOT DEFINED NO_PRECOMPILED_HEADER)

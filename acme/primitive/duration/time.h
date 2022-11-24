@@ -6,19 +6,24 @@
 #undef time
 #endif
 
+// time : Duration "with-no-templates"
 
-class CLASS_DECL_ACME time
+class CLASS_DECL_ACME time :
+   public DURATION
 {
 public:
 
 
-   double      m_d; // seconds
+   //double      m_d; // seconds
 
 
-   constexpr time() {}
-   constexpr time(enum_zero) : m_d(0.) {}
-   constexpr time(double d) : m_d(d) {}
-   time(const class ::time& time) : m_d(time.m_d) {}
+   constexpr time(enum_no_initialize) {}
+   constexpr time():time(0, 0) {}
+   constexpr time(::i64 iSecond, ::i64 iNanosecond)  {m_iSecond = iSecond; m_iNanosecond = iNanosecond; normalize();}
+   constexpr time(enum_zero)  :time(0, 0) {}
+   constexpr time(double d) {m_iSecond = (::i64)d; m_iNanosecond = (::i64) (fmod(d,1.0) * 1'000'000'000.0); normalize();}
+   constexpr time(const class ::time& time)  {m_iSecond = time.m_iSecond; m_iNanosecond = time.m_iNanosecond;}
+   constexpr time(const struct ::timespec& timespec)  {m_iSecond = timespec.tv_sec; m_iNanosecond = timespec.tv_nsec; normalize(); }
    inline time(const class duration & duration);
    inline time(const ::INTEGRAL_NANOSECOND & integral);
    inline time(const ::FLOATING_NANOSECOND & floating);
@@ -38,23 +43,90 @@ public:
 
    static class ::time now();
 
-   inline class ::time elapsed(const class ::time& waitSample = now()) { return waitSample.m_d - m_d; }
+   inline class ::time elapsed(const class ::time& waitSample = now()) { return waitSample - *this; }
 
 
-   inline bool operator !() const { return m_d <= 0.; }
+   constexpr class ::time &operator =(const struct ::timespec & timespec)
+   {
+
+      m_iSecond = timespec.tv_sec;
+      m_iNanosecond = timespec.tv_nsec;
+
+      return *this;
+
+   }
+
+   constexpr class ::time & normalize()
+   {
+
+      normalize_second_nanosecond(m_iSecond, m_iNanosecond);
+
+      return *this;
+
+   }
+
+
+   constexpr time & operator += (const time & time)
+   {
+
+      add_second_nanosecond(m_iSecond, m_iNanosecond, time.m_iSecond, time.m_iNanosecond);
+
+      return *this;
+
+   }
+
+
+   constexpr time &  operator -= (const time & time)
+   {
+
+      subtract_second_nanosecond(m_iSecond, m_iNanosecond, time.m_iSecond, time.m_iNanosecond);
+
+      return *this;
+
+   }
+
+
+   constexpr class ::time operator + (const time & time) const
+   {
+
+      class ::time timeResult(*this);
+
+      timeResult += time;
+
+      return timeResult;
+
+   }
+
+
+   constexpr class ::time operator - (const time & time) const
+   {
+
+      class ::time timeResult(*this);
+
+      timeResult += time;
+
+      return timeResult;
+   }
+
+   inline bool operator !() const { return m_iSecond != 0 && m_iNanosecond != 0; }
+
+
+   constexpr INTEGRAL_MILLISECOND integral_milliseconds() const { return m_iSecond * 1'000 + m_iNanosecond / 1'000'000;}
+
+
+   constexpr ::u32 u32() const { return constrain_u32(integral_milliseconds().m_i); }
+
+   constexpr operator ::u32() const { return this->u32(); }
+
 
 
    DECLARE_COMPARISON_WITH_DURATION(NON_INLINE)
 
 
-   inline class ::time operator + (const class ::time & timeduration2) const { return m_d + timeduration2.m_d; }
-   inline class ::time operator - (const class ::time & timeduration2) const { return m_d - timeduration2.m_d; }
-
-
    template < primitive_number NUMBER >
-   inline class time operator / (const NUMBER & number)const{ return (double)(m_d / number); }
+   inline class time operator / (const NUMBER & number)const{ return (class ::time){m_iSecond / number, m_iNanosecond / number}; }
    template < primitive_number NUMBER >
-   inline class time operator * (const NUMBER & number) const{ return (double)(m_d * number); }
+   inline class time operator * (const NUMBER & number) const{ return (class ::time){m_iSecond * number, m_iNanosecond * number}; }
 
 
    
@@ -62,6 +134,68 @@ public:
 
 
 CLASS_DECL_ACME void preempt(const class ::time& duration);
+
+
+
+constexpr struct ::timespec & copy(struct ::timespec & timespec, const class ::time & time)
+{
+
+   timespec.tv_sec = time.m_iSecond;
+   timespec.tv_nsec = time.m_iNanosecond;
+
+   return timespec;
+
+}
+
+
+constexpr struct ::timespec & add(struct ::timespec & timespec1, const struct ::timespec & timespec2)
+{
+
+   add_second_nanosecond(timespec1.tv_sec, timespec1.tv_nsec, timespec2.tv_sec, timespec2.tv_nsec);
+
+   return timespec1;
+
+}
+
+
+constexpr struct ::timespec addition(const struct ::timespec & timespec1, const struct ::timespec & timespec2)
+{
+
+   timespec timespec = timespec1;
+
+   add_second_nanosecond(timespec.tv_sec, timespec.tv_nsec, timespec2.tv_sec, timespec2.tv_nsec);
+
+   return timespec;
+
+}
+
+
+constexpr struct ::timespec & subtract(struct ::timespec & timespec1, const struct ::timespec & timespec2)
+{
+
+   subtract_second_nanosecond(timespec1.tv_sec, timespec1.tv_nsec, timespec2.tv_sec, timespec2.tv_nsec);
+
+   return timespec1;
+
+}
+
+
+constexpr struct ::timespec subtraction(const struct ::timespec & timespec1, const struct ::timespec & timespec2)
+{
+
+   timespec timespec = timespec1;
+
+   return subtract(timespec, timespec2);
+
+}
+
+
+constexpr bool operator >(const struct ::timespec & timespec1, const struct ::timespec & timespec2)
+{
+
+   return timespec1.tv_sec > timespec2.tv_sec || (timespec1.tv_sec == timespec2.tv_sec && timespec1.tv_nsec > timespec2.tv_nsec);
+
+}
 
 
 

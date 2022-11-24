@@ -3746,54 +3746,93 @@ strsize string_base < CHARACTER >::find_first_of(CHARACTER_TYPE ch, strsize iSta
 template < primitive_character CHARACTER >
 strsize string_base < CHARACTER >::find(const CHARACTER_TYPE * pszSub, strsize iStart, strsize nCount, const CHARACTER_TYPE ** pszTail) const RELEASENOTHROW
 {
-   // iStart is in XCHARs
-   ASSERT(iStart >= 0);
-   ASSERT(__is_valid_string(pszSub));
 
-   if (pszSub == nullptr)
-   {
-      return(-1);
-   }
-   // nLength is in XCHARs
-   strsize nLength = get_length();
-   if (iStart < 0 || iStart > nLength)
-   {
-      return(-1);
-   }
+   ASSERT(iStart >= 0);
+
+   ASSERT(__is_valid_string(pszSub));
 
    strsize nLength2 = string_get_length(pszSub);
 
-   if (nCount < 0)
-      nCount = nLength;
+   if (nLength2 <= 0)
+   {
 
-   if (nCount + iStart + nLength2 > nLength)
-      nCount = nLength - iStart - nLength2;
+      return 0;
 
-   if (nCount < 0)
+   }
+
+   strsize nLength = get_length();
+
+   if (iStart < 0 || iStart > nLength)
+   {
+
       return -1;
 
+   }
+
+   if (nCount < 0)
+   {
+
+      nCount += nLength;
+
+   }
+
+   if (nCount + iStart + nLength2 > nLength)
+   {
+
+      nCount = nLength - iStart - nLength2;
+
+   }
+
+   if (nCount < 0)
+   {
+
+      return -1;
+
+   }
+
    const CHARACTER_TYPE * psz = data() + iStart;
+
    for (i32 i = 0; i <= nCount; i++)
    {
+
       bool bFound = true;
+
       i32 j;
+
       for (j = 0; j < nLength2; j++)
       {
+
          if (psz[j] != pszSub[j])
          {
+
             bFound = false;
+
             break;
+
          }
+
       }
-      if (bFound && j == nLength2)
+
+      if (bFound)
       {
-         if (pszTail)
+
+         if (::is_set(pszTail))
+         {
+
             *pszTail = &psz[j];
+
+         }
+
          return i + iStart;
+
       }
+
       psz++;
+
    }
+
    return -1;
+
 }
 
 // find the first occurrence of string_base < CHARACTER > 'pszSub', starting at strsize 'iStart'

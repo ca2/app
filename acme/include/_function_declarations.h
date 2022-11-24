@@ -243,13 +243,19 @@ CLASS_DECL_ACME void set_verbose_log(bool bVerbose);
 CLASS_DECL_ACME bool is_verbose_log();
 
 
-
 inline i64 ansi_to_i64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
 inline u64 ansi_to_u64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
 inline i32 ansi_to_i32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
 inline u32 ansi_to_u32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
 
 
-CLASS_DECL_ACME ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, enum_digit_case edigitcase);
+CLASS_DECL_ACME ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, enum_digit_case edigitcase, ::i32 & len);
 
-CLASS_DECL_ACME ansichar * __i64toansi(::i64 u, ansichar * buf, int iBase, enum_digit_case edigitcase);
+CLASS_DECL_ACME ansichar * __i64toansi(::i64 u, ansichar * buf, int iBase, enum_digit_case edigitcase, ::i32 & len);
+
+
+template<typename T1, typename T2>
+inline void sort_non_negative(T1& t1, T2& t2);
+
+
+

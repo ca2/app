@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/platform/department.h"
 #include "acme/platform/timer_array.h"
 
 

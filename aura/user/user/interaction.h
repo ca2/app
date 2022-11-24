@@ -400,7 +400,7 @@ namespace user
       ::aura::application * get_app();
       ::aura::session * get_session();
       ::aura::system * get_system();
-      inline ::aura::context * context();
+      ::aura::context * context();
 
       bool _001CanEnterScreenSaver() override;
 
@@ -999,10 +999,12 @@ namespace user
             if (pinteraction != puiExclude)
             {
 
-               pchild = dynamic_cast <CHILD *> (pinteraction.m_p);
+               auto pchildCandidate = dynamic_cast <CHILD *> (pinteraction.m_p);
 
-               if (pchild != nullptr)
+               if (pchildCandidate != nullptr)
                {
+
+                  pchild = pchildCandidate;
 
                   return true;
 

@@ -700,46 +700,39 @@ bool event::_wait (const class ::wait & wait)
       else
       {
 
-         timespec abstime;
-         
-         timespec timeNow;
-
          pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
          int iSignal = m_iSignalId;
 
-         //clock_gettime(CLOCK_REALTIME, &abstime);
+         timespec timespecNow{};
 
-         clock_getrealtime(&abstime);
+         clock_getrealtime(&timespecNow);
 
-         abstime += wait;
+         timespec timespecWait{};
 
-         while(abstime.tv_nsec > 1000 * 1000 * 1000)
-         {
+         copy(timespecWait, wait);
 
-            abstime.tv_nsec -= 1000 * 1000 * 1000;
+         timespec timespecFinal{};
 
-            abstime.tv_sec++;
-
-         }
+         timespecFinal = addition(timespecNow, timespecWait);
 
          while(!m_bSignaled && iSignal == m_iSignalId)
          {
             
-            clock_getrealtime(&timeNow);
+            clock_getrealtime(&timespecNow);
+
             ::i32 error;
-            if(timeNow.tv_sec > abstime.tv_sec||
-               (timeNow.tv_sec == abstime.tv_sec &&
-                timeNow.tv_nsec > abstime.tv_nsec))
-               {
+
+            if(timespecNow > timespecFinal)
+            {
                
                error = ETIMEDOUT;
                
             }
-               else
-               {
+            else
+            {
 
-            error = pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &abstime);
+               error = pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &timespecFinal);
                
             }
 

@@ -214,26 +214,11 @@ void * reverse_memory(void * p, memsize iLen)
 
    }
 
-   char * sz = (char *) p;
+   auto pleft = (::byte *) p;
 
-   ::count iMid = iLen / 2;
+   auto pright = pleft + iLen - 1;
 
-   ::count iL = 0;
-
-   ::count iR = iLen - 1;
-
-   char ch;
-
-   for(; iL < iMid; iL++, iR--)
-   {
-
-      ch = sz[iL];
-
-      sz[iL] = sz[iR];
-
-      sz[iR] = ch;
-
-   }
+   while(pleft < pright) ::swap(*pleft++, *pright--);
 
    return p;
 

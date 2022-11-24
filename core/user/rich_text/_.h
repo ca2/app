@@ -3,7 +3,7 @@
 
 
 #include "_constant.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace user
@@ -53,8 +53,8 @@ namespace user
 
       index find_char_span(pointer_array < span > & spana, strsize iChar);
 
-      void align(line * pline, const ::rectangle_f64 & rectangle);
-
+//      void align(line * pline, const ::rectangle_f64 & rectangle);
+//
       box * find_box(pointer_array < line > & linea, index iSel);
 
       string layout_text(const pointer_array < line > & linea);

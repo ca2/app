@@ -40,7 +40,7 @@ namespace aqua
       ::factory::add_factory_item < ::aqua::application, ::apex::application >();
       ::factory::add_factory_item < ::aqua::session, ::apex::session >();
       //::factory::add_factory_item < ::aqua::idpool, ::acme::idpool >();
-      ::factory::add_factory_item < ::aqua::multimedia >();
+      //::factory::add_factory_item < ::aqua::multimedia >();
 
    }
 
@@ -208,17 +208,17 @@ namespace aqua
 
       }
 
-      critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
+//      critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
 
-      try
-      {
+      //try
+      //{
 
-         auto psetup = ::system_setup::get_first(::system_setup::flag_multimedia);
-
-         if (psetup)
-         {
-
-            auto pelement = psetup->create_particle();
+//         auto psetup = ::system_setup::get_first(::system_setup::flag_multimedia);
+//
+//         if (psetup)
+//         {
+//
+//            auto pelement = psetup->create_particle();
 
             //if (!pelement)
             //{
@@ -231,7 +231,8 @@ namespace aqua
 
             //auto estatus = 
             
-            __construct(m_pmultimedia, pelement);
+//            __construct(m_pmultimedia, pelement);
+      __construct(m_pmultimedia);
 
             //if (!estatus)
             //{
@@ -240,15 +241,15 @@ namespace aqua
 
             //}
 
-         }
-
-      }
-      catch (...)
-      {
-
-         throw ::exception(error_exception);
-
-      }
+//         }
+//
+//      }
+//      catch (...)
+//      {
+//
+//         throw ::exception(error_exception);
+//
+//      }
 
       ///auto estatus = 
       

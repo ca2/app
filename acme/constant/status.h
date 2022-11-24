@@ -244,6 +244,7 @@ error_file_open,
    error_end_of_file,
    error_end_of_coding,
    error_end_of_decoding,
+   error_not_a_directory,
 
 
    error_network = INT_FAILURE_STATUS(STATUS_RANGE_NETWORK),

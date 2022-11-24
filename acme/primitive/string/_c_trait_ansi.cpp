@@ -3,7 +3,7 @@
 #include "_conv.h"
 
 
-ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, enum_digit_case edigitcase)
+ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, enum_digit_case edigitcase, ::i32 & len)
 {
 
    if (u == 0)
@@ -13,28 +13,27 @@ ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, enum_digit_case edigi
 
       buf[1] = (ansichar)'\0';
 
+      len = 1;
+
       return buf;
 
    }
 
-   i32 iIndex = 0;
+   len = 0;
 
-   __natural_to_string_internal(u, buf, iBase, iIndex, edigitcase);
+   __natural_to_string_internal(u, buf, iBase, len, edigitcase);
 
-   buf[iIndex] = '\0';
+   buf[len] = '\0';
 
-   ansi_reverse(buf);
+   ansi_reverse(buf, len);
 
    return buf;
 
 }
 
 
-
-
-ansichar * __i64toansi(::i64 i, ansichar * buf, int iBase, enum_digit_case edigitcase)
+ansichar * __i64toansi(::i64 i, ansichar * buf, int iBase, enum_digit_case edigitcase, ::i32 & len)
 {
-
 
    if (i == 0)
    {
@@ -43,9 +42,13 @@ ansichar * __i64toansi(::i64 i, ansichar * buf, int iBase, enum_digit_case edigi
 
       buf[1] = (ansichar)'\0';
 
+      len = 1;
+
       return buf;
 
    }
+
+   len = 0;
 
    bool bNegative;
 
@@ -64,29 +67,24 @@ ansichar * __i64toansi(::i64 i, ansichar * buf, int iBase, enum_digit_case edigi
 
    }
 
-   i32 iIndex = 0;
-
-   __natural_to_string_internal(i, buf, iBase, iIndex, edigitcase);
+   __natural_to_string_internal(i, buf, iBase, len, edigitcase);
 
    if (bNegative)
    {
 
-      buf[iIndex] = '-';
+      buf[len] = '-';
 
-      iIndex++;
+      len++;
 
    }
 
-   buf[iIndex] = '\0';
+   buf[len] = '\0';
 
-   ansi_reverse(buf);
+   ansi_reverse(buf, len);
 
    return buf;
 
 }
-
-
-
 
 
 

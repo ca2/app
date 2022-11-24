@@ -183,12 +183,7 @@ public:
 
    inline operator const char * () const { return ::atom::operator const char *(); }
 
-   bool name_contains(const char * psz) const
-   {
-
-      return m_str.contains(psz) == 0;
-
-   }
+   bool name_contains(const char * psz) const { return m_str.contains(psz); }
 
 
 };

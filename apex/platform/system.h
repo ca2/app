@@ -425,7 +425,7 @@ namespace apex
 
       void system_id_update(::i64 iUpdate, ::i64 iPayload) override;
 
-      void add_handler(const ::signal_handler& signalhandler, bool bPriority = false) override;
+      void add_handler(::matter * pmatter, bool bPriority = false) override;
 
       void add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal) override;
 

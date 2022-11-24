@@ -693,7 +693,7 @@ namespace nano2d
    float draw2d_context::text(float x, float y, const char * string, const char * end)
    {
       
-      ::string strText(string, end ? end - string : ::str().length(string));
+      ::string strText(string, end ? end - string : string_safe_length(string));
 
       m_pgraphics->set(_get_current_font());
 
@@ -744,7 +744,7 @@ namespace nano2d
       double_array daLeft;
       double_array daRight;
 
-      ::string strText(stringParam, end ? end - stringParam : ::str().length(stringParam));
+      ::string strText(stringParam, end ? end - stringParam : string_safe_length(stringParam));
 
       m_pgraphics->set(_get_current_font());
 
@@ -791,7 +791,7 @@ namespace nano2d
       while (*psz && iChar < maxPositions)
       {
 
-         int iLen = ::str().get_utf8_char_length(psz);
+         int iLen = get_utf8_char_length(psz);
 
          positions[iChar].str = psz;
 
@@ -816,7 +816,7 @@ namespace nano2d
    float draw2d_context::text_bounds(float x, float y, const char * string, const char * end, float * bounds)
    {
 
-      ::string strText(string, end ? end - string : ::str().length(string));
+      ::string strText(string, end ? end - string : string_safe_length(string));
       
       auto pfont = _get_current_font();
 

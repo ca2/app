@@ -484,6 +484,8 @@ namespace file
    case ENOENT:
    case ENFILE:
       return error_file_not_found;
+      case ENOTDIR:
+         return error_not_a_directory;
    case ENOSPC:
       return error_disk_full;
    case EINVAL:

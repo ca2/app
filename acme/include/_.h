@@ -63,7 +63,7 @@
 #pragma once
 
 
-#include "_macro.h"
+//#include "_macro.h"
 #include "_configuration.h"
 #include "_types.h"
 #include "acme/constant/_.h"
@@ -73,6 +73,7 @@
 #include "_template_structures.h"
 #include "_enumeration.h"
 #include "_function_declarations.h"
+#include "_inline_functions.h"
 #include "_c.h"
 
 
@@ -440,7 +441,7 @@
 
 
 
-#include "_inline_functions.h"
+#include "_impl.h"
 
 
 #include "acme/primitive/duration/_impl.h"

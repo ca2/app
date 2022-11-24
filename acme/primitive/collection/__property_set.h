@@ -159,13 +159,13 @@ public:
 
    }
 
-   inline bool get_string(string& strResult, const atom & idKey) const;
+   bool get_string(string& strResult, const atom & idKey) const;
 
-   inline ::payload get_value(atom idName);
+   ::payload get_value(const atom & idName);
 
-   inline ::payload value(atom idName) const;
+   ::payload value(const atom & idName) const;
 
-   inline ::payload value(atom idName, ::payload varDefault) const;
+   ::payload value(const atom & idName, ::payload varDefault) const;
 
    bool payload_bool(const atom & atom, bool bDefault = false) const;
    ::string payload_string(const atom & atom, const ::string & strDefault = nullptr) const;

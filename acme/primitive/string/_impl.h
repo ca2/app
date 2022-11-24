@@ -247,7 +247,7 @@ inline inline_number_string as_string(UNSIGNED u, int iRadix = 10, enum_digit_ca
 
    inline_number_string numberstring;
 
-   __u64toansi(u, numberstring, iRadix, edigitcase);
+   __u64toansi(u, numberstring, iRadix, edigitcase, numberstring.m_iLength);
 
    return numberstring;
 
@@ -260,7 +260,7 @@ inline inline_number_string as_string(SIGNED i, int iRadix = 10, enum_digit_case
 
    inline_number_string numberstring;
 
-   __i64toansi(i, numberstring, iRadix, edigitcase);
+   __i64toansi(i, numberstring, iRadix, edigitcase, numberstring.m_iLength);
 
    return numberstring;
 
@@ -274,6 +274,8 @@ inline ::string as_string(FLOATING f)
    inline_number_string numberstring;
 
    sprintf(numberstring, "%f", f);
+
+   numberstring.m_iLength = strlen(numberstring.m_sz);
 
    return numberstring;
 

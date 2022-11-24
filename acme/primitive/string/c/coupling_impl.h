@@ -88,9 +88,9 @@ inline int ansi_nicmp(const ansichar * psz1, const ansichar * psz2, strsize s)
 
 inline const ansichar * ansi_istr(const ansichar * psz, const ansichar * pszFind) { return __ansiistr(psz, pszFind); }
 
-inline ansichar * ui64tostr(::u64 u, ansichar * buf, int iBase, enum_digit_case edigitcase) { return __u64toansi(u, buf, iBase, edigitcase); }
+//inline ansichar * u64tostr(::u64 u, ansichar * buf, int iBase, enum_digit_case edigitcase) { return __u64toansi(u, buf, iBase, edigitcase); }
 
-inline ansichar * i64tostr(::u64 u, ansichar * buf, int iBase, enum_digit_case edigitcase) { return __i64toansi(u, buf, iBase, edigitcase); }
+//inline ansichar * i64tostr(::u64 u, ansichar * buf, int iBase, enum_digit_case edigitcase) { return __i64toansi(u, buf, iBase, edigitcase); }
 
 inline int ansi_coll(const ansichar * psz1, const ansichar * psz2) { return strcmp(psz1, psz2); }
 

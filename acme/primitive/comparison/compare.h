@@ -210,7 +210,7 @@ namespace comparison
 
 
 template < typename TYPE, typename MINIMUM, typename MAXIMUM >
-inline auto constrain(TYPE t, MINIMUM tMinimum, MAXIMUM tMaximum)
+constexpr auto constrain(TYPE t, MINIMUM tMinimum, MAXIMUM tMaximum)
 {
    
    return minimum(tMaximum, maximum(tMinimum, t));
@@ -219,7 +219,7 @@ inline auto constrain(TYPE t, MINIMUM tMinimum, MAXIMUM tMaximum)
 
 
 template < typename TYPE, typename MINIMUM, typename MAXIMUM >
-inline auto sort_constrain(TYPE t, MINIMUM tMinimum, MAXIMUM tMaximum)
+constexpr auto sort_constrain(TYPE t, MINIMUM tMinimum, MAXIMUM tMaximum)
 {
 
    return tMinimum < tMaximum ? constrain(tMinimum, tMaximum) : constrain(tMaximum, tMinimum);
@@ -228,12 +228,19 @@ inline auto sort_constrain(TYPE t, MINIMUM tMinimum, MAXIMUM tMaximum)
 
 
 template < typename TYPE >
-inline auto constrain_u16(TYPE t)
+constexpr auto constrain_u16(TYPE t)
 {
 
-   return constrain(t, 0, USHRT_MAX);
+   return constrain(t, 0, UINT16_MAX);
 
 }
 
+template < typename TYPE >
+constexpr auto constrain_u32(TYPE t)
+{
+
+   return constrain(t, 0, UINT32_MAX);
+
+}
 
 

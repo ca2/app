@@ -1,6 +1,8 @@
 #include "framework.h"
 //#include "acme/primitive/primitive/function.h"
-#include "acme/operating_system.h"
+
+
+#include "acme/_operating_system.h"
 
 
 #include <vector>
@@ -141,44 +143,47 @@ void file_dialog_from_platform(
 
 #elif defined(LINUX)
 
-         static const int FILE_DIALOG_MAX_BUFFER = 16384;
 
-         char buffer[FILE_DIALOG_MAX_BUFFER];
+         throw ::exception(todo);
 
-         buffer[0] = '\0';
-
-         std::string cmd = "zenity --file-selection ";
-         // The safest separator for multiple selected paths is /, since / can never occur
-         // in file names. Only where two paths are concatenated will there be two / following
-         // each other.
-         if (multiple)
-            cmd += "--multiple --separator=\"/\" ";
-         if (save)
-            cmd += "--save ";
-         cmd += "--file-filter=\"";
-         for (auto pair : filetypes)
-            cmd += "\"*." + pair.first + "\" ";
-         cmd += "\"";
-         FILE * output = popen(cmd.c_str(), "r");
-         if (output == nullptr)
-            throw std::runtime_error("popen() failed -- could not launch zenity!");
-         while (fgets(buffer, FILE_DIALOG_MAX_BUFFER, output) != NULL)
-            ;
-         pclose(output);
-         std::string paths(buffer);
-         paths.erase(std::remove(paths.begin(), paths.end(), '\n'), paths.end());
-
-         while (!paths.empty()) {
-            size_t end = paths.find("//");
-            if (end == std::string::npos) {
-               result.emplace_back(paths);
-               paths = "";
-            }
-            else {
-               result.emplace_back(paths.substr(0, end));
-               paths = paths.substr(end + 1);
-            }
-         }
+//         static const int FILE_DIALOG_MAX_BUFFER = 16384;
+//
+//         char buffer[FILE_DIALOG_MAX_BUFFER];
+//
+//         buffer[0] = '\0';
+//
+//         std::string cmd = "zenity --file-selection ";
+//         // The safest separator for multiple selected paths is /, since / can never occur
+//         // in file names. Only where two paths are concatenated will there be two / following
+//         // each other.
+//         if (multiple)
+//            cmd += "--multiple --separator=\"/\" ";
+//         if (save)
+//            cmd += "--save ";
+//         cmd += "--file-filter=\"";
+//         for (auto pair : filetypes)
+//            cmd += "\"*." + pair.first + "\" ";
+//         cmd += "\"";
+//         FILE * output = popen(cmd.c_str(), "r");
+//         if (output == nullptr)
+//            throw std::runtime_error("popen() failed -- could not launch zenity!");
+//         while (fgets(buffer, FILE_DIALOG_MAX_BUFFER, output) != NULL)
+//            ;
+//         pclose(output);
+//         std::string paths(buffer);
+//         paths.erase(std::remove(paths.begin(), paths.end(), '\n'), paths.end());
+//
+//         while (!paths.empty()) {
+//            size_t end = paths.find("//");
+//            if (end == std::string::npos) {
+//               result.emplace_back(paths);
+//               paths = "";
+//            }
+//            else {
+//               result.emplace_back(paths.substr(0, end));
+//               paths = paths.substr(end + 1);
+//            }
+//         }
 
 #endif
 

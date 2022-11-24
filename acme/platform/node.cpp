@@ -995,6 +995,22 @@ namespace acme
    }
 
 
+   void node::post_procedure(const ::procedure & procedure)
+   {
+
+      node_post(procedure);
+
+   }
+
+
+   void node::send_procedure(const ::procedure & procedure)
+   {
+
+      node_send(procedure);
+
+   }
+
+
    void node::node_post_quit()
    {
 

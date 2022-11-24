@@ -2426,7 +2426,7 @@ bool property_set::is_true(atom idName, bool bDefault) const
 }
 
 
-::payload property_set::value(atom idName) const
+::payload property_set::value(const atom & idName) const
 {
 
    property * pproperty = find(idName);
@@ -2443,7 +2443,7 @@ bool property_set::is_true(atom idName, bool bDefault) const
 }
 
 
-::payload property_set::value(atom idName, ::payload varDefault) const
+::payload property_set::value(const atom & idName, ::payload varDefault) const
 {
 
    property * pproperty = find(idName);

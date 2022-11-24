@@ -513,7 +513,7 @@ CLASS_DECL_AURA int_bool mq_get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32
 
    }
 
-   if (!pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax))
+   if (::failed(pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax)))
    {
 
       return false;

@@ -1,4 +1,4 @@
-/*
+﻿/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The widget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
@@ -273,11 +273,11 @@ class Window;
  *     Set to ``true`` if you would like subsequent file dialogs to open
  *     at whatever folder they were in when they close this one.
  */
-NANOGUI_EXPORT void pick_single_file(
-    void * poswindow,
-    const std::vector<std::pair<std::string, std::string>> & filetypes,
-    const ::function < void(const::std::string &) > & promisseFile,
-    bool save);
+//NANOGUI_EXPORT void pick_single_file(
+//    void * poswindow,
+//    const std::vector<std::pair<std::string, std::string>> & filetypes,
+//    const ::function < void(const::std::string &) > & promisseFile,
+//    bool save);
 
 
 

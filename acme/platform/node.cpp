@@ -2537,6 +2537,68 @@ return false;
 #endif
 
 
+   void node::operating_system_file_dialog(
+      void* poswindow,
+      const ::array < ::pair < ::string, ::string > >& filetypesParam,
+      const ::function < void(const ::file::path_array&) >& function,
+      bool save, bool multiple)
+   {
+
+
+   }
+
+
+   void node::pick_single_file(
+      void* poswindow,
+      const ::array < ::pair < ::string, ::string > >& filetypes,
+      const ::function < void(const ::file::path&) >& function,
+      bool save)
+   {
+
+      operating_system_file_dialog(
+         poswindow,
+         filetypes,
+         [function](const ::file::path_array & stra)
+         {
+
+            if (stra.size() <= 0)
+            {
+
+               function("");
+
+            }
+            else
+            {
+
+               function(stra.first());
+
+            }
+
+         },
+         save,
+            false);
+
+   }
+
+
+   void node::pick_multiple_file(
+      void* poswindow,
+      const ::array < ::pair < ::string, ::string > >& filetypes,
+      const ::function < void(const ::file::path_array&) >& function)
+   {
+
+      operating_system_file_dialog(
+         poswindow,
+         filetypes,
+         function,
+         false,
+         false);
+
+   }
+
+
+
+
 } // namespace acme
 
 

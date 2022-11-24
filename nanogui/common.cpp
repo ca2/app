@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/nanogui.cpp -- Basic initialization and utility routines
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -94,8 +94,8 @@ static double emscripten_last = 0;
 static float emscripten_refresh = 0;
 #endif
 
-::pointer < ::mutex > m_async_mutex;
-std::vector<::function<void()>> m_async_functions;
+//::pointer < ::mutex > m_async_mutex;
+//std::vector<::function<void()>> m_async_functions;
 
 //void mainloop(float refresh) {
 //   if (mainloop_active)
@@ -353,54 +353,6 @@ void NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, std::vector<std::pair
 }
 
 
-void pick_single_file(
-   void * poswindow, 
-   const std::vector<std::pair<std::string, std::string>> & filetypes, 
-   const ::function < void(const ::std::string &) > & function,
-   bool save)
-{
-   
-   file_dialog_from_platform(
-      poswindow, 
-      filetypes,
-      [function](const std::vector < std::string > & stra)
-      {
-         
-         if(stra.size() <= 0)
-         {
-            
-            function("");
-            
-         }
-         else
-         {
-            
-            function(stra.front());
-            
-         }
-         
-      },
-      save,
-      false);
-      
-}
-
-
-void pick_multiple_file(
-   void * poswindow,
-   const std::vector<std::pair<std::string, std::string>> & filetypes,
-   const ::function < void(const ::std::vector<::std::string> &) > & function)
-{
-
-   file_dialog_from_platform(
-      poswindow,
-      filetypes,
-      function,
-      false,
-      false);
-   
-}
-
 
 
 
@@ -446,18 +398,3 @@ NAMESPACE_END(nanogui)
 
 
 
-void __wide_append(memory & memory, const char * psz)
-{
-   wstring wstr(psz);
-   memory.append(wstr.c_str(), wstr.get_length() * sizeof(wchar_t));
-
-}
-
-void __wide_append_null(memory & memory)
-{
-
-   wchar_t wch{};
-
-   memory.append(&wch, sizeof(wch));
-
-}

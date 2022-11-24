@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "frame.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -293,7 +293,7 @@ namespace experience_nanogui
    //   return (frame::enum_element) (*((i32*)&eelement))++;
    //}
 
-   bool frame::get_element_rect(RECTANGLE_I32 * lprect, enum_element eelement)
+   bool frame::get_element_rect(RECTANGLE_I32 & rect, enum_element eelement)
    {
       switch(eelement)
       {
@@ -309,10 +309,10 @@ namespace experience_nanogui
 
          }
 
-         lprect->left = m_pointWindowIcon.x;
-         lprect->top = m_pointWindowIcon.y;
-         lprect->right = lprect->left + m_sizeIcon.cx;
-         lprect->bottom = lprect->top + m_sizeIcon.cy;
+         rect.left = m_pointWindowIcon.x;
+         rect.top = m_pointWindowIcon.y;
+         rect.right = rect.left + m_sizeIcon.cx;
+         rect.bottom = rect.top + m_sizeIcon.cy;
 
          //lprect->right = lprect->left + pdrawicon->get_size().cx;
          //lprect->bottom = lprect->top + pdrawicon->get_size().cy;
@@ -332,8 +332,8 @@ namespace experience_nanogui
 
          //lprect->left = m_pointMoveGripMinimal.x + 2;
          //lprect->top = m_pointMoveGripMinimal.y + 2;
-         lprect->right = lprect->left + m_iCaptionHeight - 4;
-         lprect->bottom = lprect->top + m_iCaptionHeight - 4;
+         rect.right = rect.left + m_iCaptionHeight - 4;
+         rect.bottom = rect.top + m_iCaptionHeight - 4;
 
          return true;
 
@@ -753,7 +753,7 @@ namespace experience_nanogui
 
             auto pdrawicon = m_pframewindow->get_draw_icon();
 
-            if(::is_ok(pdrawicon))
+            if(pdrawicon->is_ok())
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);

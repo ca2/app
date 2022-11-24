@@ -174,15 +174,6 @@
     <ProjectReference Include="..\..\..\source\app\aura\u_aura.vcxproj">
       <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\source\app\axis\u_axis.vcxproj">
-      <Project>{0412ea6f-50d0-4baa-99e3-ac14fc63a879}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\source\app\base\u_base.vcxproj">
-      <Project>{0680a465-39a7-4e1b-8dc1-0607a3243ea2}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\source\app\bred\u_bred.vcxproj">
-      <Project>{08c317fc-6ee8-4371-84cb-18150e439021}</Project>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DEC5DB00-B299-4E96-929D-C90E7140B0C7}</ProjectGuid>

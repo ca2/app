@@ -1,5 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "acme/primitive/primitive/function.h"
+#include "acme/exception/exception.h"
 
 
 #include "acme/_operating_system.h"
@@ -24,15 +25,15 @@ void __wide_append_null(memory & memory);
 
 void file_dialog_from_platform(
    void * poswindow,
-   const std::vector<std::pair<std::string, std::string>> & filetypesParam,
-   const ::function < void(const std::vector<std::string> &) > & function,
+   const ::array < ::pair < ::string, ::string > > & filetypesParam,
+   const ::function < void(const ::file::path_array &) > & function,
    bool save, bool multiple)
 {
 
    if (save && multiple)
    {
 
-      throw std::invalid_argument("save and multiple must not both be true.");
+      throw ::exception(error_bad_argument, "save and multiple must not both be true.");
 
    }
    auto filetypes = filetypesParam;
@@ -41,7 +42,7 @@ void file_dialog_from_platform(
       {
 
 
-         std::vector<std::string> result;
+         ::file::path_array patha;
 
 
 #if defined(EMSCRIPTEN)
@@ -187,7 +188,7 @@ void file_dialog_from_platform(
 
 #endif
 
-         function(result);
+         function(patha);
 
       });
 

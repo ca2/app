@@ -1,5 +1,9 @@
 ﻿#include "framework.h"
 #include "style.h"
+#include "acme/handler/item.h"
+#include "acme/platform/node.h"
+#include "apex/platform/savings.h"
+#include "acme/primitive/mathematics/_random.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/path.h"
@@ -453,8 +457,8 @@ namespace experience_nanogui
 
       ::rectangle_i32 rectangleScroll;
 
-      bool bScroll = ptab->_001HasHorizontalDragScrolling()
-         || ptab->_001HasVerticalDragScrolling();
+      bool bScroll = ptab->_001HasHorizontalBarDragScrolling()
+         || ptab->_001HasVerticalBarDragScrolling();
 
       if(bScroll)
       {
@@ -746,7 +750,7 @@ namespace experience_nanogui
 
             ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
 
-            if(::is_ok(ppane->m_pimage))
+            if(ppane->m_pimage.ok())
             {
 
                size.cy = maximum(size.cy,ppane->m_pimage->size().cy);
@@ -770,7 +774,7 @@ namespace experience_nanogui
 
             ixAdd = 5;
 
-            if(::is_ok(ppane->m_pimage))
+            if(ppane->m_pimage.ok())
             {
                //::image_list::info ii;
                ixAdd += ppane->m_pimage->width() + 2;
@@ -885,7 +889,7 @@ namespace experience_nanogui
    }
 
 
-   ::color::color style::get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate) const
+   ::color::color style::get_color(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
    {
 
       if (::is_set(pinteraction))
@@ -1494,7 +1498,7 @@ namespace experience_nanogui
 
       ::color::color colorBorder = pscrollbar->scrollbar_border_color(this, ::e_element_scrollbar_trackbar);
 
-      auto pbar = pscrollbar->cast < ::simple_scroll_bar >();
+      ::pointer < ::simple_scroll_bar > pbar = pscrollbar;
 
       auto ppenDraw = __create < ::draw2d::pen > ();
 

@@ -656,6 +656,26 @@ namespace acme
 #endif
 
 
+      virtual void operating_system_file_dialog(
+         void* poswindow,
+         const ::array < ::pair < ::string, ::string > >& filetypesParam,
+         const ::function < void(const ::file::path_array&) >& function,
+         bool save, bool multiple);
+
+
+      void pick_single_file(
+         void* poswindow,
+         const ::array < ::pair < ::string, ::string > >& filetypes,
+         const ::function < void(const ::file::path &) >& function,
+         bool save);
+
+
+      void pick_multiple_file(
+         void* poswindow,
+         const ::array < ::pair < ::string, ::string > > & filetypes,
+         const ::function < void(const ::file::path_array &) >& function);
+     
+
    };
 
 

@@ -103,7 +103,7 @@ public:
 
       class ::time timeResult(*this);
 
-      timeResult += time;
+      timeResult -= time;
 
       return timeResult;
    }

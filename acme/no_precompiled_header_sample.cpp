@@ -46,12 +46,14 @@ namespace message
 #include "acme/include/_configuration.h"
 #include "acme/include/_types.h"
 #include "acme/constant/_.h"
+#include "acme/constant/thread.h"
 #include "acme/include/_forward_declaration.h"
 #include "acme/include/_structures.h"
 #include "acme/include/_template_forward_declaration.h"
 #include "acme/include/_template_structures.h"
 #include "acme/include/_enumeration.h"
 #include "acme/include/_function_declarations.h"
+#include "acme/include/_inline_functions.h"
 #include "acme/include/_c.h"
 
 
@@ -66,6 +68,8 @@ namespace message
 #include "acme/primitive/primitive/interlocked_count.h"
 #include "acme/primitive/primitive/ptr.h"
 #include "acme/platform/lparam.h"
+#include "acme/memory/memory_allocate.h"
+#include "acme/exception/_.h"
 #include "acme/primitive/primitive/atom.h"
 #include "acme/primitive/primitive/particle.h"
 #include "acme/handler/handler.h"
@@ -73,7 +77,6 @@ namespace message
 //#include "acme/primitive/primitive/element.h"
 #include "acme/filesystem/file/translatable.h"
 #include "acme/filesystem/file/streamable.h"
-#include "acme/primitive/string/string.h"
 //#include "acme/_api.h"
 
 

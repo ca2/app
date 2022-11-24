@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //#include "gdi_winrt.h"
@@ -46,9 +46,7 @@ void CLASS_DECL_ACME __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS*
 bool CLASS_DECL_ACME __windows_init();
 
 
-using hfile = HANDLE;
-
-CLASS_DECL_ACME hfile hfile_create(const char * lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShareMode, LPSECURITY_ATTRIBUTES lpSA, ::u32 dwCreationDisposition, ::u32 dwFlagsAndAttributes, HANDLE hTemplateFile);
+CLASS_DECL_ACME HANDLE hfile_create(const char * lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShareMode, LPSECURITY_ATTRIBUTES lpSA, ::u32 dwCreationDisposition, ::u32 dwFlagsAndAttributes, HANDLE hTemplateFile);
 
 
 //CLASS_DECL_ACME int WINAPI GetSystemMetrics(int i);

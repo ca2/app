@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "string.h"
@@ -7,6 +7,7 @@
 class CLASS_DECL_ACME tokenizer
 {
 public:
+
 
    ::string       m_str;
    strsize        m_nCurrentIndex;

@@ -577,11 +577,11 @@ void main::system_construct(const ::string_array & straParam)
 
    auto stra = straParam;
 
-   m_argc = __argc;
+   //m_argc = __argc;
 
-   m_argv = __argv;
+   //m_argv = __argv;
 
-   m_wargv = __wargv;
+   //m_wargv = __wargv;
 
    //m_pfnNewAuraApplication = nullptr;
 
@@ -589,7 +589,7 @@ void main::system_construct(const ::string_array & straParam)
 
    //m_poslocal = nullptr;
 
-   m_edisplay = e_display_default;
+   //m_edisplay = e_display_default;
 
    //zero(m_mainrunnera);
 

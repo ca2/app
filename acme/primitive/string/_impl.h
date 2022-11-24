@@ -275,7 +275,7 @@ inline ::string as_string(FLOATING f)
 
    sprintf(numberstring, "%f", f);
 
-   numberstring.m_iLength = strlen(numberstring.m_sz);
+   numberstring.m_iLength = (::i32) strlen(numberstring.m_sz);
 
    return numberstring;
 

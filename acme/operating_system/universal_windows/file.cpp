@@ -1,5 +1,9 @@
-#include "framework.h"
-#include "acme/operating_system.h"
+﻿#include "framework.h"
+
+
+#include "acme/_operating_system.h"
+
+
 #include <io.h>
 
 
@@ -1562,7 +1566,7 @@ return true;
 */
 
 
-hfile hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShareMode, LPSECURITY_ATTRIBUTES lpSA, ::u32 dwCreationDisposition, ::u32 dwFlagsAndAttributes, HANDLE hTemplateFile)
+HANDLE hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShareMode, LPSECURITY_ATTRIBUTES lpSA, ::u32 dwCreationDisposition, ::u32 dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
 
    CREATEFILE2_EXTENDED_PARAMETERS ps;
@@ -2050,5 +2054,39 @@ filesize hfile_get_size(HANDLE h)
 //
 //}
 //
+
+
+bool get_file_time_set(const char* psz, file_time& creation, file_time& modified)
+{
+
+   HANDLE hfile = hfile_create(psz, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+
+   bool bOk = false;
+
+   try
+   {
+
+      zero(creation);
+      zero(modified);
+
+      if (::GetFileTime(hfile, (FILETIME*)&creation, nullptr, (FILETIME*)&modified))
+      {
+
+         bOk = true;
+
+      }
+
+   }
+   catch (...)
+   {
+
+   }
+
+   ::CloseHandle(hfile);
+
+   return bOk;
+
+}
+
 
 

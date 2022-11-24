@@ -231,16 +231,18 @@ template < typename TYPE >
 constexpr auto constrain_u16(TYPE t)
 {
 
-   return constrain(t, 0, UINT16_MAX);
+   return (::u16) constrain(t, 0, UINT16_MAX);
 
 }
+
 
 template < typename TYPE >
-constexpr auto constrain_u32(TYPE t)
+constexpr ::u32 constrain_u32(TYPE t)
 {
 
-   return constrain(t, 0, UINT32_MAX);
+   return (::u32) constrain(t, 0, UINT32_MAX);
 
 }
+
 
 

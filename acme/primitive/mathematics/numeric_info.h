@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include <limits.h>
@@ -301,7 +301,7 @@ namespace numeric_info_internal
 
 
    template < >
-   class CLASS_DECL_ACME numeric_info < u32 > :
+   class CLASS_DECL_ACME numeric_info < ::u32 > :
       public numeric_integer_base
    {
    public:
@@ -376,7 +376,7 @@ namespace numeric_info_internal
 #if !defined(LINUX) && !defined(FREEBSD)
 
    template < >
-   class CLASS_DECL_ACME numeric_info < i64 > :
+   class CLASS_DECL_ACME numeric_info < ::i64 > :
       public numeric_integer_base
    {
    public:
@@ -384,28 +384,28 @@ namespace numeric_info_internal
       typedef i64 TYPE;
       typedef i64 OFFSET_TYPE;
 
-      static inline TYPE maximum()
+      static consteval TYPE maximum()
       {
          return (TYPE)LLONG_MAX;
       }
-      static inline TYPE minimum()
+      static consteval TYPE minimum()
       {
          return (TYPE)LLONG_MIN;
       }
-      static inline TYPE null()
+      static consteval TYPE null()
       {
          return (TYPE)0;
       }
-      static inline TYPE unitary()
+      static consteval TYPE unitary()
       {
          return (TYPE)1;
       }
-      static inline TYPE allset()
-      {
-         TYPE t;
-         __memset(&t,0xff,sizeof(TYPE));
-         return t;
-      }
+      //static consteval TYPE allset()
+      //{
+      //   TYPE t;
+      //   __memset(&t,0xff,sizeof(TYPE));
+      //   return t;
+      //}
 
       static const bool is_signed = true;
 
@@ -420,28 +420,28 @@ namespace numeric_info_internal
       typedef u64 TYPE;
       typedef i64 OFFSET_TYPE;
 
-      static inline TYPE maximum()
+      static consteval TYPE maximum()
       {
          return (TYPE)ULLONG_MAX;
       }
-      static inline TYPE minimum()
+      static consteval TYPE minimum()
       {
          return (TYPE)0;
       }
-      static inline TYPE null()
+      static consteval TYPE null()
       {
          return (TYPE)0;
       }
-      static inline TYPE unitary()
+      static consteval TYPE unitary()
       {
          return (TYPE)1;
       }
-      static inline TYPE allset()
+      /*static consteval TYPE allset()
       {
          TYPE t;
          __memset(&t,0xff,sizeof(TYPE));
          return t;
-      }
+      }*/
 
       static const bool is_signed = false;
 
@@ -527,15 +527,40 @@ namespace numeric_info_internal
 
 } // namespace numeric_info_internal
 
+template <typename T>
+struct remove_const {
+   using type =  T;
+};
+
+template <typename T>
+struct remove_const< const T > {
+   using type = T;
+};
+
+template <typename T>
+struct remove_reference {
+   using type = T;
+};
+
+template <typename T>
+struct remove_reference< T & > {
+   using type = T;
+};
+
+template <typename T>
+struct remove_reference< T&& > {
+   using type = T;
+};
 
 
 template < typename T >
-class numeric_info:
-   public numeric_info_internal::numeric_info < T >
+class numeric_info
 {
 public:
 
-   typedef numeric_info_internal::numeric_info < T > INTERNAL_INFO;
+   using INTERNAL_TYPE = typename remove_reference < typename remove_const < T >::type >::type;
+
+   using INTERNAL_INFO = numeric_info_internal::numeric_info < INTERNAL_TYPE > ;
 
    static consteval auto null()
    {
@@ -558,7 +583,7 @@ public:
       return INTERNAL_INFO::maximum();
    }
    template < typename T2 >
-   static constexpr auto natural(const T2 & t2)
+   static consteval auto natural(const T2 & t2)
    {
       return minimum(maximum(), maximum(null(), (T) t2));
    }

@@ -108,7 +108,7 @@ public:
 
 
    inline bool is_pos_infinity() const;
-   inline bool is_infinite() const;
+   constexpr bool is_infinite() const;
    inline bool is_null() const;
    inline bool is_set() const { return (m_iSecond >= 0 && m_iNanosecond > 0) || (m_iSecond > 0 && m_iNanosecond >= 0); }
    inline static duration infinite();
@@ -278,7 +278,9 @@ public:
    inline ::duration remaining(const duration & duration, const ::duration & durationNow = e_now);
 
 
-   class ::time time() const;
+   inline class ::time time() const;
+
+   inline class ::wait wait() const;
 
    
    // operator INTEGRAL_DAY () const { return integral_day(); }
@@ -916,7 +918,7 @@ inline bool duration::is_pos_infinity() const
 }
 
 
-inline bool duration::is_infinite() const
+constexpr bool duration::is_infinite() const
 {
 
    return m_iSecond == ::numeric_info < decltype(m_iSecond) > ::maximum();
@@ -1049,7 +1051,15 @@ CLASS_DECL_ACME class ::duration __random(const class ::duration & d1, const cla
 inline class ::time duration::time() const
 {
 
-   return is_infinite() ? (class ::time) ::wait::infinite() : (class ::time){m_iSecond, m_iNanosecond};
+   return class ::time(m_iSecond, m_iNanosecond);
+
+}
+
+
+inline class ::wait duration::wait() const
+{
+
+   return is_infinite() ? ::wait::infinite() : ::wait(m_iSecond, m_iNanosecond);
 
 }
 

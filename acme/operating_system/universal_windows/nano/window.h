@@ -1,12 +1,10 @@
-//
+﻿//
 // From acme/user/nano/window by camilo on 2022-03-11 14:42 <3ThomasBorregaardS�rensen!!
 //
 #pragma once
 
 
-
-
-
+#include "acme/user/nano/window_implementation.h"
 #include <winrt/Windows.UI.Popups.h>
 
 

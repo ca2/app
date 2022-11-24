@@ -323,7 +323,6 @@ public:
    atom(const char * psz);
    atom(const inline_number_string & inlinenumberstring);
 
-#ifndef NO_TEMPLATE
    template < primitive_signed SIGNED >
    atom(SIGNED i);
    template < primitive_unsigned UNSIGNED >
@@ -331,7 +330,6 @@ public:
    atom(const ::string & str);
    //atom(const type & type);
    atom(const ::payload & payload);
-#endif // !NO_TEMPLATE
    atom(const ::lparam & lparam);
    atom(::atom && atom) { m_etype = atom.m_etype; m_u = atom.m_u; atom.m_etype = e_type_integer; atom.m_u = 0; }
    ~atom()

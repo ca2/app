@@ -1,12 +1,19 @@
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+﻿// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
 // ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 // PARTICULAR PURPOSE.
 //
 // Copyright (c) Microsoft Corporation. All rights reserved.
 #include "framework.h"
-#include "acme/operating_system.h"
 #include "acme/parallelization/message_queue.h"
+#include "acme/platform/node.h"
+#include "acme/platform/system.h"
+
+
+bool __os_init_thread();
+bool __os_term_thread();
+
+#include "acme/_operating_system.h"
 
 
 //#undef ::acme::get_system()
@@ -88,29 +95,29 @@ void _on_aura_thread_detach()
 }
 
 
-//bool on_init_thread()
-//{
-//
-//   if(!__os_init_thread())
-//   {
-//
-//      return false;
-//
-//   }
-//
-//   return true;
-//
-//}
-//
-//
-//bool on_term_thread()
-//{
-//
-//   bool bOk1 = __os_term_thread();
-//
-//   return bOk1;
-//
-//}
+bool on_init_thread()
+{
+
+   if(!__os_init_thread())
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+void on_term_thread()
+{
+
+   __os_term_thread();
+
+   //return bOk1;
+
+}
 
 
 //void __node_init_multitasking()
@@ -130,29 +137,29 @@ void _on_aura_thread_detach()
 
 //thread_int_ptr < HRESULT > thread_set("hresult_co_initialize");
 
-//bool __os_init_thread()
-//{
-//
-//   return true;
-//
-//}
-//
-//
-//bool __os_term_thread()
-//{
-//
-//   //thread_shutdown();
-//
-//   if(SUCCEEDED(thread_property("hresult_co_initialize").i64()))
-//   {
-//
-//      CoUninitialize();
-//
-//   }
-//
-//   return true;
-//
-//}
+bool __os_init_thread()
+{
+
+   return true;
+
+}
+
+
+bool __os_term_thread()
+{
+
+   //thread_shutdown();
+
+   //if(SUCCEEDED(thread_property("hresult_co_initialize").i64()))
+   //{
+
+   //   CoUninitialize();
+
+   //}
+
+   return true;
+
+}
 
 #pragma warning (disable : 4273)
 

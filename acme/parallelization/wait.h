@@ -24,12 +24,12 @@ public:
    wait(const class wait& waitTime) : time(waitTime) {}
    using time::time;
 
-   static consteval ::wait infinite() { return {infinite_milliseconds().m_i, 0}; }
+   static inline ::wait infinite() { return {infinite_milliseconds().m_i, 0}; }
 
-   static consteval INTEGRAL_MILLISECOND infinite_milliseconds() { return numeric_info<::u32>::maximum(); }
+   static inline INTEGRAL_MILLISECOND infinite_milliseconds() { return numeric_info<::u32>::maximum(); }
 
 
-   inline bool is_infinite() const { return m_iSecond >= numeric_info<::u32>::maximum(); }
+   constexpr bool is_infinite() const { return m_iSecond >= numeric_info<::u32>::maximum(); }
 
    inline bool is_null() const { return m_iSecond <= 0; }
 

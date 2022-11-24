@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "file_time.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/operating_system/time.h"
@@ -331,37 +331,6 @@ CLASS_DECL_ACME bool set_modified_file_time(const char* psz, const file_time & f
 #elif defined(_UWP)
 
 
-bool get_file_time_set(const char * psz,file_time & creation,file_time & modified)
-{
-
-   hfile hfile = hfile_create(psz, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
-
-   bool bOk = false;
-
-   try
-   {
-
-      zero(creation);
-      zero(modified);
-
-      if (::GetFileTime(hfile, (FILETIME *) &creation, nullptr, (FILETIME *)&modified))
-      {
-
-         bOk = true;
-
-      }
-
-   }
-   catch (...)
-   {
-
-   }
-
-   ::CloseHandle(hfile);
-
-   return bOk;
-
-}
 
 
 #else

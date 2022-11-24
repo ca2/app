@@ -1,6 +1,9 @@
 ﻿#include "framework.h"
-#include "acme/operating_system.h"
 #include "acme/constant/id.h"
+
+
+#include "acme/_operating_system.h"
+
 
 
 void __node_acme_pre_init()
@@ -66,7 +69,7 @@ void __node_acme_pre_init()
 
 //void windows_registry_init();
 
-
+void CLASS_DECL_ACME __cdecl _ca2_purecall();
 
 void __node_acme_pos_init()
 {

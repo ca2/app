@@ -1,25 +1,24 @@
-// With get_callstatck from windows to windows_common by camilo on 2022-03-11 13:59 <3ThomasBorregaardS�rensen!!
+﻿// With get_callstatck from windows to windows_common by camilo on 2022-03-11 13:59 <3ThomasBorregaardS�rensen!!
 #include "framework.h"
+#include "acme/parallelization/synchronous_lock.h"
 //#include <dbghelp.h>
 //#pragma comment(lib, "dbghelp.lib")
 
 
-#ifdef WINDOWS
+#ifdef WINDOWS_DESKTOP
 
 
 bool g_bInitializeCallstack = false;
 
 
-#endif
 
-
-extern ::pointer< ::mutex > g_pmutexSymDbgHelp;
+//extern ::pointer< ::mutex > g_pmutexSymDbgHelp;
 
 
 CLASS_DECL_ACME void defer_initialize_callstack()
 {
 
-   synchronous_lock synchronouslock(g_pmutexSymDbgHelp);
+   critical_section_lock criticalsectionlock(sym_dbg_help_critical_section());
 
    auto process = GetCurrentProcess();
 
@@ -36,7 +35,7 @@ CLASS_DECL_ACME void defer_initialize_callstack()
 string get_callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount)
 {
 
-   synchronous_lock synchronouslock(g_pmutexSymDbgHelp);
+   critical_section_lock criticalsectionlock(sym_dbg_help_critical_section());
 
    string str;
 
@@ -87,6 +86,9 @@ string get_callstack(const char * pszFormat, i32 iSkip, void * caller_address, i
    return ::move(str);
 
 }
+
+
+#endif
 
 
 

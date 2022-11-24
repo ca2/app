@@ -1,15 +1,10 @@
 ﻿#pragma once
 
 
-//#include "acme/primitive/collection/array.h"
+#include "acme/operating_system/message.h"
 
 
-class CLASS_DECL_ACME message_array :
-   public array < MESSAGE >
-{
-
-
-};
+using message_array = array < MESSAGE >;
 
 
 //#include "acme/primitive/primitive/matter.h"

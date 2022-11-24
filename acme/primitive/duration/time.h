@@ -21,7 +21,7 @@ public:
    constexpr time():time(0, 0) {}
    constexpr time(::i64 iSecond, ::i64 iNanosecond)  {m_iSecond = iSecond; m_iNanosecond = iNanosecond; normalize();}
    constexpr time(enum_zero)  :time(0, 0) {}
-   constexpr time(double d) {m_iSecond = (::i64)d; m_iNanosecond = (::i64) (fmod(d,1.0) * 1'000'000'000.0); normalize();}
+   time(double d) {m_iSecond = (::i64)d; m_iNanosecond = (::i64) ((d - floor(d)) * 1'000'000'000.0); normalize();}
    constexpr time(const class ::time& time)  {m_iSecond = time.m_iSecond; m_iNanosecond = time.m_iNanosecond;}
    constexpr time(const struct ::timespec& timespec)  {m_iSecond = timespec.tv_sec; m_iNanosecond = timespec.tv_nsec; normalize(); }
    inline time(const class duration & duration);
@@ -140,8 +140,8 @@ CLASS_DECL_ACME void preempt(const class ::time& duration);
 constexpr struct ::timespec & copy(struct ::timespec & timespec, const class ::time & time)
 {
 
-   timespec.tv_sec = time.m_iSecond;
-   timespec.tv_nsec = time.m_iNanosecond;
+   timespec.tv_sec = (decltype(timespec.tv_sec))time.m_iSecond;
+   timespec.tv_nsec = (decltype(timespec.tv_nsec))time.m_iNanosecond;
 
    return timespec;
 

@@ -1,4 +1,4 @@
-//
+﻿//
 //  _c.h
 //  acme
 //
@@ -14,6 +14,10 @@
 
 
 #include "acme/primitive/comparison/_c.h"
+
+
+#include "acme/primitive/primitive/_c_memory.h"
+
 
 
 

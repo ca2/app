@@ -1113,6 +1113,8 @@
     <ClInclude Include="platform\user_parent.h" />
     <ClInclude Include="platform\_c.h" />
     <ClInclude Include="platform\_main_hold_base.h" />
+    <ClInclude Include="primitive\datetime\earth_gregorian_time.h" />
+    <ClInclude Include="primitive\datetime\earth_time.h" />
     <ClInclude Include="primitive\datetime\file_time.h" />
     <ClInclude Include="primitive\datetime\file_time_span.h" />
     <ClInclude Include="primitive\datetime\system_time.h" />
@@ -2069,6 +2071,7 @@
     <ClCompile Include="primitive\data\tree_item.cpp" />
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\date_span.cpp" />
+    <ClCompile Include="primitive\datetime\earth_gregorian_time.cpp" />
     <ClCompile Include="primitive\datetime\file_time.cpp" />
     <ClCompile Include="primitive\datetime\file_time_span.cpp" />
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp" />

@@ -50,9 +50,6 @@
     <Filter Include="Header Files\compress">
       <UniqueIdentifier>{3667a9aa-0828-4d29-8deb-b24771a43da0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\process">
-      <UniqueIdentifier>{aa82454e-fbd1-4e9b-afd9-257e0be5cffc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\message">
       <UniqueIdentifier>{551669ee-5055-4ef3-bb7f-f2d00595bb74}</UniqueIdentifier>
     </Filter>
@@ -79,9 +76,6 @@
     </Filter>
     <Filter Include="Source Files\message">
       <UniqueIdentifier>{e342ee93-3829-45a0-bcb8-dcab1832eda0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\process">
-      <UniqueIdentifier>{fac8c1a7-071c-4e77-831b-f6a05081652b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\crypto">
       <UniqueIdentifier>{ad75a178-e9a2-41f0-ae63-b2bff634b72f}</UniqueIdentifier>
@@ -179,24 +173,6 @@
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{108de330-251d-4ca9-a5a8-9961d6a467af}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\operating_system">
-      <UniqueIdentifier>{2df015f8-9be1-4c74-950e-82c4c78c559a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\operating_system\windows_common">
-      <UniqueIdentifier>{15cd4d90-e940-40d3-8b74-67cdfe2e3c5f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\operating_system\universal_windows">
-      <UniqueIdentifier>{eee957d7-70fc-4420-a334-ccf71680fe6c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\operating_system">
-      <UniqueIdentifier>{9db11d2e-df65-499e-a14c-39fb527b4b85}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\operating_system\windows_common">
-      <UniqueIdentifier>{8fdde9c4-35bd-4eac-ab6d-85e06ad4df62}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\operating_system\universal_windows">
-      <UniqueIdentifier>{897fdcec-eef7-47c2-891e-ea16cbcf3d92}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\handler">
       <UniqueIdentifier>{7d9aeb58-db9b-450b-be51-235b7adba139}</UniqueIdentifier>
     </Filter>
@@ -217,6 +193,15 @@
     </Filter>
     <Filter Include="Source Files\interprocess">
       <UniqueIdentifier>{525c8cba-c93b-4fd2-9050-974f668daa2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\application">
+      <UniqueIdentifier>{8da18ec6-6796-4afe-81f8-b13d71410bc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system">
+      <UniqueIdentifier>{6eb9d1e4-c74c-4e8e-9049-bbf2e26b2ddf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system">
+      <UniqueIdentifier>{4274c4d7-fab2-4c54-9a57-4cd951677100}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -250,9 +235,6 @@
     <ClCompile Include="filesystem\filesystem\file_system.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\file_watcher.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\fs\data.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
@@ -268,13 +250,13 @@
     <ClCompile Include="filesystem\fs\link.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\fs\native_fs.cpp">
+    <ClCompile Include="filesystem\fs\native.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\remote_native_file.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\fs\remote_native_fs.cpp">
+    <ClCompile Include="filesystem\fs\remote_native.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\set.cpp">
@@ -319,12 +301,6 @@
     <ClCompile Include="message\_.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="process\department.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="process\process.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\crypto.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
@@ -341,9 +317,6 @@
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
     <ClCompile Include="networking\sockets\http\base_socket.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\http\listener.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
     <ClCompile Include="networking\sockets\http\post_socket.cpp">
@@ -490,7 +463,7 @@
     <ClCompile Include="networking\http\response.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
-    <ClCompile Include="networking\http\signal.cpp">
+    <ClCompile Include="networking\http\message.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
     <ClCompile Include="networking\http\status.cpp">
@@ -559,36 +532,6 @@
     <ClCompile Include="crypto\initializer.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\debug.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\http.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\openssl_crypt.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\operating_system.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\thread.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows_common\file.cpp">
-      <Filter>Source Files\operating_system\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\thread.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\menu.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\main.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\apex.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
     <ClCompile Include="handler\context.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
@@ -604,20 +547,8 @@
     <ClCompile Include="platform\app_container.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows_common\networking.cpp">
-      <Filter>Source Files\operating_system\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\networking_application.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\networking_application_handler.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\networking_application_socket.cpp">
-      <Filter>Source Files\networking</Filter>
     </ClCompile>
     <ClCompile Include="networking\netserver\socket.cpp">
       <Filter>Source Files\networking\netserver</Filter>
@@ -687,6 +618,33 @@
     </ClCompile>
     <ClCompile Include="interprocess\base.cpp">
       <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\watcher.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\application\application.cpp">
+      <Filter>Source Files\networking\application</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\application\application_handler.cpp">
+      <Filter>Source Files\networking\application</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\application\application_socket.cpp">
+      <Filter>Source Files\networking\application</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\action.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\watch.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\_synchronization.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\listener.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\department.cpp">
+      <Filter>Source Files\operating_system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1118,15 +1076,6 @@
     </ClInclude>
     <ClInclude Include="compress\zip_is_dir.h">
       <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="process\_.h">
-      <Filter>Header Files\process</Filter>
-    </ClInclude>
-    <ClInclude Include="process\department.h">
-      <Filter>Header Files\process</Filter>
-    </ClInclude>
-    <ClInclude Include="process\process.h">
-      <Filter>Header Files\process</Filter>
     </ClInclude>
     <ClInclude Include="message\application.h">
       <Filter>Header Files\message</Filter>
@@ -1719,111 +1668,6 @@
     <ClInclude Include="platform\api_client.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\_.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\_aaa.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\_aaa_node.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\_application.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\_c.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\_common.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\_impl.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\_operating_system.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\aaa_c2.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\aaa_operating_system_windowing.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\aaa_process.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\apex.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\binreloc.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\cross.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\file.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\graphics.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\text.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\thread.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windowing.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\winpr_input.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows_common\_windows_common.h">
-      <Filter>Header Files\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows_common\_c.h">
-      <Filter>Header Files\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows_common\_.h">
-      <Filter>Header Files\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\_.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\_universal_windows.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\_windows_runtime.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\base_file.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\gdi_winrt.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\host_interaction.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\metrowin_metrowin.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\parallelization.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\simple_hold_handle.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\simple_ui.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\sockets.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\_c.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
     <ClInclude Include="platform\app_consumer.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1862,6 +1706,9 @@
     </ClInclude>
     <ClInclude Include="interprocess\call.h">
       <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\department.h">
+      <Filter>Header Files\operating_system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

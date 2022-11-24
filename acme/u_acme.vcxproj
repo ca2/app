@@ -1043,12 +1043,13 @@
     <ClInclude Include="operating_system\universal_windows\process.h" />
     <ClInclude Include="operating_system\universal_windows\aaa_simple_ui.h" />
     <ClInclude Include="operating_system\universal_windows\sockets.h" />
-    <ClInclude Include="operating_system\universal_windows\_.h" />
+    <ClInclude Include="operating_system\universal_windows\aaa_.h" />
     <ClInclude Include="operating_system\universal_windows\_c.h" />
-    <ClInclude Include="operating_system\universal_windows\_universal_windows.h" />
+    <ClInclude Include="operating_system\universal_windows\_.h" />
     <ClInclude Include="operating_system\universal_windows\_windows_runtime.h" />
     <ClInclude Include="operating_system\universal_windows\_winrt_foundation.h" />
     <ClInclude Include="operating_system\user.h" />
+    <ClInclude Include="operating_system\windows\_.h" />
     <ClInclude Include="operating_system\windows\_c.h" />
     <ClInclude Include="operating_system\windows_common\api.h" />
     <ClInclude Include="operating_system\windows_common\arg_sec_attrs.h" />

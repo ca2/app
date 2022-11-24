@@ -3030,10 +3030,10 @@
     <ClInclude Include="operating_system\winpr_input.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\_.h">
+    <ClInclude Include="operating_system\universal_windows\aaa_.h">
       <Filter>Header Files\operating_system\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\_universal_windows.h">
+    <ClInclude Include="operating_system\universal_windows\_.h">
       <Filter>Header Files\operating_system\universal_windows</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\universal_windows\_windows_runtime.h">
@@ -3566,6 +3566,9 @@
     </ClInclude>
     <ClInclude Include="primitive\duration\duration\_.h">
       <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_.h">
+      <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

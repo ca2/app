@@ -4492,10 +4492,10 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 //#include "base/node/_node.h"
 
 
-#ifdef WINDOWS_DESKTOP
-#elif defined(_UWP)
-#include "apex/operating_system/universal_windows/_universal_windows.h"
-#endif
+//#ifdef WINDOWS_DESKTOP
+//#elif defined(_UWP)
+//#include "apex/operating_system/universal_windows/_universal_windows.h"
+//#endif
 
 
 //#if !defined(WINDOWS) && !defined(MACOS)

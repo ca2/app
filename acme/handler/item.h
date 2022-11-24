@@ -371,9 +371,9 @@ public:
 
    void set_drawn() { m_uFlags |= ITEM_DRAWN; }
 
-   bool is_set() const { return m_atom.is_set() || m_eelement != ::e_element_none; }
+   bool is_item_set() const { return m_atom.is_set() || m_eelement != ::e_element_none; }
 
-   operator bool() const { return is_set(); }
+   operator bool() const { return is_item_set(); }
 
    operator enum_element() const { return m_eelement; }
 
@@ -499,10 +499,10 @@ using item_pointer = ::pointer<::item>;
 //} // namespace item
 
 
-inline bool is_set(const ::item * pitem)
+inline bool is_item_set(const ::item * pitem)
 {
 
-   return ::is_set((const void * )pitem) && pitem->is_set();
+   return ::is_set((const void * )pitem) && pitem->is_item_set();
 
 }
 
@@ -510,7 +510,7 @@ inline bool is_set(const ::item * pitem)
 inline bool is_element(const ::item * pitem, ::enum_element eelement)
 {
 
-   return ::is_set((const void *)pitem) && pitem->is_set() && pitem->m_eelement == eelement;
+   return ::is_set((const void *)pitem) && pitem->is_item_set() && pitem->m_eelement == eelement;
 
 }
 
@@ -520,7 +520,7 @@ inline bool is_element(const ::item * pitem, ::enum_element eelement)
 inline bool is_item(const ::item * pitem, ::index iItem)
 {
 
-   return ::is_set((const void *)pitem) && pitem->is_set()
+   return ::is_set((const void *)pitem) && pitem->is_item_set()
       && pitem->m_iItem == iItem;
 
 }
@@ -530,7 +530,7 @@ inline bool is_item(const ::item * pitem, ::index iItem)
 inline bool is_subitem(const ::item * pitem, ::index iSubItem)
 {
 
-   return ::is_set((const void *)pitem) && pitem->is_set()
+   return ::is_set((const void *)pitem) && pitem->is_item_set()
       && pitem->m_iSubItem == iSubItem;
 
 }
@@ -539,7 +539,7 @@ inline bool is_subitem(const ::item * pitem, ::index iSubItem)
 inline bool subitem_less_than(const ::item * pitem, ::index iSubItem)
 {
 
-   return ::is_set((const void *)pitem) && pitem->is_set()
+   return ::is_set((const void *)pitem) && pitem->is_item_set()
       && pitem->m_iSubItem < iSubItem;
 
 }
@@ -548,7 +548,7 @@ inline bool subitem_less_than(const ::item * pitem, ::index iSubItem)
 inline bool in_element_range(const ::item * pitem, enum_element eelement, int iCount)
 {
 
-   return ::is_set((const void *)pitem) && pitem->is_set() &&
+   return ::is_set((const void *)pitem) && pitem->is_item_set() &&
       pitem->in_element_range(eelement, iCount);
 
 }
@@ -565,10 +565,10 @@ inline ::pointer<::item>new_item_with_index(::index iIndex)
 inline bool is_same_item(const ::item * pitem1, const ::item * pitem2)
 {
 
-   if (::is_set(pitem1))
+   if (::is_item_set(pitem1))
    {
 
-      if (::is_set(pitem2))
+      if (::is_item_set(pitem2))
       {
 
          return *pitem1 == *pitem2;
@@ -582,7 +582,7 @@ inline bool is_same_item(const ::item * pitem1, const ::item * pitem2)
       }
 
    }
-   else if (::is_set(pitem2))
+   else if (::is_item_set(pitem2))
    {
 
       return false;

@@ -1,7 +1,8 @@
-// Created by camilo on 2022-06-02 12:41 PM <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-06-02 12:41 PM <3ThomasBorregaardSorensen!!
 #pragma once
 
 
+#include "acme/primitive/collection/string_list.h"
 #include "aura/windowing/windowing.h"
 
 

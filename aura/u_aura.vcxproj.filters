@@ -1578,6 +1578,9 @@
     <ClCompile Include="user\user\plain_text_tree.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\image\_.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="aura.rc">

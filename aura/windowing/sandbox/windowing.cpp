@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "windowing.h"
 #include "host_interaction.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/platform/system.h"
 #include "aura/windowing/sandbox/window.h"
 #include "aura/user/user/interaction_impl.h"

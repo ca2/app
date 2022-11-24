@@ -930,7 +930,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='release|x64'">false</DeploymentContent>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\debug\bzip2.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\x64\debug\third\binary\bzip2.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</DeploymentContent>
@@ -964,7 +964,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='release|x64'">false</DeploymentContent>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\debug\pcre.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\x64\debug\third\binary\pcre.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</DeploymentContent>
@@ -998,7 +998,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='release|x64'">false</DeploymentContent>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\debug\sqlite.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\x64\debug\third\binary\sqlite.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</DeploymentContent>
@@ -1032,7 +1032,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='release|x64'">false</DeploymentContent>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\debug\zlib.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\x64\debug\third\binary\zlib.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</DeploymentContent>

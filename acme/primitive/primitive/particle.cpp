@@ -923,7 +923,7 @@ bool particle::_lock(const class ::wait & wait)
 void particle::_wait()
 {
 
-   _wait(::duration::infinite());
+   _wait(::wait::infinite());
 
 }
 

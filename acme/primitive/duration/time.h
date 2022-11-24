@@ -124,9 +124,9 @@ public:
 
 
    template < primitive_number NUMBER >
-   inline class time operator / (const NUMBER & number)const{ return (class ::time){m_iSecond / number, m_iNanosecond / number}; }
+   inline class time operator / (const NUMBER & number)const{ return time(m_iSecond / number, m_iNanosecond / number); }
    template < primitive_number NUMBER >
-   inline class time operator * (const NUMBER & number) const{ return (class ::time){m_iSecond * number, m_iNanosecond * number}; }
+   inline class time operator * (const NUMBER & number) const{ return time(m_iSecond * number, m_iNanosecond * number); }
 
 
    

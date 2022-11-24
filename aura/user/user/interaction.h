@@ -440,7 +440,7 @@ namespace user
 
       //::windowing::window * window();
 
-      virtual ::windowing::windowing * windowing();
+      ::windowing::windowing * windowing();
 
       ::windowing::display * get_display();
 

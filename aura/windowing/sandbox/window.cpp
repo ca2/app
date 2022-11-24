@@ -1,8 +1,10 @@
-// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20 <3TBS, Mummi and bilbo!!
 // Adapted by Camilo for android 2022-01-05 04:37 <3TBS (Thomas likes number 5), Mummi and bilbo!!
 #include "framework.h"
 #include "_sandbox.h"
+#include "acme/constant/message.h"
+#include "apex/platform/system.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/user/user/interaction_impl.h"
@@ -314,7 +316,7 @@ namespace sandbox_windowing
 
          pimpl->m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
-         pimpl->m_puserinteraction->set(e_flag_task_started);
+         pimpl->m_puserinteraction->set_flag(e_flag_task_started);
 
       }
 
@@ -2058,7 +2060,7 @@ namespace sandbox_windowing
    //}
 
 
-   bool window::set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+   bool window::set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
    {
 
       //synchronous_lock sl(user_synchronization());

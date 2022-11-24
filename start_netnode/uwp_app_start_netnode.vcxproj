@@ -810,7 +810,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\debug\pcre.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\x64\debug\third\binary\pcre.dll">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">false</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">false</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">false</DeploymentContent>
@@ -844,7 +844,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\debug\zlib.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\x64\debug\third\binary\zlib.dll">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='static_release|Win32'">false</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">false</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='static_debug|Win32'">false</DeploymentContent>

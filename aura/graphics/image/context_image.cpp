@@ -1010,7 +1010,7 @@ bool context_image::_desk_has_image()
 
 
 // platform implementation may use this imaging-"routing" to manipulate the image/clipboard
-bool context_image::_image_to_desk(const ::image* pimage)
+bool context_image::_image_to_desk(::image* pimage)
 {
 
    return false;

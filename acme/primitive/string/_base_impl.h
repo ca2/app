@@ -637,7 +637,7 @@ inline ::string_base < CHARACTER > & string_base < CHARACTER >::assign(const ::s
 
    start_count(start, count, strSrc.get_length());
 
-   if(sizeof(CHARACTER) |= sizeof(CHARACTER2) || start != 0 || count != strSrc.get_length())
+   if(sizeof(CHARACTER) != sizeof(CHARACTER2) || start != 0 || count != strSrc.get_length())
    {
 
       assign(strSrc.c_str(), start, count);

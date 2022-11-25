@@ -1051,8 +1051,8 @@ CLASS_DECL_ACME class ::duration __random(const class ::duration & d1, const cla
 inline class ::time duration::time() const
 {
 
-   return class ::time(m_iSecond, m_iNanosecond);
-
+   return { m_iSecond, m_iNanosecond };
+  
 }
 
 

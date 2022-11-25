@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "condition_variable.h"
@@ -21,7 +21,7 @@ public:
 
    bool              m_bSignaled;
    int               m_iHold;
-   pthread_mutex_t   m_pmutex;
+   pthread_mutex_t   m_mutex;
    pthread_cond_t    m_cond;
 
 #else

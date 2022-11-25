@@ -57,8 +57,8 @@ namespace user
       virtual void insert_text(string str, bool bForceNewStep, const ::action_context& context);
 
 
-      inline string as_string() const { return m_linkedpropertyText->as_string(); }
-      inline string & string_reference() { return m_linkedpropertyText->string_reference(); }
+      string as_string() const override;
+      virtual string& string_reference();
       //inline string as_string() const { return m_propertyText->get_string(); }
 
       

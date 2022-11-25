@@ -1018,7 +1018,7 @@ namespace file
       memsize uiBufSize = uiBufMax;
       memsize uiBufInc = uiBufSize;
       memsize uRead;
-      memsize uiSize = pfileOut->get_internal_data_size();
+      ///memsize uiSize = pfileOut->get_internal_data_size();
 
       while(pfileOut->increase_internal_data_size(uiBufInc) && pfileOut->get_internal_data() != nullptr)
       {
@@ -1053,7 +1053,7 @@ namespace file
             {
                return;
             }
-            uiSize += uRead;
+            //uiSize += uRead;
          }
       }
       catch(...)
@@ -1172,7 +1172,7 @@ namespace file
       }
 
       memsize uRead;
-      memsize uiSize = 0;
+      //memsize uiSize = 0;
       uiBufSize = maximum(32 * 1024, uiBufSize);
 
       memory buf;
@@ -1192,7 +1192,7 @@ namespace file
                break;
             }
             write(buf.get_data(), uRead);
-            uiSize += uRead;
+            //uiSize += uRead;
          }
       }
       catch(...)

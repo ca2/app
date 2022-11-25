@@ -421,7 +421,7 @@ namespace user
       virtual ::user::interaction * get_wnd();
       virtual ::user::interaction * get_wnd(::u32 nCmd);
       //virtual ::user::interaction_impl * get_impl() const;
-      virtual ::task * get_task();
+      virtual ::task * get_task() override;
 
       virtual ::user::element * set_parent(::user::element * pinteraction);
       virtual ::user::element * set_owner(::user::element * pinteraction);

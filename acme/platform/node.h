@@ -434,7 +434,7 @@ namespace acme
       virtual void create_app_shortcut(::acme::application * papplication);
 
 
-      virtual void report_exception_to_user(::object* pparticle, ::exception& exception, const ::string& strMoreDetails);
+      virtual void report_exception_to_user(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails);
 
 
       virtual ::pointer<::conversation> create_new_message_box_conversation();

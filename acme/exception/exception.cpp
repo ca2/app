@@ -44,7 +44,7 @@ exception::exception(const ::e_status & estatus, const char * pszMessage, const 
 
 #ifdef ANDROID
       
-      m_strCallstack = unwind_callstack(callstack_default_format(), iSkip);
+      m_strCallstack = ::get_system()->acmenode()->unwind_callstack(callstack_default_format(), iSkip);
 
 #else
 

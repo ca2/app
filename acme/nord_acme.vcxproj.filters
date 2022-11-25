@@ -79,15 +79,6 @@
     <ClCompile Include="parallelization\task.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="process\bidirectional_pipe.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="process\exit_status.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="process\pipe.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
     </ClCompile>
@@ -125,9 +116,6 @@
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\interface_only.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\file.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\extended_status.cpp">
@@ -244,9 +232,6 @@
     <ClCompile Include="filesystem\filesystem\path_object.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="memory\alloc.cpp">
-      <Filter>Source Files\memory</Filter>
-    </ClCompile>
     <ClCompile Include="memory\allocate_mid_big.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
@@ -305,9 +290,6 @@
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\synchronization_array.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\synchronization_object.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\tools.cpp">
@@ -427,9 +409,6 @@
     <ClCompile Include="operating_system\posix\parallelization.cpp">
       <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\posix\pthread.cpp">
-      <Filter>Source Files\operating_system\posix</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\posix\time.cpp">
       <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
@@ -505,9 +484,6 @@
     <ClCompile Include="platform\exclusive.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\factory.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\fixed_alloc.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -536,9 +512,6 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\nanosecond_timer.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\net.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\node.cpp">
@@ -653,9 +626,6 @@
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\department.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\file_time.cpp">
@@ -814,9 +784,6 @@
     <ClCompile Include="primitive\string\string_wide.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\string_wide_conversion.cpp">
-      <Filter>Source Files\primitive\string</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\string\stringtow.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
@@ -859,9 +826,6 @@
     <ClCompile Include="primitive\collection\map_test_51778915.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\payload_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\collection\sort.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
@@ -871,25 +835,13 @@
     <ClCompile Include="primitive\collection\string_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\string_array_base.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\stringl.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\_.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\atom_space.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\bit.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\block.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\element.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\estatus.cpp">
@@ -905,9 +857,6 @@
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\match.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\material_object.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\matter.cpp">
@@ -1000,21 +949,6 @@
     <ClCompile Include="user\nano\window_interface.cpp">
       <Filter>Source Files\user\nano</Filter>
     </ClCompile>
-    <ClCompile Include="process\main.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\top_level_domain_list.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\url.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\url_department.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\url_domain.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\ansi\windows_time.cpp">
       <Filter>Source Files\operating_system\ansi</Filter>
     </ClCompile>
@@ -1026,9 +960,6 @@
     </ClCompile>
     <ClCompile Include="operating_system\android\time.cpp">
       <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\promise\signalization.cpp">
-      <Filter>Source Files\primitive\promise</Filter>
     </ClCompile>
     <ClCompile Include="regular_expression\context.cpp">
       <Filter>Source Files\regular_expression</Filter>
@@ -1054,9 +985,6 @@
     <ClCompile Include="primitive\duration\time.cpp">
       <Filter>Source Files\primitive\duration</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\stage\source\app\acme\platform\procedure_array.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\string\_string.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
@@ -1069,14 +997,8 @@
     <ClCompile Include="platform\tracer.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\__string.cpp">
-      <Filter>Source Files\primitive\string</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\string\character.cpp">
       <Filter>Source Files\primitive\string</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\subsystem.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\particle.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
@@ -1101,6 +1023,123 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive\read_only_memory.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_alloc.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\sub_system.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\string_list.cpp">
+      <Filter>Source Files\primitive\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\str_array.cpp">
+      <Filter>Source Files\primitive\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\__payload_array.cpp">
+      <Filter>Source Files\primitive\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\encoding_exception.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\international2.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\network_payload.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\str_to.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\string.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\string_base.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\whole_word.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\bidirectional_pipe.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\console_client.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\exit_status.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\message.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\pipe.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\process.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\security_attributes.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\assert.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\_synchronization.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\ini.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\procedure.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\procedure_array.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\string_exchange.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\nano.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\create_task_attributes.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\posix\parallelization_pthread.cpp">
+      <Filter>Source Files\operating_system\posix</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\url_domain.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\url.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\top_level_domain_list.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\object_meta.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\integral_byte.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\atom.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\action_context.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\fork.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\signalization.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\synchronizer.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\posix\idn.cpp">
+      <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3552,6 +3591,9 @@
     <ClInclude Include="primitive\primitive\object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="include\__setup.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -3656,9 +3698,6 @@
     <Filter Include="Source Files\parallelization">
       <UniqueIdentifier>{9dafff67-e888-48b6-88f5-1432b29a1824}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\process">
-      <UniqueIdentifier>{a9eefb3b-cbd9-47ff-83d2-4d8b655a6944}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\operating_system">
       <UniqueIdentifier>{82ef53e1-f756-4ae9-ab37-361e24b32e64}</UniqueIdentifier>
     </Filter>
@@ -3719,17 +3758,11 @@
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{3544a004-aff4-4429-9b8c-474f750db5b3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\networking">
-      <UniqueIdentifier>{b570a6f5-1162-43ee-99f6-c47be8119ac4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\primitive\duration">
       <UniqueIdentifier>{121c7575-217f-40ea-bb0e-1fdc60527170}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\primitive\duration\duration">
       <UniqueIdentifier>{9a04907c-4ece-48ab-a0fd-200f2fa5b91e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\promise">
-      <UniqueIdentifier>{4c9f4c64-bfbe-4431-9026-533d62d9a3d1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\regular_expression">
       <UniqueIdentifier>{498346eb-399b-4656-bd99-fe710ed7365e}</UniqueIdentifier>

@@ -4893,7 +4893,7 @@ retry_license:
    bool application::assert_user_logged_in()
    {
 
-      const char * pszRequestUrl = nullptr;
+      //const char * pszRequestUrl = nullptr;
 
       string strRequestUrl;
 
@@ -4902,7 +4902,7 @@ retry_license:
 
          strRequestUrl = "https://" + acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
-         pszRequestUrl = strRequestUrl;
+         //pszRequestUrl = strRequestUrl;
 
       }
 
@@ -6496,11 +6496,11 @@ namespace aura
    void application::_001OnFileNew()
    {
       string strId = m_strId;
-      char chFirst = '\0';
-      if (strId.get_length() > 0)
-      {
-         chFirst = strId[0];
-      }
+      //char chFirst = '\0';
+      //if (strId.get_length() > 0)
+      //{
+      //   chFirst = strId[0];
+      //}
       /*      if (m_pdocmanager != nullptr)
       document_manager()->_001OnFileNew();*/
    }

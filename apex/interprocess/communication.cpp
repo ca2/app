@@ -508,7 +508,7 @@ namespace interprocess
 
 #else
 
-      strKey = acmedirectory()->system() / "communication" / strApp / as_string(idPid);
+      strKey = acmedirectory()->system() / "communication" / strApp / ::as_string(idPid);
 
 
 #endif

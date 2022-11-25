@@ -138,7 +138,7 @@ public:
    virtual void notify_on_destroy(::property_object * pparticle);
 
 
-   virtual void set_finish();
+   void set_finish() override;
    //void destroy() override;
 
    virtual void on_set_finish();

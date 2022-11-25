@@ -144,7 +144,7 @@ int main(int argc, char * argv[], char * envp[])
    
       #elif defined(ANDROID)
    
-         set_res(p1, p2);
+         subsystem.set_resource_block(p1, p2);
 
       #endif   
 

@@ -1849,7 +1849,7 @@ return false;
    }
 
 
-   void node::report_exception_to_user(::object* pparticle, ::exception& exception, const ::string& strMoreDetails)
+   void node::report_exception_to_user(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails)
    {
 
       exception_message_box(this, exception, strMoreDetails);
@@ -2075,13 +2075,13 @@ return false;
    }
 
 
-   string node::get_callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount)
-   {
+   //string node::get_callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount)
+   //{
 
 
-      return {};
+   //   return {};
 
-   }
+   //}
 
 
    ::string node::get_command_line()

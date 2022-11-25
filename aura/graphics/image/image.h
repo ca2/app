@@ -63,7 +63,7 @@ public:
    virtual ::pointer<::image>get_image(::i32 cx, ::i32 cy);
 
 
-   virtual bool _is_ok() const;
+   bool _is_ok() const override;
    inline bool is_ok() const { return ::is_set(this) && _is_ok(); }
    inline bool nok() const { return !is_ok(); }
 

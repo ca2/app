@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/primitive/atom.h"
@@ -57,8 +57,8 @@ namespace text
 
          locale_schema& operator = (const locale_schema& ls);
 
-         virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-         virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+         virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+         virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
 
       };

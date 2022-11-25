@@ -48,8 +48,8 @@ namespace interprocess
 
       ::pointer<synchronization_array>synca();
 
-      ::e_status wait();
-      bool _wait(const class ::wait & wait);
+      ::e_status wait() override;
+      bool _wait(const class ::wait & wait) override;
 
 
       virtual atom_array prepare_call();

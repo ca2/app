@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "condition.h"
 ////#include "acme/exception/exception.h"
 #include "acme/_operating_system.h"
@@ -9,6 +9,7 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <time.h>
+#include <pthread.h>
 
 #endif
 
@@ -19,7 +20,7 @@ condition::condition()
 
 #elif defined(ANDROID)
 
-   pthread_mutex_init(m_pmutex, nullptr);
+   pthread_mutex_init(&m_mutex, nullptr);
 
    pthread_cond_init(&m_cond, nullptr);
 
@@ -79,19 +80,19 @@ bool condition::SetEvent()
 
 #elif defined(ANDROID)
 
-   pthread_mutex_lock(m_pmutex);
+   pthread_mutex_lock(&m_mutex);
 
    if (!m_bSignaled)
    {
       m_bSignaled = true;
 
-      pthread_mutex_unlock(m_pmutex);
+      pthread_mutex_unlock(&m_mutex);
 
       pthread_cond_signal(&m_cond);
    }
    else
    {
-      pthread_mutex_unlock(m_pmutex);
+      pthread_mutex_unlock(&m_mutex);
    }
 
    return true;
@@ -119,17 +120,17 @@ bool condition::pulse()
 
 #elif defined(ANDROID)
 
-   pthread_mutex_lock(m_pmutex);
+   pthread_mutex_lock(&m_mutex);
 
    if (m_iHold > 0)
    {
       m_bSignaled = true;
 
-      pthread_mutex_unlock(m_pmutex);
+      //pthread_mutex_unlock(&m_mutex);
 
       pthread_cond_signal(&m_cond);
 
-      pthread_mutex_lock(m_pmutex);
+      //pthread_mutex_lock(m_pmutex);
 
       while (m_iHold > 0)
       {
@@ -140,11 +141,11 @@ bool condition::pulse()
 
       m_bSignaled = false;
 
-      pthread_mutex_unlock(m_pmutex);
+      pthread_mutex_unlock(&m_mutex);
    }
    else
    {
-      pthread_mutex_unlock(m_pmutex);
+      pthread_mutex_unlock(&m_mutex);
    }
 
    return true;
@@ -176,22 +177,22 @@ bool condition::pulse()
 
 #elif defined(ANDROID)
 
-   pthread_mutex_lock(m_pmutex);
+   pthread_mutex_lock(&m_mutex);
 
    m_iHold++;
 
    while (!m_bSignaled)
    {
-      pthread_cond_wait(&m_cond, m_pmutex);
+      pthread_cond_wait(&m_cond, &m_mutex);
    }
 
-   pthread_mutex_unlock(m_pmutex);
+   pthread_mutex_unlock(&m_mutex);
 
-   pthread_mutex_lock(m_pmutex);
+   pthread_mutex_lock(&m_mutex);
 
    m_iHold--;
 
-   pthread_mutex_unlock(m_pmutex);
+   pthread_mutex_unlock(&m_mutex);
 
 #else
 
@@ -252,7 +253,7 @@ bool condition::pulse()
 
    u32 timeout = wait;
 
-   pthread_mutex_lock(m_pmutex);
+   pthread_mutex_lock(&m_mutex);
 
    m_iHold++;
 
@@ -263,7 +264,7 @@ bool condition::pulse()
    while (!m_bSignaled)
    {
 
-      pthread_cond_wait(&m_cond, m_pmutex);
+      pthread_cond_wait(&m_cond, &m_mutex);
 
       if (start.elapsed() > wait)
       {
@@ -278,7 +279,7 @@ bool condition::pulse()
 
    m_iHold--;
 
-   pthread_mutex_unlock(m_pmutex);
+   pthread_mutex_unlock(&m_mutex);
 
    //return e_synchronization_result_signaled_base;
    return true;
@@ -448,15 +449,15 @@ bool condition::ResetEvent()
 {
 #ifdef ANDROID
 
-   pthread_mutex_lock(m_pmutex);
+   pthread_mutex_lock(&m_mutex);
 
    m_iHold = 0;
 
    m_bSignaled = false;
 
-   pthread_mutex_unlock(m_pmutex);
-
    pthread_cond_signal(&m_cond);
+
+   pthread_mutex_unlock(&m_mutex);
 
 #endif
 

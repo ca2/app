@@ -335,7 +335,7 @@ public:
 
    }
 
-   virtual ::extended_topic_pointer create_extended_topic(const ::atom & atom);
+   ::extended_topic_pointer create_extended_topic(const ::atom & atom) override;
 
    virtual void dev_log(string str);
 
@@ -423,7 +423,7 @@ public:
    virtual ::atom calc_default_object_id() const;
 
 
-   virtual void install_message_routing(::channel* pchannel);
+   void install_message_routing(::channel* pchannel) override;
 
    void message_receiver_destruct();
 

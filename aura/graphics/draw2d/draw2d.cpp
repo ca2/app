@@ -718,7 +718,7 @@ void draw2d::emboss_predicate(
       i32 iFilterHalfW = iFilterW / 2;
       i32 iFilterHalfH = iFilterH / 2;
       i32 iFilterArea = iFilterW * iFilterH;
-      i32 divisor;
+      //i32 divisor;
       byte * lpbSource;
       byte * lpbSource_1;
       byte * lpbSource_2;
@@ -960,7 +960,7 @@ void draw2d::emboss_predicate(
 
 
 
-      divisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
+      /// divisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
 
 
       for (; y1 < yU;)
@@ -1033,7 +1033,7 @@ void draw2d::emboss_predicate(
       i32 iFilterHalfW = iRadius;
       i32 iFilterHalfH = iRadius;
       i32 iFilterArea = iFilterW * iFilterH;
-      i32 divisor = iFilterW * iFilterH;
+      //i32 divisor = iFilterW * iFilterH;
       byte * lpbSource;
       byte * lpbSource_1;
       byte * lpbSource_2;
@@ -1264,7 +1264,7 @@ void draw2d::emboss_predicate(
 
 
 
-      divisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
+      //divisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
 
 
       for (; y1 < yU;)

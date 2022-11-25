@@ -1,5 +1,7 @@
-// Created by camilo 2020-12-18 05:48 BRT <3TBS, Mummi and bilbo!!
+﻿// Created by camilo 2020-12-18 05:48 BRT <3TBS, Mummi and bilbo!!
 #include "framework.h"
+#include "acme/parallelization/task.h"
+#include "acme/platform/system.h"
 
 
 void task_set_name(long l, const char * psz)

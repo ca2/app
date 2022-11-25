@@ -1,9 +1,9 @@
-// Created by camilo on 2022-11-01 23:26 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-01 23:26 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/parallelization/mutex.h"
 
 
-#if defined(LINUX) || defined(__APPLE__)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
 static ::critical_section g_criticalsectionTz;
 

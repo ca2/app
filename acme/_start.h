@@ -16,6 +16,7 @@
 #include "setup/debug.h"
 #include "operating_system/config.h"
 #include "include/_setup.h"
+#include "acme/include/__setup.h"
 
 
 #include "__standard_type.h"

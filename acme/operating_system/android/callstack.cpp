@@ -1,6 +1,7 @@
-// From stackoflw by camilo on 2022-04-30 00:02 <3ThomasBorregaardSørensen!!
+ï»¿// From stackoflw by camilo on 2022-04-30 00:02 <3ThomasBorregaardSï¿½rensen!!
 // https://stackoverflow.com/questions/8115192/android-ndk-getting-the-backtrace
 #include "framework.h"
+#include "acme/platform/node.h"
 //#include <iostream>
 //#include <iomanip>
 
@@ -60,18 +61,28 @@ void dumpBacktrace(string & str, void ** buffer, size_t count)
 }
 
 
-CLASS_DECL_ACME string unwind_callstack(const char * pszFormat, i32 iSkip, int iCount)
+namespace acme
 {
 
-   string strCallStack;
+   
+   string node::unwind_callstack(const char* pszFormat, i32 iSkip, int iCount)
+   {
+
+      string strCallStack;
 
 
-   const size_t max =128;
-   void * buffer[max];
+      const size_t max = 128;
+      void* buffer[max];
 
-   dumpBacktrace(strCallStack, buffer, captureBacktrace(buffer, max));
+      dumpBacktrace(strCallStack, buffer, captureBacktrace(buffer, max));
 
 
-   return strCallStack;
+      return strCallStack;
 
-}
+   }
+
+
+} // namespace node
+
+
+

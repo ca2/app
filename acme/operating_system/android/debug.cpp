@@ -1,10 +1,10 @@
-
+﻿#include "acme/parallelization/synchronous_lock.h"
 
 #include <android/log.h>
 
 
 //static string * m_pstrOutputDebugStringA = nullptr;
-::pointer< ::mutex > g_pmutexOutputDebugStringA = nullptr;
+::pointer< ::particle > g_pmutexOutputDebugStringA;
 
 void output_debug_string(const char * lpOutputString)
 {

@@ -165,6 +165,23 @@ namespace user
    }
 
 
+   string text::as_string() const
+   { 
+      
+      return m_linkedpropertyText->as_string(); 
+   
+   }
+
+
+   string& text::string_reference() 
+   {
+      
+      return m_linkedpropertyText->string_reference(); 
+   
+   }
+
+
+
    bool text::edit_undo()
    {
 

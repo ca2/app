@@ -1,4 +1,4 @@
-// Created by camilo on 2022-06-07 07:39 <3ThomasBorregaardSorense!! Mummi and bilbo!!
+﻿// Created by camilo on 2022-06-07 07:39 <3ThomasBorregaardSorense!! Mummi and bilbo!!
 #include "framework.h"
 #include "str.h"
 #include "string.h"
@@ -62,7 +62,7 @@ bool str::to(i64 & i, int iBase, const ::string & str)
 
 #else
 
-   i64 iConversion = ::ansi_to_i64(psz, &pszEnd, iBase);
+   i64 iConversion = ::ansi_to_i64(str, (const char **) & pszEnd, iBase);
 
 #endif
 
@@ -93,7 +93,7 @@ bool str::to(i32 & i, i32 iBase, const ::string & str)
 
 #else
 
-   i64 iConversion = ::ansi_to_i64(psstrz, &pszEnd, iBase);
+   i64 iConversion = ::ansi_to_i64(str, (const char **) & pszEnd, iBase);
 
 #endif
 

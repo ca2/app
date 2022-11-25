@@ -27,7 +27,7 @@ void android_on_text(e_os_text etext, const wchar_t* pwch, size_t len);
 
 
 
-CLASS_DECL_ACME string get_string(jstring jstring);
+CLASS_DECL_ACME string as_string(const jstring & jstring);
 
 
 

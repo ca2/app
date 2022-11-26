@@ -729,6 +729,8 @@ restart:
       }
 
 
+#ifdef _DEBUG
+
       i64 locale_schema::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
       {
 
@@ -743,6 +745,9 @@ restart:
          return particle::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       }
+
+
+#endif
 
 
    }  // namespace international

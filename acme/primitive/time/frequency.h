@@ -2,7 +2,10 @@
 #pragma once
 
 
-class CLASS_DECL_ACME frequency :
+#include "acme/primitive/time/time.h"
+
+
+class frequency :
    public FREQUENCY
 {
 public:
@@ -17,7 +20,7 @@ public:
 
 
 template < primitive_floating FLOATING >
-class ::frequency operator / (FLOATING d, const class ::time& time)
+class ::frequency operator / (FLOATING d, const class time& time)
 {
 
    auto nanosecond = (time.m_iSecond * 1'000'000'000.0 + time.m_iNanosecond);

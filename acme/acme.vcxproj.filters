@@ -2696,9 +2696,6 @@
     <ClInclude Include="primitive\time\integral\second.h">
       <Filter>Header Files\primitive\time\integral</Filter>
     </ClInclude>
-    <ClInclude Include="frequency.h">
-      <Filter>Header Files\primitive\time</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\collection\unique_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
@@ -3019,6 +3016,9 @@
     </ClInclude>
     <ClInclude Include="primitive\collection\__payload_array.h">
       <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\time\frequency.h">
+      <Filter>Header Files\primitive\time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

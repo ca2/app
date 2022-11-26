@@ -817,7 +817,6 @@
     <ClInclude Include="filesystem\file\translatable.h" />
     <ClInclude Include="filesystem\file\__string.h" />
     <ClInclude Include="filesystem\_.h" />
-    <ClInclude Include="frequency.h" />
     <ClInclude Include="graphics\draw2d\_binary_stream.h" />
     <ClInclude Include="graphics\draw2d\__string.h" />
     <ClInclude Include="graphics\image\color_indexes.h" />
@@ -1400,6 +1399,7 @@
     <ClInclude Include="primitive\time\floating\nanosecond.h" />
     <ClInclude Include="primitive\time\floating\second.h" />
     <ClInclude Include="primitive\time\floating\_.h" />
+    <ClInclude Include="primitive\time\frequency.h" />
     <ClInclude Include="primitive\time\integral\day.h" />
     <ClInclude Include="primitive\time\integral\time.h" />
     <ClInclude Include="primitive\time\integral\hour.h" />

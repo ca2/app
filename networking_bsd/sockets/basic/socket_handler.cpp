@@ -449,8 +449,8 @@ namespace sockets_bsd
 
       struct timeval tsel;
 
-      tsel.tv_sec = (long)::time(wait).integral_second().m_i;
-      tsel.tv_usec = ((long)::time(wait).integral_microsecond().m_i) % 1'000'000'000;
+      tsel.tv_sec = (long)timeWait.integral_second().m_i;
+      tsel.tv_usec = ((long)timeWait.integral_microsecond().m_i) % 1'000'000;
 
       return _select(&tsel);
 
@@ -610,7 +610,7 @@ namespace sockets_bsd
 
       }
 
-      ::time tick1, tick2;
+      class ::time tick1, tick2;
 
 start_processing_adding:
 
@@ -725,7 +725,7 @@ end_processing_adding:
 
       tick1 = ::time::now();
 
-      ::time tickRWENull;
+      class ::time tickRWENull;
 
       if (psetR == nullptr && psetW == nullptr && psetE == nullptr)
       {

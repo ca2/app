@@ -476,9 +476,7 @@ namespace sockets_bsd
          if (m_b_read_ts)
          {
             
-            ::time time;
-
-            time.Now();
+            auto time = ::time::now();
 
             struct timeval timeval;
 
@@ -558,9 +556,7 @@ namespace sockets_bsd
       if (m_b_read_ts)
       {
          
-         ::time time;
-
-         time.Now();
+         auto time = ::time::now();
 
          timeval timeval;
 

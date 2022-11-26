@@ -7,7 +7,7 @@
 
 
 template < typename FILE >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::DURATION & time)
+inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const struct ::TIME & time)
 {
 
    s << time.m_iSecond;
@@ -19,7 +19,7 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::
 
 
 template < typename FILE >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::DURATION & time)
+inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::TIME & time)
 {
 
    s >> time.m_iSecond;

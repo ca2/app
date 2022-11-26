@@ -23,6 +23,21 @@ CLASS_DECL_ACME::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DWO
 
 #endif
 
+
+namespace windows
+{
+
+   constexpr DWORD wait(const class time& time)
+   {
+
+      auto i = time.integral_millisecond().m_i;
+
+      return i > ((decltype(i))INFINITE) ? INFINITE : (DWORD) i;
+
+   }
+
+}
+
 //template < >
 //inline bool gt(DWORD dw, ::i32 i)
 //{

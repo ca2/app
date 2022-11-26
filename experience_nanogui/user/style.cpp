@@ -1532,7 +1532,7 @@ namespace experience_nanogui
             {
 
                pbar->payload("tracking_on") = true;
-               pbar->payload("tracking_start_time") = duration(e_now) + dRate * periodFadeIn;
+               pbar->payload("tracking_start_time") = time(e_now) + dRate * periodFadeIn;
                pbar->payload("tracking_fade_in") = true;
                pbar->payload("tracking_fade_out") = false;
                pbar->payload("tracking_simple") = __random(1, 2) == 1;
@@ -1548,7 +1548,7 @@ namespace experience_nanogui
 
                pbar->payload("tracking_fade_in") = false;
                pbar->payload("tracking_fade_out") = true;
-               pbar->payload("tracking_start_time") = duration(e_now) + (1.0 - dRate) * periodFadeOut;
+               pbar->payload("tracking_start_time") = time(e_now) + (1.0 - dRate) * periodFadeOut;
 
             }
 
@@ -1577,7 +1577,7 @@ namespace experience_nanogui
          if (pbar->is_true("tracking_fade_in"))
          {
 
-            auto elapsed = pbar->payload("tracking_start_time").duration().elapsed();
+            auto elapsed = pbar->payload("tracking_start_time").time().elapsed();
 
             if (elapsed < periodFadeIn)
             {
@@ -1598,7 +1598,7 @@ namespace experience_nanogui
          else if (pbar->is_true("tracking_fade_out"))
          {
 
-            auto elapsed = pbar->payload("tracking_start_time").duration().elapsed().integral_millisecond();
+            auto elapsed = pbar->payload("tracking_start_time").time().elapsed().integral_millisecond();
 
             if (elapsed < periodFadeOut)
             {

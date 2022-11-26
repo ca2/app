@@ -41,7 +41,7 @@ image_frame_array::~image_frame_array()
 
       dynamic.m_bStart = true;
 
-      dynamic.m_durationStart.Now();
+      dynamic.m_timeStart.Now();
 
    }
 
@@ -56,18 +56,18 @@ image_frame_array::~image_frame_array()
 
    }
 
-   auto elapsed = dynamic.m_durationStart.elapsed();
+   auto elapsed = dynamic.m_timeStart.elapsed();
 
    elapsed *= dSpeed;
 
-   if (m_durationTotal.is_null())
+   if (m_timeTotal.is_null())
    {
 
       return pframe->m_pimage;
 
    }
 
-   auto uiLoop = elapsed / m_durationTotal;
+   auto uiLoop = elapsed / m_timeTotal;
 
    if (uiLoop > m_iLoop)
    {
@@ -81,9 +81,9 @@ image_frame_array::~image_frame_array()
    if (m_countLoop == 0 || m_iLoop < m_countLoop)
    {
 
-      elapsed %= m_durationTotal;
+      elapsed %= m_timeTotal;
 
-      ::duration durationUpperBound;
+      ::time timeUpperBound;
 
       index iFrame = 0;
 
@@ -92,9 +92,9 @@ image_frame_array::~image_frame_array()
 
          auto pframe = this->element_at(iFrame);
 
-         durationUpperBound += pframe->m_duration;
+         timeUpperBound += pframe->m_time;
 
-         if (elapsed < durationUpperBound)
+         if (elapsed < timeUpperBound)
          {
 
             break;

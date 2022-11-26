@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "process.h"
 
 
@@ -60,10 +60,10 @@ namespace operating_system
    }
 
 
-   void process::wait_until_exit(const class ::wait & wait)
+   void process::wait_until_exit(const class time & timeWait)
    {
       
-      auto start = ::wait::now();
+      auto start = ::time::now();
 
       while(true)
       {
@@ -75,10 +75,10 @@ namespace operating_system
 
          }
 
-         if(!wait.is_null())
+         if(!timeWait.is_null())
          {
 
-            auto waitNow = minimum(wait - start.elapsed(), 100_ms);
+            auto waitNow = minimum(timeWait - start.elapsed(), 100_ms);
 
             if (!waitNow)
             {
@@ -110,7 +110,7 @@ namespace operating_system
    }
 
 
-   bool process::synch_elevated(const ::string & strCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
+   bool process::synch_elevated(const ::string & strCmdLine,int iShow,const class time & timeTimeOut,bool * pbTimeOut)
    {
 
       return false;

@@ -16,7 +16,7 @@ namespace simpledb
 
 
       ::pointer<::database::dataset>        m_ppropertyset;
-      ::duration                             m_durationRemoteTimeout;
+      class ::time                             m_timeRemoteTimeout;
 
 
       simpledb();

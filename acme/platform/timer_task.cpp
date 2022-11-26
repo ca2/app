@@ -85,7 +85,7 @@ void timer_task::initialize_timer(::particle * pparticle, ::acme::timer_array * 
 }
 
 
-void timer_task::start(const class ::wait & wait, bool bPeriodic)
+void timer_task::start(const class time & timeWait, bool bPeriodic)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
@@ -101,7 +101,7 @@ void timer_task::start(const class ::wait & wait, bool bPeriodic)
 
    m_bPeriodic = bPeriodic;
 
-   m_wait = wait;
+   m_timeWait = timeWait;
 
    //try
    //{
@@ -225,11 +225,11 @@ bool timer_task::task_active() const
 void timer_task::run()
 {
 
-   auto waitSleep = m_wait;
+   auto waitSleep = m_timeWait;
 
-   auto countDecisecondSleep = (::i32) (waitSleep.u32() / 100);
+   auto countDecisecondSleep = (::i32) (waitSleep.integral_millisecond().m_i / 100);
 
-   auto remainderDecisecondSleep = (::i32) (waitSleep.u32() % 100);
+   auto remainderDecisecondSleep = (::i32) (waitSleep.integral_millisecond().m_i % 100);
 
    while (true)
    {

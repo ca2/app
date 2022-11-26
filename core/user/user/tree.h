@@ -51,8 +51,8 @@ namespace user
 
 
       bool                                      m_bHoverStart;
-      ::duration                                m_durationHoverStart;
-      ::duration                                m_durationHoverEnd;
+      class ::time                                m_timeHoverStart;
+      class ::time                                m_timeHoverEnd;
       byte                                      m_uchHoverAlpha;
       byte                                      m_uchHoverAlphaInit;
       manual_reset_event                        m_evExpand;

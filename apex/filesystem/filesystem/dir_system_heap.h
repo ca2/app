@@ -17,7 +17,7 @@ namespace file
       public:
 
          bool           m_bIsDir;
-         ::duration m_durationLastCheck;
+         class ::time m_timeLastCheck;
          u32       m_dwError;
 
 
@@ -31,7 +31,7 @@ namespace file
 
 
          ::pointer < ::mutex >                m_pmutex;
-         ::duration m_durationTimeout;
+         class ::time m_timeTimeout;
 
 
          is_dir_map(::particle * pparticle);

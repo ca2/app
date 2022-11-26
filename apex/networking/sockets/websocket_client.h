@@ -30,13 +30,13 @@ namespace sockets
       memory      m_memResponse;
       memory      m_memReceivedData;
       bool        m_bUseMask;
-      ::duration m_durationLastPing;
-      ::duration m_durationLastPong;
-      ::duration m_durationLastSpontaneousPong;
+      class ::time m_timeLastPing;
+      class ::time m_timeLastPong;
+      class ::time m_timeLastSpontaneousPong;
       e_ping      m_eping;
       memory      m_memPong;
 
-      ::duration  m_durationClientPingTimeout;
+      class ::time  m_timeClientPingTimeout;
 
       int         m_fin;
       int         m_opcode;

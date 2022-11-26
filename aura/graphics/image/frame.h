@@ -13,7 +13,7 @@ public:
 
    ::rectangle_i32               m_rectangle;
    ::image_pointer               m_pimage;
-   ::duration                    m_duration;
+   class ::time                    m_time;
    index                         m_iFrame;
    ::draw2d::enum_disposal          m_edisposal;
    ::color::color                m_colorTransparent;

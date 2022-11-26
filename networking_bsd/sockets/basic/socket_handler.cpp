@@ -274,7 +274,7 @@ namespace sockets_bsd
       if (psocket->is_connecting())
       {
 
-         if (psocket->m_durationConnectionMaximum > 0_s)
+         if (psocket->m_timeConnectionMaximum > 0_s)
          {
 
             socket_id_list_add(psocket->GetSocketId(), e_list_timeout);
@@ -285,7 +285,7 @@ namespace sockets_bsd
       else
       {
 
-         if (psocket->m_durationMaximum > 0_s)
+         if (psocket->m_timeMaximum > 0_s)
          {
 
             socket_id_list_add(__Socket(psocket)->GetSocketId(), e_list_timeout);
@@ -318,7 +318,7 @@ namespace sockets_bsd
       if (passociation->m_psocket->is_connecting())
       {
 
-         if (passociation->m_psocket->m_durationConnectionMaximum > 0_s)
+         if (passociation->m_psocket->m_timeConnectionMaximum > 0_s)
          {
 
             socket_id_list_add(passociation->m_psocket->GetSocketId(), e_list_timeout);
@@ -329,7 +329,7 @@ namespace sockets_bsd
       else
       {
 
-         if (passociation->m_psocket->m_durationMaximum > 0_s)
+         if (passociation->m_psocket->m_timeMaximum > 0_s)
          {
 
             socket_id_list_add(__Socket(passociation->m_psocket)->GetSocketId(), e_list_timeout);
@@ -444,13 +444,13 @@ namespace sockets_bsd
    }
 
 
-   i32 socket_handler::select(const class ::wait & wait)
+   i32 socket_handler::select(const class time & timeWait)
    {
 
       struct timeval tsel;
 
-      tsel.tv_sec = (long)::duration(wait).integral_second().m_i;
-      tsel.tv_usec = ((long)::duration(wait).integral_microsecond().m_i) % 1'000'000'000;
+      tsel.tv_sec = (long)::time(wait).integral_second().m_i;
+      tsel.tv_usec = ((long)::time(wait).integral_microsecond().m_i) % 1'000'000'000;
 
       return _select(&tsel);
 
@@ -610,7 +610,7 @@ namespace sockets_bsd
 
       }
 
-      ::duration tick1, tick2;
+      ::time tick1, tick2;
 
 start_processing_adding:
 
@@ -723,9 +723,9 @@ end_processing_adding:
 
       i32 n = 0;
 
-      tick1 = ::duration::now();
+      tick1 = ::time::now();
 
-      ::duration tickRWENull;
+      ::time tickRWENull;
 
       if (psetR == nullptr && psetW == nullptr && psetE == nullptr)
       {
@@ -765,12 +765,12 @@ end_processing_adding:
 
       }
 
-      tick2 = ::duration::now();
+      tick2 = ::time::now();
 
       if (n < 0)
       {
 
-         auto tickNow = ::duration::now();
+         auto tickNow = ::time::now();
 
          /*
             EBADF  An invalid file descriptor was given in one of the sets.
@@ -779,7 +779,7 @@ end_processing_adding:
             ENOMEM select was unable to allocate memory for internal tables.
          */
 
-         if (m_maxsock > 0 && (m_iSelectErrno != m_iPreviousError || tickNow - m_durationLastError > 5_s))
+         if (m_maxsock > 0 && (m_iSelectErrno != m_iPreviousError || tickNow - m_timeLastError > 5_s))
          {
 
             INFORMATION("select" << m_iSelectErrno << ", " << bsd_socket_error(m_iSelectErrno));
@@ -999,7 +999,7 @@ end_processing_adding:
 
          m_iPreviousError = m_iSelectErrno;
 
-         m_durationLastError = tickNow;
+         m_timeLastError = tickNow;
 
       }
       else if(n == 0)

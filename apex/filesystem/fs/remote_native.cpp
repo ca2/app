@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "remote_native.h"
 #include "remote_native_file.h"
 ////#include "acme/exception/exception.h"
@@ -153,7 +153,7 @@ namespace fs
       //      if(pchild->get_name() != "folder")
       //         continue;
 
-      //      m_mapdirTimeout[listing.m_pathUser]= ::duration::now() + (15 * 1000);
+      //      m_mapdirTimeout[listing.m_pathUser]= ::time::now() + (15 * 1000);
 
       //      m_mapfileTimeout.erase_key(listing.m_pathUser);
 
@@ -177,7 +177,7 @@ namespace fs
       //      if(pchild->get_name() != "file")
       //         continue;
 
-      //      m_mapfileTimeout[listing.m_pathUser]= ::duration::now() + (15 * 1000);
+      //      m_mapfileTimeout[listing.m_pathUser]= ::time::now() + (15 * 1000);
 
       //      m_mapdirTimeout.erase_key(listing.m_pathUser);
 
@@ -225,12 +225,12 @@ namespace fs
 
       defer_initialize();
 
-      ::duration millisLast;
+      class ::time millisLast;
 
       if(m_mapfileLast.lookup(path, millisLast))
       {
 
-         if(millisLast.elapsed() > psystem->m_durationFileListingCache)
+         if(millisLast.elapsed() > psystem->m_timeFileListingCache)
          {
             
             ::file::listing listing;
@@ -252,7 +252,7 @@ namespace fs
       if(m_mapdirLast.lookup(path, millisLast))
       {
          
-         if(millisLast.elapsed() > psystem->m_durationFileListingCache)
+         if(millisLast.elapsed() > psystem->m_timeFileListingCache)
          {
             
             ::file::listing listing;
@@ -270,7 +270,7 @@ namespace fs
 
       if(m_mapfileLast.lookup(path, millisLast))
       {
-         if(millisLast.elapsed() > psystem->m_durationFileListingCache)
+         if(millisLast.elapsed() > psystem->m_timeFileListingCache)
          {
             return 0;
          }

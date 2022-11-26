@@ -161,15 +161,15 @@ _semtimedop(int semid, struct sembuf *array, size_t nops, struct
 
 #if defined(ANDROID)
 
-bool semaphore::_wait(const class ::wait & wait)
+bool semaphore::_wait(const class time & timeWait)
 {
 
    timespec ts;
 
-   ::duration duration(wait);
+   ::time time(wait);
 
-   ts.tv_nsec = duration.m_iNanosecond;
-   ts.tv_sec = duration.m_iSecond;
+   ts.tv_nsec = time.m_iNanosecond;
+   ts.tv_sec = time.m_iSecond;
 
    auto iRet = sem_timedwait(m_psem, &ts);
 
@@ -193,7 +193,7 @@ bool semaphore::_wait(const class ::wait & wait)
 
 #elif defined(LINUX) || defined(SOLARIS) || defined(FREEBSD)
 
-bool semaphore::_wait(const class ::wait & wait)
+bool semaphore::_wait(const class time & timeWait)
 {
 
    int iRet = 0;
@@ -281,7 +281,7 @@ bool semaphore::_wait(const class ::wait & wait)
 //}
 
 
-bool semaphore::_wait(const class ::wait & wait)
+bool semaphore::_wait(const class time & timeWait)
 {
 
 //   struct sigaction alarm;
@@ -316,9 +316,9 @@ bool semaphore::_wait(const class ::wait & wait)
 
    }
 
-   ::duration tStart;
+   ::time tStart;
 
-   tStart = ::duration::now();
+   tStart = ::time::now();
 
    struct sembuf sb;
 
@@ -345,7 +345,7 @@ bool semaphore::_wait(const class ::wait & wait)
 
          preempt(100_ms);
 
-         ::duration tRemaining = wait - tStart.elapsed();
+         ::time tRemaining = wait - tStart.elapsed();
 
          if(tRemaining > wait)
          {

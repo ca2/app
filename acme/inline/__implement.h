@@ -16,14 +16,8 @@
 #include "_main_hold.h"
 
 
-#if defined(_UWP)
 #if !defined(CUBE)
-#include "acme/asset/new.cpp"
-#endif
-#elif defined(ANDROID)
-#include "acme/asset/new.cpp"
-#elif defined(APPLE_IOS)
-#include "acme/asset/new.cpp"
+#include "acme/memory/_new.inl"
 #endif
 
 

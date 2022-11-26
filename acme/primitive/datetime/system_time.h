@@ -34,7 +34,7 @@ public:
 
 //
 //
-//Specifies a date and time, using individual members for the month, day, year, weekday, hour, minute, second, and ::duration.The time is either in coordinated universal time(UTC) or local time, depending on the function that is being called.
+//Specifies a date and time, using individual members for the month, day, year, weekday, hour, minute, second, and class ::time.The time is either in coordinated universal time(UTC) or local time, depending on the function that is being called.
 //
 //Syntax
 //C++
@@ -123,7 +123,7 @@ public:
 //
 //wMilliseconds
 //
-//The ::duration.The valid values for this member are 0 through 999.
+//The class ::time.The valid values for this member are 0 through 999.
 //
 //Remarks
 //Note

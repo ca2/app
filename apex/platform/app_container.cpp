@@ -543,7 +543,7 @@ namespace apex
       //         while (task_get_run())
       //         {
       //
-      //            if (pcreate->m_eventReady.wait(::duration(84)).signaled())
+      //            if (pcreate->m_eventReady.wait(::time(84)).signaled())
       //               break;
       //
       //         }

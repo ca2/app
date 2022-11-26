@@ -969,20 +969,20 @@ void context_image::_load_multi_frame_image(image * pimage, memory & memory)
 
    pimage->set_ok_flag();
 
-   ::duration durationTotal;
+   ::time timeTotal;
 
    for (index iFrame = 0; iFrame < pframea->get_count(); iFrame++)
    {
 
       auto pframe = pframea->element_at(iFrame);
 
-      auto duration = pframe->m_duration;
+      auto time = pframe->m_time;
 
-      durationTotal += duration;
+      timeTotal += time;
 
    }
 
-   pframea->m_durationTotal = durationTotal;
+   pframea->m_timeTotal = timeTotal;
 
 }
 
@@ -1037,11 +1037,11 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    }
 
-   auto t1 = ::duration::now();
+   auto t1 = ::time::now();
 
    file()->safe_get_memory(payload, memory);
 
-   auto t2 = ::duration::now();
+   auto t2 = ::time::now();
 
    auto dt = t2 - t1;
 

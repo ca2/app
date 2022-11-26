@@ -144,7 +144,7 @@ namespace turboc
 
       }
 
-      double t= ::duration::now() / 1000.0;
+      double t= ::time::now() / 1000.0;
 
       double w = 2.0 * 3.1415 / T;
 
@@ -152,7 +152,7 @@ namespace turboc
 
 //      double dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
 
-      //i32 i= ::duration::now()  / 100 % iCount;
+      //i32 i= ::time::now()  / 100 % iCount;
 
       //i32 iBlur;
 

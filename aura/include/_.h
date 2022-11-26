@@ -1576,10 +1576,10 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#include "aura/primitive/math/math_clip.h"
 ////
 ////
-////#include "aura/platform/::duration.h"
+////#include "aura/platform/class ::time.h"
 ////
 ////
-////#include "aura/primitive/datetime/duration.h"
+////#include "aura/primitive/datetime/time.h"
 ////
 ////#include "aura/platform/common.h"
 ////

@@ -24,7 +24,7 @@
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/timer_array.h"
-#include "acme/primitive/duration/_string.h"
+#include "acme/primitive/time/_string.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/graphics/graphics.h"
@@ -256,7 +256,7 @@ namespace user
 
       m_bUserInteractionSetFinish = false;
 
-      m_durationMouseMoveIgnore = 20_ms;
+      m_timeMouseMoveIgnore = 20_ms;
 
       m_bOverdraw = false;
 
@@ -278,7 +278,7 @@ namespace user
 
       m_iMouseMoveSkipSquareDistance = iMouseMoveTriggerDistance * iMouseMoveTriggerDistance;
 
-      m_durationMouseMovePeriod = 5_ms;
+      m_timeMouseMovePeriod = 5_ms;
 
       m_bOffScreenRender = false;
 
@@ -3648,7 +3648,7 @@ namespace user
 
 #ifdef __DEBUG
 
-               auto tickStart = ::duration::now();
+               auto tickStart = ::time::now();
 
 #endif //__DEBUG
 
@@ -3659,14 +3659,14 @@ namespace user
 
 #ifdef __DEBUG
 
-               auto tickEnd = ::duration::now();
+               auto tickEnd = ::time::now();
 
-               ::duration durationElapsed = tickEnd - tickStart;
+               ::time timeElapsed = tickEnd - tickStart;
 
-               if (durationElapsed > 100_ms)
+               if (timeElapsed > 100_ms)
                {
 
-                  output_debug_string("\ndrawing took " + ::as_string(durationElapsed.integral_millisecond()) + "!!");
+                  output_debug_string("\ndrawing took " + ::as_string(timeElapsed.integral_millisecond()) + "!!");
                   output_debug_string("\ndrawing took more than 100ms to complete!!");
                   output_debug_string("\n");
 
@@ -3687,7 +3687,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickStart = ::duration::now();
+            auto tickStart = ::time::now();
 
 #endif //__DEBUG
 
@@ -3704,9 +3704,9 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto durationElapsed = tickStart.elapsed();
+            auto timeElapsed = tickStart.elapsed();
 
-            if (durationElapsed > 50_ms)
+            if (timeElapsed > 50_ms)
             {
 
                auto type = __object_type(*this);
@@ -3722,7 +3722,7 @@ namespace user
 
 
                CATEGORY_INFORMATION(prodevian, type.m_strName << " drawing took more than 50ms to complete ("
-                  << durationElapsed.integral_millisecond() << ")!!\n");
+                  << timeElapsed.integral_millisecond() << ")!!\n");
 
                   // let's trye to see what happened?
                   //_001CallOnDraw(pgraphics);
@@ -3751,7 +3751,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickStart = ::duration::now();
+            auto tickStart = ::time::now();
 
 #endif //__DEBUG
 
@@ -3760,17 +3760,17 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickEnd = ::duration::now();
+            auto tickEnd = ::time::now();
 
-            auto durationElapsed = tickEnd - tickStart;
+            auto timeElapsed = tickEnd - tickStart;
 
 #ifdef VERBOSE_LOG               
 
-            if (durationElapsed > 100_ms)
+            if (timeElapsed > 100_ms)
             {
 
                CATEGORY_INFORMATION(prodevian,
-                  "\ndrawing took " + as_string(durationElapsed.integral_millisecond()) + "!!");
+                  "\ndrawing took " + as_string(timeElapsed.integral_millisecond()) + "!!");
                CATEGORY_INFORMATION(prodevian, "\ndrawing took more than 100ms more than 50ms to complete!!");
 
                // let's trye to see what happened?
@@ -3819,7 +3819,7 @@ namespace user
 
 #ifdef __DEBUG
 
-      auto tickStartWithLock = ::duration::now();
+      auto tickStartWithLock = ::time::now();
 
 #endif
 
@@ -3831,7 +3831,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickStart = ::duration::now();
+            auto tickStart = ::time::now();
 
 #endif //__DEBUG
 
@@ -3861,17 +3861,17 @@ namespace user
 
             }
 
-            auto tickEnd = ::duration::now();
+            auto tickEnd = ::time::now();
 
-            ::duration durationElapsed = tickEnd - tickStart;
+            ::time timeElapsed = tickEnd - tickStart;
 
 #ifdef VERBOSE_LOG               
 
-            if (durationElapsed > 100_ms)
+            if (timeElapsed > 100_ms)
             {
 
                CATEGORY_INFORMATION(prodevian, "\ndrawing at " << __type_name(this) << "!!");
-               CATEGORY_INFORMATION(prodevian, "\ndrawing took " << durationElapsed.integral_millisecond() << +"!!");
+               CATEGORY_INFORMATION(prodevian, "\ndrawing took " << timeElapsed.integral_millisecond() << +"!!");
                CATEGORY_INFORMATION(prodevian, "\ndrawing took more more than 100ms more than 50ms to complete!!");
                CATEGORY_INFORMATION(prodevian, "\n");
 
@@ -3890,7 +3890,7 @@ namespace user
 
 #ifdef __DEBUG
 
-      auto tickEndWithLock = ::duration::now();
+      auto tickEndWithLock = ::time::now();
 
       auto tickElapsedWithLock = tickEndWithLock - tickStartWithLock;
 
@@ -4100,11 +4100,11 @@ namespace user
 
                      //{
 
-                     //   //::duration t1 = ::duration::now();
+                     //   //::time t1 = ::time::now();
 
                      //   pinteraction->_000OnDraw(pgraphics);
 
-                     //   ///::duration d1 = t1.elapsed();
+                     //   ///::time d1 = t1.elapsed();
 
                      //   //if(d1.m_i > 50)
                      //   //{
@@ -4118,7 +4118,7 @@ namespace user
 
                      //   //   }
 
-                     //   //   CINFO(prodevian)("(more than 50ms)(D) "+strType+"::_000OnDraw took " + as_string(d1.m_i) + "::duration.\n");
+                     //   //   CINFO(prodevian)("(more than 50ms)(D) "+strType+"::_000OnDraw took " + as_string(d1.m_i) + "::time.\n");
 
                      //   //   //pinteraction->_000OnDraw(pgraphics);
 
@@ -4749,7 +4749,7 @@ namespace user
 
             {
 
-               auto t1 = ::duration::now();
+               auto t1 = ::time::now();
 
                _008CallOnDraw(pgraphics);
 
@@ -4763,7 +4763,7 @@ namespace user
                   auto type = __object_type(*this);
 
                   CATEGORY_INFORMATION(prodevian, "(more than 50ms)(E) " << type.m_strName << "::_008CallOnDraw took " <<
-                     d1.integral_millisecond() << "::duration.\n");
+                     d1.integral_millisecond() << "::time.\n");
 
                }
 
@@ -11100,7 +11100,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
 
 
-   void interaction::call_and_set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
+   void interaction::call_and_set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer)
    {
 
       if (has_flag(e_flag_destroying))
@@ -11114,12 +11114,12 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       _001OnTimer(&timer);
 
-      return SetTimer(uEvent, durationElapse, pfnTimer);
+      return SetTimer(uEvent, timeElapse, pfnTimer);
 
    }
 
 
-   void interaction::set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic,
+   void interaction::set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic,
       void * pdata)
    {
 
@@ -11130,12 +11130,12 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      return SetTimer(uEvent, durationElapse, pfnTimer, bPeriodic, pdata);
+      return SetTimer(uEvent, timeElapse, pfnTimer, bPeriodic, pdata);
 
    }
 
 
-   void interaction::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic,
+   void interaction::SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic,
       void * pdata)
    {
 
@@ -11153,7 +11153,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      return m_pprimitiveimpl->SetTimer(uEvent, durationElapse, pfnTimer, bPeriodic, pdata);
+      return m_pprimitiveimpl->SetTimer(uEvent, timeElapse, pfnTimer, bPeriodic, pdata);
 
    }
 
@@ -11715,7 +11715,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       if (!is_equivalent(layout().sketch().display(), layout().design().display()))
       {
 
-         layout().m_durationLastSketchToDesign.Now();
+         layout().m_timeLastSketchToDesign.Now();
 
       }
 

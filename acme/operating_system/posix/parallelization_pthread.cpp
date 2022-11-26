@@ -42,12 +42,12 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 ::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * pparticle, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
 {
 
-   ::duration start;
+   ::time start;
 
    if (tickTimeout != (::u32)INFINITE_TIMEOUT)
    {
 
-      start = ::duration::now();
+      start = ::time::now();
 
    }
 

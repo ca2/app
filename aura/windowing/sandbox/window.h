@@ -21,7 +21,7 @@ namespace sandbox_windowing
    public:
 
 
-      ::duration                                m_durationLastMouseMove;
+      class ::time                                m_timeLastMouseMove;
       ::rectangle_i32                           m_rect;
       ::point_i32                               m_pointCursor;
 

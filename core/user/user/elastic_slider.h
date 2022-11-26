@@ -22,7 +22,7 @@ namespace user
 
       enum_scalar                   m_escalar;
 
-      ::duration                    m_durationLastTime;
+      class ::time                    m_timeLastTime;
 
       double                        m_dPosition;// 0.0 = minimum 1.0 = maximum
       double                        m_dTensionPosition;// 0.0 = minimum 1.0 = maximum

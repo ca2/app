@@ -4,7 +4,7 @@
 #pragma once
 
 
-//CLASS_DECL_ACME ::duration os_get_system_update_poll_time(const ::atom & atom);
+//CLASS_DECL_ACME class ::time os_get_system_update_poll_time(const ::atom & atom);
 
 
 //namespace topic

@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-//inline duration& duration::operator = (const class ::nanosecond & nanosecond)
+//inline time& time::operator = (const class ::nanosecond & nanosecond)
 //{
 //
 //   m_iSecond = nanosecond.m_i / 1'000'000'000;
@@ -13,7 +13,7 @@
 //}
 
 
-//inline duration& duration::operator = (const class ::microsecond & microsecond)
+//inline time& time::operator = (const class ::microsecond & microsecond)
 //{
 //
 //   m_secs = microsecond.m_i / 1'000'000;
@@ -25,19 +25,19 @@
 //}
 //
 
-//inline duration& duration::operator = (const class ::duration & ::duration)
+//inline time& time::operator = (const class ::time & class ::time)
 //{
 //
-//   m_secs = ::duration.m_i / 1'000;
+//   m_secs = class ::time.m_i / 1'000;
 //
-//   m_nanos = (::duration.m_i % 1'000) * 1'000'000;
+//   m_nanos = (class ::time.m_i % 1'000) * 1'000'000;
 //
 //   return *this;
 //
 //}
 
 
-//inline duration& duration::operator = (const class ::second & second)
+//inline time& time::operator = (const class ::second & second)
 //{
 //
 //   m_secs = second;
@@ -51,30 +51,30 @@
 
 
 //
-//inline nanosecond operator -(const ::nanosecond& nanosecond, const ::duration & duration)
+//inline nanosecond operator -(const ::nanosecond& nanosecond, const class time & time)
 //{
 //
-//   return nanosecond.m_i - ::duration.m_i * 1'000'000;
+//   return nanosecond.m_i - class ::time.m_i * 1'000'000;
 //
 //}
 //
 //
-//inline duration operator -(const ::duration & duration, const ::duration & duration)
+//inline time operator -(const class time & time, const class time & time)
 //{
 //
-//   return duration - (const ::duration &) ::duration;
+//   return time - (const class ::time &) class ::time;
 //
 //}
 //
 
 
 //
-//inline bool duration::timeout(const duration & duration)
+//inline bool time::timeout(const class time & time)
 //{
 //
 //   auto now = this->now();
 //
-//   if (elapsed(now) < duration)
+//   if (elapsed(now) < time)
 //   {
 //
 //      return false;
@@ -88,12 +88,12 @@
 //}
 //
 //
-//::duration duration::remaining(const duration & duration, const ::duration & durationNow)
+//class ::time time::remaining(const class time & time, const class time & timeNow)
 //{
 //
-//   auto durationRemaining = duration - elapsed(durationNow);
+//   auto timeRemaining = time - elapsed(timeNow);
 //
-//   return durationRemaining;
+//   return timeRemaining;
 //
 //}
 //

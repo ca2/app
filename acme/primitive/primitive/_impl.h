@@ -1420,8 +1420,8 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 #endif
 
 
-//inline bool ::duration::done(const ::duration & duration) const { return elapsed(::duration).m_i >= 0; }
-//inline bool ::duration::done() const { return elapsed().m_i >= 0; }
+//inline bool class ::time::done(const class time & time) const { return elapsed(class ::time).m_i >= 0; }
+//inline bool class ::time::done() const { return elapsed().m_i >= 0; }
 
 
 
@@ -1780,7 +1780,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 
 
 //template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
-//bool material_object::__get_posted_payload_synchronously(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class ::wait & wait)
+//bool material_object::__get_posted_payload_synchronously(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class time & timeWait)
 //{
 //
 //   if(pposting->is_branch_current())
@@ -1808,7 +1808,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //
 //   });
 //
-//   functionReturn.m_waitTimeout = wait;
+//   functionReturn.m_timeTimeout = wait;
 //
 //   return __get_posted_payload_synchronously(functionPost, functionReturn, payload);
 //

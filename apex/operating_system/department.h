@@ -26,8 +26,8 @@ namespace operating_system
          ::pointer<::operating_system::process>   m_pprocess;
          string *                                  m_pstrRead;
          manual_reset_event *                      m_pevReady;
-         ::duration                                m_durationTimeout;
-         ::duration                                m_durationStart;
+         class ::time                                m_timeTimeout;
+         class ::time                                m_timeStart;
          bool *                                    m_pbInitFailure;
          bool *                                    m_pbPotentialTimeout;
          ::operating_system::exit_status *         m_pexitstatus;
@@ -37,7 +37,7 @@ namespace operating_system
          process_thread();
 
 
-         virtual void construct_process_thread(const ::string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = nullptr, string * pstrRead = nullptr, bool bElevated = false);
+         virtual void construct_process_thread(const ::string & strCmdLine, const class ::time & dur, bool * pbPotentialTimeout = nullptr, string * pstrRead = nullptr, bool bElevated = false);
 
          virtual void     run() override;
 
@@ -69,7 +69,7 @@ namespace operating_system
          virtual ~process_processor();
          
          
-         void process(const ::string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = nullptr, string * pstrRead = nullptr, bool bElevated = false);
+         void process(const ::string & strCmdLine, const class ::time & dur, bool * pbPotentialTimeout = nullptr, string * pstrRead = nullptr, bool bElevated = false);
          
 
       };
@@ -83,11 +83,11 @@ namespace operating_system
 
 
       // run process and get output
-      virtual ::payload get_output(const char * pszCmdLine, const ::duration & dur = ::duration::infinite(), e_display edisplay = e_display_default, bool * pbPotentialTimeout = nullptr);
-      virtual exit_status retry(const char * pszCmdLine, const ::duration & dur, e_display edisplay = e_display_default, bool * pbPotentialTimeout = nullptr);
-      virtual exit_status synch(const char * pszCmdLine, e_display edisplay = e_display_default, const ::duration & dur = ::duration::infinite(), bool * pbPotentialTimeout = nullptr);
+      virtual ::payload get_output(const char * pszCmdLine, const class ::time & dur = ::time::infinite(), e_display edisplay = e_display_default, bool * pbPotentialTimeout = nullptr);
+      virtual exit_status retry(const char * pszCmdLine, const class ::time & dur, e_display edisplay = e_display_default, bool * pbPotentialTimeout = nullptr);
+      virtual exit_status synch(const char * pszCmdLine, e_display edisplay = e_display_default, const class ::time & dur = ::time::infinite(), bool * pbPotentialTimeout = nullptr);
       virtual bool launch(const char * pszCmdLine, e_display edisplay = e_display_default, const char * pszDir = nullptr);
-      virtual exit_status elevated_synch(const char * pszCmdLine, e_display edisplay = e_display_default, const ::duration & dur = ::duration::infinite(), bool * pbPotentialTimeout = nullptr);
+      virtual exit_status elevated_synch(const char * pszCmdLine, e_display edisplay = e_display_default, const class ::time & dur = ::time::infinite(), bool * pbPotentialTimeout = nullptr);
 
    };
 

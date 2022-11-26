@@ -242,7 +242,7 @@ namespace sockets
 
 #endif
 
-         m_durationFirstTime.Now();
+         m_timeFirstTime.Now();
 
          ::parse pa(line);
 

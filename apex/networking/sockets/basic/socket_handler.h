@@ -34,7 +34,7 @@ namespace sockets
       //fd_set                     m_wfds; ///< file descriptor set monitored for write events
       //fd_set                     m_efds; ///< file descriptor set monitored for exceptions
       i32                        m_iPreviousError; ///< debug select() error
-      ::duration                       m_durationLastError;
+      class ::time                       m_timeLastError;
       time_t                     m_tlast; ///< timeout control
 
       // state lists
@@ -103,7 +103,7 @@ namespace sockets
       i32 select() override;
 
       /** Wait for events, generate callbacks. */
-      i32 select(const class ::wait & wait) override;
+      i32 select(const class time & timeWait) override;
 
       /** Check that a base_socket really is handled by this base_socket handler. */
       bool Valid(base_socket *) override;

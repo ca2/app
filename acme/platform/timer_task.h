@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "timer.h"
@@ -13,7 +13,7 @@ class CLASS_DECL_ACME timer_task :
 public:
 
 
-   ::pointer<::acme::timer_array>     m_ptimera;
+   ::pointer<::acme::timer_array>      m_ptimera;
    PFN_TIMER                           m_pfnTimer;
    void *                              m_pvoidData;
    bool                                m_bRunning;
@@ -67,7 +67,7 @@ public:
    void run() override;
 
 
-   void start(const class ::wait & wait, bool bPeriodic);
+   void start(const class time & timeWait, bool bPeriodic);
 
 
    virtual void on_timer();

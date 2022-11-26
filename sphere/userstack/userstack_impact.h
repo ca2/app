@@ -44,7 +44,7 @@ namespace userstack
       string                     m_strCurrentImagePath;
       bool                       m_bDestroy;
       rectangle_i32_array                 m_rectangleaUpdate;
-      ::duration                       m_durationLastUpdate;
+      class ::time                       m_timeLastUpdate;
       ::pointer < ::mutex >                      m_pmutexDraw;
 
 

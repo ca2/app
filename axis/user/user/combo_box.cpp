@@ -663,12 +663,12 @@ namespace user
          if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_eelement == e_element_drop_down))
          {
 
-            ::duration tickLastVisibilityChangeElapsed;
+            ::time tickLastVisibilityChangeElapsed;
 
             if (m_plistbox.is_set())
             {
 
-               tickLastVisibilityChangeElapsed = m_plistbox->m_durationLastVisibilityChange.elapsed();
+               tickLastVisibilityChangeElapsed = m_plistbox->m_timeLastVisibilityChange.elapsed();
 
             }
 
@@ -765,7 +765,7 @@ namespace user
       if(bShow)
       {
 
-         m_durationShowComboList.Now();
+         m_timeShowComboList.Now();
 
          defer_create_list_box();
 

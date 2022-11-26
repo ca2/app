@@ -172,7 +172,7 @@ namespace sockets
             }
             else
             {
-               m_iFirstTime= ::duration::now();
+               m_iFirstTime= ::time::now();
             }
 #else
 

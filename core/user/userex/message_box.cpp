@@ -31,11 +31,11 @@ namespace userex
 //      if(set.has_property("message_box_timeout"))
       {
          
-  //       m_durationDelay = set["message_box_timeout"].i64();
+  //       m_timeDelay = set["message_box_timeout"].i64();
          
       }
 
-      m_durationDelay = fetch_property("message_box_timeout")->duration();
+      m_timeDelay = fetch_property("message_box_timeout")->time();
       
       wait_message_dialog::on_show(pszMatter);
       
@@ -49,7 +49,7 @@ namespace userex
    }
 
 
-   void message_box::on_timer_soft_reload(::duration tickTimeout)
+   void message_box::on_timer_soft_reload(::time tickTimeout)
    {
       
       wait_message_dialog::on_timer_soft_reload(tickTimeout);

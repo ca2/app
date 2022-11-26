@@ -283,7 +283,7 @@ namespace filemanager
 
    //         single_lock lock(get_app()->mutex());
 
-   //         if (!lock.lock(::duration(2000)))
+   //         if (!lock.lock(::time(2000)))
    //         {
 
    //            break;
@@ -1490,10 +1490,10 @@ namespace filemanager
    //   {
    //   case MessageMainPostCreateImageListItemStepSetRedraw:
    //   {
-   //      ::duration tickNow= ::duration::now();
-   //      if (tickNow - m_durationLastRedraw > 784)
+   //      ::time tickNow= ::time::now();
+   //      if (tickNow - m_timeLastRedraw > 784)
    //      {
-   //         m_durationLastRedraw = tickNow;
+   //         m_timeLastRedraw = tickNow;
    //         set_need_redraw();
    //      }
    //   }

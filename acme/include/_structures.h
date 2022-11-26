@@ -23,7 +23,7 @@ union message_union
 };
 
 
-#include "acme/primitive/duration/_structures.h"
+#include "acme/primitive/time/_structures.h"
 
 
 

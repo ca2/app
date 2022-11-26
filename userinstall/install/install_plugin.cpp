@@ -107,7 +107,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
 #else
 
-      m_durationTimeout             = (5000) * 11;
+      m_timeTimeout             = (5000) * 11;
 
 #endif
 
@@ -116,7 +116,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
       m_bRestartCa2           = false;
       m_bPendingStream        = false;
-      m_durationLastRestart         = 0;
+      m_timeLastRestart         = 0;
 
       m_bPluginDownloaded     = false;
       m_bPluginTypeTested     = false;
@@ -166,10 +166,10 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
       if(!is_installing())
       {
 
-         if((m_durationLastRestart.elapsed()) > (5000) * 5)
+         if((m_timeLastRestart.elapsed()) > (5000) * 5)
          {
 
-            m_durationLastRestart= ::duration::now();
+            m_timeLastRestart= ::time::now();
 
             start_ca2();
 
@@ -186,10 +186,10 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
       if(m_phost->m_bInstalling)
       {
 
-         if((m_durationLastInstallingCheck.elapsed()) > 2000)
+         if((m_timeLastInstallingCheck.elapsed()) > 2000)
          {
 
-            m_durationLastInstallingCheck= ::duration::now();
+            m_timeLastInstallingCheck= ::time::now();
 
             try
             {
@@ -205,10 +205,10 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
          }
 
       }
-      else if((m_durationLastInstallingCheck.elapsed()) > ((5000) * 2))
+      else if((m_timeLastInstallingCheck.elapsed()) > ((5000) * 2))
       {
 
-         m_durationLastInstallingCheck= ::duration::now();
+         m_timeLastInstallingCheck= ::time::now();
 
          try
          {
@@ -279,7 +279,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
          else if(is_rx_tx_ok())
          {
 
-            m_durationLastOk= ::duration::now();
+            m_timeLastOk= ::time::now();
 
             m_bRestartCa2        = false;
 
@@ -288,7 +288,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
             bJob                 = true;
 
          }
-         else if(m_durationLastOk.elapsed() > ((5000) * 2))
+         else if(m_timeLastOk.elapsed() > ((5000) * 2))
          {
 
 
@@ -298,7 +298,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
                if (psystem->install().is_installing_ca2())
                {
 
-                  m_durationLastOk= ::duration::now();
+                  m_timeLastOk= ::time::now();
 
                   return false; // "no job done"
 
@@ -342,7 +342,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
             bJob                 = true;
 
-            m_durationLastOk          = ::duration::now();
+            m_timeLastOk          = ::time::now();
 
          }
 
@@ -388,7 +388,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
       thread(pparticle)
    {
 
-//      m_durationRunLock = ::duration(84 + 77);
+//      m_timeRunLock = ::time(84 + 77);
 
    }
 
@@ -841,14 +841,14 @@ run_install:
 
 #else
 
-      //::u32 dwTime1= ::duration::now();
+      //::u32 dwTime1= ::time::now();
 
 
 
       //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       {
-         //::u32 dwTime3= ::duration::now();
+         //::u32 dwTime3= ::time::now();
 
          //FORMATTED_TRACE("eval1 %d",dwTime3 - dwTime1);
 
@@ -856,7 +856,7 @@ run_install:
          if(ensure_tx(WM_APP+WM_USER,(void *)&lprect,sizeof(lprect)))
          {
 
-            //::u32 dwTime5= ::duration::now();
+            //::u32 dwTime5= ::time::now();
 
             //FORMATTED_TRACE("ensure_tx %d",dwTime5 - dwTime3);
 
@@ -946,14 +946,14 @@ run_install:
 
             }
 
-            //::u32 dwTime7= ::duration::now();
+            //::u32 dwTime7= ::time::now();
 
             //FORMATTED_TRACE("focus_update %d",dwTime7 - dwTime5);
 
 
             m_phost->blend_bitmap(pgraphics, lprect);
 
-            //::u32 dwTime9= ::duration::now();
+            //::u32 dwTime9= ::time::now();
 
             //FORMATTED_TRACE("blend %d",dwTime9 - dwTime7);
 
@@ -1608,10 +1608,10 @@ restart:
       if((m_bLogin && !m_bLogged) || !m_phost->m_bOk || m_bNativeLaunch || m_bPendingRestartCa2)
       {
 
-         if((m_durationLastRestart.elapsed()) > (840 + 770))
+         if((m_timeLastRestart.elapsed()) > (840 + 770))
          {
 
-            m_durationLastRestart= ::duration::now();
+            m_timeLastRestart= ::time::now();
 
             start_ca2();
 

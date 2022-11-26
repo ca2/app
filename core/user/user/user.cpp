@@ -784,7 +784,7 @@ namespace core
    }
 
 
-   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
+   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox)
    {
 
       //__UNREFERENCED_PARAMETER(puiOwner);
@@ -803,7 +803,7 @@ namespace core
 
       //pbox->payload("application_name") = strTitle;
 
-      //pbox->m_durationDelay = durationTimeout;
+      //pbox->m_timeDelay = timeTimeout;
 
       //string strMatter;
 
@@ -1899,20 +1899,20 @@ namespace core
    //}
 
 
-   //i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, ::duration durationTimeOut, ::u32 fuStyle)
+   //i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
    //   if (psession->user() == nullptr)
    //   {
 
-   //      return ::base::application::sync_message_box_timeout(puserinteractionOwner, payload, durationTimeOut, fuStyle);
+   //      return ::base::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
 
    //   }
 
    //   try
    //   {
 
-   //      return puser->message_box_timeout(puserinteractionOwner, payload, durationTimeOut, fuStyle, this);
+   //      return puser->message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle, this);
 
    //   }
    //   catch (...)
@@ -1920,7 +1920,7 @@ namespace core
 
    //   }
 
-   //   return ::base::application::sync_message_box_timeout(puserinteractionOwner, payload, durationTimeOut, fuStyle);
+   //   return ::base::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
 
    //}
 

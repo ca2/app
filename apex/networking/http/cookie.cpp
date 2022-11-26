@@ -271,17 +271,17 @@ namespace http
    }
 
 
-   bool cookies::set_cookie(const char * name, const ::payload & payload, const ::duration & duration, const char * path, const char * domain, bool bSecure)
+   bool cookies::set_cookie(const char * name, const ::payload & payload, const class time & time, const char * path, const char * domain, bool bSecure)
    {
 
       auto & cookie = this->cookie(name);
 
       cookie.m_varValue = payload;
 
-      if (duration)
+      if (time)
       {
 
-         cookie.m_strExpire = expire(duration);
+         cookie.m_strExpire = expire(time);
 
       }
 
@@ -296,12 +296,12 @@ namespace http
    }
 
 
-   string cookies::expire(const duration & duration)
+   string cookies::expire(const class time & timeExpire)
    {
 
       auto time = ::time(nullptr);
 
-      time += duration.integral_second().m_i;
+      time += timeExpire.integral_second().m_i;
 
       struct tm tmstruct;
 

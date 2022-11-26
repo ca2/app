@@ -346,12 +346,12 @@ namespace base
 //
 //
 //      //virtual void ui_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-//      //virtual void ui_message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+//      //virtual void ui_message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 //
 //
 //      //using ::aura::context_thread::message_box;
 //      //virtual void message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-//      //virtual void message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+//      //virtual void message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 //
 //
 //      virtual void on_file_new();
@@ -851,7 +851,7 @@ namespace base
 //      void EnableHtmlHelp();
 //
 //
-//      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,::payload payload, const ::string & pszTitle, ::duration durationTimeout,::u32 fuStyle = e_message_box_ok) override;
+//      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,::payload payload, const ::string & pszTitle, class ::time timeTimeout,::u32 fuStyle = e_message_box_ok) override;
 //      //virtual i32 sync_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle = e_message_box_ok) override;
 //
 //

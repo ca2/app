@@ -1406,13 +1406,13 @@ namespace experience_core
                if (estate & ::user::e_state_selected)
                {
 
-                  return ::color::color(127, 0, 0, 0);
+                  return argb(127, 0, 0, 0);
 
                }
                else
                {
 
-                  return ::color::color(0, 0, 0, 0);
+                  return argb(0, 0, 0, 0);
 
                }
 
@@ -1423,13 +1423,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return ::color::color(255, 230, 230, 230);
+                  return argb(255, 230, 230, 230);
 
                }
                else
                {
 
-                  return ::color::color(255, 40, 40, 40);
+                  return argb(255, 40, 40, 40);
 
                }
 
@@ -1445,7 +1445,7 @@ namespace experience_core
                if (estate & ::user::e_state_hover)
                {
 
-                  return ::color::color(255, 120, 150, 200);
+                  return argb(255, 120, 150, 200);
 
                }
                else
@@ -1454,13 +1454,13 @@ namespace experience_core
                   if (is_dark_mode())
                   {
 
-                     return ::color::color(255, 230, 230, 230);
+                     return argb(255, 230, 230, 230);
 
                   }
                   else
                   {
 
-                     return ::color::color(255, 40, 40, 40);
+                     return argb(255, 40, 40, 40);
 
                   }
 
@@ -1470,7 +1470,7 @@ namespace experience_core
             else if (eelement == ::e_element_item_background)
             {
 
-               return ::color::color(0, 0, 0, 0);
+               return argb(0, 0, 0, 0);
 
             }
 
@@ -1487,13 +1487,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 255, 255, 255);
+               return argb(255, 255, 255, 255);
 
             }
             else
             {
 
-               return ::color::color(255, 0, 0, 0);
+               return argb(255, 0, 0, 0);
 
             }
 
@@ -1509,13 +1509,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 255, 255, 255);
+               return argb(255, 255, 255, 255);
 
             }
             else
             {
 
-               return ::color::color(255, 0, 0, 0);
+               return argb(255, 0, 0, 0);
 
             }
 
@@ -1526,13 +1526,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 255, 255, 255);
+               return argb(255, 255, 255, 255);
 
             }
             else
             {
 
-               return ::color::color(255, 0, 0, 0);
+               return argb(255, 0, 0, 0);
 
             }
 
@@ -1543,13 +1543,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 210, 210, 200);
+               return argb(255, 210, 210, 200);
 
             }
             else
             {
 
-               return ::color::color(255, 90, 90, 80);
+               return argb(255, 90, 90, 80);
 
             }
 
@@ -1559,13 +1559,13 @@ namespace experience_core
       else if (eelement == ::e_element_scrollbar)
       {
 
-         return ::color::color(100, 192, 192, 192);
+         return argb(100, 192, 192, 192);
 
       }
       else if (eelement == ::e_element_scrollbar_trackbar)
       {
 
-         return ::color::color(160, 140, 140, 140);
+         return argb(160, 140, 140, 140);
 
       }
       else if (eelement == ::e_element_item_text)
@@ -1577,13 +1577,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 130, 130, 130);
+               return argb(255, 130, 130, 130);
 
             }
             else
             {
 
-               return ::color::color(255, 192, 192, 192);
+               return argb(255, 192, 192, 192);
 
             }
 
@@ -1594,13 +1594,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 230, 230, 230);
+               return argb(255, 230, 230, 230);
 
             }
             else
             {
 
-               return ::color::color(255, 40, 40, 40);
+               return argb(255, 40, 40, 40);
 
             }
 
@@ -1619,13 +1619,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return ::color::color(255, 150, 150, 150);
+                  return argb(255, 150, 150, 150);
 
                }
                else
                {
 
-                  return ::color::color(255, 160, 160, 160);
+                  return argb(255, 160, 160, 160);
 
                }
 
@@ -1636,13 +1636,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return ::color::color(255, 110, 110, 110);
+                  return argb(255, 110, 110, 110);
 
                }
                else
                {
 
-                  return ::color::color(255, 200, 200, 200);
+                  return argb(255, 200, 200, 200);
 
                }
 
@@ -1658,13 +1658,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return ::color::color(255, 130, 130, 130);
+                  return argb(255, 130, 130, 130);
 
                }
                else
                {
 
-                  return ::color::color(255, 180, 180, 180);
+                  return argb(255, 180, 180, 180);
 
                }
 
@@ -1675,13 +1675,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return ::color::color(255, 80, 80, 80);
+                  return argb(255, 80, 80, 80);
 
                }
                else
                {
 
-                  return ::color::color(255, 255, 255, 255);
+                  return argb(255, 255, 255, 255);
 
                }
 
@@ -1699,13 +1699,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 130, 130, 130);
+               return argb(255, 130, 130, 130);
 
             }
             else
             {
 
-               return ::color::color(255, 192, 192, 192);
+               return argb(255, 192, 192, 192);
 
             }
 
@@ -1716,13 +1716,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 230, 230, 230);
+               return argb(255, 230, 230, 230);
 
             }
             else
             {
 
-               return ::color::color(255, 40, 40, 40);
+               return argb(255, 40, 40, 40);
 
             }
 
@@ -1738,13 +1738,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 130, 130, 130);
+               return argb(255, 130, 130, 130);
 
             }
             else
             {
 
-               return ::color::color(255, 192, 192, 192);
+               return argb(255, 192, 192, 192);
 
             }
 
@@ -1755,13 +1755,13 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 230, 230, 230);
+               return argb(255, 230, 230, 230);
 
             }
             else
             {
 
-               return ::color::color(255, 40, 40, 40);
+               return argb(255, 40, 40, 40);
 
             }
 
@@ -1777,13 +1777,13 @@ namespace experience_core
             if (estate & ::user::e_state_hover)
             {
 
-               return ::color::color(127, 120, 120, 120);
+               return argb(127, 120, 120, 120);
 
             }
             else
             {
 
-               return ::color::color(127, 80, 80, 80);
+               return argb(127, 80, 80, 80);
 
             }
 
@@ -1794,13 +1794,13 @@ namespace experience_core
             if (estate & ::user::e_state_hover)
             {
 
-               return ::color::color(127, 230, 230, 230);
+               return argb(127, 230, 230, 230);
 
             }
             else
             {
 
-               return ::color::color(127, 210, 210, 210);
+               return argb(127, 210, 210, 210);
 
             }
 
@@ -1814,13 +1814,13 @@ namespace experience_core
          if (is_dark_mode())
          {
 
-            return ::color::color(255, 50, 50, 50);
+            return argb(255, 50, 50, 50);
 
          }
          else
          {
 
-            return ::color::color(255, 40, 40, 40);
+            return argb(255, 40, 40, 40);
 
          }
 
@@ -1900,7 +1900,7 @@ namespace experience_core
             {
 
                pbar->payload("tracking_on") = true;
-               pbar->payload("tracking_start_time") = duration(e_now) + dRate * periodFadeIn;
+               pbar->payload("tracking_start_time") = time(e_now) + dRate * periodFadeIn;
                pbar->payload("tracking_fade_in") = true;
                pbar->payload("tracking_fade_out") = false;
                pbar->payload("tracking_simple") = __random(1, 2) == 1;
@@ -1916,7 +1916,7 @@ namespace experience_core
 
                pbar->payload("tracking_fade_in") = false;
                pbar->payload("tracking_fade_out") = true;
-               pbar->payload("tracking_start_time") = duration(e_now) + (1.0 - dRate) * periodFadeOut;
+               pbar->payload("tracking_start_time") = time(e_now) + (1.0 - dRate) * periodFadeOut;
 
             }
 
@@ -1945,7 +1945,7 @@ namespace experience_core
          if (pbar->is_true("tracking_fade_in"))
          {
 
-            auto elapsed = pbar->payload("tracking_start_time").duration().elapsed();
+            auto elapsed = pbar->payload("tracking_start_time").time().elapsed();
 
             if (elapsed < periodFadeIn)
             {
@@ -1966,7 +1966,7 @@ namespace experience_core
          else if (pbar->is_true("tracking_fade_out"))
          {
 
-            auto elapsed = pbar->payload("tracking_start_time").duration().elapsed().integral_millisecond();
+            auto elapsed = pbar->payload("tracking_start_time").time().elapsed().integral_millisecond();
 
             if (elapsed < periodFadeOut)
             {

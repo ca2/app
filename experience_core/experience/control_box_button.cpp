@@ -42,7 +42,7 @@ namespace experience_core
 
 #ifdef VERBOSE_LOG
 
-      ::duration t1 = ::duration::now();
+      ::time t1 = ::time::now();
 
 #endif
 
@@ -55,7 +55,7 @@ namespace experience_core
 
 #ifdef VERBOSE_LOG
 
-      ::duration d1 = t1.elapsed();
+      ::time d1 = t1.elapsed();
 
       if (d1 > 50_ms)
       {
@@ -179,7 +179,7 @@ namespace experience_core
 
 #ifdef VERBOSE_LOG
 
-      ::duration d2 = t1.elapsed();
+      ::time d2 = t1.elapsed();
 
       if (d2 > 50_ms)
       {

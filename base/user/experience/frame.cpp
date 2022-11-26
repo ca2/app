@@ -1226,7 +1226,7 @@ namespace experience
          (::is_docking_appearance(edisplay) && iWorkspace != m_pframewindow->m_windowrectangle.m_iWorkspace))
       {
 
-         if (m_pframewindow->const_layout().m_durationLastSketchToDesign.elapsed() < 800_ms)
+         if (m_pframewindow->const_layout().m_timeLastSketchToDesign.elapsed() < 800_ms)
          {
 
             if (edisplay != m_pframewindow->const_layout().design().display())

@@ -42,16 +42,16 @@ namespace userex
          if(ptopic->m_atom == ::id_create)
          {
             
-            if(m_durationDelay > 0_s)
+            if(m_timeDelay > 0_s)
             {
                
                m_pform->set_timer(e_timer_reload, 50_ms);
                
-               payload("wait_message_dialog_timeout") = m_durationDelay;
+               payload("wait_message_dialog_timeout") = m_timeDelay;
                
             }
             
-            m_durationStart.Now();
+            m_timeStart.Now();
 
          }
          else if(ptopic->m_atom == ::id_timer)
@@ -84,9 +84,9 @@ namespace userex
    bool wait_message_dialog::on_timeout_check()
    {
 
-      auto tickTimeout = m_durationStart.elapsed();
+      auto tickTimeout = m_timeStart.elapsed();
 
-      if (tickTimeout > (m_durationDelay - 500_ms))
+      if (tickTimeout > (m_timeDelay - 500_ms))
       {
 
          if (on_timeout())
@@ -121,10 +121,10 @@ namespace userex
    }
 
 
-   void wait_message_dialog::on_timer_soft_reload(::duration tickTimeout)
+   void wait_message_dialog::on_timer_soft_reload(::time tickTimeout)
    {
 
-      auto second = (m_durationDelay - tickTimeout).integral_second();
+      auto second = (m_timeDelay - tickTimeout).integral_second();
       
       if(second.m_i <= 0)
       {

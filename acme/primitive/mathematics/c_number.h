@@ -184,7 +184,7 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
    };
 
 
-class duration;
+class time;
 
 
 class microsecond;
@@ -193,12 +193,12 @@ class microsecond;
 class nanosecond;
 
 
-class duration;
+class time;
 
 
 
 
-//class CLASS_DECL_ACME ::duration
+//class CLASS_DECL_ACME class ::time
 //{
 //public:
 //
@@ -206,16 +206,16 @@ class duration;
 //   ::i64       m_i;
 //
 //
-//   ::duration() { m_i = 0; }
-//   ::duration(::i64 i) { m_i = i; }
+//   class ::time() { m_i = 0; }
+//   class ::time(::i64 i) { m_i = i; }
 //
 //
-//   ::duration & operator = (const second & second) { m_i = second.m_i * 1'000; return *this; }
-//   ::duration & operator = (const ::duration & duration) { m_i = ::duration.m_i; return *this; }
-//   ::duration & operator = (const microsecond & microsecond);
-//   ::duration & operator = (const nanosecond & nanosecond);
-//   ::duration & operator = (const duration & duration);
-//   ::duration & operator = (::i64 i) { m_i = i; return *this; }
+//   class ::time & operator = (const second & second) { m_i = second.m_i * 1'000; return *this; }
+//   class ::time & operator = (const class time & time) { m_i = class ::time.m_i; return *this; }
+//   class ::time & operator = (const microsecond & microsecond);
+//   class ::time & operator = (const nanosecond & nanosecond);
+//   class ::time & operator = (const class time & time);
+//   class ::time & operator = (::i64 i) { m_i = i; return *this; }
 //
 //
 //};
@@ -229,8 +229,8 @@ class duration;
 
 
 ////#ifdef WINDOWS
-//DEFINE_UNIT(CLASS_DECL_ACME, lock_duration, u32)
-//DEFINE_UNIT(CLASS_DECL_ACME, tick_duration, u32)
+//DEFINE_UNIT(CLASS_DECL_ACME, lock_time, u32)
+//DEFINE_UNIT(CLASS_DECL_ACME, tick_time, u32)
 ////#endif
 
 //DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize        , u64)

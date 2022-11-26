@@ -18,7 +18,7 @@ namespace filemanager
    operation_list_impact::operation_list_impact()
    {
 
-      m_durationLastUpdate.Now();
+      m_timeLastUpdate.Now();
 
    }
 
@@ -127,9 +127,9 @@ namespace filemanager
       BASE::_001OnTimer(ptimer);
       if(ptimer->m_uEvent == 123)
       {
-         /*if(m_durationLastUpdate.elapsed() > 500)
+         /*if(m_timeLastUpdate.elapsed() > 500)
          {
-         m_durationLastUpdate= ::duration::now();
+         m_timeLastUpdate= ::time::now();
          _001OnUpdateItemCount();
          m_cache._001Invalidate();
          }*/
@@ -143,10 +143,10 @@ namespace filemanager
 
       __UNREFERENCED_PARAMETER(iOperation);
 
-      if(bFinal || m_durationLastUpdate.elapsed() > 200_ms)
+      if(bFinal || m_timeLastUpdate.elapsed() > 200_ms)
       {
 
-         m_durationLastUpdate= ::duration::now();
+         m_timeLastUpdate= ::time::now();
 
          _001OnUpdateItemCount();
 

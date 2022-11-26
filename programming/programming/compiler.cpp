@@ -497,7 +497,7 @@ namespace programming
       //
       //   //   EnvVarValArray arrEnvVarVal;
       //
-      //   //   ::duration tickStart= ::duration::now();
+      //   //   ::time tickStart= ::time::now();
       //
       //   //   u32 dwExitCode;
       //
@@ -529,7 +529,7 @@ namespace programming
       //   //   }
       //   //process->write("\n");
       //   u32 dwExitCode;
-      //   ::u32 tickStart= ::duration::now();
+      //   ::u32 tickStart= ::time::now();
       //   while(::task_get_run() && task_get_run())
       //   {
       //

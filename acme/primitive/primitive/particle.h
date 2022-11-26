@@ -300,16 +300,16 @@ public:
    // ::error_wait_timeout
    // ::success
    virtual ::e_status lock();
-   virtual ::e_status lock(const class ::wait & wait);
+   virtual ::e_status lock(const class time & timeWait);
 
    virtual ::e_status wait();
-   virtual ::e_status wait(const class ::wait & wait);
+   virtual ::e_status wait(const class time & timeWait);
 
    virtual void _lock();
-   virtual bool _lock(const class ::wait & wait);
+   virtual bool _lock(const class time & timeWait);
 
    virtual void _wait();
-   virtual bool _wait(const class ::wait & wait);
+   virtual bool _wait(const class time & timeWait);
 
    virtual bool is_locked() const;
 
@@ -423,13 +423,13 @@ public:
 //   // ::error_wait_timeout
 //   // ::success
 //   // also see synchronization//   virtual ::e_status wait();
-//   virtual ::e_status wait(const class ::wait & wait);
+//   virtual ::e_status wait(const class time & timeWait);
 
 
-   [[nodiscard]] virtual ::duration timeout() const;
+   [[nodiscard]] virtual class ::time timeout() const;
 
 
-   virtual void set_timeout(const ::duration & duration);
+   virtual void set_timeout(const class time & time);
 
 
    virtual ::particle * get_taskpool_container();

@@ -3,12 +3,12 @@
 #include <unistd.h>
 
 
-//CLASS_DECL_ACME void sleep(const ::duration & duration)
+//CLASS_DECL_ACME void sleep(const class time & time)
 //{
 //
 //   struct timespec ts;
-//   ts.tv_sec = ::duration.m_i / 1000;
-//   ts.tv_nsec = (::duration.m_i % 1000) * 1000000;
+//   ts.tv_sec = ::time.m_i / 1000;
+//   ts.tv_nsec = (::time.m_i % 1000) * 1000000;
 //   nanosleep(&ts, NULL);
 //
 //}
@@ -33,10 +33,10 @@ CLASS_DECL_ACME void preempt(const ::INTEGRAL_MILLISECOND & integralmillisecond)
 }
 
 
-//CLASS_DECL_ACME void preempt(const ::duration & duration)
+//CLASS_DECL_ACME void preempt(const class time & time)
 //{
 //
-//   millis_sleep(::duration.m_i);
+//   millis_sleep(::time.m_i);
 //
 //}
 
@@ -63,10 +63,10 @@ CLASS_DECL_ACME void preempt(const INTEGRAL_NANOSECOND & integralnanosecond)
 }
 
 
-CLASS_DECL_ACME void precision_wait(const ::duration & duration)
+CLASS_DECL_ACME void precision_wait(const class time & time)
 {
 
-   struct timespec & timespec =  (struct timespec &) duration;
+   struct timespec & timespec =  (struct timespec &) time;
 
    ::nanosleep(&timespec, nullptr);
 

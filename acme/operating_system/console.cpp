@@ -71,17 +71,17 @@ void press_any_key_to_exit(const char * pszPrompt)
 }
 
 
-int safe_get_any_char(const ::duration & duration)
+int safe_get_any_char(const class time & time)
 {
 
    int iSafeChar = EOF;
 
-   ::duration millisStart;
+   class ::time timeStart;
 
    do
    {
 
-      millisStart.Now();
+      timeStart.Now();
 
 #if defined(_UWP) || defined(ANDROID) || defined(APPLE_IOS)
 
@@ -93,28 +93,28 @@ int safe_get_any_char(const ::duration & duration)
 
 #endif
 
-   } while (millisStart.elapsed() < duration);
+   } while (timeStart.elapsed() < time);
 
    return iSafeChar;
 
 }
 
 
-int safe_get_char(FILE * pfile, const ::duration & duration)
+int safe_get_char(FILE * pfile, const class time & time)
 {
 
    int iSafeChar = EOF;
 
-   ::duration millisStart;
+   class ::time timeStart;
 
    while (true)
    {
 
-      millisStart.Now();
+      timeStart.Now();
 
       iSafeChar = getc(pfile);
 
-      if (!ansi_char_isspace(iSafeChar) && millisStart.elapsed() > duration)
+      if (!ansi_char_isspace(iSafeChar) && timeStart.elapsed() > time)
       {
 
          break;

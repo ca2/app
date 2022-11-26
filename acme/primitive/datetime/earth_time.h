@@ -2,7 +2,7 @@
 
 
 #include "earth_time_shift.h"
-//#include "acme/primitive/duration/_.h"
+//#include "acme/primitive/time/_.h"
 
 
 #if defined(ANDROID) || defined(__APPLE__)
@@ -76,8 +76,8 @@ namespace earth
 
       time &operator-=(time_span span) noexcept;
 
-      //time& operator+=( const duration & span ) noexcept;
-      //time& operator-=( const duration & span ) noexcept;
+      //time& operator+=( const time & span ) noexcept;
+      //time& operator-=( const time & span ) noexcept;
 
       time_span operator-(time time) const noexcept;
 
@@ -89,8 +89,8 @@ namespace earth
 
       time operator+(date_span span) const;
 
-      //time operator-(const duration & duration) const;
-      //time operator+(const duration & duration) const;
+      //time operator-(const class time & time) const;
+      //time operator+(const class time & time) const;
 
       bool operator==(time time) const noexcept;
 
@@ -135,7 +135,7 @@ namespace earth
       time_span abs_diff(const ::earth::time &time) const;
 
 
-      DECLARE_COMPARISON_WITH_DURATION(inline)
+      DECLARE_COMPARISON_WITH_TIME(inline)
 
    };
 
@@ -228,7 +228,7 @@ namespace earth
    }
 
 
-   inline time::time(const time & time) :
+   inline time::time(const class time & time) :
       integral_second(INTEGRAL_SECOND(time))
    {
 
@@ -247,7 +247,7 @@ namespace earth
 } // namespace earth
 
 
-DEFINE_COMPARISON_WITH_DURATION(inline, ::earth::time)
+DEFINE_COMPARISON_WITH_TIME(inline, ::earth::time)
 
 
 

@@ -99,11 +99,11 @@ namespace http
       bool set_cookie(
          const char * pszKey,
          const ::payload & payload,
-         const ::duration & duration = 0_s,
+         const class time & time = 0_s,
          const char * pszDomain = nullptr,
          const char * pszPath = nullptr,
          bool bSecure = false);
-      static string expire(const class ::duration & duration = 5_minute);
+      static string expire(const class time & time = 5_minute);
 
 
       using ARRAY_BASE::operator [];

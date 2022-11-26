@@ -21,7 +21,7 @@
 #include "apex/parallelization/retry.h"
 
 
-#include "acme/primitive/duration/_text_stream.h"
+#include "acme/primitive/time/_text_stream.h"
 
 
 namespace apex
@@ -708,7 +708,7 @@ namespace apex
 
          ::file::path pathMeta = pathCache + ".meta_information";
 
-         retry retry(500_ms, minute());
+         retry retry(500_ms, 1_minute);
 
          if (!(path & ::file::e_flag_bypass_cache))
          {

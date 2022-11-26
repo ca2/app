@@ -12,7 +12,7 @@ namespace app_app
 
 
       double            m_dBreathPeriod;
-      ::duration        m_durationStart;
+      class ::time        m_timeStart;
       double            m_dPhaseShift;
       int               m_iCloseButtonDraw;
 

@@ -101,21 +101,21 @@ public:
 //   tracer & operator << (enum_flush);
 //   tracer & operator << (const integral_byte & memsize);
 //
-//   tracer & operator << (const INTEGRAL_NANOSECOND & duration) { return format(duration); }
-//   tracer & operator << (const INTEGRAL_MICROSECOND & duration) { return format(duration); }
-//   tracer & operator << (const INTEGRAL_MILLISECOND & duration) { return format(duration); }
-//   tracer & operator << (const INTEGRAL_SECOND & duration) { return format(duration); }
-//   tracer & operator << (const INTEGRAL_MINUTE & duration) { return format(duration); }
-//   tracer & operator << (const INTEGRAL_HOUR & duration) { return format(duration); }
-//   tracer & operator << (const INTEGRAL_DAY & duration) { return format(duration); }
+//   tracer & operator << (const INTEGRAL_NANOSECOND & time) { return format(time); }
+//   tracer & operator << (const INTEGRAL_MICROSECOND & time) { return format(time); }
+//   tracer & operator << (const INTEGRAL_MILLISECOND & time) { return format(time); }
+//   tracer & operator << (const INTEGRAL_SECOND & time) { return format(time); }
+//   tracer & operator << (const INTEGRAL_MINUTE & time) { return format(time); }
+//   tracer & operator << (const INTEGRAL_HOUR & time) { return format(time); }
+//   tracer & operator << (const INTEGRAL_DAY & time) { return format(time); }
 //
-////   tracer & operator << (const FLOATING_NANOSECOND & duration) { return format(duration); }
-////   tracer & operator << (const FLOATING_MICROSECOND & duration) { return format(duration); }
-////   tracer & operator << (const FLOATING_MILLISECOND & duration) { return format(duration); }
-////   tracer & operator << (const FLOATING_SECOND & duration) { return format(duration); }
-////   tracer & operator << (const FLOATING_MINUTE & duration) { return format(duration); }
-////   tracer & operator << (const FLOATING_HOUR & duration) { return format(duration); }
-////   tracer & operator << (const FLOATING_DAY & duration) { return format(duration); }
+////   tracer & operator << (const FLOATING_NANOSECOND & time) { return format(time); }
+////   tracer & operator << (const FLOATING_MICROSECOND & time) { return format(time); }
+////   tracer & operator << (const FLOATING_MILLISECOND & time) { return format(time); }
+////   tracer & operator << (const FLOATING_SECOND & time) { return format(time); }
+////   tracer & operator << (const FLOATING_MINUTE & time) { return format(time); }
+////   tracer & operator << (const FLOATING_HOUR & time) { return format(time); }
+////   tracer & operator << (const FLOATING_DAY & time) { return format(time); }
 //   
 //   template < primitive_integral INTEGRAL >
 //   tracer & operator << (const INTEGRAL integral) { return operator << (::as_string(integral)); }

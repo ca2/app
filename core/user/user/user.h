@@ -159,8 +159,8 @@ namespace core
 
 
       virtual pointer< ::sequence < ::conversation > > ui_message_box(::particle * pparticle, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
-      virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::particle * pparticle, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok);
-      //virtual void ui_message_box_timeout(::object* pparticle, ::user::primitive* puiOwner, ::payload payload, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
+      virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::particle * pparticle, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok);
+      //virtual void ui_message_box_timeout(::object* pparticle, ::user::primitive* puiOwner, ::payload payload, class ::time timeTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
@@ -299,7 +299,7 @@ namespace core
       ////virtual bool file_is_read_only(const ::string & pszPath);
 
       //// Long PhRESSing time
-      //// time in ::durations that a pressing is considered a double click
+      //// time in ::times that a pressing is considered a double click
       //virtual ::u32 get_Long_PhRESSing_time();
 
       //virtual void defer_initialize_user_presence();

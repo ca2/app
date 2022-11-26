@@ -1,4 +1,4 @@
-// Created by camilo on 2022-10-22 19:56 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-10-22 19:56 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -12,7 +12,7 @@ CLASS_DECL_ACME::task * get_task();
 CLASS_DECL_ACME void __call(const ::procedure & procedure);
 
 
-CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, const ::procedure & function);
+CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function);
 
 
 CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure);
@@ -26,7 +26,7 @@ CLASS_DECL_ACME bool predicate_Sleep(int iTime, ::function < bool(void) > functi
 CLASS_DECL_ACME void preempt();
 
 
-CLASS_DECL_ACME void preempt(const ::duration & duration);
+CLASS_DECL_ACME void preempt(const class time & time);
 
 
 CLASS_DECL_ACME void preempt(const ::INTEGRAL_SECOND & second);
@@ -35,7 +35,7 @@ CLASS_DECL_ACME void preempt(const ::INTEGRAL_MICROSECOND & microsecond);
 CLASS_DECL_ACME void preempt(const ::INTEGRAL_NANOSECOND & nanosecond);
 
 
-CLASS_DECL_ACME void precision_wait(const ::duration & duration);
+CLASS_DECL_ACME void precision_wait(const class time & time);
 
 
 
@@ -59,7 +59,7 @@ CLASS_DECL_ACME void preempt();
 
 
 
-CLASS_DECL_ACME bool task_sleep(const class ::wait & wait);
+CLASS_DECL_ACME bool task_sleep(const class time & timeWait);
 
 CLASS_DECL_ACME bool task_get_run();
 

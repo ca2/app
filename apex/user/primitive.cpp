@@ -801,10 +801,10 @@ namespace user
    //}
 
 
-   //i32 primitive::sync_message_box_timeout(const ::string & pszMessage, ::duration durationTimeOut, ::u32 fuStyle)
+   //i32 primitive::sync_message_box_timeout(const ::string & pszMessage, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
-   //   return papp->sync_message_box_timeout(this, pszMessage, get_title(), durationTimeOut, fuStyle);
+   //   return papp->sync_message_box_timeout(this, pszMessage, get_title(), timeTimeOut, fuStyle);
 
    //}
 
@@ -840,13 +840,13 @@ namespace user
    //}
 
 
-   //void primitive::message_box_timeout(string strMessage, ::duration durationTimeout, ::u32 fuStyle)
+   //void primitive::message_box_timeout(string strMessage, ::time timeTimeout, ::u32 fuStyle)
    //{
 
    //   fork([=]()
    //      {
 
-   //         sync_message_box_timeout(strMessage, durationTimeout, fuStyle);
+   //         sync_message_box_timeout(strMessage, timeTimeout, fuStyle);
 
    //      });
 
@@ -2467,7 +2467,7 @@ namespace user
    //}
 
 
-   void primitive::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
+   void primitive::SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
    {
 
       throw ::interface_only();
@@ -4498,7 +4498,7 @@ namespace user
    void primitive::on_reset_focus_start_tick()
    {
 
-      m_durationFocusStart.Now();
+      m_timeFocusStart.Now();
 
    }
 

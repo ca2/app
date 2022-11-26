@@ -142,7 +142,7 @@ namespace user
       void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32& rectangle, bool bHorz) const; // adjusts borders etc
       //bool AllocElements(i32 nElements, i32 cbElement);
       virtual bool SetStatusText(i32 nHit);
-      void ResetTimer(::u32 nEvent, const ::duration & duration);
+      void ResetTimer(::u32 nEvent, const class time & time);
       void EraseNonClient();
       void EraseNonClient(::draw2d::graphics_pointer & pgraphics);
 

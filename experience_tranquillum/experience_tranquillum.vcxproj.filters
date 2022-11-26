@@ -68,6 +68,9 @@
     <ClCompile Include="experience\frame_Minimal001.cpp">
       <Filter>Source Files\experience</Filter>
     </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

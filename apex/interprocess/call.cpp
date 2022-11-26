@@ -22,7 +22,7 @@ namespace interprocess
 
       initialize(pcommunication);
 
-      //m_duration = minute();
+      //m_time = minute();
 
    }
 
@@ -49,10 +49,10 @@ namespace interprocess
    //}
 
 
-   //void call::set_timeout(const duration& duration)
+   //void call::set_timeout(const time& time)
    //{
    //
-   //   m_duration = duration;
+   //   m_time = time;
    //
    //}
 
@@ -139,7 +139,7 @@ namespace interprocess
       if (!this->m_mapTask.is_empty())
       {
 
-         if (!_wait(::duration::infinite()))
+         if (!_wait(::time::infinite()))
          {
 
             return error_wait_timeout;
@@ -153,14 +153,14 @@ namespace interprocess
    }
 
 
-   bool call::_wait(const class ::wait & wait)
+   bool call::_wait(const class time & timeWait)
    {
 
       auto psynca = synca();
 
       synchronous_lock synchronouslock(psynca);
 
-      return synchronouslock.wait(wait);
+      return synchronouslock.wait(timeWait);
 
    }
 

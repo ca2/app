@@ -15,7 +15,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/collection/sort.h"
 #include "acme/primitive/data/listener.h"
-#include "acme/primitive/duration/_text_stream.h"
+#include "acme/primitive/time/_text_stream.h"
 #include "apex/database/selection.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/savings.h"
@@ -670,7 +670,7 @@ namespace user
 
 #ifdef _DEBUG
 
-            auto tickStart = ::duration::now();
+            auto tickStart = ::time::now();
 
 #endif
 
@@ -678,7 +678,7 @@ namespace user
 
 #ifdef _DEBUG
 
-            auto tickEnd = ::duration::now();
+            auto tickEnd = ::time::now();
 
             auto tickElapsed = tickEnd - tickStart;
 
@@ -3651,20 +3651,20 @@ namespace user
 
       m_bLButtonDown = true;
 
-      auto tickNow = ::duration::now();
+      auto tickNow = ::time::now();
 
-      auto tick2 = tickNow - m_durationLButtonDownStart2;
+      auto tick2 = tickNow - m_timeLButtonDownStart2;
 
-      auto tick1 = tickNow - m_durationLButtonDownStart1;
+      auto tick1 = tickNow - m_timeLButtonDownStart1;
 
       auto tickDoubleClick = DBLCLKMS;
 
       if(tick2 < tickDoubleClick)
       {
 
-         m_durationLButtonDownStart1 = m_durationLButtonDownStart2;
+         m_timeLButtonDownStart1 = m_timeLButtonDownStart2;
 
-         m_durationLButtonDownStart2 = tickNow;
+         m_timeLButtonDownStart2 = tickNow;
 
          m_pointLButtonDown1 = m_pointLButtonDown2;
 
@@ -3676,7 +3676,7 @@ namespace user
       else if(tick1 < tickDoubleClick)
       {
 
-         m_durationLButtonDownStart2 = tickNow;
+         m_timeLButtonDownStart2 = tickNow;
 
          m_pointLButtonDown2 = point;
 
@@ -3686,7 +3686,7 @@ namespace user
       else
       {
 
-         m_durationLButtonDownStart1 = tickNow;
+         m_timeLButtonDownStart1 = tickNow;
 
          m_pointLButtonDown1 = point;
 
@@ -3708,14 +3708,14 @@ namespace user
       if (dynamic_cast <list *>(this) == nullptr)
       {
 
-         auto tickNow = ::duration::now();
+         auto tickNow = ::time::now();
 
-         if (tickNow - m_durationLButtonDownStart2 < DBLCLKMS)
+         if (tickNow - m_timeLButtonDownStart2 < DBLCLKMS)
          {
 
-            m_durationLButtonDownStart1 = m_durationLButtonDownStart2;
+            m_timeLButtonDownStart1 = m_timeLButtonDownStart2;
 
-            m_durationLButtonDownStart2 = tickNow;
+            m_timeLButtonDownStart2 = tickNow;
 
             m_pointLButtonDown1 = m_pointLButtonDown2;
 
@@ -3724,10 +3724,10 @@ namespace user
             m_iClick = 2;
 
          }
-         else if (tickNow - m_durationLButtonDownStart1 < DBLCLKMS)
+         else if (tickNow - m_timeLButtonDownStart1 < DBLCLKMS)
          {
 
-            m_durationLButtonDownStart2 = tickNow;
+            m_timeLButtonDownStart2 = tickNow;
 
             m_pointLButtonDown2 = point;
 
@@ -3737,7 +3737,7 @@ namespace user
          else
          {
 
-            m_durationLButtonDownStart1 = tickNow;
+            m_timeLButtonDownStart1 = tickNow;
 
             m_pointLButtonDown1 = point;
 
@@ -6321,7 +6321,7 @@ namespace user
    bool list::Filter1Step()
    {
 
-      auto tickIn = ::duration::now();
+      auto tickIn = ::time::now();
 
       TRACE("list::Filter1Step");
 
@@ -6414,7 +6414,7 @@ namespace user
 
       //set_need_redraw();
 
-      //auto tickOut = ::duration::now();
+      //auto tickOut = ::time::now();
 
       //INFORMATION("tickOut = " << integral_millisecond(tickOut));
       //INFORMATION("(delta) = " << integral_millisecond(tickOut - tickIn));

@@ -1,4 +1,4 @@
-//
+﻿//
 //  base_static_start.h
 //  acme
 //
@@ -210,6 +210,8 @@ namespace acme
 
       //bool m_bRef;
 
+      class ::time m_timeStart;
+
 
       ::sub_system * m_psubsystem;
       static acme * g_p;
@@ -223,7 +225,7 @@ namespace acme
 
       //void this_ref();
 
-
+      class ::time start_nanosecond();
       //void construct();
 
 

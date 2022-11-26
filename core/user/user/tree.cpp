@@ -217,7 +217,7 @@ namespace user
 
       {
 
-         ::duration tickStart;
+         ::time tickStart;
 
          tickStart.Now();
 
@@ -236,7 +236,7 @@ namespace user
 
       {
 
-         ::duration tickStart;
+         ::time tickStart;
 
          tickStart.Now();
 
@@ -265,19 +265,19 @@ namespace user
                m_bHoverStart = true;
                m_uchHoverAlphaInit = m_uchHoverAlpha;
 
-               m_durationHoverStart.Now();
+               m_timeHoverStart.Now();
 
             }
-            if (m_durationHoverStart.elapsed() > dwHoverIn)
+            if (m_timeHoverStart.elapsed() > dwHoverIn)
             {
                m_uchHoverAlpha = 255;
             }
             else
             {
                auto pi = MATH_PI;
-               auto f = 1.0 / duration(dwHoverIn).floating_second().m_d;
+               auto f = 1.0 / time(dwHoverIn).floating_second().m_d;
                auto omega = -pi * f; // omega pi
-               auto t = m_durationHoverStart.elapsed().floating_second().m_d;
+               auto t = m_timeHoverStart.elapsed().floating_second().m_d;
                ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
                if (m_uchHoverAlphaInit + dwCurve > 255)
                   m_uchHoverAlpha = 255;
@@ -292,20 +292,20 @@ namespace user
                m_bHoverStart = false;
                m_uchHoverAlphaInit = m_uchHoverAlpha;
 
-               m_durationHoverEnd.Now();
+               m_timeHoverEnd.Now();
 
             }
 
-            if (m_durationHoverEnd.elapsed() > dwHoverOut)
+            if (m_timeHoverEnd.elapsed() > dwHoverOut)
             {
                m_uchHoverAlpha = 0;
             }
             else
             {
                auto pi = MATH_PI;
-               auto f = 1.0 / ::duration(dwHoverOut).floating_second().m_d;
+               auto f = 1.0 / ::time(dwHoverOut).floating_second().m_d;
                auto omega = -pi * f; // omega pi
-               auto t = m_durationHoverStart.elapsed().floating_second().m_d;
+               auto t = m_timeHoverStart.elapsed().floating_second().m_d;
                ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
                if (m_uchHoverAlphaInit < dwCurve)
                   m_uchHoverAlpha = 0;
@@ -352,7 +352,7 @@ namespace user
             drawitemdata.m_rectangle.right = m_iCurrentImpactWidth;
 
             {
-               ::duration tickItem;
+               ::time tickItem;
                tickItem.Now();
                _001DrawItem(drawitemdata);
                auto tickElapsed = tickStart.elapsed();
@@ -398,7 +398,7 @@ namespace user
    void tree::_001DrawItem(tree_draw_item & data)
    {
 
-      auto start = duration(e_now);
+      auto start = time(e_now);
 
       ::rectangle_i32 rectangle;
 
@@ -468,7 +468,7 @@ namespace user
 
       }
 
-      //FORMATTED_TRACE("(1)TreeItemElapsed %d", ::duration.elapsed());
+      //FORMATTED_TRACE("(1)TreeItemElapsed %d", ::time.elapsed());
 
       //      ::aura::savings & savings = psession->m_paurasession->savings();
 

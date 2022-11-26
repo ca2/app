@@ -229,22 +229,19 @@
 #include "acme/primitive/mathematics/numeric_info.h"
 
 
-//#include "acme/primitive/mathematics/c_number.h"
+//#include "acme/primitive/time/time.h"
 
 
-#include "acme/primitive/duration/time.h"
+//#include "acme/parallelization/wait.h"
 
 
-#include "acme/parallelization/wait.h"
+#include "acme/primitive/time/_time.h"
 
 
-#include "acme/primitive/duration/_duration.h"
+#include "acme/primitive/time/_unit.h"
 
 
-#include "acme/primitive/duration/_unit.h"
-
-
-#include "acme/primitive/duration/time_operator.h"
+#include "acme/primitive/time/time_operator.h"
 
 
 #include "acme/platform/display.h"
@@ -274,7 +271,7 @@
 #include "acme/primitive/mathematics/math_clip.h"
 
 
-#include "acme/primitive/duration/_unit_operator.h"
+#include "acme/primitive/time/_unit_operator.h"
 
 
 #include "acme/platform/common.h"
@@ -444,7 +441,7 @@
 #include "_impl.h"
 
 
-#include "acme/primitive/duration/_impl.h"
+#include "acme/primitive/time/_impl.h"
 
 
 #include "acme/primitive/mathematics/_impl.h"

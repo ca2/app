@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////
+﻿//////////////////////////////////////////////////////////////////////////////
 // timer.h
 // =======
 // High Resolution timer.
@@ -24,8 +24,8 @@ namespace acme
 
 
       bool              m_bStopped; /// stop flag
-      ::duration        m_durationStart;
-      ::duration        m_durationEnd;
+      class ::time        m_timeStart;
+      class ::time        m_timeEnd;
 
 
       chronometer();                                  // default constructor
@@ -34,9 +34,9 @@ namespace acme
 
       void        start();                            // start timer
       void        stop();                             // stop the timer
-      duration    elapsed();                          // get elapsed time in second
+      class time    elapsed();                          // get elapsed time in second
 
-      duration    now();                              // get time in second
+      class time    now();                              // get time in second
 
    };
 

@@ -40,7 +40,7 @@ namespace experience
 
 
       ::experience::frame_window *           m_pframewindow;
-      ::duration                             m_durationShow;
+      class ::time                             m_timeShow;
       bool                                   m_bShowAttempt;
       bool                                   m_bDrag;
       point_i32                              m_pointDrag;

@@ -64,7 +64,7 @@ dir_context::dir_context()
 
    //m_pziputil = nullptr;
 
-   //         m_isdirmap.m_durationTimeout = 180000;
+   //         m_isdirmap.m_timeTimeout = 180000;
 
 
 
@@ -1335,7 +1335,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //         }
 //
-//         if (::get_fast_tick_count() > pdir->m_durationLastCheck + m_durationTimeout)
+//         if (::get_fast_tick_count() > pdir->m_timeLastCheck + m_timeTimeout)
 //         {
 //
 //            return false;
@@ -1496,7 +1496,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //         }
 //
 //end:
-//         if (::get_fast_tick_count() > pdir->m_durationLastCheck + m_durationTimeout)
+//         if (::get_fast_tick_count() > pdir->m_timeLastCheck + m_timeTimeout)
 //         {
 //
 //            return false;
@@ -1575,7 +1575,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //                  pfind->m_dwError = dwLastError;
 //
-//                  pfind->m_durationLastCheck = ::get_fast_tick_count();
+//                  pfind->m_timeLastCheck = ::get_fast_tick_count();
 //
 //                  pdir->add(pfind);
 //
@@ -1609,7 +1609,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //            }
 //
-//            pdir->m_durationLastCheck = ::get_fast_tick_count();
+//            pdir->m_timeLastCheck = ::get_fast_tick_count();
 //            iFind0 = iFind3 + 1;
 //         }
 //
@@ -2109,7 +2109,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
          if (path.begins_eat_ci("itdoesntexist."))
          {
 
-            ::duration t = INTEGRAL_MILLISECOND(ansi_to_i64(path));
+            class ::time t = INTEGRAL_MILLISECOND(::as_i64(path));
 
             auto elapsed = t.elapsed();
 

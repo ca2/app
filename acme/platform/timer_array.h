@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/collection/map.h"
@@ -27,10 +27,10 @@ namespace acme
 
 
 
-      virtual bool create_timer(::particle * pparticle, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
+      virtual bool create_timer(::particle * pparticle, uptr uEvent, const class ::time & millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
       virtual bool delete_timer(uptr uEvent);
 
-      virtual bool set_timer(::particle * pparticle, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
+      virtual bool set_timer(::particle * pparticle, uptr uEvent, const class ::time& millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
 
       void erase_timer(::timer * ptimer) override;
 

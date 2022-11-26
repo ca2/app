@@ -115,7 +115,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority eprio
 //
 //}
 //
-//CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+//CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
 //{
 //   string strCmdLine;
 //
@@ -244,7 +244,7 @@ CLASS_DECL_ACME bool main_finalize()
 //}
 
 //
-//CLASS_DECL_ACME bool shell_execute_sync(const char * pszPath, const char * pszParam, ::duration durationTimeout)
+//CLASS_DECL_ACME bool shell_execute_sync(const char * pszPath, const char * pszParam, ::time timeTimeout)
 //{
 //
 //   string strCmdLine;
@@ -265,7 +265,7 @@ CLASS_DECL_ACME bool main_finalize()
 //   if (!create_process(strCmdLine, &processId))
 //      return -1;
 //
-//   ::earth::time timeEnd = ::earth::time::now() + durationTimeout;
+//   ::earth::time timeEnd = ::earth::time::now() + timeTimeout;
 //
 //   while (::earth::time::now() < timeEnd)
 //   {

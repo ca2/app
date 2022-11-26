@@ -801,6 +801,7 @@
     <ClCompile Include="networking\sockets\transfer_socket.cpp" />
     <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp" />
     <ClCompile Include="networking\sockets\websocket_client.cpp" />
+    <ClCompile Include="_.cpp" />
     <ClInclude Include="aaa_application.h" />
     <ClInclude Include="compress\not_dir.h" />
     <ClInclude Include="constant\idpool.h" />

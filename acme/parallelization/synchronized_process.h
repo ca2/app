@@ -40,7 +40,7 @@
 //   }
 //
 //   
-//   ::e_status wait(const class ::wait& wait = duration::infinite()) override
+//   ::e_status wait(const class ::time& wait = time::infinite()) override
 //   {
 //
 //      return m_peventCompletion->wait(wait);

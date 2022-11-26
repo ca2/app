@@ -49,7 +49,7 @@ namespace user
 #if TIME_REPORTING
    
    
-   ::duration g_durationBetweenUpdateBufferAndUpdateScreen;
+   ::time g_timeBetweenUpdateBufferAndUpdateScreen;
 
 
 #endif
@@ -313,9 +313,9 @@ namespace user
 
       m_puserinteraction = pinteraction;
 
-      m_durationNow.Now();
+      m_timeNow.Now();
 
-      //m_iFrameId = m_durationNow / m_durationFrame;
+      //m_iFrameId = m_timeNow / m_timeFrame;
 
       //m_iLastFrameId = m_iFrameId;
 
@@ -560,7 +560,7 @@ namespace user
       if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
       {
 
-         if(m_pimpl->m_bPendingRedraw && m_pimpl->m_durationLastRedraw.elapsed() < 100_ms)
+         if(m_pimpl->m_bPendingRedraw && m_pimpl->m_timeLastRedraw.elapsed() < 100_ms)
          {
 
             return true;
@@ -593,7 +593,7 @@ namespace user
 
       //m_bUpdateBufferUpdateWindowPending = false;
 
-      m_durationNow.Now();
+      m_timeNow.Now();
 
       if (!this->task_get_run())
       {
@@ -635,18 +635,18 @@ namespace user
       if (bWait)
       {
 
-         auto elapsed = m_durationNow - m_durationLastFrame;
+         auto elapsed = m_timeNow - m_timeLastFrame;
 
          if (bHasProdevian)
          {
 
-            bWait = elapsed < m_durationPostRedrawProdevian.half();
+            bWait = elapsed < m_timePostRedrawProdevian.half();
 
          }
          else
          {
 
-            bWait = elapsed < m_durationPostRedrawNominal.half();
+            bWait = elapsed < m_timePostRedrawNominal.half();
 
          }
 
@@ -659,32 +659,32 @@ namespace user
          // - It has prodevian mode (FPS drawing);
          // - Or it is going to wait because a frame was already drawn an instant ago due on-request-drawing (cool down).
 
-         auto durationFrame = bHasProdevian ? m_durationPostRedrawProdevian : m_durationPostRedrawNominal ;
+         auto timeFrame = bHasProdevian ? m_timePostRedrawProdevian : m_timePostRedrawNominal ;
 
          //i64 i2 = get_nanos();
 
          // calculates the next/memory_new frame atom
-         //m_iFrameId = (m_durationNow + durationFrame - 1) / (durationFrame);
+         //m_iFrameId = (m_timeNow + timeFrame - 1) / (timeFrame);
 
-         //m_durationNextFrame = m_iFrameId * durationFrame;
+         //m_timeNextFrame = m_iFrameId * timeFrame;
 
-         m_durationNextFrame = m_durationNow + durationFrame;
+         m_timeNextFrame = m_timeNow + timeFrame;
 
          //m_cLost = (::count) (m_iFrameId - m_iLastFrameId - 1);
 
          //m_iLastFrameId = m_iFrameId;
 
-         m_durationNextScreenUpdate = m_durationNextFrame;
+         m_timeNextScreenUpdate = m_timeNextFrame;
 
-         auto nanosElapsedSinceLastFrame = m_durationNow - m_durationLastFrame;
+         auto nanosElapsedSinceLastFrame = m_timeNow - m_timeLastFrame;
 
-         if (nanosElapsedSinceLastFrame > durationFrame)
+         if (nanosElapsedSinceLastFrame > timeFrame)
          {
 
             // todo display average from last 10 or so frame drawing time and not for every each single offending sample
             // output_debug_string("("+as_string(nanosElapsedSinceLastFrame/1'000'000)+"ms)Frames are taking long to draw. Wait a bit more to free CPU. Is there much load?!?!\n");
 
-            m_durationNextScreenUpdate += durationFrame;
+            m_timeNextScreenUpdate += timeFrame;
 
             //m_iLastFrameId++;
 
@@ -692,43 +692,43 @@ namespace user
 
          {
 
-            auto durationStartWait = ::duration::now();
+            auto timeStartWait = ::time::now();
 
-            auto durationToWaitForNextFrame = m_durationNextScreenUpdate - durationStartWait;
+            auto timeToWaitForNextFrame = m_timeNextScreenUpdate - timeStartWait;
 
-            if (durationToWaitForNextFrame > 1_s)
+            if (timeToWaitForNextFrame > 1_s)
             {
 
                //output_debug_string("what?!?!\n");
 
-               durationToWaitForNextFrame = 500_ms;
+               timeToWaitForNextFrame = 500_ms;
 
             }
 
-            if (durationToWaitForNextFrame >= 2_ms)
+            if (timeToWaitForNextFrame >= 2_ms)
             {
 
-               ::duration tickWait;
+               ::time tickWait;
 
                tickWait.Now();
 
                //printf("msToWaitForNextFrame >= 2\n");
 
-               if (durationToWaitForNextFrame < durationFrame)
+               if (timeToWaitForNextFrame < timeFrame)
                {
 
-                  if (durationToWaitForNextFrame >= 50_ms)
+                  if (timeToWaitForNextFrame >= 50_ms)
                   {
 
                      //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
 
-                     ::duration duration;
+                     ::time time;
 
-                     duration.Now();
+                     time.Now();
 
-                     m_synchronizationa.wait(durationToWaitForNextFrame - 1_ms);
+                     m_synchronizationa.wait(timeToWaitForNextFrame - 1_ms);
 
-                     //printf("Actually waited %dms\n", (::i32) ::duration.elapsed().m_i);
+                     //printf("Actually waited %dms\n", (::i32) ::time.elapsed().m_i);
 
                   }
                   else
@@ -736,16 +736,16 @@ namespace user
 
                      //printf("msToWaitForNextFrame < 50\n");
 
-                     if(durationToWaitForNextFrame > 300_ms)
+                     if(timeToWaitForNextFrame > 300_ms)
                      {
 
-                        m_evUpdateScreen._wait(durationToWaitForNextFrame);
+                        m_evUpdateScreen._wait(timeToWaitForNextFrame);
 
                      }
                      else
                      {
 
-                        ::preempt(durationToWaitForNextFrame);
+                        ::preempt(timeToWaitForNextFrame);
 
                      }
 
@@ -759,9 +759,9 @@ namespace user
 
             }
 
-            auto durationEndWait = ::duration::now();
+            auto timeEndWait = ::time::now();
 
-            if (durationEndWait - durationStartWait > 100_ms)
+            if (timeEndWait - timeStartWait > 100_ms)
             {
 
                output_debug_string("Waited more than 100ms to go display drawn frame at screen?!?!\n");
@@ -770,7 +770,7 @@ namespace user
 
             //{
 
-            //   i64 nanosDeltaPostRedraw = (i64)m_durationNextScreenUpdate - (durationFrame - m_durationPostRedraw)  - (i64)get_nanos();
+            //   i64 nanosDeltaPostRedraw = (i64)m_timeNextScreenUpdate - (timeFrame - m_timePostRedraw)  - (i64)get_nanos();
 
             //   i32 msDeltaPostRedraw = (::i32)(nanosDeltaPostRedraw / 1'000'000);
 
@@ -865,13 +865,13 @@ namespace user
 
 #if TIME_REPORTING
 
-      auto e1 = g_durationBetweenUpdateBufferAndUpdateScreen.elapsed();
+      auto e1 = g_timeBetweenUpdateBufferAndUpdateScreen.elapsed();
       
-      ::duration durationUpdateScreenPost;
+      ::time timeUpdateScreenPost;
       
-      durationUpdateScreenPost.Now();
+      timeUpdateScreenPost.Now();
 
-      output_debug_string("durationBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
+      output_debug_string("timeBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
 
 #endif
 
@@ -884,9 +884,9 @@ namespace user
 
 #if TIME_REPORTING
 
-      auto e2 = durationUpdateScreenPost.elapsed();
+      auto e2 = timeUpdateScreenPost.elapsed();
 
-      output_debug_string("durationUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
+      output_debug_string("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
 
 #endif
 
@@ -917,19 +917,19 @@ namespace user
 
          synchronous_lock sl(synchronization());
 
-         auto durationNow = ::duration::now();
+         auto timeNow = ::time::now();
 
-         for (index i = 0; i < m_durationaFrame.get_size();)
+         for (index i = 0; i < m_timeaFrame.get_size();)
          {
 
-            auto durationFrame = m_durationaFrame[i];
+            auto timeFrame = m_timeaFrame[i];
 
-            auto durationDiff = durationNow - durationFrame;
+            auto timeDiff = timeNow - timeFrame;
 
-            if (durationDiff > 1_s)
+            if (timeDiff > 1_s)
             {
 
-               m_durationaFrame.erase_at(i);
+               m_timeaFrame.erase_at(i);
 
             } else
             {
@@ -949,7 +949,7 @@ namespace user
 
       }
 
-      m_pimpl->m_dOutputFps = (double)(m_durationaFrame.get_size());
+      m_pimpl->m_dOutputFps = (double)(m_timeaFrame.get_size());
 
       return true;
 
@@ -988,13 +988,13 @@ namespace user
       else
       {
 
-         m_durationLastScreenUpdate.Now();
+         m_timeLastScreenUpdate.Now();
 
          m_bUpdatingScreen = true;
 
          m_pimpl->m_pwindow->update_screen();
 
-         //if (!m_bUpdatingScreen || m_durationLastScreenUpdate.elapsed() > 200_ms)
+         //if (!m_bUpdatingScreen || m_timeLastScreenUpdate.elapsed() > 200_ms)
 //         {
 //
 //            if (m_puserinteraction)
@@ -1202,17 +1202,17 @@ namespace user
 
             synchronouslock.unlock();
 
-            m_durationBeforeDrawing.Now();
+            m_timeBeforeDrawing.Now();
 
-            m_durationOutOfDrawing = m_durationBeforeDrawing - m_durationAfterDrawing;
+            m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
 
             i64 i2 = get_integral_nanosecond().m_i;
 
 #if TIME_REPORTING
 
-            static ::duration durationLast;
+            static ::time timeLast;
 
-            output_debug_string("time outside updatebuffer " +as_string(durationLast.elapsed().floating_millisecond().m_d) + "ms\n");
+            output_debug_string("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
 
 #endif
 
@@ -1220,9 +1220,9 @@ namespace user
 
 #if TIME_REPORTING
 
-            durationLast.Now();
+            timeLast.Now();
 
-            g_durationBetweenUpdateBufferAndUpdateScreen.Now();
+            g_timeBetweenUpdateBufferAndUpdateScreen.Now();
 
 #endif
 
@@ -1230,9 +1230,9 @@ namespace user
 
             bUpdateScreen = true;
 
-            m_durationAfterDrawing.Now();
+            m_timeAfterDrawing.Now();
 
-            m_durationDuringDrawing = m_durationAfterDrawing - m_durationBeforeDrawing;
+            m_timeDuringDrawing = m_timeAfterDrawing - m_timeBeforeDrawing;
 
             if (m_puserinteraction)
             {
@@ -1365,9 +1365,9 @@ namespace user
    void prodevian::profiling_on_before_update_screen()
    {
     
-      m_durationBeforeUpdateScreen.Now();
+      m_timeBeforeUpdateScreen.Now();
 
-      m_durationOufOfUpdateScreen = m_durationBeforeUpdateScreen - m_durationAfterUpdateScreen;
+      m_timeOufOfUpdateScreen = m_timeBeforeUpdateScreen - m_timeAfterUpdateScreen;
 
    }
 
@@ -1377,31 +1377,31 @@ namespace user
 
       synchronous_lock sl(synchronization());
       
-      m_durationLastFrame.Now();
+      m_timeLastFrame.Now();
 
-      m_durationaFrame.add(m_durationLastFrame);
+      m_timeaFrame.add(m_timeLastFrame);
 
-      m_durationAfterUpdateScreen.Now();
+      m_timeAfterUpdateScreen.Now();
 
-      m_durationDuringUpdateScreen = m_durationAfterUpdateScreen - m_durationBeforeUpdateScreen;
+      m_timeDuringUpdateScreen = m_timeAfterUpdateScreen - m_timeBeforeUpdateScreen;
 
-      if (m_durationDuringUpdateScreen > 60_ms)
+      if (m_timeDuringUpdateScreen > 60_ms)
       {
 
-         //output_debug_string("It took about " + as_string(m_durationDuringUpdateScreen) + " to update screen\n");
+         //output_debug_string("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
 
-         //output_debug_string("It took about " + as_string(m_durationOufOfUpdateScreen) + " out of screen update\n");
+         //output_debug_string("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
 
       }
 
-      m_durationDuringUpdateScreen = m_durationAfterUpdateScreen - m_durationBeforeUpdateScreen;
+      m_timeDuringUpdateScreen = m_timeAfterUpdateScreen - m_timeBeforeUpdateScreen;
 
-      if (m_durationOufOfUpdateScreen > 60_ms)
+      if (m_timeOufOfUpdateScreen > 60_ms)
       {
 
-         //output_debug_string("It took about " + as_string(m_durationDuringUpdateScreen) + " to update screen\n");
+         //output_debug_string("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
 
-         //output_debug_string("It took about " + as_string(m_durationOufOfUpdateScreen) + " out of screen update\n");
+         //output_debug_string("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
 
       }
       
@@ -1411,7 +1411,7 @@ namespace user
    void prodevian::defer_prodevian_step()
    {
 
-      if (m_durationLastFrame.elapsed() > (m_durationPostRedrawNominal * 3 / 4))
+      if (m_timeLastFrame.elapsed() > (m_timePostRedrawNominal * 3 / 4))
       {
 
          post_message(e_message_redraw);
@@ -1424,7 +1424,7 @@ namespace user
    void prodevian::set_prodevian_fps(double dProdevianFps)
    {
 
-      m_durationPostRedrawProdevian = 1.0_s / dProdevianFps;
+      m_timePostRedrawProdevian = 1.0_s / dProdevianFps;
 
    }
 
@@ -1432,7 +1432,7 @@ namespace user
    void prodevian::set_nominal_fps(double dNominalFps)
    {
 
-      m_durationPostRedrawNominal = 1._s / dNominalFps;
+      m_timePostRedrawNominal = 1._s / dNominalFps;
 
    }
 

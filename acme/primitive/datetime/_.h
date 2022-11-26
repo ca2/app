@@ -98,10 +98,10 @@ inline time_t make_utc_time(struct tm const *t)
 
 
 class second;
-class duration;
+class time;
 class microsecond;
 class nanosecond;
-class duration;
+class time;
 
 
 namespace earth
@@ -137,7 +137,7 @@ extern "C" CLASS_DECL_ACME int c_localtime_offset();
 
 
 
-//#include "micro_duration.h"
+//#include "micro_time.h"
 //
 //
 //#include "time_span.h"
@@ -170,7 +170,7 @@ extern "C" CLASS_DECL_ACME int c_localtime_offset();
 //extern "C" CLASS_DECL_ACME int c_localtime_offset();
 //
 //
-//#include "micro_duration.h"
+//#include "micro_time.h"
 //
 //
 //

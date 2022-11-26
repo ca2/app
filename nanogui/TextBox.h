@@ -155,7 +155,7 @@ NAMESPACE_BEGIN(nanogui)
       Vector2i m_mouse_drag_pos;
       ::user::e_key m_mouse_down_modifier;
       float m_text_offset;
-      ::duration m_last_click;
+      class ::time m_last_click;
 };
 
 /**

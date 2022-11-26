@@ -118,7 +118,7 @@ bool __os_term_thread()
 
 
 
-//CLASS_DECL_APEX void main_sync_runnable(::object * pobjectRunnable, ::duration durationTimeout)
+//CLASS_DECL_APEX void main_sync_runnable(::object * pobjectRunnable, ::time timeTimeout)
 //{
 //
 //   ::pointer<object>prunnable = pobjectRunnable;
@@ -145,7 +145,7 @@ bool __os_term_thread()
 //
 //   });
 //
-//   ptopic->wait(durationTimeout);
+//   ptopic->wait(timeTimeout);
 //
 //}
 

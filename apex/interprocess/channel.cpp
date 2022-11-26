@@ -12,7 +12,7 @@ namespace interprocess
    channel::channel()
    {
 
-      m_durationTimeout = (5000) * 11;
+      m_timeTimeout = (5000) * 11;
 
    }
 
@@ -43,13 +43,13 @@ namespace interprocess
 
 
    // calls restart if confirm_tx failed
-   bool channel::ensure_caller(const ::string & strUri,const ::duration & durationTimeout)
+   bool channel::ensure_caller(const ::string & strUri,const class time & timeTimeout)
    {
 
       try
       {
 
-         m_pcaller->call(strUri, durationTimeout);
+         m_pcaller->call(strUri, timeTimeout);
 
       }
       catch (...)
@@ -64,7 +64,7 @@ namespace interprocess
    }
 
 
-   //bool channel::ensure_caller(int message, void * pdata, int len, duration durationTimeout)
+   //bool channel::ensure_caller(int message, void * pdata, int len, time timeTimeout)
    //{
 
    //   if (message == WM_APP + WM_USER)
@@ -86,7 +86,7 @@ namespace interprocess
    //      try
    //      {
 
-   //         m_pcaller->send(message, pdata, len, durationTimeout);
+   //         m_pcaller->send(message, pdata, len, timeTimeout);
 
    //      }
    //      catch (...)

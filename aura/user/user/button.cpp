@@ -1448,7 +1448,7 @@ namespace user
 
          //m_dPosition = 0.0;
 
-         //m_durationAnimationStart.Now();
+         //m_timeAnimationStart.Now();
 
          //SetTimer(e_timer_check_toggle_animation, 12_ms);
 

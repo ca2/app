@@ -40,7 +40,7 @@ namespace experience_nanogui
    void control_box_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::duration t1 = ::duration::now();
+      ::time t1 = ::time::now();
 
       if ((top_level()->frame_is_transparent() && !top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
       {
@@ -49,7 +49,7 @@ namespace experience_nanogui
 
       }
 
-      ::duration d1 = t1.elapsed();
+      ::time d1 = t1.elapsed();
 
 #ifdef VERBOSE_LOG         
 
@@ -173,7 +173,7 @@ namespace experience_nanogui
 
       }
 
-      ::duration d2 = t1.elapsed();
+      ::time d2 = t1.elapsed();
 
 #ifdef VERBOSE_LOG         
 

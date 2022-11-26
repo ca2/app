@@ -15,8 +15,8 @@ namespace userex
    public:
 
 
-      ::duration                  m_durationLastChange;
-      ::duration                  m_durationDelayedAfterChange;
+      class ::time                  m_timeLastChange;
+      class ::time                  m_timeDelayedAfterChange;
       top_impact *              m_ptopview;
       bool                    m_bEnterKeyPressed;
       ::write_text::font_pointer  m_pfont;

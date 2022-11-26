@@ -38,7 +38,7 @@ namespace sockets_bsd
       fd_set                     m_wfds; ///< file descriptor set monitored for write events
       fd_set                     m_efds; ///< file descriptor set monitored for exceptions
       i32                        m_iPreviousError; ///< debug select() error
-      ::duration                       m_durationLastError;
+      class ::time                       m_timeLastError;
       time_t                     m_tlast; ///< timeout control
 
       // state lists
@@ -109,7 +109,7 @@ namespace sockets_bsd
       /** This method will not return until an event has been detected. */
       i32 select() override;
 
-      i32 select(const class ::wait & wait) override;
+      i32 select(const class time & timeWait) override;
       /** Wait for events, generate callbacks. */
       i32 _select(struct timeval *tsel) override;
 

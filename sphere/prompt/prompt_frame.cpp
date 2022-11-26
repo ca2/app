@@ -111,7 +111,7 @@ namespace prompt
                   KillTimer(1001);
                }*/
          /*::point_i32 point;
-         if(m_bHoverMouse && ::get_tick() > m_durationLastHover + 300)
+         if(m_bHoverMouse && ::get_tick() > m_timeLastHover + 300)
          {
             OnHoverAction();
          }
@@ -119,7 +119,7 @@ namespace prompt
          {
             if(!m_bHoverMouse && point.x == 0 && point.y == 0)
             {
-               m_durationLastHover= ::duration::now();
+               m_timeLastHover= ::time::now();
                m_bHoverMouse = true;
 
             }

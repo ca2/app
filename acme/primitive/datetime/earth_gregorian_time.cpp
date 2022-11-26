@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 2022-10-23 21:38 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
@@ -100,11 +100,11 @@ namespace earth
       void time::Now(const time_shift & timeshift)
       {
 
-         ::duration duration;
+         ::earth::time time;
 
-         duration.Now();
+         time.Now();
 
-         set(duration, timeshift);
+         set(time, timeshift);
 
       }
 
@@ -129,18 +129,18 @@ namespace earth
       }
 
 
-      inline time::time(const ::duration & duration, const time_shift & timeshift)
+      inline time::time(const class ::time & time, const time_shift & timeshift)
       {
 
-         set(duration, timeshift);
+         set(time, timeshift);
 
       }
 
 
-      inline void time::set(const ::duration & duration, const time_shift & timeshift)
+      inline void time::set(const class ::time & time, const time_shift & timeshift)
       {
 
-         set({(time_t) duration.m_iSecond }, duration.m_iNanosecond, timeshift);
+         set({(time_t) time.m_iSecond }, time.m_iNanosecond, timeshift);
 
       }
 

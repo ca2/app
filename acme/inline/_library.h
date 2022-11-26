@@ -1,4 +1,4 @@
-
+﻿
 
 #ifndef _WINDOWS_
 
@@ -51,7 +51,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved)
 #if !defined(CUBE)
 
 
-#include "acme/asset/new.cpp"
+#include "acme/memory/new.cpp"
 
 
 #endif

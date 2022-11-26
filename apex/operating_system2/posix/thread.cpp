@@ -8,7 +8,7 @@
 //namespace ansios
 //{
 //
-//   unsigned long ::durationCounter()
+//   unsigned long ::timeCounter()
 //   {
 //      timeval tv;
 //      gettimeofday(&tv, 0);

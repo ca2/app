@@ -1469,7 +1469,7 @@ namespace geo
 
          }
 
-         timezone.m_duration.Now();
+         timezone.m_time.Now();
 
          return timezone;
 
@@ -1606,7 +1606,7 @@ namespace geo
 
          }
 
-         stringtimeout.m_duration.Now();
+         stringtimeout.m_time.Now();
 
          return stringtimeout.m_str;
 

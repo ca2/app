@@ -310,22 +310,22 @@ namespace user
       enumeration < enum_non_client >              m_flagNonClient;
       int                                          m_iMouseMoveSkipCount;
       int                                          m_iMouseMoveSkipSquareDistance;
-      ::duration                                   m_durationMouseMoveSkip;
+      class ::time                                   m_timeMouseMoveSkip;
       ::point_i32                                  m_pointMouseMoveSkip;
-      ::duration                                   m_durationMouseMovePeriod;
+      class ::time                                   m_timeMouseMovePeriod;
       ::point_i32                                  m_pointMouseMove;
-      ::duration                                   m_durationLastRedraw;
+      class ::time                                   m_timeLastRedraw;
       ::atom                                       m_atomImpact;
       ::color::color                               m_colorBackground;
       point_i32                                    m_pointScroll;
       // if high frequency mouse move notification is required
       // create a fast path/low latency callback system
-      ::duration                                   m_durationMouseMove;
-      ::duration                                   m_durationMouseMoveIgnore;
+      class ::time                                   m_timeMouseMove;
+      class ::time                                   m_timeMouseMoveIgnore;
       double                                       m_dItemHeight;
       point_i32                                    m_pointMoveCursor;
-      ::duration                                   m_durationLastFullUpdate;
-      ::duration                                   m_durationLastVisualChange;
+      class ::time                                   m_timeLastFullUpdate;
+      class ::time                                   m_timeLastVisualChange;
       string                                       m_strName;
       u64                                          m_uiUserInteractionFlags;
       ::pointer<::windowing::cursor>              m_pcursor;
@@ -1276,9 +1276,9 @@ namespace user
       //virtual void SetWindowDisplayChanged() override;
 
 
-      virtual void call_and_set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual void set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr);
-      virtual void SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr) override;
+      virtual void call_and_set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr);
+      virtual void set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr);
+      virtual void SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr) override;
       virtual void KillTimer(uptr uEvent) override;
 
 //      virtual void enable_window(bool bEnable = true) override;
@@ -2174,10 +2174,10 @@ namespace user
 
 
    /*   template < typename PRED >
-      void send_predicate(PRED pred, ::duration durationTimeout = ::duration::infinite())
+      void send_predicate(PRED pred, class ::time timeTimeout = ::time::infinite())
       {
 
-         send_method(__routine(pred), durationTimeout);
+         send_method(__routine(pred), timeTimeout);
 
       }*/
 

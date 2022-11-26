@@ -237,7 +237,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
       //else
       //{
 
-      //   auto millisecond = intDelayMs.m_durationProcessAttach.integral_millisecond();
+      //   auto millisecond = intDelayMs.m_timeProcessAttach.integral_millisecond();
 
       //   if (millisecond > 0_ms)
       //   {
@@ -262,7 +262,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
       //else
       //{
 
-      //   auto millisecond = intDelayMs.m_durationProcessDetach.integral_millisecond();
+      //   auto millisecond = intDelayMs.m_timeProcessDetach.integral_millisecond();
 
       //   if (millisecond > 0_ms)
       //   {
@@ -287,7 +287,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
       //else
       //{
 
-      //   auto millisecond = intDelayMs.m_durationThreadAttach.integral_millisecond();
+      //   auto millisecond = intDelayMs.m_timeThreadAttach.integral_millisecond();
 
       //   if (millisecond > 0_ms)
       //   {
@@ -312,7 +312,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
       //else
       //{
 
-      //   auto millisecond = intDelayMs.m_durationThreadDetach.integral_millisecond();
+      //   auto millisecond = intDelayMs.m_timeThreadDetach.integral_millisecond();
 
       //   if (millisecond > 0_ms)
       //   {

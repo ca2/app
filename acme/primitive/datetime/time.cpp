@@ -4,7 +4,7 @@
 #include "date_span.h"
 #include "earth_gregorian_time.h"
 #include "acme/primitive/datetime/_string.h"
-#include "acme/operating_system/time.h"
+//#include "acme/operating_system/time.h"
 #include "acme/exception/not_implemented.h"
 #include "acme/primitive/string/str.h"
 
@@ -148,7 +148,7 @@ namespace earth
    }
 
 
-   ::earth::time & time::operator=(const time & time) noexcept
+   ::earth::time & time::operator=(const class time & time) noexcept
    {
 
       m_i = time.m_i;
@@ -562,7 +562,7 @@ namespace earth
    }
 
 
-   time_span time::abs_diff(const time & time) const
+   time_span time::abs_diff(const class time & time) const
    {
 
       return INTEGRAL_SECOND(abs(time.m_i - m_i));

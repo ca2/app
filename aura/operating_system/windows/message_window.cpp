@@ -91,10 +91,10 @@ namespace user
    }
 
 
-   void message_window::message_window_set_timer(uptr uId, const ::duration & duration)
+   void message_window::message_window_set_timer(uptr uId, const class time & time)
    {
 
-      SetTimer(uId, duration, nullptr);
+      SetTimer(uId, time, nullptr);
 
    }
 

@@ -15,7 +15,7 @@ namespace aura
 
    }
 
-   void system::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)
+   void system::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, const future & process)
    {
 
       return message_box_synchronous(pszMessage, pszTitle, emessagebox, process);

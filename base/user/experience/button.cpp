@@ -60,7 +60,7 @@ namespace experience
       if (pshow->m_bShow)
       {
 
-         //m_durationShow.Now();
+         //m_timeShow.Now();
 
       }
       else

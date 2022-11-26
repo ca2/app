@@ -429,7 +429,7 @@ namespace aura
 //
 //         ::file::path pathMeta = pathCache + ".meta_information";
 //
-//         retry retry(::duration(500), one_minute());
+//         retry retry(::time(500), one_minute());
 //
 //         if (!(path & ::file::e_flag_bypass_cache))
 //         {

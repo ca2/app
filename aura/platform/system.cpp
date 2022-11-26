@@ -233,7 +233,7 @@ namespace aura
 
       //m_purldepartment = nullptr;
 
-      m_durationAfterApplicationFirstRequest = 0_s;
+      m_timeAfterApplicationFirstRequest = 0_s;
 
 
 
@@ -1563,7 +1563,7 @@ namespace aura
    void system::init()
    {
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       ::pointer<::aura::session>psession = get_session();
 
@@ -2482,7 +2482,7 @@ namespace aura
 //   void system::appa_load_string_table()
 //   {
 //
-//      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
+//      //retry_single_lock rsl(mutex(),::time(100),::time(100));
 //
 ////      for(i32 i = 0; i < appptra().get_size(); i++)
 //      //    {
@@ -2496,7 +2496,7 @@ namespace aura
 //   void system::appa_set_locale(const ::string & pszLocale, const ::action_context & context)
 //   {
 //
-//      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
+//      //retry_single_lock rsl(mutex(),::time(100),::time(100));
 //
 //      single_lock sl(mutex());
 //
@@ -2514,7 +2514,7 @@ namespace aura
 //   void system::appa_set_schema(const ::string & pszStyle, const ::action_context & context)
 //   {
 //
-//      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
+//      //retry_single_lock rsl(mutex(),::time(100),::time(100));
 //
 //      single_lock sl(mutex());
 //
@@ -3157,7 +3157,7 @@ namespace aura
 
    //   synchronous_lock synchronouslock(this->synchronization());
 
-   //   m_durationCommandLineLast.Now();
+   //   m_timeCommandLineLast.Now();
 
    //   m_iCommandLineDelay = 1000;
 
@@ -4784,7 +4784,7 @@ namespace aura
    //void system::term()
    //{
 
-   //   //__wait_threading_count_except(this,::duration((5000) * 77));
+   //   //__wait_threading_count_except(this,::time((5000) * 77));
 
    //   if (::ftp::command::info2::g_pTheOneAndOnly != nullptr)
    //   {
@@ -5810,7 +5810,7 @@ namespace aura
 //
 //
 //
-//      //__wait_threading_count(::duration((5000) * 8));
+//      //__wait_threading_count(::time((5000) * 8));
 //
 //      //::parallelization::wait_threads(40_s);
 //

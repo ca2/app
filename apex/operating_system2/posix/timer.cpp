@@ -169,7 +169,7 @@
 //void timer::run()
 //{
 //
-//   while(task_sleep(::duration(m_dwMillis)))
+//   while(task_sleep(::time(m_dwMillis)))
 //   {
 //
 //      try

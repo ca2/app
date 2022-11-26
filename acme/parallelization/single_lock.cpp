@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "single_lock.h"
 ////#include "acme/exception/exception.h"
 
@@ -86,7 +86,7 @@ void single_lock::_wait()
 }
 
 
-bool single_lock::_wait(const class ::wait& wait)
+bool single_lock::_wait(const class time & timeWait)
 {
 
    //::e_status estatus(signaled_base);
@@ -108,7 +108,7 @@ bool single_lock::_wait(const class ::wait& wait)
    //try
    //{
 
-      bool bOk= m_pparticleSynchronization->_wait(wait);
+      bool bOk= m_pparticleSynchronization->_wait(timeWait);
 
    //}
    //catch (...)
@@ -183,7 +183,7 @@ bool single_lock::_wait(const class ::wait& wait)
 }
 
 
-::e_status single_lock::wait(const class ::wait & wait)
+::e_status single_lock::wait(const class time & timeWait)
 {
 
    if(has_acquired_flag())
@@ -205,7 +205,7 @@ bool single_lock::_wait(const class ::wait& wait)
    try
    {
 
-      estatus = m_pparticleSynchronization->wait(wait);
+      estatus = m_pparticleSynchronization->wait(timeWait);
 
    }
    catch(...)
@@ -365,7 +365,7 @@ void _single_lock::_wait()
 }
 
 
-bool _single_lock::_wait(const class ::wait & wait)
+bool _single_lock::_wait(const class time & timeWait)
 {
 
    //::e_status estatus(signaled_base);
@@ -394,7 +394,7 @@ bool _single_lock::_wait(const class ::wait & wait)
 
       /*estatus = */
 
-      bool bOk = m_pparticleSynchronization->_wait(wait);
+      bool bOk = m_pparticleSynchronization->_wait(timeWait);
 
    //}
    //catch (...)

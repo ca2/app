@@ -49,7 +49,7 @@ void conversation::do_conversation(const ::string& strMessage, const string& str
 }
 
 
-::payload conversation::do_synchronously(const class ::wait & wait)
+::payload conversation::do_synchronously(const class time & timeWait)
 {
    
    return e_message_box_ok;

@@ -45,7 +45,7 @@ public:
       file_info();
       ~file_info();
 
-      ::duration                             m_durationFileSharingViolationTimeout;
+      class ::time                             m_timeFileSharingViolationTimeout;
 
    };
 
@@ -77,7 +77,7 @@ public:
    enum_id                                            m_atomContextReference;
 
    bool                                               m_bAuraMessageQueue;
-   ::duration                                         m_durationHeartBeat;
+   class ::time                                         m_timeHeartBeat;
    bool                                               m_bReady;
    //::e_status                                        m_estatus;
    ::pointer<::user::primitive>                      m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
@@ -177,8 +177,8 @@ public:
 
    // file related stuff
    file_info * get_file_info();
-   ::duration get_file_sharing_violation_timeout();
-   ::duration set_file_sharing_violation_timeout(const ::duration & duration);
+   class ::time get_file_sharing_violation_timeout();
+   class ::time set_file_sharing_violation_timeout(const class time & time);
 
    virtual bool is_running() const override;
 
@@ -229,7 +229,7 @@ public:
 
    virtual int get_x_window_count() const;
 
-   //virtual synchronization_result wait(const duration & duration);
+   //virtual synchronization_result wait(const class time & time);
 
    bool set_thread_priority(::enum_priority epriority);
 
@@ -250,11 +250,11 @@ public:
 
    virtual void post_message(const ::atom & atom, wparam wParam = {}, lparam lParam = 0);
 
-   virtual void send_message(const ::atom & atom, wparam wParam = {}, lparam lParam = 0, const ::duration & durationTimeout = ::duration::infinite());
+   virtual void send_message(const ::atom & atom, wparam wParam = {}, lparam lParam = 0, const class time & timeTimeout = ::time::infinite());
 
    virtual void post_element(const ::atom & atom, wparam wParam, ::particle * pparticle);
 
-   virtual void send_element(const ::atom & atom, wparam wParam, ::particle * pparticle, const ::duration & durationTimeout = ::duration::infinite());
+   virtual void send_element(const ::atom & atom, wparam wParam, ::particle * pparticle, const class time & timeTimeout = ::time::infinite());
 
 
    DECLARE_MESSAGE_HANDLER(on_message_branch);
@@ -345,15 +345,15 @@ public:
    //virtual bool on_register_dependent_thread(::thread * pthread);
    //virtual void on_unregister_dependent_thread(::thread * pthread);
    //virtual void signal_close_dependent_threads();
-   //virtual void wait_close_dependent_threads(const duration & duration);
+   //virtual void wait_close_dependent_threads(const class time & time);
    //virtual bool register_at_required_threads();
    //virtual void unregister_from_required_threads();
-   //virtual void close_dependent_threads(const ::duration & dur);
+   //virtual void close_dependent_threads(const class ::time & dur);
 
-   virtual bool pump_sleep(const class ::wait & wait, ::particle * pparticleSynchronization = nullptr);
+   virtual bool pump_sleep(const class time & timeWait, ::particle * pparticleSynchronization = nullptr);
 
    bool do_events() override;
-   // virtual bool do_events(const duration& duration);
+   // virtual bool do_events(const time& time);
 
    virtual bool task_get_run() const override;
    //virtual bool set_run();
@@ -370,7 +370,7 @@ public:
 
    //virtual ::index task_add(::task * ptask) override;
    virtual void task_erase(::task * ptask) override;
-   //virtual void wait_quit(::duration durationTimeout) override;
+   //virtual void wait_quit(class ::time timeTimeout) override;
 
    void kick_thread() override;
 
@@ -457,11 +457,11 @@ protected:
 //
 //
 //   //CLASS_DECL_APEX void finish();
-//   //CLASS_DECL_APEX bool post_quit_and_wait(const duration & duration);
+//   //CLASS_DECL_APEX bool post_quit_and_wait(const class time & time);
 //
 //
 //   //CLASS_DECL_APEX void finish(::task * ptask);
-//   //CLASS_DECL_APEX bool post_quit_and_wait(::thread * pthread, const duration & duration);
+//   //CLASS_DECL_APEX bool post_quit_and_wait(::thread * pthread, const class time & time);
 //
 //
 //   //template < typename THREAD >
@@ -481,13 +481,13 @@ protected:
 //
 //
 //   //template < typename THREAD >
-//   //bool post_quit_and_wait(::pointer<THREAD>& spthread, const duration & duration)
+//   //bool post_quit_and_wait(::pointer<THREAD>& spthread, const class time & time)
 //   //{
 //
 //   //   if (spthread.is_set())
 //   //   {
 //
-//   //      if (!::parallelization::post_quit_and_wait(spthread.m_p, duration))
+//   //      if (!::parallelization::post_quit_and_wait(spthread.m_p, time))
 //   //      {
 //
 //   //         return false;
@@ -512,7 +512,7 @@ protected:
 using id_thread_map = atom_map < ::pointer<thread > >;
 
 
-//CLASS_DECL_APEX void sleep(const duration& duration);
+//CLASS_DECL_APEX void sleep(const time& time);
 
 
 //CLASS_DECL_APEX bool is_active(::thread * pthread);
@@ -526,9 +526,9 @@ using id_thread_map = atom_map < ::pointer<thread > >;
 
 
 
-//CLASS_DECL_APEX bool apex_task_sleep(const ::duration & duration, synchronization* psync = nullptr);
-CLASS_DECL_APEX bool thread_pump_sleep(const class ::wait & wait, ::particle * pparticleSynchronization = nullptr);
-CLASS_DECL_APEX bool app_sleep(::apex::application * papp, const class ::wait & wait);
+//CLASS_DECL_APEX bool apex_task_sleep(const class time & time, synchronization* psync = nullptr);
+CLASS_DECL_APEX bool thread_pump_sleep(const class time & timeWait, ::particle * pparticleSynchronization = nullptr);
+CLASS_DECL_APEX bool app_sleep(::apex::application * papp, const class time & timeWait);
 
 
 
@@ -565,7 +565,7 @@ CLASS_DECL_APEX void defer_create_thread(::particle * pparticle);
 
 
 template < typename PRED >
-auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, const class ::wait & wait, enum_priority epriority);
+auto sync_predicate(void (* pfnBranch )(::particle * pparticleTask, enum_priority), PRED pred, const class time & timeWait, enum_priority epriority);
 
 
 
@@ -584,7 +584,7 @@ public:
    virtual ::count get_count_except_current_thread();
    //virtual void finish(::property_object * pcontextobjectFinish = nullptr) override;
    virtual void destroy() override;
-   virtual void wait(const class ::wait & wait, ::particle & particleSynchronousLock);
+   virtual void wait(const class time & timeWait, ::particle & particleSynchronousLock);
 
    thread_ptra & operator = (const thread_ptra & ptra) { pointer_array < thread >::operator =(ptra); return *this; }
    thread_ptra & operator = (thread_ptra && ptra) { pointer_array < thread >::operator =(::move(ptra)); return *this; }

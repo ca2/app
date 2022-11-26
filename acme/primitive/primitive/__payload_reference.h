@@ -42,11 +42,11 @@ public:
 
 
    //operator second & () { return m_payload.secs(); }
-   //operator ::duration & () { return m_payload.millis(); }
+   //operator class ::time & () { return m_payload.millis(); }
    //operator microsecond & () { return m_payload.micros(); }
    //operator nanosecond & () { return m_payload.nanos(); }
 
-   operator duration & () { return m_payload.duration_reference(); }
+   operator class ::time & () { return m_payload.time_reference(); }
    operator earth::time & () { return m_payload.earth_time_reference(); }
 
 

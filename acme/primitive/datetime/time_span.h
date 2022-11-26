@@ -33,7 +33,7 @@ namespace earth
       time_span& operator+=(time_span span) noexcept;
       time_span& operator-=(time_span span) noexcept;
 
-      operator duration() const
+      operator time() const
       {
 
          return INTEGRAL_SECOND(GetTotalSeconds());

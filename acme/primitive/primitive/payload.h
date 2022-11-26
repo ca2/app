@@ -81,7 +81,7 @@ public:
       ::f64                      m_f64;
       ::f64 *                    m_pf64;
       payload *                  m_ppayload;
-      ::earth::time              m_time;
+      ::earth::time              m_earthtime;
       file_time_t                m_filetime;
       atom *                     m_patom;
       ::property *               m_pproperty;
@@ -113,8 +113,8 @@ public:
       floating_hour *            m_pfloatinghour;
       floating_day               m_floatingday;
       floating_day *             m_pfloatingday;
-      class duration             m_duration;
-      class duration *           m_pduration;
+      class time                 m_time;
+      class time *               m_ptime;
       ::e_status                 m_estatus;
       ::e_command                m_ecommand;
       ::e_check                  m_echeck;
@@ -161,7 +161,7 @@ public:
    payload(::payload * ppayload);
    payload(::property * pproperty);
    payload(::particle * pparticle);
-   payload(::duration * pduration);
+   payload(class ::time * ptime);
    payload(const char * psz);
    payload(const ::string & str);
    payload(const ::type & type);
@@ -177,7 +177,7 @@ public:
    payload(const ::property_set & set);
    payload(const ::payload & payload);
    payload(const ::property & prop);
-   payload(const ::duration & duration);
+   payload(const class time & time);
 
    payload(const ::block & block)
    {
@@ -345,7 +345,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
    //inline ::second & as_secs() { if (get_type() != e_type_secs)set_type(e_type_secs); return m_secs; }
-   //inline ::duration & as_millis() { if (get_type() != e_type_millis)set_type(e_type_millis); return m_millis; }
+   //inline class ::time & as_millis() { if (get_type() != e_type_millis)set_type(e_type_millis); return m_millis; }
    //inline ::microsecond & as_micros() { if (get_type() != e_type_micros)set_type(e_type_micros); return m_micros; }
    //inline ::nanosecond & as_nanos() { if (get_type() != e_type_nanos)set_type(e_type_nanos); return m_nanos; }
 
@@ -396,7 +396,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::i64_array i64a() const;
    ::payload_array payloada()  const;
    ::property_set propset() const;
-   ::duration duration() const;
+   class ::time time() const;
    ::property property() const;
 
 
@@ -407,7 +407,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    bool is_natural() const;
    bool is_boolean() const;
    bool is_double() const;
-   bool is_duration() const;
+   bool is_time() const;
    bool is_text() const;
    bool is_fairly_convertible_to_text() const;
 
@@ -549,7 +549,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::i32_array & i32_array_reference();
    ::i64_array & i64_array_reference();
    ::payload_array & payload_array_reference();
-   ::duration & duration_reference();
+   class ::time & time_reference();
    ::property_set & property_set_reference();
    ::property & property_reference();
 
@@ -564,7 +564,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    const ::i32_array & i32_array_reference() const;
    const ::i64_array & i64_array_reference() const;
    const ::payload_array & payload_array_reference() const;
-   const ::duration & duration_reference() const;
+   const class time & time_reference() const;
    const ::property_set & property_set_reference() const;
    const ::property & property_reference() const;
 
@@ -719,15 +719,15 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    payload & operator = (const ::atom & atom);
    payload & operator = (::atom * pid);
    //payload & operator = (const ::second & second);
-   //payload & operator = (class ::second * pduration);
-   //payload & operator = (const ::duration & duration);
-   //payload & operator = (class ::duration * pmillis);
+   //payload & operator = (class ::second * ptime);
+   //payload & operator = (const class time & time);
+   //payload & operator = (class ::time * pmillis);
    //payload & operator = (const ::microsecond & microsecond);
    //payload & operator = (class ::microsecond * pmicros);
    //payload & operator = (const ::nanosecond & nanosecond);
    //payload & operator = (class ::nanosecond * pnanos);
-   payload & operator = (const ::duration & duration);
-   payload & operator = (class ::duration * pduration);
+   payload & operator = (const class time & time);
+   payload & operator = (class ::time * ptime);
    payload & operator = (const ::block & block);
 
    template < class ARRAY >
@@ -1213,10 +1213,10 @@ CLASS_DECL_ACME void var_skip_network_payload(const char *& pszJson, const char 
 //}
 
 
-//inline payload::operator class duration() const
+//inline payload::operator class time() const
 //{
 //
-//   return duration();
+//   return time();
 //
 //}
 //
@@ -1229,10 +1229,10 @@ CLASS_DECL_ACME void var_skip_network_payload(const char *& pszJson, const char 
 //}
 
 
-//inline payload::operator class ::duration() const
+//inline payload::operator class ::time() const
 //{
 //
-//   return ::duration();
+//   return class ::time();
 //
 //}
 //

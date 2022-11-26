@@ -341,15 +341,15 @@ namespace user
    }
 
 
-   //void interaction_impl::AnimateWindow(::duration ::duration,u32 dwFlags)
+   //void interaction_impl::AnimateWindow(::time ::time,u32 dwFlags)
    //{
-   //   __UNREFERENCED_PARAMETER(::duration);
+   //   __UNREFERENCED_PARAMETER(::time);
    //   __UNREFERENCED_PARAMETER(dwFlags);
    //   throw ::interface_only();
    //   return false;
    //}
 
-   //void interaction_impl::FlashWindowEx(u32 dwFlags,::u32 uCount,::duration tickTimeout)
+   //void interaction_impl::FlashWindowEx(u32 dwFlags,::u32 uCount,::time tickTimeout)
    //{
    //   __UNREFERENCED_PARAMETER(dwFlags);
    //   __UNREFERENCED_PARAMETER(uCount);
@@ -3549,7 +3549,7 @@ namespace user
       printf("(14) m_pwindow.m_p (0x%x)\n", m_pwindow.m_p);
       printf("(14) m_pwindow.m_pelement (0x%x)\n", m_pwindow.m_pelement);
       printf("(14) offset of m_pImpl2 in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_pImpl2));
-      printf("(14) offset of m_durationLastExposureAddUp in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_durationLastExposureAddUp));
+      printf("(14) offset of m_timeLastExposureAddUp in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_timeLastExposureAddUp));
       printf("(14) offset of m_strBitmapSource in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_strBitmapSource));
       printf("(14) offset of m_bCursorRedraw in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_bCursorRedraw));
       printf("(14) offset of m_bLockWindowUpdate in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_bLockWindowUpdate));
@@ -4540,7 +4540,7 @@ namespace user
       
 #ifdef REPORT_OFFSET
 
-      printf("(11.0) offset of m_durationFocusStart in ::user::primitive = %d\n", offsetof(::user::primitive,m_durationFocusStart));
+      printf("(11.0) offset of m_timeFocusStart in ::user::primitive = %d\n", offsetof(::user::primitive,m_timeFocusStart));
       printf("(11.0) offset of m_uUserInteractionFlags in ::user::interaction = %d\n", offsetof(::user::interaction, m_bExtendOnParent));
       printf("(11.0) offset of m_pwindow in ::user::interaction = %d\n", offsetof(::user::interaction, m_pwindow));
 
@@ -4851,9 +4851,9 @@ namespace user
 
 #if TIME_REPORTING
 
-      ::duration durationStart;
+      ::time timeStart;
 
-      durationStart.Now();
+      timeStart.Now();
 
 #endif
 
@@ -5033,7 +5033,7 @@ namespace user
 
 #if TIME_REPORTING
 
-      auto elapsed = durationStart.elapsed();
+      auto elapsed = timeStart.elapsed();
 
       output_debug_string("_001UpdateBuffer "+as_string(elapsed.floating_millisecond().m_d) + "ms\n");
 

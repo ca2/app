@@ -163,15 +163,15 @@ bool __os_term_thread()
 
 #pragma warning (disable : 4273)
 
-//CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE* pHandles, BOOL fWaitAll, DWORD dw::durations, DWORD dwWakeMask)
+//CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE* pHandles, BOOL fWaitAll, DWORD dw::times, DWORD dwWakeMask)
 //{
 //
-//   return MsgWaitForMultipleObjectsEx(nCount, pHandles, dw::durations, dwWakeMask | (fWaitAll ? MWMO_WAITALL: 0), 0);
+//   return MsgWaitForMultipleObjectsEx(nCount, pHandles, dw::times, dwWakeMask | (fWaitAll ? MWMO_WAITALL: 0), 0);
 //
 //}
 
 
-//CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dw::durations, DWORD dwWakeMask, DWORD dwFlags)
+//CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dw::times, DWORD dwWakeMask, DWORD dwFlags)
 //{
 //
 //   ::u32 dwResult = 0;
@@ -185,7 +185,7 @@ bool __os_term_thread()
 //
 //      ph[nCount] = (HANDLE)::get_message_queue(get_current_itask(), true)->m_eventNewMessage.hsync();
 //
-//      dwResult = ::WaitForMultipleObjectsEx(nCount + 1, ph, dwFlags & MWMO_WAITALL, dw::durations, true);
+//      dwResult = ::WaitForMultipleObjectsEx(nCount + 1, ph, dwFlags & MWMO_WAITALL, dw::times, true);
 //
 //      delete ph;
 //
@@ -193,7 +193,7 @@ bool __os_term_thread()
 //   else
 //   {
 //
-//      dwResult = ::WaitForMultipleObjectsEx(nCount, pHandles, dwFlags, dw::durations, false);
+//      dwResult = ::WaitForMultipleObjectsEx(nCount, pHandles, dwFlags, dw::times, false);
 //
 //   }
 //

@@ -58,7 +58,7 @@ namespace dynamic_source
 
 
          string         m_strServer;
-         ::duration           m_tick;
+         class ::time           m_tick;
 
 
       };
@@ -108,11 +108,11 @@ namespace dynamic_source
 
       ::crypto::rsaptra                                     m_rsaptra;
 
-      ::duration                                                  m_durationLastRsa;
+      class ::time                                                  m_timeLastRsa;
 
 
 
-      ::duration                                                   m_durationDatabaseWaitTimeOut;
+      class ::time                                                   m_timeDatabaseWaitTimeOut;
 
       ::pointer < ::mutex >                                               m_pmutexSession;
       string_map < ::pointer<::dynamic_source::session >>  m_mapSession;
@@ -120,8 +120,8 @@ namespace dynamic_source
       ::pointer < ::mutex >                                               m_pmutexWayDbPool;
       ::pointer<script_cache>                              m_pcache;
       ::pointer<script_compiler>                           m_pcompiler;
-      ::duration                                       m_durationBuildInterval;
-      ::duration                                       m_durationTimeRandomInterval;
+      class ::time                                       m_timeBuildInterval;
+      class ::time                                       m_timeTimeRandomInterval;
 
       string_to_string                                      m_strmapFunUserKey;
 

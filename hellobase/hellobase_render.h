@@ -72,9 +72,9 @@ namespace hellobase
       impact *                           m_pimpact;
 
 
-      //::duration                            m_durationAnime;
-      //::duration m_durationLastFast;
-      //::u32                            m_durationFastAnime;
+      //class ::time                            m_timeAnime;
+      //class ::time m_timeLastFast;
+      //::u32                            m_timeFastAnime;
       //::image_pointer                 m_pimageFast;
 
 
@@ -88,7 +88,7 @@ namespace hellobase
       //::u32                            m_dw23;
 
       //array < bilbo >                  m_bilboa;
-      //::duration m_durationLastOk;
+      //class ::time m_timeLastOk;
 
 
       //bool                             m_bFast;

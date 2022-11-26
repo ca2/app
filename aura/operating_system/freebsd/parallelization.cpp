@@ -173,7 +173,7 @@ int get_current_process_affinity_order()
 //#endif
 
 
-//CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, ::duration durationTimeout)
+//CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, ::time timeTimeout)
 //{
 //
 //   ::pointer<object>prunnable = pobjectRunnable;
@@ -202,7 +202,7 @@ int get_current_process_affinity_order()
 //
 //   });
 //
-//   pevent->wait(durationTimeout);
+//   pevent->wait(timeTimeout);
 //
 //}
 

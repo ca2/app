@@ -888,7 +888,7 @@ inline bool __is_zero(TYPE(&array)[Size]);
 
 
 
-//#include "acme/primitive/duration/as_string.h"
+//#include "acme/primitive/time/as_string.h"
 
 
 

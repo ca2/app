@@ -180,7 +180,7 @@ namespace app_core_build
 //
 //      //::system(str + " > " + "\"" + strClog + "\"");
 //
-//      auto tickStart = ::duration::now();
+//      auto tickStart = ::time::now();
 //
 //      string strLog;
 //

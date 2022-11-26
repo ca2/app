@@ -15,7 +15,7 @@ public:
    ::payload                              m_payloadResult;
 
 
-   virtual ::payload do_synchronously(const class ::wait & wait = ::wait::infinite())
+   virtual ::payload do_synchronously(const class time & timeWait = ::time::infinite())
    {
 
       return {};
@@ -35,7 +35,7 @@ public:
 
    //sequence * then(const sequence_step < SEQUENCE > & function);
 
-   //sequence * then(const ::duration & duration, const sequence_step < SEQUENCE > & function);
+   //sequence * then(const class time & time, const sequence_step < SEQUENCE > & function);
 
 
 

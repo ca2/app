@@ -644,7 +644,7 @@ bool object::is_running() const
 //}
 //
 //
-//void object::child_post_quit_and_wait(const ::string & pszTag, const duration& duration)
+//void object::child_post_quit_and_wait(const ::string & pszTag, const time& time)
 //{
 //
 //   try
@@ -663,7 +663,7 @@ bool object::is_running() const
 //
 //      string strTag(pszTag);
 //
-//      predicate_Sleep(duration,
+//      predicate_Sleep(time,
 //         [this, strTag]()
 //      {
 //
@@ -799,7 +799,7 @@ void object::run()
 //// wasn't holding proper reference to "this" member.
 //// So actually, I cannot make assumption that something is alive
 //// running a member of such an object, that doesn't hold proper
-//// reference for the duration of execution of a function.
+//// reference for the time of execution of a function.
 //// ::pointer<::object>pobjectHold = this;
 //
 //   set_finish_bit();
@@ -1934,7 +1934,7 @@ void object::task_erase(::task* ptask)
 
 // returns false if something like "should exit thread/application/session/system"
 // returns true normally.
-void object::sleep(const ::duration& duration)
+void object::sleep(const class time & time)
 {
 
    auto ptask = ::get_task();
@@ -1986,7 +1986,7 @@ void object::sleep(const ::duration& duration)
       if (::is_set(pevent))
       {
 
-         pevent->wait(duration);
+         pevent->wait(time);
 
          pevent.release();
 
@@ -1997,12 +1997,12 @@ void object::sleep(const ::duration& duration)
 
    }
 
-   auto start = ::duration::now();
+   auto start = ::time::now();
 
    while (true)
    {
 
-      auto waitStep = minimum(duration - start.elapsed(), 100_ms);
+      auto waitStep = minimum(time - start.elapsed(), 100_ms);
 
       if (waitStep <= 0_s)
       {
@@ -2451,7 +2451,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 
 
-//void object::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & future)
+//void object::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, const ::future & future)
 //{
 //
 //   ::e_status estatus = error_failed;
@@ -2459,7 +2459,7 @@ void call_sync(const ::procedure_array& methoda)
 //   //if (::is_null(get_session()) || ::is_null(get_session()->userex()))
 //   //{
 //
-//   //   estatus = get_session()->userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
+//   //   estatus = get_session()->userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
 //
 //   //}
 //
@@ -2671,7 +2671,7 @@ procedure_array * object::procedure_array(const ::atom& atomProcedure)
 //}
 
 //
-//void object::sleep(const ::duration& duration)
+//void object::sleep(const class time & time)
 //{
 //
 //   return ::success;
@@ -3182,7 +3182,7 @@ void object::call_run()
 //}
 
 
-//void object::child_post_quit_and_wait(const ::string & pszTag, const duration& duration)
+//void object::child_post_quit_and_wait(const ::string & pszTag, const time& time)
 //{
 //
 //
@@ -3298,15 +3298,15 @@ void object::call_run()
 //}
 
 
-// void message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+// void message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 //{
 
-//   return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, process);
+//   return message_box_timeout(nullptr, pszMessage, pszTitle, timeTimeout, emessagebox, process);
 
 //}
 
 // void message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-// void message_box_timeout(::user::primitive* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+// void message_box_timeout(::user::primitive* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 
 //void object::release_references()
 //{

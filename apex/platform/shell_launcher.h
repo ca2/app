@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/primitive/particle.h"
@@ -29,8 +29,8 @@ namespace apex
       string               m_strDirectory;
       ::e_display          m_edisplay;
       ::e_activation       m_eactivation;
-      duration             m_durationTimeout;
-      ::e_status          m_estatus;
+      class ::time         m_timeTimeout;
+      ::e_status           m_estatus;
 
 
    protected:
@@ -45,8 +45,8 @@ namespace apex
       shell_launcher();
       virtual ~shell_launcher();
 
-      virtual void setup(duration durationTimeout = ::minute());
-      virtual void setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::minute());
+      virtual void setup(const class time & timeTimeout = 1_minute);
+      virtual void setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, const class time & timeTimeout = 1_minute);
 
       virtual void launch();
 

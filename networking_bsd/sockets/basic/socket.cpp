@@ -39,7 +39,7 @@ namespace sockets_bsd
    {
 
       m_iBindPort    = -1;
-      m_durationStart.Now();
+      m_timeStart.Now();
       m_pcallback    = nullptr;
 
    }

@@ -130,7 +130,7 @@ namespace dynamic_source
    bool ds_script::DoesMatchVersion()
    {
 
-      auto elapsed = m_durationLastVersionCheck.elapsed();
+      auto elapsed = m_timeLastVersionCheck.elapsed();
 
       if(elapsed < 5_s)
       {
@@ -139,7 +139,7 @@ namespace dynamic_source
 
       }
 
-      m_durationLastVersionCheck.Now();
+      m_timeLastVersionCheck.Now();
 
       synchronous_lock synchronouslock(this->synchronization());
 
@@ -206,9 +206,9 @@ namespace dynamic_source
    bool ds_script::HasTimedOutLastBuild()
    {
       synchronous_lock synchronouslock(this->synchronization());
-      return (m_durationLastBuildTime.elapsed()) > 
-         m_pmanager->m_durationBuildInterval +
-         __random(0_s, m_pmanager->m_durationTimeRandomInterval);
+      return (m_timeLastBuildTime.elapsed()) > 
+         m_pmanager->m_timeBuildInterval +
+         __random(0_s, m_pmanager->m_timeTimeRandomInterval);
    }
 
    bool ds_script::HasCompileOrLinkError()
@@ -495,7 +495,7 @@ namespace dynamic_source
 
       pinstance->m_pscript2 = this;
 
-      pinstance->m_durationCreate.Now();
+      pinstance->m_timeCreate.Now();
 
       if (m_bNew)
       {
@@ -551,7 +551,7 @@ namespace dynamic_source
          if (iRetry > 0)
          {
 
-            sleep((::duration)__random(2._s, 4._s));
+            sleep((::time)__random(2._s, 4._s));
 
          }
 
@@ -594,7 +594,7 @@ namespace dynamic_source
 
       }
 
-      m_durationLastBuildTime= ::duration::now();
+      m_timeLastBuildTime= ::time::now();
 
       //m_ft = get_file_time_set(m_strSourcePath);
 

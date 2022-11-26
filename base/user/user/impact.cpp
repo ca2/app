@@ -1031,7 +1031,7 @@ namespace user
 
    //   }
 
-   //   retry_multi_lock synchronouslock(synchronization, ::duration(1), ::duration(1));
+   //   retry_multi_lock synchronouslock(synchronization, ::time(1), ::time(1));
 
    //   try
    //   {

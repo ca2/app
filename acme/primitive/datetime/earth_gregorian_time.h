@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 2022-10-12 10:11 <3ThomasBorregaardSorensen!!
 //
 #pragma once
@@ -41,7 +41,7 @@ namespace earth
 
          inline time(const ::earth::time &time, ::i64 iNanosecond, const time_shift &timeshift = time_shift::none());
 
-         inline time(const ::duration &duration, const time_shift &timeshift = time_shift::none());
+         inline time(const class ::time &time, const time_shift &timeshift = time_shift::none());
 
          inline void set(const struct ::tm *ptm, ::i64 iNanosecond = 0)
          {
@@ -59,7 +59,7 @@ namespace earth
 
          inline void set(const ::earth::time &time, ::i64 iNanosecond, const time_shift &timeshift);
 
-         inline void set(const ::duration &time, const time_shift &timeshift);
+         inline void set(const class ::time &time, const time_shift &timeshift);
 
          ::time_t get_time_t();
 

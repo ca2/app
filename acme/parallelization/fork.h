@@ -67,7 +67,7 @@ inline auto new_predicateicate_task(::particle * pparticle, PRED pred)
 //   ::task_pointer                          m_ptask;
 //   bool                                         m_bExecuting;
 //   bool                                         m_bPending;
-//   ::duration                                       m_durationStart;
+//   class ::time                                       m_timeStart;
 //
 //   runner()
 //   {
@@ -85,10 +85,10 @@ inline auto new_predicateicate_task(::particle * pparticle, PRED pred)
 //
 //
 //   template < typename PRED >
-//   void operator()(::duration duration, PRED pred)
+//   void operator()(class ::time time, PRED pred)
 //   {
 //
-//      m_durationStart = ::duration::now() + duration;
+//      m_timeStart = class ::time::now() + time;
 //
 //      m_bPending = true;
 //
@@ -107,7 +107,7 @@ inline auto new_predicateicate_task(::particle * pparticle, PRED pred)
 //
 //                   }
 //
-//                   if(m_durationStart.elapsed() >= 0 && !m_bExecuting)
+//                   if(m_timeStart.elapsed() >= 0 && !m_bExecuting)
 //                   {
 //
 //                      m_bPending = false;
@@ -452,7 +452,7 @@ public:
 
 
 //template < typename PRED, typename PRED_END >
-//::count fork_count_end_predicate(::count iCount, PRED pred, PRED_END predEnd, ::duration duration = ::duration::infinite(), index iStart = 0)
+//::count fork_count_end_predicate(::count iCount, PRED pred, PRED_END predEnd, class ::time time = ::time::infinite(), index iStart = 0)
 //{
 //
 //   //ASSERT(pobjectParent != nullptr && pobjectParent->application() != nullptr);

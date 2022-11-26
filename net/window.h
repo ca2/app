@@ -33,12 +33,12 @@ namespace app_net
 
       string                        m_strUrl;
       double                        m_dBreathPeriod;
-      ::duration                    m_durationStart;
+      class ::time                    m_timeStart;
       double                        m_dPhaseShift;
       ::write_text::font_pointer    m_pfont;
       string                        m_strGet;
       bool                          m_bGettingUrl;
-      ::duration                    m_durationStartGettingUrl;
+      class ::time                    m_timeStartGettingUrl;
 
 
       window();

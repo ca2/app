@@ -896,10 +896,10 @@ void particle::trace_log_fatal(const char * psz, ...)
 }
 
 
-::e_status particle::lock(const class ::wait & wait)
+::e_status particle::lock(const class time & timeWait)
 {
 
-   return this->wait(wait);
+   return this->wait(timeWait);
 
 }
 
@@ -912,10 +912,10 @@ void particle::_lock()
 }
 
 
-bool particle::_lock(const class ::wait & wait)
+bool particle::_lock(const class time & timeWait)
 {
 
-   return this->_wait(wait);
+   return this->_wait(timeWait);
 
 }
 
@@ -923,7 +923,7 @@ bool particle::_lock(const class ::wait & wait)
 void particle::_wait()
 {
 
-   _wait(::wait::infinite());
+   _wait(::time::infinite());
 
 }
 
@@ -973,13 +973,13 @@ void particle::_wait()
 }
 
 
-::e_status particle::wait(const class ::wait & wait)
+::e_status particle::wait(const class time & timeWait)
 {
 
-   if (wait < 200_ms)
+   if (timeWait < 200_ms)
    {
 
-      auto bOk = this->_wait(wait);
+      auto bOk = this->_wait(timeWait);
 
       if(!bOk)
       {
@@ -992,7 +992,7 @@ void particle::_wait()
 
    }
 
-   if(wait.is_infinite())
+   if(timeWait.is_infinite())
    {
 
       return this->wait();
@@ -1011,7 +1011,7 @@ void particle::_wait()
    if (::is_null(ptask))
    {
 
-      auto bOk = this->_wait(wait);
+      auto bOk = this->_wait(timeWait);
 
       if(!bOk)
       {
@@ -1024,14 +1024,14 @@ void particle::_wait()
 
    }
 
-   auto waitStart = ::wait::now();
+   auto waitStart = ::time::now();
 
    while(true)
    {
 
       auto waitElapsed = waitStart.elapsed();
 
-      if (waitElapsed > wait)
+      if (waitElapsed > timeWait)
       {
 
          return error_wait_timeout;
@@ -1077,7 +1077,7 @@ void particle::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */)
 }
 
 
-bool particle::_wait(const class ::wait & wait)
+bool particle::_wait(const class time & timeWait)
 {
 
 //#ifdef WINDOWS
@@ -1261,7 +1261,7 @@ void particle::exit_wait()
 //particle_result particle::wait()
 //{
 //
-//   return wait(duration::infinite());
+//   return wait(time::infinite());
 //
 //}
 
@@ -1284,7 +1284,7 @@ bool particle::is_locked() const
    try
    {
 
-      synchronouslock.lock(duration::zero());
+      synchronouslock.lock(time::zero());
 
    }
    catch (...)
@@ -1484,10 +1484,7 @@ bool particle::_handle_call(::payload & payload, const ::block & blockObject, co
 //}
 
 
-
-
-
-::duration particle::timeout() const
+class ::time particle::timeout() const
 {
 
    return 1_min;
@@ -1495,7 +1492,7 @@ bool particle::_handle_call(::payload & payload, const ::block & blockObject, co
 }
 
 
-void particle::set_timeout(const ::duration & durationTimeout)
+void particle::set_timeout(const class time & timeTimeout)
 {
 
    throw interface_only();
@@ -1578,7 +1575,7 @@ void particle::set_library_name(const char* pszLibraryName)
 //}
 //
 //
-//::e_status particle::wait(const class ::wait & wait)
+//::e_status particle::wait(const class time & timeWait)
 //{
 //
 //   return ::success;

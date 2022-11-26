@@ -84,7 +84,7 @@ namespace user
       };
 
 
-      //::duration                           m_durationFocusStart;
+      //class ::time                           m_timeFocusStart;
       bool                                   m_bUserElementOk;
       ::user::primitive *                    m_puserprimitive;
       ::user::interaction *                  m_puserinteraction;
@@ -352,7 +352,7 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      virtual void SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr);
+      virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr);
       virtual void KillTimer(uptr uEvent);
 
 

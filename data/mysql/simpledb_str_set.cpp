@@ -8,7 +8,7 @@ class CLASS_DECL_AURA db_str_set_item
 public:
 
 
-   ::duration m_durationTimeout;
+   ::time m_timeTimeout;
    string            m_str;
 
 
@@ -21,7 +21,7 @@ class CLASS_DECL_AURA db_str_set_queue_item:
 public:
 
    string            m_strKey;
-   ::duration m_durationTimeout;
+   ::time m_timeTimeout;
    string            m_str;
 
 
@@ -35,7 +35,7 @@ public:
       if(this != &item)
       {
          m_strKey = item.m_strKey;
-         m_durationTimeout = item.m_durationTimeout;
+         m_timeTimeout = item.m_timeTimeout;
          m_str = item.m_str;
       }
       return *this;
@@ -285,7 +285,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
 
       db_str_set_item stritem;
 
-      if(m_pcore->m_map.lookup(lpKey,stritem) && stritem.m_durationTimeout > ::get_tick())
+      if(m_pcore->m_map.lookup(lpKey,stritem) && stritem.m_timeTimeout > ::get_tick())
       {
          strValue = stritem.m_str;
          return true;
@@ -316,7 +316,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
 
       strValue = set["get_response"];
 
-      stritem.m_durationTimeout= ::duration::now() + 23 * (5000);
+      stritem.m_timeTimeout= ::time::now() + 23 * (5000);
       stritem.m_str = strValue;
 
       m_pcore->m_map.set_at(lpKey,stritem);
@@ -463,7 +463,7 @@ bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
 
       db_str_set_item stritem;
 
-      stritem.m_durationTimeout= ::duration::now() + 23 * (5000);
+      stritem.m_timeTimeout= ::time::now() + 23 * (5000);
       stritem.m_str = lpcsz;
 
       m_pcore->m_map.set_at(lpKey,stritem);

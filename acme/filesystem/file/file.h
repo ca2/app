@@ -36,7 +36,7 @@ namespace file
       ::file::e_open             m_eopen;
       ::file::path               m_path;
       ::file::e_state            m_estate;
-      ::duration                 m_durationErrorBlockTimeout;
+      class ::time               m_timeErrorBlockTimeout;
 
 
       file();

@@ -1,13 +1,13 @@
 ﻿#define NO_TEMPLATE
 
-struct DURATION;
+struct TIME;
 
 
 class matter;
 class topic;
 class context;
 class payload;
-class duration;
+class time;
 class task_pool;
 class object;
 //class stream;

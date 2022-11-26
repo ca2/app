@@ -131,7 +131,7 @@ namespace user
 
       //m_puserinteraction->message_call(e_message_size, 0, process_state().m_size.lparam());
 
-      //m_puserinteraction->m_durationLastVisualChange.Now();
+      //m_puserinteraction->m_timeLastVisualChange.Now();
 
       //m_puserinteraction->m_bSizeMove = true;
 
@@ -1612,7 +1612,7 @@ namespace user
    }
 
 
-   void primitive_impl::SetTimer(uptr uEvent, const ::duration & millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
+   void primitive_impl::SetTimer(uptr uEvent, const ::time & millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
    {
 
       if (millisEllapse < 500_ms)

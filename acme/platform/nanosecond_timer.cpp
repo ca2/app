@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "nanosecond_timer.h"
 #include "acme/_operating_system.h"
 
@@ -32,19 +32,19 @@ nanosecond_timer::~nanosecond_timer()
 }
 
 
-void nanosecond_timer::wait(const ::duration & duration)
+void nanosecond_timer::wait(const class time & time)
 {
 
 #ifdef WINDOWS
 
    LARGE_INTEGER li = {};
 
-   li.QuadPart = -duration.integral_nanosecond().m_i / 100LL;
+   li.QuadPart = -time.integral_nanosecond().m_i / 100LL;
 
    if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, false))
    {
 
-      ::preempt(duration);
+      ::preempt(time);
 
    }
    else
@@ -58,9 +58,9 @@ void nanosecond_timer::wait(const ::duration & duration)
 
    struct timespec timespec;
 
-   timespec.tv_sec = (time_t) duration.m_iSecond;
+   timespec.tv_sec = (time_t) time.m_iSecond;
 
-   timespec.tv_nsec = (long) duration.m_iNanosecond;
+   timespec.tv_nsec = (long) time.m_iNanosecond;
 
    ::nanosleep(&timespec, nullptr);
 

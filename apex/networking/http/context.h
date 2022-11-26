@@ -26,7 +26,7 @@ namespace http
          string         m_strUrl;
          string         m_strAutoConfigScript;
          tinyjs *       m_pjs;
-         ::duration           m_durationLastChecked;
+         class ::time           m_timeLastChecked;
 
 
          //pac(::particle * pparticle);
@@ -47,7 +47,7 @@ namespace http
          bool           m_bDirect;
          string         m_strProxy;
          i32        m_iPort;
-         ::duration m_durationLastChecked;
+         class ::time m_timeLastChecked;
 
 
          //proxy(::particle * pparticle);

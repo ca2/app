@@ -135,7 +135,7 @@ void object::process_exit_status(const ::e_status & estatus)
     }
 
 
-       void object::sleep(const ::duration& duration)
+       void object::sleep(const class time & time)
     {
 
        return ::success;
@@ -618,7 +618,7 @@ void object::delete_this()
     }
 
 
-    void object::child_post_quit_and_wait(const char* pszTag, const duration& duration)
+    void object::child_post_quit_and_wait(const char* pszTag, const time& time)
     {
 
 
@@ -734,15 +734,15 @@ void object::delete_this()
    //}
 
 
-   // void message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   // void message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
    //{
 
-   //   return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, process);
+   //   return message_box_timeout(nullptr, pszMessage, pszTitle, timeTimeout, emessagebox, process);
 
    //}
 
    // void message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-   // void message_box_timeout(::user::primitive* puserinteractionOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   // void message_box_timeout(::user::primitive* puserinteractionOwner, const char* pszMessage, const char* pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 
     void object::release_references()
     {

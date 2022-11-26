@@ -1483,15 +1483,15 @@ bool task::has_message() const
 }
 
 
-bool task::task_sleep(const class ::wait & wait)
+bool task::task_sleep(const class time & timeWait)
 {
    
-   auto waitStart = ::wait::now();
+   auto waitStart = ::time::now();
    
    while(task_get_run())
    {
 
-      auto waitStep = minimum(wait - waitStart.elapsed(), 100_ms);
+      auto waitStep = minimum(timeWait - waitStart.elapsed(), 100_ms);
 
       if (!waitStep)
       {
@@ -1579,10 +1579,10 @@ CLASS_DECL_ACME bool __task_sleep(task* task)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait)
+CLASS_DECL_ACME bool __task_sleep(task* ptask, const class time & timeWait)
 {
 
-   if (wait < 1000_ms)
+   if (timeWait < 1000_ms)
    {
 
       if (!ptask->task_get_run())
@@ -1592,7 +1592,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait)
 
       }
 
-      preempt(wait);
+      preempt(timeWait);
 
       return ptask->task_get_run();
 
@@ -1627,7 +1627,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait)
 
       }
 
-      ptask->m_pevSleep->wait(wait);
+      ptask->m_pevSleep->wait(timeWait);
 
       if (!ptask->task_get_run())
       {
@@ -1671,10 +1671,10 @@ CLASS_DECL_ACME bool __task_sleep(::task* ptask, ::particle * pparticle)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, ::particle * pparticle)
+CLASS_DECL_ACME bool __task_sleep(task* ptask, const class time & timeWait, ::particle * pparticle)
 {
 
-   if (wait < 1000_ms)
+   if (timeWait < 1000_ms)
    {
 
       if (!ptask->task_get_run())
@@ -1684,13 +1684,13 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, ::part
 
       }
 
-      pparticle->_wait(wait);
+      pparticle->_wait(timeWait);
 
       return ptask->task_get_run();
 
    }
 
-   auto iTenths = (::i32) (wait.u32() / 100);
+   auto iTenths = (::i32) (timeWait.integral_millisecond().m_i / 100);
 
    try
    {
@@ -1721,7 +1721,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, ::part
 }
 
 
-//CLASS_DECL_ACME bool task_sleep(const ::duration & duration)
+//CLASS_DECL_ACME bool task_sleep(const class time & time)
 //{
 //
 //   auto ptask = ::get_task();
@@ -1732,14 +1732,14 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, ::part
 //      if (::is_null(psync))
 //      {
 //
-//         if (__os(::duration) == U32_INFINITE_TIMEOUT)
+//         if (__os(::time) == U32_INFINITE_TIMEOUT)
 //         {
 //
 //         }
 //         else
 //         {
 //
-//            ::preempt(::duration);
+//            ::preempt(::time);
 //
 //         }
 //
@@ -1747,7 +1747,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, ::part
 //      else
 //      {
 //
-//         if (__os(::duration) == U32_INFINITE_TIMEOUT)
+//         if (__os(::time) == U32_INFINITE_TIMEOUT)
 //         {
 //
 //            return psync->lock();
@@ -1756,7 +1756,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, ::part
 //         else
 //         {
 //
-//            return psync->lock(::duration);
+//            return psync->lock(::time);
 //
 //         }
 //
@@ -1769,7 +1769,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, ::part
 //   if (::is_null(psync))
 //   {
 //
-//      if (__os(::duration) == U32_INFINITE_TIMEOUT)
+//      if (__os(::time) == U32_INFINITE_TIMEOUT)
 //      {
 //
 //         return __task_sleep(ptask);
@@ -1778,7 +1778,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, ::part
 //      else
 //      {
 //
-//         return __task_sleep(ptask, ::duration);
+//         return __task_sleep(ptask, ::time);
 //
 //      }
 //
@@ -1786,7 +1786,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, ::part
 //   else
 //   {
 //
-//      if (__os(::duration) == U32_INFINITE_TIMEOUT)
+//      if (__os(::time) == U32_INFINITE_TIMEOUT)
 //      {
 //
 //         return __task_sleep(ptask, psync);
@@ -1795,7 +1795,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, ::part
 //      else
 //      {
 //
-//         return __task_sleep(ptask, ::duration, psync);
+//         return __task_sleep(ptask, ::time, psync);
 //
 //      }
 //
@@ -1806,7 +1806,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, ::part
 
 
 
-CLASS_DECL_ACME bool task_sleep(const class ::wait & wait)
+CLASS_DECL_ACME bool task_sleep(const class time & timeWait)
 {
    
    auto ptask = ::get_task();
@@ -1814,13 +1814,13 @@ CLASS_DECL_ACME bool task_sleep(const class ::wait & wait)
    if(::is_null(ptask))
    {
     
-      ::preempt(wait);
+      ::preempt(timeWait);
       
       return true;
       
    }
    
-   if(!ptask->task_sleep(wait))
+   if(!ptask->task_sleep(timeWait))
    {
       
       return false;
@@ -1857,7 +1857,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //CLASS_DECL_ACME bool __simple_task_sleep(class ::wait wait)
 //{
 //
-//   auto waitStart = class ::wait::now();
+//   auto waitStart = class ::time::now();
 //
 //   while (waitStart > 300)
 //   {
@@ -1882,7 +1882,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //
 //   }
 //
-//   preempt((::duration)iMillisecond);
+//   preempt((::time)iMillisecond);
 //
 //   return ::task_get_run();
 //
@@ -1942,7 +1942,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //
 //   }
 //
-//   if (psync->wait(::duration(iMillisecond)).succeeded())
+//   if (psync->wait(::time(iMillisecond)).succeeded())
 //   {
 //
 //      return true;
@@ -1954,13 +1954,13 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //}
 //
 
-//CLASS_DECL_ACME bool acme_task_sleep(::duration ::duration, synchronization* psync)
+//CLASS_DECL_ACME bool acme_task_sleep(::time ::time, synchronization* psync)
 //{
 //
 //   if (::is_null(psync))
 //   {
 //
-//      if (__os(::duration) == U32_INFINITE_TIMEOUT)
+//      if (__os(::time) == U32_INFINITE_TIMEOUT)
 //      {
 //
 //         return __simple_task_sleep();
@@ -1969,7 +1969,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //      else
 //      {
 //
-//         return __simple_task_sleep(::duration);
+//         return __simple_task_sleep(::time);
 //
 //      }
 //
@@ -1977,7 +1977,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //   else
 //   {
 //
-//      if (__os(::duration) == U32_INFINITE_TIMEOUT)
+//      if (__os(::time) == U32_INFINITE_TIMEOUT)
 //      {
 //
 //         return __simple_task_sleep(psync);
@@ -1986,7 +1986,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //      else
 //      {
 //
-//         return __simple_task_sleep(::duration, psync);
+//         return __simple_task_sleep(::time, psync);
 //
 //      }
 //
@@ -1996,10 +1996,10 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 
 //PFN_task_sleep g_pfnThreadSleep = acme_task_sleep;
 
-//CLASS_DECL_ACME bool tas_sleep(::duration ::duration, synchronization* psync)
+//CLASS_DECL_ACME bool tas_sleep(::time ::time, synchronization* psync)
 //{
 //
-//   return g_pfnThreadSleep(::duration, psync);
+//   return g_pfnThreadSleep(::time, psync);
 //
 //}
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 /* Copyright 2012 William Woodall and John Harrison */
 #include "acme/platform/serial.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -43,7 +43,7 @@ namespace serial
    }
 
 
-   timeout timeout::simpleTimeout(const ::duration & duration)
+   timeout timeout::simpleTimeout(const class time & time)
    {
 
       return 0;
@@ -51,9 +51,9 @@ namespace serial
    }
 
 //#ifdef WINDOWS
-//      return struct timeout(::duration::infinite(), duration, MAXDWORD, duration, 0);
+//      return struct timeout(::time::infinite(), time, MAXDWORD, time, 0);
 //#else
-//      return ::serial::timeout(::duration::infinite(), duration, 0, duration, 0);
+//      return ::serial::timeout(::time::infinite(), time, 0, time, 0);
 //#endif
 //   }
 
@@ -98,7 +98,7 @@ namespace serial
 
       //timeout timeout(m_pimpl->getTimeout());
       // 
-      //return m_pimpl->waitReadable(timeout.m_durationReadTimeoutConstant);
+      //return m_pimpl->waitReadable(timeout.m_timeReadTimeoutConstant);
 
       return false;
 
@@ -486,10 +486,10 @@ namespace serial
    }
 
 
-   void serial::sendBreak(int duration)
+   void serial::sendBreak(int time)
    {
 
-      //m_pimpl->sendBreak(duration);
+      //m_pimpl->sendBreak(time);
 
    }
 
@@ -1100,7 +1100,7 @@ namespace serial
 //}
 //
 //
-//void serial::sendBreak(int duration)
+//void serial::sendBreak(int time)
 //{
 //
 //

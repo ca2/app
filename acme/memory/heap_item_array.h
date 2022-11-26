@@ -7,19 +7,19 @@ class CLASS_DECL_ACME heap_item_array:
 public:
 
 #ifdef _UWP
-   ::duration m_durationLastCleanup;
+   class ::time m_timeLastCleanup;
 #else
-   ::duration m_durationLastCleanup;
+   class ::time m_timeLastCleanup;
 #endif
 
    inline void add_item(void * p,memsize iSize)
    {
 #ifdef _UWP
       add(heap_item(point,iSize,GetTickCount64()));
-      if(GetTickCount64() > m_durationLastCleanup + 10000)
+      if(GetTickCount64() > m_timeLastCleanup + 10000)
 #else
       add(heap_item(point,iSize,::get_tick()));
-      if(::get_tick() > m_durationLastCleanup + 10000)
+      if(::get_tick() > m_timeLastCleanup + 10000)
 #endif
       {
          cleanup();
@@ -31,7 +31,7 @@ public:
 #ifdef _UWP
       DWORD64 dwLimit = GetTickCount64() - 1000;
 #else
-      DWORD64 dwLimit= ::duration::now() - 1000;
+      DWORD64 dwLimit= class ::time::now() - 1000;
 #endif
       for(i32 i = 0; i < this->get_count();)
       {
@@ -45,9 +45,9 @@ public:
          }
       }
 #ifdef _UWP
-      m_durationLastCleanup = GetTickCount64();
+      m_timeLastCleanup = GetTickCount64();
 #else
-      m_durationLastCleanup= ::duration::now();
+      m_timeLastCleanup= class ::time::now();
 #endif
    }
 

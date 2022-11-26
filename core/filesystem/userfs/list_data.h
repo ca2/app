@@ -18,7 +18,7 @@ namespace userfs
       index                      m_iNameSubItemText;
       index                      m_iSelectionSubItem;
       index                      m_iSizeSubItem;
-      ::duration                 m_durationLastFileSizeGet;
+      class ::time                 m_timeLastFileSizeGet;
 
       ::pointer<list_item_array>m_pitema;
 

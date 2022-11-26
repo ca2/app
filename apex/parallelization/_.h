@@ -133,7 +133,7 @@
 
 
 //CLASS_DECL_APEX bool do_events();
-//CLASS_DECL_APEX bool do_events(const duration & duration);
+//CLASS_DECL_APEX bool do_events(const class time & time);
 
 class tool_task;
 class task_tool;

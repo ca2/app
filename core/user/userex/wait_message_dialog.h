@@ -14,8 +14,8 @@ namespace userex
    public:
 
 
-      ::duration              m_durationStart;
-      ::duration              m_durationDelay;
+      class ::time              m_timeStart;
+      class ::time              m_timeDelay;
       atom                      m_atomResponse;
       ::integral_second       m_second;
 
@@ -36,7 +36,7 @@ namespace userex
 
       virtual bool on_timeout_check();
       virtual bool on_timeout();
-      virtual void on_timer_soft_reload(::duration tickTimeout);
+      virtual void on_timer_soft_reload(class ::time tickTimeout);
 
       
       //void handle(::topic * ptopic, ::context * pcontext) override;

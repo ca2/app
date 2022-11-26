@@ -352,20 +352,20 @@ payload::payload(const ::atom & atom)
 }
 
 
-payload::payload(const ::duration & duration)
+payload::payload(const class time & time)
 {
 
-   m_etype = e_type_duration;
-   m_duration = duration;
+   m_etype = e_type_time;
+   m_time = time;
 
 }
 
 
-payload::payload(::duration * pduration)
+payload::payload(::time * ptime)
 {
 
-   m_etype = e_type_pduration;
-   m_pduration = pduration;
+   m_etype = e_type_ptime;
+   m_ptime = ptime;
 
 }
 
@@ -1420,19 +1420,19 @@ class ::payload & payload::operator = (const ::atom & atom)
 //}
 //
 //
-//class ::payload & payload::operator = (const ::duration & duration)
+//class ::payload & payload::operator = (const class time & time)
 //{
 //
 //   set_type(e_type_millis);
 //
-//   m_millis = ::duration;
+//   m_millis = ::time;
 //
 //   return *this;
 //
 //}
 //
 //
-//class ::payload & payload::operator = (::duration * pmillis)
+//class ::payload & payload::operator = (::time * pmillis)
 //{
 //
 //   set_type(e_type_pmillis);
@@ -1492,24 +1492,24 @@ class ::payload & payload::operator = (const ::atom & atom)
 //}
 
 
-class ::payload & payload::operator = (const ::duration & duration)
+class ::payload & payload::operator = (const class time & time)
 {
 
-   set_type(e_type_duration);
+   set_type(e_type_time);
 
-   m_duration = duration;
+   m_time = time;
 
    return *this;
 
 }
 
 
-class ::payload & payload::operator = (::duration * pduration)
+class ::payload & payload::operator = (::time * ptime)
 {
 
-   set_type(e_type_pduration);
+   set_type(e_type_ptime);
 
-   m_pduration = pduration;
+   m_ptime = ptime;
 
    return *this;
 
@@ -3879,31 +3879,31 @@ i64_array & payload::i64a_reference()
 }
 
 
-duration payload::duration() const
+time payload::time() const
 {
 
    if (m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->duration();
+      return m_ppayload->time();
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->duration();
+      return m_pproperty->time();
 
    }
-   else    if (m_etype == e_type_duration)
+   else    if (m_etype == e_type_time)
    {
 
-      return m_duration;
+      return m_time;
 
    }
-   else if (m_etype == e_type_pduration)
+   else if (m_etype == e_type_ptime)
    {
 
-      return *m_pduration;
+      return *m_ptime;
 
    }
    else if(is_integer())
@@ -3929,41 +3929,41 @@ duration payload::duration() const
 
 
 
-duration & payload::duration_reference()
+time & payload::time_reference()
 {
 
    if (m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->duration_reference();
+      return m_ppayload->time_reference();
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->duration_reference();
+      return m_pproperty->time_reference();
 
    }
-   else if (m_etype == e_type_duration)
+   else if (m_etype == e_type_time)
    {
 
-      return m_duration;
+      return m_time;
 
    }
-   else if (m_etype == e_type_pduration)
+   else if (m_etype == e_type_ptime)
    {
 
-      return *m_pduration;
+      return *m_ptime;
 
    }
    else
    {
 
-      set_type(e_type_duration);
+      set_type(e_type_time);
 
-      m_duration.set_null();
+      m_time.set_null();
 
-      return m_duration;
+      return m_time;
 
    }
 
@@ -4267,10 +4267,10 @@ property_set & payload::propset_reference()
 //}
 
 
-//const ::duration & payload::as_duration() const
+//const ::time & payload::as_time() const
 //{
 //
-//   return ((::payload *)this)->duration();
+//   return ((::payload *)this)->time();
 //
 //}
 
@@ -5636,16 +5636,16 @@ bool payload::is_natural() const
 //      return m_ppropertyset != nullptr && ::papaya::array::every::is_true(m_ppropertyset->values());
 //
 //   }
-//   else if (m_etype == e_type_duration)
+//   else if (m_etype == e_type_time)
 //   {
 //
-//      return m_duration.operator bool();
+//      return m_time.operator bool();
 //
 //   }
-//   else if (m_etype == e_type_pduration)
+//   else if (m_etype == e_type_ptime)
 //   {
 //
-//      return m_pduration != nullptr && m_pduration->operator bool();
+//      return m_ptime != nullptr && m_ptime->operator bool();
 //
 //   }
 //   else if (m_etype == e_type_i8)
@@ -6906,10 +6906,10 @@ bool payload::is_false() const
       return !m_pstr || m_pstr->is_empty() || !m_pstr->compare_ci("false")  || !m_pstr->compare_ci("no");
    case e_type_type:
       return m_str.is_empty();
-   case e_type_duration:
-      return m_duration.is_null();
-   case e_type_pduration:
-      return !m_pduration || m_pduration->is_null();
+   case e_type_time:
+      return m_time.is_null();
+   case e_type_ptime:
+      return !m_ptime || m_ptime->is_null();
    case e_type_id:
       return m_atom.is_empty() || !m_atom.compare_ci("false") || !m_atom.compare_ci("no");
    case e_type_pid:
@@ -7092,10 +7092,10 @@ bool payload::is_set_false() const
       return !m_pstr || m_pstr->is_empty() || !m_pstr->compare_ci("false")  || !m_pstr->compare_ci("no");
    case e_type_type:
       return m_str.is_empty();
-   case e_type_duration:
-      return m_duration.is_null();
-   case e_type_pduration:
-      return !m_pduration || m_pduration->is_null();
+   case e_type_time:
+      return m_time.is_null();
+   case e_type_ptime:
+      return !m_ptime || m_ptime->is_null();
    case e_type_id:
       return m_atom.is_empty() || !m_atom.compare_ci("false") || !m_atom.compare_ci("no");
    case e_type_pid:

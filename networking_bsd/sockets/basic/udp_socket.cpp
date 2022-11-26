@@ -476,15 +476,15 @@ namespace sockets_bsd
          if (m_b_read_ts)
          {
             
-            ::duration duration;
+            ::time time;
 
-            duration.Now();
+            time.Now();
 
             struct timeval timeval;
 
-            timeval.tv_sec = (long) duration.m_iSecond;
+            timeval.tv_sec = (long) time.m_iSecond;
 
-            timeval.tv_usec = (int) (duration.m_iNanosecond / 1'000);
+            timeval.tv_usec = (int) (time.m_iNanosecond / 1'000);
 
 #if !defined(LINUX) && !defined(MACOSX)
             memsize n = recvfrom(GetSocketId(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
@@ -558,15 +558,15 @@ namespace sockets_bsd
       if (m_b_read_ts)
       {
          
-         ::duration duration;
+         ::time time;
 
-         duration.Now();
+         time.Now();
 
          timeval timeval;
 
-         timeval.tv_sec = (long) duration.m_iSecond;
+         timeval.tv_sec = (long) time.m_iSecond;
 
-         timeval.tv_usec = (int) (duration.m_iNanosecond / 1'000);
+         timeval.tv_usec = (int) (time.m_iNanosecond / 1'000);
 
 #if !defined(LINUX) && !defined(MACOSX)
 

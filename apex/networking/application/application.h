@@ -38,7 +38,7 @@ namespace networking
       virtual i32 get_current_port();
 
 
-      virtual i32 wait_get_current_port(const ::duration & duration);
+      virtual i32 wait_get_current_port(const class time & time);
 
 
       virtual void add_handler(const ::string& strPrefix, ::networking::application_handler* phandler);

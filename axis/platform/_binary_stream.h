@@ -11,7 +11,7 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, con
 {
 
    stream << t.m_str;
-   stream << t.m_duration;
+   stream << t.m_time;
 
    return stream;
 
@@ -23,7 +23,7 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, cla
 {
 
    stream >> t.m_str;
-   stream >> t.m_duration;
+   stream >> t.m_time;
 
    return stream;
 

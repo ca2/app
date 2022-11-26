@@ -75,7 +75,7 @@
 //namespace str
 //{
 //
-//   string CLASS_DECL_AURA get_window_text_timeout(::windowing::window * pwindow, ::duration tickTimeout = 1000);
+//   string CLASS_DECL_AURA get_window_text_timeout(::windowing::window * pwindow, class ::time tickTimeout = 1000);
 //
 //} // namespace str
 //

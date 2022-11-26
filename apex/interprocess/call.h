@@ -49,7 +49,7 @@ namespace interprocess
       ::pointer<synchronization_array>synca();
 
       ::e_status wait() override;
-      bool _wait(const class ::wait & wait) override;
+      bool _wait(const class time & timeWait) override;
 
 
       virtual atom_array prepare_call();

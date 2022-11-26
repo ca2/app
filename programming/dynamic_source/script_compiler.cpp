@@ -775,7 +775,7 @@ namespace dynamic_source
 
       //::system(str + " > " + "\"" + strClog + "\"");
 
-      auto tickStart = ::duration::now();
+      auto tickStart = ::time::now();
 
       string strLog;
 
@@ -960,7 +960,7 @@ namespace dynamic_source
 
          process->create_child_process(strLinker,true,nullptr,::e_priority_highest);
 
-         auto tickStart = ::duration::now();
+         auto tickStart = ::time::now();
 
          string strLog;
 
@@ -1591,7 +1591,7 @@ namespace dynamic_source
 
          process->create_child_process(str,true,nullptr,::e_priority_highest);
 
-         auto tickStart = ::duration::now();
+         auto tickStart = ::time::now();
 
          //u32 dwExitCode;
 
@@ -1740,7 +1740,7 @@ namespace dynamic_source
       ::parallelization::set_priority(::e_priority_highest);
 
       process->create_child_process(str,true,nullptr,::e_priority_highest);
-auto tickStart = ::duration::now();
+auto tickStart = ::time::now();
 
       string strLog;
 
@@ -2740,7 +2740,7 @@ ch_else:
 //bool script_compiler::library_DoesMatchVersion()
 //{
 
-//   if(m_durationLastLibraryVersionCheck.elapsed() < (5000))
+//   if(m_timeLastLibraryVersionCheck.elapsed() < (5000))
 //   {
 //      return m_bLastLibraryVersionCheck;
 //   }
@@ -2768,7 +2768,7 @@ ch_else:
 //         || __memcmp(&m_ftaLibModified[i], &st.st_mtime, sizeof(__time_t)) != 0)
 //      {
 //         m_bLastLibraryVersionCheck = false;
-//         m_durationLastLibraryVersionCheck= ::duration::now();
+//         m_timeLastLibraryVersionCheck= ::time::now();
 //         return false;
 
 //      }
@@ -2776,7 +2776,7 @@ ch_else:
 //   }
 
 //   m_bLastLibraryVersionCheck    = true;
-//   m_durationLastLibraryVersionCheck  = ::duration::now();
+//   m_timeLastLibraryVersionCheck  = ::time::now();
 
 //   return true;
 

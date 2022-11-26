@@ -87,9 +87,9 @@ namespace dynamic_source
       
       m_bCompiler = true;
 
-      m_durationBuildInterval        = 30_s;
-      m_durationTimeRandomInterval  = 30_s;
-      m_durationDatabaseWaitTimeOut     = 15_minutes;
+      m_timeBuildInterval        = 30_s;
+      m_timeTimeRandomInterval  = 30_s;
+      m_timeDatabaseWaitTimeOut     = 15_minutes;
 
       m_mapIncludeMatchesFileExists.InitHashTable(256 * 1024);
       m_mapIncludeMatchesIsDir.InitHashTable(256 * 1024);
@@ -1275,12 +1275,12 @@ namespace dynamic_source
    ::pointer<::crypto::rsa>script_manager::get_rsa_key()
    {
 
-      /*if(m_durationLastRsa.elapsed() > (5000))
+      /*if(m_timeLastRsa.elapsed() > (5000))
       {
 
          calc_rsa_key();
 
-         m_durationLastRsa= ::duration::now();
+         m_timeLastRsa= ::time::now();
 
       }*/
 

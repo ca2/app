@@ -325,7 +325,7 @@ namespace mysql
       if (pres) /* a result dataset was returned */
       {
 
-         m_durationLastUse.Now();
+         m_timeLastUse.Now();
 
          return pres;
 
@@ -336,7 +336,7 @@ namespace mysql
       if (m_iLastError == 0)
       {
 
-         m_durationLastUse.Now();
+         m_timeLastUse.Now();
 
          m_cAffectedRows = mysql_affected_rows((MYSQL*)m_pmysql);
 

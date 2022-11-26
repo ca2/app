@@ -7,7 +7,7 @@ public:
 
 
    bool                 m_bStart;
-   ::duration           m_durationStart;
+   class ::time           m_timeStart;
    index                m_iFrame;
 
 

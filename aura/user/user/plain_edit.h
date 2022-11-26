@@ -74,7 +74,7 @@ namespace user
       public:
          strsize                          m_iStart;
          strsize                          m_iEnd;
-         ::duration                             m_tick;
+         class ::time                             m_tick;
          string                           m_strMessage;
       };
 
@@ -168,7 +168,7 @@ namespace user
       //};
 
       int                                 m_iDrawTextFlags;
-      ::duration                              m_durationLastDraw;
+      class ::time                              m_timeLastDraw;
       array < error >                     m_errora;
       ::pointer<::message::key>          m_pmessagekeyLast;
 
@@ -206,7 +206,7 @@ namespace user
       bool                                m_bLMouseDown;
       bool                                m_bRMouseDown;
       point_i32                           m_pointSelStart;
-      ::duration                          m_durationCaretPeriod;
+      class ::time                          m_timeCaretPeriod;
       string_array                        m_straLines;
       double                              m_dy;
       bool                                m_bGetTextNeedUpdate;
@@ -256,7 +256,7 @@ namespace user
       virtual void set_callback(callback* pcallback);
 
 
-      inline bool is_caret_on() const { return m_durationFocusStart.integral_millisecond().on_off(m_durationCaretPeriod.integral_millisecond()); }
+      inline bool is_caret_on() const { return m_timeFocusStart.integral_millisecond().on_off(m_timeCaretPeriod.integral_millisecond()); }
 
 
       void get_text_composition_area(::rectangle_i32 & r) override;

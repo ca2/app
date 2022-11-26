@@ -113,11 +113,11 @@ namespace userex
 
       string strType = "top_impact";
 
-      ::duration t1 = ::duration::now();
+      ::time t1 = ::time::now();
 
       ::user::split_impact::_001OnDraw(pgraphics);
 
-      ::duration d1 = t1.elapsed();
+      ::time d1 = t1.elapsed();
 
 #ifdef VERBOSE_LOG      
 

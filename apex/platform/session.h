@@ -217,7 +217,7 @@ namespace apex
       //virtual bool file_is_read_only(const ::string & pszPath);
 
       // Long PhRESSing time
-      // time in ::durations that a pressing is considered a double click
+      // time in ::times that a pressing is considered a double click
       virtual ::u32 get_Long_PhRESSing_time();
 
       //virtual void defer_initialize_user_presence();

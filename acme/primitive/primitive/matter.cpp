@@ -791,7 +791,7 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 
    functionPost(function);
 
-   if (psynchronizer->m_evGoingToWrite.wait(functionReturn.m_waitTimeout).failed())
+   if (psynchronizer->m_evGoingToWrite.wait(functionReturn.m_timeTimeout).failed())
    {
 
       psynchronizer->set_flag(e_flag_timeout);

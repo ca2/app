@@ -20,7 +20,7 @@ namespace apex
 
       m_strAppId = strAppId;
 
-      m_durationCheckPeriod = 5_s;
+      m_timeCheckPeriod = 5_s;
 
    }
 
@@ -58,7 +58,7 @@ namespace apex
 
          }
 
-         sleep(m_durationCheckPeriod);
+         sleep(m_timeCheckPeriod);
 
       }
 

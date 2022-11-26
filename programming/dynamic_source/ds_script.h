@@ -29,13 +29,13 @@ namespace dynamic_source
       file_time_set                     m_ftDs;
 
       bool                             m_bLastVersionCheck;
-      ::duration                           m_durationLastVersionCheck;
+      class ::time                           m_timeLastVersionCheck;
       ::file::path                     m_strSourcePath;
       ::file::path                     m_strSourceDir;
       ::file::path                     m_strCppPath;
       ::file::path                     m_strScriptPath;
       manual_reset_event               m_evCreationEnabled;
-      ::duration                           m_durationLastBuildTime;
+      class ::time                           m_timeLastBuildTime;
       bool                             m_bShouldBuild;
       bool                             m_bShouldCalcTempError;
       bool                             m_bHasTempError;

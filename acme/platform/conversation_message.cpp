@@ -73,7 +73,7 @@ void conversation_message::initialize_conversation(const ::string & strMessage, 
 }
 
 
-::payload conversation_message::do_synchronously(const class ::wait & wait)
+::payload conversation_message::do_synchronously(const class time & timeWait)
 {
    
    do_asynchronously();

@@ -6,7 +6,7 @@ class CLASS_DECL_AURA db_long_set_item
 {
 public:
 
-   ::duration m_durationTimeout;
+   ::time m_timeTimeout;
    i64        m_l;
 
 };
@@ -17,7 +17,7 @@ class CLASS_DECL_AURA db_long_set_queue_item:
 public:
 
    string         m_strKey;
-   ::duration m_durationTimeout;
+   ::time m_timeTimeout;
    i64        m_l;
 
    db_long_set_queue_item() {}
@@ -30,7 +30,7 @@ public:
       if(this != &item)
       {
          m_strKey = item.m_strKey;
-         m_durationTimeout = item.m_durationTimeout;
+         m_timeTimeout = item.m_timeTimeout;
          m_l = item.m_l;
       }
       return *this;
@@ -213,7 +213,7 @@ bool db_long_set::load(const ::string & lpKey, i64 * plValue)
 
       db_long_set_item longitem;
 
-      if(m_pcore->m_map.lookup(lpKey,longitem) && longitem.m_durationTimeout > ::get_tick())
+      if(m_pcore->m_map.lookup(lpKey,longitem) && longitem.m_timeTimeout > ::get_tick())
       {
          *plValue = longitem.m_l;
          return true;
@@ -241,7 +241,7 @@ bool db_long_set::load(const ::string & lpKey, i64 * plValue)
 
       *plValue = ::str().to_i64(string((const ::string &)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
-      longitem.m_durationTimeout= ::duration::now() + 23 * (5000);
+      longitem.m_timeTimeout= ::time::now() + 23 * (5000);
       longitem.m_l = *plValue;
 
       m_pcore->m_map.set_at(lpKey,longitem);
@@ -325,7 +325,7 @@ bool db_long_set::save(const ::string & lpKey, i64 lValue)
 
       db_long_set_item longitem;
 
-      longitem.m_durationTimeout= ::duration::now() + 23 * (5000);
+      longitem.m_timeTimeout= ::time::now() + 23 * (5000);
       longitem.m_l = lValue;
 
       m_pcore->m_map.set_at(lpKey,longitem);

@@ -259,7 +259,7 @@ void simple_frame_window::task_save_window_placement()
 
       }
 
-      if (m_durationLastSaveWindowRectRequest.elapsed() < 150_ms)
+      if (m_timeLastSaveWindowRectRequest.elapsed() < 150_ms)
       {
 
          preempt(150_ms);
@@ -270,10 +270,10 @@ void simple_frame_window::task_save_window_placement()
 
          task_intensive_save_window_placement();
 
-         m_durationLastSaveWindowRect.Now();
+         m_timeLastSaveWindowRect.Now();
 
       }
-      else if (m_durationLastSaveWindowRect.elapsed() > 10_s)
+      else if (m_timeLastSaveWindowRect.elapsed() > 10_s)
       {
 
          break;
@@ -308,7 +308,7 @@ void simple_frame_window::task_intensive_save_window_placement()
 
       }
 
-      if (m_durationLastSaveWindowRect.elapsed() < 300_ms)
+      if (m_timeLastSaveWindowRect.elapsed() < 300_ms)
       {
 
          continue;
@@ -353,7 +353,7 @@ void simple_frame_window::defer_save_window_placement()
 
    m_bPendingSaveWindowRect = true;
 
-   m_durationLastSaveWindowRectRequest.Now();
+   m_timeLastSaveWindowRectRequest.Now();
 
    __defer_branch(task_save_window_placement);
 
@@ -1142,7 +1142,7 @@ void simple_frame_window::on_message_size(::message::message * pmessage)
 
    __UNREFERENCED_PARAMETER(pmessage);
 
-   //m_durationLastVisualChange.Now();
+   //m_timeLastVisualChange.Now();
 
    //if (get_parent() == nullptr)
    //{
@@ -1159,7 +1159,7 @@ void simple_frame_window::on_message_move(::message::message * pmessage)
 
    __UNREFERENCED_PARAMETER(pmessage);
 
-   m_durationLastVisualChange.Now();
+   m_timeLastVisualChange.Now();
 
 
 }
@@ -1259,7 +1259,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   m_durationLastVisualChange.Now();
+   m_timeLastVisualChange.Now();
 
 
 }
@@ -1277,7 +1277,7 @@ void simple_frame_window::on_reposition()
 
    ::user::frame_window::on_reposition();
 
-   m_durationLastVisualChange.Now();
+   m_timeLastVisualChange.Now();
 
 
 }
@@ -2466,7 +2466,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
 #ifdef VERBOSE_LOG
 
-      ::duration t1 = ::duration::now();
+      ::time t1 = ::time::now();
 
 #endif
 
@@ -2511,12 +2511,12 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
 #ifdef VERBOSE_LOG
 
-         ::duration d1 = t1.elapsed();
+         ::time d1 = t1.elapsed();
 
          if (d1 > 50_ms)
          {
 
-            CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.\n");
+            CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::time.\n");
 
          }
 
@@ -2535,7 +2535,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
 #ifdef VERBOSE_LOG
 
-            ::duration t1 = ::duration::now();
+            ::time t1 = ::time::now();
 
 #endif
 
@@ -2548,7 +2548,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
             if (d1 > 50_ms)
             {
 
-               CATEGORY_INFORMATION(prodevian, "(more than 50ms) draw_frame_and_control_box_over took " << d1.integral_millisecond() << "::duration.\n");
+               CATEGORY_INFORMATION(prodevian, "(more than 50ms) draw_frame_and_control_box_over took " << d1.integral_millisecond() << "::time.\n");
 
             }
 
@@ -3417,11 +3417,11 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                   {
 
-                     ::duration t1 = ::duration::now();
+                     ::time t1 = ::time::now();
 
                      pinteraction->_000CallOnDraw(pgraphics);
 
-                     ::duration d1 = t1.elapsed();
+                     ::time d1 = t1.elapsed();
 
                      if (d1 > 50_ms)
                      {
@@ -3437,7 +3437,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
 #ifdef VERBOSE_LOG                        
 
-                        CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.");
+                        CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::time.");
 
 #endif
 
@@ -3463,7 +3463,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
 #ifdef VERBOSE_LOG
 
-      ::duration t1 = ::duration::now();
+      ::time t1 = ::time::now();
 
 #endif
 
@@ -3473,12 +3473,12 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
 #ifdef VERBOSE_LOG
 
-      ::duration d1 = t1.elapsed();
+      ::time d1 = t1.elapsed();
 
       if (d1 > 50_ms)
       {
 
-         CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << "::duration.\n");
+         CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << "::time.\n");
 
       }
 
@@ -3486,15 +3486,15 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    }
 
-   ::duration tx = ::duration::now();
+   ::time tx = ::time::now();
 
    bool bTransparentFrame = frame_is_transparent();
 
    bool bActive = is_active_window();
 
-   ::duration taxw = ::duration::now();
+   ::time taxw = ::time::now();
 
-   ::duration daxw = taxw.elapsed();
+   ::time daxw = taxw.elapsed();
 
    if (daxw > 50_ms)
    {
@@ -3503,7 +3503,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    }
 
-   ::duration txx = ::duration::now();
+   ::time txx = ::time::now();
 
    if (m_bWindowFrame && (!bTransparentFrame || bActive))
    {
@@ -3549,7 +3549,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
 #ifdef VERBOSE_LOG
 
-                        ::duration t1 = ::duration::now();
+                        ::time t1 = ::time::now();
 
 #endif
 
@@ -3557,7 +3557,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
 #ifdef VERBOSE_LOG
 
-                        ::duration d1 = t1.elapsed();
+                        ::time d1 = t1.elapsed();
 
                         if (d1 > 50_ms)
                         {
@@ -3607,7 +3607,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
 #ifdef VERBOSE_LOG
 
-      ::duration t1 = ::duration::now();
+      ::time t1 = ::time::now();
 
 #endif
 
@@ -3615,7 +3615,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
 #ifdef VERBOSE_LOG
 
-      ::duration d1 = t1.elapsed();
+      ::time d1 = t1.elapsed();
 
       if (d1 > 50_ms)
       {

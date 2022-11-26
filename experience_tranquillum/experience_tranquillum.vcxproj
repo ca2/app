@@ -57,6 +57,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="user\style.cpp" />
+    <ClCompile Include="_.cpp" />
     <ClCompile Include="_factory.cpp" />
   </ItemGroup>
   <ItemGroup>

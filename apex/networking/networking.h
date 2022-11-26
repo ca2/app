@@ -40,7 +40,7 @@ namespace networking
 
 
       //   in_addr           m_ipaddr;
-      //   ::duration m_durationLastChecked;
+      //   class ::time m_timeLastChecked;
       //   bool              m_bOk;
       //   bool              m_bTimeout;
 
@@ -64,7 +64,7 @@ namespace networking
       //   
       //   ::networking::address    m_address;
       //   string            m_strReverse;
-      //   ::duration        m_durationLastChecked;
+      //   class ::time        m_timeLastChecked;
       //   bool              m_bOk;
       //   bool              m_bTimeout;
       //   bool              m_bProcessing;
@@ -163,7 +163,7 @@ namespace networking
 
       virtual string reverse_name(::networking::address * address);
 
-      //virtual i32 _select(::sockets::socket_handler * psockethandler, const class ::wait & wait);
+      //virtual i32 _select(::sockets::socket_handler * psockethandler, const class time & timeWait);
 
       virtual ::pointer<::networking::address>create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0);
 

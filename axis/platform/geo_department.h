@@ -16,13 +16,13 @@ public:
 
 
    string               m_str;
-   ::earth::time     m_duration; /// time when this network_payload was last updated
+   ::earth::time     m_time; /// time when this network_payload was last updated
 
 
-   bool is_valid(const ::duration& durationTimeOut) const
+   bool is_valid(const class ::time& timeTimeOut) const
    {
 
-      return m_duration.elapsed() < durationTimeOut;
+      return m_time.elapsed() < timeTimeOut;
 
    }
 

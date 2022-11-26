@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "synchronization_array.h"
 ////#include "acme/exception/exception.h"
 #include "acme/_operating_system.h"
@@ -204,12 +204,12 @@ void synchronization_array::erase(index index)
 ::e_status synchronization_array::wait()
 {
 
-   return wait(duration::infinite()) >= 0;
+   return wait(time::infinite()) >= 0;
 
 }
 
 
-::index synchronization_array::wait(const class ::wait & wait, bool bWaitForAll, ::u32 uWakeMask)
+::index synchronization_array::wait(const class time & timeWait, bool bWaitForAll, ::u32 uWakeMask)
 {
 
    if (is_empty())
@@ -228,7 +228,7 @@ void synchronization_array::erase(index index)
    if (uWakeMask)
    {
 
-      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), wait, uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
+      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), ::windows::wait(timeWait), uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
 
    }
    else
@@ -241,7 +241,7 @@ void synchronization_array::erase(index index)
 
       auto psynca = m_hsyncaCache.get_data();
 
-      windowsWaitResult = ::WaitForMultipleObjects(uCount, psynca, bWaitForAll, wait);
+      windowsWaitResult = ::WaitForMultipleObjects(uCount, psynca, bWaitForAll, ::windows::wait(timeWait));
 
    }
 
@@ -256,29 +256,29 @@ void synchronization_array::erase(index index)
 
    }
 
-//   auto start = ::duration::now();
+//   auto start = ::time::now();
 
    bool FoundExternal=false;
 
    ::e_status estatus;
 
-//   ::duration durationWaitNow;
+//   ::time timeWaitNow;
 
 //   do
 //   {
 
-//      if(duration.is_infinite())
+//      if(time.is_infinite())
 //      {
 //
-//         durationWaitNow.Infinite();
+//         timeWaitNow.Infinite();
 //
 //      }
 //      else
 //      {
 //
-//         durationWaitNow = start.elapsed() - duration;
+//         timeWaitNow = start.elapsed() - time;
 //
-//         if (durationWaitNow <= ::duration(0))
+//         if (timeWaitNow <= ::time(0))
 //         {
 //
 //            result = e_synchronization_result_timed_out;

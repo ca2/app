@@ -125,7 +125,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
    m_pimage->copy_from(pimageCompose, ::e_flag_none);
 
-   pframea->m_durationTotal += m_duration;
+   pframea->m_timeTotal += m_time;
 
 }
 

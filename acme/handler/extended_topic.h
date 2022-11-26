@@ -30,7 +30,7 @@ public:
    ::payload                              m_payload;
    ::i64                                  m_iUpdateSerial;
    bool                                   m_bModified;
-   ::duration                             m_durationSleep;
+   class ::time                             m_timeSleep;
 
    ::pointer<::property_object>          m_pobjectTopic;
    ::pointer<::file::item>               m_pfileitem;

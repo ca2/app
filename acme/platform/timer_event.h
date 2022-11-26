@@ -18,7 +18,7 @@ public:
    ~timer_event() override;
 
 
-   ::e_status wait(const class ::wait & wait) override;
+   ::e_status wait(const class time & timeWait) override;
 
 
    void on_timer() override;

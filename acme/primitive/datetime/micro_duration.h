@@ -1,7 +1,7 @@
 #pragma once
 
 //
-//class CLASS_DECL_ACME micro_duration
+//class CLASS_DECL_ACME micro_time
 //{
 //public:
 //

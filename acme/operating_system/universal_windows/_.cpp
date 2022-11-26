@@ -153,7 +153,7 @@ void __node_acme_pos_term()
 
 
 
-// ::duration os_get_system_update_poll_time(const ::atom & atom)
+// ::time os_get_system_update_poll_time(const ::atom & atom)
 // {
 
 //    if (atom == id_user_color)

@@ -1108,11 +1108,11 @@ namespace user
 
          {
 
-            ::duration t1 = ::duration::now();
+            ::time t1 = ::time::now();
 
             _001DrawThis(pgraphics);
 
-            ::duration d1 = t1.elapsed();
+            ::time d1 = t1.elapsed();
 
             if(d1 > 50_ms)
             {

@@ -140,7 +140,7 @@ namespace file
          synchronization_array eva(this);
          eva.add(&_allBytesAreWritenEvent);
          eva.add(&_readStreamIsClosedEvent);
-         if(!eva.wait(false, duration::infinite()).signaled())
+         if(!eva.wait(false, time::infinite()).signaled())
          {
             throw ::exception(error_resource);
          }

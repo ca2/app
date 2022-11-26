@@ -677,7 +677,7 @@ mutex::~mutex()
 //}
 
 //      ANDROID
-//      int irc = pthread_mutex_lock_timeout_np(m_pmutex, duration.get_total_milliseconds());
+//      int irc = pthread_mutex_lock_timeout_np(m_pmutex, time.get_total_milliseconds());
 //
 //      if (!irc)
 //      {
@@ -697,7 +697,7 @@ mutex::~mutex()
 //#if !defined(WINDOWS)
 //
 //
-//bool mutex::_wait(const class ::wait & wait)
+//bool mutex::_wait(const class time & timeWait)
 //{
 //
 //   if(wait.is_infinite())
@@ -716,9 +716,9 @@ mutex::~mutex()
 //
 //      timespec delay;
 //
-//      delay.tv_sec = duration.m_i;
+//      delay.tv_sec = time.m_i;
 //
-//      delay.tv_nsec = duration.m_i;
+//      delay.tv_nsec = time.m_i;
 //
 //      i32 ret = sem_timedwait(m_psem, &delay);
 //
@@ -760,7 +760,7 @@ mutex::~mutex()
 //
 //      }
 //
-//      auto tickStart = ::duration::now();
+//      auto tickStart = ::time::now();
 //
 //      while (true)
 //      {
@@ -872,9 +872,9 @@ mutex::~mutex()
 //
 //      timespec timeout;
 //
-//      timeout.tv_sec = duration.m_i;
+//      timeout.tv_sec = time.m_i;
 //
-//      timeout.tv_nsec = duration.m_i;
+//      timeout.tv_nsec = time.m_i;
 //
 //      struct sembuf operation[1] ;
 //
@@ -974,7 +974,7 @@ mutex::~mutex()
 //
 //#endif
 //
-//            ::duration d;
+//            ::time d;
 //
 //            d.m_iSecond = abs_time.tv_sec + wait.m_d;
 //
@@ -1058,7 +1058,7 @@ mutex::~mutex()
 //
 //      clock_gettime(CLOCK_REALTIME, &abs_time);
 //
-//      ::duration d;
+//      ::time d;
 //
 //      d.m_iSecond = abs_time.tv_sec + (::i64) (wait.m_d);
 //

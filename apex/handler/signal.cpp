@@ -332,7 +332,7 @@ void signal::post_destroy_all()
 }
 
 
-::duration signal::poll_time()
+class ::time signal::poll_time()
 {
 
    return acmesystem()->get_update_poll_time(m_atom);

@@ -31,7 +31,7 @@ namespace user
 
       virtual bool message_window_is_initialized();
 
-      virtual void message_window_set_timer(uptr uId, const ::duration & duration);
+      virtual void message_window_set_timer(uptr uId, const class time & time);
 
       virtual void message_window_post_message(const ::atom & atom, wparam wparam = 0,lparam lparam = 0);
 

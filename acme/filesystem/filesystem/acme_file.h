@@ -1,4 +1,4 @@
-// Create by camilo on 2021-08-09 03:02 <3ThomasBorregaardSørensen!!
+﻿// Create by camilo on 2021-08-09 03:02 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -52,7 +52,7 @@ public:
 
    //virtual string get_temp_name(const char * lpszName, const char * pszExtension);
    virtual void write_memory_to_file(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
-   virtual void append_wait(const char * pszFile, const block & block, const ::duration & duration);
+   virtual void append_wait(const char * pszFile, const block & block, const class time & time);
    virtual void append(const char * pszFile, const block & block);
 
    virtual bool exists(const ::file::path & path);
@@ -151,8 +151,8 @@ public:
    //virtual bool solve_relative_inline(string & str, bool & bUrl, bool & bOnlyNativeFileSep, strsize * iaSlash, int * piSlashCount); // returns true if original string had trailing slash
    //virtual string defer_solve_relative(const char * pszRelative, const char * pszCurrent);
    virtual void append(const ::string & strFile, const block & block);
-   virtual void append_wait(const ::string & strFile, const block & block, const ::duration & duration = ::duration::infinite());
-   //virtual bool file_append_wait(const ::string & strFile, const char * psz, strsize s, const ::duration & millisTimeout = ::duration::infinite());
+   virtual void append_wait(const ::string & strFile, const block & block, const class time & timeWait = ::time::infinite());
+   //virtual bool file_append_wait(const ::string & strFile, const char * psz, strsize s, const class ::time & millisTimeout = ::time::infinite());
 
    virtual void write(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
 

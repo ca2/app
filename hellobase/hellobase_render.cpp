@@ -25,10 +25,10 @@ namespace hellobase
       m_bFirst23 = false;
       m_bFastOnEmpty = true;
       m_bFast = true;
-      m_durationLastFast = 0;
-      m_durationAnime = 2000;
-      m_durationFastAnime = 500;
-      m_durationLastOk = 0;
+      m_timeLastFast = 0;
+      m_timeAnime = 2000;
+      m_timeFastAnime = 500;
+      m_timeLastOk = 0;
 
       m_pimpact = nullptr;
 
@@ -247,7 +247,7 @@ namespace hellobase
 
       //      }
 
-      //      sleep(::duration(dWait));
+      //      sleep(::time(dWait));
 
       //      iLastFrameId = iFrameId;
 
@@ -427,7 +427,7 @@ namespace hellobase
 //
 //      }
 //
-//      double t= ::duration::now() / 1000.0;
+//      double t= ::time::now() / 1000.0;
 //
 //      double w = 2.0 * 3.1415 / T;
 //
@@ -677,7 +677,7 @@ namespace hellobase
 //
 //      }
 //
-//      double t= ::duration::now() / 1000.0;
+//      double t= ::time::now() / 1000.0;
 //
 //      double w = 2.0 * 3.1415 / T;
 //
@@ -995,7 +995,7 @@ namespace hellobase
 
       //      if (!m_bFirst23)
       //      {
-      // auto m_tick23 = ::duration::now();
+      // auto m_tick23 = ::time::now();
       //         m_uiCurrent23 = 0;
       //         m_strLast23.Empty();
       //         m_strCurrent23.Empty();
@@ -1172,9 +1172,9 @@ namespace hellobase
 
       //}
 
-      ////::u32 dw= ::duration::now();
+      ////::u32 dw= ::time::now();
 
-      //if (m_bFast || !m_bFirstDone || m_durationLastFast.elapsed() < m_durationFastAnime)
+      //if (m_bFast || !m_bFirstDone || m_timeLastFast.elapsed() < m_timeFastAnime)
       //{
 
       //   synchronous_lock sl1(m_pimpact->get_wnd()->synchronization());
@@ -1201,7 +1201,7 @@ namespace hellobase
       //   if (m_bFast || !m_bFirstDone)
       //   {
 
-      //      m_durationLastFast= ::duration::now();
+      //      m_timeLastFast= ::time::now();
 
       //   }
 
@@ -1222,7 +1222,7 @@ namespace hellobase
 
       //   m_pimpact->m_bOkPending = false;
 
-      //   m_durationLastOk= ::duration::now();
+      //   m_timeLastOk= ::time::now();
 
       //}
 
@@ -1241,12 +1241,12 @@ namespace hellobase
 
       //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      //if (m_durationLastOk.elapsed() < m_durationAnime)
+      //if (m_timeLastOk.elapsed() < m_timeAnime)
       //{
 
       //   byte uchAlpha;
 
-      //   uchAlpha = byte(maximum(0, minimum(255, (m_durationLastOk.elapsed()) * 255 / m_durationAnime)));
+      //   uchAlpha = byte(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
 /*      //   psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 
@@ -1343,9 +1343,9 @@ namespace hellobase
 
    //bool render::in_anime()
    //{
-   //   if (m_bFast || m_durationLastFast.elapsed() < m_durationFastAnime)
+   //   if (m_bFast || m_timeLastFast.elapsed() < m_timeFastAnime)
    //      return true;
-   //   if (m_durationLastOk.elapsed() < m_durationAnime)
+   //   if (m_timeLastOk.elapsed() < m_timeAnime)
    //      return true;
    //   return false;
    //}

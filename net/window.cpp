@@ -18,7 +18,7 @@ namespace app_net
 
       m_dBreathPeriod = 60.0;
 
-      m_durationStart.Now();
+      m_timeStart.Now();
 
       m_dPhaseShift = 0.0;
 
@@ -89,7 +89,7 @@ namespace app_net
 
          string strDots = "...";
 
-         auto elapsed = m_durationStartGettingUrl.elapsed();
+         auto elapsed = m_timeStartGettingUrl.elapsed();
 
          strGet = "Getting Url " + strDots.Left((elapsed.integral_millisecond().m_i / 300) % 4);
 
@@ -138,7 +138,7 @@ namespace app_net
 
       m_bGettingUrl = true;
 
-      m_durationStartGettingUrl.Now();
+      m_timeStartGettingUrl.Now();
 
       fork([this]()
          {

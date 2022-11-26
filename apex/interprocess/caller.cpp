@@ -47,7 +47,7 @@ namespace interprocess
    }
 
 
-   void caller::call(const ::string & pszMessage, const duration & durationTimeout)
+   void caller::call(const ::string & pszMessage, const class time & timeTimeout)
    {
 
       if (!is_caller_ok())
@@ -62,7 +62,7 @@ namespace interprocess
    }
 
 
-   //void caller::send(int message, void * pdata, int len, const duration & durationTimeout)
+   //void caller::send(int message, void * pdata, int len, const class time & timeTimeout)
    //{
 
    //   if (message == 0x80000000)

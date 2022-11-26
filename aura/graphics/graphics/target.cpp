@@ -68,9 +68,9 @@ namespace graphics
    //
    //   //   m_pimage->create({ m_cx, m_cy });
    //
-   //   //   duration duration;
+   //   //   time time;
    //
-   //   //   duration.Now();
+   //   //   time.Now();
    //
    //
    //
@@ -86,22 +86,22 @@ namespace graphics
    //
    //   //      string str;
    //
-   //   //      str.format("animated_wallpaper::update_wallpaper drawimage %0.3fms\n", duration.elapsed().floating_microsecond() / 1'000.0);
+   //   //      str.format("animated_wallpaper::update_wallpaper drawimage %0.3fms\n", time.elapsed().floating_microsecond() / 1'000.0);
    //
    //   //      output_debug_string(str);
    //
    //   //      {
    //
    //
-   //   //         ::duration duration;
+   //   //         ::time time;
    //
-   //   //         duration.Now();
+   //   //         time.Now();
    //
    //   //         on_image_updating();
    //
    //   //         string str;
    //
-   //   //         str.format("animated_wallpaper::update_wallpaper on_image_updating %0.3fms\n", duration.elapsed().floating_microsecond() / 1'000.0);
+   //   //         str.format("animated_wallpaper::update_wallpaper on_image_updating %0.3fms\n", time.elapsed().floating_microsecond() / 1'000.0);
    //
    //   //         output_debug_string(str);
    //

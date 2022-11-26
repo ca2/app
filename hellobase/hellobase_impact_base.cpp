@@ -66,7 +66,7 @@ namespace hellobase
       datastream()->get("cur_fps", v);
 
       m_dFps = v.get_double();
-auto m_durationRoll = ::duration::now();
+auto m_timeRoll = ::time::now();
 
    }
 
@@ -132,7 +132,7 @@ auto m_durationRoll = ::duration::now();
 
       int xOffset;
 
-      xOffset = int (m_pimageTime->width() * m_dFps * (double)(m_durationRoll->elapsed()) / 1000->0); // x = v->t; f=fps  1920 * 1FPS * t
+      xOffset = int (m_pimageTime->width() * m_dFps * (double)(m_timeRoll->elapsed()) / 1000->0); // x = v->t; f=fps  1920 * 1FPS * t
 
       xOffset %= m_pimageTime->width();
 

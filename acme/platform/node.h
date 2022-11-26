@@ -121,7 +121,7 @@ namespace acme
 
 
       virtual void call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
-      virtual void call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set, int * piExitCode);
+      virtual void call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set, int * piExitCode);
 
 
       virtual ::pointer < ::particle > create_mutex();
@@ -414,10 +414,10 @@ namespace acme
 
 
       virtual void shell_execute_async(const char * pszFile, const char * pszParams);
-      virtual void shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
+      virtual void shell_execute_sync(const char * pszFile, const char * pszParams, const class time & timeTimeout = 1_minute);
 
       virtual void root_execute_async(const char * pszFile, const char * pszParams);
-      virtual void root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
+      virtual void root_execute_sync(const char * pszFile, const char * pszParams, const class time & timeTimeout = 1_minute);
 
 
       //::file::path command_find_path(const ::string & pszCommand);
@@ -482,11 +482,11 @@ namespace acme
 
 
       virtual void defer_initialize_callstack();
-#if defined(ANDROID)
-      virtual string unwind_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
-#else
+//#if defined(ANDROID)
+//      virtual string unwind_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+//#else
       virtual string get_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
-#endif
+//#endif
 
 
 
@@ -536,7 +536,7 @@ namespace acme
 
       typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 
-      //CLASS_DECL_ACME u32 call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
+      //CLASS_DECL_ACME u32 call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
 
 #endif
 
@@ -609,10 +609,10 @@ namespace acme
 
 
       virtual bool shell_execute_async(const ::string & pszFile, const ::string & pszParams);
-      virtual bool shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const ::duration & durationTimeout = 1_minute);
+      virtual bool shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout = 1_minute);
 
       virtual bool root_execute_async(const ::string & pszFile, const ::string & pszParams);
-      virtual bool root_execute_sync(const ::string & pszFile, const ::string & pszParams, const ::duration & durationTimeout = 1_minute);
+      virtual bool root_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout = 1_minute);
 
 
       //CLASS_DECL_ACME bool os_init_application();
@@ -632,7 +632,7 @@ namespace acme
 
 
 
-      virtual void command_system(string_array & straOutput, int & iExitCode, const char * psz, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
+      virtual void command_system(string_array & straOutput, int & iExitCode, const char * psz, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinite(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
 
 
       //virtual string process_version_dir_name();

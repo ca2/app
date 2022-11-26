@@ -9,7 +9,7 @@
 //   string                           m_strMessage;
 //   string                           m_strTitle;
 //   const ::e_message_box &                    m_emessagebox;
-//   ::duration                       m_durationTimeout;
+//   class ::time                       m_timeTimeout;
 //   callback                         m_callback;
 //
 //

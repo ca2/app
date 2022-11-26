@@ -54,7 +54,7 @@ namespace interprocess
 
          string str = strApp + ":/" + strObject + "/" + strMember + "?" + strNetworkArguments + "&protocol.call_id=" + as_string(m_iTask) + "&" + strSource + "&protocol.target_pid=" + m_atomPid;
 
-         //txc.send(str, m_pcall->m_duration);
+         //txc.send(str, m_pcall->m_time);
          caller.call(str, 1_min);
 
       }

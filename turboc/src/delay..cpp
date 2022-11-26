@@ -37,7 +37,7 @@ clockTurbo (void)
 //  struct tms Buf;
   clock_t t;
   //t = times (&Buf);
-  t= ::duration::now();
+  t= ::time::now();
   if (!clockInitialized)
     {
       InitialTime = t;
@@ -49,12 +49,12 @@ clockTurbo (void)
 //-----------------------------------------------------------------------
 
 void
-delay (g::u32 ::durations)
+delay (g::u32 ::times)
 {
   //struct tms Buf;
   //clock_t EndTime;
-  //EndTime = times (&Buf) + (::durations * 1LL * CLK_TCK) / 1000LL;
-  //EndTime= ::duration::now() ::durations;
+  //EndTime = times (&Buf) + (::times * 1LL * CLK_TCK) / 1000LL;
+  //EndTime= ::time::now() ::times;
   //while (times (&Buf) < EndTime);
-   sleep(::durations);
+   sleep(::times);
 }

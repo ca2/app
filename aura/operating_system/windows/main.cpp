@@ -158,7 +158,7 @@ CLASS_DECL_AURA i32 ca2_main();
 //}
 
 
-//CLASS_DECL_AURA void main_sync_runnable(::object * pobjectTaskParam, ::duration durationTimeout)
+//CLASS_DECL_AURA void main_sync_runnable(::object * pobjectTaskParam, ::time timeTimeout)
 //{
 //   
 //   ::pointer<::object>pobjectTask = pobjectTaskParam;

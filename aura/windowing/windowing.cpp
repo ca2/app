@@ -557,7 +557,7 @@ namespace windowing
    //}
 
 
-   //enum_dialog_result windowing::message_box_timeout(const ::string &pszMessage, const ::string &pszTitle, const ::duration &duration,
+   //enum_dialog_result windowing::message_box_timeout(const ::string &pszMessage, const ::string &pszTitle, const ::time &time,
    //                                   const ::e_message_box &emessagebox)
    //{
 

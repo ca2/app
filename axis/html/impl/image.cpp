@@ -155,7 +155,7 @@ namespace html
             
             single_lock lockImage(synchronization());
 
-            if (lockImage.lock(duration::zero()))
+            if (lockImage.lock(time::zero()))
             {
                pdata->m_pcoredata->m_layoutstate3.m_cx = (float)m_pimage->width();
                if (m_pimage->height() > pdata->m_pcoredata->m_layoutstate3.m_cya.last())

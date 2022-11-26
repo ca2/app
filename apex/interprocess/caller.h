@@ -24,8 +24,8 @@ namespace interprocess
       virtual void close();
 
 
-      virtual void call(const ::string & strUri, const duration & durationTimeout);
-      //virtual void send(int message,void * pdata,int len, const duration & durationTimeout);
+      virtual void call(const ::string & strUri, const class time & timeTimeout);
+      //virtual void send(int message,void * pdata,int len, const class time & timeTimeout);
 
 
       virtual bool is_caller_ok();

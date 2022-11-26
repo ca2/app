@@ -65,19 +65,19 @@ class CTimer
 public:
 
    
-   ::duration     m_duration;
+   class ::time     m_time;
 
 
    CTimer() { Restart(); }
 
    /// Restarts the timer.
-   void Restart() { m_duration.Now(); }
+   void Restart() { m_time.Now(); }
 
    /// Get the elapsed time
-   ::duration GetElapsedTime() const
+   class ::time GetElapsedTime() const
    {
 
-      return m_duration.elapsed();
+      return m_time.elapsed();
 
    }
 

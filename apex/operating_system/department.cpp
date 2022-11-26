@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "department.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
@@ -53,14 +53,14 @@ namespace operating_system
    }
 
 
-   ::payload department::get_output(const char * pszCmdLine,const ::duration & dur,::e_display edisplay, bool * pbPotentialTimeout)
+   ::payload department::get_output(const char * pszCmdLine,const class time & time,::e_display edisplay, bool * pbPotentialTimeout)
    {
 
       string strRead;
       
       auto pprocessor = __create_new < process_processor >();
       
-      pprocessor->process(pszCmdLine, dur, pbPotentialTimeout, &strRead);
+      pprocessor->process(pszCmdLine, time, pbPotentialTimeout, &strRead);
 
       return strRead;
 
@@ -68,26 +68,26 @@ namespace operating_system
 
 
 
-   exit_status department::retry(const char * pszCmdLine,const ::duration & dur,::e_display edisplay, bool * pbPotentialTimeout)
+   exit_status department::retry(const char * pszCmdLine,const class time & time,::e_display edisplay, bool * pbPotentialTimeout)
    {
 
       //process_processor proc(pszCmdLine, dur, pbPotentialTimeout);
       
       auto pprocessor = __create_new < process_processor >();
       
-      pprocessor->process(pszCmdLine, dur, pbPotentialTimeout);
+      pprocessor->process(pszCmdLine, time, pbPotentialTimeout);
 
       return pprocessor->m_exitstatus;
 
    }
 
 
-   exit_status department::synch(const char * pszCmdLine, ::e_display edisplay, const ::duration & dur, bool * pbPotentialTimeout)
+   exit_status department::synch(const char * pszCmdLine, ::e_display edisplay, const class time & time, bool * pbPotentialTimeout)
    {
 
       auto pprocessor = __create_new < process_processor >();
       
-      pprocessor->process(pszCmdLine, dur, pbPotentialTimeout);
+      pprocessor->process(pszCmdLine, time, pbPotentialTimeout);
 
       return pprocessor->m_exitstatus;
 
@@ -123,7 +123,7 @@ namespace operating_system
    }
 
 
-   exit_status department::elevated_synch(const char * pszCmdLine,::e_display edisplay,const ::duration & dur,bool * pbPotentialTimeout)
+   exit_status department::elevated_synch(const char * pszCmdLine,::e_display edisplay,const class time & time,bool * pbPotentialTimeout)
    {
 
 //      process_processor proc(pszCmdLine,dur,pbPotentialTimeout, nullptr, true);
@@ -132,7 +132,7 @@ namespace operating_system
       
       auto pprocessor = __create_new < process_processor >();
       
-      pprocessor->process(pszCmdLine, dur, pbPotentialTimeout, nullptr, true);
+      pprocessor->process(pszCmdLine, time, pbPotentialTimeout, nullptr, true);
 
       return pprocessor->m_exitstatus;
 
@@ -145,7 +145,7 @@ namespace operating_system
    }
 
 
-   void department::process_thread::construct_process_thread(const ::string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout, string * pstrRead, bool bElevated)
+   void department::process_thread::construct_process_thread(const ::string & strCmdLine, const class time & time, bool * pbPotentialTimeout, string * pstrRead, bool bElevated)
    {
 
       //initialize(pobjectParent);
@@ -156,16 +156,16 @@ namespace operating_system
 
       m_pstrRead = pstrRead;
 
-      if(dur.is_pos_infinity())
+      if(time.is_infinite())
       {
 
-         m_durationTimeout.Null();
+         m_timeTimeout.Null();
 
       }
       else
       {
 
-         m_durationTimeout = dur;
+         m_timeTimeout = time;
 
       }
 
@@ -224,7 +224,7 @@ namespace operating_system
 
       }
 
-      m_durationStart.Now();
+      m_timeStart.Now();
 
       string strRead;
 
@@ -296,7 +296,7 @@ namespace operating_system
    void department::process_thread::run_elevated()
    {
 
-      m_pprocess->synch_elevated(m_strCmdLine,e_display_none,m_durationTimeout,m_pbPotentialTimeout);
+      m_pprocess->synch_elevated(m_strCmdLine,e_display_none,m_timeTimeout,m_pbPotentialTimeout);
 
       ///m_result.add((void    ) m_pprocess->m_exitstatus.m_iExitCode);
 
@@ -320,7 +320,7 @@ namespace operating_system
    bool department::process_thread::retry()
    {
 
-      if(m_durationTimeout > 0_s && m_durationStart.elapsed() > m_durationTimeout)
+      if(m_timeTimeout > 0_s && m_timeStart.elapsed() > m_timeTimeout)
       {
 
          if(m_pbPotentialTimeout != nullptr)
@@ -366,7 +366,7 @@ namespace operating_system
    }
 
 
-   void department::process_processor::process(const ::string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated)
+   void department::process_processor::process(const ::string & strCmdLine,const class time & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated)
    {
 
       m_pbPotentialTimeout = pbPotentialTimeout;

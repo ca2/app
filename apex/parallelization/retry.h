@@ -1,11 +1,11 @@
-#pragma once
+﻿#pragma once
 
 
 template < typename PREDICATE >
-bool predicate_retry(const ::duration & durationStep, const ::duration & durationTotal, PREDICATE predicate)
+bool predicate_retry(const class time & timeStep, const class time & timeTotal, PREDICATE predicate)
 {
 
-   auto start = duration::now();
+   auto start = time::now();
 
    while (true)
    {
@@ -30,9 +30,9 @@ bool predicate_retry(const ::duration & durationStep, const ::duration & duratio
 
       }
       
-      ::preempt(durationStep);
+      ::preempt(timeStep);
 
-      if (start.elapsed() > durationTotal)
+      if (start.elapsed() > timeTotal)
       {
 
          return false;
@@ -49,14 +49,14 @@ class CLASS_DECL_APEX retry
 public:
 
 
-   ::duration m_durationRetry;
+   class ::time m_timeRetry;
 
-   ::duration m_durationTimeout;
+   class ::time m_timeTimeout;
 
 
-   retry(duration durationRetry, ::duration durationTimeout) :
-      m_durationRetry(durationRetry),
-      m_durationTimeout(durationTimeout)
+   retry(const class ::time & timeRetry, const class ::time& timeTimeout) :
+      m_timeRetry(timeRetry),
+      m_timeTimeout(timeTimeout)
    {
 
    };
@@ -71,7 +71,7 @@ public:
    bool operator()(PRED pred)
    {
 
-      return ::predicate_retry(m_durationRetry, m_durationTimeout, pred);
+      return ::predicate_retry(m_timeRetry, m_timeTimeout, pred);
 
    }
 

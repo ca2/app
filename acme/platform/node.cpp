@@ -119,7 +119,7 @@ namespace acme
    }
 
 
-   void node::call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set, int * piExitCode)
+   void node::call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set, int * piExitCode)
    {
 
       throw ::interface_only();
@@ -1798,7 +1798,7 @@ return false;
    }
 
 
-   void node::shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+   void node::shell_execute_sync(const char * pszFile, const char * pszParams, const class time & timeTimeout)
    {
 
       //throw ::interface_only();
@@ -1822,7 +1822,7 @@ return false;
    }
 
 
-   void node::root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+   void node::root_execute_sync(const char * pszFile, const char * pszParams, const class ::time& timeTimeout)
    {
 
       //throw ::interface_only();
@@ -2075,13 +2075,12 @@ return false;
    }
 
 
-   //string node::get_callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount)
-   //{
+   string node::get_callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount)
+   {
 
+      return {};
 
-   //   return {};
-
-   //}
+   }
 
 
    ::string node::get_command_line()
@@ -2210,7 +2209,7 @@ return false;
    }
 
 
-   bool node::shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const ::duration & durationTimeout)
+   bool node::shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout)
    {
 
       return false;
@@ -2226,7 +2225,7 @@ return false;
    }
 
 
-   bool node::root_execute_sync(const ::string & pszFile, const ::string & pszParams, const ::duration & durationTimeout)
+   bool node::root_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout)
    {
 
       return false;
@@ -2503,7 +2502,7 @@ return false;
    }
 
 
-   void node::command_system(string_array & straOutput, int & iExitCode, const char * psz, enum_command_system ecommandsystem, const ::duration & durationTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLines)
+   void node::command_system(string_array & straOutput, int & iExitCode, const char * psz, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLines)
    {
 
       throw interface_only();

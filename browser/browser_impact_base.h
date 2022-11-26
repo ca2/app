@@ -25,7 +25,7 @@ namespace browser
       color32_t                m_colorDrawStatus;
 
       double                  m_dFps;
-      ::duration                    m_durationRoll;
+      class ::time                    m_timeRoll;
 
       ::pointer<regex>              m_ppcre;
 

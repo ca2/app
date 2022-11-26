@@ -300,10 +300,10 @@ namespace parallelization
    //}
 
 
-   //CLASS_DECL_ACME bool post_quit_and_wait(const duration & duration)
+   //CLASS_DECL_ACME bool post_quit_and_wait(const class time & time)
    //{
 
-   //   return post_quit_and_wait(::get_task(), duration);
+   //   return post_quit_and_wait(::get_task(), time);
 
    //}
 
@@ -333,7 +333,7 @@ namespace parallelization
    //}
 
 
-   //bool post_quit_and_wait(::thread * pthreadParam, const duration & duration)
+   //bool post_quit_and_wait(::thread * pthreadParam, const class time & time)
    //{
 
    //   ::task_pointer pthread;
@@ -372,7 +372,7 @@ namespace parallelization
    //   try
    //   {
 
-   //      return pthread->wait(duration).succeeded();
+   //      return pthread->wait(time).succeeded();
 
    //   }
    //   catch (...)
@@ -768,7 +768,7 @@ thread_local payload t_payloada[e_task_payload_count];
 }
 
 
-CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, const ::procedure & function)
+CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
 {
    
    auto pevent = __new(manual_reset_event);
@@ -792,7 +792,7 @@ CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, const ::proce
       
    });
    
-   if(!pevent->wait(duration))
+   if(!pevent->wait(time))
    {
       
       pevent.release();

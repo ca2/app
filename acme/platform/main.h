@@ -90,8 +90,8 @@ public:
 
  //string                            m_strCommandLine;
    string                              m_strProgName;
-   ::duration                          m_durationStart;
-   ::duration                          m_durationAfterApplicationFirstRequest;
+   class ::time                          m_timeStart;
+   class ::time                          m_timeAfterApplicationFirstRequest;
    //::apex::system *                  acmesystem();
    //::pointer<apex_main_data>        m_pmaindata;
    ::pointer<::acme::library>         m_plibrary;

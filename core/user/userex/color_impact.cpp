@@ -13,21 +13,6 @@
 #include "base/user/user/document.h"
 
 
-//#if defined(__APPLE__)
-//#define ARGB_COLORREF(A, R, G, B) argb(A, R, G, B)
-//#define COLORREF_get_a_value(color32) colorref_get_a_value(color32)
-//#define COLORREF_get_r_value(color32) colorref_get_r_value(color32)
-//#define COLORREF_get_g_value(color32) colorref_get_g_value(color32)
-//#define COLORREF_get_b_value(color32) colorref_get_b_value(color32)
-//#else
-//#define ARGB_COLORREF(A, R, G, B) argb(A, B, G, R)
-//#define COLORREF_get_a_value(color32) colorref_get_a_value(color32)
-//#define COLORREF_get_r_value(color32) colorref_get_b_value(color32)
-//#define COLORREF_get_g_value(color32) colorref_get_g_value(color32)
-//#define COLORREF_get_b_value(color32) colorref_get_r_value(color32)
-//#endif
-
-
 namespace app_core_flag
 {
 

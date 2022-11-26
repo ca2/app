@@ -12,7 +12,7 @@
 
 //#ifndef _UWP
 //
-//CLASS_DECL_APEX void WINAPI sleep(::u32 dw::durations);
+//CLASS_DECL_APEX void WINAPI sleep(::u32 dw::times);
 //
 //#endif
 
@@ -43,7 +43,7 @@
 //CLASS_DECL_APEX void attach_thread_input_to_main_thread(int_bool bAttach);
 
 
-//CLASS_DECL_APEX ::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::durations );
+//CLASS_DECL_APEX ::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::times );
 
 
 

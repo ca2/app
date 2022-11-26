@@ -566,13 +566,13 @@ void event::_wait ()
 }
 
 
-bool event::_wait (const class ::wait & wait)
+bool event::_wait (const class time & timeWait)
 {
 
    ::e_status estatus;
 
    //throw ::exception(todo("thread"));
-   //if(durationTimeout > 1_s && m_eobject & e_object_alertable_wait)
+   //if(timeTimeout > 1_s && m_eobject & e_object_alertable_wait)
    //{
 
    //   auto pthread = ::get_task();
@@ -589,7 +589,7 @@ bool event::_wait (const class ::wait & wait)
 
 #ifdef WINDOWS
 
-   DWORD dwResult = ::WaitForSingleObjectEx(m_hsynchronization, wait, false);
+   DWORD dwResult = ::WaitForSingleObjectEx(m_hsynchronization, ::windows::wait(timeWait), false);
 
    estatus = ::windows::wait_result_status(dwResult);
 
@@ -618,7 +618,7 @@ bool event::_wait (const class ::wait & wait)
 
    pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
-   ::duration duration(wait);
+   ::time time(wait);
 
    if(m_bManualEvent)
    {
@@ -626,8 +626,8 @@ bool event::_wait (const class ::wait & wait)
       timespec end;
       clock_gettime(CLOCK_REALTIME, &end);
 
-      end.tv_sec += duration.m_iSecond;
-      end.tv_nsec += duration.m_iNanosecond;
+      end.tv_sec += time.m_iSecond;
+      end.tv_nsec += time.m_iNanosecond;
 
       end.tv_sec += end.tv_nsec / (1000 * 1000 * 1000);
       end.tv_nsec %= 1000 * 1000 * 1000;
@@ -647,8 +647,8 @@ bool event::_wait (const class ::wait & wait)
    {
 
       timespec delay;
-      delay.tv_sec = duration.m_iSecond;
-      delay.tv_nsec = duration.m_iNanosecond;
+      delay.tv_sec = time.m_iSecond;
+      delay.tv_nsec = time.m_iNanosecond;
       pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay);
 
    }
@@ -778,7 +778,7 @@ bool event::_wait (const class ::wait & wait)
 
       delay.tv_nsec = 1000 * 1000;
 
-      auto start = ::duration::now();
+      auto start = ::time::now();
 
       while(wait.is_infinite() || start.elapsed() < wait)
       {
@@ -825,7 +825,7 @@ bool event::_wait (const class ::wait & wait)
 #endif
 
    ////throw ::exception(todo("thread"));
-   //if(durationTimeout > 1_s && m_eobject & e_object_alertable_wait)
+   //if(timeTimeout > 1_s && m_eobject & e_object_alertable_wait)
    //{
 
    //   auto pthread = ::get_task();
@@ -934,14 +934,14 @@ bool event::is_signaled() const
 //
 //end**************************************************************************
 
-//bool event::lock(const class ::wait & wait)
+//bool event::lock(const class time & timeWait)
 //{
 //
-//   return wait(durationTimeout).succeeded();
+//   return wait(timeTimeout).succeeded();
 //
 ////#ifdef WINDOWS
 ////
-////   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsynchronization,durationTimeout.u32_millis(),false);
+////   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsynchronization,timeTimeout.u32_millis(),false);
 ////
 ////   if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
 ////      return true;
@@ -952,7 +952,7 @@ bool event::is_signaled() const
 ////
 ////   pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 ////
-////   ((duration & ) durationTimeout).normalize();
+////   ((time & ) timeTimeout).normalize();
 ////
 ////
 ////   if(m_bManualEvent)
@@ -964,8 +964,8 @@ bool event::is_signaled() const
 ////      {
 ////
 ////         timespec delay;
-////         delay.tv_sec = durationTimeout.m_i;
-////         delay.tv_nsec = durationTimeout.m_i;
+////         delay.tv_sec = timeTimeout.m_i;
+////         delay.tv_nsec = timeTimeout.m_i;
 ////         if(pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay))
 ////            break;
 ////
@@ -978,8 +978,8 @@ bool event::is_signaled() const
 ////   {
 ////
 ////      timespec delay;
-////      delay.tv_sec = durationTimeout.m_i;
-////      delay.tv_nsec = durationTimeout.m_i;
+////      delay.tv_sec = timeTimeout.m_i;
+////      delay.tv_nsec = timeTimeout.m_i;
 ////      pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay);
 ////
 ////      return is_locked();
@@ -997,7 +997,7 @@ bool event::is_signaled() const
 ////   if(m_bManualEvent)
 ////   {
 ////
-////      wait(durationTimeout);
+////      wait(timeTimeout);
 ////
 ////      return m_bSignaled;
 ////
@@ -1005,9 +1005,9 @@ bool event::is_signaled() const
 ////   else
 ////   {
 ////
-////      u32 timeout = durationTimeout.u32_millis();
+////      u32 timeout = timeTimeout.u32_millis();
 ////
-////      u32 start= ::duration::now();
+////      u32 start= ::time::now();
 ////
 ////      while(start.elapsed() < timeout)
 ////      {

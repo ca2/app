@@ -24,7 +24,7 @@ namespace user
    public:
 
 
-      duration    m_durationFocusStart;
+      class ::time    m_timeFocusStart;
 
 
       primitive();
@@ -285,7 +285,7 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      void SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr) override;
+      void SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr) override;
       void KillTimer(uptr uEvent)override;
 
 

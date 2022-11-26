@@ -50,7 +50,7 @@ namespace write_text
 
       ::rectangle_i32                           m_rectangleMargin;
       int                                       m_iBaseSizeLayout;
-      ::duration                                    m_durationLastLayout;
+      class ::time                                    m_timeLastLayout;
       ::task_pointer                            m_pthreadLayout;
       bool                                      m_bLayoutWideStillIntersect;
       int_array                                 m_iaSize;

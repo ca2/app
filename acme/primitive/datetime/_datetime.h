@@ -14,7 +14,7 @@ CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::earth::
 //#include "acme/primitive/datetime/second.h"
 //
 //
-//#include "acme/primitive/datetime/::duration.h"
+//#include "acme/primitive/datetime/class ::time.h"
 //
 //
 //#include "acme/primitive/datetime/microsecond.h"
@@ -24,7 +24,7 @@ CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::earth::
 //
 //
 //
-//#include "acme/primitive/datetime/duration.h"
+//#include "acme/primitive/datetime/time.h"
 
 
 class file_time;

@@ -97,7 +97,7 @@ namespace user
 
 //#ifndef _UWP
 //
-//CLASS_DECL_ACME void WINAPI sleep(::u32 dw::durations);
+//CLASS_DECL_ACME void WINAPI sleep(::u32 dw::times);
 //
 //#endif
 
@@ -128,7 +128,7 @@ CLASS_DECL_ACME itask_t get_main_user_itask();
 //CLASS_DECL_ACME void attach_thread_input_to_main_thread(int_bool bAttach);
 
 
-//CLASS_DECL_ACME ::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::durations );
+//CLASS_DECL_ACME ::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::times );
 
 
 

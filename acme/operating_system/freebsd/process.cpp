@@ -359,7 +359,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+//CLASS_DECL_ACME void call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
 //{
 //
 //   string strCmdLine;
@@ -685,12 +685,12 @@
 //
 //} // namespace acme
 //
-//bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout )
+//bool shell_execute_sync(const char * pszFile, const char * pszParams, ::time timeTimeout )
 //{
 //
 //   property_set set;
 //
-//   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), e_display_none, durationTimeout, set);
+//   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), e_display_none, timeTimeout, set);
 //
 //}
 //

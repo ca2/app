@@ -36,7 +36,7 @@ int iShow)
 #endif
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_BOOT u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_BOOT u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
 {
 
    SHELLEXECUTEINFOA infoa;
@@ -348,12 +348,12 @@ CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
 
 
 
-bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+bool shell_execute_sync(const char * pszFile, const char * pszParams, ::time timeTimeout)
 {
 
    return false;
 
-   //return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), 0, false, (int)durationTimeout.get_total_milliseconds());
+   //return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), 0, false, (int)timeTimeout.get_total_milliseconds());
 
 }
 

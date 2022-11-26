@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 #include "header.h"
+#include "acme/graphics/image/_configuration.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/primitive/concrete.h"
 

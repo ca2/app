@@ -32,7 +32,7 @@ namespace database
       bool              m_bTransactionActive;
       i32               m_iLastError;
       string            m_strLastError;
-      ::duration        m_durationLastUse;
+      class ::time        m_timeLastUse;
 
 
 

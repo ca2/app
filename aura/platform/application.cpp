@@ -621,10 +621,10 @@ namespace aura
          auto psystem = get_system()->m_paurasystem;
 
          // Verry Sory for the per request overhead here for the needed information of only first request
-         if (::is_set(psystem) && psystem->m_durationAfterApplicationFirstRequest.is_null())
+         if (::is_set(psystem) && psystem->m_timeAfterApplicationFirstRequest.is_null())
          {
 
-            psystem->m_durationAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+            psystem->m_timeAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
          }
 
@@ -675,7 +675,7 @@ namespace aura
    //}
 
 
-   //void application::ui_message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -685,7 +685,7 @@ namespace aura
 
    //   }
 
-   //   return psession->userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
+   //   return psession->userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
 
    //}
 
@@ -707,10 +707,10 @@ namespace aura
    //}
 
 
-   //void application::message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
-   //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
+   //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
 
    //   if (!estatus)
    //   {
@@ -735,7 +735,7 @@ namespace aura
 
    //   u64 uFlags = 0;
 
-   //   ::duration durationTimeout;
+   //   ::time timeTimeout;
 
    //   ::function_arg function;
 
@@ -752,12 +752,12 @@ namespace aura
    //      strMessage = payload["message"];
    //      strTitle = payload["title"];
    //      uFlags = payload["flags"];
-   //      durationTimeout = payload["duration"];
+   //      timeTimeout = payload["time"];
    //      function = payload["function_arg"];
 
    //   }
 
-   //   if (durationTimeout.is_null())
+   //   if (timeTimeout.is_null())
    //   {
 
    //      return message_box(puiOwner, strMessage, strTitle, (::u32) uFlags, function);
@@ -766,7 +766,7 @@ namespace aura
    //   else
    //   {
 
-   //      return message_box_timeout(puiOwner, strMessage, strTitle, durationTimeout, (::u32) uFlags, function);
+   //      return message_box_timeout(puiOwner, strMessage, strTitle, timeTimeout, (::u32) uFlags, function);
 
    //   }
 
@@ -1373,7 +1373,7 @@ namespace aura
 
    //   INFORMATION("aura::application::term_thread");
 
-   //   m_durationHeartBeat.Now();
+   //   m_timeHeartBeat.Now();
 
    //   try
    //   {
@@ -1399,7 +1399,7 @@ namespace aura
 //      try
 //      {
 //
-//         m_durationHeartBeat.Now();
+//         m_timeHeartBeat.Now();
 //
 //         if(!application_pre_run())
 //         {
@@ -1441,7 +1441,7 @@ namespace aura
 //
 //         }
 //
-//         m_durationHeartBeat.Now();
+//         m_timeHeartBeat.Now();
 //
 //         if (!os_native_bergedge_start())
 //         {
@@ -1614,7 +1614,7 @@ namespace aura
       try
       {
 
-         m_durationHeartBeat.Now();
+         m_timeHeartBeat.Now();
 
          application_pos_run();
 
@@ -1741,7 +1741,7 @@ namespace aura
 
       }
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       try
       {
@@ -1998,7 +1998,7 @@ retry_license:
 //
 //      //m_bAuraInitializeInstanceResult = false;
 //
-//      m_durationHeartBeat.Now();
+//      m_timeHeartBeat.Now();
 //
 //      if (!init1())
 //      {
@@ -2013,7 +2013,7 @@ retry_license:
 //
 //      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 //
-//      m_durationHeartBeat.Now();
+//      m_timeHeartBeat.Now();
 //
 //      if (!init2())
 //      {
@@ -2028,7 +2028,7 @@ retry_license:
 //
 //      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 //
-//      m_durationHeartBeat.Now();
+//      m_timeHeartBeat.Now();
 //
 //      if (!init3())
 //      {
@@ -2043,7 +2043,7 @@ retry_license:
 //
 //      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 //
-//      m_durationHeartBeat.Now();
+//      m_timeHeartBeat.Now();
 //
 //      //dappy(__type_name(this) + " : init3 ok : " + as_string(m_iErrorCode));
 //
@@ -2164,7 +2164,7 @@ retry_license:
 
       INFORMATION("start");
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       //return ::success;
 
@@ -2530,10 +2530,10 @@ retry_license:
    //}
 
 
-   ////i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
+   ////i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, ::u32 fuStyle)
    ////{
 
-   ////   __UNREFERENCED_PARAMETER(durationTimeOut);
+   ////   __UNREFERENCED_PARAMETER(timeTimeOut);
 
    ////   return sync_message_box(puserinteractionOwner, payload, pszTitle, fuStyle);
 

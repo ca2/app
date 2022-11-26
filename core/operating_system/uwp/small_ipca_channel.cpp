@@ -87,7 +87,7 @@ namespace aura
       }
 
 
-      bool tx::send(const ::string & pszMessage, duration durationTimeout)
+      bool tx::send(const ::string & pszMessage, time timeTimeout)
       {
 
          if (!is_tx_ok())
@@ -97,10 +97,10 @@ namespace aura
 
          Uri ^uri = ref memory_new Uri(anotherappURI);
 
-         main_sync([uri, durationTimeout]()
+         main_sync([uri, timeTimeout]()
             {
 
-               ::wait(Launcher::LaunchUriAsync(uri), durationTimeout);
+               ::wait(Launcher::LaunchUriAsync(uri), timeTimeout);
 
             });
 
@@ -120,7 +120,7 @@ namespace aura
       }
 
 
-      bool tx::send(int message, void * pdata, int len, ::duration durationTimeout)
+      bool tx::send(int message, void * pdata, int len, ::time timeTimeout)
       {
 
          if (!is_tx_ok())
@@ -134,7 +134,7 @@ namespace aura
 
          Uri ^uri = ref memory_new Uri(anotherappURI);
 
-         ::wait(Launcher::LaunchUriAsync(uri), durationTimeout);
+         ::wait(Launcher::LaunchUriAsync(uri), timeTimeout);
 
          return true;
 

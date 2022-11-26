@@ -330,7 +330,7 @@ namespace aura
 //   }
 
 
-//   void system::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)
+//   void system::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, const future & process)
 //   {
 //
 //      auto psession = get_session();
@@ -350,10 +350,10 @@ namespace aura
 //
 //      string strTitle(pszTitle);
 //
-//      fork([strMessage, strTitle, durationTimeout,  emessagebox, process, pwindowing]()
+//      fork([strMessage, strTitle, timeTimeout,  emessagebox, process, pwindowing]()
 //           {
 //
-//              auto result = pwindowing->message_box_timeout(strMessage, strTitle, durationTimeout, emessagebox);
+//              auto result = pwindowing->message_box_timeout(strMessage, strTitle, timeTimeout, emessagebox);
 //
 //              process(result);
 //

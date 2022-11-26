@@ -20,9 +20,9 @@
 //
 //#pragma warning (disable:4273)
 //
-//CLASS_DECL_AURA ::u32 WINAPI MsgWaitForMultipleObjects(::u32 nCount, const HANDLE * pHandles, BOOL fWaitAll, ::u32 dw::durations, ::u32 dwWakeMask);
+//CLASS_DECL_AURA ::u32 WINAPI MsgWaitForMultipleObjects(::u32 nCount, const HANDLE * pHandles, BOOL fWaitAll, ::u32 dw::times, ::u32 dwWakeMask);
 //
-//CLASS_DECL_AURA ::u32 WINAPI MsgWaitForMultipleObjectsEx(::u32 nCount, const HANDLE* pHandles, ::u32 dw::durations, ::u32 dwWakeMask, ::u32 dwFlags);
+//CLASS_DECL_AURA ::u32 WINAPI MsgWaitForMultipleObjectsEx(::u32 nCount, const HANDLE* pHandles, ::u32 dw::times, ::u32 dwWakeMask, ::u32 dwFlags);
 //
 //#else
 //
@@ -39,9 +39,9 @@
 //
 //#ifndef _UWP
 //
-//::u32 WaitForSingleObject(HSYNC hsync, ::u32 dw::durations);
+//::u32 WaitForSingleObject(HSYNC hsync, ::u32 dw::times);
 //
-//::u32 WaitForSingleObjectEx(HSYNC hsync, ::u32 dw::durations, int_bool bAlertable);
+//::u32 WaitForSingleObjectEx(HSYNC hsync, ::u32 dw::times, int_bool bAlertable);
 //
 //#endif
 //

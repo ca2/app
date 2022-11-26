@@ -215,7 +215,7 @@ namespace account
 //
 //      string strRequestingServer = purl->get_server(pathUrl);
 //
-//      ::u32 dwGetFontopusBeg= ::duration::now();
+//      ::u32 dwGetFontopusBeg= ::time::now();
 //
 //      string strGetFontopus;
 //
@@ -242,7 +242,7 @@ namespace account
 //      if(strRequestingServer == "ca2.software")
 //         return "ca2.software";
 //
-//      ::u32 dwGetFontopusEnd= ::duration::now();
+//      ::u32 dwGetFontopusEnd= ::time::now();
 //
 //      FORMATTED_TRACE("NetLogin: Get Fontopus Millis = %d",dwGetFontopusEnd - dwGetFontopusBeg);
 //
@@ -382,7 +382,7 @@ namespace account
 
 
 
-   duration department::get_session_timeout()
+   time department::get_session_timeout()
    {
 
 #ifdef __DEBUG

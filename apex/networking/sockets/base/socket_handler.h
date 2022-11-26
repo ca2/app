@@ -113,7 +113,7 @@ namespace sockets
       /** This method will not return until an event has been detected. */
       virtual int select() = 0;
       /** Wait for events, generate callbacks. */
-      virtual int select(const class ::wait & wait) = 0;
+      virtual int select(const class time & timeWait) = 0;
 
       /** Check that a socket really is handled by this socket handler. */
       virtual bool Valid(base_socket *) = 0;

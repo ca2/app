@@ -69,13 +69,13 @@ bool ftpfs::fast_has_subdir(const ::file::path & path)
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   //   ::duration tickTimeout;
+   //   ::time tickTimeout;
 
    dir_listing & dir = m_map[path];
 
    auto psystem = acmesystem()->m_pcoresystem;
 
-   if (dir.m_durationLast.elapsed() < psystem->m_durationFileListingCache)
+   if (dir.m_timeLast.elapsed() < psystem->m_timeFileListingCache)
    {
 
       return dir.get_count() > 0;
@@ -98,7 +98,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
       auto psystem = acmesystem();
 
-      if (dir.m_durationLast.timeout(psystem->m_durationFileListingCache))
+      if (dir.m_timeLast.timeout(psystem->m_timeFileListingCache))
       {
 
          return dir.get_count() > 0;
@@ -173,7 +173,7 @@ bool ftpfs::enumerate(::file::listing & listing)
 
       auto psystem = acmesystem()->m_paurasystem;
 
-      if (dir.m_durationLast.timeout(psystem->m_durationFileListingCache))
+      if (dir.m_timeLast.timeout(psystem->m_timeFileListingCache))
       {
 
          listing = dir;
@@ -212,7 +212,7 @@ bool ftpfs::enumerate(::file::listing & listing)
 
    //   }
 
-   //   dir.m_uiLsTimeout= ::duration::now() + ((5000) * 4);
+   //   dir.m_uiLsTimeout= ::time::now() + ((5000) * 4);
 
    //   listing = failure;
 
@@ -306,7 +306,7 @@ retry:
 
       ((::file::listing &)dir) = listing;
 
-      dir.m_durationLast.Now();
+      dir.m_timeLast.Now();
 
    }
 
@@ -366,7 +366,7 @@ int ftpfs::is_dir(const ::file::path & path)
    //defer_initialize();
 
 
-   //::duration tickTimeout;
+   //::time tickTimeout;
 
    synchronous_lock synchronouslock(this->synchronization());
 
@@ -374,7 +374,7 @@ int ftpfs::is_dir(const ::file::path & path)
 
    auto psystem = acmesystem()->m_pcoresystem;
 
-   if (dir.m_durationLast.elapsed() > psystem->m_durationFileListingCache)
+   if (dir.m_timeLast.elapsed() > psystem->m_timeFileListingCache)
    {
 
       ::file::listing listing;

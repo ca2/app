@@ -331,7 +331,7 @@ CLASS_DECL_ACME void process_get_os_priority(i32 * piOsPolicy, sched_param * ppa
 //   }
 //
 //
-//   bool process::synch_elevated(const char * pszCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
+//   bool process::synch_elevated(const char * pszCmdLineParam,int iShow,const class time & timeTimeOut,bool * pbTimeOut)
 //   {
 //
 //

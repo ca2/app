@@ -15,7 +15,7 @@
 int gdb_check();
 
 
-::duration g_durationLastDebuggerAttachedCheck;
+::time g_timeLastDebuggerAttachedCheck;
 ::i32 g_iLastIsDebuggerAttached;
 ::i32 g_iLastIsDebuggerAttachedOptimizedCount;
 
@@ -24,12 +24,12 @@ i32 __node_is_debugger_attached()
 
    critical_section_lock lock(globals_critical_section());
 
-   if(g_durationLastDebuggerAttachedCheck.elapsed() > 300_ms)
+   if(g_timeLastDebuggerAttachedCheck.elapsed() > 300_ms)
    {
 
       g_iLastIsDebuggerAttached = gdb_check();
 
-      g_durationLastDebuggerAttachedCheck.elapsed();
+      g_timeLastDebuggerAttachedCheck.elapsed();
 
    }
    else

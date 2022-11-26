@@ -108,7 +108,7 @@ m_bStdout = false;
 
          //::system(str + " > " + "\"" + strClog + "\"");
 
-      auto tickStart = ::duration::now();
+      auto tickStart = ::time::now();
 
       string strLog;
 

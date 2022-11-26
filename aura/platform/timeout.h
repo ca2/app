@@ -1,11 +1,11 @@
 #pragma once
 
 class timeout :
-   public duration
+   public time
 {
 public:
 
-   timeout(const class ::duration& dur) : duration(dur) {}
+   timeout(const class ::time& dur) : time(dur) {}
 
 };
 
@@ -21,7 +21,7 @@ inline ::payload operator + (::payload payload, const ::timeout& timeout)
 
    }
 
-   payload["timeout"] = (const ::duration&) timeout;
+   payload["timeout"] = (const class ::time&) timeout;
 
    return ::payload;
 

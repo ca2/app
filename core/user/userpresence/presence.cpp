@@ -33,7 +33,7 @@ namespace userpresence
    void presence::report_activity()
    {
 
-      m_durationLastActivity= ::duration::now();
+      m_timeLastActivity= ::time::now();
 
    }
 
@@ -42,11 +42,11 @@ namespace userpresence
    {
 
       int iStatus = (int) m_iShortStatusWayTag;
-      if(m_durationLastActivity.elapsed() < 20_s)
+      if(m_timeLastActivity.elapsed() < 20_s)
       {
          iStatus = status_online;
       }
-      /*else if(m_durationLastActivity.elapsed() < ((5000) * 10))
+      /*else if(m_timeLastActivity.elapsed() < ((5000) * 10))
       {
          m_iShortStatusWayTag = status_away;
       }*/
@@ -55,7 +55,7 @@ namespace userpresence
          iStatus = status_offline;
       }
 
-      if(iStatus == m_iShortStatusWayTag && (m_durationLastPulse.elapsed()) < 10_s)
+      if(iStatus == m_iShortStatusWayTag && (m_timeLastPulse.elapsed()) < 10_s)
          return;
 
       m_iShortStatusWayTag = iStatus;
@@ -68,7 +68,7 @@ namespace userpresence
    void presence::pulse_user_presence()
    {
 
-      m_durationLastPulse= ::duration::now();
+      m_timeLastPulse= ::time::now();
 
       //if(psystem->m_strAppName == "netnode" || psystem->m_strAppName == "simpledbcfg")
         // return;

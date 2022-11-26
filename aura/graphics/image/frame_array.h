@@ -13,7 +13,7 @@ public:
 
 
    ::image_pointer      m_pimage;
-   ::duration           m_durationTotal;
+   class ::time           m_timeTotal;
    ::count              m_countLoop; // 0 - infinite loop
    ::index              m_iLoop;
    int                  m_iTransparentIndex;

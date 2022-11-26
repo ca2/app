@@ -362,7 +362,7 @@ void acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nC
 }
 
 
-void acme_file::append_wait(const char * strFile, const block & block, const ::duration & duration)
+void acme_file::append_wait(const char * strFile, const block & block, const class time & time)
 {
 
    auto pacmedirectory = m_pacmedirectory;
@@ -381,7 +381,7 @@ void acme_file::append_wait(const char * strFile, const block & block, const ::d
 
    FILE * pfile = nullptr;
 
-   auto millisStart = ::duration::now();
+   auto millisStart = ::time::now();
 
    while (true)
    {
@@ -403,7 +403,7 @@ void acme_file::append_wait(const char * strFile, const block & block, const ::d
 
       }
 
-      if (millisStart.elapsed() > duration)
+      if (millisStart.elapsed() > time)
       {
 
          throw ::exception(error_timeout);
@@ -682,7 +682,7 @@ void acme_file::set_modification_time(const char* psz, const ::earth::time& time
 }
 
 //
-//::duration acme_file::modification_time(const char* psz)
+//::time acme_file::modification_time(const char* psz)
 //{
 //
 //   throw ::interface_only();
@@ -1292,7 +1292,7 @@ void acme_file::append(const ::string & strFile, const block & block)
 }
 
 
-void acme_file::append_wait(const ::string & strFile, const block & block, const ::duration & duration)
+void acme_file::append_wait(const ::string & strFile, const block & block, const class time & time)
 {
 
    m_pacmedirectory->create(::file_path_folder(strFile));
@@ -1308,7 +1308,7 @@ void acme_file::append_wait(const ::string & strFile, const block & block, const
 
    FILE * pfile = nullptr;
 
-   auto millisStart = ::duration::now();
+   auto millisStart = ::time::now();
 
    while (true)
    {
@@ -1330,7 +1330,7 @@ void acme_file::append_wait(const ::string & strFile, const block & block, const
 
       }
 
-      if (millisStart.elapsed() > duration)
+      if (millisStart.elapsed() > time)
       {
 
          throw ::exception(error_timeout);

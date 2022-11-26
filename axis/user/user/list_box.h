@@ -15,7 +15,7 @@ namespace user
 
 
       bool                                m_bCaseSensitiveMatch;
-      ::duration                            m_durationKillFocus;
+      class ::time                            m_timeKillFocus;
       bool                                m_bPendingKillFocusHiding;
       bool                                m_bMovingComboBox;
       bool                                m_bComboList;
@@ -31,7 +31,7 @@ namespace user
       string_array                    m_straValue;
 
 
-      ::duration                                m_durationLastVisibilityChange;
+      class ::time                                m_timeLastVisibilityChange;
 
 
       list_box();

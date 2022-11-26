@@ -23,7 +23,7 @@ namespace aqua
 
       ::audio::audio *     m_paudio;
       bool                 m_bLocalFileSystemSynch;
-      ::duration           m_durationPreBuffer;
+      class ::time           m_timePreBuffer;
 
 
       audio();

@@ -324,13 +324,13 @@ namespace draw3d
             if(iHint == 0)
             {
 
-               ca.set_hls(::duration::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
+               ca.set_hls(::time::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
 
             }
             else
             {
                
-               ca.set_hls(::duration::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
+               ca.set_hls(::time::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
 
             }
 

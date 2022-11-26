@@ -1450,6 +1450,9 @@
     <ClCompile Include="platform\_synchronization.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="filesystem\_impl.h">

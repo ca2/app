@@ -1,4 +1,4 @@
-// This is apex API library.
+﻿// This is apex API library.
 //
 //
 //
@@ -254,10 +254,10 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //
 //   template < typename THREAD >
-//   void wait(::pointer<THREAD>& pthread, const duration & duration = ::duration::infinite())
+//   void wait(::pointer<THREAD>& pthread, const class time & time = ::time::infinite())
 //   {
 //
-//      ::duration tickStart = ::duration::now();
+//      class ::time tickStart = class ::time::now();
 //
 //      while(pthread.is_set() && pthread->task_get_run() && ::task_get_run())
 //      {
@@ -276,10 +276,10 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //         }
 //
-//         if(!duration.is_infinite())
+//         if(!time.is_infinite())
 //         {
 //
-//            if((::duration::now() - tickStart) > duration.get_total_milliseconds())
+//            if((class ::time::now() - tickStart) > time.get_total_milliseconds())
 //            {
 //
 //               return;
@@ -290,7 +290,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //      }
 //
-//      if(duration.is_infinite())
+//      if(time.is_infinite())
 //      {
 //
 //         pthread.release();
@@ -358,20 +358,20 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //
 
-
-template < typename PRED >
-auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, ::duration durationTimeout, enum_priority epriority)
-{
-
-   auto proutine = __sync_routine(pred);
-
-   pfnBranch(proutine, epriority);
-
-   proutine->sync_wait(durationTimeout);
-
-   return proutine;
-
-}
+//
+//template < typename PRED >
+//auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, const class time & timeTimeout, enum_priority epriority)
+//{
+//
+//   auto proutine = __sync_routine(pred);
+//
+//   pfnBranch(proutine, epriority);
+//
+//   proutine->sync_wait(timeTimeout);
+//
+//   return proutine;
+//
+//}
 
 //
 //

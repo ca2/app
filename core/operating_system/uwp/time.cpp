@@ -25,7 +25,7 @@
 
 
 
-CLASS_DECL_CORE void sleep(const ::duration & dur)
+CLASS_DECL_CORE void sleep(const class time & time)
 {
 
    sleep((::u32) dur.total_milliseconds());

@@ -713,7 +713,7 @@
    }
 
 
-   void os_context::hidden_run(const class ::wait& wait, const ::file::path& pathTarget, const ::string& strParams, const ::file::path& pathFolder)
+   void os_context::hidden_run(const class time & timeWait, const ::file::path& pathTarget, const ::string& strParams, const ::file::path& pathFolder)
    {
 
       throw ::interface_only();

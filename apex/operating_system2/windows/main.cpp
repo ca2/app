@@ -165,10 +165,10 @@ CLASS_DECL_APEX i32 ca2_main();
    //}
    //
    //
-   //CLASS_DECL_APEX void main_sync_runnable(const ::procedure & procedure, ::duration durationTimeout)
+   //CLASS_DECL_APEX void main_sync_runnable(const ::procedure & procedure, ::time timeTimeout)
    //{
    //   
-   //   psystem->send_routine(routine, durationTimeout);
+   //   psystem->send_routine(routine, timeTimeout);
    //
    //}
 

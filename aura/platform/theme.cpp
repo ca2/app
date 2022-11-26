@@ -495,7 +495,7 @@ namespace aura
       //if (ptopic->m_pathFile.ends_ci("weather_state.txt"))
       //{
 
-      //   (*m_prunnerChangeWeatherState)(::duration(300), [this]()
+      //   (*m_prunnerChangeWeatherState)(::time(300), [this]()
       //      {
 
       //         on_change_weather_state();

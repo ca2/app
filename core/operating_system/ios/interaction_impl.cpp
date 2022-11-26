@@ -1999,7 +1999,7 @@ namespace ios
 ////                                         try
 ////                                         {
 ////
-//// auto tickStart = ::duration::now();
+//// auto tickStart = ::time::now();
 ////
 ////                                            if(m_puserinteraction == nullptr)
 ////                                            {
@@ -2125,7 +2125,7 @@ namespace ios
 ////                                             try
 ////                                             {
 ////
-//// auto tickStart = ::duration::now();
+//// auto tickStart = ::time::now();
 ////
 ////                                                if(m_puserinteraction == nullptr)
 ////                                                {
@@ -5717,7 +5717,7 @@ namespace ios
 
       m_puserinteraction->set_need_redraw();
       
-      m_durationLastExposureAddUp.Now();
+      m_timeLastExposureAddUp.Now();
 
    }
 

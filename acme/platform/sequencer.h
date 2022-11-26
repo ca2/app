@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //#include "acme/parallelization/synchronization.h"
@@ -40,21 +40,21 @@ public:
    void fork();
 
 
-   sequence<SEQUENCE> * topic(const ::duration & duration = ::duration::infinite());
+   sequence<SEQUENCE> * topic(const class time & timeWait = ::time::infinite());
 
 
-   virtual ::e_status wait(const class ::wait & wait = ::wait::infinite()) override;
+   virtual ::e_status wait(const class time & timeWait = ::time::infinite()) override;
 
 
    sequence<SEQUENCE> * then(const sequence_step < SEQUENCE > & step);
 
-   sequence<SEQUENCE> * then(const ::duration& duration, const sequence_step < SEQUENCE > & step);
+   sequence<SEQUENCE> * then(const class time & time, const sequence_step < SEQUENCE > & step);
 
    
-   virtual ::atom do_synchronously(const class ::wait & wait = ::wait::infinite())
+   virtual ::atom do_synchronously(const class time & timeWait = ::time::infinite())
    {
       
-      return m_psequence->do_synchronously(wait);
+      return m_psequence->do_synchronously(timeWait);
       
    }
 
@@ -80,10 +80,10 @@ public:
 //
 //}
 //
-//sequence * sequence::then(const ::duration & duration, const function & function);
+//sequence * sequence::then(const class time & time, const function & function);
 //{
 //
-//   m_psequencer->then(duration, function);
+//   m_psequencer->then(time, function);
 //   return this;
 //
 //}
@@ -269,7 +269,7 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const sequence_step < SEQU
 
 
 template < typename SEQUENCE >
-sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const ::duration & duration, const sequence_step < SEQUENCE > & step)
+sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const class time & wait, const sequence_step < SEQUENCE > & step)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
@@ -283,7 +283,7 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const ::duration & duratio
 
       lock.unlock();
 
-      if (!m_pevent->wait(duration))
+      if (!m_pevent->wait(time))
       {
 
          lock.lock();
@@ -321,9 +321,8 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const ::duration & duratio
 }
 
 
-
 template < typename SEQUENCE >
-sequence < SEQUENCE > * sequencer < SEQUENCE > ::topic(const ::duration & duration)
+sequence < SEQUENCE > * sequencer < SEQUENCE > ::topic(const class time & timeWait)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
@@ -333,7 +332,7 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::topic(const ::duration & durati
 
       m_pevent = memory_new manual_reset_event();
 
-      if (!m_pevent->wait(duration))
+      if (!m_pevent->wait(timeWait))
       {
 
          lock.lock();
@@ -357,7 +356,7 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::topic(const ::duration & durati
 
 
 template < typename SEQUENCE >
-::e_status sequencer < SEQUENCE > ::wait(const class ::wait & wait)
+::e_status sequencer < SEQUENCE > ::wait(const class time & timeWait)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
@@ -369,7 +368,7 @@ template < typename SEQUENCE >
 
       lock.unlock();
 
-      if (!m_pevent->wait(wait))
+      if (!m_pevent->wait(timeWait))
       {
 
          lock.lock();

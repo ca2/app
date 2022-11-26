@@ -66,7 +66,7 @@ class dump_context;
 class task;
 class property_object;
 class object;
-class duration;
+class time;
 
 
 //#include "acme/include/_forward_declaration.h"
@@ -98,7 +98,7 @@ class duration;
 #include "acme/parallelization/_impl_synchronization_result.h"
 //#include "acme/primitive/datetime/_impl.h"
 
-#include "acme/primitive/duration/time.h"
+#include "acme/primitive/time/time.h"
 
 
 

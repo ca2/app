@@ -61,9 +61,9 @@ public:
    void _wait () override;
 
    ///  \brief		waits for an event for a specified time
-   ///  \lparam		duration time period to wait for an event
+   ///  \lparam		time time period to wait for an event
    ///  \return	true if acquired lock, false timeout, exception on error
-   bool _wait (const class ::wait & wait) override;
+   bool _wait (const class time & timeWait) override;
 
    bool is_signaled() const;
 

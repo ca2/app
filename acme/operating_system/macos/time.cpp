@@ -28,18 +28,18 @@ void ns_Sleep(unsigned int uiMillis);
 //
 //}
 
-//CLASS_DECL_ACME void sleep(const duration & duration)
+//CLASS_DECL_ACME void sleep(const class time & time)
 //{
 //
-//   ns_Sleep((unsigned int) duration.get_total_milliseconds());
+//   ns_Sleep((unsigned int) time.get_total_milliseconds());
 //
 //}
 
 
-//CLASS_DECL_ACME void sleep(const ::duration & duration)
+//CLASS_DECL_ACME void sleep(const class time & time)
 //{
 //
-//   usleep((unsigned int) ::duration.m_i * 1000);
+//   usleep((unsigned int) ::time.m_i * 1000);
 //
 //}
 

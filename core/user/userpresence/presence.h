@@ -20,8 +20,8 @@ namespace userpresence
       };
 
 
-      ::duration m_durationLastActivity;
-      ::duration m_durationLastPulse;
+      class ::time m_timeLastActivity;
+      class ::time m_timeLastPulse;
       i64        m_iShortStatusWayTag;
       string         m_strLongStatus;
 

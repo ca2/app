@@ -516,9 +516,9 @@ namespace apex
       if (psession)
       {
 
-         duration duration;
+         class time time;
 
-         duration.Now();
+         time.Now();
 
          while (true)
          {
@@ -532,7 +532,7 @@ namespace apex
 
             preempt(100_ms);
 
-            if (duration.elapsed() > 10_s)
+            if (time.elapsed() > 10_s)
             {
 
                break;
@@ -1569,7 +1569,7 @@ pacmedirectory->create("/ca2core");
 //   }
 //
 //
-//   void system::get_time(micro_duration * pmicroduration)
+//   void system::get_time(micro_time * pmicrotime)
 //   {
 //
 //
@@ -1585,9 +1585,9 @@ pacmedirectory->create("/ca2core");
 //
 //      tt /= 10; // make it usecs
 //      
-//      pmicroduration->m_secs = (long)tt / 1'000'000;
+//      pmicrotime->m_secs = (long)tt / 1'000'000;
 //      
-//      pmicroduration->m_micros = (long)tt % 1'000'000;
+//      pmicrotime->m_micros = (long)tt % 1'000'000;
 //
 //#else
 //
@@ -1595,9 +1595,9 @@ pacmedirectory->create("/ca2core");
 //
 //      gettimeofday(&timeval, nullptr);
 //
-//      pmicroduration->m_secs = timeval.tv_sec;
+//      pmicrotime->m_secs = timeval.tv_sec;
 //
-//      pmicroduration->m_micros = timeval.tv_usec;
+//      pmicrotime->m_micros = timeval.tv_usec;
 //
 //#endif
 //
@@ -2460,7 +2460,7 @@ pacmedirectory->create("/ca2core");
    void system::appa_load_string_table()
    {
 
-      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
+      //retry_single_lock rsl(mutex(),::time(100),::time(100));
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
       //    {
@@ -2474,7 +2474,7 @@ pacmedirectory->create("/ca2core");
    void system::appa_set_locale(const ::string & pszLocale, const ::action_context & context)
    {
 
-      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
+      //retry_single_lock rsl(mutex(),::time(100),::time(100));
       single_lock rsl(synchronization());
 
       rsl.lock(10_s);
@@ -2491,7 +2491,7 @@ pacmedirectory->create("/ca2core");
    void system::appa_set_schema(const ::string & pszStyle, const ::action_context & context)
    {
 
-      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
+      //retry_single_lock rsl(mutex(),::time(100),::time(100));
       single_lock rsl(synchronization());
 
       rsl.lock(10_s);
@@ -3174,7 +3174,7 @@ pacmedirectory->create("/ca2core");
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      m_durationCommandLineLast.Now();
+      m_timeCommandLineLast.Now();
 
       m_iCommandLineDelay = 1000;
 

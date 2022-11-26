@@ -314,7 +314,7 @@ namespace sockets
 
    //   int nBytesReceived = 0;
 
-   //   ::u32 tickStart= ::duration::now();
+   //   ::u32 tickStart= ::time::now();
 
    //   int iRead = 0;
 

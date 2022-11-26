@@ -466,7 +466,7 @@
 //         m_rx(pparticle)
 //      {
 //
-//         m_durationTimeout = (5000) * 11;
+//         m_timeTimeout = (5000) * 11;
 //
 //      }
 //

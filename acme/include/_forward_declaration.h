@@ -255,7 +255,7 @@ class object;
 class __id;
 class string_exchange;
 class lparam;
-class wait;
+class time;
 class timer_callback;
 namespace message { class message; }
 class payload;
@@ -790,7 +790,7 @@ namespace audio
 
 class file_time;
 
-class duration;
+class time;
 
 
 namespace earth

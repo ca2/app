@@ -4,7 +4,7 @@
 //namespace str
 //{
 //
-//   CLASS_DECL_APEX string get_window_text_timeout(oswindow oswindow, ::duration tickTimeout);
+//   CLASS_DECL_APEX string get_window_text_timeout(oswindow oswindow, class ::time tickTimeout);
 //
 //} // namespace str
 

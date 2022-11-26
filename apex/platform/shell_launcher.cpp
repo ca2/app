@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "shell_launcher.h"
 #include "acme/exception/interface_only.h"
 
@@ -41,7 +41,7 @@ namespace apex
 
 
 
-   void shell_launcher::setup(duration durationTimeout)
+   void shell_launcher::setup(const class time & timeTimeout)
    {
 
       m_iMode = 1;
@@ -51,7 +51,7 @@ namespace apex
    }
 
 
-   void shell_launcher::setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout)
+   void shell_launcher::setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, const class time & timeTimeout)
    {
 
       m_iMode = 0;

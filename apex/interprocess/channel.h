@@ -18,7 +18,7 @@ namespace interprocess
       ::pointer<::interprocess::caller>         m_pcaller;
       ::pointer<::interprocess::target>         m_ptarget;
       string                                    m_strChannel;
-      unsigned int                              m_durationTimeout;
+      unsigned int                              m_timeTimeout;
 
 
       channel();
@@ -33,8 +33,8 @@ namespace interprocess
       virtual void restart_apex_ipc();
 
 
-      virtual bool ensure_caller(const ::string & strUri, const ::duration & durationTimeout = hour());
-      //virtual bool ensure_caller(int message, void * pdata, int len, const ::duration & durationTimeout = hour());
+      virtual bool ensure_caller(const ::string & strUri, const class time & timeTimeout = 1_hour);
+      //virtual bool ensure_caller(int message, void * pdata, int len, const class time & timeTimeout = hour());
 
 
       virtual bool is_channel_ok();

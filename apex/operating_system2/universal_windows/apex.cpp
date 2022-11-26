@@ -57,7 +57,7 @@ namespace audio
 //
 //
 //
-//VOID WINAPI sleep(::u32 dw::durations)
+//VOID WINAPI sleep(::u32 dw::times)
 //{
 //   static HANDLE singletonEvent = nullptr;
 //
@@ -82,7 +82,7 @@ namespace audio
 //   }
 //
 //   // Emulate sleep by waiting with timeout on an event that is never signalled.
-//   WaitForSingleObjectEx(sleepEvent, dw::durations, false);
+//   WaitForSingleObjectEx(sleepEvent, dw::times, false);
 //}
 //#endif
 
@@ -328,10 +328,10 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 
 
 
-//::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::durations )
+//::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::times )
 //{
 //
-//   return ::WaitForSingleObjectEx(hHandle, dw::durations, false);
+//   return ::WaitForSingleObjectEx(hHandle, dw::times, false);
 //
 //}
 

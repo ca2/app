@@ -32,7 +32,7 @@ public:
    void initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails = nullptr) override;
 
    
-   ::payload do_synchronously(const class ::wait & wait) override;
+   ::payload do_synchronously(const class time & timeWait) override;
    void do_asynchronously() override;
 
    

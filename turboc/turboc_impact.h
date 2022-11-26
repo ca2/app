@@ -51,11 +51,11 @@ namespace turboc
       string                  m_strNewHelloMultiverse;
       string                  m_strHelloMultiverse;
       bool                    m_bOkPending;
-      ::duration m_durationLastOk;
-      ::duration                   m_durationAnime;
+      class ::time m_timeLastOk;
+      class ::time                   m_timeAnime;
       bool                    m_bNewLayout;
-      ::duration m_durationLastFast;
-      ::u32                   m_durationFastAnime;
+      class ::time m_timeLastFast;
+      ::u32                   m_timeFastAnime;
       bool                    m_bFast;
       bool                    m_bFirstDone;
       bool                    m_bFastOnEmpty;

@@ -70,14 +70,14 @@ namespace networking
 
 
 
-   i32 application::wait_get_current_port(const ::duration& duration)
+   i32 application::wait_get_current_port(const class time & time)
    {
 
-      ::duration durationStart;
+      class ::time timeStart;
 
-      durationStart.Now();
+      timeStart.Now();
 
-      while (get_current_port() < 0 && durationStart.elapsed() < duration)
+      while (get_current_port() < 0 && timeStart.elapsed() < time)
       {
 
          preempt(300_ms);

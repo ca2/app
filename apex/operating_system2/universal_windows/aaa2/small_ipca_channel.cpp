@@ -87,7 +87,7 @@
       }
 
 
-      bool tx::send(const char * pszMessage, duration durationTimeout)
+      bool tx::send(const char * pszMessage, time timeTimeout)
       {
 
          if (!is_tx_ok())
@@ -97,10 +97,10 @@
 
          ::winrt::Windows::Foundation::Uri ^uri = ref memory_new ::winrt::Windows::Foundation::Uri(anotherappURI);
 
-         ::apex::get_system()->main_user_sync(__routine([uri, durationTimeout]()
+         ::apex::get_system()->main_user_sync(__routine([uri, timeTimeout]()
             {
 
-               ::wait(Launcher::LaunchUriAsync(uri), durationTimeout);
+               ::wait(Launcher::LaunchUriAsync(uri), timeTimeout);
 
             }));
 
@@ -120,7 +120,7 @@
       }
 
 
-      bool tx::send(int message, void * pdata, int len, ::duration durationTimeout)
+      bool tx::send(int message, void * pdata, int len, ::time timeTimeout)
       {
 
          if (!is_tx_ok())
@@ -132,7 +132,7 @@
 
          ::winrt::Windows::Foundation::Uri ^uri = ref memory_new ::winrt::Windows::Foundation::Uri(anotherappURI);
 
-         ::wait(Launcher::LaunchUriAsync(uri), durationTimeout);
+         ::wait(Launcher::LaunchUriAsync(uri), timeTimeout);
 
          return true;
 

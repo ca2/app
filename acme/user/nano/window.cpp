@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 31/01/2022 16:16 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
@@ -764,10 +764,10 @@ void nano_window::_run_modal_loop()
 }
 
 
-::payload nano_window::do_synchronously(const class ::wait & wait)
+::payload nano_window::do_synchronously(const class time & timeWait)
 {
    
-   return m_pimplementation->do_synchronously(wait);
+   return m_pimplementation->do_synchronously(timeWait);
 
 }
 

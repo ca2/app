@@ -286,7 +286,7 @@ PTIME_FIELDS TimeFields)
    u64 Days;
    ::i64 Time;
 
-   /* Extract ::duration from time and convert time into seconds */
+   /* Extract ::time from time and convert time into seconds */
    TimeFields->Millisecond =
    (CSHORT) (( liTime->QuadPart % TICKSPERSEC) / TICKSPERMSEC);
    Time = liTime->QuadPart / TICKSPERSEC;

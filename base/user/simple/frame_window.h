@@ -20,8 +20,8 @@ public:
    bool                                            m_bCustomFrameBefore : 1;
    bool                                            m_bToolbar : 1;
    ::pointer<::user::tool_window>                  m_ptoolwindowFont;
-   ::duration                                      m_durationLastSaveWindowRect;
-   ::duration                                      m_durationLastSaveWindowRectRequest;
+   class ::time                                      m_timeLastSaveWindowRect;
+   class ::time                                      m_timeLastSaveWindowRectRequest;
    ::image_pointer                                 m_pimageBk;
    ::rectangle_i32                                 m_FullScreenWindowRect;
    ::pointer<::draw2d::fastblur>                   m_pfastblur;

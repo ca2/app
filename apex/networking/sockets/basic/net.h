@@ -137,7 +137,7 @@ namespace sockets
 
       //string reverse_name(::networking::address * address);
 
-      //string reverse_name(const string & address, bool bSynch, const ::duration& duration);
+      //string reverse_name(const string & address, bool bSynch, const class ::time& time);
 
       //inline string async_reverse_name(::networking::address * address)
       //{
@@ -149,14 +149,14 @@ namespace sockets
         // return reverse_name(address, false, 0);
       //}
 
-      //inline string reverse_name(::networking::address * address, const ::duration& duration = 15_s)
+      //inline string reverse_name(::networking::address * address, const class ::time& time = 15_s)
       //{
-        // return reverse_name(address, true, duration);
+        // return reverse_name(address, true, time);
       //}
 
-      //inline string reverse_name(const string& address, const ::duration& duration = 15_s)
+      //inline string reverse_name(const string& address, const class ::time& time = 15_s)
       //{
-        // return reverse_name(address, true, duration);
+        // return reverse_name(address, true, time);
       //}
 
    };

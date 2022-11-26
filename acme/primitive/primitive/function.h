@@ -42,14 +42,14 @@ class function_common
 public:
 
 
-   class ::wait m_waitTimeout;
+   class ::time      m_timeTimeout;
 
 
    function_common() {}
-   function_common(enum_timeout, const class wait& wait): m_waitTimeout(wait) {}
+   function_common(enum_timeout, const class time& wait): m_timeTimeout(wait) {}
 
-   void timeout(const class ::wait & wait)  { m_waitTimeout = wait;}
-   class ::wait timeout() const {return m_waitTimeout;}
+   void timeout(const class time & timeWait)  { m_timeTimeout = timeWait;}
+   class ::time timeout() const {return m_timeTimeout;}
 
 
 };
@@ -171,11 +171,11 @@ public:
 
 
    template < typename PREDICATE >
-   function(enum_timeout, const class ::wait & wait, PREDICATE predicateParam) :
+   function(enum_timeout, const class time & wait, PREDICATE predicateParam) :
       function(predicateParam)
    {
 
-      m_waitTimeout = wait;
+      m_timeTimeout = wait;
    
    }
 

@@ -91,7 +91,7 @@ multiple_lock::~multiple_lock()
 }
 
 
-::index multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
+::index multiple_lock::lock(const class time & time, bool bWaitForAll, u32 dwWakeMask)
 {
 
    if (m_synchronizationa.has_no_synchronization())
@@ -101,21 +101,21 @@ multiple_lock::~multiple_lock()
 
    }
 
-   //auto estatus = m_synchronizationa.wait(duration, bWaitForAll, dwWakeMask);
-   auto iSignaled = m_synchronizationa.wait(duration, bWaitForAll, dwWakeMask);
+   //auto estatus = m_synchronizationa.wait(time, bWaitForAll, dwWakeMask);
+   auto iSignaled = m_synchronizationa.wait(time, bWaitForAll, dwWakeMask);
 
 
 
    //if (dwWakeMask == 0)
    //{
 
-   //   iResult = ::WaitForMultipleObjectsEx((u32) m_synchronizationa.synchronization_count(), m_synchronizationa.sync_data(), bWaitForAll, duration.u32_millis(), false);
+   //   iResult = ::WaitForMultipleObjectsEx((u32) m_synchronizationa.synchronization_count(), m_synchronizationa.sync_data(), bWaitForAll, time.u32_millis(), false);
 
    //}
    //else
    //{
 
-   //   iResult = ::MsgWaitForMultipleObjects((u32)m_synchronizationa.synchronization_count(), m_synchronizationa.sync_data(), bWaitForAll, duration.u32_millis(), dwWakeMask);
+   //   iResult = ::MsgWaitForMultipleObjects((u32)m_synchronizationa.synchronization_count(), m_synchronizationa.sync_data(), bWaitForAll, time.u32_millis(), dwWakeMask);
 
    //}
 

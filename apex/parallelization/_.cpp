@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
@@ -241,10 +241,10 @@ namespace parallelization
 //   //}
 //
 //
-//   //CLASS_DECL_APEX bool post_quit_and_wait(const duration & duration)
+//   //CLASS_DECL_APEX bool post_quit_and_wait(const class time & time)
 //   //{
 //
-//   //   return post_quit_and_wait(::get_thread(), duration);
+//   //   return post_quit_and_wait(::get_thread(), time);
 //
 //   //}
 //
@@ -274,7 +274,7 @@ namespace parallelization
 //   //}
 //
 //
-//   bool post_quit_and_wait(::thread * pthreadParam, const duration & duration)
+//   bool post_quit_and_wait(::thread * pthreadParam, const class time & time)
 //   {
 //
 //      ::task_pointer pthread;
@@ -313,7 +313,7 @@ namespace parallelization
 //      try
 //      {
 //
-//         return pthread->wait(duration).succeeded();
+//         return pthread->wait(time).succeeded();
 //
 //      }
 //      catch (...)
@@ -583,7 +583,7 @@ namespace apex
    }
 
 
-   //bool do_events(const duration & duration)
+   //bool do_events(const class time & time)
    //{
    //
    //   ::thread * pthread = ::get_task();
@@ -591,7 +591,7 @@ namespace apex
    //   if(pthread == nullptr)
    //      return;
    //
-   //   pthread->do_events(duration);
+   //   pthread->do_events(time);
    //
    //}
 
@@ -976,10 +976,10 @@ void thread_ptra::destroy()
 }
 
 
-void thread_ptra::wait(const class ::wait & wait, ::particle & particleSynchronization)
+void thread_ptra::wait(const class time & timeWait, ::particle & particleSynchronization)
 {
 
-   auto waitStart = ::wait::now();
+   auto timeStart = ::time::now();
 
    try
    {
@@ -988,7 +988,7 @@ void thread_ptra::wait(const class ::wait & wait, ::particle & particleSynchroni
       //
       ::count cCount = get_count_except_current_thread();
 
-      while (cCount > 0 && waitStart.elapsed() < wait)
+      while (cCount > 0 && timeStart.elapsed() < timeWait)
       {
 
          particleSynchronization.unlock();

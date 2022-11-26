@@ -45,8 +45,8 @@ namespace install
 
       thread_start_ca2     m_startca2;
       canvas               m_canvas;
-      ::duration m_durationLastInstallingCheck;
-      ::duration m_durationLastRestart;
+      class ::time m_timeLastInstallingCheck;
+      class ::time m_timeLastRestart;
       // logged in ? alarm comments
       bool                 m_bLogged;
       // in login process, login screen should be shown
@@ -60,7 +60,7 @@ namespace install
       bool                 m_bRestartCa2;
       bool                 m_bPendingRestartCa2;
       bool                 m_bPendingStream;
-      ::duration m_durationLastOk;
+      class ::time m_timeLastOk;
 
       bool                 m_bPluginShiftKey;
 

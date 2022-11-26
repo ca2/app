@@ -14,7 +14,7 @@ namespace dynamic_source
    public:
 
 
-      ::duration                m_durationCreate;
+      class ::time                m_timeCreate;
 
 
       script_instance();

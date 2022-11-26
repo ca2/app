@@ -40,7 +40,7 @@ public:
    virtual ::size_i32 get_main_screen_size();
 
    
-   virtual ::atom do_synchronously(const class ::wait & wait = ::wait::infinite());
+   virtual ::atom do_synchronously(const class time & timeWait = ::time::infinite());
    virtual void do_asynchronously();
    
 

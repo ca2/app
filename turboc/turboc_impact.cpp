@@ -36,11 +36,11 @@ namespace turboc
 
       m_bVoidTransfer =  false;
 
-      m_durationAnime = 2000;
+      m_timeAnime = 2000;
 
       m_bNewLayout = false;
 
-      m_durationFastAnime = 584;
+      m_timeFastAnime = 584;
 
       m_bOkPending = true;
 
@@ -170,9 +170,9 @@ namespace turboc
 
    bool impact::in_anime()
    {
-      if(m_bFast || m_durationLastFast.elapsed() < m_durationFastAnime)
+      if(m_bFast || m_timeLastFast.elapsed() < m_timeFastAnime)
          return true;
-      if(m_durationLastOk.elapsed() < m_durationAnime)
+      if(m_timeLastOk.elapsed() < m_timeAnime)
          return true;
       return false;
    }
@@ -268,7 +268,7 @@ namespace turboc
 
       }
 
-      if(m_bFast || !m_bFirstDone || m_durationLastFast.elapsed() < m_durationFastAnime)
+      if(m_bFast || !m_bFirstDone || m_timeLastFast.elapsed() < m_timeFastAnime)
       {
 
          synchronous_lock slDraw(m_pmutexDraw);
@@ -287,7 +287,7 @@ namespace turboc
          if(m_bFast || !m_bFirstDone)
          {
 
-            m_durationLastFast= ::duration::now();
+            m_timeLastFast= ::time::now();
 
          }
 
@@ -306,7 +306,7 @@ namespace turboc
 
          m_bOkPending = false;
 
-         m_durationLastOk= ::duration::now();
+         m_timeLastOk= ::time::now();
 
       }
 
@@ -340,10 +340,10 @@ namespace turboc
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      if(m_durationLastOk.elapsed() < m_durationAnime)
+      if(m_timeLastOk.elapsed() < m_timeAnime)
       {
 
-         byte uchAlpha = maximum(0,minimum(255,(m_durationLastOk.elapsed()) * 255 / m_durationAnime));
+         byte uchAlpha = maximum(0,minimum(255,(m_timeLastOk.elapsed()) * 255 / m_timeAnime));
 
          ::rectangle_i32 rectangleClient;
 
@@ -517,7 +517,7 @@ namespace turboc
          {
 
 
-            //          ::u32 dwTime2= ::duration::now();
+            //          ::u32 dwTime2= ::time::now();
 
             //FORMATTED_TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 //            FORMATTED_TRACE("hello_impact::lyot call timeA= %d ms",(u64) (dwTime2 - t_time1.operator DWORD_PTR()));
@@ -568,7 +568,7 @@ namespace turboc
          }
          {
 
-//            ::u32 dwTime2= ::duration::now();
+//            ::u32 dwTime2= ::time::now();
 
             //FORMATTED_TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
             //FORMATTED_TRACE("hello_impact::lyot call timeB= %d ms",dwTime2 - t_time1.operator DWORD_PTR());

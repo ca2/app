@@ -50,10 +50,10 @@
 
 
 
-//CLASS_DECL_ACME void sleep(const duration & duration)
+//CLASS_DECL_ACME void sleep(const class time & time)
 //{
 //   
-//   usleep((unsigned int) duration.get_total_milliseconds() * 1000);
+//   usleep((unsigned int) time.get_total_milliseconds() * 1000);
 //   
 //}
 

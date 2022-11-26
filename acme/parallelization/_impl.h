@@ -19,14 +19,14 @@
 
 
 //template < typename PRED >
-//auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, ::duration durationTimeout, enum_priority epriority)
+//auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, class ::time timeTimeout, enum_priority epriority)
 //{
 //
 //   auto pobjectTask = __sync_predicate(pred);
 //
 //   pfnBranch(pobjectTask, epriority);
 //
-//   pobjectTask->m_event.wait(durationTimeout);
+//   pobjectTask->m_event.wait(timeTimeout);
 //
 //   return pobjectTask;
 //
@@ -65,11 +65,11 @@ void async_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority),
 //
 
 
-//inline class ::wait wait::now() { return get_integral_millisecond(); }
+//inline class ::time wait::now() { return get_integral_millisecond(); }
 
 
 
 
-//DEFINE_COMPARISON_WITH_DURATION(inline, wait)
+//DEFINE_COMPARISON_WITH_TIME(inline, wait)
 
 

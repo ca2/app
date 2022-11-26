@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * \file serial/serial.h
  * \author  William Woodall <wjwwood@gmail.com>
  * \author  John Harrison   <ash.gti@gmail.com>
@@ -99,7 +99,7 @@ namespace serial
 
    /*!
     * Structure for setting the timeout of the serial port, times are
-    * in ::durations.
+    * in ::times.
     *
     * In order to disable the interbyte timeout, set it to timeout::maximum().
     */
@@ -116,38 +116,38 @@ namespace serial
        * Convenience function to generate timeout structs using a
        * single absolute timeout.
        *
-       * \lparam timeout A long that defines the time in ::durations until a
+       * \lparam timeout A long that defines the time in ::times until a
        * timeout occurs after a call to read or write is made.
        *
        * \return timeout struct that represents this simple timeout provided.
        */
-      virtual timeout simpleTimeout(const ::duration & duration);
+      virtual timeout simpleTimeout(const class time & time);
 
-      /*! Number of ::durations between bytes received to timeout on. */
-      ::duration m_durationInterByteTimeout;
-      /*! A constant number of ::durations to wait after method read. */
-      ::duration m_durationReadTimeoutConstant;
+      /*! Number of ::times between bytes received to timeout on. */
+      class ::time m_timeInterByteTimeout;
+      /*! A constant number of ::times to wait after method read. */
+      class ::time m_timeReadTimeoutConstant;
       /*! A multiplier against the number of requested bytes to wait after
        *  method read.
        */
       u32 m_uReadTimeoutMultiplier;
-      /*! A constant number of ::durations to wait after method write. */
-      ::duration m_durationWriteTimeoutConstant;
+      /*! A constant number of ::times to wait after method write. */
+      class ::time m_timeWriteTimeoutConstant;
       /*! A multiplier against the number of requested bytes to wait after
        *  method write.
        */
       u32 m_uWriteTimeoutMultiplier;
 
 
-      explicit timeout (const ::duration & durationInterByteTimeout=0_ms,
-         const ::duration & durationReadTimeoutConstant=0_ms,
+      explicit timeout (const class time & timeInterByteTimeout=0_ms,
+         const class time & timeReadTimeoutConstant=0_ms,
                         u32 uReadTimeoutMultiplier=0,
-         const ::duration & durationWriteTimeoutConstant=0_ms,
+         const class time & timeWriteTimeoutConstant=0_ms,
                         u32 uWriteTimeoutMultiplier=0)
-         : m_durationInterByteTimeout(durationInterByteTimeout),
-           m_durationReadTimeoutConstant(durationReadTimeoutConstant),
+         : m_timeInterByteTimeout(timeInterByteTimeout),
+           m_timeReadTimeoutConstant(timeReadTimeoutConstant),
            m_uReadTimeoutMultiplier(uReadTimeoutMultiplier),
-           m_durationWriteTimeoutConstant(durationWriteTimeoutConstant),
+           m_timeWriteTimeoutConstant(timeWriteTimeoutConstant),
            m_uWriteTimeoutMultiplier(uWriteTimeoutMultiplier)
       {}
       timeout(std::nullptr_t) : timeout() { }
@@ -251,7 +251,7 @@ namespace serial
       available ();
 
       /*! Block until there is serial data to read or read_timeout_constant
-       * number of ::durations have elapsed. The return value is true when
+       * number of ::times have elapsed. The return value is true when
        * the function exits with the port in a readable state, false otherwise
        * (due to timeout or select interruption). */
       virtual bool
@@ -274,12 +274,12 @@ namespace serial
        *    match the amount requested, but no exception will be thrown.  One of
        *    two possible timeouts occurred:
        *    * The inter byte timeout expired, this means that number of
-       *      ::durations elapsed between receiving bytes from the serial port
+       *      ::times elapsed between receiving bytes from the serial port
        *      exceeded the inter byte timeout.
        *    * The total timeout expired, which is calculated by multiplying the
        *      read timeout multiplier by the number of requested bytes and then
        *      added to the read timeout constant.  If that total number of
-       *      ::durations elapses after the initial call to read a timeout will
+       *      ::times elapses after the initial call to read a timeout will
        *      occur.
        *  * An exception occurred, in this case an actual exception will be thrown.
        *
@@ -459,14 +459,14 @@ namespace serial
        * There are two timeout conditions described here:
        *  * The inter byte timeout:
        *    * The inter_byte_timeout component of serial::timeout defines the
-       *      maximum amount of time, in ::durations, between receiving bytes on
+       *      maximum amount of time, in ::times, between receiving bytes on
        *      the serial port that can pass before a timeout occurs.  Setting this
        *      to zero will prevent inter byte timeouts from occurring.
        *  * Total time timeout:
        *    * The constant and multiplier component of this timeout condition,
        *      for both read and write, are defined in serial::timeout.  This
        *      timeout occurs if the total time since the read or write call was
-       *      made exceeds the specified time in ::durations.
+       *      made exceeds the specified time in ::times.
        *    * The limit is defined by multiplying the multiplier component by the
        *      number of requested bytes and adding that product to the constant
        *      component.  In this way if you want a read call, for example, to
@@ -492,8 +492,8 @@ namespace serial
        */
       virtual void set_timeout (const struct timeout &timeout);
       /*! Sets the timeout for reads and writes. */
-      virtual void set_timeout(const ::duration & inter_byte_timeout, const ::duration & read_timeout_constant,
-                  u32 read_timeout_multiplier, const ::duration & write_timeout_constant,
+      virtual void set_timeout(const class ::time & inter_byte_timeout, const class ::time & read_timeout_constant,
+                  u32 read_timeout_multiplier, const class ::time & write_timeout_constant,
                   u32 write_timeout_multiplier)
       {
          struct timeout timeout(inter_byte_timeout, read_timeout_constant,
@@ -629,7 +629,7 @@ namespace serial
 
       /*! Sends the RS-232 break signal.  See tcsendbreak(3). */
       virtual void
-      sendBreak (int duration);
+      sendBreak (int time);
 
       /*! Set the break condition to a given level.  Defaults to true. */
       virtual void

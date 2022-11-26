@@ -53,7 +53,7 @@ public:
 
    ::e_status wait() override;
 
-   virtual ::index wait(const class ::wait & wait, bool waitForAll = true, ::u32 uWaitMask = 0);
+   virtual ::index wait(const class time & timeWait, bool waitForAll = true, ::u32 uWaitMask = 0);
 
    virtual void contains(const ::e_status & result) const;
 

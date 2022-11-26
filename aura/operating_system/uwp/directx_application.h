@@ -14,7 +14,7 @@ namespace universal_windows
 
       ::u32                                           m_dwMouseMoveThrottle;
 
-      ::duration                                          m_durationLastMouseMove;
+      class ::time                                          m_timeLastMouseMove;
 
       ::winrt::Windows::UI::ViewManagement::UISettings ^     m_puisettings;
 

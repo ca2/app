@@ -19,7 +19,7 @@ namespace filemanager
 
 
       ::pointer<::user::list_cache>      m_puserlistcache;
-      ::duration                              m_durationLastUpdate;
+      class ::time                              m_timeLastUpdate;
 
 
       operation_list_impact();

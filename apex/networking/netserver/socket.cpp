@@ -4,7 +4,7 @@
 #include "acme/primitive/primitive/url.h"
 #include "acme/primitive/primitive/url_domain.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/duration/_text_stream.h"
+#include "acme/primitive/time/_text_stream.h"
 
 
 namespace netserver
@@ -106,11 +106,11 @@ namespace netserver
 
       }
 
-      auto tickExecuteBeg = ::duration::now();
+      auto tickExecuteBeg = ::time::now();
 
       send_response();
 
-      auto tickExecuteEnd = ::duration::now();
+      auto tickExecuteEnd = ::time::now();
 
       ERROR("=> " << (tickExecuteEnd - tickExecuteBeg).integral_second());
 

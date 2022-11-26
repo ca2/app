@@ -107,7 +107,7 @@ namespace sockets
 
 
          in_addr        m_ipaddr;
-         ::duration           m_durationLastChecked;
+         class ::time           m_timeLastChecked;
          bool           m_bOk;
 
 

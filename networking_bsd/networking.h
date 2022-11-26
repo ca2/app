@@ -51,7 +51,7 @@ namespace networking_bsd
 
 
          in_addr           m_ipaddr;
-         ::duration m_durationLastChecked;
+         class ::time m_timeLastChecked;
          bool              m_bOk;
          bool              m_bTimeout;
 
@@ -78,7 +78,7 @@ namespace networking_bsd
          ::pointer<::networking_bsd::address>   m_paddress;
          string                                 m_strIpAddress;
          string                                 m_strReverse;
-         ::duration                             m_durationLastChecked;
+         class ::time                             m_timeLastChecked;
          bool                                   m_bOk;
          bool                                   m_bTimeout;
          bool                                   m_bProcessing;
@@ -197,7 +197,7 @@ namespace networking_bsd
 
       string reverse_name(::networking::address * address) override;
       
-      //i32 _select(::sockets::socket_handler * psockethandler, const class ::wait & wait) override;
+      //i32 _select(::sockets::socket_handler * psockethandler, const class time & timeWait) override;
 
       ::pointer<::networking::address>create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0) override;
 

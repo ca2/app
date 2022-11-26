@@ -264,7 +264,7 @@ namespace sockets
    //   if (psocket->is_connecting())
    //   {
 
-   //      if (psocket->m_durationConnectionMaximum > 0_s)
+   //      if (psocket->m_timeConnectionMaximum > 0_s)
    //      {
 
    //         socket_id_list_add(psocket->get_socket_id(), e_list_timeout);
@@ -275,7 +275,7 @@ namespace sockets
    //   else
    //   {
 
-   //      if (psocket->m_durationMaximum > 0_s)
+   //      if (psocket->m_timeMaximum > 0_s)
    //      {
 
    //         socket_id_list_add(psocket->get_socket_id(), e_list_timeout);
@@ -308,7 +308,7 @@ namespace sockets
    //   if (passociation->m_psocket->is_connecting())
    //   {
 
-   //      if (passociation->m_psocket->m_durationConnectionMaximum > 0_s)
+   //      if (passociation->m_psocket->m_timeConnectionMaximum > 0_s)
    //      {
 
    //         socket_id_list_add(passociation->m_psocket->get_socket_id(), e_list_timeout);
@@ -319,7 +319,7 @@ namespace sockets
    //   else
    //   {
 
-   //      if (passociation->m_psocket->m_durationMaximum > 0_s)
+   //      if (passociation->m_psocket->m_timeMaximum > 0_s)
    //      {
 
    //         socket_id_list_add(passociation->m_psocket->get_socket_id(), e_list_timeout);
@@ -570,7 +570,7 @@ namespace sockets
    }
 
 
-  i32 socket_handler::select(const class ::wait & wait)
+  i32 socket_handler::select(const class time & timeWait)
   {
 
      throw interface_only();
@@ -579,12 +579,12 @@ namespace sockets
 //     i32 n = acmesystem()->m_papexsystem->networking()->_select(this, wait);
 //
 //
-//     auto tick2 = ::duration::now();
+//     auto tick2 = ::time::now();
 //
 //     if (n < 0)
 //     {
 //
-//        auto tickNow = ::duration::now();
+//        auto tickNow = ::time::now();
 //
 //        /*
 //           EBADF  An invalid file descriptor was given in one of the sets.
@@ -593,7 +593,7 @@ namespace sockets
 //           ENOMEM select was unable to allocate memory for internal tables.
 //        */
 //
-//        if (m_maxsock > 0 && (m_iSelectErrno != m_iPreviousError || tickNow - m_durationLastError > 5_s))
+//        if (m_maxsock > 0 && (m_iSelectErrno != m_iPreviousError || tickNow - m_timeLastError > 5_s))
 //        {
 //
 //           INFORMATION("select" << m_iSelectErrno << ", " << bsd_socket_error(m_iSelectErrno));
@@ -813,7 +813,7 @@ namespace sockets
 //
 //        m_iPreviousError = m_iSelectErrno;
 //
-//        m_durationLastError = tickNow;
+//        m_timeLastError = tickNow;
 //
 //     }
 //     else if(n == 0)

@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////
+﻿//////////////////////////////////////////////////////////////////////////////
 // chronometer.cpp
 // =========
 // High Resolution chronometer.
@@ -49,7 +49,7 @@ namespace acme
       
       m_bStopped = false; // reset stop flag
 
-      m_durationStart.Now();
+      m_timeStart.Now();
 
    }
 
@@ -64,7 +64,7 @@ namespace acme
       
       m_bStopped = true; // set chronometer stopped flag
 
-      m_durationEnd.Now();
+      m_timeEnd.Now();
 
    }
 
@@ -74,7 +74,7 @@ namespace acme
    // compute elapsed time in micro-second resolution.
    // other getElapsedTime will call this first, then convert to correspond resolution.
    ///////////////////////////////////////////////////////////////////////////////
-   duration chronometer::elapsed()
+   class time chronometer::elapsed()
    {
 
       if (!m_bStopped)
@@ -84,17 +84,15 @@ namespace acme
 
       }
 
-      return m_durationEnd - m_durationStart;
+      return m_timeEnd - m_timeStart;
 
    }
 
 
-
-
-   duration chronometer::now()
+   class time chronometer::now()
    {
 
-      return ::duration::now();
+      return ::time::now();
 
    }
 

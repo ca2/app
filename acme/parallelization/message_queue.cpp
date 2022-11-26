@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "message_queue.h"
 #include "acme/constant/message.h"
 #include "acme/operating_system/message.h"
@@ -112,7 +112,7 @@ void message_queue::kick_idle()
 }
 
 
-::e_status message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration)
+::e_status message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const class time & time)
 {
 
    if (wMsgFilterMax == 0)
@@ -169,7 +169,7 @@ void message_queue::kick_idle()
 
          synchronouslock.unlock();
 
-         auto estatus = m_eventNewMessage.wait(duration);
+         auto estatus = m_eventNewMessage.wait(time);
 
          if(estatus == error_failed)
          {

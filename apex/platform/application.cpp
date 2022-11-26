@@ -267,7 +267,7 @@ namespace apex
       m_strLocale = "_std";
       m_strSchema = "_std";
 
-      //m_durationGcomBackgroundUpdate = 30_s;
+      //m_timeGcomBackgroundUpdate = 30_s;
 
       //m_pappimpl = memory_new application_impl;
 
@@ -868,10 +868,10 @@ namespace apex
          }
 
          // Verry Sory for the per request overhead here for the needed information of only first request
-         if (::is_set(psystem) && psystem->m_durationAfterApplicationFirstRequest.is_null())
+         if (::is_set(psystem) && psystem->m_timeAfterApplicationFirstRequest.is_null())
          {
 
-            psystem->m_durationAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+            psystem->m_timeAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
          }
 
@@ -922,7 +922,7 @@ namespace apex
    //}
 
 
-   //void application::ui_message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!get_session() || !psession->userex())
@@ -932,7 +932,7 @@ namespace apex
 
    //   }
 
-   //   return psession->userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
+   //   return psession->userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
 
    //}
 
@@ -954,10 +954,10 @@ namespace apex
    //}
 
 
-   //void application::message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
-   //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
+   //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
 
    //   if (!estatus)
    //   {
@@ -982,7 +982,7 @@ namespace apex
 
    //   u64 uFlags = 0;
 
-   //   ::duration durationTimeout;
+   //   ::time timeTimeout;
 
    //   ::function_arg function;
 
@@ -999,12 +999,12 @@ namespace apex
    //      strMessage = payload["message"];
    //      strTitle = payload["title"];
    //      uFlags = payload["flags"];
-   //      durationTimeout = payload["duration"];
+   //      timeTimeout = payload["time"];
    //      function = payload["function_arg"];
 
    //   }
 
-   //   if (durationTimeout.is_null())
+   //   if (timeTimeout.is_null())
    //   {
 
    //      return message_box(puiOwner, strMessage, strTitle, (::u32) uFlags, function);
@@ -1013,7 +1013,7 @@ namespace apex
    //   else
    //   {
 
-   //      return message_box_timeout(puiOwner, strMessage, strTitle, durationTimeout, (::u32) uFlags, function);
+   //      return message_box_timeout(puiOwner, strMessage, strTitle, timeTimeout, (::u32) uFlags, function);
 
    //   }
 
@@ -1420,7 +1420,7 @@ namespace apex
 
       INFORMATION("apex::application::term_thread");
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       try
       {
@@ -1446,7 +1446,7 @@ namespace apex
       try
       {
 
-         m_durationHeartBeat.Now();
+         m_timeHeartBeat.Now();
 
          application_pre_run();
 
@@ -1492,7 +1492,7 @@ namespace apex
 
          //}
 
-         m_durationHeartBeat.Now();
+         m_timeHeartBeat.Now();
 
          os_native_bergedge_start();
          //{
@@ -1728,7 +1728,7 @@ namespace apex
       try
       {
 
-         m_durationHeartBeat.Now();
+         m_timeHeartBeat.Now();
 
          application_pos_run();
 
@@ -1775,15 +1775,15 @@ namespace apex
                && !has_property("uninstall")))
          {
 
-            duration durationTimeout;
+            class time timeTimeout;
 
             //#ifdef __DEBUG
             //
-            //          durationTimeout = minutes(5);
+            //          timeTimeout = minutes(5);
             //
             //#else //__DEBUG
 
-            durationTimeout = 5_s;
+            timeTimeout = 5_s;
 
             //#endif //!__DEBUG
 
@@ -1793,7 +1793,7 @@ namespace apex
 
             //          payload["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
 
-            //message_box(strMessage, m_strAppName, durationTimeout, e_message_box_icon_asterisk);
+            //message_box(strMessage, m_strAppName, timeTimeout, e_message_box_icon_asterisk);
 
             //message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
 
@@ -2283,7 +2283,7 @@ namespace apex
       //
       //#endif
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       //try
       //{
@@ -2321,7 +2321,7 @@ namespace apex
       //
       //}
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       //::e_status estatus = ::success;
 
@@ -2367,7 +2367,7 @@ namespace apex
       //
       //      psystem->install_progress_add_up();
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       try
       {
@@ -2400,7 +2400,7 @@ namespace apex
 
       }
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       try
       {
@@ -2500,7 +2500,7 @@ namespace apex
 
       }
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       try
       {
@@ -3086,7 +3086,7 @@ namespace apex
 
       INFORMATION("apex::application::init_application");
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       init1();
 
@@ -3103,7 +3103,7 @@ namespace apex
 
       //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       init2();
 
@@ -3120,7 +3120,7 @@ namespace apex
 
       //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       init3();
 
@@ -3137,7 +3137,7 @@ namespace apex
 
       //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       //dappy(__type_name(this) + " : init3 ok : " + as_string(m_iErrorCode));
 
@@ -3249,7 +3249,7 @@ namespace apex
 
       }
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       notify_init1();
       //if (!notify_init1())
@@ -3335,7 +3335,7 @@ namespace apex
 
       INFORMATION("start");
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       //return ::success;
 
@@ -4259,10 +4259,10 @@ namespace apex
    }
 
 
-   //i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
+   //i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
-   //   __UNREFERENCED_PARAMETER(durationTimeOut);
+   //   __UNREFERENCED_PARAMETER(timeTimeOut);
 
    //   return sync_message_box(puserinteractionOwner, payload, pszTitle, fuStyle);
 
@@ -6229,7 +6229,7 @@ namespace apex
 
    //   //m_bAxisInitialize1Result = false;
 
-   //   m_durationHeartBeat.Now();
+   //   m_timeHeartBeat.Now();
 
    //   if (!::application::init1())
    //   {
@@ -6285,7 +6285,7 @@ namespace apex
    void application::init()
    {
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       if (has_property("install"))
       {
@@ -6338,7 +6338,7 @@ namespace apex
          //#endif
       }
 
-      m_durationHeartBeat.Now();
+      m_timeHeartBeat.Now();
 
       ensure_app_interest();
 

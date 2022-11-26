@@ -89,15 +89,15 @@ namespace ftp
    ///                           the response. Sometimes the socket hangs if no wait time
    ///                           is set. Normally not wait time is necessary.
    client_socket::client_socket(
-                                const ::duration & durationTimeout/*=10*/,
-                                unsigned int uiBufferSize/*=2048*/, const ::duration & durationResponseWait/*=0*/,
+                                const class time & timeTimeout/*=10*/,
+                                unsigned int uiBufferSize/*=2048*/, const class time & timeResponseWait/*=0*/,
                                 const string& strRemoteDirectorySeparator/*="/"*/) :
       //::sockets::base_socket(handler),
       //::sockets::socket(handler),
       //::sockets::stream_socket(handler),
       //::sockets::tcp_socket(handler),
-      m_durationTimeout(durationTimeout),
-      m_durationResponseWait(durationResponseWait),
+      m_timeTimeout(timeTimeout),
+      m_timeResponseWait(timeResponseWait),
       mc_strEolCharacterSequence("\r\n"),
       mc_strRemoteDirectorySeparator(strRemoteDirectorySeparator),//+# documentation missing
       m_apFileListParser(__new(file_list_parser())),
@@ -884,7 +884,7 @@ namespace ftp
 
       }
 
-      //::u32 tickStart= ::duration::now();
+      //::u32 tickStart= ::time::now();
 
       //::u32 nSeconds = 10;
 
@@ -1159,7 +1159,7 @@ namespace ftp
          memsize bytesRead = 0;
 
          Observer.OnPreBytesSend(m_vBuffer.get_data(), (memsize) m_vBuffer.size(), bytesRead);
-auto tickStart = ::duration::now();
+auto tickStart = ::time::now();
 
          while (true)
          {
@@ -1171,7 +1171,7 @@ auto tickStart = ::duration::now();
 
             }
 
-            if (tickStart.elapsed() > m_durationTimeout)
+            if (tickStart.elapsed() > m_timeTimeout)
             {
 
                break;
@@ -1195,7 +1195,7 @@ auto tickStart = ::duration::now();
             }
 
             Observer.OnPreBytesSend(m_vBuffer.get_data(), (memsize)m_vBuffer.size(), bytesRead);
-//auto tickStart = ::duration::now();
+//auto tickStart = ::time::now();
 
          }
 
@@ -1250,7 +1250,7 @@ auto tickStart = ::duration::now();
          memsize iNumRead;
 
          memsize lTotalBytes = 0;
-auto tickStart = ::duration::now();
+auto tickStart = ::time::now();
 
          while (true)
          {
@@ -1262,7 +1262,7 @@ auto tickStart = ::duration::now();
 
             }
 
-            if (tickStart.elapsed() > m_durationTimeout)
+            if (tickStart.elapsed() > m_timeTimeout)
             {
 
                break;
@@ -1305,7 +1305,7 @@ auto tickStart = ::duration::now();
                sleep(100_ms);
 
             }
-//auto tickStart = ::duration::now();
+//auto tickStart = ::time::now();
 
          }
 
@@ -1444,7 +1444,7 @@ auto tickStart = ::duration::now();
       try
       {
 
-         auto tickStart = ::duration::now();
+         auto tickStart = ::time::now();
 
          // xxx yyy zzz
          //while (tickStart.elapsed() < 10 * 1000)

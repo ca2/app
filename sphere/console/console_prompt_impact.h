@@ -13,9 +13,9 @@ namespace console
 
 
       
-      ::duration                 m_durationCaretStart;
+      class ::time                 m_timeCaretStart;
 
-      ::duration                 m_durationCaretPeriod;
+      class ::time                 m_timeCaretPeriod;
 
       strsize              m_iCursor;
 
@@ -27,7 +27,7 @@ namespace console
 
       strsize              m_iNewChar;
 
-      ::duration m_durationLastError;
+      class ::time m_timeLastError;
 
       bool                 m_bOk;
 

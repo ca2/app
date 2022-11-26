@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "tools.h"
 #include "pool.h"
 
@@ -43,13 +43,13 @@ task_pool::~task_pool()
 }
 
 
-void task_pool::set_timer(enum_timer etimer, const duration & duration)
+void task_pool::set_timer(enum_timer etimer, const class time & timeWait)
 {
 
-   defer_branch(etimer, [&, etimer, duration]()
+   defer_branch(etimer, [&, etimer, timeWait]()
       {
 
-         _timer_task(etimer, duration);
+         _timer_task(etimer, timeWait);
 
       });
 
@@ -62,15 +62,13 @@ void task_pool::on_timer(enum_timer etimer)
 }
 
 
-void task_pool::_timer_task(enum_timer etimer, const duration & duration)
+void task_pool::_timer_task(enum_timer etimer, const class time & timeWait)
 {
-
-   class ::wait wait = duration;
 
    while (true)
    {
 
-      if (!task_sleep(wait))
+      if (!task_sleep(timeWait))
       {
 
          break;

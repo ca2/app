@@ -176,8 +176,8 @@ namespace user
       bool                                         m_bLButtonDown;
       point_i32                                    m_pointLButtonDown1;
       point_i32                                    m_pointLButtonDown2;
-      ::duration                                   m_durationLButtonDownStart1;
-      ::duration                                   m_durationLButtonDownStart2;
+      class ::time                                   m_timeLButtonDownStart1;
+      class ::time                                   m_timeLButtonDownStart2;
       index                                        m_iDisplayItemLButtonDown1;
       index                                        m_iDisplayItemLButtonDown2;
 
@@ -264,7 +264,7 @@ namespace user
       index_map < ::pointer<mesh_item >>          m_mapItem;
       index_map < ::pointer<mesh_group >>         m_mapGroup;
       ::task_pointer                               m_ptaskHoverSelect;
-      ::duration                                   m_durationLastHoverSelect;
+      class ::time                                   m_timeLastHoverSelect;
       bool                                         m_bPendingHoverSelect;
 
 

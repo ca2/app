@@ -17,7 +17,7 @@ namespace apex
       string                                       m_strAppId;
       string                                       m_strLocale;
       string                                       m_strSchema;
-      ::duration                                   m_durationCheckPeriod;
+      class ::time                                   m_timeCheckPeriod;
       ::pointer<::apex::application_container>     m_pcontainer;
 
 

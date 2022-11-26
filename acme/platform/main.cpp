@@ -825,9 +825,9 @@ void main::system_prep()
 //
 //#endif
 
-   m_durationStart.Now();
+   m_timeStart.Now();
 
-   m_durationAfterApplicationFirstRequest = m_durationStart;
+   m_timeAfterApplicationFirstRequest = m_timeStart;
 
    if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
@@ -1154,7 +1154,7 @@ void main::system_init()
 
    // what could influence time before Main?
    // cold start (never previously called program and its Dlls...)?
-   psystem->m_durationMainStart = m_durationStart;
+   psystem->m_timeMainStart = m_timeStart;
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 //
@@ -1334,7 +1334,7 @@ void main::system_end()
 //
 //      ansi_count_copy(szEllapsed, ::file::path(APP_CORE_BASE_DIR) / "show_elapsed.txt", sizeof(szEllapsed));
 //
-//      auto tickEnd = ::duration::now();
+//      auto tickEnd = ::time::now();
 //
 //      char szTimeMessage[2108];
 //
@@ -1359,18 +1359,18 @@ void main::system_end()
 //
 //         sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 //
-//         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papp Request Completion %"  PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
+//         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papp Request Completion %"  PRId64 " ms", (m_timeAfterApplicationFirstRequest - m_timeStart).m_i);
 //         ::output_debug_string(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
-//         ::duration i::durationsTotal = tickEnd - m_durationStart;
+//         ::time i::timesTotal = tickEnd - m_timeStart;
 //
-//         sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", i::durationsTotal.m_i);
+//         sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", i::timesTotal.m_i);
 //         ::output_debug_string(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
-//         int i::durations = i::durationsTotal.m_i % 1000;
-//         int iSecondsTotal = (int)(i::durationsTotal.m_i / 1000);
+//         int i::times = i::timesTotal.m_i % 1000;
+//         int iSecondsTotal = (int)(i::timesTotal.m_i / 1000);
 //         int iSeconds = iSecondsTotal % 60;
 //         int iMinutesTotal = iSecondsTotal / 60;
 //         int iMinutes = iMinutesTotal % 60;
@@ -1381,25 +1381,25 @@ void main::system_end()
 //         if (iDays > 0)
 //         {
 //
-//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %d days %02d:%02d:%02d %03d ms", iDays, iHours, iMinutes, iSeconds, i::durations);
+//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %d days %02d:%02d:%02d %03d ms", iDays, iHours, iMinutes, iSeconds, i::times);
 //
 //         }
 //         else if (iHours > 0)
 //         {
 //
-//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d:%02d %03d ms", iHours, iMinutes, iSeconds, i::durations);
+//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d:%02d %03d ms", iHours, iMinutes, iSeconds, i::times);
 //
 //         }
 //         else if (iMinutes > 0)
 //         {
 //
-//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d %03d ms", iMinutes, iSeconds, i::durations);
+//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d %03d ms", iMinutes, iSeconds, i::times);
 //
 //         }
 //         else
 //         {
 //
-//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02ds %03d ms", iSeconds, i::durations);
+//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02ds %03d ms", iSeconds, i::times);
 //
 //         }
 //
@@ -1459,7 +1459,7 @@ void main::system_end()
 //
 //            char szTimeMessage1[2048];
 //
-//            sprintf(szTimeMessage1, " Just After First papp Request Completion %" PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
+//            sprintf(szTimeMessage1, " Just After First papp Request Completion %" PRId64 " ms", (m_timeAfterApplicationFirstRequest - m_timeStart).m_i);
 //
 //            if (file_length_raw(szEllapsed) > 0)
 //            {
@@ -1476,7 +1476,7 @@ void main::system_end()
 //
 //            char szTimeMessage2[2048];
 //
-//            sprintf(szTimeMessage2, " Total Elapsed Time " __prtick, (tickEnd - m_durationStart).m_i);
+//            sprintf(szTimeMessage2, " Total Elapsed Time " __prtick, (tickEnd - m_timeStart).m_i);
 //
 //            file_add_contents_raw(szEllapsed, szUTCTime);
 //

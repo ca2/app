@@ -23,7 +23,7 @@
 #include <time.h>
 
 
-#include "acme/primitive/duration/_text_stream.h"
+#include "acme/primitive/time/_text_stream.h"
 
 
 
@@ -504,7 +504,7 @@ namespace http
 
       m_setHttp["max_http_post"] = 5 * 1024 * 1024; // 5MB;
 
-      payload("dw") = ::duration::now();
+      payload("dw") = ::time::now();
 
       //return estatus;
 
@@ -649,7 +649,7 @@ namespace http
 
       auto ppair = m_mapPac.plookup(pszUrl);
 
-      if (ppair == nullptr || ppair->element2()->m_durationLastChecked.elapsed() > 120_s)
+      if (ppair == nullptr || ppair->element2()->m_timeLastChecked.elapsed() > 120_s)
       {
          if (ppair != nullptr)
          {
@@ -659,7 +659,7 @@ namespace http
 
          auto ppac = __create_new < class pac >();
 
-         ppac->m_durationLastChecked= ::duration::now();
+         ppac->m_timeLastChecked= ::time::now();
 
          ppac->m_strUrl = pszUrl;
 
@@ -726,7 +726,7 @@ namespace http
 
       auto ppair = m_mapProxy.plookup(pszUrl);
 
-      if (ppair == nullptr || ppair->element2()->m_durationLastChecked.elapsed() > 120_s)
+      if (ppair == nullptr || ppair->element2()->m_timeLastChecked.elapsed() > 120_s)
       {
          if (ppair != nullptr)
          {
@@ -736,7 +736,7 @@ namespace http
 
          auto pproxy = __create_new < class ::http::context::proxy >();
 
-         pproxy->m_durationLastChecked= ::duration::now();
+         pproxy->m_timeLastChecked= ::time::now();
 
          pproxy->m_strUrl = pszUrl;
 
@@ -1093,7 +1093,7 @@ namespace http
    bool context::open(::pointer<::sockets::http_session>& psession, const ::string & strHost, const ::string & strProtocolParam, property_set & set, const string &strVersionParam)
    {
 
-      auto tickTimeProfile1 = ::duration::now();
+      auto tickTimeProfile1 = ::time::now();
 
       string strVersion(strVersionParam);
 
@@ -1169,7 +1169,7 @@ namespace http
 
       }
 
-      auto tick1 = ::duration::now();
+      auto tick1 = ::time::now();
 
       bool bConfigProxy = set.is_set_false("no_proxy_config");
 
@@ -1203,9 +1203,9 @@ namespace http
 
 //      INFORMATION("http context request : " << pszRequest);
 //
-//      ::duration tick1;
+//      ::time tick1;
 //
-//      ::duration tick2;
+//      ::time tick2;
 //
 //      bool bSeemsOk;
 //
@@ -1277,7 +1277,7 @@ namespace http
 //         try
 //         {
 //
-//            auto tickBeg = ::duration::now();
+//            auto tickBeg = ::time::now();
 //
 //            if (!open(psession, purl->get_server(pszRequest), purl->get_protocol(pszRequest), set, set["http_protocol_version"]))
 //            {
@@ -1298,12 +1298,12 @@ namespace http
 //
 //      }
 //
-//      auto tickBegA = ::duration::now();
+//      auto tickBegA = ::time::now();
 //
 //      try
 //      {
 //
-//         auto tickTimeProfile1 = ::duration::now();
+//         auto tickTimeProfile1 = ::time::now();
 //
 //         auto papplication = psession->m_psockethandler->get_app()->m_papexapplication;
 //
@@ -1479,7 +1479,7 @@ namespace http
 //
 //         FORMATTED_INFORMATION("opening preparation context::request time(%d) = ", tickBegA.elapsed().integral_second().m_i);
 //
-//         tick1 = payload("dw").duration();
+//         tick1 = payload("dw").time();
 //
 //         tick2.Now();
 //
@@ -1489,7 +1489,7 @@ namespace http
 //            //while(psession->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
 //         {
 //
-//            tick1 = ::duration::now();
+//            tick1 = ::time::now();
 //
 //            psession->m_psockethandler->select(240, 0);
 //
@@ -1549,7 +1549,7 @@ namespace http
 //
 /////         keeplive.keep-alive();
 //
-//         (*this)["dw"].duration().Now();
+//         (*this)["dw"].time().Now();
 //
 //         set["get_headers"] = psession->outheaders();
 //
@@ -1774,7 +1774,7 @@ namespace http
       //TRACE("");
       set["http_get_serial"] = iHttpGetSerial;
 
-      auto tickStart = ::duration::now();
+      auto tickStart = ::time::now();
 
       int iTry = 0;
 
@@ -1839,7 +1839,7 @@ namespace http
 
       iTry++;
 
-      auto tickTimeProfile1 = ::duration::now();
+      auto tickTimeProfile1 = ::time::now();
 
       string strServer = purl->get_root(strUrl);
 
@@ -2129,11 +2129,11 @@ namespace http
 
       }
 
-      auto tick1 = ::duration::now();
+      auto tick1 = ::time::now();
 
       bool bConfigProxy = !set.has_property("no_proxy_config") || set["no_proxy_config"].is_false();
 
-      ::duration tickTotalTimeout = set["timeout"].duration();
+      class ::time tickTotalTimeout = set["timeout"].time();
 
       set["http_body_size_downloaded"] = &psocket->m_body_size_downloaded;
 
@@ -2193,7 +2193,7 @@ namespace http
 
             set["get_status"] = (i64)error_http;
 
-            auto tick2 = ::duration::now();
+            auto tick2 = ::time::now();
 
             INFORMATION(LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
 
@@ -2263,7 +2263,7 @@ namespace http
 
       int iEnteredLoop = 0;
 
-      tick1 = ::duration::now();
+      tick1 = ::time::now();
 
       while (psockethandler->get_count() > 0 && (::get_task() == nullptr || ::task_get_run()))
       {
@@ -2303,7 +2303,7 @@ namespace http
             if (iBodySizeDownloaded > 0)
             {
 
-               tickStart = ::duration::now();
+               tickStart = ::time::now();
 
             }
 
@@ -2443,7 +2443,7 @@ namespace http
       else if (iStatusCode == 0)
       {
 
-         ::duration tickElapse = tickStart.elapsed();
+         class ::time tickElapse = tickStart.elapsed();
 
          if (iTry < iTryCount && tickElapse < tickTotalTimeout)
          {
@@ -2480,7 +2480,7 @@ namespace http
          if (string_begins_ci(strCa2Realm, "not licensed: "))
          {
 
-            auto tick2 = ::duration::now();
+            auto tick2 = ::time::now();
 
             INFORMATION(LOG_HTTP_PREFIX << "Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //#include "acme/primitive/primitive/matter.h"
@@ -22,8 +22,8 @@ public:
    bool                             m_bPeriodic;
    bool                             m_bHandling;
    bool                             m_bRet;
-   ::pointer<::timer_callback>     m_ptimercallback;
-   class ::wait                     m_wait;
+   ::pointer<::timer_callback>      m_ptimercallback;
+   class ::time                     m_timeWait;
    string                           m_strDebugNote;
 
 

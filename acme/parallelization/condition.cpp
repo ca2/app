@@ -219,9 +219,9 @@ bool condition::pulse()
 
 
 ///  \brief		waits for an condition for a specified time
-///  \lparam		duration time period to wait for an condition
+///  \lparam		time time period to wait for an condition
 ///  \return	waiting action result as WaitResult
-::e_status condition::wait(const class ::wait & wait)
+::e_status condition::wait(const class time & timeWait)
 {
 
 #ifdef WINDOWS
@@ -229,7 +229,7 @@ bool condition::pulse()
    if (!SleepConditionVariableCS(
       &(CONDITION_VARIABLE &)m_conditionvariable,
       &(CRITICAL_SECTION &)m_criticalsection,
-      wait))
+      ::windows::wait(timeWait)))
    {
 
       DWORD dwLastError = ::GetLastError();
@@ -257,7 +257,7 @@ bool condition::pulse()
 
    m_iHold++;
 
-   ::duration start;
+   ::time start;
 
    start.Now();
 
@@ -286,7 +286,7 @@ bool condition::pulse()
 
 #else
 
-   auto start = ::duration::now();
+   auto start = ::time::now();
 
    timespec delay;
 
@@ -378,14 +378,14 @@ bool condition::is_signaled() const
 ////
 ////end**************************************************************************
 //
-//bool condition::lock(const duration& durationTimeout)
+//bool condition::lock(const time& timeTimeout)
 //{
 //#ifdef WINDOWS
 //
 //   if (SleepConditionVariableCS(
 //      &(CONDITION_VARIABLE &)m_conditionvariable,
 //      &(CRITICAL_SECTION &)m_criticalsection,
-//      durationTimeout.u32_millis()) != false)
+//      timeTimeout.u32_millis()) != false)
 //   {
 //
 //      return true;
@@ -400,13 +400,13 @@ bool condition::is_signaled() const
 //
 //#elif defined(ANDROID)
 //
-//   return wait(durationTimeout).succeeded();
+//   return wait(timeTimeout).succeeded();
 //
 //#else
 //
-//   u32 timeout = durationTimeout.u32_millis();
+//   u32 timeout = timeTimeout.u32_millis();
 //
-//   auto start = ::duration::now();
+//   auto start = ::time::now();
 //
 //   timespec delay;
 //

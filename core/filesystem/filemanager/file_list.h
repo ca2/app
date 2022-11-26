@@ -20,7 +20,7 @@ namespace filemanager
       bool                                m_bFileSize;
       bool                                m_bShow;
       index                               m_iSizeSubItem;
-      ::duration                          m_durationLastFileSizeGet;
+      class ::time                          m_timeLastFileSizeGet;
 
 
       //map < icon_key,const icon_key &,icon,icon & > m_iconmap;

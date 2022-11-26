@@ -883,7 +883,7 @@ SP_LIBEXPORT(sp_error) sp_session_set_cache_size(sp_session *session, size_t siz
  * Make the specified session process any pending events
  *
  * @param[in]   session         Your session object
- * @param[out]  next_timeout    Stores the time (in ::durations) until you should call this function again
+ * @param[out]  next_timeout    Stores the time (in ::times) until you should call this function again
  * @return                      One of the following errors, from ::sp_error
  *                              SP_ERROR_OK
  */
@@ -911,7 +911,7 @@ SP_LIBEXPORT(sp_error) sp_session_player_load(sp_session *session, sp_track *tra
  * Seek to position in the currently loaded track
  *
  * @param[in]   session    Your session object
- * @param[in]   offset     Track position, in ::durations.
+ * @param[in]   offset     Track position, in ::times.
  * @return                 One of the following errors, from ::sp_error
  *                         SP_ERROR_OK
  */
@@ -1446,7 +1446,7 @@ SP_LIBEXPORT(sp_track *) sp_link_as_track(sp_link *link);
  * The track and offset into track representation for the given link
  *
  * @param[in]   link       The Spotify link whose track you are interested in
- * @param[out]  offset     Pointer to offset into track (in ::durations). If the link
+ * @param[out]  offset     Pointer to offset into track (in ::times). If the link
  *                         does not contain an offset this will be set to 0.
  *
  * @return                 The track representation of the given track link
@@ -1687,14 +1687,14 @@ SP_LIBEXPORT(sp_album *) sp_track_album(sp_track *track);
 SP_LIBEXPORT(const ::string &) sp_track_name(sp_track *track);
 
 /**
- * The duration, in ::durations, of the specified track
+ * The time, in ::times, of the specified track
  *
  * @param[in]   track      A track object
  *
- * @return                 The duration of the specified track, in ::durations
+ * @return                 The time of the specified track, in ::times
  *                         If no metadata is available for the track yet, this function returns 0.
  */
-SP_LIBEXPORT(int) sp_track_duration(sp_track *track);
+SP_LIBEXPORT(int) sp_track_time(sp_track *track);
 
 /**
  * Returns popularity for track
@@ -2072,7 +2072,7 @@ SP_LIBEXPORT(const ::string &) sp_albumbrowse_review(sp_albumbrowse *alb);
  * @return                -1 if the request was served from the local cache
  *                        If the result is not yet loaded the return value is undefined
  */
-SP_LIBEXPORT(int) sp_albumbrowse_backend_request_duration(sp_albumbrowse *alb);
+SP_LIBEXPORT(int) sp_albumbrowse_backend_request_time(sp_albumbrowse *alb);
 
 
 /**
@@ -2296,7 +2296,7 @@ SP_LIBEXPORT(const ::string &) sp_artistbrowse_biography(sp_artistbrowse *arb);
  * @return                -1 if the request was served from the local cache
  *                        If the result is not yet loaded the return value is undefined
  */
-SP_LIBEXPORT(int) sp_artistbrowse_backend_request_duration(sp_artistbrowse *arb);
+SP_LIBEXPORT(int) sp_artistbrowse_backend_request_time(sp_artistbrowse *arb);
 
 
 /**
@@ -3844,7 +3844,7 @@ SP_LIBEXPORT(sp_track *) sp_toplistbrowse_track(sp_toplistbrowse *tlb, int index
  * @return                -1 if the request was served from the local cache
  *                        If the result is not yet loaded the return value is undefined
  */
-SP_LIBEXPORT(int) sp_toplistbrowse_backend_request_duration(sp_toplistbrowse *tlb);
+SP_LIBEXPORT(int) sp_toplistbrowse_backend_request_time(sp_toplistbrowse *tlb);
 
 
 /** @} */

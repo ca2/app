@@ -1130,7 +1130,7 @@ pacmedirectory->is(strPath))
    //               for (auto & folder : m_mapFolder)
    //               {
 
-   //                  if (folder.element2().m_durationStart.elapsed() > 30000)
+   //                  if (folder.element2().m_timeStart.elapsed() > 30000)
    //                  {
 
    //                     m_mapFolder.erase_key(folder.element1());

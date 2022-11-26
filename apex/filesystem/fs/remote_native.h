@@ -22,8 +22,8 @@ namespace fs
       bool                                m_bInitialized;
 
 
-      string_map < ::duration >              m_mapdirLast;
-      string_map < ::duration >              m_mapfileLast;
+      string_map < class ::time >              m_mapdirLast;
+      string_map < class ::time >              m_mapfileLast;
 
 
       remote_native(const char * pszRoot);

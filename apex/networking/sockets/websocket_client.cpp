@@ -353,7 +353,7 @@ namespace sockets
       //http_client_socket(h)
    {
 
-//      m_durationLastSpontaneousPong = 0;
+//      m_timeLastSpontaneousPong = 0;
       m_memPong.set_size(2);
       m_memPong.get_data()[0] = 0x8a;
       m_memPong.get_data()[1] = 0;
@@ -374,7 +374,7 @@ namespace sockets
 
       m_eping = ping_none;
 
-      m_durationLastPing.Now();
+      m_timeLastPing.Now();
 
    }
 
@@ -439,7 +439,7 @@ namespace sockets
       m_memPong.get_data()[0] = 0x8a;
       m_memPong.get_data()[1] = 0;
 
-      m_durationLastPing.Now();
+      m_timeLastPing.Now();
 
       m_bUseMask = false;
 
@@ -459,7 +459,7 @@ namespace sockets
 
       m_emethod = http_method_get;
 
-      m_durationLastPing.Now();
+      m_timeLastPing.Now();
 
    }
 
@@ -470,7 +470,7 @@ namespace sockets
       if (!m_bWebSocket)
       {
 
-         if (m_durationLastPing.elapsed() > 60_s)
+         if (m_timeLastPing.elapsed() > 60_s)
          {
 
             SetCloseAndDelete();
@@ -479,20 +479,20 @@ namespace sockets
 
          }
 
-         m_durationLastPong.Now();
+         m_timeLastPong.Now();
 
          return true;
 
       }
 
-      if (m_durationClientPingTimeout.is_null())
+      if (m_timeClientPingTimeout.is_null())
       {
 
          return true;
 
       }
 
-      if (m_eping == ping_sent_ping && m_durationLastPing.elapsed() > m_durationClientPingTimeout)
+      if (m_eping == ping_sent_ping && m_timeLastPing.elapsed() > m_timeClientPingTimeout)
       {
 
          INFORMATION("PING TIMEOUT!!");
@@ -503,10 +503,10 @@ namespace sockets
 
       }
 
-      if ((m_eping == ping_none  || m_eping == ping_pong_received) && m_durationLastPong.elapsed() > m_durationClientPingTimeout)
+      if ((m_eping == ping_none  || m_eping == ping_pong_received) && m_timeLastPong.elapsed() > m_timeClientPingTimeout)
       {
 
-         m_durationLastPing.Now();
+         m_timeLastPing.Now();
 
          m_eping = ping_sent_ping;
 
@@ -620,7 +620,7 @@ namespace sockets
       }
       else
       {
-         //if (m_memPong.get_size() > 0 && (m_durationLastSpontaneousPong.elapsed()) > 10000)
+         //if (m_memPong.get_size() > 0 && (m_timeLastSpontaneousPong.elapsed()) > 10000)
          //{
          //
          //   write(m_memPong.get_data(), m_memPong.get_size());
@@ -629,7 +629,7 @@ namespace sockets
 
          //   m_memPong.get_data()[1] = 0;
 
-         //   m_durationLastSpontaneousPong= ::duration::now();
+         //   m_timeLastSpontaneousPong= ::time::now();
 
          //}
 
@@ -676,7 +676,7 @@ namespace sockets
             if (strConnection.compare_ci("Upgrade") == 0)
             {
 
-               m_durationLastPing.Now();
+               m_timeLastPing.Now();
 
                string strAccept;
                
@@ -1032,7 +1032,7 @@ namespace sockets
             else if (m_opcode == e_opcode::PING)
             {
 
-               m_durationLastPing.Now();
+               m_timeLastPing.Now();
 
                m_eping = ping_sent_ping;
 
@@ -1061,7 +1061,7 @@ namespace sockets
             else if (m_opcode == e_opcode::PONG)
             {
 
-               m_durationLastPong.Now();
+               m_timeLastPong.Now();
 
                m_eping = ping_pong_received;
 
@@ -1101,7 +1101,7 @@ namespace sockets
    void websocket_client::on_websocket_data(u8 * pdata, int len)
    {
 
-      m_durationLastPong.Now();
+      m_timeLastPong.Now();
 
       string str((const char *) pdata, len);
 

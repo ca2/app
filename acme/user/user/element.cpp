@@ -683,10 +683,10 @@ namespace user
    //}
 
 
-   //i32 element::sync_message_box_timeout(const ::string & pszMessage, ::duration durationTimeOut, ::u32 fuStyle)
+   //i32 element::sync_message_box_timeout(const ::string & pszMessage, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
-   //   return papp->sync_message_box_timeout(this, pszMessage, get_title(), durationTimeOut, fuStyle);
+   //   return papp->sync_message_box_timeout(this, pszMessage, get_title(), timeTimeOut, fuStyle);
 
    //}
 
@@ -722,13 +722,13 @@ namespace user
    //}
 
 
-   //void element::message_box_timeout(string strMessage, ::duration durationTimeout, ::u32 fuStyle)
+   //void element::message_box_timeout(string strMessage, ::time timeTimeout, ::u32 fuStyle)
    //{
 
    //   fork([=]()
    //      {
 
-   //         sync_message_box_timeout(strMessage, durationTimeout, fuStyle);
+   //         sync_message_box_timeout(strMessage, timeTimeout, fuStyle);
 
    //      });
 
@@ -2310,7 +2310,7 @@ namespace user
    }
 
 
-   void element::SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
+   void element::SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
    {
 
       throw ::interface_only();
@@ -4335,7 +4335,7 @@ namespace user
    void element::on_reset_focus_start_tick()
    {
 //
-  //    m_durationFocusStart.Now();
+  //    m_timeFocusStart.Now();
 
    }
 

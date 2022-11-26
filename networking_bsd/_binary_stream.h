@@ -39,7 +39,7 @@ binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, const ne
    strAddress = as_string(item.m_ipaddr);
 
    stream << strAddress;
-   stream << item.m_durationLastChecked;
+   stream << item.m_timeLastChecked;
    stream << item.m_bOk;
    stream << item.m_bTimeout;
 
@@ -58,7 +58,7 @@ binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, networki
 
    ::from_string(item.m_ipaddr, strAddress);
 
-   stream >> item.m_durationLastChecked;
+   stream >> item.m_timeLastChecked;
    stream >> item.m_bOk;
    stream >> item.m_bTimeout;
 
@@ -74,7 +74,7 @@ binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, const ne
 
    stream << item.m_strIpAddress;
    stream << item.m_strReverse;
-   stream << item.m_durationLastChecked;
+   stream << item.m_timeLastChecked;
    stream << item.m_bOk;
    stream << item.m_bTimeout;
    stream << item.m_bProcessing;
@@ -90,7 +90,7 @@ binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, networki
 
    stream >> item.m_strIpAddress;
    stream >> item.m_strReverse;
-   stream >> item.m_durationLastChecked;
+   stream >> item.m_timeLastChecked;
    stream >> item.m_bOk;
    stream >> item.m_bTimeout;
    stream >> item.m_bProcessing;

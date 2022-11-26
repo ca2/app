@@ -7,14 +7,14 @@
 #include <time.h>
 
 
-inline timespec __timespec(const ::duration & duration)
+inline timespec __timespec(const class time & time)
 {
    
    timespec time;
    
-   time.tv_sec = duration.m_iSecond;
+   time.tv_sec = time.m_iSecond;
    
-   time.tv_nsec = duration.m_iNanosecond;
+   time.tv_nsec = time.m_iNanosecond;
    
    return time;
    

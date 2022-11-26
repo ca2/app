@@ -435,20 +435,20 @@ payload::payload(const ::atom & atom)
 }
 
 
-payload::payload(const ::duration & duration)
+payload::payload(const class time & time)
 {
 
-   m_etype = e_type_duration;
-   m_duration = duration;
+   m_etype = e_type_time;
+   m_time = time;
 
 }
 
 
-payload::payload(::duration * pduration)
+payload::payload(class ::time * ptime)
 {
 
-   m_etype = e_type_pduration;
-   m_pduration = pduration;
+   m_etype = e_type_ptime;
+   m_ptime = ptime;
 
 }
 
@@ -458,7 +458,7 @@ payload::payload(const ::earth::time & time)
    
    m_etype = e_type_time;
    
-   m_time = time.m_i;
+   m_earthtime = time.m_i;
 
 }
 
@@ -984,7 +984,7 @@ class ::payload & payload::operator = (const ::earth::time & time)
 
     set_type(e_type_time, false);
 
-   m_time = time.get_time();
+   m_earthtime = time.get_time();
 
    return *this;
 
@@ -1457,24 +1457,24 @@ class ::payload & payload::operator = (const ::atom & atom)
 }
 
 
-class ::payload & payload::operator = (const ::duration & duration)
+class ::payload & payload::operator = (const class time & time)
 {
 
-   set_type(e_type_duration, false);
+   set_type(e_type_time, false);
 
-   m_duration = duration;
+   m_time = time;
 
    return *this;
 
 }
 
 
-class ::payload & payload::operator = (::duration * pduration)
+class ::payload & payload::operator = (class time * ptime)
 {
 
-   set_type(e_type_pduration, false);
+   set_type(e_type_ptime, false);
 
-   m_pduration = pduration;
+   m_ptime = ptime;
 
    return *this;
 
@@ -3897,31 +3897,31 @@ i64_array payload::i64a() const
 }
 
 
-duration payload::duration() const
+class ::time payload::time() const
 {
 
    if (m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->duration();
+      return m_ppayload->time();
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->duration();
+      return m_pproperty->time();
 
    }
-   else    if (m_etype == e_type_duration)
+   else    if (m_etype == e_type_time)
    {
 
-      return m_duration;
+      return m_time;
 
    }
-   else if (m_etype == e_type_pduration)
+   else if (m_etype == e_type_ptime)
    {
 
-      return *m_pduration;
+      return *m_ptime;
 
    }
    else if(is_integer())
@@ -3946,41 +3946,41 @@ duration payload::duration() const
 }
 
 
-::duration & payload::duration_reference()
+class ::time & payload::time_reference()
 {
 
    if (m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->duration_reference();
+      return m_ppayload->time_reference();
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->duration_reference();
+      return m_pproperty->time_reference();
 
    }
-   else if (m_etype == e_type_duration)
+   else if (m_etype == e_type_time)
    {
 
-      return m_duration;
+      return m_time;
 
    }
-   else if (m_etype == e_type_pduration)
+   else if (m_etype == e_type_ptime)
    {
 
-      return *m_pduration;
+      return *m_ptime;
 
    }
    else
    {
 
-      set_type(e_type_duration);
+      set_type(e_type_time);
 
-      m_duration.set_null();
+      m_time.set_null();
 
-      return m_duration;
+      return m_time;
 
    }
 
@@ -4356,10 +4356,10 @@ property_set & payload::property_set_reference()
 //}
 
 
-//const ::duration & payload::as_duration() const
+//const class ::time & payload::as_time() const
 //{
 //
-//   return ((::payload *)this)->duration();
+//   return ((::payload *)this)->time();
 //
 //}
 
@@ -5906,16 +5906,16 @@ bool payload::is_fairly_convertible_to_text() const
 //      return m_ppropertyset != nullptr && ::acme::array::every::is_true(m_ppropertyset->values());
 //
 //   }
-//   else if (m_etype == e_type_duration)
+//   else if (m_etype == e_type_time)
 //   {
 //
-//      return m_duration.operator bool();
+//      return m_time.operator bool();
 //
 //   }
-//   else if (m_etype == e_type_pduration)
+//   else if (m_etype == e_type_ptime)
 //   {
 //
-//      return m_pduration != nullptr && m_pduration->operator bool();
+//      return m_ptime != nullptr && m_ptime->operator bool();
 //
 //   }
 //   else if (m_etype == e_type_i8)
@@ -7034,25 +7034,25 @@ const ::payload_array & payload::payload_array_reference() const
 }
 
 
-const ::duration & payload::duration_reference() const
+const class ::time & payload::time_reference() const
 {
 
-   if(m_etype == e_type_duration)
+   if(m_etype == e_type_time)
    {
 
-      return m_duration;
+      return m_time;
 
    }
    else if(m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->duration_reference();
+      return m_ppayload->time_reference();
 
    }
    else if(m_etype == e_type_property)
    {
 
-      return m_pproperty->duration_reference();
+      return m_pproperty->time_reference();
 
    }
    else
@@ -7186,10 +7186,10 @@ const ::file_time &payload:: file_time_reference() const
 const ::earth::time & payload::earth_time_reference() const
 {
 
-   if(m_etype == e_type_time)
+   if(m_etype == e_type_earth_time)
    {
 
-      return m_time;
+      return m_earthtime;
 
    }
    else if(m_etype == e_type_payload_pointer)
@@ -7621,16 +7621,16 @@ bool payload::is_false() const
       return !m_pstr || m_pstr->is_empty() || !m_pstr->compare_ci("false")  || !m_pstr->compare_ci("no");
    case e_type_type:
       return m_str.is_empty();
-   case e_type_duration:
-      return m_duration.is_null();
-   case e_type_pduration:
-      return !m_pduration || m_pduration->is_null();
+   case e_type_time:
+      return m_time.is_null();
+   case e_type_ptime:
+      return !m_ptime || m_ptime->is_null();
    case e_type_id:
       return m_atom.is_empty() || !m_atom.compare_ci("false") || !m_atom.compare_ci("no");
    case e_type_pid:
       return !m_patom || m_patom->is_empty() || !m_patom->compare_ci("false") || !m_patom->compare_ci("no");
-   case e_type_time:
-      return !m_time.m_i;
+   case e_type_earth_time:
+      return !m_earthtime.m_i;
    case e_type_file_time:
       return !m_filetime;
    case e_type_payload_pointer:
@@ -7807,16 +7807,16 @@ bool payload::is_set_false() const
       return !m_pstr || m_pstr->is_empty() || !m_pstr->compare_ci("false")  || !m_pstr->compare_ci("no");
    case e_type_type:
       return m_str.is_empty();
-   case e_type_duration:
-      return m_duration.is_null();
-   case e_type_pduration:
-      return !m_pduration || m_pduration->is_null();
+   case e_type_time:
+      return m_time.is_null();
+   case e_type_ptime:
+      return !m_ptime || m_ptime->is_null();
    case e_type_id:
       return m_atom.is_empty() || !m_atom.compare_ci("false") || !m_atom.compare_ci("no");
    case e_type_pid:
       return !m_patom || m_patom->is_empty() || !m_patom->compare_ci("false") || !m_patom->compare_ci("no");
-   case e_type_time:
-      return !m_time.m_i;
+   case e_type_earth_time:
+      return !m_earthtime.m_i;
    case e_type_file_time:
       return !m_filetime;
    case e_type_payload_pointer:
@@ -8073,7 +8073,7 @@ void unit_test_primitive_var_acme_block()
    //else if (m_etype == e_type_pfile_time)
    //{
 
-   //   return *m_pduration;
+   //   return *m_ptime;
 
    //}
    else if (is_integer())
@@ -8116,23 +8116,23 @@ void unit_test_primitive_var_acme_block()
 //   else if (m_etype == e_type_file_time)
 //   {
 //
-//      return m_duration;
+//      return m_time;
 //
 //   }
-//   else if (m_etype == e_type_pduration)
+//   else if (m_etype == e_type_ptime)
 //   {
 //
-//      return *m_pduration;
+//      return *m_ptime;
 //
 //   }
 //   else
 //   {
 //
-//      set_type(e_type_duration);
+//      set_type(e_type_time);
 //
-//      m_duration.set_null();
+//      m_time.set_null();
 //
-//      return m_duration;
+//      return m_time;
 //
 //   }
 //
@@ -8163,19 +8163,19 @@ void unit_test_primitive_var_acme_block()
       return m_pproperty->earth_time_reference();
 
    }
-   else if (m_etype != e_type_time)
+   else if (m_etype != e_type_earth_time)
    {
 
       auto i =i64();
 
       set_type(e_type_time, false);
 
-      m_time = i;
+      m_earthtime = i;
 
 
    }
 
-   return m_time;
+   return m_earthtime;
 
 }
 

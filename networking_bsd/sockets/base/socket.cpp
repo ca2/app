@@ -112,12 +112,12 @@ namespace sockets_bsd
 #endif
       m_pmemfileInput = nullptr;
       m_iBindPort    = -1;
-      m_durationStart.Now();
+      m_timeStart.Now();
       m_pcallback    = nullptr;
       m_bEnablePool  = true;
 
-      m_durationConnectionMaximum = 30_s;
-      m_durationMaximum = 30_s;
+      m_timeConnectionMaximum = 30_s;
+      m_timeMaximum = 30_s;
 
    }
 
@@ -922,7 +922,7 @@ namespace sockets_bsd
    bool base_socket::Retain()
    {
 
-      return m_bEnablePool && m_bRetain && (m_durationStart.elapsed() < 30_s);
+      return m_bEnablePool && m_bRetain && (m_timeStart.elapsed() < 30_s);
 
    }
 
@@ -2468,7 +2468,7 @@ namespace sockets_bsd
    void base_socket::set_connection_start_time()
    {
       
-      m_durationConnectionStart.Now();
+      m_timeConnectionStart.Now();
 
       set_connection_last_activity();
 
@@ -2478,16 +2478,16 @@ namespace sockets_bsd
    void base_socket::set_connection_last_activity()
    {
 
-      m_durationConnectionLastActivity.Now();
+      m_timeConnectionLastActivity.Now();
 
    }
 
 
 
-   void base_socket::set_maximum_connection_time(const ::duration& duration)
+   void base_socket::set_maximum_connection_time(const class time & time)
    {
 
-      m_durationConnectionMaximum = duration;
+      m_timeConnectionMaximum = time;
 
    }
 
@@ -2495,17 +2495,17 @@ namespace sockets_bsd
    void base_socket::set_start_time()
    {
 
-      m_durationStart.Now();
+      m_timeStart.Now();
 
       set_connection_last_activity();
 
    }
 
 
-   void base_socket::set_maximum_time(const ::duration& duration)
+   void base_socket::set_maximum_time(const class time & time)
    {
 
-      m_durationMaximum = duration;
+      m_timeMaximum = time;
 
    }
 
@@ -2530,12 +2530,12 @@ namespace sockets_bsd
       if (is_connecting())
       {
 
-         if (m_durationConnectionMaximum > 0_s)
+         if (m_timeConnectionMaximum > 0_s)
          {
 
-            auto tElapsed = m_durationConnectionStart.elapsed();
+            auto tElapsed = m_timeConnectionStart.elapsed();
 
-            if (tElapsed > m_durationConnectionMaximum)
+            if (tElapsed > m_timeConnectionMaximum)
             {
 
                return true;
@@ -2545,12 +2545,12 @@ namespace sockets_bsd
          }
 
       }
-      else if(m_durationMaximum > 0_s)
+      else if(m_timeMaximum > 0_s)
       {
 
-         auto tElapsed = m_durationConnectionLastActivity.elapsed();
+         auto tElapsed = m_timeConnectionLastActivity.elapsed();
 
-         if (tElapsed > m_durationMaximum)
+         if (tElapsed > m_timeMaximum)
          {
 
             return true;

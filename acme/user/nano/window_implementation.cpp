@@ -114,7 +114,7 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 }
 
 
-::atom nano_window_implementation::do_synchronously(const class ::wait & wait)
+::atom nano_window_implementation::do_synchronously(const class time & timeWait)
 {
 
 

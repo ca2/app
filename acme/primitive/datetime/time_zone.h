@@ -12,7 +12,7 @@ namespace datetime
 
       string            m_strZone;
       double            m_dZone;
-      ::earth::time  m_duration; /// time when this time zone record was last updated
+      ::earth::time  m_time; /// time when this time zone record was last updated
 
       time_zone()
       {
@@ -21,10 +21,10 @@ namespace datetime
 
       }
 
-      bool is_valid(const ::duration & durationTimeOut) const
+      bool is_valid(const class time & timeTimeOut) const
       {
 
-         return m_strZone.has_char() && m_dZone > -25.0 && m_dZone < 25.0 && m_duration.elapsed() < durationTimeOut;
+         return m_strZone.has_char() && m_dZone > -25.0 && m_dZone < 25.0 && m_time.elapsed() < timeTimeOut;
 
       }
 

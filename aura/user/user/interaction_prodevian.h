@@ -27,31 +27,31 @@ namespace user
       ::pointer<::user::thread>              m_puserthread;
       nanosecond_timer                          m_nanosecondtimer;
 
-      ::duration                                m_durationNow;
+      class ::time                                m_timeNow;
 
-      ::duration                                m_durationPostRedrawProdevian;
-      ::duration                                m_durationPostRedrawNominal;
+      class ::time                                m_timePostRedrawProdevian;
+      class ::time                                m_timePostRedrawNominal;
 
       //i64                                       m_iFrameId;
-      ::duration                                m_durationLastFrame;
+      class ::time                                m_timeLastFrame;
       //i64                                       m_iLastFrameId;
-      ::duration                                m_durationNextFrame;
-      ::duration                                m_durationNextScreenUpdate;
+      class ::time                                m_timeNextFrame;
+      class ::time                                m_timeNextScreenUpdate;
       //::count                                   m_cLost;
-      ::array < ::duration >                    m_durationaFrame;
+      ::array < class ::time >                    m_timeaFrame;
 
-      ::duration                                m_durationBeforeUpdateScreen;
-      ::duration                                m_durationAfterUpdateScreen;
-      ::duration                                m_durationDuringUpdateScreen;
-      ::duration                                m_durationOufOfUpdateScreen;
+      class ::time                                m_timeBeforeUpdateScreen;
+      class ::time                                m_timeAfterUpdateScreen;
+      class ::time                                m_timeDuringUpdateScreen;
+      class ::time                                m_timeOufOfUpdateScreen;
 
 
-      ::duration                                m_durationBeforeDrawing;
-      ::duration                                m_durationAfterDrawing;
-      ::duration                                m_durationDuringDrawing;
-      ::duration                                m_durationOutOfDrawing;
+      class ::time                                m_timeBeforeDrawing;
+      class ::time                                m_timeAfterDrawing;
+      class ::time                                m_timeDuringDrawing;
+      class ::time                                m_timeOutOfDrawing;
 
-      ::duration                                m_durationLastScreenUpdate;
+      class ::time                                m_timeLastScreenUpdate;
       ::procedure                                 m_procedureUpdateScreen;
       ::procedure                                 m_procedureWindowShow;
       

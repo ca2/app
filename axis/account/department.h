@@ -33,7 +33,7 @@ namespace account
 
 #endif
 
-//      duration                   m_durationSessionTimeout;
+//      time                   m_timeSessionTimeout;
 //
 //
       
@@ -72,7 +72,7 @@ namespace account
 
       virtual void not_auth(::file::path pathUrl);
 
-      virtual duration get_session_timeout();
+      virtual time get_session_timeout();
 
 
       class storage * storage();

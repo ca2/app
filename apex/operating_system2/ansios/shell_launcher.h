@@ -32,8 +32,8 @@ protected:
 public:
 
 
-   shell_launcher(duration durationTimeout = ::one_minute());
-   shell_launcher(::windowing::window * pwindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
+   shell_launcher(time timeTimeout = ::one_minute());
+   shell_launcher(::windowing::window * pwindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, time timeTimeout = ::one_minute());
 
 
    void execute();

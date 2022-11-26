@@ -39,7 +39,7 @@
 //
 //
 //   template < typename RESULT >
-//   status < RESULT > & process < RESULT > ::get_result(const ::duration& duration)
+//   status < RESULT > & process < RESULT > ::get_result(const class ::time& time)
 //   {
 //
 //      critical_section_lock lock(get_process_critical_section());
@@ -49,7 +49,7 @@
 //
 //         m_pevent = memory_new manual_reset_event();
 //
-//         if (!m_pevent->wait(duration).succeeded())
+//         if (!m_pevent->wait(time).succeeded())
 //         {
 //
 //            return error_timeout;

@@ -95,7 +95,7 @@ namespace user
 
          CalcTension(point);
          set_mouse_capture();
-         m_durationLastTime= ::duration::now();
+         m_timeLastTime= ::time::now();
          m_daScalar.set(0.0);
          m_iScalar = 0;
          m_bSlide = true;
@@ -169,15 +169,15 @@ namespace user
 
    double elastic_slider::CalcScalar()
    {
-      auto tickNow = ::duration::now();
-      if(tickNow - m_durationLastTime < 30_ms)
+      auto tickNow = ::time::now();
+      if(tickNow - m_timeLastTime < 30_ms)
          return m_daScalar.simple_total_mean();
       CalcTension();
       double dScalar;
       if(m_bSlide)
       {
          double dForce = GetForce();
-         auto dDeltaTime = (tickNow - m_durationLastTime).floating_millisecond();
+         auto dDeltaTime = (tickNow - m_timeLastTime).floating_millisecond();
          double dFilterLastScalar = m_daScalar.simple_total_mean();
          double dRate = 1.0 / 100.0;
          dScalar = dForce * dDeltaTime.m_d * dRate + dFilterLastScalar;
@@ -188,7 +188,7 @@ namespace user
       }
       m_daScalar[m_iScalar] =  dScalar;
       m_iScalar = (m_iScalar + 1) % m_daScalar.get_size();
-      m_durationLastTime = tickNow;
+      m_timeLastTime = tickNow;
       return m_daScalar.simple_total_mean(); // Low Pass Filter
 
    }

@@ -606,7 +606,7 @@ namespace universal_windows
    void directx_framework_impact::OnPointerMoved(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::PointerEventArgs ^ args)
    {
 
-      //if (m_dwMouseMoveThrottle && m_durationLastMouseMove.elapsed() < m_dwMouseMoveThrottle)
+      //if (m_dwMouseMoveThrottle && m_timeLastMouseMove.elapsed() < m_dwMouseMoveThrottle)
       //{
 
         // return;
@@ -649,7 +649,7 @@ namespace universal_windows
 
       puserinteractionHost->m_pimpl->queue_message_handler(pusermessage);
 
-      m_durationLastMouseMove= ::duration::now();
+      m_timeLastMouseMove= ::time::now();
 
    }
 
@@ -993,7 +993,7 @@ namespace universal_windows
                catch(...)
                {
                }
-            })), 5); // wait for up to 5 ::durations
+            })), 5); // wait for up to 5 ::times
 
             m_pointLastCursor = p;*/
 

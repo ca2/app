@@ -81,9 +81,11 @@ class ::signal * manager::get_signal(const ::atom & atom, const ::action_context
 
       psignal->initialize(this);
 
+      psignal->m_pparticle = this;
+
       auto psystem = acmesystem();
 
-      psignal->m_durationSleep = psystem->get_update_poll_time(atom);
+      psignal->m_timeSleep = psystem->get_update_poll_time(atom);
 
       auto pnode = psystem->node();
 

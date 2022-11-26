@@ -65,7 +65,7 @@ public:
       Vector2i m_mouse_pos;
       bool m_drag_active;
       Widget * m_drag_widget = nullptr;
-      ::duration m_last_interaction;
+      class ::time m_last_interaction;
    //   bool m_process_events = true;
       Color m_background;
    //   std::string m_caption;

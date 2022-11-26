@@ -68,7 +68,7 @@
 //
 //      single_lock singlelock(&m_event);
 //
-//      singlelock.lock(::duration(dwMillis));
+//      singlelock.lock(class ::time(dwMillis));
 //
 //      if (pstatus != nullptr)
 //      {
@@ -155,7 +155,7 @@
 //   T wait(unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
 //   {
 //
-//      m_event.wait(::duration(dwMillis));
+//      m_event.wait(class ::time(dwMillis));
 //
 //      if (pstatus != nullptr)
 //         *pstatus = m_status;

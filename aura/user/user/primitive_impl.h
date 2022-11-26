@@ -376,7 +376,7 @@ namespace user
       virtual void get_rect_normal(RECTANGLE_I32 * prectangle);
 
 
-      virtual void SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr);
+      virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr);
       virtual void KillTimer(uptr uEvent);
 
 

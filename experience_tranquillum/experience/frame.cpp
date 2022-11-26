@@ -545,7 +545,7 @@ namespace experience_tranquillum
          && m_pframewindow->m_bShowControlBox)
       {
 
-         ::duration tick1;
+         ::time tick1;
 
          tick1.Now();
 
@@ -562,7 +562,7 @@ namespace experience_tranquillum
 
          ::rectangle_i32 rectangleIcon;
 
-         ::duration tick2;
+         ::time tick2;
 
          tick2.Now();
 
@@ -592,7 +592,7 @@ namespace experience_tranquillum
 
          //printf("B. frame::on_draw_frame %d\n", tick2.elapsed().m_i);
 
-         ::duration tick3;
+         ::time tick3;
 
          tick3.Now();
 
@@ -624,7 +624,7 @@ namespace experience_tranquillum
       else if (!m_pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
       {
 
-         ::duration tick2;
+         ::time tick2;
 
          tick2.Now();
 
@@ -705,7 +705,7 @@ namespace experience_tranquillum
 
          }
 
-         ::duration tick3;
+         ::time tick3;
 
          tick3.Now();
 
@@ -750,7 +750,7 @@ namespace experience_tranquillum
 
          //printf("E. frame::on_draw_frame %d\n", tick3.elapsed().m_i);
 
-         ::duration tick4;
+         ::time tick4;
 
          tick4.Now();
 
@@ -788,7 +788,7 @@ namespace experience_tranquillum
 
          //class fonts & fonts = pdraw2d->fonts();
 
-         ::duration tick5;
+         ::time tick5;
 
          tick5.Now();
 

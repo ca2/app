@@ -106,12 +106,12 @@ namespace sockets
 #endif
 //      m_pmemfileInput = nullptr;
 //      m_iBindPort    = -1;
-//      m_durationStart.Now();
+//      m_timeStart.Now();
 //      m_pcallback    = nullptr;
 //      m_bEnablePool  = true;
 //
-//      m_durationConnectionMaximum = 30_s;
-//      m_durationMaximum = 30_s;
+//      m_timeConnectionMaximum = 30_s;
+//      m_timeMaximum = 30_s;
 
    }
 
@@ -2729,7 +2729,7 @@ namespace sockets
 
       base_socket_composite()->set_connection_start_time();
 
-      //m_durationConnectionStart.Now();
+      //m_timeConnectionStart.Now();
 
       //set_connection_last_activity();
 
@@ -2740,17 +2740,17 @@ namespace sockets
    {
 
       base_socket_composite()->set_connection_start_time();
-      //m_durationConnectionLastActivity.Now();
+      //m_timeConnectionLastActivity.Now();
 
    }
 
 
 
-   void base_socket::set_maximum_connection_time(const ::duration& duration)
+   void base_socket::set_maximum_connection_time(const class time & time)
    {
 
-      //m_durationConnectionMaximum = duration;
-      base_socket_composite()->set_maximum_connection_time(duration);
+      //m_timeConnectionMaximum = time;
+      base_socket_composite()->set_maximum_connection_time(time);
 
    }
 
@@ -2760,18 +2760,18 @@ namespace sockets
 
       base_socket_composite()->set_start_time();
 
-      //m_durationStart.Now();
+      //m_timeStart.Now();
 
       //set_connection_last_activity();
 
    }
 
 
-   void base_socket::set_maximum_time(const ::duration& duration)
+   void base_socket::set_maximum_time(const class time & time)
    {
 
-      //m_durationMaximum = duration;
-      base_socket_composite()->set_maximum_time(duration);
+      //m_timeMaximum = time;
+      base_socket_composite()->set_maximum_time(time);
 
    }
 
@@ -2801,12 +2801,12 @@ namespace sockets
       //if (is_connecting())
       //{
 
-      //   if (m_durationConnectionMaximum > 0_s)
+      //   if (m_timeConnectionMaximum > 0_s)
       //   {
 
-      //      auto tElapsed = m_durationConnectionStart.elapsed();
+      //      auto tElapsed = m_timeConnectionStart.elapsed();
 
-      //      if (tElapsed > m_durationConnectionMaximum)
+      //      if (tElapsed > m_timeConnectionMaximum)
       //      {
 
       //         return true;
@@ -2816,12 +2816,12 @@ namespace sockets
       //   }
 
       //}
-      //else if(m_durationMaximum > 0_s)
+      //else if(m_timeMaximum > 0_s)
       //{
 
-      //   auto tElapsed = m_durationConnectionLastActivity.elapsed();
+      //   auto tElapsed = m_timeConnectionLastActivity.elapsed();
 
-      //   if (tElapsed > m_durationMaximum)
+      //   if (tElapsed > m_timeMaximum)
       //   {
 
       //      return true;

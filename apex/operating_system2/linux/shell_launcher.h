@@ -29,8 +29,8 @@ namespace ansios
 
       virtual ~shell_launcher();
 
-      //virtual void setup(duration durationTimeout = ::one_minute());
-      //virtual void setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
+      //virtual void setup(time timeTimeout = ::one_minute());
+      //virtual void setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, time timeTimeout = ::one_minute());
 
       virtual void launch();
 

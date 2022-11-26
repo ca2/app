@@ -294,7 +294,7 @@ typedef CLASS_DECL_ACME pointer_array < index_array > index_2darray;
 //#include "base_2array.h"
 
 
-#include "duration.h"
+#include "time.h"
 
 
 

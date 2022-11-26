@@ -82,11 +82,11 @@ namespace sockets_bsd
       bool                    m_bDelete; ///< Delete by handler flag
       bool                       m_bCloseAndDelete; ///< close and delete flag
       ::sockets::base_socket *   m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
-      ::duration                 m_durationConnectionStart; ///< Set by SetTimeout
-      ::duration              m_durationConnectionLastActivity; ///< Set by SetTimeout
-      ::duration              m_durationConnectionMaximum; ///< Defined by SetTimeout
-      ::duration              m_durationStart; ///< Set by SetTimeout
-      ::duration              m_durationMaximum; ///< Defined by SetTimeout
+      class ::time                 m_timeConnectionStart; ///< Set by SetTimeout
+      class ::time              m_timeConnectionLastActivity; ///< Set by SetTimeout
+      class ::time              m_timeConnectionMaximum; ///< Defined by SetTimeout
+      class ::time              m_timeStart; ///< Set by SetTimeout
+      class ::time              m_timeMaximum; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
       //    unsigned long           m_flags; ///< tristate flags, replacing old 'bool' members
 
@@ -125,7 +125,7 @@ namespace sockets_bsd
       string                  m_line; ///< Current line in line protocol mode
 
       ::e_status             m_estatus;
-      //::duration              m_durationStart;
+      //class ::time              m_timeStart;
 
 #if !defined(BSD_STYLE_SOCKETS)
       bool                    m_bErrorWriting;
@@ -293,11 +293,11 @@ namespace sockets_bsd
 
       void set_connection_last_activity() override;
 
-      void set_maximum_connection_time(const ::duration & duration) override;
+      void set_maximum_connection_time(const class time & time) override;
 
       void set_start_time() override;
 
-      void set_maximum_time(const ::duration& duration) override;
+      void set_maximum_time(const class ::time& time) override;
 
       /** Check timeout. \return true if time limit reached */
       bool has_timed_out() override;

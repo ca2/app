@@ -241,7 +241,7 @@ namespace user
       m_iImpactSize = 0;
       m_bLMouseDown = false;
       m_bRMouseDown = false;
-      m_durationCaretPeriod = 1_s;
+      m_timeCaretPeriod = 1_s;
 
       m_iLastSelectionBeginLine = -1;
       m_iLastSelectionBeginX = -1;
@@ -417,9 +417,9 @@ namespace user
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_durationLastDraw = ::duration::now();
+      m_timeLastDraw = ::time::now();
 
-      ::duration t1 = ::duration::now();
+      ::time t1 = ::time::now();
 
       auto pstyle = get_style(pgraphics);
 
@@ -606,9 +606,9 @@ namespace user
             if (m_errora.get_size() > 0)
             {
 
-               ::duration tickTimeout = 1_s;
+               ::time tickTimeout = 1_s;
 
-               ::duration tickPeriod = 100_ms;
+               ::time tickPeriod = 100_ms;
 
                if (m_errora[0].m_tick.elapsed() > tickTimeout)
                {
@@ -6974,7 +6974,7 @@ namespace user
       if (iTimer == 0)
       {
 
-         if (has_keyboard_focus() && is_window_visible())// && m_durationLastDraw.elapsed() > m_durationCaretPeriod / 8)
+         if (has_keyboard_focus() && is_window_visible())// && m_timeLastDraw.elapsed() > m_timeCaretPeriod / 8)
          {
 
             if (is_different(m_bLastCaret, is_caret_on()))
@@ -6992,7 +6992,7 @@ namespace user
 
          //if(m_dwFocusStart + m_dwCaretTime < ::get_tick())
          //{
-         // auto m_durationFocusStart = ::duration::now();
+         // auto m_timeFocusStart = ::time::now();
          //   m_bCaretOn = !m_bCaretOn;
          //   //set_need_redraw();
          //   set_need_redraw();

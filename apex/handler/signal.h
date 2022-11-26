@@ -61,13 +61,13 @@ public:
    void post_destroy_all();
 
 
-   ::duration poll_time();
+   class ::time poll_time();
 
 
-   static inline bool should_poll(const ::duration & duration)
+   static inline bool should_poll(const class time & time)
    {
 
-      return duration >= 100_ms;
+      return time >= 100_ms;
 
    }
 

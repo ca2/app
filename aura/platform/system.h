@@ -156,7 +156,7 @@ namespace aura
 
 
       //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
-      //virtual ::enum_dialog_result message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override;
+      //virtual ::enum_dialog_result message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override;
 
 
       //virtual void create_html();
@@ -684,7 +684,7 @@ namespace aura
 
 
 
-//      virtual bool wait_twf(::duration tickTimeout = U32_INFINITE_TIMEOUT);
+//      virtual bool wait_twf(class ::time tickTimeout = U32_INFINITE_TIMEOUT);
 
 
 

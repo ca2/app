@@ -1,8 +1,8 @@
-// Created on 2021-03-29 at 13:00 BRT <3TBS_, Mummi and bilbo!!
+﻿// Created on 2021-03-29 at 13:00 BRT <3TBS_, Mummi and bilbo!!
 #pragma once
 
 
-#include "acme/graphics/image/_macro.h"
+#include "acme/graphics/image/_configuration.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
 #include "apex/platform/context.h"
 

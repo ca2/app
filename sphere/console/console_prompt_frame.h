@@ -39,7 +39,7 @@ namespace console
 
 
       bool m_bHoverMouse;
-      ::duration m_durationLastHover;
+      class ::time m_timeLastHover;
 
       void OnHoverAction(bool bShowWinActionArea);
 

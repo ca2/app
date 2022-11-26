@@ -12,7 +12,7 @@ namespace simpledb
 
 
       string               m_strKey;
-      ::duration               m_tick;
+      class ::time               m_tick;
       memory               m_memory;
 
 

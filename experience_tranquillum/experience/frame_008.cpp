@@ -324,7 +324,7 @@ SizingNone:
             //
             ////////////////////
 
-            ::duration tickBorder;
+            ::time tickBorder;
 
             tickBorder.Now();
 

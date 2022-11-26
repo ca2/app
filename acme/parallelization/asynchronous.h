@@ -8,7 +8,7 @@
 
 
 template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
-bool __matter_get_posted_payload_synchronously(matter * phandler, POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class ::wait & wait)
+bool __matter_get_posted_payload_synchronously(matter * phandler, POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class time & timeWait)
 {
 
    if(pposting->is_branch_current())
@@ -36,7 +36,7 @@ bool __matter_get_posted_payload_synchronously(matter * phandler, POSTING_OBJECT
 
    });
 
-   functionReturn.m_waitTimeout = wait;
+   functionReturn.m_timeTimeout = timeWait;
 
    return phandler->__get_posted_payload_synchronously(functionPost, functionReturn, payload);
 

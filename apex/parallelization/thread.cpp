@@ -121,7 +121,7 @@ bool thread::s_bAllocReady = false;
 thread::file_info::file_info()
 {
 
-   m_durationFileSharingViolationTimeout = 5_minute;
+   m_timeFileSharingViolationTimeout = 5_minute;
 
 }
 
@@ -179,7 +179,7 @@ thread::thread()
 
    m_uThreadAffinityMask = 0;
 
-   m_durationHeartBeat.Now();
+   m_timeHeartBeat.Now();
 
    m_bReady = false;
 
@@ -496,7 +496,7 @@ void thread::task_osterm()
 void thread::on_keep_alive()
 {
 
-   m_durationHeartBeat.Now();
+   m_timeHeartBeat.Now();
 
 }
 
@@ -517,7 +517,7 @@ bool thread::is_alive()
    //if (!m_bRun)
    //   return false;
 
-   //if ((m_durationHeartBeat.elapsed()) > ((5000) * 91))
+   //if ((m_timeHeartBeat.elapsed()) > ((5000) * 91))
    // return false;
 
    return true;
@@ -2031,12 +2031,12 @@ void thread::dispatch_thread_message(::message::message * pusermessage)
 //void thread::wait()
 //{
 //
-//   wait(::duration::infinite());
+//   wait(::time::infinite());
 //
 //}
 
 
-//synchronization_result thread::wait(const duration & duration)
+//synchronization_result thread::wait(const class time & time)
 //{
 //
 //   itask_t itask = m_itask;
@@ -2046,7 +2046,7 @@ void thread::dispatch_thread_message(::message::message * pusermessage)
 //
 //#if defined(WINDOWS)
 //
-//      ::u32 timeout = duration.u32_millis();
+//      ::u32 timeout = time.u32_millis();
 //
 //      htask_t htask = m_htask;
 //
@@ -2063,7 +2063,7 @@ void thread::dispatch_thread_message(::message::message * pusermessage)
 //
 //#else
 //
-//      if(duration.is_pos_infinity())
+//      if(time.is_pos_infinity())
 //      {
 //
 //         while(is_task_on(itask))
@@ -2077,7 +2077,7 @@ void thread::dispatch_thread_message(::message::message * pusermessage)
 //      else
 //      {
 //
-//         auto millisDelay = duration.::duration();
+//         auto millisDelay = time.::time();
 //
 //         auto dwStep = minimum(maximum(millisDelay / 10, 1), 100);
 //
@@ -2942,12 +2942,12 @@ namespace apex
 //}
 
 
-//void thread::send_routine(const ::procedure & procedure, const ::duration & durationTimeout)
+//void thread::send_routine(const ::procedure & procedure, const class time & timeTimeout)
 //{
 //
-//   return __sync_routine(durationTimeout, this, &thread::post, routine);
+//   return __sync_routine(timeTimeout, this, &thread::post, routine);
 //
-//   //return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
+//   //return send_object(e_message_system, e_system_message_method, routine, timeTimeout);
 //
 //}
 
@@ -3061,7 +3061,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 }
 
 
-void thread::send_element(const ::atom & atom, wparam wparam, ::particle * pparticle, const ::duration & duration)
+void thread::send_element(const ::atom & atom, wparam wparam, ::particle * pparticle, const class time & time)
 {
 
    if (!atom.is_message())
@@ -3093,14 +3093,14 @@ void thread::send_element(const ::atom & atom, wparam wparam, ::particle * ppart
 
    }
 
-   send_message(atom, wparam, pparticle, duration);
+   send_message(atom, wparam, pparticle, time);
 
    //return true;
 
 }
 
 
-void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, const ::duration & duration)
+void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, const class time & time)
 {
 
    if (!atom.is_message())
@@ -3136,7 +3136,7 @@ void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, con
 
    post_message(e_message_system, e_system_message_meta, pmessage);
 
-   pmessage->m_ev.wait(duration);
+   pmessage->m_ev.wait(time);
 
    //return true;
 
@@ -3779,7 +3779,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
       if (has_finishing_flag())
       {
 
-         DWORD timeout = 100; // 100 ::durations;
+         DWORD timeout = 100; // 100 ::times;
 
          while (MsgWaitForMultipleObjects(0, NULL, FALSE, timeout, QS_ALLINPUT) != WAIT_OBJECT_0)
          {
@@ -4521,10 +4521,10 @@ thread_ptra::~thread_ptra()
 }
 
 
-bool thread::pump_sleep(const class ::wait & wait, ::particle * pparticleSynchronization)
+bool thread::pump_sleep(const class time & timeWait, ::particle * pparticleSynchronization)
 {
 
-   auto start = wait::now();
+   auto timeStart = ::time::now();
 
    while (true)
    {
@@ -4549,7 +4549,7 @@ bool thread::pump_sleep(const class ::wait & wait, ::particle * pparticleSynchro
 
       }
 
-      auto waitNow = minimum(wait - start.elapsed(), 100_ms);
+      auto waitNow = minimum(timeWait - timeStart.elapsed(), 100_ms);
 
       if (!waitNow)
       {
@@ -4680,18 +4680,18 @@ thread::file_info* thread::get_file_info()
 }
 
 
-::duration thread::get_file_sharing_violation_timeout()
+class ::time thread::get_file_sharing_violation_timeout()
 {
 
-   return get_file_info()->m_durationFileSharingViolationTimeout;
+   return get_file_info()->m_timeFileSharingViolationTimeout;
 
 }
 
 
-::duration thread::set_file_sharing_violation_timeout(const ::duration & duration)
+class ::time thread::set_file_sharing_violation_timeout(const class time & time)
 {
 
-   return get_file_info()->m_durationFileSharingViolationTimeout = duration;
+   return get_file_info()->m_timeFileSharingViolationTimeout = time;
 
 }
 

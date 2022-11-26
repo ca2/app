@@ -15,7 +15,7 @@
 #include "apex/platform/context.h"
 
 
-#include "acme/primitive/duration/_text_stream.h"
+#include "acme/primitive/time/_text_stream.h"
 
 
 namespace account
@@ -180,7 +180,7 @@ namespace account
 
       string strRsa;
 
-      auto tickGetLoginBeg = ::duration::now();
+      auto tickGetLoginBeg = ::time::now();
 
       strSessId = puser->m_strSessId;
 
@@ -200,7 +200,7 @@ namespace account
 
       }
 
-      auto tickGetLoginEnd = ::duration::now();
+      auto tickGetLoginEnd = ::time::now();
 
       INFORMATION("NetLogin: Get Login Millis = " << (tickGetLoginEnd - tickGetLoginBeg).integral_second());
 
@@ -208,7 +208,7 @@ namespace account
 
       string strAuth;
 
-      auto tickAuthBeg = ::duration::now();
+      auto tickAuthBeg = ::time::now();
 
       string strAuthUrl("https://ca2.software/api/account/auth3");
 
@@ -259,7 +259,7 @@ namespace account
 
       set["cookies"] = puser->m_phttpcookies;
 
-      auto tickTimeProfile1 = ::duration::now();
+      auto tickTimeProfile1 = ::time::now();
 
       auto strResponse = m_pcontext->m_papexcontext->http().get(strAuthUrl, set);
 
@@ -315,7 +315,7 @@ namespace account
       i32 iRetry = 2;
 
       
-      ::duration tickStart = ::duration::now();
+      ::time tickStart = ::time::now();
 
       ::property_set set;
 
@@ -334,7 +334,7 @@ namespace account
 
       }
 
-      ::duration tickEnd = ::duration::now();
+      ::time tickEnd = ::time::now();
 
       INFORMATION(set["http_get_serial"].as_string() << "> get_account_login HTTP GET time = " << (tickEnd - tickStart).integral_millisecond());
 
@@ -472,7 +472,7 @@ namespace account
 //   try
 //   {
 //
-//      ::u32 dwBeg= ::duration::now();
+//      ::u32 dwBeg= ::time::now();
 //
 //      ::property_set set;
 //
@@ -484,7 +484,7 @@ namespace account
 //
 //      strNode = pcontext->m_papexcontext->http().get(strGetFontopus, set);
 //
-//      ::u32 tickEnd= ::duration::now();
+//      ::u32 tickEnd= ::time::now();
 //
 //      FORMATTED_TRACE("get_account_login HTTP GET time = %dms",tickEnd - dwBeg);
 //

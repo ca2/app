@@ -142,7 +142,7 @@ public:
 
    ::pointer<::task>branch_synchronously(const create_task_attributes & createtaskattributes = nullptr) override;
 
-   virtual bool task_sleep(const class ::wait & wait);
+   virtual bool task_sleep(const class time & timeWait);
 
    //template < typename METHOD >
    //inline static ::task_pointer __task(METHOD method)

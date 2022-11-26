@@ -370,7 +370,7 @@ namespace draw2d
       int s = m_p->m_iScan / 4;
 
       {
-auto tickA0 = ::duration::now();
+auto tickA0 = ::time::now();
 
          for(index y = 0; y < h; y++)
          {
@@ -380,7 +380,7 @@ auto tickA0 = ::duration::now();
                t[y * w + x] = vector4(point_i32[0],point_i32[1],point_i32[2],point_i32[3]);
             }
          }
-auto tickA1 = ::duration::now();
+auto tickA1 = ::time::now();
          ::u32 dwA2 = dwA1 - dwA0;
          string str;
 
@@ -391,7 +391,7 @@ auto tickA1 = ::duration::now();
 
 
       {
-auto tick1 = ::duration::now();
+auto tick1 = ::time::now();
 
          try
          {
@@ -411,7 +411,7 @@ auto tick1 = ::duration::now();
          {
 
          }
-auto tick2 = ::duration::now();
+auto tick2 = ::time::now();
          ::u32 dw3 = dw2 - dw1;
 
          string str1;
@@ -433,7 +433,7 @@ auto tick2 = ::duration::now();
       }
 
       {
-auto tickC0 = ::duration::now();
+auto tickC0 = ::time::now();
 
          for(index y = 0; y < h; y++)
          {
@@ -447,7 +447,7 @@ auto tickC0 = ::duration::now();
                point_i32[3] = (byte)t->z;
             }
          }
-auto tickC1 = ::duration::now();
+auto tickC1 = ::time::now();
          ::u32 dwC2 = dwC1 - dwC0;
          string str;
 
@@ -474,7 +474,7 @@ auto tickC1 = ::duration::now();
 
       {
          
-         auto tickA0 = ::duration::now();
+         auto tickA0 = ::time::now();
 
          for(index y = 0; y < hj; y++)
          {
@@ -490,7 +490,7 @@ auto tickC1 = ::duration::now();
 
          }
          
-         auto tickA1 = ::duration::now();
+         auto tickA1 = ::time::now();
 
          auto tickA2 = tickA1 - tickA0;
 
@@ -503,7 +503,7 @@ auto tickC1 = ::duration::now();
 
       {
 
-         auto tick1 = ::duration::now();
+         auto tick1 = ::time::now();
 
          try
          {
@@ -524,7 +524,7 @@ auto tickC1 = ::duration::now();
 
          }
          
-         auto tick2 = ::duration::now();
+         auto tick2 = ::time::now();
 
          auto tick3 = tick2 - tick1;
 
@@ -554,7 +554,7 @@ auto tickC1 = ::duration::now();
 
       {
 
-         auto tickC0 = ::duration::now();
+         auto tickC0 = ::time::now();
 
          for(index y = 0; y < h; y++)
          {
@@ -573,7 +573,7 @@ auto tickC1 = ::duration::now();
 
          }
          
-         auto tickC1 = ::duration::now();
+         auto tickC1 = ::time::now();
          
          auto tickC2 = tickC1 - tickC0;
 
@@ -588,7 +588,7 @@ auto tickC1 = ::duration::now();
 #else
 
 
-      //::u32 dw1= ::duration::now();
+      //::u32 dw1= ::time::now();
 
 #ifdef __arm__
 
@@ -623,7 +623,7 @@ auto tickC1 = ::duration::now();
       }
 
       /*
-auto tick2 = ::duration::now();
+auto tick2 = ::time::now();
       ::u32 dw3 = dw2 - dw1;
       string str1;
       str1.format("| Parameters: w=%d h=%d rectangle=%d  \n",m_size.cx,m_size.cy,m_iRadius);

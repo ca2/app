@@ -1175,7 +1175,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       strLog= acmefile()->as_string(strClog);
 
 #else
-auto tickStart = ::duration::now();
+auto tickStart = ::time::now();
 
       while(::task_get_run())
       {

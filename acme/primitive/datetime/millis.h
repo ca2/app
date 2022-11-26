@@ -12,7 +12,7 @@ enum enum_now
 };
 
 
-class duration;
+class time;
 
 
 class millis;
@@ -44,7 +44,7 @@ public:
    millis(const millis & millis) { m_i = millis.m_i; }
    millis(const micros & micros);
    millis(const nanos & nanos);
-   millis(const duration & duration);
+   millis(const class time & time);
 
    millis & operator = (const millis & millis) { m_i = millis.m_i; return *this; }
 
@@ -148,16 +148,16 @@ public:
 
    }
 
-   //inline bool operator == (const ::duration& duration) const;
-   //inline bool operator != (const ::duration& duration) const;
-   //inline bool operator < (const ::duration& duration) const ;
-   //inline bool operator <= (const ::duration& duration) const;
-   //inline bool operator > (const ::duration& duration) const ;
-   //inline bool operator >= (const ::duration& duration) const;
-   //inline millis operator - (const ::duration& duration) const ;
-   //inline millis operator + (const ::duration& duration) const ;
-   //inline millis& operator -= (const ::duration& duration) ;
-   //inline millis& operator += (const ::duration& duration) ;
+   //inline bool operator == (const class ::time& time) const;
+   //inline bool operator != (const class ::time& time) const;
+   //inline bool operator < (const class ::time& time) const ;
+   //inline bool operator <= (const class ::time& time) const;
+   //inline bool operator > (const class ::time& time) const ;
+   //inline bool operator >= (const class ::time& time) const;
+   //inline millis operator - (const class ::time& time) const ;
+   //inline millis operator + (const class ::time& time) const ;
+   //inline millis& operator -= (const class ::time& time) ;
+   //inline millis& operator += (const class ::time& time) ;
 
 
    //inline bool operator == (const ::millis & millis) const { return m_i == millis.m_i; }

@@ -24,7 +24,7 @@ public:
    {
    public:
 
-      ::duration       m_durationLast;
+      class ::time       m_timeLast;
 
    };
 

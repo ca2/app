@@ -61,7 +61,7 @@ public:
    T wait(unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
    {
 
-      task_sleep(::duration(dwMillis), &m_event);
+      task_sleep(class ::time(dwMillis), &m_event);
 
       if (pstatus != nullptr)
       {
@@ -147,7 +147,7 @@ public:
    T wait(unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
    {
 
-      m_event.wait(::duration(dwMillis));
+      m_event.wait(class ::time(dwMillis));
 
       if (pstatus != nullptr)
          *pstatus = m_status;
@@ -224,7 +224,7 @@ public:
 
       auto pholdThis = this;
 
-      m_event.wait(::duration(dwMillis));
+      m_event.wait(class ::time(dwMillis));
 
       if(pstatus != nullptr)
          *pstatus = m_status;

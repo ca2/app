@@ -1,4 +1,4 @@
-// Recreated by camilo on 2022-01-12 23:15 <3ThomasBorregaardSørensen!!
+﻿// Recreated by camilo on 2022-01-12 23:15 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -29,7 +29,7 @@ public:
    virtual ::string get_conversation_details();
    
    
-   ::payload do_synchronously(const class ::wait & wait = ::wait::infinite()) override;
+   ::payload do_synchronously(const class time & time = ::time::infinite()) override;
    void do_asynchronously() override;
 
 

@@ -29,7 +29,7 @@ namespace windowing
       ::pointer<::user::interaction_impl>      m_puserinteractionimpl;
       string                                    m_strDebug;
       ::pointer<::message_queue>               m_pmessagequeue;
-      ::duration                                m_durationLastMouseMove;
+      class ::time                                m_timeLastMouseMove;
       ::pointer<::windowing::window>           m_pwindowParent;
       ::point_i32                               m_point;
       ::size_i32                                m_size;

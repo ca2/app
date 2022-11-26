@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 03/12/2020. <3tbs!!
 //
 #pragma once
@@ -96,7 +96,7 @@
 
 //typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 
-//CLASS_DECL_ACME void call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
+//CLASS_DECL_ACME void call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
 
 #endif
 

@@ -562,14 +562,14 @@ namespace acme
    //   }
    //
    //
-   //   void system::main_user_sync(const ::procedure & procedure, const ::duration & duration, enum_priority epriority)
+   //   void system::main_user_sync(const ::procedure & procedure, const class time & time, enum_priority epriority)
    //   {
    //
    //      auto proutine = ___sync_routine(routine);
    //
    //      main_user_async(proutine, epriority);
    //
-   //      auto waitresult = proutine->wait(duration);
+   //      auto waitresult = proutine->wait(time);
    //
    //      if (!waitresult.succeeded())
    //      {
@@ -1310,7 +1310,7 @@ namespace acme
    //}
 
 
-   ::duration system::get_update_poll_time(const ::atom & atom)
+   class ::time system::get_update_poll_time(const ::atom & atom)
    {
 
       return 0_s;
@@ -2402,7 +2402,7 @@ namespace acme
 
       );
 
-      pmanualresetevent->wait(procedure.m_waitTimeout);
+      pmanualresetevent->wait(procedure.m_timeTimeout);
 
    }
 

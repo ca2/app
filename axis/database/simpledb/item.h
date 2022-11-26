@@ -13,7 +13,7 @@ namespace simpledb
    public:
 
 
-      ::duration           m_tick;
+      class ::time           m_tick;
       memory               m_memory;
       bool                 m_bData;
 

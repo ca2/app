@@ -340,7 +340,7 @@ namespace helloworld
 
                      }
                      m_pimpactLast->m_dFps = d;
-                     m_pimpactLast->m_dwRoll= ::duration::now();
+                     m_pimpactLast->m_dwRoll= ::time::now();
                   }
                   //if(fabs(d) < 0.0000000001)
                   //{
@@ -371,7 +371,7 @@ namespace helloworld
             //      else
             //      {
             //         m_pflagview->m_dFps = 1.0/ d;
-            //         m_pflagview->m_dwRoll= ::duration::now();
+            //         m_pflagview->m_dwRoll= ::time::now();
             //         m_prollfps->_001SetText(as_string(1.0 / d),::e_source_initialize);
             //      }
             //   }

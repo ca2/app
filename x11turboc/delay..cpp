@@ -48,10 +48,10 @@ clockTurbo (void)
 //-----------------------------------------------------------------------
 
 void
-delay (g::u32 ::durations)
+delay (g::u32 ::times)
 {
   struct tms Buf;
   clock_t EndTime;
-  EndTime = times (&Buf) + (::durations * 1LL * CLK_TCK) / 1000LL;
+  EndTime = times (&Buf) + (::times * 1LL * CLK_TCK) / 1000LL;
   while (times (&Buf) < EndTime);
 }

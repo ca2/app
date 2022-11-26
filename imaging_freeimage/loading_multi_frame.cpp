@@ -2,7 +2,7 @@
 #include "context_image.h"
 #include "fimemory.h"
 ////#include "acme/exception/exception.h"
-#include "acme/primitive/duration/_text_stream.h"
+#include "acme/primitive/time/_text_stream.h"
 #include "aura/graphics/image/frame.h"
 #include "aura/graphics/image/frame_array.h"
 
@@ -196,22 +196,22 @@ namespace imaging_freeimage
 
                            ::u32 uMillisecond = *(::u32 *)FreeImage_GetTagValue(ptag);
 
-                           pframe->m_duration = INTEGRAL_MILLISECOND(uMillisecond);
+                           pframe->m_time = INTEGRAL_MILLISECOND(uMillisecond);
 
                         }
 
                      }
 
-                     if(pframe->m_duration < 1_ms)
+                     if(pframe->m_time < 1_ms)
                      {
 
-                        pframe->m_duration = 1_ms;
+                        pframe->m_time = 1_ms;
 
                      }
-                     else if(pframe->m_duration > 1_s)
+                     else if(pframe->m_time > 1_s)
                      {
 
-                        INFORMATION("Long frame duration " << pframe->m_duration.integral_second());
+                        INFORMATION("Long frame time " << pframe->m_time.integral_second());
 
                      }
 

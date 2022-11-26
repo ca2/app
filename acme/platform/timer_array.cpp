@@ -27,7 +27,7 @@ namespace acme
    }
 
 
-   bool timer_array::create_timer(::particle * pparticle, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::create_timer(::particle * pparticle, uptr uEvent, const class ::time& millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -54,7 +54,7 @@ namespace acme
       //try
       //{
 
-         ptimer->start(::duration(millisEllapse), bPeriodic);
+         ptimer->start(millisEllapse, bPeriodic);
 
          //if(!)
          //{
@@ -83,7 +83,7 @@ namespace acme
    }
 
 
-   bool timer_array::set_timer(::particle * pparticle, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::set_timer(::particle * pparticle, uptr uEvent, const class ::time& millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
       if (!create_timer(pparticle, uEvent, millisEllapse, pfnTimer, bPeriodic, pvoidData))

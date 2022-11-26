@@ -87,7 +87,7 @@ namespace user
 
          m_iSelEnd = 0;
 
-         m_durationCaretPeriod = 1_s;
+         m_timeCaretPeriod = 1_s;
 
          defer_create_synchronization();
 
@@ -1598,7 +1598,7 @@ namespace user
          if (bHasFocus && m_pedit->is_text_editable())
          {
 
-            bCaretOn = m_pedit->m_durationFocusStart.integral_millisecond().on_off(m_durationCaretPeriod.integral_millisecond());
+            bCaretOn = m_pedit->m_timeFocusStart.integral_millisecond().on_off(m_timeCaretPeriod.integral_millisecond());
 
          }
 

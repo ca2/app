@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class CLASS_DECL_ACME nanosecond_timer
@@ -17,7 +17,7 @@ public:
    ~nanosecond_timer();
 
 
-   void wait(const ::duration & duration);
+   void wait(const class time & time);
 
 
    void close_timer();

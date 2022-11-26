@@ -103,7 +103,7 @@ namespace user
       int                                       m_iState1;
       ::u32                                     m_uCodePage;
       int                                       m_iLangId;
-      ::duration                                    m_durationLastExposureAddUp;
+      class ::time                                    m_timeLastExposureAddUp;
       ::pointer<prodevian>                   m_pprodevian;
       ::pointer<::user::thread>              m_puserthread;
       pointer_array < ::matter >                 m_matteraProdevian;
@@ -152,12 +152,12 @@ namespace user
       ::pointer<::user::interaction>           m_puserinteractionKeyboardGainingFocusIfAny;
       ::pointer<::user::interaction>           m_puserinteractionToKillKeyboardFocus;
 
-      ::duration                                m_durationLastRedraw;
+      class ::time                                m_timeLastRedraw;
       ::user::interaction_array                 m_userinteractionaHideOnConfigurationChange;
       
       ::nanosecond                              m_nanosDeviceDrawBeg;
       ::nanosecond                              m_nanosDeviceDrawEnd;
-      ::duration                                m_durationLastDeviceDraw;
+      class ::time                                m_timeLastDeviceDraw;
 
       ::size_i32                                m_sizeDrawnBuffer;
 
@@ -510,7 +510,7 @@ namespace user
 
 //#if(WINVER >= 0x0500)
 //
-//      virtual bool AnimateWindow(const ::duration & duration,u32 dwFlags);
+//      virtual bool AnimateWindow(const class time & time,u32 dwFlags);
 //
 //#endif
 
@@ -624,7 +624,7 @@ namespace user
 
 //#if(WINVER >= 0x0500)
 //
-//      // virtual bool FlashWindowEx(u32 dwFlags, ::u32  uCount, ::duration tickTimeout);
+//      // virtual bool FlashWindowEx(u32 dwFlags, ::u32  uCount, class ::time tickTimeout);
 //
 //#endif   // WINVER >= 0x0500
 

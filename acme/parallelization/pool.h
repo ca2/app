@@ -26,8 +26,8 @@ public:
    virtual ::pointer<::task>defer_branch(const ::atom& atom, const ::procedure & procedure);
 
 
-   virtual void set_timer(enum_timer etimer, const duration & duration);
-   virtual void _timer_task(enum_timer etimer, const duration & duration);
+   virtual void set_timer(enum_timer etimer, const class time & time);
+   virtual void _timer_task(enum_timer etimer, const class time & time);
    virtual void on_timer(enum_timer etimer);
 
 

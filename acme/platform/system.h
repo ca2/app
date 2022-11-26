@@ -78,7 +78,7 @@ namespace acme
 
       string                                                            m_strOsUserTheme;
 
-      ::duration                                                        m_durationFileListingCache;
+      class ::time                                                        m_timeFileListingCache;
       //critical_section                                                  m_csEnumText;
       //string_map < i64_map < string > >                                 m_mapEnumToText;
       //string_map < string_map < i64 > >                                 m_mapTextToEnum;
@@ -98,8 +98,8 @@ namespace acme
 
 
       enum_trace_level                                                  m_etracelevel;
-      ::duration                                                        m_durationMainStart;
-      ::duration                                                        m_durationAfterApplicationFirstRequest;
+      class ::time                                                        m_timeMainStart;
+      class ::time                                                        m_timeAfterApplicationFirstRequest;
       bool                                                              m_bIsReadyForUserInteraction;
 
 
@@ -286,7 +286,7 @@ namespace acme
       //using ::manager::on_subject;
       //virtual void on_subject(::topic * ptopic) override;
 
-      virtual ::duration get_update_poll_time(const ::atom & atom);
+      virtual class ::time get_update_poll_time(const ::atom & atom);
 
       virtual ::acme::library * on_get_library(const ::string & pszLibrary);
 
@@ -322,7 +322,7 @@ namespace acme
 
       //virtual void main_user_async(const ::procedure & procedure, ::enum_priority epriority = e_priority_normal);
 
-      //virtual void main_user_sync(const ::procedure & procedure, const ::duration & duration = one_minute(), enum_priority epriority = e_priority_normal);
+      //virtual void main_user_sync(const ::procedure & procedure, const class time & time = one_minute(), enum_priority epriority = e_priority_normal);
 
 
       ::task * get_task(itask_t itask);

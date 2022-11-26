@@ -1,8 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "time.h"
 //#include "acme/primitive/datetime/file_time.h"
 #include "acme/primitive/datetime/system_time.h"
-#include "acme/operating_system/time.h"
+//#include "acme/operating_system/time.h"
 #if !defined(WINDOWS)
 #include "acme/operating_system/ansi/windows_time.h"
 #endif
@@ -20,7 +20,7 @@ CLASS_DECL_ACME void __seed_srand()
 }
 
 
-//CLASS_DECL_ACME void sleep(const ::duration& dur)
+//CLASS_DECL_ACME void sleep(const ::time& dur)
 //{
 //
 //   sleep((::u32)dur.total_milliseconds());
@@ -28,10 +28,10 @@ CLASS_DECL_ACME void __seed_srand()
 //}
 
 
-CLASS_DECL_ACME void preempt(const duration & duration)
+CLASS_DECL_ACME void preempt(const class time & time)
 {
 
-   auto second = duration.integral_second();
+   auto second = time.integral_second();
 
    if(second >= 20_s)
    {
@@ -42,7 +42,7 @@ CLASS_DECL_ACME void preempt(const duration & duration)
    else
    {
 
-      auto millisecond = duration.integral_millisecond();
+      auto millisecond = time.integral_millisecond();
 
       if (millisecond >= 20_ms)
       {
@@ -53,7 +53,7 @@ CLASS_DECL_ACME void preempt(const duration & duration)
       else
       {
 
-         auto microsecond = duration.integral_microsecond();
+         auto microsecond = time.integral_microsecond();
 
          if (microsecond >= 20_µs)
          {
@@ -64,7 +64,7 @@ CLASS_DECL_ACME void preempt(const duration & duration)
          else
          {
 
-            preempt(duration.integral_nanosecond());
+            preempt(time.integral_nanosecond());
 
          }
 
@@ -79,7 +79,7 @@ CLASS_DECL_ACME void preempt(const duration & duration)
 
 // SYSTEMTIME
 // Specifies a date and time, using individual members for 
-// the month, day, year, weekday, hour, minute, second, and ::duration. 
+// the month, day, year, weekday, hour, minute, second, and ::time. 
 // The time is either in coordinated universal time (UTC) or local time, 
 // depending on the function that is being called.
 // 

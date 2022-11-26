@@ -8,13 +8,13 @@
 //public:
 //
 //   
-//   ::duration       m_durationSleep;
+//   class ::time       m_timeSleep;
 //
 //
-//   delay_thread(const ::duration & durationSleep = 1_s)
+//   delay_thread(const class time & timeSleep = 1_s)
 //   {
 //
-//      m_durationSleep = durationSleep;
+//      m_timeSleep = timeSleep;
 //
 //   }
 //
@@ -25,18 +25,18 @@
 //      while (true)
 //      {
 //
-//         auto durationSleep = m_durationSleep;
+//         auto timeSleep = m_timeSleep;
 //
-//         if (durationSleep.is_null())
+//         if (timeSleep.is_null())
 //         {
 //
 //            break;
 //
 //         }
 //
-//         m_durationSleep.Null();
+//         m_timeSleep.Null();
 //
-//         if (!task_sleep(durationSleep))
+//         if (!task_sleep(timeSleep))
 //         {
 //
 //            return success_exit_thread;
@@ -90,7 +90,7 @@
 //
 //
 //template < typename PRED >
-//delay_thread * predicate_delay(::particle * pparticle, ::duration tickDelay, PRED pred)
+//delay_thread * predicate_delay(::particle * pparticle, class ::time tickDelay, PRED pred)
 //{
 //
 //   auto pthread  = __new(predicate_delay_thread < PRED >(pparticle, pred, tickDelay));

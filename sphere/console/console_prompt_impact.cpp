@@ -9,7 +9,7 @@ namespace console
       ::object(pparticle)
    {
 
-      m_durationCaretPeriod   = 500;
+      m_timeCaretPeriod   = 500;
 
       m_iNewChar        = 0;
 
@@ -57,7 +57,7 @@ namespace console
       ::pointer<::message::show_window>pshowwindow(pmessage);
       if(pshowwindow->m_bShow)
       {
-         m_durationLastError= ::duration::now();
+         m_timeLastError= ::time::now();
          m_bOk = false;
       }
    }
@@ -75,7 +75,7 @@ namespace console
 
       }
 
-      m_durationCaretStart= ::duration::now();
+      m_timeCaretStart= ::time::now();
 
    }
 
@@ -94,7 +94,7 @@ namespace console
       else
       {
 
-         m_durationLastError= ::duration::now();
+         m_timeLastError= ::time::now();
 
          m_bOk = false;
 
@@ -115,7 +115,7 @@ namespace console
 
       auto pkey = pmessage->m_union.m_pkey;
 
-      m_durationCaretStart.Now();
+      m_timeCaretStart.Now();
 
       ::message::key & key = *pkey;
 
@@ -270,7 +270,7 @@ namespace console
    int prompt_impact::getch()
    {
 
-      m_durationCaretPeriod.Now();
+      m_timeCaretPeriod.Now();
 
       m_iNewChar = 0x80000000;
 
@@ -304,7 +304,7 @@ namespace console
 
       color32_t crTopic;
 
-      if(m_durationLastError.elapsed() < 84 && !m_bOk)
+      if(m_timeLastError.elapsed() < 84 && !m_bOk)
       {
 
          crTopic = argb(255,255,0,210);
@@ -319,7 +319,7 @@ namespace console
 
       }
 
-      bool bCaretOn = m_durationCaretStart.on_off(m_durationCaretPeriod);
+      bool bCaretOn = m_timeCaretStart.on_off(m_timeCaretPeriod);
 
       auto rectangleClient = get_client_rect();
 

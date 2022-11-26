@@ -830,7 +830,7 @@ public:
 //
 //inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::file::path & path);
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::duration & ::duration);
+//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, class ::time & class ::time);
 //
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::file::path & path);
 //
@@ -907,8 +907,8 @@ public:
 //template < typename TYPE >
 //inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const pointer_array < TYPE > & a);
 //
-//inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::duration & duration);
-//inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::duration & duration);
+//inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const class time & time);
+//inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, class ::time & time);
 
 
 

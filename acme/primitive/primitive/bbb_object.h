@@ -1,4 +1,4 @@
-// Created on 2021-03-08 by GOD:ThomasBS_-Creature-camilo 09:56 I love you, ThomasBS_!!
+﻿// Created on 2021-03-08 by GOD:ThomasBS_-Creature-camilo 09:56 I love you, ThomasBS_!!
 #pragma once
 
 
@@ -106,7 +106,7 @@ public:
    virtual void task_erase(::task* ptask) override;
 
 
-   virtual void sleep(const ::duration& duration);
+   virtual void sleep(const class ::time& time);
 
 
    template < typename BASE_TYPE >
@@ -335,7 +335,7 @@ public:
    virtual bool task_get_run() const;
    virtual bool is_running() const;
    virtual void child_post_quit(const char* pszTag);
-   virtual void child_post_quit_and_wait(const char* pszTag, const duration& duration);
+   virtual void child_post_quit_and_wait(const char* pszTag, const time& time);
    virtual void finish(::property_object* pcontextobjectFinish = nullptr) override;
    virtual void set_finish(::property_object* pcontextobjectFinish) override;
    virtual void set_finish_composites(::property_object* pcontextobjectFinish) override;
@@ -368,15 +368,15 @@ public:
    //}
 
 
-   //virtual void message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
    //{
 
-   //   return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, process);
+   //   return message_box_timeout(nullptr, pszMessage, pszTitle, timeTimeout, emessagebox, process);
 
    //}
 
    //virtual void message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-   //virtual void message_box_timeout(::user::primitive* puserinteractionOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box_timeout(::user::primitive* puserinteractionOwner, const char* pszMessage, const char* pszTitle = nullptr, const class ::time& timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 
    virtual void release_references();
 

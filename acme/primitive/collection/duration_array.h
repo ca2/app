@@ -6,7 +6,7 @@
 //#include "acme/primitive/collection/numeric_array.h"
 
 
-using duration_array = numeric_array < duration >;
+using time_array = numeric_array < time >;
 
 
 using integral_microsecond_array = numeric_array < integral_microsecond >;
@@ -15,4 +15,4 @@ using integral_microsecond_array = numeric_array < integral_microsecond >;
 using integral_millisecond_array = numeric_array < integral_millisecond >;
 
 
-using duration_2darray = pointer_array < duration_array >;
+using time_2darray = pointer_array < time_array >;

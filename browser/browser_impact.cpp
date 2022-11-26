@@ -173,7 +173,7 @@ namespace browser
             if (m_bPendingImageChange)
             {
 
-               if (::duration::now() - m_durationLastImageChange > 750)
+               if (::time::now() - m_timeLastImageChange > 750)
                {
 
                   m_bPendingImageChange = false;
@@ -528,7 +528,7 @@ namespace browser
 
             m_strImage = strImage.c_str();
 
-            m_durationLastImageChange = ::duration::now();
+            m_timeLastImageChange = ::time::now();
 
             m_bPendingImageChange = true;
 

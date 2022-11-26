@@ -75,7 +75,7 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 //namespace str
 //{
 //
-//   string CLASS_DECL_APEX get_window_text_timeout(::windowing::window * pwindow, ::duration tickTimeout = 1000);
+//   string CLASS_DECL_APEX get_window_text_timeout(::windowing::window * pwindow, class ::time tickTimeout = 1000);
 //
 //} // namespace str
 

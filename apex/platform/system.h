@@ -53,7 +53,7 @@ namespace apex
 
       string_array                                       m_straCommandLineAccumul;
       string_array                                       m_straCommandLineExtra;
-      ::duration                                         m_durationCommandLineLast;
+      class ::time                                         m_timeCommandLineLast;
       int                                                m_iCommandLineDelay;
       
       bool                                               m_bSystemSynchronizedCursor;

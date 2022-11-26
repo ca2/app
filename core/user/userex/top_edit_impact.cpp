@@ -15,7 +15,7 @@ namespace userex
    top_edit_impact::top_edit_impact()
    {
 
-      m_durationDelayedAfterChange = 1_s;
+      m_timeDelayedAfterChange = 1_s;
 
       m_ptopview = nullptr;
 
@@ -93,7 +93,7 @@ namespace userex
 
          m_bEnterKeyPressed = true;
 
-         SetTimer(5544, m_durationDelayedAfterChange, nullptr);
+         SetTimer(5544, m_timeDelayedAfterChange, nullptr);
 
       }
       else
@@ -114,7 +114,7 @@ namespace userex
       if (ptimer->m_etimer == 5544)
       {
 
-         if (m_durationLastChange.elapsed() > m_durationDelayedAfterChange)
+         if (m_timeLastChange.elapsed() > m_timeDelayedAfterChange)
          {
 
             KillTimer(ptimer->m_uEvent);
@@ -167,12 +167,12 @@ namespace userex
 
          get_document()->update_all_impacts(pextendedtopic);
 
-         if (m_durationDelayedAfterChange > 0_s)
+         if (m_timeDelayedAfterChange > 0_s)
          {
 
-            m_durationLastChange.Now();
+            m_timeLastChange.Now();
 
-            SetTimer(5544, m_durationDelayedAfterChange / 5, nullptr);
+            SetTimer(5544, m_timeDelayedAfterChange / 5, nullptr);
 
          }
 

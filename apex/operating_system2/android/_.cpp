@@ -9,11 +9,11 @@
 //}
 //
 
-//void sleep(const ::duration & duration)
+//void sleep(const class time & time)
 //{
 //   timespec t;
-//   t.tv_sec = ::duration.m_i::durations / 1000;
-//   t.tv_nsec = (::duration.m_i::durations % 1000) * 1000 * 1000;
+//   t.tv_sec = ::time.m_i::times / 1000;
+//   t.tv_nsec = (::time.m_i::times % 1000) * 1000 * 1000;
 //   nanosleep(&t, nullptr);
 //}
 //

@@ -322,8 +322,6 @@ namespace acme
 
 
 
-   ::nanosecond g_nanosecondFirst;
-
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
    int g_iMemoryCountersStartable;
@@ -534,7 +532,7 @@ namespace acme
 
       g_p = ThomasBS_Acme;
 
-      g_nanosecondFirst.Now();
+      m_timeStart.Now();
 
 #ifdef WINDOWS
 
@@ -1788,12 +1786,19 @@ void add_release_on_end(::matter * pmatter)
 }
 
 
-::nanosecond first_nanosecond()
+namespace acme
 {
 
-   return ::acme::g_nanosecondFirst;
 
-}
+   class ::time acme::start_nanosecond()
+   {
+
+      return m_timeStart;
+
+   }
+
+
+} // namespace acme
 
 
 //namespace acme

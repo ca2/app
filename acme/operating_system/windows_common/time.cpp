@@ -1,7 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 ////#include "acme/exception/exception.h"
 #include "acme/operating_system/ansi/datetime_c.h"
-#include "acme/operating_system/time.h"
+//#include "acme/operating_system/time.h"
 ////#include "acme/primitive/datetime/earth_time.h"
 #include "acme/primitive/datetime/system_time.h"
 #include "acme/platform/nanosecond_timer.h"
@@ -22,12 +22,12 @@ struct tm * gmtime_r(const time_t * timep, struct tm * result)
 }
 
 
-//CLASS_DECL_ACME void sleep(const ::duration& duration)
+//CLASS_DECL_ACME void sleep(const class time & time)
 //{
 //
-//   auto ::duration = duration.::duration();
+//   auto ::time = time.::time();
 //
-//   ::sleep(::duration);
+//   ::sleep(::time);
 //
 //}
 
@@ -67,10 +67,10 @@ CLASS_DECL_ACME void preempt(const ::INTEGRAL_NANOSECOND & integralnanosecond)
 thread_local nanosecond_timer t_nanosecondtimer;
 
 
-CLASS_DECL_ACME void precision_wait(const duration & duration)
+CLASS_DECL_ACME void precision_wait(const class time & timeWait)
 {
 
-   t_nanosecondtimer.wait(duration);
+   t_nanosecondtimer.wait(timeWait);
 
 }
 

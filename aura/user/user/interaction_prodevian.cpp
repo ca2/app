@@ -708,9 +708,7 @@ namespace user
             if (timeToWaitForNextFrame >= 2_ms)
             {
 
-               ::time tickWait;
-
-               tickWait.Now();
+               //auto timeStart = ::time::now();
 
                //printf("msToWaitForNextFrame >= 2\n");
 
@@ -721,10 +719,6 @@ namespace user
                   {
 
                      //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
-
-                     ::time time;
-
-                     time.Now();
 
                      m_synchronizationa.wait(timeToWaitForNextFrame - 1_ms);
 
@@ -753,7 +747,7 @@ namespace user
 
                }
 
-               auto elapsed = tickWait.elapsed();
+               //auto elapsed = time.elapsed();
 
                //printf("msToWaitForNextFrame Waited %d\n", elapsed.m_i);
 

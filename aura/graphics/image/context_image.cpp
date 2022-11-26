@@ -969,7 +969,7 @@ void context_image::_load_multi_frame_image(image * pimage, memory & memory)
 
    pimage->set_ok_flag();
 
-   ::time timeTotal;
+   class ::time timeTotal;
 
    for (index iFrame = 0; iFrame < pframea->get_count(); iFrame++)
    {

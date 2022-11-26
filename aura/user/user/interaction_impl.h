@@ -145,31 +145,26 @@ namespace user
       lparam                                    m_lparam;
       lparam                                    m_lparamLastMouseMove;
 
-      ::pointer<::user::interaction>           m_puserinteractionMouseCapture;
-      ::pointer<::user::interaction>           m_puserinteractionKeyboardFocus;
-      ::pointer<::user::interaction>           m_puserinteractionKeyboardFocusRequest;
+      ::pointer<::user::interaction>            m_puserinteractionMouseCapture;
+      ::pointer<::user::interaction>            m_puserinteractionKeyboardFocus;
+      ::pointer<::user::interaction>            m_puserinteractionKeyboardFocusRequest;
       /// message handling helper besides (possibly duplicate of) m_puserinteractionKeyboardFocusRequest
-      ::pointer<::user::interaction>           m_puserinteractionKeyboardGainingFocusIfAny;
-      ::pointer<::user::interaction>           m_puserinteractionToKillKeyboardFocus;
+      ::pointer<::user::interaction>            m_puserinteractionKeyboardGainingFocusIfAny;
+      ::pointer<::user::interaction>            m_puserinteractionToKillKeyboardFocus;
 
-      class ::time                                m_timeLastRedraw;
+      class ::time                              m_timeLastRedraw;
       ::user::interaction_array                 m_userinteractionaHideOnConfigurationChange;
       
-      ::nanosecond                              m_nanosDeviceDrawBeg;
-      ::nanosecond                              m_nanosDeviceDrawEnd;
-      class ::time                                m_timeLastDeviceDraw;
+      class ::time                              m_timeDeviceDrawBeg;
+      class ::time                              m_timeDeviceDrawEnd;
+      class ::time                              m_timeLastDeviceDraw;
 
       ::size_i32                                m_sizeDrawnBuffer;
-
-
-
 
 
       interaction_impl();
       ~interaction_impl() override;
 
-
-      
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
@@ -858,7 +853,7 @@ namespace user
          m_pimpl(pimpl)
       {
 
-         m_pimpl->m_nanosDeviceDrawBeg.Now();
+         m_pimpl->m_timeDeviceDrawBeg.Now();
 
       }
 
@@ -866,7 +861,7 @@ namespace user
       ~device_draw_life_time()
       {
 
-         m_pimpl->m_nanosDeviceDrawEnd.Now();
+         m_pimpl->m_timeDeviceDrawEnd.Now();
 
       }
 

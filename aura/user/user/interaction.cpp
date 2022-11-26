@@ -3648,7 +3648,7 @@ namespace user
 
 #ifdef __DEBUG
 
-               auto tickStart = ::time::now();
+               auto timeStart = ::time::now();
 
 #endif //__DEBUG
 
@@ -3659,9 +3659,9 @@ namespace user
 
 #ifdef __DEBUG
 
-               auto tickEnd = ::time::now();
+               auto timeEnd = ::time::now();
 
-               ::time timeElapsed = tickEnd - tickStart;
+               auto timeElapsed = timeEnd - timeStart;
 
                if (timeElapsed > 100_ms)
                {
@@ -3687,7 +3687,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickStart = ::time::now();
+            auto timeStart = ::time::now();
 
 #endif //__DEBUG
 
@@ -3704,7 +3704,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto timeElapsed = tickStart.elapsed();
+            auto timeElapsed = timeStart.elapsed();
 
             if (timeElapsed > 50_ms)
             {
@@ -3751,7 +3751,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickStart = ::time::now();
+            auto timeStart = ::time::now();
 
 #endif //__DEBUG
 
@@ -3760,9 +3760,9 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickEnd = ::time::now();
+            auto timeEnd = ::time::now();
 
-            auto timeElapsed = tickEnd - tickStart;
+            auto timeElapsed = timeEnd - timeStart;
 
 #ifdef VERBOSE_LOG               
 
@@ -3819,7 +3819,7 @@ namespace user
 
 #ifdef __DEBUG
 
-      auto tickStartWithLock = ::time::now();
+      auto timeStartWithLock = ::time::now();
 
 #endif
 
@@ -3831,7 +3831,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickStart = ::time::now();
+            auto timeStart = ::time::now();
 
 #endif //__DEBUG
 
@@ -3861,9 +3861,9 @@ namespace user
 
             }
 
-            auto tickEnd = ::time::now();
+            auto timeEnd = ::time::now();
 
-            ::time timeElapsed = tickEnd - tickStart;
+            auto timeElapsed = timeEnd - timeStart;
 
 #ifdef VERBOSE_LOG               
 
@@ -3890,9 +3890,9 @@ namespace user
 
 #ifdef __DEBUG
 
-      auto tickEndWithLock = ::time::now();
+      auto timeEndWithLock = ::time::now();
 
-      auto tickElapsedWithLock = tickEndWithLock - tickStartWithLock;
+      auto tickElapsedWithLock = timeEndWithLock - timeStartWithLock;
 
       if (tickElapsedWithLock > 3_ms)
       {

@@ -419,7 +419,7 @@ namespace user
 
       m_timeLastDraw = ::time::now();
 
-      ::time t1 = ::time::now();
+      auto timeStart = ::time::now();
 
       auto pstyle = get_style(pgraphics);
 
@@ -606,17 +606,17 @@ namespace user
             if (m_errora.get_size() > 0)
             {
 
-               ::time tickTimeout = 1_s;
+               auto timeTimeout = 1_s;
 
-               ::time tickPeriod = 100_ms;
+               auto timePeriod = 100_ms;
 
-               if (m_errora[0].m_tick.elapsed() > tickTimeout)
+               if (m_errora[0].m_tick.elapsed() > timePeriod)
                {
 
-                  if (m_errora[0].m_tick.elapsed() < (tickTimeout + tickPeriod))
+                  if (m_errora[0].m_tick.elapsed() < (timeTimeout + timePeriod))
                   {
 
-                     iErrorA = (strsize)((m_errora[0].m_tick.elapsed() - tickTimeout) * 255 / tickPeriod);
+                     iErrorA = (strsize)((m_errora[0].m_tick.elapsed() - timeTimeout) * 255 / timePeriod);
 
                   }
                   else
@@ -892,11 +892,11 @@ namespace user
 
       }
 
-      auto d1 = t1.elapsed();
+      auto timeElapsed = timeStart.elapsed();
 
 #ifdef VERBOSE_LOG      
 
-      if (d1 > 50_ms)
+      if (timeElapsed > 50_ms)
       {
 
          CATEGORY_INFORMATION(prodevian, "plain_edit took more than 50ms to draw " << d1.integral_millisecond());

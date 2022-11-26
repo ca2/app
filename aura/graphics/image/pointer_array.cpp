@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "frame_array.h"
 
 
@@ -83,7 +83,7 @@ image_frame_array::~image_frame_array()
 
       elapsed %= m_timeTotal;
 
-      ::time timeUpperBound;
+      class ::time timeUpperBound;
 
       index iFrame = 0;
 

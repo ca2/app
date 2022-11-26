@@ -314,8 +314,7 @@ namespace account
 
       i32 iRetry = 2;
 
-      
-      ::time tickStart = ::time::now();
+      auto timeStart = ::time::now();
 
       ::property_set set;
 
@@ -334,9 +333,9 @@ namespace account
 
       }
 
-      ::time tickEnd = ::time::now();
+      auto timeEnd = ::time::now();
 
-      INFORMATION(set["http_get_serial"].as_string() << "> get_account_login HTTP GET time = " << (tickEnd - tickStart).integral_millisecond());
+      INFORMATION(set["http_get_serial"].as_string() << "> get_account_login HTTP GET time = " << (timeEnd - timeStart).integral_millisecond());
 
       strNode.trim();
 

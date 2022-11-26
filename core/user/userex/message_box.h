@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "wait_message_dialog.h"
@@ -22,7 +22,7 @@ namespace userex
       
       virtual void on_show(const ::string & pszMatter) override;
       virtual bool on_timeout() override;
-      virtual void on_timer_soft_reload(class ::time tickTimeout) override;
+      virtual void on_timer_soft_reload(const class time & tickTimeout) override;
 
 
    };

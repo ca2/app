@@ -371,7 +371,7 @@ namespace account
 
       }
 
-      m_ptaskpool->set_timer(e_timer_slow, minute());
+      m_ptaskpool->set_timer(e_timer_slow, 1_minute);
 
       ::pointer<::axis::session>psession = get_session();
 
@@ -380,9 +380,7 @@ namespace account
    }
 
 
-
-
-   time department::get_session_timeout()
+   class ::time department::get_session_timeout()
    {
 
 #ifdef __DEBUG

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "dialog.h"
@@ -36,7 +36,7 @@ namespace userex
 
       virtual bool on_timeout_check();
       virtual bool on_timeout();
-      virtual void on_timer_soft_reload(class ::time tickTimeout);
+      virtual void on_timer_soft_reload(const class time & tickTimeout);
 
       
       //void handle(::topic * ptopic, ::context * pcontext) override;

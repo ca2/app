@@ -121,7 +121,7 @@ namespace userex
    }
 
 
-   void wait_message_dialog::on_timer_soft_reload(::time tickTimeout)
+   void wait_message_dialog::on_timer_soft_reload(const class time & tickTimeout)
    {
 
       auto second = (m_timeDelay - tickTimeout).integral_second();

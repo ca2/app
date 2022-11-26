@@ -41,7 +41,7 @@ namespace earth
       }
 
       
-      //INLINE_COMPARISON_WITH_DURATION
+      DECLARE_COMPARISON_WITH_TIME(inline)
 
 
    };
@@ -161,6 +161,9 @@ namespace earth
 
 
 } // namespace earth
+
+
+DEFINE_COMPARISON_WITH_TIME(inline, ::earth::time_span);
 
 
 

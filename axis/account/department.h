@@ -1,4 +1,4 @@
-//
+﻿//
 //  account_account.hpp
 //  aura
 //
@@ -72,7 +72,7 @@ namespace account
 
       virtual void not_auth(::file::path pathUrl);
 
-      virtual time get_session_timeout();
+      virtual class ::time get_session_timeout();
 
 
       class storage * storage();

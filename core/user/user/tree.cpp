@@ -217,13 +217,11 @@ namespace user
 
       {
 
-         ::time tickStart;
-
-         tickStart.Now();
+         auto timeStart = ::time::now();
 
          ::user::interaction::_001OnDraw(pgraphics);
 
-         auto tickElapsed = tickStart.elapsed();
+         auto tickElapsed = timeStart.elapsed();
 
          if (tickElapsed > 50_ms)
          {
@@ -236,9 +234,7 @@ namespace user
 
       {
 
-         ::time tickStart;
-
-         tickStart.Now();
+         auto timeStart = ::time::now();
 
          ::rectangle_i32 rectangleClient;
 
@@ -275,7 +271,7 @@ namespace user
             else
             {
                auto pi = MATH_PI;
-               auto f = 1.0 / time(dwHoverIn).floating_second().m_d;
+               auto f = 1.0 / class time(dwHoverIn).floating_second().m_d;
                auto omega = -pi * f; // omega pi
                auto t = m_timeHoverStart.elapsed().floating_second().m_d;
                ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
@@ -303,7 +299,7 @@ namespace user
             else
             {
                auto pi = MATH_PI;
-               auto f = 1.0 / ::time(dwHoverOut).floating_second().m_d;
+               auto f = 1.0 / class ::time(dwHoverOut).floating_second().m_d;
                auto omega = -pi * f; // omega pi
                auto t = m_timeHoverStart.elapsed().floating_second().m_d;
                ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
@@ -352,10 +348,12 @@ namespace user
             drawitemdata.m_rectangle.right = m_iCurrentImpactWidth;
 
             {
-               ::time tickItem;
-               tickItem.Now();
+               
+               auto tickItem = ::time::now();
+               
                _001DrawItem(drawitemdata);
-               auto tickElapsed = tickStart.elapsed();
+
+               auto tickElapsed = tickItem.elapsed();
 
                if (tickElapsed > 20_ms)
                {
@@ -381,7 +379,7 @@ namespace user
          }
 
 
-         auto tickElapsed = tickStart.elapsed();
+         auto tickElapsed = timeStart.elapsed();
 
          if (tickElapsed > 50_ms)
          {
@@ -398,7 +396,7 @@ namespace user
    void tree::_001DrawItem(tree_draw_item & data)
    {
 
-      auto start = time(e_now);
+      auto timeStart = ::time::now();
 
       ::rectangle_i32 rectangle;
 
@@ -459,8 +457,8 @@ namespace user
 
       }
 
-      auto elapsed = start.elapsed();
-      start.Now();
+      auto elapsed = timeStart.elapsed();
+      
       if (elapsed > 2_ms)
       {
 

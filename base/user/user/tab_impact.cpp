@@ -1108,13 +1108,13 @@ namespace user
 
          {
 
-            ::time t1 = ::time::now();
+            auto timeStart = ::time::now();
 
             _001DrawThis(pgraphics);
 
-            ::time d1 = t1.elapsed();
+            auto timeEllapsed = timeStart.elapsed();
 
-            if(d1 > 50_ms)
+            if(timeEllapsed > 50_ms)
             {
 
                string strType = __type_name(this);

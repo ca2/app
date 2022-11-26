@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "top_impact.h"
 #include "top_edit_impact.h"
 #include "top_toggle_impact.h"
@@ -113,11 +113,11 @@ namespace userex
 
       string strType = "top_impact";
 
-      ::time t1 = ::time::now();
+      auto timeStart = ::time::now();
 
       ::user::split_impact::_001OnDraw(pgraphics);
 
-      ::time d1 = t1.elapsed();
+      auto timeEllapsed = timeStart.elapsed();
 
 #ifdef VERBOSE_LOG      
 

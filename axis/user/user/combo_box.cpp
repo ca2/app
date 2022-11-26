@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "combo_box.h"
 #include "list_box.h"
 #include "acme/constant/id.h"
@@ -663,16 +663,16 @@ namespace user
          if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_eelement == e_element_drop_down))
          {
 
-            ::time tickLastVisibilityChangeElapsed;
+            class ::time timeLastVisibilityChangeElapsed;
 
             if (m_plistbox.is_set())
             {
 
-               tickLastVisibilityChangeElapsed = m_plistbox->m_timeLastVisibilityChange.elapsed();
+               timeLastVisibilityChangeElapsed = m_plistbox->m_timeLastVisibilityChange.elapsed();
 
             }
 
-            if (m_plistbox.is_null() || tickLastVisibilityChangeElapsed > 300_ms)
+            if (m_plistbox.is_null() || timeLastVisibilityChangeElapsed > 300_ms)
             {
 
                _001ToggleDropDown();

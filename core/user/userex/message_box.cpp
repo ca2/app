@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "message_box.h"
 
 
@@ -49,7 +49,7 @@ namespace userex
    }
 
 
-   void message_box::on_timer_soft_reload(::time tickTimeout)
+   void message_box::on_timer_soft_reload(const class ::time & tickTimeout)
    {
       
       wait_message_dialog::on_timer_soft_reload(tickTimeout);

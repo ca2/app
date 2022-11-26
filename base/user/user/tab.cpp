@@ -38,9 +38,6 @@
 #define MAGIC_PALACE_TAB_TEXT "/"
 
 
-::time g_tickDragStart;
-
-
 namespace user
 {
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/scroll_base.h"
@@ -35,7 +35,7 @@ namespace user
 
 
       list_box();
-      virtual ~list_box();
+      ~list_box() override;
 
 
       void user_combo_list_common_construct();

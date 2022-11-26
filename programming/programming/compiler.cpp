@@ -1,4 +1,4 @@
-// Created by camilo on 2021-11-15 15:39 BRT <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2021-11-15 15:39 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "compiler.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -404,7 +404,7 @@ namespace programming
       for (auto& pproperty : setEnvironment)
       {
 
-         SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->string()));
+         SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->as_string()));
 
       }
 

@@ -253,15 +253,16 @@ namespace dynamic_source
 
    }
 
+
    void script_interface::print_r(::payload payload)
    {
 
-      print(payload.string());
+      print(payload.as_string());
 
    }
 
 
-      bool script_interface::rerun()
+   bool script_interface::rerun()
    {
 
       return false;

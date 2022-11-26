@@ -551,7 +551,7 @@ namespace dynamic_source
          if (iRetry > 0)
          {
 
-            sleep((::time)__random(2._s, 4._s));
+            preempt((class ::time)__random(2._s, 4._s));
 
          }
 

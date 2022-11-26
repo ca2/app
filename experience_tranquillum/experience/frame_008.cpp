@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "frame_008.h"
@@ -324,13 +324,13 @@ SizingNone:
             //
             ////////////////////
 
-            ::time tickBorder;
-
-            tickBorder.Now();
+            auto timeBorder = ::time::now();
 
             if(!pframewindow->layout().is_full_screen())
             {
+
                DrawBorder(pgraphics, rectangleNClient);
+
             }
 
             //printf("border draw frame_008 %dms", tickBorder.elapsed().m_i);

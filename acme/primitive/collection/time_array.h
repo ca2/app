@@ -6,7 +6,7 @@
 //#include "acme/primitive/collection/numeric_array.h"
 
 
-using time_array = numeric_array < time >;
+using time_array = numeric_array < class ::time >;
 
 
 using integral_microsecond_array = numeric_array < integral_microsecond >;

@@ -662,7 +662,7 @@ bool event::_wait (const class time & timeWait)
    if(m_bManualEvent)
    {
 
-      if(wait.is_infinite())
+      if(timeWait.is_infinite())
       {
 
          pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
@@ -714,7 +714,7 @@ bool event::_wait (const class time & timeWait)
 
          timespec timespecWait{};
 
-         copy(timespecWait, wait);
+         copy(timespecWait, timeWait);
 
          timespec timespecFinal{};
 
@@ -780,7 +780,7 @@ bool event::_wait (const class time & timeWait)
 
       auto start = ::time::now();
 
-      while(wait.is_infinite() || start.elapsed() < wait)
+      while(timeWait.is_infinite() || start.elapsed() < timeWait)
       {
 
          sembuf sb;

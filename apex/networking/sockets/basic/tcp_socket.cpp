@@ -2404,7 +2404,7 @@ return true;
    void tcp_socket::OnException()
    {
 
-      m_ptcpsocketComposite->OnException();
+      //m_ptcpsocketComposite->OnException();
 
       //if(is_connecting())
       //{

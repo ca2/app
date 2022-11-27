@@ -62,7 +62,7 @@ public:
    time(const ::INTEGRAL_DAY & integral) : time(e_raw, integral.m_i * 86'400) {}
    time(const ::FLOATING_DAY & floating) : time(e_raw, (::i64)(floating.m_d * 86'400.0), (long)(fmod(floating.m_d * 86'400.0, 1.0) * 1'000'000'000.0)) {}
 
-   time(const class ::time& time) : time(e_raw, (::i64)(time.m_iSecond), (long)(time.m_iNanosecond)) {}
+   time(const class ::time& time) : TIME{time} { }
 
    template < primitive_integer INTEGER1, primitive_integral INTEGRAL2 >
    time(INTEGER1 iSecond, INTEGRAL2 iNanosecond) :
@@ -477,95 +477,95 @@ public:
 
 
 
-   time operator %(const ::INTEGRAL_NANOSECOND & time) const { return *this % class ::time(time);}
-   double operator /(const ::INTEGRAL_NANOSECOND & time) const { return *this / class ::time(time);}
-   time operator +(const ::INTEGRAL_NANOSECOND & time) const { return *this + class ::time(time); }
-   time operator -(const ::INTEGRAL_NANOSECOND & time) const { return *this - class ::time(time); }
+   time operator %(const ::INTEGRAL_NANOSECOND & time) const { return operator % ((class ::time)time);}
+   double operator /(const ::INTEGRAL_NANOSECOND & time) const { return operator / ((class ::time)time);}
+   time operator +(const ::INTEGRAL_NANOSECOND & time) const { return operator + ((class ::time)time); }
+   time operator -(const ::INTEGRAL_NANOSECOND & time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::INTEGRAL_MICROSECOND & time) const { return *this % class ::time(time);}
-   double operator /(const ::INTEGRAL_MICROSECOND & time) const { return *this / class ::time(time);}
-   time operator +(const ::INTEGRAL_MICROSECOND & time) const { return *this + class ::time(time); }
-   time operator -(const ::INTEGRAL_MICROSECOND & time) const { return *this - class ::time(time); }
+   time operator %(const ::INTEGRAL_MICROSECOND & time) const { return operator % ((class ::time)time); }
+   double operator /(const ::INTEGRAL_MICROSECOND& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::INTEGRAL_MICROSECOND& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::INTEGRAL_MICROSECOND& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::INTEGRAL_MILLISECOND & time) const { return *this % class ::time(time);}
-   double operator /(const ::INTEGRAL_MILLISECOND & time) const { return *this / class ::time(time);}
-   time operator +(const ::INTEGRAL_MILLISECOND & time) const { return *this + class ::time(time); }
-   time operator -(const ::INTEGRAL_MILLISECOND & time) const { return *this - class ::time(time); }
+   time operator %(const ::INTEGRAL_MILLISECOND & time) const { return operator % ((class ::time)time); }
+   double operator /(const ::INTEGRAL_MILLISECOND& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::INTEGRAL_MILLISECOND& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::INTEGRAL_MILLISECOND& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::INTEGRAL_SECOND & time) const { return *this % class ::time(time);}
-   double operator /(const ::INTEGRAL_SECOND & time) const { return *this / class ::time(time);}
-   time operator +(const ::INTEGRAL_SECOND & time) const { return *this + class ::time(time); }
-   time operator -(const ::INTEGRAL_SECOND & time) const { return *this - class ::time(time); }
+   time operator %(const ::INTEGRAL_SECOND & time) const { return operator % ((class ::time)time); }
+   double operator /(const ::INTEGRAL_SECOND& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::INTEGRAL_SECOND& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::INTEGRAL_SECOND& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::INTEGRAL_MINUTE & time) const { return *this % class ::time(time);}
-   double operator /(const ::INTEGRAL_MINUTE & time) const { return *this / class ::time(time);}
-   time operator +(const ::INTEGRAL_MINUTE & time) const { return *this + class ::time(time); }
-   time operator -(const ::INTEGRAL_MINUTE & time) const { return *this - class ::time(time); }
+   time operator %(const ::INTEGRAL_MINUTE & time) const { return operator % ((class ::time)time); }
+   double operator /(const ::INTEGRAL_MINUTE& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::INTEGRAL_MINUTE& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::INTEGRAL_MINUTE& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::INTEGRAL_HOUR & time) const { return *this % class ::time(time);}
-   double operator /(const ::INTEGRAL_HOUR & time) const { return *this / class ::time(time);}
-   time operator +(const ::INTEGRAL_HOUR & time) const { return *this + class ::time(time); }
-   time operator -(const ::INTEGRAL_HOUR & time) const { return *this - class ::time(time); }
+   time operator %(const ::INTEGRAL_HOUR & time) const { return operator % ((class ::time)time); }
+   double operator /(const ::INTEGRAL_HOUR& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::INTEGRAL_HOUR& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::INTEGRAL_HOUR& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::INTEGRAL_DAY & time) const { return *this % class ::time(time);}
-   double operator /(const ::INTEGRAL_DAY & time) const { return *this / class ::time(time);}
-   time operator +(const ::INTEGRAL_DAY & time) const { return *this + class ::time(time); }
-   time operator -(const ::INTEGRAL_DAY & time) const { return *this - class ::time(time); }
-
-
-
+   time operator %(const ::INTEGRAL_DAY & time) const { return operator % ((class ::time)time); }
+   double operator /(const ::INTEGRAL_DAY& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::INTEGRAL_DAY& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::INTEGRAL_DAY& time) const { return operator - ((class ::time)time); }
 
 
 
 
 
 
-   time operator %(const ::FLOATING_NANOSECOND & time) const { return *this % class ::time(time);}
-   double operator /(const ::FLOATING_NANOSECOND & time) const { return *this / class ::time(time);}
-   time operator +(const ::FLOATING_NANOSECOND & time) const { return *this + class ::time(time); }
-   time operator -(const ::FLOATING_NANOSECOND & time) const { return *this - class ::time(time); }
 
 
-   time operator %(const ::FLOATING_MICROSECOND & time) const { return *this % class ::time(time);}
-   double operator /(const ::FLOATING_MICROSECOND & time) const { return *this / class ::time(time);}
-   time operator +(const ::FLOATING_MICROSECOND & time) const { return *this + class ::time(time); }
-   time operator -(const ::FLOATING_MICROSECOND & time) const { return *this - class ::time(time); }
+
+   time operator %(const ::FLOATING_NANOSECOND & time) const { return operator % ((class ::time)time); }
+   double operator /(const ::FLOATING_NANOSECOND& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::FLOATING_NANOSECOND& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::FLOATING_NANOSECOND& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::FLOATING_MILLISECOND & time) const { return *this % class ::time(time);}
-   double operator /(const ::FLOATING_MILLISECOND & time) const { return *this / class ::time(time);}
-   time operator +(const ::FLOATING_MILLISECOND & time) const { return *this + class ::time(time); }
-   time operator -(const ::FLOATING_MILLISECOND & time) const { return *this - class ::time(time); }
+   time operator %(const ::FLOATING_MICROSECOND & time) const { return operator % ((class ::time)time); }
+   double operator /(const ::FLOATING_MICROSECOND& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::FLOATING_MICROSECOND& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::FLOATING_MICROSECOND& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::FLOATING_SECOND & time) const { return *this % class ::time(time);}
-   double operator /(const ::FLOATING_SECOND & time) const { return *this / class ::time(time);}
-   time operator +(const ::FLOATING_SECOND & time) const { return *this + class ::time(time); }
-   time operator -(const ::FLOATING_SECOND & time) const { return *this - class ::time(time); }
+   time operator %(const ::FLOATING_MILLISECOND & time) const { return operator % ((class ::time)time); }
+   double operator /(const ::FLOATING_MILLISECOND& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::FLOATING_MILLISECOND& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::FLOATING_MILLISECOND& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::FLOATING_MINUTE & time) const { return *this % class ::time(time);}
-   double operator /(const ::FLOATING_MINUTE & time) const { return *this / class ::time(time);}
-   time operator +(const ::FLOATING_MINUTE & time) const { return *this + class ::time(time); }
-   time operator -(const ::FLOATING_MINUTE & time) const { return *this - class ::time(time); }
+   time operator %(const ::FLOATING_SECOND & time) const { return operator % ((class ::time)time); }
+   double operator /(const ::FLOATING_SECOND& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::FLOATING_SECOND& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::FLOATING_SECOND& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::FLOATING_HOUR & time) const { return *this % class ::time(time);}
-   double operator /(const ::FLOATING_HOUR & time) const { return *this / class ::time(time);}
-   time operator +(const ::FLOATING_HOUR & time) const { return *this + class ::time(time); }
-   time operator -(const ::FLOATING_HOUR & time) const { return *this - class ::time(time); }
+   time operator %(const ::FLOATING_MINUTE & time) const { return operator % ((class ::time)time); }
+   double operator /(const ::FLOATING_MINUTE& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::FLOATING_MINUTE& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::FLOATING_MINUTE& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::FLOATING_DAY & time) const { return *this % class ::time(time);}
-   double operator /(const ::FLOATING_DAY & time) const { return *this / class ::time(time);}
-   time operator +(const ::FLOATING_DAY & time) const { return *this + class ::time(time); }
-   time operator -(const ::FLOATING_DAY & time) const { return *this - class ::time(time); }
+   time operator %(const ::FLOATING_HOUR & time) const { return operator % ((class ::time)time); }
+   double operator /(const ::FLOATING_HOUR& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::FLOATING_HOUR& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::FLOATING_HOUR& time) const { return operator - ((class ::time)time); }
+
+
+   time operator %(const ::FLOATING_DAY & time) const { return operator % ((class ::time)time); }
+   double operator /(const ::FLOATING_DAY& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::FLOATING_DAY& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::FLOATING_DAY& time) const { return operator - ((class ::time)time); }
 
 
 
@@ -697,95 +697,95 @@ public:
 
 
 
-   time operator %(const ::integral_nanosecond& time) const { return *this % class ::time(time); }
-   double operator /(const ::integral_nanosecond& time) const { return *this / class ::time(time); }
-   time operator +(const ::integral_nanosecond& time) const { return *this + class ::time(time); }
-   time operator -(const ::integral_nanosecond& time) const { return *this - class ::time(time); }
+   time operator %(const ::integral_nanosecond& time) const { return operator % ((class ::time)time); }
+   double operator /(const ::integral_nanosecond& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::integral_nanosecond& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::integral_nanosecond& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::integral_microsecond& time) const { return *this % class ::time(time); }
-   double operator /(const ::integral_microsecond& time) const { return *this / class ::time(time); }
-   time operator +(const ::integral_microsecond& time) const { return *this + class ::time(time); }
-   time operator -(const ::integral_microsecond& time) const { return *this - class ::time(time); }
+   time operator %(const ::integral_microsecond& time) const { return operator % ((class ::time)time); }
+   double operator /(const ::integral_microsecond& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::integral_microsecond& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::integral_microsecond& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::integral_millisecond& time) const { return *this % class ::time(time); }
-   double operator /(const ::integral_millisecond& time) const { return *this / class ::time(time); }
-   time operator +(const ::integral_millisecond& time) const { return *this + class ::time(time); }
-   time operator -(const ::integral_millisecond& time) const { return *this - class ::time(time); }
+   time operator %(const ::integral_millisecond& time) const { return operator % ((class ::time)time); }
+   double operator /(const ::integral_millisecond& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::integral_millisecond& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::integral_millisecond& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::integral_second& time) const { return *this % class ::time(time); }
-   double operator /(const ::integral_second& time) const { return *this / class ::time(time); }
-   time operator +(const ::integral_second& time) const { return *this + class ::time(time); }
-   time operator -(const ::integral_second& time) const { return *this - class ::time(time); }
+   time operator %(const ::integral_second& time) const { return operator % ((class ::time)time); }
+   double operator /(const ::integral_second& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::integral_second& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::integral_second& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::integral_minute& time) const { return *this % class ::time(time); }
-   double operator /(const ::integral_minute& time) const { return *this / class ::time(time); }
-   time operator +(const ::integral_minute& time) const { return *this + class ::time(time); }
-   time operator -(const ::integral_minute& time) const { return *this - class ::time(time); }
+   time operator %(const ::integral_minute& time) const { return operator % ((class ::time)time); }
+   double operator /(const ::integral_minute& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::integral_minute& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::integral_minute& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::integral_hour& time) const { return *this % class ::time(time); }
-   double operator /(const ::integral_hour& time) const { return *this / class ::time(time); }
-   time operator +(const ::integral_hour& time) const { return *this + class ::time(time); }
-   time operator -(const ::integral_hour& time) const { return *this - class ::time(time); }
+   time operator %(const ::integral_hour& time) const { return operator % ((class ::time)time); }
+   double operator /(const ::integral_hour& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::integral_hour& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::integral_hour& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::integral_day& time) const { return *this % class ::time(time); }
-   double operator /(const ::integral_day& time) const { return *this / class ::time(time); }
-   time operator +(const ::integral_day& time) const { return *this + class ::time(time); }
-   time operator -(const ::integral_day& time) const { return *this - class ::time(time); }
-
-
-
+   time operator %(const ::integral_day& time) const { return operator % ((class ::time)time); }
+   double operator /(const ::integral_day& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::integral_day& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::integral_day& time) const { return operator - ((class ::time)time); }
 
 
 
 
 
 
-   time operator %(const ::floating_nanosecond& time) const { return *this % class ::time(time); }
-   double operator /(const ::floating_nanosecond& time) const { return *this / class ::time(time); }
-   time operator +(const ::floating_nanosecond& time) const { return *this + class ::time(time); }
-   time operator -(const ::floating_nanosecond& time) const { return *this - class ::time(time); }
 
 
-   time operator %(const ::floating_microsecond& time) const { return *this % class ::time(time); }
-   double operator /(const ::floating_microsecond& time) const { return *this / class ::time(time); }
-   time operator +(const ::floating_microsecond& time) const { return *this + class ::time(time); }
-   time operator -(const ::floating_microsecond& time) const { return *this - class ::time(time); }
+
+   time operator %(const ::floating_nanosecond& time) const { return operator % ((class ::time)time); }
+   double operator /(const ::floating_nanosecond& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::floating_nanosecond& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::floating_nanosecond& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::floating_millisecond& time) const { return *this % class ::time(time); }
-   double operator /(const ::floating_millisecond& time) const { return *this / class ::time(time); }
-   time operator +(const ::floating_millisecond& time) const { return *this + class ::time(time); }
-   time operator -(const ::floating_millisecond& time) const { return *this - class ::time(time); }
+   time operator %(const ::floating_microsecond& time) const { return operator % ((class ::time)time); }
+   double operator /(const ::floating_microsecond& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::floating_microsecond& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::floating_microsecond& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::floating_second& time) const { return *this % class ::time(time); }
-   double operator /(const ::floating_second& time) const { return *this / class ::time(time); }
-   time operator +(const ::floating_second& time) const { return *this + class ::time(time); }
-   time operator -(const ::floating_second& time) const { return *this - class ::time(time); }
+   time operator %(const ::floating_millisecond& time) const { return operator % ((class ::time)time); }
+   double operator /(const ::floating_millisecond& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::floating_millisecond& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::floating_millisecond& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::floating_minute& time) const { return *this % class ::time(time); }
-   double operator /(const ::floating_minute& time) const { return *this / class ::time(time); }
-   time operator +(const ::floating_minute& time) const { return *this + class ::time(time); }
-   time operator -(const ::floating_minute& time) const { return *this - class ::time(time); }
+   time operator %(const ::floating_second& time) const { return operator % ((class ::time)time); }
+   double operator /(const ::floating_second& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::floating_second& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::floating_second& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::floating_hour& time) const { return *this % class ::time(time); }
-   double operator /(const ::floating_hour& time) const { return *this / class ::time(time); }
-   time operator +(const ::floating_hour& time) const { return *this + class ::time(time); }
-   time operator -(const ::floating_hour& time) const { return *this - class ::time(time); }
+   time operator %(const ::floating_minute& time) const { return operator % ((class ::time)time); }
+   double operator /(const ::floating_minute& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::floating_minute& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::floating_minute& time) const { return operator - ((class ::time)time); }
 
 
-   time operator %(const ::floating_day& time) const { return *this % class ::time(time); }
-   double operator /(const ::floating_day& time) const { return *this / class ::time(time); }
-   time operator +(const ::floating_day& time) const { return *this + class ::time(time); }
-   time operator -(const ::floating_day& time) const { return *this - class ::time(time); }
+   time operator %(const ::floating_hour& time) const { return operator % ((class ::time)time); }
+   double operator /(const ::floating_hour& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::floating_hour& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::floating_hour& time) const { return operator - ((class ::time)time); }
+
+
+   time operator %(const ::floating_day& time) const { return operator % ((class ::time)time); }
+   double operator /(const ::floating_day& time) const { return operator / ((class ::time)time); }
+   time operator +(const ::floating_day& time) const { return operator + ((class ::time)time); }
+   time operator -(const ::floating_day& time) const { return operator - ((class ::time)time); }
 
 
 
@@ -793,7 +793,7 @@ public:
 };
 
 
-inline FLOATING_SECOND time() { return class :: time(e_now).floating_second(); }
+inline FLOATING_SECOND time() { return ::get_floating_second(); }
 
 template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
 inline time::time(enum_raw, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)

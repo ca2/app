@@ -269,7 +269,7 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const sequence_step < SEQU
 
 
 template < typename SEQUENCE >
-sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const class time & wait, const sequence_step < SEQUENCE > & step)
+sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const class time & timeWait, const sequence_step < SEQUENCE > & step)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
@@ -283,7 +283,7 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const class time & wait, c
 
       lock.unlock();
 
-      if (!m_pevent->wait(time))
+      if (!m_pevent->wait(timeWait))
       {
 
          lock.lock();

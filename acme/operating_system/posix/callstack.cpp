@@ -2,6 +2,7 @@
 // Created by camilo on 5/17/22 02:38 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
+#include "acme/platform/node.h"
 #include "acme/primitive/string/string.h"
 #include <cxxabi.h>
 
@@ -144,6 +145,25 @@ void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * 
 
 
 #endif
+
+
+namespace acme
+{
+
+
+//#if defined(__clang__) && !defined(ANDROID)
+//
+//    ::string node::get_callstack()
+//    {
+//
+//        return clang_backtrace();
+//
+//    }
+//
+//#endif
+
+
+} // namespace acme
 
 
 

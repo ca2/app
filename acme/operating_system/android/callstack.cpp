@@ -65,7 +65,7 @@ namespace acme
 {
 
    
-   string node::unwind_callstack(const char* pszFormat, i32 iSkip, int iCount)
+   string node::get_callstack(const char* pszFormat, i32 iSkip, void * /* caller_address */, int iCount)
    {
 
       string strCallStack;

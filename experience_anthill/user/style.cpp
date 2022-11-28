@@ -1473,10 +1473,13 @@ namespace experience_anthill
 
          }
 
-         iTabHeight += ptab->get_data()->m_rectangleBorder.top + ptab->get_data()->m_rectangleBorder.bottom +
-            ptab->get_data()->m_rectangleMargin.top + ptab->get_data()->m_rectangleMargin.bottom + ptab->get_data()->m_iHeightAddUp;
+         auto pdata = ptab->get_data();
 
-         ptab->get_data()->m_iTabHeight = iTabHeight;
+         iTabHeight += pdata->m_rectangleBorder.top + pdata->m_rectangleBorder.bottom +
+            pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom + 
+            pdata->m_iHeightAddUp;
+
+         pdata->m_iTabHeight = iTabHeight;
 
          for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
          {

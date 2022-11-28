@@ -35,6 +35,9 @@ namespace acme
 
       //m_bUserDarkMode = false;
 
+      m_bCallstackInitialized = false;
+      m_bUpdateCallstack = false;
+
       m_uNodeFlags = 0;
 
       m_papexnode = nullptr;
@@ -2068,19 +2071,19 @@ return false;
    }
 
 
-   void node::defer_initialize_callstack()
-   {
+   //void node::defer_initialize_callstack()
+   //{
 
 
-   }
+   //}
 
 
-   string node::get_callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount)
-   {
+   //string node::get_callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount)
+   //{
 
-      return {};
+   //   return {};
 
-   }
+   //}
 
 
    ::string node::get_command_line()

@@ -1,8 +1,10 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "semaphore.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+//#include "acme/primitive/time/time.h"
 ////#include "acme/exception/exception.h"
+#include "acme/primitive/time/timespec.h"
 #include "acme/_operating_system.h"
 
 
@@ -164,14 +166,11 @@ _semtimedop(int semid, struct sembuf *array, size_t nops, struct
 bool semaphore::_wait(const class time & timeWait)
 {
 
-   timespec ts;
+   timespec timespec;
 
-   ::time time(wait);
+   ::copy(timespec, timeWait);
 
-   ts.tv_nsec = time.m_iNanosecond;
-   ts.tv_sec = time.m_iSecond;
-
-   auto iRet = sem_timedwait(m_psem, &ts);
+   auto iRet = sem_timedwait(m_psem, &timespec);
 
    if (iRet == ETIMEDOUT)
    {
@@ -203,7 +202,7 @@ bool semaphore::_wait(const class time & timeWait)
    sb.sem_op = -1;
    sb.sem_flg = 0;
 
-   if(wait.is_infinite())
+   if(timeWait.is_infinite())
    {
 
       iRet = semop(static_cast < i32 > (m_hsync), &sb, 1);
@@ -214,7 +213,7 @@ bool semaphore::_wait(const class time & timeWait)
 
       timespec timespec;
 
-      timespec += wait;
+      timespec += timeWait;
 
 #ifdef FREEBSD
       iRet = _semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &timespec);

@@ -500,6 +500,7 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">
     <ClCompile>
@@ -756,7 +757,6 @@
     <ClCompile Include="handler\topic.cpp" />
     <ClInclude Include="aaa_id.h" />
     <ClInclude Include="acme.h" />
-    <ClInclude Include="application.h" />
     <ClInclude Include="array2d.h" />
     <ClInclude Include="compress\compress.h" />
     <ClInclude Include="compress\uncompress.h" />
@@ -1105,7 +1105,6 @@
     <ClCompile Include="_.cpp" />
     <ClInclude Include="compress\_.h" />
     <ClInclude Include="console.h" />
-    <ClInclude Include="exception\aaa_assert.h" />
     <ClInclude Include="exception\aaa_base.h" />
     <ClInclude Include="exception\aaa_debug_stream.h" />
     <ClInclude Include="exception\aaa_index_out_of_bounds.h" />
@@ -1133,7 +1132,6 @@
     <ClInclude Include="exception\aaa_want_to_remove_memory_state.h" />
     <ClInclude Include="exception\extended_status.h" />
     <ClInclude Include="exception\extended_transport.h" />
-    <ClInclude Include="exception\file.h" />
     <ClInclude Include="exception\parsing.h" />
     <ClInclude Include="exception\callstack.h" />
     <ClInclude Include="exception\call_stack.h" />
@@ -1299,7 +1297,6 @@
     <ClInclude Include="primitive\collection\string_map.h" />
     <ClInclude Include="primitive\collection\str_array.h" />
     <ClInclude Include="primitive\collection\tiny_array.h" />
-    <ClInclude Include="primitive\collection\unicode_data.h" />
     <ClInclude Include="primitive\collection\unique_array.h" />
     <ClInclude Include="primitive\collection\_array.h" />
     <ClInclude Include="primitive\collection\_array_binary_stream.h" />
@@ -1380,7 +1377,6 @@
     <ClInclude Include="primitive\string\sz\wd32_impl.h" />
     <ClInclude Include="primitive\string\sz\_.h" />
     <ClInclude Include="primitive\string\sz\_impl.h" />
-    <ClInclude Include="primitive\string\unicode_data.h" />
     <ClInclude Include="primitive\string\utf8_character.h" />
     <ClInclude Include="primitive\time\aaaa_hour.h" />
     <ClInclude Include="primitive\time\aaaa_millisecond.h" />
@@ -1410,17 +1406,18 @@
     <ClInclude Include="primitive\time\integral\second.h" />
     <ClInclude Include="primitive\time\integral\_.h" />
     <ClInclude Include="primitive\time\integral\_impl.h" />
-    <ClInclude Include="primitive\time\time.h" />
+    <ClInclude Include="primitive\time\time\time.h" />
+    <ClInclude Include="primitive\time\time\unit.h" />
+    <ClInclude Include="primitive\time\time\_.h" />
     <ClInclude Include="primitive\time\time_operator.h" />
     <ClInclude Include="primitive\time\_.h" />
     <ClInclude Include="primitive\time\_binary_stream.h" />
-    <ClInclude Include="primitive\time\_time.h" />
+    <ClInclude Include="primitive\time\time.h" />
     <ClInclude Include="primitive\time\_impl.h" />
     <ClInclude Include="primitive\time\_string.h" />
     <ClInclude Include="primitive\time\_structures.h" />
     <ClInclude Include="primitive\time\_text_stream.h" />
     <ClInclude Include="primitive\time\_time_impl.h" />
-    <ClInclude Include="primitive\time\_unit.h" />
     <ClInclude Include="primitive\time\_unit_operator.h" />
     <ClInclude Include="primitive\time\__string.h" />
     <ClInclude Include="procedure.h" />
@@ -1457,7 +1454,6 @@
     <ClInclude Include="operating_system\windows\nano\object.h" />
     <ClInclude Include="operating_system\windows\nano\pen.h" />
     <ClInclude Include="operating_system\windows\nano\window.h" />
-    <ClInclude Include="operating_system\windows\nano\_nano.h" />
     <ClInclude Include="operating_system\windows\_.h" />
     <ClInclude Include="operating_system\windows_common\_.h" />
     <ClInclude Include="operating_system\winpr_input.h" />
@@ -1490,23 +1486,17 @@
     <ClInclude Include="parallelization\socket_event.h" />
     <ClInclude Include="parallelization\synchronization_array.h" />
     <ClInclude Include="parallelization\synchronous_lock.h" />
-    <ClInclude Include="parallelization\synchronization_object.h" />
     <ClInclude Include="parallelization\synchronized_process.h" />
     <ClInclude Include="parallelization\synchronization_result.h" />
     <ClInclude Include="parallelization\task.h" />
     <ClInclude Include="parallelization\tools.h" />
     <ClInclude Include="parallelization\_.h" />
     <ClInclude Include="parallelization\_impl.h" />
-    <ClInclude Include="parallelization\_parallelization.h" />
     <ClInclude Include="parallelization\_thread_os_create_impl.h" />
     <ClInclude Include="parallelization\_types.h" />
     <ClInclude Include="platform\acme.h" />
-    <ClInclude Include="platform\acme_main_struct.h" />
     <ClInclude Include="platform\aaa_str.h" />
-    <ClInclude Include="platform\apex_main_data.h" />
-    <ClInclude Include="platform\apex_main_struct.h" />
     <ClInclude Include="platform\application.h" />
-    <ClInclude Include="platform\app_core.h" />
     <ClInclude Include="platform\auto.h" />
     <ClInclude Include="platform\auto_pointer.h" />
     <ClInclude Include="platform\class.h" />
@@ -1549,7 +1539,6 @@
     <ClInclude Include="platform\object_type_counter.h" />
     <ClInclude Include="platform\options.h" />
     <ClInclude Include="platform\plane_system.h" />
-    <ClInclude Include="platform\predicate_function_pointer.h" />
     <ClInclude Include="platform\predicate_holder.h" />
     <ClInclude Include="platform\predicate_procedure.h" />
     <ClInclude Include="platform\predicate_process.h" />
@@ -1567,7 +1556,6 @@
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\string_exchange.h" />
     <ClInclude Include="platform\sub_system.h" />
-    <ClInclude Include="platform\synchronized_predicate_routine.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\system_setup.h" />
     <ClInclude Include="platform\text.h" />
@@ -1657,7 +1645,6 @@
     <ClInclude Include="primitive\geometry2d\_collection_bounding_rect.h" />
     <ClInclude Include="primitive\geometry2d\_collection_contains.h" />
     <ClInclude Include="primitive\geometry2d\_i64.h" />
-    <ClInclude Include="primitive\geometry2d\_impl.h" />
     <ClInclude Include="primitive\geometry2d\_shape.h" />
     <ClInclude Include="primitive\geometry2d\_struct.h" />
     <ClInclude Include="primitive\geometry3d\box.h" />
@@ -1674,10 +1661,8 @@
     <ClInclude Include="primitive\mathematics\____count.h" />
     <ClInclude Include="primitive\mathematics\c_number.h" />
     <ClInclude Include="primitive\mathematics\filestream.h" />
-    <ClInclude Include="primitive\mathematics\types.h" />
     <ClInclude Include="primitive\mathematics\mathematics.h" />
     <ClInclude Include="primitive\mathematics\math_clip.h" />
-    <ClInclude Include="primitive\mathematics\math_int_biunique.h" />
     <ClInclude Include="primitive\mathematics\mkint_c.h" />
     <ClInclude Include="primitive\mathematics\natural.h" />
     <ClInclude Include="primitive\mathematics\number.h" />
@@ -1701,7 +1686,6 @@
     <ClInclude Include="primitive\primitive\block.h" />
     <ClInclude Include="primitive\primitive\compare_predicate.h" />
     <ClInclude Include="primitive\primitive\echeck.h" />
-    <ClInclude Include="primitive\primitive\element_array.h" />
     <ClInclude Include="primitive\primitive\enumeration.h" />
     <ClInclude Include="primitive\primitive\enumeration1.h" />
     <ClInclude Include="primitive\primitive\enum_bitset.h" />
@@ -1709,20 +1693,16 @@
     <ClInclude Include="primitive\primitive\function.h" />
     <ClInclude Include="primitive\primitive\get_memory.h" />
     <ClInclude Include="primitive\primitive\holder.h" />
-    <ClInclude Include="primitive\primitive\atom_array.h" />
     <ClInclude Include="primitive\primitive\interlocked_count.h" />
     <ClInclude Include="primitive\primitive\object.h" />
     <ClInclude Include="primitive\primitive\object_meta.h" />
     <ClInclude Include="primitive\primitive\particle.h" />
-    <ClInclude Include="primitive\primitive\payload_cast.h" />
-    <ClInclude Include="primitive\primitive\payload_reference.h" />
     <ClInclude Include="primitive\primitive\property_object.h" />
     <ClInclude Include="primitive\primitive\linked_property.h" />
     <ClInclude Include="primitive\primitive\matter.h" />
     <ClInclude Include="primitive\primitive\e_status.h" />
     <ClInclude Include="primitive\primitive\match.h" />
     <ClInclude Include="primitive\primitive\payload.h" />
-    <ClInclude Include="primitive\primitive\member.h" />
     <ClInclude Include="primitive\primitive\read_only_memory.h" />
     <ClInclude Include="primitive\primitive\set_bit.h" />
     <ClInclude Include="primitive\primitive\stick.h" />
@@ -1730,11 +1710,9 @@
     <ClInclude Include="primitive\primitive\work.h" />
     <ClInclude Include="primitive\primitive\_u32hash.h" />
     <ClInclude Include="primitive\primitive\__property.h" />
-    <ClInclude Include="primitive\promise\signalization.h" />
     <ClInclude Include="primitive\string\bstr.h" />
     <ClInclude Include="primitive\string\from_numeric_type.h" />
     <ClInclude Include="primitive\string\from_string.h" />
-    <ClInclude Include="primitive\string\wstring_adaptor.h" />
     <ClInclude Include="primitive\string\string.h" />
     <ClInclude Include="primitive\string\string_base.h" />
     <ClInclude Include="primitive\string\string_block.h" />
@@ -1771,7 +1749,6 @@
     <ClInclude Include="user\nano\window.h" />
     <ClInclude Include="user\nano\window_implementation.h" />
     <ClInclude Include="user\nano\window_interface.h" />
-    <ClInclude Include="user\nano\_nano.h" />
     <ClInclude Include="user\user\aaa_action_item_exchange.h" />
     <ClInclude Include="user\user\check.h" />
     <ClInclude Include="user\user\conversation.h" />
@@ -1785,7 +1762,6 @@
     <ClInclude Include="user\user\text.h" />
     <ClInclude Include="user\user\theme_colors.h" />
     <ClInclude Include="user\user\_.h" />
-    <ClInclude Include="user\user\_constant.h" />
     <ClInclude Include="user\user\_style.h" />
     <ClInclude Include="version\version.h" />
     <ClInclude Include="filesystem\file\___serialization_draft.h" />
@@ -1887,7 +1863,6 @@
     <ClInclude Include="filesystem\file\_stream_process_impl.h" />
     <ClInclude Include="filesystem\file\_text_stream_impl.h" />
     <ClInclude Include="inline\_acid_app_impl.h" />
-    <ClInclude Include="inline\application.h" />
     <ClInclude Include="inline\_draw2d_impl.h" />
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
@@ -1901,7 +1876,6 @@
     <ClInclude Include="primitive\comparison\hash.h" />
     <ClInclude Include="primitive\comparison\less.h" />
     <ClInclude Include="primitive\comparison\md5.h" />
-    <ClInclude Include="primitive\comparison\var_strict.h" />
     <ClInclude Include="primitive\datetime\_.h" />
     <ClInclude Include="primitive\datetime\date_span.h" />
     <ClInclude Include="primitive\datetime\earth_time.h" />
@@ -1925,7 +1899,6 @@
     <ClInclude Include="primitive\primitive\action_context.h" />
     <ClInclude Include="primitive\primitive\factory.h" />
     <ClInclude Include="primitive\primitive\atom.h" />
-    <ClInclude Include="primitive\primitive\atom_space.h" />
     <ClInclude Include="primitive\primitive\acme.h" />
     <ClInclude Include="primitive\primitive\logic.h" />
     <ClInclude Include="primitive\primitive\malloc.h" />
@@ -1938,8 +1911,6 @@
     <ClInclude Include="primitive\primitive\pointer.h" />
     <ClInclude Include="primitive\primitive\pointer2.h" />
     <ClInclude Include="primitive\primitive\_.h" />
-    <ClInclude Include="primitive\primitive\property.h" />
-    <ClInclude Include="primitive\primitive\property_set.h" />
     <ClInclude Include="primitive\primitive\request_interface.h" />
     <ClInclude Include="primitive\primitive\type.h" />
     <ClInclude Include="primitive\primitive\uid.h" />
@@ -1968,7 +1939,6 @@
     <ClInclude Include="primitive\string\x\x_encodings.h" />
     <ClInclude Include="primitive\string\x\x_tables.h" />
     <ClInclude Include="primitive\string\_base_impl.h" />
-    <ClInclude Include="primitive\string\string_buffer.h" />
     <ClInclude Include="primitive\string\string_inst.h" />
     <ClInclude Include="primitive\string\__begin.h" />
     <ClInclude Include="primitive\string\_impl.h" />
@@ -1982,7 +1952,6 @@
     <ClInclude Include="primitive\string\whole_word.h" />
     <ClInclude Include="primitive\string\_str_impl.h" />
     <ClInclude Include="primitive\string\_trait_CHAR_TYPE.template" />
-    <ClInclude Include="primitive\string\_uhash.h" />
     <ClInclude Include="primitive\string\unicode.h" />
     <ClInclude Include="primitive\string\unicode_impl.h" />
     <ClCompile Include="filesystem\filesystem\listing.cpp" />
@@ -2006,9 +1975,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="application_build_helper_input.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

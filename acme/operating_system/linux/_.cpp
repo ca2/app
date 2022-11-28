@@ -143,7 +143,7 @@ int get_proc_cpuinfo_core_count()
 // }
 
 
-::time os_get_system_update_poll_time(const ::atom & atom)
+class ::time os_get_system_update_poll_time(const ::atom & atom)
 {
 
    if(atom == id_operating_system_user_theme_change)

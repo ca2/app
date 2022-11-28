@@ -1,5 +1,16 @@
-// Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "acme/primitive/primitive/memory.h"
+#include "acme/platform/node.h"
+
+
+#include "acme/_operating_system.h"
+
+
+#include <TlHelp32.h>
+#include <DbgHelp.h>
+
+
 //#include "acme/parallelization/mutex.h"
 //#include "acme/parallelization/synchronous_lock.h"
 ////#include "acme/primitive/primitive/function.h"
@@ -58,3 +69,87 @@
 ////
 ////}
 //
+
+
+namespace acme
+{
+
+
+   void node::defer_update_callstack()
+   {
+
+      critical_section_lock synchronouslock(sym_dbg_help_critical_section());
+
+      auto process = GetCurrentProcess();
+
+      if (!m_bCallstackInitialized)
+      {
+
+         m_bCallstackInitialized = false;
+
+         SymSetOptions(SymGetOptions() | SYMOPT_LOAD_LINES);
+
+         SymInitialize(process, NULL, TRUE);
+
+      }
+      else if(m_bUpdateCallstack)
+      {
+
+         SymRefreshModuleList(process);
+
+      }
+
+      m_bUpdateCallstack = false;
+
+   }
+
+
+   string node::get_callstack(const char* pszFormat, i32 iSkip, void* caller_address, int iCount)
+   {
+
+      critical_section_lock synchronouslock(sym_dbg_help_critical_section());
+
+      string strCallstack;
+
+      const size_t iMaximumFramesToCapture = 62; // does not support more then 62 frames of stackbacktrace
+
+      void* stack[iMaximumFramesToCapture];
+
+      defer_update_callstack();
+
+      auto frames = CaptureStackBackTrace(0, iMaximumFramesToCapture, stack, NULL);
+
+      int iMaximumNameLength = 1024;
+
+      memory memory(sizeof(SYMBOL_INFO) + iMaximumNameLength * sizeof(char));
+
+      SYMBOL_INFO* psymbolinfo = (SYMBOL_INFO*)memory.get_data();
+
+      psymbolinfo->MaxNameLen = iMaximumNameLength;
+
+      psymbolinfo->SizeOfStruct = sizeof(SYMBOL_INFO);
+
+      auto process = GetCurrentProcess();
+
+      for (auto i = 0; i < frames; ++i)
+      {
+
+         SymFromAddr(process, (DWORD64)(stack[i]), 0, psymbolinfo);
+
+         string strLine;
+
+         strLine.format("%02d : %" PRIdPTR " : %s\n", frames - i - 1, psymbolinfo->Address, psymbolinfo->Name);
+
+         strCallstack += strLine;
+
+      }
+
+      return ::move(strCallstack);
+
+   }
+
+
+} // namespace acme
+
+
+

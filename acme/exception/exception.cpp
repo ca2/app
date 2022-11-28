@@ -23,11 +23,11 @@ exception::exception()
 }
 
 
-#ifdef ANDROID
-exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip)
-#else
+//#ifdef ANDROID
+//exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip)
+//#else
 exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address)
-#endif
+//#endif
 {
 
 #if !defined(__SANITIZE_ADDRESS__)
@@ -42,11 +42,11 @@ exception::exception(const ::e_status & estatus, const char * pszMessage, const 
 
       }
 
-#ifdef ANDROID
-      
-      m_strCallstack = ::get_system()->acmenode()->unwind_callstack(callstack_default_format(), iSkip);
-
-#else
+//#ifdef ANDROID
+//      
+//      m_strCallstack = ::get_system()->acmenode()->unwind_callstack(callstack_default_format(), iSkip);
+//
+//#else
 
       auto psystem = ::get_system();
 
@@ -64,7 +64,7 @@ exception::exception(const ::e_status & estatus, const char * pszMessage, const 
 
       }
       
-#endif
+//#endif
 
    }
 

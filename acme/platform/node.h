@@ -19,6 +19,7 @@
 //#include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/collection/atom_array.h"
 #include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/time/time.h"
 
 
 CLASS_DECL_ACME const char * callstack_default_format();
@@ -73,6 +74,9 @@ namespace acme
       
       ::pointer < ::particle >                              m_pparticleQuit;
       
+
+      bool                                                  m_bCallstackInitialized;
+      bool                                                  m_bUpdateCallstack;
 
       //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
 
@@ -481,7 +485,7 @@ namespace acme
       virtual void flush_stdin();
 
 
-      virtual void defer_initialize_callstack();
+      virtual void defer_update_callstack();
 //#if defined(ANDROID)
 //      virtual string unwind_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 //#else

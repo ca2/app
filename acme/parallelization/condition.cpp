@@ -251,22 +251,20 @@ bool condition::pulse()
 
 #elif defined(ANDROID)
 
-   u32 timeout = wait;
+   //u32 timeout = wait;
 
    pthread_mutex_lock(&m_mutex);
 
    m_iHold++;
 
-   ::time start;
-
-   start.Now();
+   auto timeStart = ::time::now();
 
    while (!m_bSignaled)
    {
 
       pthread_cond_wait(&m_cond, &m_mutex);
 
-      if (start.elapsed() > wait)
+      if (timeStart.elapsed() > timeWait)
       {
 
          m_iHold--;
@@ -294,7 +292,7 @@ bool condition::pulse()
 
    delay.tv_nsec = 1000000;
 
-   while (wait.is_infinite() || start.elapsed() < wait)
+   while (timeWait.is_infinite() || start.elapsed() < timeWait)
    {
 
       sembuf sb;

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/_operating_system.h"
@@ -222,7 +222,9 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
          if (pnode)
          {
 
-            pnode->defer_initialize_callstack();
+            pnode->m_bUpdateCallstack = true;
+
+            //pnode->defer_initialize_callstack();
 
          }
 

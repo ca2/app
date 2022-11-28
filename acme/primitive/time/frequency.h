@@ -65,9 +65,8 @@ class ::frequency operator * (FLOATING d, const class frequency & frequency)
 }
 
 
-
 template < primitive_floating FLOATING >
-class ::time operator / (FLOATING d, const class frequency & frequency)
+class time operator / (FLOATING d, const class frequency & frequency)
 {
 
    auto dSeconds = d / frequency.m_d;
@@ -77,9 +76,8 @@ class ::time operator / (FLOATING d, const class frequency & frequency)
 }
 
 
-
 template < primitive_integral INTEGRAL >
-class ::time operator / (INTEGRAL i, const class frequency & frequency)
+class time operator / (INTEGRAL i, const class frequency & frequency)
 {
 
    auto dSeconds = (double) i / frequency.m_d;

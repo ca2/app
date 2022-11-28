@@ -19,6 +19,7 @@
 //#include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/collection/atom_array.h"
 #include "acme/primitive/collection/string_map.h"
+#include "acme/primitive/time/time.h"
 
 
 CLASS_DECL_ACME const char * callstack_default_format();

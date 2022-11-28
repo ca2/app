@@ -267,6 +267,9 @@
     <Filter Include="Header Files\inline\windows">
       <UniqueIdentifier>{3c81f65d-27d1-4fac-878a-de21f3dc2c3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\primitive\time\time">
+      <UniqueIdentifier>{0b61aaa5-2c72-40e4-9fdf-17017e960bd8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -2483,7 +2486,7 @@
     <ClInclude Include="primitive\time\_binary_stream.h">
       <Filter>Header Files\primitive\time</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\time\_time.h">
+    <ClInclude Include="primitive\time\time.h">
       <Filter>Header Files\primitive\time</Filter>
     </ClInclude>
     <ClInclude Include="primitive\time\_impl.h">
@@ -2499,9 +2502,6 @@
       <Filter>Header Files\primitive\time</Filter>
     </ClInclude>
     <ClInclude Include="primitive\time\_time_impl.h">
-      <Filter>Header Files\primitive\time</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\_unit.h">
       <Filter>Header Files\primitive\time</Filter>
     </ClInclude>
     <ClInclude Include="primitive\time\_unit_operator.h">
@@ -2529,9 +2529,6 @@
       <Filter>Header Files\primitive\time</Filter>
     </ClInclude>
     <ClInclude Include="primitive\time\day.h">
-      <Filter>Header Files\primitive\time</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\time.h">
       <Filter>Header Files\primitive\time</Filter>
     </ClInclude>
     <ClInclude Include="primitive\time\time_operator.h">
@@ -2917,6 +2914,15 @@
     </ClInclude>
     <ClInclude Include="primitive\time\frequency.h">
       <Filter>Header Files\primitive\time</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\time\time\time.h">
+      <Filter>Header Files\primitive\time\time</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\time\time\_.h">
+      <Filter>Header Files\primitive\time\time</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\time\time\unit.h">
+      <Filter>Header Files\primitive\time\time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

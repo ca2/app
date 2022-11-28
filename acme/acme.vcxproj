@@ -500,9 +500,7 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
     </ResourceCompile>
-    <PreBuildEvent>
-      <Command />
-    </PreBuildEvent>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='static_debug|x64'">
     <ClCompile>
@@ -1408,17 +1406,18 @@
     <ClInclude Include="primitive\time\integral\second.h" />
     <ClInclude Include="primitive\time\integral\_.h" />
     <ClInclude Include="primitive\time\integral\_impl.h" />
-    <ClInclude Include="primitive\time\time.h" />
+    <ClInclude Include="primitive\time\time\time.h" />
+    <ClInclude Include="primitive\time\time\unit.h" />
+    <ClInclude Include="primitive\time\time\_.h" />
     <ClInclude Include="primitive\time\time_operator.h" />
     <ClInclude Include="primitive\time\_.h" />
     <ClInclude Include="primitive\time\_binary_stream.h" />
-    <ClInclude Include="primitive\time\_time.h" />
+    <ClInclude Include="primitive\time\time.h" />
     <ClInclude Include="primitive\time\_impl.h" />
     <ClInclude Include="primitive\time\_string.h" />
     <ClInclude Include="primitive\time\_structures.h" />
     <ClInclude Include="primitive\time\_text_stream.h" />
     <ClInclude Include="primitive\time\_time_impl.h" />
-    <ClInclude Include="primitive\time\_unit.h" />
     <ClInclude Include="primitive\time\_unit_operator.h" />
     <ClInclude Include="primitive\time\__string.h" />
     <ClInclude Include="procedure.h" />

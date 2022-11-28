@@ -190,6 +190,13 @@ namespace acme
    }
 
 
+   ::acme_file* context::acmefile() { return m_pacmesystem->m_pacmefile; }
+   ::acme_path* context::acmepath() { return m_pacmesystem->m_pacmepath; }
+   ::acme_directory* context::acmedirectory() { return m_pacmesystem->m_pacmedirectory; }
+   ::acme::node* context::acmenode() { return m_pacmesystem->node(); }
+
+
+
    ::payload context::file_payload(const ::payload & payloadFile)
    {
 

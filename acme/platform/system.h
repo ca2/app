@@ -519,10 +519,6 @@ namespace acme
    };
 
 
-   inline ::acme_file * context::acmefile() {return m_pacmesystem->m_pacmefile;}
-   inline ::acme_path * context::acmepath() {return m_pacmesystem->m_pacmepath;}
-   inline ::acme_directory * context::acmedirectory() {return m_pacmesystem->m_pacmedirectory;}
-   inline ::acme::node * context::acmenode() {return m_pacmesystem->node();}
 
 
 

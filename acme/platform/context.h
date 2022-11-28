@@ -71,10 +71,10 @@ namespace acme
       virtual ::text::text __text(const ::atom& atom) override;
 
 
-      inline ::acme_file * acmefile();
-      inline ::acme_path * acmepath();
-      inline ::acme_directory * acmedirectory();
-      inline ::acme::node * acmenode();
+      ::acme_file * acmefile();
+      ::acme_path * acmepath();
+      ::acme_directory * acmedirectory();
+      ::acme::node * acmenode();
       inline ::acme::system * acmesystem() { return m_pacmesystem; }
 
 

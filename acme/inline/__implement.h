@@ -33,7 +33,7 @@
 
 //__embed_resource(g_app)
 
-
+#include "acme/memory/_new.inl"
 
 #if !defined(CUBE)
 

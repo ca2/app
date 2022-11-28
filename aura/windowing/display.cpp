@@ -1698,8 +1698,8 @@ namespace windowing
          if (get_monitor_rectangle(iScreen, rectangleMonitor) && get_workspace_rectangle(iScreen, rectangleWorkspace))
          {
 
-            if (would_be_docked_in_monitor(rectangleWouldBeRestored, rectangleMonitor) ||
-               would_be_docked_in_monitor(rectangleWouldBeRestored, rectangleWorkspace))
+            if (would_be_restored_in_monitor(rectangleWouldBeRestored, rectangleMonitor) ||
+               would_be_restored_in_monitor(rectangleWouldBeRestored, rectangleWorkspace))
             {
 
                return true;
@@ -1743,7 +1743,7 @@ namespace windowing
       }
 
       if (rectangleWouldBeRestored.bottom < rectangleMonitor.top
-         || rectangleWouldBeRestored.bottom > rectangleMonitor.top)
+         || rectangleWouldBeRestored.bottom > rectangleMonitor.bottom)
       {
 
          return false;

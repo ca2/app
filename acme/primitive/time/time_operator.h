@@ -122,18 +122,5 @@
 //inline class time operator * (const class time& timetime, const NUMBER & number) { return (double) (timetime.m_d * number); }
 
 
-inline timespec & operator +=(timespec & timespec, const class time & time)
-{
-
-   timespec.tv_sec += (::i64) time.m_iSecond;
-
-   timespec.tv_nsec += (long) time.m_iNanosecond;
-
-   normalize(timespec);
-
-   return timespec;
-
-}
-
 
 

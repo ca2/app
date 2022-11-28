@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "parallelization_pthread.h"
 #include "acme/operating_system/ansi/_ansi.h"
 #include "acme/parallelization/message_queue.h"
@@ -42,7 +42,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 ::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * pparticle, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
 {
 
-   ::time start;
+   class ::time start;
 
    if (tickTimeout != (::u32)INFINITE_TIMEOUT)
    {

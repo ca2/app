@@ -1,8 +1,8 @@
-//
+﻿//
 // Created by camilo on 13/02/2021. <3TBS_!!
 //
 #include "framework.h"
-//#include "acme/operating_system/time.h"
+#include "acme/operating_system/time.h"
 //#include "acme/primitive/primitive/payload.h"
 
 //namespace acme
@@ -37,6 +37,11 @@ void copy(payload * ppayload, const system_time_t * psystemtime)
 
    ppayload->set_type(e_type_time, false);
 
-   system_time_to_time((time_t *)&ppayload->m_time.m_i, psystemtime);
+   time_t time;
+
+   system_time_to_time(&time, psystemtime);
+
+   ppayload->m_time.m_iSecond = time;
+   ppayload->m_time.m_iNanosecond = 0;
 
 }

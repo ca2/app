@@ -1,8 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "semaphore.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 ////#include "acme/exception/exception.h"
+#include "acme/primitive/time/timespec.h"
 #include "acme/_operating_system.h"
 
 
@@ -164,14 +165,11 @@ _semtimedop(int semid, struct sembuf *array, size_t nops, struct
 bool semaphore::_wait(const class time & timeWait)
 {
 
-   timespec ts;
+   timespec timespec;
 
-   ::time time(wait);
+   ::copy(timespec, timeWait);
 
-   ts.tv_nsec = time.m_iNanosecond;
-   ts.tv_sec = time.m_iSecond;
-
-   auto iRet = sem_timedwait(m_psem, &ts);
+   auto iRet = sem_timedwait(m_psem, &timespec);
 
    if (iRet == ETIMEDOUT)
    {

@@ -24,7 +24,7 @@
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/string/hex.h"
 #include "acme/user/nano/nano.h"
-#include "acme/user/user/conversation.h"
+//#include "acme/user/user/conversation.h"
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);

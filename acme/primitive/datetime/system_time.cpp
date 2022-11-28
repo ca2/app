@@ -35,6 +35,8 @@
 void copy(payload * ppayload, const system_time_t * psystemtime)
 {
 
+   ppayload->set_type(e_type_earth_time, false);
+
    ppayload->set_type(e_type_time, false);
 
    time_t time;

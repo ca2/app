@@ -2,6 +2,7 @@
 #include "semaphore.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+//#include "acme/primitive/time/time.h"
 ////#include "acme/exception/exception.h"
 #include "acme/primitive/time/timespec.h"
 #include "acme/_operating_system.h"
@@ -201,7 +202,7 @@ bool semaphore::_wait(const class time & timeWait)
    sb.sem_op = -1;
    sb.sem_flg = 0;
 
-   if(wait.is_infinite())
+   if(timeWait.is_infinite())
    {
 
       iRet = semop(static_cast < i32 > (m_hsync), &sb, 1);
@@ -212,7 +213,7 @@ bool semaphore::_wait(const class time & timeWait)
 
       timespec timespec;
 
-      timespec += wait;
+      timespec += timeWait;
 
 #ifdef FREEBSD
       iRet = _semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &timespec);

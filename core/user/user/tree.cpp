@@ -4,6 +4,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/primitive/data/listener.h"
+#include "acme/primitive/time/frequency.h"
 #include "aura/message/user.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/list.h"
@@ -271,9 +272,9 @@ namespace user
             else
             {
                auto pi = MATH_PI;
-               auto f = 1.0 / class time(dwHoverIn).floating_second().m_d;
+               auto f = 1.0 / dwHoverIn;
                auto omega = -pi * f; // omega pi
-               auto t = m_timeHoverStart.elapsed().floating_second().m_d;
+               auto t = m_timeHoverStart;
                ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
                if (m_uchHoverAlphaInit + dwCurve > 255)
                   m_uchHoverAlpha = 255;
@@ -299,9 +300,9 @@ namespace user
             else
             {
                auto pi = MATH_PI;
-               auto f = 1.0 / class ::time(dwHoverOut).floating_second().m_d;
+               auto f = 1.0 / dwHoverOut;
                auto omega = -pi * f; // omega pi
-               auto t = m_timeHoverStart.elapsed().floating_second().m_d;
+               auto t = m_timeHoverStart;
                ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
                if (m_uchHoverAlphaInit < dwCurve)
                   m_uchHoverAlpha = 0;

@@ -201,7 +201,7 @@ list(APPEND library_source
         memory/memory_allocate.h
         memory/memory_management.cpp
         memory/memory_management.h
-        memory/new.cpp
+        #memory/new.cpp
         memory/os_alloc.cpp
         memory/os_alloc.h
         memory/property_memory_allocate.cpp
@@ -427,23 +427,23 @@ list(APPEND library_source
         primitive/datetime/time_span.h
         primitive/datetime/zonetime.cpp
         primitive/datetime/zonetime.h
-        primitive/duration/duration/_.h
-        primitive/duration/duration/duration.cpp
-        primitive/duration/duration/duration.h
-        primitive/duration/floating/_.h
-        primitive/duration/integral/_.h
-        #primitive/duration/__string.cpp
-        primitive/duration/_string.h
-        #primitive/duration/_.h
-        primitive/duration/_duration.h
-        primitive/duration/_impl.h
-        primitive/duration/_impl.h
-        primitive/duration/_structures.h
-        primitive/duration/_unit.h
-        primitive/duration/_unit_operator.h
-        primitive/duration/time.cpp
-        primitive/duration/time.h
-        primitive/duration/time_operator.h
+        #primitive/time/duration/_.h
+        #primitive/time/duration/duration.cpp
+        #primitive/time/duration/duration.h
+        primitive/time/floating/_.h
+        primitive/time/integral/_.h
+        #primitive/time/__string.cpp
+        primitive/time/_string.h
+        #primitive/time/_.h
+        primitive/time/_time.h
+        primitive/time/_impl.h
+        primitive/time/_impl.h
+        primitive/time/_structures.h
+        primitive/time/_unit.h
+        primitive/time/_unit_operator.h
+        primitive/time/time.cpp
+        primitive/time/time.h
+        primitive/time/time_operator.h
         primitive/geometry2d/_.cpp
         primitive/geometry2d/_.h
         primitive/geometry2d/_collection.h
@@ -1119,7 +1119,7 @@ list(APPEND library_source
         memory/memory.cpp
         memory/memory.h
         memory/memory_allocator.h
-        memory/new.h
+        memory/_new.h
         memory/os_alloc.h
         #memory/plex.h
         #memory/plex_heap1.h
@@ -2243,7 +2243,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} include/_impl.h)
+add_library(${PROJECT_NAME} SHARED ${library_source} include/_impl.h primitive/geometry2d/_text_stream.h)
 
 
 if (NOT DEFINED NO_PRECOMPILED_HEADER)

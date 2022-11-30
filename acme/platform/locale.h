@@ -2,12 +2,26 @@
 //  locale.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/11/22.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/11/2022.
+//  22:18
 //  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-
-#ifndef locale_h
-#define locale_h
+#pragma once
 
 
-#endif /* locale_h */
+#include <xlocale.h>
+
+
+class CLASS_DECL_ACME locale :
+virtual public ::particle
+{
+public:
+
+   
+   locale_t       m_locale;
+   
+   
+};
+
+
+

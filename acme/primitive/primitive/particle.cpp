@@ -433,10 +433,10 @@ void particle::on_initialize_particle()
 }
 
 
-::factory::factory * particle::get_factory()
+::factory::factory * particle::factory()
 {
 
-   return acmesystem()->m_psubsystem->m_pfactory;
+   return &acmesystem()->m_psubsystem->m_factory;
 
 }
 

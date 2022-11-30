@@ -20,10 +20,14 @@ namespace acme
 } // namespace acme
 
 
+namespace factory
+{
 
-using factory_pointer = ::pointer < ::factory::factory >;
-using factory_map = ::string_map < ::factory_pointer >;
-using component_factory_map = ::string_map < ::factory_map >;
+   using factory_pointer = ::pointer < ::factory::factory >;
+   using factory_map = ::string_map < factory_pointer >;
+   using component_factory_map = ::string_map < factory_map >;
+
+} // namespace factory
 
 
 class CLASS_DECL_ACME sub_system :
@@ -62,9 +66,9 @@ public:
    
    ::block                                         m_blockMatter;
    ::acme::library_map                             m_mapLibrary;
-   ::factory_pointer                               m_pfactory;
-   ::pointer < ::factory_map >                     m_pfactorymap;
-   ::pointer < ::component_factory_map >           m_pcomponentfactorymap;
+   ::factory::factory                              m_factory;
+   ::factory::factory_map                          m_factorymap;
+   ::factory::component_factory_map                m_componentfactorymap;
 
 
    int                                             m_iProcessStatus = 0;

@@ -1,7 +1,9 @@
 #include "framework.h"
 //#include "acme/primitive/string/as_string.h"
 #include "payload.h"
+#include "acme/parallelization/task.h"
 #include "acme/platform/acme.h"
+#include "acme/platform/locale.h"
 //#include "acme/filesystem/file/file.h"
 #include "acme/primitive/datetime/system_time.h"
 #include "acme/primitive/datetime/earth_gregorian_time.h"
@@ -2987,7 +2989,7 @@ bool payload::b() const
 #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::i8)atof(m_str);
 #else
-      return (::i8)_atof_l(m_str, ::acme::get_c_locale());
+      return (::i8)_atof_l(m_str, ::get_task()->locale()->m_locale);
 #endif
    case e_type_payload_pointer:
       return m_ppayload->i8(iDefault);

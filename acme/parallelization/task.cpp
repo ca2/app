@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "task.h"
 #include "manual_reset_event.h"
 ////#include "acme/exception/exception.h"
@@ -617,6 +617,14 @@ void task::unregister_task()
 
    pcontext->acmesystem()->unset_task(m_itask, this);
 
+}
+
+
+::locale * task::locale()
+{
+   
+   return m_plocale;
+   
 }
 
 

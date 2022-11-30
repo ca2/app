@@ -1051,7 +1051,7 @@ namespace acme
       
       critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
       
-      auto & pfactory = (*m_psubsystem->m_pcomponentfactorymap)[strComponent][implementation_name(strComponent, strImplementation)];
+      auto & pfactory = m_psubsystem->m_componentfactorymap[strComponent][implementation_name(strComponent, strImplementation)];
       
       if (pfactory)
       {
@@ -1103,7 +1103,7 @@ namespace acme
       
       critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
       
-      auto & pfactory = (*m_psubsystem->m_pmapComponentFactory)[strComponent][implementation_name(strComponent, strImplementation)];
+      auto & pfactory = m_psubsystem->m_componentfactorymap[strComponent][implementation_name(strComponent, strImplementation)];
       
       try
       {
@@ -1141,7 +1141,7 @@ namespace acme
 
       strLibrary = library_filter(strLibraryRequest);
 
-      auto & pfactory = (*m_psubsystem->m_pfactorymap)[strLibrary];
+      auto & pfactory = m_psubsystem->m_factorymap[strLibrary];
 
       if (pfactory)
       {

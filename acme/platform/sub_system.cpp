@@ -285,7 +285,7 @@ wchar_t ** sub_system::get_wargv()
    
    critical_section_lock criticalsectionlock(&m_criticalsection);
 
-   auto & pfactory = (*m_pfactorymap)[atomSource];
+   auto & pfactory = m_factorymap[atomSource];
 
    if (!pfactory)
    {
@@ -303,7 +303,6 @@ wchar_t ** sub_system::get_wargv()
 string sub_system::get_arg(int i) const
 {
 
-   
 #ifdef WINDOWS
    
    if (m_wargv)
@@ -332,6 +331,8 @@ string sub_system::get_arg(int i) const
 string sub_system::get_env(const char * pszVariableName) const
 {
 
+#ifdef WINDOWS
+   
    if (m_wenvp)
    {
 
@@ -356,7 +357,11 @@ string sub_system::get_env(const char * pszVariableName) const
       return "";
 
    }
-   else if (m_envp)
+   else
+      
+#endif
+      
+      if (m_envp)
    {
 
       string strPrefix(pszVariableName);
@@ -414,13 +419,13 @@ void sub_system::set_resource_block(const char * pstart, const char * pend)
 void sub_system::factory_initialize()
 {
 
-   __raw_construct_new(m_pmapFactory);
+   //__raw_construct_new(m_pfactorymap);
 
-   __raw_construct_new(m_pmapComponentFactory);
+   //__raw_construct_new(m_pcomponentfactorymap);
 
-   m_pfactory = __new(::factory::factory());
+   //m_pfactory = __new(::factory::factory());
 
-   m_pfactory->InitHashTable(16189);
+   m_factory.InitHashTable(16189);
 
    //::acme::acme::g_pstaticstatic->m_pfactorya = memory_new factory_array();
 
@@ -444,13 +449,13 @@ void sub_system::factory_terminate()
 
    critical_section_lock synchronouslock(factory_critical_section());
 
-   m_pfactory->erase_all();
+   m_factory.erase_all();
 
-   m_pmapFactory->erase_all();
+   m_factorymap.erase_all();
 
-   m_pfactory.release();
+   //m_pfactory.release();
 
-   m_pmapFactory.release();
+   //m_pmapFactory.release();
 
 }
 

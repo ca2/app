@@ -112,7 +112,7 @@ inline auto new_predicateicate_task(::particle * pparticle, PRED pred)
 //
 //                      m_bPending = false;
 //
-//                      __keep(m_bExecuting);
+//                      KEEP(m_bExecuting);
 //
 //                      pred();
 //

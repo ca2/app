@@ -2633,7 +2633,7 @@ namespace user
 
       ::count c = 0;
 
-      __keep(m_bDisableSavingRestorableTabs);
+      KEEP(m_bDisableSavingRestorableTabs);
 
       if(get_data()->m_matchanyRestore.m_itema.get_count() > 0)
       {

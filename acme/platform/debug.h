@@ -316,17 +316,17 @@ CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const char * pszTag, cons
 
 
 
-namespace acme
-{
-   template < typename T >
-   T constraint(T t, T tMin, T tMax)
-   {
-
-      return (t < tMin) ? tMin : ((t > tMax) ? tMax : t);
-
-   }
-
-}
+//namespace acme
+//{
+//   template < typename T >
+//   T constraint(T t, T tMin, T tMax)
+//   {
+//
+//      return (t < tMin) ? tMin : ((t > tMax) ? tMax : t);
+//
+//   }
+//
+//}
 //
 //
 //inline enum_trace_level trace_level_constraint(enum_trace_level elevel)

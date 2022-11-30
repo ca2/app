@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/platform/system.h"
 #include <dlfcn.h>
 #ifdef __APPLE__
 #include <mach-o/dyld.h>
@@ -46,6 +48,9 @@ found:
 }
 
 
+::file::path get_module_folder();
+
+
 void * __node_library_open(const char * pszPath, string & strMessage)
 {
 
@@ -72,8 +77,10 @@ void * __node_library_open(const char * pszPath, string & strMessage)
    }
 
    //::output_debug_string("\n\nGoing to dlopen: \"" + strPath + "\"");
+   
+   auto pathModuleFolder = ::get_module_folder();
 
-   path = ::file::path(::get_exe_path()).folder() / strPath;
+   path = pathModuleFolder / strPath;
 
    //::output_debug_string("\nFirst path to try: \"" + path + "\"");
 

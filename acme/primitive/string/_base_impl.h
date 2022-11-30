@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "acme/exception/debug.h"
@@ -23,7 +23,7 @@ inline string_base < CHARACTER >::string_base(const CHARACTER2 * pszSource, strs
    string_base(e_no_initialize)
 {
 
-   auto lenSource = start_count_length(start, count, pszSource);
+   start_count_length(start, count, pszSource);
 
    auto dstlen = utf_to_utf_length(this->m_pdata, pszSource + start, count);
 
@@ -779,7 +779,7 @@ template < primitive_character CHARACTER2 >
 inline string_base < CHARACTER > & string_base < CHARACTER >::assign(const CHARACTER2 * pszSource, strsize start, strsize count)
 {
 
-   auto lenSource = start_count_length(start, count, pszSource);
+   start_count_length(start, count, pszSource);
 
    return _assign(pszSource, start, count);
 

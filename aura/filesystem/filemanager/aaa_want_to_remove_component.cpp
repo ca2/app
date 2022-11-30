@@ -383,7 +383,7 @@ namespace filemanager
 
       {
 
-         __keep(m_bRestoring);
+         KEEP(m_bRestoring);
 
          if (pathFilemanagerProject.is_empty() || pcontext->m_papexcontext->dir()->is(pathFilemanagerProject)
                || pathFilemanagerProject.extension().compare_ci("component") != 0)

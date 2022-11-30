@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 
+void ns_main_sync(dispatch_block_t block);
+
 void ns_launch_app_at_url(NSURL * url, const char ** argv, int iFlags);
 
 //

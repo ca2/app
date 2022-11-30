@@ -2,7 +2,7 @@
 #pragma once
 
 
-
+#include "acme/primitive/primitive/u32hash.h"
 
 
 template<typename ARG_KEY>

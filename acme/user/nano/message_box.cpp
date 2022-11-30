@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSørensen
 // Generalization by camilo on 31/01/2022 14:53 <3ThomasBorregaardSørensen!!
 #include "framework.h"
@@ -317,7 +317,7 @@ void nano_message_box::on_create()
 //}
 
 
-CLASS_DECL_ACME ::acme::system * get_system();
+//CLASS_DECL_ACME ::acme::system * get_system();
 
 
 CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const char * pszDetails)
@@ -537,7 +537,7 @@ void nano_message_box::on_right_click(const ::atom & atom, ::user::mouse * pmous
    pbutton->m_functionClose = [this](nano_window * pwindow)
    {
 
-      auto result = pwindow->m_payloadResult;
+      auto result = pwindow->m_payloadResult.atom();
 
       if (result == e_dialog_result_yes)
       {

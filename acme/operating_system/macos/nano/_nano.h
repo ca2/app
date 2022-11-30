@@ -4,8 +4,8 @@
 #pragma once
 
 
-#include "user/nano/_nano.h"
-#include "acme/operating_system.h"
+//#include "user/nano/_nano.h"
+#include "acme/_operating_system.h"
 //#include <X11/Xlib.h>
 
 #include "font.h"

@@ -215,7 +215,7 @@
 //}
 
 
-//void window_copy(CGRect * prectTarget, const ::rectangle_i32 * prectSource)
+//void screen_coordinates_aware_copy(CGRect * prectTarget, const ::rectangle_i32 * prectSource)
 //{
 //
 //   CGRect rectangleWorkspace = mm_get_workspace_rect();
@@ -228,7 +228,7 @@
 //}
 
 //
-//void window_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
+//void screen_coordinates_aware_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
 //{
 //
 //   CGRect rectangleWorkspace = mm_get_workspace_rect();

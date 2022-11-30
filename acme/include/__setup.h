@@ -1,17 +1,17 @@
-﻿// Created by camilo on 2022-11-25 14:53 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-25 14:53 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 #ifdef DEBUG
 #ifndef _DEBUG
-#define _DEBUG
+#define _DEBUG 1
 #endif
 #endif
 
 
 #ifdef _DEBUG
 #ifndef DEBUG
-#define DEBUG
+#define DEBUG 1
 #endif
 #endif
 

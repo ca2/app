@@ -986,7 +986,7 @@ namespace user
    bool document::open_document(::create * pcreate)
    {
 
-      __keep(m_pcreate, pcreate);
+      KEEP(m_pcreate, pcreate);
 
       ::payload payloadFile = pcreate->get_file();
 

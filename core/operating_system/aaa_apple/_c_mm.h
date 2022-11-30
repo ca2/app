@@ -24,15 +24,15 @@ void copy(CGRect * prectTarget, const RECT32 * prectSource);
 void copy(RECT32 * prectTarget, const CGRect * prectSource);
 void copy(CGRect * prectTarget, const RECTANGLE_F64 * prectSource);
 void copy(RECTANGLE_F64 * prectTarget, const CGRect * prectSource);
-void window_copy(CGRect * prectTarget, const RECT32 * prectSource);
-void window_copy(RECT32 * prectTarget, const CGRect * prectSource);
+void screen_coordinates_aware_copy(CGRect * prectTarget, const RECT32 * prectSource);
+void screen_coordinates_aware_copy(RECT32 * prectTarget, const CGRect * prectSource);
 
 #ifdef MM
 
 void copy(NSRect & rectangle, LPCRECT32 lpcrect);
 void copy(RECTANGLE_I32 * lprect, const NSRect & rectangleSource);
-void window_copy(NSRect & rectangle, LPCRECT32 lpcrect);
-void window_copy(RECTANGLE_I32 * lprect, const NSRect & rectangleSource);
+void screen_coordinates_aware_copy(NSRect & rectangle, LPCRECT32 lpcrect);
+void screen_coordinates_aware_copy(RECTANGLE_I32 * lprect, const NSRect & rectangleSource);
 
 #endif
 

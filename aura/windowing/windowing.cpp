@@ -205,7 +205,7 @@ namespace windowing
 
       }
 
-      __keep(m_bSettingCursorMatter);
+      KEEP(m_bSettingCursorMatter);
 
       synchronouslock.unlock();
 

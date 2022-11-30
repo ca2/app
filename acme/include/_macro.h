@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-08 21:46 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-08 21:46 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -65,6 +65,9 @@
 #define __CONCAT3(xxx, yyy, zzz) xxx ## yyy ## zzz
 
 
+#define TOKEN_CONCATENATE_PHASE1(x, y) x ## y
+
+#define TOKEN_CONCATENATE(x, y) TOKEN_CONCATENATE_PHASE1(x, y)
 
 
 
@@ -319,9 +322,9 @@ template < typename TYPE > \
 type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
 
 
-#define TOKENPASTE_PROCESS(x, y) x ## y
-#define TOKENPASTE(x, y) TOKENPASTE_PROCESS(x, y)
-#define TOKEN_AT_LINE(token) TOKENPASTE(TOKENPASTE(token, _atLine_), __LINE__)
+//#define TOKENPASTE_PROCESS(x, y) x ## y
+//#define TOKENPASTE(x, y) TOKENPASTE_PROCESS(x, y)
+#define COUNTER_TOKEN(token) TOKEN_CONCATENATE(token, __COUNTER__)
 
 
 #define __DEBUG_POWER

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "memory.h"
 #include "memory_container.h"
 ////#include "acme/exception/exception.h"
@@ -286,7 +286,7 @@ shared_memory * memory_container::get_shared_memory()
 #endif
 
 
-virtual_memory * memory_container::get_virtual_memory()
+paged_memory * memory_container::get_virtual_memory()
 {
 
    return m_pmemory->m_memory.m_pvirtualmemory;

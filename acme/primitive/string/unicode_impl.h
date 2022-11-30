@@ -1,4 +1,4 @@
-﻿// Refactored by camilo on 2022-11-04 05:43 <3ThomasBorregaardSorensen!!
+// Refactored by camilo on 2022-11-04 05:43 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -137,7 +137,7 @@ inline i32 unicode_index_length(const wd32char *& input, strsize * psrclen)
 
    input++;
 
-   *psrclen--;
+   (*psrclen)--;
 
    return i;
 

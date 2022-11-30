@@ -155,20 +155,20 @@ ___keep < TYPE > keep(TYPE& kept, const TYPE_KEEP& keepValue, const TYPE_KEEP_AW
 /// _<3tbs special singular macro start with underscore and all lower case
 
 
-#define __keep(...) auto TOKEN_AT_LINE(__keep) = keep(__VA_ARGS__)
-#define __keep_true(...) auto TOKEN_AT_LINE(__keep_true) = keep(__VA_ARGS__, true)
-#define __keep_false(...) auto TOKEN_AT_LINE(__keep_false) = keep(__VA_ARGS__, false)
-#define __keep_task_payload(...) auto TOKEN_AT_LINE(__keep_task_payload) = keep_task_payload(__VA_ARGS__)
-#define __keep_current_thread(...) auto TOKEN_AT_LINE(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
+#define KEEP(...) auto COUNTER_TOKEN(KEEP) = keep(__VA_ARGS__)
+#define __keep_true(...) auto COUNTER_TOKEN(__keep_true) = keep(__VA_ARGS__, true)
+#define __keep_false(...) auto COUNTER_TOKEN(__keep_false) = keep(__VA_ARGS__, false)
+#define __keep_task_payload(...) auto COUNTER_TOKEN(__keep_task_payload) = keep_task_payload(__VA_ARGS__)
+#define __keep_current_thread(...) auto COUNTER_TOKEN(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
 
 
 /// _<3tbs special singular macro start with underscore and all lower case
 
-#define __keep(...) auto TOKEN_AT_LINE(__keep) = keep(__VA_ARGS__)
-#define __keep_true(...) auto TOKEN_AT_LINE(__keep_true) = keep(__VA_ARGS__, true)
-#define __keep_false(...) auto TOKEN_AT_LINE(__keep_false) = keep(__VA_ARGS__, false)
-#define __keep_task_payload(...) auto TOKEN_AT_LINE(__keep_task_payload) = keep_task_payload(__VA_ARGS__)
-#define __keep_current_thread(...) auto TOKEN_AT_LINE(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
+#define KEEP(...) auto COUNTER_TOKEN(KEEP) = keep(__VA_ARGS__)
+#define __keep_true(...) auto COUNTER_TOKEN(__keep_true) = keep(__VA_ARGS__, true)
+#define __keep_false(...) auto COUNTER_TOKEN(__keep_false) = keep(__VA_ARGS__, false)
+#define __keep_task_payload(...) auto COUNTER_TOKEN(__keep_task_payload) = keep_task_payload(__VA_ARGS__)
+#define __keep_current_thread(...) auto COUNTER_TOKEN(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
 
 
 #define __task_guard_ret(flag, ret) \
@@ -182,7 +182,7 @@ if (flag) \
 \
 } \
 \
-auto TOKEN_AT_LINE(__task_guard_task_ret) = keep(flag); \
+auto COUNTER_TOKEN(__task_guard_task_ret) = keep(flag); \
 \
 synchronouslock.unlock()
 
@@ -211,7 +211,7 @@ while (flag) \
    \
 } \
 \
-auto TOKEN_AT_LINE(__guard_wait_ret) = keep(&flag); \
+auto COUNTER_TOKEN(__guard_wait_ret) = keep(&flag); \
 \
 synchronouslock.unlock()
 
@@ -315,7 +315,7 @@ ___keep_on < TYPE > keep_on(TYPE* pKept, TYPE_KEEP keepValue, bool bStartKept = 
 
 }
 
-#define __keep_on(...) auto TOKEN_AT_LINE(__keep_on) = keep_on(__VA_ARGS__)
+#define __keep_on(...) auto COUNTER_TOKEN(__keep_on) = keep_on(__VA_ARGS__)
 
 
 
@@ -365,15 +365,15 @@ inline ___keep_flag_on < FLAG > keep_flag_on(enumeration < FLAG >& eflagVariable
 }
 
 
-#define __keep_flag_on(...) auto TOKEN_AT_LINE(__keep_flag_on) = keep_flag_on(__VA_ARGS__)
+#define __keep_flag_on(...) auto COUNTER_TOKEN(__keep_flag_on) = keep_flag_on(__VA_ARGS__)
 
 
 
-#define __keep(...) auto TOKEN_AT_LINE(__keep) = keep(__VA_ARGS__)
-#define __keep_true(...) auto TOKEN_AT_LINE(__keep_true) = keep(__VA_ARGS__, true)
-#define __keep_false(...) auto TOKEN_AT_LINE(__keep_false) = keep(__VA_ARGS__, false)
-#define __keep_task_flag(...) auto TOKEN_AT_LINE(__keep_task_flag) = keep_task_flag(__VA_ARGS__)
-#define __keep_current_thread(...) auto TOKEN_AT_LINE(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
+#define KEEP(...) auto COUNTER_TOKEN(KEEP) = keep(__VA_ARGS__)
+#define __keep_true(...) auto COUNTER_TOKEN(__keep_true) = keep(__VA_ARGS__, true)
+#define __keep_false(...) auto COUNTER_TOKEN(__keep_false) = keep(__VA_ARGS__, false)
+#define __keep_task_flag(...) auto COUNTER_TOKEN(__keep_task_flag) = keep_task_flag(__VA_ARGS__)
+#define __keep_current_thread(...) auto COUNTER_TOKEN(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
 
 
 #define __task_guard_ret(flag, ret) \
@@ -387,7 +387,7 @@ if (flag) \
 \
 } \
 \
-auto TOKEN_AT_LINE(__task_guard_task_ret) = keep(flag); \
+auto COUNTER_TOKEN(__task_guard_task_ret) = keep(flag); \
 \
 synchronouslock.unlock()
 
@@ -416,7 +416,7 @@ while (flag) \
    \
 } \
 \
-auto TOKEN_AT_LINE(__guard_wait_ret) = keep(&flag); \
+auto COUNTER_TOKEN(__guard_wait_ret) = keep(&flag); \
 \
 synchronouslock.unlock()
 
@@ -788,11 +788,11 @@ synchronouslock.unlock()
 //}
 /// _<3tbs special singular macro start with underscore and all lower case
 
-//#define __keep(...) auto TOKEN_AT_LINE(__keep) = keep(__VA_ARGS__)
-//#define __keep_true(...) auto TOKEN_AT_LINE(__keep_true) = keep(__VA_ARGS__, true)
-//#define __keep_false(...) auto TOKEN_AT_LINE(__keep_false) = keep(__VA_ARGS__, false)
-//#define __keep_task_flag(...) auto TOKEN_AT_LINE(__keep_task_flag) = keep_thread_flag(__VA_ARGS__)
-#define __keep_current_thread(...) auto TOKEN_AT_LINE(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
+//#define KEEP(...) auto COUNTER_TOKEN(KEEP) = keep(__VA_ARGS__)
+//#define __keep_true(...) auto COUNTER_TOKEN(__keep_true) = keep(__VA_ARGS__, true)
+//#define __keep_false(...) auto COUNTER_TOKEN(__keep_false) = keep(__VA_ARGS__, false)
+//#define __keep_task_flag(...) auto COUNTER_TOKEN(__keep_task_flag) = keep_thread_flag(__VA_ARGS__)
+#define __keep_current_thread(...) auto COUNTER_TOKEN(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
 
 
 #define __task_guard_ret(flag, ret) \
@@ -806,7 +806,7 @@ if (flag) \
 \
 } \
 \
-auto TOKEN_AT_LINE(__task_guard_task_ret) = keep(flag); \
+auto COUNTER_TOKEN(__task_guard_task_ret) = keep(flag); \
 \
 synchronouslock.unlock()
 
@@ -835,7 +835,7 @@ while (flag) \
    \
 } \
 \
-auto TOKEN_AT_LINE(__guard_wait_ret) = keep(&flag); \
+auto COUNTER_TOKEN(__guard_wait_ret) = keep(&flag); \
 \
 synchronouslock.unlock()
 
@@ -858,7 +858,7 @@ if (flag) \
 \
 } \
 \
-auto TOKEN_AT_LINE(__task_guard_task_ret) = keep(flag); \
+auto COUNTER_TOKEN(__task_guard_task_ret) = keep(flag); \
 \
 synchronouslock.unlock()
 
@@ -887,7 +887,7 @@ while (flag) \
    \
 } \
 \
-auto TOKEN_AT_LINE(__guard_wait_ret) = keep(&flag); \
+auto COUNTER_TOKEN(__guard_wait_ret) = keep(&flag); \
 \
 synchronouslock.unlock()
 
@@ -895,10 +895,10 @@ synchronouslock.unlock()
 
 /// _<3tbs special singular macro start with underscore and all lower case
 
-#define __keep(...) auto TOKEN_AT_LINE(__keep) = keep(__VA_ARGS__)
-#define __keep_true(...) auto TOKEN_AT_LINE(__keep_true) = keep(__VA_ARGS__, true)
-#define __keep_false(...) auto TOKEN_AT_LINE(__keep_false) = keep(__VA_ARGS__, false)
-#define __keep_current_thread(...) auto TOKEN_AT_LINE(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
+#define KEEP(...) auto COUNTER_TOKEN(KEEP) = keep(__VA_ARGS__)
+#define KEEP_TRUE(...) auto COUNTER_TOKEN(__keep_true) = keep(__VA_ARGS__, true)
+#define KEEP_FALSE(...) auto COUNTER_TOKEN(__keep_false) = keep(__VA_ARGS__, false)
+#define KEEP_CURRENT_THREAD(...) auto COUNTER_TOKEN(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
 
 
 #define __task_guard_ret(flag, ret) \
@@ -912,7 +912,7 @@ if (flag) \
 \
 } \
 \
-auto TOKEN_AT_LINE(__task_guard_task_ret) = keep(flag); \
+auto COUNTER_TOKEN(__task_guard_task_ret) = keep(flag); \
 \
 synchronouslock.unlock()
 
@@ -941,14 +941,14 @@ while (flag) \
    \
 } \
 \
-auto TOKEN_AT_LINE(__guard_wait_ret) = keep(&flag); \
+auto COUNTER_TOKEN(__guard_wait_ret) = keep(&flag); \
 \
 synchronouslock.unlock()
 
 #define __guard_wait(flag) __task_guard_ret(flag, return)
 
 
-#define __keep_current_thread(...) auto TOKEN_AT_LINE(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
+#define __keep_current_thread(...) auto COUNTER_TOKEN(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
 
 
 #define __guard_wait_ret(flag, ret) \
@@ -973,7 +973,7 @@ while (flag) \
    \
 } \
 \
-auto TOKEN_AT_LINE(__guard_wait_ret) = keep(&flag); \
+auto COUNTER_TOKEN(__guard_wait_ret) = keep(&flag); \
 \
 synchronouslock.unlock()
 

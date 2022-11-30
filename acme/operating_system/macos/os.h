@@ -33,7 +33,7 @@ oswindow get_active_window();
 oswindow set_active_window(oswindow window);
 
 
-int get_main_screen_rectangle(RECTANGLE_I32 * prectangle);
+RECTANGLE_I32 get_main_screen_rectangle();
 
 
 int GetScreenRect(RECTANGLE_I32 * prectangle, int iMonitor);

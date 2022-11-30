@@ -20,9 +20,6 @@ public:
    }
 };
 
-#define TOKEN_CONCAT_PHASE1(x, y) x ## y
-
-#define TOKEN_CONCATENATE(x, y) TOKEN_CONCAT_PHASE1(x, y)
 
 #define AUTO_INTERNAL1(lambda_function_name, at_scope_exit_var_name, ...)                                                                                                     \
                                                                                                                                                                               \

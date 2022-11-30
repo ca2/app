@@ -1,4 +1,7 @@
-﻿#pragma once
+#pragma once
+
+
+#include "acme/primitive/primitive/ptr.h"
 
 
 #define TEMPLATE_TYPE typename __TEMPLATE_TYPE__ = nullptr_t

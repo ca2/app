@@ -1,10 +1,11 @@
-﻿// Created by camilo on 2022-10-09 21:01 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-10-09 21:01 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "sub_system.h"
 #include "acme.h"
 #include "simple_log.h"
 #include "acme/parallelization/manual_reset_event.h"
 ////#include "acme/exception/exception.h"
+#include "acme/platform/context.h"
 #include "acme/platform/library.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/task.h"
@@ -65,6 +66,40 @@ sub_system::~sub_system()
       }
 
    }
+   
+}
+
+
+::file::path sub_system::get_module_path()
+{
+ 
+   critical_section_lock criticalsectionlock(&m_criticalsection);
+   
+   if(!m_bModulePath)
+   {
+      
+      
+      
+   }
+   
+   return m_pathModule;
+
+}
+
+
+::file::path sub_system::get_module_folder()
+{
+ 
+   critical_section_lock criticalsectionlock(&m_criticalsection);
+   
+   if(!m_bModuleFolder)
+   {
+      
+      m_pathModuleFolder = get_module_path().folder();
+      
+   }
+   
+   return m_pathModuleFolder;
 
 }
 
@@ -83,8 +118,12 @@ void sub_system::set_args(int argc, char ** argv, wchar_t ** wargv)
    m_argc = argc;
 
    m_argv = argv;
+   
+#ifdef WINDOWS_DESKTOP
 
    m_wargv = wargv;
+   
+#endif
 
 }
 
@@ -109,6 +148,8 @@ string sub_system::_get_argv(int iArgument) const
       return "";
 
    }
+   
+#ifdef WINDOWS
 
    if (m_wargv && m_wargv[iArgument])
    {
@@ -116,7 +157,11 @@ string sub_system::_get_argv(int iArgument) const
       return m_wargv[iArgument];
 
    }
-   else if (m_argv && m_argv[iArgument])
+   else
+      
+#endif
+      
+      if (m_argv && m_argv[iArgument])
    {
 
       return m_argv[iArgument];
@@ -145,6 +190,8 @@ string_array sub_system::get_arguments()
    {
 
       string strArgument;
+      
+#ifdef WINDOWS
 
       if (m_wargv && m_wargv[i])
       {
@@ -152,7 +199,11 @@ string_array sub_system::get_arguments()
          strArgument = m_wargv[i];
 
       }
-      else if (m_argv && m_argv[i])
+      else
+         
+#endif
+         
+         if (m_argv && m_argv[i])
       {
 
          strArgument = m_argv[i];
@@ -207,6 +258,9 @@ char ** sub_system::get_argv()
 }
 
 
+#ifdef WINDOWS
+
+
 wchar_t *** sub_system::get_pwargv()
 {
 
@@ -223,16 +277,46 @@ wchar_t ** sub_system::get_wargv()
 }
 
 
+#endif
+
+
+::factory::factory * sub_system::get_factory(const ::atom & atomSource)
+{
+   
+   critical_section_lock criticalsectionlock(&m_criticalsection);
+
+   auto & pfactory = (*m_pfactorymap)[atomSource];
+
+   if (!pfactory)
+   {
+
+      m_pcontext->__construct_new(pfactory);
+
+   }
+
+   return pfactory;
+
+}
+
+
+
 string sub_system::get_arg(int i) const
 {
 
+   
+#ifdef WINDOWS
+   
    if (m_wargv)
    {
 
       return string(m_wargv[i]);
 
    }
-   else if (m_argv)
+   else
+      
+#endif
+      
+      if (m_argv)
    {
 
       return string(m_argv[i]);

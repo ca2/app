@@ -10832,7 +10832,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      __keep(m_bModal);
+      KEEP(m_bModal);
 
       __keep_current_thread(m_ptaskModal);
 
@@ -11696,7 +11696,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       ////
       ////   }
 
-      __keep(m_bUpdatingVisual);
+      KEEP(m_bUpdatingVisual);
 
       bool bDisplay = display_sketch_to_design();
 

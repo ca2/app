@@ -442,7 +442,7 @@ namespace filemanager
 
       {
 
-         __keep(m_bRestoring);
+         KEEP(m_bRestoring);
 
          auto pcontext = get_context();
 

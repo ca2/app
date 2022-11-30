@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "library.h"
 #include "node.h"
 #include "acme.h"
@@ -19,6 +19,7 @@
 #include "acme/exception/translator.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/debug.h"
 #include "acme/regular_expression/context.h"
 #include "acme/primitive/datetime/datetime.h"
 //#include "acme/primitive/primitive/payload.h"
@@ -32,7 +33,7 @@ CLASS_DECL_ACME void trace_category_static_init(::acme::system * psystem);
 CLASS_DECL_ACME void trace_category_static_term();
 
 
-static ::acme::system * g_psystem = nullptr;
+//static ::acme::system * g_psystem = nullptr;
 
 
 extern const char * g_pszTopLevelDomainList[];
@@ -51,9 +52,34 @@ namespace acme
    system::system()
    {
 
-      m_psubsystem = ::acme::acme::g_p->m_psubsystem;
+   }
 
-      m_psubsystem->m_pcontext = this;
+
+   system::~system()
+   {
+
+//      if (g_psystem == this)
+//      {
+//
+//         g_psystem = nullptr;
+//
+//      }
+
+      trace_category_static_term();
+
+      //m_mapLibrary4.clear();
+
+      //::acme::del(m_psystemimpl);
+
+   }
+
+
+   void system::initialize_system(::sub_system * psubsystem)
+   {
+      
+      m_psubsystem = psubsystem;
+
+      m_psubsystem->initialize(this);
 
 #ifdef PARALLELIZATION_PTHREAD
 #if defined(__APPLE__)
@@ -105,12 +131,12 @@ namespace acme
 
       //acmesystem() = this;
 
-      if (g_psystem == nullptr)
-      {
-
-         g_psystem = this;
-
-      }
+//      if (g_psystem == nullptr)
+//      {
+//
+//         g_psystem = this;
+//
+//      }
 
 
       __construct_new(m_pnano);
@@ -121,27 +147,8 @@ namespace acme
 
       
 
+      
    }
-
-
-   system::~system()
-   {
-
-      if (g_psystem == this)
-      {
-
-         g_psystem = nullptr;
-
-      }
-
-      trace_category_static_term();
-
-      //m_mapLibrary4.clear();
-
-      //::acme::del(m_psystemimpl);
-
-   }
-
 
    void system::on_pre_run_task()
    {
@@ -809,7 +816,7 @@ namespace acme
 
          strMoreDetails = "caught at system::call_init_system";
 
-         g_psystem->m_pnode->report_exception_to_user(this, exception, strMoreDetails);
+         m_pnode->report_exception_to_user(this, exception, strMoreDetails);
 
          m_estatus = exception.m_estatus;
 
@@ -1044,7 +1051,7 @@ namespace acme
       
       critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
       
-      auto & pfactory = (*m_psubsystem->m_pmapComponentFactory)[strComponent][implementation_name(strComponent, strImplementation)];
+      auto & pfactory = (*m_psubsystem->m_pcomponentfactorymap)[strComponent][implementation_name(strComponent, strImplementation)];
       
       if (pfactory)
       {
@@ -1134,7 +1141,7 @@ namespace acme
 
       strLibrary = library_filter(strLibraryRequest);
 
-      auto & pfactory = (*m_psubsystem->m_pmapFactory)[strLibrary];
+      auto & pfactory = (*m_psubsystem->m_pfactorymap)[strLibrary];
 
       if (pfactory)
       {
@@ -2430,12 +2437,12 @@ namespace acme
 } // namespace acme
 
 
-CLASS_DECL_ACME::acme::system * get_system()
-{
+//CLASS_DECL_ACME::acme::system * get_system()
+//{
 
-   return g_psystem;
+  // return g_psystem;
 
-}
+//}
 
 
 CLASS_DECL_ACME class ::plane_system * get_plane_system()
@@ -2456,39 +2463,39 @@ CLASS_DECL_ACME string get_latest_deployment_number(const ::string & strBranch)
 
 
 
+//
+//CLASS_DECL_ACME string __get_text(const string & str)
+//{
+//
+//   return ::g_psystem->__get_text(str);
+//
+//}
 
-CLASS_DECL_ACME string __get_text(const string & str)
-{
+//
+//CLASS_DECL_ACME::acme::system * get_context_system()
+//{
+//
+//   return g_psystem;
+//
+//}
 
-   return ::g_psystem->__get_text(str);
-
-}
-
-
-CLASS_DECL_ACME::acme::system * get_context_system()
-{
-
-   return g_psystem;
-
-}
-
-
-CLASS_DECL_ACME::acme::system * acme_system_init()
-{
-
-   g_psystem = memory_new ::acme::system();
-
-   return g_psystem;
-
-}
+//
+//CLASS_DECL_ACME::acme::system * acme_system_init()
+//{
+//
+//   g_psystem = memory_new ::acme::system();
+//
+//   return g_psystem;
+//
+//}
 
 
-CLASS_DECL_ACME void acme_system_term()
-{
-
-   ::acme::del(g_psystem);
-
-}
+//CLASS_DECL_ACME void acme_system_term()
+//{
+//
+//   ::acme::del(g_psystem);
+//
+//}
 
 
 void system_id_update(void * pSystem, ::i64 iUpdate, ::i64 iParam)

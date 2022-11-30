@@ -239,7 +239,7 @@ namespace aura
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         __keep(m_bOk, false);
+         KEEP(m_bOk, false);
 
          auto map = m_map;
 
@@ -278,7 +278,7 @@ namespace aura
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         __keep(m_bOk, false);
+         KEEP(m_bOk, false);
 
          auto map = m_map;
 

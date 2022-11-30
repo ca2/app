@@ -127,7 +127,7 @@ namespace filemanager
    //   //         if (filemanager_item()->m_filepathFinal != path)
    //   //         {
 
-   //   //            __keep(m_bVoidSync);
+   //   //            KEEP(m_bVoidSync);
 
    //   //            filemanager_document()->browse(pathAddress, context + ::e_source_sync);
 
@@ -276,7 +276,7 @@ namespace filemanager
                if (filemanager_item()->final_path() != path)
                {
 
-                  __keep(m_bVoidSync);
+                  KEEP(m_bVoidSync);
 
                   filemanager_document()->browse(pathAddress, ptopic->m_actioncontext + ::e_source_sync);
 

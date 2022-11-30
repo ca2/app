@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "acme/primitive/string/as_string.h"
 #include "payload.h"
 #include "acme/platform/acme.h"
@@ -7730,7 +7730,8 @@ bool payload::is_false() const
       return m_hls.m_dL == 0.0;
    case e_type_last_element:
       return false;
-
+   default:
+      throw exception(error_wrong_state);
    }
 
    return !m_b;
@@ -7916,7 +7917,8 @@ bool payload::is_set_false() const
       return m_hls.m_dL == 0.0;
    case e_type_last_element:
          return false;
-
+   default:
+      throw exception(error_wrong_state);
    }
 
    return !m_b;

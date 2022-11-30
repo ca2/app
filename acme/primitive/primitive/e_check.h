@@ -1,4 +1,4 @@
-﻿// From echeck.h by camilo on 2022-10-08 18:34 <3ThomasBorregaardSorensen!!
+// From echeck.h by camilo on 2022-10-08 18:34 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -10,6 +10,9 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/02/20.
 //
 #pragma once
+
+
+#include "acme/constant/check.h"
 
 
 class e_check

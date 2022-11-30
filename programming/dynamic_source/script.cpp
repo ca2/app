@@ -436,7 +436,7 @@ namespace dynamic_source
 
       }
 
-      __keep(m_bUnloading);
+      KEEP(m_bUnloading);
 
       m_evCreationEnabled.ResetEvent();
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "semaphore.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -293,7 +293,7 @@ bool semaphore::_wait(const class time & timeWait)
 //
 //   struct itimerval timer;
 //
-   if(wait.is_infinite())
+   if(timeWait.is_infinite())
    {
 
       struct sembuf sb;
@@ -315,7 +315,7 @@ bool semaphore::_wait(const class time & timeWait)
 
    }
 
-   ::time tStart;
+   class ::time tStart;
 
    tStart = ::time::now();
 
@@ -344,9 +344,9 @@ bool semaphore::_wait(const class time & timeWait)
 
          preempt(100_ms);
 
-         ::time tRemaining = wait - tStart.elapsed();
+         class ::time tRemaining = timeWait - tStart.elapsed();
 
-         if(tRemaining > wait)
+         if(tRemaining > timeWait)
          {
 
             return false;

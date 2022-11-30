@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/enum_bitset.h"
+
+
 using task_bitset = enum_bitset < enum_task_flag, e_task_flag_count >;
 
 
@@ -46,7 +49,7 @@ inline ___keep_task_flag keep_task_flag(enum_task_flag eflag)
 
 
 
-#define __keep_task_flag(...) auto TOKEN_AT_LINE(__keep_task_flag) = keep_task_flag(__VA_ARGS__)
+#define __keep_task_flag(...) auto COUNTER_TOKEN(__keep_task_flag) = keep_task_flag(__VA_ARGS__)
 
 
 
@@ -63,7 +66,7 @@ if (flag) \
 \
 } \
 \
-auto TOKEN_AT_LINE(__task_guard_task_ret) = keep(flag); \
+auto COUNTER_TOKEN(__task_guard_task_ret) = keep(flag); \
 \
 synchronouslock.unlock()
 

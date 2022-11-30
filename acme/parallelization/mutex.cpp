@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/platform/system.h"
 ////#include "acme/exception/exception.h"
@@ -1387,7 +1387,7 @@ mutex::~mutex()
 //
 //      auto last_error = GetLastError();
 //
-//      auto estatus = failed_errno_to_status(last_error);
+//      auto estatus = failed_errno_status(last_error);
 //
 //      //throw ::exception(estatus);
 //

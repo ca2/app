@@ -584,7 +584,7 @@ namespace user
                   else if (pcombobox->m_plistbox != nullptr)
                   {
 
-                     __keep(pcombobox->m_plistbox->m_bMovingComboBox);
+                     KEEP(pcombobox->m_plistbox->m_bMovingComboBox);
 
                      pcombobox->_001ShowDropDown();
 
@@ -2446,7 +2446,7 @@ namespace user
             //
             //            on_context_offset(pdrawitem->m_pgraphics);
             //
-            //            __keep(pinteraction->m_pdrawcontext, pdrawitem);
+            //            KEEP(pinteraction->m_pdrawcontext, pdrawitem);
             //
             //            pinteraction->_001OnDraw(pdrawitem->m_pgraphics);
             //

@@ -1,4 +1,4 @@
-﻿// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
+// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
 // Merge with control_"topic" by camilo on day after ThomasBirthday2021 10:14
 // Created by camilo on 2021-02-04 18:05 <3ThomasBorregaardSorensen!!
 // Renamed to topic by camilo on 2021-02-04 18:05 <3ThomasBorregaardSorensen!!
@@ -242,13 +242,11 @@ public:
    ::file_context * file();
    ::file_system * filesystem();
 
-
+   ::factory::factory * factory();
 
    //virtual void handle(::topic * ptopic, ::context * pcontext);
 
 
-   virtual ::topic_pointer create_topic(const ::atom & atom);
-   virtual ::extended_topic_pointer create_extended_topic(const ::atom & atom);
 
 
    inline bool is_null() const { return ::is_null(this); }
@@ -410,7 +408,7 @@ public:
 
    //virtual ::element * clone() const;
 
-
+   
 
    virtual void set_generic_object_name(const char* pszName);
    virtual void set_library_name(const char* pszLibraryName);
@@ -478,33 +476,33 @@ public:
 
 };
 
-
-
-#define OPTIONAL_BASE_BODY                                                          \
-public:                                                                             \
-   void on_initialize_particle() override {}         \
-   void handle(::topic*,::context*) override {}
-
-//   void assert_ok() const override {}                                    \
-//   void dump(dump_context&) const override {}                               \
-   //void on_subject(::topic::topic*, ::context*) override {} \
-
-#define OPTIONAL_INTERACTION_BODY                                                   \
-   OPTIONAL_BASE_BODY                                                               \
-   void install_message_routing(::channel*) override {}                     \
-   void on_layout(::draw2d::graphics_pointer&) {}
-
-
-class optional_base1 : virtual public ::particle { OPTIONAL_BASE_BODY };
-class optional_base2 : virtual public ::particle { OPTIONAL_BASE_BODY };
-class optional_base3 : virtual public ::particle { OPTIONAL_BASE_BODY };
-class optional_base4 : virtual public ::particle { OPTIONAL_BASE_BODY };
-
-class optional_interaction1 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
-class optional_interaction2 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
-class optional_interaction3 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
-class optional_interaction4 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
-
+//
+//
+//#define OPTIONAL_BASE_BODY                                                          \
+//public:                                                                             \
+//   void on_initialize_particle() override {}         \
+//   void handle(::topic*,::context*) override {}
+//
+////   void assert_ok() const override {}                                    \
+////   void dump(dump_context&) const override {}                               \
+//   //void on_subject(::topic::topic*, ::context*) override {} \
+//
+//#define OPTIONAL_INTERACTION_BODY                                                   \
+//   OPTIONAL_BASE_BODY                                                               \
+//   void install_message_routing(::channel*) override {}                     \
+//   void on_layout(::draw2d::graphics_pointer&) {}
+//
+//
+//class optional_base1 : virtual public ::particle { OPTIONAL_BASE_BODY };
+//class optional_base2 : virtual public ::particle { OPTIONAL_BASE_BODY };
+//class optional_base3 : virtual public ::particle { OPTIONAL_BASE_BODY };
+//class optional_base4 : virtual public ::particle { OPTIONAL_BASE_BODY };
+//
+//class optional_interaction1 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
+//class optional_interaction2 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
+//class optional_interaction3 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
+//class optional_interaction4 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
+//
 
 template < typename T >
 inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)

@@ -127,11 +127,11 @@ public:
 
 
 #define __namespace_library_factory(LIBRARY) \
-::static_library_factory < library > TOKEN_AT_LINE(g_library_factory)(LIBRARY);
+::static_library_factory < library > COUNTER_TOKEN(g_library_factory)(LIBRARY);
  
 
 #define __namespace_object_factory(OBJECT, EOBJECT) \
-::static_object_factory < OBJECT > TOKEN_AT_LINE(g_library_factory)(EOBJECT);
+::static_object_factory < OBJECT > COUNTER_TOKEN(g_library_factory)(EOBJECT);
 
 
 #define __namespace_system_factory(SYSTEM) \

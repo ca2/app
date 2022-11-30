@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 20/05/20.
 //
 #include "framework.h"
-
+#include <unistd.h>
 
 void process_get_os_priority(i32 * piOsPriority,  i32 nCa2Priority)
 {
@@ -55,7 +55,7 @@ void process_get_os_priority(i32 * piOsPriority,  i32 nCa2Priority)
 ::u32 get_current_process_id()
 {
 
-    return getpid();
+   return getpid();
 
 }
 

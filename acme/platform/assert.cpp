@@ -111,7 +111,7 @@ namespace acme
 //#endif
 
 
-::acme::system * get_system();
+//::acme::system * get_system();
 
 
 CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int iLineNumber)

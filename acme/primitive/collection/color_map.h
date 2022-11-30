@@ -2,12 +2,17 @@
 //  color_map.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/11/22.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/11/2022.
+//  17:01
 //  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-
-#ifndef color_map_h
-#define color_map_h
+#pragma once
 
 
-#endif /* color_map_h */
+using colorrefmap = map < ::color::color, VALUE, typename argument_of < ::color::color >::type, ARG_VALUE >;
+
+
+using colorref_set = ::set < ::color::color >;
+
+
+

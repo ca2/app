@@ -205,7 +205,7 @@ namespace account
 
       }
 
-      __keep(m_bOpening);
+      KEEP(m_bOpening);
 
       i32 iRetry = bInteractive ? 3 : 1;
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "acme/filesystem/file/serializable.h"
@@ -31,7 +31,7 @@ class bstring_manager;
 class read_only_memory;
 class memory;
 class shared_memory;
-class virtual_memory;
+class paged_memory;
 class memory_container;
 
 
@@ -69,7 +69,7 @@ public:
    read_only_memory *      m_preadonlymemory;
    memory *                m_pprimitivememory;
    shared_memory *         m_psharedmemory;
-   virtual_memory *        m_pvirtualmemory;
+   paged_memory *        m_pvirtualmemory;
 
    MEMORY();
    MEMORY(const MEMORY & memory) { memcpy(this, &memory, sizeof(MEMORY)); }

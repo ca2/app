@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "system.h"
 #include "context.h"
 #include "machine_event_data.h"
@@ -57,7 +57,7 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
 
 //CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
 
-//int get_main_screen_rectangle(RECTANGLE_I32 * lprect);
+//RECTANGLE__I32 get_main_screen_rectangle();
 
 
 ///const ::string & g_pszMultimediaLibraryName = nullptr;

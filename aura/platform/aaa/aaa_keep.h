@@ -308,11 +308,11 @@ ___keep < TYPE > keep(TYPE & kept, const TYPE_KEEP & keepValue, const TYPE_KEEP_
 }
 /// _<3tbs special singular macro start with underscore and all lower case
 
-#define __keep(...) auto TOKEN_AT_LINE(__keep) = keep(__VA_ARGS__)
-#define __keep_true(...) auto TOKEN_AT_LINE(__keep_true) = keep(__VA_ARGS__, true)
-#define __keep_false(...) auto TOKEN_AT_LINE(__keep_false) = keep(__VA_ARGS__, false)
-#define __keep_thread_flag(...) auto TOKEN_AT_LINE(__keep_thread_flag) = keep_thread_flag(__VA_ARGS__)
-#define __keep_current_thread(...) auto TOKEN_AT_LINE(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
+#define KEEP(...) auto COUNTER_TOKEN(KEEP) = keep(__VA_ARGS__)
+#define __keep_true(...) auto COUNTER_TOKEN(__keep_true) = keep(__VA_ARGS__, true)
+#define __keep_false(...) auto COUNTER_TOKEN(__keep_false) = keep(__VA_ARGS__, false)
+#define __keep_thread_flag(...) auto COUNTER_TOKEN(__keep_thread_flag) = keep_thread_flag(__VA_ARGS__)
+#define __keep_current_thread(...) auto COUNTER_TOKEN(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
 
 
 #define __task_guard_ret(flag, ret) \
@@ -326,7 +326,7 @@ if (flag) \
 \
 } \
 \
-auto TOKEN_AT_LINE(__task_guard_task_ret) = keep(flag); \
+auto COUNTER_TOKEN(__task_guard_task_ret) = keep(flag); \
 \
 synchronouslock.unlock()
 
@@ -355,7 +355,7 @@ while (flag) \
    \
 } \
 \
-auto TOKEN_AT_LINE(__guard_wait_ret) = keep(&flag); \
+auto COUNTER_TOKEN(__guard_wait_ret) = keep(&flag); \
 \
 synchronouslock.unlock()
 
@@ -461,7 +461,7 @@ ___keep_on < TYPE > keep_on(TYPE * pKept, TYPE_KEEP keepValue, bool bStartKept =
 
 /// special singular macro start with two underscores and all lower case
 
-#define __keep_on(...) auto TOKEN_AT_LINE(__keep_on) = keep_on(__VA_ARGS__)
+#define __keep_on(...) auto COUNTER_TOKEN(__keep_on) = keep_on(__VA_ARGS__)
 
 
 
@@ -522,7 +522,7 @@ inline ___keep_task_flag keep_thread_flag(const ::atom & atom)
 
 }
 
-//#define __keep(...) auto TOKEN_AT_LINE(__keep_thread_flag) = keep_thread_flag(__VA_ARGS__)
+//#define KEEP(...) auto COUNTER_TOKEN(__keep_thread_flag) = keep_thread_flag(__VA_ARGS__)
 
 
 
@@ -572,4 +572,4 @@ inline ___keep_flag_on < FLAG > keep_flag_on(cflag < FLAG > & eflagVariable, i64
 }
 
 
-#define __keep_flag_on(...) auto TOKEN_AT_LINE(__keep_flag_on) = keep_flag_on(__VA_ARGS__)
+#define __keep_flag_on(...) auto COUNTER_TOKEN(__keep_flag_on) = keep_flag_on(__VA_ARGS__)

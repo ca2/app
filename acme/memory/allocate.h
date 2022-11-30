@@ -8,26 +8,6 @@ CLASS_DECL_ACME void * MyAlloc(size_t size);
 CLASS_DECL_ACME void * MyRealloc(void * address, size_t sizeOld, size_t sizeNew);
 CLASS_DECL_ACME void MyFree(void *address);
 
-#if defined(_WIN32) && !defined(_UWP)
-
-void SetLargePageSize();
-
-
-CLASS_DECL_ACME void * MidAlloc(size_t size);
-CLASS_DECL_ACME void * MidRealloc(void * address, size_t sizeOld, size_t sizeNew);
-CLASS_DECL_ACME void MidFree(void *address);
-CLASS_DECL_ACME void * BigAlloc(size_t size);
-CLASS_DECL_ACME void BigFree(void *address);
-
-#else
-
-#define MidAlloc(size) MyAlloc(size)
-#define MidRealloc(addr, sizeOld, sizeNew) MyRealloc(addr, sizeOld, sizeNew)
-#define MidFree(address) MyFree(address)
-#define BigAlloc(size) MyAlloc(size)
-#define BigFree(address) MyFree(address)
-
-#endif
 
 
 #define __NORMAL_BLOCK    1

@@ -29,7 +29,7 @@ namespace filemanager
 
       }
 
-      __keep(m_bStep);
+      KEEP(m_bStep);
 
       switch(m_estate)
       {

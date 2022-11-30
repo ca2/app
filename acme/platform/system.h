@@ -1,4 +1,4 @@
-﻿// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSørensen!!
+// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -116,6 +116,9 @@ namespace acme
 
       system();
       ~system() override;
+      
+      
+      void initialize_system(::sub_system * psubsystem);
 
 
       void os_construct();

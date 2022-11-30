@@ -1,9 +1,10 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "property_object.h"
 //#include "payload.h"
 #include "acme/constant/message.h"
 ////#include "acme/exception/exception.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/mathematics/c_number.h"
 
 
 property_object::~property_object()

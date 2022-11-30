@@ -15,6 +15,8 @@
 #include "app.h"
 
 
+void ns_main_async(dispatch_block_t block);
+
 void ns_main_sync(dispatch_block_t block);
 
  

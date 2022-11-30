@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "type.h"
 #include "factory.h"
@@ -433,30 +433,17 @@ void particle::on_initialize_particle()
 }
 
 
+::factory::factory * particle::get_factory()
+{
+
+   return acmesystem()->m_psubsystem->m_pfactory;
+
+}
+
 
 void particle::handle(::topic * ptopic, ::context * pcontext)
 {
 
-
-}
-
-
-::topic_pointer particle::create_topic(const ::atom & atom)
-{
-
-   auto ptopic = __new(::topic(atom));
-
-   ptopic->m_pcontext = m_pcontext;
-
-   return ::move(ptopic);
-
-}
-
-
-::extended_topic_pointer particle::create_extended_topic(const ::atom & atom)
-{
-
-   return acmesystem()->create_extended_topic(atom);
 
 }
 
@@ -1350,6 +1337,25 @@ bool particle::is_branch_current() const
 }
 
 
+::topic_pointer create_topic(::particle * pparticleCall, const ::atom & atom)
+{
+
+   auto ptopic = __new(::topic(atom));
+   
+   ptopic->initialize(pparticleCall);
+
+   return ::move(ptopic);
+
+}
+
+
+::extended_topic_pointer create_extended_topic(::particle * pparticleCall, const ::atom & atom)
+{
+
+   return ::move(pparticleCall->acmesystem()->create_extended_topic(atom));
+
+}
+
 
 CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wParam, i64 lParam, ::particle * pparticleCall)
 {
@@ -1375,7 +1381,7 @@ CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wPa
    else
    {
 
-      auto pextendedtopic = pparticleCall->create_extended_topic(atom);
+      auto pextendedtopic = create_extended_topic(pparticleCall, atom);
 
       if(wParam != 0 || lParam != 0)
       {

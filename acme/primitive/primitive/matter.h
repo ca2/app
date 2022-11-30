@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "particle.h"
@@ -85,6 +85,8 @@ public:
 #endif
 
 
+   virtual ::topic_pointer create_topic(const ::atom & atom);
+   virtual ::extended_topic_pointer create_extended_topic(const ::atom & atom);
 
 
    void operator()(::topic* ptopic, ::context* pcontext) override;

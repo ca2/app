@@ -179,7 +179,7 @@ namespace acme
 
          //synchronous_lock synchronouslock(s_pmutexLoading);
 
-         //__keep(s_plibraryLoading, this, nullptr);
+         //KEEP(s_plibraryLoading, this, nullptr);
 
          m_plibrary = __node_library_open(pszPath, m_strMessage);
 

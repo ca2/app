@@ -438,7 +438,7 @@ namespace userex
       if (iVisibleIndex < 0)
       {
 
-         __keep(m_bDisableSavingRestorableTabs, true);
+         KEEP(m_bDisableSavingRestorableTabs, true);
 
          if (!add_tab(pimpactdata->m_strTitle, pimpactdata->m_atom, true, false, pimpactdata->m_pplaceholder))
          {

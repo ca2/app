@@ -29,7 +29,7 @@ void debug_object_event_promisse_predicate()
 
    //::pointer<::object>pparticle;
 
-   //__keep(pparticle, nullptr);
+   //KEEP(pparticle, nullptr);
    ////   // 4 arguments
    ////   o += { ok, id_text, [&](auto pparticle) { ASSERT(pparticle == &o); output_debug_string("o += ok, id_text, &o ...");  } };
 

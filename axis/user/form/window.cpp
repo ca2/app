@@ -1021,7 +1021,7 @@ throw_todo();
 
       ::pointer<::user::message>pusermessage(pmessage);
 
-      __keep(m_bOnLanguageChange);
+      KEEP(m_bOnLanguageChange);
 
       _017OnAppLanguage();
 

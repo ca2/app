@@ -119,7 +119,7 @@ namespace user
 
       drawcontext.m_bListItemHover = hover_item().is_set();
 
-      __keep(pgraphics->m_pdrawcontext, &drawcontext);
+      KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
       ::rectangle rectangleClient;
 
@@ -248,7 +248,7 @@ namespace user
 
       drawcontext.m_bListItemHover = hover_item().is_set();
 
-      __keep(pgraphics->m_pdrawcontext, &drawcontext);
+      KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
       ::rectangle rectangleClient;
 

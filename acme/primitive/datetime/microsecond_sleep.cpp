@@ -16,7 +16,7 @@ struct MICROSECOND_SLEEP
 #endif
 
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(__APPLE__)
 
 #include <unistd.h>
 

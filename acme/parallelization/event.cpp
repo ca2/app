@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "event.h"
 #include "acme/primitive/string/string.h"
 ////#include "acme/exception/exception.h"
@@ -715,7 +715,7 @@ bool event::_wait (const class time & timeWait)
 
          timespec timespecFinal{};
 
-         timespecFinal = addition(timespecNow, timespecWait);
+         timespecFinal = timespecNow + timespecWait;
 
          while(!m_bSignaled && iSignal == m_iSignalId)
          {

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "memory_base.h"
@@ -6,7 +6,7 @@
 
 
 class shared_memory;
-class virtual_memory;
+class paged_memory;
 
 
 class CLASS_DECL_ACME memory_container :
@@ -87,7 +87,7 @@ public:
 #if !defined(_UWP)
    virtual shared_memory *   get_shared_memory();
 #endif
-   virtual_memory *  get_virtual_memory();
+   paged_memory *  get_virtual_memory();
 
 
    string str() const;

@@ -7,6 +7,7 @@
 //
 
 #include "framework.h"
+#include "acme/primitive/primitive/memory.h"
 #undef DEBUG
 #if defined(MACOS)
 #include <Carbon/Carbon.h>

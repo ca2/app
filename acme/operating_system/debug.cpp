@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/platform/constraint.h"
 #include "acme/primitive/string/string.h"
 //#ifdef WINDOWS
 //#include "acme/operating_system.h"
@@ -8,7 +9,7 @@
 CLASS_DECL_ACME enum_trace_level trace_level_constraint(enum_trace_level elevel)
 {
 
-   return ::acme::constraint(elevel, e_trace_level_none, e_trace_level_count);
+   return minimum_maximum(elevel, e_trace_level_none, e_trace_level_count);
 
 }
 

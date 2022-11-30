@@ -2,7 +2,7 @@
 #pragma once
 
 
-#define __keep_current_thread(...) auto TOKEN_AT_LINE(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
+#define __keep_current_thread(...) auto COUNTER_TOKEN(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
 
 
 template < >
@@ -24,7 +24,7 @@ if (flag) \
 \
 } \
 \
-auto TOKEN_AT_LINE(__task_guard_task_ret) = keep(flag); \
+auto COUNTER_TOKEN(__task_guard_task_ret) = keep(flag); \
 \
 synchronouslock.unlock()
 
@@ -53,7 +53,7 @@ while (flag) \
    \
 } \
 \
-auto TOKEN_AT_LINE(__guard_wait_ret) = keep(&flag); \
+auto COUNTER_TOKEN(__guard_wait_ret) = keep(&flag); \
 \
 synchronouslock.unlock()
 

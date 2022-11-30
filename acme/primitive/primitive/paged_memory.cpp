@@ -1,15 +1,15 @@
 #include "framework.h"
-#include "virtual_memory.h"
+#include "paged_memory.h"
 #include "acme/memory/paged.h"
 
 
-virtual_memory::virtual_memory()
+paged_memory::paged_memory()
 {
 
 }
 
 
-virtual_memory::virtual_memory(const void * pdata, memsize iCount)
+paged_memory::paged_memory(const void * pdata, memsize iCount)
 {
 
    set_size(iCount);
@@ -21,7 +21,7 @@ virtual_memory::virtual_memory(const void * pdata, memsize iCount)
 }
 
 
-virtual_memory::virtual_memory(const memory_base & s)
+paged_memory::paged_memory(const memory_base & s)
 {
 
    assign(s);
@@ -29,7 +29,7 @@ virtual_memory::virtual_memory(const memory_base & s)
 }
 
 
-virtual_memory::virtual_memory(const char * psz)
+paged_memory::paged_memory(const char * psz)
 {
 
    from_string(psz);
@@ -37,7 +37,7 @@ virtual_memory::virtual_memory(const char * psz)
 }
 
 
-virtual_memory::virtual_memory(memory_container * pcontainer, void * pdata, memsize size)
+paged_memory::paged_memory(memory_container * pcontainer, void * pdata, memsize size)
 {
 
    m_memory.m_pbStorage = nullptr;
@@ -53,7 +53,7 @@ virtual_memory::virtual_memory(memory_container * pcontainer, void * pdata, mems
 }
 
 
-virtual_memory::virtual_memory(memory_container * pcontainer, double dAllocationRateUp, ::u32 nAllocFlags)
+paged_memory::paged_memory(memory_container * pcontainer, double dAllocationRateUp, ::u32 nAllocFlags)
 {
 
    __UNREFERENCED_PARAMETER(nAllocFlags);
@@ -66,7 +66,7 @@ virtual_memory::virtual_memory(memory_container * pcontainer, double dAllocation
 }
 
 
-virtual_memory::~virtual_memory()
+paged_memory::~paged_memory()
 {
 
    if (m_memory.m_pbStorage != nullptr)
@@ -88,14 +88,14 @@ virtual_memory::~virtual_memory()
 }
 
 
-//byte * virtual_memory::detach()
+//byte * paged_memory::detach()
 //{
 
 //   byte * point_i32          = m_pbStorage;
 
 //   if(m_iOffset > 0)
 //   {
-//      virtual_memory mem(m_pdata, m_cbStorage);
+//      paged_memory mem(m_pdata, m_cbStorage);
 
 //      point = mem.detach();
 
@@ -118,26 +118,26 @@ virtual_memory::~virtual_memory()
 //}
 
 
-byte * virtual_memory::impl_alloc(memsize dwAllocation)
+byte * paged_memory::impl_alloc(memsize dwAllocation)
 {
 
-   return (byte *) ::MidAlloc((size_t)dwAllocation);
+   return (byte *) ::paged_allocate((size_t)dwAllocation);
 
 }
 
 
-byte * virtual_memory::impl_realloc(void * pdata, memsize dwAllocation)
+byte * paged_memory::impl_realloc(void * pdata, memsize dwAllocation)
 {
 
-   return (byte *) ::MidRealloc(pdata, (size_t)m_memory.m_iSize, (size_t)dwAllocation);
+   return (byte *) ::paged_reallocate(pdata, (size_t)m_memory.m_iSize, (size_t)dwAllocation);
 
 }
 
 
-void virtual_memory::impl_free(byte * pdata)
+void paged_memory::impl_free(byte * pdata)
 {
 
-   return ::MidFree(pdata);
+   return ::paged_free(pdata);
 
 }
 

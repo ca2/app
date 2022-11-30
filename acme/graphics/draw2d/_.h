@@ -1,7 +1,7 @@
-﻿#pragma once
+#pragma once
 
 
-
+using color32_t = unsigned int;
 
 
 inline byte clampAndConvert(double v)
@@ -30,10 +30,10 @@ inline byte clampAndConvert(double v)
 #include "_system_color.h"
 
 
-#include "opacity.h"
+//#include "opacity.h"
 
 
-#include "color.h"
+//#include "color.h"
 
 
 //#include "colorref_array.h"
@@ -50,10 +50,6 @@ inline byte clampAndConvert(double v)
 
 
 template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
-using colorrefmap = map < ::color::color, VALUE, typename argument_of < ::color::color >::type, ARG_VALUE >;
-
-
-using colorref_set = ::set < ::color::color >;
 
 
 

@@ -694,7 +694,7 @@ namespace user
       if(m_bOnEditUpdate)
          return;
 
-      __keep(m_bOnEditUpdate);
+      KEEP(m_bOnEditUpdate);
 
       ASSERT(pinteraction->get_control_type() == e_control_type_edit
              || pinteraction->get_control_type() == e_control_type_edit_plain_text);
@@ -1095,7 +1095,7 @@ namespace user
 
       ::pointer<::user::message>pusermessage(pmessage);
 
-      __keep(m_bOnLanguageChange);
+      KEEP(m_bOnLanguageChange);
 
       _017OnAppLanguage();
 

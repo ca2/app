@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-10-09 20:55 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-10-09 20:55 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -20,56 +20,62 @@ namespace acme
 } // namespace acme
 
 
+
+using factory_pointer = ::pointer < ::factory::factory >;
+using factory_map = ::string_map < ::factory_pointer >;
+using component_factory_map = ::string_map < ::factory_map >;
+
+
 class CLASS_DECL_ACME sub_system :
    virtual public ::particle
 {
+protected:
+   
+   
+   bool                                            m_bModulePath = false;
+   ::file::path                                    m_pathModule;
+   
+   bool                                            m_bModuleFolder = false;
+   ::file::path                                    m_pathModuleFolder;
+
 public:
 
-   //   int g_argc = 0;
-
-
-   //platform_char ** g_argv = nullptr;
-
-
-   ::e_display                      m_edisplay;
-   ::e_activation                   m_eactivation;
-
-   ::acme::acme * m_pacme;
-
-   int               m_argc = 0;
-
-   char ** m_argv = nullptr;
-   char ** m_envp = nullptr;
-
-   wchar_t ** m_wargv = nullptr;
-   wchar_t ** m_wenvp = nullptr;
-
-#ifdef WINDOWS
-
-   hinstance         m_hinstanceThis = nullptr;
-   hinstance         m_hinstancePrev = nullptr;
-   int               m_nCmdShow = -1000;
-
+   critical_section                                m_criticalsection;
+   
+   ::e_display                                     m_edisplay;
+   ::e_activation                                  m_eactivativation;
+   ::acme::acme *                                  m_pacme;
+   int                                             m_argc = 0;
+   char **                                         m_argv = nullptr;
+   char **                                         m_envp = nullptr;
+   
+#ifdef WINDOWS_DESKTOP
+   
+   wchar_t **                                      m_wargv = nullptr;
+   wchar_t **                                      m_wenvp = null
+   hinstance                                       m_hinstanceThis = nullptr;
+   hinstance                                       m_hinstancePrev = nullptr;
+   int                                             m_nCmdShow = -1;
+   
 #endif
-
-   ::block                          m_blockMatter;
-
-   ::critical_section               m_criticalsection;
-   ::acme::library_map              m_mapLibrary;
-   ::pointer<::factory::factory>                               m_pfactory;
-   ::pointer<atom_map < ::pointer<::factory::factory > > >     m_pmapFactory;
-   //::pointer < ::mutex >                                            m_pmutexComponentFactory;
-   ::pointer < string_map < string_map < ::pointer<::factory::factory >>>>       m_pmapComponentFactory;
+   
+   
+   ::block                                         m_blockMatter;
+   ::acme::library_map                             m_mapLibrary;
+   ::factory_pointer                               m_pfactory;
+   ::pointer < ::factory_map >                     m_pfactorymap;
+   ::pointer < ::component_factory_map >           m_pcomponentfactorymap;
 
 
-   int m_iProcessStatus = 0;
+   int                                             m_iProcessStatus = 0;
 
 
    sub_system(::acme::acme * pacme);
    ~sub_system();
-
-
-   //static sub_system * get();
+   
+   
+   ::file::path get_module_path();
+   ::file::path get_module_folder();
 
 
    void set_args(int argc, char ** argv, wchar_t ** wargv);
@@ -79,8 +85,13 @@ public:
    int * get_pargc();
    char *** get_pargv();
    char ** get_argv();
+   
+#ifdef WINDOWS
+   
    wchar_t *** get_pwargv();
    wchar_t ** get_wargv();
+   
+#endif
 
    inline ::count _get_argc() const { return m_argc; }
 
@@ -108,5 +119,7 @@ public:
    void factory_terminate();
 
    // void factory_close();
+   
+   ::factory::factory * get_factory(const ::atom & atomSource);
 
 };

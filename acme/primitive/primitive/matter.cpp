@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "matter.h"
 //#include "payload.h"
 #include "acme/constant/id.h"
@@ -68,6 +68,27 @@ matter::~matter()
 //
 //}
 
+
+::topic_pointer create_topic(::particle * pparticleCall, const ::atom & atom);
+
+
+::topic_pointer matter::create_topic(const ::atom & atom)
+{
+
+   return ::move(::create_topic(this, atom));
+
+}
+
+
+::extended_topic_pointer create_extended_topic(::particle * pparticleCall, const ::atom & atom);
+
+
+::extended_topic_pointer matter::create_extended_topic(const ::atom & atom)
+{
+
+   return ::move(::create_extended_topic(this, atom));
+
+}
 
 
 void matter::operator()(::topic* ptopic, ::context* pcontext)

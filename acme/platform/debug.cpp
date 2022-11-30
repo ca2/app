@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/constant/id.h"
+#include "acme/exception/extended_status.h"
 #ifdef WINDOWS
 #include <process.h>
 #elif defined(LINUX)
@@ -25,7 +26,7 @@ void debug_object_event_promisse_predicate()
 
    //::pointer<::matter>pparticle;
 
-   //__keep(pparticle, nullptr);
+   //KEEP(pparticle, nullptr);
    ////   // 4 arguments
    ////   o += { ok, id_text, [&](auto pparticle) { ASSERT(pparticle == &o); output_debug_string("o += ok, id_text, &o ...");  } };
 

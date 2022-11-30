@@ -22,6 +22,10 @@ class nano_window;
 }
 
 
+#include <CoreFoundation/CoreFoundation.h>
+#include <CoreGraphics/CoreGraphics.h>
+
+
 class nano_window_bridge :
    virtual public ::particle
 {

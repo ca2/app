@@ -5,6 +5,7 @@
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/single_lock.h"
 ////#include "acme/exception/exception.h"
+#include "acme/platform/_synchronization.h"
 #include "acme/platform/acme.h"
 #include "acme/primitive/string/str.h"
 #include <sys/wait.h>
@@ -256,7 +257,7 @@
 ////   if(iExitCode != 0)
 ////   {
 ////
-////      auto estatus = failed_errno_to_status(iExitCode);
+////      auto estatus = failed_errno_status(iExitCode);
 ////
 ////      throw ::exception(estatus);
 ////

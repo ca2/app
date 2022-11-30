@@ -9,7 +9,7 @@
 
 
 
-CLASS_DECL_ACME ::acme::system * get_system();
+//CLASS_DECL_ACME ::acme::system * get_system();
 
 
 namespace factory
@@ -46,14 +46,6 @@ namespace factory
 //    }
 
 
-    CLASS_DECL_ACME factory * get_factory()
-    {
-
-       return ::acme::acme::g_p->m_psubsystem->m_pfactory;
-
-    }
-
-
    factory::factory()
    {
 
@@ -65,26 +57,6 @@ namespace factory
    factory::~factory()
    {
 
-
-   }
-
-
-
-   CLASS_DECL_ACME factory * get_factory(const ::atom & atomSource)
-   {
-
-      auto & pfactory = (*::acme::acme::g_p->m_psubsystem->m_pmapFactory)[atomSource];
-
-      if (!pfactory)
-      {
-
-         auto psystem = ::get_system();
-         
-         psystem->__construct_new(pfactory);
-
-      }
-
-      return pfactory;
 
    }
 

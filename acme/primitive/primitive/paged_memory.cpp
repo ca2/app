@@ -1,5 +1,6 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "virtual_memory.h"
+#include "acme/memory/paged.h"
 
 
 virtual_memory::virtual_memory()

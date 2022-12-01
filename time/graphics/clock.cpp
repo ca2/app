@@ -37,7 +37,7 @@ namespace datetime
       void graphics::_001OnDraw(::draw2d::graphics * pgraphics)
       {
 
-         auto psystem = get_system()->m_papexsystem;
+         auto psystem = acmesystem()->m_papexsystem;
 
          auto pmathematics = ::mathematics::mathematics();
 

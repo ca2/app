@@ -38,7 +38,7 @@ namespace draw2d
       void on_initialize_particle() override;
       
       
-      inline ::aura::system* get_system();
+      //inline ::aura::system* acmesystem();
 
 
       inline bool is_set(::index iIndex) const { return m_baCalculated[0]; }

@@ -1,6 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "form.h"
 //#include "acme/filesystem/file/text_stream.h"
+#include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/string/parse.h"

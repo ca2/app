@@ -37,10 +37,9 @@ namespace aqua
    void system::common_construct()
    {
 
-      ::factory::add_factory_item < ::aqua::application, ::apex::application >();
-      ::factory::add_factory_item < ::aqua::session, ::apex::session >();
-      //::factory::add_factory_item < ::aqua::idpool, ::acme::idpool >();
-      //::factory::add_factory_item < ::aqua::multimedia >();
+      //factory()->add_factory_item < ::aqua::application, ::apex::application >();
+      //factory()->add_factory_item < ::aqua::idpool, ::acme::idpool >();
+      //factory()->add_factory_item < ::aqua::multimedia >();
 
    }
 
@@ -51,6 +50,10 @@ namespace aqua
       //auto estatus = 
       
       ::apex::system::initialize(pparticle);
+
+
+      factory()->add_factory_item < ::aqua::session, ::apex::session >();
+
 
       //if (!estatus)
       //{
@@ -64,24 +67,24 @@ namespace aqua
    }
 
 
-   void system::on_add_session(::apex::session* papexsession)
+   void system::on_add_session(::acme::session* papexsession)
    {
 
       ::apex::system::on_add_session(papexsession);
 
-      if (papexsession->m_iEdge == 0)
-      {
+      //if (papexsession->m_iEdge == 0)
+      //{
 
-         if (!m_paquasession)
-         {
+      //   if (!m_papex)
+      //   {
 
-            m_paquasession = papexsession->m_paquasession;
+      //      m_paquasession = papexsession->m_paquasession;
 
-         }
+      //   }
 
-      }
+      //}
 
-      papexsession->m_paquasystem = this;
+      //papexsession->m_paquasystem = this;
 
    }
 
@@ -307,7 +310,7 @@ namespace aqua
    void system::defer_audio()
    {
 
-      if(m_bAudio.is_true())
+      if(acmeapplication()->m_bAudio.is_true())
       {
 
          if (!m_paudio)
@@ -324,7 +327,7 @@ namespace aqua
 
             //}
 
-            m_bAudio = ::is_set(m_paudio);
+            acmeapplication()->m_bAudio = ::is_set(m_paudio);
 
             //return estatus;
 
@@ -340,7 +343,7 @@ namespace aqua
    bool system::has_audio()
    {
 
-      return !m_bAudio.undefined() && m_bAudio.is_true();
+      return !acmeapplication()->m_bAudio.undefined() && acmeapplication()->m_bAudio.is_true();
 
    }
 

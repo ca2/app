@@ -46,7 +46,7 @@ namespace base
 //      // void dump(dump_context & dumpcontext) const override;
 
 
-      ::base::system* get_system();
+      ::base::system* acmesystem();
       ::base::session* get_session();
 
 
@@ -158,7 +158,7 @@ namespace base
 //
 //
 //
-//      virtual void on_request(::create * pcreate) override;
+//      virtual void on_request(::request * prequest) override;
 //
 //
 //
@@ -518,7 +518,7 @@ namespace base
 //
 //      /// return true if this instance might continue execution
 //      /// bHandled true if some action was done in response to this memory_new additional instance creation
-//      virtual bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId);
+//      virtual bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId);
 //
 //      /// return true if this instance might continue execution
 //      /// bHandled true if some action was done in response to this memory_new additional instance creation
@@ -558,7 +558,7 @@ namespace base
 //      bool safe_is_running();
 //
 //
-//      //virtual void on_request(::create * pcreate) override;
+//      //virtual void on_request(::request * prequest) override;
 //
 //      // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
 //      // get/set serializables to user directory
@@ -855,7 +855,7 @@ namespace base
 //      //virtual i32 sync_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle = e_message_box_ok) override;
 //
 //
-//      //bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
+//      //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override;
 //
 //      //virtual bool process_exception(const ::exception & e) override;
 //
@@ -1156,7 +1156,7 @@ namespace base
 ////virtual void _001OnFileNew();
 //
 //
-////virtual void on_request(::create * pcreate);
+////virtual void on_request(::request * prequest) override;
 //
 ////::pointer<::aura::application>get_context_system();
 //

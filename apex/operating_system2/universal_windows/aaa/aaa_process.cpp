@@ -299,7 +299,7 @@ bool load_modules_diff(string_array & straOld, string_array & straNew, const cha
 
 
 
-#undef ::apex::get_system()
+#undef ::apexacmesystem()
 
 CLASS_DECL_APEX int ui_open_url(const char * pszUrl)
 {
@@ -308,7 +308,7 @@ CLASS_DECL_APEX int ui_open_url(const char * pszUrl)
 
    auto uri = ref memory_new ::winrt::Windows::Foundation::Uri(strUrl);
 
-   ::winrt::Windows::apex::get_system()::Launcher::LaunchUriAsync(uri);
+   ::winrt::Windows::apexacmesystem()::Launcher::LaunchUriAsync(uri);
 
    return 0;
 

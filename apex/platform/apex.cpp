@@ -415,8 +415,8 @@ void on_term_thread();
 ////
 ////      //::thread::g_pthreadmap = memory_new ::thread_map();
 ////
-//////      ::factory::add_factory_item < ::apex::system, ::acme::system >();
-//////      ::factory::add_factory_item < ::apex::context, ::acme::context >();
+//////      factory()->add_factory_item < ::apex::system, ::acme::system >();
+//////      factory()->add_factory_item < ::apex::context, ::acme::context >();
 ////
 ////
 //////#if OBJECT_TYPE_COUNTER

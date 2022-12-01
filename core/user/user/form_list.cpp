@@ -55,7 +55,7 @@ namespace user
    }
 
 
-   ::core::system* form_list::get_system()
+   ::core::system* form_listacmesystem()
    {
 
       return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;

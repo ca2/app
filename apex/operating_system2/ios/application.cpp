@@ -207,7 +207,7 @@ namespace apex
 //      ::window * puserinteraction = ::ios::window::FromHandlePermanent((oswindow) pdata);
 //      if(puserinteraction != nullptr)
 //         return puserinteraction;
-//      user::interaction_ptr_array wndptra = ::apex::get_system()->frames();
+//      user::interaction_ptr_array wndptra = ::apexacmesystem()->frames();
 //      for(i32 i = 0; i < wndptra.get_count(); i++)
 //      {
 //         if(wndptra[i].get_safe_handle() == (oswindow) pdata)
@@ -265,9 +265,9 @@ namespace apex
 //       */
 //
 //      //      string strExeName;
-//      //string strTitle = ::apex::get_system()->load_string("::apex::get_system()->title");
+//      //string strTitle = ::apexacmesystem()->load_string("::apexacmesystem()->title");
 //      // get the exe title from the full path name [no extension]
-//      //    strExeName = ::apex::get_system()->get_module_title();
+//      //    strExeName = ::apexacmesystem()->get_module_title();
 //
 //
 //
@@ -331,7 +331,7 @@ namespace apex
 //
 //         string strCmdLine          = pdata->m_strCommandLine;
 //
-////         ::apex::get_system()->m_strCmdLine = strCmdLine;
+////         ::apexacmesystem()->m_strCmdLine = strCmdLine;
 //
 //         SetCurrentHandles();
 //
@@ -351,7 +351,7 @@ namespace apex
 //      // handle critical errors and avoid Windows message boxes
 //      // xxx         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 //
-//      ::apex::get_system()->m_strCmdLine = strCmdLine;
+//      ::apexacmesystem()->m_strCmdLine = strCmdLine;
 //      //pApp->SetCurrentHandles();
 //      SetCurrentHandles();
 //

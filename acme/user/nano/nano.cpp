@@ -21,26 +21,26 @@ namespace nano
    }
 
 
-   //pointer< ::sequencer < ::conversation > > nano::nano()->message_box_sequencer(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+   //pointer< ::sequencer < ::conversation > > nano::nano()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
    //{
 
-   //   auto psequencer = acmenode()->nano()->message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
+   //   auto psequencer = acmenode()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
 
    //   return psequencer;
 
    //}
 
 
-   //pointer< ::sequencer < ::conversation > > nano::nano()->message_sequencer(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+   //pointer< ::sequencer < ::conversation > > nano::nano()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
    //{
 
-   //   auto psequencer = acmenode()->nano()->message_sequencer(strMessage, strTitle, emessagebox, strDetails);
+   //   auto psequencer = acmenode()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
 
    //   return psequencer;
 
    //}
 
-   pointer< ::sequencer < ::conversation > > nano::message_box_sequencer(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+   pointer< ::sequencer < ::conversation > > nano::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
    {
 
       auto pnode = acmenode();
@@ -52,7 +52,7 @@ namespace nano
    }
 
 
-   pointer< ::sequencer < ::conversation > > nano::exception_message_box_sequencer(const ::exception& exception, const ::string& strMessageParam, const ::string& strTitleParam, const ::e_message_box& emessagebox, const ::string& strDetailsParam)
+   pointer< ::sequencer < ::conversation > > nano::exception_message_box(const ::exception& exception, const ::string& strMessageParam, const ::string& strTitleParam, const ::e_message_box& emessagebox, const ::string& strDetailsParam)
    {
 
       string strExceptionDetails = exception.get_consolidated_details();
@@ -102,7 +102,7 @@ namespace nano
    }
 
 
-   pointer< ::sequencer < ::conversation > > nano::message_sequencer(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+   pointer< ::sequencer < ::conversation > > nano::message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
    {
 
       auto psequencer = acmenode()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails);
@@ -112,7 +112,7 @@ namespace nano
    }
 
 
-   pointer< ::sequencer < ::conversation > > nano::exception_message_sequencer(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+   pointer< ::sequencer < ::conversation > > nano::exception_message_console(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
    {
 
       string strExceptionDetails = exception.get_consolidated_details();

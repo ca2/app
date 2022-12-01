@@ -1,4 +1,4 @@
-extern HANDLE g_handleSystemHeap;
+﻿extern HANDLE g_handleSystemHeap;
 
 
 void * os_impl_alloc(size_t size)

@@ -120,7 +120,7 @@ inline ::f64 consume_floating(const char*& psz, const char* pszBegin, int iRadix
 
 template < typename FILE >
 class write_text_stream :
-   public FLAGS,
+   public PARTICLE_FLAGS,
    public print_formatting
 {
 public:
@@ -703,7 +703,7 @@ public:
 
 
 class read_sz_stream :
-   public FLAGS
+   public PARTICLE_FLAGS
 {
 public:
 

@@ -64,7 +64,7 @@ namespace axis
 
 
 
-      //virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::request * prequest) override;
 
 
 

@@ -65,7 +65,7 @@ i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
 #endif
 
 
-//::apex::system* object::get_system() const
+//::apex::system* objectacmesystem() const
 //{
 //
 //
@@ -182,10 +182,10 @@ void object::process_exit_status(const ::e_status & estatus)
       //
       //#endif
 
-      if (!get_system())
+      if (!acmesystem())
       {
 
-         acmesystem() = pparticle->get_system();
+         acmesystem() = pparticle->acmesystem();
 
       }
 

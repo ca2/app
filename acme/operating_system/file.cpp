@@ -1,4 +1,4 @@
-//
+﻿//
 //  file.cpp
 //  acme
 //
@@ -14,9 +14,9 @@
 void file_put_contents(const char * pszFilePath, const char * psz)
 {
    
-   auto psystem = ::get_system();
+   auto ptask = ::get_task();
    
-   psystem->m_pacmefile->put_contents(pszFilePath, psz);
+   ptask->acmefile()->put_contents(pszFilePath, psz);
    
 }
 

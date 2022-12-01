@@ -71,7 +71,7 @@
 //CLASS_DECL_AURA bool out_push_packet(WAVE_OUT_PACKET * ppacket)
 //{
 //
-//   return get_system()->m_spwaveout->out_push_packet(ppacket);
+//   return acmesystem()->m_spwaveout->out_push_packet(ppacket);
 //
 //}
 //
@@ -79,7 +79,7 @@
 //CLASS_DECL_AURA WAVE_OUT_PACKET * out_pop_packet(char chChannel)
 //{
 //
-//   return get_system()->m_spwaveout->out_pop_packet(chChannel);
+//   return acmesystem()->m_spwaveout->out_pop_packet(chChannel);
 //
 //}
 
@@ -89,7 +89,7 @@
 //LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
 //{
 //
-//   auto paudio = get_system()->audio();
+//   auto paudio = acmesystem()->audio();
 //
 //   return paudio->waveout_open(iChannel, pformat, pcallback);
 //

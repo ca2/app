@@ -220,7 +220,7 @@ namespace networking_bsd
 //   void address::set_address(::particle * pparticle, const string & host, const ::string & strService)
 //   {
 //
-//      auto psystem = pparticle->get_system();
+//      auto psystem = pparticle->acmesystem();
 //
 //      auto pnetworking = (::networking_bsd::networking *)psystem->m_papexsystem->networking()->m_p2;
 //

@@ -1,6 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "native.h"
-//#include "acme/filesystem/file/file.h"
+#include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/primitive/string/international.h"

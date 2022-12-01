@@ -77,7 +77,7 @@ namespace userex
    }
 
 
-   ::core::system* impact_host::get_system()
+   ::core::system* impact_hostacmesystem()
    { 
       
       return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; 

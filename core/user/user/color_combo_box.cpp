@@ -53,7 +53,7 @@ namespace user
    }
 
 
-   ::core::system* color_combo_box::get_system() 
+   ::core::system* color_combo_boxacmesystem() 
    {
       
       return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; 

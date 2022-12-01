@@ -1,4 +1,4 @@
-// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
+﻿// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
 // Merge with control_"topic" by camilo on day after ThomasBirthday2021 10:14
 // Created by camilo on 2021-02-04 18:05 <3ThomasBorregaardSorensen!!
 // Renamed to topic by camilo on 2021-02-04 18:05 <3ThomasBorregaardSorensen!!
@@ -13,6 +13,7 @@
 
 
 #include "acme/primitive/primitive/e_flag.h"
+#include "acme/platform/tracer.h"
 
 
 class extended_topic;
@@ -40,106 +41,10 @@ class extended_topic;
 
 using hsynchronization = void *;
 
-
-struct FLAGS
-{
-public:
-   
-   
-   ::e_flag                            m_eflagElement;
-   ::e_status                          m_estatus;
-
-
-   [[nodiscard]] inline bool has_flag(enum_flag eflag) const { return (m_eflagElement & eflag) == eflag; }
-   inline void set_flag(enum_flag eflag) { m_eflagElement = (enum_flag)((::u64)(m_eflagElement) | (::u64)(eflag)); }
-   inline void set_flag(enum_flag eflag, bool bSet) { if (bSet) set_flag(eflag); else clear_flag(eflag); }
-   inline void clear_flag(enum_flag eflag) { m_eflagElement = (enum_flag)((::u64)(m_eflagElement) & (~(::u64)(eflag))); }
-
-
-   inline void set_ok_flag() { set_flag(e_flag_success); clear_flag(e_flag_timeout); clear_flag(e_flag_failure); }
-   inline void set_nok(enum_flag estatusFailure = e_flag_failure) { clear_flag(e_flag_success); set_flag(estatusFailure); }
-   inline void set_modified_flag(bool bModified = true) { set_flag(e_flag_changed, bModified); }
-
-
-   inline void set_fail_flag() { set_flag(e_flag_failure); clear_flag(e_flag_success); }
-   inline void set_timed_out_flag() { set_flag(e_flag_timeout); }
-   inline void set_persistent_flag(bool bSet = true) { set_flag(e_flag_persist, bSet); }
-
-
-   [[nodiscard]] inline bool has_ok_flag() const { return has_flag(e_flag_success); }
-   [[nodiscard]] inline bool nok() const { return has_flag(e_flag_failure) || has_flag(e_flag_timeout); }
-   [[nodiscard]] inline bool has_timed_out_flag() { return has_flag(e_flag_timeout); }
-   [[nodiscard]] inline bool has_modified_flag() const { return has_flag(e_flag_changed); }
-   [[nodiscard]] inline bool has_persistent_flag() const { return has_flag(e_flag_persist); }
-
-   [[nodiscard]] inline bool has_shared_flag() const { return has_flag(e_flag_shared); }
-   inline void set_shared_flag(bool bSet = true) { set_flag(e_flag_shared, bSet); }
-
-
-   [[nodiscard]] inline bool has_finishing_flag() const { return has_flag(e_flag_finishing); }
-   inline void set_finishing_flag() { set_flag(e_flag_finishing); }
-   inline void clear_finishing_flag() { clear_flag(e_flag_finishing); }
-
-
-   [[nodiscard]] inline bool has_acquired_flag() const { return has_flag(e_flag_acquired); }
-   inline void set_acquired_flag() { set_flag(e_flag_acquired); }
-   inline void clear_acquired_flag() { clear_flag(e_flag_acquired); }
-
-   [[nodiscard]] inline bool has_own_synchronization_flag() const { return has_flag(e_flag_own_synchronization); }
-   inline void set_own_synchronization_flag(bool bSet = true) { set_flag(e_flag_own_synchronization, bSet); }
-   inline void clear_own_synchronization_flag() { clear_flag(e_flag_own_synchronization); }
-
-
-   [[nodiscard]] inline bool has_already_exists_flag() const { return has_flag(e_flag_already_exists); }
-   inline void set_already_exists_flag(bool bSet = true) { set_flag(e_flag_already_exists, bSet); }
-   inline void clear_already_exists_flag() { clear_flag(e_flag_already_exists); }
-
-
-   // [[nodiscard]] inline bool is_heap_allocated() const { return has_flag(e_flag_heap_allocated); }
-   // inline void set_heap_allocated() { set_flag(e_flag_heap_allocated); }
-   // inline void clear_heap_allocated() { clear_flag(e_flag_heap_allocated); }
-
-
-   [[nodiscard]] inline bool has_destroying_flag() const { return has_flag(e_flag_destroying); }
-   inline void set_destroying_flag() { set_flag(e_flag_destroying); }
-   inline void clear_destroying_flag() { clear_flag(e_flag_destroying); }
-
-
-   [[nodiscard]] inline bool has_storing_flag() const { return has_flag(e_flag_storing); }
-   [[nodiscard]] inline bool has_loading_flag() const { return !has_storing_flag(); }
-
-
-   inline void set_storing_flag() { set_flag(e_flag_storing); }
-   inline void set_loading_flag() { clear_flag(e_flag_storing); }
-
-
-   inline void defer_set_storing_flag() { if (!has_storing_flag()) set_storing_flag(); }
-   inline void defer_set_loading_flag() { if (!has_loading_flag()) set_loading_flag(); }
-
-
-   inline void set_statically_allocated_flag() { set_flag(e_flag_statically_allocated); }
-   inline void set_verbose_flag(bool bVerbose = true) { set_flag(e_flag_verbose, bVerbose); }
-   [[nodiscard]] inline bool has_verbose_flag() const { return has_flag(e_flag_verbose); }
-
-
-
-   [[nodiscard]] inline bool has_read_only_flag() const { return has_flag(e_flag_read_only); }
-   inline void set_read_only_flag() { set_flag(e_flag_read_only); }
-   inline void clear_read_only_flag() { clear_flag(e_flag_read_only); }
-
-   [[nodiscard]] inline bool has_owner_flag() const { return has_flag(e_flag_owner); }
-   inline void set_owner_flag() { set_flag(e_flag_owner); }
-   inline void clear_owner_flag() { clear_flag(e_flag_owner); }
-
-
-   inline bool is_status_ok() const { return m_estatus; }
-   inline bool has_failed_status() const { return !is_status_ok(); }
-
-
-};
+#include "particle_flags.h"
 
 struct PARTICLE :
-   public FLAGS
+   public PARTICLE_FLAGS
 {
 
 
@@ -216,6 +121,7 @@ public:
 
 
    ::acme::application * acmeapplication();
+   ::acme::session * acmesession();
 
 
    ::acme_file * acmefile();
@@ -242,7 +148,11 @@ public:
    ::file_context * file();
    ::file_system * filesystem();
 
-   ::factory::factory * factory();
+
+   virtual ::factory::factory_pointer & factory();
+   virtual ::factory::factory_pointer & factory(const ::string& strLibrary);
+   virtual ::factory::factory_pointer & factory(const ::string& strComponent, const ::string& strImplementation);
+   //::factory::factory* factory(const ::atom& atom);
 
    //virtual void handle(::topic * ptopic, ::context * pcontext);
 
@@ -377,6 +287,21 @@ public:
    virtual void trace_log_fatal(const char * pszFormat, ...);
 
 
+   inline tracer trace(enum_trace_level etracelevel) { return tracer(m_pcontext, etracelevel, trace_category()); }
+   inline tracer trace_log_information() { return tracer(m_pcontext, e_trace_level_information, trace_category()); }
+   inline tracer trace_log_warning() { return tracer(m_pcontext, e_trace_level_warning, trace_category()); }
+   inline tracer trace_log_error() { return tracer(m_pcontext, e_trace_level_error, trace_category()); }
+   inline tracer trace_log_fatal() { return tracer(m_pcontext, e_trace_level_fatal, trace_category()); }
+
+
+   inline tracer trace(enum_trace_level etracelevel, enum_trace_category etracecategory) { return tracer(m_pcontext, etracelevel, etracecategory); }
+   inline tracer trace_log_information(enum_trace_category etracecategory) { return tracer(m_pcontext, e_trace_level_information, etracecategory); }
+   inline tracer trace_log_warning(enum_trace_category etracecategory) { return tracer(m_pcontext, e_trace_level_warning, etracecategory); }
+   inline tracer trace_log_error(enum_trace_category etracecategory) { return tracer(m_pcontext, e_trace_level_error, etracecategory); }
+   inline tracer trace_log_fatal(enum_trace_category etracecategory) { return tracer(m_pcontext, e_trace_level_fatal, etracecategory); }
+
+
+
    virtual ::particle * clone() const;
 
 
@@ -442,6 +367,56 @@ public:
 
 
    [[nodiscard]] virtual bool should_run_async() const;
+
+
+   pointer < ::sequencer < ::conversation > > message_box(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
+
+   pointer < ::sequencer < ::conversation > > exception_message_box(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
+
+   pointer < ::sequencer < ::conversation > > message_console(const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
+
+   pointer < ::sequencer < ::conversation > > exception_message_console(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
+
+
+
+
+   virtual ::file_pointer get_file(const ::payload& payloadFile, const ::file::e_open& eopen);
+   //inline ::file_pointer get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
+   //inline ::file_pointer get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+
+
+   template < typename BASE_TYPE >
+   inline ::pointer<BASE_TYPE>__create(::factory::factory* pfactory = ::get_task_sub_system_factory());
+
+   template < typename BASE_TYPE >
+   inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom, ::factory::factory* pfactory = ::get_task_sub_system_factory());
+
+   template < typename TYPE >
+   inline ::pointer<TYPE>__create_new();
+
+   //template < typename BASE_TYPE >
+   //inline void __raw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory = ::get_task_sub_system_factory());
+
+   template < typename BASE_TYPE >
+   inline void __defer_construct(::pointer<BASE_TYPE>& ptype, ::factory::factory* pfactory = ::get_task_sub_system_factory());
+
+   template < typename TYPE >
+   inline void __defer_construct_new(::pointer<TYPE>& ptype);
+
+   template < typename BASE_TYPE >
+   inline void __construct(::pointer<BASE_TYPE>& ptype, ::factory::factory* pfactory = ::get_task_sub_system_factory());
+
+   template < typename BASE_TYPE, typename TYPE >
+   inline void __construct(::pointer<BASE_TYPE>& ptype, const ::pointer < TYPE >& p);
+
+   template < typename BASE_TYPE, typename TYPE >
+   inline void __construct(::pointer<BASE_TYPE>& ptype, TYPE* p);
+
+   template < typename BASE_TYPE >
+   inline void __id_construct(::pointer<BASE_TYPE>& ptype, const ::atom& atom, ::factory::factory* pfactory = ::get_task_sub_system_factory());
+
+   template < typename TYPE >
+   inline void __construct_new(::pointer<TYPE>& ptype);
 
 
    //virtual void to_string(string_exchange & str) const;
@@ -534,6 +509,44 @@ inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
       return pparticle->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+   catch (...)
+   {
+
+      ::output_debug_string("exception release pparticle->release() \n");
+
+   }
+
+   return -1;
+
+}
+
+
+template < typename T >
+inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+{
+
+   if (::is_null(p))
+   {
+
+      return -1;
+
+   }
+
+   try
+   {
+
+      auto i = p->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+      if (i <= 0)
+      {
+
+         p = nullptr;
+
+      }
+
+      return i;
 
    }
    catch (...)

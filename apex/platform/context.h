@@ -29,17 +29,14 @@ namespace apex
       //::pointer<::os_context>             m_poscontext;
 
 
-      string                              m_strLocale;
-      string                              m_strSchema;
 
 
       string_array                        m_straMatterLocatorPriority;
       string_array                        m_straMatterLocator;
 
       ::payload                           m_payloadFile;
-      __reference_array(::create)         m_createaPending;
-      __reference_array(::create)         m_createaHistory;
-      ::pointer<::create>              m_pcreate;
+      ::pointer_array < ::request >       m_requestaPending;
+      ::pointer_array < ::request >       m_requestaHistory;
 
 
       context();
@@ -49,15 +46,17 @@ namespace apex
       void initialize(::particle * pparticle) override;
 
 
-      virtual void on_command_create(::create* pcreate);
+      void request(::request * prequest) override;
 
-      void add_create(::create* pcreate);
+      void post_request(::request * prequest);
 
-      create * get_create();
+      bool on_idle() override;
+
+      bool post_next_pending_request();
 
       string get_store_server_base_url();
 
-      bool contains(::create* pcreate) const;
+      bool contains(::request * prequest) const;
 
       string command_line_text() const;
 

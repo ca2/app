@@ -2,7 +2,7 @@
 #include "library.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/platform/acme.h"
+//#include "acme/platform/acme.h"
 #include "acme/platform/system.h"
 //#include "system_impl.h"
 
@@ -139,7 +139,7 @@ namespace acme
    void library::open(const char* pszPath)
    {
 
-      auto psystem = get_system();
+      auto psystem = acmesystem();
 
       critical_section_lock synchronouslock(&psystem->m_psubsystem->m_criticalsection);
 
@@ -181,7 +181,7 @@ namespace acme
 
          //KEEP(s_plibraryLoading, this, nullptr);
 
-         m_plibrary = __node_library_open(pszPath, m_strMessage);
+         m_plibrary = acmesystem()->operating_system_library_open(pszPath, m_strMessage);
 
       //}
             
@@ -242,7 +242,7 @@ namespace acme
    //bool library::open_library(string strTitle)
    //{
 
-   //   auto psystem = get_system();
+   //   auto psystem = acmesystem();
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexRawLibrary);
 
@@ -417,7 +417,7 @@ namespace acme
 
       return m_strName;
 
-//      auto psystem = get_system();
+//      auto psystem = acmesystem();
 //
 //      synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 //
@@ -472,7 +472,7 @@ namespace acme
       }
 
 
-      auto psystem = get_system();
+      auto psystem = acmesystem();
 
       critical_section_lock synchronouslock(&psystem->m_psubsystem->m_criticalsection);
 
@@ -495,7 +495,7 @@ namespace acme
                   if(is_verbose_log())
                   {
 
-                     if (::get_system()->m_etracelevel <= e_trace_level_information)
+                     if (acmesystem()->m_etracelevel <= e_trace_level_information)
                      {
 
                         output_debug_string("Closing library : " + m_strName + "\n");
@@ -504,7 +504,7 @@ namespace acme
 
                   }
 
-                  bOk = ::__node_library_close(m_plibrary);
+                  bOk = acmesystem()->operating_system_library_close(m_plibrary);
 
                   m_plibrary = nullptr;
 
@@ -536,7 +536,7 @@ namespace acme
 //   string library::get_app_id(const char * pszAppName)
 //   {
 //
-//      auto psystem = get_system();
+//      auto psystem = acmesystem();
 //
 //      synchronous_lock synchronouslock(&psystem->m_pmutexRawLibrary);
 //
@@ -596,7 +596,7 @@ namespace acme
 //   string library::get_app_name(const char * pszAppId)
 //   {
 //
-//      auto psystem = get_system();
+//      auto psystem = acmesystem();
 //
 //      synchronous_lock synchronouslock(&psystem->m_pmutexRawLibrary);
 //
@@ -658,7 +658,7 @@ namespace acme
    //::pointer<::object>library::new_application(const ::string & strAppId)
    //{
 
-   //   auto psystem = get_system();
+   //   auto psystem = acmesystem();
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexRawLibrary);
 
@@ -753,7 +753,7 @@ namespace acme
 //   void library::get_app_list(string_array & stra)
 //   {
 //
-//      auto psystem = get_system();
+//      auto psystem = acmesystem();
 //
 //      synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 //
@@ -826,7 +826,7 @@ namespace acme
    //bool library::contains_app(const char * pszAppId)
    //{
 
-   //   auto psystem = get_system();
+   //   auto psystem = acmesystem();
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
@@ -842,7 +842,7 @@ namespace acme
    //string library::get_root()
    //{
 
-   //   //auto psystem = get_system();
+   //   //auto psystem = acmesystem();
 
    //   //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
@@ -861,7 +861,7 @@ namespace acme
    //void library::get_create_impact_id_list(::array < ::atom > & ida)
    //{
 
-   //   auto psystem = get_system();
+   //   auto psystem = acmesystem();
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
@@ -873,7 +873,7 @@ namespace acme
    bool library::is_opened()
    {
 
-      //auto psystem = get_system();
+      //auto psystem = acmesystem();
 
       //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
@@ -893,34 +893,34 @@ namespace acme
    void * library::raw_get(const char * pszEntryName)
    {
 
-      auto psystem = get_system();
+      auto psystem = acmesystem();
 
       critical_section_lock synchronouslock(&psystem->m_psubsystem->m_criticalsection);
 
-      return __node_library_raw_get(m_plibrary,pszEntryName);
+      return acmesystem()->operating_system_library_raw_get(m_plibrary,pszEntryName);
 
    }
 
    
-   ::pointer<::factory::factory>library::create_factory()
+   void library::create_factory(::pointer<::factory::factory>& pfactory)
    {
 
       string strName = m_strName;
 
       //INFORMATION("library::create_factory \""+strName+"\": starting...");
 
-      auto pfactory = ::factory::get_factory(strName);
+      //auto pfactory = factory(strName);
 
-      if (!pfactory)
-      {
+      //if (!pfactory)
+      //{
 
-         FORMATTED_INFORMATION("library::create_factory ::factory::get_factory(\"%s\") failed!!", strName.c_str());
+      //   FORMATTED_INFORMATION("library::create_factory factory(\"%s\") failed!!", strName.c_str());
 
-         throw ::exception(error_wrong_state);
+      //   throw ::exception(error_wrong_state);
 
-      }
+      //}
 
-      //INFORMATION("library::create_factory ::factory::get_factory(\""+strName+"\") succeeded!!");
+      //INFORMATION("library::create_factory factory(\""+strName+"\") succeeded!!");
 
       if (!m_pfnFactory)
       {
@@ -954,11 +954,13 @@ namespace acme
 
       }
 
+      __defer_construct_new(pfactory);
+
       m_pfnFactory(pfactory);
 
       FORMATTED_INFORMATION("%s_factory succeeded!",strName.c_str());
 
-      return pfactory;
+      //return pfactory;
 
    }
 

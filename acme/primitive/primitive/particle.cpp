@@ -1,13 +1,15 @@
-// Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "type.h"
 #include "factory.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/parallelization/single_lock.h"
+#include "acme/platform/application.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/context.h"
 #include "acme/platform/system.h"
+#include "acme/user/nano/nano.h"
 //#include "acme/primitive/primitive/payload.h"
 
 
@@ -28,9 +30,9 @@ void particle::initialize(::particle * pparticle)
 
       m_pcontext = pparticle->m_pcontext;
 
-   }
+      on_initialize_particle();
 
-   on_initialize_particle();
+   }
 
 }
 
@@ -255,28 +257,15 @@ void particle::on_initialize_particle()
 ::acme::application * particle::acmeapplication()
 {
 
-   if (m_pcontext && m_pcontext->m_pacmeapplication)
-   {
+   return m_pcontext ? m_pcontext->m_pacmeapplication : nullptr;
 
-      return m_pcontext->m_pacmeapplication;
+}
 
-   }
 
-   if (acmesystem()->m_pacmeapplicationMain)
-   {
+::acme::session * particle::acmesession()
+{
 
-      return acmesystem()->m_pacmeapplicationMain;
-
-   }
-
-   if (acmesystem()->m_pacmeapplicationStartup)
-   {
-
-      return acmesystem()->m_pacmeapplicationStartup;
-
-   }
-
-   return nullptr;
+   return m_pcontext ? m_pcontext->m_pacmesession : nullptr;
 
 }
 
@@ -392,11 +381,12 @@ void particle::on_initialize_particle()
 }
 
 
-
 ::apex::application * particle::apexapplication()
 {
 
-   return m_pcontext->m_papexapplication;
+   auto pacmeapplication = acmeapplication();
+
+   return ::is_set(pacmeapplication) ? pacmeapplication->m_papexapplication : nullptr;
 
 }
 
@@ -433,10 +423,26 @@ void particle::on_initialize_particle()
 }
 
 
-::factory::factory * particle::factory()
+::factory::factory_pointer & particle::factory()
 {
 
-   return &acmesystem()->m_psubsystem->m_factory;
+   return acmesystem()->m_psubsystem->factory();
+
+}
+
+
+::factory::factory_pointer & particle::factory(const ::string & strLibrary)
+{
+
+   return acmesystem()->m_psubsystem->factory(strLibrary);
+
+}
+
+
+::factory::factory_pointer& particle::factory(const ::string& strComponent, const ::string& strImplementation)
+{
+
+   return acmesystem()->m_psubsystem->factory(strComponent, strImplementation);
 
 }
 
@@ -923,7 +929,7 @@ void particle::_wait()
    if (::is_null(ptask))
    {
 
-      ptask = ::get_system();
+      ptask = acmesystem();
 
    }
 
@@ -991,7 +997,7 @@ void particle::_wait()
    if (::is_null(ptask))
    {
 
-      ptask = ::get_system();
+      ptask = acmesystem();
 
    }
 
@@ -1363,7 +1369,7 @@ CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wPa
    if (::is_null(pparticleCall))
    {
 
-      auto psystem = ::get_system();
+      auto psystem = pparticle->acmesystem();
 
       auto ptopic = psystem->create_topic(atom);
 
@@ -1809,6 +1815,49 @@ void particle::kick_idle()
 
 }
 
+
+
+
+::file_pointer particle::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
+{
+
+   return m_pcontext->get_file(payloadFile, eopen);
+
+}
+
+
+
+
+pointer < ::sequencer < ::conversation > > particle::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+{
+
+   return acmesystem()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
+
+}
+
+
+pointer < ::sequencer < ::conversation > > particle::exception_message_box(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+{
+
+   return acmesystem()->nano()->exception_message_box(exception, strMessage, strTitle, emessagebox, strDetails);
+
+}
+
+
+pointer < ::sequencer < ::conversation > > particle::message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+{
+
+   return acmesystem()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
+
+}
+
+
+pointer < ::sequencer < ::conversation > > particle::exception_message_console(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+{
+
+   return acmesystem()->nano()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails);
+
+}
 
 
 

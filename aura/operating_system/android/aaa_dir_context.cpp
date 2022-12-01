@@ -32,7 +32,7 @@ namespace android
 
       }
 
-      estatus = __refer(m_pdirsystem, ::aura::get_system()->m_pdirsystem);
+      estatus = __refer(m_pdirsystem, ::auraacmesystem()->m_pdirsystem);
 
       if (!estatus)
       {
@@ -41,7 +41,7 @@ namespace android
 
       }
       
-      estatus = __refer(m_pfilesystem, ::aura::get_system()->m_pfilesystem);
+      estatus = __refer(m_pfilesystem, ::auraacmesystem()->m_pfilesystem);
 
       if (!estatus)
       {
@@ -69,7 +69,7 @@ namespace android
 
       listing.add("/");
 
-      listing.m_straTitle.add("File ::aura::get_system()");
+      listing.m_straTitle.add("File ::auraacmesystem()");
 
       return listing;
 
@@ -840,7 +840,7 @@ namespace android
    //::file::path dir_context::module()
    //{
 
-   // return ::aura::get_system()->get_module_folder();
+   // return ::auraacmesystem()->get_module_folder();
 
    //}
 
@@ -848,7 +848,7 @@ namespace android
    //::file::path dir_context::ca2module()
    //{
    //
-   // return ::aura::get_system()->get_ca2_module_folder();
+   // return ::auraacmesystem()->get_ca2_module_folder();
    //
    //}
 
@@ -995,7 +995,7 @@ namespace android
 
       doc.load(pcontext->m_papexcontext->file()->as_string(appdata() / "configuration\\directory.xml"));
 
-      ::file::path pathInstall = ::aura::get_system()->m_pathCacheDir;
+      ::file::path pathInstall = ::auraacmesystem()->m_pathCacheDir;
 
       m_pdirsystem->m_pathInstall = pathInstall;
 

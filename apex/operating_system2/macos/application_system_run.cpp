@@ -29,7 +29,7 @@ void os_application_system_run(::apex::system * psystem)
 //void os_system_start()
 //{
 //
-//   ::apex::get_system()->begin();
+//   ::apexacmesystem()->begin();
 //   
 //}
 //

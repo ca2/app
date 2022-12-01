@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-01 23:14 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-01 23:14 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -14,7 +14,7 @@ CLASS_DECL_ACME void windowing_output_debug_string(const char* pszDebugString);
 CLASS_DECL_ACME void throw_encoding_exception(const char * pszMessage);
 
 
-CLASS_DECL_ACME::acme::system* get_system();
+//CLASS_DECL_ACME::acme::system* acmesystem();
 
 
 //inline bool __enum_is_failed(const ::e_status& e);

@@ -34,7 +34,7 @@ namespace user
    ::aura::application *form::get_app()
    {
 
-      return ::is_set(m_pcontext) ? m_pcontext->m_pauraapplication : nullptr;
+      return ::is_set(m_pcontext) ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
 
 
    }
@@ -43,19 +43,19 @@ namespace user
    ::aura::session *form::get_session()
    {
 
-      return ::is_set(m_pcontext) ? m_pcontext->m_paurasession : nullptr;
+      return ::is_set(m_pcontext) ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
 
 
    }
 
 
-   ::aura::system *form::get_system()
-   {
+   //::aura::system *formacmesystem()
+   //{
 
-      return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
+   //   return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
 
 
-   }
+   //}
 
 
    ::user::user *form::user()

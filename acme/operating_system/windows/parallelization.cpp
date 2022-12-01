@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/system.h"
 #include "acme/_operating_system.h"
 
@@ -72,15 +72,15 @@ bool on_init_timer_thread()
 }
 
 
-CLASS_DECL_ACME ::acme::system * get_system();
+//CLASS_DECL_ACME ::acme::system * acmesystem();
 
 
 CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure)
 {
 
-   auto psystem = get_system();
+   auto ptask = ::get_task();
 
-   psystem->fork([procedure]()
+   ptask->fork([procedure]()
       {
 
          procedure();

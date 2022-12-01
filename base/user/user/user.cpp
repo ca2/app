@@ -95,7 +95,7 @@ namespace base
    }
 
 
-   ::base::system* user::get_system()
+   ::base::system* useracmesystem()
    {
 
       return acmesystem() ? acmesystem()->m_pbasesystem : nullptr;
@@ -110,17 +110,17 @@ namespace base
       ::axis::user::init1();
 
 
-      ::factory::add_factory_item <::user::document >();
-      ::factory::add_factory_item <::simple_impact >();
-      ::factory::add_factory_item <::user::place_holder >();
+      factory()->add_factory_item <::user::document >();
+      factory()->add_factory_item <::simple_impact >();
+      factory()->add_factory_item <::user::place_holder >();
 
 
-      ::factory::add_factory_item <::simple_main_frame >();
-      ::factory::add_factory_item <::simple_tab_document >();
+      factory()->add_factory_item <::simple_main_frame >();
+      factory()->add_factory_item <::simple_tab_document >();
 
-      ::factory::add_factory_item <::user::tab_impact >();
+      factory()->add_factory_item <::user::tab_impact >();
 
-      ::factory::add_factory_item < ::user::form_impact >();
+      factory()->add_factory_item < ::user::form_impact >();
 
 
 
@@ -150,21 +150,21 @@ namespace base
 
       //}
 
-      ::factory::add_factory_item <::simple_scroll_bar, ::user::scroll_bar>();
+      factory()->add_factory_item <::simple_scroll_bar, ::user::scroll_bar>();
 
-      ::factory::add_factory_item <::user::menu_item >();
-      ::factory::add_factory_item <::user::menu >();
-      ::factory::add_factory_item <::user::menu_list_impact >();
-
-
-      ::factory::add_factory_item < ::user::split_layout  >();
-      ::factory::add_factory_item < ::user::split_bar  >();
+      factory()->add_factory_item <::user::menu_item >();
+      factory()->add_factory_item <::user::menu >();
+      factory()->add_factory_item <::user::menu_list_impact >();
 
 
-      ::factory::add_factory_item < simple_frame_window  >();
+      factory()->add_factory_item < ::user::split_layout  >();
+      factory()->add_factory_item < ::user::split_bar  >();
+
+
+      factory()->add_factory_item < simple_frame_window  >();
       //add_factory_item < prodevian_translucent_simple_frame_window  >();
-      ::factory::add_factory_item < ::user::document  >();
-      ::factory::add_factory_item < ::user::split_impact  >();
+      factory()->add_factory_item < ::user::document  >();
+      factory()->add_factory_item < ::user::split_impact  >();
 
 
       //auto estatus = 
@@ -1282,7 +1282,7 @@ namespace base
 
          output_error_message("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.",nullptr, e_message_box_ok);
 
-         throw exit_exception(get_system());
+         throw exit_exception(acmesystem());
 
       }
 

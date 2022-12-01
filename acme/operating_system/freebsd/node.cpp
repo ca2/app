@@ -14,7 +14,7 @@ namespace user
 //   void os_calc_dark_mode()
 //   {
 //
-//      auto pnode = ::acme::get_system()->node();
+//      auto pnode = ::acmeacmesystem()->node();
 //
 //      if (pnode)
 //      {
@@ -31,7 +31,7 @@ namespace user
 //
 //      string strTheme;
 //
-//      auto pnode = ::acme::get_system()->node();
+//      auto pnode = ::acmeacmesystem()->node();
 //
 //      if (pnode)
 //      {
@@ -48,7 +48,7 @@ namespace user
 //   CLASS_DECL_ACME void _os_process_user_theme(string strTheme)
 //   {
 //
-//      auto pnode = ::acme::get_system()->node();
+//      auto pnode = ::acmeacmesystem()->node();
 //
 //      if (pnode)
 //      {

@@ -160,7 +160,7 @@ namespace windowing
 //                           &m_colorBorderPress);
 //
 //      }
-//      else auto pnode = ::aura::get_system()->node();
+//      else auto pnode = ::auraacmesystem()->node();
 
                if (is_dark_mode())
 //      {
@@ -279,7 +279,7 @@ namespace windowing
 
       m_bInvalidated = true;
 
-      auto pwindowing = ::aura::get_system()->windowing();
+      auto pwindowing = ::auraacmesystem()->windowing();
 
       if(pwindowing)
       {
@@ -572,9 +572,9 @@ namespace windowing
 //
 //            m_pdraw = XftDrawCreate(pdisplay, m_window, m_pvisual, m_colormap);
 //
-//            ::aura::get_system()->delivery_for(id_os_user_theme, this);
+//            ::auraacmesystem()->delivery_for(id_os_user_theme, this);
 //
-//            //::aura::get_system()->(id_dark_mode);
+//            //::auraacmesystem()->(id_dark_mode);
 //
 //            //on_alloc_colors(pdisplay);
 //

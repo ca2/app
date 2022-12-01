@@ -14,7 +14,7 @@ string context::get_latest_build_number(const ::string & pszConfiguration, const
    if (strConfiguration.is_empty())
    {
 
-      strConfiguration = ::aura::get_system()->get_system_configuration();
+      strConfiguration = ::auraacmesystem()->get_system_configuration();
 
    }
 
@@ -510,7 +510,7 @@ pacmedirectory->system() / path;
 ::file::path context::side_get_matter_path(string strMatter)
 {
 
-   auto pdirsystem = ::aura::get_system()->m_pdirsystem;
+   auto pdirsystem = ::auraacmesystem()->m_pdirsystem;
 
    ::file::path pathResource = pdirsystem->m_pathInstall;
 
@@ -531,7 +531,7 @@ pacmedirectory->system() / path;
    if (::str().begins_eat_ci((string &) path, "appmatter://"))
    {
 
-      ::file::path pathCache = ::aura::get_system()->m_pdirsystem->m_pathLocalAppMatterFolder / path;
+      ::file::path pathCache = ::auraacmesystem()->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
       if ((path & ::file::e_flag_get_local_path)
          || (!(path & ::file::e_flag_bypass_cache) && acmepath()->is_file_or_dir(pathCache, nullptr)))
@@ -599,7 +599,7 @@ pacmedirectory->system() / path;
 
       }
 
-      if (!::aura::get_system()->m_pdirsystem->m_bMatterFromHttpCache)
+      if (!::auraacmesystem()->m_pdirsystem->m_bMatterFromHttpCache)
       {
 
          return "";
@@ -875,7 +875,7 @@ void context::locale_schema_matter(string_array & stra, const string_array & str
    else if (get_context_system())
    {
 
-      ::aura::get_system()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+      ::auraacmesystem()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
    }
 
@@ -900,7 +900,7 @@ string context::get_locale_schema_dir()
    else if (get_context_system())
    {
 
-      return ::aura::get_system()->get_locale_schema_dir();
+      return ::auraacmesystem()->get_locale_schema_dir();
 
    }
    else

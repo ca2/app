@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -363,7 +363,7 @@ CLASS_DECL_ACME char trace_level_char(enum_trace_level elevel);
 
 
 
-CLASS_DECL_ACME bool is_verbose();
+//CLASS_DECL_ACME bool is_verbose();
 
 
 

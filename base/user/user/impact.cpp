@@ -766,7 +766,7 @@ namespace user
    }
 
 
-   ::base::system * impact::get_system()
+   ::base::system * impactacmesystem()
    {
       
       return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 

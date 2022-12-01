@@ -271,7 +271,7 @@ pacmedirectory->is(strPath))
 
             if (crBk == 0)
             {
-               ::acme::get_system()->imaging().Createcolor_blend_ImageList(
+               ::acmeacmesystem()->imaging().Createcolor_blend_ImageList(
                   m_pil48,
                   m_pil48Hover,
                   rgb(255, 255, 240),
@@ -387,7 +387,7 @@ pacmedirectory->is(strPath))
          if (imagekey.m_cr == 0)
          {
 
-            ::acme::get_system()->imaging().color_blend(m_pimagelist[48], m_pimagelistHover[48], rgb(255, 255, 240), 64);
+            ::acmeacmesystem()->imaging().color_blend(m_pimagelist[48], m_pimagelistHover[48], rgb(255, 255, 240), 64);
 
          }
          else

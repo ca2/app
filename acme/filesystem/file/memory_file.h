@@ -2,7 +2,7 @@
 
 
 #include "acme/primitive/primitive/memory_container.h"
-//#include "file.h"
+#include "file.h"
 
 
 class memory_file;

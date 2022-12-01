@@ -41,7 +41,7 @@ namespace user
    }
 
 
-   ::core::system* form_list_impact::get_system()
+   ::core::system* form_list_impactacmesystem()
    {
 
       return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;

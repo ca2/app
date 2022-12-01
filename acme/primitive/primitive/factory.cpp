@@ -1,6 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 ////#include "acme/exception/exception.h"
-#include "acme/platform/acme.h"
+//#include "acme/platform/acme.h"
 #include "acme/platform/simple_log.h"
 #include "acme/platform/library.h"
 #include "acme/platform/system.h"
@@ -9,7 +9,7 @@
 
 
 
-//CLASS_DECL_ACME ::acme::system * get_system();
+//CLASS_DECL_ACME ::acme::system * acmesystem();
 
 
 namespace factory
@@ -74,7 +74,9 @@ namespace factory
       if (pfactory->m_plibrary)
       {
 
-         auto pfactoryImplicit = pfactory->m_plibrary->create_factory();
+         ::factory::factory_pointer pfactoryImplicit;
+            
+         pfactory->m_plibrary->create_factory(pfactoryImplicit);
 
          for (auto& pair : *pfactoryImplicit)
          {
@@ -91,7 +93,7 @@ namespace factory
    void factory::merge_to_global_factory() const
    {
 
-      ::factory::get_factory()->merge(this);
+      ((::factory::factory*)this)->::particle::factory()->merge(this);
 
    }
 
@@ -145,9 +147,9 @@ namespace factory
 //   void merge_library_to_global_factory(const ::atom & atomSource)
 //   {
 //
-//      auto & mapFactory = ::factory::get_factory()->m_mapFactory[atomSource];
+//      auto & mapFactory = factory()->m_mapFactory[atomSource];
 //
-//      auto & mapGlobalFactory = ::factory::get_factory()->m_mapGlobalFactory;
+//      auto & mapGlobalFactory = factory()->m_mapGlobalFactory;
 //
 //      for (auto& pair : mapFactory)
 //      {
@@ -244,7 +246,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //
 //   strLibrary = stra.implode("_");
 //
-//   auto plibrary = get_system()->get_library(strLibrary);
+//   auto plibrary = acmesystem()->get_library(strLibrary);
 //
 //   plibrary->add_factory_item();
 //
@@ -282,7 +284,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //inline ::pointer<BASE_TYPE>__create()
 //{
 //
-//   auto pfactory = ::factory::get_factory_item < BASE_TYPE >();
+//   auto pfactory = factory_item < BASE_TYPE >();
 //
 //   if (!pfactory)
 //   {
@@ -345,7 +347,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //inline ::pointer<BASE_TYPE>__id_create(const ::atom & atom)
 //{
 //
-//   auto pfactory = ::factory::get_factory_item(atom);
+//   auto pfactory = factory_item(atom);
 //
 //   if (!pfactory)
 //   {
@@ -697,7 +699,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //inline void __construct(::pointer<BASE_TYPE>& pusermessage)
 //{
 //
-//   auto & pfactory = ::factory::get_factory_item < BASE_TYPE >();
+//   auto & pfactory = factory_item < BASE_TYPE >();
 //
 //   if (pfactory)
 //   {
@@ -758,7 +760,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //inline void __id_construct(::pointer<BASE_TYPE>& pusermessage, const ::atom & atom)
 //{
 //
-//   auto pfactory = ::factory::get_factory_item(atom);
+//   auto pfactory = factory_item(atom);
 //
 //   if (!pfactory)
 //   {
@@ -949,7 +951,7 @@ namespace factory
    ::pointer < ::particle > factory::create(const ::string & strType)
    {
 
-      //auto psystem = get_system();
+      //auto psystem = acmesystem();
 
       //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
@@ -996,7 +998,7 @@ namespace factory
    bool factory::has_type(const ::string & strType) const
    {
 
-      //auto psystem = get_system();
+      //auto psystem = acmesystem();
 
       //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 

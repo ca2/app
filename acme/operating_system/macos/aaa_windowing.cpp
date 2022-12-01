@@ -419,7 +419,7 @@ void ns_main_async(dispatch_block_t block);
 //int_bool session_accepts_first_responder()
 //{
 //
-//   return ::acme::get_system()->get_session()->m_bAcceptsFirstResponder ? 1 : 0;
+//   return ::acmeacmesystem()->get_session()->m_bAcceptsFirstResponder ? 1 : 0;
 //
 //}
 //

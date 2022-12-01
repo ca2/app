@@ -11,7 +11,7 @@
 
 //extern string_map < ::pointer<::acme::library >> g_pmapLibrary;
 
-//extern ::pointer < ::mutex >* ::aura::get_system()->m_pmutexLibrary;
+//extern ::pointer < ::mutex >* ::auraacmesystem()->m_pmutexLibrary;
 
 
 //extern "C"
@@ -215,13 +215,13 @@ void __post_quit_message(i32 nExitCode)
 //string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
 
 
-//::pointer < ::mutex >* ::aura::get_system()->m_pmutexLibrary = nullptr;
+//::pointer < ::mutex >* ::auraacmesystem()->m_pmutexLibrary = nullptr;
 
 
 CLASS_DECL_AURA string_map < PFN_NEW_AURA_LIBRARY >& __get_new_aura_library()
 {
 
-   return ::aura::get_system()->m_mapNewAuraLibrary;
+   return ::auraacmesystem()->m_mapNewAuraLibrary;
 
 }
 
@@ -229,7 +229,7 @@ CLASS_DECL_AURA string_map < PFN_NEW_AURA_LIBRARY >& __get_new_aura_library()
 CLASS_DECL_AURA string_map < ::pointer<::acme::library >> __library()
 {
 
-   return ::aura::get_system()->m_mapLibrary;
+   return ::auraacmesystem()->m_mapLibrary;
 
 }
 
@@ -238,9 +238,9 @@ CLASS_DECL_AURA string_map < ::pointer<::acme::library >> __library()
 CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const ::string & psz)
 {
 
-   synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
-   auto ppair = ::aura::get_system()->m_mapNewAuraLibrary.plookup(psz);
+   auto ppair = ::auraacmesystem()->m_mapNewAuraLibrary.plookup(psz);
 
    if (::is_null(ppair))
    {
@@ -257,9 +257,9 @@ CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const ::string & p
 CLASS_DECL_AURA::acme::library& get_library(const ::string & psz)
 {
 
-   synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
-   return *::aura::get_system()->m_mapLibrary[psz];
+   return *::auraacmesystem()->m_mapLibrary[psz];
 
 }
 
@@ -267,7 +267,7 @@ CLASS_DECL_AURA::acme::library& get_library(const ::string & psz)
 CLASS_DECL_AURA void register_get_new_aura_library(const ::string & psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
 {
 
-   synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
    __get_new_aura_library()[psz] = pfnNewAuraLibrary;
 
@@ -277,7 +277,7 @@ CLASS_DECL_AURA void register_get_new_aura_library(const ::string & psz, PFN_NEW
 CLASS_DECL_AURA void register_library(const ::string & psz, ::acme::library* plibrary)
 {
 
-   synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
    __library()[psz] = plibrary;
 
@@ -487,7 +487,7 @@ void c_post_system_event(::u64 u, void* pparam)
    LPARAM lparam = (LPARAM)pparam;
 
 
-   ::aura::get_system()->post_message(e_message_event2, (WPARAM)u, lparam);
+   ::auraacmesystem()->post_message(e_message_event2, (WPARAM)u, lparam);
 
 
 }
@@ -509,9 +509,9 @@ CLASS_DECL_AURA void load_factory_library(string strLibrary)
 {
 
 
-   synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
-   ::pointer<::acme::library> plibrary = ::aura::get_system()->m_mapLibrary[strLibrary];
+   ::pointer<::acme::library> plibrary = ::auraacmesystem()->m_mapLibrary[strLibrary];
 
    if (!plibrary)
    {

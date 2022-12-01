@@ -67,7 +67,7 @@ namespace axis
 
 
 
-      virtual void on_request(::create * pcreate) override;
+      virtual void on_request(::request * prequest) override;
 
 
       //virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2);

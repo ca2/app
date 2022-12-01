@@ -48,7 +48,7 @@ void hyperlink::open_profile_link(string strUrl, string strProfile, string strTa
 {
 
 
-   ::aura::get_system()->open_profile_link(strUrl, strProfile, strTarget);
+   ::auraacmesystem()->open_profile_link(strUrl, strProfile, strTarget);
 
 }
 
@@ -58,7 +58,7 @@ void hyperlink::open_profile_link(string strUrl, string strProfile, string strTa
 //void hyperlink::sync_open_profile_link(string strUrl, string strProfile, string strTarget)
 //{
 //
-//   ::aura::get_system()->browser(strUrl, "", strProfile, strTarget);
+//   ::auraacmesystem()->browser(strUrl, "", strProfile, strTarget);
 //
 //}
 

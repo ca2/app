@@ -17,7 +17,7 @@ namespace base
    void initialize()
    {
 
-      ::factory::add_factory_item< ::base::system, ::acme::system>();
+      factory()->add_factory_item< ::base::system, ::acme::system>();
 
    }
 
@@ -174,7 +174,7 @@ namespace base
    }
 
    
-   ::base::system * application::get_system()
+   ::base::system * applicationacmesystem()
    {
 
       return ::is_set(acmesystem()) ? dynamic_cast <::base::system *> (acmesystem()) : nullptr;
@@ -190,7 +190,7 @@ namespace base
    }
 
 
-   ::base::system * session::get_system()
+   ::base::system * sessionacmesystem()
    {
 
       return ::is_set(acmesystem()) ? dynamic_cast <::base::system *> (acmesystem()) : nullptr;

@@ -27,30 +27,30 @@
 //       {
 // // xxx            C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "unknown matter at $%p, %u bytes long\n", pvData, nBytes));
 //       }
-//       else if(::acme::get_system()->m_pdumpcontext->GetDepth() > 0)
+//       else if(::acmeacmesystem()->m_pdumpcontext->GetDepth() > 0)
 //       {
 //          // long form
-//          pparticle->dump(*::acme::get_system()->m_pdumpcontext);
-//          *::acme::get_system()->m_pdumpcontext << "\n";
+//          pparticle->dump(*::acmeacmesystem()->m_pdumpcontext);
+//          *::acmeacmesystem()->m_pdumpcontext << "\n";
 //       }
 //       if(false) // else
 //       {
 //          //::matter & obj = *pparticle;
 //          // short form
 // // xxx         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "a %hs matter at $%p, %u bytes long\n", typeid(obj).name(), pvData, nBytes));
-//          *::acme::get_system()->m_pdumpcontext << sz;
+//          *::acmeacmesystem()->m_pdumpcontext << sz;
 //       }
 //    }
 //    catch(...)
 //    {
-//       *::acme::get_system()->m_pdumpcontext << sz;
+//       *::acmeacmesystem()->m_pdumpcontext << sz;
 //    }
 // }
 
 // i32 __cdecl __crt_report_hook(i32 nRptType, char *szMsg, i32* pResult)
 // {
 //    // no hook on asserts or when m_pFile is nullptr
-//    if (nRptType == _CRT_ASSERT || ::acme::get_system()->m_pdumpcontext->m_pfile == nullptr)
+//    if (nRptType == _CRT_ASSERT || ::acmeacmesystem()->m_pdumpcontext->m_pfile == nullptr)
 //       return false;
 
 //    ASSERT( pResult != nullptr );
@@ -61,9 +61,9 @@
 //    if( szMsg == nullptr )
 //       throw ::exception(error_bad_argument);
 
-//    // non-nullptr m_pFile, so go through ::acme::get_system()->m_pdumpcontext for the message
+//    // non-nullptr m_pFile, so go through ::acmeacmesystem()->m_pdumpcontext for the message
 //    *pResult = false;
-//    *::acme::get_system()->m_pdumpcontext << szMsg;
+//    *::acmeacmesystem()->m_pdumpcontext << szMsg;
 //    //Allow other report hooks to be called.
 //    return false;
 // }

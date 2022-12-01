@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "context.h"
@@ -76,7 +76,7 @@ namespace aura
 
       //e_thread                                        m_ethreadClose;
 
-      //EExclusiveInstance                              m_eexclusiveinstance;
+      //enum_exclusive_instance                              m_eexclusiveinstance;
 
       //string_map < ::pointer<::acme::exclusive >>    m_mapExclusive;
 
@@ -203,7 +203,7 @@ namespace aura
 
 
       ::aura::session* get_session();
-      ::aura::system* get_system();
+      //::aura::system* acmesystem();
 
 
 
@@ -269,7 +269,7 @@ namespace aura
 
 
 
-      virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::request * prequest) override;
 
 
 
@@ -631,7 +631,7 @@ namespace aura
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this memory_new additional instance creation
-      //virtual void on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
+      //virtual void on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override;
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this memory_new additional instance creation
@@ -671,7 +671,7 @@ namespace aura
       //bool safe_is_running();
 
 
-      //virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::request * prequest) override;
 
       //// name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
       //// get/set serializables to user directory
@@ -685,7 +685,7 @@ namespace aura
       //virtual bool assert_user_logged_in();
 
       //virtual void     do_request(::create * pcreate) override;
-      virtual void call_request(::create * pcreate) override;
+      //virtual void call_request(::create * pcreate) override;
 
 
       //virtual void process_message(::user::message * base) override;

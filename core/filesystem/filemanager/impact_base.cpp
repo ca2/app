@@ -47,7 +47,7 @@ filemanager_impact_base::~filemanager_impact_base()
 }
 
 
-::core::system* filemanager_impact_base::get_system()
+::core::system* filemanager_impact_baseacmesystem()
 {
 
    return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;

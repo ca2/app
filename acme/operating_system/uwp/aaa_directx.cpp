@@ -246,7 +246,7 @@ namespace universal_windows
       {
          OnChangeDpi(dpi);
 
-         //         ::acme::get_system()->acmesystem()->m_possystemwindow->m_bWindowSizeChange = true;
+         //         ::acmeacmesystem()->acmesystem()->m_possystemwindow->m_bWindowSizeChange = true;
 
       }));
 
@@ -263,7 +263,7 @@ namespace universal_windows
 
          m_dpi = dpi;
 
-         ::acme::get_system()->m_dpi = dpi;
+         ::acmeacmesystem()->m_dpi = dpi;
 
          m_size.cx = (::i32)m_window->Bounds.Width;
 
@@ -343,7 +343,7 @@ namespace universal_windows
 
       m_pimpl->m_puserinteraction->set_window_position(e_zorder_top, 0, 0, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
 
-      if (::acme::get_system()->m_bExperienceMainFrame)
+      if (::acmeacmesystem()->m_bExperienceMainFrame)
       {
 
          ::user::interaction_pointer_array children = m_pimpl->m_puserinteraction->m_uiptraChild;

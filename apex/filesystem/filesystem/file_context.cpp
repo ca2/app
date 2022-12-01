@@ -16,6 +16,7 @@
 #include "acme/primitive/primitive/url_domain.h"
 #include "acme/parallelization/event.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/parallelization/task_flag.h"
 #include "acme/platform/ini.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
@@ -293,7 +294,7 @@ bool file_context::exists(const ::file::path &pathParam)
 ::file::path file_context::module()
 {
 
-   auto psystem = get_system()->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    auto pfilesystem = psystem->m_pfilesystem;
 
@@ -305,7 +306,7 @@ bool file_context::exists(const ::file::path &pathParam)
 //::file::path file_context::ca2module()
 //{
 //
-//   auto psystem = get_system()->m_papexsystem;
+//   auto psystem = acmesystem()->m_papexsystem;
 //
 //   return psystem->m_pfilesystem->m_pathCa2Module;
 //
@@ -331,7 +332,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
                    bool bTryDelete)
 {
 
-   auto psystem = get_system()->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    synchronous_lock lockMachineEvent(psystem->synchronization());
 
@@ -785,7 +786,7 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
    catch (const ::exception & exception)
    {
 
-      auto psequencer = nano()->exception_message_sequencer(exception);
+      auto psequencer = nano()->exception_message_console(exception);
 
       psequencer->do_asynchronously();
 
@@ -2659,7 +2660,7 @@ string file_context::get_hash(const ::payload &payloadFile, enum_hash ehash)
 
    mem.set_size(1024 * 256);
 
-   auto psystem = get_system()->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    auto pcrypto = psystem->crypto();
 
@@ -2738,7 +2739,7 @@ void file_context::get_last_write_time(file_time_t *pfile_time, const string &st
 void file_context::init_system()
 {
 
-//   auto psystem = get_system()->m_papexsystem;
+//   auto psystem = acmesystem()->m_papexsystem;
 //
 //   auto estatus = psystem->m_pfilesystem->update_module_path();
 //
@@ -4008,7 +4009,7 @@ void file_context::touch(const ::file::path &path)
 //void file_context::update_module_path()
 //{
 //
-//   auto psystem = get_system()->m_papexsystem;
+//   auto psystem = acmesystem()->m_papexsystem;
 //
 //   auto estatus = psystem->m_pfilesystem->update_module_path();
 //

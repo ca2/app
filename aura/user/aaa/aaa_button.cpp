@@ -359,7 +359,7 @@ namespace user
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         class imaging & imaging = ::aura::get_system()->imaging();
+         class imaging & imaging = ::auraacmesystem()->imaging();
 
          imaging.color_blend(
          pgraphics,
@@ -939,7 +939,7 @@ namespace user
 
       }
 
-      class imaging & imaging = ::aura::get_system()->imaging();
+      class imaging & imaging = ::auraacmesystem()->imaging();
 
       ::rectangle rectangle = rectangleClient;
       pgraphics->color_blend_3dRect(rectangle,colorExt1TL,215,colorExt1BR,215);

@@ -118,10 +118,10 @@ namespace axis
 
       m_paxissystem = this;
 
-      ::factory::add_factory_item < ::axis::application, ::apex::application >();
-      ::factory::add_factory_item < ::axis::session, ::apex::session >();
-      //::factory::add_factory_item < ::axis::idpool, ::acme::idpool >();
-      ::factory::add_factory_item < ::geo::department >();
+      factory()->add_factory_item < ::axis::application, ::apex::application >();
+      factory()->add_factory_item < ::axis::session, ::apex::session >();
+      //factory()->add_factory_item < ::axis::idpool, ::acme::idpool >();
+      factory()->add_factory_item < ::geo::department >();
       //add_factory_item < ::imaging >();
 
       m_bSimpleMessageLoop = false;
@@ -160,7 +160,7 @@ namespace axis
 
       //}
 
-      axis_factory(::factory::get_factory());
+      axis_factory(factory());
 
       //return estatus;
 
@@ -223,7 +223,7 @@ namespace axis
 
       //}
 
-      ::factory::add_factory_item < ::database::field >();
+      factory()->add_factory_item < ::database::field >();
 
       //return true;
 

@@ -100,7 +100,7 @@ void * menu_shared::find_item(const char * pszParent, const char * pszId)
 void menu_shared::on_idle_update()
 {
 
-   auto psession = acmesystem()->m_paurasession;
+   auto psession = acmesession()->m_paurasession;
    
    auto puser = psession->user();
    

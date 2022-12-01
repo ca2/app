@@ -230,7 +230,7 @@ namespace account
 
          }
 
-         auto psystem = get_system()->m_paxissystem;
+         auto psystem = acmesystem()->m_paxissystem;
 
          bool bBadUser = strUser.is_empty()
             || !psystem->email().is_valid_public_address(strUser);
@@ -426,7 +426,7 @@ namespace account
 
       get_mod(straHash,straSource);
 
-      auto psystem = get_system()->m_paxissystem;
+      auto psystem = acmesystem()->m_paxissystem;
 
       m_strModHash = psystem->crypto()->md5(straHash.implode(";"));
 

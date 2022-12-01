@@ -212,19 +212,26 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
    if (dwReason == DLL_PROCESS_ATTACH)
    {
 
-      auto psystem = ::get_system();
+      auto ptask = ::get_task();
 
-      if (psystem)
+      if (ptask)
       {
 
-         auto pnode = psystem->acmenode();
+         auto psystem = ::get_task()->acmesystem();
 
-         if (pnode)
+         if (psystem)
          {
 
-            pnode->m_bUpdateCallstack = true;
+            auto pnode = psystem->acmenode();
 
-            //pnode->defer_initialize_callstack();
+            if (pnode)
+            {
+
+               pnode->m_bUpdateCallstack = true;
+
+               //pnode->defer_initialize_callstack();
+
+            }
 
          }
 

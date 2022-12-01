@@ -441,7 +441,7 @@ namespace ios
       void OnNcRButtonDown(::u32 nHitTest, const ::point_i32 & point);
       void OnNcRButtonUp(::u32 nHitTest, const ::point_i32 & point);
 
-      // ::aura::get_system() message handler member functions
+      // ::auraacmesystem() message handler member functions
       //void OnDropFiles(HDROP hDropInfo);
       void OnPaletteIsChanging(::user::interaction * pRealizeWnd);
       void OnSysChar(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);

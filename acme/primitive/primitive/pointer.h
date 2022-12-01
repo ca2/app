@@ -1,8 +1,9 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/primitive/ptr.h"
 
+CLASS_DECL_ACME ::factory::factory_pointer & get_task_sub_system_factory();
 
 #define TEMPLATE_TYPE typename __TEMPLATE_TYPE__ = nullptr_t
 #define TEMPLATE_ARG __TEMPLATE_TYPE__ t = nullptr
@@ -65,7 +66,7 @@ public:
 
 
    template < typename PARTICLE >
-   inline pointer(enum_create, PARTICLE * pparticle, ::factory::factory * pfactory = ::factory::get_factory()) :
+   inline pointer(enum_create, PARTICLE * pparticle, ::factory::factory * pfactory = ::get_task_sub_system_factory()) :
       m_p(nullptr),
       m_pparticle(nullptr)
    {
@@ -319,6 +320,8 @@ public:
 
    inline i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
+   inline i64 global_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+
    inline T * detach();
 
 
@@ -452,10 +455,10 @@ public:
    inline pointer < T > & create_new(OBJECT * pparticle);
 
    template < typename OBJECT >
-   inline pointer < T > & defer_create(OBJECT * pparticle, ::factory::factory * pfactory = ::factory::get_factory());
+   inline pointer < T > & defer_create(OBJECT * pparticle, ::factory::factory * pfactory = ::get_task_sub_system_factory());
 
    template < typename OBJECT >
-   inline pointer < T > & create(OBJECT * pparticle, ::factory::factory * pfactory = ::factory::get_factory());
+   inline pointer < T > & create(OBJECT * pparticle, ::factory::factory * pfactory = ::get_task_sub_system_factory());
 
    template < typename T2 >
    inline pointer < T > & clone(T2 * p);
@@ -1003,6 +1006,25 @@ inline i64 pointer <T>::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    m_p = nullptr;
 
    return ::release(m_pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+}
+
+
+
+template < class T >
+inline i64 pointer <T>::global_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+{
+
+   auto i = ::global_release(m_pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+   if (!m_pparticle)
+   {
+
+      m_p = nullptr;
+
+   }
+
+   return i;
 
 }
 

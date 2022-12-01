@@ -1,9 +1,10 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "channel.h"
 #include "acme/operating_system/message.h"
 #include "acme/platform/message.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/scoped_restore.h"
 //#include "apex/message.h"
 #include "apex/message/command.h"
 

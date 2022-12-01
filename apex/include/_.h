@@ -96,7 +96,7 @@ namespace apex
    //class apex;
 
 
-   //inline system * get_system() { return (system *) get_system()->layer(LAYERED_APEX); }
+   //inline system * acmesystem() { return (system *) acmesystem()->layer(LAYERED_APEX); }
 
 
 } // namespace apex
@@ -782,8 +782,8 @@ using object_ptra = pointer_array < ::matter >; // Please use just for keeping n
 class object_meta;
 
 
-#define __composite_array(TYPE) ::array < ::pointer<TYPE >>
-#define __reference_array(TYPE) ::array < ::pointer<TYPE >>
+//#define __composite_array(TYPE) ::array < ::pointer<TYPE >>
+//#define __reference_array(TYPE) ::array < ::pointer<TYPE >>
 
 namespace http
 {

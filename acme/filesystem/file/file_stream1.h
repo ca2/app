@@ -4,7 +4,7 @@
 //#include "binary_stream.h"
 //#include "acme/platform/system.h"
 //
-//inline auto get_app() { return ::get_system()->acmeapplication(); }
+//inline auto get_app() { return acmesystem()->acmeapplication(); }
 //
 
 //namespace file

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 ////#include "acme/primitive/primitive/object.h"
@@ -113,7 +113,7 @@ public:
 
    virtual ::file::path get_app_path(const ::string & strApp);
 
-   virtual void on_process_command(::create * pcommand);
+   virtual void on_process_request(::request * prequest);
 
    /// set["file_filter_specs"] : string array of file extensions (with dot)
    /// set["file_filter_names"] : string array of the file extensions titles

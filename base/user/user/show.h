@@ -38,7 +38,7 @@ namespace user
 
       ::base::application* get_app() { return ::user::impact::get_app(); }
       ::base::session* get_session() { return ::user::impact::get_session(); }
-      ::base::system* get_system() { return ::user::impact::get_system(); }
+      ::base::system* acmesystem() { return ::user::impactacmesystem(); }
       ::base::user* user() { return ::user::impact::user(); }
 
 

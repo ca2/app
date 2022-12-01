@@ -81,7 +81,7 @@ namespace filemanager
    }
 
 
-   ::core::system* document::get_system()
+   ::core::system* documentacmesystem()
    {
 
       return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;

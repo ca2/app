@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include  "apex/_.h"
@@ -7,7 +7,7 @@
 #include "_constant.h"
 
 
-//s#include "_struct.h"
+#include "acme/primitive/mathematics/c_number.h"
 
 
 CLASS_DECL_ACME ::critical_section * children_critical_section();

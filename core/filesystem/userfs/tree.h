@@ -33,7 +33,7 @@ namespace userfs
 
       ::core::application* get_app();
       ::core::session* get_session();
-      ::core::system* get_system();
+      ::core::system* acmesystem();
 
 
 #ifdef _DEBUG

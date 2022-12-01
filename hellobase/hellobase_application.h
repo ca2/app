@@ -25,7 +25,7 @@ namespace hellobase
       virtual void init_instance() override;
       virtual i32  exit_application() override;
 
-      virtual void on_request(::create * pcreate) override;
+      virtual void on_request(::request * prequest) override;
 
       virtual string get_helloaura() override;
 

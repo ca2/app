@@ -3,7 +3,7 @@
 #include <dlfcn.h>
 
 
-//CLASS_DECL_ACME ::acme::system * get_system();
+//CLASS_DECL_ACME ::acme::system * acmesystem();
 
 
 void * __node_library_open(const char * pszPath, string & strMessage);
@@ -18,7 +18,7 @@ void * __node_library_touch(const char * pszPath, string & strMessage)
 void * __node_library_open(const char * pszPath, string & strMessage)
 {
    
-   auto psystem = ::get_system();
+   auto psystem = acmesystem();
 
    string strPath(pszPath);
 

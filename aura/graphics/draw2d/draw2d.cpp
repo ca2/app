@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "lock.h"
+#include "acme/platform/application.h"
 #include "aura/graphics/image/save_image.h"
 #include "aura/graphics/image/array.h"
 #include "aura/graphics/image/image.h"
@@ -251,9 +252,7 @@ namespace draw2d
 
       //}
 
-      auto psystem = acmesystem()->m_paurasystem;
-
-      if (psystem->m_paurasystem->m_bWriteText)
+      if (acmeapplication()->m_bWriteText)
       {
 
          initialize_write_text();
@@ -1355,7 +1354,7 @@ void draw2d::emboss_predicate(
 
       //}
 
-      auto psystem = get_system();
+      auto psystem = acmesystem();
 
       //estatus = 
 
@@ -1386,7 +1385,7 @@ void draw2d::emboss_predicate(
       //if (::succeeded(estatus))
       //{
 
-      ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+      factory()->add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
       //}
 

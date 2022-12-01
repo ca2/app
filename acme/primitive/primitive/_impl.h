@@ -53,7 +53,7 @@ inline bool __enum_is_failed(const ::e_status & e)
 //inline ::image_pointer matter::get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred)
 //{
 //
-//   return get_system()->get_image(this, payloadFile, uTrait, pred);
+//   return acmesystem()->get_image(this, payloadFile, uTrait, pred);
 //
 //}
 
@@ -337,7 +337,7 @@ inline bool succeeded(const ::property & property)
 //   if (!pusermessage)
 //   {
 //
-//      auto & pfactory = ::factory::get_factory_item < BASE_TYPE >();
+//      auto & pfactory = factory_item < BASE_TYPE >();
 //
 //      if (!pfactory)
 //      {
@@ -396,7 +396,7 @@ inline bool succeeded(const ::property & property)
 //   if (!pusermessage)
 //   {
 //
-//      auto & pfactory = ::factory::get_factory_item < BASE_TYPE >();
+//      auto & pfactory = factory_item < BASE_TYPE >();
 //
 //      if (!pfactory)
 //      {
@@ -509,7 +509,7 @@ inline bool succeeded(const ::property & property)
 //inline void matter::__id_construct(::pointer<BASE_TYPE>& pusermessage, const ::atom & atom)
 //{
 //
-//   auto & pfactory = ::factory::get_factory_item(atom);
+//   auto & pfactory = factory_item(atom);
 //
 //   if (!pfactory)
 //   {
@@ -1289,11 +1289,11 @@ inline ::pointer < T > move_transfer(T* p) { return { e_move_transfer, p }; }
 //
 //   }
 //
-//   auto pgroup = get_system()->task_group(epriority);
+//   auto pgroup = acmesystem()->task_group(epriority);
 //
 //   synchronous_lock slGroup(pgroup->synchronization());
 //
-//   ///   auto ptool = get_system()->task_tool(op_fork_count);
+//   ///   auto ptool = acmesystem()->task_tool(op_fork_count);
 //
 //   if (pgroup == nullptr || pgroup->get_count() <= 1)
 //   {
@@ -1435,7 +1435,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //   if (!pcomposite)
 //   {
 //
-//      auto& pfactory = ::factory::get_factory_item < BASE_TYPE >();
+//      auto& pfactory = factory_item < BASE_TYPE >();
 //
 //      if (!pfactory)
 //      {
@@ -1568,7 +1568,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //inline void object::__id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom)
 //{
 //
-//   auto& pfactory = ::factory::get_factory_item(atom);
+//   auto& pfactory = factory_item(atom);
 //
 //   if (!pfactory)
 //   {

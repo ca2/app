@@ -141,7 +141,7 @@ string apple_get_executable_path()
 //void apple_on_app_activate()
 //{
 //
-//   ::acme::get_system()->call_subject(id_app_activated);
+//   ::acmeacmesystem()->call_subject(id_app_activated);
 //
 //}
 
@@ -149,7 +149,7 @@ string apple_get_executable_path()
 //void apple_on_new_file()
 //{
 //
-//   ::acme::get_system()->on_open_file(::e_type_empty, "");
+//   ::acmeacmesystem()->on_open_file(::e_type_empty, "");
 //
 //}
 
@@ -174,13 +174,13 @@ string apple_get_executable_path()
 //
 //         }
 //
-//         stra[i] = ::acme::get_system()->url().::url::decode(stra[i]);
+//         stra[i] = ::acmeacmesystem()->url().::url::decode(stra[i]);
 //
 //      }
 //
 //   }
 //
-//   ::acme::get_system()->defer_accumulate_on_open_file(stra, pszExtra);
+//   ::acmeacmesystem()->defer_accumulate_on_open_file(stra, pszExtra);
 //
 //}
 
@@ -198,7 +198,7 @@ string apple_get_executable_path()
 //   else if(iCount == 1)
 //   {
 //
-//      ::acme::get_system()->on_open_file(psza[0], pszExtra);
+//      ::acmeacmesystem()->on_open_file(psza[0], pszExtra);
 //
 //      ::free((void *) psza[0]);
 //
@@ -212,7 +212,7 @@ string apple_get_executable_path()
 //
 //      stra.c_add((char **) psza, iCount, false);
 //
-//      ::acme::get_system()->on_open_file(stra, pszExtra);
+//      ::acmeacmesystem()->on_open_file(stra, pszExtra);
 //
 //   }
 //

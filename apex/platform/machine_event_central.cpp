@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
@@ -108,7 +108,7 @@ bool machine_event_central::is_close_application()
 
    m_pmachineevent->read(&data);
 
-   auto psystem = get_system()->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    psystem->process_machine_event_data(&data);
 

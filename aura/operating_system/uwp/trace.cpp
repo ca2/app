@@ -55,7 +55,7 @@ static void TraceDDE(const ::string & lpszPrefix, const MSG* pMsg)
                                   szFormat, _countof(szFormat));
 
          // User defined clipboard formats have a range of 0xC000->0xFFFF
-         // ::aura::get_system() clipboard formats have other ranges, but no printable
+         // ::auraacmesystem() clipboard formats have other ranges, but no printable
          // format names.
       }
 

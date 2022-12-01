@@ -306,7 +306,7 @@ public:
 
 
 template <typename T>
-inline auto __auto(T* p)
+inline auto as_auto_pointer(T* p)
 {
 
    return auto_pointer < T >(p);

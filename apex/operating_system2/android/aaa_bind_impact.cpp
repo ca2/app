@@ -169,12 +169,12 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_apex_1on_1text_1composit
 
    size_t length = (size_t)env->GetStringLength(str);
 
-   if (::apex::get_system()->get_session()->get_focus_ui())
+   if (::apexacmesystem()->get_session()->get_focus_ui())
    {
 
       wd16string wstr(utf16, length);
 
-      ::apex::get_system()->get_session()->get_focus_ui()->on_text_composition(wstr);
+      ::apexacmesystem()->get_session()->get_focus_ui()->on_text_composition(wstr);
 
    }
    else
@@ -262,7 +262,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_apex_1size_1changed(JNIEnv *
 
    ::size s(g_posremote->getWidth(), g_posremote->getHeight());
 
-   ::user::interaction* puserinteractionHost = ::apex::get_system()->get_session()->m_puserinteractionHost;
+   ::user::interaction* puserinteractionHost = ::apexacmesystem()->get_session()->m_puserinteractionHost;
 
    puserinteractionHost->m_statePrevious2.m_point = p;
    puserinteractionHost->m_stateRequest2.m_point = p;

@@ -2480,7 +2480,7 @@ namespace user
    }
 
 
-   ::base::system * frame_window::get_system()
+   ::base::system * frame_windowacmesystem()
    {
       
       return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 

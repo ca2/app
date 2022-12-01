@@ -384,9 +384,9 @@ namespace aura
 //      */
 //
 //      //string strExeName;
-//      //string strTitle = ::aura::get_system()->load_string("::aura::get_system()->title");
+//      //string strTitle = ::auraacmesystem()->load_string("::auraacmesystem()->title");
 //      // get the exe title from the full path name [no extension]
-//      //strExeName = ::aura::get_system()->get_module_title();
+//      //strExeName = ::auraacmesystem()->get_module_title();
 //
 //      m_htask      =  ::GetCurrentThread();
 //

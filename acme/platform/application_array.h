@@ -1,15 +1,16 @@
-#pragma once
+﻿#pragma once
 
 
+#include "application.h"
 //#include "acme/primitive/collection/pointer_array.h"
 
 
-namespace apex
+namespace acme
 {
 
 
-   class CLASS_DECL_APEX application_array :
-      virtual public pointer_array < ::apex::application >
+   class CLASS_DECL_ACME application_array :
+      virtual public pointer_array < ::acme::application >
    {
    public:
 
@@ -24,11 +25,11 @@ namespace apex
       application_array & operator = (const application_array & a);
       application_array & operator = (application_array && a);
 
-      ::apex::application * find_by_app_name(string strAppName);
+      ::acme::application * find_by_app_id(const ::string & strAppId);
 
-      ::apex::application * find_running_defer_try_quit_damaged(string strAppName);
+      ::acme::application * find_running_defer_try_quit_damaged(const string & strAppid);
 
-      bool lookup(string strAppName, ::pointer<::apex::application>& papp);
+      bool lookup(const string & strAppId, ::pointer<::acme::application>& papp);
 
 
    };

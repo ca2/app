@@ -170,7 +170,7 @@ namespace geo
          catch (const ::exception & exception)
          {
 
-            auto psequencer = this->nano()->exception_message_box_sequencer(exception);
+            auto psequencer = this->nano()->exception_message_box(exception);
 
             psequencer->do_asynchronously();
 
@@ -180,7 +180,7 @@ namespace geo
 
             ::exception exception(error_catch_all_exception);
 
-            auto psequencer = this->nano()->exception_message_box_sequencer(exception);
+            auto psequencer = this->nano()->exception_message_box(exception);
 
             psequencer->do_asynchronously();
 
@@ -565,7 +565,7 @@ namespace geo
 
       string strUrl = "http://api.openweathermap.org/data/2.5/weather?atom=" + ::as_string(pcity->m_iId) + "&APPID=" + string(pszId);
 
-      auto psystem = get_system()->m_paxissystem;
+      auto psystem = acmesystem()->m_paxissystem;
 
       string strGetUrl = "https://ca2.software/api/account/openweather?request=" + ::url::encode(strUrl);
 
@@ -605,7 +605,7 @@ namespace geo
    bool  department::locality_sunset(string strCountry, string strLocality, int& iRise, int& iSet)
    {
 
-      auto psystem = get_system()->m_paxissystem;
+      auto psystem = acmesystem()->m_paxissystem;
 
       auto pcity = psystem->geo().openweather_find_city(strLocality + ", " + strCountry);
 
@@ -672,7 +672,7 @@ namespace geo
 
       //    double dLon;
 
-      auto psystem = get_system()->m_paxissystem;
+      auto psystem = acmesystem()->m_paxissystem;
 
       auto pcity = psystem->geo().openweather_find_city(strQ);
 

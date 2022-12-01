@@ -3,6 +3,7 @@
 //#include "file_time.h"
 #include "date_span.h"
 #include "earth_gregorian_time.h"
+#include "acme/platform/definition.h"
 #include "acme/primitive/datetime/_string.h"
 //#include "acme/operating_system/time.h"
 #include "acme/exception/not_implemented.h"
@@ -141,7 +142,7 @@ namespace earth
    time::time(const file_time & file_time)
    {
 
-      //auto pnode = get_system()->node();
+      //auto pnode = acmesystem()->node();
 
       file_time_to_time((time_t *)&m_i, &file_time.m_filetime);
 
@@ -861,7 +862,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
 //file_time __file_time(const ::earth::time & time)
 //{
 //
-//   auto pnode = get_system()->node();
+//   auto pnode = acmesystem()->node();
 //
 //   SYSTEMTIME systemtime;
 //

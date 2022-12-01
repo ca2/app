@@ -1,11 +1,12 @@
-// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSørensen!!
+﻿// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
 #include "sub_system.h"
-#include "main.h"
+//#include "acme.h"
 #include "context.h"
 #include "plane_system.h"
+#include "application_flags.h"
 #include "acme/memory/counter.h"
 #include "acme/parallelization/_types.h"
 #include "acme/primitive/collection/map.h"
@@ -17,16 +18,56 @@ namespace acme
 
 
    class CLASS_DECL_ACME system :
-      virtual public ::object,
-      virtual public ::main,
+      //virtual public ::object,
       virtual public ::acme::context,
-      virtual public ::task,
+      //virtual public ::task,
       virtual public ::plane_system
    {
    public:
 
-
+      //::APPLICATION_FLAGS                      m_applicationflags;
       sub_system *                                                      m_psubsystem;
+
+
+      ::apex::system* m_papexsystem;
+      ::aqua::system* m_paquasystem;
+      ::aura::system* m_paurasystem;
+      ::axis::system* m_paxissystem;
+      ::base::system* m_pbasesystem;
+      ::bred::system* m_pbredsystem;
+      ::core::system* m_pcoresystem;
+
+
+      ::acme::session_map                               m_sessionmap;
+
+
+      bool                                            m_bFinalizeIfNoSessionSetting;
+      bool                                            m_bFinalizeIfNoSession;
+
+
+      // FROM MAIN (Now APPLICATION_FLAGS : merged on other classes?)
+
+      ::i32_sz* m_pintstringLanguageResourceMap;
+      int                              m_iMatterFromHttpCache;
+
+      const char* m_pszMain;
+
+      // END FROM MAIN (Now APPLICATION_FLAGS)
+
+      // FROM ::main (Now main2)
+
+      ::file::path                     m_pathCacheDirectory;
+      class ::time                          m_timeStart;
+      class ::time                          m_timeAfterApplicationFirstRequest;
+
+      int                              m_iExitCode = 0;
+
+
+      // END FROM ::main (Now main2)
+
+
+      //::pointer<::acme::application>     acmeapplication();
+      // ::pointer<::acme::application>     acmeapplication();
 
 
       //::pointer<main_hold_base>                                         m_pmainholdbase;
@@ -46,10 +87,6 @@ namespace acme
       //::pointer < ::mutex >                                           m_pmutexFactory;
       //string_map < ::pointer<::factory::factory >>                  m_mapFactory;
       //string_map < ::pointer<::factory::factory >>                      m_mapFactory;
-
-
-      ::pointer < ::memory_counter >   m_pmemorycounter;
-
 
 
       pointer< string_map < ::pointer<::regular_expression::context >>>                        m_pmapRegularExpressionContext;
@@ -99,7 +136,7 @@ namespace acme
 
       enum_trace_level                                                  m_etracelevel;
       class ::time                                                        m_timeMainStart;
-      class ::time                                                        m_timeAfterApplicationFirstRequest;
+      //class ::time                                                        m_timeAfterApplicationFirstRequest;
       bool                                                              m_bIsReadyForUserInteraction;
 
 
@@ -118,7 +155,7 @@ namespace acme
       ~system() override;
       
       
-      void initialize_system(::sub_system * psubsystem);
+      void initialize_system();
 
 
       void os_construct();
@@ -215,6 +252,22 @@ namespace acme
 
       virtual ::u32 crc32(::u32 uCrc, const ::block & block);
 
+
+      virtual void create_session(index iEdge = 0);
+
+      virtual ::pointer<::acme::session>on_create_session(index iEdge);
+
+      virtual ::acme::session* session(index iEdge = 0);
+
+
+      virtual void add_session(index iEdge, ::acme::session* psession);
+      virtual void on_add_session(::acme::session* psession);
+      virtual void erase_session(index iEdge);
+
+
+      void on_request(::request* prequest) override;
+
+
       void process_exit_status(::particle * pparticle, const ::e_status & estatus);
 
 
@@ -224,7 +277,7 @@ namespace acme
       virtual ::pointer<::factory::factory> & folder_factory();
 
 
-      using main::system_construct;
+      //using main::system_construct;
 
 
       virtual void system_construct(::acme::application * pacmeapplicationStartup);
@@ -263,7 +316,7 @@ namespace acme
       virtual void on_start_system();
 
 
-      virtual void post_initial_request();
+      virtual void defer_post_initial_request();
 
 
       virtual void system_main();
@@ -291,28 +344,13 @@ namespace acme
 
       virtual class ::time get_update_poll_time(const ::atom & atom);
 
-      virtual ::acme::library * on_get_library(const ::string & pszLibrary);
 
-      //virtual void set_factory_global(const ::string &pszComponent, const ::string &pszImplementation);
-
-      //virtual ::pointer<::acme::library> open_component_library(const ::string &pszComponent, const ::string &pszImplementation);
-
-      virtual ::pointer<::acme::library> create_library(const ::string & strLibrary);
-
-      virtual ::pointer<::acme::library> & library(const ::string & str);
-
-      //virtual ::pointer<::acme::library>& library(const ::string& strComponent, const ::string& strImplementation);
+      virtual ::acme::library* on_get_library(const ::string& pszLibrary);
 
 
-      virtual ::pointer<::factory::factory> & factory(const ::string & strLibrary);
 
 
       //virtual ::pointer<::acme::library> & library(const ::string &strComponent, const ::string &strImplementation);
-
-
-      virtual ::pointer<::factory::factory> & factory(const ::string & strComponent, const ::string & strImplementation);
-
-      virtual ::pointer<::factory::factory> & impact_factory(const ::string & strComponent, const ::string & strImplementation);
 
 
       virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
@@ -519,6 +557,42 @@ namespace acme
       void destroy() override;
 
 
+
+
+
+      // [HERE] 
+      //  __node_library should be here at acme
+      // 
+      //  -- e.g. cannot lie inside a plugin, 
+      // because it is used to load a plugin
+      //
+      void* operating_system_library_open(const char* pszPath, string& strMessage);
+      void* operating_system_library_touch(const char* pszPath, string& strMessage);
+      void* operating_system_library_open_ca2(const char* pszPath, string& strMessage);
+      bool operating_system_library_close(void* plibrary);
+      void* operating_system_library_raw_get(void* plibrary, const char* pszEntryName);
+
+
+      //CLASS_DECL_ACME ::acme::library * lib(const char * psz);
+
+
+
+      ::file::path libfilename(const ::string& str);
+
+
+      //template < typename ENTRY >
+      //ENTRY* library_call(const char* pszLibrary, const char * pszEntry)
+      //{
+
+      //   return lib(pszLibrary)->get<decltype(&ENTRY)>(pszEntry));
+
+      //}
+
+//#define LIBCALL(library, entry)  (acmesystem()->lib(#library)->get<decltype(&entry)>(#entry))
+
+
+
+
    };
 
 
@@ -527,6 +601,9 @@ namespace acme
 
 
 } // namespace acme
+
+
+
 
 
 CLASS_DECL_ACME string get_latest_deployment_number(const ::string & strBranch);

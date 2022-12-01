@@ -25,10 +25,14 @@ namespace aqua
       void common_construct();
 
 
-      inline ::aqua::system* get_system();
+      //inline ::aqua::system* acmesystem();
 
 
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
+
+
+      //void on_initialize_application(::main* pmain) override;
+
       //virtual ::pointer<progress_control>show_progress(::user::interaction* puiParent, const char* pszTitle, ::count iProgressCount);
 
       void init2() override;

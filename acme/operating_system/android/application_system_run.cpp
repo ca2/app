@@ -78,7 +78,7 @@ string ca2_command_line()
 //
 //      //::set_main_user_itask(psystem->m_uThread);
 //
-//      //// ::acme::get_system()->m_XstrAppId = m_pmaindata->m_XstrAppId;
+//      //// ::acmeacmesystem()->m_XstrAppId = m_pmaindata->m_XstrAppId;
 //
 //      //if (!psystem->begin_synch())
 //      //{

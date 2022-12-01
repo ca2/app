@@ -1,10 +1,10 @@
-// From zip::file(or zip::infile) by camilo on 2021-11-10 15:46 BRT <3ThomasBorregaardSørensen!!
+﻿// From zip::file(or zip::infile) by camilo on 2021-11-10 15:46 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 //#include <zlib.h>
 //#include <zutil.h>
 #include "ioapi.h"
 #include "file_function_definitions.h"
-//#include "acme/filesystem/file/file.h"
+#include "acme/filesystem/file/file.h"
 
 
 voidpf c_zip_file_open_file_func(voidpf opaque, const char* filename, i32 mode);

@@ -137,7 +137,7 @@ namespace core
 
       ::core::application* get_app();
       ::core::session* get_session();
-      ::core::system* get_system();
+      ::core::system* acmesystem();
 
 
 
@@ -289,7 +289,7 @@ namespace core
       //virtual bool on_get_thread_name(string& strThreadName) override;
 
 
-      //virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::request * prequest) override;
 
 
       ////virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2);
@@ -393,7 +393,7 @@ namespace core
 
       //virtual void interactive_credentials(::account::credentials * pcredentials);
 
-      ////virtual void on_request(::create * pcreate) override;
+      ////virtual void on_request(::request * prequest) override;
 
       //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 

@@ -36,7 +36,7 @@ namespace filemanager
 
       ::core::application* get_app();
       ::core::session* get_session();
-      ::core::system* get_system();
+      ::core::system* acmesystem();
 
       
 //      // void assert_ok() const override;
@@ -71,7 +71,7 @@ namespace filemanager
       DECLARE_MESSAGE_HANDLER(_001OnUpdateNewFolder);
 
       virtual void defer_check_manager_id(string strNewManagerId = "");
-      virtual void on_request(::create * pcreate) override;
+      virtual void on_request(::request * prequest) override;
 
       virtual bool do_prompt_file_name(::payload & payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 

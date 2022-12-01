@@ -394,7 +394,10 @@ public:
 
    //// former user::server
    //virtual ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
-   virtual void on_request(::create* pcreate);
+   //virtual void on_request(::create* pcreate);
+   // 
+   virtual void main();
+   // 
    //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf);
    //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::atom atom = ::atom());
    //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& payloadFile);

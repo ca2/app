@@ -1355,7 +1355,7 @@ namespace windowing
    string_array display::get_wallpaper()
    {
 
-      auto psession = get_session();
+      auto psession = acmesession();
 
       ::count iMonitorCount = get_monitor_count();
 
@@ -1404,7 +1404,7 @@ namespace windowing
 
       }
 
-      auto psession = get_session();
+      auto psession = acmesession();
 
       ::count iMonitorCount = get_monitor_count();
 

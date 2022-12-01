@@ -23,7 +23,7 @@ namespace base
 
       ::base::application * get_app();
       ::base::session * get_session();
-      ::base::system * get_system();
+      ::base::system * acmesystem();
       ::base::user * user();
 
 

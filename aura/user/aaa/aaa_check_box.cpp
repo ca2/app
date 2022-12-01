@@ -366,7 +366,7 @@ namespace user
 
          auto pbrush = __create < ::draw2d::brush > ();
 
-         m_dPosition = ::sin((::aura::get_system()->math().get_pi() / 2.0) * dRate);
+         m_dPosition = ::sin((::auraacmesystem()->math().get_pi() / 2.0) * dRate);
 
          double dRate = m_dPosition;
 

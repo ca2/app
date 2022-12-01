@@ -18,7 +18,7 @@ namespace core
       ~session() override;
 
 
-      inline ::core::system* get_system() const;
+      inline ::core::system* acmesystem() const;
 
 
       void common_construct();

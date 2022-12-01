@@ -40,15 +40,11 @@ namespace acme
 
    class application; // apex(::apex::application) - tbs offloading his deep stack in ::acme::application(::acme):cstbs
 
-
-} // namespace acme
-
+   class session;
 
 
+   class application_container;
 
-
-namespace acme
-{
 
 
    class node;
@@ -56,6 +52,10 @@ namespace acme
 
 
 } // namespace acme
+
+
+class memory_counter;
+
 
 
 namespace acme_posix
@@ -336,7 +336,7 @@ namespace factory
 
    class factory;
 
-   CLASS_DECL_ACME ::factory::factory * get_factory();
+   //CLASS_DECL_ACME ::factory::factory * get_factory();
 
 
 } // namespace factory
@@ -875,6 +875,12 @@ namespace acme
 
    class static_start;
 
+   class session;
+
+   class system;
+
+   class application;
+
 
    extern CLASS_DECL_ACME bool g_bAcme;
 
@@ -1095,7 +1101,7 @@ struct block;
 class trait;
 
 
-class create;
+class request;
 
 
 class composite_base;
@@ -1594,6 +1600,8 @@ namespace message
 
 } // namespace message
 
+
+class request;
 
 
 namespace nano

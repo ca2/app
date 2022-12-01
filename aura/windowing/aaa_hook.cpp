@@ -21,7 +21,7 @@ namespace windowing
    {
 
 
-      auto pwindowing = ::aura::get_system()->windowing();
+      auto pwindowing = ::auraacmesystem()->windowing();
 
       auto estatus = pwindowing->hook(this);
 
@@ -40,7 +40,7 @@ namespace windowing
    void hook::unhook()
    {
 
-      auto pwindowing = ::aura::get_system()->windowing();
+      auto pwindowing = ::auraacmesystem()->windowing();
 
       auto estatus = pwindowing->unhook(this);
 

@@ -1,7 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "task.h"
 #include "manual_reset_event.h"
 ////#include "acme/exception/exception.h"
+#include "acme/platform/application.h"
 #include "acme/platform/system.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
@@ -171,6 +172,22 @@ bool task::is_current_task() const
 //}
 
 
+void task::post_request(::request* prequest)
+{
+
+   ::pointer < ::request > prequestTransport;
+
+   post_procedure([this, prequestTransport]
+      {
+
+         request(prequestTransport);
+
+      }
+   );
+
+}
+
+
 bool task::task_set_name(const char* pszTaskName)
 {
    
@@ -337,7 +354,7 @@ void task::main()
    catch(::exception & exception)
    {
 
-      message_box_synchronous(this, exception.m_strMessage, acmesystem()->m_strAppId, e_message_box_ok, exception.m_strDetails);
+      message_box_synchronous(this, exception.m_strMessage, acmeapplication()->m_strAppId, e_message_box_ok, exception.m_strDetails);
 
    }
    catch(...)
@@ -373,9 +390,10 @@ void task::run()
 
       strMoreDetails = "task::run";
 
-      exception_message_box(this, exception, strMoreDetails);
+      exception_message_box(exception, strMoreDetails);
 
    }
+
 
 }
 
@@ -2163,6 +2181,14 @@ task_guard::~task_guard()
    //}
 
    on_term_thread();
+
+}
+
+
+::factory::factory_pointer & get_task_sub_system_factory()
+{
+
+   return ::get_task()->acmesystem()->m_psubsystem->m_pfactory;
 
 }
 

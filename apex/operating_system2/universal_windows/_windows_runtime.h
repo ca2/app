@@ -1,7 +1,7 @@
 #pragma once
 
 
-#define _System ::apex::get_system()
+#define _System ::apexacmesystem()
 #define _Platform Platform
 #define _Application papp
 #define _Session get_session()

@@ -30,7 +30,7 @@ namespace android
 
       }
 
-      estatus = __refer(m_pdirsystem, ::aura::get_system()->m_pdirsystem);
+      estatus = __refer(m_pdirsystem, ::auraacmesystem()->m_pdirsystem);
 
       if (!estatus)
       {
@@ -39,7 +39,7 @@ namespace android
 
       }
 
-      estatus = __refer(m_pfilesystem, ::aura::get_system()->m_pfilesystem);
+      estatus = __refer(m_pfilesystem, ::auraacmesystem()->m_pfilesystem);
 
       if (!estatus)
       {

@@ -1,10 +1,10 @@
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 05/01/18.
+﻿//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 05/01/18.
 #pragma once
 
 
 
 //CLASS_DECL_ACME string get_command_line();
-CLASS_DECL_ACME bool is_verbose();
+//CLASS_DECL_ACME bool is_verbose();
 
 
 #if defined(MACOS)

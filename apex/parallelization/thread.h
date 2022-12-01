@@ -54,6 +54,7 @@ public:
    //bool                                               m_bBranchHandling : 1;
    ::pointer<message_queue>                        m_pmessagequeue;
    bool                                               m_bClosedMessageQueue;
+   ::pointer < ::request >             m_prequest;
 
 
    MESSAGE                                            m_message;
@@ -297,6 +298,7 @@ public:
 
    virtual void run() override;
    virtual void main() override;
+   virtual bool on_idle();
 
    virtual void on_pos_run_thread();
    void term_task() override;
@@ -425,13 +427,17 @@ public:
 
    virtual bool initialize_message_queue();
 
-   virtual void message_handler(::message::message * pmessage) override;
+   void message_handler(::message::message * pmessage) override;
 
-   virtual void do_request(::create * pcreate) override;
+   virtual void post_request(::request* prequest);
+
+   virtual void on_request_message(::request* prequest);
+
+   void request(::request * prequest) override;
 
    virtual ::e_status get_result_status();
 
-   virtual void delete_this() override;
+   void delete_this() override;
 
 
 protected:

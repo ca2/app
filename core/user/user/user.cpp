@@ -151,7 +151,7 @@ namespace core
    }
 
 
-   ::core::system* user::get_system()
+   ::core::system* useracmesystem()
    {
 
       return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
@@ -184,24 +184,24 @@ namespace core
 
       ::base::user::init1();
 
-      ::factory::add_factory_item < ::user::picture::picture_impl >();
+      factory()->add_factory_item < ::user::picture::picture_impl >();
 
-      ::factory::add_factory_item <::userex::top_edit_impact >();
-      ::factory::add_factory_item <::userex::top_toggle_impact >();
-      ::factory::add_factory_item <::userex::top_impact >();
+      factory()->add_factory_item <::userex::top_edit_impact >();
+      factory()->add_factory_item <::userex::top_toggle_impact >();
+      factory()->add_factory_item <::userex::top_impact >();
 
-      ::factory::add_factory_item < ::user::font_combo_box >();
+      factory()->add_factory_item < ::user::font_combo_box >();
 
-      ::factory::add_factory_item < simple_pane_document >();
-      ::factory::add_factory_item < simple_frame_window  >();
+      factory()->add_factory_item < simple_pane_document >();
+      factory()->add_factory_item < simple_frame_window  >();
 
 
-      ::factory::add_factory_item < ::simple_toolbar, ::user::toolbar >();
+      factory()->add_factory_item < ::simple_toolbar, ::user::toolbar >();
       
       
-      ::factory::add_factory_item < ::simple_toolbar >();
+      factory()->add_factory_item < ::simple_toolbar >();
 
-      ::factory::add_factory_item <::userex::dialog_frame >();
+      factory()->add_factory_item <::userex::dialog_frame >();
 
 
 
@@ -242,40 +242,40 @@ namespace core
       }
 
 
-      ::factory::add_factory_item < ::html::html >();
-      ::factory::add_factory_item < int_biunique  >();
-      ::factory::add_factory_item <::user::plain_edit >();
-      ::factory::add_factory_item <::user::place_holder >();
-      ::factory::add_factory_item <::user::combo_box >();
-      ::factory::add_factory_item <::user::check_box >();
-      ::factory::add_factory_item <::user::place_holder_container >();
+      factory()->add_factory_item < ::html::html >();
+      factory()->add_factory_item < int_biunique  >();
+      factory()->add_factory_item <::user::plain_edit >();
+      factory()->add_factory_item <::user::place_holder >();
+      factory()->add_factory_item <::user::combo_box >();
+      factory()->add_factory_item <::user::check_box >();
+      factory()->add_factory_item <::user::place_holder_container >();
 
-      ::factory::add_factory_item < ::account::impact >();
+      factory()->add_factory_item < ::account::impact >();
 
-      ::factory::add_factory_item < form_document >();
-      ::factory::add_factory_item < simple_child_frame  >();
-      ::factory::add_factory_item < ::userex::split_impact  >();
+      factory()->add_factory_item < form_document >();
+      factory()->add_factory_item < simple_child_frame  >();
+      factory()->add_factory_item < ::userex::split_impact  >();
 
-      ::factory::add_factory_item < ::simple_mesh_data  >();
-      ::factory::add_factory_item < ::simple_list_data  >();
-      ::factory::add_factory_item < ::simple_list_header_control  >();
+      factory()->add_factory_item < ::simple_mesh_data  >();
+      factory()->add_factory_item < ::simple_list_data  >();
+      factory()->add_factory_item < ::simple_list_header_control  >();
 
-      ::factory::add_factory_item <::user::tree >();
+      factory()->add_factory_item <::user::tree >();
 
 
-      ::factory::add_factory_item <simple_list_impact >();
-      ::factory::add_factory_item <::user::document >();
-      ::factory::add_factory_item <simple_printer_list_impact >();
+      factory()->add_factory_item <simple_list_impact >();
+      factory()->add_factory_item <::user::document >();
+      factory()->add_factory_item <simple_printer_list_impact >();
 
 
       
-      ::factory::add_factory_item <::user::show < ::user::plain_edit > >();
-      ::factory::add_factory_item <::user::show < ::user::tree > >();
-      ::factory::add_factory_item <::user::show < ::user::list > >();
+      factory()->add_factory_item <::user::show < ::user::plain_edit > >();
+      factory()->add_factory_item <::user::show < ::user::tree > >();
+      factory()->add_factory_item <::user::show < ::user::list > >();
 
-      ::factory::add_factory_item <menu_document >();
-      ::factory::add_factory_item <menu_frame >();
-      ::factory::add_factory_item <menu_impact >();
+      factory()->add_factory_item <menu_document >();
+      factory()->add_factory_item <menu_frame >();
+      factory()->add_factory_item <menu_impact >();
 
       auto psystem = acmesystem()->m_paurasystem;
 
@@ -450,13 +450,13 @@ namespace core
       //set_data_server(papp->dataserver());
 
 
-      ::factory::add_factory_item <::userex::pane_tab_impact >();
-      ::factory::add_factory_item <form_frame >();
-      ::factory::add_factory_item <form_child_frame >();
+      factory()->add_factory_item <::userex::pane_tab_impact >();
+      factory()->add_factory_item <form_frame >();
+      factory()->add_factory_item <form_child_frame >();
 
-      ::factory::add_factory_item <simple_toolbar >();
-      ::factory::add_factory_item <simple_toolbar, ::user::toolbar >();
-      ::factory::add_factory_item <::experience::orto_button >();
+      factory()->add_factory_item <simple_toolbar >();
+      factory()->add_factory_item <simple_toolbar, ::user::toolbar >();
+      factory()->add_factory_item <::experience::orto_button >();
 
       //estatus = 
       
@@ -2055,7 +2055,7 @@ namespace core
 
          }
 
-         ::factory::add_factory_item <::userex::color_impact >();
+         factory()->add_factory_item <::userex::color_impact >();
 
          auto ptemplate = __new(::user::multiple_document_template(
                                "main",
@@ -2082,9 +2082,9 @@ namespace core
 
          m_bFontSelInitialized = true;
 
-         ::factory::add_factory_item <::user::font_list >();
-         ::factory::add_factory_item <::user::font_list_impact >();
-         ::factory::add_factory_item <::userex::font_impact >();
+         factory()->add_factory_item <::user::font_list >();
+         factory()->add_factory_item <::user::font_list_impact >();
+         factory()->add_factory_item <::userex::font_impact >();
 
          auto ptemplate = __new(::user::multiple_document_template(
                                "main",

@@ -119,7 +119,7 @@ namespace user
    }
 
 
-   ::core::system* list::get_system()
+   ::core::system* listacmesystem()
    {
 
       return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;

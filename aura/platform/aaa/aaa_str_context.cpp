@@ -1061,7 +1061,7 @@
 //
 //         string_array straResult;
 //
-//         auto pregex = ::aura::get_system()->create_regular_expression("pcre", strExp);
+//         auto pregex = ::auraacmesystem()->create_regular_expression("pcre", strExp);
 //
 //         if(pregex->matches(straResult, psz) > 0)
 //         {

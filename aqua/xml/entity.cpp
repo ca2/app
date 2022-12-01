@@ -269,12 +269,12 @@ namespace xml
 
 /*   string XRef2Entity( const char * estr )
    {
-      return get_system()->m_entities.ref_to_entity( estr );
+      return acmesystem()->m_entities.ref_to_entity( estr );
    }
 
    string XEntity2Ref( const char * str )
    {
-      return get_system()->m_entities.entity_to_ref( str );
+      return acmesystem()->m_entities.entity_to_ref( str );
    }*/
 
 } // namespace xml

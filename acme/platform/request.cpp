@@ -1,13 +1,13 @@
 ﻿#include "framework.h"
-#include "apex/user/primitive.h"
+#include "request.h"
+#include "acme/user/user/element.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/application.h"
-#include "apex/platform/create.h"
 
 
-create::create()
+request::request()
 {
 
    m_bMakeVisible = true;
@@ -16,7 +16,7 @@ create::create()
 }
 
 
-void create::initialize_create(arguments arguments)
+void request::initialize_create(arguments arguments)
 {
 
    create_common_construct(::e_type_empty_argument, nullptr);
@@ -55,16 +55,16 @@ void create::initialize_create(arguments arguments)
          //}
 
       }
-      //else if(auto pcommandline = arg.cast<create>())
+      //else if(auto pcommandline = arg.cast<request>())
       //{
 
       //   m_pcommandline = pcommandline;
 
       //}
-      //else if(auto pcreate = arg.cast < create >())
+      //else if(auto pcreate = arg.cast < request >())
       //{
 
-      //   throw ::exception(todo, "Fix this. This shouldn't happen. (create is \"fat\" object, so it is not meant to be copied through copy constructors, assign operators,...)");
+      //   throw ::exception(todo, "Fix this. This shouldn't happen. (request is \"fat\" object, so it is not meant to be copied through copy constructors, assign operators,...)");
       //   //operator = (*pcreate);
 
       //}
@@ -76,7 +76,7 @@ void create::initialize_create(arguments arguments)
 }
 
 
-void create::initialize_create(string strAppId, ::payload payloadFile, const ::payload & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::atom atom)
+void request::initialize_create(string strAppId, ::payload payloadFile, const ::payload & varOptions, ::user::element * puiParent, ewindowflag ewindowflag, ::atom atom)
 {
 
    m_ewindowflag = ewindowflag;
@@ -104,20 +104,20 @@ void create::initialize_create(string strAppId, ::payload payloadFile, const ::p
    
    m_payloadFile = payloadFile;
 
-   m_puserprimitiveParent = puiParent;
+   m_puserelementParent = puiParent;
 
    ///return estatus;
 
 }
 
 
-create::~create()
+request::~request()
 {
 
 }
 
 
-void create::create_common_construct(const ::payload & varOptions, ::user::primitive * puiParent)
+void request::create_common_construct(const ::payload & varOptions, ::user::element * puiParent)
 {
 
    m_bNew                              = true;
@@ -132,7 +132,7 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
 }
 
 
-::acme::application * create::create_get_app(::acme::application * pappFallback)
+::acme::application * request::create_get_app(::acme::application * pappFallback)
 {
 
    auto pparticle = this;
@@ -156,7 +156,7 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
 }
 
 
-void create::finish_initialization()
+void request::finish_initialization()
 {
 
    ::e_status estatus = ::success;
@@ -194,7 +194,7 @@ void create::finish_initialization()
 }
 
 
-string create::get_description()
+string request::get_description()
 {
 
    return m_strDescription;
@@ -202,7 +202,7 @@ string create::get_description()
 }
 
 
-void create::set_description(string strDescription)
+void request::set_description(string strDescription)
 {
 
    m_strDescription = strDescription;
@@ -210,7 +210,7 @@ void create::set_description(string strDescription)
 }
 
 
-index create::get_edge()
+index request::get_edge()
 {
 
    //if(!m_pcommandline)
@@ -225,7 +225,7 @@ index create::get_edge()
 }
 
 
-bool create::has_file() const
+bool request::has_file() const
 {
 
    if (!m_payloadFile.is_empty())
@@ -247,7 +247,7 @@ bool create::has_file() const
 }
 
 
-::payload create::get_file() const
+::payload request::get_file() const
 {
 
    if (!m_payloadFile.is_empty())
@@ -269,7 +269,7 @@ bool create::has_file() const
 }
 
 
-void create::set_file_path(const ::payload& payload)
+void request::set_file_path(const ::payload& payload)
 {
 
    m_payloadFile = payload;
@@ -288,7 +288,7 @@ void create::set_file_path(const ::payload& payload)
 
 //
 //
-//create::create()
+//request::request()
 //{
 //
 //   common_construct();
@@ -296,7 +296,7 @@ void create::set_file_path(const ::payload& payload)
 //}
 
 
-void create::common_construct()
+void request::common_construct()
 {
 
    m_bShowSplash = true;
@@ -304,16 +304,16 @@ void create::common_construct()
    m_bRunAutomated = false;
    m_ecommand = e_command_application_start;
    m_iEdge = 0;
-   m_puserinteractionParent = nullptr;
-   //m_pappbias     = nullptr;
+
 }
 
-//create::~create()
+
+//request::~request()
 //{
 //}
 
 
-void create::initialize_command_line2(const string& strCommandLine)
+void request::initialize_command_line2(const string& strCommandLine)
 {
 
    common_construct();
@@ -325,7 +325,7 @@ void create::initialize_command_line2(const string& strCommandLine)
 }
 
 
-void create::initialize_arguments(::string_array& straArguments)
+void request::initialize_arguments(::string_array& straArguments)
 {
 
    common_construct();
@@ -337,7 +337,7 @@ void create::initialize_arguments(::string_array& straArguments)
 }
 
 
-void create::ParseParam(const ::string& strParam, bool bFlag, bool bLast)
+void request::ParseParam(const ::string& strParam, bool bFlag, bool bLast)
 {
 
    if (bFlag)
@@ -358,7 +358,7 @@ void create::ParseParam(const ::string& strParam, bool bFlag, bool bLast)
 }
 
 
-void create::ParseParamFlag(const ::string& strParam)
+void request::ParseParamFlag(const ::string& strParam)
 {
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
@@ -407,7 +407,7 @@ void create::ParseParamFlag(const ::string& strParam)
 }
 
 
-void create::ParseParamNotFlag(const ::string& strParam)
+void request::ParseParamNotFlag(const ::string& strParam)
 {
 
    if (m_payloadFile.is_empty())
@@ -437,7 +437,7 @@ void create::ParseParamNotFlag(const ::string& strParam)
 
 }
 
-void create::ParseLast(bool bLast)
+void request::ParseLast(bool bLast)
 {
 
    if (bLast)
@@ -456,7 +456,7 @@ void create::ParseLast(bool bLast)
 }
 
 
-//create & create::operator = (const create & info)
+//request & request::operator = (const request & info)
 //{
 //
 //   m_bShowSplash     = info.m_bShowSplash;
@@ -471,7 +471,7 @@ void create::ParseLast(bool bLast)
 //}
 
 
-void create::_001ParseCommandLine(const ::string& strCommandLine)
+void request::_001ParseCommandLine(const ::string& strCommandLine)
 {
 
    m_strCommandLine = strCommandLine;
@@ -557,7 +557,7 @@ void create::_001ParseCommandLine(const ::string& strCommandLine)
 }
 
 
-void create::_001ParseCommandLineUri(const ::string& strCommandLine)
+void request::_001ParseCommandLineUri(const ::string& strCommandLine)
 {
 
    m_strCommandLine = strCommandLine;
@@ -567,7 +567,7 @@ void create::_001ParseCommandLineUri(const ::string& strCommandLine)
 }
 
 
-void create::_001ParseCommandFork(const ::string& strCommandFork)
+void request::_001ParseCommandFork(const ::string& strCommandFork)
 {
 
    m_strCommandLine = strCommandFork;
@@ -641,7 +641,7 @@ void create::_001ParseCommandFork(const ::string& strCommandFork)
 }
 
 
-void create::_001ParseCommandArguments(::string_array& straArguments)
+void request::_001ParseCommandArguments(::string_array& straArguments)
 {
 
    get_property_set()._008ParseCommandArguments(straArguments, m_payloadFile, m_strExe);
@@ -713,7 +713,7 @@ void create::_001ParseCommandArguments(::string_array& straArguments)
 }
 
 
-void create::_001ParseCommandForkUri(const ::string& strCommandFork)
+void request::_001ParseCommandForkUri(const ::string& strCommandFork)
 {
 
    string strQuery(strCommandFork);
@@ -781,7 +781,7 @@ void create::_001ParseCommandForkUri(const ::string& strCommandFork)
 //
 //
 //command_line_pointer::command_line_pointer(const ::apex::allocatorsp & allocer) :
-//   ::pointer<create>(allocer)
+//   ::pointer<request>(allocer)
 //{
 //
 //}

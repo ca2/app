@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "apex/platform/session.h"
@@ -22,7 +22,7 @@ namespace aqua
 
       void initialize(::particle * pparticle) override;
 
-      void on_instantiate_application(::apex::application* papp) override;
+      void on_instantiate_application(::acme::application* papplication) override;
 
 
    };

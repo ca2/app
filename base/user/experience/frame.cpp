@@ -65,7 +65,7 @@ namespace experience
    }
 
 
-   ::base::system * frame::get_system()
+   ::base::system * frameacmesystem()
    {
       
       return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 

@@ -270,11 +270,11 @@
 
          //}
 
-         //auto pappcore = ::apex::get_system()->m_pappcore;
+         //auto pappcore = ::apexacmesystem()->m_pappcore;
 
          //auto pmaindata = pappcore->m_pmaindata;
 
-         HINSTANCE hinstance = (HINSTANCE) ::apex::get_system()->m_hinstance;
+         HINSTANCE hinstance = (HINSTANCE) ::apexacmesystem()->m_hinstance;
 
          ATOM atom = rx_register_class(hinstance);
 

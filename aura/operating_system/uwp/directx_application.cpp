@@ -9,7 +9,7 @@
 extern int g_iMouse;
 
 
-#undef ::aura::get_system()
+#undef ::auraacmesystem()
 #undef Platform
 
 
@@ -20,9 +20,9 @@ using namespace ::winrt::Windows::UI::Core;
 using namespace ::winrt::Windows::ApplicationModel;
 using namespace ::winrt::Windows::ApplicationModel::Core;
 using namespace ::winrt::Windows::ApplicationModel::Activation;
-using namespace ::winrt::Windows::aura::get_system();
+using namespace ::winrt::Windows::auraacmesystem();
 using namespace ::winrt::Windows::Graphics::Display;
-using namespace ::winrt::Windows::aura::get_system()::Threading;
+using namespace ::winrt::Windows::auraacmesystem()::Threading;
 
 
 
@@ -63,7 +63,7 @@ namespace universal_windows
 
       //      psystem->get_session()->m_frameworkview = this;
 
-      m_pdxi = psystem->m_pacmeapplicationStartup->__create_new < directx_interaction>();
+      m_pdxi = psystem->acmeapplication()->__create_new < directx_interaction>();
 
    }
 
@@ -353,7 +353,7 @@ namespace universal_windows
 
             //acmesystem()->add_create(pcreate);
 
-            //auto papp = m_pcontext->m_pacmeapplicationStartup;
+            //auto papp = m_pcontext->acmeapplication();
 
             //if (papp == nullptr)
             //{
@@ -415,7 +415,7 @@ namespace universal_windows
 
    void directx_framework_impact::OnKeyDown(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::KeyEventArgs ^ args)
    {
-      if (args->VirtualKey == ::winrt::Windows::aura::get_system()::VirtualKey::Shift)
+      if (args->VirtualKey == ::winrt::Windows::auraacmesystem()::VirtualKey::Shift)
       {
          m_bFontopusShift = true;
       }
@@ -489,7 +489,7 @@ namespace universal_windows
       pusermessage = pkey;
 
 
-      if (args->VirtualKey == ::winrt::Windows::aura::get_system()::VirtualKey::Shift)
+      if (args->VirtualKey == ::winrt::Windows::auraacmesystem()::VirtualKey::Shift)
       {
          m_bFontopusShift = false;
       }

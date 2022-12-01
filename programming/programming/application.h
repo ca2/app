@@ -22,7 +22,7 @@ namespace programming
       DECLARE_MESSAGE_HANDLER(on_application_signal);
 
 
-      void on_request(::create * pcreate);
+      void on_request(::request * prequest) override;
 
 
       string get_visual_studio_build();

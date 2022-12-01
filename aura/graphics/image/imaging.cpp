@@ -1,10 +1,11 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "imaging.h"
 #include "list.h"
 #include "fastblur.h"
 #include "context_image.h"
 #include "array.h"
 ////#include "acme/exception/exception.h"
+#include "acme/memory/_memory.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -99,7 +100,7 @@ i32                 cy)
    SIZE_F64                   sizeText;
    ::rectangle_i32                  rectangleText;
 
-   auto psession = get_session();
+   auto psession = acmesession();
 
 //   if(crShadow == (::color::color)-1)
 //      crShadow = crButtonShadow;

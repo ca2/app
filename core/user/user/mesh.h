@@ -281,7 +281,7 @@ namespace user
 
       ::core::application* get_app();
       ::core::session* get_session();
-      ::core::system* get_system();
+      ::core::system* acmesystem();
 
 
       void install_message_routing(::channel * pchannel) override;

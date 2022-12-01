@@ -31,7 +31,7 @@
 //plane_system::plane_system()
 //{
 //
-//   acmesystem() = ::apex::get_system();
+//   acmesystem() = ::apexacmesystem();
 //
 //   acmesystem()->m_pplanesystem = this;
 //
@@ -72,7 +72,7 @@
 //   //      pusersystem->m_createstruct.hwndParent = hWndParent;
 //   //   pusersystem->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
 //   pusersystem->m_createstruct.hMenu = nullptr;
-//   //      pusersystem->m_createstruct.hInstance = ::apex::get_system()->m_hInstance;
+//   //      pusersystem->m_createstruct.hInstance = ::apexacmesystem()->m_hInstance;
 //   pusersystem->m_createstruct.lpCreateParams = nullptr;
 //
 //   if(pimpl->m_puserinteraction != nullptr)

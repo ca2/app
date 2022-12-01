@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/operating_system/error_code.h"
@@ -99,6 +99,8 @@ public:
 
    virtual bool is_current_task() const;
    //virtual object * calc_parent_thread();
+
+   virtual void post_request(::request* prequest);
 
    virtual bool task_set_name(const char* pszName);
 

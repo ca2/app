@@ -29,7 +29,7 @@ namespace ios
 
       listing.add("/");
 
-      listing.m_straTitle.add("File ::acme::get_system()");
+      listing.m_straTitle.add("File ::acmeacmesystem()");
 
       return listing;
 
@@ -421,7 +421,7 @@ pacmedirectory->is(stra[i]))
    ::file::path dir_context::time()
    {
       
-      return ::acme::get_system()->m_pdirsystem->m_pathModule;
+      return ::acmeacmesystem()->m_pdirsystem->m_pathModule;
       
    }
 
@@ -455,7 +455,7 @@ pacmedirectory->is(stra[i]))
    ::file::path dir_context::module()
    {
 
-      return ::acme::get_system()->m_pdirsystem->m_pathModule;
+      return ::acmeacmesystem()->m_pdirsystem->m_pathModule;
 
    }
 
@@ -463,7 +463,7 @@ pacmedirectory->is(stra[i]))
    ::file::path dir_context::ca2module()
    {
 
-      return ::acme::get_system()->m_pdirsystem->m_pathCa2Module;
+      return ::acmeacmesystem()->m_pdirsystem->m_pathCa2Module;
 
    }
 
@@ -554,9 +554,9 @@ pacmedirectory->is(stra[i]))
          
       }
       
-      m_pdirsystem = ::acme::get_system()->m_pdirsystem;
+      m_pdirsystem = ::acmeacmesystem()->m_pdirsystem;
       
-      m_pfilesystem = ::acme::get_system()->m_pfilesystem;
+      m_pfilesystem = ::acmeacmesystem()->m_pfilesystem;
 
       
 //      if(!update_module_path())
@@ -589,11 +589,11 @@ pacmedirectory->is(stra[i]))
 
       pathHome = m_pdirsystem->m_strCa2/"Documents";
 
-      ::acme::get_system()->m_strIosHome = pathHome;
+      ::acmeacmesystem()->m_strIosHome = pathHome;
 
       m_pdirsystem->m_pathHome = m_pdirsystem->m_strCa2/"Documents";
 
-      //nodeos_set_home(::acme::get_system()->m_strIosHome);
+      //nodeos_set_home(::acmeacmesystem()->m_strIosHome);
 
       ::file::path str = m_pdirsystem->m_strCa2 / ".ca2/appdata";
 
@@ -681,9 +681,9 @@ pacmedirectory->is(stra[i]))
 
       }
 
-      ::acme::get_system()->m_strIosTemp = strTime;
+      ::acmeacmesystem()->m_strIosTemp = strTime;
 
-      //nodeos_set_temp(::acme::get_system()->m_strIosTemp);
+      //nodeos_set_temp(::acmeacmesystem()->m_strIosTemp);
       
       string str;
 

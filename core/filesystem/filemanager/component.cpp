@@ -224,33 +224,33 @@ namespace filemanager
 
       //}
 
-      ::factory::add_factory_item <form >();
-      ::factory::add_factory_item <document >();
-      ::factory::add_factory_item <child_frame >();
-      ::factory::add_factory_item <impact >();
-      ::factory::add_factory_item <path_impact >();
-      ::factory::add_factory_item <save_as_impact >();
-      ::factory::add_factory_item <left_impact >();
-      ::factory::add_factory_item <main_impact >();
-      ::factory::add_factory_item <file_list >();
-      ::factory::add_factory_item <thumbnail >();
-      ::factory::add_factory_item <main_frame >();
-      ::factory::add_factory_item <frame >();
-      ::factory::add_factory_item <tab_impact >();
-      ::factory::add_factory_item <form_child_frame >();
-      ::factory::add_factory_item <::simple_form_impact >();
-      ::factory::add_factory_item <folder_selection_list_impact >();
-      ::factory::add_factory_item <folder_list_impact >();
-      ::factory::add_factory_item <operation_document >();
-      ::factory::add_factory_item <operation_child_frame >();
-      ::factory::add_factory_item <operation_impact >();
-      ::factory::add_factory_item <operation_info_impact >();
-      ::factory::add_factory_item <operation_list_impact >();
-      ::factory::add_factory_item <save_as_edit_impact >();
-      ::factory::add_factory_item <save_as_button>();
-      ::factory::add_factory_item <fs::simple::impact >();
-      ::factory::add_factory_item <fs::simple::list_impact >();
-      ::factory::add_factory_item <fs::simple::tree >();
+      factory()->add_factory_item <form >();
+      factory()->add_factory_item <document >();
+      factory()->add_factory_item <child_frame >();
+      factory()->add_factory_item <impact >();
+      factory()->add_factory_item <path_impact >();
+      factory()->add_factory_item <save_as_impact >();
+      factory()->add_factory_item <left_impact >();
+      factory()->add_factory_item <main_impact >();
+      factory()->add_factory_item <file_list >();
+      factory()->add_factory_item <thumbnail >();
+      factory()->add_factory_item <main_frame >();
+      factory()->add_factory_item <frame >();
+      factory()->add_factory_item <tab_impact >();
+      factory()->add_factory_item <form_child_frame >();
+      factory()->add_factory_item <::simple_form_impact >();
+      factory()->add_factory_item <folder_selection_list_impact >();
+      factory()->add_factory_item <folder_list_impact >();
+      factory()->add_factory_item <operation_document >();
+      factory()->add_factory_item <operation_child_frame >();
+      factory()->add_factory_item <operation_impact >();
+      factory()->add_factory_item <operation_info_impact >();
+      factory()->add_factory_item <operation_list_impact >();
+      factory()->add_factory_item <save_as_edit_impact >();
+      factory()->add_factory_item <save_as_button>();
+      factory()->add_factory_item <fs::simple::impact >();
+      factory()->add_factory_item <fs::simple::list_impact >();
+      factory()->add_factory_item <fs::simple::tree >();
 
       //__construct_new(this, m_pmap);
 

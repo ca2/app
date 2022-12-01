@@ -19,12 +19,12 @@
 #define LAYER_NAMESPACE aqua
 
 
-//#undef get_system()
+//#undef acmesystem()
 //#undef Sess
 //#undef App
 
 
-//#define get_system() (psystem->m_paquasystem)
+//#define acmesystem() (psystem->m_paquasystem)
 //#define Sess(pcontextsession) (pcontextsession->m_paquasession)
 //#define App(playered) (*::get_app(playered)->m_paquaapplication)
 

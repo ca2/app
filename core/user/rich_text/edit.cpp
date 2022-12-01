@@ -910,12 +910,12 @@ namespace user
 bool __rich_text_initialize()
 {
 
-   ::factory::add_factory_item < ::user::rich_text::edit_impl, ::user::rich_text::edit >();
+   factory()->add_factory_item < ::user::rich_text::edit_impl, ::user::rich_text::edit >();
    //add_factory_item <::user::rich_text::format >();
-   ::factory::add_factory_item <::user::rich_text::span >();
-   ::factory::add_factory_item <::user::rich_text::document >();
+   factory()->add_factory_item <::user::rich_text::span >();
+   factory()->add_factory_item <::user::rich_text::document >();
 
-   ::factory::add_factory_item < ::user::rich_text::edit_impl >("rich_text_impact");
+   factory()->add_factory_item < ::user::rich_text::edit_impl >("rich_text_impact");
 
    return true;
 

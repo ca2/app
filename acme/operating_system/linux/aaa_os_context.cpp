@@ -148,7 +148,7 @@ namespace linux
    string os_context::get_command_line()
    {
 
-      return ::acme::get_system()->get_command_line();
+      return ::acmeacmesystem()->get_command_line();
 
    }
 
@@ -492,7 +492,7 @@ namespace linux
                {
 
                   keyPlugin.SetValue("Description", "ca2 plugin for NPAPI");
-                  keyPlugin.SetValue("Path", ::acme::get_system()->m_strCa2Module("npca2.dll"));
+                  keyPlugin.SetValue("Path", ::acmeacmesystem()->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
                   keyPlugin.SetValue("Version", papp->acmefile()->as_string(pcontext->m_papexcontext->dir()->ca2("appdata/x86/ca2_build.txt")));
@@ -958,7 +958,7 @@ namespace linux
    bool os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
-      string str = ::acme::get_system()->process().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
+      string str = ::acmeacmesystem()->process().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
 
       str.trim();
 
@@ -982,7 +982,7 @@ namespace linux
 
       }
 
-      //string str = ::acme::get_system()->process().get_output("xdg-settings get default-web-browser");
+      //string str = ::acmeacmesystem()->process().get_output("xdg-settings get default-web-browser");
 
       if(str.find_ci("chrome") >= 0)
       {

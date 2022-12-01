@@ -1,4 +1,4 @@
-//
+﻿//
 //  paged.cpp
 //  acme
 //
@@ -10,8 +10,11 @@
 #include "paged.h"
 
 
+#include "acme/_operating_system.h"
 
-void * MidAlloc(size_t size)
+
+
+void * paged_allocate(size_t size)
 {
    if (size == 0)
       return 0;
@@ -22,26 +25,26 @@ void * MidAlloc(size_t size)
 }
 
 
-void * MidRealloc(void * address, size_t sizeOld, size_t sizeNew)
+void * paged_reallocate(void * address, size_t sizeOld, size_t sizeNew)
 {
 #ifdef _SZ_ALLOC_DEBUG
    if (address != 0)
       fprintf(stderr, "\nFree_Mid; count = %10d", --g_allocCountMid);
 #endif
    if (address == 0)
-      return ::MidAlloc(sizeNew);
-   u8 * pnew = (u8 *) ::MidAlloc(sizeNew);
+      return ::paged_allocate(sizeNew);
+   u8 * pnew = (u8 *) ::paged_allocate(sizeNew);
    if(pnew == nullptr)
    {
-      MidFree(address);
+      paged_free(address);
       return nullptr;
    }
    ::memcpy_dup(pnew, address, minimum(sizeOld, sizeNew));
-   MidFree(address);
+   paged_free(address);
    return pnew;
 }
 
-void MidFree(void * address)
+void paged_free(void * address)
 {
 #ifdef _SZ_ALLOC_DEBUG
    if (address != 0)

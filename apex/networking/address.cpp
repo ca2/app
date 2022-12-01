@@ -252,7 +252,7 @@ namespace networking
 //
 //#ifdef BSD_STYLE_SOCKETS
 //
-//      auto psystem = pparticle->get_system();
+//      auto psystem = pparticle->acmesystem();
 //
 //      u.s.m_port = psystem->m_papexsystem->sockets().net().service_port(strService);
 //

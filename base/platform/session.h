@@ -30,7 +30,7 @@ namespace base
       ::base::user* user();
 
 
-      ::base::system* get_system();
+      ::base::system* acmesystem();
 
 
    };

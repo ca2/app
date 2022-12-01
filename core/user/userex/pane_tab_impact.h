@@ -58,7 +58,7 @@ namespace userex
 
       ::core::application* get_app();
       ::core::session* get_session();
-      ::core::system* get_system();
+      ::core::system* acmesystem();
 
       
       DECLARE_MESSAGE_HANDLER(on_message_create);

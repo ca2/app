@@ -379,9 +379,9 @@
 //      */
 //
 //      //string strExeName;
-//      //string strTitle = ::apex::get_system()->load_string("::apex::get_system()->title");
+//      //string strTitle = ::apexacmesystem()->load_string("::apexacmesystem()->title");
 //      // get the exe title from the full path name [no extension]
-//      //strExeName = ::apex::get_system()->get_module_title();
+//      //strExeName = ::apexacmesystem()->get_module_title();
 //
 //      m_htask      =  ::GetCurrentThread();
 //

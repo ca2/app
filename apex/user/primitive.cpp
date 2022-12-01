@@ -1959,16 +1959,16 @@ namespace user
 
      }
 
-     if (::is_set(get_session()))
+     if (::is_set(acmesession()))
      {
 
-        if (this == get_session()->m_puserprimitiveHost)
+        if (this == acmesession()->m_papexsession->m_puserprimitiveHost)
         {
 
            return true;
 
         }
-        else if (puiParent == get_session()->m_puserprimitiveHost)
+        else if (puiParent == acmesession()->m_papexsession->m_puserprimitiveHost)
         {
 
            return true;

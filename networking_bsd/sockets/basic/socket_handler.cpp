@@ -1490,7 +1490,7 @@ end_processing_adding:
                      if (psocket->Retain() && !psocket->Lost())
                      {
 
-                        auto psystem = get_system()->m_papexsystem;
+                        auto psystem = acmesystem()->m_papexsystem;
 
                         synchronous_lock synchronouslock(__SystemNetworking(psystem)->m_pmutexPool);
 

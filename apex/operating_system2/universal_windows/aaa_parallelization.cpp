@@ -10,13 +10,13 @@
 #include "acme/operating_system/cross/windows/windows_thread_impl.h"
 
 
-#undef ::apex::get_system()
+#undef ::apexacmesystem()
 
-#pragma push_macro("::apex::get_system()")
-#undef ::apex::get_system()
+#pragma push_macro("::apexacmesystem()")
+#undef ::apexacmesystem()
 using namespace ::winrt::Windows::Foundation;
-using namespace ::winrt::Windows::apex::get_system()::Threading;
-#pragma pop_macro("::apex::get_system()")
+using namespace ::winrt::Windows::apexacmesystem()::Threading;
+#pragma pop_macro("::apexacmesystem()")
 
 
 ::pointer< ::mutex > g_pmutexThreadIdHandleLock = nullptr;

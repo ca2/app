@@ -1,5 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "sockets.h"
+#include "acme/parallelization/task_flag.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -235,7 +236,7 @@ namespace sockets
    //string sockets::get_http_post_boundary()
    //{
 
-   //   auto psystem = get_system()->m_papexsystem;
+   //   auto psystem = acmesystem()->m_papexsystem;
 
    //   single_lock lock(m_pmutexHttpPostBoundary, true);
 
@@ -382,6 +383,16 @@ namespace sockets
 //
 //
 //#endif
+
+
+CLASS_DECL_APEX bool thread_has_sockets() 
+{
+   
+   return task_flag().is_set(e_task_flag_using_sockets); 
+
+}
+
+
 
 
 

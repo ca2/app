@@ -1187,10 +1187,10 @@ namespace ios
 
             ((::user::interaction_impl *)this)->m_puserinteraction->get_window_rect(rectangleWindow);
 
-            if(::aura::get_system()->get_monitor_count() > 0)
+            if(::auraacmesystem()->get_monitor_count() > 0)
             {
                ::rectangle_i32 rcMonitor;
-               ::aura::get_system()->get_monitor_rectangle(0, &rcMonitor);
+               ::auraacmesystem()->get_monitor_rectangle(0, &rcMonitor);
                if(rectangleWindow.left >= rcMonitor.left)
                   pmouse->m_point.x += (::i32) rectangleWindow.left;
                if(rectangleWindow.top >= rcMonitor.top)
@@ -1844,7 +1844,7 @@ namespace ios
    {
       throw ::not_implemented();
 
-      /*      application* pApp = ::aura::get_system();
+      /*      application* pApp = ::auraacmesystem();
        if (pApp != nullptr && pApp->GetMainWnd() == this)
        {
        // recolor global brushes used by control bars
@@ -1876,7 +1876,7 @@ namespace ios
     {
     __UNREFERENCED_PARAMETER(lpDeviceName);
     throw ::not_implemented();
-    application* pApp = ::aura::get_system();
+    application* pApp = ::auraacmesystem();
     if (pApp != nullptr && pApp->GetMainWnd() == this)
     pApp->DevModeChange(lpDeviceName);
 
@@ -1895,7 +1895,7 @@ namespace ios
    //   {
    //      if (!(GetStyle() & WS_CHILD))
    //      {
-   //         ::user::interaction* pMainWnd = ::aura::get_system()->GetMainWnd();
+   //         ::user::interaction* pMainWnd = ::auraacmesystem()->GetMainWnd();
    //         if (pMainWnd != nullptr &&
    //            GetKeyState(VK_SHIFT) >= 0 &&
    //            GetKeyState(VK_CONTROL) >= 0 &&
@@ -4768,7 +4768,7 @@ namespace ios
           if (pFrame != nullptr)
           hWnd = pFrame->get_handle();
           else
-          hWnd = ::aura::get_system()->GetMainWnd()->get_handle();*/
+          hWnd = ::auraacmesystem()->GetMainWnd()->get_handle();*/
       }
 
       // a popup ::user::interaction cannot be owned by a child ::user::interaction
@@ -4821,7 +4821,7 @@ namespace ios
    void interaction_impl::_001BaseWndInterfaceMap()
    {
 
-      //::aura::get_system()->window_map().set((iptr)get_handle(), this);
+      //::auraacmesystem()->window_map().set((iptr)get_handle(), this);
 
    }
 

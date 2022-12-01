@@ -40,10 +40,10 @@ namespace userfs
       //}
 
 
-      ::factory::add_factory_item <::userfs::main_impact > ();
-      ::factory::add_factory_item <::userfs::tree > ();
-      ::factory::add_factory_item <::userfs::list > ();
-      ::factory::add_factory_item <::userfs::list_item > ();
+      factory()->add_factory_item <::userfs::main_impact > ();
+      factory()->add_factory_item <::userfs::tree > ();
+      factory()->add_factory_item <::userfs::list > ();
+      factory()->add_factory_item <::userfs::list_item > ();
 
       ::acme::department::init();
 

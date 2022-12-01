@@ -77,7 +77,7 @@ string ca2_command_line()
 //
 //      //::set_main_user_itask(m_uthread);
 //
-//      //// ::apex::get_system()->m_XstrAppId = m_pmaindata->m_XstrAppId;
+//      //// ::apexacmesystem()->m_XstrAppId = m_pmaindata->m_XstrAppId;
 //
 //      //if (!begin_synch())
 //      //{
@@ -88,7 +88,7 @@ string ca2_command_line()
 //
 //      //}
 //
-//      ////::apex::system * psystem = ::apex::get_system();
+//      ////::apex::system * psystem = ::apexacmesystem();
 //
 //      ////try
 //      ////{
@@ -141,7 +141,7 @@ string ca2_command_line()
 //
 //      ////psystem->main();
 //
-//      ////::parallelization::post_quit_and_wait(::apex::get_system(), one_minute());
+//      ////::parallelization::post_quit_and_wait(::apexacmesystem(), one_minute());
 //
 //      return ::success;
 //

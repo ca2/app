@@ -1,9 +1,10 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/filesystem/filesystem/path.h"
 #include "acme/parallelization/task.h"
 #include "acme/primitive/collection/int_map.h"
+#include "acme/platform/auto_pointer.h"
 //#include "acme/primitive/collection/numeric_array.h"
 //#include "acme/primitive/collection/string_array.h"
 
@@ -176,7 +177,7 @@ namespace user
 
       ::aura::application * get_app();
       ::aura::session * get_session();
-      ::aura::system * get_system();
+      //::aura::system * acmesystem();
 
 
       //virtual void add_thread();

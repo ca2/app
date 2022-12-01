@@ -43,7 +43,7 @@ namespace draw2d
    {
 
 
-      ::aura::get_system()->draw2d()->api().embossed_text_out(pgraphics, rectangle, dRateX, dHeight, str);
+      ::auraacmesystem()->draw2d()->api().embossed_text_out(pgraphics, rectangle, dRateX, dHeight, str);
 
       return;
 
@@ -98,7 +98,7 @@ namespace draw2d
 
    {
 
-      ::aura::get_system()->draw2d()->api().embossed_text_out(pgraphics, rectangle, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
+      ::auraacmesystem()->draw2d()->api().embossed_text_out(pgraphics, rectangle, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
 
 
       return;

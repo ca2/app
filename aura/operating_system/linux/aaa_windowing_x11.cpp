@@ -3451,7 +3451,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             }
 
-            auto ptopic = ::aura::get_system()->topic(eid);
+            auto ptopic = ::auraacmesystem()->topic(eid);
 
             ptopic->payload("return") = is_return_key((XIRawEvent*)cookie->data);
 

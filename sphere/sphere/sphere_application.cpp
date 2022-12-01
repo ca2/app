@@ -626,13 +626,13 @@ namespace sphere
    //}
 
 
-   bool application::on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId)
+   bool application::on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId)
    {
 
       if (m_strAppName == "app/userstack")
       {
 
-         if (eexclusive == ::ExclusiveInstanceLocalId)
+         if (eexclusive == ::e_exclusive_instance_local_id)
          {
 #ifdef WINDOWS_DESKTOP
             ::memory_file file(this);

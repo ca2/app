@@ -23,7 +23,7 @@ namespace prompt
 
       //m_strAppName            = _strdup("command");
       //m_strBaseSupportId      = "ca2_command";
-      //m_eexclusiveinstance    = ::ExclusiveInstanceLocal;
+      //m_eexclusiveinstance    = ::e_exclusive_instance_local;
 
    }
 

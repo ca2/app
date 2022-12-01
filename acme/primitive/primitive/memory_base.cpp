@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 ////#include "acme/exception/exception.h"
-//#include "acme/filesystem/file/file.h"
+#include "acme/filesystem/file/file.h"
+#include "acme/memory/_memory.h"
 #include "acme/primitive/primitive/memory.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/string/base64.h"
@@ -333,7 +334,7 @@ void memory_base::erase_offset()
 //   if (get_size() > 0)
 //   {
 //
-//      get_system()->math().random_bytes(get_data(), get_size());
+//      acmesystem()->math().random_bytes(get_data(), get_size());
 //
 //   }
 //

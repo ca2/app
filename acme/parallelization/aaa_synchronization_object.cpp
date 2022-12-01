@@ -134,7 +134,7 @@ void synchronization::_wait()
    if (::is_null(ptask))
    {
 
-      ptask = ::get_system();
+      ptask = acmesystem();
 
    }
 
@@ -202,7 +202,7 @@ void synchronization::_wait()
    if (::is_null(ptask))
    {
 
-      ptask = ::get_system();
+      ptask = acmesystem();
 
    }
 

@@ -108,7 +108,7 @@ namespace user
    }
 
 
-   ::base::system * document::get_system()
+   ::base::system * documentacmesystem()
    {
       
       return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 

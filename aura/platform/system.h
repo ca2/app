@@ -23,15 +23,15 @@ namespace aura
       ::pointer<::windowing::window>                    m_pwindowMain;
 
 
-      ::factory_pointer                                m_pfactoryDraw2d;
+      ::factory::factory_pointer                        m_pfactoryDraw2d;
       ::pointer<::draw2d::draw2d>                       m_pdraw2d;
 
-      double                                             m_dDpi;
+      double                                            m_dDpi;
 
-      ::pointer < ::mutex >                                            m_pmutexUserChildren;
-      ::pointer<class ::imaging>                       m_pimaging;
+      ::pointer < ::mutex >                             m_pmutexUserChildren;
+      ::pointer<class ::imaging>                        m_pimaging;
 
-      ::pointer<::gpu::approach>                      m_pgpu;
+      ::pointer<::gpu::approach>                        m_pgpu;
 
       bool                                               m_bProdevianMouse;
 
@@ -52,7 +52,7 @@ namespace aura
 
       virtual void  initialize(::particle * pparticle) override;
 
-      virtual void on_add_session(::apex::session* papexsession) override;
+      virtual void on_add_session(::acme::session* papexsession) override;
 
       virtual void init() override;
       //virtual void init_instance() override;
@@ -80,7 +80,7 @@ namespace aura
 
       virtual void term() override;
 
-      virtual void system_prep() override;
+      //virtual void system_prep() override;
 
       //::url::url                           & url()     { return m_urldepartment; }
 
@@ -163,7 +163,7 @@ namespace aura
 
       //virtual ::pointer<::aura::session>on_create_session() override;
 
-      //virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::request * prequest) override;
 
       //virtual void construct(const ::string & pszAppId);
 
@@ -205,7 +205,7 @@ namespace aura
       //virtual void hist_hist(const ::string & psz);
 
 
-      //virtual void on_request(::create * pcreate);
+      //virtual void on_request(::request * prequest) override;
 
 
       //virtual u32 crc32(u32 dwPrevious, const ::string & psz);
@@ -486,7 +486,7 @@ namespace aura
 
       virtual ::apex::session * session(index iEdge = 0) override;*/
 
-      //virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::request * prequest) override;
 
       //::pointer<regex>create_regular_expression(const ::string & pszStyle, const string& str);
       //::pointer<regex_context>create_regular_expression_context(const ::string & pszStyle, int iCount);

@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "acme/primitive/primitive/particle.h"
+#include "acme/primitive/primitive/particle_flags.h"
 
 
 //#define __EXCHANGE(xxx) binary_stream < FILE >.stream_exchange(__STRING(xxx), m_##xxx)
@@ -210,7 +210,7 @@ public:
 
 
 class stream_base :
-   public FLAGS,
+   public PARTICLE_FLAGS,
    public print_formatting
 //class CLASS_DECL_ACME stream_base
 {

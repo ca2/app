@@ -169,12 +169,12 @@
 //
 //   size_t length = (size_t)env->GetStringLength(str);
 //
-//   if (::acme::get_system()->get_session()->get_focus_ui())
+//   if (::acmeacmesystem()->get_session()->get_focus_ui())
 //   {
 //
 //      wd16string wstr(utf16, length);
 //
-//      ::acme::get_system()->get_session()->get_focus_ui()->on_text_composition(wstr);
+//      ::acmeacmesystem()->get_session()->get_focus_ui()->on_text_composition(wstr);
 //
 //   }
 //   else
@@ -262,7 +262,7 @@
 //
 //   ::size s(g_posremote->getWidth(), g_posremote->getHeight());
 //
-//   ::user::interaction* puserinteractionHost = ::acme::get_system()->get_session()->m_puserinteractionHost;
+//   ::user::interaction* puserinteractionHost = ::acmeacmesystem()->get_session()->m_puserinteractionHost;
 //
 //   puserinteractionHost->m_statePrevious2.m_point = p;
 //   puserinteractionHost->m_stateRequest2.m_point = p;

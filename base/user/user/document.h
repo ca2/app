@@ -51,7 +51,7 @@ namespace user
 
       ::base::application * get_app();
       ::base::session * get_session();
-      ::base::system * get_system();
+      ::base::system * acmesystem();
       ::base::user * user();
 
 
@@ -331,7 +331,7 @@ namespace user
       void on_file_send_mail();
       void on_update_file_send_mail(::message::command* pCmdUI);
 
-      //virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::request * prequest) override;
 
       template < class DOCUMENT >
       DOCUMENT * get_typed_document()

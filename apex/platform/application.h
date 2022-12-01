@@ -3,7 +3,8 @@
 
 
 #include "context.h"
-#include "application_exit.h"
+//#include "application_exit.h"
+#include "acme/constant/exclusive_instance.h"
 #include "apex/database/client.h"
 #include "apex/networking/application/application_handler.h"
 #include "acme/parallelization/semaphore.h"
@@ -22,7 +23,7 @@ namespace apex
       virtual public ::apex::context,
       virtual public scalar_source,
       virtual public ::database::client,
-      virtual public ::application_exit,
+      //virtual public ::application_exit,
       virtual public ::networking::application_handler
    {
    public:
@@ -92,7 +93,7 @@ namespace apex
 
       enum_thread_context                          m_ethreadcontextClose;
 
-      EExclusiveInstance                           m_eexclusiveinstance;
+      enum_exclusive_instance                      m_eexclusiveinstance;
 
       bool                                         m_bService;
 
@@ -166,9 +167,10 @@ namespace apex
       ~application() override;
 
 
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
 
 
+      //void on_initialize_application(::main* pmain) override;
       //// void assert_ok() const override;
       //// void dump(dump_context & dumpcontext) const override;
 
@@ -212,7 +214,7 @@ namespace apex
       bool is_user_service() const override;
       virtual ::pointer<::service>create_service();
 
-      virtual void on_service_request(::create * pcreate);
+      virtual void on_service_request(::request * prequest);
 
 
       //virtual ::simpledb::server * simpledb();
@@ -299,7 +301,7 @@ namespace apex
       virtual bool defer_process_activation_message();
 
 
-      virtual void on_request(::create * pcreate) override;
+      virtual void on_request(::request * prequest) override;
 
 
 
@@ -418,7 +420,7 @@ namespace apex
       virtual string get_theme();
 
 
-      virtual bool start_application(bool bSynch, ::create * pcreate);
+      //virtual bool start_application(::request * prequest);
 
 
 
@@ -598,7 +600,7 @@ namespace apex
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this memory_new additional instance creation
-      virtual void on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId);
+      virtual void on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId);
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this memory_new additional instance creation
@@ -644,7 +646,7 @@ namespace apex
       //bool safe_is_running();
 
 
-      //virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::request * prequest) override;
 
       // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
       // get/set serializables to user directory
@@ -657,8 +659,8 @@ namespace apex
 
       //virtual bool assert_user_logged_in();
 
-      virtual void do_request(::create * pcreate) override;
-      virtual void call_request(::create * pcreate) override;
+      void request(::request * prequest) override;
+      //virtual void call_request(::create * pcreate) override;
 
 
       //virtual void process_message(::user::message * base) override;
@@ -689,10 +691,10 @@ namespace apex
 
 
       virtual void fill_locale_schema(::text::international::locale_schema & localeschema);
-      virtual void fill_locale_schema(::text::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema);
+      virtual void fill_locale_schema(::text::international::locale_schema & localeschema, const string & strLocale, const string & strSchema);
 
-      virtual bool platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::create * pcreate = nullptr);
-      virtual bool platform_open_by_file_extension(index iEdge, ::create * pcc);
+      virtual bool platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::request * prequest = nullptr);
+      virtual bool platform_open_by_file_extension(index iEdge, ::request * prequest);
 
 
       virtual bool on_start_application();
@@ -951,7 +953,7 @@ namespace apex
       //virtual i32 sync_message_box(::user::primitive * puiOwner,const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle = e_message_box_ok) override;
 
 
-      //bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
+      //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override;
 
       //virtual bool process_exception(const ::exception & e) override;
 

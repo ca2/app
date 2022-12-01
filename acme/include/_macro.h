@@ -155,9 +155,9 @@
 
 
 
-#undef _
+// #undef _
 
-#define _(str) (__get_text(str))
+// #define _(str) (__get_text(str))
 
 
 #define DECLARE_NEW_ACME_LIBRARY(X) extern "C" \
@@ -323,7 +323,7 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 
 
 //#define TOKENPASTE_PROCESS(x, y) x ## y
-//#define TOKENPASTE(x, y) TOKENPASTE_PROCESS(x, y)
+//#define TOKEN_CONCATENATE(x, y) TOKENPASTE_PROCESS(x, y)
 #define COUNTER_TOKEN(token) TOKEN_CONCATENATE(token, __COUNTER__)
 
 

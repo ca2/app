@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "user.h"
 #include "acme/exception/interface_only.h"
 #include "acme/include/_c_swap.h"
@@ -80,7 +80,7 @@ namespace message
    }
 
 
-   ::user::system * create::get_user_create()
+   ::user::system * create::get_user_system()
    {
 
       return m_pusersystem;
@@ -88,10 +88,10 @@ namespace message
    }
 
 
-   ::create * create::get_create()
+   ::request * create::get_request()
    {
 
-      auto pusersystem = get_user_create();
+      auto pusersystem = get_user_system();
 
       if (::is_null(pusersystem))
       {
@@ -100,16 +100,16 @@ namespace message
 
       }
 
-      auto pcreate = pusersystem->m_pcreate;
+      auto prequest = pusersystem->m_prequest;
 
-      if (::is_null(pusersystem))
+      if (::is_null(prequest))
       {
 
          return nullptr;
 
       }
 
-      return pcreate;
+      return prequest;
 
    }
 
@@ -143,7 +143,7 @@ namespace message
    ::particle * create::get_impact_data()
    {
 
-      auto pusersystem = get_user_create();
+      auto pusersystem = get_user_system();
 
       if (!pusersystem)
       {
@@ -179,7 +179,7 @@ namespace message
       else
       {
 
-         auto paurasession = m_pcontext->m_paurasession;
+         auto paurasession = m_pcontext->m_pacmesession->m_paurasession;
 
          auto puser = paurasession->m_puser;
 

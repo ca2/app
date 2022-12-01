@@ -11,6 +11,7 @@
 #include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/user/user/drag.h"
 #include "acme/platform/sequencer.h"
@@ -744,7 +745,7 @@ void nano_window::display_temporary_file_with_text(const ::string & str)
 
    string strAppId;
 
-   strAppId = acmesystem()->m_strAppId;
+   strAppId = acmeapplication()->m_strAppId;
 
    ::file::path pathFolder = acmedirectory()->home() / "application" / strAppId / "details";
 

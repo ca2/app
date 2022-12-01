@@ -143,6 +143,9 @@ namespace acme
       
       virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem);
 
+      virtual void start_application(::pointer<::acme::node>& pnode, ::pointer<::acme::system>& psystem);
+
+
       virtual void acme_application_main(::acme::system * psystem);
       virtual void _will_finish_launching();
       

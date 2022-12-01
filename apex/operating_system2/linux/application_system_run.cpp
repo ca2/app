@@ -66,7 +66,7 @@ CLASS_DECL_APEX i32 ca2_main();
 ///*void sn_start_context()
 //{
 //
-//   ::apex::get_system()->sn_start_context();
+//   ::apexacmesystem()->sn_start_context();
 //
 //}*/
 
@@ -99,20 +99,20 @@ CLASS_DECL_APEX i32 ca2_main();
 //
 //   }
 //
-//   auto psystem = ::apex::get_system();
+//   auto psystem = ::apexacmesystem();
 //
 //   psystem->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 //
 //   if (m_pmainstruct->m_bConsole)
 //   {
 //
-//      psystem->get_session()->set_context_app(psystem->m_pacmeapplicationStartup);
+//      psystem->get_session()->set_context_app(psystem->acmeapplication());
 //
-//      psystem->set_context_app(psystem->m_pacmeapplicationStartup);
+//      psystem->set_context_app(psystem->acmeapplication());
 //
-//      psystem->get_session()->set_context(psystem->m_pacmeapplicationStartup);
+//      psystem->get_session()->set_context(psystem->acmeapplication());
 //
-//      psystem->set_context(psystem->m_pacmeapplicationStartup);
+//      psystem->set_context(psystem->acmeapplication());
 //
 //   }
 //

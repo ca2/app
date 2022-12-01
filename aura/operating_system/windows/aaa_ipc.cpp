@@ -257,11 +257,11 @@ namespace aura
 
          //}
 
-         //auto pappcore = ::aura::get_system()->m_pappcore;
+         //auto pappcore = ::auraacmesystem()->m_pappcore;
 
          //auto pmaindata = pappcore->m_pmaindata;
 
-         HINSTANCE hinstance = ::aura::get_system()->m_hinstance;
+         HINSTANCE hinstance = ::auraacmesystem()->m_hinstance;
 
          ATOM atom = rx_register_class(hinstance);
 

@@ -4,10 +4,12 @@
 #include "interaction_layout.h"
 #include "prodevian.h"
 #include "drawable.h"
+#include "acme/exception/status.h"
 #include "acme/user/user/drag_client.h"
 #include "acme/primitive/collection/string_map.h"
 #include "acme/platform/timer_callback.h"
 #include "acme/platform/flags.h"
+#include "acme/user/user/ewindowflag.h"
 #include "apex/database/key.h"
 #include "apex/message/command.h"
 #include "apex/user/primitive.h"
@@ -399,7 +401,7 @@ namespace user
       //const class control_descriptor& descriptor();
       ::aura::application * get_app();
       ::aura::session * get_session();
-      ::aura::system * get_system();
+      //::aura::system * acmesystem();
       ::aura::context * context();
 
       bool _001CanEnterScreenSaver() override;

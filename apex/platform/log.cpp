@@ -548,7 +548,7 @@ namespace apex
 ////
 ////#if !defined(_UWP)
 ////
-////         auto psystem = get_system()->m_papexsystem;
+////         auto psystem = acmesystem()->m_papexsystem;
 ////
 ////         if (is_debugger_attached() && !psystem->has_apex_application_factory())
 ////         {
@@ -662,7 +662,7 @@ namespace apex
    void log::process_init()
    {
 
-      //auto psystem = get_system()->m_papexsystem;
+      //auto psystem = acmesystem()->m_papexsystem;
 
       //if (is_debugger_attached() && !psystem->has_apex_application_factory())
       //{

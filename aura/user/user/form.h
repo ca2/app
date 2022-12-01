@@ -29,7 +29,7 @@ namespace user
 
       ::aura::application* get_app();
       ::aura::session* get_session();
-      ::aura::system* get_system();
+      ::aura::system* acmesystem();
       ::user::user * user();
 
 

@@ -5,29 +5,13 @@
 #pragma once
 
 
-//#define IMPLEMENT_APPLICATION_ALLOCATOR(APPLICATION, ALLOCATOR) \
-//CLASS_DECL_EXPORT ::acme::application * IDENTIFIER_CONCATENATE(new_, ALLOCATOR)() \
-//{ \
-//  \
-//   return memory_new ::APPLICATION::application();  \
-//  \
-//}
-//
-//
-//#define IMPLEMENT_APPLICATION(APPLICATION) \
-//IMPLEMENT_APPLICATION_ALLOCATOR(APPLICATION, APPLICATION)
-//
-//
-//#define DECLARE_APPLICATION(APPLICATION) \
-//CLASS_DECL_IMPORT ::acme::application * IDENTIFIER_CONCATENATE(new_, APPLICATION)()
-
-
 class main_hold_base;
 
 
-#include "main.h"
+#include "application_base.h"
+#include "application_exit.h"
+#include "application_flags.h"
 #include "context.h"
-//#include "acme/primitive/collection/string_array.h"
 
 
 namespace acme
@@ -35,16 +19,47 @@ namespace acme
 
 
    class CLASS_DECL_ACME application :
-      virtual public ::main,
-      virtual public ::acme::context
+      virtual public application_base,
+      virtual public APPLICATION_FLAGS,
+      virtual public ::acme::context,
+      virtual public ::application_exit
    {
    public:
 
 
+      ::apex::application* m_papexapplication;
+      ::aqua::application* m_paquaapplication;
+      ::aura::application* m_pauraapplication;
+      ::axis::application* m_paxisapplication;
+      ::base::application* m_pbaseapplication;
+      ::bred::application* m_pbredapplication;
+      ::core::application* m_pcoreapplication;
 
+
+      //::APPLICATION_FLAGS                      m_applicationflags;
       ::pointer<main_hold_base>                      m_pmainholdbase;
+      // FROM ::main (Now main2)
+      string                                          m_strCommandLine;
 
 
+      bool                                            m_bModulePath = false;
+      ::file::path                                    m_pathModule;
+
+      bool                                            m_bModuleFolder = false;
+      ::file::path                                    m_pathModuleFolder;
+
+
+      string                              m_strProgName;
+      string                           m_strStandalone;
+      int                              m_iExitCode = 0;
+
+      //::pointer < ::request >                         m_prequest;
+
+
+      // END FROM ::main (Now main2 : merge)
+
+
+      string                                          m_strAppId;
       string                                          m_strAppName;
       string                                          m_strRoot;
       string                                          m_strDomain;
@@ -63,6 +78,18 @@ namespace acme
 
       void initialize(::particle * pparticle) override;
 
+      
+      virtual void start_application(::request* prequest);
+      
+      //virtual void on_initialize_application();
+
+      using ::acme::context::factory;
+
+      virtual ::factory::factory_pointer& factory();
+
+      virtual void implement_application();
+
+      virtual void initialize_application_flags();
 
       virtual bool is_application() const;
 
@@ -71,6 +98,12 @@ namespace acme
 
       virtual bool is_service() const;
       virtual bool is_user_service() const;
+
+      virtual bool can_exit_application();
+
+      virtual ::file::path get_module_path();
+      virtual ::file::path get_module_folder();
+
 //
 //#ifdef WINDOWS
 //

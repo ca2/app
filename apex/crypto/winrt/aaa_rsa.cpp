@@ -86,7 +86,7 @@ namespace winrt
       //memKey.prefix_der_sequence();
 
       //string strRsaPrivateKey = "-----BEGIN RSA PUBLIC KEY-----\r\n";
-      //strRsaPrivateKey += chunk_split(::apex::get_system()->base64().encode(memKey));
+      //strRsaPrivateKey += chunk_split(::apexacmesystem()->base64().encode(memKey));
       //strRsaPrivateKey += "-----END RSA PUBLIC KEY-----";
 
       //memKey.set_size(strRsaPrivateKey.get_length());

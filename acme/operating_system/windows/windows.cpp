@@ -1,7 +1,12 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/operating_system/parallelization.h"
 #include "acme/filesystem/filesystem/path.h"
+#include "acme/platform/debug.h"
+
+
 #include "acme/_operating_system.h"
+
+
 #include <Shlobj.h>
 #include <Shellapi.h>
 
@@ -459,12 +464,12 @@ void __node_acme_pos_term()
       //   ::acme::del(g_pgdiplusStartupOutput);
       //}
 
-   if (is_verbose())
-   {
+   //if (is_verbose())
+   //{
 
-      output_debug_string(L"acme terminating!\n");
+   //   output_debug_string(L"acme terminating!\n");
 
-   }
+   //}
 
    //::CoUninitialize();
 

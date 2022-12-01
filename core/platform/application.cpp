@@ -15,7 +15,7 @@ namespace core
    void initialize()
    {
 
-      ::factory::add_factory_item < ::core::system, ::acme::system >();
+      factory()->add_factory_item < ::core::system, ::acme::system >();
 
    }
 

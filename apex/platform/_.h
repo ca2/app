@@ -1,4 +1,4 @@
-//
+﻿//
 //  _.h
 //  apex
 //
@@ -16,7 +16,6 @@ namespace apex
 {
 
 
-   class application_container;
    class log;
 
 

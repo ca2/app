@@ -247,7 +247,7 @@ namespace userex
    }
 
 
-   ::core::system* pane_tab_impact::get_system()
+   ::core::system* pane_tab_impactacmesystem()
    {
 
       return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;

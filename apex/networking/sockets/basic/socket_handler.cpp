@@ -1304,7 +1304,7 @@ namespace sockets
 //                    if (psocket->Retain() && !psocket->Lost())
 //                    {
 //
-//                       auto psystem = get_system()->m_papexsystem;
+//                       auto psystem = acmesystem()->m_papexsystem;
 //
 //                       synchronous_lock synchronouslock(&psystem->sockets().m_pmutexPool);
 //
@@ -1785,7 +1785,7 @@ namespace sockets
    //::pointer<base_socket_handler::pool_socket_id>socket_handler::FindConnection(i32 type, const string & protocol, ::networking::address * ad)
    //{
 
-   //   auto psystem = get_system()->m_papexsystem;
+   //   auto psystem = acmesystem()->m_papexsystem;
 
    //   synchronous_lock synchronouslock(&psystem->sockets().m_pmutexPool);
 

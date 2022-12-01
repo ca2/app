@@ -206,7 +206,7 @@ namespace android
 //
 //                     string strParams;
 //
-//                     //if(pcontext->m_papexcontext->file()->resolve_link(strTarget, strFilePath, ::apex::get_system()->ui_from_handle))
+//                     //if(pcontext->m_papexcontext->file()->resolve_link(strTarget, strFilePath, ::apexacmesystem()->ui_from_handle))
 //                     if (pcontext->m_papexcontext->file()->resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 //                     {
 //
@@ -1282,7 +1282,7 @@ pacmedirectory->is(strPath))
 
             if (crBk == 0)
             {
-               ::apex::get_system()->imaging().Createcolor_blend_ImageList(
+               ::apexacmesystem()->imaging().Createcolor_blend_ImageList(
                   m_pil48,
                   m_pil48Hover,
                   rgb(255, 255, 240),
@@ -1393,7 +1393,7 @@ pacmedirectory->is(strPath))
          if (crBk == 0)
          {
 
-            ::apex::get_system()->imaging().color_blend(
+            ::apexacmesystem()->imaging().color_blend(
             m_pimagelist[48],
             m_pimagelistHover[48],
             rgb(255, 255, 240),
@@ -1648,7 +1648,7 @@ pacmedirectory->is(strPath))
 
    //      return m_pimagelistHover[iSize]->predicate_add_image([&](::image_pointer & pimage)
    //      {
-   //            ::apex::get_system()->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
+   //            ::apexacmesystem()->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
    //         }
    //      , m_pimagelist[iSize], iImage);
 

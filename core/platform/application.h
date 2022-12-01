@@ -25,7 +25,7 @@ namespace core
 
       inline ::core::application* get_app() const { return m_pcoreapplication; }
       inline ::core::session* get_session() const { return m_pcoresession; }
-      inline ::core::system* get_system() const { return m_pcoresystem; }
+      inline ::core::system* acmesystem() const { return m_pcoresystem; }
 
 
 

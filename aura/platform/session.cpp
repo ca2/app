@@ -1,10 +1,11 @@
 ﻿#include "framework.h"
 ////#include "acme/exception/exception.h"
+#include "acme/exception/extended_status.h"
 #include "acme/filesystem/file/item_array.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/request.h"
 #include "acme/platform/system_setup.h"
-#include "apex/platform/create.h"
 #include "apex/platform/os_context.h"
 #include "apex/platform/savings.h"
 #include "aura/windowing/windowing.h"
@@ -84,7 +85,7 @@ namespace aura
       //m_bLicense				               = false;
 
       //m_bLicense           = false;
-      //m_eexclusiveinstance = ExclusiveInstanceNone;
+      //m_eexclusiveinstance = e_exclusive_instance_none;
 
    }
 
@@ -261,7 +262,7 @@ namespace aura
 
       //}
 
-      auto psystem = get_system()->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       if(psystem->m_bAvoidFirstResponder)
       {
@@ -309,9 +310,7 @@ namespace aura
    bool session::on_get_task_name(string& strThreadName)
    {
 
-      auto psystem = get_system()->m_paurasystem;
-
-      if (psystem->is_console_app())
+      if (acmeapplication()->m_bConsole)
       {
 
          return false;
@@ -323,38 +322,38 @@ namespace aura
    }
 
 
-   void session::on_request(::create * pcreate)
-   {
+   //void session::on_request(::create * pcreate)
+   //{
 
-      ::apex::session::on_request(pcreate);
+   //   ::apex::session::on_request(pcreate);
 
-   }
-
-
-   bool session::open_by_file_extension(const ::string & pszPathName, ::create * pcreate)
-   {
-
-      auto pcreateNew = __create_new < ::create >();
-
-      pcreateNew->m_payloadFile = pszPathName;
-
-      pcreateNew->m_puserprimitiveParent = pcreate->m_puserprimitiveParent;
-
-      return open_by_file_extension(pcreateNew.get());
-
-      //return papp->platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
-
-   }
+   //}
 
 
-   bool session::open_by_file_extension(::create * pcreate)
+   //bool session::open_by_file_extension(const ::string & pszPathName, ::request * prequest)
+   //{
+
+   //   auto pcreateNew = __create_new < ::create >();
+
+   //   pcreateNew->m_payloadFile = pszPathName;
+
+   //   pcreateNew->m_puserprimitiveParent = pcreate->m_puserprimitiveParent;
+
+   //   return open_by_file_extension(pcreateNew.get());
+
+   //   //return papp->platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
+
+   //}
+
+
+   bool session::open_by_file_extension(::request * prequest)
    {
 
       //return papp->platform_open_by_file_extension(m_iEdge, pcc);
 
       string strId;
 
-      string strOriginalPathName(pcreate->m_payloadFile.as_string());
+      string strOriginalPathName(prequest->m_payloadFile.as_string());
 
       ::file::path strPathName(strOriginalPathName);
 
@@ -387,7 +386,7 @@ namespace aura
 
          str.begins_eat("/");
 
-         pcreate->m_payloadFile = str;
+         prequest->m_payloadFile = str;
 
       }
       else
@@ -416,7 +415,7 @@ namespace aura
 
       }
 
-      auto papp = application_get(strId, true, true, pcreate);
+      auto papp = get_application(strId, true, prequest);
 
       if (papp == nullptr)
       {
@@ -425,7 +424,7 @@ namespace aura
 
       }
 
-      papp->do_request(pcreate);
+      papp->request(prequest);
 
       return true;
 
@@ -1807,9 +1806,7 @@ namespace aura
 
       INFORMATION(".2");
 
-      auto psystem = get_system()->m_paurasystem;
-
-      if (psystem->m_bUser)
+      if (acmeapplication()->m_bUser)
       {
 
          INFORMATION("success");
@@ -2248,12 +2245,12 @@ namespace aura
    }
 
 
-   void session::do_request(::create* pcreate)
-   {
+   //void session::do_request(::create* pcreate)
+   //{
 
-      return ::thread::do_request(pcreate);
+   //   return ::thread::do_request(pcreate);
 
-   }
+   //}
 
 
 
@@ -2390,7 +2387,8 @@ namespace aura
 
    //}
 
-   bool session::place(::user::main_frame* pmainframe, ::create* pcreate)
+
+   bool session::place(::user::main_frame* pmainframe, ::request * prequest)
    {
 
       //get_place_holder(pmainframe, pcreate).hold(pmainframe);
@@ -2400,15 +2398,12 @@ namespace aura
    }
 
 
-
-
-
-   void session::set_app_title(const ::string & pszAppId, const ::string & pszTitle)
+   void session::set_app_title(const ::string & strAppId, const ::string & strTitle)
    {
 
-      ::pointer<::apex::application>papp;
+      ::pointer<::acme::application>papplication;
 
-      if (m_applicationa.lookup(pszAppId, papp) && papp)
+      if (m_applicationa.lookup(strAppId, papplication) && papplication)
       {
 
          //::pointer<::bergedge::pane_impact>ppaneimpact = get_document()->get_typed_impact < ::bergedge::pane_impact >();
@@ -2483,14 +2478,14 @@ namespace aura
    //}
 
 
-   void session::on_instantiate_application(::apex::application* papp)
+   void session::on_instantiate_application(::acme::application* papplication)
    {
 
-      ::aqua::session::on_instantiate_application(papp);
+      ::aqua::session::on_instantiate_application(papplication);
 
-      papp->m_paurasession = this;
-      papp->m_paurasystem = m_paurasystem;
-      papp->m_pauranode = m_pauranode;
+      //papplication->m_paurasession = this;
+      //papplication->m_paurasystem = m_paurasystem;
+      //papplication->m_pauranode = m_pauranode;
 
    }
 
@@ -2520,12 +2515,12 @@ namespace aura
    }
 
 
-   ::aura::system * session::get_system()
-   {
+   //::aura::system * sessionacmesystem()
+   //{
 
-      return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
+   //   return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
 
-   }
+   //}
 
 
 

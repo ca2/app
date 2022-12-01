@@ -9,6 +9,7 @@
 ////#include "acme/exception/exception.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/request.h"
 #include "acme/platform/system_setup.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/primitive/text/context.h"
@@ -21,7 +22,6 @@
 #include "apex/message/command.h"
 #include "apex/message/message.h"
 //#include "apex/operating_system.h"
-#include "apex/platform/create.h"
 #include "apex/user/primitive.h"
 
 
@@ -49,7 +49,7 @@ namespace OPERATING_SYSTEM_NAMESPACE
 void defer_term_ui();
 
 
-CLASS_DECL_ACME bool is_verbose();
+//CLASS_DECL_ACME bool is_verbose();
 
 
 int_bool point_is_window_origin(POINT_I32 ptHitTest, ::windowing::window * pwindowExclude, int iMargin);
@@ -95,7 +95,7 @@ namespace apex
       //m_bLicense				               = false;
 
       //m_bLicense           = false;
-      //m_eexclusiveinstance = ExclusiveInstanceNone;
+      //m_eexclusiveinstance = e_exclusive_instance_none;
 
    }
 
@@ -381,7 +381,7 @@ namespace apex
    ::color::color session::get_default_color(u64 u)
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto pnode = psystem->node();
 
@@ -639,7 +639,7 @@ namespace apex
    void session::process_term()
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       psystem->post_message(e_message_erase_session, m_iEdge);
 
@@ -649,9 +649,7 @@ namespace apex
    bool session::on_get_task_name(string& strTaskName)
    {
 
-      auto psystem = get_system()->m_papexsystem;
-
-      if (psystem->is_console_app())
+      if (acmeapplication()->m_bConsole)
       {
 
          return false;
@@ -663,15 +661,15 @@ namespace apex
    }
 
 
-   void session::on_request(::create * pcreate)
+   void session::on_request(::request * prequest)
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
-      if (pcreate->m_ecommand == e_command_protocol)
+      if (prequest->m_ecommand == e_command_protocol)
       {
 
-         m_pappCurrent->do_request(pcreate);
+         m_pappCurrent->request(prequest);
 
          return;
 
@@ -679,208 +677,29 @@ namespace apex
 
       INFORMATION("::apex::session::on_request(::pointer<::create> " << __type_name(this));
 
-      string strAppId = pcreate->m_strAppId;
+      //string strAppId = prequest->m_strAppId;
 
-      if (strAppId.has_char())
-      {
-
-         INFORMATION("m_strAppId = " << pcreate->m_strAppId);
-
-         auto papp = start_application(pcreate->m_strAppId, pcreate, m_strLocale, m_strSchema);
-
-         if (!papp)
-         {
-
-            destroy();
-
-         }
-
-         return;
-
-      }
-
-      INFORMATION("m_strAppId Is Empty!!");
-
-      string strApp = pcreate->m_strApp;
-
-      if (strApp == "app/sphere/userstack")
-      {
-
-         start_application("app/sphere/userstack", pcreate, m_strLocale, m_strSchema);
-
-      }
-
-      m_varCurrentImpactFile = pcreate->m_payloadFile;
-
-      //string strApp;
-
-      //if ((pcreate->payload("app").array_get_count() > 1
-      //      || pcreate->payload("show_platform"] == 1 || m_varTopicQuery["show_platform") == 1)
-      //      && (!(bool)pcreate->m_varQuery.m_bExperienceMainFrame && !(bool)m_bExperienceMainFrame)
-      //      && (!pcreate->m_varQuery.m_bExperienceMainFrame && !m_bExperienceMainFrame))
+      //if (strAppId.is_empty())
       //{
-      //   m_bShowPlatform = true;
+
+      //   INFORMATION("m_strAppId Is Empty!!");
+
+      //   return;
+
       //}
 
-      bool bCreate = true;
+      INFORMATION("m_strAppId = " << prequest->m_strAppId);
 
-      if (pcreate->m_strApp.is_empty())
+      auto papplication = get_application(prequest->m_strAppId, true, prequest);
+
+      if (!papplication)
       {
 
-         if (pcreate->has_file())
-         {
-            
-            if (!open_by_file_extension(pcreate))
-            {
-               
-               if (m_pappCurrent != nullptr)
-               {
-                  
-                  m_pappCurrent->request(pcreate);
-
-               }
-
-            }
-
-         }
-         else if (m_bShowPlatform)
-         {
-            //create_bergedge(pcreate);
-            //if(get_document() != nullptr && get_document()->get_typed_impact < ::bergedge::impact >() != nullptr)
-            //{
-            //   ::pointer<::simple_frame_window>pframe =  (get_document()->get_typed_impact < ::bergedge::impact >()->get_parent_frame());
-            //   if(pframe != nullptr)
-            //   {
-            //      pframe->display(e_display_restored);
-            //      pframe->_001FancyInitialFramePlacement();
-            //   }
-            //}
-         }
-         if (pcreate->payload("app").array_get_count() <= 0)
-         {
-            bCreate = false;
-         }
-      }
-      if (bCreate)
-      {
-         if (pcreate->m_strApp == "bergedge")
-         {
-            if (pcreate->has_property("session_start"))
-            {
-               strApp = pcreate->payload("session_start");
-            }
-            else
-            {
-               strApp = "bergedge";
-            }
-         }
-         else
-         {
-            strApp = pcreate->m_strApp;
-         }
-
-
-         if (pcreate->payload("app").stra().find_first_ci(strApp) < 0)
-         {
-
-            pcreate->payload("app").stra().insert_at(0, strApp);
-
-         }
-
-         for (i32 i = 0; i < pcreate->payload("app").stra().get_count(); i++)
-         {
-
-            strApp = pcreate->payload("app").stra()[i];
-
-            if (strApp.is_empty() || strApp == "bergedge")
-            {
-
-               return;
-
-            }
-
-            if (strApp == "session")
-            {
-
-               continue;
-
-            }
-
-            auto papp = application_get(strApp, true, true, pcreate);
-
-            if (papp == nullptr)
-            {
-
-               if(psystem->has_property("install")
-                     || psystem->has_property("uninstall"))
-               {
-
-                  psystem->destroy();
-
-               }
-               else
-               {
-
-                  //output_error_message("Could not create requested application: \"" + strApp + "\"");
-                  output_debug_string("Could not create requested application: \"" + strApp + "\"");
-
-                  ::count c = psystem->payload("app").array_get_count();
-
-                  if (c == 1 && psystem->payload("app").at(0) == strApp)
-                  {
-
-                     psystem->destroy();
-
-                  }
-
-               }
-
-               return;
-
-            }
-
-            pcreate->m_eventReady.ResetEvent();
-
-            if (strApp != "bergedge")
-            {
-
-               if(!papp->on_start_application())
-               {
-
-                  INFORMATION("One or more errors occurred during on_start_application execution.");
-
-               }
-
-               //if (psystem->is_true("install"))
-               if (is_true("install"))
-               {
-
-                  papp->do_install();
-
-                  psystem->destroy();
-
-               }
-               else
-               {
-
-            /*      if (!papp->is_system() && !papp->is_session())
-                  {
-
-                     psystem->merge_accumulated_on_open_file(pcreate);
-
-                  }*/
-
-                  papp->request(pcreate);
-
-               }
-
-               m_pappCurrent = papp;
-
-            }
-
-         }
+         destroy();
 
       }
+
+      m_varCurrentImpactFile = prequest->m_payloadFile;
 
    }
 
@@ -895,30 +714,30 @@ namespace apex
    //}
 
 
-   bool session::open_by_file_extension(const ::string & pszPathName, ::create * pcreate)
+   bool session::open_by_file_extension(const ::string & pszPathName, ::request * prequest)
    {
 
-      auto pcreateNew = __create_new < ::create >();
+      auto prequestNew = __create_new < ::request >();
 
-      pcreateNew->m_payloadFile = pszPathName;
+      prequestNew->m_payloadFile = pszPathName;
 
-      pcreateNew->m_puserprimitiveParent = pcreate->m_puserprimitiveParent;
+      prequestNew->m_puserelementParent = prequest->m_puserelementParent;
 
-      return open_by_file_extension(pcreateNew.get());
+      return open_by_file_extension(prequestNew.get());
 
       //return get_app()->platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
 
    }
 
 
-   bool session::open_by_file_extension(::create * pcreate)
+   bool session::open_by_file_extension(::request * prequest)
    {
 
       //return get_app()->platform_open_by_file_extension(m_iEdge, pcc);
 
       string strId;
 
-      string strOriginalPathName(pcreate->m_payloadFile.as_string());
+      string strOriginalPathName(prequest->m_payloadFile.as_string());
 
       ::file::path strPathName(strOriginalPathName);
 
@@ -951,7 +770,7 @@ namespace apex
 
          str.begins_eat("/");
 
-         pcreate->m_payloadFile = str;
+         prequest->m_payloadFile = str;
 
       }
       else
@@ -980,7 +799,7 @@ namespace apex
 
       }
 
-      auto papp = application_get(strId, true, true, pcreate);
+      auto papp = get_application(strId, true, prequest);
 
       if (papp == nullptr)
       {
@@ -989,20 +808,22 @@ namespace apex
 
       }
 
-      papp->do_request(pcreate);
+      papp->request(prequest);
 
       return true;
 
    }
 
 
-   void session::on_instantiate_application(::apex::application* papp)
+   void session::on_instantiate_application(::acme::application* papplication)
    {
 
-      papp->m_papexsession = this;
-      papp->m_papexsystem = m_papexsystem;
-      papp->m_pacmenode = m_pacmenode;
-      papp->m_papexnode = m_papexnode;
+
+      ::acme::session::on_instantiate_application(papplication);
+      //papp->m_papexsession = this;
+      //papp->m_papexsystem = m_papexsystem;
+      //papp->m_pacmenode = m_pacmenode;
+      //papp->m_papexnode = m_papexnode;
 
    }
 
@@ -1044,7 +865,7 @@ namespace apex
 
    //         handle_exception(e);
 
-   //         //if (!get_system()->on_run_exception(esp))
+   //         //if (!acmesystem()->on_run_exception(esp))
    //         //{
 
    //         //   if (!App(this).on_run_exception(esp))
@@ -1491,9 +1312,7 @@ ret:
 
       //INFORMATION("apex::session::init2 .1");
 
-      auto psystem = get_system()->m_papexsystem;
-
-      if (psystem->m_bUser)
+      if (acmeapplication()->m_bUser)
       {
 
          //if (!m_paccount)
@@ -1726,12 +1545,12 @@ namespace apex
    }
 
 
-   void session::do_request(::create* pcreate)
-   {
+   //void session::reuqest(::request * prequest)
+   //{
 
-      request(pcreate);
+   //   request(pcreate);
 
-   }
+   //}
 
 
 
@@ -1912,9 +1731,9 @@ namespace apex
    void session::set_app_title(const ::string & pszAppId, const ::string & pszTitle)
    {
 
-      ::pointer<::apex::application>papp;
+      ::pointer<::acme::application>papplication;
 
-      if (m_applicationa.lookup(pszAppId, papp) && papp)
+      if (m_applicationa.lookup(pszAppId, papplication) && papplication)
       {
 
          //::pointer<::bergedge::pane_impact>ppaneimpact = get_document()->get_typed_impact < ::bergedge::pane_impact >();
@@ -2261,10 +2080,10 @@ namespace apex
 
       }
 
-      if (m_papexsystem)
+      if (acmesystem())
       {
 
-         m_papexsystem->route_command(pcommand, false);
+         acmesystem()->m_papexsystem->route_command(pcommand, false);
 
       }
 
@@ -2360,7 +2179,7 @@ namespace apex
    void session::destroy()
    {
 
-      ::apex::application_container::m_applicationa.erase_all();
+      ::acme::application_container::m_applicationa.erase_all();
 
       ::apex::context::destroy();
 

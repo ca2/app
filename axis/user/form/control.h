@@ -33,7 +33,7 @@ namespace user
 
       ::axis::application* get_app();
       ::axis::session* get_session();
-      ::axis::system * get_system();
+      ::axis::system * acmesystem();
       ::axis::user * user();
 
       //ref_array < CTransparentStatic > m_staticpa;

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/constant/id.h"
 #include "acme/exception/extended_status.h"
 #ifdef WINDOWS
@@ -37,7 +37,7 @@ void debug_object_event_promisse_predicate()
 //void system_call_update_wallpaper_changed()
 //{
 //
-//   get_system()->call_subject(id_wallpaper_changed);
+//   acmesystem()->call_subject(id_wallpaper_changed);
 //
 //}
 //
@@ -45,7 +45,7 @@ void debug_object_event_promisse_predicate()
 //void system_call_update_app_activated()
 //{
 //
-//   get_system()->call_subject(id_app_activated);
+//   acmesystem()->call_subject(id_app_activated);
 //
 //}
 //
@@ -53,13 +53,13 @@ void debug_object_event_promisse_predicate()
 //void system_call_update_app_activated()
 //{
 //
-//   get_system()->process_subject(id_app_activated);
+//   acmesystem()->process_subject(id_app_activated);
 //
 //}
 //void system_call_update_app_changed_occlusion_state()
 //{
 //
-//   get_system()->call_subject(id_app_changed_occlusion_state);
+//   acmesystem()->call_subject(id_app_changed_occlusion_state);
 //
 //}
 
@@ -84,36 +84,36 @@ void debug_object_event_promisse_predicate()
 
 
 
-
-#ifdef _DEBUG
-
-
-static bool g_bVerbose = true;
-
-
-#else
-
-
-static bool g_bVerbose = false;
-
-
-#endif
-
-
-CLASS_DECL_ACME bool is_verbose()
-{
-
-   return g_bVerbose;
-
-}
-
-
-void set_verbose(bool bVerbose)
-{
-
-   g_bVerbose = bVerbose;
-
-}
+//
+//#ifdef _DEBUG
+//
+//
+//static bool g_bVerbose = true;
+//
+//
+//#else
+//
+//
+//static bool g_bVerbose = false;
+//
+//
+//#endif
+//
+//
+//CLASS_DECL_ACME bool is_verbose()
+//{
+//
+//   return g_bVerbose;
+//
+//}
+//
+//
+//void set_verbose(bool bVerbose)
+//{
+//
+//   g_bVerbose = bVerbose;
+//
+//}
 
 
 CLASS_DECL_ACME void debug_print(const char * pszFormat, ...)

@@ -290,7 +290,7 @@ typedef struct tagPOINTS
 } POINTS, *PPOINTS, *POINT32 *S;
 
 //
-//  File ::aura::get_system() time stamps are represented with the following structure:
+//  File ::auraacmesystem() time stamps are represented with the following structure:
 //
 
 typedef struct _FILETIME

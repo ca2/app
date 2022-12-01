@@ -14,7 +14,7 @@ CLASS_DECL_ACME void trace_log_information(const char * psz, ...)
 
    va_start(arguments, psz);
 
-   tracer(::get_system(), e_trace_level_information).format_output_arguments(psz, arguments);
+   tracer(::get_task()->m_pcontext, e_trace_level_information).format_output_arguments(psz, arguments);
 
    va_end(arguments);
 
@@ -28,7 +28,7 @@ CLASS_DECL_ACME void trace_log_warning(const char * psz, ...)
 
    va_start(arguments, psz);
 
-   tracer(::get_system(), e_trace_level_warning).format_output_arguments(psz, arguments);
+   tracer(::get_task()->m_pcontext, e_trace_level_warning).format_output_arguments(psz, arguments);
 
    va_end(arguments);
 
@@ -42,7 +42,7 @@ CLASS_DECL_ACME void trace_log_error(const char * psz, ...)
 
    va_start(arguments, psz);
 
-   tracer(::get_system(), e_trace_level_error).format_output_arguments(psz, arguments);
+   tracer(::get_task()->m_pcontext, e_trace_level_error).format_output_arguments(psz, arguments);
 
    va_end(arguments);
 
@@ -56,7 +56,7 @@ CLASS_DECL_ACME void trace_log_fatal(const char * psz, ...)
 
    va_start(arguments, psz);
 
-   tracer(::get_system(), e_trace_level_fatal).format_output_arguments(psz, arguments);
+   tracer(::get_task()->m_pcontext, e_trace_level_fatal).format_output_arguments(psz, arguments);
 
    va_end(arguments);
 
@@ -66,7 +66,7 @@ CLASS_DECL_ACME void trace_log_fatal(const char * psz, ...)
 void tracer::flush()
 {
 
-   auto plogger = ::is_set(m_plogger) ? m_plogger : ::get_system()->m_plogger.get();
+   auto plogger = ::is_set(m_plogger) ? m_plogger : ::get_task()->acmesystem()->m_plogger.get();
 
    if (::is_set(plogger))
    {

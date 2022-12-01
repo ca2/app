@@ -74,9 +74,9 @@
 //
 ////            auto pappStartup = acmesystem()->new_application(strAppId);
 ////
-////            acmesystem()->__refer(m_pcontext->m_pacmeapplicationStartup, pappStartup);
+////            acmesystem()->__refer(m_pcontext->acmeapplication(), pappStartup);
 ////
-////            acmesystem()->set_main_struct(*m_pcontext->m_pacmeapplicationStartup);
+////            acmesystem()->set_main_struct(*m_pcontext->acmeapplication());
 //
 //            acmesystem()->m_bConsole = true;
 //
@@ -128,7 +128,7 @@
 //         int result()
 //         {
 //
-//            m_estatus = m_pcontext->m_pacmeapplicationStartup->m_estatus;
+//            m_estatus = m_pcontext->acmeapplication()->m_estatus;
 //
 //            ::i32 iErrorStatus = m_estatus.error_status();
 //

@@ -25,17 +25,17 @@ namespace windowing
       ::sandbox_windowing::window *             m_psandboxwindowingwindow;
       void *                                    m_pWindow4;
 
-      ::pointer<::windowing::display>          m_pdisplay;
-      ::pointer<::user::interaction_impl>      m_puserinteractionimpl;
+      ::pointer<::windowing::display>           m_pdisplay;
+      ::pointer<::user::interaction_impl>       m_puserinteractionimpl;
       string                                    m_strDebug;
-      ::pointer<::message_queue>               m_pmessagequeue;
-      class ::time                                m_timeLastMouseMove;
-      ::pointer<::windowing::window>           m_pwindowParent;
+      ::pointer<::message_queue>                m_pmessagequeue;
+      class ::time                              m_timeLastMouseMove;
+      ::pointer<::windowing::window>            m_pwindowParent;
       ::point_i32                               m_point;
       ::size_i32                                m_size;
-      ::pointer<::windowing::icon>             m_picon;
-      ::pointer<::windowing::windowing>        m_pwindowing;
-      ::pointer<::user::copydesk>            m_pcopydesk;
+      ::pointer<::windowing::icon>              m_picon;
+      ::pointer<::windowing::windowing>         m_pwindowing;
+      ::pointer<::user::copydesk>               m_pcopydesk;
       ::point_i32                               m_pointCursor;
       ::oswindow                                m_oswindow;
 
@@ -56,7 +56,7 @@ namespace windowing
 
       ::aura::application* get_app();
       ::aura::session* get_session();
-      ::aura::system* get_system();
+      //::aura::system* acmesystem();
 
 
       void install_message_routing(::channel * pchannel) override;

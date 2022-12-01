@@ -1,4 +1,4 @@
-// added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSorensen!!
+﻿// added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 //#include "exception.h"
 #include "callstack.h"
@@ -50,11 +50,13 @@ m_errorcodea(errorcodea)
 
 //#ifdef ANDROID
 //      
-//      m_strCallstack = ::get_system()->acmenode()->unwind_callstack(callstack_default_format(), iSkip);
+//      m_strCallstack = acmesystem()->acmenode()->unwind_callstack(callstack_default_format(), iSkip);
 //
 //#else
 
-      auto psystem = ::get_system();
+      auto ptask = ::get_task();
+
+      auto psystem = ptask->acmesystem();
 
       if(psystem)
       {

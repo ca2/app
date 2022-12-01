@@ -3,6 +3,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
+#include "acme/platform/keep.h"
 #include "aura/platform/draw_context2.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/graphics.h"

@@ -4,7 +4,7 @@
 
 //extern string_map < ::pointer<::acme::library >>* g_pmapLibrary;
 
-//extern ::pointer< ::mutex > ::aura::get_system()->m_pmutexLibrary;
+//extern ::pointer< ::mutex > ::auraacmesystem()->m_pmutexLibrary;
 
 
 typedef  void(*PFN_create_factory)();
@@ -111,7 +111,7 @@ namespace aura
    bool library::open(const ::string & pszPath,bool bAutoClose,bool bCa2Path)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       m_strMessage.Empty();
 
@@ -125,7 +125,7 @@ namespace aura
          if (m_strCa2Name.has_char())
          {
 
-            ::aura::get_system()->m_mapLibrary[m_strCa2Name] = this;
+            ::auraacmesystem()->m_mapLibrary[m_strCa2Name] = this;
 
          }
 
@@ -175,7 +175,7 @@ namespace aura
       if (m_strCa2Name.has_char())
       {
 
-         ::aura::get_system()->m_mapLibrary.set_at(m_strCa2Name, this);
+         ::auraacmesystem()->m_mapLibrary.set_at(m_strCa2Name, this);
 
       }
 
@@ -187,7 +187,7 @@ namespace aura
    bool library::open_ca2_library(string strTitle)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       if (m_pca2library.is_set())
       {
@@ -205,7 +205,7 @@ namespace aura
       try
       {
       
-         m_pca2library = ::aura::get_system()->on_get_library(m_strName);
+         m_pca2library = ::auraacmesystem()->on_get_library(m_strName);
 
       }
       catch (...)
@@ -338,7 +338,7 @@ namespace aura
       if (m_strCa2Name.has_char())
       {
 
-         ::aura::get_system()->m_mapLibrary.set_at(m_strCa2Name, this);
+         ::auraacmesystem()->m_mapLibrary.set_at(m_strCa2Name, this);
 
       }
 
@@ -358,7 +358,7 @@ namespace aura
    string library::get_library_name()
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       if(m_pca2library)
       {
@@ -403,7 +403,7 @@ namespace aura
    bool library::close()
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       try
       {
@@ -453,7 +453,7 @@ namespace aura
    string library::get_app_id(const ::string & pszAppName)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       if(!contains_app(pszAppName))
          return "";
@@ -507,7 +507,7 @@ namespace aura
    string library::get_app_name(const ::string & pszAppId)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       string strAppName(pszAppId);
 
@@ -567,7 +567,7 @@ namespace aura
    ::pointer<::aura::application>library::get_new_application(::particle * pparticle, const ::string & pszAppId)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       try
       {
@@ -677,7 +677,7 @@ namespace aura
    void library::get_app_list(string_array & stra)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       if(get_ca2_library() != nullptr)
       {
@@ -739,7 +739,7 @@ namespace aura
    ::pointer<::matter>library::create_object(::particle * pparticle, const ::string & pszClass)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       if (factory_has_object_class(pszClass))
       {
@@ -782,7 +782,7 @@ namespace aura
    bool library::has_object_class(const ::string & pszClassId)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       if (factory_has_object_class(pszClassId))
       {
@@ -806,7 +806,7 @@ namespace aura
    bool library::contains_app(const ::string & pszAppId)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       string_array stra;
 
@@ -820,7 +820,7 @@ namespace aura
    string library::get_root()
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       if(m_pca2library)
       {
@@ -837,7 +837,7 @@ namespace aura
    void library::get_create_impact_id_list(::array < atom > & ida)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       __UNREFERENCED_PARAMETER(ida);
 
@@ -847,7 +847,7 @@ namespace aura
    bool library::is_opened()
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       return m_plibrary != nullptr;
 
@@ -865,7 +865,7 @@ namespace aura
    void * library::raw_get(const ::string & pszEntryName)
    {
 
-      synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       return __node_library_raw_get(m_plibrary,pszEntryName);
 
@@ -971,14 +971,14 @@ namespace aura
 ::acme::library * lib(const ::string & psz)
 {
 
-   //if (::aura::get_system()->m_mapLibCall == nullptr)
+   //if (::auraacmesystem()->m_mapLibCall == nullptr)
    //{
 
    //   return nullptr;
 
    //}
 
-   ::pointer<::acme::library>& plibrary = ::aura::get_system()->m_mapLibCall[psz];
+   ::pointer<::acme::library>& plibrary = ::auraacmesystem()->m_mapLibCall[psz];
 
    if(!plibrary)
    {

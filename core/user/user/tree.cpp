@@ -50,7 +50,7 @@ namespace user
    }
 
 
-   ::core::system* tree::get_system()
+   ::core::system* treeacmesystem()
    {
 
       return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;

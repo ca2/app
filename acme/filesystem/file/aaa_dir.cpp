@@ -51,13 +51,13 @@ bool windows_file_find_is_dots(WIN32_FIND_DATAW & data);
 
 #if defined(_UWP)
 
-#pragma push_macro("get_system()")
+#pragma push_macro("acmesystem()")
 
-#undef get_system()
+#undef acmesystem()
 
-using namespace ::winrt::Windows::get_system();
+using namespace ::winrt::Windowsacmesystem();
 
-#pragma pop_macro("get_system()")
+#pragma pop_macro("acmesystem()")
 
 #endif
 

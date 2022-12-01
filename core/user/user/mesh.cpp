@@ -160,7 +160,7 @@ namespace user
    }
 
 
-   ::core::system* mesh::get_system()
+   ::core::system* meshacmesystem()
    {
 
       return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;

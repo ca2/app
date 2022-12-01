@@ -1,4 +1,4 @@
-// Create by camilo on 2021-04-11 00:45 BRT <3TBS_!!
+﻿// Create by camilo on 2021-04-11 00:45 BRT <3TBS_!!
 #pragma once
 
 
@@ -8,6 +8,9 @@
 namespace factory
 {
 
+   class factory;
+
+   using factory_pointer = ::pointer < factory >;
 
    template < typename TYPE, typename BASE_TYPE >
    class reusable_factory_item;

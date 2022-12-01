@@ -10,7 +10,7 @@ namespace bred
    void initialize()
    {
 
-      ::factory::add_factory_item < ::bred::system, ::acme::system >();
+      factory()->add_factory_item < ::bred::system, ::acme::system >();
 
    }
 

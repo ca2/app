@@ -757,6 +757,7 @@
     <ClCompile Include="handler\topic.cpp" />
     <ClInclude Include="aaa_id.h" />
     <ClInclude Include="acme.h" />
+    <ClInclude Include="application.h" />
     <ClInclude Include="array2d.h" />
     <ClInclude Include="compress\compress.h" />
     <ClInclude Include="compress\uncompress.h" />
@@ -768,10 +769,12 @@
     <ClInclude Include="constant\context.h" />
     <ClInclude Include="constant\cursor.h" />
     <ClInclude Include="constant\data.h" />
+    <ClInclude Include="constant\exclusive_instance.h" />
     <ClInclude Include="constant\happening.h" />
     <ClInclude Include="constant\filesystem.h" />
     <ClInclude Include="constant\flag.h" />
     <ClInclude Include="constant\future.h" />
+    <ClInclude Include="constant\os_text.h" />
     <ClInclude Include="constant\scalar.h" />
     <ClInclude Include="constant\_id.h" />
     <ClInclude Include="constant\id.h" />
@@ -842,7 +845,7 @@
     <ClInclude Include="inline\implement_console.h" />
     <ClInclude Include="inline\windows\main.h" />
     <ClInclude Include="inline\_new.h" />
-    <ClInclude Include="inline\__implement.h" />
+    <ClInclude Include="inline\application.h" />
     <ClInclude Include="inline\_main_hold.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
@@ -850,7 +853,6 @@
     <None Include="memory\heap_namespace.inl">
       <FileType>Document</FileType>
     </None>
-    <ClCompile Include="memory\allocate_mid_big.cpp" />
     <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
     <ClCompile Include="memory\allocate_system_heap.cpp" />
     <ClCompile Include="memory\allocate_x86_cache_oriented.cpp" />
@@ -861,6 +863,7 @@
     <ClCompile Include="memory\memory_allocate.cpp" />
     <ClCompile Include="memory\memory_management.cpp" />
     <ClCompile Include="memory\os_alloc.cpp" />
+    <ClCompile Include="memory\paged_win32.cpp" />
     <ClCompile Include="memory\property_memory_allocate.cpp" />
     <ClCompile Include="memory\secondary_memory_allocate.cpp" />
     <ClCompile Include="memory\string_memory_allocate.cpp" />
@@ -951,6 +954,10 @@
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\acme.cpp" />
     <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\application_array.cpp" />
+    <ClCompile Include="platform\application_base.cpp" />
+    <ClCompile Include="platform\application_container.cpp" />
+    <ClCompile Include="platform\application_exit.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
     <ClCompile Include="platform\checked.cpp" />
@@ -969,7 +976,7 @@
     <ClCompile Include="platform\library.cpp" />
     <ClCompile Include="platform\log.cpp" />
     <ClCompile Include="platform\lparam.cpp" />
-    <ClCompile Include="platform\main.cpp" />
+    <ClCompile Include="platform\main2.cpp" />
     <ClCompile Include="platform\math.cpp" />
     <ClCompile Include="platform\nanosecond_timer.cpp" />
     <ClCompile Include="platform\node.cpp" />
@@ -980,8 +987,10 @@
     <ClCompile Include="platform\procedure.cpp" />
     <ClCompile Include="platform\procedure_array.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
+    <ClCompile Include="platform\request.cpp" />
     <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
+    <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
     <ClCompile Include="platform\sub_system.cpp" />
     <ClCompile Include="platform\system.cpp" />
@@ -1044,7 +1053,7 @@
     <ClCompile Include="primitive\primitive\object_meta.cpp" />
     <ClCompile Include="primitive\primitive\particle.cpp" />
     <ClCompile Include="primitive\primitive\property_object.cpp" />
-    <ClCompile Include="primitive\primitive\estatus.cpp" />
+    <ClCompile Include="primitive\primitive\e_status.cpp" />
     <ClCompile Include="primitive\primitive\linked_property.cpp" />
     <ClCompile Include="primitive\primitive\matter.cpp" />
     <ClCompile Include="primitive\primitive\match.cpp" />
@@ -1171,6 +1180,7 @@
     <ClInclude Include="inline\_app_impl1.h" />
     <ClInclude Include="inline\_console_old.h" />
     <ClInclude Include="inline\_new_impl.h" />
+    <ClInclude Include="memory\chunk.h" />
     <ClInclude Include="memory\del.h" />
     <ClInclude Include="memory\memory_management.h" />
     <ClInclude Include="memory\property_memory_allocate.h" />
@@ -1200,7 +1210,15 @@
     <ClInclude Include="parallelization\counter.h" />
     <ClInclude Include="parallelization\create_task_attributes.h" />
     <ClInclude Include="parallelization\__string.h" />
+    <ClInclude Include="platform\application_array.h" />
+    <ClInclude Include="platform\application_base.h" />
+    <ClInclude Include="platform\application_container.h" />
+    <ClInclude Include="platform\application_exit.h" />
     <ClInclude Include="platform\enum_names.h" />
+    <ClInclude Include="platform\application_flags.h" />
+    <ClInclude Include="platform\main2.h" />
+    <ClInclude Include="platform\request.h" />
+    <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\_c.h" />
     <ClInclude Include="platform\__string.h" />
     <ClInclude Include="primitive\collection\aaa_base_2array.h" />
@@ -1327,6 +1345,7 @@
     <ClInclude Include="primitive\primitive\concrete.h" />
     <ClInclude Include="primitive\primitive\move.h" />
     <ClInclude Include="primitive\primitive\muldiv64.h" />
+    <ClInclude Include="primitive\primitive\particle_flags.h" />
     <ClInclude Include="primitive\primitive\ptr.h" />
     <ClInclude Include="primitive\primitive\scope_stack.h" />
     <ClInclude Include="primitive\primitive\typed.h" />
@@ -1494,7 +1513,7 @@
     <ClInclude Include="parallelization\_impl.h" />
     <ClInclude Include="parallelization\_thread_os_create_impl.h" />
     <ClInclude Include="parallelization\_types.h" />
-    <ClInclude Include="platform\acme.h" />
+    <ClInclude Include="platform\aaa_acme.h" />
     <ClInclude Include="platform\aaa_str.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\auto.h" />
@@ -1528,7 +1547,7 @@
     <ClInclude Include="platform\log.h" />
     <ClInclude Include="platform\logic.h" />
     <ClInclude Include="platform\lparam.h" />
-    <ClInclude Include="platform\main.h" />
+    <ClInclude Include="platform\acme.h" />
     <ClInclude Include="platform\main1.h" />
     <ClInclude Include="platform\message.h" />
     <ClInclude Include="platform\nanosecond_timer.h" />
@@ -1799,7 +1818,7 @@
     <ClCompile Include="primitive\primitive\property_set.cpp" />
     <ClCompile Include="primitive\primitive\type.cpp" />
     <ClCompile Include="primitive\primitive\var_element.cpp" />
-    <ClCompile Include="primitive\primitive\virtual_memory.cpp" />
+    <ClCompile Include="primitive\primitive\paged_memory.cpp" />
     <ClCompile Include="primitive\primitive\_.cpp" />
     <ClCompile Include="primitive\string\base64.cpp" />
     <ClCompile Include="primitive\string\ch.cpp" />
@@ -1917,7 +1936,7 @@
     <ClInclude Include="primitive\primitive\util.h" />
     <ClInclude Include="primitive\primitive\value.h" />
     <ClInclude Include="primitive\primitive\payload2.h" />
-    <ClInclude Include="primitive\primitive\virtual_memory.h" />
+    <ClInclude Include="primitive\primitive\paged_memory.h" />
     <ClInclude Include="primitive\primitive\property_set_papaya.h" />
     <ClInclude Include="primitive\primitive\_defer.h" />
     <ClInclude Include="primitive\primitive\_papaya.h" />

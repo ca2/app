@@ -843,7 +843,7 @@ namespace sockets
          {
             port_t port = ad.get_service_number();
             in_addr addr;
-            ::apex::get_system()->sockets().net().convert(addr, ad.get_display_number());
+            ::apexacmesystem()->sockets().net().convert(addr, ad.get_display_number());
             ::memcpy_dup(request + 2, &port, sizeof(port_t)); // nwbo is ok here
             ::memcpy_dup(request + 2 + sizeof(port_t), &addr, sizeof(in_addr));
          }

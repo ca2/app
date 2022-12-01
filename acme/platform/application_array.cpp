@@ -1,4 +1,4 @@
-//
+﻿//
 //  apex_application_ptra.cpp
 //  apex
 //
@@ -6,10 +6,10 @@
 //
 #include "framework.h"
 #include "application_array.h"
-#include "apex/platform/application.h"
+#include "application.h"
 
 
-namespace apex
+namespace acme
 {
 
 
@@ -20,7 +20,7 @@ namespace apex
 
 
    application_array::application_array(const application_array & array) :
-      pointer_array < ::apex::application >(array)
+      pointer_array < ::acme::application >(array)
    {
 
    }
@@ -29,7 +29,7 @@ namespace apex
    application_array & application_array::operator = (const application_array & array)
    {
 
-      pointer_array < ::apex::application >::operator = (array);
+      pointer_array < ::acme::application >::operator = (array);
 
       return *this;
 
@@ -37,7 +37,7 @@ namespace apex
 
 
    application_array::application_array(application_array && array) :
-      pointer_array < ::apex::application >(array)
+      pointer_array < ::acme::application >(array)
    {
 
    }
@@ -46,7 +46,7 @@ namespace apex
    application_array & application_array::operator = (application_array && array)
    {
 
-      pointer_array < ::apex::application >::operator = (array);
+      pointer_array < ::acme::application >::operator = (array);
 
       return *this;
 
@@ -71,32 +71,32 @@ namespace apex
    }
 
 
-   ::apex::application * application_array::find_by_app_name(string strAppName)
+   ::acme::application * application_array::find_by_app_id(const string & strAppId)
    {
 
       //synchronous_lock synchronouslock(this->synchronization());
 
    restart:
 
-      for (auto & papp : *this)
+      for (auto & papplication : *this)
       {
 
          try
          {
 
-            if (papp.is_null())
+            if (papplication.is_null())
             {
 
-               erase(papp);
+               erase(papplication);
 
                goto restart;
 
             }
 
-            if (papp->m_strAppName == strAppName)
+            if (papplication->m_strAppId == strAppId)
             {
 
-               return papp;
+               return papplication;
 
             }
 
@@ -113,12 +113,12 @@ namespace apex
    }
 
 
-   ::apex::application * application_array::find_running_defer_try_quit_damaged(string strAppName)
+   ::acme::application * application_array::find_running_defer_try_quit_damaged(const string & strAppId)
    {
 
-      ::pointer<::apex::application>papp = find_by_app_name(strAppName);
+      auto papplication = find_by_app_id(strAppId);
 
-      if (papp.is_null())
+      if (::is_null(papplication))
       {
 
          return nullptr;
@@ -146,7 +146,7 @@ namespace apex
       try
       {
 
-         papp.release();
+         ::release(papplication);
 
       }
       catch (...)
@@ -159,10 +159,10 @@ namespace apex
    }
 
 
-   bool application_array::lookup(string strAppName, ::pointer<::apex::application>& papp)
+   bool application_array::lookup(const string & strAppId, ::pointer<::acme::application>& papp)
    {
 
-      papp = find_running_defer_try_quit_damaged(strAppName);
+      papp = find_running_defer_try_quit_damaged(strAppId);
 
       return papp.is_set();
 

@@ -396,7 +396,7 @@ void tool_task::set_ready_to_start()
 //CLASS_DECL_ACME ::task_group * get_task_group(::enum_priority epriority)
 //{
 //
-//   return  ::apex::get_system()->tools(epriority);
+//   return  ::apexacmesystem()->tools(epriority);
 //
 //}
 //
@@ -404,7 +404,7 @@ void tool_task::set_ready_to_start()
 //CLASS_DECL_ACME ::task_groupet * get_task_groupet(::enum_task_tool etool)
 //{
 //
-//   return ::apex::get_system()->toolset(etool);
+//   return ::apexacmesystem()->toolset(etool);
 //
 //}
 

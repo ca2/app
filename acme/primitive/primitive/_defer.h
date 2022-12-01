@@ -22,7 +22,7 @@
 //
 //      auto pfactory = __new(::factory::factory_item< TYPE, BASE_TYPE >());
 //
-//      ::factory::get_factory()->set_at(atom, pfactory);
+//      factory()->set_at(atom, pfactory);
 //
 //      return pfactory;
 //
@@ -49,7 +49,7 @@
 //
 //      auto pfactoryitem = __new(::factory::factory_item< TYPE, BASE_TYPE >());
 //
-//      ::factory::get_factory_item < BASE_TYPE >(atomSource) = pfactoryitem;
+//      factory_item < BASE_TYPE >(atomSource) = pfactoryitem;
 //
 //      return pfactoryitem;
 //
@@ -64,7 +64,7 @@
 //
 //      auto pfactory = __new(::factory::factory_item< TYPE, BASE_TYPE >());
 //
-//      ::factory::get_factory_item < BASE_TYPE >() = pfactory;
+//      factory_item < BASE_TYPE >() = pfactory;
 //
 //      return pfactory;
 //
@@ -79,7 +79,7 @@
 //
 //      auto pfactory = __new(::factory::reusable_factory_item< TYPE, BASE_TYPE >());
 //
-//      ::factory::get_factory_item < BASE_TYPE >() = pfactory;
+//      factory_item < BASE_TYPE >() = pfactory;
 //
 //      return pfactory;
 //

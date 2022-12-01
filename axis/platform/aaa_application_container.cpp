@@ -226,10 +226,10 @@ application_array application_container::get_applicationa()
    else
    {
 
-      if (psystem->m_pacmeapplicationStartup.is_set())
+      if (psystem->acmeapplication().is_set())
       {
 
-         if (psystem->m_pacmeapplicationStartup->m_strAppId != strAppId)
+         if (psystem->acmeapplication()->m_strAppId != strAppId)
          {
 
             TRACE("Wrong papp Data Type");
@@ -238,9 +238,9 @@ application_array application_container::get_applicationa()
 
          }
 
-         papp = psystem->m_pacmeapplicationStartup;
+         papp = psystem->acmeapplication();
 
-         psystem->m_pacmeapplicationStartup.release();
+         psystem->acmeapplication().release();
 
       }
       else

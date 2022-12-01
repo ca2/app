@@ -42,7 +42,7 @@ namespace base
    }
 
 
-   ::base::system * style::get_system()
+   ::base::system * styleacmesystem()
    {
       
       return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 

@@ -374,9 +374,9 @@ namespace acme
 //      */
 //
 //      //string strExeName;
-//      //string strTitle = ::acme::get_system()->load_string("::acme::get_system()->title");
+//      //string strTitle = ::acmeacmesystem()->load_string("::acmeacmesystem()->title");
 //      // get the exe title from the full path name [no extension]
-//      //strExeName = ::acme::get_system()->get_module_title();
+//      //strExeName = ::acmeacmesystem()->get_module_title();
 //
 //      m_htask      =  ::GetCurrentThread();
 //

@@ -227,10 +227,10 @@ application_array application_container::get_applicationa()
    else
    {
 
-      if (::aura::get_system()->m_pacmeapplicationStartup.is_set())
+      if (::auraacmesystem()->acmeapplication().is_set())
       {
 
-         if (::aura::get_system()->m_pacmeapplicationStartup->m_strAppId != strAppId)
+         if (::auraacmesystem()->acmeapplication()->m_strAppId != strAppId)
          {
 
             TRACE("Wrong papp Data Type");
@@ -239,15 +239,15 @@ application_array application_container::get_applicationa()
 
          }
 
-         papp = ::aura::get_system()->m_pacmeapplicationStartup;
+         papp = ::auraacmesystem()->acmeapplication();
 
-         ::aura::get_system()->m_pacmeapplicationStartup.release();
+         ::auraacmesystem()->acmeapplication().release();
 
       }
       else
       {
 
-         papp = ::aura::get_system()->get_new_application(this, strAppId);
+         papp = ::auraacmesystem()->get_new_application(this, strAppId);
 
       }
 
@@ -385,8 +385,8 @@ application_array application_container::get_applicationa()
 
    ::file::path pathExe = acmepath()->app_module();
 
-   if (!is_application_installed(pathExe, strApp, strBuild, ::aura::get_system()->get_system_platform(),
-      ::aura::get_system()->get_system_configuration(), strLocale, strSchema))
+   if (!is_application_installed(pathExe, strApp, strBuild, ::auraacmesystem()->get_system_platform(),
+      ::auraacmesystem()->get_system_configuration(), strLocale, strSchema))
    {
 
       if (papp->m_bRequiresInstallation)
@@ -441,7 +441,7 @@ application_array application_container::get_applicationa()
    //      if (strApp != "session")
    //      {
 
-   ::aura::get_system()->merge_accumulated_on_open_file(pcreate);
+   ::auraacmesystem()->merge_accumulated_on_open_file(pcreate);
 
    papp->do_request(pcreate);
 

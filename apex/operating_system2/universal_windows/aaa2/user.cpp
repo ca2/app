@@ -116,7 +116,7 @@ CLASS_DECL_APEX void defer_dock_application(int_bool bDock)
 
 
 
-#undef ::apex::get_system()
+#undef ::apexacmesystem()
 #undef Platform
 
 using namespace Platform;
@@ -126,7 +126,7 @@ using namespace ::winrt::Windows::UI::Core;
 using namespace ::winrt::Windows::ApplicationModel;
 using namespace ::winrt::Windows::ApplicationModel::Core;
 using namespace ::winrt::Windows::ApplicationModel::Activation;
-using namespace ::winrt::Windows::apex::get_system();
+using namespace ::winrt::Windows::apexacmesystem();
 using namespace ::winrt::Windows::Graphics::Display;
-using namespace ::winrt::Windows::apex::get_system()::Threading;
+using namespace ::winrt::Windows::apexacmesystem()::Threading;
 

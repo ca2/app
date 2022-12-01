@@ -1879,7 +1879,7 @@ namespace http
 
 //      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_session()) && ::is_set(psession->account());
 
-      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_session()) ;
+      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(acmesession()) ;
 
 //      single_lock slFontopus(bSessionAccount ? psession->account()->mutex() : nullptr);
 

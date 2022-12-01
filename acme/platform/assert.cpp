@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/parallelization/task.h"
 #include "acme/platform/system.h"
 #include <stdio.h>
@@ -111,7 +111,7 @@ namespace acme
 //#endif
 
 
-//::acme::system * get_system();
+//::acme::system * acmesystem();
 
 
 CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int iLineNumber)
@@ -159,7 +159,7 @@ CLASS_DECL_ACME ::atom __cpp_assert_failed_line(const char * pszFileName, int iL
 
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running",pszFileName,iLineNumber);
 
-   return message_box_synchronous(::get_system(), szMessage, "ASSERT", e_message_box_cancel_try_continue);
+   return message_box_synchronous(::get_task(), szMessage, "ASSERT", e_message_box_cancel_try_continue);
 
 }
 

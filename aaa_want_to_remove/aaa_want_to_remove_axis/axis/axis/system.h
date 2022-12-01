@@ -70,7 +70,7 @@ namespace axis
 
       //virtual ::pointer<::aura::session>on_create_session() override;
 
-      virtual void on_request(::create * pcreate) override;
+      virtual void on_request(::request * prequest) override;
 
       //virtual void construct(const ::string & pszAppId);
 
@@ -116,7 +116,7 @@ namespace axis
       virtual void hist_hist(const ::string & psz);
 
 
-      //virtual void on_request(::create * pcreate);
+      //virtual void on_request(::request * prequest) override;
 
 
       //virtual u32 crc32(u32 dwPrevious, const ::string & psz);

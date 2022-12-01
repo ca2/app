@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSørensen
 // Generalization by camilo on 31/01/2022 14:53 <3ThomasBorregaardSørensen!!
 #include "framework.h"
@@ -317,7 +317,7 @@ void nano_message_box::on_create()
 //}
 
 
-//CLASS_DECL_ACME ::acme::system * get_system();
+//CLASS_DECL_ACME ::acme::system * acmesystem();
 
 
 CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const char * pszDetails)
@@ -328,7 +328,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const cha
    if (::is_null(pparticle))
    {
 
-      pparticle = ::get_system();
+      throw ::exception(error_null_pointer);
       
    }
 
@@ -439,7 +439,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    if (::is_null(pparticle))
    {
 
-      pparticle = ::get_system();
+      throw ::exception(error_null_pointer);
       
    }
 

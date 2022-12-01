@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "aura/update.h"
 
 //IMPLEMENT_APPLICATION(app_just_message_box);
@@ -57,7 +57,7 @@ namespace app_just_message_box
    //}
 
 
-   void application::on_request(::create * pcreate)
+   void application::on_request(::request * prequest)
    {
 
       show_message_box();

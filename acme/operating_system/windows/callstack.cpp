@@ -1,6 +1,7 @@
 ﻿// Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/platform/_synchronization.h"
 #include "acme/platform/node.h"
 
 
@@ -70,6 +71,11 @@
 ////}
 //
 
+
+::critical_section g_criticalsectionSymDbgHelp;
+
+
+::critical_section * sym_dbg_help_critical_section() { return &g_criticalsectionSymDbgHelp; }
 
 namespace acme
 {

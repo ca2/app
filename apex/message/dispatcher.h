@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 #include "predicate_handler.h"
+#include "acme/memory/chunk.h"
 #include "acme/primitive/collection/atom_map.h"
 //#include "acme/primitive/primitive/function.h"
 #include "acme/primitive/primitive/particle.h"

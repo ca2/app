@@ -1,4 +1,4 @@
-//
+﻿//
 //  _forward_declaration.h
 //  acme
 //
@@ -1149,6 +1149,15 @@ consteval auto as_const(auto asconst)
 
 }
 
+
+namespace acme
+{
+
+
+   using session_map = ::map < index, ::pointer < ::acme::session > >;
+
+
+} // namespace acme
 
 
 

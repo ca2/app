@@ -208,6 +208,47 @@ namespace acme
    }
 
 
+   void node::start_application(::pointer<::acme::node>& pnode, ::pointer<::acme::system>& psystem)
+   {
+
+      m_pparticleQuit = create_quit_particle(pnode, psystem);
+
+      //if (psystem->m_pfnImplement)
+      {
+
+         psystem->init_task();
+
+         //(*psystem->m_pfnImplement)(psystem);
+
+         //psystem->m_pnode.release();
+
+         //return;
+
+      }
+
+   //   //acme_application_main(pApplication, argc, argv);
+
+   //   acme_application_main(psystem);
+
+   //   //return psystem->m_estatus;
+
+
+   //   //auto estatus =
+
+   //   //::acme::apple::node::implement(pnode, psystem);
+
+   ////         if(!estatus)
+   ////         {
+   ////
+   ////            return estatus;
+   ////
+   ////         }
+   ////
+   ////         return estatus;
+
+   }
+
+
    void node::acme_application_main(::acme::system * psystem)
    {
 
@@ -907,16 +948,11 @@ namespace acme
    bool node::set_wallpaper(index iScreen, string strLocalImagePath)
    {
 
-      auto pnode = get_system()->node();
+      throw interface_only();
 
-      if(::is_null(pnode))
-      {
+      //return pnode->set_wallpaper(iScreen, strLocalImagePath);
 
-         return false;
-
-      }
-
-      return pnode->set_wallpaper(iScreen, strLocalImagePath);
+      return false;
 
    }
 
@@ -1855,7 +1891,7 @@ return false;
    void node::report_exception_to_user(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails)
    {
 
-      exception_message_box(this, exception, strMoreDetails);
+      exception_message_box(exception, strMoreDetails);
 
    }
 

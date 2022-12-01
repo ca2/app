@@ -72,7 +72,7 @@
 //   //      pusersystem->m_createstruct.hwndParent = hWndParent;
 //   //   pusersystem->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
 //   pusersystem->m_createstruct.hMenu = nullptr;
-//   //      pusersystem->m_createstruct.hInstance = ::acme::get_system()->m_hInstance;
+//   //      pusersystem->m_createstruct.hInstance = ::acmeacmesystem()->m_hInstance;
 //   pusersystem->m_createstruct.lpCreateParams = nullptr;
 //
 //   if(pimpl->m_puserinteraction != nullptr)

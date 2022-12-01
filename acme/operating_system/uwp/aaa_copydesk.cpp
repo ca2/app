@@ -319,7 +319,7 @@ namespace universal_windows
    bool copydesk::_has_image()
    {
 
-      return ::acme::get_system()->imaging()._desk_has_image();
+      return ::acmeacmesystem()->imaging()._desk_has_image();
 
    }
 
@@ -327,7 +327,7 @@ namespace universal_windows
    bool copydesk::_desk_to_image(::image * pimage)
    {
 
-      return ::acme::get_system()->imaging()._desk_to_image(pimage);
+      return ::acmeacmesystem()->imaging()._desk_to_image(pimage);
 
    }
 
@@ -335,7 +335,7 @@ namespace universal_windows
    bool copydesk::_image_to_desk(const ::image * pimage)
    {
 
-      return ::acme::get_system()->imaging()._image_to_desk(pimage);
+      return ::acmeacmesystem()->imaging()._image_to_desk(pimage);
 
    }
 

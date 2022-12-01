@@ -1,4 +1,4 @@
-// cs<3tbs!! 2020-11-28 21:25 BRT
+﻿// cs<3tbs!! 2020-11-28 21:25 BRT
 #pragma once
 
 
@@ -15,7 +15,7 @@ namespace net
 } // namespace net
 
 
-inline bool thread_has_sockets() { return task_flag().is_set(e_task_flag_using_sockets); }
+CLASS_DECL_APEX bool thread_has_sockets();
 //
 //
 //#include "logger.h"

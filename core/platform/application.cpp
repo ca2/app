@@ -12,22 +12,24 @@ namespace core
 {
 
 
-   void initialize()
-   {
+   //void initialize()
+   //{
 
-      factory()->add_factory_item < ::core::system, ::acme::system >();
+   //   factory()->add_factory_item < ::core::system, ::acme::system >();
 
-   }
+   //}
 
 
    application::application()
    {
 
-      ::core::initialize();
+      //::core::initialize();
 
       m_pcoreapplication = this;
 
       m_strAppId = "app-complex/drawing";
+
+      factory()->add_factory_item < ::core::system, ::acme::system >();
 
    }
 
@@ -42,6 +44,26 @@ namespace core
    {
 
 
+   }
+
+
+   ::core::session* application::get_session() 
+   {
+
+      auto pacmesession = acmesession();
+      
+      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr; 
+   
+   }
+
+
+   ::core::system* application::get_system() 
+   {
+
+      auto pacmesystem = acmesystem();
+      
+      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr; 
+   
    }
 
 
@@ -99,7 +121,7 @@ namespace core
 
       string strApplicationTitle;
 
-      strApplicationTitle = get_app()->title();
+      strApplicationTitle = get_app()->m_papexapplication->title();
 
       string strHeader__;
 

@@ -9797,7 +9797,7 @@ namespace user
 
       }
 
-      //auto psession = get_session()->m_paurasession;
+      //auto psession = acmesession()->m_paurasession;
 
       //if (::is_set(psession))
       //{

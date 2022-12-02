@@ -14,13 +14,12 @@ namespace acme
 {
 
    
-   class CLASS_DECL_ACME acme :
-      virtual public ::particle
+   class CLASS_DECL_ACME acme
    {
    public:
 
 
-      //::acme::application * m_pacmeapplication;
+      ::acme::application * m_pacmeapplication;
 
       pointer_array < ::particle >* m_pelementaddraReleaseOnEnd = nullptr;
 
@@ -103,7 +102,7 @@ namespace acme
       ~acme();
 
 
-      using ::particle::initialize;
+      //using ::particle::initialize;
 
 #if defined(WINDOWS)  && defined(UNICODE)
       void initialize(int argc, wchar_t* wargv[], wchar_t* wenvp[]);

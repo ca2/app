@@ -101,7 +101,7 @@ namespace xml
 
       //auto estatus = 
       
-      //::object::initialize(pparticle);
+      node::initialize(pparticle);
 
       //if (!estatus)
       //{

@@ -309,7 +309,7 @@ namespace sphere
    }
 
 
-   void application::on_request(::create * pcreate)
+   void application::on_request(::request * prequest)
    {
 
       ::aura::application::on_request(pcreate);
@@ -619,7 +619,7 @@ namespace sphere
    }
 
 
-   //void application::on_request(::create * pcreate)
+   //void application::on_request(::request * prequest)
    //{
 
 
@@ -659,7 +659,7 @@ namespace sphere
 
 
 
-   /*   void department::request(::create * pcreate)
+   /*   void department::request(::request * prequest)
       {
 
          if(m_pappCurrent != nullptr && m_pappCurrent != this

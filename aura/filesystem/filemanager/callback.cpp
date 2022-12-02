@@ -54,7 +54,7 @@ namespace filemanager
       __UNREFERENCED_PARAMETER(context);
    }
 
-   //void callback::on_request(::create * pcreate)
+   //void callback::on_request(::request * prequest)
    //{
 
    //   papp->do_request(pcreate);

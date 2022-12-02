@@ -252,7 +252,7 @@ namespace aura
 //
 //
 ////
-////   void     application::do_request(::create * pcreate)
+////   void     application::do_request(::request * prequest)
 ////   {
 ////
 ////      //m_pcommand = pcommand;

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/filesystem/filesystem/path.h"
@@ -30,7 +30,7 @@ namespace filemanager
       ~component() override;
 
 
-      inline ::core::session* get_session() const;
+      inline ::core::session* get_session();
 
 
       virtual void initialize_filemanager_component(::particle * pparticle);
@@ -51,17 +51,17 @@ namespace filemanager
 
 
 
-      void filemanager_load_project(const ::file::path & pathFileManagerProject, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
+      void filemanager_load_project(const ::file::path & pathFileManagerProject, ::request * prequest = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
 
       void filemanager_save_project();
 
       document * find_filemanager(::payload payloadFile);
 
-      document * restore_filemanager(::payload payloadFile, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
+      document * restore_filemanager(::payload payloadFile, ::request * prequest = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
 
-      document * open_filemanager(::payload payloadFile, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
+      document * open_filemanager(::payload payloadFile, ::request * prequest = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
 
-      document * add_filemanager(const ::file::path & pathFolder, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
+      document * add_filemanager(const ::file::path & pathFolder, ::request * prequest = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
 
       bool erase_filemanager(::payload payloadFile);
 
@@ -76,13 +76,13 @@ namespace filemanager
 
       /// other ids? SAME BEHAVIOUR!! for that/this atom.
 
-      //document * open_main(::aura::application * pappOnBehalfOf, ::atom atom = -1, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
+      //document * open_main(::aura::application * pappOnBehalfOf, ::atom atom = -1, ::request * prequest = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
       //document * open_child(bool bMakeVisible = true, bool bTransparentBackground = false, ::pointer<::user::interaction>puiParent = nullptr, callback * pcallback = nullptr);
       data * filemanager(atom atom = FILEMANAGER_IMPACT);
       //document * get_list(atom atom);
       //document * get_folder_selection_list(atom atom);
 
-      //document * filemanager_create_new_document(callback * pinterface, ::create * pcreate);
+      //document * filemanager_create_new_document(callback * pinterface, ::request * prequest);
 
 
    };

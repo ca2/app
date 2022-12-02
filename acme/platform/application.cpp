@@ -48,7 +48,7 @@ namespace acme
 {
 
 
-   extern ::pointer < ::acme::acme > g_p;
+   extern ::acme::acme * g_p;
 
 
    application::application()
@@ -62,14 +62,12 @@ namespace acme
       m_pbredapplication = nullptr;
       m_pcoreapplication = nullptr;
 
-      if (::is_null(g_p->m_pcontext))
+      if (m_pacme && !m_pacme->m_pacmeapplication)
       {
 
-         g_p->initialize(this);
+         m_pacme->m_pacmeapplication = this;
 
       }
-
-
 
 //      if (g_p == nullptr)
 //      {

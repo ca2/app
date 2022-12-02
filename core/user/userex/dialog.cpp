@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/user/user/interaction.h"
 #include "base/user/form/document.h"
 #include "base/user/form/impact.h"
@@ -90,7 +90,7 @@ bool dialog::show(const ::string & pszMatter)
 
    auto pcontext = m_pcontext;
    
-   auto psession = pcontext->m_pcoresession;
+   auto psession = pcontext->m_pacmesession->m_pcoresession;
    
    auto puser = psession->m_puser->m_pcoreuser;
 

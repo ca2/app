@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 ////#include "acme/exception/exception.h"
+#include "acme/parallelization/task_flag.h"
 
 
 class CLASS_DECL_AXIS numeric_parsing_exception:

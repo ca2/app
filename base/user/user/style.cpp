@@ -26,35 +26,43 @@ namespace base
    }
 
 
-   ::base::application * style::get_app()
+   ::base::application* style::get_app()
    {
-      
-      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
-   
+
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
+
    }
 
 
-   ::base::session * style::get_session()
+   ::base::session* style::get_session()
    {
-      
-      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
-   
+
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+
    }
 
 
-   ::base::system * styleacmesystem()
+   ::base::system* style::get_system()
    {
-      
-      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
-   
+
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
+
    }
 
 
-   ::base::user * style::user()
+   ::base::user* style::user()
    {
-      
-      return get_session() ? get_session()->user() : nullptr; 
-   
+
+      auto psession = get_session();
+
+      return ::is_set(psession) ? psession->user() : nullptr;
+
    }
 
 

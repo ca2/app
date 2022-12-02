@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -15,7 +15,7 @@ namespace app_just_message_box
    public:
 
 
-      //application();
+      application();
       //~application() override;
 
 

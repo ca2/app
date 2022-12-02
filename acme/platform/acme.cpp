@@ -3,6 +3,7 @@
 #include "system.h"
 //#include "sequencer.h"
 #include "library.h"
+#include "sub_system.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/platform/_synchronization.h"
 #include "acme/primitive/primitive/malloc.h"
@@ -398,7 +399,7 @@ namespace acme
 {
 
 
-   ::pointer < ::acme::acme > g_p;
+   ::acme::acme * g_p = nullptr;
 
 
    CLASS_DECL_ACME::acme::acme* get()
@@ -416,7 +417,7 @@ namespace acme
 
       acme_construct();
 
-      __construct_new(m_psubsystem);
+      ::__raw_construct_new(m_psubsystem);
 
    }
 

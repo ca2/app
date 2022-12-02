@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "interaction.h"
@@ -29,7 +29,7 @@ namespace user
 
       ::aura::application* get_app();
       ::aura::session* get_session();
-      ::aura::system* acmesystem();
+//      ::aura::system* acmesystem();
       ::user::user * user();
 
 

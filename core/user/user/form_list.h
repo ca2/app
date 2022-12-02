@@ -25,7 +25,7 @@ namespace user
 
       ::core::application* get_app();
       ::core::session* get_session();
-      ::core::system* acmesystem();
+      ::core::system* get_system();
 
 
       void _001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * psubitem) override;

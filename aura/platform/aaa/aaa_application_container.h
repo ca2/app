@@ -22,13 +22,13 @@ public:
    virtual ~application_container();
 
 
-   virtual ::aura::application * application_get(const ::string & pszAppId, bool bCreate = true, bool bSynch = true, ::create * pcreate = nullptr);
+   virtual ::aura::application * application_get(const ::string & pszAppId, bool bCreate = true, bool bSynch = true, ::request * prequest = nullptr);
 
 
-   virtual ::pointer<::aura::application>instantiate_application(const ::string & pszAppId, ::create * pcreate);
-   virtual ::pointer<::aura::application>create_application(const ::string & pszAppId, bool bSynch, ::create * pcreate);
+   virtual ::pointer<::aura::application>instantiate_application(const ::string & pszAppId, ::request * prequest);
+   virtual ::pointer<::aura::application>create_application(const ::string & pszAppId, bool bSynch, ::request * prequest);
    virtual ::pointer<::aura::application>create_platform(::aura::session * psession);
-   virtual ::pointer<::aura::application>start_application(const ::string & pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema);
+   virtual ::pointer<::aura::application>start_application(const ::string & pszAppId, ::request * prequest, const ::string & strLocale, const ::string & strSchema);
 
    virtual void request_exit();
 

@@ -344,7 +344,7 @@ namespace axis
    //}
 
 
-   void system::on_request(::create * pcreate)
+   void system::on_request(::request * prequest)
    {
 
       ::aura::system::on_request(pcreate);
@@ -425,7 +425,7 @@ namespace axis
    {
    }
 
-   //void system::on_request(::create * pcreate)
+   //void system::on_request(::request * prequest)
    //{
 
    //   ::axis::system::on_request(pcreate);

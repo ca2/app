@@ -7,6 +7,7 @@
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/keep.h"
 #include "acme/platform/system.h"
 #include "aura/message/user.h"
 #include "axis/user/user/validate.h"
@@ -42,7 +43,9 @@ namespace user
    ::core::application* form_list::get_app()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
 
    }
 
@@ -50,15 +53,19 @@ namespace user
    ::core::session* form_list::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
    }
 
 
-   ::core::system* form_listacmesystem()
+   ::core::system* form_list::get_system()
    {
 
-      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
    }
 

@@ -137,7 +137,7 @@ namespace core
 
       ::core::application* get_app();
       ::core::session* get_session();
-      ::core::system* acmesystem();
+      ::core::system* get_system();
 
 
 
@@ -359,7 +359,7 @@ namespace core
 
       //::user::keyboard& keyboard();
 
-      //virtual bool open_by_file_extension(const ::string & pszPathName, ::create * pcreate = nullptr);
+      //virtual bool open_by_file_extension(const ::string & pszPathName, ::request * prequest = nullptr);
 
       //virtual bool open_by_file_extension(::create * pcc);
 
@@ -395,7 +395,7 @@ namespace core
 
       ////virtual void on_request(::request * prequest) override;
 
-      //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
+      //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 
       //virtual bool is_key_pressed(::user::enum_key ekey);
 
@@ -545,7 +545,7 @@ namespace core
 
       //void initialize_bergedge_application_interface();
 
-      ////virtual bool create_bergedge(::create * pcreate);
+      ////virtual bool create_bergedge(::request * prequest);
 
       //virtual void will_use_impact_hint(::atom idImpact);
 

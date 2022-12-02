@@ -57,26 +57,26 @@ namespace bred
 
 
 
-   void system::on_add_session(::apex::session* papexsession)
-   {
+   //void system::on_add_session(::apex::session* papexsession)
+   //{
 
-      ::base::system::on_add_session(papexsession);
+   //   ::base::system::on_add_session(papexsession);
 
-      if (papexsession->m_iEdge == 0)
-      {
+   //   if (papexsession->m_iEdge == 0)
+   //   {
 
-         if (!m_pbredsession)
-         {
+   //      if (!m_pbredsession)
+   //      {
 
-            m_pbredsession = papexsession->m_pbredsession;
+   //         m_pbredsession = papexsession->m_pbredsession;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      papexsession->m_pbredsystem = this;
+   //   papexsession->m_pbredsystem = this;
 
-   }
+   //}
    //void system::initialize_rich_text()
    //{
 
@@ -92,7 +92,7 @@ namespace bred
    //}
 
   
-   __namespace_system_factory(system);
+   //__namespace_system_factory(system);
 
 
 } // namespace bred

@@ -9,8 +9,9 @@
 #include "acme/exception/exit.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/keep.h"
+#include "acme/platform/request.h"
 #include "acme/primitive/data/listener.h"
-#include "apex/platform/create.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context_image.h"
@@ -3322,16 +3323,16 @@ namespace user
    //}
 
 
-   bool tab::set_current_tab_by_id(const ::atom & atom, ::create * pcreate)
+   bool tab::set_current_tab_by_id(const ::atom & atom, ::request * prequest)
    {
 
       try
       {
 
-         if (::is_set(pcreate))
+         if (::is_set(prequest))
          {
 
-            m_pusersystem->m_pcreate = pcreate;
+            m_pusersystem->m_prequest = prequest;
 
          }
 
@@ -3382,10 +3383,10 @@ namespace user
 
       }
 
-      if (::is_set(pcreate) && pcreate == m_pusersystem->m_pcreate)
+      if (::is_set(prequest) && prequest == m_pusersystem->m_prequest)
       {
 
-         m_pusersystem->m_pcreate = nullptr;
+         m_pusersystem->m_prequest = nullptr;
 
       }
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/platform/context.h"
@@ -78,8 +78,34 @@ void handle(::topic * ptopic, ::context * pcontext) override \
 //   BASE4::signal(psignal);                                                   \
 //                                                                                       \
 //}                                                                                      \
-                                                                                       \
 
+
+
+#define OPTIONAL_BASE_BODY                                                          \
+public:                                                                             \
+   void on_initialize_particle() override {}         \
+   void handle(::topic*,::context*) override {}
+
+//   void assert_ok() const override {}                                    \
+//   void dump(dump_context&) const override {}                               \
+   //void on_subject(::topic::topic*, ::context*) override {} \
+
+#define OPTIONAL_INTERACTION_BODY                                                   \
+   OPTIONAL_BASE_BODY                                                               \
+   void install_message_routing(::channel*) override {}                     \
+   void on_layout(::draw2d::graphics_pointer&) {}
+
+
+
+class optional_base1 : virtual public ::particle { OPTIONAL_BASE_BODY };
+class optional_base2 : virtual public ::particle { OPTIONAL_BASE_BODY };
+class optional_base3 : virtual public ::particle { OPTIONAL_BASE_BODY };
+class optional_base4 : virtual public ::particle { OPTIONAL_BASE_BODY };
+
+class optional_interaction1 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
+class optional_interaction2 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
+class optional_interaction3 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
+class optional_interaction4 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
 
 
 template <  typename APP, typename BASE1 = optional_base1, typename BASE2 = optional_base2, typename BASE3 = optional_base3, typename BASE4 = optional_base4 >

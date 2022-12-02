@@ -28,13 +28,14 @@
 #include "thumbnail.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/handler/item.h"
+#include "acme/platform/keep.h"
 #include "acme/platform/node.h"
 #include "acme/primitive/collection/_container.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/fs/data.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/user/user/shell.h"
 #include "base/user/user/multiple_document_template.h"
@@ -437,7 +438,7 @@ namespace filemanager
    }
 
 
-   void component::filemanager_load_project(const ::file::path & pathFilemanagerProject, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   void component::filemanager_load_project(const ::file::path & pathFilemanagerProject, ::request * prequest, ::fs::data * pfsdata, callback * pcallback)
    {
 
       {
@@ -552,7 +553,7 @@ namespace filemanager
          if (stra.is_empty())
          {
 
-            restore_filemanager("", pcreate, nullptr, pcallback);
+            restore_filemanager("", prequest, nullptr, pcallback);
 
          }
          else
@@ -561,7 +562,7 @@ namespace filemanager
             for (auto str : stra)
             {
 
-               restore_filemanager(str, pcreate, nullptr, pcallback);
+               restore_filemanager(str, prequest, nullptr, pcallback);
 
             }
 
@@ -676,7 +677,7 @@ namespace filemanager
    }
 
 
-   document * component::open_filemanager(::payload payloadFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   document * component::open_filemanager(::payload payloadFile, ::request * prequest, ::fs::data * pfsdata, callback * pcallback)
    {
 
       //document * pdocument;
@@ -731,12 +732,12 @@ namespace filemanager
    }
 
 
-   document * component::restore_filemanager(::payload payloadFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   document * component::restore_filemanager(::payload payloadFile, ::request * prequest, ::fs::data * pfsdata, callback * pcallback)
    {
 
       filemanager()->m_filepath = payloadFile.file_path();
 
-      filemanager()->m_pcreate = pcreate;
+      filemanager()->m_prequest = prequest;
 
       filemanager()->m_pfsdata = pfsdata;
 
@@ -749,7 +750,7 @@ namespace filemanager
    }
 
 
-   document * component::add_filemanager(const ::file::path & pathFolder, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   document * component::add_filemanager(const ::file::path & pathFolder, ::request * prequest, ::fs::data * pfsdata, callback * pcallback)
    {
 
       /*document * pdocument;
@@ -831,7 +832,7 @@ namespace filemanager
 
 
 
-//document * component::open_main(::aura::application * pappOnBehalfOf, ::atom atom, ::create * pcreate, ::fs::data * pfsdata, ::filemanagerpointer< data > pdata, callback * pcallback)
+//document * component::open_main(::aura::application * pappOnBehalfOf, ::atom atom, ::request * prequest, ::fs::data * pfsdata, ::filemanagerpointer< data > pdata, callback * pcallback)
 //{
 
 //   ::file::path pathFolder;
@@ -1058,7 +1059,7 @@ namespace filemanager
 //}
 
 
-//document * component::create_new_document(callback * pcallback, ::create * pcreate)
+//document * component::create_new_document(callback * pcallback, ::request * prequest)
 //{
 
 //   document * pdocument = (m_pdocumenttemplate->create_new_document(pcreate));
@@ -1237,10 +1238,12 @@ namespace filemanager
 
 
 
-   ::core::session * component::get_session() const
+   ::core::session * component::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
    }
 

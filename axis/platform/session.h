@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/platform/session.h"
@@ -41,7 +41,7 @@ namespace axis
 
       virtual void process_term() override;
 
-      virtual void on_instantiate_application(::apex::application* papp) override;
+      virtual void on_instantiate_application(::acme::application* papp) override;
 
       //virtual ::user::style* user_style() override;
 
@@ -61,7 +61,7 @@ namespace axis
 
       virtual void interactive_credentials(::account::credentials * pcredentials);
 
-      //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
+      //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 
       virtual void install_message_routing(::channel* pchannel) override;
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //#include "acme/exception/debug.h"
@@ -1419,17 +1419,21 @@ inline i32 string_base < CHARACTER > ::collate_ci(strsize iStart, strsize iCount
 
 
 template < primitive_character CHARACTER >
-inline bool string_base < CHARACTER >::operator==(const CHARACTER_TYPE * psz) const { return compare(psz) == 0; }
+inline int string_base < CHARACTER >::operator<=>(const CHARACTER_TYPE * psz) const { return compare(psz); }
 template < primitive_character CHARACTER >
-inline bool string_base < CHARACTER >::operator==(CHARACTER_TYPE wch) const { return compare(string_base(wch)) == 0; }
+inline int string_base < CHARACTER >::operator<=>(CHARACTER_TYPE ch) const { return compare(string_base(ch)); }
 template < primitive_character CHARACTER >
-inline bool string_base < CHARACTER >::operator>(const CHARACTER_TYPE * psz) const { return compare(psz) > 0; }
+inline bool string_base < CHARACTER >::operator==(const CHARACTER_TYPE* psz) const { return !compare(psz); }
 template < primitive_character CHARACTER >
-inline bool string_base < CHARACTER >::operator>(CHARACTER_TYPE wch) const { return compare(string_base(wch)) > 0; }
-template < primitive_character CHARACTER >
-inline bool string_base < CHARACTER >::operator<(const CHARACTER_TYPE * psz) const { return compare(psz) < 0; }
-template < primitive_character CHARACTER >
-inline bool string_base < CHARACTER >::operator<(CHARACTER_TYPE ch) const { return compare(string_base(ch)) < 0; }
+inline bool string_base < CHARACTER >::operator==(CHARACTER_TYPE ch) const { return !compare(string_base(ch)); }
+//template < primitive_character CHARACTER >
+//inline bool string_base < CHARACTER >::operator>(const CHARACTER_TYPE * psz) const { return compare(psz) > 0; }
+//template < primitive_character CHARACTER >
+//inline bool string_base < CHARACTER >::operator>(CHARACTER_TYPE wch) const { return compare(string_base(wch)) > 0; }
+//template < primitive_character CHARACTER >
+//inline bool string_base < CHARACTER >::operator<(const CHARACTER_TYPE * psz) const { return compare(psz) < 0; }
+//template < primitive_character CHARACTER >
+//inline bool string_base < CHARACTER >::operator<(CHARACTER_TYPE ch) const { return compare(string_base(ch)) < 0; }
 
 
 template < primitive_character CHARACTER >

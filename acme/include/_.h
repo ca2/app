@@ -1,4 +1,4 @@
-//        acme / camilo made by thomas
+﻿//        acme / camilo made by thomas
 // 
 //   
 //    
@@ -118,6 +118,7 @@
 #include  "acme/primitive/primitive/payload.h"
 #include  "acme/primitive/primitive/object.h"
 #include  "acme/exception/exception.h"
+#include  "acme/platform/class.h"
 
 
 #include "_impl.h"

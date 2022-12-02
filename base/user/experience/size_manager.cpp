@@ -246,7 +246,7 @@ namespace experience
    //   if (m_eframeSizing != e_frame_none)
    //   {
 
-   //      auto psession = get_session()->m_paurasession;
+   //      auto psession = acmesession()->m_paurasession;
 
    //      auto puser = psession->user();
 
@@ -291,7 +291,7 @@ namespace experience
 
    //      auto ecursor = translate(m_eframeCursor);
 
-   //      auto psession = get_session()->m_paurasession;
+   //      auto psession = acmesession()->m_paurasession;
 
    //      auto puser = psession->user();
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/constant/id.h"
 #include "axis/networking/email_department.h"
 #include "axis/platform/geo_department.h"
@@ -12,7 +12,7 @@
 #include "axis/database/database/field.h"
 
 
-void axis_factory(::factory::factory * pfactory);
+//void axis_factory(::factory::factory * pfactory);
 
 
 //int get_main_screen_rectangle(RECTANGLE_I32 * lprect);
@@ -118,10 +118,9 @@ namespace axis
 
       m_paxissystem = this;
 
-      factory()->add_factory_item < ::axis::application, ::apex::application >();
-      factory()->add_factory_item < ::axis::session, ::apex::session >();
-      //factory()->add_factory_item < ::axis::idpool, ::acme::idpool >();
-      factory()->add_factory_item < ::geo::department >();
+      //factory()->add_factory_item < ::axis::application, ::apex::application >();
+      //factory()->add_factory_item < ::axis::session, ::apex::session >();
+      ////factory()->add_factory_item < ::axis::idpool, ::acme::idpool >();
       //add_factory_item < ::imaging >();
 
       m_bSimpleMessageLoop = false;
@@ -160,31 +159,35 @@ namespace axis
 
       //}
 
-      axis_factory(factory());
+      //axis_factory(factory());
+
+
+      factory()->add_factory_item < ::geo::department >();
+
 
       //return estatus;
 
    }
 
 
-   void system::on_add_session(::apex::session* papexsession)
+   void system::on_add_session(::acme::session* papexsession)
    {
 
       ::aura::system::on_add_session(papexsession);
 
-      if (papexsession->m_iEdge == 0)
-      {
+      //if (papexsession->m_iEdge == 0)
+      //{
 
-         if (!m_paxissession)
-         {
+      //   if (!m_pacmxissession)
+      //   {
 
-            m_paxissession = papexsession->m_paxissession;
+      //      m_paxissession = papexsession->m_paxissession;
 
-         }
+      //   }
 
-      }
+      //}
 
-      papexsession->m_paxissystem = this;
+      //papexsession->m_paxissystem = this;
 
    }
 
@@ -273,23 +276,23 @@ namespace axis
    }
 
 
-   void system::post_creation_requests()
-   {
+   //void system::post_creation_requests()
+   //{
 
-      //auto estatus =
-      
-      ::aura::system::post_creation_requests();
+   //   //auto estatus =
+   //   
+   //   ::aura::system::post_creation_requests();
 
-      //if (!estatus)
-      //{
+   //   //if (!estatus)
+   //   //{
 
-      //   return estatus;
+   //   //   return estatus;
 
-      //}
+   //   //}
 
-      //return estatus;
+   //   //return estatus;
 
-   }
+   //}
 
 
    void system::inline_init()
@@ -433,7 +436,7 @@ namespace axis
    }
 
 
-   //void system::on_request(::create * pcreate)
+   //void system::on_request(::request * prequest)
    //{
 
    //   ::aura::system::on_request(pcreate);
@@ -590,7 +593,7 @@ namespace axis
 
 
 
-void axis_factory(::factory::factory * pfactory)
-{
-   
-}
+//void axis_factory(::factory::factory * pfactory)
+//{
+//   
+//}

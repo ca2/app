@@ -27,7 +27,7 @@ namespace user
 
       ::core::application* get_app();
       ::core::session* get_session();
-      ::core::system* acmesystem();
+      ::core::system* get_system();
 
 
 

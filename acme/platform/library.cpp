@@ -2,7 +2,7 @@
 #include "library.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
-//#include "acme/platform/acme.h"
+#include "acme/platform/acme.h"
 #include "acme/platform/system.h"
 //#include "system_impl.h"
 
@@ -15,6 +15,8 @@ CLASS_DECL_ACME bool is_verbose_log();
 namespace acme
 {
 
+
+   extern ::acme::acme * g_p;
 
    const char * psz_empty_app_id = "";
 
@@ -471,10 +473,7 @@ namespace acme
 
       }
 
-
-      auto psystem = acmesystem();
-
-      critical_section_lock synchronouslock(&psystem->m_psubsystem->m_criticalsection);
+      critical_section_lock synchronouslock(&::acme::g_p->m_psubsystem->m_criticalsection);
 
       try
       {

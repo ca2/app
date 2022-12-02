@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/_.h"
@@ -66,7 +66,7 @@ namespace user
    class shell;
 
 
-   CLASS_DECL_BASE ::pointer<::user::document>__document(::create * pcreate);
+   CLASS_DECL_BASE ::pointer<::user::document>__document(::request * prequest);
 
 
 

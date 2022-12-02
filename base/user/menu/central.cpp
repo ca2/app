@@ -2,6 +2,7 @@
 #include "central.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/definition.h"
 #include "aqua/xml/document.h"
 #include "aura/platform/node.h"
 #include "aura/graphics/write_text/font.h"

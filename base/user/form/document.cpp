@@ -1,7 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "document.h"
 #include "impact.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 
 
 form_document::form_document()
@@ -40,10 +40,10 @@ bool form_document::on_open_document(const ::payload & payloadFile)
 
    auto pformcallback = pformview->get_form_callback();
 
-   if (m_pcreate && ::is_null(pformcallback))
+   if (m_prequest && ::is_null(pformcallback))
    {
 
-      auto pcallback = m_pcreate->m_payloadArgs["form_callback"].cast < ::user::form_callback >();
+      auto pcallback = m_prequest->m_payloadArgs["form_callback"].cast < ::user::form_callback >();
 
       if (pcallback)
       {

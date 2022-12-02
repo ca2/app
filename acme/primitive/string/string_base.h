@@ -484,13 +484,21 @@ public:
    i32 collate(strsize iStart, strsize iCount, const CHARACTER_TYPE * psz, strsize iStart2, strsize iCount2) const noexcept;
    i32 collate_ci(strsize iStart, strsize iCount, const CHARACTER_TYPE * psz, strsize iStart2, strsize iCount2) const noexcept;
 
+   inline int operator<=>(const string_base& str) const { return compare(str); }
+   inline bool operator==(const string_base& str) const { return get_length() != str.get_length() ? false : !compare(str); }
+   //inline bool operator>(const string_base& ansistr) const { return compare(ansistr) > 0; }
+   //inline bool operator<(const string_base& ansistr) const { return compare(ansistr) < 0; }
+   //inline bool operator!=(const string_base& ansistr) const { return !operator ==(ansistr); }
+   //inline bool operator>=(const string_base& ansistr) const { return !operator <(ansistr); }
+   //inline bool operator<=(const string_base& ansistr) const { return !operator >(ansistr); }
 
-   inline bool operator==(const string_base & ansistr) const { return compare(ansistr) == 0; }
-   inline bool operator>(const string_base & ansistr) const { return compare(ansistr) > 0; }
-   inline bool operator<(const string_base & ansistr) const { return compare(ansistr) < 0; }
-   inline bool operator!=(const string_base & ansistr) const { return !operator ==(ansistr); }
-   inline bool operator>=(const string_base & ansistr) const { return !operator <(ansistr); }
-   inline bool operator<=(const string_base & ansistr) const { return !operator >(ansistr); }
+
+   //inline bool operator==(const string_base & ansistr) const { return compare(ansistr) == 0; }
+   //inline bool operator>(const string_base & ansistr) const { return compare(ansistr) > 0; }
+   //inline bool operator<(const string_base & ansistr) const { return compare(ansistr) < 0; }
+   //inline bool operator!=(const string_base & ansistr) const { return !operator ==(ansistr); }
+   //inline bool operator>=(const string_base & ansistr) const { return !operator <(ansistr); }
+   //inline bool operator<=(const string_base & ansistr) const { return !operator >(ansistr); }
 
 
    inline bool contains(CHARACTER_TYPE ch, strsize start = 0, strsize count = -1) const;
@@ -1087,18 +1095,21 @@ public:
    bool equals(const CHARACTER_TYPE * psz) const;
    bool equals_ci(const CHARACTER_TYPE * psz) const;
 
-   inline bool operator==(const CHARACTER_TYPE * psz2) const;
+   inline int operator<=>(const CHARACTER_TYPE * psz2) const;
+   inline int operator<=>(CHARACTER_TYPE ch) const;
+   inline bool operator==(const CHARACTER_TYPE* psz2) const;
    inline bool operator==(CHARACTER_TYPE ch) const;
-   inline bool operator>(const CHARACTER_TYPE * psz2) const;
-   inline bool operator>(CHARACTER_TYPE ch) const;
-   inline bool operator<(const CHARACTER_TYPE * psz2) const;
-   inline bool operator<(CHARACTER_TYPE ch) const;
-   inline bool operator!=(const CHARACTER_TYPE * psz) const { return !operator ==(psz); }
-   inline bool operator!=(CHARACTER_TYPE ch) const { return !operator ==(ch); }
-   inline bool operator>=(const CHARACTER_TYPE * psz) const { return !operator <(psz); }
-   inline bool operator>=(CHARACTER_TYPE ch) const { return !operator <(ch); }
-   inline bool operator<=(const CHARACTER_TYPE * psz) const { return !operator >(psz); }
-   inline bool operator<=(CHARACTER_TYPE ch) const { return !operator >(ch); }
+   //inline bool operator==(CHARACTER_TYPE ch) const;
+   //inline bool operator>(const CHARACTER_TYPE * psz2) const;
+   //inline bool operator>(CHARACTER_TYPE ch) const;
+   //inline bool operator<(const CHARACTER_TYPE * psz2) const;
+   //inline bool operator<(CHARACTER_TYPE ch) const;
+   //inline bool operator!=(const CHARACTER_TYPE * psz) const { return !operator ==(psz); }
+   //inline bool operator!=(CHARACTER_TYPE ch) const { return !operator ==(ch); }
+   //inline bool operator>=(const CHARACTER_TYPE * psz) const { return !operator <(psz); }
+   //inline bool operator>=(CHARACTER_TYPE ch) const { return !operator <(ch); }
+   //inline bool operator<=(const CHARACTER_TYPE * psz) const { return !operator >(psz); }
+   //inline bool operator<=(CHARACTER_TYPE ch) const { return !operator >(ch); }
 
 
    typedef strsize size_type;

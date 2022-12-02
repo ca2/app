@@ -828,7 +828,7 @@ namespace apex
    }
 
 
-   //::application * session::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+   //::application * session::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest)
    //{
 
    //   ::pointer<::apex::application>papp;
@@ -1684,7 +1684,7 @@ namespace apex
    //}
 
 
-   //::user::place_holder_ptra session::get_place_holder(::pointer<::user::frame_window>pmainframe, ::create * pcreate)
+   //::user::place_holder_ptra session::get_place_holder(::pointer<::user::frame_window>pmainframe, ::request * prequest)
    //{
 
    //   __UNREFERENCED_PARAMETER(pcreate);

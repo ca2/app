@@ -1,5 +1,8 @@
-// Created by camilo on 2022-06-09 14:31 BRT <3ThomasBorregaardSorensen!! and Mummi and bilbo!!
+﻿// Created by camilo on 2022-06-09 14:31 BRT <3ThomasBorregaardSorensen!! and Mummi and bilbo!!
 #pragma once
+
+
+#include "acme/platform/keep.h"
 
 
 #define __keep_current_thread(...) auto COUNTER_TOKEN(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())

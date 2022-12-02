@@ -8,7 +8,8 @@
 #include "acme/constant/message.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "apex/platform/create.h"
+#include "acme/parallelization/task_flag.h"
+#include "acme/platform/request.h"
 #include "aura/user/user/frame.h"
 #include "aura/platform/session.h"
 #include "base/user/user/frame_window.h"
@@ -68,21 +69,21 @@ namespace filemanager
                || pimpactdata->m_atom == "new_folder")
       {
 
-         ::pointer<::create>pcreate(e_create, this);
+         ::pointer<::request>prequest(e_create, this);
 
-         pcreate->m_bMakeVisible = false;
+         prequest->m_bMakeVisible = false;
 
-         pcreate->m_puserprimitiveParent = pimpactdata->m_pplaceholder;
+         prequest->m_puserelementParent = pimpactdata->m_pplaceholder;
 
          auto pcontext = m_pcontext;
          
-         auto psession = pcontext->m_paurasession;
+         auto psession = pcontext->m_pacmesession->m_paurasession;
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         puser->m_pdocumenttemplateForm->do_request(pcreate);
+         puser->m_pdocumenttemplateForm->request(prequest);
 
-         ::pointer<::user::document>pdocument = ::user::__document(pcreate);
+         ::pointer<::user::document>pdocument = ::user::__document(prequest);
 
          if (pdocument == nullptr)
          {
@@ -130,21 +131,21 @@ namespace filemanager
       else if(pimpactdata->m_atom == "filemanager::operation")
       {
 
-         ::pointer<::create>pcreate(e_create, this);
+         ::pointer<::request>prequest(e_create, this);
 
-         pcreate->m_bMakeVisible = false;
+         prequest->m_bMakeVisible = false;
 
-         pcreate->m_puserprimitiveParent = this;
+         prequest->m_puserelementParent = this;
 
          auto pcontext = m_pcontext;
          
-         auto psession = pcontext->m_paurasession;
+         auto psession = pcontext->m_pacmesession->m_paurasession;
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         puser->m_pdocumenttemplateOperation->do_request(pcreate);
+         puser->m_pdocumenttemplateOperation->request(prequest);
 
-         ::pointer<operation_document>pdocument = ::user::__document(pcreate);
+         ::pointer<operation_document>pdocument = ::user::__document(prequest);
 
          if (pdocument == nullptr)
          {
@@ -173,13 +174,13 @@ namespace filemanager
 
          pfilemanagerdata->m_bTransparentBackground = true;
 
-         ::pointer<::create>pcreate(e_create, this);
+         ::pointer<::request>prequest(e_create, this);
 
-         pcreate->m_bMakeVisible = true;
+         prequest->m_bMakeVisible = true;
 
-         pcreate->m_puserprimitiveParent = pimpactdata->m_pplaceholder;
+         prequest->m_puserelementParent = pimpactdata->m_pplaceholder;
 
-         pcreate->payload("filemanager::data") = pfilemanagerdata;
+         prequest->payload("filemanager::data") = pfilemanagerdata;
 
          string str = pimpactdata->m_atom;
 
@@ -196,7 +197,7 @@ namespace filemanager
 
          }
 
-         pcreate->m_payloadFile = strVarFile;
+         prequest->m_payloadFile = strVarFile;
 
          //puser->filemanager()->m_pdocumenttemplateChild->m_bQueueDocumentOpening = false;
 

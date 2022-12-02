@@ -592,7 +592,7 @@ namespace apex
 
       inline ::service_handler * service_handler() const { return m_pservicehandler; }
 
-      //virtual void on_service_request(::create * pcreate);
+      //virtual void on_service_request(::request * prequest);
 
       //virtual bool is_running();
 
@@ -660,7 +660,7 @@ namespace apex
       //virtual bool assert_user_logged_in();
 
       void request(::request * prequest) override;
-      //virtual void call_request(::create * pcreate) override;
+      //virtual void call_request(::request * prequest) override;
 
 
       //virtual void process_message(::user::message * base) override;
@@ -728,7 +728,7 @@ namespace apex
 
 
       //void request(::create * pcommand) override;
-      //void on_create(::create * pcreate) override;
+      //void on_create(::request * prequest) override;
 
       //      virtual void dispatch_user_message(::user::message * pusermessage);
 

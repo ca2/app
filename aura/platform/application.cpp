@@ -2801,7 +2801,7 @@ retry_license:
 //  }
 
 
-   //bool application::platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::create * pcreate)
+   //bool application::platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::request * prequest)
    //{
 
    //   return false;
@@ -3372,7 +3372,7 @@ retry_license:
    void application::add_user_interaction(::user::interaction * puserinteraction)
    {
 
-      auto psession = get_session()->m_paurasession;
+      auto psession = acmesession()->m_paurasession;
 
       if (puserinteraction == psession->m_puserprimitiveHost)
       {
@@ -4090,7 +4090,7 @@ retry_license:
    //}
 
 
-//   bool application::start_application(bool bSynch, ::create * pcreate)
+//   bool application::start_application(bool bSynch, ::request * prequest)
 //   {
 //
 ////      try
@@ -4639,7 +4639,7 @@ retry_license:
    //}
 
 
-   //void application::on_request(::create * pcreate)
+   //void application::on_request(::request * prequest)
    //{
 
    //   aura::application::on_request(pcreate);
@@ -5167,7 +5167,7 @@ retry_license:
    //}
 
 
-   //void application::on_service_request(::create * pcreate)
+   //void application::on_service_request(::request * prequest)
    //{
 
    //   ::aura::application::on_service_request(pcreate);

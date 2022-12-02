@@ -560,7 +560,7 @@ namespace axis
    }
 
 
-   void session::on_request(::create * pcreate)
+   void session::on_request(::request * prequest)
    {
 
       ::aura::session::on_request(pcreate);

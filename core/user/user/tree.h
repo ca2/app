@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/scroll_base.h"
@@ -21,12 +21,12 @@ namespace user
       //size_i32                                m_sizeTotal;
       ::e_align                                 m_ealignText;
       ::e_draw_text                             m_edrawtext;
-      ::pointer<::data::tree>                m_ptree;
-      __reference_array(::data::tree)           m_treeaBound;
-      ::pointer<::data::tree_item_ptr_array> m_pitemptraSelected;
+      ::pointer<::data::tree>                   m_ptree;
+      ::pointer_array < ::data::tree >          m_treeaBound;
+      ::pointer<::data::tree_item_ptr_array>    m_pitemptraSelected;
       ::data::tree_item *                       m_pitemHover;
 
-      ::pointer<::draw2d::graphics_extension>  m_pdcextension;
+      ::pointer<::draw2d::graphics_extension>   m_pdcextension;
       index                                     m_dwFirstVisibleItem;
       index                                     m_iItemCount;
       ::u32                                     m_uiLButtonUpFlags;
@@ -39,7 +39,7 @@ namespace user
       //::color::color                               m_colorTextHighlight;
       //::color::color                               m_colorTextSelectedHighlight;
       u32_array                                 m_dwaItemState;
-      ::pointer<::image_list>                  m_pimagelist;
+      ::pointer<::image_list>                   m_pimagelist;
       index                                     m_iImageCollapse;
       index                                     m_iImageExpand;
       ::draw2d::brush_pointer                   m_pbrushTextSelected;
@@ -47,12 +47,12 @@ namespace user
       ::draw2d::brush_pointer                   m_pbrushTextHighlight;
       ::draw2d::brush_pointer                   m_pbrushText;
       ::write_text::font_pointer                m_pfontTreeItem;
-      status < ::color::color >          m_colorTreeBackground;
+      status < ::color::color >                 m_colorTreeBackground;
 
 
       bool                                      m_bHoverStart;
-      class ::time                                m_timeHoverStart;
-      class ::time                                m_timeHoverEnd;
+      class ::time                              m_timeHoverStart;
+      class ::time                              m_timeHoverEnd;
       byte                                      m_uchHoverAlpha;
       byte                                      m_uchHoverAlphaInit;
       manual_reset_event                        m_evExpand;
@@ -68,7 +68,7 @@ namespace user
 
       ::core::application* get_app();
       ::core::session* get_session();
-      ::core::system* acmesystem();
+      ::core::system* get_system();
 
 
       void user_tree_common_construct();

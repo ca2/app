@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/platform/session.h"
@@ -21,10 +21,10 @@ namespace bred
       void common_construct();
 
 
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
 
 
-      virtual void on_instantiate_application(::apex::application* papp) override;
+      void on_instantiate_application(::acme::application* papp) override;
 
 
    };

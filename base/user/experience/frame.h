@@ -4,6 +4,7 @@
 #include "acme/primitive/geometry2d/_geometry2d.h"
 ////#include "acme/primitive/primitive/object.h"
 #include "acme/constant/element.h"
+#include "acme/exception/status.h"
 
 
 namespace experience
@@ -81,7 +82,7 @@ namespace experience
 
       ::base::application * get_app();
       ::base::session * get_session();
-      ::base::system * acmesystem();
+      ::base::system * get_system();
       ::base::user * user();
 
 

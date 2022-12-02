@@ -82,7 +82,9 @@ namespace base
    ::base::application* user::get_app()
    {
 
-      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr;
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
 
    }
 
@@ -90,17 +92,31 @@ namespace base
    ::base::session* user::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pbasesession : nullptr;
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
 
    }
 
 
-   ::base::system* useracmesystem()
+   ::base::system* user::get_system()
    {
 
-      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr;
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 
    }
+
+
+   //::base::user* user::user()
+   //{
+
+   //   auto psession = get_session();
+
+   //   return ::is_set(psession) ? psession->user() : nullptr;
+
+   //}
 
 
    void user::init1()
@@ -855,7 +871,7 @@ namespace base
    //}
 
 
-//   ::user::interaction * session::get_request_parent_ui(::user::interaction * pinteraction, ::create * pcreate)
+//   ::user::interaction * session::get_request_parent_ui(::user::interaction * pinteraction, ::request * prequest)
 //   {
 //
 //

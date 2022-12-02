@@ -2,7 +2,9 @@
 #include "form_list_impact.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
+#include "acme/platform/application.h"
 #include "acme/platform/context.h"
+#include "acme/platform/session.h"
 #include "acme/platform/system.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "aura/user/user/interaction_impl.h"
@@ -28,7 +30,9 @@ namespace user
    ::core::application* form_list_impact::get_app()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
 
    }
 
@@ -36,15 +40,19 @@ namespace user
    ::core::session* form_list_impact::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
    }
 
 
-   ::core::system* form_list_impactacmesystem()
+   ::core::system* form_list_impact::get_system()
    {
 
-      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
    }
 

@@ -318,7 +318,7 @@ namespace userfs
 
                auto & pathFinal = m_pitema->get_item((::index)psubitem->m_pitem->m_iItem)->final_path();
 
-               ::pointer<::core::session>psession = get_session();
+               auto psession = acmesession()->m_pcoresession;
 
                auto puser = psession->user();
 

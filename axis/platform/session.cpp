@@ -195,7 +195,7 @@ namespace axis
    }
 
 
-   //::aura::application * session::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+   //::aura::application * session::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest)
    //{
 
    //   ::pointer<::apex::application>papp;
@@ -1212,13 +1212,13 @@ namespace axis
    }
 
 
-   void session::on_instantiate_application(::apex::application* papp)
+   void session::on_instantiate_application(::acme::application* papplication)
    {
 
-      ::aura::session::on_instantiate_application(papp);
+      ::aura::session::on_instantiate_application(papplication);
 
-      papp->m_paxissession = this;
-      papp->m_paxissystem = m_paxissystem;
+      //papp->m_paxissession = this;
+      //papp->m_paxissystem = m_paxissystem;
 
    }
 
@@ -1272,13 +1272,13 @@ namespace axis
 
       dir()->create(puser->m_pathFolder);
 
-      for (auto& papp : m_applicationa)
+      for (auto& papplication : m_applicationa)
       {
 
-         if (papp.is_set())
+         if (papplication.is_set())
          {
 
-            papp->signal(id_change_user);
+            papplication->m_papexapplication->signal(id_change_user);
 
          }
 

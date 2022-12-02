@@ -6,6 +6,8 @@
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/exception/interface_only.h"
+#include "acme/parallelization/task_flag.h"
+#include "acme/platform/keep.h"
 #include "acme/platform/system.h"
 #include "apex/message/simple_command.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -917,7 +919,7 @@ namespace user
    }
 
 
-   //bool frame_window::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const ::string & pszMenuName, u32 dwExStyle, ::create * pcreate)
+   //bool frame_window::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const ::string & pszMenuName, u32 dwExStyle, ::request * prequest)
    //{
 
    //   __UNREFERENCED_PARAMETER(pszMenuName);
@@ -2464,35 +2466,43 @@ namespace user
 //   }
 
 
-   ::base::application * frame_window::get_app()
+   ::base::application* frame_window::get_app()
    {
-      
-      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
-   
+
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
+
    }
 
 
-   ::base::session * frame_window::get_session()
+   ::base::session* frame_window::get_session()
    {
-      
-      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
-   
+
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+
    }
 
 
-   ::base::system * frame_windowacmesystem()
+   ::base::system* frame_window::get_system()
    {
-      
-      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
-   
+
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
+
    }
 
 
-   ::base::user * frame_window::user()
+   ::base::user* frame_window::user()
    {
-      
-      return get_session() ? get_session()->user() : nullptr; 
-   
+
+      auto psession = get_session();
+
+      return ::is_set(psession) ? psession->user() : nullptr;
+
    }
 
 

@@ -142,7 +142,7 @@ namespace universal_windows
       virtual void update_graphics_resources() override;
 
       // for child windows, views, panes etc
-      //virtual bool create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName,u32 dwStyle,const ::rectangle_i32 &rectangle,::user::interaction * pParentWnd,atom atom, ::create * pcreate = nullptr) override;
+      //virtual bool create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName,u32 dwStyle,const ::rectangle_i32 &rectangle,::user::interaction * pParentWnd,atom atom, ::request * prequest = nullptr) override;
 
       virtual bool _native_create_window_ex(::pointer<::user::system>pcs);
 

@@ -5,6 +5,7 @@
 #include "authenticator.h"
 #include "acme/constant/timer.h"
 ////#include "acme/exception/exception.h"
+#include "acme/platform/keep.h"
 #include "apex/networking/http/cookie.h"
 #include "axis/platform/session.h"
 
@@ -256,7 +257,7 @@ namespace account
 
       }
 
-      ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
+      auto psession = m_pcontext->m_pacmesession->m_paxissession;
 
       psession->account()->on_user_logon(this);
 
@@ -274,7 +275,7 @@ namespace account
 
       ::pointer<credentials>pcredentials = __new(credentials);
 
-      ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
+      auto psession = acmesession()->m_paxissession;
 
       pcredentials->initialize_account_credentials(this, psession->account()->storage());
 
@@ -481,7 +482,7 @@ namespace account
 
             auto authenticationElapsed = minimum(authenticationRequestElapsed, authenticationDoneElapsed);
 
-            ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
+            auto psession = acmesession()->m_paxissession;
 
             auto authenticationTimeout = psession->account()->get_session_timeout();
 

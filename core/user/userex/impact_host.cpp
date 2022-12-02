@@ -11,10 +11,11 @@
 #include "font_impact.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
+#include "acme/platform/keep.h"
 #include "acme/platform/system.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "base/user/user/tab_pane.h"
 #include "base/user/user/document.h"
 #include "base/user/user/single_document_template.h"
@@ -63,25 +64,31 @@ namespace userex
 
    ::core::application* impact_host::get_app()
    {
-      
-      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; 
-   
+
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
+
    }
 
 
-   ::core::session* impact_host::get_session() 
+   ::core::session* impact_host::get_session()
    {
-      
-      return m_pcontext ? m_pcontext->m_pcoresession : nullptr; 
-   
+
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
+
    }
 
 
-   ::core::system* impact_hostacmesystem()
-   { 
-      
-      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; 
-   
+   ::core::system* impact_host::get_system()
+   {
+
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
+
    }
 
 
@@ -627,7 +634,7 @@ namespace userex
    }
 
 
-   bool impact_host::defer_create_impact(::atom idImpact, ::create * pcreate)
+   bool impact_host::defer_create_impact(::atom idImpact, ::request * prequest)
    {
 
       ::pointer<::user::document>pdocument = get_doc(idImpact);
@@ -645,7 +652,7 @@ namespace userex
 
       auto pcontext = m_pcontext;
       
-      auto psession = pcontext->m_pcoresession;
+      auto psession = pcontext->m_pacmesession->m_pcoresession;
       
       auto puser = psession->m_puser->m_pcoreuser;
 
@@ -654,14 +661,14 @@ namespace userex
       if (pimpactsystem != nullptr)
       {
 
-         if (pcreate != nullptr)
+         if (prequest != nullptr)
          {
 
-            pcreate->m_atom = atom;
+            prequest->m_atom = atom;
 
-            pimpactsystem->do_request(pcreate);
+            pimpactsystem->request(prequest);
 
-            pdocument = ::user::__document(pcreate);
+            pdocument = ::user::__document(prequest);
 
          }
          else
@@ -732,7 +739,7 @@ namespace userex
 
       auto pcontext = m_pcontext;
       
-      auto psession = pcontext->m_pcoresession;
+      auto psession = pcontext->m_pacmesession->m_pcoresession;
       
       auto puser = psession->m_puser->m_pcoreuser;
 

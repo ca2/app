@@ -66,7 +66,7 @@ namespace filemanager
 
       ::core::application* get_app();
       ::core::session* get_session();
-      ::core::system* acmesystem();
+      ::core::system* get_system();
 
 
       virtual void initialize_filemanager_tree(document * pdocument);

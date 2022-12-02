@@ -9,7 +9,7 @@
 ::acme::system * acme_system_init();
 void acme_system_term();
 
-//#include "acme/platform/layer.h"
+#include "acme/platform/acme.h"
 
 //::acme::layer g_layer;
 
@@ -50,16 +50,16 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
 
-   ::acme::sub_application::g_p->m_pmain->initialize(argc, argv, envp);
+   ::acme::get()->initialize(argc, argv, envp);
 
-   ::acme::sub_application::g_p->m_pacmeapplicationSub->m_bConsole = true;
+   ::acme::get()->m_pacmeapplication->m_bConsole = true;
 
    ////   application.m_applicationflags.m_bConsole = true;
 ////
 ////
-   ::acme::sub_application::g_p->m_pacmeapplicationSub->implement_application();
+   ::acme::get()->m_pacmeapplication->implement_application();
 
-   return ::acme::sub_application::g_p->m_pacmeapplicationSub->m_iExitCode;
+   return ::acme::get()->m_pacmeapplication->m_iExitCode;
 
 
 //   //sub_system subsystem(&acme);

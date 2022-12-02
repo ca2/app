@@ -1,6 +1,7 @@
-#pragma once
+﻿#pragma once
 
 
+#include "acme/user/user/ewindowflag.h"
 #include "axis/platform/application.h"
 #include "aura/user/user/form_callback.h"
 #include "base/user/user/impact_creator.h"
@@ -46,7 +47,7 @@ namespace base
 //      // void dump(dump_context & dumpcontext) const override;
 
 
-      ::base::system* acmesystem();
+      ::base::system* get_system();
       ::base::session* get_session();
 
 
@@ -215,7 +216,7 @@ namespace base
 //
 //      virtual ::draw2d::icon * get_icon(object * pparticle, bool bBigIcon) const;
 //
-//      virtual void on_service_request(::create * pcreate);
+//      virtual void on_service_request(::request * prequest);
 //
 //      virtual string get_mutex_name_gen();
 //
@@ -323,7 +324,7 @@ namespace base
 //      virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa);
 //
 //
-//      virtual bool start_application(bool bSynch, ::create * pcreate);
+//      virtual bool start_application(bool bSynch, ::request * prequest);
 //
 //
 //
@@ -510,7 +511,7 @@ namespace base
 //      virtual bool os_start_service();
 //      virtual bool os_stop_service();
 //
-//      //virtual void on_service_request(::create * pcreate);
+//      //virtual void on_service_request(::request * prequest);
 //
 //      //virtual bool is_running();
 //
@@ -571,8 +572,8 @@ namespace base
 //
 //      //virtual bool assert_user_logged_in();
 //
-//      virtual void     do_request(::create * pcreate) override;
-//      virtual void     call_request(::create * pcreate) override;
+//      virtual void     do_request(::request * prequest) override;
+//      virtual void     call_request(::request * prequest) override;
 //
 //
 //      virtual void process_message(::user::message * base) override;
@@ -605,7 +606,7 @@ namespace base
 //      virtual void fill_locale_schema(::text::international::locale_schema & localeschema);
 //      virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema);
 //
-//      virtual bool platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::create * pcreate = nullptr);
+//      virtual bool platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::request * prequest = nullptr);
 //      virtual bool platform_open_by_file_extension(index iEdge,::create * pcc);
 //
 //
@@ -632,7 +633,7 @@ namespace base
 //
 //
 //      //void request(::create * pcommand) override;
-//      //void on_create(::create * pcreate) override;
+//      //void on_create(::request * prequest) override;
 //
 ////      virtual void dispatch_user_message(::user::message * pusermessage);
 //
@@ -1082,7 +1083,7 @@ namespace base
 //      virtual oswindow get_ca2_app_wnd(const ::string & psz);
 //
 //
-//      //virtual void request_create(::create * pcreate);
+//      //virtual void request_create(::request * prequest);
 //
 //      //      virtual void on_exclusive_instance_local_conflict();
 //

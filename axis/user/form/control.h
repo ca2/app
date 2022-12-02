@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/form.h"
@@ -33,7 +33,7 @@ namespace user
 
       ::axis::application* get_app();
       ::axis::session* get_session();
-      ::axis::system * acmesystem();
+      ::axis::system * get_system();
       ::axis::user * user();
 
       //ref_array < CTransparentStatic > m_staticpa;

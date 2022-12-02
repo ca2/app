@@ -62,7 +62,7 @@ namespace userex
 
       ::core::application* get_app();
       ::core::session* get_session();
-      ::core::system* acmesystem();
+      ::core::system* get_system();
 
       void install_message_routing(::channel * pchannel) override;
 
@@ -88,7 +88,7 @@ namespace userex
       virtual void _001DefaultLayoutImpact(::atom idImpact);
       virtual ::pointer<::user::impact>get_impact(::atom idImpact);
       virtual ::pointer<::user::document>get_doc(::atom idImpact);
-      virtual bool defer_create_impact(::atom idImpact, ::create * pcreate = nullptr);
+      virtual bool defer_create_impact(::atom idImpact, ::request * prequest = nullptr);
       //virtual ::pointer<::user::document>detach_doc(::atom idImpact);
       //virtual bool attach(::pointer<::user::document>pdocument, ::atom idImpact);
       //virtual bool toggle(::pointer<::user::document>pdocument, ::atom idImpact);

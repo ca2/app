@@ -289,7 +289,7 @@ namespace apex
 
       void on_instantiate_application(::acme::application* papp) override;
 
-      //::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
+      //::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 
       virtual ::user::e_key key_modifiers();
       
@@ -426,7 +426,7 @@ namespace apex
 
       //void initialize_bergedge_application_interface();
 
-      //virtual bool create_bergedge(::create * pcreate);
+      //virtual bool create_bergedge(::request * prequest);
 
       //virtual void will_use_impact_hint(::atom idImpact);
 

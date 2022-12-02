@@ -448,7 +448,7 @@ namespace aura
 //   }
 
 
-//   bool application::do_request(::create * pcreate)
+//   bool application::do_request(::request * prequest)
 //   {
 //
 //      if(::is_null(pcreate))

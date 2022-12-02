@@ -126,7 +126,7 @@ namespace app_core_build
    }
 
 
-   void application::on_request(::create * pcreate)
+   void application::on_request(::request * prequest)
    {
 
 

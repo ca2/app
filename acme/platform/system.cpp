@@ -52,7 +52,7 @@ namespace acme
 {
 
 
-   extern ::pointer < ::acme::acme > g_p;
+   extern ::acme::acme * g_p;
 
 
    system::system()
@@ -2031,7 +2031,7 @@ namespace acme
       //      
       //   pnode->_will_finish_launching();
 
-      //   auto pnode = get_session()->m_paurasession;
+      //   auto pnode = acmesession()->m_paurasession;
       //
       //   auto puser = psession->user();
       //

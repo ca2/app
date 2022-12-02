@@ -1182,7 +1182,7 @@ namespace user
       virtual void create_host() override;
       virtual void create_child(::user::interaction * pparent) override;
 
-      // virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::user::interaction * puiParent, ::create * pcreate = nullptr) override;
+      // virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::user::interaction * puiParent, ::request * prequest = nullptr) override;
 
       //virtual bool create_window_ex(::pointer<::user::system>pcs, ::user::interaction* puiParent = nullptr, const ::atom& atom = ::atom()) override;
       //enum AdjustType { adjustBorder = 0, adjustOutside = 1 };

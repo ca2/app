@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/memory/memory_allocator.h"
@@ -36,7 +36,7 @@ public:
 
    auto natural_dec_ref() { return --m_countReference; }
 
-   inline static ::memsize natural_offset() { meta_data metadata; return (((byte*)&metadata.m_endofmetadata - (byte*)&metadata) + NATURAL_METADATA_ALIGN - 1) & (~(NATURAL_METADATA_ALIGN - 1)); }
+   consteval static ::memsize natural_offset() { return (offsetof(meta_data, m_endofmetadata) + NATURAL_METADATA_ALIGN - 1) & (~(NATURAL_METADATA_ALIGN - 1)); }
 
    DATA * get_data() const { return (DATA *)(((byte *)this) + natural_offset()); }
 

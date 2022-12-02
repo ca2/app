@@ -696,6 +696,9 @@
     <ClInclude Include="mathematics\calculator\_.h">
       <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\aaa__component.h">
+      <Filter>Header Files\user\form</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">

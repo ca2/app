@@ -22,7 +22,7 @@ namespace user
       bool                                m_bAutoDelete;     // true => delete document when no more views
       bool                                m_bEmbedded;       // true => document is being created by OLE
 
-      ::pointer<::create>                m_pcreate;
+      ::pointer<::request>                m_prequest;
       string                              m_strTitle;
       ::file::path                        m_path;
       bool                                m_bModified;
@@ -51,7 +51,7 @@ namespace user
 
       ::base::application * get_app();
       ::base::session * get_session();
-      ::base::system * acmesystem();
+      ::base::system * get_system();
       ::base::user * user();
 
 
@@ -64,7 +64,7 @@ namespace user
 
       virtual bool contains(::user::interaction* pinteraction) const;
 
-      void on_request(::create* pcreate) override;
+      void on_request(::request * prequest) override;
 
 
       virtual ::atom get_topic_impact_id();
@@ -72,7 +72,7 @@ namespace user
 
       virtual void update_title();
 
-      virtual void on_create(::create * pcreate);
+      virtual void on_create(::request * prequest);
 
       const string & get_title() const;
       virtual void set_title(const ::string & pszTitle);
@@ -275,7 +275,7 @@ namespace user
       virtual void delete_contents(); // delete doc items etc
 
       virtual bool new_document();
-      virtual bool open_document(::create * pcreate);
+      virtual bool open_document(::request * prequest);
       virtual bool open_document(const ::payload & payloadFile);
       virtual bool save_document();
       virtual bool defer_save_document();
@@ -401,7 +401,7 @@ namespace user
    };
 
 
-   CLASS_DECL_BASE ::pointer<::user::document>__document(::create * pcreate);
+   CLASS_DECL_BASE ::pointer<::user::document>__document(::request * prequest);
 
 
 } // namespace user

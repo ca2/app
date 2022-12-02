@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "experience.h"
 #include "acme/platform/system.h"
 #include "base/platform/session.h"
@@ -22,8 +22,10 @@ namespace experience
 
    ::base::application * experience::get_app()
    {
+
+      auto pacmeapplication = acmeapplication();
       
-      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
    
    }
 
@@ -31,23 +33,29 @@ namespace experience
    ::base::session * experience::get_session()
    {
       
-      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
-   
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+
    }
 
 
-   ::base::system * experienceacmesystem()
+   ::base::system * experience::get_system()
    {
       
-      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
-   
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
+
    }
 
 
    ::base::user * experience::user()
    {
+
+      auto psession = get_session();
       
-      return get_session() ? get_session()->user() : nullptr; 
+      return ::is_set(psession) ? psession->user() : nullptr; 
    
    }
 

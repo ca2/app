@@ -2840,7 +2840,7 @@ namespace aura
 
 
 
-   //void system::on_request(::create * pcreate)
+   //void system::on_request(::request * prequest)
    //{
 
    //   ::apex::session * psession = session();
@@ -3111,7 +3111,7 @@ namespace aura
 //   }
 
 
-   //void system::do_request(::create * pcreate)
+   //void system::do_request(::request * prequest)
    //{
 
    //   if (pcreate->m_ecommand == ::command_check_exit)
@@ -3269,7 +3269,7 @@ namespace aura
    //}
 
 
-   //bool system::merge_accumulated_on_open_file(::create * pcreate)
+   //bool system::merge_accumulated_on_open_file(::request * prequest)
    //{
 
    //   if(m_straCommandLineAccumul.is_empty())
@@ -4875,7 +4875,7 @@ namespace aura
    //}
 
 
-   //void system::on_request(::create * pcreate)
+   //void system::on_request(::request * prequest)
    //{
 
    //   ::aura::system::on_request(pcreate);
@@ -4921,7 +4921,7 @@ namespace aura
    //{
    //}
 
-   //void system::on_request(::create * pcreate)
+   //void system::on_request(::request * prequest)
    //{
 
    //   ::axis::system::on_request(pcreate);
@@ -5488,7 +5488,7 @@ namespace aura
 //   void system::node_will_finish_launching()
 //   {
 //
-//      auto pnode = get_session()->m_paurasession;
+//      auto pnode = acmesession()->m_paurasession;
 //
 //      auto puser = psession->user();
 //
@@ -5502,7 +5502,7 @@ namespace aura
 //   void system::windowing_post_quit()
 //   {
 //   
-//      auto psession = get_session()->m_paurasession;
+//      auto psession = acmesession()->m_paurasession;
 //
 //      auto puser = psession->user();
 //

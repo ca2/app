@@ -518,7 +518,7 @@ namespace aura
 
 
 
-      //virtual void do_request(::create * pcreate) override;
+      //virtual void do_request(::request * prequest) override;
 
       //virtual void defer_check_openweather_city_list();
 
@@ -535,7 +535,7 @@ namespace aura
 //
 //      virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra) override;
 //
-//      virtual bool merge_accumulated_on_open_file(::create * pcreate) override;
+//      virtual bool merge_accumulated_on_open_file(::request * prequest) override;
 //
 //      virtual bool on_open_file(::payload payloadFile, string strExtra) override;
 //

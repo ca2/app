@@ -1,14 +1,17 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "interaction.h"
 #include "item.h"
 #include "menu.h"
 #include "acme/constant/message.h"
+#include "acme/platform/application.h"
 #include "acme/platform/context.h"
+#include "acme/platform/system.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/message/user.h"
 #include "aura/user/user/calc_size.h"
+#include "base/platform/session.h"
 #include "base/user/user/style.h"
 
 
@@ -231,13 +234,44 @@ namespace user
    }
 
 
-   ::base::session * menu_interaction::get_session() const
+   ::base::application* menu_interaction::get_app()
    {
 
-      return m_pcontext ? m_pcontext->m_pbasesession : nullptr;
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
 
    }
 
+
+   ::base::session* menu_interaction::get_session()
+   {
+
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+
+   }
+
+
+   ::base::system* menu_interaction::get_system()
+   {
+
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
+
+   }
+
+
+   ::base::user* menu_interaction::user()
+   {
+
+      auto psession = get_session();
+
+      return ::is_set(psession) ? psession->user() : nullptr;
+
+   }
 
 } // namespace user
 

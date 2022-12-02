@@ -5,6 +5,7 @@
 #include "acme/constant/message.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/single_lock.h"
+#include "acme/platform/keep.h"
 
 
 namespace filemanager

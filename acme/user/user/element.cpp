@@ -1171,7 +1171,7 @@ namespace user
    }
 
 
-   //bool element::create_interaction(::user::interaction * puiParent, ::create * pcreate, ::u32 uExStyle, ::u32 uStyle)
+   //bool element::create_interaction(::user::interaction * puiParent, ::request * prequest, ::u32 uExStyle, ::u32 uStyle)
    //{
 
    //   throw ::interface_only();

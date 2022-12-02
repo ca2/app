@@ -7,10 +7,11 @@
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 ////#include "acme/exception/exception.h"
-//#include "acme/filesystem/file/file.h"
+#include "acme/filesystem/file/file.h"
+#include "acme/platform/keep.h"
+#include "acme/platform/request.h"
 #include "acme/primitive/datetime/datetime.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "apex/platform/create.h"
 #include "aura/user/user/wait_cursor.h"
 #include "aura/user/user/window_util.h"
 #include "base/platform/application.h"
@@ -92,35 +93,43 @@ namespace user
 //   }
 
 
-   ::base::application * document::get_app()
+   ::base::application* document::get_app()
    {
-      
-      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
-   
+
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
+
    }
 
 
-   ::base::session * document::get_session()
+   ::base::session* document::get_session()
    {
-      
-      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
-   
+
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+
    }
 
 
-   ::base::system * documentacmesystem()
+   ::base::system* document::get_system()
    {
-      
-      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
-   
+
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
+
    }
 
 
-   ::base::user * document::user()
+   ::base::user* document::user()
    {
-      
-      return get_session() ? get_session()->user() : nullptr; 
-   
+
+      auto psession = get_session();
+
+      return ::is_set(psession) ? psession->user() : nullptr;
+
    }
 
 
@@ -423,7 +432,7 @@ namespace user
    }
 
 
-   void document::on_create(::create * pcreate)
+   void document::on_create(::request * prequest)
    {
 
       run_property(ID_CREATE);
@@ -983,12 +992,12 @@ namespace user
    }
 
 
-   bool document::open_document(::create * pcreate)
+   bool document::open_document(::request * prequest)
    {
 
-      KEEP(m_pcreate, pcreate);
+      KEEP(m_prequest, prequest);
 
-      ::payload payloadFile = pcreate->get_file();
+      ::payload payloadFile = prequest->get_file();
 
       if (!open_document(payloadFile))
       {
@@ -1446,7 +1455,9 @@ namespace user
 
       string prompt;
 
-      prompt = _("MessageBoxChangedFileAskToSave");
+      //prompt = _("MessageBoxChangedFileAskToSave");
+
+      prompt = "MessageBoxChangedFileAskToSave";
 
       prompt.replace_with(strName, "%1");
 
@@ -1870,13 +1881,17 @@ namespace user
    }
 
 
-   void document::on_request(::create * pcreate)
+   void document::on_request(::request * prequest)
    {
 
-      if(!on_open_document(pcreate->m_payloadFile))
+      if (!on_open_document(prequest->m_payloadFile))
+      {
+
          return;
 
-      pcreate->payload("document") = this;
+      }
+
+      prequest->payload("document") = this;
 
    }
 
@@ -1927,17 +1942,17 @@ namespace user
    }
 
 
-   ::pointer<::user::document>__document(::create * pcreate)
+   ::pointer<::user::document>__document(::request * prequest)
    {
 
-      if (pcreate == nullptr)
+      if (prequest == nullptr)
       {
 
          return nullptr;
 
       }
 
-      return pcreate->payload("document").cast < ::user::document >();
+      return prequest->payload("document").cast < ::user::document >();
 
    }
 

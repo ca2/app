@@ -326,7 +326,7 @@ namespace apex
 
       virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra);
 
-      //virtual bool merge_accumulated_on_open_file(::create * pcreate);
+      //virtual bool merge_accumulated_on_open_file(::request * prequest);
 
       virtual bool on_open_file(::payload payloadFile, string strExtra);
       

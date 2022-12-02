@@ -8,8 +8,8 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 ////#include "acme/exception/exception.h"
+#include "acme/platform/request.h"
 #include "acme/platform/system.h"
-#include "apex/platform/create.h"
 #include "aura/message/user.h"
 #include "aura/user/user/system.h"
 #include "aura/user/user/window_util.h"
@@ -750,35 +750,43 @@ namespace user
 //   }
 
 
-   ::base::application * impact::get_app()
+   ::base::application* impact::get_app()
    {
-      
-      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
-   
+
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
+
    }
 
 
-   ::base::session * impact::get_session()
+   ::base::session* impact::get_session()
    {
-      
-      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
-   
+
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+
    }
 
 
-   ::base::system * impactacmesystem()
+   ::base::system* impact::get_system()
    {
-      
-      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
-   
+
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
+
    }
 
 
-   ::base::user * impact::user()
+   ::base::user* impact::user()
    {
-      
-      return get_session() ? get_session()->user() : nullptr; 
-   
+
+      auto psession = get_session();
+
+      return ::is_set(psession) ? psession->user() : nullptr;
+
    }
 
 
@@ -824,7 +832,7 @@ namespace user
    ::pointer<::user::interaction>impact::create_impact(::user::interaction * pimpactAlloc, ::user::impact_data * pimpactdata, ::user::interaction * pviewLast)
    {
 
-      ::pointer<::create>pcreate(e_create, this);
+      ::pointer<::request>pcreate(e_create, this);
 
       auto pusersystem = __new(::user::system);
 
@@ -846,7 +854,7 @@ namespace user
    ::pointer<::user::interaction>impact::create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
-      ::pointer<::create>pcreate(e_create_new, this);
+      ::pointer<::request>pcreate(e_create_new, this);
 
       auto pusersystem = __create_new < ::user::system >();
 
@@ -902,7 +910,7 @@ namespace user
    ::pointer<::user::interaction>create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast)
    {
 
-      ::pointer<::create>pcreate(e_create_new, pdocument);
+      ::pointer<::request>pcreate(e_create_new, pdocument);
 
       auto pusersystem= __new(::user::system);
 

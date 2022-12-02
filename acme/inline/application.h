@@ -94,9 +94,9 @@ int main(int argc, char * argv[], char * envp[])
    ////   application.m_applicationflags.m_bConsole = true;
 ////
 ////
-   ::acme::get()->acmeapplication()->implement_application();
+   ::acme::get()->m_pacmeapplication->implement_application();
 
-   return ::acme::get()->acmeapplication()->m_iExitCode;
+   return ::acme::get()->m_pacmeapplication->m_iExitCode;
 
 //   acme::acme acme;
 //

@@ -1868,7 +1868,7 @@ auto tickStart = ::time::now();
    /// current working directory (if the pathname is relative).
    /// @pararm[in] strDirectory Pathname specifying a directory to be created.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::MakeDirectory(const string& strDirectory)
+   int client_socket::make_directory(const string& strDirectory)
    {
       ASSERT(strDirectory.has_char());
       reply Reply;
@@ -1933,7 +1933,7 @@ auto tickStart = ::time::now();
    /// current working directory (if the pathname is relative).
    /// @lparam[in] strDirectory Pathname of the directory to delete.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::RemoveDirectory(const string& strDirectory)
+   int client_socket::remove_directory(const string& strDirectory)
    {
       ASSERT(strDirectory.has_char());
       reply Reply;

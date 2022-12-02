@@ -723,7 +723,7 @@ namespace apex
    //}
 
 
-   //void application::call_request(::create * pcreate)
+   //void application::call_request(::request * prequest)
    //{
 
    //   do_request(pcreate);
@@ -6900,7 +6900,7 @@ namespace apex
    //}
 
 
-   //void application::on_service_request(::create * pcreate)
+   //void application::on_service_request(::request * prequest)
    //{
 
    //   ::application::on_service_request(pcreate);

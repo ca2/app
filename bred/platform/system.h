@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/platform/system.h"
@@ -23,7 +23,7 @@ namespace bred
 
       virtual void initialize(::particle * pparticle) override;
 
-      virtual void on_add_session(::apex::session * papexsession) override;
+      //virtual void on_add_session(::acme::session * pacmesession) override;
 
 
    };

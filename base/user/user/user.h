@@ -44,7 +44,7 @@ namespace base
 
       ::base::application* get_app();
       ::base::session* get_session();
-      ::base::system* acmesystem();
+      ::base::system* get_system();
 
 
       virtual void initialize(::particle * pparticle) override;

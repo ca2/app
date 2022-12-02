@@ -164,7 +164,7 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
 
-      ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
+      auto psession = m_pcontext->m_pacmesession->m_paxissession;
 
       auto puser = psession->user();
 
@@ -339,7 +339,7 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
 
-      ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
+      auto psession = m_pcontext->m_pacmesession->m_paxissession;
 
       auto puser = psession->user();
 
@@ -511,7 +511,7 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
 
-      ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
+      auto psession = m_pcontext->m_pacmesession->m_paxissession;
 
       auto puser = psession->user();
 
@@ -1299,7 +1299,7 @@ namespace html
    void style::initialize_style(e_tag etag)
    {
 
-      ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
+      auto psession = m_pcontext->m_pacmesession->m_paxissession;
 
       auto puser = psession->user();
 

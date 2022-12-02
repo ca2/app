@@ -539,7 +539,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    int iTry = 0;
 
-   auto papp = m_pcontext->m_pcoreapplication;
+   auto papp = m_pcontext->m_pacmeapplication->m_pcoreapplication;
 
    if (!pclient)
    {

@@ -8,6 +8,8 @@
 #include "operation.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/item.h"
+#include "acme/platform/application.h"
+#include "acme/platform/session.h"
 #include "acme/platform/system.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/message/user.h"
@@ -34,7 +36,9 @@ filemanager_impact_base::~filemanager_impact_base()
 ::core::application* filemanager_impact_base::get_app()
 {
 
-   return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+   auto pacmeapplication = acmeapplication();
+
+   return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
 
 }
 
@@ -42,15 +46,19 @@ filemanager_impact_base::~filemanager_impact_base()
 ::core::session* filemanager_impact_base::get_session()
 {
 
-   return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+   auto pacmesession = acmesession();
+
+   return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
 }
 
 
-::core::system* filemanager_impact_baseacmesystem()
+::core::system* filemanager_impact_base::get_system()
 {
 
-   return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+   auto pacmesystem = acmesystem();
+
+   return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
 }
 

@@ -207,7 +207,7 @@ namespace axis
 
       virtual ::draw2d::icon * get_icon(object * pparticle, bool bBigIcon) const override;
 
-      virtual void on_service_request(::create * pcreate) override;
+      virtual void on_service_request(::request * prequest) override;
 
       virtual string get_mutex_name_gen() override;
 

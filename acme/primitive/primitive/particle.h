@@ -112,6 +112,7 @@ public:
    void defer_create_synchronization();
 
 
+
    virtual enum_type get_payload_type() const;
 
    //virtual void destroy();

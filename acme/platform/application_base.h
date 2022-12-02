@@ -8,9 +8,15 @@ namespace acme
 {
 
 
+   class acme;
+
+
    class CLASS_DECL_ACME application_base
    {
    public:
+
+
+      ::acme::acme* m_pacme = nullptr;
 
 
       application_base();

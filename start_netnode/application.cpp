@@ -63,7 +63,7 @@ namespace app_app
    }
 
 
-   void application::on_request(::create * pcreate)
+   void application::on_request(::request * prequest)
    {
 
       throw "not designed to show a graphical user interface";

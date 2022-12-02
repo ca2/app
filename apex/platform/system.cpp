@@ -3097,7 +3097,7 @@ pacmedirectory->create("/ca2core");
 
 
 
-   //bool system::merge_accumulated_on_open_file(::create * pcreate)
+   //bool system::merge_accumulated_on_open_file(::request * prequest)
    //{
 
    //   if(m_straCommandLineAccumul.is_empty())

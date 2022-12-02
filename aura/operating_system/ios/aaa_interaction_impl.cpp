@@ -521,7 +521,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::create_window(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle,const ::rectangle_i32 & rectangle,::user::interaction * puiParent,atom atom, ::create * pcreate)
+   bool interaction_impl::create_window(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle,const ::rectangle_i32 & rectangle,::user::interaction * puiParent,atom atom, ::request * prequest)
    {
       
       // can't use for desktop or pop-up windows (use CreateEx instead)

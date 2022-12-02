@@ -328,7 +328,7 @@ namespace aura
 
       virtual ::draw2d::icon * get_icon(::object * pobject, bool bBigIcon) const;
 
-      //virtual void on_service_request(::create * pcreate) override;
+      //virtual void on_service_request(::request * prequest) override;
 
       virtual string get_mutex_name_gen() override;
 
@@ -436,7 +436,7 @@ namespace aura
       //virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa) override;
 
 
-      //virtual bool start_application(bool bSynch, ::create * pcreate) override;
+      //virtual bool start_application(bool bSynch, ::request * prequest) override;
 
 
 
@@ -623,7 +623,7 @@ namespace aura
       //virtual bool os_start_service() override;
       //virtual bool os_stop_service() override;
 
-      //virtual void on_service_request(::create * pcreate);
+      //virtual void on_service_request(::request * prequest);
 
       //virtual bool is_running();
 
@@ -684,8 +684,8 @@ namespace aura
 
       //virtual bool assert_user_logged_in();
 
-      //virtual void     do_request(::create * pcreate) override;
-      //virtual void call_request(::create * pcreate) override;
+      //virtual void     do_request(::request * prequest) override;
+      //virtual void call_request(::request * prequest) override;
 
 
       //virtual void process_message(::user::message * base) override;
@@ -718,7 +718,7 @@ namespace aura
       //virtual void fill_locale_schema(::text::international::locale_schema & localeschema) override;
       //virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema) override;
 
-      //virtual bool platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::create * pcreate = nullptr) override;
+      //virtual bool platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::request * prequest = nullptr) override;
       //virtual bool platform_open_by_file_extension(index iEdge,::create * pcc) override;
 
 
@@ -745,7 +745,7 @@ namespace aura
 
 
       //void request(::create * pcommand) override;
-      //void on_create(::create * pcreate) override;
+      //void on_create(::request * prequest) override;
 
 //      virtual void dispatch_user_message(::user::message * pusermessage);
 

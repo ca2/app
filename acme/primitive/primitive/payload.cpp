@@ -5591,36 +5591,24 @@ bool payload::is_integer() const
       
       ::string str = as_string();
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
-      if(is_scalar()
-            && (fmod(atof(str), 1.0) == 0.0
-                && fabs(atof(str)) <= pow(2.0, 31.0)))
-#else
-      if(is_scalar()
-            && (fmod(_atof_l(str, ::get_task()->locale()->m_locale), 1.0) == 0.0
-                && fabs(_atof_l(str, ::get_task()->locale()->m_locale)) <= pow(2.0, 31.0)))
-#endif
+      str.trim();
+      if(str.get_length() == 0)
+         return false;
+      else if(str[0] == '+'
+               || str[0] == '-'
+               || ansi_char_isdigit(str[0]))
       {
-         str.trim();
-         if(str.get_length() == 0)
-            return false;
-         else if(str[0] == '+'
-                 || str[0] == '-'
-                 || ansi_char_isdigit(str[0]))
+         for(index i = 1; i < str.get_length(); i++)
          {
-            for(index i = 1; i < str.get_length(); i++)
-            {
-               if(!ansi_char_isdigit(str[i]))
-                  return false;
-            }
-            return true;
+            if(!ansi_char_isdigit(str[i]))
+               return false;
          }
-         else
-            return false;
+         return true;
       }
       else
       {
          return false;
+
       }
    }
 }

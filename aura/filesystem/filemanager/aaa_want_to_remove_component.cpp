@@ -378,7 +378,7 @@ namespace filemanager
    }
 
 
-   void component::filemanager_load_project(const ::file::path & pathFilemanagerProject, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   void component::filemanager_load_project(const ::file::path & pathFilemanagerProject, ::request * prequest, ::fs::data * pfsdata, callback * pcallback)
    {
 
       {
@@ -621,7 +621,7 @@ pacmedirectory->localconfig() / "user.component";
    }
 
 
-   document * component::open_filemanager(::payload payloadFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   document * component::open_filemanager(::payload payloadFile, ::request * prequest, ::fs::data * pfsdata, callback * pcallback)
    {
 
       //document * pdocument;
@@ -676,7 +676,7 @@ pacmedirectory->localconfig() / "user.component";
    }
 
 
-   document * component::restore_filemanager(::payload payloadFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   document * component::restore_filemanager(::payload payloadFile, ::request * prequest, ::fs::data * pfsdata, callback * pcallback)
    {
 
       throw ::exception(todo("core"));
@@ -697,7 +697,7 @@ pacmedirectory->localconfig() / "user.component";
    }
 
 
-   document * component::add_filemanager(const ::file::path & pathFolder, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   document * component::add_filemanager(const ::file::path & pathFolder, ::request * prequest, ::fs::data * pfsdata, callback * pcallback)
    {
 
       /*document * pdocument;
@@ -777,7 +777,7 @@ pacmedirectory->localconfig() / "user.component";
 
 
 
-//document * component::open_main(::aura::application * pappOnBehalfOf, ::atom atom, ::create * pcreate, ::fs::data * pfsdata, ::filemanagerpointer< data > pdata, callback * pcallback)
+//document * component::open_main(::aura::application * pappOnBehalfOf, ::atom atom, ::request * prequest, ::fs::data * pfsdata, ::filemanagerpointer< data > pdata, callback * pcallback)
 //{
 
 //   ::file::path pathFolder;
@@ -1004,7 +1004,7 @@ pacmedirectory->localconfig() / "user.component";
 //}
 
 
-//document * component::create_new_document(callback * pcallback, ::create * pcreate)
+//document * component::create_new_document(callback * pcallback, ::request * prequest)
 //{
 
 //   document * pdocument = (m_pdocumenttemplate->create_new_document(pcreate));

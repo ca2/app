@@ -206,7 +206,7 @@ namespace user
    }
 
 //
-//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::primitive * puiParent, atom atom, ::create * pcreate)
+//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::primitive * puiParent, atom atom, ::request * prequest)
 //   bool interaction_child::create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent)
 //   {
 //

@@ -8,22 +8,22 @@ namespace app_just_message_box
 {
 
 
-   //application::application()
-   //{
+   application::application()
+   {
 
-   //   m_strAppId = "app/just_message_box";
+      m_strAppId = "app/just_message_box";
 
-   //   m_strAppName = "Just Message Box";
+      m_strAppName = "Just Message Box";
 
-   //   m_strBaseSupportId = "app/just_message_box";
+      m_strBaseSupportId = "app/just_message_box";
 
-   //   m_bNetworking = false;
+      m_bNetworking = false;
 
-   //   m_bLicense = false;
+      m_bLicense = false;
 
-   //   m_bImaging = false;
+      m_bImaging = false;
 
-   //}
+   }
 
 
    //application::~application()

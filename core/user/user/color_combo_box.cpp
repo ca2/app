@@ -39,27 +39,32 @@ namespace user
 
    ::core::application* color_combo_box::get_app()
    {
-      
-      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; 
-   
+
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
+
    }
 
 
    ::core::session* color_combo_box::get_session()
-   { 
-      
-      return m_pcontext ? m_pcontext->m_pcoresession : nullptr; 
-   
-   }
-
-
-   ::core::system* color_combo_boxacmesystem() 
    {
-      
-      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr; 
-   
+
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
+
    }
 
+
+   ::core::system* color_combo_box::get_system()
+   {
+
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
+
+   }
 
    void color_combo_box::install_message_routing(::channel * psender)
    {
@@ -136,7 +141,7 @@ namespace user
 
                auto pcontext = m_pcontext;
                
-               auto psession = pcontext->m_pcoresession;
+               auto psession = pcontext->m_pacmesession->m_pcoresession;
                
                auto puser = psession->m_puser->m_pcoreuser;
 

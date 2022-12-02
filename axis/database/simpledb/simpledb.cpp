@@ -268,7 +268,7 @@ namespace simpledb
 
             auto pdatetime = psystem->datetime();
 
-            auto ptextcontext = get_session()->text_context();
+            auto ptextcontext = acmesession()->text_context();
 
             ::earth::time timeListing(pdatetime->from_string(ptextcontext, strListingTime));
 

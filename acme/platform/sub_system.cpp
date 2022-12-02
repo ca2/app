@@ -18,7 +18,7 @@ namespace acme
 {
 
 
-   extern ::pointer < ::acme::acme > g_p;
+   extern ::acme::acme * g_p;
 
 
 } // namespace acme

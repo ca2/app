@@ -10,7 +10,7 @@
 #include "core/user/user/user.h"
 
 
-bool __rich_text_initialize();
+void rich_text_factory_exchange(::factory::factory* pfactory);
 
 
 namespace core
@@ -64,39 +64,32 @@ namespace core
    }
 
 
-   void system::on_add_session(::apex::session* papexsession)
-   {
+   //void system::on_add_session(::apex::session* papexsession)
+   //{
 
-      ::bred::system::on_add_session(papexsession);
+   //   ::bred::system::on_add_session(papexsession);
 
-      if (papexsession->m_iEdge == 0)
-      {
+   //   if (papexsession->m_iEdge == 0)
+   //   {
 
-         if (!m_pcoresession)
-         {
+   //      if (!m_pcoresession)
+   //      {
 
-            m_pcoresession = papexsession->m_pcoresession;
+   //         m_pcoresession = papexsession->m_pcoresession;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      papexsession->m_pcoresystem = this;
+   //   papexsession->m_pcoresystem = this;
 
-   }
+   //}
 
 
    void system::initialize_rich_text()
    {
 
-      if (!__rich_text_initialize())
-      {
-
-         throw ::exception(error_not_initialized);
-
-      }
-
-      //return ::success;
+      rich_text_factory_exchange(factory());
 
    }
 

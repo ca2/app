@@ -11,6 +11,7 @@
 #include "acme/constant/timer.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/item.h"
+#include "acme/platform/keep.h"
 #include "acme/platform/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/collection/sort.h"
@@ -106,26 +107,31 @@ namespace user
    ::core::application* list::get_app()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
 
    }
 
 
-   ::core::session*list:: get_session()
+   ::core::session* list::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
    }
 
 
-   ::core::system* listacmesystem()
+   ::core::system* list::get_system()
    {
 
-      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
    }
-
 
    void list::install_message_routing(::channel * pchannel)
    {

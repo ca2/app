@@ -2,7 +2,7 @@
 ////#include "base/user/simple/_component.h"
 #include "main_frame.h"
 #include "acme/constant/message.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "aura/message/user.h"
 #include "base/platform/application.h"
 #include "base/user/experience/frame.h"
@@ -73,9 +73,9 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
 
    }
 
-   auto pcreateContext = pcreate->get_create();
+   auto prequest= pcreate->get_request();
 
-   if (pcreateContext && pcreateContext->m_payloadArgs.is_true("window_frame"))
+   if (prequest && prequest->m_payloadArgs.is_true("window_frame"))
    {
 
       m_bWindowFrame = true;

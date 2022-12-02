@@ -1,4 +1,4 @@
-// From impact.h by camilo on 2021-01-15 18:13 <3ThomasBorregaardSørensen!!
+﻿// From impact.h by camilo on 2021-01-15 18:13 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -38,7 +38,7 @@ namespace user
 
       ::base::application* get_app() { return ::user::impact::get_app(); }
       ::base::session* get_session() { return ::user::impact::get_session(); }
-      ::base::system* acmesystem() { return ::user::impactacmesystem(); }
+      ::base::system* get_system() { return ::user::impact::get_system(); }
       ::base::user* user() { return ::user::impact::user(); }
 
 

@@ -3,7 +3,7 @@
 #include "session.h"
 #include "system.h"
 #include "acme/filesystem/file/item_array.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "aura/user/user/interaction.h"
 #include "base/user/user/impact_system.h"
 #include "base/user/user/user.h"
@@ -14,20 +14,23 @@ namespace base
 {
 
 
-   void initialize()
-   {
+   //void initialize()
+   //{
 
-      factory()->add_factory_item< ::base::system, ::acme::system>();
-
-   }
+   //}
 
 
    application::application()
    {
 
-      ::base::initialize();
+      //::base::initialize();
 
       m_pbaseapplication = this;
+
+      factory()->add_factory_item< ::base::system, ::acme::system>();
+      factory()->add_factory_item< ::base::session, ::acme::session>();
+
+
 
    }
 
@@ -145,12 +148,12 @@ namespace base
    void application::on_file_manager_open(::filemanager::data* pdata, const ::file::item_array& itema, const ::action_context& action_context)
    {
 
-      auto pcreate = __create_new<create>();
+      auto prequest = __create_new<::request>();
 
       if (itema.get_size() == 1)
       {
 
-         pcreate->m_payloadFile = itema[0]->user_path();
+         prequest->m_payloadFile = itema[0]->user_path();
 
       }
       else
@@ -165,19 +168,21 @@ namespace base
 
          }
 
-         pcreate->m_payloadFile = stra;
+         prequest->m_payloadFile = stra;
 
       }
 
-      do_request(pcreate);
+      post_request(prequest);
 
    }
 
    
-   ::base::system * applicationacmesystem()
+   ::base::system * application::get_system()
    {
 
-      return ::is_set(acmesystem()) ? dynamic_cast <::base::system *> (acmesystem()) : nullptr;
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 
    }
 
@@ -185,15 +190,19 @@ namespace base
    ::base::session * application::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pbasesession : nullptr;
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
 
    }
 
 
-   ::base::system * sessionacmesystem()
+   ::base::system * session::get_system()
    {
 
-      return ::is_set(acmesystem()) ? dynamic_cast <::base::system *> (acmesystem()) : nullptr;
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 
    }
 

@@ -19,7 +19,7 @@ namespace acme
 {
 
 
-   extern ::pointer < ::acme::acme > g_p;
+   extern ::acme::acme * g_p;
 
 
    application_base::application_base()
@@ -34,7 +34,9 @@ namespace acme
 
 #endif
 
-         __raw_construct_new(::acme::g_p);
+         ::acme::g_p = memory_new ::acme::acme;
+
+         m_pacme = ::acme::g_p;
 
       }
 
@@ -44,7 +46,14 @@ namespace acme
    application_base::~application_base()
    {
 
-      ::acme::g_p.global_release();
+      if (m_pacme == ::acme::g_p)
+      {
+
+         m_pacme = nullptr;
+
+         ::acme::del(::acme::g_p);
+
+      }
 
    }
 

@@ -322,7 +322,7 @@ namespace aura
    }
 
 
-   //void session::on_request(::create * pcreate)
+   //void session::on_request(::request * prequest)
    //{
 
    //   ::apex::session::on_request(pcreate);

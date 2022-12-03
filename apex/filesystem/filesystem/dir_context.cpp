@@ -1714,11 +1714,11 @@ bool dir_context::name_is(const ::file::path& strPath)
 ::file::path dir_context::module()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   //synchronous_lock synchronouslock(this->synchronization());
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto pacmeapplication = acmeapplication();
 
-   return psystem->m_pdirsystem->m_pathModule;
+   return pacmeapplication->get_module_folder();
 
 }
 

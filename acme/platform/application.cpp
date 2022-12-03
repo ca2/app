@@ -17,6 +17,9 @@
 #include "acme/_operating_system.h"
 
 
+CLASS_DECL_ACME::file::path get_module_path(HMODULE hmodule);
+
+
 #endif
 
 CLASS_DECL_ACME void set_main_user_thread();
@@ -457,7 +460,17 @@ namespace acme
       if (!m_bModulePath)
       {
 
+#ifdef WINDOWS
 
+         m_pathModule = ::get_module_path((HMODULE)::acme::get()->m_psubsystem->m_hinstanceThis);
+
+#else
+
+         throw ::exception(todo);
+
+#endif
+
+         m_bModulePath = true;
 
       }
 
@@ -475,6 +488,8 @@ namespace acme
       {
 
          m_pathModuleFolder = get_module_path().folder();
+
+         m_bModuleFolder = true;
 
       }
 

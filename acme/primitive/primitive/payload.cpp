@@ -5463,9 +5463,6 @@ bool payload::is_double() const
    {
       return true;
    }
-   // simple, lazy, slow, and a bit incorrect
-   // incorrect because atof and atoi returns partials results even if it
-   // encounters non-numerical symbols
    else if(is_floating())
    {
 

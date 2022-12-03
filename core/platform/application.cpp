@@ -1,9 +1,11 @@
 ﻿#include "framework.h"
 #include "application.h"
 #include "system.h"
+#include "session.h"
 #include "acme/platform/system_setup.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/platform/node.h"
+#include "core/user/user/user.h"
 #include "core/user/userex/progress.h"
 #include "core/user/userex/pane_tab_impact.h"
 
@@ -30,6 +32,8 @@ namespace core
       m_strAppId = "app-complex/drawing";
 
       factory()->add_factory_item < ::core::system, ::acme::system >();
+      factory()->add_factory_item < ::core::session, ::acme::session >();
+      factory()->add_factory_item < ::core::user, ::user::user >();
 
    }
 

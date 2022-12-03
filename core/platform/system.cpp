@@ -36,10 +36,8 @@ namespace core
 
       m_pcoresystem = this;
 
-      factory()->add_factory_item < ::core::application, ::apex::application >();
-      factory()->add_factory_item < ::core::session, ::apex::session >();
       //factory()->add_factory_item < ::core::idpool, ::acme::idpool >();
-      factory()->add_factory_item < ::core::user, ::user::user >();
+      //factory()->add_factory_item < ::core::user, ::user::user >();
       //add_factory_item < ::core::idpool, ::apex::idpool >();
 
    }
@@ -51,6 +49,10 @@ namespace core
       //auto estatus = 
       
       ::base::system::initialize(pparticle);
+
+
+      factory()->add_factory_item < ::core::application, ::apex::application >();
+      factory()->add_factory_item < ::core::session, ::apex::session >();
 
       //if (!estatus)
       //{

@@ -177,7 +177,7 @@ namespace aura
       factory()->add_factory_item < ::aura::session, ::apex::session >();
       //factory()->add_factory_item < ::aura::application, ::apex::application >();
       //factory()->add_factory_item < ::aura::idpool, ::acme::idpool >();
-      factory()->add_factory_item < ::user::user >();
+      //factory()->add_factory_item < ::user::user >();
 
 
       //if (!estatus)

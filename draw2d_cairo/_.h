@@ -3,6 +3,8 @@
 
 #include "aura/_.h" // psystem->ftlibrary()
 
+
+#include "acme/primitive/primitive/holder.h"
 ////#include "aura/graphics/draw2d/_component.h"
 //#include "acme/primitive/geometry2d/_impl.h"
 

@@ -126,7 +126,7 @@ namespace base
       //base_factory(factory());
 
 
-      factory()->add_factory_item < ::base::user, ::user::user >();
+      //factory()->add_factory_item < ::base::user, ::user::user >();
 
       //return estatus;
 

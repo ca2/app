@@ -72,7 +72,7 @@ public:
    ::acme_path *                                                     m_pacmepath;
 
    ::file::path                                    m_pathInstallFolder;
-   ::file::path                                    m_pathModuleFolder;
+   //::file::path                                    m_pathModuleFolder;
 
 
    ::media_library::item_map                       m_medialibraryitemmap;

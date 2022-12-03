@@ -8,6 +8,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/keep.h"
 #include "acme/primitive/mathematics/_random.h"
 #include "acme/platform/library.h"
 #include "apex/crypto/rsa.h"

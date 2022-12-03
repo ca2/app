@@ -1621,7 +1621,6 @@ namespace acme
    }
 
 
-
    void system::on_request(::request* prequest)
    {
 
@@ -1682,7 +1681,20 @@ namespace acme
 
          auto prequest = __create_new< ::request>();
 
+         auto strCommandLine = acmeapplication()->m_strCommandLine;
+
          prequest->m_strAppId = acmeapplication()->m_strAppId;
+
+         ::string strApp;
+
+         prequest->get_property_set()._008ParseCommandFork(
+            strCommandLine,
+            prequest->m_payloadFile,
+            strApp);
+
+         payload("command_line_arg0") = strApp;
+
+         acmeapplication()->get_property_set().merge(prequest->get_property_set());
 
          post_request(prequest);
 

@@ -37,9 +37,9 @@ void dir_system::initialize(::particle * pparticle)
 
    //}
 
-   auto psystem = acmesystem();
+   //auto psystem = acmesystem();
 
-   m_pathModule = psystem->m_pacmedirectory->module();
+   //m_pathModule = psystem->m_pacmedirectory->module();
 
    //return true;
 
@@ -68,7 +68,7 @@ void dir_system::init_system()
 
 //   m_pathModule = pathModuleFolder;
 
-   m_pathModule = acmeapplication()->get_module_folder();
+   //m_pathModule = acmeapplication()->get_module_folder();
 
 //   auto pathCa2Module = pfile->m_pathCa2Module;
 //

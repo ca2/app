@@ -1611,33 +1611,35 @@ pacmedirectory->create("/ca2core");
    void system::defer_post_initial_request()
    {
 
-      if (!m_bPostedInitialRequest)
-      {
+      ::acme::system::defer_post_initial_request();
 
-         m_bPostedInitialRequest = true;
+      //if (!m_bPostedInitialRequest)
+      //{
 
-         auto prequest = __create_new< ::request>();
+      //   m_bPostedInitialRequest = true;
 
-         string strAppId = acmeapplication()->m_strAppId;
+      //   auto prequest = __create_new< ::request>();
 
-         if (strAppId.is_empty())
-         {
+      //   string strAppId = acmeapplication()->m_strAppId;
 
-            if (acmeapplication())
-            {
+      //   if (strAppId.is_empty())
+      //   {
 
-               strAppId = acmeapplication()->m_strAppId;
+      //      if (acmeapplication())
+      //      {
 
-            }
+      //         strAppId = acmeapplication()->m_strAppId;
 
-         }
+      //      }
 
-         prequest->m_strAppId = strAppId;
+      //   }
 
-         //pcreate->m_pcommandline = __create_new < command_line >();
-         post_request(prequest);
+      //   prequest->m_strAppId = strAppId;
 
-      }
+      //   //pcreate->m_pcommandline = __create_new < command_line >();
+      //   post_request(prequest);
+
+      //}
 
    }
 

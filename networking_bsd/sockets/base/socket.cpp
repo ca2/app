@@ -2772,7 +2772,7 @@ namespace sockets_bsd
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_psslcontext->m_pclientcontext->get_session() != nullptr)
+      if (m_psslcontext->m_pclientcontext->acmesession() != nullptr)
       {
 
          m_psslcontext->m_pclientcontext.release();

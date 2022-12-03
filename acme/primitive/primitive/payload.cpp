@@ -5341,15 +5341,15 @@ bool payload::is_floating() const
 
       ::string str = as_string();
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
-      if(is_scalar()
-            && (fmod(atof(str), 1.0) == 0.0
-                && fabs(atof(str)) <= pow(2.0, 31.0)))
-#else
-      if(is_scalar()
-            && (fmod(_atof_l(str, ::get_task()->locale()->m_locale), 1.0) == 0.0
-                && fabs(_atof_l(str, ::get_task()->locale()->m_locale)) <= pow(2.0, 31.0)))
-#endif
+//#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+//      if(is_scalar()
+//            && (fmod(atof(str), 1.0) == 0.0
+//                && fabs(atof(str)) <= pow(2.0, 31.0)))
+//#else
+//      if(is_scalar()
+//            && (fmod(_atof_l(str, ::get_task()->locale()->m_locale), 1.0) == 0.0
+//                && fabs(_atof_l(str, ::get_task()->locale()->m_locale)) <= pow(2.0, 31.0)))
+//#endif
       {
          str.trim();
          if(str.get_length() == 0)
@@ -5439,10 +5439,10 @@ dot2:
          else
             return false;
       }
-      else
-      {
-         return false;
-      }
+      //else
+      //{
+      //   return false;
+      //}
    }
 
 }
@@ -5466,113 +5466,17 @@ bool payload::is_double() const
    // simple, lazy, slow, and a bit incorrect
    // incorrect because atof and atoi returns partials results even if it
    // encounters non-numerical symbols
+   else if(is_floating())
+   {
+
+      return true;
+      
+   }
    else
    {
-      
-      ::string str = as_string();
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
-      if(is_scalar()
-            && (fmod(atof(str), 1.0) == 0.0
-                && fabs(atof(str)) <= pow(2.0, 31.0)))
-#else
-      if(is_scalar()
-            && (fmod(_atof_l(str, ::get_task()->locale()->m_locale), 1.0) == 0.0
-                && fabs(_atof_l(str, ::get_task()->locale()->m_locale)) <= pow(2.0, 31.0)))
-#endif
-      {
-         str.trim();
-         if(str.get_length() == 0)
-            return false;
-         else if(str[0] == '+'
-                 || str[0] == '-'
-                 || ansi_char_isdigit(str[0]))
-         {
-            ::i32 i;
-            for(i = 1; i < str.get_length(); i++)
-            {
-               if(ansi_char_isdigit(str[i]))
-                  continue;
-               if(str[i] == '.')
-               {
-                  i++;
-                  goto dot1;
-               }
-               if(character_isspace(str[i]))
-               {
-                  i++;
-                  goto sp1;
-               }
-               if(str[i] == 'e' || str[i] == 'E')
-               {
-                  i++;
-                  goto e;
-               }
-               return false;
-            }
-dot1:
-            for(; i < str.get_length(); i++)
-            {
-               if(ansi_char_isdigit(str[i]))
-                  continue;
-               if(str[i] == 'e' || str[i] == 'E')
-                  goto e;
-               return false;
-            }
-sp1:
-            for(; i < str.get_length(); i++)
-            {
-               if(character_isspace(str[i]))
-                  continue;
-               if(str[i] == 'e' || str[i] == 'E')
-                  goto e;
-               return false;
-            }
-e:
-//sp2:
-            for(; i < str.get_length(); i++)
-            {
-               if(character_isspace(str[i]))
-                  continue;
-               if(str[i] == '.')
-               {
-                  i++;
-                  goto dot2;
-               }
-               if(ansi_char_isdigit(str[i]))
-               {
-                  i++;
-                  break;
-               }
-               return false;
-            }
-            for(; i < str.get_length(); i++)
-            {
-               if(ansi_char_isdigit(str[i]))
-                  continue;
-               if(str[i] == '.')
-               {
-                  i++;
-                  goto dot2;
-               }
-               return false;
-            }
-dot2:
-            for(; i < str.get_length(); i++)
-            {
-               if(ansi_char_isdigit(str[i]))
-                  continue;
-               return false;
-            }
-            return true;
-         }
-         else
-            return false;
-      }
-      else
-      {
-         return false;
-      }
+      return false;
+
    }
 
 }
@@ -5627,16 +5531,6 @@ bool payload::is_natural() const
       
       ::string str = as_string();
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
-      if(is_scalar()
-            && (fmod(atof(str), 1.0) == 0.0
-                && fabs(atof(str)) <= pow(2.0, 31.0)))
-#else
-      if(is_scalar()
-            && (fmod(_atof_l(str, ::get_task()->locale()->m_locale), 1.0) == 0.0
-                && fabs(_atof_l(str, ::get_task()->locale()->m_locale)) <= pow(2.0, 31.0)))
-#endif
-      {
          str.trim();
          if(str.get_length() == 0)
             return false;
@@ -5652,11 +5546,6 @@ bool payload::is_natural() const
          }
          else
             return false;
-      }
-      else
-      {
-         return false;
-      }
    }
 }
 

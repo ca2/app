@@ -109,7 +109,7 @@ namespace apex
          disable_service();
 
       }
-      else if (has_property("service"))
+      else if (prequest->has_property("service"))
       {
 
          service_handler()->defer_service();

@@ -16,7 +16,7 @@ namespace acme
 {
 
 
-   extern ::acme::acme * g_p;
+   CLASS_DECL_ACME extern ::acme::acme * g_p;
 
    const char * psz_empty_app_id = "";
 

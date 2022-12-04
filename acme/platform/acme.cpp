@@ -399,7 +399,7 @@ namespace acme
 {
 
 
-   ::acme::acme * g_p = nullptr;
+   CLASS_DECL_ACME ::acme::acme * g_p = nullptr;
 
 
    CLASS_DECL_ACME::acme::acme* get()

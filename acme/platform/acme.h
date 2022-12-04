@@ -23,6 +23,31 @@ namespace acme
 
       pointer_array < ::particle >* m_pelementaddraReleaseOnEnd = nullptr;
 
+
+      critical_section m_criticalsectionChannel;
+
+
+      ::critical_section* channel_critical_section()
+      {
+
+         return &m_criticalsectionChannel;
+
+      }
+
+
+      critical_section m_criticalsectionMessageDispatch;
+
+
+      ::critical_section* message_dispatch_critical_section()
+      {
+
+         return &m_criticalsectionMessageDispatch;
+
+      }
+
+
+
+
       critical_section m_criticalsectionSystemHeap;
 
       ::critical_section* system_heap_critical_section() { return &m_criticalsectionSystemHeap; }

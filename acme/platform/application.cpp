@@ -51,7 +51,7 @@ namespace acme
 {
 
 
-   extern ::acme::acme * g_p;
+   CLASS_DECL_ACME extern ::acme::acme * g_p;
 
 
    application::application()

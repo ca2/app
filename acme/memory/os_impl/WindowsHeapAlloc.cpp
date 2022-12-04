@@ -5,10 +5,11 @@ namespace acme
 
    class acme;
 
-   extern acme* g_p;
+   CLASS_DECL_ACME extern acme * g_p;
 
 
 } // namespace acme
+
 
 
 void * os_impl_alloc(size_t size)

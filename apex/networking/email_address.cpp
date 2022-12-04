@@ -12,6 +12,14 @@ namespace networking
    }
 
 
+   email_address::email_address(const char* pszEmail) :
+      email_address((const ::string &) pszEmail)
+   {
+
+
+   }
+
+
    email_address::email_address(const ::string & strEmail)
    {
 

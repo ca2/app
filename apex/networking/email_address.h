@@ -20,6 +20,7 @@ namespace networking
 
 
       email_address();
+      email_address(const char * pszEmail);
       email_address(const ::string & strEmail);
       email_address(const email_address & addr);
 

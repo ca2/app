@@ -34,7 +34,13 @@ namespace acme
 
 #endif
 
-         ::acme::g_p = memory_new ::acme::acme;
+         auto p = ::malloc(sizeof(::acme::acme));
+
+         new (p) ::acme::acme();
+
+         ::acme::g_p = (::acme::acme *) p;
+
+         ::acme::g_p->acme_initialize();
 
          m_pacme = ::acme::g_p;
 
@@ -51,7 +57,11 @@ namespace acme
 
          m_pacme = nullptr;
 
-         ::acme::del(::acme::g_p);
+         ::acme::g_p->acme_finalize();
+
+         ::acme::g_p->~acme();
+
+         ::acme::free(::acme::g_p);
 
       }
 

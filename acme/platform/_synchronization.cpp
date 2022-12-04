@@ -96,7 +96,4 @@
 
 
 
-critical_section g_criticalsectionSystemHeap;
-
-::critical_section* system_heap_critical_section() { return &g_criticalsectionSystemHeap; }
 

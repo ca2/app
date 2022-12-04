@@ -63,4 +63,4 @@
 
 
 
-CLASS_DECL_ACME::critical_section* system_heap_critical_section();
+//CLASS_DECL_ACME::critical_section* system_heap_critical_section();

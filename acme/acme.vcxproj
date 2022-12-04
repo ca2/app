@@ -968,6 +968,7 @@
     <ClCompile Include="platform\department.cpp" />
     <ClCompile Include="platform\display.cpp" />
     <ClCompile Include="platform\exclusive.cpp" />
+    <ClCompile Include="platform\factory_function.cpp" />
     <ClCompile Include="platform\fixed_alloc.cpp" />
     <ClCompile Include="platform\flags.cpp" />
     <ClCompile Include="platform\hyperlink.cpp" />
@@ -1216,6 +1217,7 @@
     <ClInclude Include="platform\application_exit.h" />
     <ClInclude Include="platform\enum_names.h" />
     <ClInclude Include="platform\application_flags.h" />
+    <ClInclude Include="platform\factory_function.h" />
     <ClInclude Include="platform\main2.h" />
     <ClInclude Include="platform\request.h" />
     <ClInclude Include="platform\session.h" />

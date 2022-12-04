@@ -606,7 +606,7 @@ namespace acme
 
 
 
-CLASS_DECL_ACME string get_latest_deployment_number(const ::string & strBranch);
+//CLASS_DECL_ACME string get_latest_deployment_number(const ::string & strBranch);
 
 
 

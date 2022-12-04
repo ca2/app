@@ -20,7 +20,7 @@ namespace networking
 
 
       email_address();
-      email_address(const char * psz);
+      email_address(const ::string & strEmail);
       email_address(const email_address & addr);
 
 
@@ -33,7 +33,9 @@ namespace networking
       string to_string() const { return m_strName + "@" + m_strDomain; }
 
 
-      email_address & operator = (const char * psz);
+      void set_email_address(const ::string & strEmail);
+
+
       email_address & operator = (const email_address & addr);
 
 

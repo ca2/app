@@ -1,15 +1,16 @@
 ﻿#include "framework.h"
+#include "system.h"
+#include "session.h"
+#include "application.h"
 #include "acme/constant/id.h"
 #include "axis/networking/email_department.h"
 #include "axis/platform/geo_department.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
 #include "axis/constant/idpool.h"
-#include "system.h"
 #include "axis/account/user_set.h"
-#include "session.h"
-#include "application.h"
 #include "axis/database/database/field.h"
+#include "axis/user/user/user.h"
 
 
 //void axis_factory(::factory::factory * pfactory);
@@ -163,6 +164,8 @@ namespace axis
 
 
       factory()->add_factory_item < ::geo::department >();
+      factory()->add_factory_item < ::axis::user, ::user::user > ();
+      factory()->add_factory_item < ::axis::session, ::acme::session >();
 
 
       //return estatus;

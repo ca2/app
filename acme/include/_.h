@@ -119,6 +119,7 @@
 #include  "acme/primitive/primitive/object.h"
 #include  "acme/exception/exception.h"
 #include  "acme/platform/class.h"
+#include  "acme/platform/factory_function.h"
 
 
 #include "_impl.h"

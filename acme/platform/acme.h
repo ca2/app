@@ -23,6 +23,9 @@ namespace acme
 
       pointer_array < ::particle >* m_pelementaddraReleaseOnEnd = nullptr;
 
+      critical_section m_criticalsectionSystemHeap;
+
+      ::critical_section* system_heap_critical_section() { return &m_criticalsectionSystemHeap; }
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
@@ -111,9 +114,10 @@ namespace acme
       void initialize(int argc, platform_char** argv, platform_char** envp);
 #endif
 
-
+      void acme_initialize();
       void acme_construct();
       void acme_destruct();
+      void acme_finalize();
 
 
       void initialize_memory_counter();

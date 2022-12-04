@@ -508,7 +508,7 @@ void sub_system::set_factory_from(const ::atom& atom, const ::atom& atomSource, 
 
 #ifdef CUBE
 
-      auto pfnFactory = ::system_setup::get_factory_function(strLibrary);
+      auto pfnFactory = ::factory_function::get(strLibrary);
 
       if (!pfnFactory)
       {
@@ -569,7 +569,7 @@ void sub_system::set_factory_from(const ::atom& atom, const ::atom& atomSource, 
 
 #ifdef CUBE
 
-      auto pfnFactory = ::system_setup::get_factory_function(strLibrary);
+      auto pfnFactory = ::factory_function::get(strLibrary);
 
       if (pfnFactory)
       {
@@ -717,16 +717,23 @@ void sub_system::factory_terminate()
 
 #ifdef CUBE
 
-   auto plibraryfactory = ::system_setup::get_first(::system_setup::flag_library, strLibrary);
+   auto pfnFactory = ::factory_function::get(strLibrary);
 
-   if (!plibraryfactory)
+   if (!pfnFactory)
    {
 
       return nullptr;
 
    }
 
-   auto plibrary = plibraryfactory->create_library();
+   auto plibrary = __create_new < ::acme::library >();
+
+   plibrary->m_strName = strLibrary;
+
+   plibrary->m_pfnFactory = pfnFactory;
+
+   return plibrary;
+       
 
 #else
 

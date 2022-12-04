@@ -5463,9 +5463,6 @@ bool payload::is_double() const
    {
       return true;
    }
-   // simple, lazy, slow, and a bit incorrect
-   // incorrect because atof and atoi returns partials results even if it
-   // encounters non-numerical symbols
    else if(is_floating())
    {
 
@@ -6163,15 +6160,15 @@ end:
    if(bFloat)
    {
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+//#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
 
       ::f64 f64 = atof(strNumber);
 
-#else
+//#else
 
-      ::f64 f64 = _atof_l(strNumber, ::get_task()->locale()->m_locale);
+      //::f64 f64 = _atof_l(strNumber, ::get_task()->locale()->m_locale);
 
-#endif
+//#endif
 
       operator = (f64);
 

@@ -413,16 +413,35 @@ namespace acme
    acme::acme()
    {
 
+      m_pacmeapplication = nullptr;
+      m_pmemorycounter = nullptr;
+
+   }
+
+
+   acme::~acme()
+   {
+
+  
+
+   }
+
+
+   void acme::acme_initialize()
+   {
+
+
       initialize_memory_counter();
 
       acme_construct();
 
       ::__raw_construct_new(m_psubsystem);
 
+
    }
+     
 
-
-   acme::~acme()
+   void acme::acme_finalize()
    {
 
       m_psubsystem.release();
@@ -432,7 +451,6 @@ namespace acme
       finalize_memory_counter();
 
    }
-
 
 #if defined(WINDOWS)  && defined(UNICODE)
 

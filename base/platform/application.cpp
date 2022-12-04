@@ -27,8 +27,8 @@ namespace base
 
       m_pbaseapplication = this;
 
+
       factory()->add_factory_item< ::base::system, ::acme::system>();
-      factory()->add_factory_item< ::base::session, ::acme::session>();
 
 
 
@@ -41,6 +41,7 @@ namespace base
       ::axis::application::initialize(pparticle);
 
       ::user::document_manager_container::initialize(pparticle);
+
 
    }
 

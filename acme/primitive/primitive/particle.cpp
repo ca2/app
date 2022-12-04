@@ -426,7 +426,7 @@ void particle::on_initialize_particle()
 ::factory::factory_pointer & particle::factory()
 {
 
-   return acmesystem()->m_psubsystem->factory();
+   return ::acme::get()->m_psubsystem->factory();
 
 }
 

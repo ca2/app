@@ -5,6 +5,16 @@
 #include "acme/operating_system/process.h"
 #include APPLICATION_INCLUDE
 
+
+#ifdef CUBE
+
+
+#include "_static_factory.inl"
+
+
+#endif
+
+
 //void stage();
 ::acme::system * acme_system_init();
 void acme_system_term();
@@ -12,6 +22,7 @@ void acme_system_term();
 #include "acme/platform/acme.h"
 
 //::acme::layer g_layer;
+
 
 #ifdef _UWP
 #include "acme/operating_system/console.inl"
@@ -27,6 +38,18 @@ void acme_system_term();
 
 
 //#include "acme/platform/acme.h"
+
+
+#ifdef CUBE
+
+
+DO_FACTORY(REFERENCE_FACTORY)
+
+
+#endif
+
+
+
 
 
 void implement(::acme::context * pcontext);

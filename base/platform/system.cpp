@@ -116,6 +116,11 @@ namespace base
       
       ::axis::system::initialize(pparticle);
 
+
+      factory()->add_factory_item< ::base::session, ::acme::session>();
+      factory()->add_factory_item< ::base::user, ::user::user>();
+
+
       //if (!estatus)
       //{
 
@@ -126,7 +131,7 @@ namespace base
       //base_factory(factory());
 
 
-      factory()->add_factory_item < ::base::user, ::user::user >();
+      //factory()->add_factory_item < ::base::user, ::user::user >();
 
       //return estatus;
 

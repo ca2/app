@@ -1,7 +1,7 @@
 <div align="center">
 
   <img src="https://github.com/ca2/app/blob/basis/acme/ca2-4c-128.png" alt="logo" width="200" height="auto" />
-  <h1>ca2 Framework<br>🌌🌍 future is here</h1>
+  <h1>ca2 Framework<br>🌌🌍The future is here!!</h1>
   
   <p>
     ca2 is a powerful, all-purpose, cross-platform C++ framework and library suite that enables developers to build exceptional user experiences by harnessing the full potential of the C++ language. Its flexible architecture and abstractions facilitate the rapid development and deployment of complex, performance-critical applications, empowering developers to focus on creating exceptional user experiences rather than dealing with the underlying intricacies of the C++ language and target platform. Additionally, ca2's innovative design ensures that your applications will be able to evolve and adapt as technology advances, future-proofing your investment in the development process.

@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="https://avatars.githubusercontent.com/u/30236962?s=200&v=4" alt="logo" width="200" height="auto" />
+  <img src="https://github.com/ca2/app/blob/basis/acme/ca2-4c-128.png" alt="logo" width="200" height="auto" />
   <h1>ca2 Framework</h1>
   
   <p>

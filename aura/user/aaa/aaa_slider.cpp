@@ -203,7 +203,7 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      class imaging & imaging = ::aura::get_system()->imaging();
+      class imaging & imaging = ::auraacmesystem()->imaging();
 
       byte bAlpha1 = (byte) (128.0* get_alpha());
 

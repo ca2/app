@@ -1,5 +1,33 @@
-﻿// Created by camilo on 2022-10-22 19:56 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-10-22 19:56 <3ThomasBorregaardSorensen!!
 #pragma once
+
+
+#if defined(ANDROID)
+
+
+//#define MUTEX_COND_TIMED
+#undef MUTEX_NAMED_POSIX // as of 2016-11-26
+// not implemented (err=38) on android-19 (POSIX semaphore)
+#define MUTEX_NAMED_FD
+#undef MUTEX_NAMED_VSEM
+
+#elif defined(__APPLE__)
+
+//#define MUTEX_COND_TIMED
+#undef MUTEX_NAMED_POSIX
+#define MUTEX_NAMED_FD // File Descriptor "Semaphore"
+#undef MUTEX_NAMED_VSEM
+
+#elif defined(LINUX)
+
+//#define MUTEX_COND_TIMED
+#undef MUTEX_NAMED_POSIX
+#undef MUTEX_NAMED_FD
+#define MUTEX_NAMED_FD // File Descriptor "Semaphore"
+//#define MUTEX_NAMED_VSEM // acmesystem() V Semaphore
+#undef MUTEX_NAMED_VSEM
+
+#endif
 
 
 CLASS_DECL_ACME bool task_get_run();

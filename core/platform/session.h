@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "bred/platform/session.h"
@@ -18,16 +18,16 @@ namespace core
       ~session() override;
 
 
-      inline ::core::system* get_system() const;
+      inline ::core::system* acmesystem() const;
 
 
       void common_construct();
 
 
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
 
 
-      virtual void on_instantiate_application(::apex::application* papp) override;
+      void on_instantiate_application(::acme::application* papp) override;
 
 
    };

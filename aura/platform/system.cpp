@@ -160,13 +160,9 @@ namespace aura
       m_bFinalizeIfNoSessionSetting = true;
       m_bFinalizeIfNoSession = false;
 
-      ::factory::add_factory_item < ::aura::session, ::apex::session >();
-      ::factory::add_factory_item < ::aura::application, ::apex::application >();
-      //::factory::add_factory_item < ::aura::idpool, ::acme::idpool >();
-      ::factory::add_factory_item < ::user::user >();
 
 
-      //::factory::add_factory_item < ::stdio_file, ::file::text_file >();
+      //factory()->add_factory_item < ::stdio_file, ::file::text_file >();
 
    }
 
@@ -177,6 +173,12 @@ namespace aura
       //auto estatus = 
       
       ::aqua::system::initialize(pparticle);
+
+      factory()->add_factory_item < ::aura::session, ::apex::session >();
+      //factory()->add_factory_item < ::aura::application, ::apex::application >();
+      //factory()->add_factory_item < ::aura::idpool, ::acme::idpool >();
+      //factory()->add_factory_item < ::user::user >();
+
 
       //if (!estatus)
       //{
@@ -239,7 +241,7 @@ namespace aura
 
       ::draw2d::static_initialize();
 
-      ::factory::add_factory_item < ::draw2d::icon >();
+      factory()->add_factory_item < ::draw2d::icon >();
 
     
 //#ifdef WINDOWS_DESKTOP
@@ -256,24 +258,24 @@ namespace aura
    }
 
 
-   void system::on_add_session(::apex::session* papexsession)
+   void system::on_add_session(::acme::session* pacmesession)
    {
 
-      ::apex::system::on_add_session(papexsession);
+      ::aqua::system::on_add_session(pacmesession);
 
-      if (papexsession->m_iEdge == 0)
-      {
+      //if (papexsession->m_iEdge == 0)
+      //{
 
-         if (!m_paurasession)
-         {
+      //   if (!m_paurasession)
+      //   {
 
-            m_paurasession = papexsession->m_paurasession;
+      //      m_paurasession = papexsession->m_paurasession;
 
-         }
+      //   }
 
-      }
+      //}
 
-      papexsession->m_paurasystem = this;
+      //papexsession->m_paurasystem = this;
 
    }
 
@@ -677,9 +679,9 @@ namespace aura
 
       //}
 
-      //m_pacmeapplicationStartup = get_new_application(get_session(), m_XstrAppId);
+      //acmeapplication() = get_new_application(get_session(), m_XstrAppId);
 
-      //if (!m_pacmeapplicationStartup)
+      //if (!acmeapplication())
       //{
 
       //   output_error_message("Failed to allocate papp!!");
@@ -688,9 +690,9 @@ namespace aura
 
       //}
 
-      //set_main_struct(*m_pacmeapplicationStartup);
+      //set_main_struct(*acmeapplication());
 
-      //string strAppId = m_pacmeapplicationStartup->m_XstrAppId;
+      //string strAppId = acmeapplication()->m_XstrAppId;
 
       //auto pcommand = get_command();
 
@@ -1102,7 +1104,7 @@ namespace aura
 
       //}
 
-      if (m_bImaging)
+      if (acmeapplication()->m_bImaging)
       {
 
          try
@@ -1139,7 +1141,7 @@ namespace aura
 
       }
 
-      auto psystem = get_system();
+      auto psystem = acmesystem();
 
       critical_section_lock synchronouslock(&m_psubsystem->m_criticalsection);
 
@@ -1629,7 +1631,7 @@ namespace aura
       //if (::succeeded(estatus))
       //{
 
-      ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+      factory()->add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
       //}
 
@@ -1858,25 +1860,25 @@ namespace aura
    }
 
 
-   void system::system_prep()
-   {
+   //void system::system_prep()
+   //{
 
-      //auto estatus = 
-      
-      ::aqua::system::system_prep();
+   //   //auto estatus = 
+   //   
+   //   ::aqua::system::system_prep();
 
-      //if(!estatus)
-      //{
+   //   //if(!estatus)
+   //   //{
 
-      //   return estatus;
+   //   //   return estatus;
 
-      //}
+   //   //}
 
-      ////os_init_windowing();
+   //   ////os_init_windowing();
 
-      //return ::success;
+   //   //return ::success;
 
-   }
+   //}
 
 
    void system::term1()
@@ -2838,7 +2840,7 @@ namespace aura
 
 
 
-   //void system::on_request(::create * pcreate)
+   //void system::on_request(::request * prequest)
    //{
 
    //   ::apex::session * psession = session();
@@ -3109,7 +3111,7 @@ namespace aura
 //   }
 
 
-   //void system::do_request(::create * pcreate)
+   //void system::do_request(::request * prequest)
    //{
 
    //   if (pcreate->m_ecommand == ::command_check_exit)
@@ -3267,7 +3269,7 @@ namespace aura
    //}
 
 
-   //bool system::merge_accumulated_on_open_file(::create * pcreate)
+   //bool system::merge_accumulated_on_open_file(::request * prequest)
    //{
 
    //   if(m_straCommandLineAccumul.is_empty())
@@ -3815,7 +3817,7 @@ namespace aura
    void system::on_initial_frame_position(::user::frame * pframe)
    {
 
-      if(m_bExperienceMainFrame)
+      if(acmeapplication()->m_bExperienceMainFrame)
       {
 
 //#ifdef _UWP
@@ -4873,7 +4875,7 @@ namespace aura
    //}
 
 
-   //void system::on_request(::create * pcreate)
+   //void system::on_request(::request * prequest)
    //{
 
    //   ::aura::system::on_request(pcreate);
@@ -4919,7 +4921,7 @@ namespace aura
    //{
    //}
 
-   //void system::on_request(::create * pcreate)
+   //void system::on_request(::request * prequest)
    //{
 
    //   ::axis::system::on_request(pcreate);
@@ -5432,7 +5434,7 @@ namespace aura
    {
 
 
-      if (m_bDraw2d)
+      if (acmeapplication()->m_bDraw2d)
       {
 
          initialize_draw2d();
@@ -5448,7 +5450,7 @@ namespace aura
 
       //auto estatus =
 
-      if (m_bImaging)
+      if (acmeapplication()->m_bImaging)
       {
 
          __construct_new(m_pimaging);
@@ -5486,7 +5488,7 @@ namespace aura
 //   void system::node_will_finish_launching()
 //   {
 //
-//      auto pnode = get_session()->m_paurasession;
+//      auto pnode = acmesession()->m_paurasession;
 //
 //      auto puser = psession->user();
 //
@@ -5500,7 +5502,7 @@ namespace aura
 //   void system::windowing_post_quit()
 //   {
 //   
-//      auto psession = get_session()->m_paurasession;
+//      auto psession = acmesession()->m_paurasession;
 //
 //      auto puser = psession->user();
 //
@@ -6858,11 +6860,11 @@ namespace aura
    void system::windowing_send(const ::procedure & procedure)
    {
 
-      if (::is_null(m_pacmeapplicationMain)
-         || ::is_null(m_pacmeapplicationMain->m_pauraapplication)
-         || ::is_null(m_pacmeapplicationMain->m_pauraapplication->get_session())
-         || ::is_null(m_pacmeapplicationMain->m_pauraapplication->get_session()->user())
-         || ::is_null(m_pacmeapplicationMain->m_pauraapplication->get_session()->user()->windowing1())
+      if (::is_null(acmeapplication())
+         || ::is_null(acmeapplication()->m_pauraapplication)
+         || ::is_null(acmeapplication()->m_pauraapplication->get_session())
+         || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user())
+         || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing1())
          )
       {
 
@@ -6870,7 +6872,7 @@ namespace aura
 
       }
 
-      auto pwindowing = m_pacmeapplicationMain->m_pauraapplication->get_session()->user()->windowing1();
+      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing1();
 
       pwindowing->windowing_send(procedure);
 
@@ -6880,11 +6882,11 @@ namespace aura
    void system::windowing_post(const ::procedure & procedure)
    {
 
-      if(::is_null(m_pacmeapplicationMain)
-         || ::is_null(m_pacmeapplicationMain->m_pauraapplication)
-            || ::is_null(m_pacmeapplicationMain->m_pauraapplication->get_session())
-               || ::is_null(m_pacmeapplicationMain->m_pauraapplication->get_session()->user())
-                  || ::is_null(m_pacmeapplicationMain->m_pauraapplication->get_session()->user()->windowing1())
+      if(::is_null(acmeapplication())
+         || ::is_null(acmeapplication()->m_pauraapplication)
+            || ::is_null(acmeapplication()->m_pauraapplication->get_session())
+               || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user())
+                  || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing1())
                )
       {
 
@@ -6892,7 +6894,7 @@ namespace aura
 
       }
 
-      auto pwindowing = m_pacmeapplicationMain->m_pauraapplication->get_session()->user()->windowing1();
+      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing1();
 
       pwindowing->windowing_post(procedure);
 
@@ -6902,7 +6904,7 @@ namespace aura
    ::aura::session* system::get_session()
    {
 
-      return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
+      return m_pcontext && m_pcontext->m_pacmesession ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
 
    }
 

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "listing.h"
 #include "enumerator.h"
+#include "acme/platform/scoped_restore.h"
 
 
 namespace file

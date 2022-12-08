@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/operating_system/error_code.h"
@@ -8,7 +8,7 @@
 //#include "acme/primitive/collection/procedure_array.h"
 #include "acme/platform/implementable.h"
 
-
+class locale;
 
 typedef pointer_array < ::matter > object_array;
 typedef map < itask_t, ::pointer<task >>task_map;
@@ -69,6 +69,8 @@ public:
    ::task_pointer                                  m_ptask;
    ::procedure                                     m_procedureNext;
    ::procedure_array                               m_procedurea;
+   
+   ::pointer < ::locale >                          m_plocale;
 
 
    task();
@@ -98,6 +100,8 @@ public:
    virtual bool is_current_task() const;
    //virtual object * calc_parent_thread();
 
+   virtual void post_request(::request* prequest);
+
    virtual bool task_set_name(const char* pszName);
 
 #ifdef WINDOWS
@@ -113,6 +117,9 @@ public:
    virtual bool is_task_registered() const;
    virtual void register_task();
    virtual void unregister_task();
+   
+   
+   virtual ::locale * locale();
 
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);

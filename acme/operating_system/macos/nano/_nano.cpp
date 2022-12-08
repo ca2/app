@@ -2,7 +2,11 @@
 // Created by camilo on 31/01/2022 16:09 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "_nano.h"
+#include "acme/user/nano/brush.h"
+#include "acme/user/nano/font.h"
+#include "acme/user/nano/pen.h"
+#include "device.h"
+#include "window.h"
 
 
 void operating_system_initialize_nano(::factory::factory * pfactory)

@@ -34,7 +34,7 @@ namespace usernet
 
       auto pcontext = m_pcontext;
       
-      auto psession = pcontext->m_pcoresession;
+      auto psession = pcontext->m_pacmesession->m_pcoresession;
       
       auto puser = psession->m_puser->m_pcoreuser;
 
@@ -61,7 +61,7 @@ namespace usernet
 
       auto pcontext = m_pcontext;
       
-      auto psession = pcontext->m_pcoresession;
+      auto psession = pcontext->m_pacmesession->m_pcoresession;
       
       auto puser = psession->m_puser->m_pcoreuser;
 

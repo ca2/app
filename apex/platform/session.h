@@ -1,8 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
-#include "app_container.h"
 #include "context.h"
+#include "acme/platform/session.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
 
 
@@ -11,8 +11,9 @@ namespace apex
 
 
    class CLASS_DECL_APEX session:
-      virtual public ::apex::context,
-      virtual public ::apex::application_container
+      virtual public ::acme::session,
+      virtual public ::apex::context
+      //virtual public ::apex::application_container
       //,
       //virtual public ::filemanager::item_action //,
       //virtual public ::filemanager::component,
@@ -24,12 +25,6 @@ namespace apex
       ///__creatable(session);
 
 
-      class CLASS_DECL_APEX map:
-         virtual public ::map < index, ::pointer<::apex::session >>
-      {
-
-
-      };
 
 
 //#if defined _UWP
@@ -37,6 +32,8 @@ namespace apex
 //      ::universal_windows::directx_framework_impact ^                          m_frameworkview;
 //
 //#endif
+
+
 
 
       //::aqua::session* m_paquasession;
@@ -56,8 +53,6 @@ namespace apex
 
       // apex commented
       //::pointer<::user::keyboard>                        m_pkeyboard;
-
-      index                                                 m_iEdge;
 
       ::map < ::user::enum_key, bool > *                       m_pmapKeyPressed;
 
@@ -105,9 +100,6 @@ namespace apex
       ::payload                                                   m_varCurrentImpactFile;
       bool                                                  m_bShowPlatform;
 
-      ::pointer<::text::context>                     m_ptextcontext;
-
-
 
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;
@@ -138,7 +130,7 @@ namespace apex
       ~session() override;
 
 
-      virtual void     initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
 
 
       void install_message_routing(::channel* pchannel) override;
@@ -152,7 +144,7 @@ namespace apex
 
       virtual bool is_session() const override;
 
-
+      void main() override;
 
       //virtual void enum_display_monitors();
 
@@ -207,7 +199,7 @@ namespace apex
       virtual bool on_get_task_name(string& strThreadName) override;
 
 
-      virtual void on_request(::create * pcreate) override;
+      //void request(::request * prequest) override;
 
 
       //virtual string matter_as_string(const ::string & pszMatter,const ::string & pszMatter2);
@@ -252,7 +244,6 @@ namespace apex
       //virtual ::user::interaction * get_session_window();
 
       // apex commented
-      ::text::context * text_context() { return m_ptextcontext.get(); }
 
       //virtual bool is_session() const override;
 
@@ -282,9 +273,9 @@ namespace apex
       // apex commented
       //::user::keyboard& keyboard();
 
-      virtual bool open_by_file_extension(const ::string & pszPathName, ::create * pcreate = nullptr);
+      virtual bool open_by_file_extension(const ::string & pszPathName, ::request * prequest = nullptr);
 
-      virtual bool open_by_file_extension(::create * pcc);
+      virtual bool open_by_file_extension(::request * prequest);
 
       virtual ::color::color get_default_color(u64 u);
 
@@ -296,9 +287,9 @@ namespace apex
 
       virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
 
-      virtual void on_instantiate_application(::apex::application* papp) override;
+      void on_instantiate_application(::acme::application* papp) override;
 
-      //::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
+      //::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 
       virtual ::user::e_key key_modifiers();
       
@@ -435,7 +426,7 @@ namespace apex
 
       //void initialize_bergedge_application_interface();
 
-      //virtual bool create_bergedge(::create * pcreate);
+      //virtual bool create_bergedge(::request * prequest);
 
       //virtual void will_use_impact_hint(::atom idImpact);
 
@@ -447,7 +438,7 @@ namespace apex
       //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha);
 
 
-      virtual void do_request(::create* pcreate) override;
+      //void request(::request * prequest) override;
 
       // apex commented
       //virtual ::user::interaction* get_request_parent_ui(::user::interaction* pinteraction, ::create* pcreate);
@@ -484,7 +475,7 @@ namespace apex
 
       //virtual void os_native_bergedge_start() override;
 
-      virtual void main() override;
+      virtual void on_request(::request * prequest) override;
 
       virtual void defer_initialize_host_window(const RECTANGLE_I32 * lpcrect = nullptr);
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "user.h"
 #include "shell.h"
 #include "style.h"
@@ -15,7 +15,7 @@
 #include "acme/platform/system_setup.h"
 #include "acme/primitive/collection/_container.h"
 #include "apex/message/simple_command.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/desktop_environment.h"
@@ -427,11 +427,11 @@ namespace user
       ::acme::department::init1();
 
 
-      ::factory::add_factory_item <::user::button >();
-      ::factory::add_factory_item <::user::check_box >();
-      ::factory::add_factory_item <::user::still >();
+      factory()->add_factory_item <::user::button >();
+      factory()->add_factory_item <::user::check_box >();
+      factory()->add_factory_item <::user::still >();
 
-      ::factory::add_factory_item <::user::progress >();
+      factory()->add_factory_item <::user::progress >();
 
    }
 
@@ -448,7 +448,7 @@ namespace user
 
       //}
 
-      ::factory::add_factory_item <::user::plain_edit >();
+      factory()->add_factory_item <::user::plain_edit >();
 
 
 
@@ -1183,23 +1183,22 @@ namespace aura
    //}
 
 
-   ::user::interaction * session::get_request_parent_ui(::user::interaction * pinteraction, ::create * pcreate)
+   ::user::interaction * session::get_request_parent_ui(::user::interaction * pinteraction, ::request * prequest)
    {
-
 
       ::pointer<::user::interaction>puserinteractionParent;
 
-      if (pcreate->payload("uicontainer").cast < ::user::interaction >() != nullptr)
+      if (prequest->payload("uicontainer").cast < ::user::interaction >() != nullptr)
       {
 
-         puserinteractionParent = pcreate->payload("uicontainer").cast < ::user::interaction >();
+         puserinteractionParent = prequest->payload("uicontainer").cast < ::user::interaction >();
 
       }
 
-      if (!puserinteractionParent && pcreate->m_puserprimitiveParent)
+      if (!puserinteractionParent && prequest->m_puserelementParent)
       {
 
-         puserinteractionParent = pcreate->m_puserprimitiveParent;
+         puserinteractionParent = prequest->m_puserelementParent;
 
       }
 
@@ -1230,9 +1229,9 @@ namespace aura
 
       ::pointer<::aura::application>papp = pinteraction->get_app();
 
-      if (pcreate->m_bExperienceMainFrame ||
+      if (prequest->m_bExperienceMainFrame ||
             papp->m_bExperienceMainFrame ||
-            pcreate->m_bOuterPopupAlertLike)
+            prequest->m_bOuterPopupAlertLike)
       {
          
          return puserinteractionParent;
@@ -1422,7 +1421,13 @@ namespace user
 
       __construct(m_pdesktopenvironment);
 
-      m_pdesktopenvironment->m_bUnhook = acmesystem()->m_pauranode->m_bUnhookX;
+      auto psystem = acmesystem();
+
+      auto pacmenode = psystem->m_pacmenode;
+
+      auto pauranode = pacmenode->m_pauranode;
+
+      m_pdesktopenvironment->m_bUnhook = pauranode->m_bUnhookX;
 
       __construct(m_pwindowing);
 
@@ -1510,11 +1515,9 @@ namespace user
 
       //}
 
-      auto psystem = acmesystem()->m_paurasystem;
+      auto paurasystem = psystem->m_paurasystem;
 
-      auto pnode = psystem->node();
-
-      pnode->m_pwindowing = m_pwindowing;
+      pauranode->m_pwindowing = m_pwindowing;
 
       //return estatus;
 
@@ -1554,7 +1557,7 @@ namespace user
    ::aura::application * user::get_app()
    {
 
-      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
+      return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
 
    }
 
@@ -1562,17 +1565,17 @@ namespace user
    ::aura::session * user::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
+      return m_pcontext ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
 
    }
 
 
-   ::aura::system * user::get_system()
-   {
+   //::aura::system * useracmesystem()
+   //{
 
-      return ::is_set(acmesystem()) ? dynamic_cast <::aura::system *> (acmesystem()) : nullptr;
+   //   return ::is_set(acmesystem()) ? dynamic_cast <::aura::system *> (acmesystem()) : nullptr;
 
-   }
+   //}
 
    
    ::pointer<::user::plain_edit>user::create_calculator_plain_edit()

@@ -4,7 +4,7 @@
 #include "impact.h"
 #include "impact_system.h"
 #include "acme/exception/interface_only.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "apex/platform/session.h"
 #include "aura/user/user/frame.h"
 
@@ -706,14 +706,14 @@ namespace user
    {
       // prompt the ::account::user (with all document templates)
 
-      ::pointer<::create>pcreate(e_create, this);
+      ::pointer<::request>prequest(e_create, this);
 
-      if (!do_prompt_file_name(pcreate->m_payloadFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, true, nullptr, nullptr))
+      if (!do_prompt_file_name(prequest->m_payloadFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, true, nullptr, nullptr))
          return; // open cancelled
 
-      auto psession = get_session();
+      auto psession = acmesession();
 
-      psession->do_request(pcreate);
+      psession->post_request(prequest);
       // if returns nullptr, the ::account::user has already been alerted
    }
 
@@ -758,10 +758,10 @@ namespace user
 
 
 
-   void document_manager::request(::create * pcreate)
+   void document_manager::request(::request * prequest)
    {
 
-      if(pcreate->m_payloadFile.is_empty())
+      if(prequest->m_payloadFile.is_empty())
       {
 
          throw ::exception(error_bad_argument);
@@ -811,7 +811,7 @@ namespace user
 
          ::user::impact_system::Confidence match;
          ASSERT(pOpenDocument == nullptr);
-         match = ptemplate->MatchDocType(pcreate->m_payloadFile, pOpenDocument);
+         match = ptemplate->MatchDocType(prequest->m_payloadFile, pOpenDocument);
          if (match > bestMatch)
          {
             bestMatch = match;
@@ -846,7 +846,8 @@ namespace user
 
          }
 
-         pcreate->payload("document") = pOpenDocument;
+         prequest->payload("document") = pOpenDocument;
+
       }
 
       if (pBestTemplate == nullptr)
@@ -858,7 +859,7 @@ namespace user
 
       }
 
-      pBestTemplate->do_request(pcreate);
+      pBestTemplate->request(prequest);
 
    }
 

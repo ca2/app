@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "application.h"
 #include "system.h"
 
@@ -7,18 +7,23 @@ namespace bred
 {
 
 
-   void initialize()
-   {
+   //void initialize()
+   //{
 
-      ::factory::add_factory_item < ::bred::system, ::acme::system >();
-
-   }
+   //}
 
 
    application::application()
    {
 
-      ::bred::initialize();
+      //::bred::initialize();
+
+      m_pbredapplication = this;
+
+
+      factory()->add_factory_item < ::bred::system, ::acme::system >();
+
+
 
    }
 

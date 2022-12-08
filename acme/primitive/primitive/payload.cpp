@@ -1,8 +1,10 @@
 ﻿#include "framework.h"
 //#include "acme/primitive/string/as_string.h"
 #include "payload.h"
-#include "acme/platform/acme.h"
-//#include "acme/filesystem/file/file.h"
+#include "acme/filesystem/file/file.h"
+#include "acme/parallelization/task.h"
+//#include "acme/platform/acme.h"
+#include "acme/platform/locale.h"
 #include "acme/primitive/datetime/system_time.h"
 #include "acme/primitive/datetime/earth_gregorian_time.h"
 ////#include "acme/primitive/datetime/earth_time.h"
@@ -49,13 +51,13 @@ void copy(::payload * ppayload1, const ::payload * ppayload2)
 
 
 #if defined(WINDOWS)
-//extern _locale_t ::acme::get_c_locale();
+//extern _locale_t ::get_task()->locale()->m_locale;
 #else
 #if defined(__APPLE__)
 #include <xlocale.h>
 #define _atof_l atof_l
 #endif
-//extern locale_t ::acme::get_c_locale();
+//extern locale_t ::get_task()->locale()->m_locale;
 #endif
 
 
@@ -2987,7 +2989,7 @@ bool payload::b() const
 #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::i8)atof(m_str);
 #else
-      return (::i8)_atof_l(m_str, ::acme::get_c_locale());
+      return (::i8)_atof_l(m_str, ::get_task()->locale()->m_locale);
 #endif
    case e_type_payload_pointer:
       return m_ppayload->i8(iDefault);
@@ -3029,7 +3031,7 @@ bool payload::b() const
 #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::u8)atof(m_str);
 #else
-      return (::u8)_atof_l(m_str, ::acme::get_c_locale());
+      return (::u8)_atof_l(m_str, ::get_task()->locale()->m_locale);
 #endif
    case e_type_payload_pointer:
       return m_ppayload->u8(uDefault);
@@ -3098,7 +3100,7 @@ bool payload::b() const
 #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::i16)atof(m_str);
 #else
-      return (::i16)_atof_l(m_str, ::acme::get_c_locale());
+      return (::i16)_atof_l(m_str, ::get_task()->locale()->m_locale);
 #endif
    case e_type_payload_pointer:
       return m_ppayload->i16(iDefault);
@@ -3168,7 +3170,7 @@ bool payload::b() const
 #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::u16)atof(m_str);
 #else
-      return (::u16)_atof_l(m_str, ::acme::get_c_locale());
+      return (::u16)_atof_l(m_str, ::get_task()->locale()->m_locale);
 #endif
    case e_type_payload_pointer:
       return m_ppayload->u16(uDefault);
@@ -3238,7 +3240,7 @@ bool payload::b() const
    #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::f32) atof(m_str);
    #else
-      return (::f32) _atof_l(m_str, ::acme::get_c_locale());
+      return (::f32) _atof_l(m_str, ::get_task()->locale()->m_locale);
    #endif
    case e_type_payload_pointer:
       return m_ppayload->f32(fDefault);
@@ -3352,7 +3354,7 @@ bool payload::b() const
 
 #else
 
-      f64 = _atof_l(m_str, ::acme::get_c_locale());
+      f64 = _atof_l(m_str, ::get_task()->locale()->m_locale);
 
 #endif
 
@@ -4837,7 +4839,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 //#if defined(LINUX) || defined(ANDROID)
 //      return atof(m_str) / (::f64) ul;
 //#else
-//      return _atof_l(m_str, ::acme::get_c_locale()) / (::f64) ul;
+//      return _atof_l(m_str, ::get_task()->locale()->m_locale) / (::f64) ul;
 //#endif
 //   case ::e_type_payload_pointer:
 //      return m_ppayload->operator / (ul);
@@ -4894,7 +4896,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 //#if defined(LINUX) || defined(ANDROID)
 //      return (::f64) ul / atof(payload.m_str);
 //#else
-//      return (::f64) ul / _atof_l(payload.m_str, ::acme::get_c_locale());
+//      return (::f64) ul / _atof_l(payload.m_str, ::get_task()->locale()->m_locale);
 //#endif
 //   case ::e_type_payload_pointer:
 //      return operator / (ul, *payload.m_ppayload);
@@ -4955,7 +4957,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 //
 //      return atof(m_str) * (::f64) ul;
 //#else
-//      return _atof_l(m_str, ::acme::get_c_locale()) * (::f64) ul;
+//      return _atof_l(m_str, ::get_task()->locale()->m_locale) * (::f64) ul;
 //#endif
 //   case ::e_type_payload_pointer:
 //      return m_ppayload->operator * (ul);
@@ -5012,7 +5014,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 //#if defined(LINUX) || defined(ANDROID)
 //      return (::f64) ul * atof(payload.m_str);
 //#else
-//      return (::f64) ul * _atof_l(payload.m_str, ::acme::get_c_locale());
+//      return (::f64) ul * _atof_l(payload.m_str, ::get_task()->locale()->m_locale);
 //#endif
 //   case ::e_type_payload_pointer:
 //      return operator * (ul, *payload.m_ppayload);
@@ -5339,15 +5341,15 @@ bool payload::is_floating() const
 
       ::string str = as_string();
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
-      if(is_scalar()
-            && (fmod(atof(str), 1.0) == 0.0
-                && fabs(atof(str)) <= pow(2.0, 31.0)))
-#else
-      if(is_scalar()
-            && (fmod(_atof_l(str, ::acme::get_c_locale()), 1.0) == 0.0
-                && fabs(_atof_l(str, ::acme::get_c_locale())) <= pow(2.0, 31.0)))
-#endif
+//#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+//      if(is_scalar()
+//            && (fmod(atof(str), 1.0) == 0.0
+//                && fabs(atof(str)) <= pow(2.0, 31.0)))
+//#else
+//      if(is_scalar()
+//            && (fmod(_atof_l(str, ::get_task()->locale()->m_locale), 1.0) == 0.0
+//                && fabs(_atof_l(str, ::get_task()->locale()->m_locale)) <= pow(2.0, 31.0)))
+//#endif
       {
          str.trim();
          if(str.get_length() == 0)
@@ -5437,10 +5439,10 @@ dot2:
          else
             return false;
       }
-      else
-      {
-         return false;
-      }
+      //else
+      //{
+      //   return false;
+      //}
    }
 
 }
@@ -5461,116 +5463,17 @@ bool payload::is_double() const
    {
       return true;
    }
-   // simple, lazy, slow, and a bit incorrect
-   // incorrect because atof and atoi returns partials results even if it
-   // encounters non-numerical symbols
+   else if(is_floating())
+   {
+
+      return true;
+      
+   }
    else
    {
-      
-      ::string str = as_string();
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
-      if(is_scalar()
-            && (fmod(atof(str), 1.0) == 0.0
-                && fabs(atof(str)) <= pow(2.0, 31.0)))
-#else
-      if(is_scalar()
-            && (fmod(_atof_l(str, ::acme::get_c_locale()), 1.0) == 0.0
-                && fabs(_atof_l(str, ::acme::get_c_locale())) <= pow(2.0, 31.0)))
-#endif
-      {
-         str.trim();
-         if(str.get_length() == 0)
-            return false;
-         else if(str[0] == '+'
-                 || str[0] == '-'
-                 || ansi_char_isdigit(str[0]))
-         {
-            ::i32 i;
-            for(i = 1; i < str.get_length(); i++)
-            {
-               if(ansi_char_isdigit(str[i]))
-                  continue;
-               if(str[i] == '.')
-               {
-                  i++;
-                  goto dot1;
-               }
-               if(character_isspace(str[i]))
-               {
-                  i++;
-                  goto sp1;
-               }
-               if(str[i] == 'e' || str[i] == 'E')
-               {
-                  i++;
-                  goto e;
-               }
-               return false;
-            }
-dot1:
-            for(; i < str.get_length(); i++)
-            {
-               if(ansi_char_isdigit(str[i]))
-                  continue;
-               if(str[i] == 'e' || str[i] == 'E')
-                  goto e;
-               return false;
-            }
-sp1:
-            for(; i < str.get_length(); i++)
-            {
-               if(character_isspace(str[i]))
-                  continue;
-               if(str[i] == 'e' || str[i] == 'E')
-                  goto e;
-               return false;
-            }
-e:
-//sp2:
-            for(; i < str.get_length(); i++)
-            {
-               if(character_isspace(str[i]))
-                  continue;
-               if(str[i] == '.')
-               {
-                  i++;
-                  goto dot2;
-               }
-               if(ansi_char_isdigit(str[i]))
-               {
-                  i++;
-                  break;
-               }
-               return false;
-            }
-            for(; i < str.get_length(); i++)
-            {
-               if(ansi_char_isdigit(str[i]))
-                  continue;
-               if(str[i] == '.')
-               {
-                  i++;
-                  goto dot2;
-               }
-               return false;
-            }
-dot2:
-            for(; i < str.get_length(); i++)
-            {
-               if(ansi_char_isdigit(str[i]))
-                  continue;
-               return false;
-            }
-            return true;
-         }
-         else
-            return false;
-      }
-      else
-      {
-         return false;
-      }
+      return false;
+
    }
 
 }
@@ -5589,36 +5492,24 @@ bool payload::is_integer() const
       
       ::string str = as_string();
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
-      if(is_scalar()
-            && (fmod(atof(str), 1.0) == 0.0
-                && fabs(atof(str)) <= pow(2.0, 31.0)))
-#else
-      if(is_scalar()
-            && (fmod(_atof_l(str, ::acme::get_c_locale()), 1.0) == 0.0
-                && fabs(_atof_l(str, ::acme::get_c_locale())) <= pow(2.0, 31.0)))
-#endif
+      str.trim();
+      if(str.get_length() == 0)
+         return false;
+      else if(str[0] == '+'
+               || str[0] == '-'
+               || ansi_char_isdigit(str[0]))
       {
-         str.trim();
-         if(str.get_length() == 0)
-            return false;
-         else if(str[0] == '+'
-                 || str[0] == '-'
-                 || ansi_char_isdigit(str[0]))
+         for(index i = 1; i < str.get_length(); i++)
          {
-            for(index i = 1; i < str.get_length(); i++)
-            {
-               if(!ansi_char_isdigit(str[i]))
-                  return false;
-            }
-            return true;
+            if(!ansi_char_isdigit(str[i]))
+               return false;
          }
-         else
-            return false;
+         return true;
       }
       else
       {
          return false;
+
       }
    }
 }
@@ -5637,16 +5528,6 @@ bool payload::is_natural() const
       
       ::string str = as_string();
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
-      if(is_scalar()
-            && (fmod(atof(str), 1.0) == 0.0
-                && fabs(atof(str)) <= pow(2.0, 31.0)))
-#else
-      if(is_scalar()
-            && (fmod(_atof_l(str, ::acme::get_c_locale()), 1.0) == 0.0
-                && fabs(_atof_l(str, ::acme::get_c_locale())) <= pow(2.0, 31.0)))
-#endif
-      {
          str.trim();
          if(str.get_length() == 0)
             return false;
@@ -5662,11 +5543,6 @@ bool payload::is_natural() const
          }
          else
             return false;
-      }
-      else
-      {
-         return false;
-      }
    }
 }
 
@@ -6284,15 +6160,15 @@ end:
    if(bFloat)
    {
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+//#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
 
       ::f64 f64 = atof(strNumber);
 
-#else
+//#else
 
-      ::f64 f64 = _atof_l(strNumber, ::acme::get_c_locale());
+      //::f64 f64 = _atof_l(strNumber, ::get_task()->locale()->m_locale);
 
-#endif
+//#endif
 
       operator = (f64);
 
@@ -7730,7 +7606,8 @@ bool payload::is_false() const
       return m_hls.m_dL == 0.0;
    case e_type_last_element:
       return false;
-
+   default:
+      throw exception(error_wrong_state);
    }
 
    return !m_b;
@@ -7916,7 +7793,8 @@ bool payload::is_set_false() const
       return m_hls.m_dL == 0.0;
    case e_type_last_element:
          return false;
-
+   default:
+      throw exception(error_wrong_state);
    }
 
    return !m_b;

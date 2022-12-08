@@ -24,7 +24,7 @@ namespace filehandler
       virtual void term_instance() override;
 
 
-      virtual void on_request(::create * pcreate) override;
+      virtual void on_request(::request * prequest) override;
 
 
    };

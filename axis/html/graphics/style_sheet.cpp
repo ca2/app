@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "style_sheet.h"
 #include "aura/user/user/interaction.h"
 #include "axis/html/graphics/style.h"
@@ -64,7 +64,7 @@ namespace html
             psz++;
          }
 
-         auto pstyle = __create_new < class style >(this);
+         auto pstyle = __create_new < class style >();
 
          string strStyle = str.Left(psz - pszStart);
 
@@ -81,7 +81,7 @@ namespace html
 
             strStyle.make_lower();
 
-            ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
+            auto psession = m_pcontext->m_pacmesession->m_paxissession;
 
             auto puser = psession->user();
 

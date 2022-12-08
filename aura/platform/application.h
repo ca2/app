@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "context.h"
@@ -76,7 +76,7 @@ namespace aura
 
       //e_thread                                        m_ethreadClose;
 
-      //EExclusiveInstance                              m_eexclusiveinstance;
+      //enum_exclusive_instance                              m_eexclusiveinstance;
 
       //string_map < ::pointer<::acme::exclusive >>    m_mapExclusive;
 
@@ -203,7 +203,7 @@ namespace aura
 
 
       ::aura::session* get_session();
-      ::aura::system* get_system();
+      //::aura::system* acmesystem();
 
 
 
@@ -269,7 +269,7 @@ namespace aura
 
 
 
-      virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::request * prequest) override;
 
 
 
@@ -328,7 +328,7 @@ namespace aura
 
       virtual ::draw2d::icon * get_icon(::object * pobject, bool bBigIcon) const;
 
-      //virtual void on_service_request(::create * pcreate) override;
+      //virtual void on_service_request(::request * prequest) override;
 
       virtual string get_mutex_name_gen() override;
 
@@ -436,7 +436,7 @@ namespace aura
       //virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa) override;
 
 
-      //virtual bool start_application(bool bSynch, ::create * pcreate) override;
+      //virtual bool start_application(bool bSynch, ::request * prequest) override;
 
 
 
@@ -623,7 +623,7 @@ namespace aura
       //virtual bool os_start_service() override;
       //virtual bool os_stop_service() override;
 
-      //virtual void on_service_request(::create * pcreate);
+      //virtual void on_service_request(::request * prequest);
 
       //virtual bool is_running();
 
@@ -631,7 +631,7 @@ namespace aura
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this memory_new additional instance creation
-      //virtual void on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
+      //virtual void on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override;
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this memory_new additional instance creation
@@ -671,7 +671,7 @@ namespace aura
       //bool safe_is_running();
 
 
-      //virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::request * prequest) override;
 
       //// name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
       //// get/set serializables to user directory
@@ -684,8 +684,8 @@ namespace aura
 
       //virtual bool assert_user_logged_in();
 
-      //virtual void     do_request(::create * pcreate) override;
-      virtual void call_request(::create * pcreate) override;
+      //virtual void     do_request(::request * prequest) override;
+      //virtual void call_request(::request * prequest) override;
 
 
       //virtual void process_message(::user::message * base) override;
@@ -718,7 +718,7 @@ namespace aura
       //virtual void fill_locale_schema(::text::international::locale_schema & localeschema) override;
       //virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema) override;
 
-      //virtual bool platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::create * pcreate = nullptr) override;
+      //virtual bool platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::request * prequest = nullptr) override;
       //virtual bool platform_open_by_file_extension(index iEdge,::create * pcc) override;
 
 
@@ -745,7 +745,7 @@ namespace aura
 
 
       //void request(::create * pcommand) override;
-      //void on_create(::create * pcreate) override;
+      //void on_create(::request * prequest) override;
 
 //      virtual void dispatch_user_message(::user::message * pusermessage);
 

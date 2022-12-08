@@ -4,14 +4,14 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 06/01/18.
 //
-
 #include "debug.h"
+#include "ns_exception.h"
 
-void throw_ns_exception()
+void throw_ns_exception(enum_status estatus, const char * pszName, const char * pszDescription, const property_set & setUserInfo)
 {
-   
-   throw ns_exception();
-   
+
+   throw ns_exception(estatus, pszName, pszDescription, setUserInfo);
+
 }
 
 

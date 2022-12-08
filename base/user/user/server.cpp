@@ -4,7 +4,7 @@
 #include "place_holder.h"
 #include "document.h"
 #include "impact.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "aura/platform/application.h"
 #include "aura/user/user/interaction.h"
 
@@ -33,17 +33,17 @@ namespace user
    }
 
 
-   void server::on_request(::create* pcreateParam)
+   void server::on_request(::request * prequestParam)
    {
 
-      ::pointer<::create>pcreate(pcreateParam);
+      ::pointer<::request>prequest(prequestParam);
       
-      if (pcreate == nullptr)
+      if (prequest == nullptr)
       {
 
          //auto estatus = 
          
-         __construct_new(pcreate);
+         __construct_new(prequest);
 
          //if (!estatus)
          //{
@@ -52,9 +52,9 @@ namespace user
 
          //}
 
-         auto papp = get_app();
+         auto papplication = get_app();
 
-         pcreate->initialize_create(papp->m_strAppId, ::e_type_empty, true);
+         prequest->initialize_create(papplication->m_strAppId, ::e_type_empty, true);
 
          //if (!estatus)
          //{
@@ -65,7 +65,7 @@ namespace user
 
       }
 
-      do_request(pcreate);
+      request(prequest);
 
       //      return pcreate->payload("document").cast < ::user::document >();
 
@@ -75,13 +75,13 @@ namespace user
    ::user::document* server::open_document_file(::acme::application * pappOnBehalfOf, ::payload payloadFile, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::atom atom)
    {
 
-      auto pcreate = pappOnBehalfOf->__create_new< ::create>();
+      auto prequest = pappOnBehalfOf->__create_new< ::request>();
       
-      pcreate->initialize_create(pappOnBehalfOf->m_strAppId, payloadFile, bMakeVisible, puiParent, eflag, atom);
+      prequest->initialize_create(pappOnBehalfOf->m_strAppId, payloadFile, bMakeVisible, puiParent, eflag, atom);
 
-      do_request(pcreate);
+      request(prequest);
 
-      return ::user::__document(pcreate);
+      return ::user::__document(prequest);
 
    }
 

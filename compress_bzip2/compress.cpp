@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "compress.h"
 ////#include "acme/exception/exception.h"
+#include "acme/filesystem/file/file.h"
 #include "acme/primitive/primitive/memory.h"
 
 

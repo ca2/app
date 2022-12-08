@@ -373,7 +373,7 @@ namespace account
 
       m_ptaskpool->set_timer(e_timer_slow, 1_minute);
 
-      ::pointer<::axis::session>psession = get_session();
+      auto psession = acmesession()->m_paxissession;
 
       psession->on_user_logon(puser);
 

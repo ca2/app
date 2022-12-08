@@ -33,7 +33,7 @@ namespace sockets
 
       }
 
-      //::apex::get_system()->math().random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
+      //::apexacmesystem()->math().random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 
 
       //m_psslinit = memory_new ::sockets::SSLInitializer(this);
@@ -102,7 +102,7 @@ namespace sockets
    //      /*            ::sockets::SSLInitializer ssl_init(acmesystem());*/
 
    //      //add_factory_item <::http::memory_file > ();
-   //      //add_factory_item < ::sockets::winrt_address  >  (::apex::get_system()->template type_info < ::networking::address_base > ());
+   //      //add_factory_item < ::sockets::winrt_address  >  (::apexacmesystem()->template type_info < ::networking::address_base > ());
    //      /*            add_factory_item < ::sockets::ipv4_address  > ();
    //               add_factory_item < ::sockets::ipv6_address  > ();*/
 

@@ -9,6 +9,7 @@ namespace file
 
 
    class listing;
+   class enumerator;
 
 
    struct CLASS_DECL_ACME LISTING

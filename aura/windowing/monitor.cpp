@@ -1,4 +1,4 @@
-// created by Camilo 2021-01-31 05:16 BRT <3CamiloSasukeThomasBorregaardSoerensen
+﻿// created by Camilo 2021-01-31 05:16 BRT <3CamiloSasukeThomasBorregaardSoerensen
 #include "framework.h"
 #include "acme/platform/system.h"
 #include "aura/graphics/image/image.h"
@@ -54,7 +54,7 @@ namespace windowing
    void monitor::get_monitor_rectangle(::RECTANGLE_I32 & rectangle)
    {
 
-      auto psession = acmesystem()->m_paurasession;
+      auto psession = acmesession()->m_paurasession;
 
       auto pdesktopenvironment = psession->user()->m_pdesktopenvironment;
 
@@ -68,7 +68,7 @@ namespace windowing
    void monitor::get_workspace_rectangle(::RECTANGLE_I32 & rectangle)
    {
 
-      auto psession = acmesystem()->m_paurasession;
+      auto psession = acmesession()->m_paurasession;
 
       auto pdesktopenvironment = psession->user()->m_pdesktopenvironment;
 

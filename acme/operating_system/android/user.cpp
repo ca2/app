@@ -69,7 +69,7 @@
 //
 //         g_bLastDarkModeSystem = bDarkModeSystem;
 //
-//         ::acme::get_system()->signal(id_os_dark_mode);
+//         ::acmeacmesystem()->signal(id_os_dark_mode);
 //
 //      }
 //

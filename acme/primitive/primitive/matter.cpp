@@ -69,6 +69,27 @@ matter::~matter()
 //}
 
 
+::topic_pointer create_topic(::particle * pparticleCall, const ::atom & atom);
+
+
+::topic_pointer matter::create_topic(const ::atom & atom)
+{
+
+   return ::move(::create_topic(this, atom));
+
+}
+
+
+::extended_topic_pointer create_extended_topic(::particle * pparticleCall, const ::atom & atom);
+
+
+::extended_topic_pointer matter::create_extended_topic(const ::atom & atom)
+{
+
+   return ::move(::create_extended_topic(this, atom));
+
+}
+
 
 void matter::operator()(::topic* ptopic, ::context* pcontext)
 {
@@ -302,7 +323,7 @@ bool matter::thread_is_running() const
 }
 
 
-//::acme::system * matter::get_system()
+//::acme::system * matteracmesystem()
 //{
 //
 //   return ::is_set(m_pcontext) ? m_pcontext->m_pacmesystem : nullptr;
@@ -683,7 +704,7 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 //pointer< ::sequencer < ::conversation > > matter::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 //{
 //
-//   auto psequence = nano()->message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
+//   auto psequence = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
 //
 //   psequencer->do_synchronously();
 //
@@ -864,15 +885,9 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 }
 
 
-::file_pointer matter::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
-{
-
-   return m_pcontext->get_file(payloadFile, eopen);
-
-}
 
 //
-//::acme::system * matter::get_system() const
+//::acme::system * matteracmesystem() const
 //{
 //
 //   return ((matter*)this)->acmesystem();

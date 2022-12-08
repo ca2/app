@@ -6,7 +6,7 @@ namespace core
 {
 
 
-   //inline ::core::system* application::get_system() const
+   //inline ::core::system* applicationacmesystem() const
    //{
 
    //   return ::is_set(acmesystem()) ? dynamic_cast <::core::system*> (acmesystem()) : nullptr;
@@ -14,7 +14,7 @@ namespace core
    //}
 
 
-   inline ::core::system* session::get_system() const
+   inline ::core::system* sessionacmesystem() const
    {
 
       return ::is_set(acmesystem()) ? dynamic_cast <::core::system*> ((::acme::system *)acmesystem()) : nullptr;
@@ -41,7 +41,7 @@ namespace core
 
 
    template < typename CORE_OBJECT >
-   inline ::core::system* core < CORE_OBJECT >::get_system() const 
+   inline ::core::system* core < CORE_OBJECT >acmesystem() const 
    { 
       
       return ::is_set(this->acmesystem()) ? this->acmesystem()->m_pcoresystem : nullptr;

@@ -31,7 +31,7 @@ class task;
 #undef MUTEX_NAMED_POSIX
 #undef MUTEX_NAMED_FD
 #define MUTEX_NAMED_FD // File Descriptor "Semaphore"
-//#define MUTEX_NAMED_VSEM // get_system() V Semaphore
+//#define MUTEX_NAMED_VSEM // acmesystem() V Semaphore
 #undef MUTEX_NAMED_VSEM
 
 #elif defined(FREEBSD)
@@ -40,7 +40,7 @@ class task;
 #undef MUTEX_NAMED_POSIX
 #undef MUTEX_NAMED_FD
 #define MUTEX_NAMED_FD // File Descriptor "Semaphore"
-//#define MUTEX_NAMED_VSEM // get_system() V Semaphore
+//#define MUTEX_NAMED_VSEM // acmesystem() V Semaphore
 #undef MUTEX_NAMED_VSEM
 
 #else

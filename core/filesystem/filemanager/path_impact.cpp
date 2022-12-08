@@ -1,10 +1,11 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "path_impact.h"
 #include "document.h"
 #include "data.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/platform/context.h"
+#include "acme/platform/keep.h"
 #include "apex/filesystem/fs/data.h"
 #include "apex/platform/context.h"
 
@@ -127,7 +128,7 @@ namespace filemanager
    //   //         if (filemanager_item()->m_filepathFinal != path)
    //   //         {
 
-   //   //            __keep(m_bVoidSync);
+   //   //            KEEP(m_bVoidSync);
 
    //   //            filemanager_document()->browse(pathAddress, context + ::e_source_sync);
 
@@ -276,7 +277,7 @@ namespace filemanager
                if (filemanager_item()->final_path() != path)
                {
 
-                  __keep(m_bVoidSync);
+                  KEEP(m_bVoidSync);
 
                   filemanager_document()->browse(pathAddress, ptopic->m_actioncontext + ::e_source_sync);
 

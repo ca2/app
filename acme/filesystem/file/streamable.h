@@ -1,4 +1,4 @@
-// Created by camilo on 2021-08-01 22:40 Thomas Month!! <3ThomasBS__!!
+﻿// Created by camilo on 2021-08-01 22:40 Thomas Month!! <3ThomasBS__!!
 #pragma once
 
 
@@ -59,7 +59,7 @@ namespace file
 } // namespace file
 
 
-CLASS_DECL_ACME void __transfer_to_writable(::file::writable * pwritable, ::file::file * pfileIn, memsize uiBufSize);
+CLASS_DECL_ACME void __transfer_to_writable(::file::writable * pwritable, ::file::file * pfileIn, memsize uiBufSize = -1);
 
 
 

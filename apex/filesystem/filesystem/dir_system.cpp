@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "dir_system.h"
 #include "file_system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -37,9 +37,9 @@ void dir_system::initialize(::particle * pparticle)
 
    //}
 
-   auto psystem = acmesystem();
+   //auto psystem = acmesystem();
 
-   m_pathModule = psystem->m_pacmedirectory->module();
+   //m_pathModule = psystem->m_pacmedirectory->module();
 
    //return true;
 
@@ -58,15 +58,17 @@ void dir_system::init_system()
 //
    m_pathInstall = acmedirectory()->install();
 
-   auto psystem = get_system()->m_papexsystem;
+   //auto psystem = acmesystem()->m_papexsystem;
 
-   auto pfile = psystem->m_pfilesystem;
+   //auto pfile = psystem->m_pfilesystem;
 
-   auto pathModule = pfile->m_pathModule;
+   //auto pathModule = pfile->m_pathModule;
 
-   ::file::path pathModuleFolder = pathModule.folder();
+   //::file::path pathModuleFolder = pathModule.folder();
 
-   m_pathModule = pathModuleFolder;
+//   m_pathModule = pathModuleFolder;
+
+   //m_pathModule = acmeapplication()->get_module_folder();
 
 //   auto pathCa2Module = pfile->m_pathCa2Module;
 //
@@ -74,27 +76,27 @@ void dir_system::init_system()
 //
 //   m_pathCa2Module = pathCa2ModuleFolder;
 
-   //auto psystem = get_system()->m_papexsystem;
+   //auto psystem = acmesystem()->m_papexsystem;
 
-   auto pacmedirectory = psystem->m_pacmedirectory;
+   auto pacmedirectory = acmedirectory();
 
    #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(_UWP)
 
-   if ( pacmedirectory->is(psystem->side_get_matter_path("app/_matter/main")))
+   if ( pacmedirectory->is(acmesystem()->m_papexsystem->side_get_matter_path("app/_matter/main")))
    {
 
-      m_pathLocalAppMatterFolder = psystem->side_get_matter_path("");
+      m_pathLocalAppMatterFolder = acmesystem()->m_papexsystem->side_get_matter_path("");
 
-      m_pathLocalAppMatterCacheFolder = psystem->local_get_matter_cache_path();
+      m_pathLocalAppMatterCacheFolder = acmesystem()->m_papexsystem->local_get_matter_cache_path();
 
    }
    else
 #endif
    {
 
-      m_pathLocalAppMatterFolder = psystem->local_get_matter_path();
+      m_pathLocalAppMatterFolder = acmesystem()->m_papexsystem->local_get_matter_path();
 
-      m_pathLocalAppMatterCacheFolder = psystem->local_get_matter_cache_path();
+      m_pathLocalAppMatterCacheFolder = acmesystem()->m_papexsystem->local_get_matter_cache_path();
 
    }
 
@@ -144,7 +146,7 @@ void dir_system::init_system()
    //if (strAppFolder.is_empty())
    //{
 
-      strAppFolder = _002Underscore(psystem->m_strAppId);
+      strAppFolder = _002Underscore(acmeapplication()->m_strAppId);
 
    //}
 
@@ -156,14 +158,14 @@ void dir_system::init_system()
 
    ::file::path pathAppData;
 
-   //auto psystem = get_system()->m_papexsystem;
+   //auto psystem = acmesystem()->m_papexsystem;
 
-   if (psystem->has_property("app_folder"))
+   if (acmesystem()->has_property("app_folder"))
    {
 
       //pathAppData = psystem->payload("app_folder");
 
-      pathAppData = psystem->payload("app_folder");
+      pathAppData = acmesystem()->payload("app_folder");
 
    }
 
@@ -197,7 +199,7 @@ void dir_system::init_system()
 //
 //   //auto & context = Context;
 //
-//   auto psystem = get_system()->m_papexsystem;
+//   auto psystem = acmesystem()->m_papexsystem;
 //
 //   auto pfile = psystem->m_pfilesystem;
 //

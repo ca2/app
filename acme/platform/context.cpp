@@ -22,35 +22,14 @@ namespace acme
 
       m_pcontext = this;
 
-
-      m_pacmeapplication = nullptr;
-      m_papexapplication = nullptr;
-      m_paquaapplication = nullptr;
-      m_pauraapplication = nullptr;
-      m_paxisapplication = nullptr;
-      m_pbaseapplication = nullptr;
-      m_pbredapplication = nullptr;
-      m_pcoreapplication = nullptr;
       m_papexcontext = nullptr;
       m_pauracontext = nullptr;
-      m_papexsession = nullptr;
-      m_paquasession = nullptr;
-      m_paurasession = nullptr;
-      m_paxissession = nullptr;
-      m_pbasesession = nullptr;
-      m_pbredsession = nullptr;
-      m_pcoresession = nullptr;
+
+
+      m_pacmeapplication = nullptr;
+      m_pacmesession = nullptr;
       m_pacmesystem = nullptr;
-      m_papexsystem = nullptr;
-      m_paquasystem = nullptr;
-      m_paurasystem = nullptr;
-      m_paxissystem = nullptr;
-      m_pbasesystem = nullptr;
-      m_pbredsystem = nullptr;
-      m_pcoresystem = nullptr;
       m_pacmenode = nullptr;
-      m_papexnode = nullptr;
-      m_pauranode = nullptr;
       
 //      m_ptexttranslator = memory_new ::text::translator();
 //
@@ -72,31 +51,17 @@ namespace acme
 
       ::task::initialize(pparticle);
 
-
       if(!m_pacmesystem)
       {
 
          m_pacmesystem = pparticle->m_pcontext->m_pacmesystem;
-         m_papexsystem = pparticle->m_pcontext->m_papexsystem;
-         m_paquasystem = pparticle->m_pcontext->m_paquasystem;
-         m_paurasystem = pparticle->m_pcontext->m_paurasystem;
-         m_paxissystem = pparticle->m_pcontext->m_paxissystem;
-         m_pbasesystem = pparticle->m_pcontext->m_pbasesystem;
-         m_pbredsystem = pparticle->m_pcontext->m_pbredsystem;
-         m_pcoresystem = pparticle->m_pcontext->m_pcoresystem;
 
       }
 
-      if(!m_papexsession)
+      if(!m_pacmesession)
       {
 
-         m_papexsession = pparticle->m_pcontext->m_papexsession;
-         m_paquasession = pparticle->m_pcontext->m_paquasession;
-         m_paurasession = pparticle->m_pcontext->m_paurasession;
-         m_paxissession = pparticle->m_pcontext->m_paxissession;
-         m_pbasesession = pparticle->m_pcontext->m_pbasesession;
-         m_pbredsession = pparticle->m_pcontext->m_pbredsession;
-         m_pcoresession = pparticle->m_pcontext->m_pcoresession;
+         m_pacmesession = pparticle->m_pcontext->m_pacmesession;
 
       }
 
@@ -104,18 +69,17 @@ namespace acme
       {
 
          m_pacmeapplication = pparticle->m_pcontext->m_pacmeapplication;
-         m_papexapplication = pparticle->m_pcontext->m_papexapplication;
-         m_paquaapplication = pparticle->m_pcontext->m_paquaapplication;
-         m_pauraapplication = pparticle->m_pcontext->m_pauraapplication;
-         m_paxisapplication = pparticle->m_pcontext->m_paxisapplication;
-         m_pbaseapplication = pparticle->m_pcontext->m_pbaseapplication;
-         m_pbredapplication = pparticle->m_pcontext->m_pbredapplication;
-         m_pcoreapplication = pparticle->m_pcontext->m_pcoreapplication;
+
+      }
+
+      if (!m_pacmenode)
+      {
+
+         m_pacmenode = pparticle->m_pcontext->m_pacmenode;
 
       }
 
       m_pcontext = this;
-
 
    }
 
@@ -188,6 +152,13 @@ namespace acme
       return m_ptexttranslator->create_text_data(atom);
 
    }
+
+
+   ::acme_file* context::acmefile() { return m_pacmesystem->m_pacmefile; }
+   ::acme_path* context::acmepath() { return m_pacmesystem->m_pacmepath; }
+   ::acme_directory* context::acmedirectory() { return m_pacmesystem->m_pacmedirectory; }
+   ::acme::node* context::acmenode() { return m_pacmesystem->node(); }
+
 
 
    ::payload context::file_payload(const ::payload & payloadFile)

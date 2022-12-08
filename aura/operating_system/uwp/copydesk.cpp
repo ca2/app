@@ -120,7 +120,7 @@ namespace universal_windows
 
       }
 
-      ::aura::get_system()->main_user_sync(__routine([this]()
+      ::auraacmesystem()->main_user_sync(__routine([this]()
          {
 
             on_content_changed();

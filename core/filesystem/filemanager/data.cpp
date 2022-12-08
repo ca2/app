@@ -5,7 +5,7 @@
 #include "apex/database/_binary_stream.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/write_text/font.h"
 #include "base/user/user/impact.h"
@@ -149,8 +149,7 @@ namespace filemanager
 
          bool bMakeVisible = m_bMakeVisible;
 
-         if (!bMakeVisible && ::is_set(m_pcreate) &&
-               m_pcreate->m_bMakeVisible)
+         if (!bMakeVisible && ::is_set(m_prequest) && m_prequest->m_bMakeVisible)
          {
 
             bMakeVisible = true;
@@ -160,10 +159,10 @@ namespace filemanager
          if (::is_null(puiParent))
          {
 
-            if (::is_set(m_pcreate))
+            if (::is_set(m_prequest))
             {
 
-               puiParent = m_pcreate->m_puserprimitiveParent;
+               puiParent = m_prequest->m_puserelementParent;
 
             }
 
@@ -178,10 +177,10 @@ namespace filemanager
                pappOnBehalfOf = puiParent->get_app();
 
             }
-            else if (::is_set(m_pcreate) && ::is_set(m_pcreate->create_get_app(get_app())))
+            else if (::is_set(m_prequest) && ::is_set(m_prequest->create_get_app(get_app())))
             {
 
-               pappOnBehalfOf = m_pcreate->create_get_app(get_app());
+               pappOnBehalfOf = m_prequest->create_get_app(get_app());
 
             }
             else if (::is_set(m_pdocumentTopic) && ::is_set(m_pdocumentTopic->get_app()))
@@ -205,7 +204,6 @@ namespace filemanager
 
          }
 
-
          if (::is_null(m_pcallback))
          {
 
@@ -224,7 +222,6 @@ namespace filemanager
             }
 
          }
-
 
          m_pdocument = dynamic_cast < ::filemanager::document * >
                        (m_pdocumenttemplate->open_document_file(pappOnBehalfOf, e_type_empty,

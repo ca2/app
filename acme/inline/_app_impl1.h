@@ -147,7 +147,7 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //
 //      {
 //
-//         //__keep(thread_flag_prevent_create_thread);
+//         //KEEP(thread_flag_prevent_create_thread);
 //
 //
 //         pacme = __new(class acme_acme);

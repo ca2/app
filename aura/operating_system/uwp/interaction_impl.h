@@ -142,7 +142,7 @@ namespace universal_windows
       virtual void update_graphics_resources() override;
 
       // for child windows, views, panes etc
-      //virtual bool create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName,u32 dwStyle,const ::rectangle_i32 &rectangle,::user::interaction * pParentWnd,atom atom, ::create * pcreate = nullptr) override;
+      //virtual bool create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName,u32 dwStyle,const ::rectangle_i32 &rectangle,::user::interaction * pParentWnd,atom atom, ::request * prequest = nullptr) override;
 
       virtual bool _native_create_window_ex(::pointer<::user::system>pcs);
 
@@ -502,7 +502,7 @@ namespace universal_windows
       void OnNcRButtonDown(::u32 nHitTest, const ::point_i32 & point);
       void OnNcRButtonUp(::u32 nHitTest, const ::point_i32 & point);
 
-      // ::aura::get_system() message handler member functions
+      // ::auraacmesystem() message handler member functions
       //      void OnDropFiles(HDROP hDropInfo);
       void OnPaletteIsChanging(::user::interaction_impl * pRealizeWnd);
       void OnSysChar(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);
@@ -624,7 +624,7 @@ namespace universal_windows
       //bool IsTopParentActive();
       void ActivateTopParent();
       virtual void WalkPreTranslateTree(::user::interaction * puiStop, ::message::message * pmessage);
-      virtual bool is_frame_window(); // is_kind_of(::aura::get_system()->template type_info < frame_window > ()))
+      virtual bool is_frame_window(); // is_kind_of(::auraacmesystem()->template type_info < frame_window > ()))
       virtual void on_final_release();
       //static void _FilterToolTipMessage(MSG* pMsg, ::user::interaction_impl * pWnd);
       bool _EnableToolTips(bool bEnable, ::u32 nFlag);

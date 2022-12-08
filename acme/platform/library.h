@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/primitive/particle.h"
@@ -122,7 +122,7 @@ namespace acme
       //virtual void factory_exchange(const ::string & strName = nullptr, ::factory::factory * pfactory = nullptr);
       //virtual ::pointer<::factory::factory>create_factory(const ::string& strLibrary);
 
-      virtual ::pointer<::factory::factory>create_factory();
+      virtual void create_factory(::pointer<::factory::factory> & pfactory);
 
 
    };
@@ -137,31 +137,6 @@ namespace acme
 
 
 } // namespace acme
-
-
-
-
-
-
-// [HERE] 
-//  __node_library should be here at acme
-// 
-//  -- e.g. cannot lie inside a plugin, 
-// because it is used to load a plugin
-//
-CLASS_DECL_ACME void * __node_library_open(const char * pszPath, string & strMessage);
-CLASS_DECL_ACME void * __node_library_touch(const char * pszPath, string & strMessage);
-CLASS_DECL_ACME void * __node_library_open_ca2(const char * pszPath, string & strMessage);
-CLASS_DECL_ACME bool __node_library_close(void * plibrary);
-CLASS_DECL_ACME void * __node_library_raw_get(void * plibrary,const char * pszEntryName);
-
-
-//CLASS_DECL_ACME ::acme::library * lib(const char * psz);
-
-#define LIBCALL(library, entry)  (get_system()->lib(#library)->get<decltype(&entry)>(#entry))
-
-
-CLASS_DECL_ACME ::file::path libfilename(const ::string & str);
 
 
 
@@ -238,7 +213,7 @@ CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::particle *
 //      
 //      auto pfactoryitem = __new(::factory::factory_item< TYPE, BASE_TYPE >());
 //
-//      ::factory::get_factory_item < BASE_TYPE >(atomSource) = pfactoryitem;
+//      factory_item < BASE_TYPE >(atomSource) = pfactoryitem;
 //
 //      return pfactoryitem;
 //

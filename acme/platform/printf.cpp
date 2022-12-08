@@ -10,7 +10,7 @@
 //#include <wchar.h>
 #include <stdio.h>
 #include <stdarg.h>
-
+#include "acme/parallelization/synchronous_lock.h"
 
 
 i32 printf_dup(const char *format, ...)
@@ -50,47 +50,47 @@ i32 vwprintf_dup(const widechar *format, va_list args)
 
 }
 
-
-#ifdef __APPLE__
-
-::pointer< ::mutex > g_pmutexCvt = nullptr;
-
-i32 ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
-{
-
-   synchronous_lock ml(g_pmutexCvt);
-
-   char * psz = ecvt(d, i, pi1, pi2);
-
-   if(psz == nullptr)
-      return -1;
-
-   if(strlen(psz) > (size - 1))
-      return -1;
-
-   strcpy(sz, psz);
-
-   return 0;
-
-}
-
-i32 fcvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
-{
-
-   synchronous_lock ml(g_pmutexCvt);
-
-   char * psz = fcvt(d, i, pi1, pi2);
-
-   if(psz == nullptr)
-      return -1;
-
-   if(strlen(psz) > (size - 1))
-      return -1;
-
-   strcpy(sz, psz);
-
-   return 0;
-
-}
-
-#endif
+//
+//#ifdef __APPLE__
+//
+//::pointer< ::mutex > g_pmutexCvt = nullptr;
+//
+//i32 ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
+//{
+//
+//   synchronous_lock ml(g_pmutexCvt);
+//
+//   char * psz = ecvt(d, i, pi1, pi2);
+//
+//   if(psz == nullptr)
+//      return -1;
+//
+//   if(strlen(psz) > (size - 1))
+//      return -1;
+//
+//   strcpy(sz, psz);
+//
+//   return 0;
+//
+//}
+//
+//i32 fcvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
+//{
+//
+//   synchronous_lock ml(g_pmutexCvt);
+//
+//   char * psz = fcvt(d, i, pi1, pi2);
+//
+//   if(psz == nullptr)
+//      return -1;
+//
+//   if(strlen(psz) > (size - 1))
+//      return -1;
+//
+//   strcpy(sz, psz);
+//
+//   return 0;
+//
+//}
+//
+//#endif

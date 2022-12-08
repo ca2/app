@@ -63,7 +63,7 @@ namespace file
 
       int iErrNo = errno;
 
-      auto estatus = failed_errno_to_status(iErrNo);
+      auto estatus = failed_errno_status(iErrNo);
 
       throw ::exception(estatus);
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "axis/platform/session.h"
@@ -24,7 +24,7 @@ namespace base
 
 
 
-      virtual void on_instantiate_application(::apex::application* papp) override;
+      virtual void on_instantiate_application(::acme::application* papp) override;
 
 
       ::base::user* user();

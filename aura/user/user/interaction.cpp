@@ -17,6 +17,7 @@
 #include "acme/constant/simple_command.h"
 #include "aura/message/timer.h"
 #include "acme/handler/item.h"
+#include "acme/platform/keep.h"
 #include "acme/user/user/drag.h"
 #include "apex/message/simple_command.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -24,6 +25,7 @@
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/timer_array.h"
+#include "acme/platform/scoped_restore.h"
 #include "acme/primitive/time/_string.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/path.h"
@@ -2620,7 +2622,7 @@ namespace user
 
       //}
 
-      clear_prodevian();
+      //clear_prodevian();
 
       try
       {
@@ -3364,7 +3366,7 @@ namespace user
       if (get_parent() == nullptr)
       {
 
-         if(acmesystem()->m_bImaging)
+         if(acmeapplication()->m_bImaging)
          //if (!window()->defer_set_icon())
          {
 
@@ -9795,7 +9797,7 @@ namespace user
 
       }
 
-      //auto psession = get_session()->m_paurasession;
+      //auto psession = acmesession()->m_paurasession;
 
       //if (::is_set(psession))
       //{
@@ -10832,7 +10834,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      __keep(m_bModal);
+      KEEP(m_bModal);
 
       __keep_current_thread(m_ptaskModal);
 
@@ -11696,7 +11698,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       ////
       ////   }
 
-      __keep(m_bUpdatingVisual);
+      KEEP(m_bUpdatingVisual);
 
       bool bDisplay = display_sketch_to_design();
 
@@ -16694,7 +16696,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       while (has_pending_redraw_flags())
       {
 
-         get_system()->do_events();
+         acmesystem()->do_events();
 
          sleep(5_ms);
 
@@ -19279,7 +19281,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ASSERT(puserinteraction != nullptr);
 
-      ASSERT_KINDOF(::user::interaction, puserinteraction);
+      //ASSERT_KINDOF(::user::interaction, puserinteraction);
 
       ::pointer<::user::interaction>pinteraction = puserinteraction->get_child_by_id(m_atomControl);
 
@@ -20280,7 +20282,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    ::aura::application * interaction::get_app()
    {
 
-      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
+      return m_pcontext && m_pcontext->m_pacmeapplication->m_papexapplication ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
 
    }
 
@@ -20288,17 +20290,17 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    ::aura::session * interaction::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
+      return m_pcontext ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
 
    }
 
 
-   ::aura::system * interaction::get_system()
-   {
+   //::aura::system * interactionacmesystem()
+   //{
 
-      return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
+   //   return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
 
-   }
+   //}
 
 
    ::aura::context * interaction::context()

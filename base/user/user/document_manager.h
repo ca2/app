@@ -54,7 +54,7 @@ namespace user
       virtual ::user::impact_system * get_template(index index) const;
       virtual void RegisterShellFileTypes(bool bCompat);
       void UnregisterShellFileTypes();
-      void request(::create * pcreate) override; // open named file
+      void request(::request * prequest) override; // open named file
       virtual bool save_all_modified(); // save before exit
       virtual void pre_close_all_documents(); // pre close documents before exiting
       virtual void close_all_documents(bool bEndApp); // close documents before exiting

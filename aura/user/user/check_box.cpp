@@ -3,6 +3,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
+#include "acme/platform/keep.h"
 #include "aura/platform/draw_context2.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -164,7 +165,7 @@ namespace user
 
       drawcontext.m_bListItemHover = hover_item().is_set();
 
-      __keep(pgraphics->m_pdrawcontext, &drawcontext);
+      KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
       ::rectangle_i32 rectangleClient;
 
@@ -308,7 +309,7 @@ namespace user
 
       drawcontext.m_bListItemHover = hover_item().is_set();
 
-      __keep(pgraphics->m_pdrawcontext, &drawcontext);
+      KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
       ::rectangle_i32 rectangleClient;
 

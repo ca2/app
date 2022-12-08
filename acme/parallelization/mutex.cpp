@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/platform/system.h"
 ////#include "acme/exception/exception.h"
@@ -189,7 +189,7 @@
 //
 //#ifdef ANDROID
 //
-//         strName = ::file::path(get_system()->m_pandroidinitdata->m_pszCacheDir) / "var/tmp" / strName;
+//         strName = ::file::path(acmesystem()->m_pandroidinitdata->m_pszCacheDir) / "var/tmp" / strName;
 //
 //#else
 //
@@ -272,7 +272,7 @@
 //
 //#ifdef ANDROID
 //
-//         path = ::get_system()->m_pacmedirectory->system() / "tmp/ca2/lock/mutex" / string(pstrName);
+//         path = acmesystem()->m_pacmedirectory->system() / "tmp/ca2/lock/mutex" / string(pstrName);
 //
 //#else
 //
@@ -286,7 +286,7 @@
 //
 //#ifdef ANDROID
 //
-//         path =  ::get_system()->m_pacmedirectory->system() / "home/user/ca2/lock/mutex" / string(pstrName);
+//         path =  acmesystem()->m_pacmedirectory->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 //
 //#elif defined __APPLE__
 //
@@ -307,7 +307,7 @@
 //
 //      path /= pstrName;
 //
-//      ::get_system()->m_pacmedirectory->create(path.folder());
+//      acmesystem()->m_pacmedirectory->create(path.folder());
 //
 //      m_iFd = open(path, O_RDWR | O_CREAT, S_IRWXU);
 //
@@ -1387,7 +1387,7 @@ mutex::~mutex()
 //
 //      auto last_error = GetLastError();
 //
-//      auto estatus = failed_errno_to_status(last_error);
+//      auto estatus = failed_errno_status(last_error);
 //
 //      //throw ::exception(estatus);
 //

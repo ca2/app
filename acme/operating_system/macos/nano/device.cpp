@@ -2,7 +2,10 @@
 // Created by camilo on 31/01/2022 20:15 <3ThomasBorregaardSørensen!! Thomas Likes number 5!!
 //
 #include "framework.h"
-#include "_nano.h"
+#include "device.h"
+#include "acme/user/nano/font.h"
+#include "acme/user/nano/brush.h"
+#include "acme/user/nano/pen.h"
 
 
 namespace quartz2d

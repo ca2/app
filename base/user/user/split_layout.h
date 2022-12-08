@@ -28,8 +28,8 @@ namespace user
 
 
       bool                                   m_bSplitBar;
-      pointer_array < split_bar >             m_splitbara;
-      __composite_array(split_pane)          m_splitpanecompositea;
+      pointer_array < split_bar >            m_splitbara;
+      ::pointer_array < split_pane >         m_splitpanecompositea;
       enum_orientation                       m_eorientationSplit;
       index                                  m_iIndex;
       i32                                    m_iState;

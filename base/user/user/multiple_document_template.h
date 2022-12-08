@@ -28,7 +28,7 @@ namespace user
       virtual void erase_document(::user::document * pDoc) override;
       virtual ::count get_document_count() const override;
       virtual ::user::document * get_document(index index) const override;
-      virtual void on_request(::create * pcreate) override;
+      virtual void on_request(::request * prequest) override;
       virtual void set_default_title(::user::document * pdocument) override;
 
       // virtual void dump(dump_context &) const override;

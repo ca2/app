@@ -5,13 +5,24 @@
 #include "acme/operating_system/process.h"
 #include APPLICATION_INCLUDE
 
+
+#ifdef CUBE
+
+
+#include "_static_factory.inl"
+
+
+#endif
+
+
 //void stage();
 ::acme::system * acme_system_init();
 void acme_system_term();
 
-//#include "acme/platform/layer.h"
+#include "acme/platform/acme.h"
 
 //::acme::layer g_layer;
+
 
 #ifdef _UWP
 #include "acme/operating_system/console.inl"
@@ -26,7 +37,19 @@ void acme_system_term();
 //#endif
 
 
-#include "acme/platform/acme.h"
+//#include "acme/platform/acme.h"
+
+
+#ifdef CUBE
+
+
+DO_FACTORY(REFERENCE_FACTORY)
+
+
+#endif
+
+
+
 
 
 void implement(::acme::context * pcontext);
@@ -50,33 +73,43 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
 
-   ::acme::acme acme;
+   ::acme::get()->initialize(argc, argv, envp);
 
-   sub_system subsystem(&acme);
+   ::acme::get()->m_pacmeapplication->m_bConsole = true;
 
-   //acme.m_psubsystem = &subsystem;
+   ////   application.m_applicationflags.m_bConsole = true;
+////
+////
+   ::acme::get()->m_pacmeapplication->implement_application();
 
-   //subsystem.m_pacme = &acme;
-   subsystem.m_argc = argc;
-#if defined(WINDOWS)  && defined(UNICODE)
-   subsystem.m_wargv = argv;
-   subsystem.m_wenvp = envp;
-#else
-   subsystem.m_argv = argv;
-   subsystem.m_envp = envp;
-#endif
+   return ::acme::get()->m_pacmeapplication->m_iExitCode;
 
-   main_hold mainhold;
 
-   //set_argc_argv_envp(argc, argv, envp);
-
-   ::pointer<APPLICATION_CLASS>papp(__new(APPLICATION_CLASS));
-
-#ifdef NO_NETWORKING
-
-   papp->m_bNetworking = false;
-
-#endif
+//   //sub_system subsystem(&acme);
+//
+//   //acme.m_psubsystem = &subsystem;
+//
+//   //subsystem.m_pacme = &acme;
+//   subsystem.m_argc = argc;
+//#if defined(WINDOWS)  && defined(UNICODE)
+//   subsystem.m_wargv = argv;
+//   subsystem.m_wenvp = envp;
+//#else
+//   subsystem.m_argv = argv;
+//   subsystem.m_envp = envp;
+//#endif
+//
+//   main_hold mainhold;
+//
+//   //set_argc_argv_envp(argc, argv, envp);
+//
+//   ::pointer<APPLICATION_CLASS>papp(__new(APPLICATION_CLASS));
+//
+//#ifdef NO_NETWORKING
+//
+//   papp->m_bNetworking = false;
+//
+//#endif
 
 //#ifdef WINDOWS
 //
@@ -90,7 +123,7 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
 
 //   {
-//      //__FACTORY(FACTORY)(::factory::get_factory());
+//      //__FACTORY(FACTORY)(factory());
 //
 //      class ::main main;
 //
@@ -110,144 +143,145 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 //
 //#endif
 
-#ifdef APP_ID
-
-      papp->m_strAppId = APP_ID;
-
-#endif
-
-      papp->m_bConsole = true;
-  
-      papp->m_pfnImplement = &::implement;
-
-      try
-      {
-
-         __main(papp);
-
-      }
-      catch (const ::exception & exception)
-      {
-
-         string strReport;
-
-         strReport += "Exception has occurred:\n";
-         strReport += exception.m_strMessage + ";\n";
-         //strReport += "Command Line:\n";
-         //strReport += acmenode()->get_command_line() + ";\n";
-         strReport += exception.m_strDetails;
-         strReport += "Callstack:\n";
-         strReport += exception.m_strCallstack;
-
-         fprintf(stderr, "%s", strReport.c_str());
-
-      }
-      catch (...)
-      {
-         
-         fprintf(stderr, "Unknown exception has occurred\n");
-         
-      }
-
-//      papp->m_bConsole = true;
+//#ifdef APP_ID
 //
-//      papp->m_strAppId = __APP_ID;
+//      papp->m_strAppId = APP_ID;
+//
+//#endif
+//
+//      papp->m_bConsole = true;
+//  
+//      papp->m_pfnImplement = &::implement;
 //
 //      try
 //      {
 //
-//         int iExitCode = papp->main_loop();
-//
-//         return iExitCode;
+//         __main(papp);
 //
 //      }
 //      catch (const ::exception & exception)
 //      {
 //
-//         fprintf(stderr, "Exception has occurred \"%s\"(\"%s\")", exception.m_strMessage.c_str(), exception.m_strDetails.c_str());
+//         string strReport;
+//
+//         strReport += "Exception has occurred:\n";
+//         strReport += exception.m_strMessage + ";\n";
+//         //strReport += "Command Line:\n";
+//         //strReport += acmenode()->get_command_line() + ";\n";
+//         strReport += exception.m_strDetails;
+//         strReport += "Callstack:\n";
+//         strReport += exception.m_strCallstack;
+//
+//         fprintf(stderr, "%s", strReport.c_str());
 //
 //      }
 //      catch (...)
 //      {
-//
-//         fprintf(stderr, "Unknown Exception has occurred");
-//
+//         
+//         fprintf(stderr, "Unknown exception has occurred\n");
+//         
 //      }
-
-
-//   process_set_args(argc, argv);
 //
-//   auto psystem = acme_system_init();
+////      papp->m_bConsole = true;
+////
+////      papp->m_strAppId = __APP_ID;
+////
+////      try
+////      {
+////
+////         int iExitCode = papp->main_loop();
+////
+////         return iExitCode;
+////
+////      }
+////      catch (const ::exception & exception)
+////      {
+////
+////         fprintf(stderr, "Exception has occurred \"%s\"(\"%s\")", exception.m_strMessage.c_str(), exception.m_strDetails.c_str());
+////
+////      }
+////      catch (...)
+////      {
+////
+////         fprintf(stderr, "Unknown Exception has occurred");
+////
+////      }
 //
-//   {
 //
-//#ifdef WINDOWS
-//
-//      wcsdup_array wcsdupa;
-//
-//      auto envp = psystem->node()->_get_envp(wcsdupa);
-//
-//#endif
-
-//   ::e_status estatus = ::success;
-//
-//   //process_set_args(argc, argv);
-//
-//   auto psystem = acme_system_init();
-//
-//   if (!psystem)
-//   {
-//
-//      return -1;
-//
-//   }
-//
-//   //psystem->m_bConsole = false;
-//
-//   //application_common(psystem);
-//
-//   //string strCommandLine(pCmdLine);
-//
-//   {
+////   process_set_args(argc, argv);
+////
+////   auto psystem = acme_system_init();
+////
+////   {
+////
 ////#ifdef WINDOWS
 ////
-////      //wcsdup_array wcsdupa;
+////      wcsdup_array wcsdupa;
 ////
-////      //auto envp = psystem->node()->_get_envp(wcsdupa);
-////
-////      platform_char** envp = nullptr;
+////      auto envp = psystem->node()->_get_envp(wcsdupa);
 ////
 ////#endif
 //
-//      psystem->system_construct(argc, argv, envp);
+////   ::e_status estatus = ::success;
+////
+////   //process_set_args(argc, argv);
+////
+////   auto psystem = acme_system_init();
+////
+////   if (!psystem)
+////   {
+////
+////      return -1;
+////
+////   }
+////
+////   //psystem->m_bConsole = false;
+////
+////   //application_common(psystem);
+////
+////   //string strCommandLine(pCmdLine);
+////
+////   {
+//////#ifdef WINDOWS
+//////
+//////      //wcsdup_array wcsdupa;
+//////
+//////      //auto envp = psystem->node()->_get_envp(wcsdupa);
+//////
+//////      platform_char** envp = nullptr;
+//////
+//////#endif
+////
+////      psystem->system_construct(argc, argv, envp);
+////
+////   //psystem->set_current_handles();
+////
+////   estatus = psystem->init_system();
+////
+////   if (!estatus)
+////   {
+////
+////      return estatus.error_status();
+////
+////   }
+////
+////
+////      implement(psystem);
+////
+////   }
+////
+////   acme_system_term();
+////
+////   return process_get_status();
 //
-//   //psystem->set_current_handles();
+////   }
 //
-//   estatus = psystem->init_system();
-//
-//   if (!estatus)
-//   {
-//
-//      return estatus.error_status();
-//
-//   }
-//
-//
-//      implement(psystem);
-//
-//   }
-//
-//   acme_system_term();
-//
-//   return process_get_status();
-
-//   }
-
-  // ::acme::finalize();
+//  // ::acme::finalize();
 
 }
 
 
+#include "acme/memory/_new.inl"
 
 
 #if !defined(CUBE)

@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "simple_log.h"
+#include "trace.h"
+#include "acme/platform/debug.h"
 #include "acme/platform/system.h"
 #ifdef WINDOWS
 #include <process.h>
@@ -6,8 +9,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 #endif
-#include "simple_log.h"
-#include "trace.h"
 
 string get_status_message(const ::e_status & estatus);
 

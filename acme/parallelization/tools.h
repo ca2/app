@@ -150,11 +150,11 @@ public:
 
       }
 
-      //auto psystem = ::apex::get_system();
+      //auto psystem = ::apexacmesystem();
 
-      synchronous_lock slGroup(::get_system()->synchronization());
+      synchronous_lock slGroup(acmesystem()->synchronization());
 
-      ///   auto ptool = ::apex::get_system()->task_tool(op_fork_count);
+      ///   auto ptool = ::apexacmesystem()->task_tool(op_fork_count);
 
       if (get_count() <= 1)
       {

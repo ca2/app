@@ -44,7 +44,7 @@ int main_posix(int argc, char* argv[])
 
       iError = 0;
 
-      if (::aura::get_system()->command_value_is_true("show_application_information"))
+      if (::auraacmesystem()->command_value_is_true("show_application_information"))
       {
 
          printf("return code is %d", iStatus);

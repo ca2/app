@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
+﻿////////////////////////////////////////////////////////////////////////////////
 //
 // The official specification of the File Transfer Protocol (FTP) is the RFC 959.
 // Most of the documentation are taken from this RFC.
@@ -166,8 +166,8 @@ namespace ftp
                                client_socket& TargetFtpServer, const string& strTargetFile,
                                const representation& repType = representation(type::Image()), bool fSourcePasv = false);
 
-      int RemoveDirectory(const string& strDirectory);
-      int MakeDirectory(const string& strDirectory);
+      int remove_directory(const string& strDirectory);
+      int make_directory(const string& strDirectory);
 
       int PrintWorkingDirectory();
       int ChangeToParentDirectory();

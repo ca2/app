@@ -2,6 +2,7 @@
 
 
 #include "acme/primitive/primitive/memory.h"
+#include "acme/filesystem/file/plain_text_file_options.h"
 ////#include "acme/primitive/primitive/object.h"
 //#include "acme/primitive/collection/string_array.h"
 

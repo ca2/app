@@ -320,7 +320,7 @@ int get_current_process_affinity_order()
 
 }
 
-//#undef ::acme::get_system()
+//#undef ::acmeacmesystem()
 
 //CLASS_DECL_ACME int ui_open_url(const char * pszUrl)
 //{
@@ -329,7 +329,7 @@ int get_current_process_affinity_order()
 //
 //   auto uri = ref memory_new ::winrt::Windows::Foundation::Uri(strUrl);
 //
-//   ::winrt::Windows::acme::get_system()::Launcher::LaunchUriAsync(uri);
+//   ::winrt::Windows::acmeacmesystem()::Launcher::LaunchUriAsync(uri);
 //
 //   return 0;
 //

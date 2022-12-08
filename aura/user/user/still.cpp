@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "still.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -513,9 +513,9 @@ namespace user
       if (m_atom.has_char())
       {
 
-         string strText = _(m_atom);
+         //string strText = _(m_atom);
 
-         set_window_text(strText);
+         set_window_text(m_atom);
 
       }
 

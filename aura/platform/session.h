@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/filesystem/filemanager/item_action.h"
@@ -69,7 +69,7 @@ namespace aura
 
 #endif
 
-      inline ::aura::system* get_system();
+//      inline ::aura::system* acmesystem();
 
       //virtual void finish(::property_object * pcontextobjectFinish = nullptr) override;
       void destroy() override;
@@ -111,7 +111,7 @@ namespace aura
       bool on_get_task_name(string& strThreadName) override;
 
 
-      virtual void on_request(::create * pcreate) override;
+      // virtual void on_request(::request* prequest) override;
 
 
       //virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2);
@@ -188,9 +188,9 @@ namespace aura
       virtual void process_term() override;
 
 
-      virtual bool open_by_file_extension(const ::string & pszPathName, ::create * pcreate = nullptr) override;
+      //virtual bool open_by_file_extension(const ::string & pszPathName, ::request * prequest = nullptr) override;
 
-      virtual bool open_by_file_extension(::create * pcc) override;
+      virtual bool open_by_file_extension(::request * prequest) override;
 
       //::pointer<::aura::application>get_new_application(::particle * pparticle, const ::string & pszAppId);
 
@@ -216,7 +216,7 @@ namespace aura
 
       //virtual void interactive_credentials(::account::credentials * pcredentials);
 
-      //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
+      //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 
       //virtual bool is_key_pressed(::user::enum_key ekey) override;
 
@@ -326,7 +326,7 @@ namespace aura
 
       //void initialize_bergedge_application_interface();
 
-      //virtual bool create_bergedge(::create * pcreate);
+      //virtual bool create_bergedge(::request * prequest);
 
       //virtual void will_use_impact_hint(::atom idImpact);
 
@@ -337,11 +337,11 @@ namespace aura
       //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha);
 
 
-      virtual void do_request(::create* pcreate) override;
+      //virtual void do_request(::request* prequest) override;
 
-      virtual ::user::interaction* get_request_parent_ui(::user::interaction* pinteraction, ::create* pcreate);
+      virtual ::user::interaction* get_request_parent_ui(::user::interaction* pinteraction, ::request * prequest);
 
-      virtual bool place(::user::main_frame* pmainframe, ::create* pcreate);
+      virtual bool place(::user::main_frame* pmainframe, ::request* prequest);
 
       //virtual void request_topic_file(::payload& varQuery) override;
 
@@ -412,7 +412,7 @@ namespace aura
       //virtual ::user::style * user_style();
 
 
-      virtual void on_instantiate_application(::apex::application* papp) override;
+      virtual void on_instantiate_application(::acme::application* papplication) override;
 
 
    };

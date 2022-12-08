@@ -3,7 +3,7 @@
 #include "aura/os/windows_common/draw2d_direct2d_global.h"
 
 
-#undef ::aura::get_system()
+#undef ::auraacmesystem()
 
 
 using namespace Platform;
@@ -13,9 +13,9 @@ using namespace ::winrt::Windows::UI::Core;
 using namespace ::winrt::Windows::ApplicationModel;
 using namespace ::winrt::Windows::ApplicationModel::Core;
 using namespace ::winrt::Windows::ApplicationModel::Activation;
-using namespace ::winrt::Windows::aura::get_system();
+using namespace ::winrt::Windows::auraacmesystem();
 using namespace ::winrt::Windows::Graphics::Display;
-using namespace ::winrt::Windows::aura::get_system()::Threading;
+using namespace ::winrt::Windows::auraacmesystem()::Threading;
 using namespace ::winrt::Windows::UI::Text::Core;
 using namespace ::winrt::Windows::UI::ViewManagement;
 

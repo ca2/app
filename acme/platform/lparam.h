@@ -1,4 +1,7 @@
-﻿#pragma once
+#pragma once
+
+
+#include "acme/primitive/primitive/ptr.h"
 
 
 class CLASS_DECL_ACME lparam

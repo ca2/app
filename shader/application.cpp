@@ -39,7 +39,7 @@ namespace app_shader
 
       set_local_data();
 
-      //::factory::add_factory_item <::app_shader::main_window >();
+      //factory()->add_factory_item <::app_shader::main_window >();
 
       ::aura::application::init_instance();
 
@@ -63,7 +63,7 @@ namespace app_shader
    }
 
 
-   void application::on_request(::create * pcreate)
+   void application::on_request(::request * prequest)
    {
 
       __construct(m_pmainwindow, __create_new < ::app_shader::main_window > ());

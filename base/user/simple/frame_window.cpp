@@ -4,12 +4,14 @@
 #include "acme/constant/simple_command.h"
 #include "acme/constant/id.h"
 #include "acme/parallelization/pool.h"
+#include "acme/platform/keep.h"
+#include "acme/platform/request.h"
+#include "acme/platform/system.h"
 #include "acme/platform/system.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/database/change_event.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/application_menu.h"
-#include "apex/platform/create.h"
 #include "apex/platform/node.h"
 #include "apex/platform/savings.h"
 #include "apex/platform/system.h"
@@ -726,12 +728,12 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
 
    ::pointer<::message::create>pcreate(pmessage);
 
-   auto pcreateContext = (::create*)pcreate->get_create();
+   auto prequest = (::request *) pcreate->get_request();
 
-   if (::is_set(pcreateContext))
+   if (::is_set(prequest))
    {
 
-      ::pointer<::user::system>pusersystem = pcreateContext->m_pmatterUserPayload;
+      ::pointer<::user::system>pusersystem = prequest->m_pmatterUserPayload;
 
       if (pusersystem)
       {
@@ -1013,13 +1015,15 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
 
                m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "separator");
 
-               m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Transparent Frame"), "transparent_frame");
+               //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Transparent Frame"), "transparent_frame");
+               m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "Transparent Frame", "transparent_frame");
 
             }
 
             m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "separator");
 
-            m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
+            //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
+            m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "Exit", "app_exit");
 
             post_message(e_message_update_notify_icon);
 
@@ -1194,12 +1198,12 @@ bool simple_frame_window::pre_create_window(::user::system* pusersystem)
    //
    //#endif
 
-   ::create* pcreateContext = pusersystem->m_pcreate;
+   ::request * prequest = pusersystem->m_prequest;
 
-   if (pcreateContext && would_display_notify_icon())
+   if (prequest && would_display_notify_icon())
    {
 
-      ::pointer<::user::system>pusersystem = pcreateContext->m_pmatterUserPayload;
+      ::pointer<::user::system>pusersystem = prequest->m_pmatterUserPayload;
 
       ::pointer<::user::document>pdocument = pusersystem->m_pdocumentCurrent;
 
@@ -1212,7 +1216,7 @@ bool simple_frame_window::pre_create_window(::user::system* pusersystem)
 
          //post_redraw();
 
-         pcreateContext->m_bMakeVisible = false;
+         prequest->m_bMakeVisible = false;
 
          //pusersystem->m_createstruct.style &= ~WS_VISIBLE;
 
@@ -2138,7 +2142,7 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
 
    }
 
-   if (pusersystem->m_pcreate->m_bMakeVisible)
+   if (pusersystem->m_prequest->m_bMakeVisible)
    {
 
       initial_frame_display();
@@ -2948,7 +2952,7 @@ void simple_frame_window::design_up()
 }
 
 
-//bool simple_frame_window::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const ::string & pszMenuName, u32 dwExStyle, ::create * pcreate)
+//bool simple_frame_window::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const ::string & pszMenuName, u32 dwExStyle, ::request * prequest)
 //{
 //
 //   return ::user::frame_window::create_interaction(pszClassName, pszWindowName, uStyle, rectangle, puiParent, pszMenuName, dwExStyle, pcreate);

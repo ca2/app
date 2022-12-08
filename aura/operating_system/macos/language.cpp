@@ -4,7 +4,7 @@
 //CLASS_DECL_AURA string load_podata(string strLang, bool bOnlyHeader)
 //{
 //
-//   ::file::path pathFolder = ::aura::get_system()->dir()->module();
+//   ::file::path pathFolder = ::auraacmesystem()->dir()->module();
 //
 //   pathFolder -= 1;
 //

@@ -5,13 +5,12 @@
 //  Created by Camilo Sasuke Tsumanuma on 27/09/14.
 //
 //
-
 #include "framework.h"
-
 #include "app.h"
-#include "acme/id.h"
+#include "acme/constant/id.h"
+#include "acme/operating_system/argcargv.h"
 //#include "apex/user/menu_shared.h"
-
+void ns_main_async(dispatch_block_t block);
 //void on_start_system(void * pSystem);
 
 //void macos_calc_dark_mode();
@@ -536,6 +535,7 @@ void set_apex_system_as_thread();
 
 
 @end
+
 
 
 void os_menu_item_enable(void * pitem, bool bEnable)

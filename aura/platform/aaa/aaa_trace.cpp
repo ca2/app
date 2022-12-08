@@ -123,7 +123,7 @@ namespace aura
 
       /*CLASS_DECL_AURA void system_log_trace_v(const ::string &pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const ::string & pszFmt, va_list args)
       {
-      ::aura::get_system()->log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
+      ::auraacmesystem()->log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
       }*/
 
 

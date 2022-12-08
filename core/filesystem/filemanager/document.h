@@ -71,11 +71,11 @@ namespace filemanager
       DECLARE_MESSAGE_HANDLER(_001OnUpdateNewFolder);
 
       virtual void defer_check_manager_id(string strNewManagerId = "");
-      virtual void on_request(::create * pcreate) override;
+      virtual void on_request(::request * prequest) override;
 
       virtual bool do_prompt_file_name(::payload & payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
-      ::pointer<::filemanager::data>create_file_manager_data(::create * pcreate = nullptr);
+      ::pointer<::filemanager::data>create_file_manager_data(::request * prequest = nullptr);
 
       //virtual void Initialize(i32 iTemplate, const ::string & pszMatter);
 
@@ -126,7 +126,7 @@ namespace filemanager
       void operator()(::file::action * paction) override;
 
 
-      virtual void on_create(::create * pcreate) override;
+      virtual void on_create(::request * prequest) override;
 
 
       operation_document * get_operation_doc(bool bSwitch);

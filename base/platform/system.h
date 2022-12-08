@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "axis/platform/system.h"
@@ -18,9 +18,9 @@ namespace base
       ~system() override;
 
       void common_construct();
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
 
-      virtual void on_add_session(::apex::session * papexsession) override;
+      //void on_add_session(::acme::session * papexsession) override;
 
    };
 

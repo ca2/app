@@ -42,7 +42,7 @@ public:
    virtual void form_document_set_impact(::user::form * pimpact);
    virtual void form_document_set_callback(::user::form_callback * pcallback);
 
-   //bool open_document(::create * pcreate) override;
+   //bool open_document(::request * prequest) override;
    bool on_open_document(const ::payload & payloadFile) override;
 
    virtual void on_command_probe(::message::command * pcommand) override;

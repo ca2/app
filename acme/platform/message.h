@@ -1,10 +1,11 @@
-﻿//
+//
 // Created by camilo on 6/23/21 08:19 BRT <3ThomasBS_!!
 //
 #pragma once
 
 
 ////#include "acme/primitive/primitive/property_object.h"
+#include "acme/primitive/mathematics/c_number.h"
 
 
 namespace acme

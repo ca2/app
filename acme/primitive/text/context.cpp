@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "acme/constant/id.h"
 #include "acme/constant/idpool.h"
-//#include "acme/filesystem/file/file.h"
+#include "acme/filesystem/file/file.h"
 #include "acme/platform/context.h"
 #include "acme/primitive/primitive/memory.h"
 //#include "acme/primitive/collection/string_array.h"
@@ -1074,7 +1074,7 @@ end:
 
    //   get(straCandidate,idRoot);
 
-   //   auto psystem = get_system();
+   //   auto psystem = acmesystem();
 
    //   for(i32 i = 0; i < straCandidate.get_count(); i++)
    //   {

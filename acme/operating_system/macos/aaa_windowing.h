@@ -76,18 +76,18 @@ int GetWorkspaceCount();
 //
 //void copy(RECTANGLE_I32 * prectangle, const CGRect & rectangleSource);
 //
-//void window_copy(CGRect & rectangle, const RECTANGLE_I32 * prectangle);
+//void screen_coordinates_aware_copy(CGRect & rectangle, const RECTANGLE_I32 * prectangle);
 //
-//void window_copy(RECTANGLE_I32 * prectangle, const CGRect & rectangleSource);
+//void screen_coordinates_aware_copy(RECTANGLE_I32 * prectangle, const CGRect & rectangleSource);
 //
 //#ifdef MM
 //void copy(NSRect & rectangle, const RECTANGLE_I32 * prectangle);
 //
 //void copy(RECTANGLE_I32 * prectangle, const NSRect & rectangleSource);
 //
-//void window_copy(NSRect & rectangle, const RECTANGLE_I32 * prectangle);
+//void screen_coordinates_aware_copy(NSRect & rectangle, const RECTANGLE_I32 * prectangle);
 //
-//void window_copy(RECTANGLE_I32 * prectangle, const NSRect & rectangleSource);
+//void screen_coordinates_aware_copy(RECTANGLE_I32 * prectangle, const NSRect & rectangleSource);
 //
 //#endif
 

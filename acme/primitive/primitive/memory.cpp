@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "memory.h"
 #define HEAP_NAMESPACE_PREFIX main
 #include "acme/memory/_____heap_namespace.h"
@@ -120,7 +120,7 @@ memory::memory(void * pdata, memsize iCount)
    m_memory.m_bReadOnly = false;
    m_memory.m_pbStorage = (::byte *) pdata;
 
-   m_memory.m_iOffset;
+   m_memory.m_iOffset = 0;
    m_memory.m_iMaxOffset = 0;
    m_memory.m_cbStorage = iCount;
    m_memory.m_dAllocationRateUp = 0.0;
@@ -148,7 +148,7 @@ memory::memory(const void* pdata, memsize iCount)
    m_memory.m_bReadOnly = true;
    m_memory.m_pbStorage = (::byte*)pdata;
 
-   m_memory.m_iOffset;
+   m_memory.m_iOffset = 0;
    m_memory.m_iMaxOffset = 0;
    m_memory.m_cbStorage = iCount;
    m_memory.m_dAllocationRateUp = 0.0;
@@ -246,7 +246,7 @@ memory::memory(memory_container * pcontainer, const void * pdata, memsize size)
    m_memory.m_bReadOnly = true;
    m_memory.m_pbStorage = (::byte*)pdata;
 
-   m_memory.m_iOffset;
+   m_memory.m_iOffset = 0;
    m_memory.m_iMaxOffset = 0;
    m_memory.m_cbStorage = size;
    m_memory.m_dAllocationRateUp = 0.0;

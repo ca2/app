@@ -32,7 +32,7 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 
    dir_listing & dir = m_map[path];
 
-   auto psystem = get_system()->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    if(dir.m_timeLast.elapsed() < psystem->m_timeFileListingCache)
    {

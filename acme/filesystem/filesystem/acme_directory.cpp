@@ -7,6 +7,7 @@
 #include "listing.h"
 #include "acme/exception/interface_only.h"
 #include "acme/operating_system/process.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -35,7 +36,7 @@ void acme_directory::initialize(::particle * pparticle)
 
    m_pathInstallFolder = default_install();
 
-   m_pathModuleFolder = dir_ca2_module();
+//   m_pathModuleFolder = dir_ca2_module();
 
 }
 
@@ -498,18 +499,22 @@ void acme_directory::set_path_install_folder(const string & strPath)
 ::file::path acme_directory::module()
 {
 
-   if(m_pathModuleFolder.is_empty())
-   {
+   //if(m_pathModuleFolder.is_empty())
+   //{
 
-      auto pnode = acmenode();
+   //   auto pnode = acmenode();
 
-      auto pathModule = pnode->module_path_source();
+   //   auto pathModule = pnode->module_path_source();
 
-      m_pathModuleFolder = pathModule.folder();
+   //   m_pathModuleFolder = pathModule.folder();
 
-   }
+   //}
 
-   return m_pathModuleFolder;
+   //return m_pathModuleFolder;
+
+   auto pacmeapplication = acmeapplication();
+
+   return pacmeapplication->get_module_folder();
 
 }
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "server.h"
@@ -106,13 +106,13 @@ namespace user
 
       virtual Confidence MatchDocType(const ::file::path & pszPathName,::user::document *& rpDocMatch);
 
-      virtual ::pointer<::user::document>create_new_document(::create * pcreate);
-      virtual ::pointer<::user::frame_window>create_new_frame(::user::document * pDoc, ::pointer<::user::frame_window>Other, ::create * pcreate);
+      virtual ::pointer<::user::document>create_new_document(::request * prequest);
+      virtual ::pointer<::user::frame_window>create_new_frame(::user::document * pDoc, ::pointer<::user::frame_window>Other, ::request * prequest);
       virtual void prepare_frame(::user::frame_window * pframe, ::user::document * pdocument, bool bMakeVisible = true);
       virtual bool save_all_modified();     // for all documents
       virtual void pre_close_all_documents();
       virtual void close_all_documents(bool bEndSession);
-      virtual void on_request(::create * pcreate) override = 0;
+      virtual void on_request(::request * prequest) override = 0;
       // open named file
       // if pszPathName == nullptr => create memory_new file with this type
 
@@ -124,9 +124,9 @@ namespace user
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
 
-      bool on_open_document(::user::document * pdocument, ::create * pcreate);
+      bool on_open_document(::user::document * pdocument, ::request * prequest);
 
-      bool do_open_document(::user::document * pdocument, ::create * pcreate);
+      bool do_open_document(::user::document * pdocument, ::request * prequest);
 
       virtual void reload_template();
 

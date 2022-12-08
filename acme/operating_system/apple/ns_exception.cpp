@@ -9,15 +9,19 @@
 #include "ns_exception.h"
 
 
-ns_exception::ns_exception()
+ns_exception::ns_exception(const ::e_status & estatus, const char * pszName, const char * pszDescription, const ::property_set & setUserInfo) :
+exception(estatus, pszName, pszDescription),
+m_strName(pszName),
+m_strDescription(pszDescription),
+m_setUserInfo(setUserInfo)
 {
+
    
-   m_iCode = 0;
-   
+
 }
 
 
 ns_exception::~ns_exception()
 {
-   
+
 }

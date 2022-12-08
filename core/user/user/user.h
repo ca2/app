@@ -289,7 +289,7 @@ namespace core
       //virtual bool on_get_thread_name(string& strThreadName) override;
 
 
-      //virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::request * prequest) override;
 
 
       ////virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2);
@@ -359,7 +359,7 @@ namespace core
 
       //::user::keyboard& keyboard();
 
-      //virtual bool open_by_file_extension(const ::string & pszPathName, ::create * pcreate = nullptr);
+      //virtual bool open_by_file_extension(const ::string & pszPathName, ::request * prequest = nullptr);
 
       //virtual bool open_by_file_extension(::create * pcc);
 
@@ -393,9 +393,9 @@ namespace core
 
       //virtual void interactive_credentials(::account::credentials * pcredentials);
 
-      ////virtual void on_request(::create * pcreate) override;
+      ////virtual void on_request(::request * prequest) override;
 
-      //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
+      //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 
       //virtual bool is_key_pressed(::user::enum_key ekey);
 
@@ -545,7 +545,7 @@ namespace core
 
       //void initialize_bergedge_application_interface();
 
-      ////virtual bool create_bergedge(::create * pcreate);
+      ////virtual bool create_bergedge(::request * prequest);
 
       //virtual void will_use_impact_hint(::atom idImpact);
 

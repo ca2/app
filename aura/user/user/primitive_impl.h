@@ -3,6 +3,7 @@
 
 #include "apex/user/primitive.h"
 #include "acme/primitive/collection/int_map.h"
+#include "acme/platform/auto_pointer.h"
 
 
 namespace user
@@ -57,7 +58,7 @@ namespace user
       
       ::aura::application* get_app();
       ::aura::session* get_session();
-      ::aura::system* get_system();
+      //::aura::system* acmesystem();
 
 
 

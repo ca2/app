@@ -12,7 +12,7 @@ class object_reference_count_debug;
 
 #define _STRINGFY(identifier) #identifier
 #define STRINGFY(identifier) _STRINGFY(identifier)
-//#define STRINGFY(x, y) TOKENPASTE(x, y)
+//#define STRINGFY(x, y) TOKEN_CONCATENATE(x, y)
 //#define UNIQUE static void TOKENPASTE2(Unique_, __LINE__)(void) {}
 
 #if OBJECT_REFERENCE_COUNT_DEBUG

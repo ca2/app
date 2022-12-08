@@ -9,6 +9,9 @@
 //#include "acme/primitive/primitive/pointer.h"
 
 
+class main;
+
+
 namespace acme
 {
 
@@ -20,56 +23,55 @@ namespace acme
 } // namespace acme
 
 
+namespace factory
+{
+
+   using factory_pointer = ::pointer < ::factory::factory >;
+   using factory_map = ::string_map < factory_pointer >;
+   using component_factory_map = ::string_map < factory_map >;
+
+} // namespace factory
+
+
 class CLASS_DECL_ACME sub_system :
    virtual public ::particle
 {
 public:
 
-   //   int g_argc = 0;
 
-
-   //platform_char ** g_argv = nullptr;
-
-
-   ::e_display                      m_edisplay;
-   ::e_activation                   m_eactivation;
-
-   ::acme::acme * m_pacme;
-
-   int               m_argc = 0;
-
-   char ** m_argv = nullptr;
-   char ** m_envp = nullptr;
-
-   wchar_t ** m_wargv = nullptr;
-   wchar_t ** m_wenvp = nullptr;
-
-#ifdef WINDOWS
-
-   hinstance         m_hinstanceThis = nullptr;
-   hinstance         m_hinstancePrev = nullptr;
-   int               m_nCmdShow = -1000;
-
+   critical_section                                m_criticalsection;
+   
+   ::e_display                                     m_edisplay;
+   ::e_activation                                  m_eactivativation;
+   int                                             m_argc = 0;
+   char **                                         m_argv = nullptr;
+   char **                                         m_envp = nullptr;
+   
+#ifdef WINDOWS_DESKTOP
+   
+   wchar_t **                                      m_wargv = nullptr;
+   wchar_t **                                      m_wenvp = nullptr;
+   hinstance                                       m_hinstanceThis = nullptr;
+   hinstance                                       m_hinstancePrev = nullptr;
+   int                                             m_nCmdShow = -1;
+   
 #endif
-
-   ::block                          m_blockMatter;
-
-   ::critical_section               m_criticalsection;
-   ::acme::library_map              m_mapLibrary;
-   ::pointer<::factory::factory>                               m_pfactory;
-   ::pointer<atom_map < ::pointer<::factory::factory > > >     m_pmapFactory;
-   //::pointer < ::mutex >                                            m_pmutexComponentFactory;
-   ::pointer < string_map < string_map < ::pointer<::factory::factory >>>>       m_pmapComponentFactory;
+   
+   
+   ::block                                         m_blockMatter;
+   ::acme::library_map                             m_mapLibrary;
+   ::factory::factory_pointer                      m_pfactory;
+   ::factory::factory_map                          m_factorymap;
+   ::factory::component_factory_map                m_componentfactorymap;
 
 
-   int m_iProcessStatus = 0;
+   int                                             m_iProcessStatus = 0;
 
 
-   sub_system(::acme::acme * pacme);
+   sub_system();
    ~sub_system();
-
-
-   //static sub_system * get();
+   
+   
 
 
    void set_args(int argc, char ** argv, wchar_t ** wargv);
@@ -79,8 +81,13 @@ public:
    int * get_pargc();
    char *** get_pargv();
    char ** get_argv();
+   
+#ifdef WINDOWS
+   
    wchar_t *** get_pwargv();
    wchar_t ** get_wargv();
+   
+#endif
 
    inline ::count _get_argc() const { return m_argc; }
 
@@ -107,6 +114,49 @@ public:
    void factory_initialize();
    void factory_terminate();
 
-   // void factory_close();
+
+   ::factory::factory_pointer & factory();
+   ::factory::factory_pointer & factory(const ::string & strLibrary);
+   ::factory::factory_pointer & factory(const ::string & strComponent, const ::string & strImplementation);
+
+
+   ::pointer<::factory::factory_item_interface> & get_factory_item(const ::atom& atom, const ::atom& atomSource);
+
+
+   bool has_factory_item(const ::atom& atom);
+
+
+   void set_factory(const ::atom& atom, const ::pointer<::factory::factory_item_interface>& pfactory);
+
+
+   void set_factory_from(const ::atom& atom, const ::atom& atomSource, const ::pointer<::factory::factory_item_interface>& pfactory);
+
+
+   template < typename TYPE, typename BASE >
+   void add_factory_item(const ::atom& atom)
+   {
+
+      set_factory(atom, __new(::factory::factory_item < TYPE, BASE >()));
+
+   }
+
+   
+   ::factory::factory * get_factory(const ::atom & atomSource);
+
+
+
+   //virtual void set_factory_global(const ::string &pszComponent, const ::string &pszImplementation);
+
+   //virtual ::pointer<::acme::library> open_component_library(const ::string &pszComponent, const ::string &pszImplementation);
+
+   virtual ::pointer<::acme::library> create_library(const ::string& strLibrary);
+
+   virtual ::pointer<::acme::library>& library(const ::string& str);
+
+   //virtual ::pointer<::acme::library>& library(const ::string& strComponent, const ::string& strImplementation);
+
+   virtual ::pointer<::factory::factory>& impact_factory(const ::string& strComponent, const ::string& strImplementation);
+
+
 
 };

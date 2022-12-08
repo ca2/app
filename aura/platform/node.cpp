@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "framework.h"
@@ -50,7 +50,7 @@ namespace aura
 
       //message_box_factory();
 
-      acmesystem()->m_pauranode = this;
+      //acmesystem()->m_pauranode = this;
 
       //return estatus;
 
@@ -68,7 +68,7 @@ namespace aura
    //void node::message_box_factory()
    //{
 
-   //   //::factory::add_factory_item < ::user::default_message_box, ::user::message_box >();
+   //   //factory()->add_factory_item < ::user::default_message_box, ::user::message_box >();
 
    //}
 

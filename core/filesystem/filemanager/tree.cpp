@@ -3,7 +3,9 @@
 #include "document.h"
 #include "data.h"
 #include "context_menu.h"
+#include "acme/platform/application.h"
 #include "acme/constant/message.h"
+#include "acme/platform/session.h"
 #include "acme/platform/system.h"
 #include "acme/platform/timer.h"
 #include "apex/filesystem/filesystem/dir_context.h"
@@ -34,11 +36,12 @@ namespace filemanager
    }
 
 
-
    ::core::application* tree::get_app()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
 
    }
 
@@ -46,7 +49,9 @@ namespace filemanager
    ::core::session* tree::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+      auto pacmesession = acmesession();
+
+      return pacmesession ? pacmesession->m_pcoresession : nullptr;
 
    }
 
@@ -54,7 +59,9 @@ namespace filemanager
    ::core::system* tree::get_system()
    {
 
-      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
    }
 

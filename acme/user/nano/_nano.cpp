@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 31/01/2022.
 //
 #include "framework.h"
@@ -21,7 +21,7 @@ CLASS_DECL_ACME void initialize_nano_window()
 
    }
 
-   operating_system_initialize_nano(::factory::get_factory());
+   operating_system_initialize_nano(::get_task_sub_system_factory());
 
    g_bNanoInitialize = true;
 

@@ -13,10 +13,10 @@
 CLASS_DECL_ACME ::string demangle(const char * pszMangledName);
 
 
-CLASS_DECL_ACME ::critical_section * factory_critical_section();
-
+//CLASS_DECL_ACME ::critical_section * factory_critical_section();
+//
 template < typename TYPE >
-inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory = ::factory::get_factory());
+inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory = ::get_task_sub_system_factory());
 
 namespace factory
 {
@@ -154,6 +154,7 @@ namespace factory
 
       ::atom                                 m_atomSource;
       ::pointer<::acme::library>             m_plibrary;
+      critical_section                       m_criticalsection;
 
 
       factory();
@@ -173,9 +174,12 @@ namespace factory
 
       template < typename ORIGIN_TYPE >
       inline ::pointer<::factory::factory_item_interface>& get_factory_item(const ::atom& atom);
-
+      //inline ::pointer<factory_item_interface>& get_factory_item(const ::atom& atom)
+         
       template < typename BASE_TYPE >
       inline void __defer_construct(::particle * pparticle, ::pointer<BASE_TYPE> &  ptype);
+      template < typename TYPE, typename ORIGIN_TYPE>
+      inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > _add_factory_item_from(const ::atom& atomSource);
 
 
       //template < typename ORIGIN_TYPE >
@@ -184,9 +188,13 @@ namespace factory
       template < typename TYPE, typename ORIGIN_TYPE = TYPE >
       inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item();
 
+      template < typename ORIGIN_TYPE  >
+      inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item(const ::atom& atom);
       //template < typename TYPE, typename ORIGIN_TYPE >
       //inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item_from(const ::atom& atomSource);
 
+      template < typename TYPE, typename ORIGIN_TYPE>
+      inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > create_reusable_factory_item();
 
       template < typename ORIGIN_TYPE >
       inline ::pointer<ORIGIN_TYPE>create();
@@ -232,9 +240,9 @@ namespace factory
 
    using factory_array = pointer_array < factory_item_interface >;
 
-   CLASS_DECL_ACME factory * get_factory();
+   //CLASS_DECL_ACME factory * get_factory();
 
-   CLASS_DECL_ACME factory * get_factory(const ::atom & atomSource);
+   ///CLASS_DECL_ACME factory * get_factory(const ::atom & atomSource);
 
 
    ::pointer<factory_item_interface>& get_factory_item(const ::atom & atom);
@@ -307,58 +315,60 @@ namespace factory
 } // namespace factory
 
 
-using factory_pointer = ::pointer<::factory::factory>;
+// using factory_pointer = ::pointer<::factory::factory>;
+
+
+// namespace factory
+// {
+
+
+//    template < typename TYPE, typename ORIGIN_TYPE = TYPE >
+//    inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item();
+
+
+//    template < typename TYPE, typename ORIGIN_TYPE = TYPE >
+//    inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item(const ::atom& atom);
+
+
+//    template < typename TYPE, typename ORIGIN_TYPE = TYPE >
+//    inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item_from(const ::atom& atomSource);
+
+
+//    template < typename TYPE, typename ORIGIN_TYPE = TYPE >
+//    inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > create_reusable_factory();
+
+
+//    template < typename TYPE >
+//    ::pointer<TYPE>create();
+
+
+// } // namespace factory
+
+
+
+
 
 
 namespace factory
 {
 
 
-   template < typename TYPE, typename ORIGIN_TYPE = TYPE >
-   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item();
+   //CLASS_DECL_ACME critical_section * &m_criticalsection;
 
 
-   template < typename TYPE, typename ORIGIN_TYPE = TYPE >
-   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item(const ::atom& atom);
-
-
-   template < typename TYPE, typename ORIGIN_TYPE = TYPE >
-   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item_from(const ::atom& atomSource);
-
-
-   template < typename TYPE, typename ORIGIN_TYPE = TYPE >
-   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > create_reusable_factory();
-
-
-   template < typename TYPE >
-   ::pointer<TYPE>create();
-
-
-} // namespace factory
-
-
-
-
-
-
-namespace factory
-{
-
-
-   //CLASS_DECL_ACME critical_section * ::factory_critical_section();
-
-
-   template < typename TYPE, typename ORIGIN_TYPE>
-   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item(const ::atom & atom)
+   template <  typename ORIGIN_TYPE>
+   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > factory::add_factory_item(const ::atom & atom)
    {
 
-      critical_section_lock lock(::factory_critical_section());
+      critical_section_lock lock(&m_criticalsection);
 
-      auto pfactory = __new(::factory::factory_item< TYPE, ORIGIN_TYPE >());
+      auto pfactoryitem = __new(::factory::factory_item< ORIGIN_TYPE, ORIGIN_TYPE >());
 
-      ::factory::get_factory()->set_at(atom, pfactory);
+      set_at(atom, pfactoryitem);
 
-      return pfactory;
+      //factory()->set_at(atom, pfactory);
+
+      return pfactoryitem;
 
    }
 
@@ -367,10 +377,10 @@ namespace factory
 
 
    template < typename TYPE, typename ORIGIN_TYPE>
-   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > _add_factory_item_from(const ::atom & atomSource)
+   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > factory::_add_factory_item_from(const ::atom & atomSource)
    {
 
-      critical_section_lock lock(::factory_critical_section());
+//      critical_section_lock lock(&m_criticalsection);
 
       auto pfactory = ::factory::loading_library_factory();
 
@@ -381,39 +391,41 @@ namespace factory
 
       }
 
+      critical_section_lock lock(&m_criticalsection);
+
       auto pfactoryitem = __new(::factory::factory_item< TYPE, ORIGIN_TYPE >());
 
-      ::factory::get_factory_item < ORIGIN_TYPE >(atomSource) = pfactoryitem;
+      get_factory_item < ORIGIN_TYPE >(atomSource) = pfactoryitem;
 
       return pfactoryitem;
 
    }
 
 
+   //template < typename TYPE, typename ORIGIN_TYPE>
+   //inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item()
+   //{
+
+   //   critical_section_lock lock(&m_criticalsection);
+
+   //   auto pfactory = __new(::factory::factory_item< TYPE, ORIGIN_TYPE >());
+
+   //   factory_item < ORIGIN_TYPE >() = pfactory;
+
+   //   return pfactory;
+
+   //}
+
+
    template < typename TYPE, typename ORIGIN_TYPE>
-   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item()
+   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > factory::create_reusable_factory_item()
    {
 
-      critical_section_lock lock(::factory_critical_section());
-
-      auto pfactory = __new(::factory::factory_item< TYPE, ORIGIN_TYPE >());
-
-      ::factory::get_factory_item < ORIGIN_TYPE >() = pfactory;
-
-      return pfactory;
-
-   }
-
-
-   template < typename TYPE, typename ORIGIN_TYPE>
-   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > create_reusable_factory()
-   {
-
-      critical_section_lock lock(::factory_critical_section());
+      critical_section_lock lock(&m_criticalsection);
 
       auto pfactory = __new(::factory::reusable_factory_item< TYPE, ORIGIN_TYPE >());
 
-      ::factory::get_factory_item < ORIGIN_TYPE >() = pfactory;
+      factory_item < ORIGIN_TYPE >() = pfactory;
 
       return pfactory;
 
@@ -492,7 +504,7 @@ namespace factory
    inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > factory::add_factory_item()
    {
 
-      critical_section_lock lock(::factory_critical_section());
+      critical_section_lock lock(&m_criticalsection);
 
       auto pfactory = __new(::factory::factory_item< TYPE, ORIGIN_TYPE >());
 
@@ -552,7 +564,7 @@ namespace factory
    inline ::factory::factory_item_interface * factory::get_factory_item(const ::atom & atom) const
    {
 
-      critical_section_lock cs(::factory_critical_section());
+      critical_section_lock cs(&((factory*)this)->m_criticalsection);
 
       auto p = this->plookup(atom);
 
@@ -584,7 +596,7 @@ namespace factory
    inline ::pointer<::factory::factory_item_interface> & factory::get_factory_item(const ::atom & atom)
    {
 
-      critical_section_lock cs(::factory_critical_section());
+      critical_section_lock cs(&m_criticalsection);
 
 
       return this->operator[](atom);
@@ -592,14 +604,14 @@ namespace factory
    }
 
 
-   inline ::pointer<factory_item_interface> & get_factory_item(const ::atom & atom)
-   {
+   //inline ::pointer<factory_item_interface> & factory::get_factory_item(const ::atom & atom)
+   //{
 
-      critical_section_lock cs(::factory_critical_section());
+   //   critical_section_lock cs(&m_criticalsection);
 
-      return (*get_factory())[atom];
+   //   return (*get_factory())[atom];
 
-   }
+   //}
 
 
    inline ::pointer<factory_item_interface> & get_existing_factory_item(const ::atom & atom)
@@ -619,70 +631,6 @@ namespace factory
    }
 
 
-   inline ::pointer<factory_item_interface> & get_factory_item(const ::atom & atom, const ::atom & atomSource)
-   {
-
-      critical_section_lock cs(::factory_critical_section());
-
-      return (*get_factory(atomSource))[atom];
-
-   }
-
-
-   inline bool has(const ::atom & atom)
-   {
-
-      critical_section_lock cs(::factory_critical_section());
-
-      auto passociation = get_factory()->get_association(atom);
-
-      if (::is_null(passociation))
-      {
-
-         return false;
-
-      }
-
-      if (::is_null(passociation->m_element2))
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-
-
-   inline void set_factory(const ::atom & atom, const ::pointer<factory_item_interface> & pfactory)
-   {
-
-      critical_section_lock cs(::factory_critical_section());
-
-      get_factory()->set_at(atom, pfactory);
-
-   }
-
-
-   inline void set_factory_from(const ::atom & atom, const ::atom & atomSource, const ::pointer<factory_item_interface> & pfactory)
-   {
-
-      critical_section_lock cs(::factory_critical_section());
-
-      get_factory(atomSource)->set_at(atom, pfactory);
-
-   }
-
-
-   template < typename TYPE, typename BASE >
-   inline void add_factory_item(const ::atom & atom)
-   {
-
-      set_factory(atom, __new(factory_item < TYPE, BASE >()));
-
-   }
 
 
    //template < typename TYPE >
@@ -808,7 +756,7 @@ namespace factory
 
 
 template < typename TYPE >
-inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory = ::factory::get_factory())
+inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory = ::get_task_sub_system_factory())
 {
 
    auto& pfactoryitem = pfactory->get_factory_item< TYPE >();
@@ -869,7 +817,7 @@ inline ::pointer<BASE_TYPE> __raw_create(::factory::factory* pfactory)
 
 
 template < typename TYPE >
-inline void __construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory = ::factory::get_factory())
+inline void __construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory = ::get_task_sub_system_factory())
 {
 
    __raw_construct(p, pfactory);
@@ -880,7 +828,7 @@ inline void __construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::fa
 
 
 template < typename BASE_TYPE >
-inline ::pointer < BASE_TYPE > __create(::particle* pparticle, ::factory::factory* pfactory = ::factory::get_factory())
+inline ::pointer < BASE_TYPE > __create(::particle* pparticle, ::factory::factory* pfactory = ::get_task_sub_system_factory())
 {
 
    ::pointer < BASE_TYPE > p;
@@ -911,7 +859,7 @@ inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::facto
 
 
 template < typename TYPE >
-inline void __id_construct(particle* pparticle, ::pointer<TYPE>& p, const ::atom& atom, ::factory::factory* pfactory = ::factory::get_factory())
+inline void __id_construct(particle* pparticle, ::pointer<TYPE>& p, const ::atom& atom, ::factory::factory* pfactory = ::get_task_sub_system_factory())
 {
 
    auto& pfactoryitem = pfactory->get_factory_item(atom);
@@ -953,7 +901,7 @@ inline void __id_construct(particle* pparticle, ::pointer<TYPE>& p, const ::atom
 
 
 template < typename TYPE >
-inline ::pointer < TYPE > __id_create(particle* pparticle, const ::atom& atom, ::factory::factory* pfactory = ::factory::get_factory())
+inline ::pointer < TYPE > __id_create(particle* pparticle, const ::atom& atom, ::factory::factory* pfactory = ::get_task_sub_system_factory())
 {
 
    auto& pfactoryitem = pfactory->get_factory_item(atom);

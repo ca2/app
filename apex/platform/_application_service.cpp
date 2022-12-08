@@ -1,10 +1,10 @@
-// Create by camilo on 2021-08-10 14:06 BRT <3ThomasBorregaardSørensen!!
+﻿// Create by camilo on 2021-08-10 14:06 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "os_context.h"
+#include "acme/platform/request.h"
 #include "apex/parallelization/service.h"
 #include "apex/parallelization/service_handler.h"
 #include "apex/platform/application.h"
-#include "apex/platform/create.h"
 #include "apex/platform/system.h"
 
 
@@ -73,8 +73,7 @@ namespace apex
    }
 
 
-
-   void application::on_service_request(::create * pcreate)
+   void application::on_service_request(::request * prequest)
    {
 
       if (!is_service())
@@ -84,13 +83,13 @@ namespace apex
 
       }
 
-      if (pcreate->has_property("create_service"))
+      if (prequest->has_property("create_service"))
       {
 
          enable_service();
 
       }
-      else if (pcreate->has_property("start_service"))
+      else if (prequest->has_property("start_service"))
       {
 
          service_handler()->defer_service();
@@ -98,19 +97,19 @@ namespace apex
          service_handler()->start_service();
 
       }
-      else if (pcreate->has_property("stop_service"))
+      else if (prequest->has_property("stop_service"))
       {
 
          service_handler()->stop_service();
 
       }
-      else if (pcreate->has_property("erase_service"))
+      else if (prequest->has_property("erase_service"))
       {
 
          disable_service();
 
       }
-      else if (has_property("service"))
+      else if (prequest->has_property("service"))
       {
 
          service_handler()->defer_service();

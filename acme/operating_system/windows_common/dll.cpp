@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/_operating_system.h"
@@ -212,17 +212,26 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
    if (dwReason == DLL_PROCESS_ATTACH)
    {
 
-      auto psystem = ::get_system();
+      auto ptask = ::get_task();
 
-      if (psystem)
+      if (ptask)
       {
 
-         auto pnode = psystem->acmenode();
+         auto psystem = ::get_task()->acmesystem();
 
-         if (pnode)
+         if (psystem)
          {
 
-            pnode->defer_initialize_callstack();
+            auto pnode = psystem->acmenode();
+
+            if (pnode)
+            {
+
+               pnode->m_bUpdateCallstack = true;
+
+               //pnode->defer_initialize_callstack();
+
+            }
 
          }
 

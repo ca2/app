@@ -2,13 +2,10 @@
 #pragma once
 
 
-#include "acme/exception/debug.h"
-
-
-CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox, const char * pszDetails = nullptr);
-
-
-CLASS_DECL_ACME void set_last_status(const ::e_status& estatus);
+//CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox, const char * pszDetails = nullptr);
+//
+//
+//CLASS_DECL_ACME void set_last_status(const ::e_status& estatus);
 
 
 CLASS_DECL_ACME void windowing_output_debug_string(const char* pszDebugString);
@@ -17,10 +14,10 @@ CLASS_DECL_ACME void windowing_output_debug_string(const char* pszDebugString);
 CLASS_DECL_ACME void throw_encoding_exception(const char * pszMessage);
 
 
-CLASS_DECL_ACME::acme::system* get_system();
+//CLASS_DECL_ACME::acme::system* acmesystem();
 
 
-inline bool __enum_is_failed(const ::e_status& e);
+//inline bool __enum_is_failed(const ::e_status& e);
 
 
 CLASS_DECL_ACME void set_platform_level(enum_platform_level eplatformlevel);
@@ -40,7 +37,7 @@ CLASS_DECL_ACME void ansi_get_errno(i32* perrno);
 CLASS_DECL_ACME void ansi_unlink(const char* psz);
 
 
-CLASS_DECL_ACME::e_status get_last_status();
+//CLASS_DECL_ACME::e_status get_last_status();
 
 
 #if !defined(__APPLE__) && !defined(LINUX) && !defined(ANDROID)
@@ -81,10 +78,10 @@ CLASS_DECL_ACME enum_trace_category object_trace_category(::particle* pparticle)
 
 
 
-
-template<typename LEFT, typename RIGHT>
-inline void assign(LEFT& l, const RIGHT& r) { l = r; }
-
+//
+//template<typename LEFT, typename RIGHT>
+//inline void assign(LEFT& l, const RIGHT& r) { l = r; }
+//
 
 inline void assign(::block& block, const ::payload& r);
 
@@ -125,11 +122,11 @@ typedef void THREAD_ROUTINE(thread_parameter parameter);
 
 CLASS_DECL_ACME bool succeeded(const ::payload& payload);
 
-
-CLASS_DECL_ACME::atom message_box_synchronous(::particle* ppartcicle, const char* pszMessage, const char* pszTitle = nullptr, const e_message_box& emessagebox = e_message_box_ok, const char* pszDetails = nullptr);
-
-CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom& atom) > function, ::particle* pparticle, const char* pszMessage, const char* pszTitle = nullptr, const e_message_box& emessagebox = e_message_box_ok, const char* pszDetails = nullptr);
-
+//
+//CLASS_DECL_ACME::atom message_box_synchronous(::particle* ppartcicle, const char* pszMessage, const char* pszTitle = nullptr, const e_message_box& emessagebox = e_message_box_ok, const char* pszDetails = nullptr);
+//
+//CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom& atom) > function, ::particle* pparticle, const char* pszMessage, const char* pszTitle = nullptr, const e_message_box& emessagebox = e_message_box_ok, const char* pszDetails = nullptr);
+//
 
 
 

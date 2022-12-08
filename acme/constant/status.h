@@ -338,8 +338,8 @@ INLINE_CONSTEXPR bool is_exit_exception_status(::enum_status estatus)
 }
 
 
-CLASS_DECL_ACME ::enum_status _errno_status(i32 nErrno);
-CLASS_DECL_ACME ::enum_status _failed_errno_status(i32 nErrno);
+CLASS_DECL_ACME ::enum_status _errno_status(int nErrno);
+CLASS_DECL_ACME ::enum_status _failed_errno_status(int nErrno);
 CLASS_DECL_ACME int _status_exit_code(enum_status estatus);
 
 

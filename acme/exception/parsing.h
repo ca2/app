@@ -1,7 +1,8 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "exception.h"
+#include "acme/parallelization/task_flag.h"
 
 
 class CLASS_DECL_ACME parsing_exception:
@@ -17,8 +18,6 @@ public:
 };
 
 
-
-
 class CLASS_DECL_ACME avoid_parsing_exception :
    public ___keep_task_flag
 {
@@ -29,7 +28,6 @@ public:
    
 
 };
-
 
 
 class network_payload_parsing_exception :

@@ -208,7 +208,7 @@ namespace acme
 //      ::window * puserinteraction = ::ios::window::FromHandlePermanent((oswindow) pdata);
 //      if(puserinteraction != nullptr)
 //         return puserinteraction;
-//      user::interaction_ptr_array wndptra = ::acme::get_system()->frames();
+//      user::interaction_ptr_array wndptra = ::acmeacmesystem()->frames();
 //      for(i32 i = 0; i < wndptra.get_count(); i++)
 //      {
 //         if(wndptra[i].get_safe_handle() == (oswindow) pdata)
@@ -266,9 +266,9 @@ namespace acme
 //       */
 //
 //      //      string strExeName;
-//      //string strTitle = ::acme::get_system()->load_string("::acme::get_system()->title");
+//      //string strTitle = ::acmeacmesystem()->load_string("::acmeacmesystem()->title");
 //      // get the exe title from the full path name [no extension]
-//      //    strExeName = ::acme::get_system()->get_module_title();
+//      //    strExeName = ::acmeacmesystem()->get_module_title();
 //
 //
 //
@@ -332,7 +332,7 @@ namespace acme
 //
 //         string strCmdLine          = pdata->m_strCommandLine;
 //
-////         ::acme::get_system()->m_strCmdLine = strCmdLine;
+////         ::acmeacmesystem()->m_strCmdLine = strCmdLine;
 //
 //         SetCurrentHandles();
 //
@@ -352,7 +352,7 @@ namespace acme
 //      // handle critical errors and avoid Windows message boxes
 //      // xxx         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 //
-//      ::acme::get_system()->m_strCmdLine = strCmdLine;
+//      ::acmeacmesystem()->m_strCmdLine = strCmdLine;
 //      //pApp->SetCurrentHandles();
 //      SetCurrentHandles();
 //

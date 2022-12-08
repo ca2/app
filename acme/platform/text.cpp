@@ -1,7 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/primitive/string/string.h"
 
-CLASS_DECL_ACME string __get_text(const string & str);
+//CLASS_DECL_ACME string __get_text(const string & str);
 
 
 CLASS_DECL_ACME string null_get_text(string str)
@@ -29,24 +29,24 @@ CLASS_DECL_ACME string null_get_text(string str)
 //}
 
 
-CLASS_DECL_ACME int __c_get_text_length(const char * psz)
-{
- 
-   string strGetText(__get_text(psz));
-   
-   return (int) strGetText.get_length();
-   
-}
-
-
-CLASS_DECL_ACME void __c_get_text(char * pszText, int iLen, const char * psz)
-{
-   
-   string strGetText(__get_text(psz));
-   
-   strncpy(pszText, strGetText, minimum(iLen, strGetText.get_length()));
-   
-}
+//CLASS_DECL_ACME int __c_get_text_length(const char * psz)
+//{
+// 
+//   string strGetText(__get_text(psz));
+//   
+//   return (int) strGetText.get_length();
+//   
+//}
+//
+//
+//CLASS_DECL_ACME void __c_get_text(char * pszText, int iLen, const char * psz)
+//{
+//   
+//   string strGetText(__get_text(psz));
+//   
+//   strncpy(pszText, strGetText, minimum(iLen, strGetText.get_length()));
+//   
+//}
 
 
 

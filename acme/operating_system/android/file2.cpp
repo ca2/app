@@ -118,7 +118,7 @@ int lockf(int fd, int cmd, off_t ignored_len)
 //void android_set_cache_dir(const char* pszDir)
 //{
 //
-//   ::acme::get_system()->m_pathCacheDir = pszDir;
+//   ::acmeacmesystem()->m_pathCacheDir = pszDir;
 //
 //}
 //
@@ -126,6 +126,6 @@ int lockf(int fd, int cmd, off_t ignored_len)
 //const char* android_get_cache_dir()
 //{
 //
-//   return ::acme::get_system()->m_pathCacheDir;
+//   return ::acmeacmesystem()->m_pathCacheDir;
 //
 //}

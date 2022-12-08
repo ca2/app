@@ -14,34 +14,14 @@ namespace acme
    public:
 
 
-      ::acme::application *                           m_pacmeapplication;
-      ::apex::application *                           m_papexapplication;
-      ::aqua::application *                           m_paquaapplication;
-      ::aura::application *                           m_pauraapplication;
-      ::axis::application *                           m_paxisapplication;
-      ::base::application *                           m_pbaseapplication;
-      ::bred::application *                           m_pbredapplication;
-      ::core::application *                           m_pcoreapplication;
       ::apex::context *                               m_papexcontext;
       ::aura::context *                               m_pauracontext;
-      ::apex::session *                               m_papexsession;
-      ::aqua::session *                               m_paquasession;
-      ::aura::session *                               m_paurasession;
-      ::axis::session *                               m_paxissession;
-      ::base::session *                               m_pbasesession;
-      ::bred::session *                               m_pbredsession;
-      ::core::session *                               m_pcoresession;
+
+
+      ::acme::application*                            m_pacmeapplication;
+      ::acme::session *                               m_pacmesession;
       ::acme::system *                                m_pacmesystem;
-      ::apex::system *                                m_papexsystem;
-      ::aqua::system *                                m_paquasystem;
-      ::aura::system *                                m_paurasystem;
-      ::axis::system *                                m_paxissystem;
-      ::base::system *                                m_pbasesystem;
-      ::bred::system *                                m_pbredsystem;
-      ::core::system *                                m_pcoresystem;
       ::acme::node *                                  m_pacmenode;
-      ::apex::node *                                  m_papexnode;
-      ::aura::node *                                  m_pauranode;
 
       ::pointer<::text::translator>                   m_ptexttranslator;
 
@@ -50,6 +30,10 @@ namespace acme
       ::pointer<::file_context>                       m_pfile;
 
       ::pointer < ::os_context >                      m_poscontext;
+
+
+      string                              m_strLocale;
+      string                              m_strSchema;
 
 
       context();
@@ -71,10 +55,10 @@ namespace acme
       virtual ::text::text __text(const ::atom& atom) override;
 
 
-      inline ::acme_file * acmefile();
-      inline ::acme_path * acmepath();
-      inline ::acme_directory * acmedirectory();
-      inline ::acme::node * acmenode();
+      ::acme_file * acmefile();
+      ::acme_path * acmepath();
+      ::acme_directory * acmedirectory();
+      ::acme::node * acmenode();
       inline ::acme::system * acmesystem() { return m_pacmesystem; }
 
 

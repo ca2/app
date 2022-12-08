@@ -1,8 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/constant/id.h"
 
 
-::time os_get_system_update_poll_time(const ::atom& atom)
+class ::time os_get_system_update_poll_time(const ::atom& atom)
 {
 
    if (atom == id_operating_system_user_theme_change)

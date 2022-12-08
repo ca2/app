@@ -1059,15 +1059,15 @@ void android_mouse(unsigned int message, float x, float y)
    if (::get_context_system() == nullptr)
       return;
 
-   if (::acme::get_system()->get_session() == nullptr)
+   if (::acmeacmesystem()->get_session() == nullptr)
       return;
 
-   if (::acme::get_system()->get_session()->m_puserinteractionHost == nullptr)
+   if (::acmeacmesystem()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
    MESSAGE msg;
 
-   msg.hwnd = ::acme::get_system()->get_session()->m_puserinteractionHost->get_handle();
+   msg.hwnd = ::acmeacmesystem()->get_session()->m_puserinteractionHost->get_handle();
 
    msg.message = message;
 
@@ -1079,8 +1079,8 @@ void android_mouse(unsigned int message, float x, float y)
 
    msg.pt.y = (long)y;
 
-   //::acme::get_system()->get_session()->m_puserinteractionHost->message_handler(&msg);
-   ::acme::get_system()->get_session()->m_puserinteractionHost->post_message(msg.message, msg.wParam, msg.lParam);
+   //::acmeacmesystem()->get_session()->m_puserinteractionHost->message_handler(&msg);
+   ::acmeacmesystem()->get_session()->m_puserinteractionHost->post_message(msg.message, msg.wParam, msg.lParam);
 
 }
 
@@ -1139,10 +1139,10 @@ void _android_key(unsigned int message, int keyCode, int iUni)
    if (::get_context_system() == nullptr)
       return;
 
-   if (::acme::get_system()->get_session() == nullptr)
+   if (::acmeacmesystem()->get_session() == nullptr)
       return;
 
-   if (::acme::get_system()->get_session()->m_puserinteractionHost == nullptr)
+   if (::acmeacmesystem()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
    ::pointer<::message::key>pkey = __new(::message::key());
@@ -1156,8 +1156,8 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 
    }
 
-   //::acme::get_system()->get_session()->m_puserinteractionHost->message_handler(pkey);
-   ::acme::get_system()->get_session()->m_puserinteractionHost->post(pkey);
+   //::acmeacmesystem()->get_session()->m_puserinteractionHost->message_handler(pkey);
+   ::acmeacmesystem()->get_session()->m_puserinteractionHost->post(pkey);
 
 }
 
@@ -1172,13 +1172,13 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
    if (::get_context_system() == nullptr)
       return;
 
-   if (::acme::get_system()->get_session() == nullptr)
+   if (::acmeacmesystem()->get_session() == nullptr)
       return;
 
-   if (::acme::get_system()->get_session()->m_puserinteractionHost == nullptr)
+   if (::acmeacmesystem()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
-   ::acme::get_system()->get_session()->m_puserinteractionHost->set_window_position(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
+   ::acmeacmesystem()->get_session()->m_puserinteractionHost->set_window_position(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
 
 
 }
@@ -1231,7 +1231,7 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
    //::fork(::get_context_system(), [=]()
    //{
 
-   ::acme::get_system()->get_session()->m_puserinteractionHost->post_predicate([=]()
+   ::acmeacmesystem()->get_session()->m_puserinteractionHost->post_predicate([=]()
       {
 
          _android_size(xScreen, yScreen, pikachu, yBitmap);
@@ -1334,13 +1334,13 @@ void android_on_text(e_os_text etext, const wchar_t * pwch, size_t len)
 
    string strText(pwch, len);
 
-   //::acme::get_system()->fork([=]()
+   //::acmeacmesystem()->fork([=]()
    //{
 
-   ::acme::get_system()->get_session()->m_puserinteractionHost->post_predicate([=]()
+   ::acmeacmesystem()->get_session()->m_puserinteractionHost->post_predicate([=]()
       {
 
-         ::acme::get_system()->on_os_text(etext, strText);
+         ::acmeacmesystem()->on_os_text(etext, strText);
 
       });
 
@@ -1383,7 +1383,7 @@ namespace acme
 
       }
 
-      ::acme::get_system()->get_session()->m_puserinteractionHost->post(pkey);
+      ::acmeacmesystem()->get_session()->m_puserinteractionHost->post(pkey);
 
 
    }
@@ -1471,7 +1471,7 @@ i64 oswindow_id(oswindow w)
 CLASS_DECL_ACME void message_box_synchronous(oswindow oswindow, const char * pText, const char * lpCaption, const ::e_message_box & emessagebox, ::callback callback)
 {
 
-   while (::acme::get_system()->oslocal().m_iMessageBoxResult > 0)
+   while (::acmeacmesystem()->oslocal().m_iMessageBoxResult > 0)
    {
 
       if (!task_sleep(100_ms))
@@ -1516,20 +1516,20 @@ CLASS_DECL_ACME void message_box_synchronous(oswindow oswindow, const char * pTe
    if (::is_set(pText))
    {
 
-      ::acme::get_system()->oslocal().m_strMessageBox = ansi_dup(pText);
+      ::acmeacmesystem()->oslocal().m_strMessageBox = ansi_dup(pText);
 
    }
 
    if (::is_set(lpCaption))
    {
 
-      ::acme::get_system()->oslocal().m_strMessageBoxCaption = ansi_dup(lpCaption);
+      ::acmeacmesystem()->oslocal().m_strMessageBoxCaption = ansi_dup(lpCaption);
 
    }
 
-   ::acme::get_system()->oslocal().m_iMessageBoxButton = iButton;
+   ::acmeacmesystem()->oslocal().m_iMessageBoxButton = iButton;
 
-   while (::acme::get_system()->oslocal().m_iMessageBoxResult <= 0)
+   while (::acmeacmesystem()->oslocal().m_iMessageBoxResult <= 0)
    {
 
       if (!task_sleep(100_ms))
@@ -1541,9 +1541,9 @@ CLASS_DECL_ACME void message_box_synchronous(oswindow oswindow, const char * pTe
 
    }
 
-   int iResult = ::acme::get_system()->oslocal().m_iMessageBoxResult;
+   int iResult = ::acmeacmesystem()->oslocal().m_iMessageBoxResult;
 
-   ::acme::get_system()->oslocal().m_iMessageBoxResult = 0;
+   ::acmeacmesystem()->oslocal().m_iMessageBoxResult = 0;
 
    if (iResult == 1)
    {
@@ -1602,7 +1602,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 int get_main_screen_rectangle(RECTANGLE_I32 * lprect)
 {
 
-   *lprect = ::acme::get_system()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen;
+   *lprect = ::acmeacmesystem()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen;
 
    return true;
 
@@ -1612,7 +1612,7 @@ int get_main_screen_rectangle(RECTANGLE_I32 * lprect)
 int SetMainScreenRect(LPCRECT32 lpcrect)
 {
 
-   ::acme::get_system()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen = *lpcrect;
+   ::acmeacmesystem()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen = *lpcrect;
 
    return true;
 

@@ -56,7 +56,7 @@ if (flag) \
 \
 } \
 \
-auto TOKEN_AT_LINE(__task_guard_task_ret) = keep(flag); \
+auto COUNTER_TOKEN(__task_guard_task_ret) = keep(flag); \
 \
 synchronouslock.unlock()
 
@@ -85,7 +85,7 @@ while (flag) \
    \
 } \
 \
-auto TOKEN_AT_LINE(__guard_wait_ret) = keep(&flag); \
+auto COUNTER_TOKEN(__guard_wait_ret) = keep(&flag); \
 \
 synchronouslock.unlock()
 
@@ -104,7 +104,7 @@ if (flag) \
 \
 } \
 \
-auto TOKEN_AT_LINE(__task_guard_task_ret) = keep(flag); \
+auto COUNTER_TOKEN(__task_guard_task_ret) = keep(flag); \
 \
 synchronouslock.unlock()
 
@@ -133,7 +133,7 @@ while (flag) \
    \
 } \
 \
-auto TOKEN_AT_LINE(__guard_wait_ret) = keep(&flag); \
+auto COUNTER_TOKEN(__guard_wait_ret) = keep(&flag); \
 \
 synchronouslock.unlock()
 

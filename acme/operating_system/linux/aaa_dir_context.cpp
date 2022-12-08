@@ -92,9 +92,9 @@ namespace linux
 
       }
 
-      __refer(m_pfilesystem, ::acme::get_system()->m_pfilesystem);
+      __refer(m_pfilesystem, ::acmeacmesystem()->m_pfilesystem);
 
-      __refer(m_pdirsystem, ::acme::get_system()->m_pdirsystem);
+      __refer(m_pdirsystem, ::acmeacmesystem()->m_pdirsystem);
 
       return ::success;
 

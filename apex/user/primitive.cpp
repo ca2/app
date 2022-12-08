@@ -1289,7 +1289,7 @@ namespace user
    }
 
 
-   //bool primitive::create_interaction(::user::interaction * puiParent, ::create * pcreate, ::u32 uExStyle, ::u32 uStyle)
+   //bool primitive::create_interaction(::user::interaction * puiParent, ::request * prequest, ::u32 uExStyle, ::u32 uStyle)
    //{
 
    //   throw ::interface_only();
@@ -1959,16 +1959,16 @@ namespace user
 
      }
 
-     if (::is_set(get_session()))
+     if (::is_set(acmesession()))
      {
 
-        if (this == get_session()->m_puserprimitiveHost)
+        if (this == acmesession()->m_papexsession->m_puserprimitiveHost)
         {
 
            return true;
 
         }
-        else if (puiParent == get_session()->m_puserprimitiveHost)
+        else if (puiParent == acmesession()->m_papexsession->m_puserprimitiveHost)
         {
 
            return true;

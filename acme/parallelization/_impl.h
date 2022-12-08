@@ -59,7 +59,7 @@ void async_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority),
 //inline ::thread* get_task(itask_t idthread)
 //{
 //
-//   return (::thread*) get_system()->get_task(idthread);
+//   return (::thread*) acmesystem()->get_task(idthread);
 //
 //}
 //

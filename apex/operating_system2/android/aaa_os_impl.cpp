@@ -43,7 +43,7 @@ const char* g_pszCacheDir = NULL;
 void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 {
 
-   if (::apex::get_system() == nullptr)
+   if (::apexacmesystem() == nullptr)
    {
 
       output_debug_string("android_fill_plasma : apex_system is null");
@@ -52,7 +52,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (::apex::get_system()->get_session() == nullptr)
+   if (::apexacmesystem()->get_session() == nullptr)
    {
 
       output_debug_string("android_fill_plasma : context_session is null");
@@ -61,7 +61,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (::apex::get_system()->get_session()->m_puserinteractionHost == nullptr)
+   if (::apexacmesystem()->get_session()->m_puserinteractionHost == nullptr)
    {
 
       output_debug_string("android_fill_plasma : Host Window is null");
@@ -70,7 +70,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (::apex::get_system()->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
+   if (::apexacmesystem()->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
    {
 
       output_debug_string("android_fill_plasma : Host Window impl is null");
@@ -79,7 +79,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (::apex::get_system()->get_session()->m_puserinteractionHost->get_window_graphics() == nullptr)
+   if (::apexacmesystem()->get_session()->m_puserinteractionHost->get_window_graphics() == nullptr)
    {
 
       //   output_debug_string("android_fill_plasma : get_window_graphics returned null");
@@ -88,7 +88,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   auto pbuffer = dynamic_cast <::graphics::double_buffer *> (::apex::get_system()->get_session()->m_puserinteractionHost->get_window_graphics());
+   auto pbuffer = dynamic_cast <::graphics::double_buffer *> (::apexacmesystem()->get_session()->m_puserinteractionHost->get_window_graphics());
 
    if(pbuffer == nullptr)
    {
@@ -203,7 +203,7 @@ void android_apex_main()
    rectangle.right = premote->getWidth();
    rectangle.bottom = premote->getHeight();
 
-   ::apex::get_system()->get_session()->defer_initialize_host_window(rectangle);
+   ::apexacmesystem()->get_session()->defer_initialize_host_window(rectangle);
 
    SetMainScreenRect(rectangle);
 

@@ -47,7 +47,7 @@ namespace user
 
       m_pwindow = pwindow;
 
-      auto psystem = get_system()->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       auto pnode = psystem->node();
       

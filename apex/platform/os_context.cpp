@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "os_context.h"
 #include "acme/exception/interface_only.h"
 #include "acme/platform/node.h"
@@ -801,10 +801,10 @@
    }
 
 
-   void os_context::on_process_command(::create * pcommand)
+   void os_context::on_process_request(::request * prequest)
    {
 
-      __UNREFERENCED_PARAMETER(pcommand);
+      request(prequest);
 
    }
 

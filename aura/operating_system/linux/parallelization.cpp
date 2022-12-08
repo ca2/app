@@ -175,7 +175,7 @@ int get_current_process_affinity_order()
 //#endif
 
 
-CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, ::time timeTimeout)
+CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, const class ::time & timeTimeout)
 {
 
    ::pointer<object>prunnable = pobjectRunnable;

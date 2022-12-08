@@ -657,7 +657,7 @@ namespace crypto
       memory storage;
       key(storage);
 
-      //auto psystem = get_system()->m_papexsystem;
+      //auto psystem = acmesystem()->m_papexsystem;
 
       auto psystem = acmesystem();
 

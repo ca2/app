@@ -20,24 +20,25 @@ namespace axis
 {
 
 
-   void initialize()
-   {
+   //void initialize()
+   //{
 
-      ::factory::add_factory_item< ::axis::system, ::acme::system>();
+   //   factory()->add_factory_item< ::axis::system, ::acme::system>();
 
-   }
+   //}
 
 
    application::application()
    {
 
 
-      ::axis::initialize();
+      //::axis::initialize();
 
       m_paxisapplication = this;
       m_bInitializeDataCentral = true;
 
-      ::factory::add_factory_item < ::networking::application >();
+      factory()->add_factory_item < ::networking::application >();
+      factory()->add_factory_item< ::axis::system, ::acme::system>();
 
    }
 
@@ -686,9 +687,9 @@ namespace axis
 
       INFORMATION("axis::application::process_init");
 
-      ::factory::add_factory_item < ::database::field_array >();
-      ::factory::add_factory_item < ::database::row >();
-      ::factory::add_factory_item < ::database::row_array >();
+      factory()->add_factory_item < ::database::field_array >();
+      factory()->add_factory_item < ::database::row >();
+      factory()->add_factory_item < ::database::row_array >();
 
       INFORMATION("axis::application::process_init");
 
@@ -1567,7 +1568,7 @@ namespace axis
    //}
 
 
-   //void application::on_request(::create * pcreate)
+   //void application::on_request(::request * prequest)
    //{
 
    //   aura::application::on_request(pcreate);

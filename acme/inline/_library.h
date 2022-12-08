@@ -51,7 +51,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved)
 #if !defined(CUBE)
 
 
-#include "acme/memory/new.cpp"
+#include "acme/memory/_new.inl"
 
 
 #endif

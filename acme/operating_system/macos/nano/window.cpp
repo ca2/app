@@ -2,7 +2,18 @@
 // Created by camilo on 31/01/2022 15:37 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "_nano.h"
+#include "window.h"
+#include "window_bridge.h"
+#include "device.h"
+#include "acme/platform/sequencer.h"
+#include "acme/platform/node.h"
+#include "acme/user/nano/window.h"
+#include "acme/user/user/mouse.h"
+#include <CoreGraphics/CoreGraphics.h>
+
+
+
+void ns_main_async(dispatch_block_t block);
 
 bool ns_app_is_running();
 
@@ -12,11 +23,11 @@ void ns_app_stop();
 
 CLASS_DECL_ACME void ns_get_main_screen_size(int & cx, int & cy);
 
-void ns_screen_copy(CGRect & rect, const ::rectangle_i32 &rectangle);
+void screen_coordinates_aware_copy(CGRect & rect, const RECTANGLE_I32 &rectangle);
 
-void ns_screen_copy(CGPoint & cgpoint, const POINT_I32 & point);
+void screen_coordinates_aware_copy(CGPoint & cgpoint, const POINT_I32 & point);
 
-void ns_screen_copy(POINT_I32 & point, const CGPoint & cgpoint);
+void screen_coordinates_aware_copy(POINT_I32 & point, const CGPoint & cgpoint);
 
 
 namespace macos
@@ -110,7 +121,7 @@ namespace macos
 
       CGRect cgrect;
       
-      ns_screen_copy(cgrect, m_pinterface->m_rectangle);
+      screen_coordinates_aware_copy(cgrect, m_pinterface->m_rectangle);
       
       m_pwindowbridge->m_pwindow = this;
       

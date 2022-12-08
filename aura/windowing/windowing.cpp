@@ -5,6 +5,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/keep.h"
 #include "aura/platform/application.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/message/user.h"
@@ -63,7 +64,7 @@ namespace windowing
       m_puser = puser;
 
 
-      ::factory::add_factory_item < cursor_manager >();
+      factory()->add_factory_item < cursor_manager >();
 
       //if(!estatus)
       //{
@@ -205,7 +206,7 @@ namespace windowing
 
       }
 
-      __keep(m_bSettingCursorMatter);
+      KEEP(m_bSettingCursorMatter);
 
       synchronouslock.unlock();
 
@@ -915,7 +916,7 @@ namespace windowing
    ::aura::application* windowing::get_app()
    {
 
-      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
+      return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
 
    }
 
@@ -923,17 +924,17 @@ namespace windowing
    ::aura::session* windowing::get_session()
    {
 
-      return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
+      return m_pcontext && m_pcontext->m_pacmesession ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
 
    }
 
 
-   ::aura::system* windowing::get_system()
-   {
+   //::aura::system* windowingacmesystem()
+   //{
 
-      return ::is_set(acmesystem()) ? dynamic_cast <::aura::system*> (acmesystem()) : nullptr;
+   //   return ::is_set(acmesystem()) ? dynamic_cast <::aura::system*> (acmesystem()) : nullptr;
 
-   }
+   //}
 
 
 } // namespace windowing

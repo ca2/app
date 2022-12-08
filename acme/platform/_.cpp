@@ -291,7 +291,7 @@ CLASS_DECL_ACME int is_ptr_null(const void* p, size_t s)
 //   lparam lparam = (LPARAM)pparam;
 //
 //
-//   get_system()->post_message(e_message_event2, (WPARAM)u, lparam);
+//   acmesystem()->post_message(e_message_event2, (WPARAM)u, lparam);
 //
 //
 //}

@@ -1355,7 +1355,7 @@ namespace windowing
    string_array display::get_wallpaper()
    {
 
-      auto psession = get_session();
+      auto psession = acmesession();
 
       ::count iMonitorCount = get_monitor_count();
 
@@ -1404,7 +1404,7 @@ namespace windowing
 
       }
 
-      auto psession = get_session();
+      auto psession = acmesession();
 
       ::count iMonitorCount = get_monitor_count();
 
@@ -1698,8 +1698,8 @@ namespace windowing
          if (get_monitor_rectangle(iScreen, rectangleMonitor) && get_workspace_rectangle(iScreen, rectangleWorkspace))
          {
 
-            if (would_be_docked_in_monitor(rectangleWouldBeRestored, rectangleMonitor) ||
-               would_be_docked_in_monitor(rectangleWouldBeRestored, rectangleWorkspace))
+            if (would_be_restored_in_monitor(rectangleWouldBeRestored, rectangleMonitor) ||
+               would_be_restored_in_monitor(rectangleWouldBeRestored, rectangleWorkspace))
             {
 
                return true;
@@ -1743,7 +1743,7 @@ namespace windowing
       }
 
       if (rectangleWouldBeRestored.bottom < rectangleMonitor.top
-         || rectangleWouldBeRestored.bottom > rectangleMonitor.top)
+         || rectangleWouldBeRestored.bottom > rectangleMonitor.bottom)
       {
 
          return false;

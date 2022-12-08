@@ -79,7 +79,7 @@ namespace opengl
 
       synchronous_lock synchronouslock(user_synchronization());
 
-      auto psession = get_session()->m_paurasession;
+      auto psession = acmesession()->m_paurasession;
 
       auto puser = psession->user();
 
@@ -190,7 +190,7 @@ namespace opengl
 
       synchronous_lock synchronouslock(user_synchronization());
 
-      auto psession = get_session()->m_paurasession;
+      auto psession = acmesession()->m_paurasession;
 
       auto puser = psession->user();
 

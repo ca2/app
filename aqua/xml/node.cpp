@@ -10,6 +10,7 @@
 #include "exception.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/string/str.h"
+#include "acme/exception/extended_status.h"
 
 
 // https://www.codeproject.com/Articles/3426/XMLite-simple-XML-parser
@@ -397,7 +398,7 @@ namespace xml
       if(pparseinfo == nullptr)
       {
 
-         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
 
       }
 
@@ -577,7 +578,7 @@ namespace xml
       if (pparseinfo == nullptr)
       {
 
-         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
 
       }
 
@@ -639,7 +640,7 @@ namespace xml
       if (pparseinfo == nullptr)
       {
 
-         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
 
       }
 
@@ -751,7 +752,7 @@ namespace xml
       if (pparseinfo == nullptr)
       {
 
-         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
 
       }
 
@@ -804,7 +805,7 @@ namespace xml
       if (pparseinfo == nullptr)
       {
 
-         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
 
       }
 
@@ -858,7 +859,7 @@ namespace xml
       if (pparseinfo == nullptr)
       {
 
-         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
 
       }
 
@@ -1003,7 +1004,7 @@ namespace xml
          if (pparseinfo == nullptr)
          {
 
-            pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+            pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
 
          }
 
@@ -1388,7 +1389,7 @@ namespace xml
       if(opt == nullptr)
       {
 
-         opt = get_system()->xml()->m_poptionDefault;
+         opt = ((node *) this)->acmesystem()->xml()->m_poptionDefault;
 
       }
 
@@ -1443,7 +1444,7 @@ namespace xml
                ostring += ' ';
             }
 
-            auto pxml = get_system()->m_pxml;
+            auto pxml = ((node*)this)->acmesystem()->m_pxml;
 
             for (auto & pproperty : m_set)
             {
@@ -1479,7 +1480,7 @@ namespace xml
       //if (m_set.has_elements())
         // ostring += ' ';
 
-      auto pxml = get_system()->xml();
+      auto pxml = ((node*)this)->acmesystem()->xml();
 
       for (auto & pproperty : m_set)
       {
@@ -1620,7 +1621,7 @@ namespace xml
 
       if(opt == nullptr)
       {
-         opt = get_system()->xml()->m_poptionDefault;
+         opt = ((node*)this)->acmesystem()->xml()->m_poptionDefault;
       }
 
       if( m_enode == ::data::e_node_xml_document )

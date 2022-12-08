@@ -32,7 +32,7 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
 
    auto edesktop = _get_edesktop();
 
-   auto psystem = ::get_system();
+   auto psystem = acmesystem();
 
    if(edesktop & ::user::e_desktop_kde && psystem->node()->has_xcb())
    {

@@ -9,8 +9,9 @@
 #include "acme/exception/exit.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/keep.h"
+#include "acme/platform/request.h"
 #include "acme/primitive/data/listener.h"
-#include "apex/platform/create.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context_image.h"
@@ -2014,13 +2015,13 @@ namespace user
                if (ptabdata->m_bVertical)
                {
 
-                  ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
+                  auto & rectangleTab = ptabdata->m_rectangleTab;
 
-                  rectangle.left = rectangle.left;
+                  rectangle.left = rectangleTab.left;
 
-                  rectangle.top = rectangle.top;
+                  rectangle.top = rectangleTab.top;
 
-                  rectangle.right = rectangle.right;
+                  rectangle.right = rectangleTab.right;
 
                   fDensity = get_density_for_window();
 
@@ -2030,11 +2031,11 @@ namespace user
                else
                {
 
-                  ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
+                  auto & rectangleTab = ptabdata->m_rectangleTab;
 
-                  rectangle.left = rectangle.left;
+                  rectangle.left = rectangleTab.left;
 
-                  rectangle.top = rectangle.top;
+                  rectangle.top = rectangleTab.top;
 
                   fDensity = get_density_for_window();
 
@@ -2053,33 +2054,33 @@ namespace user
                if (ptabdata->m_bVertical)
                {
 
-                  ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
+                  auto & rectangleTab = ptabdata->m_rectangleTab;
 
-                  rectangle.left = rectangle.left;
+                  rectangle.left = rectangleTab.left;
 
                   fDensity = get_density_for_window();
 
-                  rectangle.top = rectangle.bottom - (::i32)(8.0f * fDensity);
+                  rectangle.top = rectangleTab.bottom - (::i32)(8.0f * fDensity);
 
-                  rectangle.right = rectangle.right;
+                  rectangle.right = rectangleTab.right;
 
-                  rectangle.bottom = rectangle.bottom;
+                  rectangle.bottom = rectangleTab.bottom;
 
                }
                else
                {
 
-                  ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
+                  auto & rectangleTab = ptabdata->m_rectangleTab;
 
                   fDensity = get_density_for_window();
 
-                  rectangle.left = rectangle.right - (::i32)(8.0f * fDensity);
+                  rectangle.left = rectangleTab.right - (::i32)(8.0f * fDensity);
 
-                  rectangle.top = rectangle.top;
+                  rectangle.top = rectangleTab.top;
 
-                  rectangle.right = rectangle.right;
+                  rectangle.right = rectangleTab.right;
 
-                  rectangle.bottom = rectangle.bottom;
+                  rectangle.bottom = rectangleTab.bottom;
 
                }
 
@@ -2115,8 +2116,6 @@ namespace user
 
       }
 
-      ///auto ptabpane = get_tab(iIndex);
-
       if(eelement == e_element_border)
       {
 
@@ -2128,8 +2127,6 @@ namespace user
          }
 
          ::deflate(rectangle, ptabdata->m_rectangleMargin);
-
-         //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
          return true;
 
@@ -2146,8 +2143,6 @@ namespace user
          }
 
          ::deflate(rectangle, ptabdata->m_rectangleBorder);
-
-         //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
          return true;
 
@@ -2173,8 +2168,6 @@ namespace user
          rectangle.right = rectangle.left + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width();
 
          rectangle.bottom = rectangle.top + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->height();
-
-         //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
          return true;
 
@@ -2205,8 +2198,6 @@ namespace user
 
          ::deflate(rectangle, ptabdata->m_rectangleTextMargin);
 
-         //::offset_rect(prectangle, ptOffset.x, ptOffset.y);
-
          return true;
 
       }
@@ -2220,14 +2211,14 @@ namespace user
 
          }
 
-         if (get_data()->m_tabpanecompositea[iIndex]->m_bPermanent)
+         if (ptabdata->m_tabpanecompositea[iIndex]->m_bPermanent)
          {
 
             return false;
 
          }
 
-         if (get_data()->get_visible_tab_count() <= 1 && !get_data()->m_bEnableCloseAll)
+         if (ptabdata->get_visible_tab_count() <= 1 && !ptabdata->m_bEnableCloseAll)
          {
 
             return false;
@@ -2243,15 +2234,9 @@ namespace user
 
          rectangle.right  = rectangle.right;
 
-
          rectangle.left   = rectangle.right - 20;
 
-
          rectangle.top    = rectangle.bottom - 20;
-
-
-         //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
-
 
          return true;
 
@@ -2264,20 +2249,18 @@ namespace user
 
       }
 
-      if(get_data()->m_bVertical)
+      if(ptabdata->m_bVertical)
       {
 
-         ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
+         auto & rectangleTab = ptabdata->m_rectangleTab;
 
-         rectangle.bottom = rectangle.top;
+         rectangle.left = rectangleTab.left;
 
-         rectangle.left = rectangle.left;
+         rectangle.top = (::i32) (rectangleTab.top +  iIndex * ptabdata->m_iTabHeight);
 
-         rectangle.top = (::i32) (rectangle.top +  iIndex * get_data()->m_iTabHeight);
+         rectangle.right  = rectangleTab.right;
 
-         rectangle.right  = rectangle.right;
-
-         rectangle.bottom = rectangle.top + get_data()->m_iTabHeight;
+         rectangle.bottom = rectangle.top + ptabdata->m_iTabHeight;
 
       }
       else
@@ -2651,7 +2634,7 @@ namespace user
 
       ::count c = 0;
 
-      __keep(m_bDisableSavingRestorableTabs);
+      KEEP(m_bDisableSavingRestorableTabs);
 
       if(get_data()->m_matchanyRestore.m_itema.get_count() > 0)
       {
@@ -3340,16 +3323,16 @@ namespace user
    //}
 
 
-   bool tab::set_current_tab_by_id(const ::atom & atom, ::create * pcreate)
+   bool tab::set_current_tab_by_id(const ::atom & atom, ::request * prequest)
    {
 
       try
       {
 
-         if (::is_set(pcreate))
+         if (::is_set(prequest))
          {
 
-            m_pusersystem->m_pcreate = pcreate;
+            m_pusersystem->m_prequest = prequest;
 
          }
 
@@ -3400,10 +3383,10 @@ namespace user
 
       }
 
-      if (::is_set(pcreate) && pcreate == m_pusersystem->m_pcreate)
+      if (::is_set(prequest) && prequest == m_pusersystem->m_prequest)
       {
 
-         m_pusersystem->m_pcreate = nullptr;
+         m_pusersystem->m_prequest = nullptr;
 
       }
 

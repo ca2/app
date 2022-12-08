@@ -309,7 +309,7 @@ namespace sphere
    }
 
 
-   void application::on_request(::create * pcreate)
+   void application::on_request(::request * prequest)
    {
 
       ::aura::application::on_request(pcreate);
@@ -619,20 +619,20 @@ namespace sphere
    }
 
 
-   //void application::on_request(::create * pcreate)
+   //void application::on_request(::request * prequest)
    //{
 
 
    //}
 
 
-   bool application::on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId)
+   bool application::on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId)
    {
 
       if (m_strAppName == "app/userstack")
       {
 
-         if (eexclusive == ::ExclusiveInstanceLocalId)
+         if (eexclusive == ::e_exclusive_instance_local_id)
          {
 #ifdef WINDOWS_DESKTOP
             ::memory_file file(this);
@@ -659,7 +659,7 @@ namespace sphere
 
 
 
-   /*   void department::request(::create * pcreate)
+   /*   void department::request(::request * prequest)
       {
 
          if(m_pappCurrent != nullptr && m_pappCurrent != this

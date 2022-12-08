@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "hyperlink.h"
 #include "acme/constant/id.h"
 #include "acme/platform/system.h"
@@ -34,11 +34,11 @@ void hyperlink::run()
    if (m_bProfile)
    {
 
-      return get_system()->open_profile_link(m_strLink, m_strProfile, m_strTarget);
+      return ::get_task()->acmesystem()->open_profile_link(m_strLink, m_strProfile, m_strTarget);
 
    }
 
-   return get_system()->open_link(m_strLink, m_strProfile, m_strTarget);
+   return ::get_task()->acmesystem()->open_link(m_strLink, m_strProfile, m_strTarget);
 
 }
 

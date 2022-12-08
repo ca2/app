@@ -1,14 +1,14 @@
-#pragma once
+﻿#pragma once
 
 
 
-#include "file.h"
+//#include "file.h"
 
 
 class string_buffer;
 
 
-typedef ::pointer<string_buffer>string_file_pointer;
+//typedef ::pointer<string_buffer>string_file_pointer;
 
 
 class string_reference_buffer

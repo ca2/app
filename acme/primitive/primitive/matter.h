@@ -5,8 +5,7 @@
 #include "pointer.h"
 #include "atom.h"
 #include "factory.h"
-#include "acme/platform/sequencer.h"
-#include "acme/platform/tracer.h"
+//#include "acme/platform/sequencer.h"
 
 
 class CLASS_DECL_ACME matter :
@@ -85,6 +84,8 @@ public:
 #endif
 
 
+   virtual ::topic_pointer create_topic(const ::atom & atom);
+   virtual ::extended_topic_pointer create_extended_topic(const ::atom & atom);
 
 
    void operator()(::topic* ptopic, ::context* pcontext) override;
@@ -119,7 +120,7 @@ public:
 
 
    //::acme::context * get_context() const { return (::acme::context *) m_pcontext; }
-   //::acme::system * get_system() const;
+   //::acme::system * acmesystem() const;
 
    inline ::acme::application * get_app() { return _get_app(); }
 
@@ -246,25 +247,14 @@ public:
 
 
 
-   inline tracer trace(enum_trace_level etracelevel, enum_trace_category etracecategory) { return tracer(m_pcontext, etracelevel, etracecategory); }
-   inline tracer trace_log_information(enum_trace_category etracecategory) { return tracer(m_pcontext, e_trace_level_information, etracecategory); }
-   inline tracer trace_log_warning(enum_trace_category etracecategory) { return tracer(m_pcontext, e_trace_level_warning, etracecategory); }
-   inline tracer trace_log_error(enum_trace_category etracecategory) { return tracer(m_pcontext, e_trace_level_error, etracecategory); }
-   inline tracer trace_log_fatal(enum_trace_category etracecategory) { return tracer(m_pcontext, e_trace_level_fatal, etracecategory); }
 
 
-   inline tracer trace(enum_trace_level etracelevel) { return tracer(m_pcontext, etracelevel, trace_category()); }
-   inline tracer trace_log_information() { return tracer(m_pcontext, e_trace_level_information, trace_category()); }
-   inline tracer trace_log_warning() { return tracer(m_pcontext, e_trace_level_warning, trace_category()); }
-   inline tracer trace_log_error() { return tracer(m_pcontext, e_trace_level_error, trace_category()); }
-   inline tracer trace_log_fatal() { return tracer(m_pcontext, e_trace_level_fatal, trace_category()); }
 
-
-   using particle::trace;
-   using particle::trace_log_information;
-   using particle::trace_log_warning;
-   using particle::trace_log_error;
-   using particle::trace_log_fatal;
+   //using particle::trace;
+   //using particle::trace_log_information;
+   //using particle::trace_log_warning;
+   //using particle::trace_log_error;
+   //using particle::trace_log_fatal;
 
 
    virtual void trace_last_status();
@@ -297,43 +287,6 @@ public:
    //virtual void to_string(string & str) const override;
 
 
-   virtual ::file_pointer get_file(const ::payload& payloadFile, const ::file::e_open& eopen);
-   //inline ::file_pointer get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
-   //inline ::file_pointer get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
-
-
-   template < typename BASE_TYPE >
-   inline ::pointer<BASE_TYPE>__create(::factory::factory * pfactory = ::factory::get_factory());
-
-   template < typename BASE_TYPE >
-   inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom, ::factory::factory * pfactory = ::factory::get_factory());
-
-   template < typename TYPE >
-   inline ::pointer<TYPE>__create_new();
-
-   //template < typename BASE_TYPE >
-   //inline void __raw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory = ::factory::get_factory());
-
-   template < typename BASE_TYPE >
-   inline void __defer_construct(::pointer<BASE_TYPE> &  ptype, ::factory::factory * pfactory = ::factory::get_factory());
-
-   template < typename TYPE >
-   inline void __defer_construct_new(::pointer<TYPE> & ptype);
-
-   template < typename BASE_TYPE >
-   inline void __construct(::pointer<BASE_TYPE> & ptype, ::factory::factory * pfactory = ::factory::get_factory());
-
-   template < typename BASE_TYPE, typename TYPE >
-   inline void __construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p);
-
-   template < typename BASE_TYPE, typename TYPE >
-   inline void __construct(::pointer<BASE_TYPE> & ptype, TYPE * p);
-
-   template < typename BASE_TYPE >
-   inline void __id_construct(::pointer<BASE_TYPE> & ptype, const ::atom& atom, ::factory::factory * pfactory = ::factory::get_factory());
-
-   template < typename TYPE >
-   inline void __construct_new(::pointer<TYPE> & ptype);
 
 
 };
@@ -457,7 +410,7 @@ inline ::pointer<TYPE>matter::__create_new()
 //   ::__raw_construct(this, p, pfactory);
 ////   //{
 ////
-////   auto & pfactory = ::factory::get_factory_item < BASE_TYPE >();
+////   auto & pfactory = factory_item < BASE_TYPE >();
 ////
 ////   if (!pfactory)
 ////   {

@@ -1,4 +1,4 @@
-//
+﻿//
 //  user_create_struct.cpp
 //  aura
 //
@@ -35,7 +35,7 @@ namespace user
    }
 
 
-   //system::system(u32 uiExStyle, const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::rectangle_i32 rectangle, ::create * pcreate) :
+   //system::system(u32 uiExStyle, const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::rectangle_i32 rectangle, ::request * prequest) :
    //system(rectangle)
    //{
 
@@ -49,9 +49,9 @@ namespace user
    //}
 
 
-   //system::system(const ::rectangle_i32 & rectangle, ::u32 uExStyle, ::u32 uStyle, ::create * pcreate)
+   //system::system(const ::rectangle_i32 & rectangle, ::u32 uExStyle, ::u32 uStyle, ::request * prequest)
    //system::system(const ::rectangle_i32& rectangle, ::create* pcreate)
-   system::system(::create* pcreate)
+   system::system(::request* prequest)
    {
 
       //zero(m_createstruct);

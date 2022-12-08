@@ -425,6 +425,32 @@ namespace user
 
          bHasProdevian = m_puserinteraction->has_prodevian();
 
+         if (!m_puserinteraction->m_pinteractionimpl->m_bOfflineRender)
+         {
+
+            if (m_puserinteraction->const_layout().window().display() == e_display_iconic)
+            {
+
+               bHasProdevian = false;
+
+            }
+            else if (m_puserinteraction->const_layout().window().display() == e_display_notify_icon)
+            {
+
+               bHasProdevian = false;
+
+            }
+            else if (!::is_visible(m_puserinteraction->const_layout().window().display()))
+            {
+
+               bHasProdevian = false;
+
+            }
+
+
+         }
+         
+
          //synchronous_lock synchronouslock(m_pimpl->synchronization());
 
          // if (bHasProdevian)

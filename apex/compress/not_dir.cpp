@@ -1,5 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "not_dir.h"
+#include "acme/parallelization/task_flag.h"
 
 
 compress_not_dir::compress_not_dir()

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #undef ERROR
 #include <WinSock2.h>
 //#include "acme/operating_system.h"
@@ -235,12 +235,12 @@ void __node_aura_pos_term()
    //   ::acme::del(g_pgdiplusStartupOutput);
    //}
 
-   if (is_verbose())
-   {
+   //if (acmesystem()->is_verbose())
+   //{
 
-      output_debug_string(L"aura terminating!\n");
+   //   output_debug_string(L"aura terminating!\n");
 
-   }
+   //}
 
    //::CoUninitialize();
 

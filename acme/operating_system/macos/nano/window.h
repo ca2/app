@@ -4,7 +4,10 @@
 #pragma once
 
 
-#include "acme/user/nano/_nano.h"
+#include "acme/user/nano/window_implementation.h"
+
+
+class nano_window_bridge;
 
 
 namespace macos

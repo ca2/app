@@ -12,7 +12,7 @@
 #include "acme/parallelization/pool.h"
 #include "apex/message/message.h"
 #include "apex/platform/application.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "apex/platform/session.h"
 #include "apex/platform/system.h"
 
@@ -349,7 +349,7 @@ void thread::term_task()
    case id_system:
    {
 
-      //auto psystem = get_system()->m_papexsystem;
+      //auto psystem = acmesystem()->m_papexsystem;
 
       //if (psystem)
       //{
@@ -391,12 +391,12 @@ void thread::term_task()
    //}
 
 
-   if (get_session())
-   {
+   //if (get_session())
+   //{
 
-      
+   //   
 
-   }
+   //}
 
    //if (psystem)
    //{
@@ -855,7 +855,19 @@ bool thread::pump_message()
 
       //auto estatus = get_message(&m_message, nullptr, 0, 0);
 
-      get_message(&m_message, nullptr, 0, 0);
+      if (!peek_message(&m_message, nullptr, 0, 0, true))
+      {
+
+         if (on_idle())
+         {
+
+            return true;
+
+         }
+
+         get_message(&m_message, nullptr, 0, 0);
+
+      }
 
       if(m_message.m_atom == e_message_quit)
       {
@@ -1782,6 +1794,14 @@ void thread::initialize(::particle * pparticle)
 }
 
 
+bool thread::on_idle()
+{
+
+   return false;
+
+}
+
+
 void thread::main()
 {
 
@@ -1969,7 +1989,7 @@ void thread::init_task()
 
    //}
 
-   //auto psystem = get_system()->m_papexsystem;
+   //auto psystem = acmesystem()->m_papexsystem;
 
    //if (m_atomContextReference == id_none && psystem && psystem != this)
    //{
@@ -2099,7 +2119,7 @@ void thread::dispatch_thread_message(::message::message * pusermessage)
 //
 //   }
 //
-//   return get_system()->is_task_on(itask) ?
+//   return acmesystem()->is_task_on(itask) ?
 //          synchronization_result(e_synchronization_result_timed_out) :
 //          synchronization_result(e_synchronization_result_signaled_base);
 //
@@ -2151,10 +2171,10 @@ void thread::session_pre_translate_message(::message::message * pmessage)
       if(get_app() != nullptr)
       {
 
-         if(get_app()->get_session() != nullptr)
+         if(get_app()->acmesession() != nullptr)
          {
 
-            get_app()->get_session()->pre_translate_message(pmessage);
+            get_app()->acmesession()->m_papexsession->pre_translate_message(pmessage);
 
             if(pmessage->m_bRet)
             {
@@ -2182,7 +2202,7 @@ void thread::system_pre_translate_message(::message::message * pmessage)
    try
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       if(psystem != nullptr)
       {
@@ -2841,7 +2861,7 @@ void thread::__set_thread_off()
 
    auto atom = ::get_current_itask();
 
-   get_system()->set_task_off(::get_current_itask());
+   acmesystem()->set_task_off(::get_current_itask());
 
    //::set_task(nullptr);
 
@@ -3418,11 +3438,11 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
       if (::PeekMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, bRemoveMessage ? PM_REMOVE : PM_NOREMOVE))
       {
 
+         ::copy(*pMsg, msg);
+
          return true;
 
       }
-
-      ::copy(*pMsg, msg);
 
    }
 
@@ -4113,12 +4133,12 @@ bool thread::process_message()
          if (message.wParam == e_system_message_create)
          {
 
-            ::pointer<::create>pcreate(message.lParam);
+            ::pointer<::request >prequest(message.lParam);
 
-            if (pcreate.is_set())
+            if (prequest.is_set())
             {
 
-               call_request(pcreate);
+               on_request_message(prequest);
 
                return false;
 
@@ -4184,10 +4204,10 @@ bool thread::process_message()
          pmessage = get_app()->m_papexapplication->get_message(&message);
 
       }
-      else if(get_session())
+      else if(acmesession())
       {
 
-         pmessage = get_session()->get_message(&message);
+         pmessage = acmesession()->m_papexsession->get_message(&message);
 
       }
 
@@ -4447,10 +4467,28 @@ void thread::verb()
 }
 
 
-void thread::do_request(::create * pcreate)
+void thread::post_request(::request* prequest)
 {
 
-   post_element(e_message_system, e_system_message_create, pcreate);
+   post_element(e_message_system, e_system_message_create, prequest);
+
+}
+
+
+void thread::on_request_message(::request* prequest)
+{
+
+   request(prequest);
+
+}
+
+
+void thread::request(::request * prequest)
+{
+
+   m_prequest = prequest;
+
+   main();
 
 }
 

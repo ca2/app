@@ -1,9 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 #include "acme/_library.h"
 
 
-IMPLEMENT_THIS_TYPE(folder_zip);
+//IMPLEMENT_THIS_TYPE(folder_zip);
 
 
 

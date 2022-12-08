@@ -73,7 +73,7 @@ namespace userex
 
          auto pcontext = m_pcontext;
 
-         auto psession = pcontext->m_paurasession;
+         auto psession = pcontext->m_pacmesession->m_paurasession;
 
          auto puser = psession->m_puser->m_pcoreuser;
 

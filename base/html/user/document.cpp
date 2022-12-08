@@ -131,7 +131,7 @@ property_set * html_document::form_document_get_property_set()
 }
 
 
-//bool html_document::open_document(::create * pcreate)
+//bool html_document::open_document(::request * prequest)
 //{
 //
 //   auto phtmlform = get_typed_impact < ::html_form >();

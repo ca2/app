@@ -189,7 +189,7 @@ namespace user
    ::aura::application * shell::get_app()
    {
 
-      return m_pcontext ? m_pcontext->m_pauraapplication : nullptr;
+      return m_pcontext ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
 
    }
 
@@ -197,17 +197,17 @@ namespace user
    ::aura::session *shell:: get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
+      return m_pcontext ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
 
    }
 
 
-   ::aura::system * shell::get_system()
-   {
+   //::aura::system * shellacmesystem()
+   //{
 
-      return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
+   //   return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
 
-   }
+   //}
 
 
    bool shell::reserve_image(_get_file_image_ & getfileimage)

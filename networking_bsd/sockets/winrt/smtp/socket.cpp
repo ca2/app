@@ -62,16 +62,16 @@ namespace sockets
          if(code == "334")
          {
             string strWord = pa.getword();
-            string strRequest = ::apex::get_system()->base64().decode(strWord);
+            string strRequest = ::apexacmesystem()->base64().decode(strWord);
             string strResponse;
             if(::str().find_ci("username", strRequest) >= 0)
             {
-               strResponse = ::apex::get_system()->base64().encode(acmefile()->as_string("C:\\archive\\root\\x\\sensitive\\sensitive\\seed\\sendmail_user.txt"));
+               strResponse = ::apexacmesystem()->base64().encode(acmefile()->as_string("C:\\archive\\root\\x\\sensitive\\sensitive\\seed\\sendmail_user.txt"));
                write(strResponse + "\r\n");
             }
             else if(::str().find_ci("password", strRequest) >= 0)
             {
-               strResponse = ::apex::get_system()->base64().encode(acmefile()->as_string("C:\\archive\\root\\x\\sensitive\\sensitive\\seed\\sendmail_pass.txt"));
+               strResponse = ::apexacmesystem()->base64().encode(acmefile()->as_string("C:\\archive\\root\\x\\sensitive\\sensitive\\seed\\sendmail_pass.txt"));
                write(strResponse + "\r\n");
             }
          }
@@ -102,7 +102,7 @@ namespace sockets
          if(code.Mid(0, 1) == "3")
          {
             m_estate = state_body;
-            write("Subject:  =?utf-8?B?" + ::apex::get_system()->base64().encode(m_email.m_strSubject) + "?=\r\n");
+            write("Subject:  =?utf-8?B?" + ::apexacmesystem()->base64().encode(m_email.m_strSubject) + "?=\r\n");
             m_email.prepare_headers();
             write(m_email.m_strHeaders);
             write("Content-Type: text/plain; charset=\"utf-8\"\r\n");

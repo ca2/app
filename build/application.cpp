@@ -46,7 +46,7 @@ namespace app_core_build
 
 #if defined(LINUX)
 
-      ::factory::get_factory()->add_factory_item < linux_build, build >();
+      factory()->add_factory_item < linux_build, build >();
 
 #else
 
@@ -69,13 +69,13 @@ namespace app_core_build
 
       puser->will_use_impact_hint(FONTSEL_IMPACT);
 
-      ::factory::add_factory_item <::app_core_build::document >();
-      ::factory::add_factory_item <::app_core_build::frame >();
-      ::factory::add_factory_item <::app_core_build::main_frame >();
-      ::factory::add_factory_item <::user::button_impact >();
-      ::factory::add_factory_item <::app_core_build::impact >();
-      ::factory::add_factory_item <::app_core_build::main_impact >();
-      ::factory::add_factory_item <::app_core_build::pane_impact >();
+      factory()->add_factory_item <::app_core_build::document >();
+      factory()->add_factory_item <::app_core_build::frame >();
+      factory()->add_factory_item <::app_core_build::main_frame >();
+      factory()->add_factory_item <::user::button_impact >();
+      factory()->add_factory_item <::app_core_build::impact >();
+      factory()->add_factory_item <::app_core_build::main_impact >();
+      factory()->add_factory_item <::app_core_build::pane_impact >();
 
       if (!::core::application::init_instance())
       {
@@ -126,7 +126,7 @@ namespace app_core_build
    }
 
 
-   void application::on_request(::create * pcreate)
+   void application::on_request(::request * prequest)
    {
 
 

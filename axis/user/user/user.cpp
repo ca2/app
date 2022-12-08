@@ -39,8 +39,8 @@ namespace axis
 
       ::user::user::init1();
 
-      ::factory::add_factory_item <::user::list_box >();
-      ::factory::add_factory_item <::user::combo_box >();
+      factory()->add_factory_item <::user::list_box >();
+      factory()->add_factory_item <::user::combo_box >();
 
    }
 

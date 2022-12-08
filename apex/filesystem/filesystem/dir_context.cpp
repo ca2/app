@@ -12,6 +12,7 @@
 #include "acme/primitive/primitive/url.h"
 #include "acme/parallelization/event.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/parallelization/task_flag.h"
 #include "acme/primitive/string/_string.h"
 #include "acme/primitive/string/str.h"
 #include "apex/platform/application.h"
@@ -1005,7 +1006,7 @@ bool dir_context::is(const ::file::path& pathParam)
 
    ::file::path path;
 
-   auto psystem = get_system()->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    if (pathParam.begins_ci("appmatter://"))
    {
@@ -1667,7 +1668,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   auto psystem = get_system()->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    return psystem->m_pdirsystem->m_pathInstall;
 
@@ -1679,7 +1680,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   auto psystem = get_system()->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    return psystem->m_pdirsystem->m_pathCa2Config;
 
@@ -1691,7 +1692,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   auto psystem = get_system()->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    return psystem->m_pdirsystem->m_pathHome;
 
@@ -1713,11 +1714,11 @@ bool dir_context::name_is(const ::file::path& strPath)
 ::file::path dir_context::module()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   //synchronous_lock synchronouslock(this->synchronization());
 
-   auto psystem = get_system()->m_papexsystem;
+   auto pacmeapplication = acmeapplication();
 
-   return psystem->m_pdirsystem->m_pathModule;
+   return pacmeapplication->get_module_folder();
 
 }
 
@@ -1727,7 +1728,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //   synchronous_lock synchronouslock(this->synchronization());
 //
-//   auto psystem = get_system()->m_papexsystem;
+//   auto psystem = acmesystem()->m_papexsystem;
 //
 //   return psystem->m_pdirsystem->m_pathCa2Module;
 //
@@ -1841,7 +1842,7 @@ void dir_context::get_matter_locator(string_array& straMatterLocator, bool bIncl
 bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& listing, ::file::e_flag eflag, enum_depth edepth)
 {
 
-   auto psystem = get_system()->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    synchronous_lock synchronouslock(psystem->m_pmutexMatter);
 
@@ -1991,7 +1992,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 //
 //   ::file::path strDir = matter(str, true);
 //
-//   auto psystem = get_system()->m_papexsystem;
+//   auto psystem = acmesystem()->m_papexsystem;
 //
 //   if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
 //   {
@@ -2088,7 +2089,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    }
 
-   auto psystem = get_system()->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {
@@ -2168,9 +2169,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    m_pcontext->m_papexcontext->locale_schema_matter(straLocaleSchema, straMatterLocator, strLocale, strSchema);
 
-   auto psession = get_session();
-
-   ::text::context* ptextcontext = psession->text_context();
+   auto ptextcontext = acmesession()->text_context();
 
    if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {
@@ -2529,7 +2528,7 @@ ret:
 
    }
 
-   auto psystem = get_system()->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    ::file::path path = psystem->local_get_matter_cache_path(
       ::file::path(strRepo) / "_matter" / strApp / "_std" / "_std" / pathRel);
@@ -2548,7 +2547,7 @@ ret:
 
    string strPlatform(pszPlatform);
 
-   auto psystem = get_system()->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    if (strPlatform.is_empty())
    {
@@ -2583,9 +2582,7 @@ ret:
    if (strLocale.is_empty())
    {
 
-      auto psession = get_session();
-
-      strLocale = psession->m_strLocale;
+      strLocale = acmesession()->m_strLocale;
 
    }
 
@@ -2594,9 +2591,7 @@ ret:
    if (strSchema.is_empty())
    {
 
-      auto psession = get_session();
-
-      strSchema = psession->m_strSchema;
+      strSchema = acmesession()->m_strSchema;
 
    }
 
@@ -2623,7 +2618,7 @@ ret:
    if (strAppId.is_empty())
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       //throw ::interface_only("this is an interface");
 
@@ -2831,7 +2826,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 ::file::watcher& dir_context::watcher()
 {
 
-   auto psystem = get_system()->m_papexsystem;
+   auto psystem = acmesystem()->m_papexsystem;
 
    return *psystem->m_pdirsystem->m_pfilewatcher;
 
@@ -3077,9 +3072,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 ::file::path dir_context::standalone()
 {
 
-   auto psystem = get_system()->m_papexsystem;
-
-   return acmedirectory()->roaming() / psystem->m_strStandalone;
+   return acmedirectory()->roaming() / acmeapplication()->m_strStandalone;
 
 }
 

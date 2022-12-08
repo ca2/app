@@ -23,7 +23,7 @@ public:
 
    // A exception class is meant to be a small utility/tool class.
    // m_bLog -> too much managing (micro-managing and also big-managing)
-   // from utility/tool small class of the Logging get_system()->
+   // from utility/tool small class of the Logging acmesystem()->
    // General-ever Log can be done by final handlers at Main Loop and crash handlers
    // Log can be supressed or translated at optional middle-stack handlers.
    // bool                    m_bLog;
@@ -35,11 +35,12 @@ public:
 
 
    exception();
-#ifdef ANDROID
-   exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
-#else
+//#ifdef ANDROID
+//   exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
+//#else
    exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
-#endif
+//#endif
+   exception(const ::e_status & estatus, const ::array < error_code > & errorcodea, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
    virtual ~exception();
 
 

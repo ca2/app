@@ -4,6 +4,12 @@
 #pragma once
 
 
+#include "acme/user/nano/device.h"
+
+
+#include <CoreGraphics/CoreGraphics.h>
+
+
 namespace quartz2d
 {
 

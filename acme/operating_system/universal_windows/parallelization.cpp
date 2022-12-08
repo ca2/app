@@ -16,13 +16,13 @@ bool __os_term_thread();
 #include "acme/_operating_system.h"
 
 
-//#undef ::acme::get_system()
+//#undef ::acmeacmesystem()
 
-//#pragma push_macro("::acme::get_system()")
-//#undef ::acme::get_system()
+//#pragma push_macro("::acmeacmesystem()")
+//#undef ::acmeacmesystem()
 //using namespace ::winrt::Windows::Foundation;
-//using namespace ::winrt::Windows::acme::get_system()::Threading;
-//#pragma pop_macro("::acme::get_system()")
+//using namespace ::winrt::Windows::acmeacmesystem()::Threading;
+//#pragma pop_macro("::acmeacmesystem()")
 
 
 ::pointer< ::mutex > g_pmutexThreadIdHandleLock = nullptr;
@@ -290,7 +290,7 @@ void main_asynchronous(const ::procedure& procedure)
 
    }
 
-   auto psystem = ::get_system();
+   auto psystem = acmesystem();
 
    psystem->windowing_post(procedure);
 

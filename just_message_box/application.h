@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -15,7 +15,7 @@ namespace app_just_message_box
    public:
 
 
-      //application();
+      application();
       //~application() override;
 
 
@@ -23,7 +23,7 @@ namespace app_just_message_box
       //void term_application() override;
 
 
-      void on_request(::create * pcreate) override;
+      void on_request(::request * prequest) override;
 //
 //
 //#ifdef _DEBUG

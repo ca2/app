@@ -10,7 +10,7 @@
 
 //extern string_map < ::pointer<::acme::library >> g_pmapLibrary ;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
-//extern ::pointer < ::mutex >* ::aura::get_system()->m_pmutexLibrary;
+//extern ::pointer < ::mutex >* ::auraacmesystem()->m_pmutexLibrary;
 
 
 #ifdef RASPBIAN
@@ -41,7 +41,7 @@
 bool is_verbose()
 {
 
-   return ::aura::get_system()->m_bVerbose;
+   return ::auraacmesystem()->m_bVerbose;
 
 }
 
@@ -49,7 +49,7 @@ bool is_verbose()
 void set_verbose(bool bVerbose)
 {
 
-   ::aura::get_system()->m_bVerbose = bVerbose;
+   ::auraacmesystem()->m_bVerbose = bVerbose;
 
 }
 
@@ -492,13 +492,13 @@ void app_core::system_init()
 
    }
 
-//   ::aura::get_system()->common_construct();
+//   ::auraacmesystem()->common_construct();
 
    ::set_thread(get_context_system());
 
    debug_context_object(get_context_system());
 
-   ::aura::get_system()->initialize(get_context_system());
+   ::auraacmesystem()->initialize(get_context_system());
 
    //set_object(get_context_system());
 
@@ -508,13 +508,13 @@ void app_core::system_init()
 
    pcreate->m_pcommandline = __new(command_line(get_context_system(), strCommandLine));
 
-   //::aura::get_system()->get_command()->add_create(pcreate);
+   //::auraacmesystem()->get_command()->add_create(pcreate);
 
-   ::aura::get_system()->add_create(pcreate);
+   ::auraacmesystem()->add_create(pcreate);
 
    // what could influence time before Main?
    // cold start (never previously called program and its Dlls...)?
-   ::aura::get_system()->m_durationMainStart = m_durationStart;
+   ::auraacmesystem()->m_durationMainStart = m_durationStart;
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 
@@ -1696,7 +1696,7 @@ bool app_core::has_aura_application_factory() const
 //   if (m_pmainstruct && m_pmainstruct->m_bConsole)
 //   {
 //
-//      return ::aura::get_system()->inline_init();
+//      return ::auraacmesystem()->inline_init();
 //
 //   }
 //
@@ -1721,18 +1721,18 @@ bool app_core::has_aura_application_factory() const
 //
 //   }
 //
-//   ::aura::get_system()->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   ::auraacmesystem()->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 //
 //   if (m_pmainstruct && m_pmainstruct->m_bConsole)
 //   {
 //
-//      ::aura::get_system()->get_session()->set_context_app(::aura::get_system()->m_pacmeapplicationStartup);
+//      ::auraacmesystem()->get_session()->set_context_app(::auraacmesystem()->acmeapplication());
 //
-//      ::aura::get_system()->set_context_app(::aura::get_system()->m_pacmeapplicationStartup);
+//      ::auraacmesystem()->set_context_app(::auraacmesystem()->acmeapplication());
 //
-//      ::aura::get_system()->get_session()->set_context(::aura::get_system()->m_pacmeapplicationStartup);
+//      ::auraacmesystem()->get_session()->set_context(::auraacmesystem()->acmeapplication());
 //
-//      ::aura::get_system()->set_context(::aura::get_system()->m_pacmeapplicationStartup);
+//      ::auraacmesystem()->set_context(::auraacmesystem()->acmeapplication());
 //
 //   }
 //
@@ -1776,7 +1776,7 @@ bool app_core::has_aura_application_factory() const
 //::u32 app_core::system_main()
 //{
 //
-//   ::e_status estatus = ::aura::get_system()->__thread_procedure();
+//   ::e_status estatus = ::auraacmesystem()->__thread_procedure();
 //
 //   return estatus;
 //
@@ -1828,9 +1828,9 @@ bool app_core::has_aura_application_factory() const
 
    string strAppId = pszAppId;
 
-   synchronous_lock synchronouslock(::aura::get_system()->m_pmutexLibrary);
+   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
-   ::pointer<::acme::library> plibrary = ::aura::get_system()->m_mapLibrary[strAppId];
+   ::pointer<::acme::library> plibrary = ::auraacmesystem()->m_mapLibrary[strAppId];
 
    if (papp)
    {
@@ -1875,7 +1875,7 @@ bool app_core::has_aura_application_factory() const
             if (strAppId.is_empty())
             {
 
-               papp = ::aura::get_system()->__create < ::aura::application > ();
+               papp = ::auraacmesystem()->__create < ::aura::application > ();
 
                *((::aura_main_struct*)papp) = *((::aura_main_struct*)this);
 
@@ -1914,7 +1914,7 @@ bool app_core::has_aura_application_factory() const
 
             }
 
-            plibrary = ::aura::get_system()->get_library(strLibrary);
+            plibrary = ::auraacmesystem()->get_library(strLibrary);
 
             if (!plibrary)
             {
@@ -1987,7 +1987,7 @@ bool app_core::has_aura_application_factory() const
 
       ::acme::library& library = *plibrary;
 
-      papp = library.get_new_application(::aura::get_system()->get_session(), strAppId);
+      papp = library.get_new_application(::auraacmesystem()->get_session(), strAppId);
 
       ::output_debug_string("\n\n\n|(4)----");
       ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
@@ -2050,8 +2050,8 @@ bool app_core::has_aura_application_factory() const
    if (!papp->is_serviceable() || papp->is_user_service())
    {
 
-      ::aura::get_system()->m_spmutexUserAppData = __new(::pointer < ::mutex >(e_create_new, false, "Local\\ca2.UserAppData"));
-      ::aura::get_system()->m_spmutexSystemAppData = __new(::pointer < ::mutex >(e_create_new, false, "Local\\ca2.SystemAppData"));
+      ::auraacmesystem()->m_spmutexUserAppData = __new(::pointer < ::mutex >(e_create_new, false, "Local\\ca2.UserAppData"));
+      ::auraacmesystem()->m_spmutexSystemAppData = __new(::pointer < ::mutex >(e_create_new, false, "Local\\ca2.SystemAppData"));
 
    }
 
@@ -2070,15 +2070,15 @@ bool app_core::has_aura_application_factory() const
 
    papp->m_strAppId = strAppId;
 
-   //papp->set_object(::aura::get_system()->get_session());
+   //papp->set_object(::auraacmesystem()->get_session());
 
    //papp->set_context_system(get_context_system());
 
-   //papp->set_context_session(::aura::get_system()->get_session());
+   //papp->set_context_session(::auraacmesystem()->get_session());
 
    //papp->set_context_app(papp);
 
-   //papp->set_context_thread(::aura::get_system()->get_session());
+   //papp->set_context_thread(::auraacmesystem()->get_session());
 
    //papp->set_context(papp);
 

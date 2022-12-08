@@ -3,20 +3,26 @@
 //  acme
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 21/07/17.
+//  ThomasBS-LiveEdu.TV(LiveCoding.TV)
 //
 //
 
 #include "framework.h"
-#include "acme/operating_system.h"
+
 #include "main.h"
+#include "acme/platform/acme.h"
 //aaa_//#include "acme/operating_system/_.h"
 //#include "acme/operating_system/_os.h"
-#include "acme/update.h"
+//#include "acme/update.h"
 //char * ns_realpath(const char * pszPath);
 //char * mm_ca2_command_line();
 
 
-// ThomasBS-LiveEdu.TV(LiveCoding.TV)
+#include "acme/_operating_system.h"
+
+
+#include <dispatch/dispatch.h>
+
 
 void * CreateDispatchQueue()
 {
@@ -135,7 +141,7 @@ string apple_get_executable_path()
 //void apple_on_app_activate()
 //{
 //
-//   ::acme::get_system()->call_subject(id_app_activated);
+//   ::acmeacmesystem()->call_subject(id_app_activated);
 //
 //}
 
@@ -143,7 +149,7 @@ string apple_get_executable_path()
 //void apple_on_new_file()
 //{
 //
-//   ::acme::get_system()->on_open_file(::e_type_empty, "");
+//   ::acmeacmesystem()->on_open_file(::e_type_empty, "");
 //
 //}
 
@@ -168,13 +174,13 @@ string apple_get_executable_path()
 //
 //         }
 //
-//         stra[i] = ::acme::get_system()->url().::url::decode(stra[i]);
+//         stra[i] = ::acmeacmesystem()->url().::url::decode(stra[i]);
 //
 //      }
 //
 //   }
 //
-//   ::acme::get_system()->defer_accumulate_on_open_file(stra, pszExtra);
+//   ::acmeacmesystem()->defer_accumulate_on_open_file(stra, pszExtra);
 //
 //}
 
@@ -192,7 +198,7 @@ string apple_get_executable_path()
 //   else if(iCount == 1)
 //   {
 //
-//      ::acme::get_system()->on_open_file(psza[0], pszExtra);
+//      ::acmeacmesystem()->on_open_file(psza[0], pszExtra);
 //
 //      ::free((void *) psza[0]);
 //
@@ -206,7 +212,7 @@ string apple_get_executable_path()
 //
 //      stra.c_add((char **) psza, iCount, false);
 //
-//      ::acme::get_system()->on_open_file(stra, pszExtra);
+//      ::acmeacmesystem()->on_open_file(stra, pszExtra);
 //
 //   }
 //
@@ -223,7 +229,7 @@ string apple_get_executable_path()
 //}
 //
 //
-//void window_copy(CGRect * prectTarget, const ::rectangle_i32 * prectSource)
+//void screen_coordinates_aware_copy(CGRect * prectTarget, const ::rectangle_i32 * prectSource)
 //{
 //
 //   CGRect rectangleWorkspace = mm_get_workspace_rect();
@@ -236,7 +242,7 @@ string apple_get_executable_path()
 //}
 //
 //
-//void window_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
+//void screen_coordinates_aware_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
 //{
 //
 //   CGRect rectangleWorkspace = mm_get_workspace_rect();
@@ -395,228 +401,246 @@ i64 oswindow_id(oswindow w)
 //}
 
 
-::file::path dir_ca2_module()
-{
-
-#if defined(ANDROID)
-
-   return acmepath()->app_module().folder();
-
-#elif defined(_UWP)
-
-   wstring wstrModuleFilePath;
-
-   auto pwszModuleFilePath = wstrModuleFilePath.get_string_buffer(MAX_PATH * 8);
-
-   if (!GetModuleFileNameW(nullptr, pwszModuleFilePath, MAX_PATH * 8))
-   {
-
-      return "";
-
-   }
-
-   wstrModuleFilePath.release_string_buffer();
-
-   LPWSTR pszModuleFileName;
-
-   wstring wstrModuleFolder;
-
-   auto pwszModuleFolder = wstrModuleFolder.get_string_buffer(MAX_PATH * 8);
-
-   if (!GetFullPathNameW(wstrModuleFilePath, MAX_PATH * 8, pwszModuleFolder, &pszModuleFileName))
-   {
-
-      return "";
-
-   }
-
-   wstrModuleFolder.release_string_buffer();
-
-   wstrModuleFolder.ends_eat_ci("\\");
-   wstrModuleFolder.ends_eat_ci("/");
-   wstrModuleFolder.ends_eat_ci("\\");
-   wstrModuleFolder.ends_eat_ci("/");
-
-   return string(wstrModuleFolder);
-
-
-#elif defined(WINDOWS)
-
-
-   wstring wstrModuleFolder(get_buffer, MAX_PATH * 8);
-
-
-   wstring wstrModuleFilePath(get_buffer, MAX_PATH * 8);
-
-
-   HMODULE hmodule = ::GetModuleHandleA("acme.dll");
-
-   if (hmodule == nullptr)
-      hmodule = ::GetModuleHandleA("spalib.dll");
-
-   if (hmodule == nullptr)
-   {
-
-      PWSTR pwstr = nullptr;
-
-      try
-      {
-
-         HRESULT hr = SHGetKnownFolderPath(
-            FOLDERID_ProgramFilesX86,
-            KF_FLAG_DEFAULT,
-            nullptr,
-            &pwstr);
-
-         wcscpy(wstrModuleFilePath, pwstr);
-
-      }
-      catch (...)
-      {
-
-
-      }
-
-      if (pwstr)
-      {
-
-         ::CoTaskMemFree(pwstr);
-         pwstr = nullptr;
-
-      }
-
-
-      //if(wstrModuleFilePath[wcslen(wstrModuleFilePath) - 1] == '\\'
-
-      //      || wstrModuleFilePath[wcslen(wstrModuleFilePath) - 1] == '/')
-
-      //{
-      //   wstrModuleFilePath[wcslen(wstrModuleFilePath) - 1] = '\0';
-
-      //}
-      wcscat(wstrModuleFilePath, L"\\ca2\\");
-
-#ifdef X86
-      wcscat(wstrModuleFilePath, L"stage\\x86\\");
-
-#else
-      wide_concatenate(wstrModuleFilePath, L"stage\\x64\\");
-
-#endif
-
-      wcscpy(wstrModuleFolder, wstrModuleFilePath);
-
-      wstrModuleFilePath.release_string_buffer();
-
-      return string(wstrModuleFolder);
-
-
-   }
-
-   if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (::u32)wstrModuleFilePath.length()))
-   {
-
-      return "";
-
-   }
-
-   wstrModuleFilePath.release_string_buffer();
-
-   LPWSTR pszModuleFileName;
-
-   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
-   {
-
-      return "";
-
-   }
-
-   wstrModuleFolder.release_string_buffer();
-
-   if (wstrModuleFolder.has_char())
-   {
-
-      wstrModuleFolder.trim_right(L"\\/");
-
-   }
-
-   return wstrModuleFolder;
-
-#elif defined(__APPLE__)
-
-   string str;
-
-   {
-
-      //         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
-      //
-      //         if(str.has_char())
-      //         {
-      //            str = ::file::path(str).folder();
-      //            goto found;
-      //
-      //         }
-      //
-      //
-      //         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
-      //
-      //         if(str.has_char())
-      //         {
-      //            str = ::file::path(str).folder();
-      //            goto found;
-      //
-      //         }
-
-      str = get_exe_path();
-
-
-      if (str.has_char())
-      {
-         str = ::file::path(str).folder();
-         goto found;
-      }
-
-
-   }
-found:
-   ;
-
-   return str;
-
-#else
-
-   string strModuleFolder;
-
-   auto wstrModuleFolder = strModuleFolder.get_string_buffer(MAX_PATH * 8);
-
-   void * handle = dlopen("libacme.so", RTLD_NOW);
-
-   if (handle == nullptr)
-   {
-
-      strcpy(wstrModuleFolder, "/ca2/");
-
-   }
-   else
-   {
-
-      link_map * plm;
-
-      dlinfo(handle, RTLD_DI_LINKMAP, &plm);
-
-      strcpy(wstrModuleFolder, plm->l_name);
-
-      dlclose(handle);
-
-      strcpy(wstrModuleFolder, ::file_path_folder(wstrModuleFolder));
-
-   }
-
-   return string(wstrModuleFolder);
-
-#endif
-
-}
+//::file::path get_module_folder(::particle * pparticle)
+//{
+//   
+//   pparticle->acmesystem()->m_psubsystem-
+//
+//   critical_section_lock criticalsectionlock()
+//   
+//   if(!pparticle->acmesystem()->m_psubsystem->m_bModuleFolder)
+//   {
+//      
+//      pparticle->acmesystem()->m_psubsystem->m_pathModuleFolder = ::get_module_path(pparticle).folder();
+//      
+//   }
+//   
+//   return pparticle->acmesystem()->m_psubsystem->m_pathModuleFolder;
+//   
+//}
+
+//::file::path dir_ca2_module()
+//{
+//
+//#if defined(ANDROID)
+//
+//   return acmepath()->app_module().folder();
+//
+//#elif defined(_UWP)
+//
+//   wstring wstrModuleFilePath;
+//
+//   auto pwszModuleFilePath = wstrModuleFilePath.get_string_buffer(MAX_PATH * 8);
+//
+//   if (!GetModuleFileNameW(nullptr, pwszModuleFilePath, MAX_PATH * 8))
+//   {
+//
+//      return "";
+//
+//   }
+//
+//   wstrModuleFilePath.release_string_buffer();
+//
+//   LPWSTR pszModuleFileName;
+//
+//   wstring wstrModuleFolder;
+//
+//   auto pwszModuleFolder = wstrModuleFolder.get_string_buffer(MAX_PATH * 8);
+//
+//   if (!GetFullPathNameW(wstrModuleFilePath, MAX_PATH * 8, pwszModuleFolder, &pszModuleFileName))
+//   {
+//
+//      return "";
+//
+//   }
+//
+//   wstrModuleFolder.release_string_buffer();
+//
+//   wstrModuleFolder.ends_eat_ci("\\");
+//   wstrModuleFolder.ends_eat_ci("/");
+//   wstrModuleFolder.ends_eat_ci("\\");
+//   wstrModuleFolder.ends_eat_ci("/");
+//
+//   return string(wstrModuleFolder);
+//
+//
+//#elif defined(WINDOWS)
+//
+//
+//   wstring wstrModuleFolder(get_buffer, MAX_PATH * 8);
+//
+//
+//   wstring wstrModuleFilePath(get_buffer, MAX_PATH * 8);
+//
+//
+//   HMODULE hmodule = ::GetModuleHandleA("acme.dll");
+//
+//   if (hmodule == nullptr)
+//      hmodule = ::GetModuleHandleA("spalib.dll");
+//
+//   if (hmodule == nullptr)
+//   {
+//
+//      PWSTR pwstr = nullptr;
+//
+//      try
+//      {
+//
+//         HRESULT hr = SHGetKnownFolderPath(
+//            FOLDERID_ProgramFilesX86,
+//            KF_FLAG_DEFAULT,
+//            nullptr,
+//            &pwstr);
+//
+//         wcscpy(wstrModuleFilePath, pwstr);
+//
+//      }
+//      catch (...)
+//      {
+//
+//
+//      }
+//
+//      if (pwstr)
+//      {
+//
+//         ::CoTaskMemFree(pwstr);
+//         pwstr = nullptr;
+//
+//      }
+//
+//
+//      //if(wstrModuleFilePath[wcslen(wstrModuleFilePath) - 1] == '\\'
+//
+//      //      || wstrModuleFilePath[wcslen(wstrModuleFilePath) - 1] == '/')
+//
+//      //{
+//      //   wstrModuleFilePath[wcslen(wstrModuleFilePath) - 1] = '\0';
+//
+//      //}
+//      wcscat(wstrModuleFilePath, L"\\ca2\\");
+//
+//#ifdef X86
+//      wcscat(wstrModuleFilePath, L"stage\\x86\\");
+//
+//#else
+//      wide_concatenate(wstrModuleFilePath, L"stage\\x64\\");
+//
+//#endif
+//
+//      wcscpy(wstrModuleFolder, wstrModuleFilePath);
+//
+//      wstrModuleFilePath.release_string_buffer();
+//
+//      return string(wstrModuleFolder);
+//
+//
+//   }
+//
+//   if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (::u32)wstrModuleFilePath.length()))
+//   {
+//
+//      return "";
+//
+//   }
+//
+//   wstrModuleFilePath.release_string_buffer();
+//
+//   LPWSTR pszModuleFileName;
+//
+//   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+//   {
+//
+//      return "";
+//
+//   }
+//
+//   wstrModuleFolder.release_string_buffer();
+//
+//   if (wstrModuleFolder.has_char())
+//   {
+//
+//      wstrModuleFolder.trim_right(L"\\/");
+//
+//   }
+//
+//   return wstrModuleFolder;
+//
+//#elif defined(__APPLE__)
+//
+//   string str;
+//
+//   {
+//
+//      //         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+//      //
+//      //         if(str.has_char())
+//      //         {
+//      //            str = ::file::path(str).folder();
+//      //            goto found;
+//      //
+//      //         }
+//      //
+//      //
+//      //         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+//      //
+//      //         if(str.has_char())
+//      //         {
+//      //            str = ::file::path(str).folder();
+//      //            goto found;
+//      //
+//      //         }
+//
+//      str = get_exe_path();
+//
+//
+//      if (str.has_char())
+//      {
+//         str = ::file::path(str).folder();
+//         goto found;
+//      }
+//
+//
+//   }
+//found:
+//   ;
+//
+//   return str;
+//
+//#else
+//
+//   string strModuleFolder;
+//
+//   auto wstrModuleFolder = strModuleFolder.get_string_buffer(MAX_PATH * 8);
+//
+//   void * handle = dlopen("libacme.so", RTLD_NOW);
+//
+//   if (handle == nullptr)
+//   {
+//
+//      strcpy(wstrModuleFolder, "/ca2/");
+//
+//   }
+//   else
+//   {
+//
+//      link_map * plm;
+//
+//      dlinfo(handle, RTLD_DI_LINKMAP, &plm);
+//
+//      strcpy(wstrModuleFolder, plm->l_name);
+//
+//      dlclose(handle);
+//
+//      strcpy(wstrModuleFolder, ::file_path_folder(wstrModuleFolder));
+//
+//   }
+//
+//   return string(wstrModuleFolder);
+//
+//#endif
+//
+//}
 
 
 

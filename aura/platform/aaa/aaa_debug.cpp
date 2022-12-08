@@ -29,7 +29,7 @@ void debug_object_event_promisse_predicate()
 
    //::pointer<::object>pparticle;
 
-   //__keep(pparticle, nullptr);
+   //KEEP(pparticle, nullptr);
    ////   // 4 arguments
    ////   o += { ok, id_text, [&](auto pparticle) { ASSERT(pparticle == &o); output_debug_string("o += ok, id_text, &o ...");  } };
 
@@ -40,7 +40,7 @@ void debug_object_event_promisse_predicate()
 void system_call_update_wallpaper_changed()
 {
 
-   ::aura::get_system()->call_subject(id_wallpaper_changed);
+   ::auraacmesystem()->call_subject(id_wallpaper_changed);
 
 }
 
@@ -48,7 +48,7 @@ void system_call_update_wallpaper_changed()
 void system_call_update_app_activated()
 {
 
-   ::aura::get_system()->call_subject(id_app_activated);
+   ::auraacmesystem()->call_subject(id_app_activated);
 
 }
 
@@ -56,7 +56,7 @@ void system_call_update_app_activated()
 void system_call_update_app_changed_occlusion_state()
 {
 
-   ::aura::get_system()->call_subject(id_app_changed_occlusion_state);
+   ::auraacmesystem()->call_subject(id_app_changed_occlusion_state);
 
 }
 

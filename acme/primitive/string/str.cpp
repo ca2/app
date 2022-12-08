@@ -2,7 +2,7 @@
 #include "hex.h"
 #include "international.h"
 ////#include "acme/exception/exception.h"
-//#include "acme/filesystem/file/file.h"
+#include "acme/filesystem/file/file.h"
 //#include "acme/filesystem/file/text_stream.h"
 //#include "acme/primitive/collection/string_array.h"
 //#include "acme/primitive/primitive/payload.h"

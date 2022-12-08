@@ -5,7 +5,7 @@
 #include "impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "base/platform/application.h"
 
 
@@ -90,16 +90,16 @@ namespace user
    }
 
 
-   void multiple_document_template::on_request(::create * pcreate)
+   void multiple_document_template::on_request(::request * prequest)
    {
 
-      pcreate->m_estatus = error_failed;
+      prequest->m_estatus = error_failed;
 
-      pcreate->payload("document") = (::object *) nullptr;
+      prequest->payload("document") = (::object *) nullptr;
 
-      bool bMakeVisible = pcreate->m_bMakeVisible;
+      bool bMakeVisible = prequest->m_bMakeVisible;
 
-      ::pointer<::user::document>pdocument = create_new_document(pcreate);
+      ::pointer<::user::document>pdocument = create_new_document(prequest);
 
       if (pdocument == nullptr)
       {
@@ -117,7 +117,7 @@ namespace user
 
       pdocument->m_bAutoDelete = false;   // don't destroy if something goes wrong
 
-      ::pointer<::user::frame_window>pFrame = create_new_frame(pdocument, nullptr, pcreate);
+      ::pointer<::user::frame_window>pFrame = create_new_frame(pdocument, nullptr, prequest);
 
       pdocument->m_bAutoDelete = bAutoDelete;
 
@@ -126,10 +126,10 @@ namespace user
 
          string strId;
 
-         if (pcreate->m_puserprimitiveAlloc)
+         if (prequest->m_puserelementAlloc)
          {
 
-            strId = ::type(pcreate->m_puserprimitiveAlloc).name();
+            strId = ::type(prequest->m_puserelementAlloc).name();
 
          }
 
@@ -148,7 +148,7 @@ namespace user
 
       ASSERT_VALID(pFrame);
 
-      if(!pcreate->has_file())
+      if(!prequest->has_file())
       {
          // create a memory_new ::user::document - with default ::user::document name
          set_default_title(pdocument);
@@ -174,7 +174,7 @@ namespace user
       else
       {
          // open an existing ::user::document
-         if(!on_open_document(pdocument, pcreate))
+         if(!on_open_document(pdocument, prequest))
          {
             // failed to open or just failed to queue to open
             // if m_bQueueDocumentOpening flag is set, document opening is queued, and failure would be reported in a unknown way
@@ -191,7 +191,7 @@ namespace user
 
       }
 
-      if(!pcreate->m_bHold)
+      if(!prequest->m_bHold)
       {
 
          pFrame->payload("should_not_be_automatically_holded_on_initial_update_frame") = true;
@@ -200,9 +200,9 @@ namespace user
 
       prepare_frame(pFrame, pdocument, bMakeVisible);
 
-      pcreate->payload("document") = pdocument;
+      prequest->payload("document") = pdocument;
 
-      pcreate->m_estatus = ::success;
+      prequest->m_estatus = ::success;
 
    }
 

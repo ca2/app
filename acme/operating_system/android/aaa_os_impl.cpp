@@ -52,7 +52,7 @@ const char* g_pszCacheDir = NULL;
 //
 //   }
 //
-//   if (::acme::get_system()->get_session() == nullptr)
+//   if (::acmeacmesystem()->get_session() == nullptr)
 //   {
 //
 //      output_debug_string("android_fill_plasma : context_session is null");
@@ -61,7 +61,7 @@ const char* g_pszCacheDir = NULL;
 //
 //   }
 //
-//   if (::acme::get_system()->get_session()->m_puserinteractionHost == nullptr)
+//   if (::acmeacmesystem()->get_session()->m_puserinteractionHost == nullptr)
 //   {
 //
 //      output_debug_string("android_fill_plasma : Host Window is null");
@@ -70,7 +70,7 @@ const char* g_pszCacheDir = NULL;
 //
 //   }
 //
-//   if (::acme::get_system()->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
+//   if (::acmeacmesystem()->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
 //   {
 //
 //      output_debug_string("android_fill_plasma : Host Window impl is null");
@@ -79,7 +79,7 @@ const char* g_pszCacheDir = NULL;
 //
 //   }
 //
-//   if (::acme::get_system()->get_session()->m_puserinteractionHost->get_window_graphics() == nullptr)
+//   if (::acmeacmesystem()->get_session()->m_puserinteractionHost->get_window_graphics() == nullptr)
 //   {
 //
 //      //   output_debug_string("android_fill_plasma : get_window_graphics returned null");
@@ -88,7 +88,7 @@ const char* g_pszCacheDir = NULL;
 //
 //   }
 //
-//   auto pbuffer = dynamic_cast <::graphics::double_buffer *> (::acme::get_system()->get_session()->m_puserinteractionHost->get_window_graphics());
+//   auto pbuffer = dynamic_cast <::graphics::double_buffer *> (::acmeacmesystem()->get_session()->m_puserinteractionHost->get_window_graphics());
 //
 //   if(pbuffer == nullptr)
 //   {
@@ -203,7 +203,7 @@ int SetMainScreenRect(LPCRECT32 lpcrect);
 //   rectangle.right = premote->getWidth();
 //   rectangle.bottom = premote->getHeight();
 //
-//   ::acme::get_system()->get_session()->defer_initialize_host_window(rectangle);
+//   ::acmeacmesystem()->get_session()->defer_initialize_host_window(rectangle);
 //
 //   SetMainScreenRect(rectangle);
 //

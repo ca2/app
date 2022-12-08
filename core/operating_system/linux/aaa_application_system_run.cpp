@@ -95,13 +95,13 @@ void sn_start_context()
 //   if (m_pmainstruct->m_bConsole)
 //   {
 //
-//      psystem->get_session()->set_context_app(psystem->m_pacmeapplicationStartup);
+//      psystem->get_session()->set_context_app(psystem->acmeapplication());
 //
-//      psystem->set_context_app(psystem->m_pacmeapplicationStartup);
+//      psystem->set_context_app(psystem->acmeapplication());
 //
-//      psystem->get_session()->set_context(psystem->m_pacmeapplicationStartup);
+//      psystem->get_session()->set_context(psystem->acmeapplication());
 //
-//      psystem->set_context(psystem->m_pacmeapplicationStartup);
+//      psystem->set_context(psystem->acmeapplication());
 //
 //   }
 //

@@ -1,7 +1,8 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "event.h"
 #include "acme/primitive/string/string.h"
 ////#include "acme/exception/exception.h"
+#include "acme/primitive/time/timespec.h"
 #include "acme/_operating_system.h"
 
 
@@ -618,19 +619,14 @@ bool event::_wait (const class time & timeWait)
 
    pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
-   ::time time(wait);
-
    if(m_bManualEvent)
    {
 
       timespec end;
+
       clock_gettime(CLOCK_REALTIME, &end);
 
-      end.tv_sec += time.m_iSecond;
-      end.tv_nsec += time.m_iNanosecond;
-
-      end.tv_sec += end.tv_nsec / (1000 * 1000 * 1000);
-      end.tv_nsec %= 1000 * 1000 * 1000;
+      end += timeWait;
 
       i32 iSignal = m_iSignalId;
 
@@ -647,8 +643,9 @@ bool event::_wait (const class time & timeWait)
    {
 
       timespec delay;
-      delay.tv_sec = time.m_iSecond;
-      delay.tv_nsec = time.m_iNanosecond;
+      
+      ::copy(delay, timeWait);
+
       pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay);
 
    }
@@ -662,7 +659,7 @@ bool event::_wait (const class time & timeWait)
    if(m_bManualEvent)
    {
 
-      if(wait.is_infinite())
+      if(timeWait.is_infinite())
       {
 
          pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
@@ -714,11 +711,11 @@ bool event::_wait (const class time & timeWait)
 
          timespec timespecWait{};
 
-         copy(timespecWait, wait);
+         copy(timespecWait, timeWait);
 
          timespec timespecFinal{};
 
-         timespecFinal = addition(timespecNow, timespecWait);
+         timespecFinal = timespecNow + timespecWait;
 
          while(!m_bSignaled && iSignal == m_iSignalId)
          {
@@ -780,7 +777,7 @@ bool event::_wait (const class time & timeWait)
 
       auto start = ::time::now();
 
-      while(wait.is_infinite() || start.elapsed() < wait)
+      while(timeWait.is_infinite() || start.elapsed() < timeWait)
       {
 
          sembuf sb;

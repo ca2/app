@@ -25,7 +25,7 @@ namespace app_shader
       virtual void term_application() override;
 
 
-      virtual void on_request(::create * pcreate) override;
+      virtual void on_request(::request * prequest) override;
 
 
 #ifdef _DEBUG

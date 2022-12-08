@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "window.h"
 #include "acme/constant/id.h"
+#include "acme/platform/keep.h"
 #include "acme/constant/message.h"
 #include "acme/include/_c_swap.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -628,9 +629,15 @@ namespace user
 
    void form_window::_001UpdateEdit(::user::interaction * pinteraction)
    {
+
       ASSERT(pinteraction != nullptr);
-      if(pinteraction == nullptr)
+      
+      if (pinteraction == nullptr)
+      {
+
          return;
+
+      }
 
       __task_guard(m_bOnEditUpdate);
 
@@ -1021,7 +1028,7 @@ throw_todo();
 
       ::pointer<::user::message>pusermessage(pmessage);
 
-      __keep(m_bOnLanguageChange);
+      KEEP(m_bOnLanguageChange);
 
       _017OnAppLanguage();
 

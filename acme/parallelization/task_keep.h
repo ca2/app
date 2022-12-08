@@ -1,8 +1,11 @@
-// Created by camilo on 2022-06-09 14:31 BRT <3ThomasBorregaardSorensen!! and Mummi and bilbo!!
+﻿// Created by camilo on 2022-06-09 14:31 BRT <3ThomasBorregaardSorensen!! and Mummi and bilbo!!
 #pragma once
 
 
-#define __keep_current_thread(...) auto TOKEN_AT_LINE(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
+#include "acme/platform/keep.h"
+
+
+#define __keep_current_thread(...) auto COUNTER_TOKEN(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
 
 
 template < >
@@ -24,7 +27,7 @@ if (flag) \
 \
 } \
 \
-auto TOKEN_AT_LINE(__task_guard_task_ret) = keep(flag); \
+auto COUNTER_TOKEN(__task_guard_task_ret) = keep(flag); \
 \
 synchronouslock.unlock()
 
@@ -53,7 +56,7 @@ while (flag) \
    \
 } \
 \
-auto TOKEN_AT_LINE(__guard_wait_ret) = keep(&flag); \
+auto COUNTER_TOKEN(__guard_wait_ret) = keep(&flag); \
 \
 synchronouslock.unlock()
 

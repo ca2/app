@@ -1,9 +1,11 @@
 ﻿#include "framework.h"
 #include "application.h"
 #include "system.h"
+#include "session.h"
 #include "acme/platform/system_setup.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/platform/node.h"
+#include "core/user/user/user.h"
 #include "core/user/userex/progress.h"
 #include "core/user/userex/pane_tab_impact.h"
 
@@ -12,22 +14,26 @@ namespace core
 {
 
 
-   void initialize()
-   {
+   //void initialize()
+   //{
 
-      ::factory::add_factory_item < ::core::system, ::acme::system >();
+   //   factory()->add_factory_item < ::core::system, ::acme::system >();
 
-   }
+   //}
 
 
    application::application()
    {
 
-      ::core::initialize();
+      //::core::initialize();
 
       m_pcoreapplication = this;
 
       m_strAppId = "app-complex/drawing";
+
+      factory()->add_factory_item < ::core::system, ::acme::system >();
+      factory()->add_factory_item < ::core::session, ::acme::session >();
+      factory()->add_factory_item < ::core::user, ::user::user >();
 
    }
 
@@ -42,6 +48,26 @@ namespace core
    {
 
 
+   }
+
+
+   ::core::session* application::get_session() 
+   {
+
+      auto pacmesession = acmesession();
+      
+      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr; 
+   
+   }
+
+
+   ::core::system* application::get_system() 
+   {
+
+      auto pacmesystem = acmesystem();
+      
+      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr; 
+   
    }
 
 
@@ -99,7 +125,7 @@ namespace core
 
       string strApplicationTitle;
 
-      strApplicationTitle = get_app()->title();
+      strApplicationTitle = get_app()->m_papexapplication->title();
 
       string strHeader__;
 

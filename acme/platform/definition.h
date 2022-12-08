@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -434,17 +434,5 @@ that we consider it dangerous to even throw ::exception( an exception
 
 
 
-
-enum EExclusiveInstance
-{
-
-   ExclusiveInstanceNone,
-   ExclusiveInstanceLocal,
-   ExclusiveInstanceLocalId,
-   ExclusiveInstanceGlobal,
-   ExclusiveInstanceGlobalId,
-   ExclusiveInstanceLicense
-
-};
 
 

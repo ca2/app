@@ -2,7 +2,7 @@
 #include "file_properties_form.h"
 #include "acme/constant/id.h"
 #include "apex/filesystem/filesystem/dir_context.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "core/user/userex/pane_tab_impact.h"
 #include "core/user/user/user.h"
 #include "core/platform/session.h"
@@ -65,17 +65,17 @@ namespace filemanager
 
       }
 
-      auto pcreate = __create_new< ::create >();
+      auto prequest = __create_new< ::request >();
 
-      pcreate->m_bMakeVisible = false;
+      prequest->m_bMakeVisible = false;
 
-      pcreate->m_puserprimitiveParent = puserinteractionParent;
+      prequest->m_puserelementParent = puserinteractionParent;
 
-      pcreate->finish_initialization();
+      prequest->finish_initialization();
 
-      m_ptemplatePane->do_request(pcreate);
+      m_ptemplatePane->request(prequest);
 
-      ::pointer<::user::document>pdocument = ::user::__document(pcreate);
+      ::pointer<::user::document>pdocument = ::user::__document(prequest);
 
       ::pointer<::userex::pane_tab_impact>ptabimpact = pdocument->get_typed_impact < ::userex::pane_tab_impact > ();
 
@@ -153,7 +153,7 @@ namespace filemanager
 
          auto pcontext = m_pcontext;
          
-         auto psession = pcontext->m_pcoresession;
+         auto psession = pcontext->m_pacmesession->m_pcoresession;
          
          auto puser = psession->m_puser->m_pcoreuser;
 

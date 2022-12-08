@@ -529,7 +529,7 @@ resume_on_exception:
    }
 
 
-   void application::on_request(::create * pcreate)
+   void application::on_request(::request * prequest)
    {
 
       aura::application::on_request(pcreate);
@@ -1371,7 +1371,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
    }
 
 
-   void application::on_service_request(::create * pcreate)
+   void application::on_service_request(::request * prequest)
    {
 
       ::aura::application::on_service_request(pcreate);

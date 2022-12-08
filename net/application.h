@@ -21,7 +21,7 @@ namespace app_net
       virtual void init_instance() override;
       virtual void term_application() override;
 
-      virtual void on_request(::create * pcreate) override;
+      virtual void on_request(::request * prequest) override;
 
 #ifdef _DEBUG
       virtual int64_t increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;

@@ -1,7 +1,8 @@
-// Created on 2021-03-42 16:35 <3ThomasBS_!!
+﻿// Created on 2021-03-42 16:35 <3ThomasBS_!!
 #pragma once
 
 
+#include "acme/platform/acme.h"
 #include "acme/primitive/collection/string_map.h"
 
 
@@ -24,8 +25,62 @@ public:
 
    bool is_enabled();
 
-   void increment(const char * psz);
-   void decrement(const char * psz);
+   void increment_by_name(const char * psz);
+   void decrement_by_name(const char * psz);
+
+
+   template < typename T >
+   const char* memory_counter_id(T* pthis)
+   {
+
+      return typeid(*pthis).name();
+
+   }
+
+
+   template < typename T >
+   void memory_counter_increment(T* pthis)
+   {
+
+      if (is_enabled())
+      {
+
+         auto psz = memory_counter_id(pthis);
+
+         increment_by_name(psz);
+
+         //synchronous_lock synchronouslock(g_pmutexMemoryCounters);
+
+         //int i = atoi(acmefile()->as_string(path));
+
+         //acmefile()->put_contents(path, as_string(i + 1));
+      }
+
+   }
+
+
+   template < typename T >
+   void memory_counter_decrement(T* pthis)
+   {
+
+      if (is_enabled())
+      {
+
+         auto psz = memory_counter_id(pthis);
+
+         decrement_by_name(psz);
+
+         //int i = atoi(acmefile()->as_string(path));
+
+         //acmefile()->put_contents(path, as_string(i - 1));
+
+      }
+
+   }
+
+
+
+
 
 
 };
@@ -39,62 +94,39 @@ public:
 ///CLASS_DECL_ACME ::file::path memory_counter_base_path(::matter * pmatter);
 
 
-template < typename T >
-const char * memory_counter_id(T* pthis);
+CLASS_DECL_ACME void initialize_memory_counter();
+CLASS_DECL_ACME void finalize_memory_counter();
+CLASS_DECL_ACME ::memory_counter * get_memory_counter();
 
-template < typename T >
-void memory_counter_increment(T* pthis);
 
-template < typename T >
-void memory_counter_decrement(T* pthis);
 
+
+
+//template < typename T >
+//const char * memory_counter_id(T* pthis);
+//
 template < typename T >
-const char * memory_counter_id(T * pthis)
+void memory_counter_increment(T* pthis)
 {
 
-   return typeid(*pthis).name();
-
-}
-
-
-template < typename T >
-void memory_counter_increment(T * pthis)
-{
-
-   if (pthis &&
-      pthis->acmesystem() &&
-      pthis->acmesystem()->m_pmemorycounter &&
-      pthis->acmesystem()->m_pmemorycounter->is_enabled())
+   if (::acme::get()->m_pmemorycounter)
    {
 
-      auto psz = memory_counter_id(pthis);
+      ::acme::get()->m_pmemorycounter->memory_counter_increment(pthis);
 
-      pthis->acmesystem()->m_pmemorycounter->increment(psz);
-
-      //synchronous_lock synchronouslock(g_pmutexMemoryCounters);
-
-      //int i = atoi(acmefile()->as_string(path));
-
-      //acmefile()->put_contents(path, as_string(i + 1));
    }
 
 }
 
 
 template < typename T >
-void memory_counter_decrement(T * pthis)
+void memory_counter_decrement(T* pthis)
 {
 
-   if (pthis->acmesystem()->m_pmemorycounter->is_enabled())
+   if (::acme::get()->m_pmemorycounter)
    {
 
-      auto psz = memory_counter_id(pthis);
-
-      pthis->acmesystem()->m_pmemorycounter->decrement(psz);
-
-      //int i = atoi(acmefile()->as_string(path));
-
-      //acmefile()->put_contents(path, as_string(i - 1));
+      ::acme::get()->m_pmemorycounter->memory_counter_decrement(pthis);
 
    }
 

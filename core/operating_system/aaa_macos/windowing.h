@@ -76,18 +76,18 @@ void ns_redraw_window(oswindow window);
 //
 //void copy(RECT32 * prect, const CGRect & rectangleSource);
 //
-//void window_copy(CGRect & rectangle, const RECT32 * prect);
+//void screen_coordinates_aware_copy(CGRect & rectangle, const RECT32 * prect);
 //
-//void window_copy(RECT32 * prect, const CGRect & rectangleSource);
+//void screen_coordinates_aware_copy(RECT32 * prect, const CGRect & rectangleSource);
 //
 //#ifdef MM
 //void copy(NSRect & rectangle, const RECT32 * prect);
 //
 //void copy(RECT32 * prect, const NSRect & rectangleSource);
 //
-//void window_copy(NSRect & rectangle, const RECT32 * prect);
+//void screen_coordinates_aware_copy(NSRect & rectangle, const RECT32 * prect);
 //
-//void window_copy(RECT32 * prect, const NSRect & rectangleSource);
+//void screen_coordinates_aware_copy(RECT32 * prect, const NSRect & rectangleSource);
 //
 //#endif
 

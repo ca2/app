@@ -3,6 +3,7 @@
 
 #include "session.h"
 #include "context.h"
+#include "acme/constant/os_text.h"
 #include "acme/platform/system.h"
 #include "apex/parallelization/threading.h"
 
@@ -16,6 +17,8 @@ namespace apex
       virtual public ::apex::context
    {
    public:
+
+
 
 
 #ifndef WINDOWS
@@ -32,8 +35,6 @@ namespace apex
 
       //::pointer<::crypto::crypto>                     m_pcrypto;
 
-      ::apex::session::map                               m_sessionmap;
-
       ::pointer<class machine_event_central>           m_pmachineeventcentral;
 
       ::pointer < ::mutex >                                m_pmutexUserAppData;
@@ -46,8 +47,6 @@ namespace apex
       ::pointer<::parallelization::threading>         m_pthreading;
       size_t                                             m_nSafetyPoolSize; // ideal size_i32
 
-      bool                                            m_bFinalizeIfNoSessionSetting;
-      bool                                            m_bFinalizeIfNoSession;
 
 
 
@@ -117,7 +116,7 @@ namespace apex
       virtual void init_system() override;
       virtual void term_system();
 
-      virtual void on_system_construct() override;
+      virtual void on_system_construct();
 
       virtual void on_start_system() override;
 
@@ -150,7 +149,9 @@ namespace apex
 
       virtual void init2() override;
 
-      virtual void post_initial_request() override;
+      void defer_post_initial_request() override;
+
+      //void post_request(::request* prequest);
 
       virtual void initialize_context() override;
 
@@ -167,9 +168,9 @@ namespace apex
 
 
 
-      virtual void on_request(::create * pcreate) override;
+      void on_request(::request * prequest) override;
 
-      virtual void destroy() override;
+      void destroy() override;
 
 
       virtual void process_exit_status(::object* pparticle, const ::e_status & estatus);
@@ -230,9 +231,6 @@ namespace apex
       virtual ::u32 os_post_to_all_threads(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
 
 
-      virtual void on_add_session(::apex::session* psession);
-      virtual void add_session(index iEdge, ::apex::session * psession);
-      virtual void erase_session(index iEdge);
 
 
 
@@ -244,7 +242,7 @@ namespace apex
       virtual void thread_loop() override;
 
 
-      virtual void post_creation_requests();
+      virtual void post_pending_requests();
 
 
       virtual void term2();
@@ -300,11 +298,6 @@ namespace apex
 
       virtual void install_progress_add_up(int iAddUp = 1);
 
-      virtual void create_session(index iEdge = 0);
-
-      virtual ::pointer<::apex::session>on_create_session(index iEdge);
-
-      virtual ::apex::session * session(index iEdge = 0);
 
 
 
@@ -321,7 +314,7 @@ namespace apex
       virtual void on_map_application_library(::acme::library & library);
 
 
-      virtual void do_request(::create * pcreate) override;
+      //void request(::request * prequest) override;
 
 
 #ifdef ANDROID
@@ -333,14 +326,14 @@ namespace apex
 
       virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra);
 
-      //virtual bool merge_accumulated_on_open_file(::create * pcreate);
+      //virtual bool merge_accumulated_on_open_file(::request * prequest);
 
       virtual bool on_open_file(::payload payloadFile, string strExtra);
       
       void on_open_file(const ::string & pszFile) override;
 
 
-      virtual void on_os_text(e_os_text etext, string strText);
+      virtual void on_os_text(enum_os_text etext, string strText);
 
 
 

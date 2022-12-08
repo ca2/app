@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 ////#include "acme/primitive/primitive/object.h"
@@ -36,23 +36,23 @@ namespace user
    public:
 
 
-      ::pointer<::user::primitive>          m_puserprimitiveOwner;
-      ::procedure                              m_procedureSuccess;
-      ::procedure                              m_procedureFailure;
-      ::pointer<::user::interaction_impl>   m_puserinteractionimpl;
-      ::pointer<::create>                   m_pcreate;
-      ::pointer<::windowing::window>        m_pwindow;
+      ::pointer<::user::primitive>              m_puserprimitiveOwner;
+      ::procedure                               m_procedureSuccess;
+      ::procedure                               m_procedureFailure;
+      ::pointer<::user::interaction_impl>       m_puserinteractionimpl;
+      ::pointer<::request>                      m_prequest;
+      ::pointer<::windowing::window>            m_pwindow;
 
-      tristate                                m_bWindowFrame;
-      ::type                                 m_typeNewImpact;
-      ::pointer<::object>                   m_pdocumentCurrent;
-      ::pointer<::user::primitive>          m_puserprimitiveNew;
+      tristate                                  m_bWindowFrame;
+      ::type                                    m_typeNewImpact;
+      ::pointer<::object>                       m_pdocumentCurrent;
+      ::pointer<::user::primitive>              m_puserprimitiveNew;
 
-      ::pointer<::object>                   m_ptemplateNewDocument;
+      ::pointer<::object>                       m_ptemplateNewDocument;
 
-      ::pointer<::user::primitive>          m_puserprimitiveLastImpact;
-      ::pointer<::user::primitive>          m_puserprimitiveCurrentFrame;
-      ::pointer<::matter>                   m_pimpactdata;
+      ::pointer<::user::primitive>              m_puserprimitiveLastImpact;
+      ::pointer<::user::primitive>              m_puserprimitiveCurrentFrame;
+      ::pointer<::matter>                       m_pimpactdata;
 
 
       system(const system&);
@@ -62,7 +62,7 @@ namespace user
          //const char* pszWindowName = 0,
          //u32 uStyle = 0,
          //const ::rectangle_i32& rectangle = nullptr,
-         ::create* pcreate = nullptr);
+         ::request* prequest = nullptr);
 
       //system(
       //   const ::rectangle_i32& rectangle,

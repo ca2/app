@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/interaction.h"
@@ -24,8 +24,10 @@ namespace user
       virtual void initialize_menu_interaction(menu_item* pmenuitem);
 
 
-      ::base::session* get_session() const;
-
+      ::base::application* get_app();
+      ::base::session* get_session();
+      ::base::system* get_system();
+      ::base::user* user();
 
       void install_message_routing(::channel * pchannel) override;
 

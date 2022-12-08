@@ -4,9 +4,25 @@
 // app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "application.h"
+#include "acme.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
+#include "acme/platform/session.h"
 
+
+#ifdef WINDOWS
+
+
+#include "acme/_operating_system.h"
+
+
+CLASS_DECL_ACME::file::path get_module_path(HMODULE hmodule);
+
+
+#endif
+
+CLASS_DECL_ACME void set_main_user_thread();
 
 //#if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
 //static const char * g_p1;
@@ -35,14 +51,50 @@ namespace acme
 {
 
 
-   //void initialize();
+   CLASS_DECL_ACME extern ::acme::acme * g_p;
 
 
    application::application()
    {
 
+      m_papexapplication = nullptr;
+      m_paquaapplication = nullptr;
+      m_pauraapplication = nullptr;
+      m_paxisapplication = nullptr;
+      m_pbaseapplication = nullptr;
+      m_pbredapplication = nullptr;
+      m_pcoreapplication = nullptr;
 
-      ::factory::add_factory_item< ::acme::system >();
+      if (m_pacme && !m_pacme->m_pacmeapplication)
+      {
+
+         m_pacme->m_pacmeapplication = this;
+
+      }
+
+//      if (g_p == nullptr)
+//      {
+//
+//         g_p = this;
+//         
+//#ifdef WINDOWS
+//
+//         defer_initialize_system_heap();
+//
+//#endif
+//
+//         g_p->m_pmain = memory_new ::main();
+//
+//      }
+//      else
+//      {
+//
+//         m_pmain = g_p->m_pmain;
+//
+//      }
+
+       factory()->add_factory_item< ::acme::system >();
+       factory()->add_factory_item < ::acme::session >();
 
       //if (!g_p)
       //{
@@ -53,9 +105,9 @@ namespace acme
 
       m_pacmeapplication = this;
 
-      m_pacmeapplicationStartup = this;
+      //acmeapplication() = this;
 
-      m_pacmeapplicationMain = this;
+      //acmeapplication() = this;
 
       //::acme::initialize();
 
@@ -78,6 +130,18 @@ namespace acme
    application::~application()
    {
 
+   /*   if (g_p == this)
+      {
+
+         m_pmain->m_psubsystem.release();
+
+         ::acme::del(m_pmain);
+
+         g_p = nullptr;
+
+
+
+      }*/
       //   ::acme::finalize_system();
 
    }
@@ -103,7 +167,241 @@ namespace acme
 
       }
 
+#ifdef WINDOWS
+
+      m_strCommandLine = ::GetCommandLineW();
+
+#endif
+
    }
+
+
+   void application::start_application(::request* prequest)
+   {
+
+
+      //bool application::start_application(::request * prequest)
+      //{
+
+      branch();
+
+      if (::is_set(prequest))
+      {
+
+         post_request(prequest);
+
+      }
+
+      //return true;
+
+   //   ;;;
+   //}
+
+   }
+
+
+   //void application::on_initialize_application()
+   //{
+
+   //}
+   
+   ::factory::factory_pointer& application::factory()
+   {
+
+      return ::acme::g_p->m_psubsystem->factory();
+
+   }
+
+
+   void application::implement_application()
+   {
+
+      //on_initialize_application(pmain);
+
+
+      //
+
+
+
+      //void __main(::acme::application * pacmeapplication)
+      //{
+
+
+
+         set_main_user_thread();
+
+         task_guard taskguard;
+
+         ::e_status estatus = error_failed;
+
+         ::e_status estatusEnd = error_failed;
+
+         string strAppId;
+
+         if (!m_bConsole)
+         {
+
+            strAppId = m_strAppId;
+
+         }
+
+
+         {
+
+            string strPrgName = m_strAppId;
+
+            strPrgName.replace_with(".", "/");
+
+            strPrgName.replace_with("-", "_");
+
+            m_strProgName = "com." + strPrgName;
+
+         }
+
+
+
+         //main.m_bAudio = main_hold_base::is_audio_enabled();
+
+         auto pfactoryitem = ::acme::g_p->m_psubsystem->m_pfactory->get_factory_item<::acme::system>();
+
+         ::pointer<::acme::system> psystem = pfactoryitem->create_particle();
+
+         psystem->initialize_system();
+
+         ::set_task(psystem);
+
+         //psystem->acmeapplication() = pacmeapplication;
+
+         //psystem->m_psubsystem = psubsystem;
+
+         psystem->system_construct(this);
+
+         psystem->create_os_node();
+
+         auto pnode = psystem->node();
+
+         pnode->implement(pnode, psystem);
+
+         //pnode->start_application(pnode, psystem);
+
+         if (m_iExitCode == 0 && m_iExitCode != 0)
+         {
+
+            m_iExitCode = m_iExitCode;
+
+         //}
+
+         }
+
+         ::task_release();
+
+         //auto psystem = platform_create_system(strAppId);
+
+         /*estatus =*/
+
+         //if (!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+         /*estatus = */ //psystem->__task_init();
+
+         //if (!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+
+         //return estatus;
+
+      //}
+
+
+   }
+
+
+   void application::initialize_application_flags()
+   {
+
+      if (m_bConsole.undefined())
+      {
+
+         m_bConsole = false;
+
+      }
+
+      if (m_bDraw2d.undefined())
+      {
+
+         m_bDraw2d = !m_bConsole;
+
+      }
+
+      if (m_bWriteText.undefined())
+      {
+
+         m_bWriteText = m_bDraw2d;
+
+      }
+
+      if (m_bUser.undefined())
+      {
+
+         m_bUser = !m_bConsole;
+
+      }
+
+      if (m_bUserEx.undefined())
+      {
+
+         m_bUserEx = !m_bConsole;
+
+      }
+
+      if (m_bImaging.undefined())
+      {
+
+         m_bImaging = !m_bConsole;
+
+      }
+
+#ifdef WINDOWS_DESKTOP
+
+      if (m_bGdiplus.undefined())
+      {
+
+         m_bGdiplus = !m_bConsole;
+
+      }
+
+#endif
+
+#if defined(LINUX)
+
+      if (m_bGtkApp.undefined())
+      {
+
+         m_bGtkApp = !m_bConsole;
+
+      }
+
+#endif
+
+      if (m_bShowApplicationInformation.undefined())
+      {
+
+         m_bShowApplicationInformation = false;
+
+      }
+
+      //string strAppId = acmeapplication()->m_strAppId;
+
+   }
+
 
 
    bool application::is_application() const
@@ -144,6 +442,61 @@ namespace acme
       return false;
 
    }
+
+
+   bool application::can_exit_application()
+   {
+
+      return true;
+
+   }
+
+
+   ::file::path application::get_module_path()
+   {
+
+      synchronous_lock synchronizationlock(synchronization());
+
+      if (!m_bModulePath)
+      {
+
+#ifdef WINDOWS
+
+         m_pathModule = ::get_module_path((HMODULE)::acme::get()->m_psubsystem->m_hinstanceThis);
+
+#else
+
+         throw ::exception(todo);
+
+#endif
+
+         m_bModulePath = true;
+
+      }
+
+      return m_pathModule;
+
+   }
+
+
+   ::file::path application::get_module_folder()
+   {
+
+      synchronous_lock synchronizationlock(synchronization());
+
+      if (!m_bModuleFolder)
+      {
+
+         m_pathModuleFolder = get_module_path().folder();
+
+         m_bModuleFolder = true;
+
+      }
+
+      return m_pathModuleFolder;
+
+   }
+
 
 
 //#ifdef WINDOWS
@@ -196,7 +549,7 @@ namespace acme
    int application::main_loop()
    {
 
-      __main(this);
+      //__main(this);
 
       return m_iExitCode;
 

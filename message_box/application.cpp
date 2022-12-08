@@ -47,7 +47,7 @@ namespace app_message_box
    }
 
 
-   void application::on_request(::create * pcreate)
+   void application::on_request(::request * prequest)
    {
 
       __construct_new(m_pmainwindow);

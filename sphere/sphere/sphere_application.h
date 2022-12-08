@@ -58,7 +58,7 @@ namespace sphere
 
       virtual void     run() override;
 
-      virtual void on_request(::create * pcreate) override;
+      virtual void on_request(::request * prequest) override;
 
       ::user::document * _001OpenDocumentFile(::payload payloadFile) override;
 
@@ -102,7 +102,7 @@ namespace sphere
 
       virtual void check_topic_file_change();
 
-      virtual bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
+      virtual bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override;
 
       void launch_app(const ::string & psz);
       void install_app(const ::string & psz);
@@ -121,7 +121,7 @@ namespace sphere
 
       //virtual service_base * allocate_new_service() override;
 
-      //void on_request(::create * pcreate) override;
+      //void on_request(::request * prequest) override;
 
       ::pointer<::aura::application>application_get(const ::string & pszAppId, bool bCreate = true, bool bSynch = true, application_bias * pappbias = nullptr);
 

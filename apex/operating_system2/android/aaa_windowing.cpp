@@ -1056,18 +1056,18 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni);
 void android_mouse(unsigned int message, float x, float y)
 {
 
-   if (::apex::get_system() == nullptr)
+   if (::apexacmesystem() == nullptr)
       return;
 
-   if (::apex::get_system()->get_session() == nullptr)
+   if (::apexacmesystem()->get_session() == nullptr)
       return;
 
-   if (::apex::get_system()->get_session()->m_puserinteractionHost == nullptr)
+   if (::apexacmesystem()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
    MESSAGE msg;
 
-   msg.hwnd = ::apex::get_system()->get_session()->m_puserinteractionHost->get_handle();
+   msg.hwnd = ::apexacmesystem()->get_session()->m_puserinteractionHost->get_handle();
 
    msg.message = message;
 
@@ -1079,8 +1079,8 @@ void android_mouse(unsigned int message, float x, float y)
 
    msg.pt.y = (long)y;
 
-   //::apex::get_system()->get_session()->m_puserinteractionHost->message_handler(&msg);
-   ::apex::get_system()->get_session()->m_puserinteractionHost->post_message(msg.message, msg.wParam, msg.lParam);
+   //::apexacmesystem()->get_session()->m_puserinteractionHost->message_handler(&msg);
+   ::apexacmesystem()->get_session()->m_puserinteractionHost->post_message(msg.message, msg.wParam, msg.lParam);
 
 }
 
@@ -1124,7 +1124,7 @@ void _android_key(unsigned int message, int keyCode, int iUni);
 void android_key(unsigned int message, int keyCode, int iUni)
 {
 
-   //::fork(::apex::get_system(), [=]()
+   //::fork(::apexacmesystem(), [=]()
    //{
 
       _android_key(message, keyCode, iUni);
@@ -1136,13 +1136,13 @@ void android_key(unsigned int message, int keyCode, int iUni)
 void _android_key(unsigned int message, int keyCode, int iUni)
 {
 
-   if (::apex::get_system() == nullptr)
+   if (::apexacmesystem() == nullptr)
       return;
 
-   if (::apex::get_system()->get_session() == nullptr)
+   if (::apexacmesystem()->get_session() == nullptr)
       return;
 
-   if (::apex::get_system()->get_session()->m_puserinteractionHost == nullptr)
+   if (::apexacmesystem()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
    ::pointer<::message::key>pkey = __new(::message::key());
@@ -1156,8 +1156,8 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 
    }
 
-   //::apex::get_system()->get_session()->m_puserinteractionHost->message_handler(pkey);
-   ::apex::get_system()->get_session()->m_puserinteractionHost->post(pkey);
+   //::apexacmesystem()->get_session()->m_puserinteractionHost->message_handler(pkey);
+   ::apexacmesystem()->get_session()->m_puserinteractionHost->post(pkey);
 
 }
 
@@ -1169,16 +1169,16 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
 
    __UNREFERENCED_PARAMETER(yDummy);
 
-   if (::apex::get_system() == nullptr)
+   if (::apexacmesystem() == nullptr)
       return;
 
-   if (::apex::get_system()->get_session() == nullptr)
+   if (::apexacmesystem()->get_session() == nullptr)
       return;
 
-   if (::apex::get_system()->get_session()->m_puserinteractionHost == nullptr)
+   if (::apexacmesystem()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
-   ::apex::get_system()->get_session()->m_puserinteractionHost->set_window_position(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
+   ::apexacmesystem()->get_session()->m_puserinteractionHost->set_window_position(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
 
 
 }
@@ -1221,17 +1221,17 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
 
    output_debug_string("android_on_size\n");
 
-   if (::apex::get_system() == nullptr)
+   if (::apexacmesystem() == nullptr)
    {
 
       return;
 
    }
 
-   //::fork(::apex::get_system(), [=]()
+   //::fork(::apexacmesystem(), [=]()
    //{
 
-   ::apex::get_system()->get_session()->m_puserinteractionHost->post_predicate([=]()
+   ::apexacmesystem()->get_session()->m_puserinteractionHost->post_predicate([=]()
       {
 
          _android_size(xScreen, yScreen, pikachu, yBitmap);
@@ -1334,13 +1334,13 @@ void android_on_text(e_os_text etext, const wchar_t * pwch, size_t len)
 
    string strText(pwch, len);
 
-   //::apex::get_system()->fork([=]()
+   //::apexacmesystem()->fork([=]()
    //{
 
-   ::apex::get_system()->get_session()->m_puserinteractionHost->post_predicate([=]()
+   ::apexacmesystem()->get_session()->m_puserinteractionHost->post_predicate([=]()
       {
 
-         ::apex::get_system()->on_os_text(etext, strText);
+         ::apexacmesystem()->on_os_text(etext, strText);
 
       });
 
@@ -1383,7 +1383,7 @@ namespace apex
 
       }
 
-      ::apex::get_system()->get_session()->m_puserinteractionHost->post(pkey);
+      ::apexacmesystem()->get_session()->m_puserinteractionHost->post(pkey);
 
 
    }
@@ -1471,7 +1471,7 @@ i64 oswindow_id(oswindow w)
 CLASS_DECL_APEX void message_box_synchronous(oswindow oswindow, const char * pText, const char * lpCaption, const ::e_message_box & emessagebox, ::callback callback)
 {
 
-   while (::apex::get_system()->oslocal().m_iMessageBoxResult > 0)
+   while (::apexacmesystem()->oslocal().m_iMessageBoxResult > 0)
    {
 
       if (!task_sleep(100_ms))
@@ -1516,20 +1516,20 @@ CLASS_DECL_APEX void message_box_synchronous(oswindow oswindow, const char * pTe
    if (::is_set(pText))
    {
 
-      ::apex::get_system()->oslocal().m_strMessageBox = ansi_dup(pText);
+      ::apexacmesystem()->oslocal().m_strMessageBox = ansi_dup(pText);
 
    }
 
    if (::is_set(lpCaption))
    {
 
-      ::apex::get_system()->oslocal().m_strMessageBoxCaption = ansi_dup(lpCaption);
+      ::apexacmesystem()->oslocal().m_strMessageBoxCaption = ansi_dup(lpCaption);
 
    }
 
-   ::apex::get_system()->oslocal().m_iMessageBoxButton = iButton;
+   ::apexacmesystem()->oslocal().m_iMessageBoxButton = iButton;
 
-   while (::apex::get_system()->oslocal().m_iMessageBoxResult <= 0)
+   while (::apexacmesystem()->oslocal().m_iMessageBoxResult <= 0)
    {
 
       if (!task_sleep(100_ms))
@@ -1541,9 +1541,9 @@ CLASS_DECL_APEX void message_box_synchronous(oswindow oswindow, const char * pTe
 
    }
 
-   int iResult = ::apex::get_system()->oslocal().m_iMessageBoxResult;
+   int iResult = ::apexacmesystem()->oslocal().m_iMessageBoxResult;
 
-   ::apex::get_system()->oslocal().m_iMessageBoxResult = 0;
+   ::apexacmesystem()->oslocal().m_iMessageBoxResult = 0;
 
    if (iResult == 1)
    {
@@ -1606,7 +1606,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 int get_main_screen_rectangle(RECTANGLE_I32 * lprect)
 {
 
-   *lprect = ::apex::get_system()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen;
+   *lprect = ::apexacmesystem()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen;
 
    return true;
 
@@ -1620,7 +1620,7 @@ int get_main_screen_rectangle(RECTANGLE_I32 * lprect)
 int SetMainScreenRect(LPCRECT32 lpcrect)
 {
 
-   ::apex::get_system()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen = *lpcrect;
+   ::apexacmesystem()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen = *lpcrect;
 
    return true;
 

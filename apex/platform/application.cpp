@@ -3,7 +3,6 @@
 #include "application_menu.h"
 #include "session.h"
 #include "system.h"
-#include "create.h"
 #include "os_context.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -14,6 +13,7 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/platform/request.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/event.h"
@@ -148,22 +148,24 @@ namespace apex
 {
 
 
-   void initialize()
-   {
+   //void initialize()
+   //{
 
-      ::factory::add_factory_item < ::apex::system, ::acme::system >();
-//      ::factory::add_factory_item < ::apex::system, ::acme::system >();
-      ::factory::add_factory_item < ::apex::context, ::acme::context >();
 
-      ::parallelization::initialize();
-
-   }
+   //}
 
 
    application::application()
    {
 
-      ::apex::initialize();
+      //::apex::initialize();
+
+      factory()->add_factory_item < ::apex::system, ::acme::system >();
+      factory()->add_factory_item < ::apex::session, ::acme::session >();
+      factory()->add_factory_item < ::apex::context, ::acme::context >();
+
+      ::parallelization::initialize();
+
 
       m_bEnableAutoStartOption = false;
       //m_bProcessingApplicationExitRequest = false;
@@ -212,7 +214,7 @@ namespace apex
 
       //m_http.set_app(this);
 
-      m_eexclusiveinstance = ExclusiveInstanceNone;
+      m_eexclusiveinstance = e_exclusive_instance_none;
 
       //m_pevAppBeg = nullptr;
       //m_pevAppEnd = nullptr;
@@ -263,7 +265,7 @@ namespace apex
 
       //m_pdocmanager = nullptr;
 
-      m_eexclusiveinstance = ExclusiveInstanceNone;
+      m_eexclusiveinstance = e_exclusive_instance_none;
       m_strLocale = "_std";
       m_strSchema = "_std";
 
@@ -292,6 +294,8 @@ namespace apex
 
       ::acme::application::initialize(pparticle);
 
+      m_pacmesystem = m_pcontext->m_pacmesystem;
+
       //if (!estatus)
       //{
       //
@@ -304,7 +308,7 @@ namespace apex
 
       //set_context_app(this);
 
-      m_pcontext = this;
+      //m_pcontext = this;
 
       //if (::is_set(m_pappParent))
       //{
@@ -320,6 +324,12 @@ namespace apex
    }
 
 
+   //void application::on_initialize_application(::main* pmain)
+   //{
+
+   //   pmain->m_psubsystem->factory()->add_factory_item< ::apex::system, ::acme::system >();
+
+   //}
 
 
 
@@ -703,151 +713,151 @@ namespace apex
    }
 
 
-   void application::do_request(::create * pcreate)
+   //void application::on_request_message(::request * prequest)
+   //{
+
+   //   pcreate->m_pcontext = this;
+
+   //   request(pcreate);
+
+   //}
+
+
+   //void application::call_request(::request * prequest)
+   //{
+
+   //   do_request(pcreate);
+
+   //   //auto psystem = acmesystem()->m_papexsystem;
+
+   //   //if (pcreate->m_ecommand == ::command_protocol)
+   //   //{
+
+   //   //   string str;
+   //   //
+   //   //   str = pcreate->m_payloadFile;
+
+   //   //      // apex commented
+   //   //      //throw ::exception(todo("interaction"));
+
+   //   //   /*if (!m_pinterprocesscommunication)
+   //   //   {
+
+   //   //      ::pointer<::user::interaction>pinteraction;
+
+   //   //      get_frame(pinteraction);
+
+   //   //      if (pinteraction == nullptr)
+   //   //      {
+
+   //   //         return error_failed;
+
+   //   //      }
+
+   //   //      auto papp = pinteraction->get_app();
+
+   //   //      if (papp == nullptr)
+   //   //      {
+
+   //   //         return error_failed;
+
+   //   //      }
+
+   //   //      if (papp->m_pinterprocesscommunication == nullptr)
+   //   //      {
+
+   //   //         return error_failed;
+
+   //   //      }
+
+   //   //   }*/
+
+   //   //   if (str.begins_eat_ci(m_pinterprocesscommunication->m_prx->m_strBaseChannel))
+   //   //   {
+
+   //   //      if (str.begins_eat_ci(":///"))
+   //   //      {
+
+   //   //         if (str.begins_eat_ci("send?message="))
+   //   //         {
+
+   //   //            m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, ::url::decode(str));
+
+   //   //         }
+   //   //         else if (str.begins_eat_ci("send?messagebin="))
+   //   //         {
+
+   //   //            strsize iFind = str.find(',');
+
+   //   //            if (iFind >= 0)
+   //   //            {
+
+   //   //               int message = atoi(str.Left(iFind));
+
+   //   //               memory m;
+
+   //   //               pbase64->decode(m, ::url::decode(str.Mid(iFind + 1)));
+
+   //   //               m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, message, m.get_data(), m.get_size());
+
+   //   //            }
+
+   //   //         }
+
+   //   //      }
+
+   //   //   }
+
+
+   //   //}
+   //   //else if (pcreate->m_ecommand == ::command_on_agree_exit)
+   //   //{
+
+   //   //   m_bAgreeExit = _001OnAgreeExit();
+
+   //   //   m_bAgreeExitOk = true;
+
+   //   //   return ::success;
+
+   //   //}
+   //   //else if (pcreate->m_ecommand == ::command_france_exit)
+   //   //{
+
+   //   //   _001FranceExit();
+
+   //   //   return ::success;
+
+   //   //}
+   //   //else
+   //   //{
+
+   //   //   on_request(pcreate);
+
+   //   //}
+
+   //   //return ::success;
+
+   //}
+
+
+   void application::request(::request * prequest)
    {
 
-      pcreate->m_pcontext = this;
-
-      request(pcreate);
-
-   }
-
-
-   void application::call_request(::create * pcreate)
-   {
-
-      do_request(pcreate);
-
-      //auto psystem = get_system()->m_papexsystem;
-
-      //if (pcreate->m_ecommand == ::command_protocol)
-      //{
-
-      //   string str;
-      //
-      //   str = pcreate->m_payloadFile;
-
-      //      // apex commented
-      //      //throw ::exception(todo("interaction"));
-
-      //   /*if (!m_pinterprocesscommunication)
-      //   {
-
-      //      ::pointer<::user::interaction>pinteraction;
-
-      //      get_frame(pinteraction);
-
-      //      if (pinteraction == nullptr)
-      //      {
-
-      //         return error_failed;
-
-      //      }
-
-      //      auto papp = pinteraction->get_app();
-
-      //      if (papp == nullptr)
-      //      {
-
-      //         return error_failed;
-
-      //      }
-
-      //      if (papp->m_pinterprocesscommunication == nullptr)
-      //      {
-
-      //         return error_failed;
-
-      //      }
-
-      //   }*/
-
-      //   if (str.begins_eat_ci(m_pinterprocesscommunication->m_prx->m_strBaseChannel))
-      //   {
-
-      //      if (str.begins_eat_ci(":///"))
-      //      {
-
-      //         if (str.begins_eat_ci("send?message="))
-      //         {
-
-      //            m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, ::url::decode(str));
-
-      //         }
-      //         else if (str.begins_eat_ci("send?messagebin="))
-      //         {
-
-      //            strsize iFind = str.find(',');
-
-      //            if (iFind >= 0)
-      //            {
-
-      //               int message = atoi(str.Left(iFind));
-
-      //               memory m;
-
-      //               pbase64->decode(m, ::url::decode(str.Mid(iFind + 1)));
-
-      //               m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, message, m.get_data(), m.get_size());
-
-      //            }
-
-      //         }
-
-      //      }
-
-      //   }
-
-
-      //}
-      //else if (pcreate->m_ecommand == ::command_on_agree_exit)
-      //{
-
-      //   m_bAgreeExit = _001OnAgreeExit();
-
-      //   m_bAgreeExitOk = true;
-
-      //   return ::success;
-
-      //}
-      //else if (pcreate->m_ecommand == ::command_france_exit)
-      //{
-
-      //   _001FranceExit();
-
-      //   return ::success;
-
-      //}
-      //else
-      //{
-
-      //   on_request(pcreate);
-
-      //}
-
-      //return ::success;
-
-   }
-
-
-   void application::on_request(::create * pcreate)
-   {
+      m_prequest = prequest;
 
       if (is_service())
       {
 
-         on_service_request(pcreate);
+         on_service_request(prequest);
 
       }
       else
       {
 
-         auto psystem = get_system()->m_papexsystem;
-
          try
          {
 
-            do_request(pcreate);
+            on_request(prequest);
 
          }
          // catch (not_installed * pexception)
@@ -867,6 +877,8 @@ namespace apex
 
          }
 
+         auto psystem = acmesystem()->m_papexsystem;
+
          // Verry Sory for the per request overhead here for the needed information of only first request
          if (::is_set(psystem) && psystem->m_timeAfterApplicationFirstRequest.is_null())
          {
@@ -878,7 +890,7 @@ namespace apex
          try
          {
 
-            pcreate->get_property_set().unset("document");
+            prequest->get_property_set().unset("document");
 
          }
          catch (...)
@@ -892,7 +904,7 @@ namespace apex
          {
          pbergedge->on_app_request_bergedge_callback(this);
          }*/
-         pcreate->m_eventReady.SetEvent();
+         prequest->m_eventReady.SetEvent();
 
       }
 
@@ -1396,7 +1408,7 @@ namespace apex
 
          handle_exception(e);
 
-         m_papexsession->set_finish();
+         acmesession()->set_finish();
 
          throw e;
 
@@ -2025,7 +2037,7 @@ namespace apex
 
          //data_pulse_change({ "ca2.savings", true }, nullptr);
 
-         auto psystem = get_system()->m_papexsystem;
+         auto psystem = acmesystem()->m_papexsystem;
 
          psystem->appa_load_string_table();
 
@@ -2169,7 +2181,7 @@ namespace apex
 
             //data_pulse_change({ "ca2.savings", true }, nullptr);
 
-            auto psystem = get_system()->m_papexsystem;
+            auto psystem = acmesystem()->m_papexsystem;
 
             psystem->appa_load_string_table();
 
@@ -2542,7 +2554,7 @@ namespace apex
    void application::do_install()
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       //if (!on_install())
       on_install();
@@ -2577,7 +2589,7 @@ namespace apex
 
       //::payload & varTopicQuey = psystem->m_varTopicQuery;
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -2604,7 +2616,7 @@ namespace apex
 
          i32 iRetry = 1;
 
-         auto psession = get_session();
+         auto psession = acmesession()->m_papexsession;
 
       retry_license:
 
@@ -2733,7 +2745,7 @@ namespace apex
 
       }
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       synchronous_lock synchronouslock(psystem->m_pmutexSystemAppData);
 
@@ -2761,7 +2773,7 @@ namespace apex
 
          string strSchema = straSchema[i];
 
-         acmesystem()->m_papexsystem->m_papexnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
+         acmesystem()->m_pacmenode->m_papexnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
 
       }
 
@@ -2868,7 +2880,7 @@ namespace apex
 
       add_matter_locator(this);
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       if (!m_bAppHasInstallerChangedProtected)
       {
@@ -3014,10 +3026,10 @@ namespace apex
    {
 
 
-      if (::is_set(get_session()))
+      if (::is_set(acmesession()))
       {
 
-         get_session()->post_message(e_message_erase_application, 0, this);
+         acmesession()->m_papexsession->post_message(e_message_erase_application, 0, this);
 
       }
 
@@ -3044,7 +3056,7 @@ namespace apex
 
       }
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
       try
       {
 
@@ -3082,7 +3094,7 @@ namespace apex
    void application::init_application()
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       INFORMATION("apex::application::init_application");
 
@@ -3211,7 +3223,7 @@ namespace apex
 
       //}
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       //estatus = 
       m_puserlanguagemap = __new(::user::language_map OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init1"));
@@ -3235,7 +3247,7 @@ namespace apex
 
       }
 
-      if (psystem->m_bLocalization)
+      if (m_bLocalization)
       {
 
          string strLang = psystem->get_user_language();
@@ -3259,7 +3271,7 @@ namespace apex
 
       }*/
 
-      if (psystem->m_bLocalization)
+      if (acmeapplication()->m_bLocalization)
       {
 
          string strLocale;
@@ -3663,7 +3675,7 @@ namespace apex
 
       bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name(), psecurityattributes);
 
-      if (bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
+      if (bGlobalExclusiveFail && m_eexclusiveinstance == e_exclusive_instance_global)
       {
 
          INFORMATION("A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this memory_new instance.");
@@ -3671,7 +3683,7 @@ namespace apex
          try
          {
 
-            on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobal, "");
+            on_exclusive_instance_conflict(bHandled, e_exclusive_instance_global, "");
             //{
 
             //   return false;
@@ -3688,7 +3700,7 @@ namespace apex
 
       }
 
-      if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
+      if (m_eexclusiveinstance == e_exclusive_instance_global_id)
       {
 
          bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name(), psecurityattributes);
@@ -3701,7 +3713,7 @@ namespace apex
             try
             {
 
-               on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobalId, get_global_mutex_id());
+               on_exclusive_instance_conflict(bHandled, e_exclusive_instance_global_id, get_global_mutex_id());
 
             }
             catch (...)
@@ -3717,18 +3729,18 @@ namespace apex
 
       bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name(), psecurityattributes);
 
-      if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
+      if (bLocalExclusiveFail && m_eexclusiveinstance == e_exclusive_instance_local)
       {
 
          INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this memory_new instance.");
 
-         on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, "");
+         on_exclusive_instance_conflict(bHandled, e_exclusive_instance_local, "");
 
          return false;
 
       }
 
-      if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
+      if (m_eexclusiveinstance == e_exclusive_instance_local_id)
       {
 
          bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name(), psecurityattributes);
@@ -3742,7 +3754,7 @@ namespace apex
                // Should in some way activate the other instance
                INFORMATION("A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this memory_new instance.");
 
-               on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id());
+               on_exclusive_instance_conflict(bHandled, e_exclusive_instance_local_id, get_local_mutex_id());
                //if(!)
                //{
 
@@ -3924,16 +3936,16 @@ namespace apex
    }
 
 
-   void application::on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId)
+   void application::on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId)
    {
 
-      if (eexclusive == ExclusiveInstanceLocal)
+      if (eexclusive == e_exclusive_instance_local)
       {
 
          return on_exclusive_instance_local_conflict(bHandled);
 
       }
-      else if (eexclusive == ExclusiveInstanceLocalId)
+      else if (eexclusive == e_exclusive_instance_local_id)
       {
 
          return on_exclusive_instance_local_conflict_id(bHandled, strId);
@@ -3953,7 +3965,7 @@ namespace apex
       try
       {
 
-         auto psystem = get_system()->m_papexsystem;
+         auto psystem = acmesystem()->m_papexsystem;
 
          if (m_pinterprocesscommunication)
          {
@@ -4010,7 +4022,7 @@ namespace apex
    {
 
       bool bContinue = false;
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
       try
       {
 
@@ -4062,11 +4074,11 @@ namespace apex
    void application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
    {
 
-      auto pcreate = __create_new < create >();
+      auto prequest = __create_new < ::request >();
 
-      pcreate->initialize_command_line2(strCommandLine);
+      prequest->initialize_command_line2(strCommandLine);
 
-      do_request(pcreate);
+      post_request(prequest);
 
       bHandled = true;
 
@@ -4397,7 +4409,7 @@ namespace apex
 
       matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
-      auto psession = get_session();
+      auto psession = acmesession();
 
       auto ptextcontext = psession->text_context();
 
@@ -4535,7 +4547,7 @@ namespace apex
    }
 
 
-   bool application::platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::create * pcreate)
+   bool application::platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::request * prequest)
    {
 
       return false;
@@ -4543,7 +4555,7 @@ namespace apex
    }
 
 
-   bool application::platform_open_by_file_extension(index iEdge, ::create * pcc)
+   bool application::platform_open_by_file_extension(index iEdge, ::request * prequest)
    {
 
       return false;
@@ -5455,7 +5467,7 @@ namespace apex
 
       string strAppId = m_strAppId;
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       string strNetworkPayload = file()->safe_get_string(acmedirectory()->config() / strAppId / +"http.network_payload");
 
@@ -5475,7 +5487,7 @@ namespace apex
 
       }
 
-      acmesystem()->m_papexsystem->m_papexnode->set_last_run_application_path(strAppId);
+      acmesystem()->m_pacmenode->m_papexnode->set_last_run_application_path(strAppId);
 
       acmenode()->m_papexnode->on_start_application(this);
 
@@ -5493,25 +5505,6 @@ namespace apex
    }
 
 
-   bool application::start_application(bool bSynch, ::create * pcreate)
-   {
-
-      if (bSynch)
-      {
-
-         branch_synchronously();
-
-      }
-      else
-      {
-
-         branch();
-
-      }
-
-      return true;
-
-   }
 
 
    void application::HideApplication()
@@ -6045,12 +6038,10 @@ namespace apex
    //}
 
 
-   //void application::on_request(::create * pcreate)
-   //{
+   void application::on_request(::request * prequest)
+   {
 
-   //   apex::application::on_request(pcreate);
-
-   //}
+   }
 
 
    //void     application::run()
@@ -6359,7 +6350,9 @@ namespace apex
 
       index i = applicationmenu().get_count();
 
-      applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
+      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
+
+      applicationmenu().add_item(i++, "Transparent Frame", "transparent_frame");
 
       application_menu_update();
 
@@ -6475,7 +6468,7 @@ namespace apex
    void application::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative)
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto plocaleschema = __create_new < ::text::international::locale_schema >();
 
@@ -6622,7 +6615,7 @@ namespace apex
 
       }
 
-      if (get_session() == nullptr)
+      if (acmesession() == nullptr)
       {
 
          return false;
@@ -6907,7 +6900,7 @@ namespace apex
    //}
 
 
-   //void application::on_service_request(::create * pcreate)
+   //void application::on_service_request(::request * prequest)
    //{
 
    //   ::application::on_service_request(pcreate);
@@ -7260,7 +7253,7 @@ namespace apex
 
    //   m_pdocmanager = nullptr;
 
-   //   m_eexclusiveinstance = ExclusiveInstanceNone;
+   //   m_eexclusiveinstance = e_exclusive_instance_none;
    //   m_strLocale = "_std";
    //   m_strSchema = "_std";
 
@@ -9359,7 +9352,7 @@ namespace apex
    bool application::on_run_install()
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       if (m_strId == "session" || m_strAppName == "session")
       {
@@ -9550,7 +9543,7 @@ namespace apex
    void application::set_title(const ::string & pszTitle)
    {
 
-      auto psession = get_session();
+      auto psession = acmesession()->m_papexsession;
 
       psession->set_app_title(m_strAppName, pszTitle);
 
@@ -9961,10 +9954,10 @@ namespace apex
          try
          {
 
-            if (get_session())
+            if (acmesession())
             {
 
-               auto psession = get_session();
+               auto psession = acmesession();
 
                psession->destroy();
 
@@ -9986,7 +9979,7 @@ namespace apex
          try
          {
 
-            auto psystem = get_system()->m_papexsystem;
+            auto psystem = acmesystem()->m_papexsystem;
 
             if (psystem)
             {
@@ -10009,7 +10002,7 @@ namespace apex
    //pointer< ::extended::future < ::conversation > > application::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
    //{
    //
-   //   auto psystem = get_system()->m_papexsystem;
+   //   auto psystem = acmesystem()->m_papexsystem;
    //
    //   return psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
    //
@@ -10021,7 +10014,7 @@ namespace apex
 
       auto psystem = acmesystem()->m_papexsystem;
 
-      auto papex = psystem->m_papexnode;
+      auto papex = psystem->acmesession()->m_pacmenode->m_papexnode;
 
       return papex->get_version();
 
@@ -10033,7 +10026,7 @@ namespace apex
 
       auto psystem = acmesystem()->m_papexsystem;
 
-      auto papex = psystem->m_papexnode;
+      auto papex = psystem->m_pacmenode->m_papexnode;
 
       return papex->_001InitializeShellOpen();
 

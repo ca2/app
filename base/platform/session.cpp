@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "session.h"
 #include "apex/platform/application.h"
 ////#include "base/user/experience/_component.h"
@@ -57,13 +57,13 @@ namespace base
    }
 
 
-   void session::on_instantiate_application(::apex::application* papp)
+   void session::on_instantiate_application(::acme::application* papp)
    {
 
       ::axis::session::on_instantiate_application(papp);
 
-      papp->m_pbasesession = this;
-      papp->m_pbasesystem = m_pbasesystem;
+      //papp->m_pbasesession = this;
+      //papp->m_pbasesystem = m_pbasesystem;
 
    }
 

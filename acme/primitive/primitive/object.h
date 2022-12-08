@@ -110,7 +110,7 @@ public:
 #endif
 
 
-   //inline ::acme::system* get_system() const;
+   //inline ::acme::system* acmesystem() const;
 
    //inline element_array * _composite_array() { return m_pcompositea; }
    //inline element_array * _reference_array() { return m_preferencea; }
@@ -437,7 +437,7 @@ public:
 
    //virtual void do_request(::create* pcreate);
 
-   virtual void do_request(::create* pcreate);
+   //virtual void do_request(::request * prequest);
 
    //virtual pointer< ::extended::sequence < ::conversation > >  message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
    //{
@@ -469,14 +469,14 @@ public:
 
    //virtual void on_finalize();
 
-   virtual void call_request(::create* pcreate);
+   //virtual void call_request(::request * prequest);
 
 
-   virtual void request(::create* pcreate);
+   virtual void request(::request * prequest);
 
    //// former user::server
    //virtual ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
-   virtual void on_request(::create* pcreate);
+   virtual void on_request(::request * prequest);
    //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf);
    //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::atom atom = ::atom());
    //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& payloadFile);
@@ -793,9 +793,9 @@ public:
 
    //inline ::context* get_context() const { return m_pcontext; }
 
-   ::acme::application * get_app() const;
+   //::acme::application * get_app() const;
 
-   ::apex::session * get_session() const;
+   //::acme::session * get_session() const;
 
    //::apex::system * psystem const { return m_psystemContext; }
 

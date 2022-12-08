@@ -1,7 +1,8 @@
-﻿#include "framework.h"
+#include "framework.h"
+#include "manual_reset_event.h"
+#include "task.h"
+#include "task_flag.h"
 #include "acme/constant/id.h"
-#include "acme/parallelization/manual_reset_event.h"
-#include "acme/parallelization/task.h"
 #include "acme/primitive/string/string.h"
 //#include "acme/primitive/collection/string_array.h"
 //#include "acme/primitive/primitive/payload.h"
@@ -58,7 +59,7 @@ namespace parallelization
 
    //   //return s_piaThread2->contains(atom);
 
-   //   return get_system()->get_task(atom) != nullptr;
+   //   return acmesystem()->get_task(atom) != nullptr;
 
    //}
 
@@ -66,7 +67,7 @@ namespace parallelization
    //bool thread_registered(::thread * pthread)
    //{
 
-   //   return get_system()->get_thread_id(pthread) != 0;
+   //   return acmesystem()->get_thread_id(pthread) != 0;
 
    //}
 
@@ -74,7 +75,7 @@ namespace parallelization
    //void thread_register(itask_t itask, ::thread * pthread)
    //{
 
-   //   get_system()->set_thread(itask, pthread);
+   //   acmesystem()->set_thread(itask, pthread);
 
    //}
 
@@ -106,9 +107,9 @@ namespace parallelization
 
    //   }
 
-   //   synchronous_lock synchronouslock(get_system()->m_pmutexThread);
+   //   synchronous_lock synchronouslock(acmesystem()->m_pmutexThread);
 
-   //   for (auto & pair : get_system()->m_threadidmap)
+   //   for (auto & pair : acmesystem()->m_threadidmap)
    //   {
 
    //      try
@@ -137,9 +138,9 @@ namespace parallelization
    //void post_quit_to_all_threads()
    //{
 
-   //   synchronous_lock synchronouslock(get_system()->m_pmutexThread);
+   //   synchronous_lock synchronouslock(acmesystem()->m_pmutexThread);
 
-   //   for (auto& pair : get_system()->m_threadidmap)
+   //   for (auto& pair : acmesystem()->m_threadidmap)
    //   {
 
    //      try
@@ -271,7 +272,7 @@ namespace parallelization
 //      {
 //         ////////// and have short life, so it is safe to keep it running
 //         //return true;
-//         return get_system()->task_get_run();
+//         return acmesystem()->task_get_run();
 //
 //      }
 //

@@ -56,7 +56,7 @@ CLASS_DECL_ACME MESSAGE * __get_current_message();
 
 //CLASS_DECL_ACME ::pointer<::acme::application> __get_app();
 //CLASS_DECL_ACME ::pointer<::user::primitive>__get_main_window();
-//CLASS_DECL_ACME HINSTANCE CLASS_DECL_ACME ::acme::get_system()->m_hInstance;
+//CLASS_DECL_ACME HINSTANCE CLASS_DECL_ACME ::acmeacmesystem()->m_hInstance;
 CLASS_DECL_ACME const char * __get_app_name();
 
 

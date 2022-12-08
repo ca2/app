@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/platform/system.h"
@@ -38,7 +38,7 @@ namespace axis
 
       virtual void initialize(::particle * pparticle) override;
 
-      virtual void on_add_session(::apex::session * papexsession) override;
+      virtual void on_add_session(::acme::session * papexsession) override;
 
       virtual void init() override;
       virtual void inline_init() override;
@@ -64,7 +64,7 @@ namespace axis
 
 
 
-      //virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::request * prequest) override;
 
 
 
@@ -90,7 +90,7 @@ namespace axis
 
       //virtual void init2();
 
-      virtual void post_creation_requests() override;
+      //virtual void post_pending_requests() override;
 
       //virtual void term_system();
 

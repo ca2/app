@@ -189,60 +189,60 @@ namespace sockets
    }
 
 
-   map < int, DH * > * g_pmapdh = nullptr;
+   //map < int, DH * > * g_pmapdh = nullptr;
 
-   map < int, DH * > * dh_map()
-   {
+   //map < int, DH * > * dh_map()
+   //{
 
-      critical_section_lock synchronouslock(::globals_critical_section());
+   //   critical_section_lock synchronouslock(::globals_critical_section());
 
-      if (g_pmapdh == nullptr)
-      {
+   //   if (g_pmapdh == nullptr)
+   //   {
 
-         g_pmapdh = memory_new map < int, DH * >();
+   //      g_pmapdh = memory_new map < int, DH * >();
 
-      }
+   //   }
 
-      return g_pmapdh;
+   //   return g_pmapdh;
 
-   }
-
-
-   DH * get_dh(int keylength)
-   {
-
-      critical_section_lock synchronouslock(::globals_critical_section());
-
-      return dh_map()->operator[](keylength);
-
-   }
+   //}
 
 
-   void set_dh(int keylength, DH * pdh)
-   {
+   //DH * get_dh(int keylength)
+   //{
 
-      critical_section_lock synchronouslock(::globals_critical_section());
+   //   critical_section_lock synchronouslock(::globals_critical_section());
 
-      dh_map()->operator[](keylength) = pdh;
+   //   return dh_map()->operator[](keylength);
 
-   }
+   //}
 
 
-   DH * tmp_dh_callback(SSL *ssl, int is_export, int keylength)
-   {
+   //void set_dh(int keylength, DH * pdh)
+   //{
 
-      switch(keylength)
-      {
-      case 512:
-      case 1024:
-      case 2048:
-      case 4096:
-         return get_dh(keylength);
-      }
+   //   critical_section_lock synchronouslock(::globals_critical_section());
 
-      return nullptr;
+   //   dh_map()->operator[](keylength) = pdh;
 
-   }
+   //}
+
+
+   //DH * tmp_dh_callback(SSL *ssl, int is_export, int keylength)
+   //{
+
+   //   switch(keylength)
+   //   {
+   //   case 512:
+   //   case 1024:
+   //   case 2048:
+   //   case 4096:
+   //      return get_dh(keylength);
+   //   }
+
+   //   return nullptr;
+
+   //}
 
 
    void httpd_socket::InitSSLServer()

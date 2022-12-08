@@ -1,6 +1,7 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "timer_task.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/keep.h"
 
 
 namespace acme
@@ -232,7 +233,7 @@ namespace acme
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         __keep(m_bOk, false);
+         KEEP(m_bOk, false);
 
          auto map = m_map;
 
@@ -269,7 +270,7 @@ namespace acme
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         __keep(m_bOk, false);
+         KEEP(m_bOk, false);
 
          auto map = m_map;
 

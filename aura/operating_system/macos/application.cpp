@@ -199,9 +199,9 @@ namespace aura
 //      */
 //
 ////      string strExeName;
-//      //string strTitle = ::aura::get_system()->load_string("::aura::get_system()->title");
+//      //string strTitle = ::auraacmesystem()->load_string("::auraacmesystem()->title");
 //      // get the exe title from the full path name [no extension]
-//  //    strExeName = ::aura::get_system()->get_module_title();
+//  //    strExeName = ::auraacmesystem()->get_module_title();
 //
 //
 //
@@ -252,7 +252,7 @@ namespace aura
 //
 //
 ////
-////   void     application::do_request(::create * pcreate)
+////   void     application::do_request(::request * prequest)
 ////   {
 ////
 ////      //m_pcommand = pcommand;
@@ -380,5 +380,5 @@ namespace aura
 //
 //bool on_application_menu_action(const ::string & pszCommand)
 //{
-//   ::aura::get_system()->on_application_menu_action(pszCommand);
+//   ::auraacmesystem()->on_application_menu_action(pszCommand);
 //}

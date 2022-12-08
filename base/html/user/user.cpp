@@ -21,9 +21,9 @@ namespace base
       m_typeHtmlDocument = typeid(html_document);
       m_typeHtmlImpact = typeid(html_impact);
 
-      ::factory::add_factory_item < html_document >();
-      ::factory::add_factory_item < html_impact >();
-      ::factory::add_factory_item < ::html::core_data::image >();
+      factory()->add_factory_item < html_document >();
+      factory()->add_factory_item < html_impact >();
+      factory()->add_factory_item < ::html::core_data::image >();
 
       auto ptemplate = __new(::user::multiple_document_template(
          "system/form",

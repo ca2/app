@@ -131,7 +131,7 @@ namespace helloworld
    }
 
 
-   void application::on_request(::create * pcreate)
+   void application::on_request(::request * prequest)
    {
 
 #if 0

@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-11 21:16 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-11 21:16 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -22,6 +22,8 @@ struct u32hash
    u32hash() {}
 
 };
+
+
 
 
 

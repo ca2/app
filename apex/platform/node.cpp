@@ -64,7 +64,6 @@ namespace apex
 
       //}
 
-      acmesystem()->m_papexnode = this;
 
       //return estatus;
 
@@ -97,7 +96,7 @@ namespace apex
 
       string strFooter__;
 
-      if (acmesystem()->m_bAudio)
+      if (acmeapplication()->m_bAudio)
       {
 
          ::payload payload;
@@ -110,7 +109,7 @@ namespace apex
 
          ::string strMember = "add_pane_tab_impact_handler_library";
 
-         acmesystem()->m_pacmeapplicationMain->_handle_call(payload, strObject, strMember, propertyset);
+         acmeapplication()->_handle_call(payload, strObject, strMember, propertyset);
 
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";
@@ -215,7 +214,7 @@ namespace apex
    void node::start_node()
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       //auto estatus = 
       psystem->on_start_system();

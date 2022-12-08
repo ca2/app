@@ -1,9 +1,11 @@
 ﻿#include "framework.h"
 #include "acme.h"
 #include "system.h"
-#include "sequencer.h"
+//#include "sequencer.h"
 #include "library.h"
+#include "sub_system.h"
 #include "acme/parallelization/mutex.h"
+#include "acme/platform/_synchronization.h"
 #include "acme/primitive/primitive/malloc.h"
 #include "acme/user/user/theme_colors.h"
 
@@ -12,6 +14,189 @@
 
 
 #include "acme/operating_system/ansi/binreloc.h"
+
+//void initialize_system();
+//void finalize_system();
+
+//   class CLASS_DECL_ACME acme
+//   {
+//   public:
+//
+//      acme() {::acme::initialize();}
+//      ~acme() {::acme::finalize();}
+//
+//   };
+
+
+CLASS_DECL_ACME bool should_output_debug_string();
+CLASS_DECL_ACME bool add_matter(::matter * pmatter);
+
+#ifdef WINDOWS
+CLASS_DECL_ACME _locale_t get_c_locale();
+#else
+CLASS_DECL_ACME locale_t get_c_locale();
+#endif
+
+
+
+class plex_heap_alloc_array;
+
+
+
+#if OBJECT_TYPE_COUNTER
+
+extern map < const char *, const char *, ::i64, ::i64 > * g_pmapObjTypCtr;
+
+#endif
+
+
+//extern CLASS_DECL_ACME critical_section
+  // *
+   //g_pcsGlobal;
+
+#if OBJECT_TYPE_COUNTER
+
+extern int g_iObjTypCtrInit;
+
+#endif
+
+//extern ::pointer< ::mutex > g_pmutexChildren;
+
+#ifdef WINDOWS
+
+
+#else
+
+//extern DWORD_PTR g_tlsindexLastError;
+extern char * g_pszDemangle;
+//extern critical_section * g_pcsDemangle;
+
+#endif
+
+
+//extern ::pointer< ::mutex > acmesystem()->g_mutexLibrary;
+
+//extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
+
+//extern critical_section* g_pcsGlobal;
+
+extern bool g_bOutputDebugString;
+
+// acme commented
+//extern critical_section* g_pcsTrace;
+
+//extern ::matter* g_ptrace;
+
+//// acme commented
+//extern simple_trace* g_psimpletrace;
+
+#ifdef __APPLE__
+
+   // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
+   // http://stackoverflow.com/users/346736/jbenet
+
+   //#include <mach/clock.h>
+   //#include <mach/mach.h>
+#include <mach/mach_time.h>
+
+//clock_serv_t   g_cclock;
+extern double g_machtime_conversion_factor;
+//   clock_get_time(cclock, &mts);
+
+#endif
+
+
+//extern ::pointer< ::mutex > g_pmutexCred;
+
+
+//extern class ::exception_engine * g_pengine;
+
+
+///extern ::pointer< ::mutex > g_pmutexMessageDispatch;
+
+
+extern CLASS_DECL_ACME ::array<matter *>
+   *
+   g_paAura;
+
+
+extern id_to_id * g_pmapRTL;
+
+
+#if defined(WINDOWS)
+
+extern _locale_t g_localeC;
+
+#else
+
+extern locale_t g_localeC;
+
+#endif
+
+//extern map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
+
+
+extern ::nanosecond g_nanosecondFirst;
+
+//plex_heap_alloc_array * g_pplexheapallocarray;
+
+extern int g_iMemoryCountersStartable;
+//extern ::pointer< ::mutex > g_pmutexTrait;
+//extern ::pointer< ::mutex > g_pmutexFactory;
+
+//extern ::pointer< ::mutex > g_pmutexUiDestroyed;
+
+#ifdef ANDROID
+
+//extern ::pointer< ::mutex > g_pmutexOutputDebugStringA;
+
+#endif
+
+
+// #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+
+// extern ::pointer< ::mutex > g_pmutexMq;
+
+// #endif
+
+#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+
+   //extern ::pointer< ::mutex > g_pmutexThreadIdHandleLock;
+
+//extern ::pointer< ::mutex > g_pmutexThreadIdLock;
+
+//#if !defined(_UWP)
+
+//extern ::pointer< ::mutex > g_pmutexPendingThreadsLock;
+
+//#endif
+
+//extern ::pointer< ::mutex > g_pmutexTlsData;
+
+#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
+
+
+#if defined(LINUX) || defined(__APPLE__)
+
+
+//extern ::pointer< ::mutex > g_pmutexTz;
+
+//extern ::pointer< ::mutex > g_pmutexThreadHandleLock;
+
+
+#endif // defined(LINUX) || defined(__APPLE__)
+
+
+#ifdef __APPLE__
+
+
+//extern ::pointer< ::mutex > g_pmutexCvt;
+
+
+#endif
+
+
+//CLASS_DECL_ACME void ref();
 
 
 //global_particle * g_pglobalParticle = nullptr;
@@ -214,10 +399,99 @@ namespace acme
 {
 
 
-   acme * acme::g_p = nullptr;
+   CLASS_DECL_ACME ::acme::acme * g_p = nullptr;
 
 
-   static pointer_array < ::matter > * g_pelementaddraReleaseOnEnd;
+   CLASS_DECL_ACME::acme::acme* get()
+   {
+
+      return g_p;
+
+   }
+
+
+   acme::acme()
+   {
+
+      m_pacmeapplication = nullptr;
+      m_pmemorycounter = nullptr;
+
+   }
+
+
+   acme::~acme()
+   {
+
+  
+
+   }
+
+
+   void acme::acme_initialize()
+   {
+
+
+      initialize_memory_counter();
+
+      acme_construct();
+
+      ::__raw_construct_new(m_psubsystem);
+
+
+   }
+     
+
+   void acme::acme_finalize()
+   {
+
+      m_psubsystem.release();
+
+      acme_destruct();
+
+      finalize_memory_counter();
+
+   }
+
+#if defined(WINDOWS)  && defined(UNICODE)
+
+
+   void acme::initialize(int argc, wchar_t* argv[], wchar_t* envp[])
+   {
+
+      m_psubsystem->m_argc = argc;
+      m_psubsystem->m_wargv = argv;
+      m_psubsystem->m_wenvp = envp;
+
+   }
+
+   void acme::initialize(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
+   {
+
+      m_psubsystem->m_hinstanceThis = hinstanceThis;
+      m_psubsystem->m_hinstancePrev = hinstancePrev;
+      m_psubsystem->m_nCmdShow = nCmdShow;
+
+   }
+
+
+#else
+
+
+   void acme::initialize(int argc, platform_char** argv, platform_char** envp)
+   {
+
+      m_psubsystem->m_argc = argc;
+      m_psubsystem->m_argv = argv;
+      m_psubsystem->m_envp = envp;
+
+   }
+#endif
+
+
+   //acme * acme::g_p = nullptr;
+
+
+   
 
 
 #if OBJECT_TYPE_COUNTER
@@ -238,7 +512,7 @@ namespace acme
 
 
 
-   //::critical_section get_system()->g_mutexLibrary;
+   //::critical_section acmesystem()->g_mutexLibrary;
 
    //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -527,18 +801,10 @@ namespace acme
 //   }
 
 
-   acme::acme()
+   void acme::acme_construct()
    {
 
-      g_p = ThomasBS_Acme;
-
       m_timeStart.Now();
-
-#ifdef WINDOWS
-
-      defer_initialize_system_heap();
-
-#endif
 
       initialize_memory_management();
 
@@ -721,10 +987,10 @@ namespace acme
 
       g_localeC = _wcreate_locale(LC_ALL, L"C");
 
-#elif defined(__APPLE__)
-
-      g_localeC = newlocale(LC_ALL, "C", NULL);
-
+      //#elif defined(__APPLE__)
+      //
+      //      g_localeC = newlocale(LC_ALL_MASK, "C", NULL);
+      //
 #else
 
       g_localeC = newlocale(LC_ALL_MASK, "C", NULL);
@@ -765,7 +1031,7 @@ namespace acme
 
 #endif
 
-      __defer_new(::acme::g_pelementaddraReleaseOnEnd);
+      __defer_new(m_pelementaddraReleaseOnEnd);
 
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
@@ -800,12 +1066,12 @@ namespace acme
 
       initialize_global_message_queue();
 
-//
-//#ifdef ANDROID
-//
-//      g_criticalsectionOutputDebugStringA = memory_new ::critical_section();
-//
-//#endif
+      //
+      //#ifdef ANDROID
+      //
+      //      g_criticalsectionOutputDebugStringA = memory_new ::critical_section();
+      //
+      //#endif
 
 #if OBJECT_TYPE_COUNTER
 
@@ -856,7 +1122,7 @@ namespace acme
 
       //factory_init();
 
-      g_paAura = memory_new ::array < matter * >;
+      g_paAura = memory_new::array < matter* >;
 
       //g_pmapAura =memory_new ::map < void *,void *,::acme::application *,::acme::application * >;
 
@@ -925,12 +1191,12 @@ namespace acme
       g_iObjTypCtrInit = 1;
 #endif
 
-     
+
 
 
 #ifdef LINUX
 
-//!!!      x11_hook_init();
+      //!!!      x11_hook_init();
 
 #endif
 
@@ -982,13 +1248,12 @@ namespace acme
 
       //return true;
 
-      //::factory::add_factory_item < ::acme::system >();
-
+      //factory()->add_factory_item < ::acme::system >();
 
    }
 
 
-   acme::~acme()
+   void acme::acme_destruct()
    {
 
 
@@ -1043,7 +1308,7 @@ namespace acme
 
 #ifdef LINUX
 
-//!!!      x11_hook_term();
+      //!!!      x11_hook_term();
 
 #endif
 
@@ -1074,7 +1339,7 @@ namespace acme
       //try
       //{
 
-      //   synchronous_lock synchronouslock(get_system()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(acmesystem()->g_mutexLibrary);
 
       //   g_pmapLibCall->erase_all();
 
@@ -1088,9 +1353,9 @@ namespace acme
       //try
       //{
 
-      //   synchronous_lock synchronouslock(get_system()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(acmesystem()->g_mutexLibrary);
 
-      //   get_system()->g_mapLibrary.erase_all();
+      //   acmesystem()->g_mapLibrary.erase_all();
 
       //}
       //catch (...)
@@ -1236,7 +1501,7 @@ namespace acme
       //::acme::del(g_psimpletrace);
 
       //::acme::del(g_criticalsectionTrace);
-      
+
       //::acme::del(g_psimpletrace);
 
       //::acme::del(g_criticalsectionTrace);
@@ -1327,10 +1592,44 @@ namespace acme
 #else
       freelocale(g_localeC);
 #endif
-      
+
       finalize_memory_management();
 
+
    }
+
+
+   ::memory_counter* g_pmemorycounter = nullptr;
+
+
+   void acme::initialize_memory_counter()
+   {
+
+      if (!m_pmemorycounter)
+      {
+
+         m_pmemorycounter = new ::memory_counter();
+
+      }
+
+   }
+
+
+   void acme::finalize_memory_counter()
+   {
+
+      ::acme::del(m_pmemorycounter);
+
+   }
+
+
+   ::memory_counter* acme::get_memory_counter()
+   {
+
+      return g_pmemorycounter;
+
+   }
+
 
 
    //void acme::this_ref()
@@ -1393,7 +1692,7 @@ namespace acme
 //
 //      //return true;
 //
-//      //::factory::add_factory_item < ::acme::system >();
+//      //factory()->add_factory_item < ::acme::system >();
 //
 //   }
 //
@@ -1471,31 +1770,31 @@ namespace acme
       return true;
 
    }
-
-#ifdef WINDOWS
-
-   _locale_t get_c_locale()
-   {
-
-      return g_localeC;
-
-   }
-
-#else
-
-   locale_t get_c_locale()
-   {
-
-      return g_localeC;
-
-   }
-
-#endif
-
-
+//
+//#ifdef WINDOWS
+//
+//   _locale_t get_c_locale()
+//   {
+//
+//      return g_localeC;
+//
+//   }
+//
+//#else
+//
+//   locale_t get_c_locale()
+//   {
+//
+//      return g_localeC;
+//
+//   }
+//
+//#endif
 
 
-} // namespace acme
+
+
+//} // namespace acme
 
 
 //static ::critical_section s_criticalsectionDraw2d = nullptr;
@@ -1544,9 +1843,211 @@ namespace acme
 
 
 
-CLASS_DECL_ACME ::color::color dk_red() // <3ThomasBS!!
+void acme::delete_all_release_on_end()
 {
-   
+
+   critical_section_lock criticalsectionlock(globals_critical_section());
+
+   m_pelementaddraReleaseOnEnd->erase_all();
+
+   ::acme::del(m_pelementaddraReleaseOnEnd);
+
+   //if (is_set(::acme::g_pelementaddraReleaseOnEnd))
+//   {
+//
+//      for (auto pmatter : ::acme::g_elementaddraReleaseOnEnd)
+//      {
+//
+//         ::acme::del(pmatter);
+//
+//      }
+//
+//      ::acme::del(::acme::g_pelementaddraReleaseOnEnd);
+//
+//   }
+
+}
+
+
+void acme::add_release_on_end(::particle * pparticle)
+{
+
+   critical_section_lock criticalsectionlock(globals_critical_section());
+
+//   if (::is_null(::acme::g_pelementaddraReleaseOnEnd))
+//   {
+//
+//      ::acme::g_pelementaddraReleaseOnEnd = memory_new element_address_array();
+//
+//   }
+
+   m_pelementaddraReleaseOnEnd->add(pparticle);
+
+}
+
+//
+//namespace acme
+//{
+
+
+   class ::time acme::start_nanosecond()
+   {
+
+      return m_timeStart;
+
+   }
+
+//
+//} // namespace acme
+
+
+//namespace acme
+//{
+//
+//
+////   acme * acme::g_p = nullptr;
+////   int g_iReference = 0;
+//////critical_section g_cs;
+////
+////   void increment_reference_count()
+////   {
+////
+//////      critical_section_lock lock(&g_cs);
+////
+////      g_iReference++;
+////
+////      if(g_iReference == 1)
+////      {
+////
+////         memory_new acme();
+////
+////      }
+////
+////   }
+////
+////
+////   void decrement_reference_count()
+////   {
+////
+////      //critical_section_lock lock(&g_cs);
+////
+////      g_iReference--;
+////
+////      if(g_iReference == 0)
+////      {
+////
+////         ::acme::del(acme::g_p);
+////
+////      }
+////
+////   }
+//
+//
+////   class reference
+////   {
+////   public:
+////
+////
+////      reference() { increment_reference_count(); }
+////      ~reference() { decrement_reference_count(); }
+////
+////
+////   };
+//
+//
+////   reference g_reference;
+//
+////   void initialize()
+////   {
+////
+////      increment_reference_count();
+////
+////   }
+////
+////
+////
+////   void finalize()
+////   {
+////
+////
+////
+////   }
+//
+//
+//
+} // namespace acme
+
+
+//#pragma comment (linker, "/export:_g_acme")
+
+
+// _ACME_LINKER_FORCE_INCLUDE(g_acme);
+
+
+//#ifdef WINDOWS
+//
+//
+//#else
+
+
+//#ifdef CLASS_DECL_APEX
+//
+//
+//#include "openssl/applink.c"
+//
+//
+//#endif
+
+//#include "acme/platform/system_setup.h"
+
+
+//int acme(int argc, char * argv[], char * envp[])
+//{
+//
+//   auto papp = ::app_factory::new_app();
+//
+//   papp->set_args(argc, argv, envp);
+//
+//#if defined(LINUX) || defined(FREEBSD)
+//
+//   papp->m_pchar_binary__matter_zip_start = embed_resource::get_start();
+//
+//   papp->m_pchar_binary__matter_zip_end = embed_resource::get_end();
+//
+//#endif
+//
+//   int iExitCode = papp->main_loop();
+//
+//   return iExitCode;
+//
+//}
+//
+//
+//#endif
+
+
+iptr g_iMonitor = 0;
+
+
+CLASS_DECL_ACME void monitor_pointer(void * p)
+{
+
+   g_iMonitor = (iptr)p;
+
+}
+
+
+
+
+
+
+
+
+
+
+CLASS_DECL_ACME::color::color dk_red() // <3ThomasBS!!
+{
+
    return argb(255, 200, 16, 46);
 
 }
@@ -1555,7 +2056,7 @@ CLASS_DECL_ACME ::color::color dk_red() // <3ThomasBS!!
 thread_local ::e_status t_estatus;
 
 
-CLASS_DECL_ACME void set_last_status(const ::e_status & estatus)
+CLASS_DECL_ACME void set_last_status(const ::e_status& estatus)
 {
 
    t_estatus = estatus;
@@ -1563,7 +2064,7 @@ CLASS_DECL_ACME void set_last_status(const ::e_status & estatus)
 }
 
 
-CLASS_DECL_ACME ::e_status get_last_status()
+CLASS_DECL_ACME::e_status get_last_status()
 {
 
    return t_estatus;
@@ -1696,17 +2197,17 @@ CLASS_DECL_ACME ::e_status get_last_status()
 //
 //
 //
-
-#ifdef WINDOWS
-_locale_t get_c_locale()
-#else
-locale_t get_c_locale()
-#endif
-{
-
-   return ::acme::g_localeC;
-
-}
+//
+//#ifdef WINDOWS
+//_locale_t get_c_locale()
+//#else
+//locale_t get_c_locale()
+//#endif
+//{
+//
+//   return ::acme::g_localeC;
+//
+//}
 
 
 //void acme_ref()
@@ -1741,202 +2242,3 @@ locale_t get_c_locale()
 //   *ppointer = pparticle;
 //
 //}
-
-
-void delete_all_release_on_end()
-{
-
-   critical_section_lock criticalsectionlock(globals_critical_section());
-
-   ::acme::g_pelementaddraReleaseOnEnd->erase_all();
-
-   ::acme::del(::acme::g_pelementaddraReleaseOnEnd);
-
-   //if (is_set(::acme::g_pelementaddraReleaseOnEnd))
-//   {
-//
-//      for (auto pmatter : ::acme::g_elementaddraReleaseOnEnd)
-//      {
-//
-//         ::acme::del(pmatter);
-//
-//      }
-//
-//      ::acme::del(::acme::g_pelementaddraReleaseOnEnd);
-//
-//   }
-
-}
-
-
-void add_release_on_end(::matter * pmatter)
-{
-
-   critical_section_lock criticalsectionlock(globals_critical_section());
-
-//   if (::is_null(::acme::g_pelementaddraReleaseOnEnd))
-//   {
-//
-//      ::acme::g_pelementaddraReleaseOnEnd = memory_new element_address_array();
-//
-//   }
-
-   ::acme::g_pelementaddraReleaseOnEnd->add(pmatter);
-
-}
-
-
-namespace acme
-{
-
-
-   class ::time acme::start_nanosecond()
-   {
-
-      return m_timeStart;
-
-   }
-
-
-} // namespace acme
-
-
-//namespace acme
-//{
-//
-//
-////   acme * acme::g_p = nullptr;
-////   int g_iReference = 0;
-//////critical_section g_cs;
-////
-////   void increment_reference_count()
-////   {
-////
-//////      critical_section_lock lock(&g_cs);
-////
-////      g_iReference++;
-////
-////      if(g_iReference == 1)
-////      {
-////
-////         memory_new acme();
-////
-////      }
-////
-////   }
-////
-////
-////   void decrement_reference_count()
-////   {
-////
-////      //critical_section_lock lock(&g_cs);
-////
-////      g_iReference--;
-////
-////      if(g_iReference == 0)
-////      {
-////
-////         ::acme::del(acme::g_p);
-////
-////      }
-////
-////   }
-//
-//
-////   class reference
-////   {
-////   public:
-////
-////
-////      reference() { increment_reference_count(); }
-////      ~reference() { decrement_reference_count(); }
-////
-////
-////   };
-//
-//
-////   reference g_reference;
-//
-////   void initialize()
-////   {
-////
-////      increment_reference_count();
-////
-////   }
-////
-////
-////
-////   void finalize()
-////   {
-////
-////
-////
-////   }
-//
-//
-//
-//} // namespace acme
-
-
-//#pragma comment (linker, "/export:_g_acme")
-
-
-// _ACME_LINKER_FORCE_INCLUDE(g_acme);
-
-
-//#ifdef WINDOWS
-//
-//
-//#else
-
-
-//#ifdef CLASS_DECL_APEX
-//
-//
-//#include "openssl/applink.c"
-//
-//
-//#endif
-
-//#include "acme/platform/system_setup.h"
-
-
-//int main(int argc, char * argv[], char * envp[])
-//{
-//
-//   auto papp = ::app_factory::new_app();
-//
-//   papp->set_args(argc, argv, envp);
-//
-//#if defined(LINUX) || defined(FREEBSD)
-//
-//   papp->m_pchar_binary__matter_zip_start = embed_resource::get_start();
-//
-//   papp->m_pchar_binary__matter_zip_end = embed_resource::get_end();
-//
-//#endif
-//
-//   int iExitCode = papp->main_loop();
-//
-//   return iExitCode;
-//
-//}
-//
-//
-//#endif
-
-
-iptr g_iMonitor = 0;
-
-
-CLASS_DECL_ACME void monitor_pointer(void * p)
-{
-
-   g_iMonitor = (iptr)p;
-
-}
-
-
-
-
-

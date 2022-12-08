@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "type.h"
@@ -1287,7 +1287,8 @@ inline uptr payload::uptr(::uptr uiDefault) const
 
 #ifdef WINDOWS
 
-#elif defined(__APPLE__) || defined(RASBPIAN)
+//#elif defined(__APPLE__) || defined(RASBPIAN)
+#elif defined(RASBPIAN)
 
 inline payload::operator long() const
 {

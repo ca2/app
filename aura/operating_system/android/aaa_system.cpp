@@ -96,7 +96,7 @@ namespace aura
    //void system::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::future & future)
    //{
 
-   //   auto estatus = ::aura::get_system()->message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);
+   //   auto estatus = ::auraacmesystem()->message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);
 
    //   return estatus;
 

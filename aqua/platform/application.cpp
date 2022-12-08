@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "application.h"
 #include "system.h"
+#include "session.h"
 #include "aqua/multimedia/multimedia.h"
 #include "aqua/xml/document.h"
 
@@ -10,20 +11,21 @@ namespace aqua
 
 
 
-   void initialize()
-   {
+   //void initialize()
+   //{
 
-      ::factory::add_factory_item< ::aqua::system, ::acme::system >();
+   //   factory()->add_factory_item< ::aqua::system, ::acme::system >();
 
 
-   }
+   //}
 
 
    application::application()
    {
 
-
-      ::aqua::initialize();
+      factory()->add_factory_item< ::aqua::system, ::acme::system >();
+      factory()->add_factory_item < ::aqua::session, ::acme::session >();
+      //::aqua::initialize();
 
       m_paquaapplication = this;
       ///set_layer(LAYERED_AQUA, this);
@@ -65,15 +67,23 @@ namespace aqua
    }
 
 
+   //void application::on_initialize_application(::main* pmain)
+   //{
+
+   //   pmain->m_psubsystem->factory()->add_factory_item< ::aqua::system, ::acme::system >();
+
+   //}
+
+
    void application::exit_application()
    {
 
-      if (get_system()->m_pmultimedia)
+      if (acmesystem()->m_paquasystem->m_pmultimedia)
       {
 
          //auto estatus = 
          
-         get_system()->m_pmultimedia->exit_application();
+         acmesystem()->m_paquasystem->m_pmultimedia->exit_application();
 
          //if (!estatus)
          //{
@@ -169,17 +179,17 @@ namespace aqua
    //LPWAVEOUT application::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
    //{
 
-   //   get_system()-
+   //   acmesystem()-
 
    //}
 
 
-   ::aqua::system* application::get_system()
-   {
+   //::aqua::system* applicationacmesystem()
+   //{
 
-      return dynamic_cast <::aqua::system*> (acmesystem());
+   //   return dynamic_cast <::aqua::system*> (acmesystem());
 
-   }
+   //}
 
 
 } // namespace aqua

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/platform/department.h"
@@ -78,7 +78,7 @@ namespace user
       inline ::windowing::windowing * windowing1() { return m_pwindowing; }
       inline ::aura::application* get_app();
       inline ::aura::session * get_session();
-      inline ::aura::system* get_system();
+      //inline ::aura::system* acmesystem();
 
 
       ::user::shell* shell();

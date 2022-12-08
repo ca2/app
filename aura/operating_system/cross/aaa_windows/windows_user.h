@@ -2604,7 +2604,7 @@ CLASS_DECL_AURA i32 WINAPI GetSystemMetrics(i32 nIndex);
 
 
 /*
- * ::aura::get_system() Menu Command Values
+ * ::auraacmesystem() Menu Command Values
  */
 #define SC_SIZE         0xF000
 #define SC_MOVE         0xF010

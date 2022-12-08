@@ -4,6 +4,7 @@
 #include <math.h>
 
 #include "filters.h"
+#include "acme/platform/auto_pointer.h"
 //#include "aura/graphics/image/_image.h"
 
 typedef struct

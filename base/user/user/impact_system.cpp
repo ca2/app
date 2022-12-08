@@ -4,7 +4,7 @@
 #include "impact.h"
 #include "frame_window.h"
 #include "acme/platform/application.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "aura/user/user/system.h"
 #include "aura/user/user/wait_cursor.h"
 
@@ -127,7 +127,7 @@ namespace user
    }
 
 
-   ::pointer<::user::document>impact_system::create_new_document(::create * pcreate)
+   ::pointer<::user::document>impact_system::create_new_document(::request * prequest)
    {
 
       // default implementation constructs one from ::type
@@ -142,7 +142,7 @@ namespace user
 
       }
 
-      ::acme::application * papp = pcreate->create_get_app(get_app());
+      ::acme::application * papp = prequest->create_get_app(get_app());
 
       ::pointer<::user::document>pdocument;
 
@@ -159,7 +159,7 @@ namespace user
 
       }
 
-      pdocument->on_create(pcreate);
+      pdocument->on_create(prequest);
 
       ASSERT_KINDOF(::user::document, pdocument);
 
@@ -170,23 +170,23 @@ namespace user
    }
 
 
-   ::pointer<::user::frame_window>impact_system::create_new_frame(::user::document * pdocument, ::pointer<::user::frame_window>pOther, ::create * pcreate)
+   ::pointer<::user::frame_window>impact_system::create_new_frame(::user::document * pdocument, ::pointer<::user::frame_window>pOther, ::request * prequest)
    {
 
       bool bAddToTitle = is_true("add_to_title");
 
       ASSERT(m_atom.has_char());
 
-      ::pointer<::user::system>pusersystem = pcreate->m_pmatterUserPayload;
+      ::pointer<::user::system>pusersystem = prequest->m_pmatterUserPayload;
 
       if (!pusersystem)
       {
 
          pusersystem = __new(::user::system);
 
-         pusersystem->m_pcreate = pcreate;
+         pusersystem->m_prequest = prequest;
 
-         pcreate->m_pmatterUserPayload = pusersystem;
+         prequest->m_pmatterUserPayload = pusersystem;
 
       }
 
@@ -194,10 +194,10 @@ namespace user
 
       pusersystem->m_pdocumentCurrent = pdocument;
 
-      if (pcreate->m_puserprimitiveAlloc != nullptr)
+      if (prequest->m_puserelementAlloc != nullptr)
       {
 
-         pusersystem->m_puserprimitiveNew = pcreate->m_puserprimitiveAlloc;
+         pusersystem->m_puserprimitiveNew = prequest->m_puserelementAlloc;
 
       }
       else
@@ -220,7 +220,7 @@ namespace user
 
       }
 
-      ::acme::application * papp = pcreate->create_get_app(get_app());
+      ::acme::application * papp = prequest->create_get_app(get_app());
 
       ::pointer<::user::frame_window>pframe;
 
@@ -256,7 +256,7 @@ namespace user
 
       }
 
-      if (pcreate->m_ewindowflag & e_window_flag_updown)
+      if (prequest->m_ewindowflag & e_window_flag_updown)
       {
 
          pframe->m_ewindowflag += e_window_flag_updown;
@@ -270,7 +270,7 @@ namespace user
 
       }
 
-      if (pcreate->m_bMakeVisible)
+      if (prequest->m_bMakeVisible)
       {
 
          if (!::is_screen_visible(pframe->const_layout().sketch().display()))
@@ -282,7 +282,7 @@ namespace user
 
       }
 
-      ::pointer<::user::interaction>puserinteractionParent = pcreate->m_puserprimitiveParent;
+      ::pointer<::user::interaction>puserinteractionParent = prequest->m_puserelementParent;
 
       // create memory_new from resource
       if (!pframe->LoadFrame(m_atom,
@@ -461,20 +461,20 @@ namespace user
    }
 
 
-   bool impact_system::on_open_document(::user::document * pdocument, ::create * pcreate)
+   bool impact_system::on_open_document(::user::document * pdocument, ::request * prequest)
    {
 
       wait_cursor wait(pdocument);
 
-      return do_open_document(pdocument, pcreate);
+      return do_open_document(pdocument, prequest);
 
    }
 
 
-   bool impact_system::do_open_document(::user::document * pdocument, ::create * pcreate)
+   bool impact_system::do_open_document(::user::document * pdocument, ::request * prequest)
    {
 
-      if (!pdocument->open_document(pcreate))
+      if (!pdocument->open_document(prequest))
       {
 
          return false;

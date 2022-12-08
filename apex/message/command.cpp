@@ -124,7 +124,7 @@ namespace message
    //}
 
 
-   //void command::on_request(::create * pcreate)
+   //void command::on_request(::request * prequest)
    //{
 
    //   __UNREFERENCED_PARAMETER(pcreate);

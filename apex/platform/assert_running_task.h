@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "apex/parallelization/thread.h"
@@ -17,11 +17,11 @@ namespace apex
       string                                       m_strAppId;
       string                                       m_strLocale;
       string                                       m_strSchema;
-      class ::time                                   m_timeCheckPeriod;
-      ::pointer<::apex::application_container>     m_pcontainer;
+      class ::time                                 m_timeCheckPeriod;
+      ::pointer<::acme::application_container>     m_pcontainer;
 
 
-      assert_running_task(::apex::application_container * pcontainer,const ::string & strAppId, const ::string & strLocale, const ::string & strSchema);
+      assert_running_task(::acme::application_container * pcontainer,const ::string & strAppId, const ::string & strLocale, const ::string & strSchema);
       ~assert_running_task() override;
 
 

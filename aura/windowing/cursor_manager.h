@@ -1,4 +1,4 @@
-// created by Camilo AS DRAW2D::icon
+﻿// created by Camilo AS DRAW2D::icon
 // created by Camilo 2021-02-04 08:42 BRT CamiloSasuke<3ThomasBorregaardSoerensen
 // Changing to windowing by Camilo on 2021-02-08 <3TBS_!!
 #pragma once
@@ -26,7 +26,7 @@ namespace windowing
 
       inline ::aura::application* get_app();
       inline ::aura::session* get_session();
-      inline ::aura::system* get_system();
+      //inline ::aura::system* acmesystem();
 
 
       void load_hotspot(const ::file::path & pszDir);

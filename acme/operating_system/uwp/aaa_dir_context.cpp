@@ -31,9 +31,9 @@ namespace universal_windows
 
       }
 
-      __refer(m_pdirsystem, ::acme::get_system()->m_pdirsystem);
+      __refer(m_pdirsystem, ::acmeacmesystem()->m_pdirsystem);
 
-      __refer(m_pfilesystem, ::acme::get_system()->m_pfilesystem);
+      __refer(m_pfilesystem, ::acmeacmesystem()->m_pfilesystem);
 
       return estatus;
 

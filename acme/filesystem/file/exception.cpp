@@ -187,7 +187,7 @@ namespace file
       //
       //               if( OpenedFileInfo.dwPID == 4 )// system process
       //               {
-      //                  stInfo.csProcess = L"get_system()";
+      //                  stInfo.csProcess = L"acmesystem()";
       //               }
       //               else
       //               {

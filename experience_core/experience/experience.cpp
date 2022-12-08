@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 #include "aura/windowing/windowing.h"
 #include "experience.h"
@@ -117,10 +117,10 @@ namespace experience_core
          return memory_new ::experience_core::frame_011;
 
       }
-      else if(strSchema == "013")
+      else if (strSchema == "013")
       {
-               
-         return memory_new ::experience_core::frame_013;
+
+         return memory_new::experience_core::frame_013;
 
       }
       else if(strSchema == "Minimal001")

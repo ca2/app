@@ -2,6 +2,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
+#include "apex/platform/session.h"
 
 
 //#include "acme/_operating_system.h"
@@ -56,7 +57,7 @@ namespace parallelization
 
    //   //return s_piaThread2->contains(atom);
 
-   //   auto psystem = get_system()->m_papexsystem;
+   //   auto psystem = acmesystem()->m_papexsystem;
 
    //   return psystem->get_task(atom) != nullptr;
 
@@ -82,7 +83,7 @@ namespace parallelization
    //void thread_unregister(itask_t itask, ::task * ptask)
    //{
 
-   //   auto psystem = get_system()->m_papexsystem;
+   //   auto psystem = acmesystem()->m_papexsystem;
 
    //   psystem->unset_task(itask, ptask);
 
@@ -106,7 +107,7 @@ namespace parallelization
 
    //   }
 
-   //   auto psystem = get_system()->m_papexsystem;
+   //   auto psystem = acmesystem()->m_papexsystem;
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexTask);
 
@@ -141,7 +142,7 @@ namespace parallelization
    void post_quit_to_all_threads(::acme::system * psystem)
    {
 
-      //auto psystem = get_system()->m_papexsystem;
+      //auto psystem = acmesystem()->m_papexsystem;
 
       synchronous_lock synchronouslock(psystem->m_pmutexTask);
 
@@ -534,7 +535,7 @@ namespace apex
          try
          {
 
-            auto psystem = get_system()->m_papexsystem;
+            auto psystem = acmesystem()->m_papexsystem;
 
             if (::is_set(psystem))
             {
@@ -544,7 +545,7 @@ namespace apex
                try
                {
 
-                  ::apex::session* psession = psystem->get_session();
+                  auto psession = acmesession();
 
                   if (::is_set(psession))
                   {
@@ -1063,7 +1064,7 @@ void thread_ptra::wait(const class time & timeWait, ::particle & particleSynchro
 
    }
 
-   auto psessionContext = get_session();
+   auto psessionContext = acmesession()->m_papexsession;
 
    if (psessionContext != this && ::is_set(psessionContext))
    {
@@ -1072,7 +1073,7 @@ void thread_ptra::wait(const class time & timeWait, ::particle & particleSynchro
 
    }
 
-   auto psystemContext = get_system();
+   auto psystemContext = acmesystem();
 
    if (psystemContext != (::task*) this && ::is_set(psystemContext))
    {

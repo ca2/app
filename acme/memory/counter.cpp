@@ -1,4 +1,4 @@
-// Created on 2021-03-21 16:35 <3ThomasBS_!!
+﻿// Created on 2021-03-21 16:35 <3ThomasBS_!!
 #include "framework.h"
 #include "counter.h"
 #include "acme/platform/node.h"
@@ -7,6 +7,8 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/primitive/factory.h"
+
+
 
 
 
@@ -76,7 +78,7 @@ void memory_counter::initialize(::particle * pparticle)
 //
 //
 
-void memory_counter::increment(const char* psz)
+void memory_counter::increment_by_name(const char* psz)
 {
 
    critical_section_lock lock(&m_criticalsection);
@@ -86,7 +88,7 @@ void memory_counter::increment(const char* psz)
 }
 
 
-void memory_counter::decrement(const char* psz)
+void memory_counter::decrement_by_name(const char* psz)
 {
 
    critical_section_lock lock(&m_criticalsection);

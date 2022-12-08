@@ -1755,7 +1755,7 @@ namespace http
 
       //auto ptask = ::get_task();
 
-      //__keep(ptask->payload("work_url"), pszUrl);
+      //KEEP(ptask->payload("work_url"), pszUrl);
 
       auto psystem = acmesystem()->m_papexsystem;
 
@@ -1879,7 +1879,7 @@ namespace http
 
 //      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_session()) && ::is_set(psession->account());
 
-      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_session()) ;
+      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(acmesession()) ;
 
 //      single_lock slFontopus(bSessionAccount ? psession->account()->mutex() : nullptr);
 

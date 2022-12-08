@@ -9,22 +9,26 @@
 #pragma once
 
 
-//#include "acme/operating_system/cross/windows/windows_defs.h"
-
-void copy(CGRect * prectTarget, const RECTANGLE_I32 * prectSource);
-void copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource);
-void copy(CGRect * prectTarget, const RECTANGLE_F64 * prectSource);
-void copy(RECTANGLE_F64 * prectTarget, const CGRect * prectSource);
-void window_copy(CGRect * prectTarget, const RECTANGLE_I32 * prectSource);
-void window_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource);
+#include <CoreGraphics/CoreGraphics.h>
 
 
-void copy(CGPoint * ppointTarget, const POINT_I32 * ppointSource);
-void copy(POINT_I32 * ppointTarget, const CGPoint * ppointSource);
-void copy(CGPoint * ppointTarget, const POINT_F64 * ppointSource);
-void copy(POINT_F64 * ppointTarget, const CGPoint * ppointSource);
+void throw_ns_exception(enum_status estatus, const char * pszName, const char * pszDescription, const ::property_set & propertyset);
 
 
+void copy(CGRect & rectTarget, const RECTANGLE_I32 & rectSource);
+void copy(RECTANGLE_I32 & rectTarget, const CGRect & rectSource);
+void copy(CGRect & rectTarget, const RECTANGLE_F64 & rectSource);
+void copy(RECTANGLE_F64 & rectTarget, const CGRect & rectSource);
+void screen_coordinates_aware_copy(CGRect & rectTarget, const RECTANGLE_I32 & rectSource);
+void screen_coordinates_aware_copy(RECTANGLE_I32 & rectTarget, const CGRect & rectSource);
+
+
+void copy(CGPoint & pointTarget, const POINT_I32 & pointSource);
+void copy(POINT_I32 & pointTarget, const CGPoint & pointSource);
+void copy(CGPoint & pointTarget, const POINT_F64 & pointSource);
+void copy(POINT_F64 & pointTarget, const CGPoint & pointSource);
+
+CGRect mm_get_screen_cgrect();
 
 void ns_main_async(dispatch_block_t block);
 

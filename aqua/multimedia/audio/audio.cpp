@@ -195,7 +195,7 @@ namespace aqua
 //CLASS_DECL_AQUA ::aqua::audio * get_context_audio(::particle * pparticle)
 //{
 //
-//   return get_system()->defer_get_audio();
+//   return acmesystem()->defer_get_audio();
 //
 //}
 
@@ -203,7 +203,7 @@ namespace aqua
 //CLASS_DECL_AQUA bool has_audio()
 //{
 //
-//   return ::is_set(get_system()->m_paudio);
+//   return ::is_set(acmesystem()->m_paudio);
 //
 //}
 

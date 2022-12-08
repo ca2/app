@@ -81,7 +81,7 @@ namespace ios
 
 //      using ::user::interaction_impl::create_window;
 //      // for child windows, views, panes etc
-//      virtual bool create_window(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle,const ::rectangle_i32 & rectangle,::user::interaction * puiParent,atom atom, ::create * pcreate = nullptr) override;
+//      virtual bool create_window(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle,const ::rectangle_i32 & rectangle,::user::interaction * puiParent,atom atom, ::request * prequest = nullptr) override;
 //
 //      // advanced creation (allows access to extended styles)
 //      virtual bool create_window_ex(
@@ -441,7 +441,7 @@ namespace ios
       void OnNcRButtonDown(::u32 nHitTest, const ::point_i32 & point);
       void OnNcRButtonUp(::u32 nHitTest, const ::point_i32 & point);
 
-      // ::aura::get_system() message handler member functions
+      // ::auraacmesystem() message handler member functions
       //void OnDropFiles(HDROP hDropInfo);
       void OnPaletteIsChanging(::user::interaction * pRealizeWnd);
       void OnSysChar(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);

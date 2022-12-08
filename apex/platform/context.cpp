@@ -11,13 +11,14 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/parallelization/task_flag.h"
 #include "acme/platform/ini.h"
+#include "acme/platform/request.h"
 #include "acme/primitive/string/str.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/filesystem/dir_system.h"
 #include "apex/networking/http/context.h"
-#include "apex/platform/create.h"
 #include "apex/parallelization/retry.h"
 
 
@@ -59,7 +60,7 @@ namespace apex
 
       string strConfiguration(pszConfiguration);
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       if (strConfiguration.is_empty())
       {
@@ -184,11 +185,11 @@ namespace apex
 
       //}
 
-      m_papexsystem = acmesystem()->m_papexsystem;
-      m_paurasystem = acmesystem()->m_paurasystem;
-      m_pbasesystem = acmesystem()->m_pbasesystem;
-      m_pbredsystem = acmesystem()->m_pbredsystem;
-      m_pcoresystem = acmesystem()->m_pcoresystem;
+      //m_papexsystem = acmesystem()->m_papexsystem;
+      //m_paurasystem = acmesystem()->m_paurasystem;
+      //m_pbasesystem = acmesystem()->m_pbasesystem;
+      //m_pbredsystem = acmesystem()->m_pbredsystem;
+      //m_pcoresystem = acmesystem()->m_pcoresystem;
 
       if (is_system())
       {
@@ -670,7 +671,7 @@ namespace apex
    ::file::path context::side_get_matter_path(string strMatter)
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto pdirsystem = psystem->m_pdirsystem;
 
@@ -693,7 +694,7 @@ namespace apex
       if (path.begins_eat_ci("appmatter://"))
       {
 
-         auto psystem = get_system()->m_papexsystem;
+         auto psystem = acmesystem()->m_papexsystem;
 
          ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
@@ -764,7 +765,7 @@ namespace apex
 
          }
 
-         //auto psystem = get_system()->m_papexsystem;
+         //auto psystem = acmesystem()->m_papexsystem;
 
          if (!psystem->m_pdirsystem->m_bMatterFromHttpCache)
          {
@@ -1132,16 +1133,16 @@ namespace apex
          get_app()->m_papexapplication->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
       }
-      else if (get_session())
+      else if (acmesession()->m_papexsession)
       {
 
-         get_session()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+         acmesession()->m_papexsession->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
       }
       else
       {
 
-         auto psystem = get_system()->m_papexsystem;
+         auto psystem = acmesystem()->m_papexsystem;
 
          if (psystem)
          {
@@ -1164,16 +1165,16 @@ namespace apex
          return get_app()->m_papexapplication->get_locale_schema_dir();
 
       }
-      else if (get_session())
+      else if (acmesession())
       {
 
-         return get_session()->get_locale_schema_dir();
+         return acmesession()->m_papexsession->get_locale_schema_dir();
 
       }
       else
       {
 
-         auto psystem = get_system()->m_papexsystem;
+         auto psystem = acmesystem()->m_papexsystem;
 
          if (psystem)
          {
@@ -1381,32 +1382,35 @@ namespace apex
    }
 
 
-   void context::on_command_create(::create * pcreate)
+   void context::request(::request * prequest)
    {
+
+      m_prequest = prequest;
 
       if (m_payloadFile.is_empty())
       {
 
-         m_payloadFile = pcreate->m_payloadFile;
+         m_payloadFile = prequest->m_payloadFile;
 
       }
       else
       {
 
-         m_payloadFile.payloada().add(pcreate->m_payloadFile);
+         m_payloadFile.payloada().add(prequest->m_payloadFile);
 
       }
 
-      get_property_set().merge(pcreate->get_property_set());
+      get_property_set().merge(prequest->get_property_set());
 
+      on_request(prequest);
 
    }
 
 
-   bool context::contains(::create * pcreate) const
+   bool context::contains(::request * prequest) const
    {
 
-      if (::is_null(pcreate))
+      if (::is_null(prequest))
       {
 
          return false;
@@ -1415,9 +1419,9 @@ namespace apex
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      return m_createaPending.predicate_contains([&pcreate](auto & p) {return p.get() == pcreate; })
-         || m_createaHistory.predicate_contains([&pcreate](auto & p) {return p.get() == pcreate; })
-         || m_pcreate.get() == pcreate;
+      return m_requestaPending.predicate_contains([&prequest](auto & p) {return p.get() == prequest; })
+         || m_requestaHistory.predicate_contains([&prequest](auto & p) {return p.get() == prequest; })
+         || m_prequest.get() == prequest;
 
    }
 
@@ -1425,21 +1429,21 @@ namespace apex
    string context::command_line_text() const
    {
 
-      if (!m_pcreate)
+      if (!m_prequest)
       {
 
          return "";
 
       }
 
-      //if (!m_pcreate->m_pcommandline)
+      //if (!m_prequest->m_pcommandline)
       //{
 
       //   return "";
 
       //}
 
-      return m_pcreate->m_strCommandLine;
+      return m_prequest->m_strCommandLine;
 
    }
 
@@ -1466,96 +1470,89 @@ namespace apex
    //}
 
 
-   //void command::on_create(::create* pcreate)
+   //void command::on_create(::request* prequest)
    //{
 
    //   if (m_payloadFile.is_empty())
    //   {
 
-   //      m_payloadFile = pcreate->m_payloadFile;
+   //      m_payloadFile = prequest->m_payloadFile;
 
    //   }
    //   else
    //   {
 
-   //      m_payloadFile.payloada().add(pcreate->m_payloadFile);
+   //      m_payloadFile.payloada().add(prequest->m_payloadFile);
 
    //   }
 
-   //   ).merge(pcreate->));
+   //   ).merge(prequest->));
+
+   //}
+
+   //void context::on_idle()
+   //{
+
+   //   post_next_pending_request();
 
    //}
 
 
-   void context::add_create(::create * pcreate)
+   void context::post_request(::request * prequest)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (::is_null(pcreate) || contains(pcreate))
+      if (::is_null(prequest) || contains(prequest))
       {
 
          throw ::exception(error_bad_argument);
 
       }
 
-      if (!m_pcreate)
-      {
+      prequest->m_bNew = true;
 
-         m_pcreate = pcreate;
+      m_requestaPending.add(prequest);
 
-         m_pcreate->m_bNew = true;
-
-         on_command_create(pcreate);
-
-      }
-      else
-      {
-
-         m_createaPending.add(pcreate);
-
-      }
+      kick_idle();
 
    }
 
 
-   create * context::get_create()
+   bool context::on_idle()
+   {
+
+      if (post_next_pending_request())
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   bool context::post_next_pending_request()
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (!m_pcreate || !m_pcreate->m_bNew)
+      if (!m_requestaPending.has_element())
       {
 
-         if (m_pcreate)
-         {
-
-            m_pcreate.release();
-
-         }
-
-         if (m_createaPending.is_empty())
-         {
-
-            return nullptr;
-
-         }
-
-         auto pcreate = m_createaPending.pop_first();
-
-         m_pcreate = pcreate;
-
-         m_pcreate->m_bNew = true;
-
-         on_command_create(pcreate);
+         return false;
 
       }
 
-      m_createaHistory.add(m_pcreate);
+      auto prequest = m_requestaPending.pick_first();
 
-      m_pcreate->m_bNew = false;
+      m_requestaHistory.add(prequest);
 
-      return m_pcreate.get();
+      ::thread::post_request(prequest);
+
+      return true;
 
    }
 

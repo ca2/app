@@ -8,7 +8,7 @@
 extern int g_iMouse;
 
 
-#undef ::acme::get_system()
+#undef ::acmeacmesystem()
 #undef Platform
 
 
@@ -19,9 +19,9 @@ using namespace ::winrt::Windows::UI::Core;
 using namespace ::winrt::Windows::ApplicationModel;
 using namespace ::winrt::Windows::ApplicationModel::Core;
 using namespace ::winrt::Windows::ApplicationModel::Activation;
-using namespace ::winrt::Windows::acme::get_system();
+using namespace ::winrt::Windows::acmeacmesystem();
 using namespace ::winrt::Windows::Graphics::Display;
-using namespace ::winrt::Windows::acme::get_system()::Threading;
+using namespace ::winrt::Windows::acmeacmesystem()::Threading;
 
 bool g_bCoreWindowOnceVisible = false;
 
@@ -300,7 +300,7 @@ namespace universal_windows
 
             //acmesystem()->add_create(pcreate);
 
-            //auto papp = m_pcontext->m_pacmeapplicationStartup;
+            //auto papp = m_pcontext->acmeapplication();
 
             //if (papp == nullptr)
             //{
@@ -360,7 +360,7 @@ namespace universal_windows
 
    void directx_framework_impact::OnKeyDown(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::KeyEventArgs ^ args)
    {
-      if (args->VirtualKey == ::winrt::Windows::acme::get_system()::VirtualKey::Shift)
+      if (args->VirtualKey == ::winrt::Windows::acmeacmesystem()::VirtualKey::Shift)
       {
          m_bFontopusShift = true;
       }
@@ -430,7 +430,7 @@ namespace universal_windows
       spbase = pkey;
 
 
-      if (args->VirtualKey == ::winrt::Windows::acme::get_system()::VirtualKey::Shift)
+      if (args->VirtualKey == ::winrt::Windows::acmeacmesystem()::VirtualKey::Shift)
       {
          m_bFontopusShift = false;
       }

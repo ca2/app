@@ -119,7 +119,7 @@ namespace user
 
       drawcontext.m_bListItemHover = hover_item().is_set();
 
-      __keep(pgraphics->m_pdrawcontext, &drawcontext);
+      KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
       ::rectangle rectangleClient;
 
@@ -248,7 +248,7 @@ namespace user
 
       drawcontext.m_bListItemHover = hover_item().is_set();
 
-      __keep(pgraphics->m_pdrawcontext, &drawcontext);
+      KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
       ::rectangle rectangleClient;
 
@@ -366,7 +366,7 @@ namespace user
 
          auto pbrush = __create < ::draw2d::brush > ();
 
-         m_dPosition = ::sin((::aura::get_system()->math().get_pi() / 2.0) * dRate);
+         m_dPosition = ::sin((::auraacmesystem()->math().get_pi() / 2.0) * dRate);
 
          double dRate = m_dPosition;
 

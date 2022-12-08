@@ -4,6 +4,8 @@
 #include "item.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/platform/application.h"
+#include "acme/platform/session.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/context.h"
 #include "acme/platform/system.h"
@@ -34,7 +36,9 @@ namespace userfs
    ::core::application* tree::get_app()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
 
    }
 
@@ -42,7 +46,9 @@ namespace userfs
    ::core::session* tree::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
    }
 
@@ -50,10 +56,11 @@ namespace userfs
    ::core::system* tree::get_system()
    {
 
-      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
    }
-
 
 
 #ifdef _DEBUG

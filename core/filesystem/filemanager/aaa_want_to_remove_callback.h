@@ -15,7 +15,7 @@ namespace filemanager
       virtual ~callback();
 
 
-      virtual void on_request(::create * pcreate);
+      virtual void on_request(::request * prequest) override;
 
 
       virtual void OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, ::file::item * pitem, string_array & straCommand, string_array & straCommandTitle, const ::action_context & action_context);

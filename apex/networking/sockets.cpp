@@ -1,5 +1,6 @@
-#include "framework.h" 
+﻿#include "framework.h" 
 #include "acme/constant/id.h"
+#include "acme/parallelization/task_flag.h"
 
 
 void thread_touch_sockets()

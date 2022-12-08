@@ -553,6 +553,7 @@
     <ClInclude Include="user\form\data.h" />
     <ClInclude Include="user\form\window.h" />
     <ClInclude Include="user\form\_.h" />
+    <ClInclude Include="user\user\aaa__component.h" />
     <ClInclude Include="user\user\combo_box.h" />
     <ClInclude Include="user\user\list_box.h" />
     <ClInclude Include="user\user\object.h" />

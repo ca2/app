@@ -435,15 +435,15 @@ that we consider it dangerous to even throw ::exception( an exception
 
 
 
-enum EExclusiveInstance
+enum enum_exclusive_instance
 {
 
-   ExclusiveInstanceNone,
-   ExclusiveInstanceLocal,
-   ExclusiveInstanceLocalId,
-   ExclusiveInstanceGlobal,
-   ExclusiveInstanceGlobalId,
-   ExclusiveInstanceLicense
+   e_exclusive_instance_none,
+   e_exclusive_instance_local,
+   e_exclusive_instance_local_id,
+   e_exclusive_instance_global,
+   e_exclusive_instance_global_id,
+   e_exclusive_instance_license
 
 };
 

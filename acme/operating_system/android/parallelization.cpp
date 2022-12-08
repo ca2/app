@@ -64,7 +64,7 @@ void main_asynchronous(const ::procedure & procedure)
 
    };
 
-   auto psystem = ::get_system();
+   auto psystem = acmesystem();
 
    psystem->windowing_post(predicate);
 

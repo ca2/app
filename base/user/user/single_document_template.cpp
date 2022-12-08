@@ -4,8 +4,8 @@
 #include "impact.h"
 #include "frame_window.h"
 #include "acme/constant/id.h"
+#include "acme/platform/request.h"
 #include "apex/platform/application.h"
-#include "apex/platform/create.h"
 #include "aura/user/user/wait_cursor.h"
 
 
@@ -80,35 +80,35 @@ namespace user
    // single_document_template commands
 
    // if lpszPathName == nullptr => create memory_new file of this type
-   void single_document_template::on_request(::create * pcreate)
+   void single_document_template::on_request(::request * prequest)
    {
 
-      if (pcreate->m_atom.is_null())
+      if (prequest->m_atom.is_null())
       {
 
-         pcreate->m_atom = m_typeImpact;
+         prequest->m_atom = m_typeImpact;
 
       }
 
-      if (pcreate->m_payloadOptions.has_property("visible"))
+      if (prequest->m_payloadOptions.has_property("visible"))
       {
 
-         pcreate->m_bMakeVisible = pcreate->m_payloadOptions.is_true("visible");
+         prequest->m_bMakeVisible = prequest->m_payloadOptions.is_true("visible");
 
       }
 
-      pcreate->m_estatus = error_failed;
+      prequest->m_estatus = error_failed;
 
-      if (pcreate)
+      if (prequest)
       {
 
-         pcreate->payload("document").release();
+         prequest->payload("document").release();
 
       }
 
-      //bool bMakeVisible = pcreate->payload("make_visible_boolean") || pcreate->m_bMakeVisible;
-      //   ::pointer<::user::interaction>puserinteractionParent = pcreate->payload("parent_user_interaction").cast < ::user::interaction > ();
-      //   ::pointer<::user::impact>pviewAlloc = pcreate->payload("allocation_impact").cast < ::user::impact > ();
+      //bool bMakeVisible = prequest->payload("make_visible_boolean") || prequest->m_bMakeVisible;
+      //   ::pointer<::user::interaction>puserinteractionParent = prequest->payload("parent_user_interaction").cast < ::user::interaction > ();
+      //   ::pointer<::user::impact>pviewAlloc = prequest->payload("allocation_impact").cast < ::user::impact > ();
 
       ::pointer<::user::document>pdocument;
 
@@ -146,7 +146,7 @@ namespace user
       {
          
          // create a memory_new ::user::document
-         pdocument = create_new_document(pcreate);
+         pdocument = create_new_document(prequest);
          
          ASSERT(pFrame == nullptr);     // will be created below
          
@@ -177,7 +177,7 @@ namespace user
          pdocument->m_bAutoDelete = false;
 
          // don't destroy if something goes wrong
-         pFrame = create_new_frame(pdocument, nullptr, pcreate);
+         pFrame = create_new_frame(pdocument, nullptr, prequest);
 
          pdocument->m_bAutoDelete = bAutoDelete;
 
@@ -207,14 +207,14 @@ namespace user
 
       bool bMakeVisible = true;
       
-      if (pcreate)
+      if (prequest)
       {
 
-         bMakeVisible = pcreate->payload("make_visible_boolean").get_bool() || pcreate->m_bMakeVisible;
+         bMakeVisible = prequest->payload("make_visible_boolean").get_bool() || prequest->m_bMakeVisible;
 
       }
 
-      ::payload payloadFile = pcreate->get_file();
+      ::payload payloadFile = prequest->get_file();
 
       if (payloadFile.is_empty() || payloadFile.is_numeric())
       {
@@ -252,13 +252,13 @@ namespace user
       else
       {
 
-         wait_cursor wait(pcreate);
+         wait_cursor wait(prequest);
 
          // open an existing ::user::document
          bWasModified = pdocument->is_modified();
          pdocument->set_modified_flag(false);  // not dirty for open
 
-         if (!on_open_document(pdocument, pcreate))
+         if (!on_open_document(pdocument, prequest))
          {
             // user has been alerted to what failed in on_open_document
             CATEGORY_WARNING(appmsg, "::user::document::on_open_document returned false.\n");
@@ -297,7 +297,7 @@ namespace user
 
 //      thread* pThread = ::get_task();
 
-      if(!pcreate->m_bHold)
+      if(!prequest->m_bHold)
       {
 
          pFrame->payload("should_not_be_automatically_holded_on_initial_update_frame") = true;
@@ -320,20 +320,20 @@ namespace user
 
       }*/
 
-      if (pcreate)
+      if (prequest)
       {
 
-         pcreate->payload("document") = pdocument;
+         prequest->payload("document") = pdocument;
 
       }
       else
       {
 
-         //pcreate->payload("document") = pdocument;
+         //prequest->payload("document") = pdocument;
 
       }
 
-      pcreate->m_estatus = ::success;
+      prequest->m_estatus = ::success;
 
    }
 

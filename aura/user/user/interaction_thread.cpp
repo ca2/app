@@ -9,6 +9,7 @@
 #include "acme/constant/message.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/keep.h"
 #include "acme/platform/node.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
@@ -260,7 +261,7 @@ namespace user
       //if (m_bCreateNativeWindowOnInteractionThread)
       //{
 
-      ::pointer<::aura::session>psession = get_session();
+      auto psession = acmesession()->m_paurasession;
 
       auto puser = psession->user();
 

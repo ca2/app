@@ -23,11 +23,17 @@ exception::exception()
 }
 
 
-#ifdef ANDROID
-exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip)
-#else
-exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address)
-#endif
+//#ifdef ANDROID
+exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address) :
+exception(estatus, {{e_error_code_type_unknown, 0}}, pszMessage, pszDetails, iSkip, caller_address)
+{
+   
+   
+}
+//#else
+exception::exception(const ::e_status & estatus, const ::array < error_code > & errorcodea, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address):
+m_errorcodea(errorcodea)
+//#endif
 {
 
 #if !defined(__SANITIZE_ADDRESS__)
@@ -42,13 +48,15 @@ exception::exception(const ::e_status & estatus, const char * pszMessage, const 
 
       }
 
-#ifdef ANDROID
-      
-      m_strCallstack = ::get_system()->acmenode()->unwind_callstack(callstack_default_format(), iSkip);
+//#ifdef ANDROID
+//      
+//      m_strCallstack = acmesystem()->acmenode()->unwind_callstack(callstack_default_format(), iSkip);
+//
+//#else
 
-#else
+      auto ptask = ::get_task();
 
-      auto psystem = ::get_system();
+      auto psystem = ptask->acmesystem();
 
       if(psystem)
       {
@@ -64,7 +72,7 @@ exception::exception(const ::e_status & estatus, const char * pszMessage, const 
 
       }
       
-#endif
+//#endif
 
    }
 

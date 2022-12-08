@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 ////#include "acme/primitive/primitive/object.h"
@@ -23,7 +23,7 @@ namespace multimedia
 
       string                           m_strNewDecoder;
       string                           m_strTitle;
-      factory_pointer                m_pfactory;
+      ::factory::factory_pointer       m_pfactory;
       //LPFN_MULTIMEDIA_NEW_DECODER      m_lpfnNewDecoder;
 
 

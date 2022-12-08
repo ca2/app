@@ -833,13 +833,13 @@ namespace x11
 #define MAXSTR 1000
 
 
-CLASS_DECL_ACME ::acme::system * get_system();
+CLASS_DECL_ACME ::acme::system * acmesystem();
 
 
 void x11_asynchronous(::procedure function)
 {
 
-   auto psystem = ::get_system();
+   auto psystem = acmesystem();
 
    auto pdisplay = ::x11::display::get(psystem);
 

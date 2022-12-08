@@ -5,7 +5,7 @@
 //{
 //
 //
-//   inline ::aqua::system* application::get_system()
+//   inline ::aqua::system* applicationacmesystem()
 //   {
 //
 //      return dynamic_cast <::aqua::system*> (acmesystem());

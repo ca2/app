@@ -708,30 +708,31 @@ void object::defer_update_object_id()
 }
 
 
-void object::do_request(::create* pcreate)
+//void object::do_request(::request * prequest)
+//{
+//
+//   main();
+//
+//}
+
+
+//void object::call_request(::request * prequest)
+//{
+//
+//   on_request(prequest);
+//
+//}
+
+
+void object::request(::request* prequest)
 {
 
-   on_request(pcreate);
+   on_request(prequest);
 
 }
 
-void object::call_request(::create* pcreate)
-{
 
-   on_request(pcreate);
-
-}
-
-
-void object::request(::create* pcreate)
-{
-
-   on_request(pcreate);
-
-}
-
-
-void object::on_request(::create * pcreate)
+void object::on_request(::request * prequest)
 {
 
 }
@@ -2601,7 +2602,7 @@ void call_sync(const ::procedure_array& methoda)
 //#endif
 
 
-//::apex::system* object::get_system() const
+//::apex::system* objectacmesystem() const
 //{
 //
 //
@@ -2722,10 +2723,10 @@ void object::initialize(::particle * pparticle)
 
    ::property_object::initialize(pparticle);
 
-//   if (!get_system())
+//   if (!acmesystem())
 //   {
 //
-//      acmesystem() = pparticle->get_system();
+//      acmesystem() = pparticle->acmesystem();
 //
 //   }
 //
@@ -3664,23 +3665,23 @@ bool object::IsSerializable() const
 
 
 
-::acme::application * object::get_app() const
-{
-
-   //return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication : nullptr;
-   
-   return ((::object *)this)->::matter::acmeapplication();
-
-}
-
-
-
-::apex::session * object::get_session() const
-{
-
-   return m_pcontext ? m_pcontext->m_papexsession : nullptr;
-
-}
+//::acme::application * object::get_app() const
+//{
+//
+//   //return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication : nullptr;
+//   
+//   return ((::object *)this)->::matter::acmeapplication();
+//
+//}
+//
+//
+//
+//::acme::session * object::get_session() const
+//{
+//
+//   return m_pcontext ? m_pcontext->m_pacmesession : nullptr;
+//
+//}
 
 
 void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)

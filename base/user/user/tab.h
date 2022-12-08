@@ -128,7 +128,7 @@ namespace user
 
 
       virtual atom get_current_tab_id();
-      virtual bool set_current_tab_by_id(const ::atom & atom, ::create* pcreate = nullptr);
+      virtual bool set_current_tab_by_id(const ::atom & atom, ::request * prequest = nullptr);
 
 
       virtual ::user::tab_pane * get_current_tab();

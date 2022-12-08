@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "color32.h"
@@ -404,6 +404,7 @@ inline ::color::color argb_color(double a, double r, double g, double b)
    return ::color::color(r, g, b, a);
 
 }
+
 
 
 

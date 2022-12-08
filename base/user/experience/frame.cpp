@@ -49,35 +49,33 @@ namespace experience
    }
 
 
-   ::base::application * frame::get_app()
+   ::base::application* frame::get_app()
    {
-      
-      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
-   
+
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
+
    }
 
 
-   ::base::session * frame::get_session()
+   ::base::session* frame::get_session()
    {
-      
-      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
-   
+
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+
    }
 
 
-   ::base::system * frame::get_system()
+   ::base::system* frame::get_system()
    {
-      
-      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr; 
-   
-   }
 
+      auto pacmesystem = acmesystem();
 
-   ::base::user * frame::user()
-   {
-      
-      return get_session() ? get_session()->user() : nullptr; 
-   
+      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
+
    }
 
 

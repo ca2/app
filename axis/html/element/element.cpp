@@ -139,7 +139,7 @@ namespace html
 
       }
 
-      ::pointer<::axis::session>psession = phtmldata->get_session();
+      auto psession = phtmldata->acmesession()->m_paxissession;
 
       auto puser = psession->user();
 
@@ -1660,7 +1660,7 @@ namespace html
       if (m_phtmlbase->get_type() == ::html::base::type_value)
       {
 
-         ::pointer<::axis::session>psession = phtmldata->m_pcoredata->get_session();
+         auto psession = phtmldata->m_pcoredata->acmesession()->m_paxissession;
 
          auto puser = psession->user();
 
@@ -1696,7 +1696,7 @@ namespace html
          if (m_elementalptra.get_size() <= 0)
          {
 
-            ::pointer<::axis::session>psession = phtmldata->m_pcoredata->get_session();
+            auto psession = phtmldata->m_pcoredata->acmesession()->m_paxissession;
 
             auto puser = psession->user();
 

@@ -1,8 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/_library.h"
 
 
-IMPLEMENT_THIS_TYPE(experience_core);
+//IMPLEMENT_THIS_TYPE(experience_core);
 
 
 

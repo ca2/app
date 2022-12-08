@@ -1,5 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "is_dir.h"
+#include "acme/parallelization/task_flag.h"
 
 
 compress_is_dir::compress_is_dir()

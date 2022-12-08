@@ -1,5 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "context.h"
+#include "acme/platform/application.h"
 #include "apex/platform/system.h"
 #include "aura/graphics/image/context_image.h"
 
@@ -46,7 +47,7 @@ namespace aura
 
       ::apex::context::initialize_context_1();
 
-      if (acmesystem()->m_papexsystem && acmesystem()->m_papexsystem->m_bImaging)
+      if (acmeapplication()->m_bImaging)
       {
 
          try
@@ -392,7 +393,7 @@ namespace aura
 //   ::file::path context::side_get_matter_path(string strMatter)
 //   {
 //
-//      auto psystem = get_system()->m_papexsystem;
+//      auto psystem = acmesystem()->m_papexsystem;
 //
 //      auto pdirsystem = psystem->m_pdirsystem;
 //
@@ -415,7 +416,7 @@ namespace aura
 //      if (::str().begins_eat_ci((string&)path, "appmatter://"))
 //      {
 //
-//         auto psystem = get_system()->m_papexsystem;
+//         auto psystem = acmesystem()->m_papexsystem;
 //
 //         ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 //
@@ -485,7 +486,7 @@ namespace aura
 //
 //         }
 //
-//         //auto psystem = get_system()->m_papexsystem;
+//         //auto psystem = acmesystem()->m_papexsystem;
 //
 //         if (!psystem->m_pdirsystem->m_bMatterFromHttpCache)
 //         {
@@ -760,7 +761,7 @@ namespace aura
 //      else
 //      {
 //
-//         auto psystem = get_system()->m_papexsystem;
+//         auto psystem = acmesystem()->m_papexsystem;
 //
 //         if (psystem)
 //         {
@@ -792,7 +793,7 @@ namespace aura
 //      else
 //      {
 //
-//         auto psystem = get_system()->m_papexsystem;
+//         auto psystem = acmesystem()->m_papexsystem;
 //
 //         if (psystem)
 //         {

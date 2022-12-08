@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "user_array.h"
 #include "user.h"
 #include "department.h"
@@ -201,7 +201,7 @@ namespace account
 
       synchronouslock.unlock();
 
-      ::pointer<::axis::session>psession = m_pcontext->m_paxissession;
+      auto psession = acmesession()->m_paxissession;
 
       for(auto & pair : map)
       {
@@ -230,7 +230,7 @@ namespace account
 
       auto pathUrl = pathUrlParam;
 
-      ::pointer<axis::session>psession = m_pcontext->m_paxissession;
+      auto psession = acmesession()->m_paxissession;
 
       if(pathUrl.is_empty())
       {
@@ -270,7 +270,7 @@ namespace account
    bool user_array::is_authenticated(const ::file::path & pathUrl, bool bInteractive)
    {
 
-      ::pointer<::axis::application>papp = m_pcontext->m_paxisapplication;
+      ::pointer<::axis::application>papp = acmeapplication()->m_paxisapplication;
 
       auto puser = papp->get_user(pathUrl, true, bInteractive);
 

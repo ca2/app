@@ -1,4 +1,4 @@
-// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #pragma once
@@ -67,7 +67,7 @@ namespace windowing
 
       ::aura::application* get_app();
       ::aura::session* get_session();
-      ::aura::system* get_system();
+      //::aura::system* acmesystem();
 
 
       virtual void _initialize_windowing();

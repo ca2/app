@@ -70,7 +70,7 @@ namespace filehandler
    }
 
 
-   void department::on_request(::create * pcreate)
+   void department::on_request(::request * prequest)
    {
 
       if(m_ppaneimpact == nullptr)

@@ -199,7 +199,7 @@ application_array application_container::get_applicationa()
 //}
 
 
-::pointer<::aura::application>application_container::instantiate_application(const ::string & pszAppId, ::create * pcreate)
+::pointer<::aura::application>application_container::instantiate_application(const ::string & pszAppId, ::request * prequest)
 {
 
    INFORMATION("aura::application::instantiate_application");
@@ -226,10 +226,10 @@ application_array application_container::get_applicationa()
    else
    {
 
-      if (psystem->m_pacmeapplicationStartup.is_set())
+      if (psystem->acmeapplication().is_set())
       {
 
-         if (psystem->m_pacmeapplicationStartup->m_strAppId != strAppId)
+         if (psystem->acmeapplication()->m_strAppId != strAppId)
          {
 
             TRACE("Wrong papp Data Type");
@@ -238,9 +238,9 @@ application_array application_container::get_applicationa()
 
          }
 
-         papp = psystem->m_pacmeapplicationStartup;
+         papp = psystem->acmeapplication();
 
-         psystem->m_pacmeapplicationStartup.release();
+         psystem->acmeapplication().release();
 
       }
       else
@@ -290,7 +290,7 @@ application_array application_container::get_applicationa()
 }
 
 
-::pointer<::aura::application>application_container::create_application(const ::string & pszAppId, bool bSynch, ::create * pcreate)
+::pointer<::aura::application>application_container::create_application(const ::string & pszAppId, bool bSynch, ::request * prequest)
 {
 
    ::pointer<::aura::application>papp = instantiate_application(pszAppId, pcreate);
@@ -356,7 +356,7 @@ application_array application_container::get_applicationa()
 
 
 
-::pointer<::aura::application>application_container::start_application(const ::string & pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema)
+::pointer<::aura::application>application_container::start_application(const ::string & pszAppId, ::request * prequest, const ::string & strLocale, const ::string & strSchema)
 {
 
    string strApp(pszAppId);
@@ -462,7 +462,7 @@ application_array application_container::get_applicationa()
 
 
 
-::aura::application * application_container::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+::aura::application * application_container::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest)
    {
 
       ::pointer<::aura::application>papp;

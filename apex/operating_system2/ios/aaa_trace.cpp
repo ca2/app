@@ -70,7 +70,7 @@
  szFormat, _countof(szFormat));
 
  // User defined clipboard formats have a range of 0xC000->0xFFFF
- // ::apex::get_system() clipboard formats have other ranges, but no printable
+ // ::apexacmesystem() clipboard formats have other ranges, but no printable
  // format names.
  }
 

@@ -4,11 +4,12 @@
 #include "acme/constant/message.h"
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/include/_c_swap.h"
+#include "acme/platform/keep.h"
+#include "acme/platform/request.h"
 #include "acme/platform/timer.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/database/selection.h"
-#include "apex/platform/create.h"
 #include "aura/user/user/form_callback.h"
 #include "aura/message/user.h"
 #include "axis/platform/application.h"
@@ -694,7 +695,7 @@ namespace user
       if(m_bOnEditUpdate)
          return;
 
-      __keep(m_bOnEditUpdate);
+      KEEP(m_bOnEditUpdate);
 
       ASSERT(pinteraction->get_control_type() == e_control_type_edit
              || pinteraction->get_control_type() == e_control_type_edit_plain_text);
@@ -1095,7 +1096,7 @@ namespace user
 
       ::pointer<::user::message>pusermessage(pmessage);
 
-      __keep(m_bOnLanguageChange);
+      KEEP(m_bOnLanguageChange);
 
       _017OnAppLanguage();
 
@@ -1109,12 +1110,12 @@ namespace user
 
       ::pointer<::message::create>pmessagecreate(pmessage);
 
-      auto pcreate = (::create *) pmessagecreate->get_create();
+      auto prequest = (::request *) pmessagecreate->get_request();
 
-      if(::is_set(pcreate))
+      if(::is_set(prequest))
       {
 
-         set_form_callback(pcreate->m_payloadArgs["form_callback"].cast < ::user::form_callback >());
+         set_form_callback(prequest->m_payloadArgs["form_callback"].cast < ::user::form_callback >());
 
       }
 
@@ -1285,7 +1286,7 @@ namespace user
    ::axis::application * form_control::get_app()
    {
 
-      return ::is_set(m_pcontext) ? m_pcontext->m_paxisapplication : nullptr;
+      return ::is_set(m_pcontext) ? m_pcontext->m_pacmeapplication->m_paxisapplication : nullptr;
 
    }
 
@@ -1293,16 +1294,17 @@ namespace user
    ::axis::session * form_control::get_session()
    {
 
-      return ::is_set(m_pcontext) ? m_pcontext->m_paxissession : nullptr;
+      return ::is_set(m_pcontext) ? m_pcontext->m_pacmesession->m_paxissession : nullptr;
 
    }
 
 
-
    ::axis::system * form_control::get_system()
    {
+
+      auto pacmesystem = acmesystem();
       
-      return ::is_set(acmesystem()) ? acmesystem()->m_paxissystem : nullptr; 
+      return ::is_set(pacmesystem) ? pacmesystem->m_paxissystem : nullptr; 
    
    }
 

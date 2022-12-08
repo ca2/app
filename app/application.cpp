@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "application.h"
 #include "main_window.h"
 
@@ -52,20 +52,20 @@ namespace app_app
    }
 
 
-   void application::on_request(::create * pcreate)
+   void application::on_request(::request * prequest)
    {
 
-      __construct_new(m_pmainwindow);
+      auto pmainwindow = __create_new < ::app_app::main_window >();
 
-      m_pmainwindow->display(e_display_restored);
+      pmainwindow->display(e_display_restored);
 
-      m_pmainwindow->create_main_window();
+      pmainwindow->create_main_window();
 
-      m_pmainwindow->set_need_layout();
+      pmainwindow->set_need_layout();
 
-      m_pmainwindow->set_need_redraw();
+      pmainwindow->set_need_redraw();
 
-      m_pmainwindow->post_redraw();
+      pmainwindow->post_redraw();
 
    }
 

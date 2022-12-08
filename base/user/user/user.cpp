@@ -82,7 +82,9 @@ namespace base
    ::base::application* user::get_app()
    {
 
-      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr;
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pbaseapplication : nullptr;
 
    }
 
@@ -90,7 +92,9 @@ namespace base
    ::base::session* user::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pbasesession : nullptr;
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
 
    }
 
@@ -98,9 +102,21 @@ namespace base
    ::base::system* user::get_system()
    {
 
-      return acmesystem() ? acmesystem()->m_pbasesystem : nullptr;
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 
    }
+
+
+   //::base::user* user::user()
+   //{
+
+   //   auto psession = get_session();
+
+   //   return ::is_set(psession) ? psession->user() : nullptr;
+
+   //}
 
 
    void user::init1()
@@ -110,17 +126,17 @@ namespace base
       ::axis::user::init1();
 
 
-      ::factory::add_factory_item <::user::document >();
-      ::factory::add_factory_item <::simple_impact >();
-      ::factory::add_factory_item <::user::place_holder >();
+      factory()->add_factory_item <::user::document >();
+      factory()->add_factory_item <::simple_impact >();
+      factory()->add_factory_item <::user::place_holder >();
 
 
-      ::factory::add_factory_item <::simple_main_frame >();
-      ::factory::add_factory_item <::simple_tab_document >();
+      factory()->add_factory_item <::simple_main_frame >();
+      factory()->add_factory_item <::simple_tab_document >();
 
-      ::factory::add_factory_item <::user::tab_impact >();
+      factory()->add_factory_item <::user::tab_impact >();
 
-      ::factory::add_factory_item < ::user::form_impact >();
+      factory()->add_factory_item < ::user::form_impact >();
 
 
 
@@ -150,21 +166,21 @@ namespace base
 
       //}
 
-      ::factory::add_factory_item <::simple_scroll_bar, ::user::scroll_bar>();
+      factory()->add_factory_item <::simple_scroll_bar, ::user::scroll_bar>();
 
-      ::factory::add_factory_item <::user::menu_item >();
-      ::factory::add_factory_item <::user::menu >();
-      ::factory::add_factory_item <::user::menu_list_impact >();
-
-
-      ::factory::add_factory_item < ::user::split_layout  >();
-      ::factory::add_factory_item < ::user::split_bar  >();
+      factory()->add_factory_item <::user::menu_item >();
+      factory()->add_factory_item <::user::menu >();
+      factory()->add_factory_item <::user::menu_list_impact >();
 
 
-      ::factory::add_factory_item < simple_frame_window  >();
+      factory()->add_factory_item < ::user::split_layout  >();
+      factory()->add_factory_item < ::user::split_bar  >();
+
+
+      factory()->add_factory_item < simple_frame_window  >();
       //add_factory_item < prodevian_translucent_simple_frame_window  >();
-      ::factory::add_factory_item < ::user::document  >();
-      ::factory::add_factory_item < ::user::split_impact  >();
+      factory()->add_factory_item < ::user::document  >();
+      factory()->add_factory_item < ::user::split_impact  >();
 
 
       //auto estatus = 
@@ -855,7 +871,7 @@ namespace base
    //}
 
 
-//   ::user::interaction * session::get_request_parent_ui(::user::interaction * pinteraction, ::create * pcreate)
+//   ::user::interaction * session::get_request_parent_ui(::user::interaction * pinteraction, ::request * prequest)
 //   {
 //
 //
@@ -1282,7 +1298,7 @@ namespace base
 
          output_error_message("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.",nullptr, e_message_box_ok);
 
-         throw exit_exception(get_system());
+         throw exit_exception(acmesystem());
 
       }
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "apex/platform/system.h"
@@ -34,7 +34,7 @@ namespace aqua
       virtual void initialize(::particle * pparticle) override;
 
 
-      virtual void on_add_session(::apex::session* papexsession) override;
+      virtual void on_add_session(::acme::session* papexsession) override;
 
       //virtual void initialize_rich_text();
 

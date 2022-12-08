@@ -1441,7 +1441,7 @@ string & property::get_network_arguments(::string & str) const
 //  if(opt == ((::xml::disp_option *) 1))
 //  {
 //
-//     opt = get_system()->xml().m_poptionDefault;
+//     opt = acmesystem()->xml().m_poptionDefault;
 //
 //  }
 //

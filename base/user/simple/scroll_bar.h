@@ -30,7 +30,7 @@ public:
 
 
    virtual void pre_translate_message(::message::message * pmessage) override;
-   //virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle, ::user::interaction * puiParent, const ::atom & atom, ::create * pcreate = nullptr) override;
+   //virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle, ::user::interaction * puiParent, const ::atom & atom, ::request * prequest = nullptr) override;
 
    void install_message_routing(::channel * pchannel) override;
 

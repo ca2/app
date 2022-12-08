@@ -70,7 +70,7 @@ namespace sip
       m_form.clear();
       if(attrs().has_property("request_uri"))
       {
-         attr("query_string") = ::apex::get_system()->url().object_get_query(attr("request_uri"));
+         attr("query_string") = ::apexacmesystem()->url().object_get_query(attr("request_uri"));
          string str = attrs()["query_string"];
          m_form.parse_query_string(str);
       }

@@ -4,10 +4,11 @@
 #include "color_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/platform/keep.h"
 #include "acme/platform/system.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "aura/message/user.h"
 #include "aura/user/user/window_util.h"
 #include "axis/account/credentials.h"
@@ -234,7 +235,9 @@ namespace userex
    ::core::application* pane_tab_impact::get_app()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
 
    }
 
@@ -242,7 +245,9 @@ namespace userex
    ::core::session* pane_tab_impact::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
    }
 
@@ -250,7 +255,9 @@ namespace userex
    ::core::system* pane_tab_impact::get_system()
    {
 
-      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
    }
 
@@ -438,7 +445,7 @@ namespace userex
       if (iVisibleIndex < 0)
       {
 
-         __keep(m_bDisableSavingRestorableTabs, true);
+         KEEP(m_bDisableSavingRestorableTabs, true);
 
          if (!add_tab(pimpactdata->m_strTitle, pimpactdata->m_atom, true, false, pimpactdata->m_pplaceholder))
          {
@@ -622,7 +629,7 @@ namespace userex
 
          auto pcontext = m_pcontext;
          
-         auto psession = pcontext->m_pcoresession;
+         auto psession = pcontext->m_pacmesession->m_pcoresession;
          
          auto puser = psession->m_puser->m_pcoreuser;
 
@@ -671,7 +678,7 @@ namespace userex
 
          auto pcontext = m_pcontext;
          
-         auto psession = pcontext->m_pcoresession;
+         auto psession = pcontext->m_pacmesession->m_pcoresession;
          
          auto puser = psession->m_puser->m_pcoreuser;
 
@@ -708,7 +715,7 @@ namespace userex
 
          auto pcontext = m_pcontext;
          
-         auto psession = pcontext->m_paurasession;
+         auto psession = pcontext->m_pacmesession->m_paurasession;
          
          auto puser = psession->m_puser->m_pcoreuser;
 
@@ -767,12 +774,12 @@ namespace userex
 //
 //         }
 
-         if(pfilemanagerdata->m_pcreate.is_null())
+         if(pfilemanagerdata->m_prequest.is_null())
          {
 
-            pfilemanagerdata->m_pcreate = __create_new< ::create>();
+            pfilemanagerdata->m_prequest = __create_new< ::request>();
 
-            pfilemanagerdata->m_pcreate->finish_initialization();
+            pfilemanagerdata->m_prequest->finish_initialization();
 
          }
 
@@ -854,7 +861,7 @@ namespace userex
 
             auto pcontext = m_pcontext;
             
-            auto psession = pcontext->m_pcoresession;
+            auto psession = pcontext->m_pacmesession->m_pcoresession;
             
             auto puser = psession->m_puser->m_pcoreuser;
 
@@ -1052,7 +1059,7 @@ namespace userex
 
    //   auto pcontext = m_pcontext;
    //   
-   //   auto psession = pcontext->m_pcoresession;
+   //   auto psession = pcontext->m_pacmesession->m_pcoresession;
    //   
    //   auto puser = psession->m_puser->m_pcoreuser;
 

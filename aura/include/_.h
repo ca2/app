@@ -18,13 +18,13 @@
 #define LAYER_NAMESPACE aura
 
 
-//#undef ::aura::get_system()
+//#undef ::auraacmesystem()
 //#undef Node
 //#undef Sess
 //#undef App
 //
 //
-//#define ::aura::get_system() (psystem->m_paurasystem)
+//#define ::auraacmesystem() (psystem->m_paurasystem)
 //#define Node (psystem->m_pnode ? psystem->m_pnode->m_pauranode : nullptr)
 //#define Sess(pcontextsession) (pcontextsession->m_paurasession)
 //#define App(playered) (*::get_app(playered)->m_pauraapplication)
@@ -48,7 +48,7 @@ namespace aura
    class node;
 
 
-//   inline system * get_system() { return get_system()->layer(LAYERED_AURA); }
+//   inline system * acmesystem() { return acmesystem()->layer(LAYERED_AURA); }
 
 
 } // namespace aura

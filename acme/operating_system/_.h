@@ -16,10 +16,12 @@
 
 #elif defined(MACOS)
 
+#include "apple/_.h"
 #include "macos/_.h"
 
 #elif defined(APPLE_IOS)
 
+#include "apple/_.h"
 #include "ios/_.h"
 
 #elif defined(LINUX)

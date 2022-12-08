@@ -16,7 +16,7 @@ bool CLASS_DECL_AURA windows_full_path(wstring& wstrFullPath, const wstring& wst
 struct errentry
 {
    unsigned long oscode;   /* OS return value */
-   int sysv_errno;  /* ::aura::get_system() V error code */
+   int sysv_errno;  /* ::auraacmesystem() V error code */
 };
 //#elif defined(MACOS)
 ////#include <dlfcn.h>

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -35,7 +35,7 @@ namespace filemanager
       /// fix this concept if there are app exclusive file systems.... but,
       /// other file systems can be included in more incluse fs::data
       /// (or just exclusive file systems at fs::data (ftp only file system?)
-      ::pointer<::create>m_pcreate;
+      ::pointer<::request>m_prequest;
       ::file::path m_filepath;
       bool m_bMakeVisible;
       bool m_bTransparentBackground;

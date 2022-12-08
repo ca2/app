@@ -12,10 +12,18 @@ namespace networking
    }
 
 
-   email_address::email_address(const char * psz)
+   email_address::email_address(const char* pszEmail) :
+      email_address((const ::string &) pszEmail)
    {
 
-      operator = (psz);
+
+   }
+
+
+   email_address::email_address(const ::string & strEmail)
+   {
+
+      set_email_address(strEmail);
 
    }
 
@@ -28,9 +36,9 @@ namespace networking
    }
 
 
-   email_address & email_address::operator = (const char * psz)
+   void email_address::set_email_address(const ::string& strEmail)
    {
-      string str_in(psz);
+      string str_in(strEmail);
       string str = str_in;
       auto i = str.find("<");
       if (i != -1)
@@ -64,7 +72,7 @@ namespace networking
             }
          }
       }
-      return *this;
+      //return *this;
    }
 
 

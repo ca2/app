@@ -31,9 +31,9 @@ namespace universal_windows
 
       }
 
-      __refer(m_pdirsystem, ::apex::get_system()->m_pdirsystem);
+      __refer(m_pdirsystem, ::apexacmesystem()->m_pdirsystem);
 
-      __refer(m_pfilesystem, ::apex::get_system()->m_pfilesystem);
+      __refer(m_pfilesystem, ::apexacmesystem()->m_pfilesystem);
 
       return estatus;
 

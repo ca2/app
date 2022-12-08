@@ -8,7 +8,7 @@
 #include "base/user/user/user.h"
 
 
-void base_factory(::factory::factory * pfactory);
+//void base_factory(::factory::factory * pfactory);
 
 
 namespace base
@@ -102,10 +102,9 @@ namespace base
 
       m_pbasesystem = this;
 
-      ::factory::add_factory_item < ::base::session, ::apex::session >();
-      ::factory::add_factory_item < ::base::application, ::apex::application >();
-      //::factory::add_factory_item < ::base::idpool, ::acme::idpool >();
-      ::factory::add_factory_item < ::base::user, ::user::user >();
+      //factory()->add_factory_item < ::base::session, ::apex::session >();
+      //factory()->add_factory_item < ::base::application, ::apex::application >();
+      //factory()->add_factory_item < ::base::idpool, ::acme::idpool >();
 
    }
 
@@ -117,6 +116,11 @@ namespace base
       
       ::axis::system::initialize(pparticle);
 
+
+      factory()->add_factory_item< ::base::session, ::acme::session>();
+      factory()->add_factory_item< ::base::user, ::user::user>();
+
+
       //if (!estatus)
       //{
 
@@ -124,33 +128,36 @@ namespace base
 
       //}
 
-      base_factory(::factory::get_factory());
+      //base_factory(factory());
+
+
+      //factory()->add_factory_item < ::base::user, ::user::user >();
 
       //return estatus;
 
    }
 
 
-   void system::on_add_session(::apex::session* papexsession)
-   {
+   //void system::on_add_session(::acm::session* papexsession)
+   //{
 
-      ::axis::system::on_add_session(papexsession);
+   //   ::axis::system::on_add_session(papexsession);
 
-      if (papexsession->m_iEdge == 0)
-      {
+   //   if (papexsession->m_iEdge == 0)
+   //   {
 
-         if (!m_pbasesession)
-         {
+   //      if (!m_pbasesession)
+   //      {
 
-            m_pbasesession = papexsession->m_pbasesession;
+   //         m_pbasesession = papexsession->m_pbasesession;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      papexsession->m_pbasesystem = this;
+   //   papexsession->m_pbasesystem = this;
 
-   }
+   //}
 
 
    //__namespace_system_factory(system);
@@ -159,10 +166,10 @@ namespace base
 } // namespace base
 
 
-void base_factory(::factory::factory * pfactory)
-{
-
-
-}
+//void base_factory(::factory::factory * pfactory)
+//{
+//
+//
+//}
 
 

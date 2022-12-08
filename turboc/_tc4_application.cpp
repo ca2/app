@@ -94,7 +94,7 @@ namespace tc4
       return ::aura::application::exit_application();
    }
 
-   void application::on_request(::create * pcreate)
+   void application::on_request(::request * prequest)
    {
 
       /*

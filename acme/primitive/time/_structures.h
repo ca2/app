@@ -22,12 +22,12 @@ EXPORT_CLAUSE_DECL bool operator != (const class  ::time & time)  const;
 
 
 #define DEFINE_COMPARISON_WITH_TIME(EXPORT_CLAUSE_DECL, TYPE) \
-EXPORT_CLAUSE_DECL bool TYPE::operator == (const class  ::time & time) const { return class ::time(*this) == time; } \
-EXPORT_CLAUSE_DECL bool TYPE::operator < (const class  ::time & time) const { return class ::time(*this) < time; } \
-EXPORT_CLAUSE_DECL bool TYPE::operator <= (const class  ::time & time) const { return class ::time(*this) <= time; } \
-EXPORT_CLAUSE_DECL bool TYPE::operator > (const class  ::time & time) const { return class ::time(*this) > time; } \
-EXPORT_CLAUSE_DECL bool TYPE::operator >= (const class  ::time & time) const { return class ::time(*this) >= time; } \
-EXPORT_CLAUSE_DECL bool TYPE::operator != (const class  ::time & time) const { return class ::time(*this) != time; }
+EXPORT_CLAUSE_DECL bool TYPE::operator == (const class  ::time & time) const { return ((class ::time)*this) == time; } \
+EXPORT_CLAUSE_DECL bool TYPE::operator < (const class  ::time & time) const { return ((class ::time)*this) < time; } \
+EXPORT_CLAUSE_DECL bool TYPE::operator <= (const class  ::time & time) const { return ((class ::time)*this) <= time; } \
+EXPORT_CLAUSE_DECL bool TYPE::operator > (const class  ::time & time) const { return ((class ::time)*this) > time; } \
+EXPORT_CLAUSE_DECL bool TYPE::operator >= (const class  ::time & time) const { return ((class ::time)*this) >= time; } \
+EXPORT_CLAUSE_DECL bool TYPE::operator != (const class  ::time & time) const { return ((class ::time)*this) != time; }
 
 
 #define NON_INLINE
@@ -119,32 +119,21 @@ inline bool operator ! () { return this->MEMBER <= 0; }
 //__DURATION_SETUP__(FLOATING_DAY           , m_d)
 
 
-inline timespec & normalize(timespec & timespec)
-{
 
-   timespec.tv_sec += timespec.tv_nsec / 1'000'000'000;
-
-   timespec.tv_nsec %= 1'000'000'000;
-
-   return timespec;
-
-}
-
-
-inline timespec & operator +=(timespec & timespec, const struct ::INTEGRAL_MILLISECOND & integralmillisecond)
-{
-
-   timespec.tv_sec += integralmillisecond.m_i /1'000;
-
-   timespec.tv_nsec += (integralmillisecond.m_i %1'000) *1'000'000;
-
-   normalize(timespec);
-
-   return timespec;
-
-}
-
-
+//inline timespec & operator +=(timespec & timespec, const struct ::INTEGRAL_MILLISECOND & integralmillisecond)
+//{
+//
+//   timespec.tv_sec += integralmillisecond.m_i /1'000;
+//
+//   timespec.tv_nsec += (integralmillisecond.m_i %1'000) *1'000'000;
+//
+//   normalize(timespec);
+//
+//   return timespec;
+//
+//}
+//
+//
 
 
 

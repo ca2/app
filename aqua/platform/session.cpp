@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/system_setup.h"
 #include "apex/platform/application.h"
 #include "aqua/platform/session.h"
@@ -49,13 +49,10 @@ namespace aqua
    }
 
 
-   void session::on_instantiate_application(::apex::application* papp)
+   void session::on_instantiate_application(::acme::application* papplication)
    {
 
-      apex::session::on_instantiate_application(papp);
-
-      papp->m_paquasession = this;
-      papp->m_paquasystem = m_paquasystem;
+      apex::session::on_instantiate_application(papplication);
 
    }
 

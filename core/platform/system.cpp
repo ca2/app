@@ -10,7 +10,7 @@
 #include "core/user/user/user.h"
 
 
-bool __rich_text_initialize();
+void rich_text_factory_exchange(::factory::factory* pfactory);
 
 
 namespace core
@@ -36,10 +36,8 @@ namespace core
 
       m_pcoresystem = this;
 
-      ::factory::add_factory_item < ::core::application, ::apex::application >();
-      ::factory::add_factory_item < ::core::session, ::apex::session >();
-      //::factory::add_factory_item < ::core::idpool, ::acme::idpool >();
-      ::factory::add_factory_item < ::core::user, ::user::user >();
+      //factory()->add_factory_item < ::core::idpool, ::acme::idpool >();
+      //factory()->add_factory_item < ::core::user, ::user::user >();
       //add_factory_item < ::core::idpool, ::apex::idpool >();
 
    }
@@ -51,6 +49,10 @@ namespace core
       //auto estatus = 
       
       ::base::system::initialize(pparticle);
+
+
+      factory()->add_factory_item < ::core::session, ::acme::session >();
+      factory()->add_factory_item < ::core::user, ::user::user >();
 
       //if (!estatus)
       //{
@@ -64,39 +66,32 @@ namespace core
    }
 
 
-   void system::on_add_session(::apex::session* papexsession)
-   {
+   //void system::on_add_session(::apex::session* papexsession)
+   //{
 
-      ::bred::system::on_add_session(papexsession);
+   //   ::bred::system::on_add_session(papexsession);
 
-      if (papexsession->m_iEdge == 0)
-      {
+   //   if (papexsession->m_iEdge == 0)
+   //   {
 
-         if (!m_pcoresession)
-         {
+   //      if (!m_pcoresession)
+   //      {
 
-            m_pcoresession = papexsession->m_pcoresession;
+   //         m_pcoresession = papexsession->m_pcoresession;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      papexsession->m_pcoresystem = this;
+   //   papexsession->m_pcoresystem = this;
 
-   }
+   //}
 
 
    void system::initialize_rich_text()
    {
 
-      if (!__rich_text_initialize())
-      {
-
-         throw ::exception(error_not_initialized);
-
-      }
-
-      //return ::success;
+      rich_text_factory_exchange(factory());
 
    }
 

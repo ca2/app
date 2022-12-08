@@ -424,13 +424,13 @@ namespace linux
                   if(dwLastError == 0x0000057e)
                   {
 
-                     ::acme::get_system()->output_error_message("cannot create a top-level child interaction_impl.");
+                     ::acmeacmesystem()->output_error_message("cannot create a top-level child interaction_impl.");
 
                   }
                   else
                   {
 
-                     ::acme::get_system()->message_box(strMessage);
+                     ::acmeacmesystem()->message_box(strMessage);
 
                   }
 
@@ -1519,10 +1519,10 @@ namespace linux
             {
                m_puserinteraction->get_window_rect(rectangleWindow);
             }
-            if(::acme::get_system()->get_monitor_count() > 0)
+            if(::acmeacmesystem()->get_monitor_count() > 0)
             {
                ::rectangle rcMonitor;
-               ::acme::get_system()->get_monitor_rectangle(0, &rcMonitor);
+               ::acmeacmesystem()->get_monitor_rectangle(0, &rcMonitor);
                if(rectangleWindow.left >= rcMonitor.left)
                   pmouse->m_point.x += (::i32) rectangleWindow.left;
                if(rectangleWindow.top >= rcMonitor.top)
@@ -4645,7 +4645,7 @@ namespace linux
 //         if (pFrame != nullptr)
 //         hWnd = pFrame->get_handle();
 //         else
-//         hWnd = ::acme::get_system()->GetMainWnd()->get_handle();*/
+//         hWnd = ::acmeacmesystem()->GetMainWnd()->get_handle();*/
 //      }
 //
 //      // a popup ::user::interaction_impl cannot be owned by a child ::user::interaction_impl

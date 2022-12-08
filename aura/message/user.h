@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/user/user/mouse.h"
@@ -32,9 +32,9 @@ namespace message
 
       virtual void failed(const ::string & pcszErrorMessage);
 
-      ::create * get_create();
+      ::request * get_request();
 
-      ::user::system * get_user_create();
+      ::user::system * get_user_system();
 
       ::particle * get_impact_data();
 

@@ -9,6 +9,7 @@
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/string/base64.h"
 #include "aura/constant/idpool.h"
+#include "acme/platform/request.h"
 #include "acme/platform/version.h"
 #include "acme/platform/profiler.h"
 #include "acme/primitive/text/context.h"
@@ -19,13 +20,13 @@
 #include "apex/interprocess/target.h"
 #include "apex/networking/http/context.h"
 #include "apex/platform/os_context.h"
+#include "aura/platform/node.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aqua/game/game.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "apex/platform/create.h"
 #include "apex/platform/node.h"
 #include "aura/user/user/window_util.h"
 #include "aura/user/user/interaction.h"
@@ -108,29 +109,12 @@ CLASS_DECL_AURA int ui_open_url(const ::string & psz);
 namespace aura
 {
 
-   bool g_bInitialize = false;
-
-   void initialize()
-   {
-
-      if(g_bInitialize)
-      {
-
-         return;
-
-      }
-
-      ::factory::add_factory_item<::aura::system, ::acme::system>();
-
-      g_bInitialize = true;
-
-   }
-
 
    application::application()
    {
 
-      ::aura::initialize();
+      factory()->add_factory_item<::aura::system, ::acme::system>();
+      factory()->add_factory_item < ::aura::session, ::acme::session >();
 
       m_pauraapplication = this;
 #if defined(LINUX) || defined(FREEBSD)
@@ -173,7 +157,7 @@ namespace aura
 
       //m_http.set_app(this);
 
-      m_eexclusiveinstance = ExclusiveInstanceNone;
+      m_eexclusiveinstance = e_exclusive_instance_none;
 
       //m_pevAppBeg = nullptr;
       //m_pevAppEnd = nullptr;
@@ -224,7 +208,7 @@ namespace aura
 
       //m_pdocmanager = nullptr;
 
-      m_eexclusiveinstance = ExclusiveInstanceNone;
+      m_eexclusiveinstance = e_exclusive_instance_none;
       m_strLocale = "_std";
       m_strSchema = "_std";
 
@@ -454,202 +438,202 @@ namespace aura
    }
 
 
-   void application::call_request(::create * pcreate)
-   {
+   //void application::call_request(::request * prequest)
+   //{
 
-      auto psystem = acmesystem()->m_papexsystem;
+   //   auto psystem = acmesystem()->m_papexsystem;
 
-      if (psystem->payload("exit_on_application_call_request").is_true())
-      {
+   //   if (psystem->payload("exit_on_application_call_request").is_true())
+   //   {
 
-         exit(0);
+   //      exit(0);
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      auto purl = psystem->url();
+   //   auto purl = psystem->url();
 
-      if (pcreate->m_ecommand == ::e_command_protocol)
-      {
+   //   if (pcreate->m_ecommand == ::e_command_protocol)
+   //   {
 
-         string str;
-         
-         str = pcreate->m_payloadFile;
+   //      string str;
+   //      
+   //      str = pcreate->m_payloadFile;
 
-         if (!m_pinterprocesscommunication)
-         {
+   //      if (!m_pinterprocesscommunication)
+   //      {
 
-            ::pointer<::user::interaction>pinteraction;
+   //         ::pointer<::user::interaction>pinteraction;
 
-            get_frame(pinteraction);
+   //         get_frame(pinteraction);
 
-            if (pinteraction == nullptr)
-            {
+   //         if (pinteraction == nullptr)
+   //         {
 
-               return;
+   //            return;
 
-            }
+   //         }
 
-            auto papp = pinteraction->get_app();
+   //         auto papp = pinteraction->get_app();
 
-            if (papp == nullptr)
-            {
+   //         if (papp == nullptr)
+   //         {
 
-               return;
+   //            return;
 
-            }
+   //         }
 
-            if (papp->m_pinterprocesscommunication == nullptr)
-            {
+   //         if (papp->m_pinterprocesscommunication == nullptr)
+   //         {
 
-               return;
+   //            return;
 
-            }
+   //         }
 
-         }
+   //      }
 
-         if (str.begins_ci(m_pinterprocesscommunication->m_ptarget->m_strBaseChannel + "://"))
-         {
+   //      if (str.begins_ci(m_pinterprocesscommunication->m_ptarget->m_strBaseChannel + "://"))
+   //      {
 
-            m_pinterprocesscommunication->_handle_uri(str);
+   //         m_pinterprocesscommunication->_handle_uri(str);
 
-            //   if (str.begins_eat_ci("send?message="))
-            //   {
+   //         //   if (str.begins_eat_ci("send?message="))
+   //         //   {
 
-            //      m_pinterprocesscommunication->_handle_call(m_pinterprocesscommunication->m_prx, ::url::decode(str));
+   //         //      m_pinterprocesscommunication->_handle_call(m_pinterprocesscommunication->m_prx, ::url::decode(str));
 
-            //   }
-            //   else if (str.begins_eat_ci("send?messagebin="))
-            //   {
+   //         //   }
+   //         //   else if (str.begins_eat_ci("send?messagebin="))
+   //         //   {
 
-            //      strsize iFind = str.find(',');
+   //         //      strsize iFind = str.find(',');
 
-            //      if (iFind >= 0)
-            //      {
+   //         //      if (iFind >= 0)
+   //         //      {
 
-            //         int message = atoi(str.Left(iFind));
+   //         //         int message = atoi(str.Left(iFind));
 
-            //         memory m;
+   //         //         memory m;
 
-            //         auto psystem = acmesystem();
+   //         //         auto psystem = acmesystem();
 
-            //         auto pbase64 = psystem->base64();
+   //         //         auto pbase64 = psystem->base64();
 
-            //         pbase64->decode(m, ::url::decode(str.Mid(iFind + 1)));
+   //         //         pbase64->decode(m, ::url::decode(str.Mid(iFind + 1)));
 
-            //         m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, message, ::move(m));
+   //         //         m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, message, ::move(m));
 
-            //      }
+   //         //      }
 
-            //   }
+   //         //   }
 
-            //}
+   //         //}
 
-         }
+   //      }
 
 
-      }
-      //else if (pcreate->m_ecommand == ::command_on_agree_exit)
-      //{
+   //   }
+   //   //else if (pcreate->m_ecommand == ::command_on_agree_exit)
+   //   //{
 
-      //   m_bAgreeExit = _001OnAgreeExit();
+   //   //   m_bAgreeExit = _001OnAgreeExit();
 
-      //   m_bAgreeExitOk = true;
+   //   //   m_bAgreeExitOk = true;
 
-      //   return;
+   //   //   return;
 
-      //}
-      else if (pcreate->m_ecommand == ::e_command_request_exit)
-      {
+   //   //}
+   //   else if (pcreate->m_ecommand == ::e_command_request_exit)
+   //   {
 
-         request_exit_application();
+   //      request_exit_application();
 
-         return;
+   //      return;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         on_request(pcreate);
+   //      on_request(pcreate);
 
-      }
+   //   }
 
-      m_bAttendedFirstRequest = true;
+   //   m_bAttendedFirstRequest = true;
 
-      defer_process_activation_message();
-      //return ::success;
+   //   defer_process_activation_message();
+   //   //return ::success;
 
-   }
+   //}
 
 
-   void application::on_request(::create * pcreate)
-   {
+   //void application::on_request(::request * prequest)
+   //{
 
-      if (is_service())
-      {
+   //   if (is_service())
+   //   {
 
-         ::aura::application::on_service_request(pcreate);
+   //      ::aura::application::on_service_request(pcreate);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         try
-         {
+   //      try
+   //      {
 
-            do_request(pcreate);
+   //         do_request(pcreate);
 
-         }
-         // catch (not_installed * pexception)
-         // {
+   //      }
+   //      // catch (not_installed * pexception)
+   //      // {
 
-         //    ::exception_pointer esp(pexception);
+   //      //    ::exception_pointer esp(pexception);
 
-         //    psystem->on_run_exception(esp);
+   //      //    psystem->on_run_exception(esp);
 
-         //    throw ::exception(exit_exception(esp->get_app(), ::exit_application));
+   //      //    throw ::exception(exit_exception(esp->get_app(), ::exit_application));
 
-         // }
-         catch (const ::exception & e)
-         {
+   //      // }
+   //      catch (const ::exception & e)
+   //      {
 
-            handle_exception(e);
+   //         handle_exception(e);
 
-         }
+   //      }
 
-         auto psystem = get_system()->m_paurasystem;
+   //      auto psystem = acmesystem()->m_paurasystem;
 
-         // Verry Sory for the per request overhead here for the needed information of only first request
-         if (::is_set(psystem) && psystem->m_timeAfterApplicationFirstRequest.is_null())
-         {
+   //      // Verry Sory for the per request overhead here for the needed information of only first request
+   //      if (::is_set(psystem) && psystem->m_timeAfterApplicationFirstRequest.is_null())
+   //      {
 
-            psystem->m_timeAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+   //         psystem->m_timeAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
-         }
+   //      }
 
-         try
-         {
+   //      try
+   //      {
 
-            pcreate->get_property_set().unset("document");
+   //         pcreate->get_property_set().unset("document");
 
-         }
-         catch (...)
-         {
+   //      }
+   //      catch (...)
+   //      {
 
-         }
+   //      }
 
-         //::pointer<::aura::session>pbergedge = pcreate->payload("bergedge_callback").cast < ::aura::session >();
-         // todobergedge
-         /*if(pbergedge != nullptr)
-         {
-         pbergedge->on_app_request_bergedge_callback(this);
-         }*/
-         pcreate->m_eventReady.SetEvent();
+   //      //::pointer<::aura::session>pbergedge = pcreate->payload("bergedge_callback").cast < ::aura::session >();
+   //      // todobergedge
+   //      /*if(pbergedge != nullptr)
+   //      {
+   //      pbergedge->on_app_request_bergedge_callback(this);
+   //      }*/
+   //      pcreate->m_eventReady.SetEvent();
 
-      }
+   //   }
 
-   }
+   //}
 
 
    //void application::message_box_synchronous(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
@@ -1773,7 +1757,7 @@ namespace aura
    void application::do_install()
    {
 
-      auto psystem = get_system()->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
 
       on_install();
@@ -1809,7 +1793,7 @@ namespace aura
 
       string strLicense = get_license_id();
 
-      auto psystem = get_system()->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -1903,7 +1887,7 @@ retry_license:
 
 // #ifdef WINDOWS_DESKTOP
 
-//          auto psystem = get_system()->m_paurasystem;
+//          auto psystem = acmesystem()->m_paurasystem;
 
 //          string strModuleName = psystem->file()->module();
 
@@ -2116,7 +2100,7 @@ retry_license:
 
       //}
 
-      auto psystem = get_system()->m_paurasystem;
+      auto psystem = acmesystem()->m_paurasystem;
 
       //if (psystem->m_bImaging)
       //{
@@ -2817,7 +2801,7 @@ retry_license:
 //  }
 
 
-   //bool application::platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::create * pcreate)
+   //bool application::platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::request * prequest)
    //{
 
    //   return false;
@@ -3388,7 +3372,7 @@ retry_license:
    void application::add_user_interaction(::user::interaction * puserinteraction)
    {
 
-      ::pointer<::aura::session>psession = get_session();
+      auto psession = acmesession()->m_paurasession;
 
       if (puserinteraction == psession->m_puserprimitiveHost)
       {
@@ -4106,7 +4090,7 @@ retry_license:
    //}
 
 
-//   bool application::start_application(bool bSynch, ::create * pcreate)
+//   bool application::start_application(bool bSynch, ::request * prequest)
 //   {
 //
 ////      try
@@ -4655,7 +4639,7 @@ retry_license:
    //}
 
 
-   //void application::on_request(::create * pcreate)
+   //void application::on_request(::request * prequest)
    //{
 
    //   aura::application::on_request(pcreate);
@@ -5183,7 +5167,7 @@ retry_license:
    //}
 
 
-   //void application::on_service_request(::create * pcreate)
+   //void application::on_service_request(::request * prequest)
    //{
 
    //   ::aura::application::on_service_request(pcreate);
@@ -5515,7 +5499,7 @@ namespace aura
 
    //   m_pdocmanager = nullptr;
 
-   //   m_eexclusiveinstance = ExclusiveInstanceNone;
+   //   m_eexclusiveinstance = e_exclusive_instance_none;
    //   m_strLocale = "_std";
    //   m_strSchema = "_std";
 
@@ -5820,10 +5804,10 @@ namespace aura
 
       }
 
-      if (m_papexsession)
+      if (m_pacmesession)
       {
 
-         m_papexsession->route_command(pcommand, false);
+         m_pacmesession->m_papexsession->route_command(pcommand, false);
 
       }
 
@@ -7353,10 +7337,10 @@ namespace aura
 
       ::pointer<::user::interaction>puserinteractionParent;
 
-      if (puserinteractionParent && pusersystem->m_pcreate)
+      if (puserinteractionParent && pusersystem->m_prequest)
       {
 
-         puserinteractionParent = pusersystem->m_pcreate->m_puserprimitiveParent;
+         puserinteractionParent = pusersystem->m_prequest->m_puserelementParent;
 
       }
 
@@ -7695,9 +7679,9 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            //get_system()->set_finish(get_system());
+            //acmesystem()->set_finish(acmesystem());
 
-            get_system()->set_finish();
+            acmesystem()->set_finish();
 
          }
 
@@ -7705,7 +7689,7 @@ namespace aura
       else
       {
 
-         get_system()->destroy();
+         acmesystem()->destroy();
 
       }
 
@@ -7744,7 +7728,7 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            get_system()->destroy();
+            acmesystem()->destroy();
 
          }
 
@@ -7752,7 +7736,7 @@ namespace aura
       else
       {
 
-         get_system()->destroy();
+         acmesystem()->destroy();
 
       }
 
@@ -7892,7 +7876,7 @@ namespace aura
 
       // Closing just this application.
       // It is different of a system exit.
-      // ::aura::get_system() (a single ca2 process) can host
+      // ::auraacmesystem() (a single ca2 process) can host
       // multiple ca2 application objects.
 
       // attempt to save all documents
@@ -8979,7 +8963,7 @@ namespace aura
    //void application::on_initial_frame_position(::user::frame* pframe)
    //{
 
-   //   auto psystem = get_system()->m_papexsystem;
+   //   auto psystem = acmesystem()->m_papexsystem;
 
    //   psystem->on_initial_frame_position(pframe);
 
@@ -8987,18 +8971,18 @@ namespace aura
 
 
 
-   ::aura::system * application::get_system()
-   {
+   //::aura::system * applicationacmesystem()
+   //{
 
-      return ::is_set(acmesystem()) ? dynamic_cast <::aura::system *> (acmesystem()) : nullptr;
+   //   return ::is_set(acmesystem()) ? dynamic_cast <::aura::system *> (acmesystem()) : nullptr;
 
-   }
+   //}
 
 
    ::aura::session* application::get_session()
    {
 
-      return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
+      return m_pcontext && m_pcontext->m_pacmesession ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
 
    }
 

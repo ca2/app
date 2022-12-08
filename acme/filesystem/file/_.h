@@ -1,10 +1,13 @@
 #pragma once
 
 
+#include "acme/constant/filesystem.h"
+
+
 //#include "item.h"
 
 
-#include "plain_text_file_options.h"
+//#include "plain_text_file_options.h"
 
 
 //#include "stdio_file.h"
@@ -98,16 +101,16 @@ CLASS_DECL_ACME const char * file_path_name(const char * path);
 
 
 
-CLASS_DECL_ACME ::file::path dir_ca2_module();
+//CLASS_DECL_ACME ::file::path dir_ca2_module();
 
-CLASS_DECL_ACME ::file::path dir_base_module();
-
-
+//CLASS_DECL_ACME ::file::path dir_base_module();
 
 
 
 
-#include "opened.h"
+
+
+//#include "opened.h"
 
 //#include "exception.h"
 
@@ -117,7 +120,7 @@ CLASS_DECL_ACME ::file::path dir_base_module();
 
 //#include "opened.h"
 
-#include "dir.h"
+//#include "dir.h"
 
 //#include "composite.h"
 
@@ -179,7 +182,7 @@ namespace file
 //#include "memory_file.h"
 
 
-#include "byte_stream_memory_file.h"
+//#include "byte_stream_memory_file.h"
 
 
 
@@ -191,7 +194,7 @@ namespace file
 //#include "html_file.h"
 
 
-#include "_papaya.h"
+//#include "_papaya.h"
 
 
 
@@ -213,7 +216,7 @@ namespace file
 
 
 
-#include "listing_provider.h"
+//#include "listing_provider.h"
 
 
 //#include "folder.h"

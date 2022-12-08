@@ -469,7 +469,7 @@ PLARGE_INTEGER Time)
  * Convert a system time into a local time.
  *
  * PARAMS
- *   SystemTime [I] ::acme::get_system() time to convert.
+ *   SystemTime [I] ::acmeacmesystem() time to convert.
  *   LocalTime  [O] Destination for the converted time.
  *
  * RETURNS

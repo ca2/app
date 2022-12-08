@@ -28,7 +28,7 @@
 //#elif defined(APPLE_IOS)
 //#include "axis/axis/os/ios/ios.h"
 //#else
-//#error Not Supported Operational ::acme::get_system()
+//#error Not Supported Operational ::acmeacmesystem()
 //#endif
 
 

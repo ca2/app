@@ -127,7 +127,7 @@
 //void apple_on_app_activate()
 //{
 //
-//   ::aura::get_system()->call_subject(id_app_activated);
+//   ::auraacmesystem()->call_subject(id_app_activated);
 //
 //}
 
@@ -135,7 +135,7 @@
 //void apple_on_new_file()
 //{
 //
-//   ::aura::get_system()->on_open_file(::e_type_empty, "");
+//   ::auraacmesystem()->on_open_file(::e_type_empty, "");
 //
 //}
 //
@@ -160,13 +160,13 @@
 //
 //         }
 //
-//         stra[i] = ::aura::get_system()->url().::url::decode(stra[i]);
+//         stra[i] = ::auraacmesystem()->url().::url::decode(stra[i]);
 //
 //      }
 //
 //   }
 //
-//   ::aura::get_system()->defer_accumulate_on_open_file(stra, pszExtra);
+//   ::auraacmesystem()->defer_accumulate_on_open_file(stra, pszExtra);
 //
 //}
 
@@ -184,7 +184,7 @@
 //   else if(iCount == 1)
 //   {
 //
-//      ::aura::get_system()->on_open_file(psza[0], pszExtra);
+//      ::auraacmesystem()->on_open_file(psza[0], pszExtra);
 //
 //      ::free((void *) psza[0]);
 //
@@ -198,7 +198,7 @@
 //
 //      stra.c_add((char **) psza, iCount, false);
 //
-//      ::aura::get_system()->on_open_file(stra, pszExtra);
+//      ::auraacmesystem()->on_open_file(stra, pszExtra);
 //
 //   }
 //
@@ -215,7 +215,7 @@
 //}
 
 
-//void window_copy(CGRect * prectTarget, const ::rectangle_i32 * prectSource)
+//void screen_coordinates_aware_copy(CGRect * prectTarget, const ::rectangle_i32 * prectSource)
 //{
 //
 //   CGRect rectangleWorkspace = mm_get_workspace_rect();
@@ -228,7 +228,7 @@
 //}
 
 //
-//void window_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
+//void screen_coordinates_aware_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
 //{
 //
 //   CGRect rectangleWorkspace = mm_get_workspace_rect();

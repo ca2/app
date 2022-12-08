@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -173,9 +173,7 @@ namespace windowing
 
       auto path = pathParam;
 
-      auto psystem = acmesystem()->m_paurasystem;
-
-      if (psystem->m_bImaging)
+      if (acmeapplication()->m_bImaging)
       {
 
          pcursor->set_file_path(path);
@@ -635,7 +633,7 @@ namespace windowing
    ::aura::application* cursor_manager::get_app()
    {
 
-      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
+      return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
 
    }
 
@@ -643,17 +641,17 @@ namespace windowing
    ::aura::session* cursor_manager::get_session()
    {
 
-      return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
+      return m_pcontext && m_pcontext->m_pacmesession ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
 
    }
 
 
-   ::aura::system* cursor_manager::get_system()
-   {
+   //::aura::system* cursor_manageracmesystem()
+   //{
 
-      return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
+   //   return ::is_set(acmesystem()) ? acmesystem()->m_paurasystem : nullptr;
 
-   }
+   //}
 
 
 

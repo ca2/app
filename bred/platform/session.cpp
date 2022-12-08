@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/system_setup.h"
 #include "apex/platform/application.h"
 #include "session.h"
@@ -46,18 +46,18 @@ namespace bred
    }
 
 
-   void session::on_instantiate_application(::apex::application* papp)
+   void session::on_instantiate_application(::acme::application* papp)
    {
 
       ::base::session::on_instantiate_application(papp);
 
-      papp->m_pbredsession = this;
-      papp->m_pbredsystem = m_pbredsystem;
+      //papp->m_pbredsession = this;
+      //papp->m_pbredsystem = m_pbredsystem;
 
    }
 
 
-   __namespace_session_factory(session);
+   //__namespace_session_factory(session);
 
 
 } // namespace bred

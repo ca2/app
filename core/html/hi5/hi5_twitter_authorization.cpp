@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "hi5_twitter_authorization.h"
 #include "acme/constant/id.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/networking/http/context.h"
 #include "axis/user/form/data.h"
@@ -65,7 +65,7 @@ namespace hi5
          m_bAuth = bAuth;
          m_strForm = pszForm;
 
-         auto psystem = get_system()->m_pcoresystem;
+         auto psystem = acmesystem()->m_pcoresystem;
 
          m_ptemplatePane = memory_new ::user::single_document_template(
             "system/auth",
@@ -106,22 +106,27 @@ namespace hi5
 
          }
 
-         ::pointer<::create>pcreate(e_create, this);
+         ::pointer<::request>prequest(e_create, this);
 
          auto psystem = acmesystem()->m_paurasystem;
 
-         pcreate->m_bMakeVisible = false;
-         pcreate->m_puserprimitiveParent = psystem->cast < ::user::interaction >("top_parent");
-         pcreate->m_bOuterPopupAlertLike = true;
+         prequest->m_bMakeVisible = false;
+         prequest->m_puserelementParent = psystem->cast < ::user::interaction >("top_parent");
+         prequest->m_bOuterPopupAlertLike = true;
 
-         m_ptemplatePane->do_request(pcreate);
+         m_ptemplatePane->request(prequest);
 
-         m_pdocument = ::user::__document(pcreate);
+         m_pdocument = ::user::__document(prequest);
 
-         if(m_pdocument == nullptr)
+         if (m_pdocument == nullptr)
+         {
+
             return;
 
+         }
+
          ::pointer<user::tab_impact>ptabimpact = m_pdocument->get_typed_impact < user::tab_impact >();
+
          m_ptabimpact = ptabimpact;
 
          auto pimpactkit = ptabimpact->get_impact_kit();
@@ -273,7 +278,7 @@ namespace hi5
 
             auto pcontext = m_pcontext;
             
-            auto psession = pcontext->m_pcoresession;
+            auto psession = pcontext->m_pacmesession->m_pcoresession;
             
             auto puser = psession->m_puser->m_pcoreuser;
 

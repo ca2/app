@@ -7,12 +7,13 @@
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/filesystem/file/item_array.h"
+#include "acme/platform/keep.h"
 #include "acme/platform/system.h"
 #include "apex/filesystem/file/action.h"
 #include "apex/filesystem/file/watcher.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/fs/set.h"
-#include "apex/platform/create.h"
+#include "acme/platform/request.h"
 #include "aura/graphics/image/icon.h"
 #include "base/user/user/tab_pane.h"
 #include "core/user/user/user.h"
@@ -68,7 +69,9 @@ namespace filemanager
    ::core::application* document::get_app()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr;
+      auto pacmeapplication = acmeapplication();
+
+      return ::is_set(pacmeapplication) ? pacmeapplication->m_pcoreapplication : nullptr;
 
    }
 
@@ -76,7 +79,9 @@ namespace filemanager
    ::core::session* document::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+      auto pacmesession = acmesession();
+
+      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
 
    }
 
@@ -84,7 +89,9 @@ namespace filemanager
    ::core::system* document::get_system()
    {
 
-      return acmesystem() ? acmesystem()->m_pcoresystem : nullptr;
+      auto pacmesystem = acmesystem();
+
+      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
 
    }
 
@@ -560,7 +567,7 @@ namespace filemanager
 
       auto pcontext = m_pcontext;
       
-      auto psession = pcontext->m_pcoresession;
+      auto psession = pcontext->m_pacmesession->m_pcoresession;
       
       auto puser = psession->m_puser->m_pcoreuser;
 
@@ -754,7 +761,7 @@ namespace filemanager
 
          auto pcontext = m_pcontext;
          
-         auto psession = pcontext->m_pcoresession;
+         auto psession = pcontext->m_pacmesession->m_pcoresession;
          
          auto puser = psession->m_puser->m_pcoreuser;
 
@@ -842,17 +849,17 @@ namespace filemanager
    void document::_001OnNewManager(::message::message * pmessage)
    {
 
-      auto pcreate = __create_new <::create>();
+      auto prequest = __create_new <::request>();
 
-      pcreate->finish_initialization();
+      prequest->finish_initialization();
 
       auto pcontext = m_pcontext;
       
-      auto psession = pcontext->m_pcoresession;
+      auto psession = pcontext->m_pacmesession->m_pcoresession;
       
       auto puser = psession->m_puser->m_pcoreuser;
 
-      puser->add_filemanager("", pcreate);
+      puser->add_filemanager("", prequest);
 
       pmessage->m_bRet = true;
 
@@ -894,7 +901,7 @@ namespace filemanager
 
       auto pcontext = m_pcontext;
       
-      auto psession = pcontext->m_pcoresession;
+      auto psession = pcontext->m_pacmesession->m_pcoresession;
       
       auto puser = psession->m_puser->m_pcoreuser;
 
@@ -1477,25 +1484,26 @@ namespace filemanager
 
 
 
-   void document::on_create(::create * pcreate)
+   void document::on_create(::request * prequest)
    {
 
-      ::user::document::on_create(pcreate);
+      ::user::document::on_create(prequest);
 
-      m_pfilemanagerdata = pcreate->cast < ::filemanager::data >("filemanager::data");
+      m_pfilemanagerdata = prequest->cast < ::filemanager::data >("filemanager::data");
       
       auto pcontext = m_pcontext;
       
-      auto psession = pcontext->m_pcoresession;
+      auto psession = pcontext->m_pacmesession->m_pcoresession;
       
       auto puser = psession->m_puser->m_pcoreuser;
 
       if (m_pfilemanagerdata.is_null())
       {
 
-         m_pfilemanagerdata = puser->filemanager(pcreate->m_atom);
+         m_pfilemanagerdata = puser->filemanager(prequest->m_atom);
 
       }
+
       ASSERT(m_pfilemanagerdata.is_set());
 
       //if (m_pfilemanagerdata.is_null())
@@ -1530,35 +1538,33 @@ namespace filemanager
    }
 
 
-   void document::on_request(::create * pcreate)
+   void document::on_request(::request * prequest)
    {
-
-      //::filemanager::callback::on_request(pcreate);
 
       auto papp = get_app();
 
-      papp->call_request(pcreate);
+      papp->request(prequest);
 
    }
 
 
-   ::pointer<::filemanager::data>document::create_file_manager_data(::create * pcreate)
+   ::pointer<::filemanager::data>document::create_file_manager_data(::request * prequest)
    {
 
       ::pointer<::filemanager::data>pfilemanagerdata(__new(data));
 
       ::filemanager::callback * pcallback = nullptr;
 
-      if (pcreate != nullptr)
+      if (prequest != nullptr)
       {
 
-         pcallback = pcreate->cast < ::filemanager::callback >("department::callback");
+         pcallback = prequest->cast < ::filemanager::callback >("department::callback");
 
       }
 
       pfilemanagerdata->m_pcallback = pcallback != nullptr ? pcallback : this;
 
-      pfilemanagerdata->m_bTransparentBackground = pcreate == nullptr ? true : pcreate->m_bTransparentBackground;
+      pfilemanagerdata->m_bTransparentBackground = prequest == nullptr ? true : prequest->m_bTransparentBackground;
 
       pfilemanagerdata->m_bFileSize = true;
 

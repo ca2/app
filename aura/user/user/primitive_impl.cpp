@@ -7,6 +7,8 @@
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/application.h"
+#include "acme/platform/session.h"
 #include "acme/platform/context.h"
 #include "acme/platform/system.h"
 #include "acme/platform/timer_array.h"
@@ -2464,7 +2466,7 @@ namespace user
    ::aura::application * primitive_impl::get_app()
    {
 
-      return m_pcontext ? m_pcontext->m_pauraapplication : nullptr;
+      return m_pcontext ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
 
    }
 
@@ -2472,17 +2474,17 @@ namespace user
    ::aura::session * primitive_impl::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
+      return m_pcontext ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
 
    }
 
 
-   ::aura::system * primitive_impl::get_system()
-   {
+   //::aura::system * primitive_implacmesystem()
+   //{
 
-      return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
+   //   return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
 
-   }
+   //}
 
 
 } // namespace user

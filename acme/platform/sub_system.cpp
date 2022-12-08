@@ -3,21 +3,31 @@
 #include "sub_system.h"
 #include "acme.h"
 #include "simple_log.h"
+//#include "acme.h"
 #include "acme/parallelization/manual_reset_event.h"
 ////#include "acme/exception/exception.h"
+#include "acme/platform/context.h"
 #include "acme/platform/library.h"
+#include "acme/platform/sequencer.h"
+#include "acme/platform/system.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/task.h"
 
 
-sub_system::sub_system(::acme::acme* pacme) :
-   m_pacme(pacme)
+namespace acme
 {
 
-   m_pacme->m_psubsystem = this;
-   
-   //__defer_raw_construct_new(m_pmemorycounter);
-   
+
+   CLASS_DECL_ACME extern ::acme::acme * g_p;
+
+
+} // namespace acme
+
+
+
+sub_system::sub_system()
+{
+
    factory_initialize();
 
 }
@@ -26,17 +36,11 @@ sub_system::sub_system(::acme::acme* pacme) :
 sub_system::~sub_system()
 {
 
-   //m_pfactory.release();
-
-   //m_pmapFactory.release();
-
    factory_terminate();
-
-   task_release();
 
    {
 
-      array<void *> librarya;
+      array<void *> operatingsystemlibrarya;
 
       for (auto & plibrary : m_mapLibrary.values())
       {
@@ -44,7 +48,7 @@ sub_system::~sub_system()
          if (plibrary)
          {
 
-            librarya.add(plibrary->m_plibrary);
+            operatingsystemlibrarya.add(plibrary->m_plibrary);
 
             plibrary->m_plibrary = nullptr;
 
@@ -56,17 +60,18 @@ sub_system::~sub_system()
 
       m_mapLibrary.clear();
 
-      for (auto & p : librarya)
+      for (auto & poperatingsystemlibrary : operatingsystemlibrarya)
       {
 
-
-         __node_library_close(p);
+         acmesystem()->operating_system_library_close(poperatingsystemlibrary);
 
       }
 
    }
-
+   
 }
+
+
 
 
 //::sub_system * sub_system::get()
@@ -83,8 +88,12 @@ void sub_system::set_args(int argc, char ** argv, wchar_t ** wargv)
    m_argc = argc;
 
    m_argv = argv;
+   
+#ifdef WINDOWS_DESKTOP
 
    m_wargv = wargv;
+   
+#endif
 
 }
 
@@ -109,6 +118,8 @@ string sub_system::_get_argv(int iArgument) const
       return "";
 
    }
+   
+#ifdef WINDOWS
 
    if (m_wargv && m_wargv[iArgument])
    {
@@ -116,7 +127,11 @@ string sub_system::_get_argv(int iArgument) const
       return m_wargv[iArgument];
 
    }
-   else if (m_argv && m_argv[iArgument])
+   else
+      
+#endif
+      
+      if (m_argv && m_argv[iArgument])
    {
 
       return m_argv[iArgument];
@@ -145,6 +160,8 @@ string_array sub_system::get_arguments()
    {
 
       string strArgument;
+      
+#ifdef WINDOWS
 
       if (m_wargv && m_wargv[i])
       {
@@ -152,7 +169,11 @@ string_array sub_system::get_arguments()
          strArgument = m_wargv[i];
 
       }
-      else if (m_argv && m_argv[i])
+      else
+         
+#endif
+         
+         if (m_argv && m_argv[i])
       {
 
          strArgument = m_argv[i];
@@ -207,6 +228,9 @@ char ** sub_system::get_argv()
 }
 
 
+#ifdef WINDOWS
+
+
 wchar_t *** sub_system::get_pwargv()
 {
 
@@ -223,16 +247,45 @@ wchar_t ** sub_system::get_wargv()
 }
 
 
+#endif
+
+
+::factory::factory * sub_system::get_factory(const ::atom & atomSource)
+{
+   
+   critical_section_lock criticalsectionlock(&m_criticalsection);
+
+   auto & pfactory = m_factorymap[atomSource];
+
+   if (!pfactory)
+   {
+
+      m_pcontext->__construct_new(pfactory);
+
+   }
+
+   return pfactory;
+
+}
+
+
+
 string sub_system::get_arg(int i) const
 {
 
+#ifdef WINDOWS
+   
    if (m_wargv)
    {
 
       return string(m_wargv[i]);
 
    }
-   else if (m_argv)
+   else
+      
+#endif
+      
+      if (m_argv)
    {
 
       return string(m_argv[i]);
@@ -248,6 +301,8 @@ string sub_system::get_arg(int i) const
 string sub_system::get_env(const char * pszVariableName) const
 {
 
+#ifdef WINDOWS
+   
    if (m_wenvp)
    {
 
@@ -272,7 +327,11 @@ string sub_system::get_env(const char * pszVariableName) const
       return "";
 
    }
-   else if (m_envp)
+   else
+      
+#endif
+      
+      if (m_envp)
    {
 
       string strPrefix(pszVariableName);
@@ -330,11 +389,13 @@ void sub_system::set_resource_block(const char * pstart, const char * pend)
 void sub_system::factory_initialize()
 {
 
-   __raw_construct_new(m_pmapFactory);
+   __construct_new(m_pfactory);
 
-   __raw_construct_new(m_pmapComponentFactory);
+   //__raw_construct_new(m_pfactorymap);
 
-   m_pfactory = __new(::factory::factory());
+   //__raw_construct_new(m_pcomponentfactorymap);
+
+   //m_pfactory = __new(::factory::factory());
 
    m_pfactory->InitHashTable(16189);
 
@@ -342,11 +403,11 @@ void sub_system::factory_initialize()
 
 
 
-   ::factory::add_factory_item<manual_reset_event>();
-   ::factory::add_factory_item<task>();
+   factory()->add_factory_item<manual_reset_event>();
+   factory()->add_factory_item<task>();
 
 
-   ::factory::add_factory_item<simple_log, logger>();
+   factory()->add_factory_item<simple_log, logger>();
 
 
    //operating_system_initialize_nano();
@@ -355,20 +416,394 @@ void sub_system::factory_initialize()
 }
 
 
+::pointer<::factory::factory_item_interface>& sub_system::get_factory_item(const ::atom& atom, const ::atom& atomSource)
+{
+
+   critical_section_lock cs(&m_criticalsection);
+
+   return (*get_factory(atomSource))[atom];
+
+}
+
+
+bool sub_system::has_factory_item(const ::atom& atom)
+{
+
+   critical_section_lock cs(&m_criticalsection);
+
+   auto passociation = m_pfactory->get_association(atom);
+
+   if (::is_null(passociation))
+   {
+
+      return false;
+
+   }
+
+   if (::is_null(passociation->m_element2))
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+
+void sub_system::set_factory(const ::atom& atom, const ::pointer<::factory::factory_item_interface>& pfactory)
+{
+
+   critical_section_lock cs(&m_criticalsection);
+
+   m_pfactory->set_at(atom, pfactory);
+
+}
+
+
+void sub_system::set_factory_from(const ::atom& atom, const ::atom& atomSource, const ::pointer<::factory::factory_item_interface>& pfactory)
+{
+
+   critical_section_lock cs(&m_criticalsection);
+
+   get_factory(atomSource)->set_at(atom, pfactory);
+
+}
+
+
+::factory::factory_pointer & sub_system::factory()
+{
+
+   return m_pfactory;
+
+}
+
+
+::factory::factory_pointer & sub_system::factory(const ::string& strLibraryRequest)
+{
+
+   critical_section_lock synchronouslock(&m_criticalsection);
+
+   string strLibrary;
+
+   strLibrary = library_filter(strLibraryRequest);
+
+   auto& pfactory = m_factorymap[strLibrary];
+
+   if (pfactory)
+   {
+
+      return pfactory;
+
+   }
+
+   INFORMATION("system::factory Going to get library \"" << strLibrary << "\".");
+
+   auto& plibrary = library(strLibrary);
+
+   if (!plibrary)
+   {
+
+#ifdef CUBE
+
+      auto pfnFactory = ::factory_function::get(strLibrary);
+
+      if (!pfnFactory)
+      {
+
+         throw ::exception(error_resource);
+
+
+      }
+
+      plibrary = acmesystem()->__create_new < ::acme::library >();
+
+      plibrary->m_strName = strLibrary;
+
+      plibrary->m_pfnFactory = pfnFactory;
+
+#endif
+
+   }
+
+   INFORMATION("system::factory Going to create factory from library \"" << strLibrary << "\".");
+
+   plibrary->create_factory(pfactory);
+
+   if (!pfactory)
+   {
+
+      return pfactory;
+
+   }
+
+   return pfactory;
+
+}
+
+
+::factory::factory_pointer & sub_system::factory(const ::string& strComponent, const ::string& strImplementation)
+{
+
+   critical_section_lock synchronouslock(&m_criticalsection);
+
+   auto& pfactory = m_componentfactorymap[strComponent][implementation_name(strComponent, strImplementation)];
+
+   if (pfactory)
+   {
+
+      return pfactory;
+
+   }
+
+   string strLibrary;
+
+   strLibrary = library_name(strComponent, strImplementation);
+
+   auto& plibrary = library(strLibrary);
+
+   if (!plibrary)
+   {
+
+#ifdef CUBE
+
+      auto pfnFactory = ::factory_function::get(strLibrary);
+
+      if (pfnFactory)
+      {
+
+         pfactory = acmesystem()->__create_new < ::factory::factory >();
+
+         pfnFactory(pfactory);
+
+         return pfactory;
+
+      }
+
+#endif
+
+      //pfactory = (const ::extended::status&)plibrary;
+      throw ::exception(error_resource, strComponent + "_" + strImplementation + "_factory not found!!");
+
+   }
+
+   plibrary->create_factory(pfactory);
+
+   return pfactory;
+
+}
+
+
+//::factory::factory_pointer& sub_system::_factory(const ::string& strLibraryRequest)
+////{
+////
+////   critical_section_lock synchronouslock(&m_criticalsection);
+////
+////   string strLibrary;
+////
+////   strLibrary = library_filter(strLibraryRequest);
+////
+////   auto& pfactory = m_factorymap[strLibrary];
+////
+////   if (pfactory)
+////   {
+////
+////      return pfactory;
+////
+////   }
+////
+////   INFORMATION("system::factory Going to get library \"" << strLibrary << "\".");
+////
+////   auto& plibrary = library(strLibrary);
+////
+////   if (!plibrary)
+////   {
+////
+////#ifdef CUBE
+////
+////      auto pfnFactory = ::system_setup::get_factory_function(strLibrary);
+////
+////      if (!pfnFactory)
+////      {
+////
+////         throw ::exception(error_resource);
+////
+////
+////      }
+////
+////      plibrary = acmesystem()->__create_new < ::acme::library >();
+////
+////      plibrary->m_strName = strLibrary;
+////
+////      plibrary->m_pfnFactory = pfnFactory;
+////
+////#endif
+////
+////   }
+////
+////   INFORMATION("system::factory Going to create factory from library \"" << strLibrary << "\".");
+////
+////   pfactory = plibrary->create_factory();
+////
+////   if (!pfactory)
+////   {
+////
+////      return pfactory;
+////
+////   }
+////
+////   return pfactory;
+////
+////}
+
+
 void sub_system::factory_terminate()
 {
 
-   critical_section_lock synchronouslock(factory_critical_section());
+   critical_section_lock synchronouslock(::acme::g_p->factory_critical_section());
 
    m_pfactory->erase_all();
 
-   m_pmapFactory->erase_all();
+   m_factorymap.erase_all();
 
-   m_pfactory.release();
 
-   m_pmapFactory.release();
+   m_componentfactorymap.erase_all();
+   //m_pfactory.release();
+
+   //m_pmapFactory.release();
 
 }
+
+
+
+::pointer<::factory::factory>& sub_system::impact_factory(const ::string& strComponent, const ::string& strImplementation)
+{
+
+   critical_section_lock synchronouslock(&m_criticalsection);
+
+   auto& pfactory = m_componentfactorymap[strComponent][implementation_name(strComponent, strImplementation)];
+
+   try
+   {
+
+      return factory(strComponent, strImplementation);
+
+   }
+   catch (const ::exception& exception)
+   {
+
+      string strMessage = "Library couldn't be opened : " + exception.m_strMessage;
+
+      string strDetails = exception.get_consolidated_details();
+
+      auto psequencer = message_box(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
+         strDetails);
+
+      psequencer->do_asynchronously();
+
+      throw exception;
+
+   }
+
+   return pfactory;
+
+}
+
+
+::pointer<::acme::library> sub_system::create_library(const ::string& strLibrary)
+{
+
+#ifdef CUBE
+
+   auto pfnFactory = ::factory_function::get(strLibrary);
+
+   if (!pfnFactory)
+   {
+
+      return nullptr;
+
+   }
+
+   auto plibrary = __create_new < ::acme::library >();
+
+   plibrary->m_strName = strLibrary;
+
+   plibrary->m_pfnFactory = pfnFactory;
+
+   return plibrary;
+       
+
+#else
+
+   auto plibrary = __create_new < ::acme::library >();
+
+   //plibrary->initialize_matter(this);
+
+   //auto estatus = plibrary->open(strLibrary);
+
+   INFORMATION("system::create_library Going to open library \"" << strLibrary << "\".");
+
+   plibrary->open(strLibrary);
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+   if (!plibrary->is_opened())
+   {
+
+      string strMessage = plibrary->m_strMessage;
+
+      INFORMATION("Library wasn't opened (\"" << strLibrary << "\") : " << strMessage);
+
+      throw ::exception(error_failed, "Library wasn't opened (\"" + strLibrary + "\")", strMessage);
+
+   }
+
+#endif
+
+   return plibrary;
+
+}
+
+
+::pointer<::acme::library>& sub_system::library(const ::string& str)
+{
+
+   // Ex. "audio" (library)
+
+   if (str.is_empty())
+   {
+
+      throw ::exception(error_bad_argument);
+
+   }
+
+   critical_section_lock synchronouslock(&m_criticalsection);
+
+   string strLibrary = library_filter(str);
+
+   auto& plibrary = m_mapLibrary[strLibrary];
+
+   if (plibrary)
+   {
+
+      return plibrary;
+
+   }
+
+   plibrary = create_library(strLibrary);
+
+   return plibrary;
+
+}
+
+
 
 
 //void sub_system::factory_term()
@@ -383,3 +818,6 @@ void sub_system::factory_terminate()
 //   //::acme::del(::acme::acme::g_pstaticstatic->m_pfactory);
 //
 //}
+
+
+

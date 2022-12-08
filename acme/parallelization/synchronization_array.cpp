@@ -302,14 +302,14 @@ void synchronization_array::erase(index index)
 #define QS_ALLEVENTS 0xffffffffu
 #endif
 
-            estatus = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_count(), synchronization_data(), wait, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
+            estatus = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_count(), synchronization_data(), timeWait, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
 
          }
          else
 #endif
          {
 
-            estatus = ::WaitForMultipleObjectsEx((::u32) synchronization_count(), synchronization_data(), bWaitForAll, wait, true);
+            estatus = ::WaitForMultipleObjectsEx((::u32) synchronization_count(), synchronization_data(), bWaitForAll, timeWait, true);
 
          }
 

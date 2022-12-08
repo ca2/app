@@ -9,13 +9,13 @@
 #include "aura/platform/message_queue.h"
 
 
-#undef ::aura::get_system()
+#undef ::auraacmesystem()
 
-#pragma push_macro("::aura::get_system()")
-#undef ::aura::get_system()
+#pragma push_macro("::auraacmesystem()")
+#undef ::auraacmesystem()
 using namespace ::winrt::Windows::Foundation;
-using namespace ::winrt::Windows::aura::get_system()::Threading;
-#pragma pop_macro("::aura::get_system()")
+using namespace ::winrt::Windows::auraacmesystem()::Threading;
+#pragma pop_macro("::auraacmesystem()")
 
 
 ::pointer< ::mutex > g_pmutexThreadIdHandleLock = nullptr;

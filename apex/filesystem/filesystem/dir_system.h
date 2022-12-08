@@ -22,7 +22,7 @@ public:
    string                        m_strApiCc;
 
    ::file::path                  m_pathCa2Config;
-   ::file::path                  m_pathModule;
+   //::file::path                  m_pathModule;
    ::file::path                  m_pathHome;
    ::file::path                  m_pathInstall;
 

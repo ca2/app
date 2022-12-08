@@ -5,9 +5,11 @@
 #include "acme/exception/interface_only.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/parallelization/single_lock.h"
+#include "acme/platform/application.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/context.h"
 #include "acme/platform/system.h"
+#include "acme/user/nano/nano.h"
 //#include "acme/primitive/primitive/payload.h"
 
 
@@ -28,9 +30,9 @@ void particle::initialize(::particle * pparticle)
 
       m_pcontext = pparticle->m_pcontext;
 
-   }
+      on_initialize_particle();
 
-   on_initialize_particle();
+   }
 
 }
 
@@ -255,28 +257,15 @@ void particle::on_initialize_particle()
 ::acme::application * particle::acmeapplication()
 {
 
-   if (m_pcontext && m_pcontext->m_pacmeapplication)
-   {
+   return m_pcontext ? m_pcontext->m_pacmeapplication : nullptr;
 
-      return m_pcontext->m_pacmeapplication;
+}
 
-   }
 
-   if (acmesystem()->m_pacmeapplicationMain)
-   {
+::acme::session * particle::acmesession()
+{
 
-      return acmesystem()->m_pacmeapplicationMain;
-
-   }
-
-   if (acmesystem()->m_pacmeapplicationStartup)
-   {
-
-      return acmesystem()->m_pacmeapplicationStartup;
-
-   }
-
-   return nullptr;
+   return m_pcontext ? m_pcontext->m_pacmesession : nullptr;
 
 }
 
@@ -392,11 +381,12 @@ void particle::on_initialize_particle()
 }
 
 
-
 ::apex::application * particle::apexapplication()
 {
 
-   return m_pcontext->m_papexapplication;
+   auto pacmeapplication = acmeapplication();
+
+   return ::is_set(pacmeapplication) ? pacmeapplication->m_papexapplication : nullptr;
 
 }
 
@@ -433,30 +423,33 @@ void particle::on_initialize_particle()
 }
 
 
+::factory::factory_pointer & particle::factory()
+{
+
+   return ::acme::get()->m_psubsystem->factory();
+
+}
+
+
+::factory::factory_pointer & particle::factory(const ::string & strLibrary)
+{
+
+   return acmesystem()->m_psubsystem->factory(strLibrary);
+
+}
+
+
+::factory::factory_pointer& particle::factory(const ::string& strComponent, const ::string& strImplementation)
+{
+
+   return acmesystem()->m_psubsystem->factory(strComponent, strImplementation);
+
+}
+
 
 void particle::handle(::topic * ptopic, ::context * pcontext)
 {
 
-
-}
-
-
-::topic_pointer particle::create_topic(const ::atom & atom)
-{
-
-   auto ptopic = __new(::topic(atom));
-
-   ptopic->m_pcontext = m_pcontext;
-
-   return ::move(ptopic);
-
-}
-
-
-::extended_topic_pointer particle::create_extended_topic(const ::atom & atom)
-{
-
-   return acmesystem()->create_extended_topic(atom);
 
 }
 
@@ -936,7 +929,7 @@ void particle::_wait()
    if (::is_null(ptask))
    {
 
-      ptask = ::get_system();
+      ptask = acmesystem();
 
    }
 
@@ -1004,7 +997,7 @@ void particle::_wait()
    if (::is_null(ptask))
    {
 
-      ptask = ::get_system();
+      ptask = acmesystem();
 
    }
 
@@ -1350,6 +1343,25 @@ bool particle::is_branch_current() const
 }
 
 
+::topic_pointer create_topic(::particle * pparticleCall, const ::atom & atom)
+{
+
+   auto ptopic = __new(::topic(atom));
+   
+   ptopic->initialize(pparticleCall);
+
+   return ::move(ptopic);
+
+}
+
+
+::extended_topic_pointer create_extended_topic(::particle * pparticleCall, const ::atom & atom)
+{
+
+   return ::move(pparticleCall->acmesystem()->create_extended_topic(atom));
+
+}
+
 
 CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wParam, i64 lParam, ::particle * pparticleCall)
 {
@@ -1357,7 +1369,7 @@ CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wPa
    if (::is_null(pparticleCall))
    {
 
-      auto psystem = ::get_system();
+      auto psystem = pparticle->acmesystem();
 
       auto ptopic = psystem->create_topic(atom);
 
@@ -1375,7 +1387,7 @@ CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wPa
    else
    {
 
-      auto pextendedtopic = pparticleCall->create_extended_topic(atom);
+      auto pextendedtopic = create_extended_topic(pparticleCall, atom);
 
       if(wParam != 0 || lParam != 0)
       {
@@ -1803,6 +1815,49 @@ void particle::kick_idle()
 
 }
 
+
+
+
+::file_pointer particle::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
+{
+
+   return m_pcontext->get_file(payloadFile, eopen);
+
+}
+
+
+
+
+pointer < ::sequencer < ::conversation > > particle::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+{
+
+   return acmesystem()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
+
+}
+
+
+pointer < ::sequencer < ::conversation > > particle::exception_message_box(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+{
+
+   return acmesystem()->nano()->exception_message_box(exception, strMessage, strTitle, emessagebox, strDetails);
+
+}
+
+
+pointer < ::sequencer < ::conversation > > particle::message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+{
+
+   return acmesystem()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
+
+}
+
+
+pointer < ::sequencer < ::conversation > > particle::exception_message_console(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+{
+
+   return acmesystem()->nano()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails);
+
+}
 
 
 

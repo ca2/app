@@ -176,7 +176,7 @@ namespace aqua
 //CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::particle * pparticle)
 //{
 //
-//   return get_system()->defer_get_multimedia();
+//   return acmesystem()->defer_get_multimedia();
 //
 //}
 
@@ -184,7 +184,7 @@ namespace aqua
 //CLASS_DECL_AQUA bool has_multimedia()
 //{
 //
-//   return ::is_set(get_system()->m_pmultimedia);
+//   return ::is_set(acmesystem()->m_pmultimedia);
 //
 //}
 

@@ -62,7 +62,7 @@ namespace turboc
 
       virtual i32  exit_application() override;
 
-      virtual void on_request(::create * pcreate);
+      virtual void on_request(::request * prequest) override;
 
       static ::u32 thread_proc_load_ai_font(void * pparam);
       virtual void load_ai_font();

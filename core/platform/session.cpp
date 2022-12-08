@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "session.h"
 #include "acme/platform/system_setup.h"
 #include "apex/platform/application.h"
@@ -48,17 +48,17 @@ namespace core
    }
 
 
-   void session::on_instantiate_application(::apex::application* papp)
+   void session::on_instantiate_application(::acme::application* papp)
    {
 
       ::bred::session::on_instantiate_application(papp);
 
-      papp->m_pcoresession = this;
-      papp->m_pcoresystem = m_pcoresystem;
+      //papp->m_pcoresession = this;
+      //papp->m_pcoresystem = m_pcoresystem;
 
    }
 
-   __namespace_session_factory(session);
+   //__namespace_session_factory(session);
 
 
 } // namespace core

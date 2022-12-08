@@ -905,23 +905,17 @@ namespace user
 } // namespace user
 
 
-
-
-bool __rich_text_initialize()
+void rich_text_factory_exchange(::factory::factory * pfactory)
 {
 
-   ::factory::add_factory_item < ::user::rich_text::edit_impl, ::user::rich_text::edit >();
+   pfactory->add_factory_item < ::user::rich_text::edit_impl, ::user::rich_text::edit >();
    //add_factory_item <::user::rich_text::format >();
-   ::factory::add_factory_item <::user::rich_text::span >();
-   ::factory::add_factory_item <::user::rich_text::document >();
+   pfactory->add_factory_item <::user::rich_text::span >();
+   pfactory->add_factory_item <::user::rich_text::document >();
 
-   ::factory::add_factory_item < ::user::rich_text::edit_impl >("rich_text_impact");
-
-   return true;
+   pfactory->add_factory_item < ::user::rich_text::edit_impl >("rich_text_impact");
 
 }
-
-
 
 
 

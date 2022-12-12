@@ -2,75 +2,74 @@
 #pragma once
 
 
+#include "string_range.h"
+
+
 template < primitive_character CHARACTER, strsize m_sizeMaximumLength >
-class inline_string
+class inline_string :
+   public ::string_range < CHARACTER * >
 {
 public:
 
 
    CHARACTER m_sz[m_sizeMaximumLength + 1];
-   int m_iLength;
 
    
-   inline_string()
+   constexpr inline_string() :
+      ::string_range < CHARACTER * >(e_no_initialize)
    {
       
-      memset(this, 0, sizeof(*this));
+      this->m_begin = m_sz;
+      this->m_end = this->m_begin;
+      this->m_bNullTerminated = true;
+      m_sz[0] = 0;
 
    }
 
 
-   inline_string(const CHARACTER* psz)
+   inline_string(const CHARACTER* psz) :
+      inline_string()
    {
-
-      auto len = string_safe_length(psz, 7);
-
-      ::i32 i = 0;
-
-      for (; i < len; i++)
+      
+      while (*psz && this->size() < m_sizeMaximumLength)
       {
-
-         m_sz[i] = psz[i];
+         
+         *this->m_end = *psz;
+         
+         this->m_end++;
+         
+         psz++;
 
       }
 
-      m_sz[i] = '\0';
-
-      m_iLength = i;
+      *this->m_end = '\0';
 
    }
 
 
-   inline_string(const inline_string& inlinestring)
-   {
-
-      for (int i = 0; i < m_sizeMaximumLength; i++)
-      {
-
-         m_sz[i] = inlinestring.m_sz[i];
-
-      }
-
-      m_iLength = inlinestring.m_iLength;
-
-   }
+   inline_string(const inline_string & inlinestring) = default;
 
 
-   const CHARACTER* c_str() { return m_sz; }
+   //const CHARACTER* c_str() { return m_sz; }
 
 
-   operator const CHARACTER* () const { return m_sz; }
-   operator CHARACTER* () { return m_sz; }
+   //operator const CHARACTER* () const { return m_sz; }
+   //operator CHARACTER* () { return m_sz; }
 
 
-   const char * get_data() const { return m_sz; }
-   char * get_data() { return m_sz; }
+   //const CHARACTER * data() const { return m_sz; }
+   //CHARACTER * data() { return m_sz; }
 
-   
-   strsize get_size() const { return m_iLength; }
+   //const CHARACTER * begin() const { return data(); }
+   //CHARACTER * begin() { return data(); }
 
+   //const CHARACTER * end() const { return data() + size(); }
+   //CHARACTER * end() { return data() + size(); }
 
-   operator ::block() const { return { get_data(), get_size() }; }
+   //strsize size() const { return ::maximum(0, m_iLength); }
+   //strsize length_in_bytes() const { return size() * sizeof(CHARACTER); }
+
+   //operator ::block() const { return { data(), size() }; }
 
 
 };
@@ -82,3 +81,10 @@ using inline_number_string = inline_string < char, 64 >;
 
 
 
+template < ::count c, strsize m_sizeMaximumLength >
+inline ::string operator +(const char(&sz)[c], const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
+{
+
+   return ::move(::string(sz) + ::string(inlinestring));
+
+}

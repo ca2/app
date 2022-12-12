@@ -684,7 +684,7 @@ namespace windowing
 
       string str(path);
 
-      if (!str.ends_eat_ci(".png"))
+      if (!str.case_insensitive_ends_eat(".png"))
       {
 
          //return false;

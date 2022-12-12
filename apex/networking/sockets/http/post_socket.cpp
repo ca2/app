@@ -77,7 +77,7 @@ namespace sockets
          }
          m_pmultipart->m_map[name].m_spfile = file()->get_file(filename, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
          //m_mapFiles[name]              = filename;
-         m_pmultipart->m_map[name].m_uiContentLength = m_pmultipart->m_map[name].m_spfile->get_size();
+         m_pmultipart->m_map[name].m_uiContentLength = m_pmultipart->m_map[name].m_spfile->size();
          m_pmultipart->m_map[name].m_strContentType = type;
          //m_mapContentLength[filename]  = file()->length(filename);
          //m_mapContentType[filename]    = type;
@@ -136,7 +136,7 @@ namespace sockets
 
                INFORMATION("JSON BODY: " << strBody);
 
-               string strContentType = inheader("content-type").as_string();
+               string strContentType = inheader("content-type");
 
                if (strContentType.find_ci("application/json") < 0)
                {
@@ -167,10 +167,10 @@ namespace sockets
 
             m_fields.get_network_arguments(strBody);
 
-            if (inheader("content-type").as_string().find_ci("application/x-www-form-urlencoded") < 0)
+            if (inheader("content-type").operator string().find_ci("application/x-www-form-urlencoded") < 0)
             {
 
-               inheader("content-type") = "application/x-www-form-urlencoded" + ::str().has_char(inheader("content-type").as_string(), "; ");
+               inheader("content-type") = "application/x-www-form-urlencoded" + ::str().has_char(inheader("content-type"), "; ");
 
             }
 
@@ -267,7 +267,7 @@ namespace sockets
 
             strFields += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + atom + "\"\r\n\r\n";
 
-            string value = payload.as_string();
+            string value = payload;
 
             strFields += value + "\r\n";
 
@@ -453,9 +453,9 @@ namespace sockets
 
             m.set_size((u32) (content_length));
 
-            pair.element2().m_spfile->read(m.get_data(), m.get_size());
+            pair.element2().m_spfile->read(m.data(), m.size());
 
-            write(m.get_data(), m.get_size());
+            write(m.data(), m.size());
 
             //transfer_from(*pair.element2().m_spfile, content-length);
             //}

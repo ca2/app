@@ -126,7 +126,7 @@ BOOL CProcessEnvReader::ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnv
       if(nReturnNumBytes)
       {
          // Set the values in the return pointer
-         stEnvData.pData = (const widechar *)pchBuffEnvString;
+         stEnvData.pData = (const ::wide_character *)pchBuffEnvString;
          stEnvData.nSize = (int) nReturnNumBytes;
          return true;
       }
@@ -272,7 +272,7 @@ void CProcessEnvReader::LoadIconFromProcess(HANDLE hProcess,HICON& hIconSmall,HI
 /**
 * Helper function to convert Unicode string to Multibyte
 **/
-void CProcessEnvReader::ConvertUnicodeToMBCS(const widechar * pStringToConvert,int nLen,string& csMBCSStr)
+void CProcessEnvReader::ConvertUnicodeToMBCS(const ::wide_character * pStringToConvert,int nLen,string& csMBCSStr)
 
 {
    char* buff = memory_new char[nLen + 1];
@@ -289,7 +289,7 @@ void CProcessEnvReader::ConvertUnicodeToMBCS(const widechar * pStringToConvert,i
 /**
 * Extract each strings
 **/
-void CProcessEnvReader::ParseEnvironmentStrings(const widechar * pStringToConvert,int nLen,string_array& EnvStrArr)
+void CProcessEnvReader::ParseEnvironmentStrings(const ::wide_character * pStringToConvert,int nLen,string_array& EnvStrArr)
 
 {
    int nIdx = 0;
@@ -302,7 +302,7 @@ void CProcessEnvReader::ParseEnvironmentStrings(const widechar * pStringToConver
       if(nSingleLen == 0)
          break;
 
-      const widechar * pcsStr = (wchar_t*)&pStringToConvert[nIdx];
+      const ::wide_character * pcsStr = (wchar_t*)&pStringToConvert[nIdx];
       nIdx += (int) nSingleLen + 1;
 
       EnvStrArr.add(string(pcsStr)); // add string to array

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "c/_impl.h"
@@ -9,7 +9,7 @@
 
 //#include "__unicode_character.h"
 
-#include "_base_impl.h"
+#include "_string_base_impl.h"
 
 //#include "_ch_impl.h"
 

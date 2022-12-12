@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "paged_memory.h"
 #include "acme/memory/paged.h"
 
@@ -16,7 +16,7 @@ paged_memory::paged_memory(const void * pdata, memsize iCount)
 
    ASSERT(__is_valid_address(pdata, iCount, false));
 
-   ::memcpy_dup(m_memory.m_pbStorage, pdata, iCount);
+   ::memcpy_dup(m_memory.storage_begin(), pdata, iCount);
 
 }
 
@@ -40,15 +40,15 @@ paged_memory::paged_memory(const char * psz)
 paged_memory::paged_memory(memory_container * pcontainer, void * pdata, memsize size)
 {
 
-   m_memory.m_pbStorage = nullptr;
+   m_memory.m_beginStorage = nullptr;
 
-   m_memory.m_pdata = nullptr;
+   m_memory.m_begin = nullptr;
 
    set_size(size);
 
    ASSERT(__is_valid_address(pdata, (uptr)size, false));
 
-   ::memcpy_dup(m_memory.m_pbStorage, pdata, (size_t)size);
+   ::memcpy_dup(m_memory.storage_begin(), pdata, (size_t)size);
 
 }
 
@@ -58,8 +58,8 @@ paged_memory::paged_memory(memory_container * pcontainer, double dAllocationRate
 
    __UNREFERENCED_PARAMETER(nAllocFlags);
 
-   m_memory.m_pbStorage = nullptr;
-   m_memory.m_pdata = nullptr;
+   m_memory.m_beginStorage = nullptr;
+   m_memory.m_begin = nullptr;
    m_memory.m_pcontainer = pcontainer;
    m_memory.m_dAllocationRateUp = dAllocationRateUp;
 
@@ -69,13 +69,13 @@ paged_memory::paged_memory(memory_container * pcontainer, double dAllocationRate
 paged_memory::~paged_memory()
 {
 
-   if (m_memory.m_pbStorage != nullptr)
+   if (m_memory.storage_begin() != nullptr)
    {
 
       try
       {
 
-         impl_free(m_memory.m_pbStorage);
+         impl_free(m_memory.storage_begin());
 
       }
       catch (...)
@@ -91,7 +91,7 @@ paged_memory::~paged_memory()
 //byte * paged_memory::detach()
 //{
 
-//   byte * point_i32          = m_pbStorage;
+//   byte * point_i32          = storage_begin();
 
 //   if(m_iOffset > 0)
 //   {
@@ -103,11 +103,11 @@ paged_memory::~paged_memory()
 //   else
 //   {
 
-//      point = m_pbStorage;
+//      point = storage_begin();
 
 //   }
 
-//   m_pbStorage       = nullptr;
+//   storage_begin()       = nullptr;
 
 //   m_cbStorage       = 0;
 
@@ -129,7 +129,7 @@ byte * paged_memory::impl_alloc(memsize dwAllocation)
 byte * paged_memory::impl_realloc(void * pdata, memsize dwAllocation)
 {
 
-   return (byte *) ::paged_reallocate(pdata, (size_t)m_memory.m_iSize, (size_t)dwAllocation);
+   return (byte *) ::paged_reallocate(pdata, (size_t)m_memory.size(), (size_t)dwAllocation);
 
 }
 

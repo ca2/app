@@ -1129,7 +1129,7 @@ class ::payload & payload::operator = (::atom * pid)
 }
 
 
-class ::payload & payload::operator = (const widechar * pcsz)
+class ::payload & payload::operator = (const ::wide_character * pcsz)
 {
 
    set_string(unicode_to_utf8(pcsz));

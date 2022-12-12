@@ -70,7 +70,7 @@ void output_debug_string(const char * pszOutputString)
 //
 //   strOutputString.find_replace("\n", "\r");
 //
-//   wd32char * pusz = ansi_to_wd32_dup(strOutputString);
+//   ::wd32_character * pusz = ansi_to_wd32_dup(strOutputString);
 //
 //   wprintf(L"%S", pusz);
 //

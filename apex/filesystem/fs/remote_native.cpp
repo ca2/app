@@ -312,12 +312,12 @@ namespace fs
 
    //   string strPath(pszPath);
 
-   //   if(!strPath.begins_eat_ci("fs://"))
+   //   if(!strPath.case_insensitive_begins_eat("fs://"))
    //   {
    //      return "";
    //   }
 
-   //   strsize iFind = strPath.reverse_find("/");
+   //   strsize iFind = strPath.rear_find("/");
 
    //   if(iFind < 0)
    //      iFind = -1;

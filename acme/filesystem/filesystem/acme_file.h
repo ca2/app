@@ -42,7 +42,7 @@ public:
    virtual file_pointer open(const ::file::path& path, const ::file::e_open& eopen);
    virtual file_pointer stdio_open(const char* path, const char* attrs, int iShare);
 
-   virtual memory as_memory(const char* path, strsize iReadAtMostByteCount = -1);
+   virtual memory as_memory(const char* path, strsize iReadAtMostByteCount = -1, bool bNoExceptionIfNotFound = true);
 
 
 
@@ -58,9 +58,9 @@ public:
    virtual bool exists(const ::file::path & path);
 
    virtual void put_contents(const char * path, const char * contents, strsize len);
-   virtual filesize get_size(const char * path);
-   virtual filesize get_size(FILE * pfile);
-   virtual filesize get_size_fd(int iFile);
+   virtual filesize size(const char * path);
+   virtual filesize size(FILE * pfile);
+   virtual filesize size_fd(int iFile);
 
 
    virtual void clear_application_data();

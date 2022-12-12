@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-CLASS_DECL_ACME int trailingBytesForUTF8(ansichar ch);
+CLASS_DECL_ACME int trailingBytesForUTF8(::ansi_character ch);
 
 
 typedef i32 HRes;
@@ -37,9 +37,9 @@ const auto __string_base(const TYPE & t)
 
 }
 
-inline const ansistring __string_base(const ansichar * psz);
-inline const wd16string __string_base(const wd16char * psz);
-inline const wd32string __string_base(const wd32char * psz);
+inline const ansi_string __string_base(const ::ansi_character * psz);
+inline const wd16_string __string_base(const ::wd16_character * psz);
+inline const wd32_string __string_base(const ::wd32_character * psz);
 
 
 
@@ -85,46 +85,46 @@ inline const wd32string __string_base(const wd32char * psz);
 #include "acme/primitive/primitive/bit.h"
 #include "acme/primitive/collection/bit_array.h"
 
-inline  string consume_char(const ansichar *& p)
+inline  string consume_char(const ::ansi_character *& p)
 {
    auto len = ::utf8_len(p);
    string strChar(p, len);
    p += len;
    return strChar;
 }
-inline  wd16string consume_char(const wd16char *& p)
+inline  wd16_string consume_char(const ::wd16_character *& p)
 {
    auto len = ::utf16_len(p);
-   wd16string wd16strChar(p, len);
+   wd16_string wd16strChar(p, len);
    p += len;
    return wd16strChar;
 }
-inline  wd32string consume_char(const wd32char *& p)
+inline  wd32_string consume_char(const ::wd32_character *& p)
 {
    auto len = 1;
-   wd32string wd32strChar(p, len);
+   wd32_string wd32strChar(p, len);
    p += len;
    return wd32strChar;
 }
 
 
-inline  ansichar * next_char(const ansichar *& p)
+inline  ::ansi_character * next_char(const ::ansi_character *& p)
 {
    auto len = ::utf8_len(p);
    p += len;
-   return (ansichar *)p;
+   return (::ansi_character *)p;
 }
-inline  const wd16char * next_char(const wd16char *& p)
+inline  const ::wd16_character * next_char(const ::wd16_character *& p)
 {
    auto len = ::utf16_len(p);
    p += len;
-   return (wd16char *)p;
+   return (::wd16_character *)p;
 }
-inline  wd32char * next_char(const wd32char *& p)
+inline  ::wd32_character * next_char(const ::wd32_character *& p)
 {
    auto len = 1;
    p += len;
-   return(wd32char *)p;
+   return(::wd32_character *)p;
 }
 
 

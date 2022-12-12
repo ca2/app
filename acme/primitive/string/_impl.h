@@ -2,10 +2,11 @@
 
 
 #include "_u32hash.h"
+#include "_conv.h"
 
 
 CLASS_DECL_ACME i64 strtoi(const char * psz);
-CLASS_DECL_ACME i64 strtoi(const widechar * psz);
+CLASS_DECL_ACME i64 strtoi(const ::wide_character * psz);
 
 
 namespace file
@@ -49,37 +50,37 @@ class fixed_alloc_array;
 
 
 template < >
-inline u32hash u32_hash < const ansistring & >(const ansistring & ansistr)
+inline u32hash u32_hash < const ansi_string & >(const ansi_string & ansistr)
 {
 
-   return u32_hash < const ansichar * >(ansistr.c_str());
+   return u32_hash < const ::ansi_character * >(ansistr.c_str());
 
 }
 
 
 template < >
-inline u32hash u32_hash < const widestring & >(const widestring & widestr)
+inline u32hash u32_hash < const wide_string & >(const wide_string & widestr)
 {
 
-   return u32_hash < const widechar * >(widestr.c_str());
+   return u32_hash < const ::wide_character * >(widestr.c_str());
 
 }
 
 
 template < >
-inline u32hash u32_hash < ansistring >(ansistring ansistr)
+inline u32hash u32_hash < ansi_string >(ansi_string ansistr)
 {
 
-   return u32_hash < const ansistring & >(ansistr);
+   return u32_hash < const ansi_string & >(ansistr);
 
 }
 
 
 template < >
-inline u32hash u32_hash < widestring >(widestring widestr)
+inline u32hash u32_hash < wide_string >(wide_string widestr)
 {
 
-   return u32_hash < const widestring & >(widestr);
+   return u32_hash < const wide_string & >(widestr);
 
 }
 
@@ -99,28 +100,28 @@ inline const char * FormatArgument(const string & value) noexcept { return value
 
 
 
-template < primitive_character CHARACTER, primitive_character CHARACTER2 >
-inline ::string_base < CHARACTER2 > operator +(const CHARACTER * pszLeft, const ::string_base < CHARACTER2 > & strRight)
-{
-
-   ::wstring strLeft(pszLeft);
-
-   return strLeft + strRight;
-
-}
-
-
-
-
-template < primitive_character CHARACTER, primitive_character CHARACTER2 >
-inline ::string_base < CHARACTER2 > operator +(const CHARACTER chLeft, const ::string_base < CHARACTER2 > & strRight)
-{
-
-   ::string_base < CHARACTER2 > strLeft(&chLeft, 1);
-
-   return strLeft + strRight;
-
-}
+//template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+//inline ::string_base < CHARACTER2 > operator +(const CHARACTER * pszLeft, const ::string_base < CHARACTER2 > & strRight)
+//{
+//
+//   ::wstring strLeft(pszLeft);
+//
+//   return strLeft + strRight;
+//
+//}
+//
+//
+//
+//
+//template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+//inline ::string_base < CHARACTER2 > operator +(const CHARACTER chLeft, const ::string_base < CHARACTER2 > & strRight)
+//{
+//
+//   ::string_base < CHARACTER2 > strLeft(&chLeft, 1);
+//
+//   return strLeft + strRight;
+//
+//}
 
 
 //#include "__c_wd16_impl.h"
@@ -242,12 +243,12 @@ inline string as_string(NUMBER number, const char* pszFormat)
 
 
 template < primitive_unsigned UNSIGNED >
-inline inline_number_string as_string(UNSIGNED u, int iRadix = 10, enum_digit_case edigitcase = e_digit_case_lower)
+inline inline_number_string as_string(UNSIGNED u, int radix = 10, enum_digit_case edigitcase = e_digit_case_lower)
 {
 
    inline_number_string numberstring;
 
-   __u64toansi(u, numberstring, iRadix, edigitcase, numberstring.m_iLength);
+   __utosz(u, numberstring.m_end, radix, edigitcase);
 
    return numberstring;
 
@@ -255,29 +256,36 @@ inline inline_number_string as_string(UNSIGNED u, int iRadix = 10, enum_digit_ca
 
 
 template < primitive_signed SIGNED >
-inline inline_number_string as_string(SIGNED i, int iRadix = 10, enum_digit_case edigitcase = e_digit_case_lower)
+inline inline_number_string as_string(SIGNED i, int radix = 10, enum_digit_case edigitcase = e_digit_case_lower)
 {
 
    inline_number_string numberstring;
 
-   __i64toansi(i, numberstring, iRadix, edigitcase, numberstring.m_iLength);
+   __itosz(i, numberstring.m_end, radix, edigitcase);
 
    return numberstring;
 
 }
 
 
-template < primitive_floating FLOATING >
-inline ::string as_string(FLOATING f)
+//   inline_number_string numberstring;
+//
+//   __i64toansi(i, numberstring, iRadix, edigitcase, numberstring.m_iLength);
+//
+//   return numberstring;
+//
+//}
+
+
+template < primitive_floating FLOATING, int len >
+inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat = "%f")
 {
 
-   inline_number_string numberstring;
+   ::string str;
 
-   sprintf(numberstring, "%f", f);
+   str.format(pszFormat, f);
 
-   numberstring.m_iLength = (::i32) strlen(numberstring.m_sz);
-
-   return numberstring;
+   return str;
 
 }
 

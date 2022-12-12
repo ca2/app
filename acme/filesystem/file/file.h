@@ -74,7 +74,7 @@ namespace file
       virtual int getc();
       virtual int ungetc(int iChar);
 
-      inline filesize get_remaining_byte_count() const { return get_size() - get_position(); }
+      inline filesize get_remaining_byte_count() const { return size() - get_position(); }
 
       memsize read(void* pdata, memsize nCount) override;
 
@@ -187,8 +187,8 @@ namespace file
 
       //virtual filesize seek_begin(filesize lPos = 0);
       void set_size(filesize dwNewLen) override;
-      filesize get_size() const override;
-      inline bool is_empty() const { return get_size() <= 0; }
+      filesize size() const override;
+      inline bool is_empty() const { return size() <= 0; }
       inline void clear() { set_size(0); }
 
       virtual void lock(filesize dwPos, filesize dwCount);

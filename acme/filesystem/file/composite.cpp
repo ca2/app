@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "composite.h"
 
 
@@ -79,10 +79,10 @@ namespace file
    }
 
 
-   filesize reference::get_size() const
+   filesize reference::size() const
    {
 
-      return m_pfile->get_size();
+      return m_pfile->size();
 
    }
 

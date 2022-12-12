@@ -366,7 +366,7 @@ namespace user
       virtual void set_cache_interface(mesh_cache_interface * pinterface);
       virtual void _001ShowTopText(bool bShow = true);
       virtual void _001LayoutTopText(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001SetTopText(const widechar * pcwsz);
+      virtual void _001SetTopText(const ::wide_character * pcwsz);
 
       virtual bool DIDDXHeaderLayout(bool bSave);
 

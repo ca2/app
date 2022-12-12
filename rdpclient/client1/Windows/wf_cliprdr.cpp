@@ -862,7 +862,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //		{
 //			if (map->name)
 //			{
-//				if (__memcmp(map->name, format_name, wcslen((const widechar *) format_name)) == 0)
+//				if (__memcmp(map->name, format_name, wcslen((const ::wide_character *) format_name)) == 0)
 //					return map->local_format_id;
 //			}
 //		}

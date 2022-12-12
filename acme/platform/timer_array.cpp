@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "timer_task.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
@@ -104,16 +104,16 @@ namespace acme
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto * ppair = m_map.plookup(uEvent);
+      auto pair = m_map.plookup(uEvent);
 
-      if (ppair == nullptr)
+      if (pair.is_null())
       {
 
          return true;
 
       }
 
-      auto ptimer = ppair->element2();
+      auto ptimer = pair->element2();
 
       m_map.erase_key(uEvent);
 
@@ -134,16 +134,16 @@ namespace acme
 
          uptr uEvent = ptimer->m_uEvent;
 
-         auto * ppair = m_map.plookup(uEvent);
+         auto pair = m_map.plookup(uEvent);
 
-         if (ppair == nullptr)
+         if (pair.is_null())
          {
 
             return;
 
          }
 
-         auto ptimerMapped = ppair->element2();
+         auto ptimerMapped = pair->element2();
 
          if(ptimerMapped == ptimer)
          {

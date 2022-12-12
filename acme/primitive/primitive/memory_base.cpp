@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-////#include "acme/exception/exception.h"
+#include "acme/exception/no_memory.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/memory/_memory.h"
 #include "acme/primitive/primitive/memory.h"
@@ -26,11 +26,11 @@ MEMORY::MEMORY()
 
    m_bOwner = false;
    m_bReadOnly = true;
-   m_pbStorage = nullptr;
-   m_pdata = nullptr;
+   m_beginStorage = nullptr;
+   m_begin = nullptr;
 
-   m_cbStorage = 0;
-   m_iSize = 0;
+   m_sizeStorage = 0;
+   m_end = 0;
    m_dwAllocationAddUp = 4096;
    m_dAllocationRateUp = (double)(1.0 - ((double)m_dwAllocationAddUp / 2.0) * log((double)m_dwAllocationAddUp - 1.0)) / (1 - log((double)m_dwAllocationAddUp - 1.0));
    m_iOffset = 0;
@@ -46,10 +46,10 @@ MEMORY::MEMORY()
 memory_base::~memory_base()
 {
 
-   m_memory.m_cbStorage          = 0;
-   m_memory.m_iSize       =  0;
-   m_memory.m_pbStorage          = nullptr;
-   m_memory.m_pdata         = nullptr;
+   m_memory.m_sizeStorage          = 0;
+   m_memory.m_end      =  nullptr;
+   m_memory.m_beginStorage          = nullptr;
+   m_memory.m_begin         = nullptr;
    m_memory.m_iOffset            = 0;
 
 }
@@ -57,22 +57,22 @@ memory_base::~memory_base()
 
 memory_base & memory_base::prefix_der_length()
 {
-   i32 msb = ::msb(get_size());
+   i32 msb = ::msb(size());
    if(msb < 7)
    {
       move_and_grow(1);
-      get_data()[0] = (byte)(get_size() - 1);
+      data()[0] = (byte)(size() - 1);
    }
    else
    {
       i32 iLen = (msb + 8) / 8;
       move_and_grow(1 + iLen);
-      get_data()[0] = 0x80 | iLen;
-      auto s = get_size() - 1 - iLen;
+      data()[0] = 0x80 | iLen;
+      auto s = size() - 1 - iLen;
       u8 * p = (u8 *)&s;
       for(i32 i = 1; i <= iLen; i++)
       {
-         get_data()[i] = p[iLen - i];
+         data()[i] = p[iLen - i];
       }
    }
    return *this;
@@ -81,12 +81,12 @@ memory_base & memory_base::prefix_der_length()
 
 memory_base & memory_base::prefix_der_uint_content()
 {
-   if(get_size() > 0)
+   if(size() > 0)
    {
-      if(get_data()[0] & 0x80)
+      if(data()[0] & 0x80)
       {
          move_and_grow(1);
-         get_data()[0] = 0;
+         data()[0] = 0;
       }
    }
    return *this;
@@ -97,7 +97,7 @@ memory_base & memory_base::prefix_der_type(i32 iType)
 
    move_and_grow(1);
 
-   get_data()[0] = iType;
+   data()[0] = iType;
 
    return *this;
 
@@ -124,12 +124,12 @@ memory memory_base::detach_as_primitive_memory()
 
    }
 
-   return { get_data(), get_size() };
+   return { data(), size() };
 
 }
 
 
-bool memory_base::set_size(memsize dwNewLength)
+void memory_base::set_size(memsize dwNewLength)
 {
 
    //if(!is_enabled())
@@ -140,32 +140,29 @@ bool memory_base::set_size(memsize dwNewLength)
 
    if((m_memory.m_iOffset + dwNewLength) <= 0)
    {
-      m_memory.m_pdata   =m_memory. m_pbStorage + m_memory.m_iOffset;
+      m_memory.m_begin   =m_memory. m_beginStorage + m_memory.m_iOffset;
       m_memory.m_iOffset = 0;
-      m_memory.m_cbStorage = 0;
-      return true;
+      m_memory.m_sizeStorage = 0;
+      return;
    }
 
-   if((m_memory.m_iOffset + dwNewLength) > m_memory.m_iSize)
+   if((m_memory.m_iOffset + dwNewLength) > m_memory.storage_size())
    {
 
-      if (!allocate_internal(m_memory.m_iOffset + dwNewLength))
-      {
-
-         return false;
-
-      }
+      allocate_internal(m_memory.m_iOffset + dwNewLength);
 
    }
 
-   if((m_memory.m_iOffset + dwNewLength) > m_memory.m_iSize)
-      return false;
+   if ((m_memory.m_iOffset + dwNewLength) > m_memory.size())
+   {
 
-   m_memory.m_cbStorage    = dwNewLength;
+      throw ::no_memory();
 
-   m_memory.m_pdata   = m_memory.m_pbStorage + m_memory.m_iOffset;
+   }
 
-   return true;
+   m_memory.m_sizeStorage    = dwNewLength;
+
+   m_memory.m_begin   = m_memory.m_beginStorage + m_memory.m_iOffset;
 
 }
 
@@ -190,7 +187,7 @@ void memory_base::impl_free(byte * pdata)
 }
 
 
-bool memory_base::allocate_internal(memsize dwNewLength)
+void memory_base::allocate_internal(memsize sizeNew)
 {
 
    //if(!is_enabled())
@@ -199,49 +196,47 @@ bool memory_base::allocate_internal(memsize dwNewLength)
    //   return false;
    //}
 
-   if(dwNewLength < 0)
+   if(sizeNew < 0)
    {
 
       throw ::exception(error_invalid_parameter);
 
    }
-   else if(dwNewLength == 0)
+   else if(sizeNew == 0)
    {
 
-      return true;
+      return;
 
    }
 
    erase_offset();
 
-   memsize dwAllocation = calc_allocation(dwNewLength);
+   memsize sizeNewStorage = calc_allocation(sizeNew);
 
-   if(dwAllocation < 0)
+   if(sizeNewStorage < sizeNew)
    {
 
-
-      printf("Negative amount of memory to allocate");
+      throw ::exception(error_wrong_state);
 
    }
 
-   byte * pb;
+   byte * pOldStorage = m_memory.storage_begin();
 
-   if(m_memory.m_pbStorage == nullptr || !m_memory.m_bOwner || m_memory.m_bReadOnly)
+   byte * pNewStorage = nullptr;
+
+   memsize sizeOld = m_memory.size();
+
+   memsize sizeOldStorage = m_memory.storage_size();
+
+   if(::is_null(pOldStorage) || !m_memory.m_bOwner || m_memory.m_bReadOnly)
    {
 
-      pb = (byte *) impl_alloc(dwAllocation);
-
-      if(pb == nullptr)
-      {
-
-         return false;
-
-      }
+      pNewStorage = (byte *) impl_alloc(sizeNewStorage);
 
       if (!m_memory.m_bOwner || m_memory.m_bReadOnly)
       {
 
-         ::memcpy_dup(pb, m_memory.m_pbStorage, (memsize) minimum(m_memory.m_iSize, dwAllocation));
+         ::memcpy_dup(pNewStorage, pOldStorage, (memsize) minimum(sizeOld, sizeNewStorage));
 
       }
 
@@ -250,47 +245,36 @@ bool memory_base::allocate_internal(memsize dwNewLength)
       m_memory.m_bReadOnly = false;
 
    }
-   else
+   else if(sizeNew > sizeOldStorage)
    {
 
-      if(dwNewLength < m_memory.m_iSize)
+      pNewStorage = impl_realloc(pOldStorage, (size_t)sizeNewStorage);
+
+      if(::is_null(pNewStorage))
       {
 
-         return true;
+         pNewStorage = impl_alloc((size_t)sizeNewStorage);
+
+         ::memcpy_dup(pNewStorage, pOldStorage, sizeOld);
+
+         impl_free(pOldStorage);
 
       }
-
-      pb = impl_realloc(m_memory.m_pbStorage, (size_t)dwAllocation);
-
-      if(pb == nullptr)
-      {
-
-         pb = impl_alloc((size_t) dwAllocation);
-
-         if(pb == nullptr)
-         {
-
-            return false;
-
-         }
-
-         ::memcpy_dup(pb,m_memory.m_pbStorage,m_memory.m_cbStorage);
-
-         impl_free(m_memory.m_pbStorage);
-
-      }
-
-      memsize iOffset = pb - m_memory.m_pbStorage;
 
    }
 
-   m_memory.m_iSize        = dwAllocation;
+   if (pNewStorage)
+   {
 
-   m_memory.m_pbStorage    = pb;
+      m_memory.m_beginStorage = pNewStorage;
 
-   m_memory.m_pdata        = m_memory.m_pbStorage;
+      m_memory.m_sizeStorage = sizeNewStorage;
 
-   return true;
+      m_memory.m_begin = pNewStorage;
+
+   }
+
+   m_memory.m_end = m_memory.m_begin + sizeNew;
 
 }
 
@@ -298,11 +282,14 @@ bool memory_base::allocate_internal(memsize dwNewLength)
 void memory_base::reserve(memsize dwNewLength)
 {
 
-   if(dwNewLength <= m_memory.m_iSize)
+   if (dwNewLength <= m_memory.size())
+   {
+
       return;
 
-   if(!allocate_internal(dwNewLength))
-      throw ::exception(error_no_memory);
+   }
+
+   allocate_internal(dwNewLength);
 
 }
 
@@ -310,14 +297,14 @@ void memory_base::reserve(memsize dwNewLength)
 void memory_base::erase_offset()
 {
 
-   if(m_memory.m_pbStorage == nullptr || m_memory.m_pdata == nullptr || m_memory.m_iOffset <= 0)
+   if(m_memory.m_beginStorage == nullptr || m_memory.m_begin == nullptr || m_memory.m_iOffset <= 0)
       return;
 
-   __memmov(m_memory.m_pbStorage,m_memory.m_pdata,m_memory.m_cbStorage);
+   __memmov(m_memory.m_beginStorage,m_memory.m_begin,m_memory.m_sizeStorage);
 
    m_memory.m_iOffset      = 0;
 
-   m_memory.m_pdata   = m_memory.m_pbStorage;
+   m_memory.m_begin   = m_memory.m_beginStorage;
 
 }
 
@@ -331,10 +318,10 @@ void memory_base::erase_offset()
 //
 //   }
 //
-//   if (get_size() > 0)
+//   if (size() > 0)
 //   {
 //
-//      acmesystem()->math().random_bytes(get_data(), get_size());
+//      acmesystem()->math().random_bytes(data(), size());
 //
 //   }
 //
@@ -372,7 +359,7 @@ memsize memory_base::calc_allocation(memsize size)
 void memory_base::delete_begin(memsize iSize)
 {
 
-   iSize = maximum(0,minimum(get_size(),iSize));
+   iSize = maximum(0,minimum(size(),iSize));
 
    m_memory.m_iOffset += iSize;
 
@@ -383,11 +370,11 @@ void memory_base::delete_begin(memsize iSize)
 
    //}
 
-   m_memory.m_cbStorage -= iSize;
+   m_memory.m_sizeStorage -= iSize;
 
-   m_memory.m_pdata += iSize;
+   m_memory.m_begin += iSize;
 
-   if(m_memory.m_iOffset >= m_memory.m_iMaxOffset || (memsize)m_memory.m_iOffset >= m_memory.m_iSize)
+   if(m_memory.m_iOffset >= m_memory.m_iMaxOffset || (memsize)m_memory.m_iOffset >= m_memory.size())
    {
 
       erase_offset();
@@ -400,25 +387,25 @@ void memory_base::delete_begin(memsize iSize)
 void memory_base::transfer_to(::file::file * pfileOut, memsize uiBufferSize) const
 {
 
-   if(get_data() == nullptr || get_size() <= 0)
+   if(data() == nullptr || size() <= 0)
       return;
 
-   if(pfileOut->increase_internal_data_size(get_size()) && pfileOut->get_internal_data() != nullptr)
+   if(pfileOut->increase_internal_data_size(size()) && pfileOut->get_internal_data() != nullptr)
    {
 
-      if(pfileOut->get_internal_data() == get_data())
+      if(pfileOut->get_internal_data() == data())
          return;
 
-      __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + get_size(),((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),pfileOut->get_internal_data_size() - get_size());
-      ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),get_data(),get_size());
+      __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + size(),((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),pfileOut->get_internal_data_size() - size());
+      ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),data(),size());
 
-      pfileOut->position() += get_size();
+      pfileOut->position() += size();
 
    }
    else
    {
 
-      pfileOut->write(get_data(),get_size());
+      pfileOut->write(data(),size());
 
    }
 
@@ -447,7 +434,7 @@ void memory_base::transfer_from(::file::file * pfileIn,memsize uiBufferSize)
    else
    {
 
-      ::filesize filesize = pfileIn->get_size();
+      ::filesize filesize = pfileIn->size();
 
       if (filesize >= 0)
       {
@@ -461,7 +448,7 @@ void memory_base::transfer_from(::file::file * pfileIn,memsize uiBufferSize)
 
          set_size((::memsize) filesize);
 
-         memsize uRead = pfileIn->read(get_data(), (memsize) get_size());
+         memsize uRead = pfileIn->read(data(), (memsize) size());
 
          set_size(uRead);
 
@@ -478,7 +465,7 @@ void memory_base::transfer_from(::file::file * pfileIn,memsize uiBufferSize)
 
             set_size(uiSize + uiBufferSize);
 
-            uRead = pfileIn->read(&get_data()[uiSize], uiBufferSize);
+            uRead = pfileIn->read(&data()[uiSize], uiBufferSize);
 
             if (uRead <= 0)
             {
@@ -556,14 +543,14 @@ memory_base & memory_base::erase(memsize pos,memsize len)
    if(pos < 0)
    {
 
-      pos = get_size() + pos;
+      pos = size() + pos;
 
    }
 
    if(len < 0)
    {
 
-      len = get_size() - pos + len + 1;
+      len = size() - pos + len + 1;
 
    }
 
@@ -574,7 +561,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
    }
 
-   len = minimum(len,get_size() - pos);
+   len = minimum(len,size() - pos);
 
    if(len <= 0)
    {
@@ -583,16 +570,16 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
    }
 
-   if(pos >= get_size())
+   if(pos >= size())
    {
 
       return *this;
 
    }
 
-   __memmov(m_memory.m_pbStorage + pos,m_memory.m_pbStorage + pos + len,get_size() - (pos + len));
+   __memmov(m_memory.m_beginStorage + pos,m_memory.m_beginStorage + pos + len,size() - (pos + len));
 
-   set_size(get_size() - len);
+   set_size(size() - len);
 
    return *this;
 
@@ -604,14 +591,14 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 //comptr < IStream > memory_base::create_istream() const
 //{
 //
-//   if (get_data() == nullptr)
+//   if (data() == nullptr)
 //   {
 //
 //      return nullptr;
 //
 //   }
 //
-//   return ::SHCreateMemStream(get_data(),(::u32)get_size());
+//   return ::SHCreateMemStream(data(),(::u32)size());
 //
 //}
 
@@ -621,7 +608,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 //comptr < IStream > memory_base::create_istream() const
 //{
 //
-//   if (get_data() == nullptr)
+//   if (data() == nullptr)
 //   {
 //
 //      return nullptr;
@@ -643,55 +630,43 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 #endif
 
 
-char * memory_base::get_psz(strsize & len)
+::string memory_base::as_string() const
 {
 
-   if(get_size() >= 2 && get_data()[0] == 255 && get_data()[1] == 60)
+   if(size() >= 2 && data()[0] == 255 && data()[1] == 60)
    {
 
       memory mem;
 
-      mem = *this;
+      mem.set_size(utf_to_utf_length((char *) data(),(const ::wd16_character *)&data()[2],size() - 2));
 
-      set_size(utf_to_utf_length((char *) get_data(),(const wd16char *)&get_data()[2],get_size() - 2));
+      utf_to_utf((char *) mem.data(),(const ::wide_character *)&data()[2],(i32)(size() - 2));
 
-      utf_to_utf((char *) get_data(),(const widechar *)&mem.get_data()[2],(i32)(mem.get_size() - 2));
-
-      len = get_size();
-
-      return (char *) get_data();
+      return { (const char *)mem.data(), mem.size() };
 
    }
-   else if(get_size() >= 3 && get_data()[0] == 255 && get_data()[1] == 254 && get_data()[2] == 0x73)
+   else if(size() >= 3 && data()[0] == 255 && data()[1] == 254 && data()[2] == 0x73)
    {
 
       memory mem;
 
-      mem = *this;
+      mem.set_size(utf_to_utf_length((char *) data(),(const ::wd16_character *)&data()[3],size() - 3));
 
-      set_size(utf_to_utf_length((char *) get_data(),(const wd16char *)&get_data()[3],get_size() - 3));
+      utf_to_utf((char *)mem.data(),(const ::wd16_character *)&data()[3],(i32)(size() - 3));
 
-      utf_to_utf((char *)get_data(),(const wd16char *)&mem.get_data()[3],(i32)(mem.get_size() - 3));
-
-      len = get_size();
-
-      return (char *)get_data();
+      return { (const char *)mem.data(), mem.size() };
 
    }
-   else if(get_size() >= 3 && get_data()[0] == 0xef && get_data()[1] == 0xbb && get_data()[2] == 0xbf)
+   else if(size() >= 3 && data()[0] == 0xef && data()[1] == 0xbb && data()[2] == 0xbf)
    {
 
-      len = get_size() - 3;
-
-      return (char *)&get_data()[3];
+      return { (const char *)data() + 3, size() - 3 };
 
    }
    else
    {
 
-      len = get_size();
-
-      return (char *)get_data();
+      return { (const char *)data(), size() };
 
    }
 
@@ -703,43 +678,43 @@ string memory_base::as_utf8() const
 
    string strResult;
 
-   if (get_size() >= 2
-         && get_data()[0] == 255
-         && get_data()[1] == 60)
+   if (size() >= 2
+         && data()[0] == 255
+         && data()[1] == 60)
    {
 
-      utf_to_utf(strResult, (wd16char *)&get_data()[2], (i32)(get_size() - 2));
+      utf_to_utf(strResult, (::wd16_character *)&data()[2], (i32)(size() - 2));
 
    }
-   else if (get_size() >= 2
-            && get_data()[0] == 255
-            && get_data()[1] == 254)
+   else if (size() >= 2
+            && data()[0] == 255
+            && data()[1] == 254)
    {
 
 #ifdef ANDROID
-      //for (index i = 2; i < storage.get_size(); i += 2)
+      //for (index i = 2; i < storage.size(); i += 2)
       //{
-      //   byte b = storage.get_data()[i];
-      //   storage.get_data()[i] = storage.get_data()[i + 1];
-      //   storage.get_data()[i + 1] = b;
+      //   byte b = storage.data()[i];
+      //   storage.data()[i] = storage.data()[i + 1];
+      //   storage.data()[i + 1] = b;
       //}
 #endif
-      utf_to_utf(strResult, (const wd16char *)&get_data()[2], (i32)(get_size() - 2));
+      utf_to_utf(strResult, (const ::wd16_character *)&data()[2], (i32)(size() - 2));
 
    }
-   else if (get_size() >= 3
-            && get_data()[0] == 0xef
-            && get_data()[1] == 0xbb
-            && get_data()[2] == 0xbf)
+   else if (size() >= 3
+            && data()[0] == 0xef
+            && data()[1] == 0xbb
+            && data()[2] == 0xbf)
    {
 
-      strResult = string((const char *)&get_data()[3], (i32)(get_size() - 3));
+      strResult = string((const char *)&data()[3], (i32)(size() - 3));
 
    }
    else
    {
 
-      strResult = string((const char *)get_data(), (i32)get_size());
+      strResult = string((const char *)data(), (i32)size());
 
    }
 
@@ -751,29 +726,36 @@ string memory_base::as_utf8() const
 char * memory_base::c_str()
 {
 
-   if (get_size() <= 0)
+   if (size() <= 0)
    {
 
       return nullptr;
 
    }
 
-   if (get_data()[get_size() - 1] != '\0')
+   if (data()[size() - 1] != '\0')
    {
 
       allocate_add_up(1);
 
-      get_data()[get_size() - 1] = '\0';
+      data()[size() - 1] = '\0';
 
    }
 
-   return (char *)get_data();
+   return (char *)data();
 
 }
 
 
 bool memory_base::begins(const char * psz, strsize iCount) const
 {
+
+   if (::is_null(psz) || iCount <= 0)
+   {
+
+      return true;
+
+   }
 
    if (iCount < 0)
    {
@@ -782,19 +764,19 @@ bool memory_base::begins(const char * psz, strsize iCount) const
 
    }
 
-   if (get_size() < iCount)
+   if (size() < iCount)
    {
 
       return false;
 
    }
 
-   return !__memcmp(get_data(), psz, iCount);
+   return !_memory_compare(data(), psz, iCount);
 
 }
 
 
-bool memory_base::begins_ci(const char * psz, strsize iCount) const
+bool memory_base::case_insensitive_begins(const char * psz, strsize iCount) const
 {
 
    if (::is_null(psz) || *psz == '\0')
@@ -804,7 +786,7 @@ bool memory_base::begins_ci(const char * psz, strsize iCount) const
 
    }
 
-   const char * pszThis = (const char *)get_data();
+   const char * pszThis = (const char *)data();
 
    if (::is_null(pszThis))
    {
@@ -820,7 +802,7 @@ bool memory_base::begins_ci(const char * psz, strsize iCount) const
 
    }
 
-   if (get_size() < iCount)
+   if (size() < iCount)
    {
 
       return false;
@@ -842,19 +824,19 @@ bool memory_base::begins(const ::string & str, strsize iCount) const
 
    }
 
-   if (get_size() < iCount)
+   if (size() < iCount)
    {
 
       return false;
 
    }
 
-   return !__memcmp(get_data(), str.c_str(), iCount);
+   return !_memory_compare(data(), str.c_str(), iCount);
 
 }
 
 
-bool memory_base::begins_ci(const ::string & str, strsize iCount) const
+bool memory_base::case_insensitive_begins(const ::string & str, strsize iCount) const
 {
 
    if (iCount < 0)
@@ -864,14 +846,14 @@ bool memory_base::begins_ci(const ::string & str, strsize iCount) const
 
    }
 
-   if (get_size() < iCount)
+   if (size() < iCount)
    {
 
       return false;
 
    }
 
-   return !ansi_count_compare_ci((const char*) get_data(), str.c_str(), iCount);
+   return !ansi_count_compare_ci((const char*) data(), str.c_str(), iCount);
 
 }
 
@@ -886,19 +868,19 @@ bool memory_base::ends(const char * psz, strsize iCount) const
 
    }
 
-   if (get_size() < iCount)
+   if (size() < iCount)
    {
 
       return false;
 
    }
 
-   return !__memcmp(get_data() + get_size() - iCount, psz, iCount);
+   return !_memory_compare(data() + size() - iCount, psz, iCount);
 
 }
 
 
-bool memory_base::ends_ci(const char * psz, strsize iCount) const
+bool memory_base::case_insensitive_ends(const char * psz, strsize iCount) const
 {
 
    if (::is_null(psz) || *psz == '\0')
@@ -908,7 +890,7 @@ bool memory_base::ends_ci(const char * psz, strsize iCount) const
 
    }
 
-   const char * pszThis = (const char *)get_data();
+   const char * pszThis = (const char *)data();
 
    if (::is_null(pszThis))
    {
@@ -924,14 +906,14 @@ bool memory_base::ends_ci(const char * psz, strsize iCount) const
 
    }
 
-   if (get_size() < iCount)
+   if (size() < iCount)
    {
 
       return false;
 
    }
 
-   return !ansi_count_compare_ci(pszThis + get_size() - iCount, psz, (size_t) iCount);
+   return !ansi_count_compare_ci(pszThis + size() - iCount, psz, (size_t) iCount);
 
 }
 
@@ -946,19 +928,19 @@ bool memory_base::ends(const ::string & str, strsize iCount) const
 
    }
 
-   if (get_size() < iCount)
+   if (size() < iCount)
    {
 
       return false;
 
    }
 
-   return !__memcmp(get_data() + get_size() - iCount, str.c_str(), iCount);
+   return !_memory_compare(data() + size() - iCount, str.c_str(), iCount);
 
 }
 
 
-bool memory_base::ends_ci(const ::string & str, strsize iCount) const
+bool memory_base::case_insensitive_ends(const ::string & str, strsize iCount) const
 {
 
    if (iCount < 0)
@@ -968,14 +950,14 @@ bool memory_base::ends_ci(const ::string & str, strsize iCount) const
 
    }
 
-   if (get_size() < iCount)
+   if (size() < iCount)
    {
 
       return false;
 
    }
 
-   return !ansi_count_compare_ci((const char*) get_data() + get_size() - iCount, str.c_str(), iCount);
+   return !ansi_count_compare_ci((const char*) data() + size() - iCount, str.c_str(), iCount);
 
 }
 
@@ -994,36 +976,28 @@ bool memory_base::ends_ci(const ::string & str, strsize iCount) const
 bool memory_base::operator == (const memory_base & s) const
 {
 
-   bool b = false;
+   if (this->size() != s.size())
+   {
 
-   //single_lock synchronouslock(m_spmutex);
+      return false;
 
-   //synchronouslock.lock();
+   }
 
-   if (this->get_size() == s.get_size())
-      b = __memcmp(get_data(), s.get_data(), (size_t) this->get_size()) == 0;
-
-   //synchronouslock.unlock();
-
-   return b;
+   return memory_compare(data(), s.data(), (size_t)this->size()) == 0;
 
 }
 
 bool memory_base::operator == (const struct block & s) const
 {
 
-   bool b = false;
+   if (this->size() != s.size())
+   {
 
-   //single_lock synchronouslock(m_spmutex);
+      return false;
 
-   //synchronouslock.lock();
+   }
 
-   if (this->get_size() == s.get_size())
-      b = __memcmp(get_data(), s.get_data(), (size_t)this->get_size()) == 0;
-
-   //synchronouslock.unlock();
-
-   return b;
+   return memory_compare(data(), s.data(), (size_t)this->size()) == 0;
 
 }
 
@@ -1033,9 +1007,9 @@ void memory_base::copy_from(const memory_base *pstorage)
 
    ASSERT(pstorage != nullptr);
 
-   set_size(pstorage->get_size());
+   set_size(pstorage->size());
 
-   ::memcpy_dup(get_data(), pstorage->get_data(), (size_t) this->get_size());
+   ::memcpy_dup(data(), pstorage->data(), (size_t) this->size());
 
 }
 
@@ -1044,7 +1018,7 @@ void memory_base::copy_from(const void * pdata, memsize s)
 
    defer_set_size(s);
 
-   ::memcpy_dup(get_data(), pdata, (size_t)minimum(this->get_size(), s));
+   ::memcpy_dup(data(), pdata, (size_t)minimum(this->size(), s));
 
 }
 
@@ -1059,7 +1033,7 @@ void memory_base::copy_to(void * pdata, memsize s) const
 
    }
 
-   ::memcpy_dup(pdata, get_data(), (size_t)minimum(this->get_size(), s));
+   ::memcpy_dup(pdata, data(), (size_t)minimum(this->size(), s));
 
 }
 
@@ -1069,7 +1043,7 @@ void memory_base::set_data(void *pdata, memsize uiSize)
 
    set_size(uiSize);
 
-   ::memcpy_dup(get_data(), pdata, (size_t)uiSize);
+   ::memcpy_dup(data(), pdata, (size_t)uiSize);
 
 }
 
@@ -1077,10 +1051,10 @@ void memory_base::set_data(void *pdata, memsize uiSize)
 void memory_base::set(byte b, memsize iStart, memsize uiSize)
 {
 
-   if (uiSize + iStart > get_size())
-      uiSize = get_size() - iStart;
+   if (uiSize + iStart > size())
+      uiSize = size() - iStart;
 
-   __memset(get_data() + iStart, b, (size_t)uiSize);
+   __memset(data() + iStart, b, (size_t)uiSize);
 
 }
 
@@ -1096,9 +1070,9 @@ void memory_base::zero(memsize iStart, memsize uiSize)
 void memory_base::eat_begin(void * pdata, memsize iSize)
 {
 
-   ASSERT(iSize <= this->get_size());
+   ASSERT(iSize <= this->size());
 
-   if (iSize <= this->get_size())
+   if (iSize <= this->size())
    {
 
       delete_begin(iSize);
@@ -1108,70 +1082,70 @@ void memory_base::eat_begin(void * pdata, memsize iSize)
 }
 
 
-memory_base & memory_base::operator = (const memory_base & s)
+//memory_base & memory_base::operator = (const memory_base & s)
+//{
+//
+//   if (this != &s)
+//   {
+//
+//      copy_from(&s);
+//
+//   }
+//
+//   return *this;
+//
+//}
+
+
+//memory_base & memory_base::operator += (const block & block)
+//{
+//
+//   append(block);
+//
+//   return *this;
+//
+//}
+//
+//
+//memory_base & memory_base::operator += (const memory_base & s)
+//{
+//
+//   append(s);
+//
+//   return *this;
+//
+//}
+
+
+void memory_base::to_hex(string & str, memsize pos, memsize count)
 {
 
-   if (this != &s)
-   {
-
-      copy_from(&s);
-
-   }
-
-   return *this;
-
-}
-
-
-memory_base & memory_base::operator += (const block & block)
-{
-
-   append(block);
-
-   return *this;
-
-}
-
-
-memory_base & memory_base::operator += (const memory_base & s)
-{
-
-   append(s);
-
-   return *this;
-
-}
-
-
-void memory_base::to_hex(string & str, memsize pos, memsize size)
-{
-
-   if (pos > this->get_size())
+   if (pos > this->size())
    {
 
       throw ::exception(error_bad_argument);
 
    }
 
-   if (size < 0)
+   if (count < 0)
    {
 
-      size += this->get_size() - pos + 1;
+      count += this->size() - pos + 1;
 
    }
 
-   if (pos + size > get_size())
+   if (pos + count > this->size())
    {
 
-      size = get_size() - pos;
+      count = this->size() - pos;
 
    }
 
-   char * pchSrc = (char *)get_data();
+   char * pchSrc = (char *)data();
 
-   char * pchDst = str.get_string_buffer(size * 2);
+   char * pchDst = str.get_string_buffer(count * 2);
 
-   u64 tickEnd = pos + size;
+   u64 tickEnd = pos + count;
 
    for (u64 dw = pos; dw < tickEnd; dw++)
    {
@@ -1245,7 +1219,7 @@ strsize memory_base::from_hex(const char * psz, strsize nCount)
 
    set_size(iLen / 2);
 
-   char * pch = (char *)get_data();
+   char * pch = (char *)data();
 
    strsize i = 0;
 
@@ -1308,10 +1282,10 @@ strsize memory_base::from_hex(const char * psz, strsize nCount)
 }
 
 
-void memory_base::to_base64(string & str, memsize pos, memsize size)
+void memory_base::to_base64(string & str, memsize pos, memsize count)
 {
 
-   if (get_data() == nullptr)
+   if (data() == nullptr)
    {
 
       return;
@@ -1320,7 +1294,7 @@ void memory_base::to_base64(string & str, memsize pos, memsize size)
 
    ::base64 base64;
 
-   str = base64.encode({&get_data()[pos], minimum(get_size() - pos, size)});
+   str = base64.encode({&data()[pos], minimum(this->size() - pos, count)});
 
 }
 
@@ -1349,7 +1323,7 @@ void memory_base::from_base64(const char * psz, strsize nCount)
 //void memory_base::to_asc(string & str)
 //{
 //
-//   str.assign(get_data(), get_size());
+//   str.assign(data(), size());
 //
 //}
 //
@@ -1361,7 +1335,7 @@ void memory_base::from_base64(const char * psz, strsize nCount)
 //}
 
 
-void memory_base::from_string(const widechar * pwsz)
+void memory_base::from_string(const ::wide_character * pwsz)
 {
 
    from_string(unicode_to_utf8(pwsz));
@@ -1374,7 +1348,7 @@ void memory_base::from_string(const char * psz)
 
    set_size(strlen(psz));
 
-   ::memcpy_dup(get_data(), psz, this->get_size());
+   ::memcpy_dup(data(), psz, this->size());
 
 }
 
@@ -1384,7 +1358,7 @@ void memory_base::from_string(const ::string & str)
 
    set_size(str.length());
 
-   ::memcpy_dup(get_data(), str, this->get_size());
+   ::memcpy_dup(data(), str, this->size());
 
 }
 
@@ -1392,12 +1366,12 @@ void memory_base::from_string(const ::string & str)
 void memory_base::from_string(const ::payload & payload)
 {
 
-   from_string((const string &)payload.as_string());
+   from_string((const string &)payload.string());
 
 }
 
 
-void memory_base::append_from_string(const widechar * pwsz)
+void memory_base::append_from_string(const ::wide_character * pwsz)
 {
 
    append_from_string(unicode_to_utf8(pwsz));
@@ -1408,13 +1382,13 @@ void memory_base::append_from_string(const widechar * pwsz)
 void memory_base::append_from_string(const char * psz)
 {
 
-   auto sizeOld = get_size();
+   auto sizeOld = size();
 
    auto lenExtra = strlen(psz);
 
    allocate_add_up(lenExtra);
 
-   ::memcpy_dup(get_data() + sizeOld, psz, lenExtra);
+   ::memcpy_dup(data() + sizeOld, psz, lenExtra);
 
 }
 
@@ -1423,13 +1397,13 @@ void memory_base::append_from_string(const ::string & str)
 {
 
 
-   auto sizeOld = get_size();
+   auto sizeOld = size();
 
    auto lenExtra = str.get_length();
 
    allocate_add_up(lenExtra);
 
-   ::memcpy_dup(get_data() + sizeOld, str.c_str(), lenExtra);
+   ::memcpy_dup(data() + sizeOld, str.c_str(), lenExtra);
    
 }
 
@@ -1437,17 +1411,17 @@ void memory_base::append_from_string(const ::string & str)
 void memory_base::append_from_string(const ::payload & payload)
 {
 
-   append_from_string((const string &)payload.as_string());
+   append_from_string((const string &)payload.string());
 
 }
 
 
-string memory_base::as_string() const
-{
-
-   return as_string(0);
-
-}
+//string memory_base::as_string() const
+//{
+//
+//   return as_string(0);
+//
+//}
 
 
 string memory_base::as_string(memsize iStart, memsize iCount) const
@@ -1458,11 +1432,11 @@ string memory_base::as_string(memsize iStart, memsize iCount) const
    if ((memsize)iStart < 0)
    {
 
-      *((memsize*)iStart) += this->get_size();
+      *((memsize*)iStart) += this->size();
 
    }
 
-   if (iStart > this->get_size())
+   if (iStart > this->size())
    {
 
       return str;
@@ -1472,14 +1446,14 @@ string memory_base::as_string(memsize iStart, memsize iCount) const
    if (iCount < 0)
    {
 
-      iCount += this->get_size() - iStart + 1;
+      iCount += this->size() - iStart + 1;
 
    }
 
-   if (iStart + iCount > this->get_size())
+   if (iStart + iCount > this->size())
    {
 
-      iCount = this->get_size() - iStart - iCount;
+      iCount = this->size() - iStart - iCount;
 
    }
 
@@ -1490,7 +1464,7 @@ string memory_base::as_string(memsize iStart, memsize iCount) const
 
    }
 
-   if (get_data() == nullptr)
+   if (data() == nullptr)
    {
 
       return str;
@@ -1499,7 +1473,7 @@ string memory_base::as_string(memsize iStart, memsize iCount) const
 
    char * psz = str.get_string_buffer(iCount + 1);
 
-   ::memcpy_dup(psz, &get_data()[iStart], iCount);
+   ::memcpy_dup(psz, &data()[iStart], iCount);
 
    psz[iCount] = '\0';
 
@@ -1543,14 +1517,14 @@ void memory_base::move(memsize offset, bool bGrow)
 
       }
 
-      if ((memsize)offset > this->get_size())
+      if ((memsize)offset > this->size())
       {
 
          return;
 
       }
 
-      __memmov(&this->get_data()[offset], this->get_data(), this->get_size() - offset);
+      __memmov(&this->data()[offset], this->data(), this->size() - offset);
 
    }
    else if (offset < 0)
@@ -1565,14 +1539,14 @@ void memory_base::move(memsize offset, bool bGrow)
 
       }
 
-      if ((memsize)offset > this->get_size())
+      if ((memsize)offset > this->size())
       {
 
          return;
 
       }
 
-      __memmov(this->get_data(), &this->get_data()[offset], this->get_size() - offset);
+      __memmov(this->data(), &this->data()[offset], this->size() - offset);
 
    }
 
@@ -1600,21 +1574,21 @@ void memory_base::append(const memory_base & mem, memsize iStart, memsize iCount
    if ((memsize)iStart < 0)
    {
 
-      *((memsize*)iStart) += mem.get_size();
+      *((memsize*)iStart) += mem.size();
 
    }
 
-   if (iStart > mem.get_size())
+   if (iStart > mem.size())
    {
 
       return;
 
    }
 
-   if (iStart + iCount > mem.get_size())
+   if (iStart + iCount > mem.size())
    {
 
-      iCount = mem.get_size() - iStart;
+      iCount = mem.size() - iStart;
 
    }
 
@@ -1627,7 +1601,7 @@ void memory_base::append(const memory_base & mem, memsize iStart, memsize iCount
 
    allocate_add_up(iCount);
 
-   ::memcpy_dup(&get_data()[this->get_size() - iCount], &mem.get_data()[iStart], (size_t)iCount);
+   ::memcpy_dup(&data()[this->size() - iCount], &mem.data()[iStart], (size_t)iCount);
 
 }
 
@@ -1642,11 +1616,11 @@ void memory_base::append(const void * pdata, memsize iCount)
 
    }
 
-   memsize iOldSize = get_size();
+   memsize iOldSize = size();
 
    allocate_add_up(iCount);
 
-   ::memcpy_dup(&get_data()[iOldSize], pdata, (size_t)iCount);
+   ::memcpy_dup(&data()[iOldSize], pdata, (size_t)iCount);
 
 }
 
@@ -1656,7 +1630,7 @@ void memory_base::assign(const void * pdata, memsize iCount)
 
    set_size(iCount);
 
-   ::memcpy_dup(get_data(), pdata, (size_t)iCount);
+   ::memcpy_dup(data(), pdata, (size_t)iCount);
 
 }
 
@@ -1666,7 +1640,7 @@ void memory_base::assign(const void * pdata, memsize iStart, memsize iCount)
 
    set_size(iCount);
 
-   ::memcpy_dup(get_data(), &((byte *)pdata)[iStart], (size_t)iCount);
+   ::memcpy_dup(data(), &((byte *)pdata)[iStart], (size_t)iCount);
 
 }
 
@@ -1676,14 +1650,14 @@ void memory_base::append(memsize iCount, uchar uch)
 
    allocate_add_up(iCount);
 
-   memsize iStart = this->get_size() - iCount;
+   memsize iStart = this->size() - iCount;
 
    memsize iEnd = iStart + iCount - 1;
 
    for (memsize i = iStart; i <= iEnd; i++)
    {
 
-      get_data()[i] = uch;
+      data()[i] = uch;
 
    }
 
@@ -1703,7 +1677,7 @@ void memory_base::splice(const u8 * pbMemory, memsize iCountSrc, memsize iStartD
    if (iCountDst < 0)
    {
 
-      iCountDst = get_size();
+      iCountDst = size();
 
    }
 
@@ -1713,13 +1687,13 @@ void memory_base::splice(const u8 * pbMemory, memsize iCountSrc, memsize iStartD
       //_____________dddddddddddddddd
       //aaaaaaaaaaaaabbbcccccccccccccccccccccccc
 
-      memsize iSize = get_size();
+      memsize iSize = size();
 
       memsize iMove = iSize - minimum(iSize, iStartDst + iCountDst);
 
       allocate_add_up(iCountSrc - iCountDst);
 
-      ::__memmov(&get_data()[iStartDst + iCountSrc], &get_data()[iStartDst + iCountDst], iMove);
+      ::__memmov(&data()[iStartDst + iCountSrc], &data()[iStartDst + iCountDst], iMove);
 
    }
    else if (iCountSrc < iCountDst)
@@ -1728,11 +1702,11 @@ void memory_base::splice(const u8 * pbMemory, memsize iCountSrc, memsize iStartD
       //_____________ddd
       //aaaaaaaaaaaaabbbbbbbbbbbbbbbbcccccccccccccccccccccccc
 
-      memsize iSize = get_size();
+      memsize iSize = size();
 
       memsize iMove = iSize - minimum(iSize, iStartDst + iCountDst);
 
-      ::__memmov(&get_data()[iStartDst + iCountSrc], &get_data()[iStartDst + iCountDst], iMove);
+      ::__memmov(&data()[iStartDst + iCountSrc], &data()[iStartDst + iCountDst], iMove);
 
       allocate_add_up(iCountSrc - iCountDst);
 
@@ -1741,7 +1715,7 @@ void memory_base::splice(const u8 * pbMemory, memsize iCountSrc, memsize iStartD
    if (iCountSrc > 0)
    {
 
-      ::memcpy_dup(&get_data()[iStartDst], pbMemory, iCountSrc);
+      ::memcpy_dup(&data()[iStartDst], pbMemory, iCountSrc);
 
    }
 
@@ -1758,7 +1732,7 @@ void memory_base::assign(memsize iCount, uchar uch)
    for (memsize i = 0; i <= iEnd; i++)
    {
 
-      this->get_data()[i] = uch;
+      this->data()[i] = uch;
 
    }
 
@@ -1788,21 +1762,21 @@ void memory_base::assign(memsize iCount, uchar uch)
 Array < uchar, 1U > ^ memory_base::get_os_bytes(memsize pos, memsize size) const
 {
 
-   if (pos > get_size())
+   if (pos > size())
    {
 
       throw ::exception(error_bad_argument);
 
    }
 
-   if (size < 0 || pos + size > get_size())
+   if (size < 0 || pos + size > size())
    {
 
-      size = get_size() - pos;
+      size = size() - pos;
 
    }
 
-   return ref memory_new Array < uchar, 1U >((uchar *)&get_data()[pos], size);
+   return ref memory_new Array < uchar, 1U >((uchar *)&data()[pos], size);
 
 }
 
@@ -1864,7 +1838,7 @@ void memory_base::set_os_bytes(Array < uchar, 1U > ^ a, memsize pos, memsize siz
 
    set_size(size);
 
-   ::memcpy_dup(get_data(), &a->Data[pos], size);
+   ::memcpy_dup(data(), &a->Data[pos], size);
 
 }
 
@@ -1900,9 +1874,9 @@ void memory_base::set_os_buffer(::winrt::Windows::Storage::Streams::IBuffer ^ ib
 
 memory_base & memory_base::reverse()
 {
-   if (this->get_data() != nullptr)
+   if (this->data() != nullptr)
    {
-      ::reverse_memory(this->get_data(), this->get_size());
+      ::reverse_memory(this->data(), this->size());
    }
    return *this;
 }
@@ -1911,7 +1885,7 @@ memory_base & memory_base::reverse()
 memsize memory_base::get_length() const
 {
 
-   return get_size();
+   return size();
 
 }
 
@@ -1919,7 +1893,7 @@ memsize memory_base::get_length() const
 memsize memory_base::length() const
 {
 
-   return get_size();
+   return size();
 
 }
 
@@ -1948,7 +1922,7 @@ byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
 
    }
 
-   return get_data() + iFind;
+   return data() + iFind;
 
 }
 
@@ -1967,12 +1941,12 @@ byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
 
    ::count cFindLength;
 
-   if (memcmp(get_data() + iStart, blockPrefix.get_data(), blockPrefix.get_size()) == 0)
+   if (memcmp(data() + iStart, blockPrefix.data(), blockPrefix.size()) == 0)
    {
 
       iFind = iStart;
 
-      cFindLength = blockPrefix.get_size();
+      cFindLength = blockPrefix.size();
 
    }
    else
@@ -1980,11 +1954,11 @@ byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
 
       memory memoryFind;
 
-      memoryFind.set_size(blockPrefix.get_size() + 1);
+      memoryFind.set_size(blockPrefix.size() + 1);
 
       memoryFind[0] = '\n';
 
-      memcpy(memoryFind.get_data() + 1, blockPrefix.get_data(), blockPrefix.get_size());
+      memcpy(memoryFind.data() + 1, blockPrefix.data(), blockPrefix.size());
 
       iFind = find_index(memoryFind, iStart + 1);
 
@@ -2004,7 +1978,7 @@ byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
 }
 
 
-void memory_base::patch_line_suffix(const ::block& blockPrefix, const block& blockSuffix, ::index iStart )
+void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& blockSuffix, ::index iStart )
 {
 
    iStart = find_line_prefix_index(blockPrefix, iStart);
@@ -2021,21 +1995,21 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const block& blo
    if (iFindEol < 0)
    {
 
-      iFindEol = get_size();
+      iFindEol = size();
 
    }
 
    auto iOldLen = iFindEol - iStart;
 
-   auto iNewLen = blockSuffix.get_size();
+   auto iNewLen = blockSuffix.size();
 
-   auto iOldSize = get_size();
+   auto iOldSize = size();
 
    auto iNewSize = iOldSize - iOldLen + iNewLen;
 
    set_size(iNewSize);
 
-   auto pdata = (byte*)get_data();
+   auto pdata = (byte*)data();
 
    if (iNewLen != iOldLen)
    {
@@ -2055,9 +2029,9 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const block& blo
 
       auto ptarget = pdata + iStart;
 
-      auto psource = (const char *) blockSuffix.get_data();
+      auto psource = (const char *) blockSuffix.data();
 
-      auto c = blockSuffix.get_size();
+      auto c = blockSuffix.size();
 
       memcpy(ptarget, psource, c);
 
@@ -2070,34 +2044,34 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const block& blo
 }
 
 
-bool memory_base::begins(const block& block) const
+bool memory_base::begins(const ::block& block) const
 {
 
-   if(get_size() < block.get_size())
+   if(size() < block.size())
    {
 
       return false;
 
    }
 
-   int iMemcmp = memcmp(get_data(), block.get_data(), block.get_size());
+   int iMemcmp = memcmp(data(), block.data(), block.size());
 
    return iMemcmp == 0;
 
 }
 
 
-bool memory_base::ends(const block& block) const
+bool memory_base::ends(const ::block& block) const
 {
 
-   if(get_size() < block.get_size())
+   if(size() < block.size())
    {
 
       return false;
 
    }
 
-   int iMemcmp = memcmp(get_data() + get_size() - block.get_size(), block.get_data(), block.get_size());
+   int iMemcmp = memcmp(data() + size() - block.size(), block.data(), block.size());
 
    return iMemcmp == 0;
 
@@ -2108,7 +2082,7 @@ bool memory_base::ends(const block& block) const
 byte * memory_base::find(const ::block & block, ::index iStart) const
 {
 
-   return (byte *)memmem(get_data() + iStart, get_size() - iStart, (byte *)block.get_data(), block.get_size());
+   return (byte *)memory_find(data() + iStart, size() - iStart, (byte *)block.data(), block.size());
 
 }
 
@@ -2125,15 +2099,15 @@ byte * memory_base::find(const ::block & block, ::index iStart) const
 
    }
 
-   return ((byte *)p) - get_data();
+   return ((byte *)p) - data();
 
 }
 
 
-byte * memory_base::reverse_find(const ::block & block, ::index iStart) const
+byte * memory_base::rear_find(const ::block & block, ::index iStart) const
 {
 
-   return (byte *)reverse_memmem(get_data() + iStart, get_size() - iStart, (byte *)block.get_data(), block.get_size());
+   return (byte *)reverse_memmem(data() + iStart, size() - iStart, (byte *)block.data(), block.size());
 
 }
 
@@ -2141,7 +2115,7 @@ byte * memory_base::reverse_find(const ::block & block, ::index iStart) const
 ::index memory_base::reverse_find_index(const ::block & block, ::index iStart) const
 {
 
-   auto p = reverse_find(block, iStart);
+   auto p = rear_find(block, iStart);
 
    if (!p)
    {
@@ -2150,7 +2124,7 @@ byte * memory_base::reverse_find(const ::block & block, ::index iStart) const
 
    }
 
-   return ((byte *)p) - get_data();
+   return ((byte *)p) - data();
 
 }
 
@@ -2158,7 +2132,7 @@ byte * memory_base::reverse_find(const ::block & block, ::index iStart) const
 byte * memory_base::reverse_find_byte_not_in_block(const ::block & block, ::index iStart) const
 {
 
-   return (byte *)reverse_byte_not_in_block(get_data() + iStart, get_size() - iStart, (byte *)block.get_data(), block.get_size());
+   return (byte *)reverse_byte_not_in_block(data() + iStart, size() - iStart, (byte *)block.data(), block.size());
 
 }
 
@@ -2175,7 +2149,7 @@ byte * memory_base::reverse_find_byte_not_in_block(const ::block & block, ::inde
 
    }
 
-   return ((byte *)p) - get_data();
+   return ((byte *)p) - data();
 
 }
 
@@ -2188,26 +2162,26 @@ namespace acme
    CLASS_DECL_ACME void transfer_to(::file::file * pfileOut, memory_base & mem, memsize uiBufferSize)
    {
 
-      if (mem.get_data() == nullptr || mem.get_size() <= 0)
+      if (mem.data() == nullptr || mem.size() <= 0)
          return;
 
-      if (pfileOut->increase_internal_data_size(mem.get_size()) && pfileOut->get_internal_data() != nullptr)
+      if (pfileOut->increase_internal_data_size(mem.size()) && pfileOut->get_internal_data() != nullptr)
       {
 
-         if (pfileOut->get_internal_data() == mem.get_data())
+         if (pfileOut->get_internal_data() == mem.data())
             return;
 
-         __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + mem.get_size(), ((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - mem.get_size());
+         __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + mem.size(), ((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - mem.size());
 
-         ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), mem.get_data(), mem.get_size());
+         ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), mem.data(), mem.size());
 
-         pfileOut->position() += mem.get_size();
+         pfileOut->position() += mem.size();
 
       }
       else
       {
 
-         pfileOut->write(mem.get_data(), mem.get_size());
+         pfileOut->write(mem.data(), mem.size());
 
       }
 
@@ -2245,7 +2219,7 @@ namespace acme
 
             mem.set_size(uiSize + uiBufferSize);
 
-            uRead = pfileIn->read(&mem.get_data()[uiSize], uiBufferSize);
+            uRead = pfileIn->read(&mem.data()[uiSize], uiBufferSize);
 
             if (uRead <= 0)
             {
@@ -2339,16 +2313,16 @@ namespace acme
 
 
 
-
-memory_base & memory_base::operator = (const block & block)
-{
-
-   assign(block);
-
-   return *this;
-
-}
-
+//
+//memory_base & memory_base::operator = (const ::block & block)
+//{
+//
+//   assign(block);
+//
+//   return *this;
+//
+//}
+//
 
 //memory_base & memory_base::operator += (const block & block)
 //{
@@ -2363,7 +2337,7 @@ memory_base & memory_base::operator = (const block & block)
 void memory_base::assign(const ::block & block)
 {
 
-   assign(block.get_data(), block.get_size());
+   assign(block.data(), block.size());
 
 }
 
@@ -2371,7 +2345,7 @@ void memory_base::assign(const ::block & block)
 void memory_base::append(const ::block & block)
 {
 
-   append(block.get_data(), block.get_size());
+   append(block.data(), block.size());
 
 }
 

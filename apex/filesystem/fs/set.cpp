@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "set.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/parallelization/event.h"
@@ -132,7 +132,7 @@ namespace fs
             if (pdata.is_set())
             {
 
-               if (psz.begins_ci(strRoot))
+               if (psz.case_insensitive_begins(strRoot))
                {
 
                   return pdata;

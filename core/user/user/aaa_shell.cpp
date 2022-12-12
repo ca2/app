@@ -98,9 +98,9 @@ namespace user
       void shell::image_key::set_extension(const ::string & strPath)
       {
 
-         strsize iFind1 = strPath.rfind('/');
+         strsize iFind1 = strPath.rear_find('/');
 
-         strsize iFind2 = strPath.rfind('\\');
+         strsize iFind2 = strPath.rear_find('\\');
 
          strsize iFind = maximum(iFind1, iFind2) + 1;
 
@@ -534,7 +534,7 @@ namespace user
       }
 
 
-      shell::e_folder shell::get_folder_type(::particle * pparticle, const widechar * pcszPath)
+      shell::e_folder shell::get_folder_type(::particle * pparticle, const ::wide_character * pcszPath)
       {
 
          string str(pcszPath);

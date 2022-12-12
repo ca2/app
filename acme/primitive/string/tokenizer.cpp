@@ -1,103 +1,132 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "tokenizer.h"
 #include <stdio.h>
+#include "acme/memory/_memory.h"
 //#include "acme/primitive/collection/string_array.h"
 
+//
+//tokenizer::tokenizer()
+//{
+//
+//   Restart();
+//
+//}
+//
+//
+//tokenizer::~tokenizer()
+//{
+//
+//}
+//
+//
+//tokenizer::tokenizer(const ::block & block) :
+//   m_block(block)
+//{
+//
+//   Restart();
+//
+//}
+//
 
-tokenizer::tokenizer()
+//tokenizer::tokenizer(const ::string & strSrc) :
+//   m_str(strSrc)
+//{
+//
+//   Restart();
+//
+//}
+
+
+//strsize tokenizer::find(const ::block& blockSeparator) const
+//{
+//
+//   return m_block.find(blockSeparator, m_nCurrentIndex);
+//
+//}
+
+
+bool tokenizer::get_next_token(string &strToken, RANGE rangeSeparator, bool bWithSeparator)
 {
 
-   Restart();
+   const_iterator iterator;
 
-}
-
-
-tokenizer::~tokenizer()
-{
-
-}
-
-
-tokenizer::tokenizer(const char * pch, i32 nLength) :
-   m_str(pch, nLength)
-{
-
-   Restart();
-
-}
-
-
-tokenizer::tokenizer(const ::string & strSrc) :
-   m_str(strSrc)
-{
-
-   Restart();
-
-}
-
-
-bool tokenizer::GetNextToken(string &strToken, const char * pSeparator, bool bWithSeparator)
-{
-
-   strsize i;
-
-   if((i = m_str.find(pSeparator, m_nCurrentIndex)) >= 0)
-
+   if((iterator = find(rangeSeparator)) != nullptr)
    {
-      if(bWithSeparator)
-         strToken = m_str.Mid(m_nCurrentIndex, i - m_nCurrentIndex + strlen(pSeparator));
 
+      if (bWithSeparator)
+      {
+       
+         substring(strToken, iterator + rangeSeparator.size());
+
+      }
       else
-         strToken = m_str.Mid(m_nCurrentIndex, i - m_nCurrentIndex);
-      m_nCurrentIndex = i + strlen(pSeparator);
+      {
+       
+         substring(strToken, iterator);
+
+      }
+
+      m_iterator = iterator + rangeSeparator.size();
 
       return true;
+
    }
    else
    {
-      if(m_nCurrentIndex <= m_str.get_length())
+
+      if(m_iterator <= this->end() - 1)
       {
-         strToken = m_str.Mid(m_nCurrentIndex);
-         m_nCurrentIndex = m_str.get_length() + 1;
+         
+         substring(strToken);
+         
+         m_iterator = end();
+
          return true;
+
       }
       else
+      {
+
          return false;
+
+      }
+
    }
 
 }
 
-bool tokenizer::GetNextSmallestToken(string & strToken, const string_array & straSeparator, bool bWithSeparator)
+
+bool tokenizer::get_next_smallest_token(string & strToken, const string_array & straSeparator, bool bWithSeparator)
 {
-      
-   if(m_nCurrentIndex >= m_str.get_length())
+
+   const_iterator iteratorMinPos = m_end;
+
+   if(m_iterator >= iteratorMinPos)
    {
 
       return false;
 
    }
 
-   strsize iMinPos = m_str.get_length();
-
    strsize iMaxSepLen = 0;
 
-   strsize iPos;
+   const_iterator iterator;
 
    for(i32 j = 0; j < straSeparator.get_size(); j++)
    {
 
-      iPos = m_str.find(straSeparator[j], m_nCurrentIndex);
+      iterator = find(straSeparator[j]);
 
-      if(iPos >= 0 && iPos <= iMinPos)
+      if(iterator >= this->begin() && iterator < iteratorMinPos)
       {
 
-         if(iMinPos == iPos)
+         if(iteratorMinPos == iterator)
          {
 
-            if(straSeparator[j].get_length() > iMaxSepLen)
+            if(straSeparator[j].size() > iMaxSepLen)
             {
 
-               iMaxSepLen = straSeparator[j].get_length();
+               iMaxSepLen = straSeparator[j].size();
 
             }
 
@@ -105,9 +134,9 @@ bool tokenizer::GetNextSmallestToken(string & strToken, const string_array & str
          else
          {
 
-            iMinPos = iPos;
+            iteratorMinPos = iterator;
 
-            iMaxSepLen = straSeparator[j].get_length();
+            iMaxSepLen = straSeparator[j].size();
 
          }
 
@@ -118,31 +147,33 @@ bool tokenizer::GetNextSmallestToken(string & strToken, const string_array & str
    if (bWithSeparator)
    {
 
-      strToken = m_str.Mid(m_nCurrentIndex, iMinPos - m_nCurrentIndex + iMaxSepLen);
+      substring(strToken, iteratorMinPos + iMaxSepLen);
 
    }
    else
    {
 
-      strToken = m_str.Mid(m_nCurrentIndex, iMinPos - m_nCurrentIndex);
+      substring(strToken, iteratorMinPos);
 
    }
 
-   m_nCurrentIndex = iMinPos + iMaxSepLen;
+   m_iterator = iteratorMinPos + iMaxSepLen;
 
    return true;
 
 }
 
 
-bool tokenizer::GetNextTokenEx(string &strToken, const char * pSeparator, bool bWithSeparator, bool bSkipAdjacent)
+bool tokenizer::get_next_token_ex(string &strToken, RANGE rangeSeparator, bool bWithSeparator, bool bSkipAdjacent)
 {
 
    strsize i;
 
-   string strMid = m_str.Mid(m_nCurrentIndex);
+   string strMid;
+   
+   substring(strMid);
 
-   if((i = strMid.FindOneOf(pSeparator)) >= 0)
+   if((i = strMid.scan(rangeSeparator)) >= 0)
    {
 
       if (bWithSeparator)
@@ -158,7 +189,7 @@ bool tokenizer::GetNextTokenEx(string &strToken, const char * pSeparator, bool b
 
       }
 
-      m_nCurrentIndex += i + 1;
+      m_iterator += i + 1;
 
       if(bSkipAdjacent)
       {
@@ -168,10 +199,10 @@ bool tokenizer::GetNextTokenEx(string &strToken, const char * pSeparator, bool b
          while(strMid.get_length() > 1)
          {
 
-            if(strMid.FindOneOf(pSeparator) == 0)
+            if(strMid.scan(rangeSeparator) == 0)
             {
 
-               m_nCurrentIndex++;
+               m_iterator++;
 
             }
             else
@@ -193,12 +224,12 @@ bool tokenizer::GetNextTokenEx(string &strToken, const char * pSeparator, bool b
    else
    {
 
-      if(m_nCurrentIndex < m_str.get_length())
+      if (m_iterator <= this->end() - 1)
       {
 
-         strToken = m_str.Mid(m_nCurrentIndex);
+         substring(strToken);
 
-         m_nCurrentIndex = m_str.get_length();
+         m_iterator = this->end();
 
          return true;
 
@@ -211,24 +242,6 @@ bool tokenizer::GetNextTokenEx(string &strToken, const char * pSeparator, bool b
       }
 
    }
-
-}
-
-
-void tokenizer::Restart()
-{
-
-   m_nCurrentIndex = 0;
-
-}
-
-
-void tokenizer::Restart(string &strNew)
-{
-
-   m_str.operator =(strNew);
-
-   m_nCurrentIndex = 0;
 
 }
 
@@ -268,7 +281,7 @@ bool tokenizer::ExtractFolderPath(const char * pcszFilePath)
 bool tokenizer::_01Read(string &str)
 {
 
-   if (!GetNextTokenEx(str, "\n\r\t ", false, true))
+   if (!get_next_token_ex(str, "\n\r\t ", false, true))
    {
 
       return false;
@@ -278,7 +291,7 @@ bool tokenizer::_01Read(string &str)
    if (str.is_empty())
    {
 
-      if (!GetNextTokenEx(str, "\n\r\t ", false, true))
+      if (!get_next_token_ex(str, "\n\r\t ", false, true))
       {
 
          return false;
@@ -379,48 +392,48 @@ bool tokenizer::_01ReadHex(i32 &i)
 bool tokenizer::ReadLine(string &strToken, bool bWithSeparator)
 {
 
-   strsize i1 = m_str.find("\r\n", m_nCurrentIndex);
+   auto p1 = find("\r\n");
 
-   strsize i2 = m_str.find("\n", m_nCurrentIndex);
+   auto p2 = find("\n");
 
-   if(i1 >= 0 && (i1 < i2 || i2 < 0))
+   if(::is_set(p1) && (p1 < p2 || ::is_null(p2)))
    {
 
       if (bWithSeparator)
       {
           
-         strToken = m_str.Mid(m_nCurrentIndex, i1 - m_nCurrentIndex + 2);
+         substring(strToken, p1 + 2);
 
       }
       else
       {
 
-         strToken = m_str.Mid(m_nCurrentIndex, i1 - m_nCurrentIndex);
+         substring(strToken, p1);
 
       }
 
-      m_nCurrentIndex = i1 + 2;
+      m_iterator = p1 + 2;
 
       return true;
 
    }
-   else if(i2 >= 0)
+   else if(::is_set(p2))
    {
 
       if (bWithSeparator)
       {
 
-         strToken = m_str.Mid(m_nCurrentIndex, i2 - m_nCurrentIndex + 2);
+         substring(strToken, p2 + 1);
 
       }
       else
       {
 
-         strToken = m_str.Mid(m_nCurrentIndex, i2 - m_nCurrentIndex);
+         substring(strToken, p2);
 
       }
 
-      m_nCurrentIndex = i2 + 2;
+      m_iterator = p2 + 1;
 
       return true;
 
@@ -428,12 +441,12 @@ bool tokenizer::ReadLine(string &strToken, bool bWithSeparator)
    else
    {
 
-      if(m_nCurrentIndex < m_str.get_length())
+      if(m_iterator < this->end() - 1)
       {
 
-         strToken = m_str.Mid(m_nCurrentIndex);
+         substring(strToken);
 
-         m_nCurrentIndex = m_str.get_length();
+         m_iterator = this->end();
 
          return true;
 
@@ -506,13 +519,11 @@ bool tokenizer::_001GetNextToken(string & strToken)
 bool tokenizer::get_next_word(string * pstrToken)
 {
 
-   const char * psz = &m_str[m_nCurrentIndex];
+   const char * psz = m_iterator;
 
-   const char * pszEnd = psz + strlen(psz);
+   const char * pszEnd = this->end();
 
    const char * pszStart = nullptr;
-
-   strsize iLen;
 
    while(psz < pszEnd)
    {
@@ -526,13 +537,11 @@ bool tokenizer::get_next_word(string * pstrToken)
             if(::is_set(pstrToken))
             {
 
-               iLen = psz - pszStart;
-
-               pstrToken->assign(pszStart, iLen);
+               pstrToken->assign(pszStart, psz);
                   
             }
 
-            m_nCurrentIndex = psz - m_str.c_str();
+            m_iterator = psz;
 
             return true;
 
@@ -554,13 +563,11 @@ bool tokenizer::get_next_word(string * pstrToken)
             if(::is_set(pstrToken))
             {
                   
-               iLen = psz - pszStart;
-
-               pstrToken->assign(pszStart + 1, iLen-1);
+               pstrToken->assign(pszStart + 1, psz - 1);
                   
             }
 
-            m_nCurrentIndex = psz - m_str.c_str() + 1;
+            m_iterator = psz + 1;
 
             return true;
 
@@ -592,13 +599,11 @@ bool tokenizer::get_next_word(string * pstrToken)
          if(::is_set(pstrToken))
          {
             
-            iLen = psz - pszStart;
-
-            pstrToken->assign(pszStart + 1, iLen);
+            pstrToken->assign(pszStart + 1, psz);
                
          }
 
-         m_nCurrentIndex = psz - m_str.c_str();
+         m_iterator = psz;
 
       }
       else
@@ -607,13 +612,11 @@ bool tokenizer::get_next_word(string * pstrToken)
          if(::is_set(pstrToken))
          {
                
-            iLen = psz - pszStart;
-               
-            pstrToken->assign(pszStart + 1, iLen);
+            pstrToken->assign(pszStart + 1, psz);
                
          }
 
-         m_nCurrentIndex = psz - m_str.c_str();
+         m_iterator = psz;
 
       }
 

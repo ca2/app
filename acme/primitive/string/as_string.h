@@ -10,24 +10,24 @@ inline string as_string(const T & t);
 //inline string as_string(const T * & p);
 //
 //
-//inline string as_string(const ansichar * psz);
+//inline string as_string(const ::ansi_character * psz);
 //
 //
-//inline string as_string(ansichar * psz);
+//inline string as_string(::ansi_character * psz);
 //
 //
-//inline string as_string(const widechar * pwsz);
+//inline string as_string(const ::wide_character * pwsz);
 //
 //
-//inline string as_string(widechar * pwsz);
-//
-//
-//template < >
-//inline string as_string(const ansistring * & p);
+//inline string as_string(::wide_character * pwsz);
 //
 //
 //template < >
-//inline string as_string(const widestring * & p);
+//inline string as_string(const ansi_string * & p);
+//
+//
+//template < >
+//inline string as_string(const wide_string * & p);
 //
 //
 //template < >

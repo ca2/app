@@ -361,14 +361,14 @@ struct pixmap;
 #define CONSIDER_AS(as, use) using use = as
 
 //
-//using ansistring = string_base < ansichar >;
-//using wd16string = string_base < wd16char >;
-//using wd32string = string_base < wd32char >;
-//using widestring = string_base < widechar >;
+//using ansi_string = string_base < ::ansi_character >;
+//using wd16_string = string_base < ::wd16_character >;
+//using wd32_string = string_base < ::wd32_character >;
+//using wide_string = string_base < ::wide_character >;
 //
 //
-//using string = string_base < ansichar >;
-//using wstring = string_base < widechar >;
+//using string = string_base < ::ansi_character >;
+//using wstring = string_base < ::wide_character >;
 
 
 class machine_event_central;
@@ -708,7 +708,7 @@ namespace aura
 //CLASS_DECL_APEX ::apex::system * ::apex::get_system(::particle * pparticle);
 
 
-#define BAD_WCHAR ((widechar)(-1))
+#define BAD_WCHAR ((::wide_character)(-1))
 
 
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))

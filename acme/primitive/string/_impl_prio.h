@@ -2,7 +2,7 @@
 
 
 CLASS_DECL_ACME i64 strtoi(const char * psz);
-CLASS_DECL_ACME i64 strtoi(const widechar * psz);
+CLASS_DECL_ACME i64 strtoi(const ::wide_character * psz);
 
 
 namespace file
@@ -46,37 +46,37 @@ class fixed_alloc_array;
 
 
 template < >
-inline uptr u32_hash < const ansistring & >(const ansistring & ansistr)
+inline uptr u32_hash < const ansi_string & >(const ansi_string & ansistr)
 {
 
-   return u32_hash < const ansichar * >(ansistr.c_str());
+   return u32_hash < const ::ansi_character * >(ansistr.c_str());
 
 }
 
 
 template < >
-inline uptr u32_hash < const widestring & >(const widestring & widestr)
+inline uptr u32_hash < const wide_string & >(const wide_string & widestr)
 {
 
-   return u32_hash < const widechar * >(widestr.c_str());
+   return u32_hash < const ::wide_character * >(widestr.c_str());
 
 }
 
 
 template < >
-inline uptr u32_hash < ansistring >(ansistring ansistr)
+inline uptr u32_hash < ansi_string >(ansi_string ansistr)
 {
 
-   return u32_hash < const ansistring & >(ansistr);
+   return u32_hash < const ansi_string & >(ansistr);
 
 }
 
 
 template < >
-inline uptr u32_hash < widestring >(widestring widestr)
+inline uptr u32_hash < wide_string >(wide_string widestr)
 {
 
-   return u32_hash < const widestring & >(widestr);
+   return u32_hash < const wide_string & >(widestr);
 
 }
 

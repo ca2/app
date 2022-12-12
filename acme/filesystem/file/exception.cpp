@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "text_stream.h"
 #include "exception.h"
 
@@ -167,7 +167,7 @@ namespace file
       //   void exception::OnFileFound(OF_INFO_t OpenedFileInfo )
       //   {
       //
-      //      if(::file::path(OpenedFileInfo.pFile).name().compare_ci(m_path.name()) == 0)
+      //      if(::file::path(OpenedFileInfo.pFile).name().case_insensitive_order(m_path.name()) == 0)
       //
       //      {
       //

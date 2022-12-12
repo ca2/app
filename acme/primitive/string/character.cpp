@@ -14,7 +14,7 @@
 //
 
 
-//wd32char character::parse_utf8(const char * pszUtf8)
+//::wd32_character character::parse_utf8(const char * pszUtf8)
 //{
 //
 //   ::i32 iLen;

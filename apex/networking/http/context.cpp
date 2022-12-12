@@ -80,7 +80,7 @@ namespace http
          set["raw_http"] = true;
 
       }
-      else if (!strServer.ends_ci("ca2.software") && strServer != "ca2.software")
+      else if (!strServer.case_insensitive_ends("ca2.software") && strServer != "ca2.software")
       {
 
          set["raw_http"] = true;
@@ -172,7 +172,7 @@ namespace http
 
       //}
 
-      return set["get_response"].as_string();
+      return set["get_response"];
 
    }
 
@@ -184,7 +184,7 @@ namespace http
 
       set["bool_result"] = get(pszUrl, process_set(set, pszUrl));
 
-      str = set["get_response"].as_string();
+      str = set["get_response"];
 
       //return set["get_status"].estatus();
 
@@ -447,7 +447,7 @@ namespace http
       //      string strFontopusServer;
       //
       //      if(atoi(purl->get_param(pszUrl, "authnone")) == 1
-      //            || purl->get_param(pszUrl,"sessid").compare_ci("noauth") == 0)
+      //            || purl->get_param(pszUrl,"sessid").case_insensitive_order("noauth") == 0)
       //      {
       //
       //         strFontopusServer = pszUrl;
@@ -798,13 +798,13 @@ namespace http
       //   return false;
       //}
 
-      if (payload.compare_ci("DIRECT") == 0)
+      if (payload.case_insensitive_order("DIRECT") == 0)
       {
 
          pproxy->m_bDirect = true;
 
       }
-      else if (payload.begins_eat_ci("PROXY"))
+      else if (payload.case_insensitive_begins_eat("PROXY"))
       {
          payload.trim();
          string_array stra;
@@ -2108,7 +2108,7 @@ namespace http
 
       //}
 
-      if (set.has_property("cookie") && set["cookie"].as_string().has_char())
+      if (set.has_property("cookie") && set["cookie"].has_char())
       {
 
          psocket->request().header("cookie") = set["cookie"];
@@ -2186,7 +2186,7 @@ namespace http
       if (set.has_property("proxy"))
       {
 
-         straProxy.explode(":", set["proxy"].as_string());
+         straProxy.explode(":", set["proxy"]);
 
          if (straProxy.get_count() != 2 || !psocket->proxy_open(straProxy[0], atoi(straProxy[1])))
          {

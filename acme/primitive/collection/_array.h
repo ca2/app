@@ -635,8 +635,8 @@ namespace acme
 
       inline ::index add(string_array& stra, const char* psz);
       inline ::index add(string_array& stra, const char& ch);
-      inline ::index add(string_array& stra, const ansistring& str);
-      inline ::index add(string_array& stra, const widestring& str);
+      inline ::index add(string_array& stra, const ansi_string& str);
+      inline ::index add(string_array& stra, const wide_string& str);
       inline ::index add(string_array& stra, const ::file::path& path);
       inline ::index add(string_array& stra, const ::payload& payload);
       inline ::index add(string_array& stra, const ::property& property);
@@ -962,7 +962,7 @@ namespace acme
             for (::index i = 0; i < payload.payloada().get_count(); i++)
             {
 
-               index iItem = ::acme::array::add(array, payload.payloada()[i].as_string());
+               index iItem = ::acme::array::add(array, payload.payloada()[i]);
 
                if (i < 0)
                {
@@ -1001,7 +1001,7 @@ namespace acme
          else
          {
 
-            i = ::acme::array::add(array, payload.as_string());
+            i = ::acme::array::add(array, payload);
 
          }
 
@@ -1365,17 +1365,17 @@ namespace acme
 
       ////inline ::index add(string_array & stra, const char * psz) { return stra.add_item(psz); }
       ////inline ::index add(string_array & stra, const char & ch) { return stra.add_item(ch); }
-      ////inline ::index add(string_array & stra, const ansistring & str) { return stra.add_item(str); }
-      ////inline ::index add(string_array & stra, const wd16string & str) { return stra.add_item(str); }
-      ////inline ::index add(string_array & stra, const wd32string & str) { return stra.add_item(str); }
+      ////inline ::index add(string_array & stra, const ansi_string & str) { return stra.add_item(str); }
+      ////inline ::index add(string_array & stra, const wd16_string & str) { return stra.add_item(str); }
+      ////inline ::index add(string_array & stra, const wd32_string & str) { return stra.add_item(str); }
       ////inline ::index add(string_array & stra, const ::file::path & path) { return stra.add_item(path); }
 
 
       ////inline ::index add(::file::path_array & patha, const char * psz) { return patha.add_item(psz); }
       ////inline ::index add(::file::path_array & patha, const char & ch) { return patha.add_item(ch); }
-      ////inline ::index add(::file::path_array & patha, const ansistring & str) { return patha.add_item(str); }
-      ////inline ::index add(::file::path_array & patha, const wd16string & str) { return patha.add_item(str); }
-      ////inline ::index add(::file::path_array & patha, const wd32string & str) { return patha.add_item(str); }
+      ////inline ::index add(::file::path_array & patha, const ansi_string & str) { return patha.add_item(str); }
+      ////inline ::index add(::file::path_array & patha, const wd16_string & str) { return patha.add_item(str); }
+      ////inline ::index add(::file::path_array & patha, const wd32_string & str) { return patha.add_item(str); }
       ////inline ::index add(::file::path_array & patha, const ::file::path & path) { return patha.add_item(path); }
 
 

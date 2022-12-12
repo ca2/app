@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "hasher.h"
 #include "hasher_algorithm.h"
 #include "acme/primitive/primitive/memory.h"
@@ -98,18 +98,18 @@
 
 //i32 crypto_encrypt(memory& storageEncrypt, const memory& storageDecrypt, memory& key)
 //{
-//   i32 plainlen = (i32)storageDecrypt.get_size();
+//   i32 plainlen = (i32)storageDecrypt.size();
 //   i32 cipherlen, tmplen;
 //   unsigned char iv[8] = { 1,2,3,4,5,6,7,8 };
 //   EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
-//   EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char*)key.get_data(), iv);
-//   cipherlen = (i32)(storageDecrypt.get_size() + 16 - 1); //; 16 = key size_i32
+//   EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char*)key.data(), iv);
+//   cipherlen = (i32)(storageDecrypt.size() + 16 - 1); //; 16 = key size_i32
 //   storageEncrypt.set_size(cipherlen);
-//   if (!EVP_EncryptUpdate(pctx, (unsigned char*)storageEncrypt.get_data(), &cipherlen, (const unsigned char*)storageDecrypt.get_data(), plainlen))
+//   if (!EVP_EncryptUpdate(pctx, (unsigned char*)storageEncrypt.data(), &cipherlen, (const unsigned char*)storageDecrypt.data(), plainlen))
 //   {
 //      return -1;
 //   }
-//   if (!EVP_EncryptFinal(pctx, ((unsigned char*)storageEncrypt.get_data()) + cipherlen, &tmplen))
+//   if (!EVP_EncryptFinal(pctx, ((unsigned char*)storageEncrypt.data()) + cipherlen, &tmplen))
 //   {
 //      return -1;
 //   }
@@ -121,18 +121,18 @@
 //
 //i32 crypto_decrypt(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
 //{
-//   i32 cipherlen = (i32)storageEncrypt.get_size();
+//   i32 cipherlen = (i32)storageEncrypt.size();
 //   i32 plainlen, tmplen;
 //   unsigned char iv[8] = { 1,2,3,4,5,6,7,8 };
 //   EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
-//   EVP_DecryptInit(pctx, EVP_bf_cbc(), (const unsigned char*)key.get_data(), iv);
-//   plainlen = (i32)storageEncrypt.get_size();
+//   EVP_DecryptInit(pctx, EVP_bf_cbc(), (const unsigned char*)key.data(), iv);
+//   plainlen = (i32)storageEncrypt.size();
 //   storageDecrypt.set_size(plainlen);
-//   if (!EVP_DecryptUpdate(pctx, (unsigned char*)storageDecrypt.get_data(), &plainlen, (const unsigned char*)storageEncrypt.get_data(), cipherlen))
+//   if (!EVP_DecryptUpdate(pctx, (unsigned char*)storageDecrypt.data(), &plainlen, (const unsigned char*)storageEncrypt.data(), cipherlen))
 //   {
 //      return -1;
 //   }
-//   if (!EVP_DecryptFinal(pctx, ((unsigned char*)storageDecrypt.get_data()) + plainlen, &tmplen))
+//   if (!EVP_DecryptFinal(pctx, ((unsigned char*)storageDecrypt.data()) + plainlen, &tmplen))
 //   {
 //      storageDecrypt.set_size(plainlen);
 //      EVP_CIPHER_CTX_free(pctx);
@@ -311,18 +311,18 @@
 //
 ////i32 crypto_encrypt2(memory& storageEncrypt, const memory& storageDecrypt, memory& key)
 ////{
-////   i32 plainlen = (i32)storageDecrypt.get_size();
+////   i32 plainlen = (i32)storageDecrypt.size();
 ////   i32 cipherlen, tmplen;
 ////   const char* iv = "skdfjghsdlkfjghs";
 ////   EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
-////   EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char*)key.get_data(), iv);
-////   cipherlen = (i32)(storageDecrypt.get_size() + 16 - 1); //; 16 = key size_i32
+////   EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char*)key.data(), iv);
+////   cipherlen = (i32)(storageDecrypt.size() + 16 - 1); //; 16 = key size_i32
 ////   storageEncrypt.allocate(cipherlen);
-////   if (!EVP_EncryptUpdate(pctx, (unsigned char*)storageEncrypt.get_data(), &cipherlen, (const unsigned char*)storageDecrypt.get_data(), plainlen))
+////   if (!EVP_EncryptUpdate(pctx, (unsigned char*)storageEncrypt.data(), &cipherlen, (const unsigned char*)storageDecrypt.data(), plainlen))
 ////   {
 ////      return -1;
 ////   }
-////   if (!EVP_EncryptFinal(pctx, ((unsigned char*)storageEncrypt.get_data()) + cipherlen, &tmplen))
+////   if (!EVP_EncryptFinal(pctx, ((unsigned char*)storageEncrypt.data()) + cipherlen, &tmplen))
 ////   {
 ////      return -1;
 ////   }
@@ -344,7 +344,7 @@
 //      return 0;
 //   }
 //
-//   if (!EVP_CipherInit_ex(cipher_ctx, NULL, NULL, (unsigned char*)key.get_data(), (unsigned char*)(iv), 0))
+//   if (!EVP_CipherInit_ex(cipher_ctx, NULL, NULL, (unsigned char*)key.data(), (unsigned char*)(iv), 0))
 //   {
 //
 //      return 0;
@@ -352,13 +352,13 @@
 //   }
 //   storageDecrypt.set_size((int)data_len + EVP_CIPHER_block_size(cipher_type));
 //   int outlen = 0;
-//   if (!EVP_CipherUpdate(cipher_ctx, (unsigned char*)storageDecrypt.get_data(), &outlen, (const unsigned char*)storageEncrypt.get_data(), (int)data_len))
+//   if (!EVP_CipherUpdate(cipher_ctx, (unsigned char*)storageDecrypt.data(), &outlen, (const unsigned char*)storageEncrypt.data(), (int)data_len))
 //   {
 //      return -1;
 //   }
 //   int i = 0;
 //   {
-//      if (EVP_DecryptFinal(cipher_ctx, ((unsigned char*)storageDecrypt.get_data()) + outlen, &i))
+//      if (EVP_DecryptFinal(cipher_ctx, ((unsigned char*)storageDecrypt.data()) + outlen, &i))
 //      {
 //         outlen = outlen + i;
 //      }
@@ -386,7 +386,7 @@
 //      return 0;
 //   }
 //
-//   if (!EVP_CipherInit_ex(cipher_ctx, NULL, NULL, (unsigned char*)key.get_data(), (unsigned char*)(iv), 1))
+//   if (!EVP_CipherInit_ex(cipher_ctx, NULL, NULL, (unsigned char*)key.data(), (unsigned char*)(iv), 1))
 //   {
 //
 //      return 0;
@@ -394,13 +394,13 @@
 //   }
 //   storageDecrypt.set_size((int)data_len + EVP_CIPHER_block_size(cipher_type));
 //   int outlen = 0;
-//   if (!EVP_CipherUpdate(cipher_ctx, (unsigned char*)storageDecrypt.get_data(), &outlen, (const unsigned char*)storageEncrypt.get_data(), (int)data_len))
+//   if (!EVP_CipherUpdate(cipher_ctx, (unsigned char*)storageDecrypt.data(), &outlen, (const unsigned char*)storageEncrypt.data(), (int)data_len))
 //   {
 //      return -1;
 //   }
 //   int i = 0;
 //   {
-//      if (EVP_EncryptFinal(cipher_ctx, ((unsigned char*)storageDecrypt.get_data()) + outlen, &i))
+//      if (EVP_EncryptFinal(cipher_ctx, ((unsigned char*)storageDecrypt.data()) + outlen, &i))
 //      {
 //         outlen = outlen + i;
 //      }
@@ -486,7 +486,7 @@ namespace crypto_openssl
    void hasher::update(const block& block)
    {
 
-      EVP_DigestUpdate(m_pctx, block.get_data(), block.get_size());
+      EVP_DigestUpdate(m_pctx, block.data(), block.size());
 
    }
 
@@ -508,7 +508,7 @@ namespace crypto_openssl
 
       memory.set_size(md_len);
 
-      EVP_DigestFinal_ex(m_pctx, memory.get_data(), &md_len);
+      EVP_DigestFinal_ex(m_pctx, memory.data(), &md_len);
 
       memory.set_size(md_len);
 

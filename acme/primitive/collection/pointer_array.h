@@ -166,7 +166,7 @@ public:
    inline ::index add_item(const pointer < T > & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
-      ::index nIndex = this->m_nSize;
+      ::index nIndex = this->size();
 
       this->allocate(nIndex + 1);
 
@@ -180,7 +180,7 @@ public:
    inline ::index add_item(pointer < T > && p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
-      ::index nIndex = this->m_nSize;
+      ::index nIndex = this->size();
 
       this->allocate(nIndex + 1);
 

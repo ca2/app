@@ -58,7 +58,7 @@ namespace android
       virtual i32 get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
       virtual i32 impl_get_file_image( const image_key& imagekey) override;
 
-      virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const widechar * lpcszPath) override;
+      virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const ::wide_character * lpcszPath) override;
       virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const ::string & lpcszPath) override;
 
       //         int add_icon_set(per_fork * pfork, SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, color32_t crBk, bool & bUsedImageList16, bool & bUsedImageList48);
@@ -79,7 +79,7 @@ namespace android
 
 
 
-      i32 get_image(per_fork * pfork, image_key key, const widechar * lpcszExtra, color32_t crBk);
+      i32 get_image(per_fork * pfork, image_key key, const ::wide_character * lpcszExtra, color32_t crBk);
       i32 get_image_by_extension(per_fork * pfork, image_key & key, color32_t crBk);
       //bool get_icon(oswindow oswindow, const ::string & pcsz, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);
       //bool get_icon(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);

@@ -1,4 +1,4 @@
-// Created by camilo on 2021-09-09 22:59 Thomas Month!! <3ThomasBS__!!
+﻿// Created by camilo on 2021-09-09 22:59 Thomas Month!! <3ThomasBS__!!
 #include "framework.h"
 #include "streamable_composite.h"
 
@@ -83,10 +83,10 @@ namespace file
    }
       
    
-   filesize streamable_composite::get_size() const 
+   filesize streamable_composite::size() const 
    { 
       
-      return m_pstreamable->get_size();
+      return m_pstreamable->size();
    
    }
 

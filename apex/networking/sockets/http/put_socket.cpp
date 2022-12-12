@@ -95,7 +95,7 @@ namespace sockets
       if(m_file.is_set())
       {
 
-         m_content_length = (long) m_file->get_size();
+         m_content_length = (long) m_file->size();
 
       }
 

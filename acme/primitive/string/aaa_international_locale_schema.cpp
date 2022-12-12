@@ -96,7 +96,7 @@ namespace str
             iEnd = iStart - 1;
             if((iEnd - 1) < 0)
                break;
-            iStart = idLocale2.str().reverse_find('-', iEnd - 1);
+            iStart = idLocale2.str().rear_find('-', iEnd - 1);
             bEnd = iStart < 0;
             if(bEnd)
             {

@@ -50,9 +50,9 @@ namespace prompt
       strsize iFind;
       strsize iFind2;
 
-      if((iFind = str.reverse_find('\n')) >= 0)
+      if((iFind = str.rear_find('\n')) >= 0)
       {
-         iFind2 = str.reverse_find('\n', iFind - 1);
+         iFind2 = str.rear_find('\n', iFind - 1);
          iFind2++;
          if(iFind > iFind2 && iFind2 >= m_iCompromised)
          {

@@ -37,7 +37,7 @@ string dump_hex(::file::file* pfile)
 
    string strBuffer;
 
-   char* psz = strBuffer.get_string_buffer((strsize)(pfile->get_size() / 16 + 1) * 80);
+   char* psz = strBuffer.get_string_buffer((strsize)(pfile->size() / 16 + 1) * 80);
 
    byte buf[16];
 
@@ -312,7 +312,7 @@ namespace sockets
       {
          m_pmemoryfile->allocate_internal(m_content_length);
 
-         if(outheader("content-encoding").compare_ci("gzip") != 0
+         if(outheader("content-encoding").case_insensitive_order("gzip") != 0
                && (m_response.attr("http_status_code") < 300 || m_response.attr("http_status_code") >= 400))
          {
 
@@ -357,7 +357,7 @@ namespace sockets
       
       strContentEncoding = outheader("content-encoding");
 
-      if (strContentEncoding.compare_ci("gzip") == 0)
+      if (strContentEncoding.case_insensitive_order("gzip") == 0)
       {
 
          auto pmemoryfile = create_memory_file();
@@ -375,7 +375,7 @@ namespace sockets
       if(m_pfile != nullptr && (iStatusCode < 300 || iStatusCode >= 400))
       {
 
-         m_pfile->write(m_pmemoryfile->get_data(), (memsize) m_pmemoryfile->get_size());
+         m_pfile->write(m_pmemoryfile->data(), (memsize) m_pmemoryfile->size());
 
 #if HEAVY_HTTP_LOG
          
@@ -428,7 +428,7 @@ namespace sockets
       if(m_pfile != nullptr)
       {
 
-         if(outheader("content-encoding").compare_ci("gzip") != 0)
+         if(outheader("content-encoding").case_insensitive_order("gzip") != 0)
          {
 
             m_pfile->write(buf,len);
@@ -503,13 +503,13 @@ namespace sockets
       if(m_content_length == ((memsize)-1))
       {
 
-         return (memsize)m_pmemoryfile->get_size();
+         return (memsize)m_pmemoryfile->size();
 
       }
       else
       {
 
-         return (memsize)m_pmemoryfile->get_size();
+         return (memsize)m_pmemoryfile->size();
 
       }
 
@@ -538,7 +538,7 @@ namespace sockets
    const unsigned char *http_client_socket::GetDataPtr() const
    {
 
-      return m_pmemoryfile->get_data();
+      return m_pmemoryfile->data();
 
    }
 
@@ -546,7 +546,7 @@ namespace sockets
    memsize http_client_socket::GetDataLength() const
    {
 
-      return (memsize)m_pmemoryfile->get_size();
+      return (memsize)m_pmemoryfile->size();
 
    }
 

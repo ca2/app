@@ -20,7 +20,7 @@
 //    void CLASS_DECL_ACME utf8_to_unicode(string_array & stra, string_array & stra);
 
 
-//bool CLASS_DECL_ACME unicode_to_multibyte(::u32 uCodePage, memory & str, const widechar * pcsz);
+//bool CLASS_DECL_ACME unicode_to_multibyte(::u32 uCodePage, memory & str, const ::wide_character * pcsz);
 //
 //
 //bool CLASS_DECL_ACME multibyte_to_multibyte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const char * pcsz);

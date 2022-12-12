@@ -45,7 +45,7 @@ void url_domain_base::create(const char * pszServerName)
       psz++;
    }
    psz = m_strOriginalName;
-   m_bHasWww = string_begins(pszServerName, "www.");
+   m_bHasWww = ::string(pszServerName).case_insensitive_begins("www.");
    if(m_bHasWww)
    {
       psz += 4;
@@ -1082,7 +1082,7 @@ bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, strsize blen, co
 
 /*      bool url_domain_in(string str, string url)
 {
-i32 iPos = url.reverse_find('.');
+i32 iPos = url.rear_find('.');
 if(iPos < 0)
 return false;
 i32 iLen = str.get_length();

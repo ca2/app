@@ -494,358 +494,363 @@ namespace text
 
    }
 
-   struct range_sz_item
-   {
-      strsize s;
-      strsize e;
-   };
+   //struct range_sz_item
+   //{
+   //   strsize s;
+   //   strsize e;
+   //};
 
-   struct range_sz
-   {
+   //struct range_sz
+   //{
 
-      range_sz_item stack[8];
-      strsize m_pos = 0;
+   //   range_sz_item stack[8];
+   //   strsize m_pos = 0;
 
-      char m_szAlloca[8 * 1024];
-      char * m_szMerge = m_szAlloca;
-      strsize m_iSize =0;
-      strsize m_iMaxSize=sizeof(m_szAlloca);
-      bool m_bOwn = false;
+   //   char m_szAlloca[8 * 1024];
+   //   char * m_szMerge = m_szAlloca;
+   //   strsize m_iSize =0;
+   //   strsize m_iMaxSize=sizeof(m_szAlloca);
+   //   bool m_bOwn = false;
 
 
-      ~range_sz()
-      {
-         if(m_szMerge != nullptr && m_szMerge != m_szAlloca && m_bOwn)
-         {
-            memory_free(m_szMerge);
-         }
-      }
+   //   ~range_sz()
+   //   {
+   //      if(m_szMerge != nullptr && m_szMerge != m_szAlloca && m_bOwn)
+   //      {
+   //         memory_free(m_szMerge);
+   //      }
+   //   }
 
-      void append(strsize start,strsize end,char * pszTopic)
-      {
-         stack[m_pos].s = start;
-         stack[m_pos].e = end;
-         m_pos++; if(m_pos >= 8)
-         {
-            merge(pszTopic);
-         }
-      }
+   //   void append(strsize start,strsize end, ::range < const ::ansi_character * > range)
+   //   {
+   //      stack[m_pos].s = start;
+   //      stack[m_pos].e = end;
+   //      m_pos++; if(m_pos >= 8)
+   //      {
+   //         merge(range);
+   //      }
+   //   }
 
-      void merge(char * pszTopic)
-      {
 
-         if(m_pos <= 0)
-            return;
+   //   void merge(::range < const ::ansi_character * > range)
+   //   {
 
-         strsize oldlen = m_iSize;
+   //      if(m_pos <= 0)
+   //         return;
 
-         strsize newlen;
+   //      strsize oldlen = m_iSize;
 
-         if(oldlen == 0 && m_pos == 1)
-         {
+   //      strsize newlen;
 
-            newlen = stack[0].e - stack[0].s;
+   //      if(oldlen == 0 && m_pos == 1)
+   //      {
 
-            m_szMerge = &pszTopic[stack[0].s];
+   //         newlen = stack[0].e - stack[0].s;
 
-         }
-         else
-         {
+   //         m_szMerge = &range.begin()[stack[0].s];
 
-            newlen = m_iSize + calc_merge_len();
+   //      }
+   //      else
+   //      {
 
-            if(oldlen == newlen)
-            {
+   //         newlen = m_iSize + calc_merge_len();
 
-               m_pos = 0;
+   //         if(oldlen == newlen)
+   //         {
 
-               return;
+   //            m_pos = 0;
 
-            }
+   //            return;
 
-            if(newlen >= m_iMaxSize) // extra 1 byte
-            {
-               m_iMaxSize = newlen + 1024; // extra 1 byte plus 1023
-               if (comparison::ge(m_iMaxSize, sizeof(m_szAlloca)))
-               {
-                  if(m_szMerge == m_szAlloca || !m_bOwn)
-                  {
-                     m_szMerge = (char *)::memory_allocate(m_iMaxSize);
-                     ::memcpy_dup(m_szMerge,m_szAlloca,oldlen);
-                  }
-                  else
-                  {
-                     m_szMerge = (char *)::memory_reallocate(m_szMerge,m_iMaxSize);
-                  }
-                  m_bOwn = true;
-               }
-            }
+   //         }
 
-            strsize pos = 0;
-            strsize len;
-            for(index i = 0; i < m_pos; i++)
-            {
-               len = stack[i].e - stack[i].s;
-               ::memcpy_dup(&m_szMerge[oldlen + pos],&pszTopic[stack[i].s],len);
-               pos+=len;
-            }
+   //         if(newlen >= m_iMaxSize) // extra 1 byte
+   //         {
+   //            m_iMaxSize = newlen + 1024; // extra 1 byte plus 1023
+   //            if (comparison::ge(m_iMaxSize, sizeof(m_szAlloca)))
+   //            {
+   //               if(m_szMerge == m_szAlloca || !m_bOwn)
+   //               {
+   //                  m_szMerge = (char *)::memory_allocate(m_iMaxSize);
+   //                  ::memcpy_dup(m_szMerge,m_szAlloca,oldlen);
+   //               }
+   //               else
+   //               {
+   //                  m_szMerge = (char *)::memory_reallocate(m_szMerge,m_iMaxSize);
+   //               }
+   //               m_bOwn = true;
+   //            }
+   //         }
 
-         }
+   //         strsize pos = 0;
+   //         strsize len;
+   //         for(index i = 0; i < m_pos; i++)
+   //         {
+   //            len = stack[i].e - stack[i].s;
+   //            ::memcpy_dup(&m_szMerge[oldlen + pos],&pszTopic[stack[i].s],len);
+   //            pos+=len;
+   //         }
 
-         m_iSize = newlen;
+   //      }
 
-         //m_szMerge[m_iSize] = '\0'; // for optmization purposes, m_szMerge is not forced to be 0 finished, so CHECK m_iSize!!
+   //      m_iSize = newlen;
 
-         m_pos = 0;
+   //      //m_szMerge[m_iSize] = '\0'; // for optmization purposes, m_szMerge is not forced to be 0 finished, so CHECK m_iSize!!
 
-      }
+   //      m_pos = 0;
 
-      strsize calc_merge_len()
-      {
-         if(m_pos <= 0)
-            return 0;
-         if(m_pos == 1)
-            return stack[0].e - stack[0].s;
-         strsize len = 0;
-         for(index i = 0; i < m_pos; i++)
-         {
-            len += stack[i].e - stack[i].s;
-         }
-         return len;
-      }
+   //   }
 
-      //char * get_string(char string & strTopic)
-      //{
-      //   merge(strTopic);
-      //   if(m_iSize == 0)
-      //      return nullptr;
-      //   return m_szMerge;
-      //}
-      void clear()
-      {
-         m_iSize = 0;
-         m_pos = 0;
-      }
-   };
+   //   strsize calc_merge_len()
+   //   {
+   //      if(m_pos <= 0)
+   //         return 0;
+   //      if(m_pos == 1)
+   //         return stack[0].e - stack[0].s;
+   //      strsize len = 0;
+   //      for(index i = 0; i < m_pos; i++)
+   //      {
+   //         len += stack[i].e - stack[i].s;
+   //      }
+   //      return len;
+   //   }
+
+   //   //char * get_string(char string & strTopic)
+   //   //{
+   //   //   merge(strTopic);
+   //   //   if(m_iSize == 0)
+   //   //      return nullptr;
+   //   //   return m_szMerge;
+   //   //}
+   //   void clear()
+   //   {
+   //      m_iSize = 0;
+   //      m_pos = 0;
+   //   }
+   //};
 
 
    bool table::load_uistr_file(const ::atom& pszLang, const ::atom& pszStyle, ::file::file *  pfile)
    {
 
-      memory mem;
-
-      pfile->as_memory(mem);
-
-      strsize len;
-
-      char * pszFile = mem.get_psz(len);
-
-      ::parse parse(pszFile, len);
-
-      string table;
-
-      //i32 i = 0;
-
-      strsize start;
-
-      strsize end;
-
-      char q;
-
-//      ::table::utf8_char c;
-
-      bool bFinal;
-
-      //bool bEof = false;
-
-      const char * s;
-
-      char * wr;
-
-      const char * rd;
-
-      strsize l;
-
-      range_sz rstr;
-
-      const char * pszEnd;
-
-      string strRoot;
-
-      string strBody;
-
-      while(parse.has_char())
-      {
-
-         rstr.clear();
-
-         bFinal = false;
-
-         while(!bFinal)
-         {
-
-            parse._get_expandable_line(start,end,bFinal);
-
-            rstr.append(start,end,pszFile);
-
-         }
-
-         rstr.merge(pszFile);
-
-         char * psz = rstr.m_szMerge;
-
-         pszEnd = psz + rstr.m_iSize;
-
-         while(unicode_is_whitespace(psz))
-         {
-            
-            psz += utf8_unicode_length(*psz);
-
-            if (psz >= pszEnd)
-            {
-
-               goto cont;
-
-            }
-
-         }
-
-         // going to consume a quoted value
-
-         q = *psz;
-
-         if(q != '\'' && q != '\"')
-         {
-            goto cont;
-         }
-
-         psz++;
-         s = psz;
-
-         while(*psz != q)
-         {
-            
-            psz += utf8_unicode_length(*psz);
-
-            if (psz >= pszEnd)
-            {
-
-               goto cont;
-
-            }
-         }
-         strRoot.assign(s, psz - s);
-         psz++;
-
-         while(unicode_is_whitespace(psz))
-         {
-            
-            psz += utf8_unicode_length(*psz);
-
-            if (psz >= pszEnd)
-            {
-
-               goto end;
-
-            }
-
-         }
-
-         if(*psz != '=')
-            continue;
-
-         psz++;
-
-         while(unicode_is_whitespace(psz))
-         {
-            
-            psz += utf8_unicode_length(*psz);
-
-            if (psz >= pszEnd)
-            {
-            
-               goto end;
-
-            }
-
-         }
-
-         // going to consume another quoted value
-
-         q = *psz;
-
-         if(q != '\'' && q != '\"')
-         {
-            goto cont;
-         }
-
-         psz++;
-         s = psz;
-         wr = psz;
-         rd = psz;
-         while(*rd != q)
-         {
-            if(*rd == '\\')
-            {
-               if(*(rd + 1) == 'r')
-               {
-                  *wr = '\r';
-                  wr++;
-                  rd+=2;
-                  goto cont2;
-               }
-               else if(*(rd + 1) == 'n')
-               {
-                  *wr = '\n';
-                  wr++;
-                  rd+=2;
-                  goto cont2;
-               }
-               else
-               {
-                  *wr = '\\';
-                  wr++;
-                  rd++;
-                  goto cont2;
-               }
-            }
-            
-            l = utf8_unicode_length(*psz);
-
-            if(wr != rd)
-            {
-               while(l > 0)
-               {
-                  *wr=*rd;
-                  wr++;
-                  rd++;
-                  l--;
-               }
-            }
-            else
-            {
-               wr+=l;
-               rd+=l;
-            }
-cont2:
-            if(rd >= pszEnd)
-               goto cont;
-         }
-         strBody.assign(s,wr - s);
-         //psz++;
-
-
-
-         //body(strBody)
-         //strBody.replace("\\r","\r");
-
-         //strBody.replace("\\n","\n"); already done
-
-         set(strRoot, pszLang, pszStyle, strBody);
-
-cont:;
-      }
-end:
+      throw ::exception(todo);
+
+//      memory mem;
+//
+//      pfile->as_memory(mem);
+//
+//      strsize len;
+//
+//      auto strFile = mem.get_string_buffer<::ansi_character>(len);
+//
+//      ::tokenizer parse(strFile);
+//
+//      string table;
+//
+//      //i32 i = 0;
+//
+//      strsize start;
+//
+//      strsize end;
+//
+//      char q;
+//
+////      ::table::utf8_char c;
+//
+//      bool bFinal;
+//
+//      //bool bEof = false;
+//
+//      const char * s;
+//
+//      char * wr;
+//
+//      const char * rd;
+//
+//      strsize l;
+//
+//      string str;
+//
+//      const char * pszEnd;
+//
+//      string strRoot;
+//
+//      string strBody;
+//
+//      string strToken;
+//
+//      while(parse.has_char())
+//      {
+//
+//         str.Empty();
+//
+//         bFinal = false;
+//
+//         while(!bFinal)
+//         {
+//
+//            parse.get_line(strToken);
+//
+//            rstr.append(start, end, strFile);
+//
+//         }
+//
+//         rstr.merge(strFile);
+//
+//         char * psz = rstr.m_szMerge;
+//
+//         pszEnd = psz + rstr.m_iSize;
+//
+//         while(unicode_is_whitespace(psz))
+//         {
+//            
+//            psz += utf8_unicode_length(*psz);
+//
+//            if (psz >= pszEnd)
+//            {
+//
+//               goto cont;
+//
+//            }
+//
+//         }
+//
+//         // going to consume a quoted value
+//
+//         q = *psz;
+//
+//         if(q != '\'' && q != '\"')
+//         {
+//            goto cont;
+//         }
+//
+//         psz++;
+//         s = psz;
+//
+//         while(*psz != q)
+//         {
+//            
+//            psz += utf8_unicode_length(*psz);
+//
+//            if (psz >= pszEnd)
+//            {
+//
+//               goto cont;
+//
+//            }
+//         }
+//         strRoot.assign(s, psz - s);
+//         psz++;
+//
+//         while(unicode_is_whitespace(psz))
+//         {
+//            
+//            psz += utf8_unicode_length(*psz);
+//
+//            if (psz >= pszEnd)
+//            {
+//
+//               goto end;
+//
+//            }
+//
+//         }
+//
+//         if(*psz != '=')
+//            continue;
+//
+//         psz++;
+//
+//         while(unicode_is_whitespace(psz))
+//         {
+//            
+//            psz += utf8_unicode_length(*psz);
+//
+//            if (psz >= pszEnd)
+//            {
+//            
+//               goto end;
+//
+//            }
+//
+//         }
+//
+//         // going to consume another quoted value
+//
+//         q = *psz;
+//
+//         if(q != '\'' && q != '\"')
+//         {
+//            goto cont;
+//         }
+//
+//         psz++;
+//         s = psz;
+//         wr = psz;
+//         rd = psz;
+//         while(*rd != q)
+//         {
+//            if(*rd == '\\')
+//            {
+//               if(*(rd + 1) == 'r')
+//               {
+//                  *wr = '\r';
+//                  wr++;
+//                  rd+=2;
+//                  goto cont2;
+//               }
+//               else if(*(rd + 1) == 'n')
+//               {
+//                  *wr = '\n';
+//                  wr++;
+//                  rd+=2;
+//                  goto cont2;
+//               }
+//               else
+//               {
+//                  *wr = '\\';
+//                  wr++;
+//                  rd++;
+//                  goto cont2;
+//               }
+//            }
+//            
+//            l = utf8_unicode_length(*psz);
+//
+//            if(wr != rd)
+//            {
+//               while(l > 0)
+//               {
+//                  *wr=*rd;
+//                  wr++;
+//                  rd++;
+//                  l--;
+//               }
+//            }
+//            else
+//            {
+//               wr+=l;
+//               rd+=l;
+//            }
+//cont2:
+//            if(rd >= pszEnd)
+//               goto cont;
+//         }
+//         strBody.assign(s,wr - s);
+//         //psz++;
+//
+//
+//
+//         //body(strBody)
+//         //strBody.replace("\\r","\r");
+//
+//         //strBody.replace("\\n","\n"); already done
+//
+//         set(strRoot, pszLang, pszStyle, strBody);
+//
+//cont:;
+//      }
+//end:
 
       return true;
    }
@@ -875,7 +880,7 @@ end:
          {
 
             table = (*pcontext->m_pschema)[atom];
-            if(!table.compare_ci(psz))
+            if(table.case_insensitive_equals(psz))
                return true;
 
          }
@@ -883,7 +888,7 @@ end:
          if(pcontext->m_pschemaLocale != nullptr)
          {
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(!table.compare_ci(psz))
+            if(table.case_insensitive_equals(psz))
                return true;
          }
 
@@ -891,7 +896,7 @@ end:
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
-            if(!table.compare_ci(psz))
+            if(table.case_insensitive_equals(psz))
                return true;
 
          }
@@ -902,20 +907,20 @@ end:
       {
 
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-         if(!table.compare_ci(psz))
+         if(table.case_insensitive_equals(psz))
             return true;
 
       }
 
       table = (*m_pschemaEn)[atom]; // lang=en style=en
-      if(!table.compare_ci(psz))
+      if(table.case_insensitive_equals(psz))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-         if(!table.compare_ci(psz))
+         if(table.case_insensitive_equals(psz))
             return true;
 
       }
@@ -1013,7 +1018,7 @@ end:
          {
 
             table = (*pcontext->m_pschema)[atom];
-            if(table.has_char() && strTopic.begins_eat_ci(table))
+            if(table.has_char() && strTopic.case_insensitive_begins_eat(table))
                return true;
 
          }
@@ -1021,7 +1026,7 @@ end:
          if(pcontext->m_pschemaLocale != nullptr)
          {
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(table.has_char() && strTopic.begins_eat_ci(table))
+            if(table.has_char() && strTopic.case_insensitive_begins_eat(table))
                return true;
          }
 
@@ -1029,7 +1034,7 @@ end:
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
-            if(table.has_char() && strTopic.begins_eat_ci(table))
+            if(table.has_char() && strTopic.case_insensitive_begins_eat(table))
                return true;
 
          }
@@ -1040,20 +1045,20 @@ end:
       {
 
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-         if(table.has_char() && strTopic.begins_eat_ci(table))
+         if(table.has_char() && strTopic.case_insensitive_begins_eat(table))
             return true;
 
       }
 
       table = (*m_pschemaEn)[atom]; // lang=en style=en
-      if(table.has_char() && strTopic.begins_eat_ci(table))
+      if(table.has_char() && strTopic.case_insensitive_begins_eat(table))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-         if(table.has_char() && strTopic.begins_eat_ci(table))
+         if(table.has_char() && strTopic.case_insensitive_begins_eat(table))
             return true;
 
       }

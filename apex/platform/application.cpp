@@ -772,19 +772,19 @@ namespace apex
 
    //   //   }*/
 
-   //   //   if (str.begins_eat_ci(m_pinterprocesscommunication->m_prx->m_strBaseChannel))
+   //   //   if (str.case_insensitive_begins_eat(m_pinterprocesscommunication->m_prx->m_strBaseChannel))
    //   //   {
 
-   //   //      if (str.begins_eat_ci(":///"))
+   //   //      if (str.case_insensitive_begins_eat(":///"))
    //   //      {
 
-   //   //         if (str.begins_eat_ci("send?message="))
+   //   //         if (str.case_insensitive_begins_eat("send?message="))
    //   //         {
 
    //   //            m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, ::url::decode(str));
 
    //   //         }
-   //   //         else if (str.begins_eat_ci("send?messagebin="))
+   //   //         else if (str.case_insensitive_begins_eat("send?messagebin="))
    //   //         {
 
    //   //            strsize iFind = str.find(',');
@@ -6574,7 +6574,7 @@ namespace apex
 
          string strDir = strFile;
 
-         strDir.ends_eat_ci(".zip");
+         strDir.case_insensitive_ends_eat(".zip");
 
          //try
          //{

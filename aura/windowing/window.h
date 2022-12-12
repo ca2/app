@@ -326,9 +326,9 @@ namespace windowing
 
       virtual void on_size(int w, int h);
 
-      virtual void on_text(const ansichar * pansisz, strsize length);
-      virtual void on_text(const wd16char * pwd16sz, strsize length);
-      virtual void on_text(const wd32char * pwd32sz, strsize length);
+      virtual void on_text(const ::ansi_character * pansisz, strsize length);
+      virtual void on_text(const ::wd16_character * pwd16sz, strsize length);
+      virtual void on_text(const ::wd32_character * pwd32sz, strsize length);
 
 
       inline bool operator == (const ::windowing::window & window) const

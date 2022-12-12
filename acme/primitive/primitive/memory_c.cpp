@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 ////#include "acme/exception/exception.h"
 
 
@@ -150,7 +150,7 @@ void * memmov_dup(void * dst, const void * src, memsize iSize)
 }
 
 
-i32 __memcmp(const void * p1, const void * p2, memsize iLen)
+i32 memory_compare(const void * p1, const void * p2, memsize iLen)
 {
 
    if (iLen <= 0)
@@ -194,10 +194,10 @@ i32 __memcmp(const void * p1, const void * p2, memsize iLen)
 }
 
 
-widechar * wmemcpy_dup(widechar * dst, const widechar * src, memsize iSize)
+::wide_character * wmemcpy_dup(::wide_character * dst, const ::wide_character * src, memsize iSize)
 {
 
-   ::memcpy_dup(dst, src, iSize * sizeof(widechar));
+   ::memcpy_dup(dst, src, iSize * sizeof(::wide_character));
 
    return dst;
 

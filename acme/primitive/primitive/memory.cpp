@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "memory.h"
 #define HEAP_NAMESPACE_PREFIX main
 #include "acme/memory/_____heap_namespace.h"
@@ -60,7 +60,7 @@ memory::memory(const u8 * pchSrc, strsize nLength, manager * pmanager)
 
    ASSERT(__is_valid_address(pchSrc, nLength, false));
 
-   ::memcpy_dup(m_memory.m_pbStorage, pchSrc, nLength);
+   ::memcpy_dup(m_memory.storage_begin(), pchSrc, nLength);
 
 }
 
@@ -105,7 +105,7 @@ memory::memory(const ::block & block)
 {
 
    m_memory.m_pprimitivememory = this;
-   assign(block.get_data(), block.get_size());
+   assign(block.data(), block.size());
 
 }
 
@@ -113,16 +113,16 @@ memory::memory(const ::block & block)
 memory::memory(void * pdata, memsize iCount)
 {
 
-   m_memory.m_pdata = (::byte*)pdata;
-   m_memory.m_iSize = iCount;
+   m_memory.m_begin = (::byte*)pdata;
+   m_memory.m_end = m_memory.m_begin + iCount;
 
    m_memory.m_bOwner = false;
    m_memory.m_bReadOnly = false;
-   m_memory.m_pbStorage = (::byte *) pdata;
+   m_memory.m_beginStorage = (::byte *) pdata;
 
    m_memory.m_iOffset = 0;
    m_memory.m_iMaxOffset = 0;
-   m_memory.m_cbStorage = iCount;
+   m_memory.m_sizeStorage = iCount;
    m_memory.m_dAllocationRateUp = 0.0;
    m_memory.m_dwAllocationAddUp = 0;
 
@@ -141,16 +141,16 @@ memory::memory(void * pdata, memsize iCount)
 memory::memory(const void* pdata, memsize iCount)
 {
 
-   m_memory.m_pdata = (::byte*)pdata;
-   m_memory.m_iSize = iCount;
+   m_memory.m_begin = (::byte*)pdata;
+   m_memory.m_end = m_memory.m_begin + iCount;
 
    m_memory.m_bOwner = false;
    m_memory.m_bReadOnly = true;
-   m_memory.m_pbStorage = (::byte*)pdata;
+   m_memory.m_beginStorage = (::byte*)pdata;
 
    m_memory.m_iOffset = 0;
    m_memory.m_iMaxOffset = 0;
-   m_memory.m_cbStorage = iCount;
+   m_memory.m_sizeStorage = iCount;
    m_memory.m_dAllocationRateUp = 0.0;
    m_memory.m_dwAllocationAddUp = 0;
 
@@ -200,10 +200,10 @@ memory::memory(const char * psz)
 {
 
    m_memory.m_pprimitivememory   = this;
-   m_memory.m_pbStorage          = (byte *) psz;
-   m_memory.m_pdata              = m_memory.m_pbStorage;
-   m_memory.m_cbStorage          = strlen(psz);
-   m_memory.m_iSize              = m_memory.m_cbStorage;
+   m_memory.m_beginStorage = (byte *) psz;
+   m_memory.m_begin              = m_memory.storage_begin();
+   m_memory.m_sizeStorage          = strlen(psz);
+   m_memory.m_end = m_memory.m_begin + m_memory.m_sizeStorage;
    m_bAligned                    = false;
 
 }
@@ -239,16 +239,16 @@ memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, ::u32 n
 memory::memory(memory_container * pcontainer, const void * pdata, memsize size)
 {
 
-   m_memory.m_pdata = (::byte*) pdata;
-   m_memory.m_iSize = size;
+   m_memory.m_begin = (::byte*) pdata;
+   m_memory.m_end = m_memory.m_begin + size;
 
    m_memory.m_bOwner = false;
    m_memory.m_bReadOnly = true;
-   m_memory.m_pbStorage = (::byte*)pdata;
+   m_memory.m_beginStorage = (::byte*)pdata;
 
    m_memory.m_iOffset = 0;
    m_memory.m_iMaxOffset = 0;
-   m_memory.m_cbStorage = size;
+   m_memory.m_sizeStorage = size;
    m_memory.m_dAllocationRateUp = 0.0;
    m_memory.m_dwAllocationAddUp = 0;
 
@@ -292,12 +292,12 @@ memory::memory(memory_container * pcontainer, const void * pdata, memsize size)
 memory::~memory()
 {
 
-   if(m_memory.m_pbStorage != nullptr)
+   if(m_memory.storage_begin() != nullptr)
    {
 
-      impl_free(m_memory.m_pbStorage);
+      impl_free(m_memory.storage_begin());
 
-      m_memory.m_pbStorage = nullptr;
+      m_memory.m_beginStorage = nullptr;
 
    }
 
@@ -463,17 +463,17 @@ void memory::to_sz(char * sz, strsize len) const
 
    }
 
-   if (::is_null(get_data()))
+   if (::is_null(data()))
    {
 
-      throw ::exception(error_null_pointer, "memory::to_sz get_data() is null");
+      throw ::exception(error_null_pointer, "memory::to_sz data() is null");
 
    }
 
 
    len = minimum(len - 1, size() - 1);
 
-   strncpy(sz, (const char *) get_data(), len);
+   strncpy(sz, (const char *) data(), len);
 
    sz[len] = '\0';
 

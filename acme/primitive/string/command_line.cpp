@@ -1,4 +1,4 @@
-// Created by camilo on 2022-04-24 05:22 <3ThomasBorregaardSørensen!! (Thomas likes number 5!!)
+﻿// Created by camilo on 2022-04-24 05:22 <3ThomasBorregaardSørensen!! (Thomas likes number 5!!)
 #include "framework.h"
 #include "command_line.h"
 #include "string.h"
@@ -369,21 +369,21 @@ CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const char
 
    }
 
-   if (strValue.compare_ci("true") == 0)
+   if (strValue.case_insensitive_order("true") == 0)
    {
 
       return true;
 
    }
 
-   if (strValue.compare_ci("yes") == 0)
+   if (strValue.case_insensitive_order("yes") == 0)
    {
 
       return true;
 
    }
 
-   if (strValue.compare_ci("y") == 0)
+   if (strValue.case_insensitive_order("y") == 0)
    {
 
       return true;
@@ -411,17 +411,17 @@ bool get_command_line_parameter(string & wstrValue,const char * psz,const char *
 
    auto iFind = wstr.find(wstrParam + "=");
 
-   if(__not_found(iFind))
+   if(not_found(iFind))
    {
 
       iFind = wstr.find(wstrParam + " ");
 
-      if (__not_found(iFind))
+      if (not_found(iFind))
       {
 
          iFind = wstr.find(wstrParam);
 
-         if (__not_found(iFind))
+         if (not_found(iFind))
          {
 
             return false;
@@ -456,7 +456,7 @@ bool get_command_line_parameter(string & wstrValue,const char * psz,const char *
 
    auto iEnd = wstr.find(" ",iFind);
 
-   if (__not_found(iEnd))
+   if (not_found(iEnd))
    {
 
       wstrValue = wstr.substr(iFind + wstrParam.length() + 1);
@@ -1042,7 +1042,7 @@ string merge_colon_args(const array < string_array >& str2a)
          else if (i > iFindColon)
          {
 
-            if (str.begins_eat_ci("app="))
+            if (str.case_insensitive_begins_eat("app="))
             {
 
                if (straAfterColon.find_first_begins("app=") >= 0) // fixed case when added below :D..O

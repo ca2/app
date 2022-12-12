@@ -22,10 +22,10 @@ namespace write_text
       double         m_dOverhang;
       double         m_dDigitizedAspectX;
       double         m_dDigitizedAspectY;
-      widechar       m_wchFirstChar;
-      widechar       m_wchLastChar;
-      widechar       m_wchDefaultChar;
-      widechar       m_wchBreakChar;
+      ::wide_character       m_wchFirstChar;
+      ::wide_character       m_wchLastChar;
+      ::wide_character       m_wchDefaultChar;
+      ::wide_character       m_wchBreakChar;
       bool           m_bItalic;
       bool           m_bUnderlined;
       bool           m_bStruckOut;

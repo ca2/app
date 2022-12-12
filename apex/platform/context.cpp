@@ -345,43 +345,43 @@ namespace apex
 
       ::file::path path = defer_process_path(strParam);
 
-      if (dir()->image().has_char() && path.compare_ci(dir()->image()) == 0)
+      if (dir()->image().has_char() && path.case_insensitive_order(dir()->image()) == 0)
       {
 
          return "Image";
 
       }
-      else if (dir()->music().has_char() && path.compare_ci(dir()->music()) == 0)
+      else if (dir()->music().has_char() && path.case_insensitive_order(dir()->music()) == 0)
       {
 
          return "Music";
 
       }
-      else if (dir()->video().has_char() && path.compare_ci(dir()->video()) == 0)
+      else if (dir()->video().has_char() && path.case_insensitive_order(dir()->video()) == 0)
       {
 
          return "Video";
 
       }
-      else if (dir()->document().has_char() && path.compare_ci(dir()->document()) == 0)
+      else if (dir()->document().has_char() && path.case_insensitive_order(dir()->document()) == 0)
       {
 
          return "Document";
 
       }
-      else if (dir()->download().has_char() && path.compare_ci(dir()->download()) == 0)
+      else if (dir()->download().has_char() && path.case_insensitive_order(dir()->download()) == 0)
       {
 
          return "Download";
 
       }
-      else if (dir()->desktop().has_char() && path.compare_ci(dir()->desktop()) == 0)
+      else if (dir()->desktop().has_char() && path.case_insensitive_order(dir()->desktop()) == 0)
       {
 
          return "Desktop";
 
       }
-      else if (dir()->bookmark().has_char() && path.compare_ci(dir()->bookmark()) == 0)
+      else if (dir()->bookmark().has_char() && path.case_insensitive_order(dir()->bookmark()) == 0)
       {
 
          return "Bookmark";
@@ -510,37 +510,37 @@ namespace apex
    bool context::defer_process_known_folder_path(::file::path & path)
    {
 
-      if (path.begins_eat_ci("music://"))
+      if (path.case_insensitive_begins_eat("music://"))
       {
 
          path = dir()->music() / path;
 
       }
-      else if (path.begins_eat_ci("video://"))
+      else if (path.case_insensitive_begins_eat("video://"))
       {
 
          path = dir()->video() / path;
 
       }
-      else if (path.begins_eat_ci("image://"))
+      else if (path.case_insensitive_begins_eat("image://"))
       {
 
          path = dir()->image() / path;
 
       }
-      else if (path.begins_eat_ci("document://"))
+      else if (path.case_insensitive_begins_eat("document://"))
       {
 
          path = dir()->document() / path;
 
       }
-      else if (path.begins_eat_ci("dropbox://"))
+      else if (path.case_insensitive_begins_eat("dropbox://"))
       {
 
          path = dir()->dropbox() / path;
 
       }
-      else if (path.begins_eat_ci("dropbox-app://"))
+      else if (path.case_insensitive_begins_eat("dropbox-app://"))
       {
 
          auto papplication = acmeapplication();
@@ -555,37 +555,37 @@ namespace apex
          path = dir()->dropbox_app() / path;
 
       }
-      else if (path.begins_eat_ci("onedrive://"))
+      else if (path.case_insensitive_begins_eat("onedrive://"))
       {
 
          path = dir()->onedrive() / path;
 
       }
-      else if (path.begins_eat_ci("appconfig://"))
+      else if (path.case_insensitive_begins_eat("appconfig://"))
       {
 
          path = get_app()->m_papexapplication->appconfig_folder() / path;
 
       }
-      else if (path.begins_eat_ci("download://"))
+      else if (path.case_insensitive_begins_eat("download://"))
       {
 
          path = dir()->download() / path;
 
       }
-      else if (path.begins_eat_ci("usersystem://"))
+      else if (path.case_insensitive_begins_eat("usersystem://"))
       {
 
          path = acmedirectory()->system() / path;
 
       }
-      else if (path.begins_eat_ci("desktop://"))
+      else if (path.case_insensitive_begins_eat("desktop://"))
       {
 
          path = dir()->desktop() / path;
 
       }
-      else if (path.begins_eat_ci("bookmark://"))
+      else if (path.case_insensitive_begins_eat("bookmark://"))
       {
 
          path = dir()->bookmark() / path;
@@ -628,7 +628,7 @@ namespace apex
 
       }
 
-      if (path.begins_ci("appmatter://"))
+      if (path.case_insensitive_begins("appmatter://"))
       {
 
          //path = dir()->appmatter(path, false);
@@ -636,7 +636,7 @@ namespace apex
 
       }
 
-      if (path.begins_eat_ci("icon://"))
+      if (path.case_insensitive_begins_eat("icon://"))
       {
 
          path += ".ico";
@@ -656,7 +656,7 @@ namespace apex
    ::file::path context::get_matter_path(string strMatter)
    {
 
-      if (strMatter.begins_eat_ci("appmatter://"))
+      if (strMatter.case_insensitive_begins_eat("appmatter://"))
       {
 
          return dir()->install() / strMatter;
@@ -691,7 +691,7 @@ namespace apex
    ::file::path context::get_matter_cache_path(::file::path path)
    {
 
-      if (path.begins_eat_ci("appmatter://"))
+      if (path.case_insensitive_begins_eat("appmatter://"))
       {
 
          auto psystem = acmesystem()->m_papexsystem;
@@ -774,7 +774,7 @@ namespace apex
 
          }
 
-         path.begins_eat_ci("appmatter://");
+         path.case_insensitive_begins_eat("appmatter://");
 
          path = "https://ca2.software/matter" / path;
 
@@ -936,7 +936,7 @@ namespace apex
    //
    //   string str(psz);
    //
-   //   return str.ends_ci(".lnk") || str.contains_ci(".lnk/") || str.contains_ci(".lnk\\");
+   //   return str.case_insensitive_ends(".lnk") || str.contains_ci(".lnk/") || str.contains_ci(".lnk\\");
    //
    //}
 

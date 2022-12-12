@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/primitive/primitive/atom.h"
 //#include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/string/str.h"
@@ -12,8 +12,8 @@ void _debug_debug_string_string()
 
    ::atom atom("a-ha");
 
-   auto bEndsInHa1 = string_ends(atom, "ha");
-   auto bEndsInHa2 = string_ends_ci(atom, "Ha");
+   /*auto bEndsInHa1 = string_ends<const ::ansi_character>(atom, "ha");
+   auto bEndsInHa2 = string_ends_ci<const ::ansi_character>(atom, "Ha");*/
 
 
 }

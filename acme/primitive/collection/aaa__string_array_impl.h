@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //#include "acme/primitive/primitive/property_set.h"
@@ -233,7 +233,7 @@
 //            {
 //               if(iMPos == iUPos)
 //                  break;
-//               if(this->element_at(ia[iMPos]).compare_ci(this->element_at(ia[iUPos])) <= 0)
+//               if(this->element_at(ia[iMPos]).case_insensitive_order(this->element_at(ia[iUPos])) <= 0)
 //                  iUPos--;
 //               else
 //               {
@@ -251,7 +251,7 @@
 //               if(iMPos == iLPos)
 //                  break;
 //
-//               if(this->element_at(ia[iLPos]).compare_ci(this->element_at(ia[iMPos])) <= 0)
+//               if(this->element_at(ia[iLPos]).case_insensitive_order(this->element_at(ia[iMPos])) <= 0)
 //                  iLPos++;
 //               else
 //               {

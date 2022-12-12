@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "get_memory.h"
 #include "memory_base.h"
 #include "acme/primitive/string/base64.h"
@@ -25,7 +25,7 @@ get_memory::get_memory(const block & block) :
 
 // VOID * NOT const!!
 get_memory::get_memory(/* NOTTTT const!!!!! */ void * p, memsize s) : 
-   m_block(p, s), m_pmemory(nullptr) 
+   m_block((::byte *)p, ((::byte *)p) + s), m_pmemory(nullptr)
 { 
 
 }
@@ -46,21 +46,21 @@ get_memory::~get_memory()
       return true;
 
    }
-   else if (s < m_block.get_size())
+   else if (s < m_block.size())
    {
 
       return false;
 
    }
 
-   if (::is_null(m_block.get_data()))
+   if (::is_null(m_block.data()))
    {
 
       return false;
 
    }
 
-   ::memcpy_dup(m_block.get_data(), pdata, m_block.get_size());
+   ::memcpy_dup(m_block.data(), pdata, m_block.size());
 
    return true;
 
@@ -75,24 +75,24 @@ void * get_memory::get(memsize s)
 
       m_pmemory->set_size(s);
 
-      return m_pmemory->get_data();
+      return m_pmemory->data();
 
    }
-   else if (s < m_block.get_size())
+   else if (s < m_block.size())
    {
 
       return NULL;
 
    }
 
-   if (::is_null(m_block.get_data()))
+   if (::is_null(m_block.data()))
    {
 
       return NULL;
 
    }
 
-   return m_block.get_data();
+   return m_block.data();
 
 }
 
@@ -133,7 +133,7 @@ inline bool get_memory::get(const void * pdata, memsize s)
       return true;
 
    }
-   else if (s < m_block.get_size())
+   else if (s < m_block.size())
    {
 
       return false;
@@ -147,46 +147,46 @@ inline bool get_memory::get(const void * pdata, memsize s)
 
    }
 
-   ::memcpy_dup(m_block.get_data(), pdata, minimum(s, m_block.get_size()));
+   ::memcpy_dup(m_block.data(), pdata, minimum(s, m_block.size()));
 
    return true;
 
 }
 bool get_memory::get(const memory_base & memory)
 {
-   return get(memory.get_data(), memory.get_size());
+   return get(memory.data(), memory.size());
 }
 bool get_memory::get(const block & block)
 {
-   return get(block.get_data(), (memsize)block.get_size());
+   return get(block.data(), (memsize)block.size());
 }
 
-u8 * get_memory::get_data() const
+u8 * get_memory::data() const
 {
    if (::is_set(m_pmemory))
    {
-      return m_pmemory->get_data();
+      return m_pmemory->data();
    }
    else
    {
-      return (u8 *)m_block.get_data();
+      return (u8 *)m_block.data();
    }
 }
 
 
-memsize get_memory::get_size() const
+memsize get_memory::size() const
 {
 
    if (::is_set(m_pmemory))
    {
 
-      return m_pmemory->get_size();
+      return m_pmemory->size();
 
    }
    else
    {
 
-      return m_block.get_size();
+      return m_block.size();
 
    }
 

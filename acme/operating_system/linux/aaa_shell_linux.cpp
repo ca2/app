@@ -287,7 +287,7 @@ namespace linux
       //         strPath = szPath;
       //         if (strPath == "*")
       //         {
-      //            strsize iFind = strFilePath.reverse_find('.');
+      //            strsize iFind = strFilePath.rear_find('.');
 
       //            imagekey.m_iIcon = 0x80000000;
       //            imagekey.m_pszExtension = (char*)&strFilePath[iFind];
@@ -518,7 +518,7 @@ namespace linux
       }
 
 
-      shell::e_folder shell::get_folder_type(::particle * pparticle, const widechar * lpcszPath)
+      shell::e_folder shell::get_folder_type(::particle * pparticle, const ::wide_character * lpcszPath)
       {
 
          string strPath;

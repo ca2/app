@@ -20,7 +20,7 @@ static inline void FreeForBSTR(void *pv)
 }
 
 
-static ::u32 MyStringLen(const wd16char *s)
+static ::u32 MyStringLen(const ::wd16_character *s)
 {
   ::u32 i;
   for (i = 0; s[i] != '\0'; i++);

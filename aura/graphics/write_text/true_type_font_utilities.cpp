@@ -100,7 +100,7 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
       f->read(&tblDir, sizeof(TT_TABLE_DIRECTORY));
       strncpy(csTemp.get_string_buffer(5), tblDir.szTag, 4);
       csTemp.release_string_buffer(4);
-      if (csTemp.compare_ci("name") == 0)
+      if (csTemp.case_insensitive_order("name") == 0)
       {
          bFound = true;
          tblDir.uLength = SWAPLONG(tblDir.uLength);

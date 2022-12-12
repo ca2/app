@@ -9,8 +9,8 @@
 //
 //}
 //
-//inline void __string_exchange(text_stream & s, ansichar & ansich) { s.string_exchange(ansich); }
-//inline void __string_exchange(text_stream & s, widechar & widech) { s.string_exchange(widech); }
+//inline void __string_exchange(text_stream & s, ::ansi_character & ansich) { s.string_exchange(ansich); }
+//inline void __string_exchange(text_stream & s, ::wide_character & widech) { s.string_exchange(widech); }
 //inline void __string_exchange(text_stream & s, i8 & i) { s.number_exchange(i); }
 //inline void __string_exchange(text_stream & s, i16 & i) { s.number_exchange(i); }
 //inline void __string_exchange(text_stream & s, i32 & i) { s.number_exchange(i); }

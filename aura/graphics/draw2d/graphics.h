@@ -1204,12 +1204,12 @@ namespace draw2d
       //inline void fill_rect_dim(double x, double y, double cx, double cy); // { return fill_rectangle(rectdd_dim(x, y, cx, cy)); }
       //inline void fill_rect_dim(double x, double y, double cx, double cy, ::draw2d::brush * pbrush); // { return fill_rectangle(rectdd_dim(x, y, cx, cy), pbrush); }
 
-      //inline void polygon(point_i32_array & pointa) { return polygon(pointa.get_data(), pointa.get_count()); }
-      inline void polygon(point_f64_array & pointa) { return polygon(pointa.get_data(), pointa.get_count()); }
-      //inline void draw_polygon(point_i32_array & pointa) { return draw_polygon(pointa.get_data(), pointa.get_count()); }
-      inline void draw_polygon(point_f64_array & pointa) { return draw_polygon(pointa.get_data(), pointa.get_count()); }
-      //inline void fill_polygon(point_i32_array & pointa) { return fill_polygon(pointa.get_data(), pointa.get_count()); }
-      inline void fill_polygon(point_f64_array & pointa) { return fill_polygon(pointa.get_data(), pointa.get_count()); }
+      //inline void polygon(point_i32_array & pointa) { return polygon(pointa.data(), pointa.size()); }
+      inline void polygon(point_f64_array & pointa) { return polygon(pointa.data(), pointa.size()); }
+      //inline void draw_polygon(point_i32_array & pointa) { return draw_polygon(pointa.data(), pointa.size()); }
+      inline void draw_polygon(point_f64_array & pointa) { return draw_polygon(pointa.data(), pointa.size()); }
+      //inline void fill_polygon(point_i32_array & pointa) { return fill_polygon(pointa.data(), pointa.size()); }
+      inline void fill_polygon(point_f64_array & pointa) { return fill_polygon(pointa.data(), pointa.size()); }
 
       //inline void fill_solid_rect_dim(double x, double y, i32 cx, i32 cy, const ::color::color & color) { return fill_rectangle(rectangle_f64_dimension(x, y, cx, cy), color); }
       //inline void fill_solid_rect_dim(double x, double y, double cx, double cy, const ::color::color & color); // { return fill_rectangle(rectdd_dim(x, y, cx, cy), color); }

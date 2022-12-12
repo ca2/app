@@ -6,13 +6,20 @@ CLASS_DECL_ACME void * __memset(void * p, i32 i, memsize iSize);
 CLASS_DECL_ACME void * __memand(void * p, const void * point1, const void * point2, memsize iSize);
 CLASS_DECL_ACME void * memcpy_dup(void * dst, const void * src, memsize iSize);
 CLASS_DECL_ACME void * __memmov(void * dst, const void * src, memsize iSize);
-CLASS_DECL_ACME i32    __memcmp(const void * sz1, const void * sz2, memsize iSize);
-CLASS_DECL_ACME widechar * __wmemcpy(widechar * dst, const widechar * src, memsize iSize);
+CLASS_DECL_ACME ::wide_character * __wmemcpy(::wide_character * dst, const ::wide_character * src, memsize iSize);
 
 CLASS_DECL_ACME void * reverse_memory(void * p, memsize iSize);
 CLASS_DECL_ACME void * reverse_memcpy(void * p, const void * point1, memsize iSize);
 
 
+CLASS_DECL_ACME i32 memory_compare(const void* sz1, const void* sz2, memsize iSize);
+
+inline ::i32 _memory_compare(const void* p1, const void* p2, memsize size)
+{
+
+   return memcmp(p1, p2, size);
+
+}
 
 
 #ifdef __cplusplus

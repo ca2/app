@@ -65,12 +65,12 @@ namespace universal_windows
 
    internal:
 
-      virtual widestring get_input_text() = 0;
-      virtual bool set_input_text(const widestring & wstr) = 0;
+      virtual wide_string get_input_text() = 0;
+      virtual bool set_input_text(const wide_string & wstr) = 0;
 
       bool                                                     m_bTextCompositionActive;
-      //widestring                                               m_strText;
-      widestring                                               m_strNewText;
+      //wide_string                                               m_strText;
+      wide_string                                               m_strNewText;
       ::aura::system *                                         acmesystem();
 
       Agile < ::winrt::Windows::UI::Core::CoreWindowResizeManager >   m_resizemanager;

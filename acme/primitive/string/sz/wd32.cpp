@@ -6,12 +6,12 @@
 #include <wchar.h>
 
 
-CLASS_DECL_ACME::i64 string_to_signed(const wd32char * pwsz)
+CLASS_DECL_ACME::i64 string_to_signed(const ::wd32_character * pwsz)
 {
 
 #ifdef WINDOWS
 
-   wd16string wstr(pwsz);
+   wd16_string wstr(pwsz);
 
    return _wtoll(wstr);
 
@@ -24,12 +24,12 @@ CLASS_DECL_ACME::i64 string_to_signed(const wd32char * pwsz)
 }
 
 
-CLASS_DECL_ACME::u64 string_to_natural(const wd32char * pwsz)
+CLASS_DECL_ACME::u64 string_to_natural(const ::wd32_character * pwsz)
 {
 
 #ifdef WINDOWS
 
-   wd16string wstr(pwsz);
+   wd16_string wstr(pwsz);
 
    return _wcstoui64(wstr, nullptr, 10);
 
@@ -42,12 +42,12 @@ CLASS_DECL_ACME::u64 string_to_natural(const wd32char * pwsz)
 }
 
 
-CLASS_DECL_ACME ::f64 string_to_floating(const wd32char * pwsz)
+CLASS_DECL_ACME ::f64 string_to_floating(const ::wd32_character * pwsz)
 {
 
 #ifdef WINDOWS
 
-   wd16string wstr(pwsz);
+   wd16_string wstr(pwsz);
 
    return wcstod(wstr, nullptr);
 

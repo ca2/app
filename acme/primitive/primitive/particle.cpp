@@ -159,7 +159,7 @@ const char * particle::topic_text() const
 //
 //   auto strTypeName =  __type_name(this);
 //
-//   auto findLastColonColon = strTypeName.reverse_find("::");
+//   auto findLastColonColon = strTypeName.rear_find("::");
 //
 //   if(findLastColonColon < 0)
 //   {

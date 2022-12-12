@@ -8,11 +8,10 @@
 * Find the first occurrence of the byte string s in byte string l.
 */
 
-void * memmem(const void * l, size_t l_len, const void * s, size_t s_len)
+const void * memory_find(const void * l, memsize l_len, const void * s, memsize s_len)
 {
-   char * cur, * last;
-   const char * cl = (const char *)l;
-   const char * cs = (const char *)s;
+   const ::byte* cl = (const ::byte*)l;
+   const ::byte* cs = (const ::byte*)s;
 
    /* we need something to compare */
    if (l_len == 0 || s_len == 0)
@@ -26,22 +25,7 @@ void * memmem(const void * l, size_t l_len, const void * s, size_t s_len)
    if (s_len == 1)
       return memchr((void *)l, (int)*cs, l_len);
 
-   /* the last position where its possible to find "s" in "l" */
-   last = (char *)cl + l_len - s_len;
-
-   for (cur = (char *)cl; cur <= last; cur++)
-   {
-
-      if (cur[0] == cs[0] && __memcmp(cur, cs, s_len) == 0)
-      {
-
-         return cur;
-
-      }
-
-   }
-
-   return nullptr;
+   return _memory_find(l, l_len, s, s_len);
 
 }
 
@@ -84,6 +68,7 @@ void * reverse_memchr(const void * l, int ch, size_t l_len)
 
 void * reverse_memmem(const void * l, size_t l_len, const void * s, size_t s_len)
 {
+
    char * cur, * last;
    const char * cl = (const char *)l;
    const char * cs = (const char *)s;
@@ -106,7 +91,7 @@ void * reverse_memmem(const void * l, size_t l_len, const void * s, size_t s_len
    for (cur = (char *)last; cur >= cl; cur--)
    {
 
-      if (cur[0] == cs[0] && __memcmp(cur, cs, s_len) == 0)
+      if (cur[0] == cs[0] && _memory_compare(cur, cs, s_len) == 0)
       {
 
          return cur;

@@ -35,7 +35,7 @@ CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
 }
 
 
-void output_debug_string(const ansichar * psz)
+void output_debug_string(const ::ansi_character * psz)
 {
 
 #ifdef WINDOWS
@@ -46,7 +46,7 @@ void output_debug_string(const ansichar * psz)
 
    memory.set_size((len + 1) * sizeof(wchar_t));
 
-   auto pwsz = (wchar_t *)memory.get_data();
+   auto pwsz = (wchar_t *)memory.data();
 
    utf8_to_unichar(pwsz, psz, len);
 

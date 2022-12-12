@@ -36,11 +36,11 @@ class numeric_array :
 public:
 
 
-   explicit numeric_array(::particle * pparticle = nullptr) : comparable_raw_array < TYPE, TYPE, ::allocator::nodef < TYPE >, m_etypeContainer >(pparticle) {}
+   numeric_array(){}
 
 
-   numeric_array(std::initializer_list < TYPE >  l):
-      comparable_raw_array < TYPE, TYPE, ::allocator::nodef < TYPE >, m_etypeContainer >(l)
+   numeric_array(const std::initializer_list < TYPE > & initializer_list):
+      comparable_raw_array < TYPE, TYPE, ::allocator::nodef < TYPE >, m_etypeContainer >(initializer_list)
    {
 
    }
@@ -1361,6 +1361,8 @@ using float2a = array < float_array >;
 
 
 using double2a = array < double_array >;
+
+
 
 
 

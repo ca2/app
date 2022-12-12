@@ -15,8 +15,8 @@ using tiny_index_array = tiny_array <::index>;
 #define DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
 ::pointer<TYPE>& ITEM ## _at(::index i) { return CONTAINER[i]; } \
 const TYPE * ITEM ## _at(::index i) const { return CONTAINER[i]; } \
-::pointer<TYPE>* ITEM ## _data() { return CONTAINER.get_data(); } \
-::pointer<TYPE>const * ITEM ## _data() const { return CONTAINER.get_data(); } \
+::pointer<TYPE>* ITEM ## _data() { return CONTAINER.data(); } \
+::pointer<TYPE>const * ITEM ## _data() const { return CONTAINER.data(); } \
 TYPE * get_ ## ITEM(::index i) const { return CONTAINER.bounds(i) ? CONTAINER[i] : nullptr; } \
 ::count ITEM ## _count() const { return CONTAINER.get_count(); } \
 bool has_ ## ITEM() const { return CONTAINER.has_element(); } \
@@ -67,378 +67,463 @@ DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 // array is an array that call default constructors, copy constructs and destructors in elements
 template < class TYPE, class ARG_TYPE, class ALLOCATOR, ::enum_type m_etypeContainer >
 class array_base :
-   virtual public ::particle
+   virtual public ::particle,
+   public ::array_range < ::range < TYPE * > >
 {
 public:
 
+
+   using RANGE = ::array_range < ::range < TYPE * > >;
+
+   using CONST_RAW_RANGE = typename ::array_range < ::range < TYPE * > >::CONST_RAW_RANGE;
 
    using PRIMITIVE_CONTAINER_TAG = PRIMITIVE_CONTAINER_TAG_TYPE;
 
    using CONTAINER_ITEM_TYPE = TYPE;
    using TYPE_IS_PTR = TYPE;
 
+   using iterator = typename RANGE::iterator;
+   using const_iterator = typename RANGE::const_iterator;
 
-   TYPE * m_pData;    // the actual array of data
-   ::count   m_nSize;    // # of elements (upperBound - 1)
+
+   //TYPE * this->m_begin;    // the actual array of data
+   //::count   this->_size();    // # of elements (upperBound - 1)
    ::count   m_nMaxSize; // maximum allocated
    ::count   m_nGrowBy;  // grow amount
 
-   __declare_iterator_struct_ok(array_base, TYPE *, m_pelement, this->m_pelement >= this->m_pcontainer->m_pData && this->m_pelement < this->m_pcontainer->m_pData + this->m_pcontainer->m_nSize);
+   //__declare_iterator_struct_ok(array_base, TYPE *, m_pelement, this->m_pelement >= this->m_pcontainer->m_begin && this->m_pelement < this->m_pcontainer->end());
+
+   //using RANGE::RANGE;
 
    array_base();
-   array_base(TYPE * p, ::count c);
+   array_base(std::initializer_list < TYPE > initializer_list);
    array_base(const array_base & a);
    array_base(array_base && a) noexcept;
+   array_base(const TYPE * p, ::count c);
+   array_base(::range < const_iterator > constrange) : array_base(constrange.begin(), constrange.end()) {}
+   array_base(const_iterator begin, const_iterator end, bool bNullTerminated = false)
+   {
+      auto p = this->begin();
+      while (p != end) add(*p);
+      this->m_bNullTerminated = false;
+   }
    virtual ~array_base();
 
 
-   template < typename ITERATOR >
-   struct make_iterator : ITERATOR
+   void defer_destroy()
    {
 
-      using CONTAINER = typename ITERATOR::CONTAINER;
-
-
-      make_iterator()
-      {
-         this->m_pelementBeg = (TYPE *)nullptr;
-         this->m_pelementEnd = (TYPE *)nullptr;
-         this->m_pcontainer = (CONTAINER *)nullptr;
-         this->m_pelement = this->m_pelementBeg;
-      }
-
-      make_iterator(::index iStart, ::index iEnd, const CONTAINER * parray = nullptr)
-      {
-         this->m_pelementBeg = (TYPE *)(parray->m_pData + iStart);
-         this->m_pelementEnd = (TYPE *)(parray->m_pData + (iEnd < 0 ? parray->m_nSize + iEnd + 1 : iEnd));
-         this->m_pcontainer = (CONTAINER *)parray;
-         this->m_pelement = this->m_pelementBeg;
-      }
-
-      make_iterator(const CONTAINER * parray, const TYPE * pmatter = nullptr, const TYPE * pelementEnd = nullptr)
-      {
-         this->m_pelementBeg = (TYPE *)pmatter;
-         this->m_pelementEnd = (TYPE *)pelementEnd;
-         this->m_pcontainer = (CONTAINER *)parray;
-         this->m_pelement = this->m_pelementBeg;
-      }
-
-
-      make_iterator(const make_iterator & iterator)
-      {
-         this->m_pelementBeg = (TYPE *)iterator.m_pelementBeg;
-         this->m_pelementEnd = (TYPE *)iterator.m_pelementEnd;
-         this->m_pelement = iterator.m_pelement;
-         this->m_pcontainer = iterator.m_pcontainer;
-      }
-
-
-      make_iterator begin()
+      if (this->m_begin != nullptr)
       {
 
-         return make_iterator(this->m_pcontainer, this->m_pelementBeg, this->m_pelementEnd);
+         destroy();
 
       }
 
+   }
 
-      make_iterator end()
+
+   array_base & operator = (const array_base & array_base)
+   {
+
+      if (this != &array_base)
       {
 
-         return make_iterator(this->m_pcontainer, this->m_pelementEnd, this->m_pelementEnd);
-
-      }
-
-
-      make_iterator & operator ++ ()
-      {
-
-         this->m_pelement++;
-         return *this;
-
-      }
-
-
-      make_iterator operator ++ (i32)
-      {
-
-         auto it = *this;
-
-         this->m_pelement++;
-         return it;
-
-      }
-
-
-      make_iterator operator + (::count c) const
-      {
-
-         return { this->m_pcontainer, this->m_pelement + c };
-
-      }
-
-
-      make_iterator operator - (const make_iterator & it) const
-      {
-
-         return { this->m_pcontainer, this->m_pelement - it.index() };
-
-      }
-
-
-      bool operator == (const make_iterator & it) const
-      {
-
-
-         if (this->m_pcontainer != it.m_pcontainer)
+         for (auto & item : array_base)
          {
 
-            return false;
+            add(item);
 
          }
 
-         return this->m_pelement == it.m_pelement;
-
       }
+      
+      return *this; 
+   
+   }
 
 
-      bool operator >= (const make_iterator & it) const
+   array_base & operator = (array_base && array_base)
+   {
+
+      if (this != &array_base)
       {
 
-
-         if (this->m_pcontainer != it.m_pcontainer)
-         {
-
-            return false;
-
-         }
-
-         return this->m_pelement >= it.m_pelement;
+         move(::move(array_base));
 
       }
+      
+      return *this;
+   
+   }
 
 
-      bool operator > (const make_iterator & it) const
+   void add_initializer_list(const ::std::initializer_list < TYPE > & initializer_list)
+   {
+
+      for (auto & item : initializer_list)
       {
 
-         if (this->m_pcontainer != it.m_pcontainer)
-         {
-
-            return false;
-
-         }
-
-         return this->m_pelement > it.m_pelement;
+         add(item);
 
       }
 
+   }
 
-      bool operator != (const make_iterator & it) const
+
+   inline array_base & move(array_base && a)
+   {
+
+      if (this != &a)
       {
 
-         if (this->m_pcontainer != it.m_pcontainer)
-         {
+         destroy();
 
-            return true;
+         RANGE::operator=(::move(a));
 
-         }
+         m_nGrowBy = a.m_nGrowBy;
 
-         return this->m_pelement != it.m_pelement;
-
-      }
-
-      bool operator < (const make_iterator & it) const
-      {
-
-         if (this->m_pcontainer != it.m_pcontainer)
-         {
-
-            return false;
-
-         }
-
-         return this->m_pelement < it.m_pelement;
-
+         m_nMaxSize = a.m_nMaxSize;
 
       }
 
-      bool operator <= (const make_iterator & it) const
-      {
+      return *this;
 
-         if (this->m_pcontainer != it.m_pcontainer)
-         {
-
-            return false;
-
-         }
-
-         return this->m_pelement <= it.m_pelement;
+   }
 
 
-      }
+   //template < typename iterator >
+   //struct make_iterator : iterator
+   //{
+
+   //   using CONTAINER = typename iterator::CONTAINER;
 
 
-      bool operator == (const TYPE * pmatter) const
-      {
+   //   make_iterator()
+   //   {
+   //      this->m_pelementBeg = (TYPE *)nullptr;
+   //      this->m_pelementEnd = (TYPE *)nullptr;
+   //      this->m_pcontainer = (CONTAINER *)nullptr;
+   //      this->m_pelement = this->m_pelementBeg;
+   //   }
+
+   //   make_iterator(::index iStart, ::index iEnd, const CONTAINER * parray = nullptr)
+   //   {
+   //      this->m_pelementBeg = (TYPE *)(parray->m_begin + iStart);
+   //      this->m_pelementEnd = (TYPE *)(parray->m_begin + (iEnd < 0 ? parray->_size() + iEnd + 1 : iEnd));
+   //      this->m_pcontainer = (CONTAINER *)parray;
+   //      this->m_pelement = this->m_pelementBeg;
+   //   }
+
+   //   make_iterator(const CONTAINER * parray, const TYPE * pmatter = nullptr, const TYPE * pelementEnd = nullptr)
+   //   {
+   //      this->m_pelementBeg = (TYPE *)pmatter;
+   //      this->m_pelementEnd = (TYPE *)pelementEnd;
+   //      this->m_pcontainer = (CONTAINER *)parray;
+   //      this->m_pelement = this->m_pelementBeg;
+   //   }
 
 
-         if (!this->m_pcontainer->contains(pmatter))
-         {
-
-            return false;
-
-         }
-
-         return this->m_pelement == pmatter;
-
-      }
+   //   make_iterator(const make_iterator & iterator)
+   //   {
+   //      this->m_pelementBeg = (TYPE *)iterator.m_pelementBeg;
+   //      this->m_pelementEnd = (TYPE *)iterator.m_pelementEnd;
+   //      this->m_pelement = iterator.m_pelement;
+   //      this->m_pcontainer = iterator.m_pcontainer;
+   //   }
 
 
-      bool operator >= (const TYPE * pmatter) const
-      {
+   //   make_iterator begin()
+   //   {
+
+   //      return make_iterator(this->m_pcontainer, this->m_pelementBeg, this->m_pelementEnd);
+
+   //   }
 
 
-         if (!this->m_pcontainer->contains(pmatter))
-         {
+   //   make_iterator end()
+   //   {
 
-            return false;
+   //      return make_iterator(this->m_pcontainer, this->m_pelementEnd, this->m_pelementEnd);
 
-         }
-
-         return this->m_pelement >= pmatter;
-
-      }
+   //   }
 
 
-      bool operator > (const TYPE * pmatter) const
-      {
+   //   make_iterator & operator ++ ()
+   //   {
 
-         if (!this->m_pcontainer->contains(pmatter))
-         {
+   //      this->m_pelement++;
+   //      return *this;
 
-            return false;
-
-         }
-
-         return this->m_pelement > pmatter;
-
-      }
+   //   }
 
 
-      bool operator != (const TYPE * pmatter) const
-      {
+   //   make_iterator operator ++ (i32)
+   //   {
 
-         if (!this->m_pcontainer->contains(pmatter))
-         {
+   //      auto it = *this;
 
-            return true;
+   //      this->m_pelement++;
+   //      return it;
 
-         }
-
-         return this->m_pelement != pmatter;
-
-      }
-
-      bool operator < (const TYPE * pmatter) const
-      {
-
-         if (!this->m_pcontainer->contains(pmatter))
-         {
-
-            return false;
-
-         }
-
-         return this->m_pelement < pmatter;
+   //   }
 
 
-      }
+   //   make_iterator operator + (::count c) const
+   //   {
 
-      bool operator <= (const TYPE * pmatter) const
-      {
+   //      return { this->m_pcontainer, this->m_pelement + c };
 
-         if (!this->m_pcontainer->contains(pmatter))
-         {
-
-            return false;
-
-         }
-
-         return this->m_pelement <= pmatter;
+   //   }
 
 
-      }
+   //   make_iterator operator - (const make_iterator & it) const
+   //   {
 
-      make_iterator & operator = (const make_iterator & it)
-      {
+   //      return { this->m_pcontainer, this->m_pelement - it.index() };
 
-         if (this != &it)
-         {
+   //   }
 
-            this->m_pcontainer = it.m_pcontainer;
 
-            this->m_pelement = it.m_pelement;
+   //   bool operator == (const make_iterator & it) const
+   //   {
 
-         }
 
-         return *this;
+   //      if (this->m_pcontainer != it.m_pcontainer)
+   //      {
 
-      }
+   //         return false;
 
-      ::index index() const { return this->m_pelement - this->m_pcontainer->m_pData; }
+   //      }
 
-   };
+   //      return this->m_pelement == it.m_pelement;
 
-   __declare_iterator(iterator, this->m_pelement);
-   __declare_iterator(ref_iterator, *this->m_pelement);
+   //   }
+
+
+   //   bool operator >= (const make_iterator & it) const
+   //   {
+
+
+   //      if (this->m_pcontainer != it.m_pcontainer)
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //      return this->m_pelement >= it.m_pelement;
+
+   //   }
+
+
+   //   bool operator > (const make_iterator & it) const
+   //   {
+
+   //      if (this->m_pcontainer != it.m_pcontainer)
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //      return this->m_pelement > it.m_pelement;
+
+   //   }
+
+
+   //   bool operator != (const make_iterator & it) const
+   //   {
+
+   //      if (this->m_pcontainer != it.m_pcontainer)
+   //      {
+
+   //         return true;
+
+   //      }
+
+   //      return this->m_pelement != it.m_pelement;
+
+   //   }
+
+   //   bool operator < (const make_iterator & it) const
+   //   {
+
+   //      if (this->m_pcontainer != it.m_pcontainer)
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //      return this->m_pelement < it.m_pelement;
+
+
+   //   }
+
+   //   bool operator <= (const make_iterator & it) const
+   //   {
+
+   //      if (this->m_pcontainer != it.m_pcontainer)
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //      return this->m_pelement <= it.m_pelement;
+
+
+   //   }
+
+
+   //   bool operator == (const TYPE * pmatter) const
+   //   {
+
+
+   //      if (!this->m_pcontainer->contains(pmatter))
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //      return this->m_pelement == pmatter;
+
+   //   }
+
+
+   //   bool operator >= (const TYPE * pmatter) const
+   //   {
+
+
+   //      if (!this->m_pcontainer->contains(pmatter))
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //      return this->m_pelement >= pmatter;
+
+   //   }
+
+
+   //   bool operator > (const TYPE * pmatter) const
+   //   {
+
+   //      if (!this->m_pcontainer->contains(pmatter))
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //      return this->m_pelement > pmatter;
+
+   //   }
+
+
+   //   bool operator != (const TYPE * pmatter) const
+   //   {
+
+   //      if (!this->m_pcontainer->contains(pmatter))
+   //      {
+
+   //         return true;
+
+   //      }
+
+   //      return this->m_pelement != pmatter;
+
+   //   }
+
+   //   bool operator < (const TYPE * pmatter) const
+   //   {
+
+   //      if (!this->m_pcontainer->contains(pmatter))
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //      return this->m_pelement < pmatter;
+
+
+   //   }
+
+   //   bool operator <= (const TYPE * pmatter) const
+   //   {
+
+   //      if (!this->m_pcontainer->contains(pmatter))
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //      return this->m_pelement <= pmatter;
+
+
+   //   }
+
+   //   make_iterator & operator = (const make_iterator & it)
+   //   {
+
+   //      if (this != &it)
+   //      {
+
+   //         this->m_pcontainer = it.m_pcontainer;
+
+   //         this->m_pelement = it.m_pelement;
+
+   //      }
+
+   //      return *this;
+
+   //   }
+
+   //   ::index index() const { return this->m_pelement - this->m_pcontainer->m_begin; }
+
+   //};
+
+   //__declare_iterator(iterator, this->m_pelement);
+   //__declare_iterator(ref_iterator, *this->m_pelement);
 
    void this_is_a_container() {}
 
    enum_type get_payload_type() const override { return m_etypeContainer; }
 
-   inline auto values(index iStart = 0, index iEnd = -1) const { return iterator(iStart, iEnd, this); }
+   //inline auto values(index iStart = 0, index iEnd = -1) const { return iterator(iStart, iEnd, this); }
 
 
-   inline iterator begin()
-   {
+   //inline iterator begin()
+   //{
 
-      return iterator(0, (::index)m_nSize, this);
+   //   return iterator(0, (::index)this->_size(), this);
 
-   }
-
-
-   inline iterator end()
-   {
-
-      return iterator((::index)m_nSize, (::index)m_nSize, this);
-
-   }
+   //}
 
 
-   inline const_iterator begin() const
-   {
+   //inline iterator end()
+   //{
 
-      return const_iterator(0, (::index)m_nSize, this);
+   //   return iterator((::index)this->_size(), (::index)this->_size(), this);
 
-   }
-
-
-   inline const_iterator end() const
-   {
-
-      return const_iterator((::index)m_nSize, (::index)m_nSize, this);
-
-   }
+   //}
 
 
-   inline const TYPE * get_data() const { return m_pData; }
-   inline TYPE * get_data() { return m_pData; }
 
 
-   inline const TYPE * data() const { return m_pData; }
-   inline TYPE * data() { return m_pData; }
+
+   //inline const TYPE * get_data() const { return this->begin(); }
+   //inline TYPE * get_data() { return this->begin(); }
 
 
-   inline bool contains(const TYPE * pmatter) const { return pmatter >= m_pData && pmatter < m_pData + m_nSize; }
+
+
+   inline bool contains(const TYPE * pmatter) const { return pmatter >= this->m_begin && pmatter < this->end(); }
 
 
    inline ::count get_size() const;
@@ -452,10 +537,10 @@ public:
    inline ::count byte_count() const { return get_byte_count(); }
 
 
-   inline bool has_element() const noexcept { return m_nSize > 0; }
-   inline bool is_empty(::count countMinimum = 0) const noexcept { return m_nSize <= countMinimum; }
-   inline bool empty(::count countMinimum = 0) const noexcept { return m_nSize <= countMinimum; }
-   inline bool has_elements(::count countMinimum = 1) const noexcept { return m_nSize >= countMinimum; }
+   inline bool has_element() const noexcept { return this->_size() > 0; }
+   inline bool is_empty(::count countMinimum = 0) const noexcept { return this->_size() <= countMinimum; }
+   inline bool empty(::count countMinimum = 0) const noexcept { return this->_size() <= countMinimum; }
+   inline bool has_elements(::count countMinimum = 1) const noexcept { return this->_size() >= countMinimum; }
    inline ::index get_lower_bound(::index i = 0) const;
    inline ::index get_middle_index(::index i = 0) const;
    inline ::index get_upper_bound(::index i = -1) const;
@@ -468,8 +553,8 @@ public:
    inline bool contains_index(::index i) const { return  bounds(i); }
 
 
-   inline TYPE * ptr_at(::index nIndex) const { return m_pData + nIndex; }
-   inline TYPE * ptr_at(::index nIndex) { return m_pData + nIndex; }
+   inline const TYPE * ptr_at(::index nIndex) const { return this->m_begin + nIndex; }
+   inline TYPE * ptr_at(::index nIndex) { return this->m_begin + nIndex; }
 
    inline const TYPE & element_at(::index nIndex) const;
    inline TYPE & element_at(::index nIndex);
@@ -536,7 +621,7 @@ public:
    void on_construct_element(TYPE * p) { ALLOCATOR::construct(p); }
    void on_construct_element(TYPE * p, ::count c) { ALLOCATOR::construct_count(p, c); }
    void on_destruct_element(TYPE * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) { ALLOCATOR::destruct(p  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS); }
-   void on_copy_element(::index i, const TYPE * p) { ALLOCATOR::copy(&m_pData[i], p); }
+   void on_copy_element(::index i, const TYPE * p) { ALLOCATOR::copy(&this->m_begin[i], p); }
 
 
    inline const TYPE & operator[](::index i) const;
@@ -552,22 +637,22 @@ public:
 
    TYPE pick_at(::index nIndex);
    TYPE pick_first(::index nIndex = 0) { return ::move(pick_at(nIndex)); }
-   TYPE pick_last(::index nIndex = -1) { return ::move(pick_at(m_nSize + nIndex)); }
+   TYPE pick_last(::index nIndex = -1) { return ::move(pick_at(this->_size() + nIndex)); }
    array_base pick_at(::index nIndex, ::count nCount);
 
 
    ::index erase_item(TYPE * p);
 
-   ::index index_of(const TYPE * p) const { auto i = p - this->m_pData; return i >= 0 && i < this->m_nSize ? i : -1; }
+   ::index index_of(const TYPE * p) const { auto i = p - this->m_begin; return i >= 0 && i < this->_size() ? i : -1; }
 
 
-   bool erase(const TYPE * p) { auto i = index_of(p); if (!__found(i)) return false; return __found(erase_at(i)); }
+   bool erase(const TYPE * p) { auto i = index_of(p); if (not_found(i)) return false; return is_found(erase_at(i)); }
    ::count erase(const TYPE * begin, const TYPE * end);
 
-   template < typename ITERATOR > ITERATOR erase(ITERATOR it) { return ::acme::iterator::erase(*this, it); }
+   template < typename ITERATOR2 > iterator erase(ITERATOR2 it) { return ::acme::iterator::erase(*this, it); }
 
-   template < typename ITERATOR >
-   inline void erase(const ITERATOR & begin, const ITERATOR & last);
+   template < typename ITERATOR2 >
+   inline void erase(const ITERATOR2 & begin, const ITERATOR2 & last);
 
 
    inline TYPE pop(::index i = -1);
@@ -620,7 +705,7 @@ public:
       for (::index i = iStart; i <= iEnd; i++)
       {
 
-         pred(m_pData[i]);
+         pred(this->m_begin[i]);
 
          cProcessed++;
 
@@ -729,7 +814,7 @@ public:
       for (::index i = iStart; i <= iEnd; i++)
       {
 
-         if (pred(m_pData[i]))
+         if (pred(this->m_begin[i]))
          {
 
             return i;
@@ -756,7 +841,7 @@ public:
       for (::index i = iLast; i >= 0; i--)
       {
 
-         if (pred(m_pData[i]))
+         if (pred(this->m_begin[i]))
          {
 
             return i;
@@ -775,7 +860,7 @@ public:
       for (int i = 0; i < get_count(); i++)
       {
 
-         if (pred(m_pData[i]))
+         if (pred(this->m_begin[i]))
          {
 
             return &element_at(i);
@@ -801,7 +886,7 @@ public:
       for (int i = 0; i < get_count(); i++)
       {
 
-         if (pred(m_pData[i]))
+         if (pred(this->m_begin[i]))
          {
 
             c++;
@@ -818,7 +903,7 @@ public:
    inline ::index add(ARG_TYPE newElement)
    {
 
-      auto nIndex = this->m_nSize;
+      auto nIndex = this->_size();
 
       this->allocate((::count) (nIndex + 1));
 
@@ -832,7 +917,7 @@ public:
    TYPE & add_new()
    {
 
-      auto nIndex = this->m_nSize;
+      auto nIndex = this->_size();
 
       this->allocate((::count)(nIndex + 1));
 
@@ -848,7 +933,7 @@ public:
       for (int i = 0; i < get_count();)
       {
 
-         if (!pred(m_pData[i]))
+         if (!pred(this->m_begin[i]))
          {
             i++;
          }
@@ -864,7 +949,7 @@ public:
             for (; i < get_count();)
             {
 
-               if (!pred(m_pData[i]))
+               if (!pred(this->m_begin[i]))
                {
 
                   break;
@@ -895,7 +980,7 @@ public:
 
       for (::index i = 0; i < get_count(); i++)
       {
-         f(m_pData[i]);
+         f(this->m_begin[i]);
       }
 
    }
@@ -975,8 +1060,8 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base()
 {
 
    m_nGrowBy = 0;
-   m_pData = nullptr;
-   m_nSize = 0;
+   this->m_begin = nullptr;
+   this->m_end = nullptr;
    m_nMaxSize = 0;
 
 }
@@ -988,12 +1073,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~array_base ()
 {
 
-   if (m_pData != nullptr)
-   {
-
-      destroy();
-
-   }
+   defer_destroy();
 
 }
 
@@ -1035,25 +1115,25 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 
    ::index nUpperBound = nIndex + nCount;
 
-   if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
+   if (nIndex < 0 || nCount < 0 || (nUpperBound > this->_size()) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
 
       throw_exception(error_bad_argument);
 
    }
 
-   ::count nMoveCount = m_nSize - (nUpperBound);
+   ::count nMoveCount = this->_size() - (nUpperBound);
 
-   ALLOCATOR::destruct_count(m_pData + nIndex, nCount OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+   ALLOCATOR::destruct_count(this->m_begin + nIndex, nCount OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
    if(nMoveCount)
    {
 
-      ::acme::memmove_s(m_pData + nIndex,(size_t)nMoveCount * sizeof(TYPE),m_pData + nUpperBound,(size_t)nMoveCount * sizeof(TYPE));
+      ::acme::memmove_s(this->m_begin + nIndex,(size_t)nMoveCount * sizeof(TYPE),this->m_begin + nUpperBound,(size_t)nMoveCount * sizeof(TYPE));
 
    }
 
-   m_nSize -= nCount;
+   this->m_end -= nCount;
 
    return nIndex;
 
@@ -1064,7 +1144,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 ::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::erase_item(TYPE * p)
 {
 
-   return erase_at(p - m_pData);
+   return erase_at(p - this->m_begin);
 
 }
 
@@ -1074,14 +1154,14 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::free_extra()
 {
 
-   if(m_nSize != m_nMaxSize)
+   if(this->_size() != m_nMaxSize)
    {
       // shrink to desired size_i32
 #ifdef SIZE_T_MAX
-      ASSERT(m_nSize <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
+      ASSERT(this->_size() <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
 #endif
       TYPE* pNewData = nullptr;
-      if(m_nSize != 0)
+      if(this->_size() != 0)
       {
          TYPE * pNewData;
 #if defined(__MCRTDBG) || MEMDLEAK
@@ -1090,29 +1170,29 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::free_extra()
          {
             if (::get_task()->m_strFile.has_char())
             {
-               pNewData = ALLOCATOR::alloc(m_nSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
+               pNewData = ALLOCATOR::alloc(this->_size(), ::get_task()->m_strFile, ::get_task()->m_iLine);
             }
             else
             {
-               pNewData = ALLOCATOR::alloc(m_nSize, __FILE__, __LINE__);
+               pNewData = ALLOCATOR::alloc(this->_size(), __FILE__, __LINE__);
             }
          }
          else
          {
-            pNewData = ALLOCATOR::alloc(m_nSize, __FILE__, __LINE__);
+            pNewData = ALLOCATOR::alloc(this->_size(), __FILE__, __LINE__);
          }
 #else
 
          if (::get_task()->m_strDebug.has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(m_nSize, ::get_task()->m_strDebug, 0);
+            pNewData = ALLOCATOR::alloc(this->_size(), ::get_task()->m_strDebug, 0);
 
          }
          else
          {
 
-            pNewData = ALLOCATOR::alloc(m_nSize, __FILE__, __LINE__);
+            pNewData = ALLOCATOR::alloc(this->_size(), __FILE__, __LINE__);
 
          }
 
@@ -1120,21 +1200,21 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::free_extra()
 
 #else
 
-         pNewData = ALLOCATOR::alloc(m_nSize);
+         pNewData = ALLOCATOR::alloc(this->_size());
 
 #endif      // copy memory_new data from old
 
          // copy memory_new data from old
-         ::acme::memcpy_s(pNewData, (size_t)m_nSize * sizeof(TYPE),m_pData, (size_t)m_nSize * sizeof(TYPE));
+         ::acme::memcpy_s(pNewData, (size_t)this->_size() * sizeof(TYPE),this->m_begin, (size_t)this->_size() * sizeof(TYPE));
 
       }
 
       // get rid of old stuff (note: no destructors called)
-      ALLOCATOR::_free(m_pData);
+      ALLOCATOR::_free(this->m_begin);
 
-      m_pData = pNewData;
+      this->m_begin = pNewData;
 
-      m_nMaxSize = m_nSize;
+      m_nMaxSize = this->_size();
 
    }
 
@@ -1146,16 +1226,16 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::destroy()
 {
 
-   if(m_pData != nullptr)
+   if(this->m_begin != nullptr)
    {
 
-      ALLOCATOR::destruct_count(m_pData, m_nSize OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+      ALLOCATOR::destruct_count(this->m_begin, this->_size() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
-      ALLOCATOR::_free(m_pData);
+      ALLOCATOR::_free(this->m_begin);
 
-      m_pData     = nullptr;
-      m_nSize     = 0;
-      m_nMaxSize  = 0;
+      this->m_begin     = nullptr;
+      this->m_end       = nullptr;
+      m_nMaxSize        = 0;
 
    }
 
@@ -1171,7 +1251,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    while(nCount--)
    {
 
-      ALLOCATOR::copy(m_pData + nIndex, &newElement);
+      ALLOCATOR::copy(this->m_begin + nIndex, &newElement);
 
       nIndex++;
 
@@ -1193,7 +1273,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    if(nIndex < 0)
       throw_exception(error_bad_argument);
 
-   if(nIndex >= m_nSize)
+   if(nIndex >= this->_size())
    {
 
       // adding after the end of the array
@@ -1204,21 +1284,21 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    {
 
       // inserting in the middle of the array
-      ::count nOldSize = (::count) m_nSize;
+      ::count nOldSize = (::count) this->_size();
 
-      set_size((::count) m_nSize + nCount,-1);  // grow it to memory_new size_i32
+      set_size((::count) this->_size() + nCount,-1);  // grow it to memory_new size_i32
       // destroy intial data before copying over it
       // shift old data up to fill gap
-      ::acme::memmove_s(m_pData + nIndex + nCount,(size_t) ((nOldSize - nIndex) * sizeof(TYPE)),m_pData + nIndex,(size_t)((nOldSize - nIndex) * sizeof(TYPE)));
+      ::acme::memmove_s(this->m_begin + nIndex + nCount,(size_t) ((nOldSize - nIndex) * sizeof(TYPE)),this->m_begin + nIndex,(size_t)((nOldSize - nIndex) * sizeof(TYPE)));
 
-      ::zero(m_pData + nIndex, nCount* sizeof(TYPE));
+      ::zero(this->m_begin + nIndex, nCount* sizeof(TYPE));
 
-      ALLOCATOR::construct_count(m_pData + nIndex,nCount);
+      ALLOCATOR::construct_count(this->m_begin + nIndex,nCount);
 
    }
 
    // insert memory_new value in the gap
-   ASSERT(nIndex + nCount <= m_nSize);
+   ASSERT(nIndex + nCount <= this->_size());
 
    return nIndex;
 
@@ -1230,13 +1310,13 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::append(const array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & src)
 {
 
-   ::count nOldSize = m_nSize;
+   ::count nOldSize = this->_size();
 
-   ::count nSrcSize = src.m_nSize;   // to enable to append to itself
+   ::count nSrcSize = src._size();   // to enable to append to itself
 
    allocate(nOldSize + nSrcSize);
 
-   ALLOCATOR::copy_count(m_pData + nOldSize, src.m_pData, nSrcSize);
+   ALLOCATOR::copy_count((this->m_begin + nOldSize), src.m_begin, nSrcSize);
 
    return nOldSize;
 
@@ -1254,11 +1334,11 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::copy(const arra
 
    }
 
-   ::count nSrcSize = src.m_nSize;
+   ::count nSrcSize = src._size();
 
    allocate(nSrcSize);
 
-   ALLOCATOR::copy_count(m_pData,src.m_pData, nSrcSize);
+   ALLOCATOR::copy_count(this->m_begin,src.m_begin, nSrcSize);
 
 }
 
@@ -1379,7 +1459,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    if (nIndex < 0)
       throw_exception(error_bad_argument);
 
-   if (nIndex >= m_nSize)
+   if (nIndex >= this->_size())
    {
 
       // adding after the end of the array
@@ -1390,21 +1470,21 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    {
 
       // inserting in the middle of the array
-      ::count nOldSize = (::count) m_nSize;
+      ::count nOldSize = (::count) this->_size();
 
-      set_size((::count) (m_nSize + nCount), -1);  // grow it to memory_new size_i32
+      set_size((::count) (this->_size() + nCount), -1);  // grow it to memory_new size_i32
       // destroy intial data before copying over it
       // shift old data up to fill gap
-      ::acme::memmove_s(m_pData + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), m_pData + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
+      ::acme::memmove_s(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
 
-      ::zero(m_pData + nIndex, nCount* sizeof(TYPE));
+      ::zero(this->m_begin + nIndex, nCount* sizeof(TYPE));
 
-      ALLOCATOR::construct_count(m_pData + nIndex, nCount);
+      ALLOCATOR::construct_count(this->m_begin + nIndex, nCount);
 
    }
 
    // insert memory_new value in the gap
-   ASSERT(nIndex + nCount <= m_nSize);
+   ASSERT(nIndex + nCount <= this->_size());
 
    ::index nIndexParam = nIndex;
 
@@ -1413,7 +1493,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    while (nCount--)
    {
 
-      ALLOCATOR::copy(m_pData + nIndex, pNewArray->m_pData + i);
+      ALLOCATOR::copy(this->m_begin + nIndex, pNewArray->m_begin + i);
 
       nIndex++;
 
@@ -1433,27 +1513,27 @@ TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pick_at(::index
 
    ::index nUpperBound = nIndex + nCount;
 
-   if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
+   if (nIndex < 0 || nCount < 0 || (nUpperBound > this->_size()) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
 
       throw_exception(error_bad_argument);
 
    }
 
-   ::count nMoveCount = m_nSize - (nUpperBound);
+   ::count nMoveCount = this->_size() - (nUpperBound);
 
-   auto t = m_pData[nIndex];
+   auto t = this->m_begin[nIndex];
 
-   ALLOCATOR::destruct_count(m_pData + nIndex, nCount OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+   ALLOCATOR::destruct_count(this->m_begin + nIndex, nCount OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
    if (nMoveCount)
    {
 
-      ::acme::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE), m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
+      ::acme::memmove_s(this->m_begin + nIndex, (size_t)nMoveCount * sizeof(TYPE), this->m_begin + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
 
    }
 
-   m_nSize -= nCount;
+   this->m_end -= nCount;
 
    return ::move(t);
 
@@ -1468,27 +1548,27 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > array_base < TYPE, AR
 
    ::index nUpperBound = nIndex + nCount;
 
-   if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
+   if (nIndex < 0 || nCount < 0 || (nUpperBound > this->_size()) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
 
       throw_exception(error_bad_argument);
 
    }
 
-   ::count nMoveCount = m_nSize - (nUpperBound);
+   ::count nMoveCount = this->_size() - (nUpperBound);
 
-   array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > a(m_pData + nIndex, (size_t)nMoveCount);
+   array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > a(this->m_begin + nIndex, (size_t)nMoveCount);
 
-   ALLOCATOR::destruct_count(m_pData + nIndex, nCount OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+   ALLOCATOR::destruct_count(this->m_begin + nIndex, nCount OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
    if (nMoveCount)
    {
 
-      ::acme::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE), m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
+      ::acme::memmove_s(this->m_begin + nIndex, (size_t)nMoveCount * sizeof(TYPE), this->m_begin + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
 
    }
 
-   m_nSize -= nCount;
+   this->m_end -= nCount;
 
    return a;
 
@@ -1513,18 +1593,19 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    {
 
       // shrink to nothing
-      if(m_pData != nullptr)
+      if(this->m_begin != nullptr)
       {
 
-         ALLOCATOR::_free(m_pData);
+         ALLOCATOR::_free(this->m_begin);
 
-         m_pData = nullptr;
+         this->m_begin = nullptr;
 
       }
 
-      m_nSize = m_nMaxSize = 0;
+      this->m_end = nullptr;
+      m_nMaxSize = 0;
    }
-   else if (m_pData == nullptr)
+   else if (this->m_begin == nullptr)
    {
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
@@ -1542,13 +1623,13 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
          if (::get_task()->m_strFile.has_char())
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strFile, 0);
+            this->m_begin = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strFile, 0);
 
          }
          else
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+            this->m_begin = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
 
          }
 
@@ -1557,13 +1638,13 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
          if (::get_task()->m_strDebug.has_char())
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strDebug, ::get_task()->m_iLine);
+            this->m_begin = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strDebug, ::get_task()->m_iLine);
 
          }
          else
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+            this->m_begin = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
 
          }
 
@@ -1573,22 +1654,22 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
       else
       {
 
-         m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+         this->m_begin = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
 
       }
 
 #else
 
-      m_pData = ALLOCATOR::alloc(nAllocSize);
+      this->m_begin = ALLOCATOR::alloc(nAllocSize);
 
 #endif
 
-      m_nSize = nNewSize;
+      this->m_end = this->m_begin+ nNewSize;
       m_nMaxSize = nAllocSize;
    }
    else if(nNewSize <= m_nMaxSize)
    {
-      m_nSize = nNewSize;
+      this->m_end = this->m_begin+nNewSize;
    }
    else
    {
@@ -1598,7 +1679,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
       {
          // heuristically determine growth when nGrowBy == 0
          //  (this avoids heap fragmentation in many situations)
-         nGrowBy = (::count) m_nSize;
+         nGrowBy = (::count) this->_size();
          nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
       }
       ::count nNewMax;
@@ -1666,15 +1747,15 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 
 #endif      // copy memory_new data from old
 
-      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
+      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->_size() * sizeof(TYPE));
 
-      ///for(i32 i = 0; i < nNewSize - m_nSize; i++)
+      ///for(i32 i = 0; i < nNewSize - this->_size(); i++)
       // get rid of old stuff (note: no destructors called)
-      ALLOCATOR::_free(m_pData);
+      ALLOCATOR::_free(this->m_begin);
 
-      m_pData = pNewData;
+      this->m_begin = pNewData;
 
-      m_nSize = nNewSize;
+      this->m_end = this->m_begin + nNewSize;
 
       m_nMaxSize = nNewMax;
 
@@ -1708,10 +1789,10 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    }
 
 
-   if(nNewSize == m_nSize)
+   if(nNewSize == this->_size())
    {
 
-      return m_nSize;
+      return this->_size();
 
    }
 
@@ -1719,21 +1800,23 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    {
 
       // shrink to nothing
-      if(m_pData != nullptr)
+      if(this->m_begin != nullptr)
       {
 
-         ALLOCATOR::destruct_count(m_pData, m_nSize  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+         ALLOCATOR::destruct_count(this->m_begin, this->_size()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
-         ALLOCATOR::_free(m_pData);
+         ALLOCATOR::_free(this->m_begin);
 
-         m_pData = nullptr;
+         this->m_begin = nullptr;
 
       }
 
-      m_nSize = m_nMaxSize = 0;
+      this->m_end = nullptr;
+      
+      m_nMaxSize = 0;
 
    }
-   else if(m_pData == nullptr)
+   else if(this->m_begin == nullptr)
    {
 
       // create buffer big enough to hold number of requested elements or
@@ -1756,13 +1839,13 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
          if(::get_task()->m_strFile.has_char())
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
+            this->m_begin = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
 
          }
          else
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+            this->m_begin = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
 
          }
 
@@ -1771,13 +1854,13 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
          if (::get_task()->m_strDebug.has_char())
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__;
+            this->m_begin = ALLOCATOR::alloc(nAllocSize, "thread://" + typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__;
 
          }
          else
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__;
+            this->m_begin = ALLOCATOR::alloc(nAllocSize, "thread://" + typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__;
 
          }
 
@@ -1787,30 +1870,30 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
       else
       {
 
-         m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+         this->m_begin = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
 
       }
 
 #else
 
-      m_pData = ALLOCATOR::alloc(nAllocSize);
+      this->m_begin = ALLOCATOR::alloc(nAllocSize);
 
 #endif
 
       if (::is_null(ptype))
       {
 
-         ALLOCATOR::construct_count(m_pData, nNewSize);
+         ALLOCATOR::construct_count(this->m_begin, nNewSize);
 
       }
       else
       {
 
-         ALLOCATOR::copy_construct_count(m_pData, nNewSize, *ptype);
+         ALLOCATOR::copy_construct_count(this->m_begin, nNewSize, *ptype);
 
       }
 
-      m_nSize = nNewSize;
+      this->m_end = this->m_begin + nNewSize;
 
       m_nMaxSize = nAllocSize;
 
@@ -1818,31 +1901,31 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    else if(nNewSize <= m_nMaxSize)
    {
 
-      if(nNewSize > m_nSize)
+      if(nNewSize > this->size())
       {
 
          if (::is_null(ptype))
          {
 
-            ALLOCATOR::construct_count(m_pData + m_nSize, nNewSize - m_nSize);
+            ALLOCATOR::construct_count(this->end(), nNewSize - this->_size());
 
          }
          else
          {
 
-            ALLOCATOR::copy_construct_count(m_pData + m_nSize, nNewSize - m_nSize, *ptype);
+            ALLOCATOR::copy_construct_count(this->end(), nNewSize - this->_size(), *ptype);
 
          }
 
       }
-      else if(m_nSize > nNewSize)
+      else if(this->_size() > nNewSize)
       {
 
-         ALLOCATOR::destruct_count(m_pData + nNewSize,m_nSize - nNewSize OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+         ALLOCATOR::destruct_count(this->m_begin + nNewSize,this->_size() - nNewSize OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
       }
 
-      m_nSize = nNewSize;
+      this->m_end = this->m_begin + nNewSize;
 
    }
    else
@@ -1856,7 +1939,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 
          // heuristically determine growth when nGrowBy == 0
          //  (this avoids heap fragmentation in many situations)
-         nGrowBy = m_nSize;
+         nGrowBy = this->_size();
          nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
 
       }
@@ -1946,35 +2029,35 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 #endif
 
       // copy memory_new data from old
-      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
+      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->_size() * sizeof(TYPE));
 
       // construct remaining elements
-      ASSERT(nNewSize > m_nSize);
+      ASSERT(nNewSize > this->_size());
 
-      if (nNewSize > m_nSize)
+      if (nNewSize > this->_size())
       {
 
          if (::is_null(ptype))
          {
 
-            ALLOCATOR::construct_count(pNewData + m_nSize, nNewSize - m_nSize);
+            ALLOCATOR::construct_count(pNewData + this->_size(), nNewSize - this->_size());
 
          }
          else
          {
 
-            ALLOCATOR::copy_construct_count(pNewData + m_nSize, nNewSize - m_nSize, *ptype);
+            ALLOCATOR::copy_construct_count(pNewData + this->_size(), nNewSize - this->_size(), *ptype);
 
          }
 
       }
 
       // get rid of old stuff (note: no destructors called)
-      ALLOCATOR::_free(m_pData);
+      ALLOCATOR::_free(this->m_begin);
 
-      m_pData = pNewData;
+      this->m_begin = pNewData;
 
-      m_nSize = nNewSize;
+      this->m_end = this->m_begin + nNewSize;
 
       m_nMaxSize = nNewMax;
 
@@ -2003,14 +2086,14 @@ inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::set_at_
 
    ASSERT(nIndex >= 0);
 
-   if (nIndex >= this->m_nSize)
+   if (nIndex >= this->_size())
    {
 
       this->set_size(nIndex + 1, nGrowBy);
 
    }
 
-   m_pData[nIndex] = newElement;
+   this->m_begin[nIndex] = newElement;
 
 }
 
@@ -2021,14 +2104,14 @@ inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::eleme
 
    ASSERT(nIndex >= 0);
 
-   if (nIndex >= this->m_nSize)
+   if (nIndex >= this->_size())
    {
 
       this->set_size(nIndex + 1, nGrowBy);
 
    }
 
-   return m_pData[nIndex];
+   return this->m_begin[nIndex];
 
 }
 
@@ -2042,7 +2125,7 @@ inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::set_eac
    for(::index i = first; i <= in_count_out_last; i++)
    {
 
-      m_pData[i] = element;
+      this->m_begin[i] = element;
 
    }
 
@@ -2050,8 +2133,8 @@ inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::set_eac
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-template < typename ITERATOR >
-inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::erase(const ITERATOR & begin, const ITERATOR & last)
+template < typename ITERATOR2 >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::erase(const ITERATOR2 & begin, const ITERATOR2 & last)
 {
 
    auto start = begin.index();
@@ -2135,35 +2218,35 @@ bool array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::prepare_first_
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_size() const
 {
-   return (::count) this->m_nSize;
+   return (::count) this->_size();
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_count() const
 {
-   return (::count) this->m_nSize;
+   return (::count) this->_size();
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_length() const
 {
-   return (::count) this->m_nSize;
+   return (::count) this->_size();
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_size_in_bytes() const
 {
-   return (::count)this->m_nSize * sizeof(TYPE);
+   return (::count)this->_size() * sizeof(TYPE);
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_byte_count() const
 {
-   return (::count) (this->m_nSize * sizeof(TYPE));
+   return (::count) (this->_size() * sizeof(TYPE));
 }
 
 
@@ -2213,13 +2296,13 @@ inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::leng
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_lower_bound(::index i) const
 {
-   return i < this->m_nSize ? i : -1;
+   return i < this->_size() ? i : -1;
 }
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_middle_index(::index iIndex) const
 {
-   return m_nSize / 2 + iIndex;
+   return this->_size() / 2 + iIndex;
 }
 
 
@@ -2272,7 +2355,7 @@ inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::zero(::
    {
       c = get_size() - iStart;
    }
-   ::zero(&m_pData[iStart],c * sizeof(TYPE));
+   ::zero(&this->m_begin[iStart],c * sizeof(TYPE));
 }
 
 
@@ -2280,9 +2363,9 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 inline const TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::element_at(::index nIndex) const
 {
 
-   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
+   ASSERT(nIndex >= 0 && nIndex < this->_size());
 
-   return m_pData[nIndex];
+   return this->m_begin[nIndex];
 
 }
 
@@ -2291,9 +2374,9 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::element_at(::index nIndex)
 {
 
-   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
+   ASSERT(nIndex >= 0 && nIndex < this->_size());
 
-   return m_pData[nIndex];
+   return this->m_begin[nIndex];
 
 }
 
@@ -2326,20 +2409,20 @@ inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::elemen
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 //inline const TYPE* array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_data() const
 //{
-//   return (const TYPE*)this->m_pData;
+//   return (const TYPE*)this->m_begin;
 //}
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 //inline TYPE* array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_data()
 //{
-//   return (TYPE*)this->m_pData;
+//   return (TYPE*)this->m_begin;
 //}
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline const TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator[](::index i) const
 {
 
-   return m_pData[i];
+   return this->m_begin[i];
 
 }
 
@@ -2348,7 +2431,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator[](::index i)
 {
 
-   return m_pData[i];
+   return this->m_begin[i];
 
 }
 
@@ -2357,7 +2440,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::__swap(::index index1, ::index index2)
 {
 
-   ::__swap(m_pData[index1], m_pData[index2]);
+   ::__swap(this->m_begin[index1], this->m_begin[index2]);
 
 }
 
@@ -2437,7 +2520,7 @@ void  array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::set_all(const 
    for (::index i = 0; i < get_count(); i++)
    {
 
-      m_pData[i] = t;
+      this->m_begin[i] = t;
 
    }
 
@@ -2471,16 +2554,29 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(array_bas
 {
 
    this->m_nGrowBy = array.m_nGrowBy;
-   this->m_pData = array.m_pData;
-   this->m_nSize = array.m_nSize;
+   this->m_begin = array.m_begin;
+   this->m_end = array.m_end;
    this->m_nMaxSize = array.m_nMaxSize;
 
-   array.m_pData = nullptr;
-   array.m_nSize = 0;
+   array.m_begin = nullptr;
+   array.m_end = 0;
    array.m_nMaxSize = 0;
 
 }
 
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(std::initializer_list<TYPE > initializer_list)
+{
+
+   for (auto & item : initializer_list)
+   {
+
+      add(item);
+
+   }
+
+}
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
@@ -2488,8 +2584,8 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(const arr
 {
 
    m_nGrowBy = 0;
-   m_pData = nullptr;
-   m_nSize = 0;
+   this->m_begin = nullptr;
+   this->m_end = nullptr;
    m_nMaxSize = 0;
 
    set_size(array.get_size());
@@ -2602,12 +2698,12 @@ inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::takeLast
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(TYPE * p, ::count c)
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(const TYPE * p, ::count c)
 {
 
    m_nGrowBy = 0;
-   m_pData = nullptr;
-   m_nSize = 0;
+   this->m_begin = nullptr;
+   this->m_end = nullptr;
    m_nMaxSize = 0;
 
    set_size(c);

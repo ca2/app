@@ -1,37 +1,110 @@
-﻿#pragma once
+﻿// Refactored by camilo on 2022-12-09 00:48 <3ThomasBorregaardSorensen!!
+#pragma once
 
-template < typename NATURAL, typename CHAR_TYPE >
-CHAR_TYPE * __natural_to_string_internal(NATURAL u, CHAR_TYPE * buf, int iBase, ::i32 & iIndex, enum_digit_case edigitcase)
+
+template < primitive_character CHARACTER >
+CHARACTER * __zerotosz(CHARACTER * p)
+{
+
+   *p++ = '0';
+
+   *p = 0;
+
+   return p;
+
+}
+
+
+template < primitive_unsigned UNSIGNED, primitive_character CHARACTER >
+void __utosz_internal(UNSIGNED u, CHARACTER * & p, int base, enum_digit_case edigitcase)
 {
 
    while (u != 0)
    {
 
-      i32 iDigit = (u % iBase);
+      auto digit = (u % base);
 
-      CHAR_TYPE ch;
-
-      if (iDigit <= 9)
+      if (digit <= 9)
       {
 
-         ch = (CHAR_TYPE)(iDigit + '0');
+         *p = (CHARACTER)(digit + '0');
 
       }
       else
       {
 
-         ch = (CHAR_TYPE)(iDigit - 10 + edigitcase);
+         *p = (CHARACTER)(digit - 10 + edigitcase);
 
       }
 
-      buf[iIndex] = ch;
+      u = (UNSIGNED) (u / base);
 
-      u = u / iBase;
-
-      iIndex++;
+      p++;
 
    }
 
-   return buf;
+}
+
+
+/// @brief compute string representation of unsigned number
+/// @tparam UNSIGNED /p u type (unsigned constraint)
+/// @tparam CHARACTER /p buf character type (character constraint)
+/// @param u number to convert
+/// @param buf address where to write string representation of /p u
+/// @param iBase base to convert
+/// @param edigitcase base greater than decimal base, the case of output characters 
+/// @return address of end of number (address of the terminating null character>
+template < primitive_unsigned UNSIGNED, primitive_character CHARACTER >
+void __utosz(UNSIGNED u, CHARACTER * & p, int iBase, enum_digit_case edigitcase)
+{
+
+   if (u == 0)
+   {
+
+      __zerotosz(p);
+
+      return;
+
+   }
+
+   auto s = p;
+
+   __utosz_internal(u, p, iBase, edigitcase);
+
+   reverse(s, p - 1);
+
+   *p = 0;
 
 }
+
+
+
+template < primitive_signed SIGNED, primitive_character CHARACTER >
+void __itosz(SIGNED i, CHARACTER * & p, int base, enum_digit_case edigitcase)
+{
+
+   if (i == 0)
+   {
+
+      __zerotosz(p);
+
+      return;
+
+   }
+
+   auto s = p;
+
+   auto [ u, bNegative ] = as_absolute_unsigned(i);
+
+   __utosz(u, p, base, edigitcase);
+
+   if (bNegative) *p++ = '-';
+
+   reverse(s, p - 1);
+
+   *p = 0;
+
+}
+
+
+

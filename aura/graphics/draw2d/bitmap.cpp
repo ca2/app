@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "bitmap.h"
 #include "graphics.h"
 #include "acme/exception/interface_only.h"
@@ -301,7 +301,7 @@ void vertical_swap(pixmap * ppixmap)
 
       memory.set_size(wBytes);
 
-      u8 * pstore = memory.get_data();
+      u8 * pstore = memory.data();
 
       int halfh = h / 2;
 

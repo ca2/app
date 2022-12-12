@@ -55,86 +55,227 @@ template < primitive_floating FLOATING1, primitive_floating FLOATING2 >
 inline constexpr bool __le(const FLOATING1 & a, const FLOATING2 & b) { return a <= b; }
 
 
+//template < typename TYPE1, typename TYPE2 >
+//inline constexpr bool __lt(const TYPE1 & a, const TYPE2 & b) { return a < b; }
+//template < typename TYPE1, typename TYPE2 >
+//inline constexpr bool __le(const TYPE1 & a, const TYPE2 & b) { return a <= b; }
+//
+//
+//template < typename T1, typename T2 >
+//inline constexpr auto __ge(const T1 & a, const T2 & b) { return __le(b, a); }
+//template < typename T1, typename T2 >
+//inline constexpr auto __gt(const T1 & a, const T2 & b) { return __lt(b, a); }
+
+
+//template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
+//constexpr typename largest_type < SIGNED1, SIGNED2 >::type minimum(const SIGNED1 & a, const SIGNED2 & b) { return __lt(a, b) ? ((typename largest_type < SIGNED1, SIGNED2 >::type)a ): ((typename largest_type < SIGNED1, SIGNED2 >::type)b); }
+//
+//template < primitive_unsigned UNSIGNED1, primitive_signed SIGNED2 >
+//constexpr SIGNED2 minimum(const UNSIGNED1 & a, const SIGNED2 & b) { return __lt(a, b) ? ((SIGNED2) a) : b; }
+//
+//template < primitive_signed SIGNED1, primitive_unsigned UNSIGNED2 >
+//constexpr SIGNED1 minimum(const SIGNED1 & a, const UNSIGNED2 & b) { return __lt(a, b) ? a : ((SIGNED1) b); }
+//
+//template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
+//constexpr typename largest_type < UNSIGNED1, UNSIGNED2 >::type minimum(const UNSIGNED1 & a, const UNSIGNED2 & b) { return __lt(a, b) ? ((typename largest_type < UNSIGNED1, UNSIGNED2 >::type)a) : ((typename largest_type < UNSIGNED1, UNSIGNED2 >::type)b); }
+//
+//
+//template < primitive_integral INTEGRAL1, primitive_floating FLOATING2 >
+//constexpr FLOATING2 minimum(const INTEGRAL1 & a, const FLOATING2 & b) { return __lt(a, b) ? ((FLOATING2)a) : b; }
+//
+//template < primitive_floating FLOATING1, primitive_integral INTEGRAL2 >
+//constexpr FLOATING1 minimum(const FLOATING1 & a, const INTEGRAL2 & b) { return __lt(a, b) ? a : ((FLOATING1)b); }
+//
+//template < primitive_floating FLOATING1, primitive_floating FLOATING2 >
+//constexpr typename largest_type < FLOATING1, FLOATING2 >::type minimum(const FLOATING1 & a, const FLOATING2 & b) { return __lt(a, b) ? ((typename largest_type < FLOATING1, FLOATING2 >::type)a) : ((typename largest_type < FLOATING1, FLOATING2 >::type)b); }
+//
+//
+//template < typename TYPE1, typename TYPE2 >
+//constexpr TYPE1 minimum(const TYPE1 & a, const TYPE2 & b) { return __lt(a, b) ? a : ((TYPE1)b); }
+//
+
+
+//template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
+//constexpr typename largest_type < SIGNED1, SIGNED2 >::type maximum(const SIGNED1 & a, const SIGNED2 & b) { return __lt(b, a) ? ((typename largest_type < SIGNED1, SIGNED2 >::type)a) : ((typename largest_type < SIGNED1, SIGNED2 >::type)b); }
+//
+//template < primitive_unsigned UNSIGNED1, primitive_signed SIGNED2 >
+//constexpr SIGNED2 maximum(const UNSIGNED1 & a, const SIGNED2 & b) { return __lt(b, a) ? ((SIGNED2)a) :  b; }
+//
+//template < primitive_signed SIGNED1, primitive_unsigned UNSIGNED2 >
+//constexpr SIGNED1 maximum(const SIGNED1 & a, const UNSIGNED2 & b) { return __lt(b, a) ?  a : ((SIGNED1)b); }
+//
+//template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
+//constexpr typename largest_type < UNSIGNED1, UNSIGNED2 >::type maximum(const UNSIGNED1 & a, const UNSIGNED2 & b) { return __lt(b, a) ? ((typename largest_type < UNSIGNED1, UNSIGNED2 >::type)a) : ((typename largest_type < UNSIGNED1, UNSIGNED2 >::type)b); }
+//
+//template < primitive_integral INTEGRAL1, primitive_floating FLOATING2 >
+//constexpr FLOATING2 maximum(const INTEGRAL1 & a, const FLOATING2 & b) { return __lt(b, a) ? ((FLOATING2)a) : b; }
+//
+//template < primitive_floating FLOATING1, primitive_integral INTEGRAL2 >
+//constexpr FLOATING1 maximum(const FLOATING1 & a, const INTEGRAL2 & b) { return __lt(b, a) ? a : ((FLOATING1)b); }
+
+//template < primitive_floating FLOATING1, primitive_floating FLOATING2 >
+//constexpr largest_type < FLOATING1, FLOATING2 > maximum(const FLOATING1 & a, const FLOATING2 & b) { return __lt(b, a) ? ((typename largest_type < FLOATING1, FLOATING2 >::type)a) : ((typename largest_type < FLOATING1, FLOATING2 >::type)b); }
+
+
+namespace comparison
+{
+
+
+   template < typename T1, typename T2 >
+   class comparison2
+   {
+   public:
+
+      constexpr ::std::strong_ordering order(const T1 & t1, const T2 & t2) const 
+      {
+         
+         return t1 <=> t2;
+      
+      }
+
+   };
+
+
+   template < primitive_signed S1, primitive_signed S2 >
+   class comparison2 < S1, S2 >
+   {
+   public:
+
+      constexpr ::std::strong_ordering order(S1 s1, S2 s2) const
+      {
+
+         return s1 <=> s2;
+
+      }
+
+   };
+
+
+   template < primitive_unsigned U1, primitive_unsigned U2 >
+   class comparison2 < U1, U2 >
+   {
+   public:
+
+      constexpr ::std::strong_ordering order(U1 u1, U2 u2) const
+      {
+
+         return u1 <=> u2;
+
+      }
+
+   };
+
+
+   template < primitive_signed S, primitive_unsigned U >
+   class comparison2 < S, U >
+   {
+   public:
+
+      constexpr ::std::strong_ordering order(S s, U u) const
+      {
+
+         return s < 0 ? ::std::strong_ordering::less : s <=> u;
+
+      }
+
+   };
+
+
+   template < primitive_unsigned U, primitive_signed S >
+   class comparison2 < U, S >
+   {
+   public:
+
+      constexpr ::std::strong_ordering order(U u, S s) const
+      {
+
+         return s < 0 ? ::std::strong_ordering::greater : u <=> s;
+
+      }
+
+   };
+
+
+   template < primitive_floating F, typename T >
+   class comparison2 < F, T >
+   {
+   public:
+
+      constexpr ::std::strong_ordering order(F f, T t) const
+      {
+
+         return (F <=> t) <=> 0;
+
+      }
+
+   };
+
+
+   template < typename T, primitive_floating F >
+   class comparison2 < T, F >
+   {
+   public:
+
+      constexpr ::std::strong_ordering order(T t, F f) const
+      {
+
+         return (T <=> f) <=> 0;
+
+      }
+
+   };
+
+
+
+} //namespace comparison
+
+
+template < typename TYPE >
+constexpr TYPE minimum(const TYPE & a, const TYPE & b)
+{
+
+   return a <= b ? a : b;
+
+}
+
+
 template < typename TYPE1, typename TYPE2 >
-inline constexpr bool __lt(const TYPE1 & a, const TYPE2 & b) { return a < b; }
-template < typename TYPE1, typename TYPE2 >
-inline constexpr bool __le(const TYPE1 & a, const TYPE2 & b) { return a <= b; }
+constexpr largest_type<TYPE1, TYPE2> minimum(const TYPE1 & a, const TYPE2 & b)
+{
+
+   return ::comparison::comparison2<TYPE1, TYPE2>().order(a, b) <= 0 ?
+      (largest_type<TYPE1, TYPE2>) a : (largest_type<TYPE1, TYPE2>)b;
+
+}
 
 
-template < typename T1, typename T2 >
-inline constexpr auto __ge(const T1 & a, const T2 & b) { return __le(b, a); }
+template < typename TYPE >
+constexpr TYPE maximum(const TYPE & a, const TYPE & b)
+{
 
-template < typename T1, typename T2 >
-inline constexpr auto __gt(const T1 & a, const T2 & b) { return __lt(b, a); }
+   return a < b ? b : a;
 
-
-template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
-constexpr typename largest_type < SIGNED1, SIGNED2 >::type minimum(const SIGNED1 & a, const SIGNED2 & b) { return __lt(a, b) ? ((typename largest_type < SIGNED1, SIGNED2 >::type)a ): ((typename largest_type < SIGNED1, SIGNED2 >::type)b); }
-
-template < primitive_unsigned UNSIGNED1, primitive_signed SIGNED2 >
-constexpr SIGNED2 minimum(const UNSIGNED1 & a, const SIGNED2 & b) { return __lt(a, b) ? ((SIGNED2) a) : b; }
-
-template < primitive_signed SIGNED1, primitive_unsigned UNSIGNED2 >
-constexpr SIGNED1 minimum(const SIGNED1 & a, const UNSIGNED2 & b) { return __lt(a, b) ? a : ((SIGNED1) b); }
-
-template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
-constexpr typename largest_type < UNSIGNED1, UNSIGNED2 >::type minimum(const UNSIGNED1 & a, const UNSIGNED2 & b) { return __lt(a, b) ? ((typename largest_type < UNSIGNED1, UNSIGNED2 >::type)a) : ((typename largest_type < UNSIGNED1, UNSIGNED2 >::type)b); }
-
-
-template < primitive_integral INTEGRAL1, primitive_floating FLOATING2 >
-constexpr FLOATING2 minimum(const INTEGRAL1 & a, const FLOATING2 & b) { return __lt(a, b) ? ((FLOATING2)a) : b; }
-
-template < primitive_floating FLOATING1, primitive_integral INTEGRAL2 >
-constexpr FLOATING1 minimum(const FLOATING1 & a, const INTEGRAL2 & b) { return __lt(a, b) ? a : ((FLOATING1)b); }
-
-template < primitive_floating FLOATING1, primitive_floating FLOATING2 >
-constexpr typename largest_type < FLOATING1, FLOATING2 >::type minimum(const FLOATING1 & a, const FLOATING2 & b) { return __lt(a, b) ? ((typename largest_type < FLOATING1, FLOATING2 >::type)a) : ((typename largest_type < FLOATING1, FLOATING2 >::type)b); }
+}
 
 
 template < typename TYPE1, typename TYPE2 >
-constexpr TYPE1 minimum(const TYPE1 & a, const TYPE2 & b) { return __lt(a, b) ? a : ((TYPE1)b); }
+constexpr largest_type<TYPE1, TYPE2> maximum(const TYPE1 & a, const TYPE2 & b) 
+{ 
+   
+   return ::comparison::comparison2<TYPE1, TYPE2>().order(a, b) >= 0 ?
+      (largest_type<TYPE1, TYPE2>) a : (largest_type<TYPE1, TYPE2>)b;
 
-
-
-template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
-constexpr typename largest_type < SIGNED1, SIGNED2 >::type maximum(const SIGNED1 & a, const SIGNED2 & b) { return __lt(b, a) ? ((typename largest_type < SIGNED1, SIGNED2 >::type)a) : ((typename largest_type < SIGNED1, SIGNED2 >::type)b); }
-
-template < primitive_unsigned UNSIGNED1, primitive_signed SIGNED2 >
-constexpr SIGNED2 maximum(const UNSIGNED1 & a, const SIGNED2 & b) { return __lt(b, a) ? ((SIGNED2)a) :  b; }
-
-template < primitive_signed SIGNED1, primitive_unsigned UNSIGNED2 >
-constexpr SIGNED1 maximum(const SIGNED1 & a, const UNSIGNED2 & b) { return __lt(b, a) ?  a : ((SIGNED1)b); }
-
-template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
-constexpr typename largest_type < UNSIGNED1, UNSIGNED2 >::type maximum(const UNSIGNED1 & a, const UNSIGNED2 & b) { return __lt(b, a) ? ((typename largest_type < UNSIGNED1, UNSIGNED2 >::type)a) : ((typename largest_type < UNSIGNED1, UNSIGNED2 >::type)b); }
-
-template < primitive_integral INTEGRAL1, primitive_floating FLOATING2 >
-constexpr FLOATING2 maximum(const INTEGRAL1 & a, const FLOATING2 & b) { return __lt(b, a) ? ((FLOATING2)a) : b; }
-
-template < primitive_floating FLOATING1, primitive_integral INTEGRAL2 >
-constexpr FLOATING1 maximum(const FLOATING1 & a, const INTEGRAL2 & b) { return __lt(b, a) ? a : ((FLOATING1)b); }
-
-template < primitive_floating FLOATING1, primitive_floating FLOATING2 >
-constexpr typename largest_type < FLOATING1, FLOATING2 >::type maximum(const FLOATING1 & a, const FLOATING2 & b) { return __lt(b, a) ? ((typename largest_type < FLOATING1, FLOATING2 >::type)a) : ((typename largest_type < FLOATING1, FLOATING2 >::type)b); }
-
-template < typename TYPE1, typename TYPE2 >
-constexpr TYPE1 maximum(const TYPE1 & a, const TYPE2 & b) { return __lt(b, a) ? a : ((TYPE1)b); }
-
+}
 
 
 //#include "count.h"
-
-
 //#include "index.h"
 
 
-
 template < primitive_signed SIGNED >
-inline bool __found(SIGNED i) { return i >= 0; }
+inline bool is_found(SIGNED i) { return i >= 0; }
 template < primitive_signed SIGNED >
-inline bool __not_found(SIGNED i) { return i < 0; }
-
-
+inline bool not_found(SIGNED i) { return !is_found(i); }
 
 
 CLASS_DECL_ACME i64 ceil_div(i64 num, i64 den);

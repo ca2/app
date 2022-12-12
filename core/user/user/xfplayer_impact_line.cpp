@@ -153,7 +153,7 @@ bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, s
 }
 
 
-void xfplayer_impact_line::add_char(widechar wch, strsize & index)
+void xfplayer_impact_line::add_char(::wide_character wch, strsize & index)
 {
 
    single_lock synchronouslock(m_pContainer->synchronization());
@@ -172,7 +172,7 @@ void xfplayer_impact_line::add_char(widechar wch, strsize & index)
 }
 
 
-void xfplayer_impact_line::add_char(widechar wch, strsize & index, ::write_text::font * pFont)
+void xfplayer_impact_line::add_char(::wide_character wch, strsize & index, ::write_text::font * pFont)
 {
 
    single_lock synchronouslock(m_pContainer->synchronization());

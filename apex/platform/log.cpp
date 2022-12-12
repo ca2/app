@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "log.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -352,9 +352,9 @@ namespace apex
 ////               if (strTopicText.has_char())
 ////               {
 ////
-////                  strTopicText.begins_eat_ci("class ");
+////                  strTopicText.case_insensitive_begins_eat("class ");
 ////
-////                  strTopicText.begins_eat_ci("struct ");
+////                  strTopicText.case_insensitive_begins_eat("struct ");
 ////
 ////                  str += strTopicText;
 ////

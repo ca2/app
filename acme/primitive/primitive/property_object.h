@@ -132,7 +132,7 @@ public:
    ::payload find_payload(const ::atom & atom) const;
    ::payload find_payload(const ::atom & atom, const ::payload & varDefault) const;
 
-   string find_string(const ::atom & atom, const ansichar * pszDefault = nullptr) const;
+   string find_string(const ::atom & atom, const ::ansi_character * pszDefault = nullptr) const;
 
    ::i32 find_i32(const ::atom & atom, ::i32 iDefault = 0) const;
 

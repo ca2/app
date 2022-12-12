@@ -1,4 +1,4 @@
-//
+﻿//
 //  error_code_type.h
 //  acme
 //
@@ -11,6 +11,7 @@
 enum enum_error_code_type
 {
    
+   e_error_code_type_none,
    e_error_code_type_unknown,
    e_error_code_type_last_error,
    e_error_code_type_hresult,

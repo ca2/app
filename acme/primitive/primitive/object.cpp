@@ -701,7 +701,7 @@ void object::defer_update_object_id()
 
    string strType = __type_name(this);
 
-   strType.begins_eat_ci("class ");
+   strType.case_insensitive_begins_eat("class ");
 
    return strType;
 

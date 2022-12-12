@@ -2771,9 +2771,9 @@ pacmedirectory->create("/ca2core");
    ////         strLibraryId = straTitle[i];
    ////
    ////
-   ////         if(strLibraryId.ends_eat_ci(".dll")
-   ////               || strLibraryId.ends_eat_ci(".so")
-   ////               || strLibraryId.ends_eat_ci(".dylib"))
+   ////         if(strLibraryId.case_insensitive_ends_eat(".dll")
+   ////               || strLibraryId.case_insensitive_ends_eat(".so")
+   ////               || strLibraryId.case_insensitive_ends_eat(".dylib"))
    ////         {
    ////
    ////            if(string_begins_ci(strLibraryId,"libdraw2d_")
@@ -2906,7 +2906,7 @@ pacmedirectory->create("/ca2core");
    //
    //      strPrefix.replace("/","_");
    //
-   //      strLibrary.begins_eat_ci(strPrefix);
+   //      strLibrary.case_insensitive_begins_eat(strPrefix);
    //
    //      strRoot += strLibrary;
    //
@@ -2943,7 +2943,7 @@ pacmedirectory->create("/ca2core");
 
 
 
-   //string system::::url::encode(const ::string & str)
+   //string system::url::encode(const ::string & str)
    //{
 
    //   //throw ::interface_only();
@@ -3595,14 +3595,14 @@ pacmedirectory->create("/ca2core");
 
       string strWeather = strBrowser;
 
-      if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
+      if (strWeather.is_empty() || !strWeather.case_insensitive_begins("browser_"))
       {
 
          strWeather = file()->as_string(acmedirectory()->system() / "browser_weather.txt");
 
       }
 
-      if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
+      if (strWeather.is_empty() || !strWeather.case_insensitive_begins("browser_"))
       {
 
          strWeather = "browser_day";
@@ -3950,7 +3950,7 @@ pacmedirectory->create("/ca2core");
 
          {
 
-            if (strParam.trimmed().begins_ci("--"))
+            if (strParam.trimmed().case_insensitive_begins("--"))
             {
 
                strParam = "--user-data-dir=\"" + pathProfile + "\" " + strParam;
@@ -4320,7 +4320,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   //string system::::url::encode(const ::string & str)
+   //string system::url::encode(const ::string & str)
    //{
 
    //   return m_purldepartment->::url::encode(str);

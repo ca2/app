@@ -32,7 +32,7 @@ namespace file
 
    filesize edit_item_base::get_position(bool bForward) { __UNREFERENCED_PARAMETER(bForward); return m_position; };
 
-   byte * edit_item_base::get_data() { return nullptr; }
+   byte * edit_item_base::data() { return nullptr; }
    enum_edit_item edit_item_base::get_type() { return e_edit_item_undefined; }
    memsize edit_item_base::get_extent() { return 0; }
    memsize edit_item_base::get_file_extent() { return 0; }
@@ -43,7 +43,7 @@ namespace file
    memsize edit_item_base::get_extent(bool bForward) { return bForward ? get_extent() : reverse_get_extent(); }
    enum_edit_item edit_item_base::get_type(bool bForward) { return bForward ? get_type() : reverse_get_type(); }
    memsize edit_item_base::get_file_extent(bool bForward) { return bForward ? get_file_extent() : reverse_get_file_extent(); }
-   byte * edit_item_base::get_data(bool bForward) { return bForward ? get_data() : reverse_get_data(); }
+   byte * edit_item_base::data(bool bForward) { return bForward ? data() : reverse_get_data(); }
    memsize edit_item_base::get_delta_length()  { return 0; }
 
 
@@ -60,10 +60,10 @@ namespace file
 
    memsize delete_item::get_file_extent()
    {
-      return m_memstorage.get_size();
+      return m_memstorage.size();
    }
 
-   byte * delete_item::get_data()
+   byte * delete_item::data()
    {
       return nullptr;
    }
@@ -76,7 +76,7 @@ namespace file
    memsize delete_item::reverse_get_extent()
    {
 
-      return m_memstorage.get_size();
+      return m_memstorage.size();
 
    }
 
@@ -92,7 +92,7 @@ namespace file
    byte * delete_item::reverse_get_data()
    {
 
-      return m_memstorage.get_data();
+      return m_memstorage.data();
 
    }
 
@@ -100,7 +100,7 @@ namespace file
    memsize delete_item::get_delta_length()
    {
 
-      return - (memsize) m_memstorage.get_size();
+      return - (memsize) m_memstorage.size();
 
    }
 
@@ -114,12 +114,12 @@ namespace file
          if(pfile->m_positionIteration >= m_position)
          {
 
-            pfile->m_positionIteration += m_memstorage.get_size();
+            pfile->m_positionIteration += m_memstorage.size();
 
             //if (pfile->m_dwStopPosition != MAX_STOP && m_position < pfile->m_dwStopPosition)
             //{
 
-            //   pfile->m_dwStopPosition += m_memstorage.get_size();
+            //   pfile->m_dwStopPosition += m_memstorage.size();
 
             //}
 
@@ -137,7 +137,7 @@ namespace file
          if(pfile->m_positionIteration >= m_position)
          {
 
-            if(pfile->m_positionIteration < (m_position + m_memstorage.get_size()))
+            if(pfile->m_positionIteration < (m_position + m_memstorage.size()))
             {
 
                filesize iOffset = pfile->m_positionIteration - m_position;
@@ -145,7 +145,7 @@ namespace file
                if (pbyte != nullptr)
                {
 
-                  *pbyte = m_memstorage.get_data()[iOffset];
+                  *pbyte = m_memstorage.data()[iOffset];
 
                }
 
@@ -155,7 +155,7 @@ namespace file
             else
             {
 
-               pfile->m_positionIteration -= m_memstorage.get_size();
+               pfile->m_positionIteration -= m_memstorage.size();
 
             }
 
@@ -177,7 +177,7 @@ namespace file
 
    memsize insert_item::get_extent()
    {
-      return m_memstorage.get_size();
+      return m_memstorage.size();
    }
 
    memsize insert_item::get_file_extent()
@@ -185,9 +185,9 @@ namespace file
       return 0;
    }
 
-   byte * insert_item::get_data()
+   byte * insert_item::data()
    {
-      return m_memstorage.get_data();
+      return m_memstorage.data();
    }
 
    enum_edit_item insert_item::reverse_get_type()
@@ -202,7 +202,7 @@ namespace file
 
    memsize insert_item::reverse_get_file_extent()
    {
-      return m_memstorage.get_size();
+      return m_memstorage.size();
    }
 
    byte * insert_item::reverse_get_data()
@@ -212,7 +212,7 @@ namespace file
 
    memsize insert_item::get_delta_length()
    {
-      return (memsize) m_memstorage.get_size();
+      return (memsize) m_memstorage.size();
    }
 
 
@@ -226,7 +226,7 @@ namespace file
          if(pfile->m_positionIteration >= m_position)
          {
 
-            if(pfile->m_positionIteration < (m_position + m_memstorage.get_size()))
+            if(pfile->m_positionIteration < (m_position + m_memstorage.size()))
             {
 
                filesize iOffset = pfile->m_positionIteration - m_position;
@@ -234,7 +234,7 @@ namespace file
                if (pbyte != nullptr)
                {
 
-                  *pbyte = m_memstorage.get_data()[iOffset];
+                  *pbyte = m_memstorage.data()[iOffset];
 
                }
 
@@ -244,22 +244,22 @@ namespace file
             else
             {
 
-               pfile->m_positionIteration -= m_memstorage.get_size();
+               pfile->m_positionIteration -= m_memstorage.size();
 
             }
 
             //else
             //{
 
-            //    pfile->m_positionIteration -= m_memstorage.get_size();
+            //    pfile->m_positionIteration -= m_memstorage.size();
 
             //    if (pfile->m_dwStopPosition != MAX_STOP && m_position  < pfile->m_dwStopPosition)
             //    {
 
-            //       if (m_position + m_memstorage.get_size() < pfile->m_dwStopPosition)
+            //       if (m_position + m_memstorage.size() < pfile->m_dwStopPosition)
             //       {
 
-            //          pfile->m_dwStopPosition -= m_memstorage.get_size();
+            //          pfile->m_dwStopPosition -= m_memstorage.size();
 
             //       }
 
@@ -287,16 +287,16 @@ namespace file
          //if(pfile->m_position + pfile->m_iOffset >= m_position)
          //{
 
-         //   pfile->m_iOffset -= m_memstorage.get_size();
+         //   pfile->m_iOffset -= m_memstorage.size();
 
-         //   pfile->m_dwLength -= m_memstorage.get_size();
+         //   pfile->m_dwLength -= m_memstorage.size();
 
          //}
 
          if (pfile->m_positionIteration >= m_position)
          {
 
-            pfile->m_positionIteration += m_memstorage.get_size();
+            pfile->m_positionIteration += m_memstorage.size();
 
          }
 
@@ -318,7 +318,7 @@ namespace file
 
    memsize edit_item::get_extent()
    {
-      return m_memstorage.get_size();
+      return m_memstorage.size();
    }
 
    memsize edit_item::get_file_extent()
@@ -326,9 +326,9 @@ namespace file
       return get_extent();
    }
 
-   byte * edit_item::get_data()
+   byte * edit_item::data()
    {
-      return m_memstorage.get_data();
+      return m_memstorage.data();
    }
 
    enum_edit_item edit_item::reverse_get_type()
@@ -338,7 +338,7 @@ namespace file
 
    memsize edit_item::reverse_get_extent()
    {
-      return m_memstorageReverse.get_size();
+      return m_memstorageReverse.size();
    }
 
    memsize edit_item::reverse_get_file_extent()
@@ -348,7 +348,7 @@ namespace file
 
    byte * edit_item::reverse_get_data()
    {
-      return m_memstorageReverse.get_data();
+      return m_memstorageReverse.data();
    }
 
    memsize edit_item::get_delta_length()
@@ -382,7 +382,7 @@ namespace file
       return 0;
    }
 
-   byte * edit_group_item::get_data()
+   byte * edit_group_item::data()
    {
       return 0;
    }
@@ -495,7 +495,7 @@ namespace file
 
          pbufferedfile->seek_to_begin();
 
-         pbufferedfile->buffer((memsize) minimum(pbufferedfile->get_size(), pbufferedfile->m_uiBufferSize));
+         pbufferedfile->buffer((memsize) minimum(pbufferedfile->size(), pbufferedfile->m_uiBufferSize));
 
       }
 
@@ -508,7 +508,7 @@ namespace file
 
       m_pfile = pfile;
 
-      m_size = pfile->get_size();
+      m_size = pfile->size();
 
       m_pfile->seek_to_begin();
 
@@ -724,7 +724,7 @@ namespace file
       pedit = __new(edit_item);
       pedit->m_position = m_position;
       pedit->m_memstorage.set_size(nCount);
-      ::memcpy_dup(pedit->m_memstorage.get_data(),pdata,nCount);
+      ::memcpy_dup(pedit->m_memstorage.data(),pdata,nCount);
 
       TreeInsert(pedit);
       m_position += nCount;
@@ -734,7 +734,7 @@ namespace file
    void edit_file::change_insert_item_data(class insert_item * pinsertitem, const ::string & str)
    {
 
-      memsize iOldLen = pinsertitem->m_memstorage.get_size();
+      memsize iOldLen = pinsertitem->m_memstorage.size();
 
       pinsertitem->m_memstorage.assign(str);
 
@@ -746,7 +746,7 @@ namespace file
    void edit_file::append_insert_item_data(class insert_item * pinsertitem, const ::string & str)
    {
 
-      memsize iOldLen = pinsertitem->m_memstorage.get_size();
+      memsize iOldLen = pinsertitem->m_memstorage.size();
 
       pinsertitem->m_memstorage.append(str);
 
@@ -790,7 +790,7 @@ namespace file
       pdelete->m_position = m_position;
       pdelete->m_memstorage.set_size(uiCount);
       seek((filesize)m_position,::e_seek_set);
-      read(pdelete->m_memstorage.get_data(),uiCount);
+      read(pdelete->m_memstorage.data(),uiCount);
       TreeInsert(pdelete);
       m_size -= uiCount;
 
@@ -924,7 +924,7 @@ namespace file
 
       m_pfile->flush();
 
-      m_size = m_pfile->get_size();
+      m_size = m_pfile->size();
 
       m_ptreeitemFlush = m_ptreeitem;
 

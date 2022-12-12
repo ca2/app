@@ -5,7 +5,7 @@
 #include "inline_string.h"
 
 
-using utf8_character = inline_string < ansichar, 8 >;
+using utf8_character = inline_string < ::ansi_character, 8 >;
 //{
 //
 //   //char m_sz[8];

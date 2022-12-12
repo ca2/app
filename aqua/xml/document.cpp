@@ -422,7 +422,7 @@ namespace xml
 
       string strEntityReference(pszXmlParam, pszXml - pszXmlParam);
 
-      if(strEntityReference.begins_eat_ci("&#"))
+      if(strEntityReference.case_insensitive_begins_eat("&#"))
       {
 
          int i = atoi(strEntityReference);

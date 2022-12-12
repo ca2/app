@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "string_list.h"
 //#include "acme/primitive/string/tokenizer.h"
 
@@ -11,136 +11,174 @@ string_list::~string_list()
 {
 }
 
-void string_list::implode(string & str, const char * pcszSeparator, index start, ::count count) const
 
+void string_list::implode(string & str, ::const_ansi_range rangeSeparator, index start, ::count count) const
 {
+
    str.Empty();
-   string strSeparator(pcszSeparator);
 
    if(start < 0)
    {
+
       start += this->get_size();
+
    }
+
    index last;
+
    if(count < 0)
    {
+
       last = this->get_size() + count;
+
    }
    else
    {
+
       last = start + count - 1;
+
    }
 
    index i = start;
 
-   auto pos = index_iterator(i);
+   auto iterator = this->begin() + start;
 
    for(; i <= last; i++)
    {
 
       if(i > start)
       {
-         str += strSeparator;
+
+         str += rangeSeparator;
+
       }
 
-      str += *pos;
+      str += iterator->element();
 
-      pos++;
+      iterator++;
 
    }
 
 }
 
-string string_list::implode(const char * pcszSeparator, index iStart, index iEnd) const
 
+string string_list::implode(::const_ansi_range rangeSeparator, index iStart, index iEnd) const
 {
+
    string str;
-   implode(str, pcszSeparator, iStart, iEnd);
+
+   implode(str, rangeSeparator, iStart, iEnd);
 
    return str;
+
 }
 
 
-void string_list::reverse_implode(string & str, const char * pcszSeparator, index start, ::count count) const
+void string_list::reverse_implode(string & str, ::const_ansi_range rangeSeparator, index start, ::count count) const
 
 {
+
    str.Empty();
-   string strSeparator(pcszSeparator);
 
    if(start < 0)
    {
+
       start += this->get_size();
+
    }
+
    index last;
+
    if(count < 0)
    {
+
       last = this->get_size() + count;
+
    }
    else
    {
+
       last = start + count - 1;
+
    }
 
    index i = last;
 
-   auto pos = reverse_index_iterator(i);
+   auto iterator = this->end() - i;
 
    for(index i = last; i >= start; i--)
    {
 
       if(i < last)
       {
-         str += strSeparator;
+         str += rangeSeparator;
       }
 
-      str += *pos;
+      str += iterator->element();
 
-      pos--;
+      iterator--;
 
    }
 
 }
 
-string string_list::reverse_implode(const char * pcszSeparator, index iStart, index iEnd) const
 
+string string_list::reverse_implode(::const_ansi_range rangeSeparator, index iStart, index iEnd) const
 {
+
    string str;
-   reverse_implode(str, pcszSeparator, iStart, iEnd);
+
+   reverse_implode(str, rangeSeparator, iStart, iEnd);
 
    return str;
+
 }
 
-void string_list::explode(const char * pcszSeparator, const char * psz)
 
+void string_list::explode(::const_ansi_range rangeSeparator, ::const_ansi_range range)
 {
+
    erase_all();
-   add_tail_tokens(psz, pcszSeparator, true);
+
+   add_tail_tokens(range, rangeSeparator, true);
 
 }
 
 
-void string_list::add_tail_tokens(const char * pcsz, const char * pcszSeparator, bool bAddEmpty)
-
+void string_list::add_tail_tokens(::const_ansi_range range, ::const_ansi_range rangeSeparator, bool bAddEmpty)
 {
-   ::tokenizer strTokenizer(pcsz);
+   
+   ::tokenizer tokenizer(range);
 
    string strToken;
+
    if(bAddEmpty)
    {
-      while(strTokenizer.GetNextToken(strToken, pcszSeparator, false))
 
+      while(tokenizer.get_next_token(strToken, rangeSeparator, false))
       {
+
          add_tail(strToken);
+
       }
+
    }
    else
    {
-      while(strTokenizer.GetNextToken(strToken, pcszSeparator, false))
-
+      
+      while(tokenizer.get_next_token(strToken, rangeSeparator, false))
       {
-         if(strToken.has_char())
+
+         if (strToken.has_char())
+         {
+
             add_tail(strToken);
+
+         }
+
       }
+
    }
+
 }
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "fonts.h"
 #include "font.h"
 #include "font_enumeration_item.h"
@@ -119,7 +119,7 @@ namespace write_text
 
       }
 
-      if (strSystem.compare_ci(strUser) == 0)
+      if (strSystem.case_insensitive_order(strUser) == 0)
       {
 
          return 1.0;

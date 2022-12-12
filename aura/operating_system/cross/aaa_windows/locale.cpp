@@ -17,7 +17,7 @@ static LANGID system_ui_language;
 int_bool is_genitive_name_supported( LCTYPE lctype );
 LCID convert_default_lcid( LCID lcid, LCTYPE lctype );
 const WCHAR *get_locale_value_name( ::u32 lctype );
-::i32 get_registry_locale_info( const widechar * value, LPWSTR buffer, ::i32 len );
+::i32 get_registry_locale_info( const ::wide_character * value, LPWSTR buffer, ::i32 len );
 
 /******************************************************************************
  *		GetLocaleInfoW (KERNEL32.@)
@@ -494,8 +494,8 @@ const WCHAR *get_locale_value_name( ::u32 lctype )
  * Return length, 0 on error, -1 if not found.
  */
 
-//::i32 get_registry_locale_info( const widechar * value, LPWSTR buffer, ::i32 len )
-::i32 get_registry_locale_info(const widechar *, LPWSTR, ::i32)
+//::i32 get_registry_locale_info( const ::wide_character * value, LPWSTR buffer, ::i32 len )
+::i32 get_registry_locale_info(const ::wide_character *, LPWSTR, ::i32)
 {
 
    return 0;

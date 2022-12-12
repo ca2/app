@@ -534,8 +534,8 @@ int_bool file_path_is_equal(const ::string & psz1, const ::string & psz2)
    wstring pwsz2 = utf8_to_unicode(psz2);
    //   unichar * pwszFile1;
       // unichar * pwszFile2;
-   widechar * pwszPath1 = memory_new widechar[iBufSize];
-   widechar * pwszPath2 = memory_new widechar[iBufSize];
+   ::wide_character * pwszPath1 = memory_new ::wide_character[iBufSize];
+   ::wide_character * pwszPath2 = memory_new ::wide_character[iBufSize];
    i32 iCmp = -1;
    //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
       // {

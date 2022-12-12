@@ -2,7 +2,7 @@
 #include "framework.h"
 
 //
-//CLASS_DECL_ACME void copy(::string_base < ::ansichar > * ptarget, const ::payload * psource)
+//CLASS_DECL_ACME void copy(::string_base < ::ansi_character > * ptarget, const ::payload * psource)
 //{
 //
 //   *ptarget = psource->get_string();
@@ -10,7 +10,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void copy(::string_base < ::wd16char > * ptarget, const ::payload * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::wd16_character > * ptarget, const ::payload * psource);
 //{
 //
 //   *ptarget = psource->get_string();
@@ -18,7 +18,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void copy(::string_base < ::wd32char > * ptarget, const ::payload * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::wd32_character > * ptarget, const ::payload * psource);
 //{
 //
 //   *ptarget = psource->get_string();
@@ -26,7 +26,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void copy(::string_base < ::ansichar > * ptarget, const ::property * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::ansi_character > * ptarget, const ::property * psource);
 //{
 //
 //   *ptarget = psource->get_string();
@@ -34,7 +34,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void copy(::string_base < ::wd16char > * ptarget, const ::property * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::wd16_character > * ptarget, const ::property * psource);
 //{
 //
 //   *ptarget = psource->get_string();
@@ -42,7 +42,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void copy(::string_base < ::wd32char > * ptarget, const ::property * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::wd32_character > * ptarget, const ::property * psource);
 //{
 //
 //   *ptarget = psource->get_string();
@@ -50,7 +50,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void copy(::string_base < ::ansichar > * ptarget, const ::atom * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::ansi_character > * ptarget, const ::atom * psource);
 //{
 //
 //   *ptarget = psource->get_string();
@@ -58,7 +58,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void copy(::string_base < ::wd16char > * ptarget, const ::atom * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::wd16_character > * ptarget, const ::atom * psource);
 //{
 //
 //   *ptarget = psource->get_string();
@@ -66,7 +66,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void copy(::string_base < ::wd32char > * ptarget, const ::atom * psource);
+//CLASS_DECL_ACME void copy(::string_base < ::wd32_character > * ptarget, const ::atom * psource);
 //{
 //
 //   *ptarget = psource->get_string();
@@ -75,7 +75,7 @@
 //
 //
 //
-//CLASS_DECL_ACME void append(::string_base < ::ansichar > * ptarget, const ::payload * psource)
+//CLASS_DECL_ACME void append(::string_base < ::ansi_character > * ptarget, const ::payload * psource)
 //{
 //
 //   *ptarget += psource->get_string();
@@ -83,7 +83,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void append(::string_base < ::wd16char > * ptarget, const ::payload * psource);
+//CLASS_DECL_ACME void append(::string_base < ::wd16_character > * ptarget, const ::payload * psource);
 //{
 //
 //   *ptarget += psource->get_string();
@@ -91,7 +91,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void append(::string_base < ::wd32char > * ptarget, const ::payload * psource);
+//CLASS_DECL_ACME void append(::string_base < ::wd32_character > * ptarget, const ::payload * psource);
 //{
 //
 //   *ptarget += psource->get_string();
@@ -99,7 +99,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void append(::string_base < ::ansichar > * ptarget, const ::property * psource);
+//CLASS_DECL_ACME void append(::string_base < ::ansi_character > * ptarget, const ::property * psource);
 //{
 //
 //   *ptarget += psource->get_string();
@@ -107,7 +107,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void append(::string_base < ::wd16char > * ptarget, const ::property * psource);
+//CLASS_DECL_ACME void append(::string_base < ::wd16_character > * ptarget, const ::property * psource);
 //{
 //
 //   *ptarget += psource->get_string();
@@ -115,7 +115,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void append(::string_base < ::wd32char > * ptarget, const ::property * psource);
+//CLASS_DECL_ACME void append(::string_base < ::wd32_character > * ptarget, const ::property * psource);
 //{
 //
 //   *ptarget += psource->get_string();
@@ -123,7 +123,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void append(::string_base < ::ansichar > * ptarget, const ::atom * psource);
+//CLASS_DECL_ACME void append(::string_base < ::ansi_character > * ptarget, const ::atom * psource);
 //{
 //
 //   *ptarget += psource->get_string();
@@ -131,7 +131,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void append(::string_base < ::wd16char > * ptarget, const ::atom * psource);
+//CLASS_DECL_ACME void append(::string_base < ::wd16_character > * ptarget, const ::atom * psource);
 //{
 //
 //   *ptarget += psource->get_string();
@@ -139,7 +139,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void append(::string_base < ::wd32char > * ptarget, const ::atom * psource);
+//CLASS_DECL_ACME void append(::string_base < ::wd32_character > * ptarget, const ::atom * psource);
 //{
 //
 //   *ptarget += psource->get_string();

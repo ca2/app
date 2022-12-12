@@ -30,12 +30,12 @@ namespace acme
 #endif
    }
 
-   inline void __cdecl wmemcpy_s(widechar * _S1, strsize _N1, const widechar * _S2, strsize N)
+   inline void __cdecl wmemcpy_s(::wide_character * _S1, strsize _N1, const ::wide_character * _S2, strsize N)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::wmemcpy_s(_S1, (rsize_t)_N1, _S2, (rsize_t)N));
 #else
-      ::memcpy_dup(_S1, _S2, N * sizeof(widechar));
+      ::memcpy_dup(_S1, _S2, N * sizeof(::wide_character));
 #endif
    }
 

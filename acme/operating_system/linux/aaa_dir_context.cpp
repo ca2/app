@@ -174,9 +174,9 @@ namespace linux
       if(iFind >= 0)
       {
 
-         strsize iFind1 = pathInstall.reverse_find("\\", iFind);
+         strsize iFind1 = pathInstall.rear_find("\\", iFind);
 
-         strsize iFind2 = pathInstall.reverse_find("/", iFind);
+         strsize iFind2 = pathInstall.rear_find("/", iFind);
 
          strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
 

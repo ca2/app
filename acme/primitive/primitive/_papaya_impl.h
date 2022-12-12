@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace acme
@@ -40,7 +40,7 @@ namespace acme
    inline bool is_false(const ::string & str)
    {
 
-      return str.is_empty() || str.compare_ci("false") == 0 || str.compare_ci("no") == 0;
+      return str.is_empty() || str.case_insensitive_order("false") == 0 || str.case_insensitive_order("no") == 0;
 
    }
 
@@ -56,7 +56,7 @@ namespace acme
    inline bool is_set_false(const ::string & str)
    {
 
-      return str.compare_ci("false") == 0 || str.compare_ci("no") == 0;
+      return str.case_insensitive_order("false") == 0 || str.case_insensitive_order("no") == 0;
 
    }
 
@@ -64,7 +64,7 @@ namespace acme
    inline bool is_set_true(const ::string & str)
    {
 
-      return str.compare_ci("true") == 0 || str.compare_ci("yes") == 0;
+      return str.case_insensitive_order("true") == 0 || str.case_insensitive_order("yes") == 0;
 
    }
 

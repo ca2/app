@@ -182,7 +182,7 @@ namespace user
       ::image_list * GetImageListHover(int iSize);
 
 
-      virtual e_folder get_folder_type(::particle * pparticle, const widechar * pcszPath);
+      virtual e_folder get_folder_type(::particle * pparticle, const ::wide_character * pcszPath);
       virtual e_folder get_folder_type(::particle * pparticle, const ::string & pcszPath);
 
       int add_hover_image(int iSize, int iIndex, ::color::color crBk);

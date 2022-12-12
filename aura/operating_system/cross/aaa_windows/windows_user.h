@@ -68,7 +68,7 @@ typedef LRESULT(CALLBACK* HOOKPROC)(i32 code,WPARAM wParam,LPARAM lParam);
 typedef VOID(CALLBACK* SENDASYNCPROC)(oswindow,::u32,ulong_ptr,LRESULT);
 
 typedef int_bool(CALLBACK* PROPENUMPROca)(oswindow, const ::string &,HANDLE);
-typedef int_bool(CALLBACK* PROPENUMPROCW)(oswindow,const widechar *,HANDLE);
+typedef int_bool(CALLBACK* PROPENUMPROCW)(oswindow,const ::wide_character *,HANDLE);
 
 typedef int_bool(CALLBACK* PROPENUMPROCEXA)(oswindow,char *,HANDLE,ulong_ptr);
 typedef int_bool(CALLBACK* PROPENUMPROCEXW)(oswindow,LPWSTR,HANDLE,ulong_ptr);
@@ -461,7 +461,7 @@ const char * lpString);
 ::u32
 WINAPI
 RegisterWindowMessageW(
-const widechar * lpString);
+const ::wide_character * lpString);
 #ifdef UNICODE
 #define RegisterWindowMessage  RegisterWindowMessageW
 #else
@@ -687,8 +687,8 @@ const char * lpWindowName);
 oswindow
 WINAPI
 FindWindowW(
-const widechar * lpClassName,
-const widechar * lpWindowName);*/
+const ::wide_character * lpClassName,
+const ::wide_character * lpWindowName);*/
 #ifdef UNICODE
 #define FindWindow  FindWindowW
 #else
@@ -1047,8 +1047,8 @@ typedef struct tagCREATESTRUCTW
    i32         y;
    i32         x;
    ::i32        style;
-   const widechar *     lpszName;
-   const widechar *     lpszClass;
+   const ::wide_character *     lpszName;
+   const ::wide_character *     lpszClass;
    ::u32       dwExStyle;
 } CREATESTRUCTW,*LPCREATESTRUCTW;
 #ifdef UNICODE
@@ -2224,7 +2224,7 @@ const char * lpString);
 ::u32
 WINAPI
 RegisterWindowMessageW(
-const widechar * lpString);
+const ::wide_character * lpString);
 //#ifdef UNICODE
 #define RegisterWindowMessage  RegisterWindowMessageW
 //#else

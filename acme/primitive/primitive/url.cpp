@@ -356,7 +356,7 @@ namespace url
 
       str = str.Left(iQueryStart);
 
-      strsize iLastSlash = str.reverse_find('/');
+      strsize iLastSlash = str.rear_find('/');
 
       if (iLastSlash < 0)
       {
@@ -370,26 +370,26 @@ namespace url
    }
 
 
-   //string url::::url::encode(const ::string & strParam)
+   //string url::url::encode(const ::string & strParam)
    //{
 
-   //   return ::::url::encode(strParam);
+   //   return ::url::encode(strParam);
 
    //}
 
 
-   //string url::::url::decode(const ::string & strParam)
+   //string url::url::decode(const ::string & strParam)
    //{
 
-   //   return ::::url::decode(strParam);
+   //   return ::url::decode(strParam);
 
    //}
 
 
-   //string url::::url::decode(const ::string & strUrl, strsize iLen)
+   //string url::url::decode(const ::string & strUrl, strsize iLen)
    //{
 
-   //   return ::::url::decode(strUrl,iLen);
+   //   return ::url::decode(strUrl,iLen);
 
    //}
 
@@ -477,7 +477,7 @@ namespace url
    ::payload & url::var_set(::payload & varUrl, const ::string & strKeyParam, ::payload payload)
    {
 
-      return varUrl = set_key(varUrl.as_string(), strKeyParam, payload);
+      return varUrl = set_key(varUrl, strKeyParam, payload);
 
    }
 
@@ -819,7 +819,7 @@ namespace url
 
       string strAndKeyEqual2 = "&" + strKeyEqual;
 
-      string strValue = ::url::encode(payload.as_string());
+      string strValue = ::url::encode(payload);
 
       if(string_begins(strQuery, strKeyEqual))
       {
@@ -1720,7 +1720,7 @@ namespace url
 
       string strServer = get_server(strUrl);
 
-      if(strServer.compare_ci(strRoot) == 0)
+      if(strServer.case_insensitive_order(strRoot) == 0)
       {
 
          return true;
@@ -1910,7 +1910,7 @@ namespace url
 #include "acme/primitive/string/string.h"
 
 
-char* string_append_character(char* psz, ansichar ch)
+char* string_append_character(char* psz, ::ansi_character ch)
 {
 
    *psz = ch;
@@ -2080,7 +2080,7 @@ namespace url
    string decode(const ::block& block)
    {
 
-      auto sizeLen = block.get_size();
+      auto sizeLen = block.size();
 
       string strDecode;
 
@@ -2090,7 +2090,7 @@ namespace url
 
       strsize i = 0;
 
-      const char* pszEncoded = (const char*)block.get_data();
+      const char* pszEncoded = (const char*)block.begin();
 
       while (*pszEncoded != '\0' && i < sizeLen)
       {
@@ -2296,13 +2296,13 @@ namespace url
 
       string strEncoded;
 
-      auto pszEncodedStart = strEncoded.get_string_buffer(block.get_size() * 5);
+      auto pszEncodedStart = strEncoded.get_string_buffer(block.size() * 5);
 
       auto pszEncoded = pszEncodedStart;
 
-      auto pszInput = (const char*)block.get_data();
+      auto pszInput = (const char*)block.begin();
 
-      memset(pszEncoded, 0, block.get_size() * 5);
+      memset(pszEncoded, 0, block.size() * 5);
 
       while (*pszInput != '\0')
       {

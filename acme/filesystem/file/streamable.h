@@ -50,7 +50,7 @@ namespace file
 
       virtual void set_size(filesize dwNewLen);
 
-      virtual filesize get_size() const;
+      virtual filesize size() const;
 
 
    };

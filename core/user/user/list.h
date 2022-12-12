@@ -164,7 +164,7 @@ namespace user
       //void AddMessageHandling(::channel * pchannel);
       void _001ShowTopText(bool bShow = true) override;
       void _001LayoutTopText(::draw2d::graphics_pointer& pgraphics) override;
-      void _001SetTopText(const widechar * pcwsz) override;
+      void _001SetTopText(const ::wide_character * pcwsz) override;
 
       bool DIDDXHeaderLayout(bool bSave) override;
 

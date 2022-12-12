@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "string.h"
@@ -26,13 +26,13 @@ public:
    ~wstring_adaptor()
    {
 
-      m_stringCatcher = m_pdata;
+      m_stringCatcher = this->c_str();
 
    }
 
 
-   inline operator const widechar * () { return this->m_pdata; }
-   inline operator widechar * () { return this->m_pdata; }
+   inline operator const ::wide_character * () { return this->m_begin; }
+   inline operator ::wide_character * () { return (::wide_character *) this->m_begin; }
 
 
 };

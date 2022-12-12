@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/data/tree.h"
@@ -26,7 +26,7 @@ namespace file
 
       virtual filesize get_position(bool bForward);
 
-      virtual byte* get_data();
+      virtual byte* data();
       virtual enum_edit_item get_type();
       virtual memsize get_extent();
       virtual memsize get_file_extent();
@@ -37,7 +37,7 @@ namespace file
       virtual memsize get_extent(bool bForward);
       virtual enum_edit_item get_type(bool bForward);
       virtual memsize get_file_extent(bool bForward);
-      virtual byte* get_data(bool bForward);
+      virtual byte* data(bool bForward);
       virtual memsize get_delta_length();
 
    };
@@ -57,7 +57,7 @@ namespace file
       virtual enum_edit_item get_type() override;
       virtual memsize get_extent() override;
       virtual memsize get_file_extent() override;
-      virtual byte* get_data()  override;
+      virtual byte* data()  override;
       virtual enum_edit_item reverse_get_type()  override;
       virtual memsize reverse_get_extent() override;
       virtual memsize reverse_get_file_extent() override;
@@ -81,7 +81,7 @@ namespace file
       virtual enum_edit_item get_type()  override;
       virtual memsize get_extent()  override;
       virtual memsize get_file_extent() override;
-      virtual byte* get_data()  override;
+      virtual byte* data()  override;
       virtual enum_edit_item reverse_get_type()  override;
       virtual memsize reverse_get_extent() override;
       virtual memsize reverse_get_file_extent() override;
@@ -103,7 +103,7 @@ namespace file
       virtual enum_edit_item get_type() override;
       virtual memsize get_extent() override;
       virtual memsize get_file_extent() override;
-      virtual byte* get_data()  override;
+      virtual byte* data()  override;
       virtual enum_edit_item reverse_get_type() override;
       virtual memsize reverse_get_extent() override;
       virtual memsize reverse_get_file_extent() override;
@@ -132,7 +132,7 @@ namespace file
       virtual enum_edit_item get_type() override;
       virtual memsize get_extent() override;
       virtual memsize get_file_extent() override;
-      virtual byte* get_data() override;
+      virtual byte* data() override;
       virtual enum_edit_item reverse_get_type() override;
       virtual memsize reverse_get_extent() override;
       virtual memsize reverse_get_file_extent() override;

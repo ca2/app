@@ -68,7 +68,7 @@ inline bool __is_valid_address(const void* p, memsize size, bool bReadWrite)
 }
 
 
-inline bool __is_valid_string(const widechar* pwsz, memsize nMaxLength)
+inline bool __is_valid_string(const ::wide_character* pwsz, memsize nMaxLength)
 {
 
    return ::__is_valid_address(pwsz, nMaxLength);
@@ -273,31 +273,31 @@ inline bool exists(const ::file::enum_type& etype)
 
 
 
-inline i64 ansi_to_i64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase)
+inline i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
 {
 
-   return strtoll(psz, (ansichar **) ppszEnd, iBase);
+   return strtoll(psz, (::ansi_character **) ppszEnd, iBase);
 
 }
 
-inline u64 ansi_to_u64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase)
+inline u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
 {
 
-   return strtoull(psz, (ansichar **) ppszEnd, iBase);
+   return strtoull(psz, (::ansi_character **) ppszEnd, iBase);
 
 }
 
 
-inline i32 ansi_to_i32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase)
+inline i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
 {
 
 #ifdef WINDOWS
 
-   return strtol(psz, (ansichar **) ppszEnd, iBase);
+   return strtol(psz, (::ansi_character **) ppszEnd, iBase);
 
 #else
 
-   long l = strtol(psz, (ansichar **) ppszEnd, iBase);
+   long l = strtol(psz, (::ansi_character **) ppszEnd, iBase);
 
    if(l > INT_MAX)
    {
@@ -323,16 +323,16 @@ inline i32 ansi_to_i32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBas
 }
 
 
-inline u32 ansi_to_u32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase)
+inline u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
 {
 
 #ifdef WINDOWS
 
-   return strtoul(psz, (ansichar **) ppszEnd, iBase);
+   return strtoul(psz, (::ansi_character **) ppszEnd, iBase);
 
 #else
 
-   unsigned long ul = strtoul(psz, (ansichar **) ppszEnd, iBase);
+   unsigned long ul = strtoul(psz, (::ansi_character **) ppszEnd, iBase);
 
    if(ul > UINT_MAX)
    {

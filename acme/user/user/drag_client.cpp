@@ -1,4 +1,4 @@
-// Created by camilo on 2021-01-22 06:11 AM <3ThomasBorregaardSørensen
+﻿// Created by camilo on 2021-01-22 06:11 AM <3ThomasBorregaardSørensen
 #include "framework.h"
 #include "drag_client.h"
 #include "drag.h"
@@ -30,13 +30,13 @@ namespace user
    void drag_client::destroy()
    {
 
-      for (auto & pdrag : m_mapDrag.values())
+      for (auto & pair : m_mapDrag)
       {
 
-         if (::is_set(pdrag))
+         if (::is_set(pair.second()))
          {
 
-            pdrag->destroy();
+            pair.second()->destroy();
 
          }
 
@@ -67,16 +67,16 @@ namespace user
    drag * drag_client::drag(::e_element eelement) const
    {
 
-      auto p = m_mapDrag.plookup(eelement);
+      auto ppair = m_mapDrag.plookup(eelement);
 
-      if (!p)
+      if (ppair.is_null())
       {
 
          return nullptr;
 
       }
 
-      return p->m_element2.m_p;
+      return ppair->second();
 
    }
 
@@ -101,8 +101,10 @@ namespace user
 
       }
 
-      for (auto & pdrag : m_mapDrag.values())
+      for (auto & pair : m_mapDrag)
       {
+
+         auto & pdrag = pair.second();
 
          if (::is_set(pdrag) && pitemButtonDown->m_eelement == pdrag->m_eelement)
          {
@@ -206,8 +208,10 @@ namespace user
 
       }
 
-      for (auto & pdrag : m_mapDrag.values())
+      for (auto & pair : m_mapDrag)
       {
+
+         auto & pdrag = pair.second();
 
          if (::is_set(pdrag) && pitemButtonHover->m_eelement == pdrag->m_eelement)
          {

@@ -5,10 +5,10 @@
 
 
 template < >
-CLASS_DECL_ACME natural_meta_data < string_meta_data < ansichar > > * __nil < natural_meta_data < string_meta_data < ansichar > > >()
+CLASS_DECL_ACME natural_meta_data < string_meta_data < ::ansi_character > > * __nil < natural_meta_data < string_meta_data < ::ansi_character > > >()
 {
 
-   static natural_meta_data < string_meta_data < ansichar > > s_ansistringNil;
+   static natural_meta_data < string_meta_data < ::ansi_character > > s_ansistringNil;
 
    return &s_ansistringNil;
 
@@ -87,13 +87,13 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ansichar > > * __nil < na
 //#endif
 //
 //
-//string::string(const wd32char* pch,strsize nLength):
+//string::string(const ::wd32_character* pch,strsize nLength):
 //   string(::str().GetDefaultManager())
 //{
 //   ASSERT(nLength >= 0);
 //   if(nLength > 0)
 //   {
-//      ASSERT(__is_valid_address(pch,nLength*sizeof(wd32char),false));
+//      ASSERT(__is_valid_address(pch,nLength*sizeof(::wd32_character),false));
 //      if(pch == nullptr)
 //         throw ::exception(error_bad_argument);
 //
@@ -162,7 +162,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return strcmp(reinterpret_cast<const  char*>(pszA),reinterpret_cast<const  char*>(pszB));
 //}
 //
-//i32 __cdecl char_traits::string_collate_ci(const char * pszA,const char * pszB) noexcept
+//i32 __cdecl char_traits::case_insensitive_string_collate(const char * pszA,const char * pszB) noexcept
 //{
 //   return ansi_compare_ci(reinterpret_cast<const  char*>(pszA),reinterpret_cast<const  char*>(pszB));
 //}
@@ -189,7 +189,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //return _mbscmp( reinterpret_cast< const uchar* >( pszA ), reinterpret_cast< const uchar* >( pszB ) );
 //}
 //
-//strsize __cdecl char_traits::string_compare_ci(const char * pszA,const char * pszB ) noexcept
+//strsize __cdecl char_traits::case_insensitive_string_order(const char * pszA,const char * pszB ) noexcept
 //{
 //return _mbsicmp( reinterpret_cast< const uchar* >( pszA ), reinterpret_cast< const uchar* >( pszB ) );
 //}
@@ -199,7 +199,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //return _mbscoll( reinterpret_cast< const uchar* >( pszA ), reinterpret_cast< const uchar* >( pszB ) );
 //}
 //
-//strsize __cdecl char_traits::string_collate_ci(const char * pszA,const char * pszB ) noexcept
+//strsize __cdecl char_traits::case_insensitive_string_collate(const char * pszA,const char * pszB ) noexcept
 //{
 //return _mbsicoll( reinterpret_cast< const uchar* >( pszA ), reinterpret_cast< const uchar* >( pszB ) );
 //}
@@ -441,12 +441,12 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//strsize __cdecl char_traits::get_char_length(const wd32char * pszSource) noexcept
+//strsize __cdecl char_traits::get_char_length(const ::wd32_character * pszSource) noexcept
 //{
 //   return wd32_to_ansi_len(pszSource);
 //}
 //
-//strsize __cdecl char_traits::get_char_length(const wd32char * pszSource,strsize nLength) noexcept
+//strsize __cdecl char_traits::get_char_length(const ::wd32_character * pszSource,strsize nLength) noexcept
 //{
 //   return wd32_to_ansi_len(pszSource, nLength);
 //}
@@ -465,7 +465,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//void __cdecl char_traits::ConvertTochar(char * pszDest,strsize nDestLength,const wd32char * pszSrc,strsize nSrcLength) noexcept
+//void __cdecl char_traits::ConvertTochar(char * pszDest,strsize nDestLength,const ::wd32_character * pszSrc,strsize nSrcLength) noexcept
 //{
 //
 //   //if(nDestLength >= 0)
@@ -738,7 +738,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   //      }
 //}
 //
-//string::string(const wd32char* pszSrc):
+//string::string(const ::wd32_character* pszSrc):
 //   string(::str().GetDefaultManager())
 //{
 //   //      if( !CheckImplicitLoad( pszSrc ) )
@@ -966,7 +966,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return *this;
 //}
 //
-//string& string::operator=(const wd32char * pszSrc)
+//string& string::operator=(const ::wd32_character * pszSrc)
 //{
 //   // nDestLength is in XCHARs
 //   strsize nDestLength = (pszSrc != nullptr) ? wd32_to_wd16_len(pszSrc) : 0;
@@ -1139,10 +1139,10 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return(::str().string_collate(m_psz,psz));
 //}
 //
-//i32 string::collate_ci(const char * psz) const noexcept
+//i32 string::case_insensitive_collate(const char * psz) const noexcept
 //{
 //   //ASSERT(__is_valid_string(psz));
-//   return(::str().string_collate_ci(m_psz,psz));
+//   return(::str().case_insensitive_string_collate(m_psz,psz));
 //}
 //
 ////i32 string::compare(const char * psz) const
@@ -1152,7 +1152,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ////
 ////i32 string::compare_no_case(const char * psz) const noexcept
 ////{
-////   return compare_ci(psz);
+////   return case_insensitive_order(psz);
 ////}
 //
 ////i32 string::collate(const char * psz) const noexcept
@@ -1170,9 +1170,9 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return substr(iStart,nCount).compare(psz);
 //}
 //
-//i32 string::compare_ci(strsize iStart,strsize nCount,const char * psz) const
+//i32 string::case_insensitive_order(strsize iStart,strsize nCount,const char * psz) const
 //{
-//   return substr(iStart,nCount).compare_ci(psz);
+//   return substr(iStart,nCount).case_insensitive_order(psz);
 //}
 //
 //i32 string::collate(strsize iStart,strsize nCount,const char * psz) const
@@ -1180,9 +1180,9 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return substr(iStart,nCount).collate(psz);
 //}
 //
-//i32 string::collate_ci(strsize iStart,strsize nCount,const char * psz) const
+//i32 string::case_insensitive_collate(strsize iStart,strsize nCount,const char * psz) const
 //{
-//   return substr(iStart,nCount).compare_ci(psz);
+//   return substr(iStart,nCount).case_insensitive_order(psz);
 //}
 //
 //i32 string::compare(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
@@ -1193,10 +1193,10 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//i32 string::compare_ci(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
+//i32 string::case_insensitive_order(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
 //{
 //
-//   return substr(iStart,nCount).compare_ci(string(psz).substr(start2,count2));
+//   return substr(iStart,nCount).case_insensitive_order(string(psz).substr(start2,count2));
 //
 //}
 //
@@ -1208,10 +1208,10 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //}
 //
-//i32 string::collate_ci(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
+//i32 string::case_insensitive_collate(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
 //{
 //
-//   return substr(iStart,nCount).collate_ci(string(psz).substr(start2,count2));
+//   return substr(iStart,nCount).case_insensitive_collate(string(psz).substr(start2,count2));
 //
 //}
 //
@@ -2416,7 +2416,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //
 //// find the last occurrence of character 'ch'
-//strsize string::reverse_find(char ch,strsize iStart) const RELEASENOTHROW
+//strsize string::rear_find(char ch,strsize iStart) const RELEASENOTHROW
 //{
 //   // find last single character
 //   const char * psz = ::str().string_find_char_reverse(m_psz,ch,iStart);
@@ -2426,7 +2426,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //// find the last occurrence of character 'ch'
-//strsize string::reverse_find(const char * ch,strsize iStart) const RELEASENOTHROW
+//strsize string::rear_find(const char * ch,strsize iStart) const RELEASENOTHROW
 //{
 //   // find last single character
 //   const char * psz = ::str().string_find_string_reverse(m_psz,ch,iStart);

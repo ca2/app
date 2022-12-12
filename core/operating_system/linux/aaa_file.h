@@ -5,7 +5,7 @@ class FileException;
 struct FileStatus;
 
 
-void CLASS_DECL_CORE vfxGetRoot(const widechar * pszPath, string& wstrRoot);
+void CLASS_DECL_CORE vfxGetRoot(const ::wide_character * pszPath, string& wstrRoot);
 
 void CLASS_DECL_CORE vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 

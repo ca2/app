@@ -524,6 +524,42 @@ namespace numeric_info_internal
 
    };
 
+   template < >
+   class CLASS_DECL_ACME numeric_info < std::strong_ordering > 
+   {
+   public:
+
+      using INTERNAL_TYPE = std::strong_ordering;
+
+      using INTERNAL_INFO = std::strong_ordering;
+
+      static consteval auto null()
+      {
+         return nullptr;
+      }
+      //static consteval auto unitary()
+      //{
+      //   return INTERNAL_INFO::unitary();
+      //}
+      //static consteval auto allset()
+      //{
+      //   return INTERNAL_INFO::allset();
+      //}
+      //static consteval auto minimum()
+      //{
+      //   return ;
+      //}
+      //static consteval auto maximum()
+      //{
+      //   return 1;
+      //}
+      //template < typename T2 >
+      //static consteval auto natural(const T2 & t2)
+      //{
+      //   return minimum(maximum(), maximum(null(), (T)t2));
+      //}
+
+   };
 
 } // namespace numeric_info_internal
 

@@ -203,7 +203,7 @@ MultiByteToWideChar2(
 ::u32    dwFlags,
 const char *   pMultiByteStr,
 i32      cbMultiByte,
-wd16char *   pWideCharStr,
+::wd16_character *   pWideCharStr,
 i32      cchWideChar)
 {
   string str(pMultiByteStr, cbMultiByte);
@@ -270,15 +270,15 @@ i32      cchWideChar)
      if(cchWideChar <= 0)
      {
 
-        wd16string wstr;
+        wd16_string wstr;
 
         size_t sOut = sIn * 4;
 
         wstr.get_string_buffer(sOut);
 
-        sOut *= sizeof(wd16char);
+        sOut *= sizeof(::wd16_character);
 
-        wd16char * psz = (wd16char *) (const wd16char *) wstr;
+        ::wd16_character * psz = (::wd16_character *) (const ::wd16_character *) wstr;
 
 
         pWideCharStr = psz;
@@ -293,16 +293,16 @@ i32      cchWideChar)
 
         iconv_close(iconvPlease);
 
-        return (i32) (((sOutIn - sOut) / sizeof(wd16char)) + (cbMultiByte < 0 ? 1 : 0));
+        return (i32) (((sOutIn - sOut) / sizeof(::wd16_character)) + (cbMultiByte < 0 ? 1 : 0));
 
      }
      else
      {
 
-        wd16char * psz = (wd16char *) (const wd16char *) pWideCharStr;
+        ::wd16_character * psz = (::wd16_character *) (const ::wd16_character *) pWideCharStr;
 
 
-        size_t sOut = cchWideChar * sizeof(wd16char);
+        size_t sOut = cchWideChar * sizeof(::wd16_character);
 
         iconv_t iconvPlease = iconv_open("UTF-16LE", iconv_charset_from_windows_code_page(CodePage));
 
@@ -313,7 +313,7 @@ i32      cchWideChar)
 
         iconv_close(iconvPlease);
 
-        return (i32) (((sOutIn - sOut) / sizeof(wd16char))  + (cbMultiByte < 0 ? 1 : 0));
+        return (i32) (((sOutIn - sOut) / sizeof(::wd16_character))  + (cbMultiByte < 0 ? 1 : 0));
 
      }
 
@@ -334,7 +334,7 @@ MultiByteToWideChar2(
 ::u32    dwFlags,
 const char *   pMultiByteStr,
 i32      cbMultiByte,
-wd32char *   pWideCharStr,
+::wd32_character *   pWideCharStr,
 i32      cchWideChar)
 {
   string str(pMultiByteStr, cbMultiByte);
@@ -401,15 +401,15 @@ i32      cchWideChar)
      if(cchWideChar <= 0)
      {
 
-        wd32string wstr;
+        wd32_string wstr;
 
         size_t sOut = sIn * 4;
 
         wstr.get_string_buffer(sOut);
 
-        sOut *= sizeof(wd32char);
+        sOut *= sizeof(::wd32_character);
 
-        wd32char * psz = (wd32char *) (const wd32char *) wstr;
+        ::wd32_character * psz = (::wd32_character *) (const ::wd32_character *) wstr;
 
 
         pWideCharStr = psz;
@@ -424,16 +424,16 @@ i32      cchWideChar)
 
         iconv_close(iconvPlease);
 
-        return (i32) (((sOutIn - sOut) / sizeof(wd32char)) + (cbMultiByte < 0 ? 1 : 0));
+        return (i32) (((sOutIn - sOut) / sizeof(::wd32_character)) + (cbMultiByte < 0 ? 1 : 0));
 
      }
      else
      {
 
-        wd32char * psz = (wd32char *) (const wd32char *) pWideCharStr;
+        ::wd32_character * psz = (::wd32_character *) (const ::wd32_character *) pWideCharStr;
 
 
-        size_t sOut = cchWideChar * sizeof(wd32char);
+        size_t sOut = cchWideChar * sizeof(::wd32_character);
 
         iconv_t iconvPlease = iconv_open("UTF-32LE", iconv_charset_from_windows_code_page(CodePage));
 
@@ -444,7 +444,7 @@ i32      cchWideChar)
 
         iconv_close(iconvPlease);
 
-        return (i32) (((sOutIn - sOut) / sizeof(wd32char))  + (cbMultiByte < 0 ? 1 : 0));
+        return (i32) (((sOutIn - sOut) / sizeof(::wd32_character))  + (cbMultiByte < 0 ? 1 : 0));
 
      }
 
@@ -462,7 +462,7 @@ i32      cchWideChar)
 i32 WINAPI WideCharToMultiByte2(
 ::u32     CodePage,
 ::u32    dwFlags,
-const widechar *  pWideCharStr,
+const ::wide_character *  pWideCharStr,
 i32      cchWideChar,
 char *   pMultiByteStr,
 i32      cbMultiByte,

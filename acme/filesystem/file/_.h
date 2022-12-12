@@ -12,7 +12,7 @@
 
 //#include "stdio_file.h"
 
-inline bool IsDirSep(widechar ch)
+inline bool IsDirSep(::wide_character ch)
 {
 
    return (ch == '\\' || ch == '/');

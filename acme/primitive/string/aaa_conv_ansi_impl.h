@@ -32,7 +32,7 @@ inline string as_string(const T * & p)
 }
 
 //
-//inline string as_string(const ansichar* psz)
+//inline string as_string(const ::ansi_character* psz)
 //{
 //
 //   return string(psz);
@@ -40,15 +40,15 @@ inline string as_string(const T * & p)
 //}
 //
 //
-//inline string as_string(ansichar* psz)
+//inline string as_string(::ansi_character* psz)
 //{
 //
-//   return string((const ansichar *) psz);
+//   return string((const ::ansi_character *) psz);
 //
 //}
 //
 //
-//inline string as_string(const widechar * pwsz)
+//inline string as_string(const ::wide_character * pwsz)
 //{
 //
 //   return string(pwsz);
@@ -56,7 +56,7 @@ inline string as_string(const T * & p)
 //}
 //
 //
-//inline string as_string(widechar * pwsz)
+//inline string as_string(::wide_character * pwsz)
 //{
 //
 //   return string(pwsz);
@@ -65,7 +65,7 @@ inline string as_string(const T * & p)
 //
 //
 //template < >
-//inline string as_string(const ansistring * & p)
+//inline string as_string(const ansi_string * & p)
 //{
 //
 //   return *p;
@@ -74,7 +74,7 @@ inline string as_string(const T * & p)
 //
 //
 //template < >
-//inline string as_string(const widestring *& p)
+//inline string as_string(const wide_string *& p)
 //{
 //
 //   return string(*p);
@@ -116,14 +116,14 @@ inline string as_string(const T * & p)
    //}
 
 
-   //inline ::string as_string(const wd16char * psz)
+   //inline ::string as_string(const ::wd16_character * psz)
    //{
 
    //   str = psz;
 
    //}
 
-   //inline ::string as_string(wd16char * const psz)
+   //inline ::string as_string(::wd16_character * const psz)
    //{
 
    //   str = psz;
@@ -131,14 +131,14 @@ inline string as_string(const T * & p)
    //}
 
 
-   //inline ::string as_string(const wd32char * psz)
+   //inline ::string as_string(const ::wd32_character * psz)
    //{
 
    //   str = psz;
 
    //}
 
-   //inline ::string as_string(wd32char * const psz)
+   //inline ::string as_string(::wd32_character * const psz)
    //{
 
    //   str = psz;
@@ -149,12 +149,12 @@ inline string as_string(const T * & p)
    //   inline ::string as_string(const signed char & ch)
    //{
 
-   //   str = (ansichar) ch;
+   //   str = (::ansi_character) ch;
 
    //}
 
 
-   //inline void to_string(string& str, const ansichar& ch)
+   //inline void to_string(string& str, const ::ansi_character& ch)
    //{
 
    //   str = ch;
@@ -162,7 +162,7 @@ inline string as_string(const T * & p)
    //}
 
 
-   //inline void to_string(string& str, const widechar& wch)
+   //inline void to_string(string& str, const ::wide_character& wch)
    //{
 
    //   str = wch;
@@ -173,7 +173,7 @@ inline string as_string(const T * & p)
    //inline void to_string(string& str, const uchar& uch)
    //{
 
-   //   str = (const ansichar&)uch;
+   //   str = (const ::ansi_character&)uch;
 
    //}
 

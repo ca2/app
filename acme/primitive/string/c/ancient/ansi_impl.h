@@ -4,8 +4,8 @@
 
 
 
-inline ansichar __ansicharlowered(i32 i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
-inline ansichar __ansicharuppered(i32 i) { return i >= 'a' && i <='z' ? i - 'a' + 'A' : i; }
+inline ::ansi_character __ansicharlowered(i32 i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
+inline ::ansi_character __ansicharuppered(i32 i) { return i >= 'a' && i <='z' ? i - 'a' + 'A' : i; }
 inline i32 __ansicharisdigit(i32 i) { return i >= L'0' && i <= L'9'; }
 inline i32 __ansicharisalpha(i32 i) { return (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'); }
 inline i32 __ansicharisalnum(i32 i) { return ansi_char_isalpha(i) || ansi_char_isdigit(i); }
@@ -15,16 +15,16 @@ inline i32 __ansicharisspace(i32 ch) { return ch == '\r' || ch == '\n' || ch == 
 inline i32 __ansicharishexadecimal(i32 i) { return ansi_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
 
 
-inline ansichar * overlap_safe_ansincpy(ansichar * pszDst, const ansichar * pszSrc, strsize srclen)
+inline ::ansi_character * overlap_safe_ansincpy(::ansi_character * pszDst, const ::ansi_character * pszSrc, strsize srclen)
 {
 
    if (pszDst != pszSrc)
    {
 
-      if (address_overlaps(pszDst, pszSrc, srclen * sizeof(ansichar)))
+      if (address_overlaps(pszDst, pszSrc, srclen * sizeof(::ansi_character)))
       {
 
-         memmove(pszDst, pszSrc, srclen * sizeof(ansichar));
+         memmove(pszDst, pszSrc, srclen * sizeof(::ansi_character));
 
       }
       else
@@ -43,7 +43,7 @@ inline ansichar * overlap_safe_ansincpy(ansichar * pszDst, const ansichar * pszS
 
 
 
-inline strsize __ansilen(const ansichar * psz)
+inline strsize __ansilen(const ::ansi_character * psz)
 {
 
    auto pszStart = psz;
@@ -57,7 +57,7 @@ inline strsize __ansilen(const ansichar * psz)
 
 
 
-inline ansichar * __ansicpy(ansichar * pszDst, const ansichar * pszSrc)
+inline ::ansi_character * __ansicpy(::ansi_character * pszDst, const ::ansi_character * pszSrc)
 {
 
    auto pszStart = pszDst;
@@ -71,7 +71,7 @@ inline ansichar * __ansicpy(ansichar * pszDst, const ansichar * pszSrc)
 
 
 
-inline ansichar * __ansincpy(ansichar * pszDst, const ansichar * psz, strsize len)
+inline ::ansi_character * __ansincpy(::ansi_character * pszDst, const ::ansi_character * psz, strsize len)
 {
 
    auto pszStart = pszDst;
@@ -87,7 +87,7 @@ inline ansichar * __ansincpy(ansichar * pszDst, const ansichar * psz, strsize le
 
 
 
-inline const ansichar * __ansichr(const ansichar * psz, ansichar ch)
+inline const ::ansi_character * __ansichr(const ::ansi_character * psz, ::ansi_character ch)
 {
 
    while (*psz)
@@ -110,7 +110,7 @@ inline const ansichar * __ansichr(const ansichar * psz, ansichar ch)
 
 
 
-inline ansichar * __ansipbrk(ansichar * psz, const ansichar * pszFind)
+inline ::ansi_character * __ansipbrk(::ansi_character * psz, const ::ansi_character * pszFind)
 {
 
    while (*psz)
@@ -142,7 +142,7 @@ inline ansichar * __ansipbrk(ansichar * psz, const ansichar * pszFind)
 
 
 
-inline ansichar * __ansitok_r(ansichar * psz, const ansichar * sep, ansichar ** state)
+inline ::ansi_character * __ansitok_r(::ansi_character * psz, const ::ansi_character * sep, ::ansi_character ** state)
 {
 
    if (!psz)
@@ -164,7 +164,7 @@ inline ansichar * __ansitok_r(ansichar * psz, const ansichar * sep, ansichar ** 
    if (p)
    {
 
-      *p = (ansichar)(0);
+      *p = (::ansi_character)(0);
 
       *state = p + 1;
 
@@ -183,7 +183,7 @@ inline ansichar * __ansitok_r(ansichar * psz, const ansichar * sep, ansichar ** 
 
 
 
-inline const ansichar * __ansirchr(const ansichar * psz, ansichar ch)
+inline const ::ansi_character * __ansirchr(const ::ansi_character * psz, ::ansi_character ch)
 {
 
    auto p = psz + __ansilen(psz) - 1;
@@ -208,7 +208,7 @@ inline const ansichar * __ansirchr(const ansichar * psz, ansichar ch)
 
 
 
-inline int __ansicmp(const ansichar * psz1, const ansichar * psz2)
+inline int __ansicmp(const ::ansi_character * psz1, const ::ansi_character * psz2)
 {
 
    int iCompare = 0;
@@ -230,7 +230,7 @@ inline int __ansicmp(const ansichar * psz1, const ansichar * psz2)
 
 
 
-inline int __ansincmp(const ansichar * psz1, const ansichar * psz2, strsize s)
+inline int __ansincmp(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s)
 {
 
    int iCompare = 0;
@@ -255,7 +255,7 @@ inline int __ansincmp(const ansichar * psz1, const ansichar * psz2, strsize s)
 
 
 
-inline const ansichar * __ansistr(const ansichar * psz, const ansichar * pszFind)
+inline const ::ansi_character * __ansistr(const ::ansi_character * psz, const ::ansi_character * pszFind)
 {
 
    auto lenFind = __ansilen(pszFind);
@@ -298,31 +298,31 @@ inline const ansichar * __ansistr(const ansichar * psz, const ansichar * pszFind
 
 
 
-inline ansichar __ansitolower(ansichar ch)
+inline ::ansi_character __ansitolower(::ansi_character ch)
 {
 
-   return (ch >= (ansichar)L'A' && ch <= (ansichar)L'Z') ? (ch - (ansichar)L'A') + (ansichar)L'a' : ch;
+   return (ch >= (::ansi_character)L'A' && ch <= (::ansi_character)L'Z') ? (ch - (::ansi_character)L'A') + (::ansi_character)L'a' : ch;
 
 }
 
 
-inline ansichar __ansitoupper(ansichar ch)
+inline ::ansi_character __ansitoupper(::ansi_character ch)
 {
 
-   return (ch >= (ansichar)L'a' && ch <= (ansichar)L'z') ? (ch - (ansichar)L'a') + (ansichar)L'A' : ch;
+   return (ch >= (::ansi_character)L'a' && ch <= (::ansi_character)L'z') ? (ch - (::ansi_character)L'a') + (::ansi_character)L'A' : ch;
 
 }
 
 
-inline ansichar __ansiisdigit(ansichar ch)
+inline ::ansi_character __ansiisdigit(::ansi_character ch)
 {
 
-   return (ch >= (ansichar)L'0' && ch <= (ansichar)L'9');
+   return (ch >= (::ansi_character)L'0' && ch <= (::ansi_character)L'9');
 
 }
 
 
-inline ansichar * __ansilwr(ansichar * psz)
+inline ::ansi_character * __ansilwr(::ansi_character * psz)
 {
 
    auto p = psz;
@@ -341,7 +341,7 @@ inline ansichar * __ansilwr(ansichar * psz)
 }
 
 
-inline ansichar * __ansilwr_s(ansichar * psz, strsize s)
+inline ::ansi_character * __ansilwr_s(::ansi_character * psz, strsize s)
 {
 
    auto p = psz;
@@ -362,7 +362,7 @@ inline ansichar * __ansilwr_s(ansichar * psz, strsize s)
 }
 
 
-inline ansichar * __ansiupr(ansichar * psz)
+inline ::ansi_character * __ansiupr(::ansi_character * psz)
 {
 
    auto p = psz;
@@ -381,7 +381,7 @@ inline ansichar * __ansiupr(ansichar * psz)
 }
 
 
-inline ansichar * __ansiupr_s(ansichar * psz, strsize s)
+inline ::ansi_character * __ansiupr_s(::ansi_character * psz, strsize s)
 {
 
    auto p = psz;
@@ -402,7 +402,7 @@ inline ansichar * __ansiupr_s(ansichar * psz, strsize s)
 }
 
 
-inline const ansichar * __ansiichr(const ansichar * psz, ansichar ch)
+inline const ::ansi_character * __ansiichr(const ::ansi_character * psz, ::ansi_character ch)
 {
 
    ch = ansi_tolower(ch);
@@ -431,7 +431,7 @@ inline const ansichar * __ansiichr(const ansichar * psz, ansichar ch)
 
 
 
-inline int __ansiicmp(const ansichar * psz1, const ansichar * psz2)
+inline int __ansiicmp(const ::ansi_character * psz1, const ::ansi_character * psz2)
 {
 
    int iCompare = 0;
@@ -452,7 +452,7 @@ inline int __ansiicmp(const ansichar * psz1, const ansichar * psz2)
 }
 
 
-inline int __ansiincmp(const ansichar * psz1, const ansichar * psz2, strsize s)
+inline int __ansiincmp(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s)
 {
 
    int iCompare = 0;
@@ -477,7 +477,7 @@ inline int __ansiincmp(const ansichar * psz1, const ansichar * psz2, strsize s)
 
 
 
-inline const ansichar * __ansiistr(const ansichar * psz, const ansichar * pszFind)
+inline const ::ansi_character * __ansiistr(const ::ansi_character * psz, const ::ansi_character * pszFind)
 {
 
    auto lenFind = ansi_len(pszFind);
@@ -519,15 +519,15 @@ inline const ansichar * __ansiistr(const ansichar * psz, const ansichar * pszFin
 }
 
 
-inline int __ansicoll(const ansichar * psz1, const ansichar * psz2) { return __ansicmp(psz1, psz2); }
+inline int __ansicoll(const ::ansi_character * psz1, const ::ansi_character * psz2) { return __ansicmp(psz1, psz2); }
 
-inline int __ansincoll(const ansichar * psz1, const ansichar * psz2, strsize s) { return __ansincmp(psz1, psz2, s); }
+inline int __ansincoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s) { return __ansincmp(psz1, psz2, s); }
 
-inline int __ansiicoll(const ansichar * psz1, const ansichar * psz2) { return __ansiicmp(psz1, psz2); }
+inline int __ansiicoll(const ::ansi_character * psz1, const ::ansi_character * psz2) { return __ansiicmp(psz1, psz2); }
 
-inline int __ansinicoll(const ansichar * psz1, const ansichar * psz2, strsize s) { return __ansiincmp(psz1, psz2, s); }
+inline int __ansinicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s) { return __ansiincmp(psz1, psz2, s); }
 
-inline strsize __ansispn(const ansichar * psz1, const ansichar * psz2)
+inline strsize __ansispn(const ::ansi_character * psz1, const ::ansi_character * psz2)
 {
 
    auto pszStart = psz1;
@@ -567,7 +567,7 @@ inline strsize __ansispn(const ansichar * psz1, const ansichar * psz2)
 }
 
 
-inline strsize __ansicspn(const ansichar * psz1, const ansichar * psz2)
+inline strsize __ansicspn(const ::ansi_character * psz1, const ::ansi_character * psz2)
 {
 
    auto pszStart = psz1;
@@ -607,7 +607,7 @@ inline strsize __ansicspn(const ansichar * psz1, const ansichar * psz2)
 }
 
 
-inline  ansichar lower_char(i32 ch)
+inline  ::ansi_character lower_char(i32 ch)
 {
    if (ch >= 'A' && ch <= 'Z')
    {
@@ -617,7 +617,7 @@ inline  ansichar lower_char(i32 ch)
 }
 
 
-inline ansichar upper_char(i32 ch)
+inline ::ansi_character upper_char(i32 ch)
 {
    if (ch >= 'a' && ch <= 'z')
    {
@@ -631,7 +631,7 @@ inline ansichar upper_char(i32 ch)
 
 
 
-inline void make_lower(ansichar * psz)
+inline void make_lower(::ansi_character * psz)
 {
 
    while (*psz)
@@ -643,7 +643,7 @@ inline void make_lower(ansichar * psz)
 }
 
 
-inline void make_upper(ansichar * psz)
+inline void make_upper(::ansi_character * psz)
 {
 
    while (*psz)

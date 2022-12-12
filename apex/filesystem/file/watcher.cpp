@@ -160,7 +160,7 @@ namespace file
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      watch_map::pair * ppair = m_watchmap.plookup(watch_id);
+      auto ppair = m_watchmap.plookup(watch_id);
 
       if (ppair == nullptr)
       {

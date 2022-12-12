@@ -58,7 +58,15 @@ public:
    //template < typename TYPE >
    //enumeration operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
 
-   IMPL_OPERATOR_PLUS(enumeration);
+   //IMPL_OPERATOR_PLUS(enumeration);
+
+   template < typename TYPE > \
+   enumeration operator + (const TYPE & t) const
+   { 
+      auto copy = *this;
+      copy.add(t);
+      return copy; 
+   }
 
    inline enumeration operator | (ENUM e) const { return (ENUM)(m_eenum | e); }
    inline enumeration operator & (ENUM e) const { return (ENUM)(m_eenum & e); }

@@ -129,7 +129,7 @@ namespace acme
 
       memory memory(sizeof(SYMBOL_INFO) + iMaximumNameLength * sizeof(char));
 
-      SYMBOL_INFO* psymbolinfo = (SYMBOL_INFO*)memory.get_data();
+      SYMBOL_INFO* psymbolinfo = (SYMBOL_INFO*)memory.data();
 
       psymbolinfo->MaxNameLen = iMaximumNameLength;
 

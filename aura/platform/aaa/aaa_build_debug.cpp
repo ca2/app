@@ -32,11 +32,11 @@ void aura_auto_debug_teste()
    printf("\n\nvoid aura_auto_debug_teste()\n\n");
    {
 
-      wd16string wstr1;
+      wd16_string wstr1;
 
-      wd16string wstr2;
+      wd16_string wstr2;
 
-      wd16string wstr3;
+      wd16_string wstr3;
 
       {
 

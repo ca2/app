@@ -1,4 +1,4 @@
-//
+﻿//
 //  string_iterator.h
 //  acme
 //
@@ -9,21 +9,26 @@
 
 
 template < primitive_character CHARACTER >
-class string_iterator
+class unicode_iterator
 {
 public:
 
-   const CHARACTER *         m_psz;
 
-   string_iterator(const CHARACTER * psz) : m_psz(psz) { }
-   string_iterator(const CHARACTER * psz, strsize size) : m_psz(psz + size) { }
 
-   ::wd32char operator *();
-   string_iterator & operator ++();
-   string_iterator operator ++(int);
+   const CHARACTER *         m_p;
 
-   bool operator == (const string_iterator & it) const { return m_psz == it.m_psz;}
+   const CHARACTER * m_psz;
 
-   bool operator != (const string_iterator & it) const { return !operator==(it);}
+
+   unicode_iterator(const CHARACTER * psz) : m_psz(psz) { }
+   unicode_iterator(const CHARACTER * psz, strsize size) : m_psz(psz + size) { }
+
+   ::wd32_character operator *();
+   unicode_iterator & operator ++();
+   unicode_iterator operator ++(int);
+
+   bool operator == (const unicode_iterator & it) const { return m_psz == it.m_psz;}
+
+   bool operator != (const unicode_iterator & it) const { return !operator==(it);}
 
 };

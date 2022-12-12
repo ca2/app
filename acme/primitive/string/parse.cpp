@@ -1,4 +1,4 @@
-/** \file parse.cpp - parse a string
+﻿/** \file parse.cpp - parse a string
  **
  **   Written: 1999-Feb-10 grymse@alhem.net
  **/
@@ -53,7 +53,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
    }
 
-   parse::parse(const char * psz, strsize iLen)
+   parse::parse(const ::ansi_character * psz, strsize iLen)
       :m_psz(psz)
    ,pa_splits("")
    ,m_strWord("")
@@ -67,9 +67,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
    }
 
-   parse::parse(const char * s,strsize iLen,const string &sp)
+   parse::parse(const ::ansi_character * s,strsize iLen, ::range < const ::ansi_character * > splits)
    :m_psz(s)
-   ,pa_splits(sp)
+   ,pa_splits(splits)
    ,m_strWord("")
    ,m_iPos(0)
    ,pa_breakchar(0)
@@ -81,9 +81,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
    }
 
-   parse::parse(const char *s,strsize iLen,const string &sp,i16 nospace)
+   parse::parse(const ::ansi_character *s,strsize iLen, ::range < const ::ansi_character * > splits,i16 nospace)
    :m_psz(s)
-   ,pa_splits(sp)
+   ,pa_splits(splits)
    ,m_strWord("")
    ,m_iPos(0)
    ,pa_breakchar(0)

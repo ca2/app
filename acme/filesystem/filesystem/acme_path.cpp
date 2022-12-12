@@ -1,4 +1,4 @@
-// Create on 2021-03-21 00:11 <3ThomasBS_
+﻿// Create on 2021-03-21 00:11 <3ThomasBS_
 #include "framework.h"
 #include "acme_path.h"
 #include "acme_directory.h"
@@ -137,7 +137,7 @@ bool acme_path::final_begins_eat_ci(string & str, const char * pcszPrefix)
       return true;
 
    }
-   else if (str.begins_eat_ci(strPath))
+   else if (str.case_insensitive_begins_eat(strPath))
    {
 
       return true;
@@ -154,7 +154,7 @@ bool acme_path::final_begins_eat_ci(string & str, const char * pcszPrefix)
 
       strFullPath = acmepath()->final(strPath);
 
-      if (strFull.begins_eat_ci(strFullPath))
+      if (strFull.case_insensitive_begins_eat(strFullPath))
       {
 
          str = strFull;
@@ -177,7 +177,7 @@ bool acme_path::final_is_same(const char * path1, const char * path2)
 
    ::file::path pathFull2 = final(path2);
 
-   return pathFull1.has_char() && pathFull1.compare_ci(pathFull2) == 0;
+   return pathFull1.has_char() && pathFull1.case_insensitive_order(pathFull2) == 0;
 
 }
 

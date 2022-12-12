@@ -486,7 +486,7 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth:
 //
 //   //auto atom = binary_stream < FILE >.text_to_factory_id(strText);
 //
-//   if (!strText.begins_eat_ci("factoryless://"))
+//   if (!strText.case_insensitive_begins_eat("factoryless://"))
 //   {
 //
 //      strText = as_string(binary_stream < FILE >.text_to_factory_id(strText));
@@ -562,13 +562,13 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth:
 ////inline void __io(::binary_stream < FILE > & s, const char * psz) { s.io(psz); }
 ////
 ////
-////inline void __io(::binary_stream < FILE > & s, ::ansistring & str) { s.io(str); }
+////inline void __io(::binary_stream < FILE > & s, ::ansi_string & str) { s.io(str); }
 ////
 ////
-////inline void __io(::binary_stream < FILE > & s, ::wd16string & str) { s.io(str); }
+////inline void __io(::binary_stream < FILE > & s, ::wd16_string & str) { s.io(str); }
 ////
 ////
-////inline void __io(::binary_stream < FILE > & s, ::wd32string & str) { s.io(str); }
+////inline void __io(::binary_stream < FILE > & s, ::wd32_string & str) { s.io(str); }
 ////
 ////
 ////inline void __io(::binary_stream < FILE > & s, ::file::path & path) { s.io(path); }

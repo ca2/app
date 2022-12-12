@@ -806,11 +806,11 @@ public:
 //
 //#if defined(WINDOWS)
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, wd16char & wch) { s.read(wch); return s; }
+//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::wd16_character & wch) { s.read(wch); return s; }
 //
 //#else
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, wd32char & wch) { s.read(wch); return s; }
+//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::wd32_character & wch) { s.read(wch); return s; }
 //
 //#endif
 //

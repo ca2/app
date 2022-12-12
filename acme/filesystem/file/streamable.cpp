@@ -74,7 +74,7 @@ namespace file
    }
 
 
-   filesize streamable::get_size() const
+   filesize streamable::size() const
    {
 
       throw error_interface_only;
@@ -107,7 +107,7 @@ CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file:
 
    buf.set_size(uiBufSize);
 
-   if (buf.get_data() == nullptr)
+   if (buf.data() == nullptr)
    {
 
       throw ::exception(error_no_memory);
@@ -120,7 +120,7 @@ CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file:
       while (true)
       {
 
-         uRead = pfileIn->read(buf.get_data(), buf.get_size());
+         uRead = pfileIn->read(buf.data(), buf.size());
 
          if (uRead <= 0)
          {
@@ -129,7 +129,7 @@ CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file:
 
          }
 
-         pwritable->write(buf.get_data(), uRead);
+         pwritable->write(buf.data(), uRead);
 
          uiSize += uRead;
 

@@ -290,7 +290,7 @@ inline bool equal_ignore_case(const string & left, const char * right, size_t le
 
 
 
-inline void from_string(i8 & i, const ansichar * psz)
+inline void from_string(i8 & i, const ::ansi_character * psz)
 {
 
    i = (i8)atoi(psz);
@@ -298,7 +298,7 @@ inline void from_string(i8 & i, const ansichar * psz)
 }
 
 
-inline void from_string(i16 & i, const ansichar * psz)
+inline void from_string(i16 & i, const ::ansi_character * psz)
 {
 
    i = (i16)atoi(psz);
@@ -306,7 +306,7 @@ inline void from_string(i16 & i, const ansichar * psz)
 }
 
 
-inline void from_string(i32 & i, const ansichar * psz)
+inline void from_string(i32 & i, const ::ansi_character * psz)
 {
 
    i = atoi(psz);
@@ -314,7 +314,7 @@ inline void from_string(i32 & i, const ansichar * psz)
 }
 
 
-inline void from_string(i64 & i, const ansichar * psz)
+inline void from_string(i64 & i, const ::ansi_character * psz)
 {
 
    i = atoll(psz);
@@ -322,7 +322,7 @@ inline void from_string(i64 & i, const ansichar * psz)
 }
 
 
-inline void from_string(i32 & i, i32 iBase, const ansichar * psz)
+inline void from_string(i32 & i, i32 iBase, const ::ansi_character * psz)
 {
 
    i = ansi_to_i32(psz, nullptr, iBase);
@@ -330,7 +330,7 @@ inline void from_string(i32 & i, i32 iBase, const ansichar * psz)
 }
 
 
-inline void from_string(i64 & i, i32 iBase, const ansichar * psz)
+inline void from_string(i64 & i, i32 iBase, const ::ansi_character * psz)
 {
 
    i = ansi_to_i64(psz, nullptr, iBase);
@@ -338,7 +338,7 @@ inline void from_string(i64 & i, i32 iBase, const ansichar * psz)
 }
 
 
-inline void from_string(u8 & u, const ansichar * psz)
+inline void from_string(u8 & u, const ::ansi_character * psz)
 {
 
    u = (u8)ansi_to_u32(psz, nullptr, 10);
@@ -346,7 +346,7 @@ inline void from_string(u8 & u, const ansichar * psz)
 }
 
 
-inline void from_string(u16 & u, const ansichar * psz)
+inline void from_string(u16 & u, const ::ansi_character * psz)
 {
 
    u = (u16)ansi_to_u32(psz, nullptr, 10);
@@ -354,7 +354,7 @@ inline void from_string(u16 & u, const ansichar * psz)
 }
 
 
-inline void from_string(u32 & u, const ansichar * psz)
+inline void from_string(u32 & u, const ::ansi_character * psz)
 {
 
    u = ansi_to_u32(psz, nullptr, 10);
@@ -362,7 +362,7 @@ inline void from_string(u32 & u, const ansichar * psz)
 }
 
 
-inline void from_string(u64 & u, const ansichar * psz)
+inline void from_string(u64 & u, const ::ansi_character * psz)
 {
 
    u = ansi_to_u64(psz, nullptr, 10);
@@ -370,7 +370,7 @@ inline void from_string(u64 & u, const ansichar * psz)
 }
 
 
-inline void from_string(u32 & u, i32 iBase, const ansichar * psz)
+inline void from_string(u32 & u, i32 iBase, const ::ansi_character * psz)
 {
 
    u = ansi_to_u32(psz, nullptr, iBase);
@@ -378,7 +378,7 @@ inline void from_string(u32 & u, i32 iBase, const ansichar * psz)
 }
 
 
-inline void from_string(u64 & u, i32 iBase, const ansichar * psz)
+inline void from_string(u64 & u, i32 iBase, const ::ansi_character * psz)
 {
 
    u = ansi_to_u64(psz, nullptr, iBase);
@@ -387,14 +387,14 @@ inline void from_string(u64 & u, i32 iBase, const ansichar * psz)
 
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
-inline void from_string(long & l, const ansichar * psz)
+inline void from_string(long & l, const ::ansi_character * psz)
 {
 
    l = ansi_to_i64(psz, nullptr, 10);
 
 }
 #elif defined(WINDOWS)
-inline void from_string(long & l, const ansichar * psz)
+inline void from_string(long & l, const ::ansi_character * psz)
 {
 
    l = ansi_to_i32(psz, nullptr, 10);
@@ -405,14 +405,14 @@ inline void from_string(long & l, const ansichar * psz)
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
 
-inline void from_string(long & l, i32 iBase, const ansichar * psz)
+inline void from_string(long & l, i32 iBase, const ::ansi_character * psz)
 {
 
    l = ansi_to_i64(psz, nullptr, iBase);
 
 }
 #elif defined(WINDOWS)
-inline void from_string(long & l, i32 iBase, const ansichar * psz)
+inline void from_string(long & l, i32 iBase, const ::ansi_character * psz)
 {
 
    l = ansi_to_i32(psz, nullptr, 10);
@@ -421,7 +421,7 @@ inline void from_string(long & l, i32 iBase, const ansichar * psz)
 #endif
 
 
-inline void from_string(i32 & i, const wd16char * psz)
+inline void from_string(i32 & i, const ::wd16_character * psz)
 {
 
    i = wd16_to_i32(psz);
@@ -429,7 +429,7 @@ inline void from_string(i32 & i, const wd16char * psz)
 }
 
 
-inline void from_string(i64 & i, const wd16char * psz)
+inline void from_string(i64 & i, const ::wd16_character * psz)
 {
 
    i = wd16_to_i64(psz);
@@ -437,7 +437,7 @@ inline void from_string(i64 & i, const wd16char * psz)
 }
 
 
-inline void from_string(i32 & i, const wd32char * psz)
+inline void from_string(i32 & i, const ::wd32_character * psz)
 {
 
    i = wd32_to_i32(psz);
@@ -445,7 +445,7 @@ inline void from_string(i32 & i, const wd32char * psz)
 }
 
 
-inline void from_string(i64 & i, const wd32char * psz)
+inline void from_string(i64 & i, const ::wd32_character * psz)
 {
 
    i = wd32_to_i64(psz);
@@ -453,7 +453,7 @@ inline void from_string(i64 & i, const wd32char * psz)
 }
 
 
-inline void from_string(float & f, const ansichar * psz)
+inline void from_string(float & f, const ::ansi_character * psz)
 {
 
    f = strtof(psz, nullptr);
@@ -461,7 +461,7 @@ inline void from_string(float & f, const ansichar * psz)
 }
 
 
-inline void from_string(double & d, const ansichar * psz)
+inline void from_string(double & d, const ::ansi_character * psz)
 {
 
    d = strtod(psz, nullptr);
@@ -469,7 +469,7 @@ inline void from_string(double & d, const ansichar * psz)
 }
 
 
-inline void from_string(ansichar * sz, const ansichar * psz)
+inline void from_string(::ansi_character * sz, const ::ansi_character * psz)
 {
 
    strcpy(sz, psz);
@@ -477,7 +477,7 @@ inline void from_string(ansichar * sz, const ansichar * psz)
 }
 
 
-inline void from_string(ansichar & ch, const ansichar * psz)
+inline void from_string(::ansi_character & ch, const ::ansi_character * psz)
 {
 
    ch = *psz;
@@ -485,7 +485,7 @@ inline void from_string(ansichar & ch, const ansichar * psz)
 }
 
 
-inline void from_string(widechar & wch, const ansichar * psz)
+inline void from_string(::wide_character & wch, const ::ansi_character * psz)
 {
 
    utf_to_utf(&wch, psz, unicode_next(psz) - psz);
@@ -493,7 +493,7 @@ inline void from_string(widechar & wch, const ansichar * psz)
 }
 
 
-inline void from_string(wd16char * sz, const ansichar * psz)
+inline void from_string(::wd16_character * sz, const ::ansi_character * psz)
 {
 
    utf_to_utf(sz, psz);
@@ -501,7 +501,7 @@ inline void from_string(wd16char * sz, const ansichar * psz)
 }
 
 
-inline void from_string(wd32char * sz, const ansichar * psz)
+inline void from_string(::wd32_character * sz, const ::ansi_character * psz)
 {
 
    utf_to_utf(sz, psz);
@@ -510,7 +510,7 @@ inline void from_string(wd32char * sz, const ansichar * psz)
 
 
 template < size_t n >
-inline void from_string(ansichar sz[n], const ansichar * psz)
+inline void from_string(::ansi_character sz[n], const ::ansi_character * psz)
 {
 
    if (strlen(psz) >= n)
@@ -526,7 +526,7 @@ inline void from_string(ansichar sz[n], const ansichar * psz)
 
 
 template < size_t n >
-inline void from_string(wd16char sz[n], const ansichar * psz)
+inline void from_string(::wd16_character sz[n], const ::ansi_character * psz)
 {
 
    if (utf_to_utf_length(sz, psz) >= n)
@@ -542,7 +542,7 @@ inline void from_string(wd16char sz[n], const ansichar * psz)
 
 
 template < size_t n >
-inline void from_string(wd32char sz[n], const ansichar * psz)
+inline void from_string(::wd32_character sz[n], const ::ansi_character * psz)
 {
 
    if (utf_to_utf_length(sz, psz) >= n)
@@ -629,10 +629,10 @@ CLASS_DECL_ACME void to_string(string & str, const double & d);
 
 
 
-inline strsize str::utf8_dec_len(const ansichar * pszBeg, const ansichar * psz)
+inline strsize str::utf8_dec_len(const ::ansi_character * pszBeg, const ::ansi_character * psz)
 {
 
-   const ansichar * pszDec = unicode_prior(pszBeg, psz);
+   const ::ansi_character * pszDec = unicode_prior(pszBeg, psz);
 
    if (pszDec == nullptr)
    {
@@ -646,7 +646,7 @@ inline strsize str::utf8_dec_len(const ansichar * pszBeg, const ansichar * psz)
 }
 
 
-inline  strsize str::utf8_inc_len(const ansichar * psz)
+inline  strsize str::utf8_inc_len(const ::ansi_character * psz)
 {
 
    return get_utf8_char_length(psz);
@@ -654,7 +654,7 @@ inline  strsize str::utf8_inc_len(const ansichar * psz)
 }
 
 
-inline bool str::namespaced(const ansichar * psz, const ansichar * pszNamespace, const ansichar * pszSeparator)
+inline bool str::namespaced(const ::ansi_character * psz, const ::ansi_character * pszNamespace, const ::ansi_character * pszSeparator)
 {
 
    if (::is_null(psz) || ::is_null(pszNamespace) || *psz == '\0' || *pszNamespace == '\0')
@@ -671,7 +671,7 @@ inline bool str::namespaced(const ansichar * psz, const ansichar * pszNamespace,
 
    }
 
-   if (string_begins(psz, string(pszNamespace) + pszSeparator))
+   if (::string(psz).begins(::string(pszNamespace) + pszSeparator))
    {
 
       return true;
@@ -702,13 +702,13 @@ inline bool str::begins_ci_skip(const char *& psz, const char * pszPrefix)
 }
 
 
-inline const ansichar * str::windows_bbqbunc(const ansistring &) { return "\\\\?\\UNC"; }
-inline const ansichar * str::windows_bbqb(const ansistring &) { return "\\\\?\\"; }
-inline const ansichar * str::windows_bb(const ansistring &) { return "\\\\"; }
+inline const ::ansi_character * str::windows_bbqbunc(const ansi_string &) { return "\\\\?\\UNC"; }
+inline const ::ansi_character * str::windows_bbqb(const ansi_string &) { return "\\\\?\\"; }
+inline const ::ansi_character * str::windows_bb(const ansi_string &) { return "\\\\"; }
 
-inline const widechar * str::windows_bbqbunc(const widestring &) { return L"\\\\?\\UNC"; }
-inline const widechar * str::windows_bbqb(const widestring &) { return L"\\\\?\\"; }
-inline const widechar * str::windows_bb(const widestring &) { return L"\\\\"; }
+inline const ::wide_character * str::windows_bbqbunc(const wide_string &) { return L"\\\\?\\UNC"; }
+inline const ::wide_character * str::windows_bbqb(const wide_string &) { return L"\\\\?\\"; }
+inline const ::wide_character * str::windows_bb(const wide_string &) { return L"\\\\"; }
 
 
 /// Returns:

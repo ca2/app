@@ -323,11 +323,11 @@ namespace mathematics
 
 ::array < ::procedure > * g_proutineaOsTerm;
 
-//extern natural_meta_data < string_meta_data < ansichar > > * g_pansistringNil;
+//extern natural_meta_data < string_meta_data < ::ansi_character > > * g_pansistringNil;
 //
-//extern natural_meta_data < string_meta_data < wd16char > > * g_pwd16stringNil;
+//extern natural_meta_data < string_meta_data < ::wd16_character > > * g_pwd16stringNil;
 //
-//extern natural_meta_data < string_meta_data < wd32char > > * g_pwd32stringNil;
+//extern natural_meta_data < string_meta_data < ::wd32_character > > * g_pwd32stringNil;
 
 
 static void delete_all_release_on_end();
@@ -808,11 +808,11 @@ namespace acme
 
       initialize_memory_management();
 
-      //static natural_meta_data < string_meta_data < ansichar > > s_ansistringNil;
+      //static natural_meta_data < string_meta_data < ::ansi_character > > s_ansistringNil;
 
-      //static natural_meta_data < string_meta_data < wd16char > > s_wd16stringNil;
+      //static natural_meta_data < string_meta_data < ::wd16_character > > s_wd16stringNil;
 
-      //static natural_meta_data < string_meta_data < wd32char > > s_wd32stringNil;
+      //static natural_meta_data < string_meta_data < ::wd32_character > > s_wd32stringNil;
 
       //::g_pansistringNil = &s_ansistringNil;
 

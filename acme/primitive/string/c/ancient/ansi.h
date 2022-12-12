@@ -1,10 +1,10 @@
-#pragma once
+﻿#pragma once
 
 
 
 
-inline ansichar               __ansicharlowered(i32 i);
-inline ansichar               __ansicharuppered(i32 i);
+inline ::ansi_character               __ansicharlowered(i32 i);
+inline ::ansi_character               __ansicharuppered(i32 i);
 inline i32                    __ansicharisdigit(i32 i);
 inline i32                    __ansicharisalpha(i32 i);
 inline i32                    __ansicharisalnum(i32 i);
@@ -15,75 +15,75 @@ inline i32                    __ansicharishexadecimal(i32 i);
 
 
 
-inline strsize __ansilen(const ansichar * psz);
+inline strsize __ansilen(const ::ansi_character * psz);
 
-inline ansichar * __ansicat(ansichar * pszTarget, const ansichar * pszConcat);
+inline ::ansi_character * __ansicat(::ansi_character * pszTarget, const ::ansi_character * pszConcat);
 
-inline ansichar * __ansicpy(ansichar * pszDst, const ansichar * pszSrc);
+inline ::ansi_character * __ansicpy(::ansi_character * pszDst, const ::ansi_character * pszSrc);
 
-inline ansichar * __ansincpy(ansichar * pszDst, const ansichar * psz, strsize len);
+inline ::ansi_character * __ansincpy(::ansi_character * pszDst, const ::ansi_character * psz, strsize len);
 
-inline const ansichar * __ansichr(const ansichar * psz1, ansichar ch);
+inline const ::ansi_character * __ansichr(const ::ansi_character * psz1, ::ansi_character ch);
 
-inline ansichar * __ansipbrk(ansichar * psz, const ansichar * pszCharsToFind);
+inline ::ansi_character * __ansipbrk(::ansi_character * psz, const ::ansi_character * pszCharsToFind);
 
-inline ansichar * __ansitok_r(ansichar * psz, const ansichar * sep, ansichar ** state);
+inline ::ansi_character * __ansitok_r(::ansi_character * psz, const ::ansi_character * sep, ::ansi_character ** state);
 
-inline const ansichar * __ansirchr(const ansichar * psz1, ansichar ch);
+inline const ::ansi_character * __ansirchr(const ::ansi_character * psz1, ::ansi_character ch);
 
-inline int __ansicmp(const ansichar * psz1, const ansichar * psz2);
+inline int __ansicmp(const ::ansi_character * psz1, const ::ansi_character * psz2);
 
-inline int __ansincmp(const ansichar * psz1, const ansichar * psz2, strsize s);
+inline int __ansincmp(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s);
 
-inline const ansichar * __ansistr(const ansichar * psz, const ansichar * pszFind);
+inline const ::ansi_character * __ansistr(const ::ansi_character * psz, const ::ansi_character * pszFind);
 
-inline ansichar __ansitolower(ansichar ch);
+inline ::ansi_character __ansitolower(::ansi_character ch);
 
-inline ansichar __ansitoupper(ansichar ch);
+inline ::ansi_character __ansitoupper(::ansi_character ch);
 
-inline ansichar __ansiisdigit(ansichar ch);
+inline ::ansi_character __ansiisdigit(::ansi_character ch);
 
-inline ansichar * __ansilwr(ansichar * psz);
+inline ::ansi_character * __ansilwr(::ansi_character * psz);
 
-inline ansichar * __ansilwr_s(ansichar * psz, strsize s);
+inline ::ansi_character * __ansilwr_s(::ansi_character * psz, strsize s);
 
-inline ansichar * __ansiupr(ansichar * psz);
+inline ::ansi_character * __ansiupr(::ansi_character * psz);
 
-inline ansichar * __ansiupr_s(ansichar * psz, strsize s);
+inline ::ansi_character * __ansiupr_s(::ansi_character * psz, strsize s);
 
-inline const ansichar * __ansiichr(const ansichar * psz1, ansichar ch);
+inline const ::ansi_character * __ansiichr(const ::ansi_character * psz1, ::ansi_character ch);
 
-inline int __ansiicmp(const ansichar * psz1, const ansichar * psz2);
+inline int __ansiicmp(const ::ansi_character * psz1, const ::ansi_character * psz2);
 
-inline int __ansiincmp(const ansichar * psz1, const ansichar * psz2, strsize s);
+inline int __ansinicmp(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s);
 
-inline const ansichar * __ansiistr(const ansichar * psz, const ansichar * pszFind);
-
-
-inline ansichar * overlap_safe_ansincpy(ansichar * pszDst, const ansichar * pszSrc, strsize srclen);
-
-inline int __ansicoll(const ansichar * psz1, const ansichar * psz2);
-
-inline int __ansincoll(const ansichar * psz1, const ansichar * psz2, strsize s);
-
-inline int __ansiicoll(const ansichar * psz1, const ansichar * psz2);
-
-inline int __ansinicoll(const ansichar * psz1, const ansichar * psz2, strsize s);
-
-inline strsize __ansispn(const ansichar * psz1, const ansichar * psz2);
-
-inline strsize __ansicspn(const ansichar * psz1, const ansichar * psz2);
+inline const ::ansi_character * __ansiistr(const ::ansi_character * psz, const ::ansi_character * pszFind);
 
 
-CLASS_DECL_ACME i64 __ansitoi64(const ansichar * psz, ansichar ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME u64 __ansitou64(const ansichar * psz, ansichar ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME i32 __ansitoi32(const ansichar * psz, ansichar ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME u32 __ansitou32(const ansichar * psz, ansichar ** ppszEnd, i32 iBase);
+inline ::ansi_character * overlap_safe_ansincpy(::ansi_character * pszDst, const ::ansi_character * pszSrc, strsize srclen);
+
+inline int __ansicoll(const ::ansi_character * psz1, const ::ansi_character * psz2);
+
+inline int __ansincoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s);
+
+inline int __ansiicoll(const ::ansi_character * psz1, const ::ansi_character * psz2);
+
+inline int __ansinicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s);
+
+inline strsize __ansispn(const ::ansi_character * psz1, const ::ansi_character * psz2);
+
+inline strsize __ansicspn(const ::ansi_character * psz1, const ::ansi_character * psz2);
 
 
-inline ansichar lower_char(i32 ch);
-inline ansichar upper_char(i32 ch);
-inline void make_lower(ansichar * psz);
+CLASS_DECL_ACME i64 __ansitoi64(const ::ansi_character * psz, ::ansi_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACME u64 __ansitou64(const ::ansi_character * psz, ::ansi_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACME i32 __ansitoi32(const ::ansi_character * psz, ::ansi_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACME u32 __ansitou32(const ::ansi_character * psz, ::ansi_character ** ppszEnd, i32 iBase);
+
+
+inline ::ansi_character lower_char(i32 ch);
+inline ::ansi_character upper_char(i32 ch);
+inline void make_lower(::ansi_character * psz);
 
 
 

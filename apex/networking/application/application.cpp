@@ -142,8 +142,8 @@ namespace networking
             string strScript = "/" + strFolder;
 
             if (strRequestScript == strScript
-               || strRequestScript.begins_ci(strScript + "/")
-               || strRequestScript.begins_ci(strScript + "?"))
+               || strRequestScript.case_insensitive_begins(strScript + "/")
+               || strRequestScript.case_insensitive_begins(strScript + "?"))
             {
 
                auto estatus = phandler->on_html_response(strHtml, strUrl, setPost);

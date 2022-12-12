@@ -3555,7 +3555,7 @@ namespace draw2d
       
       ::size_f64 size;
 
-      get_text_extent(size, (const char*)block.get_data(), block.get_size());
+      get_text_extent(size, (const char*)block.data(), block.zsize());
 
       return size;
 

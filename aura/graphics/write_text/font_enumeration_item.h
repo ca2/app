@@ -37,7 +37,7 @@ namespace write_text
 
       font_enumeration_item();
    #ifdef WINDOWS
-      font_enumeration_item(const widechar* pwideszName);
+      font_enumeration_item(const ::wide_character* pwideszName);
    #endif
       font_enumeration_item(const ::string & strName);
       font_enumeration_item(const ::string & strFile, const ::string & strName);

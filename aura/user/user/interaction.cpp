@@ -4567,13 +4567,13 @@ namespace user
 //
 //      }
 
-      //      if(m_strInteractionTag.begins_ci("button_"))
+      //      if(m_strInteractionTag.case_insensitive_begins("button_"))
       //      {
       //
       //         output_debug_string("drawing: " + m_strInteractionTag + "\n");
       //
       //      }
-      //      else if(m_strInteractionTag.begins_ci("control_box"))
+      //      else if(m_strInteractionTag.case_insensitive_begins("control_box"))
       //      {
       //
       //         output_debug_string("-------- drawing: " + m_strInteractionTag + "\n");
@@ -19536,7 +19536,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
             m_setStyle[strKey] = strValue;
 
-            if (strKey.compare_ci("padding") == 0)
+            if (strKey.case_insensitive_order("padding") == 0)
             {
 
                //m_rectanglePadding.left = atoi(strValue);
@@ -19546,7 +19546,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
 
             }
-            else if (strKey.compare_ci("cell-padding") == 0)
+            else if (strKey.case_insensitive_order("cell-padding") == 0)
             {
 
                //m_iCellPadding = atoi(strValue);
@@ -19893,13 +19893,13 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
    //         string str = argument.get_string();
 
-   //         if (str.begins_eat_ci("class="))
+   //         if (str.case_insensitive_begins_eat("class="))
    //         {
 
    //            m_strClass = str;
 
    //         }
-   //         else if (str.begins_eat_ci("style="))
+   //         else if (str.case_insensitive_begins_eat("style="))
    //         {
 
    //            m_strStyle = str;

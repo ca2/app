@@ -8,11 +8,11 @@
 #define DQUOTEWCHAR  L'\"'
 
 
-CLASS_DECL_ACME void wide_parse_command_line(widechar *cmdstart, widechar **argv, widechar *args, i32 * numargs, i32 * numchars)
+CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_character **argv, ::wide_character *args, i32 * numargs, i32 * numchars)
 {
 
-   widechar *p;
-   widechar c;
+   ::wide_character *p;
+   ::wide_character c;
    i32 inquote;                    /* 1 = inside quotes */
    i32 copychar;                   /* 1 = copy char to *args */
    u32 numslash;              /* num of backslashes seen */
@@ -67,7 +67,7 @@ CLASS_DECL_ACME void wide_parse_command_line(widechar *cmdstart, widechar **argv
             if (args)
                *args++ = *p;
 
-            c = (widechar) *p++;
+            c = (::wide_character) *p++;
 
       } while ( c != SPACEWCHAR && c != NULWCHAR && c != TABWCHAR );
 

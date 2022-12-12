@@ -59,7 +59,7 @@ CLASS_DECL_ACME void simple_debug_print(const char * psz)
 }
 
 
-void output_debug_string(const widechar * lpOutputString)
+void output_debug_string(const ::wide_character * lpOutputString)
 {
 
 

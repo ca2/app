@@ -48,8 +48,8 @@ namespace universal_windows
 
       void initialize_directx_application();
 
-      virtual widestring get_input_text() override;
-      virtual bool set_input_text(const widestring & wstr) override;
+      virtual wide_string get_input_text() override;
+      virtual bool set_input_text(const wide_string & wstr) override;
 
 
       //::aura::system * get_context_system() const;

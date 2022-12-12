@@ -244,7 +244,7 @@ namespace universal_windows
 
          sel.EndCaretPosition = iEnd < 0 ? text->Length() + iEnd + 1 : iEnd;
 
-         widestring wstrText = get_input_text();
+         wide_string wstrText = get_input_text();
 
          m_editcontext->NotifyTextChanged(m_selection, wstrText.length(), sel);
 
@@ -317,7 +317,7 @@ namespace universal_windows
       
       CoreTextTextRequest ^ request = args->Request;
 
-      widestring wstrText = get_input_text();
+      wide_string wstrText = get_input_text();
 
       wstrText = wstrText.Mid(
          request->Range.StartCaretPosition,
@@ -346,13 +346,13 @@ namespace universal_windows
 
       ::output_debug_string("range" + as_string(range.StartCaretPosition) + "," + as_string(range.EndCaretPosition) +"\n");
 
-      widestring newText = args->Text;
+      wide_string newText = args->Text;
 
       CoreTextRange newSelection = args->NewSelection;
 
       auto pwsz = newText.c_str();
 
-      widestring wstrText = get_input_text();
+      wide_string wstrText = get_input_text();
 
       string strText = wstrText.Left( range.StartCaretPosition) + newText + wstrText.Mid(range.EndCaretPosition);
 
@@ -721,7 +721,7 @@ namespace universal_windows
       else
       {
 
-         widestring wstrText = get_input_text();
+         wide_string wstrText = get_input_text();
 
          range.EndCaretPosition = minimum(wstrText.length(), range.EndCaretPosition + direction);
 

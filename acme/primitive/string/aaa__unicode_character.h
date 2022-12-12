@@ -1,19 +1,19 @@
 #pragma
 
 // return number of characters need to be consumed to parse a Unicode Character
-inline i32 unicode_len(const ansichar * pszChar);
-inline i32 unicode_len(const wd16char * pszChar) { return utf16_is_1st_surrogate(*pszChar) ? 2 : 1; }
-inline i32 unicode_len(const wd32char * pszChar) { return 1; }
+inline i32 unicode_len(const ::ansi_character * pszChar);
+inline i32 unicode_len(const ::wd16_character * pszChar) { return utf16_is_1st_surrogate(*pszChar) ? 2 : 1; }
+inline i32 unicode_len(const ::wd32_character * pszChar) { return 1; }
 
 
-inline i32 ansichar_unicode_len(wd32char i);
-inline i32 wd16char_unicode_len(wd32char i) { return utf32_is_surrogated(i) ? 2 : 1; }
-inline i32 wd32char_unicode_len(wd32char i) { return 1; }
+inline i32 ansichar_unicode_len(::wd32_character i);
+inline i32 wd16char_unicode_len(::wd32_character i) { return utf32_is_surrogated(i) ? 2 : 1; }
+inline i32 wd32char_unicode_len(::wd32_character i) { return 1; }
 
 // return number of characters needed to represent the Unicode Character
-inline i32 char_unicode_len(const ansichar *, wd32char i) { return ansichar_unicode_len(i); }
-inline i32 char_unicode_len(const wd16char *, wd32char i) { return wd16char_unicode_len(i); }
-inline i32 char_unicode_len(const wd32char *, wd32char i) { return wd32char_unicode_len(i); }
+inline i32 char_unicode_len(const ::ansi_character *, ::wd32_character i) { return ansichar_unicode_len(i); }
+inline i32 char_unicode_len(const ::wd16_character *, ::wd32_character i) { return wd16char_unicode_len(i); }
+inline i32 char_unicode_len(const ::wd32_character *, ::wd32_character i) { return wd32char_unicode_len(i); }
 
 
 

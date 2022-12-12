@@ -57,7 +57,7 @@ public:
 
 
    void set_size(filesize dwNewLen) override;
-   ::filesize get_size() const override;
+   ::filesize size() const override;
    void clear();
 
 
@@ -104,7 +104,7 @@ public:
    inline int _get_u8()
    {
 
-      return _get_left() < 1 ? -1 : ((u8*)m_pmemory.m_p->m_memory.m_pdata)[m_position++];
+      return _get_left() < 1 ? -1 : ((u8*)m_pmemory.m_p->m_memory.data())[m_position++];
 
    }
 
@@ -126,7 +126,7 @@ public:
 
       }
 
-      auto i = *(u16 *)&m_pmemory.m_p->m_memory.m_pdata[m_position];
+      auto i = *(u16 *)&m_pmemory.m_p->m_memory.data()[m_position];
 
       m_position += 2;
 
@@ -157,7 +157,7 @@ public:
 
       }
 
-      u64 = *((::u64 *)&(m_pmemory.m_p->m_memory.m_pdata[m_position]));
+      u64 = *((::u64 *)&(m_pmemory.m_p->m_memory.data()[m_position]));
 
       m_position += 8;
 
@@ -190,7 +190,7 @@ public:
    memsize read_inline(void *pdata, memsize nCount)
    {
 
-      memsize iDiff = m_pmemory.m_p->m_memory.m_cbStorage - m_position;
+      memsize iDiff = m_pmemory->size() - m_position;
 
       if (iDiff <= 0)
          return 0;
@@ -201,41 +201,42 @@ public:
       if (nCount == 1)
       {
 
-         *((byte*)pdata) = m_pmemory.m_p->m_memory.m_pdata[m_position];
+         *((byte*)pdata) = m_pmemory.m_p->m_memory.data()[m_position];
 
 
       }
       else if (nCount == 2)
       {
 
-         *((u16 *)pdata) = *((u16 *)&m_pmemory.m_p->m_memory.m_pdata[m_position]);
+         *((u16 *)pdata) = *((u16 *)&m_pmemory.m_p->m_memory.data()[m_position]);
 
 
       }
       else if (nCount == 4)
       {
 
-         *((u32*)pdata) = *((u32*)&m_pmemory.m_p->m_memory.m_pdata[m_position]);
+         *((u32*)pdata) = *((u32*)&m_pmemory.m_p->m_memory.data()[m_position]);
 
 
       }
       else if (nCount == 8)
       {
 
-         *((u64 *)pdata) = *((u64 *)&m_pmemory.m_p->m_memory.m_pdata[m_position]);
+         *((u64 *)pdata) = *((u64 *)&m_pmemory.m_p->m_memory.data()[m_position]);
 
 
       }
       else
       {
 
-         ::memcpy(pdata, &m_pmemory.m_p->m_memory.m_pdata[m_position], (size_t)nCount);
+         ::memcpy(pdata, &m_pmemory.m_p->m_memory.data()[m_position], (size_t)nCount);
 
       }
 
       m_position += nCount;
 
       return nCount;
+
    }
 
 
@@ -260,14 +261,14 @@ public:
 
       }
 
-      if (m_pmemory.is_null() || iEndPosition > m_pmemory->get_size())
+      if (m_pmemory.is_null() || iEndPosition > m_pmemory->size())
       {
 
          set_size(iEndPosition);
 
       }
 
-      byte * pb = get_data();
+      byte * pb = data();
 
 
       //ASSERT(__is_valid_address(&(pb)[m_position], (uptr)nCount, true));
@@ -284,7 +285,7 @@ public:
 //inline stream & operator << (stream & s, ::memory_file * pfile)
 //{
 //
-//   s.write(&pfile->get_data()[pfile->get_position()], (memsize) pfile->get_remaining_byte_count());
+//   s.write(&pfile->data()[pfile->get_position()], (memsize) pfile->get_remaining_byte_count());
 //
 //   return s;
 //

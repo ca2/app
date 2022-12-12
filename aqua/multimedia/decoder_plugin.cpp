@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "decoder_plugin.h"
 #include "decoder.h"
 #include "acme/parallelization/event.h"
@@ -88,7 +88,7 @@ namespace multimedia
 //
 //      string strTitle = ::file::path(pszTitle).title();
 //
-//      strTitle.begins_eat_ci("lib");
+//      strTitle.case_insensitive_begins_eat("lib");
 //
 //      string strFunction = strTitle + "_" + m_strNewDecoder;
 //

@@ -130,12 +130,12 @@ public:
    }
 
 
-   inline operator int() const
-   {
+   //inline operator int() const
+   //{
 
-      return is_set() ? 1 : 0;
+   //   return is_set() ? 1 : 0;
 
-   }
+   //}
 
    //template < typename T2 >
    //inline pointer(const T2 * p);
@@ -426,18 +426,24 @@ public:
    template < typename T2 >
    inline pointer & reset(T2 * ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
-   inline bool operator ==(std::nullptr_t) const { return is_null(); }
 
-   inline bool operator !=(std::nullptr_t) const { return is_set(); }
+   inline bool operator ==(std::nullptr_t) const { return is_null(); }
+   //inline bool operator <=>(std::nullptr_t) const { return m_p <=> nullptr; }
+
+
+   //inline bool operator !=(std::nullptr_t) const { return is_set(); }
 
    template < typename T2 >
    inline bool operator ==(const T2 * p) const { return m_p == p; }
+   //template < typename T2 >
+   //inline bool operator <=>(const T2 * p) const { return m_p <=> p; }
 
-   template < typename T2 >
-   inline bool operator !=(const T2 * p) const { return m_p != p; }
+   //template < typename T2 >
+   //inline bool operator !=(const T2 * p) const { return m_p != p; }
 
    inline bool operator ==(const T * p) const { return m_p == p; }
-   inline bool operator !=(const T * p) const { return m_p != p; }
+   //inline bool operator <=>(const T * p) const { return m_p <=> p; }
+   //inline bool operator !=(const T * p) const { return m_p != p; }
 
    //template < typename TYPE = T >
    //inline pointer < T > & defer_create_new();
@@ -564,11 +570,11 @@ inline void destruct(T * p)
 //
 
 template < typename T >
-inline bool __found(const pointer < T > & p) { return p.is_set(); }
+inline bool is_found(const pointer < T > & p) { return p.is_set(); }
 
 
 template < typename T >
-inline bool __not_found(const pointer < T > & p) { return p.is_null(); }
+inline bool not_found(const pointer < T > & p) { return p.is_null(); }
 
 
 template < typename T >
@@ -1465,11 +1471,11 @@ inline pointer < T > & pointer < T >::create_new(OBJECT * pparticle)
 
 
 template<typename T>
-inline bool __found(const pointer < T >& p);
+inline bool is_found(const pointer < T >& p);
 
 
 template<typename T>
-inline bool __not_found(const pointer < T >& p);
+inline bool not_found(const pointer < T >& p);
 
 
 template<typename TDST, typename TSRC>

@@ -48,7 +48,7 @@ inline char utf8_e(byte c)
 
 
 
-inline strsize wd32_to_ansi_char_len(wd32char wch)
+inline strsize wd32_to_ansi_char_len(::wd32_character wch)
 {
    if (wch == 0)
    {
@@ -81,7 +81,7 @@ inline strsize wd32_to_ansi_char_len(wd32char wch)
 }
 
 
-inline strsize wd16_to_wd32_char(wd32char * output, const wd16char * input, strsize len)
+inline strsize wd16_to_wd32_char(::wd32_character * output, const ::wd16_character * input, strsize len)
 {
 
    if (len < 1)
@@ -148,10 +148,10 @@ inline strsize wd16_to_wd32_char(wd32char * output, const wd16char * input, strs
 }
 
 
-inline strsize ansi_to_wd32_char(wd32char * output, const char * input, strsize srclen)
+inline strsize ansi_to_wd32_char(::wd32_character * output, const char * input, strsize srclen)
 {
 
-   wd32char u32 = 0;
+   ::wd32_character u32 = 0;
 
    byte c;
    char extraBytesToRead = utf8_e(*input);
@@ -197,7 +197,7 @@ inline strsize ansi_to_wd32_char(wd32char * output, const char * input, strsize 
       input++;
    }
 
-   u32 -= (wd32char)utf8_o(extraBytesToRead);
+   u32 -= (::wd32_character)utf8_o(extraBytesToRead);
    *output = u32;
 
    return len;
@@ -208,7 +208,7 @@ inline strsize ansi_to_wd32_char(wd32char * output, const char * input, strsize 
 inline i64 _ansi_to_wd32_char(const char ** ppsz, strsize * psrclen)
 {
 
-   wd32char u32 = 0;
+   ::wd32_character u32 = 0;
 
    auto used_len = ansi_to_wd32_char(&u32, *ppsz, *psrclen);
 
@@ -229,15 +229,15 @@ inline i64 _ansi_to_wd32_char(const char ** ppsz, strsize * psrclen)
 
 
 /* Some fundamental constants */
-#define UNI_REPLACEMENT_CHAR (wd32char)0x0000FFFD
-#define UNI_MAX_BMP (wd32char)0x0000FFFF
-#define UNI_MAX_UTF16 (wd32char)0x0010FFFF
-#define UNI_MAX_UTF32 (wd32char)0x7FFFFFFF
-#define UNI_MAX_LEGAL_UTF32 (wd32char)0x0010FFFF
-#define UNI_SUR_HIGH_START  (wd32char)0xD800
-#define UNI_SUR_HIGH_END    (wd32char)0xDBFF
-#define UNI_SUR_LOW_START   (wd32char)0xDC00
-#define UNI_SUR_LOW_END     (wd32char)0xDFFF
+#define UNI_REPLACEMENT_CHAR (::wd32_character)0x0000FFFD
+#define UNI_MAX_BMP (::wd32_character)0x0000FFFF
+#define UNI_MAX_UTF16 (::wd32_character)0x0010FFFF
+#define UNI_MAX_UTF32 (::wd32_character)0x7FFFFFFF
+#define UNI_MAX_LEGAL_UTF32 (::wd32_character)0x0010FFFF
+#define UNI_SUR_HIGH_START  (::wd32_character)0xD800
+#define UNI_SUR_HIGH_END    (::wd32_character)0xDBFF
+#define UNI_SUR_LOW_START   (::wd32_character)0xDC00
+#define UNI_SUR_LOW_END     (::wd32_character)0xDFFF
 //#define false	   0
 //#define true	    1
 // /* --------------------------------------------------------------------- */
@@ -289,12 +289,12 @@ inline i64 _ansi_to_wd32_char(const char ** ppsz, strsize * psrclen)
 // }
 
 
-inline strsize wd32_to_wd16_char(wd16char * target, wd32char u32)
+inline strsize wd32_to_wd16_char(::wd16_character * target, ::wd32_character u32)
 {
 
    const int halfShift = 10; /* used for shifting by 10 bits */
-   const wd32char halfBase = 0x0010000UL;
-   const wd32char halfMask = 0x3FFUL;
+   const ::wd32_character halfBase = 0x0010000UL;
+   const ::wd32_character halfMask = 0x3FFUL;
 
    if (u32 <= UNI_MAX_BMP)
    {
@@ -311,7 +311,7 @@ inline strsize wd32_to_wd16_char(wd16char * target, wd32char u32)
 
       }
 
-      *target = (wd16char)u32; /* normal case */
+      *target = (::wd16_character)u32; /* normal case */
 
       return 1;
 
@@ -325,19 +325,19 @@ inline strsize wd32_to_wd16_char(wd16char * target, wd32char u32)
 
    u32 -= halfBase;
 
-   *target++ = (wd16char)((u32 >> halfShift) + UNI_SUR_HIGH_START);
+   *target++ = (::wd16_character)((u32 >> halfShift) + UNI_SUR_HIGH_START);
 
-   *target = (wd16char)((u32 & halfMask) + UNI_SUR_LOW_START);
+   *target = (::wd16_character)((u32 & halfMask) + UNI_SUR_LOW_START);
 
    return 2;
 
 }
 
 
-inline strsize wd16_to_ansi_char_len(const wd16char ** ppu16a, strsize * plen)
+inline strsize wd16_to_ansi_char_len(const ::wd16_character ** ppu16a, strsize * plen)
 {
 
-   wd32char u32;
+   ::wd32_character u32;
 
    auto used_len = wd16_to_wd32_char(&u32, *ppu16a, *plen);
 
@@ -357,10 +357,10 @@ inline strsize wd16_to_ansi_char_len(const wd16char ** ppu16a, strsize * plen)
 }
 
 
-inline strsize wd16_to_ansi_char(char * psz, const wd16char ** ppu16a, strsize * plen)
+inline strsize wd16_to_ansi_char(char * psz, const ::wd16_character ** ppu16a, strsize * plen)
 {
 
-   wd32char u32;
+   ::wd32_character u32;
 
    auto used_len = wd16_to_wd32_char(&u32, *ppu16a, *plen);
 
@@ -380,7 +380,7 @@ inline strsize wd16_to_ansi_char(char * psz, const wd16char ** ppu16a, strsize *
 }
 
 
-inline strsize wd16_to_wd32_char_len(const wd16char * input, strsize len)
+inline strsize wd16_to_wd32_char_len(const ::wd16_character * input, strsize len)
 {
 
    if (len < 1)
@@ -443,7 +443,7 @@ inline strsize wd16_to_wd32_char_len(const wd16char * input, strsize len)
 }
 
 
-inline strsize wd32_to_ansi_char(char * psz, wd32char wch)
+inline strsize wd32_to_ansi_char(char * psz, ::wd32_character wch)
 {
 
    if (wch <= 0)

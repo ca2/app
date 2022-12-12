@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //#include "block.h"
@@ -33,9 +33,9 @@ public:
    
    bool get(const block & block);
 
-   u8 * get_data() const;
+   u8 * data() const;
 
-   memsize get_size() const;
+   memsize size() const;
 
 
 };

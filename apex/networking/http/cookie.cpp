@@ -63,7 +63,7 @@ namespace http
       string str;
       str = m_strName;
       str += "=";
-      str += m_varValue.as_string();
+      str += m_varValue;
       if(m_strExpire.has_char())
       {
          str += "; expires=";
@@ -258,7 +258,7 @@ namespace http
       string strCookie;
       for(index i = 0; i < this->get_size(); i++)
       {
-         strCookie += (const char *) (this->element_at(i)->m_strName + "=" + this->element_at(i)->m_varValue.as_string());
+         strCookie += (const char *) (this->element_at(i)->m_strName + "=" + this->element_at(i)->m_varValue);
          strCookie += ";";
       }
       return strCookie;
@@ -267,7 +267,7 @@ namespace http
 
    strsize cookies::get_length( const char * name)
    {
-      return cookie(name).m_varValue.as_string().get_length();
+      return cookie(name).m_varValue.string().get_length();
    }
 
 

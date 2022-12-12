@@ -233,7 +233,7 @@ namespace interprocess
    //   if (bShouldContinueTryingToHandle)
    //   {
 
-   //      if (!strMember.begins_ci("reply."))
+   //      if (!strMember.case_insensitive_begins("reply."))
    //      {
 
    //         string strOrigin = propertyset["protocol"]["origin"].get_string();

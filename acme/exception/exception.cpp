@@ -25,11 +25,13 @@ exception::exception()
 
 //#ifdef ANDROID
 exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address) :
-exception(estatus, {{e_error_code_type_unknown, 0}}, pszMessage, pszDetails, iSkip, caller_address)
+exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, pszMessage, pszDetails, iSkip, caller_address)
 {
    
    
 }
+
+
 //#else
 exception::exception(const ::e_status & estatus, const ::array < error_code > & errorcodea, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address):
 m_errorcodea(errorcodea)

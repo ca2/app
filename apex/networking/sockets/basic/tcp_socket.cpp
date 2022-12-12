@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "tcp_socket.h"
 #include "tcp_socket_impl.h"
 
@@ -1837,12 +1837,12 @@ return true;
 //      else
 //         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)"--is_empty--", 9);
 //
-//      if (keyfile.begins_ci("cat://") || keyfile.ends_ci(".cat"))
+//      if (keyfile.case_insensitive_begins("cat://") || keyfile.case_insensitive_ends(".cat"))
 //      {
 //
 //         string strCert;
 //
-//         if (keyfile.ends_ci(".cat"))
+//         if (keyfile.case_insensitive_ends(".cat"))
 //         {
 //
 //            strCert = file()->as_string(keyfile);
@@ -1853,7 +1853,7 @@ return true;
 //
 //            strCert = keyfile;
 //
-//            strCert.begins_eat_ci("cat://");
+//            strCert.case_insensitive_begins_eat("cat://");
 //
 //         }
 //
@@ -2646,7 +2646,7 @@ return true;
 //
 //#endif
 //
-//                     if(strDnsName.compare_ci(common_name) == 0)
+//                     if(strDnsName.case_insensitive_order(common_name) == 0)
 //                     {
 //
 //                        ok = true;

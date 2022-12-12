@@ -503,9 +503,9 @@ public:
 
 
    template < typename BLOCK >
-   inline binary_stream & operator << (const memory_template < BLOCK > & mem) { write(mem.get_data(), mem.get_size()); return *this; }
+   inline binary_stream & operator << (const memory_template < BLOCK > & mem) { write(mem.data(), mem.size()); return *this; }
    template < typename BLOCK >
-   inline binary_stream & operator >> (memory_template < BLOCK > & mem) { read(mem.get_data(), mem.get_size()); return *this; }
+   inline binary_stream & operator >> (memory_template < BLOCK > & mem) { read(mem.data(), mem.size()); return *this; }
 
 
 
@@ -960,7 +960,7 @@ public:
          //case type_image:
          //   *this << *payload.m_pfileimage;
          //   break;
-      case e_type_id:
+      case e_type_atom:
          *this << payload.m_atom;
          break;
       case e_type_element:
@@ -1036,7 +1036,7 @@ public:
    //}
 
 
-   binary_stream & operator <<(const ansichar * psz)
+   binary_stream & operator <<(const ::ansi_character * psz)
    {
 
       auto len = string_safe_length(psz);
@@ -1085,9 +1085,9 @@ public:
    binary_stream & operator <<(const block & block)
    {
 
-      write_buffer_length(block.get_size());
+      write_buffer_length(block.size());
 
-      write(block.get_data(), block.get_size());
+      write(block.data(), block.size());
 
       return *this;
 
@@ -1131,7 +1131,7 @@ public:
 
       m.set_size((memsize)u);
 
-      read(m.get_data(), m.get_size());
+      read(m.data(), m.size());
 
       return *this;
 
@@ -1141,9 +1141,9 @@ public:
    binary_stream & operator <<(const memory_base & m)
    {
 
-      write_length(m.get_size());
+      write_length(m.size());
 
-      write(m.get_data(), m.get_size());
+      write(m.data(), m.size());
 
       return *this;
 
@@ -1681,10 +1681,10 @@ public:
 
       }
       break;
-      case e_type_id:
+      case e_type_atom:
       {
 
-         payload.set_type(::e_type_id, false);
+         payload.set_type(::e_type_atom, false);
 
          *this >> payload.m_atom;
 
@@ -1790,7 +1790,7 @@ public:
 
       u = read_buffer_length();
 
-      if (u != block.get_size())
+      if (u != block.size())
       {
 
          throw ::exception(error_io);
@@ -1799,7 +1799,7 @@ public:
 
       }
 
-      m_pfile->read(block.get_data(), block.get_size());
+      m_pfile->read(block.data(), block.size());
 
       return *this;
 
@@ -1979,11 +1979,11 @@ public:
 
       }
 
-      while ((uRead = m_pfile->read(&memory.get_data()[uiPos], minimum(memory.get_size() - uiPos, (memsize)nCount))) > 0)
+      while ((uRead = m_pfile->read(&memory.data()[uiPos], minimum(memory.size() - uiPos, (memsize)nCount))) > 0)
       {
          uiPos += uRead;
          nCount -= uRead;
-         if (memory.get_size() - uiPos <= 0)
+         if (memory.size() - uiPos <= 0)
          {
             memory.allocate_add_up(1024 * 1024);
          }

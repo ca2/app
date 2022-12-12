@@ -35,9 +35,9 @@
 //   i32         y;
 //   i32         x;
 //   ::i32        style;
-//   const widechar *     lpszName;
+//   const ::wide_character *     lpszName;
 //
-//   const widechar *     lpszClass;
+//   const ::wide_character *     lpszClass;
 //
 //   u32       dwExStyle;
 //} CREATESTRUCTW,*LPCREATESTRUCTW;

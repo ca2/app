@@ -401,7 +401,7 @@
     <ClInclude Include="primitive\string\string_inst.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_base_impl.h">
+    <ClInclude Include="primitive\string\_string_base_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_str.h">
@@ -440,7 +440,7 @@
     <ClInclude Include="primitive\string\_impl_prio.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\natural.h">
+    <ClInclude Include="primitive\primitive\natural_pointer.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\_c.h">
@@ -2366,7 +2366,7 @@
     <ClInclude Include="primitive\primitive\aaa_factory.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\simple_string_base.h">
+    <ClInclude Include="primitive\string\aaaa_simple_string_base.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\utf8_character.h">
@@ -2699,7 +2699,7 @@
     <ClInclude Include="primitive\collection\list.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\iterator.h">
+    <ClInclude Include="primitive\collection\iterator2.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\iterable.h">
@@ -2965,6 +2965,48 @@
     </ClInclude>
     <ClInclude Include="platform\factory_function.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\array_range.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_template_inline_functions.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\iterator.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\comparable_range.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\null_terminated_range.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\null_terminated_iterator.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\string_range.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_initial_concepts.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\list_iterator.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\hash_table.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\array_iterator.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\list_node.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\comparable_eq_range.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\_string_base_impl1.h">
+      <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

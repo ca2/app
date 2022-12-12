@@ -1532,7 +1532,7 @@ namespace acme
 
          strPath = module_path_from_pid(iCurrentPid.i32());
 
-         if(strPath.compare_ci(pszModulePath) == 0 )
+         if(strPath.case_insensitive_order(pszModulePath) == 0 )
          {
 
             iaPid.add(iCurrentPid);

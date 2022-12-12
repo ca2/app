@@ -1,4 +1,4 @@
-// from acme/include/_.h by camilo on 2022-11-08 00:52 <3ThomasBorregaardSorensen!!
+﻿// from acme/include/_.h by camilo on 2022-11-08 00:52 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -14,54 +14,46 @@ template<typename TYPE>
 inline TYPE __random();
 
 
-
-//template < primitive_floating FLOATING1, primitive_floating FLOATING2, primitive_floating FLOATING_RESULT = typename ::largest_type < FLOATING1, FLOATING2 >::type >
-//inline FLOATING_RESULT __random(const FLOATING1 & i1, const FLOATING2 & i2);
-//
-//
-//template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2, primitive_integral INTEGRAL_RESULT = typename ::largest_type < INTEGRAL1, INTEGRAL2 >::type >
-//inline INTEGRAL_RESULT __random(const INTEGRAL1 & i1, const INTEGRAL2 & i2);
-
-
-template < primitive_floating FLOATING1, primitive_floating FLOATING2, primitive_floating FLOATING_RESULT = typename ::largest_type < FLOATING1, FLOATING2 >::type >
-inline FLOATING_RESULT __random(const FLOATING1 & f1, const FLOATING2 & f2)
+template < primitive_floating FLOATING1, primitive_floating FLOATING2 >
+inline ::largest_type < FLOATING1, FLOATING2 > __random(const FLOATING1 & f1, const FLOATING2 & f2)
 {
 
    if (f1 == f2) return f1;
 
-   FLOATING_RESULT fMin = minimum(f1, f2);
+   ::largest_type < FLOATING1, FLOATING2 > fMin = minimum(f1, f2);
 
-   FLOATING_RESULT fMax = maximum(f1, f2);
+   ::largest_type < FLOATING1, FLOATING2 > fMax = maximum(f1, f2);
 
-   FLOATING_RESULT fRange = fMax - fMin;
+   ::largest_type < FLOATING1, FLOATING2 > fRange = fMax - fMin;
 
    ::u64 u;
 
    __random(u);
 
-   return (FLOATING_RESULT) (((u * fRange) / (FLOATING_RESULT)MAXU64) + fMin);
+   return (::largest_type < FLOATING1, FLOATING2 >) (((u * fRange) / (::largest_type < FLOATING1, FLOATING2 >)MAXU64) + fMin);
 
 }
 
 
-
-template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2, primitive_integral INTEGRAL_RESULT = typename ::largest_type < INTEGRAL1, INTEGRAL2 >::type >
-inline INTEGRAL_RESULT __random(const INTEGRAL1 & i1, const INTEGRAL2 & i2)
+template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+inline ::largest_type < INTEGRAL1, INTEGRAL2 > __random(const INTEGRAL1 & i1, const INTEGRAL2 & i2)
 {
 
    if (i1 == i2) return i1;
 
-   INTEGRAL_RESULT iMin = minimum(i1, i2);
+   ::largest_type < INTEGRAL1, INTEGRAL2 > iMin = minimum(i1, i2);
 
-   INTEGRAL_RESULT iMax = maximum(i1, i2);
+   ::largest_type < INTEGRAL1, INTEGRAL2 > iMax = maximum(i1, i2);
 
-   INTEGRAL_RESULT iRange = iMax - iMin;
+   ::largest_type < INTEGRAL1, INTEGRAL2 > iRange = iMax - iMin;
 
    u64 u;
 
    __random(u);
 
-   return(INTEGRAL_RESULT) ((u % (iRange + 1)) + iMin);
+   return(::largest_type < INTEGRAL1, INTEGRAL2 >) ((u % (iRange + 1)) + iMin);
 
 }
+
+
 

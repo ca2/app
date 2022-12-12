@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "collection_map_association.h"
@@ -197,13 +197,13 @@ namespace iter
    typename ITERABLE::const_iterator reverse_find_ci(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find = -1, typename ITERABLE::const_iterator last = 0);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator reverse_find(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find = -1, typename ITERABLE::const_iterator last = 0);
+   typename ITERABLE::const_iterator rear_find(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find = -1, typename ITERABLE::const_iterator last = 0);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::const_iterator any_suffixes(const ITERABLE & iterable, const ITYPE & lpcszIsSuffixed, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator any_suffixes_ci(const ITERABLE & iterable, const ITYPE & lpcszIdSuffixed, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
+   typename ITERABLE::const_iterator any_case_insensitive_suffixes(const ITERABLE & iterable, const ITYPE & lpcszIdSuffixed, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::const_iterator any_prefixes(const ITERABLE & iterable, const ITYPE & lpcszIsPrefixed, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
@@ -251,13 +251,13 @@ namespace iter
    typename ITERABLE::iterator reverse_find_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = -1, typename ITERABLE::iterator last = 0);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator reverse_find(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = -1, typename ITERABLE::iterator last = 0);
+   typename ITERABLE::iterator rear_find(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = -1, typename ITERABLE::iterator last = 0);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::iterator any_suffixes(ITERABLE & iterable, const ITYPE & lpcszIsSuffixed, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator any_suffixes_ci(ITERABLE & iterable, const ITYPE & lpcszIdSuffixed, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
+   typename ITERABLE::iterator any_case_insensitive_suffixes(ITERABLE & iterable, const ITYPE & lpcszIdSuffixed, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::iterator any_prefixes(ITERABLE & iterable, const ITYPE & lpcszIsPrefixed, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
@@ -1852,7 +1852,7 @@ end:
    typename ITERABLE::const_iterator find_last(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator first, typename ITERABLE::const_iterator last)
    {
 
-      return reverse_find(pcsz, first, last);
+      return rear_find(pcsz, first, last);
 
    }
 
@@ -1882,7 +1882,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator reverse_find(const ITERABLE & iterable, const ITYPE & value, typename ITERABLE::const_iterator first, typename ITERABLE::const_iterator last)
+   typename ITERABLE::const_iterator rear_find(const ITERABLE & iterable, const ITYPE & value, typename ITERABLE::const_iterator first, typename ITERABLE::const_iterator last)
    {
 
       iterable.rprepare_first_last(first, last);
@@ -2071,7 +2071,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator any_suffixes_ci(const ITERABLE & iterable, const ITYPE & lpcszIdSuffixed, typename ITERABLE::const_iterator find, typename ITERABLE::const_iterator last)
+   typename ITERABLE::const_iterator any_case_insensitive_suffixes(const ITERABLE & iterable, const ITYPE & lpcszIdSuffixed, typename ITERABLE::const_iterator find, typename ITERABLE::const_iterator last)
    {
 
       iterable.prepare_first_last(first, last);
@@ -2205,7 +2205,7 @@ end:
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::iterator find_last(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
    {
-      return reverse_find(pcsz, find, last);
+      return rear_find(pcsz, find, last);
    }
 
 
@@ -2227,7 +2227,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator reverse_find(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
+   typename ITERABLE::iterator rear_find(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
    {
       if (find < 0)
          find += iterable.get_count();
@@ -2402,7 +2402,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator any_suffixes_ci(ITERABLE & iterable, const ITYPE & lpcszIsSuffixed, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   typename ITERABLE::iterator any_case_insensitive_suffixes(ITERABLE & iterable, const ITYPE & lpcszIsSuffixed, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
 
       iterable.prepare_first_last(first, last);
@@ -4316,10 +4316,10 @@ public:
    }
 
    template < typename ITYPE >
-   typename ITERABLE::iterator reverse_find(const ITYPE & pcsz, typename ITERABLE::iterator find = -1, typename ITERABLE::iterator last = 0)
+   typename ITERABLE::iterator rear_find(const ITYPE & pcsz, typename ITERABLE::iterator find = -1, typename ITERABLE::iterator last = 0)
    {
 
-      return ::iter::reverse_find(*this, pcsz, find, last);
+      return ::iter::rear_find(*this, pcsz, find, last);
 
    }
 
@@ -4332,10 +4332,10 @@ public:
    }
 
    template < typename ITYPE >
-   bool any_suffixes_ci(const ITYPE & lpcszIsSuffixed, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
+   bool any_case_insensitive_suffixes(const ITYPE & lpcszIsSuffixed, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
    {
 
-      return ::iter::any_suffixes_ci(*this, lpcszIsSuffixed, find, last) != end();
+      return ::iter::any_case_insensitive_suffixes(*this, lpcszIsSuffixed, find, last) != end();
 
    }
 

@@ -98,7 +98,7 @@ u32 decode_utf16_pair(u16 * units)
 //
 //
 ////template < >
-//i32 str::compare_ci(const ::string & str1, const ::string & str2)
+//i32 str::case_insensitive_order(const ::string & str1, const ::string & str2)
 //{
 //
 //   return ansi_compare_ci(str1, str2);
@@ -116,9 +116,9 @@ u32 decode_utf16_pair(u16 * units)
 
 //
 //template < >
-//bool str::equals_ci(const char * psz1, const char * psz2)
+//bool str::case_insensitive_equals(const char * psz1, const char * psz2)
 //{
-//   return compare_ci(psz1, psz2) == 0;
+//   return case_insensitive_order(psz1, psz2) == 0;
 //}
 
 ////template < >
@@ -238,7 +238,7 @@ u32 decode_utf16_pair(u16 * units)
 //}
 
 //template < >
-//bool str::begins_ci(const ::string & str, const ::string & strPrefix)
+//bool str::case_insensitive_begins(const ::string & str, const ::string & strPrefix)
 //
 //{
 //   if (str.is_empty())
@@ -256,7 +256,7 @@ u32 decode_utf16_pair(u16 * units)
 //   }
 //   auto pcsz = str.c_str();
 //   auto pcszPrefix = strPrefix.c_str();
-//   while (tolower((ansichar)*pcsz) == tolower((ansichar)*pcszPrefix))
+//   while (tolower((::ansi_character)*pcsz) == tolower((::ansi_character)*pcszPrefix))
 //
 //   {
 //      pcsz++;
@@ -283,7 +283,7 @@ u32 decode_utf16_pair(u16 * units)
 //
 
 //template < >
-//bool str::begins_ci(const widestring & wstr, const widestring & wstrPrefix)
+//bool str::case_insensitive_begins(const wide_string & wstr, const wide_string & wstrPrefix)
 //{
 //
 //   if (wstr.is_empty())
@@ -529,7 +529,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //
 //   }
 
-//   bool begins_eat_ci(string & str, const char * pcszPrefix)
+//   bool case_insensitive_begins_eat(string & str, const char * pcszPrefix)
 //
 //   {
 //
@@ -542,7 +542,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //
 //      strsize iLen = strPrefix.get_length();
 //
-//      if(str.Left(iLen).compare_ci(pcszPrefix) == 0)
+//      if(str.Left(iLen).case_insensitive_order(pcszPrefix) == 0)
 //
 //      {
 //         str = str.Mid(iLen);
@@ -553,10 +553,10 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //
 //   }
 
-//   bool begins_eat_ci(string & str, const char * pcszPrefix, const char * pszSeparator)
+//   bool case_insensitive_begins_eat(string & str, const char * pcszPrefix, const char * pszSeparator)
 //   {
 //
-//      if(str.compare_ci(pcszPrefix) == 0)
+//      if(str.case_insensitive_order(pcszPrefix) == 0)
 //      {
 //
 //
@@ -565,7 +565,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //      }
 //      else
 //      {
-//         return begins_eat_ci(str, string(pcszPrefix) + pszSeparator);
+//         return case_insensitive_begins_eat(str, string(pcszPrefix) + pszSeparator);
 //
 //      }
 //   }
@@ -628,7 +628,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
    //   return false;*/
    //}
 
-   //bool ends_ci(const ::string & str, const char * pcszSuffix)
+   //bool case_insensitive_ends(const ::string & str, const char * pcszSuffix)
 
    //{
    //   if(pcsz == nullptr || *pcsz == '\0')
@@ -677,7 +677,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
    //}
 
 
-//   bool ends_ci(const ::string & str, const char * pcszSuffix)
+//   bool case_insensitive_ends(const ::string & str, const char * pcszSuffix)
 //
 //   {
 //      if(str.is_empty())
@@ -722,15 +722,15 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //
 //   }
 
-//   bool ends_ci(const ::payload & payload, const char * pcszSuffix)
+//   bool case_insensitive_ends(const ::payload & payload, const char * pcszSuffix)
 //
 //   {
-//      return ends_ci(payload.get_string(), pcszSuffix);
+//      return case_insensitive_ends(payload.get_string(), pcszSuffix);
 //
 //   }
 
 
-//   bool ends_eat_ci(string & str, const char * pcszSuffix)
+//   bool case_insensitive_ends_eat(string & str, const char * pcszSuffix)
 //
 //   {
 //
@@ -739,7 +739,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //
 //      strsize iLen = strSuffix.get_length();
 //
-//      if(str.Right(iLen).compare_ci(pcszSuffix) == 0)
+//      if(str.Right(iLen).case_insensitive_order(pcszSuffix) == 0)
 //
 //      {
 //
@@ -2016,14 +2016,14 @@ utf8_character unicode_to_utf8(::i64 i)
       // Plain ASCII
       out[0] = (char)i;
       out[1] = 0;
-      utf8character.m_iLength =  1;
+      utf8character.m_end = utf8character.m_begin + 1;
    }
    else if (i <= 0x07FF) {
       // 2-byte unicode
       out[0] = (char)(((i >> 6) & 0x1F) | 0xC0);
       out[1] = (char)(((i >> 0) & 0x3F) | 0x80);
       out[2] = 0;
-      utf8character.m_iLength = 2;
+      utf8character.m_end = utf8character.m_begin + 2;
    }
    else if (i <= 0xFFFF) {
       // 3-byte unicode
@@ -2031,7 +2031,7 @@ utf8_character unicode_to_utf8(::i64 i)
       out[1] = (char)(((i >> 6) & 0x3F) | 0x80);
       out[2] = (char)(((i >> 0) & 0x3F) | 0x80);
       out[3] = 0;
-      utf8character.m_iLength = 3;
+      utf8character.m_end = utf8character.m_begin + 3;
    }
    else if (i <= 0x10FFFF) {
       // 4-byte unicode
@@ -2040,7 +2040,7 @@ utf8_character unicode_to_utf8(::i64 i)
       out[2] = (char)(((i >> 6) & 0x3F) | 0x80);
       out[3] = (char)(((i >> 0) & 0x3F) | 0x80);
       out[4] = 0;
-      utf8character.m_iLength = 4;
+      utf8character.m_end = utf8character.m_begin + 4;
    }
    else {
       // error - use replacement character
@@ -2048,7 +2048,7 @@ utf8_character unicode_to_utf8(::i64 i)
       out[1] = (char)0xBF;
       out[2] = (char)0xBD;
       out[3] = 0;
-      utf8character.m_iLength = 3;
+      utf8character.m_end = utf8character.m_begin + 3;
    }
 
    return utf8character;
@@ -2722,7 +2722,7 @@ bool str::is_integer(const ::string & strParam)
 
    str.trim();
 
-   if (str.begins_eat_ci("-") || str.begins_eat_ci("+"))
+   if (str.case_insensitive_begins_eat("-") || str.case_insensitive_begins_eat("+"))
    {
 
       return is_natural(str);
@@ -2968,7 +2968,7 @@ void str::consume_spaces(const char *& pszParse, ::count iMinimumCount, const ch
 }
 
 
-string str::consume_non_spaces(const ansichar *& psz)
+string str::consume_non_spaces(const ::ansi_character *& psz)
 {
 
    return consume_non_spaces(psz, psz + strlen(psz));
@@ -2976,7 +2976,7 @@ string str::consume_non_spaces(const ansichar *& psz)
 }
 
 
-string str::consume_non_spaces(const ansichar *& pszParse, const char * pszEnd)
+string str::consume_non_spaces(const ::ansi_character *& pszParse, const char * pszEnd)
 {
 
    auto psz = pszParse;
@@ -3545,7 +3545,7 @@ string str::consume_quoted_value_ex(const char *& pszParse, const char * pszEnd)
                else
                {
 
-                  wd32char uni = (wd32char)decode_utf16_pair(u);
+                  ::wd32_character uni = (::wd32_character)decode_utf16_pair(u);
                   string strUtf8 = wd32_to_ansi_str(&uni, 1);
                   str += strUtf8;
 
@@ -3555,7 +3555,7 @@ string str::consume_quoted_value_ex(const char *& pszParse, const char * pszEnd)
             else
             {
 
-               wd32char uni = u[0];
+               ::wd32_character uni = u[0];
                string strUtf8 = wd32_to_ansi_str(&uni, 1);
                str += strUtf8;
 
@@ -4457,7 +4457,7 @@ bool str::replace_prefix(::string & str, const char * pszPrefixReplacement, cons
 bool str::replace_prefix_ci(::string & str, const char * pszPrefixReplacement, const char * pszPrefix)
 {
 
-   if (!str.begins_eat_ci(pszPrefix))
+   if (!str.case_insensitive_begins_eat(pszPrefix))
    {
 
       return false;
@@ -4579,7 +4579,7 @@ bool str::replace_prefix_ci(::string & str, const char * pszPrefixReplacement, c
 //
 //   /// \note Case insensitive.
 //   ///
-//   bool begins_ci(const unichar * pcsz, const unichar * pcszPrefix)
+//   bool case_insensitive_begins(const unichar * pcsz, const unichar * pcszPrefix)
 //
 //   {
 //      if(pcsz == nullptr || *pcsz == L'\0')
@@ -4620,7 +4620,7 @@ bool str::replace_prefix_ci(::string & str, const char * pszPrefixReplacement, c
 //      return false;
 //   }
 //
-//   bool begins_ci(const wstring & wstr, const unichar * pcszPrefix)
+//   bool case_insensitive_begins(const wstring & wstr, const unichar * pcszPrefix)
 //
 //   {
 //      return begins_ci_iws((const unichar *) wstr, pcszPrefix);
@@ -4942,49 +4942,49 @@ bool str::is_true(string str)
 
    }
 
-   if (str.compare_ci("yes") == 0)
+   if (str.case_insensitive_order("yes") == 0)
    {
 
       return true;
 
    }
 
-   if (str.compare_ci("true") == 0)
+   if (str.case_insensitive_order("true") == 0)
    {
 
       return true;
 
    }
 
-   if (str.compare_ci("on") == 0)
+   if (str.case_insensitive_order("on") == 0)
    {
 
       return true;
 
    }
 
-   if (str.compare_ci("enable") == 0)
+   if (str.case_insensitive_order("enable") == 0)
    {
 
       return true;
 
    }
 
-   if (str.compare_ci("enabled") == 0)
+   if (str.case_insensitive_order("enabled") == 0)
    {
 
       return true;
 
    }
 
-   if (str.compare_ci("check") == 0)
+   if (str.case_insensitive_order("check") == 0)
    {
 
       return true;
 
    }
 
-   if (str.compare_ci("checked") == 0)
+   if (str.case_insensitive_order("checked") == 0)
    {
 
       return true;
@@ -5150,7 +5150,7 @@ string str::zero_padded(const ::string & strSrc, strsize lenPad)
 void str::get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::particle * pparticleSynchronization, ::file::file * pfileLog)
 {
 
-   auto iLimit = str.reverse_find("\n");
+   auto iLimit = str.rear_find("\n");
 
    if (iLimit < 0)
    {
@@ -5293,7 +5293,7 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 //}
 
 
-//ansistring & str::assign(ansistring & ansistrDst, const property & property)
+//ansi_string & str::assign(ansi_string & ansistrDst, const property & property)
 //{
 //
 //   ansistrDst.assign(property.string());
@@ -5345,12 +5345,12 @@ public:
 //}
 //
 //
-//bool str::begins_eat_ci(::payload & payload, const ::string & strPrefix)
+//bool str::case_insensitive_begins_eat(::payload & payload, const ::string & strPrefix)
 //{
 //
 //   string str = payload.string();
 //
-//   if (!begins_eat_ci(str, strPrefix))
+//   if (!case_insensitive_begins_eat(str, strPrefix))
 //   {
 //
 //      return false;
@@ -5372,15 +5372,15 @@ public:
 //}
 //
 //
-//bool str::begins_eat_ci(property & property, const ::string & strPrefix)
+//bool str::case_insensitive_begins_eat(property & property, const ::string & strPrefix)
 //{
 //
-//   return begins_eat_ci((::payload &)property, strPrefix);
+//   return case_insensitive_begins_eat((::payload &)property, strPrefix);
 //
 //}
 
 
-//ansistring & str::assign(ansistring & ansistrDst, const atom & atom)
+//ansi_string & str::assign(ansi_string & ansistrDst, const atom & atom)
 //{
 //
 //   ansistrDst.assign(atom);
@@ -5390,7 +5390,7 @@ public:
 //}
 //
 //
-//wd16string & str::assign(wd16string & widestrDst, const atom & atom)
+//wd16_string & str::assign(wd16_string & widestrDst, const atom & atom)
 //{
 //
 //   widestrDst.assign(atom);
@@ -5400,7 +5400,7 @@ public:
 //}
 //
 //
-//wd32string & str::assign(wd32string & widestrDst, const atom & atom)
+//wd32_string & str::assign(wd32_string & widestrDst, const atom & atom)
 //{
 //
 //   widestrDst.assign(atom);
@@ -5413,7 +5413,7 @@ public:
 //
 //
 //
-//ansistring & str::assign(ansistring & ansistrDst, const ::payload & payload)
+//ansi_string & str::assign(ansi_string & ansistrDst, const ::payload & payload)
 //{
 //
 //   ansistrDst.assign(payload);
@@ -5423,7 +5423,7 @@ public:
 //}
 //
 //
-//wd16string & str::assign(wd16string & widestrDst, const property & property)
+//wd16_string & str::assign(wd16_string & widestrDst, const property & property)
 //{
 //
 //   widestrDst.assign(property.string());
@@ -5433,7 +5433,7 @@ public:
 //}
 //
 //
-//wd32string & str::assign(wd32string & widestrDst, const property & property)
+//wd32_string & str::assign(wd32_string & widestrDst, const property & property)
 //{
 //
 //   widestrDst.assign(property.string());
@@ -5445,7 +5445,7 @@ public:
 //
 //
 //
-//wd16string & str::assign(wd16string & widestrDst, const ::payload & payload)
+//wd16_string & str::assign(wd16_string & widestrDst, const ::payload & payload)
 //{
 //
 //   widestrDst.assign(payload.string());
@@ -5455,7 +5455,7 @@ public:
 //}
 //
 //
-//wd32string & str::assign(wd32string & widestrDst, const ::payload & payload)
+//wd32_string & str::assign(wd32_string & widestrDst, const ::payload & payload)
 //{
 //
 //   widestrDst.assign(payload.string());
@@ -5465,7 +5465,7 @@ public:
 //}
 //
 //
-//ansistring & str::assign(ansistring & ansistrDst, const type & type)
+//ansi_string & str::assign(ansi_string & ansistrDst, const type & type)
 //{
 //
 //   ansistrDst.assign(type);
@@ -5475,7 +5475,7 @@ public:
 //}
 //
 //
-//wd16string & str::assign(wd16string & widestrDst, const type & type)
+//wd16_string & str::assign(wd16_string & widestrDst, const type & type)
 //{
 //
 //   widestrDst.assign(type);
@@ -5485,7 +5485,7 @@ public:
 //}
 //
 //
-//wd32string & str::assign(wd32string & widestrDst, const type & type)
+//wd32_string & str::assign(wd32_string & widestrDst, const type & type)
 //{
 //
 //   widestrDst.assign(type);

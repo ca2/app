@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "context.h"
 #include "buffer.h"
 //#include "_.h"
@@ -368,7 +368,7 @@ namespace gpu
 
       string strVersion = get_shader_version_text();
 
-      if (strExtension.begins_ci("shadertoy"))
+      if (strExtension.case_insensitive_begins("shadertoy"))
       {
 
          eshadersource = e_shader_source_shadertoy;

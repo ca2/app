@@ -1,21 +1,32 @@
 ﻿#pragma once
 
 
+#include "acme/memory/_memory.h"
 //#include "acme/primitive/mathematics/_.h"
 #include "acme/primitive/primitive/_u32hash.h"
 
 
-inline strsize string_get_length(const ansichar* psz) noexcept { return strlen(psz); }
-inline strsize string_safe_length(const ansichar* psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
+#include "acme/primitive/collection/array_range.h"
 
 
-struct CLASS_DECL_ACME BLOCK
-{
 
-   byte *                     m_pdata;
-   memsize_storage            m_iSize;
 
-};
+inline strsize string_get_length(const ::ansi_character* psz) noexcept { return strlen(psz); }
+inline strsize string_safe_length(const ::ansi_character* psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
+
+
+
+using BLOCK = array_range < ::range < ::byte * > >;
+//struct CLASS_DECL_ACME BLOCK
+//{
+//
+//   byte *                     m_pbegin;
+//   ::count                    m_iSize;
+//
+//
+//   memsize length_in_bytes() const { return sizeof(::byte) * m_iSize; }
+//
+//};
 
 template <std::size_t N>
 struct ____array_count
@@ -23,12 +34,6 @@ struct ____array_count
     typedef char type[N];
 };
 
-enum enum_as_block
-{
-
-   e_as_block,
-
-};
 
 template <typename T, std::size_t Size>
 typename ____array_count<Size>::type& ___array_count(T(&)[Size]);
@@ -44,33 +49,58 @@ struct CLASS_DECL_ACME block :
    public BLOCK
 {
 
-   block(enum_no_initialize) {}
-   block() { m_pdata = nullptr; m_iSize = 0; }
-   block(const ansichar* psz) : block((byte*)psz, string_safe_length((const char*)psz)) { }
-   template < primitive_integral INTEGRAL >
-   block(const void * pdata, INTEGRAL iSize) { m_pdata = (byte *) pdata; m_iSize = (memsize_storage) iSize; }
+   
+   using BLOCK::BLOCK;
+
+
    block(const memory_base & memory);
    block(const memory_base * pmemory);
-   block(const block & block) : ::block(block.m_pdata, block.m_iSize) {}
    block(const atom & atom);
    template < typename TYPE >
-   block(enum_as_block, TYPE & t): ::block((void *) & t, sizeof(t)) {}
+   block(enum_as_block, TYPE & t) : block((void *)&t, sizeof(t)) {}
    template < typename TYPE >
-   block(enum_as_block, const TYPE & t):  ::block((void *)&t, sizeof(t)) {}
-   
+   block(enum_as_block, const TYPE & t) : block((void *)&t, sizeof(t)) {}
+   block(const void * begin, const void * end) : block((const ::byte *)begin, (const ::byte *)end) {}
+   template < primitive_integral INTEGRAL >
+   block(const void * data, INTEGRAL count, bool bNullTerminated = false) : BLOCK((::byte *) data, count, bNullTerminated) { }
 
-   block & operator = (const block & block) { if (this != &block) { m_pdata = block.m_pdata; m_iSize = block.m_iSize; } return *this; }
+   block & operator = (const block & block) 
+   {
+      
+      if (this != &block)
+      {
 
-   void* get_data() { return m_pdata; }
-   const void * get_data() const { return m_pdata; }
-   memsize get_size() const { return m_iSize; }
-   memsize size() const { return (memsize)m_iSize; }
+         assign_block(block);
 
-   inline bool is_empty() const { return ::is_null(m_pdata) || get_size() <= 0; }
-   inline bool is_set() const { return !is_empty(); }
+      }
 
-   inline operator int() const { return is_set();}
-   inline bool operator !() const { return !operator int(); }
+      return *this;
+
+   }
+
+   //void * get_data() { return m_pbegin; }
+   //const void * get_data() const { return m_pbegin; }
+   //memsize get_size() const { return m_iSize; }
+   //const ::byte * data () const { return (const  ::byte *) m_pbegin;  }
+   //::byte * data() { return (::byte *)m_pbegin; }
+   //::count size() const { return (::count)m_iSize; }
+
+   template < typename TYPE >
+   const TYPE* as_pointer() const
+   {
+
+      return (const TYPE*)begin();
+
+   }
+
+   template < typename TYPE >
+   TYPE* as_pointer() 
+   {
+
+      return (TYPE*) begin();
+
+   }
+
 
 //#ifdef _UWP
 //
@@ -82,21 +112,21 @@ struct CLASS_DECL_ACME block :
    block & from_base64(const char * psz, strsize iSize) const;
 
 
-   int compare(const block& block) const
+   ::std::strong_ordering compare(const block& block) const
    {
 
-      auto commonSize = minimum(get_size(), block.get_size());
+      auto commonSize = minimum(size(), block.size());
 
-      int iCompare = memcmp(get_data(), block.get_data(), commonSize);
+      auto ordering = memcmp(data(), block.data(), commonSize) <=>0;
 
-      if (iCompare == 0)
+      if (ordering != 0)
       {
 
-         return (int) (get_size() - block.get_size());
+         return ordering;
 
       }
 
-      return iCompare;
+      return size() <=> block.size();
 
    }
 
@@ -104,14 +134,21 @@ struct CLASS_DECL_ACME block :
    bool operator == (const block& block) const
    {
 
-      if (block.get_size() != get_size())
+      if (block.size() != size())
       {
 
          return false;
 
       }
 
-      return __memcmp(block.get_data(), get_data(), (size_t)get_size()) == 0;
+      if (size() <= 0)
+      {
+
+         return true;
+
+      }
+
+      return memcmp(data(), block.data(), (size_t)size()) == 0;
 
    }
 
@@ -120,6 +157,17 @@ struct CLASS_DECL_ACME block :
    {
 
       return !operator == (block);
+
+   }
+
+
+   memsize find(const ::block& blockFind, memsize start = 0) const;
+
+   inline memsize _find(const ::block& blockFind, memsize start = 0) const
+   {
+      return ((::byte*)_memory_find(
+         as_pointer<::byte>() + start, size() - start,
+         blockFind.data(), blockFind.size())) - as_pointer <::byte>();
 
    }
 
@@ -139,6 +187,28 @@ namespace acme
 
 
 
+template < typename ITEM_TYPE >
+class GET_BLOCK_TYPE
+{
+public:
+
+
+   using TYPE = ::array_range < ::range < ITEM_TYPE * > >;
+
+
+};
+
+
+template <  >
+class GET_BLOCK_TYPE< ::byte >
+{
+public:
+
+   using TYPE = ::block;
+
+};
+
+
 template < typename TYPE >
 inline ::block as_block(const TYPE & type) 
 { 
@@ -152,20 +222,20 @@ template < >
 inline u32hash u32_hash < const block & >(const block & b)
 {
 
-   if (::is_null(b.get_data()) || b.is_empty())
+   if (!b)
    {
 
       return { 0 };
 
    }
 
-   auto psz = (const char *)b.get_data();
+   auto psz = b.data();
 
    u32 uHash = 0;
 
    strsize i = 1;
 
-   for (; i < b.get_size(); i++)
+   for (; i < b.size(); i++)
    {
 
       if (i % 4 == 3)

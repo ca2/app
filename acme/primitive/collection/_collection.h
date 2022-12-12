@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -60,92 +60,90 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::
 #include "pair.h"
 
 
-
-
-// Range-based for loop support // Thank you PUGIXML
-template < typename CONST_ITERATOR >
-class const_range
-{
-public:
-
-   typedef CONST_ITERATOR const_iterator;
-
-   CONST_ITERATOR m_begin;
-   CONST_ITERATOR m_end;
-
-   const_range(CONST_ITERATOR b,CONST_ITERATOR e): m_begin(b),m_end(e) {}
-
-   CONST_ITERATOR begin() const { return m_begin; }
-   CONST_ITERATOR end() const { return m_end; }
-
-
-   auto & element_at(::index iIndex)
-   {
-
-      CONST_ITERATOR it = begin();
-
-      while(iIndex > 0 && it != end())
-      {
-
-         iIndex--;
-
-      }
-
-      if(iIndex != 0)
-      {
-
-         throw ::exception(error_bad_argument);
-
-      }
-
-      return (*it);
-
-   }
-};
-
-
-// Range-based for loop support // Thank you PUGIXML
-template < typename ITERATOR >
-class range
-{
-public:
-
-
-   typedef ITERATOR const_iterator;
-
-
-   ITERATOR m_begin;
-   ITERATOR m_end;
-
-   range(ITERATOR b,ITERATOR e): m_begin(b),m_end(e) { }
-
-   ITERATOR begin() const { return m_begin; }
-   ITERATOR end() const { return m_end; }
-
-   auto & element_at(::index iIndex)
-   {
-
-      ITERATOR it = begin();
-
-      while(iIndex > 0 && it != end())
-      {
-
-         iIndex--;
-
-      }
-
-      if(iIndex != 0)
-      {
-
-         throw ::exception(error_bad_argument);
-
-      }
-
-      return (*it);
-
-   }
-
-};
+//
+//
+//// Range-based for loop support // Thank you PUGIXML
+//template < typename CONST_ITERATOR >
+//class const_range
+//{
+//public:
+//
+//   typedef CONST_ITERATOR const_iterator;
+//
+//   CONST_ITERATOR m_begin;
+//   CONST_ITERATOR m_end;
+//
+//   const_range(CONST_ITERATOR b,CONST_ITERATOR e): m_begin(b),m_end(e) {}
+//
+//   CONST_ITERATOR begin() const { return m_begin; }
+//   CONST_ITERATOR end() const { return m_end; }
+//
+//
+//   auto & element_at(::index iIndex)
+//   {
+//
+//      CONST_ITERATOR it = begin();
+//
+//      while(iIndex > 0 && it != end())
+//      {
+//
+//         iIndex--;
+//
+//      }
+//
+//      if(iIndex != 0)
+//      {
+//
+//         throw ::exception(error_bad_argument);
+//
+//      }
+//
+//      return (*it);
+//
+//   }
+//};
+//
+////
+//// Range-based for loop support // Thank you PUGIXML
+//template < typename ITERATOR >
+//class range
+//{
+//public:
+//
+//
+//
+//   ITERATOR m_begin;
+//   ITERATOR m_end;
+//
+//   range(ITERATOR b,ITERATOR e): m_begin(b),m_end(e) { }
+//
+//   auto begin() const { return m_begin; }
+//   auto end() const { return m_end; }
+//
+//   auto & element_at(::index iIndex)
+//   {
+//
+//      ITERATOR it = begin();
+//
+//      while(iIndex > 0 && it != end())
+//      {
+//
+//         iIndex--;
+//
+//      }
+//
+//      if(iIndex != 0)
+//      {
+//
+//         throw ::exception(error_bad_argument);
+//
+//      }
+//
+//      return (*it);
+//
+//   }
+//
+//};
 
 
 //#include "comparable_eq_array.h"

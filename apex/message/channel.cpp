@@ -52,7 +52,13 @@ void channel::erase_handler(::particle * pparticle)
 
    critical_section_lock synchronouslock(::acme::g_p->channel_critical_section());
 
-   for (auto & dispatchera : m_dispatchermap.values())
+   auto values = m_dispatchermap.values();
+
+   auto begin = values.begin();
+
+   auto end = values.end();
+
+   for (auto & dispatchera : values)
    {
 
       if (dispatchera.is_empty())
@@ -150,7 +156,7 @@ void channel::route_message(::message::message * pmessage)
    for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_pdispatchera->get_upper_bound(); pmessage->m_pdispatchera && pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
 
-      auto & dispatcher = pmessage->m_pdispatchera->m_pData[pmessage->m_iRouteIndex];
+      auto & dispatcher = pmessage->m_pdispatchera->m_begin[pmessage->m_iRouteIndex];
 
       if (::is_null(&dispatcher))
       {
@@ -486,7 +492,7 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    auto passociation = m_dispatchermap.plookup(pcommand->m_atom);
 
-   if (::is_null(passociation))
+   if (!passociation)
    {
 
       return false;

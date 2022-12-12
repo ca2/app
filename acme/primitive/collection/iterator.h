@@ -1,311 +1,177 @@
+﻿// Created by camilo on 2022-12-07 16:42 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
+template < typename TYPE >
+::index index_as_of_iterator(const TYPE * p)
+{
+
+   return (::iptr)p;
+
+}
+
+
+template < typename TYPE >
+TYPE * next_as_of_iterator(const TYPE * p)
+{
+
+   return p + 1;
+
+}
+
+
+template < typename TYPE >
+::count count_as_of_iterator(const TYPE * p, const TYPE * pBegin)
+{
+
+   return ::index_as_of_iterator(p) - ::index_as_of_iterator(pBegin);
+
+}
+
+
+
+template < typename TYPE >
+class const_iterator_base;
+
+
 template < typename ITERATOR_TYPE >
-class random_access_iterator
+class iterator_base
 {
 public:
 
-   typedef ITERATOR_TYPE ITERATOR_BASE_TYPE;
-
-   ITERATOR_TYPE *         m_p;
-
-
-   random_access_iterator(ITERATOR_TYPE * p)
-   {
-
-      m_p = p;
-
-   }
+   
+   using TYPE_TAG = ITERATOR_TYPE_TAG;
 
 
-   random_access_iterator(const random_access_iterator & it)
-   {
+   using ITEM_POINTER = non_const < ITERATOR_TYPE >;
+   using CONST_ITEM_POINTER = add_const < ITERATOR_TYPE >;
+   using THIS_ITEM_POINTER = ITERATOR_TYPE;
 
-      operator = (it);
+   using ITEM = dereference < ITEM_POINTER >;
 
-   }
-
-
-   random_access_iterator & operator = (const random_access_iterator & it)
-   {
-
-      m_p = it.m_p;
-
-      return *this;
-
-   }
+   using TYPE = ITERATOR_TYPE;
 
 
-   bool operator == (const random_access_iterator & it)
-   {
-
-      return m_p == it.m_p;
-
-   }
+   using iterator = ::iterator_base < ITEM_POINTER >;
+   using const_iterator = ::const_iterator_base < ITEM_POINTER >;
+   using THIS_ITERATOR = ::iterator_base < ITERATOR_TYPE >;
 
 
-   bool operator != (const random_access_iterator & it)
-   {
-
-      return !operator==(it);
-
-   }
+   ITEM_POINTER m_p;
 
 
-   random_access_iterator operator ++(int)
-   {
-
-      random_access_iterator it = *this;
-
-      operator ++();
-
-      return it;
-
-   }
+   iterator_base(enum_no_initialize) {};
+   iterator_base(nullptr_t) { m_p = nullptr; }
+   iterator_base() { m_p = nullptr; }
+   iterator_base(ITEM_POINTER p) : m_p(p) {}
+   iterator_base(const const_iterator & iterator) : m_p((ITEM_POINTER)iterator.get()) {}
 
 
-   random_access_iterator operator --(int)
-   {
-
-      random_access_iterator it = *this;
-
-      operator --();
-
-      return it;
-
-   }
+   auto get() { return m_p; }
+   auto get() const { return m_p; }
 
 
-   random_access_iterator & operator ++()
-   {
-
-      m_p++;
-
-      return *this;
-
-   }
+   auto & operator= (TYPE * p) { m_p = p; return *this; }
+   auto & operator= (iterator p) { m_p = p.get(); return *this; }
 
 
-   random_access_iterator & operator +(iptr i)
-   {
-
-      m_p += i;
-
-      return *this;
-
-   }
+   auto & operator *() { return *get(); }
+   auto & operator *() const { return *get(); }
 
 
-   random_access_iterator & operator --()
-   {
-
-      m_p--;
-
-      return *this;
-
-   }
-
-
-   random_access_iterator & operator -(iptr c)
-   {
-      m_p -= c;
-      return *this;
-   }
-
-   bool operator < (const random_access_iterator & i) const
-   {
-      return m_p < i.m_p;
-   }
-
-   ITERATOR_TYPE & operator * ()
-   {
-      return *m_p;
-   }
-
-   const ITERATOR_TYPE & operator * () const
-   {
-      return (const ITERATOR_TYPE &)*m_p;
-   }
+   auto operator ->() { return get(); }
+   auto operator ->() const { return get(); }
 
 
 };
 
 
 template < typename ITERATOR_TYPE >
-class const_random_access_iterator
+class const_iterator_base
 {
 public:
 
 
-   const ITERATOR_TYPE *            m_p;
-
-   const_random_access_iterator(const ITERATOR_TYPE * p)
-   {
-      
-      m_p = p;
-
-   }
-
-   const_random_access_iterator(const random_access_iterator < ITERATOR_TYPE > & it)
-   {
-
-      operator = (it);
-
-   }
+   using TYPE_TAG = ITERATOR_TYPE_TAG;
 
 
-   const_random_access_iterator(const const_random_access_iterator & it)
-   {
-
-      operator = (it);
-
-   }
+   using ITEM_POINTER = non_const < ITERATOR_TYPE >;
+   using CONST_ITEM_POINTER = add_const < ITERATOR_TYPE >;
+   using THIS_ITEM_POINTER = ITERATOR_TYPE;
 
 
-   const_random_access_iterator & operator = (const random_access_iterator < ITERATOR_TYPE > & it)
-   {
-
-      m_p = it.m_p;
-
-      return *this;
-
-   }
+   using ITEM = dereference < ITEM_POINTER >;
 
 
-   const_random_access_iterator & operator = (const const_random_access_iterator & it)
-   {
-
-      m_p = it.m_p;
-
-      return *this;
-
-   }
+   using iterator = ::iterator_base < ITEM_POINTER >;
+   using const_iterator = ::const_iterator_base < ITEM_POINTER >;
+   using THIS_ITERATOR = ::const_iterator_base < ITEM_POINTER >;
 
 
-   bool operator == (const const_random_access_iterator & it)
-   {
-
-      return m_p == it.m_p;
-
-   }
+   CONST_ITEM_POINTER m_p;
 
 
-   bool operator != (const const_random_access_iterator & it)
-   {
-
-      return !operator==(it);
-
-   }
-
-
-   const_random_access_iterator operator ++(int)
-   {
-
-      const_random_access_iterator it = *this;
-
-      operator ++();
-
-      return it;
-
-   }
+   const_iterator_base(enum_no_initialize) {};
+   const_iterator_base(nullptr_t) { m_p = nullptr; }
+   const_iterator_base() { m_p = nullptr; }
+   const_iterator_base(CONST_ITEM_POINTER p) : m_p(p) {}
+   const_iterator_base(const const_iterator & iterator) : m_p(iterator.m_p) {}
 
 
-   const_random_access_iterator operator --(int)
-   {
-
-      const_random_access_iterator it = *this;
-
-      operator --();
-
-      return it;
-
-   }
+   auto get() { return m_p; }
+   auto get() const { return m_p; }
 
 
-   const_random_access_iterator & operator ++()
-   {
-
-      m_p++;
-
-      return *this;
-
-   }
+   auto & operator = (const ITEM_POINTER p) { m_p = p; return *this; }
+   auto & operator = (const iterator & p) { m_p = p.get(); return *this; }
+   auto & operator = (const const_iterator & p) { m_p = p.get(); return *this; }
 
 
-   const_random_access_iterator & operator +(iptr i)
-   {
-
-      m_p += i;
-
-      return *this;
-
-   }
+   auto & operator *() { return *get(); }
+   auto & operator *() const { return *get(); }
 
 
-   const_random_access_iterator & operator --()
-   {
-      m_p--;
-      return *this;
-   }
+   auto operator ->() { return get(); }
+   auto operator ->() const { return get(); }
 
-   const_random_access_iterator & operator -(iptr i)
-   {
-      m_p -= i;
-      return *this;
-   }
-
-
-   bool operator < (const const_random_access_iterator & i) const
-   {
-
-      return m_p < i.m_p;
-
-   }
-
-   const ITERATOR_TYPE & operator * ()
-   {
-      return *((const ITERATOR_TYPE*)m_p);
-   }
 
 };
 
-//
-//
-//template < class ITERATOR >
-//struct iterator_info
-//{
-//   typedef typename ITERATOR::ITERATOR_CATEGORY    ITERATOR_CATEGORY;
-//   typedef typename ITERATOR::VALUE_TYPE           VALUE_TYPE;
-//   typedef typename ITERATOR::DIFFERENCE_TYPE      DIFFERENCE_TYPE;
-//   typedef DIFFERENCE_TYPE                         DISTANCE_TYPE;	// retained
-//   typedef typename ITERATOR::POINTER              POINTER;
-//   typedef typename ITERATOR::REFERENCE            REFERENCE;
-//};
+
+//template < typename TYPE >
+//using iterator_selector = 
+//   ::if_else <
+//      ::is_const < TYPE >, 
+//         const_iterator_base < non_const < TYPE > >, 
+//         iterator_base < non_const < TYPE > > >;
+
+
+
+//template < typename TYPE >
+//using iterator = make_iterator < iterator_base < TYPE > >;
 //
 //
 //template < typename TYPE >
-//struct iterator_info < TYPE * >
+//using const_iterator = make_iterator < const_iterator_base < TYPE > >;
+
+
+
+//template < typename ITERATOR_TYPE >
+//::index iterator_offset_of(::make_iterator < ITERATOR_TYPE > a, ::make_iterator < ITERATOR_TYPE > b)
 //{
-//   typedef random_access_iterator < TYPE * >       ITERATOR_CATEGORY;
-//   typedef TYPE                                    VALUE_TYPE;
-//   typedef ptrdiff_t                               DIFFERENCE_TYPE;
-//   typedef ptrdiff_t                               DISTANCE_TYPE;	// retained
-//   typedef TYPE *                                  POINTER;
-//   typedef TYPE &                                  REFERENCE;
-//};
 //
+//   return a - b;
 //
-//template < typename TYPE >
-//struct iterator_info < const TYPE * >
-//{
-//   typedef random_access_iterator < TYPE * >       ITERATOR_CATEGORY;
-//   typedef TYPE                                    VALUE_TYPE;
-//   typedef ptrdiff_t                               DIFFERENCE_TYPE;
-//   typedef ptrdiff_t                               DISTANCE_TYPE;	// retained
-//   typedef const TYPE *                            POINTER;
-//   typedef const TYPE &                            REFERENCE;
-//};
-//
-//
+//}
+
+
+template < primitive_iterator ITERATOR >
+constexpr bool is_set(const ITERATOR & iterator)
+{
+
+   return ::is_set(iterator.m_p);
+
+}
+
+
 

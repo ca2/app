@@ -179,7 +179,7 @@ namespace android
 //               if (wcscmp(wszPath, L"*") == 0)
 //               {
 //
-//                  strsize iFind = strFilePath.reverse_find('.');
+//                  strsize iFind = strFilePath.rear_find('.');
 //
 //                  imagekey.m_iIcon = 0x80000000;
 //                  imagekey.m_strExtension = (char*)&strFilePath[iFind+1];
@@ -267,7 +267,7 @@ namespace android
 //            {
 //               if (*wszPath == L'*' && wszPath[1] == '\0')
 //               {
-//                  strsize iFind = strFilePath.reverse_find('.');
+//                  strsize iFind = strFilePath.rear_find('.');
 //
 //                  imagekey.m_iIcon = 0x80000000;
 //                  imagekey.m_strExtension = (char *)&strFilePath.Mid(iFind);
@@ -306,7 +306,7 @@ namespace android
 //               string strP = wszPath;
 //               if (strcmp(strP, "*") == 0)
 //               {
-//                  strsize iFind = strFilePath.reverse_find('.');
+//                  strsize iFind = strFilePath.rear_find('.');
 //
 //                  imagekey.m_iIcon = 0x80000000;
 //                  imagekey.m_strExtension = (char *)&strFilePath.Mid(iFind);
@@ -830,7 +830,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
    //         strPath = szPath;
    //         if (strPath == "*")
    //         {
-   //            strsize iFind = strFilePath.reverse_find('.');
+   //            strsize iFind = strFilePath.rear_find('.');
 
    //            imagekey.m_iIcon = 0x80000000;
    //            imagekey.m_strExtension = (char*)&strFilePath[iFind];
@@ -1061,7 +1061,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
    }
 
 
-   shell::e_folder shell::get_folder_type(::particle * pparticle, const widechar * lpcszPath)
+   shell::e_folder shell::get_folder_type(::particle * pparticle, const ::wide_character * lpcszPath)
    {
 
       string strPath;
@@ -1194,7 +1194,7 @@ pacmedirectory->is(strPath))
 
    //}
 
-   i32 shell::get_image(per_fork * pfork, image_key imagekey, const widechar * lpcszExtra, color32_t crBk)
+   i32 shell::get_image(per_fork * pfork, image_key imagekey, const ::wide_character * lpcszExtra, color32_t crBk)
    {
 
       i32 iImage = 0x80000000;

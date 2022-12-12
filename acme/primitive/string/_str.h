@@ -27,31 +27,31 @@ public:
 
 
 template < >
-class single_char < ansichar >
+class single_char < ::ansi_character >
 {
 public:
 
-   ansichar cha[6];
+   ::ansi_character cha[6];
 
 };
 
 
 template < >
-class single_char < wd16char >
+class single_char < ::wd16_character >
 {
 public:
 
-   wd16char cha[2];
+   ::wd16_character cha[2];
 
 };
 
 
 template < >
-class single_char < wd32char >
+class single_char < ::wd32_character >
 {
 public:
 
-   wd32char cha[1];
+   ::wd32_character cha[1];
 
 };
 
@@ -149,14 +149,14 @@ public:
    string   if_null(const ::string & str, const ::string & strIfNull = nullptr);
 
 
-   //inline  const ansichar * __utf8_inc(const ansichar * psz) { return psz + 1 + trailingBytesForUTF8(*psz); }
+   //inline  const ::ansi_character * __utf8_inc(const ::ansi_character * psz) { return psz + 1 + trailingBytesForUTF8(*psz); }
 
-   //const ansichar *    utf8_next_add_length(strsize * paddlength, const ansichar * psz);
-   //const ansichar *    utf8_inc_copy_slide_back(strsize * pslideback, ansichar * pchDst, const ansichar * pchSrc);
-   //const ansichar *    utf8_inc_count(const ansichar * psz, strsize * piCount);
+   //const ::ansi_character *    utf8_next_add_length(strsize * paddlength, const ::ansi_character * psz);
+   //const ::ansi_character *    utf8_inc_copy_slide_back(strsize * pslideback, ::ansi_character * pchDst, const ::ansi_character * pchSrc);
+   //const ::ansi_character *    utf8_inc_count(const ::ansi_character * psz, strsize * piCount);
 
-   string block(ansichar ch, i32 iSize);
-   void fill(string & str, ansichar ch);
+   string block(::ansi_character ch, i32 iSize);
+   void fill(string & str, ::ansi_character ch);
 
 
 
@@ -183,7 +183,7 @@ public:
 
 
    bool           trim_any_quotes(string & str);
-   bool           paired_trim(string & str, ansichar ch);
+   bool           paired_trim(string & str, ::ansi_character ch);
    bool           trim(string & str);
    bool           _008Trim(string & str);
 
@@ -205,38 +205,38 @@ public:
    string   get_word(const ::string & str, const ::string & strSeparator, bool bWithSeparator = false, bool bEndIsSeparator = true);
 
 
-   bool eats(const ansichar *& pszParse, const ::string & strToEat);
-   bool eats_ci(const ansichar *& szParse, const ::string & strToEat);
-   void consume(const ansichar *& pszParse, const ::string & strToConsume);
-   void consume(const ansichar *& pszParse, const ansichar * psz, const ansichar * pszEnd);
-   void consume(const ansichar *& pszParse, const ansichar * psz, ::count iLen, const ansichar * pszEnd);
-   void consume_spaces(const ansichar *& pszParse, ::count iMinimumCount = 1);
-   u64 consume_natural(const ansichar *& pszParse, u64 uiMax = ((u64)-1), u64 uiMin = 0);
+   bool eats(const ::ansi_character *& pszParse, const ::string & strToEat);
+   bool eats_ci(const ::ansi_character *& szParse, const ::string & strToEat);
+   void consume(const ::ansi_character *& pszParse, const ::string & strToConsume);
+   void consume(const ::ansi_character *& pszParse, const ::ansi_character * psz, const ::ansi_character * pszEnd);
+   void consume(const ::ansi_character *& pszParse, const ::ansi_character * psz, ::count iLen, const ::ansi_character * pszEnd);
+   void consume_spaces(const ::ansi_character *& pszParse, ::count iMinimumCount = 1);
+   u64 consume_natural(const ::ansi_character *& pszParse, u64 uiMax = ((u64)-1), u64 uiMin = 0);
    u64 consume_natural(string & str, u64 uiMax = ((u64)-1), u64 uiMin = 0);
-   string consume_hex(const ansichar *& pszParse);
-   void consume_spaces(const ansichar *& pszParse, ::count iMinimumCount, const ansichar * pszEnd);
-   string consume_non_spaces(const ansichar *& pszParse, const ansichar * pszEnd);
-   string consume_non_spaces(const ansichar *& psz);
-   string consume_nc_name(const ansichar *& pszParse);
-   //  string consume_quoted_value(const ansichar * & pszParse);
-   void no_escape_consume_quoted_value(const ansichar *& pszParse, const ansichar * pszEnd, ansichar ** ppsz, strsize & iBufferSize);
-   string no_escape_consume_quoted_value(const ansichar *& pszParse, const ansichar * pszEnd);
-   void skip_quoted_value_ex2(const ansichar *& pszParse, const ansichar * pszEnd);
-   string consume_quoted_value(const ansichar *& pszParse, const ansichar * pszEnd = nullptr);
-   string consume_quoted_value_ex(const ansichar *& pszParse, const ansichar * pszEnd);
-   void skip_quoted_value_ex(const ansichar *& pszParse, const ansichar * pszEnd);
+   string consume_hex(const ::ansi_character *& pszParse);
+   void consume_spaces(const ::ansi_character *& pszParse, ::count iMinimumCount, const ::ansi_character * pszEnd);
+   string consume_non_spaces(const ::ansi_character *& pszParse, const ::ansi_character * pszEnd);
+   string consume_non_spaces(const ::ansi_character *& psz);
+   string consume_nc_name(const ::ansi_character *& pszParse);
+   //  string consume_quoted_value(const ::ansi_character * & pszParse);
+   void no_escape_consume_quoted_value(const ::ansi_character *& pszParse, const ::ansi_character * pszEnd, ::ansi_character ** ppsz, strsize & iBufferSize);
+   string no_escape_consume_quoted_value(const ::ansi_character *& pszParse, const ::ansi_character * pszEnd);
+   void skip_quoted_value_ex2(const ::ansi_character *& pszParse, const ::ansi_character * pszEnd);
+   string consume_quoted_value(const ::ansi_character *& pszParse, const ::ansi_character * pszEnd = nullptr);
+   string consume_quoted_value_ex(const ::ansi_character *& pszParse, const ::ansi_character * pszEnd);
+   void skip_quoted_value_ex(const ::ansi_character *& pszParse, const ::ansi_character * pszEnd);
    string consume_spaced_value(string & str);
-   string consume_spaced_value(const ansichar *& pszParse);
-   string consume_spaced_value(const ansichar *& pszParse, const ansichar * pszEnd);
+   string consume_spaced_value(const ::ansi_character *& pszParse);
+   string consume_spaced_value(const ::ansi_character *& pszParse, const ::ansi_character * pszEnd);
    string consume_command_line_argument(string & str);
-   string consume_command_line_argument(const ansichar *& pszParse);
-   string consume_command_line_argument(const ansichar *& pszParse, const ansichar * pszEnd);
-   bool begins_consume(const ansichar *& pszParse, const ::string & psz);
+   string consume_command_line_argument(const ::ansi_character *& pszParse);
+   string consume_command_line_argument(const ::ansi_character *& pszParse, const ::ansi_character * pszEnd);
+   bool begins_consume(const ::ansi_character *& pszParse, const ::string & psz);
 
    bool xml_is_comment(const ::string & pszParse);
-   string xml_consume_comment(const ansichar *& pszParse);
+   string xml_consume_comment(const ::ansi_character *& pszParse);
 
-   string consume_c_quoted_value(const ansichar *& pszParse, const ansichar * pszEnd = nullptr);
+   string consume_c_quoted_value(const ::ansi_character *& pszParse, const ::ansi_character * pszEnd = nullptr);
 
    string token(string & str, const ::string & pszSeparatorText, bool bWithSeparator = false);
 
@@ -246,9 +246,9 @@ public:
 
    string pad(const ::string & psz, ::count iLen, const ::string & pszPattern, enum_pad epad);
 
-   inline  strsize length(const ansichar * pansichar) { return ansi_length(pansichar); }
-   inline  strsize length(const wd16char * pwd16char) { return wd16_length(pwd16char); }
-   inline  strsize length(const wd32char * pwd32char) { return wd32_length(pwd32char); }
+   inline  strsize length(const ::ansi_character * pansichar) { return ansi_length(pansichar); }
+   inline  strsize length(const ::wd16_character * pwd16char) { return wd16_length(pwd16char); }
+   inline  strsize length(const ::wd32_character * pwd32char) { return wd32_length(pwd32char); }
 
 
    template < typename TYPE >
@@ -267,7 +267,7 @@ public:
    string q_valid(string str);
 
 
-   inline ansichar * dup(const ::string & str)
+   inline ::ansi_character * dup(const ::string & str)
    {
 
       try
@@ -294,11 +294,11 @@ public:
    bool is_true(string str);
 
 
-   inline  strsize utf8_dec_len(const ansichar * pszBeg, const ansichar * psz);
+   inline  strsize utf8_dec_len(const ::ansi_character * pszBeg, const ::ansi_character * psz);
 
-   inline  strsize utf8_inc_len(const ansichar * psz);
+   inline  strsize utf8_inc_len(const ::ansi_character * psz);
 
-   inline  bool namespaced(const ansichar * psz, const ansichar * pszNamespace, const ansichar * pszSeparator = "::");
+   inline  bool namespaced(const ::ansi_character * psz, const ::ansi_character * pszNamespace, const ::ansi_character * pszSeparator = "::");
 
 
 
@@ -342,19 +342,19 @@ public:
    bool  while_begins_with_chars_eat_ci(string & str, const char * pcszChars);
 
 
-   inline const ansichar * windows_bbqbunc(const ansistring &);
-   inline const ansichar * windows_bbqb(const ansistring &);
-   inline const ansichar * windows_bb(const ansistring &);
+   inline const ::ansi_character * windows_bbqbunc(const ansi_string &);
+   inline const ::ansi_character * windows_bbqb(const ansi_string &);
+   inline const ::ansi_character * windows_bb(const ansi_string &);
 
 
-   inline const widechar * windows_bbqbunc(const widestring &);
-   inline const widechar * windows_bbqb(const widestring &);
-   inline const widechar * windows_bb(const widestring &);
+   inline const ::wide_character * windows_bbqbunc(const wide_string &);
+   inline const ::wide_character * windows_bbqb(const wide_string &);
+   inline const ::wide_character * windows_bb(const wide_string &);
 
 
-   inline strsize unichar_count(const ansichar * pstr);
-   inline strsize unichar_count(const wd16char * pstr);
-   inline strsize unichar_count(const wd32char * pstr);
+   inline strsize unichar_count(const ::ansi_character * pstr);
+   inline strsize unichar_count(const ::wd16_character * pstr);
+   inline strsize unichar_count(const ::wd32_character * pstr);
 
 
 

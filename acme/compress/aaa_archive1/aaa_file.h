@@ -24,7 +24,7 @@ namespace zip
       virtual ~file();
 
 
-      void write_to_file(file_pointer  pfile, const widechar * pcsz);
+      void write_to_file(file_pointer  pfile, const ::wide_character * pcsz);
 
 
       //bool unzip_open(const char * pcwsz);

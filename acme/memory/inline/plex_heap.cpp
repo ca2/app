@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
  
 
 //#include "acme/platform/acme.h"
@@ -565,10 +565,10 @@ void plex_heap_alloc_array::operator delete(void * p)
 plex_heap_alloc * plex_heap_alloc_array::find(memsize nAllocSize)
 {
 
-   for (index i = 0; i < m_nSize; i++)
+   for (auto p = m_begin; p < m_end; p++)
    {
 
-      auto palloc = m_pData[i];
+      auto palloc = *p;
 
       if (nAllocSize <= palloc->m_iAllocSize)
       {
@@ -580,7 +580,7 @@ plex_heap_alloc * plex_heap_alloc_array::find(memsize nAllocSize)
 
          }
 
-         return m_pData[i];
+         return palloc;
 
       }
 

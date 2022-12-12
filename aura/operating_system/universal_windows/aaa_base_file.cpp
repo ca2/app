@@ -316,7 +316,7 @@ string file_module_path_dup()
 // // }
 
 
-// // extern "C" CLASS_DECL_AURA void GetOpenedFiles(const widechar * lpPath,OF_TYPE Filter,OF_CALLBACK CallBackProc,uptr pUserContext)
+// // extern "C" CLASS_DECL_AURA void GetOpenedFiles(const ::wide_character * lpPath,OF_TYPE Filter,OF_CALLBACK CallBackProc,uptr pUserContext)
 // // {
 // //    string csPath = lpPath;
 // //    csPath.make_lower();

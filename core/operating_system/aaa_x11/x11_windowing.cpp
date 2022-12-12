@@ -486,7 +486,7 @@ void message_box_synchronous(oswindow oswindow, const ::string & psz, const ::st
 }
 
 
-int_bool MessageBox(oswindow interaction_impl, const ::string & psz, const widechar * pszTitle, u32 uFlags)
+int_bool MessageBox(oswindow interaction_impl, const ::string & psz, const ::wide_character * pszTitle, u32 uFlags)
 {
 
    string_array straSep;

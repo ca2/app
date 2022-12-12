@@ -2115,7 +2115,7 @@ namespace sockets_bsd
       //         if (strTitle.find_ci(".") >= 0)
       //         {
 
-      //            strTitle = strTitle.Left(strTitle.reverse_find("."));
+      //            strTitle = strTitle.Left(strTitle.rear_find("."));
 
       //         }
 

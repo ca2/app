@@ -1031,7 +1031,7 @@ namespace acme
 
    //   string strImplementation(strImplementationParam);
 
-   //   strImplementation.begins_eat_ci(strComponent + "_");
+   //   strImplementation.case_insensitive_begins_eat(strComponent + "_");
 
    //   string strLibrary;
 
@@ -1113,9 +1113,9 @@ namespace acme
 
    //   }
 
-   //   strImplementation.begins_eat_ci(strComponent + "_");
+   //   strImplementation.case_insensitive_begins_eat(strComponent + "_");
 
-   //   strImplementation.begins_eat_ci(strComponent);
+   //   strImplementation.case_insensitive_begins_eat(strComponent);
 
    //   auto psystem = acmesystem();
 
@@ -1202,9 +1202,9 @@ namespace acme
    //
    //      string strImplementation(pszImplementation);
    //
-   //      strImplementation.begins_eat_ci(strComponent + "_");
+   //      strImplementation.case_insensitive_begins_eat(strComponent + "_");
    //
-   //      strImplementation.begins_eat_ci(strComponent);
+   //      strImplementation.case_insensitive_begins_eat(strComponent);
    //
    //   //#ifdef CUBE
    //
@@ -1516,16 +1516,16 @@ namespace acme
    ::acme::session* system::session(index iEdge)
    {
 
-      auto ppair = m_sessionmap.plookup(iEdge);
+      auto iterator = m_sessionmap.plookup(iEdge);
 
-      if (!ppair)
+      if (iterator.is_null())
       {
 
          return nullptr;
 
       }
 
-      return ppair->element2();
+      return iterator->element2();
 
    }
 
@@ -2185,7 +2185,7 @@ namespace acme
    bool system::fast_is_decompressable_folder(const ::file::path & path)
    {
 
-      auto bZip = path.ends_ci(".zip");
+      auto bZip = path.case_insensitive_ends(".zip");
 
       if (bZip)
       {

@@ -28,7 +28,7 @@ bool str::to(i64 & i, const ::string & str)
 bool str::to(i32 & i, const ::string & str)
 {
 
-   const ansichar * pszEnd = nullptr;
+   const ::ansi_character * pszEnd = nullptr;
 
    i = ::ansi_to_i32(str, &pszEnd, 10);
 

@@ -106,15 +106,15 @@ namespace windowing
       if (strCursor == "arrow") { return e_cursor_arrow; }
       else if (strCursor == "hand") { return e_cursor_hand; }
       else if (strCursor == "text_select") { return e_cursor_text_select; }
-      else if (strCursor.begins_eat_ci("size_"))
+      else if (strCursor.case_insensitive_begins_eat("size_"))
       {
-         if (strCursor.begins_eat_ci("top"))
+         if (strCursor.case_insensitive_begins_eat("top"))
          {
             if (strCursor.is_empty()) { return e_cursor_size_top; }
             else if (strCursor == "_left") { return e_cursor_size_top_left; }
             else if (strCursor == "_right") { return e_cursor_size_top_right; }
          }
-         else if (strCursor.begins_eat_ci("bottom"))
+         else if (strCursor.case_insensitive_begins_eat("bottom"))
          {
             if (strCursor.is_empty()) { return e_cursor_size_bottom; }
             else if (strCursor == "_left") { return e_cursor_size_bottom_left; }

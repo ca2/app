@@ -78,7 +78,7 @@
 //}
 
 
-CLASS_DECL_ACME string string_from_strdup(const ansichar* psz)
+CLASS_DECL_ACME string string_from_strdup(const ::ansi_character* psz)
 {
 
    if (psz == nullptr)

@@ -86,7 +86,7 @@ namespace aura
 
          string strEncoding = str.Mid(iMime + 1, iEncoding - iMime - 1);
 
-         if (strEncoding.compare_ci("base64") == 0)
+         if (strEncoding.case_insensitive_order("base64") == 0)
          {
 
             auto psystem = acmesystem();
@@ -4675,7 +4675,7 @@ namespace user
       //
       //            string str;
       //
-      //            wd32char u32[2];
+      //            ::wd32_character u32[2];
       //
       //            u32[0] = pusermessage->m_wparam;
       //
@@ -5213,7 +5213,7 @@ namespace user
 
       }
 
-      return ::string((const ansichar *)m_pitemComposing->get_data(), m_pitemComposing->get_extent());
+      return ::string((const ::ansi_character *)m_pitemComposing->get_data(), m_pitemComposing->get_extent());
 
    }
 
@@ -5394,7 +5394,7 @@ namespace user
          }
          else if (pkey->m_ekey == ::user::e_key_v ||
             (pkey->m_ekey == ::user::e_key_refer_to_text_member
-               && pkey->m_strText.compare_ci("v") == 0))
+               && pkey->m_strText.case_insensitive_order("v") == 0))
          {
 
 #ifdef MACOS
@@ -6646,7 +6646,7 @@ namespace user
             //      if (iNewCursorPosition > 1)
             //      {
 
-            //         wd16string wstrFull(strFull.Mid(iAfterComposingCursorPosition));
+            //         wd16_string wstrFull(strFull.Mid(iAfterComposingCursorPosition));
 
             //         iOffset = wd16_to_ansi_len(wstrFull, iNewCursorPosition - 1);
 
@@ -6663,7 +6663,7 @@ namespace user
             //      if (iNewCursorPosition < 0)
             //      {
 
-            //         wd16string wstrFull(strFull.Left(iAfterComposingCursorPosition));
+            //         wd16_string wstrFull(strFull.Left(iAfterComposingCursorPosition));
 
             //         iOffset = wd16_to_ansi_len(wstrFull, wstrFull.get_length() + iNewCursorPosition);
 
@@ -6697,7 +6697,7 @@ namespace user
                   if (iNewCursorPosition > 1)
                   {
 
-                     wd16string wstrFull(strFull.Mid(iAfterComposingCursorPosition));
+                     wd16_string wstrFull(strFull.Mid(iAfterComposingCursorPosition));
 
                      iOffset = wd16_to_ansi_len(wstrFull, iNewCursorPosition - 1);
 
@@ -6712,7 +6712,7 @@ namespace user
                   if (iNewCursorPosition < 0)
                   {
 
-                     wd16string wstrFull(strFull.Left(iAfterComposingCursorPosition));
+                     wd16_string wstrFull(strFull.Left(iAfterComposingCursorPosition));
 
                      iOffset = wd16_to_ansi_len(wstrFull, wstrFull.get_length() + iNewCursorPosition);
 
@@ -6786,7 +6786,7 @@ namespace user
 
             __sort(iCandidateBeg, iCandidateEnd);
 
-            wd16string wstrText(strText);
+            wd16_string wstrText(strText);
 
             strsize iStart = wd16_to_ansi_len(wstrText, iCandidateBeg);
 
@@ -6830,7 +6830,7 @@ namespace user
 
       _001GetText(strText);
 
-      wd16string wstrText(strText);
+      wd16_string wstrText(strText);
 
       strsize iAnsiBeg = wd16_to_ansi_len(wstrText, iStart);
 

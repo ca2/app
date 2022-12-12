@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "memory.h"
 #include "memory_container.h"
 ////#include "acme/exception/exception.h"
@@ -29,8 +29,8 @@ memory_container::memory_container(memory_base & memory)
 {
 
    m_pmemory = &memory;
-   m_pbyte = m_pmemory->m_memory.m_pdata;
-   m_memsize = m_pmemory->m_memory.m_cbStorage;
+   m_pbyte = m_pmemory->m_memory.data();
+   m_memsize = m_pmemory->m_memory.storage_size();
 
 }
 
@@ -39,8 +39,8 @@ memory_container::memory_container(memory_base * pmemory)
 {
 
    m_pmemory = pmemory;
-   m_pbyte = m_pmemory->m_memory.m_pdata;
-   m_memsize = m_pmemory->m_memory.m_cbStorage;
+   m_pbyte = m_pmemory->m_memory.data();
+   m_memsize = m_pmemory->m_memory.storage_size();
 
 }
 
@@ -62,7 +62,7 @@ memory_container::~memory_container()
 void memory_container::allocate_add_up(memsize dwAddUp)
 {
 
-   set_size(this->get_size() + dwAddUp);
+   set_size(this->size() + dwAddUp);
 
 }
 
@@ -76,15 +76,9 @@ void memory_container::set_size(memsize dwNewLength)
       if(m_pmemory.is_set())
       {
 
-         if(!m_pmemory->set_size(dwNewLength))
-         {
-
-            throw ::exception(error_no_memory);
-
-         }
-
-         m_pbyte = m_pmemory->m_memory.m_pdata;
-         m_memsize = m_pmemory->m_memory.m_cbStorage;
+         m_pmemory->set_size(dwNewLength);
+         m_pbyte = m_pmemory->m_memory.data();
+         m_memsize = m_pmemory->m_memory.storage_size();
 
       }
 
@@ -94,15 +88,9 @@ void memory_container::set_size(memsize dwNewLength)
 
    defer_create_default_memory();
 
-   if(!m_pmemory->set_size(dwNewLength))
-   {
-
-      throw ::exception(error_no_memory);
-
-   }
-
-   m_pbyte = m_pmemory->m_memory.m_pdata;
-   m_memsize = m_pmemory->m_memory.m_cbStorage;
+   m_pmemory->set_size(dwNewLength);
+   m_pbyte = m_pmemory->m_memory.data();
+   m_memsize = m_pmemory->m_memory.storage_size();
 
 }
 
@@ -119,8 +107,8 @@ void memory_container::create_default_memory()
 
    }
 
-   m_pbyte = m_pmemory->m_memory.m_pdata;
-   m_memsize = m_pmemory->m_memory.m_cbStorage;
+   m_pbyte = m_pmemory->m_memory.data();
+   m_memsize = m_pmemory->m_memory.storage_size();
 
 }
 
@@ -132,8 +120,8 @@ void memory_container::allocate_internal(memsize dwNewLength)
 
    m_pmemory->allocate_internal(dwNewLength);
 
-   m_pbyte = m_pmemory->m_memory.m_pdata;
-   m_memsize = m_pmemory->m_memory.m_cbStorage;
+   m_pbyte = m_pmemory->m_memory.data();
+   m_memsize = m_pmemory->m_memory.storage_size();
 
 }
 
@@ -165,8 +153,8 @@ void memory_container::set_memory(::pointer<memory_base>pmemory)
 
    m_pmemory = pmemory;
 
-   m_pbyte = m_pmemory->m_memory.m_pdata;
-   m_memsize = m_pmemory->m_memory.m_cbStorage;
+   m_pbyte = m_pmemory->m_memory.data();
+   m_memsize = m_pmemory->m_memory.storage_size();
 
 }
 
@@ -186,8 +174,8 @@ void memory_container::read(memory_base * pmemory)
 
    m_pmemory->copy_from(pmemory);
 
-   m_pbyte = m_pmemory->m_memory.m_pdata;
-   m_memsize = m_pmemory->m_memory.m_cbStorage;
+   m_pbyte = m_pmemory->m_memory.data();
+   m_memsize = m_pmemory->m_memory.storage_size();
 
 }
 
@@ -218,8 +206,8 @@ void memory_container::copy_this(const memory_container & container)
 
    m_pmemory->copy_from(container.m_pmemory);
 
-   m_pbyte = m_pmemory->m_memory.m_pdata;
-   m_memsize = m_pmemory->m_memory.m_cbStorage;
+   m_pbyte = m_pmemory->m_memory.data();
+   m_memsize = m_pmemory->m_memory.storage_size();
 
 }
 
@@ -246,8 +234,8 @@ bool memory_container::attach(memory_base * pstorage)
 
    m_pmemory = pstorage;
 
-   m_pbyte = m_pmemory->m_memory.m_pdata;
-   m_memsize = m_pmemory->m_memory.m_cbStorage;
+   m_pbyte = m_pmemory->m_memory.data();
+   m_memsize = m_pmemory->m_memory.storage_size();
 
    return true;
 
@@ -294,12 +282,10 @@ paged_memory * memory_container::get_virtual_memory()
 }
 
 
-void memory_container::str(const ::string & str)
+void memory_container::set_string(const ::string & str)
 {
 
-   set_size(str.get_length());
-
-   ::memcpy_dup(get_data(), str, get_size());
+   memory().assign(str);
 
 }
 

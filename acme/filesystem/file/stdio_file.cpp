@@ -381,7 +381,7 @@ void stdio_file::set_size(filesize dwNewLen)
 }
 
 
-filesize stdio_file::get_size() const
+filesize stdio_file::size() const
 {
 
    //return acmefile()->get_size(m_pfile);

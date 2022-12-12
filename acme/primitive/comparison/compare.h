@@ -3,10 +3,9 @@
 
 #include "acme/primitive/mathematics/numeric_info.h"
 
+
 namespace comparison
 {
-
-
 
    template < typename A, typename B >
    inline bool eq(const A & a, const B & b)

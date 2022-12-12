@@ -1,13 +1,13 @@
-// Created by camilo on 2022-11-08 18:21 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 18:21 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 CLASS_DECL_ACME extern const char log2_LogTable256[256];
 
-//inline bool __found(::index i) { return i >= 0; }
-//inline bool __not_found(::index i) { return i < 0; }
-//inline bool __found(::index i) { return i >= 0; }
-//inline bool __not_found(::index i) { return i < 0; }
+//inline bool is_found(::index i) { return i >= 0; }
+//inline bool not_found(::index i) { return i < 0; }
+//inline bool is_found(::index i) { return i >= 0; }
+//inline bool not_found(::index i) { return i < 0; }
 
 inline u32 u32_log2(u32 v)
 {

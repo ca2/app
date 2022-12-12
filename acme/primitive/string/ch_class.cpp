@@ -122,18 +122,18 @@ void * gen_ch_class_reference_tables()
                break;
             case 's':
                cc->add_category("Z");
-               cc->add_char(string(widechar(0x09)));
-               cc->add_char(string(widechar(0x0A)));
-               cc->add_char(string(widechar(0x0C)));
-               cc->add_char(string(widechar(0x0D)));
+               cc->add_char(string(::wide_character(0x09)));
+               cc->add_char(string(::wide_character(0x0A)));
+               cc->add_char(string(::wide_character(0x0C)));
+               cc->add_char(string(::wide_character(0x0D)));
                break;
             case 'S':
                cc_temp.fill();
                cc_temp.clear_category("Z");
-               cc_temp.clear_char(string(widechar(0x09)));
-               cc_temp.clear_char(string(widechar(0x0A)));
-               cc_temp.clear_char(string(widechar(0x0C)));
-               cc_temp.clear_char(string(widechar(0x0D)));
+               cc_temp.clear_char(string(::wide_character(0x09)));
+               cc_temp.clear_char(string(::wide_character(0x0A)));
+               cc_temp.clear_char(string(::wide_character(0x0C)));
+               cc_temp.clear_char(string(::wide_character(0x0D)));
                cc->add_class(cc_temp);
                break;
             default:

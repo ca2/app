@@ -7,20 +7,20 @@
 
 
 template < >
-CLASS_DECL_ACME natural_meta_data < string_meta_data < wd16char > > * __nil < natural_meta_data < string_meta_data < wd16char > > >()
+CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd16_character > > * __nil < natural_meta_data < string_meta_data < ::wd16_character > > >()
 {
 
-   static natural_meta_data < string_meta_data < wd16char > > s_wd16stringNil;
+   static natural_meta_data < string_meta_data < ::wd16_character > > s_wd16stringNil;
 
    return &s_wd16stringNil;
 
 }
 
 template < >
-CLASS_DECL_ACME natural_meta_data < string_meta_data < wd32char > > * __nil < natural_meta_data < string_meta_data < wd32char > > >()
+CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __nil < natural_meta_data < string_meta_data < ::wd32_character > > >()
 {
 
-   static natural_meta_data < string_meta_data < wd32char > > s_wd32stringNil;
+   static natural_meta_data < string_meta_data < ::wd32_character > > s_wd32stringNil;
 
    return &s_wd32stringNil;
 

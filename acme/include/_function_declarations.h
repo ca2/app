@@ -151,11 +151,11 @@ CLASS_DECL_ACME bool is_font_sel(const ::atom& atom);
 //inline void dump_elements(dump_context& dumpcontext, const TYPE* pElements, ::count nCount);
 
 
-i32 CLASS_DECL_ACME MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ansichar* pMultByteStr, i32 cbMultiByte,
-   widechar* pWideCharStr, i32 cchWideChar);
+i32 CLASS_DECL_ACME MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ::ansi_character* pMultByteStr, i32 cbMultiByte,
+   ::wide_character* pWideCharStr, i32 cchWideChar);
 
-i32 CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const widechar* pWideCharStr, i32 cchWideChar,
-   ansichar* pMultByteStr, i32 cbMultiByte, const char* pDefaultChar,
+i32 CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const ::wide_character* pWideCharStr, i32 cchWideChar,
+   ::ansi_character* pMultByteStr, i32 cbMultiByte, const char* pDefaultChar,
    int_bool* pUsedDefaultChar);
 
 
@@ -185,7 +185,7 @@ inline ::u64 make64_from32(::u32 l, ::u32 h);
 inline bool __is_valid_address(const void* p, memsize size, bool bReadWrite = true);
 
 
-inline bool __is_valid_string(const widechar* pwsz, memsize nMaxLength = INT_MAX);
+inline bool __is_valid_string(const ::wide_character* pwsz, memsize nMaxLength = INT_MAX);
 
 
 inline bool __is_valid_string(const char* psz, memsize nMaxLength = UINT_MAX);
@@ -240,15 +240,15 @@ CLASS_DECL_ACME void set_verbose_log(bool bVerbose);
 CLASS_DECL_ACME bool is_verbose_log();
 
 
-inline i64 ansi_to_i64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
-inline u64 ansi_to_u64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
-inline i32 ansi_to_i32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
-inline u32 ansi_to_u32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase);
+inline i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+inline u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+inline i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+inline u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
 
 
-CLASS_DECL_ACME ansichar * __u64toansi(::u64 u, ansichar * buf, int iBase, enum_digit_case edigitcase, ::i32 & len);
+CLASS_DECL_ACME ::ansi_character * __u64toansi(::u64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & end);
 
-CLASS_DECL_ACME ansichar * __i64toansi(::i64 u, ansichar * buf, int iBase, enum_digit_case edigitcase, ::i32 & len);
+CLASS_DECL_ACME ::ansi_character * __i64toansi(::i64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & end);
 
 
 template<typename T1, typename T2>

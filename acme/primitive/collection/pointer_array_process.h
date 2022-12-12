@@ -12,21 +12,21 @@ public:
    using POINTER_ARRAY_PROCESS::POINTER_ARRAY_PROCESS;
    using ARRAY_BASE = typename POINTER_ARRAY_PROCESS::ARRAY_BASE;
 
-   using ref_iterator = typename POINTER_ARRAY_PROCESS::ref_iterator;
-   using const_ref_iterator = typename POINTER_ARRAY_PROCESS::const_ref_iterator;
+   //using ref_iterator = typename POINTER_ARRAY_PROCESS::ref_iterator;
+   //using const_ref_iterator = typename POINTER_ARRAY_PROCESS::const_ref_iterator;
 
 
    pointer_array_process() { }
    pointer_array_process(const pointer_array_process & array) : POINTER_ARRAY_PROCESS(array) { }
    pointer_array_process(pointer_array_process && array) noexcept : POINTER_ARRAY_PROCESS(::move(array)) { }
 
-   inline auto ptra(index iStart = 0, index iEnd = -1) { return ARRAY_BASE::values(iStart, iEnd); }
+   //inline auto ptra(index iStart = 0, index iEnd = -1) { return ARRAY_BASE::values(iStart, iEnd); }
 
-   inline auto ptra(index iStart = 0, index iEnd = -1) const { return ARRAY_BASE::values(iStart, iEnd); }
+   //inline auto ptra(index iStart = 0, index iEnd = -1) const { return ARRAY_BASE::values(iStart, iEnd); }
 
-   inline auto values(index iStart = 0, index iEnd = -1) { return ref_iterator(iStart, iEnd, this); }
+   //inline auto values(index iStart = 0, index iEnd = -1) { return ref_iterator(iStart, iEnd, this); }
 
-   inline auto values(index iStart = 0, index iEnd = -1) const { return const_ref_iterator(iStart, iEnd, this); }
+   //inline auto values(index iStart = 0, index iEnd = -1) const { return const_ref_iterator(iStart, iEnd, this); }
 
    //inline auto begin() { return ref_iterator(0, m_nSize, this); }
 

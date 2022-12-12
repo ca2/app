@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "memory_map.h"
 #include "acme/exception/interface_only.h"
 
@@ -41,7 +41,7 @@ namespace file
 //
 //      string str = m_strName;
 //
-//      if (str.begins_eat_ci("Local\\"))
+//      if (str.case_insensitive_begins_eat("Local\\"))
 //      {
 //
 //         path /=          auto psystem = acmesystem();
@@ -64,7 +64,7 @@ namespace file
 //
 //      string strName = m_strName;
 //
-//      if (strName.begins_eat_ci("Local\\bitmap-source-"))
+//      if (strName.case_insensitive_begins_eat("Local\\bitmap-source-"))
 //      {
 //
 //         return ::file::path("C:\\archive\\bitmap-source") / (strName + ".bitmap-source");

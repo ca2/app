@@ -468,7 +468,7 @@
 //   case e_type_property_set:
 //      *this << payload.propset();
 //      break;
-//   case e_type_id:
+//   case e_type_atom:
 //      *this << payload.m_atom;
 //      break;
 //   case e_type_element:
@@ -499,7 +499,7 @@
 //
 //
 //
-//void stream::write(const ansichar * psz)
+//void stream::write(const ::ansi_character * psz)
 //{
 //
 //   auto len = ::str().string_safe_length(psz);

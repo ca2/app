@@ -205,7 +205,7 @@ public:
 
 
    virtual void normalize(string & str);
-   virtual i32 cmp(const ::file::path & psz1, const ::file::path & psz2);
+   virtual ::std::strong_ordering cmp(const ::file::path & psz1, const ::file::path & psz2);
 
    virtual string get_hash(const ::payload& payloadFile, enum_hash ehash);
 

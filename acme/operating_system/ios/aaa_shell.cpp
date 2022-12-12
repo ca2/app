@@ -426,7 +426,7 @@ namespace ios
 ////               if (wcscmp(wszPath, L"*") == 0)
 ////               {
 ////
-////                  strsize iFind = strFilePath.reverse_find('.');
+////                  strsize iFind = strFilePath.rear_find('.');
 ////
 ////                  imagekey.m_iIcon = 0x80000000;
 ////                  imagekey.m_strExtension = (char*)&strFilePath[iFind+1];
@@ -514,7 +514,7 @@ namespace ios
 ////            {
 ////               if (*wszPath == L'*' && wszPath[1] == '\0')
 ////               {
-////                  strsize iFind = strFilePath.reverse_find('.');
+////                  strsize iFind = strFilePath.rear_find('.');
 ////
 ////                  imagekey.m_iIcon = 0x80000000;
 ////                  imagekey.m_strExtension = (char *)&strFilePath.Mid(iFind);
@@ -553,7 +553,7 @@ namespace ios
 ////               string strP = wszPath;
 ////               if (strcmp(strP, "*") == 0)
 ////               {
-////                  strsize iFind = strFilePath.reverse_find('.');
+////                  strsize iFind = strFilePath.rear_find('.');
 ////
 ////                  imagekey.m_iIcon = 0x80000000;
 ////                  imagekey.m_strExtension = (char *)&strFilePath.Mid(iFind);
@@ -1077,7 +1077,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
    //         strPath = szPath;
    //         if (strPath == "*")
    //         {
-   //            strsize iFind = strFilePath.reverse_find('.');
+   //            strsize iFind = strFilePath.rear_find('.');
 
    //            imagekey.m_iIcon = 0x80000000;
    //            imagekey.m_strExtension = (char*)&strFilePath[iFind];

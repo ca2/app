@@ -1,4 +1,4 @@
-// Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
+﻿// Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
 #include "framework.h"
 #include "networking.h"
 ////#include "acme/exception/exception.h"
@@ -1249,11 +1249,11 @@ namespace networking
       if (::str().is_simple_natural(str))
          return ::str().to_i32(str);
 
-      if (str.compare_ci("http"))
+      if (str.case_insensitive_equals("http"))
       {
          return 80;
       }
-      else if (str.compare_ci("https"))
+      else if (str.case_insensitive_equals("https"))
       {
          return 443;
       }

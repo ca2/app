@@ -47,7 +47,7 @@ public:
    
    filesize translate(filesize offset, ::enum_seek eseek) override;
    void set_size(filesize dwNewLen) override;
-   filesize get_size() const override;
+   filesize size() const override;
 
 
    void lock(filesize dwPos,filesize dwCount) override;

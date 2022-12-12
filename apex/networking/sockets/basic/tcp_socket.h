@@ -1,4 +1,4 @@
-/** \file tcp_socket.h
+﻿/** \file tcp_socket.h
 **   \date  2004-02-13
 **   \author grymse@alhem.net
 **/
@@ -79,7 +79,7 @@ namespace sockets
             _b(0), _t(0), _q(0)
          {
             m_memory.set_size(m_iTcpOuputCapacity);
-            _buf = (char*) m_memory.get_data();
+            _buf = (char*) m_memory.data();
          }
 
          output(int iTcpOutputCapacity, const char *buf, i32 len) :
@@ -87,7 +87,7 @@ namespace sockets
             _b(0), _t(len), _q(len)
          {
             m_memory.set_size(m_iTcpOuputCapacity);
-            _buf = (char *) m_memory.get_data();
+            _buf = (char *) m_memory.data();
             ::memcpy_dup(_buf, buf, len);
          }
 

@@ -249,8 +249,8 @@ typedef struct tagTBSAVEPARAMSA {
 
 typedef struct tagTBSAVEPARAMSW {
    HKEY hkr;
-   const widechar * pszSubKey;
-   const widechar * pszValueName;
+   const ::wide_character * pszSubKey;
+   const ::wide_character * pszValueName;
 } TBSAVEPARAMSW,*LPTBSAVEPARAMW;
 
 #ifdef UNICODE
@@ -1344,10 +1344,10 @@ typedef struct tagNMTTDISPINFOW {
 // end_r_commctrl
 
 //WINCOMMCTRLAPI void WINAPI DrawStatusTextA(HDC hDC,LPCRECT32 lprc, const ::string & pszText,::u32 uFlags);
-//WINCOMMCTRLAPI void WINAPI DrawStatusTextW(HDC hDC,LPCRECT32 lprc,const widechar * pszText,::u32 uFlags);
+//WINCOMMCTRLAPI void WINAPI DrawStatusTextW(HDC hDC,LPCRECT32 lprc,const ::wide_character * pszText,::u32 uFlags);
 
 //WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowA(::i32 style, const ::string & lpszText,oswindow hwndParent,::u32 wID);
-//WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowW(::i32 style,const widechar * lpszText,oswindow hwndParent,::u32 wID);
+//WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowW(::i32 style,const ::wide_character * lpszText,oswindow hwndParent,::u32 wID);
 
 #ifdef UNICODE
 #define CreateStatusWindow      CreateStatusWindowW

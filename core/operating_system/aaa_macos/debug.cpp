@@ -96,7 +96,7 @@ void output_debug_string(const ::string & pszOutputString)
 
    strOutputString.replace("\n", "\r");
 
-   wd32char * pusz = ansi_to_wd32_dup(strOutputString);
+   ::wd32_character * pusz = ansi_to_wd32_dup(strOutputString);
 
    wprintf(L"%S", pusz);
 
@@ -110,7 +110,7 @@ void output_debug_string(const ::string & pszOutputString)
 VOID
 WINAPI
 output_debug_string(
-const widechar * pOutputString
+const ::wide_character * pOutputString
 
 )
 {

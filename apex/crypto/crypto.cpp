@@ -191,14 +191,14 @@ namespace crypto
 
          storage.set_size(16);
 
-         for (memsize i = 0; i < storage.get_size(); i++)
+         for (memsize i = 0; i < storage.size(); i++)
          {
 
-            storage.get_data()[i] = __random<char>() & 0xff;
+            storage.data()[i] = __random<char>() & 0xff;
 
          }
 
-         return (i32)storage.get_size();
+         return (i32)storage.size();
 
       }
 

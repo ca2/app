@@ -1,11 +1,20 @@
 ﻿#pragma once
 
 
-//#include "acme/memory/string_memory_allocator.h"
-//#include "string_meta_data.h"
-//#include "string_type.h"
 #include "string_iterator.h"
-//#include "acme/exception/debug.h"
+#include "string_meta_data.h"
+#include "string_range.h"
+#include "acme/memory/string_memory_allocator.h"
+
+
+template < typename ITERATOR_TYPE >
+using string_natural_pointer = 
+::natural_pointer < ::string_range < ITERATOR_TYPE >, 
+   ::string_meta_data <
+            dereference < 
+                  typename get_type_item_pointer < ITERATOR_TYPE >::type
+            >
+   >, string_memory_allocator >;
 
 
 enum enum_canonical
@@ -16,24 +25,39 @@ enum enum_canonical
 };
 
 
-template < primitive_character CHARACTER >
+template < typename ITERATOR_TYPE >
 class string_base :
-   public natural_pointer < string_meta_data < CHARACTER > , string_memory_allocator >
+   public string_natural_pointer < ITERATOR_TYPE >
 {
 public:
 
 
+   using NATURAL_POINTER = string_natural_pointer < ITERATOR_TYPE >;
    using PRIMITIVE_STRING_TAG = PRIMITIVE_STRING_TAG_TYPE;
-   using CHARACTER_TYPE = CHARACTER;
-   typedef natural_pointer < string_meta_data < CHARACTER >, string_memory_allocator >     POINTER;
+   using ITEM_POINTER = typename get_type_item_pointer< ITERATOR_TYPE>::type;
+   using ITEM = dereference < ITEM_POINTER >;
+   using CHARACTER = ITEM;
+   using RANGE = ::string_range < ITERATOR_TYPE >;
+   using iterator = RANGE::iterator;
+   using const_iterator = RANGE::const_iterator;
 
 
    string_base() { }
-   string_base(enum_no_initialize) : POINTER(e_no_initialize) { }
+   string_base(enum_no_initialize) : NATURAL_POINTER(e_no_initialize) { }
    string_base(nullptr_t) { }
    string_base(enum_for_moving) { }
    string_base(enum_get_buffer, strsize len) { get_string_buffer(len); }
-   string_base(string_base && s) noexcept : POINTER(e_no_initialize) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
+   explicit string_base(const string_base & str);
+   explicit string_base(string_base && s) noexcept : NATURAL_POINTER(e_no_initialize) { this->m_begin = (iterator)s.begin(); this->m_end = (iterator)s.end(); this->m_bNullTerminated = s.m_bNullTerminated; s.m_begin = nullptr; }
+   //string_base(const const_ansi_range & ansirange) : NATURAL_POINTER(e_no_initialize) { construct2(ansirange, 0, -1); }
+   //string_base(const const_wd16_range & wd16range) : NATURAL_POINTER(e_no_initialize) { construct2(wd16range, 0, -1); }
+   //string_base(const const_wd32_range & wd32range) : NATURAL_POINTER(e_no_initialize) { construct2(wd32range, 0, -1); }
+   //string_base(const const_ansi_range & ansirange, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(ansirange, 0, len); }
+   //string_base(const const_wd16_range & wd16range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd16range, 0, len); }
+   //string_base(const const_wd32_range & wd32range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd32range, 0, len); }
+   //string_base(const const_ansi_range & ansirange, strsize start, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(ansirange, start, len); }
+   //string_base(const const_wd16_range & wd16range, strsize start, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd16range, start, len); }
+   //string_base(const const_wd32_range & wd32range, strsize start, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd32range, start, len); }
    template < primitive_character CHARACTER2 >
    string_base(const CHARACTER2 * pszSource) : string_base(pszSource, 0, string_safe_length(pszSource)) {}
    template < primitive_character CHARACTER2 >
@@ -42,59 +66,71 @@ public:
    string_base(const CHARACTER2 * pszSource, strsize start, strsize len);
    template < primitive_character CHARACTER2, strsize sizeMaximumLength >
    string_base(const inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
-      string_base(inlinestring.m_sz, inlinestring.m_iLength)
+      string_base(inlinestring.begin(), inlinestring.end())
    { }
-//   string_base(const ansichar * pansichar, strsize len);
-//   string_base(const ansichar * pansichar, strsize len, strsize pos) : string_base(pansichar + pos, len) { }
-   string_base(const block & block);
-   //string_base(const wd16char * pwd16char);
-//   string_base(const wd16char * pwd16char, strsize len);
-//   string_base(const wd16char * pwd16char, strsize len, strsize pos) : string_base(pwd16char + pos, len) { }
-   //string_base(const wd32char * pwd32char);
-//   string_base(const wd32char * pwd32char, strsize len);
-//   string_base(const wd32char * pwd32char, strsize len, strsize pos) : string_base(pwd32char + pos, len) { }
+//   string_base(const ::ansi_character * pansichar, strsize len);
+   string_base(::range < iterator > range) : string_base((const_iterator)range.begin(), (const_iterator)range.end()) {}
+   string_base(::range < const_iterator > range) : string_base(range.begin(), range.end()) {}
+   string_base(::block block) : string_base((const_iterator)block.begin(), (const_iterator)block.end()) {}
+   //string_base(RANGE range);
+    //string_base(const ::wd16_character * pwd16char);
+//   string_base(const ::wd16_character * pwd16char, strsize len);
+   //string_base(const ::wd32_character * pwd32char);
+//   string_base(const ::wd32_character * pwd32char, strsize len);
+//   string_base(const ::wd32_character * pwd32char, strsize len, strsize pos) : string_base(pwd32char + pos, len) { }
    //template < primitive_character CHARACTER2 >
-   string_base(const string_base & str) : string_base(str, 0, str.get_length()) { }
-   string_base(const string_base & str, strsize len) : string_base(str, 0, len) { }
-   string_base(const string_base & str, strsize start, strsize len);
+   string_base(const_iterator begin, const_iterator end) : string_base(begin, end - begin) { }
+   //string_base(RANGE range) : string_base(range, 0, range.size()) { }
+   //string_base(RANGE range, strsize len) : string_base(range, 0, len) { }
+   //string_base(RANGE range, strsize start, strsize len);
    template < primitive_character CHARACTER2 >
-   string_base(const string_base < CHARACTER2 > & strSource) : string_base(strSource, 0, strSource.get_length()) {}
+   string_base(const ::string_range < const CHARACTER2 * > & strSource) : string_base(strSource, 0, strSource.size()) {}
    template < primitive_character CHARACTER2 >
-   string_base(const string_base < CHARACTER2 > & strSource, strsize len) : string_base(strSource, 0, len) {}
+   string_base(const ::string_range < const CHARACTER2 * > & strSource, strsize len) : string_base(strSource, 0, minimum(strSource.size(), len)) {}
    template < primitive_character CHARACTER2 >
-   string_base(const string_base < CHARACTER2 > & strSource, strsize start, strsize len);
-   //string_base(const ansistring & wd32str);
-   //string_base(const wd16string & wd16str);
-   //string_base(const wd32string & wd32str);
-   string_base(const simple_ansistring& simpleansistr);
-   string_base(const simple_wd16string& simplewd16str);
-   string_base(const simple_wd32string& simplewd32str);
+   string_base(const ::string_range < const CHARACTER2 * > & strSource, strsize start, strsize len);
+   //string_base(const simple_ansistring& simpleansistr);
+   //string_base(const simple_wd16string& simplewd16str);
+   //string_base(const simple_wd32string& simplewd32str);
    template < primitive_character CHARACTER2 >
    string_base(CHARACTER2 chSrc, strsize repeat = 1);
-//   string_base(ansichar ansich, strsize repeat = 1);
-//   string_base(wd16char wd16ch, strsize repeat = 1);
-//   string_base(wd32char wd32ch, strsize repeat = 1);
+//   string_base(::ansi_character ansich, strsize repeat = 1);
+//   string_base(::wd16_character wd16ch, strsize repeat = 1);
+//   string_base(::wd32_character wd32ch, strsize repeat = 1);
    //string_base(const character & character, strsize repeat = 1) :string_base(character.m_wd32char, repeat) {}
-   //template < primitive_payload PAYLOAD >
-   //string_base(const PAYLOAD & payload) : string_base(payload.get_string()) {}
-   //template < primitive_atom ATOM >
-   //string_base(const ATOM & atom) : string_base(atom.string()) {}
+   explicit string_base(const ::property & property);
+   explicit string_base(const ::payload & payload);
+   explicit string_base(const ::atom & atom);
+   template < has_as_string HAS_AS_STRING >
+   string_base(const HAS_AS_STRING & has_as_string) : string_base(has_as_string.as_string()) {}
    inline ~string_base() {}
 
+
+   string_base & operator = (const string_base & string_base) { NATURAL_POINTER::operator=(string_base); return *this; }
+   string_base & operator = (string_base && string_base) { NATURAL_POINTER::operator=(::move(string_base)); return *this; }
+
+
+   static consteval bool is_null_terminated() { return true; }
 
    void default_construct()
    {
 
-      POINTER::natural_pointer_default_construct();
+      NATURAL_POINTER::natural_pointer_default_construct();
 
    }
 
-   void construct(typename POINTER::NATURAL_META_DATA * pNew)
+
+   void construct(typename NATURAL_POINTER::NATURAL_META_DATA * pNew)
    {
 
-      POINTER::create_assign_natural_meta_data(pNew);
+      NATURAL_POINTER::create_assign_natural_meta_data(pNew);
 
    }
+
+   //template < primitive_character CHARACTER2 >
+   //inline void construct2(const ::string_range < const CHARACTER2 * > & strSource, strsize start, strsize count);
+
+   strsize offset_of(const CHARACTER * p) const { return ::offset_of(p, data()); }
 
    template < primitive_character CHARACTER2 >
    strsize start_count_length(strsize& start, strsize& count, const CHARACTER2 * pszSource);
@@ -102,63 +138,78 @@ public:
 
    inline const string_base & to_string() const { return *this; }
 
-   inline CHARACTER_TYPE * data() { return this->m_pdata; }
+   inline CHARACTER * data() { return (CHARACTER *) this->begin(); }
 
-   inline const CHARACTER_TYPE * data() const { return this->m_pdata; }
+   inline const CHARACTER * data() const { return this->begin(); }
 
-   inline const CHARACTER_TYPE * c_str() const { return this->m_pdata; }
+   inline const CHARACTER * c_str() const { return this->data(); }
 
-   inline const CHARACTER_TYPE * c_str_for_printf() const { return this->m_pdata; }
+   inline const CHARACTER * c_str_for_printf() const { return this->data(); }
 
-   inline operator const CHARACTER_TYPE * () const { return this->m_pdata; }
+   inline operator const CHARACTER * () const { return this->data(); }
 
-   inline operator CHARACTER_TYPE * () { return this->m_pdata; }
+   inline operator CHARACTER * () { return this->data(); }
 
-   inline const CHARACTER_TYPE * ptr_at(::index i) { return this->m_pdata + i; }
-   inline const CHARACTER_TYPE * ptr_at(::index i) const { return this->m_pdata + i; }
+   inline const CHARACTER * ptr_at(::index i) { return this->data() + i; }
+   inline const CHARACTER * ptr_at(::index i) const { return this->data() + i; }
 
-   inline const CHARACTER_TYPE * reverse_ptr(::index i) { return this->m_pdata + length() + i; }
-   inline const CHARACTER_TYPE * reverse_ptr(::index i) const { return this->m_pdata + length() + i; }
+   inline const CHARACTER * reverse_ptr(::index i) { return this->data() + length() + i; }
+   inline const CHARACTER * reverse_ptr(::index i) const { return this->data() + length() + i; }
 
-   inline const CHARACTER_TYPE & operator [](index i) const { return this->m_pdata[i]; }
+   inline const CHARACTER & operator [](index i) const { return this->data()[i]; }
 
 //#if OSBIT == 64
-//   inline const CHARACTER_TYPE & operator [](int i) const { return this->m_pdata[i]; }
+//   inline const CHARACTER & operator [](int i) const { return this->data()[i]; }
 //#endif
 
-   inline CHARACTER_TYPE get_at(strsize i) const { return this->m_pdata[i]; }
+   inline CHARACTER get_at(strsize i) const { return this->data()[i]; }
 
-   //inline operator const CHARACTER_TYPE* () const noexcept { return this->m_pdata; }
+   //inline operator const CONST_STRING_RANGE & () const noexcept { return this->data(); }
 
 //#if defined(_UWP)
-   //inline operator String ^ () const { return ref memory_new String(wd16string(*this)); }
+   //inline operator String ^ () const { return ref memory_new String(wd16_string(*this)); }
 //#endif
 
    string_base to_string_base() const { return *this; }
-   const string_base & to_string_base() { return *this; }
+   const RANGE & to_string_base() { return *this; }
 
-   //string_base & operator = (const ansichar * pansichar);
-   //string_base & operator = (const wd16char * pwd16char);
-   //string_base & operator = (const wd32char * pwd32char);
+   template < has_as_string HAS_AS_STRING >
+   string_base & operator = (const HAS_AS_STRING & has_as_string)
+   {
+
+      return operator =(has_as_string.as_string());
+
+   }
+
+   string_base & operator = (const ::ansi_character * pansichar);
+   string_base & operator = (const ::wd16_character * pwd16char);
+   string_base & operator = (const ::wd32_character * pwd32char);
    //string_base & operator = (const natural_ansistring & ansistr);
    //string_base & operator = (const natural_wd16string & wd16str);
    //string_base & operator = (const natural_wd32string & wd32str);
-   //string_base & operator = (const ansistring & ansistr);
-   //string_base & operator = (const wd16string & wd16str);
-   //string_base & operator = (const wd32string & wd32str);
-   string_base & operator = (const string_base & str);
-//   string_base & operator = (ansichar ansich);
-//   string_base & operator = (wd16char wd16ch);
-//   string_base & operator = (wd32char wd32ch);
+   //string_base & operator = (const ansi_string & ansistr);
+   //string_base & operator = (const wd16_string & wd16str);
+   //string_base & operator = (const wd32_string & wd32str);
+   template < primitive_character CHARACTER2 >
+   string_base & operator = (const ::string_range < const CHARACTER2 * > & str);
+   //string_base & operator = (string_base && str);
+   //string_base & operator = (const string_base & str);
+   //string_base & operator = (RANGE range);
+//   string_base & operator = (::ansi_character ansich);
+//   string_base & operator = (::wd16_character wd16ch);
+//   string_base & operator = (::wd32_character wd32ch);
 //#ifdef WINDOWS
-  // string_base & operator = (const USHORT * pshSrc) { return operator=((const wd16char *)pshSrc); }
+  // string_base & operator = (const USHORT * pshSrc) { return operator=((const ::wd16_character *)pshSrc); }
 //#endif
 //#ifdef _UWP
   // string_base& operator = (String^& str) { return operator=(str->Begin()); }
 //#endif
+   string_base & operator = (const ::atom & atom);
+   string_base & operator = (const ::payload & payload);
+   string_base & operator = (const ::property & property);
 
 //   template < int t_nSize >
-  // inline string_base & operator=(const static_string<CHARACTER_TYPE, t_nSize > & ansistrSrc);
+  // inline string_base & operator=(const static_string<CHARACTER, t_nSize > & ansistrSrc);
 
    //template < typename TYPE >
    //inline string_base & operator=(const TYPE & t);
@@ -175,25 +226,26 @@ public:
 
    // so exhaustively implementing them at least
    // for most relevant and proper acme types
-   string_base & operator += (const ansichar * pszsrc);
-   string_base & operator += (const wd16char * pszsrc);
-   string_base & operator += (const wd32char * pszsrc);
-   string_base & operator += (const ansistring & ansistr);
-   string_base & operator += (const wd16string & wd16str);
-   string_base & operator += (const wd32string & wd32str);
+   string_base & operator += (const ::ansi_character * pszsrc);
+   string_base & operator += (const ::wd16_character * pszsrc);
+   string_base & operator += (const ::wd32_character * pszsrc);
+   string_base & operator += (RANGE range);
+   string_base & operator += (const ansi_string & ansistr);
+   string_base & operator += (const wd16_string & wd16str);
+   string_base & operator += (const wd32_string & wd32str);
    string_base & operator += (const inline_number_string & inlinenumberstring);
-   string_base & operator += (ansichar ansich);
-   string_base & operator += (wd16char wd16ch);
-   string_base & operator += (wd32char wd32ch);
-   //template < primitive_payload PAYLOAD >
-   //string_base & operator += (const PAYLOAD & payload) { return operator+=(payload.get_string()); }
-   // string_base & operator += (const ::property & property) { ::append(this, &property); return *this; }
-   //template < primitive_atom ATOM >
-   //string_base & operator += (const ATOM & atom) { return operator+=(atom.as_string()); }
-
+   string_base & operator += (::ansi_character ansich);
+   string_base & operator += (::wd16_character wd16ch);
+   string_base & operator += (::wd32_character wd32ch);
+   string_base & operator += (const ::atom & atom);
+   string_base & operator += (const ::payload & payload);
+   string_base & operator += (const ::property & property);
+   template < has_as_string HAS_AS_STRING >
+   string_base & operator += (const HAS_AS_STRING & has_as_string) { return operator+=(has_as_string.as_string()); }
+   
 
 //   template < int t_nSize >
-//   inline string_base & operator +=(const static_string<CHARACTER_TYPE, t_nSize > & ansistrSrc);
+//   inline string_base & operator +=(const static_string<CHARACTER, t_nSize > & ansistrSrc);
 //
 //   template < typename TYPE >
 //   inline string_base & operator +=(const TYPE & t);
@@ -210,24 +262,26 @@ public:
 
    // so exhaustively implementing them at least
    // for most relevant and proper acme types
-   string_base operator + (const ansichar * pszSrc) const;
-   string_base operator + (const wd16char * pszSrc) const;
-   string_base operator + (const wd32char * pszSrc) const;
-   string_base operator + (const ansistring & ansistr) const;
-   string_base operator + (const wd16string & wd16str)  const;
-   string_base operator + (const wd32string & wd32str)  const;
-   string_base operator + (const inline_number_string & inlinenumberstring) const;
-   string_base operator + (ansichar character)  const;
-   string_base operator + (wd16char wd16ch)  const;
-   string_base operator + (wd32char wd32ch)  const;
+   //string_base operator + (::const_ansi_range ansirange) const;
+   //string_base operator + (::const_wd16_range wd16range) const;
+   //string_base operator + (::const_wd32_range wd32range) const;
+   //string_base operator + (const ansi_string & ansistr) const;
+   //string_base operator + (const wd16_string & wd16str)  const;
+   //string_base operator + (const wd32_string & wd32str)  const;
+   //string_base operator + (const inline_number_string & inlinenumberstring) const;
+   //string_base operator + (::ansi_character ansich)  const;
+   //string_base operator + (::wd16_character wd16ch)  const;
+   //string_base operator + (::wd32_character wd32ch)  const;
+   //template < primitive_character CHARACTER2 >
+   //string_base operator + (const array_range < CHARACTER2 > & block)  const { return *this + string_base(block); }
    
 
-   operator ::block() const { return { c_str(), get_length_in_bytes() }; }
-   template < primitive_payload PAYLOAD >
-   string_base operator + (const PAYLOAD & payload) const { return *this + payload.as_string(); }
+   operator ::block() const { return { (::byte *) c_str(), length_in_bytes()}; }
+   //template < primitive_payload PAYLOAD >
+   //string_base operator + (const PAYLOAD & payload) const { return *this + payload.as_string(); }
 
-   template < primitive_atom ATOM >
-   string_base operator + (const ATOM & atom) const { return *this + atom.as_string(); }
+   //template < primitive_atom ATOM >
+   //string_base operator + (const ATOM & atom) const { return *this + atom.as_string(); }
 
 
    template < typename TYPE >
@@ -262,62 +316,66 @@ public:
 
    }
 
-
-   inline string_base& assign(const string_base & str);
-   //inline string_base & assign(const ansistring & ansistr);
-   //inline string_base & assign(const wd16string & wd16str);
-   //inline string_base & assign(const wd32string & wd32str);
-   //inline string_base & assign(const ansichar * pansiszSrc);
-   //inline string_base & assign(const wd16char * pwd16szSrc);
-   //inline string_base & assign(const wd32char * pwd32szSrc);
-   //inline string_base & assign(ansichar ansich);
-   //inline string_base & assign(wd16char wd16ch);
-   //inline string_base & assign(wd32char wd32ch);
    template < primitive_character CHARACTER2 >
-   inline string_base & assign(const string_base < CHARACTER2 > & strSrc, strsize start = 0, strsize len = -1);
-   //inline string_base& assign(const wd16string& wd16str, strsize pos, strsize n);
-   //inline string_base& assign(const wd32string& wd32str, strsize pos, strsize n);
+   inline string_base& assign(const ::string_range < const CHARACTER2 * > & range);
+   //inline string_base & assign(const ansi_string & ansistr);
+   //inline string_base & assign(const wd16_string & wd16str);
+   //inline string_base & assign(const wd32_string & wd32str);
+   //inline string_base & assign(const ::ansi_character * pansiszSrc);
+   //inline string_base & assign(const ::wd16_character * pwd16szSrc);
+   //inline string_base & assign(const ::wd32_character * pwd32szSrc);
+   //inline string_base & assign(::ansi_character ansich);
+   //inline string_base & assign(::wd16_character wd16ch);
+   //inline string_base & assign(::wd32_character wd32ch);
    template < primitive_character CHARACTER2 >
-   inline string_base& assign(const CHARACTER2* pszSrc, strsize len = -1)
+   inline string_base & assign(const CHARACTER2 * pszSrc, strsize start, strsize len);
+   //inline string_base& assign(const wd16_string& wd16str, strsize pos, strsize n);
+   //inline string_base& assign(const wd32_string& wd32str, strsize pos, strsize n);
+   template < primitive_character CHARACTER2 >
+   inline string_base& assign(const CHARACTER2 * pszSrc, strsize len = -1)
    {
       return assign(pszSrc, 0, len);
    }
-   template < primitive_character CHARACTER2 >
-   inline string_base& assign(const CHARACTER2 * pszSrc, strsize start, strsize len);
+   //template < primitive_block BLOCK >
+   //inline string_base& assign(const BLOCK & pszSrc, strsize start, strsize len);
    template < primitive_character CHARACTER2 >
    inline string_base& _assign(const CHARACTER2 * pszSrc, strsize start = 0, strsize len = -1);
-   //inline string_base& assign(const wd16char* pwd16szSrc, strsize len);
-   //inline string_base& assign(const wd32char* pwd32szSrc, strsize len);
+   //inline string_base& assign(const ::wd16_character* pwd16szSrc, strsize len);
+   //inline string_base& assign(const ::wd32_character* pwd32szSrc, strsize len);
    template < primitive_character CHARACTER2 >
    inline string_base & assign(CHARACTER2 chSrc, strsize repeat);
-//   inline string_base & assign(ansichar ansich, strsize repeat);
-//   inline string_base & assign(wd16char wd16ch, strsize repeat);
-//   inline string_base & assign(wd32char wd32ch, strsize repeat);
+//   inline string_base & assign(::ansi_character ansich, strsize repeat);
+//   inline string_base & assign(::wd16_character wd16ch, strsize repeat);
+//   inline string_base & assign(::wd32_character wd32ch, strsize repeat);
 
    template <class InputIterator>
    inline string_base & assign(InputIterator first, InputIterator last);
 
    //template < int t_nSize >
-   //inline string_base & assign(const static_string<CHARACTER_TYPE, t_nSize > & ansistrSrc);
+   //inline string_base & assign(const static_string<CHARACTER, t_nSize > & ansistrSrc);
 
-   inline string_base & append(strsize len, CHARACTER_TYPE ch);
+   inline string_base & append(strsize len, CHARACTER ch);
 
-   inline string_base& append_character(wd32char wch);
-   inline string_base & append_character(ansichar ch);
-   inline string_base& append_character(wd16char wch);
+   inline string_base& append_character(::wd32_character wch);
+   inline string_base & append_character(::ansi_character ch);
+   inline string_base& append_character(::wd16_character wch);
 
-   inline string_base& append(const string_base & str);
-   //inline string_base & append(const ansichar * pszSrc);
-   inline string_base & append(const ansichar * pszSrc, strsize nLength);
-   //inline string_base & append(const ansistring & ansistrSrc);
 
-   //inline string_base & append(const wd16char * pszSrc);
-   inline string_base & append(const wd16char * pszSrc, strsize nLength);
-   //inline string_base & append(const wd16string & ansistrSrc);
+   inline string_base & append(::const_ansi_range range);
+   inline string_base & append(::const_wd16_range range);
+   inline string_base & append(::const_wd32_range range);
+   //inline string_base & append(const ::ansi_character * pszSrc);
+   template < primitive_character CHARACTER2 >
+   inline string_base & append(const CHARACTER2 * pszSrc, strsize nLength);
+   //inline string_base & append(const ansi_string & ansistrSrc);
 
-   //inline string_base & append(const wd32char * pszSrc);
-   inline string_base & append(const wd32char * pszSrc, strsize nLength);
-   //inline string_base & append(const wd32string & ansistrSrc);
+   //inline string_base & append(const ::wd16_character * pszSrc);
+   //inline string_base & append(const ::wd16_character * pszSrc, strsize nLength);
+   //inline string_base & append(const wd16_string & ansistrSrc);
+
+   //inline string_base & append(const ::wd32_character * pszSrc);
+   //inline string_base & append(const ::wd32_character * pszSrc, strsize nLength);
+   //inline string_base & append(const wd32_string & ansistrSrc);
 
    //template < typename STATIC_TYPE_CHAR, int t_nSize >
    //inline string_base& append(const static_string<STATIC_TYPE_CHAR, t_nSize > & ansistrSrc);
@@ -339,7 +397,7 @@ public:
    }
 
 
-   inline CHARACTER_TYPE* get_string_buffer()
+   inline CHARACTER* get_string_buffer()
    {
 
       auto p = this->metadata();
@@ -353,12 +411,12 @@ public:
 
       }
 
-      return this->m_pdata;
+      return this->data();
 
    }
 
 
-   inline CHARACTER_TYPE * get_string_buffer(strsize size)
+   inline CHARACTER * get_string_buffer(strsize size)
    {
 
       auto p = this->metadata();
@@ -378,19 +436,19 @@ public:
 
       }
 
-      return this->m_pdata;
+      return this->data();
 
    }
 
 
-   inline CHARACTER_TYPE* defer_get_string_buffer(strsize size, const CHARACTER_TYPE * psz)
+   inline CHARACTER* defer_get_string_buffer(strsize size, RANGE range)
    {
 
       auto p = this->metadata();
 
       ASSERT(p->m_countReference >= 1);
 
-      if (::is_null(p) || p->natural_is_shared() || size > p->length() || p->contains_data(psz))
+      if (::is_null(p) || p->natural_is_shared() || size > p->length() || p->contains_data(range))
       {
 
          fork_string(size);
@@ -399,23 +457,23 @@ public:
 
       this->metadata()->set_length(size);
 
-      return this->m_pdata;
+      return this->data();
 
    }
 
 
-   inline strsize get_upper_bound(strsize i = -1) const noexcept { return this->get_length() + i; }
+   inline strsize get_upper_bound(strsize i = -1) const noexcept { return this->size() + i; }
 
-   inline void get_string(CHARACTER_TYPE* psz) const noexcept;
+   inline void get_string(CHARACTER* psz) const noexcept;
 
-   inline const CHARACTER_TYPE* get_string() const noexcept { return this->m_pdata; }
+   inline const CHARACTER* get_string() const noexcept { return this->data(); }
 
-   inline bool is_empty() const noexcept { return *this->m_pdata == '\0'; }
+   inline bool is_empty() const noexcept { return *this->data() == '\0'; }
 
-   inline bool is_empty(const string_base & str)
+   inline bool is_empty(RANGE range)
    {
       if (!is_empty()) return false;
-      operator =(str);
+      operator =(range);
       return true;
    }
 
@@ -428,11 +486,13 @@ public:
    string_base & release_string_buffer(strsize nNewLength = -1);
 //   inline void release_string_buffer(strsize nNewLength);
    inline void truncate(strsize nNewLength);
-   inline void set_at(strsize iChar, CHARACTER_TYPE ch);
+   inline void erase_beginning(strsize i);
+   
+   inline void set_at(strsize iChar, CHARACTER ch);
 
-   CHARACTER_TYPE * fork_string(strsize strsize);
+   CHARACTER * fork_string(strsize strsize);
 
-   CHARACTER_TYPE * create_string(strsize strsize);
+   CHARACTER * create_string(strsize strsize);
 
    void prepare_write(strsize nLength)
    {
@@ -460,53 +520,67 @@ public:
    //void construct() noexcept;
 
 
-   void push_back(CHARACTER_TYPE ch);
+   void push_back(CHARACTER ch);
 
 
+   bool equals(RANGE range) const noexcept;
+   bool case_insensitive_equals(RANGE range) const noexcept;
 
-   i32 compare(const CHARACTER_TYPE * psz) const noexcept;
-   i32 compare_ci(const CHARACTER_TYPE * psz) const noexcept;
-   i32 collate(const CHARACTER_TYPE * psz) const noexcept;
-   i32 collate_ci(const CHARACTER_TYPE * psz) const noexcept;
+   bool equasl(RANGE range, strsize n) const noexcept;
+   bool case_insensitive_equals(RANGE range, strsize n) const noexcept;
 
-   i32 compare(const CHARACTER_TYPE * psz, strsize n) const noexcept;
-   i32 compare_ci(const CHARACTER_TYPE * psz, strsize n) const noexcept;
-   i32 collate(const CHARACTER_TYPE * psz, strsize n) const noexcept;
-   i32 collate_ci(const CHARACTER_TYPE * psz, strsize n) const noexcept;
+   bool equals(strsize iStart, strsize iCount, RANGE range) const noexcept;
+   bool case_insensitive_equals(strsize iStart, strsize iCount, RANGE range) const noexcept;
 
-   i32 compare(strsize iStart, strsize iCount, const CHARACTER_TYPE * psz) const noexcept;
-   i32 compare_ci(strsize iStart, strsize iCount, const CHARACTER_TYPE * psz) const noexcept;
-   i32 collate(strsize iStart, strsize iCount, const CHARACTER_TYPE * psz) const noexcept;
-   i32 collate_ci(strsize iStart, strsize iCount, const CHARACTER_TYPE * psz) const noexcept;
-
-   i32 compare(strsize iStart, strsize iCount, const CHARACTER_TYPE * psz, strsize iStart2, strsize iCount2) const noexcept;
-   i32 compare_ci(strsize iStart, strsize iCount, const CHARACTER_TYPE * psz, strsize iStart2, strsize iCount2) const noexcept;
-   i32 collate(strsize iStart, strsize iCount, const CHARACTER_TYPE * psz, strsize iStart2, strsize iCount2) const noexcept;
-   i32 collate_ci(strsize iStart, strsize iCount, const CHARACTER_TYPE * psz, strsize iStart2, strsize iCount2) const noexcept;
-
-   inline int operator<=>(const string_base& str) const { return compare(str); }
-   inline bool operator==(const string_base& str) const { return get_length() != str.get_length() ? false : !compare(str); }
-   //inline bool operator>(const string_base& ansistr) const { return compare(ansistr) > 0; }
-   //inline bool operator<(const string_base& ansistr) const { return compare(ansistr) < 0; }
-   //inline bool operator!=(const string_base& ansistr) const { return !operator ==(ansistr); }
-   //inline bool operator>=(const string_base& ansistr) const { return !operator <(ansistr); }
-   //inline bool operator<=(const string_base& ansistr) const { return !operator >(ansistr); }
+   bool equals(strsize iStart, strsize iCount, RANGE range, strsize iStart2, strsize iCount2) const noexcept;
+   bool case_insensitive_equals(strsize iStart, strsize iCount, RANGE range, strsize iStart2, strsize iCount2) const noexcept;
 
 
-   //inline bool operator==(const string_base & ansistr) const { return compare(ansistr) == 0; }
-   //inline bool operator>(const string_base & ansistr) const { return compare(ansistr) > 0; }
-   //inline bool operator<(const string_base & ansistr) const { return compare(ansistr) < 0; }
-   //inline bool operator!=(const string_base & ansistr) const { return !operator ==(ansistr); }
-   //inline bool operator>=(const string_base & ansistr) const { return !operator <(ansistr); }
-   //inline bool operator<=(const string_base & ansistr) const { return !operator >(ansistr); }
+   //::std::strong_ordering order(RANGE range) const noexcept;
+   using NATURAL_POINTER::order;
+
+   ::std::strong_ordering case_insensitive_order(RANGE range) const noexcept;
+   ::std::strong_ordering collate(RANGE range) const noexcept;
+   ::std::strong_ordering case_insensitive_collate(RANGE range) const noexcept;
+
+   ::std::strong_ordering order(RANGE range, strsize n) const noexcept;
+   ::std::strong_ordering case_insensitive_order(RANGE range, strsize n) const noexcept;
+   ::std::strong_ordering collate(RANGE range, strsize n) const noexcept;
+   ::std::strong_ordering case_insensitive_collate(RANGE range, strsize n) const noexcept;
+
+   ::std::strong_ordering order(strsize iStart, strsize iCount, RANGE range) const noexcept;
+   ::std::strong_ordering case_insensitive_order(strsize iStart, strsize iCount, RANGE range) const noexcept;
+   ::std::strong_ordering collate(strsize iStart, strsize iCount, RANGE range) const noexcept;
+   ::std::strong_ordering case_insensitive_collate(strsize iStart, strsize iCount, RANGE range) const noexcept;
+
+   ::std::strong_ordering order(strsize iStart, strsize iCount, RANGE range, strsize iStart2, strsize iCount2) const noexcept;
+   ::std::strong_ordering case_insensitive_order(strsize iStart, strsize iCount, RANGE range, strsize iStart2, strsize iCount2) const noexcept;
+   ::std::strong_ordering collate(strsize iStart, strsize iCount, RANGE range, strsize iStart2, strsize iCount2) const noexcept;
+   ::std::strong_ordering case_insensitive_collate(strsize iStart, strsize iCount, RANGE range, strsize iStart2, strsize iCount2) const noexcept;
+
+   //inline int operator<=>(RANGE range) const { return order(range); }
+   //inline bool operator==(RANGE range) const { return size() != range.size() ? false : !order(range); }
+   //inline bool operator>(RANGE range) const { return order(ansistr) > 0; }
+   //inline bool operator<(RANGE range) const { return order(ansistr) < 0; }
+   //inline bool operator!=(RANGE range) const { return !operator ==(ansistr); }
+   //inline bool operator>=(RANGE range) const { return !operator <(ansistr); }
+   //inline bool operator<=(RANGE range) const { return !operator >(ansistr); }
 
 
-   inline bool contains(CHARACTER_TYPE ch, strsize start = 0, strsize count = -1) const;
-   inline bool contains(const CHARACTER_TYPE* psz, strsize start = 0, strsize count = -1) const;
-   inline bool contains(const string_base& ansistr, strsize start = 0, strsize count = -1) const;
-   inline bool contains(CHARACTER_TYPE ch, strsize start, strsize count, const CHARACTER_TYPE ** ppszBeg) const;
-   inline bool contains(const CHARACTER_TYPE * psz, strsize start, strsize count, const CHARACTER_TYPE ** ppszBeg, const CHARACTER_TYPE ** ppszEnd = nullptr) const;
-   inline bool contains(const string_base & ansistr, strsize start, strsize count, const CHARACTER_TYPE ** ppszBeg, const CHARACTER_TYPE ** ppszEnd = nullptr) const;
+   //inline bool operator==(RANGE range) const { return order(ansistr) == 0; }
+   //inline bool operator>(RANGE range) const { return order(ansistr) > 0; }
+   //inline bool operator<(RANGE range) const { return order(ansistr) < 0; }
+   //inline bool operator!=(RANGE range) const { return !operator ==(ansistr); }
+   //inline bool operator>=(RANGE range) const { return !operator <(ansistr); }
+   //inline bool operator<=(RANGE range) const { return !operator >(ansistr); }
+
+
+   inline bool contains(CHARACTER ch, strsize start = 0, strsize count = -1) const;
+   inline bool contains(RANGE range, strsize start = 0, strsize count = -1) const;
+   //inline bool contains(RANGE range, strsize start = 0, strsize count = -1) const;
+   inline bool contains(CHARACTER ch, strsize start, strsize count, const CHARACTER ** ppszBeg) const;
+   inline bool contains(RANGE range, strsize start, strsize count, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
+   //inline bool contains(RANGE range, strsize start, strsize count, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
 
    template < primitive_array STRING_ARRAY >
    inline bool contains_any(const STRING_ARRAY & stra) const;
@@ -514,12 +588,12 @@ public:
    template < primitive_array STRING_ARRAY >
    inline bool contains_all(const STRING_ARRAY & stra) const;
 
-   inline bool contains_ci(CHARACTER_TYPE ch, strsize start = 0, strsize count = -1) const;
-   inline bool contains_ci(const CHARACTER_TYPE * psz, strsize start = 0, strsize count = -1) const;
-   inline bool contains_ci(const string_base & ansistr, strsize start = 0, strsize count = -1) const;
-   inline bool contains_ci(CHARACTER_TYPE ch, strsize start, strsize count, const CHARACTER_TYPE ** ppszBeg) const;
-   inline bool contains_ci(const CHARACTER_TYPE* psz, strsize start, strsize count, const CHARACTER_TYPE ** ppszBeg, const CHARACTER_TYPE ** ppszEnd = nullptr) const;
-   inline bool contains_ci(const string_base& ansistr, strsize start, strsize count, const CHARACTER_TYPE ** ppszBeg, const CHARACTER_TYPE ** ppszEnd = nullptr) const;
+   inline bool contains_ci(CHARACTER ch, strsize start = 0, strsize count = -1) const;
+   inline bool contains_ci(RANGE range, strsize start = 0, strsize count = -1) const;
+   //inline bool contains_ci(RANGE range, strsize start = 0, strsize count = -1) const;
+   inline bool contains_ci(CHARACTER ch, strsize start, strsize count, const CHARACTER ** ppszBeg) const;
+   inline bool contains_ci(RANGE range, strsize start, strsize count, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
+   //inline bool contains_ci(RANGE range, strsize start, strsize count, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
 
    template < primitive_array STRING_ARRAY >
    inline bool contains_any_ci(const STRING_ARRAY & stra) const;
@@ -528,12 +602,12 @@ public:
    inline bool contains_all_ci(const STRING_ARRAY & stra) const;
 
 
-   //inline bool contains_wci(CHARACTER_TYPE ch, strsize start = 0, strsize count = -1) const;
-   inline bool contains_wci(const CHARACTER_TYPE * psz, strsize start = 0, strsize count = -1) const;
-   inline bool contains_wci(const string_base & ansistr, strsize start = 0, strsize count = -1) const;
-   //inline bool contains_wci(CHARACTER_TYPE ch, strsize start, strsize count, const CHARACTER_TYPE ** ppszBeg) const;
-   inline bool contains_wci(const CHARACTER_TYPE* psz, strsize start, strsize count, const CHARACTER_TYPE ** ppszBeg, const CHARACTER_TYPE ** ppszEnd = nullptr) const;
-   inline bool contains_wci(const string_base& ansistr, strsize start, strsize count, const CHARACTER_TYPE ** ppszBeg, const CHARACTER_TYPE ** ppszEnd = nullptr) const;
+   //inline bool contains_wci(CHARACTER ch, strsize start = 0, strsize count = -1) const;
+   inline bool contains_wci(RANGE range, strsize start = 0, strsize count = -1) const;
+   //inline bool contains_wci(RANGE range, strsize start = 0, strsize count = -1) const;
+   //inline bool contains_wci(CHARACTER ch, strsize start, strsize count, const CONST_STRING_RANGE &* ppszBeg) const;
+   inline bool contains_wci(RANGE range, strsize start, strsize count, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
+   //inline bool contains_wci(RANGE range, strsize start, strsize count, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
 
    template < primitive_array STRING_ARRAY >
    inline bool contains_any_wci(const STRING_ARRAY & stra) const;
@@ -578,7 +652,7 @@ public:
       if (number < 0)
       {
 
-         number += this->get_length() + 1;
+         number += this->size() + 1;
 
          if (number < 0)
          {
@@ -588,10 +662,10 @@ public:
          }
 
       }
-      else if (number > this->get_length())
+      else if (number > this->size())
       {
 
-         number = this->get_length();
+         number = this->size();
 
       }
 
@@ -600,116 +674,115 @@ public:
    }
 
    // Insert character 'ch' before index 'iIndex'
-   strsize Insert(strsize iIndex, CHARACTER_TYPE ch);
+   strsize Insert(strsize iIndex, CHARACTER ch);
 
    // Insert string_base 'psz' before index 'iIndex'
-   strsize Insert(strsize iIndex, const CHARACTER_TYPE* psz);
+   strsize Insert(strsize iIndex, RANGE range);
 
    // replace all occurrences of character 'chOld' with character 'chNew'
-   strsize replace_with(CHARACTER_TYPE charNew, CHARACTER_TYPE charOld, strsize iStart = 0);
+   strsize replace_character(CHARACTER charNew, CHARACTER charOld, strsize iStart = 0);
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   //template < raw_pointer_castable < CHARACTER > PCHARNEW, raw_pointer_castable < CHARACTER > PCHAROLD >
+   //template < raw_pointer_castable < CHARACTER_TYPE > PCHARNEW, raw_pointer_castable < CHARACTER_TYPE > PCHAROLD >
 
-   strsize replace_with(const string_base & strNew, const string_base & strOld, strsize iStart = 0);
+   strsize replace_with(RANGE rangeNew, RANGE rangeOld, strsize iStart = 0);
 
-   //template < raw_pointer_castable < CHARACTER > PCHARNEW, raw_pointer_castable < CHARACTER > PCHAROLD >
+   //template < raw_pointer_castable < CHARACTER_TYPE > PCHARNEW, raw_pointer_castable < CHARACTER_TYPE > PCHAROLD >
 
-   strsize replace_with_ci(const string_base & strNew, const string_base & strOld, strsize iStart = 0);
+   strsize replace_with_ci(RANGE rangeNew, RANGE rangeOld, strsize iStart = 0);
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   //template < raw_pointer_castable < CHARACTER > PCHARNEW, raw_pointer_castable < CHARACTER > PCHAROLD >
+   //template < raw_pointer_castable < CHARACTER_TYPE > PCHARNEW, raw_pointer_castable < CHARACTER_TYPE > PCHAROLD >
 
-   ::count replace_with_count(const string_base & strNew, const string_base & strOld, strsize iStart = 0);
+   ::count replace_with_count(RANGE rangeNew, RANGE rangeOld, strsize iStart = 0);
 
-   //template < raw_pointer_castable < CHARACTER > PCHARNEW, raw_pointer_castable < CHARACTER > PCHAROLD >
+   //template < raw_pointer_castable < CHARACTER_TYPE > PCHARNEW, raw_pointer_castable < CHARACTER_TYPE > PCHAROLD >
 
-   ::count replace_with_ci_count(const string_base & strNew, const string_base & strOld, strsize iStart = 0);
+   ::count replace_with_ci_count(RANGE rangeNew, RANGE rangeOld, strsize iStart = 0);
 
    // replace all occurrences of character 'chOld' with character 'chNew'
-   strsize find_replace(CHARACTER_TYPE charOld, CHARACTER_TYPE charNew, strsize iStart = 0)
+   strsize find_replace(CHARACTER charOld, CHARACTER charNew, strsize iStart = 0)
    {
       return replace_with(charNew, charOld, iStart);
    }
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   //template < raw_pointer_castable < CHARACTER > PCHAROLD, raw_pointer_castable < CHARACTER > PCHARNEW >
-   strsize find_replace(const string_base & strOld, const string_base & strNew, strsize iStart = 0)
+   //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
+   strsize find_replace(RANGE rangeOld, RANGE rangeNew, strsize iStart = 0)
    {
-      return replace_with(strNew, strOld, iStart);
+      return replace_with(rangeNew, rangeOld, iStart);
    }
 
-   //template < raw_pointer_castable < CHARACTER > PCHAROLD, raw_pointer_castable < CHARACTER > PCHARNEW >
-   strsize find_replace_ci(const string_base & strOld, const string_base & strNew, strsize iStart = 0)
+   //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
+   strsize find_replace_ci(RANGE rangeOld, RANGE rangeNew, strsize iStart = 0)
    {
-      return replace_with_ci(strNew, strOld, iStart);
+      return replace_with_ci(rangeNew, rangeOld, iStart);
    }
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   //template < raw_pointer_castable < CHARACTER > PCHAROLD, raw_pointer_castable < CHARACTER > PCHARNEW >
-   ::count find_replace_count(const string_base & strOld, const string_base & strNew, strsize iStart = 0)
+   //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
+   ::count find_replace_count(RANGE rangeOld, RANGE rangeNew, strsize iStart = 0)
    {
-      return replace_with_count(strNew, strOld, iStart);
+      return replace_with_count(rangeNew, rangeOld, iStart);
    }
 
-   //template < raw_pointer_castable < CHARACTER > PCHAROLD, raw_pointer_castable < CHARACTER > PCHARNEW >
-   ::count find_replace_ci_count(const string_base & strOld, const string_base & strNew, strsize iStart = 0)
+   //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
+   ::count find_replace_ci_count(RANGE rangeOld, RANGE rangeNew, strsize iStart = 0)
    {
-      return replace_with_ci_count(strNew, strOld, iStart);
+      return replace_with_ci_count(rangeNew, rangeOld, iStart);
    }
 
 
    //// replace all occurrences of character 'chOld' with character 'chNew'
-   //strsize xxx_replace(CHARACTER_TYPE charOld, CHARACTER_TYPE charNew, strsize iStart = 0);
+   //strsize xxx_replace(CHARACTER charOld, CHARACTER charNew, strsize iStart = 0);
 
    //// replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   //template < raw_pointer_castable < CHARACTER > PCHAROLD, raw_pointer_castable < CHARACTER > PCHARNEW >
+   //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
    //strsize xxx_replace(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
 
-   //template < raw_pointer_castable < CHARACTER > PCHAROLD, raw_pointer_castable < CHARACTER > PCHARNEW >
+   //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
    //strsize xxx_replace_ci(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
 
    //// replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   //template < raw_pointer_castable < CHARACTER > PCHAROLD, raw_pointer_castable < CHARACTER > PCHARNEW >
+   //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
    //::count xxx_replace_count(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
 
-   //template < raw_pointer_castable < CHARACTER > PCHAROLD, raw_pointer_castable < CHARACTER > PCHARNEW >
+   //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
    //::count xxx_replace_ci_count(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
 
-   //::count utf8_replace(const CHARACTER_TYPE* pszOld, const CHARACTER_TYPE* pszNew, strsize iStart = 0);
+   //::count utf8_replace(RANGE rangeOld, RANGE rangeNew, strsize iStart = 0);
 
-   string_base& replace(strsize iStart, strsize nCount, const CHARACTER_TYPE* psz);
-   string_base& replace(strsize iStart, strsize nCount, const CHARACTER_TYPE* psz, strsize nLen);
+   string_base& replace(strsize iStart, strsize nCount, RANGE range);
+   string_base& replace(strsize iStart, strsize nCount, RANGE range, strsize nLen);
 
    // erase all occurrences of character 'chRemove'
-   strsize erase_character(CHARACTER_TYPE chRemove);
+   strsize erase_character(CHARACTER chRemove);
 
-   template < raw_pointer_castable < CHARACTER > PCHAR >
-   string_base Tokenize(PCHAR pszTokens, strsize& iStart) const;
+   string_base Tokenize(RANGE rangeTokens, strsize& iStart) const;
 
 
    // find routines
 
    // find the first occurrence of character 'ch', starting at index 'iStart'
-   strsize find(CHARACTER_TYPE ch) const RELEASENOTHROW;
-   strsize find(CHARACTER_TYPE ch, strsize start) const RELEASENOTHROW;
-   strsize find(CHARACTER_TYPE ch, strsize start, strsize count) const RELEASENOTHROW;
-   strsize find_ci(CHARACTER_TYPE ch, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find(CHARACTER ch) const RELEASENOTHROW;
+   strsize find(CHARACTER ch, strsize start) const RELEASENOTHROW;
+   strsize find(CHARACTER ch, strsize start, strsize count) const RELEASENOTHROW;
+   strsize find_ci(CHARACTER ch, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
 
-   strsize find_skip_or_length(CHARACTER_TYPE ch, strsize start = 0) const RELEASENOTHROW
+   strsize find_skip_or_length(CHARACTER ch, strsize start = 0) const RELEASENOTHROW
    {
 
       while (true)
       {
 
-         if (this->m_pdata[start] == '\0')
+         if (this->data()[start] == '\0')
          {
 
             return start;
 
          }
 
-         if (this->m_pdata[start] == ch)
+         if (this->data()[start] == ch)
          {
 
             start++;
@@ -724,81 +797,128 @@ public:
 
    }
 
-   strsize find_whitespace_or_length(strsize start = 0) const RELEASENOTHROW;
+   strsize scan_whitespace(strsize start = 0) const RELEASENOTHROW;
+   strsize span_whitespace(strsize start = 0) const RELEASENOTHROW;
+   strsize rear_scan_whitespace(strsize start = 0) const RELEASENOTHROW;
+   strsize rear_span_whitespace(strsize start = 0) const RELEASENOTHROW;
 
    // look for a specific sub-string_base
 
-   // find the first occurrence of string_base 'pszSub', starting at index 'iStart'
-   strsize find(const CHARACTER_TYPE* pszSub, strsize start = 0, strsize count = -1, const CHARACTER_TYPE** pszTail = nullptr) const RELEASENOTHROW;
-   strsize find_w(const CHARACTER_TYPE* pszSub, strsize start = 0, strsize count = -1, const CHARACTER_TYPE** pszTail = nullptr) const RELEASENOTHROW;
-   strsize find_ci(const CHARACTER_TYPE* pszSub, strsize start = 0, strsize count = -1, const CHARACTER_TYPE** pszTail = nullptr) const RELEASENOTHROW;
-   strsize find_wci(const CHARACTER_TYPE* pszSub, strsize start = 0, strsize count = -1, const CHARACTER_TYPE** pszTail = nullptr) const RELEASENOTHROW;
+   //bool _find_prefix(strsize & i, RANGE range, strsize & start, strsize count, strsize & blockLen, strsize & nEndPosition, const CHARACTER ** ppszTail) const RELEASENOTHROW;
 
-   // find the first occurrence of string_base 'pszSub', starting at index 'iStart', if found returns the index of first character after the end of the found string_base
-   strsize find_tail(const CHARACTER_TYPE* pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_w_tail(const CHARACTER_TYPE* pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_ci_tail(const CHARACTER_TYPE* pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_wci_tail(const CHARACTER_TYPE* pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   // find the first occurrence of string_base 'block', starting at index 'iStart'
+   strsize find(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find_ci(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find_unicode(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find_unicode_ci(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+
+   // find the first occurrence of string_base 'block', starting at index 'iStart', if found returns the index of first character after the end of the found string_base
+   strsize find_tail(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find_tail_ci(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find_unicode_tail(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find_unicode_tail_ci(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
 
    // find the first occurrence of any of the characters in string_base 'pszCharSet'
-   strsize FindOneOf(const CHARACTER_TYPE* pszCharSet, strsize iStart = 0, strsize n = -1) const RELEASENOTHROW;
+   strsize scan(RANGE rangeCharacters, strsize iStart = 0) const RELEASENOTHROW;
+   strsize scan(RANGE rangeCharacters, strsize iStart, strsize n) const RELEASENOTHROW;
+   strsize scan(const CHARACTER * blockCharacters, strsize iStart = 0) const RELEASENOTHROW;
 
-   strsize find_first_in(const string_base& ansistr, strsize pos = 0) const RELEASENOTHROW;
-   strsize find_first_in(const CHARACTER_TYPE* s, strsize pos, strsize n) const RELEASENOTHROW;
-   strsize find_first_in(const CHARACTER_TYPE* s, strsize pos = 0) const RELEASENOTHROW;
-   strsize find_first_in(CHARACTER_TYPE ca, strsize pos = 0) const RELEASENOTHROW;
+   strsize _scan(RANGE rangeCharacters, strsize iStart = 0) const RELEASENOTHROW;
+   strsize _scan(RANGE rangeCharacters, strsize iStart, strsize n) const RELEASENOTHROW;
+   strsize _scan(const CHARACTER * blockCharacters, strsize iStart = 0) const RELEASENOTHROW;
 
-   strsize find_first_not_in(const string_base& ansistr, strsize pos = 0) const RELEASENOTHROW;
-   strsize find_first_not_in(const CHARACTER_TYPE* s, strsize pos, strsize n) const RELEASENOTHROW;
-   strsize find_first_not_in(const CHARACTER_TYPE* s, strsize pos = 0) const RELEASENOTHROW;
-   strsize find_first_not_in(CHARACTER_TYPE ca, strsize pos = 0) const RELEASENOTHROW;
+   strsize find_first(CHARACTER chSeparator, strsize iStart = 0) const RELEASENOTHROW;
 
-   strsize find_last_not_in(const string_base& ansistr, strsize pos = -1) const RELEASENOTHROW;
-   strsize find_last_not_in(const CHARACTER_TYPE* s, strsize pos, strsize n) const RELEASENOTHROW;
-   strsize find_last_not_in(const CHARACTER_TYPE* s, strsize pos = -1) const RELEASENOTHROW;
-   strsize find_last_not_in(CHARACTER_TYPE ca, strsize pos = -1) const RELEASENOTHROW;
+   //strsize find_first_in(RANGE range, strsize pos = 0) const RELEASENOTHROW;
+   //strsize find_first_in(RANGE range, strsize pos, strsize n) const RELEASENOTHROW;
+   ////strsize find_first_in(RANGE range, strsize pos = 0) const RELEASENOTHROW;
+   //strsize find_first_in(CHARACTER ca, strsize pos = 0) const RELEASENOTHROW;
 
-   strsize find_last_in(const string_base& ansistr, strsize pos = -1) const RELEASENOTHROW;
-   strsize find_last_in(const CHARACTER_TYPE* s, strsize pos, strsize n) const RELEASENOTHROW;
-   strsize find_last_in(const CHARACTER_TYPE* s, strsize pos = -1) const RELEASENOTHROW;
-   strsize find_last_in(CHARACTER_TYPE ca, strsize pos = -1) const RELEASENOTHROW;
+   strsize span(RANGE rangeCharacters, strsize pos = 0) const RELEASENOTHROW;
+   strsize span(RANGE rangeCharacters, strsize pos, strsize n) const RELEASENOTHROW;
+   strsize span(const CHARACTER * pszCharacters, strsize pos = 0) const RELEASENOTHROW;
+   strsize skip(CHARACTER chSkip, strsize pos = 0) const RELEASENOTHROW;
 
-   strsize find_first_of(const string_base& ansistr, strsize pos = 0) const RELEASENOTHROW;
-   strsize find_first_of(const CHARACTER_TYPE* s, strsize pos, strsize n) const RELEASENOTHROW;
-   strsize find_first_of(const CHARACTER_TYPE* s, strsize pos = 0) const RELEASENOTHROW;
-   strsize find_first_of(CHARACTER_TYPE ca, strsize pos = 0) const RELEASENOTHROW;
+   strsize _span(RANGE rangeCharacters, strsize pos = 0) const RELEASENOTHROW;
+   strsize _span(RANGE rangeCharacters, strsize pos, strsize n) const RELEASENOTHROW;
+   strsize _span(const CHARACTER * pszCharacters, strsize pos = 0) const RELEASENOTHROW;
+   strsize _skip(CHARACTER chSkip, strsize pos = 0) const RELEASENOTHROW;
 
-   strsize find_first_not_of(const string_base& ansistr, strsize pos = 0) const RELEASENOTHROW;
-   strsize find_first_not_of(const CHARACTER_TYPE* s, strsize pos, strsize n) const RELEASENOTHROW;
-   strsize find_first_not_of(const CHARACTER_TYPE* s, strsize pos = 0) const RELEASENOTHROW;
-   strsize find_first_not_of(CHARACTER_TYPE ca, strsize pos = 0) const RELEASENOTHROW;
+   //strsize get_token(RANGE rangeSeparators, strsize pos = -1) const RELEASENOTHROW;
+   //strsize get_token(RANGE rangeSeparators, strsize pos, strsize n) const RELEASENOTHROW;
+   //strsize get_token(const CHARACTER * pszSeparators, strsize pos = -1) const RELEASENOTHROW;
+   //strsize get_token(CHARACTER chSeparator, strsize pos = -1) const RELEASENOTHROW;
 
-   strsize find_last_not_of(const string_base& ansistr, strsize pos = -1) const RELEASENOTHROW;
-   strsize find_last_not_of(const CHARACTER_TYPE* s, strsize pos, strsize n) const RELEASENOTHROW;
-   strsize find_last_not_of(const CHARACTER_TYPE* s, strsize pos = -1) const RELEASENOTHROW;
-   strsize find_last_not_of(CHARACTER_TYPE ca, strsize pos = -1) const RELEASENOTHROW;
+   //strsize _get_token(RANGE rangeSeparators, strsize pos = -1) const RELEASENOTHROW;
+   //strsize _get_token(RANGE rangeSeparators, strsize pos, strsize n) const RELEASENOTHROW;
+   //strsize _get_token(const CHARACTER * pszSeparators, strsize pos = -1) const RELEASENOTHROW;
+   //strsize _get_token(CHARACTER chSeparator, strsize pos = -1) const RELEASENOTHROW;
 
-   strsize find_last_of(const string_base& ansistr, strsize pos = -1) const RELEASENOTHROW;
-   strsize find_last_of(const CHARACTER_TYPE* s, strsize pos, strsize n) const RELEASENOTHROW;
-   strsize find_last_of(const CHARACTER_TYPE* s, strsize pos = -1) const RELEASENOTHROW;
-   strsize find_last_of(CHARACTER_TYPE ca, strsize pos = -1) const RELEASENOTHROW;
+   //strsize find_last_not_in(RANGE range, strsize pos = -1) const RELEASENOTHROW;
+   //strsize find_last_not_in(RANGE range, strsize pos, strsize n) const RELEASENOTHROW;
+   ////strsize find_last_not_in(RANGE range, strsize pos = -1) const RELEASENOTHROW;
+   //strsize find_last_not_in(CHARACTER ca, strsize pos = -1) const RELEASENOTHROW;
+
+   strsize rear_scan(RANGE rangeCharacters, strsize count = -1) const RELEASENOTHROW;
+   strsize rear_scan(RANGE rangeCharacters, strsize iStart, strsize n) const RELEASENOTHROW;
+   //strsize rear_scan(const CHARACTER * blockCharacters, strsize count = -1) const RELEASENOTHROW;
+
+   strsize _rear_scan(RANGE rangeCharacters, strsize count = -1) const RELEASENOTHROW;
+   strsize _rear_scan(RANGE rangeCharacters, strsize iStart, strsize n) const RELEASENOTHROW;
+   //strsize _rear_scan(const CHARACTER * blockCharacters, strsize iStart = -1) const RELEASENOTHROW;
+
+   //strsize find_first_of(RANGE range, strsize pos = 0) const RELEASENOTHROW;
+   //strsize find_first_of(RANGE range, strsize pos, strsize n) const RELEASENOTHROW;
+   //strsize find_first_of(const CHARACTER * pszCharacters, strsize iStart = 0) const RELEASENOTHROW;
+   //strsize find_first_of(CHARACTER ca, strsize pos = 0) const RELEASENOTHROW;
+   //strsize find_first_of(CHARACTER ca, strsize pos, strsize count) const RELEASENOTHROW;
+
+   //strsize find_first_not_of(RANGE range, strsize pos = 0) const RELEASENOTHROW;
+   //strsize find_first_not_of(RANGE range, strsize pos, strsize n) const RELEASENOTHROW;
+   //strsize find_first_not_of(RANGE range, strsize pos = 0) const RELEASENOTHROW;
+   //strsize find_first_not_of(CHARACTER ca, strsize pos = 0) const RELEASENOTHROW;
+
+   strsize rear_span(RANGE range, strsize count = -1) const RELEASENOTHROW;
+   strsize rear_span(RANGE range, strsize start, strsize count = -1) const RELEASENOTHROW;
+   //strsize rear_span(const CHARACTER * psz, strsize pos = -1) const RELEASENOTHROW;
+   
+   strsize rear_skip(CHARACTER ca, strsize count = -1) const RELEASENOTHROW;
+   strsize rear_skip(CHARACTER ca, strsize start, strsize count = -1) const RELEASENOTHROW;
+
+
+   strsize _rear_span(RANGE range, strsize count = -1) const RELEASENOTHROW;
+   strsize _rear_span(RANGE range, strsize pos, strsize n) const RELEASENOTHROW;
+
+
+   strsize _rear_span(CHARACTER ca, strsize count = -1) const RELEASENOTHROW;
+   strsize _rear_span(CHARACTER ca, strsize start, strsize count = -1) const RELEASENOTHROW;
+
+
+   //strsize _rear_span(const CHARACTER * psz, strsize pos = -1) const RELEASENOTHROW;
+   //strsize _rear_skip(CHARACTER ca, strsize pos = -1) const RELEASENOTHROW;
+
+
+   //strsize find_last_of(RANGE range, strsize pos = -1) const RELEASENOTHROW;
+   //strsize find_last_of(RANGE range, strsize pos, strsize n) const RELEASENOTHROW;
+   ////strsize find_last_of(RANGE range, strsize pos = -1) const RELEASENOTHROW;
+   //strsize find_last_of(CHARACTER ca, strsize pos = -1) const RELEASENOTHROW;
 
    // find the last occurrence of character 'ch'
-   strsize reverse_find(CHARACTER_TYPE ch, strsize iStart = -1) const RELEASENOTHROW;
+   strsize rear_find(CHARACTER ch, strsize iStart = -1) const RELEASENOTHROW;
 
    // find the last occurrence of string_base 'sz'
-   strsize reverse_find(const CHARACTER_TYPE* sz, strsize iStart = -1) const RELEASENOTHROW;
+   strsize rear_find(RANGE range, strsize iStart = -1) const RELEASENOTHROW;
 
-   strsize rfind(CHARACTER_TYPE ch, strsize iStart = -1) const RELEASENOTHROW
-   {
-      return reverse_find(ch, iStart);
-   };
-   strsize rfind(const CHARACTER_TYPE* sz, strsize iStart = -1) const RELEASENOTHROW
-   {
-      return reverse_find(sz, iStart);
-   };
+   //strsize rear_find(CHARACTER ch, strsize iStart = -1) const RELEASENOTHROW
+   //{
+   //   return rear_find(ch, iStart);
+   //};
+   //strsize rear_find(RANGE range, strsize iStart = -1) const RELEASENOTHROW
+   //{
+   //   return rear_find(sz, iStart);
+   //};
 
-   string_base intersection(const string_base & find) const;
+   string_base intersection(RANGE range) const;
 
 
    string_base ansistr() const
@@ -807,70 +927,89 @@ public:
    }
 
 
-   string_iterator < CHARACTER_TYPE > begin() const
+   //const CHARACTER * begin() const
+   //{
+
+   //   return data();
+
+   //}
+
+
+   //const CHARACTER * end() const
+   //{
+
+   //   return data() + size();
+
+   //}
+
+
+   unicode_iterator < CHARACTER > unicode_begin() const
    {
 
-      return string_iterator < CHARACTER_TYPE >(c_str());
+      return data();
 
    }
 
 
-   string_iterator < CHARACTER_TYPE > end() const
+   unicode_iterator < CHARACTER > unicode_end() const
    {
 
-      return string_iterator < CHARACTER_TYPE >(c_str(), get_length());
+      return data() + size();
 
    }
 
-   inline bool begins(const CHARACTER_TYPE* psz) const;
-   inline bool ends(const CHARACTER_TYPE* psz) const;
 
-   inline bool begins_ci(const CHARACTER_TYPE* psz) const;
-   inline bool ends_ci(const CHARACTER_TYPE* psz) const;
+   //inline bool begins(const CHARACTER * pszPrefix) const;
 
-   inline bool begins_eat(const CHARACTER_TYPE* psz);
-   inline bool ends_eat(const CHARACTER_TYPE* psz);
+   //inline bool begins(RANGE rangePrefix) const;
+   //inline bool ends(RANGE rangeSuffix) const;
 
-   inline bool begins_eat_ci(const CHARACTER_TYPE* psz);
-   inline bool ends_eat_ci(const CHARACTER_TYPE* psz);
+   inline bool case_insensitive_begins(RANGE rangePrefix) const;
+   inline bool case_insensitive_ends(RANGE rangeSuffix) const;
 
-   inline bool begins_eat(string_base & strRest, const CHARACTER_TYPE * psz) const;
-   inline bool ends_eat(string_base & strRest, const CHARACTER_TYPE * psz) const;
+   inline bool begins_eat(RANGE range);
+   inline bool ends_eat(RANGE range);
 
-   inline bool begins_eat_ci(string_base & strRest, const CHARACTER_TYPE * psz) const;
-   inline bool ends_eat_ci(string_base & strRest, const CHARACTER_TYPE * psz) const;
+   inline bool case_insensitive_begins_eat(RANGE range);
+   inline bool case_insensitive_ends_eat(RANGE range);
 
-   inline bool begins_eaten_ci(string_base & strEaten, const CHARACTER_TYPE * psz) const;
-   inline bool ends_eaten_ci(string_base & strEaten, const CHARACTER_TYPE * psz) const;
+   inline bool begins_eat(string_base & strRest, RANGE range) const;
+   inline bool ends_eat(string_base & strRest, RANGE range) const;
 
-   inline string_base& ensure_begins(const CHARACTER_TYPE* psz);
-   inline string_base& ensure_begins_ci(const CHARACTER_TYPE* psz);
+   inline bool case_insensitive_begins_eat(string_base & strRest, RANGE range) const;
+   inline bool case_insensitive_ends_eat(string_base & strRest, RANGE range) const;
 
-   inline string_base& ensure_ends(const CHARACTER_TYPE* psz);
-   inline string_base& ensure_ends_ci(const CHARACTER_TYPE* psz);
+   inline bool begins_eaten_ci(string_base & strEaten, RANGE range) const;
+   inline bool ends_eaten_ci(string_base & strEaten, RANGE range) const;
 
-   inline bool begins(const string_base& ansistr) const;
-   inline bool ends(const string_base& ansistr) const;
+   inline string_base& ensure_begins(RANGE range);
+   inline string_base& ensure_begins_ci(RANGE range);
 
-   inline bool begins_ci(const string_base& ansistr) const;
-   inline bool ends_ci(const string_base& ansistr) const;
+   inline string_base& ensure_ends(RANGE range);
+   inline string_base& ensure_ends_ci(RANGE range);
 
-   inline bool begins_eat(const string_base& ansistr);
-   inline bool ends_eat(const string_base& ansistr);
+   //inline bool begins(RANGE range) const;
+   //inline bool ends(RANGE range) const;
 
-   inline bool begins_eat_ci(const string_base& ansistr);
-   inline bool ends_eat_ci(const string_base& ansistr);
+   //inline bool case_insensitive_begins(RANGE range) const;
+   //inline bool case_insensitive_ends(RANGE range) const;
 
-   inline string_base& ensure_begins(const string_base& strPrefix);
-   inline string_base& ensure_begins_ci(const string_base& strPrefix);
+   //inline bool begins_eat(RANGE range);
+   //inline bool ends_eat(RANGE range);
 
-   inline string_base& ensure_ends(const string_base& strSuffix);
-   inline string_base& ensure_ends_ci(const string_base& strSuffix);
+   //inline bool case_insensitive_begins_eat(RANGE range);
+   //inline bool case_insensitive_ends_eat(RANGE range);
 
-   bool eat_before(string_base& strBefore, string_base strSeparator, bool bEatEverythingIfNotFound = false);
-   bool eat_before_let_separator(string_base& strBefore, string_base strSeparator, bool bEatEverythingIfNotFound = false);
+   //inline string_base& ensure_begins(RANGE rangePrefix);
+   //inline string_base& ensure_begins_ci(RANGE rangePrefix);
 
-   CHARACTER_TYPE last_char(strsize count = -1) const;
+   //inline string_base& ensure_ends(RANGE rangeSuffix);
+   //inline string_base& ensure_ends_ci(RANGE rangeSuffix);
+
+   bool eat_before(string_base& strBefore, RANGE rangeSeparator, bool bEatEverythingIfNotFound = false);
+   bool eat_before_let_separator(string_base& strBefore, RANGE rangeSeparator, bool bEatEverythingIfNotFound = false);
+
+   CHARACTER last_char(strsize count = -1) const;
 
    // manipulation
 
@@ -909,29 +1048,28 @@ public:
    string_base& trim();
 
    // erase all leading and trailing occurrences of character 'chTarget'
-   string_base& trim(CHARACTER_TYPE chTarget);
+   string_base& trim(CHARACTER chTarget);
 
    // erase all leading and trailing occurrences of any of the characters in the string_base 'pszTargets'
-   template < raw_pointer_castable < CHARACTER > PCHAR >
-   string_base & trim(PCHAR pcharTargets);
+   string_base & trim(RANGE rangeTargets);
 
    // trimming anything (either side)
 
    // erase all trailing occurrences of character 'chTarget'
-   string_base& trim_right(CHARACTER_TYPE chTarget);
+   string_base& trim_right(CHARACTER chTarget);
 
    // erase all trailing occurrences of any of the characters in string_base 'pszTargets'
    ///template < pointer_castable < CHARACTER > PCHAR >
    //string_base & trim_right(PCHAR pcharTargets);
-   string_base& trim_right(const CHARACTER_TYPE * pcharTargets);
+   string_base& trim_right(RANGE rangeTargets);
 
    // erase all leading occurrences of character 'chTarget'
-   string_base& trim_left(CHARACTER_TYPE chTarget);
+   string_base& trim_left(CHARACTER chTarget);
 
    // erase all leading occurrences of any of the characters in string_base 'pszTargets'
    //template < pointer_castable < CHARACTER > PCHAR >
    //string_base& trim_left(PCHAR pchTargets);
-   string_base& trim_left(const CHARACTER_TYPE * pchTargets);
+   string_base& trim_left(RANGE rangeTargets);
 
 
    // erase all trailing whitespace
@@ -944,24 +1082,24 @@ public:
    string_base trimmed() const;
 
    // erase all leading and trailing occurrences of character 'chTarget'
-   string_base trimmed(CHARACTER_TYPE chTarget) const;
+   string_base trimmed(CHARACTER chTarget) const;
 
    // erase all leading and trailing occurrences of any of the characters in the string_base 'pszTargets'
-   string_base trimmed(const CHARACTER_TYPE* pszTargets) const;
+   string_base trimmed(RANGE rangeTargets) const;
 
    // trimming anything (either side)
 
    // erase all trailing occurrences of character 'chTarget'
-   string_base right_trimmed(CHARACTER_TYPE chTarget) const;
+   string_base right_trimmed(CHARACTER chTarget) const;
 
    // erase all trailing occurrences of any of the characters in string_base 'pszTargets'
-   string_base right_trimmed(const CHARACTER_TYPE* pszTargets) const;
+   string_base right_trimmed(RANGE rangeCharacters) const;
 
    // erase all leading occurrences of character 'chTarget'
-   string_base left_trimmed(CHARACTER_TYPE chTarget) const;
+   string_base left_trimmed(CHARACTER chTarget) const;
 
    // erase all leading occurrences of any of the characters in string_base 'pszTargets'
-   string_base left_trimmed(const CHARACTER_TYPE* pszTargets) const;
+   string_base left_trimmed(RANGE rangeTargets) const;
 
 
    // Convert the string_base to the OEM character set
@@ -989,8 +1127,8 @@ public:
 
 
    inline strsize get_length() const { return (::strsize) this->metadata()->m_datasize; }
-   inline memsize get_length_in_bytes() const;
-   inline memsize get_length_in_bytes_with_null_terminator() const;
+   inline memsize length_in_bytes() const;
+   inline memsize length_in_bytes_with_null_terminator() const;
    inline strsize length() const { return this->get_length(); }
    inline strsize size() const { return this->length(); }
 
@@ -1001,29 +1139,30 @@ public:
    string_base Left(strsize nCount) const;
 
    // Return the substring consisting of the leftmost characters in the set 'pszCharSet'
-   string_base span_including(const CHARACTER_TYPE* pszCharSet) const;
+   string_base scan_including(RANGE rangeCharSet, strsize iStart = 0, strsize iCount = -1) const;
 
    // Return the substring consisting of the leftmost characters not in the set 'pszCharSet'
-   string_base span_excluding(const CHARACTER_TYPE* pszCharSet) const;
-
-   void format(const CHARACTER_TYPE* pszFormat, ...);
-
-   void format_arguments(const CHARACTER_TYPE * pszFormat, va_list args);
-
-   void append_format(const CHARACTER_TYPE* pszFormat, ...);
-
-   void append_format_arguments(const CHARACTER_TYPE* pszFormat, va_list args);
-
-   //void FormatMessage(const CHARACTER_TYPE* pszFormat, ...);
+   string_base span_excluding(RANGE rangeCharSet, strsize iStart = 0, strsize iCount = -1) const;
 
 
+   void format(const CHARACTER * pszFormat, ...);
+
+   void format_arguments(const CHARACTER * pszFormat, va_list args);
+
+   void append_format(const CHARACTER * pszFormat, ...);
+
+   void append_format_arguments(const CHARACTER * pszFormat, va_list args);
+
+   //void FormatMessage(const CHARACTER * pszFormat, ...);
 
 
-   // set the string_base to the value of environment ::payload 'pszVar'
-   //bool xxxget_environment_variable(const CHARACTER_TYPE* pszVar);
+
 
    // set the string_base to the value of environment ::payload 'pszVar'
-   //bool xxxgetenv(const CHARACTER_TYPE* pszVar);
+   //bool xxxget_environment_variable(RANGE rangeVar);
+
+   // set the string_base to the value of environment ::payload 'pszVar'
+   //bool xxxgetenv(RANGE rangeVar);
 
    // Load the string_base from resource 'nID'
    //bool load_string(::particle * pparticle, atom atom);
@@ -1038,7 +1177,7 @@ public:
    }
 
    strsize nLength = str_traits::GetcharLength( pImage->achString, pImage->nLength );
-   CHARACTER_TYPE * pszBuffer = GetBuffer( nLength );
+   CHARACTER * pszBuffer = GetBuffer( nLength );
    str_traits::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
    release_string_buffer( nLength );
 
@@ -1055,7 +1194,7 @@ public:
    }
 
    strsize nLength = str_traits::GetcharLength( pImage->achString, pImage->nLength );
-   CHARACTER_TYPE * pszBuffer = GetBuffer( nLength );
+   CHARACTER * pszBuffer = GetBuffer( nLength );
    str_traits::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
    release_string_buffer( nLength );
 
@@ -1067,7 +1206,7 @@ public:
       resize(n, '\0');
    }
 
-   void resize(strsize n, CHARACTER_TYPE c);
+   void resize(strsize n, CHARACTER c);
 
 
 
@@ -1083,33 +1222,37 @@ public:
 
 
    //strsize char_get_count(strsize iCharCount) const;
-   //ansistring char_left(strsize nCount) const;
-   //ansistring char_mid(strsize iFirst) const;
-   //ansistring char_mid(strsize iFirst, strsize nCount) const;
+   //ansi_string char_left(strsize nCount) const;
+   //ansi_string char_mid(strsize iFirst) const;
+   //ansi_string char_mid(strsize iFirst, strsize nCount) const;
 
    void clear();
 
 
 
 
-   bool equals(const CHARACTER_TYPE * psz) const;
-   bool equals_ci(const CHARACTER_TYPE * psz) const;
+   //bool equals(RANGE range) const;
+   //bool case_insensitive_equals(RANGE range) const;
 
-   inline int operator<=>(const CHARACTER_TYPE * psz2) const;
-   inline int operator<=>(CHARACTER_TYPE ch) const;
-   inline bool operator==(const CHARACTER_TYPE* psz2) const;
-   inline bool operator==(CHARACTER_TYPE ch) const;
-   //inline bool operator==(CHARACTER_TYPE ch) const;
-   //inline bool operator>(const CHARACTER_TYPE * psz2) const;
-   //inline bool operator>(CHARACTER_TYPE ch) const;
-   //inline bool operator<(const CHARACTER_TYPE * psz2) const;
-   //inline bool operator<(CHARACTER_TYPE ch) const;
-   //inline bool operator!=(const CHARACTER_TYPE * psz) const { return !operator ==(psz); }
-   //inline bool operator!=(CHARACTER_TYPE ch) const { return !operator ==(ch); }
-   //inline bool operator>=(const CHARACTER_TYPE * psz) const { return !operator <(psz); }
-   //inline bool operator>=(CHARACTER_TYPE ch) const { return !operator <(ch); }
-   //inline bool operator<=(const CHARACTER_TYPE * psz) const { return !operator >(psz); }
-   //inline bool operator<=(CHARACTER_TYPE ch) const { return !operator >(ch); }
+   inline ::std::strong_ordering operator<=>(RANGE range) const { return order(block); }
+   inline ::std::strong_ordering operator<=>(const string_base & str) const { return order(str); }
+   inline ::std::strong_ordering operator<=>(const CHARACTER * psz) const { return order(psz); }
+   //inline int operator<=>(CHARACTER ch) const;
+   inline bool operator==(RANGE range) const { return equals(block); }
+   inline bool operator==(const string_base & str) const { return equals(str); }
+   inline bool operator==(const CHARACTER * psz) const { return equals(psz); }
+   //inline bool operator==(CHARACTER ch) const;
+   //inline bool operator==(CHARACTER ch) const;
+   //inline bool operator>(RANGE range2) const;
+   //inline bool operator>(CHARACTER ch) const;
+   //inline bool operator<(RANGE range2) const;
+   //inline bool operator<(CHARACTER ch) const;
+   //inline bool operator!=(RANGE range) const { return !operator ==(psz); }
+   //inline bool operator!=(CHARACTER ch) const { return !operator ==(ch); }
+   //inline bool operator>=(RANGE range) const { return !operator <(psz); }
+   //inline bool operator>=(CHARACTER ch) const { return !operator <(ch); }
+   //inline bool operator<=(const CHARACTER * psz) const { return !operator >(psz); }
+   //inline bool operator<=(CHARACTER ch) const { return !operator >(ch); }
 
 
    typedef strsize size_type;
@@ -1118,11 +1261,152 @@ public:
 };
 
 
-template < primitive_character CHARACTER1, primitive_character CHARACTER2, strsize sizeMaximumLength >
-inline ::string_base < CHARACTER1 > operator + (const CHARACTER1 * psz, const inline_string<CHARACTER2, sizeMaximumLength > & inlinestring)
+
+inline ::string operator + (const ::string & strA, const ::string & strB)
 {
 
-   return ::string_base < CHARACTER1 >(psz) + ::string_base < CHARACTER1 >(inlinestring);
+   auto str = strA;
+
+   str += strB;
+
+   return ::move(str);
+
+}
+
+
+inline ::string operator+(const ::string & str, const ::const_ansi_range & range)
+{
+
+   return ::move(str + ::string(range));
+
+}
+
+
+inline ::string operator + (const ::string & str, char ch)
+{
+
+   return ::move(str + ::string(ch));
+
+}
+
+
+inline ::string operator +(const ::string & str, const char * psz)
+{
+
+   return ::move(str + ::string(psz));
+
+}
+
+
+template < ::count c >
+inline ::string operator +(const ::string & str, const char(&sz)[c])
+{
+
+   return ::move(str + ::string(sz));
+
+}
+
+
+template < strsize m_sizeMaximumLength >
+inline ::string operator +(const ::string & str, const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
+{
+
+   return ::move(str + ::string(inlinestring));
+
+}
+
+
+inline ::string operator +(const char * psz, const ::string & str)
+{
+
+   return ::move(::string(psz) + str);
+
+}
+
+
+inline ::string operator +(char ch, const ::string & str)
+{
+
+   return ::move(::string(ch) + str);
+
+}
+
+
+template < ::count c >
+inline ::string operator +(const char (&sz)[c], const ::string & str)
+{
+
+   return ::move(::string(sz) + str);
+
+}
+
+
+template < ::count c >
+inline ::string operator+(const ::const_ansi_range & range, const char(&sz)[c])
+{
+
+   return ::move(::string(range) + sz);
+
+}
+
+
+inline ::string operator+(const ::const_ansi_range & range, const ::string & str)
+{
+
+   return ::move(::string(range) + str);
+
+}
+
+
+//template < primitive_character CHARACTER, typename CHARACTER2 >
+//constexpr ::string_base < const CHARACTER * > operator +(CHARACTER ch, ::range < const CHARACTER2 * > range)
+//{
+//
+//   return ::move(::string_base < const CHARACTER * >(ch) + ::string_base < const CHARACTER * >(range));
+//
+//}
+
+
+//template < primitive_character CHARACTER1, primitive_character CHARACTER2, strsize sizeMaximumLength >
+//inline ::string_base < const CHARACTER1 * > operator + (const CHARACTER1 * psz, const inline_string<CHARACTER2, sizeMaximumLength > & inlinestring)
+//{
+//
+//   return ::string_base < const CHARACTER1 * >(psz) + ::string_base < const CHARACTER1 * >(inlinestring);
+//
+//}
+//
+//template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+//constexpr ::string_base < const CHARACTER * > operator + (::range < const CHARACTER * > range, const CHARACTER2 * psz)
+//{
+//
+//   return ::move(::string_base < const CHARACTER * >(range) + ::string_base < const CHARACTER * >(psz));
+//
+//}
+
+
+inline ::wstring operator + (::wstring wstrA, ::wstring wstrB)
+{
+
+   wstrA += wstrB;
+
+   return ::move(wstrA);
+
+}
+
+
+inline ::wstring operator +(const ::wide_character * pwsz, ::wstring wstr)
+{
+
+   return ::move(::wstring(pwsz) + wstr);
+
+}
+
+
+template < ::count c >
+inline ::wstring operator +(const ::wide_character(&wsz)[c], ::wstring wstr)
+{
+
+   return ::move(::wstring(wsz) + wstr);
 
 }
 

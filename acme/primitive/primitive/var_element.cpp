@@ -124,7 +124,7 @@ void payload::_set_element(::particle * pelement)
       return 0;
 
    }
-   else if (m_etype == e_type_id)
+   else if (m_etype == e_type_atom)
    {
 
       m_atom.::atom::~atom();

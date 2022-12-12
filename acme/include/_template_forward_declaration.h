@@ -16,6 +16,97 @@
 
 
 
+// erase_const
+// erase_const
+// erase_const
+
+
+template<typename TYPE>
+struct erase_const
+{
+
+   // erase top-level const qualifier
+   using NON_CONST_TYPE = TYPE;
+
+
+};
+
+template<typename TYPE>
+struct erase_const<TYPE &>
+{
+   using NON_CONST_TYPE = TYPE &;
+};
+
+
+template<typename TYPE>
+struct erase_const<const TYPE>
+{
+   using NON_CONST_TYPE = TYPE;
+};
+
+template<typename TYPE>
+struct erase_const<const TYPE &>
+{
+   using NON_CONST_TYPE = TYPE &;
+};
+
+template<typename TYPE>
+struct erase_const<const TYPE *>
+{
+   using NON_CONST_TYPE = TYPE *;
+};
+
+template<class TYPE>
+using non_const = typename erase_const<TYPE>::NON_CONST_TYPE;
+
+
+
+template<typename TYPE>
+struct insert_const
+{
+
+   // erase top-level const qualifier
+   using CONST_TYPE = const TYPE;
+
+
+};
+
+template<typename TYPE>
+struct insert_const<TYPE &>
+{
+   using CONST_TYPE = const TYPE &;
+};
+
+
+template<typename TYPE>
+struct insert_const<TYPE *>
+{
+   using CONST_TYPE = const TYPE *;
+};
+
+template<typename TYPE>
+struct insert_const<const TYPE>
+{
+   using CONST_TYPE = const TYPE;
+};
+
+template<typename TYPE>
+struct insert_const<const TYPE &>
+{
+   using CONST_TYPE = const TYPE &;
+};
+
+template<typename TYPE>
+struct insert_const<const TYPE *>
+{
+   using CONST_TYPE = const TYPE *;
+};
+
+
+template<class TYPE>
+using add_const = typename insert_const<TYPE>::CONST_TYPE;
+
+
 //constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
 
 template < typename DERIVED, typename BASE >
@@ -136,39 +227,61 @@ concept primitive_xydim = requires(RECTANGLE rectangle)
 
 
 
-template < typename TYPE_CHAR >
-class simple_string_base;
+//template < typename TYPE_CHAR >
+//class simple_string_base;
+//
+//
+//using simple_ansistring = simple_string_base < ::ansi_character >;
+//using simple_wd16string = simple_string_base < ::wd16_character >;
+//using simple_wd32string = simple_string_base < ::wd32_character >;
+//using simple_widestring = simple_string_base < ::wide_character >;
 
 
-using simple_ansistring = simple_string_base < ansichar >;
-using simple_wd16string = simple_string_base < wd16char >;
-using simple_wd32string = simple_string_base < wd32char >;
-using simple_widestring = simple_string_base < widechar >;
-
-
-typedef simple_ansistring simple_string;
-typedef simple_widestring simple_wstring;
+//typedef simple_ansistring simple_string;
+//typedef simple_widestring simple_wstring;
 
 
 
 
 
 template < bool B, class TRUE_TYPE = void, class ELSE_TYPE = void >
-struct if_else {};
+struct if_else_base {};
 
 template < class TRUE_TYPE, class ELSE_TYPE >
-struct if_else < true, TRUE_TYPE, ELSE_TYPE > { using type = TRUE_TYPE; };
+struct if_else_base < true, TRUE_TYPE, ELSE_TYPE > { using type = TRUE_TYPE; };
 
 template < class TRUE_TYPE, class ELSE_TYPE >
-struct if_else < false, TRUE_TYPE, ELSE_TYPE > { using type = ELSE_TYPE; };
+struct if_else_base < false, TRUE_TYPE, ELSE_TYPE > { using type = ELSE_TYPE; };
+
+template < bool B, class TRUE_TYPE = void, class ELSE_TYPE = void >
+using if_else = if_else_base < B, TRUE_TYPE, ELSE_TYPE >::type;
 
 
 
+template <class TYPE, TYPE t>
+struct integral_constant
+{
+
+   static constinit TYPE value = t;
+
+};
 
 
+template < bool b >
+using bool_constant = integral_constant < bool, b >;
 
 
+using true_type = bool_constant < true >;
 
+using false_type = bool_constant < false >;
+
+
+template < typename >
+constexpr bool is_const = false; // determine whether type argument is const qualified
+
+
+template < typename TYPE >
+constexpr bool is_const < const TYPE > = true;
 
 
 template < typename FROM, typename TO_POINTER >
@@ -181,23 +294,28 @@ template < typename T >
 concept primitive_character =
 std::is_same < T, char >::value ||
 std::is_same < T, wchar_t >::value ||
-std::is_same < T, ::ansichar >::value ||
-std::is_same < T, ::wd16char >::value ||
-std::is_same < T, ::wd32char >::value;
+std::is_same < T, ::ansi_character >::value ||
+std::is_same < T, ::wd16_character >::value ||
+std::is_same < T, ::wd32_character >::value ||
+std::is_same < T, const char >::value ||
+std::is_same < T, const wchar_t >::value ||
+std::is_same < T, const ::ansi_character >::value ||
+std::is_same < T, const ::wd16_character >::value ||
+std::is_same < T, const ::wd32_character >::value;
 
 
 template < typename T >
 concept const_c_string =
-std::is_convertible < T, const ::ansichar * >::value ||
-std::is_convertible < T, const ::wd16char * >::value ||
-std::is_convertible < T, const ::wd32char * >::value;
+std::is_convertible < T, const ::ansi_character * >::value ||
+std::is_convertible < T, const ::wd16_character * >::value ||
+std::is_convertible < T, const ::wd32_character * >::value;
 
 
 template < typename T >
 concept non_const_c_string =
-std::is_convertible < T, ::ansichar * >::value ||
-std::is_convertible < T, ::wd16char * >::value ||
-std::is_convertible < T, ::wd32char * >::value;
+std::is_convertible < T, ::ansi_character * >::value ||
+std::is_convertible < T, ::wd16_character * >::value ||
+std::is_convertible < T, ::wd32_character * >::value;
 
 template < typename T >
 concept c_string =
@@ -210,14 +328,14 @@ struct base_const_c_string
 
    using type =
       typename if_else <
-      std::is_convertible < T, const ansichar * >::value,
-      const ansichar *,
+      std::is_convertible < T, const ::ansi_character * >::value,
+      const ::ansi_character *,
       typename if_else <
-      std::is_convertible < T, const wd16char * >::value,
-      const wd16char *,
+      std::is_convertible < T, const ::wd16_character * >::value,
+      const ::wd16_character *,
       typename if_else <
-      std::is_convertible < T, const wd32char * >::value,
-      const wd32char *,
+      std::is_convertible < T, const ::wd32_character * >::value,
+      const ::wd32_character *,
       void *
       >::type
       >::type
@@ -226,19 +344,25 @@ struct base_const_c_string
 };
 
 
-template < primitive_character CHARACTER >
+template < typename ITERATOR >
 class string_base;
 
 
-using ansistring = string_base<ansichar>;
-using wd16string = string_base<wd16char>;
-using wd32string = string_base<wd32char>;
-using widestring = string_base<widechar>;
-using string = string_base < ansichar >;
-using wstring = string_base < widechar >;
+using ansi_string = string_base < const ::ansi_character * >;
+using wd16_string = string_base < const ::wd16_character * >;
+using wd32_string = string_base < const ::wd32_character * >;
+using wide_string = string_base < const ::wide_character * >;
+using string      = ::ansi_string;
+using wstring     = ::wide_string;
 
 
+template < typename HAS_AS_STRING >
+concept has_as_string = requires(HAS_AS_STRING has_as_string)
+{
 
+   { has_as_string.as_string() } -> ::std::same_as <::string>;
+
+};
 
 template<typename Type, typename RawType = Type, ::enum_type m_etypeContainer = e_type_element >
 class string_array_base;
@@ -272,9 +396,13 @@ struct boolean_type_selection<false, T1, T2> { using type = T2; };
 
 
 template < typename T1, typename T2 >
-struct largest_type {
-   using type = typename ::boolean_type_selection< (sizeof(T1) > sizeof(T2)), T1, T2>::type;
+struct largest_type_struct {
+   using type = typename ::if_else< (sizeof(T1) >= sizeof(T2)), T1, T2>;
 };
+
+
+template < typename T1, typename T2 >
+using largest_type = typename largest_type_struct<T1, T2>::type;
 
 
 template < typename T1, typename T2 >
@@ -306,11 +434,11 @@ namespace allocator
 } // namespace allocator
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer = e_type_element >
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE  >, ::enum_type m_etypeContainer = e_type_element >
 class array_base;
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE >, ::enum_type m_etypeContainer = e_type_element >
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE  >, ::enum_type m_etypeContainer = e_type_element >
 class array;
 
 template < typename FUNCTION >
@@ -369,11 +497,22 @@ template < typename BLOCK >
 concept primitive_block = requires(BLOCK block)
 {
 
-   block.get_data();
-   block.get_size();
+   block.data();
+   block.size();
+   block.length_in_bytes();
 
 };
 
+
+template < typename TYPED_BLOCK, typename ITEM_TYPE >
+concept typed_block = requires(TYPED_BLOCK typed_block, ITEM_TYPE item_type)
+{
+
+   { typed_block.data() }->::std::convertible_to<ITEM_TYPE*>;
+   typed_block.size();
+   typed_block.length_in_bytes();
+
+};
 
 template < typename CONTAINER >
 concept primitive_container = ::std::is_same < typename CONTAINER::PRIMITIVE_CONTAINER_TAG, PRIMITIVE_CONTAINER_TAG_TYPE >::value;
@@ -634,14 +773,14 @@ inline void copy(NUMBER1& number1, const NUMBER2& number2)
 template < typename CHAR_STRING >
 inline bool is_string_empty(CHAR_STRING p) { return ::is_null(p) || *p == '\0'; }
 
-inline bool is_empty(const ansichar * p) { return is_string_empty(p); }
-inline bool is_empty(const wd16char * p) { return is_string_empty(p); }
-inline bool is_empty(const wd32char * p) { return is_string_empty(p); }
+inline bool is_empty(const ::ansi_character * p) { return is_string_empty(p); }
+inline bool is_empty(const ::wd16_character * p) { return is_string_empty(p); }
+inline bool is_empty(const ::wd32_character * p) { return is_string_empty(p); }
 
 
-inline bool has_char(const ansichar * p) { return !is_empty(p); }
-inline bool has_char(const wd16char * p) { return !is_empty(p); }
-inline bool has_char(const wd32char * p) { return !is_empty(p); }
+inline bool has_char(const ::ansi_character * p) { return !is_empty(p); }
+inline bool has_char(const ::wd16_character * p) { return !is_empty(p); }
+inline bool has_char(const ::wd32_character * p) { return !is_empty(p); }
 
 
 
@@ -856,49 +995,12 @@ inline bool __is_zero(TYPE(&array)[Size]);
 
 
 
-// erase_const
-// erase_const
-// erase_const
-
-
-template<typename TYPE>
-struct erase_const_struct
-{
-
-   // erase top-level const qualifier
-   using NON_CONST_TYPE = TYPE;
-
-
-};
-
-template<typename TYPE>
-struct erase_const_struct<TYPE&>
-{
-   using NON_CONST_TYPE = TYPE&;
-};
-
-
-template<typename TYPE>
-struct erase_const_struct<const TYPE>
-{
-   using NON_CONST_TYPE = TYPE;
-};
-
-template<typename TYPE>
-struct erase_const_struct<const TYPE&>
-{
-   using NON_CONST_TYPE = TYPE&;
-};
-
-template<class TYPE>
-using non_const = typename erase_const_struct<TYPE>::NON_CONST_TYPE;
-
-struct true_type
-{
-};
-struct false_type
-{
-};
+//struct true_type
+//{
+//};
+//struct false_type
+//{
+//};
 
 
 
@@ -1158,6 +1260,84 @@ namespace acme
 
 
 } // namespace acme
+
+
+template < primitive_character CHARACTER >
+constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept
+{
+
+   if (::is_empty(pszA))
+   {
+
+      if (::is_empty(pszB))
+      {
+
+         ordering = ::std::strong_ordering::equal;
+
+         return true;
+
+      }
+      else
+      {
+
+         ordering = ::std::strong_ordering::less;
+
+         return true;
+
+      }
+
+   }
+   else if (::is_empty(pszB))
+   {
+
+      ordering = ::std::strong_ordering::greater;
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
+
+template < primitive_fundamental TYPE >
+constexpr bool equals(TYPE a, TYPE b) { return a == b; }
+
+
+template < primitive_type TYPE >
+constexpr bool equals(const TYPE & a, const TYPE & b) { return a == b; }
+
+
+template < primitive_fundamental TYPE >
+constexpr ::std::strong_ordering compare(TYPE a, TYPE b) { return ::std::strong_order(a, b); }
+
+
+template < primitive_type TYPE >
+constexpr ::std::strong_ordering compare(const TYPE & a, const TYPE & b) { return ::std::strong_order(a, b); }
+
+
+template < typename TYPE >
+constexpr memsize offset_of(const TYPE & p, const TYPE & pBegin)
+{
+
+   return ::is_set(p) ? (::memsize)(p - pBegin) : -1;
+
+}
+
+
+
+
+template<typename T>
+struct dereference_struct { using type = T; };
+template<typename T>
+struct dereference_struct<T *> { using type = T; };
+
+template < typename T >
+using dereference = typename dereference_struct < T >::type;
+
+
+
 
 
 

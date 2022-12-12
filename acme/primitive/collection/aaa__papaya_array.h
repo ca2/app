@@ -592,8 +592,8 @@ namespace acme
 
       inline ::index add(string_array & stra, const char * psz);
       inline ::index add(string_array & stra, const char & ch);
-      inline ::index add(string_array & stra, const ansistring & str);
-      inline ::index add(string_array & stra, const widestring & str);
+      inline ::index add(string_array & stra, const ansi_string & str);
+      inline ::index add(string_array & stra, const wide_string & str);
       inline ::index add(string_array & stra, const ::file::path & path);
       inline ::index add(string_array & stra, const ::payload & payload);
       inline ::index add(string_array & stra, const ::property & property);

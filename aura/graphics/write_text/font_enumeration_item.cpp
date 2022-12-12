@@ -38,7 +38,7 @@ namespace write_text
 #ifdef WINDOWS
 
 
-   font_enumeration_item::font_enumeration_item(const widechar * pwideszName) :
+   font_enumeration_item::font_enumeration_item(const ::wide_character * pwideszName) :
       m_wstrName(pwideszName)
    {
 

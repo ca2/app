@@ -5,7 +5,7 @@
 
 
 template < >
-inline u32hash u32_hash < const ansichar * >(const ansichar * psz)
+inline u32hash u32_hash < const ::ansi_character * >(const ::ansi_character * psz)
 {
 
    if (::is_null(psz) || *psz == 0)
@@ -48,7 +48,7 @@ inline u32hash u32_hash < const ansichar * >(const ansichar * psz)
 
 
 template < >
-inline u32hash u32_hash < const wd16char * >(const wd16char * psz)
+inline u32hash u32_hash < const ::wd16_character * >(const ::wd16_character * psz)
 {
 
    if (::is_null(psz) || *psz == 0)
@@ -91,7 +91,7 @@ inline u32hash u32_hash < const wd16char * >(const wd16char * psz)
 
 
 template<>
-inline u32hash u32_hash < const wd32char * >(const wd32char * psz)
+inline u32hash u32_hash < const ::wd32_character * >(const ::wd32_character * psz)
 {
 
    if (::is_null(psz) || *psz == 0)
@@ -122,11 +122,11 @@ inline u32hash u32_hash < const wd32char * >(const wd32char * psz)
 //
 //#if WCHAR_T_SIZE == 16
 //
-//    return u32_hash((const wd16char *) psz);
+//    return u32_hash((const ::wd16_character *) psz);
 //
 //#else
 //
-//    return u32_hash((const wd32char *) psz);
+//    return u32_hash((const ::wd32_character *) psz);
 //
 //#endif
 //

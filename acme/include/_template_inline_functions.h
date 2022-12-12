@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -14,6 +14,51 @@ inline void swap(A & a, B & b)
 
 }
 
+
+/// initially for __utosz_internal and __utosz
+/// by camilo on 2022-12-09 00:48 <3ThomasBorregaardSorensen!!
+template < typename TYPE >
+void reverse(TYPE * begin, TYPE * end)
+{
+
+   while (begin < end)
+   {
+
+      ::swap(*begin, *end);
+
+      begin++;
+
+      end--;
+
+   }
+
+}
+
+
+template < typename A, typename B >
+struct as_ab { A a; B b; };
+
+
+//template<typename A, typename B>
+//auto as_ab(A a, B b)
+//{
+//
+//   return _as_ab<A, B>{a, b};
+//
+//}
+
+//auto f() { return many{ string(),5.7, unmovable() }; };
+
+
+template < primitive_signed SIGNED >
+constexpr auto as_absolute_unsigned(SIGNED i)
+{
+
+   bool bNegative;
+
+   return as_ab{(std::make_unsigned<SIGNED>::type) ((bNegative = i < 0) ? -i : i), bNegative };
+
+}
 
 //inline ::u64 make64_from32(::u32 l, ::u32 h)
 //{
@@ -68,7 +113,7 @@ inline void swap(A & a, B & b)
 //}
 //
 //
-//inline bool __is_valid_string(const widechar* pwsz, memsize nMaxLength)
+//inline bool __is_valid_string(const ::wide_character* pwsz, memsize nMaxLength)
 //{
 //
 //   return ::__is_valid_address(pwsz, nMaxLength);
@@ -273,31 +318,31 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //
 //
-//inline i64 ansi_to_i64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase)
+//inline i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
 //{
 //
-//   return strtoll(psz, (ansichar **) ppszEnd, iBase);
+//   return strtoll(psz, (::ansi_character **) ppszEnd, iBase);
 //
 //}
 //
-//inline u64 ansi_to_u64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase)
+//inline u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
 //{
 //
-//   return strtoull(psz, (ansichar **) ppszEnd, iBase);
+//   return strtoull(psz, (::ansi_character **) ppszEnd, iBase);
 //
 //}
 //
 //
-//inline i32 ansi_to_i32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase)
+//inline i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
 //{
 //
 //#ifdef WINDOWS
 //
-//   return strtol(psz, (ansichar **) ppszEnd, iBase);
+//   return strtol(psz, (::ansi_character **) ppszEnd, iBase);
 //
 //#else
 //
-//   long l = strtol(psz, (ansichar **) ppszEnd, iBase);
+//   long l = strtol(psz, (::ansi_character **) ppszEnd, iBase);
 //
 //   if(l > INT_MAX)
 //   {
@@ -323,16 +368,16 @@ inline bool __sort(T1& t1, T2& t2)
 //}
 //
 //
-//inline u32 ansi_to_u32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase)
+//inline u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
 //{
 //
 //#ifdef WINDOWS
 //
-//   return strtoul(psz, (ansichar **) ppszEnd, iBase);
+//   return strtoul(psz, (::ansi_character **) ppszEnd, iBase);
 //
 //#else
 //
-//   unsigned long ul = strtoul(psz, (ansichar **) ppszEnd, iBase);
+//   unsigned long ul = strtoul(psz, (::ansi_character **) ppszEnd, iBase);
 //
 //   if(ul > UINT_MAX)
 //   {
@@ -394,6 +439,285 @@ constexpr void subtract_second_nanosecond(SECOND1 & second1, NANOSECOND1 & nanos
    nanosecond1 = nanos - extrasecond * 1'000'000'000;
 
 }
+
+
+template < typename TYPE >
+constexpr TYPE * span_zero_item(TYPE * p)
+{
+
+   TYPE t{};
+
+   while (*p == t)
+   {
+
+      p++;
+
+   }
+
+   return p;
+
+}
+
+
+template < typename TYPE, ::comparison::equality < TYPE > EQUALITY >
+constexpr const TYPE * span_zero_item(const TYPE * p, EQUALITY equality)
+{
+
+   TYPE t{};
+
+   while (equality.equals(*p, t))
+   {
+
+      p++;
+
+   }
+
+   return p;
+
+}
+
+
+template < primitive_fundamental INTEGRAL >
+constexpr ::count count_until_zero_item_type(const INTEGRAL * p)
+{
+
+   ::count c = 0;
+
+   while (*p)
+   {
+
+      p++;
+
+      c++;
+
+   }
+
+   return c;
+
+}
+
+
+
+template < primitive_character CHARACTER >
+constexpr void null_terminate(CHARACTER * & p)
+{
+
+   *p = (CHARACTER)0;
+
+}
+
+
+template < primitive_character CHARACTER >
+constexpr void append_and_step_if_true(bool b, CHARACTER *& p, CHARACTER character)
+{
+
+   if (b) *p++ = character;
+
+}
+
+
+
+template < primitive_iterator ITERATOR, primitive_iterator BEGIN >
+constexpr bool iterator_is_before_begin(ITERATOR p, BEGIN)
+{
+
+   return p.is_null();
+
+}
+
+
+
+template < primitive_iterator ITERATOR, primitive_iterator END >
+constexpr bool iterator_is_end(ITERATOR p, END)
+{
+
+   return p.is_null();
+
+}
+
+
+template < primitive_iterator ITERATOR, primitive_iterator BEGIN, primitive_iterator END >
+constexpr bool iterator_is_ok(ITERATOR p, BEGIN, END)
+{
+
+   return p.is_ok();
+
+}
+
+
+template < typename TYPE, typename BEGIN >
+constexpr bool iterator_is_before_begin(const TYPE * p, const BEGIN * begin)
+{
+
+   return p < begin;
+
+}
+
+
+template < typename TYPE, typename END >
+constexpr bool iterator_is_end(const TYPE * p, const END * end)
+{
+
+   return p >= end;
+
+}
+
+
+template < typename TYPE, typename BEGIN, typename END >
+constexpr bool iterator_is_ok(const TYPE * p, const BEGIN * begin, const END * end)
+{
+
+   return p >= begin && p < end;
+
+}
+
+
+template < typename ITEM, ::comparison::equality < ITEM > EQUALITY >
+bool is_empty(const ITEM * p, EQUALITY equality)
+{
+
+   return ::is_null(p) || equality.equals(*p, 0);
+
+}
+
+
+template < typename ITEM, ::comparison::equality < ITEM > EQUALITY >
+constexpr bool _initialize_null_terminated_contains_null_terminated(bool & b, const ITEM * pz, const ITEM * pzPrefix, EQUALITY equality)
+{
+
+   if (::is_empty(pzPrefix, equality))
+   {
+
+      b = true;
+
+      return true;
+
+   }
+
+   if (::is_empty(pz, equality))
+   {
+
+      b = false;
+
+      return true;
+
+   }
+
+
+   return false;
+
+}
+
+
+template < typename ITEM, ::comparison::equality < ITEM > EQUALITY >
+constexpr bool _null_terminated_begins_null_terminated(const ITEM * pz, const ITEM * pzPrefix, EQUALITY equality)
+{
+
+   do
+   {
+
+      if (!equality.equals(*pz, *pzPrefix))
+      {
+
+         return false;
+
+      }
+
+      pz++;
+
+      pzPrefix++;
+
+   } while (equality.equals(*pz,0) && equality.equals(*pzPrefix, 0));
+
+   return true;
+
+}
+
+
+template < typename ITEM, ::comparison::equality < ITEM > EQUALITY >
+constexpr bool null_terminated_begins_null_terminated(const ITEM * pz, const ITEM * pzPrefix, EQUALITY equality)
+{
+
+   bool b;
+
+   if (_initialize_null_terminated_contains_null_terminated(b, pz, pzPrefix, equality))
+   {
+
+      return b;
+
+   }
+
+   return _null_terminated_begins_null_terminated(pz, pzPrefix, equality);
+
+}
+
+
+#include "acme/primitive/mathematics/_.h"
+
+
+template < typename TYPE >
+TYPE * clipped_add(TYPE * p, ::count c, const non_const<TYPE> * begin, const non_const<TYPE> * end)
+{
+
+   if (c > 0)
+   {
+
+      p = minimum(p + c, end);
+
+   }
+   else
+   {
+
+      p = maximum(p + c, begin - 1);
+
+   }
+
+   return p;
+
+}
+
+
+
+
+
+template < primitive_iterator ITERATOR, typename T1, typename T2 >
+ITERATOR clipped_add(ITERATOR p, ::count c, T1, T2)
+{
+
+   if (c > 0)
+   {
+
+      while (p.is_set() && c > 0)
+      {
+
+         p = p.next();
+
+         c--;
+
+      }
+
+
+   }
+   else
+   {
+
+      while (p.is_set() && c < 0)
+      {
+
+         p = p.back();
+
+         c++;
+
+      }
+
+
+   }
+
+   return p;
+
+}
+
+
 
 
 

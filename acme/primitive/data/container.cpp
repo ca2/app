@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "container.h"
 #include "listener.h"
 
@@ -101,7 +101,7 @@ namespace data
 
       auto p = m_datamap.plookup(atom);
 
-      if (!p)
+      if (p.is_null())
       {
 
          return nullptr;
@@ -134,10 +134,10 @@ namespace data
 
       synchronization_array synca;
 
-      for(auto & pdata : m_datamap.values())
+      for(auto & data : m_datamap)
       {
 
-         synca.add_item(pdata->synchronization());
+         synca.add_item(data.element2());
 
       }
 

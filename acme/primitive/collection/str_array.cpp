@@ -4,12 +4,12 @@
 #include "acme/primitive/string/str.h"
 
 
-CLASS_DECL_ACME string_array stringa_from_strdup(ansichar ** ppParam)
+CLASS_DECL_ACME string_array stringa_from_strdup(::ansi_character ** ppParam)
 {
 
    string_array stra;
 
-   ansichar ** ppsz = ppParam;
+   ::ansi_character ** ppsz = ppParam;
 
    while (*ppsz != nullptr)
    {

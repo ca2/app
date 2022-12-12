@@ -503,12 +503,12 @@ i32 file_context::filterex_time_square(const char *pszPrefix, ::file::path_array
 
    i32 iIndex;
 
-   for (i32 i = 0; i < stra.get_size(); i++)
+   for (i32 i = 0; i < stra.size(); i++)
    {
 
       string str = stra[i].name();
 
-      if (str.begins_eat_ci(pszPrefix))
+      if (str.case_insensitive_begins_eat(pszPrefix))
       {
 
          if (str.get_length() < 2)
@@ -868,7 +868,7 @@ memsize file_context::read(const ::payload& payloadFile, void * p, filesize posi
 
    }
 
-   memsize sizeToRead = (memsize) minimum(size, pfile->get_size() - position);
+   memsize sizeToRead = (memsize) minimum(size, pfile->size() - position);
 
    if (position > 0)
    {
@@ -899,7 +899,7 @@ memory file_context::beginning(const ::payload& payloadFile, memsize size, bool 
 
    mem.set_size(size);
 
-   auto sizeRead = read(payloadFile, mem.get_data(), mem.get_size(), bNoExceptionOnFail);
+   auto sizeRead = read(payloadFile, mem.data(), mem.size(), bNoExceptionOnFail);
 
    mem.set_size(sizeRead);
 
@@ -1079,7 +1079,7 @@ void file_context::put_memory(const ::payload &payloadFile, const block & block)
    if(block.size() > 0)
    {
 
-      pfile->write(block.get_data(), block.get_size());
+      pfile->write(block.data(), block.size());
 
    }
 
@@ -1125,7 +1125,7 @@ void file_context::add_contents(const ::payload &payloadFile, const void *pvoidC
 void file_context::put_text(const ::payload& payloadFile, const ::block & block)
 {
 
-   if (block.get_data() == nullptr || block.get_size() <= 0)
+   if (block.data() == nullptr || block.size() <= 0)
    {
 
       return put_memory(payloadFile, nullptr);
@@ -1134,7 +1134,7 @@ void file_context::put_text(const ::payload& payloadFile, const ::block & block)
    else
    {
 
-      string strContents((const char *) block.get_data(), block.get_size());
+      string strContents((const char *) block.data(), block.size());
 
       ::str().fix_eol(strContents);
 
@@ -1187,10 +1187,10 @@ void file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileS
 
       memsize uRead;
 
-      while ((uRead = pfileSrc->read(mem.get_data(), mem.get_size())) > 0)
+      while ((uRead = pfileSrc->read(mem.data(), mem.size())) > 0)
       {
 
-         pfile->write(mem.get_data(), uRead);
+         pfile->write(mem.data(), uRead);
 
       }
 
@@ -1204,7 +1204,7 @@ void file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileS
 //bool file_context::put_contents(const ::payload &payloadFile, memory &mem)
 //{
 //
-//   return put_contents(payloadFile, mem.get_data(), (count) mem.get_size());
+//   return put_contents(payloadFile, mem.data(), (count) mem.size());
 //
 //}
 
@@ -1225,7 +1225,7 @@ void file_context::put_text_utf8(const ::payload &payloadFile, const ::block & b
 
    pfile->write(UTF8_BOM, STATIC_ASCII_STRING_LENGTH(UTF8_BOM));
 
-   string strContents((const char *) block.get_data(), block.get_size());
+   string strContents((const char *) block.data(), block.size());
 
    ::str().fix_eol(strContents);
 
@@ -1246,7 +1246,7 @@ void file_context::calculate_main_resource_memory()
 ::block file_context::get_main_resource_block()
 {
 
-   if(subsystem()->m_blockMatter)
+   if(subsystem()->m_blockMatter.is_set())
    {
 
       return subsystem()->m_blockMatter;
@@ -1481,14 +1481,14 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       }
 
-      for (i32 i = 0; i < listing.get_size(); i++)
+      for (i32 i = 0; i < listing.size(); i++)
       {
 
          strSrc = listing[i];
 
          strDst = strSrc;
 
-         strDst.begins_eat_ci(strDirSrc);
+         strDst.case_insensitive_begins_eat(strDirSrc);
 
          strDst = strDirDst / strDst;
 
@@ -1982,7 +1982,7 @@ void file_context::trash_that_is_not_trash(const ::file::path &psz)
 void file_context::trash_that_is_not_trash(::file::path_array& stra)
 {
 
-   if (stra.get_size() <= 0)
+   if (stra.size() <= 0)
    {
 
       return;
@@ -1993,7 +1993,7 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 
    dir()->create(strDir);
 
-   for (i32 i = 0; i < stra.get_size(); i++)
+   for (i32 i = 0; i < stra.size(); i++)
    {
 
       move(strDir / stra[i].name(), stra[i]);
@@ -2074,7 +2074,7 @@ void file_context::replace_with(const ::file::path & pathContext, const string &
 
    dir()->enumerate(listing);
 
-   for (i32 i = 0; i < listing.get_size(); i++)
+   for (i32 i = 0; i < listing.size(); i++)
    {
       
       strOldName = listing[i].name();
@@ -2326,7 +2326,7 @@ file_pointer file_context::get(const ::file::path &name)
 void file_context::set_extension(::file::path & path, const char * pszExtension)
 {
 
-   strsize iEnd = path.reverse_find('.');
+   strsize iEnd = path.rear_find('.');
 
    if (iEnd < 0)
    {
@@ -2362,13 +2362,13 @@ void file_context::normalize(string &str)
 }
 
 
-i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
+::std::strong_ordering file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 {
    string str1(psz1);
    normalize(str1);
    string str2(psz2);
    normalize(str2);
-   return str1.compare_ci(str2);
+   return str1.case_insensitive_order(str2);
 }
 
 
@@ -2449,7 +2449,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   u64 iPos;
 //
-//   for (i32 i = 0; i < stra.get_size(); i++)
+//   for (i32 i = 0; i < stra.size(); i++)
 //   {
 //      if (string_ends_ci(stra[i], ".zip"))
 //      {
@@ -2464,7 +2464,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //      write_gen_string(pfile, &ctx, strRelative);
 //      if (pfile2->open(stra[i], ::file::e_open_read | ::file::e_open_binary).failed())
 //         throw ::exception(::exception("failed"));
-//      write_n_number(pfile, &ctx, (i32)pfile2->get_size());
+//      write_n_number(pfile, &ctx, (i32)pfile2->size());
 //      while ((uRead = pfile2->read(buf, iBufSize)) > 0)
 //      {
 //         pfile->write(buf, uRead);
@@ -2668,10 +2668,10 @@ string file_context::get_hash(const ::payload &payloadFile, enum_hash ehash)
 
    memsize iRead;
 
-   while ((iRead = (memsize) pfile->read(mem.get_data(), mem.get_size())) > 0)
+   while ((iRead = (memsize) pfile->read(mem.data(), mem.size())) > 0)
    {
 
-      phasher->update({mem.get_data(), iRead});
+      phasher->update({mem.data(), iRead});
 
    }
 
@@ -2714,10 +2714,10 @@ string file_context::nessie(const ::payload &payloadFile)
 
    //memsize iRead;
 
-   //while ((iRead = (memsize)pfile->read(mem.get_data(), mem.get_size())) > 0)
+   //while ((iRead = (memsize)pfile->read(mem.data(), mem.size())) > 0)
    //{
 
-   //   WHIRLPOOL_Update(&ns, mem.get_data(), (size_t)iRead);
+   //   WHIRLPOOL_Update(&ns, mem.data(), (size_t)iRead);
 
    //}
 
@@ -2925,7 +2925,7 @@ file_pointer file_context::file_get_file(::file::path path, const ::file::e_open
 file_pointer file_context::data_get_file(string strData, const ::file::e_open &eopenFlags)
 {
 
-   ASSERT(strData.begins_ci("data:"));
+   ASSERT(strData.case_insensitive_begins("data:"));
 
    string strSample = strData.Left(4096);
 
@@ -2947,7 +2947,7 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
 
          string strEncoding = strData.Mid(iFind + 1, iEncoding - iFind - 1);
 
-         if (strEncoding.compare_ci("base64") == 0)
+         if (strEncoding.case_insensitive_order("base64") == 0)
          {
 
             ::pointer<memory_file>pmemoryfile = __new(memory_file());
@@ -3294,7 +3294,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 
    ::file::path path = payloadFile.file_path();
 
-   if (path.begins_ci("data:"))
+   if (path.case_insensitive_begins("data:"))
    {
 
       return data_get_file(path);
@@ -3390,7 +3390,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
       return create_resource_file(path);
 
    }
-   else if(path.begins_eat_ci("file://"))
+   else if(path.case_insensitive_begins_eat("file://"))
    {
 
       return create_native_file(path, eopen);
@@ -3509,7 +3509,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 //   class memory memory;
 //   memory.set_size(1024 * 256);
 //   memsize  uRead;
-//   while ((uRead = istream.read(memory, memory.get_size())) > 0)
+//   while ((uRead = istream.read(memory, memory.size())) > 0)
 //   {
 //      ostream.write(memory, uRead);
 //   }
@@ -4077,7 +4077,7 @@ void file_context::set(const ::payload & payloadFile, const ::memory_base & memo
 
    auto writer = get_writer(payloadFile);
 
-   writer->write(memory.get_data(), memory.get_size());
+   writer->write(memory.data(), memory.size());
 
    //return writer.m_estatus;
 

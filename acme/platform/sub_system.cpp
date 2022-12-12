@@ -42,8 +42,10 @@ sub_system::~sub_system()
 
       array<void *> operatingsystemlibrarya;
 
-      for (auto & plibrary : m_mapLibrary.values())
+      for (auto & pair : m_mapLibrary)
       {
+
+         auto plibrary = pair.element2();
 
          if (plibrary)
          {
@@ -315,7 +317,7 @@ string sub_system::get_env(const char * pszVariableName) const
 
          wstring wstr(*p);
 
-         if (wstr.begins_eat_ci(wstrPrefix))
+         if (wstr.case_insensitive_begins_eat(wstrPrefix))
          {
 
             return wstr;
@@ -343,7 +345,7 @@ string sub_system::get_env(const char * pszVariableName) const
 
          string str(*p);
 
-         if (str.begins_eat_ci(strPrefix))
+         if (str.case_insensitive_begins_eat(strPrefix))
          {
 
             return str;
@@ -380,7 +382,7 @@ void sub_system::set_status(int iStatus)
 void sub_system::set_resource_block(const char * pstart, const char * pend)
 {
 
-   m_blockMatter = ::block(pstart, pend - pstart);
+   m_blockMatter = ::block(pstart, pend);
 
 }
 
@@ -431,16 +433,16 @@ bool sub_system::has_factory_item(const ::atom& atom)
 
    critical_section_lock cs(&m_criticalsection);
 
-   auto passociation = m_pfactory->get_association(atom);
+   auto iterator = m_pfactory->get_association(atom);
 
-   if (::is_null(passociation))
+   if (iterator.is_null())
    {
 
       return false;
 
    }
 
-   if (::is_null(passociation->m_element2))
+   if (iterator->element2())
    {
 
       return false;

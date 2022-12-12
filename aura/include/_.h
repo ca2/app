@@ -497,10 +497,10 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////CLASS_DECL_AURA ::u32 get_last_error();
 ////CLASS_DECL_AURA void set_last_error(::u32 dw);
 ////
-////typedef char ansichar;
+////typedef char ::ansi_character;
 ////
-////i32 CLASS_DECL_AURA MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ansichar * pMultByteStr, i32 cbMultiByte, widechar * pWideCharStr, i32 cchWideChar);
-////i32 CLASS_DECL_AURA WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const widechar * pWideCharStr, i32 cchWideChar, ansichar * pMultByteStr, i32 cbMultiByte, const ::string & pDefaultChar, int_bool * pUsedDefaultChar);
+////i32 CLASS_DECL_AURA MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ::ansi_character * pMultByteStr, i32 cbMultiByte, ::wide_character * pWideCharStr, i32 cchWideChar);
+////i32 CLASS_DECL_AURA WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const ::wide_character * pWideCharStr, i32 cchWideChar, ::ansi_character * pMultByteStr, i32 cbMultiByte, const ::string & pDefaultChar, int_bool * pUsedDefaultChar);
 ////
 ////
 ////enum e_image_type
@@ -825,14 +825,14 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#define CONSIDER_AS(as, use) using use = as
 ////
 ////
-////using ansistring = string_base < ansichar >;
-////using wd16string = string_base < wd16char >;
-////using wd32string = string_base < wd32char >;
-////using widestring = string_base < widechar >;
+////using ansi_string = string_base < ::ansi_character >;
+////using wd16_string = string_base < ::wd16_character >;
+////using wd32_string = string_base < ::wd32_character >;
+////using wide_string = string_base < ::wide_character >;
 ////
 ////
-////using string = string_base < ansichar >;
-////using wstring = string_base < widechar >;
+////using string = string_base < ::ansi_character >;
+////using wstring = string_base < ::wide_character >;
 ////
 ////
 ////class machine_event_central;
@@ -1366,7 +1366,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////CLASS_DECL_AURA inline ::aura::system * get_context_system(::aura::system * psystem);
 ////
 ////
-////#define BAD_WCHAR ((widechar)(-1))
+////#define BAD_WCHAR ((::wide_character)(-1))
 ////
 ////
 ////#define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))

@@ -1,4 +1,4 @@
-// Created by camilo on 2022-04-26 06:56 <3ThomasBorregaardS�rensen!!
+﻿// Created by camilo on 2022-04-26 06:56 <3ThomasBorregaardS�rensen!!
 #pragma once
 
 
@@ -18,7 +18,7 @@ public:
 
 
    int compare(const char * psz)const { return strncmp((const char*)m_pdata, psz, m_iSize); }
-   int compare_ci(const char * psz)const { return strnicmp((const char *)m_pdata, psz, m_iSize); }
+   int case_insensitive_order(const char * psz)const { return strnicmp((const char *)m_pdata, psz, m_iSize); }
    bool operator == (const char * psz)const { return compare(psz) == 0; }
    bool operator != (const char * psz) const { return!operator==(psz); }
 

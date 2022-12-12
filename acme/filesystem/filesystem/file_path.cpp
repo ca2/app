@@ -121,7 +121,7 @@ string url_dir_name_for_relative(const char * pszPath)
 
    strDir.ends_eat("/");
 
-   strsize iFind = strDir.reverse_find("/");
+   strsize iFind = strDir.rear_find("/");
 
    if (iFind < 0)
    {
@@ -522,13 +522,13 @@ CLASS_DECL_ACME string defer_solve_relative(const char * pszRelative, const char
       return "";
    if (strAbsolute.is_empty())
       return solve_relative(strRelative);
-   if (strRelative.begins_ci("http://"))
+   if (strRelative.case_insensitive_begins("http://"))
       return solve_relative(strRelative);
-   if (strRelative.begins_ci("https://"))
+   if (strRelative.case_insensitive_begins("https://"))
       return solve_relative(strRelative);
-   if (strRelative.begins_ci("ftp://"))
+   if (strRelative.case_insensitive_begins("ftp://"))
       return solve_relative(strRelative);
-   if (strRelative.begins_ci("ext://"))
+   if (strRelative.case_insensitive_begins("ext://"))
       return solve_relative(strRelative);
    if (strRelative.begins("/"))
       return solve_relative(strRelative);
@@ -705,8 +705,8 @@ string file_path_folder(const char * path1)
 //{
 //   string str(path);
 //   strsize iPos;
-//   strsize iPos1 = str.reverse_find('\\');
-//   strsize iPos2 = str.reverse_find('/');
+//   strsize iPos1 = str.rear_find('\\');
+//   strsize iPos2 = str.rear_find('/');
 //   if (iPos1 != -1 && iPos2 != -1)
 //   {
 //      if (iPos1 > iPos2)
@@ -865,7 +865,7 @@ bool file_path_is_equal(const char * psz1, const char * psz2)
 
    auto path2 = file_path_normalize(psz2);
 
-   return path1.compare_ci(path2) == 0;
+   return path1.case_insensitive_order(path2) == 0;
 
 }
 
@@ -879,7 +879,7 @@ enum_path file_path_get_type(const ::string & str, enum_path epathForce)
       return epathForce;
 
    }
-   else if (str.begins_ci("data:"))
+   else if (str.case_insensitive_begins("data:"))
    {
 
       return e_path_data;
@@ -942,7 +942,7 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
    bool bCertainlySyntathicallyDir = solve_relative_inplace(strPath, bUrl, bOnlyNativeFileSep, iaSlash);
 
-   if (bUrl && strPath.begins_ci("file:///"))
+   if (bUrl && strPath.case_insensitive_begins("file:///"))
    {
 
       bUrl = false;

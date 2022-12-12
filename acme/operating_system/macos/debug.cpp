@@ -91,7 +91,7 @@
 //
 //
 //
-//void output_debug_string(const widechar * pOutputString)
+//void output_debug_string(const ::wide_character * pOutputString)
 //{
 //
 //   output_debug_string(string(pOutputString));

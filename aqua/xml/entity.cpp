@@ -98,24 +98,24 @@ namespace xml
 
                char * end = nullptr;
 
-               wd32char wd32char;
+               ::wd32_character ::wd32_character;
 
                if(*pes == 'X' || *pes == 'x')
                {
 
                   pes++;
 
-                  wd32char = strtol(pes, &end, 16);
+                  ::wd32_character = strtol(pes, &end, 16);
 
                }
                else
                {
 
-                  wd32char = strtol(pes, &end, 10);
+                  ::wd32_character = strtol(pes, &end, 10);
 
                }
 
-               auto iLength = wd32_to_ansi(ps, &wd32char, 1);
+               auto iLength = wd32_to_ansi(ps, &::wd32_character, 1);
 
                ps += iLength;
 

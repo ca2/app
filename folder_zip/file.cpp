@@ -232,7 +232,7 @@ void file::write(const void* pdata, memsize nCount)
 
 }
 
-   //void  file::write_to_file(file_pointer  pfileOut, const widechar * pcsz)
+   //void  file::write_to_file(file_pointer  pfileOut, const ::wide_character * pcsz)
 
    //{
 
@@ -403,7 +403,7 @@ void file::write(const void* pdata, memsize nCount)
    }
 
 
-   filesize file::get_size() const
+   filesize file::size() const
    {
 
       return m_pfolder->m_unzfileinfo.uncompressed_size;

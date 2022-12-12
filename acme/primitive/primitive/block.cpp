@@ -6,7 +6,7 @@
 
 
 block::block(const atom & atom) :
-   ::block(atom.is_text() ? atom.m_str : nullptr, atom.is_text() ? atom.m_str.length() : 0) 
+   ::block(atom.is_text() ? atom.m_str.begin() : nullptr, atom.is_text() ? atom.m_str.end() : 0)
 {
 
 }
@@ -31,7 +31,7 @@ block::block(const atom & atom) :
 //void block::to_string(string & str) const
 //{
 //
-//   str.assign((const ansichar *)get_data(), get_size());
+//   str.assign((const ::ansi_character *)data(), size());
 //
 //}
 
@@ -56,21 +56,21 @@ block::block(const atom & atom) :
 //Array < uchar, 1U >^ block::get_os_bytes(memsize pos, memsize size) const
 //{
 //
-//   if (pos > get_size())
+//   if (pos > size())
 //   {
 //
 //      throw ::exception(error_bad_argument);
 //
 //   }
 //
-//   if (size < 0 || pos + size > get_size())
+//   if (size < 0 || pos + size > size())
 //   {
 //
-//      size = get_size() - pos;
+//      size = size() - pos;
 //
 //   }
 //
-//   return ref memory_new Array < uchar, 1U >(&((uchar*)get_data())[pos], size);
+//   return ref memory_new Array < uchar, 1U >(&((uchar*)data())[pos], size);
 //
 //}
 //
@@ -104,14 +104,14 @@ block & block::from_base64(const char * psz, strsize iSize) const
 //bool block::operator == (const block & block) const
 //{
 //
-//   if (block.get_size() != get_size())
+//   if (block.size() != size())
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   return __memcmp(block.get_data(), get_data(), (size_t)get_size()) == 0;
+//   return __memcmp(block.data(), data(), (size_t)size()) == 0;
 //
 //}
 
@@ -145,18 +145,69 @@ block & block::from_base64(const char * psz, strsize iSize) const
 
 
 block::block(const memory_base & memory) :
-   block(memory.get_data(), memory.get_size())
+   block(memory.data(), memory.size())
 {
 
 }
 
 
 block::block(const memory_base * pmemory) :
-   block(pmemory->get_data(), pmemory->get_size())
+   block(pmemory->data(), pmemory->size())
 {
 
 }
 
+memsize block::find(const ::block& blockFind, memsize start) const
+{
+
+   if (start >= size())
+   {
+
+      return -1;
+
+   }
+   else if (size() <= 0)
+   {
+
+      if (blockFind.size() <= 0)
+      {
+
+         return start;
+
+      }
+      else
+      {
+
+         return -1;
+
+      }
+
+   }
+   else
+   {
+
+      if (blockFind.size() <= 0)
+      {
+
+         return start;
+
+      }
+      else if (blockFind.size() > size())
+      {
+
+         return -1;
+
+      }
+      else
+      {
+
+         return _find(blockFind, start);
+
+      }
+
+   }
+
+}
 
 
 
@@ -165,7 +216,7 @@ namespace hex
    CLASS_DECL_ACME string lower_from(const block & block)
    {
 
-      return lower_from(block.get_data(), block.get_size());
+      return lower_from(block.data(), block.size());
 
    }
 
@@ -173,7 +224,7 @@ namespace hex
    CLASS_DECL_ACME string upper_from(const block & block)
    {
 
-      return upper_from(block.get_data(), block.get_size());
+      return upper_from(block.data(), block.size());
 
    }
 

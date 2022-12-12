@@ -28,7 +28,7 @@
 
 #ifdef cplusplus
 
-inline bool IsDirSep(widechar wch);
+inline bool IsDirSep(::wide_character wch);
 
 #endif
 

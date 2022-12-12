@@ -275,12 +275,12 @@ namespace interprocess
       if (bShouldContinueTryingToHandle)
       {
 
-         if (!strMember.begins_ci("reply."))
+         if (!strMember.case_insensitive_begins("reply."))
          {
 
-            string strOrigin = propertyset["protocol"]["origin"].as_string();
+            string strOrigin = propertyset["protocol"]["origin"];
 
-            string strOriginObject = propertyset["protocol"]["origin_object"].as_string();
+            string strOriginObject = propertyset["protocol"]["origin_object"];
 
             auto iCallId = propertyset["protocol"]["call_id"].i64();
 
@@ -683,7 +683,7 @@ namespace interprocess
    //   if (bShouldContinueTryingToHandle)
    //   {
 
-   //      if (!strMember.begins_ci("reply."))
+   //      if (!strMember.case_insensitive_begins("reply."))
    //      {
 
    //         string strOrigin = propertyset["protocol"]["origin"].get_string();
@@ -768,7 +768,7 @@ namespace interprocess
       if (strObject == "application")
       {
 
-         if (strMember.begins_ci("reply."))
+         if (strMember.case_insensitive_begins("reply."))
          {
 
             ::i64 iTask = propertyset["protocol:call_id"];
@@ -910,7 +910,7 @@ namespace interprocess
                if (strPath.has_char())
                {
 
-                  if (strPath.compare_ci(a[0]) == 0)
+                  if (strPath.case_insensitive_order(a[0]) == 0)
                   {
 
                      idaPid.add(ansi_to_i32(a[1]));
@@ -1003,7 +1003,7 @@ namespace interprocess
                if (strPath.has_char())
                {
 
-                  if (strPath.compare_ci(a[0]) == 0)
+                  if (strPath.case_insensitive_order(a[0]) == 0)
                   {
 
                      bOk = true;

@@ -140,8 +140,8 @@ namespace xml
       ::count erase_child_with_attr(const char * lpszName, const char * pszAttrName, index iIndex, ::count iCount = 1, index iDepth = 1);
 
       // search node
-      node *                  rfind( const char * name, i32 iDepth = -1);
-      node *                  rfind(const char * pcszName, const property_set & set, index iDepth = -1);
+      node *                  rear_find( const char * name, i32 iDepth = -1);
+      node *                  rear_find(const char * pcszName, const property_set & set, index iDepth = -1);
       
       index find_child_with_name_and_value(const char * pszName, const char * pszValue);
       node * child_with_name_and_value(const char * pszName, const char * pszValue);

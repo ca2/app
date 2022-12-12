@@ -1,24 +1,21 @@
-#pragma once
+﻿#pragma once
 
 
 #include <limits.h>
-
-
 
 
 template < primitive_integral INTEGRAL >
 inline bool fits_i32(INTEGRAL i)
 {
 
-   if (__gt(i, MAXI32))
+   if (::comparison::comparison2 < INTEGRAL, int >().order(i, MAXI32) > 0)
    {
 
       return false;
 
    }
 
-
-   if (__lt(i, MINI32))
+   if (::comparison::comparison2 < INTEGRAL, int >().order(i, MINI32) < 0)
    {
 
       return false;

@@ -21,26 +21,26 @@
 ////CLASS_DECL_ACME ::string as_string(const bool & b);
 //
 //
-////CLASS_DECL_ACME ::string as_string(const ansichar & ansich);
-////CLASS_DECL_ACME ::string as_string(const widechar & widech);
+////CLASS_DECL_ACME ::string as_string(const ::ansi_character & ansich);
+////CLASS_DECL_ACME ::string as_string(const ::wide_character & widech);
 //
 //
 ////CLASS_DECL_ACME ::string as_string(const char * psz);
 ////CLASS_DECL_ACME ::string as_string(char * const psz);
 ////
 ////
-////CLASS_DECL_ACME ::string as_string(const wd16char * psz);
-////CLASS_DECL_ACME ::string as_string(wd16char * const psz);
+////CLASS_DECL_ACME ::string as_string(const ::wd16_character * psz);
+////CLASS_DECL_ACME ::string as_string(::wd16_character * const psz);
 ////
 ////
-////CLASS_DECL_ACME ::string as_string(const wd32char * psz);
-////CLASS_DECL_ACME ::string as_string(wd32char * const psz);
+////CLASS_DECL_ACME ::string as_string(const ::wd32_character * psz);
+////CLASS_DECL_ACME ::string as_string(::wd32_character * const psz);
 //
 //
 ////CLASS_DECL_ACME ::string as_string(const signed char & ch);
 //
 //
-////CLASS_DECL_ACME ::string as_string(const ansichar & ch);
+////CLASS_DECL_ACME ::string as_string(const ::ansi_character & ch);
 ////CLASS_DECL_ACME ::string as_string(const uchar & uch);
 //
 //
@@ -61,8 +61,8 @@
 //////
 //////CLASS_DECL_ACME ::string as_string(const ::string & strSrc);
 //////CLASS_DECL_ACME ::string as_string(const ::atom & atom);
-//////CLASS_DECL_ACME ::string as_string(const ::wd16string & wd16str);
-//////CLASS_DECL_ACME ::string as_string(const ::wd32string & wd16str);
+//////CLASS_DECL_ACME ::string as_string(const ::wd16_string & wd16str);
+//////CLASS_DECL_ACME ::string as_string(const ::wd32_string & wd16str);
 ////
 ////
 ////CLASS_DECL_ACME ::string as_string(const ::e_status & estatus);

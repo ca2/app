@@ -555,13 +555,13 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::calc_max_a()
 {
-   auto passoc = m_ab.get_start();
+   auto passoc = m_ab.begin();
    T iMaxA = -1;
-   while(passoc != nullptr)
+   while(passoc.is_set())
    {
       if(passoc->element1() > iMaxA)
          iMaxA = passoc->element1();
-      passoc = m_ab.get_next(passoc);
+      passoc++;
    }
    return iMaxA;
 }
@@ -569,13 +569,13 @@ T biunique < T, T_to_T > ::calc_max_a()
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::calc_max_b()
 {
-   auto passoc = m_ba.get_start();
+   auto passoc = m_ba.begin();
    T iMaxB = -1;
-   while(passoc != nullptr)
+   while(passoc.is_set())
    {
       if(passoc->element1() > iMaxB)
          iMaxB = passoc->element1();
-      passoc = m_ba.get_next(passoc);
+      passoc++;
    }
    return iMaxB;
 }

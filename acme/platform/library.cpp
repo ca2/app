@@ -446,7 +446,7 @@ namespace acme
 //
 //         strPrefix += "_";
 //
-//         strName.begins_eat_ci(strPrefix);
+//         strName.case_insensitive_begins_eat(strPrefix);
 //
 //         return strName;
 //
@@ -567,7 +567,7 @@ namespace acme
 //
 //#elif defined(_UWP)
 //
-//      //      strLibraryName.begins_eat_ci("m_");
+//      //      strLibraryName.case_insensitive_begins_eat("m_");
 //
 //#endif
 //
@@ -622,7 +622,7 @@ namespace acme
 //
 //#elif defined(_UWP)
 //
-//      //      strLibraryName.begins_eat_ci("m_");
+//      //      strLibraryName.case_insensitive_begins_eat("m_");
 //
 //#endif
 //
@@ -791,9 +791,9 @@ namespace acme
 ////
 ////         strPrefix += "_";
 ////
-////         strAppId.begins_eat_ci(strPrefix);
+////         strAppId.case_insensitive_begins_eat(strPrefix);
 ////
-////         //if(strAppId.begins_eat_ci(strPrefix))
+////         //if(strAppId.case_insensitive_begins_eat(strPrefix))
 ////         {
 ////
 ////            stra.add(strAppId);
@@ -1001,7 +1001,7 @@ namespace acme
 CLASS_DECL_ACME string implementation_name(const ::string& strComponent, const ::string& strImplementation)
 {
 
-   if (strImplementation.begins_ci(strComponent) && strImplementation[strComponent.length()] == '_')
+   if (strImplementation.case_insensitive_begins(strComponent) && strImplementation[strComponent.length()] == '_')
    {
 
       return strImplementation.c_str() + strComponent.length() + 1;
@@ -1044,10 +1044,10 @@ CLASS_DECL_ACME string library_filter(const ::string& str)
 
    strLibrary = str;
 
-   strLibrary.ends_eat_ci(".dll");
-   strLibrary.ends_eat_ci(".so");
-   strLibrary.ends_eat_ci(".dylib");
-   strLibrary.begins_eat_ci("lib");
+   strLibrary.case_insensitive_ends_eat(".dll");
+   strLibrary.case_insensitive_ends_eat(".so");
+   strLibrary.case_insensitive_ends_eat(".dylib");
+   strLibrary.case_insensitive_begins_eat("lib");
 
    return strLibrary;
 

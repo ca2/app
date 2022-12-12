@@ -61,9 +61,9 @@ namespace ios
 //         for(i32 i = 0; i < iLevelCount; i++)
 //         {
 //
-//            strsize iFind1 = str.reverse_find('/', iLast);
+//            strsize iFind1 = str.rear_find('/', iLast);
 //
-//            strsize iFind2 = str.reverse_find('\\', iLast);
+//            strsize iFind2 = str.rear_find('\\', iLast);
 //
 //            strsize iFind = maximum(iFind1, iFind2);
 //
@@ -588,7 +588,7 @@ namespace ios
 //
 //         string str = name_(path);
 //
-//         strsize iPos = str.reverse_find('.');
+//         strsize iPos = str.rear_find('.');
 //
 //         if(iPos >= 0)
 //         {
@@ -613,9 +613,9 @@ namespace ios
 //
 //         strsize iPos;
 //
-//         strsize iPos1 = str.reverse_find('\\');
+//         strsize iPos1 = str.rear_find('\\');
 //
-//         strsize iPos2 = str.reverse_find('/');
+//         strsize iPos2 = str.rear_find('/');
 //
 //         if(iPos1 >= 0 && iPos2 >= 0)
 //         {
@@ -662,7 +662,7 @@ namespace ios
 //
 //         string str = name_(path);
 //
-//         strsize iPos = str.reverse_find('.');
+//         strsize iPos = str.rear_find('.');
 //
 //         if(iPos >= 0)
 //         {
@@ -1238,7 +1238,7 @@ namespace ios
 //
 //      void file_system::set_extension(string & strFile, const ::string & pszExtension)
 //      {
-//         strsize iEnd = strFile.reverse_find('.');
+//         strsize iEnd = strFile.rear_find('.');
 //         if(iEnd < 0)
 //            iEnd = strFile.get_length();
 //         strFile = strFile.Left(iEnd) + ::str().has_char(pszExtension, ".");

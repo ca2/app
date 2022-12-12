@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "file_application.h"
 #include "audio/audio.h"
 #include "acme/parallelization/event.h"
@@ -42,7 +42,7 @@ namespace multimedia
 
 #ifndef _UWP
 
-      if (strPath.begins_ci("rtp://") || strPath.begins_ci("rtprx://"))
+      if (strPath.case_insensitive_begins("rtp://") || strPath.case_insensitive_begins("rtprx://"))
       {
 
          auto psystem = acmesystem()->m_paquasystem;

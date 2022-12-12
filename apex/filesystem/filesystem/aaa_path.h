@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace file
@@ -295,8 +295,8 @@ namespace file
       path & operator = (const wstring & wstr);
       path & operator += (const wstring & wstr);
 
-      path & operator = (const widechar * psz);
-      path & operator += (const widechar * psz);
+      path & operator = (const ::wide_character * psz);
+      path & operator += (const ::wide_character * psz);
 
       //path operator * () const;
 
@@ -401,7 +401,7 @@ namespace file
 
    }
 
-   CLASS_DECL_APEX bool begins_eat_ci(string & str, const char * pcszPrefix);
+   CLASS_DECL_APEX bool case_insensitive_begins_eat(string & str, const char * pcszPrefix);
 
 
 
@@ -422,7 +422,7 @@ CLASS_DECL_APEX ::file::path xxxxnode_full_file_path(file::path path);
 CLASS_DECL_APEX ::file::path __xxxnode_full_file_path(file::path path);
 
 
-inline ::file::path CLASS_DECL_APEX operator / (const ansichar * psz, const ::file::path & pathConcat)
+inline ::file::path CLASS_DECL_APEX operator / (const ::ansi_character * psz, const ::file::path & pathConcat)
 {
 
    string str(psz);

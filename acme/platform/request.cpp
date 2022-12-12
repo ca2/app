@@ -45,7 +45,7 @@ void request::initialize_create(arguments arguments)
          //}
          
          // estatus = 
-         initialize_command_line2(arg.as_string());
+         initialize_command_line2(arg);
 
          //if (!estatus)
          //{
@@ -363,31 +363,31 @@ void request::ParseParamFlag(const ::string& strParam)
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if (strParam.compare_ci("point_i32") == 0)
+   if (strParam.case_insensitive_order("point_i32") == 0)
    {
 
       m_ecommand = e_command_file_print_to;
 
    }
-   else if (strParam.compare_ci("point_i32") == 0)
+   else if (strParam.case_insensitive_order("point_i32") == 0)
    {
 
       m_ecommand = e_command_file_print;
 
    }
-   else if (strParam.compare_ci("Unregister") == 0 || strParam.compare_ci("Unregserver") == 0)
+   else if (strParam.case_insensitive_order("Unregister") == 0 || strParam.case_insensitive_order("Unregserver") == 0)
    {
 
       m_ecommand = e_command_app_unregister;
 
    }
-   else if (strParam.compare_ci("dde") == 0)
+   else if (strParam.case_insensitive_order("dde") == 0)
    {
 
       m_ecommand = e_command_file_dde;
 
    }
-   else if (strParam.compare_ci("Embedding") == 0)
+   else if (strParam.case_insensitive_order("Embedding") == 0)
    {
 
       m_bRunEmbedded = true;
@@ -395,7 +395,7 @@ void request::ParseParamFlag(const ::string& strParam)
       m_bShowSplash = false;
 
    }
-   else if (strParam.compare_ci("Automation") == 0)
+   else if (strParam.case_insensitive_order("Automation") == 0)
    {
 
       m_bRunAutomated = true;

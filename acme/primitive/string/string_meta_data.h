@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -10,7 +10,7 @@ inline STRING & string_concatenate(STRING & strResult, const typename STRING::CH
 
 //template < typename CHARACTER_TYPE >
 //class string_buffer;
-#include "acme/primitive/primitive/natural.h"
+#include "acme/primitive/primitive/natural_pointer.h"
 
 
 template < primitive_character CHARACTER >
@@ -19,8 +19,7 @@ class string_meta_data :
 {
 public:
 
-
-   typedef CHARACTER                               CHARACTER_TYPE;
+   
    typedef string_meta_data < CHARACTER >          STRING_META_DATA;
 
    using meta_data < CHARACTER >::meta_data;
@@ -39,28 +38,28 @@ public:
    inline void set_length(::strsize strsize);
    inline void set_data_length(::strsize strsize);
 
-   operator const CHARACTER_TYPE * () const noexcept { return this->m_pdata; }
+   operator const CHARACTER * () const noexcept { return this->begin(); }
 
-   operator CHARACTER_TYPE * () noexcept { return this->m_pdata; }
+   operator CHARACTER * () noexcept { return this->begin(); }
 
-   const CHARACTER_TYPE * c_str() const noexcept { return this->m_pdata; }
+   const CHARACTER * c_str() const noexcept { return this->begin(); }
 
-   CHARACTER_TYPE * data() const noexcept { return this->m_pdata; }
+   //CHARACTER * begin() const noexcept { return this->m_pdata; }
 
-
+   //CHARACTER * end() const noexcept { return this->begin() + this->length(); }
 
 
 };
 
 
 template < >
-CLASS_DECL_ACME natural_meta_data < string_meta_data < ansichar > > * __nil < natural_meta_data < string_meta_data < ansichar > > >();
+CLASS_DECL_ACME natural_meta_data < string_meta_data < ::ansi_character > > * __nil < natural_meta_data < string_meta_data < ::ansi_character > > >();
 
 template < >
-CLASS_DECL_ACME natural_meta_data < string_meta_data < wd16char > > * __nil < natural_meta_data < string_meta_data < wd16char > > >();
+CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd16_character > > * __nil < natural_meta_data < string_meta_data < ::wd16_character > > >();
 
 template < >
-CLASS_DECL_ACME natural_meta_data < string_meta_data < wd32char > > * __nil < natural_meta_data < string_meta_data < wd32char > > >();
+CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __nil < natural_meta_data < string_meta_data < ::wd32_character > > >();
 
 
 

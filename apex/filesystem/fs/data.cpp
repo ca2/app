@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "data.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/primitive/data/listener.h"
@@ -82,7 +82,7 @@ namespace fs
    //      return pszPath;
    //   while(iCount > 0)
    //   {
-   //      iFind = strPath.reverse_find('/', iStart);
+   //      iFind = strPath.rear_find('/', iStart);
    //      strsize iPos = iFind - 1;
    //      if(iPos >= 0 && strPath[iPos] == '/')
    //      {
@@ -93,7 +93,7 @@ namespace fs
    //            {
    //               iPos--;
    //               // t12n dedicaverse comments : protocol name
-   //               iFind = strPath.reverse_find('/', iPos);
+   //               iFind = strPath.rear_find('/', iPos);
    //               if(iFind < 0)
    //                  iFind = 0;
    //            }
@@ -263,7 +263,7 @@ namespace fs
    bool data::is_link(const ::file::path & psz)
    {
 
-      return psz.ends_ci(".lnk");
+      return psz.case_insensitive_ends(".lnk");
 
    }
 

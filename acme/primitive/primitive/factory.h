@@ -566,16 +566,16 @@ namespace factory
 
       critical_section_lock cs(&((factory*)this)->m_criticalsection);
 
-      auto p = this->plookup(atom);
+      auto iterator = this->plookup(atom);
 
-      if (!p)
+      if (iterator.is_null())
       {
 
          return nullptr;
 
       }
 
-      return p->m_element2;
+      return iterator->m_element2;
 
    }
 
@@ -641,7 +641,7 @@ namespace factory
 
    //   stream >> strText;
 
-   //   if (strText.is_empty() || strText.begins_eat_ci("factoryless://"))
+   //   if (strText.is_empty() || strText.case_insensitive_begins_eat("factoryless://"))
    //   {
 
    //      if (p && __type_name(p)) == strText

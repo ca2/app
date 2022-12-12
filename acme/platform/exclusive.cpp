@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "exclusive.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/platform/node.h"
@@ -76,7 +76,7 @@ namespace acme
 //
 //      ::file::path path;
 //
-//      if(strId.begins_ci("Local\\"))
+//      if(strId.case_insensitive_begins("Local\\"))
 //      {
 //
 //         path = pparticle->acmedirectory()->home() / ".config/acme";

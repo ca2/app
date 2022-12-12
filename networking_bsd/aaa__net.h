@@ -48,17 +48,17 @@
 //#endif
 //
 //
-//CLASS_DECL_NETWORKING_BSD void from_string(in6_addr & addr, const ansichar * psz);
+//CLASS_DECL_NETWORKING_BSD void from_string(in6_addr & addr, const ::ansi_character * psz);
 //CLASS_DECL_NETWORKING_BSD ::string as_string(const in6_addr & addr);
-//CLASS_DECL_NETWORKING_BSD void from_string(in_addr & addr, const ansichar * psz);
+//CLASS_DECL_NETWORKING_BSD void from_string(in_addr & addr, const ::ansi_character * psz);
 //CLASS_DECL_NETWORKING_BSD ::string as_string(const in_addr & addr);
 //CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr_in & addr);
 //CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr_in6 & addr);
-////CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in & addr, const ansichar * psz);
-////CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in6 & addr, const ansichar * psz);
+////CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in & addr, const ::ansi_character * psz);
+////CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in6 & addr, const ::ansi_character * psz);
 //#ifdef BSD_STYLE_SOCKETS
 //CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr & addr);
-////CLASS_DECL_NETWORKING_BSD void from_string(sockaddr & addr, ansichar * psz);
+////CLASS_DECL_NETWORKING_BSD void from_string(sockaddr & addr, ::ansi_character * psz);
 //#endif
 //
 //

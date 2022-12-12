@@ -414,9 +414,9 @@ namespace dir
 //    for(i32 i = 0; i < iLevelCount; i++)
 //    {
 
-//       strsize iFind1 = str.reverse_find('/', iLast);
+//       strsize iFind1 = str.rear_find('/', iLast);
 
-//       strsize iFind2 = str.reverse_find('\\', iLast);
+//       strsize iFind2 = str.rear_find('\\', iLast);
 
 //       strsize iFind = maximum(iFind1, iFind2);
 
@@ -881,9 +881,9 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
       }
 
-      strsize iPos1 = path.reverse_find('/',iEnd);
+      strsize iPos1 = path.rear_find('/',iEnd);
 
-      strsize iPos2 = path.reverse_find('\\',iEnd);
+      strsize iPos2 = path.rear_find('\\',iEnd);
 
       strsize iPos = maximum(maximum(iPos1, iPos2), 0);
 

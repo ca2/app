@@ -661,7 +661,7 @@ void thread::thread_loop()
 //               output_debug_string("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from wave_player");
 //
 //            }
-//            else if(strType.ends_ci("out"))
+//            else if(strType.case_insensitive_ends("out"))
 //            {
 //
 //               output_debug_string("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from out");
@@ -1005,7 +1005,7 @@ bool thread::raw_pump_message()
                output_debug_string("!xxGetMessage !xxpump_message xxthread::run from wave_player");
 
             }
-            else if(strType.ends_ci("out"))
+            else if(strType.case_insensitive_ends("out"))
             {
 
                output_debug_string("!xxGetMessage !xxpump_message xxthread::run from out");
@@ -1572,7 +1572,7 @@ void thread::destroy()
          output_debug_string("I am wave_player xxpost_quit from wave_player\n");
 
       }
-      else if (strType.ends_ci("out"))
+      else if (strType.case_insensitive_ends("out"))
       {
 
          output_debug_string("I am out xxpost_quit from out\n");
@@ -2719,7 +2719,7 @@ void thread::task_osinit()
    //      if (!pthreadParent->task_add(this))
    //      {
 
-   //         if (pthreadParent->m_atom.begins_ci("predicate_thread") && m_atom.begins_ci("predicate_thread"))
+   //         if (pthreadParent->m_atom.case_insensitive_begins("predicate_thread") && m_atom.case_insensitive_begins("predicate_thread"))
    //         {
 
    //            pthreadParent->task_erase(this);
@@ -3274,7 +3274,7 @@ void thread::on_task_init()
 //      output_debug_string("I am xxthread::main from wave_player");
 //
 //   }
-//   else if(strType.ends_ci("out"))
+//   else if(strType.case_insensitive_ends("out"))
 //   {
 //
 //      output_debug_string("I am xxthread::main from out");
@@ -3334,7 +3334,7 @@ void thread::on_task_init()
 //      output_debug_string("after run xxthread::main from wave_player");
 //
 //   }
-//   else if(strType.ends_ci("out"))
+//   else if(strType.case_insensitive_ends("out"))
 //   {
 //
 //      output_debug_string("after run xxthread::main from out");

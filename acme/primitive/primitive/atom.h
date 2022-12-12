@@ -19,11 +19,16 @@ class lparam;
 
 
 
-// Lets (AMajor.AMinor) (BMajor.BMinor)
-// compare_square(AMajor - BMajor, AMinor - BMinor)
-// Maybe it is better to cache MAJOR_COMPARISON into a variable?
-#define __atom_compare_square(MAJOR_COMPARISON, MINOR_COMPARISON) \
-((__atom_sgn(MAJOR_COMPARISON) != 0) ? (__atom_sgn(MAJOR_COMPARISON)) : (__atom_sgn(MINOR_COMPARISON)))
+//// Lets (AMajor.AMinor) (BMajor.BMinor)
+//// order_square(AMajor - BMajor, AMinor - BMinor)
+//// Maybe it is better to cache MAJOR_COMPARISON into a variable?
+//typename < typename ORDERING >
+//constexpr ::std::strong_ordering order²(::std::strong_ordering orderingMajor, ORDERING ordering)
+//{
+//
+//   return orderingMajor != 0 ? orderingMajor : orderingMinor;
+//
+//}
 
 
 
@@ -50,10 +55,10 @@ int __atom_sgn(T x)
 }
 
 
-//#define __atom_safe_strcmp(a, b) ::str().compare(a, b)
+//#define __atom_safe_strcmp(a, b) ::str().order(a, b)
 //
 //
-//#define __atom_safe_stricmp(a, b) ::str().compare_ci(a, b)
+//#define __atom_safe_stricmp(a, b) ::str().case_insensitive_order(a, b)
 //
 //
 //#define __atom_str_begins(a, b) string_begins(a, b)
@@ -240,7 +245,7 @@ public:
       e_type_null = -1,
 
       e_type_integer = 0,
-      e_type_id,
+      e_type_atom,
       e_type_factory,
       e_type_task_tool,
       e_type_timer,
@@ -253,10 +258,10 @@ public:
       e_type_update,
       e_type_dialog_result,
       e_type_impact,
-      e_type_event,
+      e_type_happening,
 
       e_type_text = 1ull << 16,
-      e_type_id_text = e_type_id | e_type_text,
+      e_type_id_text = e_type_atom | e_type_text,
       e_type_factory_text = e_type_factory | e_type_text,
       e_type_task_tool_text = e_type_task_tool | e_type_text,
       e_type_timer_text = e_type_timer | e_type_text,
@@ -267,7 +272,7 @@ public:
       e_type_has_command_handler_text = e_type_has_command_handler | e_type_text,
       e_type_update_text = e_type_update | e_type_text,
       e_type_impact_text = e_type_impact | e_type_text,
-      e_type_event_text = e_type_event | e_type_text,
+      e_type_happening_text = e_type_happening | e_type_text,
 
 
    };
@@ -286,7 +291,7 @@ public:
       enum_timer           m_etimer;
       enum_message         m_emessage;
       enum_dialog_result   m_edialogresult;
-      enum_event           m_eevent;
+      enum_happening       m_ehappening;
       ::string             m_str;
       ::iptr               m_iBody;
 
@@ -317,7 +322,7 @@ public:
    inline atom(enum_task_tool etasktool);
    inline atom(enum_timer etimer);
    inline atom(enum_dialog_result edialogresult);
-   inline atom(enum_event eevent);
+   inline atom(enum_happening eevent);
    inline atom(enum_type etypeAdd, const atom & atom);
    inline atom(const atom & atom);
    atom(const char * psz);
@@ -410,93 +415,95 @@ public:
    bool is_update() const { return _is_compounded(e_type_update); }
 
 
-   inline int compare(const atom& atom) const;
+   //inline ::std::strong_ordering order(const atom& atom) const;
    inline bool operator == (const atom& atom) const;
-   inline bool operator != (const atom & atom) const;
-   inline bool operator < (const atom & atom) const;
-   inline bool operator <= (const atom & atom) const;
-   inline bool operator > (const atom & atom) const;
-   inline bool operator >= (const atom & atom) const;
+   inline ::std::strong_ordering operator <=> (const atom & atom) const;
+   //inline bool operator < (const atom & atom) const;
+   //inline bool operator <= (const atom & atom) const;
+   //inline bool operator > (const atom & atom) const;
+   //inline bool operator >= (const atom & atom) const;
 
 
-   inline int compare(const char * psz) const;
+   //inline ::std::strong_ordering order(const char * psz) const;
    inline bool operator == (const char * psz) const;
-   inline bool operator != (const char * psz) const;
-   inline bool operator < (const char * psz) const;
-   inline bool operator <= (const char * psz) const;
-   inline bool operator > (const char * psz) const;
-   inline bool operator >= (const char * psz) const;
+   inline ::std::strong_ordering operator <=> (const char * psz) const;
+   //inline bool operator < (const char * psz) const;
+   //inline bool operator <= (const char * psz) const;
+   //inline bool operator > (const char * psz) const;
+   //inline bool operator >= (const char * psz) const;
 
 
-#ifndef NO_TEMPLATE
+//#ifndef NO_TEMPLATE
 
 
-   inline int compare(const ::string & str) const;
+   //inline ::std::strong_ordering order(const ::string & str) const;
    inline bool operator == (const ::string & str) const;
-   inline bool operator != (const ::string & str) const;
-   inline bool operator < (const ::string & str) const;
-   inline bool operator <= (const ::string & str) const;
-   inline bool operator > (const ::string & str) const;
-   inline bool operator >= (const ::string & str) const;
+   inline ::std::strong_ordering operator <=>(const ::string & str) const;
+   //inline bool operator < (const ::string & str) const;
+   //inline bool operator <= (const ::string & str) const;
+   //inline bool operator > (const ::string & str) const;
+   //inline bool operator >= (const ::string & str) const;
 
 
 
-   template < primitive_integral INTEGRAL >
-   inline int compare(INTEGRAL i) const;
+   //template < primitive_integral INTEGRAL >
+   //inline ::std::strong_ordering order(INTEGRAL i) const;
+
    template < primitive_integral INTEGRAL >
    inline bool operator == (INTEGRAL i) const;
+
    template < primitive_integral INTEGRAL >
-   inline bool operator != (INTEGRAL i) const;
-   template < primitive_integral INTEGRAL >
-   inline bool operator < (INTEGRAL i) const;
-   template < primitive_integral INTEGRAL >
-   inline bool operator <= (INTEGRAL i) const;
-   template < primitive_integral INTEGRAL >
-   inline bool operator > (INTEGRAL i) const;
-   template < primitive_integral INTEGRAL >
-   inline bool operator >= (INTEGRAL i) const;
+   inline ::std::strong_ordering operator <=> (INTEGRAL i) const;
+   //template < primitive_integral INTEGRAL >
+   //inline bool operator < (INTEGRAL i) const;
+   //template < primitive_integral INTEGRAL >
+   //inline bool operator <= (INTEGRAL i) const;
+   //template < primitive_integral INTEGRAL >
+   //inline bool operator > (INTEGRAL i) const;
+   //template < primitive_integral INTEGRAL >
+   //inline bool operator >= (INTEGRAL i) const;
 
 
-#endif // !NO_TEMPLATE
+//#endif // !NO_TEMPLATE
 
 
-   inline int compare(::enum_id i) const;
+   //inline ::std::strong_ordering order(::enum_id eid) const;
    inline bool operator == (::enum_id eid) const;
-   inline bool operator != (::enum_id eid) const;
-   inline bool operator < (::enum_id eid) const;
-   inline bool operator <= (::enum_id eid) const;
-   inline bool operator > (::enum_id eid) const;
-   inline bool operator >= (::enum_id eid) const;
+   inline ::std::strong_ordering operator <=> (::enum_id eid) const;
+   //inline bool operator < (::enum_id eid) const;
+   //inline bool operator <= (::enum_id eid) const;
+   //inline bool operator > (::enum_id eid) const;
+   //inline bool operator >= (::enum_id eid) const;
 
 
-   inline int compare(ENUM_ID EID) const { return compare((::enum_id)EID); }
-   inline bool operator == (ENUM_ID EID) const { return operator==((::enum_id)EID); }
-   inline bool operator != (ENUM_ID EID) const { return operator!=((::enum_id)EID); }
-   inline bool operator < (ENUM_ID EID) const { return operator<((::enum_id)EID); }
-   inline bool operator <= (ENUM_ID EID) const { return operator<=((::enum_id)EID); }
-   inline bool operator > (ENUM_ID EID) const { return operator>((::enum_id)EID); }
-   inline bool operator >= (ENUM_ID EID) const { return operator>=((::enum_id)EID); }
+   //inline ::std::strong_ordering order(ENUM_ID EID) const { return order((::enum_id)EID); }
+   inline bool operator == (ENUM_ID EID) const { return *this == (::enum_id)EID; }
+   inline ::std::strong_ordering operator <=> (ENUM_ID EID) const { return *this <=> (::enum_id)EID; }
+   //inline bool operator < (ENUM_ID EID) const { return operator<((::enum_id)EID); }
+   //inline bool operator <= (ENUM_ID EID) const { return operator<=((::enum_id)EID); }
+   //inline bool operator > (ENUM_ID EID) const { return operator>((::enum_id)EID); }
+   //inline bool operator >= (ENUM_ID EID) const { return operator>=((::enum_id)EID); }
 
 
-   inline int compare(::enum_message emessage) const;
+   //inline ::std::strong_ordering order(::enum_message emessage) const;
    inline bool operator == (::enum_message emessage) const;
-   inline bool operator != (::enum_message emessage) const;
-   inline bool operator < (::enum_message emessage) const;
-   inline bool operator <= (::enum_message emessage) const;
-   inline bool operator > (::enum_message emessage) const;
-   inline bool operator >= (::enum_message emessage) const;
+   inline ::std::strong_ordering operator <=> (::enum_message emessage) const;
+   //inline bool operator < (::enum_message emessage) const;
+   //inline bool operator <= (::enum_message emessage) const;
+   //inline bool operator > (::enum_message emessage) const;
+   //inline bool operator >= (::enum_message emessage) const;
 
 
-   inline int compare(ENUM_MESSAGE EID) const { return compare((::enum_message)EID); }
-   inline bool operator == (ENUM_MESSAGE EID) const { return operator==((::enum_message)EID); }
-   inline bool operator != (ENUM_MESSAGE EID) const { return operator!=((::enum_message)EID); }
-   inline bool operator < (ENUM_MESSAGE EID) const { return operator<((::enum_message)EID); }
-   inline bool operator <= (ENUM_MESSAGE EID) const { return operator<=((::enum_message)EID); }
-   inline bool operator > (ENUM_MESSAGE EID) const { return operator>((::enum_message)EID); }
-   inline bool operator >= (ENUM_MESSAGE EID) const { return operator>=((::enum_message)EID); }
+   //inline ::std::strong_ordering order(ENUM_MESSAGE EID) const { return order((::enum_message)EID); }
+   inline bool operator == (ENUM_MESSAGE EID) const { return *this == (::enum_message)EID; }
+   inline ::std::strong_ordering operator <=> (ENUM_MESSAGE EID) const { return *this <=> (::enum_message)EID; }
+   //inline bool operator < (ENUM_MESSAGE EID) const { return operator<((::enum_message)EID); }
+   //inline bool operator <= (ENUM_MESSAGE EID) const { return operator<=((::enum_message)EID); }
+   //inline bool operator > (ENUM_MESSAGE EID) const { return operator>((::enum_message)EID); }
+   //inline bool operator >= (ENUM_MESSAGE EID) const { return operator>=((::enum_message)EID); }
 
 
-   //inline int compare(::enum_topic etopic) const;
+   //inline int order(::enum_topic etopic) const;
    //inline bool operator == (::enum_topic etopic) const;
    //inline bool operator != (::enum_topic etopic) const;
    //inline bool operator < (::enum_topic etopic) const;
@@ -505,22 +512,22 @@ public:
    //inline bool operator >= (::enum_topic etopic) const;
 
 
-   inline int compare(::enum_dialog_result edialogresult) const;
+   //inline ::std::strong_ordering order(::enum_dialog_result edialogresult) const;
    inline bool operator == (::enum_dialog_result edialogresult) const;
-   inline bool operator != (::enum_dialog_result edialogresult) const;
-   inline bool operator < (::enum_dialog_result edialogresult) const;
-   inline bool operator <= (::enum_dialog_result edialogresult) const;
-   inline bool operator > (::enum_dialog_result edialogresult) const;
-   inline bool operator >= (::enum_dialog_result edialogresult) const;
+   inline ::std::strong_ordering operator <=> (::enum_dialog_result edialogresult) const;
+   //inline bool operator < (::enum_dialog_result edialogresult) const;
+   //inline bool operator <= (::enum_dialog_result edialogresult) const;
+   //inline bool operator > (::enum_dialog_result edialogresult) const;
+   //inline bool operator >= (::enum_dialog_result edialogresult) const;
 
 
-   inline int compare(::enum_event i) const;
-   inline bool operator == (::enum_event eid) const;
-   inline bool operator != (::enum_event eid) const;
-   inline bool operator < (::enum_event eid) const;
-   inline bool operator <= (::enum_event eid) const;
-   inline bool operator > (::enum_event eid) const;
-   inline bool operator >= (::enum_event eid) const;
+   //inline ::std::strong_ordering order(::enum_happening ehappening) const;
+   inline bool operator == (::enum_happening ehappening) const;
+   inline ::std::strong_ordering operator <=> (::enum_happening ehappening) const;
+   //inline bool operator < (::enum_happening ehappening) const;
+   //inline bool operator <= (::enum_happening ehappening) const;
+   //inline bool operator > (::enum_happening ehappening) const;
+   //inline bool operator >= (::enum_happening ehappening) const;
 
 
    atom & operator = (const atom & atom);
@@ -563,12 +570,12 @@ public:
    //inline operator enum_dialog_result () const;
 
 
-   ::string as_string() const;
+   //::string as_string() const;
    //::string string() const;
-   //inline string as_string() const;
+   inline string as_string() const;
 
 
-   operator ::string() const { return as_string(); }
+   operator ::string() const { return ::move(as_string()); }
 
 
    inline bool is_null() const;
@@ -580,15 +587,15 @@ public:
    inline void clear();
    
 
-   inline int CompareNoCase(const char * psz) const { return compare_ci(psz); }
-   inline int compare_ci(const char * psz) const;
+   //inline ::std::strong_ordering CompareNoCase(const char * psz) const { return case_insensitive_order(psz); }
+   inline ::std::strong_ordering case_insensitive_order(const char * psz) const;
 
 
    inline bool begins(const char * pszPrefix) const;
-   inline bool begins_ci(const char * pszPrefix) const;
+   inline bool case_insensitive_begins(const char * pszPrefix) const;
 
    inline bool ends(const char* pszSuffix) const;
-   inline bool ends_ci(const char* pszSuffix) const;
+   inline bool case_insensitive_ends(const char* pszSuffix) const;
 
    inline bool is_text() const { return m_etype >= e_type_text; }
    inline bool is_integer() const { return m_etype >= 0 && m_etype < e_type_text; }
@@ -638,7 +645,7 @@ inline atom::atom(enum_type etype)
 
 
 inline atom::atom(enum_id eid) :
-   m_etype(e_type_id),
+   m_etype(e_type_atom),
    m_i((::iptr) eid) // used m_i to reset 64-bit field
 {
 
@@ -734,8 +741,8 @@ inline atom::atom(enum_dialog_result edialogresult) :
 }
 
 
-inline atom::atom(enum_event eevent) :
-   m_etype(e_type_event),
+inline atom::atom(enum_happening eevent) :
+   m_etype(e_type_happening),
    m_i((::iptr)eevent) // used m_i to reset 64-bit field
 {
 
@@ -835,63 +842,71 @@ inline atom::atom(UNSIGNED u)
 #endif
 
 
-inline int atom::compare(const atom & atom) const
-{
-
-   auto compare = m_etype - atom.m_etype;
-
-   return __atom_compare_square(compare, is_text() ? m_str.compare(atom.m_str) : (m_iBody - atom.m_iBody));
-
-}
-
-
 inline bool atom::operator == (const atom & atom) const
 {
 
-   return compare(atom) == 0;
+   return ::comparison::tuple
+   (
+      [&]() { return m_etype == atom.m_etype; },
+      [&]() { return is_text() ? (m_str == atom.m_str) : (m_iBody == atom.m_iBody); }
+   );
 
 }
 
 
-inline bool atom::operator != (const atom & atom) const
+inline ::std::strong_ordering atom::operator <=>(const atom & atom) const
 {
 
-   return compare(atom) != 0;
+   return ::comparison::tuple
+   (
+      [&]() { return m_etype <=> atom.m_etype; },
+      [&]() { return is_text() ? (m_str <=> atom.m_str) : (m_iBody <=> atom.m_iBody); }
+   );
 
 }
 
 
-inline bool atom::operator < (const atom & atom) const
-{
-
-   return compare(atom) < 0;
-
-}
 
 
-inline bool atom::operator >(const atom & atom) const
-{
-
-   return compare(atom) > 0;
-
-}
-
-
-inline bool atom::operator <= (const atom & atom) const
-{
-
-   return compare(atom) <= 0;
-
-}
-
-
-inline bool atom::operator >= (const atom & atom) const
-{
-
-   return compare(atom) >= 0;
-
-}
-
+//inline bool atom::operator != (const atom & atom) const
+//{
+//
+//   return order(atom) != 0;
+//
+//}
+//
+//
+//inline bool atom::operator < (const atom & atom) const
+//{
+//
+//   return order(atom) < 0;
+//
+//}
+//
+//
+//inline bool atom::operator >(const atom & atom) const
+//{
+//
+//   return order(atom) > 0;
+//
+//}
+//
+//
+//inline bool atom::operator <= (const atom & atom) const
+//{
+//
+//   return order(atom) <= 0;
+//
+//}
+//
+//
+//inline bool atom::operator >= (const atom & atom) const
+//{
+//
+//   return order(atom) >= 0;
+//
+//}
+//
 
 inline atom & atom::operator = (const atom & atom)
 {
@@ -935,69 +950,67 @@ inline atom & atom::operator = (const atom & atom)
 }
 
 
-#ifndef NO_TEMPLATE
-
-
-inline int atom::compare(const ::string & str) const
-{
-
-   return is_text() ? m_str.compare(str) : -1;
-
-}
-
-
 inline bool atom::operator == (const ::string & str) const
 {
 
-   return compare(str) == 0;
+   return is_text() ? m_str == str : false;
 
 }
 
 
-inline bool atom::operator != (const ::string & str) const
+inline ::std::strong_ordering atom::operator <=>(const ::string & str) const
 {
 
-   return compare(str) != 0;
+   return is_text() ? m_str <=> str : m_etype <=> e_type_text;
 
 }
 
 
-inline bool atom::operator < (const ::string & str) const
-{
 
-   return compare(str) < 0;
-
-}
-
-
-inline bool atom::operator <= (const ::string & str) const
-{
-
-   return compare(str) <= 0;
-
-}
-
-
-inline bool atom::operator > (const ::string & str) const
-{
-
-   return compare(str) > 0;
-
-}
-
-
-inline bool atom::operator >= (const ::string & str) const
-{
-
-   return compare(str) >= 0;
-
-}
+//inline ::std::strong_ordering atom::operator <=> (const ::string & str) const
+//{
+//
+//   return order(str);
+//
+//}
+//
+//
+//inline bool atom::operator < (const ::string & str) const
+//{
+//
+//   return order(str) < 0;
+//
+//}
+//
+//
+//inline bool atom::operator <= (const ::string & str) const
+//{
+//
+//   return order(str) <= 0;
+//
+//}
+//
+//
+//inline bool atom::operator > (const ::string & str) const
+//{
+//
+//   return order(str) > 0;
+//
+//}
+//
+//
+//inline bool atom::operator >= (const ::string & str) const
+//{
+//
+//   return order(str) >= 0;
+//
+//}
 
 
 inline ::string atom::operator +(const char * psz) const
 {
 
-   return this->as_string() + psz;
+   return this->operator ::string() + psz;
 
 }
 
@@ -1005,7 +1018,7 @@ inline ::string atom::operator +(const char * psz) const
 inline ::string atom::operator +(const ::string & str) const
 {
 
-   return this->as_string() + str;
+   return this->operator ::string() + str;
 
 }
 
@@ -1018,7 +1031,7 @@ inline ::string atom::operator +(const ::string & str) const
 //}
 
 
-#endif
+//#endif
 
 
 inline atom::operator const char *() const
@@ -1046,18 +1059,10 @@ inline bool atom::is_empty() const
 }
 
 
-inline CLASS_DECL_ACME iptr id_strcmp(const atom * pid1,const atom * pid2)
+inline CLASS_DECL_ACME::std::strong_ordering atom_order(const atom * pid1,const atom * pid2)
 {
 
-   return pid1->m_str.compare(pid2->m_str);
-
-}
-
-
-inline int atom::compare(const char * psz) const
-{
-
-   return is_text() ? m_str.compare(psz) : -1;
+   return pid1->m_str.order(pid2->m_str);
 
 }
 
@@ -1065,240 +1070,268 @@ inline int atom::compare(const char * psz) const
 inline bool atom::operator == (const char * psz) const
 {
 
-   return compare(psz) == 0;
+   return is_text() ? m_str == psz : false;
 
 }
 
 
-inline bool atom::operator != (const char * psz) const
+
+inline ::std::strong_ordering atom::operator<=>(const char * psz) const
 {
 
-   return compare(psz) != 0;
-
-
-}
-
-inline bool atom::operator < (const char * psz) const
-{
-
-   return compare(psz) < 0;
-
-}
-
-
-inline bool atom::operator > (const char * psz) const
-{
-
-   return compare(psz) > 0;
+   return is_text() ? m_str <=> psz  : m_etype <=> e_type_text;
 
 }
 
 
 
-inline bool atom::operator <= (const char * psz) const
-{
 
-   return compare(psz) <= 0;
-
-}
-
-
-inline bool atom::operator >= (const char * psz) const
-{
-
-   return compare(psz) >= 0;
-
-}
-
-
-#ifndef NO_TEMPLATE
-
-
-template < primitive_integral INTEGRAL >
-inline int atom::compare(INTEGRAL i) const
-{
-
-   auto compare = (::i32)primitive_type() - (::i32)e_type_integer;
-
-   return __atom_compare_square(compare, (::i64) m_i - (::i64)i);
-
-}
+//inline bool atom::operator != (const char * psz) const
+//{
+//
+//   return order(psz) != 0;
+//
+//
+//}
+//
+//inline bool atom::operator < (const char * psz) const
+//{
+//
+//   return order(psz) < 0;
+//
+//}
+//
+//
+//inline bool atom::operator > (const char * psz) const
+//{
+//
+//   return order(psz) > 0;
+//
+//}
+//
+//
+//
+//inline bool atom::operator <= (const char * psz) const
+//{
+//
+//   return order(psz) <= 0;
+//
+//}
+//
+//
+//inline bool atom::operator >= (const char * psz) const
+//{
+//
+//   return order(psz) >= 0;
+//
+//}
 
 
 template < primitive_integral INTEGRAL >
 inline bool atom::operator == (INTEGRAL i) const
 {
 
-   return compare(i)== 0;
+   return ::comparison::tuple
+   (
+      [&]() { return m_etype == e_type_integer; },
+      [&]() { return m_i == i; }
+   );
 
 }
 
 
 template < primitive_integral INTEGRAL >
-inline bool atom::operator != (INTEGRAL i) const
+inline ::std::strong_ordering atom::operator <=>(INTEGRAL i) const
 {
 
-   return compare(i) != 0;
+   return ::comparison::tuple
+   (
+      [&]() { return m_etype <=> e_type_integer; },
+      [&]() { return m_i <=> i; }
+   );
 
 }
 
 
-template < primitive_integral INTEGRAL >
-inline bool atom::operator < (INTEGRAL i) const
-{
+//template < primitive_integral INTEGRAL >
+//inline bool atom::operator != (INTEGRAL i) const
+//{
+//
+//   return order(i) != 0;
+//
+//}
+//
+//
+//template < primitive_integral INTEGRAL >
+//inline bool atom::operator < (INTEGRAL i) const
+//{
+//
+//   return order(i) < 0;
+//
+//}
+//
+//
+//template < primitive_integral INTEGRAL >
+//inline bool atom::operator <= (INTEGRAL i) const
+//{
+//
+//   return order(i) <= 0;
+//
+//}
+//
+//
+//template < primitive_integral INTEGRAL >
+//inline bool atom::operator > (INTEGRAL i) const
+//{
+//
+//   return order(i) > 0;
+//
+//}
+//
+//
+//template < primitive_integral INTEGRAL >
+//inline bool atom::operator >= (INTEGRAL i) const
+//{
+//
+//   return order(i) >= 0;
+//
+//}
 
-   return compare(i) < 0;
 
-}
-
-
-template < primitive_integral INTEGRAL >
-inline bool atom::operator <= (INTEGRAL i) const
-{
-
-   return compare(i) <= 0;
-
-}
-
-
-template < primitive_integral INTEGRAL >
-inline bool atom::operator > (INTEGRAL i) const
-{
-
-   return compare(i) > 0;
-
-}
-
-
-template < primitive_integral INTEGRAL >
-inline bool atom::operator >= (INTEGRAL i) const
-{
-
-   return compare(i) >= 0;
-
-}
-
-
-#endif
-
-
-inline int atom::compare(::enum_id eid) const
-{
-
-   auto compare = m_etype - e_type_id;
-
-   return __atom_compare_square(compare, m_i - eid);
-
-}
+//#endif
 
 
 inline bool atom::operator == (::enum_id eid) const
 {
 
-   return compare(eid) == 0;
+   return ::comparison::tuple
+   (
+      [&]() { return m_etype == e_type_atom; },
+      [&]() { return m_i == eid; }
+   );
 
 }
 
 
-inline bool atom::operator != (::enum_id eid) const
+inline ::std::strong_ordering atom::operator <=>(::enum_id eid) const
 {
 
-   return compare(eid) != 0;
+   return ::comparison::tuple
+   (
+      [&]() { return m_etype <=> e_type_atom; },
+      [&]() { return m_eid <=> eid; }
+   );
 
 }
 
 
-inline bool atom::operator < (::enum_id eid) const
-{
-
-   return compare(eid) < 0;
-
-}
-
-
-inline bool atom::operator <= (::enum_id eid) const
-{
-
-   return compare(eid) <= 0;
-
-}
-
-
-inline bool atom::operator > (::enum_id eid) const
-{
-
-   return compare(eid) > 0;
-
-}
-
-
-inline bool atom::operator >= (::enum_id eid) const
-{
-
-   return compare(eid) >= 0;
-
-}
-
-
-inline int atom::compare(::enum_message emessage) const
-{
-
-   auto compare = m_etype - e_type_message;
-
-   return __atom_compare_square(compare, m_emessage - emessage);
-
-}
-
+//inline bool atom::operator != (::enum_id eid) const
+//{
+//
+//   return order(eid) != 0;
+//
+//}
+//
+//
+//inline bool atom::operator < (::enum_id eid) const
+//{
+//
+//   return order(eid) < 0;
+//
+//}
+//
+//
+//inline bool atom::operator <= (::enum_id eid) const
+//{
+//
+//   return order(eid) <= 0;
+//
+//}
+//
+//
+//inline bool atom::operator > (::enum_id eid) const
+//{
+//
+//   return order(eid) > 0;
+//
+//}
+//
+//
+//inline bool atom::operator >= (::enum_id eid) const
+//{
+//
+//   return order(eid) >= 0;
+//
+//}
+//
 
 inline bool atom::operator == (::enum_message emessage) const
 {
 
-   return compare(emessage) == 0;
+   return ::comparison::tuple
+   (
+      [&]() { return m_etype == e_type_message; },
+      [&]() { return m_emessage == emessage; }
+   );
 
 }
 
 
-inline bool atom::operator != (::enum_message emessage) const
+
+inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
 {
 
-   return compare(emessage) != 0;
+   return ::comparison::tuple
+   (
+      [&]() { return m_etype <=> e_type_message; },
+      [&]() { return m_emessage <=> emessage; }
+   );
 
 }
 
 
-inline bool atom::operator < (::enum_message emessage) const
-{
 
-   return compare(emessage) < 0;
+//inline bool atom::operator != (::enum_message emessage) const
+//{
+//
+//   return order(emessage) != 0;
+//
+//}
+//
+//
+//inline bool atom::operator < (::enum_message emessage) const
+//{
+//
+//   return order(emessage) < 0;
+//
+//}
+//
+//
+//inline bool atom::operator <= (::enum_message emessage) const
+//{
+//
+//   return order(emessage) <= 0;
+//
+//}
+//
+//
+//inline bool atom::operator > (::enum_message emessage) const
+//{
+//
+//   return order(emessage) > 0;
+//
+//}
+//
+//
+//inline bool atom::operator >= (::enum_message emessage) const
+//{
+//
+//   return order(emessage) >= 0;
+//
+//}
+//
 
-}
-
-
-inline bool atom::operator <= (::enum_message emessage) const
-{
-
-   return compare(emessage) <= 0;
-
-}
-
-
-inline bool atom::operator > (::enum_message emessage) const
-{
-
-   return compare(emessage) > 0;
-
-}
-
-
-inline bool atom::operator >= (::enum_message emessage) const
-{
-
-   return compare(emessage) >= 0;
-
-}
-
-
-//inline int atom::compare(::enum_topic etopic) const
+//inline int atom::order(::enum_topic etopic) const
 //{
 //
 //   return __atom_compare_square(m_etype - e_type_subject, m_etopic - etopic);
@@ -1309,7 +1342,7 @@ inline bool atom::operator >= (::enum_message emessage) const
 //inline bool atom::operator == (::enum_topic etopic) const
 //{
 //
-//   return compare(etopic) == 0;
+//   return order(etopic) == 0;
 //
 //}
 //
@@ -1317,7 +1350,7 @@ inline bool atom::operator >= (::enum_message emessage) const
 //inline bool atom::operator != (::enum_topic etopic) const
 //{
 //
-//   return compare(etopic) != 0;
+//   return order(etopic) != 0;
 //
 //}
 //
@@ -1325,7 +1358,7 @@ inline bool atom::operator >= (::enum_message emessage) const
 //inline bool atom::operator < (::enum_topic etopic) const
 //{
 //
-//   return compare(etopic) < 0;
+//   return order(etopic) < 0;
 //
 //}
 //
@@ -1333,7 +1366,7 @@ inline bool atom::operator >= (::enum_message emessage) const
 //inline bool atom::operator <= (::enum_topic etopic) const
 //{
 //
-//   return compare(etopic) <= 0;
+//   return order(etopic) <= 0;
 //
 //}
 //
@@ -1341,7 +1374,7 @@ inline bool atom::operator >= (::enum_message emessage) const
 //inline bool atom::operator > (::enum_topic etopic) const
 //{
 //
-//   return compare(etopic) > 0;
+//   return order(etopic) > 0;
 //
 //}
 //
@@ -1349,129 +1382,139 @@ inline bool atom::operator >= (::enum_message emessage) const
 //inline bool atom::operator >= (::enum_topic etopic) const
 //{
 //
-//   return compare(etopic) >= 0;
+//   return order(etopic) >= 0;
 //
 //}
-
-
-
-
-inline int atom::compare(::enum_dialog_result edialogresult) const
-{
-
-   auto compare = m_etype - e_type_dialog_result;
-
-   return __atom_compare_square(compare, m_edialogresult - edialogresult);
-
-}
 
 
 inline bool atom::operator == (::enum_dialog_result edialogresult) const
 {
 
-   return compare(edialogresult) == 0;
+   return ::comparison::tuple
+   (
+      [&]() { return m_etype == e_type_dialog_result; },
+      [&]() { return m_edialogresult == edialogresult; }
+   );
 
 }
 
 
-inline bool atom::operator != (::enum_dialog_result edialogresult) const
+inline ::std::strong_ordering atom::operator <=>(::enum_dialog_result edialogresult) const
 {
 
-   return compare(edialogresult) != 0;
+   return ::comparison::tuple
+   (
+      [&]() { return m_etype <=> e_type_dialog_result; },
+      [&]() { return m_edialogresult <=> edialogresult; }
+   );
 
 }
 
 
-inline bool atom::operator < (::enum_dialog_result edialogresult) const
+//inline bool atom::operator != (::enum_dialog_result edialogresult) const
+//{
+//
+//   return order(edialogresult) != 0;
+//
+//}
+//
+//
+//inline bool atom::operator < (::enum_dialog_result edialogresult) const
+//{
+//
+//   return order(edialogresult) < 0;
+//
+//}
+//
+//
+//inline bool atom::operator <= (::enum_dialog_result edialogresult) const
+//{
+//
+//   return order(edialogresult) <= 0;
+//
+//}
+//
+//
+//inline bool atom::operator > (::enum_dialog_result edialogresult) const
+//{
+//
+//   return order(edialogresult) > 0;
+//
+//}
+//
+//
+//inline bool atom::operator >= (::enum_dialog_result edialogresult) const
+//{
+//
+//   return order(edialogresult) >= 0;
+//
+//}
+
+
+
+inline bool atom::operator == (::enum_happening ehappening) const
 {
 
-   return compare(edialogresult) < 0;
+   return ::comparison::tuple
+   (
+      [&]() { return m_etype == e_type_happening; },
+      [&]() { return m_ehappening == ehappening; }
+   );
 
 }
 
 
-inline bool atom::operator <= (::enum_dialog_result edialogresult) const
+inline ::std::strong_ordering atom::operator <=>(::enum_happening ehappening) const
 {
 
-   return compare(edialogresult) <= 0;
+   return ::comparison::tuple
+   (
+      [&]() { return m_etype <=> e_type_happening; },
+      [&]() { return m_ehappening <=> ehappening; }
+   );
 
 }
 
 
-inline bool atom::operator > (::enum_dialog_result edialogresult) const
-{
-
-   return compare(edialogresult) > 0;
-
-}
-
-
-inline bool atom::operator >= (::enum_dialog_result edialogresult) const
-{
-
-   return compare(edialogresult) >= 0;
-
-}
-
-
-
-inline int atom::compare(::enum_event eid) const
-{
-
-   auto compare = m_etype - e_type_id;
-
-   return __atom_compare_square(compare, m_i - eid);
-
-}
-
-
-inline bool atom::operator == (::enum_event eid) const
-{
-
-   return compare(eid) == 0;
-
-}
-
-
-inline bool atom::operator != (::enum_event eid) const
-{
-
-   return compare(eid) != 0;
-
-}
-
-
-inline bool atom::operator < (::enum_event eid) const
-{
-
-   return compare(eid) < 0;
-
-}
-
-
-inline bool atom::operator <= (::enum_event eid) const
-{
-
-   return compare(eid) <= 0;
-
-}
-
-
-inline bool atom::operator > (::enum_event eid) const
-{
-
-   return compare(eid) > 0;
-
-}
-
-
-inline bool atom::operator >= (::enum_event eid) const
-{
-
-   return compare(eid) >= 0;
-
-}
-
+//inline bool atom::operator != (::enum_happening eid) const
+//{
+//
+//   return order(eid) != 0;
+//
+//}
+//
+//
+//inline bool atom::operator < (::enum_happening eid) const
+//{
+//
+//   return order(eid) < 0;
+//
+//}
+//
+//
+//inline bool atom::operator <= (::enum_happening eid) const
+//{
+//
+//   return order(eid) <= 0;
+//
+//}
+//
+//
+//inline bool atom::operator > (::enum_happening eid) const
+//{
+//
+//   return order(eid) > 0;
+//
+//}
+//
+//
+//inline bool atom::operator >= (::enum_happening eid) const
+//{
+//
+//   return order(eid) >= 0;
+//
+//}
+//
 
 inline atom::operator ::iptr () const
 {
@@ -1550,22 +1593,22 @@ inline void atom::clear()
 //inline CLASS_DECL_ACME atom & atom::operator += (const char * psz) { return operator = (string(*this) + string(psz)); }
 
 
-inline int atom::compare_ci(const char * psz) const
+inline ::std::strong_ordering atom::case_insensitive_order(const char * psz) const
 {
 
-   if(m_str.is_empty())
+   if(is_empty())
    {
 
       if (::is_empty(psz))
       {
 
-         return 0;
+         return ::std::strong_ordering::equal;
 
       }
       else
       {
 
-         return -1;
+         return ::std::strong_ordering::less;
 
       }
 
@@ -1573,13 +1616,13 @@ inline int atom::compare_ci(const char * psz) const
    else if(::is_empty(psz))
    {
 
-      return 1;
+      return ::std::strong_ordering::greater;
 
    }
    else
    {
 
-      return m_str.compare_ci(psz);
+      return m_str.case_insensitive_order(psz);
 
    }
 
@@ -1652,7 +1695,7 @@ inline bool atom::begins(const char * pszCandidatePrefix) const
 }
 
 
-inline bool atom::begins_ci(const char * pszCandidatePrefix) const
+inline bool atom::case_insensitive_begins(const char * pszCandidatePrefix) const
 {
 
    if (__atom_str_is_empty(pszCandidatePrefix))
@@ -1671,7 +1714,7 @@ inline bool atom::begins_ci(const char * pszCandidatePrefix) const
    else if (is_text())
    {
 
-      return m_str.begins_ci(pszCandidatePrefix);
+      return m_str.case_insensitive_begins(pszCandidatePrefix);
 
    }
    else
@@ -1720,7 +1763,7 @@ inline bool atom::ends(const char* pszCandidateSuffix) const
 }
 
 
-inline bool atom::ends_ci(const char* pszCandidateSuffix) const
+inline bool atom::case_insensitive_ends(const char* pszCandidateSuffix) const
 {
 
    if (__atom_str_is_empty(pszCandidateSuffix))
@@ -1739,7 +1782,7 @@ inline bool atom::ends_ci(const char* pszCandidateSuffix) const
    else if (is_text())
    {
 
-      return m_str.ends_ci(pszCandidateSuffix);
+      return m_str.case_insensitive_ends(pszCandidateSuffix);
 
    }
    else
@@ -1758,7 +1801,7 @@ inline bool atom::ends_ci(const char* pszCandidateSuffix) const
 
 
 
-inline void from_string(::atom & atom, const ansichar * psz)
+inline void from_string(::atom & atom, const ::ansi_character * psz)
 {
 
    atom = psz;
@@ -1836,28 +1879,80 @@ inline atom::atom(const ::inline_number_string& inlinenumberstring) :
 //}
 
 
-template < primitive_character CHARACTER, strsize sizeMaximumLength >
-inline ::string_base < CHARACTER > operator+(const inline_string < CHARACTER, sizeMaximumLength > & inlinestring, const ::atom & atom)
-{
-
-   return string(inlinestring) + string(atom);
-
-}
+//template < primitive_character CHARACTER, strsize sizeMaximumLength >
+//inline ::string_base < const CHARACTER * > operator+(const inline_string < CHARACTER, sizeMaximumLength > & inlinestring, const ::atom & atom)
+//{
+//
+//   return ::string_base< const CHARACTER *>(inlinestring) + ::string_base< const CHARACTER *>(atom);
+//
+//}
 
 
 inline ::string operator+(const char * psz, const ::atom & atom)
 {
 
-   return string(psz) + string(atom);
+   return ::move(::string(psz) + ::string(atom));
 
 }
 
+
+inline ::string operator+(const ::string & str, const ::atom & atom)
+{
+
+   return ::move(str + ::string(atom));
+
+}
+
+
+template < ::count c >
+inline ::string operator +(const char(&sz)[c], const ::atom & atom)
+{
+
+   return ::move(::string(sz) + ::string(atom));
+
+}
+
+
+//template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+//inline ::string_base<CHARACTER2> operator+(const ::string_range < CHARACTER > & block, const ::string_base < CHARACTER2 > & str)
+//{
+//
+//   return ::string_base<CHARACTER2>(block) + str;
+//
+//}
 
 template < primitive_character CHARACTER >
 inline ::string_base < CHARACTER > & operator+=(::string_base < CHARACTER > & str, const ::atom & atom)
 {
 
    return str.operator += ((::string) atom);
+
+}
+
+
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE >::string_base(const ::atom & atom) :
+   string(atom.operator ::string())
+{
+
+
+}
+
+
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom)
+{
+
+   return operator=(atom.operator ::string());
+
+}
+
+
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::atom & atom) 
+{ 
+   
+   return operator+=(atom.operator ::string());
 
 }
 

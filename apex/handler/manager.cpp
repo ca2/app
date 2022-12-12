@@ -360,6 +360,10 @@ void manager::erase_signal_handler(const ::signal_handler& signalhandler)
 
    synchronous_lock synchronouslock(this->synchronization());
 
+   //auto values = m_psignalmap->values();
+
+   //auto & begin = values.begin();
+
    for (auto & psignal : m_psignalmap->values())
    {
 

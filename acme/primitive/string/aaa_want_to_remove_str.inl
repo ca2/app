@@ -7,7 +7,7 @@
 template < >
 inline void std_string_assign(stdstring < wstring > & t, const bstring * pbstr)
 {
-   t = ::::str::ch().international::utf8_to_unicode(string((const char *)pbstr->get_data(), min(pbstr->get_length(), natural(strlen_s_dup((const char *)pbstr->get_data(), pbstr->get_length())))));
+   t = ::str::ch().international::utf8_to_unicode(string((const char *)pbstr->get_data(), min(pbstr->get_length(), natural(strlen_s_dup((const char *)pbstr->get_data(), pbstr->get_length())))));
 }
 
 
@@ -29,7 +29,7 @@ inline void std_string_assign(stdstring < memory > & t, const char * psz)
 template < >
 inline void std_string_assign(stdstring < memory > & t, const unichar * psz)
 {
-   t.assign(::::str::ch().international::unicode_to_utf8(psz));
+   t.assign(::str::ch().international::unicode_to_utf8(psz));
 }
 
 template < >
@@ -47,7 +47,7 @@ inline void std_string_assign(stdstring < memory > & t, const string * pstr)
 template < >
 inline void std_string_assign(stdstring < memory > & t, const wstring * pwstr)
 {
-   t = (const char *) ::::str::ch().international::unicode_to_utf8(*pwstr);
+   t = (const char *) ::str::ch().international::unicode_to_utf8(*pwstr);
 }
 
 template < >

@@ -103,7 +103,7 @@ namespace sockets
                      {
                         memory mem;
                         mem.set_size(TCP_BUFSIZE_READ);
-                        char * tmp = (char*)mem.get_data();
+                        char * tmp = (char*)mem.data();
                         ::memcpy_dup(tmp,buf + ptr,len - ptr);
                         tmp[len - ptr] = 0;
                         on_read( tmp, (int) (len - ptr ));
@@ -246,7 +246,7 @@ namespace sockets
 
          string str = pa.getword();
 
-         if (str.get_length() > 4 && str.begins_ci("http/")) // response
+         if (str.get_length() > 4 && str.case_insensitive_begins("http/")) // response
          {
 
             //m_response.attr("remote_addr") = GetRemoteAddress().get_display_number();
@@ -289,7 +289,7 @@ namespace sockets
             m_request.m_strRequestUri = strScript + ::str().has_char(strQuery, "?");
             m_request.attr("request_uri") = m_request.m_strRequestUri;
             m_request.attr("http_version") = pa.getword();
-            m_b_http_1_1 = string_ends(m_request.attr("http_version").as_string(), "/1.1");
+            m_b_http_1_1 = m_request.attr("http_version").operator ::string().ends("/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest     = true;
             m_bResponse    = false;
@@ -381,7 +381,7 @@ namespace sockets
          if (m_b_http_1_1)
          {
 
-            if(equals_ci(value,"close"))
+            if(case_insensitive_equals(value,"close"))
             {
 
                m_b_keepalive = false;
@@ -398,7 +398,7 @@ namespace sockets
          else
          {
 
-            if(equals_ci(value, "keep-alive"))
+            if(case_insensitive_equals(value, "keep-alive"))
             {
 
                m_b_keepalive = true;
@@ -414,7 +414,7 @@ namespace sockets
          }
 
       }
-      if (equals_ci(key, "transfer-encoding") && string_ends_ci(value, "chunked"))
+      if (case_insensitive_equals(key, "transfer-encoding") && string_ends_ci(value, "chunked"))
       {
          m_bChunked = true;
       }
@@ -446,7 +446,7 @@ namespace sockets
       
       string strLine;
       
-      strLine = m_response.attr("http_version").as_string() + " " + m_response.attr("http_status_code") + " " + m_response.attr("http_status");
+      strLine = m_response.attr("http_version") + " " + m_response.attr("http_status_code") + " " + m_response.attr("http_status");
 
       msg = strLine + "\r\n";
       
@@ -471,7 +471,7 @@ namespace sockets
          if(!m_response.m_propertysetHeader.has_property("content-length"))
          {
 
-            m_response.m_propertysetHeader["content-length"] = response().file()->get_size();
+            m_response.m_propertysetHeader["content-length"] = response().file()->size();
 
          }
 
@@ -497,7 +497,7 @@ namespace sockets
 
          }
 
-         if (strKey.compare_ci("host") == 0)
+         if (strKey.case_insensitive_order("host") == 0)
          {
 
             continue;
@@ -570,7 +570,7 @@ namespace sockets
          __transfer_to_writable(this, spfile);
 
       }
-      else if(response().file()->get_size() > 0)
+      else if(response().file()->size() > 0)
       {
 
          response().file()->seek_to_begin();
@@ -591,12 +591,12 @@ namespace sockets
 
       string strLine;
 
-      msg = m_request.attr("http_method").as_string() + " " + m_request.attr("request_uri").as_string() + " " + m_request.attr("http_version").as_string() + "\r\n";
+      msg = m_request.attr("http_method") + " " + m_request.attr("request_uri") + " " + m_request.attr("http_version") + "\r\n";
 
-      if (m_request.m_propertysetHeader["host"].as_string().has_char())
+      if (m_request.m_propertysetHeader["host"].has_char())
       {
 
-         strLine = "Host: " + m_request.m_propertysetHeader["host"].as_string();
+         strLine = "Host: " + m_request.m_propertysetHeader["host"];
 
          if(m_iProxyPort > 0 ||
                (get_connect_port() != 80 && !IsSSL()) || (get_connect_port() != 443 && IsSSL()))
@@ -617,7 +617,7 @@ namespace sockets
 
          string strKey = pproperty->name();
 
-         string strValue = pproperty->as_string();
+         string strValue = pproperty->operator string();
 
          if (pproperty->name() == "content-type")
          {
@@ -628,7 +628,7 @@ namespace sockets
          else
          {
 
-            if (strKey.compare_ci("host") == 0)
+            if (strKey.case_insensitive_order("host") == 0)
             {
 
                continue;
@@ -693,7 +693,7 @@ namespace sockets
 
       }
 
-      if(strProtocol.equals_ci("https") || strProtocol.equals_ci("wss"))
+      if(strProtocol.case_insensitive_equals("https") || strProtocol.case_insensitive_equals("wss"))
       {
 
 //#ifdef HAVE_OPENSSL
@@ -748,7 +748,7 @@ namespace sockets
 
 
       //http_socket::OnHeader(key, value);
-      /*if(key.compare_ci("user-agent") == 0)
+      /*if(key.case_insensitive_order("user-agent") == 0)
       {
          FORMATTED_TRACE("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
       }*/

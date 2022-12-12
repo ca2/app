@@ -107,7 +107,7 @@ namespace text
             iEnd = iStart - 1;
             if((iEnd - 1) < 0)
                break;
-            iStart = ::string(idLocale2).reverse_find('-', iEnd - 1);
+            iStart = ::string(idLocale2).rear_find('-', iEnd - 1);
             bEnd = iStart < 0;
             if(bEnd)
             {

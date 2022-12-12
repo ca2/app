@@ -100,9 +100,9 @@ namespace user
    void shell::image_key::set_extension(const ::string & strPath)
    {
 
-      strsize iFind1 = strPath.rfind('/');
+      strsize iFind1 = strPath.rear_find('/');
 
-      strsize iFind2 = strPath.rfind('\\');
+      strsize iFind2 = strPath.rear_find('\\');
 
       strsize iFind = maximum(iFind1, iFind2) + 1;
 
@@ -316,12 +316,12 @@ namespace user
 
       pathFinal = final_path(getfileimage);
 
-      if (pathFinal.ends_ci(".jpg")
-         || pathFinal.ends_ci(".jpeg")
-         || pathFinal.ends_ci(".png")
-         || pathFinal.ends_ci(".gif")
-         || pathFinal.ends_ci(".bmp")
-         || pathFinal.ends_ci(".svg")
+      if (pathFinal.case_insensitive_ends(".jpg")
+         || pathFinal.case_insensitive_ends(".jpeg")
+         || pathFinal.case_insensitive_ends(".png")
+         || pathFinal.case_insensitive_ends(".gif")
+         || pathFinal.case_insensitive_ends(".bmp")
+         || pathFinal.case_insensitive_ends(".svg")
          )
       {
 
@@ -890,7 +890,7 @@ namespace user
 //
 //         string str = pcontext->m_papexcontext->file()->as_string(getfileimage.m_imagekey.m_strPath);
 //
-//         if (str.begins_eat_ci("ca2prompt\r\n"))
+//         if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
 //         {
 //
 //            str.trim();
@@ -976,7 +976,7 @@ namespace user
 //
 //         i32 iImage = 0x80000000;
 
-      if (strPath.begins_ci("uifs:"))
+      if (strPath.case_insensitive_begins("uifs:"))
       {
 
          auto pcontext = m_pcontext;
@@ -1002,7 +1002,7 @@ namespace user
          return true;
 
       }
-      else if (strPath.begins_ci("fs:"))
+      else if (strPath.case_insensitive_begins("fs:"))
       {
 
          auto pcontext = m_pcontext;
@@ -1028,7 +1028,7 @@ namespace user
          return true;
 
       }
-      else if (strPath.begins_ci("ftp:"))
+      else if (strPath.case_insensitive_begins("ftp:"))
       {
 
          auto pcontext = m_pcontext;
@@ -1055,14 +1055,14 @@ namespace user
 
       }
 
-      if (strPath.ends_ci(".aura"))
+      if (strPath.case_insensitive_ends(".aura"))
       {
 
          auto pcontext = m_pcontext;
 
          string str = pcontext->m_papexcontext->file()->as_string(strPath);
 
-         if (str.begins_eat_ci("ca2prompt\r\n"))
+         if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
          {
 
             str.trim();
@@ -1204,7 +1204,7 @@ namespace user
 
       string strIcon16;
 
-      if (getfileimage.m_imagekey.m_strPath.ends_ci(".desktop"))
+      if (getfileimage.m_imagekey.m_strPath.case_insensitive_ends(".desktop"))
       {
 
          auto pcontext = m_pcontext;
@@ -1228,7 +1228,7 @@ namespace user
 
          string strIcon = stra[0];
 
-         strIcon.begins_eat_ci("icon=");
+         strIcon.case_insensitive_begins_eat("icon=");
 
          strIcon48 = strIcon;
 
@@ -1888,7 +1888,7 @@ namespace user
 
       //m_imagemap[getfileimage.m_imagekey] = getfileimage.m_iImage;
 
-      if (strIcon.begins_eat_ci("icon://"))
+      if (strIcon.case_insensitive_begins_eat("icon://"))
       {
 
          auto pcontext = m_pcontext->m_papexcontext;

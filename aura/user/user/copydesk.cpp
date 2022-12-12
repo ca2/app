@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "copydesk.h"
 #include "acme/exception/interface_only.h"
 #include "acme/primitive/string/base64.h"
@@ -278,9 +278,9 @@ namespace user
                index iFind = straLines.predicate_find_first([](auto strLine)
                   {
 
-                     return (strLine.begins_ci("http://")
-                        || strLine.begins_ci("https://"))
-                        && strLine.ends_ci(".gif");
+                     return (strLine.case_insensitive_begins("http://")
+                        || strLine.case_insensitive_begins("https://"))
+                        && strLine.case_insensitive_ends(".gif");
                   });
 
                if (iFind >= 0)

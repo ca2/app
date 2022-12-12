@@ -25,8 +25,8 @@ namespace html
 
       void parse(html_data * pdocument, const ::string & psz);
 
-      style * rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName);
-      const style * rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName) const;
+      style * rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName);
+      const style * rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName) const;
 
       style * rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName, float & f);
       const style * rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName, float & f) const;

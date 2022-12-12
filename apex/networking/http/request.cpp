@@ -91,14 +91,12 @@ namespace http
          // skip following POST processing below
          return;
       }
-      if(m_pmemfileBody->get_size() > 0)
+      if(m_pmemfileBody->size() > 0)
       {
          m_form.parse_body(pcontextUploadFile, m_pmemfileBody, ContentType(), ContentLength());
       }
       m_form.request().merge(m_form.post());
    }
-
-
 
 
 
@@ -124,7 +122,7 @@ namespace http
    string request::a_url()
    {
 
-      string strUrl = attr("http_protocol").as_string() + "://" + header("host").as_string() + attr("request_uri").as_string();
+      string strUrl = attr("http_protocol") + "://" + header("host") + attr("request_uri");
 
       return strUrl;
 

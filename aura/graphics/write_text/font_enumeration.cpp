@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "font_enumeration.h"
 #include "font_enumeration_item.h"
 #include "font.h"
@@ -85,7 +85,7 @@ namespace write_text
       for (auto& m_pfontenumerationitema : *m_pfontenumerationitema)
       {
 
-         if (m_pfontenumerationitema->m_strName.compare_ci(str) == 0)
+         if (m_pfontenumerationitema->m_strName.case_insensitive_order(str) == 0)
          {
 
             return true;

@@ -267,7 +267,7 @@ string & property::get_network_arguments(::string & str) const
 
    str += "=";
 
-   str += ::url::encode(this->as_string());
+   str += ::url::encode(this->operator ::string());
 
    return str;
 
@@ -446,7 +446,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //::i32 property::compare_value_ci(const char * psz) const
 //{
-//   return compare_ci(psz);
+//   return case_insensitive_order(psz);
 //}
 //
 //::comparison::var_strict property::strict_compare() const
@@ -455,10 +455,10 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 
-::i32 payload::str_compare(const ::property & property) const
+::std::strong_ordering payload::str_compare(const ::property & property) const
 {
 
-   return string().compare(property.as_string());
+   return string().order(property);
 
 }
 

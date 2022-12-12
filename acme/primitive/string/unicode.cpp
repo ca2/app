@@ -10,7 +10,7 @@ CLASS_DECL_ACME int is_surrogated(u32 character)
 }
 
 
-wd32char surrogate_to_utf32(wd16char high, wd16char low)
+::wd32_character surrogate_to_utf32(::wd16_character high, ::wd16_character low)
 {
 
    return (high << 10) + low - 0x35fdc00;
@@ -18,17 +18,17 @@ wd32char surrogate_to_utf32(wd16char high, wd16char low)
 }
 
 
-strsize wd16_to_wd32(wd32char* output, const wd16char* input, strsize input_size)
+strsize wd16_to_wd32(::wd32_character* output, const ::wd16_character* input, strsize input_size)
 {
 
-   wd32char* start = output;
+   ::wd32_character* start = output;
 
-   const wd16char * const end = input + input_size;
+   const ::wd16_character * const end = input + input_size;
 
    while (input < end)
    {
 
-      const wd16char uc = *input++;
+      const ::wd16_character uc = *input++;
 
       if (!utf16_is_surrogate(uc))
       {
@@ -61,17 +61,17 @@ strsize wd16_to_wd32(wd32char* output, const wd16char* input, strsize input_size
 }
 
 
-strsize wd16_to_wd32_len(const wd16char * input, strsize input_size)
+strsize wd16_to_wd32_len(const ::wd16_character * input, strsize input_size)
 {
 
-   const wd16char * const end = input + input_size;
+   const ::wd16_character * const end = input + input_size;
 
    int c = 0;
 
    while (((input_size < 0) && *input) || ((input_size >= 0) && input < end))
    {
 
-      const wd16char uc = *input++;
+      const ::wd16_character uc = *input++;
 
       if (!utf16_is_surrogate(uc))
       {
@@ -105,12 +105,12 @@ strsize wd16_to_wd32_len(const wd16char * input, strsize input_size)
 
 
 
-wd32char* wd16_to_wd32(const wd16char * input, strsize input_size)
+::wd32_character* wd16_to_wd32(const ::wd16_character * input, strsize input_size)
 {
 
    strsize s = wd16_to_wd32_len(input, input_size);
 
-   wd32char* v = (wd32char*)memory_allocate(sizeof(wd32char) * (s + 1));
+   ::wd32_character* v = (::wd32_character*)memory_allocate(sizeof(::wd32_character) * (s + 1));
 
    wd16_to_wd32(v, input, s);
 
@@ -201,7 +201,7 @@ wd32char* wd16_to_wd32(const wd16char * input, strsize input_size)
 //   return result;
 //}
 
-// strsize wd32_to_ansi_len(const wd32char* pwsz, strsize input_size)
+// strsize wd32_to_ansi_len(const ::wd32_character* pwsz, strsize input_size)
 // {
 
 //    if (pwsz == nullptr)
@@ -242,7 +242,7 @@ wd32char* wd16_to_wd32(const wd16char * input, strsize input_size)
 // }
 
 
-// strsize utf32_len(const wd32char* pwsz)
+// strsize utf32_len(const ::wd32_character* pwsz)
 // {
 
 //    if (pwsz == nullptr)

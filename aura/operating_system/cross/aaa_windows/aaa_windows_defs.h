@@ -444,7 +444,7 @@ typedef unsigned short WCHAR;    // wc,   16-bit UNICODE character
 typedef  PWSTR *PZPWSTR;
 typedef  const PWSTR *PCZPWSTR;
 typedef  WCHAR UNALIGNED *LPUWSTR, *PUWSTR;
-//typedef  const WCHAR *const widechar *, *PCWSTR;
+//typedef  const WCHAR *const ::wide_character *, *PCWSTR;
 typedef  PCWSTR *PZPCWSTR;
 typedef  const WCHAR UNALIGNED *LPCUWSTR, *PCUWSTR;
 
@@ -613,7 +613,7 @@ typedef char TCHAR;
 #endif
 typedef const TCHAR *LPCTSTR;
 typedef unichar WCHAR;
-typedef const WCHAR *const widechar *;
+typedef const WCHAR *const ::wide_character *;
 */
 typedef WCHAR OLECHAR;
 typedef OLECHAR *BSTR;

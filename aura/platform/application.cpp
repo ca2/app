@@ -493,18 +493,18 @@ namespace aura
 
    //      }
 
-   //      if (str.begins_ci(m_pinterprocesscommunication->m_ptarget->m_strBaseChannel + "://"))
+   //      if (str.case_insensitive_begins(m_pinterprocesscommunication->m_ptarget->m_strBaseChannel + "://"))
    //      {
 
    //         m_pinterprocesscommunication->_handle_uri(str);
 
-   //         //   if (str.begins_eat_ci("send?message="))
+   //         //   if (str.case_insensitive_begins_eat("send?message="))
    //         //   {
 
    //         //      m_pinterprocesscommunication->_handle_call(m_pinterprocesscommunication->m_prx, ::url::decode(str));
 
    //         //   }
-   //         //   else if (str.begins_eat_ci("send?messagebin="))
+   //         //   else if (str.case_insensitive_begins_eat("send?messagebin="))
    //         //   {
 
    //         //      strsize iFind = str.find(',');
@@ -1143,7 +1143,7 @@ namespace aura
    //   if (is_system())
    //   {
 
-   //      if (strLink.begins_ci("mailto:"))
+   //      if (strLink.case_insensitive_begins("mailto:"))
    //      {
 
    //         return os().file_open(this, strLink);
@@ -4845,7 +4845,7 @@ retry_license:
 
          string strDir = strFile;
 
-         strDir.ends_eat_ci(".zip");
+         strDir.case_insensitive_ends_eat(".zip");
 
          //try
          //{
@@ -8180,7 +8180,7 @@ namespace aura
 
       string str(atom);
 
-      if (str.begins_ci("edit_"))
+      if (str.case_insensitive_begins("edit_"))
       {
 
          econtroltype = ::user::e_control_type_edit_plain_text;

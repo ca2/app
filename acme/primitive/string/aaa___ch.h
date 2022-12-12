@@ -29,7 +29,7 @@
 */
 
 
-CLASS_DECL_ACME int trailingBytesForUTF8(ansichar ch);
+CLASS_DECL_ACME int trailingBytesForUTF8(::ansi_character ch);
 
 
 inline int ch_unicode_len(int c)
@@ -53,9 +53,9 @@ template < typename CHAR_STRING >
 inline bool is_trimmed_string_empty(CHAR_STRING p);
 
 
-inline bool is_trimmed_empty(const ansichar * p) { return is_trimmed_string_empty(p); }
-inline bool is_trimmed_empty(const wd16char * p) { return is_trimmed_string_empty(p); }
-inline bool is_trimmed_empty(const wd32char * p) { return is_trimmed_string_empty(p); }
+inline bool is_trimmed_empty(const ::ansi_character * p) { return is_trimmed_string_empty(p); }
+inline bool is_trimmed_empty(const ::wd16_character * p) { return is_trimmed_string_empty(p); }
+inline bool is_trimmed_empty(const ::wd32_character * p) { return is_trimmed_string_empty(p); }
 
 
 

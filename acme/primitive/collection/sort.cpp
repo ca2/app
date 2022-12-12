@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "sort.h"
 //#include "acme/primitive/collection/numeric_array.h"
 //#if !BROAD_PRECOMPILED_HEADER
@@ -270,7 +270,7 @@ namespace  sort
 //         pui1->get_window_text(str1);
 //         string str2;
 //         pui1->get_window_text(str2);
-//         return str1.compare_ci(str2);
+//         return str1.case_insensitive_order(str2);
 //      });
 //
 //   auto puiC = __new(::user::interaction);

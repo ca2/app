@@ -416,10 +416,10 @@ namespace http
 
 
 
-CLASS_DECL_ACME void output_error_message(const ansichar * pszMessage, const ansichar * pszTitle = nullptr, int iMessageBox = 0);
-CLASS_DECL_ACME void output_debug_string(const ansichar * psz);
-CLASS_DECL_ACME void output_debug_string(const wd16char * psz);
-CLASS_DECL_ACME void output_debug_string(const wd32char * psz);
+CLASS_DECL_ACME void output_error_message(const ::ansi_character * pszMessage, const ::ansi_character * pszTitle = nullptr, int iMessageBox = 0);
+CLASS_DECL_ACME void output_debug_string(const ::ansi_character * psz);
+CLASS_DECL_ACME void output_debug_string(const ::wd16_character * psz);
+CLASS_DECL_ACME void output_debug_string(const ::wd32_character * psz);
 
 
 

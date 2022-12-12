@@ -334,11 +334,19 @@ public:
 
 
    inline bool operator == (const class time & time) const { return m_iSecond == time.m_iSecond && m_iNanosecond == time.m_iSecond; }
-   inline bool operator != (const class time & time) const { return !operator ==(time); }
-   inline bool operator < (const class time & time) const { return m_iSecond < time.m_iSecond || (m_iSecond == time.m_iSecond && m_iNanosecond < time.m_iNanosecond); }
-   inline bool operator <= (const class time & time) const { return m_iSecond < time.m_iSecond || (m_iSecond == time.m_iSecond && m_iNanosecond <= time.m_iNanosecond); }
-   inline bool operator > (const class time & time) const { return !operator <=(time); }
-   inline bool operator >= (const class time & time) const { return !operator <=(time); }
+   //inline bool operator != (const class time & time) const { return !operator ==(time); }
+   inline ::std::strong_ordering operator <=> (const class time & time) const 
+   { 
+      
+      auto order = m_iSecond <=> time.m_iSecond;
+
+      return order != 0 ? order :  m_iNanosecond <=> time.m_iNanosecond; 
+
+   }
+
+   //inline bool operator <= (const class time & time) const { return m_iSecond < time.m_iSecond || (m_iSecond == time.m_iSecond && m_iNanosecond <= time.m_iNanosecond); }
+   //inline bool operator > (const class time & time) const { return !operator <=(time); }
+   //inline bool operator >= (const class time & time) const { return !operator <=(time); }
 
 
    time operator %(const class time & time) const;

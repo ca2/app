@@ -1,4 +1,4 @@
-//
+﻿//
 //  error_code.hpp
 //  acme
 //
@@ -15,11 +15,20 @@ class CLASS_DECL_ACME error_code
 {
 public:
    
+   
    enum_error_code_type m_etype;
 
-   ::i64 m_iOsError;
    
+   ::i64 m_iOsError;
+
+
+   error_code() :m_etype(e_error_code_type_none), m_iOsError(0) {}
+   error_code(const error_code & error_code) : m_etype(error_code.m_etype), m_iOsError(error_code.m_etype) {}
+   error_code(enum_error_code_type etype, ::i64 iOsError) :m_etype(etype), m_iOsError(iOsError) {}
+
+
    void get_message(::string & strMessage) const;
+
    
 };
 

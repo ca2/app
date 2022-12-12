@@ -180,7 +180,7 @@ namespace html
 
                string strClass = m_pelemental->m_strClass;
 
-               style* pstyle = phtml->m_phtmldata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, "hover", "");
+               style* pstyle = phtml->m_phtmldata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, "hover", "");
 
                if (pstyle == nullptr)
                {

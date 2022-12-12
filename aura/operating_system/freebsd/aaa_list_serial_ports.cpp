@@ -77,7 +77,7 @@ namespace serial
    basename(const string & path)
    {
 
-      strsize pos = path.rfind("/");
+      strsize pos = path.rear_find("/");
 
       if (pos < 0)
       {
@@ -95,7 +95,7 @@ namespace serial
    dirname(const string & path)
    {
 
-      strsize pos = path.rfind("/");
+      strsize pos = path.rear_find("/");
 
       if (pos < 0)
       {

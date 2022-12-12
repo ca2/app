@@ -48,9 +48,9 @@
 //LSTATUS
 //( APIENTRY * LPFN_RegGetValueW) (
 //HKEY hkey,
-//const widechar * pSubKey,
+//const ::wide_character * pSubKey,
 //
-//const widechar * pValue,
+//const ::wide_character * pValue,
 //
 //u32 dwFlags,
 //LPDWORD pdwType,

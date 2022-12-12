@@ -187,7 +187,7 @@ public:
    void print(const ::string& str)
    {
 
-      m_pfile->write(str.c_str(), str.get_length_in_bytes());
+      m_pfile->write(str.c_str(), str.length_in_bytes());
 
    }
 
@@ -820,9 +820,9 @@ public:
 
       strWord.trim_right("\"')]}");
 
-      if (strWord.compare_ci("no") == 0
-         || strWord.compare_ci("false") == 0
-         || strWord.compare_ci("0") == 0)
+      if (strWord.case_insensitive_order("no") == 0
+         || strWord.case_insensitive_order("false") == 0
+         || strWord.case_insensitive_order("0") == 0)
       {
 
          b = false;

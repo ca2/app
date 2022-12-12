@@ -1,4 +1,4 @@
-// Create on 2021-03-20 23:59 <3ThomasBS_
+﻿// Create on 2021-03-20 23:59 <3ThomasBS_
 #include "framework.h"
 #include "acme_directory.h"
 #include "acme_file.h"
@@ -201,7 +201,7 @@ string acme_directory::system_short_name()
 
    path.replace_with("", ":");
 
-   path.ends_ci(".exe");
+   path.case_insensitive_ends(".exe");
 
    return path;
 
@@ -247,7 +247,7 @@ string acme_directory::system_short_name()
 
    strsize iFind = strAppId.find('/');
 
-   if (strPlatform.compare_ci("win32") == 0 || strPlatform.compare_ci("x86") == 0)
+   if (strPlatform.case_insensitive_order("win32") == 0 || strPlatform.case_insensitive_order("x86") == 0)
    {
 
       path = program_files_x86();
@@ -919,7 +919,7 @@ bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
 
       string strProtocol = ::media_library::media_library_protocol(emedialibrary);
 
-      if (strId.begins_eat_ci(strProtocol))
+      if (strId.case_insensitive_begins_eat(strProtocol))
       {
 
          auto& libraryitema = pair.m_element2;
@@ -983,7 +983,7 @@ bool acme_directory::defer_media_library_representative_file_name(::file::path &
 
       strMimeType.make_lower();
 
-      if (strMimeType.begins_eat_ci("audio/"))
+      if (strMimeType.case_insensitive_begins_eat("audio/"))
       {
 
          if (strMimeType == "mpeg")

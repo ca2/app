@@ -1,9 +1,25 @@
-// Created by camilo on 2022-11-01 23:14 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-01 23:14 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 #include "acme/primitive/primitive/enumeration.h"
 #include "acme/filesystem/file/_constant.h"
+
+
+enum enum_as_block
+{
+
+   e_as_block,
+
+};
+
+
+enum enum_as_typed_block
+{
+
+   e_as_typed_block,
+
+};
 
 
 DECLARE_ENUMERATION(e_message_box, enum_message_box);

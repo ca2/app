@@ -492,7 +492,7 @@ namespace aura
    void theme::operator()(::file::action* ptopic)
    {
 
-      //if (ptopic->m_pathFile.ends_ci("weather_state.txt"))
+      //if (ptopic->m_pathFile.case_insensitive_ends("weather_state.txt"))
       //{
 
       //   (*m_prunnerChangeWeatherState)(::time(300), [this]()

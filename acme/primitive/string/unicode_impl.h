@@ -1,4 +1,4 @@
-// Refactored by camilo on 2022-11-04 05:43 <3ThomasBorregaardSorensen!!
+﻿// Refactored by camilo on 2022-11-04 05:43 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -64,7 +64,7 @@ inline int get_utf8_char_length(const char * psz)
 //
 //   }
 //
-//   ::wd32char u32;
+//   ::wd32_character u32;
 //
 //   strsize used_len = ansi_to_wd32_char(&u32, input, *psrclen);
 //
@@ -84,7 +84,7 @@ inline int get_utf8_char_length(const char * psz)
 //}
 //
 //
-//inline i32 unicode_index(const wd16char *& input, strsize * psrclen)
+//inline i32 unicode_index(const ::wd16_character *& input, strsize * psrclen)
 //{
 //
 //   if (*input == 0)
@@ -103,7 +103,7 @@ inline int get_utf8_char_length(const char * psz)
 //
 //   ::i32 i = *input;
 //
-//   ::wd32char u32;
+//   ::wd32_character u32;
 //
 //   strsize used_len = wd16_to_wd32_char(&u32, input, *psrclen);
 //
@@ -116,7 +116,7 @@ inline int get_utf8_char_length(const char * psz)
 //}
 
 
-inline i32 unicode_index_length(const wd32char *& input, strsize * psrclen)
+inline i32 unicode_index_length(const ::wd32_character *& input, strsize * psrclen)
 {
 
    if (*input == 0)
@@ -144,7 +144,7 @@ inline i32 unicode_index_length(const wd32char *& input, strsize * psrclen)
 }
 
 
-inline i32 unicode_index_length(const ansichar * pszUtf8, ::i32 & len)
+inline i32 unicode_index_length(const ::ansi_character * pszUtf8, ::i32 & len)
 {
 
    if (is_empty(pszUtf8))
@@ -193,7 +193,7 @@ inline i32 unicode_index_length(const ansichar * pszUtf8, ::i32 & len)
 }
 
 
-inline i32 consume_unicode_index(const ansichar *& pszUtf8)
+inline i32 consume_unicode_index(const ::ansi_character *& pszUtf8)
 {
 
    ::i32 len = 0;
@@ -214,7 +214,7 @@ inline i32 consume_unicode_index(const ansichar *& pszUtf8)
 }
 
 
-inline i32 unicode_index_length(const wd16char * input, i32 & len)
+inline i32 unicode_index_length(const ::wd16_character * input, i32 & len)
 {
 
    if (input[0] == 0)
@@ -282,9 +282,9 @@ inline ::i32 unicode_to_lower_case(::i32 i)
    if (!is_legal_unicode_index(i))
       return -1;
    ::u32 c1 = CHAR_PROP(i);
-   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return (wd32char)i;
-   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return (wd32char)(i + 1);
-   return wd32char(i - (c1 >> 16));
+   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return (::wd32_character)i;
+   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return (::wd32_character)(i + 1);
+   return ::wd32_character(i - (c1 >> 16));
 }
 
 
@@ -293,45 +293,63 @@ inline ::i32 unicode_to_upper_case(::i32 i)
    if (!is_legal_unicode_index(i))
       return -1;
    u32 c1 = CHAR_PROP(i);
-   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return wd32char(i);
-   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wd32char(i - 1);
-   return wd32char(i - (c1 >> 16));
+   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return ::wd32_character(i);
+   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return ::wd32_character(i - 1);
+   return ::wd32_character(i - (c1 >> 16));
 }
 
 
-inline const ansichar * string_scan(const ansichar * pszBlock, const ansichar * pszMatch) noexcept
+//template < primitive_character CHARACTER >
+//inline const CHARACTER * string_scan(const ::string_range < CHARACTER > & block, const ::string_range < CHARACTER > & blockCharacters) noexcept
+//{
+//
+//   const CHARACTER * psz;
+//
+//   if (_string_scan_prefix(psz, block, blockCharacters))
+//   {
+//
+//      return psz;
+//
+//   }
+//
+//   return _string_scan(block, blockCharacters);
+//
+//}
+
+
+//inline const ::ansi_character * _string_scan(const array_range < ::ansi_character > & block, const array_range < ::ansi_character > & blockCharacters) noexcept
+//{
+//
+//   return ansi_scan(block, blockCharacters);
+//
+//}
+//
+//
+//inline const ::wd16_character * _string_scan(const ::array_range < ::wd16_character > & block, const ::array_range < ::wd16_character > & blockCharacters) noexcept
+//{
+//
+//   return wd16_scan(block, blockCharacters);
+//
+//}
+
+
+inline const ::wd32_character * wd32_scan(const ::const_wd32_range & block, const ::const_wd32_range & blockCharacters)
 {
 
-   if (pszMatch == nullptr || pszBlock == nullptr || *pszBlock == '\0')
-      return nullptr;
+   if (block.is_null_terminated() && blockCharacters.is_null_terminated())
+   {
 
-   return ansi_scan(pszBlock, pszMatch);
+      return wd32_pbrk((::wd32_character *)block.data(), blockCharacters.data());
 
-}
+   }
+   else
+   {
 
+      return _string_scan(block, blockCharacters);
 
-inline const wd16char * string_scan(const wd16char * pszBlock, const wd16char * pszMatch) noexcept
-{
-
-   if (pszMatch == nullptr || pszBlock == nullptr || *pszBlock == '\0')
-      return nullptr;
-
-   return wd16_scan(pszBlock, pszMatch);
+   }
 
 }
-
-
-inline const wd32char * string_scan(const wd32char * pszBlock, const wd32char * pszMatch) noexcept
-{
-
-   if (pszMatch == nullptr || pszBlock == nullptr || *pszBlock == '\0')
-      return nullptr;
-
-   return wd32_scan(pszBlock, pszMatch);
-
-}
-
-
 
 
 inline ::i32 unicode_to_title_case(::i32 i)
@@ -341,14 +359,14 @@ inline ::i32 unicode_to_title_case(::i32 i)
    u32 c1 = CHAR_PROP(i);
    if (TITLE_CASE(c1))  // titlecase exists
    {
-      if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return wd32char(i + 1);
-      if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return wd32char(i - 1);
-      return wd32char(i);
+      if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return ::wd32_character(i + 1);
+      if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return ::wd32_character(i - 1);
+      return ::wd32_character(i);
    }
    else  // has no titlecase form
       if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll)
-         return wd32char(i - (c1 >> 16));
-   return wd32char(i);
+         return ::wd32_character(i - (c1 >> 16));
+   return ::wd32_character(i);
 }
 
 
@@ -505,7 +523,7 @@ inline i32 unicode_size_of_tables()
    return sizeof(arr_idxCharInfo) + sizeof(arr_CharInfo) + sizeof(arr_idxCharInfo2) + sizeof(arr_CharInfo2);
 }
 
-inline const ansichar * unicode_next(const ansichar * psz)
+inline const ::ansi_character * unicode_next(const ::ansi_character * psz)
 {
 
    if (psz == nullptr)
@@ -599,7 +617,7 @@ inline const ansichar * unicode_next(const ansichar * psz)
 }
 
 
-inline const ansichar * unicode_next(const ansichar * psz, int * piError)
+inline const ::ansi_character * unicode_next(const ::ansi_character * psz, int * piError)
 {
 
    if (psz == nullptr)
@@ -695,7 +713,7 @@ inline const ansichar * unicode_next(const ansichar * psz, int * piError)
 }
 
 
-inline const wd16char * unicode_next(const wd16char * psz)
+inline const ::wd16_character * unicode_next(const ::wd16_character * psz)
 {
 
    auto len = wd16_to_wd32_len(psz, 2);
@@ -712,7 +730,7 @@ inline const wd16char * unicode_next(const wd16char * psz)
 }
 
 
-inline const wd32char * unicode_next(const wd32char * psz)
+inline const ::wd32_character * unicode_next(const ::wd32_character * psz)
 {
 
    return psz + 1;
@@ -821,7 +839,7 @@ inline const char * unicode_prior(const char * psz, const char * pszBeg)
 }
 
 
-inline const wd16char * unicode_prior(const wd16char * psz, const wd16char * pszBeg)
+inline const ::wd16_character * unicode_prior(const ::wd16_character * psz, const ::wd16_character * pszBeg)
 {
 
    if (psz <= pszBeg)
@@ -850,7 +868,7 @@ inline const wd16char * unicode_prior(const wd16char * psz, const wd16char * psz
 }
 
 
-inline const wd32char * unicode_prior(const wd32char * psz, const wd32char * pszBeg)
+inline const ::wd32_character * unicode_prior(const ::wd32_character * psz, const ::wd32_character * pszBeg)
 {
 
    if (psz <= pszBeg)
@@ -865,7 +883,7 @@ inline const wd32char * unicode_prior(const wd32char * psz, const wd32char * psz
 }
 
 
-//inline i32 unicode_index(const ansichar *& pszUtf8)
+//inline i32 unicode_index(const ::ansi_character *& pszUtf8)
 //{
 //
 //   if (*pszUtf8 == '\0')
@@ -910,7 +928,7 @@ inline const wd32char * unicode_prior(const wd32char * psz, const wd32char * psz
 //}
 //
 //
-//inline i32 unicode_index(const wd16char *& input)
+//inline i32 unicode_index(const ::wd16_character *& input)
 //{
 //
 //   if (input[0] == 0)
@@ -961,7 +979,7 @@ inline const wd32char * unicode_prior(const wd32char * psz, const wd32char * psz
 //}
 
 
-inline i32 ansichar_unicode_len(wd32char i)
+inline i32 ansichar_unicode_len(::wd32_character i)
 {
    if (i < 0)
    {
@@ -986,7 +1004,7 @@ inline i32 ansichar_unicode_len(wd32char i)
 
 
 template < typename TYPE1, typename TYPE2 >
-inline i32 compare(const TYPE1 & str1, const TYPE2 & str2)
+inline ::std::strong_ordering compare(const TYPE1 & str1, const TYPE2 & str2)
 {
 
    return string_compare(str1, str2);
@@ -995,10 +1013,10 @@ inline i32 compare(const TYPE1 & str1, const TYPE2 & str2)
 
 
 template < typename TYPE1, typename TYPE2 >
-inline i32 compare_ci(const TYPE1 & str1, const TYPE2 & str2)
+inline ::std::strong_ordering case_insensitive_order(const TYPE1 & str1, const TYPE2 & str2)
 {
 
-   return string_compare_ci(str1, str2);
+   return case_insensitive_string_order(str1, str2);
 
 }
 
@@ -1018,82 +1036,82 @@ template < typename TYPE1, typename TYPE2 >
 inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 & strOnEqual, const TYPE1 & strOnDifferent)
 {
 
-   return equals_ci(str1, str2) ? strOnEqual : strOnDifferent;
+   return case_insensitive_equals(str1, str2) ? strOnEqual : strOnDifferent;
 
 }
 
 
-template < typename TYPE_CHAR >
-inline bool string_begins(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszPrefix, strsize lenPrefix)
-{
-
-   if (lenPrefix > len)
-   {
-
-      return false;
-
-   }
-
-   return string_count_compare(psz, pszPrefix, lenPrefix) == 0;
-
-}
-
-
-
-template < typename TYPE_CHAR >
-inline bool string_ends(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszSuffix, strsize lenSuffix)
-{
-
-   auto offset = len - lenSuffix;
-
-   if (offset < 0)
-   {
-
-      return false;
-
-   }
-
-   auto pszCompare = psz + offset;
-
-   return string_count_compare(pszCompare, pszSuffix, lenSuffix) == 0;
-
-}
+//template < typename TYPE_CHAR >
+//inline bool string_begins(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszPrefix, strsize lenPrefix)
+//{
+//
+//   if (lenPrefix > len)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return string_count_compare(psz, pszPrefix, lenPrefix) == 0;
+//
+//}
 
 
-template < typename TYPE_CHAR >
-inline bool string_begins_ci(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszPrefix, strsize lenPrefix)
-{
 
-   if (lenPrefix > len)
-   {
+//template < typename TYPE_CHAR >
+//inline bool string_ends(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszSuffix, strsize lenSuffix)
+//{
+//
+//   auto offset = len - lenSuffix;
+//
+//   if (offset < 0)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   auto pszCompare = psz + offset;
+//
+//   return string_count_compare(pszCompare, pszSuffix, lenSuffix) == 0;
+//
+//}
 
-      return false;
 
-   }
+//template < typename TYPE_CHAR >
+//inline bool string_begins_ci(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszPrefix, strsize lenPrefix)
+//{
+//
+//   if (lenPrefix > len)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return string_count_compare_ci(psz, pszPrefix, lenPrefix) == 0;
+//
+//}
 
-   return string_count_compare_ci(psz, pszPrefix, lenPrefix) == 0;
 
-}
-
-
-template < typename TYPE_CHAR >
-inline bool string_ends_ci(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszSuffix, strsize lenSuffix)
-{
-
-   auto offset = len - lenSuffix;
-
-   if (offset < 0)
-   {
-
-      return false;
-
-   }
-
-   auto pszCompare = psz + offset;
-
-   return string_count_compare_ci(pszCompare, pszSuffix, lenSuffix) == 0;
-
-}
+//template < typename TYPE_CHAR >
+//inline bool string_ends_ci(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszSuffix, strsize lenSuffix)
+//{
+//
+//   auto offset = len - lenSuffix;
+//
+//   if (offset < 0)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   auto pszCompare = psz + offset;
+//
+//   return string_count_compare_ci(pszCompare, pszSuffix, lenSuffix) == 0;
+//
+//}
 
 
 template < typename CHAR_TYPE >
@@ -1179,7 +1197,7 @@ bool string_eat_before_let_separator(string_base < CHAR_TYPE > & strBefore, cons
 
 
 
-inline i32 unicode_len(const ansichar * pszUtf8)
+inline i32 unicode_len(const ::ansi_character * pszUtf8)
 {
 
    ::i32 len;

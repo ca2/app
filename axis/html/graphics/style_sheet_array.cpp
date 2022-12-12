@@ -14,7 +14,7 @@ namespace html
    }
 
 
-   style * style_sheet_array::rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName)
+   style * style_sheet_array::rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName)
    {
 
       style * pstyle = nullptr;
@@ -26,7 +26,7 @@ namespace html
 
          style_sheet & sheet = *this->element_at(i);
 
-         pstyle = sheet.rfind(etag, strClass, strSubClass, idName);
+         pstyle = sheet.rear_find(etag, strClass, strSubClass, idName);
 
          if(pstyle != nullptr)
             break;

@@ -158,7 +158,7 @@
 //
 //   set_context(env);
 //
-//   const wd16char* utf16 = (wd16char*)env->GetStringChars(str, NULL);
+//   const ::wd16_character* utf16 = (::wd16_character*)env->GetStringChars(str, NULL);
 //
 //   if (utf16 == NULL)
 //   {
@@ -172,7 +172,7 @@
 //   if (::acmeacmesystem()->get_session()->get_focus_ui())
 //   {
 //
-//      wd16string wstr(utf16, length);
+//      wd16_string wstr(utf16, length);
 //
 //      ::acmeacmesystem()->get_session()->get_focus_ui()->on_text_composition(wstr);
 //

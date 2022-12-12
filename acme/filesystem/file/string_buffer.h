@@ -40,7 +40,7 @@ public:
    void write(const void* pdata, memsize nCount)
    {
 
-      m_str.append((const ansichar *) pdata, nCount);
+      m_str.append((const ::ansi_character *) pdata, nCount);
 
    }
 
@@ -86,7 +86,7 @@ public:
 
    }
 
-   bool unget_if(ansichar ch)
+   bool unget_if(::ansi_character ch)
    {
 
       if (m_str.last_char() != ch)

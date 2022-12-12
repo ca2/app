@@ -390,7 +390,7 @@ typedef i32             ::i32,       *PLONG;
 
 /* Some systems might have unichar, but we really need 16 bit characters */
 #ifdef WINE_UNICODE_NATIVE
-typedef wd16char        WCHAR,      *PWCHAR;
+typedef ::wd16_character        WCHAR,      *PWCHAR;
 #else
 typedef unsigned short  WCHAR,      *PWCHAR;
 #endif
@@ -426,7 +426,7 @@ typedef const char     *PCSTR,      *const char *;
 typedef WCHAR          *PWCH,       *LPWCH;
 typedef const WCHAR    *PCWCH,      *LPCWCH;
 typedef WCHAR          *PWSTR,      *LPWSTR,    *NWPSTR;
-typedef const WCHAR    *PCWSTR,     *const widechar *;
+typedef const WCHAR    *PCWSTR,     *const ::wide_character *;
 
 /* Neutral character and string types */
 /* These are only defined for Winelib, i.e. _not_ defined for
@@ -440,7 +440,7 @@ typedef WCHAR           TCHAR,      *PTCHAR;
 # define _TCHAR_DEFINED
 #endif
 typedef LPWSTR          PTSTR,       char *;
-typedef const widechar *         PCTSTR,      LPCTSTR;
+typedef const ::wide_character *         PCTSTR,      LPCTSTR;
 #  define __TEXT(string) L##string
 # else  /* UNICODE */
 # ifndef _TCHAR_DEFINED

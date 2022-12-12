@@ -134,7 +134,7 @@ void simple_debug_print(const char* psz)
 //}
 
 
-CLASS_DECL_ACME void output_error_message(const ansichar * pszMessage, const ansichar * pszTitle, int iMessageBox)
+CLASS_DECL_ACME void output_error_message(const ::ansi_character * pszMessage, const ::ansi_character * pszTitle, int iMessageBox)
 {
 
    string strMessage(pszMessage);

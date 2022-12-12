@@ -37,7 +37,7 @@ i32 get_process_pid(const char * procNameParam)
                if(pos >= 0)
                   cmdLine = cmdLine.substr(0, pos);
                // Keep program name only, removing the path
-               pos = cmdLine.reverse_find('/');
+               pos = cmdLine.rear_find('/');
                if (pos >= 0)
                   cmdLine = cmdLine.substr(pos + 1);
                // compare against requested process name

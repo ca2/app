@@ -119,7 +119,7 @@ property * property_set::find_value_ci(const ::payload & payload) const
    for(auto & pproperty : *this)
    {
 
-      if (pproperty->compare_ci(payload) == 0)
+      if (pproperty->case_insensitive_order(payload) == 0)
       {
 
          return pproperty;
@@ -139,7 +139,7 @@ property * property_set::find_value_ci(const char * psz) const
    for (auto & pproperty : *this)
    {
 
-      if (pproperty->compare_ci(psz) == 0)
+      if (pproperty->case_insensitive_order(psz) == 0)
       {
 
          return pproperty;
@@ -401,7 +401,7 @@ bool property_set::erase_first_value(const char * pcsz)
 
       iFind = find_index(idName, iFind);
 
-      if (__not_found(iFind))
+      if (not_found(iFind))
       {
 
          return c;
@@ -527,7 +527,7 @@ void property_set::_008AddArgumentPairs(::string_array & straArguments)
          if(strThisArgument.has_char())
          {
          
-            if(strNextArgument.compare_ci("YES") == 0)
+            if(strNextArgument.case_insensitive_order("YES") == 0)
             {
        
                _008Add(strThisArgument, "true");
@@ -537,7 +537,7 @@ void property_set::_008AddArgumentPairs(::string_array & straArguments)
                i--;
                
             }
-            else if(strNextArgument.compare_ci("NO") == 0)
+            else if(strNextArgument.case_insensitive_order("NO") == 0)
             {
        
                _008Add(strThisArgument, "false");
@@ -547,7 +547,7 @@ void property_set::_008AddArgumentPairs(::string_array & straArguments)
                i--;
 
             }
-            else if(strNextArgument.compare_ci("TRUE") == 0)
+            else if(strNextArgument.case_insensitive_order("TRUE") == 0)
             {
        
                _008Add(strThisArgument, "true");
@@ -557,7 +557,7 @@ void property_set::_008AddArgumentPairs(::string_array & straArguments)
                i--;
                
             }
-            else if(strNextArgument.compare_ci("FALSE") == 0)
+            else if(strNextArgument.case_insensitive_order("FALSE") == 0)
             {
        
                _008Add(strThisArgument, "false");
@@ -589,7 +589,7 @@ void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile,
 
    }
 
-   if(strArgument.begins_ci("-"))
+   if(strArgument.case_insensitive_begins("-"))
    {
 
       _008AddArgument(strArgument.Mid(1));
@@ -1002,34 +1002,39 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
 
    str += "{";
 
-   auto p = values();
+   auto p = begin();
 
-   if(p)
+   if (p)
    {
 
-      p->get_network_payload(str, bNewLine);
-
-      p++;
-
-   }
-
-   for(; p; p++)
-   {
-
-      if (bNewLine)
+      while (true)
       {
 
-         str += ", \r\n";
+         (*p)->get_network_payload(str, bNewLine);
+
+         p++;
+
+         if (!p)
+         {
+
+            break;
+
+         }
+
+         if (bNewLine)
+         {
+
+            str += ", \r\n";
+
+         }
+         else
+         {
+
+            str += ", ";
+
+         }
 
       }
-      else
-      {
-
-         str += ", ";
-
-      }
-
-      p->get_network_payload(str, bNewLine);
 
    }
 
@@ -1272,23 +1277,28 @@ string property_set::implode(const char * pszGlue) const
 
    string str;
 
-   auto p = values();
+   auto p = begin();
 
    if(p)
    {
 
-      str = p->as_string();
+      while(true)
+      {
 
-      p++;
+         str += *p;
 
-   }
+         p++;
 
-   for(; p; p++)
-   {
+         if (!p)
+         {
 
-      str += pszGlue;
+            break;
 
-      str += p->as_string();
+         }
+
+         str += pszGlue;
+
+      }
 
    }
 
@@ -1323,7 +1333,7 @@ string property_set::implode(const char * pszGlue) const
 //   for(const_iterator it = begin(); it != end(); it++)
 //   {
 //
-//      if(it->string().compare_ci(psz) == 0)
+//      if(it->string().case_insensitive_order(psz) == 0)
 //      {
 //
 //         return (property *) &it->m_var;
@@ -1728,10 +1738,10 @@ bool property_set::contains(const property_set & set) const
 
    }
 
-   for(index i = 0; i < set.m_nSize; i++)
+   for(auto & p : *this)
    {
 
-      if (*ptraMatch[i] != *set.m_pData[i])
+      if (*ptraMatch[offset_of(&p)] != *p)
       {
 
          return false;
@@ -1748,23 +1758,28 @@ bool property_set::contains(const property_set & set) const
 string & property_set::get_network_arguments(string & strNetworkArguments) const
 {
 
-   auto p = values();
+   auto p = begin();
 
    if(p)
    {
 
-      p->get_network_arguments(strNetworkArguments);
+      while (p)
+      {
 
-      p++;
+         (*p)->get_network_arguments(strNetworkArguments);
 
-   }
+         p++;
 
-   for(; p; p++)
-   {
+         if (!p)
+         {
 
-      strNetworkArguments += "&";
+            break;
 
-      p->get_network_arguments(strNetworkArguments);
+         }
+
+         strNetworkArguments += "&";
+
+      }
 
    }
 
@@ -1971,7 +1986,7 @@ string property_set::get_command_line(const string_array & straKeys) const
 
       str += "=";
 
-      strItem = pproperty->as_string();
+      strItem = *pproperty;
 
       if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
       {
@@ -2052,7 +2067,7 @@ string property_set::get_command_line() const
 
       str += "=";
 
-      strItem = pproperty->as_string();
+      strItem = *pproperty;
 
       if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
       {
@@ -2143,7 +2158,7 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 
    }
 
-   return pproperty->as_string();
+   return *pproperty;
 
 }
 
@@ -2188,10 +2203,12 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 ::index property_set::find_index(const ::atom & atom, ::index i) const
 {
 
-   for(; i < m_nSize; i++)
+   auto p = this->m_begin + i;
+
+   for(; p < this->m_end; p++)
    {
 
-      if (m_pData[i]->m_atom == atom)
+      if (p[i]->m_atom == atom)
       {
 
          return i;
@@ -2231,14 +2248,14 @@ property & property_set::get(const ::atom & atom)
 
    auto iFind = find_index(atom);
 
-   if(__not_found(iFind))
+   if(not_found(iFind))
    {
 
       return nullptr;
 
    }
 
-   return (const_cast < property_set * > (this))->m_pData[iFind];
+   return (const_cast < property_set * > (this))->m_begin[iFind];
 
 }
 

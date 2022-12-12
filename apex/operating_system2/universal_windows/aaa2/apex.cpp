@@ -98,8 +98,8 @@ typedef
 LSTATUS
 ( APIENTRY * LPFN_RegGetValueW) (
     HKEY hkey,
-    const widechar * lpSubKey,
-    const widechar * lpValue,
+    const ::wide_character * lpSubKey,
+    const ::wide_character * lpValue,
     ::u32 dwFlags,
     LPDWORD pdwType,
 	 PVOID pvData,
@@ -268,7 +268,7 @@ string normalize_path(const char * lpcszPath)
       }
       else
       {
-         iptr iFind2 = path.reverse_find('\\', iFind);
+         iptr iFind2 = path.rear_find('\\', iFind);
          if(iFind2 < 0)
          {
             path = path.substr(0, iFind) + path.substr(iFind + 2);
@@ -279,7 +279,7 @@ string normalize_path(const char * lpcszPath)
          }
          else
          {
-            iptr iFind3 = path.reverse_find('\\', iFind2 - 1);
+            iptr iFind3 = path.rear_find('\\', iFind2 - 1);
             if(iFind3 <= 0)
             {
                path = path.substr(iFind + 2);
@@ -342,7 +342,7 @@ string key_to_char(wparam wparam, lparam lparam)
 //CreateMutexW(
 //   _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
 //   _In_ BOOL bInitialOwner,
-//   _In_opt_ const widechar * lpName
+//   _In_opt_ const ::wide_character * lpName
 //   )
 //{
 //   return ::CreateMutexEx(lpMutexAttributes, lpName, bInitialOwner ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);

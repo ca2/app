@@ -4,8 +4,8 @@
 
 
 
-inline ansichar ansi_char_tolower(i32 i) { return __ansitolower(i); }
-inline ansichar ansi_char_toupper(i32 i) { return __ansitoupper(i); }
+inline ::ansi_character ansi_char_tolower(i32 i) { return __ansitolower(i); }
+inline ::ansi_character ansi_char_toupper(i32 i) { return __ansitoupper(i); }
 
 
 inline i32 ansi_char_isdigit(i32 i) { return __ansicharisdigit(i); }
@@ -17,7 +17,7 @@ inline i32 ansi_char_isspace(i32 i) { return __ansicharisspace(i); }
 inline i32 ansi_char_is_hexadecimal(i32 i) { return __ansicharishexadecimal(i); }
 
 
-inline const ansichar * ansi_const_last_char(const ansichar * psz)
+inline const ::ansi_character * ansi_const_last_char(const ::ansi_character * psz)
 {
 
    return ::is_null(psz) ? nullptr : psz + strlen(psz);
@@ -25,15 +25,15 @@ inline const ansichar * ansi_const_last_char(const ansichar * psz)
 }
 
 
-inline ansichar * ansi_last_char(ansichar * psz)
+inline ::ansi_character * ansi_last_char(::ansi_character * psz)
 {
 
-   return (ansichar *)ansi_const_last_char(psz);
+   return (::ansi_character *)ansi_const_last_char(psz);
 
 }
 
 
-inline ansichar * ansi_concatenate(ansichar * psz, const ansichar * cat)
+inline ::ansi_character * ansi_concatenate(::ansi_character * psz, const ::ansi_character * cat)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -45,7 +45,7 @@ inline ansichar * ansi_concatenate(ansichar * psz, const ansichar * cat)
 }
 
 
-inline ansichar * ansi_copy(ansichar * psz, const ansichar * cpy)
+inline ::ansi_character * ansi_copy(::ansi_character * psz, const ::ansi_character * cpy)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -57,7 +57,7 @@ inline ansichar * ansi_copy(ansichar * psz, const ansichar * cpy)
 }
 
 
-inline ansichar * ansi_count_copy(ansichar * psz, const ansichar * cpy, strsize len)
+inline ::ansi_character * ansi_count_copy(::ansi_character * psz, const ::ansi_character * cpy, strsize len)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -71,7 +71,7 @@ inline ansichar * ansi_count_copy(ansichar * psz, const ansichar * cpy, strsize 
 }
 
 
-inline strsize ansi_length(const ansichar * psz)
+inline strsize ansi_length(const ::ansi_character * psz)
 {
 
    if (::is_null(psz)) return 0;
@@ -81,12 +81,12 @@ inline strsize ansi_length(const ansichar * psz)
 }
 
 
-inline ansichar * ansi_duplicate(const ansichar * psz)
+inline ::ansi_character * ansi_duplicate(const ::ansi_character * psz)
 {
 
    if (::is_null(psz)) return nullptr;
 
-   auto pszDup = (ansichar *) memory_allocate(strlen(psz) + 1);
+   auto pszDup = (::ansi_character *) memory_allocate(strlen(psz) + 1);
 
    strcpy(pszDup, psz);
 
@@ -95,14 +95,14 @@ inline ansichar * ansi_duplicate(const ansichar * psz)
 }
 
 
-inline ansichar * ansi_count_duplicate(const ansichar * psz, strsize len)
+inline ::ansi_character * ansi_count_duplicate(const ::ansi_character * psz, strsize len)
 {
 
    if (::is_null(psz)) return nullptr;
 
    if (len < 0) return nullptr;
 
-   auto pszDup = (ansichar *)memory_allocate(len + 1);
+   auto pszDup = (::ansi_character *)memory_allocate(len + 1);
 
    strncpy(pszDup, psz, len);
 
@@ -113,7 +113,7 @@ inline ansichar * ansi_count_duplicate(const ansichar * psz, strsize len)
 }
 
 
-inline const ansichar * ansi_find_string(const ansichar * psz, const ansichar * find)
+inline const ::ansi_character * ansi_find_string(const ::ansi_character * psz, const ::ansi_character * find)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -126,7 +126,7 @@ inline const ansichar * ansi_find_string(const ansichar * psz, const ansichar * 
 
 
 
-inline const ansichar * ansi_find_string_ci(const ansichar * psz, const ansichar * find)
+inline const ::ansi_character * ansi_find_string_ci(const ::ansi_character * psz, const ::ansi_character * find)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -159,7 +159,7 @@ inline const ansichar * ansi_find_string_ci(const ansichar * psz, const ansichar
 }
 
 
-inline const ansichar * ansi_count_find_string(const ansichar * psz, const ansichar * find, strsize len)
+inline const ::ansi_character * ansi_count_find_string(const ::ansi_character * psz, const ::ansi_character * find, strsize len)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -192,7 +192,7 @@ inline const ansichar * ansi_count_find_string(const ansichar * psz, const ansic
 }
 
 
-inline const ansichar * ansi_count_find_string_ci(const ansichar * psz, const ansichar * find, strsize len)
+inline const ::ansi_character * ansi_count_find_string_ci(const ::ansi_character * psz, const ::ansi_character * find, strsize len)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -225,7 +225,7 @@ inline const ansichar * ansi_count_find_string_ci(const ansichar * psz, const an
 }
 
 
-inline i32 ansi_compare(const ansichar * psz, const ansichar * sz2)
+inline i32 ansi_compare(const ::ansi_character * psz, const ::ansi_character * sz2)
 {
 
    if (::is_null(psz))
@@ -261,7 +261,7 @@ inline i32 ansi_compare(const ansichar * psz, const ansichar * sz2)
 }
 
 
-inline i32 ansi_compare_ci(const ansichar * psz, const ansichar * sz2)
+inline i32 ansi_compare_ci(const ::ansi_character * psz, const ::ansi_character * sz2)
 {
 
    if (::is_null(psz))
@@ -297,7 +297,7 @@ inline i32 ansi_compare_ci(const ansichar * psz, const ansichar * sz2)
 }
 
 
-inline i32 ansi_count_compare(const ansichar * psz, const ansichar * sz2, strsize len)
+inline i32 ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
 {
 
    if (len < 0)
@@ -340,7 +340,7 @@ inline i32 ansi_count_compare(const ansichar * psz, const ansichar * sz2, strsiz
 }
 
 
-inline i32 ansi_count_compare_ci(const ansichar * psz, const ansichar * sz2, strsize len)
+inline i32 ansi_count_compare_ci(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
 {
 
    if (len < 0)
@@ -384,7 +384,7 @@ inline i32 ansi_count_compare_ci(const ansichar * psz, const ansichar * sz2, str
 
 
 
-inline i32 ansi_collate(const ansichar * psz, const ansichar * sz2)
+inline i32 ansi_collate(const ::ansi_character * psz, const ::ansi_character * sz2)
 {
 
    if (::is_null(psz))
@@ -420,7 +420,7 @@ inline i32 ansi_collate(const ansichar * psz, const ansichar * sz2)
 }
 
 
-inline i32 ansi_collate_ci(const ansichar * psz, const ansichar * sz2)
+inline i32 ansi_collate_ci(const ::ansi_character * psz, const ::ansi_character * sz2)
 {
 
    if (::is_null(psz))
@@ -456,7 +456,7 @@ inline i32 ansi_collate_ci(const ansichar * psz, const ansichar * sz2)
 }
 
 
-inline i32 ansi_count_collate(const ansichar * psz, const ansichar * sz2, strsize len)
+inline i32 ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
 {
 
    if (len < 0)
@@ -499,7 +499,7 @@ inline i32 ansi_count_collate(const ansichar * psz, const ansichar * sz2, strsiz
 }
 
 
-inline i32 ansi_count_collate_ci(const ansichar * psz, const ansichar * sz2, strsize len)
+inline i32 ansi_count_collate_ci(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
 {
 
    if (len < 0)
@@ -542,20 +542,44 @@ inline i32 ansi_count_collate_ci(const ansichar * psz, const ansichar * sz2, str
 }
 
 
-
-inline const ansichar * ansi_scan(const ansichar * psz, const ansichar * find)
+inline const ::ansi_character * _ansi_scan(const ::ansi_character * psz, const ::ansi_character * find)
 {
 
-   if (::is_null(psz)) return nullptr;
-
-   if (::is_null(find)) return nullptr;
-
-   return strpbrk(psz, find);
+   return ansi_pbrk((::ansi_character *) psz, find);
 
 }
 
 
-inline ansichar * ansi_first_token(ansichar * psz, const ansichar * delimiters, ansichar ** action_context)
+
+inline const ::ansi_character * ansi_scan(const ::ansi_character * psz, const ::ansi_character * find)
+{
+
+   if (::is_empty(psz)) return psz;
+
+   if (::is_empty(find)) return psz;
+
+   return ansi_scan(psz, find);
+
+}
+
+
+//inline const ::ansi_character * ansi_token(const ::ansi_character * psz, const ::ansi_character * pszSeparators)
+//{
+//
+//   return string_find_first_in(psz, pszSeparators);
+//
+//}
+//
+//
+//inline const ::ansi_character * _ansi_find_first_in(const ::ansi_character * psz, const ::ansi_character * pszSeparators)
+//{
+//
+//   return _string_find_first_in(psz, pszSeparators);
+//
+//}
+
+
+inline ::ansi_character * ansi_first_token(::ansi_character * psz, const ::ansi_character * delimiters, ::ansi_character ** action_context)
 {
 
    return ansi_tok_r(psz, delimiters, action_context);
@@ -563,8 +587,7 @@ inline ansichar * ansi_first_token(ansichar * psz, const ansichar * delimiters, 
 }
 
 
-
-inline ansichar * ansi_next_token(const ansichar * delimiters, ansichar ** action_context)
+inline ::ansi_character * ansi_next_token(const ::ansi_character * delimiters, ::ansi_character ** action_context)
 {
 
    return ansi_tok_r(nullptr, delimiters, action_context);
@@ -572,7 +595,7 @@ inline ansichar * ansi_next_token(const ansichar * delimiters, ansichar ** actio
 }
 
 
-inline i32 ansi_begins(const ansichar * psz, const ansichar * prefix)
+inline i32 ansi_begins(const ::ansi_character * psz, const ::ansi_character * prefix)
 {
 
    if (::is_null(psz)) return false;
@@ -593,7 +616,7 @@ inline i32 ansi_begins(const ansichar * psz, const ansichar * prefix)
 }
 
 
-inline i32 ansi_begins_ci(const ansichar * psz, const ansichar * prefix)
+inline i32 ansi_begins_ci(const ::ansi_character * psz, const ::ansi_character * prefix)
 {
 
    if (::is_null(psz)) return false;
@@ -605,7 +628,7 @@ inline i32 ansi_begins_ci(const ansichar * psz, const ansichar * prefix)
 }
 
 
-inline const ansichar * ansi_begins_eat(const ansichar * psz, const ansichar * prefix)
+inline const ::ansi_character * ansi_begins_eat(const ::ansi_character * psz, const ::ansi_character * prefix)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -626,7 +649,7 @@ inline const ansichar * ansi_begins_eat(const ansichar * psz, const ansichar * p
 }
 
 
-inline const ansichar * ansi_begins_eat_ci(const ansichar * psz, const ansichar * prefix)
+inline const ::ansi_character * ansi_begins_eat_ci(const ::ansi_character * psz, const ::ansi_character * prefix)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -647,7 +670,7 @@ inline const ansichar * ansi_begins_eat_ci(const ansichar * psz, const ansichar 
 }
 
 
-inline i32 ansi_ends(const ansichar * psz, const ansichar * suffix)
+inline i32 ansi_ends(const ::ansi_character * psz, const ::ansi_character * suffix)
 {
 
    if (::is_null(psz)) return false;
@@ -670,7 +693,7 @@ inline i32 ansi_ends(const ansichar * psz, const ansichar * suffix)
 }
 
 
-inline i32 ansi_ends_ci(const ansichar * psz, const ansichar * suffix)
+inline i32 ansi_ends_ci(const ::ansi_character * psz, const ::ansi_character * suffix)
 {
 
    if (::is_null(psz)) return false;
@@ -693,7 +716,7 @@ inline i32 ansi_ends_ci(const ansichar * psz, const ansichar * suffix)
 }
 
 
-inline const ansichar * ansi_find_char(const ansichar * psz, ansichar ch)
+inline const ::ansi_character * ansi_find_char(const ::ansi_character * psz, ::ansi_character ch)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -703,7 +726,7 @@ inline const ansichar * ansi_find_char(const ansichar * psz, ansichar ch)
 }
 
 
-inline const ansichar * ansi_find_char_reverse(const ansichar * psz, ansichar ch)
+inline const ::ansi_character * ansi_find_char_reverse(const ::ansi_character * psz, ::ansi_character ch)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -713,51 +736,51 @@ inline const ansichar * ansi_find_char_reverse(const ansichar * psz, ansichar ch
 }
 
 
-//inline const ansichar * ansi_concatenate_and_duplicate(const ansichar * psz1, const ansichar * psz2);
-//inline const ansichar * ansi_concatenate_duplicate_and_free(const ansichar * psz1, ansichar * psz2);
+//inline const ::ansi_character * ansi_concatenate_and_duplicate(const ::ansi_character * psz1, const ::ansi_character * psz2);
+//inline const ::ansi_character * ansi_concatenate_duplicate_and_free(const ::ansi_character * psz1, ::ansi_character * psz2);
 
 
-inline void ansi_from_u64(ansichar * sz, u64 u, i32 iBase, enum_digit_case edigitcase)
+inline void ansi_from_u64(::ansi_character * sz, u64 u, i32 iBase, enum_digit_case edigitcase)
 {
 
-   ::i32 len;
+   ::ansi_character * end;
 
-   __u64toansi(u, sz, iBase, edigitcase, len);
+   __u64toansi(u, sz, iBase, edigitcase, end);
 
 }
 
 
-inline void ansi_from_i64(ansichar * sz, i64 i, i32 iBase, enum_digit_case edigitcase)
+inline void ansi_from_i64(::ansi_character * sz, i64 i, i32 iBase, enum_digit_case edigitcase)
 {
 
-   ::i32 len;
+   ::ansi_character * end;
 
-   __i64toansi(i, sz, iBase, edigitcase, len);
+   __i64toansi(i, sz, iBase, edigitcase, end);
 
 }
 
 
-inline void ansi_from_u32(ansichar * sz, u32 u, i32 iBase, enum_digit_case edigitcase)
+inline void ansi_from_u32(::ansi_character * sz, u32 u, i32 iBase, enum_digit_case edigitcase)
 {
 
-   ::i32 len;
+   ::ansi_character * end;
 
-   __u64toansi(u, sz, iBase, edigitcase, len);
+   __u64toansi(u, sz, iBase, edigitcase, end);
 
 }
 
 
-inline void ansi_from_i32(ansichar * sz, i32 i, i32 iBase, enum_digit_case edigitcase)
+inline void ansi_from_i32(::ansi_character * sz, i32 i, i32 iBase, enum_digit_case edigitcase)
 {
 
-   ::i32 len;
+   ::ansi_character * end;
 
-   __i64toansi(i, sz, iBase, edigitcase, len);
+   __i64toansi(i, sz, iBase, edigitcase, end);
 
 }
 
 
-inline i64 ansi_count_to_i64(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase, strsize srclen)
+inline i64 ansi_count_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase, strsize srclen)
 {
 
    auto len = ansi_length(psz);
@@ -782,7 +805,7 @@ inline i64 ansi_count_to_i64(const ansichar * psz, const ansichar ** ppszEnd, i3
          if (ppszEnd)
          {
 
-            *ppszEnd = (ansichar *)psz + (*ppszEnd - pszDup);
+            *ppszEnd = (::ansi_character *)psz + (*ppszEnd - pszDup);
 
          }
 
@@ -799,7 +822,7 @@ inline i64 ansi_count_to_i64(const ansichar * psz, const ansichar ** ppszEnd, i3
 }
 
 
-inline i32 ansi_count_to_i32(const ansichar * psz, const ansichar ** ppszEnd, i32 iBase, strsize srclen)
+inline i32 ansi_count_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase, strsize srclen)
 {
 
    auto len = ansi_length(psz);
@@ -841,7 +864,7 @@ inline i32 ansi_count_to_i32(const ansichar * psz, const ansichar ** ppszEnd, i3
 }
 
 
-inline void ansi_reverse(ansichar * psz)
+inline void ansi_reverse(::ansi_character * psz)
 {
 
    reverse_memory(psz, string_safe_length(psz));
@@ -849,7 +872,7 @@ inline void ansi_reverse(ansichar * psz)
 }
 
 
-inline void ansi_reverse(ansichar * psz, strsize size)
+inline void ansi_reverse(::ansi_character * psz, strsize size)
 {
 
    reverse_memory(psz, size);
@@ -857,7 +880,7 @@ inline void ansi_reverse(ansichar * psz, strsize size)
 }
 
 
-inline void ansi_zero_pad(ansichar * psz, strsize lenPad)
+inline void ansi_zero_pad(::ansi_character * psz, strsize lenPad)
 {
 
    strsize len = strlen(psz);
@@ -888,10 +911,10 @@ inline void ansi_zero_pad(ansichar * psz, strsize lenPad)
 }
 
 
-inline ansichar * ansi_lower(ansichar * pch)
+inline ::ansi_character * ansi_lower(::ansi_character * pch)
 {
 
-   ansichar * p = pch;
+   ::ansi_character * p = pch;
 
    while (*p != '\0')
    {
@@ -907,10 +930,10 @@ inline ansichar * ansi_lower(ansichar * pch)
 }
 
 
-inline ansichar * ansi_upper(ansichar * pch)
+inline ::ansi_character * ansi_upper(::ansi_character * pch)
 {
 
-   ansichar * p = pch;
+   ::ansi_character * p = pch;
 
    while (*p != '\0')
    {
@@ -926,7 +949,7 @@ inline ansichar * ansi_upper(ansichar * pch)
 }
 
 
-inline const ansichar * ansi_concatenate_and_duplicate(const ansichar * psz1, const ansichar * psz2, int iFree1, int iFree2)
+inline const ::ansi_character * ansi_concatenate_and_duplicate(const ::ansi_character * psz1, const ::ansi_character * psz2, int iFree1, int iFree2)
 {
 
    strsize len1 = ansi_length(psz1);
@@ -935,7 +958,7 @@ inline const ansichar * ansi_concatenate_and_duplicate(const ansichar * psz1, co
 
    strsize len = len1 + len2 + 1;
 
-   auto * psz = (ansichar *)memory_allocate(len);
+   auto * psz = (::ansi_character *)memory_allocate(len);
 
    *psz = '\0';
 
@@ -984,7 +1007,7 @@ inline const ansichar * ansi_concatenate_and_duplicate(const ansichar * psz1, co
 }
 
 
-//CLASS_DECL_ACME const ansichar * ansi_concatenate_duplicate_and_free(const ansichar * psz1, ansichar * psz2)
+//CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_duplicate_and_free(const ::ansi_character * psz1, ::ansi_character * psz2)
 //{
 //
 //   strsize len1 = strlen(psz1);
@@ -993,7 +1016,7 @@ inline const ansichar * ansi_concatenate_and_duplicate(const ansichar * psz1, co
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (ansichar *)memory_allocate(len);
+//   auto * psz = (::ansi_character *)memory_allocate(len);
 //
 //   *psz = '\0';
 //
@@ -1019,7 +1042,7 @@ inline const ansichar * ansi_concatenate_and_duplicate(const ansichar * psz1, co
 
 
 
-//CLASS_DECL_ACME const ansichar * ansi_concatenate_free_and_duplicate(ansichar * psz1, const ansichar * psz2)
+//CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_free_and_duplicate(::ansi_character * psz1, const ::ansi_character * psz2)
 //{
 //
 //   strsize len1 = strlen(psz1);
@@ -1028,7 +1051,7 @@ inline const ansichar * ansi_concatenate_and_duplicate(const ansichar * psz1, co
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (ansichar *)memory_allocate(len);
+//   auto * psz = (::ansi_character *)memory_allocate(len);
 //
 //   *psz = '\0';
 //
@@ -1054,7 +1077,7 @@ inline const ansichar * ansi_concatenate_and_duplicate(const ansichar * psz1, co
 
 
 
-//CLASS_DECL_ACME const ansichar * ansi_concatenat_free_duplicate_and_free(ansichar * psz1, ansichar * psz2)
+//CLASS_DECL_ACME const ::ansi_character * ansi_concatenat_free_duplicate_and_free(::ansi_character * psz1, ::ansi_character * psz2)
 //{
 //
 //   strsize len1 = strlen(psz1);
@@ -1063,7 +1086,7 @@ inline const ansichar * ansi_concatenate_and_duplicate(const ansichar * psz1, co
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (ansichar *)memory_allocate(len);
+//   auto * psz = (::ansi_character *)memory_allocate(len);
 //
 //   *psz = '\0';
 //
@@ -1091,7 +1114,7 @@ inline const ansichar * ansi_concatenate_and_duplicate(const ansichar * psz1, co
 
 
 
-//inline void                   ansi_parse_command_line(ansichar * cmdstart, ansichar ** argv, ansichar * args, i32 * numargs, i32 * numchars);
+//inline void                   ansi_parse_command_line(::ansi_character * cmdstart, ::ansi_character ** argv, ::ansi_character * args, i32 * numargs, i32 * numchars);
 
 
 
@@ -1133,10 +1156,10 @@ inline const void * memory_find_memory(const void * src, strsize srclen, const v
 
 
 
-inline const ansichar *       wildcard_next_stop(const ansichar * pszCriteria);
+inline const ::ansi_character *       wildcard_next_stop(const ::ansi_character * pszCriteria);
 
-inline int_bool               wildcard_matches_criteria(const ansichar * pszCriteria, const ansichar * pszValue);
-inline int_bool               wildcard_matches_criteria_ci(const ansichar * pszCriteria, const ansichar * pszValue);
+inline int_bool               wildcard_matches_criteria(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
+inline int_bool               wildcard_matches_criteria_ci(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
 
 
 

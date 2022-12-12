@@ -28,8 +28,8 @@ string file_path_name(const char * path)
 {
    string str(path);
    strsize iPos;
-   strsize iPos1 = str.reverse_find('\\');
-   strsize iPos2 = str.reverse_find('/');
+   strsize iPos1 = str.rear_find('\\');
+   strsize iPos2 = str.rear_find('/');
    if(iPos1 != -1 && iPos2 != -1)
    {
       if(iPos1 > iPos2)

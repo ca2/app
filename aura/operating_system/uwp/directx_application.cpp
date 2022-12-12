@@ -867,10 +867,10 @@ namespace universal_windows
    }
 
    
-   widestring directx_framework_impact::get_input_text()
+   wide_string directx_framework_impact::get_input_text()
    {
 
-      widestring wstrText;
+      wide_string wstrText;
 
       auto pfocusui = m_puserinteraction->get_keyboard_focus();
 
@@ -892,7 +892,7 @@ namespace universal_windows
    }
 
 
-   bool directx_framework_impact::set_input_text(const widestring & wstr)
+   bool directx_framework_impact::set_input_text(const wide_string & wstr)
    {
 
       auto pfocusui = m_puserinteraction->get_keyboard_focus();
@@ -916,7 +916,7 @@ namespace universal_windows
    }
 
 
-   //void directx_framework_impact::get_input_text(const widestring & wstr)
+   //void directx_framework_impact::get_input_text(const wide_string & wstr)
    //{
 
 

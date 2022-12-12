@@ -475,7 +475,7 @@ namespace write_text
 
          pbox->m_pfont.create(this);
 
-         if (str.compare_ci("GOUDY STOUT") == 0)
+         if (str.case_insensitive_order("GOUDY STOUT") == 0)
          {
 
             output_debug_string("test05");
@@ -1765,7 +1765,7 @@ namespace write_text
 
          }
 
-         if(m_pfontenumerationitema->element_at(i)->m_strName.compare_ci(str) == 0)
+         if(m_pfontenumerationitema->element_at(i)->m_strName.case_insensitive_order(str) == 0)
          {
 
             return i;

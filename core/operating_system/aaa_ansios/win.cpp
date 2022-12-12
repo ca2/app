@@ -50,7 +50,7 @@ output_debug_string(
 VOID
 WINAPI
 output_debug_string(
-                   const widechar * pOutputString
+                   const ::wide_character * pOutputString
 
                    )
 {

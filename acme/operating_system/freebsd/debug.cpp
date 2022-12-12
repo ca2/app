@@ -176,7 +176,7 @@ void output_debug_string(const char * pOutputString)
 }
 
 
-void output_debug_string(const widechar * pOutputString)
+void output_debug_string(const ::wide_character * pOutputString)
 {
 
    if(::acme::g_bOutputDebugString)

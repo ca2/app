@@ -261,7 +261,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
          union
          {
             char sz[4];
-            wd32char wd32ch;
+            ::wd32_character wd32ch;
             
          } u{};
          u.sz[0] = chTemp;

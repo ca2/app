@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "semaphore.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -112,7 +112,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
       string strName(pstrName);
 
-      if(strName.begins_ci("Local\\") || strName.begins_ci("Local\\"))
+      if(strName.case_insensitive_begins("Local\\") || strName.case_insensitive_begins("Local\\"))
       {
 
          strPath = pacmedirectory->home() / (".ca2/ftok/semaphore/" + strName);

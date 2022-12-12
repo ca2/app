@@ -94,7 +94,7 @@ u32 chars_to_u32(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, i32 iBase)
          while (true)
          {
 
-            wd32char ch = wd32_char_tolower(*psz);
+            ::wd32_character ch = wd32_char_tolower(*psz);
 
             if (ch == '\0')
             {
@@ -169,7 +169,7 @@ i64 chars_to_i64(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, i32 iBase)
          while (true)
          {
 
-            wd32char ch = wd32_char_tolower(*psz);
+            ::wd32_character ch = wd32_char_tolower(*psz);
 
             if (ch == '\0')
             {
@@ -281,22 +281,22 @@ u64 chars_to_u64(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, i32 iBase)
 
 
 
-i32 __ansitoi32(const ansichar *psz, ansichar ** pszEnd, i32 iBase) { return chars_to_i32 < ansichar >(psz, (const ansichar **)pszEnd, iBase); }
-u32 __ansitou32(const ansichar *psz, ansichar ** pszEnd, i32 iBase) { return chars_to_u32 < ansichar >(psz, (const ansichar **)pszEnd, iBase); }
-i64 __ansitoi64(const ansichar *psz, ansichar ** pszEnd, i32 iBase) { return chars_to_i64 < ansichar >(psz, (const ansichar **)pszEnd, iBase); }
-u64 __ansitou64(const ansichar *psz, ansichar ** pszEnd, i32 iBase) { return chars_to_u64 < ansichar >(psz, (const ansichar **)pszEnd, iBase); }
+i32 __ansitoi32(const ::ansi_character *psz, ::ansi_character ** pszEnd, i32 iBase) { return chars_to_i32 < ::ansi_character >(psz, (const ::ansi_character **)pszEnd, iBase); }
+u32 __ansitou32(const ::ansi_character *psz, ::ansi_character ** pszEnd, i32 iBase) { return chars_to_u32 < ::ansi_character >(psz, (const ::ansi_character **)pszEnd, iBase); }
+i64 __ansitoi64(const ::ansi_character *psz, ::ansi_character ** pszEnd, i32 iBase) { return chars_to_i64 < ::ansi_character >(psz, (const ::ansi_character **)pszEnd, iBase); }
+u64 __ansitou64(const ::ansi_character *psz, ::ansi_character ** pszEnd, i32 iBase) { return chars_to_u64 < ::ansi_character >(psz, (const ::ansi_character **)pszEnd, iBase); }
 
 
-i32 __wd16toi32(const wd16char *psz, wd16char ** pszEnd, i32 iBase) { return chars_to_i32 < wd16char >(psz, (const wd16char **)pszEnd, iBase); }
-u32 __wd16tou32(const wd16char *psz, wd16char ** pszEnd, i32 iBase) { return chars_to_u32 < wd16char >(psz, (const wd16char **)pszEnd, iBase); }
-i64 __wd16toi64(const wd16char *psz, wd16char ** pszEnd, i32 iBase) { return chars_to_i64 < wd16char >(psz, (const wd16char **)pszEnd, iBase); }
-u64 __wd16tou64(const wd16char *psz, wd16char ** pszEnd, i32 iBase) { return chars_to_u64 < wd16char >(psz, (const wd16char **)pszEnd, iBase); }
+i32 __wd16toi32(const ::wd16_character *psz, ::wd16_character ** pszEnd, i32 iBase) { return chars_to_i32 < ::wd16_character >(psz, (const ::wd16_character **)pszEnd, iBase); }
+u32 __wd16tou32(const ::wd16_character *psz, ::wd16_character ** pszEnd, i32 iBase) { return chars_to_u32 < ::wd16_character >(psz, (const ::wd16_character **)pszEnd, iBase); }
+i64 __wd16toi64(const ::wd16_character *psz, ::wd16_character ** pszEnd, i32 iBase) { return chars_to_i64 < ::wd16_character >(psz, (const ::wd16_character **)pszEnd, iBase); }
+u64 __wd16tou64(const ::wd16_character *psz, ::wd16_character ** pszEnd, i32 iBase) { return chars_to_u64 < ::wd16_character >(psz, (const ::wd16_character **)pszEnd, iBase); }
 
 
-i32 __wd32toi32(const wd32char *psz, wd32char ** pszEnd, i32 iBase) { return chars_to_i32 < wd32char >(psz, (const wd32char **)pszEnd, iBase); }
-u32 __wd32tou32(const wd32char *psz, wd32char ** pszEnd, i32 iBase) { return chars_to_u32 < wd32char >(psz, (const wd32char **)pszEnd, iBase); }
-i64 __wd32toi64(const wd32char *psz, wd32char ** pszEnd, i32 iBase) { return chars_to_i64 < wd32char >(psz, (const wd32char **)pszEnd, iBase); }
-u64 __wd32tou64(const wd32char *psz, wd32char ** pszEnd, i32 iBase) { return chars_to_u64 < wd32char >(psz, (const wd32char **)pszEnd, iBase); }
+i32 __wd32toi32(const ::wd32_character *psz, ::wd32_character ** pszEnd, i32 iBase) { return chars_to_i32 < ::wd32_character >(psz, (const ::wd32_character **)pszEnd, iBase); }
+u32 __wd32tou32(const ::wd32_character *psz, ::wd32_character ** pszEnd, i32 iBase) { return chars_to_u32 < ::wd32_character >(psz, (const ::wd32_character **)pszEnd, iBase); }
+i64 __wd32toi64(const ::wd32_character *psz, ::wd32_character ** pszEnd, i32 iBase) { return chars_to_i64 < ::wd32_character >(psz, (const ::wd32_character **)pszEnd, iBase); }
+u64 __wd32tou64(const ::wd32_character *psz, ::wd32_character ** pszEnd, i32 iBase) { return chars_to_u64 < ::wd32_character >(psz, (const ::wd32_character **)pszEnd, iBase); }
 
 
 

@@ -4,6 +4,7 @@
 #include "acme/memory/memory_allocator.h"
 #include "acme/primitive/primitive/interlocked_count.h"
 
+
 template < typename NATURAL_DATA >
 NATURAL_DATA* __nil() { return nullptr; }
 
@@ -17,8 +18,9 @@ class meta_data
 public:
 
 
-   typedef meta_data < TYPE_DATA >     META;
-   typedef TYPE_DATA                   DATA;
+   using META = meta_data < TYPE_DATA >;
+
+   using DATA = non_const < TYPE_DATA >;
 
 
    interlocked_count                   m_countReference;
@@ -38,9 +40,9 @@ public:
 
    consteval static ::memsize natural_offset() { return (offsetof(meta_data, m_endofmetadata) + NATURAL_METADATA_ALIGN - 1) & (~(NATURAL_METADATA_ALIGN - 1)); }
 
-   DATA * get_data() const { return (DATA *)(((byte *)this) + natural_offset()); }
+   DATA * begin() const { return (DATA *)(((byte *)this) + natural_offset()); }
+   DATA * end() const { return (DATA *)(begin() + this->m_datasize); }
 
-   bool contains_data(const DATA* p) const { return (byte*)p >= (byte*)this && (byte *) p < ((byte*)get_data()) + m_memsize; }
 
 };
 
@@ -60,7 +62,7 @@ public:
 
    natural_meta_data(enum_zero_init) :BASE_META_DATA(e_zero_init){}
 
-   bool is_set() { return ::is_set(this->m_pdata); }
+   bool is_set() { return ::is_set(this->m_begin); }
 
 
    bool is_null() { return !is_null(); }
@@ -85,7 +87,7 @@ public:
    inline natural_meta_data < BASE_META_DATA >* metadata()
    {
 
-      return from_data(this->m_pdata);
+      return from_data(this->m_begin);
 
    }
 
@@ -93,7 +95,7 @@ public:
    inline natural_meta_data < BASE_META_DATA >* metadata() const
    {
 
-      return from_data(this->m_pdata);
+      return from_data(this->m_begin);
 
    }
 
@@ -101,70 +103,129 @@ public:
 
 };
 
+
 using nullptr_t = std::nullptr_t;
+
 
 #pragma pack(push,1)
 
-template < typename BASE_META_DATA, typename ALLOCATOR = memory_allocator >
+
+template < typename RANGE_TYPE, typename BASE_META_DATA, typename ALLOCATOR = memory_allocator >
 class natural_pointer :
-   public ALLOCATOR
+   public RANGE_TYPE
 {
 public:
 
 
-   typedef natural_meta_data < BASE_META_DATA >       NATURAL_META_DATA;
-   typedef typename BASE_META_DATA::META              META;
-   typedef typename BASE_META_DATA::DATA              DATA;
+   using NATURAL_META_DATA = natural_meta_data < BASE_META_DATA >;
+   using META = BASE_META_DATA::META;
+   using DATA = BASE_META_DATA::DATA;
+   using iterator = RANGE_TYPE::iterator;
 
 
-   DATA *      m_pdata;
+   inline natural_pointer(enum_no_initialize) : RANGE_TYPE(e_no_initialize) { }
+   inline natural_pointer(const natural_pointer & natural_pointer)
+   {
 
+      natural_pointer.metadata()->natural_add_ref();
 
-   inline natural_pointer(enum_no_initialize) { }
+      RANGE_TYPE::operator = (natural_pointer);
 
-   inline natural_pointer(nullptr_t) { m_pdata = nullptr; }
+   }
+   inline natural_pointer(natural_pointer && natural_pointer)
+   {
 
-   inline natural_pointer()
+      RANGE_TYPE::operator = (::move(natural_pointer));
+
+   }
+   inline natural_pointer() : natural_pointer(e_no_initialize)
    {
 
       natural_pointer_default_construct();
 
    }
-
    ~natural_pointer()
    {
 
-      if (::is_set(this->m_pdata))
+      defer_destroy();
+
+   }
+
+
+   void defer_destroy()
+   {
+
+      if (::is_set(this->begin()))
       {
 
-         this->_natural_release(NATURAL_META_DATA::from_data(this->m_pdata));
+         this->_natural_release(NATURAL_META_DATA::from_data(this->begin()));
 
       }
 
    }
 
 
-   void natural_pointer_default_construct()
+   natural_pointer & operator = (const natural_pointer & natural_pointer)
    {
 
-      m_pdata = default_construct_natural_pointer();
+      if (this != &natural_pointer)
+      {
+      
+         natural_pointer.metadata()->natural_add_ref();
+
+         defer_destroy();
+
+         RANGE_TYPE::operator = (natural_pointer);
+
+      }
+
+      return *this;
 
    }
 
 
-   inline static DATA * default_construct_natural_pointer()
+   natural_pointer & operator = (natural_pointer && natural_pointer) 
+   { 
+
+      if (this != &natural_pointer)
+      {
+
+         defer_destroy();
+
+         RANGE_TYPE::operator = (::move(natural_pointer));
+
+      }
+      
+      return *this; 
+   
+   }
+
+
+   void natural_pointer_default_construct()
+   {
+
+      auto p = default_construct_natural_pointer();
+
+      this->m_begin = (iterator) p->begin();
+
+      this->m_end = (iterator) p->end();
+
+   }
+
+
+   inline static NATURAL_META_DATA * default_construct_natural_pointer()
    {
 
       auto pnil = __nil< natural_meta_data < BASE_META_DATA > >();
 
       pnil->natural_add_ref();
 
-      return pnil->get_data();
+      return pnil;
 
    }
 
 
-   inline static auto create_meta_data(::memsize memsize)
+   inline static NATURAL_META_DATA * create_meta_data(::memsize memsize)
    {
 
       auto pmetadata = (natural_meta_data < BASE_META_DATA > *) ALLOCATOR::allocate(memsize + BASE_META_DATA::natural_offset());
@@ -177,15 +238,16 @@ public:
 
    }
 
-   inline natural_meta_data < BASE_META_DATA > * metadata() const
+
+   inline NATURAL_META_DATA * metadata() const
    {
 
-      return NATURAL_META_DATA::from_data(this->m_pdata);
+      return NATURAL_META_DATA::from_data(this->m_begin);
 
    }
 
 
-   inline void static natural_destroy(natural_meta_data < BASE_META_DATA >* pmetadata)
+   inline void static natural_destroy(NATURAL_META_DATA * pmetadata)
    {
 
       ALLOCATOR::free(pmetadata);
@@ -196,17 +258,19 @@ public:
    void assign_natural_pointer(const natural_pointer& pointer)
    {
 
-      assign_natural_meta_data(NATURAL_META_DATA::from_data(pointer.m_pdata));
+      assign_natural_meta_data(NATURAL_META_DATA::from_data(pointer.m_begin));
 
    }
 
 
-   void create_assign_natural_meta_data(natural_meta_data < BASE_META_DATA > * pNew)
+   void create_assign_natural_meta_data(NATURAL_META_DATA * p)
    {
 
-      pNew->natural_add_ref();
+      p->natural_add_ref();
 
-      this->m_pdata = pNew->get_data();
+      this->m_begin = (iterator) p->begin();
+
+      this->m_end = (iterator) p->end();
 
    }
 
@@ -214,7 +278,7 @@ public:
    void assign_natural_meta_data(natural_meta_data < BASE_META_DATA > * pNew)
    {
 
-      auto pOld = NATURAL_META_DATA::from_data(this->m_pdata);
+      auto pOld = NATURAL_META_DATA::from_data(this->m_begin);
 
       if (pOld != pNew)
       {
@@ -233,7 +297,9 @@ public:
 
          }
 
-         this->m_pdata = pNew->get_data();
+         this->m_begin = (iterator)pNew->begin();
+
+         this->m_end = (iterator)pNew->end();
 
          natural_release(pOld);
 
@@ -245,9 +311,13 @@ public:
    void natural_release()
    {
 
-      auto pdata = this->m_pdata;
+      DATA * pdata = (DATA *) this->m_begin;
 
-      m_pdata = default_construct_natural_pointer();
+      auto p = default_construct_natural_pointer();
+
+      this->m_begin = (iterator)p->begin();
+
+      this->m_end = (iterator)p->end();
 
       natural_release(pdata);
 
@@ -291,28 +361,8 @@ public:
 
 };
 
+
 #pragma pack(pop)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

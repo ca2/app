@@ -92,9 +92,9 @@ namespace http
 
       }
 
-      str += "HTTP_STATUS_CODE: " + set["get_attrs"]["http_status_code"].as_string();
+      str += "HTTP_STATUS_CODE: " + set["get_attrs"]["http_status_code"];
 
-      str += ", HTTP_STATUS: \"" + set["get_attrs"]["http_status"].as_string() + "\"";
+      str += ", HTTP_STATUS: \"" + set["get_attrs"]["http_status"] + "\"";
 
       return str;
 

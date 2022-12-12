@@ -13,10 +13,10 @@
 
 #define _wcsinc(_pc)    ((_pc)+1)
 
-::u32 __get_file_title(const widechar * pszPathName, widechar * pszTitle, ::u32 nMax);
+::u32 __get_file_title(const ::wide_character * pszPathName, ::wide_character * pszTitle, ::u32 nMax);
 
 
-bool _set_reg_key(const widechar * pszKey, const widechar * pszValue, const widechar * pszValueName = nullptr);
+bool _set_reg_key(const ::wide_character * pszKey, const ::wide_character * pszValue, const ::wide_character * pszValueName = nullptr);
 
 
 #ifdef WINDOWS_DESKTOP

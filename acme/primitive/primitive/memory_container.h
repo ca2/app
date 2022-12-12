@@ -1,8 +1,9 @@
-#pragma once
+﻿#pragma once
 
 
 #include "memory_base.h"
 ////#include "acme/primitive/primitive/object.h"
+#include "memory.h"
 
 
 class shared_memory;
@@ -51,27 +52,34 @@ public:
 
    inline memory_base & memory() { return *get_memory(); }
 
-   memsize get_size() const;
+   memsize size() const { return m_pmemory->size(); }
 
-   memsize get_size_raw() const;
+   memsize storage_size() const { return m_pmemory->storage_size(); }
 
-   void from_string(const widechar * pwsz);
+   void from_string(const ::wide_character * pwsz);
    void from_string(const char * psz);
    void from_string(const ::string & str);
    template < primitive_payload PAYLOAD >
    void from_string(const PAYLOAD & payload);
-   string as_string() const override;
+   ::string as_string() const override;
+   virtual ::memory as_memory() const;
 
    void read(memory_base *pmemorystorage);
 
    //virtual stream & write(::stream & stream) const override;
    //virtual stream & read(::stream & stream) override;
 
-   byte * get_data();
-   const byte * get_data() const;
+   byte * data() { return ::is_set(m_pmemory)?m_pmemory->data():nullptr; }
+   const byte * data() const { return ::is_set(m_pmemory) ? m_pmemory->data() : nullptr; }
 
-   byte * get_data_raw();
-   const byte * get_data_raw() const;
+   byte * begin() { return data(); }
+   const byte * begin() const { return data(); }
+
+   byte * end() { return ::is_set(m_pmemory) ? m_pmemory->end() : nullptr; }
+   const byte * end() const { return ::is_set(m_pmemory) ? m_pmemory->end() : nullptr; }
+
+   //byte * get_data_raw();
+   //const byte * get_data_raw() const;
 
    virtual bool is_valid() const;
 
@@ -90,54 +98,54 @@ public:
    paged_memory *  get_virtual_memory();
 
 
-   string str() const;
-   void str(const ::string & str);
+   //string as_string() const;
+   void set_string(const ::string & str);
 
 
 };
 
 
-inline byte * memory_container::get_data_raw()
-{
+//inline byte * memory_container::get_data_raw()
+//{
+//
+//   return m_pmemory->get_data();
+//
+//}
+//
+//inline const byte * memory_container::get_data_raw() const
+//{
+//
+//   return m_pmemory->get_data();
+//
+//}
+//
+//inline memsize memory_container::get_size_raw() const
+//{
+//   return m_pmemory->get_size();
+//}
+//
+//
+//inline byte * memory_container ::get_data()
+//{
+//
+//   return m_pmemory.is_null() ? 0 : get_data_raw();
+//
+//}
+//
+//inline const byte * memory_container ::get_data() const
+//{
+//
+//   return m_pmemory.is_null() ? 0 : get_data_raw();
+//
+//}
+//
+//inline memsize memory_container ::get_size() const
+//{
+//   return m_pmemory.is_null() ? 0 : get_size_raw();
+//}
+//
 
-   return m_pmemory->get_data();
-
-}
-
-inline const byte * memory_container::get_data_raw() const
-{
-
-   return m_pmemory->get_data();
-
-}
-
-inline memsize memory_container::get_size_raw() const
-{
-   return m_pmemory->get_size();
-}
-
-
-inline byte * memory_container ::get_data()
-{
-
-   return m_pmemory.is_null() ? 0 : get_data_raw();
-
-}
-
-inline const byte * memory_container ::get_data() const
-{
-
-   return m_pmemory.is_null() ? 0 : get_data_raw();
-
-}
-
-inline memsize memory_container ::get_size() const
-{
-   return m_pmemory.is_null() ? 0 : get_size_raw();
-}
-
-
-inline void memory_container ::from_string(const widechar * pwsz)
+inline void memory_container ::from_string(const ::wide_character * pwsz)
 {
 
    if(m_pmemory.is_null())
@@ -181,25 +189,33 @@ inline void memory_container ::from_string(const PAYLOAD & payload)
 }
 
 
-inline string memory_container::as_string() const
+//inline string memory_container::as_string() const
+//{
+//
+//   if (!m_pmemory)
+//   {
+//
+//      return "";
+//
+//   }
+//
+//   return m_pmemory->as_string();
+//
+//}
+
+
+inline ::string memory_container::as_string() const
 {
 
-   if (!m_pmemory)
-   {
-
-      return "";
-
-   }
-
-   return m_pmemory->as_string();
+   return { (const ::ansi_character * ) data(), size() };
 
 }
 
 
-inline string memory_container::str() const
+inline ::memory memory_container::as_memory() const
 {
 
-   return string((const char *) get_data(), get_size());
+   return { data(), size() };
 
 }
 
@@ -209,7 +225,7 @@ memory_container::memory_container(PAYLOAD & payload)
 {
 
    m_pmemory = &payload.memory_reference();
-   m_pbyte = m_pmemory->m_memory.m_pdata;
-   m_memsize = m_pmemory->m_memory.m_cbStorage;
+   m_pbyte = m_pmemory->m_memory.data();
+   m_memsize = m_pmemory->m_memory.size();
 
 }

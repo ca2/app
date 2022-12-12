@@ -97,7 +97,7 @@ int  NSISCALL PopStringW(LPWSTR wideStr);
 void NSISCALL PushStringW(LPWSTR wideStr);
 void NSISCALL GetUserVariableW(const int varnum, LPWSTR wideStr);
 void NSISCALL GetUserVariableA(const int varnum, char * ansiStr);
-void NSISCALL SetUserVariableW(const int varnum, const widechar * wideStr);
+void NSISCALL SetUserVariableW(const int varnum, const ::wide_character * wideStr);
 
 #endif
 

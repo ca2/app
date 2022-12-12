@@ -436,7 +436,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
             }
          }
       }
-      pfileOutput->write(m.get_data(), m.get_size());
+      pfileOutput->write(m.begin(), m.size());
    }
 
 
@@ -503,9 +503,9 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
       i32 i;
       byte a[4],b[4],o[3];
       uchar uch;
-      u8 * pdata = (u8 *)block.get_data();
+      u8 * pdata = (u8 *)block.begin();
       i64 iDecode = 0;
-      memsize rem = block.get_size();
+      memsize rem = block.size();
       while(rem > 0)
       {
          for(i= 0; i<4; i++)
@@ -571,7 +571,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
 
       ::memory_file file;
 
-      encode(&file, (u8 *) block.m_pdata, (memsize) block.m_iSize, emode);
+      encode(&file, (u8 *) block.begin(), (memsize) block.size(), emode);
 
       return file.as_string();
 
@@ -581,7 +581,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
 //   string base64::encode(memory_base & mem, e_mode emode)
 //   {
 //
-//      return encode(mem.get_data(), mem.get_size(), emode);
+//      return encode(mem.begin(), mem.size(), emode);
 //
 //   }
 
@@ -589,7 +589,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
 //   string base64::encode(const ::block & block, e_mode emode)
 //   {
 //
-//      return encode(block.get_data(), block.get_size(), emode);
+//      return encode(block.begin(), block.size(), emode);
 //
 //   }
 
@@ -605,9 +605,9 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
       string str;
 
       ::memcpy_dup(
-      str.get_string_buffer(storage.get_size()),
-      storage.get_data(),
-      storage.get_size());
+      str.get_string_buffer(storage.size()),
+      storage.begin(),
+      storage.size());
 
       str.release_string_buffer();
 

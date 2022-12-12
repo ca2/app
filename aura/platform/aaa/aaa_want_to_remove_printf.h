@@ -9,9 +9,9 @@
 #pragma once
 
 CLASS_DECL_AURA i32 printf_dup(const ::string &format, ...);
-CLASS_DECL_AURA i32 wprintf_dup(const widechar *format, ...);
+CLASS_DECL_AURA i32 wprintf_dup(const ::wide_character *format, ...);
 CLASS_DECL_AURA i32 vprintf_dup(const ::string &format, va_list args);
-CLASS_DECL_AURA i32 vwprintf_dup(const widechar *format, va_list args);
+CLASS_DECL_AURA i32 vwprintf_dup(const ::wide_character *format, va_list args);
 
 #ifdef APPLEOS
 i32 ecvt_r(double, int, int *__restrict, int *__restrict, char * sz, size_t size); /* LEGACY */

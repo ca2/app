@@ -118,7 +118,7 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const char* pszCriteriaPa
 }
 
 
-CLASS_DECL_ACME int_bool matches_wildcard_criteria_ci(const ansichar * pszCriteriaParam, const ansichar * pszValue)
+CLASS_DECL_ACME int_bool matches_wildcard_criteria_ci(const ::ansi_character * pszCriteriaParam, const ::ansi_character * pszValue)
 {
 
    string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
@@ -205,7 +205,7 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_ci(const ansichar * pszCriter
 }
 
 
-CLASS_DECL_ACME int_bool matches_wildcard_criteria(const ansichar * pszCriteriaParam, const ansichar * pszValue)
+CLASS_DECL_ACME int_bool matches_wildcard_criteria(const ::ansi_character * pszCriteriaParam, const ::ansi_character * pszValue)
 {
 
    string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));

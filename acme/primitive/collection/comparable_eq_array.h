@@ -6,18 +6,30 @@
 
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 class comparable_eq_array:
-   public ARRAY_TYPE
+   public comparable_eq_range < ARRAY_TYPE >
 {
 public:
 
 
+   using BASE_RANGE = comparable_eq_range < ARRAY_TYPE >;
+
    using BASE_ARRAY = ARRAY_TYPE;
 
+   using CONST_RAW_RANGE = BASE_ARRAY::CONST_RAW_RANGE;
+
+   using iterator = ARRAY_TYPE::iterator;
+   using const_iterator = ARRAY_TYPE::const_iterator;
    
-   explicit comparable_eq_array(::particle * pparticle = nullptr) : BASE_ARRAY(pparticle) { }
-   comparable_eq_array(::std::initializer_list < TYPE > l) : BASE_ARRAY(l) {   }
-   comparable_eq_array(const comparable_eq_array & array) : BASE_ARRAY(array) { }
-   comparable_eq_array(comparable_eq_array && array) noexcept : BASE_ARRAY(::move(array)) { }
+
+   comparable_eq_array() {}
+   comparable_eq_array(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }
+   comparable_eq_array(const comparable_eq_array & array) : BASE_RANGE(array) {}
+   comparable_eq_array(comparable_eq_array && array) noexcept : BASE_RANGE(::move(array)) { }
+   comparable_eq_array(::range < const_iterator > constrange) : BASE_RANGE(constrange) {}
+   template < primitive_integral INTEGRAL >
+   comparable_eq_array(const_iterator begin, INTEGRAL count, bool bNullTerminated = false) : BASE_RANGE(begin, count, bNullTerminated) {}
+   comparable_eq_array(const_iterator begin, const_iterator end, bool bNullTerminated = false) : BASE_RANGE(begin, end, bNullTerminated) {}
+   comparable_eq_array(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin), true) {}
 
    
    ::index find_first(ARG_TYPE t) const;
@@ -134,6 +146,24 @@ public:
       return this->operator % (iFind + 1);
 
    }
+
+   using BASE_ARRAY::equals;
+
+   bool equals(CONST_RAW_RANGE a) const
+   {
+
+      return BASE_ARRAY::equals(a, ::comparison::comparison < TYPE >());
+
+   }
+
+
+   bool operator ==(CONST_RAW_RANGE a) const
+   {
+
+      return this->equals(a);
+
+   }
+
 
 };
 

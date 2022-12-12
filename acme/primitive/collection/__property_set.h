@@ -23,8 +23,8 @@ public:
    using property_ptra::erase;
 
 
-   __declare_iterator(name_iterator, &(*this->m_pelement)->m_atom);
-   __declare_iterator(value_iterator, &(*this->m_pelement)->m_var);
+   //__declare_iterator(name_iterator, &(*this->m_pelement)->m_atom);
+   //__declare_iterator(value_iterator, &(*this->m_pelement)->m_var);
 
 
    property_set() { }
@@ -145,7 +145,7 @@ public:
    bool has_properties(::count countMinimum = 1) const;
 
 
-   inline auto names(index iStart = 0, index iEnd = -1) const { return name_iterator(iStart, iEnd, this); }
+   //inline auto names(index iStart = 0, index iEnd = -1) const { return name_iterator(iStart, iEnd, this); }
 
 
    inline property & set_at(const ::atom & atom, const ::payload & payload)

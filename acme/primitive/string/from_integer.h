@@ -18,8 +18,8 @@ inline char * ansi_concatenate_i64(char * psz, i64 i, int iBase = 10, enum_digit
 
 
 
-inline void wide_from_i64_base(widechar * sz, i64 i, i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
-inline void wide_from_u64_base(widechar * sz, u64 i, i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
+inline void wide_from_i64_base(::wide_character * sz, i64 i, i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
+inline void wide_from_u64_base(::wide_character * sz, u64 i, i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
 
 
 inline string ansi_string_from_i64(i64 i, int iBase, enum_digit_case edigitcase)
@@ -55,7 +55,7 @@ inline string ansi_string_from_i32(i32 i, int iBase, enum_digit_case edigitcase)
    return string(sz);
 }
 
-//inline widechar * wide_concatenate_i64(widechar * pwsz, i64 i)
+//inline ::wide_character * wide_concatenate_i64(::wide_character * pwsz, i64 i)
 //{
 //#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 //   wide_from_i64_base(wide_last_char(pwsz), i, 10);
@@ -65,7 +65,7 @@ inline string ansi_string_from_i32(i32 i, int iBase, enum_digit_case edigitcase)
 //   return pwsz;
 //}
 //
-//inline widechar * wide_concatenate_u64(widechar * pwsz, u64 u)
+//inline ::wide_character * wide_concatenate_u64(::wide_character * pwsz, u64 u)
 //{
 //#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)  || defined(FREEBSD)
 //   wide_from_u64_base(wide_last_char(pwsz), u, 10);

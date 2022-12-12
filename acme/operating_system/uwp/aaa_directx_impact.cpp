@@ -287,7 +287,7 @@ namespace universal_windows
    void impact::EditContext_TextUpdating(CoreTextEditContext ^sender, CoreTextTextUpdatingEventArgs ^ args)
    {
       CoreTextRange range = args->Range;
-      widestring newText = args->Text;
+      wide_string newText = args->Text;
       CoreTextRange newSelection = args->NewSelection;
       auto pwsz= newText.c_str();
       m_strNewText = newText;

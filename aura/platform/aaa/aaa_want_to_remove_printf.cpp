@@ -23,7 +23,7 @@ i32 printf_dup(const ::string &format, ...)
    return ret;
 }
 
-i32 wprintf_dup(const widechar *format, ...)
+i32 wprintf_dup(const ::wide_character *format, ...)
 {
    va_list args;
    va_start(args, format);
@@ -43,7 +43,7 @@ i32 vprintf_dup(const ::string &format, va_list args)
 }
 
 
-i32 vwprintf_dup(const widechar *format, va_list args)
+i32 vwprintf_dup(const ::wide_character *format, va_list args)
 {
 
    return vwprintf(format, args);

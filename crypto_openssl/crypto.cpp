@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "crypto.h"
 #include "rsa.h"
 #include "initializer.h"
@@ -65,21 +65,21 @@ namespace crypto_openssl
       #ifdef HAVE_OPENSSL
 
 
-      i32 plainlen = (i32)blockDecrypt.get_size();
+      i32 plainlen = (i32)blockDecrypt.size();
 
       i32 cipherlen, tmplen;
 
       EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
 
-      EVP_EncryptInit(pctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
+      EVP_EncryptInit(pctx, EVP_aes_256_ecb(), memSha1.data(), iv.data());
 
-      cipherlen = (i32)(blockDecrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx));
+      cipherlen = (i32)(blockDecrypt.size() + EVP_CIPHER_CTX_block_size(pctx));
 
       storageEncrypt.set_size(cipherlen);
 
       storageEncrypt.set(0);
 
-      if (!EVP_EncryptUpdate(pctx, storageEncrypt.get_data(), &cipherlen, (const unsigned char *) blockDecrypt.get_data(), plainlen))
+      if (!EVP_EncryptUpdate(pctx, storageEncrypt.data(), &cipherlen, (const unsigned char *) blockDecrypt.data(), plainlen))
       {
 
          storageEncrypt.set(0);
@@ -100,7 +100,7 @@ namespace crypto_openssl
 
       }
 
-      if (!EVP_EncryptFinal(pctx, storageEncrypt.get_data() + cipherlen, &tmplen))
+      if (!EVP_EncryptFinal(pctx, storageEncrypt.data() + cipherlen, &tmplen))
       {
 
          storageEncrypt.set(0);
@@ -489,7 +489,7 @@ namespace crypto_openssl
 
 #else
 
-      i32 cipherlen = (i32)blockEncrypt.get_size();
+      i32 cipherlen = (i32)blockEncrypt.size();
 
       i32 plainlen, tmplen;
 
@@ -498,7 +498,7 @@ namespace crypto_openssl
 
 
       //int iKeyLen = EVP_CIPHER_key_length(EVP_aes_256_ecb());
-      memsize iShaLen = memSha1.get_size();
+      memsize iShaLen = memSha1.size();
 
       if (iShaLen <= 0)
       {
@@ -507,13 +507,13 @@ namespace crypto_openssl
 
       }
 
-      EVP_DecryptInit(pctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
+      EVP_DecryptInit(pctx, EVP_aes_256_ecb(), memSha1.data(), iv.data());
 
-      plainlen = (i32)blockEncrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx);
+      plainlen = (i32)blockEncrypt.size() + EVP_CIPHER_CTX_block_size(pctx);
 
       storageDecrypt.set_size(plainlen);
 
-      if (!EVP_DecryptUpdate(pctx, storageDecrypt.get_data(), &plainlen, (const unsigned char *) blockEncrypt.get_data(), cipherlen))
+      if (!EVP_DecryptUpdate(pctx, storageDecrypt.data(), &plainlen, (const unsigned char *) blockEncrypt.data(), cipherlen))
       {
 
          storageDecrypt.set(0);
@@ -526,7 +526,7 @@ namespace crypto_openssl
 
       }
 
-      if (!EVP_DecryptFinal(pctx, storageDecrypt.get_data() + plainlen, &tmplen))
+      if (!EVP_DecryptFinal(pctx, storageDecrypt.data() + plainlen, &tmplen))
       {
 
          storageDecrypt.set(0);
@@ -773,7 +773,7 @@ namespace crypto_openssl
    //   //
    //   //      memMd5.set_size(get_md5_digest_length());
    //   //
-   //   //      md5(memSha1.get_data(), mem.get_data(), (size_t)mem.get_size());
+   //   //      md5(memSha1.data(), mem.data(), (size_t)mem.size());
    //   //
    //   //#else
    //   //
@@ -795,7 +795,7 @@ namespace crypto_openssl
    //   //
    //   //      memSha1.set_size(get_sha1_digest_length());
    //   //
-   //   //      sha1(memSha1.get_data(), mem.get_data(), (size_t)mem.get_size());
+   //   //      sha1(memSha1.data(), mem.data(), (size_t)mem.size());
    //   //
    //   //#else
    //   //
@@ -817,7 +817,7 @@ namespace crypto_openssl
    //   //
    //   //      memSha256.set_size(get_sha1_digest_length());
    //   //
-   //   //      sha256(memSha256.get_data(), mem.get_data(), (size_t)mem.get_size());
+   //   //      sha256(memSha256.data(), mem.data(), (size_t)mem.size());
    //   //
    //   //#else
    //   //
@@ -835,7 +835,7 @@ namespace crypto_openssl
 
    //   //memNessie.set_size(get_nessie_digest_length());
 
-   //   //nessie(memNessie.get_data(), mem.get_data(), (size_t)mem.get_size());
+   //   //nessie(memNessie.data(), mem.data(), (size_t)mem.size());
 
    //}
 
@@ -984,7 +984,7 @@ namespace crypto_openssl
 
       unsigned int md_len = 0;
 
-      HMAC(EVP_sha1(), memKey.get_data(), int(memKey.get_size()), memMessage.get_data(), (size_t)memMessage.get_size(), (unsigned char*)result, &md_len);
+      HMAC(EVP_sha1(), memKey.data(), int(memKey.size()), memMessage.data(), (size_t)memMessage.size(), (unsigned char*)result, &md_len);
 
 #endif
 
@@ -1455,7 +1455,7 @@ namespace crypto_openssl
 
       auto & prsa = popensslrsa->m_prsa;
 
-      auto pbio = BIO_new_mem_buf(memory.get_data(), (int)memory.get_size());
+      auto pbio = BIO_new_mem_buf(memory.data(), (int)memory.size());
 
       PEM_read_bio_RSAPrivateKey(pbio, &prsa, nullptr, nullptr);
 
@@ -1486,7 +1486,7 @@ namespace crypto_openssl
 
       //auto & pkey = popensslrsa->m_prsa;
 
-      //auto pbio = BIO_new_mem_buf(memory.get_data(), (int)memory.get_size());
+      //auto pbio = BIO_new_mem_buf(memory.data(), (int)memory.size());
 
       //PEM_read_bio_RSA_PUBKEY(pbio, &prsa, nullptr, nullptr);
 

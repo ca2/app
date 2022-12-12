@@ -65,7 +65,7 @@ i32 vsprintf_dup(char *dest, const char *fmt, va_list args)
 
 
 
-i32 swnprintf_dup(widechar *dest, size_t n, const widechar *fmt, ...)
+i32 swnprintf_dup(::wide_character *dest, size_t n, const ::wide_character *fmt, ...)
 {
 
 	va_list args;
@@ -77,7 +77,7 @@ i32 swnprintf_dup(widechar *dest, size_t n, const widechar *fmt, ...)
 }
 
 
-i32 vswprintf_dup(widechar *dest, size_t n, const widechar *fmt, va_list args)
+i32 vswprintf_dup(::wide_character *dest, size_t n, const ::wide_character *fmt, va_list args)
 {
 
 #ifdef WINDOWS_DESKTOP

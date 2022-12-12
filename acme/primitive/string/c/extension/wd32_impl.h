@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 
-inline wd32char wd32_char_tolower(i32 i) { return __wd32tolower(i); }
-inline wd32char wd32_char_toupper(i32 i) { return __wd32toupper(i); }
+inline ::wd32_character wd32_char_tolower(i32 i) { return __wd32tolower(i); }
+inline ::wd32_character wd32_char_toupper(i32 i) { return __wd32toupper(i); }
 
 
 inline i32 wd32_char_isdigit(i32 i) { return __wd32charisdigit(i); }
@@ -14,7 +14,7 @@ inline i32 wd32_char_isspace(i32 i) { return __wd32charisspace(i); }
 inline i32 wd32_char_is_hexadecimal(i32 i) { return __wd32charishexadecimal(i); }
 
 
-inline const wd32char * wd32_const_last_char(const wd32char * psz)
+inline const ::wd32_character * wd32_const_last_char(const ::wd32_character * psz)
 {
 
    return ::is_null(psz) ? nullptr : psz + wd32_len(psz);
@@ -22,15 +22,15 @@ inline const wd32char * wd32_const_last_char(const wd32char * psz)
 }
 
 
-inline wd32char * wd32_last_char(wd32char * psz)
+inline ::wd32_character * wd32_last_char(::wd32_character * psz)
 {
 
-   return (wd32char *)wd32_const_last_char(psz);
+   return (::wd32_character *)wd32_const_last_char(psz);
 
 }
 
 
-inline wd32char * wd32_concatenate(wd32char * psz, const wd32char * cat)
+inline ::wd32_character * wd32_concatenate(::wd32_character * psz, const ::wd32_character * cat)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -42,7 +42,7 @@ inline wd32char * wd32_concatenate(wd32char * psz, const wd32char * cat)
 }
 
 
-inline wd32char * wd32_copy(wd32char * psz, const wd32char * cpy)
+inline ::wd32_character * wd32_copy(::wd32_character * psz, const ::wd32_character * cpy)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -54,7 +54,7 @@ inline wd32char * wd32_copy(wd32char * psz, const wd32char * cpy)
 }
 
 
-inline wd32char * wd32_count_copy(wd32char * psz, const wd32char * cpy, strsize len)
+inline ::wd32_character * wd32_count_copy(::wd32_character * psz, const ::wd32_character * cpy, strsize len)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -68,7 +68,7 @@ inline wd32char * wd32_count_copy(wd32char * psz, const wd32char * cpy, strsize 
 }
 
 
-inline strsize wd32_length(const wd32char * psz)
+inline strsize wd32_length(const ::wd32_character * psz)
 {
 
    if (::is_null(psz)) return 0;
@@ -78,12 +78,12 @@ inline strsize wd32_length(const wd32char * psz)
 }
 
 
-inline wd32char * wd32_duplicate(const wd32char * psz)
+inline ::wd32_character * wd32_duplicate(const ::wd32_character * psz)
 {
 
    if (::is_null(psz)) return nullptr;
 
-   auto pszDup = (wd32char *)memory_allocate(wd32_len(psz) + 1);
+   auto pszDup = (::wd32_character *)memory_allocate(wd32_len(psz) + 1);
 
    wd32_cpy(pszDup, psz);
 
@@ -92,14 +92,14 @@ inline wd32char * wd32_duplicate(const wd32char * psz)
 }
 
 
-inline wd32char * wd32_count_duplicate(const wd32char * psz, strsize len)
+inline ::wd32_character * wd32_count_duplicate(const ::wd32_character * psz, strsize len)
 {
 
    if (::is_null(psz)) return nullptr;
 
    if (len < 0) return nullptr;
 
-   auto pszDup = (wd32char *)memory_allocate(len + 1);
+   auto pszDup = (::wd32_character *)memory_allocate(len + 1);
 
    wd32_ncpy(pszDup, psz, len);
 
@@ -110,7 +110,7 @@ inline wd32char * wd32_count_duplicate(const wd32char * psz, strsize len)
 }
 
 
-inline const wd32char * wd32_find_string(const wd32char * psz, const wd32char * find)
+inline const ::wd32_character * wd32_find_string(const ::wd32_character * psz, const ::wd32_character * find)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -122,7 +122,7 @@ inline const wd32char * wd32_find_string(const wd32char * psz, const wd32char * 
 }
 
 
-inline const wd32char * wd32_find_string_case_insensitive(const wd32char * psz, const wd32char * find)
+inline const ::wd32_character * wd32_find_string_case_insensitive(const ::wd32_character * psz, const ::wd32_character * find)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -155,7 +155,7 @@ inline const wd32char * wd32_find_string_case_insensitive(const wd32char * psz, 
 }
 
 
-inline const wd32char * wd32_count_find_string(const wd32char * psz, const wd32char * find, strsize len)
+inline const ::wd32_character * wd32_count_find_string(const ::wd32_character * psz, const ::wd32_character * find, strsize len)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -188,7 +188,7 @@ inline const wd32char * wd32_count_find_string(const wd32char * psz, const wd32c
 }
 
 
-inline const wd32char * wd32_count_find_string_case_insensitive(const wd32char * psz, const wd32char * find, strsize len)
+inline const ::wd32_character * wd32_count_find_string_case_insensitive(const ::wd32_character * psz, const ::wd32_character * find, strsize len)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -221,7 +221,7 @@ inline const wd32char * wd32_count_find_string_case_insensitive(const wd32char *
 }
 
 
-inline i32 wd32_compare(const wd32char * psz, const wd32char * sz2)
+inline i32 wd32_compare(const ::wd32_character * psz, const ::wd32_character * sz2)
 {
 
    if (::is_null(psz))
@@ -257,7 +257,7 @@ inline i32 wd32_compare(const wd32char * psz, const wd32char * sz2)
 }
 
 
-inline i32 wd32_compare_case_insensitive(const wd32char * psz, const wd32char * sz2)
+inline i32 wd32_compare_case_insensitive(const ::wd32_character * psz, const ::wd32_character * sz2)
 {
 
    if (::is_null(psz))
@@ -293,7 +293,7 @@ inline i32 wd32_compare_case_insensitive(const wd32char * psz, const wd32char * 
 }
 
 
-inline i32 wd32_count_compare(const wd32char * psz, const wd32char * sz2, strsize len)
+inline i32 wd32_count_compare(const ::wd32_character * psz, const ::wd32_character * sz2, strsize len)
 {
 
    if (len < 0)
@@ -336,7 +336,7 @@ inline i32 wd32_count_compare(const wd32char * psz, const wd32char * sz2, strsiz
 }
 
 
-inline i32 wd32_count_compare_case_insensitive(const wd32char * psz, const wd32char * sz2, strsize len)
+inline i32 wd32_count_compare_case_insensitive(const ::wd32_character * psz, const ::wd32_character * sz2, strsize len)
 {
 
    if (len < 0)
@@ -379,7 +379,7 @@ inline i32 wd32_count_compare_case_insensitive(const wd32char * psz, const wd32c
 }
 
 
-inline i32 wd32_collate(const wd32char * psz, const wd32char * sz2)
+inline i32 wd32_collate(const ::wd32_character * psz, const ::wd32_character * sz2)
 {
 
    if (::is_null(psz))
@@ -415,7 +415,7 @@ inline i32 wd32_collate(const wd32char * psz, const wd32char * sz2)
 }
 
 
-inline i32 wd32_collate_case_insensitive(const wd32char * psz, const wd32char * sz2)
+inline i32 wd32_collate_case_insensitive(const ::wd32_character * psz, const ::wd32_character * sz2)
 {
 
    if (::is_null(psz))
@@ -451,7 +451,7 @@ inline i32 wd32_collate_case_insensitive(const wd32char * psz, const wd32char * 
 }
 
 
-inline i32 wd32_count_collate(const wd32char * psz, const wd32char * sz2, strsize len)
+inline i32 wd32_count_collate(const ::wd32_character * psz, const ::wd32_character * sz2, strsize len)
 {
 
    if (len < 0)
@@ -494,7 +494,7 @@ inline i32 wd32_count_collate(const wd32char * psz, const wd32char * sz2, strsiz
 }
 
 
-inline i32 wd32_count_collate_case_insensitive(const wd32char * psz, const wd32char * sz2, strsize len)
+inline i32 wd32_count_collate_case_insensitive(const ::wd32_character * psz, const ::wd32_character * sz2, strsize len)
 {
 
    if (len < 0)
@@ -536,19 +536,45 @@ inline i32 wd32_count_collate_case_insensitive(const wd32char * psz, const wd32c
 
 }
 
-inline const wd32char * wd32_scan(const wd32char * psz, const wd32char * find)
+
+inline const ::wd32_character * _wd32_scan(const ::wd32_character * psz, const ::wd32_character * find)
 {
 
-   if (::is_null(psz)) return nullptr;
-
-   if (::is_null(find)) return nullptr;
-
-   return wd32_pbrk((wd32char* )psz, find);
+   return wd32_pbrk((::wd32_character *)psz, find);
 
 }
 
 
-inline wd32char * wd32_first_token(wd32char * psz, const wd32char * delimiters, wd32char ** action_context)
+inline const ::wd32_character * wd32_scan(const ::wd32_character * psz, const ::wd32_character * find)
+{
+
+   if (::is_empty(psz)) return psz;
+
+   if (::is_empty(find)) return psz;
+
+   return wd32_scan(psz, find);
+
+}
+
+
+//inline const ::wd32_character * wd32_token(const ::wd32_character * psz, const ::wd32_character * pszSeparators)
+//{
+//
+//   return string_token(psz, pszSeparators);
+//
+//}
+
+
+//inline const ::wd32_character * _wd32_token(const ::wd32_character * psz, const ::wd32_character * pszSeparators)
+//{
+//
+//   return _string_token(psz, pszSeparators);
+//
+//}
+
+
+
+inline ::wd32_character * wd32_first_token(::wd32_character * psz, const ::wd32_character * delimiters, ::wd32_character ** action_context)
 {
 
    return wd32_tok_r(psz, delimiters, action_context);
@@ -557,7 +583,7 @@ inline wd32char * wd32_first_token(wd32char * psz, const wd32char * delimiters, 
 
 
 
-inline wd32char * wd32_next_token(const wd32char * delimiters, wd32char ** action_context)
+inline ::wd32_character * wd32_next_token(const ::wd32_character * delimiters, ::wd32_character ** action_context)
 {
 
    return wd32_tok_r(nullptr, delimiters, action_context);
@@ -566,7 +592,7 @@ inline wd32char * wd32_next_token(const wd32char * delimiters, wd32char ** actio
 }
 
 
-inline i32 wd32_begins(const wd32char * psz, const wd32char * prefix)
+inline i32 wd32_begins(const ::wd32_character * psz, const ::wd32_character * prefix)
 {
 
    if (::is_null(psz)) return false;
@@ -587,7 +613,7 @@ inline i32 wd32_begins(const wd32char * psz, const wd32char * prefix)
 }
 
 
-inline i32 wd32_begins_case_insensitive(const wd32char * psz, const wd32char * prefix)
+inline i32 wd32_begins_case_insensitive(const ::wd32_character * psz, const ::wd32_character * prefix)
 {
 
    if (::is_null(psz)) return false;
@@ -599,7 +625,7 @@ inline i32 wd32_begins_case_insensitive(const wd32char * psz, const wd32char * p
 }
 
 
-inline const wd32char * wd32_begins_eat(const wd32char * psz, const wd32char * prefix)
+inline const ::wd32_character * wd32_begins_eat(const ::wd32_character * psz, const ::wd32_character * prefix)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -620,7 +646,7 @@ inline const wd32char * wd32_begins_eat(const wd32char * psz, const wd32char * p
 }
 
 
-inline const wd32char * wd32_begins_eat_case_insensitive(const wd32char * psz, const wd32char * prefix)
+inline const ::wd32_character * wd32_begins_eat_case_insensitive(const ::wd32_character * psz, const ::wd32_character * prefix)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -641,7 +667,7 @@ inline const wd32char * wd32_begins_eat_case_insensitive(const wd32char * psz, c
 }
 
 
-inline i32 wd32_ends(const wd32char * psz, const wd32char * suffix)
+inline i32 wd32_ends(const ::wd32_character * psz, const ::wd32_character * suffix)
 {
 
    if (::is_null(psz)) return false;
@@ -664,7 +690,7 @@ inline i32 wd32_ends(const wd32char * psz, const wd32char * suffix)
 }
 
 
-inline i32 wd32_ends_case_insensitive(const wd32char * psz, const wd32char * suffix)
+inline i32 wd32_ends_case_insensitive(const ::wd32_character * psz, const ::wd32_character * suffix)
 {
 
    if (::is_null(psz)) return false;
@@ -687,7 +713,7 @@ inline i32 wd32_ends_case_insensitive(const wd32char * psz, const wd32char * suf
 }
 
 
-inline const wd32char * wd32_find_char(const wd32char * psz, wd32char ch)
+inline const ::wd32_character * wd32_find_char(const ::wd32_character * psz, ::wd32_character ch)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -697,7 +723,7 @@ inline const wd32char * wd32_find_char(const wd32char * psz, wd32char ch)
 }
 
 
-inline const wd32char * wd32_find_char_reverse(const wd32char * psz, wd32char ch)
+inline const ::wd32_character * wd32_find_char_reverse(const ::wd32_character * psz, ::wd32_character ch)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -707,11 +733,11 @@ inline const wd32char * wd32_find_char_reverse(const wd32char * psz, wd32char ch
 }
 
 
-//inline const wd32char * wd32_concatenate_and_duplicate(const wd32char * psz1, const wd32char * psz2);
-//inline const wd32char * wd32_concatenate_duplicate_and_free(const wd32char * psz1, wd32char * psz2);
+//inline const ::wd32_character * wd32_concatenate_and_duplicate(const ::wd32_character * psz1, const ::wd32_character * psz2);
+//inline const ::wd32_character * wd32_concatenate_duplicate_and_free(const ::wd32_character * psz1, ::wd32_character * psz2);
 
 
-inline void wd32_from_u64_base(wd32char * sz, u64 u, i32 iBase, enum_digit_case edigitcase)
+inline void wd32_from_u64_base(::wd32_character * sz, u64 u, i32 iBase, enum_digit_case edigitcase)
 {
 
    __u64towd32(u, sz, iBase, edigitcase);
@@ -719,7 +745,7 @@ inline void wd32_from_u64_base(wd32char * sz, u64 u, i32 iBase, enum_digit_case 
 }
 
 
-inline void wd32_from_i64_base(wd32char * sz, i64 i, i32 iBase, enum_digit_case edigitcase)
+inline void wd32_from_i64_base(::wd32_character * sz, i64 i, i32 iBase, enum_digit_case edigitcase)
 {
 
    __i64towd32(i, sz, iBase, edigitcase);
@@ -732,65 +758,65 @@ inline void wd32_from_i64_base(wd32char * sz, i64 i, i32 iBase, enum_digit_case 
 
 
 
-inline i64 wd32_to_i64(const wd32char * psz, const wd32char ** ppszEnd, i32 iBase)
+inline i64 wd32_to_i64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
 {
 
-   return __wd32toi64(psz, (wd32char **) ppszEnd, iBase);
+   return __wd32toi64(psz, (::wd32_character **) ppszEnd, iBase);
 
 }
 
 
-inline u64 wd32_to_u64(const wd32char * psz, const wd32char ** ppszEnd, i32 iBase)
+inline u64 wd32_to_u64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
 {
 
-   return __wd32tou64(psz, (wd32char **) ppszEnd, iBase);
+   return __wd32tou64(psz, (::wd32_character **) ppszEnd, iBase);
 
 }
 
 
-inline i32 wd32_to_i32(const wd32char * psz, const wd32char ** ppszEnd, i32 iBase)
+inline i32 wd32_to_i32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
 {
 
-   return __wd32toi32(psz, (wd32char **) ppszEnd, iBase);
+   return __wd32toi32(psz, (::wd32_character **) ppszEnd, iBase);
 
 }
 
 
-inline u32 wd32_to_u32(const wd32char * psz, const wd32char ** ppszEnd, i32 iBase)
+inline u32 wd32_to_u32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
 {
 
-   return __wd32tou32(psz, (wd32char **) ppszEnd, iBase);
+   return __wd32tou32(psz, (::wd32_character **) ppszEnd, iBase);
 
 }
 #else
 
 
-inline i64 wd32_to_i64(const wd32char * psz, const wd32char ** ppszEnd, i32 iBase)
+inline i64 wd32_to_i64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
 {
 
-   return wcstoll(psz, (wd32char **) ppszEnd, iBase);
+   return wcstoll(psz, (::wd32_character **) ppszEnd, iBase);
 
 }
 
 
-inline u64 wd32_to_u64(const wd32char * psz, const wd32char ** ppszEnd, i32 iBase)
+inline u64 wd32_to_u64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
 {
 
-   return wcstoull(psz, (wd32char **) ppszEnd, iBase);
+   return wcstoull(psz, (::wd32_character **) ppszEnd, iBase);
 
 }
 
 
-inline i32 wd32_to_i32(const wd32char * psz, const wd32char ** ppszEnd, i32 iBase)
+inline i32 wd32_to_i32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
 {
    
 #ifdef WINDOWS
 
-   return wcstol(psz, (wd32char **) ppszEnd, iBase);
+   return wcstol(psz, (::wd32_character **) ppszEnd, iBase);
    
 #else
    
-   long l = wcstol(psz, (wd32char **) ppszEnd, iBase);
+   long l = wcstol(psz, (::wd32_character **) ppszEnd, iBase);
    
    if(l > INT_MAX)
    {
@@ -815,16 +841,16 @@ inline i32 wd32_to_i32(const wd32char * psz, const wd32char ** ppszEnd, i32 iBas
 }
 
 
-inline u32 wd32_to_u32(const wd32char * psz, const wd32char ** ppszEnd, i32 iBase)
+inline u32 wd32_to_u32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
 {
 
 #ifdef WINDOWS
    
-   return wcstoul(psz, (wd32char **) ppszEnd, iBase);
+   return wcstoul(psz, (::wd32_character **) ppszEnd, iBase);
    
 #else
 
-   unsigned long ul = wcstoul(psz, (wd32char **) ppszEnd, iBase);
+   unsigned long ul = wcstoul(psz, (::wd32_character **) ppszEnd, iBase);
 
    if(ul > UINT_MAX)
    {
@@ -847,14 +873,14 @@ inline u32 wd32_to_u32(const wd32char * psz, const wd32char ** ppszEnd, i32 iBas
 #endif
 
 
-inline void wd32_reverse(wd32char * psz)
+inline void wd32_reverse(::wd32_character * psz)
 {
 
    reverse_memory(psz, wd32_len(psz));
 
 }
 
-inline void wd32_zero_pad(wd32char * psz, strsize lenPad)
+inline void wd32_zero_pad(::wd32_character * psz, strsize lenPad)
 {
 
    strsize len = wd32_len(psz);
@@ -891,10 +917,10 @@ inline void wd32_zero_pad(wd32char * psz, strsize lenPad)
 }
 
 
-inline wd32char * wd32_lower(wd32char * pch)
+inline ::wd32_character * wd32_lower(::wd32_character * pch)
 {
 
-   wd32char * p = pch;
+   ::wd32_character * p = pch;
 
    while (*p != '\0')
    {
@@ -910,10 +936,10 @@ inline wd32char * wd32_lower(wd32char * pch)
 }
 
 
-inline wd32char * wd32_upper(wd32char * pch)
+inline ::wd32_character * wd32_upper(::wd32_character * pch)
 {
 
-   wd32char * p = pch;
+   ::wd32_character * p = pch;
 
    while (*p != '\0')
    {
@@ -929,7 +955,7 @@ inline wd32char * wd32_upper(wd32char * pch)
 }
 
 
-inline const wd32char * wd32_concatenate_and_duplicate(const wd32char * psz1, const wd32char * psz2, int iFree1, int iFree2)
+inline const ::wd32_character * wd32_concatenate_and_duplicate(const ::wd32_character * psz1, const ::wd32_character * psz2, int iFree1, int iFree2)
 {
 
    strsize len1 = wd32_length(psz1);
@@ -938,7 +964,7 @@ inline const wd32char * wd32_concatenate_and_duplicate(const wd32char * psz1, co
 
    strsize len = len1 + len2 + 1;
 
-   auto * psz = (wd32char *)memory_allocate(len);
+   auto * psz = (::wd32_character *)memory_allocate(len);
 
    *psz = '\0';
 

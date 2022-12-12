@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "property_object.h"
 //#include "payload.h"
 #include "acme/constant/message.h"
@@ -519,6 +519,7 @@ bool property_object::property_set_get_evaluation(string & strResult, const stri
 
 }
 
+
 string property_object::property_set_get_string(const ::string & str) const
 {
 
@@ -531,9 +532,10 @@ string property_object::property_set_get_string(const ::string & str) const
 
    }
 
-   return pproperty->as_string();
+   return *pproperty;
 
 }
+
 
 bool property_object::property_set_get_string(string & strResult, const string& str) const
 {
@@ -547,7 +549,7 @@ bool property_object::property_set_get_string(string & strResult, const string& 
 
    }
 
-   strResult = linkedproperty->as_string();
+   strResult = linkedproperty->string();
 
    return true;
 
@@ -775,7 +777,7 @@ property * property_object::find_property(const atom & atom) const
 }
 
 
-string property_object::find_string(const ::atom & atom, const ansichar * pszDefault) const
+string property_object::find_string(const ::atom & atom, const ::ansi_character * pszDefault) const
 {
 
    if (!m_ppropertyset)
@@ -794,7 +796,7 @@ string property_object::find_string(const ::atom & atom, const ansichar * pszDef
 
    }
 
-   return pproperty->as_string(pszDefault);
+   return pproperty->get_string(pszDefault);
 
 }
 

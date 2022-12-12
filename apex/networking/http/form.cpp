@@ -291,8 +291,8 @@ namespace http
                            if (tc)
                            {
 
-                              if (!ansi_count_compare(tempcmp.sz() + tc + extra, m_strBoundary, iBoundaryLength - tc) &&
-                                    !ansi_count_compare(tempcmp.sz(), m_strBoundary.Mid(iBoundaryLength - tc), tc))
+                              if (!ansi_count_compare((const char *)tempcmp.data() + tc + extra, m_strBoundary, iBoundaryLength - tc) &&
+                                    !ansi_count_compare((const char *)tempcmp.data(), m_strBoundary.Mid(iBoundaryLength - tc), tc))
                               {
 
                                  break;
@@ -303,7 +303,7 @@ namespace http
                            else
                            {
 
-                              if (!ansi_count_compare(tempcmp.sz() + extra, m_strBoundary, iBoundaryLength))
+                              if (!ansi_count_compare((const char *)tempcmp.data() + extra, m_strBoundary, iBoundaryLength))
                               {
 
                                  break;

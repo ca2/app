@@ -23,7 +23,7 @@ atom::atom(const ::payload & payload)
       operator = (e_type_empty);
 
    }
-   else if (payload.get_type() == ::e_type_id)
+   else if (payload.get_type() == ::e_type_atom)
    {
 
       operator = (payload.m_atom);
@@ -38,7 +38,7 @@ atom::atom(const ::payload & payload)
    else
    {
 
-      operator = (payload.as_string());
+      operator = (payload);
 
    }
 
@@ -154,13 +154,13 @@ bool is_font_sel(const ::atom & atom)
    else if (is_integer())
    {
 
-      return ::as_string(m_i);
+      return ::move(::as_string(m_i));
 
    }
    else
    {
 
-      return ::string("(atom : type:") + ::as_string(m_etype) + ",body:" + ::as_string(m_u) + ")";
+      return ::move(::string("(atom : type:") + ::as_string(m_etype) + ",body:" + ::as_string(m_u) + ")");
 
    }
 

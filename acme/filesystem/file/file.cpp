@@ -357,7 +357,7 @@ namespace file
 
       memory.from_hex((const char *) pdata, nCount);
 
-      write(memory.get_data(),memory.get_size());
+      write(memory.data(),memory.size());
 
    }
 
@@ -371,7 +371,7 @@ namespace file
    void file::write(const memory_base & base)
    {
 
-      write(base.get_data(), base.get_size());
+      write(base.data(), base.size());
 
    }
 
@@ -402,7 +402,7 @@ namespace file
    }
 
 
-   filesize file::get_size() const
+   filesize file::size() const
    {
 
       return 0;
@@ -675,9 +675,9 @@ namespace file
    bool file::read_block(block & block)
    {
 
-      auto readBytes = read(block.get_data(), block.get_size());
+      auto readBytes = read(block.data(), block.size());
 
-      return readBytes == block.get_size();
+      return readBytes == block.size();
 
    }
 
@@ -686,6 +686,7 @@ namespace file
    {
 
       auto left = get_left();
+
       if(left > 100000000000000)
       {
 
@@ -699,7 +700,7 @@ namespace file
 
       memory.set_size((memsize)left);
 
-      auto readBytes = read(memory.get_data(), memory.length());
+      auto readBytes = read(memory.data(), memory.length());
 
       if(readBytes != left)
       {
@@ -894,7 +895,7 @@ namespace file
 
       //memory.set_size(kBufferSize);
 
-      //u8 * buffer = memory.get_data();
+      //u8 * buffer = memory.data();
 
       //memsize positionSearch = 0;
 
@@ -1041,13 +1042,13 @@ namespace file
 
       memory buf;
       buf.set_size(uiBufMax);
-      if(buf.get_data() == nullptr)
+      if(buf.data() == nullptr)
          throw ::exception(error_no_memory, "no memory");
       try
       {
          while(true)
          {
-            uRead = read(buf, buf.get_size());
+            uRead = read(buf, buf.size());
             pfileOut->write(buf, uRead);
             if(uRead <= 0)
             {
@@ -1179,19 +1180,19 @@ namespace file
 
       buf.set_size(uiBufSize);
 
-      if(buf.get_data() == nullptr)
+      if(buf.data() == nullptr)
          throw ::exception(error_no_memory);
 
       try
       {
          while(true)
          {
-            uRead = pfileIn->read(buf.get_data(), buf.get_size());
+            uRead = pfileIn->read(buf.data(), buf.size());
             if(uRead <= 0)
             {
                break;
             }
-            write(buf.get_data(), uRead);
+            write(buf.data(), uRead);
             //uiSize += uRead;
          }
       }
@@ -1228,7 +1229,7 @@ namespace file
    {
       memory memory;
       memory.from_hex(psz);
-      write(memory.get_data(), memory.get_size());
+      write(memory.data(), memory.size());
    }*/
 
    //void file::flush()
@@ -1392,7 +1393,7 @@ namespace file
     filesize file::get_left() const
     {
 
-        return get_size() - get_position();
+        return size() - get_position();
 
     }
 

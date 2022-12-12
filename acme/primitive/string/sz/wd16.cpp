@@ -4,7 +4,7 @@
 #include <wchar.h>
 
 
-CLASS_DECL_ACME::i64 string_to_signed(const wd16char * pwsz)
+CLASS_DECL_ACME::i64 string_to_signed(const ::wd16_character * pwsz)
 {
 
 #ifdef WINDOWS
@@ -13,7 +13,7 @@ CLASS_DECL_ACME::i64 string_to_signed(const wd16char * pwsz)
 
 #else
 
-   wd32string wstr(pwsz);
+   wd32_string wstr(pwsz);
 
    return wcstoll(wstr, nullptr, 10);
 
@@ -22,7 +22,7 @@ CLASS_DECL_ACME::i64 string_to_signed(const wd16char * pwsz)
 }
 
 
-CLASS_DECL_ACME::u64 string_to_natural(const wd16char * pwsz)
+CLASS_DECL_ACME::u64 string_to_natural(const ::wd16_character * pwsz)
 {
 
 #ifdef WINDOWS
@@ -31,7 +31,7 @@ CLASS_DECL_ACME::u64 string_to_natural(const wd16char * pwsz)
 
 #else
 
-   wd32string wstr(pwsz);
+   wd32_string wstr(pwsz);
 
    return wcstoull(wstr, nullptr, 10);
 
@@ -40,7 +40,7 @@ CLASS_DECL_ACME::u64 string_to_natural(const wd16char * pwsz)
 }
 
 
-CLASS_DECL_ACME ::f64 string_to_floating(const wd16char * pwsz)
+CLASS_DECL_ACME ::f64 string_to_floating(const ::wd16_character * pwsz)
 {
 
 #ifdef WINDOWS
@@ -49,7 +49,7 @@ CLASS_DECL_ACME ::f64 string_to_floating(const wd16char * pwsz)
 
 #else
 
-   wd32string wstr(pwsz);
+   wd32_string wstr(pwsz);
 
    return wcstod(wstr, nullptr);
 

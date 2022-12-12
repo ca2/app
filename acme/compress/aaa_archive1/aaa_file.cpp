@@ -172,7 +172,7 @@ namespace zip
    }
 
 
-   void  file::write_to_file(file_pointer  pfileOut, const widechar * pcsz)
+   void  file::write_to_file(file_pointer  pfileOut, const ::wide_character * pcsz)
 
    {
 

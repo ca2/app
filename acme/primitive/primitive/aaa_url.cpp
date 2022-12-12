@@ -3,7 +3,7 @@
 #include "acme/primitive/string/string.h"
 
 
-char* string_append_character(char* psz, ansichar ch)
+char* string_append_character(char* psz, ::ansi_character ch)
 {
 
    *psz = ch;

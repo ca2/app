@@ -65,7 +65,7 @@ namespace file
       else if(eseek == ::e_seek_from_end)
       {
 
-         uiNewPos = m_pfile->get_size() + offset;
+         uiNewPos = m_pfile->size() + offset;
 
       }
       else if(eseek == ::e_seek_current)
@@ -79,10 +79,10 @@ namespace file
             iNewPosition = 0;
 
          }
-         else if (::comparison::gt(iNewPosition, m_pfile->get_size()))
+         else if (::comparison::gt(iNewPosition, m_pfile->size()))
          {
 
-            iNewPosition = m_pfile->get_size();
+            iNewPosition = m_pfile->size();
 
          }
          
@@ -134,7 +134,7 @@ namespace file
    }
 
 
-   filesize buffered_file::get_size() const
+   filesize buffered_file::size() const
    {
 
       if (!m_pfile)
@@ -144,7 +144,7 @@ namespace file
 
       }
 
-      return m_pfile->get_size();
+      return m_pfile->size();
 
    }
 
@@ -174,13 +174,13 @@ namespace file
             if(nCount == 1)
             {
 
-               ((byte *)pBufParam)[uRead] = m_storage.get_data()[m_uiPosition - m_uiBufLPos];
+               ((byte *)pBufParam)[uRead] = m_storage.data()[m_uiPosition - m_uiBufLPos];
 
             }
             else
             {
 
-               ::memcpy_dup(&((byte *)pBufParam)[uRead], &m_storage.get_data()[m_uiPosition - m_uiBufLPos], (size_t) uiReadNow);
+               ::memcpy_dup(&((byte *)pBufParam)[uRead], &m_storage.data()[m_uiPosition - m_uiBufLPos], (size_t) uiReadNow);
 
             }
 
@@ -248,7 +248,7 @@ namespace file
       try
       {
 
-         uRead = m_pfile->read(m_storage.get_data(), uiCopy);
+         uRead = m_pfile->read(m_storage.data(), uiCopy);
 
       }
       catch(...)
@@ -300,7 +300,7 @@ namespace file
 
             }
 
-            ::memcpy_dup(&m_storage.get_data()[m_uiPosition - m_uiBufLPos], &((byte *)pdata)[uiWrite], (size_t) uiWriteNow);
+            ::memcpy_dup(&m_storage.data()[m_uiPosition - m_uiBufLPos], &((byte *)pdata)[uiWrite], (size_t) uiWriteNow);
 
             m_uiPosition += uiWriteNow;
 
@@ -332,7 +332,7 @@ namespace file
 
       }
 
-      m_storage.get_data()[m_uiPosition] = (::u8) byte;
+      m_storage.data()[m_uiPosition] = (::u8) byte;
 
    }
 
@@ -345,7 +345,7 @@ namespace file
 
          m_pfile->set_position((filesize) m_uiWriteLPos);
 
-         m_pfile->write(&m_storage.get_data()[m_uiWriteLPos - m_uiBufLPos], (memsize) (m_uiWriteUPos - m_uiWriteLPos + 1));
+         m_pfile->write(&m_storage.data()[m_uiWriteLPos - m_uiBufLPos], (memsize) (m_uiWriteUPos - m_uiWriteLPos + 1));
 
          m_bDirty = false;
 

@@ -1314,21 +1314,21 @@ namespace windowing
    }
 
 
-   void window::on_text(const ansichar* pansisz, strsize length)
+   void window::on_text(const ::ansi_character* pansisz, strsize length)
    {
 
 
    }
 
 
-   void window::on_text(const wd16char* pwd16sz, strsize length)
+   void window::on_text(const ::wd16_character* pwd16sz, strsize length)
    {
 
 
    }
 
 
-   void window::on_text(const wd32char* pwd32sz, strsize length)
+   void window::on_text(const ::wd32_character* pwd32sz, strsize length)
    {
 
 

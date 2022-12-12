@@ -31,8 +31,8 @@ public:
    }
 
 
-   inline operator const widechar * () { return this->m_pdata; }
-   inline operator widechar * () { return this->m_pdata; }
+   inline operator const ::wide_character * () { return this->m_pdata; }
+   inline operator ::wide_character * () { return this->m_pdata; }
 
 
 };

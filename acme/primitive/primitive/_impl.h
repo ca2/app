@@ -132,7 +132,7 @@ inline bool __enum_is_failed(const ::e_status & e)
 //      //if (!stream.fail())
 //      {
 //
-//         if (strText.is_empty() || strText.begins_eat_ci("factoryless://"))
+//         if (strText.is_empty() || strText.case_insensitive_begins_eat("factoryless://"))
 //         {
 //
 //            if(is_set() && __type_name(m_p) == strText)

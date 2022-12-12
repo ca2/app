@@ -14,7 +14,7 @@ namespace str
 } // namespace str
 
 
-inline CLASS_DECL_ACME string string_from_strdup(const ansichar * psz);
+inline CLASS_DECL_ACME string string_from_strdup(const ::ansi_character * psz);
 
 
 template < typename T >
@@ -24,24 +24,24 @@ template < typename T >
 inline string as_string(const T * & p);
 
 
-inline string as_string(const ansichar* psz);
+inline string as_string(const ::ansi_character* psz);
 
 
-inline string as_string(ansichar* psz);
+inline string as_string(::ansi_character* psz);
 
 
-inline string as_string(const widechar * pwsz);
+inline string as_string(const ::wide_character * pwsz);
 
 
-inline string as_string(widechar * pwsz);
-
-
-template < >
-inline string as_string(const ansistring * & p);
+inline string as_string(::wide_character * pwsz);
 
 
 template < >
-inline string as_string(const widestring *& p);
+inline string as_string(const ansi_string * & p);
+
+
+template < >
+inline string as_string(const wide_string *& p);
 
 
 template < >
@@ -60,22 +60,22 @@ inline ::string as_string(const ::matter & t);
 
 inline void to_string(string& str, const bool & b);
 
-inline void to_string(string& str, const ansichar & ansich);
-inline void to_string(string& str, const widechar & widech);
+inline void to_string(string& str, const ::ansi_character & ansich);
+inline void to_string(string& str, const ::wide_character & widech);
 
 inline void to_string(string& str, const char * psz);
 inline void to_string(string& str, char * const psz);
 
-inline void to_string(string& str, const wd16char * psz);
-inline void to_string(string& str, wd16char * const psz);
+inline void to_string(string& str, const ::wd16_character * psz);
+inline void to_string(string& str, ::wd16_character * const psz);
 
-inline void to_string(string& str, const wd32char * psz);
-inline void to_string(string& str, wd32char * const psz);
+inline void to_string(string& str, const ::wd32_character * psz);
+inline void to_string(string& str, ::wd32_character * const psz);
 
 inline void to_string(string& str, const signed char & ch);
 
 
-inline void to_string(string& str, const ansichar& ch);
+inline void to_string(string& str, const ::ansi_character& ch);
 inline void to_string(string& str, const uchar& uch);
 
 
@@ -99,9 +99,9 @@ inline void to_string(string& str, const string& strSrc);
 
 inline ::string as_string(const ::atom & atom);
 
-inline ::string as_string(const ::wd16string & wd16str);
+inline ::string as_string(const ::wd16_string & wd16str);
 
-inline ::string as_string(const ::wd32string & wd16str);
+inline ::string as_string(const ::wd32_string & wd16str);
 
 
 

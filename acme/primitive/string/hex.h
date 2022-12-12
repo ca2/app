@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/string/string.h"
@@ -131,7 +131,7 @@ namespace hex
 
       ::inline_number_string numberstring;
 
-      __u64toansi((::u64)i, numberstring, 16, e_digit_case_upper, numberstring.m_iLength);
+      __utosz((::u64)i, numberstring.m_end, 16, e_digit_case_upper);
 
       return numberstring;
 
@@ -143,7 +143,7 @@ namespace hex
 
       ::inline_number_string numberstring;
 
-      __u64toansi((::u64)i, numberstring, 16, e_digit_case_lower, numberstring.m_iLength);
+      __utosz((::u64)i, numberstring.m_end, 16, e_digit_case_lower);
 
       return numberstring;
 

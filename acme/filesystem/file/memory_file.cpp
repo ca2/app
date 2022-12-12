@@ -79,7 +79,7 @@ memory_file::memory_file(const void * pmemory, memsize dwSize) :
 
 
 memory_file::memory_file(const ::block & block) :
-   memory_file(block.get_data(), block.get_size())
+   memory_file(block.data(), block.size())
 {
 
 
@@ -149,7 +149,7 @@ void memory_file::write(const void * pdata, memsize nCount)
 void memory_file::put_byte_back(::byte byte)
 {
 
-   if(m_position <= 0 || m_position >= get_size())
+   if(m_position <= 0 || m_position >= size())
    {
 
       throw ::exception(error_wrong_state);
@@ -158,7 +158,7 @@ void memory_file::put_byte_back(::byte byte)
 
    m_position--;
 
-   m_pmemory.m_p->m_memory.m_pdata[m_position] = byte;
+   m_pmemory.m_p->m_memory.data()[m_position] = byte;
 
 }
 
@@ -181,7 +181,7 @@ void memory_file::write_from_hex(const void * pdata, memsize nCount)
 
    memsize iEndPosition = m_position + iLen / 2;
 
-   if (iEndPosition > this->get_size())
+   if (iEndPosition > this->size())
    {
 
       set_size(iEndPosition);
@@ -197,7 +197,7 @@ void memory_file::write_from_hex(const void * pdata, memsize nCount)
 
    }
 
-   byte * pb = get_data();
+   byte * pb = data();
 
 
    ASSERT(__is_valid_address(&(pb)[m_position], (uptr)nCount, true));
@@ -463,7 +463,7 @@ void memory_file::set_size(filesize size_i32)
 
    ::memory_container::set_size((memsize) size_i32);
 
-   if (m_position > get_size())
+   if (m_position > size())
    {
 
       m_position = 0;
@@ -473,10 +473,10 @@ void memory_file::set_size(filesize size_i32)
 }
 
 
-filesize memory_file::get_size() const
+filesize memory_file::size() const
 {
 
-   return ::memory_container::get_size();
+   return ::memory_container::size();
 
 }
 
@@ -504,9 +504,9 @@ filesize memory_file::translate(filesize offset, ::enum_seek eseek)
    ASSERT(eseek == ::e_seek_set || eseek == ::e_seek_from_end || eseek == ::e_seek_current);
    //ASSERT(::e_seek_set == FILE_BEGIN && ::e_seek_end == FILE_END && ::e_seek_current == FILE_CURRENT);
 
-   m_memsize = m_pmemory->m_memory.m_cbStorage;
+   m_memsize = m_pmemory->size();
 
-   m_pbyte = (::byte *)m_pmemory->m_memory.m_pbStorage;
+   m_pbyte = (::byte *)m_pmemory->begin();
 
    memsize dwNew = (memsize)m_position;
 
@@ -526,7 +526,7 @@ filesize memory_file::translate(filesize offset, ::enum_seek eseek)
       }
       break;
    case ::e_seek_from_end:
-      if(offset < -(memsize)get_size())
+      if(offset < -(memsize)size())
       {
 
          dwNew = 0;
@@ -534,7 +534,7 @@ filesize memory_file::translate(filesize offset, ::enum_seek eseek)
       }
       else
       {
-         dwNew = (memsize)(get_size() + offset);
+         dwNew = (memsize)(size() + offset);
       }
       break;
    case ::e_seek_current:
@@ -557,7 +557,7 @@ filesize memory_file::translate(filesize offset, ::enum_seek eseek)
 
    m_position = dwNew;
 
-   //if(dwNew > this->get_size())
+   //if(dwNew > this->size())
    //allocate((memsize) dwNew);
 
    return (filesize)dwNew;
@@ -575,11 +575,11 @@ filesize memory_file::translate(filesize offset, ::enum_seek eseek)
 void memory_file::load_string(string &str)
 {
 
-   char * psz = str.get_string_buffer((i32)(this->get_size() + 1));
+   char * psz = str.get_string_buffer((i32)(this->size() + 1));
 
-   ::memcpy_dup(psz, get_data(), (size_t) this->get_size());
+   ::memcpy_dup(psz, data(), (size_t) this->size());
 
-   psz[this->get_size()] = 0;
+   psz[this->size()] = 0;
 
    str.release_string_buffer();
 
@@ -593,17 +593,17 @@ memsize memory_file::erase_begin(void *pdata, memsize uiCount)
 
    auto pmemory = get_memory();
 
-   if (uiCount > pmemory->m_memory.m_cbStorage)
+   if (uiCount > pmemory->m_memory.size())
    {
 
-      uiCount = pmemory->m_memory.m_cbStorage;
+      uiCount = pmemory->m_memory.size();
 
    }
 
    if (pdata != nullptr)
    {
 
-      ::memcpy(pdata, get_data(), (size_t)uiCount);
+      ::memcpy(pdata, data(), (size_t)uiCount);
 
    }
 
@@ -693,10 +693,10 @@ string memory_file::as_string() const
 //
 //   memsize uRead;
 //
-//   while ((uRead = pfile->read(storage.get_data(), storage.get_size())) > 0)
+//   while ((uRead = pfile->read(storage.data(), storage.size())) > 0)
 //   {
 //
-//      write(storage.get_data(), uRead);
+//      write(storage.data(), uRead);
 //
 //   }
 //
@@ -706,7 +706,7 @@ string memory_file::as_string() const
 void * memory_file::get_internal_data()
 {
 
-   return get_data();
+   return data();
 
 }
 
@@ -714,7 +714,7 @@ void * memory_file::get_internal_data()
 memsize memory_file::get_internal_data_size() const
 {
 
-   return (memsize) get_size();
+   return (memsize) size();
 
 }
 
@@ -735,7 +735,7 @@ void memory_file::write_file(::file::file* pfileIn, memsize uiBufSize)
    if (pfileIn->is_in_memory_file())
    {
 
-      auto size = pfileIn->get_size();
+      auto size = pfileIn->size();
 
       if (increase_internal_data_size((memsize) size))
       {
@@ -807,7 +807,7 @@ void memory_file::to(::file::file* pfileOut, memsize uiSize)
 bool memory_file::get_status(::file::file_status & status) const
 {
 
-   status.m_filesize = get_size();
+   status.m_filesize = size();
 
    status.m_mtime = 0;
 
@@ -899,18 +899,18 @@ CLASS_DECL_ACME memory_file_pointer create_memory_file_by_reading(::file::file *
 
    pmemoryfile->memory().set_size(memsizeLeft);
 
-   auto iRead = pfile->read(pmemoryfile->get_data(), (memsize) pmemoryfile->get_size());
+   auto iRead = pfile->read(pmemoryfile->data(), (memsize) pmemoryfile->size());
 
-   if (iRead != pmemoryfile->get_size())
+   if (iRead != pmemoryfile->size())
    {
 
       throw ::file::exception(error_failed, { e_error_code_type_unknown, -1 }, pfile->m_path, "Read bytes less than recorded left bytes");
 
    }
 
-   pmemoryfile->m_pbyte = pmemoryfile->get_data();
+   pmemoryfile->m_pbyte = pmemoryfile->data();
 
-   pmemoryfile->m_memsize = (memsize) pmemoryfile->get_size();
+   pmemoryfile->m_memsize = (memsize) pmemoryfile->size();
 
    return pmemoryfile;
 

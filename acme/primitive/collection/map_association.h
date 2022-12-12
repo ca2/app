@@ -2,22 +2,29 @@
 
 
 #include "pair.h"
+#include "list_iterator.h"
 
 
-template <  typename PAYLOAD >
+template < typename PAYLOAD >
 class map_association :
    public PAYLOAD
 {
 public:
 
 
-   typedef PAYLOAD                     payload;
+   using ITEM = map_association;
+   using ITEM_POINTER = ITEM *;
+
+   using iterator = ::list_iterator < ITEM_POINTER >;
+   using const_iterator = ::const_list_iterator < ITEM_POINTER >;
+
+   using payload = PAYLOAD;
 
 
-   map_association *                   m_pprev;
-   map_association *                   m_pnext;
-   map_association *                   m_pnextHash;
-   map_association **                  m_ppprevHash;
+   ITEM_POINTER         m_back;
+   ITEM_POINTER         m_next;
+   ITEM_POINTER         m_nextHash;
+   ITEM_POINTER *       m_pbackHash;
 
 
    using PAYLOAD::PAYLOAD;
@@ -27,6 +34,14 @@ public:
 
    //}
 
+   auto back() { return m_back; }
+   auto back()const { return m_back; }
+
+   auto next() { return m_next; }
+   auto next()const { return m_next; }
+
+   auto item() { return this; }
+   auto item() const { return this; }
 
    //map_association(ARG_TYPE1 element1) :
    //   pair(element1)
@@ -40,6 +55,27 @@ public:
    //{
 
    //}
+
+
+   ::index index() const
+   {
+
+      ::index i = 0;
+
+      auto p = m_back;
+
+      while (*p)
+      {
+
+         i++;
+
+         p++;
+
+      }
+
+      return i;
+
+   }
 
 
 };
@@ -85,3 +121,28 @@ namespace std
 
 
 } // namespace std
+
+
+
+template < typename TYPE >
+::index an_index_of(const map_association < TYPE > * p)
+{
+
+   return p->index();
+
+}
+
+
+
+template < typename TYPE >
+TYPE * next_as_of_iterator(const map_association < TYPE > * p)
+{
+
+   return p->m_pnext;
+
+}
+
+
+
+
+

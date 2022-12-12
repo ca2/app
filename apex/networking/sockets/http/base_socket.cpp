@@ -74,13 +74,13 @@ namespace sockets
    void http_base_socket::OnHeaderComplete()
    {
 
-      string strProtocol = m_request.attr("http_protocol").as_string().c_str();
+      string strProtocol = m_request.attr("http_protocol");
 
       string strHost;
       
       strHost = m_request.header("host");
 
-      if (strHost.ends_eat_ci(".test.ca2.software"))
+      if (strHost.case_insensitive_ends_eat(".test.ca2.software"))
       {
 
          m_request.header("host") = strHost + ".ca2.software";
@@ -93,7 +93,7 @@ namespace sockets
 
       }
 
-      string strRequestUri = m_request.attr("request_uri").as_string();
+      string strRequestUri = m_request.attr("request_uri");
 
       http_socket::OnHeaderComplete();
 
@@ -101,7 +101,7 @@ namespace sockets
 
       string strTest(strHost);
 
-      if (strTest.ends_eat_ci(".ca2.software"))
+      if (strTest.case_insensitive_ends_eat(".ca2.software"))
       {
 
          if (strTest.find('.') > 0)
@@ -113,7 +113,7 @@ namespace sockets
 
       }
 
-      if(m_request.attr("request_uri").as_string().find("/passthrough/") >= 0)
+      if(m_request.attr("request_uri").operator ::string().find("/passthrough/") >= 0)
       {
          
          INFORMATION("Passthrough");
@@ -123,7 +123,7 @@ namespace sockets
       if(m_request.headers().has_property("user_agent"))
       {
 
-         INFORMATION("user-agent: " << m_request.header("user_agent").as_string());
+         INFORMATION("user-agent: " << m_request.header("user_agent").operator ::string());
 
       }
       else
@@ -136,14 +136,14 @@ namespace sockets
       if(m_request.headers().has_property("from"))
       {
 
-         INFORMATION("from: " + m_request.header("from").as_string());
+         INFORMATION("from: " + m_request.header("from"));
 
       }
 
       if(m_request.headers().has_property("accept-language"))
       {
 
-         FORMATTED_INFORMATION("accept-language: %s", m_request.header("accept-language").as_string().c_str());
+         FORMATTED_INFORMATION("accept-language: %s", m_request.header("accept-language").operator string().c_str());
 
       }
 
@@ -179,7 +179,7 @@ namespace sockets
       //FORMATTED_TRACE("connection: %s\n", m_request.header("connection").string());
       //FORMATTED_TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
       /*   if(string_ends(m_request.attr("http_version").string(), "/1.1")
-            && m_request.header("connection").string().compare_ci("close") != 0)
+            && m_request.header("connection").string().case_insensitive_order("close") != 0)
          {
             m_b_keepalive = true;
          TRACE(" ***    keepalive: true\n");
@@ -203,8 +203,8 @@ namespace sockets
 
       //TRACE0("http_base_socket::Respond");
 
-      if(outheader("content-type").as_string().find("text") >= 0
-            || outheader("content-type").as_string().find("javascript") >= 0)
+      if(outheader("content-type").operator string().find("text") >= 0
+            || outheader("content-type").operator string().find("javascript") >= 0)
       {
 
          on_compress();
@@ -214,17 +214,17 @@ namespace sockets
       if (response().m_strFile.has_char())
       {
 
-         response().m_propertysetHeader["content-length"] = acmefile()->get_size(response().m_strFile);
+         response().m_propertysetHeader["content-length"] = acmefile()->size(response().m_strFile);
 
       }
       else
       {
 
-         m_response.m_propertysetHeader.set_at("content-length", (i64)m_response.file()->get_size());
+         m_response.m_propertysetHeader.set_at("content-length", (i64)m_response.file()->size());
 
       }
 
-      //for(i32 i = 0; i < m_response.cookies().get_size(); i++)
+      //for(i32 i = 0; i < m_response.cookies().size(); i++)
       //{
 
       //   m_response.m_propertysetHeader.set_at("set-cookie", m_response.cookies().element_at(i)->get_cookie_string());
@@ -331,10 +331,10 @@ namespace sockets
    void http_base_socket::on_compress()
    {
 
-      if(inheader("accept-encoding").as_string().find("gzip") >= 0)
+      if(inheader("accept-encoding").operator string().find("gzip") >= 0)
       {
 
-         string str = outheader("content-type").as_string();
+         string str = outheader("content-type");
 
          if (str.find_ci("text") >= 0 || str.find_ci("javascript") >= 0)
          {
@@ -374,7 +374,7 @@ namespace sockets
 
       ::file::path pcsz(pcszParam);
 
-      bool bMd5Request = pcsz.ends_eat_ci(".md5");
+      bool bMd5Request = pcsz.case_insensitive_ends_eat(".md5");
 
       string strExtension = pcsz.final_extension();
 
@@ -395,10 +395,10 @@ namespace sockets
       {
          outheader("content-type") = "text/plain";
       }
-      else if (outheader("content-type").as_string().has_char())
+      else if (outheader("content-type").operator string().has_char())
       {
       }
-      else if (strContentType.has_char() && strContentType.compare_ci("unknown") != 0)
+      else if (strContentType.has_char() && strContentType.case_insensitive_order("unknown") != 0)
       {
          outheader("content-type") = strContentType;
       }
@@ -425,7 +425,7 @@ namespace sockets
       for (auto& strAllowedOrigin : straAllowedOrigin)
       {
 
-         if (strServer.ends_ci("." + strAllowedOrigin) || strServer.compare_ci(strAllowedOrigin) == 0)
+         if (strServer.case_insensitive_ends("." + strAllowedOrigin) || strServer.case_insensitive_order(strAllowedOrigin) == 0)
          {
 
             bAllowedOrigin = true;
@@ -506,7 +506,7 @@ namespace sockets
       if (prangea == nullptr || prangea->get_count() == 0)
       {
 
-         if (strContentType.begins_ci("audio/"))
+         if (strContentType.case_insensitive_begins("audio/"))
          {
 
             auto preader = file()->get_reader(pcsz);
@@ -574,7 +574,7 @@ namespace sockets
 
          }
 
-         auto iLen = preader->get_size();
+         auto iLen = preader->size();
 
          if (prangea->get_count() > 1)
          {
@@ -636,19 +636,19 @@ namespace sockets
 
                   if (iEnd >= iStart)
                   {
-                     uRead = minimum(mem.get_size(), (memsize)(iEnd - iPos + 1));
+                     uRead = minimum(mem.size(), (memsize)(iEnd - iPos + 1));
                   }
                   else
                   {
-                     uRead = mem.get_size();
+                     uRead = mem.size();
                   }
-                  uRead = preader->read(mem.get_data(), uRead);
+                  uRead = preader->read(mem.data(), uRead);
                   uTotal += uRead;
                   if (uRead == 0)
                      break;
-                  pfile->write(mem.get_data(), uRead);
+                  pfile->write(mem.data(), uRead);
                   iPos += uRead;
-                  if (iPos >= preader->get_size())
+                  if (iPos >= preader->size())
                      break;
                }
 
@@ -707,17 +707,17 @@ namespace sockets
                   if (iEnd != -1 && iEnd >= iStart)
                   {
 
-                     uRead = minimum(mem.get_size(), (memsize)(iEnd - iPos + 1));
+                     uRead = minimum(mem.size(), (memsize)(iEnd - iPos + 1));
 
                   }
                   else
                   {
                      
-                     uRead = mem.get_size();
+                     uRead = mem.size();
 
                   }
                   
-                  uRead = preader->read(mem.get_data(), uRead);
+                  uRead = preader->read(mem.data(), uRead);
                   
                   uTotal += uRead;
 
@@ -728,11 +728,11 @@ namespace sockets
 
                   }
                   
-                  response().file()->write(mem.get_data(), uRead);
+                  response().file()->write(mem.data(), uRead);
                   
                   iPos += uRead;
 
-                  if (iPos >= preader->get_size())
+                  if (iPos >= preader->size())
                   {
 
                      break;

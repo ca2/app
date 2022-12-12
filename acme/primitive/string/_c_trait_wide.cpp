@@ -3,161 +3,48 @@
 #include "_conv.h"
 
 
-wd16char * __u64towd16(::u64 u, wd16char * buf, int iBase, enum_digit_case edigitcase)
+::wd16_character * __u64towd16(::u64 u, ::wd16_character * buf, int iBase, enum_digit_case edigitcase, ::wd16_character * & end)
 {
 
-   if (u == 0)
-   {
+   end = buf;
 
-      buf[0] = (wd16char)'0';
-
-      buf[1] = (wd16char)'\0';
-
-      return buf;
-
-   }
-
-   i32 iIndex = 0;
-
-   __natural_to_string_internal(u, buf, iBase, iIndex, edigitcase);
-
-   buf[iIndex] = '\0';
-
-   wd16_reverse(buf);
+   __utosz(u, end, iBase, edigitcase);
 
    return buf;
 
 }
 
 
-wd32char * __u64towd32(::u64 u, wd32char * buf, int iBase, enum_digit_case edigitcase)
+::wd32_character * __u64towd32(::u64 u, ::wd32_character * buf, int iBase, enum_digit_case edigitcase, ::wd32_character * & end)
 {
 
-   if (u == 0)
-   {
+   end = buf;
 
-      buf[0] = (wd32char)'0';
-
-      buf[1] = (wd32char)'\0';
-
-      return buf;
-
-   }
-
-   i32 iIndex = 0;
-
-   __natural_to_string_internal(u, buf, iBase, iIndex, edigitcase);
-
-   buf[iIndex] = '\0';
-
-   wd32_reverse(buf);
+   __utosz(u, end, iBase, edigitcase);
 
    return buf;
 
 }
 
 
-wd16char * __i64towd16(::i64 i, wd16char * buf, int iBase, enum_digit_case edigitcase)
+::wd16_character * __i64towd16(::i64 i, ::wd16_character * buf, int iBase, enum_digit_case edigitcase, ::wd16_character *& end)
 {
 
+   end = buf;
 
-   if (i == 0)
-   {
-
-      buf[0] = (wd16char)'0';
-
-      buf[1] = (wd16char)'\0';
-
-      return buf;
-
-   }
-
-   bool bNegative;
-   
-   if (i < 0)
-   {
-
-      i = -i;
-
-      bNegative = true;
-
-   }
-   else
-   {
-
-      bNegative = false;
-
-   }
-
-   i32 iIndex = 0;
-
-   __natural_to_string_internal(i, buf, iBase, iIndex, edigitcase);
-
-   if (bNegative)
-   {
-
-      buf[iIndex] = '-';
-
-      iIndex++;
-
-   }
-
-   buf[iIndex] = '\0';
-
-   wd16_reverse(buf);
+   __itosz(i, end, iBase, edigitcase);
 
    return buf;
 
 }
 
 
-wd32char * __i64towd32(::i64 i, wd32char * buf, int iBase, enum_digit_case edigitcase)
+::wd32_character * __i64towd32(::i64 i, ::wd32_character * buf, int iBase, enum_digit_case edigitcase, ::wd32_character *& end)
 {
 
-   if (i == 0)
-   {
+   end = buf;
 
-      buf[0] = (wd32char)'0';
-
-      buf[1] = (wd32char)'\0';
-
-      return buf;
-
-   }
-
-   bool bNegative;
-
-   if (i < 0)
-   {
-
-      i = -i;
-
-      bNegative = true;
-
-   }
-   else
-   {
-
-      bNegative = false;
-
-   }
-
-   i32 iIndex = 0;
-
-   __natural_to_string_internal(i, buf, iBase, iIndex, edigitcase);
-
-   if (bNegative)
-   {
-
-      buf[iIndex] = '-';
-
-      iIndex++;
-
-   }
-
-   buf[iIndex] = '\0';
-
-   wd32_reverse(buf);
+   __itosz(i, end, iBase, edigitcase);
 
    return buf;
 

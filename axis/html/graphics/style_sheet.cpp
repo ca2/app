@@ -128,7 +128,7 @@ namespace html
    }
 
 
-   style * style_sheet::rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName)
+   style * style_sheet::rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName)
    {
 
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
@@ -146,10 +146,10 @@ namespace html
    }
 
 
-   const style * style_sheet::rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName) const
+   const style * style_sheet::rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName) const
    {
 
-      return ((style_sheet *) this)->rfind(etag, strClass, strSubClass, idName);
+      return ((style_sheet *) this)->rear_find(etag, strClass, strSubClass, idName);
 
    }
 

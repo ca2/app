@@ -705,7 +705,7 @@ string apple_get_bundle_identifier();
 ////
 ////    string str = apple_get_bundle_identifier();
 ////
-////    str.begins_eat_ci("com.ca2.");
+////    str.case_insensitive_begins_eat("com.ca2.");
 ////
 ////    str.replace(".", "/");
 ////
@@ -1079,7 +1079,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //      void * hmodule = nullptr;
 //
-//      bool bInApp = strAppId.compare_ci("acid") == 0;
+//      bool bInApp = strAppId.case_insensitive_order("acid") == 0;
 //
 //      if (!bInApp)
 //      {

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "hasher_algorithm.h"
 #include "hasher.h"
 ////#include "acme/exception/exception.h"
@@ -72,9 +72,9 @@ namespace crypto_openssl
 #endif
 
 
-      EVP_DigestUpdate(mdctx, block.get_data(), block.get_size());
+      EVP_DigestUpdate(mdctx, block.data(), block.size());
 
-      EVP_DigestFinal_ex(mdctx, memoryHash.get_data(), &digest_size);
+      EVP_DigestFinal_ex(mdctx, memoryHash.data(), &digest_size);
 
       EVP_MD_CTX_free(mdctx);
 

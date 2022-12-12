@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 2022-10-23 09:56 <3ThomasBorregaardSorensen!!
 //
 #pragma once
@@ -113,7 +113,7 @@ namespace collection
                {
                   if (iMPos == iUPos)
                      break;
-                  if (a.element_at(iMPos).compare_ci(a.element_at(iUPos)) <= 0s)
+                  if (a.element_at(iMPos).case_insensitive_order(a.element_at(iUPos)) <= 0s)
                      iUPos--;
                   else
                   {
@@ -130,7 +130,7 @@ namespace collection
                   if (iMPos == iLPos)
                      break;
 
-                  if (a.element_at(iLPos).compare_ci(a.element_at(iMPos)) <= 0)
+                  if (a.element_at(iLPos).case_insensitive_order(a.element_at(iMPos)) <= 0)
                      iLPos++;
                   else
                   {
@@ -189,7 +189,7 @@ namespace collection
                {
                   if(iMPos == iUPos)
                      break;
-                  if(a.element_at(ia[iMPos]).compare_ci(a.element_at(ia[iUPos])) <= 0)
+                  if(a.element_at(ia[iMPos]).case_insensitive_order(a.element_at(ia[iUPos])) <= 0)
                      iUPos--;
                   else
                   {
@@ -205,7 +205,7 @@ namespace collection
                   if(iMPos == iLPos)
                      break;
 
-                  if(a.element_at(ia[iLPos]).compare_ci(a.element_at(ia[iMPos])) <= 0)
+                  if(a.element_at(ia[iLPos]).case_insensitive_order(a.element_at(ia[iMPos])) <= 0)
                      iLPos++;
                   else
                   {

@@ -5,7 +5,37 @@
 #ifdef _WIN32
 
 
-CLASS_DECL_ACME void* memmem(const void* l, size_t l_len, const void* s, size_t s_len);
+CLASS_DECL_ACME const void * memory_find(const void* l, memsize l_len, const void* s, memsize s_len);
+
+
+inline const void * _memory_find(const void* l, memsize l_len, const void* s, memsize s_len)
+{
+
+   const ::byte* cur;
+
+   const ::byte* last;
+
+   const ::byte* cl = (const ::byte*)l;
+   const ::byte* cs = (const ::byte*)s;
+
+   /* the last position where its possible to find "s" in "l" */
+   last = cl + l_len - s_len;
+
+   for (cur = cl; cur <= last; cur++)
+   {
+
+      if (cur[0] == cs[0] && _memory_compare(cur, cs, s_len) == 0)
+      {
+
+         return (const void *) cur;
+
+      }
+
+   }
+
+   return nullptr;
+
+}
 
 
 #endif

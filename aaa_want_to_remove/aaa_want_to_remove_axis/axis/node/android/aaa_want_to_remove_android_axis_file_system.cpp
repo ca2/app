@@ -60,9 +60,9 @@ namespace android
       //      for(i32 i = 0; i < iLevelCount; i++)
       //      {
       //
-      //         strsize iFind1 = str.reverse_find('/', iLast);
+      //         strsize iFind1 = str.rear_find('/', iLast);
       //
-      //         strsize iFind2 = str.reverse_find('\\', iLast);
+      //         strsize iFind2 = str.rear_find('\\', iLast);
       //
       //         strsize iFind = maximum(iFind1, iFind2);
       //

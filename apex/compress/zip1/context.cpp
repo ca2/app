@@ -88,9 +88,9 @@ namespace str
 
          strZip = listing.m_pathFinal;
 
-         strRemain = strZip.Mid(strZip.reverse_find(".zip:") + strlen(".zip:"));
+         strRemain = strZip.Mid(strZip.rear_find(".zip:") + strlen(".zip:"));
 
-         strLastZip = strZip.Left(strZip.reverse_find(".zip:") + strlen(".zip"));
+         strLastZip = strZip.Left(strZip.rear_find(".zip:") + strlen(".zip"));
 
       }
       else
@@ -248,9 +248,9 @@ namespace str
 
          strZip = strPath;
 
-         strRemain = strZip.Mid(strZip.reverse_find(".zip:") + strlen(".zip:"));
+         strRemain = strZip.Mid(strZip.rear_find(".zip:") + strlen(".zip:"));
 
-         strLastZip = strZip.Left(strZip.reverse_find(".zip:") + strlen(".zip"));
+         strLastZip = strZip.Left(strZip.rear_find(".zip:") + strlen(".zip"));
 
       }
       else

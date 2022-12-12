@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "folder.h"
 #include "file.h"
 #include "file_function_definitions.h"
@@ -136,10 +136,10 @@ namespace folder_zip
 
       memsize uRead;
 
-      while((uRead = pfile->read(mem,mem.get_size())) > 0)
+      while((uRead = pfile->read(mem,mem.size())) > 0)
       {
 
-         zipWriteInFileInZip(m_zipfile,mem.get_data(),(u32)uRead);
+         zipWriteInFileInZip(m_zipfile,mem.begin(),(u32)uRead);
 
       }
 
@@ -206,7 +206,7 @@ namespace folder_zip
             
          string strTitle(szTitle);
 
-         if (strPrefix.is_empty() || strTitle.begins_eat_ci(strPrefix))
+         if (strPrefix.is_empty() || strTitle.case_insensitive_begins_eat(strPrefix))
          {
 
             if (listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
@@ -302,7 +302,7 @@ namespace folder_zip
 
          extract(memory, path);
 
-         if (memory.has_data())
+         if (memory.is_set())
          {
 
             auto pathTarget = pathTargetFolder / path;
@@ -334,12 +334,12 @@ namespace folder_zip
       
       strFile.replace_with("/", "\\");
 
-      if (!locate([strFile](const char* psz) {return strFile.compare_ci(psz) == 0; }))
+      if (!locate([strFile](const char* psz) {return strFile.case_insensitive_order(psz) == 0; }))
       {
 
          strFile.replace_with("\\", "/");
 
-         if (!locate([strFile](const char* psz) {return strFile.compare_ci(psz) == 0; }))
+         if (!locate([strFile](const char* psz) {return strFile.case_insensitive_order(psz) == 0; }))
          {
 
             return false;
@@ -462,7 +462,7 @@ namespace folder_zip
 
             string strItem(pszItem);
 
-            if (strItem.begins_ci(strPrefix))
+            if (strItem.case_insensitive_begins(strPrefix))
             {
 
                return true;
@@ -513,7 +513,7 @@ namespace folder_zip
 
             string strItem(pszItem);
 
-            if (strItem.begins_eat_ci(strPrefix))
+            if (strItem.case_insensitive_begins_eat(strPrefix))
             {
 
                if (strItem.contains('/'))

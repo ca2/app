@@ -1,4 +1,4 @@
-/** \file parse.h - parse a string
+﻿/** \file parse.h - parse a string
 **
 **   Written: 1999-Feb-10 grymse@alhem.net
 **/
@@ -53,12 +53,12 @@ public:
    strsize  m_iLen;
 
    parse();
-   parse(const ::string & str):parse((const char *) str, str.get_length()) {}
-   parse(const ::string & str,const string & splits):parse((const char *)str,str.get_length(),splits) {}
-   parse(const ::string & str,const string & splits,i16 nospace):parse((const char *)str,str.get_length(),splits,nospace) {}
-   parse(const char * psz, strsize iLen);
-   parse(const char * psz, strsize iLen,const string &);
-   parse(const char * psz, strsize iLen,const string &,i16);
+   parse(::range < const ::ansi_character * > range) : parse(range.begin(), range.size()) {}
+   parse(::range < const ::ansi_character * > range, ::range < const ::ansi_character * > splits):parse(range.begin(), range.size(), splits) {}
+   parse(::range < const ::ansi_character * > range, ::range < const ::ansi_character * > splits, i16 nospace):parse(range.begin(), range.size(),splits,nospace) {}
+   parse(const ::ansi_character * psz, strsize iLen);
+   parse(const ::ansi_character * psz, strsize iLen, ::range < const ::ansi_character * > splits);
+   parse(const ::ansi_character * psz, strsize iLen, ::range < const ::ansi_character * > splits, i16);
    ~parse();
    i16 issplit(const char);
    void getsplit();

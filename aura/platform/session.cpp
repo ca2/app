@@ -366,7 +366,7 @@ namespace aura
 
       }
 
-      if (strPathName.ends_ci(".ca2"))
+      if (strPathName.case_insensitive_ends(".ca2"))
       {
 
       }
@@ -2462,7 +2462,7 @@ namespace aura
    //   for (string str : straSource)
    //   {
 
-   //      if (str.begins_eat_ci("file://"))
+   //      if (str.case_insensitive_begins_eat("file://"))
    //      {
 
    //         str = ::url::decode(str);

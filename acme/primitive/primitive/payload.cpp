@@ -153,6 +153,16 @@ payload::payload(const ::particle & particle)
 }
 
 
+payload::payload(::range < const ::ansi_character * > ansirange) :
+   payload(e_no_initialize)
+{
+
+   m_etype = e_type_ansi_range;
+   m_ansirange = ansirange;
+
+}
+
+
 payload::payload(const ::string & str)
 {
 
@@ -526,7 +536,7 @@ bool payload::convert(const ::payload & payload)
    else if(m_etype == e_type_string)
    {
 
-      m_str = payload.as_string();
+      m_str = payload.string();
 
    }
    else
@@ -544,7 +554,7 @@ bool payload::convert(const ::payload & payload)
 strsize payload::length() const
 {
 
-   return as_string().length();
+   return string().length();
 
 }
 
@@ -552,7 +562,7 @@ strsize payload::length() const
 void payload::as(::string & str) const
 {
 
-   str = as_string();
+   str = string();
 
 }
 
@@ -706,9 +716,9 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_f64 = this->f64();
             break;
          case e_type_string:
-            m_str = ::move(this->as_string());
+            m_str = ::move(this->string());
             break;
-         case e_type_id:
+         case e_type_atom:
             m_atom = ::move(this->atom());
             break;
          default:
@@ -724,7 +734,7 @@ void payload::set_type(enum_type etype, bool bConvert)
          ::new(&m_str) ::string();
 
       }
-      else if (etype == e_type_id)
+      else if (etype == e_type_atom)
       {
 
          ::new(&m_atom) ::atom();
@@ -771,6 +781,72 @@ void payload::set_string(::string && str)
 }
 
 
+void payload::set_string(const ::string & str)
+{
+
+   if (get_type() == e_type_pstring)
+   {
+
+      *m_pstr = str;
+
+   }
+   else if (get_type() == e_type_payload_pointer)
+   {
+
+      m_ppayload->set_string(str);
+
+   }
+   else if (get_type() == e_type_property)
+   {
+
+      m_pproperty->set_string(str);
+
+   }
+   else
+   {
+
+      set_type(e_type_string, false);
+
+      m_str = str;
+
+   }
+
+}
+
+
+inline void payload::set_string(const ::const_ansi_range & block)
+{
+
+   if (get_type() == e_type_pstring)
+   {
+
+      m_pstr->assign(block);
+
+   }
+   else if (get_type() == e_type_payload_pointer)
+   {
+
+      m_ppayload->set_string(block);
+
+   }
+   else if (get_type() == e_type_property)
+   {
+
+      m_pproperty->set_string(block);
+
+   }
+   else
+   {
+
+      set_type(e_type_string, false);
+
+      m_str = block;
+
+   }
+
+}
+
+
 void payload::unset()
 {
    set_type(e_type_new, false);
@@ -804,7 +880,7 @@ bool payload::failed() const
 void payload::set_id(const ::atom & atom)
 {
 
-   if(get_type() == e_type_pid)
+   if(get_type() == e_type_patom)
    {
 
       *m_patom = atom;
@@ -825,10 +901,10 @@ void payload::set_id(const ::atom & atom)
    else
    {
 
-      if (get_type() != e_type_id)
+      if (get_type() != e_type_atom)
       {
 
-         set_type(e_type_id, false);
+         set_type(e_type_atom, false);
 
       }
 
@@ -1163,7 +1239,7 @@ class ::payload & payload::operator = (::string * pstr)
 class ::payload & payload::operator = (::atom * pid)
 {
 
-   set_type(e_type_pid, false);
+   set_type(e_type_patom, false);
 
    m_patom = pid;
 
@@ -1172,7 +1248,7 @@ class ::payload & payload::operator = (::atom * pid)
 }
 
 
-class ::payload & payload::operator = (const widechar * pcsz)
+class ::payload & payload::operator = (const ::wide_character * pcsz)
 {
 
    set_string(unicode_to_utf8(pcsz));
@@ -1365,7 +1441,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
          case e_type_property:
             m_pproperty=payload.m_pproperty;
             break;
-         case e_type_id:
+         case e_type_atom:
             m_atom = payload.m_atom;
             break;
          default:
@@ -1570,7 +1646,9 @@ bool payload::is_true(bool bDefault) const
    case e_type_key_exists:
       return true;
    case e_type_string:
-      return !m_str.is_empty() && !(m_str.compare_ci("no") == 0 || m_str.compare_ci("false") == 0 || m_str.compare_ci("0") == 0);
+      return !m_str.is_empty() && m_str.case_insensitive_order("no") != 0 && m_str.case_insensitive_order("false") != 0 && m_str.order("0") != 0;
+   case e_type_pstring:
+      return m_pstr && !m_pstr->is_empty() && m_pstr->case_insensitive_order("no") != 0 && m_pstr->case_insensitive_order("false") != 0 && m_pstr->order("0") != 0;
    case e_type_i32:
       return m_i32 != 0;
    case e_type_u32:
@@ -1628,9 +1706,9 @@ bool payload::is_empty() const
       return m_ppayload->is_empty();
    case e_type_property:
       return m_pproperty->is_empty();
-   case e_type_id:
+   case e_type_atom:
       return m_atom.is_empty();
-   case e_type_pid:
+   case e_type_patom:
       return m_patom->is_empty();
 
 
@@ -1663,8 +1741,58 @@ bool payload::is_empty() const
 bool payload::has_char() const
 {
 
-   return as_string().has_char();
+   switch (m_etype)
+   {
+   case e_type_null:
+      return false;
+   case e_type_empty:
+      return false;
+   case e_type_empty_argument:
+      return false;
+   case e_type_new:
+      return false;
+   case e_type_string:
+      return m_str.has_char();
+   case e_type_i32:
+      return true;
+   case e_type_u32:
+      return true;
+   case e_type_i64:
+      return true;
+   case e_type_u64:
+      return true;
+   case e_type_f64:
+      return true;
+   case e_type_payload_pointer:
+      return m_ppayload->has_char();
+   case e_type_property:
+      return m_pproperty->has_char();
+   case e_type_atom:
+      return m_atom.has_char();
+   case e_type_patom:
+      return m_patom->has_char();
+   case e_type_element:
+      return !is_element_null();
+   case e_type_string_array:
+      return ::is_set(m_pstra) && m_pstra->has_element();
+   case e_type_i32_array:
+      return ::is_set(m_pia) && m_pia->has_element();
+   case e_type_payload_array:
+      return ::is_set(m_ppayloada) && m_ppayloada->has_element();
+   case e_type_property_set:
+      return ::is_set(m_ppropertyset) && m_ppropertyset->has_element();
+   case e_type_i64_array:
+      return ::is_set(m_pi64a) && m_pi64a->has_element();
+   case e_type_memory:
+      return ::is_set(m_pmemory) && !m_pmemory->is_empty();
+   case e_type_path:
+      return ::is_set(m_ppath) && m_ppath->has_char();
+      //case type_image:
+      //   return m_pimage.ok();
 
+   default:
+      return false;
+   }
 }
 
 
@@ -1713,268 +1841,367 @@ bool payload::is_new_or_null() const
 }
 
 
-
-
-::i32 payload::compare_ci(const class ::payload & payload) const
+::std::strong_ordering payload::case_insensitive_order(const class ::payload & payload) const
 {
-   if(m_etype == ::e_type_i32_array)
+
+   if (has_reference_of_type(::e_type_i32_array))
    {
-      if(payload.m_etype == ::e_type_i32_array)
+
+      if (payload.has_reference_of_type(::e_type_i32_array))
       {
-         //payload = var1.ia() - payload2.ia();
+
+         return i32_array_reference() <=> payload.i32_array_reference();
+
       }
       else
       {
-         //payload = var1;
-         //payload.ia().erase(payload2.i32());
+
+         return stra() <=> payload.stra();
+
       }
+
    }
-   else if(m_etype == ::e_type_string_array)
+   else if (has_reference_of_type(::e_type_string_array))
    {
-      if(payload.m_etype == ::e_type_string_array)
+
+      if (payload.has_reference_of_type(::e_type_string_array))
       {
-         //payload = var1.stra() - payload2.stra();
+
+         return string_array_reference().case_insensitive_order(payload.string_array_reference());
+
       }
       else
       {
-         //payload = var1;
-         //payload.stra().erase(payload2.as_string());
+
+         return string_array_reference().case_insensitive_order(payload.stra());
+
       }
+
    }
-   else if(m_etype == ::e_type_payload_array)
+   else if (has_reference_of_type(::e_type_payload_array))
    {
-      if(payload.m_etype == ::e_type_payload_array)
+
+      if (payload.has_reference_of_type(::e_type_payload_array))
       {
-         //   payload = var1.payloada() - payload2.payloada();
+
+         return payload_array_reference().case_insensitive_order(payload.payload_array_reference());
+
       }
       else
       {
-         // payload = var1;
-         //payload.payloada().erase(payload2);
+
+         return payload_array_reference().case_insensitive_order(payload.payloada());
+
       }
+
    }
-   else if(is_double() || payload.is_double())
-   {
-      ::f64 f64 = this->f64() - payload.f64();
-      if(f64 == 0.0)
-         return 0;
-      else if(f64 > 0.0)
-         return 1;
-      else if(f64 < 0.0)
-         return -1;
-   }
-   else if(is_integer() || payload.is_integer())
-   {
-      return i32() - payload.i32();
-   }
-   else if(is_natural() || payload.is_natural())
-   {
-      return (::i32) (u32() - payload.u32());
-   }
+   //else if (is_integer())
+   //{
+
+   //   return string().order(payload.string());
+
+   //}
+   //else if (is_floating())
+   //{
+
+   //   return string().order(payload.string());
+
+   //}
    else
    {
-      return as_string().compare_ci(payload.as_string());
-   }
-   return -2;
-}
 
-::i32 payload::compare_ci(const char * psz) const
-{
-   ::payload payload(psz);
-   return compare_ci(payload);
+      return string().case_insensitive_order(payload.string());
+
+   }
+
 }
 
 
-::i32 payload::compare(const class ::payload & payload) const
+//::std::strong_ordering payload::case_insensitive_order(const char * psz) const
+//{
+//   ::payload payload(psz);
+//   return case_insensitive_order(payload);
+//}
+
+
+
+bool payload::equals(const payload & payload) const
 {
-   if(m_etype == ::e_type_i32_array)
+
+   return order(payload) == 0;
+
+}
+
+
+//bool payload::equals(const char * psz) const
+//{
+//
+//   return order(psz) == 0;
+//
+//}
+
+
+bool payload::case_insensitive_equals(const payload & payload) const
+{
+
+   return case_insensitive_order(payload) == 0;
+
+}
+
+
+//bool payload::case_insensitive_equals(const char * psz) const
+//{
+//
+//   return case_insensitive_order(psz) == 0;
+//
+//}
+
+
+::std::strong_ordering payload::order(const class ::payload & payload) const
+{
+
+   if(has_reference_of_type(::e_type_i32_array))
    {
-      if(payload.m_etype == ::e_type_i32_array)
+      
+      if(payload.has_reference_of_type(::e_type_i32_array))
       {
-         //payload = var1.ia() - payload2.ia();
+
+         return i32_array_reference() <=> payload.i32_array_reference();
+
       }
       else
       {
-         //payload = var1;
-         //payload.ia().erase(payload2.i32());
+
+         return stra() <=> payload.stra();
+
       }
+
    }
-   else if(m_etype == ::e_type_string_array)
+   else if(has_reference_of_type(::e_type_string_array))
    {
-      if(payload.m_etype == ::e_type_string_array)
+      
+      if(payload.has_reference_of_type(::e_type_string_array))
       {
-         //payload = var1.stra() - payload2.stra();
+         
+         return string_array_reference() <=> payload.string_array_reference();
+
       }
       else
       {
-         //payload = var1;
-         //payload.stra().erase(payload2.as_string());
+         
+         return string_array_reference() <=> payload.stra();
+
       }
+
    }
-   else if(m_etype == ::e_type_payload_array)
+   else if(has_reference_of_type(::e_type_payload_array))
    {
-      if(payload.m_etype == ::e_type_payload_array)
+
+      if(payload.has_reference_of_type(::e_type_payload_array))
       {
-         //   payload = var1.payloada() - payload2.payloada();
+
+         return payload_array_reference() <=> payload.payload_array_reference();
+
       }
       else
       {
-         // payload = var1;
-         //payload.payloada().erase(payload2);
+
+         return payload_array_reference() <=> payload.payloada();
+
       }
+
    }
-   else if(is_double() || payload.is_double())
-   {
-      ::f64 f64 = this->f64() - payload.f64();
-      if(f64 == 0.0)
-         return 0;
-      else if(f64 > 0.0)
-         return 1;
-      else if(f64 < 0.0)
-         return -1;
-   }
-   else if(is_integer() || payload.is_integer())
-   {
-      return i32() - payload.i32();
-   }
-   else if(is_natural() || payload.is_natural())
-   {
-      return (::i32) (u32() - payload.u32());
-   }
+   //else if(is_integer())
+   //{
+
+   //   return i64() <=> payload.i64();
+
+   //}
+   //else if (is_floating())
+   //{
+
+   //   return ::std::strong_order(f64(), payload.f64());
+
+   //}
    else
    {
-      return as_string().compare(payload.as_string());
+
+      return string().order(payload.string());
+
    }
-   return -2;
+
 }
 
-::i32 payload::compare(const char * psz) const
-{
-   ::payload payload(psz);
-   return compare(payload);
-}
+
+//::std::strong_ordering payload::order(const char * psz) const
+//{
+//
+//   ::payload payload(psz);
+//
+//   return order(payload);
+//
+//}
+
 
 bool payload::operator == (const class ::payload & payload) const
 {
    // if variables are equal:
    // all values of both variables should be equal
-   return compare(payload) == 0;
+   return equals(payload) == 0;
 }
 
-bool payload::operator > (const class ::payload & payload) const
+
+::std::strong_ordering payload::operator <=> (const ::payload & payload) const
 {
-   return compare(payload) > 0;
+   return order(payload);
 }
 
-bool payload::operator < (const class ::payload & payload) const
-{
-   return compare(payload) < 0;
-}
 
-bool payload::operator >= (const class ::payload & payload) const
-{
-   return compare(payload) >= 0;
-}
+//bool payload::operator > (const class ::payload & payload) const
+//{
+//
+//   return compare(payload) > 0;
+//
+//}
+//
+//bool payload::operator < (const class ::payload & payload) const
+//{
+//   return compare(payload) < 0;
+//}
+//
+//bool payload::operator >= (const class ::payload & payload) const
+//{
+//   return compare(payload) >= 0;
+//}
+//
+//bool payload::operator <= (const class ::payload & payload) const
+//{
+//   return compare(payload) <= 0;
+//}
+//
+//bool payload::operator != (const class ::payload & payload) const
+//{
+//   return compare(payload) != 0;
+//}
 
-bool payload::operator <= (const class ::payload & payload) const
-{
-   return compare(payload) <= 0;
-}
-
-bool payload::operator != (const class ::payload & payload) const
-{
-   return compare(payload) != 0;
-}
 
 bool payload::operator == (const char * psz) const
 {
-   return as_string() == psz;
+
+   return equals(psz);
+
 }
 
-bool payload::operator < (const char * psz) const
+
+::std::strong_ordering payload::operator <=> (const char * psz) const
 {
-   return as_string() < psz;
+   
+   return order(psz);
+
 }
 
-bool payload::operator <= (const char * psz) const
-{
-   return as_string() <= psz;
-}
 
-bool payload::operator >= (const char * psz) const
-{
-   return as_string() >= psz;
-}
+//bool payload::operator < (const char * psz) const
+//{
+//   return as_string() < psz;
+//}
+//
+//bool payload::operator <= (const char * psz) const
+//{
+//   return as_string() <= psz;
+//}
+//
+//bool payload::operator >= (const char * psz) const
+//{
+//   return as_string() >= psz;
+//}
+//
+//bool payload::operator > (const char * psz) const
+//{
+//   return as_string() > psz;
+//}
+//
+//bool payload::operator != (const char * psz) const
+//{
+//   return as_string() != psz;
+//}
 
-bool payload::operator > (const char * psz) const
-{
-   return as_string() > psz;
-}
-
-bool payload::operator != (const char * psz) const
-{
-   return as_string() != psz;
-}
 
 bool payload::operator == (const ::string & str) const
 {
-   return as_string() == str;
+
+   return equals(str);
+
 }
 
-bool payload::operator != (const ::string & str) const
+
+::std::strong_ordering payload::operator <=> (const ::string & str) const
 {
-   return as_string() != str;
+
+   return order(str);
+
 }
 
-bool payload::operator < (const ::string & str) const
-{
-   return as_string() < str;
-}
 
-bool payload::operator <= (const ::string & str) const
-{
-   return as_string() <= str;
-}
-
-bool payload::operator >= (const ::string & str) const
-{
-   return as_string() >= str;
-}
-
-bool payload::operator > (const ::string & str) const
-{
-   return as_string() > str;
-}
+//bool payload::operator != (const ::string & str) const
+//{
+//   return as_string() != str;
+//}
+//
+//bool payload::operator < (const ::string & str) const
+//{
+//   return as_string() < str;
+//}
+//
+//bool payload::operator <= (const ::string & str) const
+//{
+//   return as_string() <= str;
+//}
+//
+//bool payload::operator >= (const ::string & str) const
+//{
+//   return as_string() >= str;
+//}
+//
+//bool payload::operator > (const ::string & str) const
+//{
+//   return as_string() > str;
+//}
 
 bool payload::operator == (::i32 i) const
 {
    return i32() == i;
 }
 
-bool payload::operator != (::i32 i) const
+::std::strong_ordering payload::operator <=> (::i32 i) const
 {
-   return i32() != i;
+   return i32() <=> i;
 }
 
-bool payload::operator < (::i32 i) const
-{
-   return i64() < i;
-}
-
-bool payload::operator <= (::i32 i) const
-{
-   return i64() <= i;
-}
-
-bool payload::operator >= (::i32 i) const
-{
-   return i64() >= i;
-}
-
-bool payload::operator > (::i32 i) const
-{
-   return i64() > i;
-}
+//bool payload::operator != (::i32 i) const
+//{
+//   return i32() != i;
+//}
+//
+//bool payload::operator < (::i32 i) const
+//{
+//   return i64() < i;
+//}
+//
+//bool payload::operator <= (::i32 i) const
+//{
+//   return i64() <= i;
+//}
+//
+//bool payload::operator >= (::i32 i) const
+//{
+//   return i64() >= i;
+//}
+//
+//bool payload::operator > (::i32 i) const
+//{
+//   return i64() > i;
+//}
 
 
 
@@ -1991,30 +2218,36 @@ bool payload::operator == (::i64 i) const
    return i64() == i;
 }
 
-bool payload::operator != (::i64 i) const
+
+::std::strong_ordering payload::operator <=> (::i64 i) const
 {
-   return i64() != i;
+   return i64() <=> i;
 }
 
-bool payload::operator < (::i64 i) const
-{
-   return i64() < i;
-}
-
-bool payload::operator <= (::i64 i) const
-{
-   return i64() <= i;
-}
-
-bool payload::operator >= (::i64 i) const
-{
-   return i64() >= i;
-}
-
-bool payload::operator > (::i64 i) const
-{
-   return i32() > i;
-}
+//bool payload::operator != (::i64 i) const
+//{
+//   return i64() != i;
+//}
+//
+//bool payload::operator < (::i64 i) const
+//{
+//   return i64() < i;
+//}
+//
+//bool payload::operator <= (::i64 i) const
+//{
+//   return i64() <= i;
+//}
+//
+//bool payload::operator >= (::i64 i) const
+//{
+//   return i64() >= i;
+//}
+//
+//bool payload::operator > (::i64 i) const
+//{
+//   return i32() > i;
+//}
 
 
 
@@ -2046,30 +2279,36 @@ bool payload::operator == (bool b) const
    return is_equivalent(get_bool(), b);
 }
 
-bool payload::operator != (bool b) const
+
+::std::strong_ordering payload::operator <=> (bool b) const
 {
-   return is_different(get_bool(), b);
+   return ::std::strong_order(get_bool(), b);
 }
 
-bool payload::operator < (bool b) const
-{
-   return is_lesser(get_bool(), b);
-}
-
-bool payload::operator <= (bool b) const
-{
-   return is_lesser_or_equal(get_bool(), b);
-}
-
-bool payload::operator >= (bool b) const
-{
-   return is_greater_or_equal(get_bool(), b);
-}
-
-bool payload::operator > (bool b) const
-{
-   return is_greater(get_bool(), b);
-}
+//bool payload::operator != (bool b) const
+//{
+//   return is_different(get_bool(), b);
+//}
+//
+//bool payload::operator < (bool b) const
+//{
+//   return is_lesser(get_bool(), b);
+//}
+//
+//bool payload::operator <= (bool b) const
+//{
+//   return is_lesser_or_equal(get_bool(), b);
+//}
+//
+//bool payload::operator >= (bool b) const
+//{
+//   return is_greater_or_equal(get_bool(), b);
+//}
+//
+//bool payload::operator > (bool b) const
+//{
+//   return is_greater(get_bool(), b);
+//}
 
 //bool payload::strictly_equal(const class ::payload & payload) const
 //{
@@ -2170,22 +2409,22 @@ string payload::get_recursive_string() const
    else
    {
       
-      return as_string();
+      return string();
 
    }
 
 }
 
 
-string payload::as_string(const char * pszOnNull) const
+string payload::get_string(const char * pszOnNull) const
 {
    if(m_etype == e_type_payload_pointer)
    {
-      return m_ppayload->as_string(pszOnNull);
+      return m_ppayload->get_string(pszOnNull);
    }
    else if (m_etype == e_type_property)
    {
-      return m_pproperty->as_string(pszOnNull);
+      return m_pproperty->get_string(pszOnNull);
    }
    else if(m_etype == e_type_pstring)
    {
@@ -2236,13 +2475,13 @@ string payload::as_string(const char * pszOnNull) const
          str = ::as_string(m_f64);
 
       }
-      else if(m_etype == ::e_type_id)
+      else if(m_etype == ::e_type_atom)
       {
 
          str = m_atom;
 
       }
-      else if(m_etype == ::e_type_pid)
+      else if(m_etype == ::e_type_patom)
       {
 
          str = *m_patom;
@@ -2329,7 +2568,7 @@ string & payload::string_reference(const char * pszOnNull)
    else
    {
 
-      ::string str = this->as_string(pszOnNull);
+      ::string str = this->get_string(pszOnNull);
 
       set_string(str);
 
@@ -2363,13 +2602,13 @@ string & payload::string_reference(const char * pszOnNull)
       return m_pproperty->atom(idDefault);
 
    }
-   else if(m_etype == e_type_pid)
+   else if(m_etype == e_type_patom)
    {
 
       return *m_patom;
 
    }
-   else if(m_etype != e_type_id)
+   else if(m_etype != e_type_atom)
    {
 
       ::atom atom;
@@ -2489,7 +2728,7 @@ string & payload::string_reference(const char * pszOnNull)
       return m_pproperty->id_reference(idDefault);
 
    }
-   else if(m_etype == e_type_pid)
+   else if(m_etype == e_type_patom)
    {
 
       return *m_patom;
@@ -2500,7 +2739,7 @@ string & payload::string_reference(const char * pszOnNull)
 
       auto atom = this->atom(idDefault);
 
-      set_type(e_type_id, false);
+      set_type(e_type_atom, false);
 
       m_atom = ::move(atom);
 
@@ -2565,13 +2804,13 @@ string & payload::string_reference(const char * pszOnNull)
       return m_pproperty->i32(iDefault);
    case e_type_pstring:
       return atoi(*m_pstr);
-   case e_type_id:
+   case e_type_atom:
    {
       if(!fits_i32(m_atom.i64()))
          throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
       return (::i32) (::i64) m_atom;
    }
-   case e_type_pid:
+   case e_type_patom:
    {
       if(!fits_i32(m_patom->i64()))
          throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
@@ -2708,7 +2947,7 @@ string & payload::string_reference(const char * pszOnNull)
          return m_i64;
       case e_type_u64:
          return m_u64;
-      case e_type_id:
+      case e_type_atom:
          return m_atom.i64();
       case e_type_pi8:
          if (::is_null(m_p)) return iDefault;
@@ -3592,7 +3831,7 @@ string_array payload::stra() const
          for (::index i = 0; i < c; i++)
          {
 
-            stra.add(at(i).as_string());
+            stra.add(at(i));
 
          }
 
@@ -3651,7 +3890,7 @@ string_array & payload::string_array_reference()
          for (::index i = 0; i < c; i++)
          {
 
-            pstra->add(at(i).as_string());
+            pstra->add(at(i));
 
          }
 
@@ -4457,7 +4696,7 @@ string payload::implode(const char * pszGlue) const
 
    class ::payload payload;
 
-   payload.stra().add_tokens(as_string(), pszGlue, bAddEmpty);
+   payload.stra().add_tokens(*this, pszGlue, bAddEmpty);
 
    return payload;
 
@@ -4689,7 +4928,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
       index upperbound = minimum(array_get_upper_bound(), last);
       for(index i = find; i <= upperbound; i++)
       {
-         if(at(i).as_string().compare_ci(psz) == 0)
+         if(at(i).case_insensitive_order(psz) == 0)
          {
             return true;
          }
@@ -4702,7 +4941,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 
 ::payload payload::equals_ci_get(const char * pszCompare, ::payload varOnEqual, ::payload varOnDifferent) const
 {
-   if(compare_ci(pszCompare) == 0)
+   if(case_insensitive_order(pszCompare) == 0)
    {
       return varOnEqual;
    }
@@ -4714,7 +4953,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 
 ::payload payload::equals_ci_get(const char * pszCompare, ::payload varOnEqual) const
 {
-   if(compare_ci(pszCompare) == 0)
+   if(case_insensitive_order(pszCompare) == 0)
    {
       return varOnEqual;
    }
@@ -4743,7 +4982,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
       else
       {
 
-         varRet.set_string(varRet.as_string() + str);
+         varRet.set_string(varRet.string() + str);
 
       }
 
@@ -4760,7 +4999,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
       else
       {
 
-         varRet.set_string(varRet.as_string() + str);
+         varRet.set_string(varRet.string() + str);
 
       }
 
@@ -4768,7 +5007,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
    else
    {
 
-      varRet.set_string(varRet.as_string() + str);
+      varRet.set_string(varRet.string() + str);
 
    }
 
@@ -5339,7 +5578,7 @@ bool payload::is_floating() const
    else
    {
 
-      ::string str = as_string();
+      ::string str(::move(string()));
 
 //#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
 //      if(is_scalar()
@@ -5490,7 +5729,7 @@ bool payload::is_integer() const
    else
    {
       
-      ::string str = as_string();
+      ::string str(::move(string()));
 
       str.trim();
       if(str.get_length() == 0)
@@ -5526,7 +5765,7 @@ bool payload::is_natural() const
    else
    {
       
-      ::string str = as_string();
+      ::string str(::move(string()));
 
          str.trim();
          if(str.get_length() == 0)
@@ -5709,13 +5948,13 @@ bool payload::is_fairly_convertible_to_text() const
 //      return m_pstr != nullptr && ::acme::is_true(*m_pstr);
 //
 //   }
-//   else if (m_etype == e_type_id)
+//   else if (m_etype == e_type_atom)
 //   {
 //
 //      return (m_atom.is_text() && ::acme::is_true(m_atom.m_psz)) || (m_atom.is_integer() && m_atom.m_i != 0);
 //
 //   }
-//   else if (m_etype == e_type_pid)
+//   else if (m_etype == e_type_patom)
 //   {
 //
 //      return m_patom != nullptr && ((m_patom->is_text() && ::acme::is_true(m_patom->m_psz)) || (m_patom->is_integer() && m_patom->m_i != 0));
@@ -5852,7 +6091,7 @@ bool payload::is_property_false(const ::atom & atom) const
 bool payload::begins_eat(const ::string & strPrefix)
 {
 
-   ::string str = this->as_string();
+   ::string str(::move(string()));
 
    if(!str.begins_eat(strPrefix))
    {
@@ -5871,7 +6110,7 @@ bool payload::begins_eat(const ::string & strPrefix)
 bool payload::ends_eat(const ::string & strSuffix)
 {
 
-   ::string str = this->as_string();
+   ::string str(::move(string()));
 
    if(!str.ends_eat(strSuffix))
    {
@@ -5887,12 +6126,12 @@ bool payload::ends_eat(const ::string & strSuffix)
 }
 
 
-bool payload::begins_eat_ci(const ::string & strPrefix)
+bool payload::case_insensitive_begins_eat(const ::string & strPrefix)
 {
 
-   ::string str = this->as_string();
+   ::string str(::move(string()));
 
-   if(!str.begins_eat_ci(strPrefix))
+   if(!str.case_insensitive_begins_eat(strPrefix))
    {
 
       return false;
@@ -5906,12 +6145,12 @@ bool payload::begins_eat_ci(const ::string & strPrefix)
 }
 
 
-bool payload::ends_eat_ci(const ::string & strSuffix)
+bool payload::case_insensitive_ends_eat(const ::string & strSuffix)
 {
 
-   ::string str = this->as_string();
+   ::string str(::move(string()));
 
-   if(!str.ends_eat_ci(strSuffix))
+   if(!str.case_insensitive_ends_eat(strSuffix))
    {
 
       return false;
@@ -6000,7 +6239,7 @@ block payload::block () const
 //      }
 //      //else if(cast < property >() != nullptr)
 //      //{
-//      //   return cast < property >()->name().compare_ci(lpszName) == 0;
+//      //   return cast < property >()->name().case_insensitive_order(lpszName) == 0;
 //      //}
 //      else
 //      {
@@ -6017,7 +6256,7 @@ block payload::block () const
 bool payload::has_property(const ::atom & atom) const
 {
 
-   return __found(property_index(atom));
+   return is_found(property_index(atom));
 
 }
 
@@ -6048,18 +6287,18 @@ void payload::consume_identifier(const char * & psz, const char * pszEnd)
 
    ::string str(pszStart, pszParse - pszStart);
 
-   if (str.compare_ci("false") == 0)
+   if (str.case_insensitive_order("false") == 0)
    {
 
       operator = (false);
 
    }
-   else if (str.compare_ci("true") == 0)
+   else if (str.case_insensitive_order("true") == 0)
    {
 
       operator = (true);
    }
-   else if (str.compare_ci("null") == 0)
+   else if (str.case_insensitive_order("null") == 0)
    {
       set_type(::e_type_null);
    }
@@ -6404,7 +6643,7 @@ void payload::parse_network_payload(const char *& pszJson, const char * pszEnd)
 
       ::string str = ::str().consume_quoted_value_ex(pszJson, pszEnd);
 
-      if(str.begins_eat_ci("hls://"))
+      if(str.case_insensitive_begins_eat("hls://"))
       {
 
          string_array stra;
@@ -6513,7 +6752,7 @@ void payload::parse_network_payload(const char *& pszJson, const char * pszEnd)
 
          property_parse_network_payload_id(atom, pszJson, pszEnd);
 
-         if (varChild.as_string().compare_ci(atom) == 0)
+         if (varChild.case_insensitive_order(atom) == 0)
          {
 
             ::str().consume_spaces(pszJson, 0, pszEnd);
@@ -6758,10 +6997,10 @@ bool payload::is_numeric() const
    case e_type_file_time:
       return false;
 
-   case e_type_id:
+   case e_type_atom:
       return false; // m_atom.is_number(); // may be improved MBI
 
-   case e_type_pid:
+   case e_type_patom:
       return false; // m_patom->is_number(); // may be improved MBI
 
    case e_type_i64_array:
@@ -6782,6 +7021,37 @@ bool payload::is_numeric() const
    }
 
    };
+
+}
+
+
+bool payload::has_reference_of_type(enum_type etype) const
+{
+
+   if (m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->has_reference_of_type(etype);
+
+   }
+   else if (m_etype == e_type_property)
+   {
+
+      return m_pproperty->has_reference_of_type(etype);
+
+   }
+   else if (m_etype == etype)
+   {
+
+      return true;
+
+   }
+   else
+   {
+
+      return false;
+
+   }
 
 }
 
@@ -7246,7 +7516,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
    else if (is_numeric())
    {
 
-      return str += as_string();
+      return str += string();
 
    }
    else if (get_type() == ::e_type_bool)
@@ -7258,9 +7528,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
    else
    {
 
-      ::string strValue;
-
-      strValue = as_string();
+      ::string strValue(::move(string()));
 
       strValue.replace_with("\\\"", "\"");
 
@@ -7350,7 +7618,7 @@ void payload::null()
 
    }
 
-   return ::file::path(as_string());
+   return ::file::path(string());
 
 }
 
@@ -7492,19 +7760,19 @@ bool payload::is_false() const
 
    // simple classes
    case e_type_string:
-      return m_str.is_empty() || !m_str.compare_ci("false")  || !m_str.compare_ci("no");
+      return m_str.is_empty() || m_str.case_insensitive_order("false") == 0  || m_str.case_insensitive_order("no") == 0 || m_str.case_insensitive_order("0") == 0;
    case e_type_pstring:
-      return !m_pstr || m_pstr->is_empty() || !m_pstr->compare_ci("false")  || !m_pstr->compare_ci("no");
+      return !m_pstr || m_pstr->is_empty() || m_pstr->case_insensitive_order("false") == 0 || m_pstr->case_insensitive_order("no") == 0 || m_pstr->case_insensitive_order("0") == 0;
    case e_type_type:
       return m_str.is_empty();
    case e_type_time:
       return m_time.is_null();
    case e_type_ptime:
       return !m_ptime || m_ptime->is_null();
-   case e_type_id:
-      return m_atom.is_empty() || !m_atom.compare_ci("false") || !m_atom.compare_ci("no");
-   case e_type_pid:
-      return !m_patom || m_patom->is_empty() || !m_patom->compare_ci("false") || !m_patom->compare_ci("no");
+   case e_type_atom:
+      return m_atom.is_empty() || m_atom == 0 || m_atom.case_insensitive_order("false") == 0 || m_atom.case_insensitive_order("no") == 0 || m_atom == "0";
+   case e_type_patom:
+      return !m_patom || m_patom->is_empty() || *m_patom == 0 || m_patom->case_insensitive_order("false") == 0 || m_patom->case_insensitive_order("no") == 0 || *m_patom == "0";
    case e_type_earth_time:
       return !m_earthtime.m_i;
    case e_type_file_time:
@@ -7679,19 +7947,19 @@ bool payload::is_set_false() const
       return !m_f64;
    // simple classes
    case e_type_string:
-      return m_str.is_empty() || !m_str.compare_ci("false")  || !m_str.compare_ci("no");
+      return m_str.is_empty() || m_str.case_insensitive_order("false") == 0 || m_str.case_insensitive_order("no") == 0 || m_str.case_insensitive_order("0") == 0;
    case e_type_pstring:
-      return !m_pstr || m_pstr->is_empty() || !m_pstr->compare_ci("false")  || !m_pstr->compare_ci("no");
+      return !m_pstr || m_pstr->is_empty() || m_pstr->case_insensitive_order("false") == 0 || m_pstr->case_insensitive_order("no") == 0 || m_pstr->case_insensitive_order("0") == 0;
    case e_type_type:
       return m_str.is_empty();
    case e_type_time:
       return m_time.is_null();
    case e_type_ptime:
       return !m_ptime || m_ptime->is_null();
-   case e_type_id:
-      return m_atom.is_empty() || !m_atom.compare_ci("false") || !m_atom.compare_ci("no");
-   case e_type_pid:
-      return !m_patom || m_patom->is_empty() || !m_patom->compare_ci("false") || !m_patom->compare_ci("no");
+   case e_type_atom:
+      return m_atom.is_empty() || m_atom == 0|| m_atom.case_insensitive_order("false") == 0 || m_atom.case_insensitive_order("no") == 0 || m_atom.case_insensitive_order("0") == 0;
+   case e_type_patom:
+      return !m_patom || m_patom->is_empty()|| *m_patom == 0 || m_patom->case_insensitive_order("false") == 0 || m_patom->case_insensitive_order("no") == 0 || m_patom->case_insensitive_order("0") == 0;
    case e_type_earth_time:
       return !m_earthtime.m_i;
    case e_type_file_time:
@@ -7843,7 +8111,7 @@ void payload::_001Add(const string_array & straParam)
    if(straParam.get_count() == 1)
    {
 
-      if(as_string().compare_ci(straParam[0]) == 0)
+      if(case_insensitive_order(straParam[0]) == 0)
       {
 
          return;
@@ -9597,7 +9865,7 @@ payload & payload::add(const ::payload & payload)
       {
 
          // simple implementation
-         string_array_reference().add(payload.as_string());
+         string_array_reference().add(payload.string());
 
       }
 
@@ -9809,7 +10077,7 @@ payload & payload::add(const ::payload & payload)
       else if(payload.is_text())
       {
 
-         operator= (as_string() + payload.as_string());
+         operator= (string() + payload.string());
 
       }
       else
@@ -9889,7 +10157,7 @@ payload & payload::add(const ::payload & payload)
       else if(payload.is_text())
       {
 
-         operator= (as_string() + payload.as_string());
+         operator= (string() + payload.string());
 
       }
       else
@@ -9903,7 +10171,7 @@ payload & payload::add(const ::payload & payload)
    else if(payload.is_text())
    {
 
-      operator= (as_string() + payload.as_string());
+      operator= (string() + payload.string());
 
    }
    else
@@ -10764,7 +11032,7 @@ payload &  payload::divide(const ::payload & payload)
 CLASS_DECL_ACME void copy(string * pstring, const ::payload * ppayload)
 {
 
-   *pstring = ppayload->as_string();
+   *pstring = *ppayload;
 
 }
 

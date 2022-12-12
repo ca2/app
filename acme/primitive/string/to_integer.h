@@ -60,12 +60,12 @@
 
 #ifdef __cplusplus
 
-inline void ansi_to(u32 & u, const ansichar * psz) { u = ansi_to_u32(psz); }
-inline void ansi_to(u64 & u, const ansichar * psz) { u = ansi_to_u64(psz); }
-//inline void ansi_to(uptr & u, const ansichar * psz) { u = ansi_to_uptr(psz); }
+inline void ansi_to(u32 & u, const ::ansi_character * psz) { u = ansi_to_u32(psz); }
+inline void ansi_to(u64 & u, const ::ansi_character * psz) { u = ansi_to_u64(psz); }
+//inline void ansi_to(uptr & u, const ::ansi_character * psz) { u = ansi_to_uptr(psz); }
 
-inline void wide_to(u32 & u, const widechar * psz) { u = wide_to_u32(psz); }
-inline void wide_to(u64 & u, const widechar * psz) { u = wide_to_u64(psz); }
-//inline void wide_to(uptr & u, const widechar * psz) { u = wide_to_uptr(psz); }
+inline void wide_to(u32 & u, const ::wide_character * psz) { u = wide_to_u32(psz); }
+inline void wide_to(u64 & u, const ::wide_character * psz) { u = wide_to_u64(psz); }
+//inline void wide_to(uptr & u, const ::wide_character * psz) { u = wide_to_uptr(psz); }
 
 #endif

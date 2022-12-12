@@ -41,9 +41,9 @@ CLASS_DECL_APEX i32 __cdecl _memory_type(const void* p);
 //LSTATUS
 //(APIENTRY* LPFN_RegGetValueW) (
 //   HKEY hkey,
-//   const widechar * pSubKey,
+//   const ::wide_character * pSubKey,
 //
-//   const widechar * pValue,
+//   const ::wide_character * pValue,
 //
 //   u32 dwFlags,
 //   LPDWORD pdwType,

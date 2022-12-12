@@ -1,4 +1,4 @@
-// Created by camilo on 2021-09-09 22:58 Thomas Month!! <3ThomasBS__!!
+﻿// Created by camilo on 2021-09-09 22:58 Thomas Month!! <3ThomasBS__!!
 #pragma once
 
 
@@ -38,7 +38,7 @@ namespace file
 
       void set_size(filesize dwNewLen) override;
 
-      virtual filesize get_size() const override;
+      virtual filesize size() const override;
 
 
    };

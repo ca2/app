@@ -118,7 +118,7 @@ i32 uni_to_utf8_2_or_more(char * dest, i32 ch)
 }
 
 
-CLASS_DECL_ACME ::count unichar_len(const widechar * psz)
+CLASS_DECL_ACME ::count unichar_len(const ::wide_character * psz)
 {
    if(psz == nullptr)
       return -1;
@@ -158,7 +158,7 @@ CLASS_DECL_ACME ::count unichar_len(const widechar * psz)
 }
 
 
-void ansi_to_wd16(wd16char * pwsz, const char * psz)
+void ansi_to_wd16(::wd16_character * pwsz, const char * psz)
 {
 
    while(true)
@@ -195,7 +195,7 @@ void ansi_to_wd16(wd16char * pwsz, const char * psz)
 }
 
 
-void ansi_to_wd16_len(wd16char * pwsz, const char * psz, strsize srclen)
+void ansi_to_wd16_len(::wd16_character * pwsz, const char * psz, strsize srclen)
 {
 
    while(srclen > 0 && psz != nullptr && *psz != '\0')
@@ -264,7 +264,7 @@ WCHAR * ansi_to_wd16(const char * psz)
 
 }*/
 
-i32 utf8_len(const widechar * pwsz)
+i32 utf8_len(const ::wide_character * pwsz)
 {
    if(pwsz == nullptr)
       return -1;
@@ -282,7 +282,7 @@ i32 utf8_len(const widechar * pwsz)
    return count;
 }
 
-i32 utf8_len_len(const widechar * pwsz, strsize srclen)
+i32 utf8_len_len(const ::wide_character * pwsz, strsize srclen)
 {
    if(pwsz == nullptr)
       return -1;

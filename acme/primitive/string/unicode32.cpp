@@ -3,7 +3,7 @@
 ////#include "acme/exception/exception.h"
 
 
-strsize wd32_to_ansi_len(const wd32char* pwsz, strsize srclen)
+strsize wd32_to_ansi_len(const ::wd32_character* pwsz, strsize srclen)
 {
 
    if (pwsz == nullptr)
@@ -44,7 +44,7 @@ strsize wd32_to_ansi_len(const wd32char* pwsz, strsize srclen)
 }
 
 
-//strsize wd32_to_ansi_len_len(const wd32char* pwsz, strsize input_size)
+//strsize wd32_to_ansi_len_len(const ::wd32_character* pwsz, strsize input_size)
 //{
 //
 //   if (pwsz == nullptr)
@@ -85,7 +85,7 @@ strsize wd32_to_ansi_len(const wd32char* pwsz, strsize srclen)
 //}
 
 
-strsize utf32_len(const wd32char* pwsz)
+strsize utf32_len(const ::wd32_character* pwsz)
 {
 
    if (pwsz == nullptr)
@@ -100,7 +100,7 @@ strsize utf32_len(const wd32char* pwsz)
    }
    return s;
 }
-strsize wd32_to_ansi(char* psz, const wd32char* pwsz, strsize srclen)
+strsize wd32_to_ansi(char* psz, const ::wd32_character* pwsz, strsize srclen)
 {
 
    strsize c = 0;
@@ -169,7 +169,7 @@ strsize ansi_to_wd32_len(const char* psz, strsize srclen)
 
 }
 
-strsize ansi_to_wd32(wd32char* pwsz, const char* psz, strsize srclen)
+strsize ansi_to_wd32(::wd32_character* pwsz, const char* psz, strsize srclen)
 {
 
    ::i32 dstlen = 0;
@@ -210,12 +210,12 @@ strsize ansi_to_wd32(wd32char* pwsz, const char* psz, strsize srclen)
 
 
 
-wd32char* ansi_to_wd32_dup(const char* input, strsize input_size)
+::wd32_character* ansi_to_wd32_dup(const char* input, strsize input_size)
 {
 
    strsize s = ansi_to_wd32_len(input, input_size);
 
-   wd32char* v = (wd32char*)memory_allocate(sizeof(wd32char) * (s + 1));
+   ::wd32_character* v = (::wd32_character*)memory_allocate(sizeof(::wd32_character) * (s + 1));
 
    ansi_to_wd32(v, input, s);
 
@@ -232,7 +232,7 @@ wd32char* ansi_to_wd32_dup(const char* input, strsize input_size)
 
 
 
-string wd32_to_ansi_str(const wd32char * pwszUni32, strsize iUni32Len)
+string wd32_to_ansi_str(const ::wd32_character * pwszUni32, strsize iUni32Len)
 {
 
    strsize iUtf8Len = wd32_to_ansi_len(pwszUni32, iUni32Len);

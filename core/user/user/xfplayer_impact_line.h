@@ -195,9 +195,9 @@ public:
    bool PrepareLine(::draw2d::graphics_pointer & pgraphics, string str, i32 flags, const ::rectangle_i32 & rectangle);
 
 
-   void add_char(widechar wch, strsize &index);
+   void add_char(::wide_character wch, strsize &index);
 
-   void add_char(widechar wch, strsize &index, ::write_text::font * pFont);
+   void add_char(::wide_character wch, strsize &index, ::write_text::font * pFont);
 
    bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, bool bRecalcLayout);
 

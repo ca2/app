@@ -456,10 +456,10 @@ bool dir_context::_enumerate(::file::listing& listing)
 
    listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);
 
-   if (listing.m_pathFinal.begins_ci("matter://"))
+   if (listing.m_pathFinal.case_insensitive_begins("matter://"))
    {
 
-      listing.m_pathFinal.begins_eat_ci("matter://");
+      listing.m_pathFinal.case_insensitive_begins_eat("matter://");
 
       if (matter_enumerate(listing.m_pathFinal, listing))
       {
@@ -469,10 +469,10 @@ bool dir_context::_enumerate(::file::listing& listing)
       }
 
    }
-   else if (listing.m_pathFinal.begins_ci("zipresource://"))
+   else if (listing.m_pathFinal.case_insensitive_begins("zipresource://"))
    {
 
-      listing.m_pathFinal.begins_eat_ci("zipresource://");
+      listing.m_pathFinal.case_insensitive_begins_eat("zipresource://");
 
       auto pfolder = file()->resource_folder();
 
@@ -501,7 +501,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 
    }
 
-   if (listing.m_pathFinal.begins_ci("http://") || listing.m_pathFinal.begins_ci("https://"))
+   if (listing.m_pathFinal.case_insensitive_begins("http://") || listing.m_pathFinal.case_insensitive_begins("https://"))
    {
 
       property_set set;
@@ -513,7 +513,7 @@ bool dir_context::_enumerate(::file::listing& listing)
       return true;
 
    }
-   else if (task_flag().is_set(e_task_flag_compress_is_dir) && (listing.m_pathFinal.ends_ci(".zip") || ::str().find_file_extension("zip:", listing.m_pathFinal) >= 0))
+   else if (task_flag().is_set(e_task_flag_compress_is_dir) && (listing.m_pathFinal.case_insensitive_ends(".zip") || ::str().find_file_extension("zip:", listing.m_pathFinal) >= 0))
    {
 
       auto& pfactory = acmesystem()->folder_factory();
@@ -1008,7 +1008,7 @@ bool dir_context::is(const ::file::path& pathParam)
 
    auto psystem = acmesystem()->m_papexsystem;
 
-   if (pathParam.begins_ci("appmatter://"))
+   if (pathParam.case_insensitive_begins("appmatter://"))
    {
 
       path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path.Mid(12);
@@ -1055,7 +1055,7 @@ bool dir_context::_is(const ::file::path& path)
 bool dir_context::__is(const ::file::path& path, bool& bDir)
 {
 
-   if (path.ends_ci("://") || path.ends_ci(":/") || path.ends_ci(":"))
+   if (path.case_insensitive_ends("://") || path.case_insensitive_ends(":/") || path.case_insensitive_ends(":"))
    {
 
       bDir = true;
@@ -1319,7 +1319,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //            index iFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
-//               return t1->m_str.compare_ci(t2->m_str) < 0;
+//               return t1->m_str.case_insensitive_order(t2->m_str) < 0;
 //
 //            });
 //
@@ -1551,7 +1551,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //            index iFind = pdir->predicate_binary_search(pfind, [&](auto & t1, auto & t2)
 //            {
 //
-//               return t1->m_str.compare_ci(t2->m_str) < 0;
+//               return t1->m_str.case_insensitive_order(t2->m_str) < 0;
 //
 //            });
 //
@@ -1583,7 +1583,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //                  pdir->predicate_sort([&](auto & t1, auto & t2)
 //                  {
 //
-//                     return t1->m_str.compare_ci(t2->m_str) < 0;
+//                     return t1->m_str.case_insensitive_order(t2->m_str) < 0;
 //
 //                  });
 //
@@ -1853,7 +1853,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       string strMatter = strDir;
 
-      if (strMatter.begins_eat_ci("appmatter://"))
+      if (strMatter.case_insensitive_begins_eat("appmatter://"))
       {
 
          strMatter = "/matter/" + strMatter;
@@ -1952,7 +1952,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       string strPrefix(strDir);
 
-      strPrefix.begins_eat_ci("zipresource:");
+      strPrefix.case_insensitive_begins_eat("zipresource:");
 
       strPrefix.trim("\\/");
 
@@ -2107,7 +2107,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          path = file()->as_string(pathCache);
 
-         if (path.begins_eat_ci("itdoesntexist."))
+         if (path.case_insensitive_begins_eat("itdoesntexist."))
          {
 
             class ::time t = INTEGRAL_MILLISECOND(::as_i64(path));
@@ -2135,7 +2135,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
             string strFinal(path);
 
-            if (strFinal.begins_ci("appmatter://"))
+            if (strFinal.case_insensitive_begins("appmatter://"))
             {
 
                strFinal = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strFinal.Mid(12);
@@ -2390,7 +2390,7 @@ ret:
 
       string strMatter(path);
 
-      strMatter.begins_eat_ci("appmatter://");
+      strMatter.case_insensitive_begins_eat("appmatter://");
 
       ::file::path pathCache = dirsystem()->m_pathLocalAppMatterFolder / strMatter;
 
@@ -2421,9 +2421,9 @@ ret:
 
    ::file::path_array patha;
 
-   path.begins_eat_ci("matter://");
+   path.case_insensitive_begins_eat("matter://");
 
-   path.begins_eat_ci("appmatter://");
+   path.case_insensitive_begins_eat("appmatter://");
 
    patha.add(path);
 
@@ -2495,25 +2495,25 @@ ret:
 
       strApp.replace_with("_", "\\");
 
-      if (strApp.begins_eat_ci("app_veriwell_"))
+      if (strApp.case_insensitive_begins_eat("app_veriwell_"))
       {
 
          strRepo = "app-veriwell";
 
       }
-      else if (strApp.begins_eat_ci("app_core_"))
+      else if (strApp.case_insensitive_begins_eat("app_core_"))
       {
 
          strRepo = "app-core";
 
       }
-      else if (strApp.begins_eat_ci("app_cidadedecuritiba_"))
+      else if (strApp.case_insensitive_begins_eat("app_cidadedecuritiba_"))
       {
 
          strRepo = "app-cidadedecuritiba";
 
       }
-      else if (strApp.begins_eat_ci("app_"))
+      else if (strApp.case_insensitive_begins_eat("app_"))
       {
 
          strRepo = "app";
@@ -2671,9 +2671,9 @@ ret:
    if (iFind >= 0)
    {
 
-      strsize iFind1 = strRelative.reverse_find("\\", iFind);
+      strsize iFind1 = strRelative.rear_find("\\", iFind);
 
-      strsize iFind2 = strRelative.reverse_find("/", iFind);
+      strsize iFind2 = strRelative.rear_find("/", iFind);
 
       strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
 

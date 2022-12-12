@@ -60,7 +60,7 @@ CLASS_DECL_CORE void simple_debug_print(const ::string & psz)
 
 
 
-VOID WINAPI output_debug_string(const widechar * lpOutputString)
+VOID WINAPI output_debug_string(const ::wide_character * lpOutputString)
 {
 
 

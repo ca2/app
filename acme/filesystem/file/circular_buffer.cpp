@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "circular_file.h"
 ////#include "acme/exception/exception.h"
 
@@ -38,17 +38,17 @@ namespace file
       if (m_t + l > m_max) // block crosses circular border
       {
          auto l1 = m_max - m_t; // size_i32 left until circular border crossing
-         // always copy full block to buffer(m_memory.get_data()) + top pointer(m_t)
+         // always copy full block to buffer(m_memory.data()) + top pointer(m_t)
          // because we have doubled the buffer size_i32 for performance reasons
-         ::memcpy_dup(m_memory.get_data() + m_t, s, l);
-         ::memcpy_dup(m_memory.get_data(), s + l1, l - l1);
+         ::memcpy_dup(m_memory.data() + m_t, s, l);
+         ::memcpy_dup(m_memory.data(), s + l1, l - l1);
          m_t = l - l1;
          m_q += l;
       }
       else
       {
-         ::memcpy_dup(m_memory.get_data() + m_t, s, l);
-         ::memcpy_dup(m_memory.get_data() + m_max + m_t, s, l);
+         ::memcpy_dup(m_memory.data() + m_t, s, l);
+         ::memcpy_dup(m_memory.data() + m_max + m_t, s, l);
          m_t += l;
          if (m_t >= m_max)
             m_t -= m_max;
@@ -78,9 +78,9 @@ namespace file
          if(s != nullptr)
          {
 
-            ::memcpy_dup(s, m_memory.get_data() + m_b, l1);
+            ::memcpy_dup(s, m_memory.data() + m_b, l1);
 
-            ::memcpy_dup(s + l1, m_memory.get_data(), l - l1);
+            ::memcpy_dup(s + l1, m_memory.data(), l - l1);
 
          }
 
@@ -95,7 +95,7 @@ namespace file
          if(s != nullptr)
          {
 
-            ::memcpy_dup(s, m_memory.get_data() + m_b, l);
+            ::memcpy_dup(s, m_memory.data() + m_b, l);
 
          }
 
@@ -150,7 +150,7 @@ namespace file
    const char *circular_file::GetStart()
    {
 
-      return (const char * ) (m_memory.get_data() + m_b);
+      return (const char * ) (m_memory.data() + m_b);
 
    }
 
@@ -188,16 +188,16 @@ namespace file
       
       mem.set_size(l + 1);
 
-      if (!read(mem.get_data(), l)) // failed, debug printout in read() method
+      if (!read(mem.data(), l)) // failed, debug printout in read() method
       {
       
          return "";
 
       }
 
-      mem.get_data()[l] = '\0';
+      mem.data()[l] = '\0';
 
-      return (const char * ) mem.get_data();
+      return (const char * ) mem.data();
 
    }
 

@@ -96,7 +96,7 @@ namespace networking
 
       }
 
-      //auto iLastDot = strDomain.reverse_find('.');
+      //auto iLastDot = strDomain.rear_find('.');
 
       //if (iLastDot <= 0)
       //{
@@ -138,7 +138,7 @@ namespace networking
 
       }
 
-      auto iLastDot = strDomain.reverse_find('.');
+      auto iLastDot = strDomain.rear_find('.');
 
       if (iLastDot <= 0)
       {

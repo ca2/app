@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "language.h"
 #include "acme/exception/parsing.h"
 //#include "acme/operating_system.h"
@@ -172,7 +172,7 @@ namespace user
 
       string strPo = strPoData;
 
-      strPo.begins_eat_ci(STR_BOM);
+      strPo.case_insensitive_begins_eat(STR_BOM);
 
       string_array stra;
 

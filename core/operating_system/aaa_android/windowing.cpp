@@ -1298,7 +1298,7 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
       //pkey->m_ekey = (::user::enum_key) ((int) ::user::e_key_a + keyCode - 29);
       pkey->m_ekey = ::user::e_key_refer_to_text_member;
 
-      wd32char u32sz[2];
+      ::wd32_character u32sz[2];
       u32sz[0] = iUni;
       u32sz[1] = 0;
 

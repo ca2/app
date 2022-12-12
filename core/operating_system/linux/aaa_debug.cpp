@@ -170,7 +170,7 @@ VOID WINAPI output_debug_string(const ::string & pOutputString)
 
 
 
-VOID WINAPI output_debug_string(const widechar * pOutputString)
+VOID WINAPI output_debug_string(const ::wide_character * pOutputString)
 {
 
    if(::aura::g_bOutputDebugString)

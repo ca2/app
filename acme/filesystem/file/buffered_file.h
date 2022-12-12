@@ -34,7 +34,7 @@ namespace file
       bool is_valid() const override;
       filesize translate(filesize offset, ::enum_seek eseek) override;
       filesize get_position() const override;
-      filesize get_size() const override;
+      filesize size() const override;
 
 
       using ::file::file::read;

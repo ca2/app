@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //  OS ANCIENT          strcpy
@@ -23,6 +23,251 @@
 
 
 //inline strsize strlen_s_dup(const char * psz, strsize nsize);
+
+
+template < primitive_character CHARACTER >
+inline const CHARACTER * _unicode_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
+{
+
+   ::i32 len1;
+
+   ::i32 len2;
+
+   while (*psz)
+   {
+
+      auto index = unicode_index_length(psz, len1);
+
+      auto pszCharactersScan = pszCharacters;
+
+      do
+      {
+
+         if (index == unicode_index_length(pszCharactersScan, len2))
+         {
+
+            return psz;
+
+         }
+
+         pszCharactersScan += len2;
+
+      } while (*pszCharactersScan);
+
+      psz += len1;
+
+   }
+
+   return psz;
+
+}
+
+
+template < primitive_character CHARACTER >
+const CHARACTER * unicode_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
+{
+
+   if (::is_empty(psz))
+   {
+
+      return psz;
+
+   }
+
+   if (::is_empty(pszCharacters))
+   {
+
+      return psz;
+
+   }
+
+   return _unicode_scan(psz, pszCharacters);
+
+}
+
+
+template < primitive_character CHARACTER >
+const CHARACTER * _string_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
+{
+
+   ::i32 len1;
+
+   while (*psz)
+   {
+
+      auto ch = *psz;
+
+      auto pszCharactersScan = pszCharacters;
+
+      do
+      {
+
+         if (ch == *pszCharactersScan)
+         {
+
+            return psz;
+
+         }
+
+         pszCharactersScan++;
+
+      } while (*pszCharactersScan);
+
+      psz++;
+
+   }
+
+   return psz;
+
+}
+
+
+template < primitive_character CHARACTER >
+const CHARACTER * string_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
+{
+
+   if (::is_empty(psz))
+   {
+
+      return psz;
+
+   }
+
+   if (::is_empty(pszCharacters))
+   {
+
+      return psz;
+
+   }
+
+   return _string_scan(psz, pszCharacters);
+
+}
+
+
+//template < primitive_character CHARACTER >
+//inline const CHARACTER * _unicode_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
+//{
+//
+//   ::i32 len1;
+//
+//   ::i32 len2;
+//
+//   while (*psz)
+//   {
+//
+//      auto index = unicode_index_length(psz, len1);
+//
+//      auto pszCharactersScan = pszCharacters;
+//
+//      do
+//      {
+//
+//         if (index == unicode_index_length(pszCharactersScan, len2))
+//         {
+//
+//            return psz;
+//
+//         }
+//
+//         pszCharactersScan += len2;
+//
+//      } while (*pszCharactersScan);
+//
+//      psz += len1;
+//
+//   }
+//
+//   return psz;
+//
+//}
+//
+//
+//template < primitive_character CHARACTER >
+//const CHARACTER * unicode_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
+//{
+//
+//   if (::is_empty(psz))
+//   {
+//
+//      return psz;
+//
+//   }
+//
+//   if (::is_empty(pszCharacters))
+//   {
+//
+//      return psz;
+//
+//   }
+//
+//   return _unicode_scan(psz, pszCharacters);
+//
+//}
+
+
+//template < primitive_character CHARACTER >
+//const CHARACTER * _string_rear_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
+//{
+//
+//   a
+//
+//   ::i32 len1;
+//
+//   while (*psz)
+//   {
+//
+//      auto ch = *psz;
+//
+//      auto pszCharactersScan = pszCharacters;
+//
+//      do
+//      {
+//
+//         if (ch == *pszCharactersScan)
+//         {
+//
+//            return psz;
+//
+//         }
+//
+//         pszCharactersScan++;
+//
+//      } while (*pszCharactersScan);
+//
+//      psz++;
+//
+//   }
+//
+//   return psz;
+//
+//}
+//
+//
+//template < primitive_character CHARACTER >
+//const CHARACTER * string_rear_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
+//{
+//
+//   if (::is_empty(psz))
+//   {
+//
+//      return psz;
+//
+//   }
+//
+//   if (::is_empty(pszCharacters))
+//   {
+//
+//      return psz;
+//
+//   }
+//
+//   return _string_rear_scan(psz, pszCharacters);
+//
+//}
+
+
+
 
 
 #include "ancient/_.h"

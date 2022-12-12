@@ -450,7 +450,7 @@
    bool os_context::resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory, string * pstrParams, string * pstrIcon, int * piIcon)
    {
 
-      if(strSource.ends_ci(".desktop"))
+      if(strSource.case_insensitive_ends(".desktop"))
       {
 
          auto stra = file()->lines(strSource);
@@ -466,14 +466,14 @@
 
          string strLink = stra[0];
 
-         strLink.begins_eat_ci("exec=");
+         strLink.case_insensitive_begins_eat("exec=");
 
          while(true)
          {
 
             bool bAte = false;
 
-            if(strLink.ends_eat_ci("%u"))
+            if(strLink.case_insensitive_ends_eat("%u"))
             {
 
                bAte = true;

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/_operating_system.h"
 #include <time.h>
 
@@ -122,7 +122,7 @@ namespace datetime
 //               {
 //                  throw ::exception(::exception("now cannot be span"));
 //               }
-//               else if (strText1.compare_ci("UTC") == 0)
+//               else if (strText1.case_insensitive_order("UTC") == 0)
 //               {
 //
 //               }
@@ -289,8 +289,8 @@ namespace datetime
 //            string strWord = str.Mid(19);
 //            strWord.trim_left();
 //            strWord = ::str().get_word(strWord," ");
-//            if(strWord.compare_ci("UTC") == 0
-//                  || strWord.compare_ci("GMT") == 0
+//            if(strWord.case_insensitive_order("UTC") == 0
+//                  || strWord.case_insensitive_order("GMT") == 0
 //                  || bUTC)
 //            {
 //               struct tm atm;

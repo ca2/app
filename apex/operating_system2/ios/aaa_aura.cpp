@@ -45,7 +45,7 @@
 //LPWSTR GetCommandLineW()
 //{
 //
-//   return (LPWSTR) (const widechar *)    get_command_line_wstring() ;
+//   return (LPWSTR) (const ::wide_character *)    get_command_line_wstring() ;
 //
 //}
 //

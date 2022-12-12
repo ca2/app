@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "listing.h"
 #include "enumerator.h"
 #include "acme/platform/scoped_restore.h"
@@ -252,7 +252,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria_ci(const string_array & straCrite
    for (auto & strCriteria : straCriteria)
    {
 
-      if (strValue.begins_ci("resident"))
+      if (strValue.case_insensitive_begins("resident"))
       {
 
          output_debug_string("resident*");

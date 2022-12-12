@@ -4138,7 +4138,7 @@ namespace user
    }
 
 
-   void mesh::_001SetTopText(const widechar * pcwsz)
+   void mesh::_001SetTopText(const ::wide_character * pcwsz)
    {
 
       m_strTopText = pcwsz;

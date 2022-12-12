@@ -271,3 +271,47 @@ using property_ptra = auto_ptr_array < ::property >;
 //
 //}
 //
+
+
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE >::string_base(const ::property & property) :
+   string(property.operator ::string())
+{
+
+
+}
+
+
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::property & property)
+{
+
+   return operator=(property.operator ::string());
+
+}
+
+
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::property & property)
+{
+
+   return operator+=(property.operator ::string());
+
+}
+
+
+namespace file
+{
+
+
+   path::path(const ::property & property) :
+      path(property.file_path())
+   {
+
+   }
+
+
+} // namespace file
+
+
+

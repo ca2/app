@@ -296,7 +296,7 @@ namespace sockets
       //         if (strTitle.find_ci(".") >= 0)
       //         {
 
-      //            strTitle = strTitle.Left(strTitle.reverse_find("."));
+      //            strTitle = strTitle.Left(strTitle.rear_find("."));
 
       //         }
 

@@ -81,7 +81,7 @@ static const uchar index_hex[256] =
 * or 0 if the input is not a valid IPv6 address string.
 * (Same as inet_pton(AF_INET6, string, addr).)
 */
-CLASS_DECL_APEX void from_string(in6_addr & addr, const ansichar * string)
+CLASS_DECL_APEX void from_string(in6_addr & addr, const ::ansi_character * string)
 {
    const uchar *s = (const uchar *)(const char *) string;
    i32 department = 0;        /* index of the current department (a 16-bit
@@ -351,7 +351,7 @@ struct c_in_addr
 //namespace str
 //{
 
-CLASS_DECL_APEX void from_string(in_addr & addrParam, const ansichar * string)
+CLASS_DECL_APEX void from_string(in_addr & addrParam, const ::ansi_character * string)
 {
 
    c_in_addr & addr = (c_in_addr &) addrParam;

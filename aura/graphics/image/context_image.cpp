@@ -1132,7 +1132,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 
    string str(strMatter);
 
-   if (!str.begins_ci("matter://"))
+   if (!str.case_insensitive_begins("matter://"))
    {
 
       str = "matter://" + str;
@@ -1209,7 +1209,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 //
 //   string str(strMatter);
 //
-//   if (!str.begins_ci("matter://"))
+//   if (!str.case_insensitive_begins("matter://"))
 //   {
 //
 //      str = "matter://" + str;

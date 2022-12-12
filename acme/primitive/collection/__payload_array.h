@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 // Include payload.h
@@ -56,6 +56,17 @@ public:
    bool contains(const char * pcsz, index find = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
 
    bool contains(const ::payload & payload, index find = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
+
+
+   std::strong_ordering operator<=>(const ::payload_array & payloada) const
+   {
+
+      return order(payloada);
+
+   }
+
+   std::strong_ordering order(const ::payload_array & payloada) const;
+   std::strong_ordering case_insensitive_order(const ::payload_array & payloada) const;
 
    ::count erase_first_ci(const char * pcsz, index find = 0, index last = -1);
 
@@ -115,7 +126,56 @@ public:
    inline ::payload value_at(::index i) const;
 
 
+   string_array stra() const
+   {
+
+      string_array stra;
+
+      for (auto & item : *this)
+      {
+
+         stra.add(item);
+
+      }
+
+      return ::move(stra);
+
+   }
+
+
 };
+
+
+inline std::strong_ordering payload_array::order(const ::payload_array & payloada) const
+{
+
+   auto iMinimumSize = minimum(this->size(), payloada.size());
+
+   for (index i = 0; i < iMinimumSize; i++)
+   {
+
+      auto ordering = element_at(i).order(payloada.element_at(i));
+
+      if (ordering != 0)
+      {
+
+         return ordering;
+
+      }
+
+   }
+
+   return this->size() <=> payloada.size();
+
+}
+
+
+inline std::strong_ordering payload_array::case_insensitive_order(const ::payload_array & payloada) const
+{
+
+   return stra().case_insensitive_order(payloada.stra());
+
+}
 
 
 CLASS_DECL_ACME void var_array_skip_network_payload(const char *& pszJson);

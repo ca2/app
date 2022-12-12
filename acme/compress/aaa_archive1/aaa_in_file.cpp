@@ -134,7 +134,7 @@ namespace zip
 
       }
 
-      iFind = strFile.reverse_find(L':');
+      iFind = strFile.rear_find(L':');
 
       strFile = strFile.Mid(iFind + 1);
 
@@ -215,7 +215,7 @@ namespace zip
 
       string strFile = straPath.last();
 
-      index iFind = strFile.reverse_find(L':');
+      index iFind = strFile.rear_find(L':');
 
       strFile = strFile.Mid(iFind + 1);
 

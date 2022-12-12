@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 ////#include "acme/exception/exception.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -14,14 +14,14 @@ namespace windows
    CLASS_DECL_ACME bool get_alternate_path(wstring & wstr)
    {
 
-      if (wstr.begins_ci(::str().windows_bbqb(wstr)))
+      if (wstr.case_insensitive_begins(::str().windows_bbqb(wstr)))
       {
 
          return false;
 
       }
 
-      if (wstr.begins_ci(::str().windows_bb(wstr)))
+      if (wstr.case_insensitive_begins(::str().windows_bb(wstr)))
       {
 
          wstr = ::str().windows_bbqbunc(wstr) + wstr.Mid(1);
@@ -124,10 +124,10 @@ bool is_directory(const char* path)
    //
    //      //str = path1;
    //
-   //      //str.ends_eat_ci("\\");
-   //      //str.ends_eat_ci("/");
-   //      //str.ends_eat_ci("\\");
-   //      //str.ends_eat_ci("/");
+   //      //str.case_insensitive_ends_eat("\\");
+   //      //str.case_insensitive_ends_eat("/");
+   //      //str.case_insensitive_ends_eat("\\");
+   //      //str.case_insensitive_ends_eat("/");
    //
    //      u32 dwFileAttributes = ::windows_get_file_attributes(path1);
    //
@@ -157,7 +157,7 @@ bool is_directory(const char* path)
    //
    //               strPrefix.replace("/", "\\");
    //
-   //               strRelative.begins_eat_ci(strPrefix);
+   //               strRelative.case_insensitive_begins_eat(strPrefix);
    //
    //               strRelative.trim("/\\");
    //

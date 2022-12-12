@@ -38,7 +38,7 @@ namespace linux
          virtual i32 impl_get_file_image(const image_key & imagekey) override;
 
 
-         virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const widechar * lpcszPath) override;
+         virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const ::wide_character * lpcszPath) override;
          virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const char * lpcszPath) override;
 
          int add_icon_path(::file::path path, color32_t crBk);

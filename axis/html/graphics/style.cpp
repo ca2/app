@@ -100,7 +100,7 @@ namespace html
       if(m_propertyset.is_new_or_null(idName))
       {
 
-         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, strSubClass, idName);
+         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, idName);
 
          if(pstyle == nullptr)
          {
@@ -159,7 +159,7 @@ namespace html
       if(m_propertyset.has_property(idName))
          pstyle = this;
       else
-         pstyle = pdata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, strSubClass, idName);
+         pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, idName);
 
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
@@ -171,7 +171,7 @@ namespace html
       if(m_propertyset.has_property(puser->m_phtml->concat(idName, "html_css_suffix_left")))
          pstyleLeft = this;
       else
-         pstyleLeft = pdata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, strSubClass, puser->m_phtml->concat(idName, "html_css_suffix_left"));
+         pstyleLeft = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, puser->m_phtml->concat(idName, "html_css_suffix_left"));
 
       if(pstyleLeft != nullptr)
          iLeft = pstyleLeft->m_propertyset.find_index(puser->m_phtml->concat(idName, "html_css_suffix_left"));
@@ -179,7 +179,7 @@ namespace html
       if (m_propertyset.has_property(puser->m_phtml->concat(idName, "html_css_suffix_top")))
          pstyleTop = this;
       else
-         pstyleTop = pdata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, strSubClass, puser->m_phtml->concat(idName, "html_css_suffix_top"));
+         pstyleTop = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, puser->m_phtml->concat(idName, "html_css_suffix_top"));
 
       if(pstyleTop != nullptr)
          iTop = pstyleTop->m_propertyset.find_index(puser->m_phtml->concat(idName, "html_css_suffix_top"));
@@ -187,7 +187,7 @@ namespace html
       if (m_propertyset.has_property(puser->m_phtml->concat(idName, "html_css_suffix_right")))
          pstyleRight = this;
       else
-         pstyleRight = pdata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, strSubClass, puser->m_phtml->concat(idName, "html_css_suffix_right"));
+         pstyleRight = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, puser->m_phtml->concat(idName, "html_css_suffix_right"));
 
       if(pstyleRight != nullptr)
          iRight = pstyleRight->m_propertyset.find_index(puser->m_phtml->concat(idName, "html_css_suffix_right"));
@@ -195,7 +195,7 @@ namespace html
       if (m_propertyset.has_property(puser->m_phtml->concat(idName, "html_css_suffix_bottom")))
          pstyleBottom = this;
       else
-         pstyleBottom = pdata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, strSubClass, puser->m_phtml->concat(idName, "html_css_suffix_bottom"));
+         pstyleBottom = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, puser->m_phtml->concat(idName, "html_css_suffix_bottom"));
 
       if(pstyleBottom != nullptr)
          iBottom = pstyleBottom->m_propertyset.find_index(puser->m_phtml->concat(idName, "html_css_suffix_bottom"));
@@ -649,7 +649,7 @@ namespace html
       if(m_propertyset.is_new_or_null(idName))
       {
 
-         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, strSubClass, idName);
+         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, idName);
 
          if(pstyle == nullptr)
          {
@@ -681,7 +681,7 @@ namespace html
       if(m_propertyset.is_new_or_null(idName))
       {
 
-         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, strSubClass, idName);
+         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, idName);
          if(pstyle == nullptr)
          {
             if(::is_set(pelement->m_pparent)
@@ -856,7 +856,7 @@ namespace html
       if(m_propertyset.is_new_or_null(idName))
       {
 
-         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, strSubClass, idName);
+         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, idName);
 
          if(pstyle == nullptr)
             return false;

@@ -96,7 +96,7 @@
 // VOID
 // WINAPI
 // output_debug_string(
-// const widechar * lpOutputString
+// const ::wide_character * lpOutputString
 // )
 // {
 

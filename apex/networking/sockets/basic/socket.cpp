@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "socket.h"
 
 
@@ -133,7 +133,7 @@ namespace sockets
 //
 //      protno = 6;
 //
-//      if (strProtocol.compare_ci("tcp") == 0)
+//      if (strProtocol.case_insensitive_order("tcp") == 0)
 //      {
 //
 //         protno = 6;

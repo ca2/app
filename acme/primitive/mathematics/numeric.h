@@ -12,10 +12,11 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
 
 
    template <typename T>
-   int sign(T val)
+   constexpr int sign(T val)
    {
 
-      return (::numeric_info < T >::null() < val) - (val < ::numeric_info < T >::null());
+      return ((val > ::numeric_info < T >::null()) ? 1 : 0)
+         - ((val < ::numeric_info < T >::null()) ? 1 : 0);
 
    }
 

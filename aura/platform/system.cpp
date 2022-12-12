@@ -359,10 +359,10 @@ namespace aura
 //
 //      string strLibrary(pszLibrary1);
 //
-//      strLibrary.ends_eat_ci(".dll");
-//      strLibrary.ends_eat_ci(".so");
-//      strLibrary.ends_eat_ci(".dylib");
-//      strLibrary.begins_eat_ci("lib");
+//      strLibrary.case_insensitive_ends_eat(".dll");
+//      strLibrary.case_insensitive_ends_eat(".so");
+//      strLibrary.case_insensitive_ends_eat(".dylib");
+//      strLibrary.case_insensitive_begins_eat("lib");
 //
 //      auto & plibrary = m_mapLibrary[strLibrary];
 //
@@ -1226,9 +1226,9 @@ namespace aura
          //if (strDraw2d.has_char())
          //{
 
-         //   strDraw2d.begins_eat_ci("draw2d_");
+         //   strDraw2d.case_insensitive_begins_eat("draw2d_");
 
-         //   strDraw2d.begins_eat_ci("draw2d");
+         //   strDraw2d.case_insensitive_begins_eat("draw2d");
 
          //   strLibrary = "draw2d_" + strDraw2d;
 
@@ -1377,13 +1377,13 @@ namespace aura
          if (strImaging.has_char())
          {
 
-            strImaging.ends_eat_ci("_imaging");
+            strImaging.case_insensitive_ends_eat("_imaging");
 
-            strImaging.ends_eat_ci("imaging");
+            strImaging.case_insensitive_ends_eat("imaging");
 
-            strImaging.begins_eat_ci("imaging_");
+            strImaging.case_insensitive_begins_eat("imaging_");
 
-            strImaging.begins_eat_ci("imaging");
+            strImaging.case_insensitive_begins_eat("imaging");
 
          }
 
@@ -2958,9 +2958,9 @@ namespace aura
 ////         strLibraryId = straTitle[i];
 ////
 ////
-////         if(strLibraryId.ends_eat_ci(".dll")
-////               || strLibraryId.ends_eat_ci(".so")
-////               || strLibraryId.ends_eat_ci(".dylib"))
+////         if(strLibraryId.case_insensitive_ends_eat(".dll")
+////               || strLibraryId.case_insensitive_ends_eat(".so")
+////               || strLibraryId.case_insensitive_ends_eat(".dylib"))
 ////         {
 ////
 ////            if(string_begins_ci(strLibraryId,"libdraw2d_")
@@ -3093,7 +3093,7 @@ namespace aura
 //
 //      strPrefix.replace("/","_");
 //
-//      strLibrary.begins_eat_ci(strPrefix);
+//      strLibrary.case_insensitive_begins_eat(strPrefix);
 //
 //      strRoot += strLibrary;
 //
@@ -3128,7 +3128,7 @@ namespace aura
 
 
 
-   //string system::::url::encode(const ::string & str)
+   //string system::url::encode(const ::string & str)
    //{
 
    //   //throw ::interface_only();
@@ -3913,14 +3913,14 @@ namespace aura
 //
 //      string strWeather = strBrowser;
 //
-//      if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
+//      if (strWeather.is_empty() || !strWeather.case_insensitive_begins("browser_"))
 //      {
 //
 //         strWeather = pcontext->m_papexcontext->file()->as_string(acmedirectory()->system() / "browser_weather.txt");
 //
 //      }
 //
-//      if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
+//      if (strWeather.is_empty() || !strWeather.case_insensitive_begins("browser_"))
 //      {
 //
 //         strWeather = "browser_day";
@@ -4231,7 +4231,7 @@ namespace aura
 //
 //         {
 //
-//            if (strParam.trimmed().begins_ci("--"))
+//            if (strParam.trimmed().case_insensitive_begins("--"))
 //            {
 //
 //               strParam = "--user-data-dir=\"" + pathProfile + "\" " + strParam;
@@ -4943,7 +4943,7 @@ namespace aura
    //}
 
 
-   //string system::::url::encode(const ::string & str)
+   //string system::url::encode(const ::string & str)
    //{
 
    //   return m_purldepartment->::url::encode(str);

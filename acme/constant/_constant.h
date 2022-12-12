@@ -194,6 +194,7 @@ enum enum_type
    // simple classes
    e_type_string = 4000,
    e_type_pstring,
+   e_type_ansi_range,
    e_type_type,
    e_type_integral_nanosecond,
    e_type_pintegral_nanosecond,
@@ -225,8 +226,8 @@ enum enum_type
    e_type_pfloating_day,
    e_type_time,
    e_type_ptime,
-   e_type_id,
-   e_type_pid,
+   e_type_atom,
+   e_type_patom,
    e_type_earth_time,
    e_type_file_time,
    e_type_property,

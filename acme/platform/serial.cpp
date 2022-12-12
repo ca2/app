@@ -143,7 +143,7 @@ namespace serial
 
       bufferRead.set_size(size);
 
-      size_t bytes_read = _read(bufferRead.get_data(), (size_t)bufferRead.get_size());
+      size_t bytes_read = _read(bufferRead.data(), (size_t)bufferRead.size());
 
       buffer.append(bufferRead);
 
@@ -161,11 +161,11 @@ namespace serial
       
       mem.set_size(size);
 
-      size_t bytes_read = _read(mem.get_data(), size);
+      size_t bytes_read = _read(mem.data(), size);
 
       mem.set_size(bytes_read);
       
-      buffer.append((const char *) mem.get_data(), bytes_read);
+      buffer.append((const char *) mem.data(), bytes_read);
 
       return bytes_read;
 
@@ -286,7 +286,7 @@ namespace serial
 
       synchronous_lock lock(write_synchronization());
 
-      return _write(data.get_data(), (size_t)data.size());
+      return _write(data.data(), (size_t)data.size());
 
    }
 

@@ -3,12 +3,14 @@
 
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 class comparable_array :
-   public ARRAY_TYPE
+   public comparable_range < ARRAY_TYPE >
 {
 public:
 
 
-   typedef ARRAY_TYPE BASE_ARRAY;
+   using BASE_ARRAY = comparable_range < ARRAY_TYPE >;
+
+   using CONST_RAW_RANGE = BASE_ARRAY::CONST_RAW_RANGE;
 
    using BASE_ARRAY::operator &=;
    using BASE_ARRAY::operator -=;
@@ -19,13 +21,23 @@ public:
 
    using BASE_ARRAY::operator +=;
 
+   using comparable_range < ARRAY_TYPE >::comparable_range;
+
+   using iterator = BASE_ARRAY::iterator;
+   using const_iterator = BASE_ARRAY::const_iterator;
+
    comparable_array() { }
-   explicit comparable_array(::particle * pparticle) : BASE_ARRAY(pparticle) { }
-   comparable_array(::std::initializer_list < TYPE > l) : BASE_ARRAY(l) {   }
-   comparable_array(const comparable_array & array) : BASE_ARRAY(array) {}
-   comparable_array(comparable_array && array) : BASE_ARRAY(::move(array)) {}
+   comparable_array(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }
+   comparable_array(const comparable_array & array) : comparable_range < ARRAY_TYPE >(array) {}
+   comparable_array(comparable_array && array) : comparable_range < ARRAY_TYPE >(::move(array)) {}
+   template < primitive_integral INTEGRAL >
+   comparable_array(const_iterator begin, INTEGRAL count, bool bNullTerminated = false) : BASE_ARRAY(begin, count, bNullTerminated) {}
+   comparable_array(const_iterator begin, const_iterator end, bool bNullTerminated = false) : BASE_ARRAY(begin, end, bNullTerminated) {}
+   comparable_array(const_iterator begin) : BASE_ARRAY(begin, span_zero_item(begin), true) {}
+
 
    using ARRAY_TYPE::operator =;
+
    comparable_array & operator = (const comparable_array & array)
    {
       BASE_ARRAY::operator = (array);
@@ -43,34 +55,23 @@ public:
    }
 
 
-};
-
-
-
-template < class TYPE,class ARG_TYPE = TYPE const &,class ARRAY_TYPE = comparable_array < TYPE,ARG_TYPE > >
-class full_comparable_array:
-   virtual public ARRAY_TYPE
-{
-public:
-   full_comparable_array();
-   full_comparable_array(const full_comparable_array & array);
 
 
 };
 
 
 
-template < class TYPE,class ARG_TYPE,class ARRAY_TYPE >
-full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE >::
-full_comparable_array()
-{
-}
-template < class TYPE,class ARG_TYPE,class ARRAY_TYPE >
-full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE >::
-full_comparable_array(const full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE > & a):
-   ARRAY_TYPE(a)
-{
-   this->operator = (a);
-}
-
-
+//template < class TYPE,class ARG_TYPE,class ARRAY_TYPE >
+//full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE >::
+//full_comparable_array()
+//{
+//}
+//template < class TYPE,class ARG_TYPE,class ARRAY_TYPE >
+//full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE >::
+//full_comparable_array(const full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE > & a):
+//   ARRAY_TYPE(a)
+//{
+//   this->operator = (a);
+//}
+//
+//

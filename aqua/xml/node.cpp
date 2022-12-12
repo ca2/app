@@ -2032,7 +2032,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   node * node::rfind( const char * lpszName, i32 iDepth)
+   node * node::rear_find( const char * lpszName, i32 iDepth)
    {
       index i = 0;
       for( ; i < m_nodea.get_size(); i++)
@@ -2051,7 +2051,7 @@ namespace xml
       {
          node * pnodeChild = m_nodea[i]->get_xml_node();
 
-         pnodeChild = pnodeChild->rfind(lpszName, iDepth);
+         pnodeChild = pnodeChild->rear_find(lpszName, iDepth);
 
          if(pnodeChild != nullptr)
 
@@ -2062,7 +2062,7 @@ namespace xml
    }
 
 
-   node * node::rfind(const char * lpszName, const property_set & set, index iDepth)
+   node * node::rear_find(const char * lpszName, const property_set & set, index iDepth)
    {
 
       for (auto & pnode : m_nodea.ptra())
@@ -2094,7 +2094,7 @@ namespace xml
       for (auto & pnode : m_nodea.ptra())
       {
 
-         auto pnodeChild = pnode->get_xml_node()->rfind(lpszName, set, iDepth);
+         auto pnodeChild = pnode->get_xml_node()->rear_find(lpszName, set, iDepth);
 
          if (pnodeChild != nullptr)
          {

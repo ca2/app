@@ -127,19 +127,19 @@ inline i32 ansichar_unicode_len(::wd32_character i);
 
 
 template < typename TYPE1, typename TYPE2 >
-inline i32 compare(const TYPE1 & str1, const TYPE2 & str2);
+inline ::std::strong_ordering compare(const TYPE1 & str1, const TYPE2 & str2);
 
 
 template < typename TYPE1, typename TYPE2 >
-inline i32 case_insensitive_order(const TYPE1 & str1, const TYPE2 & str2);
+inline ::std::strong_ordering case_insensitive_order(const TYPE1 & str1, const TYPE2 & str2);
 
 
 template < typename TYPE1, typename TYPE2 >
-inline bool equals(const TYPE1 & str1, const TYPE2 & str2) { return !compare(str1, str2); }
+inline bool equals(const TYPE1 & str1, const TYPE2 & str2) { return compare(str1, str2) == 0; }
 
 
 template < typename TYPE1, typename TYPE2 >
-inline bool case_insensitive_equals(const TYPE1 & str1, const TYPE2 & str2) { return !case_insensitive_order(str1, str2); }
+inline bool case_insensitive_equals(const TYPE1 & str1, const TYPE2 & str2) { return case_insensitive_order(str1, str2) == 0; }
 
 
 template < typename TYPE1, typename TYPE2 >
@@ -156,14 +156,16 @@ template < primitive_character CHARACTER >
 inline bool range_begins_ci(::string_range < const CHARACTER * > range, ::string_range < const CHARACTER * > rangePrefix)
 {
 
-   return range.begins(rangePrefix, character_traits_ci< CHARACTER>);
+   return range.begins(rangePrefix, ::comparison::case_insensitive< CHARACTER >());
 
 }
+
+
 template < primitive_character CHARACTER >
 inline bool range_ends_ci(::string_range < const CHARACTER * > range, ::string_range < const CHARACTER * > rangeSuffix)
 {
 
-   return range.ends(rangeSuffix, character_traits_ci< CHARACTER>);
+   return range.ends(rangeSuffix, ::comparison::case_insensitive< CHARACTER >());
 
 }
 

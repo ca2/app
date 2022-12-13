@@ -29,7 +29,7 @@ public:
 
    filesize translate(filesize offset, ::enum_seek eseek) override;
 
-   virtual filesize get_size() const override;
+   virtual filesize size() const override;
 
    virtual void get_file_data() override;
    virtual void set_file_data() override;

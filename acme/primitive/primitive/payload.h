@@ -2271,7 +2271,7 @@ namespace file
 {
 
 
-   path::path(const ::payload & payload) :
+   inline path::path(const ::payload & payload) :
       path(payload.file_path())
    {
 

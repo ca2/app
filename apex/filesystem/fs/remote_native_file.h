@@ -33,7 +33,7 @@ namespace fs
 
       filesize seek(filesize lOff, ::enum_seek eseek);
 
-      filesize get_size() const override;
+      filesize size() const override;
 
       void get_file_data() override;
       void set_file_data() override;

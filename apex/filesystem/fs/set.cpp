@@ -122,7 +122,7 @@ namespace fs
 
          ::pointer<::fs::data>pdata;
 
-         for(;p;p++)
+         for(;p.is_set();p++)
          {
 
             strRoot = p->m_element1;
@@ -149,7 +149,7 @@ namespace fs
 
          ::pointer<::fs::data>pdata;
 
-         for (; p; p++)
+         for (; p.is_set(); p++)
          {
 
             strRoot = p->m_element1;

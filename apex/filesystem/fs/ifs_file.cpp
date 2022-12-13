@@ -38,19 +38,19 @@ void ifs_file::write(const void * pdata, memsize nCount)
 }
 
 
-filesize ifs_file::get_size() const
+filesize ifs_file::size() const
 {
 
    if((m_nOpenFlags & ::file::e_open_read) != 0)
    {
 
-      return m_phttpfile->get_size();
+      return m_phttpfile->size();
 
    }
    else
    {
 
-      return m_pmemfile->get_size();
+      return m_pmemfile->size();
 
    }
 
@@ -121,7 +121,7 @@ void ifs_file::set_file_data()
 
       m_pcontext->m_papexcontext->http().put(strUrl, m_payloadFile["xmledit"].cast < ::memory_file >(), setRequest);
 
-      string strResponse(setRequest["get_response"].as_string());
+      string strResponse(setRequest["get_response"]);
 
       property_set set;
 

@@ -108,7 +108,7 @@ namespace draw2d
       for (i32 i = 0; i < pglyph->get_size(); i++)
 
       {
-         pgraphics->poly_bezier(pglyph->element_at(i).get_data(), (i32)pglyph->element_at(i).get_size());
+         pgraphics->poly_bezier(pglyph->element_at(i).data(), (i32)pglyph->element_at(i).get_size());
 
       }
 

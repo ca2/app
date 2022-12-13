@@ -10,28 +10,27 @@ class comparable_range :
 public:
 
    
-   using RANGE = comparable_range < RANGE_TYPE >;
+   using THIS_RANGE = ::comparable_range < RANGE_TYPE >;
 
 
-   using RANGE_ITERATOR = RANGE_TYPE::RANGE_ITERATOR;
+   using BASE_RANGE = RANGE_TYPE;
+
+
+   using this_iterator = RANGE_TYPE::this_iterator;
    using iterator = RANGE_TYPE::iterator;
    using const_iterator = RANGE_TYPE::const_iterator;
 
    
-   using RAW_RANGE = ::range < RANGE_ITERATOR >;
+   using THIS_RAW_RANGE = RANGE_TYPE::THIS_RAW_RANGE;
+   using RAW_RANGE = ::range < this_iterator >;
    using CONST_RAW_RANGE = RANGE_TYPE::CONST_RAW_RANGE;
 
-
-
-
-
-   
-   using ITEM_POINTER = get_type_item_pointer < RANGE_ITERATOR >::type;
+   using ITEM_POINTER = get_type_item_pointer < this_iterator >::type;
 
    using ITEM = dereference < ITEM_POINTER >;
 
 
-   using RANGE_TYPE::RANGE_TYPE;
+   using BASE_RANGE::BASE_RANGE;
 
 
    explicit comparable_range(enum_no_initialize) : RANGE_TYPE(e_no_initialize) {}
@@ -50,18 +49,19 @@ public:
    comparable_range & operator = (comparable_range && comparable_range) { RANGE_TYPE::operator=(::move(comparable_range)); return *this; }
 
 
-   using RANGE_TYPE::_order;
+   using BASE_RANGE::_order;
 
-   constexpr ::std::strong_ordering _order(RANGE range) const
+   constexpr ::std::strong_ordering _order(CONST_RAW_RANGE range) const
    {
 
       return _order(range, ::comparison::comparison < ITEM >());
 
    }
 
-   using RANGE_TYPE::order;
 
-   constexpr ::std::strong_ordering order(RANGE range) const
+   using BASE_RANGE::order;
+
+   constexpr ::std::strong_ordering order(CONST_RAW_RANGE range) const
    {
 
       return RANGE_TYPE::order(range, ::comparison::comparison < ITEM >());
@@ -69,7 +69,7 @@ public:
    }
 
 
-   constexpr ::std::strong_ordering operator<=>(RANGE range) const
+   constexpr ::std::strong_ordering operator<=>(CONST_RAW_RANGE range) const
    {
 
       return this->order(range);
@@ -80,8 +80,8 @@ public:
 };
 
 
-//template < typename RANGE_ITERATOR >
-//using range = comparable_range < range_base < RANGE_ITERATOR > >;
+//template < typename this_iterator >
+//using range = comparable_range < range_base < this_iterator > >;
 
 //
 //template < typename RANGE_TYPE >
@@ -90,20 +90,20 @@ public:
 //{
 //public:
 //
-//   using RANGE_ITERATOR = RANGE_TYPE::ITERATOR_TYPE;
+//   using this_iterator = RANGE_TYPE::ITERATOR_TYPE;
 //
-//   using ITEM = RANGE_ITERATOR::ITEM;
+//   using ITEM = this_iterator::ITEM;
 //
 //
-//   using RANGE_ITERATOR = RANGE_ITERATOR::RANGE_ITERATOR;
+//   using this_iterator = this_iterator::this_iterator;
 //
-//   using CONST_RAW_RANGE = range < RANGE_ITERATOR >;
+//   using CONST_RAW_RANGE = range < this_iterator >;
 //
-//   using ITERATOR_TYPE = RANGE_ITERATOR;
+//   using ITERATOR_TYPE = this_iterator;
 //
-//   using RANGE_ITERATOR = RANGE_ITERATOR::RANGE_ITERATOR;
+//   using this_iterator = this_iterator::this_iterator;
 //
-//   typedef RANGE_ITERATOR const_iterator;
+//   typedef this_iterator const_iterator;
 //
 //   bool m_bDeclaredNullTerminated = false;
 //
@@ -113,7 +113,7 @@ public:
 //
 //
 //   comparable_range(const ITEM * pitem) : range(pitem, span_zero_item(data)), m_bDeclaredNullTerminated(true) {}
-//   comparable_range(RANGE_ITERATOR data) : comparable_range((const ITEM *)data) {}
+//   comparable_range(this_iterator data) : comparable_range((const ITEM *)data) {}
 //
 //
 //   using comparable_range < RANGE_TYPE >::_equals;
@@ -165,7 +165,7 @@ public:
 //   using comparable_range < RANGE_TYPE >::find;
 //
 //
-//   RANGE_ITERATOR find(CONST_RAW_RANGE range, strsize iStart = 0, strsize nCount = -1, RANGE_ITERATOR * ppszTail = nullptr) const RELEASENOTHROW
+//   this_iterator find(CONST_RAW_RANGE range, strsize iStart = 0, strsize nCount = -1, this_iterator * ppszTail = nullptr) const RELEASENOTHROW
 //   {
 //
 //      return find(range, iStart, nCount, ppszTail, ::equals_const_reference < ITEM >);
@@ -175,7 +175,7 @@ public:
 //
 //   using comparable_range < RANGE_TYPE >::_scan;
 //
-//   constexpr RANGE_ITERATOR _scan(CONST_RAW_RANGE range) noexcept
+//   constexpr this_iterator _scan(CONST_RAW_RANGE range) noexcept
 //   {
 //
 //      return _scan(range, ::equals_const_reference < ITEM >);
@@ -184,7 +184,7 @@ public:
 //
 //   using comparable_range < RANGE_TYPE >::scan;
 //
-//     constexpr RANGE_ITERATOR scan(CONST_RAW_RANGE range) noexcept
+//     constexpr this_iterator scan(CONST_RAW_RANGE range) noexcept
 //     {
 //
 //        return scan(range, ::equals_const_reference < ITEM >);
@@ -193,7 +193,7 @@ public:
 //
 //     using comparable_range < RANGE_TYPE >::_span;
 //
-//   constexpr RANGE_ITERATOR _span(CONST_RAW_RANGE range) noexcept
+//   constexpr this_iterator _span(CONST_RAW_RANGE range) noexcept
 //   {
 //
 //      return _span(range, ::equals_const_reference < ITEM >);
@@ -202,7 +202,7 @@ public:
 //
 //   using comparable_range < RANGE_TYPE >::span;
 //
-//   constexpr RANGE_ITERATOR span(CONST_RAW_RANGE range) noexcept
+//   constexpr this_iterator span(CONST_RAW_RANGE range) noexcept
 //   {
 //
 //      return span(range, ::equals_const_reference < ITEM >);
@@ -211,7 +211,7 @@ public:
 //
 //   using comparable_range < RANGE_TYPE >::_skip;
 //
-//   constexpr RANGE_ITERATOR _skip(const ITEM & item) noexcept
+//   constexpr this_iterator _skip(const ITEM & item) noexcept
 //   {
 //
 //      return _skip(item, ::equals_const_reference < ITEM >);
@@ -220,7 +220,7 @@ public:
 //
 //   using comparable_range < RANGE_TYPE >::skip;
 //
-//   constexpr RANGE_ITERATOR skip(const ITEM & item) noexcept
+//   constexpr this_iterator skip(const ITEM & item) noexcept
 //   {
 //
 //      return skip(item, ::equals_const_reference < ITEM >);
@@ -229,7 +229,7 @@ public:
 //
 //   using comparable_range < RANGE_TYPE >::_rear_find_item;
 //
-//     constexpr RANGE_ITERATOR _rear_find_item(ITEM item) noexcept
+//     constexpr this_iterator _rear_find_item(ITEM item) noexcept
 //     {
 //
 //        return _rear_find_item(item, ::equals_const_reference < ITEM >);
@@ -239,7 +239,7 @@ public:
 //
 //     using comparable_range < RANGE_TYPE >::rear_find_item;
 //
-//   constexpr RANGE_ITERATOR rear_find_item(ITEM item) noexcept
+//   constexpr this_iterator rear_find_item(ITEM item) noexcept
 //   {
 //
 //      return rear_find_item(item, ::equals_const_reference < ITEM >);
@@ -248,7 +248,7 @@ public:
 //
 //   using comparable_range < RANGE_TYPE >::_rear_scan;
 //
-//   constexpr RANGE_ITERATOR _rear_scan(CONST_RAW_RANGE range) noexcept
+//   constexpr this_iterator _rear_scan(CONST_RAW_RANGE range) noexcept
 //   {
 //
 //      return _rear_scan(range, ::equals_const_reference < ITEM >);
@@ -257,7 +257,7 @@ public:
 //
 //   using comparable_range < RANGE_TYPE >::rear_scan;
 //
-//   constexpr RANGE_ITERATOR rear_scan(CONST_RAW_RANGE range) noexcept
+//   constexpr this_iterator rear_scan(CONST_RAW_RANGE range) noexcept
 //   {
 //
 //      return rear_scan(range, ::equals_const_reference < ITEM >);

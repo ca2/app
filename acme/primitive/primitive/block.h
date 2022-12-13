@@ -53,9 +53,28 @@ struct CLASS_DECL_ACME block :
    using BLOCK::BLOCK;
 
 
+   block(const block & block)
+   {
+      this->m_begin = block.m_begin;
+      this->m_end = block.m_end;
+   }
    block(const memory_base & memory);
    block(const memory_base * pmemory);
    block(const atom & atom);
+   template < ::count c >
+   block(const char(&sz)[c])
+   {
+
+      this->m_begin = sz;
+      this->m_end = this->m_begin + c;
+
+   }
+   block(const char * psz)
+   {
+      this->m_begin = (::byte *) psz;
+      this->m_end = this->m_begin + ::string_safe_length(psz);
+   }
+   //block(const ::string & str);
    template < typename TYPE >
    block(enum_as_block, TYPE & t) : block((void *)&t, sizeof(t)) {}
    template < typename TYPE >

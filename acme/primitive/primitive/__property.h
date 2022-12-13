@@ -275,7 +275,7 @@ using property_ptra = auto_ptr_array < ::property >;
 
 template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE >::string_base(const ::property & property) :
-   string(property.operator ::string())
+   string_base(property.operator ::string())
 {
 
 

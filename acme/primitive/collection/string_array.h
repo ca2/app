@@ -59,7 +59,7 @@ public:
    typedef Type BASE_TYPE;
    typedef const Type & BASE_ARG_TYPE;
 
-   using RAW_RANGE = ::range < const Type *>;
+   using THIS_RAW_RANGE = BASE_ARRAY::THIS_RAW_RANGE;
 
    string_array_base() {}
 
@@ -569,10 +569,10 @@ public:
    }
 
 
-   ::std::strong_ordering case_insensitive_order(const RAW_RANGE & a) const
+   ::std::strong_ordering case_insensitive_order(const THIS_RAW_RANGE & rawrange) const
    {
 
-      return BASE_ARRAY::order(a, ::comparison::case_insensitive < Type >());
+      return BASE_ARRAY::order(rawrange, ::comparison::case_insensitive < Type >());
 
    }
 

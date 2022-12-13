@@ -1410,5 +1410,14 @@ inline ::wstring operator +(const ::wide_character(&wsz)[c], ::wstring wstr)
 
 }
 
+//
+//block::block(const ::string & str)
+//   
+//{
+//   this->m_begin = (::byte *)str.m_begin;
+//   this->m_end = (::byte *) str.m_end;
+//
+//}
+
 
 

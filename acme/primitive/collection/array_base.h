@@ -73,17 +73,15 @@ class array_base :
 public:
 
 
-   using RANGE = ::array_range < ::range < TYPE * > >;
-
-   using CONST_RAW_RANGE = typename ::array_range < ::range < TYPE * > >::CONST_RAW_RANGE;
+   using ARRAY_RANGE = ::array_range < ::range < TYPE * > >;
 
    using PRIMITIVE_CONTAINER_TAG = PRIMITIVE_CONTAINER_TAG_TYPE;
 
    using CONTAINER_ITEM_TYPE = TYPE;
    using TYPE_IS_PTR = TYPE;
 
-   using iterator = typename RANGE::iterator;
-   using const_iterator = typename RANGE::const_iterator;
+   using iterator = typename ARRAY_RANGE::iterator;
+   using const_iterator = typename ARRAY_RANGE::const_iterator;
 
 
    //TYPE * this->m_begin;    // the actual array of data
@@ -179,7 +177,7 @@ public:
 
          destroy();
 
-         RANGE::operator=(::move(a));
+         ARRAY_RANGE::operator=(::move(a));
 
          m_nGrowBy = a.m_nGrowBy;
 
@@ -1056,7 +1054,47 @@ inline TYPE& operator%(INTEGRAL nIndex, const array_base < TYPE, ARG_TYPE, ALLOC
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base()
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base() :
+ARRAY_RANGE::array_range()
+{
+
+   m_nGrowBy = 0;
+   m_nMaxSize = 0;
+
+}
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(array_base && array) noexcept :
+   ARRAY_RANGE::array_range(array)
+{
+
+   this->m_nGrowBy = array.m_nGrowBy;
+   this->m_nMaxSize = array.m_nMaxSize;
+
+   array.m_begin = nullptr;
+   array.m_end = 0;
+   array.m_nMaxSize = 0;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(std::initializer_list<TYPE > initializer_list) :
+   array_base()
+{
+
+   for (auto & item : initializer_list)
+   {
+
+      add(item);
+
+   }
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(const array_base & array)
 {
 
    m_nGrowBy = 0;
@@ -1064,8 +1102,16 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base()
    this->m_end = nullptr;
    m_nMaxSize = 0;
 
-}
+   set_size(array.get_size());
 
+   for (::index i = 0; i < array.get_size(); i++)
+   {
+
+      element_at(i) = array[i];
+
+   }
+
+}
 
 
 
@@ -2549,55 +2595,6 @@ void  array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::set_all(const 
 
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(array_base && array) noexcept
-{
-
-   this->m_nGrowBy = array.m_nGrowBy;
-   this->m_begin = array.m_begin;
-   this->m_end = array.m_end;
-   this->m_nMaxSize = array.m_nMaxSize;
-
-   array.m_begin = nullptr;
-   array.m_end = 0;
-   array.m_nMaxSize = 0;
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(std::initializer_list<TYPE > initializer_list)
-{
-
-   for (auto & item : initializer_list)
-   {
-
-      add(item);
-
-   }
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(const array_base & array)
-{
-
-   m_nGrowBy = 0;
-   this->m_begin = nullptr;
-   this->m_end = nullptr;
-   m_nMaxSize = 0;
-
-   set_size(array.get_size());
-
-   for (::index i = 0; i < array.get_size(); i++)
-   {
-
-      element_at(i) = array[i];
-
-   }
-
-}
 
 
 

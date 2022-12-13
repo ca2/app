@@ -100,43 +100,49 @@ class range
 public:
 
 
-   using RANGE_ITERATOR = ITERATOR_TYPE;
+   using this_iterator = ITERATOR_TYPE;
    using iterator = get_iterator < ITERATOR_TYPE >::type;
    using const_iterator = get_const_iterator < iterator >::type;
 
 
-   using RANGE = ::range < iterator >;
-   using CONST_RANGE = ::range < const_iterator >;
-
-
+   using THIS_RAW_RANGE = ::range < ITERATOR_TYPE >;
    using RAW_RANGE = ::range < iterator >;
    using CONST_RAW_RANGE = ::range < const_iterator >;
 
 
+   using THIS_RANGE = ::range < ITERATOR_TYPE >;
+   using RANGE = ::range < iterator >;
+   using CONST_RANGE = ::range < const_iterator >;
+
+
    using ITEM_POINTER = get_type_item_pointer<iterator>::type;
+
 
    using THIS_ITEM = get_iterator_item < ITERATOR_TYPE >::ITEM;
    using ITEM = non_const < THIS_ITEM >;
    using CONST_ITEM = add_const < THIS_ITEM >;
 
    
-   RANGE_ITERATOR       m_begin;
-   RANGE_ITERATOR       m_end;
+   this_iterator        m_begin;
+   this_iterator        m_end;
    bool                 m_bNullTerminated;
 
 
    range(enum_no_initialize) {}
    range() : range(nullptr, nullptr, false) {}
    range(nullptr_t) : range() {}
-   range(const RANGE & range) : m_begin((iterator)range.begin()), m_end((iterator)range.end()) {}
-   range(const CONST_RANGE & range) : m_begin((iterator)range.begin()), m_end((iterator)range.end()) {}
+   range(const range & range) : m_begin(range.m_begin), m_end(range.m_end), m_bNullTerminated(range.m_bNullTerminated) {}
+   template < typename TYPE >
+   range(const TYPE * p) : m_begin((this_iterator)p), m_end((this_iterator)span_zero_item(p)), m_bNullTerminated(true) {}
    template < ::count count >
-   range(const ITEM(&begin)[count], bool bNullTerminated = false) : range((const_iterator)begin, count, bNullTerminated) {}
+   range(const ITEM(&array)[count]) : range(array, count, false) {}
+   template < ::count count >
+   range(const ITEM(&array)[count], bool bNullTerminated) : m_begin((this_iterator)array), m_end((this_iterator)array + count), m_bNullTerminated(false) {}
    template < primitive_integral INTEGRAL >
-   range(const_iterator begin, INTEGRAL count, bool bNullTerminated) : m_begin((RANGE_ITERATOR)begin), m_end((RANGE_ITERATOR)(begin + count)), m_bNullTerminated(bNullTerminated) {}
-   range(const_iterator begin, const_iterator end, bool bNullTerminated = false) : m_begin((RANGE_ITERATOR)begin), m_end((RANGE_ITERATOR)end), m_bNullTerminated(bNullTerminated) {}
+   range(const_iterator begin, INTEGRAL count, bool bNullTerminated) : m_begin((this_iterator)begin), m_end((this_iterator)(begin + count)), m_bNullTerminated(bNullTerminated) {}
+   range(const_iterator begin, const_iterator end, bool bNullTerminated = false) : m_begin((this_iterator)begin), m_end((this_iterator)end), m_bNullTerminated(bNullTerminated) {}
    template< ::comparison::equality < ITEM > EQUALITY >
-   range(const_iterator begin, EQUALITY equality) : m_begin((RANGE_ITERATOR)begin), m_end((RANGE_ITERATOR)span_zero_item(begin, equality)), m_bNullTerminated(true) {}
+   range(const_iterator begin, EQUALITY equality) : m_begin((this_iterator)begin), m_end((this_iterator)span_zero_item(begin, equality)), m_bNullTerminated(true) {}
 
 
    range & operator = (const range & range)
@@ -181,10 +187,10 @@ public:
    constexpr auto offset_of(const_iterator p) const { return p - (const_iterator) this->begin(); }
 
 
-   RANGE_ITERATOR & begin() { return m_begin; }
-   RANGE_ITERATOR & end() { return m_end; }
-   const RANGE_ITERATOR & begin() const { return m_begin; }
-   const RANGE_ITERATOR & end() const { return m_end; }
+   this_iterator & begin() { return m_begin; }
+   this_iterator & end() { return m_end; }
+   const this_iterator & begin() const { return m_begin; }
+   const this_iterator & end() const { return m_end; }
 
 
    static consteval memsize item_size() { return sizeof(ITEM); }
@@ -241,7 +247,7 @@ public:
    //}
 
 
-   constexpr CONST_RANGE _start_range(memsize start) const
+   constexpr CONST_RAW_RANGE _start_range(memsize start) const
    {
 
       return { this->begin() + start, this->end() };
@@ -249,7 +255,7 @@ public:
    }
 
 
-   constexpr CONST_RANGE _start_count_range(memsize start, memsize count) const
+   constexpr CONST_RAW_RANGE _start_count_range(memsize start, memsize count) const
    {
 
       return { this->begin() + start, ((count >= 0) ? ::clipped_add(this->begin(), start + count, this->begin(), this->end()) : ::clipped_add(this->end(), count, this->begin(), this->end()))};
@@ -257,7 +263,7 @@ public:
    }
 
    
-   static constexpr bool _initialize_equals(bool & b, CONST_RANGE range, CONST_RANGE rangeBlock)
+   static constexpr bool _initialize_equals(bool & b, const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock)
    {
 
       if (range.size() != rangeBlock.size())
@@ -283,7 +289,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr auto _static_equals(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality)
+   static constexpr auto _static_equals(CONST_RAW_RANGE range, CONST_RAW_RANGE rangeBlock, EQUALITY equality)
    {
 
       while (range.begin() < range.end())
@@ -308,7 +314,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr auto static_equals(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality)
+   static constexpr auto static_equals(const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock, EQUALITY equality)
    {
 
       bool b;
@@ -326,7 +332,7 @@ public:
 
    
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool _equals(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr bool _equals(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return _static_equals(*this, rangeBlock, equality);
@@ -335,7 +341,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool equals(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr bool equals(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return static_equals(*this, rangeBlock, equality);
@@ -344,7 +350,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool _equals_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr bool _equals_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return _static_equals(_start_range(start), rangeBlock, equality);
@@ -353,7 +359,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool equals_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr bool equals_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return static_equals(_start_range(start), rangeBlock, equality);
@@ -362,7 +368,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool _equals_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr bool _equals_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return _static_equals(_start_count_range(start, count), rangeBlock, equality);
@@ -371,7 +377,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool equals_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr bool equals_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return static_equals(_start_count_range(start, count), rangeBlock, equality);
@@ -379,7 +385,7 @@ public:
    }
 
 
-   static constexpr bool _initialize_order(::std::strong_ordering & order, CONST_RANGE range, CONST_RANGE rangeBlock)
+   static constexpr bool _initialize_order(::std::strong_ordering & order, const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock)
    {
 
       if (range.is_empty())
@@ -417,7 +423,7 @@ public:
    }
 
    template < ::comparison::ordering < ITEM > ORDERING >
-   static constexpr auto _static_order(CONST_RANGE range, CONST_RANGE rangeBlock, ORDERING ordering)
+   static constexpr auto _static_order(CONST_RAW_RANGE range, CONST_RAW_RANGE rangeBlock, ORDERING ordering)
    {
 
       do
@@ -444,7 +450,7 @@ public:
 
 
    template < ::comparison::ordering < ITEM > ORDERING >
-   static constexpr ::std::strong_ordering static_order(CONST_RANGE range, CONST_RANGE rangeBlock, ORDERING ordering)
+   static constexpr ::std::strong_ordering static_order(const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock, ORDERING ordering)
    {
 
       std::strong_ordering order;
@@ -462,7 +468,7 @@ public:
 
 
    template < ::comparison::ordering < ITEM > ORDERING >
-   constexpr ::std::strong_ordering _order(CONST_RANGE rangeBlock, ORDERING ordering) const
+   constexpr ::std::strong_ordering _order(const CONST_RAW_RANGE & rangeBlock, ORDERING ordering) const
    {
 
       return _static_order(*this, rangeBlock, ordering);
@@ -471,7 +477,7 @@ public:
 
 
    template < ::comparison::ordering < ITEM > ORDERING >
-   constexpr ::std::strong_ordering order(CONST_RANGE rangeBlock, ORDERING ordering) const
+   constexpr ::std::strong_ordering order(const CONST_RAW_RANGE & rangeBlock, ORDERING ordering) const
    {
 
       return static_order(*this, rangeBlock, ordering);
@@ -480,7 +486,7 @@ public:
 
 
    template < ::comparison::ordering < ITEM > ORDERING >
-   constexpr ::std::strong_ordering _order_start(CONST_RANGE rangeBlock, memsize start, ORDERING ordering) const
+   constexpr ::std::strong_ordering _order_start(const CONST_RAW_RANGE & rangeBlock, memsize start, ORDERING ordering) const
    {
 
       return _static_order(_start_range(start), rangeBlock, ordering);
@@ -489,7 +495,7 @@ public:
 
 
    template < ::comparison::ordering < ITEM > ORDERING >
-   constexpr ::std::strong_ordering order_start(CONST_RANGE rangeBlock, memsize start, ORDERING ordering) const
+   constexpr ::std::strong_ordering order_start(const CONST_RAW_RANGE & rangeBlock, memsize start, ORDERING ordering) const
    {
 
       return static_order(_start_range(start), rangeBlock, ordering);
@@ -498,7 +504,7 @@ public:
 
 
    template < ::comparison::ordering < ITEM > ORDERING >
-   constexpr ::std::strong_ordering _order_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, ORDERING ordering) const
+   constexpr ::std::strong_ordering _order_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, ORDERING ordering) const
    {
 
       return _static_order(_start_count_range(start, count), rangeBlock, ordering);
@@ -507,7 +513,7 @@ public:
 
 
    template < ::comparison::ordering < ITEM > ORDERING >
-   constexpr ::std::strong_ordering order_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, ORDERING ordering) const
+   constexpr ::std::strong_ordering order_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, ORDERING ordering) const
    {
 
       return static_order(_start_count_range(start, count), rangeBlock, ordering);
@@ -515,7 +521,7 @@ public:
    }
 
 
-   static bool _initialize_find(const_iterator & p, CONST_RANGE range, CONST_RANGE rangeBlock)
+   static bool _initialize_find(const_iterator & p, const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock)
    {
 
       p = rangeBlock.begin();
@@ -533,7 +539,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static const_iterator _static_find(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality)
+   static const_iterator _static_find(CONST_RAW_RANGE range, const CONST_RAW_RANGE & rangeBlock, EQUALITY equality)
    {
 
       do
@@ -576,7 +582,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static const_iterator static_find(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality)
+   static const_iterator static_find(const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock, EQUALITY equality)
    {
 
       const_iterator p;
@@ -594,7 +600,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _find(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr const_iterator _find(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return _static_find(*this, rangeBlock, equality);
@@ -603,7 +609,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator find(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr const_iterator find(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return static_find(*this, rangeBlock, equality);
@@ -612,7 +618,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _find_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr const_iterator _find_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return _static_find(_start_range(start), rangeBlock, equality);
@@ -621,7 +627,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator find_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr const_iterator find_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return static_find(_start_range(start), rangeBlock, equality);
@@ -630,7 +636,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _find_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr const_iterator _find_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return _static_find(_start_count_range(start, count), rangeBlock, equality);
@@ -638,7 +644,7 @@ public:
    }
 
 
-   static bool _initialize_rear_find(const_iterator & p, CONST_RANGE range, CONST_RANGE rangeBlock)
+   static bool _initialize_rear_find(const_iterator & p, const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock)
    {
 
       p = rangeBlock.end() - 1;
@@ -656,7 +662,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static const_iterator _static_rear_find(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality)
+   static const_iterator _static_rear_find(CONST_RAW_RANGE range, const CONST_RAW_RANGE & rangeBlock, EQUALITY equality)
    {
 
       do
@@ -699,7 +705,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static const_iterator static_rear_find(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality)
+   static const_iterator static_rear_find(const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock, EQUALITY equality)
    {
 
       const_iterator p;
@@ -717,7 +723,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _rear_find(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr const_iterator _rear_find(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return _static_rear_find(*this, rangeBlock, equality);
@@ -726,7 +732,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator rear_find(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr const_iterator rear_find(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return static_rear_find(*this, rangeBlock, equality);
@@ -735,7 +741,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _rear_find_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr const_iterator _rear_find_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return _static_rear_find(_start_range(start), rangeBlock, equality);
@@ -744,7 +750,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator rear_find_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr const_iterator rear_find_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return static_rear_find(_start_range(start), rangeBlock, equality);
@@ -753,7 +759,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _rear_find_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr const_iterator _rear_find_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return _static_rear_find(_start_count_range(start, count), rangeBlock, equality);
@@ -762,7 +768,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator rear_find_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr const_iterator rear_find_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return static_rear_find(_start_count_range(start, count), rangeBlock, equality);
@@ -771,7 +777,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator find_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr const_iterator find_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return static_find(_start_count_range(start, count), rangeBlock, equality);
@@ -779,7 +785,7 @@ public:
    }
 
 
-   static constexpr bool _initialize_scan(const_iterator & p, CONST_RANGE range, CONST_RANGE rangeBlock) noexcept
+   static constexpr bool _initialize_scan(const_iterator & p, const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock) noexcept
    {
 
       if (range.is_empty())
@@ -806,7 +812,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr const_iterator _static_scan(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality) noexcept
+   static constexpr const_iterator _static_scan(CONST_RAW_RANGE range, const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
    {
 
       do
@@ -857,7 +863,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr const_iterator static_scan(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality) noexcept
+   static constexpr const_iterator static_scan(const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
    {
 
       const_iterator p;
@@ -875,7 +881,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _scan(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr const_iterator _scan(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return _static_scan(*this, rangeBlock, equality);
@@ -884,7 +890,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator scan(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr const_iterator scan(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return static_scan(*this, rangeBlock, equality);
@@ -893,7 +899,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _scan_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr const_iterator _scan_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return _static_scan(_start_range(start), rangeBlock, equality);
@@ -902,7 +908,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator scan_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr const_iterator scan_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return static_scan(_start_range(start), rangeBlock, equality);
@@ -911,7 +917,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _scan_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr const_iterator _scan_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return _static_scan(_start_count_range(start, count), rangeBlock, equality);
@@ -920,14 +926,14 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator scan_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr const_iterator scan_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return static_scan(_start_count_range(start, count), rangeBlock, equality);
 
    }
 
-   static constexpr bool _initialize_span(const_iterator & p, CONST_RANGE range, CONST_RANGE rangeBlock) noexcept
+   static constexpr bool _initialize_span(const_iterator & p, const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock) noexcept
    {
 
       if (range.is_empty())
@@ -954,7 +960,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr const_iterator _static_span(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality) noexcept
+   static constexpr const_iterator _static_span(CONST_RAW_RANGE range, const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
    {
 
       do
@@ -995,7 +1001,7 @@ public:
    }
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr const_iterator static_span(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality) noexcept
+   static constexpr const_iterator static_span(const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
    {
 
       const_iterator p;
@@ -1013,7 +1019,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _span(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr const_iterator _span(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return _static_span(*this, rangeBlock, equality);
@@ -1022,7 +1028,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator span(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr const_iterator span(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return static_span(*this, rangeBlock, equality);
@@ -1031,7 +1037,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _span_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr const_iterator _span_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return _static_span(_start_range(start), rangeBlock, equality);
@@ -1040,7 +1046,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator span_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr const_iterator span_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return static_span(_start_range(start), rangeBlock, equality);
@@ -1049,7 +1055,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _span_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr const_iterator _span_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return _static_span(_start_count_range(start, count), rangeBlock, equality);
@@ -1058,7 +1064,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator span_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr const_iterator span_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return static_span(_start_count_range(start, count), rangeBlock, equality);
@@ -1066,7 +1072,7 @@ public:
    }
 
 
-   static constexpr bool _initialize_skip(const_iterator & p, CONST_RANGE range) noexcept
+   static constexpr bool _initialize_skip(const_iterator & p, const CONST_RAW_RANGE & range) noexcept
    {
 
       if (range.is_empty())
@@ -1084,7 +1090,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr const_iterator _static_skip(CONST_RANGE range, const ITEM & item, EQUALITY equality) noexcept
+   static constexpr const_iterator _static_skip(CONST_RAW_RANGE range, const ITEM & item, EQUALITY equality) noexcept
    {
 
       do
@@ -1107,7 +1113,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr const_iterator static_skip(CONST_RANGE range, const ITEM & item, EQUALITY equality) noexcept
+   static constexpr const_iterator static_skip(const CONST_RAW_RANGE & range, const ITEM & item, EQUALITY equality) noexcept
    {
 
       const_iterator p;
@@ -1178,7 +1184,7 @@ public:
    }
 
 
-   static constexpr bool _initialize_find_item(const_iterator & p, CONST_RANGE range) noexcept
+   static constexpr bool _initialize_find_item(const_iterator & p, const CONST_RAW_RANGE & range) noexcept
    {
 
       if (range.is_empty())
@@ -1196,7 +1202,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr const_iterator _static_rear_find_item(CONST_RANGE range, const ITEM & item, EQUALITY equality) noexcept
+   static constexpr const_iterator _static_rear_find_item(CONST_RAW_RANGE range, const ITEM & item, EQUALITY equality) noexcept
    {
 
       do
@@ -1219,7 +1225,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr const_iterator static_rear_find_item(CONST_RANGE range, const ITEM & item, EQUALITY equality) noexcept
+   static constexpr const_iterator static_rear_find_item(const CONST_RAW_RANGE & range, const ITEM & item, EQUALITY equality) noexcept
    {
 
       const_iterator p;
@@ -1292,7 +1298,7 @@ public:
    }
 
 
-   static constexpr bool _initialize_rear_scan(const_iterator & p, CONST_RANGE range, CONST_RANGE rangeBlock) noexcept
+   static constexpr bool _initialize_rear_scan(const_iterator & p, const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock) noexcept
    {
 
       if (range.is_empty())
@@ -1319,7 +1325,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr const_iterator _static_rear_scan(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality)noexcept
+   static constexpr const_iterator _static_rear_scan(CONST_RAW_RANGE range, const CONST_RAW_RANGE & rangeBlock, EQUALITY equality)noexcept
    {
 
       do
@@ -1370,7 +1376,7 @@ public:
   
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr const_iterator static_rear_scan(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality) noexcept
+   static constexpr const_iterator static_rear_scan(const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
    {
 
       const_iterator p;
@@ -1390,7 +1396,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _rear_scan(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr const_iterator _rear_scan(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return _static_rear_scan(*this, rangeBlock, equality);
@@ -1399,7 +1405,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator rear_scan(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr const_iterator rear_scan(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return static_rear_scan(*this, rangeBlock, equality);
@@ -1408,7 +1414,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _rear_scan_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr const_iterator _rear_scan_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return _static_rear_scan(_start_range(start), rangeBlock, equality);
@@ -1417,7 +1423,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator rear_scan_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr const_iterator rear_scan_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return static_rear_scan(_start_range(start), rangeBlock, equality);
@@ -1426,7 +1432,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator _rear_scan_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr const_iterator _rear_scan_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return _static_rear_scan(_start_count_range(start, count), rangeBlock, equality);
@@ -1435,7 +1441,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr const_iterator rear_scan_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr const_iterator rear_scan_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return static_rear_scan(_start_count_range(start, count), rangeBlock, equality);
@@ -1444,7 +1450,7 @@ public:
 
 
 
-   static constexpr bool _initialize_contains(bool & b, CONST_RANGE range, CONST_RANGE rangeBlock) noexcept
+   static constexpr bool _initialize_contains(bool & b, const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock) noexcept
    {
 
       if (rangeBlock.is_empty())
@@ -1471,7 +1477,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr bool _static_begins(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality) noexcept
+   static constexpr bool _static_begins(CONST_RAW_RANGE range, CONST_RAW_RANGE rangeBlock, EQUALITY equality) noexcept
    {
 
       do
@@ -1496,7 +1502,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr bool static_begins(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality) noexcept
+   static constexpr bool static_begins(const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
    {
 
       bool b;
@@ -1514,7 +1520,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool _begins(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr bool _begins(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return _static_begins(*this, rangeBlock, equality);
@@ -1523,7 +1529,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool begins(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr bool begins(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return static_begins(*this, rangeBlock, equality);
@@ -1532,7 +1538,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool _begins_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr bool _begins_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return _static_begins(_start_range(start), rangeBlock, equality);
@@ -1541,7 +1547,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool begins_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr bool begins_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return static_begins(_start_range(start), rangeBlock, equality);
@@ -1550,7 +1556,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool _begins_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr bool _begins_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return _static_begins(_start_count_range(start, count), rangeBlock, equality);
@@ -1559,7 +1565,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool begins_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr bool begins_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return static_begins(_start_count_range(start, count), rangeBlock, equality);
@@ -1570,7 +1576,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr bool _static_ends(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality) noexcept
+   static constexpr bool _static_ends(CONST_RAW_RANGE range, CONST_RAW_RANGE rangeBlock, EQUALITY equality) noexcept
    {
 
       do
@@ -1595,7 +1601,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   static constexpr bool static_ends(CONST_RANGE range, CONST_RANGE rangeBlock, EQUALITY equality) noexcept
+   static constexpr bool static_ends(const CONST_RAW_RANGE & range, const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
    {
 
       bool b;
@@ -1613,7 +1619,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool _ends(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr bool _ends(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return _static_ends(*this, rangeBlock, equality);
@@ -1622,7 +1628,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool ends(CONST_RANGE rangeBlock, EQUALITY equality) const
+   constexpr bool ends(const CONST_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
       return static_ends(*this, rangeBlock, equality);
@@ -1631,7 +1637,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool _ends_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr bool _ends_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return _static_ends(_start_range(start), rangeBlock, equality);
@@ -1640,7 +1646,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool ends_start(CONST_RANGE rangeBlock, memsize start, EQUALITY equality) const
+   constexpr bool ends_start(const CONST_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
    {
 
       return static_ends(_start_range(start), rangeBlock, equality);
@@ -1649,7 +1655,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool _ends_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr bool _ends_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return _static_ends(_start_count_range(start, count), rangeBlock, equality);
@@ -1658,7 +1664,7 @@ public:
 
 
    template < ::comparison::equality < ITEM > EQUALITY >
-   constexpr bool ends_start_count(CONST_RANGE rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   constexpr bool ends_start_count(const CONST_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
    {
 
       return static_ends(_start_count_range(start, count), rangeBlock, equality);
@@ -1667,7 +1673,7 @@ public:
 
 
 
-   //constexpr bool _equals_prefix(bool & b, CONST_RANGE range) const
+   //constexpr bool _equals_prefix(bool & b, const CONST_RAW_RANGE & range) const
    //{
 
    //   return BASE_ARRAY::_equals_prefix(b, range);
@@ -1678,14 +1684,14 @@ public:
    //using BASE_ARRAY::_equals_prefix;
 
    //template < ::comparison::equality < ITEM > EQUALITY >
-   //constexpr auto _equals(CONST_RANGE range, EQUALITY equality) const
+   //constexpr auto _equals(const CONST_RAW_RANGE & range, EQUALITY equality) const
    //{
 
    //   return BASE_ARRAY::_equals(range, equality);
 
    //}
 
-   //constexpr bool _equals(CONST_RANGE range) const
+   //constexpr bool _equals(const CONST_RAW_RANGE & range) const
    //{
 
    //   return this->_equals(range, ::equals_const_reference < ITEM >);
@@ -1694,14 +1700,14 @@ public:
 
 
    //template < ::comparison::equality < ITEM > EQUALITY >
-   //constexpr bool equals(CONST_RANGE range, EQUALITY equality) const
+   //constexpr bool equals(const CONST_RAW_RANGE & range, EQUALITY equality) const
    //{
 
    //   return BASE_ARRAY::equals(range, equality);
 
    //}
 
-   //constexpr bool _initialize_order(::std::strong_ordering & ordering, CONST_RANGE range) const
+   //constexpr bool _initialize_order(::std::strong_ordering & ordering, const CONST_RAW_RANGE & range) const
    //{
 
    //   return BASE_ARRAY::_initialize_order(range, equality);
@@ -1710,7 +1716,7 @@ public:
 
 
    //template < typename COMPARE >
-   //constexpr auto _order(CONST_RANGE range, COMPARE compare) const
+   //constexpr auto _order(const CONST_RAW_RANGE & range, COMPARE compare) const
    //{
 
    //   return BASE_ARRAY::_order(range, equality);
@@ -1718,7 +1724,7 @@ public:
    //}
 
    //template < typename COMPARE >
-   //constexpr ::std::strong_ordering compare(CONST_RANGE range, COMPARE compare) const
+   //constexpr ::std::strong_ordering compare(const CONST_RAW_RANGE & range, COMPARE compare) const
    //{
 
    //   return BASE_ARRAY::compare(range, compare);
@@ -1726,7 +1732,7 @@ public:
    //}
 
 
-   //constexpr ::std::strong_ordering operator<=>(CONST_RANGE range) const
+   //constexpr ::std::strong_ordering operator<=>(const CONST_RAW_RANGE & range) const
    //{
 
    //   return compare(range, ::compare_const_reference < ITEM >);
@@ -1743,7 +1749,7 @@ public:
 
 
    //template < ::comparison::equality < ITEM > EQUALITY >
-   //static RANGE_ITERATOR _find(RANGE search)
+   //static this_iterator _find(RANGE search)
    //{
 
    //   return BASE_ARRAY::_find(search, equality);
@@ -1760,7 +1766,7 @@ public:
    //}
 
 
-   //constexpr bool _scan_prefix(RANGE_ITERATOR & p, CONST_RANGE range) const noexcept
+   //constexpr bool _scan_prefix(this_iterator & p, const CONST_RAW_RANGE & range) const noexcept
    //{
 
    //   return BASE_ARRAY::_scan_prefix(range, equality);
@@ -1769,7 +1775,7 @@ public:
 
 
    //template < ::comparison::equality < ITEM > EQUALITY >
-   //constexpr RANGE_ITERATOR _scan(CONST_RANGE range, EQUALITY equality) noexcept
+   //constexpr this_iterator _scan(const CONST_RAW_RANGE & range, EQUALITY equality) noexcept
    //{
 
    //   return BASE_ARRAY::_scan(range, equality);
@@ -1777,7 +1783,7 @@ public:
    //}
 
 
-   //constexpr RANGE_ITERATOR _scan(CONST_RANGE range) noexcept
+   //constexpr this_iterator _scan(const CONST_RAW_RANGE & range) noexcept
    //{
 
    //   return _scan(range, ::equals_const_reference < ITEM >);
@@ -1786,7 +1792,7 @@ public:
 
 
    //template < ::comparison::equality < ITEM > EQUALITY >
-   //constexpr RANGE_ITERATOR scan(CONST_RANGE range, EQUALITY equality) noexcept
+   //constexpr this_iterator scan(const CONST_RAW_RANGE & range, EQUALITY equality) noexcept
    //{
 
    //   return BASE_ARRAY::scan(range, equality);
@@ -1794,7 +1800,7 @@ public:
    //}
 
 
-   //constexpr RANGE_ITERATOR scan(CONST_RANGE range) noexcept
+   //constexpr this_iterator scan(const CONST_RAW_RANGE & range) noexcept
    //{
 
    //   return scan(range, ::equals_const_reference < ITEM >);
@@ -1802,7 +1808,7 @@ public:
    //}
 
 
-   //constexpr bool _span_prefix(RANGE_ITERATOR & p, CONST_RANGE range) noexcept
+   //constexpr bool _span_prefix(this_iterator & p, const CONST_RAW_RANGE & range) noexcept
    //{
 
    //   return BASE_ARRAY::_span_prefix(range, equality);
@@ -1811,7 +1817,7 @@ public:
 
 
    //template < ::comparison::equality < ITEM > EQUALITY >
-   //constexpr RANGE_ITERATOR _span(CONST_RANGE range, EQUALITY equality) noexcept
+   //constexpr this_iterator _span(const CONST_RAW_RANGE & range, EQUALITY equality) noexcept
    //{
 
    //   return BASE_ARRAY::_span(range, equality);
@@ -1819,7 +1825,7 @@ public:
    //}
 
 
-   //constexpr RANGE_ITERATOR _span(CONST_RANGE range) noexcept
+   //constexpr this_iterator _span(const CONST_RAW_RANGE & range) noexcept
    //{
 
    //   return _span(range, ::equals_const_reference < ITEM >);
@@ -1828,7 +1834,7 @@ public:
 
 
    //template < ::comparison::equality < ITEM > EQUALITY >
-   //constexpr RANGE_ITERATOR span(CONST_RANGE range, EQUALITY equality) noexcept
+   //constexpr this_iterator span(const CONST_RAW_RANGE & range, EQUALITY equality) noexcept
    //{
 
    //   return BASE_ARRAY::span(range, equality);
@@ -1836,7 +1842,7 @@ public:
    //}
 
 
-   //constexpr RANGE_ITERATOR span(CONST_RANGE range) noexcept
+   //constexpr this_iterator span(const CONST_RAW_RANGE & range) noexcept
    //{
 
    //   return span(range, ::equals_const_reference < ITEM >);
@@ -1845,7 +1851,7 @@ public:
 
 
    //template < ::comparison::equality < ITEM > EQUALITY >
-   //constexpr RANGE_ITERATOR _skip(const ITEM & item, EQUALITY equality) noexcept
+   //constexpr this_iterator _skip(const ITEM & item, EQUALITY equality) noexcept
    //{
 
    //   return BASE_ARRAY::_skip(range, equality);
@@ -1853,7 +1859,7 @@ public:
    //}
 
 
-   //constexpr RANGE_ITERATOR _skip(const ITEM & item) noexcept
+   //constexpr this_iterator _skip(const ITEM & item) noexcept
    //{
 
    //   return _skip(item, ::equals_const_reference < ITEM >);
@@ -1862,7 +1868,7 @@ public:
 
 
    //template < ::comparison::equality < ITEM > EQUALITY >
-   //constexpr RANGE_ITERATOR skip(const ITEM & item, EQUALITY equality) noexcept
+   //constexpr this_iterator skip(const ITEM & item, EQUALITY equality) noexcept
    //{
 
    //   return BASE_ARRAY::skip(item, equality);
@@ -1870,7 +1876,7 @@ public:
    //}
 
 
-   //constexpr RANGE_ITERATOR skip(const ITEM & item) noexcept
+   //constexpr this_iterator skip(const ITEM & item) noexcept
    //{
 
    //   return skip(item, ::equals_const_reference < ITEM >);
@@ -1879,7 +1885,7 @@ public:
 
 
    //template < ::comparison::equality < ITEM > EQUALITY >
-   //constexpr RANGE_ITERATOR _rear_find_item(ITEM item, EQUALITY equality) noexcept
+   //constexpr this_iterator _rear_find_item(ITEM item, EQUALITY equality) noexcept
    //{
 
    //   return BASE_ARRAY::_rear_find_item(item, equality);
@@ -1887,7 +1893,7 @@ public:
    //}
 
 
-   //constexpr RANGE_ITERATOR _rear_find_item(ITEM item) noexcept
+   //constexpr this_iterator _rear_find_item(ITEM item) noexcept
    //{
 
    //   return _rear_find_item(item, ::equals_const_reference < ITEM >);
@@ -1896,7 +1902,7 @@ public:
 
 
    //template < ::comparison::equality < ITEM > EQUALITY >
-   //constexpr RANGE_ITERATOR rear_find_item(ITEM item, EQUALITY equality) noexcept
+   //constexpr this_iterator rear_find_item(ITEM item, EQUALITY equality) noexcept
    //{
 
    //   return BASE_ARRAY::rear_find_item(item, equality);
@@ -1904,7 +1910,7 @@ public:
    //}
 
 
-   //constexpr RANGE_ITERATOR rear_find_item(ITEM item) noexcept
+   //constexpr this_iterator rear_find_item(ITEM item) noexcept
    //{
 
    //   return rear_find_item(item, ::equals_const_reference < ITEM >);
@@ -1912,7 +1918,7 @@ public:
    //}
 
 
-   //constexpr bool _rear_scan_prefix(RANGE_ITERATOR & p, CONST_RANGE range) noexcept
+   //constexpr bool _rear_scan_prefix(this_iterator & p, const CONST_RAW_RANGE & range) noexcept
    //{
 
    //   return BASE_ARRAY::_rear_scan_prefix(p, range);
@@ -1921,7 +1927,7 @@ public:
 
 
    //template < ::comparison::equality < ITEM > EQUALITY >
-   //constexpr RANGE_ITERATOR _rear_scan(CONST_RANGE range, EQUALITY equality) noexcept
+   //constexpr this_iterator _rear_scan(const CONST_RAW_RANGE & range, EQUALITY equality) noexcept
    //{
 
    //   return BASE_ARRAY::_rear_scan(range, equality);
@@ -1929,7 +1935,7 @@ public:
    //}
 
 
-   //constexpr RANGE_ITERATOR _rear_scan(CONST_RANGE range) noexcept
+   //constexpr this_iterator _rear_scan(const CONST_RAW_RANGE & range) noexcept
    //{
 
    //   return _rear_scan(range, ::equals_const_reference < ITEM >);
@@ -1938,7 +1944,7 @@ public:
 
 
    //template < ::comparison::equality < ITEM > EQUALITY >
-   //constexpr RANGE_ITERATOR rear_scan(CONST_RANGE range, EQUALITY equality) noexcept
+   //constexpr this_iterator rear_scan(const CONST_RAW_RANGE & range, EQUALITY equality) noexcept
    //{
 
    //   return BASE_ARRAY::rear_scan(range, equality);

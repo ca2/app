@@ -3961,7 +3961,7 @@ strsize string_base < ITERATOR_TYPE >::replace_with_ci(RANGE rangeNew, RANGE ran
 
             memmove(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
 
-            memcpy(pszTarget, rangeOld, nReplacementLen * sizeof(CHARACTER));
+            memcpy(pszTarget, rangeOld.begin(), nReplacementLen * sizeof(CHARACTER));
 
             i += nReplacementLen;
 

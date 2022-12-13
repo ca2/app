@@ -322,7 +322,7 @@ namespace database
 
          auto & pfield = m_result.m_pfielda->element_at(i);
 
-         if (pfield->m_strName.compare_ci(name) == 0)
+         if (pfield->m_strName.case_insensitive_order(name) == 0)
          {
 
             return i;
@@ -342,7 +342,7 @@ namespace database
       for (auto & pfield : m_result.m_pfielda->ptra())
       {
 
-         if (pfield->m_strName.compare_ci(name) == 0)
+         if (pfield->m_strName.case_insensitive_order(name) == 0)
          {
 
             return pfield;

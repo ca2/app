@@ -43,6 +43,17 @@ void set_main_user_thread();
 
 xcb_connection_t * x11_display_xcb_connection(void * pX11Display);
 
+
+namespace acme
+{
+
+
+   extern acme * g_p;
+
+
+} // namespace acme
+
+
 namespace xcb
 {
 
@@ -383,7 +394,7 @@ namespace xcb
    display * display::get(::particle * pparticle, bool bBranch, void * pX11Display)
    {
 
-      critical_section_lock lock(::globals_critical_section());
+      critical_section_lock lock(::acme::g_p->globals_critical_section());
 
       if (g_p == nullptr)
       {
@@ -1295,7 +1306,7 @@ namespace xcb
 
       atoma.set_size(size / sizeof(xcb_atom_t));
 
-      memcpy(atoma.get_data(), patom, atoma.get_size_in_bytes());
+      memcpy(atoma.data(), patom, atoma.get_size_in_bytes());
 
       return atoma;
 
@@ -1362,7 +1373,7 @@ namespace xcb
       if (cRemove > 0)
       {
 
-         _change_window_property(window, atomList, XCB_ATOM_ATOM, XCB_PROP_MODE_REPLACE, 32, atoma.get_count(), atoma.get_data());
+         _change_window_property(window, atomList, XCB_ATOM_ATOM, XCB_PROP_MODE_REPLACE, 32, atoma.get_count(), atoma.data());
 
       }
 

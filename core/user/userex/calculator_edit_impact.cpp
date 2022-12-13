@@ -118,67 +118,67 @@ namespace calculator
 
             string strSource;
 
-            if (strExp.ends_eat_ci("FPS"))
+            if (strExp.case_insensitive_ends_eat("FPS"))
             {
                strSource = "Hz";
             }
-            else if (strExp.ends_eat_ci("Frames Per Second"))
+            else if (strExp.case_insensitive_ends_eat("Frames Per Second"))
             {
                strSource = "Hz";
             }
-            else if (strExp.ends_eat_ci("SPF"))
+            else if (strExp.case_insensitive_ends_eat("SPF"))
             {
                strSource = "s";
             }
-            else if (strExp.ends_eat_ci("Seconds per frame"))
+            else if (strExp.case_insensitive_ends_eat("Seconds per frame"))
             {
                strSource = "s";
             }
-            else if (strExp.ends_eat_ci("Hz"))
+            else if (strExp.case_insensitive_ends_eat("Hz"))
             {
                strSource = "Hz";
             }
-            else if (strExp.ends_eat_ci("minute"))
+            else if (strExp.case_insensitive_ends_eat("minute"))
             {
                strSource = "minimum";
             }
-            else if (strExp.ends_eat_ci("minutes"))
+            else if (strExp.case_insensitive_ends_eat("minutes"))
             {
                strSource = "minimum";
             }
-            else if (strExp.ends_eat_ci("minimum"))
+            else if (strExp.case_insensitive_ends_eat("minimum"))
             {
                strSource = "minimum";
             }
-            else if (strExp.ends_eat_ci("mins"))
+            else if (strExp.case_insensitive_ends_eat("mins"))
             {
                strSource = "minimum";
             }
-            else if (strExp.ends_eat_ci("days"))
+            else if (strExp.case_insensitive_ends_eat("days"))
             {
                strSource = "day";
             }
-            else if (strExp.ends_eat_ci("minutes"))
+            else if (strExp.case_insensitive_ends_eat("minutes"))
             {
                strSource = "minimum";
             }
-            else if (strExp.ends_eat_ci("hours"))
+            else if (strExp.case_insensitive_ends_eat("hours"))
             {
                strSource = "hour";
             }
-            else if (strExp.ends_eat_ci("hour"))
+            else if (strExp.case_insensitive_ends_eat("hour"))
             {
                strSource = "hour";
             }
-            else if (strExp.ends_eat_ci("day"))
+            else if (strExp.case_insensitive_ends_eat("day"))
             {
                strSource = "day";
             }
-            else if (strExp.ends_eat_ci("ms"))
+            else if (strExp.case_insensitive_ends_eat("ms"))
             {
                strSource = "ms";
             }
-            else if (strExp.ends_eat_ci("s"))
+            else if (strExp.case_insensitive_ends_eat("s"))
             {
                strSource = "s";
             }
@@ -188,27 +188,27 @@ namespace calculator
             }
             string strFormat(m_strFormat);
 
-            if (strFormat.ends_eat_ci("FPS"))
+            if (strFormat.case_insensitive_ends_eat("FPS"))
             {
                strFormat = "Hz";
             }
-            else if (strFormat.ends_eat_ci("Frames Per Second"))
+            else if (strFormat.case_insensitive_ends_eat("Frames Per Second"))
             {
                strFormat = "Hz";
             }
-            else if (strFormat.ends_eat_ci("SPF"))
+            else if (strFormat.case_insensitive_ends_eat("SPF"))
             {
                strFormat = "s";
             }
-            else if (strFormat.ends_eat_ci("Seconds per frame"))
+            else if (strFormat.case_insensitive_ends_eat("Seconds per frame"))
             {
                strFormat = "s";
             }
-            else if (strFormat.ends_eat_ci("Hz"))
+            else if (strFormat.case_insensitive_ends_eat("Hz"))
             {
                strFormat = "Hz";
             }
-            else if (strFormat.ends_eat_ci("s"))
+            else if (strFormat.case_insensitive_ends_eat("s"))
             {
                strFormat = "s";
             }

@@ -17,7 +17,7 @@ namespace aura
             m_dwResult = call_sync(m_strFile, m_strParameters, m_strDirectory, m_edisplay, 1_min, set);
 
          }
-         else if(m_strOperation.compare_ci("open") == 0)
+         else if(m_strOperation.case_insensitive_order("open") == 0)
          {
             
             property_set set;

@@ -18,14 +18,14 @@
 //
 //      const char *image_name = _dyld_get_image_name(i);
 //
-//      if(::file::path(image_name).title().compare_ci(::file::path(pszPath).title()) == 0)
+//      if(::file::path(image_name).title().case_insensitive_order(::file::path(pszPath).title()) == 0)
 //      {
 //
 //         goto found;
 //
 //      }
 //
-//      if(::file::path(image_name).title().compare_ci(("lib" + ::file::path(pszPath).title())) == 0)
+//      if(::file::path(image_name).title().case_insensitive_order(("lib" + ::file::path(pszPath).title())) == 0)
 //      {
 //
 //         goto found;
@@ -189,14 +189,14 @@
 //
 //   string strPath(pszPath);
 //   
-//   if(!strPath.begins_ci("lib"))
+//   if(!strPath.case_insensitive_begins("lib"))
 //   {
 //      
 //      strPath = "lib" + strPath;
 //      
 //   }
 //
-//   if(!strPath.ends_ci(".dylib"))
+//   if(!strPath.case_insensitive_ends(".dylib"))
 //   {
 //      
 //      strPath += ".dylib";

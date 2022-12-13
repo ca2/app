@@ -14,6 +14,16 @@
 #include <fcntl.h>
 
 
+namespace acme
+{
+
+
+   extern class acme * g_p;
+
+
+} // namespace acme
+
+
 #if !defined(APPLE_IOS)
 
 
@@ -289,7 +299,7 @@ namespace acme
 critical_section * get_pid_cs()
 {
 
-   critical_section_lock cs(::globals_critical_section());
+   critical_section_lock cs(::acme::g_p->globals_critical_section());
 
    if(g_pcsPid2 == nullptr)
    {

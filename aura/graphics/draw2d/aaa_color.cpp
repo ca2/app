@@ -957,13 +957,13 @@ bool color::parse_color(const ::string & psz)
          return true;
       }
    }
-   else if (str.begins_eat_ci("rgb") || str.begins_eat_ci("argb"))
+   else if (str.case_insensitive_begins_eat("rgb") || str.case_insensitive_begins_eat("argb"))
    {
       str.trim();
-      if (str.begins_eat_ci("("))
+      if (str.case_insensitive_begins_eat("("))
       {
          str.trim();
-         if (str.ends_eat_ci(")"))
+         if (str.case_insensitive_ends_eat(")"))
          {
             str.trim();
             ::payload a;

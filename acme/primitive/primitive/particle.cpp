@@ -1448,7 +1448,7 @@ void particle::handle(::message::message * pmessage)
 }
 
 
-bool particle::_handle_uri(const block & blockUri)
+bool particle::_handle_uri(const ::string & strUri)
 {
 
    return false;
@@ -1456,7 +1456,7 @@ bool particle::_handle_uri(const block & blockUri)
 }
 
 
-bool particle::_handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset)
+bool particle::_handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
 {
 
    return false;
@@ -1464,14 +1464,14 @@ bool particle::_handle_call(::payload & payload, const ::block & blockObject, co
 }
 
 
-//bool handler::_handle_call(::payload & payload, const ::block & blockMember, ::property_set & propertyset)
+//bool handler::_handle_call(::payload & payload, const ::string & strMember, ::property_set & propertyset)
 //{
 //
 //   return false;
 //
 //}
 
-//bool handler::handle_text_command(const ::block & blockTextCommand)
+//bool handler::handle_text_command(const ::string & strTextCommand)
 //{
 //
 //   return false;
@@ -1488,7 +1488,7 @@ bool particle::_handle_call(::payload & payload, const ::block & blockObject, co
 //}
 
 
-//bool handler::on_interprocess_handle(::interprocess::target * ptarget, const ::block & blockUri)
+//bool handler::on_interprocess_handle(::interprocess::target * ptarget, const ::string & strUri)
 //{
 //
 //   return handle_uri(blockUri);

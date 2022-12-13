@@ -103,7 +103,7 @@ int_bool file_is_equal_path_dup(const char* psz1, const char* psz2)
    //   const i32 iBufSize = MAX_PATH * 8;
    //   wstring pwsz1 = utf8_to_unicode(psz1);
    //   wstring pwsz2 = utf8_to_unicode(psz2);
-   //   int iCmp = pwsz1.compare_ci(pwsz2);
+   //   int iCmp = pwsz1.case_insensitive_order(pwsz2);
    ///*   unichar * pwszFile1;
    //   unichar * pwszFile2;
    //   unichar * pwszPath1 = memory_new unichar[iBufSize];
@@ -1879,7 +1879,7 @@ HANDLE hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwSha
 //int_bool file_path_is_equal(const char* psz1, const char* psz2)
 //{
 //
-//   return normalize_path(psz1).compare_ci(normalize_path(psz2)) == 0;
+//   return normalize_path(psz1).case_insensitive_order(normalize_path(psz2)) == 0;
 //
 //}
 //

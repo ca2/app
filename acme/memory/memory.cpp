@@ -1,6 +1,6 @@
 ﻿// Created by camilo on 2022-02-06 10:27 <3ThomasBorregaardS�rensen!!
 #include "framework.h"
-#include "_memory.h"
+//#include "_memory.h"
 
 
 #ifdef WINDOWS

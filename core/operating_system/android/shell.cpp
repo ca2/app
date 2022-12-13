@@ -1270,7 +1270,7 @@ pacmedirectory->is(strPath))
       if (string_ends_ci(imagekey.m_strPath, ".aura"))
       {
          string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
-         if (str.begins_eat_ci("ca2prompt\r\n"))
+         if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
          {
             str.trim();
             /*HICON hicon16 = (HICON) ::LoadImage(nullptr, dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);

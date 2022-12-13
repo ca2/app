@@ -8,10 +8,10 @@ bool string& str, const ::string & pszType
 
    str = pszType;
 
-   if (!str.begins_eat_ci("class "))
+   if (!str.case_insensitive_begins_eat("class "))
    {
 
-      if (!str.begins_eat_ci("struct "))
+      if (!str.case_insensitive_begins_eat("struct "))
       {
 
 
@@ -27,10 +27,10 @@ bool string& str, const ::string & pszType
 bool string& str
 {
 
-   if (!str.begins_eat_ci("class "))
+   if (!str.case_insensitive_begins_eat("class "))
    {
 
-      if (!str.begins_eat_ci("struct "))
+      if (!str.case_insensitive_begins_eat("struct "))
       {
 
 

@@ -93,7 +93,7 @@ namespace user
    void text::_001SetText(const ::string & str, strsize iLen, const ::action_context & context)
    {
 
-      _001SetText(string(str, 0, iLen),context);
+      _001SetText(str.substr(0, iLen),context);
 
    }
 

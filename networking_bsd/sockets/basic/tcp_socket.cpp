@@ -2073,7 +2073,7 @@ namespace sockets_bsd
 
       auto psystem = acmesystem()->m_papexsystem;
 
-      if (strId.begins_ci("cat://"))
+      if (strId.case_insensitive_begins("cat://"))
       {
 
          //auto pcrypto = psystem->crypto();
@@ -2256,12 +2256,12 @@ namespace sockets_bsd
       else
          iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)"--is_empty--", 9);
 
-      if (keyfile.begins_ci("cat://") || keyfile.ends_ci(".cat"))
+      if (keyfile.case_insensitive_begins("cat://") || keyfile.case_insensitive_ends(".cat"))
       {
 
          string strCert;
 
-         if (keyfile.ends_ci(".cat"))
+         if (keyfile.case_insensitive_ends(".cat"))
          {
 
             strCert = file()->as_string(keyfile);
@@ -2272,7 +2272,7 @@ namespace sockets_bsd
 
             strCert = keyfile;
 
-            strCert.begins_eat_ci("cat://");
+            strCert.case_insensitive_begins_eat("cat://");
 
          }
 
@@ -3030,7 +3030,7 @@ namespace sockets_bsd
 
 #endif
 
-                     if(strDnsName.compare_ci(common_name) == 0)
+                     if(strDnsName.case_insensitive_order(common_name) == 0)
                      {
 
                         ok = true;

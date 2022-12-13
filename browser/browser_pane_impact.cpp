@@ -433,7 +433,7 @@ namespace browser
             string strCheck = ptopic->user_element_id();
 
 
-            if (strCheck.begins_eat_ci("slide"))
+            if (strCheck.case_insensitive_begins_eat("slide"))
             {
 
                if (ptopic->user_interaction() != nullptr && !ptopic->m_context.is(::e_source_initialize)

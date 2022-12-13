@@ -625,7 +625,7 @@ namespace user
 
       //      bool bShow = false;
 
-      //      strImpact.begins_eat_ci("frame::");
+      //      strImpact.case_insensitive_begins_eat("frame::");
 
       //      pdataclient->datastream()->set("frame::" + strImpact + ".visible", bShow);
 
@@ -655,7 +655,7 @@ namespace user
 
       //      bool bShow = false;
 
-      //      strImpact.begins_eat_ci("frame::");
+      //      strImpact.case_insensitive_begins_eat("frame::");
 
       //      pdataclient->datastream()->set("frame::" + strImpact + ".visible", bShow);
 
@@ -685,7 +685,7 @@ namespace user
 
       //      bool bShow = false;
 
-      //      strImpact.begins_eat_ci("frame::");
+      //      strImpact.case_insensitive_begins_eat("frame::");
 
       //      pdataclient->datastream()->set("frame::" + strImpact + ".visible", bShow);
       //
@@ -715,7 +715,7 @@ namespace user
 
             bool bShow = false;
 
-            strImpact.begins_eat_ci("frame::");
+            strImpact.case_insensitive_begins_eat("frame::");
 
             pdataclient->datastream()->set("frame::" + strImpact + ".visible", bShow);
 

@@ -114,7 +114,7 @@ namespace user
 
          if (strExtension.has_char())
          {
-            if (strExtension.compare_ci(strFilterExt) == 0)
+            if (strExtension.case_insensitive_order(strFilterExt) == 0)
             {
                return yesAttemptNative; // extension matches, looks like ours
             }

@@ -1438,7 +1438,7 @@ retry_get_prompt:
 
          string strPrompt(strData);
 
-         if(strPrompt.begins_eat_ci("ca2prompt"))
+         if(strPrompt.case_insensitive_begins_eat("ca2prompt"))
          {
 
             strPrompt.trim();
@@ -1446,7 +1446,7 @@ retry_get_prompt:
             strApp = purl->get_script(strPrompt);
 
          }
-         else if(strPrompt.begins_eat_ci("native_desktop_launcher"))
+         else if(strPrompt.case_insensitive_begins_eat("native_desktop_launcher"))
          {
 
             strPrompt.trim();

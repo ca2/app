@@ -130,10 +130,8 @@ namespace interprocess
    }
 
 
-   bool communication::_handle_uri(const ::block & blockUri)
+   bool communication::_handle_uri(const ::string & strUri)
    {
-
-      string strUri = blockUri;
 
       INFORMATION("::interprocess::communication::on_interprocess_handle " << strUri);
 
@@ -758,12 +756,8 @@ namespace interprocess
    }
 
 
-   bool communication::_handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset)
+   bool communication::_handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
    {
-
-      string strObject(blockObject);
-
-      string strMember(blockMember);
 
       if (strObject == "application")
       {
@@ -817,7 +811,7 @@ namespace interprocess
 
             auto papp = get_app();
 
-            papp->_handle_call(payload, blockObject, blockMember, propertyset);
+            papp->_handle_call(payload, strObject, strMember, propertyset);
 
          }
 

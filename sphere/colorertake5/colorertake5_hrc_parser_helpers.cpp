@@ -70,7 +70,7 @@ namespace colorertake5
    };
    i32 kwCompareI(const void *e1, const void *e2)
    {
-      return ((KeywordInfo*)e1)->keyword.compare_ci(((KeywordInfo*)e2)->keyword);
+      return ((KeywordInfo*)e1)->keyword.case_insensitive_order(((KeywordInfo*)e2)->keyword);
    };
    void KeywordList::sortList()
    {

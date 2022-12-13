@@ -1107,7 +1107,7 @@ namespace apex
       ::e_status on_html_response(::string & strHtml, const ::string & strUrl, const ::property_set & setPost) override;
 
 
-      bool _handle_uri(const block & blockUri) override;
+      bool _handle_uri(const ::string & strUri) override;
       //bool on_interprocess_handle(const char * pszUri) override;
 
 

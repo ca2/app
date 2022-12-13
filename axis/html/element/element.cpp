@@ -965,7 +965,7 @@ namespace html
 
          }
 
-         if (m_atomTagName == "html_link" && get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
+         if (m_atomTagName == "html_link" && get_tag()->get_attr_value("rel").case_insensitive_order("stylesheet") == 0)
          {
 
             ::pointer<style_sheet>pstylesheet(__create_new < style_sheet > ());
@@ -980,8 +980,8 @@ namespace html
             {
 
             }
-            else if(m_pdata->m_pcoredata->m_strPathName.begins_ci("http://") ||
-                    m_pdata->m_pcoredata->m_strPathName.begins_ci("https://"))
+            else if(m_pdata->m_pcoredata->m_strPathName.case_insensitive_begins("http://") ||
+                    m_pdata->m_pcoredata->m_strPathName.case_insensitive_begins("https://"))
             {
 
                auto psystem = acmesystem()->m_paurasystem;
@@ -1030,7 +1030,7 @@ namespace html
             phtmldata->m_pcoredata->m_stylesheeta.add(pstylesheet);
          }
          else if (m_atomTagName == "html_link"
-                  && m_pparent->get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
+                  && m_pparent->get_tag()->get_attr_value("rel").case_insensitive_order("stylesheet") == 0)
          {
             
             ::pointer<style_sheet>pstylesheet(__create_new < style_sheet > ());

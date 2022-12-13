@@ -23,7 +23,7 @@ namespace calculator
       if(m_ptoken->m_etype == token::type_identifier)
       {
          value val;
-         if(m_ptoken->m_str.compare_ci("pi") == 0)
+         if(m_ptoken->m_str.case_insensitive_order("pi") == 0)
          {
             val.m_dR = pi();
          }

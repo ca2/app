@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "acme/operating_system/error_code.h"
+//#include "acme/operating_system/error_code.h"
 #include "acme/primitive/primitive/_u32hash.h"
 //#include "acme/primitive/primitive/function.h"
 ////#include "acme/primitive/primitive/object.h"

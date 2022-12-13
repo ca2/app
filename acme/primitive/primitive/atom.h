@@ -572,7 +572,7 @@ public:
 
    //::string as_string() const;
    //::string string() const;
-   inline string as_string() const;
+   ::string as_string() const;
 
 
    operator ::string() const { return ::move(as_string()); }
@@ -1921,40 +1921,40 @@ inline ::string operator +(const char(&sz)[c], const ::atom & atom)
 //
 //}
 
-template < primitive_character CHARACTER >
-inline ::string_base < CHARACTER > & operator+=(::string_base < CHARACTER > & str, const ::atom & atom)
-{
-
-   return str.operator += ((::string) atom);
-
-}
-
-
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE >::string_base(const ::atom & atom) :
-   string(atom.operator ::string())
-{
+//template < primitive_character CHARACTER >
+//inline ::string_base < CHARACTER > & operator+=(::string_base < CHARACTER > & str, const ::atom & atom)
+//{
+//
+//   return str.operator += ((::string) atom);
+//
+//}
 
 
-}
+//template < typename ITERATOR_TYPE >
+//string_base < ITERATOR_TYPE >::string_base(const ::atom & atom) :
+//   string(atom.operator ::string())
+//{
+//
+//
+//}
 
 
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom)
-{
+//template < typename ITERATOR_TYPE >
+//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom)
+//{
+//
+//   return operator=(atom.operator ::string());
+//
+//}
 
-   return operator=(atom.operator ::string());
 
-}
-
-
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::atom & atom) 
-{ 
-   
-   return operator+=(atom.operator ::string());
-
-}
+//template < typename ITERATOR_TYPE >
+//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::atom & atom)
+//{
+//
+//   return operator+=(atom.operator ::string());
+//
+//}
 
 
 

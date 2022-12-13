@@ -164,7 +164,7 @@ string apple_get_executable_path()
 //   for(index i = 0; i < stra.get_count(); i++)
 //   {
 //
-//      if(::str().begins_eat_ci(stra[i], "file://"))
+//      if(::str().case_insensitive_begins_eat(stra[i], "file://"))
 //      {
 //
 //         if(!string_begins(stra[i], "/"))
@@ -336,7 +336,7 @@ string apple_get_executable_path()
 //bool __node_further_file_is_equal(file::path const & path1, file::path const & path2)
 //{
 //
-//   return __xxxnode_full_file_path(path1).compare_ci(__xxxnode_full_file_path(path2)) == 0;
+//   return __xxxnode_full_file_path(path1).case_insensitive_order(__xxxnode_full_file_path(path2)) == 0;
 //
 //}
 
@@ -456,10 +456,10 @@ i64 oswindow_id(oswindow w)
 //
 //   wstrModuleFolder.release_string_buffer();
 //
-//   wstrModuleFolder.ends_eat_ci("\\");
-//   wstrModuleFolder.ends_eat_ci("/");
-//   wstrModuleFolder.ends_eat_ci("\\");
-//   wstrModuleFolder.ends_eat_ci("/");
+//   wstrModuleFolder.case_insensitive_ends_eat("\\");
+//   wstrModuleFolder.case_insensitive_ends_eat("/");
+//   wstrModuleFolder.case_insensitive_ends_eat("\\");
+//   wstrModuleFolder.case_insensitive_ends_eat("/");
 //
 //   return string(wstrModuleFolder);
 //

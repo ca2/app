@@ -257,7 +257,7 @@ namespace simpledb
 
             string strFirstLine = ::str().line(strValue);
 
-            if (!strFirstLine.begins_eat_ci(strApi + ":"))
+            if (!strFirstLine.case_insensitive_begins_eat(strApi + ":"))
             {
 
                return false;

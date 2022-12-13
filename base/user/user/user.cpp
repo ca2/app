@@ -1165,7 +1165,7 @@ namespace base
 
    //      string strMatter(strMatterSource);
 
-   //      if (!strMatter.begins_ci("matter://"))
+   //      if (!strMatter.case_insensitive_begins("matter://"))
    //      {
 
    //         strMatter = "matter://" + strMatter;

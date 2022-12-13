@@ -104,7 +104,7 @@ public:
    inline int _get_u8()
    {
 
-      return _get_left() < 1 ? -1 : ((u8*)m_pmemory.m_p->m_memory.data())[m_position++];
+      return _get_left() < 1 ? -1 : ((u8*)m_pmemory.m_p->data())[m_position++];
 
    }
 
@@ -126,7 +126,7 @@ public:
 
       }
 
-      auto i = *(u16 *)&m_pmemory.m_p->m_memory.data()[m_position];
+      auto i = *(u16 *)&m_pmemory.m_p->data()[m_position];
 
       m_position += 2;
 
@@ -157,7 +157,7 @@ public:
 
       }
 
-      u64 = *((::u64 *)&(m_pmemory.m_p->m_memory.data()[m_position]));
+      u64 = *((::u64 *)&(m_pmemory.m_p->data()[m_position]));
 
       m_position += 8;
 
@@ -201,35 +201,35 @@ public:
       if (nCount == 1)
       {
 
-         *((byte*)pdata) = m_pmemory.m_p->m_memory.data()[m_position];
+         *((byte*)pdata) = m_pmemory.m_p->data()[m_position];
 
 
       }
       else if (nCount == 2)
       {
 
-         *((u16 *)pdata) = *((u16 *)&m_pmemory.m_p->m_memory.data()[m_position]);
+         *((u16 *)pdata) = *((u16 *)&m_pmemory.m_p->data()[m_position]);
 
 
       }
       else if (nCount == 4)
       {
 
-         *((u32*)pdata) = *((u32*)&m_pmemory.m_p->m_memory.data()[m_position]);
+         *((u32*)pdata) = *((u32*)&m_pmemory.m_p->data()[m_position]);
 
 
       }
       else if (nCount == 8)
       {
 
-         *((u64 *)pdata) = *((u64 *)&m_pmemory.m_p->m_memory.data()[m_position]);
+         *((u64 *)pdata) = *((u64 *)&m_pmemory.m_p->data()[m_position]);
 
 
       }
       else
       {
 
-         ::memcpy(pdata, &m_pmemory.m_p->m_memory.data()[m_position], (size_t)nCount);
+         ::memcpy(pdata, &m_pmemory.m_p->data()[m_position], (size_t)nCount);
 
       }
 

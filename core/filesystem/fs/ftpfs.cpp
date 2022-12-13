@@ -348,7 +348,7 @@ int ftpfs::is_dir(const ::file::path & path)
 
    string strPath = path;
 
-   if (strPath.begins_eat_ci("ftp://"))
+   if (strPath.case_insensitive_begins_eat("ftp://"))
    {
 
       strPath.ends_eat("/");

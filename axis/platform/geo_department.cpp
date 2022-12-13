@@ -360,13 +360,13 @@ namespace geo
 
       defer_check_openweather_city_list();
 
-      if (strQ1.compare_ci("Cologne") == 0 && strQ2.compare_ci("DE") == 0)
+      if (strQ1.case_insensitive_order("Cologne") == 0 && strQ2.case_insensitive_order("DE") == 0)
       {
 
          strQ1 = "Koeln";
 
       }
-      else if (strQ1.compare_ci("Washington DC") == 0)
+      else if (strQ1.case_insensitive_order("Washington DC") == 0)
       {
 
          strQ1 = "Washington, D. C.";

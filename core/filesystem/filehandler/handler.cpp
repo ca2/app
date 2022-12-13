@@ -260,7 +260,7 @@ namespace filehandler
             auto pitem = ptreeitem->m_pdataitem.cast < item >();
 
             if(pitem && pitem->m_etopictype == item::topic_type_extension
-                  && pitem->m_strTopic.compare_ci(pszExtension) == 0)
+                  && pitem->m_strTopic.case_insensitive_order(pszExtension) == 0)
             {
 
                return pitem;
@@ -304,7 +304,7 @@ namespace filehandler
          auto pitem = ptreeitem->m_pdataitem.cast < item >();
 
          if (pitem && pitem->m_etopictype == item::topic_type_mime_type
-            && pitem->m_strTopic.compare_ci(pszMimeType) == 0)
+            && pitem->m_strTopic.case_insensitive_order(pszMimeType) == 0)
          {
 
             return pitem;

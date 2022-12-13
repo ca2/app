@@ -117,4 +117,17 @@ CLASS_DECL_ACME string string_from_strdup(const ::ansi_character* psz)
 }
 
 
+CLASS_DECL_ACME ::string localization_get(const ::string & str)
+{
 
+   return str;
+
+}
+
+
+CLASS_DECL_ACME ::string _(const ::string & str)
+{
+
+   return localization_get(str);
+
+}

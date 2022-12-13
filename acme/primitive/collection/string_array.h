@@ -60,6 +60,7 @@ public:
    typedef const Type & BASE_ARG_TYPE;
 
    using THIS_RAW_RANGE = BASE_ARRAY::THIS_RAW_RANGE;
+   using CONST_RAW_RANGE = BASE_ARRAY::CONST_RAW_RANGE;
 
    string_array_base() {}
 

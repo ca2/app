@@ -277,7 +277,7 @@ lite_html_tag::~lite_html_tag()
 
 LUpdateAndExit:
    m_strTagName = strTagName;
-   if(strTagName.compare_ci("BR") == 0)
+   if(strTagName.case_insensitive_order("BR") == 0)
    {
       bIsClosingTag = true;
       bIsOpeningTag = true;

@@ -426,8 +426,8 @@ bool db_long_set::find(const ::string & lpKey)
    {
    AddOLEDBException(m_spCommand, IID_IRowsetChange);
    }
-   if(strSection.compare_ci(m_Section) == 0 &&
-   strKey.compare_ci(m_Key) == 0)
+   if(strSection.case_insensitive_order(m_Section) == 0 &&
+   strKey.case_insensitive_order(m_Key) == 0)
    {
    return true;
    }
@@ -470,8 +470,8 @@ bool db_long_set::find(const ::string & lpKey)
    {
    AddOLEDBException(m_spCommand, IID_IRowsetChange);
    }
-   if(strSection.compare_ci(m_Section) == 0 &&
-   strKey.compare_ci(m_Key) == 0)
+   if(strSection.case_insensitive_order(m_Section) == 0 &&
+   strKey.case_insensitive_order(m_Key) == 0)
    {
    return true;
    }

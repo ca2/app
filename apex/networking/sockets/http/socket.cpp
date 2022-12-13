@@ -617,7 +617,7 @@ namespace sockets
 
          string strKey = pproperty->name();
 
-         string strValue = pproperty->operator string();
+         string strValue = pproperty->operator ::string();
 
          if (pproperty->name() == "content-type")
          {

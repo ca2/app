@@ -94,7 +94,7 @@ namespace user
       bool format::operator==(const format & format) const
       {
 
-         return m_strFontFamily.compare_ci(format.m_strFontFamily) == 0
+         return m_strFontFamily.case_insensitive_order(format.m_strFontFamily) == 0
                 && is_equal_bool(m_bBold, format.m_bBold)
                 && is_equal_bool(m_bItalic, format.m_bItalic)
                 && is_equal_bool(m_bUnderline, format.m_bUnderline)
@@ -235,7 +235,7 @@ namespace user
 
          }
 
-         if (m_strFontFamily.compare_ci(format.m_strFontFamily) != 0)
+         if (m_strFontFamily.case_insensitive_order(format.m_strFontFamily) != 0)
          {
 
             m_strFontFamily.Empty();

@@ -176,21 +176,21 @@ CLASS_DECL_AURA bool is_command_line_parameter_true(string& strValue, const ::st
 
    }
    
-   if (strValue.compare_ci("true") == 0)
+   if (strValue.case_insensitive_order("true") == 0)
    {
 
       return true;
 
    }
 
-   if (strValue.compare_ci("yes") == 0)
+   if (strValue.case_insensitive_order("yes") == 0)
    {
 
       return true;
 
    }
 
-   if (strValue.compare_ci("y") == 0)
+   if (strValue.case_insensitive_order("y") == 0)
    {
 
       return true;

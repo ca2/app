@@ -484,7 +484,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
    if (bShouldContinueTryingToHandle)
    {
 
-      if (!strMember.begins_ci("reply."))
+      if (!strMember.case_insensitive_begins("reply."))
       {
 
          string strOrigin = propertyset["protocol"]["origin"].get_string();
@@ -697,7 +697,7 @@ repeat:
             if (strPath.has_char())
             {
 
-               if (strPath.compare_ci(a[0]) == 0)
+               if (strPath.case_insensitive_order(a[0]) == 0)
                {
 
                   idaPid.add(ansi_to_i32(a[1]));
@@ -790,7 +790,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
             if (strPath.has_char())
             {
 
-               if (strPath.compare_ci(a[0]) == 0)
+               if (strPath.case_insensitive_order(a[0]) == 0)
                {
 
                   bOk = true;

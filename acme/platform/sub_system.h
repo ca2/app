@@ -9,6 +9,12 @@
 //#include "acme/primitive/primitive/pointer.h"
 
 
+#ifdef LINUX
+
+
+#endif
+
+
 class main;
 
 
@@ -57,7 +63,10 @@ public:
    
 #endif
    
-   
+
+   ::locale_t                                      m_localeC;
+
+
    ::block                                         m_blockMatter;
    ::acme::library_map                             m_mapLibrary;
    ::factory::factory_pointer                      m_pfactory;

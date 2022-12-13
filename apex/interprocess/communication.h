@@ -68,11 +68,11 @@ namespace interprocess
 
       virtual string str_from_va(const payload_array & va);
 
-      bool _handle_uri(const ::block & blockUri) override;
+      bool _handle_uri(const ::string & strUri) override;
 
       //using ::interprocess::handler::receiver::on_interprocess_receive;
 
-      bool _handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset) override;
+      bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
 
       virtual void start(const ::string & strApp);
 

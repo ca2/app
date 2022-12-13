@@ -40,10 +40,10 @@ public:
    bool        m_bAligned;
 
 
-   memory(::particle * pparticle = nullptr) { m_memory.m_pprimitivememory = this; m_bAligned = false; }
+   memory(::particle * pparticle = nullptr) { this->m_pprimitivememory = this; this->m_bAligned = false; }
    memory(enum_create_new, bool bAligned);
    template < primitive_integral INTEGRAL >
-   memory(INTEGRAL i, bool bAligned = false) { m_memory.m_pprimitivememory = this; m_bAligned = bAligned; set_size(i); }
+   memory(INTEGRAL i, bool bAligned = false) { this->m_pprimitivememory = this; this->m_bAligned = bAligned; this->set_size(i); }
    memory(const ::std::initializer_list < int > & iaList);
    memory(const u8 *, memsize size);
    memory(void*, memsize size);

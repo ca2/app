@@ -149,7 +149,7 @@ namespace android
       get_all_processes(dwa);
       for(i32 i = 0; i < dwa.get_count(); i++)
       {
-         if(get_process_path(dwa[i]).compare_ci(pszName) == 0)
+         if(get_process_path(dwa[i]).case_insensitive_order(pszName) == 0)
          {
             dwPid = dwa[i];
             return true;
@@ -164,7 +164,7 @@ namespace android
       get_all_processes(dwa);
       for(i32 i = 0; i < dwa.get_count(); i++)
       {
-         if(get_process_path(dwa[i]).title().compare_ci(pszName) == 0)
+         if(get_process_path(dwa[i]).title().case_insensitive_order(pszName) == 0)
          {
             dwPid = dwa[i];
             return true;

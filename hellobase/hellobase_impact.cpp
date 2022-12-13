@@ -243,7 +243,7 @@ namespace hellobase
 
       string str = get_hellobase();
 
-      if(str.begins_eat_ci("image:"))
+      if(str.case_insensitive_begins_eat("image:"))
       {
 
          string strImage = str;
@@ -310,16 +310,16 @@ namespace hellobase
          if(m_prender->m_pimageImage->is_set() && m_prender->m_pimageImage->area() > 0)
          {
 
-            if(str.begins_eat_ci(m_strImage))
+            if(str.case_insensitive_begins_eat(m_strImage))
             {
-               str.begins_eat_ci(",");
+               str.case_insensitive_begins_eat(",");
             }
 
          }
 
       }
 
-      if(str.begins_eat_ci("crt:"))
+      if(str.case_insensitive_begins_eat("crt:"))
       {
 
          m_eeffect = effect_crt;

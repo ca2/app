@@ -185,7 +185,7 @@ void app_core::system_prep()
 //
 //    string str = apple_get_bundle_identifier();
 //
-//    str.begins_eat_ci("com.ca2.");
+//    str.case_insensitive_begins_eat("com.ca2.");
 //
 //    str.replace(".", "/");
 //
@@ -559,7 +559,7 @@ string app_core::get_command_line()
 //
 //      void * hmodule = nullptr;
 //
-//      bool bInApp = strAppId.compare_ci("acid") == 0;
+//      bool bInApp = strAppId.case_insensitive_order("acid") == 0;
 //
 //      if (!bInApp)
 //      {

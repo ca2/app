@@ -154,7 +154,7 @@ namespace universal_windows
       get_all_processes(dwa);
       for(int i = 0; i < dwa.get_count(); i++)
       {
-         if(get_process_path(dwa[i]).compare_ci(pszName) == 0)
+         if(get_process_path(dwa[i]).case_insensitive_order(pszName) == 0)
          {
             dwPid = dwa[i];
             return true;
@@ -170,7 +170,7 @@ namespace universal_windows
       get_all_processes(dwa);
       for(int i = 0; i < dwa.get_count(); i++)
       {
-         if(get_process_path(dwa[i]).title().compare_ci(pszName) == 0)
+         if(get_process_path(dwa[i]).title().case_insensitive_order(pszName) == 0)
          {
             dwPid = dwa[i];
             return true;
@@ -715,7 +715,7 @@ namespace universal_windows
 #ifdef WINDOWS_DESKTOP
 
       if(papp->m_strAppName.is_empty()
-            || papp->m_strAppName.compare_ci("bergedge") == 0
+            || papp->m_strAppName.case_insensitive_order("bergedge") == 0
             || !papp->is_serviceable())
          return false;
 
@@ -771,7 +771,7 @@ namespace universal_windows
 #ifdef WINDOWS_DESKTOP
 
       if(papp->m_strAppName.is_empty()
-            || papp->m_strAppName.compare_ci("bergedge") == 0
+            || papp->m_strAppName.case_insensitive_order("bergedge") == 0
             || !papp->is_serviceable())
          return false;
 
@@ -820,7 +820,7 @@ namespace universal_windows
 #ifdef WINDOWS_DESKTOP
 
       if(papp->m_strAppName.is_empty()
-            || papp->m_strAppName.compare_ci("bergedge") == 0
+            || papp->m_strAppName.case_insensitive_order("bergedge") == 0
             || !papp->is_serviceable())
          return false;
 
@@ -868,7 +868,7 @@ namespace universal_windows
 #ifdef WINDOWS_DESKTOP
 
       if(papp->m_strAppName.is_empty()
-            || papp->m_strAppName.compare_ci("bergedge") == 0
+            || papp->m_strAppName.case_insensitive_order("bergedge") == 0
             || !papp->is_serviceable())
          return false;
 

@@ -191,6 +191,9 @@ public:
    inline ::pointer< T >& defer_get(::pointer< T >& pointer) { return pointer = cast < T >(); }
 
 
+   //using payload::operator ::string;
+
+
 };
 
 
@@ -273,31 +276,31 @@ using property_ptra = auto_ptr_array < ::property >;
 //
 
 
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE >::string_base(const ::property & property) :
-   string_base(property.operator ::string())
-{
+//template < typename ITERATOR_TYPE >
+//string_base < ITERATOR_TYPE >::string_base(const ::property & property) :
+//   string_base(property.operator ::string())
+//{
+//
+//
+//}
 
 
-}
+//template < typename ITERATOR_TYPE >
+//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::property & property)
+//{
+//
+//   return operator=(property.operator ::string());
+//
+//}
 
 
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::property & property)
-{
-
-   return operator=(property.operator ::string());
-
-}
-
-
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::property & property)
-{
-
-   return operator+=(property.operator ::string());
-
-}
+//template < typename ITERATOR_TYPE >
+//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::property & property)
+//{
+//
+//   return operator+=(property.operator ::string());
+//
+//}
 
 
 namespace file

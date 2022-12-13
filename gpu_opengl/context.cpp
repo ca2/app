@@ -486,7 +486,7 @@ namespace opengl
 //
 //      string strVersion = get_shader_version_text();
 //
-//      if (strExtension.begins_ci("shadertoy"))
+//      if (strExtension.case_insensitive_begins("shadertoy"))
 //      {
 //
 //         eshader = e_shader_shadertoy;

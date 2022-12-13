@@ -4,6 +4,9 @@
 #include "acme/primitive/primitive/atom.h"
 
 
+::std::strong_ordering memory_order(const void * m1, const void * m2, size_t s);
+
+
 //extern thread_pointer < os_thread > t_posthread;
 //extern thread_pointer < htask > t_htask;
 
@@ -106,7 +109,7 @@ int get_proc_cpuinfo_core_count()
       while(fgets(str, sizeof str, fp))
       {
 
-         if( !__memcmp(str, "handler", 9) )
+         if( memory_order(str, "handler", 9) == 0 )
          {
 
             procCount++;

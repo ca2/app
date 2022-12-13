@@ -9,7 +9,9 @@
 #pragma once
 
 
-#if !defined(WINDOWS)
+#if defined(LINUX)
+#include <locale.h>
+#elif !defined(WINDOWS)
 #include <xlocale.h>
 #endif
 

@@ -220,20 +220,20 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
 
       // because some character entity references are
       // case-sensitive, we must fix them manually
-      if (!strKey.compare_ci("eth") ||
-            !strKey.compare_ci("thorn"))
+      if (!strKey.case_insensitive_order("eth") ||
+            !strKey.case_insensitive_order("thorn"))
       {
          if (::isupper(strKey[0]))
             strKey.make_upper();
          else
             strKey.make_lower();
       }
-      else if (!strKey.compare_ci("Oslash"))
+      else if (!strKey.case_insensitive_order("Oslash"))
       {
          strKey.make_lower();
          strKey.set_at(0, 'O');
       }
-      else if (!strKey.compare_ci("AElig"))
+      else if (!strKey.case_insensitive_order("AElig"))
       {
          strKey.make_lower();
          strKey.set_at(0, 'A');
@@ -243,13 +243,13 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
       {
          string   strT = strKey.Mid(1);
          strKey.make_lower();
-         if (strT.compare_ci("grave") == 0 ||
-               strT.compare_ci("acute") == 0 ||
-               strT.compare_ci("circ")  == 0 ||
-               strT.compare_ci("uml")   == 0 ||
-               strT.compare_ci("tilde") == 0 ||
-               strT.compare_ci("cedil") == 0 ||
-               strT.compare_ci("ring")  == 0)
+         if (strT.case_insensitive_order("grave") == 0 ||
+               strT.case_insensitive_order("acute") == 0 ||
+               strT.case_insensitive_order("circ")  == 0 ||
+               strT.case_insensitive_order("uml")   == 0 ||
+               strT.case_insensitive_order("tilde") == 0 ||
+               strT.case_insensitive_order("cedil") == 0 ||
+               strT.case_insensitive_order("ring")  == 0)
          {
             strKey.set_at(0, strT[0]);
          }

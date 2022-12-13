@@ -1480,7 +1480,7 @@ namespace user
       //      else
       //      {
 
-      //         if(str.compare_ci(strItem) == 0)
+      //         if(str.case_insensitive_order(strItem) == 0)
       //            return i;
 
       //      }

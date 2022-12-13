@@ -51,7 +51,7 @@ namespace aura
          m_pevReady->set_event();
 
       }
-      else if (strMember.begins_ci("reply."))
+      else if (strMember.case_insensitive_begins("reply."))
       {
 
          m_var = true;
@@ -656,7 +656,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       on_interprocess_call(varRet, strObject, strMember, payloada);
 
-      if(!strMember.begins_ci("reply."))
+      if(!strMember.case_insensitive_begins("reply."))
       {
 
          auto pcall = create_call(strAppFrom, strObject, "reply." + strMember);
@@ -826,7 +826,7 @@ repeat:
                if (strPath.has_char())
                {
 
-                  if (strPath.compare_ci(a[0]) == 0)
+                  if (strPath.case_insensitive_order(a[0]) == 0)
                   {
 
                      idaPid.add(ansi_to_i32(a[1]));
@@ -915,7 +915,7 @@ repeat:
                if (strPath.has_char())
                {
 
-                  if (strPath.compare_ci(a[0]) == 0)
+                  if (strPath.case_insensitive_order(a[0]) == 0)
                   {
 
                      bOk = true;

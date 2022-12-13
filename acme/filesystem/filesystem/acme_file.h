@@ -3,7 +3,7 @@
 
 
 #include "acme/primitive/primitive/particle.h"
-#include "path.h"
+//#include "path.h"
 
 
 class CLASS_DECL_ACME acme_file :
@@ -42,12 +42,6 @@ public:
    virtual file_pointer open(const ::file::path& path, const ::file::e_open& eopen);
    virtual file_pointer stdio_open(const char* path, const char* attrs, int iShare);
 
-   virtual memory as_memory(const char* path, strsize iReadAtMostByteCount = -1, bool bNoExceptionIfNotFound = true);
-
-
-
-   virtual memsize as_memory(const char * path, void * p, memsize s);
-   virtual string as_string(const char * path, strsize iReadAtMostByteCount = -1, bool bNoExceptionIfNotFound = true);
 
 
    //virtual string get_temp_name(const char * lpszName, const char * pszExtension);
@@ -58,9 +52,9 @@ public:
    virtual bool exists(const ::file::path & path);
 
    virtual void put_contents(const char * path, const char * contents, strsize len);
-   virtual filesize size(const char * path);
-   virtual filesize size(FILE * pfile);
-   virtual filesize size_fd(int iFile);
+   virtual filesize get_size(const char * path);
+   virtual filesize get_size(FILE * pfile);
+   virtual filesize get_size_fd(int iFile);
 
 
    virtual void clear_application_data();
@@ -121,8 +115,11 @@ public:
 
    virtual void put_contents(const char * path, const memory_base & memory);
    virtual void put_contents(const char * path, const char * contents);
-   virtual void as_memory(memory_base & memory, const char * path, memsize iReadAtMostByteCount = -1);
+   virtual void as_memory(memory_base & memory, const char * path, memsize iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
    //virtual memsize as_memory(const char * path, void * p, memsize s);
+   virtual memory as_memory(const char* path, strsize iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
+   virtual memsize as_memory(const char * path, void * p, memsize s);
+   virtual string as_string(const char * path, strsize iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
 
 
    virtual void put_block(const char * path, const block & block);

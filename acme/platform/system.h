@@ -546,7 +546,7 @@ namespace acme
       virtual void windowing_post(const ::procedure & procedure);
 
       
-      bool _handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset) override;
+      bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
 
 
       //virtual void windowing_post_quit();

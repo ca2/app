@@ -285,7 +285,7 @@ namespace ios
 //         for(i32 i = 0; i < stra.get_size(); i++)
 //         {
 //            string str = stra[i];
-//            if(str.begins_eat_ci(pszPrefix))
+//            if(str.case_insensitive_begins_eat(pszPrefix))
 //            {
 //               if(str.get_length() < 2)
 //               {
@@ -350,11 +350,11 @@ namespace ios
 //               if(!infile.dump(&memfile))
 //                  return "";
 //            }
-//            else if(strFilePath.begins_eat_ci("file:///"))
+//            else if(strFilePath.case_insensitive_begins_eat("file:///"))
 //            {
 //               as_memory(strFilePath, storage, papp);
 //            }
-//            else if(strFilePath.begins_eat_ci("file:\\\\\\"))
+//            else if(strFilePath.case_insensitive_begins_eat("file:\\\\\\"))
 //            {
 //               as_memory(strFilePath, storage, papp);
 //            }
@@ -702,7 +702,7 @@ namespace ios
 //            {
 //               strSrc = straPath[i];
 //               strDst = strSrc;
-//               strDst.begins_eat_ci(strDirSrc);
+//               strDst.case_insensitive_begins_eat(strDirSrc);
 //               strDst = pcontext->m_papexcontext->dir()->path(strDirDst, strDst);
 //               if(pcontext->m_papexcontext->dir()->is(strSrc, papp))
 //               {

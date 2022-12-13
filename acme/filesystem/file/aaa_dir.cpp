@@ -137,10 +137,10 @@ namespace dir
 //
 //      wstrModuleFolder.release_string_buffer();
 //
-//      wstrModuleFolder.ends_eat_ci("\\");
-//      wstrModuleFolder.ends_eat_ci("/");
-//      wstrModuleFolder.ends_eat_ci("\\");
-//      wstrModuleFolder.ends_eat_ci("/");
+//      wstrModuleFolder.case_insensitive_ends_eat("\\");
+//      wstrModuleFolder.case_insensitive_ends_eat("/");
+//      wstrModuleFolder.case_insensitive_ends_eat("\\");
+//      wstrModuleFolder.case_insensitive_ends_eat("/");
 //
 //      return string(wstrModuleFolder);
 //
@@ -983,7 +983,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
       try
       {
 
-         if(string(psz).compare_ci("image://") == 0)
+         if(string(psz).case_insensitive_order("image://") == 0)
          {
 
             strPrefix = "image://";
@@ -1002,7 +1002,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
             }
 
          }
-         else if (string(psz).compare_ci("music://") == 0)
+         else if (string(psz).case_insensitive_order("music://") == 0)
          {
 
             strPrefix = "music://";
@@ -1021,7 +1021,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
             }
 
          }
-         else if (string(psz).compare_ci("video://") == 0)
+         else if (string(psz).case_insensitive_order("video://") == 0)
          {
 
             strPrefix = "video://";
@@ -1040,7 +1040,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
             }
 
          }
-         else if (string(psz).compare_ci("document://") == 0)
+         else if (string(psz).case_insensitive_order("document://") == 0)
          {
 
             strPrefix = "document://";
@@ -1062,7 +1062,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
          else
          {
 
-            if (str.begins_eat_ci("image://"))
+            if (str.case_insensitive_begins_eat("image://"))
             {
 
                strPrefix = "image://";
@@ -1082,7 +1082,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
             }
 
-            if(str.begins_eat_ci("music://"))
+            if(str.case_insensitive_begins_eat("music://"))
             {
 
                strPrefix = "music://";
@@ -1102,7 +1102,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
             }
 
-            if (str.begins_eat_ci("video://"))
+            if (str.case_insensitive_begins_eat("video://"))
             {
 
                strPrefix = "video://";
@@ -1122,7 +1122,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
             }
 
-            if (str.begins_eat_ci("document://"))
+            if (str.case_insensitive_begins_eat("document://"))
             {
 
                strPrefix = "document://";

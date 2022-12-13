@@ -345,7 +345,7 @@ inline const ::wd32_character * wd32_scan(const ::const_wd32_range & block, cons
    else
    {
 
-      return _string_scan(block, blockCharacters);
+      return block.scan(blockCharacters, ::comparison::comparison < ::wd32_character >());
 
    }
 

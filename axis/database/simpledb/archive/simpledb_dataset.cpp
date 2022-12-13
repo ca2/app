@@ -331,7 +331,7 @@ namespace simpledb
       if(straTable.get_count() == 1)
       {
          string strTable = straTable[0];
-         if(strTable.begins_eat_ci("table:"))
+         if(strTable.case_insensitive_begins_eat("table:"))
          {
             ::simpledb::table table(dynamic_cast < ::simpledb::database * > (db), strTable);
             ::simpledb::record_row recrow;

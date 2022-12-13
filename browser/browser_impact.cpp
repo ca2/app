@@ -495,7 +495,7 @@ namespace browser
       if(iFind >= 0 && (iFind == 0 || !character_isalnum(str[iFind-1])))
       {
 
-         bool bData = str.Mid(iFind + strlen("image:")).begins_ci("data:");
+         bool bData = str.Mid(iFind + strlen("image:")).case_insensitive_begins("data:");
 
          strsize iFindEnd = str.find(",", iFind + 1);
 
@@ -537,10 +537,10 @@ namespace browser
          if (m_prender->m_pimageImage)
          {
 
-            if (str.begins_eat_ci(m_strImage))
+            if (str.case_insensitive_begins_eat(m_strImage))
             {
 
-               str.begins_eat_ci(",");
+               str.case_insensitive_begins_eat(",");
 
             }
 
@@ -563,7 +563,7 @@ namespace browser
 
       }
 
-      if(str.begins_eat_ci("crt:"))
+      if(str.case_insensitive_begins_eat("crt:"))
       {
 
          m_eeffect = effect_crt;

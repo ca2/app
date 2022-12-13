@@ -314,7 +314,7 @@ namespace userstack
       else if(pusermessage->m_wparam == 33)
       {
          string str = psystem->get_local_mutex_id();
-         str.begins_eat_ci("bergedge");
+         str.case_insensitive_begins_eat("bergedge");
          i32 iEdge = atoi(str);
          if(iEdge == 0)
             iEdge = 77;

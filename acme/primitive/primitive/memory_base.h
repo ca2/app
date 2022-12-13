@@ -2,7 +2,7 @@
 
 
 //#include "acme/filesystem/file/serializable.h"
-#include "acme/memory/memory.h"
+//#include "acme/memory/memory.h"
 #include "acme/primitive/primitive/particle.h"
 #include "acme/primitive/string/string.h"
 
@@ -112,6 +112,7 @@ MUTABLE * __mutable(const MUTABLE * pmutable) { return (MUTABLE *)pmutable; }
 
 
 class CLASS_DECL_ACME memory_base :
+   public MEMORY,
    virtual public ::particle
 {
 public:
@@ -121,7 +122,7 @@ public:
    typedef byte value_type;
 
 
-   MEMORY      m_memory;
+   //MEMORY      m_memory;
 
 #if MEMDLEAK
 
@@ -133,7 +134,7 @@ public:
 
 
    memory_base() { }
-   memory_base(const memory_base & base) : m_memory(base.m_memory) {}
+   memory_base(const memory_base & base) : MEMORY(base) {}
    ~memory_base() override;
 
 
@@ -199,36 +200,36 @@ public:
    ::particle * clone() const override;
 
 
-   inline byte * storage_begin() { return m_memory.storage_begin(); }
-   inline const byte * storage_begin() const { return m_memory.storage_begin(); }
-   inline byte * storage_end() { return m_memory.storage_end(); }
-   inline const byte * storage_end() const { return m_memory.storage_end(); }
-   inline memsize storage_size() const { return m_memory.storage_size(); }
+//   inline byte * storage_begin() { return m_memory.storage_begin(); }
+//   inline const byte * storage_begin() const { return m_memory.storage_begin(); }
+//   inline byte * storage_end() { return m_memory.storage_end(); }
+//   inline const byte * storage_end() const { return m_memory.storage_end(); }
+//   inline memsize storage_size() const { return m_memory.storage_size(); }
 
 
-   inline memsize size() const { return m_memory.size(); }
-   inline const byte * data() const { return m_memory.data(); }
-   inline byte * data() { return m_memory.data(); }
+   //inline memsize size() const { return m_memory.size(); }
+   //inline const byte * data() const { return m_memory.data(); }
+   //inline byte * data() { return m_memory.data(); }
 
    //inline memsize          size() const;
    //inline byte *           data() const;
    //inline byte *           data();
 
-
-   inline const byte * begin() const { return data();  }
-   inline byte * begin() { return data(); }
-   inline const byte * end() const { return m_memory.end(); }
-   inline byte * end() { return m_memory.end(); }
+//
+//   inline const byte * begin() const { return data();  }
+//   inline byte * begin() { return data(); }
+//   inline const byte * end() const { return m_memory.end(); }
+//   inline byte * end() { return m_memory.end(); }
 
    //inline const char * c_str() const { return (const char*)data(); }
    //inline char * sz() { return (char*)data(); }
 
-   ::block & block() { return m_memory; }
-   const ::block & block() const { return m_memory; }
+   ::block & block() { return *this; }
+   const ::block & block() const { return *this; }
 
-   inline bool is_set() const { return m_memory.is_set(); }
-   inline bool is_empty() const { return m_memory.is_empty(); }
-   inline bool has_data() const { return m_memory.size() > 0; }
+   //inline bool is_set() const { return m_memory.is_set(); }
+   //inline bool is_empty() const { return m_memory.is_empty(); }
+   inline bool has_data() const { return this->size() > 0; }
 
    inline byte operator [] (::index i) const { return data()[i]; }
    inline byte & operator [] (::index i) { return data()[i]; }

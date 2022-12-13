@@ -426,7 +426,7 @@ namespace apple
 
          string strFolder = path.folder();
 
-         if(strFolder.ends_eat_ci(path.folder()/"Contents"/ "MacOS"))
+         if(strFolder.case_insensitive_ends_eat(path.folder()/"Contents"/ "MacOS"))
          {
 
             strFallback = strFolder;
@@ -667,7 +667,7 @@ auto tickStart = ::duration::now();
 //               if(bNewLine)
 //               {
 //                  string strLine = szBuffer;
-//                  if(strLine.begins_eat_ci("application_pid="))
+//                  if(strLine.case_insensitive_begins_eat("application_pid="))
 //                  {
 //                     m_iPid = atoi(strLine);
 //                     break;

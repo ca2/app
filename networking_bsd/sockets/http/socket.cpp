@@ -498,7 +498,7 @@ namespace sockets
 
          }
 
-         if (strKey.compare_ci("host") == 0)
+         if (strKey.case_insensitive_order("host") == 0)
          {
 
             continue;
@@ -629,7 +629,7 @@ namespace sockets
          else
          {
 
-            if (strKey.compare_ci("host") == 0)
+            if (strKey.case_insensitive_order("host") == 0)
             {
 
                continue;
@@ -750,7 +750,7 @@ namespace sockets
 
 
       //http_socket::OnHeader(key, value);
-      /*if(key.compare_ci("user-agent") == 0)
+      /*if(key.case_insensitive_order("user-agent") == 0)
       {
          FORMATTED_TRACE("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
       }*/

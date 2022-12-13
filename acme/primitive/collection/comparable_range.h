@@ -10,20 +10,20 @@ class comparable_range :
 public:
 
    
-   using THIS_RANGE = ::comparable_range < RANGE_TYPE >;
-
-
    using BASE_RANGE = RANGE_TYPE;
 
+   using THIS_RANGE = ::comparable_range < BASE_RANGE >;
 
-   using this_iterator = RANGE_TYPE::this_iterator;
-   using iterator = RANGE_TYPE::iterator;
-   using const_iterator = RANGE_TYPE::const_iterator;
+
+
+   using this_iterator = BASE_RANGE::this_iterator;
+   using iterator = BASE_RANGE::iterator;
+   using const_iterator = BASE_RANGE::const_iterator;
 
    
-   using THIS_RAW_RANGE = RANGE_TYPE::THIS_RAW_RANGE;
-   using RAW_RANGE = ::range < this_iterator >;
-   using CONST_RAW_RANGE = RANGE_TYPE::CONST_RAW_RANGE;
+   using THIS_RAW_RANGE = BASE_RANGE::THIS_RAW_RANGE;
+   using RAW_RANGE = BASE_RANGE::RAW_RANGE;
+   using CONST_RAW_RANGE = BASE_RANGE::CONST_RAW_RANGE;
 
    using ITEM_POINTER = get_type_item_pointer < this_iterator >::type;
 
@@ -33,20 +33,25 @@ public:
    using BASE_RANGE::BASE_RANGE;
 
 
-   explicit comparable_range(enum_no_initialize) : RANGE_TYPE(e_no_initialize) {}
-   explicit comparable_range(nullptr_t) : RANGE_TYPE(nullptr) {}
-   explicit comparable_range() {}
-   comparable_range(const comparable_range & range) : RANGE_TYPE(range) {}
-   comparable_range(comparable_range && range) : RANGE_TYPE(::move(range)) { }
-   comparable_range(::range < const_iterator > constrange) : RANGE_TYPE((RANGE_TYPE)constrange) {}
+   comparable_range(enum_no_initialize) : RANGE_TYPE(e_no_initialize) {}
+   comparable_range(nullptr_t) : RANGE_TYPE(nullptr) {}
+   comparable_range() {}
+   template<typed_range<iterator> RANGE>
+   comparable_range(const RANGE &range) : BASE_RANGE(range) {}
+   template<typed_range<const_iterator> RANGE>
+   comparable_range(const RANGE &range) : BASE_RANGE(range) {}
+   explicit comparable_range(const THIS_RANGE & range) : BASE_RANGE(range) {}
+   explicit comparable_range(THIS_RANGE && range) : BASE_RANGE(::move(range)) {}
    template < primitive_integral INTEGRAL >
-   comparable_range(const_iterator begin, INTEGRAL count, bool bNullTerminated = false) : RANGE_TYPE(begin, count, bNullTerminated) {}
-   comparable_range(const_iterator begin, const_iterator end, bool bNullTerminated = false) : RANGE_TYPE(begin, end, bNullTerminated) {}
-   comparable_range(const_iterator begin) : RANGE_TYPE(begin, span_zero_item(begin), true) {}
+   comparable_range(const_iterator begin, INTEGRAL count, e_range erange = e_range_read_only_block) : BASE_RANGE(begin, count, erange) {}
+   comparable_range(const_iterator begin, const_iterator end, e_range erange = e_range_read_only_block) : BASE_RANGE(begin, end, erange) {}
+   comparable_range(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin), e_range_null_terminated | e_range_read_only_block) {}
 
 
-   comparable_range & operator = (const comparable_range & comparable_range) { RANGE_TYPE::operator=(comparable_range); return *this; }
-   comparable_range & operator = (comparable_range && comparable_range) { RANGE_TYPE::operator=(::move(comparable_range)); return *this; }
+   template < primitive_range RANGE >
+   comparable_range & operator = (const RANGE & range) { BASE_RANGE::operator=(range); return *this; }
+   comparable_range & operator = (const THIS_RANGE & range) { BASE_RANGE::operator=(range); return *this; }
+   comparable_range & operator = (THIS_RANGE && range) { BASE_RANGE::operator=(::move(range)); return *this; }
 
 
    using BASE_RANGE::_order;

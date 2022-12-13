@@ -6567,7 +6567,7 @@ namespace user
 
       //if (item1.m_bOk && item2.m_bOk)
       //{
-      //   return item1.m_strText.compare_ci(item2.m_strText);
+      //   return item1.m_strText.case_insensitive_order(item2.m_strText);
       //}
       //else
       //{

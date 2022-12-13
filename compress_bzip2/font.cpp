@@ -135,7 +135,7 @@ namespace draw2d_gdiplus
 
       //retry_single_lock slGdiplus(psystem->s_mutexGdiplus, ::time(1), ::time(1));
 
-      /*if (m_strFontFamilyName.begins_ci("matter://"))
+      /*if (m_strFontFamilyName.case_insensitive_begins("matter://"))
       {
 
          ::acme::del(m_pfontcollection);

@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "acme/exception/no_memory.h"
 #include "acme/filesystem/file/file.h"
-#include "acme/memory/_memory.h"
+//#include "acme/memory/_memory.h"
 #include "acme/primitive/primitive/memory.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/string/base64.h"
@@ -46,11 +46,11 @@ MEMORY::MEMORY()
 memory_base::~memory_base()
 {
 
-   m_memory.m_sizeStorage          = 0;
-   m_memory.m_end      =  nullptr;
-   m_memory.m_beginStorage          = nullptr;
-   m_memory.m_begin         = nullptr;
-   m_memory.m_iOffset            = 0;
+   this->m_sizeStorage          = 0;
+   this->m_end      =  nullptr;
+   this->m_beginStorage          = nullptr;
+   this->m_begin         = nullptr;
+   this->m_iOffset            = 0;
 
 }
 
@@ -117,10 +117,10 @@ memory_base & memory_base::prefix_der_sequence()
 memory memory_base::detach_as_primitive_memory()
 {
 
-   if (m_memory.m_ememory == e_memory_primitive && m_memory.m_pprimitivememory)
+   if (this->m_ememory == e_memory_primitive && this->m_pprimitivememory)
    {
 
-      return ::move(*m_memory.m_pprimitivememory);
+      return ::move(*this->m_pprimitivememory);
 
    }
 
@@ -138,31 +138,31 @@ void memory_base::set_size(memsize dwNewLength)
    //   return false;
    //}
 
-   if((m_memory.m_iOffset + dwNewLength) <= 0)
+   if((this->m_iOffset + dwNewLength) <= 0)
    {
-      m_memory.m_begin   =m_memory. m_beginStorage + m_memory.m_iOffset;
-      m_memory.m_iOffset = 0;
-      m_memory.m_sizeStorage = 0;
+      this->m_begin   =this-> m_beginStorage + this->m_iOffset;
+      this->m_iOffset = 0;
+      this->m_sizeStorage = 0;
       return;
    }
 
-   if((m_memory.m_iOffset + dwNewLength) > m_memory.storage_size())
+   if((this->m_iOffset + dwNewLength) > this->storage_size())
    {
 
-      allocate_internal(m_memory.m_iOffset + dwNewLength);
+      allocate_internal(this->m_iOffset + dwNewLength);
 
    }
 
-   if ((m_memory.m_iOffset + dwNewLength) > m_memory.size())
+   if ((this->m_iOffset + dwNewLength) > this->size())
    {
 
       throw ::no_memory();
 
    }
 
-   m_memory.m_sizeStorage    = dwNewLength;
+   this->m_sizeStorage    = dwNewLength;
 
-   m_memory.m_begin   = m_memory.m_beginStorage + m_memory.m_iOffset;
+   this->m_begin   = this->m_beginStorage + this->m_iOffset;
 
 }
 
@@ -220,29 +220,29 @@ void memory_base::allocate_internal(memsize sizeNew)
 
    }
 
-   byte * pOldStorage = m_memory.storage_begin();
+   byte * pOldStorage = this->storage_begin();
 
    byte * pNewStorage = nullptr;
 
-   memsize sizeOld = m_memory.size();
+   memsize sizeOld = this->size();
 
-   memsize sizeOldStorage = m_memory.storage_size();
+   memsize sizeOldStorage = this->storage_size();
 
-   if(::is_null(pOldStorage) || !m_memory.m_bOwner || m_memory.m_bReadOnly)
+   if(::is_null(pOldStorage) || !this->m_bOwner || this->m_bReadOnly)
    {
 
       pNewStorage = (byte *) impl_alloc(sizeNewStorage);
 
-      if (!m_memory.m_bOwner || m_memory.m_bReadOnly)
+      if (!this->m_bOwner || this->m_bReadOnly)
       {
 
          ::memcpy_dup(pNewStorage, pOldStorage, (memsize) minimum(sizeOld, sizeNewStorage));
 
       }
 
-      m_memory.m_bOwner = true;
+      this->m_bOwner = true;
 
-      m_memory.m_bReadOnly = false;
+      this->m_bReadOnly = false;
 
    }
    else if(sizeNew > sizeOldStorage)
@@ -266,15 +266,15 @@ void memory_base::allocate_internal(memsize sizeNew)
    if (pNewStorage)
    {
 
-      m_memory.m_beginStorage = pNewStorage;
+      this->m_beginStorage = pNewStorage;
 
-      m_memory.m_sizeStorage = sizeNewStorage;
+      this->m_sizeStorage = sizeNewStorage;
 
-      m_memory.m_begin = pNewStorage;
+      this->m_begin = pNewStorage;
 
    }
 
-   m_memory.m_end = m_memory.m_begin + sizeNew;
+   this->m_end = this->m_begin + sizeNew;
 
 }
 
@@ -282,7 +282,7 @@ void memory_base::allocate_internal(memsize sizeNew)
 void memory_base::reserve(memsize dwNewLength)
 {
 
-   if (dwNewLength <= m_memory.size())
+   if (dwNewLength <= this->size())
    {
 
       return;
@@ -297,14 +297,14 @@ void memory_base::reserve(memsize dwNewLength)
 void memory_base::erase_offset()
 {
 
-   if(m_memory.m_beginStorage == nullptr || m_memory.m_begin == nullptr || m_memory.m_iOffset <= 0)
+   if(this->m_beginStorage == nullptr || this->m_begin == nullptr || this->m_iOffset <= 0)
       return;
 
-   __memmov(m_memory.m_beginStorage,m_memory.m_begin,m_memory.m_sizeStorage);
+   __memmov(this->m_beginStorage,this->m_begin,this->m_sizeStorage);
 
-   m_memory.m_iOffset      = 0;
+   this->m_iOffset      = 0;
 
-   m_memory.m_begin   = m_memory.m_beginStorage;
+   this->m_begin   = this->m_beginStorage;
 
 }
 
@@ -331,7 +331,7 @@ void memory_base::erase_offset()
 memsize memory_base::calc_allocation(memsize size)
 {
 
-   return (memsize) (size + m_memory.m_dwAllocationAddUp);
+   return (memsize) (size + this->m_dwAllocationAddUp);
 
 }
 
@@ -361,7 +361,7 @@ void memory_base::delete_begin(memsize iSize)
 
    iSize = maximum(0,minimum(size(),iSize));
 
-   m_memory.m_iOffset += iSize;
+   this->m_iOffset += iSize;
 
    //if(m_pcontainer != nullptr)
    //{
@@ -370,11 +370,11 @@ void memory_base::delete_begin(memsize iSize)
 
    //}
 
-   m_memory.m_sizeStorage -= iSize;
+   this->m_sizeStorage -= iSize;
 
-   m_memory.m_begin += iSize;
+   this->m_begin += iSize;
 
-   if(m_memory.m_iOffset >= m_memory.m_iMaxOffset || (memsize)m_memory.m_iOffset >= m_memory.size())
+   if(this->m_iOffset >= this->m_iMaxOffset || (memsize)this->m_iOffset >= this->size())
    {
 
       erase_offset();
@@ -577,7 +577,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
    }
 
-   __memmov(m_memory.m_beginStorage + pos,m_memory.m_beginStorage + pos + len,size() - (pos + len));
+   __memmov(this->m_beginStorage + pos,this->m_beginStorage + pos + len,size() - (pos + len));
 
    set_size(size() - len);
 
@@ -1990,7 +1990,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
    }
 
-   auto iFindEol = find_index(as_block('\n'), iStart);
+   auto iFindEol = find_index('\n', iStart);
 
    if (iFindEol < 0)
    {

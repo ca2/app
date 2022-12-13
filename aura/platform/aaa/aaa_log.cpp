@@ -357,9 +357,9 @@ pacmedirectory->system() / "log.txt"))
                if (strTopicText.has_char())
                {
 
-                  strTopicText.begins_eat_ci("class ");
+                  strTopicText.case_insensitive_begins_eat("class ");
 
-                  strTopicText.begins_eat_ci("struct ");
+                  strTopicText.case_insensitive_begins_eat("struct ");
 
                   str += strTopicText;
 

@@ -426,7 +426,7 @@ namespace apex
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      bool _handle_uri(const ::block & block) override;
+      bool _handle_uri(const ::string & str) override;
 
       virtual void application_main(int argc, char *argv[], const ::string & pszCommandLine);
 

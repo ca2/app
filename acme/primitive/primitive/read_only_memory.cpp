@@ -13,13 +13,13 @@ read_only_memory::read_only_memory(const ::block & block) :
 read_only_memory::read_only_memory(const void * p, memsize size)
 {
 
-   m_memory.m_bOwner = false;
-   m_memory.m_bReadOnly = true;
-   m_memory.m_preadonlymemory = this;
-   m_memory.m_beginStorage = (byte *)p;
-   m_memory.m_begin = (byte *)p;
-   m_memory.m_sizeStorage = size;
-   m_memory.m_end = ((::byte *)p)+ size;
+   this->m_bOwner = false;
+   this->m_bReadOnly = true;
+   this->m_preadonlymemory = this;
+   this->m_beginStorage = (byte *)p;
+   this->m_begin = (byte *)p;
+   this->m_sizeStorage = size;
+   this->m_end = ((::byte *)p)+ size;
 
 }
 

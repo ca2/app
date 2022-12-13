@@ -150,7 +150,7 @@
 //   for(index i = 0; i < stra.get_count(); i++)
 //   {
 //
-//      if(::str().begins_eat_ci(stra[i], "file://"))
+//      if(::str().case_insensitive_begins_eat(stra[i], "file://"))
 //      {
 //
 //         if(!string_begins(stra[i], "/"))
@@ -322,7 +322,7 @@ void copy(RECTANGLE_F64 * prectTarget, const CGRect * prectSource)
 //bool __node_further_file_is_equal(file::path const & path1, file::path const & path2)
 //{
 //
-//   return __xxxnode_full_file_path(path1).compare_ci(__xxxnode_full_file_path(path2)) == 0;
+//   return __xxxnode_full_file_path(path1).case_insensitive_order(__xxxnode_full_file_path(path2)) == 0;
 //
 //}
 //

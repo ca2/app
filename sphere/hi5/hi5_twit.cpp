@@ -267,7 +267,7 @@ namespace hi5
          return m_strError;
 
       }
-      else if (strMediaId.begins_ci("ERROR: "))
+      else if (strMediaId.case_insensitive_begins("ERROR: "))
       {
 
          m_strError = "ERROR: mediaUploadInit failure (2), " + strMediaId;
@@ -493,7 +493,7 @@ namespace hi5
 
       post["media_type"] = strMimeType;
 
-      if (!strMimeType.begins_ci("image/") || strMimeType.compare_ci("image/gif") == 0)
+      if (!strMimeType.case_insensitive_begins("image/") || strMimeType.case_insensitive_order("image/gif") == 0)
       {
 
          post["media_category"] = strCategory;

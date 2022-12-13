@@ -543,7 +543,7 @@ atom_array app_get_pid(const ::string & psz)
 
          string strTitle = path.title();
 
-         strTitle.ends_eat_ci(" (deleted)");
+         strTitle.case_insensitive_ends_eat(" (deleted)");
 
          if(strTitle == strApp)
          {

@@ -849,7 +849,7 @@ m_durationHeartBeat.Now();
 m_durationHeartBeat.Now();
 
       //if(is_system() 
-      //      && !m_varTopicQuery["app"].get_string().begins_ci("app-core/netnode")
+      //      && !m_varTopicQuery["app"].get_string().case_insensitive_begins("app-core/netnode")
       //      && m_varTopicQuery["app"] != "app-core/netnode_dynamic_web_server"
       //      && m_varTopicQuery["app"] != "app-gtech/alarm"
       //      && m_varTopicQuery["app"] != "app-gtech/sensible_service")
@@ -1084,7 +1084,7 @@ m_durationHeartBeat.Now();
 
          string strDir = strFile;
 
-         strDir.ends_eat_ci(".zip");
+         strDir.case_insensitive_ends_eat(".zip");
 
          try
          {

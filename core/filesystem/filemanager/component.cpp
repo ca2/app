@@ -448,7 +448,7 @@ namespace filemanager
          auto pcontext = get_context();
 
          if (pathFilemanagerProject.is_empty() || dir()->is(pathFilemanagerProject)
-               || pathFilemanagerProject.final_extension().compare_ci("component") != 0)
+               || pathFilemanagerProject.final_extension().case_insensitive_order("component") != 0)
          {
 
             m_pathFilemanagerProject = acmedirectory()->localconfig() / "user.component";
@@ -515,7 +515,7 @@ namespace filemanager
 
                      string strOtherPath = strOther.Mid(iFind + 1);
 
-                     if (strOtherPath.compare_ci(strPath) == 0)
+                     if (strOtherPath.case_insensitive_order(strPath) == 0)
                      {
 
                         stra.erase_at(j);

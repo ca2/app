@@ -158,7 +158,7 @@ void memory_file::put_byte_back(::byte byte)
 
    m_position--;
 
-   m_pmemory.m_p->m_memory.data()[m_position] = byte;
+   m_pmemory.m_p->data()[m_position] = byte;
 
 }
 
@@ -593,10 +593,10 @@ memsize memory_file::erase_begin(void *pdata, memsize uiCount)
 
    auto pmemory = get_memory();
 
-   if (uiCount > pmemory->m_memory.size())
+   if (uiCount > pmemory->size())
    {
 
-      uiCount = pmemory->m_memory.size();
+      uiCount = pmemory->size();
 
    }
 

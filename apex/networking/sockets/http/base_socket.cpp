@@ -143,7 +143,7 @@ namespace sockets
       if(m_request.headers().has_property("accept-language"))
       {
 
-         FORMATTED_INFORMATION("accept-language: %s", m_request.header("accept-language").operator string().c_str());
+         FORMATTED_INFORMATION("accept-language: %s", m_request.header("accept-language").operator ::string().c_str());
 
       }
 
@@ -203,8 +203,8 @@ namespace sockets
 
       //TRACE0("http_base_socket::Respond");
 
-      if(outheader("content-type").operator string().find("text") >= 0
-            || outheader("content-type").operator string().find("javascript") >= 0)
+      if(outheader("content-type").operator ::string().find("text") >= 0
+            || outheader("content-type").operator ::string().find("javascript") >= 0)
       {
 
          on_compress();
@@ -331,7 +331,7 @@ namespace sockets
    void http_base_socket::on_compress()
    {
 
-      if(inheader("accept-encoding").operator string().find("gzip") >= 0)
+      if(inheader("accept-encoding").operator ::string().find("gzip") >= 0)
       {
 
          string str = outheader("content-type");
@@ -395,7 +395,7 @@ namespace sockets
       {
          outheader("content-type") = "text/plain";
       }
-      else if (outheader("content-type").operator string().has_char())
+      else if (outheader("content-type").operator ::string().has_char())
       {
       }
       else if (strContentType.has_char() && strContentType.case_insensitive_order("unknown") != 0)

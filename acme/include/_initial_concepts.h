@@ -66,6 +66,16 @@ concept primitive_range = requires(T t)
 };
 
 
+template < typename T, typename ITERATOR_TYPE >
+concept typed_range = requires(T t, ITERATOR_TYPE iterator)
+{
+
+   {t.begin()}-> ::std::same_as<ITERATOR_TYPE &>;
+   {t.end()}->std::same_as<ITERATOR_TYPE &>;
+
+};
+
+
 struct ITERATOR_TYPE_TAG {};
 
 template < typename ITERATOR >

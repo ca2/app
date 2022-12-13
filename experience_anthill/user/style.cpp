@@ -1918,7 +1918,7 @@ namespace experience_anthill
 
       ptoolbar->index_element_rectangle(iItem, rectangleImage, ::e_element_image, estate);
 
-      if (ptoolitem->m_atom.compare_ci("separator") == 0)
+      if (ptoolitem->m_atom.case_insensitive_order("separator") == 0)
       {
          /*::rectangle_i32 rectangleSeparator;
          rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;

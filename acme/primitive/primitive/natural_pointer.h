@@ -141,6 +141,8 @@ public:
    inline natural_pointer() : natural_pointer(e_no_initialize)
    {
 
+      this->set_natural_pointer();
+
       natural_pointer_default_construct();
 
    }

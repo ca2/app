@@ -257,7 +257,7 @@ pacmedirectory->is(strPath))
             
          string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
 
-         if (str.begins_eat_ci("ca2prompt\r\n"))
+         if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
          {
 
             str.trim();

@@ -198,7 +198,7 @@
 //
 //   ::file::path pathFull2 = get_final_path(path2);
 //
-//   return pathFull1.has_char() && pathFull1.compare_ci(pathFull2) == 0;
+//   return pathFull1.has_char() && pathFull1.case_insensitive_order(pathFull2) == 0;
 //
 //}
 
@@ -228,7 +228,7 @@
 //
 //         strPrefix.replace("/", "\\");
 //
-//         strRelative.begins_eat_ci(strPrefix);
+//         strRelative.case_insensitive_begins_eat(strPrefix);
 //
 //         strRelative.trim("/\\");
 //

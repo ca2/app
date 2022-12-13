@@ -475,7 +475,7 @@ namespace userex
 
       string str = pcommand->m_atom;
 
-      if (str.begins_eat_ci("menu_item_"))
+      if (str.case_insensitive_begins_eat("menu_item_"))
       {
 
          show_group(str);

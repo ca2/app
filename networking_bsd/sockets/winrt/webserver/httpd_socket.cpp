@@ -41,7 +41,7 @@ namespace sockets
    {
    //   Base64 bb;
 
-   /*   if (request().headers()["if-modified-since"].get_string().compare_ci(m_start) == 0)
+   /*   if (request().headers()["if-modified-since"].get_string().case_insensitive_order(m_start) == 0)
       {
          m_response.attr("http_status_code") = 304;
          m_response.attr("http_status") = "Not Modified";

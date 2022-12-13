@@ -822,4 +822,12 @@ void sub_system::factory_terminate()
 //}
 
 
+CLASS_DECL_ACME ::factory::factory * get_system_factory()
+{
+
+   return ::acme::g_p->m_psubsystem->m_pfactory;
+
+}
+
+
 

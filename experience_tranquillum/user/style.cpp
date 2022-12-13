@@ -1756,7 +1756,7 @@ namespace experience_tranquillum
 
       //   ptoolbar->index_element_rectangle(iItem, rectangleImage, eelementImage);
 
-      //   if (item.m_atom.compare_ci("separator") == 0)
+      //   if (item.m_atom.case_insensitive_order("separator") == 0)
       //   {
       //      /*::rectangle_i32 rectangleSeparator;
       //      rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;

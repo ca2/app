@@ -53,7 +53,7 @@
 //   if (status == 0)
 //   {
 //
-//      if(strExe.ends_ci("_app_core_clockverse"))
+//      if(strExe.case_insensitive_ends("_app_core_clockverse"))
 //      {
 //
 //         ::output_debug_string("app-core/clockverse");
@@ -73,7 +73,7 @@
 //   else
 //   {
 //
-//      if(strExe.ends_ci("_app_core_clockverse"))
+//      if(strExe.case_insensitive_ends("_app_core_clockverse"))
 //      {
 //
 //         ::output_debug_string("app-core/clockverse");
@@ -567,7 +567,7 @@
 //
 //               string strTitle = path.title();
 //
-//               strTitle.ends_eat_ci(" (deleted)");
+//               strTitle.case_insensitive_ends_eat(" (deleted)");
 //
 //               if (strTitle == strApp ||
 //                   strTitle == strApp2)

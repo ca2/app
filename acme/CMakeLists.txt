@@ -189,7 +189,6 @@ list(APPEND library_source
         #include/_.cpp
         #include/path.h        #primitive/collection/comparable_array.cpp
         #memory/alloc.cpp
-        memory/allocate_mid_big.cpp
         memory/allocate_processor_cache_oriented.cpp
         memory/allocate_system_heap.cpp
         memory/allocate_x86_cache_oriented.cpp
@@ -204,6 +203,8 @@ list(APPEND library_source
         #memory/new.cpp
         memory/os_alloc.cpp
         memory/os_alloc.h
+        memory/paged.h
+        memory/paged_large.cpp
         memory/property_memory_allocate.cpp
         memory/property_memory_allocate.h
         memory/secondary_memory_allocate.cpp
@@ -317,8 +318,8 @@ list(APPEND library_source
         platform/log.h
         #platform/logic.cpp
         platform/lparam.cpp
-        platform/main.cpp
-        platform/main.h
+        #platform/main.cpp
+        #platform/main.h
         platform/math.cpp
         platform/message.h
         #platform/message_box.cpp
@@ -432,14 +433,18 @@ list(APPEND library_source
         #primitive/time/duration/duration.h
         primitive/time/floating/_.h
         primitive/time/integral/_.h
-        #primitive/time/__string.cpp
+        primitive/time/_.h
+        primitive/time/__string.cpp
+        primitive/time/__string.h
+        primitive/time/_binary_stream.h
+        primitive/time/_impl.h
         primitive/time/_string.h
-        #primitive/time/_.h
-        primitive/time/_time.h
+        #primitive/time/_time.h
         primitive/time/_impl.h
-        primitive/time/_impl.h
+        primitive/time/_string.h
         primitive/time/_structures.h
-        primitive/time/_unit.h
+        primitive/time/_text_stream.h
+        #primitive/time/_unit.h
         primitive/time/_unit_operator.h
         primitive/time/time.cpp
         primitive/time/time.h
@@ -583,7 +588,7 @@ list(APPEND library_source
         primitive/primitive/enumeration.h
         primitive/primitive/enumeration.h
         #primitive/primitive/eobject.h
-        primitive/primitive/estatus.cpp
+        primitive/primitive/e_status.cpp
         primitive/primitive/e_status.h
         primitive/primitive/factory.cpp
         primitive/primitive/factory.h
@@ -617,7 +622,7 @@ list(APPEND library_source
         primitive/primitive/memory_c.cpp
         primitive/primitive/memory_container.cpp
         primitive/primitive/memory_container.h
-        primitive/primitive/natural.h
+        #primitive/primitive/natural.h
         primitive/primitive/number.h
         primitive/primitive/object.cpp
         primitive/primitive/object.h
@@ -668,8 +673,8 @@ list(APPEND library_source
         primitive/primitive/util.h
         primitive/primitive/value.h
         primitive/primitive/var_element.cpp
-        primitive/primitive/virtual_memory.cpp
-        primitive/primitive/virtual_memory.h
+        #primitive/primitive/virtual_memory.cpp
+        #primitive/primitive/virtual_memory.h
         primitive/primitive/work.cpp
         primitive/primitive/work.h
         #primitive/promise/signalization.cpp
@@ -717,8 +722,8 @@ list(APPEND library_source
         #primitive/string/__c_wide_impl.h
         #primitive/string/_base.h
         #primitive/string/_base.h
-        primitive/string/_base_impl.h
-        primitive/string/_base_impl.h
+        #primitive/string/_base_impl.h
+        #primitive/string/_base_impl.h
         #primitive/string/_c.cpp
         #primitive/string/_c.h
         #primitive/string/_c_impl.h
@@ -955,7 +960,7 @@ list(APPEND library_source
         constant/source.h
         constant/status.h
         constant/status_range_authentication.h
-        constant/thread.h
+        #constant/thread.h
         constant/timer.h
         constant/user/_.h
         constant/user/tool_item.h
@@ -1302,6 +1307,10 @@ list(APPEND library_source
         #platform/all.h
         #platform/acme.h
         #platform/aura_regex.h
+        platform/application_array.cpp
+        platform/application_array.h
+        platform/application_container.cpp
+        platform/application_container.h
         platform/auto.h
         platform/auto_pointer.h
         platform/class.h
@@ -1329,7 +1338,7 @@ list(APPEND library_source
         platform/less.h
         platform/logic.h
         platform/lparam.h
-        platform/main.h
+        #platform/main.h
         #platform/message_box.h
         platform/uint32_muldiv.h
         platform/uint64_muldiv.h
@@ -1344,7 +1353,7 @@ list(APPEND library_source
         platform/printf.h
         platform/profiler.h
         #platform/regex.h
-        platform/restore.h
+        #platform/restore.h
         platform/sequence.cpp
         platform/sequencer.h
         platform/serial.h

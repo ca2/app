@@ -6,13 +6,13 @@
 namespace str
 {
 
-   ::index begins_eat_ci(string & str,string_array & stra)
+   ::index case_insensitive_begins_eat(string & str,string_array & stra)
    {
 
       for(index i = 0; i < stra.get_count(); i++)
       {
 
-         if(str.begins_eat_ci(stra[i]))
+         if(str.case_insensitive_begins_eat(stra[i]))
             return i;
 
       }
@@ -185,7 +185,7 @@ namespace str
 
             if(strRemain != strTitle && ((strRemain.is_empty() &&
                                           (strTitle.find("/") < 0  || strTitle.find("/") == (strTitle.get_length() - 1)))
-                                         || (strRemain.has_char() && strTitle.begins_eat_ci(strRemain))))
+                                         || (strRemain.has_char() && strTitle.case_insensitive_begins_eat(strRemain))))
             {
 
                if(listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
@@ -391,7 +391,7 @@ namespace str
             {
 
             }
-            else if(pinfile->locate(strTitle) && (pstraFilter == nullptr || strTitle.begins_eat_ci(*pstraFilter) >= 0))
+            else if(pinfile->locate(strTitle) && (pstraFilter == nullptr || strTitle.case_insensitive_begins_eat(*pstraFilter) >= 0))
             {
 
                string strRelative(strTitle);

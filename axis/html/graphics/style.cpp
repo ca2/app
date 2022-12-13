@@ -818,7 +818,7 @@ namespace html
       }
       str = m_propertyset[idName];
       string strEm = str;
-      if(string(idName).compare_ci("font-size") == 0)
+      if(string(idName).case_insensitive_order("font-size") == 0)
       {
          if(::str().find_awwci("em", str) > 0)
          {
@@ -1030,12 +1030,12 @@ namespace html
       string str(pszParam);
 
       str.trim();
-      if(str.ends_eat_ci("px"))
+      if(str.case_insensitive_ends_eat("px"))
       {
          str.trim();
          return (float) strtod(str, nullptr);
       }
-      else if(str.ends_eat_ci("::point_f32"))
+      else if(str.case_insensitive_ends_eat("::point_f32"))
       {
          str.trim();
          return (float) (strtod(str, nullptr) * 96.0 / 72.0);

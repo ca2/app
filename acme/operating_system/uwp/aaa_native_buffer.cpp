@@ -5,7 +5,7 @@
 CLASS_DECL_ACME::winrt::Windows::Storage::StorageFolder ^ winrt_folder1(string & strPath, string & strPrefix)
 {
 
-   if (strPath.begins_eat_ci("image://"))
+   if (strPath.case_insensitive_begins_eat("image://"))
    {
 
       strPrefix = "image://";
@@ -13,7 +13,7 @@ CLASS_DECL_ACME::winrt::Windows::Storage::StorageFolder ^ winrt_folder1(string &
       return ::winrt::Windows::Storage::KnownFolders::PicturesLibrary;
 
    }
-   else if (strPath.begins_eat_ci("music://"))
+   else if (strPath.case_insensitive_begins_eat("music://"))
    {
 
       strPrefix = "music://";
@@ -21,7 +21,7 @@ CLASS_DECL_ACME::winrt::Windows::Storage::StorageFolder ^ winrt_folder1(string &
       return ::winrt::Windows::Storage::KnownFolders::MusicLibrary;
 
    }
-   else if (strPath.begins_eat_ci("video://"))
+   else if (strPath.case_insensitive_begins_eat("video://"))
    {
 
       strPrefix = "video://";
@@ -29,7 +29,7 @@ CLASS_DECL_ACME::winrt::Windows::Storage::StorageFolder ^ winrt_folder1(string &
       return ::winrt::Windows::Storage::KnownFolders::VideosLibrary;
 
    }
-   else if (strPath.begins_eat_ci("document://"))
+   else if (strPath.case_insensitive_begins_eat("document://"))
    {
 
       strPrefix = "document://";
@@ -37,7 +37,7 @@ CLASS_DECL_ACME::winrt::Windows::Storage::StorageFolder ^ winrt_folder1(string &
       return ::winrt::Windows::Storage::KnownFolders::DocumentsLibrary;
 
    }
-   else if (strPath.begins_eat_ci(::dir::sys_temp()))
+   else if (strPath.case_insensitive_begins_eat(::dir::sys_temp()))
    {
 
       strPrefix = ::dir::sys_temp();
@@ -45,7 +45,7 @@ CLASS_DECL_ACME::winrt::Windows::Storage::StorageFolder ^ winrt_folder1(string &
       return ::winrt::Windows::Storage::ApplicationData::Current->TemporaryFolder;
 
    }
-   else if (strPath.begins_eat_ci(string(begin(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path))))
+   else if (strPath.case_insensitive_begins_eat(string(begin(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path))))
    {
 
       strPrefix = begin(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
@@ -170,7 +170,7 @@ CLASS_DECL_ACME ::winrt::Windows::Storage::StorageFolder ^ winrt_get_folder(cons
 
    strRelative.trim_right("/\\");
 
-   strRelative.begins_eat_ci(strPrefix);
+   strRelative.case_insensitive_begins_eat(strPrefix);
 
    strRelative.trim_left("/\\");
 
@@ -320,7 +320,7 @@ pacmedirectory->create(path.folder());
 
       string strRelative = pathFolder;
 
-      strRelative.begins_eat_ci(strPrefix);
+      strRelative.case_insensitive_begins_eat(strPrefix);
 
       if (strRelative.is_empty())
       {

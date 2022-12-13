@@ -112,7 +112,7 @@ namespace sockets
       //FORMATTED_TRACE("connection: %s\n", m_request.header("connection").get_string());
       //FORMATTED_TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
    /*   if(string_ends(m_request.attr("http_version").get_string(), "/1.1")
-         && m_request.header("connection").get_string().compare_ci("close") != 0)
+         && m_request.header("connection").get_string().case_insensitive_order("close") != 0)
       {
          m_b_keepalive = true;
       TRACE(" ***    keepalive: true\n");

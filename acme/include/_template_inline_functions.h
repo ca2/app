@@ -56,7 +56,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 
    bool bNegative;
 
-   return as_ab{(std::make_unsigned<SIGNED>::type) ((bNegative = i < 0) ? -i : i), bNegative };
+   return as_ab{(typename std::make_unsigned<SIGNED>::type) ((bNegative = i < 0) ? -i : i), bNegative };
 
 }
 

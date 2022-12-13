@@ -2082,7 +2082,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
       // memory_new -> create a memory_new object
       l->match(LEX_R_NEW);
       const string &className = l->tkStr;
-      if(className.compare_ci("array") == 0)
+      if(className.case_insensitive_order("array") == 0)
       {
          l->match(LEX_ID);
          i32 idx = 0;

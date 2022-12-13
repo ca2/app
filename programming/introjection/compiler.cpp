@@ -649,7 +649,7 @@ namespace introjection
 
          strTransformName.find_replace(":","");
 
-         strTransformName.ends_eat_ci(".cpp");
+         strTransformName.case_insensitive_ends_eat(".cpp");
 
       }
       else
@@ -1105,14 +1105,14 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 #ifdef LINUX
 
       string strTargetPath =  dir()->install() /"time" / m_strPlatform / m_strDynamicSourceConfiguration / plibrary->m_pathScript.title();
-      strTargetPath.ends_eat_ci(".cpp");
-      strTargetPath.ends_eat_ci(".so");
+      strTargetPath.case_insensitive_ends_eat(".cpp");
+      strTargetPath.case_insensitive_ends_eat(".so");
 
 #else
 
       string strTargetPath = dir()->install() / "time-windows" / m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
-      strTargetPath.ends_eat_ci(".cpp");
-      strTargetPath.ends_eat_ci(".dll");
+      strTargetPath.case_insensitive_ends_eat(".cpp");
+      strTargetPath.case_insensitive_ends_eat(".dll");
 
 #endif
 
@@ -1284,11 +1284,11 @@ auto tickStart = ::time::now();
          //string strTargetPath = lib->m_pathScript;
          //strTargetPath.find_replace("\\",".");
          //strTargetPath.find_replace("/",".");
-         //strTargetPath.ends_eat_ci(".cpp");
+         //strTargetPath.case_insensitive_ends_eat(".cpp");
          //#ifdef LINUX
-         //         strTargetPath.ends_eat_ci(".so");
+         //         strTargetPath.case_insensitive_ends_eat(".so");
          //#else
-         //         strTargetPath.ends_eat_ci(".dll");
+         //         strTargetPath.case_insensitive_ends_eat(".dll");
          //#endif
          //         strTargetPath = dir()->install() /
          str.find_replace("%TARGET_PATH%",strTargetPath);

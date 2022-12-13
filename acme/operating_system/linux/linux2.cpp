@@ -1,6 +1,6 @@
 // Created by camilo on 2021-09-13 00:13 BRT Thomas Month!! <3ThomasBS_!!
 #include "framework.h"
-#include "acme/filesystem/filesystem/path.h"
+//#include "acme/filesystem/filesystem/path.h"
 ////#include "acme/exception/exception.h"
 
 
@@ -50,10 +50,10 @@
 
    wstrModuleFolder.release_string_buffer();
 
-   wstrModuleFolder.ends_eat_ci("\\");
-   wstrModuleFolder.ends_eat_ci("/");
-   wstrModuleFolder.ends_eat_ci("\\");
-   wstrModuleFolder.ends_eat_ci("/");
+   wstrModuleFolder.case_insensitive_ends_eat("\\");
+   wstrModuleFolder.case_insensitive_ends_eat("/");
+   wstrModuleFolder.case_insensitive_ends_eat("\\");
+   wstrModuleFolder.case_insensitive_ends_eat("/");
 
    return string(wstrModuleFolder);
 

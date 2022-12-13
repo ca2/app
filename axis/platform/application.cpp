@@ -1836,7 +1836,7 @@ namespace axis
 
       string str(atom);
 
-      if (str.begins_ci("still_"))
+      if (str.case_insensitive_begins("still_"))
       {
 
          econtroltype = ::user::e_control_type_static;
@@ -1844,7 +1844,7 @@ namespace axis
          return __type(::user::still);
 
       }
-      else if (str.begins_ci("label_"))
+      else if (str.case_insensitive_begins("label_"))
       {
 
          econtroltype = ::user::e_control_type_static;
@@ -1852,7 +1852,7 @@ namespace axis
          return __type(::user::still);
 
       }
-      else if (str.begins_ci("combo_"))
+      else if (str.case_insensitive_begins("combo_"))
       {
 
          econtroltype = ::user::e_control_type_combo_box;
@@ -1860,7 +1860,7 @@ namespace axis
          return __type(::user::combo_box);
 
       }
-      else if (str.begins_ci("check_") || str.begins_ci("checkbox_"))
+      else if (str.case_insensitive_begins("check_") || str.case_insensitive_begins("checkbox_"))
       {
 
          econtroltype = ::user::e_control_type_check_box;
@@ -1868,7 +1868,7 @@ namespace axis
          return __type(::user::check_box);
 
       }
-      if (str.begins_ci("button_"))
+      if (str.case_insensitive_begins("button_"))
       {
 
          econtroltype = ::user::e_control_type_button;

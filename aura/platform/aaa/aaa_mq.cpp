@@ -246,7 +246,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //            output_debug_string("xxCLOSED_MQ xx__get_mq from xxwave_player");
 //
 //         }
-//         else if(strType.ends_ci("out"))
+//         else if(strType.case_insensitive_ends("out"))
 //         {
 //
 //            output_debug_string("xxCLOSED_MQ xx__get_mq from xxout");
@@ -292,7 +292,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //            output_debug_string("notxxbCreate xx__get_mq from xxwave_player");
 //
 //         }
-//         else if(strType.ends_ci("out"))
+//         else if(strType.case_insensitive_ends("out"))
 //         {
 //
 //            output_debug_string("notxxbCreate xx__get_mq from xxout");

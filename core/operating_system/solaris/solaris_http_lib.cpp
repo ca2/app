@@ -434,7 +434,7 @@ tiny_http::http_retcode tiny_http::t_delete()
 tiny_http::http_retcode tiny_http::t_parse_url(const ::string & url)
 {
    vsstring strUrl(url);
-   if(!strUrl.begins_eat_ci("http://"))
+   if(!strUrl.case_insensitive_begins_eat("http://"))
    {
 #ifdef VERBOSE
       fprintf(stderr,"invalid url (must start with 'http://')\n");

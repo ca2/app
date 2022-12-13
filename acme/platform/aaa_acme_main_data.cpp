@@ -332,7 +332,7 @@ string apex_main_data::get_env(const char * pszVariableName) const
 
          wstring wstr(*p);
 
-         if(wstr.begins_eat_ci(wstrPrefix))
+         if(wstr.case_insensitive_begins_eat(wstrPrefix))
          {
 
             return wstr;
@@ -356,7 +356,7 @@ string apex_main_data::get_env(const char * pszVariableName) const
 
          string str(*p);
 
-         if(str.begins_eat_ci(strPrefix))
+         if(str.case_insensitive_begins_eat(strPrefix))
          {
 
             return str;

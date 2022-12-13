@@ -32,7 +32,7 @@ namespace calculator
 
          class result result;
 
-         if(m_ptoken->m_str.compare_ci("pi") == 0)
+         if(m_ptoken->m_str.case_insensitive_order("pi") == 0)
          {
             result.m_dR = pi();
          }

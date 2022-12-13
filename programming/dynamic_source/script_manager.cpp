@@ -1089,7 +1089,7 @@ namespace dynamic_source
 
       }
 
-      if (path.ends_ci(".tmp"))
+      if (path.case_insensitive_ends(".tmp"))
       {
 
          return;

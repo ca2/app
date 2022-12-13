@@ -66,7 +66,7 @@ namespace interprocess
       void destroy() override;
 
 
-      bool _handle_uri(const block & blockUri) override;
+      bool _handle_uri(const ::string & strUri) override;
       //virtual bool on_interprocess_receive(int message, ::memory && memory);
       //virtual void on_interprocess_post(i64 a, i64 b);
 

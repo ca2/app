@@ -110,7 +110,7 @@
 //
 //                  int iWeight = atoi(strWeight);
 //
-//                  int iItalic = pfamily->attribute("style").compare_ci("italic") == 0;
+//                  int iItalic = pfamily->attribute("style").case_insensitive_order("italic") == 0;
 //
 //                  int iKey = iWeight * 10 + iItalic;
 //
@@ -267,7 +267,7 @@
 //
 //                     int iWeight = atoi(pnodeFont->attribute("weight"));
 //
-//                     int iItalic = pnodeFont->attribute("style").compare_ci("italic") == 0;
+//                     int iItalic = pnodeFont->attribute("style").case_insensitive_order("italic") == 0;
 //
 //                     int iKey = iWeight * 10 + iItalic;
 //

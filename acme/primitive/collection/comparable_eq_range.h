@@ -20,8 +20,9 @@ public:
    using iterator = BASE_RANGE::iterator;
    using const_iterator = BASE_RANGE::const_iterator;
 
-   
-   using RAW_RANGE = ::range < this_iterator >;
+
+   using THIS_RAW_RANGE = BASE_RANGE::THIS_RAW_RANGE;
+   using RAW_RANGE = BASE_RANGE::RAW_RANGE;
    using CONST_RAW_RANGE = BASE_RANGE::CONST_RAW_RANGE;
 
 
@@ -33,20 +34,21 @@ public:
    using BASE_RANGE::BASE_RANGE;
 
 
-   explicit comparable_eq_range(enum_no_initialize) : BASE_RANGE(e_no_initialize) {}
-   explicit comparable_eq_range(nullptr_t) : BASE_RANGE(nullptr) {}
-   explicit comparable_eq_range() {}
-   comparable_eq_range(const comparable_eq_range & range) : BASE_RANGE(range) {}
-   comparable_eq_range(comparable_eq_range && range) : BASE_RANGE(::move(range)) { }
-   comparable_eq_range(::range < const_iterator > constrange) : BASE_RANGE(constrange) {}
+   comparable_eq_range(enum_no_initialize) : BASE_RANGE(e_no_initialize) {}
+   comparable_eq_range(nullptr_t) : BASE_RANGE(nullptr) {}
+   comparable_eq_range() {}
+   template<typed_range<iterator> RANGE>
+   comparable_eq_range(const RANGE &range) : BASE_RANGE(range) {}
+   template<typed_range<const_iterator> RANGE>
+   comparable_eq_range(const RANGE &range) : BASE_RANGE(range) {}
    template < primitive_integral INTEGRAL >
-   comparable_eq_range(const_iterator begin, INTEGRAL count, bool bNullTerminated = false) : BASE_RANGE(begin, count, bNullTerminated) {}
-   comparable_eq_range(const_iterator begin, const_iterator end, bool bNullTerminated = false) : BASE_RANGE(begin, end, bNullTerminated) {}
-   comparable_eq_range(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin), true) {}
+   comparable_eq_range(const_iterator begin, INTEGRAL count, e_range erange = e_range_read_only_block) : BASE_RANGE(begin, count, erange) {}
+   comparable_eq_range(const_iterator begin, const_iterator end, e_range erange = e_range_read_only_block) : BASE_RANGE(begin, end, erange) {}
+   comparable_eq_range(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin), e_range_null_terminated | e_range_read_only_block) {}
 
 
-   comparable_eq_range & operator = (const comparable_eq_range & comparable_eq_range) { BASE_RANGE::operator=(comparable_eq_range); return *this; }
-   comparable_eq_range & operator = (comparable_eq_range && comparable_eq_range) { BASE_RANGE::operator=(::move(comparable_eq_range)); return *this; }
+   template < primitive_range RANGE >
+   comparable_eq_range & operator = (const RANGE & range) { BASE_RANGE::operator=(range); return *this; }
 
 
    using BASE_RANGE::_equals;

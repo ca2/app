@@ -3,7 +3,8 @@
 ////#include "acme/exception/exception.h"
 //#include "acme/filesystem/file/file.h"
 //#include "acme/networking/as_string.h"
-//#include "acme/platform/acme.h"
+#include "acme/platform/acme.h"
+#include "acme/platform/sub_system.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/string/command_line.h"
 #include "acme/primitive/string/str.h"
@@ -16,6 +17,12 @@
 #ifdef WINDOWS
 extern _locale_t g_localeC;
 #else
+namespace acme
+{
+
+   extern acme * g_p;
+
+}
 extern locale_t g_localeC;
 #endif
 
@@ -915,7 +922,7 @@ void property_set::parse_network_payload(const ::string & strJson)
 
 #ifdef LINUX
 
-   uselocale(::acme::g_localeC);
+   uselocale(::acme::g_p->m_psubsystem->m_localeC);
 
 #endif
 
@@ -930,7 +937,7 @@ void property_set::parse_network_payload(const char * & pszJson)
 {
 
 #ifdef LINUX
-   uselocale(::acme::g_localeC);
+   uselocale(::acme::g_p->m_psubsystem->m_localeC);
 #endif
 
    parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
@@ -1285,7 +1292,7 @@ string property_set::implode(const char * pszGlue) const
       while(true)
       {
 
-         str += *p;
+         str += **p;
 
          p++;
 

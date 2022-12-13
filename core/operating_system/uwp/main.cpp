@@ -254,10 +254,10 @@ string ca2_command_line()
 
    }
 
-   if (!strAppId.begins_eat_ci("com."))
+   if (!strAppId.case_insensitive_begins_eat("com."))
    {
 
-      strAppId.begins_eat_ci("com.ca2.");
+      strAppId.case_insensitive_begins_eat("com.ca2.");
 
    }
 

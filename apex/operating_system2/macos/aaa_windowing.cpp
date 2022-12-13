@@ -710,7 +710,7 @@ rectangle_i32_array cg_get_window_rect_list_above(CGWindowID windowid)
 
          CFRelease(cfstrName);
          
-         if(strName.compare_ci("cursor") == 0)
+         if(strName.case_insensitive_order("cursor") == 0)
          {
             
             continue;
@@ -948,10 +948,10 @@ rectangle_i32_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
          
       }
       
-      if(strAppName.compare_ci("window server") == 0)
+      if(strAppName.case_insensitive_order("window server") == 0)
       {
 
-         if(strName.compare_ci("cursor") == 0)
+         if(strName.case_insensitive_order("cursor") == 0)
          {
             
             continue;
@@ -960,7 +960,7 @@ rectangle_i32_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
          
       }
       
-      if(strAppName.compare_ci("Dock") == 0)
+      if(strAppName.case_insensitive_order("Dock") == 0)
       {
          
          if(strName.is_empty())
@@ -1187,10 +1187,10 @@ void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > &
          
       }
       
-      if(strAppName.compare_ci("window server") == 0)
+      if(strAppName.case_insensitive_order("window server") == 0)
       {
          
-         if(strName.compare_ci("cursor") == 0)
+         if(strName.case_insensitive_order("cursor") == 0)
          {
             
             continue;
@@ -1199,7 +1199,7 @@ void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > &
          
       }
       
-      if(strName.compare_ci("dock") == 0)
+      if(strName.case_insensitive_order("dock") == 0)
       {
          
          continue;

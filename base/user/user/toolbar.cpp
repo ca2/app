@@ -1966,7 +1966,7 @@ namespace user
 
             }
             
-            if (pchild->attribute("hidden").as_string().compare_ci("true") == 0)
+            if (pchild->attribute("hidden").as_string().case_insensitive_order("true") == 0)
             {
                
                ptoolitem->hide();
@@ -1976,7 +1976,7 @@ namespace user
             if (pchild->attribute("enable_if_has_command_handler").has_char())
             {
 
-               ptoolitem->m_bEnableIfHasCommandHandler = pchild->attribute("enable_if_has_command_handler").as_string().compare_ci("true") == 0;
+               ptoolitem->m_bEnableIfHasCommandHandler = pchild->attribute("enable_if_has_command_handler").as_string().case_insensitive_order("true") == 0;
 
             }
 

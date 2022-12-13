@@ -693,7 +693,7 @@ namespace tts_sapi
 
          strT.trim();
 
-         //if (strT.begins_eat_ci("xml:"))
+         //if (strT.case_insensitive_begins_eat("xml:"))
          {
 
             uFlag |= SPF_IS_XML;
@@ -896,7 +896,7 @@ namespace tts_sapi
 
          strT.trim();
 
-         //if (strT.begins_eat_ci("xml:"))
+         //if (strT.case_insensitive_begins_eat("xml:"))
          {
 
             uFlag |= SPF_IS_XML;

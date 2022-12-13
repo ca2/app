@@ -32,7 +32,7 @@ namespace userfs
 
             if (iCompareType != 0) return iCompareType;
 
-            return pitem1->m_strName.compare_ci(pitem2->m_strName);
+            return pitem1->m_strName.case_insensitive_order(pitem2->m_strName);
 
          });*/
 

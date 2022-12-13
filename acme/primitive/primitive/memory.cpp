@@ -9,8 +9,6 @@
 memory::memory(memory && memory) :
    memory_base(::move(memory))
 {
-   
-   memset(&memory.m_memory, 0, sizeof(memory.m_memory));
 
 }
 
@@ -19,7 +17,7 @@ memory::memory(manager * pmanager)
 {
 
    __UNREFERENCED_PARAMETER(pmanager);
-   m_memory.m_pprimitivememory      = this;
+   m_pprimitivememory      = this;
    m_bAligned              = false;
 
 }
@@ -29,7 +27,7 @@ memory::memory(const memory & s, manager * pmanager)
 {
 
    __UNREFERENCED_PARAMETER(pmanager);
-   m_memory.m_pprimitivememory      = this;
+   this->m_pprimitivememory      = this;
    m_bAligned              = false;
    operator = (s);
 
@@ -40,7 +38,7 @@ memory::memory(const memory * ps, manager * pmanager)
 {
 
    __UNREFERENCED_PARAMETER(pmanager);
-   m_memory.m_pprimitivememory      = this;
+   this->m_pprimitivememory      = this;
    m_bAligned              = false;
    operator   = (*ps);
 
@@ -52,7 +50,7 @@ memory::memory(const u8 * pchSrc, strsize nLength, manager * pmanager)
 
    __UNREFERENCED_PARAMETER(pmanager);
 
-   m_memory.m_pprimitivememory      = this;
+   this->m_pprimitivememory      = this;
 
    m_bAligned              = false;
 
@@ -60,7 +58,7 @@ memory::memory(const u8 * pchSrc, strsize nLength, manager * pmanager)
 
    ASSERT(__is_valid_address(pchSrc, nLength, false));
 
-   ::memcpy_dup(m_memory.storage_begin(), pchSrc, nLength);
+   ::memcpy_dup(this->storage_begin(), pchSrc, nLength);
 
 }
 
@@ -68,7 +66,7 @@ memory::memory(const u8 * pchSrc, strsize nLength, manager * pmanager)
 memory::memory(enum_create_new, bool bAligned)
 {
 
-   m_memory.m_pprimitivememory      = this;
+   this->m_pprimitivememory      = this;
    m_bAligned              = bAligned;
 
 }
@@ -77,7 +75,7 @@ memory::memory(enum_create_new, bool bAligned)
 memory::memory(const ::std::initializer_list < int > & iaList)
 {
 
-   m_memory.m_pprimitivememory = this;
+   this->m_pprimitivememory = this;
 
    m_bAligned = false;
 
@@ -95,7 +93,7 @@ memory::memory(const ::std::initializer_list < int > & iaList)
 memory::memory(const u8 * pdata, memsize iCount)
 {
 
-   m_memory.m_pprimitivememory      = this;
+   this->m_pprimitivememory      = this;
    assign(pdata, iCount);
 
 }
@@ -104,7 +102,7 @@ memory::memory(const u8 * pdata, memsize iCount)
 memory::memory(const ::block & block)
 {
 
-   m_memory.m_pprimitivememory = this;
+   this->m_pprimitivememory = this;
    assign(block.data(), block.size());
 
 }
@@ -113,27 +111,27 @@ memory::memory(const ::block & block)
 memory::memory(void * pdata, memsize iCount)
 {
 
-   m_memory.m_begin = (::byte*)pdata;
-   m_memory.m_end = m_memory.m_begin + iCount;
+   this->m_begin = (::byte*)pdata;
+   this->m_end = this->m_begin + iCount;
 
-   m_memory.m_bOwner = false;
-   m_memory.m_bReadOnly = false;
-   m_memory.m_beginStorage = (::byte *) pdata;
+   this->m_bOwner = false;
+   this->m_bReadOnly = false;
+   this->m_beginStorage = (::byte *) pdata;
 
-   m_memory.m_iOffset = 0;
-   m_memory.m_iMaxOffset = 0;
-   m_memory.m_sizeStorage = iCount;
-   m_memory.m_dAllocationRateUp = 0.0;
-   m_memory.m_dwAllocationAddUp = 0;
+   this->m_iOffset = 0;
+   this->m_iMaxOffset = 0;
+   this->m_sizeStorage = iCount;
+   this->m_dAllocationRateUp = 0.0;
+   this->m_dwAllocationAddUp = 0;
 
-   m_memory.m_pcontainer = nullptr;
+   this->m_pcontainer = nullptr;
 
-   m_memory.m_ememory = e_memory_primitive;
+   this->m_ememory = e_memory_primitive;
 
-   m_memory.m_preadonlymemory = nullptr;
-   m_memory.m_pprimitivememory = this;
-   m_memory.m_psharedmemory = nullptr;
-   m_memory.m_pvirtualmemory = nullptr;
+   this->m_preadonlymemory = nullptr;
+   this->m_pprimitivememory = this;
+   this->m_psharedmemory = nullptr;
+   this->m_pvirtualmemory = nullptr;
 
 }
 
@@ -141,27 +139,27 @@ memory::memory(void * pdata, memsize iCount)
 memory::memory(const void* pdata, memsize iCount)
 {
 
-   m_memory.m_begin = (::byte*)pdata;
-   m_memory.m_end = m_memory.m_begin + iCount;
+   this->m_begin = (::byte*)pdata;
+   this->m_end = this->m_begin + iCount;
 
-   m_memory.m_bOwner = false;
-   m_memory.m_bReadOnly = true;
-   m_memory.m_beginStorage = (::byte*)pdata;
+   this->m_bOwner = false;
+   this->m_bReadOnly = true;
+   this->m_beginStorage = (::byte*)pdata;
 
-   m_memory.m_iOffset = 0;
-   m_memory.m_iMaxOffset = 0;
-   m_memory.m_sizeStorage = iCount;
-   m_memory.m_dAllocationRateUp = 0.0;
-   m_memory.m_dwAllocationAddUp = 0;
+   this->m_iOffset = 0;
+   this->m_iMaxOffset = 0;
+   this->m_sizeStorage = iCount;
+   this->m_dAllocationRateUp = 0.0;
+   this->m_dwAllocationAddUp = 0;
 
-   m_memory.m_pcontainer = nullptr;
+   this->m_pcontainer = nullptr;
 
-   m_memory.m_ememory = e_memory_primitive;
+   this->m_ememory = e_memory_primitive;
 
-   m_memory.m_preadonlymemory = nullptr;
-   m_memory.m_pprimitivememory = this;
-   m_memory.m_psharedmemory = nullptr;
-   m_memory.m_pvirtualmemory = nullptr;
+   this->m_preadonlymemory = nullptr;
+   this->m_pprimitivememory = this;
+   this->m_psharedmemory = nullptr;
+   this->m_pvirtualmemory = nullptr;
 
 }
 
@@ -169,7 +167,7 @@ memory::memory(const void* pdata, memsize iCount)
 memory::memory(const memory_base & s)
 {
 
-   m_memory.m_pprimitivememory      = this;
+   this->m_pprimitivememory      = this;
    m_bAligned              = false;
    operator   = (s);
 
@@ -179,7 +177,7 @@ memory::memory(const memory_base & s)
 memory::memory(enum_copy_clone, const memory_base & memorybase)
 {
 
-   m_memory.m_pprimitivememory = this;
+   this->m_pprimitivememory = this;
    m_bAligned = false;
    memory_base::operator = (memorybase);
 
@@ -189,7 +187,7 @@ memory::memory(enum_copy_clone, const memory_base & memorybase)
 memory::memory(const memory & s)
 {
 
-   m_memory.m_pprimitivememory      = this;
+   this->m_pprimitivememory      = this;
    m_bAligned              = s.m_bAligned;
    memory_base::operator   = (s);
 
@@ -199,11 +197,11 @@ memory::memory(const memory & s)
 memory::memory(const char * psz)
 {
 
-   m_memory.m_pprimitivememory   = this;
-   m_memory.m_beginStorage = (byte *) psz;
-   m_memory.m_begin              = m_memory.storage_begin();
-   m_memory.m_sizeStorage          = strlen(psz);
-   m_memory.m_end = m_memory.m_begin + m_memory.m_sizeStorage;
+   this->m_pprimitivememory   = this;
+   this->m_beginStorage = (byte *) psz;
+   this->m_begin              = this->storage_begin();
+   this->m_sizeStorage          = strlen(psz);
+   this->m_end = this->m_begin + this->m_sizeStorage;
    m_bAligned                    = false;
 
 }
@@ -220,8 +218,8 @@ memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, ::u32 n
 {
 
    __UNREFERENCED_PARAMETER(nAllocFlags);
-   m_memory.m_pprimitivememory   = this;
-   m_memory.m_pcontainer         = pcontainer;
+   this->m_pprimitivememory   = this;
+   this->m_pcontainer         = pcontainer;
    if(dwAllocationAddUp == 0)
    {
 #ifdef __DEBUG
@@ -230,7 +228,7 @@ memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, ::u32 n
       dwAllocationAddUp = 4 * 1024; // 4k
 #endif //!__DEBUG
    }
-   m_memory.m_dAllocationRateUp  = m_memory.m_dAllocationRateUp;
+   this->m_dAllocationRateUp  = this->m_dAllocationRateUp;
    m_bAligned           = false;
 
 }
@@ -239,27 +237,27 @@ memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, ::u32 n
 memory::memory(memory_container * pcontainer, const void * pdata, memsize size)
 {
 
-   m_memory.m_begin = (::byte*) pdata;
-   m_memory.m_end = m_memory.m_begin + size;
+   this->m_begin = (::byte*) pdata;
+   this->m_end = this->m_begin + size;
 
-   m_memory.m_bOwner = false;
-   m_memory.m_bReadOnly = true;
-   m_memory.m_beginStorage = (::byte*)pdata;
+   this->m_bOwner = false;
+   this->m_bReadOnly = true;
+   this->m_beginStorage = (::byte*)pdata;
 
-   m_memory.m_iOffset = 0;
-   m_memory.m_iMaxOffset = 0;
-   m_memory.m_sizeStorage = size;
-   m_memory.m_dAllocationRateUp = 0.0;
-   m_memory.m_dwAllocationAddUp = 0;
+   this->m_iOffset = 0;
+   this->m_iMaxOffset = 0;
+   this->m_sizeStorage = size;
+   this->m_dAllocationRateUp = 0.0;
+   this->m_dwAllocationAddUp = 0;
 
-   m_memory.m_pcontainer = pcontainer;
+   this->m_pcontainer = pcontainer;
 
-   m_memory.m_ememory = e_memory_primitive;
+   this->m_ememory = e_memory_primitive;
 
-   m_memory.m_preadonlymemory = nullptr;
-   m_memory.m_pprimitivememory = this;
-   m_memory.m_psharedmemory = nullptr;
-   m_memory.m_pvirtualmemory = nullptr;
+   this->m_preadonlymemory = nullptr;
+   this->m_pprimitivememory = this;
+   this->m_psharedmemory = nullptr;
+   this->m_pvirtualmemory = nullptr;
 
 }
 
@@ -292,12 +290,12 @@ memory::memory(memory_container * pcontainer, const void * pdata, memsize size)
 memory::~memory()
 {
 
-   if(m_memory.storage_begin() != nullptr)
+   if(this->storage_begin() != nullptr)
    {
 
-      impl_free(m_memory.storage_begin());
+      impl_free(this->storage_begin());
 
-      m_memory.m_beginStorage = nullptr;
+      this->m_beginStorage = nullptr;
 
    }
 
@@ -427,7 +425,7 @@ byte * memory::impl_realloc(void * pdata, memsize dwAllocation)
 void memory::impl_free(byte * pdata)
 {
 
-   if (m_memory.m_bOwner)
+   if (this->m_bOwner)
    {
 
       memory_free(pdata);

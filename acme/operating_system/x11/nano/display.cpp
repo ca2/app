@@ -26,6 +26,16 @@ void * x11_get_display();
 void set_main_user_thread();
 
 
+namespace acme
+{
+
+
+   extern acme * g_p;
+
+
+} // namespace acme
+
+
 namespace x11
 {
 
@@ -244,7 +254,7 @@ namespace x11
    display * display::get(::particle * pparticle, bool bBranch, Display * pdisplay)
    {
 
-      critical_section_lock lock(::globals_critical_section());
+      critical_section_lock lock(::acme::g_p->globals_critical_section());
 
       if (g_p == nullptr)
       {

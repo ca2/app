@@ -126,6 +126,9 @@ namespace acme
       ::memory_counter *               m_pmemorycounter;
 
 
+      bool                             m_bOutputDebugString;
+
+
       acme();
       ~acme();
 

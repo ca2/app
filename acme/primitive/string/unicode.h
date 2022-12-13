@@ -109,13 +109,13 @@ CLASS_DECL_ACME ::i32 unicode_to_lower_case(::i32 i);
 CLASS_DECL_ACME ::i32 unicode_to_upper_case(::i32 i);
 
 
-inline const ::ansi_character * _string_scan(::const_ansi_range range, ::const_ansi_range rangeCharacters) noexcept;
-inline const ::wd16_character * _string_scan(::const_wd16_range range, ::const_wd16_range rangeCharacters) noexcept;
-inline const ::wd32_character * _string_scan(::const_wd32_range range, ::const_wd32_range rangeCharacters) noexcept;
+//inline const ::ansi_character * _string_scan(::const_ansi_range range, ::const_ansi_range rangeCharacters) noexcept;
+//inline const ::wd16_character * _string_scan(::const_wd16_range range, ::const_wd16_range rangeCharacters) noexcept;
+//inline const ::wd32_character * _string_scan(::const_wd32_range range, ::const_wd32_range rangeCharacters) noexcept;
 
 
-template < primitive_character CHARACTER >
-inline const CHARACTER * string_scan(const ::string_range < CHARACTER > & block, const ::string_range < CHARACTER > & blockCharacters) noexcept;
+//template < primitive_character CHARACTER >
+//inline const CHARACTER * string_scan(const ::string_range < CHARACTER > & block, const ::string_range < CHARACTER > & blockCharacters) noexcept;
 
 
 inline i32 ansichar_unicode_len(::wd32_character i);

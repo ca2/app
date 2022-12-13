@@ -69,31 +69,31 @@ namespace freedesktop
    string desktop_file::proper_category(string str)
    {
 
-      if(str.compare_ci("Multimedia") == 0)
+      if(str.case_insensitive_order("Multimedia") == 0)
       {
 
          return "AudioVideo";
 
       }
-      else if(str.compare_ci("Accessory") == 0)
+      else if(str.case_insensitive_order("Accessory") == 0)
       {
 
          return "Utility";
 
       }
-      else if(str.compare_ci("Accessories") == 0)
+      else if(str.case_insensitive_order("Accessories") == 0)
       {
 
       return "Utility";
 
       }
-      else if(str.compare_ci("Utility") == 0)
+      else if(str.case_insensitive_order("Utility") == 0)
       {
 
          return "Utility";
 
       }
-      else if(str.compare_ci("Utilities") == 0)
+      else if(str.case_insensitive_order("Utilities") == 0)
       {
 
          return "Utility";

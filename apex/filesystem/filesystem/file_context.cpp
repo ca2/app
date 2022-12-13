@@ -1404,7 +1404,7 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   return ::move(*pfile->memory().m_memory.m_pprimitivememory);
+   return ::move(*pfile->memory().m_pprimitivememory);
 
 }
 

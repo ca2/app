@@ -63,7 +63,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 add_subdirectory(__implement)
 
 
-add_executable(${PROJECT_NAME} __implement.cpp)
+add_executable(${PROJECT_NAME} application.cpp)
 
 
 list(APPEND executable_references

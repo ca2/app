@@ -383,7 +383,7 @@ namespace aura
 
          strPrefix += "_";
 
-         strName.begins_eat_ci(strPrefix);
+         strName.case_insensitive_begins_eat(strPrefix);
 
          return strName;
 
@@ -479,7 +479,7 @@ namespace aura
 
 #elif defined(_UWP)
 
-      //      strLibraryName.begins_eat_ci("m_");
+      //      strLibraryName.case_insensitive_begins_eat("m_");
 
 #endif
 
@@ -532,7 +532,7 @@ namespace aura
 
 #elif defined(_UWP)
 
-      //      strLibraryName.begins_eat_ci("m_");
+      //      strLibraryName.case_insensitive_begins_eat("m_");
 
 #endif
 
@@ -714,9 +714,9 @@ namespace aura
 //
 //         strPrefix += "_";
 //
-//         strAppId.begins_eat_ci(strPrefix);
+//         strAppId.case_insensitive_begins_eat(strPrefix);
 //
-//         //if(strAppId.begins_eat_ci(strPrefix))
+//         //if(strAppId.case_insensitive_begins_eat(strPrefix))
 //         {
 //
 //            stra.add(strAppId);

@@ -1600,7 +1600,7 @@ bool payload::is_true(const ::payload & payload, bool bDefault) const
          case e_type_key_exists:
             return true;
          case e_type_string:
-            return !m_str.is_empty() && !(m_str.compare_ci("no") == 0 || m_str.compare_ci("false") == 0 || m_str.compare_ci("0") == 0);
+            return !m_str.is_empty() && !(m_str.case_insensitive_order("no") == 0 || m_str.case_insensitive_order("false") == 0 || m_str.case_insensitive_order("0") == 0);
          case e_type_i32:
             return m_i32 != 0;
          case e_type_u32:
@@ -1765,7 +1765,7 @@ bool payload::is_new_or_null() const
 
 
 
-::i32 payload::compare_ci(const class ::payload & payload) const
+::i32 payload::case_insensitive_order(const class ::payload & payload) const
 {
    if(m_etype == ::e_type_i32_array)
    {
@@ -1823,15 +1823,15 @@ bool payload::is_new_or_null() const
    }
    else
    {
-      return string().compare_ci(payload.string());
+      return string().case_insensitive_order(payload.string());
    }
    return -2;
 }
 
-::i32 payload::compare_ci(const char * psz) const
+::i32 payload::case_insensitive_order(const char * psz) const
 {
    ::payload payload(psz);
-   return compare_ci(payload);
+   return case_insensitive_order(payload);
 }
 
 
@@ -4498,7 +4498,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
       index upperbound = minimum(array_get_upper_bound(), last);
       for(index i = find; i <= upperbound; i++)
       {
-         if(at(i).string().compare_ci(psz) == 0)
+         if(at(i).string().case_insensitive_order(psz) == 0)
          {
             return true;
          }
@@ -4511,7 +4511,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 
 ::payload payload::equals_ci_get(const char * pszCompare, ::payload varOnEqual, ::payload varOnDifferent) const
 {
-   if(compare_ci(pszCompare) == 0)
+   if(case_insensitive_order(pszCompare) == 0)
    {
       return varOnEqual;
    }
@@ -4523,7 +4523,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 
 ::payload payload::equals_ci_get(const char * pszCompare, ::payload varOnEqual) const
 {
-   if(compare_ci(pszCompare) == 0)
+   if(case_insensitive_order(pszCompare) == 0)
    {
       return varOnEqual;
    }
@@ -5776,7 +5776,7 @@ block payload::block () const
 //      }
 //      //else if(cast < property >() != nullptr)
 //      //{
-//      //   return cast < property >()->name().compare_ci(lpszName) == 0;
+//      //   return cast < property >()->name().case_insensitive_order(lpszName) == 0;
 //      //}
 //      else
 //      {
@@ -5824,18 +5824,18 @@ void payload::consume_identifier(const char * & psz, const char * pszEnd)
 
    ::string str(pszStart, pszParse - pszStart);
 
-   if (str.compare_ci("false") == 0)
+   if (str.case_insensitive_order("false") == 0)
    {
 
       operator = (false);
 
    }
-   else if (str.compare_ci("true") == 0)
+   else if (str.case_insensitive_order("true") == 0)
    {
 
       operator = (true);
    }
-   else if (str.compare_ci("null") == 0)
+   else if (str.case_insensitive_order("null") == 0)
    {
       set_type(::e_type_null);
    }
@@ -6180,7 +6180,7 @@ void payload::parse_network_payload(const char *& pszJson, const char * pszEnd)
 
       ::string str = ::str().consume_quoted_value_ex(pszJson, pszEnd);
 
-      if(str.begins_eat_ci("hls://"))
+      if(str.case_insensitive_begins_eat("hls://"))
       {
 
          string_array stra;
@@ -6289,7 +6289,7 @@ void payload::parse_network_payload(const char *& pszJson, const char * pszEnd)
 
          property_parse_network_payload_id(atom, pszJson, pszEnd);
 
-         if (varChild.string().compare_ci(atom) == 0)
+         if (varChild.string().case_insensitive_order(atom) == 0)
          {
 
             ::str().consume_spaces(pszJson, 0, pszEnd);
@@ -6901,9 +6901,9 @@ bool payload::is_false() const
 
    // simple classes
    case e_type_string:
-      return m_str.is_empty() || !m_str.compare_ci("false")  || !m_str.compare_ci("no");
+      return m_str.is_empty() || !m_str.case_insensitive_order("false")  || !m_str.case_insensitive_order("no");
    case e_type_pstring:
-      return !m_pstr || m_pstr->is_empty() || !m_pstr->compare_ci("false")  || !m_pstr->compare_ci("no");
+      return !m_pstr || m_pstr->is_empty() || !m_pstr->case_insensitive_order("false")  || !m_pstr->case_insensitive_order("no");
    case e_type_type:
       return m_str.is_empty();
    case e_type_time:
@@ -6911,9 +6911,9 @@ bool payload::is_false() const
    case e_type_ptime:
       return !m_ptime || m_ptime->is_null();
    case e_type_id:
-      return m_atom.is_empty() || !m_atom.compare_ci("false") || !m_atom.compare_ci("no");
+      return m_atom.is_empty() || !m_atom.case_insensitive_order("false") || !m_atom.case_insensitive_order("no");
    case e_type_pid:
-      return !m_pid || m_pid->is_empty() || !m_pid->compare_ci("false") || !m_pid->compare_ci("no");
+      return !m_pid || m_pid->is_empty() || !m_pid->case_insensitive_order("false") || !m_pid->case_insensitive_order("no");
    case e_type_time:
       return !m_time.m_i;
    case e_type_file_time:
@@ -7087,9 +7087,9 @@ bool payload::is_set_false() const
       return !m_f64;
    // simple classes
    case e_type_string:
-      return m_str.is_empty() || !m_str.compare_ci("false")  || !m_str.compare_ci("no");
+      return m_str.is_empty() || !m_str.case_insensitive_order("false")  || !m_str.case_insensitive_order("no");
    case e_type_pstring:
-      return !m_pstr || m_pstr->is_empty() || !m_pstr->compare_ci("false")  || !m_pstr->compare_ci("no");
+      return !m_pstr || m_pstr->is_empty() || !m_pstr->case_insensitive_order("false")  || !m_pstr->case_insensitive_order("no");
    case e_type_type:
       return m_str.is_empty();
    case e_type_time:
@@ -7097,9 +7097,9 @@ bool payload::is_set_false() const
    case e_type_ptime:
       return !m_ptime || m_ptime->is_null();
    case e_type_id:
-      return m_atom.is_empty() || !m_atom.compare_ci("false") || !m_atom.compare_ci("no");
+      return m_atom.is_empty() || !m_atom.case_insensitive_order("false") || !m_atom.case_insensitive_order("no");
    case e_type_pid:
-      return !m_pid || m_pid->is_empty() || !m_pid->compare_ci("false") || !m_pid->compare_ci("no");
+      return !m_pid || m_pid->is_empty() || !m_pid->case_insensitive_order("false") || !m_pid->case_insensitive_order("no");
    case e_type_time:
       return !m_time.m_i;
    case e_type_file_time:
@@ -7250,7 +7250,7 @@ void payload::_001Add(const string_array & straParam)
    if(straParam.get_count() == 1)
    {
 
-      if(string().compare_ci(straParam[0]) == 0)
+      if(string().case_insensitive_order(straParam[0]) == 0)
       {
 
          return;

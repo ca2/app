@@ -3955,10 +3955,10 @@ namespace user
 
          strPath = ppane->m_atom;
 
-         if(strPrefix.is_empty() || strPath.begins_ci(strPrefix))
+         if(strPrefix.is_empty() || strPath.case_insensitive_begins(strPrefix))
          {
 
-            if(strSuffix.is_empty() || strPath.ends_ci(strSuffix))
+            if(strSuffix.is_empty() || strPath.case_insensitive_ends(strSuffix))
             {
 
                stra.add(strPath);
@@ -4006,10 +4006,10 @@ namespace user
 
          strPath = ppane->m_atom;
 
-         if(strPrefix.is_empty() || strPath.begins_ci(strPrefix))
+         if(strPrefix.is_empty() || strPath.case_insensitive_begins(strPrefix))
          {
 
-            if(strSuffix.is_empty() || strPath.ends_ci(strSuffix))
+            if(strSuffix.is_empty() || strPath.case_insensitive_ends(strSuffix))
             {
 
                stra.add(strPath);

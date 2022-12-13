@@ -3,6 +3,42 @@
 #endif
 
 
+inline ::std::strong_ordering memory_order(const void * m1, const void * m2, size_t s)
+{
+
+   if(::is_null(m1))
+   {
+
+      if(::is_null(m2))
+      {
+
+         return ::std::strong_ordering::equal;
+
+      }
+      else
+      {
+
+         return ::std::strong_ordering::less;
+
+      }
+
+   }
+   else if(::is_null(m2))
+   {
+
+      return ::std::strong_ordering::greater;
+
+   }
+   else if(s == 0)
+   {
+
+      return ::std::strong_ordering::equal;
+
+   }
+
+   return memcmp(m1, m2, s) <=> 0;
+
+}
 
 
 void check_bounds(u8 * p)
@@ -14,13 +50,13 @@ void check_bounds(u8 * p)
 
    zero(a);
 
-   if (__memcmp(&p[sizeof(uptr)], a, sizeof(a)) != 0)
+   if (memory_order(&p[sizeof(uptr)], a, sizeof(a)) != 0)
    {
 
       output_debug_string("memory corruption before allocation");
 
    }
-   if (__memcmp(&p[sizeof(uptr) + 256 + *pinteraction], a, sizeof(a)) != 0)
+   if (memory_order(&p[sizeof(uptr) + 256 + *pinteraction], a, sizeof(a)) != 0)
    {
 
       output_debug_string("memory corruption after allocation");

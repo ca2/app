@@ -2,10 +2,10 @@
 #pragma once
 
 
-#ifdef _WIN32
-
-
 CLASS_DECL_ACME const void * memory_find(const void* l, memsize l_len, const void* s, memsize s_len);
+
+
+#ifdef _WIN32
 
 
 inline const void * _memory_find(const void* l, memsize l_len, const void* s, memsize s_len)
@@ -34,6 +34,16 @@ inline const void * _memory_find(const void* l, memsize l_len, const void* s, me
    }
 
    return nullptr;
+
+}
+
+#else
+
+
+inline const void * _memory_find(const void* l, memsize l_len, const void* s, memsize s_len)
+{
+
+   return memmem(l, l_len, s, s_len);
 
 }
 

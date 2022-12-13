@@ -504,7 +504,7 @@ namespace axis
 //
 //      string strStyle(pszStyle);
 //
-//      if (strStyle.compare_ci("pcre") == 0)
+//      if (strStyle.case_insensitive_order("pcre") == 0)
 //      {
 //
 //         return compile_pcre(str);
@@ -521,7 +521,7 @@ namespace axis
 //
 //      string strStyle(pszStyle);
 //
-//      if (strStyle.compare_ci("pcre") == 0)
+//      if (strStyle.case_insensitive_order("pcre") == 0)
 //      {
 //
 //         return create_pcre_context(iCount);

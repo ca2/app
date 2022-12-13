@@ -272,8 +272,8 @@ public:
    //::topic_pointer create_topic(const ::atom & atom);
 
 
-   bool _handle_uri(const ::block & blockUri) override;
-   bool _handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset) override;
+   bool _handle_uri(const ::string & strUri) override;
+   bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
 
 
    virtual bool handle_uri(const ::string & stringUri);
@@ -331,75 +331,75 @@ inline void __defer_raw_construct_new(::pointer<TYPE> & ptype)
 }
 
 
-template < typename TYPE >
-inline ::pointer<TYPE>matter::__create(::factory::factory * pfactory)
-{
-
-   return ::__create<TYPE>(this, pfactory);
-
-}
-
-
+//template < typename TYPE >
+//inline ::pointer<TYPE> matter::__create(::factory::factory * pfactory)
+//{
+//
+//   return ::__create<TYPE>(this, pfactory);
+//
+//}
 
 
-template < typename TYPE >
-inline ::pointer<TYPE>matter::__id_create(const ::atom & atom, ::factory::factory * pfactory)
-{
 
-   auto pfactoryitem = pfactory->get_factory_item(atom);
+//
+//template < typename TYPE >
+//inline ::pointer<TYPE>matter::__id_create(const ::atom & atom, ::factory::factory * pfactory)
+//{
+//
+//   auto pfactoryitem = pfactory->get_factory_item(atom);
+//
+//   if (!pfactoryitem)
+//   {
+//
+//      throw_exception(error_no_factory);
+//
+//   }
+//
+//   auto ptypeNew = pfactoryitem->create_particle();
+//
+//   if (!ptypeNew)
+//   {
+//
+//      throw_exception(error_no_memory);
+//
+//   }
+//
+//   ::pointer<TYPE>p;
+//
+//   p = ptypeNew;
+//
+//   if (!p)
+//   {
+//
+//      throw_exception(error_wrong_type);
+//
+//   }
+//
+//   p->set_flag(e_flag_factory);
+//
+//   //auto estatus = p->initialize(this);
+//
+//   p->initialize(this);
+//
+//   //if (!estatus)
+//   //{
+//
+//   //   return estatus;
+//
+//   //}
+//
+//   return ::move(p);
+//
+//}
+//
 
-   if (!pfactoryitem)
-   {
-
-      throw_exception(error_no_factory);
-
-   }
-
-   auto ptypeNew = pfactoryitem->create_particle();
-
-   if (!ptypeNew)
-   {
-
-      throw_exception(error_no_memory);
-
-   }
-
-   ::pointer<TYPE>p;
-
-   p = ptypeNew;
-
-   if (!p)
-   {
-
-      throw_exception(error_wrong_type);
-
-   }
-
-   p->set_flag(e_flag_factory);
-
-   //auto estatus = p->initialize(this);
-
-   p->initialize(this);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   return ::move(p);
-
-}
-
-
-template < typename TYPE >
-inline ::pointer<TYPE>matter::__create_new()
-{
-
-   return ::__create_new<TYPE>(this);
-
-}
+//template < typename TYPE >
+//inline ::pointer<TYPE>matter::__create_new()
+//{
+//
+//   return ::__create_new<TYPE>(this);
+//
+//}
 
 
 
@@ -453,90 +453,90 @@ inline ::pointer<TYPE>matter::__create_new()
 //}
 
 
-template < typename TYPE >
-inline void matter::__defer_construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
-{
+//template < typename TYPE >
+//inline void matter::__defer_construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
+//{
+//
+//   if (::is_null(p))
+//   {
+//
+//      __construct(p, pfactory);
+//
+//   }
+//
+//}
 
-   if (::is_null(p))
-   {
-
-      __construct(p, pfactory);
-
-   }
-
-}
-
-
-template < typename TYPE >
-inline void matter::__defer_construct_new(::pointer<TYPE> & p)
-{
-
-   if (::is_null(p))
-   {
-
-      __construct_new(p);
-
-   }
-
-}
-
-
-template < typename TYPE >
-inline void matter::__construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
-{
-
-   ::__construct(this, p, pfactory);
-
-}
-
-
-template < typename BASE_TYPE, typename TYPE >
-inline void matter::__construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p)
-{
-
-   __construct(ptype, p.m_p);
-
-}
-
-
-template < typename BASE_TYPE, typename TYPE >
-inline void matter::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
-{
-
-   if (::is_null(p))
-   {
-
-      ERROR("matter::__assign_and_initialize p is null (is assignee type derived from BASE_TYPE?");
-
-      throw_exception(::error_null_pointer);
-
-   }
-
-   ptype.release();
-
-   ptype = p;
-
-   ptype->initialize(this);
-
-}
-
-
-template < typename TYPE >
-inline void matter::__id_construct(::pointer<TYPE> & p, const ::atom & atom, ::factory::factory * pfactory)
-{
-
-   ::__id_construct(this, p, atom, pfactory);
-
-}
-
-
-template < typename TYPE >
-inline void matter::__construct_new(::pointer<TYPE> & p)
-{
-
-   ::__construct_new(this, p);
-
-}
+//
+//template < typename TYPE >
+//inline void matter::__defer_construct_new(::pointer<TYPE> & p)
+//{
+//
+//   if (::is_null(p))
+//   {
+//
+//      __construct_new(p);
+//
+//   }
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline void matter::__construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
+//{
+//
+//   ::__construct(this, p, pfactory);
+//
+//}
+//
+//
+//template < typename BASE_TYPE, typename TYPE >
+//inline void matter::__construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p)
+//{
+//
+//   __construct(ptype, p.m_p);
+//
+//}
+//
+//
+//template < typename BASE_TYPE, typename TYPE >
+//inline void matter::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
+//{
+//
+//   if (::is_null(p))
+//   {
+//
+//      ERROR("matter::__assign_and_initialize p is null (is assignee type derived from BASE_TYPE?");
+//
+//      throw_exception(::error_null_pointer);
+//
+//   }
+//
+//   ptype.release();
+//
+//   ptype = p;
+//
+//   ptype->initialize(this);
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline void matter::__id_construct(::pointer<TYPE> & p, const ::atom & atom, ::factory::factory * pfactory)
+//{
+//
+//   ::__id_construct(this, p, atom, pfactory);
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline void matter::__construct_new(::pointer<TYPE> & p)
+//{
+//
+//   ::__construct_new(this, p);
+//
+//}
 
 
 //template < typename BASE_TYPE >

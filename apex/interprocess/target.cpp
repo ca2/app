@@ -57,7 +57,7 @@ namespace interprocess
    }
 
 
-   bool target::_handle_uri(const ::block & blockUri)
+   bool target::_handle_uri(const ::string & strUri)
    {
 
       for (auto & phandler : m_particleaHandler)
@@ -66,7 +66,7 @@ namespace interprocess
          try
          {
 
-            if (phandler->_handle_uri(blockUri))
+            if (phandler->_handle_uri(strUri))
             {
 
                return true;
@@ -88,7 +88,7 @@ namespace interprocess
    }
 
 
-   //bool target::on_interprocess_handle(const ::block & blockUri)
+   //bool target::on_interprocess_handle(const ::string & strUri)
    //{
 
    //   string strUri = blockUri;
@@ -266,7 +266,7 @@ namespace interprocess
    //}
 
 
-   //bool target::on_interprocess_handle(const ::block & blockUri)
+   //bool target::on_interprocess_handle(const ::string & strUri)
    //{
 
    //   //if (string_begins_ci(strMessage, "synch_"))

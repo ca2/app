@@ -983,10 +983,10 @@ namespace acme
          else if (payload.get_type() == ::e_type_property_set)
          {
 
-            for (auto& value : payload.propset().values())
+            for (auto& pproperty : payload.propset())
             {
 
-               auto iItem = ::acme::array::add(array, value.as_string());
+               auto iItem = ::acme::array::add(array, pproperty->operator ::string());
 
                if (i < 0)
                {

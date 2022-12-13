@@ -183,7 +183,7 @@ void app_core::system_prep()
 //
 //    string str = apple_get_bundle_identifier();
 //
-//    str.begins_eat_ci("com.ca2.");
+//    str.case_insensitive_begins_eat("com.ca2.");
 //
 //    str.replace(".", "/");
 //
@@ -593,7 +593,7 @@ pacmedirectory->ca2roaming() / "program";
 //
 //      void * hmodule = nullptr;
 //
-//      bool bInApp = strAppId.compare_ci("acid") == 0;
+//      bool bInApp = strAppId.case_insensitive_order("acid") == 0;
 //
 //      if (!bInApp)
 //      {
@@ -1550,7 +1550,7 @@ string merge_colon_args(const array < string_array > & str2a)
          else if (i > iFindColon)
          {
 
-            if (str.begins_eat_ci("app="))
+            if (str.case_insensitive_begins_eat("app="))
             {
 
                if (straAfterColon.find_first_begins("app=") >= 0) // fixed case when added below :D..O

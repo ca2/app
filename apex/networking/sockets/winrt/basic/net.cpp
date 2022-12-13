@@ -748,11 +748,11 @@ namespace sockets
 
       string str(psz);
 
-      if(str.compare_ci("http"))
+      if(str.case_insensitive_order("http"))
       {
          return 80;
       }
-      else if(str.compare_ci("https"))
+      else if(str.case_insensitive_order("https"))
       {
          return 443;
       }

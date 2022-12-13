@@ -170,7 +170,7 @@ void networking_application::add_handler(const ::string& strPrefix, networking_a
 
          string strScript = "/" + strFolder;
 
-         if (strRequestScript == strScript || strRequestScript.begins_ci(strScript + "/"))
+         if (strRequestScript == strScript || strRequestScript.case_insensitive_begins(strScript + "/"))
          {
 
             auto estatus = phandler->on_html_response(strHtml, strUrl, setPost);

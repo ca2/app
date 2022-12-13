@@ -2,7 +2,6 @@
 
 
 #include "acme/memory/_memory.h"
-//#include "acme/primitive/mathematics/_.h"
 #include "acme/primitive/primitive/_u32hash.h"
 
 
@@ -81,7 +80,7 @@ struct CLASS_DECL_ACME block :
    block(enum_as_block, const TYPE & t) : block((void *)&t, sizeof(t)) {}
    block(const void * begin, const void * end) : block((const ::byte *)begin, (const ::byte *)end) {}
    template < primitive_integral INTEGRAL >
-   block(const void * data, INTEGRAL count, bool bNullTerminated = false) : BLOCK((::byte *) data, count, bNullTerminated) { }
+   block(const void * data, INTEGRAL count, e_range erange = e_range_none) : BLOCK((::byte *) data, count, erange) { }
 
    block & operator = (const block & block) 
    {

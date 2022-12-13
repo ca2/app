@@ -28,6 +28,9 @@ using const_wide_range     = ::string_range < const ::wide_character * >;
 //using const_string_range   = ::const_ansi_range;
 //using const_wstring_range  = ::const_wide_range;
 
+using const_ansi_raw_range     = ::range < const ::ansi_character * >;
+using const_wd16_raw_range     = ::range < const ::wd16_character * >;
+using const_wd32_raw_range     = ::range < const ::wd32_character * >;
 
 
 

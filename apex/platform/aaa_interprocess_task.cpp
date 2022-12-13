@@ -59,7 +59,7 @@ void ::interprocess::task::do_task(const string& strObject, const string& strMem
 
    }
 
-   if (strMember.begins_ci("reply."))
+   if (strMember.case_insensitive_begins("reply."))
    {
 
       m_payload = true;

@@ -62,7 +62,7 @@
 //   CFStringRef button2_ref = nullptr;
 //   CFStringRef button3_ref = nullptr;
 //
-//   if(strButton1.has_char() || strButton1.compare_ci("ok") != 0)
+//   if(strButton1.has_char() || strButton1.case_insensitive_order("ok") != 0)
 //      button1_ref = CFStringCreateWithCString(kCFAllocatorDefault, strButton1, kCFStringEncodingUTF8);
 //   if(strButton2.has_char())
 //      button2_ref = CFStringCreateWithCString(kCFAllocatorDefault, strButton2, kCFStringEncodingUTF8);

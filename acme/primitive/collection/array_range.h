@@ -18,6 +18,8 @@ public:
 
    using RANGE = array_range < RANGE_TYPE >;
 
+   using BASE_RANGE = RANGE_TYPE;
+
    using CONST_RAW_RANGE = RANGE_TYPE::CONST_RAW_RANGE;
 
 
@@ -37,11 +39,13 @@ public:
 
 
    array_range(non_const<ITEM> & item) : RANGE_TYPE(&item, (&item) + 1) {}
-   array_range(const array_range & array_range) : RANGE_TYPE(array_range) {}
-   array_range(array_range && array_range) noexcept : RANGE_TYPE(::move(array_range)) {}
+   template<typed_range<iterator> RANGE>
+   array_range(const RANGE &range) : BASE_RANGE(range) {}
+   template<typed_range<const_iterator> RANGE>
+   array_range(const RANGE &range) : BASE_RANGE(range) {}
    template < primitive_integral INTEGRAL >
-   array_range(const_iterator data, INTEGRAL count, bool bNullTerminated = false) : RANGE_TYPE(data, count, bNullTerminated) { }
-   array_range(const_iterator begin, const_iterator end, bool bNullTerminated = false) : RANGE_TYPE(begin, end, bNullTerminated) {}
+   array_range(const_iterator data, INTEGRAL count, e_range erange = e_range_none) : RANGE_TYPE(data, count, erange) { }
+   array_range(const_iterator begin, const_iterator end, e_range erange = e_range_none) : RANGE_TYPE(begin, end, erange) {}
    template < primitive_block BLOCK_TYPE >
    array_range(enum_as_block, const BLOCK_TYPE & block) :
       RANGE_TYPE(e_no_initialize)
@@ -60,7 +64,7 @@ public:
 
  
    array_range & operator = (const array_range & array_range) { RANGE_TYPE::operator=(array_range); return *this; }
-   array_range & operator = (array_range && array_range) { RANGE_TYPE::operator=(::move(array_range)); return *this; }
+   //array_range & operator = (array_range && array_range) { RANGE_TYPE::operator=(::move(array_range)); return *this; }
 
 
    //array_range(const ITEM * data) :range(data) { }
@@ -85,7 +89,14 @@ public:
 
       this->m_end = (iterator)((::byte *)this->begin() + block.length_in_bytes() / this->item_size());
 
-      this->m_bNullTerminated = block.item_size() >= this->item_size() ? block.is_null_terminated() : false;
+      this->m_erange = block.m_erange & e_range_read_only_block;
+
+      if(block.item_size() >= this->item_size() ? block.is_null_terminated() : false)
+      {
+
+         this->m_erange |= e_range_null_terminated;
+
+      }
 
    }
 

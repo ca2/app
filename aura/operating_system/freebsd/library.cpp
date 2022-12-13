@@ -145,14 +145,14 @@ CLASS_DECL_AURA void * __node_library_open_ca2(const ::string & pszPath, string 
 
    string strPath(pszPath);
 
-   if(!strPath.ends_ci(".so"))
+   if(!strPath.case_insensitive_ends(".so"))
    {
 
       strPath += ".so";
 
    }
 
-   if(!strPath.begins_ci("lib"))
+   if(!strPath.case_insensitive_begins("lib"))
    {
 
       strPath = "lib" + strPath;

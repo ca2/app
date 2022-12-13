@@ -16,7 +16,7 @@ CLASS_DECL_ACME ::string demangle(const char * pszMangledName);
 //CLASS_DECL_ACME ::critical_section * factory_critical_section();
 //
 template < typename TYPE >
-inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory = ::get_task_sub_system_factory());
+inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory = ::get_system_factory());
 
 namespace factory
 {
@@ -425,7 +425,7 @@ namespace factory
 
       auto pfactory = __new(::factory::reusable_factory_item< TYPE, ORIGIN_TYPE >());
 
-      factory_item < ORIGIN_TYPE >() = pfactory;
+      factory_item < TYPE, ORIGIN_TYPE >() = pfactory;
 
       return pfactory;
 
@@ -756,7 +756,7 @@ namespace factory
 
 
 template < typename TYPE >
-inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory = ::get_task_sub_system_factory())
+inline void __raw_construct(::pointer<TYPE>& p, ::factory::factory* pfactory = ::get_system_factory())
 {
 
    auto& pfactoryitem = pfactory->get_factory_item< TYPE >();
@@ -817,7 +817,7 @@ inline ::pointer<BASE_TYPE> __raw_create(::factory::factory* pfactory)
 
 
 template < typename TYPE >
-inline void __construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory = ::get_task_sub_system_factory())
+inline void __construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory* pfactory = ::get_system_factory())
 {
 
    __raw_construct(p, pfactory);
@@ -828,7 +828,7 @@ inline void __construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::fa
 
 
 template < typename BASE_TYPE >
-inline ::pointer < BASE_TYPE > __create(::particle* pparticle, ::factory::factory* pfactory = ::get_task_sub_system_factory())
+inline ::pointer < BASE_TYPE > __create(::particle* pparticle, ::factory::factory* pfactory = ::get_system_factory())
 {
 
    ::pointer < BASE_TYPE > p;
@@ -859,7 +859,7 @@ inline void __defer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::facto
 
 
 template < typename TYPE >
-inline void __id_construct(particle* pparticle, ::pointer<TYPE>& p, const ::atom& atom, ::factory::factory* pfactory = ::get_task_sub_system_factory())
+inline void __id_construct(particle* pparticle, ::pointer<TYPE>& p, const ::atom& atom, ::factory::factory* pfactory = ::get_system_factory())
 {
 
    auto& pfactoryitem = pfactory->get_factory_item(atom);
@@ -901,7 +901,7 @@ inline void __id_construct(particle* pparticle, ::pointer<TYPE>& p, const ::atom
 
 
 template < typename TYPE >
-inline ::pointer < TYPE > __id_create(particle* pparticle, const ::atom& atom, ::factory::factory* pfactory = ::get_task_sub_system_factory())
+inline ::pointer < TYPE > __id_create(particle* pparticle, const ::atom& atom, ::factory::factory* pfactory = ::get_system_factory())
 {
 
    auto& pfactoryitem = pfactory->get_factory_item(atom);

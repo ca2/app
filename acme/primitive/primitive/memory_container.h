@@ -225,7 +225,7 @@ memory_container::memory_container(PAYLOAD & payload)
 {
 
    m_pmemory = &payload.memory_reference();
-   m_pbyte = m_pmemory->m_memory.data();
-   m_memsize = m_pmemory->m_memory.size();
+   m_pbyte = m_pmemory->data();
+   m_memsize = m_pmemory->size();
 
 }

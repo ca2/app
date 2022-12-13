@@ -1690,7 +1690,7 @@ void simple_frame_window::on_message_close(::message::message* pmessage)
 
       auto papp = get_app();
 
-      if (strImpact.ends_eat_ci("::frame"))
+      if (strImpact.case_insensitive_ends_eat("::frame"))
       {
 
          papp->datastream()->set("frame::" + strImpact + ".visible", bShow);

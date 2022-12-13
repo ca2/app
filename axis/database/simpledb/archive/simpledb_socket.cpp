@@ -123,7 +123,7 @@ namespace simpledb
    /*
    bool socket::http_filter_response_header(atom key, string & strValue)
    {
-      if(strKey.compare_ci("Location") == 0)
+      if(strKey.case_insensitive_order("Location") == 0)
       {
          url_domain domain;
          domain.create(purl->get_server(strValue));
@@ -199,7 +199,7 @@ namespace simpledb
       string str = strExtension;
       str.make_lower();
       string strContentType(pszContentType);
-      if(strContentType.has_char() && strContentType.compare_ci("unknown") != 0)
+      if(strContentType.has_char() && strContentType.case_insensitive_order("unknown") != 0)
       {
          outheader("content-type") = strContentType;
       }

@@ -174,7 +174,7 @@ namespace comparison
       constexpr ::std::strong_ordering order(S s, U u) const
       {
 
-         return s < 0 ? ::std::strong_ordering::less : s <=> u;
+         return s < 0 ? ::std::strong_ordering::less : ::std::make_unsigned_t<S>(s) <=> u;
 
       }
 
@@ -186,10 +186,12 @@ namespace comparison
    {
    public:
 
+
+
       constexpr ::std::strong_ordering order(U u, S s) const
       {
 
-         return s < 0 ? ::std::strong_ordering::greater : u <=> s;
+         return s < 0 ? ::std::strong_ordering::greater : u <=> ::std::make_unsigned_t<S>(s);
 
       }
 
@@ -204,7 +206,7 @@ namespace comparison
       constexpr ::std::strong_ordering order(F f, T t) const
       {
 
-         return (F <=> t) <=> 0;
+         return (f <=> t) <=> 0;
 
       }
 
@@ -219,7 +221,7 @@ namespace comparison
       constexpr ::std::strong_ordering order(T t, F f) const
       {
 
-         return (T <=> f) <=> 0;
+         return (t <=> f) <=> 0;
 
       }
 

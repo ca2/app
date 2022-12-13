@@ -302,7 +302,7 @@ namespace sockets
       {
          m_memoryfile.allocate_internal(m_content_length);
 
-         if(outheader("content-encoding").compare_ci("gzip") != 0
+         if(outheader("content-encoding").case_insensitive_order("gzip") != 0
                && (m_response.attr("http_status_code") < 300 || m_response.attr("http_status_code") >= 400))
          {
 
@@ -347,7 +347,7 @@ namespace sockets
       
       strContentEncoding = outheader("content-encoding");
 
-      if (strContentEncoding.compare_ci("gzip") == 0)
+      if (strContentEncoding.case_insensitive_order("gzip") == 0)
       {
 
          memory_file memoryfile;
@@ -417,7 +417,7 @@ namespace sockets
       if(m_pfile != nullptr)
       {
 
-         if(outheader("content-encoding").compare_ci("gzip") != 0)
+         if(outheader("content-encoding").case_insensitive_order("gzip") != 0)
          {
 
             m_pfile->write(buf,len);

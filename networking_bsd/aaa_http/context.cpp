@@ -58,7 +58,7 @@ namespace http
          set["raw_http"] = true;
 
       }
-      else if (!strServer.ends_ci("ca2.software") && strServer != "ca2.software")
+      else if (!strServer.case_insensitive_ends("ca2.software") && strServer != "ca2.software")
       {
 
          set["raw_http"] = true;
@@ -425,7 +425,7 @@ namespace http
       //      string strFontopusServer;
       //
       //      if(atoi(purl->get_param(pszUrl, "authnone")) == 1
-      //            || purl->get_param(pszUrl,"sessid").compare_ci("noauth") == 0)
+      //            || purl->get_param(pszUrl,"sessid").case_insensitive_order("noauth") == 0)
       //      {
       //
       //         strFontopusServer = pszUrl;
@@ -776,13 +776,13 @@ namespace http
       //   return false;
       //}
 
-      if (payload.compare_ci("DIRECT") == 0)
+      if (payload.case_insensitive_order("DIRECT") == 0)
       {
 
          pproxy->m_bDirect = true;
 
       }
-      else if (payload.begins_eat_ci("PROXY"))
+      else if (payload.case_insensitive_begins_eat("PROXY"))
       {
          payload.trim();
          string_array stra;

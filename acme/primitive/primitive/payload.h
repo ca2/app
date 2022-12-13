@@ -442,7 +442,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    //::comparison::var_strict strictly_compare() const;
 
-   void set_string(const ::const_ansi_range & ansirange);
+   //void set_string(const ::const_ansi_range & ansirange);
    void set_string(const ::string & str);
    void set_string(::string && str);
    void set_id(const ::atom & atom);
@@ -2190,13 +2190,13 @@ inline ::string operator +(const ::string & str, const ::payload & payload)
 //}
 
 
-template < primitive_character CHARACTER >
-inline ::string_base < CHARACTER > & operator+=(::string_base < CHARACTER > & str, const ::payload & payload)
-{
-
-   return str.operator += ((::string) payload);
-
-}
+//template < primitive_character CHARACTER >
+//inline ::string_base < CHARACTER > & operator+=(::string_base < CHARACTER > & str, const ::payload & payload)
+//{
+//
+//   return str.operator += ((::string) payload);
+//
+//}
 
 
 template < ::count c >
@@ -2224,47 +2224,47 @@ inline ::file::path operator / (const ::file::path& path, const ::payload& paylo
 }
 
 
-inline ::file::path & operator += (::file::path& path, const ::payload& payload)
-{
-
-   return path += payload.file_path();
-
-}
-
-
-inline ::file::path & operator /= ( ::file::path& path, const ::payload& payload)
-{
-
-   return path /= payload.file_path();
-
-}
+//inline ::file::path & operator += (::file::path& path, const ::payload& payload)
+//{
+//
+//   return path += payload.file_path();
+//
+//}
 
 
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE >::string_base(const ::payload & payload) :
-   string(payload.operator ::string())
-{
+//inline ::file::path & operator /= ( ::file::path& path, const ::payload& payload)
+//{
+//
+//   return path /= payload.file_path();
+//
+//}
 
 
-}
+//template < typename ITERATOR_TYPE >
+//string_base < ITERATOR_TYPE >::string_base(const ::payload & payload) :
+//   string(payload.operator ::string())
+//{
+//
+//
+//}
 
 
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::payload & payload)
-{
+//template < typename ITERATOR_TYPE >
+//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::payload & payload)
+//{
+//
+//   return operator=(payload.operator ::string());
+//
+//}
 
-   return operator=(payload.operator ::string());
 
-}
-
-
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::payload & payload)
-{
-
-   return operator+=(payload.operator ::string());
-
-}
+//template < typename ITERATOR_TYPE >
+//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::payload & payload)
+//{
+//
+//   return operator+=(payload.operator ::string());
+//
+//}
 
 
 namespace file

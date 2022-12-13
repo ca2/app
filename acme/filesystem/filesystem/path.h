@@ -63,10 +63,10 @@ namespace file
       path(::ansi_character ch, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
          path((const::ansi_string &)ch, epath, iDir, bNormalize, iSize) {}
       path(enum_path epath) { m_epath = epath; }
-      explicit path(const path& path);
-      explicit path(const ::atom & atom) : path(atom.operator string()){}
-      explicit path(const ::payload & payload);
-      explicit path(const ::property & property);
+      path(const path& path);
+      path(const ::atom & atom) : path(atom.operator string()){}
+      path(const ::payload & payload);
+      path(const ::property & property);
       path(RANGE range) : path(::string(range)) {}
       ~path() noexcept;
 
@@ -210,9 +210,9 @@ namespace file
 
 
 
-      path & operator += (const path & path);
-      path & operator += (RANGE range);
-      path & operator += (const ::ansi_string & str);
+      //path & operator += (const path & path);
+      //path & operator += (RANGE range);
+      path & operator += (const ::const_ansi_raw_range & ansirange);
       using path_meta::operator+=;
       path operator / (const path & path) const;
       path operator / (const ::ansi_string & str) const;
@@ -840,23 +840,24 @@ namespace file
    }
 
 
-   inline path& path::operator += (const path& path)
+//   inline path& path::operator += (const path& path)
+//   {
+//
+//      string str = path;
+//
+//      str.trim_left("\\/");
+//
+//      string::operator += (str);
+//
+//      return *this;
+//
+//   }
+
+
+   inline path& path::operator += (const ::const_ansi_raw_range & range)
    {
 
-      string str = path;
-
-      str.trim_left("\\/");
-
-      string::operator += (str);
-
-      return *this;
-
-   }
-
-   inline path& path::operator += (const ::ansi_string& strParam)
-   {
-
-      string str = strParam;
+      string str(range);
 
       str.trim_left("\\/");
 
@@ -869,18 +870,18 @@ namespace file
    }
 
 
-   inline path & path::operator += (RANGE range)
-   {
-
-      range.span("\\/");
-
-      auto pathThis = *this;
-
-      pathThis.::string::operator = (file_path_normalize(pathThis + range, m_epath));
-
-      return *this;
-
-   }
+//   inline path & path::operator += (RANGE range)
+//   {
+//
+//      range.span("\\/");
+//
+//      auto pathThis = *this;
+//
+//      pathThis.::string::operator = (file_path_normalize(pathThis + range, m_epath));
+//
+//      return *this;
+//
+//   }
 
 
 

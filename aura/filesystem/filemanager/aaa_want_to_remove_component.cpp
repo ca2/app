@@ -386,7 +386,7 @@ namespace filemanager
          KEEP(m_bRestoring);
 
          if (pathFilemanagerProject.is_empty() || pcontext->m_papexcontext->dir()->is(pathFilemanagerProject)
-               || pathFilemanagerProject.extension().compare_ci("component") != 0)
+               || pathFilemanagerProject.extension().case_insensitive_order("component") != 0)
          {
 
             m_pathFilemanagerProject =          auto psystem = acmesystem();
@@ -458,7 +458,7 @@ pacmedirectory->localconfig() / "user.component";
 
                      string strOtherPath = strOther.Mid(iFind + 1);
 
-                     if (strOtherPath.compare_ci(strPath) == 0)
+                     if (strOtherPath.case_insensitive_order(strPath) == 0)
                      {
 
                         stra.erase_at(j);

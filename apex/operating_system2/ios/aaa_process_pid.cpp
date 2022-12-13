@@ -258,7 +258,7 @@ int_array module_path_get_pid(const char * csProcessName)
 //
 //      strPath = module_path_from_pid(iCurrentPid);
 //
-//      if(strPath.compare_ci(csProcessName) == 0 )
+//      if(strPath.case_insensitive_order(csProcessName) == 0 )
 //      {
 //
 //         iaPid.add(iCurrentPid);

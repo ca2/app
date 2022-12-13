@@ -69,7 +69,7 @@ namespace html
          if(!m_pedit || !m_pedit->is_window())
          {
 
-            if (m_strType.compare_ci("calculator") == 0)
+            if (m_strType.case_insensitive_order("calculator") == 0)
             {
 
                auto puser = pdata->m_pcoredata->m_pform->user();
@@ -96,7 +96,7 @@ namespace html
 
             pdata->on_create_interaction(m_pedit);
 
-            m_pedit->m_bPassword = pelemental->m_propertyset["type"].compare_ci("password") == 0;
+            m_pedit->m_bPassword = pelemental->m_propertyset["type"].case_insensitive_order("password") == 0;
 
             m_pedit->m_strName = pelemental->m_phtmlbase->get_tag()->get_attr_value("name");
 

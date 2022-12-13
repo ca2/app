@@ -53,25 +53,25 @@ public:
          b = true;
 
       }
-      else if (word.compare_ci("false") == 0)
+      else if (word.case_insensitive_order("false") == 0)
       {
 
          b = false;
 
       }
-      else if (word.compare_ci("true") == 0)
+      else if (word.case_insensitive_order("true") == 0)
       {
 
          b = true;
 
       }
-      else if (word.compare_ci("no") == 0)
+      else if (word.case_insensitive_order("no") == 0)
       {
 
          b = false;
 
       }
-      else if (word.compare_ci("yes") == 0)
+      else if (word.case_insensitive_order("yes") == 0)
       {
 
          b = true;

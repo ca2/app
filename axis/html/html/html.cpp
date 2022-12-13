@@ -715,7 +715,7 @@ namespace html
 
          pathHtml = payload.file_path();
 
-         bHtml = pathHtml.ends_ci(".html") || pathHtml.ends_ci(".htm") || pathHtml.ends_ci(".xhtml");
+         bHtml = pathHtml.case_insensitive_ends(".html") || pathHtml.case_insensitive_ends(".htm") || pathHtml.case_insensitive_ends(".xhtml");
 
       }
 

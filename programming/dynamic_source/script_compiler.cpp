@@ -294,7 +294,7 @@ namespace dynamic_source
 
       ::file::path strName(pscript->m_strName);
 
-      if (strName.ends_ci("\\auth3.ds"))
+      if (strName.case_insensitive_ends("\\auth3.ds"))
       {
 
          ::output_debug_string("compile auth3.ds");
@@ -745,9 +745,9 @@ namespace dynamic_source
 
       string strTargetPath = pscript->m_strScriptPath;
 #ifdef LINUX
-      strTargetPath.ends_eat_ci(".so");
+      strTargetPath.case_insensitive_ends_eat(".so");
 #else
-      strTargetPath.ends_eat_ci(".dll");
+      strTargetPath.case_insensitive_ends_eat(".dll");
 #endif
       str.find_replace("%TARGET_PATH%",strTargetPath);
       //strBuildCmd = pscript->m_strBuildBat;
@@ -914,11 +914,11 @@ namespace dynamic_source
          string strTargetPath = pscript->m_strScriptPath;
 #ifdef LINUX
          
-         strTargetPath.ends_eat_ci(".so");
+         strTargetPath.case_insensitive_ends_eat(".so");
 
 #else
          
-         strTargetPath.ends_eat_ci(".dll");
+         strTargetPath.case_insensitive_ends_eat(".dll");
 
 #endif
          
@@ -1131,7 +1131,7 @@ namespace dynamic_source
       //{
       //   string str;
       //   str = m_straLibIncludePath[i].relative();
-      //   str.ends_eat_ci(".ds");
+      //   str.case_insensitive_ends_eat(".ds");
       //   strDest += "#include \""+str+".h\"\r\n";
       //}
       strsize iStart = 0;
@@ -1229,7 +1229,7 @@ namespace dynamic_source
             break;
          iLastEnd += 2;
          i32 iShift = 0;
-         if(strSource.Mid(iPos, 5).compare_ci("<?php") == 0)
+         if(strSource.Mid(iPos, 5).case_insensitive_order("<?php") == 0)
             iShift = 3;
          strDest += cppize2(strSource.Mid(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), true, straId);
          iStart = iLastEnd;
@@ -1418,7 +1418,7 @@ namespace dynamic_source
       for(i32 i = 0; i < l.m_straLibSourcePath.get_size(); i++)
       {
          string str = l.m_straLibSourcePath[i].relative();
-         str.ends_eat_ci(".ds");
+         str.case_insensitive_ends_eat(".ds");
          str.find_replace(":","");
          l.m_straLibCppPath.add(m_strTime / strLibRel / str + ".cpp");
       }
@@ -1443,7 +1443,7 @@ namespace dynamic_source
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
          string str = l.m_straLibIncludePath[i].relative();
-         str.ends_eat_ci(".ds");
+         str.case_insensitive_ends_eat(".ds");
          str.find_replace(":","");
          l.m_straLibHppPath.add(m_strTime / strLibRel / str + ".h");
       }
@@ -1514,8 +1514,8 @@ namespace dynamic_source
 
          }
          string strRel = l.m_straLibSourcePath[i].relative();
-         strRel.ends_eat_ci(".ds");
-         strRel.ends_eat_ci(".cpp");
+         strRel.case_insensitive_ends_eat(".ds");
+         strRel.case_insensitive_ends_eat(".cpp");
          strRel.find_replace("\\","/");
          ::file::path str1;
          str1 = "library/source" / strRel;
@@ -1681,7 +1681,7 @@ namespace dynamic_source
       {
          strObjs += " ";
          ::file::path strRel = l.m_straLibSourcePath[i].relative();
-         strRel.ends_eat_ci(".ds");
+         strRel.case_insensitive_ends_eat(".ds");
          strObjs += m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library" / strName;
          strObjs += m_strTime.separator();
          strObjs += strRel;
@@ -1722,7 +1722,7 @@ namespace dynamic_source
       //str.find_replace("%DVP%", strDVP_B);
 
       string strTargetName = l.m_strLibraryPath;
-      strTargetName.ends_eat_ci(".dll");
+      strTargetName.case_insensitive_ends_eat(".dll");
       str.find_replace("%TARGET_NAME%", strTargetName);
       dir()->create(dir()->install()/ m_strDynamicSourceStage / m_strStagePlatform /"library");
 //#ifdef LINUX
@@ -1847,7 +1847,7 @@ auto tickStart = ::time::now();
          //{
          //   string str;
          //   str = m_straLibIncludePath[i].relative();
-         //   str.ends_eat_ci(".ds");
+         //   str.case_insensitive_ends_eat(".ds");
          //   strDest += "#include \""+str+".h\"\r\n";
          //}
       }
@@ -1873,7 +1873,7 @@ auto tickStart = ::time::now();
             break;
          iLastEnd += 2;
          i32 iShift = 0;
-         if(strSource.Mid(iPos, 5).compare_ci("<?php") == 0)
+         if(strSource.Mid(iPos, 5).case_insensitive_order("<?php") == 0)
             iShift = 3;
          bCode = true;
          strDest += cppize2(strSource.Mid(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), false, straId);
@@ -2618,9 +2618,9 @@ ch_else:
 
       string strInclude = strCat;
       
-      strInclude.begins_eat_ci(m_pmanager->m_strNetseedDsCa2Path);
+      strInclude.case_insensitive_begins_eat(m_pmanager->m_strNetseedDsCa2Path);
       
-      strInclude.ends_eat_ci(".ds");
+      strInclude.case_insensitive_ends_eat(".ds");
       
       ::pointer<script_instance>pinstance = m_pmanager->get(strInclude);
 
@@ -2690,8 +2690,8 @@ ch_else:
          //string strCat;
          //strCat = m_pmanager->m_strNetseedDsCa2Path/ "aura\\netnode_persistent_ui_str.ds";
          //string strInclude = strCat;
-         //strInclude.begins_eat_ci(m_pmanager->m_strNetseedDsCa2Path);
-         //strInclude.ends_eat_ci(".ds");
+         //strInclude.case_insensitive_begins_eat(m_pmanager->m_strNetseedDsCa2Path);
+         //strInclude.case_insensitive_ends_eat(".ds");
          //script_instance * pinstance = m_pmanager->get(strInclude);
          //if(pinstance != nullptr)
          //{
@@ -2726,9 +2726,9 @@ ch_else:
          //   }
          //}
       }
-      else if(str.begins_eat_ci(m_pmanager->m_strNetseedDsCa2Path/ "aura\\persistent")
-              && str.ends_eat_ci(".ds")
-              && str.compare_ci("netnode_persistent_ui_str") != 0)
+      else if(str.case_insensitive_begins_eat(m_pmanager->m_strNetseedDsCa2Path/ "aura\\persistent")
+              && str.case_insensitive_ends_eat(".ds")
+              && str.case_insensitive_order("netnode_persistent_ui_str") != 0)
       {
          run_persistent();
          return true;

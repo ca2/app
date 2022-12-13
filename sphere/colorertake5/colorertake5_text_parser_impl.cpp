@@ -297,7 +297,7 @@ namespace colorertake5
          if (node->kwList->matchCase)
             color32 = node->kwList->kwList[pos].keyword.compare(string(&((const ::string &)str)[gx], kwlen));
          else
-            color32 = node->kwList->kwList[pos].keyword.compare_ci(string(&((const ::string &)str)[gx], kwlen));
+            color32 = node->kwList->kwList[pos].keyword.case_insensitive_order(string(&((const ::string &)str)[gx], kwlen));
 
          if (color32 == 0 && right-left == 1)
          {

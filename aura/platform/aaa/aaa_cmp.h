@@ -433,7 +433,7 @@ inline int cmp(const ::string & str1, const ::string & str2)
 template < >
 inline int icmp(const ::string & str1, const ::string & str2)
 {
-   return str1.compare_ci(str2);
+   return str1.case_insensitive_order(str2);
 }
 
 template<size_t TUPLE_SIZE> struct cmp_tuple

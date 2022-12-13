@@ -1362,7 +1362,7 @@ namespace core
    bool is_html_file(string strFilePath)
    {
 
-      return string(file_path_final_extension(strFilePath)).compare_ci("htm") == 0;
+      return string(file_path_final_extension(strFilePath)).case_insensitive_order("htm") == 0;
 
    }
 

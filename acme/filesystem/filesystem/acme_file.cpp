@@ -382,7 +382,7 @@ memsize acme_file::as_memory(const char * pathParam, void * p, memsize s)
 }
 
 
-void acme_file::as_memory(memory_base & memory, const char * pathParam, memsize iReadAtMostByteCount)
+void acme_file::as_memory(memory_base & memory, const char * pathParam, memsize iReadAtMostByteCount, bool bNoExceptionOnOpen)
 {
 
    memory.set_size(0);
@@ -391,7 +391,38 @@ void acme_file::as_memory(memory_base & memory, const char * pathParam, memsize 
 
    auto path = acmepath()->defer_process_relative_path(pathParam);
 
-   file.open(path, "r", _SH_DENYNO);
+   try
+   {
+
+      file.open(path, "r", _SH_DENYNO);
+
+   }
+   catch(const ::exception & e)
+   {
+
+      if(bNoExceptionOnOpen)
+      {
+
+         return;
+
+      }
+
+      throw e;
+
+   }
+   catch(...)
+   {
+
+      if(bNoExceptionOnOpen)
+      {
+
+         return;
+
+      }
+
+      throw ::exception(error_catch_all_exception);
+
+   }
 
    auto iSize = file.size();
 
@@ -566,7 +597,7 @@ void acme_file::get_temporary_file_name_template(char * szRet, strsize iBufferSi
 }
 
 
-filesize acme_file::size(const char * path)
+filesize acme_file::get_size(const char * path)
 {
 
    throw ::interface_only();
@@ -576,15 +607,15 @@ filesize acme_file::size(const char * path)
 }
 
 
-filesize acme_file::size(FILE * pfile)
+filesize acme_file::get_size(FILE * pfile)
 {
 
-   return size_fd(fileno(pfile));
+   return get_size_fd(fileno(pfile));
 
 }
 
 
-filesize acme_file::size_fd(int iFile)
+filesize acme_file::get_size_fd(int iFile)
 {
 
    throw ::interface_only();

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/platform/library.h"
-#include "acme/filesystem/filesystem/path.h"
+#include "acme/platform/system.h"
+//#include "acme/filesystem/filesystem/path.h"
 #include <dlfcn.h>
 #include <link.h>
 
@@ -13,217 +14,220 @@ string m_strPathOut;
 
 };
 
-static int
-__node_library_is_loaded_callback(struct dl_phdr_info *info, size_t size, void *data)
+namespace acme
 {
-    query_loaded_library * q=(query_loaded_library*) data;
-
-   if(::file::path(info->dlpi_name).name() == q->m_strPathIn)
+   int
+   __node_library_is_loaded_callback(struct dl_phdr_info *info, size_t size, void *data)
    {
+      query_loaded_library *q = (query_loaded_library *) data;
+
+      if (::file::path(info->dlpi_name).name() == q->m_strPathIn)
+      {
 
 
-      q->m_strPathOut = info->dlpi_name;
+         q->m_strPathOut = info->dlpi_name;
 
-      return 1;
+         return 1;
 
-   }
-    return 0;
-}
-
-
-string __node_library_is_loaded(const char * pszPath)
-{
-
-
-   query_loaded_library q;
-
-   q.m_strPathIn = pszPath;
-
-   if(!q.m_strPathIn.ends_ci(".so"))
-   {
-
-      q.m_strPathIn += ".so";
-
+      }
+      return 0;
    }
 
-   if(!q.m_strPathIn.begins_ci("/") && !q.m_strPathIn.begins_ci("lib"))
+
+   string __node_library_is_loaded(const char *pszPath)
    {
 
-      q.m_strPathIn = "lib" + q.m_strPathIn;
 
-   }
+      query_loaded_library q;
 
-   dl_iterate_phdr(__node_library_is_loaded_callback, &q);
+      q.m_strPathIn = pszPath;
 
-   return q.m_strPathOut;
+      if (!q.m_strPathIn.case_insensitive_ends(".so"))
+      {
 
-}
+         q.m_strPathIn += ".so";
 
+      }
 
-CLASS_DECL_ACME void * __node_library_touch(const char * pszPath, string & strMessage)
-{
+      if (!q.m_strPathIn.case_insensitive_begins("/") && !q.m_strPathIn.case_insensitive_begins("lib"))
+      {
 
-   string strPath = __node_library_is_loaded(pszPath);
+         q.m_strPathIn = "lib" + q.m_strPathIn;
 
-   if(strPath.has_char())
-   {
+      }
 
-      return __node_library_open(strPath, strMessage);
+      dl_iterate_phdr(__node_library_is_loaded_callback, &q);
+
+      return q.m_strPathOut;
 
    }
 
-   return nullptr;
 
-}
-
-
-CLASS_DECL_ACME void * __node_library_open(const char * pszPath, string & strMessage)
-{
-
-   string strPath(pszPath);
-
-   if(strPath == "os")
+   void *system::operating_system_library_touch(const char *pszPath, string &strMessage)
    {
 
-      strPath = "ca2os";
+      string strPath = __node_library_is_loaded(pszPath);
 
-   }
-   else if(strPath == "app_sphere")
-   {
+      if (strPath.has_char())
+      {
 
-      strPath = "basesphere";
+         return operating_system_library_open(strPath, strMessage);
+
+      }
+
+      return nullptr;
 
    }
 
-   if(ansi_find_string(strPath, ".") == nullptr)
+
+   void *system::operating_system_library_open(const char *pszPath, string &strMessage)
    {
 
-      strPath += ".so";
+      string strPath(pszPath);
+
+      if (strPath == "os")
+      {
+
+         strPath = "ca2os";
+
+      } else if (strPath == "app_sphere")
+      {
+
+         strPath = "basesphere";
+
+      }
+
+      if (ansi_find_string(strPath, ".") == nullptr)
+      {
+
+         strPath += ".so";
+
+      }
+
+      if (strstr((const char *) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
+      {
+
+         strPath = "lib" + strPath;
+
+      }
+
+      void *plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | RTLD_NODELETE);
+      //void * plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_NODELETE);
+
+      if (plibrary == nullptr)
+      {
+
+         // pubs.opengroup.org contribution
+
+         int iError = errno;
+
+         const char *psz = strerror(iError);
+
+         if (psz != nullptr)
+         {
+
+            strMessage += psz;
+
+         }
+
+         char *errstr;
+
+         errstr = dlerror();
+
+         if (errstr != nullptr)
+         {
+
+            strMessage += errstr;
+
+         }
+
+      } else
+      {
+
+         strMessage += "Successfully loaded library ";
+
+         strMessage += pszPath;
+
+      }
+
+      return plibrary;
 
    }
 
-   if(strstr((const char *) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
+
+   void * system::operating_system_library_open_ca2(const char *pszPath, string &strMessage)
    {
 
-      strPath = "lib" + strPath;
+      string strPath(pszPath);
 
-   }
+      if (!strPath.case_insensitive_ends(".so"))
+      {
 
-   void * plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | RTLD_NODELETE);
-   //void * plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_NODELETE);
+         strPath += ".so";
 
-   if(plibrary == nullptr)
-   {
+      }
 
-      // pubs.opengroup.org contribution
+      if (!strPath.case_insensitive_begins("lib"))
+      {
+
+         strPath = "lib" + strPath;
+
+      }
+
+      void *plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | RTLD_NODELETE);
+
+      if (plibrary != nullptr)
+      {
+
+         return plibrary;
+
+      }
 
       int iError = errno;
 
-      const char * psz = strerror(iError);
+      const char *psz = strerror(iError);
 
-      if(psz != nullptr)
+      if (psz != nullptr)
       {
 
          strMessage += psz;
 
       }
 
-      char *errstr;
+      const char *psz2 = dlerror();
 
-      errstr = dlerror();
-
-      if (errstr != nullptr)
+      if (psz2 != nullptr)
       {
 
-         strMessage += errstr;
+         strMessage += psz2;
 
       }
-
-   }
-   else
-   {
-
-      strMessage += "Successfully loaded library ";
-
-      strMessage += pszPath;
-
-   }
-
-   return plibrary;
-
-}
-
-
-CLASS_DECL_ACME void * __node_library_open_ca2(const char * pszPath, string & strMessage)
-{
-
-   string strPath(pszPath);
-
-   if(!strPath.ends_ci(".so"))
-   {
-
-      strPath += ".so";
-
-   }
-
-   if(!strPath.begins_ci("lib"))
-   {
-
-      strPath = "lib" + strPath;
-
-   }
-
-   void * plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | RTLD_NODELETE);
-
-   if(plibrary != nullptr)
-   {
 
       return plibrary;
 
    }
 
-   int iError = errno;
 
-   const char * psz = strerror(iError);
-
-   if(psz != nullptr)
+   bool system::operating_system_library_close(void *plibrary)
    {
 
-      strMessage += psz;
+      if (plibrary == nullptr)
+         return false;
+
+      return dlclose(plibrary) == 0;
 
    }
 
-   const char * psz2 = dlerror();
 
-   if(psz2 != nullptr)
+   void *system::operating_system_library_raw_get(void *plibrary, const char *pszEntryName)
    {
 
-      strMessage += psz2;
+      return dlsym(plibrary, pszEntryName);
 
    }
 
-   return plibrary;
 
-}
-
-
-CLASS_DECL_ACME bool __node_library_close(void * plibrary)
-{
-
-   if(plibrary == nullptr)
-      return false;
-
-   return dlclose(plibrary) == 0;
-
-}
-
-
-CLASS_DECL_ACME void * __node_library_raw_get(void * plibrary,const char * pszEntryName)
-{
-
-   return dlsym(plibrary, pszEntryName);
-
-}
+} // namespace acme
 
 
 

@@ -9,7 +9,7 @@
 #include "acme/primitive/datetime/earth_gregorian_time.h"
 ////#include "acme/primitive/datetime/earth_time.h"
 #include "acme/primitive/primitive/memory.h"
-#include "acme/primitive/string/_conv.h"
+//#include "acme/primitive/string/_conv.h"
 #include "acme/primitive/string/from_integer.h"
 #include "acme/primitive/string/international.h"
 #include "acme/primitive/string/network_payload.h"
@@ -748,43 +748,49 @@ void payload::set_type(enum_type etype, bool bConvert)
 }
 
 
-void payload::set_string(::string && str)
-{
-
-   if (get_type() == e_type_pstring)
-   {
-
-      *m_pstr = ::move(str);
-
-   }
-   else if (get_type() == e_type_payload_pointer)
-   {
-
-      m_ppayload->set_string(::move(str));
-
-   }
-   else if (get_type() == e_type_property)
-   {
-
-      m_pproperty->set_string(::move(str));
-
-   }
-   else
-   {
-
-      set_type(e_type_string, false);
-
-      m_str = ::move(str);
-
-   }
-
-}
+//void payload::set_string(::string && str)
+//{
+//
+//   if (get_type() == e_type_pstring)
+//   {
+//
+//      *m_pstr = ::move(str);
+//
+//   }
+//   else if (get_type() == e_type_payload_pointer)
+//   {
+//
+//      m_ppayload->set_string(::move(str));
+//
+//   }
+//   else if (get_type() == e_type_property)
+//   {
+//
+//      m_pproperty->set_string(::move(str));
+//
+//   }
+//   else
+//   {
+//
+//      set_type(e_type_string, false);
+//
+//      m_str = ::move(str);
+//
+//   }
+//
+//}
 
 
 void payload::set_string(const ::string & str)
 {
 
-   if (get_type() == e_type_pstring)
+   if (get_type() == e_type_string)
+   {
+
+      m_str = str;
+
+   }
+   else if (get_type() == e_type_pstring)
    {
 
       *m_pstr = str;
@@ -814,25 +820,31 @@ void payload::set_string(const ::string & str)
 }
 
 
-inline void payload::set_string(const ::const_ansi_range & block)
+inline void payload::set_string(::string && str)
 {
 
-   if (get_type() == e_type_pstring)
+   if (get_type() == e_type_string)
    {
 
-      m_pstr->assign(block);
+      m_str = ::move(str);
+
+   }
+   else if (get_type() == e_type_pstring)
+   {
+
+      m_pstr->assign(::move(str));
 
    }
    else if (get_type() == e_type_payload_pointer)
    {
 
-      m_ppayload->set_string(block);
+      m_ppayload->set_string(::move(str));
 
    }
    else if (get_type() == e_type_property)
    {
 
-      m_pproperty->set_string(block);
+      m_pproperty->set_string(::move(str));
 
    }
    else
@@ -840,7 +852,7 @@ inline void payload::set_string(const ::const_ansi_range & block)
 
       set_type(e_type_string, false);
 
-      m_str = block;
+      ::new(&m_str) ::string(::move(str));
 
    }
 

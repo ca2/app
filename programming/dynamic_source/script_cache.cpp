@@ -241,7 +241,7 @@ namespace dynamic_source
 
             ::file::path path = pdsscript->m_strSourcePath;
 
-            if (path.ends_ci(pathChanged))
+            if (path.case_insensitive_ends(pathChanged))
             {
 
                pdsscript->m_bShouldBuild = true;

@@ -252,7 +252,7 @@ namespace experience
 
       strExperience.trim();
 
-      strExperience.begins_eat_ci("experience_");
+      strExperience.case_insensitive_begins_eat("experience_");
 
       return strExperience;
 

@@ -29,8 +29,8 @@ memory_container::memory_container(memory_base & memory)
 {
 
    m_pmemory = &memory;
-   m_pbyte = m_pmemory->m_memory.data();
-   m_memsize = m_pmemory->m_memory.storage_size();
+   m_pbyte = m_pmemory->data();
+   m_memsize = m_pmemory->storage_size();
 
 }
 
@@ -39,8 +39,8 @@ memory_container::memory_container(memory_base * pmemory)
 {
 
    m_pmemory = pmemory;
-   m_pbyte = m_pmemory->m_memory.data();
-   m_memsize = m_pmemory->m_memory.storage_size();
+   m_pbyte = m_pmemory->data();
+   m_memsize = m_pmemory->storage_size();
 
 }
 
@@ -77,8 +77,8 @@ void memory_container::set_size(memsize dwNewLength)
       {
 
          m_pmemory->set_size(dwNewLength);
-         m_pbyte = m_pmemory->m_memory.data();
-         m_memsize = m_pmemory->m_memory.storage_size();
+         m_pbyte = m_pmemory->data();
+         m_memsize = m_pmemory->storage_size();
 
       }
 
@@ -89,8 +89,8 @@ void memory_container::set_size(memsize dwNewLength)
    defer_create_default_memory();
 
    m_pmemory->set_size(dwNewLength);
-   m_pbyte = m_pmemory->m_memory.data();
-   m_memsize = m_pmemory->m_memory.storage_size();
+   m_pbyte = m_pmemory->data();
+   m_memsize = m_pmemory->storage_size();
 
 }
 
@@ -107,8 +107,8 @@ void memory_container::create_default_memory()
 
    }
 
-   m_pbyte = m_pmemory->m_memory.data();
-   m_memsize = m_pmemory->m_memory.storage_size();
+   m_pbyte = m_pmemory->data();
+   m_memsize = m_pmemory->storage_size();
 
 }
 
@@ -120,8 +120,8 @@ void memory_container::allocate_internal(memsize dwNewLength)
 
    m_pmemory->allocate_internal(dwNewLength);
 
-   m_pbyte = m_pmemory->m_memory.data();
-   m_memsize = m_pmemory->m_memory.storage_size();
+   m_pbyte = m_pmemory->data();
+   m_memsize = m_pmemory->storage_size();
 
 }
 
@@ -153,8 +153,8 @@ void memory_container::set_memory(::pointer<memory_base>pmemory)
 
    m_pmemory = pmemory;
 
-   m_pbyte = m_pmemory->m_memory.data();
-   m_memsize = m_pmemory->m_memory.storage_size();
+   m_pbyte = m_pmemory->data();
+   m_memsize = m_pmemory->storage_size();
 
 }
 
@@ -174,8 +174,8 @@ void memory_container::read(memory_base * pmemory)
 
    m_pmemory->copy_from(pmemory);
 
-   m_pbyte = m_pmemory->m_memory.data();
-   m_memsize = m_pmemory->m_memory.storage_size();
+   m_pbyte = m_pmemory->data();
+   m_memsize = m_pmemory->storage_size();
 
 }
 
@@ -206,8 +206,8 @@ void memory_container::copy_this(const memory_container & container)
 
    m_pmemory->copy_from(container.m_pmemory);
 
-   m_pbyte = m_pmemory->m_memory.data();
-   m_memsize = m_pmemory->m_memory.storage_size();
+   m_pbyte = m_pmemory->data();
+   m_memsize = m_pmemory->storage_size();
 
 }
 
@@ -234,8 +234,8 @@ bool memory_container::attach(memory_base * pstorage)
 
    m_pmemory = pstorage;
 
-   m_pbyte = m_pmemory->m_memory.data();
-   m_memsize = m_pmemory->m_memory.storage_size();
+   m_pbyte = m_pmemory->data();
+   m_memsize = m_pmemory->storage_size();
 
    return true;
 
@@ -255,7 +255,7 @@ memory * memory_container::get_primitive_memory()
 
    defer_create_default_memory();
 
-   return m_pmemory->m_memory.m_pprimitivememory;
+   return m_pmemory->m_pprimitivememory;
 
 }
 
@@ -266,7 +266,7 @@ memory * memory_container::get_primitive_memory()
 shared_memory * memory_container::get_shared_memory()
 {
 
-   return m_pmemory->m_memory.m_psharedmemory;
+   return m_pmemory->m_psharedmemory;
 
 }
 
@@ -277,7 +277,7 @@ shared_memory * memory_container::get_shared_memory()
 paged_memory * memory_container::get_virtual_memory()
 {
 
-   return m_pmemory->m_memory.m_pvirtualmemory;
+   return m_pmemory->m_pvirtualmemory;
 
 }
 

@@ -74,7 +74,7 @@ namespace sockets
       
       strHost = m_request.header("host");
 
-      if (strHost.ends_eat_ci(".test.ca2.software"))
+      if (strHost.case_insensitive_ends_eat(".test.ca2.software"))
       {
 
          m_request.header("host") = strHost + ".ca2.software";
@@ -95,7 +95,7 @@ namespace sockets
 
       string strTest(strHost);
 
-      if (strTest.ends_eat_ci(".ca2.software"))
+      if (strTest.case_insensitive_ends_eat(".ca2.software"))
       {
 
          if (strTest.find('.') > 0)
@@ -173,7 +173,7 @@ namespace sockets
       //FORMATTED_TRACE("connection: %s\n", m_request.header("connection").string());
       //FORMATTED_TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
       /*   if(string_ends(m_request.attr("http_version").string(), "/1.1")
-            && m_request.header("connection").string().compare_ci("close") != 0)
+            && m_request.header("connection").string().case_insensitive_order("close") != 0)
          {
             m_b_keepalive = true;
          TRACE(" ***    keepalive: true\n");
@@ -366,7 +366,7 @@ namespace sockets
 
       ::file::path pcsz(pcszParam);
 
-      bool bMd5Request = pcsz.ends_eat_ci(".md5");
+      bool bMd5Request = pcsz.case_insensitive_ends_eat(".md5");
 
       string strExtension = pcsz.final_extension();
 
@@ -390,7 +390,7 @@ namespace sockets
       else if (outheader("content-type").string().has_char())
       {
       }
-      else if (strContentType.has_char() && strContentType.compare_ci("unknown") != 0)
+      else if (strContentType.has_char() && strContentType.case_insensitive_order("unknown") != 0)
       {
          outheader("content-type") = strContentType;
       }
@@ -417,7 +417,7 @@ namespace sockets
       for (auto& strAllowedOrigin : straAllowedOrigin)
       {
 
-         if (strServer.ends_ci("." + strAllowedOrigin) || strServer.compare_ci(strAllowedOrigin) == 0)
+         if (strServer.case_insensitive_ends("." + strAllowedOrigin) || strServer.case_insensitive_order(strAllowedOrigin) == 0)
          {
 
             bAllowedOrigin = true;

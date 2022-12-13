@@ -221,7 +221,7 @@ string acmefile()->as_string(const ::string & path, strsize iReadAtMostByteCount
 
    str.release_string_buffer(iRead);
 
-   str.begins_eat_ci("\xef\xbb\xbf");
+   str.case_insensitive_begins_eat("\xef\xbb\xbf");
 
    fclose(f);
 

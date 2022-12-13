@@ -281,11 +281,11 @@ pacmedirectory->roaming() / "home";
    bool dir_context::is_impl(const ::file::path & lpcszPath)
    {
 
-      if(lpcszPath.compare_ci("image://") == 0)
+      if(lpcszPath.case_insensitive_order("image://") == 0)
          return true;
-      if (lpcszPath.compare_ci("music://") == 0)
+      if (lpcszPath.case_insensitive_order("music://") == 0)
          return true;
-      if (lpcszPath.compare_ci("video://") == 0)
+      if (lpcszPath.case_insensitive_order("video://") == 0)
          return true;
 
       bool bIsDir;

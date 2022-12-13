@@ -651,14 +651,14 @@ namespace networking_bsd
          
          strUpgrade = outheader("upgrade");
 
-         if (strUpgrade.compare_ci("websocket") == 0)
+         if (strUpgrade.case_insensitive_order("websocket") == 0)
          {
 
             string strConnection;
             
             strConnection = outheader("connection");
 
-            if (strConnection.compare_ci("Upgrade") == 0)
+            if (strConnection.case_insensitive_order("Upgrade") == 0)
             {
 
                m_durationLastPing.Now();

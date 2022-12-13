@@ -21,7 +21,7 @@ CLASS_DECL_ACME void initialize_nano_window()
 
    }
 
-   operating_system_initialize_nano(::get_task_sub_system_factory());
+   operating_system_initialize_nano(::get_system_factory());
 
    g_bNanoInitialize = true;
 

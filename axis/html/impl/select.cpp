@@ -87,7 +87,7 @@ namespace html
             
             pdata->on_create_interaction(m_pcombo);
             
-            m_pcombo->m_bPassword = pelement->m_propertyset["type"].compare_ci("password") == 0;
+            m_pcombo->m_bPassword = pelement->m_propertyset["type"].case_insensitive_order("password") == 0;
             m_pcombo->m_strName = pelement->m_phtmlbase->get_tag()->get_attr_value("name");
             m_pcombo->m_atom = pelement->m_phtmlbase->get_tag()->get_attr_value("id");
 

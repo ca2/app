@@ -716,23 +716,23 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 
 
 
-bool matter::_handle_uri(const ::block & blockUri)
+bool matter::_handle_uri(const ::string & strUri)
 {
 
-   return handle_uri(blockUri);
+   return handle_uri(strUri);
 
 }
 
 
-bool matter::_handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset)
+bool matter::_handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
 {
 
-   return handle_call(payload, blockObject, blockMember, propertyset);
+   return handle_call(payload, strObject, strMember, propertyset);
 
 }
 
 
-//bool matter::_handle_call(::payload & payload, const ::block & blockMember, ::property_set & propertyset)
+//bool matter::_handle_call(::payload & payload, const ::string & strMember, ::property_set & propertyset)
 //{
 //
 //   return handle_call(payload, blockMember, propertyset);

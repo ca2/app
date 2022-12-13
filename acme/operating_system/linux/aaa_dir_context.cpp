@@ -51,7 +51,7 @@ inline bool linux_dir_myspace(char ch)
 
    path = stra[0];
 
-   path.begins_eat_ci(strPrefix);
+   path.case_insensitive_begins_eat(strPrefix);
 
    path.replace("$HOME", pathHome);
 

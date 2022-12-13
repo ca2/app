@@ -39,7 +39,7 @@ namespace sockets
       {
          if(code == "250")
          {
-            if(pa.getword().compare_ci("auth") == 0)
+            if(pa.getword().case_insensitive_order("auth") == 0)
             {
                string_array stra;
                stra.explode(" ", pa.getrest());

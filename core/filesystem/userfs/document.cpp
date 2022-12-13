@@ -159,7 +159,7 @@ namespace userfs
 
                ::file::path pathUser;
 
-               if (pitem->user_path().ends_ci("://"))
+               if (pitem->user_path().case_insensitive_ends("://"))
                {
 
                   pathUser = string(pitem->user_path()) + item.name();

@@ -241,9 +241,6 @@ concept primitive_xydim = requires(RECTANGLE rectangle)
 //typedef simple_widestring simple_wstring;
 
 
-
-
-
 template < bool B, class TRUE_TYPE = void, class ELSE_TYPE = void >
 struct if_else_base {};
 
@@ -254,8 +251,7 @@ template < class TRUE_TYPE, class ELSE_TYPE >
 struct if_else_base < false, TRUE_TYPE, ELSE_TYPE > { using type = ELSE_TYPE; };
 
 template < bool B, class TRUE_TYPE = void, class ELSE_TYPE = void >
-using if_else = if_else_base < B, TRUE_TYPE, ELSE_TYPE >::type;
-
+using if_else = typename if_else_base < B, TRUE_TYPE, ELSE_TYPE >::type;
 
 
 template <class TYPE, TYPE t>
@@ -397,7 +393,7 @@ struct boolean_type_selection<false, T1, T2> { using type = T2; };
 
 template < typename T1, typename T2 >
 struct largest_type_struct {
-   using type = typename ::if_else< (sizeof(T1) >= sizeof(T2)), T1, T2>;
+   using type = if_else< (sizeof(T1) >= sizeof(T2)), T1, T2>;
 };
 
 

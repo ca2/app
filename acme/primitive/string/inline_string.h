@@ -21,7 +21,7 @@ public:
       
       this->m_begin = m_sz;
       this->m_end = this->m_begin;
-      this->m_bNullTerminated = true;
+      this->m_erange = e_range_null_terminated;
       m_sz[0] = 0;
 
    }
@@ -81,10 +81,3 @@ using inline_number_string = inline_string < char, 64 >;
 
 
 
-template < ::count c, strsize m_sizeMaximumLength >
-inline ::string operator +(const char(&sz)[c], const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
-{
-
-   return ::move(::string(sz) + ::string(inlinestring));
-
-}

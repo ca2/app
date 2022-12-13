@@ -160,7 +160,7 @@ namespace windows
 
       string strIconLocation;
 
-      //if (strFileParam.compare_ci(::dir::bookmark()) == 0)
+      //if (strFileParam.case_insensitive_order(::dir::bookmark()) == 0)
       //{
 
       //   strIconLocation = pcontext->m_papexcontext->dir()->matter("aura.ico");
@@ -358,7 +358,7 @@ namespace windows
          if (!pcontext->m_papexcontext->file()->exists(pathTarget) && !pcontext->m_papexcontext->dir()->is(pathTarget))
          {
 
-            if (pathTarget.ends_ci(".exe"))
+            if (pathTarget.case_insensitive_ends(".exe"))
             {
 
                imagekey.set_path(pathTarget);
@@ -521,7 +521,7 @@ pacmedirectory->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + 
       else if(strIconLocation.has_char())
       {
 
-         if (strIconLocation.ends_ci(".ico"))
+         if (strIconLocation.case_insensitive_ends(".ico"))
          {
 
             set_image_ico(strIconLocation, iImage, crBk);
@@ -913,7 +913,7 @@ pacmedirectory->is(strPath))
 
          string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
 
-         if (str.begins_eat_ci("ca2prompt\r\n"))
+         if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
          {
 
             str.trim();
@@ -1298,7 +1298,7 @@ pacmedirectory->is(strPath))
    void shell::set_image_ico(string strIconLocation, i32 & iImage, color32_t crBk)
    {
 
-      ASSERT(strIconLocation.ends_ci(".ico"));
+      ASSERT(strIconLocation.case_insensitive_ends(".ico"));
 
       image_key imagekeyIco;
 
@@ -1319,7 +1319,7 @@ pacmedirectory->is(strPath))
    void shell::set_image_resource(string strIconLocation, i32 & iImage, const image_key & imagekey, color32_t crBk)
    {
 
-      ASSERT(!strIconLocation.ends_ci(".ico"));
+      ASSERT(!strIconLocation.case_insensitive_ends(".ico"));
 
       image_key imagekeyIco;
 

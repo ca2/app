@@ -466,16 +466,16 @@ list(APPEND apex_source
         #platform/app_core.cpp
         #platform/app_core.h
         platform/app_consumer.h
-        platform/app_container.cpp
-        platform/app_container.h
+        #platform/app_container.cpp
+        #platform/app_container.h
         platform/app_launcher.cpp
         platform/app_launcher.h
         platform/application.cpp
         platform/application.h
-        platform/application_array.cpp
-        platform/application_array.h
-        platform/application_exit.cpp
-        platform/application_exit.h
+        #platform/application_array.cpp
+        #platform/application_array.h
+        #platform/application_exit.cpp
+        #platform/application_exit.h
         platform/application_heap.h
         platform/application_impl.h
         platform/application_menu.cpp
@@ -494,8 +494,8 @@ list(APPEND apex_source
         platform/context.h
         #platform/context_thread.cpp
         #platform/context_thread.h
-        platform/create.cpp
-        platform/create.h
+        #platform/create.cpp
+        #platform/create.h
         #platform/debug.cpp
         #platform/debug.h
         #platform/definition.h

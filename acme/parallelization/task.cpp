@@ -2185,12 +2185,12 @@ task_guard::~task_guard()
 }
 
 
-::factory::factory_pointer & get_task_sub_system_factory()
-{
-
-   return ::acme::get()->m_psubsystem->m_pfactory;
-
-}
+//::factory::factory_pointer & get_system_factory()
+//{
+//
+//   return ::acme::get()->m_psubsystem->m_pfactory;
+//
+//}
 
 
 

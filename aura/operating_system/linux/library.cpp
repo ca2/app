@@ -40,14 +40,14 @@ string __node_library_is_loaded(const ::string & pszPath)
 
    q.m_strPathIn = pszPath;
 
-   if(!q.m_strPathIn.ends_ci(".so"))
+   if(!q.m_strPathIn.case_insensitive_ends(".so"))
    {
 
       q.m_strPathIn += ".so";
 
    }
 
-   if(!q.m_strPathIn.begins("/") && !q.m_strPathIn.begins_ci("lib"))
+   if(!q.m_strPathIn.begins("/") && !q.m_strPathIn.case_insensitive_begins("lib"))
    {
 
       q.m_strPathIn = "lib" + q.m_strPathIn;
@@ -152,14 +152,14 @@ CLASS_DECL_AURA void * __node_library_open_ca2(const ::string & pszPath, string 
 
    string strPath(pszPath);
 
-   if(!strPath.ends_ci(".so"))
+   if(!strPath.case_insensitive_ends(".so"))
    {
 
       strPath += ".so";
 
    }
 
-   if(!strPath.begins_ci("lib"))
+   if(!strPath.case_insensitive_begins("lib"))
    {
 
       strPath = "lib" + strPath;

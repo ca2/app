@@ -2422,7 +2422,7 @@ namespace acme
    }
 
 
-   bool system::_handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset)
+   bool system::_handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
    {
       
       try
@@ -2433,7 +2433,7 @@ namespace acme
          if (m_pacmeapplication)
          {
 
-            if (m_pacmeapplication->_handle_call(payload, blockObject, blockMember, propertyset))
+            if (m_pacmeapplication->_handle_call(payload, strObject, strMember, propertyset))
             {
 
                return true;

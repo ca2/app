@@ -715,7 +715,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //         CFRelease(cfstrName);
 //
-//         if(strName.compare_ci("cursor") == 0)
+//         if(strName.case_insensitive_order("cursor") == 0)
 //         {
 //
 //            continue;
@@ -955,10 +955,10 @@ void ns_main_async(dispatch_block_t block);
 //
 //      }
 //
-//      if(strAppName.compare_ci("window server") == 0)
+//      if(strAppName.case_insensitive_order("window server") == 0)
 //      {
 //
-//         if(strName.compare_ci("cursor") == 0)
+//         if(strName.case_insensitive_order("cursor") == 0)
 //         {
 //
 //            continue;
@@ -967,7 +967,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //      }
 //
-//      if(strAppName.compare_ci("Dock") == 0)
+//      if(strAppName.case_insensitive_order("Dock") == 0)
 //      {
 //
 //         if(strName.is_empty())
@@ -1195,10 +1195,10 @@ void ns_main_async(dispatch_block_t block);
 //
 //      }
 //
-//      if(strAppName.compare_ci("window server") == 0)
+//      if(strAppName.case_insensitive_order("window server") == 0)
 //      {
 //
-//         if(strName.compare_ci("cursor") == 0)
+//         if(strName.case_insensitive_order("cursor") == 0)
 //         {
 //
 //            continue;
@@ -1207,7 +1207,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //      }
 //
-//      if(strName.compare_ci("dock") == 0)
+//      if(strName.case_insensitive_order("dock") == 0)
 //      {
 //
 //         continue;

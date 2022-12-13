@@ -33,4 +33,7 @@ __FACTORY_EXPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfa
 
 #define REFERENCE_FACTORY(name) \
 __FACTORY_IMPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfactory); \
-::factory_function TOKEN_CONCATENATE(g_set_factory_function_, name) = {#name, &::TOKEN_CONCATENATE(name, _factory) }; \
+::factory_function TOKEN_CONCATENATE(g_set_factory_function_, name) = {#name, &::TOKEN_CONCATENATE(name, _factory) };
+
+
+

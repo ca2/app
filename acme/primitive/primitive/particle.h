@@ -19,6 +19,9 @@
 class extended_topic;
 
 
+CLASS_DECL_ACME ::factory::factory * get_system_factory();
+
+
 //struct PARTICLE
 //{
 //public:
@@ -317,8 +320,8 @@ public:
    virtual void handle(::message::message * pmessage);
 
 
-   virtual bool _handle_uri(const ::block & blockUri);
-   virtual bool _handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset);
+   virtual bool _handle_uri(const ::string & strUri);
+   virtual bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset);
 
    // <3ThomasBorregaardSørensen__!! likes handler concept...
    //void route(::signal * psignal) override;
@@ -387,25 +390,25 @@ public:
 
 
    template < typename BASE_TYPE >
-   inline ::pointer<BASE_TYPE>__create(::factory::factory* pfactory = ::get_task_sub_system_factory());
+   inline ::pointer<BASE_TYPE>__create(::factory::factory* pfactory = ::get_system_factory());
 
    template < typename BASE_TYPE >
-   inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom, ::factory::factory* pfactory = ::get_task_sub_system_factory());
+   inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom, ::factory::factory* pfactory = ::get_system_factory());
 
    template < typename TYPE >
    inline ::pointer<TYPE>__create_new();
 
    //template < typename BASE_TYPE >
-   //inline void __raw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory = ::get_task_sub_system_factory());
+   //inline void __raw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory = ::get_system_factory());
 
    template < typename BASE_TYPE >
-   inline void __defer_construct(::pointer<BASE_TYPE>& ptype, ::factory::factory* pfactory = ::get_task_sub_system_factory());
+   inline void __defer_construct(::pointer<BASE_TYPE>& ptype, ::factory::factory* pfactory = ::get_system_factory());
 
    template < typename TYPE >
    inline void __defer_construct_new(::pointer<TYPE>& ptype);
 
    template < typename BASE_TYPE >
-   inline void __construct(::pointer<BASE_TYPE>& ptype, ::factory::factory* pfactory = ::get_task_sub_system_factory());
+   inline void __construct(::pointer<BASE_TYPE>& ptype, ::factory::factory* pfactory = ::get_system_factory());
 
    template < typename BASE_TYPE, typename TYPE >
    inline void __construct(::pointer<BASE_TYPE>& ptype, const ::pointer < TYPE >& p);
@@ -414,7 +417,7 @@ public:
    inline void __construct(::pointer<BASE_TYPE>& ptype, TYPE* p);
 
    template < typename BASE_TYPE >
-   inline void __id_construct(::pointer<BASE_TYPE>& ptype, const ::atom& atom, ::factory::factory* pfactory = ::get_task_sub_system_factory());
+   inline void __id_construct(::pointer<BASE_TYPE>& ptype, const ::atom& atom, ::factory::factory* pfactory = ::get_system_factory());
 
    template < typename TYPE >
    inline void __construct_new(::pointer<TYPE>& ptype);

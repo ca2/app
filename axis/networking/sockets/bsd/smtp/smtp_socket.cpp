@@ -48,9 +48,9 @@ namespace sockets
       }
       else if(m_estate == state_hello)
       {
-         if(code == "250" || code.compare_ci("250-Auth") == 0)
+         if(code == "250" || code.case_insensitive_order("250-Auth") == 0)
          {
-            if(code.compare_ci("250-Auth") == 0 || pa.getword().compare_ci("auth") == 0)
+            if(code.case_insensitive_order("250-Auth") == 0 || pa.getword().case_insensitive_order("auth") == 0)
             {
                string_array stra;
                stra.explode(" ", pa.getrest());

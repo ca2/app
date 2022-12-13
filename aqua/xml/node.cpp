@@ -719,7 +719,7 @@ namespace xml
                      if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
                      {
 
-                        property = pparseinfo->m_pentities->ref_to_entity(property);
+                        property = pparseinfo->m_pentities->ref_to_entity(property.operator ::string());
 
                      }
                      if( quote == '"' || quote == '\'' )

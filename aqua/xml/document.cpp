@@ -261,7 +261,7 @@ namespace xml
 
    //   m_memoryData.assign(m_strData1.c_str(), m_strData1.get_length_in_bytes_with_null_terminator());
 
-   //   const char * pszXml = (const char *) m_memoryData.get_data();
+   //   const char * pszXml = (const char *) m_memoryData.data();
 
    //   ensure_root();
 
@@ -451,11 +451,11 @@ namespace xml
       // pszXml must be a valid portion of and point_i32 to an entity ref in:
       // m_strData of this document
 
-      const char * pszOldData = (const char *) m_memoryData.get_data();
+      const char * pszOldData = (const char *) m_memoryData.data();
 
       strsize iPos = pszXml - pszOldData;
 
-      ASSERT(iPos < m_memoryData.get_size() - 1 && iPos >= 0);
+      ASSERT(iPos < m_memoryData.size() - 1 && iPos >= 0);
 
       string strName;
 
@@ -482,11 +482,11 @@ namespace xml
 
       auto iRight = iPos + strName.get_length() + 2;
 
-      char * pszRight = (char *)m_memoryData.get_data() + iRight;
+      char * pszRight = (char *)m_memoryData.data() + iRight;
 
-      memmove(pszRight + iDiff, pszRight, m_memoryData.get_size() - iRight - iDiff);
+      memmove(pszRight + iDiff, pszRight, m_memoryData.size() - iRight - iDiff);
 
-      memcpy(m_memoryData.get_data() + iPos, strValue, strValue.get_length_in_bytes());
+      memcpy(m_memoryData.data() + iPos, strValue, strValue.length_in_bytes());
 
       //m_strData = m_strData.Left(iPos) + strValue + m_strData.Mid(iPos + strName.get_length() + 2);
 

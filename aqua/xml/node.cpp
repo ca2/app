@@ -529,7 +529,7 @@ namespace xml
                      if( pparseinfo->m_bEntityValue && pparseinfo->m_pentities )
                      {
 
-                        property = pparseinfo->m_pentities->ref_to_entity(property.as_string());
+                        property = pparseinfo->m_pentities->ref_to_entity(property.operator ::string());
 
                      }
 
@@ -719,7 +719,7 @@ namespace xml
                      if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
                      {
 
-                        property = pparseinfo->m_pentities->ref_to_entity(property.as_string());
+                        property = pparseinfo->m_pentities->ref_to_entity(property);
 
                      }
                      if( quote == '"' || quote == '\'' )
@@ -1873,7 +1873,7 @@ namespace xml
       string str;
       while(pnode != nullptr && pnode != this)
       {
-         str = pnode->attribute(pszAttr).as_string() + ::str().has_char(str, "/");
+         str = pnode->attribute(pszAttr) + ::str().has_char(str, "/");
          pnode = pnode->m_pnodeParent->get_xml_node();
       }
       if(pnode == nullptr)
@@ -1970,7 +1970,7 @@ namespace xml
    {
       for(index i = iStartPosition; i < m_nodea.get_size(); i++ )
       {
-         if(m_nodea[i]->m_strName.compare(lpszName) == 0)
+         if(m_nodea[i]->m_strName.order(lpszName) == 0)
             return m_nodea[i]->get_xml_node();
       }
       return nullptr;
@@ -2018,7 +2018,7 @@ namespace xml
       
       property * attr = GetChildAttr( lpszName, attrname );
 
-      return attr ? attr->as_string() : string("");
+      return attr ? attr->operator ::string() : string("");
 
    }
 
@@ -2065,7 +2065,7 @@ namespace xml
    node * node::rear_find(const char * lpszName, const property_set & set, index iDepth)
    {
 
-      for (auto & pnode : m_nodea.ptra())
+      for (auto & pnode : m_nodea)
       {
 
          if (pnode->m_strName == lpszName && pnode->get_xml_node()->contains(set))
@@ -2091,7 +2091,7 @@ namespace xml
 
       }
 
-      for (auto & pnode : m_nodea.ptra())
+      for (auto & pnode : m_nodea)
       {
 
          auto pnodeChild = pnode->get_xml_node()->rear_find(lpszName, set, iDepth);

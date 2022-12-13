@@ -81,7 +81,7 @@ namespace sockets
 
             string strRequest = pbase64->decode(strWord);
             string strResponse;
-            if(::str().find_ci("username", strRequest) >= 0)
+            if(::str().case_insensitive_find("username", strRequest) >= 0)
             {
 
                auto psystem = acmesystem();
@@ -91,7 +91,7 @@ namespace sockets
                strResponse = pbase64->encode(file()->as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
                print(strResponse + "\r\n");
             }
-            else if(::str().find_ci("password", strRequest) >= 0)
+            else if(::str().case_insensitive_find("password", strRequest) >= 0)
             {
 
                auto psystem = acmesystem();

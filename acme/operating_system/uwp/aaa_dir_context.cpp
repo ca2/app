@@ -361,7 +361,7 @@ pacmedirectory->roaming() / "home";
 
       }
 
-      strsize iFind = ::str().find_ci(".zip:",str);
+      strsize iFind = ::str().case_insensitive_find(".zip:",str);
 
       string strPath(str.c_str(), iLast + 1);
 

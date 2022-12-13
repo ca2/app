@@ -106,9 +106,9 @@
 //
 //   m.move(iSize);
 //
-//   //auto iSize2 = ::u32_pack(u, m.get_data());
+//   //auto iSize2 = ::u32_pack(u, m.data());
 //   
-//   ::u32_pack(u, m.get_data());
+//   ::u32_pack(u, m.data());
 //
 //}
 //
@@ -116,7 +116,7 @@
 //int client_send(memory & m, int fin, memory & memory, bool useMask)
 //{
 //
-//   i64 message_size = memory.get_size();
+//   i64 message_size = memory.size();
 //
 //   int length = (int) ( 2 + message_size);
 //
@@ -146,7 +146,7 @@
 //
 //   m.set_size(length);
 //
-//   u8 * frame = (byte*)m.get_data();
+//   u8 * frame = (byte*)m.data();
 //
 //   frame[0] = 0x80 | fin;
 //
@@ -199,7 +199,7 @@
 //
 //   }
 //
-//   ::memcpy_dup(&frame[iOffset], memory.get_data(), memory.get_length());
+//   ::memcpy_dup(&frame[iOffset], memory.data(), memory.get_length());
 //
 //   if (useMask)
 //   {
@@ -213,7 +213,7 @@
 //
 //   }
 //
-//   return (int) (m.get_size());
+//   return (int) (m.size());
 //
 //}
 //
@@ -260,7 +260,7 @@
 //
 //   m.set_size(length);
 //
-//   char* frame = (char*)m.get_data();
+//   char* frame = (char*)m.data();
 //
 //   frame[0] = (char)fin;
 //
@@ -307,7 +307,7 @@
 //
 //   }
 //
-//   return (int) (m.get_size());
+//   return (int) (m.size());
 //
 //}
 //
@@ -355,8 +355,8 @@ namespace sockets
 
 //      m_timeLastSpontaneousPong = 0;
       m_memPong.set_size(2);
-      m_memPong.get_data()[0] = 0x8a;
-      m_memPong.get_data()[1] = 0;
+      m_memPong.data()[0] = 0x8a;
+      m_memPong.data()[1] = 0;
 
       m_bUseMask = false;
 
@@ -436,8 +436,8 @@ namespace sockets
       initialize_http_client_socket(url_in);
 
       m_memPong.set_size(2);
-      m_memPong.get_data()[0] = 0x8a;
-      m_memPong.get_data()[1] = 0;
+      m_memPong.data()[0] = 0x8a;
+      m_memPong.data()[1] = 0;
 
       m_timeLastPing.Now();
 
@@ -534,7 +534,7 @@ namespace sockets
 //         client_send(m, e_opcode::PONG, m1, m_bUseMask);
          client_send(m, e_opcode::PING, m1, bUseMask);
 
-         write(m.get_data(), m.get_size());
+         write(m.data(), m.size());
 
          //m_memResponse.erase(0, n + header_size);
 
@@ -574,7 +574,7 @@ namespace sockets
 
          m.set_size(16);
 
-         generate_random_bytes(m.get_data(), m.get_size());
+         generate_random_bytes(m.data(), m.size());
 
          auto psystem = acmesystem();
 
@@ -620,14 +620,14 @@ namespace sockets
       }
       else
       {
-         //if (m_memPong.get_size() > 0 && (m_timeLastSpontaneousPong.elapsed()) > 10000)
+         //if (m_memPong.size() > 0 && (m_timeLastSpontaneousPong.elapsed()) > 10000)
          //{
          //
-         //   write(m_memPong.get_data(), m_memPong.get_size());
+         //   write(m_memPong.data(), m_memPong.size());
 
          //   m_memPong.set_size(2);
 
-         //   m_memPong.get_data()[1] = 0;
+         //   m_memPong.data()[1] = 0;
 
          //   m_timeLastSpontaneousPong= ::time::now();
 
@@ -795,7 +795,7 @@ namespace sockets
 
       client_send_text(m, strNetworkPayload, true);
 
-      write(m.get_data(), m.get_size());
+      write(m.data(), m.size());
 
       return !Lost();
 
@@ -809,7 +809,7 @@ namespace sockets
 
       client_send_binary(m, memory);
 
-      write(m.get_data(), m.get_size());
+      write(m.data(), m.size());
 
       return !Lost();
 
@@ -836,13 +836,13 @@ namespace sockets
 
          //int iOffset = 2;
 
-         while (m_memResponse.get_size() >= 2)
+         while (m_memResponse.size() >= 2)
          {
 
             // From
             // https://github.com/dhbaird/easywsclient/blob/master/easywsclient.cpp
 
-            u8 * data = (u8 *)m_memResponse.get_data(); // peek, but don't consume
+            u8 * data = (u8 *)m_memResponse.data(); // peek, but don't consume
 
 
 #if DEEP_DATA_DEBUG
@@ -853,7 +853,7 @@ namespace sockets
 
             string strChar;
 
-            for (index i = 0; i < m_memResponse.get_size(); i++)
+            for (index i = 0; i < m_memResponse.size(); i++)
             {
 
                strHexa += ::hex::lower_from(&data[i], 1) + " ";
@@ -924,7 +924,7 @@ namespace sockets
 
             zero(m_maskingkey);
 
-            if (m_memResponse.get_size() < m_header_size)
+            if (m_memResponse.size() < m_header_size)
             {
 
                return;
@@ -977,7 +977,7 @@ namespace sockets
 
             }
 
-            memsize iBufSize = m_memResponse.get_size();
+            memsize iBufSize = m_memResponse.size();
 
             if (iBufSize < m_header_size + m_iN)
             {
@@ -1016,7 +1016,7 @@ namespace sockets
                if (m_fin)
                {
 
-                  on_websocket_data(m_memReceivedData.get_data(), (int) (m_memReceivedData.get_size()));
+                  on_websocket_data(m_memReceivedData.data(), (int) (m_memReceivedData.size()));
 
                   m_memReceivedData.set_size(0);
 
@@ -1055,7 +1055,7 @@ namespace sockets
 
                client_send(m_memPong, e_opcode::PONG, m1, true);
 
-               write(m_memPong.get_data(), m_memPong.get_size());
+               write(m_memPong.data(), m_memPong.size());
 
             }
             else if (m_opcode == e_opcode::PONG)

@@ -140,28 +140,28 @@ namespace account
 
       }
 
-      if(::str().find_ci("/matter.ca2.software/", pathUrl) >= 0)
+      if(::str().case_insensitive_find("/matter.ca2.software/", pathUrl) >= 0)
       {
 
          return false;
 
       }
 
-      if(::str().find_ci("-matter.ca2.software/", pathUrl) >= 0)
+      if(::str().case_insensitive_find("-matter.ca2.software/", pathUrl) >= 0)
       {
 
          return false;
 
       }
 
-      if(::str().find_ci("sessid=", pathUrl) >= 0)
+      if(::str().case_insensitive_find("sessid=", pathUrl) >= 0)
       {
 
          return false;
 
       }
 
-      if(::str().find_ci("/matter/",purl->get_script(pathUrl)) >= 0)
+      if(::str().case_insensitive_find("/matter/",purl->get_script(pathUrl)) >= 0)
       {
 
          return false;

@@ -246,7 +246,7 @@ namespace sockets
       if(inheader(__id(accept-encoding)).get_string().find("gzip") >= 0)
       {
 
-         if(outheader(__id(content-type)).get_string().find_ci("text") >= 0)
+         if(outheader(__id(content-type)).get_string().case_insensitive_find("text") >= 0)
          {
        
             m_response.m_propertysetHeader.set_at(__id(content-encoding), "gzip");

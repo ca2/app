@@ -406,7 +406,7 @@ namespace sockets
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      write(m_pmemoryfile->get_data(), (memsize)m_pmemoryfile->get_size());
+      write(m_pmemoryfile->data(), (memsize)m_pmemoryfile->size());
 
    }
 

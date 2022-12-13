@@ -2112,7 +2112,7 @@ namespace sockets_bsd
 
       //         string strTitle = ::file::path(m_strCat).name();
 
-      //         if (strTitle.find_ci(".") >= 0)
+      //         if (strTitle.case_insensitive_find(".") >= 0)
       //         {
 
       //            strTitle = strTitle.Left(strTitle.rear_find("."));

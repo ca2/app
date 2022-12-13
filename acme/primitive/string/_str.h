@@ -128,7 +128,7 @@ public:
 
    strsize   find_first(const string_array & straSearch, index & iFound, const ::string & str, index iStart = 0);
 
-   strsize   find_ci(const ::string & strFind, const ::string & str, strsize iStart = 0);
+   strsize   case_insensitive_find(const ::string & strFind, const ::string & str, strsize iStart = 0);
 
    strsize   utf8_find(const ::string & strFind, const ::string & str, strsize iStart = 0);
 

@@ -390,7 +390,7 @@ namespace ftp
             if (atoi(Reply.Code().Value()) == 530)
             {
 
-               if (m_econnectiontype == connection_type_plain && Reply.Value().find_ci("ftp over tls") >= 0)
+               if (m_econnectiontype == connection_type_plain && Reply.Value().case_insensitive_find("ftp over tls") >= 0)
                {
 
                   m_econnectiontype = connection_type_tls_implicit;

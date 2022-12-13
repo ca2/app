@@ -3184,7 +3184,7 @@ template < typename ITERATOR_TYPE >
 bool string_base < ITERATOR_TYPE >::contains_ci(RANGE range, strsize iStart, strsize nCount) const
 {
 
-   return find_ci(range, iStart, nCount) >= 0;
+   return case_insensitive_find(range, iStart, nCount) >= 0;
 
 }
 
@@ -3218,7 +3218,7 @@ bool string_base < ITERATOR_TYPE >::contains_ci(RANGE range, strsize iStart, str
 //bool string_base < ITERATOR_TYPE >::contains_ci(RANGE range, strsize iStart, strsize nCount, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 //{
 //
-//   strsize iFind = find_ci(psz, iStart, nCount, ppszEnd);
+//   strsize iFind = case_insensitive_find(psz, iStart, nCount, ppszEnd);
 //
 //   if (iFind < 0)
 //   {
@@ -3297,7 +3297,7 @@ template < typename ITERATOR_TYPE >
 bool string_base < ITERATOR_TYPE >::contains_ci(CHARACTER ch, strsize iStart, strsize nCount) const
 {
 
-   return find_ci(ch, iStart, nCount) >= 0;
+   return case_insensitive_find(ch, iStart, nCount) >= 0;
 
 }
 
@@ -3330,7 +3330,7 @@ template < typename ITERATOR_TYPE >
 bool string_base < ITERATOR_TYPE >::contains_ci(CHARACTER ch, strsize iStart, strsize nCount, const CHARACTER ** ppszBeg) const
 {
 
-   auto find = find_ci(ch, iStart, nCount);
+   auto find = case_insensitive_find(ch, iStart, nCount);
 
    if (find < 0)
    {
@@ -3374,7 +3374,7 @@ bool string_base < ITERATOR_TYPE >::contains_ci(CHARACTER ch, strsize iStart, st
 //bool string_base < ITERATOR_TYPE >::contains_ci(const CHARACTER* psz, strsize iStart, strsize nCount) const
 //{
 //
-//   return find_ci(psz, iStart, nCount) >= 0;
+//   return case_insensitive_find(psz, iStart, nCount) >= 0;
 //
 //}
 
@@ -3383,7 +3383,7 @@ bool string_base < ITERATOR_TYPE >::contains_ci(CHARACTER ch, strsize iStart, st
 //bool string_base < ITERATOR_TYPE >::contains_ci(RANGE range, strsize iStart, strsize nCount) const
 //{
 //
-//   return find_ci(range, iStart, nCount) >= 0;
+//   return case_insensitive_find(range, iStart, nCount) >= 0;
 //
 //}
 
@@ -3424,7 +3424,7 @@ template < typename ITERATOR_TYPE >
 bool string_base < ITERATOR_TYPE >::contains_ci(RANGE range, strsize iStart, strsize nCount, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
-   auto find = this->find_ci(range, iStart, nCount);
+   auto find = this->case_insensitive_find(range, iStart, nCount);
 
    if (find < 0)
    {
@@ -3537,7 +3537,7 @@ bool string_base < ITERATOR_TYPE >::contains_wci(RANGE range, strsize iStart, st
 //bool string_base < ITERATOR_TYPE >::contains_ci(RANGE range, strsize iStart, strsize nCount, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 //{
 //
-//   auto find = find_ci(range, iStart, nCount, ppszEnd);
+//   auto find = case_insensitive_find(range, iStart, nCount, ppszEnd);
 //
 //   if (find < 0)
 //   {
@@ -3895,66 +3895,96 @@ template < typename ITERATOR_TYPE >
 //template < raw_pointer_castable < CHARACTER > PCHARNEW, raw_pointer_castable < CHARACTER > PCHAROLD >
 strsize string_base < ITERATOR_TYPE >::replace_with_ci(RANGE rangeNew, RANGE rangeOld, strsize iStart)
 {
+
    // can't have is_empty or nullptr pszOld
-
-
    // nSourceLen is in XCHARs
    strsize nSourceLen = rangeOld.size();
+
    if (nSourceLen == 0)
+   {
+
       return(0);
+
+   }
+
    // nReplacementLen is in XCHARs
    strsize nReplacementLen = rangeNew.size();
 
    // loop once to figure out the size_i32 of the result string_base < ITERATOR_TYPE >
    strsize nCount = 0;
+
    {
-      const CHARACTER * pszStart = this->begin() + iStart;
-      //      const CHARACTER * pszEnd = pszStart+size();
-      const CHARACTER * pszTarget;
-      while ((pszTarget = string_find_string_ci(pszStart, rangeOld)) != nullptr)
+
+      strsize i = iStart;
+
+      strsize iFind;
+
+      while ((iFind = case_insensitive_find(rangeOld, i, -1)) >= 0)
       {
+
          nCount++;
-         pszStart = pszTarget + nSourceLen;
+
+         i = iFind + nSourceLen;
+
       }
+
    }
 
    // if any changes were made, make them
    if (nCount > 0)
    {
+
       // if the buffer is too small, just
       //   allocate a memory_new buffer (slow but sure)
       strsize nOldLength = size();
+
       strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * nCount;
 
       CHARACTER * pszBuffer = get_string_buffer(maximum(nNewLength, nOldLength));
 
-      CHARACTER * pszStart = pszBuffer + iStart;
-      CHARACTER * pszEnd = pszBuffer + nOldLength;
+      strsize i = iStart;
+
+      strsize nEnd = nNewLength;
+
+      strsize iFind;
 
       // loop again to actually do the work
-      while (pszStart < pszEnd)
+      while (i < nEnd)
       {
-         CHARACTER * pszTarget;
-         while ((pszTarget = (CHARACTER *)string_find_string_ci(pszStart, rangeOld)) != nullptr)
+         
+         while ((iFind = case_insensitive_find(rangeOld, i, -1)) >= 0)
          {
+
+            auto pszTarget = pszBuffer + iFind;
+
             strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
+
             memmove(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
+
             memcpy(pszTarget, rangeOld, nReplacementLen * sizeof(CHARACTER));
 
-            pszStart = pszTarget + nReplacementLen;
+            i += nReplacementLen;
 
             pszTarget[nReplacementLen + nBalance] = 0;
 
             nOldLength += (nReplacementLen - nSourceLen);
+
          }
-         pszStart += string_safe_length(pszStart) + 1;
+
+         i += string_safe_length(pszBuffer + 1) + 1;
+
       }
+      
       ASSERT(pszBuffer[nNewLength] == 0);
+
       release_string_buffer(nNewLength);
+
    }
 
    return(nCount);
+
 }
+
 
 template < typename ITERATOR_TYPE >
 //template < raw_pointer_castable < CHARACTER > PCHARNEW, raw_pointer_castable < CHARACTER > PCHAROLD >
@@ -4318,7 +4348,7 @@ strsize string_base < ITERATOR_TYPE >::find(CHARACTER ch, strsize iStart, strsiz
 
 // find the first occurrence of character 'ch', starting at strsize 'iStart'
 template < typename ITERATOR_TYPE >
-strsize string_base < ITERATOR_TYPE >::find_ci(CHARACTER ch, strsize iStart, strsize nCount) const RELEASENOTHROW
+strsize string_base < ITERATOR_TYPE >::case_insensitive_find(CHARACTER ch, strsize iStart, strsize nCount) const RELEASENOTHROW
 {
    // iStart is in XCHARs
    ASSERT(iStart >= 0);
@@ -4476,7 +4506,7 @@ strsize string_base < ITERATOR_TYPE >::find(RANGE range, strsize iStart, strsize
 /// @brief find the first occurrence of a range
 /// string_base < ITERATOR_TYPE > 'range', starting at strsize 'iStart'
 template < typename ITERATOR_TYPE >
-strsize string_base < ITERATOR_TYPE >::find_ci(RANGE range, strsize iStart, strsize nCount) const RELEASENOTHROW
+strsize string_base < ITERATOR_TYPE >::case_insensitive_find(RANGE range, strsize iStart, strsize nCount) const RELEASENOTHROW
 {
 
    return offset_of(RANGE(this->begin() + iStart, nCount).find(range, ::comparison::case_insensitive < CHARACTER >()));
@@ -4544,7 +4574,7 @@ strsize string_base < ITERATOR_TYPE >::find_ci(RANGE range, strsize iStart, strs
 
 // find the first occurrence of string_base < ITERATOR_TYPE > 'range', starting at strsize 'iStart'
 template < typename ITERATOR_TYPE >
-strsize string_base < ITERATOR_TYPE >::find_unicode(RANGE range, strsize iStart, strsize nCount) const RELEASENOTHROW
+strsize string_base < ITERATOR_TYPE >::unicode_find(RANGE range, strsize iStart, strsize nCount) const RELEASENOTHROW
 {
 
    const_iterator p;
@@ -4617,7 +4647,7 @@ strsize string_base < ITERATOR_TYPE >::find_unicode(RANGE range, strsize iStart,
 
 // find the first occurrence of string_base < ITERATOR_TYPE > 'range', starting at strsize 'iStart'
 template < typename ITERATOR_TYPE >
-strsize string_base < ITERATOR_TYPE >::find_unicode_ci(RANGE range, strsize iStart, strsize nCount) const RELEASENOTHROW
+strsize string_base < ITERATOR_TYPE >::case_insensitive_unicode_find(RANGE range, strsize iStart, strsize nCount) const RELEASENOTHROW
 {
 
    const_iterator p;
@@ -4704,7 +4734,7 @@ strsize string_base < ITERATOR_TYPE >::find_unicode_ci(RANGE range, strsize iSta
 
 
 template < typename ITERATOR_TYPE >
-strsize string_base < ITERATOR_TYPE >::find_tail(RANGE range, strsize start, strsize count) const RELEASENOTHROW
+strsize string_base < ITERATOR_TYPE >::rear_find(RANGE range, strsize start, strsize count) const RELEASENOTHROW
 {
 
    const CHARACTER * p;
@@ -4722,7 +4752,7 @@ strsize string_base < ITERATOR_TYPE >::find_tail(RANGE range, strsize start, str
 
 
 template < typename ITERATOR_TYPE >
-strsize string_base < ITERATOR_TYPE >::find_unicode_tail(RANGE range, strsize start, strsize count) const RELEASENOTHROW
+strsize string_base < ITERATOR_TYPE >::rear_unicode_find(RANGE range, strsize start, strsize count) const RELEASENOTHROW
 {
 
    const CHARACTER * p;
@@ -4740,7 +4770,7 @@ strsize string_base < ITERATOR_TYPE >::find_unicode_tail(RANGE range, strsize st
 
 
 template < typename ITERATOR_TYPE >
-strsize string_base < ITERATOR_TYPE >::find_unicode_tail_ci(RANGE range, strsize start, strsize count) const RELEASENOTHROW
+strsize string_base < ITERATOR_TYPE >::rear_case_insensitive_unicode_find(RANGE range, strsize start, strsize count) const RELEASENOTHROW
 {
 
    const CHARACTER * p;

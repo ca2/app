@@ -227,7 +227,7 @@ namespace http
 
       auto purl = psystem->url();
 
-      if (::str().find_wwci("ca2", purl->get_server(pszUrl)) < 0 && purl->get_object(pszUrl).find_ci("/matter/") < 0)
+      if (::str().find_wwci("ca2", purl->get_server(pszUrl)) < 0 && purl->get_object(pszUrl).case_insensitive_find("/matter/") < 0)
       {
 
          set["raw_http"] = true;
@@ -2451,7 +2451,7 @@ namespace http
          {
 
 
-            if (strLocation.find_ci("http://") == 0 || strLocation.find_ci("https://") == 0)
+            if (strLocation.case_insensitive_find("http://") == 0 || strLocation.case_insensitive_find("https://") == 0)
             {
 
                strRedirect = strLocation;

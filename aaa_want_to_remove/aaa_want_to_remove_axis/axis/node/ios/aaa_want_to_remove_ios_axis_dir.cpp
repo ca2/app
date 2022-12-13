@@ -127,7 +127,7 @@ pacmedirectory->is(const ::string & strPath, ::aura::application * papp)
 
          }
 
-         strsize iFind = ::str().find_ci(".zip:", str);
+         strsize iFind = ::str().case_insensitive_find(".zip:", str);
 
          if(thread_set(e_task_flag_compress_is_dir) && iFind >= 0 && iFind < iLast)
          {

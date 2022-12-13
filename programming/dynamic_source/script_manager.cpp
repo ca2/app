@@ -388,7 +388,7 @@ namespace dynamic_source
          
          pinstance->m_strDebugRequestUri = pdssocket->inattr("request_uri");
 
-         if (pinstance->m_strDebugRequestUri.find_ci("google") > 0)
+         if (pinstance->m_strDebugRequestUri.case_insensitive_find("google") > 0)
          {
 
             output_debug_string("resident");

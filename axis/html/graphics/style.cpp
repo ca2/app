@@ -1070,19 +1070,19 @@ namespace html
       }
 
       // todo ::str().find_cssci would find thick between spaces but not concatenated
-      if(str.find_ci("thick") >= 0)
+      if(str.case_insensitive_find("thick") >= 0)
       {
          f = 5.0;
          return true;
       }
-      else if(str.find_ci("thin") >= 0)
+      else if(str.case_insensitive_find("thin") >= 0)
       {
          f = 1.0;
          return true;
       }
 
-      strsize iFindRgb = str.find_ci("rgb");
-      strsize iFindSharp = str.find_ci("#");
+      strsize iFindRgb = str.case_insensitive_find("rgb");
+      strsize iFindSharp = str.case_insensitive_find("#");
       strsize iFindColor = -1;
       strsize iFindDigit = str.FindOneOf("0123456789");
       if(iFindRgb >= 0)
@@ -1215,19 +1215,19 @@ namespace html
          return false;
 
       // todo ::str().find_cssci would find red between spaces but not concatenated
-      if(str.find_ci("magenta") >= 0)
+      if(str.case_insensitive_find("magenta") >= 0)
       {
          color32 = argb(255, 255, 0, 255);
          return true;
       }
-      else if(str.find_ci("green") >= 0)
+      else if(str.case_insensitive_find("green") >= 0)
       {
          color32 = argb(255, 0, 255, 0);
          return true;
       }
 
-      strsize iFindRgb = str.find_ci("rgb");
-      strsize iFindSharp = str.find_ci("#");
+      strsize iFindRgb = str.case_insensitive_find("rgb");
+      strsize iFindSharp = str.case_insensitive_find("#");
       strsize iFindColor = -1;
 //      strsize iFindDigit = str.FindOneOf("0123456789");
       if(iFindRgb >= 0)

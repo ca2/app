@@ -133,7 +133,7 @@ namespace user
 
          }
 
-         if (strId.find_ci("userex::message_box") < 0)
+         if (strId.case_insensitive_find("userex::message_box") < 0)
          {
 
             output_error_message("Failed to create ::user::document");

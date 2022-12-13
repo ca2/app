@@ -522,7 +522,7 @@ namespace dynamic_source
 
       }
 
-      if (m_strSourcePath.find_ci("\\applications\\basic\\") > 0)
+      if (m_strSourcePath.case_insensitive_find("\\applications\\basic\\") > 0)
       {
 
          TRACE("/applications/basic/");

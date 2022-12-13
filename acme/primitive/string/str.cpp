@@ -953,7 +953,7 @@ string str::replace_with_ci(const ::string & strNew, const ::string & strOld, co
    while (true)
    {
 
-      iPos = find_ci(strOld, str, iPos);
+      iPos = case_insensitive_find(strOld, str, iPos);
 
       if (iPos < 0)
       {
@@ -1002,7 +1002,7 @@ string str::replace_with_ci(const ::string & strNew, const ::string & strOld, co
    while (true)
    {
 
-      iPos = find_ci(strOld, str, iPos);
+      iPos = case_insensitive_find(strOld, str, iPos);
 
       if (iPos < 0)
       {
@@ -1038,7 +1038,7 @@ string str::replace_with_ci(const ::string & strNew, const ::string & strOld, co
 }
 
 
-index str::find_ci(const ::string & strFind, const ::string & str, index iStart)
+index str::case_insensitive_find(const ::string & strFind, const ::string & str, index iStart)
 {
 
    if (strFind.get_length() > (str.get_length() - iStart))
@@ -1070,7 +1070,7 @@ index str::find_ci(const ::string & strFind, const ::string & str, index iStart)
 }
 
 
-//index str::find_ci(const ::string & strFind, const ::string & strParam, index iStart)
+//index str::case_insensitive_find(const ::string & strFind, const ::string & strParam, index iStart)
 //{
 
 //   ::count iFindLen = strFind.get_length();
@@ -1164,7 +1164,7 @@ index str::find_ci(const ::string & strFind, const ::string & str, index iStart)
 //}
 
 
-//index str::find_ci(const ::string & strOld, const ::string & str, index iStart)
+//index str::case_insensitive_find(const ::string & strOld, const ::string & str, index iStart)
 //{
 
 //   ::count iFindLen = strOld.length();
@@ -1240,7 +1240,7 @@ index str::find_ci(const ::string & strFind, const ::string & str, index iStart)
 //}
 
 
-//index str::find_ci(const char * pszOld,const ::string & str,index iStart, index iLast)
+//index str::case_insensitive_find(const char * pszOld,const ::string & str,index iStart, index iLast)
 //{
 
 //   ::count iFindLen = strlen(pszOld);
@@ -1527,7 +1527,7 @@ index str::utf8_find(const ::string & strOld, const ::string & str, index iStart
 }
 
 
-//index str::find_ci(const ::string & strOld, const ::string & str, index iStart)
+//index str::case_insensitive_find(const ::string & strOld, const ::string & str, index iStart)
 //{
 //
 //  index iFindLen = strOld.length();

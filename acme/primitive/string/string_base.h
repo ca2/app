@@ -767,7 +767,7 @@ public:
    strsize find(CHARACTER ch) const RELEASENOTHROW;
    strsize find(CHARACTER ch, strsize start) const RELEASENOTHROW;
    strsize find(CHARACTER ch, strsize start, strsize count) const RELEASENOTHROW;
-   strsize find_ci(CHARACTER ch, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize case_insensitive_find(CHARACTER ch, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
 
    strsize find_skip_or_length(CHARACTER ch, strsize start = 0) const RELEASENOTHROW
    {
@@ -808,15 +808,15 @@ public:
 
    // find the first occurrence of string_base 'block', starting at index 'iStart'
    strsize find(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_ci(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_unicode(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_unicode_ci(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize case_insensitive_find(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize unicode_find(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize case_insensitive_unicode_find(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
 
    // find the first occurrence of string_base 'block', starting at index 'iStart', if found returns the index of first character after the end of the found string_base
-   strsize find_tail(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_tail_ci(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_unicode_tail(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_unicode_tail_ci(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize rear_find(RANGE range, strsize start, strsize count) const RELEASENOTHROW;
+   strsize rear_case_insensitive_find(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize rear_unicode_find(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize rear_case_insensitive_unicode_find(RANGE range, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
 
    // find the first occurrence of any of the characters in string_base 'pszCharSet'
    strsize scan(RANGE rangeCharacters, strsize iStart = 0) const RELEASENOTHROW;

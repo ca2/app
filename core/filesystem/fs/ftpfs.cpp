@@ -275,7 +275,7 @@ retry:
    for (auto pchild : ptra.ptra())
    {
 
-      if (pchild->m_strAttributes.find_ci("d") < 0)
+      if (pchild->m_strAttributes.case_insensitive_find("d") < 0)
          continue;
 
       auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::e_path_url));
@@ -287,7 +287,7 @@ retry:
    for (auto pchild : ptra.ptra())
    {
 
-      if (pchild->m_strAttributes.find_ci("d") >= 0)
+      if (pchild->m_strAttributes.case_insensitive_find("d") >= 0)
          continue;
 
       auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::e_path_url));

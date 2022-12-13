@@ -341,7 +341,7 @@ namespace ios
 //         else
 //         {
 //            string strFilePath(payloadFile);
-//            if(papp->m_bZipIsDir && (::str().find_ci(".zip:", strFilePath) >= 0))
+//            if(papp->m_bZipIsDir && (::str().case_insensitive_find(".zip:", strFilePath) >= 0))
 //            {
 //               ::memory_file memfile(papp, &storage);
 //               zip::InFile infile(this);
@@ -961,7 +961,7 @@ namespace ios
 //         if(papp->m_bZipIsDir)
 //         {
 //
-//            strsize iFind = ::str().find_ci(".zip:", pszPath);
+//            strsize iFind = ::str().case_insensitive_find(".zip:", pszPath);
 //
 //            zip::Util ziputil;
 //
@@ -1016,7 +1016,7 @@ namespace ios
 //         if(papp->m_bZipIsDir)
 //         {
 //
-//            strsize iFind = ::str().find_ci(".zip:", strPath);
+//            strsize iFind = ::str().case_insensitive_find(".zip:", strPath);
 //
 //            zip::Util ziputil;
 //

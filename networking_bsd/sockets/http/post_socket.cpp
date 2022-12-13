@@ -133,7 +133,7 @@ namespace sockets
 
                string strContentType = inheader("content-type").string();
 
-               if (strContentType.find_ci("application/json") < 0)
+               if (strContentType.case_insensitive_find("application/json") < 0)
                {
 
                   inheader("content-type") = "application/json" + ::str().has_char(strContentType, ";", strContentType);
@@ -151,7 +151,7 @@ namespace sockets
             //::xml::node * pnode = m_fields["xml"].cast < ::xml::node >();
             //body = pnode->get_xml();
             //body.trim();
-            //if(inheader("content-type").string().find_ci("application/xml") < 0)
+            //if(inheader("content-type").string().case_insensitive_find("application/xml") < 0)
             //{
             //   inheader("content-type") = "application/xml; " + inheader("content-type").string();
             //}
@@ -162,7 +162,7 @@ namespace sockets
 
             m_fields.get_network_arguments(strBody);
 
-            if (inheader("content-type").string().find_ci("application/x-www-form-urlencoded") < 0)
+            if (inheader("content-type").string().case_insensitive_find("application/x-www-form-urlencoded") < 0)
             {
 
                inheader("content-type") = "application/x-www-form-urlencoded" + ::str().has_char(inheader("content-type").string(), "; ");

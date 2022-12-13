@@ -289,9 +289,9 @@ pacmedirectory->is(strPath))
 
       // try to find "uifs:// http:// ftp:// like addresses"
       // then should show icon by extension or if is folder
-      strsize iFind = imagekey.m_strPath.is_empty() ? -1 : ::str().find_ci("://", imagekey.m_strPath);
+      strsize iFind = imagekey.m_strPath.is_empty() ? -1 : ::str().case_insensitive_find("://", imagekey.m_strPath);
 
-      strsize iFind2 = imagekey.m_strPath.is_empty() ? -1 : ::str().find_ci(":", imagekey.m_strPath);
+      strsize iFind2 = imagekey.m_strPath.is_empty() ? -1 : ::str().case_insensitive_find(":", imagekey.m_strPath);
 
       if (iFind >= 0 || iFind2 >= 2)
       {

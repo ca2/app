@@ -1299,7 +1299,7 @@ namespace dynamic_source
       string strTransfer = path;
 
       // does not transfer
-      if(::str().find_ci("netnode_persistent_ui_str", strTransfer) >= 0)
+      if(::str().case_insensitive_find("netnode_persistent_ui_str", strTransfer) >= 0)
          return;
 
       auto psystem = acmesystem()->m_paurasystem;
@@ -1429,7 +1429,7 @@ namespace dynamic_source
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size();)
       {
          if(l.m_straLibIncludePath[i].final_extension() != "h"
-               || ::str().find_ci(l.m_straLibIncludePath[i],"\\.svn\\") >= 0
+               || ::str().case_insensitive_find(l.m_straLibIncludePath[i],"\\.svn\\") >= 0
                || dir()->is(l.m_straLibIncludePath[i]))
          {
             l.m_straLibIncludePath.erase_at(i);
@@ -2682,7 +2682,7 @@ ch_else:
    {
       string str(psz);
 
-      if(::str().find_ci("pstr_set", psz) && string_ends_ci(psz, ".txt"))
+      if(::str().case_insensitive_find("pstr_set", psz) && string_ends_ci(psz, ".txt"))
       {
 
          parse_pstr_set();
@@ -2885,7 +2885,7 @@ ch_else:
       for(int i = 0; i < straFile.get_count(); i++)
       {
          string strFile = straFile[i];
-         if(::str().find_ci(".svn",strFile) >= 0 || !string_ends_ci(strFile,".txt"))
+         if(::str().case_insensitive_find(".svn",strFile) >= 0 || !string_ends_ci(strFile,".txt"))
             continue;
          strFile = file()->as_string(strFile);
          string_array straLine;

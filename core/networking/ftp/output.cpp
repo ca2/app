@@ -25,7 +25,7 @@ namespace ftp
 
       string strImplode = straArguments.implode(" ");
 
-      if (command.AsString().find_ci("PASS") >= 0)
+      if (command.AsString().case_insensitive_find("PASS") >= 0)
       {
          if (strImplode.has_char())
          {

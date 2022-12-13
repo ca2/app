@@ -182,8 +182,8 @@ namespace ios
       }
       // try to find "uifs:// http:// ftp:// like addresses"
       // then should show icon by extension or if is folder
-      strsize iFind = ::str().find_ci("://", imagekey.m_strPath);
-      strsize iFind2 = ::str().find_ci(":", imagekey.m_strPath);
+      strsize iFind = ::str().case_insensitive_find("://", imagekey.m_strPath);
+      strsize iFind2 = ::str().case_insensitive_find(":", imagekey.m_strPath);
       if (iFind >= 0 || iFind2 >= 2)
       {
          string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
@@ -1542,8 +1542,8 @@ pacmedirectory->is(strPath))
 //      }
 //      // try to find "uifs:// http:// ftp:// like addresses"
 //      // then should show icon by extension or if is folder
-//      strsize iFind = imagekey.m_strPath.find_ci("://");
-//      strsize iFind2 = imagekey.m_strPath.find_ci(":");
+//      strsize iFind = imagekey.m_strPath.case_insensitive_find("://");
+//      strsize iFind2 = imagekey.m_strPath.case_insensitive_find(":");
 //      if (iFind >= 0 || iFind2 >= 2)
 //      {
 //         string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));

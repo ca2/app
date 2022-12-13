@@ -328,7 +328,7 @@ namespace sockets
 
          string str = outheader("content-type").string();
 
-         if (str.find_ci("text") >= 0 || str.find_ci("javascript") >= 0)
+         if (str.case_insensitive_find("text") >= 0 || str.case_insensitive_find("javascript") >= 0)
          {
 
             m_response.m_propertysetHeader.set_at("content-encoding", "gzip");

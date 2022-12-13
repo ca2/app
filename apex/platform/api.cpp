@@ -203,7 +203,7 @@ void api::api_download(string strGet, const ::file::path & path, property_set& s
 
       m.set_size(length);
 
-      generate_random_bytes(m.get_data(), m.get_length());
+      generate_random_bytes(m.data(), m.get_length());
 
       return base64urlencodeNoPadding(m);
 

@@ -453,7 +453,7 @@ namespace html
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      //if(m_strPathName.find_ci("alarms_index") >= 0)
+      //if(m_strPathName.case_insensitive_find("alarms_index") >= 0)
       //{
 
       //   pgraphics->fill_rectangle(100,100,100,100,argb(190, 255, 0, 0));
@@ -464,7 +464,7 @@ namespace html
 
       m_pelement->_001OnDraw(this);
 
-      //if(m_strPathName.find_ci("alarms_index") >= 0)
+      //if(m_strPathName.case_insensitive_find("alarms_index") >= 0)
       //{
 
       //   pgraphics->fill_rectangle(200,200,100,100,argb(190, 0, 255, 0));

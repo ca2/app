@@ -1298,7 +1298,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //bool string::contains_ci(char ch,strsize iStart,strsize nCount) const
 //{
 //
-//   return find_ci(ch,iStart,nCount) >= 0;
+//   return case_insensitive_find(ch,iStart,nCount) >= 0;
 //
 //}
 //
@@ -1322,7 +1322,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //bool string::contains_ci(const char * psz,strsize iStart,strsize nCount) const
 //{
 //
-//   return find_ci(psz,iStart,nCount) >= 0;
+//   return case_insensitive_find(psz,iStart,nCount) >= 0;
 //
 //}
 //
@@ -1330,7 +1330,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //bool string::contains_ci(const ::string & str,strsize iStart,strsize nCount) const
 //{
 //
-//   return find_ci(str,iStart,nCount) >= 0;
+//   return case_insensitive_find(str,iStart,nCount) >= 0;
 //
 //}
 //
@@ -1907,7 +1907,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //// find the first occurrence of character 'ch', starting at strsize 'iStart'
-//strsize string::find_ci(char ch,strsize iStart,strsize nCount) const RELEASENOTHROW
+//strsize string::case_insensitive_find(char ch,strsize iStart,strsize nCount) const RELEASENOTHROW
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
@@ -2024,7 +2024,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //// find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-//strsize string::find_ci(const char * pszSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
+//strsize string::case_insensitive_find(const char * pszSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
@@ -2182,7 +2182,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//strsize string::find_tail(const char * pszSub,strsize start,strsize count) const RELEASENOTHROW
+//strsize string::rear_find(const char * pszSub,strsize start,strsize count) const RELEASENOTHROW
 //{
 //
 //   const char * pszTail = nullptr;
@@ -2213,7 +2213,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //   const char * pszTail = nullptr;
 //
-//   if(find_ci(pszSub,start,count,&pszTail) < 0)
+//   if(case_insensitive_find(pszSub,start,count,&pszTail) < 0)
 //      return -1;
 //
 //   return pszTail - m_pszData;

@@ -798,7 +798,7 @@ namespace apex
 
    //   //               pbase64->decode(m, ::url::decode(str.Mid(iFind + 1)));
 
-   //   //               m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, message, m.get_data(), m.get_size());
+   //   //               m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, message, m.get_data(), m.size());
 
    //   //            }
 
@@ -6565,7 +6565,7 @@ namespace apex
 
       ::memory_file file;
 
-      if (set["get_memory"].cast < memory >() != nullptr && set["get_memory"].cast < memory >()->get_size() > 0)
+      if (set["get_memory"].cast < memory >() != nullptr && set["get_memory"].cast < memory >()->size() > 0)
       {
 
          //zip_context zip(this);
@@ -7411,7 +7411,7 @@ namespace apex
    //
    //      }
    //
-   //      return SetEnhMetaFileBits((::u32)storage.get_size(), storage.get_data());
+   //      return SetEnhMetaFileBits((::u32)storage.size(), storage.get_data());
    //
    //   }
    //
@@ -7563,7 +7563,7 @@ namespace apex
 
    void application::memory_to_hex(string & strHex, memory & memory)
    {
-   ::count count = memory.get_size();
+   ::count count = memory.size();
    char * psz = strHex.get_string_buffer(count * 2);
 
    for(index i = 0; i < count; i++)
@@ -9591,7 +9591,7 @@ namespace apex
    //      string strApp;
    //      string_array stra;
    //      stra.add_tokens(psz, "::", true);
-   //      if (stra.get_size() > 0)
+   //      if (stra.size() > 0)
    //      {
    //         strApp = stra[0];
    //         ::windowing::window * pwindow = get_ca2_app_wnd(strApp);
@@ -9902,7 +9902,7 @@ namespace apex
 
       }
 
-      return payload.as_string();
+      return payload;
 
    }
 

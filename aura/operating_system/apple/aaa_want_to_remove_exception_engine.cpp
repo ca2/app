@@ -1447,7 +1447,7 @@ namespace exception
             if (uiSkip == DEFAULT_SE_EXCEPTION_callstack_SKIP)
             {
 
-               if (::str().find_ci("KiUserExceptionDispatcher", psz) >= 0)
+               if (::str().case_insensitive_find("KiUserExceptionDispatcher", psz) >= 0)
                {
 
                   uiSkip = 0;

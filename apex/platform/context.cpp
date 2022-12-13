@@ -387,7 +387,7 @@ namespace apex
          return "Bookmark";
 
       }
-      else if (dir()->bookmark().has_char() && path.compare("/") == 0)
+      else if (dir()->bookmark().has_char() && path == "/")
       {
 
          return "File System";

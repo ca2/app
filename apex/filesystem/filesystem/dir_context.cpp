@@ -1862,9 +1862,9 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
       else
       {
 
-         strsize iFind1 = strMatter.find_ci("/matter/");
+         strsize iFind1 = strMatter.case_insensitive_find("/matter/");
 
-         strsize iFind2 = strMatter.find_ci("\\matter\\");
+         strsize iFind2 = strMatter.case_insensitive_find("\\matter\\");
 
          strsize iFind = minimum_non_negative(iFind1, iFind2);
 
@@ -2268,7 +2268,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       string strToken = "/matter/";
 
-      auto iFind = strMatter.find_ci(strToken);
+      auto iFind = strMatter.case_insensitive_find(strToken);
 
       if (strMatter.has_char() && iFind >= 0)
       {

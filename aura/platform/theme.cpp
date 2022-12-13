@@ -240,19 +240,19 @@ namespace aura
 
       string strWeather = get_current_weather();
 
-      if (strWeather.find_ci(".night") >= 0 && m_straTheme.contains_ci("dark"))
+      if (strWeather.case_insensitive_find(".night") >= 0 && m_straTheme.contains_ci("dark"))
       {
 
          strTheme = "dark";
 
       }
-      else if (strWeather.find_ci(".dampened") && m_straTheme.contains_ci("blue"))
+      else if (strWeather.case_insensitive_find(".dampened") && m_straTheme.contains_ci("blue"))
       {
 
          strTheme = "blue";
 
       }
-      else if (strWeather.find_ci(".day") && m_straTheme.contains_ci("lite"))
+      else if (strWeather.case_insensitive_find(".day") && m_straTheme.contains_ci("lite"))
       {
 
          strTheme = "lite";
@@ -324,7 +324,7 @@ namespace aura
 
       m_strWeatherState = strWeatherState;
 
-      bool bDay = m_strWeatherState.find_ci(".day") >= 0;
+      bool bDay = m_strWeatherState.case_insensitive_find(".day") >= 0;
 
       string strDayNight;
 

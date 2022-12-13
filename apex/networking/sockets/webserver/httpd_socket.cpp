@@ -105,12 +105,12 @@ namespace sockets
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
 
-         m_response.header("Content-length") = (i64) mem.get_size();
+         m_response.header("Content-length") = (i64) mem.size();
          m_response.header("content-type") = type;
          //      m_response.header("Last-modified") = m_start;
          SendResponse();
 
-         write((char *)mem.get_data(), (i32) mem.get_size());
+         write((char *)mem.data(), (i32) mem.size());
       }
    }
 

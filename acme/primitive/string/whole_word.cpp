@@ -25,7 +25,7 @@
 
       strsize iFind = 0;
 
-      while ((iFind = str.find_ci(strFind, iFind)) >= 0)
+      while ((iFind = str.case_insensitive_find(strFind, iFind)) >= 0)
       {
 
          bool bLowerBound1 = iFind == 0;
@@ -76,7 +76,7 @@
 
       strsize iFind = 0;
 
-      while ((iFind = str.find_ci(strFind, iFind)) >= 0)
+      while ((iFind = str.case_insensitive_find(strFind, iFind)) >= 0)
       {
 
          if (iFind == 0 || !ansi_char_isalpha(str[iFind - 1]))

@@ -737,7 +737,7 @@ namespace apex
 
       string strId;
 
-      string strOriginalPathName(prequest->m_payloadFile.as_string());
+      string strOriginalPathName(prequest->m_payloadFile);
 
       ::file::path strPathName(strOriginalPathName);
 

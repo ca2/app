@@ -2163,9 +2163,9 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         strsize iBeg;
+         strsize iBeg = strTopic.find(this->element_at(iFind));
 
-         if ((iBeg = strTopic.offset_of(strTopic.find(this->element_at(iFind)))) >= 0)
+         if (iBeg >= 0)
          {
 
             if (ppszBeg)
@@ -2205,9 +2205,9 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         strsize iBeg;
+         strsize iBeg = strTopic.find(this->element_at(iFind));
 
-         if ((iBeg = strTopic.offset_of(strTopic.find(this->element_at(iFind), ::comparison::case_insensitive < CHARACTER >()))) >= 0)
+         if (iBeg >= 0)
          {
 
             if (ppszBeg)

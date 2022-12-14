@@ -248,7 +248,23 @@ template < typename BASE_TYPE >
 inline ::pointer<BASE_TYPE>particle::__create(::factory::factory* pfactory)
 {
 
-   auto p = pfactory->__create<BASE_TYPE>();
+   auto pfactoryitem = pfactory->get_factory_item<BASE_TYPE>();
+
+   if (!pfactoryitem)
+   {
+
+      throw ::exception(error_no_factory);
+
+   }
+
+   auto p = pfactoryitem->create_particle();
+
+   if (!p)
+   {
+
+      throw ::exception(error_wrong_type);
+
+   }
 
    p->initialize(this);
 
@@ -261,7 +277,23 @@ template < typename BASE_TYPE >
 inline ::pointer<BASE_TYPE>particle::__id_create(const ::atom & atom, ::factory::factory* pfactory)
 {
 
-   auto p = pfactory->__id_create<BASE_TYPE>(atom);
+   auto pfactoryitem = pfactory->get_factory_item(atom);
+
+   if (!pfactoryitem)
+   {
+
+      throw ::exception(error_no_factory);
+
+   }
+
+   auto p = pfactoryitem->create_particle();
+
+   if (!p)
+   {
+
+      throw ::no_memory();
+
+   }
 
    p->initialize(this);
 
@@ -309,7 +341,7 @@ inline void particle::__construct(::pointer<BASE_TYPE>& p, ::factory::factory * 
 
    }
 
-   auto ptypeNew = pfactoryitem->create();
+   auto ptypeNew = pfactoryitem->create_particle();
 
    p = ptypeNew;
 

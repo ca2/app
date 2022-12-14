@@ -63,9 +63,11 @@ public:
    
 #endif
    
+#ifdef LINUX
 
    ::locale_t                                      m_localeC;
 
+#endif
 
    ::block                                         m_blockMatter;
    ::acme::library_map                             m_mapLibrary;

@@ -30,7 +30,7 @@ public:
    raw_array(raw_array <TYPE,ARG_TYPE,ALLOCATOR> && a) noexcept;
    raw_array(ARG_TYPE t, ::count n);
    raw_array(::range < const_iterator > constrange) : ARRAY_BASE(constrange) {}
-   raw_array(const_iterator begin, const_iterator end, bool bNullTerminated = false) : ARRAY_BASE(begin, end, bNullTerminated) { }
+   raw_array(const_iterator begin, const_iterator end, e_range erange = e_range_none) : ARRAY_BASE(begin, end, erange) { }
    raw_array(const TYPE * ptypea, ::count n);
    virtual ~raw_array();
 

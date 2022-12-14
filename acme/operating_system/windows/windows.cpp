@@ -167,7 +167,7 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
 
    }
 
-   return wstrModuleFolder;
+   return ::string(wstrModuleFolder);
 
 #elif defined(__APPLE__)
 
@@ -324,7 +324,7 @@ found:
 
    wstrModuleFolder.trim_right(L"\\/");
 
-   return wstrModuleFolder;
+   return ::string(wstrModuleFolder);
 
 #else
 

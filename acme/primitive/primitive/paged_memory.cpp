@@ -16,7 +16,7 @@ paged_memory::paged_memory(const void * pdata, memsize iCount)
 
    ASSERT(__is_valid_address(pdata, iCount, false));
 
-   ::memcpy_dup(m_memory.storage_begin(), pdata, iCount);
+   ::memcpy_dup(storage_begin(), pdata, iCount);
 
 }
 
@@ -40,15 +40,15 @@ paged_memory::paged_memory(const char * psz)
 paged_memory::paged_memory(memory_container * pcontainer, void * pdata, memsize size)
 {
 
-   m_memory.m_beginStorage = nullptr;
+   m_beginStorage = nullptr;
 
-   m_memory.m_begin = nullptr;
+   m_begin = nullptr;
 
    set_size(size);
 
    ASSERT(__is_valid_address(pdata, (uptr)size, false));
 
-   ::memcpy_dup(m_memory.storage_begin(), pdata, (size_t)size);
+   ::memcpy_dup(storage_begin(), pdata, (size_t)size);
 
 }
 
@@ -58,10 +58,10 @@ paged_memory::paged_memory(memory_container * pcontainer, double dAllocationRate
 
    __UNREFERENCED_PARAMETER(nAllocFlags);
 
-   m_memory.m_beginStorage = nullptr;
-   m_memory.m_begin = nullptr;
-   m_memory.m_pcontainer = pcontainer;
-   m_memory.m_dAllocationRateUp = dAllocationRateUp;
+   m_beginStorage = nullptr;
+   m_begin = nullptr;
+   m_pcontainer = pcontainer;
+   m_dAllocationRateUp = dAllocationRateUp;
 
 }
 
@@ -69,13 +69,13 @@ paged_memory::paged_memory(memory_container * pcontainer, double dAllocationRate
 paged_memory::~paged_memory()
 {
 
-   if (m_memory.storage_begin() != nullptr)
+   if (storage_begin() != nullptr)
    {
 
       try
       {
 
-         impl_free(m_memory.storage_begin());
+         impl_free(storage_begin());
 
       }
       catch (...)
@@ -129,7 +129,7 @@ byte * paged_memory::impl_alloc(memsize dwAllocation)
 byte * paged_memory::impl_realloc(void * pdata, memsize dwAllocation)
 {
 
-   return (byte *) ::paged_reallocate(pdata, (size_t)m_memory.size(), (size_t)dwAllocation);
+   return (byte *) ::paged_reallocate(pdata, (size_t)size(), (size_t)dwAllocation);
 
 }
 

@@ -146,9 +146,9 @@ public:
    string_base(::wd16_character wd16ch): NATURAL_POINTER(wd16ch){}
    string_base(::wd32_character wd32ch): NATURAL_POINTER(wd32ch){}
    //string_base(const character & character, strsize repeat = 1) :string_base(character.m_wd32char, repeat) {}
-   //string_base(const ::property & property);
-   //string_base(const ::payload & payload);
-   //string_base(const ::atom & atom);
+   string_base(const ::atom & atom);
+   string_base(const ::payload & payload);
+   string_base(const ::property & property);
    //template < has_as_string HAS_AS_STRING >
    //string_base(const HAS_AS_STRING & has_as_string) : string_base(has_as_string.as_string()) {}
    inline ~string_base() {}

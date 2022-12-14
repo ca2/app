@@ -78,7 +78,7 @@ namespace sockets_bsd
 
       //auto estatus = initialize(passociation->m_psocket);
 
-      initialize(passociation->m_psocket);
+      initialize(passociation->element2());
 
       //if (!estatus)
       //{
@@ -91,7 +91,7 @@ namespace sockets_bsd
 
       //psocket->m_psockethandler.release();
 
-      __Socket(passociation->m_psocket)->m_psocketthread = this;
+      __Socket(passociation->element2())->m_psocketthread = this;
 
       //m_psockethandler->SetSlave();
 
@@ -168,16 +168,16 @@ namespace sockets_bsd
 
       }
 
-      auto passociation = m_psockethandler->m_socketmap.m_passociationHead;
+      auto passociation = m_psockethandler->m_socketmap.m_begin;
 
-      if (::is_null(passociation))
+      if (passociation.is_null())
       {
 
          return nullptr;
 
       }
 
-      return passociation->m_psocket;
+      return passociation->element2();
 
    }
 

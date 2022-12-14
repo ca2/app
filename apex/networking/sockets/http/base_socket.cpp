@@ -214,7 +214,7 @@ namespace sockets
       if (response().m_strFile.has_char())
       {
 
-         response().m_propertysetHeader["content-length"] = acmefile()->size(response().m_strFile);
+         response().m_propertysetHeader["content-length"] = acmefile()->get_size(response().m_strFile);
 
       }
       else

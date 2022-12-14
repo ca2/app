@@ -618,7 +618,7 @@ public:
 
       }
 
-      write(inlinestring.get_data(), inlinestring.get_size());
+      write(inlinestring.data(), inlinestring.size());
 
       if (m_fmtflags & ::file::network_payload)
       {

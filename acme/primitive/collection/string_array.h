@@ -4773,8 +4773,8 @@ void string_array_base < Type, RawType, m_etypeContainer > ::c_add(wchar_t ** pp
 
       auto pwsz = *ppwsz;
 
-      auto str = Type(pwsz);
-
+      Type str(pwsz);
+      
       this->add(str);
 
       if(bMemoryAlloc)

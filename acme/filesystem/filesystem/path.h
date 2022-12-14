@@ -47,27 +47,138 @@ namespace file
 
       using RANGE = typename ::string::RANGE;
 
+
       path() { m_epath = e_path_file; }
-      path(nullptr_t) {}
-      path(const ::ansi_string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
-//      path(const ::wd16_string & wd16str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-//         path((const::ansi_string &)wd16str, epath, iDir, bNormalize, iSize) {}
-//      path(const ::wd32_string & wd32str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-//         path((const::ansi_string &)wd32str, epath, iDir, bNormalize, iSize) {}
-      path(const char * psz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-         path((const::ansi_string &)psz, epath, iDir, bNormalize, iSize) {}
-//      path(const ::wd16_character * pwd16sz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-//         path((const::ansi_string &)pwd16sz, epath, iDir, bNormalize, iSize) {}
-//      path(const ::wd32_character * pwd32sz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-//         path((const::ansi_string &)pwd32sz, epath, iDir, bNormalize, iSize) {}
-      //path(::ansi_character ch, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-        // path((const::ansi_string &)ch, epath, iDir, bNormalize, iSize) {}
-      path(enum_path epath) { m_epath = epath; }
-      path(const path& path);
-      path(const ::atom & atom) : path(::string(atom)){}
+      path(enum_no_initialize) : string(e_no_initialize) { }
+      path(nullptr_t) { }
+      //path(enum_for_moving) { }
+      //path(enum_get_buffer, strsize len) { get_string_buffer(len); }
+      path(const path & path) : string(path), path_meta(path) {}
+      path(const string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
+
+
+      //template<typed_range<::ansi_character *> RANGE>
+      //path(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+      //template<typed_range<const ::ansi_character *> RANGE>
+      //path(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+      //template<typed_range<::wd16_character *> RANGE>
+      //path(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+      //template<typed_range<const ::wd16_character *> RANGE>
+      //path(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+      //template<typed_range<::wd32_character *> RANGE>
+      //path(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+      //template<typed_range<const ::wd32_character *> RANGE>
+      //path(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
+
+
+      //template<typed_range<::ansi_character *> RANGE>
+      //path(const RANGE & str, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, count); }
+      //template<typed_range<const ::ansi_character *> RANGE>
+      //path(const RANGE & str, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, count); }
+      //template<typed_range<::wd16_character *> RANGE>
+      //path(const RANGE & str, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, count); }
+      //template<typed_range<const ::wd16_character *> RANGE>
+      //path(const RANGE & str, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, count); }
+      //template<typed_range<::wd32_character *> RANGE>
+      //path(const RANGE & str, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, count); }
+      //template<typed_range<const ::wd32_character *> RANGE>
+      //path(const RANGE & str, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, count); }
+
+
+
+      //template<typed_range<::ansi_character *> RANGE>
+      //path(const RANGE & str, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
+      //template<typed_range<const ::ansi_character *> RANGE>
+      //path(const RANGE & str, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
+      //template<typed_range<::wd16_character *> RANGE>
+      //path(const RANGE & str, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
+      //template<typed_range<const ::wd16_character *> RANGE>
+      //path(const RANGE & str, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
+      //template<typed_range<::wd32_character *> RANGE>
+      //path(const RANGE & str, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
+      //template<typed_range<const ::wd32_character *> RANGE>
+      //path(const RANGE & str, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
+
+      //   path(const ::const_ansi_raw_range & ansirange) : NATURAL_POINTER(e_no_initialize){construct2(ansirange);}
+   //   path(const ::const_wd16_raw_range & wd16range) : NATURAL_POINTER(e_no_initialize){construct2(wd16range);}
+   //   path(const ::const_wd32_raw_range & wd32range) : NATURAL_POINTER(e_no_initialize){construct2(wd32range);}
+      //path(const const_ansi_raw_range & ansirange) : NATURAL_POINTER(e_no_initialize) { construct2(ansirange, 0, -1); }
+      //path(const const_wd16_raw_range & wd16range) : NATURAL_POINTER(e_no_initialize) { construct2(wd16range, 0, -1); }
+      //path(const const_wd32_raw_range & wd32range) : NATURAL_POINTER(e_no_initialize) { construct2(wd32range, 0, -1); }
+      //path(const const_ansi_raw_range & ansirange, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(ansirange, 0, len); }
+      //path(const const_wd16_raw_range & wd16range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd16range, 0, len); }
+      //path(const const_wd32_raw_range & wd32range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd32range, 0, len); }
+      //path(const const_ansi_raw_range & ansirange, strsize start, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(ansirange, start, len); }
+      //path(const const_wd16_raw_range & wd16range, strsize start, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd16range, start, len); }
+      //path(const const_wd32_raw_range & wd32range, strsize start, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd32range, start, len); }
+      template < primitive_character CHARACTER2 >
+      path(const CHARACTER2 * pszSource) : path(pszSource, 0, string_safe_length(pszSource)) {}
+      template < primitive_character CHARACTER2 >
+      path(const CHARACTER2 * pszSource, strsize len) : path(pszSource, 0, len) {}
+      template < primitive_character CHARACTER2 >
+      path(const CHARACTER2 * pszSource, strsize start, strsize len);
+      template < primitive_character CHARACTER2, strsize sizeMaximumLength >
+      path(const inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
+         path(inlinestring.begin(), inlinestring.end())
+      { }
+      //   path(const ::ansi_character * pansichar, strsize len);
+         //path(::str < iterator > str) : path((const_iterator)str.begin(), (const_iterator)str.end()) {}
+         //path(::str < const_iterator > str) : path(str.begin(), str.end()) {}
+         //path(::block block) : path((const_iterator)block.begin(), (const_iterator)block.end()) {}
+         //path(const path & str);
+          //path(const ::wd16_character * pwd16char);
+      //   path(const ::wd16_character * pwd16char, strsize len);
+         //path(const ::wd32_character * pwd32char);
+      //   path(const ::wd32_character * pwd32char, strsize len);
+      //   path(const ::wd32_character * pwd32char, strsize len, strsize pos) : path(pwd32char + pos, len) { }
+         //template < primitive_character CHARACTER2 >
+      path(const_iterator begin, const_iterator end) : path(begin, end - begin) { }
+      //path(const path & str) : path(str, 0, str.size()) { }
+      //path(const path & str, strsize len) : path(str, 0, len) { }
+      //path(const path & str, strsize start, strsize len);
+   //   template < primitive_character CHARACTER2 >
+   //   path(const ::string_range < const CHARACTER2 * > & strSource) : path(strSource, 0, strSource.size()) {}
+   //   template < primitive_character CHARACTER2 >
+   //   path(const ::string_range < const CHARACTER2 * > & strSource, strsize len) : path(strSource, 0, minimum(strSource.size(), len)) {}
+   //   template < primitive_character CHARACTER2 >
+   //   path(const ::string_range < const CHARACTER2 * > & strSource, strsize start, strsize len);
+      //path(const simple_ansistring& simpleansistr);
+      //path(const simple_wd16string& simplewd16str);
+      //path(const simple_wd32string& simplewd32str);
+      template < primitive_character CHARACTER2 >
+      path(CHARACTER2 chSrc, strsize repeat);
+      path(::ansi_character ansich) : path(::string(ansich)) {}
+      path(::wd16_character wd16ch) : path(::string(wd16ch)) {}
+      path(::wd32_character wd32ch) : path(::string(wd32ch)) {}
+      //path(const character & character, strsize repeat = 1) :path(character.m_wd32char, repeat) {}
+      path(const ::atom & atom);
       path(const ::payload & payload);
       path(const ::property & property);
-//      path(const ::string & str);
+      //template < has_as_string HAS_AS_STRING >
+      //path(const HAS_AS_STRING & has_as_string) : path(has_as_string.as_string()) {}
+      //inline ~path() {}
+
+//      path() { m_epath = e_path_file; }
+//      path(nullptr_t) {}
+//      path(const ::ansi_string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
+////      path(const ::wd16_string & wd16str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+////         path((const::ansi_string &)wd16str, epath, iDir, bNormalize, iSize) {}
+////      path(const ::wd32_string & wd32str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+////         path((const::ansi_string &)wd32str, epath, iDir, bNormalize, iSize) {}
+//      path(const char * psz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+//         path((const::ansi_string &)psz, epath, iDir, bNormalize, iSize) {}
+////      path(const ::wd16_character * pwd16sz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+////         path((const::ansi_string &)pwd16sz, epath, iDir, bNormalize, iSize) {}
+////      path(const ::wd32_character * pwd32sz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+////         path((const::ansi_string &)pwd32sz, epath, iDir, bNormalize, iSize) {}
+//      //path(::ansi_character ch, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+//        // path((const::ansi_string &)ch, epath, iDir, bNormalize, iSize) {}
+//      path(enum_path epath) { m_epath = epath; }
+//      path(const path& path);
+//      path(const ::atom & atom) : path(::string(atom)){}
+//      path(const ::payload & payload);
+//      path(const ::property & property);
+////      path(const ::string & str);
       ~path() noexcept;
 
 
@@ -463,12 +574,12 @@ namespace file
       //namespace file
       //{
 
-   inline path::path(const path& path) :
-      string((const string&)path),
-      path_meta(path)
-   {
+   //inline path::path(const path& path) :
+   //   string((const string&)path),
+   //   path_meta(path)
+   //{
 
-   }
+   //}
 
 
    //inline path::path(const path_object& path) :

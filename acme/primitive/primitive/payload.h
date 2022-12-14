@@ -397,8 +397,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::procedure get_procedure() const;
 
 
-   ::string get_string(const char * pszOnNull) const;
-   ::string string() const;
+   ::string as_string(const char * pszOnNull) const;
+   ::string as_string() const;
    ::string get_recursive_string() const;
    ::atom atom(const ::atom & idDefault = nullptr)   const;
 
@@ -1346,10 +1346,10 @@ inline payload::operator unsigned long() const
 //}
 
 
-inline ::string payload::string() const
+inline ::string payload::as_string() const
 {
 
-   return this->get_string(nullptr);
+   return this->as_string(nullptr);
 
 }
 
@@ -2111,7 +2111,7 @@ template < typename CHAR_TYPE >
 inline ::string_base < CHAR_TYPE > & copy(::string_base < CHAR_TYPE > & string, const ::payload& payload)
 {
 
-    string = payload.string();
+    string = payload.as_string();
 
     return string;
 
@@ -2177,7 +2177,7 @@ inline void copy(::payload & payload1, const ::payload& payload2)
 inline ::string operator +(const ::string & str, const ::payload & payload)
 {
 
-   return ::move(str + payload.string());
+   return ::move(str + payload.as_string());
 
 }
 
@@ -2240,13 +2240,13 @@ inline ::file::path operator / (const ::file::path& path, const ::payload& paylo
 //}
 
 
-//template < typename ITERATOR_TYPE >
-//string_base < ITERATOR_TYPE >::string_base(const ::payload & payload) :
-//   string(payload.operator ::string())
-//{
-//
-//
-//}
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE >::string_base(const ::payload & payload) :
+   string(payload.as_string())
+{
+
+
+}
 
 
 //template < typename ITERATOR_TYPE >
@@ -2267,19 +2267,19 @@ inline ::file::path operator / (const ::file::path& path, const ::payload& paylo
 //}
 
 
-//namespace file
-//{
-//
-//
-//   inline path::path(const ::payload & payload) :
-//      path(payload.file_path())
-//   {
-//
-//   }
-//
-//
-//} // namespace file
-//
+namespace file
+{
+
+
+   inline path::path(const ::payload & payload) :
+      path(payload.file_path())
+   {
+
+   }
+
+
+} // namespace file
+
 
 
 

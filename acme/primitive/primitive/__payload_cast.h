@@ -43,7 +43,7 @@ public:
    operator earth::time()const { return m_payload.earth_time(); }
 
 
-   operator string ()const { return m_payload.string(); }
+   operator string ()const { return m_payload.as_string(); }
    //operator property ()const { return m_payload.property(); }
 
 

@@ -34,10 +34,10 @@ public:
    using BASE_ARRAY::BASE_ARRAY;
 
    array();
-   array(std::initializer_list < TYPE > initializer_list) : BASE_ARRAY(initializer_list) {}
-   array(const_iterator begin, ::count count)
-   array(const_iterator begin, const_iterator end);
    array(nullptr_t) : array() {}
+   array(std::initializer_list < TYPE > initializer_list) : BASE_ARRAY(initializer_list) {}
+   array(const_iterator begin, ::count count) : BASE_ARRAY(begin, count) {}
+   array(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
    array(const array & a);
    array(enum_create_new, ::count n);
    array(::count n, ARG_TYPE t);
@@ -74,7 +74,7 @@ public:
       inline ::count append(const CONTAINER& container)
    {
 
-      return ARRAY_BASE::append(container);
+      return BASE_ARRAY::append(container);
 
    }
 

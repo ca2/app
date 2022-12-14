@@ -302,19 +302,19 @@ using property_ptra = auto_ptr_array < ::property >;
 //
 //}
 
-
-namespace file
-{
-
-
-   inline path::path(const ::property & property) :
-      path(property.file_path())
-   {
-
-   }
-
-
-} // namespace file
-
+//
+//namespace file
+//{
+//
+//
+//   inline path::path(const ::property & property) :
+//      path(property.file_path())
+//   {
+//
+//   }
+//
+//
+//} // namespace file
+//
 
 

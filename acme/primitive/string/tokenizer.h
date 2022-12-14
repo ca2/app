@@ -20,7 +20,7 @@ public:
    tokenizer():m_iterator(nullptr) {}
    tokenizer(const tokenizer & range) : const_ansi_range(range) {}
    tokenizer(tokenizer && range) : const_ansi_range(::move(range)) { }
-   tokenizer(const ::string & str) : RANGE(range), m_iterator(range.begin()) {}
+   tokenizer(const ::string & str) : RANGE(str), m_iterator(str.begin()) {}
    ~tokenizer() {}
 
 
@@ -74,7 +74,7 @@ public:
    bool ExtractFolderPath(const char * pcszFilePath);
 
    void reset() { m_iterator = this->begin(); };
-   void reset(const ::string & str) { RANGE::operator= (range); reset(); }
+   void reset(const ::string & str) { RANGE::operator= (str); reset(); }
    bool get_next_token(::string &strToken, const ::string & strSeparator, bool bWithSeparator = false);
 
    bool get_next_smallest_token(::string &strToken, const ::string_array & straSeparator, bool bWithSeparator = false);

@@ -50,24 +50,24 @@ namespace file
       path() { m_epath = e_path_file; }
       path(nullptr_t) {}
       path(const ::ansi_string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
-      path(const ::wd16_string & wd16str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-         path((const::ansi_string &)wd16str, epath, iDir, bNormalize, iSize) {}
-      path(const ::wd32_string & wd32str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-         path((const::ansi_string &)wd32str, epath, iDir, bNormalize, iSize) {}
+//      path(const ::wd16_string & wd16str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+//         path((const::ansi_string &)wd16str, epath, iDir, bNormalize, iSize) {}
+//      path(const ::wd32_string & wd32str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+//         path((const::ansi_string &)wd32str, epath, iDir, bNormalize, iSize) {}
       path(const char * psz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
          path((const::ansi_string &)psz, epath, iDir, bNormalize, iSize) {}
-      path(const ::wd16_character * pwd16sz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-         path((const::ansi_string &)pwd16sz, epath, iDir, bNormalize, iSize) {}
-      path(const ::wd32_character * pwd32sz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-         path((const::ansi_string &)pwd32sz, epath, iDir, bNormalize, iSize) {}
-      path(::ansi_character ch, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-         path((const::ansi_string &)ch, epath, iDir, bNormalize, iSize) {}
+//      path(const ::wd16_character * pwd16sz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+//         path((const::ansi_string &)pwd16sz, epath, iDir, bNormalize, iSize) {}
+//      path(const ::wd32_character * pwd32sz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+//         path((const::ansi_string &)pwd32sz, epath, iDir, bNormalize, iSize) {}
+      //path(::ansi_character ch, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+        // path((const::ansi_string &)ch, epath, iDir, bNormalize, iSize) {}
       path(enum_path epath) { m_epath = epath; }
       path(const path& path);
-      path(const ::atom & atom) : path(atom.operator string()){}
-      path(const ::payload & payload);
-      path(const ::property & property);
-      path(const ::string & str) : path(::string(range)) {}
+      //path(const ::atom & atom) : path(atom.operator string()){}
+      //path(const ::payload & payload);
+      //path(const ::property & property);
+      //path(const ::string & str);
       ~path() noexcept;
 
 
@@ -168,7 +168,7 @@ namespace file
 
 
 
-      bool operator == (const ::ansi_string & str) const;
+      //bool operator == (const ::ansi_string & str) const;
 
 
       bool operator == (const char * psz) const
@@ -1405,18 +1405,18 @@ namespace file
 
    }
 
-
-   inline bool path::operator == (const ::ansi_string& str) const
-   {
-
-      return operator == (path(str));
-
-   }
+//
+//   inline bool path::operator == (const ::ansi_string& str) const
+//   {
+//
+//      return operator == (path(str));
+//
+//   }
 
    inline bool path::operator == (const ::string & str) const
    {
 
-      return operator == (path(range));
+      return operator == (path(str));
 
    }
 
@@ -1501,7 +1501,7 @@ template < ::count c >
 inline ::file::path operator +(const char(&sz)[c], const ::file::path & path)
 {
 
-   return ::string(sz) + ((const::string &)path)));
+   return ::string(sz) + ((const::string &)path);
 
 }
 

@@ -1530,10 +1530,10 @@ void string_array_base < Type, RawType, m_etypeContainer > ::add_smallest_tokens
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::add_lines(const RawType &str, bool bAddEmpty)
+void string_array_base < Type, RawType, m_etypeContainer > ::add_lines(const RawType &strParam, bool bAddEmpty)
 {
 
-   string str(str);
+   string str(strParam);
 
    strsize iPos = 0;
 
@@ -1972,10 +1972,10 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::_066Find(const RawType &str) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::_066Find(const RawType &strParam) const
 {
 
-   RawString str(str);
+   RawString str(strParam);
 
    ::index iSel = this->find_first(str);
 
@@ -4863,7 +4863,7 @@ void string_array_base < Type, RawType, m_etypeContainer > ::collate_sort_ci()
 }
 
 CLASS_DECL_ACME bool next_csv(string & str, const string_array & stra);
-CLASS_DECL_ACME void add_csv(string_array & stra, const RawType &str);
+CLASS_DECL_ACME void add_csv(string_array & stra, const ::string &str);
 
 
 

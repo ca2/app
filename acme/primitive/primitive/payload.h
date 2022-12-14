@@ -2267,19 +2267,19 @@ inline ::file::path operator / (const ::file::path& path, const ::payload& paylo
 //}
 
 
-namespace file
-{
-
-
-   inline path::path(const ::payload & payload) :
-      path(payload.file_path())
-   {
-
-   }
-
-
-} // namespace file
-
+//namespace file
+//{
+//
+//
+//   inline path::path(const ::payload & payload) :
+//      path(payload.file_path())
+//   {
+//
+//   }
+//
+//
+//} // namespace file
+//
 
 
 

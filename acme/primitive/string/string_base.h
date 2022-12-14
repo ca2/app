@@ -53,46 +53,46 @@ public:
 
 
    template<typed_range<::ansi_character *> RANGE>
-   string_base(const RANGE &range) : NATURAL_POINTER(e_no_initialize) { construct2(range); }
+   string_base(const RANGE &str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
    template<typed_range<const ::ansi_character *> RANGE>
-   string_base(const RANGE &range) : NATURAL_POINTER(e_no_initialize) { construct2(range); }
+   string_base(const RANGE &str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
    template<typed_range<::wd16_character *> RANGE>
-   string_base(const RANGE &range) : NATURAL_POINTER(e_no_initialize) { construct2(range); }
+   string_base(const RANGE &str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
    template<typed_range<const ::wd16_character *> RANGE>
-   string_base(const RANGE &range) : NATURAL_POINTER(e_no_initialize) { construct2(range); }
+   string_base(const RANGE &str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
    template<typed_range<::wd32_character *> RANGE>
-   string_base(const RANGE &range) : NATURAL_POINTER(e_no_initialize) { construct2(range); }
+   string_base(const RANGE &str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
    template<typed_range<const ::wd32_character *> RANGE>
-   string_base(const RANGE &range) : NATURAL_POINTER(e_no_initialize) { construct2(range); }
+   string_base(const RANGE &str) : NATURAL_POINTER(e_no_initialize) { construct2(str); }
 
 
    template<typed_range<::ansi_character *> RANGE>
-   string_base(const RANGE &range, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(range, count); }
+   string_base(const RANGE &str, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, count); }
    template<typed_range<const ::ansi_character *> RANGE>
-   string_base(const RANGE &range, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(range, count); }
+   string_base(const RANGE &str, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, count); }
    template<typed_range<::wd16_character *> RANGE>
-   string_base(const RANGE &range, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(range, count); }
+   string_base(const RANGE &str, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, count); }
    template<typed_range<const ::wd16_character *> RANGE>
-   string_base(const RANGE &range, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(range, count); }
+   string_base(const RANGE &str, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, count); }
    template<typed_range<::wd32_character *> RANGE>
-   string_base(const RANGE &range, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(range, count); }
+   string_base(const RANGE &str, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, count); }
    template<typed_range<const ::wd32_character *> RANGE>
-   string_base(const RANGE &range, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(range, count); }
+   string_base(const RANGE &str, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, count); }
 
 
 
    template<typed_range<::ansi_character *> RANGE>
-   string_base(const RANGE &range, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(range, start, count); }
+   string_base(const RANGE &str, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
    template<typed_range<const ::ansi_character *> RANGE>
-   string_base(const RANGE &range, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(range, start, count); }
+   string_base(const RANGE &str, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
    template<typed_range<::wd16_character *> RANGE>
-   string_base(const RANGE &range, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(range, start, count); }
+   string_base(const RANGE &str, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
    template<typed_range<const ::wd16_character *> RANGE>
-   string_base(const RANGE &range, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(range, start, count); }
+   string_base(const RANGE &str, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
    template<typed_range<::wd32_character *> RANGE>
-   string_base(const RANGE &range, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(range, start, count); }
+   string_base(const RANGE &str, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
    template<typed_range<const ::wd32_character *> RANGE>
-   string_base(const RANGE &range, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(range, start, count); }
+   string_base(const RANGE &str, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
 
    //   string_base(const ::const_ansi_raw_range & ansirange) : NATURAL_POINTER(e_no_initialize){construct2(ansirange);}
 //   string_base(const ::const_wd16_raw_range & wd16range) : NATURAL_POINTER(e_no_initialize){construct2(wd16range);}
@@ -117,8 +117,8 @@ public:
       string_base(inlinestring.begin(), inlinestring.end())
    { }
 //   string_base(const ::ansi_character * pansichar, strsize len);
-   //string_base(::range < iterator > range) : string_base((const_iterator)range.begin(), (const_iterator)range.end()) {}
-   //string_base(::range < const_iterator > range) : string_base(range.begin(), range.end()) {}
+   //string_base(::str < iterator > str) : string_base((const_iterator)str.begin(), (const_iterator)str.end()) {}
+   //string_base(::str < const_iterator > str) : string_base(str.begin(), str.end()) {}
    //string_base(::block block) : string_base((const_iterator)block.begin(), (const_iterator)block.end()) {}
    //string_base(const string_base & str);
     //string_base(const ::wd16_character * pwd16char);
@@ -128,8 +128,8 @@ public:
 //   string_base(const ::wd32_character * pwd32char, strsize len, strsize pos) : string_base(pwd32char + pos, len) { }
    //template < primitive_character CHARACTER2 >
    string_base(const_iterator begin, const_iterator end) : string_base(begin, end - begin) { }
-   //string_base(const string_base & str) : string_base(range, 0, range.size()) { }
-   //string_base(const string_base & str, strsize len) : string_base(range, 0, len) { }
+   //string_base(const string_base & str) : string_base(str, 0, str.size()) { }
+   //string_base(const string_base & str, strsize len) : string_base(str, 0, len) { }
    //string_base(const string_base & str, strsize start, strsize len);
 //   template < primitive_character CHARACTER2 >
 //   string_base(const ::string_range < const CHARACTER2 * > & strSource) : string_base(strSource, 0, strSource.size()) {}
@@ -176,11 +176,11 @@ public:
    }
 
    template < primitive_character CHARACTER2 >
-   inline void construct2(const ::range < const CHARACTER2 * > & range);
+   inline void construct2(const ::range < const CHARACTER2 * > & str);
    template < primitive_character CHARACTER2 >
-   inline void construct2(const ::range < const CHARACTER2 * > & range, strsize count);
+   inline void construct2(const ::range < const CHARACTER2 * > & str, strsize count);
    template < primitive_character CHARACTER2 >
-   inline void construct2(const ::range < const CHARACTER2 * > & range, strsize start, strsize count);
+   inline void construct2(const ::range < const CHARACTER2 * > & str, strsize start, strsize count);
 
    strsize offset_of(const CHARACTER * p) const { return ::offset_of(p, data()); }
 
@@ -372,7 +372,7 @@ public:
    inline string_base & assign(string_base && str);
 
 //   template < primitive_character CHARACTER2 >
-//   inline string_base& assign(const ::string_range < const CHARACTER2 * > & range);
+//   inline string_base& assign(const ::string_range < const CHARACTER2 * > & str);
    //inline string_base & assign(const ansi_string & ansistr);
    //inline string_base & assign(const wd16_string & wd16str);
    //inline string_base & assign(const wd32_string & wd32str);
@@ -416,9 +416,9 @@ public:
    inline string_base& append_character(::wd16_character wch);
 
 
-   inline string_base & append(const ::const_ansi_raw_range & range);
-   inline string_base & append(const ::const_wd16_raw_range & range);
-   inline string_base & append(const ::const_wd32_raw_range & range);
+   inline string_base & append(const ::const_ansi_raw_range & str);
+   inline string_base & append(const ::const_wd16_raw_range & str);
+   inline string_base & append(const ::const_wd32_raw_range & str);
    //inline string_base & append(const ::ansi_character * pszSrc);
    template < primitive_character CHARACTER2 >
    inline string_base & append(const CHARACTER2 * pszSrc, strsize nLength);
@@ -503,7 +503,7 @@ public:
 
       ASSERT(p->m_countReference >= 1);
 
-      if (::is_null(p) || p->natural_is_shared() || size > p->length() || p->contains_data(range))
+      if (::is_null(p) || p->natural_is_shared() || size > p->length() || p->contains_data(str))
       {
 
          fork_string(size);
@@ -528,7 +528,7 @@ public:
    inline bool is_empty(const string_base & str)
    {
       if (!is_empty()) return false;
-      operator =(range);
+      operator =(str);
       return true;
    }
 
@@ -613,8 +613,8 @@ public:
    ::std::strong_ordering collate(strsize iStart, strsize iCount, const string_base & str, strsize iStart2, strsize iCount2) const noexcept;
    ::std::strong_ordering case_insensitive_collate(strsize iStart, strsize iCount, const string_base & str, strsize iStart2, strsize iCount2) const noexcept;
 
-   //inline int operator<=>(const string_base & str) const { return order(range); }
-   //inline bool operator==(const string_base & str) const { return size() != range.size() ? false : !order(range); }
+   //inline int operator<=>(const string_base & str) const { return order(str); }
+   //inline bool operator==(const string_base & str) const { return size() != str.size() ? false : !order(str); }
    //inline bool operator>(const string_base & str) const { return order(ansistr) > 0; }
    //inline bool operator<(const string_base & str) const { return order(ansistr) < 0; }
    //inline bool operator!=(const string_base & str) const { return !operator ==(ansistr); }
@@ -1289,12 +1289,12 @@ public:
    //bool equals(const string_base & str) const;
    //bool case_insensitive_equals(const string_base & str) const;
 
-   //inline bool operator==(const string_base & str) const { return this->equals(range); }
+   //inline bool operator==(const string_base & str) const { return this->equals(str); }
    inline bool operator==(const string_base & str) const { return this->equals(str); }
-   //inline bool operator==(const CHARACTER * psz) const { return this->equals(psz); }
-   //inline ::std::strong_ordering operator<=>(const string_base & str) const { return this->order(range); }
+   inline bool operator==(const CHARACTER * psz) const { return this->equals(psz); }
+   //inline ::std::strong_ordering operator<=>(const string_base & str) const { return this->order(str); }
    inline ::std::strong_ordering operator<=>(const string_base & str) const { return this->order(str); }
-   //inline ::std::strong_ordering operator<=>(const CHARACTER * psz) const { return this->order(psz); }
+   inline ::std::strong_ordering operator<=>(const CHARACTER * psz) const { return this->order(psz); }
    //inline int operator<=>(CHARACTER ch) const;
    //inline bool operator==(CHARACTER ch) const;
    //inline bool operator==(CHARACTER ch) const;
@@ -1324,7 +1324,7 @@ inline ::string operator + (const ::string & strA, const ::string & strB)
 
    str += strB;
 
-   return ::move(str);
+   return str;
 
 }
 
@@ -1332,7 +1332,7 @@ inline ::string operator + (const ::string & strA, const ::string & strB)
 inline ::string operator+(const ::string & str, const ::const_ansi_raw_range & range)
 {
 
-   return ::move(str + ::string(range));
+   return str + ::string(range);
 
 }
 
@@ -1340,7 +1340,7 @@ inline ::string operator+(const ::string & str, const ::const_ansi_raw_range & r
 inline ::string operator + (const ::string & str, char ch)
 {
 
-   return ::move(str + ::string(ch));
+   return str + ::string(ch);
 
 }
 
@@ -1348,7 +1348,7 @@ inline ::string operator + (const ::string & str, char ch)
 inline ::string operator +(const ::string & str, const char * psz)
 {
 
-   return ::move(str + ::string(psz));
+   return str + ::string(psz);
 
 }
 
@@ -1357,7 +1357,7 @@ template < ::count c >
 inline ::string operator +(const ::string & str, const char(&sz)[c])
 {
 
-   return ::move(str + ::string(sz));
+   return str + ::string(sz);
 
 }
 
@@ -1366,7 +1366,7 @@ template < strsize m_sizeMaximumLength >
 inline ::string operator +(const ::string & str, const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
 {
 
-   return ::move(str + ::string(inlinestring));
+   return str + ::string(inlinestring);
 
 }
 
@@ -1374,7 +1374,7 @@ inline ::string operator +(const ::string & str, const ::inline_string < char, m
 inline ::string operator +(const char * psz, const ::string & str)
 {
 
-   return ::move(::string(psz) + str);
+   return ::string(psz) + str;
 
 }
 
@@ -1382,7 +1382,7 @@ inline ::string operator +(const char * psz, const ::string & str)
 inline ::string operator +(char ch, const ::string & str)
 {
 
-   return ::move(::string(ch) + str);
+   return ::string(ch) + str;
 
 }
 
@@ -1391,16 +1391,16 @@ template < ::count c >
 inline ::string operator +(const char (&sz)[c], const ::string & str)
 {
 
-   return ::move(::string(sz) + str);
+   return ::string(sz) + str;
 
 }
 
 
 template < ::count c >
-inline ::string operator+(const ::const_ansi_raw_range & range, const char(&sz)[c])
+inline ::string operator+(const ::const_ansi_raw_range & str, const char(&sz)[c])
 {
 
-   return ::move(::string(range) + sz);
+   return ::string(str) + sz;
 
 }
 
@@ -1408,16 +1408,16 @@ inline ::string operator+(const ::const_ansi_raw_range & range, const char(&sz)[
 inline ::string operator+(const ::const_ansi_raw_range & range, const ::string & str)
 {
 
-   return ::move(::string(range) + str);
+   return ::string(range) + str;
 
 }
 
 
 //template < primitive_character CHARACTER, typename CHARACTER2 >
-//constexpr ::string_base < const CHARACTER * > operator +(CHARACTER ch, ::range < const CHARACTER2 * > range)
+//constexpr ::string_base < const CHARACTER * > operator +(CHARACTER ch, ::str < const CHARACTER2 * > str)
 //{
 //
-//   return ::move(::string_base < const CHARACTER * >(ch) + ::string_base < const CHARACTER * >(range));
+//   return ::move(::string_base < const CHARACTER * >(ch) + ::string_base < const CHARACTER * >(str));
 //
 //}
 
@@ -1431,10 +1431,10 @@ inline ::string operator+(const ::const_ansi_raw_range & range, const ::string &
 //}
 //
 //template < primitive_character CHARACTER, primitive_character CHARACTER2 >
-//constexpr ::string_base < const CHARACTER * > operator + (::range < const CHARACTER * > range, const CHARACTER2 * psz)
+//constexpr ::string_base < const CHARACTER * > operator + (::str < const CHARACTER * > str, const CHARACTER2 * psz)
 //{
 //
-//   return ::move(::string_base < const CHARACTER * >(range) + ::string_base < const CHARACTER * >(psz));
+//   return ::move(::string_base < const CHARACTER * >(str) + ::string_base < const CHARACTER * >(psz));
 //
 //}
 
@@ -1444,7 +1444,7 @@ inline ::wstring operator + (::wstring wstrA, ::wstring wstrB)
 
    wstrA += wstrB;
 
-   return ::move(wstrA);
+   return wstrA;
 
 }
 
@@ -1452,7 +1452,7 @@ inline ::wstring operator + (::wstring wstrA, ::wstring wstrB)
 inline ::wstring operator +(const ::wide_character * pwsz, ::wstring wstr)
 {
 
-   return ::move(::wstring(pwsz) + wstr);
+   return ::wstring(pwsz) + wstr;
 
 }
 
@@ -1461,7 +1461,7 @@ template < ::count c >
 inline ::wstring operator +(const ::wide_character(&wsz)[c], ::wstring wstr)
 {
 
-   return ::move(::wstring(wsz) + wstr);
+   return ::wstring(wsz) + wstr;
 
 }
 

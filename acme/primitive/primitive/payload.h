@@ -2241,7 +2241,7 @@ inline ::file::path operator / (const ::file::path& path, const ::payload& paylo
 
 
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE >::string_base(const ::payload & payload) :
+inline string_base < ITERATOR_TYPE >::string_base(const ::payload & payload) :
    string(payload.as_string())
 {
 

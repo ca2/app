@@ -575,7 +575,7 @@ public:
    ::string as_string() const;
 
 
-   operator ::string() const { return as_string(); }
+   //operator ::string() const { return as_string(); }
 
 
    inline bool is_null() const;
@@ -1010,7 +1010,7 @@ inline ::std::strong_ordering atom::operator <=>(const ::string & str) const
 inline ::string atom::operator +(const char * psz) const
 {
 
-   return this->operator ::string() + psz;
+   return ::string(*this) + psz;
 
 }
 
@@ -1018,7 +1018,7 @@ inline ::string atom::operator +(const char * psz) const
 inline ::string atom::operator +(const ::string & str) const
 {
 
-   return this->operator ::string() + str;
+   return ::string(*this) + str;
 
 }
 

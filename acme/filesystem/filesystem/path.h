@@ -64,7 +64,7 @@ namespace file
         // path((const::ansi_string &)ch, epath, iDir, bNormalize, iSize) {}
       path(enum_path epath) { m_epath = epath; }
       path(const path& path);
-      path(const ::atom & atom) : path(atom.operator string()){}
+      path(const ::atom & atom) : path(::string(atom)){}
       path(const ::payload & payload);
       path(const ::property & property);
 //      path(const ::string & str);

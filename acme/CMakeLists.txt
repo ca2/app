@@ -344,6 +344,8 @@ list(APPEND library_source
         platform/profiler.cpp
         platform/procedure.cpp
         platform/procedure.h
+        platform/request.cpp
+        platform/request.h
         platform/serial.cpp
         platform/session.cpp
         platform/session.h

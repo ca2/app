@@ -340,26 +340,37 @@ inline string_base < ITERATOR_TYPE >::string_base(const CHARACTER2 * pszSource, 
    string_base(e_no_initialize)
 {
 
-   start_count_length(start, count, pszSource);
+      if constexpr (sizeof(CHARACTER) == sizeof(CHARACTER))
+      {
 
-   auto dstlen = utf_to_utf_length(this->begin(), pszSource + start, count);
+         this->m_begin = (this_iterator) (pszSource + start);
+         this->m_end = (this_iterator) (this->m_begin + count);
+         this->set_read_only_block();
 
-   if (dstlen <= 0)
-   {
+      }
+      else
+      {
+         start_count_length(start, count, pszSource);
 
-      default_construct();
+         auto dstlen = utf_to_utf_length(this->begin(), pszSource + start, count);
 
-   }
-   else
-   {
+         if (dstlen <= 0)
+         {
 
-      auto pszTarget = create_string(dstlen);
+            default_construct();
 
-      utf_to_utf(pszTarget, pszSource, count);
+         } else
+         {
 
-      this->release_string_buffer(dstlen);
+            auto pszTarget = create_string(dstlen);
 
-   }
+            utf_to_utf(pszTarget, pszSource, count);
+
+            this->release_string_buffer(dstlen);
+
+         }
+
+      }
 
 }
 

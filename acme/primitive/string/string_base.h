@@ -39,6 +39,7 @@ public:
    using ITEM = dereference < ITEM_POINTER >;
    using CHARACTER = ITEM;
    using RANGE = ::string_range < ITERATOR_TYPE >;
+   using this_iterator = RANGE::this_iterator;
    using iterator = RANGE::iterator;
    using const_iterator = RANGE::const_iterator;
 

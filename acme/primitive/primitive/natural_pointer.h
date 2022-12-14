@@ -160,7 +160,7 @@ public:
    void defer_destroy()
    {
 
-      if (::is_set(this->begin()))
+      if (this->is_natural_pointer() && ::is_set(this->begin()))
       {
 
          this->_natural_release(NATURAL_META_DATA::from_data(this->begin()));

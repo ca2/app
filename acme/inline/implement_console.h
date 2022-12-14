@@ -65,6 +65,14 @@ namespace acme
 }
 
 
+void unit_test_2034875209384();
+
+
+void test_12345();
+
+
+
+
 
 #ifdef WINDOWS
 int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
@@ -76,6 +84,18 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
    ::acme::get()->initialize(argc, argv, envp);
 
    ::acme::get()->m_pacmeapplication->m_bConsole = true;
+
+
+   test_12345();
+
+   unit_test_2034875209384();
+
+   string_array stra{ "StringNumber1", "StringNumber2", "StringNumber5" };
+
+   string str4("StringNumber4");
+
+   stra.insert_at(2, str4);
+
 
    ////   application.m_applicationflags.m_bConsole = true;
 ////

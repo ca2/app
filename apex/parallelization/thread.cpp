@@ -724,7 +724,7 @@ void thread::run()
 
       m_atom = __type_name(*m_procedure.m_p);
 
-      task_set_name(m_atom);
+      task_set_name(m_atom.as_string());
 
       return m_procedure();
 

@@ -538,8 +538,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    //operator ::file::path() const { return this->file_path(); }
 
 
-   operator ::string() const { return this->string(); }
-   operator ::file::path() const { return this->file_path(); }
+   //operator ::string() const { return this->string(); }
+   //operator ::file::path() const { return this->file_path(); }
 
    operator ::file_time() const { return this->file_time(); }
    operator ::earth::time() const { return this->earth_time(); }

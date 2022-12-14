@@ -12,59 +12,43 @@ class array :
 {
 public:
 
+   
+   using THIS_ARRAY =  array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >;
 
-   typedef TYPE BASE_TYPE;
-   typedef ARG_TYPE BASE_ARG_TYPE;
-   typedef array < TYPE, ARG_TYPE > BASE_ARRAY;
-   using ARRAY_BASE = ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >;
-   using iterator = typename ARRAY_BASE::iterator;
-   using const_iterator = typename ARRAY_BASE::const_iterator;
-   typedef typename ARRAY_BASE::array_range ITERATOR_RANGE;
-   typedef typename ARRAY_BASE::CONST_RANGE CONST_RANGE;
+   
+   using BASE_TYPE = TYPE ;
+   using BASE_ARG_TYPE = ARG_TYPE;
+
+   
+   using BASE_ARRAY = ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >;
+
+
+   using iterator = typename BASE_ARRAY::iterator;
+   using const_iterator = typename BASE_ARRAY::const_iterator;
+
+   using ITERATOR_RANGE = typename BASE_ARRAY::array_range;
+   
+   using CONST_RANGE = typename BASE_ARRAY::CONST_RANGE ;
    using CONST_RAW_RANGE = BASE_ARRAY::CONST_RAW_RANGE;
 
-   using ARRAY_BASE::ARRAY_BASE;
+   using BASE_ARRAY::BASE_ARRAY;
 
    array();
-   array(std::initializer_list < TYPE > initializer_list) : ARRAY_BASE(initializer_list) {}
+   array(std::initializer_list < TYPE > initializer_list) : BASE_ARRAY(initializer_list) {}
    array(const_iterator begin, ::count count)
-   {
-
-      while (count > 0)
-      {
-
-         add(*begin);
-
-         count--;
-
-      }
-
-   }
-   array(const_iterator begin, const_iterator end)
-   {
-
-      while(::iterator_is_end(begin, end))
-      {
-
-         add(*begin);
-
-         begin++;
-
-      }
-
-   }
+   array(const_iterator begin, const_iterator end);
    array(nullptr_t) : array() {}
    array(const array & a);
    array(enum_create_new, ::count n);
    array(::count n, ARG_TYPE t);
-   array(::range < const_iterator > constrange) : array(constrange.begin(), constrange.end()) {}
-   array(const_iterator begin, const_iterator end, bool bNullTerminated) : array(begin, end) { this->m_bNullTerminated = bNullTerminated; }
+   array(::range < const_iterator > constrange) : BASE_ARRAY(constrange) {}
+   array(const_iterator begin, const_iterator end, e_range erange = e_range_none) : BASE_ARRAY(begin, end, erange) {}
    array(array && a) noexcept : array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >(::move(a)) { }
    ~array() override;
 
 
-   array & operator = (const array & array) { ARRAY_BASE::operator=(array); return *this; }
-   array & operator = (array && array) { ARRAY_BASE::operator=(::move(array)); return *this; }
+   array & operator = (const array & array) { BASE_ARRAY::operator=(array); return *this; }
+   array & operator = (array && array) { BASE_ARRAY::operator=(::move(array)); return *this; }
 
 
 
@@ -491,13 +475,21 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::append(co
    // ASSERT_VALID(this);
    ASSERT(this != &src);   // cannot append to itself
 
-   if(this == &src)
+   if (this == &src)
+   {
+
       throw_exception(error_bad_argument);
 
+   }
+
    ::count nOldSize = this->size();
+
    this->allocate(this->size() + src.size());
+
    CopyElements<TYPE>(&this->m_begin[nOldSize], src.m_begin, src.size());
+
    return nOldSize;
+
 }
 
 

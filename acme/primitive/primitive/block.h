@@ -49,7 +49,7 @@ struct CLASS_DECL_ACME block :
 {
 
    
-   using BLOCK::BLOCK;
+   //using BLOCK::BLOCK;
 
 
    block(const block & block)
@@ -78,7 +78,7 @@ struct CLASS_DECL_ACME block :
    block(enum_as_block, TYPE & t) : block((void *)&t, sizeof(t)) {}
    template < typename TYPE >
    block(enum_as_block, const TYPE & t) : block((void *)&t, sizeof(t)) {}
-   block(const void * begin, const void * end) : block((const ::byte *)begin, (const ::byte *)end) {}
+   block(const void * begin, const void * end, e_range erange = e_range_none) : BLOCK((const ::byte *)begin, (const ::byte *)end, erange) {}
    template < primitive_integral INTEGRAL >
    block(const void * data, INTEGRAL count, e_range erange = e_range_none) : BLOCK((::byte *) data, count, erange) { }
 

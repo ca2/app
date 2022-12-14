@@ -20,7 +20,7 @@ public:
    tokenizer():m_iterator(nullptr) {}
    tokenizer(const tokenizer & range) : const_ansi_range(range) {}
    tokenizer(tokenizer && range) : const_ansi_range(::move(range)) { }
-   tokenizer(RANGE range) : RANGE(range), m_iterator(range.begin()) {}
+   tokenizer(const ::string & str) : RANGE(range), m_iterator(range.begin()) {}
    ~tokenizer() {}
 
 
@@ -30,7 +30,7 @@ public:
 
    //strsize size() const { return m_range.size(); }
 
-   //strsize find(RANGE rangeSeparator) const { return offset_of(RANGE::find(rangeSeparator)); }
+   //strsize find(const ::string & strSeparator) const { return offset_of(RANGE::find(rangeSeparator)); }
 
    ::string& substring(::string& str, strsize count)
    {
@@ -74,12 +74,12 @@ public:
    bool ExtractFolderPath(const char * pcszFilePath);
 
    void reset() { m_iterator = this->begin(); };
-   void reset(RANGE range) { RANGE::operator= (range); reset(); }
-   bool get_next_token(::string &strToken, RANGE rangeSeparator, bool bWithSeparator = false);
+   void reset(const ::string & str) { RANGE::operator= (range); reset(); }
+   bool get_next_token(::string &strToken, const ::string & strSeparator, bool bWithSeparator = false);
 
    bool get_next_smallest_token(::string &strToken, const ::string_array & straSeparator, bool bWithSeparator = false);
    // Any of separator character
-   bool get_next_token_ex(::string &strToken, RANGE rangeSeparator, bool bWithSeparator = false, bool bSkipAdjacent = false);
+   bool get_next_token_ex(::string &strToken, const ::string & strSeparator, bool bWithSeparator = false, bool bSkipAdjacent = false);
 
    bool _001GetNextToken(::string & strToken);
 

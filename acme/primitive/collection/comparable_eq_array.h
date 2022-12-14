@@ -32,9 +32,9 @@ public:
    comparable_eq_array(comparable_eq_array && array) noexcept : BASE_RANGE(::move(array)) { }
    comparable_eq_array(::range < const_iterator > constrange) : BASE_RANGE(constrange) {}
    template < primitive_integral INTEGRAL >
-   comparable_eq_array(const_iterator begin, INTEGRAL count, bool bNullTerminated = false) : BASE_RANGE(begin, count, bNullTerminated) {}
-   comparable_eq_array(const_iterator begin, const_iterator end, bool bNullTerminated = false) : BASE_RANGE(begin, end, bNullTerminated) {}
-   comparable_eq_array(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin), true) {}
+   comparable_eq_array(const_iterator begin, INTEGRAL count, e_range erange = e_range_none) : BASE_RANGE(begin, count, erange) {}
+   comparable_eq_array(const_iterator begin, const_iterator end, e_range erange = e_range_none) : BASE_RANGE(begin, end, erange) {}
+   comparable_eq_array(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin), e_range_null_terminated) {}
 
    
    ::index find_first(ARG_TYPE t) const;

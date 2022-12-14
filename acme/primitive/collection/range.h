@@ -1889,7 +1889,7 @@ public:
 //}
 
 
-//static bool _find_prefix(const_iterator & p, RANGE range, RANGE rangeScope)
+//static bool _find_prefix(const_iterator & p, const ::string & str, const ::string & strScope)
 //{
 
 //   return BASE_ARRAY::_equals(range, equality);
@@ -1907,7 +1907,7 @@ public:
 
 
 //template < ::comparison::equality < ITEM > EQUALITY >
-//const_iterator find(RANGE range, EQUALITY equality) const
+//const_iterator find(const ::string & str, EQUALITY equality) const
 //{
 
 //   return BASE_ARRAY::find(range, equality);

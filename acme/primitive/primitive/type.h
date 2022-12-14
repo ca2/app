@@ -181,7 +181,7 @@ public:
 
    inline operator bool() const { return ::atom::has_char(); }
 
-   inline operator const char * () const { return ::atom::operator const char *(); }
+   //inline operator const char * () const { return ::atom::operator const char *(); }
 
    bool name_contains(const char * psz) const { return m_str.contains(psz); }
 

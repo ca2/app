@@ -67,7 +67,7 @@ namespace file
       path(const ::atom & atom) : path(atom.operator string()){}
       path(const ::payload & payload);
       path(const ::property & property);
-      path(RANGE range) : path(::string(range)) {}
+      path(const ::string & str) : path(::string(range)) {}
       ~path() noexcept;
 
 
@@ -159,7 +159,7 @@ namespace file
       }
 
 
-      bool operator == (RANGE range) const;
+      bool operator == (const ::string & str) const;
       /*{
 
          return is_equal_fast(path(block));
@@ -211,7 +211,7 @@ namespace file
 
 
       //path & operator += (const path & path);
-      //path & operator += (RANGE range);
+      //path & operator += (const ::string & str);
       path & operator += (const ::const_ansi_raw_range & ansirange);
       using path_meta::operator+=;
       path operator / (const path & path) const;
@@ -870,7 +870,7 @@ namespace file
    }
 
 
-//   inline path & path::operator += (RANGE range)
+//   inline path & path::operator += (const ::string & str)
 //   {
 //
 //      range.span("\\/");
@@ -1413,7 +1413,7 @@ namespace file
 
    }
 
-   inline bool path::operator == (RANGE range) const
+   inline bool path::operator == (const ::string & str) const
    {
 
       return operator == (path(range));
@@ -1442,21 +1442,21 @@ inline ::file::path operator+(const ::file::path & path1, const ::file::path & p
 inline ::file::path operator+(const ::file::path & path, const ::string & str)
 {
 
-   return ::move(::file::path(((const::string &)path) + str));
+   return ((const::string &)path) + str;
 }
 
 
 inline ::file::path operator+ (const ::file::path & path, const char * psz) 
 {
 
-   return ::move(::file::path(((const::string &)path) + psz));
+   return ((const::string &)path) + psz;
 }
 
 
 inline ::file::path operator+ (const ::file::path & path, const ::atom & atom) 
 {
 
-   return ::move(::file::path(((const::string &)path) + atom));
+   return ((const::string &)path) + atom;
 
 }
 
@@ -1464,17 +1464,17 @@ inline ::file::path operator+ (const ::file::path & path, const ::atom & atom)
 inline ::file::path operator+(const ::file::path & path, const ::file::path::RANGE & range)
 {
 
-   return ::move(::file::path(((const::string &)path) + ::string(range)));
+   return ((const::string &)path) + ::string(range);
 
 }
 
 
 
 template < strsize m_sizeMaximumLength >
-inline ::string operator +(const ::file::path & path, const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
+inline ::file::path operator +(const ::file::path & path, const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
 {
 
-   return ::move(::file::path(((const ::string &)path) + ::string(inlinestring)));
+   return ((const ::string &)path) + ::string(inlinestring);
 
 }
 
@@ -1484,14 +1484,14 @@ inline ::string operator +(const ::file::path & path, const ::inline_string < ch
 inline ::file::path operator+(const ::string & str, const ::file::path & path)
 {
 
-   return ::move(::file::path(str + ((const::string &)path)));
+   return str + ((const::string &)path);
 }
 
 
 inline ::file::path operator+(const ::const_ansi_range & range, const ::file::path & path)
 {
 
-   return ::move(::file::path(::string(range) + ((const::string &)path)));
+   return ::string(range) + ((const::string &)path);
 
 }
 
@@ -1501,7 +1501,7 @@ template < ::count c >
 inline ::file::path operator +(const char(&sz)[c], const ::file::path & path)
 {
 
-   return ::move(::file::path(::string(sz) + ((const::string &)path)));
+   return ::string(sz) + ((const::string &)path)));
 
 }
 

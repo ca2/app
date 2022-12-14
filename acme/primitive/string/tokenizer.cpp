@@ -45,7 +45,7 @@
 //}
 
 
-bool tokenizer::get_next_token(string &strToken, RANGE rangeSeparator, bool bWithSeparator)
+bool tokenizer::get_next_token(string &strToken, const ::string & strSeparator, bool bWithSeparator)
 {
 
    const_iterator iterator;
@@ -164,7 +164,7 @@ bool tokenizer::get_next_smallest_token(string & strToken, const string_array & 
 }
 
 
-bool tokenizer::get_next_token_ex(string &strToken, RANGE rangeSeparator, bool bWithSeparator, bool bSkipAdjacent)
+bool tokenizer::get_next_token_ex(string &strToken, const ::string & strSeparator, bool bWithSeparator, bool bSkipAdjacent)
 {
 
    strsize i;

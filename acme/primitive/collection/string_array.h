@@ -17,7 +17,7 @@ constexpr std::strong_ordering compare_string_ci(const CHARACTER * pszA, const C
 
 }
 
-//namespace range
+//namespace str
 //{
 
    class CLASS_DECL_ACME strsize_range
@@ -93,18 +93,18 @@ public:
    void erase_duplicates_ci();
 
 
-   ::index _007FindLine(RANGE rangeKey, ::index iStart = 0) const;
-   void _007SetLine(RANGE rangeKey, RANGE rangeValue, ::index iStart = 0);
-   ::index _007GetLine(RawType & rawtype, RANGE rangeKey, ::index iStart = 0) const;
-   RawType _007GetLine(RANGE rangeKey, ::index iStart = 0) const;
+   ::index _007FindLine(const RawType &strKey, ::index iStart = 0) const;
+   void _007SetLine(const RawType &strKey, const RawType &strValue, ::index iStart = 0);
+   ::index _007GetLine(RawType & rawtype, const RawType &strKey, ::index iStart = 0) const;
+   RawType _007GetLine(const RawType &strKey, ::index iStart = 0) const;
 
 
-   ::index _007FindSection(RANGE rangeSection) const;
-   ::index _007FindLine(RANGE rangeSection, RANGE rangeKey) const;
-   ::index _007OpenSection(RANGE rangeSection);
-   void _007SetLine(RANGE rangeSection, RANGE rangeKey, RANGE rangeValue);
-   ::index _007GetLine(RawType & rawtype, RANGE rangeSection, RANGE rangeKey) const;
-   RawType _007GetLine(RANGE rangeSection, RANGE rangeKey) const;
+   ::index _007FindSection(const RawType &strSection) const;
+   ::index _007FindLine(const RawType &strSection, const RawType &strKey) const;
+   ::index _007OpenSection(const RawType &strSection);
+   void _007SetLine(const RawType &strSection, const RawType &strKey, const RawType &strValue);
+   ::index _007GetLine(RawType & rawtype, const RawType &strSection, const RawType &strKey) const;
+   RawType _007GetLine(const RawType &strSection, const RawType &strKey) const;
 
 
    void order();
@@ -151,15 +151,15 @@ public:
    using BASE_ARRAY::copy;
 
 
-   ::index add(::strsize_range_array & rangea, RANGE range)
+   ::index add(::strsize_range_array & stra, const RawType &str)
    {
 
       ::index i = -1;
 
-      for(auto & size_range : rangea)
+      for(auto & size_range : stra)
       {
 
-         i = add(RawType(range.begin() + size_range.m_iBegin, range.begin() + size_range.m_iEnd));
+         i = add(RawType(str.begin() + size_range.m_iBegin, str.begin() + size_range.m_iEnd));
 
       }
 
@@ -193,9 +193,9 @@ public:
    ::count erase_empty_trimmed_begin();
    ::index add_normal(const Type & str);
 
-   void trim_right(RANGE rangeChars);
-   void trim_left(RANGE rangeChars);
-   void trim(RANGE rangeChars);
+   void trim_right(const RawType &strChars);
+   void trim_left(const RawType &strChars);
+   void trim(const RawType &strChars);
    void trim_right();
    void trim_left();
    void trim();
@@ -233,138 +233,138 @@ public:
 
 
    // if Type is found, move it to specified position
-   bool move_ci(RANGE range,::index iIndex);
+   bool move_ci(const RawType &str,::index iIndex);
 
 
    // move preferred in order
-   bool preferred(RANGE range);
+   bool preferred(const RawType &str);
 
    ::count preferred(string_array_base & stra);
 
 
-   ::count count_ci(RANGE rangeFind, ::index iFind = 0, ::index iLast = -1) const;
-   ::count count(RANGE rangeFind, ::index iFind = 0, ::index iLast = -1) const;
+   ::count count_ci(const RawType &strFind, ::index iFind = 0, ::index iLast = -1) const;
+   ::count count(const RawType &strFind, ::index iFind = 0, ::index iLast = -1) const;
 
 
-   ::index find_first_ci(RANGE rangeFind,::index iFind = 0,::index iLast = -1) const;
-   ::index find_first(RANGE rangeFind,::index iFind = 0,::index iLast = -1) const;
+   ::index find_first_ci(const RawType &strFind,::index iFind = 0,::index iLast = -1) const;
+   ::index find_first(const RawType &strFind,::index iFind = 0,::index iLast = -1) const;
 
 
-   ::index find_last_ci(RANGE rangeFind, ::index iFind = -1, ::index iLast = 0) const;
-   ::index find_last(RANGE rangeFind, ::index iFind = -1, ::index iLast = 0) const;
+   ::index find_last_ci(const RawType &strFind, ::index iFind = -1, ::index iLast = 0) const;
+   ::index find_last(const RawType &strFind, ::index iFind = -1, ::index iLast = 0) const;
 
 
-   ::index reverse_find_ci(RANGE rangeFind, ::index iFind = -1, ::index iLast = 0) const;
-   ::index rear_find(RANGE rangeFind, ::index iFind = -1, ::index iLast = 0) const;
+   ::index reverse_find_ci(const RawType &strFind, ::index iFind = -1, ::index iLast = 0) const;
+   ::index rear_find(const RawType &strFind, ::index iFind = -1, ::index iLast = 0) const;
 
 
-   ::index _066Find(RANGE range) const;
+   ::index _066Find(const RawType &str) const;
 
-   ::index _find_first_prefixed_ci(RANGE rangeStarting, ::index iFind = 0, ::index iLast = -1) const;
-   ::index _find_first_prefixed(RANGE rangeStarting, ::index iFind = 0, ::index iLast = -1) const;
+   ::index _find_first_prefixed_ci(const RawType &strStarting, ::index iFind = 0, ::index iLast = -1) const;
+   ::index _find_first_prefixed(const RawType &strStarting, ::index iFind = 0, ::index iLast = -1) const;
 
-   ::index find_first_prefixed_ci(RANGE rangeStarting, ::index iFind = 0, ::index iLast = -1) const;
-   ::index find_first_prefixed(RANGE rangeStarting, ::index iFind = 0, ::index iLast = -1) const;
+   ::index find_first_prefixed_ci(const RawType &strStarting, ::index iFind = 0, ::index iLast = -1) const;
+   ::index find_first_prefixed(const RawType &strStarting, ::index iFind = 0, ::index iLast = -1) const;
 
-   ::index _find_first_suffixed_ci(RANGE rangeEnding, ::index iFind = 0, ::index iLast = -1) const;
-   ::index _find_first_suffixed(RANGE rangeEnding, ::index iFind = 0, ::index iLast = -1) const;
+   ::index _find_first_suffixed_ci(const RawType &strEnding, ::index iFind = 0, ::index iLast = -1) const;
+   ::index _find_first_suffixed(const RawType &strEnding, ::index iFind = 0, ::index iLast = -1) const;
 
-   ::index find_first_suffixed_ci(RANGE rangeEnding, ::index iFind = 0, ::index iLast = -1) const;
-   ::index find_first_suffixed(RANGE rangeEnding, ::index iFind = 0, ::index iLast = -1) const;
+   ::index find_first_suffixed_ci(const RawType &strEnding, ::index iFind = 0, ::index iLast = -1) const;
+   ::index find_first_suffixed(const RawType &strEnding, ::index iFind = 0, ::index iLast = -1) const;
 
-   ::index find_first_begins_ci(RANGE rangeStarting, ::index iFind = 0, ::index iLast = -1) const { return find_first_prefixed_ci(rangeStarting, iFind, iLast); }
-   ::index find_first_begins(RANGE rangeStarting, ::index iFind = 0, ::index iLast = -1) const { return find_first_prefixed(rangeStarting, iFind, iLast); }
+   ::index find_first_begins_ci(const RawType &strStarting, ::index iFind = 0, ::index iLast = -1) const { return find_first_prefixed_ci(strStarting, iFind, iLast); }
+   ::index find_first_begins(const RawType &strStarting, ::index iFind = 0, ::index iLast = -1) const { return find_first_prefixed(strStarting, iFind, iLast); }
 
-   ::index find_first_ends_ci(RANGE rangeEnding, ::index iFind = 0, ::index iLast = -1) const { return find_first_suffixed_ci(rangeEnding, iFind, iLast); }
-   ::index find_first_ends(RANGE rangeEnding, ::index iFind = 0, ::index iLast = -1) const { return find_first_suffixed(rangeEnding, iFind, iLast); }
+   ::index find_first_ends_ci(const RawType &strEnding, ::index iFind = 0, ::index iLast = -1) const { return find_first_suffixed_ci(strEnding, iFind, iLast); }
+   ::index find_first_ends(const RawType &strEnding, ::index iFind = 0, ::index iLast = -1) const { return find_first_suffixed(strEnding, iFind, iLast); }
 
-   ::index _find_first_contains_ci(RANGE rangeSubstring, ::index iFind = 0, ::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
-   ::index _find_first_contains(RANGE rangeSubstring, ::index iFind = 0, ::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
+   ::index _find_first_contains_ci(const RawType &strSubstring, ::index iFind = 0, ::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
+   ::index _find_first_contains(const RawType &strSubstring, ::index iFind = 0, ::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
 
-   ::index find_first_contains_ci(RANGE rangeSubstring, ::index iFind = 0, ::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
-   ::index find_first_contains(RANGE rangeSubstring, ::index iFind = 0, ::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
+   ::index find_first_contains_ci(const RawType &strSubstring, ::index iFind = 0, ::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
+   ::index find_first_contains(const RawType &strSubstring, ::index iFind = 0, ::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
 
-   ::index find_first_begins_eat_ci(Type& strFoundAndEaten, RANGE rangeStarting, ::index iFind = 0, ::index iLast = -1) const;
-   ::index find_first_begins_eat(Type& strFoundAndEaten, RANGE rangeStarting, ::index iFind = 0, ::index iLast = -1) const;
+   ::index find_first_begins_eat_ci(Type& strFoundAndEaten, const RawType &strStarting, ::index iFind = 0, ::index iLast = -1) const;
+   ::index find_first_begins_eat(Type& strFoundAndEaten, const RawType &strStarting, ::index iFind = 0, ::index iLast = -1) const;
 
-   ::index find_first_ends_eat_ci(Type& strFoundAndEaten, RANGE rangeEnding, ::index iFind = 0, ::index iLast = -1) const;
-   ::index find_first_ends_eat(Type& strFoundAndEaten, RANGE rangeEnding, ::index iFind = 0, ::index iLast = -1) const;
+   ::index find_first_ends_eat_ci(Type& strFoundAndEaten, const RawType &strEnding, ::index iFind = 0, ::index iLast = -1) const;
+   ::index find_first_ends_eat(Type& strFoundAndEaten, const RawType &strEnding, ::index iFind = 0, ::index iLast = -1) const;
 
-   ::index find_first_contains_eat_ci(Type& strFoundAndEaten, RANGE rangeEnding, ::index iFind = 0, ::index iLast = -1) const;
-   ::index find_first_contains_eat(Type& strFoundAndEaten, RANGE rangeEnding, ::index iFind = 0, ::index iLast = -1) const;
-
-
-   ::index prefix_find_first_ci(RANGE rangeTopic, ::index iFind = 0, ::index iLast = -1) const;
-   ::index prefix_find_first(RANGE rangeTopic, ::index iFind = 0, ::index iLast = -1) const;
-
-   inline bool prefixes_ci(RANGE rangeTopic, ::index iFind = 0, ::index iLast = -1) const { return is_found(prefix_find_first_ci(rangeTopic, iFind, iLast)); }
-   inline bool prefixes(RANGE rangeTopic, ::index iFind = 0, ::index iLast = -1) const { return is_found(prefix_find_first(rangeTopic, iFind, iLast)); }
-
-   ::index suffix_find_first_ci(RANGE rangeTopic, ::index iFind = 0, ::index iLast = -1) const;
-   ::index suffix_find_first(RANGE rangeTopic, ::index iFind = 0, ::index iLast = -1) const;
-
-   inline bool case_insensitive_suffixes(RANGE rangeTopic, ::index iFind = 0, ::index iLast = -1) const { return is_found(suffix_find_first_ci(rangeTopic, iFind, iLast)); }
-   inline bool suffixes(RANGE rangeTopic, ::index iFind = 0, ::index iLast = -1) const { return is_found(suffix_find_first(rangeTopic, iFind, iLast)); }
-
-   ::index substring_find_first_ci(RANGE rangeTopic, ::index iFind = 0, ::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
-   ::index substring_find_first(RANGE rangeTopic, ::index iFind = 0, ::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
-
-   inline bool is_part_of_ci(RANGE rangeTopic, ::index iFind = 0, ::index iLast = -1) const { return is_found(substring_find_first_ci(rangeTopic, iFind, iLast)); }
-   inline bool is_part_of(RANGE rangeTopic, ::index iFind = 0, ::index iLast = -1) const { return is_found(substring_find_first(rangeTopic, iFind, iLast)); }
+   ::index find_first_contains_eat_ci(Type& strFoundAndEaten, const RawType &strEnding, ::index iFind = 0, ::index iLast = -1) const;
+   ::index find_first_contains_eat(Type& strFoundAndEaten, const RawType &strEnding, ::index iFind = 0, ::index iLast = -1) const;
 
 
+   ::index prefix_find_first_ci(const RawType &strTopic, ::index iFind = 0, ::index iLast = -1) const;
+   ::index prefix_find_first(const RawType &strTopic, ::index iFind = 0, ::index iLast = -1) const;
 
-   bool _067ContainsCi(RANGE rangeFind,::index iFind = 0,::index iLast = -1,::count countMin = 1,::count countMax = -1) const;
-   bool _067Contains(RANGE range,::index iFind = 0,::index iLast = -1,::count countMin = 1,::count countMax = -1) const;
+   inline bool prefixes_ci(const RawType &strTopic, ::index iFind = 0, ::index iLast = -1) const { return is_found(prefix_find_first_ci(strTopic, iFind, iLast)); }
+   inline bool prefixes(const RawType &strTopic, ::index iFind = 0, ::index iLast = -1) const { return is_found(prefix_find_first(strTopic, iFind, iLast)); }
+
+   ::index suffix_find_first_ci(const RawType &strTopic, ::index iFind = 0, ::index iLast = -1) const;
+   ::index suffix_find_first(const RawType &strTopic, ::index iFind = 0, ::index iLast = -1) const;
+
+   inline bool case_insensitive_suffixes(const RawType &strTopic, ::index iFind = 0, ::index iLast = -1) const { return is_found(suffix_find_first_ci(strTopic, iFind, iLast)); }
+   inline bool suffixes(const RawType &strTopic, ::index iFind = 0, ::index iLast = -1) const { return is_found(suffix_find_first(strTopic, iFind, iLast)); }
+
+   ::index substring_find_first_ci(const RawType &strTopic, ::index iFind = 0, ::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
+   ::index substring_find_first(const RawType &strTopic, ::index iFind = 0, ::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
+
+   inline bool is_part_of_ci(const RawType &strTopic, ::index iFind = 0, ::index iLast = -1) const { return is_found(substring_find_first_ci(strTopic, iFind, iLast)); }
+   inline bool is_part_of(const RawType &strTopic, ::index iFind = 0, ::index iLast = -1) const { return is_found(substring_find_first(strTopic, iFind, iLast)); }
 
 
-   bool _067ContainsSubstringCi(RANGE range,::index iFind = 0,::index iLast = -1,::count countMin = 1,::count countMax = -1) const;
-   bool _067ContainsSubstring(RANGE range,::index iFind = 0,::index iLast = -1,::count countMin = 1,::count countMax = -1) const;
+
+   bool _067ContainsCi(const RawType &strFind,::index iFind = 0,::index iLast = -1,::count countMin = 1,::count countMax = -1) const;
+   bool _067Contains(const RawType &str,::index iFind = 0,::index iLast = -1,::count countMin = 1,::count countMax = -1) const;
 
 
-   bool contains_ci(RANGE rangeFind, ::index iFind = 0, ::index iLast = -1) const { return is_found(find_first_ci(rangeFind, iFind, iLast)); }
-   bool contains(RANGE rangeFind,::index iFind = 0,::index iLast = -1) const { return is_found(find_first_ci(rangeFind, iFind, iLast)); }
+   bool _067ContainsSubstringCi(const RawType &str,::index iFind = 0,::index iLast = -1,::count countMin = 1,::count countMax = -1) const;
+   bool _067ContainsSubstring(const RawType &str,::index iFind = 0,::index iLast = -1,::count countMin = 1,::count countMax = -1) const;
 
 
-   bool theres_ci(RANGE rangeSubstring,::index iFind = 0,::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const { return is_found(substring_find_first_ci(rangeSubstring, iFind, iLast, ppszBeg, ppszEnd)); }
-   bool theres(RANGE rangeSubstring,::index iFind = 0,::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const { return is_found(substring_find_first_ci(rangeSubstring, iFind, iLast, ppszBeg, ppszEnd)); }
+   bool contains_ci(const RawType &strFind, ::index iFind = 0, ::index iLast = -1) const { return is_found(find_first_ci(strFind, iFind, iLast)); }
+   bool contains(const RawType &strFind,::index iFind = 0,::index iLast = -1) const { return is_found(find_first_ci(strFind, iFind, iLast)); }
+
+
+   bool theres_ci(const RawType &strSubstring,::index iFind = 0,::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const { return is_found(substring_find_first_ci(strSubstring, iFind, iLast, ppszBeg, ppszEnd)); }
+   bool theres(const RawType &strSubstring,::index iFind = 0,::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const { return is_found(substring_find_first_ci(strSubstring, iFind, iLast, ppszBeg, ppszEnd)); }
 
 
    template < primitive_array INDEX_ARRAY >
-   ::count case_insensitive_begins(INDEX_ARRAY & ia, RANGE rangePrefix, ::index first = 0, ::index iLast = -1);
+   ::count case_insensitive_begins(INDEX_ARRAY & ia, const RawType &strPrefix, ::index first = 0, ::index iLast = -1);
 
    template < primitive_array INDEX_ARRAY >
-   ::count begins(INDEX_ARRAY & ia, RANGE rangePrefix, ::index first = 0, ::index iLast = -1);
+   ::count begins(INDEX_ARRAY & ia, const RawType &strPrefix, ::index first = 0, ::index iLast = -1);
 
 
    template < primitive_array STRING_ARRAY >
-   ::count case_insensitive_ends(STRING_ARRAY & stra, RANGE rangeSuffix, ::index first = 0, ::index iLast = -1);
+   ::count case_insensitive_ends(STRING_ARRAY & stra, const RawType &strSuffix, ::index first = 0, ::index iLast = -1);
 
    template < primitive_array STRING_ARRAY >
-   ::count ends(STRING_ARRAY & stra, RANGE rangeSuffix, ::index first = 0, ::index iLast = -1);
+   ::count ends(STRING_ARRAY & stra, const RawType &strSuffix, ::index first = 0, ::index iLast = -1);
 
 
    template < primitive_array STRING_ARRAY >
-   ::count search_ci(STRING_ARRAY & stra, RANGE rangeSubstring, ::index first = 0, ::index iLast = -1);
+   ::count search_ci(STRING_ARRAY & stra, const RawType &strSubstring, ::index first = 0, ::index iLast = -1);
 
    template < primitive_array STRING_ARRAY >
-   ::count search(STRING_ARRAY & stra, RANGE rangeSubstring, ::index first = 0, ::index iLast = -1);
+   ::count search(STRING_ARRAY & stra, const RawType &strSubstring, ::index first = 0, ::index iLast = -1);
 
 
-   //::count case_insensitive_begins(string_array_base & straPrefixed,RANGE rangePrefix,::index first = 0,::index iLast = -1);
-   //::count begins(string_array_base& straPrefixed, RANGE rangePrefix, ::index first = 0, ::index iLast = -1);
+   //::count case_insensitive_begins(string_array_base & straPrefixed,const RawType &strPrefix,::index first = 0,::index iLast = -1);
+   //::count begins(string_array_base& straPrefixed, const RawType &strPrefix, ::index first = 0, ::index iLast = -1);
 
 
-   //::count case_insensitive_ends(string_array_base& straSuffixed, RANGE rangePrefix, ::index first = 0, ::index iLast = -1);
-   //::count ends(string_array_base& straSuffixed, RANGE rangePrefix, ::index first = 0, ::index iLast = -1);
+   //::count case_insensitive_ends(string_array_base& straSuffixed, const RawType &strPrefix, ::index first = 0, ::index iLast = -1);
+   //::count ends(string_array_base& straSuffixed, const RawType &strPrefix, ::index first = 0, ::index iLast = -1);
 
 
-   //::count search_ci(string_array_base& straResult, RANGE rangeSubstring, ::index first = 0, ::index iLast = -1);
-   //::count search(string_array_base& straResult, RANGE rangeSubstring, ::index first = 0, ::index iLast = -1);
+   //::count search_ci(string_array_base& straResult, const RawType &strSubstring, ::index first = 0, ::index iLast = -1);
+   //::count search(string_array_base& straResult, const RawType &strSubstring, ::index first = 0, ::index iLast = -1);
 
 
-   ::count filter_begins_ci(RANGE rangePrefix,::index first = 0,::index iLast = -1);
-   ::count filter_begins(RANGE rangePrefix, ::index first = 0, ::index iLast = -1);
+   ::count filter_begins_ci(const RawType &strPrefix,::index first = 0,::index iLast = -1);
+   ::count filter_begins(const RawType &strPrefix, ::index first = 0, ::index iLast = -1);
 
 
    template < typename Pred >
@@ -376,70 +376,70 @@ public:
    template < typename Pred, typename ArrayOut >
    ::count filter_out(Pred pred, ArrayOut & a, ::index first = 0,::index iLast = -1);
 
-   ::count erase_first_ci(RANGE range,::index iFind = 0,::index iLast = -1);
+   ::count erase_first_ci(const RawType &str,::index iFind = 0,::index iLast = -1);
 
-   ::count erase_first(RANGE range,::index iFind = 0,::index iLast = -1);
+   ::count erase_first(const RawType &str,::index iFind = 0,::index iLast = -1);
 
 
-   ::count erase_last_ci(RANGE range, ::index iFind = 0, ::index iLast = -1);
+   ::count erase_last_ci(const RawType &str, ::index iFind = 0, ::index iLast = -1);
 
    using BASE_ARRAY::erase_last;
-   ::count erase_last(RANGE range, ::index iFind = 0, ::index iLast = -1);
+   ::count erase_last(const RawType &str, ::index iFind = 0, ::index iLast = -1);
 
-   ::count _067RemoveCi(RANGE range, ::index iFind = 0, ::index iLast = -1, ::count countMin = 0, ::count countMax = -1);
+   ::count _067RemoveCi(const RawType &str, ::index iFind = 0, ::index iLast = -1, ::count countMin = 0, ::count countMax = -1);
 
-   ::count _067Remove(RANGE range, ::index iFind = 0, ::index iLast = -1, ::count countMin = 0, ::count countMax = -1);
+   ::count _067Remove(const RawType &str, ::index iFind = 0, ::index iLast = -1, ::count countMin = 0, ::count countMax = -1);
 
-   ::count erase_ci(RANGE range,::index iFind = 0,::index iLast = -1);
+   ::count erase_ci(const RawType &str,::index iFind = 0,::index iLast = -1);
 
-   ::count erase(RANGE range,::index iFind = 0,::index iLast = -1);
+   ::count erase(const RawType &str,::index iFind = 0,::index iLast = -1);
 
 
    ::count erase_ci(const string_array_base & stra);
    ::count erase(const string_array_base & stra);
 
-   string_array_base & explode(RANGE rangeSeparator, RANGE range, bool bAddEmpty = true);
+   string_array_base & explode(const RawType &strSeparator, const RawType &str, bool bAddEmpty = true);
 
-   string_array_base & _001Explode(RANGE range);
+   string_array_base & _001Explode(const RawType &str);
 
    // csstidy: Same as explode, but not within a Type
-   //string_array_base & csstidy_explode_ws(char sep,RANGE range);
+   //string_array_base & csstidy_explode_ws(char sep,const RawType &str);
 
 
    //template < typename PRED >
-   //void predicate_implode(Type & rwstr,PRED pred, RANGE rangeSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
+   //void predicate_implode(Type & rwstr,PRED pred, const RawType &strSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
 
 
    template < typename PRED >
-   Type predicate_implode(PRED pred, RANGE rangeSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
+   Type predicate_implode(PRED pred, const RawType &strSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
 
 
-   //void implode(Type & rwstr,RANGE rangeSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
+   //void implode(Type & rwstr,const RawType &strSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
 
-   Type implode(RANGE rangeSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
+   Type implode(const RawType &strSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
 
-   ///void reverse_implode(Type & rwstr,RANGE rangeSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
+   ///void reverse_implode(Type & rwstr,const RawType &strSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
 
-   Type reverse_implode(RANGE rangeSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
-
-
-   //void _008Implode(Type & rwstr, RANGE rangeSeparator = nullptr, RANGE rangeLastSeparator = nullptr, ::index iStart = 0, ::count iCount = -1) const;
-
-   Type _008Implode(RANGE rangeSeparator = nullptr, RANGE rangeLastSeparator = nullptr, ::index iStart = 0, ::count iCount = -1) const;
+   Type reverse_implode(const RawType &strSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
 
 
-   //void _008IfImplode(Type & rwstr, RANGE rangeIfHasElementPrefix = nullptr, RANGE rangeSeparator = nullptr, RANGE rangeLastSeparator = nullptr, bool bUseLast = true, ::index iStart = 0, ::count iCount = -1) const;
+   //void _008Implode(Type & rwstr, const RawType &strSeparator = nullptr, const RawType &strLastSeparator = nullptr, ::index iStart = 0, ::count iCount = -1) const;
 
-   Type _008IfImplode(RANGE rangeIfHasElementPrefix = nullptr, RANGE rangeSeparator = nullptr, RANGE rangeLastSeparator = nullptr, bool bUseLast = true, ::index iStart = 0, ::count iCount = -1) const;
+   Type _008Implode(const RawType &strSeparator = nullptr, const RawType &strLastSeparator = nullptr, ::index iStart = 0, ::count iCount = -1) const;
 
 
-   void surround(RANGE rangePrefix = nullptr,RANGE rangeSuffix = nullptr,::index iStart = 0,::count iCount = -1);
-   Type surround_and_implode(RANGE rangeSeparator = nullptr,RANGE rangePrefix = nullptr,RANGE rangeSuffix = nullptr,::index iStart = 0,::count iCount = -1);
+   //void _008IfImplode(Type & rwstr, const RawType &strIfHasElementPrefix = nullptr, const RawType &strSeparator = nullptr, const RawType &strLastSeparator = nullptr, bool bUseLast = true, ::index iStart = 0, ::count iCount = -1) const;
+
+   Type _008IfImplode(const RawType &strIfHasElementPrefix = nullptr, const RawType &strSeparator = nullptr, const RawType &strLastSeparator = nullptr, bool bUseLast = true, ::index iStart = 0, ::count iCount = -1) const;
+
+
+   void surround(const RawType &strPrefix = nullptr,const RawType &strSuffix = nullptr,::index iStart = 0,::count iCount = -1);
+   Type surround_and_implode(const RawType &strSeparator = nullptr,const RawType &strPrefix = nullptr,const RawType &strSuffix = nullptr,::index iStart = 0,::count iCount = -1);
 
 
    //comparable_array < atom > get_comparable_ida() const;
 
-   //::count explode_command_line(RANGE range, address_array < char * > * argv = nullptr);
+   //::count explode_command_line(const RawType &str, address_array < char * > * argv = nullptr);
 
 
 
@@ -466,23 +466,23 @@ public:
    bool operator != (const RawStringArray & a) const;
 
 
-   void replace_with(RANGE rangeNew, RANGE rangeOld);
+   void replace_with(const RawType &strNew, const RawType &strOld);
 
 
    //void write(stream & ostream) const;
    //void read(stream & istream);
 
 
-   void get_format_string(Type & range,RANGE rangeSeparator) const;
+   void get_format_string(Type & str,const RawType &strSeparator) const;
 
-   void add_tokens(RANGE range, RANGE rangeSeparator,bool bAddEmpty = true);
+   void add_tokens(const RawType &str, const RawType &strSeparator,bool bAddEmpty = true);
 
-   void add_smallest_tokens(RANGE range, const RawStringArray & straSeparator,bool bAddEmpty = true,bool bWithSeparator = false);
+   void add_smallest_tokens(const RawType &str, const RawStringArray & straSeparator,bool bAddEmpty = true,bool bWithSeparator = false);
 
-   void add_lines(RANGE range, bool bAddEmpty = true);
+   void add_lines(const RawType &str, bool bAddEmpty = true);
 
 
-   void _001AddTokens(RANGE range);
+   void _001AddTokens(const RawType &str);
 
 
 
@@ -492,15 +492,15 @@ public:
    Type encode_v16();
 
 
-   void decode_v16(RANGE range);
+   void decode_v16(const RawType &str);
 
-   ::count count_except(RANGE range);
+   ::count count_except(const RawType &str);
    ::count count_except(const string_array_base & stra);
 
-   ::count count_except_ci(RANGE range);
+   ::count count_except_ci(const RawType &str);
    ::count count_except_ci(const string_array_base & stra);
 
-   Type & get_network_payload(Type & range, bool bNewLine = true) const;
+   Type & get_network_payload(Type & str, bool bNewLine = true) const;
 
 
 
@@ -583,24 +583,24 @@ public:
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 template < typename PRED >
-Type string_array_base < Type, RawType, m_etypeContainer > ::predicate_implode(PRED pred, RANGE rangeSeparator,::index i,::count inCountLastOut) const
+Type string_array_base < Type, RawType, m_etypeContainer > ::predicate_implode(PRED pred, const RawType &strSeparator,::index i,::count inCountLastOut) const
 {
 
-   Type range;
+   Type str;
 
    if (!this->prepare_first_in_count_last_out(i, inCountLastOut))
    {
 
-      return range;
+      return str;
 
    }
 
-   range = pred(this->first());
+   str = pred(this->first());
 
    if (i == inCountLastOut)
    {
 
-      return range;
+      return str;
 
    }
 
@@ -609,13 +609,13 @@ Type string_array_base < Type, RawType, m_etypeContainer > ::predicate_implode(P
 
       i++;
 
-      range += rangeSeparator;
+      str += strSeparator;
 
-      range += pred(this->element_at(i));
+      str += pred(this->element_at(i));
 
    }
 
-   return range;
+   return str;
 
 }
 
@@ -765,10 +765,10 @@ string_array_base < Type, RawType, m_etypeContainer > &
 string_array_base < Type, RawType, m_etypeContainer >::c_stra(string_array_base < Type, RawType, m_etypeContainer > & stra) const
 {
 
-   for (auto & range : *this)
+   for (auto & str : *this)
    {
 
-      stra.add(range.c_str());
+      stra.add(str.c_str());
 
    }
 
@@ -838,7 +838,7 @@ Type & string_array_base < Type, RawType, m_etypeContainer >::set_at_grow(::inde
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer >::_007FindLine(RANGE rangeKey, ::index iStart) const
+::index string_array_base < Type, RawType, m_etypeContainer >::_007FindLine(const RawType &strKey, ::index iStart) const
 {
 
    for(::index i = iStart; i < get_count(); i++)
@@ -851,7 +851,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
       }
 
-      if(element_at(i).case_insensitive_begins(rangeKey + "="))
+      if(element_at(i).case_insensitive_begins(strKey + "="))
       {
 
          return i;
@@ -866,12 +866,12 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer >::_007SetLine(RANGE rangeKey, RANGE rangeValue, ::index iStart)
+void string_array_base < Type, RawType, m_etypeContainer >::_007SetLine(const RawType &strKey, const RawType &strValue, ::index iStart)
 {
 
-   ::index iKeyIndex = _007FindLine(rangeKey, iStart);
+   ::index iKeyIndex = _007FindLine(strKey, iStart);
 
-   Type strNewLine = rangeKey + "=" + rangeValue;
+   Type strNewLine = strKey + "=" + strValue;
 
    if(iKeyIndex >= 0)
    {
@@ -890,10 +890,10 @@ void string_array_base < Type, RawType, m_etypeContainer >::_007SetLine(RANGE ra
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer >::_007GetLine(RawType & rangeValue, RANGE rangeKey, ::index iStart) const
+::index string_array_base < Type, RawType, m_etypeContainer >::_007GetLine(RawType & strValue, const RawType &strKey, ::index iStart) const
 {
 
-   ::index iKeyIndex = _007FindLine(rangeKey, iStart);
+   ::index iKeyIndex = _007FindLine(strKey, iStart);
 
    if(iKeyIndex < 0)
    {
@@ -902,7 +902,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    }
 
-   rangeValue = this->operator[](iKeyIndex).Mid(rangeKey.size() + 1);
+   strValue = this->operator[](iKeyIndex).Mid(strKey.size() + 1);
 
    return iKeyIndex;
 
@@ -910,28 +910,28 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-RawType string_array_base < Type, RawType, m_etypeContainer >::_007GetLine(RANGE rangeKey, ::index iStart) const
+RawType string_array_base < Type, RawType, m_etypeContainer >::_007GetLine(const RawType &strKey, ::index iStart) const
 {
 
-   RawType rangeValue;
+   RawType strValue;
 
-   if(_007GetLine(rangeValue, rangeKey, iStart) < 0)
+   if(_007GetLine(strValue, strKey, iStart) < 0)
    {
 
       return "";
 
    }
 
-   return rangeValue;
+   return strValue;
 
 }
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer >::_007FindSection(RANGE rangeSection) const
+::index string_array_base < Type, RawType, m_etypeContainer >::_007FindSection(const RawType &strSection) const
 {
 
-   ::index iSectionIndex = this->find_first_begins_ci(rangeSection);
+   ::index iSectionIndex = this->find_first_begins_ci(strSection);
 
    return iSectionIndex;
 
@@ -939,10 +939,10 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer >::_007FindLine(RANGE rangeSection, RANGE rangeKey) const
+::index string_array_base < Type, RawType, m_etypeContainer >::_007FindLine(const RawType &strSection, const RawType &strKey) const
 {
 
-   ::index iSectionIndex = this->_007FindSection(rangeSection);
+   ::index iSectionIndex = this->_007FindSection(strSection);
 
    if(iSectionIndex < 0)
    {
@@ -951,23 +951,23 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    }
 
-   return this->_007FindLine(rangeKey, iSectionIndex + 1);
+   return this->_007FindLine(strKey, iSectionIndex + 1);
 
 }
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer >::_007OpenSection(RANGE rangeSection)
+::index string_array_base < Type, RawType, m_etypeContainer >::_007OpenSection(const RawType &strSection)
 {
 
-   ::index iSectionIndex = this->_007FindSection(rangeSection);
+   ::index iSectionIndex = this->_007FindSection(strSection);
 
    if(iSectionIndex < 0)
    {
 
       this->add("");
 
-      iSectionIndex = this->add(rangeSection);
+      iSectionIndex = this->add(strSection);
 
    }
 
@@ -977,30 +977,30 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer >::_007SetLine(RANGE rangeSection, RANGE rangeKey, RANGE rangeValue)
+void string_array_base < Type, RawType, m_etypeContainer >::_007SetLine(const RawType &strSection, const RawType &strKey, const RawType &strValue)
 {
 
-   ::index iSectionIndex = this->_007OpenSection(rangeSection);
+   ::index iSectionIndex = this->_007OpenSection(strSection);
 
    if(iSectionIndex < 0)
    {
 
       this->add("");
 
-      iSectionIndex = this->add(rangeSection);
+      iSectionIndex = this->add(strSection);
 
    }
 
-   this->_007SetLine(rangeKey, rangeValue, iSectionIndex + 1);
+   this->_007SetLine(strKey, strValue, iSectionIndex + 1);
 
 }
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer >::_007GetLine(RawType & rangeValue, RANGE rangeSection, RANGE rangeKey) const
+::index string_array_base < Type, RawType, m_etypeContainer >::_007GetLine(RawType & strValue, const RawType &strSection, const RawType &strKey) const
 {
 
-   ::index iSectionIndex = this->_007FindSection(rangeSection);
+   ::index iSectionIndex = this->_007FindSection(strSection);
 
    if(iSectionIndex < 0)
    {
@@ -1009,24 +1009,24 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    }
 
-   return _007GetLine(rangeValue, rangeKey, iSectionIndex + 1);
+   return _007GetLine(strValue, strKey, iSectionIndex + 1);
 
 }
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-RawType string_array_base < Type, RawType, m_etypeContainer >::_007GetLine(RANGE rangeSection, RANGE rangeKey) const
+RawType string_array_base < Type, RawType, m_etypeContainer >::_007GetLine(const RawType &strSection, const RawType &strKey) const
 {
 
-   RawType rangeValue;
+   RawType strValue;
 
-   if(_007GetLine(rangeValue, rangeSection, rangeKey) < 0)
+   if(_007GetLine(strValue, strSection, strKey) < 0)
    {
 
       return "";
 
    }
 
-   return rangeValue;
+   return strValue;
 
 }
 
@@ -1373,7 +1373,7 @@ class CLASS_DECL_ACME string2a:
 public:
 
 
-   void add_csv(string range);
+   void add_csv(string str);
 
 
 };
@@ -1412,11 +1412,11 @@ string_array_base < Type, RawType, m_etypeContainer > ::string_array_base(CHARAC
 //   for (unsigned int u = 0; u < refstra->Length; u++)
 //   {
 //
-//      Type range;
+//      Type str;
 //
-//      range = refstra[u]->Begin();
+//      str = refstra[u]->Begin();
 //
-//      add(range);
+//      add(str);
 //
 //   }
 //
@@ -1430,17 +1430,17 @@ string_array_base < Type, RawType, m_etypeContainer > ::string_array_base(CHARAC
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::add_tokens(RANGE range, RANGE rangeSeparator,bool bAddEmpty)
+void string_array_base < Type, RawType, m_etypeContainer > ::add_tokens(const RawType &str, const RawType &strSeparator,bool bAddEmpty)
 {
 
-   ::tokenizer strTokenizer(range);
+   ::tokenizer strTokenizer(str);
 
    Type strToken;
 
    if(bAddEmpty)
    {
 
-      while(strTokenizer.get_next_token(strToken,rangeSeparator,false))
+      while(strTokenizer.get_next_token(strToken,strSeparator,false))
       {
 
          string_array_base::add(strToken);
@@ -1451,7 +1451,7 @@ void string_array_base < Type, RawType, m_etypeContainer > ::add_tokens(RANGE ra
    else
    {
 
-      while(strTokenizer.get_next_token(strToken,rangeSeparator,false))
+      while(strTokenizer.get_next_token(strToken,strSeparator,false))
       {
 
          if (!strToken.is_empty())
@@ -1470,11 +1470,11 @@ void string_array_base < Type, RawType, m_etypeContainer > ::add_tokens(RANGE ra
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::_001AddTokens(RANGE range)
+void string_array_base < Type, RawType, m_etypeContainer > ::_001AddTokens(const RawType &str)
 
 {
 
-   ::tokenizer strTokenizer(range);
+   ::tokenizer strTokenizer(str);
 
 
    Type strToken;
@@ -1490,10 +1490,10 @@ void string_array_base < Type, RawType, m_etypeContainer > ::_001AddTokens(RANGE
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::add_smallest_tokens(RANGE range, const RawStringArray & straSeparator, bool bAddEmpty, bool bWithSeparator)
+void string_array_base < Type, RawType, m_etypeContainer > ::add_smallest_tokens(const RawType &str, const RawStringArray & straSeparator, bool bAddEmpty, bool bWithSeparator)
 {
 
-   ::tokenizer strTokenizer(range);
+   ::tokenizer strTokenizer(str);
 
    Type strToken;
 
@@ -1530,10 +1530,10 @@ void string_array_base < Type, RawType, m_etypeContainer > ::add_smallest_tokens
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::add_lines(RANGE range, bool bAddEmpty)
+void string_array_base < Type, RawType, m_etypeContainer > ::add_lines(const RawType &str, bool bAddEmpty)
 {
 
-   string str(range);
+   string str(str);
 
    strsize iPos = 0;
 
@@ -1652,7 +1652,7 @@ r_only:
 
 end:
 
-   if(range.size() > iPos)
+   if(str.size() > iPos)
    {
 
       add((Type)RawType(&str[iPos]));
@@ -1669,17 +1669,17 @@ end:
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::get_format_string(Type & range,RANGE rangeSeparator) const
+void string_array_base < Type, RawType, m_etypeContainer > ::get_format_string(Type & str,const RawType &strSeparator) const
 
 {
-   range.Empty();
+   str.Empty();
    if(this->size() > 0)
    {
-      range = get_at(0);
+      str = get_at(0);
    }
    for(::index i = 1; i < this->size(); i++)
    {
-      range += rangeSeparator + get_at(i);
+      str += strSeparator + get_at(i);
 
    }
 }
@@ -1771,7 +1771,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first(RANGE range, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first(const RawType &str, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1780,7 +1780,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (this->element_at(iFind).order(range) == 0)
+         if (this->element_at(iFind).order(str) == 0)
          {
 
             return iFind;
@@ -1797,7 +1797,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_ci(RANGE range,::index iFind,::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_ci(const RawType &str,::index iFind,::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1806,7 +1806,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (this->element_at(iFind).case_insensitive_order(range) == 0)
+         if (this->element_at(iFind).case_insensitive_order(str) == 0)
          {
 
             return iFind;
@@ -1841,7 +1841,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::rear_find(RANGE range, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::rear_find(const RawType &str, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1850,7 +1850,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iLast >= iFind; iLast--)
       {
 
-         if (this->element_at(iLast).order(range) == 0)
+         if (this->element_at(iLast).order(str) == 0)
          {
 
             return iLast;
@@ -1866,7 +1866,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 }
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::reverse_find_ci(RANGE range, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::reverse_find_ci(const RawType &str, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1875,7 +1875,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iLast >= iFind; iLast--)
       {
 
-         if (this->element_at(iLast).case_insensitive_order(range) == 0)
+         if (this->element_at(iLast).case_insensitive_order(str) == 0)
          {
 
             return iLast;
@@ -1896,7 +1896,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::count string_array_base < Type, RawType, m_etypeContainer > ::count(RANGE range, ::index iFind, ::index iLast) const
+::count string_array_base < Type, RawType, m_etypeContainer > ::count(const RawType &str, ::index iFind, ::index iLast) const
 {
 
    ::count count = 0;
@@ -1907,7 +1907,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (this->element_at(iFind).order(range) == 0)
+         if (this->element_at(iFind).order(str) == 0)
          {
 
             count++;
@@ -1924,7 +1924,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::count string_array_base < Type, RawType, m_etypeContainer > ::count_ci(RANGE range, ::index iFind, ::index iLast) const
+::count string_array_base < Type, RawType, m_etypeContainer > ::count_ci(const RawType &str, ::index iFind, ::index iLast) const
 {
 
    ::count count = 0;
@@ -1935,7 +1935,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (this->element_at(iFind).case_insensitive_order(range) == 0)
+         if (this->element_at(iFind).case_insensitive_order(str) == 0)
          {
 
             count++;
@@ -1954,28 +1954,28 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_last_ci(RANGE range, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_last_ci(const RawType &str, ::index iFind, ::index iLast) const
 {
 
-   return reverse_find_ci(range, iFind, iLast);
+   return reverse_find_ci(str, iFind, iLast);
 
 }
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_last(RANGE range, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_last(const RawType &str, ::index iFind, ::index iLast) const
 {
 
-   return rear_find(range, iFind, iLast);
+   return rear_find(str, iFind, iLast);
 
 }
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::_066Find(RANGE range) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::_066Find(const RawType &str) const
 {
 
-   RawString str(range);
+   RawString str(str);
 
    ::index iSel = this->find_first(str);
 
@@ -2024,13 +2024,13 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains(RANGE rangeSubstring, ::index iFind, ::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains(const RawType &strSubstring, ::index iFind, ::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
    {
 
-      return _find_first_contains(rangeSubstring, iFind, iLast, ppszBeg, ppszEnd);
+      return _find_first_contains(strSubstring, iFind, iLast, ppszBeg, ppszEnd);
 
    }
 
@@ -2040,13 +2040,13 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_contains(RANGE rangeSubstring, ::index iFind, ::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_contains(const RawType &strSubstring, ::index iFind, ::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
    for (; iFind <= iLast; iFind++)
    {
 
-      if (this->element_at(iFind).contains(rangeSubstring, 0, -1, ppszBeg, ppszEnd))
+      if (this->element_at(iFind).contains(strSubstring, 0, -1, ppszBeg, ppszEnd))
       {
 
          return iFind;
@@ -2063,13 +2063,13 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains_ci(RANGE rangeSubstring,::index iFind,::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains_ci(const RawType &strSubstring,::index iFind,::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
    {
 
-      return _find_first_contains_ci(rangeSubstring, iFind, iLast, ppszBeg, ppszEnd);
+      return _find_first_contains_ci(strSubstring, iFind, iLast, ppszBeg, ppszEnd);
 
    }
 
@@ -2079,13 +2079,13 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_contains_ci(RANGE rangeSubstring, ::index iFind, ::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_contains_ci(const RawType &strSubstring, ::index iFind, ::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
    for (; iFind <= iLast; iFind++)
    {
 
-      if (this->element_at(iFind).contains_ci(rangeSubstring, 0, -1, ppszBeg, ppszEnd))
+      if (this->element_at(iFind).contains_ci(strSubstring, 0, -1, ppszBeg, ppszEnd))
       {
 
          return iFind;
@@ -2100,7 +2100,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::prefix_find_first_ci(RANGE rangeTopic,::index iFind,::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::prefix_find_first_ci(const RawType &strTopic,::index iFind,::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2109,7 +2109,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (rangeTopic.begins(this->element_at(iFind), ::comparison::case_insensitive < CHARACTER >()))
+         if (strTopic.begins(this->element_at(iFind), ::comparison::case_insensitive < CHARACTER >()))
          {
 
             return iFind;
@@ -2126,7 +2126,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::prefix_find_first(RANGE rangeTopic, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::prefix_find_first(const RawType &strTopic, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2135,7 +2135,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (rangeTopic.begins(this->element_at(iFind)))
+         if (strTopic.begins(this->element_at(iFind)))
          {
 
             return iFind;
@@ -2154,49 +2154,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::substring_find_first(RANGE rangeTopic, ::index iFind, ::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
-{
-
-   if (this->prepare_first_last(iFind, iLast))
-   {
-
-      for (; iFind <= iLast; iFind++)
-      {
-
-         strsize iBeg;
-
-         if ((iBeg = rangeTopic.offset_of(rangeTopic.find(this->element_at(iFind)))) >= 0)
-         {
-
-            if (ppszBeg)
-            {
-
-               *ppszBeg = rangeTopic.begin() + iBeg;
-
-            }
-
-            if (ppszEnd)
-            {
-
-               *ppszEnd = rangeTopic.begin() + iBeg + this->element_at(iFind).size();
-
-            }
-
-            return iFind;
-
-         }
-
-      }
-
-   }
-
-   return -1;
-
-}
-
-
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::substring_find_first_ci(RANGE rangeTopic, ::index iFind, ::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::substring_find_first(const RawType &strTopic, ::index iFind, ::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2207,20 +2165,62 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
          strsize iBeg;
 
-         if ((iBeg = rangeTopic.offset_of(rangeTopic.find(this->element_at(iFind), ::comparison::case_insensitive < CHARACTER >()))) >= 0)
+         if ((iBeg = strTopic.offset_of(strTopic.find(this->element_at(iFind)))) >= 0)
          {
 
             if (ppszBeg)
             {
 
-               *ppszBeg = rangeTopic.begin() + iBeg;
+               *ppszBeg = strTopic.begin() + iBeg;
 
             }
 
             if (ppszEnd)
             {
 
-               *ppszEnd = rangeTopic.begin() + iBeg + this->element_at(iFind).size();
+               *ppszEnd = strTopic.begin() + iBeg + this->element_at(iFind).size();
+
+            }
+
+            return iFind;
+
+         }
+
+      }
+
+   }
+
+   return -1;
+
+}
+
+
+template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+::index string_array_base < Type, RawType, m_etypeContainer > ::substring_find_first_ci(const RawType &strTopic, ::index iFind, ::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+{
+
+   if (this->prepare_first_last(iFind, iLast))
+   {
+
+      for (; iFind <= iLast; iFind++)
+      {
+
+         strsize iBeg;
+
+         if ((iBeg = strTopic.offset_of(strTopic.find(this->element_at(iFind), ::comparison::case_insensitive < CHARACTER >()))) >= 0)
+         {
+
+            if (ppszBeg)
+            {
+
+               *ppszBeg = strTopic.begin() + iBeg;
+
+            }
+
+            if (ppszEnd)
+            {
+
+               *ppszEnd = strTopic.begin() + iBeg + this->element_at(iFind).size();
 
             }
 
@@ -2241,13 +2241,13 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_suffixed_ci(RANGE rangeSuffix, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_suffixed_ci(const RawType &strSuffix, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
    {
 
-      return _find_first_suffixed_ci(rangeSuffix, iFind, iLast);
+      return _find_first_suffixed_ci(strSuffix, iFind, iLast);
 
    }
 
@@ -2257,13 +2257,13 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_suffixed(RANGE rangeSuffix, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_suffixed(const RawType &strSuffix, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
    {
 
-      return _find_first_suffixed(rangeSuffix, iFind, iLast);
+      return _find_first_suffixed(strSuffix, iFind, iLast);
 
    }
 
@@ -2274,10 +2274,10 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_begins_eat(Type & strFoundAndEaten, RANGE rangeSuffix, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_begins_eat(Type & strFoundAndEaten, const RawType &strSuffix, ::index iFind, ::index iLast) const
 {
 
-   iFind = find_first_begins(rangeSuffix, iFind, iLast);
+   iFind = find_first_begins(strSuffix, iFind, iLast);
 
    if (iFind < 0)
    {
@@ -2286,7 +2286,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    }
 
-   strFoundAndEaten = element_at(iFind).Mid(rangeSuffix.size());
+   strFoundAndEaten = element_at(iFind).Mid(strSuffix.size());
 
    return iFind;
 
@@ -2295,10 +2295,10 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_begins_eat_ci(Type & strFoundAndEaten,RANGE rangePrefix, ::index iFind,::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_begins_eat_ci(Type & strFoundAndEaten,const RawType &strPrefix, ::index iFind,::index iLast) const
 {
 
-   iFind  = find_first_begins_ci(rangePrefix,iFind,iLast);
+   iFind  = find_first_begins_ci(strPrefix,iFind,iLast);
 
    if (iFind < 0)
    {
@@ -2307,7 +2307,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    }
 
-   strFoundAndEaten = element_at(iFind).Mid(rangePrefix.size());
+   strFoundAndEaten = element_at(iFind).Mid(strPrefix.size());
 
    return iFind;
 
@@ -2317,10 +2317,10 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_ends_eat(Type & strFoundAndEaten, RANGE rangeSuffix, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_ends_eat(Type & strFoundAndEaten, const RawType &strSuffix, ::index iFind, ::index iLast) const
 {
 
-   iFind = find_first_ends(rangeSuffix, iFind, iLast);
+   iFind = find_first_ends(strSuffix, iFind, iLast);
 
    if (iFind < 0)
    {
@@ -2329,7 +2329,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    }
 
-   strFoundAndEaten = element_at(iFind).Right(rangeSuffix.size());
+   strFoundAndEaten = element_at(iFind).Right(strSuffix.size());
 
    return iFind;
 
@@ -2337,10 +2337,10 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_ends_eat_ci(Type & strFoundAndEaten, RANGE rangeSuffix, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_ends_eat_ci(Type & strFoundAndEaten, const RawType &strSuffix, ::index iFind, ::index iLast) const
 {
 
-   iFind = find_first_ends_ci(rangeSuffix, iFind, iLast);
+   iFind = find_first_ends_ci(strSuffix, iFind, iLast);
 
    if (iFind < 0)
    {
@@ -2349,7 +2349,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    }
 
-   strFoundAndEaten = element_at(iFind).Right(rangeSuffix.size());
+   strFoundAndEaten = element_at(iFind).Right(strSuffix.size());
 
    return iFind;
 
@@ -2358,14 +2358,14 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains_eat(Type & strFoundAndEaten, RANGE rangeSubstring, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains_eat(Type & strFoundAndEaten, const RawType &strSubstring, ::index iFind, ::index iLast) const
 {
 
    const CHARACTER * pszBeg = nullptr;
 
    const CHARACTER * pszEnd = nullptr;
 
-   iFind = find_first_contains(rangeSubstring, iFind, iLast, &pszBeg, &pszEnd);
+   iFind = find_first_contains(strSubstring, iFind, iLast, &pszBeg, &pszEnd);
 
    if (iFind < 0)
    {
@@ -2384,14 +2384,14 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains_eat_ci(Type & strFoundAndEaten, RANGE rangeTopic, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains_eat_ci(Type & strFoundAndEaten, const RawType &strTopic, ::index iFind, ::index iLast) const
 {
 
    const char * pszBeg = nullptr;
 
    const char * pszEnd = nullptr;
 
-   iFind = find_first_contains_ci(rangeTopic, iFind, iLast, &pszBeg, &pszEnd);
+   iFind = find_first_contains_ci(strTopic, iFind, iLast, &pszBeg, &pszEnd);
 
    if (iFind < 0)
    {
@@ -2410,13 +2410,13 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_prefixed(RANGE rangePrefix,::index iFind,::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_prefixed(const RawType &strPrefix,::index iFind,::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
    {
 
-      return _find_first_prefixed(rangePrefix, iFind, iLast);
+      return _find_first_prefixed(strPrefix, iFind, iLast);
 
    }
 
@@ -2426,13 +2426,13 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_prefixed_ci(RANGE rangePrefix, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_prefixed_ci(const RawType &strPrefix, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
    {
 
-      return _find_first_prefixed_ci(rangePrefix, iFind, iLast);
+      return _find_first_prefixed_ci(strPrefix, iFind, iLast);
 
    }
 
@@ -2442,13 +2442,13 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_prefixed(RANGE rangePrefix, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_prefixed(const RawType &strPrefix, ::index iFind, ::index iLast) const
 {
 
    for (; iFind <= iLast; iFind++)
    {
 
-      if (this->element_at(iFind).begins(rangePrefix))
+      if (this->element_at(iFind).begins(strPrefix))
       {
 
          return iFind;
@@ -2463,13 +2463,13 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_prefixed_ci(RANGE rangePrefix, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_prefixed_ci(const RawType &strPrefix, ::index iFind, ::index iLast) const
 {
 
    for (; iFind <= iLast; iFind++)
    {
 
-      if (this->element_at(iFind).case_insensitive_begins(rangePrefix))
+      if (this->element_at(iFind).case_insensitive_begins(strPrefix))
       {
 
          return iFind;
@@ -2483,12 +2483,12 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 }
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-bool string_array_base < Type, RawType, m_etypeContainer > ::_067ContainsCi(RANGE range, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
+bool string_array_base < Type, RawType, m_etypeContainer > ::_067ContainsCi(const RawType &str, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
 {
 
    ::count count = 0;
 
-   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (iFind = find_first_ci(range, iFind, iLast)) >= 0)
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (iFind = find_first_ci(str, iFind, iLast)) >= 0)
    {
       count++;
 
@@ -2500,30 +2500,12 @@ bool string_array_base < Type, RawType, m_etypeContainer > ::_067ContainsCi(RANG
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-bool string_array_base < Type, RawType, m_etypeContainer > ::_067Contains(RANGE range, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
+bool string_array_base < Type, RawType, m_etypeContainer > ::_067Contains(const RawType &str, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
 {
 
    ::count count = 0;
 
-   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (iFind = find_first(range, iFind, iLast)) >= 0)
-   {
-
-      count++;
-
-   }
-
-   return count >= countMin && conditional(countMax >= 0, count <= countMax);
-
-}
-
-
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-bool string_array_base < Type, RawType, m_etypeContainer > ::_067ContainsSubstringCi(RANGE range, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
-{
-
-   ::count count = 0;
-
-   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (iFind = find_first_contains_ci(range, iFind, iLast)) >= 0)
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (iFind = find_first(str, iFind, iLast)) >= 0)
    {
 
       count++;
@@ -2536,12 +2518,12 @@ bool string_array_base < Type, RawType, m_etypeContainer > ::_067ContainsSubstri
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-bool string_array_base < Type, RawType, m_etypeContainer > ::_067ContainsSubstring(RANGE range, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
+bool string_array_base < Type, RawType, m_etypeContainer > ::_067ContainsSubstringCi(const RawType &str, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
 {
 
    ::count count = 0;
 
-   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (iFind = find_first_contains(range, iFind, iLast)) >= 0)
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (iFind = find_first_contains_ci(str, iFind, iLast)) >= 0)
    {
 
       count++;
@@ -2554,80 +2536,98 @@ bool string_array_base < Type, RawType, m_etypeContainer > ::_067ContainsSubstri
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::erase_first_ci(RANGE range,::index iFind,::index iLast)
-{
-
-   if ((iFind = find_first_ci(range, iFind, iLast)) >= 0)
-   {
-
-      this->erase_at(iFind);
-
-   }
-
-   return iFind;
-
-}
-
-
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::erase_first(RANGE range,::index iFind,::index iLast)
-{
-
-   if ((iFind = find_first(range, iFind, iLast)) >= 0)
-   {
-
-      this->erase_at(iFind);
-
-   }
-
-   return iFind;
-
-}
-
-
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::erase_last_ci(RANGE range, ::index iFind, ::index iLast)
-{
-
-   if ((iFind = find_last_ci(range, iFind, iLast)) >= 0)
-   {
-
-      this->erase_at(iFind);
-
-   }
-
-   return iFind;
-
-}
-
-
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::erase_last(RANGE range, ::index iFind, ::index iLast)
-{
-
-   if ((iFind = find_last(range, iFind, iLast)) >= 0)
-   {
-
-      this->erase_at(iFind);
-
-
-   }
-
-   return iFind;
-
-}
-
-
-template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::count string_array_base < Type, RawType, m_etypeContainer > ::_067RemoveCi(RANGE range, ::index iFind, ::index iLast, ::count countMin, ::count countMax)
+bool string_array_base < Type, RawType, m_etypeContainer > ::_067ContainsSubstring(const RawType &str, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
 {
 
    ::count count = 0;
 
-   if (_067ContainsCi(range, iFind, iLast, countMin, countMax))
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (iFind = find_first_contains(str, iFind, iLast)) >= 0)
    {
 
-      while (conditional(countMax >= 0, count < countMax) && (iFind = erase_first_ci(range, iFind, iLast)) >= 0)
+      count++;
+
+   }
+
+   return count >= countMin && conditional(countMax >= 0, count <= countMax);
+
+}
+
+
+template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+::index string_array_base < Type, RawType, m_etypeContainer > ::erase_first_ci(const RawType &str,::index iFind,::index iLast)
+{
+
+   if ((iFind = find_first_ci(str, iFind, iLast)) >= 0)
+   {
+
+      this->erase_at(iFind);
+
+   }
+
+   return iFind;
+
+}
+
+
+template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+::index string_array_base < Type, RawType, m_etypeContainer > ::erase_first(const RawType &str,::index iFind,::index iLast)
+{
+
+   if ((iFind = find_first(str, iFind, iLast)) >= 0)
+   {
+
+      this->erase_at(iFind);
+
+   }
+
+   return iFind;
+
+}
+
+
+template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+::index string_array_base < Type, RawType, m_etypeContainer > ::erase_last_ci(const RawType &str, ::index iFind, ::index iLast)
+{
+
+   if ((iFind = find_last_ci(str, iFind, iLast)) >= 0)
+   {
+
+      this->erase_at(iFind);
+
+   }
+
+   return iFind;
+
+}
+
+
+template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+::index string_array_base < Type, RawType, m_etypeContainer > ::erase_last(const RawType &str, ::index iFind, ::index iLast)
+{
+
+   if ((iFind = find_last(str, iFind, iLast)) >= 0)
+   {
+
+      this->erase_at(iFind);
+
+
+   }
+
+   return iFind;
+
+}
+
+
+template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+::count string_array_base < Type, RawType, m_etypeContainer > ::_067RemoveCi(const RawType &str, ::index iFind, ::index iLast, ::count countMin, ::count countMax)
+{
+
+   ::count count = 0;
+
+   if (_067ContainsCi(str, iFind, iLast, countMin, countMax))
+   {
+
+      while (conditional(countMax >= 0, count < countMax) && (iFind = erase_first_ci(str, iFind, iLast)) >= 0)
       {
 
          count++;
@@ -2642,15 +2642,15 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::count string_array_base < Type, RawType, m_etypeContainer > ::_067Remove(RANGE range,::index iFind,::index iLast,::count countMin,::count countMax)
+::count string_array_base < Type, RawType, m_etypeContainer > ::_067Remove(const RawType &str,::index iFind,::index iLast,::count countMin,::count countMax)
 {
 
    ::count count = 0;
 
-   if (_067Contains(range, iFind, iLast, countMin, countMax))
+   if (_067Contains(str, iFind, iLast, countMin, countMax))
    {
 
-      while (conditional(countMax >= 0, count < countMax) && (iFind = erase_first(range, iFind, iLast)) >= 0)
+      while (conditional(countMax >= 0, count < countMax) && (iFind = erase_first(str, iFind, iLast)) >= 0)
       {
          count++;
 
@@ -2664,12 +2664,12 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::count string_array_base < Type, RawType, m_etypeContainer > ::erase_ci(RANGE range, ::index iFind, ::index iLast)
+::count string_array_base < Type, RawType, m_etypeContainer > ::erase_ci(const RawType &str, ::index iFind, ::index iLast)
 {
 
    ::count count = 0;
 
-   while ((iFind = erase_first_ci(range, iFind, iLast)) >= 0)
+   while ((iFind = erase_first_ci(str, iFind, iLast)) >= 0)
    {
 
       count++;
@@ -2682,12 +2682,12 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::count string_array_base < Type, RawType, m_etypeContainer > ::erase(RANGE range, ::index iFind, ::index iLast)
+::count string_array_base < Type, RawType, m_etypeContainer > ::erase(const RawType &str, ::index iFind, ::index iLast)
 {
 
    ::count count = 0;
 
-   while ((iFind = erase_first(range, iFind, iLast)) >= 0)
+   while ((iFind = erase_first(str, iFind, iLast)) >= 0)
    {
 
       count++;
@@ -2737,31 +2737,31 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::trim_left(RANGE rangeChars)
+void string_array_base < Type, RawType, m_etypeContainer > ::trim_left(const RawType &strChars)
 {
    for(::index i = 0; i < this->size(); i++)
    {
-      this->operator[](i).trim_left(rangeChars);
+      this->operator[](i).trim_left(strChars);
    }
 }
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::trim_right(RANGE rangeChars)
+void string_array_base < Type, RawType, m_etypeContainer > ::trim_right(const RawType &strChars)
 {
    for(::index i = 0; i < this->size(); i++)
    {
-      this->operator[](i).trim_right(rangeChars);
+      this->operator[](i).trim_right(strChars);
    }
 }
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::trim(RANGE rangeChars)
+void string_array_base < Type, RawType, m_etypeContainer > ::trim(const RawType &strChars)
 {
    for(::index i = 0; i < this->size(); i++)
    {
-      this->operator[](i).trim(rangeChars);
+      this->operator[](i).trim(strChars);
    }
 }
 
@@ -2931,28 +2931,28 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 //}
 
 
-/*::index string_array_base < Type, RawType, m_etypeContainer > ::CountPrefixNoCase(RANGE rangePrefix)
+/*::index string_array_base < Type, RawType, m_etypeContainer > ::CountPrefixNoCase(const RawType &strPrefix)
 
 {
-Type range;
-if(rangePrefix != nullptr)
+Type str;
+if(strPrefix != nullptr)
 
-range = rangePrefix;
+str = strPrefix;
 
-if(range.is_empty())
+if(str.is_empty())
 {
 return this->get_size();
 }
 else
 {
 ::index iCount = 0;
-::index iLen = range.get_length();
+::index iLen = str.get_length();
 for(::index i = 0; i < this->get_size(); i++)
 {
 Type & strLeft = this->element_at(i).Left(iLen);
 if(strLeft.get_length() == iLen)
 {
-if(case_insensitive_order(strLeft, range) == 0)
+if(case_insensitive_order(strLeft, str) == 0)
 {
 iCount++;
 }
@@ -2964,19 +2964,19 @@ return iCount;
 
 /*void string_array_base < Type, RawType, m_etypeContainer > ::ExtractPrefixNoSortNoCase(
 string_array_base < Type, RawType, m_etypeContainer >  &stra,
-RANGE range,
+const RawType &str,
 
 ::index iLength,
 ::index iMinLength)
 {
 ASSERT(iLength >= iMinLength);
 erase_all();
-Type range;
-if(range != nullptr)
+Type str;
+if(str != nullptr)
 
-range = range;
+str = str;
 
-if(range.is_empty())
+if(str.is_empty())
 {
 for(::index i = 0; i < stra.get_size(); i++)
 {
@@ -2992,13 +2992,13 @@ add(strMid);
 }
 else
 {
-::index iLen = maximum(range.get_length(), iMinLength);
+::index iLen = maximum(str.get_length(), iMinLength);
 for(::index i = 0; i < stra.get_size(); i++)
 {
 Type & strMid = stra[i].Left(iLength);
 if(strMid.get_length() >= iLen)
 {
-if(case_insensitive_order(strMid.Left(iLen), range) == 0)
+if(case_insensitive_order(strMid.Left(iLen), str) == 0)
 {
 if(FindFirstNoSortNoCase(strMid) < 0)
 {
@@ -3011,12 +3011,12 @@ add(strMid);
 
 }
 
-::index string_array_base < Type, RawType, m_etypeContainer > ::FindFirstNoSortNoCase(RANGE range)
+::index string_array_base < Type, RawType, m_etypeContainer > ::FindFirstNoSortNoCase(const RawType &str)
 
 {
 for(::index i = 0; i < this->get_size(); i++)
 {
-if(case_insensitive_order(range, this->element_at(i)) == 0)
+if(case_insensitive_order(str, this->element_at(i)) == 0)
 
 {
 return i;
@@ -3051,7 +3051,7 @@ return -1;
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-Type string_array_base < Type, RawType, m_etypeContainer > ::implode(RANGE rangeSeparator,::index i, ::count inCountLastOut) const
+Type string_array_base < Type, RawType, m_etypeContainer > ::implode(const RawType &strSeparator,::index i, ::count inCountLastOut) const
 {
 
    Type str;
@@ -3077,7 +3077,7 @@ Type string_array_base < Type, RawType, m_etypeContainer > ::implode(RANGE range
 
       i++;
 
-      str += rangeSeparator;
+      str += strSeparator;
 
       str += this->element_at(i);
 
@@ -3090,24 +3090,24 @@ Type string_array_base < Type, RawType, m_etypeContainer > ::implode(RANGE range
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-Type string_array_base < Type, RawType, m_etypeContainer > ::reverse_implode(RANGE rangeSeparator,::index i,::count inCountLastOut) const
+Type string_array_base < Type, RawType, m_etypeContainer > ::reverse_implode(const RawType &strSeparator,::index i,::count inCountLastOut) const
 {
 
-   Type range;
+   Type str;
 
    if (!this->prepare_first_in_count_last_out(i, inCountLastOut))
    {
 
-      return range;
+      return str;
 
    }
 
-   range = this->element_at(inCountLastOut);
+   str = this->element_at(inCountLastOut);
 
    if(i == inCountLastOut)
    {
 
-      return range;
+      return str;
 
    }
 
@@ -3116,24 +3116,24 @@ Type string_array_base < Type, RawType, m_etypeContainer > ::reverse_implode(RAN
 
       inCountLastOut--;
 
-      range += rangeSeparator;
+      str += strSeparator;
 
-      range += this->element_at(inCountLastOut);
+      str += this->element_at(inCountLastOut);
 
    }
 
-   return range;
+   return str;
 
 }
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-string_array_base < Type, RawType, m_etypeContainer >  & string_array_base < Type, RawType, m_etypeContainer > ::explode(RANGE rangeSeparator,RANGE range, bool bAddEmpty)
+string_array_base < Type, RawType, m_etypeContainer >  & string_array_base < Type, RawType, m_etypeContainer > ::explode(const RawType &strSeparator,const RawType &str, bool bAddEmpty)
 {
 
    this->erase_all();
 
-   add_tokens(range, rangeSeparator, bAddEmpty);
+   add_tokens(str, strSeparator, bAddEmpty);
 
    return * this;
 
@@ -3141,12 +3141,12 @@ string_array_base < Type, RawType, m_etypeContainer >  & string_array_base < Typ
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-string_array_base < Type, RawType, m_etypeContainer >  & string_array_base < Type, RawType, m_etypeContainer > ::_001Explode(RANGE range)
+string_array_base < Type, RawType, m_etypeContainer >  & string_array_base < Type, RawType, m_etypeContainer > ::_001Explode(const RawType &str)
 {
 
    this->erase_all();
 
-   _001AddTokens(range);
+   _001AddTokens(str);
 
    return * this;
 
@@ -3194,13 +3194,13 @@ bool string_array_base < Type, RawType, m_etypeContainer > ::operator != (const 
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::replace_with(RANGE rangeNew, RANGE rangeOld)
+void string_array_base < Type, RawType, m_etypeContainer > ::replace_with(const RawType &strNew, const RawType &strOld)
 {
 
    for(::index i = 0; i < this->get_size(); i++)
    {
 
-      this->element_at(i).replace_with(rangeNew, rangeOld);
+      this->element_at(i).replace_with(strNew, strOld);
 
    }
 
@@ -3211,7 +3211,7 @@ void string_array_base < Type, RawType, m_etypeContainer > ::replace_with(RANGE 
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::surround(RANGE rangePrefix,RANGE rangeSuffix,::index iStart,::count inCountLastOut)
+void string_array_base < Type, RawType, m_etypeContainer > ::surround(const RawType &strPrefix,const RawType &strSuffix,::index iStart,::count inCountLastOut)
 {
 
    if (!this->prepare_first_in_count_last_out(iStart, inCountLastOut))
@@ -3221,14 +3221,14 @@ void string_array_base < Type, RawType, m_etypeContainer > ::surround(RANGE rang
 
    }
 
-   //Type strPrefix(rangePrefix);
+   //Type strPrefix(strPrefix);
 
-   //Type strSuffix(rangeSuffix);
+   //Type strSuffix(strSuffix);
 
    for(::index i = iStart; i <= inCountLastOut; i++)
    {
 
-      this->element_at(i) = rangePrefix + this->element_at(i) + rangeSuffix;
+      this->element_at(i) = strPrefix + this->element_at(i) + strSuffix;
 
    }
 
@@ -3236,32 +3236,32 @@ void string_array_base < Type, RawType, m_etypeContainer > ::surround(RANGE rang
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-Type string_array_base < Type, RawType, m_etypeContainer > ::surround_and_implode(RANGE rangeSeparator,RANGE rangePrefix,RANGE rangeSuffix,::index iStart,::count inCountLastOut)
+Type string_array_base < Type, RawType, m_etypeContainer > ::surround_and_implode(const RawType &strSeparator,const RawType &strPrefix,const RawType &strSuffix,::index iStart,::count inCountLastOut)
 {
 
-   Type range;
+   Type str;
 
    if (this->prepare_first_in_count_last_out(iStart, inCountLastOut))
    {
 
-      Type rangeSeparator(rangeSeparator);
-      Type rangePrefix(rangePrefix);
-      Type rangeSuffix(rangeSuffix);
+      Type strSeparator(strSeparator);
+      Type strPrefix(strPrefix);
+      Type strSuffix(strSuffix);
 
-      range = rangePrefix + this->element_at(iStart) + rangeSuffix;
+      str = strPrefix + this->element_at(iStart) + strSuffix;
 
       iStart++;
 
       for(::index i = iStart; i <= inCountLastOut; i++)
       {
 
-         range += rangeSeparator + rangePrefix + this->element_at(i) + rangeSuffix;
+         str += strSeparator + strPrefix + this->element_at(i) + strSuffix;
 
       }
 
    }
 
-   return range;
+   return str;
 
 }
 
@@ -3311,25 +3311,25 @@ Type string_array_base < Type, RawType, m_etypeContainer > ::surround_and_implod
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-bool string_array_base < Type, RawType, m_etypeContainer > ::move_ci(RANGE range,::index iIndex)
+bool string_array_base < Type, RawType, m_etypeContainer > ::move_ci(const RawType &str,::index iIndex)
 
 {
-   ::index i = find_first_ci(range);
+   ::index i = find_first_ci(str);
 
    if(i < 0)
       return false;
    this->erase_at(i);
-   insert_at(iIndex,range);
+   insert_at(iIndex,str);
 
    return true;
 }
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-bool string_array_base < Type, RawType, m_etypeContainer > ::preferred(RANGE range)
+bool string_array_base < Type, RawType, m_etypeContainer > ::preferred(const RawType &str)
 
 {
-   return move_ci(range,0);
+   return move_ci(str,0);
 
 }
 
@@ -3436,7 +3436,7 @@ bool string_array_base < Type, RawType, m_etypeContainer > ::has_elements(::coun
 
 
 //template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-//::count string_array_base < Type, RawType, m_etypeContainer > ::begins(string_array_base < Type, RawType, m_etypeContainer > & straPrefixed, RANGE rangePrefix, ::index iFirst, ::index iLast)
+//::count string_array_base < Type, RawType, m_etypeContainer > ::begins(string_array_base < Type, RawType, m_etypeContainer > & straPrefixed, const RawType &strPrefix, ::index iFirst, ::index iLast)
 //{
 //
 //   ::count count = 0;
@@ -3447,7 +3447,7 @@ bool string_array_base < Type, RawType, m_etypeContainer > ::has_elements(::coun
 //      while (true)
 //      {
 //
-//         iFirst = _find_first_prefixed(rangePrefix, iFirst, iLast);
+//         iFirst = _find_first_prefixed(strPrefix, iFirst, iLast);
 //
 //         if (iFirst < 0)
 //         {
@@ -3473,7 +3473,7 @@ bool string_array_base < Type, RawType, m_etypeContainer > ::has_elements(::coun
 //
 //
 //template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-//::count string_array_base < Type, RawType, m_etypeContainer > ::case_insensitive_begins(string_array_base < Type, RawType, m_etypeContainer > & straPrefixed,RANGE rangePrefix,::index iFirst,::index iLast)
+//::count string_array_base < Type, RawType, m_etypeContainer > ::case_insensitive_begins(string_array_base < Type, RawType, m_etypeContainer > & straPrefixed,const RawType &strPrefix,::index iFirst,::index iLast)
 //{
 //
 //   ::count count = 0;
@@ -3484,7 +3484,7 @@ bool string_array_base < Type, RawType, m_etypeContainer > ::has_elements(::coun
 //      while(true)
 //      {
 //
-//         iFirst = find_first_begins_ci(rangePrefix,iFirst,iLast);
+//         iFirst = find_first_begins_ci(strPrefix,iFirst,iLast);
 //
 //         if (iFirst < 0)
 //         {
@@ -3513,7 +3513,7 @@ bool string_array_base < Type, RawType, m_etypeContainer > ::has_elements(::coun
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 template < primitive_array INDEX_ARRAY >
-::count string_array_base < Type, RawType, m_etypeContainer > ::begins(INDEX_ARRAY & iaPrefixed, RANGE rangePrefix, ::index iFirst, ::index iLast)
+::count string_array_base < Type, RawType, m_etypeContainer > ::begins(INDEX_ARRAY & iaPrefixed, const RawType &strPrefix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3524,7 +3524,7 @@ template < primitive_array INDEX_ARRAY >
       while (true)
       {
 
-         iFirst = _find_first_prefixed(rangePrefix, iFirst, iLast);
+         iFirst = _find_first_prefixed(strPrefix, iFirst, iLast);
 
          if (iFirst < 0)
          {
@@ -3551,7 +3551,7 @@ template < primitive_array INDEX_ARRAY >
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 template < primitive_array INDEX_ARRAY >
-::count string_array_base < Type, RawType, m_etypeContainer > ::case_insensitive_begins(INDEX_ARRAY & iaPrefixed, RANGE rangePrefix, ::index iFirst, ::index iLast)
+::count string_array_base < Type, RawType, m_etypeContainer > ::case_insensitive_begins(INDEX_ARRAY & iaPrefixed, const RawType &strPrefix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3562,7 +3562,7 @@ template < primitive_array INDEX_ARRAY >
       while (true)
       {
 
-         iFirst = _find_first_prefixed_ci(rangePrefix, iFirst, iLast);
+         iFirst = _find_first_prefixed_ci(strPrefix, iFirst, iLast);
 
          if (iFirst < 0)
          {
@@ -3588,7 +3588,7 @@ template < primitive_array INDEX_ARRAY >
 
 
 //template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-//::count string_array_base < Type, RawType, m_etypeContainer > ::ends(string_array_base < Type, RawType, m_etypeContainer >& straSuffixed, RANGE rangeSuffix, ::index iFirst, ::index iLast)
+//::count string_array_base < Type, RawType, m_etypeContainer > ::ends(string_array_base < Type, RawType, m_etypeContainer >& straSuffixed, const RawType &strSuffix, ::index iFirst, ::index iLast)
 //{
 //
 //   ::count count = 0;
@@ -3599,7 +3599,7 @@ template < primitive_array INDEX_ARRAY >
 //      while (true)
 //      {
 //
-//         iFirst = find_first_ends(rangeSuffix, iFirst, iLast);
+//         iFirst = find_first_ends(strSuffix, iFirst, iLast);
 //
 //         if (iFirst < 0)
 //         {
@@ -3625,7 +3625,7 @@ template < primitive_array INDEX_ARRAY >
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 template < primitive_array STRING_ARRAY >
-::count string_array_base < Type, RawType, m_etypeContainer > ::case_insensitive_ends(STRING_ARRAY & straSuffixed, RANGE rangeSuffix, ::index iFirst, ::index iLast)
+::count string_array_base < Type, RawType, m_etypeContainer > ::case_insensitive_ends(STRING_ARRAY & straSuffixed, const RawType &strSuffix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3636,7 +3636,7 @@ template < primitive_array STRING_ARRAY >
       while (true)
       {
 
-         iFirst = _find_first_suffixed_ci(rangeSuffix, iFirst, iLast);
+         iFirst = _find_first_suffixed_ci(strSuffix, iFirst, iLast);
 
          if (iFirst < 0)
          {
@@ -3664,7 +3664,7 @@ template < primitive_array STRING_ARRAY >
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 template < primitive_array STRING_ARRAY >
-::count string_array_base < Type, RawType, m_etypeContainer > ::ends(STRING_ARRAY & iaSuffixed, RANGE rangeSuffix, ::index iFirst, ::index iLast)
+::count string_array_base < Type, RawType, m_etypeContainer > ::ends(STRING_ARRAY & iaSuffixed, const RawType &strSuffix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3675,7 +3675,7 @@ template < primitive_array STRING_ARRAY >
       while (true)
       {
 
-         iFirst = _find_first_suffixed(rangeSuffix, iFirst, iLast);
+         iFirst = _find_first_suffixed(strSuffix, iFirst, iLast);
 
          if (iFirst < 0)
          {
@@ -3701,7 +3701,7 @@ template < primitive_array STRING_ARRAY >
 
 
 //template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-//::count string_array_base < Type, RawType, m_etypeContainer > ::case_insensitive_ends(index_array & iaSuffixed, RANGE rangeSuffix, ::index iFirst, ::index iLast)
+//::count string_array_base < Type, RawType, m_etypeContainer > ::case_insensitive_ends(index_array & iaSuffixed, const RawType &strSuffix, ::index iFirst, ::index iLast)
 //{
 //
 //   ::count count = 0;
@@ -3712,7 +3712,7 @@ template < primitive_array STRING_ARRAY >
 //      while (true)
 //      {
 //
-//         iFirst = _find_first_suffixed_ci(rangeSuffix, iFirst, iLast);
+//         iFirst = _find_first_suffixed_ci(strSuffix, iFirst, iLast);
 //
 //         if (iFirst < 0)
 //         {
@@ -3738,7 +3738,7 @@ template < primitive_array STRING_ARRAY >
 //
 //
 //template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-//::count string_array_base < Type, RawType, m_etypeContainer > ::search_ci(string_array_base < Type, RawType, m_etypeContainer > & stra, RANGE range, ::index iFirst, ::index iLast)
+//::count string_array_base < Type, RawType, m_etypeContainer > ::search_ci(string_array_base < Type, RawType, m_etypeContainer > & stra, const RawType &str, ::index iFirst, ::index iLast)
 //{
 //
 //   ::count count = 0;
@@ -3749,7 +3749,7 @@ template < primitive_array STRING_ARRAY >
 //      while (true)
 //      {
 //
-//         iFirst = _find_first_contains_ci(range, iFirst, iLast);
+//         iFirst = _find_first_contains_ci(str, iFirst, iLast);
 //
 //         if (iFirst < 0)
 //         {
@@ -3774,7 +3774,7 @@ template < primitive_array STRING_ARRAY >
 //
 //
 //template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-//::count string_array_base < Type, RawType, m_etypeContainer > ::search(string_array_base < Type, RawType, m_etypeContainer > & stra, RANGE range, ::index iFirst, ::index iLast)
+//::count string_array_base < Type, RawType, m_etypeContainer > ::search(string_array_base < Type, RawType, m_etypeContainer > & stra, const RawType &str, ::index iFirst, ::index iLast)
 //{
 //
 //   ::count count = 0;
@@ -3785,7 +3785,7 @@ template < primitive_array STRING_ARRAY >
 //      while (true)
 //      {
 //
-//         iFirst = _find_first_contains(range, iFirst, iLast);
+//         iFirst = _find_first_contains(str, iFirst, iLast);
 //
 //         if (iFirst < 0)
 //         {
@@ -3810,7 +3810,7 @@ template < primitive_array STRING_ARRAY >
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 template < primitive_array STRING_ARRAY >
-::count string_array_base < Type, RawType, m_etypeContainer > ::search(STRING_ARRAY & iaResult, RANGE rangeTopic, ::index iFirst, ::index iLast)
+::count string_array_base < Type, RawType, m_etypeContainer > ::search(STRING_ARRAY & iaResult, const RawType &strTopic, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3821,7 +3821,7 @@ template < primitive_array STRING_ARRAY >
       while (true)
       {
 
-         iFirst = _find_first_contains(rangeTopic, iFirst, iLast);
+         iFirst = _find_first_contains(strTopic, iFirst, iLast);
 
          if (iFirst < 0)
          {
@@ -3848,7 +3848,7 @@ template < primitive_array STRING_ARRAY >
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 template < primitive_array STRING_ARRAY >
-::count string_array_base < Type, RawType, m_etypeContainer > ::search_ci(STRING_ARRAY & ia, RANGE rangeTopic, ::index iFirst, ::index iLast)
+::count string_array_base < Type, RawType, m_etypeContainer > ::search_ci(STRING_ARRAY & ia, const RawType &strTopic, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3859,7 +3859,7 @@ template < primitive_array STRING_ARRAY >
       while (true)
       {
 
-         iFirst = _find_first_contains_ci(rangeTopic, iFirst, iLast);
+         iFirst = _find_first_contains_ci(strTopic, iFirst, iLast);
 
          if (iFirst < 0)
          {
@@ -3885,7 +3885,7 @@ template < primitive_array STRING_ARRAY >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::count string_array_base < Type, RawType, m_etypeContainer > ::filter_begins(RANGE range, ::index iFirst, ::index iLast)
+::count string_array_base < Type, RawType, m_etypeContainer > ::filter_begins(const RawType &str, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3900,7 +3900,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       while (true)
       {
 
-         iFind = find_first_begins(range, i, iLast);
+         iFind = find_first_begins(str, i, iLast);
 
          if (iFind < 0)
          {
@@ -3929,7 +3929,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::count string_array_base < Type, RawType, m_etypeContainer > ::filter_begins_ci(RANGE range,::index iFirst,::index iLast)
+::count string_array_base < Type, RawType, m_etypeContainer > ::filter_begins_ci(const RawType &str,::index iFirst,::index iLast)
 {
 
    ::count count = 0;
@@ -3944,7 +3944,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       while(true)
       {
 
-         iFind = find_first_begins_ci(range,i,iLast);
+         iFind = find_first_begins_ci(str,i,iLast);
 
          if(iFind < 0)
          {
@@ -4152,11 +4152,11 @@ Type string_array_base < Type, RawType, m_etypeContainer > ::pop_random_element(
 
    ::index i = get_random_index();
 
-   Type range = this->element_at(i);
+   Type str = this->element_at(i);
 
    this->erase_at(i);
 
-   return range;
+   return str;
 
 }
 
@@ -4202,13 +4202,13 @@ Type string_array_base < Type, RawType, m_etypeContainer > ::encode_v16()
    //Type strEncode;
    //for(::index u = 0; u < this->get_count(); u++)
    //{
-   //   Type & range = this->element_at(u);
-   //   strEncode += hex::lower_from((const char*)range,range.get_length());
+   //   Type & str = this->element_at(u);
+   //   strEncode += hex::lower_from((const char*)str,str.get_length());
    //   strEncode += "00";
-   //   /*      for(::index uj = 0; uj < range.size(); uj++)
+   //   /*      for(::index uj = 0; uj < str.size(); uj++)
    //   {
    //   char sz[32];
-   //   ansi_from_i64(sz, range[uj], 16);
+   //   ansi_from_i64(sz, str[uj], 16);
    //   if(ansi_length(sz) == 0)
    //   {
    //   strEncode += "00";
@@ -4235,10 +4235,10 @@ Type string_array_base < Type, RawType, m_etypeContainer > ::encode_v16()
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::decode_v16(RANGE range)
+void string_array_base < Type, RawType, m_etypeContainer > ::decode_v16(const RawType &str)
 {
    //::index iSize = 1024;
-   //char * range = nullptr;
+   //char * str = nullptr;
    //if(psz == nullptr)
    //   return;
    //while(*psz != '\0')
@@ -4250,32 +4250,32 @@ void string_array_base < Type, RawType, m_etypeContainer > ::decode_v16(RANGE ra
    //   sz[0] = psz[-1];
    //   sz[1] = psz[0];
    //   sz[2] = '\0';
-   //   RANGE rangeEnd;
+   //   const RawType &strEnd;
    //   ::index iConversion = ::ansi_to_i32(sz,&pszEnd,16);
    //   char ch = static_cast <char> (iConversion);
    //   if(ch == '\0')
    //   {
-   //      add(range);
-   //      range = nullptr;
+   //      add(str);
+   //      str = nullptr;
    //      iSize = 1024;
    //   }
    //   else
    //   {
-   //      if(range == nullptr)
+   //      if(str == nullptr)
    //      {
-   //         range = (char *)memory_allocate(iSize);
+   //         str = (char *)memory_allocate(iSize);
    //      }
-   //      else if(iSize < (ansi_length(range) + 1))
+   //      else if(iSize < (ansi_length(str) + 1))
    //      {
-   //         char * strOld = range;
+   //         char * strOld = str;
    //         iSize += 1024;
    //         char * strNew = (char *)memory_allocate(iSize);
    //         ansi_copy(strNew,strOld);
-   //         range = strNew;
+   //         str = strNew;
    //      }
    //      sz[0] = ch;
    //      sz[1] = '\0';
-   //      ansi_copy(range,sz);
+   //      ansi_copy(str,sz);
    //   }
    //   psz++;
    //}
@@ -4286,7 +4286,7 @@ void string_array_base < Type, RawType, m_etypeContainer > ::decode_v16(RANGE ra
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-inline ::count string_array_base < Type, RawType, m_etypeContainer >::count_except(RANGE range)
+inline ::count string_array_base < Type, RawType, m_etypeContainer >::count_except(const RawType &str)
 {
 
    ::count c = get_count();
@@ -4294,7 +4294,7 @@ inline ::count string_array_base < Type, RawType, m_etypeContainer >::count_exce
    for (::index i = 0; i < get_count(); i++)
    {
 
-      if (this->element_at(i) == range)
+      if (this->element_at(i) == str)
       {
 
          c--;
@@ -4308,7 +4308,7 @@ inline ::count string_array_base < Type, RawType, m_etypeContainer >::count_exce
 }
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-inline ::count string_array_base < Type, RawType, m_etypeContainer > ::count_except_ci(RANGE range)
+inline ::count string_array_base < Type, RawType, m_etypeContainer > ::count_except_ci(const RawType &str)
 {
 
    ::count c = get_count();
@@ -4316,7 +4316,7 @@ inline ::count string_array_base < Type, RawType, m_etypeContainer > ::count_exc
    for (::index i = 0; i < get_count(); i++)
    {
 
-      if (this->element_at(i).case_insensitive_order(range) == 0)
+      if (this->element_at(i).case_insensitive_order(str) == 0)
       {
 
          c--;
@@ -4381,19 +4381,19 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-Type & string_array_base < Type, RawType, m_etypeContainer > ::get_network_payload(Type & range, bool bNewLine) const
+Type & string_array_base < Type, RawType, m_etypeContainer > ::get_network_payload(Type & str, bool bNewLine) const
 {
 
-   range += "[";
+   str += "[";
 
    if(get_count() > 0)
    {
 
-      range += "\"";
+      str += "\"";
 
-      range += element_at(0);
+      str += element_at(0);
 
-      range += "\"";
+      str += "\"";
 
    }
 
@@ -4403,34 +4403,34 @@ Type & string_array_base < Type, RawType, m_etypeContainer > ::get_network_paylo
       if (bNewLine)
       {
 
-         range += ", \r\n";
+         str += ", \r\n";
 
       }
       else
       {
 
-         range += ", ";
+         str += ", ";
 
       }
 
-      range += "\"";
+      str += "\"";
 
-      range += element_at(i);
+      str += element_at(i);
 
-      range += "\"";
+      str += "\"";
 
    }
 
    if (bNewLine)
    {
 
-      range += "\r\n";
+      str += "\r\n";
 
    }
 
-   range += "]";
+   str += "]";
 
-   return range;
+   return str;
 
 }
 
@@ -4439,15 +4439,15 @@ Type & string_array_base < Type, RawType, m_etypeContainer > ::get_network_paylo
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-Type string_array_base < Type, RawType, m_etypeContainer > ::_008Implode(RANGE rangeSeparator, RANGE rangeLastSeparator, ::index iStart, ::count inCountLastOut) const
+Type string_array_base < Type, RawType, m_etypeContainer > ::_008Implode(const RawType &strSeparator, const RawType &strLastSeparator, ::index iStart, ::count inCountLastOut) const
 {
 
-   Type range;
+   Type str;
 
    if(!this->prepare_first_in_count_last_out(iStart, inCountLastOut))
    {
 
-      return range;
+      return str;
 
    }
 
@@ -4460,45 +4460,45 @@ Type string_array_base < Type, RawType, m_etypeContainer > ::_008Implode(RANGE r
          if (i == inCountLastOut)
          {
 
-            range += rangeLastSeparator;
+            str += strLastSeparator;
 
          }
          else
          {
 
-            range += rangeSeparator;
+            str += strSeparator;
 
          }
 
       }
 
-      range += this->element_at(i);
+      str += this->element_at(i);
 
    }
 
-   return range;
+   return str;
 
 }
 
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-Type string_array_base < Type, RawType, m_etypeContainer > ::_008IfImplode(RANGE rangeIfHasElementPrefix, RANGE rangeSeparator, RANGE rangeLastSeparator, bool bUseLast, ::index iStart, ::count inCountLastOut) const
+Type string_array_base < Type, RawType, m_etypeContainer > ::_008IfImplode(const RawType &strIfHasElementPrefix, const RawType &strSeparator, const RawType &strLastSeparator, bool bUseLast, ::index iStart, ::count inCountLastOut) const
 {
 
-   Type range;
+   Type str;
 
    if(!this->prepare_first_in_count_last_out(iStart, inCountLastOut))
    {
 
-      return range;
+      return str;
 
    }
 
    if (inCountLastOut >= iStart)
    {
 
-      range += rangeIfHasElementPrefix;
+      str += strIfHasElementPrefix;
 
    }
 
@@ -4511,36 +4511,36 @@ Type string_array_base < Type, RawType, m_etypeContainer > ::_008IfImplode(RANGE
          if (i == inCountLastOut && bUseLast)
          {
 
-            range += rangeLastSeparator;
+            str += strLastSeparator;
 
          }
          else
          {
 
-            range += rangeSeparator;
+            str += strSeparator;
 
          }
 
       }
 
-      range += this->element_at(i);
+      str += this->element_at(i);
 
    }
 
-   return range;
+   return str;
 
 }
 
 
 //template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-//Type string_array_base < Type, RawType, m_etypeContainer > ::_008IfImplode(RANGE rangeIfHasElementPrefix, RANGE rangeSeparator, RANGE rangeLastSeparator, bool bUseLast, ::index iStart, ::index iEnd) const
+//Type string_array_base < Type, RawType, m_etypeContainer > ::_008IfImplode(const RawType &strIfHasElementPrefix, const RawType &strSeparator, const RawType &strLastSeparator, bool bUseLast, ::index iStart, ::index iEnd) const
 //{
 //
-//   Type range;
+//   Type str;
 //
-//   _008IfImplode(range, strIfHasElementPrefix, rangeSeparator, strLastSeparator, bUseLast, iStart, iEnd);
+//   _008IfImplode(str, strIfHasElementPrefix, strSeparator, strLastSeparator, bUseLast, iStart, iEnd);
 //
-//   return range;
+//   return str;
 //
 //}
 
@@ -4624,9 +4624,9 @@ void string_array_base < Type, RawType, m_etypeContainer > ::c_add(char ** ppsz,
 
       auto psz = ppsz[i];
 
-      auto range = Type(psz);
+      auto str = Type(psz);
 
-      this->add(range);
+      this->add(str);
       
       if(bMemoryAlloc)
       {
@@ -4678,9 +4678,9 @@ void string_array_base < Type, RawType, m_etypeContainer > ::c_add(char ** ppszP
 
       auto psz = *ppsz;
 
-      auto range = Type(psz);
+      auto str = Type(psz);
 
-      this->add(range);
+      this->add(str);
 
       if(bMemoryAlloc)
       {
@@ -4723,9 +4723,9 @@ void string_array_base < Type, RawType, m_etypeContainer > ::c_add(wchar_t ** pp
 
       auto pwsz = ppwsz[i];
 
-      auto range = Type(pwsz);
+      auto str = Type(pwsz);
 
-      this->add(range);
+      this->add(str);
 
       if(bMemoryAlloc)
       {
@@ -4773,9 +4773,9 @@ void string_array_base < Type, RawType, m_etypeContainer > ::c_add(wchar_t ** pp
 
       auto pwsz = *ppwsz;
 
-      auto range = Type(pwsz);
+      auto str = Type(pwsz);
 
-      this->add(range);
+      this->add(str);
 
       if(bMemoryAlloc)
       {
@@ -4862,8 +4862,8 @@ void string_array_base < Type, RawType, m_etypeContainer > ::collate_sort_ci()
 
 }
 
-CLASS_DECL_ACME bool next_csv(string & range, const string_array & stra);
-CLASS_DECL_ACME void add_csv(string_array & stra, const ::string & range);
+CLASS_DECL_ACME bool next_csv(string & str, const string_array & stra);
+CLASS_DECL_ACME void add_csv(string_array & stra, const RawType &str);
 
 
 
@@ -5173,7 +5173,7 @@ inline void string_array_base < Type, RawType, m_etypeContainer > ::debug_output
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::suffix_find_first_ci(RANGE rangeTopic, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::suffix_find_first_ci(const RawType &strTopic, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -5182,7 +5182,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (rangeTopic.ends(this->element_at(iFind), ::comparison::case_insensitive < CHARACTER >()))
+         if (strTopic.ends(this->element_at(iFind), ::comparison::case_insensitive < CHARACTER >()))
          {
 
             return iFind;
@@ -5202,7 +5202,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::suffix_find_first(RANGE rangeTopic, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::suffix_find_first(const RawType &strTopic, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -5211,7 +5211,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (rangeTopic.ends(this->element_at(iFind)))
+         if (strTopic.ends(this->element_at(iFind)))
          {
 
             return iFind;
@@ -5230,13 +5230,13 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_suffixed(RANGE rangeSuffix, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_suffixed(const RawType &strSuffix, ::index iFind, ::index iLast) const
 {
 
    for (; iFind < iLast; iFind++)
    {
 
-      if (this->element_at(iFind).ends(rangeSuffix))
+      if (this->element_at(iFind).ends(strSuffix))
       {
 
          return iFind;
@@ -5251,13 +5251,13 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_suffixed_ci(RANGE rangeSuffix, ::index iFind, ::index iLast) const
+::index string_array_base < Type, RawType, m_etypeContainer > ::_find_first_suffixed_ci(const RawType &strSuffix, ::index iFind, ::index iLast) const
 {
 
    for (; iFind < iLast; iFind++)
    {
 
-      if (this->element_at(iFind).case_insensitive_ends(rangeSuffix))
+      if (this->element_at(iFind).case_insensitive_ends(strSuffix))
       {
 
          return iFind;

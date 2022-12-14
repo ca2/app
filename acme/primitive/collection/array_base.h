@@ -99,11 +99,14 @@ public:
    array_base(array_base && a) noexcept;
    array_base(const TYPE * p, ::count c);
    array_base(::range < const_iterator > constrange) : array_base(constrange.begin(), constrange.end()) {}
-   array_base(const_iterator begin, const_iterator end, bool bNullTerminated = false)
+   template < primitive_integral INTEGRAL >
+   array_base(const_iterator begin, INTEGRAL count, e_range erange = e_range_none) : array_base(begin, begin + count, erange) {}
+   array_base(const_iterator begin, const_iterator end, e_range erange = e_range_none)
    {
       auto p = this->begin();
       while (p != end) add(*p);
-      this->m_bNullTerminated = false;
+      this->m_erange = erange;
+      this->set_null_terminated(false);
    }
    virtual ~array_base();
 

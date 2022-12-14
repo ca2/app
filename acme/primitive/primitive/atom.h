@@ -565,7 +565,7 @@ public:
    inline ::u32 u32() const { return (::u32) i64(); }
    inline ::index index() const { return (::index)i64(); }
    inline ::u32 umessage() const { return u32(); }
-   inline operator const char* () const;
+   //inline operator const char* () const;
    //inline operator enum_message () const;
    //inline operator enum_dialog_result () const;
 
@@ -575,7 +575,7 @@ public:
    ::string as_string() const;
 
 
-   operator ::string() const { return ::move(as_string()); }
+   operator ::string() const { return as_string(); }
 
 
    inline bool is_null() const;
@@ -1034,13 +1034,13 @@ inline ::string atom::operator +(const ::string & str) const
 //#endif
 
 
-inline atom::operator const char *() const
-{
-
-   return is_text() ? m_str.c_str() : nullptr;
-
-}
-
+//inline atom::operator const char *() const
+//{
+//
+//   return is_text() ? m_str.c_str() : nullptr;
+//
+//}
+//
 
 
 //inline string atom::as_string() const
@@ -1058,13 +1058,13 @@ inline bool atom::is_empty() const
 
 }
 
-
-inline CLASS_DECL_ACME::std::strong_ordering atom_order(const atom * pid1,const atom * pid2)
-{
-
-   return pid1->m_str.order(pid2->m_str);
-
-}
+//
+//inline CLASS_DECL_ACME::std::strong_ordering atom_order(const atom * pid1,const atom * pid2)
+//{
+//
+//   return pid1->m_str.order(pid2->m_str);
+//
+//}
 
 
 inline bool atom::operator == (const char * psz) const
@@ -1891,7 +1891,7 @@ inline atom::atom(const ::inline_number_string& inlinenumberstring) :
 inline ::string operator+(const char * psz, const ::atom & atom)
 {
 
-   return ::move(::string(psz) + ::string(atom));
+   return ::string(psz) + atom.as_string();
 
 }
 
@@ -1899,7 +1899,7 @@ inline ::string operator+(const char * psz, const ::atom & atom)
 inline ::string operator+(const ::string & str, const ::atom & atom)
 {
 
-   return ::move(str + ::string(atom));
+   return str + atom.as_string();
 
 }
 
@@ -1908,7 +1908,7 @@ template < ::count c >
 inline ::string operator +(const char(&sz)[c], const ::atom & atom)
 {
 
-   return ::move(::string(sz) + ::string(atom));
+   return ::string(sz) + atom.as_string();
 
 }
 

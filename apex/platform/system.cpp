@@ -4995,10 +4995,10 @@ namespace apex
    }
 
 
-   bool system::_handle_uri(const ::block& block)
+   bool system::_handle_uri(const ::string & strUri)
    {
 
-      if (acmeapplication() && acmeapplication()->_handle_uri(block))
+      if (acmeapplication() && acmeapplication()->_handle_uri(strUri))
       {
 
          return true;
@@ -5008,7 +5008,7 @@ namespace apex
       if (!acmeapplication() || acmeapplication() != acmeapplication())
       {
 
-         if (acmeapplication() && acmeapplication()->_handle_uri(block))
+         if (acmeapplication() && acmeapplication()->_handle_uri(strUri))
          {
 
             return true;

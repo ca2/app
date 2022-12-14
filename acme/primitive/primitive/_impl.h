@@ -3,7 +3,7 @@
 
 #include "acme/primitive/comparison/equals.h"
 //#include "particle_factory.h"
-
+#include "acme/exception/no_memory.h"
 
 inline bool __enum_is_failed(const ::e_status & e)
 {
@@ -296,11 +296,43 @@ inline ::pointer<TYPE>particle::__create_new()
 
 
 
+template < typename BASE_TYPE >
+inline void particle::__construct(::pointer<BASE_TYPE>& p, ::factory::factory * pfactory)
+{
+
+   auto & pfactoryitem = pfactory->get_factory_item < BASE_TYPE >();
+
+   if (!pfactory)
+   {
+
+      throw ::exception(::error_no_factory);
+
+   }
+
+   auto ptypeNew = pfactoryitem->create();
+
+   p = ptypeNew;
+
+   if (!p)
+   {
+
+      throw ::exception(error_wrong_type);
+
+   }
+
+   p->initialize(this);
+
+
+}
+
+
+//
+//
 //template < typename BASE_TYPE >
-//inline void matter::__construct(::pointer<BASE_TYPE>& pusermessage)
+//inline void matter::__raw_construct(::pointer<BASE_TYPE>& p)
 //{
 //
-//   if (!pusermessage)
+//   if (!p)
 //   {
 //
 //      auto & pfactory = factory_item < BASE_TYPE >();
@@ -321,75 +353,16 @@ inline ::pointer<TYPE>particle::__create_new()
 //
 //      }
 //
-//      pusermessage = ptypeNew;
+//      p = ptypeNew;
 //
-//      if (!pusermessage)
+//      if (!p)
 //      {
 //
 //         return error_wrong_type;
 //
 //      }
 //
-//      auto estatus = pusermessage->initialize(this);
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      estatus = add_composite(pusermessage);
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//   }
-//
-//   return ::success;
-//
-//}
-//
-//
-//template < typename BASE_TYPE >
-//inline void matter::__raw_construct(::pointer<BASE_TYPE>& pusermessage)
-//{
-//
-//   if (!pusermessage)
-//   {
-//
-//      auto & pfactory = factory_item < BASE_TYPE >();
-//
-//      if (!pfactory)
-//      {
-//
-//         return ::error_no_factory;
-//
-//      }
-//
-//      auto ptypeNew = pfactory->call_new();
-//
-//      if (!ptypeNew)
-//      {
-//
-//         return ::error_no_memory;
-//
-//      }
-//
-//      pusermessage = ptypeNew;
-//
-//      if (!pusermessage)
-//      {
-//
-//         return error_wrong_type;
-//
-//      }
-//
-//      auto estatus = add_composite(pusermessage);
+//      auto estatus = add_composite(p);
 //
 //      if (!estatus)
 //      {
@@ -406,19 +379,19 @@ inline ::pointer<TYPE>particle::__create_new()
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__construct(::pointer<BASE_TYPE>& pusermessage, const SOURCE * psource)
+//inline void matter::__construct(::pointer<BASE_TYPE>& p, const SOURCE * psource)
 //{
 //
-//   pusermessage = psource;
+//   p = psource;
 //
-//   if (!pusermessage)
+//   if (!p)
 //   {
 //
 //      return error_wrong_type;
 //
 //   }
 //
-//   auto estatus = pusermessage->initialize(this);
+//   auto estatus = p->initialize(this);
 //
 //   if (!estatus)
 //   {
@@ -427,52 +400,52 @@ inline ::pointer<TYPE>particle::__create_new()
 //
 //   }
 //
-//   m_estatus = add_composite(pusermessage);
+//   m_estatus = add_composite(p);
 //
 //   return m_estatus;
 //
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__raw_construct(::pointer<BASE_TYPE>& pusermessage, const SOURCE * psource)
+//inline void matter::__raw_construct(::pointer<BASE_TYPE>& p, const SOURCE * psource)
 //{
 //
-//   pusermessage = psource;
+//   p = psource;
 //
-//   if (!pusermessage)
+//   if (!p)
 //   {
 //
 //      return error_wrong_type;
 //
 //   }
 //
-//   m_estatus = add_composite(pusermessage);
+//   m_estatus = add_composite(p);
 //
 //   return m_estatus;
 //
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__construct(::pointer<BASE_TYPE>& pusermessage, const ::pointer<SOURCE> psource)
+//inline void matter::__construct(::pointer<BASE_TYPE>& p, const ::pointer<SOURCE> psource)
 //{
 //
-//   return __construct(pusermessage, psource.get());
+//   return __construct(p, psource.get());
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__raw_construct(::pointer<BASE_TYPE>& pusermessage, const ::pointer<SOURCE> psource)
+//inline void matter::__raw_construct(::pointer<BASE_TYPE>& p, const ::pointer<SOURCE> psource)
 //{
 //
-//   return __raw_construct(pusermessage, psource.get());
+//   return __raw_construct(p, psource.get());
 //
 //}
 //
 //
 //
 //template < typename BASE_TYPE >
-//inline void matter::__id_construct(::pointer<BASE_TYPE>& pusermessage, const ::atom & atom)
+//inline void matter::__id_construct(::pointer<BASE_TYPE>& p, const ::atom & atom)
 //{
 //
 //   auto & pfactory = factory_item(atom);
@@ -493,16 +466,16 @@ inline ::pointer<TYPE>particle::__create_new()
 //
 //   }
 //
-//   pusermessage = ptypeNew;
+//   p = ptypeNew;
 //
-//   if (!pusermessage)
+//   if (!p)
 //   {
 //
 //      return ::error_wrong_type;
 //
 //   }
 //
-//   auto estatus = pusermessage->initialize(this);
+//   auto estatus = p->initialize(this);
 //
 //   if (!estatus)
 //   {
@@ -511,7 +484,7 @@ inline ::pointer<TYPE>particle::__create_new()
 //
 //   }
 //
-//   estatus = add_composite(pusermessage);
+//   estatus = add_composite(p);
 //
 //   if (!estatus)
 //   {
@@ -554,47 +527,29 @@ inline ::pointer<TYPE>particle::__create_new()
 //   return estatus;
 //
 //}
-//
-//
-//template < typename TYPE >
-//inline void matter::__construct_new(::pointer<TYPE>& p)
-//{
-//
-//   auto ptypeNew = __new(TYPE);
-//
-//   if (!ptypeNew)
-//   {
-//
-//      return ::error_no_memory;
-//
-//   }
-//
-//   auto estatus = ptypeNew->initialize(this);
-//
-//   if (!estatus)
-//   {
-//
-//      return estatus;
-//
-//   }
-//
-//   p = ptypeNew;
-//
-//   estatus = add_composite(p);
-//
-//   if (!estatus)
-//   {
-//
-//      p.clear_member();
-//
-//      return estatus;
-//
-//   }
-//
-//   return estatus;
-//
-//}
-//
+
+
+template < typename TYPE >
+inline void particle::__construct_new(::pointer<TYPE>& p)
+{
+
+   auto ptypeNew = __new(TYPE);
+
+   if (!ptypeNew)
+   {
+
+      throw ::no_memory();
+
+   }
+
+   ptypeNew->initialize(this);
+
+   p = ptypeNew;
+
+
+}
+
+
 //
 //template < typename TYPE >
 //inline void matter::__construct(::pointer<TYPE>& p)
@@ -725,7 +680,7 @@ inline ::pointer<TYPE>particle::__create_new()
 //}
 //
 //
-//CLASS_DECL_ACME void object_on_add_composite(const matter * pusermessage);
+//CLASS_DECL_ACME void object_on_add_composite(const matter * p);
 //
 //
 //template < typename BASE_TYPE >
@@ -1289,9 +1244,9 @@ inline ::pointer < T > move_transfer(T* p) { return { e_move_transfer, p }; }
 //   for (index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
-//      ::pointer<predicate_holder_base>pusermessage = __new(forking_count_predicate < PRED > (iOrder, iOrder + iStart, iScan, iCount, pred));
+//      ::pointer<predicate_holder_base>p = __new(forking_count_predicate < PRED > (iOrder, iOrder + iStart, iScan, iCount, pred));
 //
-//      if (!pgroup->add_predicate(pusermessage))
+//      if (!pgroup->add_predicate(p))
 //      {
 //
 //         return -1;
@@ -1484,19 +1439,19 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__raw_construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource)
+//inline void object::__raw_construct(::pointer<BASE_TYPE> p, const SOURCE* psource)
 //{
 //
-//   pusermessage = psource;
+//   p = psource;
 //
-//   if (!pusermessage)
+//   if (!p)
 //   {
 //
 //      throw ::exception(error_wrong_type);
 //
 //   }
 //
-//   /*m_estatus = */ add_composite(pusermessage);
+//   /*m_estatus = */ add_composite(p);
 //
 //   //return m_estatus;
 //
@@ -1504,34 +1459,34 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void object::__construct(::pointer<BASE_TYPE> p, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   /* return */ __construct(pusermessage, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   /* return */ __construct(p, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__construct(::pointer<BASE_TYPE> pusermessage, const ptr < SOURCE > & psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//inline void object::__construct(::pointer<BASE_TYPE> p, const ptr < SOURCE > & psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   /* return */ __construct(pusermessage, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   /* return */ __construct(p, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__raw_construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource)
+//inline void object::__raw_construct(::pointer<BASE_TYPE> p, const ::pointer<SOURCE>psource)
 //{
 //
-//   /*return*/ __raw_construct(pusermessage, psource.get());
+//   /*return*/ __raw_construct(p, psource.get());
 //
 //}
 //
 //
 //template < typename BASE_TYPE >
-//inline void object::__id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom)
+//inline void object::__id_construct(::pointer<BASE_TYPE> p, const ::atom& atom)
 //{
 //
 //   auto& pfactory = factory_item(atom);
@@ -1552,16 +1507,16 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //
 //   }
 //
-//   pusermessage = ptypeNew;
+//   p = ptypeNew;
 //
-//   if (!pusermessage)
+//   if (!p)
 //   {
 //
 //      throw ::exception(::error_wrong_type);
 //
 //   }
 //
-//   /*auto estatus =*/ pusermessage->initialize(this);
+//   /*auto estatus =*/ p->initialize(this);
 //
 //   //if (!estatus)
 //   //{
@@ -1570,7 +1525,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //
 //   //}
 //
-//   /* estatus = */ add_composite(pusermessage);
+//   /* estatus = */ add_composite(p);
 //
 //   //if (!estatus)
 //   //{
@@ -1871,5 +1826,31 @@ inline e_check::e_check(const ::tristate & triestate)
 }
 
 
+template < typename TYPE >
+inline void particle::__defer_construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
+{
+
+   if (::is_null(p))
+   {
+
+      __construct(p, pfactory);
+
+   }
+
+}
+
+
+template < typename TYPE >
+inline void particle::__defer_construct_new(::pointer<TYPE> & p)
+{
+
+   if (::is_null(p))
+   {
+
+      __construct_new(p);
+
+   }
+
+}
 
 

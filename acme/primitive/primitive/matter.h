@@ -451,36 +451,6 @@ inline void __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //////return ::success;
 //
 //}
-
-
-//template < typename TYPE >
-//inline void matter::__defer_construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
-//{
-//
-//   if (::is_null(p))
-//   {
-//
-//      __construct(p, pfactory);
-//
-//   }
-//
-//}
-
-//
-//template < typename TYPE >
-//inline void matter::__defer_construct_new(::pointer<TYPE> & p)
-//{
-//
-//   if (::is_null(p))
-//   {
-//
-//      __construct_new(p);
-//
-//   }
-//
-//}
-//
-//
 //template < typename TYPE >
 //inline void matter::__construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
 //{

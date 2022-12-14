@@ -10122,7 +10122,7 @@ namespace apex
       
       property_set setPost;
 
-      auto estatus = on_html_response(strHtml, blockUri, setPost);
+      auto estatus = on_html_response(strHtml, strUri, setPost);
 
       if(estatus != success_none && ::succeeded(estatus))
       {
@@ -10134,13 +10134,14 @@ namespace apex
       if (m_pinterprocesscommunication)
       {
 
-         m_pinterprocesscommunication->m_ptarget->_handle_uri(blockUri);
+         m_pinterprocesscommunication->m_ptarget->_handle_uri(strUri);
 
       }
 
       return false;
 
    }
+
 
    //void application::interprocess_communication_open(const char * pszPath)
    //{

@@ -520,54 +520,54 @@ inline void string_base < ITERATOR_TYPE >::construct2(const ::range < const CHAR
 //}
 //
 //
-//template < typename ITERATOR_TYPE >
-//template < primitive_character CHARACTER2 >
-//inline string_base < ITERATOR_TYPE >::string_base(CHARACTER2 chSrc, strsize repeat) :
-//   string_base(e_no_initialize)
-//{
-//
-//   if (repeat > 0)
-//   {
-//
-//      auto lenUnit = utf_to_utf_length(this->begin(), &chSrc, 1);
-//
-//      auto len = lenUnit * repeat;
-//
-//      auto psz = create_string(len);
-//
-//      CHARACTER sz[8];
-//
-//      utf_to_utf(sz, &chSrc, 1);
-//
-//      auto pTarget = psz;
-//
-//      while (repeat > 0)
-//      {
-//
-//         auto pSource = sz;
-//
-//         for (int j = 0; j < lenUnit; j++, pSource++)
-//         {
-//
-//            *pTarget++ = *pSource;
-//
-//         }
-//
-//         repeat--;
-//
-//      }
-//
-//      release_string_buffer(len);
-//
-//   }
-//   else
-//   {
-//
-//      default_construct();
-//
-//   }
-//
-//}
+template < typename ITERATOR_TYPE >
+template < primitive_character CHARACTER2 >
+inline string_base < ITERATOR_TYPE >::string_base(CHARACTER2 chSrc, strsize repeat) :
+   string_base(e_no_initialize)
+{
+
+   if (repeat > 0)
+   {
+
+      auto lenUnit = utf_to_utf_length(this->begin(), &chSrc, 1);
+
+      auto len = lenUnit * repeat;
+
+      auto psz = create_string(len);
+
+      CHARACTER sz[8];
+
+      utf_to_utf(sz, &chSrc, 1);
+
+      auto pTarget = psz;
+
+      while (repeat > 0)
+      {
+
+         auto pSource = sz;
+
+         for (int j = 0; j < lenUnit; j++, pSource++)
+         {
+
+            *pTarget++ = *pSource;
+
+         }
+
+         repeat--;
+
+      }
+
+      release_string_buffer(len);
+
+   }
+   else
+   {
+
+      default_construct();
+
+   }
+
+}
 
 
 //template < typename ITERATOR_TYPE >

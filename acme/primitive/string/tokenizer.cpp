@@ -50,13 +50,13 @@ bool tokenizer::get_next_token(string &strToken, const ::string & strSeparator, 
 
    const_iterator iterator;
 
-   if((iterator = find(rangeSeparator)) != nullptr)
+   if((iterator = find(strSeparator)) != nullptr)
    {
 
       if (bWithSeparator)
       {
        
-         substring(strToken, iterator + rangeSeparator.size());
+         substring(strToken, iterator + strSeparator.size());
 
       }
       else
@@ -66,7 +66,7 @@ bool tokenizer::get_next_token(string &strToken, const ::string & strSeparator, 
 
       }
 
-      m_iterator = iterator + rangeSeparator.size();
+      m_iterator = iterator + strSeparator.size();
 
       return true;
 
@@ -173,7 +173,7 @@ bool tokenizer::get_next_token_ex(string &strToken, const ::string & strSeparato
    
    substring(strMid);
 
-   if((i = strMid.scan(rangeSeparator)) >= 0)
+   if((i = strMid.scan(strSeparator)) >= 0)
    {
 
       if (bWithSeparator)
@@ -199,7 +199,7 @@ bool tokenizer::get_next_token_ex(string &strToken, const ::string & strSeparato
          while(strMid.get_length() > 1)
          {
 
-            if(strMid.scan(rangeSeparator) == 0)
+            if(strMid.scan(strSeparator) == 0)
             {
 
                m_iterator++;

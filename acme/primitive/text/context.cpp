@@ -933,7 +933,7 @@ namespace text
    }
 
 
-   bool table::begins(const context * pcontext, const char * pszTopic, const ::atom & atom) const
+   bool table::begins(const context * pcontext, const ::string &strTopic, const ::atom & atom) const
    {
 
       static ::atom idEn("en");
@@ -949,7 +949,7 @@ namespace text
          {
 
             table = (*pcontext->m_pschema)[atom];
-            if(table.has_char() && string_begins_ci(pszTopic, table))
+            if(table.has_char() && string_begins_ci(strTopic, table))
                return true;
 
          }
@@ -957,7 +957,7 @@ namespace text
          if(pcontext->m_pschemaLocale != nullptr)
          {
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(table.has_char() && string_begins_ci(pszTopic, table))
+            if(table.has_char() && string_begins_ci(strTopic, table))
                return true;
          }
 
@@ -965,7 +965,7 @@ namespace text
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
-            if(table.has_char() && string_begins_ci(pszTopic, table))
+            if(table.has_char() && string_begins_ci(strTopic, table))
                return true;
 
          }
@@ -976,20 +976,20 @@ namespace text
       {
 
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-         if(table.has_char() && string_begins_ci(pszTopic, table))
+         if(table.has_char() && string_begins_ci(strTopic, table))
             return true;
 
       }
 
       table = (*m_pschemaEn)[atom]; // lang=en style=en
-      if(table.has_char() && string_begins_ci(pszTopic, table))
+      if(table.has_char() && string_begins_ci(strTopic, table))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-         if(table.has_char() && string_begins_ci(pszTopic, table))
+         if(table.has_char() && string_begins_ci(strTopic, table))
             return true;
 
       }

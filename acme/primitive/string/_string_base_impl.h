@@ -1713,14 +1713,14 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(str
 //}
 
 
-//template < typename ITERATOR_TYPE >
-//inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::order(const string_base & str) const noexcept
-//{
-//
-//   return this->order(range, compare_const_reference <const CHARACTER>);
-//
-//}
-//
+template < typename ITERATOR_TYPE >
+inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::order(const string_base & str) const noexcept
+{
+
+   return this->NATURAL_POINTER::order(str, ::comparison::comparison <CHARACTER>());
+
+}
+
 
 template < typename ITERATOR_TYPE >
 inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::case_insensitive_order(const string_base & str) const noexcept

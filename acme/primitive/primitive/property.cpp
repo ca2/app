@@ -267,7 +267,7 @@ string & property::get_network_arguments(::string & str) const
 
    str += "=";
 
-   str += ::url::encode(this->operator ::string());
+   str += ::url::encode(*this);
 
    return str;
 

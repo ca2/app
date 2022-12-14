@@ -986,7 +986,7 @@ namespace acme
             for (auto& pproperty : payload.propset())
             {
 
-               auto iItem = ::acme::array::add(array, pproperty->operator ::string());
+               auto iItem = ::acme::array::add(array, *pproperty);
 
                if (i < 0)
                {

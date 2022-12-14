@@ -592,8 +592,9 @@ public:
 
 
    //::std::strong_ordering order(const string_base & str) const noexcept;
-   using NATURAL_POINTER::order;
+   //using NATURAL_POINTER::order;
 
+   ::std::strong_ordering order(const string_base & str) const noexcept;
    ::std::strong_ordering case_insensitive_order(const string_base & str) const noexcept;
    ::std::strong_ordering collate(const string_base & str) const noexcept;
    ::std::strong_ordering case_insensitive_collate(const string_base & str) const noexcept;

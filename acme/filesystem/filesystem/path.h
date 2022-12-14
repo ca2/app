@@ -117,7 +117,7 @@ namespace file
       template < primitive_character CHARACTER2 >
       path(const CHARACTER2 * pszSource, strsize len) : path(pszSource, 0, len) {}
       template < primitive_character CHARACTER2 >
-      path(const CHARACTER2 * pszSource, strsize start, strsize len);
+      path(const CHARACTER2 * pszSource, strsize start, strsize len) :path(::string(pszSource, start, len)){}
       template < primitive_character CHARACTER2, strsize sizeMaximumLength >
       path(const inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
          path(inlinestring.begin(), inlinestring.end())
